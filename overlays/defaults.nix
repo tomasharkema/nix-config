@@ -10,7 +10,9 @@
     isNormalUser = true;
     description = "tomas";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [ firefox tilix ];
+    # packages = with pkgs; [ firefox tilix ];
+    hashedPassword =
+      "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
 
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas"
@@ -28,11 +30,15 @@
   services.netdata = {
     enable = true;
     package = pkgs.netdata.override { withCloud = true; };
-    claimTokenFile = ../cloudtoken.conf;
+    claimTokenFile = ../files/cloudtoken.conf;
   };
 
   services.tailscale = {
     enable = true;
-    authKeyFile = ../tailscalekey.conf;
+    authKeyFile = ../files/tailscalekey.conf;
   };
+
+  # system.autoUpgrade.enable = true;
+
+  # systemd.services.NetworkManager-wait-online.enable = false;
 }
