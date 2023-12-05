@@ -1,8 +1,7 @@
 { pkgs, ... }: {
 
   time.timeZone = "Europe/Amsterdam";
-  services.tailscale.enable = true;
-  services.tailscale.authKeyFile = ../tailscalekey.conf;
+
   system.stateVersion = "23.11";
   security.sudo.wheelNeedsPassword = false;
   nixpkgs.config.allowUnfree = true;
@@ -11,7 +10,7 @@
     isNormalUser = true;
     description = "tomas";
     extraGroups = [ "networkmanager" "wheel" ];
-    # packages = with pkgs; [ firefox ];
+    packages = with pkgs; [ firefox tilix ];
 
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas"
@@ -25,13 +24,15 @@
     settings.KbdInteractiveAuthentication = false;
     settings.PermitRootLogin = "yes";
   };
+
   services.netdata = {
     enable = true;
     package = pkgs.netdata.override { withCloud = true; };
     claimTokenFile = ../cloudtoken.conf;
   };
-  # environment.var."lib/netdata/cloud.d/token" = {
-  #   mode = "0600";
-  #   source = ./cloudtoken.conf;
-  # };
+
+  services.tailscale = {
+    enable = true;
+    authKeyFile = ../tailscalekey.conf;
+  };
 }
