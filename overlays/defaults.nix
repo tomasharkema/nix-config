@@ -38,7 +38,7 @@
     authKeyFile = ../files/tailscalekey.conf;
   };
 
-  # system.autoUpgrade.enable = true;
+  system.autoUpgrade.enable = true;
 
   # systemd.services.NetworkManager-wait-online.enable = false;
 }

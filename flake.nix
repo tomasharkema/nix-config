@@ -1,11 +1,11 @@
 {
-  nixConfig = {
-    extra-substituters = [ "https://nix-community.cachix.org" ];
-    extra-trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
-    extra-experimental-features = "nix-command flakes";
-  };
+  # nixConfig = {
+  #   extra-substituters = [ "https://nix-community.cachix.org" ];
+  #   extra-trusted-public-keys = [
+  #     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+  #   ];
+  #   extra-experimental-features = "nix-command flakes";
+  # };
 
   inputs =
     { # Pin our primary nixpkgs repository. This is the main nixpkgs repository
@@ -51,12 +51,6 @@
 
       defaults = { pkgs, ... }: {
         imports = [ ./overlays/packages.nix ./overlays/defaults.nix ];
-        nix = {
-          package = pkgs.nixFlakes;
-          extraOptions = ''
-            experimental-features = nix-command flakes
-          '';
-        };
       };
 
       utm-nixos = { pkgs, modulesPath, ... }: {
@@ -71,8 +65,8 @@
         nixpkgs.system = "aarch64-linux";
         deployment.buildOnTarget = true;
         deployment = {
-          # targetHost = "100.127.158.59";
-          targetHost = "10.211.70.5";
+          targetHost = "100.121.109.15";
+          # targetHost = "10.211.70.5";
           targetUser = "root";
         };
         boot.isContainer = true;
@@ -115,7 +109,7 @@
 
       hyperv-nixos = { pkgs, ... }: {
         imports = [
-          ./overlays/desktop.nix
+          # ./overlays/desktop.nix
           # ./overlays/efi.nix
         ];
 
@@ -124,8 +118,8 @@
 
         deployment.buildOnTarget = true;
         deployment = {
-          # targetHost = "100.64.161.30";
-          targetHost = "192.168.1.73";
+          targetHost = "100.64.161.30";
+          # targetHost = "192.168.1.73";
           targetUser = "root";
         };
 
@@ -156,7 +150,7 @@
         deployment.buildOnTarget = true;
         deployment = {
           # targetHost = "cfserve.ling-lizard.ts.net";
-          targetHost = "192.168.2.119";
+          targetHost = "100.111.187.38";
           targetUser = "root";
         };
 
@@ -176,7 +170,7 @@
 
         imports = [
           # ./overlays/qemu.nix
-          ./overlays/desktop.nix
+          # ./overlays/desktop.nix
           # ./overlays/efi.nix 
         ];
 
