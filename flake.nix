@@ -24,6 +24,10 @@
     };
 
   outputs = { nixpkgs, ... }: {
+
+    nixpkgs.config.allowUnfree = true;
+    nixpkgs.config.allowUnfreePredicate = _: true;
+
     colmena = {
       meta = {
         nixpkgs = import nixpkgs {
@@ -39,49 +43,58 @@
       };
 
       defaults = { pkgs, ... }: {
-        environment.systemPackages = with pkgs; [
-          vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-          wget
-          tmux
-          vim
-          wget
-          curl
-          git
-          coreutils
-          curl
-          wget
-          git
-          git-lfs
 
-          tailscale
-          fortune
-          cachix
-          niv
+        imports = [ ./packages.nix ];
 
-          go
-          gotools
-          gopls
-          go-outline
-          gocode
-          gopkgs
-          gocode-gomod
-          godef
-          golint
-          colima
-          docker
+        # environment.systemPackages = with pkgs; [
+        #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+        #   wget
+        #   tmux
+        #   vim
+        #   wget
+        #   curl
+        #   git
+        #   coreutils
+        #   curl
+        #   wget
+        #   git
+        #   git-lfs
 
-          neofetch
-          tmux
-          yq
-          bfg-repo-cleaner
-          tmux
-          nnn
-          mtr
-          dnsutils
-          ldns
-          htop
-          vscode
-        ];
+        #   tailscale
+        #   fortune
+        #   cachix
+        #   niv
+
+        #   go
+        #   gotools
+        #   gopls
+        #   go-outline
+        #   gocode
+        #   gopkgs
+        #   gocode-gomod
+        #   godef
+        #   golint
+        #   colima
+        #   docker
+
+        #   neofetch
+        #   tmux
+        #   yq
+        #   bfg-repo-cleaner
+        #   tmux
+        #   nnn
+        #   mtr
+        #   dnsutils
+        #   ldns
+        #   htop
+        #   vscode
+
+        #   git
+
+        #   btop
+
+        #   firefox
+        # ];
 
         time.timeZone = "Europe/Amsterdam";
         services.tailscale.enable = true;
@@ -94,7 +107,7 @@
           isNormalUser = true;
           description = "tomas";
           extraGroups = [ "networkmanager" "wheel" ];
-          packages = with pkgs; [ firefox thunderbird ];
+          # packages = with pkgs; [ firefox ];
 
           openssh.authorizedKeys.keys = [
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas"
@@ -108,18 +121,50 @@
           settings.KbdInteractiveAuthentication = false;
           settings.PermitRootLogin = "yes";
         };
+        services.netdata = {
+          enable = true;
+          package = pkgs.netdata.override { withCloud = true; };
+        };
+        # environment.var."lib/netdata/cloud.d/token" = {
+        #   mode = "0600";
+        #   source = ./cloudtoken.conf;
+        # };
       };
 
-      utm = { pkgs, modulesPath, ... }: {
+      utm-nixos = { pkgs, modulesPath, ... }: {
         networking.hostName = "utm-nixos";
         deployment.tags = [ "vm" ];
         nixpkgs.system = "aarch64-linux";
         deployment.buildOnTarget = true;
         deployment = {
           targetHost = "10.211.70.5";
-          targetUser = "tomas";
+          targetUser = "root";
         };
         boot.isContainer = true;
+
+        networking.networkmanager.enable = true;
+        services.xserver.enable = true;
+        services.xserver.displayManager.gdm.enable = true;
+        services.xserver.desktopManager.gnome.enable = true;
+        networking.firewall.enable = false;
+      };
+
+      utm-ferdorie = { pkgs, modulesPath, ... }: {
+        networking.hostName = "utm-ferdorie";
+        deployment.tags = [ "vm" ];
+        nixpkgs.system = "aarch64-linux";
+        deployment.buildOnTarget = true;
+        deployment = {
+          targetHost = "100.119.250.94";
+          targetUser = "root";
+        };
+        boot.isContainer = true;
+
+        networking.networkmanager.enable = true;
+        services.xserver.enable = true;
+        services.xserver.displayManager.gdm.enable = true;
+        services.xserver.desktopManager.gnome.enable = true;
+        networking.firewall.enable = false;
       };
 
       enceladus = { pkgs, ... }: {
@@ -131,8 +176,6 @@
           targetUser = "root";
         };
         boot.isContainer = true;
-
-        # environment.systemPackages = with pkgs; [ ];
       };
 
       hyperv = { pkgs, ... }: {
@@ -141,11 +184,36 @@
 
         deployment.buildOnTarget = true;
         deployment = {
-          targetHost = "192.168.1.73";
+          targetHost = "100.64.161.30";
+          targetUser = "root";
+        };
+
+        virtualisation.hypervGuest.enable = true;
+
+        boot.isContainer = true;
+        networking.networkmanager.enable = true;
+        services.xserver.enable = true;
+        services.xserver.displayManager.gdm.enable = true;
+        services.xserver.desktopManager.gnome.enable = true;
+        networking.firewall.enable = false;
+      };
+
+      cfserve = { pkgs, ... }: {
+        deployment.tags = [ "bare" ];
+        networking.hostName = "cfserve";
+
+        deployment.buildOnTarget = true;
+        deployment = {
+          targetHost = "cfserve.ling-lizard.ts.net";
           targetUser = "root";
         };
 
         boot.isContainer = true;
+        networking.networkmanager.enable = true;
+        services.xserver.enable = true;
+        services.xserver.displayManager.gdm.enable = true;
+        services.xserver.desktopManager.gnome.enable = true;
+        networking.firewall.enable = false;
       };
     };
   };
