@@ -2,7 +2,7 @@
 
   time.timeZone = "Europe/Amsterdam";
   services.tailscale.enable = true;
-  services.tailscale.authKeyFile = ./tailscalekey.conf;
+  services.tailscale.authKeyFile = ../tailscalekey.conf;
   system.stateVersion = "23.11";
   security.sudo.wheelNeedsPassword = false;
   nixpkgs.config.allowUnfree = true;
@@ -28,6 +28,7 @@
   services.netdata = {
     enable = true;
     package = pkgs.netdata.override { withCloud = true; };
+    claimTokenFile = ../cloudtoken.conf;
   };
   # environment.var."lib/netdata/cloud.d/token" = {
   #   mode = "0600";
