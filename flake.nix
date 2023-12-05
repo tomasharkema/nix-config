@@ -43,10 +43,13 @@
       };
 
       defaults = { pkgs, ... }: {
-        imports = [ ./packages.nix ./defaults.nix ];
+        imports = [ ./packages.nix ./overlays/defaults.nix ];
       };
 
       utm-nixos = { pkgs, modulesPath, ... }: {
+
+        imports = [ ./overlays/desktop.nix ];
+
         networking.hostName = "utm-nixos";
         deployment.tags = [ "vm" ];
         nixpkgs.system = "aarch64-linux";
@@ -56,11 +59,12 @@
           targetUser = "root";
         };
         boot.isContainer = true;
-
-        imports = [ ./overlays/desktop.nix ];
       };
 
       utm-ferdorie = { pkgs, modulesPath, ... }: {
+
+        imports = [ ./overlays/desktop.nix ];
+
         networking.hostName = "utm-ferdorie";
         deployment.tags = [ "vm" ];
         nixpkgs.system = "aarch64-linux";
@@ -70,12 +74,6 @@
           targetUser = "root";
         };
         boot.isContainer = true;
-
-        networking.networkmanager.enable = true;
-        services.xserver.enable = true;
-        services.xserver.displayManager.gdm.enable = true;
-        services.xserver.desktopManager.gnome.enable = true;
-        networking.firewall.enable = false;
       };
 
       enceladus = { pkgs, ... }: {
@@ -90,6 +88,8 @@
       };
 
       hyperv = { pkgs, ... }: {
+        imports = [ ./overlays/desktop.nix ];
+
         networking.hostName = "hyperv-nixos";
         deployment.tags = [ "vm" ];
 
@@ -102,14 +102,11 @@
         virtualisation.hypervGuest.enable = true;
 
         boot.isContainer = true;
-        networking.networkmanager.enable = true;
-        services.xserver.enable = true;
-        services.xserver.displayManager.gdm.enable = true;
-        services.xserver.desktopManager.gnome.enable = true;
-        networking.firewall.enable = false;
       };
 
       cfserve = { pkgs, ... }: {
+        imports = [ ./overlays/desktop.nix ];
+
         deployment.tags = [ "bare" ];
         networking.hostName = "cfserve";
 
@@ -120,11 +117,6 @@
         };
 
         boot.isContainer = true;
-        networking.networkmanager.enable = true;
-        services.xserver.enable = true;
-        services.xserver.displayManager.gdm.enable = true;
-        services.xserver.desktopManager.gnome.enable = true;
-        networking.firewall.enable = false;
       };
     };
   };
