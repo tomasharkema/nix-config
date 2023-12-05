@@ -110,8 +110,8 @@
         };
       };
 
-      utm = { pkgs, modulesPath, name, ... }: {
-        networking.hostName = name;
+      utm = { pkgs, modulesPath, ... }: {
+        networking.hostName = "utm-nixos";
         deployment.tags = [ "vm" ];
         nixpkgs.system = "aarch64-linux";
         deployment.buildOnTarget = true;
@@ -122,8 +122,8 @@
         boot.isContainer = true;
       };
 
-      enceladus = { pkgs, name, ... }: {
-        networking.hostName = name;
+      enceladus = { pkgs, ... }: {
+        networking.hostName = "enceladus";
         deployment.tags = [ "bare" ];
         deployment.buildOnTarget = true;
         deployment = {
@@ -135,8 +135,8 @@
         # environment.systemPackages = with pkgs; [ ];
       };
 
-      hyperv = { pkgs, name, ... }: {
-        networking.hostName = name;
+      hyperv = { pkgs, ... }: {
+        networking.hostName = "hyperv-nixos";
         deployment.tags = [ "vm" ];
 
         deployment.buildOnTarget = true;
