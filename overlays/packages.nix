@@ -28,12 +28,13 @@
     godef
     golint
     colima
+
     docker
 
     neofetch
     tmux
     yq
-    bfg-repo-cleaner
+    # bfg-repo-cleaner
     tmux
     nnn
     mtr
@@ -46,9 +47,15 @@
 
     btop
 
-    firefox
+    # firefox
 
     cockpit
+    screen
+
+    pv
+    xz
+
+    _1password
   ];
 
 }
