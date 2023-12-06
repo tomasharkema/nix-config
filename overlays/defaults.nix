@@ -10,18 +10,23 @@
   security.sudo.wheelNeedsPassword = false;
   nixpkgs.config.allowUnfree = true;
 
+  users.mutableUsers = true;
+
   users.users.tomas = {
     isNormalUser = true;
     description = "tomas";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [ firefox tilix ];
-    hashedPassword =
+    initialHashedPassword =
       "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
 
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas"
     ];
   };
+
+  users.users."tomas".hashedPassword =
+    config.users.users."tomas".initialHashedPassword;
 
   services.openssh = {
     enable = true;
@@ -44,5 +49,5 @@
 
   system.autoUpgrade.enable = true;
 
-  # systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.services.NetworkManager-wait-online.enable = false;
 }
