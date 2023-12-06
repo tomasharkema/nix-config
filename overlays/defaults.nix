@@ -1,4 +1,8 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
+  imports = [ ./packages.nix ];
+
+  networking.networkmanager.enable = true;
+  networking.firewall.enable = false;
 
   time.timeZone = "Europe/Amsterdam";
 
@@ -10,7 +14,7 @@
     isNormalUser = true;
     description = "tomas";
     extraGroups = [ "networkmanager" "wheel" ];
-    # packages = with pkgs; [ firefox tilix ];
+    packages = with pkgs; [ firefox tilix ];
     hashedPassword =
       "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
 

@@ -140,7 +140,7 @@
     # custom settings
     settings = {
       add_newline = false;
-      aws.disabled = true;
+      aws.disabled = false;
       gcloud.disabled = true;
       line_break.disabled = true;
     };
@@ -163,18 +163,16 @@
     };
     enableAutosuggestions = true;
     shellAliases = {
-      # v = "nvim";
-      # ll = "ls -l";
-      # ls = "exa";
-      # la = "exa -a";
-      # grep = "grep --color=auto";
-      # cp = "cp -i";
-      # mv = "mv -i";
-      # rm = "rm -i";
-      # g = "git";
-      # gs = "git status";
+      v = "nvim";
+      ll = "ls -l";
+      ls = "exa";
+      la = "exa -a";
+      grep = "grep --color=auto";
+      cp = "cp -i";
+      mv = "mv -i";
+      rm = "rm -i";
+      g = "git";
+      gs = "git status";
     };
   };
-
-  # services.tailscale.enable = true;
 }
