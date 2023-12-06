@@ -47,6 +47,8 @@
     btop
 
     firefox
+
+    cockpit
   ];
 
 }

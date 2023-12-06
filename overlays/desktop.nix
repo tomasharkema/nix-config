@@ -22,5 +22,5 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # nixpkgs.config.firefox.enableGnomeExtensions = true;
+  nixpkgs.config.firefox.enableGnomeExtensions = true;
 }

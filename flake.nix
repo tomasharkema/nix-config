@@ -79,6 +79,10 @@
 
       enceladus = { pkgs, ... }: {
         nixpkgs.system = "x86_64-linux";
+        imports = [
+          ./overlays/desktop.nix
+          # ./overlays/efi.nix
+        ];
         networking.hostName = "enceladus";
         deployment.tags = [ "bare" ];
         deployment = {
@@ -139,8 +143,28 @@
         deployment.tags = [ "vm" ];
         networking.hostName = "unraidferdorie";
         deployment = {
-          # targetHost = "100.69.121.116";
-          targetHost = "192.168.0.18";
+          targetHost = "100.80.224.70";
+          # targetHost = "192.168.0.18";
+          targetUser = "root";
+        };
+
+        boot.isContainer = true;
+      };
+
+      tactical = { pkgs, ... }: {
+        nixpkgs.system = "x86_64-linux";
+
+        imports = [
+          # ./overlays/qemu.nix
+          # ./overlays/desktop.nix
+          # ./overlays/efi.nix 
+        ];
+
+        deployment.tags = [ "vm" ];
+        networking.hostName = "tactical";
+        deployment = {
+          targetHost = "100.83.189.162";
+          # targetHost = "192.168.0.32";
           targetUser = "root";
         };
 
