@@ -1,9 +1,5 @@
 {
   nixConfig = {
-    extra-substituters = [ "https://nix-community.cachix.org" ];
-    extra-trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
     extra-experimental-features = "nix-command flakes";
     distributedBuilds = true;
     buildMachines = /etc/nix/machines;
@@ -26,6 +22,7 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    cachix-deploy-flake.url = "github:cachix/cachix-deploy-flake";
   };
 
   outputs = { nixpkgs, ... }: {
@@ -35,6 +32,7 @@
 
     colmena = {
       meta = {
+        machinesFile = /etc/nix/machines;
         nixpkgs = import nixpkgs {
           system = "x86_64-linux";
           overlays = [ ];

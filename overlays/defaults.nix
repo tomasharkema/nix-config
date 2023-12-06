@@ -10,7 +10,7 @@
   security.sudo.wheelNeedsPassword = false;
   nixpkgs.config.allowUnfree = true;
 
-  users.mutableUsers = true;
+  # users.mutableUsers = true;
 
   users.users.tomas = {
     isNormalUser = true;
