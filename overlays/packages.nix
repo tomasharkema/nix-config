@@ -56,6 +56,8 @@
     xz
 
     _1password
+    gh
+    iftop
   ];
 
 }

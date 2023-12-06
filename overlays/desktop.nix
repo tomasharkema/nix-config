@@ -5,9 +5,8 @@
   services.xserver.desktopManager.gnome.enable = true;
 
   services.xrdp.enable = true;
-  # boot.loader.systemd-boot.enable = true;
+  services.xrdp.openFirewall = true;
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -23,4 +22,6 @@
   };
 
   nixpkgs.config.firefox.enableGnomeExtensions = true;
+
+  users.users."tomas".packages = with pkgs; [ firefox tilix vscode ];
 }

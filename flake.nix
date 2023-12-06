@@ -51,6 +51,8 @@
 
       defaults = import ./overlays/defaults.nix;
 
+      imports = [ ./machines/enceladus.nix ];
+
       utm-nixos = { pkgs, ... }: {
         nixpkgs.system = "aarch64-linux";
         imports = [
@@ -83,21 +85,6 @@
       #   };
       #   boot.isContainer = true;
       # };
-
-      enceladus = { pkgs, ... }: {
-        nixpkgs.system = "x86_64-linux";
-        imports = [
-          ./overlays/desktop.nix
-          # ./overlays/efi.nix
-        ];
-        networking.hostName = "enceladus";
-        deployment.tags = [ "bare" ];
-        deployment = {
-          targetHost = "100.93.81.142";
-          targetUser = "root";
-        };
-        boot.isContainer = true;
-      };
 
       hyperv-nixos = { pkgs, ... }: {
         nixpkgs.system = "x86_64-linux";
@@ -142,7 +129,7 @@
         nixpkgs.system = "x86_64-linux";
         imports = [
           (modulesPath + "/installer/scan/not-detected.nix")
-          # ./overlays/desktop.nix
+          ./overlays/desktop.nix
           # ./overlays/efi.nix  
         ];
 

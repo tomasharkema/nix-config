@@ -15,7 +15,6 @@
     isNormalUser = true;
     description = "tomas";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [ firefox tilix ];
     initialHashedPassword =
       "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
 
@@ -50,7 +49,7 @@
 
   networking.firewall = {
     # enable the firewall
-    enable = true;
+    enable = false;
 
     # always allow traffic from your Tailscale network
     trustedInterfaces = [ "tailscale0" ];
