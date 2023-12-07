@@ -22,8 +22,8 @@
   _module.check = false;
   deployment.tags = [ "bare" ];
   deployment = {
-    targetHost = "100.94.108.52";
-    # targetHost = "192.168.178.46";
+    # targetHost = "100.94.108.52";
+    targetHost = "192.168.178.46";
     targetUser = "root";
   };
 

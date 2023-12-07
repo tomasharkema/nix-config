@@ -25,6 +25,6 @@
   };
   networking.nftables.enable = true;
 
-  network.firewall.trustedInterfaces = [ "tailscale0" ];
-  network.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
+  networking.firewall.trustedInterfaces = [ "tailscale0" ];
+  networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
 }

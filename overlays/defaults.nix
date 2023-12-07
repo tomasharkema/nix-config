@@ -94,6 +94,7 @@
       theme = "jonathan";
     };
     enableAutosuggestions = true;
+    enableCompletion = true;
     shellAliases = {
       v = "nvim";
       ll = "ls -l";
@@ -109,15 +110,27 @@
   };
 
   networking.firewall = {
-    #   # enable the firewall
-    enable = false;
+    # enable the firewall
+    enable = true;
 
     #   # # allow the Tailscale UDP port through the firewall
-    allowedUDPPorts = [ 2022 9090 ];
+    allowedUDPPorts = [ 22 2022 9090 ];
 
     #   # # allow you to SSH in over the public internet
     allowedTCPPorts = [ 22 2022 9090 ];
   };
 
-  services.snapper = { enable = true; };
+  # services.snapper = { enable = true; };
+  # fonts = {
+  #   # enableCoreFonts = true;
+  #   enableFontDir = true;
+  #   fonts = with pkgs; [
+  #     corefonts # Microsoft free fonts
+  #     fira # Monospace
+  #     inconsolata # Monospace
+  #     powerline-fonts
+  #     ubuntu_font_family
+  #     unifont # International languages
+  #   ];
+  # };
 }

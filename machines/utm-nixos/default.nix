@@ -4,6 +4,17 @@
     ../overlays/desktop.nix
     # ./overlays/efi.nix
     (modulesPath + "/profiles/qemu-guest.nix")
+    "${
+      builtins.fetchTarball {
+        url = "https://github.com/nix-community/disko/archive/master.tar.gz";
+        sha256 = "sha256:0khjn8kldipsr50m15ngnprzh1pzywx7w5i8g36508l4p7fbmmlm";
+      }
+    }/module.nix"
+    ./disk-config.nix
+    {
+      _module.args.disks =
+        [ "/dev/disk/by-id/usb-QEMU_QEMU_CD-ROM_1-0000:00:04.0-4.1-0:0" ];
+    }
   ];
   networking.hostName = "utm-nixos";
   networking.networkmanager.enable = true;
@@ -26,17 +37,6 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
-
-  fileSystems."/" = lib.mkDefault {
-    device = "/dev/vda2";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot" = lib.mkDefault {
-    device = "/dev/vda1";
-    fsType = "vfat";
-  };
-
-  swapDevices = [ ];
+  services.snapper = { enable = true; };
   #   networking.useDHCP = lib.mkDefault true;
 }

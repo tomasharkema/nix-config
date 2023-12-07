@@ -62,7 +62,7 @@
 
         enceladus = import ./machines/enceladus/default.nix;
 
-        utm-nixos = import ./machines/utm-nixos.nix;
+        utm-nixos = import ./machines/utm-nixos/default.nix;
 
         # utm-ferdorie = { pkgs, modulesPath, ... }: {
 
@@ -220,7 +220,14 @@
           ./machines/enceladus/default.nix
         ];
       };
-
+      nixosConfigurations.utm-nixos = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          # "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+          ./overlays/defaults.nix
+          ./machines/utm-nixos/default.nix
+        ];
+      };
       packages = forAllSystems (system:
         let pkgs = nixpkgsFor.${system};
         in {

@@ -61,5 +61,15 @@ in {
     vscode
     gnome.gnome-session
     btrfs-progs
+    gnome3.gedit
+    gnome3.nautilus
+    # python36
+    # python36Packages.bpytop
+    # xlibs.xmodmap
+    # xlibs.xbacklight
+    unrar
+    unzip
+    zsh
+    snapper-gui
   ];
 }
