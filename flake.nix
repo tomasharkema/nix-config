@@ -28,6 +28,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix.url = "github:ryantm/agenix";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { nixpkgs, nixos-generators, ... }:
@@ -58,7 +60,7 @@
 
         defaults = import ./overlays/defaults.nix;
 
-        enceladus = import ./machines/enceladus.nix;
+        enceladus = import ./machines/enceladus/default.nix;
 
         utm-nixos = import ./machines/utm-nixos.nix;
 
@@ -227,7 +229,7 @@
             modules = [
               # "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
               ./overlays/defaults.nix
-              ./machines/enceladus.nix
+              ./machines/enceladus/default.nix
             ];
             format = "install-iso";
           };

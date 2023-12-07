@@ -60,5 +60,6 @@ in {
     tilix
     vscode
     gnome.gnome-session
+    btrfs-progs
   ];
 }

@@ -6,9 +6,7 @@
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
   networking.hostName = "utm-nixos";
-
-  # optionalAttrs (builtins.hasAttr "tags" deployment) {
-  # config = lib.mkIf builtins.hasAttr "tags" deployment
+  networking.networkmanager.enable = true;
   _module.check = false;
 
   deployment = {
@@ -40,5 +38,5 @@
   };
 
   swapDevices = [ ];
-
+  #   networking.useDHCP = lib.mkDefault true;
 }

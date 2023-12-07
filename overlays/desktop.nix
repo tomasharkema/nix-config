@@ -21,6 +21,15 @@ in {
     "${pkgs.gnome.gnome-session}/bin/gnome-session";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+  services.xserver.libinput.enable = true;
+  programs.mtr.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
     LC_IDENTIFICATION = "en_US.UTF-8";
