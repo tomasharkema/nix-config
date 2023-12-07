@@ -1,4 +1,14 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+
+let
+
+  sbtix = import (pkgs.fetchFromGitHub {
+    owner = "nix-gui";
+    repo = "nix-gui";
+    # rev = "d4e59eaecb46a74c82229a1d326839be83a1a3ed";
+    # sha256 = "1fy7y4ln63ynad5v9w4z8srb9c8j2lz67fjsf6a923czm9lh5naf";
+  });
+in {
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
@@ -6,7 +16,9 @@
 
   services.xrdp.enable = true;
   services.xrdp.openFirewall = true;
-
+  # services.xrdp.defaultWindowManager = "gnome-session --session=gnome-classic";
+  services.xrdp.defaultWindowManager =
+    "${pkgs.gnome.gnome-session}/bin/gnome-session";
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -22,6 +34,25 @@
   };
 
   nixpkgs.config.firefox.enableGnomeExtensions = true;
+  environment.systemPackages = with pkgs; [ gparted ];
 
-  users.users."tomas".packages = with pkgs; [ firefox tilix vscode ];
+  nix.extraOptions = "experimental-features = nix-command flakes";
+  security.polkit.enable = true;
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (
+        subject.isInGroup("users")
+          && (
+            action.id == "org.freedesktop.login1.reboot" ||
+            action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+            action.id == "org.freedesktop.login1.power-off" ||
+            action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+          )
+        )
+      {
+        return polkit.Result.YES;
+      }
+    })
+  '';
+  # services.x2goserver.enable = true;
 }

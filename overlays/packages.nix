@@ -1,5 +1,9 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+let youtube-dl = with pkgs.python3Packages; toPythonApplication youtube-dl;
+in {
+
   environment.systemPackages = with pkgs; [
+    # youtube-dl
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     tmux
@@ -12,12 +16,9 @@
     wget
     git
     git-lfs
-
-    tailscale
     fortune
     cachix
     niv
-
     go
     gotools
     gopls
@@ -28,13 +29,10 @@
     godef
     golint
     colima
-
     docker
-
     neofetch
     tmux
     yq
-    # bfg-repo-cleaner
     tmux
     nnn
     mtr
@@ -42,22 +40,25 @@
     ldns
     htop
     vscode
-
     git
-
     btop
-
-    # firefox
-
-    cockpit
     screen
-
     pv
     xz
-
     _1password
     gh
     iftop
+    zip
+    unzip
+    zsh-autosuggestions
+    eza
+    autojump
+    thefuck
+    powertop
+    glances
+    firefox
+    tilix
+    vscode
+    gnome.gnome-session
   ];
-
 }

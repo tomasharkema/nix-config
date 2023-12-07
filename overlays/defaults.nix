@@ -1,6 +1,7 @@
-{ config, pkgs, lib, ... }: {
-  imports = [ ./packages.nix ];
+{ pkgs, lib, agenix, ... }: {
+  imports = [ ./packages.nix ../apps/resilio.nix ../apps/tailscale.nix ];
 
+  networking.wireless.enable = false;
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Amsterdam";
@@ -14,17 +15,20 @@
   users.users.tomas = {
     isNormalUser = true;
     description = "tomas";
-    extraGroups = [ "networkmanager" "wheel" ];
-    initialHashedPassword =
+    extraGroups = [ "networkmanager" "wheel" "rslsync" ];
+    hashedPassword =
       "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
 
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas"
     ];
+    shell = pkgs.zsh;
   };
 
-  users.users."tomas".hashedPassword =
-    config.users.users."tomas".initialHashedPassword;
+  services.eternal-terminal.enable = true;
+
+  # users.users."tomas".hashedPassword =
+  #   config.users.users."tomas".initialHashedPassword;
 
   services.openssh = {
     enable = true;
@@ -38,27 +42,6 @@
     enable = true;
     package = pkgs.netdata.override { withCloud = true; };
     claimTokenFile = ../files/cloudtoken.conf;
-  };
-
-  services.tailscale = {
-    enable = true;
-    authKeyFile = ../files/tailscalekey.conf;
-    useRoutingFeatures = "client";
-  };
-  networking.nftables.enable = true;
-
-  networking.firewall = {
-    # enable the firewall
-    enable = false;
-
-    # always allow traffic from your Tailscale network
-    trustedInterfaces = [ "tailscale0" ];
-
-    # allow the Tailscale UDP port through the firewall
-    allowedUDPPorts = [ config.services.tailscale.port ];
-
-    # allow you to SSH in over the public internet
-    allowedTCPPorts = [ 22 ];
   };
 
   system.autoUpgrade.enable = true;
@@ -82,4 +65,57 @@
 
   nix.optimise.automatic = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+      aws.disabled = false;
+      gcloud.disabled = true;
+      line_break.disabled = true;
+    };
+  };
+  users.defaultUserShell = pkgs.zsh;
+  programs.zsh = {
+    enable = true;
+    ohMyZsh = {
+      enable = true;
+      plugins = [
+        "git"
+        "thefuck"
+        "autojump"
+        "gitignore"
+        "sudo"
+        "macos"
+        "zsh-autosuggestions"
+        "colorize"
+        "1password"
+      ];
+      theme = "jonathan";
+    };
+    enableAutosuggestions = true;
+    shellAliases = {
+      v = "nvim";
+      ll = "ls -l";
+      ls = "exa";
+      la = "exa -a";
+      grep = "grep --color=auto";
+      cp = "cp -i";
+      mv = "mv -i";
+      rm = "rm -i";
+      g = "git";
+      gs = "git status";
+    };
+  };
+
+  networking.firewall = {
+    #   # enable the firewall
+    enable = true;
+
+    #   # # allow the Tailscale UDP port through the firewall
+    allowedUDPPorts = [ 2022 9090 ];
+
+    #   # # allow you to SSH in over the public internet
+    allowedTCPPorts = [ 22 2022 9090 ];
+  };
 }
