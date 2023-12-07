@@ -212,6 +212,15 @@
         };
       };
 
+      nixosConfigurations.enceladus = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          # "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+          ./overlays/defaults.nix
+          ./machines/enceladus/default.nix
+        ];
+      };
+
       packages = forAllSystems (system:
         let pkgs = nixpkgsFor.${system};
         in {

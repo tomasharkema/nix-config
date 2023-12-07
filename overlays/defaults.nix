@@ -110,7 +110,7 @@
 
   networking.firewall = {
     #   # enable the firewall
-    enable = true;
+    enable = false;
 
     #   # # allow the Tailscale UDP port through the firewall
     allowedUDPPorts = [ 2022 9090 ];
