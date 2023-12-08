@@ -19,10 +19,10 @@
 
   deployment = {
     tags = [ "vm" ];
-    # targetHost = "100.121.109.15";
+    targetHost = "100.89.103.83";
     # targetHost = "10.211.70.5";
 
-    targetHost = "192.168.178.241";
+    # targetHost = "192.168.178.241";
     targetUser = "root";
   };
 
@@ -42,4 +42,5 @@
   # services.snapper = { enable = true; };
   networking.useDHCP = lib.mkDefault true;
   services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = true;
 }

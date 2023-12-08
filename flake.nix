@@ -182,6 +182,7 @@
           boot.extraModulePackages = [ ];
 
           services.qemuGuest.enable = true;
+          services.spice-vdagentd.enable = true;
 
           fileSystems."/" = {
             device = "/dev/disk/by-uuid/7cfeeb6a-9324-4e8c-ad49-99a2dacba295";

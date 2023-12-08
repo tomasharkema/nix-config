@@ -16,7 +16,7 @@
   users.users.tomas = {
     isNormalUser = true;
     description = "tomas";
-    extraGroups = [ "networkmanager" "wheel" "rslsync" ];
+    extraGroups = [ "networkmanager" "wheel" "rslsync" "tomas" ];
     hashedPassword =
       "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
 

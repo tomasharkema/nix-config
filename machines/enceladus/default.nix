@@ -27,15 +27,12 @@
     targetUser = "root";
   };
 
-  # environment.systemPackages = with pkgs;
-  #   [
-  #     sunshine # nvtop
-  #   ];
-  # services.udev.extraRules = ''
-  #   Sunshine
-  #   KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
-  # '';
-  # users.groups.input.members = [ "tomas" ];
+  environment.systemPackages = with pkgs; [ sunshine nvtop ];
+  services.udev.extraRules = ''
+    Sunshine
+    KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
+  '';
+  users.groups.input.members = [ "tomas" ];
 
   # Enable OpenGL
   hardware.opengl = {
@@ -88,14 +85,13 @@
 
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.initrd.kernelModules = [ "uinput" ];
+  boot.kernelModules = [ "kvm-intel" "uinput" ];
   boot.extraModulePackages = [ ];
 
   services.btrfs.autoScrub.enable = true;
-
-  # services.snapper = { enable = true; };
+  services.snapper = { enable = true; };
   networking.useDHCP = lib.mkDefault true;
-  # hardware.bluetooth.enable = true;
-  # services.blueman.enable = true;
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 }
