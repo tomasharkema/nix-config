@@ -1,4 +1,5 @@
 { pkgs, lib, agenix, ... }: {
+  # boot.binfmt.emulatedSystems = [ "aarch64-linux" "x86_64-linux" ];
   imports = [ ./packages.nix ../apps/resilio.nix ../apps/tailscale.nix ];
 
   networking.wireless.enable = false;
@@ -120,7 +121,6 @@
     allowedTCPPorts = [ 22 2022 9090 ];
   };
 
-  # services.snapper = { enable = true; };
   # fonts = {
   #   # enableCoreFonts = true;
   #   enableFontDir = true;
@@ -132,5 +132,10 @@
   #     ubuntu_font_family
   #     unifont # International languages
   #   ];
+  # };
+  # services.usbmuxd.enable = true;
+  # services.usbmuxd = {
+  #   enable = true;
+  #   package = pkgs.usbmuxd2;
   # };
 }

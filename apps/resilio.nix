@@ -50,7 +50,10 @@
       }
     ];
   };
-  systemd.services.resilio.wantedBy =
-    [ "resilio.key-key.service" "resilio.key-key.path" ];
-
+  systemd.services.resilio.wantedBy = [
+    "resilio.key-key.service"
+    "resilio.key-key.path"
+    "resilio_p.key-key.service"
+    "resilio_p.key-key.path"
+  ];
 }

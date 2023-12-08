@@ -168,8 +168,8 @@
           deployment.tags = [ "vm" ];
           networking.hostName = "unraidferdorie";
           deployment = {
-            targetHost = "100.85.77.114";
-            # targetHost = "192.168.0.18";
+            # targetHost = "100.85.77.114";
+            targetHost = "192.168.0.18";
             targetUser = "root";
           };
 
@@ -180,6 +180,8 @@
           boot.initrd.kernelModules = [ ];
           boot.kernelModules = [ "kvm-intel" ];
           boot.extraModulePackages = [ ];
+
+          services.qemuGuest.enable = true;
 
           fileSystems."/" = {
             device = "/dev/disk/by-uuid/7cfeeb6a-9324-4e8c-ad49-99a2dacba295";

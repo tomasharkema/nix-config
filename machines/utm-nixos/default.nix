@@ -1,7 +1,7 @@
 { pkgs, modulesPath, lib, options, ... }: {
   nixpkgs.system = "aarch64-linux";
   imports = [
-    ../overlays/desktop.nix
+    ../../overlays/desktop.nix
     # ./overlays/efi.nix
     (modulesPath + "/profiles/qemu-guest.nix")
     "${
@@ -11,10 +11,7 @@
       }
     }/module.nix"
     ./disk-config.nix
-    {
-      _module.args.disks =
-        [ "/dev/disk/by-id/usb-QEMU_QEMU_CD-ROM_1-0000:00:04.0-4.1-0:0" ];
-    }
+    { _module.args.disks = [ "/dev/vda" ]; }
   ];
   networking.hostName = "utm-nixos";
   networking.networkmanager.enable = true;
@@ -25,7 +22,7 @@
     # targetHost = "100.121.109.15";
     # targetHost = "10.211.70.5";
 
-    targetHost = "192.168.178.240";
+    targetHost = "192.168.178.241";
     targetUser = "root";
   };
 
@@ -34,9 +31,15 @@
 
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "virtio_pci" "usbhid" "usb_storage" "sr_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
+  boot.initrd.kernelModules = [
+    # "uinput" 
+  ];
+  boot.kernelModules = [
+    # "uinput"
+  ];
   boot.extraModulePackages = [ ];
-  services.snapper = { enable = true; };
-  #   networking.useDHCP = lib.mkDefault true;
+  # services.btrfs.autoScrub.enable = true;
+  # services.snapper = { enable = true; };
+  networking.useDHCP = lib.mkDefault true;
+  services.qemuGuest.enable = true;
 }

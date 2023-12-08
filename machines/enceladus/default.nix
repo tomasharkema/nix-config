@@ -1,5 +1,5 @@
 { disko, config, pkgs, modulesPath, lib, ... }: {
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   nixpkgs.system = "x86_64-linux";
   imports = [
     # ./overlays/efi.nix
@@ -22,10 +22,20 @@
   _module.check = false;
   deployment.tags = [ "bare" ];
   deployment = {
-    # targetHost = "100.94.108.52";
-    targetHost = "192.168.178.46";
+    targetHost = "100.67.118.80";
+    # targetHost = "192.168.178.46";
     targetUser = "root";
   };
+
+  # environment.systemPackages = with pkgs;
+  #   [
+  #     sunshine # nvtop
+  #   ];
+  # services.udev.extraRules = ''
+  #   Sunshine
+  #   KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
+  # '';
+  # users.groups.input.members = [ "tomas" ];
 
   # Enable OpenGL
   hardware.opengl = {
@@ -36,7 +46,6 @@
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
-  #   environment.systemPackages = with pkgs; [ nvtop ];
   hardware.nvidia = {
 
     # Modesetting is required.
@@ -84,4 +93,9 @@
   boot.extraModulePackages = [ ];
 
   services.btrfs.autoScrub.enable = true;
+
+  # services.snapper = { enable = true; };
+  networking.useDHCP = lib.mkDefault true;
+  # hardware.bluetooth.enable = true;
+  # services.blueman.enable = true;
 }

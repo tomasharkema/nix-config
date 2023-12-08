@@ -19,17 +19,17 @@ in {
     fortune
     cachix
     niv
-    go
-    gotools
-    gopls
-    go-outline
-    gocode
-    gopkgs
-    gocode-gomod
-    godef
-    golint
-    colima
-    docker
+    # go
+    # gotools
+    # gopls
+    # go-outline
+    # gocode
+    # gopkgs
+    # gocode-gomod
+    # godef
+    # golint
+    # colima
+    # docker
     neofetch
     tmux
     yq
@@ -55,14 +55,14 @@ in {
     autojump
     thefuck
     powertop
-    glances
+    # glances
     firefox
     tilix
     vscode
     gnome.gnome-session
     btrfs-progs
-    gnome3.gedit
-    gnome3.nautilus
+    # gnome3.gedit
+    # gnome3.nautilus
     # python36
     # python36Packages.bpytop
     # xlibs.xmodmap
@@ -70,6 +70,9 @@ in {
     unrar
     unzip
     zsh
-    snapper-gui
+    # snapper-gui
+    # libimobiledevice
+    # ifuse # optional, to mount using 'ifuse'
+
   ];
 }

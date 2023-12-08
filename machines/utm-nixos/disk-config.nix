@@ -25,24 +25,24 @@
               end = "-1G";
               content = {
                 type = "filesystem";
-                format = "btrfs";
+                format = "ext4";
                 mountpoint = "/";
               };
             };
-            encryptedSwap = {
-              size = "10M";
-              content = {
-                type = "swap";
-                randomEncryption = true;
-              };
-            };
-            plainSwap = {
-              size = "100%";
-              content = {
-                type = "swap";
-                resumeDevice = true; # resume from hiberation from this device
-              };
-            };
+            # encryptedSwap = {
+            #   size = "10M";
+            #   content = {
+            #     type = "swap";
+            #     randomEncryption = true;
+            #   };
+            # };
+            # plainSwap = {
+            #   size = "100%";
+            #   content = {
+            #     type = "swap";
+            #     resumeDevice = true; # resume from hiberation from this device
+            #   };
+            # };
           };
         };
       };
