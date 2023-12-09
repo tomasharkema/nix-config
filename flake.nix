@@ -193,6 +193,7 @@
             inherit pkgs;
             inherit (deploy.packages."${pkgs.system}") deploy-rs;
             inherit (colmena.packages."${pkgs.system}") colmena;
+            inherit home-manager;
           };
         };
 

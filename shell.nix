@@ -1,5 +1,7 @@
-{ pkgs, colmena, deploy-rs }:
+{ pkgs, colmena, deploy-rs, home-manager }:
 pkgs.mkShell {
+  # imports = [ home-manager.nixosModules.default ];
+
   NIX_CONFIG = "extra-experimental-features = nix-command flakes repl-flake";
   nativeBuildInputs = [
     deploy-rs

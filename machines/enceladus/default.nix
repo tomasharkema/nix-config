@@ -1,5 +1,6 @@
 { config, modulesPath, lib, ... }: {
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  hardware.cpu.intel.updateMicrocode = true;
   nixpkgs.system = "x86_64-linux";
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
