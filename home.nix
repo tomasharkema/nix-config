@@ -185,7 +185,7 @@ in {
     multitail
     netdiscover
     obsidian
-    moonlight
+    # moonlight
     # (vscode-with-extensions.override {
     #   vscodeExtensions = with vscode-extensions;
     #     [

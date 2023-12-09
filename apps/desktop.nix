@@ -67,7 +67,7 @@ in {
     gnome.gnome-session
     gnomeExtensions.appindicator
     gnomeExtensions.gsconnect
-    moonlight
+    # moonlight
   ];
 
   # nativeMessagingHosts.packages = with pkgs; [ gnome-browser-connector ];

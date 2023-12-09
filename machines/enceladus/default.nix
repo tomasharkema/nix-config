@@ -42,6 +42,24 @@
     Sunshine
     KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
   '';
+
+  systemd.user.services.sunshine = {
+    Unit = {
+      Description = "Sunshine self-hosted game stream host for Moonlight.";
+      StartLimitIntervalSec = 500;
+      StartLimitBurst = 5;
+    };
+
+    Service = {
+      ExecStart = "${pkgs.sunshine}";
+      Restart = "on-failure";
+      RestartSec = 5;
+    };
+
+    Install = { WantedBy = "graphical-session.target"; };
+  };
+  services.sunshine.enable = true;
+
   users.groups.input.members = [ "tomas" ];
 
   # Enable OpenGL
