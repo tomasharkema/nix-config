@@ -17,6 +17,10 @@ pkgs.mkShell {
     nix
     deploy-rs
     colmena
+    python3
     # anywhere
   ];
+  shellHook = ''
+    cachix use tomasharkema
+  '';
 }

@@ -173,6 +173,7 @@ in {
     godef
     golint
     colima
+    python3
     # docker
 
     # swift

@@ -1,14 +1,4 @@
-{ config, modulesPath, lib, inputs, ... }: {
-
-  # nix = {
-  #   extra-experimental-features = "nix-command flakes";
-
-  #   extra-substituters =
-  #     [ "https://cachix.cachix.org" "https://tomasharkema.cachix.org" ];
-  #   extra-trusted-public-keys =
-  #     "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA=";
-  # };
-
+{ config, modulesPath, lib, inputs, pkgs, ... }: {
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   hardware.cpu.intel.updateMicrocode = true;
   nixpkgs.system = "x86_64-linux";
@@ -43,7 +33,7 @@
   #   targetUser = "root";
   # };
 
-  # environment.systemPackages = with pkgs; [ sunshine nvtop ];
+  environment.systemPackages = with pkgs; [ sunshine nvtop ];
   services.udev.extraRules = ''
     Sunshine
     KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"

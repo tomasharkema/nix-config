@@ -10,6 +10,15 @@
     ../apps/tailscale.nix
   ];
 
+  nix = {
+    extraOptions = ''
+      extra-experimental-features = "nix-command flakes";
+
+      extra-substituters = [ "https://cachix.cachix.org" "https://tomasharkema.cachix.org" ];
+      extra-trusted-public-keys =  "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA=";
+    '';
+  };
+
   programs.zsh = { enable = true; };
   users.users.tomas.shell = pkgs.zsh;
 
@@ -22,7 +31,7 @@
 
   users.mutableUsers = false;
   nixpkgs.config.allowUnfree = true;
-  
+
   users.users.tomas = {
     isNormalUser = true;
     description = "tomas";
