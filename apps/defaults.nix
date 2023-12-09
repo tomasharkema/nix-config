@@ -1,18 +1,35 @@
-{ pkgs, lib, agenix, ... }: {
+{ pkgs, lib, ... }: {
+  hardware.enableAllFirmware = true;
+  system.stateVersion = "23.11";
   # boot.binfmt.emulatedSystems = [ "aarch64-linux" "x86_64-linux" ];
-  imports = [ ./packages.nix ../apps/resilio.nix ../apps/tailscale.nix ];
+  imports =
+    [ ./packages.nix ../apps/resilio.nix ../apps/tailscale.nix ./zsh.nix ];
 
+  # modules = [ home-manager.nixosModules.default ];
+
+  # home-manager.useGlobalPkgs = true;
+  # home-manager.useUserPackages = true;
+
+  # home-manager.users.tomas = {
+  #   home.stateVersion = "23.11"; # Please read the comment before changing.
+
+  #   programs.direnv.enable = true;
+  #   programs.direnv.nix-direnv.enable = true;
+
+  #   programs.htop.enable = true;
+  #   programs.htop.settings.show_program_path = false;
+  #   
+  # };
+  programs.zsh.enable = true;
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Amsterdam";
 
-  system.stateVersion = "23.11";
   security.sudo.wheelNeedsPassword = false;
-  nixpkgs.config.allowUnfree = true;
 
   users.mutableUsers = false;
-
+  nixpkgs.config.allowUnfree = true;
   users.users.tomas = {
     isNormalUser = true;
     description = "tomas";
@@ -25,6 +42,20 @@
     ];
     shell = pkgs.zsh;
   };
+
+  # home-manager.useGlobalPkgs = true;
+  # home-manager.useUserPackages = true;
+
+  # home-manager.users.tomas = {
+  #   home.stateVersion = "23.11"; # Please read the comment before changing.
+
+  #   programs.direnv.enable = true;
+  #   programs.direnv.nix-direnv.enable = true;
+
+  #   programs.htop.enable = true;
+  #   programs.htop.settings.show_program_path = false;
+  #   programs.zsh.enable = true;
+  # };
 
   services.eternal-terminal.enable = true;
 
@@ -67,75 +98,14 @@
   nix.optimise.automatic = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = false;
-      aws.disabled = false;
-      gcloud.disabled = true;
-      line_break.disabled = true;
-    };
-  };
-  users.defaultUserShell = pkgs.zsh;
-  programs.zsh = {
-    enable = true;
-    ohMyZsh = {
-      enable = true;
-      plugins = [
-        "git"
-        "thefuck"
-        "autojump"
-        "gitignore"
-        "sudo"
-        "macos"
-        "zsh-autosuggestions"
-        "colorize"
-        "1password"
-      ];
-      theme = "jonathan";
-    };
-    enableAutosuggestions = true;
-    enableCompletion = true;
-    shellAliases = {
-      v = "nvim";
-      ll = "ls -l";
-      ls = "exa";
-      la = "exa -a";
-      grep = "grep --color=auto";
-      cp = "cp -i";
-      mv = "mv -i";
-      rm = "rm -i";
-      g = "git";
-      gs = "git status";
-    };
-  };
-
   networking.firewall = {
     # enable the firewall
     enable = true;
 
     #   # # allow the Tailscale UDP port through the firewall
-    allowedUDPPorts = [ 22 2022 9090 ];
+    # allowedUDPPorts = [ 22 2022 9090 ];
 
     #   # # allow you to SSH in over the public internet
-    allowedTCPPorts = [ 22 2022 9090 ];
+    # allowedTCPPorts = [ 22 2022 9090 ];
   };
-
-  # fonts = {
-  #   # enableCoreFonts = true;
-  #   enableFontDir = true;
-  #   fonts = with pkgs; [
-  #     corefonts # Microsoft free fonts
-  #     fira # Monospace
-  #     inconsolata # Monospace
-  #     powerline-fonts
-  #     ubuntu_font_family
-  #     unifont # International languages
-  #   ];
-  # };
-  # services.usbmuxd.enable = true;
-  # services.usbmuxd = {
-  #   enable = true;
-  #   package = pkgs.usbmuxd2;
-  # };
 }

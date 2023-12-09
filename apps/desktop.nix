@@ -1,8 +1,6 @@
-{ config, pkgs, ... }:
-
+{ pkgs, ... }:
 let
-
-  sbtix = import (pkgs.fetchFromGitHub {
+  nixgui = import (pkgs.fetchFromGitHub {
     owner = "nix-gui";
     repo = "nix-gui";
     # rev = "d4e59eaecb46a74c82229a1d326839be83a1a3ed";
@@ -13,12 +11,28 @@ in {
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  services.gnome.gnome-settings-daemon.enable = true;
+  services.gnome.gnome-browser-connector.enable = true;
+  services.gnome.core-shell.enable = true;
+  services.gnome.core-utilities.enable = true;
+  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+
+  environment.gnome.excludePackages = (with pkgs; [ gnome-photos gnome-tour ])
+    ++ (with pkgs.gnome; [
+      gnome-music
+      gnome-terminal
+      gedit # text editor
+      evince # document viewer
+      gnome-characters
+      totem # video player
+    ]);
 
   services.xrdp.enable = true;
   services.xrdp.openFirewall = true;
   # services.xrdp.defaultWindowManager = "gnome-session --session=gnome-classic";
   services.xrdp.defaultWindowManager =
     "${pkgs.gnome.gnome-session}/bin/gnome-session";
+
   i18n.defaultLocale = "en_US.UTF-8";
 
   sound.enable = true;
@@ -42,8 +56,17 @@ in {
     LC_TIME = "en_US.UTF-8";
   };
 
-  nixpkgs.config.firefox.enableGnomeExtensions = true;
-  environment.systemPackages = with pkgs; [ gparted ];
+  environment.systemPackages = with pkgs; [
+    gparted
+    firefox
+    tilix
+    vscode
+    fira-code-nerdfont
+    gnome.gnome-session
+    gnomeExtensions.appindicator
+  ];
+
+  # nativeMessagingHosts.packages = with pkgs; [ gnome-browser-connector ];
 
   nix.extraOptions = "experimental-features = nix-command flakes";
   security.polkit.enable = true;

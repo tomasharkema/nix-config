@@ -1,10 +1,9 @@
-{ disko, config, pkgs, modulesPath, lib, ... }: {
-
+{ config, modulesPath, lib, ... }: {
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   nixpkgs.system = "x86_64-linux";
   imports = [
-    # ./overlays/efi.nix
     (modulesPath + "/installer/scan/not-detected.nix")
-    ../../overlays/desktop.nix
+    ../../apps/desktop.nix
     ../../apps/steam.nix
     "${
       builtins.fetchTarball {
@@ -18,16 +17,18 @@
         [ "/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y" ];
     }
   ];
-  networking.hostName = "enceladus";
-  _module.check = false;
-  deployment.tags = [ "bare" ];
-  deployment = {
-    targetHost = "100.67.118.80";
-    # targetHost = "192.168.178.46";
-    targetUser = "root";
-  };
 
-  environment.systemPackages = with pkgs; [ sunshine nvtop ];
+  networking = { hostName = "enceladus"; };
+
+  # _module.check = false;
+  # deployment.tags = [ "bare" ];
+  # deployment = {
+  #   targetHost = "100.67.118.80";
+  #   # targetHost = "192.168.178.46";
+  #   targetUser = "root";
+  # };
+
+  # environment.systemPackages = with pkgs; [ sunshine nvtop ];
   services.udev.extraRules = ''
     Sunshine
     KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
@@ -71,10 +72,10 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  systemd.services.netdata.path = [ pkgs.linuxPackages.nvidia_x11 ];
-  services.netdata.configDir."python.d.conf" = pkgs.writeText "python.d.conf" ''
-    nvidia_smi: yes
-  '';
+  # systemd.services.netdata.path = [ pkgs.linuxPackages.nvidia_x11 ];
+  # services.netdata.configDir."python.d.conf" = pkgs.writeText "python.d.conf" ''
+  #   nvidia_smi: yes
+  # '';
 
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;
@@ -89,9 +90,14 @@
   boot.kernelModules = [ "kvm-intel" "uinput" ];
   boot.extraModulePackages = [ ];
 
-  services.btrfs.autoScrub.enable = true;
-  services.snapper = { enable = true; };
   networking.useDHCP = lib.mkDefault true;
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
+
+  security.tpm2.enable = true;
+  security.tpm2.pkcs11.enable =
+    true; # expose /run/current-system/sw/lib/libtpm2_pkcs11.so
+  security.tpm2.tctiEnvironment.enable =
+    true; # TPM2TOOLS_TCTI and TPM2_PKCS11_TCTI env variables
+  users.users."tomas".extraGroups = [ "tss" ];
 }

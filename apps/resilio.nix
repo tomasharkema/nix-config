@@ -1,4 +1,4 @@
-{ config, pkgs, modulesPath, ... }: {
+{ ... }: {
 
   #   deployment.keys."resilio.key" = {
   #     # Alternatively, `text` (string) or `keyFile` (path to file)

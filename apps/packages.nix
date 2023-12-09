@@ -1,7 +1,4 @@
-{ config, pkgs, ... }:
-let youtube-dl = with pkgs.python3Packages; toPythonApplication youtube-dl;
-in {
-
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
@@ -37,7 +34,7 @@ in {
     mtr
     dnsutils
     ldns
-    htop
+    # htop
     vscode
     git
     btop
@@ -54,15 +51,11 @@ in {
     autojump
     thefuck
     powertop
-    firefox
-    tilix
-    vscode
-    gnome.gnome-session
-    btrfs-progs
     unrar
     unzip
     zsh
-    snapper-gui
 
+    packagekit
+    # cockpit-pcp
   ];
 }
