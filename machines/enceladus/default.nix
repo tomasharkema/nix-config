@@ -44,19 +44,19 @@
   '';
 
   systemd.user.services.sunshine = {
-    Unit = {
-      Description = "Sunshine self-hosted game stream host for Moonlight.";
+    enable = true;
+    description = "Sunshine self-hosted game stream host for Moonlight.";
+    unitConfig = {
+      Type = "simple";
       StartLimitIntervalSec = 500;
       StartLimitBurst = 5;
     };
-
-    Service = {
+    serviceConfig = {
       ExecStart = "${pkgs.sunshine}";
       Restart = "on-failure";
       RestartSec = 5;
     };
-
-    Install = { WantedBy = "graphical-session.target"; };
+    wantedBy = [ "graphical-session.target" ];
   };
 
   users.groups.input.members = [ "tomas" ];
