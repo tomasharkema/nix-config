@@ -161,7 +161,7 @@
         "colorize"
         "1password"
       ];
-      theme = "jonathan";
+      theme = "robbyrussell";
     };
     enableAutosuggestions = true;
     shellAliases = {

@@ -21,12 +21,11 @@
                 mountpoint = "/boot";
               };
             };
-            root = {
+            zfs = {
               end = "-1G";
               content = {
-                type = "filesystem";
-                format = "btrfs";
-                mountpoint = "/";
+                type = "zfs";
+                pool = "zroot";
               };
             };
             encryptedSwap = {
@@ -52,14 +51,52 @@
         content = {
           type = "gpt";
           partitions = {
-            root = {
+            zfs = {
               size = "100%";
               content = {
-                type = "filesystem";
-                format = "btrfs";
-                mountpoint = "/mnt";
+                type = "zfs";
+                pool = "zmedia";
               };
             };
+          };
+        };
+      };
+    };
+
+    zpool = {
+      zroot = {
+        type = "zpool";
+        mode = "";
+        rootFsOptions = {
+          compression = "zstd";
+          "com.sun:auto-snapshot" = "false";
+        };
+        mountpoint = "/";
+        postCreateHook = "zfs snapshot zroot@blank";
+
+        datasets = {
+          zfs_fs = {
+            type = "zfs_fs";
+            mountpoint = "/zfs_fs";
+            options."com.sun:auto-snapshot" = "true";
+          };
+        };
+      };
+      zmedia = {
+        type = "zpool";
+        mode = "";
+        rootFsOptions = {
+          compression = "zstd";
+          "com.sun:auto-snapshot" = "false";
+        };
+        mountpoint = "/media";
+        postCreateHook = "zfs snapshot zmedia@blank";
+
+        datasets = {
+          zfs_fs = {
+            type = "zfs_fs";
+            mountpoint = "/zfs_fs_media";
+            options."com.sun:auto-snapshot" = "true";
           };
         };
       };

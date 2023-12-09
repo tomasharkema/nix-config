@@ -1,9 +1,13 @@
-{ config, modulesPath, lib, ... }: {
+{ config, modulesPath, lib, inputs, ... }: {
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   hardware.cpu.intel.updateMicrocode = true;
   nixpkgs.system = "x86_64-linux";
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
+    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-pc-ssd
+    # (modulesPath + "/installer/scan/not-detected.nix")
+    ../../common/quiet-boot.nix
+    ../../common/game-mode.nix
     ../../apps/desktop.nix
     ../../apps/steam.nix
     "${
@@ -20,7 +24,7 @@
   ];
 
   networking = { hostName = "enceladus"; };
-
+  networking.hostId = "529fd7fa";
   # _module.check = false;
   # deployment.tags = [ "bare" ];
   # deployment = {

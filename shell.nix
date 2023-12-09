@@ -1,21 +1,22 @@
-{ pkgs, colmena, deploy-rs, home-manager }:
+{ pkgs, colmena, deploy-rs, ... }@inputs:
 pkgs.mkShell {
-  # imports = [ home-manager.nixosModules.default ];
-
   NIX_CONFIG = "extra-experimental-features = nix-command flakes repl-flake";
-  nativeBuildInputs = [
+  defaultPackage = pkgs.nix-tree;
+  # buildInputs = [ home-manager ];
+  packages = with pkgs; [
+    home-manager
+    nix-tree
+    nixpkgs-fmt
+    git
+    zsh
+    sops
+    ssh-to-age
+    gnupg
+    age
+    cachix
+    nix
     deploy-rs
     colmena
-    pkgs.nixpkgs-fmt
-
-    pkgs.nix
-    pkgs.home-manager
-    pkgs.git
-
-    pkgs.sops
-    pkgs.ssh-to-age
-    pkgs.gnupg
-    pkgs.age
+    # anywhere
   ];
-
 }

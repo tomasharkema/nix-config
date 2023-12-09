@@ -47,7 +47,7 @@
         "mix"
         "pijul"
       ];
-      theme = "jonathan";
+      theme = "robbyrussell";
     };
     shellAliases = {
       ll = "ls -l";

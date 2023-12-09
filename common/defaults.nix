@@ -8,78 +8,16 @@
     ../apps/resilio.nix
     ../apps/tailscale.nix
     # ./zsh.nix
-    home-manager.nixosModules.default
+    # home-manager.nixosModules.default
   ];
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
+  programs.zsh = { enable = true; };
+  users.users.tomas.shell = pkgs.zsh;
 
-  home-manager.users.tomas = {
-    home.stateVersion = "23.11"; # Please read the comment before changing.
+  # home-manager.useGlobalPkgs = true;
+  # home-manager.useUserPackages = true;
 
-    programs.direnv.enable = true;
-    programs.direnv.nix-direnv.enable = true;
-
-    programs.htop.enable = true;
-    programs.htop.settings.show_program_path = false;
-    # programs.zsh.enable = true;
-    home.packages = [
-      # pkgs is the set of all packages in the default home.nix implementation
-      pkgs.starship
-    ];
-    programs.starship = {
-      enable = true;
-      # settings = {
-      #   add_newline = false;
-      #   aws.disabled = false;
-      #   gcloud.disabled = true;
-      #   line_break.disabled = true;
-      # };
-    };
-    home.file = {
-      # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-      # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-      # # symlink to the Nix store copy.
-      # ".screenrc".source = dotfiles/screenrc;
-
-      # # You can also set the file content immediately.
-      ".zshrc".text = ''
-        ZSH_THEME="jonathan"
-        # Uncomment the following line to enable command auto-correction.
-        ENABLE_CORRECTION="true"
-        # source "/opt/homebrew/opt/spaceship/spaceship.zsh"
-      '';
-    };
-    programs.home-manager = { enable = true; };
-    # programs.home-manager.enable = true;
-    programs.helix.enable = true;
-    # programs.htop.enable = true;
-    programs.lazygit.enable = true;
-    programs.lsd.enable = true;
-    programs.jq.enable = true;
-    programs.alacritty.enable = true;
-    programs.skim.enable = true;
-
-    programs.zsh = {
-      enable = true;
-      oh-my-zsh = {
-        enable = true;
-        plugins = [
-          "git"
-          "thefuck"
-          "autojump"
-          "gitignore"
-          "sudo"
-          "macos"
-          "zsh-autosuggestions"
-          "colorize"
-          "1password"
-        ];
-        theme = "jonathan";
-      };
-      enableAutosuggestions = true;
-    };
-  };
+  # home-manager.users.tomas = import ../home.nix;
 
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;

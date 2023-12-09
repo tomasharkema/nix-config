@@ -1,26 +1,23 @@
-{ nixpkgs, home-manager, ... }@attrs: {
-
+{ self, nixpkgs, nixos-generators, ... }@attrs: {
   enceladus = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = attrs;
+
+    # specialArgs = { inherit inputs outputs; };
     modules = [
+      nixos-generators.nixosModules.all-formats
       # "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-      ./apps/defaults.nix
-      ./machines/enceladus/default.nix
-      # home-manager.nixosModules.home-manager
-      # {
-      #   home-manager.useGlobalPkgs = true;
-      #   home-manager.useUserPackages = true;
-      #   # home-manager.users.theNameOfTheUser = import ./home.nix;
-      # }
+      ./common/defaults.nix
+      ./machines/enceladus
     ];
   };
   utm-nixos = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
     specialArgs = attrs;
+    # specialArgs = { inherit inputs outputs; };
     modules = [
       # "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-      ./apps/defaults.nix
+      ./common/defaults.nix
       ./machines/utm-nixos/default.nix
     ];
   };
@@ -35,9 +32,10 @@
   unraidferdorie = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = attrs;
+    # specialArgs = { inherit inputs outputs; };
     modules = [
       # "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-      ./apps/defaults.nix
+      ./common/defaults.nix
       ./machines/unraidferdorie/default.nix
     ];
   };
