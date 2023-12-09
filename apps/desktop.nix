@@ -17,6 +17,9 @@ in {
   services.gnome.core-utilities.enable = true;
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
+  nixpkgs.config.firefox.enableGnomeExtensions = true;
+  services.gnome.chrome-gnome-shell.enable = true;
+
   environment.gnome.excludePackages = (with pkgs; [ gnome-photos gnome-tour ])
     ++ (with pkgs.gnome; [
       gnome-music
