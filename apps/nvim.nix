@@ -1,6 +1,7 @@
 { inputs, lib, config, pkgs, ... }:
-let coc = import ./coc.nix;
-in {
+# let coc = import ./coc.nix;
+# in
+{
   imports = [ inputs.nixvim.homeManagerModules.nixvim ];
 
   home.packages = with pkgs; [ figlet nodejs ripgrep rnix-lsp ];
