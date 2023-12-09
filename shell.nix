@@ -4,7 +4,7 @@ pkgs.mkShell {
   # defaultPackage = pkgs.nix-tree;
   # buildInputs = [ home-manager ];
   packages = with pkgs; [
-    # home-manager
+    home-manager
     nix-tree
     nixpkgs-fmt
     git
