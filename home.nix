@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, hostname, ... }:
 let inherit (pkgs) stdenv;
 in {
   home.username = "tomas";
@@ -25,16 +25,14 @@ in {
         full_symbol = "🔋 ";
         charging_symbol = "⚡️ ";
         discharging_symbol = "💀 ";
-        # display = {
-        #   threshold = 100;
-        #   style = "bold red";
-        # };
+
       };
       sudo.disabled = false;
       shell.disabled = false;
       # os.disabled = false;
     };
   };
+
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
@@ -51,14 +49,11 @@ in {
       # . ~/.zsh/plugins/iterm2_tmux_integration
     '';
   };
+
   programs.home-manager = { enable = true; };
-  # programs.home-manager.enable = true;
-  # programs.helix.enable = true;
-  # programs.htop.enable = true;
   programs.lazygit.enable = true;
   programs.lsd.enable = true;
   programs.jq.enable = true;
-  # programs.alacritty.enable = true;
   programs.skim.enable = true;
 
   programs.zsh = {
@@ -93,7 +88,6 @@ in {
         "macos"
         "colorize"
         "1password"
-        # "fzf-zsh-plugin"
         "fzf"
         "aws"
         "docker"
@@ -110,10 +104,8 @@ in {
         "yarn"
         "zsh-navigation-tools"
         "mix"
-        # "pijul"
       ];
       theme = "robbyrussell";
-      # theme = "";
     };
     shellAliases = {
       ll = "ls -l";
@@ -125,8 +117,17 @@ in {
       rm = "rm -i";
       g = "git";
       gs = "git status";
-      # subl = "${pkgs.sublime4}";
       subl = "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
+      dev = ''
+        nix develop --profile dev-profile -c true && \
+          cachix push tomasharkema dev-profile && \
+          exec nix develop --profile dev-profile
+      '';
+      updatehome = ''
+        nix build ~/Developer/nix-config#homeConfigurations."tomas@$(hostname)".activationPackage --json \
+          | jq -r '.[].outputs | to_entries[].value' \
+          | cachix push tomasharkema
+      '';
     };
     plugins = [{
       name = "iterm2_shell_integration";
@@ -162,18 +163,10 @@ in {
     fortune
     cachix
     niv
-
-    go
-    gotools
-    gopls
-    go-outline
-    gocode
-    gopkgs
-    gocode-gomod
-    godef
-    golint
+    # sublime4
     colima
     python3
+    obsidian
     # docker
 
     # swift
@@ -183,7 +176,7 @@ in {
     ansible-language-server
     # utm
     yq
-    # bfg-repo-cleaner
+    bfg-repo-cleaner
     _1password
     tmux
     nixfmt
@@ -198,6 +191,7 @@ in {
     eza
     bottom
     multitail
+    netdiscover
     # (vscode-with-extensions.override {
     #   vscodeExtensions = with vscode-extensions;
     #     [

@@ -16,6 +16,8 @@
     cachix
     niv
     starship
+    obsidian
+    python3
     # go
     # gotools
     # gopls

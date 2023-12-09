@@ -1,9 +1,5 @@
 { pkgs, colmena, deploy-rs, ... }@inputs:
 pkgs.mkShell {
-  NIX_CONFIG = ''
-    extra-experimental-features = nix-command flakes repl-flake
-    trusted-users = root tomas
-  '';
   # defaultPackage = pkgs.nix-tree;
   # buildInputs = [ home-manager ];
   packages = with pkgs; [
@@ -21,6 +17,16 @@ pkgs.mkShell {
     deploy-rs
     colmena
     python3
+    go
+    gotools
+    gopls
+    go-outline
+    gocode
+    gopkgs
+    gocode-gomod
+    godef
+    golint
+    netdiscover
     # anywhere
   ];
   shellHook = ''
