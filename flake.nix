@@ -72,12 +72,12 @@
             extraSpecialArgs = { inherit inputs outputs; };
           };
         "tomas@enceladus" = home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgsFor.aarch64-linux;
+          pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home.nix ];
           extraSpecialArgs = { inherit inputs outputs; };
         };
         "tomas@unraidferdorie" = home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgsFor.aarch64-linux;
+          pkgs = pkgsFor.x86_64-linux;
           modules = [ ./home.nix ];
           extraSpecialArgs = { inherit inputs outputs; };
         };
