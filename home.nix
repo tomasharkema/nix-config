@@ -1,6 +1,18 @@
-{ config, pkgs, lib, hostname, ... }:
+{ inputs, config, pkgs, lib, hostname, ... }:
 let inherit (pkgs) stdenv;
 in {
+
+  # nix.settings = {
+  #   extra-experimental-features = "nix-command flakes";
+  #   distributedBuilds = true;
+  #   trusted-users = [ "root" "tomas" ];
+  #   extra-substituters = [ "https://tomasharkema.cachix.org" ];
+  #   extra-trusted-public-keys =
+  #     "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA=";
+  # };
+
+  imports = [ ./apps/nvim.nix ];
+
   home.username = "tomas";
   home.homeDirectory = if stdenv.isLinux then "/home/tomas" else "/Users/tomas";
   home.stateVersion = "23.11";
@@ -13,6 +25,9 @@ in {
 
   programs.htop.enable = true;
   programs.htop.settings.show_program_path = false;
+
+  programs.fzf.enable = true;
+  programs.nix-index.enable = true;
 
   programs.starship = {
     enable = true;

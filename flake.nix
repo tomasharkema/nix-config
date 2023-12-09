@@ -37,6 +37,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     anywhere.url = "github:nix-community/nixos-anywhere";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
+    nixvim.url = "github:pta2002/nixvim/nixos-23.11";
   };
 
   outputs = { self, nixpkgs, nixos-generators, deploy, home-manager, nix
