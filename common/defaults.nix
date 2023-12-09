@@ -22,6 +22,7 @@
 
   users.mutableUsers = false;
   nixpkgs.config.allowUnfree = true;
+  
   users.users.tomas = {
     isNormalUser = true;
     description = "tomas";
