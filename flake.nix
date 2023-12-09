@@ -11,7 +11,7 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "nixpkgs/nixos-23.11";
 
     # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
@@ -45,25 +45,18 @@
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
-      systems =
-        [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
-      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs systems (system:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        });
+      # systems =
+      #   [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+      # forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+      # pkgsFor = lib.genAttrs systems (system:
+      #   import nixpkgs {
+      #     inherit system;
+      #     config.allowUnfree = true;
+      #   });
     in {
 
       nixpkgs.config.allowUnfree = true;
       nixpkgs.config.allowUnfreePredicate = _: true;
-
-      devShells = forEachSystem (pkgs:
-        import ./shell.nix {
-          inherit pkgs;
-          inherit (deploy.packages."${pkgs.system}") deploy-rs;
-          inherit (colmena.packages."${pkgs.system}") colmena;
-        });
 
       # devShell = pkgs.callPackage import ./shell.nix {
       #     inherit (colmena.packages."${pkgs.system}") colmena;
@@ -161,7 +154,6 @@
         nodes = {
           enceladus = {
             hostname = "100.67.118.80";
-            # fastConnection = true;
             profiles.system = {
               user = "root";
               sshUser = "root";
@@ -171,7 +163,6 @@
           };
           unraidferdorie = {
             hostname = "192.168.0.18";
-            # fastConnection = true;
             profiles.system = {
               user = "root";
               sshUser = "root";
@@ -180,21 +171,11 @@
             };
           };
           utm-nixos = {
-            #             deployment = {
-            #   tags = [ "vm" ];
-            #   targetHost = "100.89.103.83";
-            #   # targetHost = "10.211.70.5";
-
-            #   # targetHost = "192.168.178.241";
-            #   targetUser = "root";
-            # };
-
-            hostname = "100.89.103.83";
-            # fastConnection = true;
+            hostname = "100.124.108.91";
             profiles.system = {
               user = "root";
               sshUser = "root";
-              path = deploy.lib.x86_64-linux.activate.nixos
+              path = deploy.lib.aarch64-linux.activate.nixos
                 self.nixosConfigurations.utm-nixos;
             };
           };
@@ -204,23 +185,35 @@
       checks = builtins.mapAttrs
         (system: deployLib: deployLib.deployChecks self.deploy) deploy.lib;
 
-      # packages = forAllSystems (system:
-      #   let pkgs = nixpkgsFor.${system};
-      #   in {
-      #     # utmiso = nixos-generators.nixosGenerate {
-      #     #   system = "aarch64-linux";
-      #     #   modules = [
-      #     #     # "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-      #     #     ./overlays/defaults.nix
-      #     #     ./machines/utm-nixos/default.nix
-      #     #   ];
-      #     #   format = "qcow";
-      #     # };
-      #     enceladusiso = nixos-generators.nixosGenerate {
-      #       system = "x86_64-linux";
-      #       imports = [ self.nixosConfigurations.enceladus.config ];
-      #       format = "install-iso";
-      #     };
-      #   });
-    };
+    } // inputs.flake-utils.lib.eachDefaultSystem (system:
+      let pkgs = import inputs.nixpkgs { inherit system; };
+      in {
+        devShells = {
+          default = import ./shell.nix {
+            inherit pkgs;
+            inherit (deploy.packages."${pkgs.system}") deploy-rs;
+            inherit (colmena.packages."${pkgs.system}") colmena;
+          };
+        };
+
+        #   packages = {
+        #     utmiso = nixos-generators.nixosGenerate {
+        #       # inherit nixpkgs pkgs;
+        #       system = "aarch64-linux";
+        #       specialArgs = inputs;
+        #       modules = [
+        #         self.nixosConfigurations.utm-nixos.config
+        #         # ({ pkgs, ... }: { })
+        #       ];
+        #       format = "qcow";
+        #     };
+        #     enceladusiso = nixos-generators.nixosGenerate {
+        #       # inherit nixpkgs pkgs;
+        #       system = "x86_64-linux";
+        #       specialArgs = inputs;
+        #       modules = [ self.nixosConfigurations.enceladus.config ];
+        #       format = "install-iso";
+        #     };
+        #   };
+      });
 }

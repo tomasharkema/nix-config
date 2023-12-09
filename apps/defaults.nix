@@ -1,10 +1,15 @@
-{ pkgs, lib, ... }: {
+{ self, nixpkgs, pkgs, lib, home-manager, ... }: {
   hardware.enableAllFirmware = true;
+  system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
   system.stateVersion = "23.11";
   # boot.binfmt.emulatedSystems = [ "aarch64-linux" "x86_64-linux" ];
-  imports =
-    [ ./packages.nix ../apps/resilio.nix ../apps/tailscale.nix ./zsh.nix ];
-
+  imports = [
+    ./packages.nix
+    ../apps/resilio.nix
+    ../apps/tailscale.nix
+    ./zsh.nix
+    # home-manager.nixosModules.default
+  ];
   # modules = [ home-manager.nixosModules.default ];
 
   # home-manager.useGlobalPkgs = true;

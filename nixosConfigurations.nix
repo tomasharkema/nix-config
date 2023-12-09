@@ -1,22 +1,23 @@
-{ self, nixpkgs, home-manager, ... }@attrs: {
+{ nixpkgs, home-manager, ... }@attrs: {
 
   enceladus = nixpkgs.lib.nixosSystem {
-    # system = "x86_64-linux";
-    # specialArgs = attrs;
+    system = "x86_64-linux";
+    specialArgs = attrs;
     modules = [
       # "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
       ./apps/defaults.nix
       ./machines/enceladus/default.nix
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        # home-manager.users.theNameOfTheUser = import ./home.nix;
-      }
+      # home-manager.nixosModules.home-manager
+      # {
+      #   home-manager.useGlobalPkgs = true;
+      #   home-manager.useUserPackages = true;
+      #   # home-manager.users.theNameOfTheUser = import ./home.nix;
+      # }
     ];
   };
   utm-nixos = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
+    specialArgs = attrs;
     modules = [
       # "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
       ./apps/defaults.nix
@@ -33,6 +34,7 @@
   # };
   unraidferdorie = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
+    specialArgs = attrs;
     modules = [
       # "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
       ./apps/defaults.nix
