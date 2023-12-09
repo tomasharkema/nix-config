@@ -9,12 +9,11 @@ in {
   nixpkgs.config.allowUnfree = true;
   # home.stateVersion = "23.11";
 
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
+  # programs.direnv.enable = true;
+  # programs.direnv.nix-direnv.enable = true;
 
   programs.htop.enable = true;
   programs.htop.settings.show_program_path = false;
-  # programs.zsh.enable = true;
 
   programs.starship = {
     enable = true;
@@ -44,9 +43,10 @@ in {
 
     # # You can also set the file content immediately.
     ".zshrc".text = ''
-      autoload -Uz compinit
-      compinit
-      export ZSH=~/.oh-my-zsh
+      export EDITOR='subl -w'
+      # autoload -Uz compinit
+      # compinit
+
       # source ~/.zsh/plugins/iterm2_shell_integration
       # . ~/.zsh/plugins/iterm2_tmux_integration
     '';
@@ -67,14 +67,14 @@ in {
     syntaxHighlighting.enable = true;
     enableVteIntegration = true;
     enableSyntaxHighlighting = true;
-    antidote = {
-      enable = true;
-      plugins = [
-        "zsh-users/zsh-completions"
-        "zsh-users/zsh-history-substring-search"
-      ];
-    };
-
+    # antidote = {
+    #   enable = true;
+    #   plugins = [
+    #     "zsh-users/zsh-completions"
+    #     "zsh-users/zsh-history-substring-search"
+    #   ];
+    # };
+    autocd = true;
     history.extended = true;
     history.expireDuplicatesFirst = true;
     historySubstringSearch = {
@@ -82,7 +82,6 @@ in {
       searchUpKey = "^[OA";
       searchDownKey = "^[OB";
     };
-
     oh-my-zsh = {
       enable = true;
       plugins = [
@@ -92,7 +91,6 @@ in {
         "gitignore"
         "sudo"
         "macos"
-        "zsh-autosuggestions"
         "colorize"
         "1password"
         # "fzf-zsh-plugin"
@@ -104,7 +102,6 @@ in {
         "git-extras"
         "man"
         "nmap"
-        "ssh-agent"
         "sudo"
         "systemd"
         "tig"
@@ -115,8 +112,8 @@ in {
         "mix"
         "pijul"
       ];
-      # theme = "robbyrussell";
-      theme = "";
+      theme = "robbyrussell";
+      # theme = "";
     };
     shellAliases = {
       ll = "ls -l";
@@ -128,7 +125,8 @@ in {
       rm = "rm -i";
       g = "git";
       gs = "git status";
-      subl = "";
+      # subl = "${pkgs.sublime4}";
+      subl = "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
     };
     plugins = [{
       name = "iterm2_shell_integration";
@@ -151,26 +149,9 @@ in {
   };
 
   home.packages = with pkgs; [
-    zsh-completions
-    nix-zsh-completions
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
     starship
     antidote
+    thefuck
     coreutils
     curl
     wget

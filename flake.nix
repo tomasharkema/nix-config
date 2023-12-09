@@ -66,39 +66,15 @@
         import ./configurations.nix (inputs // { inherit inputs; });
 
       homeConfigurations = {
-        "tomas@MacBook-Pro-van-Tomas.local" =
+        "tomas@MacBook-Pro-van-Tomas" =
           home-manager.lib.homeManagerConfiguration {
             pkgs = pkgsFor.aarch64-darwin;
-            modules = [
-              ./home.nix
-              {
-                # boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-                # nix = {
-                #   distributedBuilds = true;
-                #   extraOptions = ''
-                #     experimental-features = nix-command flakes
-                #   '';
-                #   buildMachines = /etc/nix/machines;
-                # };
-              }
-            ];
+            modules = [ ./home.nix ];
             extraSpecialArgs = { inherit inputs outputs; };
           };
         "tomas@enceladus" = home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgsFor.aarch64-darwin;
-          modules = [
-            ./home.nix
-            {
-              # boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-              # nix = {
-              #   distributedBuilds = true;
-              #   extraOptions = ''
-              #     experimental-features = nix-command flakes
-              #   '';
-              #   buildMachines = /etc/nix/machines;
-              # };
-            }
-          ];
+          pkgs = pkgsFor.aarch64-linux;
+          modules = [ ./home.nix ];
           extraSpecialArgs = { inherit inputs outputs; };
         };
       };
