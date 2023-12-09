@@ -1,6 +1,9 @@
 { pkgs, colmena, deploy-rs, ... }@inputs:
 pkgs.mkShell {
-  NIX_CONFIG = "extra-experimental-features = nix-command flakes repl-flake";
+  NIX_CONFIG = ''
+    extra-experimental-features = nix-command flakes repl-flake
+    trusted-users = root tomas
+  '';
   # defaultPackage = pkgs.nix-tree;
   # buildInputs = [ home-manager ];
   packages = with pkgs; [
