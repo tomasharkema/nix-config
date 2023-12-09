@@ -76,6 +76,11 @@
           modules = [ ./home.nix ];
           extraSpecialArgs = { inherit inputs outputs; };
         };
+        "tomas@unraidferdorie" = home-manager.lib.homeManagerConfiguration {
+          pkgs = pkgsFor.aarch64-linux;
+          modules = [ ./home.nix ];
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
       };
 
       # colmena.meta = {
