@@ -32,7 +32,6 @@ in {
 
   services.xrdp.enable = true;
   services.xrdp.openFirewall = true;
-  # services.xrdp.defaultWindowManager = "gnome-session --session=gnome-classic";
   services.xrdp.defaultWindowManager =
     "${pkgs.gnome.gnome-session}/bin/gnome-session";
 
@@ -67,6 +66,7 @@ in {
     fira-code-nerdfont
     gnome.gnome-session
     gnomeExtensions.appindicator
+    gnomeExtensions.gsconnect
   ];
 
   # nativeMessagingHosts.packages = with pkgs; [ gnome-browser-connector ];

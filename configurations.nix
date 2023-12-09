@@ -1,4 +1,5 @@
-{ self, nixpkgs, nixos-generators, inputs, home-manager, ... }@attrs: {
+{ self, nixpkgs, nixos-generators, inputs, home-manager, vscode-server, ...
+}@attrs: {
   enceladus = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = attrs;
@@ -16,6 +17,8 @@
         home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas = import ./home.nix;
       }
+      vscode-server.nixosModules.default
+      ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
     ];
   };
   utm-nixos = nixpkgs.lib.nixosSystem {

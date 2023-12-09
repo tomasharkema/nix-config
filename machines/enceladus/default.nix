@@ -33,7 +33,11 @@
   #   targetUser = "root";
   # };
 
-  environment.systemPackages = with pkgs; [ sunshine nvtop ];
+  environment.systemPackages = with pkgs;
+    [
+      sunshine
+      # nvtop 
+    ];
   services.udev.extraRules = ''
     Sunshine
     KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
