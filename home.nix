@@ -11,7 +11,7 @@ in {
   #     "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA=";
   # };
 
-  imports = [ ./apps/nvim.nix ];
+  imports = [ ./apps/nvim ];
 
   home.username = "tomas";
   home.homeDirectory = if stdenv.isLinux then "/home/tomas" else "/Users/tomas";
