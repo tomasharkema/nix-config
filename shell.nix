@@ -1,7 +1,7 @@
 { pkgs, colmena, deploy-rs, ... }@inputs:
 pkgs.mkShell {
-  # defaultPackage = pkgs.nix-tree;
-  # buildInputs = [ home-manager ];
+  defaultPackage = pkgs.nix-tree;
+  buildInputs = [ pkgs.home-manager ];
   packages = with pkgs; [
     home-manager
     nix-tree
