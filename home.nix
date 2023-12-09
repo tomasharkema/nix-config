@@ -7,7 +7,6 @@ in {
 
   nixpkgs.config.allowUnfreePredicate = _: true;
   nixpkgs.config.allowUnfree = true;
-  # home.stateVersion = "23.11";
 
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
@@ -186,6 +185,7 @@ in {
     multitail
     netdiscover
     obsidian
+    moonlight
     # (vscode-with-extensions.override {
     #   vscodeExtensions = with vscode-extensions;
     #     [
