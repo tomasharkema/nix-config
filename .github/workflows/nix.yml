@@ -14,4 +14,4 @@ jobs:
         with:
           name: tomasharkema
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-      - run: nix run .#.
+      - run: nix develop --accept-flake-config -c deploy .#.
