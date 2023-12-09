@@ -12,12 +12,12 @@
     defaultEditor = true;
   };
 
-  xdg.configFile = {
-    "nvim/coc-settings.json" = {
-      source = builtins.toFile "coc-settings.json"
-        (builtins.toJSON (coc { homeDir = config.xdg.configHome; }));
-    };
-  };
+  # xdg.configFile = {
+  #   "nvim/coc-settings.json" = {
+  #     source = builtins.toFile "coc-settings.json"
+  #       (builtins.toJSON (coc { homeDir = config.xdg.configHome; }));
+  #   };
+  # };
 
   programs.nixvim = {
     enable = true;
