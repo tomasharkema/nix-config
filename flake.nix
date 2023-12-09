@@ -2,7 +2,7 @@
   nixConfig = {
     extra-experimental-features = "nix-command flakes";
     distributedBuilds = true;
-    buildMachines = /etc/nix/machines;
+    # buildMachines = /etc/nix/machines;
 
     extra-substituters =
       [ "https://cachix.cachix.org" "https://tomasharkema.cachix.org" ];

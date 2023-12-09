@@ -1,6 +1,6 @@
 { self, nixpkgs, ... }@attrs: {
   meta = {
-    machinesFile = /etc/nix/machines;
+    # machinesFile = /etc/nix/machines;
     nixpkgs = import nixpkgs {
       system = "x86_64-linux";
       # overlays = [ ];
