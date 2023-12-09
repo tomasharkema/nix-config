@@ -2,7 +2,7 @@
   nixConfig = {
     extra-experimental-features = "nix-command flakes";
     distributedBuilds = true;
-
+    trusted-users = [ "root" "tomas" ];
     extra-substituters =
       [ "https://cachix.cachix.org" "https://tomasharkema.cachix.org" ];
     extra-trusted-public-keys =
