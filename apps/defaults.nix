@@ -8,23 +8,23 @@
     ../apps/resilio.nix
     ../apps/tailscale.nix
     ./zsh.nix
-    # home-manager.nixosModules.default
+    home-manager.nixosModules.default
   ];
   # modules = [ home-manager.nixosModules.default ];
 
-  # home-manager.useGlobalPkgs = true;
-  # home-manager.useUserPackages = true;
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
 
-  # home-manager.users.tomas = {
-  #   home.stateVersion = "23.11"; # Please read the comment before changing.
+  home-manager.users.tomas = {
+    home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  #   programs.direnv.enable = true;
-  #   programs.direnv.nix-direnv.enable = true;
+    programs.direnv.enable = true;
+    programs.direnv.nix-direnv.enable = true;
 
-  #   programs.htop.enable = true;
-  #   programs.htop.settings.show_program_path = false;
-  #   
-  # };
+    programs.htop.enable = true;
+    programs.htop.settings.show_program_path = false;
+
+  };
   programs.zsh.enable = true;
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;
