@@ -20,15 +20,15 @@ in {
   nixpkgs.config.firefox.enableGnomeExtensions = true;
   services.gnome.chrome-gnome-shell.enable = true;
 
-  environment.gnome.excludePackages = (with pkgs; [ gnome-photos gnome-tour ])
-    ++ (with pkgs.gnome; [
-      gnome-music
-      gnome-terminal
-      gedit # text editor
-      evince # document viewer
-      gnome-characters
-      totem # video player
-    ]);
+  # environment.gnome.excludePackages = (with pkgs; [ gnome-photos gnome-tour ])
+  #   ++ (with pkgs.gnome; [
+  #     gnome-music
+  #     gnome-terminal
+  #     gedit # text editor
+  #     evince # document viewer
+  #     gnome-characters
+  #     totem # video player
+  #   ]);
 
   services.xrdp.enable = true;
   services.xrdp.openFirewall = true;
