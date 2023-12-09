@@ -1,10 +1,10 @@
 { pkgs, colmena, deploy-rs, ... }@inputs:
 pkgs.mkShell {
   NIX_CONFIG = "extra-experimental-features = nix-command flakes repl-flake";
-  defaultPackage = pkgs.nix-tree;
+  # defaultPackage = pkgs.nix-tree;
   # buildInputs = [ home-manager ];
   packages = with pkgs; [
-    home-manager
+    # home-manager
     nix-tree
     nixpkgs-fmt
     git

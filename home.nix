@@ -19,7 +19,22 @@ in {
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
-    settings = { gcloud.disabled = true; };
+    settings = {
+      gcloud.disabled = true;
+      nix_shell.disabled = false;
+      battery = {
+        full_symbol = "🔋 ";
+        charging_symbol = "⚡️ ";
+        discharging_symbol = "💀 ";
+        # display = {
+        #   threshold = 100;
+        #   style = "bold red";
+        # };
+      };
+      sudo.disabled = false;
+      shell.disabled = false;
+      # os.disabled = false;
+    };
   };
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
@@ -29,8 +44,11 @@ in {
 
     # # You can also set the file content immediately.
     ".zshrc".text = ''
-      # Uncomment the following line to enable command auto-correction.
-      ENABLE_CORRECTION="true"
+      autoload -Uz compinit
+      compinit
+      export ZSH=~/.oh-my-zsh
+      # source ~/.zsh/plugins/iterm2_shell_integration
+      # . ~/.zsh/plugins/iterm2_tmux_integration
     '';
   };
   programs.home-manager = { enable = true; };
@@ -48,7 +66,23 @@ in {
     enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
     enableVteIntegration = true;
-    historySubstringSearch.enable = true;
+    enableSyntaxHighlighting = true;
+    antidote = {
+      enable = true;
+      plugins = [
+        "zsh-users/zsh-completions"
+        "zsh-users/zsh-history-substring-search"
+      ];
+    };
+
+    history.extended = true;
+    history.expireDuplicatesFirst = true;
+    historySubstringSearch = {
+      enable = true;
+      searchUpKey = "^[OA";
+      searchDownKey = "^[OB";
+    };
+
     oh-my-zsh = {
       enable = true;
       plugins = [
@@ -81,7 +115,8 @@ in {
         "mix"
         "pijul"
       ];
-      theme = "robbyrussell";
+      # theme = "robbyrussell";
+      theme = "";
     };
     shellAliases = {
       ll = "ls -l";
@@ -93,11 +128,31 @@ in {
       rm = "rm -i";
       g = "git";
       gs = "git status";
+      subl = "";
     };
-    # enableAutosuggestions = true;
+    plugins = [{
+      name = "iterm2_shell_integration";
+      src = pkgs.fetchurl {
+        url = "https://iterm2.com/shell_integration/zsh";
+        sha256 = "1xk6kx5kdn5wbqgx2f63vnafhkynlxnlshxrapkwkd9zf2531bqa";
+        # date = 2022-12-28T10:15:23-0800;
+      };
+    }
+    # {
+    #   name = "iterm2_tmux_integration";
+    #   src = pkgs.fetchurl {
+    #     url =
+    #       "https://gist.githubusercontent.com/antifuchs/c8eca4bcb9d09a7bbbcd/raw/3ebfecdad7eece7c537a3cd4fa0510f25d02611b/iterm2_zsh_init.zsh";
+    #     sha256 = "1v1b6yz0lihxbbg26nvz85c1hngapiv7zmk4mdl5jp0fsj6c9s8c";
+    #     # date = 2022-12-28T10:15:27-0800;
+    #   };
+    # }
+      ];
   };
 
   home.packages = with pkgs; [
+    zsh-completions
+    nix-zsh-completions
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -115,6 +170,7 @@ in {
     #   echo "Hello, ${config.home.username}!"
     # '')
     starship
+    antidote
     coreutils
     curl
     wget
@@ -158,6 +214,8 @@ in {
     dnsutils
     ldns
     eza
+    bottom
+    multitail
     # (vscode-with-extensions.override {
     #   vscodeExtensions = with vscode-extensions;
     #     [

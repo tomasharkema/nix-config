@@ -1,23 +1,17 @@
-{ self, nixpkgs, pkgs, lib, home-manager, ... }: {
+{ self, nixpkgs, pkgs, lib, inputs, outputs, ... }: {
   hardware.enableAllFirmware = true;
   system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
   system.stateVersion = "23.11";
   # boot.binfmt.emulatedSystems = [ "aarch64-linux" "x86_64-linux" ];
   imports = [
+    # inputs.home-manager.nixosModules.home-manager
     ./packages.nix
     ../apps/resilio.nix
     ../apps/tailscale.nix
-    # ./zsh.nix
-    # home-manager.nixosModules.default
   ];
 
   programs.zsh = { enable = true; };
   users.users.tomas.shell = pkgs.zsh;
-
-  # home-manager.useGlobalPkgs = true;
-  # home-manager.useUserPackages = true;
-
-  # home-manager.users.tomas = import ../home.nix;
 
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;

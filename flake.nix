@@ -2,7 +2,6 @@
   nixConfig = {
     extra-experimental-features = "nix-command flakes";
     distributedBuilds = true;
-    # buildMachines = /etc/nix/machines;
 
     extra-substituters =
       [ "https://cachix.cachix.org" "https://tomasharkema.cachix.org" ];
@@ -59,29 +58,12 @@
       nixpkgs.config.allowUnfree = true;
       nixpkgs.config.allowUnfreePredicate = _: true;
 
-      # devShell = pkgs.callPackage import ./shell.nix {
-      #     inherit (colmena.packages."${pkgs.system}") colmena;
-      #     inherit (deploy.packages."${pkgs.system}") deploy-rs;
-      #   };
       formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
+
       # colmena = import ./colmena.nix (inputs // { inherit inputs; });
+
       nixosConfigurations =
         import ./configurations.nix (inputs // { inherit inputs; });
-
-      # nixosConfigurations = {
-      #   enceladus = nixpkgs.lib.nixosSystem {
-      #     system = "x86_64-linux";
-      #     # specialArgs = attrs;
-      #     specialArgs = { inherit inputs outputs; };
-
-      #     # specialArgs = { inherit inputs outputs; };
-      #     modules = [
-      #       # "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-      #       ./common/defaults.nix
-      #       ./machines/enceladus
-      #     ];
-      #   };
-      # };
 
       homeConfigurations = {
         "tomas@MacBook-Pro-van-Tomas.local" =

@@ -15,6 +15,7 @@
     fortune
     cachix
     niv
+    starship
     # go
     # gotools
     # gopls
