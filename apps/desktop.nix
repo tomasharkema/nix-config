@@ -68,7 +68,7 @@ in {
 
   # nativeMessagingHosts.packages = with pkgs; [ gnome-browser-connector ];
 
-  nix.extraOptions = "experimental-features = nix-command flakes";
+  # nix.extraOptions = "experimental-features = nix-command flakes";
   security.polkit.enable = true;
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {

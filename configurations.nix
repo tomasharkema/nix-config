@@ -45,6 +45,13 @@
       # "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
       ./common/defaults.nix
       ./machines/unraidferdorie/default.nix
+      home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.extraSpecialArgs = { inherit inputs; };
+        home-manager.users.tomas = import ./home.nix;
+      }
     ];
   };
 }

@@ -45,7 +45,7 @@
         "yarn"
         "zsh-navigation-tools"
         "mix"
-        "pijul"
+        # "pijul"
       ];
       theme = "robbyrussell";
     };
