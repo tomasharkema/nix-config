@@ -37,7 +37,7 @@
     colmena.url = "github:zhaofengli/colmena";
     flake-utils.url = "github:numtide/flake-utils";
     anywhere.url = "github:nix-community/nixos-anywhere";
-    inputs.vscode-server.url = "github:nix-community/nixos-vscode-server";
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
   outputs = { self, nixpkgs, nixos-generators, deploy, home-manager, nix

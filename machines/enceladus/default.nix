@@ -58,7 +58,6 @@
 
     Install = { WantedBy = "graphical-session.target"; };
   };
-  services.sunshine.enable = true;
 
   users.groups.input.members = [ "tomas" ];
 
