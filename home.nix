@@ -9,8 +9,8 @@ in {
   nixpkgs.config.allowUnfree = true;
   # home.stateVersion = "23.11";
 
-  # programs.direnv.enable = true;
-  # programs.direnv.nix-direnv.enable = true;
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
 
   programs.htop.enable = true;
   programs.htop.settings.show_program_path = false;

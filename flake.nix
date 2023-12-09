@@ -8,7 +8,6 @@
     extra-trusted-public-keys =
       "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA=";
   };
-
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
 

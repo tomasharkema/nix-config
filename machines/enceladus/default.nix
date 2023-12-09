@@ -1,4 +1,14 @@
 { config, modulesPath, lib, inputs, ... }: {
+
+  nixConfig = {
+    extra-experimental-features = "nix-command flakes";
+
+    extra-substituters =
+      [ "https://cachix.cachix.org" "https://tomasharkema.cachix.org" ];
+    extra-trusted-public-keys =
+      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA=";
+  };
+
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   hardware.cpu.intel.updateMicrocode = true;
   nixpkgs.system = "x86_64-linux";
