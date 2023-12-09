@@ -53,12 +53,12 @@ in {
   };
   programs.home-manager = { enable = true; };
   # programs.home-manager.enable = true;
-  programs.helix.enable = true;
+  # programs.helix.enable = true;
   # programs.htop.enable = true;
   programs.lazygit.enable = true;
   programs.lsd.enable = true;
   programs.jq.enable = true;
-  programs.alacritty.enable = true;
+  # programs.alacritty.enable = true;
   programs.skim.enable = true;
 
   programs.zsh = {
