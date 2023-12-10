@@ -6,6 +6,7 @@
     (modulesPath + "/profiles/qemu-guest.nix")
     # ./overlays/qemu.nix
     ../../apps/desktop.nix
+    ../../apps/steam.nix
     # ./overlays/efi.nix 
     "${
       builtins.fetchTarball {

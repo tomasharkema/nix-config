@@ -24,8 +24,8 @@ in {
   nixpkgs.config.allowUnfreePredicate = _: true;
   nixpkgs.config.allowUnfree = true;
 
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
+  # programs.direnv.enable = true;
+  # programs.direnv.nix-direnv.enable = true;
 
   programs.htop.enable = true;
   programs.htop.settings.show_program_path = false;
@@ -217,6 +217,8 @@ in {
     inputs.agenix.packages.${system}.default
     atuin
     thefuck
+    nixd
+    nil
     # moonlight
     # (vscode-with-extensions.override {
     #   vscodeExtensions = with vscode-extensions;

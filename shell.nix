@@ -1,6 +1,6 @@
 { pkgs, colmena, deploy-rs, ... }@inputs:
 pkgs.mkShell {
-  defaultPackage = pkgs.nix-tree;
+  # defaultPackage = pkgs.nix-tree;
   buildInputs = [ pkgs.home-manager ];
   packages = with pkgs; [
     home-manager
@@ -30,10 +30,9 @@ pkgs.mkShell {
     ssh-to-age
     gnupg
     age
-    # agenix
-    # anywhere
   ];
   shellHook = ''
     cachix use tomasharkema
+    alias encrypt_keys='TEMP_DIR=$(mktemp -d); op read "op://Private/tomas-new/private_key?ssh-format=OpenSSH" --out-file $TEMP_DIR/id_ed25519; cd secrets; agenix -r -i $TEMP_DIR/id_ed25519; rm -rf $TEMP_DIR'
   '';
 }

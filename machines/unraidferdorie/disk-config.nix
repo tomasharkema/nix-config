@@ -1,5 +1,4 @@
 { disks ? [ "/dev/vda" ], ... }: {
-
   disko.devices = {
     disk = {
       main = {
@@ -21,34 +20,14 @@
                 mountpoint = "/boot";
               };
             };
-            zfs = {
+            root = {
               size = "100%";
               content = {
-                type = "zfs";
-                pool = "zroot";
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/";
               };
             };
-          };
-        };
-
-      };
-    };
-    zpool = {
-      zroot = {
-        type = "zpool";
-        mode = "";
-        rootFsOptions = {
-          compression = "zstd";
-          "com.sun:auto-snapshot" = "false";
-        };
-        mountpoint = "/";
-        postCreateHook = "zfs snapshot zroot@blank";
-
-        datasets = {
-          zfs_fs = {
-            type = "zfs_fs";
-            mountpoint = "/zfs_fs";
-            options."com.sun:auto-snapshot" = "true";
           };
         };
       };

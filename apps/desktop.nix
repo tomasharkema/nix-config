@@ -8,27 +8,11 @@ let
   });
 in {
 
+  imports = [ ./gnome ];
+
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  services.gnome.gnome-settings-daemon.enable = true;
-  services.gnome.gnome-browser-connector.enable = true;
-  services.gnome.core-shell.enable = true;
-  services.gnome.core-utilities.enable = true;
-  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
-
-  nixpkgs.config.firefox.enableGnomeExtensions = true;
-  services.gnome.chrome-gnome-shell.enable = true;
-
-  # environment.gnome.excludePackages = (with pkgs; [ gnome-photos gnome-tour ])
-  #   ++ (with pkgs.gnome; [
-  #     gnome-music
-  #     gnome-terminal
-  #     gedit # text editor
-  #     evince # document viewer
-  #     gnome-characters
-  #     totem # video player
-  #   ]);
 
   services.xrdp.enable = true;
   services.xrdp.openFirewall = true;
@@ -65,8 +49,7 @@ in {
     vscode
     fira-code-nerdfont
     gnome.gnome-session
-    gnomeExtensions.appindicator
-    gnomeExtensions.gsconnect
+
     # moonlight
   ];
 

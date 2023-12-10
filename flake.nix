@@ -242,6 +242,15 @@
                 self.nixosConfigurations.utm-nixos;
             };
           };
+          hyperv-nixos = {
+            hostname = "100.67.146.61";
+            profiles.system = {
+              user = "root";
+              sshUser = "root";
+              path = deploy.lib.x86_64-linux.activate.nixos
+                self.nixosConfigurations.hyperv-nixos;
+            };
+          };
         };
       };
 

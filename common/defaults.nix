@@ -1,6 +1,6 @@
 { self, nixpkgs, pkgs, lib, inputs, outputs, ... }: {
   hardware.enableAllFirmware = true;
-  system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
+  # system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
   system.stateVersion = "23.11";
   # boot.binfmt.emulatedSystems = [ "aarch64-linux" "x86_64-linux" ];
   imports = [
@@ -49,6 +49,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas"
     ];
   };
+  users.groups.tomas = { };
 
   services.eternal-terminal.enable = true;
 

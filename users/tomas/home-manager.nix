@@ -20,8 +20,8 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
+  # programs.direnv.enable = true;
+  # programs.direnv.nix-direnv.enable = true;
 
   # Htop
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.htop.enable
