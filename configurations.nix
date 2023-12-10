@@ -36,6 +36,15 @@
       ./machines/utm-nixos/default.nix
       ./secrets
       agenix.nixosModules.default
+      home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.extraSpecialArgs = { inherit inputs; };
+        home-manager.users.tomas.imports =
+          [ agenix.homeManagerModules.default ./home.nix ];
+        home-manager.backupFileExtension = "bak";
+      }
     ];
   };
   hyperv-nixos = nixpkgs.lib.nixosSystem {
