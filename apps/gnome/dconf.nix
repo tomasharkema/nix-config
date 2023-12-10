@@ -89,7 +89,9 @@ with lib.hm.gvariant;
         "apps-menu@gnome-shell-extensions.gcampax.github.com"
         "places-menu@gnome-shell-extensions.gcampax.github.com"
         "dash-to-panel@jderose9.github.com"
+        "Vitals@CoreCoding.com"
       ];
+      favorite-apps = [ "firefox.desktop" ];
       welcome-dialog-last-shown-version = "45.1";
     };
 

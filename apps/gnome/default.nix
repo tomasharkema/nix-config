@@ -23,6 +23,7 @@
     gnomeExtensions.gsconnect
     gnomeExtensions.extension-list
     gnomeExtensions.dash-to-panel
+    gnomeExtensions.vitals
     gnome.gnome-tweaks
   ];
 
