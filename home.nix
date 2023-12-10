@@ -247,7 +247,7 @@ in {
     obsidian
     tree
     inputs.agenix.packages.${system}.default
-    atuin
+    # atuin
     thefuck
     nixd
     nil

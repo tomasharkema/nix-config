@@ -290,7 +290,7 @@
             inherit (deploy.packages."${pkgs.system}") deploy-rs;
             inherit (colmena.packages."${pkgs.system}") colmena;
           };
-          python = import ./shells/python.nix;
+          # python = import ./shells/python.nix;
         };
       });
 }
