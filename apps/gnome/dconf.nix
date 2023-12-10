@@ -98,11 +98,11 @@ with lib.hm.gvariant;
       button-layout = "appmenu:minimize,maximize,close";
     };
     "org/gnome/shell/extensions/dash-to-panel" = {
-      animate-appicon-hover-animation-extent = {
-        RIPPLE = 4;
-        PLANK = 4;
-        SIMPLE = 1;
-      };
+      # animate-appicon-hover-animation-extent = {
+      #   RIPPLE = 4;
+      #   PLANK = 4;
+      #   SIMPLE = 1;
+      # };
       appicon-margin = 8;
       appicon-padding = 4;
       available-monitors = [ 0 ];
