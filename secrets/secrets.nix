@@ -19,4 +19,5 @@ let
 in {
   "atuin.age".publicKeys = allKeys;
   "tailscale.age".publicKeys = allKeys;
+  "gh.age".publicKeys = allKeys;
 }

@@ -16,7 +16,7 @@
   #     };
   #   };
 
-  age.secrets.atuin.file = ../secrets/atuin.age;
+  age.secrets.tailscale.file = ../secrets/tailscale.age;
   services.tailscale = {
     enable = true;
     # authKeyFile = "/run/keys/tailscale.key";
