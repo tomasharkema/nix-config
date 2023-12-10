@@ -203,6 +203,7 @@ in {
   };
 
   home.packages = with pkgs; [
+    home-manager
     starship
     antidote
     thefuck
