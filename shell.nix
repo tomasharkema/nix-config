@@ -27,6 +27,10 @@ pkgs.mkShell {
     godef
     golint
     netdiscover
+    ssh-to-age
+    gnupg
+    age
+    agenix
     # anywhere
   ];
   shellHook = ''

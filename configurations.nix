@@ -1,5 +1,5 @@
-{ self, nixpkgs, nixos-generators, inputs, home-manager, vscode-server, ...
-}@attrs: {
+{ self, nixpkgs, nixos-generators, inputs, home-manager, vscode-server, agenix
+, ... }@attrs: {
   enceladus = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = attrs;
@@ -19,6 +19,8 @@
       }
       vscode-server.nixosModules.default
       ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
+      ./secrets
+      agenix.nixosModules.default
     ];
   };
   utm-nixos = nixpkgs.lib.nixosSystem {
@@ -30,6 +32,8 @@
       # "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
       ./common/defaults.nix
       ./machines/utm-nixos/default.nix
+      ./secrets
+      agenix.nixosModules.default
     ];
   };
   # hyperv-nixos = nixpkgs.lib.nixosSystem {
@@ -55,6 +59,8 @@
         home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas = import ./home.nix;
       }
+      ./secrets
+      agenix.nixosModules.default
     ];
   };
 }

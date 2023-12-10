@@ -11,7 +11,7 @@ in {
   #     "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA=";
   # };
 
-  imports = [ ./apps/nvim ];
+  imports = [ ./apps/nvim ./apps/atuin ];
 
   home.username = "tomas";
   home.homeDirectory = if stdenv.isLinux then "/home/tomas" else "/Users/tomas";
@@ -76,6 +76,11 @@ in {
     syntaxHighlighting.enable = true;
     enableVteIntegration = true;
     enableSyntaxHighlighting = true;
+    initExtra = ''
+      mkdir -p ~/.1password || true
+      ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock || true
+      export SSH_AUTH_SOCK=~/.1password/agent.sock
+    '';
     # antidote = {
     #   enable = true;
     #   plugins = [
@@ -88,9 +93,12 @@ in {
     history.expireDuplicatesFirst = true;
     historySubstringSearch = {
       enable = true;
-      searchUpKey = "^[OA";
-      searchDownKey = "^[OB";
+      # searchUpKey = "^[OA";
+      # searchDownKey = "^[OB";
     };
+
+    # autosuggestions.strategy = [ "history" "completion" "match_prev_cmd" ];
+
     oh-my-zsh = {
       enable = true;
       plugins = [
@@ -173,6 +181,7 @@ in {
     git
     git-lfs
     tailscale
+    ssh-to-age
     fortune
     cachix
     niv
@@ -200,6 +209,9 @@ in {
     multitail
     netdiscover
     obsidian
+    tree
+    inputs.agenix.packages.${system}.default
+    inputs.rnixlsp.packages.${system}.rnix-lsp!
     # moonlight
     # (vscode-with-extensions.override {
     #   vscodeExtensions = with vscode-extensions;

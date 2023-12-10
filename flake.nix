@@ -38,10 +38,13 @@
     anywhere.url = "github:nix-community/nixos-anywhere";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     nixvim.url = "github:pta2002/nixvim/nixos-23.11";
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+    rnixlsp.url = "github:nix-community/rnix-lsp";
   };
 
   outputs = { self, nixpkgs, nixos-generators, deploy, home-manager, nix
-    , colmena, flake-utils, anywhere, ... }@inputs:
+    , colmena, flake-utils, anywhere, agenix, ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
@@ -69,17 +72,17 @@
         "tomas@MacBook-Pro-van-Tomas" =
           home-manager.lib.homeManagerConfiguration {
             pkgs = pkgsFor.aarch64-darwin;
-            modules = [ ./home.nix ];
+            modules = [ agenix.homeManagerModules.default ./home.nix ];
             extraSpecialArgs = { inherit inputs outputs; };
           };
         "tomas@enceladus" = home-manager.lib.homeManagerConfiguration {
           pkgs = pkgsFor.x86_64-linux;
-          modules = [ ./home.nix ];
+          modules = [ agenix.homeManagerModules.default ./home.nix ];
           extraSpecialArgs = { inherit inputs outputs; };
         };
         "tomas@unraidferdorie" = home-manager.lib.homeManagerConfiguration {
           pkgs = pkgsFor.x86_64-linux;
-          modules = [ ./home.nix ];
+          modules = [ agenix.homeManagerModules.default ./home.nix ];
           extraSpecialArgs = { inherit inputs outputs; };
         };
       };
