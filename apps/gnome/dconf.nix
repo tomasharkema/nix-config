@@ -94,8 +94,35 @@ with lib.hm.gvariant;
       favorite-apps = [ "firefox.desktop" "org.gnome.Console.desktop" ];
       welcome-dialog-last-shown-version = "45.1";
     };
-
-    "org/gnome/shell/extensions/dash-to-panel" = { };
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = "appmenu:minimize,maximize,close";
+    };
+    "org/gnome/shell/extensions/dash-to-panel" = {
+      animate-appicon-hover-animation-extent = {
+        RIPPLE = 4;
+        PLANK = 4;
+        SIMPLE = 1;
+      };
+      appicon-margin = 8;
+      appicon-padding = 4;
+      available-monitors = [ 0 ];
+      dot-position = "BOTTOM";
+      hotkeys-overlay-combo = "TEMPORARILY";
+      leftbox-padding = -1;
+      panel-anchors = ''
+        {"0":"MIDDLE"}
+      '';
+      panel-lengths = ''
+        {"0":100}
+      '';
+      panel-sizes = ''
+        {"0":48}
+      '';
+      primary-monitor = 0;
+      status-icon-padding = -1;
+      tray-padding = -1;
+      window-preview-title-position = "TOP";
+    };
 
     "org/gnome/shell/world-clocks" = { locations = [ ]; };
 
