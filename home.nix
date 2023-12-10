@@ -2,14 +2,14 @@
 let inherit (pkgs) stdenv;
 in {
 
-  nix.settings = {
-    extra-experimental-features = "nix-command flakes";
-    # distributedBuilds = true;
-    trusted-users = [ "root" "tomas" ];
-    extra-substituters = [ "https://tomasharkema.cachix.org" ];
-    extra-trusted-public-keys =
-      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA=";
-  };
+  # nix.settings = {
+  #   extra-experimental-features = "nix-command flakes";
+  #   # distributedBuilds = true;
+  #   trusted-users = [ "root" "tomas" ];
+  #   extra-substituters = [ "https://tomasharkema.cachix.org" ];
+  #   extra-trusted-public-keys =
+  #     "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA=";
+  # };
 
   imports = [ ./apps/nvim ./apps/atuin ];
 
@@ -18,7 +18,7 @@ in {
     lib.mkForce "/home/tomas"
   else
     lib.mkForce "/Users/tomas";
-    
+
   home.stateVersion = "23.11";
 
   nixpkgs.config.allowUnfreePredicate = _: true;

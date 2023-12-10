@@ -10,15 +10,20 @@
     ../apps/tailscale.nix
   ];
 
-  # nix = {
-  #   extraOptions = ''
-  #     extra-experimental-features = "nix-command flakes";
+  nix.distributedBuilds = true;
+  # optional, useful when the builder has a faster internet connection than yours
+  nix.extraOptions = ''
+    builders-use-substitutes = true
+  '';
 
-  #     extra-substituters = [ "https://cachix.cachix.org" "https://tomasharkema.cachix.org" ];
-  #     extra-trusted-public-keys =  "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA=";
-  #   '';
-  # };
-  nix.settings.trusted-users = [ "root" "tomas" ];
+  nix.settings = {
+    extra-experimental-features = "nix-command flakes";
+    # distributedBuilds = true;
+    trusted-users = [ "root" "tomas" ];
+    extra-substituters = [ "https://tomasharkema.cachix.org" ];
+    extra-trusted-public-keys =
+      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA=";
+  };
 
   programs.zsh = { enable = true; };
   users.users.tomas.shell = pkgs.zsh;
