@@ -26,7 +26,6 @@
     gnomeExtensions.vitals
     gnomeExtensions.appindicator
     gnome.gnome-tweaks
-    # gnome.gnome-software
     inputs.nix-software-center.packages.${system}.nix-software-center
   ];
 
