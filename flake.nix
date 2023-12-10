@@ -76,11 +76,19 @@
             agenix.darwinModules.default
             ./secrets
 
-            { nixpkgs.config.allowUnfree = true; }
+            {
+              nixpkgs.config.allowUnfree = true;
+              services.nix-daemon.enable = true;
+              security.pam.enableSudoTouchIdAuth = true;
+              users.users.tomas = {
+                # isNormalUser = true;
+                description = "tomas";
+              };
+            }
             home-manager.darwinModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
+              # home-manager.useGlobalPkgs = true;
+              # home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.tomas.imports =
                 [ agenix.homeManagerModules.default ./home.nix ];
