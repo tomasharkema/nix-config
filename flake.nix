@@ -1,7 +1,7 @@
 {
   nixConfig = {
     extra-experimental-features = "nix-command flakes";
-    distributedBuilds = true;
+    # distributedBuilds = true;
     trusted-users = [ "root" "tomas" ];
     extra-substituters = [ "https://tomasharkema.cachix.org" ];
     extra-trusted-public-keys =
@@ -20,7 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    darwin = {
+    nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -40,10 +40,11 @@
     nixvim.url = "github:pta2002/nixvim/nixos-23.11";
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
+    rnixlsp.url = "github:nix-community/rnix-lsp";
   };
 
   outputs = { self, nixpkgs, nixos-generators, deploy, home-manager, nix
-    , colmena, flake-utils, anywhere, agenix, ... }@inputs:
+    , colmena, flake-utils, anywhere, agenix, nix-darwin, ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
@@ -67,24 +68,44 @@
       nixosConfigurations =
         import ./configurations.nix (inputs // { inherit inputs; });
 
-      homeConfigurations = {
-        "tomas@MacBook-Pro-van-Tomas" =
-          home-manager.lib.homeManagerConfiguration {
-            pkgs = pkgsFor.aarch64-darwin;
-            modules = [ agenix.homeManagerModules.default ./home.nix ];
-            extraSpecialArgs = { inherit inputs outputs; };
-          };
-        "tomas@enceladus" = home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgsFor.x86_64-linux;
-          modules = [ agenix.homeManagerModules.default ./home.nix ];
-          extraSpecialArgs = { inherit inputs outputs; };
+      darwinConfigurations."MacBook-Pro-van-Tomas" =
+        nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          specialArgs = { inherit inputs; };
+          modules = [
+            agenix.darwinModules.default
+            ./secrets
+
+            { nixpkgs.config.allowUnfree = true; }
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.users.tomas.imports =
+                [ agenix.homeManagerModules.default ./home.nix ];
+            }
+          ];
         };
-        "tomas@unraidferdorie" = home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgsFor.x86_64-linux;
-          modules = [ agenix.homeManagerModules.default ./home.nix ];
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-      };
+
+      # homeConfigurations = {
+      #   "tomas@MacBook-Pro-van-Tomas" =
+      #     home-manager.lib.homeManagerConfiguration {
+      #       pkgs = pkgsFor.aarch64-darwin;
+      #       modules = [ agenix.homeManagerModules.default ./home.nix ];
+      #       extraSpecialArgs = { inherit inputs outputs; };
+      #     };
+      #   "tomas@enceladus" = home-manager.lib.homeManagerConfiguration {
+      #     pkgs = pkgsFor.x86_64-linux;
+      #     modules = [ agenix.homeManagerModules.default ./home.nix ];
+      #     extraSpecialArgs = { inherit inputs outputs; };
+      #   };
+      #   "tomas@unraidferdorie" = home-manager.lib.homeManagerConfiguration {
+      #     pkgs = pkgsFor.x86_64-linux;
+      #     modules = [ agenix.homeManagerModules.default ./home.nix ];
+      #     extraSpecialArgs = { inherit inputs outputs; };
+      #   };
+      # };
 
       # colmena.meta = {
       #   machinesFile = /etc/nix/machines;

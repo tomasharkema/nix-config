@@ -1,1 +1,1 @@
-{ lib, inputs, ... }: { age.secrets.atuin.file = ./atuin.age; }
+{ ... }: { age.secrets.atuin.file = ./atuin.age; }

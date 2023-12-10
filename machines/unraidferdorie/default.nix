@@ -1,4 +1,5 @@
 { modulesPath, lib, ... }: {
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   nixpkgs.system = "x86_64-linux";
 
   imports = [

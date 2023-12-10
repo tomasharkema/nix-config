@@ -14,7 +14,10 @@ in {
   imports = [ ./apps/nvim ./apps/atuin ];
 
   home.username = "tomas";
-  home.homeDirectory = if stdenv.isLinux then "/home/tomas" else "/Users/tomas";
+  home.homeDirectory = if stdenv.isLinux then
+    lib.mkForce "/home/tomas"
+  else
+    lib.mkForce "/Users/tomas";
   home.stateVersion = "23.11";
 
   nixpkgs.config.allowUnfreePredicate = _: true;
