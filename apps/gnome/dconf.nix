@@ -85,13 +85,13 @@ with lib.hm.gvariant;
       enabled-extensions = [
         "gsconnect@andyholmes.github.io"
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
-        "appindicatorsupport@rgcjonas.gmail.com"
+        # "appindicatorsupport@rgcjonas.gmail.com"
         "apps-menu@gnome-shell-extensions.gcampax.github.com"
         "places-menu@gnome-shell-extensions.gcampax.github.com"
         "dash-to-panel@jderose9.github.com"
         "Vitals@CoreCoding.com"
       ];
-      favorite-apps = [ "firefox.desktop" ];
+      favorite-apps = [ "firefox.desktop" "org.gnome.Console.desktop" ];
       welcome-dialog-last-shown-version = "45.1";
     };
 
