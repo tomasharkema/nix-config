@@ -40,7 +40,6 @@
     nixvim.url = "github:pta2002/nixvim/nixos-23.11";
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
-    rnixlsp.url = "github:nix-community/rnix-lsp";
   };
 
   outputs = { self, nixpkgs, nixos-generators, deploy, home-manager, nix

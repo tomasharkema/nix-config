@@ -30,7 +30,7 @@ pkgs.mkShell {
     ssh-to-age
     gnupg
     age
-    agenix
+    # agenix
     # anywhere
   ];
   shellHook = ''

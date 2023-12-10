@@ -211,7 +211,6 @@ in {
     obsidian
     tree
     inputs.agenix.packages.${system}.default
-    inputs.rnixlsp.packages.${system}.rnix-lsp!
     # moonlight
     # (vscode-with-extensions.override {
     #   vscodeExtensions = with vscode-extensions;
