@@ -8,4 +8,5 @@ let
   unraidferdorie =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMwFRuqkNmeyp6CHQTdOse0S4WasMElgrV+5lUFMX6y7";
   systems = [ enceladus unraidferdorie ];
-in { "atuin.age".publicKeys = users ++ systems; }
+  allKeys = users ++ systems;
+in { "atuin.age".publicKeys = allKeys; }
