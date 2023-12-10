@@ -10,10 +10,10 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
 
-    # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    # nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    # nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
@@ -41,6 +41,7 @@
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     rnixlsp.url = "github:nix-community/rnix-lsp";
+    nix-software-center.url = "github:vlinkz/nix-software-center";
   };
 
   outputs = { self, nixpkgs, nixos-generators, deploy, home-manager, nix
@@ -225,7 +226,7 @@
             };
           };
           unraidferdorie = {
-            hostname = "192.168.0.18";
+            hostname = "100.81.104.102";
             profiles.system = {
               user = "root";
               sshUser = "root";
@@ -288,6 +289,7 @@
             inherit (deploy.packages."${pkgs.system}") deploy-rs;
             inherit (colmena.packages."${pkgs.system}") colmena;
           };
+          python = import ./shells/python.nix;
         };
       });
 }

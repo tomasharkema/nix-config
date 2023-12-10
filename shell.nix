@@ -30,6 +30,8 @@ pkgs.mkShell {
     ssh-to-age
     gnupg
     age
+    ack
+    conda
   ];
   # shellHook = ''
   #   cachix use tomasharkema

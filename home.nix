@@ -47,7 +47,7 @@ in {
       };
       sudo.disabled = false;
       shell.disabled = false;
-      # os.disabled = false;
+      os.disabled = false; 
     };
   };
 
@@ -75,6 +75,9 @@ in {
     # '';
   };
 
+programs.git.enable = true;
+programs.git.userName = "tomasharkema";
+programs.git.userEmail = "tomas@harkema.io";
   # programs.git.extraConfig = ''
   #   url.git@github.com:.insteadof=gh:
   #   url.git@github.com:.pushinsteadof=github:
@@ -112,13 +115,13 @@ in {
     #   ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock || true
     #   export SSH_AUTH_SOCK=~/.1password/agent.sock
     # '';
-    # antidote = {
-    #   enable = true;
-    #   plugins = [
-    #     "zsh-users/zsh-completions"
-    #     "zsh-users/zsh-history-substring-search"
-    #   ];
-    # };
+    antidote = {
+      enable = true;
+      plugins = [
+        "zsh-users/zsh-completions"
+        "zsh-users/zsh-history-substring-search"
+      ];
+    };
     autocd = true;
     history.extended = true;
     history.expireDuplicatesFirst = true;
@@ -243,7 +246,7 @@ in {
     obsidian
     tree
     inputs.agenix.packages.${system}.default
-    atuin
+    # atuin
     thefuck
     nixd
     nil

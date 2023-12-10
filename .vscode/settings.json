@@ -1,6 +1,6 @@
 {
   "nix.enableLanguageServer": true,
-  "nix.serverPath": "/Users/tomas/.nix-profile/bin/nil",
+  "nix.serverPath": "nil",
   "nix.serverSettings": {
     // settings for 'nil' LSP
     "nil": {

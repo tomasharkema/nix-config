@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   services.gnome.gnome-settings-daemon.enable = true;
   services.gnome.gnome-browser-connector.enable = true;
   services.gnome.core-shell.enable = true;
@@ -8,15 +8,15 @@
   nixpkgs.config.firefox.enableGnomeExtensions = true;
   services.gnome.chrome-gnome-shell.enable = true;
 
-  # environment.gnome.excludePackages = (with pkgs; [ gnome-photos gnome-tour ])
-  #   ++ (with pkgs.gnome; [
-  #     gnome-music
-  #     gnome-terminal
-  #     gedit # text editor
-  #     evince # document viewer
-  #     gnome-characters
-  #     totem # video player
-  #   ]);
+  environment.gnome.excludePackages = (with pkgs; [ gnome-photos gnome-tour ])
+    ++ (with pkgs.gnome; [
+      gnome-music
+      gnome-terminal
+      gedit # text editor
+      evince # document viewer
+      gnome-characters
+      totem # video player
+    ]);
 
   environment.systemPackages = with pkgs; [
     gnomeExtensions.appindicator
@@ -24,7 +24,10 @@
     gnomeExtensions.extension-list
     gnomeExtensions.dash-to-panel
     gnomeExtensions.vitals
+    gnomeExtensions.appindicator
     gnome.gnome-tweaks
+    # gnome.gnome-software
+    inputs.nix-software-center.packages.${system}.nix-software-center
   ];
 
   programs.dconf.enable = true;

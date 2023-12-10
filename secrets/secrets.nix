@@ -17,7 +17,7 @@ let
   systems = [ enceladus unraidferdorie utm-nixos cfserve hyperv-nixos ];
   allKeys = users ++ systems;
 in {
-  "atuin.age".publicKeys = allKeys;
+  # "atuin.age".publicKeys = allKeys;
   "tailscale.age".publicKeys = allKeys;
   "gh.age".publicKeys = allKeys;
 }

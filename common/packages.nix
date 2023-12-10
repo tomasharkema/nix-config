@@ -59,6 +59,7 @@
     zsh
     nodejs
     packagekit
+    gnomeExtensions.gsconnect
     # cockpit-pcp
   ];
 }
