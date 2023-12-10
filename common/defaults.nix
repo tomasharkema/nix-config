@@ -41,7 +41,7 @@
   users.users.tomas = {
     isNormalUser = true;
     description = "tomas";
-    extraGroups = [ "networkmanager" "wheel" "rslsync" "tomas" ];
+    extraGroups = [ "networkmanager" "wheel" "rslsync" ];
     hashedPassword =
       "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
 
@@ -49,8 +49,11 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas"
     ];
   };
-  users.groups.tomas = { };
-
+  users.groups.tomas = {
+    name = "tomas";
+    members = [ "tomas" ];
+    gid = 1666;
+  };
   services.eternal-terminal.enable = true;
 
   # users.users."tomas".hashedPassword =
