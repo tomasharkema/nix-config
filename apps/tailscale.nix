@@ -16,10 +16,12 @@
   #     };
   #   };
 
+  age.secrets.atuin.file = ../secrets/atuin.age;
   services.tailscale = {
     enable = true;
     # authKeyFile = "/run/keys/tailscale.key";
-    authKeyFile = ../files/tailscalekey.conf;
+    # authKeyFile = ../files/tailscalekey.conf;
+    authKeyFile = config.age.secrets.tailscale.path;
     useRoutingFeatures = "client";
     extraUpFlags = [ "--ssh" "--advertise-tags=tag:nixos" ];
   };

@@ -1,8 +1,4 @@
 { ... }: {
-  age.secrets = {
-    file = ./atuin.age;
-
-    owner = "tomas";
-    group = "users";
-  };
+  age.secrets.atuin.file = ./atuin.age;
+  age.secrets.tailscale.file = ./tailscale.age;
 }
