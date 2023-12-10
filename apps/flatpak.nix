@@ -1,4 +1,4 @@
-{ flatpak, ... }:
+{ ... }:
 # flatpak.lib.flatpak.wrapFlatpakLauncher "tv.plex.plexHTPC";{
 # services.flatpak.enable = true;
 # environment.etc = {
@@ -16,5 +16,14 @@
 # };
 
 # }
-flatpak.lib.flatpak.wrapFlatpakLauncher "tv.plex.plexHTPC"
-"io.missioncenter.MissionCenter"
+# flatpak.lib.flatpak.wrapFlatpakLauncher "tv.plex.plexHTPC"
+# "io.missioncenter.MissionCenter"
+
+{
+  services.flatpak.remotes = [{
+    name = "flathub";
+    location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+  }];
+  services.flatpak.packages = [ "io.missioncenter.MissionCenter" ];
+  services.flatpak.update.onActivation = true;
+}

@@ -1,5 +1,5 @@
 { self, nixpkgs, nixos-generators, inputs, home-manager, vscode-server, agenix
-, ... }@attrs: {
+, nix-flatpak, ... }@attrs: {
   enceladus = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = attrs;
@@ -23,6 +23,7 @@
       }
       vscode-server.nixosModules.default
       ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
+      nix-flatpak.nixosModules.nix-flatpak
     ];
   };
   utm-nixos = nixpkgs.lib.nixosSystem {

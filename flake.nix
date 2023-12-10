@@ -42,7 +42,7 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     rnixlsp.url = "github:nix-community/rnix-lsp";
     nix-software-center.url = "github:vlinkz/nix-software-center";
-    flatpak.url = "github:yawnt/declarative-nix-flatpak/main";
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
   outputs = { self, nixpkgs, nixos-generators, deploy, home-manager, nix
