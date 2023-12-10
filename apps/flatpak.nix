@@ -1,4 +1,4 @@
-{pkgs,...}:{
+{ pkgs, ... }: {
   services.flatpak.enable = true;
   environment.etc = {
     "flatpak/remotes.d/flathub.flatpakrepo".source = pkgs.fetchurl {
@@ -6,11 +6,11 @@
       # Let this run once and you will get the hash as an error.
       hash = "sha256-M3HdJQ5h2eFjNjAHP+/aFTzUQm9y9K+gwzc64uj+oDo=";
     };
-    system.activationScripts = {
+  };
+  system.activationScripts = {
     flathub = ''
       /run/current-system/sw/bin/flatpak remote-add --system --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo -y
       /run/current-system/sw/bin/flatpak install flathub io.missioncenter.MissionCenter -y
     '';
-  };
   };
 }
