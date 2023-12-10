@@ -10,17 +10,18 @@
       # "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
       ./common/defaults.nix
       ./machines/enceladus
+      ./secrets
+      agenix.nixosModules.default
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit inputs; };
-        home-manager.users.tomas = import ./home.nix;
+        home-manager.users.tomas.imports =
+          [ agenix.homeManagerModules.default ./home.nix ];
       }
       vscode-server.nixosModules.default
       ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
-      ./secrets
-      agenix.nixosModules.default
     ];
   };
   utm-nixos = nixpkgs.lib.nixosSystem {
@@ -49,18 +50,19 @@
     specialArgs = attrs;
     # specialArgs = { inherit inputs outputs; };
     modules = [
-      # "${nixos}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+
       ./common/defaults.nix
       ./machines/unraidferdorie/default.nix
+      ./secrets
+      agenix.nixosModules.default
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit inputs; };
-        home-manager.users.tomas = import ./home.nix;
+        home-manager.users.tomas.imports =
+          [ agenix.homeManagerModules.default ./home.nix ];
       }
-      ./secrets
-      agenix.nixosModules.default
     ];
   };
 }
