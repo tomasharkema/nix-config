@@ -250,7 +250,6 @@ in {
     ## Nix tools
     nix-index
     nix-prefetch-scripts
-    nixops
     patchelf
     # moonlight
     # (vscode-with-extensions.override {
