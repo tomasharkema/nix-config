@@ -57,7 +57,7 @@
     unrar
     unzip
     zsh
-
+    nodejs
     packagekit
     # cockpit-pcp
   ];
