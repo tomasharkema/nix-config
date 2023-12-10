@@ -44,6 +44,7 @@
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
+  environment.systemPackages = with pkgs; [ nvtop ];
   hardware.nvidia = {
 
     # Modesetting is required.
