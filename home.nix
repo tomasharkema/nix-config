@@ -11,7 +11,8 @@ in {
   #     "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA=";
   # };
 
-  imports = [ ./apps/nvim ./apps/atuin ./apps/gnome/dconf.nix ];
+  imports =
+    [ ./apps/nvim ./apps/atuin ./apps/gnome/dconf.nix ./build-scripts.nix ];
 
   home.username = "tomas";
   home.homeDirectory = if stdenv.isLinux then
@@ -173,8 +174,6 @@ in {
       rm = "rm -i";
       g = "git";
       gs = "git status";
-      home-update =
-        "nix build '.#darwinConfigurations.MacBook-Pro-van-Tomas.system' --json --refresh | jq -r '.[].outputs | to_entries[].value' | cachix push tomasharkema";
       subl = "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
       # dev = ''
       #   nix develop --profile dev-profile -c true && \
@@ -257,7 +256,6 @@ in {
     nix-index
     nix-prefetch-scripts
     patchelf
-    swift
     # moonlight
     # (vscode-with-extensions.override {
     #   vscodeExtensions = with vscode-extensions;
