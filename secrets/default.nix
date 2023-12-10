@@ -4,6 +4,7 @@
     mode = "777";
     owner = "tomas";
     group = "tomas";
+    path = "/tmp/atuin.age";
   };
   age.secrets.tailscale = {
     file = ./tailscale.age;
