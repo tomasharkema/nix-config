@@ -69,9 +69,6 @@
     golint
     colima
     docker
-
-    swift
-
     neofetch
     tmux
     ansible-language-server
