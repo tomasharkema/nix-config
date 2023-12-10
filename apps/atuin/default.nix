@@ -9,7 +9,11 @@
   programs.atuin = {
     enable = true;
     enableZshIntegration = true;
-    settings = { key_path = config.age.secrets.atuin.path; };
+
+    settings = {
+      sync_frequency = "15m";
+      key_path = config.age.secrets.atuin.path;
+    };
   };
 }
 
