@@ -33,32 +33,6 @@
   #   targetUser = "root";
   # };
 
-  environment.systemPackages = with pkgs;
-    [
-      sunshine
-      # nvtop 
-    ];
-  services.udev.extraRules = ''
-    Sunshine
-    KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
-  '';
-
-  systemd.user.services.sunshine = {
-    enable = true;
-    description = "Sunshine self-hosted game stream host for Moonlight.";
-    unitConfig = {
-      Type = "simple";
-      StartLimitIntervalSec = 500;
-      StartLimitBurst = 5;
-    };
-    serviceConfig = {
-      ExecStart = "${pkgs.sunshine}";
-      Restart = "on-failure";
-      RestartSec = 5;
-    };
-    wantedBy = [ "graphical-session.target" ];
-  };
-
   users.groups.input.members = [ "tomas" ];
 
   # Enable OpenGL

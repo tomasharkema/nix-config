@@ -53,7 +53,10 @@ in {
 
   age.secrets.gh = {
     file = ./secrets/gh.age;
-    path = "/home/tomas/.config/gh/hosts.yml";
+    path = if stdenv.isLinux then
+      "/home/tomas/.config/gh/hosts.yml"
+    else
+      "/Users/tomas/.config/gh/hosts.yml";
   };
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
@@ -62,35 +65,35 @@ in {
     # ".screenrc".source = dotfiles/screenrc;
 
     # # You can also set the file content immediately.
-    ".zshrc".text = ''
-      export EDITOR='subl -w'
-      # autoload -Uz compinit
-      # compinit
+    # ".zshrc".text = ''
+    #   export EDITOR='subl -w'
+    #   # autoload -Uz compinit
+    #   # compinit
 
-      # source ~/.zsh/plugins/iterm2_shell_integration
-      # . ~/.zsh/plugins/iterm2_tmux_integration
-    '';
+    #   # source ~/.zsh/plugins/iterm2_shell_integration
+    #   # . ~/.zsh/plugins/iterm2_tmux_integration
+    # '';
   };
 
-  programs.git.extraConfig = ''
-    url.git@github.com:.insteadof=gh:
-    url.git@github.com:.pushinsteadof=github:
-    url.git@github.com:.pushinsteadof=git://github.com/
-    url.git://github.com/.insteadof=github:
-    url.git@gist.github.com:.insteadof=gst:
-    url.git@gist.github.com:.pushinsteadof=gist:
-    url.git@gist.github.com:.pushinsteadof=git://gist.github.com/
-    url.git://gist.github.com/.insteadof=gist:
-    init.defaultbranch=main
-    user.name=Tomas Harkema
-    user.email=tomas@harkema.io
-    user.signingkey=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDRzOjHZdqy0NfDPi9+9onjJKYQA23+0v+a0nnQ0VgvMCEPyHzM3UQwrq6RNNXt/8OQ1U89cFz726mL/nNljeSvfFodmSukk5h7D+5pQwTLTVQprmjumHJU8S6JgW8d2RYbvUlPxOed4kPkBD414qQoi+nQTynDPP
-    KnIzFWuLEgDmSsS0KMb+l6Y0AdC9X+i3lMT1cK8EqsqIDjGvnFaTyXisr/yjdx3nR/1X9qD1PXQmbnw0dRa7EJZ5kQ9J8Zllju3qe98LibD8Kgsu0QeXYf3Hwm18JWq5uJdKobeyditg2deIfKwXk8fgk8S7lfZwaR+WLDhh3cU+Fo43BRgl9FJx04GjXjqMs9OOO5xVsLF+ch+EdMPwO2
-    ag7lYxXfBQNwkNDOk6PSoaHwSXrnOMQIgo2zUh4W689pL8AbMGnvLvQSo106EtKB1WTJF1ZjvSBpYNeN9TUxZ3RrnbDsJDT/gQ6NeUTFa5/wliiHjWQ6N4p8m87kIlGQRzjEg70YfJjPQ/6KRH6j6w/MoKCNC04tbDiQMWFbxha+1rIedjOGUOz0uKgbKbuphvBeTTtWkDf2N5mr1/kVI/
-    4MP6Hi2+X4Px/s0G42pUFyHom1WuUn/igFWTIo5t5G9pSm4ltLWEeacEdRepkjoCgNkABaOA10B0QZIFab0HdURMdnEYiYIQ==
-    gpg.format=ssh
-    gpg.program=/usr/local/bin/gpg
-  '';
+  # programs.git.extraConfig = ''
+  #   url.git@github.com:.insteadof=gh:
+  #   url.git@github.com:.pushinsteadof=github:
+  #   url.git@github.com:.pushinsteadof=git://github.com/
+  #   url.git://github.com/.insteadof=github:
+  #   url.git@gist.github.com:.insteadof=gst:
+  #   url.git@gist.github.com:.pushinsteadof=gist:
+  #   url.git@gist.github.com:.pushinsteadof=git://gist.github.com/
+  #   url.git://gist.github.com/.insteadof=gist:
+  #   init.defaultbranch=main
+  #   user.name=Tomas Harkema
+  #   user.email=tomas@harkema.io
+  #   user.signingkey=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDRzOjHZdqy0NfDPi9+9onjJKYQA23+0v+a0nnQ0VgvMCEPyHzM3UQwrq6RNNXt/8OQ1U89cFz726mL/nNljeSvfFodmSukk5h7D+5pQwTLTVQprmjumHJU8S6JgW8d2RYbvUlPxOed4kPkBD414qQoi+nQTynDPP
+  #   KnIzFWuLEgDmSsS0KMb+l6Y0AdC9X+i3lMT1cK8EqsqIDjGvnFaTyXisr/yjdx3nR/1X9qD1PXQmbnw0dRa7EJZ5kQ9J8Zllju3qe98LibD8Kgsu0QeXYf3Hwm18JWq5uJdKobeyditg2deIfKwXk8fgk8S7lfZwaR+WLDhh3cU+Fo43BRgl9FJx04GjXjqMs9OOO5xVsLF+ch+EdMPwO2
+  #   ag7lYxXfBQNwkNDOk6PSoaHwSXrnOMQIgo2zUh4W689pL8AbMGnvLvQSo106EtKB1WTJF1ZjvSBpYNeN9TUxZ3RrnbDsJDT/gQ6NeUTFa5/wliiHjWQ6N4p8m87kIlGQRzjEg70YfJjPQ/6KRH6j6w/MoKCNC04tbDiQMWFbxha+1rIedjOGUOz0uKgbKbuphvBeTTtWkDf2N5mr1/kVI/
+  #   4MP6Hi2+X4Px/s0G42pUFyHom1WuUn/igFWTIo5t5G9pSm4ltLWEeacEdRepkjoCgNkABaOA10B0QZIFab0HdURMdnEYiYIQ==
+  #   gpg.format=ssh
+  #   gpg.program=/usr/local/bin/gpg
+  # '';
 
   programs.home-manager = { enable = true; };
   programs.lazygit.enable = true;
@@ -104,11 +107,11 @@ in {
     syntaxHighlighting.enable = true;
     enableVteIntegration = true;
     enableSyntaxHighlighting = true;
-    initExtra = ''
-      mkdir -p ~/.1password || true
-      ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock || true
-      export SSH_AUTH_SOCK=~/.1password/agent.sock
-    '';
+    # initExtra = ''
+    #   mkdir -p ~/.1password || true
+    #   ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock || true
+    #   export SSH_AUTH_SOCK=~/.1password/agent.sock
+    # '';
     # antidote = {
     #   enable = true;
     #   plugins = [
