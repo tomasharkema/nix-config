@@ -106,6 +106,7 @@
               home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.tomas.imports =
                 [ agenix.homeManagerModules.default ./home.nix ];
+              home-manager.backupFileExtension = "bak";
             }
           ];
         };

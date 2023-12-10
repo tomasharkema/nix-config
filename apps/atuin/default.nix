@@ -1,6 +1,5 @@
 { config, ... }: {
   age.secrets.atuin.file = ../../secrets/atuin.age;
-
   programs.atuin = {
     enable = true;
     enableZshIntegration = true;

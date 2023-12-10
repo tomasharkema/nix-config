@@ -19,6 +19,7 @@
         home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas.imports =
           [ agenix.homeManagerModules.default ./home.nix ];
+        home-manager.backupFileExtension = "bak";
       }
       vscode-server.nixosModules.default
       ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
@@ -62,6 +63,7 @@
         home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas.imports =
           [ agenix.homeManagerModules.default ./home.nix ];
+        home-manager.backupFileExtension = "bak";
       }
     ];
   };
