@@ -247,6 +247,11 @@ in {
     thefuck
     nixd
     nil
+    ## Nix tools
+    nix-index
+    nix-prefetch-scripts
+    nixops
+    patchelf
     # moonlight
     # (vscode-with-extensions.override {
     #   vscodeExtensions = with vscode-extensions;
