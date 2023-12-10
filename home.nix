@@ -47,7 +47,7 @@ in {
       };
       sudo.disabled = false;
       shell.disabled = false;
-      os.disabled = false; 
+      os.disabled = false;
     };
   };
 
@@ -75,9 +75,9 @@ in {
     # '';
   };
 
-programs.git.enable = true;
-programs.git.userName = "tomasharkema";
-programs.git.userEmail = "tomas@harkema.io";
+  programs.git.enable = true;
+  programs.git.userName = "tomasharkema";
+  programs.git.userEmail = "tomas@harkema.io";
   # programs.git.extraConfig = ''
   #   url.git@github.com:.insteadof=gh:
   #   url.git@github.com:.pushinsteadof=github:
@@ -246,10 +246,11 @@ programs.git.userEmail = "tomas@harkema.io";
     obsidian
     tree
     inputs.agenix.packages.${system}.default
-    # atuin
+    atuin
     thefuck
     nixd
     nil
+    rnix-lsp
     ## Nix tools
     nix-index
     nix-prefetch-scripts
