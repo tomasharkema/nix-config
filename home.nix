@@ -170,17 +170,17 @@ in {
       rm = "rm -i";
       g = "git";
       gs = "git status";
-      subl = "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
-      dev = ''
-        nix develop --profile dev-profile -c true && \
-          cachix push tomasharkema dev-profile && \
-          exec nix develop --profile dev-profile
-      '';
-      updatehome = ''
-        nix build ~/Developer/nix-config#homeConfigurations."tomas@$(hostname)".activationPackage --json \
-          | jq -r '.[].outputs | to_entries[].value' \
-          | cachix push tomasharkema
-      '';
+      # subl = "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
+      # dev = ''
+      #   nix develop --profile dev-profile -c true && \
+      #     cachix push tomasharkema dev-profile && \
+      #     exec nix develop --profile dev-profile
+      # '';
+      # updatehome = ''
+      #   nix build ~/Developer/nix-config#homeConfigurations."tomas@$(hostname)".activationPackage --json \
+      #     | jq -r '.[].outputs | to_entries[].value' \
+      #     | cachix push tomasharkema
+      # '';
     };
     plugins = [{
       name = "iterm2_shell_integration";
