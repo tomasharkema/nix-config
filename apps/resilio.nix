@@ -1,4 +1,4 @@
-{ ... }: {
+{ config, ... }: {
 
   #   deployment.keys."resilio.key" = {
   #     # Alternatively, `text` (string) or `keyFile` (path to file)
@@ -25,13 +25,15 @@
   #     uploadAt =
   #       "pre-activation"; # Default: pre-activation, Alternative: post-activation
   #   };
+  age.secrets."resilio-p" = { file = ../secrets/resilio-p.age; };
+  age.secrets."resilio-docs" = { file = ../secrets/resilio-docs.age; };
   services.resilio = {
     enable = true;
     sharedFolders = [
       {
         directory = "/var/lib/resilio-sync/shared_documents";
         searchLAN = true;
-        secretFile = "/run/resilio/resilio.key";
+        secretFile = config.age.secrets."resilio-docs".path;
         useDHT = false;
         useRelayServer = true;
         useSyncTrash = true;
@@ -41,7 +43,7 @@
       {
         directory = "/var/lib/resilio-sync/P";
         searchLAN = true;
-        secretFile = "/run/resilio/resilio_p.key";
+        secretFile = config.age.secrets."resilio-p".path;
         useDHT = false;
         useRelayServer = true;
         useSyncTrash = true;
@@ -50,10 +52,5 @@
       }
     ];
   };
-  systemd.services.resilio.wantedBy = [
-    "resilio.key-key.service"
-    "resilio.key-key.path"
-    "resilio_p.key-key.service"
-    "resilio_p.key-key.path"
-  ];
+
 }

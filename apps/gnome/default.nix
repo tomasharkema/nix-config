@@ -16,6 +16,7 @@
     gnomeExtensions.vitals
     gnomeExtensions.appindicator
     gnome.gnome-tweaks
+    gnome-firmware
     gjs
     inputs.nix-software-center.packages.${system}.nix-software-center
   ];

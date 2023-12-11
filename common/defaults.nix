@@ -92,7 +92,7 @@
 
   nix.optimise.automatic = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  services.fwupd.enable = true;
   networking.firewall = {
     # enable the firewall
     enable = true;

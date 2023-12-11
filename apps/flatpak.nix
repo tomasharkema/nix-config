@@ -29,7 +29,6 @@
     "io.missioncenter.MissionCenter"
     "com.mattjakeman.ExtensionManager"
     "com.usebottles.bottles"
-    "com.github.Matoking.protontricks"
     "org.telegram.desktop"
   ];
   services.flatpak.update.onActivation = true;

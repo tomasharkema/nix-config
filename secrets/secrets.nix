@@ -21,4 +21,6 @@ in {
   "atuin_session.age".publicKeys = allKeys;
   "tailscale.age".publicKeys = allKeys;
   "gh.age".publicKeys = allKeys;
+  "resilio-p.age".publicKeys = allKeys;
+  "resilio-docs.age".publicKeys = allKeys;
 }
