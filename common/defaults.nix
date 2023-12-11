@@ -1,14 +1,15 @@
-{ self, config, nixpkgs, pkgs, lib, inputs, outputs, ... }: {
+{ self, config, nixpkgs, pkgs, lib, inputs, outputs, ... }@attrs:
+let
+  common = import ../packages/common.nix { inherit pkgs; };
+  gui = import ../packages/gui.nix { inherit pkgs; };
+in {
   hardware.enableAllFirmware = true;
   # system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
   system.stateVersion = "23.11";
   # boot.binfmt.emulatedSystems = [ "aarch64-linux" "x86_64-linux" ];
-  imports = [
-    # inputs.home-manager.nixosModules.home-manager
-    ./packages.nix
-    ../apps/resilio.nix
-    ../apps/tailscale.nix
-  ];
+  imports = [ ../apps/resilio.nix ../apps/tailscale.nix ];
+
+  environment.systemPackages = common ++ gui;
 
   nix.distributedBuilds = true;
   # optional, useful when the builder has a faster internet connection than yours

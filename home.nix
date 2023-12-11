@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, lib, hostname, ... }:
+{ inputs, config, pkgs, lib, hostname, ... }@attrs:
 let inherit (pkgs) stdenv;
 in {
 
@@ -16,8 +16,10 @@ in {
     ./apps/atuin
     ./apps/gnome/dconf.nix
     ./build-scripts.nix
-    ./apps/flatpak.nix
+    # ./apps/flatpak.nix
   ];
+
+  home.packages = import ./packages/common.nix { inherit pkgs; };
 
   home.username = "tomas";
   home.homeDirectory = if stdenv.isLinux then
@@ -210,71 +212,4 @@ in {
     # }
       ];
   };
-
-  home.packages = with pkgs; [
-    home-manager
-    starship
-    antidote
-    thefuck
-    coreutils
-    curl
-    wget
-    git
-    git-lfs
-    # tailscale
-    ssh-to-age
-    fortune
-    cachix
-    niv
-    # sublime4
-    colima
-    python3
-    neofetch
-    tmux
-    ansible-language-server
-    # utm
-    yq
-    bfg-repo-cleaner
-    _1password
-    tmux
-    nixfmt
-    nix-deploy
-    colmena
-    morph
-    nnn
-    mtr
-    dnsutils
-    ldns
-    eza
-    bottom
-    multitail
-    netdiscover
-    obsidian
-    tree
-    inputs.agenix.packages.${system}.default
-    # atuin
-    thefuck
-    nixd
-    nil
-    rnix-lsp
-    ## Nix tools
-    nix-index
-    nix-prefetch-scripts
-    patchelf
-    # moonlight
-    # (vscode-with-extensions.override {
-    #   vscodeExtensions = with vscode-extensions;
-    #     [
-    #       bbenoist.nix
-    #       ms-python.python
-    #       ms-azuretools.vscode-docker
-    #       ms-vscode-remote.remote-ssh
-    #     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
-    #       name = "remote-ssh-edit";
-    #       publisher = "ms-vscode-remote";
-    #       version = "0.47.2";
-    #       sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
-    #     }];
-    # })
-  ];
 }

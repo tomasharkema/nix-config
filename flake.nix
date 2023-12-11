@@ -70,6 +70,9 @@
       nixosConfigurations =
         import ./configurations.nix (inputs // { inherit inputs; });
 
+      packages.aarch64-darwin.darwinVM =
+        self.nixosConfigurations.darwinVM.config.system.build.vm;
+
       darwinConfigurations."MacBook-Pro-van-Tomas" =
         nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
@@ -77,7 +80,6 @@
           modules = [
             agenix.darwinModules.default
             ./secrets
-
             {
               nixpkgs.config.allowUnfree = true;
               services.nix-daemon.enable = true;
