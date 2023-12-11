@@ -25,8 +25,12 @@
     name = "flathub";
     location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
   }];
-  services.flatpak.packages =
-    [ "io.missioncenter.MissionCenter" "com.mattjakeman.ExtensionManager" ];
+  services.flatpak.packages = [
+    "io.missioncenter.MissionCenter"
+    "com.mattjakeman.ExtensionManager"
+    "com.usebottles.bottles"
+    "com.github.Matoking.protontricks"
+  ];
   services.flatpak.update.onActivation = true;
   services.flatpak.update.auto = {
     enable = true;
