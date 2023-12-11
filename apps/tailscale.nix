@@ -23,12 +23,17 @@
     # authKeyFile = ../files/tailscalekey.conf;
     authKeyFile = config.age.secrets.tailscale.path;
     useRoutingFeatures = "client";
-    extraUpFlags = [ "--ssh" "--advertise-tags=tag:nixos" ];
+    extraUpFlags = [
+      # "--ssh"
+      "--ssh=false"
+      "--advertise-tags=tag:nixos"
+      "--operator=tomas"
+    ];
   };
   networking.nftables.enable = true;
 
-  # networking.firewall.trustedInterfaces = [ "tailscale0" ];
-  # networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
+  networking.firewall.trustedInterfaces = [ "tailscale0" ];
+  networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
 
   services.avahi.enable = true;
   # services.avahi.interfaces = [ "tailscale0" ];

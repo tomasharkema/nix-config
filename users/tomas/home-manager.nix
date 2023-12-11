@@ -53,7 +53,7 @@
     git
     git-lfs
 
-    tailscale
+    # tailscale
     fortune
     cachix
     niv

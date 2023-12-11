@@ -86,8 +86,6 @@
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
 
-  # networking.networkmanager.unmanaged = [ "tailscale0" ];
-
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
   # systemd.services.NetworkManager-wait-online.enable = false;

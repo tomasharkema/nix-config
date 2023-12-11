@@ -216,7 +216,7 @@ in {
     wget
     git
     git-lfs
-    tailscale
+    # tailscale
     ssh-to-age
     fortune
     cachix
