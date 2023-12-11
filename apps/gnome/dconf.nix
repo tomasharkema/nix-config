@@ -12,6 +12,11 @@ with lib.hm.gvariant;
     "org/gnome/desktop/app-folders" = {
       folder-children = [ "Utilities" "YaST" "Pardus" ];
     };
+    "org/gnome/desktop/remote-desktop/rdp" = {
+      enable = true;
+      screen-share-mode = "extend";
+      view-only = false;
+    };
 
     "org/gnome/desktop/app-folders/folders/Pardus" = {
       categories = [ "X-Pardus-Apps" ];

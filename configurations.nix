@@ -128,10 +128,15 @@ in {
             x = 1920;
             y = 1080;
           };
-          # tpm.enable = true;
-
+          tpm.enable = true;
+          cores = 4;
           libvirtd.enable = true;
           spiceUSBRedirection.enable = true;
+          forwardPorts = [{
+            from = "host";
+            host.port = 2222;
+            guest.port = 22;
+          }];
         };
       }
       home-manager.nixosModules.home-manager
