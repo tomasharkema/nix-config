@@ -29,6 +29,7 @@
       "--advertise-tags=tag:nixos"
       "--operator=tomas"
     ];
+    openFirewall = true;
   };
   networking.nftables.enable = true;
 
@@ -45,9 +46,4 @@
   services.avahi.nssmdns = true;
   services.avahi.publish.workstation = true;
 
-  system.activationScripts = {
-    tailscale = ''
-      cd ~ && ${pkgs.tailscale}/bin/tailscale cert $(hostname).ling-lizard.ts.net
-    '';
-  };
 }
