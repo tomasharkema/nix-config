@@ -3,7 +3,7 @@ let coc = import ./coc.nix;
 in {
   imports = [ inputs.nixvim.homeManagerModules.nixvim ];
 
-  home.packages = with pkgs; [ figlet nodejs ripgrep rnix-lsp ];
+  home.packages = with pkgs; [ figlet nodejs ripgrep rnix-lsp nixd nil ];
 
   programs.neovim = {
     viAlias = true;
@@ -20,7 +20,7 @@ in {
 
   programs.nixvim = {
     enable = true;
-    colorschemes.nord.enable = true;
+    colorschemes.dracula.enable = true;
     plugins = {
       project-nvim = { enable = true; };
       telescope = { enable = true; };

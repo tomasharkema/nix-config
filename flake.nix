@@ -102,8 +102,8 @@
             }
             home-manager.darwinModules.home-manager
             {
-              # home-manager.useGlobalPkgs = true;
-              # home-manager.useUserPackages = true;
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.tomas.imports =
                 [ agenix.homeManagerModules.default ./home.nix ];
@@ -111,108 +111,6 @@
             }
           ];
         };
-
-      # homeConfigurations = {
-      #   "tomas@MacBook-Pro-van-Tomas" =
-      #     home-manager.lib.homeManagerConfiguration {
-      #       pkgs = pkgsFor.aarch64-darwin;
-      #       modules = [ agenix.homeManagerModules.default ./home.nix ];
-      #       extraSpecialArgs = { inherit inputs outputs; };
-      #     };
-      #   "tomas@enceladus" = home-manager.lib.homeManagerConfiguration {
-      #     pkgs = pkgsFor.x86_64-linux;
-      #     modules = [ agenix.homeManagerModules.default ./home.nix ];
-      #     extraSpecialArgs = { inherit inputs outputs; };
-      #   };
-      #   "tomas@unraidferdorie" = home-manager.lib.homeManagerConfiguration {
-      #     pkgs = pkgsFor.x86_64-linux;
-      #     modules = [ agenix.homeManagerModules.default ./home.nix ];
-      #     extraSpecialArgs = { inherit inputs outputs; };
-      #   };
-      # };
-
-      # colmena.meta = {
-      #   machinesFile = /etc/nix/machines;
-      #   nixpkgs = import nixpkgs {
-      #     system = "x86_64-linux";
-      #     overlays = [ ];
-      #   };
-      # };
-      #   # utm-ferdorie = { pkgs, modulesPath, ... }: {
-
-      #   #   imports = [ ./overlays/desktop.nix ];
-
-      #   #   networking.hostName = "utm-ferdorie";
-      #   #   deployment.tags = [ "vm" ];
-      #   #   nixpkgs.system = "aarch64-linux";
-      #   #   deployment = {
-      #   #     targetHost = "100.119.250.94";
-      #   #     targetUser = "tomas";
-      #   #   };
-      #   #   boot.isContainer = true;
-      #   # };
-
-      #   hyperv-nixos = import ./machines/hyperv-nixos/default.nix;
-
-      #   # cfserve = { pkgs, modulesPath, ... }: {
-      #   #   nixpkgs.system = "x86_64-linux";
-      #   #   imports = [
-      #   #     (modulesPath + "/installer/scan/not-detected.nix")
-      #   #     ./overlays/desktop.nix
-      #   #     ./apps/steam.nix
-      #   #     # ./overlays/efi.nix  
-      #   #   ];
-
-      #   #   deployment.tags = [ "bare" ];
-      #   #   networking.hostName = "cfserve";
-
-      #   #   deployment = {
-      #   #     # targetHost = "cfserve.ling-lizard.ts.net";
-      #   #     targetHost = "100.111.187.38";
-      #   #     # targetHost = "192.168.2.199";
-      #   #     targetUser = "root";
-      #   #   };
-
-      #   #   boot.loader.systemd-boot.enable = true;
-      #   #   boot.loader.efi.canTouchEfiVariables = true;
-      #   #   boot.initrd.availableKernelModules =
-      #   #     [ "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
-      #   #   boot.initrd.kernelModules = [ ];
-      #   #   boot.kernelModules = [ "kvm-intel" ];
-      #   #   boot.extraModulePackages = [ ];
-
-      #   #   fileSystems."/" = {
-      #   #     device = "/dev/disk/by-uuid/ebc58c28-a634-468e-b5e8-67da630aa1ef";
-      #   #     fsType = "ext4";
-      #   #   };
-
-      #   #   fileSystems."/boot" = {
-      #   #     device = "/dev/disk/by-uuid/FBE1-15BC";
-      #   #     fsType = "vfat";
-      #   #   };
-      #   # };
-
-      #   unraidferdorie = import ./machines/unraidferdorie/default.nix;
-
-      #   # tactical = { pkgs, ... }: {
-      #   #   nixpkgs.system = "x86_64-linux";
-
-      #   #   imports = [
-      #   #     # ./overlays/qemu.nix
-      #   #     # ./overlays/desktop.nix
-      #   #     # ./overlays/efi.nix 
-      #   #   ];
-
-      #   #   deployment.tags = [ "vm" ];
-      #   #   networking.hostName = "tactical";
-      #   #   deployment = {
-      #   #     targetHost = "100.83.189.162";
-      #   #     # targetHost = "192.168.0.32";
-      #   #     targetUser = "root";
-      #   #   };
-      #   #   boot.isContainer = true;
-      #   # };
-      # };
 
       deploy = {
         nodes = {
@@ -259,15 +157,12 @@
       checks = builtins.mapAttrs
         (system: deployLib: deployLib.deployChecks self.deploy) deploy.lib;
 
-      packages.aarch64-darwin = {
-        darwinVM = self.nixosConfigurations.darwinVM.config.system.build.vm;
-        installiso = nixos-generators.nixosGenerate {
-          format = "install-iso";
-          system = "x86_64-linux";
+      # packages = { self, flake-utils, ... }:
+      #   flake-utils.lib.eachDefaultSystem (system:
+      #     {
 
-          modules = [ ./installer.nix ];
-        };
-      };
+      #     });
+
       # packages.aarch64-darwin = {
       #   darwinVM = self.nixosConfigurations.darwinVM.config.system.build.vm;
       #   installiso = self.packages.default.installiso;
@@ -296,6 +191,15 @@
     } // inputs.flake-utils.lib.eachDefaultSystem (system:
       let pkgs = import inputs.nixpkgs { inherit system; };
       in {
+        packages = {
+          darwinVM = self.nixosConfigurations.darwinVM.config.system.build.vm;
+          installiso = nixos-generators.nixosGenerate {
+            format = "install-iso";
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs outputs; };
+            modules = [ ./installer.nix ];
+          };
+        };
         devShells = {
           default = import ./shell.nix {
             inherit pkgs system anywhere home-manager;
