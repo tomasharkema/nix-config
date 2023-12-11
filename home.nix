@@ -16,7 +16,7 @@ in {
     ./apps/atuin
     ./apps/gnome/dconf.nix
     ./build-scripts.nix
-    ./flatpak.nix
+    ./apps/flatpak.nix
   ];
 
   home.username = "tomas";
