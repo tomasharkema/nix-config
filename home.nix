@@ -11,8 +11,13 @@ in {
   #     "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA=";
   # };
 
-  imports =
-    [ ./apps/nvim ./apps/atuin ./apps/gnome/dconf.nix ./build-scripts.nix ];
+  imports = [
+    ./apps/nvim
+    ./apps/atuin
+    ./apps/gnome/dconf.nix
+    ./build-scripts.nix
+    ./flatpak.nix
+  ];
 
   home.username = "tomas";
   home.homeDirectory = if stdenv.isLinux then

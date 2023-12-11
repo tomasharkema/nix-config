@@ -9,7 +9,7 @@
 # in 
 {
 
-  imports = [ ./gnome ./flatpak.nix ];
+  imports = [ ./gnome ];
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
@@ -74,5 +74,6 @@
       }
     })
   '';
-  # services.x2goserver.enable = true;
+  services.x2goserver.enable = true;
+  services.pipewire.enable = true;
 }
