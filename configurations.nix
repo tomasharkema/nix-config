@@ -7,6 +7,14 @@ let
       [ nixos-generators.nixosModules.all-formats ./common/defaults.nix ];
   };
 in {
+  live = nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    specialArgs = attrs;
+    modules = [
+      (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+      ./installer.nix
+    ];
+  };
   enceladus = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = attrs;

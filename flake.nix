@@ -193,12 +193,14 @@
       in {
         packages = {
           darwinVM = self.nixosConfigurations.darwinVM.config.system.build.vm;
-          installiso = nixos-generators.nixosGenerate {
-            format = "install-iso";
-            system = "x86_64-linux";
-            specialArgs = { inherit inputs outputs; };
-            modules = [ ./installer.nix ];
-          };
+          # installiso = nixos-generators.nixosGenerate {
+          #   format = "install-iso";
+          #   system = "x86_64-linux";
+          #   specialArgs = { inherit inputs outputs; };
+          #   modules = [ ./installer.nix ];
+          # };
+          installiso =
+            self.nixosConfigurations.live.config.system.build.isoImage;
         };
         devShells = {
           default = import ./shell.nix {
