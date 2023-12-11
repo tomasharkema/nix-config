@@ -1,4 +1,4 @@
-{ self, nixpkgs, pkgs, lib, inputs, outputs, ... }: {
+{ self, config, nixpkgs, pkgs, lib, inputs, outputs, ... }: {
   hardware.enableAllFirmware = true;
   # system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
   system.stateVersion = "23.11";
@@ -71,7 +71,7 @@
   services.netdata = {
     enable = true;
     package = pkgs.netdata.override { withCloud = true; };
-    claimTokenFile = ../files/cloudtoken.conf;
+    claimTokenFile = config.age.secrets."netdata".path;
   };
 
   system.autoUpgrade.enable = true;
