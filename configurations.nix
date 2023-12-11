@@ -122,8 +122,11 @@ in {
       agenix.nixosModules.default
       {
         # virtualisation.vmVariant.virtualisation.graphics = false;
-        virtualisation.vmVariant.virtualisation.host.pkgs =
-          nixpkgs.legacyPackages.aarch64-darwin;
+        virtualisation.vmVariant.virtualisation = {
+          host.pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          resolution = "1920x1080";
+          tpm.enable = true;
+        };
       }
       home-manager.nixosModules.home-manager
       {
