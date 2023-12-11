@@ -67,6 +67,7 @@
     settings.PermitRootLogin = "yes";
   };
 
+  age.secrets."netdata" = { file = ../secrets/netdata.age; };
   services.netdata = {
     enable = true;
     package = pkgs.netdata.override { withCloud = true; };

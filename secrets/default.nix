@@ -30,4 +30,5 @@
     owner = "rslsync";
     group = "rslsync";
   };
+  age.secrets.netdata = { file = ./netdata.age; };
 }

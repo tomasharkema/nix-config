@@ -23,4 +23,5 @@ in {
   "gh.age".publicKeys = allKeys;
   "resilio-p.age".publicKeys = allKeys;
   "resilio-docs.age".publicKeys = allKeys;
+  "netdata.age".publicKeys = allKeys;
 }
