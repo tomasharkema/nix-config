@@ -76,11 +76,18 @@ in {
   };
 
   system.autoUpgrade.enable = true;
+
   services.cockpit = {
     enable = true;
     port = 9090;
     settings = { WebService = { AllowUnencrypted = true; }; };
   };
+  system.activationScripts = {
+    cockpitXrdpCert = ''
+      cd /etc/cockpit/ws-certs.d && ${pkgs.tailscale}/bin/tailscale cert $(hostname).ling-lizard.ts.net
+    '';
+  };
+
   # Disable the GNOME3/GDM auto-suspend feature that cannot be disabled in GUI!
   # If no user is logged in, the machine will power down after 20 minutes.
   systemd.targets.sleep.enable = false;
