@@ -1,6 +1,11 @@
-{ modulesPath, pkgs, ... }: {
+{ inputs, modulesPath, lib, ... }:
+let
+  pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+  lib = inputs.nixpkgs.legacyPackages.x86_64-linux.lib;
+in {
   imports = [ "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.supportedFilesystems =
     lib.mkForce [ "btrfs" "reiserfs" "vfat" "f2fs" "xfs" "ntfs" "cifs" ];
   services.openssh.enable = true;
