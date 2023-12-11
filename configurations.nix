@@ -124,8 +124,14 @@ in {
         # virtualisation.vmVariant.virtualisation.graphics = false;
         virtualisation.vmVariant.virtualisation = {
           host.pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-          resolution = "1920x1080";
-          tpm.enable = true;
+          resolution = {
+            x = 1920;
+            y = 1080;
+          };
+          # tpm.enable = true;
+
+          libvirtd.enable = true;
+          spiceUSBRedirection.enable = true;
         };
       }
       home-manager.nixosModules.home-manager

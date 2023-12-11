@@ -15,33 +15,36 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
-  services.xrdp.enable = true;
-  services.xrdp.openFirewall = true;
-  services.xrdp.defaultWindowManager =
-    "${pkgs.gnome.gnome-session}/bin/gnome-session";
+  # services.xrdp.enable = true;
+  # services.xrdp.openFirewall = true;
+  # services.xrdp.defaultWindowManager =
+  #   "${pkgs.gnome.gnome-session}/bin/gnome-session";
 
   i18n.defaultLocale = "en_US.UTF-8";
+
+  services.gnome.gnome-remote-desktop.enable = true;
+  # gsettings set org.gnome.desktop.remote-desktop.rdp screen-share-mode extend
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
   services.xserver.libinput.enable = true;
   programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
-  # i18n.extraLocaleSettings = {
-  #   LC_ADDRESS = "en_US.UTF-8";
-  #   LC_IDENTIFICATION = "en_US.UTF-8";
-  #   LC_MEASUREMENT = "en_US.UTF-8";
-  #   LC_MONETARY = "en_US.UTF-8";
-  #   LC_NAME = "en_US.UTF-8";
-  #   LC_NUMERIC = "en_US.UTF-8";
-  #   LC_PAPER = "en_US.UTF-8";
-  #   LC_TELEPHONE = "en_US.UTF-8";
-  #   LC_TIME = "en_US.UTF-8";
-  # };
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
+  };
 
   environment.systemPackages = with pkgs; [
     gparted
