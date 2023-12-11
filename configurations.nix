@@ -12,6 +12,7 @@
       ./machines/enceladus
       ./secrets
 
+      nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
       home-manager.nixosModules.home-manager
       {
@@ -48,7 +49,7 @@
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas.imports = [
-
+          nix-flatpak.homeManagerModules.nix-flatpak
           agenix.homeManagerModules.default
           ./home.nix
         ];
@@ -72,7 +73,7 @@
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas.imports = [
-
+          nix-flatpak.homeManagerModules.nix-flatpak
           agenix.homeManagerModules.default
           ./home.nix
         ];
@@ -97,7 +98,7 @@
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas.imports = [
-
+          nix-flatpak.homeManagerModules.nix-flatpak
           agenix.homeManagerModules.default
           ./home.nix
         ];
