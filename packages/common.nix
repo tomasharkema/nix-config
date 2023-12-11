@@ -52,6 +52,7 @@ with pkgs; [
   zsh
   zsh-autosuggestions
   nixd
+  tailscale
 ]
 # home.packages = with pkgs; [
 
