@@ -51,6 +51,7 @@ with pkgs; [
   zip
   zsh
   zsh-autosuggestions
+  nixd
 ]
 # home.packages = with pkgs; [
 

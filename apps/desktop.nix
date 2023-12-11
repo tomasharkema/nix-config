@@ -15,15 +15,12 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
-  # services.xrdp.enable = true;
-  # services.xrdp.openFirewall = true;
-  # services.xrdp.defaultWindowManager =
-  #   "${pkgs.gnome.gnome-session}/bin/gnome-session";
+  services.xrdp.enable = true;
+  services.xrdp.openFirewall = true;
+  services.xrdp.defaultWindowManager =
+    "${pkgs.gnome.gnome-session}/bin/gnome-session";
 
   i18n.defaultLocale = "en_US.UTF-8";
-
-  services.gnome.gnome-remote-desktop.enable = true;
-  # gsettings set org.gnome.desktop.remote-desktop.rdp screen-share-mode extend
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;

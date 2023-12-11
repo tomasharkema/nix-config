@@ -12,11 +12,6 @@ with lib.hm.gvariant;
     "org/gnome/desktop/app-folders" = {
       folder-children = [ "Utilities" "YaST" "Pardus" ];
     };
-    "org/gnome/desktop/remote-desktop/rdp" = {
-      enable = true;
-      screen-share-mode = "extend";
-      view-only = false;
-    };
 
     "org/gnome/desktop/app-folders/folders/Pardus" = {
       categories = [ "X-Pardus-Apps" ];
@@ -88,7 +83,7 @@ with lib.hm.gvariant;
 
     "org/gnome/shell" = {
       enabled-extensions = [
-        # "gsconnect@andyholmes.github.io"
+        "gsconnect@andyholmes.github.io"
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
         "appindicatorsupport@rgcjonas.gmail.com"
         "apps-menu@gnome-shell-extensions.gcampax.github.com"

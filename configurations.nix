@@ -132,11 +132,18 @@ in {
           cores = 4;
           libvirtd.enable = true;
           spiceUSBRedirection.enable = true;
-          forwardPorts = [{
-            from = "host";
-            host.port = 2222;
-            guest.port = 22;
-          }];
+          forwardPorts = [
+            {
+              from = "host";
+              host.port = 2222;
+              guest.port = 22;
+            }
+            {
+              from = "host";
+              host.port = 3389;
+              guest.port = 3389;
+            }
+          ];
         };
       }
       home-manager.nixosModules.home-manager
