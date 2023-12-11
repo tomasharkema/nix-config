@@ -138,7 +138,40 @@ with lib.hm.gvariant;
       sort-order = "ascending";
       type-format = "category";
       view-type = "list";
-
+    };
+    "com/gexperts/Tilix" = {
+      quake-specific-monitor = 0;
+      tab-position = "left";
+      theme-variant = "dark";
+    };
+    "com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = {
+      background-color = "#263238";
+      badge-color = "#AC7EA8";
+      badge-color-set = false;
+      bold-color-set = false;
+      cursor-colors-set = false;
+      foreground-color = "#A1B0B8";
+      highlight-colors-set = false;
+      palette = [
+        "#252525"
+        "#FF5252"
+        "#C3D82C"
+        "#FFC135"
+        "#42A5F5"
+        "#D81B60"
+        "#00ACC1"
+        "#F5F5F5"
+        "#708284"
+        "#FF5252"
+        "#C3D82C"
+        "#FFC135"
+        "#42A5F5"
+        "#D81B60"
+        "#00ACC1"
+        "#F5F5F5"
+      ];
+      use-theme-colors = false;
+      visible-name = "Default";
     };
   };
 }
