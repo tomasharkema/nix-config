@@ -20,11 +20,13 @@
 # "io.missioncenter.MissionCenter"
 
 {
+  services.flatpak.enable = true;
   services.flatpak.remotes = [{
     name = "flathub";
     location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
   }];
-  services.flatpak.packages = [ "io.missioncenter.MissionCenter" ];
+  services.flatpak.packages =
+    [ "io.missioncenter.MissionCenter" "com.mattjakeman.ExtensionManager" ];
   services.flatpak.update.onActivation = true;
   services.flatpak.update.auto = {
     enable = true;

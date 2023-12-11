@@ -1,7 +1,9 @@
 { config, modulesPath, lib, inputs, pkgs, ... }: {
+
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   hardware.cpu.intel.updateMicrocode = true;
   nixpkgs.system = "x86_64-linux";
+
   imports = [
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
@@ -87,8 +89,8 @@
 
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ "uinput" ];
-  boot.kernelModules = [ "kvm-intel" "uinput" ];
+  boot.initrd.kernelModules = [ "kvm-intel" "uinput" "nvme" ];
+  boot.kernelModules = [ "kvm-intel" "uinput" "nvme" ];
   boot.extraModulePackages = [ ];
 
   networking.useDHCP = lib.mkDefault true;

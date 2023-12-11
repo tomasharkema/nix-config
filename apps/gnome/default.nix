@@ -17,7 +17,7 @@
     gnomeExtensions.appindicator
     gnome.gnome-tweaks
     gjs
-    # inputs.nix-software-center.packages.${system}.nix-software-center
+    inputs.nix-software-center.packages.${system}.nix-software-center
   ];
 
   programs.dconf.enable = true;

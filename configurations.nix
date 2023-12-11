@@ -19,7 +19,7 @@
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas.imports = [
-          nix-flatpak.homeManagerModules.nix-flatpak
+
           agenix.homeManagerModules.default
           ./home.nix
         ];
@@ -48,7 +48,7 @@
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas.imports = [
-          nix-flatpak.homeManagerModules.nix-flatpak
+
           agenix.homeManagerModules.default
           ./home.nix
         ];
@@ -72,7 +72,7 @@
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas.imports = [
-          nix-flatpak.homeManagerModules.nix-flatpak
+
           agenix.homeManagerModules.default
           ./home.nix
         ];
@@ -97,7 +97,7 @@
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas.imports = [
-          nix-flatpak.homeManagerModules.nix-flatpak
+
           agenix.homeManagerModules.default
           ./home.nix
         ];
