@@ -21,13 +21,13 @@
   age.secrets."resilio-p" = {
     file = ./resilio-p.age;
     # mode = "770";
-    # owner = "tomas";
-    # group = "tomas";
+    owner = "rslsync";
+    group = "rslsync";
   };
   age.secrets."resilio-docs" = {
     file = ./resilio-docs.age;
     # mode = "770";
-    # owner = "tomas";
-    # group = "tomas";
+    owner = "rslsync";
+    group = "rslsync";
   };
 }
