@@ -47,7 +47,7 @@
 
   system.activationScripts = {
     tailscale = ''
-      tailscale cert ${MACHINE_NAME}.${TAILNET_NAME}
+      tailscale cert $(hostname).ling-lizard.ts.net
     '';
   };
 }
