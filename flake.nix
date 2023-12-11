@@ -227,7 +227,7 @@
             };
           };
           unraidferdorie = {
-            hostname = "100.81.104.102";
+            hostname = "100.89.172.46";
             profiles.system = {
               user = "root";
               sshUser = "root";
@@ -246,7 +246,7 @@
           };
           hyperv-nixos = {
             # hostname = "100.67.146.61";
-            hostname = "192.168.0.18";
+            hostname = "192.168.1.74";
             profiles.system = {
               user = "root";
               sshUser = "root";
