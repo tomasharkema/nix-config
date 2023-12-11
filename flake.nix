@@ -70,9 +70,6 @@
       nixosConfigurations =
         import ./configurations.nix (inputs // { inherit inputs; });
 
-      packages.aarch64-darwin.darwinVM =
-        self.nixosConfigurations.darwinVM.config.system.build.vm;
-
       darwinConfigurations."MacBook-Pro-van-Tomas" =
         nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
@@ -262,7 +259,19 @@
       checks = builtins.mapAttrs
         (system: deployLib: deployLib.deployChecks self.deploy) deploy.lib;
 
-      # packages.default = {
+      packages.aarch64-darwin = {
+        darwinVM = self.nixosConfigurations.darwinVM.config.system.build.vm;
+        installiso = nixos-generators.nixosGenerate {
+          format = "install-iso";
+          system = "x86_64-linux";
+
+          modules = [ ./installer.nix ];
+        };
+      };
+      # packages.aarch64-darwin = {
+      #   darwinVM = self.nixosConfigurations.darwinVM.config.system.build.vm;
+      #   installiso = self.packages.default.installiso;
+      # };
       #   #     utmiso = nixos-generators.nixosGenerate {
       #   #       # inherit nixpkgs pkgs;
       #   #       system = "aarch64-linux";
