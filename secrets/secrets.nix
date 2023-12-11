@@ -6,7 +6,7 @@ let
   enceladus =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICTiQQzh6t0sQabqkzyYpqA9zIgnA0we+nQVs54UG0ct root@enceladus";
   unraidferdorie =
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMwFRuqkNmeyp6CHQTdOse0S4WasMElgrV+5lUFMX6y7";
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFS0T53Bwn00Vqhc9GHD+RY78LIKfWvMo2rvQOvGW+lQ root@nixos";
   utm-nixos =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICgPvSzMf7TG4ArvFFp8R/kfj6XYXkMl3r47FL5voIBN root@utm-nixos";
   cfserve =
