@@ -18,7 +18,7 @@
       key_path = config.age.secrets.atuin.path;
       # session_path = config.age.secrets.atuin_session.path;
       enter_accept = false;
-      workspaces = true;
+      # workspaces = true;
     };
   };
 }
