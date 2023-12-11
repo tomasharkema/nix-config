@@ -44,4 +44,10 @@
   services.avahi.publish.domain = true;
   services.avahi.nssmdns = true;
   services.avahi.publish.workstation = true;
+
+  system.activationScripts = {
+    tailscale = ''
+      tailscale cert ${MACHINE_NAME}.${TAILNET_NAME}
+    '';
+  };
 }
