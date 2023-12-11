@@ -20,14 +20,14 @@
 # "io.missioncenter.MissionCenter"
 
 {
-  services.flatpak.remotes = [{
-    name = "flathub";
-    location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-  }];
-  services.flatpak.packages = [ "io.missioncenter.MissionCenter" ];
-  services.flatpak.update.onActivation = true;
-  services.flatpak.update.auto = {
-    enable = true;
-    onCalendar = "weekly"; # Default value
-  };
+  # services.flatpak.remotes = [{
+  #   name = "flathub";
+  #   location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+  # }];
+  # services.flatpak.packages = [ "io.missioncenter.MissionCenter" ];
+  # services.flatpak.update.onActivation = true;
+  # services.flatpak.update.auto = {
+  #   enable = true;
+  #   onCalendar = "weekly"; # Default value
+  # };
 }

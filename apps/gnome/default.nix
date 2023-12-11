@@ -8,16 +8,6 @@
   nixpkgs.config.firefox.enableGnomeExtensions = true;
   services.gnome.chrome-gnome-shell.enable = true;
 
-  environment.gnome.excludePackages = (with pkgs; [ gnome-photos gnome-tour ])
-    ++ (with pkgs.gnome; [
-      gnome-music
-      gnome-terminal
-      gedit # text editor
-      evince # document viewer
-      gnome-characters
-      totem # video player
-    ]);
-
   environment.systemPackages = with pkgs; [
     gnomeExtensions.appindicator
     gnomeExtensions.gsconnect
@@ -26,7 +16,7 @@
     gnomeExtensions.vitals
     gnomeExtensions.appindicator
     gnome.gnome-tweaks
-    inputs.nix-software-center.packages.${system}.nix-software-center
+    # inputs.nix-software-center.packages.${system}.nix-software-center
   ];
 
   programs.dconf.enable = true;
