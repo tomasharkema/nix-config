@@ -1,7 +1,7 @@
 let
   tomas =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";
-      wsl =
+  wsl =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKXJJrsfcYDGtfl8zQ1hjs+0UdasQLpO4ybFNlTqtjoI tomas@DESKTOP-L8N2UGE";
   users = [ tomas wsl ];
 
@@ -15,8 +15,11 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBb9arJaumjQJa7lnbVsabpSx41WHalIRIF+uH5tqlsJ";
   hyperv-nixos =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPpdAXhywLokEcCBpBA05V6Q8enw4ImVnHHX4Uf8StvF root@hyperv-nixos";
+  supermicro =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOeUB6l0JAfA7iDBYlB+KM0v801O3w/mjsvEJpjqdfM9 root@supermicro";
 
-  systems = [ enceladus unraidferdorie utm-nixos cfserve hyperv-nixos ];
+  systems =
+    [ enceladus unraidferdorie utm-nixos cfserve hyperv-nixos supermicro ];
   allKeys = users ++ systems;
 in {
   "atuin.age".publicKeys = allKeys;

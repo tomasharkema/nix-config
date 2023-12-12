@@ -84,7 +84,7 @@ in {
   };
   system.activationScripts = {
     cockpitXrdpCert = ''
-      cd /etc/cockpit/ws-certs.d && ${pkgs.tailscale}/bin/tailscale cert $(hostname).ling-lizard.ts.net
+      cd /etc/cockpit/ws-certs.d && ${pkgs.tailscale}/bin/tailscale cert $(hostname).ling-lizard.ts.net || true
     '';
   };
 

@@ -158,7 +158,7 @@
                 self.nixosConfigurations.hyperv-nixos;
             };
           };
-                    supermicro = {
+          supermicro = {
             # hostname = "100.67.146.61";
             hostname = "192.168.1.77";
             profiles.system = {
@@ -166,6 +166,15 @@
               sshUser = "root";
               path = deploy.lib.x86_64-linux.activate.nixos
                 self.nixosConfigurations.supermicro;
+            };
+          };
+          cfserve = {
+            hostname = "192.168.2.119";
+            profiles.system = {
+              user = "root";
+              sshUser = "root";
+              path = deploy.lib.x86_64-linux.activate.nixos
+                self.nixosConfigurations.cfserve;
             };
           };
         };
@@ -221,7 +230,7 @@
         };
         devShells = {
           default = import ./shell.nix {
-            inherit pkgs system anywhere home-manager;
+            inherit pkgs system anywhere home-manager agenix;
             inherit (deploy.packages."${pkgs.system}") deploy-rs;
             inherit (colmena.packages."${pkgs.system}") colmena;
           };

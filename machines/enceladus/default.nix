@@ -5,7 +5,7 @@
   nixpkgs.system = "x86_64-linux";
 
   imports = [
-    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-pc-ssd
     # (modulesPath + "/installer/scan/not-detected.nix")
     ../../common/quiet-boot.nix
@@ -27,7 +27,7 @@
 
   networking = { hostName = "enceladus"; };
   networking.hostId = "529fd7fa";
-  
+
   # deployment.tags = [ "bare" ];
   # deployment = {
   #   targetHost = "100.67.118.80";

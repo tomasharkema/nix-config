@@ -1,10 +1,8 @@
 { pkgs, ... }:
 with pkgs; [
   _1password
-  atuin
-  thefuck
-  nixfmt
   antidote
+  atuin
   autojump
   bfg-repo-cleaner
   btop
@@ -13,7 +11,6 @@ with pkgs; [
   colima
   colmena
   coreutils
-  curl
   curl
   dnsutils
   dog
@@ -30,8 +27,11 @@ with pkgs; [
   morph
   mtr
   neofetch
+  netdiscover
   niv
   nix-deploy
+  nixd
+  nixfmt
   nixfmt
   nnn
   nodejs
@@ -41,10 +41,10 @@ with pkgs; [
   screen
   ssh-to-age
   starship
+  tailscale
   thefuck
   tldr
   unrar
-  unzip
   unzip
   wget
   xz
@@ -52,8 +52,6 @@ with pkgs; [
   zip
   zsh
   zsh-autosuggestions
-  nixd
-  tailscale
 ]
 # home.packages = with pkgs; [
 

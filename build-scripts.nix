@@ -8,6 +8,19 @@
       enceladus = "ssh tomas@enceladus";
 
       deploy = "nix develop --profile ~/deploy-prof -c deploy '.#.'";
+
+      # encrypt_keys = ''
+      #   TEMP_DIR=$(mktemp -d); op read "op://Private/tomas-new/private_key?ssh-format=OpenSSH" --out-file $TEMP_DIR/id_ed25519; \
+      #    cd secrets; \
+      #    agenix -r -i $TEMP_DIR/id_ed25519; \
+      #    rm -rf $TEMP_DIR
+      # '';
+
+      reencrypt = ''
+        cd secrets; \
+          agenix -r
+      '';
+
     };
   };
 }

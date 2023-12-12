@@ -5,12 +5,11 @@
   nixpkgs.system = "x86_64-linux";
 
   imports = [
-    inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-pc-ssd
-    # (modulesPath + "/installer/scan/not-detected.nix")
+    inputs.hardware.nixosModules.common-cpu-intel
+    ./hardware-configuration.nix
     # ../../common/quiet-boot.nix
     # ../../common/game-mode.nix
-    ../../apps/desktop.nix
+    # ../../apps/desktop.nix
     # ../../apps/steam.nix
     "${
       builtins.fetchTarball {
@@ -21,13 +20,13 @@
     ./disk-config.nix
     {
       _module.args.disks =
-        [ "/dev/sdb" ];
+        [ "/dev/disk/by-id/usb-058f_USB_DISK_3.1_72058990-0:0" ];
     }
   ];
 
   networking = { hostName = "supermicro"; };
   # networking.hostId = "529fd7fa";
-  
+
   # deployment.tags = [ "bare" ];
   # deployment = {
   #   targetHost = "100.67.118.80";
