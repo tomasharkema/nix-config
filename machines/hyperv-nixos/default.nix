@@ -32,4 +32,9 @@
     true; # TPM2TOOLS_TCTI and TPM2_PKCS11_TCTI env variables
   users.users."tomas".extraGroups = [ "tss" ];
   # virtualisation.azure.agent.enable = true;
+
+  networking.firewall = {
+    enable = lib.mkForce false;
+    # enable = true;
+  };
 }

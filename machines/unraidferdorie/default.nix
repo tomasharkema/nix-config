@@ -44,4 +44,9 @@
   #     device = "/dev/disk/by-uuid/A890-75D3";
   #     fsType = "vfat";
   #   };
+
+  networking.firewall = {
+    enable = lib.mkForce false;
+    # enable = true;
+  };
 }

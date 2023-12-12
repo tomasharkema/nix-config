@@ -12,7 +12,7 @@ let
   utm-nixos =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICgPvSzMf7TG4ArvFFp8R/kfj6XYXkMl3r47FL5voIBN root@utm-nixos";
   cfserve =
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBb9arJaumjQJa7lnbVsabpSx41WHalIRIF+uH5tqlsJ";
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEN9qbFrsIQMKfmwy7+fmikxcul0lafsbtp/eLKTrR6N root@cfserve";
   hyperv-nixos =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPpdAXhywLokEcCBpBA05V6Q8enw4ImVnHHX4Uf8StvF root@hyperv-nixos";
   supermicro =
