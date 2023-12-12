@@ -3,13 +3,6 @@
   imports = [
     ../../apps/desktop.nix
     # ./overlays/efi.nix
-    (modulesPath + "/profiles/qemu-guest.nix")
-    "${
-      builtins.fetchTarball {
-        url = "https://github.com/nix-community/disko/archive/master.tar.gz";
-        sha256 = "sha256:0khjn8kldipsr50m15ngnprzh1pzywx7w5i8g36508l4p7fbmmlm";
-      }
-    }/module.nix"
     ../../common/disks/tmpfs.nix
     { _module.args.disks = [ "/dev/vda" ]; }
   ];

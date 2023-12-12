@@ -2,18 +2,7 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 { lib, ... }: {
-  imports = [
-
-    "${
-      builtins.fetchTarball {
-        url = "https://github.com/nix-community/disko/archive/master.tar.gz";
-        sha256 = "sha256:0khjn8kldipsr50m15ngnprzh1pzywx7w5i8g36508l4p7fbmmlm";
-      }
-    }/module.nix"
-    ./disk-config.nix
-    { _module.args.disks = [ "/dev/sda" ]; }
-
-  ];
+  imports = [ ./disk-config.nix { _module.args.disks = [ "/dev/sda" ]; } ];
 
   boot.initrd.availableKernelModules = [ "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];

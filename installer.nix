@@ -26,4 +26,12 @@ in {
   boot.hardwareScan = true;
 
   services.udev = { enable = true; };
+
+  environment.systemPackages = with pkgs; [
+    btop
+    git
+    wget
+    curl
+
+  ];
 }

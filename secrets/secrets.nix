@@ -1,9 +1,9 @@
 let
   tomas =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";
-  wsl =
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKXJJrsfcYDGtfl8zQ1hjs+0UdasQLpO4ybFNlTqtjoI tomas@DESKTOP-L8N2UGE";
-  users = [ tomas wsl ];
+  # wsl =
+  #   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKXJJrsfcYDGtfl8zQ1hjs+0UdasQLpO4ybFNlTqtjoI tomas@DESKTOP-L8N2UGE";
+  users = [ tomas ];
 
   enceladus =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICTiQQzh6t0sQabqkzyYpqA9zIgnA0we+nQVs54UG0ct root@enceladus";
@@ -12,7 +12,7 @@ let
   utm-nixos =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICgPvSzMf7TG4ArvFFp8R/kfj6XYXkMl3r47FL5voIBN root@utm-nixos";
   cfserve =
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEN9qbFrsIQMKfmwy7+fmikxcul0lafsbtp/eLKTrR6N root@cfserve";
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFMtNg1eTf3L6ZrAtIStjp1t29AG6V84u4cX6UQ4ZBe3 root@cfserve";
   hyperv-nixos =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPpdAXhywLokEcCBpBA05V6Q8enw4ImVnHHX4Uf8StvF root@hyperv-nixos";
   supermicro =
