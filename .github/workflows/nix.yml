@@ -14,5 +14,6 @@ jobs:
         with:
           name: tomasharkema
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      - run: nix build '.#installiso'
       - run: nix build .#darwinConfigurations.MacBook-Pro-van-Tomas.system --json | jq -r '.[].outputs | to_entries[].value' | cachix push tomasharkema
       - run: nix build .#nixosConfigurations."enceladus".config.system.build.toplevel --json | jq -r '.[].outputs | to_entries[].value' | cachix push tomasharkema

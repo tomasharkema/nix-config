@@ -17,8 +17,7 @@ in {
     ./apps/gnome/dconf.nix
     ./build-scripts.nix
     ./apps/tmux
-    ./apps/flatpak.nix
-  ];
+  ]; # ++ [ (lib.optional (stdenv.isLinux) (./apps/flatpak.nix)) ];
 
   home.packages = import ./packages/common.nix { inherit pkgs; };
 

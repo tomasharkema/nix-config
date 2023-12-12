@@ -65,9 +65,9 @@ in {
     plugins = with pkgs; [
       {
         plugin = tmux-cpu;
-        extraConfig = ''
-          set -g status-right '#{cpu_bg_color} CPU: #{cpu_icon} #{cpu_percentage} | %a %h-%d %H:%M '
-        '';
+        # extraConfig = ''
+        #   set -g @tmux-cpu status-right '#{cpu_bg_color} CPU: #{cpu_icon} #{cpu_percentage} | %a %h-%d %H:%M '
+        # '';
       }
 
       tmux-nvim
