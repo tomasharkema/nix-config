@@ -100,4 +100,9 @@
   security.tpm2.pkcs11.enable = true;
   security.tpm2.tctiEnvironment.enable = true;
   users.users."tomas".extraGroups = [ "tss" ];
+
+  networking.firewall = {
+    enable = lib.mkForce false;
+    # enable = true;
+  };
 }

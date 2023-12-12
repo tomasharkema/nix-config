@@ -103,15 +103,7 @@ in {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   services.fwupd.enable = true;
   networking.firewall = {
-    # enable the firewall
     enable = true;
     # enable = false;
-
-    #   # # allow the Tailscale UDP port through the firewall
-    # allowedUDPPorts = [ 22 2022 9090 ];
-
-    #   # # allow you to SSH in over the public internet
-    # allowedTCPPorts = [ 22 2022 9090 ];
   };
-
 }

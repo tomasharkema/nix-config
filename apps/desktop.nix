@@ -79,4 +79,8 @@
   services.x2goserver.enable = true;
   services.pipewire.enable = true;
   services.gvfs.enable = true;
+
+  boot.hardwareScan = true;
+
+  services.udev = { enable = true; };
 }
