@@ -70,13 +70,11 @@
     colima
     docker
     neofetch
-    tmux
     ansible-language-server
     utm
     yq
     bfg-repo-cleaner
     _1password
-    tmux
     nixfmt
     nix-deploy
     colmena

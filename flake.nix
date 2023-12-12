@@ -9,7 +9,7 @@
   };
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
-
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-23.11-darwin";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
@@ -19,7 +19,10 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,7 +49,8 @@
   };
 
   outputs = { self, nixpkgs, nixos-generators, deploy, home-manager, nix
-    , colmena, flake-utils, anywhere, agenix, nix-darwin, ... }@inputs:
+    , colmena, flake-utils, anywhere, agenix, nix-darwin, nix-index-database
+    , ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
@@ -75,9 +79,12 @@
           system = "aarch64-darwin";
           specialArgs = { inherit inputs; };
           modules = [
+            nix-index-database.darwinModules.nix-index
             agenix.darwinModules.default
             ./secrets
-            {
+            ({ pkgs, ... }: {
+              environment.systemPackages =
+                import ./packages/common.nix { inherit pkgs; };
               nixpkgs.config.allowUnfree = true;
               services.nix-daemon.enable = true;
               security.pam.enableSudoTouchIdAuth = true;
@@ -99,10 +106,10 @@
                 extra-trusted-public-keys =
                   "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA=";
               };
-            }
+            })
             home-manager.darwinModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
+              # home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.tomas.imports =

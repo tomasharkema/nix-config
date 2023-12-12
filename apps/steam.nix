@@ -19,7 +19,7 @@
     KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
   '';
 
-  systemd.user.services.sunshine = {
+  systemd.services.sunshine = {
     enable = true;
     description = "Sunshine self-hosted game stream host for Moonlight.";
     unitConfig = {

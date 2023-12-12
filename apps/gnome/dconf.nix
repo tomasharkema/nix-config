@@ -91,12 +91,17 @@ with lib.hm.gvariant;
         "dash-to-panel@jderose9.github.com"
         "Vitals@CoreCoding.com"
       ];
-      favorite-apps = [ "firefox.desktop" "com.gexperts.Tilix.desktop" ];
+      favorite-apps = [
+        "org.gnome.Nautilus.desktop"
+        "firefox.desktop"
+        "com.gexperts.Tilix.desktop"
+      ];
       welcome-dialog-last-shown-version = "45.1";
     };
     "org/gnome/desktop/wm/preferences" = {
       button-layout = "appmenu:minimize,maximize,close";
     };
+    "org/gnome/nautilus/preferences" = { always-use-location-entry = true; };
     "org/gnome/shell/extensions/dash-to-panel" = {
       # animate-appicon-hover-animation-extent = {
       #   RIPPLE = 4;

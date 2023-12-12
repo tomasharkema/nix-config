@@ -27,7 +27,7 @@
 
   networking = { hostName = "enceladus"; };
   networking.hostId = "529fd7fa";
-  # _module.check = false;
+  
   # deployment.tags = [ "bare" ];
   # deployment = {
   #   targetHost = "100.67.118.80";

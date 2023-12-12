@@ -9,7 +9,6 @@
   networking.hostName = "hyperv-nixos";
   networking.hostId = "a5a1dad6";
   # deployment.tags = [ "vm" ];
-  # # _module.check = false;
   # deployment = {
   #   targetHost = "100.64.161.30";
   #   # targetHost = "192.168.1.73";
