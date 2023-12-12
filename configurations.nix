@@ -43,7 +43,7 @@ in {
 
     ];
   };
-  
+
   supermicro = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = attrs;
@@ -143,6 +143,34 @@ in {
         ];
         home-manager.backupFileExtension = "bak";
       }
+    ];
+  };
+
+  cfserve = nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    specialArgs = attrs;
+
+    # specialArgs = { inherit inputs outputs; };
+    modules = [
+      base
+      ./machines/cfserve
+      ./secrets
+      nix-flatpak.nixosModules.nix-flatpak
+      agenix.nixosModules.default
+      home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.extraSpecialArgs = { inherit inputs; };
+        home-manager.users.tomas.imports = [
+          nix-flatpak.homeManagerModules.nix-flatpak
+          agenix.homeManagerModules.default
+          ./home.nix
+        ];
+        home-manager.backupFileExtension = "bak";
+      }
+      vscode-server.nixosModules.default
+      ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
     ];
   };
 
