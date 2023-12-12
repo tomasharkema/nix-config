@@ -160,22 +160,22 @@ in {
       disko.nixosModules.default
       ./machines/cfserve
       ./secrets
-      nix-flatpak.nixosModules.nix-flatpak
+      # nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit inputs; };
-        home-manager.users.tomas.imports = [
-          nix-flatpak.homeManagerModules.nix-flatpak
-          agenix.homeManagerModules.default
-          ./home.nix
-        ];
-        home-manager.backupFileExtension = "bak";
-      }
-      vscode-server.nixosModules.default
-      ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
+      # home-manager.nixosModules.home-manager
+      # {
+      #   home-manager.useGlobalPkgs = true;
+      #   home-manager.useUserPackages = true;
+      #   home-manager.extraSpecialArgs = { inherit inputs; };
+      #   home-manager.users.tomas.imports = [
+      #     nix-flatpak.homeManagerModules.nix-flatpak
+      #     agenix.homeManagerModules.default
+      #     ./home.nix
+      #   ];
+      #   home-manager.backupFileExtension = "bak";
+      # }
+      # vscode-server.nixosModules.default
+      # ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
     ];
   };
 

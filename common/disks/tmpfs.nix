@@ -16,54 +16,45 @@
 #   { device = "/dev/disk/by-uuid/UUID";
 #     fsType = "vfat";
 #   };
+{ disks ? [ "/dev/vda" ], ... }:
 
-{ disks ? [ "/dev/vda" ], ... }: {
+{
+  fileSystems."/persistent".neededForBoot = true;
   disko.devices = {
-    disk = {
-      vdb = {
-        device = builtins.elemAt disks 0;
-        type = "disk";
-        content = {
-          type = "gpt";
-          partitions = {
-            boot = {
-              size = "512M";
-              type = "EF00";
-              content = {
-                type = "filesystem";
-                format = "vfat";
-                mountpoint = "/boot";
-              };
+    disk.main = {
+      device = builtins.elemAt disks 0;
+      type = "disk";
+      content = {
+        type = "gpt";
+        partitions = {
+          boot = {
+            size = "1M";
+            type = "EF02"; # for grub MBR
+          };
+          ESP = {
+            name = "ESP";
+            size = "512M";
+            type = "EF00";
+            content = {
+              type = "filesystem";
+              format = "vfat";
+              mountpoint = "/boot";
             };
-            nix = {
-              size = "50G";
-              content = {
-                type = "filesystem";
-                format = "ext4";
-                mountpoint = "/nix";
-              };
-            };
-            root = {
-              size = "100%";
-              content = {
-                type = "filesystem";
-                format = "ext4";
-                mountpoint = "/media";
-              };
+          };
+          nix = {
+            size = "100%";
+            content = {
+              type = "filesystem";
+              format = "ext4";
+              mountpoint = "/persistent";
             };
           };
         };
       };
     };
-    nodev = {
-      "/" = {
-        fsType = "tmpfs";
-        mountOptions = [ "size=4G" "mode=755" ];
-      };
-      "/home/tomas" = {
-        fsType = "tmpfs";
-        mountOptions = [ "size=4G" "mode=777" ];
-      };
+    nodev."/" = {
+      fsType = "tmpfs";
+      mountOptions = [ "size=2G" "defaults" "mode=755" ];
     };
   };
 }

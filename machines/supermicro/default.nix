@@ -30,6 +30,12 @@
 
   users.groups.input.members = [ "tomas" ];
 
+  environment.systemPackages = with pkgs;
+    [
+      # ipmicfg 
+      ipmiview
+    ];
+
   # Enable OpenGL
   # hardware.opengl = {
   #   enable = true;

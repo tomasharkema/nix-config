@@ -18,6 +18,7 @@ in {
   users.users = {
     root.password = "tomas";
     tomas.password = "tomas";
+    tomas.extraGroups = [ "wheel" "tomas" ];
     tomas.isNormalUser = true;
   };
 
@@ -27,11 +28,7 @@ in {
 
   services.udev = { enable = true; };
 
-  environment.systemPackages = with pkgs; [
-    btop
-    git
-    wget
-    curl
+  environment.systemPackages = with pkgs; [ btop git wget curl ];
 
-  ];
+  boot.kernelModules = [ "zfs" ];
 }
