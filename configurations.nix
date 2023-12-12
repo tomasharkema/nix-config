@@ -1,5 +1,5 @@
 { self, nixpkgs, nixos-generators, inputs, home-manager, vscode-server, agenix
-, nix-flatpak, ... }@attrs:
+, nix-flatpak, disko, impermanence, ... }@attrs:
 
 let
   base = {
@@ -22,6 +22,7 @@ in {
     # specialArgs = { inherit inputs outputs; };
     modules = [
       base
+      disko.nixosModules.default
       ./machines/enceladus
       ./secrets
       nix-flatpak.nixosModules.nix-flatpak
@@ -51,6 +52,7 @@ in {
     # specialArgs = { inherit inputs outputs; };
     modules = [
       base
+      disko.nixosModules.default
       ./machines/supermicro
       ./secrets
       nix-flatpak.nixosModules.nix-flatpak
@@ -78,6 +80,7 @@ in {
     # specialArgs = { inherit inputs outputs; };
     modules = [
       base
+      disko.nixosModules.default
       ./machines/utm-nixos/default.nix
       ./secrets
       nix-flatpak.nixosModules.nix-flatpak
@@ -101,6 +104,7 @@ in {
     specialArgs = attrs;
     modules = [
       base
+      disko.nixosModules.default
       ./machines/hyperv-nixos
       ./secrets
       nix-flatpak.nixosModules.nix-flatpak
@@ -124,9 +128,8 @@ in {
     specialArgs = attrs;
     # specialArgs = { inherit inputs outputs; };
     modules = [
-
       base
-
+      disko.nixosModules.default
       ./machines/unraidferdorie/default.nix
       ./secrets
       nix-flatpak.nixosModules.nix-flatpak
@@ -153,6 +156,8 @@ in {
     # specialArgs = { inherit inputs outputs; };
     modules = [
       base
+      impermanence.nixosModule
+      disko.nixosModules.default
       ./machines/cfserve
       ./secrets
       nix-flatpak.nixosModules.nix-flatpak
@@ -178,9 +183,7 @@ in {
     system = "aarch64-linux";
     specialArgs = attrs;
     modules = [
-
       base
-
       ./machines/utm-nixos/default.nix
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default

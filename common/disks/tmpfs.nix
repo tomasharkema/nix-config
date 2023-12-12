@@ -26,8 +26,8 @@
         content = {
           type = "gpt";
           partitions = {
-            ESP = {
-              size = "500M";
+            boot = {
+              size = "512M";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -58,11 +58,11 @@
     nodev = {
       "/" = {
         fsType = "tmpfs";
-        mountOptions = [ "size=3G" "mode=755" ];
+        mountOptions = [ "size=4G" "mode=755" ];
       };
-      "/home/username" = {
+      "/home/tomas" = {
         fsType = "tmpfs";
-        mountOptions = [ "size=3G" "mode=755" ];
+        mountOptions = [ "size=4G" "mode=777" ];
       };
     };
   };

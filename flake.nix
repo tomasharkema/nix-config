@@ -46,6 +46,7 @@
     rnixlsp.url = "github:nix-community/rnix-lsp";
     nix-software-center.url = "github:vlinkz/nix-software-center";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+    impermanence.url = "github:nix-community/impermanence";
   };
 
   outputs = { self, nixpkgs, nixos-generators, deploy, home-manager, nix
@@ -160,7 +161,7 @@
           };
           supermicro = {
             # hostname = "100.67.146.61";
-            hostname = "192.168.1.77";
+            hostname = "192.168.1.78";
             profiles.system = {
               user = "root";
               sshUser = "root";
