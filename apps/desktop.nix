@@ -26,10 +26,10 @@
   hardware.pulseaudio.enable = true;
   services.xserver.libinput.enable = true;
   programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
+  # programs.gnupg.agent = {
+  # enable = true;
+  # enableSSHSupport = true;
+  # };
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
@@ -52,6 +52,7 @@
     gnome.gnome-session
     _1password-gui
     krusader
+    transmission
     # moonlight
   ];
 

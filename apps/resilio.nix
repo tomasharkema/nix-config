@@ -31,7 +31,7 @@
     enable = true;
     sharedFolders = [
       {
-        directory = "/var/lib/resilio-sync/shared_documents";
+        directory = "/home/tomas/resilio-sync/shared_documents";
         searchLAN = true;
         secretFile = config.age.secrets."resilio-docs".path;
         useDHT = false;
@@ -41,7 +41,7 @@
         knownHosts = [ "100.120.66.165:52380" ];
       }
       {
-        directory = "/var/lib/resilio-sync/P";
+        directory = "/home/tomas/resilio-sync/P";
         searchLAN = true;
         secretFile = config.age.secrets."resilio-p".path;
         useDHT = false;
