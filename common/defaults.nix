@@ -74,7 +74,7 @@ in {
     package = pkgs.netdata.override { withCloud = true; };
     claimTokenFile = config.age.secrets."netdata".path;
   };
-
+  programs.ssh.startAgent = true;
   system.autoUpgrade.enable = true;
 
   services.cockpit = {

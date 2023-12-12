@@ -1,6 +1,9 @@
 { pkgs, ... }:
 with pkgs; [
   _1password
+  atuin
+  thefuck
+  nixfmt
   antidote
   autojump
   bfg-repo-cleaner
@@ -40,11 +43,9 @@ with pkgs; [
   starship
   thefuck
   tldr
-  tmux
   unrar
   unzip
   unzip
-  vim
   wget
   xz
   yq

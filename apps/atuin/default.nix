@@ -1,14 +1,10 @@
-{ config, ... }: {
+{ config, pkgs, ... }: {
   age.secrets.atuin = {
     file = ../../secrets/atuin.age;
     path = "/tmp/atuin.key";
   };
 
-  # age.secrets.atuin_session = {
-  #   file = ../../secrets/atuin_session.age;
-  #   path = "/tmp/atuin_session.key";
-  # };
-
+  home.packages = with pkgs; [atuin];
   programs.atuin = {
     enable = true;
     enableZshIntegration = true;

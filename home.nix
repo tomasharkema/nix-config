@@ -2,21 +2,22 @@
 let inherit (pkgs) stdenv;
 in {
 
-  # nix.settings = {
-  #   extra-experimental-features = "nix-command flakes";
-  #   # distributedBuilds = true;
-  #   trusted-users = [ "root" "tomas" ];
-  #   extra-substituters = [ "https://tomasharkema.cachix.org" ];
-  #   extra-trusted-public-keys =
-  #     "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA=";
-  # };
+  nix.settings = {
+    extra-experimental-features = "nix-command flakes";
+    # distributedBuilds = true;
+    trusted-users = [ "root" "tomas" ];
+    extra-substituters = [ "https://tomasharkema.cachix.org" ];
+    extra-trusted-public-keys =
+      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA=";
+  };
 
   imports = [
     ./apps/nvim
     ./apps/atuin
     ./apps/gnome/dconf.nix
     ./build-scripts.nix
-    # ./apps/flatpak.nix
+    ./apps/tmux
+    ./apps/flatpak.nix
   ];
 
   home.packages = import ./packages/common.nix { inherit pkgs; };
@@ -41,18 +42,20 @@ in {
   programs.fzf.enable = true;
   programs.nix-index.enable = true;
 
+  programs.tmux = { enable = true; };
+
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
     settings = {
       gcloud.disabled = true;
       nix_shell.disabled = false;
-      battery = {
-        full_symbol = "🔋 ";
-        charging_symbol = "⚡️ ";
-        discharging_symbol = "💀 ";
+      # battery = {
+      #   full_symbol = "🔋 ";
+      #   charging_symbol = "⚡️ ";
+      #   discharging_symbol = "💀 ";
 
-      };
+      # };
       sudo.disabled = false;
       shell.disabled = false;
       os.disabled = false;
@@ -84,27 +87,8 @@ in {
   };
 
   programs.git.enable = true;
-  programs.git.userName = "tomasharkema";
+  programs.git.userName = "Tomas Harkema";
   programs.git.userEmail = "tomas@harkema.io";
-  # programs.git.extraConfig = ''
-  #   url.git@github.com:.insteadof=gh:
-  #   url.git@github.com:.pushinsteadof=github:
-  #   url.git@github.com:.pushinsteadof=git://github.com/
-  #   url.git://github.com/.insteadof=github:
-  #   url.git@gist.github.com:.insteadof=gst:
-  #   url.git@gist.github.com:.pushinsteadof=gist:
-  #   url.git@gist.github.com:.pushinsteadof=git://gist.github.com/
-  #   url.git://gist.github.com/.insteadof=gist:
-  #   init.defaultbranch=main
-  #   user.name=Tomas Harkema
-  #   user.email=tomas@harkema.io
-  #   user.signingkey=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDRzOjHZdqy0NfDPi9+9onjJKYQA23+0v+a0nnQ0VgvMCEPyHzM3UQwrq6RNNXt/8OQ1U89cFz726mL/nNljeSvfFodmSukk5h7D+5pQwTLTVQprmjumHJU8S6JgW8d2RYbvUlPxOed4kPkBD414qQoi+nQTynDPP
-  #   KnIzFWuLEgDmSsS0KMb+l6Y0AdC9X+i3lMT1cK8EqsqIDjGvnFaTyXisr/yjdx3nR/1X9qD1PXQmbnw0dRa7EJZ5kQ9J8Zllju3qe98LibD8Kgsu0QeXYf3Hwm18JWq5uJdKobeyditg2deIfKwXk8fgk8S7lfZwaR+WLDhh3cU+Fo43BRgl9FJx04GjXjqMs9OOO5xVsLF+ch+EdMPwO2
-  #   ag7lYxXfBQNwkNDOk6PSoaHwSXrnOMQIgo2zUh4W689pL8AbMGnvLvQSo106EtKB1WTJF1ZjvSBpYNeN9TUxZ3RrnbDsJDT/gQ6NeUTFa5/wliiHjWQ6N4p8m87kIlGQRzjEg70YfJjPQ/6KRH6j6w/MoKCNC04tbDiQMWFbxha+1rIedjOGUOz0uKgbKbuphvBeTTtWkDf2N5mr1/kVI/
-  #   4MP6Hi2+X4Px/s0G42pUFyHom1WuUn/igFWTIo5t5G9pSm4ltLWEeacEdRepkjoCgNkABaOA10B0QZIFab0HdURMdnEYiYIQ==
-  #   gpg.format=ssh
-  #   gpg.program=/usr/local/bin/gpg
-  # '';
 
   programs.home-manager = { enable = true; };
   programs.lazygit.enable = true;
@@ -144,6 +128,7 @@ in {
     oh-my-zsh = {
       enable = true;
       plugins = [
+        # "atuin"
         "git"
         "thefuck"
         "autojump"
@@ -152,7 +137,7 @@ in {
         "macos"
         "colorize"
         "1password"
-        "fzf"
+        # "fzf"
         "aws"
         "docker"
         "encode64"
@@ -163,7 +148,7 @@ in {
         "sudo"
         "systemd"
         "tig"
-        "tmux"
+        # "tmux"
         "vi-mode"
         "yarn"
         "zsh-navigation-tools"

@@ -24,7 +24,6 @@ in {
       base
       ./machines/enceladus
       ./secrets
-
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
       home-manager.nixosModules.home-manager

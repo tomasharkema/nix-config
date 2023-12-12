@@ -20,7 +20,7 @@ in {
 
   programs.nixvim = {
     enable = true;
-    colorschemes.dracula.enable = true;
+    colorschemes.catppuccin.enable = true;
     plugins = {
       project-nvim = { enable = true; };
       telescope = { enable = true; };
@@ -44,7 +44,12 @@ in {
       surround = { enable = true; };
       nvim-colorizer = { enable = true; };
     };
-    extraPlugins = with pkgs.vimPlugins; [ ansible-vim coc-nvim suda-vim ];
+    extraPlugins = with pkgs.vimPlugins; [
+      ansible-vim
+      vim-nix
+      coc-nvim
+      suda-vim
+    ];
     options = {
       number = true;
       syntax = "enable";
@@ -151,34 +156,34 @@ in {
           endif
           endfunction
     '';
-    # maps = {
-    #   normal."sf" = {
-    #     silent = true;
-    #     action = "<cmd>CocCommand explorer<cr>";
-    #   };
-    #   normal.";r" = {
-    #     silent = true;
-    #     action =
-    #       ":call CheckForExplorer()<CR> <cmd>lua require('telescope.builtin').live_grep()<cr>";
-    #   };
-    #   normal.";f" = {
-    #     silent = true;
-    #     action =
-    #       ":call CheckForExplorer()<CR> <cmd>lua require('telescope.builtin').find_files()<cr>";
-    #   };
-    #   normal.";b" = {
-    #     silent = true;
-    #     action =
-    #       ":call CheckForExplorer()<CR> <cmd>lua require('telescope.builtin').file_browser()<cr>";
-    #   };
-    #   normal."\\" = {
-    #     silent = true;
-    #     action = ":call CheckForExplorer()<CR> <cmd>Telescope buffers<cr>";
-    #   };
-    #   normal.";;" = {
-    #     silent = true;
-    #     action = ":call CheckForExplorer()<CR> <cmd>Telescope help_tags<cr>";
-    #   };
-    # };
+    maps = {
+      normal."sf" = {
+        silent = true;
+        action = "<cmd>CocCommand explorer<cr>";
+      };
+      normal.";r" = {
+        silent = true;
+        action =
+          ":call CheckForExplorer()<CR> <cmd>lua require('telescope.builtin').live_grep()<cr>";
+      };
+      normal.";f" = {
+        silent = true;
+        action =
+          ":call CheckForExplorer()<CR> <cmd>lua require('telescope.builtin').find_files()<cr>";
+      };
+      normal.";b" = {
+        silent = true;
+        action =
+          ":call CheckForExplorer()<CR> <cmd>lua require('telescope.builtin').file_browser()<cr>";
+      };
+      normal."\\" = {
+        silent = true;
+        action = ":call CheckForExplorer()<CR> <cmd>Telescope buffers<cr>";
+      };
+      normal.";;" = {
+        silent = true;
+        action = ":call CheckForExplorer()<CR> <cmd>Telescope help_tags<cr>";
+      };
+    };
   };
 }

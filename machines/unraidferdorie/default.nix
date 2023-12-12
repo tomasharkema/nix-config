@@ -18,8 +18,7 @@
     { _module.args.disks = [ "/dev/vda" ]; }
   ];
 
-  # _module.check = false;
-  # deployment.networking.hostName = "unraidferdorie";
+  networking.hostName = lib.mkForce "unraidferdorie";
   networking.hostId = "1839f4ed";
   #   boot.loader.systemd-boot.enable = true;
   #   boot.loader.efi.canTouchEfiVariables = true;
