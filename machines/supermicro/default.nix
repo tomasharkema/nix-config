@@ -11,73 +11,20 @@
     # ../../common/game-mode.nix
     # ../../apps/desktop.nix
     # ../../apps/steam.nix
-    ../../common/disks/ext4.nix
-    {
-      _module.args.disks =
-        [ "/dev/disk/by-id/usb-058f_USB_DISK_3.1_72058990-0:0" ];
-    }
+    # ../../common/disks/ext4.nix
+    # ../../common/disks/tmpfs.nix
+    ../../common/disks/btrfs.nix
+    { _module.args.disks = [ "/dev/sdb" ]; }
   ];
 
   networking = { hostName = "supermicro"; };
-  # networking.hostId = "529fd7fa";
-
-  # deployment.tags = [ "bare" ];
-  # deployment = {
-  #   targetHost = "100.67.118.80";
-  #   # targetHost = "192.168.178.46";
-  #   targetUser = "root";
-  # };
-
-  users.groups.input.members = [ "tomas" ];
+  networking.hostId = "529fd7aa";
 
   environment.systemPackages = with pkgs;
     [
       # ipmicfg 
-      ipmiview
+      # ipmiview
     ];
-
-  # Enable OpenGL
-  # hardware.opengl = {
-  #   enable = true;
-  #   driSupport = true;
-  #   driSupport32Bit = true;
-  # };
-
-  # Load nvidia driver for Xorg and Wayland
-  # services.xserver.videoDrivers = [ "nvidia" ];
-  # environment.systemPackages = with pkgs; [ nvtop ];
-  # hardware.nvidia = {
-
-  #   # Modesetting is required.
-  #   modesetting.enable = true;
-
-  #   # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-  #   powerManagement.enable = false;
-  #   # Fine-grained power management. Turns off GPU when not in use.
-  #   # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-  #   powerManagement.finegrained = false;
-
-  #   # Use the NVidia open source kernel module (not to be confused with the
-  #   # independent third-party "nouveau" open source driver).
-  #   # Support is limited to the Turing and later architectures. Full list of 
-  #   # supported GPUs is at: 
-  #   # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
-  #   # Only available from driver 515.43.04+
-  #   # Currently alpha-quality/buggy, so false is currently the recommended setting.
-  #   open = false;
-
-  #   # Enable the Nvidia settings menu,
-  #   # accessible via `nvidia-settings`.
-  #   nvidiaSettings = true;
-
-  #   # Optionally, you may need to select the appropriate driver version for your specific GPU.
-  #   package = config.boot.kernelPackages.nvidiaPackages.stable;
-  # };
-
-  # systemd.services.netdata.path = [ pkgs.linuxPackages.nvidia_x11 ];
-  # services.netdata.configDir."python.d.conf" = pkgs.writeText "python.d.conf" ''
-  #   nvidia_smi: yes
-  # '';
 
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;
@@ -88,21 +35,20 @@
 
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ "kvm-intel" "uinput" "nvme" ];
-  boot.kernelModules = [ "kvm-intel" "uinput" "nvme" ];
+  boot.initrd.kernelModules = [
+    "kvm-intel"
+    "uinput"
+    "nvme"
+    #  "jc42" "tpm_rng" 
+  ];
+  boot.kernelModules = [ "kvm-intel" "uinput" "nvme" "jc42" "tpm_rng" ];
   boot.extraModulePackages = [ ];
 
   networking.useDHCP = lib.mkDefault true;
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
-
-  security.tpm2.enable = true;
-  security.tpm2.pkcs11.enable = true;
-  security.tpm2.tctiEnvironment.enable = true;
-  users.users."tomas".extraGroups = [ "tss" ];
 
   networking.firewall = {
     enable = lib.mkForce false;
     # enable = true;
   };
+  boot.kernelParams = [ "console=ttyS0,115200" "console=tty1" ];
 }

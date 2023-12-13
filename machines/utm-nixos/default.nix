@@ -3,7 +3,8 @@
   imports = [
     ../../apps/desktop.nix
     # ./overlays/efi.nix
-    ../../common/disks/tmpfs.nix
+    # ../../common/disks/tmpfs.nix
+    ../../common/disks/btrfs.nix
     { _module.args.disks = [ "/dev/vda" ]; }
   ];
   networking.hostName = "utm-nixos";
@@ -21,8 +22,6 @@
     # "uinput"
   ];
   boot.extraModulePackages = [ ];
-  # services.btrfs.autoScrub.enable = true;
-  # services.snapper = { enable = true; };
   networking.useDHCP = lib.mkDefault true;
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;

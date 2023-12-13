@@ -35,9 +35,9 @@ in {
   time.timeZone = "Europe/Amsterdam";
 
   security.sudo.wheelNeedsPassword = false;
+  nixpkgs.config.allowUnfree = true;
 
   users.mutableUsers = false;
-  nixpkgs.config.allowUnfree = true;
 
   users.users.tomas = {
     isNormalUser = true;

@@ -12,11 +12,11 @@ let
   utm-nixos =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICgPvSzMf7TG4ArvFFp8R/kfj6XYXkMl3r47FL5voIBN root@utm-nixos";
   cfserve =
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFMtNg1eTf3L6ZrAtIStjp1t29AG6V84u4cX6UQ4ZBe3 root@cfserve";
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHaCcdmZxFS197uAf7tBeAXV/RYl2WaShE9na67LyftQ root@cfserve";
   hyperv-nixos =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPpdAXhywLokEcCBpBA05V6Q8enw4ImVnHHX4Uf8StvF root@hyperv-nixos";
   supermicro =
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOeUB6l0JAfA7iDBYlB+KM0v801O3w/mjsvEJpjqdfM9 root@supermicro";
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB+fR84+HEw13Yfssd++mK8uHcvNw7dxnnnV8SKZJWma root@nixos";
 
   systems =
     [ enceladus unraidferdorie utm-nixos cfserve hyperv-nixos supermicro ];
