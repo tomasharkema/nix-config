@@ -116,9 +116,23 @@
                 extra-experimental-features = "nix-command flakes";
                 # distributedBuilds = true;
                 trusted-users = [ "root" "tomas" ];
-                extra-substituters = [ "https://tomasharkema.cachix.org" ];
-                extra-trusted-public-keys =
-                  "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA=";
+                extra-substituters = [
+                  # "ssh://nix-ssh@tower.ling-lizard.ts.net"
+                  "https://nix-cache.harke.ma/"
+                  "https://tomasharkema.cachix.org/"
+                  "https://cache.nixos.org/"
+                ];
+                extra-binary-caches = [
+                  "https://nix-cache.harke.ma/"
+                  "https://tomasharkema.cachix.org/"
+                  "https://cache.nixos.org/"
+                ];
+                extra-trusted-public-keys = [
+                  "tower.ling-lizard.ts.net:MBxJ2O32x6IcWJadxdP42YGVw2eW2tAbMp85Ws6QCno="
+                  "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
+                ];
+                access-tokens =
+                  [ "github.com=***REMOVED***" ];
               };
             })
             home-manager.darwinModules.home-manager
