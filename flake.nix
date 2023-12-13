@@ -161,7 +161,7 @@
           };
           supermicro = {
             # hostname = "100.67.146.61";
-            hostname = "192.168.1.78";
+            hostname = "192.168.1.77";
             profiles.system = {
               user = "root";
               sshUser = "root";
@@ -170,7 +170,7 @@
             };
           };
           cfserve = {
-            hostname = "192.168.2.119";
+            hostname = "100.70.39.116";
             profiles.system = {
               user = "root";
               sshUser = "root";
