@@ -16,7 +16,7 @@ let
   hyperv-nixos =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPpdAXhywLokEcCBpBA05V6Q8enw4ImVnHHX4Uf8StvF root@hyperv-nixos";
   supermicro =
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB+fR84+HEw13Yfssd++mK8uHcvNw7dxnnnV8SKZJWma root@nixos";
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJRn81Pxfg4ttTocQnTUWirpC1QVeJ5bfPC63ET9fNVa root@supermicro";
 
   systems =
     [ enceladus unraidferdorie utm-nixos cfserve hyperv-nixos supermicro ];

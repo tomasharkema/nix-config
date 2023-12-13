@@ -1,6 +1,6 @@
 { disks ? [ "/dev/vda" ], ... }: {
 
-  services.btrfs.autoScrub.enable = true;
+  # services.btrfs.autoScrub.enable = true;
   # services.snapper = { enable = true; };
 
   disko.devices = {

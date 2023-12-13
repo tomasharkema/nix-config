@@ -52,6 +52,9 @@ with pkgs; [
   zip
   zsh
   zsh-autosuggestions
+  nix-serve
+  ipmitool
+  netdiscover
 ]
 # home.packages = with pkgs; [
 

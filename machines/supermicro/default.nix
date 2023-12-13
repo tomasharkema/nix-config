@@ -14,7 +14,10 @@
     # ../../common/disks/ext4.nix
     # ../../common/disks/tmpfs.nix
     ../../common/disks/btrfs.nix
-    { _module.args.disks = [ "/dev/sdb" ]; }
+    {
+      _module.args.disks =
+        [ "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K" ];
+    }
   ];
 
   networking = { hostName = "supermicro"; };
@@ -51,4 +54,9 @@
     # enable = true;
   };
   boot.kernelParams = [ "console=ttyS0,115200" "console=tty1" ];
+
+  nix.sshServe.enable = true;
+  nix.sshServe.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas@tomas"
+  ];
 }

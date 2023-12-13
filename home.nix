@@ -176,6 +176,12 @@ in {
       #     | jq -r '.[].outputs | to_entries[].value' \
       #     | cachix push tomasharkema
       # '';
+      upload-to-cache = ''
+        set -eu; \
+        set -f ; \
+        export IFS=' ' ; \
+        echo "Signing and uploading paths" $OUT_PATHS ; \
+        exec nix copy --to 'http://tower.ling-lizard.ts.net:6666/' $OUT_PATHS'';
     };
     plugins = [{
       name = "iterm2_shell_integration";

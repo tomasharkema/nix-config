@@ -15,6 +15,23 @@ in {
       ./installer.nix
     ];
   };
+  netboot = nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    modules = [
+      ({ config, pkgs, lib, modulesPath, ... }: {
+        imports = [ (modulesPath + "/installer/netboot/netboot-minimal.nix") ];
+        config = {
+          ## Some useful options for setting up a new system
+          # services.getty.autologinUser = lib.mkForce "root";
+          # users.users.root.openssh.authorizedKeys.keys = [ ... ];
+          # console.keyMap = "de";
+          # hardware.video.hidpi.enable = true;
+
+          system.stateVersion = config.system.nixos.release;
+        };
+      })
+    ];
+  };
   enceladus = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = attrs;
