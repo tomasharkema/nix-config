@@ -2,3 +2,4 @@ utm-nixos.qcow2
 .lock
 stdout
 utm-nixos-swtpm/tpm2-00.permall
+.direnv
