@@ -7,9 +7,9 @@
   imports = [
     inputs.hardware.nixosModules.common-cpu-intel
     ./hardware-configuration.nix
-    # ../../common/quiet-boot.nix
+    ../../common/quiet-boot.nix
     # ../../common/game-mode.nix
-    # ../../apps/desktop.nix
+    ../../apps/desktop.nix
     # ../../apps/steam.nix
     # ../../common/disks/ext4.nix
     # ../../common/disks/tmpfs.nix
