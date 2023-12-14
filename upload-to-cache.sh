@@ -1,8 +1,8 @@
 #!/bin/sh
 
-set -u
+# set -u
 set -f # disable globbing
-export IFS=' '
+# export IFS=' '
 
-echo "Uploading paths" $OUT_PATHS
-exec nix copy --to "https://nix-cache.harke.ma/" $OUT_PATHS
+echo "Uploading paths" $OUT_PATHS $DRV_PATH
+exec nix copy --to "https://nix-cache.harke.ma/" $OUT_PATHS $DRV_PATH
