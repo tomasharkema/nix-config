@@ -260,21 +260,21 @@
     } // inputs.flake-utils.lib.eachDefaultSystem (system:
       let pkgs = import inputs.nixpkgs { inherit system; };
       in {
-        packages = {
-          darwinVM = self.nixosConfigurations.darwinVM.config.system.build.vm;
-          # installiso = nixos-generators.nixosGenerate {
-          #   format = "install-iso";
-          #   system = "x86_64-linux";
-          #   specialArgs = { inherit inputs outputs; };
-          #   modules = [ ./installer.nix ];
-          # };
-          installiso =
-            self.nixosConfigurations.live.config.system.build.isoImage;
-          netboot =
-            self.nixosConfigurations.netboot.config.system.build.toplevel;
-        };
+        # packages = {
+        #   darwinVM = self.nixosConfigurations.darwinVM.config.system.build.vm;
+        #   # installiso = nixos-generators.nixosGenerate {
+        #   #   format = "install-iso";
+        #   #   system = "x86_64-linux";
+        #   #   specialArgs = { inherit inputs outputs; };
+        #   #   modules = [ ./installer.nix ];
+        #   # };
+        #   installiso =
+        #     self.nixosConfigurations.live.config.system.build.isoImage;
+        #   netboot =
+        #     self.nixosConfigurations.netboot.config.system.build.toplevel;
+        # };
         devShells = {
-          default = import ./shell.nix { inherit pkgs inputs; }; # {
+          default = import ./shell.nix { inherit pkgs system; }; # {
           # inherit pkgs;
           # inherit (colmena.packages."${pkgs.system}") colmena;
           # };
