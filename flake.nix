@@ -20,7 +20,7 @@
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
     access-tokens = [ "github.com=***REMOVED***" ];
-    # post-build-hook = ./upload-to-cache.sh;
+    post-build-hook = ./upload-to-cache.sh;
   };
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
