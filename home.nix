@@ -32,7 +32,7 @@ in {
     ./apps/tmux
   ]; # ++ [ (lib.optional (stdenv.isLinux) (./apps/flatpak.nix)) ];
 
-  home.packages = import ./packages/common.nix { inherit pkgs; };
+  home.packages = import ./packages/common.nix { inherit pkgs inputs; };
 
   home.username = "tomas";
   home.homeDirectory = if stdenv.isLinux then
@@ -178,7 +178,7 @@ in {
       rm = "rm -i";
       g = "git";
       gs = "git status";
-      subl = "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
+      # subl = "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
       # dev = ''
       #   nix develop --profile dev-profile -c true && \
       #     cachix push tomasharkema dev-profile && \
@@ -189,12 +189,16 @@ in {
       #     | jq -r '.[].outputs | to_entries[].value' \
       #     | cachix push tomasharkema
       # '';
-      upload-to-cache = ''
-        set -eu; \
-        set -f ; \
-        export IFS=' ' ; \
-        echo "Signing and uploading paths" $OUT_PATHS ; \
-        exec nix copy --to 'http://tower.ling-lizard.ts.net:6666/' $OUT_PATHS'';
+      # upload-to-cache = ''
+      #   set -eu; \
+      #   set -f ; \
+      #   export IFS=' ' ; \
+      #   echo "Signing and uploading paths" $OUT_PATHS ; \
+      #   exec nix copy --to 'http://tower.ling-lizard.ts.net:6666/' $OUT_PATHS'';
+
+      # upload-after-build = ''
+      #   jq -r '.[].outputs | to_entries[].value' | nix copy --to 'https://nix-cache.harke.ma' --stdin
+      # '';
     };
     plugins = [{
       name = "iterm2_shell_integration";

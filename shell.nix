@@ -6,7 +6,7 @@ pkgs.mkShell {
     ack
     age
     agenix.packages.${system}.default
-    cachix
+    # cachix
     colmena
     deploy-rs
     git
@@ -31,10 +31,8 @@ pkgs.mkShell {
     ssh-to-age
     zsh
     nix-serve
-    ipmitool
-    netdiscover
   ];
-  shellHook = ''
-    cachix use tomasharkema
-  '';
+  # shellHook = ''
+  #   # cachix use tomasharkema
+  # '';
 }

@@ -55,7 +55,7 @@
 
     # tailscale
     fortune
-    cachix
+    # cachix
     niv
 
     go
