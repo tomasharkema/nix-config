@@ -89,6 +89,9 @@ in
       ./secrets
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
+      ({
+        imports = [ ./packages/common.nix ];
+      })
       # home-manager.nixosModules.home-manager
       # {
       #   home-manager.useGlobalPkgs = true;
