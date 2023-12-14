@@ -5,4 +5,4 @@ let
     exec darwin-rebuild switch --flake ~/Developer/nix-config
   '';
 
-in { environment.systemPackages = [ darwin-build ]; }
+in [ darwin-build ]

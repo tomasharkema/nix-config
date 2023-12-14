@@ -110,13 +110,6 @@
             ./secrets
             ({ pkgs, inputs, ... }: {
 
-              # imports = [ # ./apps/statix
-              #   (pkgs.writeShellScriptBin "my-hello" ''
-              #     echo "Hello, tomas!!"
-              #   '')
-              # ];
-              # [ ./apps/statix ./apps/darwin-build.nix ./apps/common.nix ];
-
               nixpkgs.config.allowUnfree = true;
               services.nix-daemon.enable = true;
               security.pam.enableSudoTouchIdAuth = true;
@@ -227,8 +220,8 @@
         };
       };
 
-      checks = builtins.mapAttrs
-        (system: deployLib: deployLib.deployChecks self.deploy) deploy.lib;
+      # checks = builtins.mapAttrs
+      # (system: deployLib: deployLib.deployChecks self.deploy) deploy.lib;
 
       # packages = { self, flake-utils, ... }:
       #   flake-utils.lib.eachDefaultSystem (system:
