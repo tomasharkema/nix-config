@@ -9,27 +9,27 @@ let
   inherit (pkgs) stdenv;
 in
 {
-  nix.settings = {
-    extra-experimental-features = "nix-command flakes";
-    # distributedBuilds = true;
-    trusted-users = [ "root" "tomas" ];
-    extra-substituters = [
-      # "ssh://nix-ssh@tower.ling-lizard.ts.net"
-      "https://nix-cache.harke.ma/"
-      "https://tomasharkema.cachix.org/"
-      "https://cache.nixos.org/"
-    ];
-    extra-binary-caches = [
-      "https://nix-cache.harke.ma/"
-      "https://tomasharkema.cachix.org/"
-      "https://cache.nixos.org/"
-    ];
-    extra-trusted-public-keys = [
-      "tower.ling-lizard.ts.net:MBxJ2O32x6IcWJadxdP42YGVw2eW2tAbMp85Ws6QCno="
-      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
-    ];
-    access-tokens = [ "github.com=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" ];
-  };
+  # nix.settings = {
+  #   extra-experimental-features = "nix-command flakes";
+  #   # distributedBuilds = true;
+  #   trusted-users = [ "root" "tomas" ];
+  #   extra-substituters = [
+  #     # "ssh://nix-ssh@tower.ling-lizard.ts.net"
+  #     "https://nix-cache.harke.ma/"
+  #     "https://tomasharkema.cachix.org/"
+  #     "https://cache.nixos.org/"
+  #   ];
+  #   extra-binary-caches = [
+  #     "https://nix-cache.harke.ma/"
+  #     "https://tomasharkema.cachix.org/"
+  #     "https://cache.nixos.org/"
+  #   ];
+  #   extra-trusted-public-keys = [
+  #     "tower.ling-lizard.ts.net:MBxJ2O32x6IcWJadxdP42YGVw2eW2tAbMp85Ws6QCno="
+  #     "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
+  #   ];
+  #   access-tokens = [ "github.com=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" ];
+  # };
 
   imports = [
     ./apps/nvim

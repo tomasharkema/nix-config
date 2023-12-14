@@ -5,22 +5,22 @@
     builders-use-substitutes = true;
     trusted-users = [ "root" "tomas" ];
     extra-substituters = [
-      "https://nix-cache.harke.ma/"
-      "https://tomasharkema.cachix.org/"
-      "https://cache.nixos.org/"
+      "https://nix-cache.harke.ma/tomas"
+      "https://tomasharkema.cachix.org"
+      "https://cache.nixos.org"
     ];
     extra-binary-caches = [
-      "https://nix-cache.harke.ma/"
-      "https://tomasharkema.cachix.org/"
-      "https://cache.nixos.org/"
+      "https://nix-cache.harke.ma/tomas"
+      "https://tomasharkema.cachix.org"
+      "https://cache.nixos.org"
     ];
     trusted-public-keys = [
-      "nix-cache.harke.ma:2UhS18Tt0delyOEULLKLQ36uNX3/hpX4sH684B+cG3c="
+      "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
       "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
     access-tokens = [ "github.com=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" ];
-    post-build-hook = ./upload-to-cache.sh;
+    # post-build-hook = ./upload-to-cache.sh;
   };
 
   inputs = {
@@ -72,6 +72,9 @@
     };
 
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
+
+    attic.url = "github:zhaofengli/attic";
+    cachix.url = "github:cachix/cachix";
   };
 
   outputs =
@@ -89,19 +92,19 @@
     , statix
     , nix-cache-watcher
     , alejandra
+    , attic
     , ...
     } @ inputs:
-    # let
-    #   inherit (self) outputs;
-    #   lib = nixpkgs.lib // home-manager.lib;
-    #   systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
-    #   forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-    #   pkgsFor = lib.genAttrs systems (system:
-    #     import nixpkgs {
-    #       inherit system;
-    #       config.allowUnfree = true;
-    #     });
-    # in
+    let
+      inherit (self) outputs;
+      lib = nixpkgs.lib // home-manager.lib;
+      systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-linux" ];
+      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs systems (system: import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      });
+    in
     {
       nixpkgs.config.allowUnfree = true;
       nixpkgs.config.allowUnfreePredicate = _: true;
@@ -170,6 +173,12 @@
             };
           })
           home-manager.darwinModules.home-manager
+          # self.homeConfigurations."tomas@MacBook-Pro-van-Tomas".config
+          # self.homeConfigurations."tomas@MacBook-Pro-van-Tomas"
+          # {
+          #   imports = [ self.homeConfigurations."tomas@MacBook-Pro-van-Tomas".config ];
+          # }
+          # self.homeConfigurations."tomas@MacBook-Pro-van-Tomas"
           {
             # home-manager.useGlobalPkgs = true;
             # home-manager.useUserPackages = true;
@@ -298,6 +307,14 @@
           self.nixosConfigurations.live.config.system.build.isoImage;
         netboot =
           self.nixosConfigurations.netboot.config.system.build.toplevel;
+
+        attic = import ./attic/attic.nix {
+          inherit
+            #pkgs 
+            attic;
+          pkgs = pkgsFor.x86_64-linux;
+          pkgsLinux = pkgsFor."x86_64-linux";
+        };
       };
 
       # formatter = alejandra.defaultPackage.${system};
