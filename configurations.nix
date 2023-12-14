@@ -1,20 +1,21 @@
-{
-  self,
-  nixpkgs,
-  nixos-generators,
-  inputs,
-  home-manager,
-  vscode-server,
-  agenix,
-  nix-flatpak,
-  disko,
-  impermanence,
-  ...
-} @ attrs: let
+{ self
+, nixpkgs
+, nixos-generators
+, inputs
+, home-manager
+, vscode-server
+, agenix
+, nix-flatpak
+, disko
+, impermanence
+, ...
+} @ attrs:
+let
   base = {
-    imports = [nixos-generators.nixosModules.all-formats ./common/defaults.nix];
+    imports = [ nixos-generators.nixosModules.all-formats ./common/defaults.nix ];
   };
-in {
+in
+{
   live = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = attrs;
@@ -26,14 +27,13 @@ in {
   netboot = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
-      ({
-        config,
-        pkgs,
-        lib,
-        modulesPath,
-        ...
-      }: {
-        imports = [(modulesPath + "/installer/netboot/netboot-minimal.nix")];
+      ({ config
+       , pkgs
+       , lib
+       , modulesPath
+       , ...
+       }: {
+        imports = [ (modulesPath + "/installer/netboot/netboot-minimal.nix") ];
         config = {
           ## Some useful options for setting up a new system
           # services.getty.autologinUser = lib.mkForce "root";
@@ -62,7 +62,7 @@ in {
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = {inherit inputs;};
+        home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas.imports = [
           nix-flatpak.homeManagerModules.nix-flatpak
           agenix.homeManagerModules.default
@@ -89,24 +89,18 @@ in {
       ./secrets
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = {inherit inputs;};
-        home-manager.users.tomas.imports = [
-          nix-flatpak.homeManagerModules.nix-flatpak
-          agenix.homeManagerModules.default
-          ./home.nix
-        ];
-        home-manager.backupFileExtension = "bak";
-      }
-      vscode-server.nixosModules.default
-      ({
-        config,
-        pkgs,
-        ...
-      }: {services.vscode-server.enable = true;})
+      # home-manager.nixosModules.home-manager
+      # {
+      #   home-manager.useGlobalPkgs = true;
+      #   home-manager.useUserPackages = true;
+      #   home-manager.extraSpecialArgs = { inherit inputs; };
+      #   home-manager.users.tomas.imports = [
+      #     nix-flatpak.homeManagerModules.nix-flatpak
+      #     agenix.homeManagerModules.default
+      #     ./home.nix
+      #   ];
+      #   home-manager.backupFileExtension = "bak";
+      # }
     ];
   };
   utm-nixos = nixpkgs.lib.nixosSystem {
@@ -124,7 +118,7 @@ in {
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = {inherit inputs;};
+        home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas.imports = [
           nix-flatpak.homeManagerModules.nix-flatpak
           agenix.homeManagerModules.default
@@ -148,7 +142,7 @@ in {
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = {inherit inputs;};
+        home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas.imports = [
           nix-flatpak.homeManagerModules.nix-flatpak
           agenix.homeManagerModules.default
@@ -169,18 +163,18 @@ in {
       ./secrets
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = {inherit inputs;};
-        home-manager.users.tomas.imports = [
-          nix-flatpak.homeManagerModules.nix-flatpak
-          agenix.homeManagerModules.default
-          ./home.nix
-        ];
-        home-manager.backupFileExtension = "bak";
-      }
+      # home-manager.nixosModules.home-manager
+      # {
+      #   home-manager.useGlobalPkgs = true;
+      #   home-manager.useUserPackages = true;
+      #   home-manager.extraSpecialArgs = { inherit inputs; };
+      #   home-manager.users.tomas.imports = [
+      #     nix-flatpak.homeManagerModules.nix-flatpak
+      #     agenix.homeManagerModules.default
+      #     ./home.nix
+      #   ];
+      #   home-manager.backupFileExtension = "bak";
+      # }
     ];
   };
 
@@ -202,7 +196,7 @@ in {
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = {inherit inputs;};
+        home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas.imports = [
           nix-flatpak.homeManagerModules.nix-flatpak
           agenix.homeManagerModules.default
@@ -211,11 +205,10 @@ in {
         home-manager.backupFileExtension = "bak";
       }
       vscode-server.nixosModules.default
-      ({
-        config,
-        pkgs,
-        ...
-      }: {services.vscode-server.enable = true;})
+      ({ config
+       , pkgs
+       , ...
+       }: { services.vscode-server.enable = true; })
     ];
   };
 
@@ -259,7 +252,7 @@ in {
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = {inherit inputs;};
+        home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas.imports = [
           nix-flatpak.homeManagerModules.nix-flatpak
           agenix.homeManagerModules.default

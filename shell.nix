@@ -12,7 +12,7 @@ pkgs.mkShell {
     inputs.agenix.packages.${system}.default
     inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
     inputs.attic.packages.${system}.default
-    cachix
+    # cachix
     colmena
     deploy-rs
     git

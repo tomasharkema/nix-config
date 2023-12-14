@@ -115,8 +115,6 @@
       nixosConfigurations =
         import ./configurations.nix (inputs // { inherit inputs; });
 
-      nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
-
       darwinConfigurations."MacBook-Pro-van-Tomas" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         specialArgs = { inherit inputs; };
@@ -161,7 +159,7 @@
               ];
               extra-binary-caches = [
                 "https://nix-cache.harke.ma/"
-                "https://tomasharkema.cachix.org/"
+                # "https://tomasharkema.cachix.org/"
                 "https://cache.nixos.org/"
               ];
               trusted-public-keys = [

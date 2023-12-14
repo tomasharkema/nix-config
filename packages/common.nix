@@ -41,7 +41,7 @@ with pkgs;
   inputs.agenix.packages.${system}.default
   inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
   inputs.attic.packages.${system}.default
-  inputs.cachix.packages.${system}.default
+  # inputs.cachix.packages.${system}.default
   ipmitool
   ldns
   lolcat
