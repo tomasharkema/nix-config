@@ -110,7 +110,11 @@
             ./secrets
             ({ pkgs, inputs, ... }: {
 
-              # imports = [ ./apps/statix ];
+              # imports = [ # ./apps/statix
+              #   (pkgs.writeShellScriptBin "my-hello" ''
+              #     echo "Hello, tomas!!"
+              #   '')
+              # ];
               # [ ./apps/statix ./apps/darwin-build.nix ./apps/common.nix ];
 
               nixpkgs.config.allowUnfree = true;
@@ -274,7 +278,7 @@
         #     self.nixosConfigurations.netboot.config.system.build.toplevel;
         # };
         devShells = {
-          default = import ./shell.nix { inherit pkgs system inputs; }; # {
+          default = import ./shell.nix { inherit pkgs system; }; # {
           # inherit pkgs;
           # inherit (colmena.packages."${pkgs.system}") colmena;
           # };

@@ -1,17 +1,20 @@
-{ pkgs, inputs, ... }@attrs:
+{ pkgs,
+#  agenix, nix-cache-watcher,
+... }@attrs:
 pkgs.mkShell {
   # defaultPackage = pkgs.nix-tree;
   buildInputs = [ pkgs.home-manager ];
   packages = with pkgs; [
+    bash
+    bash-common-functions
     ack
     age
-    inputs.agenix.packages.${system}.default
-    inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
+    # agenix.packages.${system}.default
+    # nix-cache-watcher.packages.${system}.nix-cache-watcher
     # cachix
     # colmena
     deploy-rs
     git
-    gnupg
     gnupg
     # go
     # go-outline
@@ -22,7 +25,6 @@ pkgs.mkShell {
     # gopkgs
     # gopls
     # gotools
-    home-manager
     netdiscover
     nix
     nix-tree

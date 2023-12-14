@@ -1,13 +1,15 @@
 { pkgs, inputs, ... }:
 with pkgs; [
+
+  bash
   _1password
   cachix
   colmena
   antidote
   atuin
-  atuin
+
   autojump
-  bat
+
   bat
   bfg-repo-cleaner
   bottom
@@ -32,7 +34,7 @@ with pkgs; [
   home-manager
   iftop
   inputs.agenix.packages.${system}.default
-  inputs.nix-cache-watcher.packages.aarch64-darwin.nix-cache-watcher
+  inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
   ipmitool
   ldns
   lolcat
