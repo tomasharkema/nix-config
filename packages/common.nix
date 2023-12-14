@@ -1,49 +1,76 @@
 { pkgs, inputs, ... }:
 with pkgs; [
   _1password
+  cachix
+  colmena
   antidote
   atuin
+  atuin
   autojump
+  bat
+  bat
   bfg-repo-cleaner
+  bottom
   btop
-  # cachix
   cheat
   colima
-  # colmena
   coreutils
   curl
+  delta
   dnsutils
   dog
+  du-dust
   eza
+  eza
+  fd
   fortune
+  fzf
   gh
   git
   git-lfs
   gtop
   home-manager
   iftop
+  inputs.agenix.packages.${system}.default
+  inputs.nix-cache-watcher.packages.aarch64-darwin.nix-cache-watcher
+  ipmitool
   ldns
+  lolcat
+  lsd
   mcfly
   morph
   mtr
+  multitail
+  ncdu
   neofetch
   netdiscover
+  nil
   niv
   nix-deploy
+  nix-index
+  nix-prefetch-scripts
+  nix-serve
   nixd
   nixfmt
   nixfmt
   nnn
   nodejs
+  obsidian
+  patchelf
   procs
   pv
   python3
+  rnix-lsp
   screen
+  silver-searcher
+  speedtest-cli
   ssh-to-age
   starship
   tailscale
   thefuck
+  thefuck
   tldr
+  tree
   unrar
   unzip
   wget
@@ -52,13 +79,6 @@ with pkgs; [
   zip
   zsh
   zsh-autosuggestions
-  nix-serve
-  ipmitool
-  netdiscover
-  lolcat
-  speedtest-cli
-  bat
-  inputs.nix-cache-watcher.packages.aarch64-darwin.nix-cache-watcher
 ]
 # home.packages = with pkgs; [
 

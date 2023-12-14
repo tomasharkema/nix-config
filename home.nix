@@ -34,7 +34,9 @@ in {
     # ./apps/statix
   ]; # ++ [ (lib.optional (stdenv.isLinux) (./apps/flatpak.nix)) ];
 
-  home.packages = import ./packages/common.nix { inherit pkgs inputs; };
+  home.packages = (import ./packages/common.nix { inherit pkgs inputs; }) ++ [
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+  ];
 
   home.username = "tomas";
   home.homeDirectory = if stdenv.isLinux then
@@ -109,7 +111,7 @@ in {
   programs.lsd.enable = true;
   programs.jq.enable = true;
   programs.skim.enable = true;
-
+  fonts.fontconfig.enable = true;
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
