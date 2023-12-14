@@ -11,6 +11,7 @@ pkgs.mkShell {
     age
     inputs.agenix.packages.${system}.default
     inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
+    inputs.attic.packages.${system}.default
     cachix
     colmena
     deploy-rs
