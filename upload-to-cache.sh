@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 printenv
 
-# set -u
-# set -f # disable globbing
-# export IFS=' '
+set -u
+set -f # disable globbing
+export IFS=' '
 
 echo "Uploading paths $OUT_PATHS $DRV_PATH"
 
