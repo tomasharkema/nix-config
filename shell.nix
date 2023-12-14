@@ -1,14 +1,14 @@
-{ pkgs, agenix, nix-cache-watcher, ... }@attrs:
+{ pkgs, inputs, ... }@attrs:
 pkgs.mkShell {
   # defaultPackage = pkgs.nix-tree;
   buildInputs = [ pkgs.home-manager ];
   packages = with pkgs; [
     bash
-    bash-common-functions
+    # bash-common-functions
     ack
     age
-    agenix.packages.${system}.default
-    nix-cache-watcher.packages.${system}.nix-cache-watcher
+    inputs.agenix.packages.${system}.default
+    inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
     # cachix
     # colmena
     deploy-rs

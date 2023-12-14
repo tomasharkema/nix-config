@@ -278,7 +278,7 @@
         #     self.nixosConfigurations.netboot.config.system.build.toplevel;
         # };
         devShells = {
-          default = import ./shell.nix { inherit pkgs system; }; # {
+          default = import ./shell.nix { inherit pkgs system inputs; }; # {
           # inherit pkgs;
           # inherit (colmena.packages."${pkgs.system}") colmena;
           # };
