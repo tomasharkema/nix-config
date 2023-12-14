@@ -14,7 +14,7 @@
       "https://tomasharkema.cachix.org/"
       "https://cache.nixos.org/"
     ];
-    extra-public-keys = [
+    trusted-public-keys = [
       "nix-cache.harke.ma:2UhS18Tt0delyOEULLKLQ36uNX3/hpX4sH684B+cG3c="
       "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
@@ -51,7 +51,7 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     deploy.url = "github:serokell/deploy-rs";
-    colmena.url = "github:zhaofengli/colmena";
+    # colmena.url = "github:zhaofengli/colmena";
     flake-utils.url = "github:numtide/flake-utils";
     anywhere.url = "github:nix-community/nixos-anywhere";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
@@ -71,8 +71,8 @@
   };
 
   outputs = { self, nixpkgs, nixos-generators, deploy, home-manager, nix
-    , colmena, flake-utils, anywhere, agenix, nix-darwin, nix-index-database
-    , statix, nix-cache-watcher, ... }@inputs:
+    , flake-utils, anywhere, agenix, nix-darwin, nix-index-database, statix
+    , nix-cache-watcher, ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
@@ -101,15 +101,14 @@
           system = "aarch64-darwin";
           specialArgs = { inherit inputs; };
           modules = [
-            ./apps/statix
             # statix.overlays.default
             nix-index-database.darwinModules.nix-index
             agenix.darwinModules.default
             ./secrets
             ({ pkgs, inputs, ... }: {
 
-              imports =
-                [ ./apps/statix ./apps/darwin-build.nix ./apps/common.nix ];
+              # imports = [ ./apps/statix ];
+              # [ ./apps/statix ./apps/darwin-build.nix ./apps/common.nix ];
 
               nixpkgs.config.allowUnfree = true;
               services.nix-daemon.enable = true;
@@ -139,7 +138,7 @@
                   "https://tomasharkema.cachix.org/"
                   "https://cache.nixos.org/"
                 ];
-                extra-public-keys = [
+                trusted-public-keys = [
                   "nix-cache.harke.ma:2UhS18Tt0delyOEULLKLQ36uNX3/hpX4sH684B+cG3c="
                   "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
                   "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
@@ -150,8 +149,8 @@
             })
             home-manager.darwinModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
+              # home-manager.useGlobalPkgs = true;
+              # home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.tomas.imports =
                 [ agenix.homeManagerModules.default ./home.nix ];
@@ -272,11 +271,10 @@
             self.nixosConfigurations.netboot.config.system.build.toplevel;
         };
         devShells = {
-          default = import ./shell.nix {
-            inherit pkgs system anywhere home-manager agenix;
-            inherit (deploy.packages."${pkgs.system}") deploy-rs;
-            inherit (colmena.packages."${pkgs.system}") colmena;
-          };
+          default = import ./shell.nix { inherit pkgs inputs; }; # {
+          # inherit pkgs;
+          # inherit (colmena.packages."${pkgs.system}") colmena;
+          # };
           # python = import ./shells/python.nix;
         };
       });

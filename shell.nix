@@ -1,13 +1,14 @@
-{ pkgs, colmena, deploy-rs, agenix, ... }@inputs:
+{ pkgs, inputs, ... }@attrs:
 pkgs.mkShell {
   # defaultPackage = pkgs.nix-tree;
-  buildInputs = [ pkgs.home-manager ];
+  # buildInputs = [ pkgs.home-manager ];
   packages = with pkgs; [
     ack
     age
-    agenix.packages.${system}.default
+    inputs.agenix.packages.${system}.default
+    inputs.nix-cache-watcher.packages.aarch64-darwin.nix-cache-watcher
     # cachix
-    colmena
+    # colmena
     deploy-rs
     git
     gnupg

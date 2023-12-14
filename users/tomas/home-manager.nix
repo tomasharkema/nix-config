@@ -77,7 +77,7 @@
     _1password
     nixfmt
     nix-deploy
-    colmena
+    # colmena
     morph
     vscode
     nnn
