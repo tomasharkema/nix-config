@@ -71,7 +71,7 @@ in {
       # ./user-defaults.nix
       base
       disko.nixosModules.default
-      # impermanence.nixosModule
+      impermanence.nixosModules.impermanence
       ./machines/supermicro
       ./secrets
       nix-flatpak.nixosModules.nix-flatpak

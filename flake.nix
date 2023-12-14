@@ -1,10 +1,10 @@
 {
   nixConfig = {
     extra-experimental-features = "nix-command flakes";
-    # distributedBuilds = true;
+    distributedBuilds = true;
+    builders-use-substitutes = true;
     trusted-users = [ "root" "tomas" ];
     extra-substituters = [
-      # "ssh://nix-ssh@tower.ling-lizard.ts.net"
       "https://nix-cache.harke.ma/"
       "https://tomasharkema.cachix.org/"
       "https://cache.nixos.org/"
@@ -14,11 +14,13 @@
       "https://tomasharkema.cachix.org/"
       "https://cache.nixos.org/"
     ];
-    extra-trusted-public-keys = [
-      "tower.ling-lizard.ts.net:MBxJ2O32x6IcWJadxdP42YGVw2eW2tAbMp85Ws6QCno="
+    extra-public-keys = [
+      "nix-cache.harke.ma:2UhS18Tt0delyOEULLKLQ36uNX3/hpX4sH684B+cG3c="
       "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
     access-tokens = [ "github.com=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" ];
+    # post-build-hook = ./upload-to-cache.sh;
   };
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
@@ -60,11 +62,17 @@
     nix-software-center.url = "github:vlinkz/nix-software-center";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     impermanence.url = "github:nix-community/impermanence";
+    nix-cache-watcher.url =
+      "git+https://git.sr.ht/~thatonelutenist/nix-cache-watcher?ref=trunk";
+    statix = {
+      url = "github:nerdypepper/statix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, nixos-generators, deploy, home-manager, nix
     , colmena, flake-utils, anywhere, agenix, nix-darwin, nix-index-database
-    , ... }@inputs:
+    , statix, nix-cache-watcher, ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
@@ -93,12 +101,16 @@
           system = "aarch64-darwin";
           specialArgs = { inherit inputs; };
           modules = [
+            ./apps/statix
+            # statix.overlays.default
             nix-index-database.darwinModules.nix-index
             agenix.darwinModules.default
             ./secrets
-            ({ pkgs, ... }: {
-              environment.systemPackages =
-                import ./packages/common.nix { inherit pkgs; };
+            ({ pkgs, inputs, ... }: {
+
+              imports =
+                [ ./apps/statix ./apps/darwin-build.nix ./apps/common.nix ];
+
               nixpkgs.config.allowUnfree = true;
               services.nix-daemon.enable = true;
               security.pam.enableSudoTouchIdAuth = true;
@@ -115,9 +127,9 @@
               nix.settings = {
                 extra-experimental-features = "nix-command flakes";
                 # distributedBuilds = true;
+                builders-use-substitutes = true;
                 trusted-users = [ "root" "tomas" ];
                 extra-substituters = [
-                  # "ssh://nix-ssh@tower.ling-lizard.ts.net"
                   "https://nix-cache.harke.ma/"
                   "https://tomasharkema.cachix.org/"
                   "https://cache.nixos.org/"
@@ -127,9 +139,10 @@
                   "https://tomasharkema.cachix.org/"
                   "https://cache.nixos.org/"
                 ];
-                extra-trusted-public-keys = [
-                  "tower.ling-lizard.ts.net:MBxJ2O32x6IcWJadxdP42YGVw2eW2tAbMp85Ws6QCno="
+                extra-public-keys = [
+                  "nix-cache.harke.ma:2UhS18Tt0delyOEULLKLQ36uNX3/hpX4sH684B+cG3c="
                   "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
+                  "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
                 ];
                 access-tokens =
                   [ "github.com=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" ];
@@ -137,7 +150,7 @@
             })
             home-manager.darwinModules.home-manager
             {
-              # home-manager.useGlobalPkgs = true;
+              home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.tomas.imports =

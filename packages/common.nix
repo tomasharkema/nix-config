@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 with pkgs; [
   _1password
   antidote
@@ -6,7 +6,7 @@ with pkgs; [
   autojump
   bfg-repo-cleaner
   btop
-  cachix
+  # cachix
   cheat
   colima
   colmena
@@ -55,6 +55,10 @@ with pkgs; [
   nix-serve
   ipmitool
   netdiscover
+  lolcat
+  speedtest-cli
+  bat
+  inputs.nix-cache-watcher.packages.aarch64-darwin.nix-cache-watcher
 ]
 # home.packages = with pkgs; [
 

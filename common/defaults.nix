@@ -1,6 +1,6 @@
 { self, config, nixpkgs, pkgs, lib, inputs, outputs, ... }@attrs:
 let
-  common = import ../packages/common.nix { inherit pkgs; };
+  common = import ../packages/common.nix { inherit pkgs inputs; };
   gui = import ../packages/gui.nix { inherit pkgs; };
 in {
   hardware.enableAllFirmware = true;
