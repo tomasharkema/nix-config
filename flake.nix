@@ -189,6 +189,16 @@
 
       deploy = {
         nodes = {
+          unraid = {
+            hostname = "192.168.0.100";
+            profiles.system = {
+              user = "root";
+              sshUser = "root";
+              path =
+                deploy.lib.x86_64-linux.activate.nixos
+                  self.nixosConfigurations.unraid;
+            };
+          };
           enceladus = {
             hostname = "100.78.63.10";
             profiles.system = {
