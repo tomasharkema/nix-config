@@ -1,11 +1,20 @@
 #!/bin/sh
 
-# set -u
+set -u
 set -f # disable globbing
 export IFS=' '
 
-echo "Uploading paths $OUT_PATHS $DRV_PATH"
+# set -x
 
-nix store sign --key-file cache-priv-key.pem --verbose $OUT_PATHS $DRV_PATH
+execute() {
+	whoami
 
-nix copy --to "https://nix-cache.harke.ma/" $OUT_PATHS $DRV_PATH
+	echo "Uploading paths $OUT_PATHS $DRV_PATH"
+
+	nix store sign --key-file cache-priv-key.pem --verbose $OUT_PATHS $DRV_PATH
+
+	nix copy --to "https://nix-cache.harke.ma/" --verbose $OUT_PATHS $DRV_PATH
+
+}
+
+execute | tee -a /tmp/nix.log
