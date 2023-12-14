@@ -6,6 +6,6 @@ export IFS=' '
 
 echo "Uploading paths $OUT_PATHS $DRV_PATH"
 
-# nix store sign --key-file cache-priv-key.pem --verbose $OUT_PATHS $DRV_PATH
+nix store sign --key-file cache-priv-key.pem --verbose $OUT_PATHS $DRV_PATH
 
-# exec nix copy --to "https://nix-cache.harke.ma/" $OUT_PATHS $DRV_PATH
+nix copy --to "https://nix-cache.harke.ma/" $OUT_PATHS $DRV_PATH
