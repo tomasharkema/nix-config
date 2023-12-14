@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# printenv
+printenv
 
 # set -u
 # set -f # disable globbing

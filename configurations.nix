@@ -56,8 +56,8 @@ in {
         ];
         home-manager.backupFileExtension = "bak";
       }
-      vscode-server.nixosModules.default
-      ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
+      # vscode-server.nixosModules.default
+      # ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
 
     ];
   };
