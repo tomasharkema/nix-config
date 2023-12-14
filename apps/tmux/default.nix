@@ -53,7 +53,8 @@ let
     };
   };
 
-in {
+in
+{
 
   home.packages = with pkgs; [ lsof ];
 

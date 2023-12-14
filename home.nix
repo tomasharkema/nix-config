@@ -38,10 +38,11 @@ in {
     ++ (import ./apps/statix { inherit pkgs; });
 
   home.username = "tomas";
-  home.homeDirectory = if stdenv.isLinux then
-    lib.mkForce "/home/tomas"
-  else
-    lib.mkForce "/Users/tomas";
+  home.homeDirectory =
+    if stdenv.isLinux then
+      lib.mkForce "/home/tomas"
+    else
+      lib.mkForce "/Users/tomas";
 
   home.stateVersion = "23.11";
 
@@ -79,10 +80,11 @@ in {
 
   age.secrets.gh = {
     file = ./secrets/gh.age;
-    path = if stdenv.isLinux then
-      "/home/tomas/.config/gh/hosts.yml"
-    else
-      "/Users/tomas/.config/gh/hosts.yml";
+    path =
+      if stdenv.isLinux then
+        "/home/tomas/.config/gh/hosts.yml"
+      else
+        "/Users/tomas/.config/gh/hosts.yml";
   };
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in

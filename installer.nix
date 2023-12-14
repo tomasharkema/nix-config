@@ -1,8 +1,9 @@
 { inputs, modulesPath, lib, ... }:
 let
   pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-  lib = inputs.nixpkgs.legacyPackages.x86_64-linux.lib;
-in {
+  inherit (inputs.nixpkgs.legacyPackages.x86_64-linux) lib;
+in
+{
   imports = [
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
     ./user-defaults.nix
