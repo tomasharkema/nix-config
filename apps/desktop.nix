@@ -51,7 +51,6 @@
     fira-code-nerdfont
     gnome.gnome-session
     _1password-gui
-    krusader
     transmission
     # moonlight
   ];

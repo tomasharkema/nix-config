@@ -9,20 +9,20 @@ pkgs.mkShell {
     age
     inputs.agenix.packages.${system}.default
     inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
-    # cachix
-    # colmena
+    cachix
+    colmena
     deploy-rs
     git
     gnupg
-    # go
-    # go-outline
-    # gocode
-    # gocode-gomod
-    # godef
-    # golint
-    # gopkgs
-    # gopls
-    # gotools
+    go
+    go-outline
+    gocode
+    gocode-gomod
+    godef
+    golint
+    gopkgs
+    gopls
+    gotools
     netdiscover
     nix
     nix-tree
