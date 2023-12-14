@@ -1,17 +1,18 @@
-{
-  inputs,
-  config,
-  pkgs,
-  lib,
-  hostname,
-  ...
-} @ attrs: let
+{ inputs
+, config
+, pkgs
+, lib
+, hostname
+, ...
+} @ attrs:
+let
   inherit (pkgs) stdenv;
-in {
+in
+{
   nix.settings = {
     extra-experimental-features = "nix-command flakes";
     # distributedBuilds = true;
-    trusted-users = ["root" "tomas"];
+    trusted-users = [ "root" "tomas" ];
     extra-substituters = [
       # "ssh://nix-ssh@tower.ling-lizard.ts.net"
       "https://nix-cache.harke.ma/"
@@ -27,7 +28,7 @@ in {
       "tower.ling-lizard.ts.net:MBxJ2O32x6IcWJadxdP42YGVw2eW2tAbMp85Ws6QCno="
       "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
     ];
-    access-tokens = ["github.com=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"];
+    access-tokens = [ "github.com=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" ];
   };
 
   imports = [
@@ -39,9 +40,9 @@ in {
   ]; # ++ [ (lib.optional (stdenv.isLinux) (./apps/flatpak.nix)) ];
 
   home.packages =
-    (import ./packages/common.nix {inherit pkgs inputs;})
-    ++ [(pkgs.nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})]
-    ++ (import ./apps/statix {inherit pkgs;});
+    (import ./packages/common.nix { inherit pkgs inputs; })
+    ++ [ (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; }) ]
+    ++ (import ./apps/statix { inherit pkgs; });
 
   home.username = "tomas";
   home.homeDirectory =
@@ -57,13 +58,17 @@ in {
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
+
   programs.htop.enable = true;
   programs.htop.settings.show_program_path = false;
 
   programs.fzf.enable = true;
   programs.nix-index.enable = true;
 
-  programs.tmux = {enable = true;};
+  programs.tmux = { enable = true; };
 
   programs.starship = {
     enable = true;
@@ -111,7 +116,7 @@ in {
   programs.git.userName = "Tomas Harkema";
   programs.git.userEmail = "tomas@harkema.io";
 
-  programs.home-manager = {enable = true;};
+  programs.home-manager = { enable = true; };
   programs.lazygit.enable = true;
   programs.lsd.enable = true;
   programs.jq.enable = true;

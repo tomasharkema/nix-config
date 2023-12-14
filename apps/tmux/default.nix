@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   tmux-super-fingers = pkgs.tmuxPlugins.mkTmuxPlugin {
     pluginName = "tmux-super-fingers";
     version = "unstable-2023-01-06";
@@ -9,17 +10,6 @@
       sha256 = "sha256-cPZCV8xk9QpU49/7H8iGhQYK6JwWjviL29eWabuqruc=";
     };
   };
-  tmux-cpu = pkgs.tmuxPlugins.mkTmuxPlugin {
-    pluginName = "tmux-cpu";
-    version = "unstable-2023-01-06";
-    src = pkgs.fetchFromGitHub {
-      owner = "tmux-plugins";
-      repo = "tmux-cpu";
-      rev = "98d787191bc3e8f19c3de54b96ba1caf61385861";
-      sha256 = "sha256-ymmCI6VYvf94Ot7h2GAboTRBXPIREP+EB33+px5aaJk=";
-    };
-  };
-
   t-smart-manager = pkgs.tmuxPlugins.mkTmuxPlugin {
     pluginName = "t-smart-tmux-session-manager";
     version = "unstable-2023-01-06";
@@ -41,32 +31,28 @@
       sha256 = "sha256-zpg7XJky7PRa5sC7sPRsU2ZOjj0wcepITLAelPjEkSI=";
     };
   };
-  tmux-browser = pkgs.tmuxPlugins.mkTmuxPlugin {
-    pluginName = "tmux-browser";
-    version = "unstable-2023-01-06";
-    src = pkgs.fetchFromGitHub {
-      owner = "ofirgall";
-      repo = "tmux-browser";
-      rev = "c3e115f9ebc5ec6646d563abccc6cf89a0feadb8";
-      sha256 = "sha256-ngYZDzXjm4Ne0yO6pI+C2uGO/zFDptdcpkL847P+HCI=";
-    };
-  };
-in {
-  home.packages = with pkgs; [lsof];
+  # tmux-browser = pkgs.tmuxPlugins.mkTmuxPlugin {
+  #   pluginName = "tmux-browser";
+  #   name = "tmux-browser";
+  #   version = "unstable-2023-01-06";
+  #   src = pkgs.fetchFromGitHub {
+  #     owner = "ofirgall";
+  #     repo = "tmux-browser";
+  #     rev = "c3e115f9ebc5ec6646d563abccc6cf89a0feadb8";
+  #     sha256 = "sha256-ngYZDzXjm4Ne0yO6pI+C2uGO/zFDptdcpkL847P+HCI=";
+  #   };
+  # };
+in
+{
+  home.packages = with pkgs; [ lsof brotab ];
 
   programs.tmux = {
     enable = true;
+    clock24 = true;
     shell = "${pkgs.zsh}/bin/zsh";
-    terminal = "tmux-256color";
-    historyLimit = 200000;
+    # terminal = "tmux-256color";
+    # historyLimit = 200000;
     plugins = with pkgs; [
-      {
-        plugin = tmux-cpu;
-        # extraConfig = ''
-        #   set -g @tmux-cpu status-right '#{cpu_bg_color} CPU: #{cpu_icon} #{cpu_percentage} | %a %h-%d %H:%M '
-        # '';
-      }
-
       tmux-nvim
       tmuxPlugins.tmux-thumbs
       # TODO: why do I have to manually set this
@@ -81,15 +67,14 @@ in {
         plugin = tmux-super-fingers;
         extraConfig = "set -g @super-fingers-key f";
       }
-      {
-        plugin = tmux-browser;
-        extraConfig = ''
-          set -g @browser_close_on_deattach '1'
-        '';
-      }
-
+      # {
+      #   plugin = tmux-browser;
+      #   extraConfig = ''
+      #     set -g @browser_close_on_deattach '1'
+      #   '';
+      # }
       tmuxPlugins.sensible
-      # must be before continuum edits right status bar
+      # # must be before continuum edits right status bar
       {
         plugin = tmuxPlugins.catppuccin;
         extraConfig = ''
@@ -116,6 +101,20 @@ in {
       }
       tmuxPlugins.better-mouse-mode
       tmuxPlugins.yank
+      tmuxPlugins.battery
+      {
+        plugin =
+          tmuxPlugins.fpp;
+        # extraConfig = ''
+        # set -g @plugin 'tmux-plugins/tmux-fpp'
+        # '';
+      }
+      # {
+      #   plugin = tmuxPlugins.sysstat;
+      #   extraConfig = ''
+      #     set -g status-right "#{sysstat_cpu} | #{sysstat_mem} | #{sysstat_swap} | #{sysstat_loadavg}"
+      #   '';
+      # }
     ];
     extraConfig = "";
   };

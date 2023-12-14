@@ -15,7 +15,7 @@ in
       atuin
 
       autojump
-
+      navi
       bat
       bfg-repo-cleaner
       bottom
@@ -85,6 +85,8 @@ in
       zip
       zsh
       zsh-autosuggestions
+      gping
+      fpp
 
       (pkgs.writeShellScriptBin "upload-cache-signed" ''
         cd ~

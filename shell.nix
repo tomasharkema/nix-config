@@ -1,14 +1,12 @@
-{
-  pkgs,
-  inputs,
-  ...
+{ pkgs
+, inputs
+, ...
 } @ attrs:
 pkgs.mkShell {
   # defaultPackage = pkgs.nix-tree;
-  buildInputs = [pkgs.home-manager];
+  buildInputs = [ pkgs.home-manager ];
   packages = with pkgs; [
     bash
-    # bash-common-functions
     ack
     age
     inputs.agenix.packages.${system}.default
@@ -30,7 +28,7 @@ pkgs.mkShell {
     netdiscover
     nix
     nix-tree
-    nixpkgs-fmt
+    # nixpkgs-fmt
     python3
     sops
     ssh-to-age

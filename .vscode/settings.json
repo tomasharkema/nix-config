@@ -1,27 +1,26 @@
 {
   "nix.enableLanguageServer": true,
   "nix.serverPath": "nil",
-  "nix.formatterPath": ["nix", "fmt", "--", "-"],
+  "nix.formatterPath": "nixpkgs-fmt",
   "nix.serverSettings": {
     "nil": {
-      "diagnostics": {
-        // "ignored": ["unused_binding", "unused_with"]
-      },
+      "diagnostics": {},
       "formatting": {
-        "command": ["nix", "fmt", "--", "-"]
+        "command": ["nixpkgs-fmt"]
       },
       "flake": {
-        // Auto-archiving behavior which may use network.
-        //
-        // - null: Ask every time.
-        // - true: Automatically run `nix flake archive` when necessary.
-        // - false: Do not archive. Only load inputs that are already on disk.
-        // Type: null | boolean
-        // Example: true
         "autoArchive": true,
         "autoEvalInputs": false,
         "nixpkgsInputName": "nixpkgs"
       }
     }
-  }
+  },
+  "nixEnvSelector.nixFile": "flake.nix",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "[nix]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+  "editor.defaultFormatter": "jnoortheen.nix-ide"
 }
