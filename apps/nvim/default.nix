@@ -1,15 +1,15 @@
-{
-  inputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}: let
+{ inputs
+, config
+, pkgs
+, ...
+}:
+let
   coc = import ./coc.nix;
-in {
-  imports = [inputs.nixvim.homeManagerModules.nixvim];
+in
+{
+  imports = [ inputs.nixvim.homeManagerModules.nixvim ];
 
-  home.packages = with pkgs; [figlet nodejs ripgrep rnix-lsp nixd nil];
+  home.packages = with pkgs; [ figlet nodejs ripgrep rnix-lsp nixd nil ];
 
   programs.neovim = {
     viAlias = true;
@@ -21,7 +21,7 @@ in {
     "nvim/coc-settings.json" = {
       source =
         builtins.toFile "coc-settings.json"
-        (builtins.toJSON (coc {homeDir = config.xdg.configHome;}));
+          (builtins.toJSON (coc { homeDir = config.xdg.configHome; }));
     };
   };
 
@@ -29,12 +29,12 @@ in {
     enable = true;
     colorschemes.catppuccin.enable = true;
     plugins = {
-      project-nvim = {enable = true;};
-      telescope = {enable = true;};
-      fugitive = {enable = true;};
+      project-nvim = { enable = true; };
+      telescope = { enable = true; };
+      fugitive = { enable = true; };
       lualine = {
         enable = true;
-        sections = {lualine_x = ["diagnostics" "encoding" "filetype"];};
+        sections = { lualine_x = [ "diagnostics" "encoding" "filetype" ]; };
       };
       startify = {
         enable = true;
@@ -44,12 +44,12 @@ in {
       };
       indent-blankline = {
         enable = true;
-        filetypeExclude = ["startify"];
+        filetypeExclude = [ "startify" ];
       };
-      barbar = {enable = true;};
-      gitgutter = {enable = true;};
-      surround = {enable = true;};
-      nvim-colorizer = {enable = true;};
+      barbar = { enable = true; };
+      gitgutter = { enable = true; };
+      surround = { enable = true; };
+      nvim-colorizer = { enable = true; };
     };
     extraPlugins = with pkgs.vimPlugins; [
       ansible-vim
@@ -96,18 +96,18 @@ in {
 
     autoCmd = [
       {
-        event = ["InsertLeave"];
-        pattern = ["*"];
+        event = [ "InsertLeave" ];
+        pattern = [ "*" ];
         command = "set nopaste";
       }
       {
-        event = ["WinEnter"];
-        pattern = ["*"];
+        event = [ "WinEnter" ];
+        pattern = [ "*" ];
         command = "set cul";
       }
       {
-        event = ["WinLeave"];
-        pattern = ["*"];
+        event = [ "WinLeave" ];
+        pattern = [ "*" ];
         command = "set nocul";
       }
     ];
@@ -126,7 +126,7 @@ in {
         fg = "#4c566a";
         bg = "#4c566a";
       };
-      BufferCurrentTarget = {bg = "#434c5e";};
+      BufferCurrentTarget = { bg = "#434c5e"; };
       BufferInactive = {
         fg = "#4c566a";
         bg = "none";
@@ -145,8 +145,8 @@ in {
       };
     };
     globals = {
-      coc_filetype_map = {"yaml.ansible" = "ansible";};
-      coc_global_extensions = ["coc-explorer" "@yaegassy/coc-ansible"];
+      coc_filetype_map = { "yaml.ansible" = "ansible"; };
+      coc_global_extensions = [ "coc-explorer" "@yaegassy/coc-ansible" ];
       suda_smart_edit = 1;
       "suda#nopass" = 1;
     };
