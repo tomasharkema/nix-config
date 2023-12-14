@@ -9,7 +9,7 @@ with pkgs; [
   # cachix
   cheat
   colima
-  colmena
+  # colmena
   coreutils
   curl
   dnsutils
