@@ -41,7 +41,7 @@
   python.jediEnabled = false;
   languageserver = {
     nix = {
-      command = "rnix-lsp";
+      command = "nil";
       filetypes = [ "nix" ];
     };
   };

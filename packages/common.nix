@@ -1,5 +1,5 @@
 { pkgs, inputs, ... }:
-let darwin-build = (import ../apps/darwin-build.nix);
+let darwin-build = import ../apps/darwin-build.nix;
 in with pkgs;
 [
 
@@ -54,7 +54,6 @@ in with pkgs;
   nix-index
   nix-prefetch-scripts
   nix-serve
-  nixd
   nixfmt
   nixfmt
   nnn
@@ -64,7 +63,6 @@ in with pkgs;
   procs
   pv
   python3
-  rnix-lsp
   screen
   silver-searcher
   speedtest-cli
@@ -104,7 +102,6 @@ in with pkgs;
 #   thefuck
 #   nixd
 #   nil
-#   rnix-lsp
 #   ## Nix tools
 #   nix-index
 #   nix-prefetch-scripts

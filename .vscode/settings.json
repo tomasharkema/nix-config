@@ -1,6 +1,6 @@
 {
   "nix.enableLanguageServer": true,
-  "nix.serverPath": "rnix-lsp",
+  "nix.serverPath": "nil",
   "nix.formatterPath": ["nix", "fmt", "--", "-"],
   "nix.serverSettings": {
     // settings for 'nil' LSP
@@ -10,29 +10,18 @@
       },
       "formatting": {
         "command": ["nix", "fmt", "--", "-"]
-      }
-    },
-    "nixd": {
-      "eval": {
-        // stuff
       },
-      "formatting": {
-        "command": "nixpkgs-fmt"
-      },
-      "options": {
-        "enable": true,
-        "target": {
-          // tweak arguments here
-          "args": [],
-          // NixOS options
-          "installable": "<flakeref>#nixosConfigurations.enceladus.options"
-
-          // Flake-parts options
-          // "installable": "<flakeref>#debug.options"
-
-          // Home-manager options
-          // "installable": "<flakeref>#homeConfigurations.<name>.options"
-        }
+      "flake": {
+        // Auto-archiving behavior which may use network.
+        //
+        // - null: Ask every time.
+        // - true: Automatically run `nix flake archive` when necessary.
+        // - false: Do not archive. Only load inputs that are already on disk.
+        // Type: null | boolean
+        // Example: true
+        "autoArchive": true,
+        "autoEvalInputs": false,
+        "nixpkgsInputName": "nixpkgs"
       }
     }
   }

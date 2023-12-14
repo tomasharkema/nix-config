@@ -2,7 +2,8 @@
 let
   common = import ../packages/common.nix { inherit pkgs inputs; };
   gui = import ../packages/gui.nix { inherit pkgs; };
-in {
+in
+{
   hardware.enableAllFirmware = true;
   # system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
   system.stateVersion = "23.11";

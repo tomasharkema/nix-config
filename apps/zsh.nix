@@ -8,6 +8,7 @@
     #   line_break.disabled = true;
     # };
   };
+
   users.defaultUserShell = pkgs.zsh;
   programs.fzf.fuzzyCompletion = true;
   programs.zsh = {
@@ -71,5 +72,4 @@
       eval "$(starship init zsh)"
     '';
   };
-
 }

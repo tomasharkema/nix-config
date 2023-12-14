@@ -5,4 +5,5 @@ let
     exec darwin-rebuild switch --flake ~/Developer/nix-config
   '';
 
-in [ darwin-build ]
+in
+[ darwin-build ]

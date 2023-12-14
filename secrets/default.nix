@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   # age.secrets.atuin = {
   #   file = ./atuin.age;
   #   # mode = "777";

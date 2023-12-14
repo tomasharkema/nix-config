@@ -1,12 +1,23 @@
-{ self, nixpkgs, nixos-generators, inputs, home-manager, vscode-server, agenix
-, nix-flatpak, disko, impermanence, ... }@attrs:
+{ self
+, nixpkgs
+, nixos-generators
+, inputs
+, home-manager
+, vscode-server
+, agenix
+, nix-flatpak
+, disko
+, impermanence
+, ...
+}@attrs:
 
 let
   base = {
     imports =
       [ nixos-generators.nixosModules.all-formats ./common/defaults.nix ];
   };
-in {
+in
+{
   live = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = attrs;

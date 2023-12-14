@@ -59,7 +59,6 @@
     nixvim.url = "github:pta2002/nixvim/nixos-23.11";
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
-    rnixlsp.url = "github:nix-community/rnix-lsp";
     nix-software-center.url = "github:vlinkz/nix-software-center";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     impermanence.url = "github:nix-community/impermanence";
