@@ -1,5 +1,7 @@
 { pkgs, inputs, ... }:
-with pkgs; [
+let darwin-build = (import ../apps/darwin-build.nix);
+in with pkgs;
+[
 
   bash
   _1password
@@ -81,7 +83,13 @@ with pkgs; [
   zip
   zsh
   zsh-autosuggestions
-]
+
+  (pkgs.writeShellScriptBin "upload-cache-signed" ''
+    cd ~
+    nix-cache-watcher sign-store -k ~/Developer/nix-config/cache-priv-key.pem -v && nix-cache-watcher upload-diff -r "https://nix-cache.harke.ma/" -v
+  '')
+
+] ++ (darwin-build { inherit pkgs; })
 # home.packages = with pkgs; [
 
 #   ldns

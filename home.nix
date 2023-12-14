@@ -31,12 +31,11 @@ in {
     ./build-scripts.nix
     ./apps/tmux
 
-    # ./apps/statix
   ]; # ++ [ (lib.optional (stdenv.isLinux) (./apps/flatpak.nix)) ];
 
-  home.packages = (import ./packages/common.nix { inherit pkgs inputs; }) ++ [
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-  ];
+  home.packages = (import ./packages/common.nix { inherit pkgs inputs; })
+    ++ [ (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; }) ]
+    ++ (import ./apps/statix { inherit pkgs; });
 
   home.username = "tomas";
   home.homeDirectory = if stdenv.isLinux then
@@ -204,14 +203,14 @@ in {
       #   jq -r '.[].outputs | to_entries[].value' | nix copy --to 'https://nix-cache.harke.ma' --stdin
       # '';
     };
-    plugins = [{
-      name = "iterm2_shell_integration";
-      src = pkgs.fetchurl {
-        url = "https://iterm2.com/shell_integration/zsh";
-        sha256 = "1xk6kx5kdn5wbqgx2f63vnafhkynlxnlshxrapkwkd9zf2531bqa";
-        # date = 2022-12-28T10:15:23-0800;
-      };
-    }
+    # plugins = [{
+    #   name = "iterm2_shell_integration";
+    #   src = pkgs.fetchurl {
+    #     url = "https://iterm2.com/shell_integration/zsh";
+    #     sha256 = "1xk6kx5kdn5wbqgx2f63vnafhkynlxnlshxrapkwkd9zf2531bqa";
+    #     # date = 2022-12-28T10:15:23-0800;
+    #   };
+    # }
     # {
     #   name = "iterm2_tmux_integration";
     #   src = pkgs.fetchurl {
@@ -221,6 +220,6 @@ in {
     #     # date = 2022-12-28T10:15:27-0800;
     #   };
     # }
-      ];
+    # ];
   };
 }
