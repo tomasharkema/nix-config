@@ -1,6 +1,12 @@
-{ config, modulesPath, lib, inputs, pkgs, ... }: {
-
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+{
+  config,
+  modulesPath,
+  lib,
+  inputs,
+  pkgs,
+  ...
+}: {
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
   hardware.cpu.intel.updateMicrocode = true;
   nixpkgs.system = "x86_64-linux";
 
@@ -14,12 +20,11 @@
     ../../apps/steam.nix
     ./disk-config.nix
     {
-      _module.args.disks =
-        [ "/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y" ];
+      _module.args.disks = ["/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y"];
     }
   ];
 
-  networking = { hostName = "enceladus"; };
+  networking = {hostName = "enceladus";};
   networking.hostId = "529fd7fa";
 
   # deployment.tags = [ "bare" ];
@@ -29,7 +34,7 @@
   #   targetUser = "root";
   # };
 
-  users.groups.input.members = [ "tomas" ];
+  users.groups.input.members = ["tomas"];
 
   # Enable OpenGL
   hardware.opengl = {
@@ -39,10 +44,9 @@
   };
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = [ "nvidia" ];
-  environment.systemPackages = with pkgs; [ nvtop ];
+  services.xserver.videoDrivers = ["nvidia"];
+  environment.systemPackages = with pkgs; [nvtop];
   hardware.nvidia = {
-
     # Modesetting is required.
     modesetting.enable = true;
 
@@ -54,9 +58,9 @@
 
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of 
-    # supported GPUs is at: 
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+    # Support is limited to the Turing and later architectures. Full list of
+    # supported GPUs is at:
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
     open = false;
@@ -81,11 +85,10 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.efiInstallAsRemovable = true;
 
-  boot.initrd.availableKernelModules =
-    [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ "kvm-intel" "uinput" "nvme" ];
-  boot.kernelModules = [ "kvm-intel" "uinput" "nvme" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
+  boot.initrd.kernelModules = ["kvm-intel" "uinput" "nvme"];
+  boot.kernelModules = ["kvm-intel" "uinput" "nvme"];
+  boot.extraModulePackages = [];
 
   networking.useDHCP = lib.mkDefault true;
   hardware.bluetooth.enable = true;
@@ -94,6 +97,6 @@
   security.tpm2.enable = true;
   security.tpm2.pkcs11.enable = true;
   security.tpm2.tctiEnvironment.enable = true;
-  users.users."tomas".extraGroups = [ "tss" ];
+  users.users."tomas".extraGroups = ["tss"];
   boot.initrd.systemd.enableTpm2 = true;
 }

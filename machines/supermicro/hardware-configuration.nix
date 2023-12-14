@@ -1,7 +1,11 @@
-{ config, lib, pkgs, modulesPath, ... }:
-
 {
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}: {
+  imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"
@@ -12,9 +16,9 @@
     "usbhid"
     "sd_mod"
   ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
 
   # swapDevices = [
   #   { device = "/dev/disk/by-uuid/90a80013-f094-4d41-aa50-1bc76908acc2"; }

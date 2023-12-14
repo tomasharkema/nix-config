@@ -1,95 +1,98 @@
-{ pkgs, inputs, ... }:
-let darwin-build = import ../apps/darwin-build.nix;
-in with pkgs;
-[
+{
+  pkgs,
+  inputs,
+  ...
+}: let
+  darwin-build = import ../apps/darwin-build.nix;
+in
+  with pkgs;
+    [
+      bash
+      _1password
+      cachix
+      colmena
+      antidote
+      atuin
 
-  bash
-  _1password
-  cachix
-  colmena
-  antidote
-  atuin
+      autojump
 
-  autojump
+      bat
+      bfg-repo-cleaner
+      bottom
+      btop
+      cheat
+      colima
+      coreutils
+      curl
+      delta
+      dnsutils
+      dog
+      du-dust
+      eza
+      eza
+      fd
+      fortune
+      fzf
+      gh
+      git
+      git-lfs
+      gtop
+      home-manager
+      iftop
+      inputs.agenix.packages.${system}.default
+      inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
+      ipmitool
+      ldns
+      lolcat
+      lsd
+      mcfly
+      morph
+      mtr
+      multitail
+      ncdu
+      neofetch
+      netdiscover
+      nil
+      niv
+      nix-deploy
+      nix-index
+      nix-prefetch-scripts
+      nix-serve
+      nixfmt
+      nixfmt
+      nnn
+      nodejs
+      obsidian
+      patchelf
+      procs
+      pv
+      python3
+      screen
+      silver-searcher
+      speedtest-cli
+      ssh-to-age
+      starship
+      tailscale
+      thefuck
+      thefuck
+      tldr
+      tree
+      unrar
+      unzip
+      wget
+      xz
+      yq
+      zip
+      zsh
+      zsh-autosuggestions
 
-  bat
-  bfg-repo-cleaner
-  bottom
-  btop
-  cheat
-  colima
-  coreutils
-  curl
-  delta
-  dnsutils
-  dog
-  du-dust
-  eza
-  eza
-  fd
-  fortune
-  fzf
-  gh
-  git
-  git-lfs
-  gtop
-  home-manager
-  iftop
-  inputs.agenix.packages.${system}.default
-  inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
-  ipmitool
-  ldns
-  lolcat
-  lsd
-  mcfly
-  morph
-  mtr
-  multitail
-  ncdu
-  neofetch
-  netdiscover
-  nil
-  niv
-  nix-deploy
-  nix-index
-  nix-prefetch-scripts
-  nix-serve
-  nixfmt
-  nixfmt
-  nnn
-  nodejs
-  obsidian
-  patchelf
-  procs
-  pv
-  python3
-  screen
-  silver-searcher
-  speedtest-cli
-  ssh-to-age
-  starship
-  tailscale
-  thefuck
-  thefuck
-  tldr
-  tree
-  unrar
-  unzip
-  wget
-  xz
-  yq
-  zip
-  zsh
-  zsh-autosuggestions
-
-  (pkgs.writeShellScriptBin "upload-cache-signed" ''
-    cd ~
-    nix-cache-watcher sign-store -k ~/Developer/nix-config/cache-priv-key.pem -v && nix-cache-watcher upload-diff -r "https://nix-cache.harke.ma/" -v
-  '')
-
-] ++ (darwin-build { inherit pkgs; })
+      (pkgs.writeShellScriptBin "upload-cache-signed" ''
+        cd ~
+        nix-cache-watcher sign-store -k ~/Developer/nix-config/cache-priv-key.pem -v && nix-cache-watcher upload-diff -r "https://nix-cache.harke.ma/" -v
+      '')
+    ]
+    ++ (darwin-build {inherit pkgs;})
 # home.packages = with pkgs; [
-
 #   ldns
 #   eza
 #   bottom
@@ -130,3 +133,4 @@ in with pkgs;
 #   #     }];
 #   # })
 # ];
+

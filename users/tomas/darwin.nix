@@ -1,6 +1,8 @@
-{ inputs, pkgs, ... }:
-
 {
+  inputs,
+  pkgs,
+  ...
+}: {
   nixpkgs.config.allowUnfreePredicate = _: true;
   nixpkgs.config.allowUnfree = true;
   # nixpkgs.overlays = import ../../lib/overlays.nix

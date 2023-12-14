@@ -3,7 +3,7 @@
     extra-experimental-features = "nix-command flakes";
     distributedBuilds = true;
     builders-use-substitutes = true;
-    trusted-users = [ "root" "tomas" ];
+    trusted-users = ["root" "tomas"];
     trusted-substituters = [
       "https://nix-cache.harke.ma/"
       "https://tomasharkema.cachix.org/"
@@ -19,6 +19,6 @@
       "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
-    access-tokens = [ "github.com=***REMOVED***" ];
+    access-tokens = ["github.com=***REMOVED***"];
   };
 }

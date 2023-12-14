@@ -1,1 +1,1 @@
-{ pkgs, ... }: with pkgs; [ vscode powertop packagekit ]
+{pkgs, ...}: with pkgs; [vscode powertop packagekit]

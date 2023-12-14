@@ -1,6 +1,12 @@
-{ config, modulesPath, lib, inputs, pkgs, ... }: {
-
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+{
+  config,
+  modulesPath,
+  lib,
+  inputs,
+  pkgs,
+  ...
+}: {
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
   hardware.cpu.intel.updateMicrocode = true;
   nixpkgs.system = "x86_64-linux";
 
@@ -17,16 +23,15 @@
     # ../../common/disks/ext4.nix
     ../../common/disks/btrfs.nix
     {
-      _module.args.disks =
-        [ "/dev/disk/by-id/ata-Samsung_SSD_850_PRO_256GB_S39KNX0J775697K" ];
+      _module.args.disks = ["/dev/disk/by-id/ata-Samsung_SSD_850_PRO_256GB_S39KNX0J775697K"];
       # [ "/dev/disk/by-id/ata-Samsung_SSD_850_PRO_256GB_S39KNX0J775697K" ];
     }
   ];
 
-  networking = { hostName = "cfserve"; };
+  networking = {hostName = "cfserve";};
   networking.hostId = "529fd7bb";
 
-  users.groups.input.members = [ "tomas" ];
+  users.groups.input.members = ["tomas"];
 
   boot = {
     initrd = {
@@ -41,7 +46,7 @@
         "amdgpu"
       ];
     };
-    kernelModules = [ "kvm-intel" "jc42" "tpm_rng" ];
+    kernelModules = ["kvm-intel" "jc42" "tpm_rng"];
     loader = {
       grub = {
         enable = true;

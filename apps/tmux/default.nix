@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   tmux-super-fingers = pkgs.tmuxPlugins.mkTmuxPlugin {
     pluginName = "tmux-super-fingers";
     version = "unstable-2023-01-06";
@@ -52,11 +51,8 @@ let
       sha256 = "sha256-ngYZDzXjm4Ne0yO6pI+C2uGO/zFDptdcpkL847P+HCI=";
     };
   };
-
-in
-{
-
-  home.packages = with pkgs; [ lsof ];
+in {
+  home.packages = with pkgs; [lsof];
 
   programs.tmux = {
     enable = true;
@@ -120,7 +116,6 @@ in
       }
       tmuxPlugins.better-mouse-mode
       tmuxPlugins.yank
-
     ];
     extraConfig = "";
   };

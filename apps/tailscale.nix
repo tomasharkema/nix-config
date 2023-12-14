@@ -1,5 +1,10 @@
-{ config, pkgs, modulesPath, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  modulesPath,
+  lib,
+  ...
+}: {
   age.secrets.tailscale.file = ../secrets/tailscale.age;
   services.tailscale = {
     enable = true;
@@ -15,8 +20,8 @@
   };
   networking.nftables.enable = true;
 
-  networking.firewall.trustedInterfaces = [ "tailscale0" ];
-  networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
+  networking.firewall.trustedInterfaces = ["tailscale0"];
+  networking.firewall.allowedUDPPorts = [config.services.tailscale.port];
 
   services.avahi = {
     enable = true;

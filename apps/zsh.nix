@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.starship = {
     enable = true;
     # settings = {
@@ -66,7 +66,7 @@
       export FZF_BASE=$(fzf-share)
       source "$(fzf-share)/completion.zsh"
       source "$(fzf-share)/key-bindings.zsh"
-           
+
       compinit
 
       eval "$(starship init zsh)"

@@ -1,7 +1,11 @@
-{ pkgs, inputs, ... }@attrs:
+{
+  pkgs,
+  inputs,
+  ...
+} @ attrs:
 pkgs.mkShell {
   # defaultPackage = pkgs.nix-tree;
-  buildInputs = [ pkgs.home-manager ];
+  buildInputs = [pkgs.home-manager];
   packages = with pkgs; [
     bash
     # bash-common-functions

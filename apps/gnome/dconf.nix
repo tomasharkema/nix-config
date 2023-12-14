@@ -1,20 +1,21 @@
 # Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
-{ lib, pkgs, ... }:
-
-with lib.hm.gvariant;
-
 {
+  lib,
+  pkgs,
+  ...
+}:
+with lib.hm.gvariant; {
   dconf.settings = {
     # "org/gnome/Console" = { last-window-size = mkTuple [ 652 480 ]; };
 
-    "org/gnome/control-center" = { last-panel = "privacy"; };
+    "org/gnome/control-center" = {last-panel = "privacy";};
 
     "org/gnome/desktop/app-folders" = {
-      folder-children = [ "Utilities" "YaST" "Pardus" ];
+      folder-children = ["Utilities" "YaST" "Pardus"];
     };
 
     "org/gnome/desktop/app-folders/folders/Pardus" = {
-      categories = [ "X-Pardus-Apps" ];
+      categories = ["X-Pardus-Apps"];
       name = "X-Pardus-Apps.directory";
       translate = true;
     };
@@ -38,7 +39,7 @@ with lib.hm.gvariant;
         "org.gnome.Usage.desktop"
         "vinagre.desktop"
       ];
-      categories = [ "X-GNOME-Utilities" ];
+      categories = ["X-GNOME-Utilities"];
       name = "X-GNOME-Utilities.directory";
       translate = true;
     };
@@ -50,30 +51,29 @@ with lib.hm.gvariant;
     # };
 
     "org/gnome/desktop/input-sources" = {
-      sources = [ (mkTuple [ "xkb" "us" ]) ];
-      xkb-options = [ "terminate:ctrl_alt_bksp" ];
+      sources = [(mkTuple ["xkb" "us"])];
+      xkb-options = ["terminate:ctrl_alt_bksp"];
     };
 
-    "org/gnome/desktop/interface" = { color-scheme = "prefer-dark"; };
+    "org/gnome/desktop/interface" = {color-scheme = "prefer-dark";};
 
     "org/gnome/desktop/notifications" = {
-      application-children =
-        [ "steam" "org-gnome-console" "gnome-power-panel" "firefox" ];
+      application-children = ["steam" "org-gnome-console" "gnome-power-panel" "firefox"];
       show-in-lock-screen = false;
     };
 
-    "org/gnome/desktop/peripherals/keyboard" = { numlock-state = true; };
+    "org/gnome/desktop/peripherals/keyboard" = {numlock-state = true;};
 
     "org/gnome/desktop/privacy" = {
       old-files-age = mkUint32 30;
       recent-files-max-age = -1;
     };
 
-    "org/gnome/desktop/screensaver" = { lock-enabled = false; };
+    "org/gnome/desktop/screensaver" = {lock-enabled = false;};
 
-    "org/gnome/desktop/session" = { idle-delay = mkUint32 0; };
+    "org/gnome/desktop/session" = {idle-delay = mkUint32 0;};
 
-    "org/gnome/evolution-data-server" = { migrated = true; };
+    "org/gnome/evolution-data-server" = {migrated = true;};
 
     "org/gnome/nautilus/preferences" = {
       default-folder-viewer = "icon-view";
@@ -101,7 +101,7 @@ with lib.hm.gvariant;
     "org/gnome/desktop/wm/preferences" = {
       button-layout = "appmenu:minimize,maximize,close";
     };
-    "org/gnome/nautilus/preferences" = { always-use-location-entry = true; };
+    "org/gnome/nautilus/preferences" = {always-use-location-entry = true;};
     "org/gnome/shell/extensions/dash-to-panel" = {
       # animate-appicon-hover-animation-extent = {
       #   RIPPLE = 4;
@@ -110,7 +110,7 @@ with lib.hm.gvariant;
       # };
       appicon-margin = 8;
       appicon-padding = 4;
-      available-monitors = [ 0 ];
+      available-monitors = [0];
       dot-position = "BOTTOM";
       hotkeys-overlay-combo = "TEMPORARILY";
       leftbox-padding = -1;
@@ -129,7 +129,7 @@ with lib.hm.gvariant;
       window-preview-title-position = "TOP";
     };
 
-    "org/gnome/shell/world-clocks" = { locations = [ ]; };
+    "org/gnome/shell/world-clocks" = {locations = [];};
 
     "org/gtk/gtk4/settings/file-chooser" = {
       date-format = "regular";
