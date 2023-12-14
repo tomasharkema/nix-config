@@ -1,5 +1,9 @@
 {
-  webserver = { config, pkgs, ... }: {
+  webserver = {
+    config,
+    pkgs,
+    ...
+  }: {
     deployment.targetHost = "enceladus";
 
     networking.hostName = "nixos-utm-test"; # Define your hostname.
@@ -42,11 +46,11 @@
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.tomas = {
       isNormalUser = true;
-      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+      extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas"
       ];
-      packages = with pkgs; [ firefox tree ];
+      packages = with pkgs; [firefox tree];
     };
 
     # List packages installed in system profile. To search, run:

@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   environment.systemPackages =
-    import ../packages/common.nix { inherit pkgs inputs; };
+    import ../packages/common.nix {inherit pkgs inputs;};
 }

@@ -6,7 +6,7 @@
 # fileSystems."/home/username" =
 #   { device = "none";
 #     fsType = "tmpfs";  # Can be stored on normal drive or on tmpfs as well
-#     options = [ "size=4G" "mode=777" ]; 
+#     options = [ "size=4G" "mode=777" ];
 #   };
 # fileSystems."/nix" =  # can be LUKS encrypted
 #   { device = "/dev/disk/by-uuid/UUID";
@@ -16,9 +16,7 @@
 #   { device = "/dev/disk/by-uuid/UUID";
 #     fsType = "vfat";
 #   };
-{ disks ? [ "/dev/vda" ], ... }:
-
-{
+{disks ? ["/dev/vda"], ...}: {
   fileSystems."/persistent".neededForBoot = true;
   disko.devices = {
     disk.main = {
@@ -68,7 +66,7 @@
     };
     nodev."/" = {
       fsType = "tmpfs";
-      mountOptions = [ "size=2G" "defaults" "mode=755" ];
+      mountOptions = ["size=2G" "defaults" "mode=755"];
     };
   };
 
@@ -92,7 +90,7 @@
       "/etc/machine-id"
       {
         file = "/etc/nix/id_rsa";
-        parentDirectory = { mode = "u=rwx,g=,o="; };
+        parentDirectory = {mode = "u=rwx,g=,o=";};
       }
     ];
     users.tomas = {
@@ -121,7 +119,7 @@
         }
         ".local/share/direnv"
       ];
-      files = [ ".screenrc" ];
+      files = [".screenrc"];
     };
   };
 }

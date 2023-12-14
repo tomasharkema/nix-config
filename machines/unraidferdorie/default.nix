@@ -1,5 +1,9 @@
-{ modulesPath, lib, ... }: {
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+{
+  modulesPath,
+  lib,
+  ...
+}: {
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
   nixpkgs.system = "x86_64-linux";
 
   imports = [
@@ -7,9 +11,9 @@
     # ./overlays/qemu.nix
     ../../apps/desktop.nix
     ../../apps/steam.nix
-    # ./overlays/efi.nix 
+    # ./overlays/efi.nix
     ./disk-config.nix
-    { _module.args.disks = [ "/dev/vda" ]; }
+    {_module.args.disks = ["/dev/vda"];}
   ];
 
   networking.hostName = lib.mkForce "unraidferdorie";
@@ -20,11 +24,10 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.efiInstallAsRemovable = true;
 
-  boot.initrd.availableKernelModules =
-    [ "uhci_hcd" "ehci_pci" "ahci" "virtio_pci" "sr_mod" "virtio_blk" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = ["uhci_hcd" "ehci_pci" "ahci" "virtio_pci" "sr_mod" "virtio_blk"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
 
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;

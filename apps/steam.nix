@@ -1,4 +1,9 @@
-{ config, pkgs, modulesPath, ... }: {
+{
+  config,
+  pkgs,
+  modulesPath,
+  ...
+}: {
   programs.steam = {
     enable = true;
     remotePlay.openFirewall =
@@ -12,7 +17,7 @@
   environment.systemPackages = with pkgs; [
     sunshine
     protontricks
-    # nvtop 
+    # nvtop
   ];
   services.udev.extraRules = ''
     Sunshine
@@ -32,6 +37,6 @@
       Restart = "on-failure";
       RestartSec = 5;
     };
-    wantedBy = [ "graphical-session.target" ];
+    wantedBy = ["graphical-session.target"];
   };
 }
