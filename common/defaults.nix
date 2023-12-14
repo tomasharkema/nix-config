@@ -1,21 +1,22 @@
+{ self
+, config
+, nixpkgs
+, pkgs
+, lib
+, inputs
+, outputs
+, ...
+} @ attrs:
+let
+  common = import ../packages/common.nix { inherit pkgs inputs; };
+  gui = import ../packages/gui.nix { inherit pkgs; };
+in
 {
-  self,
-  config,
-  nixpkgs,
-  pkgs,
-  lib,
-  inputs,
-  outputs,
-  ...
-} @ attrs: let
-  common = import ../packages/common.nix {inherit pkgs inputs;};
-  gui = import ../packages/gui.nix {inherit pkgs;};
-in {
   hardware.enableAllFirmware = true;
   # system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
   system.stateVersion = "23.11";
   # boot.binfmt.emulatedSystems = [ "aarch64-linux" "x86_64-linux" ];
-  imports = [../apps/resilio.nix ../apps/tailscale.nix];
+  imports = [ ../apps/resilio.nix ../apps/tailscale.nix ];
 
   environment.systemPackages = common ++ gui;
 
@@ -28,26 +29,26 @@ in {
   nix.settings = {
     extra-experimental-features = "nix-command flakes";
     # distributedBuilds = true;
-    trusted-users = ["root" "tomas"];
+    trusted-users = [ "root" "tomas" ];
     extra-substituters = [
       # "ssh://nix-ssh@tower.ling-lizard.ts.net"
       "https://nix-cache.harke.ma/"
-      "https://tomasharkema.cachix.org/"
+      # "https://tomasharkema.cachix.org/"
       "https://cache.nixos.org/"
     ];
     extra-binary-caches = [
       "https://nix-cache.harke.ma/"
-      "https://tomasharkema.cachix.org/"
+      # "https://tomasharkema.cachix.org/"
       "https://cache.nixos.org/"
     ];
     extra-trusted-public-keys = [
       "tower.ling-lizard.ts.net:MBxJ2O32x6IcWJadxdP42YGVw2eW2tAbMp85Ws6QCno="
-      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
+      # "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
     ];
-    access-tokens = ["github.com=***REMOVED***"];
+    access-tokens = [ "github.com=***REMOVED***" ];
   };
 
-  programs.zsh = {enable = true;};
+  programs.zsh = { enable = true; };
   users.users.tomas.shell = pkgs.zsh;
 
   networking.wireless.enable = false;
@@ -63,7 +64,7 @@ in {
   users.users.tomas = {
     isNormalUser = true;
     description = "tomas";
-    extraGroups = ["networkmanager" "wheel" "rslsync"];
+    extraGroups = [ "networkmanager" "wheel" "rslsync" ];
     hashedPassword = "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
 
     openssh.authorizedKeys.keys = [
@@ -72,7 +73,7 @@ in {
   };
   users.groups.tomas = {
     name = "tomas";
-    members = ["tomas"];
+    members = [ "tomas" ];
     gid = 1666;
   };
   services.eternal-terminal.enable = true;
@@ -88,10 +89,10 @@ in {
     settings.PermitRootLogin = "yes";
   };
 
-  age.secrets."netdata" = {file = ../secrets/netdata.age;};
+  age.secrets."netdata" = { file = ../secrets/netdata.age; };
   services.netdata = {
     enable = true;
-    package = pkgs.netdata.override {withCloud = true;};
+    package = pkgs.netdata.override { withCloud = true; };
     claimTokenFile = config.age.secrets."netdata".path;
   };
   programs.ssh.startAgent = true;
@@ -100,7 +101,7 @@ in {
   services.cockpit = {
     enable = true;
     port = 9090;
-    settings = {WebService = {AllowUnencrypted = true;};};
+    settings = { WebService = { AllowUnencrypted = true; }; };
   };
   system.activationScripts = {
     cockpitXrdpCert = ''
@@ -120,7 +121,7 @@ in {
   # systemd.services.NetworkManager-wait-online.enable = false;
 
   nix.optimise.automatic = true;
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   services.fwupd.enable = true;
   networking.firewall = {
     enable = true;
