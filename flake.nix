@@ -104,6 +104,13 @@
         inherit system;
         config.allowUnfree = true;
       });
+      home =           {
+            # home-manager.useGlobalPkgs = true;
+            # home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.users.tomas.imports = [agenix.homeManagerModules.default ./home.nix];
+            home-manager.backupFileExtension = "bak";
+          };
   in
     {
       nixpkgs.config.allowUnfree = true;
@@ -187,16 +194,29 @@
         ];
       };
 
+      homeConfigurations =  {
+          "root@tower" = home-manager.lib.homeManagerConfiguration { 
+            # system = "x86_64-linux";
+            pkgs = nixpkgs.legacyPackages."x86_64-linux";
+            extraSpecialArgs = { inherit inputs; };
+            modules = [ 
+              # home 
+              agenix.homeManagerModules.default
+              ./home.nix
+              ];
+          };
+      };
+
       deploy = {
         nodes = {
           unraid = {
             hostname = "100.122.146.5";
-            profiles.system = {
+            profiles.user = {
               user = "root";
               sshUser = "root";
               path =
-                deploy.lib.x86_64-linux.activate.nixos
-                self.nixosConfigurations.unraid;
+                deploy.lib.x86_64-linux.activate.home-manager
+                self.homeConfigurations."root@tower";
             };
           };
           enceladus = {
