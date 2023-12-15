@@ -1,15 +1,16 @@
-{
-  inputs,
-  config,
-  pkgs,
-  lib,
-  hostname,
-  homeDirectory ? "/home/tomas",
-  username ? "tomas",
+{ inputs
+, config
+, pkgs
+, lib
+, hostname
+, # homeDirectory ? "/home/tomas",
+  # username ? "tomas",
   ...
-} @ attrs: let
+} @ attrs:
+let
   inherit (pkgs) stdenv;
-in {
+in
+{
   # nix.settings = {
   #   extra-experimental-features = "nix-command flakes";
   #   # distributedBuilds = true;
@@ -38,18 +39,18 @@ in {
     ./build-scripts.nix
     ./apps/tmux
   ]; # ++ [ (lib.optional (stdenv.isLinux) (./apps/flatpak.nix)) ];
-# self.home-manager.backupFileExtension = "bak";
+  # self.home-manager.backupFileExtension = "bak";
   home.packages =
-    (import ./packages/common.nix {inherit pkgs inputs;})
-    ++ [(pkgs.nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})]
-    ++ (import ./apps/statix {inherit pkgs;})
+    (import ./packages/common.nix { inherit pkgs inputs; })
+    ++ [ (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; }) ]
+    ++ (import ./apps/statix { inherit pkgs; })
     ++ [
       (pkgs.writeShellScriptBin "ap" ''
         exec attic push tomas:tomas $@
       '')
-      ];
-  home.username = username;
-  home.homeDirectory = homeDirectory;
+    ];
+  home.username = lib.mkDefault "tomas";
+  home.homeDirectory = lib.mkDefault "/home/tomas";
 
   home.stateVersion = "23.11";
 
@@ -69,7 +70,7 @@ in {
   programs.fzf.enable = true;
   programs.nix-index.enable = true;
 
-  programs.tmux = {enable = true;};
+  programs.tmux = { enable = true; };
 
   programs.starship = {
     enable = true;
@@ -77,25 +78,29 @@ in {
     settings = {
       gcloud.disabled = true;
       nix_shell.disabled = false;
+
+      hostname.disabled = false;
+
       # battery = {
       #   full_symbol = "🔋 ";
       #   charging_symbol = "⚡️ ";
       #   discharging_symbol = "💀 ";
-
       # };
+
       sudo.disabled = false;
       shell.disabled = false;
       os.disabled = false;
     };
   };
 
-  age.secrets.gh = {
-    file = ./secrets/gh.age;
-    path =
-      if stdenv.isLinux
-      then "/home/tomas/.config/gh/hosts.yml"
-      else "/Users/tomas/.config/gh/hosts.yml";
-  };
+  # age.secrets.gh = {
+  #   file = ./secrets/gh.age;
+  #   path =
+  #     if stdenv.isLinux
+  #     then "/home/tomas/.config/gh/hosts.yml"
+  #     else "/Users/tomas/.config/gh/hosts.yml";
+  # };
+
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
@@ -113,17 +118,17 @@ in {
     # '';
   };
 
-  
   programs.git.enable = true;
   programs.git.userName = "Tomas Harkema";
   programs.git.userEmail = "tomas@harkema.io";
 
-  programs.home-manager = {enable = true;};
+  programs.home-manager = { enable = true; };
   programs.lazygit.enable = true;
   programs.lsd.enable = true;
   programs.jq.enable = true;
   programs.skim.enable = true;
   fonts.fontconfig.enable = true;
+
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
@@ -156,7 +161,7 @@ in {
     oh-my-zsh = {
       enable = true;
       plugins = [
-        # "atuin"
+        "atuin"
         "git"
         "thefuck"
         "autojump"
@@ -165,7 +170,7 @@ in {
         "macos"
         "colorize"
         "1password"
-        # "fzf"
+        "fzf"
         "aws"
         "docker"
         "encode64"
@@ -176,7 +181,7 @@ in {
         "sudo"
         "systemd"
         "tig"
-        # "tmux"
+        "tmux"
         "vi-mode"
         "yarn"
         "zsh-navigation-tools"
