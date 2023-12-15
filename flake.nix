@@ -195,7 +195,7 @@
       };
 
       homeConfigurations =  {
-          "root@tower" = home-manager.lib.homeManagerConfiguration { 
+          "tomas@tower" = home-manager.lib.homeManagerConfiguration { 
             # system = "x86_64-linux";
             pkgs = nixpkgs.legacyPackages."x86_64-linux";
             extraSpecialArgs = { inherit inputs; };
@@ -203,7 +203,7 @@
               # home 
               agenix.homeManagerModules.default
               ./home.nix
-              ];
+            ];
           };
       };
 
@@ -212,11 +212,11 @@
           unraid = {
             hostname = "100.122.146.5";
             profiles.user = {
-              user = "root";
+              user = "tomas";
               sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.home-manager
-                self.homeConfigurations."root@tower";
+                self.homeConfigurations."tomas@tower";
             };
           };
           enceladus = {
