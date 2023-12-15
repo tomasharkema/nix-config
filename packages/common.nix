@@ -36,12 +36,11 @@ in
       git
       git-lfs
       gtop
-      home-manager
       iftop
       inputs.agenix.packages.${system}.default
       inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
       inputs.attic.packages.${system}.default
-      # inputs.cachix.packages.${system}.default
+      inputs.cachix.packages.${system}.default
       ipmitool
       ldns
       lolcat
@@ -74,7 +73,6 @@ in
       ssh-to-age
       starship
       tailscale
-      thefuck
       thefuck
       tldr
       tree
