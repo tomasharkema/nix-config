@@ -1,14 +1,13 @@
-{ inputs
-, config
-, pkgs
-, lib
-, hostname
-, ...
-} @ attrs:
-let
-  inherit (pkgs) stdenv;
-in
 {
+  inputs,
+  config,
+  pkgs,
+  lib,
+  hostname,
+  ...
+} @ attrs: let
+  inherit (pkgs) stdenv;
+in {
   # nix.settings = {
   #   extra-experimental-features = "nix-command flakes";
   #   # distributedBuilds = true;
@@ -40,9 +39,9 @@ in
   ]; # ++ [ (lib.optional (stdenv.isLinux) (./apps/flatpak.nix)) ];
 
   home.packages =
-    (import ./packages/common.nix { inherit pkgs inputs; })
-    ++ [ (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; }) ]
-    ++ (import ./apps/statix { inherit pkgs; });
+    (import ./packages/common.nix {inherit pkgs inputs;})
+    ++ [(pkgs.nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})]
+    ++ (import ./apps/statix {inherit pkgs;});
 
   home.username = "tomas";
   home.homeDirectory =
@@ -68,7 +67,7 @@ in
   programs.fzf.enable = true;
   programs.nix-index.enable = true;
 
-  programs.tmux = { enable = true; };
+  programs.tmux = {enable = true;};
 
   programs.starship = {
     enable = true;
@@ -116,7 +115,7 @@ in
   programs.git.userName = "Tomas Harkema";
   programs.git.userEmail = "tomas@harkema.io";
 
-  programs.home-manager = { enable = true; };
+  programs.home-manager = {enable = true;};
   programs.lazygit.enable = true;
   programs.lsd.enable = true;
   programs.jq.enable = true;

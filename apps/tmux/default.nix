@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   tmux-super-fingers = pkgs.tmuxPlugins.mkTmuxPlugin {
     pluginName = "tmux-super-fingers";
     version = "unstable-2023-01-06";
@@ -31,85 +30,82 @@ let
       sha256 = "sha256-zpg7XJky7PRa5sC7sPRsU2ZOjj0wcepITLAelPjEkSI=";
     };
   };
-in
-{
-  home.packages = with pkgs; [ lsof brotab ];
+in {
+  home.packages = with pkgs; [lsof brotab];
 
-  programs.tmux =
-    {
-      enable = true;
-      clock24 = true;
-      shell = "${pkgs.zsh}/bin/zsh";
-      terminal = "tmux-256color";
-      historyLimit = 200000;
-      plugins = with pkgs;
-        [
-          {
-            plugin = tmuxPlugins.catppuccin;
-            extraConfig = ''
-              set -g @catppuccin_flavour 'mocha'
-            '';
-            # set -g @catppuccin_window_tabs_enabled on
-            # set -g @catppuccin_date_time "%H:%M"
-          }
+  programs.tmux = {
+    enable = true;
+    clock24 = true;
+    shell = "${pkgs.zsh}/bin/zsh";
+    terminal = "tmux-256color";
+    historyLimit = 200000;
+    plugins = with pkgs; [
+      {
+        plugin = tmuxPlugins.catppuccin;
+        extraConfig = ''
+          set -g @catppuccin_flavour 'mocha'
+        '';
+        # set -g @catppuccin_window_tabs_enabled on
+        # set -g @catppuccin_date_time "%H:%M"
+      }
 
-          tmux-nvim
-          tmuxPlugins.tmux-thumbs
-          # TODO: why do I have to manually set this
-          {
-            plugin = t-smart-manager;
-            extraConfig = ''
-              set -g @t-fzf-prompt '  '
-              set -g @t-bind "T"
-            '';
-          }
-          {
-            plugin = tmux-super-fingers;
-            extraConfig = "set -g @super-fingers-key f";
-          }
-          # tmuxPlugins.sensible
-          {
-            plugin = tmuxPlugins.resurrect;
-            extraConfig = ''
-              set -g @resurrect-strategy-vim 'session'
-              set -g @resurrect-strategy-nvim 'session'
-              set -g @resurrect-capture-pane-contents 'on'
-            '';
-          }
-          {
-            plugin = tmuxPlugins.continuum;
-            extraConfig = ''
-              set -g @continuum-restore 'on'
-              set -g @continuum-boot 'on'
-              set -g @continuum-save-interval '10'
-            '';
-          }
-          tmuxPlugins.better-mouse-mode
-          tmuxPlugins.yank
-          {
-            plugin = tmuxPlugins.battery;
-            extraConfig = ''
-              set -g @catppuccin_status_modules_right "battery"
-            '';
-            # extraConfig = ''
-            # set -g @catppuccin_status_modules_right '#{battery_status_bg} Batt: #{battery_icon} #{battery_percentage} #{battery_remain} | %a %h-%d %H:%M'
-            # '';
-          }
-          tmuxPlugins.sidebar
-          {
-            plugin =
-              tmuxPlugins.fpp;
-            # extraConfig = ''
-            # set -g @plugin 'tmux-plugins/tmux-fpp'
-            # '';
-          }
-          {
-            plugin = tmuxPlugins.sysstat;
-            # extraConfig = ''
-            # set -g @catppuccin_status_modules_right '#{sysstat_cpu} | #{sysstat_mem} | #{sysstat_swap} | #{sysstat_loadavg}'
-            # '';
-          }
-        ];
-      # extraConfig = "";
-    };
+      tmux-nvim
+      tmuxPlugins.tmux-thumbs
+      # TODO: why do I have to manually set this
+      {
+        plugin = t-smart-manager;
+        extraConfig = ''
+          set -g @t-fzf-prompt '  '
+          set -g @t-bind "T"
+        '';
+      }
+      {
+        plugin = tmux-super-fingers;
+        extraConfig = "set -g @super-fingers-key f";
+      }
+      # tmuxPlugins.sensible
+      {
+        plugin = tmuxPlugins.resurrect;
+        extraConfig = ''
+          set -g @resurrect-strategy-vim 'session'
+          set -g @resurrect-strategy-nvim 'session'
+          set -g @resurrect-capture-pane-contents 'on'
+        '';
+      }
+      {
+        plugin = tmuxPlugins.continuum;
+        extraConfig = ''
+          set -g @continuum-restore 'on'
+          set -g @continuum-boot 'on'
+          set -g @continuum-save-interval '10'
+        '';
+      }
+      tmuxPlugins.better-mouse-mode
+      tmuxPlugins.yank
+      {
+        plugin = tmuxPlugins.battery;
+        extraConfig = ''
+          set -g @catppuccin_status_modules_right "battery"
+        '';
+        # extraConfig = ''
+        # set -g @catppuccin_status_modules_right '#{battery_status_bg} Batt: #{battery_icon} #{battery_percentage} #{battery_remain} | %a %h-%d %H:%M'
+        # '';
+      }
+      tmuxPlugins.sidebar
+      {
+        plugin =
+          tmuxPlugins.fpp;
+        # extraConfig = ''
+        # set -g @plugin 'tmux-plugins/tmux-fpp'
+        # '';
+      }
+      {
+        plugin = tmuxPlugins.sysstat;
+        # extraConfig = ''
+        # set -g @catppuccin_status_modules_right '#{sysstat_cpu} | #{sysstat_mem} | #{sysstat_swap} | #{sysstat_loadavg}'
+        # '';
+      }
+    ];
+    # extraConfig = "";
+  };
 }
