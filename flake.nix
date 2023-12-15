@@ -194,8 +194,14 @@
             # home-manager.useGlobalPkgs = true;
             # home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = {inherit inputs;};
-            home-manager.users.tomas.imports = [agenix.homeManagerModules.default ./home.nix];
+            home-manager.users.tomas.imports = [agenix.homeManagerModules.default ./home.nix
+            
+            ({
+  home.homeDirectory =lib.mkForce "/Users/tomas";})
+            ];
             home-manager.backupFileExtension = "bak";
+              # home.username = lib.mkDefault "tomas";
+
           }
         ];
       };
@@ -207,17 +213,20 @@
             
     extraSpecialArgs = {
       inherit inputs; 
-      username = "root";
-      homeDirectory = "/root";
+      # username = "root";
+      # homeDirectory = "/root";
     };
             modules = [ 
               # home 
               agenix.homeManagerModules.default
               ./home.nix
-              ({pkgs, ...}:{
+              ({
                  targets.genericLinux.enable = true;
-                 
-users.tomas.shell = pkgs.zsh;
+                   home.username = "root";
+                  home.homeDirectory = "/root";
+
+# users.tomas.shell = pkgs.zsh
+
 # users.users.tomas.shell = pkgs.zsh;
               })
             ];
