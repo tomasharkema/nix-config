@@ -104,14 +104,14 @@ in
     # ".screenrc".source = dotfiles/screenrc;
 
     # # You can also set the file content immediately.
-    # ".zshrc".text = ''
-    #   export EDITOR='subl -w'
-    #   # autoload -Uz compinit
-    #   # compinit
+    ".zshrc".text = ''
+        export EDITOR='subl -w'
+      #   # autoload -Uz compinit
+      #   # compinit
 
-    #   # source ~/.zsh/plugins/iterm2_shell_integration
-    #   # . ~/.zsh/plugins/iterm2_tmux_integration
-    # '';
+      #   # source ~/.zsh/plugins/iterm2_shell_integration
+      #   # . ~/.zsh/plugins/iterm2_tmux_integration
+    '';
   };
 
   programs.git.enable = true;
