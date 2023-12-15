@@ -41,8 +41,12 @@ in {
   home.packages =
     (import ./packages/common.nix {inherit pkgs inputs;})
     ++ [(pkgs.nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})]
-    ++ (import ./apps/statix {inherit pkgs;});
-
+    ++ (import ./apps/statix {inherit pkgs;})
+    ++ [
+      (pkgs.writeShellScriptBin "ap" ''
+        exec attic push tomas:tomas $@
+      '')
+      ];
   home.username = "tomas";
   home.homeDirectory =
     if stdenv.isLinux
