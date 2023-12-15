@@ -166,6 +166,7 @@ in
       rm = "rm -i";
       g = "git";
       gs = "git status";
+      pvxz = "pv @1 -N in | xz -9 | pv -N out > @2";
       # subl = (lib.mkIf stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
       # dev = ''
       #   nix develop --profile dev-profile -c true && \
