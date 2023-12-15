@@ -1,10 +1,11 @@
-{ pkgs
-, inputs
-, ...
+{
+  pkgs,
+  inputs,
+  ...
 } @ attrs:
 pkgs.mkShell {
   # defaultPackage = pkgs.nix-tree;
-  buildInputs = [ pkgs.home-manager ];
+  buildInputs = [pkgs.home-manager];
   packages = with pkgs; [
     bash
     ack
