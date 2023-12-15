@@ -8,7 +8,8 @@
 #   });
 # in
 {
-  imports = [./gnome];
+  imports = [./gnome  
+  ];
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;

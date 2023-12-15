@@ -30,7 +30,7 @@ pkgs.mkShell {
     netdiscover
     nix
     nix-tree
-    # nixpkgs-fmt
+    nixpkgs-fmt
     python3
     sops
     ssh-to-age

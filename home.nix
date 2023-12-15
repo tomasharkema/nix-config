@@ -4,6 +4,8 @@
   pkgs,
   lib,
   hostname,
+  homeDirectory ? "/home/tomas",
+  username ? "tomas",
   ...
 } @ attrs: let
   inherit (pkgs) stdenv;
@@ -33,11 +35,10 @@ in {
   imports = [
     ./apps/nvim
     ./apps/atuin
-    ./apps/gnome/dconf.nix
     ./build-scripts.nix
     ./apps/tmux
   ]; # ++ [ (lib.optional (stdenv.isLinux) (./apps/flatpak.nix)) ];
-
+# self.home-manager.backupFileExtension = "bak";
   home.packages =
     (import ./packages/common.nix {inherit pkgs inputs;})
     ++ [(pkgs.nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})]
@@ -47,11 +48,8 @@ in {
         exec attic push tomas:tomas $@
       '')
       ];
-  home.username = "tomas";
-  home.homeDirectory =
-    if stdenv.isLinux
-    then lib.mkForce "/home/tomas"
-    else lib.mkForce "/Users/tomas";
+  home.username = username;
+  home.homeDirectory = homeDirectory;
 
   home.stateVersion = "23.11";
 
@@ -115,6 +113,7 @@ in {
     # '';
   };
 
+  
   programs.git.enable = true;
   programs.git.userName = "Tomas Harkema";
   programs.git.userEmail = "tomas@harkema.io";
