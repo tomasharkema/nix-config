@@ -87,7 +87,6 @@ in
       impermanence.nixosModules.impermanence
       ./machines/supermicro
       ./secrets
-      nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
       ({
         imports = [ ./packages/common.nix ];
@@ -139,7 +138,6 @@ in
       disko.nixosModules.default
       ./machines/hyperv-nixos
       ./secrets
-      nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
       home-manager.nixosModules.home-manager
       {
@@ -164,7 +162,6 @@ in
       disko.nixosModules.default
       ./machines/unraidferdorie/default.nix
       ./secrets
-      nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
       home-manager.nixosModules.home-manager
       {
@@ -231,7 +228,6 @@ in
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
       ({
-
         boot.isContainer = true;
       })
       home-manager.nixosModules.home-manager
@@ -240,7 +236,6 @@ in
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas.imports = [
-          nix-flatpak.homeManagerModules.nix-flatpak
           agenix.homeManagerModules.default
           ./home.nix
         ];
