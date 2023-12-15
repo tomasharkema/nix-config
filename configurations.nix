@@ -52,7 +52,6 @@ in
       inherit attrs;
     };
 
-    # specialArgs = { inherit inputs outputs; };
     modules = [
       base
       disko.nixosModules.default
@@ -90,16 +89,16 @@ in
       ./machines/supermicro
       ./secrets
       agenix.nixosModules.default
-      ({
-        imports = [ ./packages/common.nix ];
-      })
+      # ({
+      # imports = [ ./packages/common.nix ];
+      # })
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas.imports = [
-          nix-flatpak.homeManagerModules.nix-flatpak
+          # nix-flatpak.homeManagerModules.nix-flatpak
           agenix.homeManagerModules.default
           ./home.nix
         ];
