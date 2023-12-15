@@ -21,6 +21,7 @@
     ];
     access-tokens = ["github.com=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"];
     # post-build-hook = ./upload-to-cache.sh;
+    
   };
 
   inputs = {
@@ -75,6 +76,11 @@
 
     attic.url = "github:zhaofengli/attic";
     cachix.url = "github:cachix/cachix";
+
+        system-manager = {
+      url = "github:numtide/system-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -195,14 +201,25 @@
       };
 
       homeConfigurations =  {
-          "tomas@tower" = home-manager.lib.homeManagerConfiguration { 
+          "root@tower" = home-manager.lib.homeManagerConfiguration { 
             # system = "x86_64-linux";
             pkgs = nixpkgs.legacyPackages."x86_64-linux";
-            extraSpecialArgs = { inherit inputs; };
+            
+    extraSpecialArgs = {
+      inherit inputs; 
+      username = "root";
+      homeDirectory = "/root";
+    };
             modules = [ 
               # home 
               agenix.homeManagerModules.default
               ./home.nix
+              ({pkgs, ...}:{
+                 targets.genericLinux.enable = true;
+                 
+users.tomas.shell = pkgs.zsh;
+# users.users.tomas.shell = pkgs.zsh;
+              })
             ];
           };
       };
@@ -216,7 +233,7 @@
               sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.home-manager
-                self.homeConfigurations."tomas@tower";
+                self.homeConfigurations."root@tower";
             };
           };
           enceladus = {

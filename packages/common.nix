@@ -50,7 +50,7 @@ in
       mtr
       multitail
       ncdu
-      neofetch
+      neofetch  
       netdiscover
       nil
       niv
@@ -59,7 +59,7 @@ in
       nix-prefetch-scripts
       nix-serve
       nixfmt
-      nixfmt
+      nixpkgs-fmt
       nnn
       nodejs
       obsidian
