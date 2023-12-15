@@ -60,10 +60,6 @@ in
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-  ];
-
   programs.htop.enable = true;
   programs.htop.settings.show_program_path = false;
 
