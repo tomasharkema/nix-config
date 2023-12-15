@@ -8,6 +8,7 @@
 , nix-flatpak
 , disko
 , impermanence
+
 , ...
 } @ attrs:
 let
@@ -92,9 +93,11 @@ in
       ./machines/supermicro
       ./secrets
       agenix.nixosModules.default
-      # ({
-      # imports = [ ./packages/common.nix ];
-      # })
+      ({ lib, ... }: {
+        services.tailscale = {
+          useRoutingFeatures = lib.mkForce "both";
+        };
+      })
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
