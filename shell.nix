@@ -1,7 +1,6 @@
-{
-  pkgs,
-  inputs,
-  ...
+{ pkgs
+, inputs
+, ...
 } @ attrs:
 pkgs.mkShell {
   # defaultPackage = pkgs.nix-tree;
@@ -36,6 +35,7 @@ pkgs.mkShell {
     ssh-to-age
     zsh
     nix-serve
+    nix-output-monitor
   ];
   # shellHook = ''
   #   # cachix use tomasharkema

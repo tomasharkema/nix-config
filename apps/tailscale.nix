@@ -1,9 +1,8 @@
-{
-  config,
-  pkgs,
-  modulesPath,
-  lib,
-  ...
+{ config
+, pkgs
+, modulesPath
+, lib
+, ...
 }: {
   age.secrets.tailscale.file = ../secrets/tailscale.age;
   services.tailscale = {
@@ -11,7 +10,6 @@
     authKeyFile = config.age.secrets.tailscale.path;
     useRoutingFeatures = "client";
     extraUpFlags = [
-      # "--ssh"
       "--ssh=false"
       "--advertise-tags=tag:nixos"
       "--operator=tomas"
@@ -20,12 +18,12 @@
   };
   networking.nftables.enable = true;
 
-  networking.firewall.trustedInterfaces = ["tailscale0"];
-  networking.firewall.allowedUDPPorts = [config.services.tailscale.port];
+  networking.firewall.trustedInterfaces = [ "tailscale0" "zthnhagpcb" ];
+  networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
 
   services.avahi = {
     enable = true;
-    # interfaces = [ "tailscale0" ];
+    interfaces = [ "zthnhagpcb" ];
     ipv6 = true;
     publish.enable = true;
     publish.userServices = true;
@@ -33,6 +31,10 @@
     publish.domain = true;
     nssmdns = true;
     publish.workstation = true;
-    openFirewall = true;
+    # openFirewall = true;
+    reflector = true;
   };
+
+  services.zerotierone.enable = true;
+  services.zerotierone.joinNetworks = [ "***REMOVED***" ];
 }

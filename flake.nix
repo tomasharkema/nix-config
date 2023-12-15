@@ -40,11 +40,13 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hardware.url = "github:nixos/nixos-hardware";
+
+    nixos-hardware.url = "github:nixos/nixos-hardware";
     cachix-deploy-flake.url = "github:cachix/cachix-deploy-flake";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -99,6 +101,8 @@
     , nix-cache-watcher
     , alejandra
     , attic
+    , system-manager
+    , impermanence
     , ...
     } @ inputs:
     let
@@ -120,92 +124,18 @@
       };
     in
     {
+
       nixpkgs.config.allowUnfree = true;
       nixpkgs.config.allowUnfreePredicate = _: true;
 
-      # colmena = import ./colmena.nix (inputs // { inherit inputs; });
+      colmena = import ./colmena.nix (inputs // { inherit inputs; });
 
       nixosConfigurations =
-        import ./configurations.nix (inputs // { inherit inputs; });
+        import ./configurations (inputs // { inherit inputs pkgsFor; });
 
-      darwinConfigurations."MacBook-Pro-van-Tomas" = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        specialArgs = { inherit inputs; };
-        modules = [
-          # statix.overlays.default
-          nix-index-database.darwinModules.nix-index
-          agenix.darwinModules.default
-          ./secrets
-          ({ pkgs
-           , inputs
-           , ...
-           }: {
-            nix.extraOptions = ''
-              auto-optimise-store = true
-              builders-use-substitutes = true
-            '';
-            environment.systemPackages = with pkgs; [
-              kitty
-              terminal-notifier
-            ];
-
-            nixpkgs.config.allowUnfree = true;
-            services.nix-daemon.enable = true;
-            security.pam.enableSudoTouchIdAuth = true;
-            users.users.tomas = {
-              # isNormalUser = true;
-              description = "tomas";
-            };
-            nix.distributedBuilds = true;
-
-            nix.settings = {
-              extra-experimental-features = "nix-command flakes";
-              # distributedBuilds = true;
-              builders-use-substitutes = true;
-              trusted-users = [ "root" "tomas" ];
-              extra-substituters = [
-                "https://nix-cache.harke.ma/"
-                "https://tomasharkema.cachix.org/"
-                "https://cache.nixos.org/"
-              ];
-              extra-binary-caches = [
-                "https://nix-cache.harke.ma/"
-                # "https://tomasharkema.cachix.org/"
-                "https://cache.nixos.org/"
-              ];
-              trusted-public-keys = [
-                "nix-cache.harke.ma:2UhS18Tt0delyOEULLKLQ36uNX3/hpX4sH684B+cG3c="
-                "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
-                "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-              ];
-              access-tokens = [ "github.com=***REMOVED***" ];
-            };
-          })
-          home-manager.darwinModules.home-manager
-          # self.homeConfigurations."tomas@MacBook-Pro-van-Tomas".config
-          # self.homeConfigurations."tomas@MacBook-Pro-van-Tomas"
-          # {
-          #   imports = [ self.homeConfigurations."tomas@MacBook-Pro-van-Tomas".config ];
-          # }
-          # self.homeConfigurations."tomas@MacBook-Pro-van-Tomas"
-          {
-            # home-manager.useGlobalPkgs = true;
-            # home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.tomas.imports = [
-              agenix.homeManagerModules.default
-              ./home.nix
-
-              ({
-                home.homeDirectory = lib.mkForce "/Users/tomas";
-              })
-            ];
-            home-manager.backupFileExtension = "bak";
-            # home.username = lib.mkDefault "tomas";
-
-          }
-        ];
-      };
+      darwinConfigurations = import ./configurations/darwin.nix (inputs // {
+        inherit lib;
+      });
 
       homeConfigurations = {
         "root@tower" = home-manager.lib.homeManagerConfiguration {
@@ -220,19 +150,34 @@
           modules = [
             # home 
             agenix.homeManagerModules.default
+            ./machines/tower
             ./home.nix
-            ({
-              targets.genericLinux.enable = true;
-              home.username = "root";
-              home.homeDirectory = "/root";
-
-              # users.tomas.shell = pkgs.zsh
-
-              # users.users.tomas.shell = pkgs.zsh;
-            })
           ];
         };
       };
+
+      # systemConfigs.unraid = system-manager.lib.makeSystemConfig {
+      #   modules = [
+      #     # impermanence.nixosModules.impermanence
+      #     ./machines/tower
+      #     home-manager.nixosModules.home-manager
+      #     {
+      #       home-manager.useGlobalPkgs = true;
+      #       home-manager.useUserPackages = true;
+      #       home-manager.extraSpecialArgs = { inherit inputs; };
+      #       home-manager.users.tomas.imports = [
+      #         # nix-flatpak.homeManagerModules.nix-flatpak
+      #         agenix.homeManagerModules.default
+      #         ./home.nix
+      #         {
+      #           home.username = "root";
+      #           home.homeDirectory = "/root";
+      #         }
+      #       ];
+      #       home-manager.backupFileExtension = "bak";
+      #     }
+      #   ];
+      # };
 
       deploy = {
         nodes = {
@@ -374,7 +319,14 @@
           pkgsLinux = pkgsFor."x86_64-linux";
         };
       };
-
+      images = {
+        raspberrypi = (self.nixosConfigurations.raspberrypi.extendModules {
+          modules = [
+            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
+            "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+          ];
+        }).config.system.build.sdImage;
+      };
       # formatter = alejandra.defaultPackage.${system};
       devShells = {
         default = import ./shell.nix { inherit pkgs system inputs; }; # {

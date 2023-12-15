@@ -8,15 +8,18 @@
 , nix-flatpak
 , disko
 , impermanence
-
+, nixos-hardware
+, pkgsFor
 , ...
 } @ attrs:
 let
   base = {
-    imports = [ nixos-generators.nixosModules.all-formats ./common/defaults.nix ];
+    imports = [ nixos-generators.nixosModules.all-formats ../common/defaults.nix ];
   };
 in
 {
+  raspberrypi = (import ./raspberrypi.nix) (attrs);
+
   live = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = attrs;
@@ -25,6 +28,7 @@ in
       ./installer.nix
     ];
   };
+
   netboot = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
@@ -59,7 +63,7 @@ in
     modules = [
       base
       disko.nixosModules.default
-      ./machines/enceladus
+      ../machines/enceladus
       ./secrets
       # nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
@@ -112,6 +116,7 @@ in
       }
     ];
   };
+
   utm-nixos = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
     specialArgs = attrs;
@@ -119,8 +124,8 @@ in
     modules = [
       base
       disko.nixosModules.default
-      ./machines/utm-nixos/default.nix
-      ./secrets
+      ../machines/utm-nixos/default.nix
+      ../secrets
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
       home-manager.nixosModules.home-manager
@@ -131,12 +136,13 @@ in
         home-manager.users.tomas.imports = [
           nix-flatpak.homeManagerModules.nix-flatpak
           agenix.homeManagerModules.default
-          ./home.nix
+          ../home.nix
         ];
         home-manager.backupFileExtension = "bak";
       }
     ];
   };
+
   hyperv-nixos = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = attrs;
@@ -160,6 +166,7 @@ in
       }
     ];
   };
+
   unraidferdorie = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = attrs;
@@ -195,8 +202,8 @@ in
       base
       impermanence.nixosModule
       disko.nixosModules.default
-      ./machines/cfserve
-      ./secrets
+      ../machines/cfserve
+      ../secrets
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
       home-manager.nixosModules.home-manager
@@ -207,7 +214,7 @@ in
         home-manager.users.tomas.imports = [
           nix-flatpak.homeManagerModules.nix-flatpak
           agenix.homeManagerModules.default
-          ./home.nix
+          ../home.nix
         ];
         home-manager.backupFileExtension = "bak";
       }
@@ -218,7 +225,6 @@ in
        }: { services.vscode-server.enable = true; })
     ];
   };
-
 
   unraid = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
@@ -256,9 +262,10 @@ in
     ];
   };
 
-
   darwinVM = nixpkgs.lib.nixosSystem {
-    system = "aarch64-linux";
+    system = "
+            aarch64-linux
+            ";
     specialArgs = attrs;
     modules = [
       base
@@ -281,12 +288,16 @@ in
           spiceUSBRedirection.enable = true;
           forwardPorts = [
             {
-              from = "host";
+              from = "
+            host
+            ";
               host.port = 2222;
               guest.port = 22;
             }
             {
-              from = "host";
+              from = "
+            host
+            ";
               host.port = 3389;
               guest.port = 3389;
             }
@@ -303,7 +314,9 @@ in
           agenix.homeManagerModules.default
           ./home.nix
         ];
-        home-manager.backupFileExtension = "bak";
+        home-manager.backupFileExtension = "
+            bak
+            ";
       }
     ];
   };

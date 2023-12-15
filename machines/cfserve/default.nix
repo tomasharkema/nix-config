@@ -1,18 +1,18 @@
-{
-  config,
-  modulesPath,
-  lib,
-  inputs,
-  pkgs,
-  ...
+{ config
+, modulesPath
+, lib
+, inputs
+, pkgs
+, nixos-hardware
+, ...
 }: {
-  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   hardware.cpu.intel.updateMicrocode = true;
   nixpkgs.system = "x86_64-linux";
 
   imports = [
-    inputs.hardware.nixosModules.common-cpu-intel
-    inputs.hardware.nixosModules.common-pc-ssd
+    nixos-hardware.nixosModules.common-cpu-intel
+    nixos-hardware.nixosModules.common-pc-ssd
     (modulesPath + "/installer/scan/not-detected.nix")
     ./hardware-configuration.nix
     ../../common/quiet-boot.nix
@@ -23,15 +23,15 @@
     # ../../common/disks/ext4.nix
     ../../common/disks/btrfs.nix
     {
-      _module.args.disks = ["/dev/disk/by-id/ata-Samsung_SSD_850_PRO_256GB_S39KNX0J775697K"];
+      _module.args.disks = [ "/dev/disk/by-id/ata-Samsung_SSD_850_PRO_256GB_S39KNX0J775697K" ];
       # [ "/dev/disk/by-id/ata-Samsung_SSD_850_PRO_256GB_S39KNX0J775697K" ];
     }
   ];
 
-  networking = {hostName = "cfserve";};
+  networking = { hostName = "cfserve"; };
   networking.hostId = "529fd7bb";
 
-  users.groups.input.members = ["tomas"];
+  users.groups.input.members = [ "tomas" ];
 
   boot = {
     initrd = {
@@ -46,7 +46,7 @@
         "amdgpu"
       ];
     };
-    kernelModules = ["kvm-intel" "jc42" "tpm_rng"];
+    kernelModules = [ "kvm-intel" "jc42" "tpm_rng" ];
     loader = {
       grub = {
         enable = true;
