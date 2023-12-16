@@ -8,8 +8,8 @@ nixpkgs.lib.nixosSystem {
   modules = [
     # /nix/store/dg2g5qwvs36dhfqj9khx4sfv0klwl9f0-source/nixos/modules/installer/sd-card/sd-image-raspberrypi.nix
     # (nixpkgs + "/nixos/modules/installer/sd-card/sd-image-raspberrypi-installer.nix")
-    nixos-hardware.nixosModules.raspberry-pi-4
-    "${nixpkgs}/nixos/modules/profiles/minimal.nix"
+    # nixos-hardware.nixosModules.raspberry-pi-4
+    # "${nixpkgs}/nixos/modules/profiles/minimal.nix"
     # disko.nixosModules.disko
     # ../common/disks/ext4.nix
     # {
@@ -17,29 +17,29 @@ nixpkgs.lib.nixosSystem {
     # }
 
     ({ pkgs, ... }: {
-      hardware = {
-        raspberry-pi."4".apply-overlays-dtmerge.enable = true;
-        deviceTree = {
-          enable = true;
-          filter = "*rpi-4-*.dtb";
-        };
-      };
-      console.enable = false;
+      # boot.loader.raspberryPi = {
+      #   enable = true;
+      #   version = 3;
+      #   firmwareConfig = ''
+      #     core_freq=250
+      #   '';
+      # };
+      # console.enable = false;
       environment.systemPackages = with pkgs; [
         libraspberrypi
         raspberrypi-eeprom
       ];
       system.stateVersion = "23.11";
 
+      networking.wireless.enable = false;
+      # networking.networkmanager.enable = true;
 
-      imports = [
-
-        #   (nixpkgs + "/nixos/modules/installer/sd-card/sd-image-raspberrypi.nix")
-      ];
+      boot.initrd.kernelModules = [ "vc4" "bcm2835_dma" "i2c_bcm2835" ];
       # NixOS wants to enable GRUB by default
       # boot.loader.grub.enable = false;
       # # Enables the generation of /boot/extlinux/extlinux.conf
       # boot.loader.generic-extlinux-compatible.enable = true;
+      # boot.loader.grub.enable = false;
 
       # boot.loader.raspberryPi = {
       #   enable = true;
@@ -51,8 +51,11 @@ nixpkgs.lib.nixosSystem {
 
       # boot.initrd.kernelModules = [ "vc4" "bcm2835_dma" "i2c_bcm2835" ];
 
-      # hardware.enableRedistributableFirmware = true;
-      networking.wireless.enable = true;
+      hardware.enableRedistributableFirmware = true;
+
+      users.users.root.openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas"
+      ];
 
     })
   ];
