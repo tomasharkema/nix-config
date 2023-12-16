@@ -2,6 +2,7 @@
 , pkgs
 , modulesPath
 , lib
+, tailscale-prometheus-sd
 , ...
 }: {
   age.secrets.tailscale.file = ../secrets/tailscale.age;
@@ -48,7 +49,7 @@
       StartLimitBurst = 5;
     };
     serviceConfig = {
-      ExecStart = "${pkgs.tailscale-prometheus-sd}";
+      ExecStart = "${tailscale-prometheus-sd}";
       Restart = "on-failure";
       RestartSec = 5;
     };
