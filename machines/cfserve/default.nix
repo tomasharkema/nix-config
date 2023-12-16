@@ -63,7 +63,7 @@
   networking.useDHCP = lib.mkDefault true;
 
   networking.firewall = {
-    enable = lib.mkForce false;
+    enable = lib.mkForce true;
     # enable = true;
   };
 

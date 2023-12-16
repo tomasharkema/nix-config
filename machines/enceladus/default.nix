@@ -1,12 +1,11 @@
-{
-  config,
-  modulesPath,
-  lib,
-  inputs,
-  pkgs,
-  ...
+{ config
+, modulesPath
+, lib
+, inputs
+, pkgs
+, ...
 }: {
-  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   hardware.cpu.intel.updateMicrocode = true;
   nixpkgs.system = "x86_64-linux";
 
@@ -20,11 +19,11 @@
     ../../apps/steam.nix
     ./disk-config.nix
     {
-      _module.args.disks = ["/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y"];
+      _module.args.disks = [ "/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y" ];
     }
   ];
 
-  networking = {hostName = "enceladus";};
+  networking = { hostName = "enceladus"; };
   networking.hostId = "529fd7fa";
 
   # deployment.tags = [ "bare" ];
@@ -34,7 +33,7 @@
   #   targetUser = "root";
   # };
 
-  users.groups.input.members = ["tomas"];
+  users.groups.input.members = [ "tomas" ];
 
   # Enable OpenGL
   hardware.opengl = {
@@ -43,9 +42,14 @@
     driSupport32Bit = true;
   };
 
+  networking.firewall = {
+    enable = lib.mkForce true;
+    # enable = true;
+  };
+
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
-  environment.systemPackages = with pkgs; [nvtop];
+  services.xserver.videoDrivers = [ "nvidia" ];
+  environment.systemPackages = with pkgs; [ nvtop ];
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
@@ -85,10 +89,10 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.efiInstallAsRemovable = true;
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = ["kvm-intel" "uinput" "nvme"];
-  boot.kernelModules = ["kvm-intel" "uinput" "nvme"];
-  boot.extraModulePackages = [];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.kernelModules = [ "kvm-intel" "uinput" "nvme" ];
+  boot.kernelModules = [ "kvm-intel" "uinput" "nvme" ];
+  boot.extraModulePackages = [ ];
 
   networking.useDHCP = lib.mkDefault true;
   hardware.bluetooth.enable = true;
@@ -97,6 +101,6 @@
   security.tpm2.enable = true;
   security.tpm2.pkcs11.enable = true;
   security.tpm2.tctiEnvironment.enable = true;
-  users.users."tomas".extraGroups = ["tss"];
+  users.users."tomas".extraGroups = [ "tss" ];
   boot.initrd.systemd.enableTpm2 = true;
 }
