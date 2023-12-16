@@ -311,6 +311,8 @@
         netboot =
           self.nixosConfigurations.netboot.config.system.build.toplevel;
 
+        raspberryi = self.images.x86_64-linux.raspberrypi;
+
         attic = import ./attic/attic.nix {
           inherit
             #pkgs
