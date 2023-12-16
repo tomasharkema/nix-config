@@ -5,7 +5,7 @@
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   system.stateVersion = "23.11";
-
+  programs.nix-ld.enable = true;
   wsl = {
     enable = true;
     automountPath = "/mnt";
