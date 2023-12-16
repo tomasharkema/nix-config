@@ -322,6 +322,12 @@
       images = {
         raspberrypi = (self.nixosConfigurations.raspberrypi.extendModules {
           modules = [
+            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+            "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+          ];
+        }).config.system.build.sdImage;
+        raspberrypi-small = (nixpkgs.lib.nixosSystem {
+          modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
             "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
           ];
