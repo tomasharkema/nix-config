@@ -1629,6 +1629,22 @@
     },
     "nixpkgs_14": {
       "locked": {
+        "lastModified": 1670543317,
+        "narHash": "sha256-4mMR56rtxKr+Gwz399jFr4i76SQZxsLWxxyfQlPXRm0=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "7a6a010c3a1d00f8470a5ca888f2f927f1860a19",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-22.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_15": {
+      "locked": {
         "lastModified": 1682134069,
         "narHash": "sha256-TnI/ZXSmRxQDt2sjRYK/8j8iha4B4zP2cnQCZZ3vp7k=",
         "owner": "NixOS",
@@ -1943,6 +1959,7 @@
         "nixvim": "nixvim",
         "statix": "statix",
         "system-manager": "system-manager",
+        "tailscale-prometheus-sd": "tailscale-prometheus-sd",
         "vscode-server": "vscode-server"
       }
     },
@@ -2282,6 +2299,26 @@
         "type": "github"
       }
     },
+    "tailscale-prometheus-sd": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_14",
+        "utils": "utils_5",
+        "yarnpnp2nix": "yarnpnp2nix"
+      },
+      "locked": {
+        "lastModified": 1675957091,
+        "narHash": "sha256-M5yAs9BYG729HIOPtQqPvak5QoYpYc2QTtRV5PCiWnk=",
+        "owner": "madjam002",
+        "repo": "tailscale-prometheus-sd",
+        "rev": "9d8fbc36f12beff8fea5b98129690031b8d0712c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "madjam002",
+        "repo": "tailscale-prometheus-sd",
+        "type": "github"
+      }
+    },
     "treefmt-nix": {
       "inputs": {
         "nixpkgs": [
@@ -2412,10 +2449,25 @@
         "type": "github"
       }
     },
+    "utils_5": {
+      "locked": {
+        "lastModified": 1667395993,
+        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "vscode-server": {
       "inputs": {
         "flake-utils": "flake-utils_11",
-        "nixpkgs": "nixpkgs_14"
+        "nixpkgs": "nixpkgs_15"
       },
       "locked": {
         "lastModified": 1684517665,
@@ -2428,6 +2480,31 @@
       "original": {
         "owner": "nix-community",
         "repo": "nixos-vscode-server",
+        "type": "github"
+      }
+    },
+    "yarnpnp2nix": {
+      "inputs": {
+        "nixpkgs": [
+          "tailscale-prometheus-sd",
+          "nixpkgs"
+        ],
+        "utils": [
+          "tailscale-prometheus-sd",
+          "utils"
+        ]
+      },
+      "locked": {
+        "lastModified": 1668190675,
+        "narHash": "sha256-Mg5JWGkGYIJMX+gce/tTt/IOx2+IcoOarKD+MC7kzGo=",
+        "owner": "madjam002",
+        "repo": "yarnpnp2nix",
+        "rev": "d3e33b12216a7450b0952c4841b57a1953a6ccf7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "madjam002",
+        "repo": "yarnpnp2nix",
         "type": "github"
       }
     }

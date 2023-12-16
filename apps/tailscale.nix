@@ -37,4 +37,21 @@
 
   services.zerotierone.enable = true;
   services.zerotierone.joinNetworks = [ "***REMOVED***" ];
+
+  # tailscale-prometheus-sd
+  systemd.services.tailscale-sd = {
+    enable = true;
+    description = "tailscale-prometheus-sd";
+    unitConfig = {
+      Type = "simple";
+      StartLimitIntervalSec = 500;
+      StartLimitBurst = 5;
+    };
+    serviceConfig = {
+      ExecStart = "${pkgs.tailscale-prometheus-sd}";
+      Restart = "on-failure";
+      RestartSec = 5;
+    };
+    # wantedBy = ["graphical-session.target"];
+  };
 }
