@@ -9,7 +9,7 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   hardware.cpu.intel.updateMicrocode = true;
   nixpkgs.system = "x86_64-linux";
-
+  programs.nix-ld.enable = true;
   imports = [
     nixos-hardware.nixosModules.common-cpu-intel
     ./hardware-configuration.nix
