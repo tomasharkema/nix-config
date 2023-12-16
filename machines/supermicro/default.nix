@@ -3,6 +3,7 @@
 , lib
 , inputs
 , pkgs
+, nixos-hardware
 , ...
 }: {
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -10,7 +11,7 @@
   nixpkgs.system = "x86_64-linux";
 
   imports = [
-    inputs.hardware.nixosModules.common-cpu-intel
+    nixos-hardware.nixosModules.common-cpu-intel
     ./hardware-configuration.nix
     # ../../common/quiet-boot.nix
     # ../../common/game-mode.nix
