@@ -30,7 +30,7 @@
 
   environment.systemPackages = with pkgs; [
     # ipmicfg
-    # ipmiview
+    ipmiview
   ];
 
   # boot.loader.systemd-boot.enable = true;
@@ -45,7 +45,6 @@
     "kvm-intel"
     "uinput"
     "nvme"
-    #  "jc42" "tpm_rng"
   ];
   boot.kernelModules = [ "kvm-intel" "uinput" "nvme" "jc42" "tpm_rng" ];
   boot.extraModulePackages = [ ];
