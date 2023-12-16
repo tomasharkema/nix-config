@@ -30,5 +30,10 @@ _: {
     owner = "rslsync";
     group = "rslsync";
   };
-  age.secrets.netdata = {file = ./netdata.age;};
+  age.secrets."resilio-shared-public" = {
+    file = ./resilio-shared-public.age;
+    owner = "rslsync";
+    group = "rslsync";
+  };
+  age.secrets.netdata = { file = ./netdata.age; };
 }
