@@ -262,6 +262,15 @@ in
     ];
   };
 
+  winrtx = nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    specialArgs = attrs;
+    modules = [
+      inputs.nixos-wsl.nixosModules.wsl
+      ../machines/winrtx
+    ];
+  };
+
   darwinVM = nixpkgs.lib.nixosSystem {
     system = "
             aarch64-linux
