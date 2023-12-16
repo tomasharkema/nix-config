@@ -2,7 +2,7 @@ let
   tomas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";
   # wsl =
   #   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKXJJrsfcYDGtfl8zQ1hjs+0UdasQLpO4ybFNlTqtjoI tomas@DESKTOP-L8N2UGE";
-  users = [tomas];
+  users = [ tomas ];
 
   enceladus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICTiQQzh6t0sQabqkzyYpqA9zIgnA0we+nQVs54UG0ct root@enceladus";
   unraidferdorie = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFS0T53Bwn00Vqhc9GHD+RY78LIKfWvMo2rvQOvGW+lQ root@nixos";
@@ -11,9 +11,10 @@ let
   hyperv-nixos = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPpdAXhywLokEcCBpBA05V6Q8enw4ImVnHHX4Uf8StvF root@hyperv-nixos";
   supermicro = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJRn81Pxfg4ttTocQnTUWirpC1QVeJ5bfPC63ET9fNVa root@supermicro";
 
-  systems = [enceladus unraidferdorie utm-nixos cfserve hyperv-nixos supermicro];
+  systems = [ enceladus unraidferdorie utm-nixos cfserve hyperv-nixos supermicro ];
   allKeys = users ++ systems;
-in {
+in
+{
   "atuin.age".publicKeys = allKeys;
   "atuin_session.age".publicKeys = allKeys;
   "tailscale.age".publicKeys = allKeys;
@@ -21,4 +22,5 @@ in {
   "resilio-p.age".publicKeys = allKeys;
   "resilio-docs.age".publicKeys = allKeys;
   "netdata.age".publicKeys = allKeys;
+  "resilio-shared-public.age".publicKeys = allKeys;
 }

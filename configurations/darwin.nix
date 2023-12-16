@@ -28,12 +28,12 @@ let
       #tower x86_64-linux - 100 1 big-parallel,benchmark,kvm
       #tower aarch64-linux - 100 1 big-parallel,benchmark,kvm
 
-      nix.buildMachines = [{
-        hostName = "supermicro";
-        system = "x86_64-linux";
-        maxJobs = 4;
-        supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
-      }];
+      # nix.buildMachines = [{
+      #   hostName = "supermicro";
+      #   system = "x86_64-linux";
+      #   maxJobs = 4;
+      #   supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+      # }];
 
       nix.extraOptions = ''
         auto-optimise-store = true
