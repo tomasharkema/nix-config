@@ -26,6 +26,8 @@
   #   };
   age.secrets."resilio-p" = { file = ../secrets/resilio-p.age; };
   age.secrets."resilio-docs" = { file = ../secrets/resilio-docs.age; };
+  age.secrets."resilio-shared-public" = { file = ../secrets/resilio-shared-public.age; };
+
   services.resilio = {
     enable = true;
     sharedFolders = [
@@ -52,7 +54,7 @@
       {
         directory = "/var/lib/resilio-sync/shared-public";
         searchLAN = true;
-        secretFile = "A6RVLAQGFJ6IIT5FTCDRPWZLUNXAVZFUW";
+        secretFile = config.age.secrets."resilio-shared-public".path;
         useDHT = false;
         useRelayServer = true;
         useSyncTrash = true;
