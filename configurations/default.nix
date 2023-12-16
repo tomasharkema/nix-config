@@ -25,7 +25,7 @@ in
     specialArgs = attrs;
     modules = [
       (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
-      ./installer.nix
+      ../installer.nix
     ];
   };
 
