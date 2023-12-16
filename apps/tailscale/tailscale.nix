@@ -54,6 +54,11 @@
       Restart = "on-failure";
       RestartSec = 5;
     };
-    # wantedBy = ["graphical-session.target"];
+    after = "tailscale.service";
+    wants = "tailscale.service";
+    environment = {
+      TAILSCALE_PROMETHEUS_SD_CONFIG=./config.json;
+      PROMETHEUS_TARGETS_OUT=/run/tailscale-targets.json
+    }
   };
 }
