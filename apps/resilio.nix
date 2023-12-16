@@ -1,4 +1,4 @@
-{config, ...}: {
+{ config, ... }: {
   #   deployment.keys."resilio.key" = {
   #     # Alternatively, `text` (string) or `keyFile` (path to file)
   #     # may be specified.
@@ -24,8 +24,8 @@
   #     uploadAt =
   #       "pre-activation"; # Default: pre-activation, Alternative: post-activation
   #   };
-  age.secrets."resilio-p" = {file = ../secrets/resilio-p.age;};
-  age.secrets."resilio-docs" = {file = ../secrets/resilio-docs.age;};
+  age.secrets."resilio-p" = { file = ../secrets/resilio-p.age; };
+  age.secrets."resilio-docs" = { file = ../secrets/resilio-docs.age; };
   services.resilio = {
     enable = true;
     sharedFolders = [
@@ -37,7 +37,7 @@
         useRelayServer = true;
         useSyncTrash = true;
         useTracker = true;
-        knownHosts = ["100.120.66.165:52380"];
+        knownHosts = [ "100.120.66.165:52380" ];
       }
       {
         directory = "/var/lib/resilio-sync/P";
@@ -47,7 +47,17 @@
         useRelayServer = true;
         useSyncTrash = true;
         useTracker = true;
-        knownHosts = ["100.120.66.165:52380"];
+        knownHosts = [ "100.120.66.165:52380" ];
+      }
+      {
+        directory = "/var/lib/resilio-sync/shared-public";
+        searchLAN = true;
+        secretFile = "A6RVLAQGFJ6IIT5FTCDRPWZLUNXAVZFUW";
+        useDHT = false;
+        useRelayServer = true;
+        useSyncTrash = true;
+        useTracker = true;
+        knownHosts = [ "100.120.66.165:52380" ];
       }
     ];
   };
