@@ -83,6 +83,7 @@
       url = "github:numtide/system-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tailscale-prometheus-sd = { url = "github:madjam002/tailscale-prometheus-sd"; };
   };
 
   outputs =

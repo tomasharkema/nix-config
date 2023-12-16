@@ -94,8 +94,8 @@ in
       base
       disko.nixosModules.default
       impermanence.nixosModules.impermanence
-      ./machines/supermicro
-      ./secrets
+      ../machines/supermicro
+      ../secrets
       agenix.nixosModules.default
       ({ lib, ... }: {
         services.tailscale = {
@@ -110,7 +110,7 @@ in
         home-manager.users.tomas.imports = [
           # nix-flatpak.homeManagerModules.nix-flatpak
           agenix.homeManagerModules.default
-          ./home.nix
+          ..x/home.nix
         ];
         home-manager.backupFileExtension = "bak";
       }
@@ -149,8 +149,8 @@ in
     modules = [
       base
       disko.nixosModules.default
-      ./machines/hyperv-nixos
-      ./secrets
+      ../machines/hyperv-nixos
+      ../secrets
       agenix.nixosModules.default
       home-manager.nixosModules.home-manager
       {
@@ -160,7 +160,7 @@ in
         home-manager.users.tomas.imports = [
           nix-flatpak.homeManagerModules.nix-flatpak
           agenix.homeManagerModules.default
-          ./home.nix
+          ../home.nix
         ];
         home-manager.backupFileExtension = "bak";
       }
@@ -174,8 +174,8 @@ in
     modules = [
       base
       disko.nixosModules.default
-      ./machines/unraidferdorie/default.nix
-      ./secrets
+      ../machines/unraidferdorie/default.nix
+      ../secrets
       agenix.nixosModules.default
       home-manager.nixosModules.home-manager
       {
@@ -185,7 +185,7 @@ in
         home-manager.users.tomas.imports = [
           nix-flatpak.homeManagerModules.nix-flatpak
           agenix.homeManagerModules.default
-          ./home.nix
+          ../home.nix
         ];
         home-manager.backupFileExtension = "bak";
       }
@@ -237,7 +237,7 @@ in
       # impermanence.nixosModule
       # disko.nixosModules.default
       # ./machines/cfserve
-      ./secrets
+      ../secrets
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
       ({
@@ -250,7 +250,7 @@ in
         home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.tomas.imports = [
           agenix.homeManagerModules.default
-          ./home.nix
+          ../home.nix
         ];
         home-manager.backupFileExtension = "bak";
       }
@@ -269,7 +269,7 @@ in
     specialArgs = attrs;
     modules = [
       base
-      ./machines/utm-nixos/default.nix
+      ../machines/utm-nixos/default.nix
 
       disko.nixosModules.default
       nix-flatpak.nixosModules.nix-flatpak
@@ -312,7 +312,7 @@ in
         home-manager.users.tomas.imports = [
           nix-flatpak.homeManagerModules.nix-flatpak
           agenix.homeManagerModules.default
-          ./home.nix
+          ../home.nix
         ];
         home-manager.backupFileExtension = "
             bak
