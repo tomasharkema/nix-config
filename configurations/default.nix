@@ -110,7 +110,7 @@ in
         home-manager.users.tomas.imports = [
           # nix-flatpak.homeManagerModules.nix-flatpak
           agenix.homeManagerModules.default
-          ..x/home.nix
+          ../home.nix
         ];
         home-manager.backupFileExtension = "bak";
       }
