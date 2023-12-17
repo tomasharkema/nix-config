@@ -1,8 +1,8 @@
-{ config
-, modulesPath
+{ modulesPath
 , lib
 , inputs
-, pkgs, nix-hardware
+, pkgs
+, nix-hardware
 , ...
 }: {
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -74,7 +74,7 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   # systemd.services.netdata.path = [ pkgs.linuxPackages.nvidia_x11 ];
