@@ -28,12 +28,20 @@ let
       #tower x86_64-linux - 100 1 big-parallel,benchmark,kvm
       #tower aarch64-linux - 100 1 big-parallel,benchmark,kvm
 
-      # nix.buildMachines = [{
-      #   hostName = "supermicro";
-      #   system = "x86_64-linux";
-      #   maxJobs = 4;
-      #   supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
-      # }];
+      nix.buildMachines = [
+        {
+          hostName = "supermicro";
+          system = "x86_64-linux";
+          maxJobs = 4;
+          supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+        }
+        {
+          hostName = "supermicro";
+          system = "aarch64-linux";
+          maxJobs = 4;
+          supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+        }
+      ];
 
       nix.extraOptions = ''
         auto-optimise-store = true
@@ -63,17 +71,14 @@ let
         trusted-users = [ "root" "tomas" ];
         extra-substituters = [
           "https://nix-cache.harke.ma/"
-          "https://tomasharkema.cachix.org/"
           "https://cache.nixos.org/"
         ];
         extra-binary-caches = [
           "https://nix-cache.harke.ma/"
-          # "https://tomasharkema.cachix.org/"
           "https://cache.nixos.org/"
         ];
         trusted-public-keys = [
           "nix-cache.harke.ma:2UhS18Tt0delyOEULLKLQ36uNX3/hpX4sH684B+cG3c="
-          "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
           "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         ];
         access-tokens = [ "github.com=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" ];
@@ -82,6 +87,8 @@ let
 in
 {
   builder = nix-darwin.lib.darwinSystem {
+    system = "aarch64-darwin";
+    specialArgs = { inherit inputs; };
     modules = [ builder ];
   };
 

@@ -1,0 +1,8 @@
+{
+  "eval": {
+    "target": {
+      "args": ["-f", "flake.nix"],
+      "installable": "nixosConfigurations.raspberrypi-4.config.system"
+    }
+  }
+}

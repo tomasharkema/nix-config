@@ -33,17 +33,15 @@ in
     extra-substituters = [
       # "ssh://nix-ssh@tower.ling-lizard.ts.net"
       "https://nix-cache.harke.ma/"
-      # "https://tomasharkema.cachix.org/"
       "https://cache.nixos.org/"
     ];
     extra-binary-caches = [
       "https://nix-cache.harke.ma/"
-      # "https://tomasharkema.cachix.org/"
       "https://cache.nixos.org/"
     ];
     extra-trusted-public-keys = [
-      "tower.ling-lizard.ts.net:MBxJ2O32x6IcWJadxdP42YGVw2eW2tAbMp85Ws6QCno="
-      # "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
+
+      "nix-cache.harke.ma:2UhS18Tt0delyOEULLKLQ36uNX3/hpX4sH684B+cG3c="
     ];
     access-tokens = [ "github.com=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" ];
   };
@@ -100,17 +98,6 @@ in
   programs.ssh.startAgent = true;
   system.autoUpgrade.enable = true;
 
-  services.cockpit = {
-    enable = true;
-    port = 9090;
-    settings = { WebService = { AllowUnencrypted = true; }; };
-  };
-  system.activationScripts = {
-    cockpitXrdpCert = ''
-      cd /etc/cockpit/ws-certs.d && ${pkgs.tailscale}/bin/tailscale cert $(hostname).ling-lizard.ts.net || true
-    '';
-  };
-
   services.prometheus = {
     exporters = {
       node = {
@@ -153,5 +140,9 @@ in
   networking.firewall = {
     enable = true;
     # enable = false;
+  };
+
+  services.avahi.extraServiceFiles = {
+    ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
   };
 }

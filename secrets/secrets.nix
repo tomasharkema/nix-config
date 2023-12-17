@@ -10,8 +10,8 @@ let
   cfserve = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHaCcdmZxFS197uAf7tBeAXV/RYl2WaShE9na67LyftQ root@cfserve";
   hyperv-nixos = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPpdAXhywLokEcCBpBA05V6Q8enw4ImVnHHX4Uf8StvF root@hyperv-nixos";
   supermicro = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJRn81Pxfg4ttTocQnTUWirpC1QVeJ5bfPC63ET9fNVa root@supermicro";
-
-  systems = [ enceladus unraidferdorie utm-nixos cfserve hyperv-nixos supermicro ];
+  raspbii = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExHAekJ8mbudoEcFYJdJ58nSMyHFfNFrf84GIHuIeRY root@raspbii";
+  systems = [ enceladus unraidferdorie utm-nixos cfserve hyperv-nixos supermicro raspbii ];
   allKeys = users ++ systems;
 in
 {

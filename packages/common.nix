@@ -7,23 +7,24 @@ let
 in
 with pkgs;
 [
-  bash
   _1password
-  colmena
   antidote
   atuin
-
   autojump
-  navi
+  bash
   bat
-  bfg-repo-cleaner
+  # bfg-repo-cleaner
   bottom
   btop
   cheat
   colima
+  colmena
+  comma
   coreutils
   curl
+  deadnix
   delta
+  deploy-rs
   dnsutils
   dog
   du-dust
@@ -31,37 +32,27 @@ with pkgs;
   eza
   fd
   fortune
+  fpp
   fzf
   gh
   git
   git-lfs
+  gping
   gtop
   iftop
-  inputs.agenix.packages.${system}.default
-  inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
-  inputs.attic.packages.${system}.default
-  inputs.cachix.packages.${system}.default
   ipmitool
   ldns
   lolcat
   lsd
+  manix
   mcfly
   morph
   mtr
   multitail
+  navi
   ncdu
   neofetch
   netdiscover
-  nil
-  niv
-  nix-deploy
-  nix-index
-  nix-prefetch-scripts
-  nix-serve
-  nixfmt
-  nixpkgs-fmt
-  nil
-  nixd
   nnn
   nodejs
   patchelf
@@ -85,9 +76,6 @@ with pkgs;
   zip
   zsh
   zsh-autosuggestions
-  gping
-  fpp
-  nix-output-monitor
   # (pkgs.writeShellScriptBin "upload-cache-signed" ''
   #   cd ~
   #   nix-cache-watcher sign-store -k ~/Developer/nix-config/cache-priv-key.pem -v && nix-cache-watcher upload-diff -r "https://nix-cache.harke.ma/" -v
