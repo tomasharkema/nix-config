@@ -14,7 +14,10 @@
 } @ attrs:
 let
   base = {
-    imports = [ nixos-generators.nixosModules.all-formats ../common/defaults.nix ];
+    imports = [
+      # nixos-generators.nixosModules.all-formats
+      ../common/defaults.nix
+    ];
   };
 in
 {
@@ -54,8 +57,9 @@ in
 
   enceladus = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
+
     # specialArgs = {
-    #   inherit attrs;
+    #   inherit inputs;
     # };
 
     specialArgs = attrs;
@@ -86,14 +90,14 @@ in
 
   supermicro = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
-    specialArgs = attrs;
+    # specialArgs = attrs;
 
-    # specialArgs = { inherit inputs outputs; };
+    specialArgs = { inherit inputs; };
     modules = [
       # ./user-defaults.nix
       base
       disko.nixosModules.default
-      impermanence.nixosModules.impermanence
+      # impermanence.nixosModules.impermanence
       ../machines/supermicro
       ../secrets
       agenix.nixosModules.default

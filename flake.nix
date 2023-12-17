@@ -199,7 +199,7 @@
               sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.nixos
-                  self.nixosConfigurations.enceladus;
+                  self.n.enceladus;
             };
           };
           unraidferdorie = {
@@ -325,7 +325,7 @@
           pkgsLinux = pkgsFor."x86_64-linux";
         };
 
-        enceladus = self.nixosConfigurations.enceladus.config.system.build.toplevel;
+        # enceladus = self.nixosConfigurations.enceladus.config.system.build.toplevel;
       };
       images = {
         raspberrypi = (self.nixosConfigurations.raspberrypi.extendModules {
