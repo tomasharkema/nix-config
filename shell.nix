@@ -30,6 +30,9 @@ pkgs.mkShell {
     nix
     nix-tree
     nixpkgs-fmt
+    nix-du
+    nil
+    nixd
     python3
     sops
     ssh-to-age

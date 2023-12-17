@@ -299,6 +299,9 @@
       formatter = alejandra.defaultPackage.${system};
 
       packages = {
+        tailscaled = import ./apps/tailscale/tailscaled.nix {
+          inherit pkgs lib;
+        };
         darwinVM = self.nixosConfigurations.darwinVM.config.system.build.vm;
         # installiso = nixos-generators.nixosGenerate {
         #   format = "install-iso";
@@ -321,6 +324,8 @@
           pkgs = pkgsFor.x86_64-linux;
           pkgsLinux = pkgsFor."x86_64-linux";
         };
+
+        enceladus = self.nixosConfigurations.enceladus.config.system.build.toplevel;
       };
       images = {
         raspberrypi = (self.nixosConfigurations.raspberrypi.extendModules {
