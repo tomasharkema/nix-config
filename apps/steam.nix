@@ -1,8 +1,8 @@
 {
-  config,
-  pkgs,
-  modulesPath,
-  ...
+  # config,
+  pkgs
+, modulesPath
+, ...
 }: {
   programs.steam = {
     enable = true;
@@ -37,6 +37,6 @@
       Restart = "on-failure";
       RestartSec = 5;
     };
-    wantedBy = ["graphical-session.target"];
+    wantedBy = [ "graphical-session.target" ];
   };
 }
