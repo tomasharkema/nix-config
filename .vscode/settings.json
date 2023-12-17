@@ -15,14 +15,18 @@
       }
     },
     "nixd": {
-      "eval": {},
+      "eval": {
+        "target": {
+          "args": ["-f", "flake.nix"]
+        }
+      },
       "formatting": {
         "command": "nixpkgs-fmt"
       },
       "options": {
         "enable": true,
         "target": {
-          "installable": "/flakeref#nixosConfigurations.<adrastea>.options"
+          "args": ["-f", "flake.nix"]
         }
       }
     }

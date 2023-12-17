@@ -1,20 +1,45 @@
 { pkgs
 , inputs
+, nixpkgs
 , ...
 } @ attrs:
+
+let
+  write-script = pkgs.writeShellScriptBin "write-script" ''
+    set -x
+    echo "pv $1 $2"
+    pv $1 -cN in -B 500M | zstd -d - | pv -cN out -B 500M > $2
+  '';
+  deployment = pkgs.writeShellScriptBin "deployment" ''
+    set -x
+    ${pkgs.deploy-rs}/bin/deploy --skip-checks --targets $@ -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
+  '';
+  deploy-machine = pkgs.writeShellScriptBin "deploy-machine" ''
+    set -x
+    ${pkgs.deploy-rs}/bin/deploy --skip-checks ".#$@" -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
+  '';
+  reencrypt = { system }: pkgs.writeShellScriptBin "reencrypt" ''
+    set -x;
+    cd secrets; 
+    ${inputs.agenix.packages.${system}.default}/bin/agenix -r
+  '';
+in
+
 pkgs.mkShell {
-  # defaultPackage = pkgs.nix-tree;
+  defaultPackage = pkgs.zsh;
   # buildInputs = [pkgs.home-manager];
+
   packages = with pkgs; [
-    bash
+    (reencrypt { inherit system; })
+    deploy-machine
+    bfg-repo-cleaner
     ack
     age
-    inputs.agenix.packages.${system}.default
-    inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
-    inputs.attic.packages.${system}.default
-    # cachix
+    bash
     colmena
+    comma
     deploy-rs
+    deployment
     git
     gnupg
     go
@@ -26,20 +51,16 @@ pkgs.mkShell {
     gopkgs
     gopls
     gotools
+
     netdiscover
-    nix
-    nix-tree
-    nixpkgs-fmt
-    # nix-du
-    nil
-    nixd
     python3
     sops
     ssh-to-age
+    write-script
     zsh
-    nix-serve
-    nix-output-monitor
-  ];
+    colima
+    colmena
+  ] ++ (import ./packages/nixpkgs.nix (attrs));
   # shellHook = ''
   #   # cachix use tomasharkema
   # '';

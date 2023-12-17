@@ -6,17 +6,14 @@
     trusted-users = [ "root" "tomas" ];
     extra-substituters = [
       "https://nix-cache.harke.ma/tomas"
-      "https://tomasharkema.cachix.org"
       "https://cache.nixos.org"
     ];
     extra-binary-caches = [
       "https://nix-cache.harke.ma/tomas"
-      "https://tomasharkema.cachix.org"
       "https://cache.nixos.org"
     ];
     trusted-public-keys = [
       "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
-      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
     access-tokens = [ "github.com=***REMOVED***" ];
@@ -77,7 +74,7 @@
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
 
     attic.url = "github:zhaofengli/attic";
-    cachix.url = "github:cachix/cachix";
+    # cachix.url = "github:cachix/cachix";
 
     system-manager = {
       url = "github:numtide/system-manager";
@@ -182,6 +179,17 @@
 
       deploy = {
         nodes = {
+          raspbii = {
+            hostname = "100.66.126.23";
+            profiles.system = {
+              user = "root";
+              sshUser = "root";
+              path =
+                deploy.lib.aarch64-linux.activate.nixos
+                  self.nixosConfigurations.raspbii;
+            };
+          };
+
           unraid = {
             hostname = "100.122.146.5";
             profiles.user = {
@@ -303,51 +311,29 @@
           inherit pkgs lib;
         };
         darwinVM = self.nixosConfigurations.darwinVM.config.system.build.vm;
-        # installiso = nixos-generators.nixosGenerate {
-        #   format = "install-iso";
-        #   system = "x86_64-linux";
-        #   specialArgs = { inherit inputs outputs; };
-        #   modules = [ ./installer.nix ];
-        # };
+        darwinBuilder = self.darwinConfigurations.builder;
+
         installiso =
           self.nixosConfigurations.live.config.system.build.isoImage;
+
         netboot =
           self.nixosConfigurations.netboot.config.system.build.toplevel;
 
-        raspberryi = self.images.x86_64-linux.raspberrypi;
-
         attic = import ./attic/attic.nix {
-          inherit
-            #pkgs
-            attic
-            ;
+          inherit attic;
           pkgs = pkgsFor.x86_64-linux;
           pkgsLinux = pkgsFor."x86_64-linux";
         };
-
         # enceladus = self.nixosConfigurations.enceladus.config.system.build.toplevel;
       };
+
       images = {
-        raspberrypi = (self.nixosConfigurations.raspberrypi.extendModules {
-          modules = [
-            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-            "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-          ];
-        }).config.system.build.sdImage;
-        raspberrypi-small = (nixpkgs.lib.nixosSystem {
-          modules = [
-            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
-            "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-          ];
-        }).config.system.build.sdImage;
+        raspberrypi-3 = self.nixosConfigurations.raspberrypi-3.config.system.build.sdImage;
+        raspbii = self.nixosConfigurations.raspbii.config.system.build.sdImage;
       };
-      # formatter = alejandra.defaultPackage.${system};
+
       devShells = {
-        default = import ./shell.nix { inherit pkgs system inputs; }; # {
-        # inherit pkgs;
-        # inherit (colmena.packages."${pkgs.system}") colmena;
-        # };
-        # python = import ./shells/python.nix;
+        default = import ./shell.nix { inherit pkgs system inputs nixpkgs agenix nix-index-database nix-cache-watcher attic; }; # {
       };
     });
 }
