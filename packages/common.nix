@@ -60,7 +60,7 @@ with pkgs;
   nix-serve
   nixfmt
   nixpkgs-fmt
-  nix-du
+  # nix-du
   nil
   nixd
   nnn

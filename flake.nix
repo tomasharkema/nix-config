@@ -199,7 +199,7 @@
               sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.nixos
-                  self.n.enceladus;
+                  self.nixosConfigurations.enceladus;
             };
           };
           unraidferdorie = {

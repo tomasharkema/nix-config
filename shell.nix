@@ -30,7 +30,7 @@ pkgs.mkShell {
     nix
     nix-tree
     nixpkgs-fmt
-    nix-du
+    # nix-du
     nil
     nixd
     python3
