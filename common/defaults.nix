@@ -16,7 +16,7 @@ in
   # system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
   system.stateVersion = "23.11";
   # boot.binfmt.emulatedSystems = [ "aarch64-linux" "x86_64-linux" ];
-  imports = [ ../apps/resilio.nix ../apps/tailscale.nix ];
+  imports = [ ../apps/resilio.nix ../apps/tailscale ];
 
   environment.systemPackages = common ++ gui;
 
@@ -118,8 +118,23 @@ in
         enabledCollectors = [ "systemd" ];
         port = 9002;
       };
+      systemd = {
+        enable = true;
+        port = 9003;
+      };
+      statsd = {
+        enable = true;
+        port = 9004;
+      };
     };
   };
+
+  services.cadvisor =
+    {
+      enable = true;
+
+      port = 9005;
+    };
 
   # Disable the GNOME3/GDM auto-suspend feature that cannot be disabled in GUI!
   # If no user is logged in, the machine will power down after 20 minutes.
