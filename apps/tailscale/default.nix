@@ -1,13 +1,12 @@
-{ config
-, pkgs
+{ pkgs
 , modulesPath
 , lib
-  # , tailscale-prometheus-sd
+, config
 
 , ...
 }@attrs:
 let
-  tailscaled = import ./tailscaled.nix attrs;
+  tailscaled = import ./tailscaled.nix { inherit pkgs lib; };
 in
 {
   # age.secrets.tailscale.file = ../secrets/tailscale.age;

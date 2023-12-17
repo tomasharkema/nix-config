@@ -10,8 +10,8 @@
   nixpkgs.system = "x86_64-linux";
 
   imports = [
-    nix-hardware.nixosModules.common-cpu-intel
-    nix-hardware.nixosModules.common-pc-ssd
+    # nix-hardware.nixosModules.common-cpu-intel
+    # nix-hardware.nixosModules.common-pc-ssd
     # (modulesPath + "/installer/scan/not-detected.nix")
     ../../common/quiet-boot.nix
     ../../common/game-mode.nix

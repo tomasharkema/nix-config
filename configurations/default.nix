@@ -65,11 +65,13 @@ in
     # specialArgs = attrs;
 
     modules = [
+      inputs.nixos-hardware.nixosModules.common-cpu-intel
+      inputs.nixos-hardware.nixosModules.common-pc-ssd
       base
       disko.nixosModules.default
       ../machines/enceladus
-      ./secrets
-      # nix-flatpak.nixosModules.nix-flatpak
+      ../secrets
+      nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
       home-manager.nixosModules.home-manager
       {
@@ -79,12 +81,12 @@ in
         home-manager.users.tomas.imports = [
           # nix-flatpak.homeManagerModules.nix-flatpak
           agenix.homeManagerModules.default
-          ./home.nix
+          ../home.nix
         ];
         home-manager.backupFileExtension = "bak";
       }
-      # vscode-server.nixosModules.default
-      # ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
+      vscode-server.nixosModules.default
+      ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
     ];
   };
 
