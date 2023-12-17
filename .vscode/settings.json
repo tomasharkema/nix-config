@@ -1,6 +1,6 @@
 {
   "nix.enableLanguageServer": true,
-  "nix.serverPath": "nil",
+  "nix.serverPath": "nixd",
   "nix.formatterPath": "nixpkgs-fmt",
   "nix.serverSettings": {
     "nil": {
@@ -12,6 +12,29 @@
         "autoArchive": true,
         "autoEvalInputs": false,
         "nixpkgsInputName": "nixpkgs"
+      }
+    },
+    "nixd": {
+      "eval": {
+        // stuff
+      },
+      "formatting": {
+        "command": "nixpkgs-fmt"
+      },
+      "options": {
+        "enable": true,
+        "target": {
+          // tweak arguments here
+          "args": [],
+          // NixOS options
+          "installable": ".#nixosConfigurations.encaladus.options"
+
+          // Flake-parts options
+          // "installable": "<flakeref>#debug.options"
+
+          // Home-manager options
+          // "installable": "<flakeref>#homeConfigurations.<name>.options"
+        }
       }
     }
   },
