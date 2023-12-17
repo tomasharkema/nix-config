@@ -58,11 +58,11 @@ in
   enceladus = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
 
-    # specialArgs = {
-    #   inherit inputs;
-    # };
+    specialArgs = {
+      inherit inputs;
+    };
 
-    specialArgs = attrs;
+    # specialArgs = attrs;
 
     modules = [
       base
@@ -83,8 +83,8 @@ in
         ];
         home-manager.backupFileExtension = "bak";
       }
-      vscode-server.nixosModules.default
-      ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
+      # vscode-server.nixosModules.default
+      # ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
     ];
   };
 
@@ -222,11 +222,11 @@ in
         ];
         home-manager.backupFileExtension = "bak";
       }
-      vscode-server.nixosModules.default
-      ({ config
-       , pkgs
-       , ...
-       }: { services.vscode-server.enable = true; })
+      # vscode-server.nixosModules.default
+      # ({ config
+      #  , pkgs
+      #  , ...
+      #  }: { services.vscode-server.enable = true; })
     ];
   };
 
@@ -258,11 +258,11 @@ in
         ];
         home-manager.backupFileExtension = "bak";
       }
-      vscode-server.nixosModules.default
-      ({ config
-       , pkgs
-       , ...
-       }: { services.vscode-server.enable = true; })
+      # vscode-server.nixosModules.default
+      # ({ config
+      #  , pkgs
+      #  , ...
+      #  }: { services.vscode-server.enable = true; })
     ];
   };
 
