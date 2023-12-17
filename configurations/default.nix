@@ -96,6 +96,7 @@ in
 
     specialArgs = { inherit inputs; };
     modules = [
+      nixos-hardware.nixosModules.common-cpu-intel
       # ./user-defaults.nix
       base
       disko.nixosModules.default
