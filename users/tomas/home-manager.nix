@@ -1,13 +1,11 @@
-{
-  isWSL,
-  inputs,
-  ...
-}: {
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
+{ isWSL
+, inputs
+, ...
+}: { config
+   , pkgs
+   , lib
+   , ...
+   }: {
   nixpkgs.config.allowUnfreePredicate = _: true;
   nixpkgs.config.allowUnfree = true;
 
@@ -72,13 +70,13 @@
     gocode-gomod
     godef
     golint
-    colima
+    # colima
     docker
     neofetch
     ansible-language-server
     utm
     yq
-    bfg-repo-cleaner
+    # bfg-repo-cleaner
     _1password
     nixfmt
     nix-deploy
@@ -135,7 +133,7 @@
   #
   #  /etc/profiles/per-user/tomas/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {EDITOR = "subl";};
+  home.sessionVariables = { EDITOR = "subl"; };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

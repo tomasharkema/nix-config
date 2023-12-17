@@ -19,9 +19,11 @@ let
       ../common/defaults.nix
     ];
   };
+  raspberrypis = (import ./raspberrypi.nix) (attrs);
 in
 {
-  raspberrypi = (import ./raspberrypi.nix) (attrs);
+  raspberrypi-3 = raspberrypis.raspberrypi-3;
+  raspbii = raspberrypis.raspbii;
 
   live = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";

@@ -1,7 +1,7 @@
-{ pkgs
+{ config
+, pkgs
 , modulesPath
 , lib
-, config
 
 , ...
 }@attrs:
@@ -9,13 +9,13 @@ let
   tailscaled = import ./tailscaled.nix { inherit pkgs lib; };
 in
 {
-  # age.secrets.tailscale.file = ../secrets/tailscale.age;
-  age.secrets.tailscale = {
-    file = ../../secrets/tailscale.age;
-    # mode = "770";
-    owner = "tomas";
-    group = "tomas";
-  };
+  # age.secrets.tailscale = {
+  #   file = ../../secrets/tailscale.age;
+  #   # mode = "770";
+  #   owner = "tomas";
+  #   group = "tomas";
+  # };
+
   services.tailscale = {
     enable = true;
     authKeyFile = config.age.secrets.tailscale.path;
@@ -27,6 +27,7 @@ in
     ];
     openFirewall = true;
   };
+
   networking.nftables.enable = true;
 
   networking.firewall.trustedInterfaces = [ "tailscale0" "zthnhagpcb" ];
@@ -34,7 +35,7 @@ in
 
   services.avahi = {
     enable = true;
-    interfaces = [ "zthnhagpcb" ];
+    interfaces = [ "zthnhagpcb" "tailscale0" ];
     ipv6 = true;
     publish.enable = true;
     publish.userServices = true;
@@ -42,7 +43,7 @@ in
     publish.domain = true;
     nssmdns = true;
     publish.workstation = true;
-    # openFirewall = true;
+    openFirewall = true;
     reflector = true;
   };
 
@@ -61,7 +62,6 @@ in
       StartLimitBurst = 5;
     };
     serviceConfig = {
-      # ExecStart = "${lib.attrsets.getBin tailscaled}/bin/tailscalesd --localapi";
       Restart = "on-failure";
       RestartSec = 5;
     };

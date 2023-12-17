@@ -1,11 +1,12 @@
 { self
 , nix-darwin
 , nixpkgs
+, lib
 , ...
 }@inputs:
 let
 
-  # inherit (nix-darwin.lib) darwinSystem;
+  inherit (nix-darwin.lib) darwinSystem;
   system = "aarch64-darwin";
   pkgs = nixpkgs.legacyPackages."${system}";
   linuxSystem = builtins.replaceStrings [ "darwin" ] [ "linux" ] system;
@@ -17,22 +18,36 @@ let
       {
         virtualisation = {
           host.pkgs = pkgs;
-          darwin-builder.workingDirectory = "/var/lib/darwin-builder";
+          useNixStoreImage = true;
+          writableStore = true;
+          cores = 4;
+
+          darwin-builder = {
+            workingDirectory = "/var/lib/darwin-builder";
+            # diskSize = 5120;
+            memorySize = 2048;
+          };
         };
+
+        networking.useDHCP = true;
       }
     ];
   };
 in
 
 {
+  # imports = [ ../../apps/tailscale ];
   nix.distributedBuilds = true;
 
-  nix.buildMachines = [{
-    hostName = "builder@localhost";
-    system = linuxSystem;
-    maxJobs = 4;
-    supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
-  }];
+  nix.buildMachines = [
+    {
+      hostName = "builder@linux-builder";
+      system = linuxSystem;
+      maxJobs = 4;
+      supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+      sshKey = "/var/lib/darwin-builder/keys/builder_ed25519";
+    }
+  ];
 
   launchd.daemons.darwin-builder = {
     command = "${darwin-builder.config.system.build.macos-builder-installer}/bin/create-builder";
