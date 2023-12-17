@@ -2,11 +2,21 @@
 , pkgs
 , modulesPath
 , lib
-, tailscale-prometheus-sd
+  # , tailscale-prometheus-sd
 
 , ...
-}: {
-  age.secrets.tailscale.file = ../secrets/tailscale.age;
+}@attrs:
+let
+  tailscaled = import ./tailscaled.nix attrs;
+in
+{
+  # age.secrets.tailscale.file = ../secrets/tailscale.age;
+  age.secrets.tailscale = {
+    file = ../../secrets/tailscale.age;
+    # mode = "770";
+    owner = "tomas";
+    group = "tomas";
+  };
   services.tailscale = {
     enable = true;
     authKeyFile = config.age.secrets.tailscale.path;
@@ -40,8 +50,10 @@
   services.zerotierone.enable = true;
   services.zerotierone.joinNetworks = [ "af78bf9436bca877" ];
 
-  # tailscale-prometheus-sd
-  systemd.services.tailscale-sd = {
+  programs.nix-ld.enable = true;
+
+  systemd.packages = [ tailscaled pkgs.tailscale ];
+  systemd.services.tailscalesd = {
     enable = true;
     description = "tailscale-prometheus-sd";
     unitConfig = {
@@ -50,15 +62,17 @@
       StartLimitBurst = 5;
     };
     serviceConfig = {
-      ExecStart = "${tailscale-prometheus-sd.packages.x86_64-linux.default}";
+      # ExecStart = "${lib.attrsets.getBin tailscaled}/bin/tailscalesd --localapi";
       Restart = "on-failure";
       RestartSec = 5;
     };
-    after = "tailscale.service";
-    wants = "tailscale.service";
+    script = "${lib.attrsets.getBin tailscaled}/bin/tailscalesd --localapi";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "tailscale.service" ];
+    wants = [ "tailscale.service" ];
+    path = [ pkgs.tailscale tailscaled ];
     environment = {
-      TAILSCALE_PROMETHEUS_SD_CONFIG=./config.json;
-      PROMETHEUS_TARGETS_OUT=/run/tailscale-targets.json
-    }
+      ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH = "go1.21";
+    };
   };
 }

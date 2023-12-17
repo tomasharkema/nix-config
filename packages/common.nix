@@ -60,6 +60,9 @@ with pkgs;
   nix-serve
   nixfmt
   nixpkgs-fmt
+  nix-du
+  nil
+  nixd
   nnn
   nodejs
   patchelf
