@@ -1,5 +1,5 @@
 { pkgs
-  # , configs
+, config
 , ...
 }: {
   console = {
