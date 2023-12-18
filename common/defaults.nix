@@ -154,7 +154,7 @@ in
     in
     {
       enable = true;
-      description = "tailscale-prometheus-sd";
+      description = "attic-watch";
       unitConfig = {
         Type = "simple";
         StartLimitIntervalSec = 500;
@@ -166,8 +166,6 @@ in
       };
       script = "${attic-script}/bin/attic-script";
       wantedBy = [ "multi-user.target" ];
-      after = [ "tailscale.service" ];
-      wants = [ "tailscale.service" ];
       path = [ attic-bin attic-script ];
       environment = {
         ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH = "go1.21";
