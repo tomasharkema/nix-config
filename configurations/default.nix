@@ -1,4 +1,6 @@
-{ nixpkgs
+{
+  # config,
+  nixpkgs
 , nixos-generators
 , inputs
 , home-manager
@@ -18,7 +20,7 @@ let
   #     ../common/defaults.nix
   #   ];
   # };
-  base = (import ../common/defaults.nix (attrs));
+  # base = { config, ... }@attrs: (import ../common/defaults.nix (attrs));
   raspberrypis = (import ./raspberrypi.nix (attrs));
 in
 {
@@ -61,7 +63,7 @@ in
     system = "x86_64-linux";
 
     specialArgs = {
-      inherit inputs;
+      inherit inputs nixpkgs;
     };
 
     # specialArgs = attrs;
@@ -69,7 +71,8 @@ in
     modules = [
       inputs.nixos-hardware.nixosModules.common-cpu-intel
       inputs.nixos-hardware.nixosModules.common-pc-ssd
-      base
+      # base
+      ../common/defaults.nix
       disko.nixosModules.default
       ../machines/enceladus
       ../secrets
@@ -100,7 +103,7 @@ in
     modules = [
       nixos-hardware.nixosModules.common-cpu-intel
       # ./user-defaults.nix
-      base
+      ../common/defaults.nix
       disko.nixosModules.default
       # impermanence.nixosModules.impermanence
       ../machines/supermicro
@@ -131,7 +134,7 @@ in
     specialArgs = attrs;
     # specialArgs = { inherit inputs outputs; };
     modules = [
-      base
+      ../common/defaults.nix
       disko.nixosModules.default
       ../machines/utm-nixos/default.nix
       ../secrets
@@ -156,7 +159,7 @@ in
     system = "x86_64-linux";
     specialArgs = attrs;
     modules = [
-      base
+      ../common/defaults.nix
       disko.nixosModules.default
       ../machines/hyperv-nixos
       ../secrets
@@ -181,7 +184,7 @@ in
     specialArgs = attrs;
     # specialArgs = { inherit inputs outputs; };
     modules = [
-      base
+      ../common/defaults.nix
       disko.nixosModules.default
       ../machines/unraidferdorie/default.nix
       ../secrets
@@ -208,7 +211,7 @@ in
     # specialArgs = { inherit inputs outputs; };
     modules = [
       # ./user-defaults.nix
-      base
+      ../common/defaults.nix
       impermanence.nixosModule
       disko.nixosModules.default
       ../machines/cfserve
@@ -242,7 +245,7 @@ in
     # specialArgs = { inherit inputs outputs; };
     modules = [
       # ./user-defaults.nix
-      base
+      ../common/defaults.nix
       # impermanence.nixosModule
       # disko.nixosModules.default
       # ./machines/cfserve
@@ -281,12 +284,10 @@ in
   };
 
   darwinVM = nixpkgs.lib.nixosSystem {
-    system = "
-            aarch64-linux
-            ";
+    system = "aarch64-linux";
     specialArgs = attrs;
     modules = [
-      base
+      ../common/defaults.nix
       ../machines/utm-nixos/default.nix
 
       disko.nixosModules.default
