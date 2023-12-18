@@ -54,20 +54,12 @@ in
     exporters = {
       node = {
         enable = true;
-        enabledCollectors = [
-          "systemd"
-          "collectd"
-          "statsd"
-        ];
+        # enabledCollectors = [
+        #   "systemd"
+        #   "collectd"
+        #   "statsd"
+        # ];
       };
-      # systemd = {
-      #   enable = true;
-      #   port = 9003;
-      # };
-      # statsd = {
-      #   enable = true;
-      #   port = 9004;
-      # };
     };
   };
 

@@ -27,7 +27,7 @@ let
   mkiso = { ... }: pkgs.writeShellScriptBin "mkiso" ''
     LINK="./out/install.iso";
     nom build '.#nixosConfigurations.hyperv-nixos.config.formats.install-iso' --out-link $LINK
-    pv $LINK -cN in -B 100M | xz -T4 -9 | pv -cN out -B 100M > ./out/install.iso.tar.xz
+    pv $LINK -cN in -B 100M | xz -T4 -9 | pv -cN out -B 100M > ./out/install.iso.xz
   '';
 in
 
