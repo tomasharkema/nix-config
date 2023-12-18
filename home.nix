@@ -41,7 +41,7 @@ in
   ]; # ++ [ (lib.optional (stdenv.isLinux) (./apps/flatpak.nix)) ];
   # self.home-manager.backupFileExtension = "bak";
   home.packages =
-    (import ./packages/common.nix { inherit pkgs inputs; })
+    (import ./packages/common.nix attrs)
     ++ [ (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; }) ]
     ++ (import ./apps/statix { inherit pkgs; })
     ++ [
@@ -218,20 +218,30 @@ in
   # 	IdentityFile ~/.ssh/id_ed25519_cache.pub
 
   programs.ssh = {
+
+    enable = true;
+    forwardAgent = false;
+
+    # identityAgent = "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
+    extraConfig =
+      "IdentityAgent \"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock\""
+    ;
+
     matchBlocks = {
-      "*" =
-        {
-          identityAgent = "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
+      "*" = {
+        extraOptions = {
+          "IdentityAgent" = "\"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock\"";
         };
+      };
       enceladus = {
         hostname = "enceladus";
         user = "tomas";
         forwardAgent = true;
-        # Host enceladus
-        # 	User tomas
-        # 	HostName enceladus
-        # 	RequestTTY yes
-        # 	ForwardAgent yes
+      };
+      tower = {
+        hostname = "tower";
+        user = "root";
+        forwardAgent = true;
       };
     };
   };
@@ -244,24 +254,24 @@ in
   #     else "/Users/tomas/.config/gh/hosts.yml";
   # };
 
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
+  # home.file = {
+  #   # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+  #   # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+  #   # # symlink to the Nix store copy.
+  #   # ".screenrc".source = dotfiles/screenrc;
 
-    # # You can also set the file content immediately.
-    ".zshrc".text = ''
-        export EDITOR='subl -w'
-      #   # autoload -Uz compinit
-      #   # compinit
+  #   # # You can also set the file content immediately.
+  #   ".zshrc".text = ''
+  #       export EDITOR='subl -w'
+  #     #   # autoload -Uz compinit
+  #     #   # compinit
 
-      #   # source ~/.zsh/plugins/iterm2_shell_integration
-      #   # . ~/.zsh/plugins/iterm2_tmux_integration
+  #     #   # source ~/.zsh/plugins/iterm2_shell_integration
+  #     #   # . ~/.zsh/plugins/iterm2_tmux_integration
 
-        export PS1="%{$(iterm2_prompt_mark)%} $PS1";
-    '';
-  };
+  #       export PS1="%{$(iterm2_prompt_mark)%} $PS1";
+  #   '';
+  # };
 
   programs.git.enable = true;
   programs.git.userName = "Tomas Harkema";
