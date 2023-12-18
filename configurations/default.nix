@@ -163,7 +163,7 @@ in
     system = "x86_64-linux";
     specialArgs = attrs;
     modules = [
-      (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+      nixos-generators.nixosModules.all-formats
       ../common/defaults.nix
       disko.nixosModules.default
       ../machines/hyperv-nixos
