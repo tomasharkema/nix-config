@@ -52,6 +52,11 @@ in
 
   home.stateVersion = "23.11";
 
+  home.sessionVariables = lib.mkIf stdenv.isDarwin {
+    EDITOR = "subl";
+    SSH_AUTH_SOCK = "/Users/tomas/.1password/agent.sock";
+  };
+
   nixpkgs.config.allowUnfreePredicate = _: true;
   nixpkgs.config.allowUnfree = true;
 
@@ -220,14 +225,14 @@ in
     forwardAgent = true;
 
     # identityAgent = "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
-    extraConfig =
-      "IdentityAgent \"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock\""
-    ;
+    # extraConfig =
+    #   "IdentityAgent \"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock\""
+    # ;
 
     matchBlocks = {
       "*" = {
-        extraOptions = {
-          "IdentityAgent" = "\"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock\"";
+        extraOptions = lib.mkIf stdenv.isDarwin {
+          "IdentityAgent" = "/Users/tomas/.1password/agent.sock";
         };
       };
       enceladus = {
@@ -304,8 +309,8 @@ in
     enableSyntaxHighlighting = true;
     # initExtra = ''
     #   mkdir -p ~/.1password || true
-    #   ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock || true
-    #   export SSH_AUTH_SOCK=~/.1password/agent.sock
+    #   ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock /Users/tomas/.1password/agent.sock || true
+    #   export SSH_AUTH_SOCK=/Users/tomas/.1password/agent.sock
     # '';
     antidote = {
       enable = true;
