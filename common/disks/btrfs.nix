@@ -1,6 +1,6 @@
-{disks ? ["/dev/vda"], ...}: {
-  # services.btrfs.autoScrub.enable = true;
-  # services.snapper = { enable = true; };
+{ disks ? [ "/dev/vda" ], ... }: {
+  services.btrfs.autoScrub.enable = true;
+  services.snapper.snapshotRootOnBoot = true;
 
   disko.devices = {
     disk = {
@@ -27,26 +27,26 @@
               size = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = ["-f"]; # Override existing partition
+                extraArgs = [ "-f" ]; # Override existing partition
                 # Subvolumes must set a mountpoint in order to be mounted,
                 # unless their parent is mounted
                 subvolumes = {
                   # Subvolume name is different from mountpoint
-                  "/rootfs" = {mountpoint = "/";};
+                  "/rootfs" = { mountpoint = "/"; };
                   # Subvolume name is the same as the mountpoint
                   "/home" = {
-                    mountOptions = ["compress=zstd"];
+                    mountOptions = [ "compress=zstd" ];
                     mountpoint = "/home";
                   };
                   # Sub(sub)volume doesn't need a mountpoint as its parent is mounted
-                  "/home/user" = {};
+                  "/home/user" = { };
                   # Parent is not mounted so the mountpoint must be set
                   "/nix" = {
-                    mountOptions = ["compress=zstd" "noatime"];
+                    mountOptions = [ "compress=zstd" "noatime" ];
                     mountpoint = "/nix";
                   };
                   # This subvolume will be created but not mounted
-                  "/test" = {};
+                  "/test" = { };
                   # Subvolume for the swapfile
                   "/swap" = {
                     mountpoint = "/.swapvol";
@@ -60,8 +60,8 @@
 
                 mountpoint = "/partition-root";
                 swap = {
-                  swapfile = {size = "20M";};
-                  swapfile1 = {size = "20M";};
+                  swapfile = { size = "20M"; };
+                  swapfile1 = { size = "20M"; };
                 };
               };
             };
