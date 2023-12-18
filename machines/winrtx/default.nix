@@ -36,4 +36,6 @@
   };
 
   users.defaultUserShell = pkgs.zsh;
+
+  services.openssh.enable = true;
 }
