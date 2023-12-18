@@ -107,6 +107,7 @@ in
       "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
       "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
       defaults
+      ../common/defaults.nix
       agenix.nixosModules.default
       ../secrets
       ({ config, pkgs, lib, ... }: {
