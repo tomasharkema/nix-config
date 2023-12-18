@@ -47,7 +47,19 @@ let
           system = "aarch64-linux";
           maxJobs = 4;
           supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+        }
 
+        {
+          hostName = "enceladus";
+          system = "x86_64-linux";
+          maxJobs = 4;
+          supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+        }
+        {
+          hostName = "enceladus";
+          system = "aarch64-linux";
+          maxJobs = 4;
+          supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
         }
       ];
 
