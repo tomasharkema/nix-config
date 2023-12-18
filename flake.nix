@@ -231,8 +231,8 @@
             };
           };
           hyperv-nixos = {
-            # hostname = "100.67.146.61";
-            hostname = "192.168.1.74";
+            hostname = "172.25.17.176";
+            # hostname = "192.168.1.74";
             profiles.system = {
               user = "root";
               sshUser = "root";
@@ -354,3 +354,4 @@
       };
     });
 }
+

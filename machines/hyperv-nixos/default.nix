@@ -1,7 +1,10 @@
 { lib, ... }: {
   nixpkgs.system = "x86_64-linux";
   imports = [
-    # ../../apps/desktop.nix
+    ../../common/quiet-boot.nix
+    # ../../common/game-mode.nix
+    ../../apps/desktop.nix
+    # ../../apps/steam.nix
     ./hardware-configuration.nix
     # ./overlays/efi.nix
   ];
@@ -13,6 +16,7 @@
     {
       enable = lib.mkForce false;
     };
+  boot.growPartition = true;
 
   # deployment.tags = [ "vm" ];
   # deployment = {
@@ -30,6 +34,7 @@
   boot.loader.grub.enable = lib.mkDefault true;
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.efiInstallAsRemovable = true;
+  boot.loader.grub.devices = [ "nodev" ];
 
   security.tpm2.enable = true;
   security.tpm2.pkcs11.enable =
@@ -44,8 +49,6 @@
     # enable = true;
   };
 
-  services.tailscale.enable = lib.mkForce false;
-
-  # fileSystems."/".device = lib.mkForce "/dev/disk/by-label/NIXOS_SD";
+  fileSystems."/".device = lib.mkDefault "/dev/sda";
   # fileSystems."/boot".device = lib.mkForce "/dev/disk/by-label/ESP";
 }
