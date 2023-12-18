@@ -47,6 +47,8 @@ in
       maxJobs = 4;
       supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
       sshKey = "/var/lib/darwin-builder/keys/builder_ed25519";
+
+      speedFactor = 100;
     }
   ];
 
