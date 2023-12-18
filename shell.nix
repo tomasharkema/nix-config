@@ -23,6 +23,12 @@ let
     cd secrets; 
     ${inputs.agenix.packages.${system}.default}/bin/agenix -r
   '';
+
+  mkiso = { ... }: pkgs.writeShellScriptBin "mkiso" ''
+    LINK="./out/install.iso";
+    nom build '.#nixosConfigurations.hyperv-nixos.config.formats.install-iso' --out-link $LINK
+    tar -cf - $LINK | pv -cN in -B 100M | xz -T4 -9 | pv -cN out -B 100M > ./out/install.iso.tar.xz
+  '';
 in
 
 pkgs.mkShell {
@@ -31,7 +37,7 @@ pkgs.mkShell {
 
   packages = with pkgs; [
     (reencrypt { inherit system; })
-
+    (mkiso { })
     inputs.attic.packages.${system}.default
     inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
     deploy-machine

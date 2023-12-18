@@ -8,7 +8,7 @@ let
   unraidferdorie = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFS0T53Bwn00Vqhc9GHD+RY78LIKfWvMo2rvQOvGW+lQ root@nixos";
   utm-nixos = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICgPvSzMf7TG4ArvFFp8R/kfj6XYXkMl3r47FL5voIBN root@utm-nixos";
   cfserve = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHaCcdmZxFS197uAf7tBeAXV/RYl2WaShE9na67LyftQ root@cfserve";
-  hyperv-nixos = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPpdAXhywLokEcCBpBA05V6Q8enw4ImVnHHX4Uf8StvF root@hyperv-nixos";
+  hyperv-nixos = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGEOktjojvPwQn9yIexpAUlH6sLAiQWfKhV16wmJ7IQv root@hyperv-nixos";
   supermicro = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJRn81Pxfg4ttTocQnTUWirpC1QVeJ5bfPC63ET9fNVa root@supermicro";
   raspbii = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExHAekJ8mbudoEcFYJdJ58nSMyHFfNFrf84GIHuIeRY root@raspbii";
   winrtx-wsl = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICI2xzlzSsxv+6QSZ6rCeG0ma4HfIH3YWJj/P4GoQ3M/ root@nixos";
