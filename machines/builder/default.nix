@@ -25,13 +25,14 @@ let
 
           darwin-builder = {
             workingDirectory = "/var/lib/darwin-builder";
-            diskSize = 20000;
+            diskSize = 30000;
             memorySize = 4096;
           };
         };
 
         networking.useDHCP = true;
-        # environment.systemPackages = with pkgs; [ wget curl ];
+        environment.systemPackages = with pkgs; [ wget curl cacert ];
+
       }
     ];
   };
@@ -91,7 +92,7 @@ in
       maxJobs = 4;
       supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
       sshKey = "/var/lib/darwin-builder/keys/builder_ed25519";
-      speedFactor = 100;
+      speedFactor = 6;
     }
     {
       hostName = "builder@linux-builder";
@@ -99,7 +100,7 @@ in
       maxJobs = 4;
       supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
       sshKey = "/var/lib/darwin-builder/keys/builder_ed25519";
-      speedFactor = 100;
+      speedFactor = 6;
     }
   ];
 
