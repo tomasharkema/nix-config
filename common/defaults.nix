@@ -54,26 +54,29 @@ in
     exporters = {
       node = {
         enable = true;
-        enabledCollectors = [ "systemd" ];
-        port = 9002;
+        enabledCollectors = [
+          "systemd"
+          "collectd"
+          "statsd"
+        ];
       };
-      systemd = {
-        enable = true;
-        port = 9003;
-      };
-      statsd = {
-        enable = true;
-        port = 9004;
-      };
+      # systemd = {
+      #   enable = true;
+      #   port = 9003;
+      # };
+      # statsd = {
+      #   enable = true;
+      #   port = 9004;
+      # };
     };
   };
 
-  services.cadvisor =
-    {
-      enable = true;
+  # services.cadvisor =
+  #   {
+  #     enable = true;
 
-      port = 9005;
-    };
+  #     port = 9005;
+  #   };
 
   # Disable the GNOME3/GDM auto-suspend feature that cannot be disabled in GUI!
   # If no user is logged in, the machine will power down after 20 minutes.
