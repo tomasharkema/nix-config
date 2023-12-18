@@ -35,7 +35,7 @@
 
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;
-
+  nixpkgs.config.allowUnfree = true;
   boot.loader.grub.enable = lib.mkDefault true;
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.efiInstallAsRemovable = true;

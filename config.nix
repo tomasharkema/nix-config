@@ -5,12 +5,12 @@
     builders-use-substitutes = true;
     trusted-users = [ "root" "tomas" ];
     trusted-substituters = [
-      "https://nix-cache.harke.ma/"
-      "https://cache.nixos.org/"
+      "https://nix-cache.harke.ma/tomas"
+      "https://cache.nixos.org"
     ];
     trusted-binary-caches = [
-      "https://nix-cache.harke.ma/"
-      "https://cache.nixos.org/"
+      "https://nix-cache.harke.ma/tomas"
+      "https://cache.nixos.org"
     ];
     trusted-public-keys = [
       "nix-cache.harke.ma:2UhS18Tt0delyOEULLKLQ36uNX3/hpX4sH684B+cG3c="

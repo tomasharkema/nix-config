@@ -267,10 +267,11 @@ in
       };
       winrtx = {
         hostname = "192.168.1.46";
-        user = "tomas";
+        user = "root";
         forwardAgent = true;
         extraOptions = {
           "HostKeyAlgorithms" = "+ssh-rsa";
+          "PubkeyAcceptedAlgorithms" = "+ssh-rsa";
         };
       };
     };
