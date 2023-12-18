@@ -147,7 +147,7 @@ in
 
   systemd.services.attic-watch =
     let
-      attic-bin = lib.attrsets.getBin inputs.attic;
+      attic-bin = lib.attrsets.getBin inputs.attic.packages.default;
       attic-script = (pkgs.writeShellScriptBin "attic-script" ''
         ${lib.attrsets.getBin attic-bin}/bin/attic-bin watch-store tomas:tomas
       '');
