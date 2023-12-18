@@ -242,8 +242,8 @@
             };
           };
           supermicro = {
-            # hostname = "100.67.146.61";
-            hostname = "192.168.1.77";
+            hostname = "100.67.146.61";
+            # hostname = "192.168.1.77";
             profiles.system = {
               user = "root";
               sshUser = "root";

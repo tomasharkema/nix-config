@@ -31,6 +31,7 @@ let
         };
 
         networking.useDHCP = true;
+        # environment.systemPackages = with pkgs; [ wget curl ];
       }
     ];
   };
