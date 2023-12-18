@@ -44,6 +44,8 @@
     # enable = true;
   };
 
+  services.tailscale.enable = lib.mkForce false;
+
   # fileSystems."/".device = lib.mkForce "/dev/disk/by-label/NIXOS_SD";
   # fileSystems."/boot".device = lib.mkForce "/dev/disk/by-label/ESP";
 }

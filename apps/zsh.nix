@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.starship = {
     enable = true;
     # settings = {
@@ -41,7 +41,7 @@
         "sudo"
         "systemd"
         "tig"
-        # "tmux"
+        "tmux"
         "vi-mode"
         "yarn"
         "zsh-navigation-tools"
