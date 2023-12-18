@@ -11,7 +11,7 @@
 
   services.resilio =
     {
-      enable = lib.mkForce true;
+      enable = lib.mkForce false;
     };
 
   # deployment.tags = [ "vm" ];
@@ -43,4 +43,7 @@
     enable = lib.mkForce false;
     # enable = true;
   };
+
+  # fileSystems."/".device = lib.mkForce "/dev/disk/by-label/NIXOS_SD";
+  # fileSystems."/boot".device = lib.mkForce "/dev/disk/by-label/ESP";
 }

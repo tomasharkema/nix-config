@@ -13,6 +13,7 @@
   imports = [
     # nixos-hardware.nixosModules.common-cpu-intel
     ./hardware-configuration.nix
+    ../../apps/cockpit.nix
     # ../../common/quiet-boot.nix
     # ../../common/game-mode.nix
     # ../../apps/desktop.nix

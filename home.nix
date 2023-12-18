@@ -323,25 +323,13 @@ in
   };
 
   programs.zsh =
-    let
-      attic-bin = lib.attrsets.getBin inputs.attic.packages.${pkgs.system}.default;
-      attic-script = (pkgs.writeShellScriptBin "attic-script" ''
-        ${lib.attrsets.getBin attic-bin}/bin/attic login tomas https://nix-cache.harke.ma $(cat ${config.age.secrets.attic-key.path})
-        ${lib.attrsets.getBin attic-bin}/bin/attic use tomas:tomas
-      '');
-    in
     {
       enable = true;
       enableAutosuggestions = true;
       syntaxHighlighting.enable = true;
       enableVteIntegration = true;
       enableSyntaxHighlighting = true;
-      initExtra = ''
-        ${attic-script}/bin/attic-script
-        #   mkdir -p ~/.1password || true
-        #   ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock /Users/tomas/.1password/agent.sock || true
-        #   export SSH_AUTH_SOCK=/Users/tomas/.1password/agent.sock
-      '';
+
       antidote = {
         enable = true;
         plugins = [
