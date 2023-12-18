@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   tmux-super-fingers = pkgs.tmuxPlugins.mkTmuxPlugin {
     pluginName = "tmux-super-fingers";
     version = "unstable-2023-01-06";
@@ -30,8 +31,9 @@
       sha256 = "sha256-zpg7XJky7PRa5sC7sPRsU2ZOjj0wcepITLAelPjEkSI=";
     };
   };
-in {
-  home.packages = with pkgs; [lsof brotab];
+in
+{
+  home.packages = with pkgs; [ lsof brotab ];
 
   programs.tmux = {
     enable = true;
@@ -51,7 +53,6 @@ in {
 
       tmux-nvim
       tmuxPlugins.tmux-thumbs
-      # TODO: why do I have to manually set this
       {
         plugin = t-smart-manager;
         extraConfig = ''
@@ -63,7 +64,7 @@ in {
         plugin = tmux-super-fingers;
         extraConfig = "set -g @super-fingers-key f";
       }
-      # tmuxPlugins.sensible
+      tmuxPlugins.sensible
       {
         plugin = tmuxPlugins.resurrect;
         extraConfig = ''
@@ -95,9 +96,9 @@ in {
       {
         plugin =
           tmuxPlugins.fpp;
-        # extraConfig = ''
-        # set -g @plugin 'tmux-plugins/tmux-fpp'
-        # '';
+        extraConfig = ''
+          set -g @plugin 'tmux-plugins/tmux-fpp'
+        '';
       }
       {
         plugin = tmuxPlugins.sysstat;

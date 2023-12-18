@@ -25,8 +25,8 @@ let
 
           darwin-builder = {
             workingDirectory = "/var/lib/darwin-builder";
-            diskSize = 30000;
-            memorySize = 4096;
+            # diskSize = 30000;
+            # memorySize = 4096;
           };
         };
 
