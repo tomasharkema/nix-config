@@ -55,8 +55,6 @@ let
 
       nativeBuildInputs = [ pkgs.xz ];
 
-      # sourceRoot = "LaunchControl.app";
-
       installPhase = ''
         runHook preInstall
 
@@ -67,16 +65,15 @@ let
       '';
 
       meta = with lib; {
-        # description = "Take Control of Your Wireless Devices on macOS";
-        # longDescription = ''
-        #   Open your AirPods case next to your Mac to see the status right away, just like it works on your iPhone or iPad.
-        #   AirBuddy lives in your Menu Bar and can also show battery information for your iPhone, iPad, Apple Watch, Mouse, Keyboard, and more.
-        # '';
-        # homepage = "https://v2.airbuddy.app";
-        # changelog = "https://support.airbuddy.app/articles/airbuddy-2-changelog";
-        # license = with licenses; [ unfree ];
+        description = "LaunchControl";
+        longDescription = ''
+          LaunchControl
+        '';
+        homepage = "https://v2.airbuddy.app";
+        changelog = "https://support.airbuddy.app/articles/airbuddy-2-changelog";
+        license = with licenses; [ unfree ];
         sourceProvenance = with sourceTypes; [ binaryNativeCode ];
-        maintainers = with maintainers; [ stepbrobd ];
+        maintainers = with maintainers; [ tomasharkema ];
         platforms = [ "aarch64-darwin" "x86_64-darwin" ];
       };
     });
