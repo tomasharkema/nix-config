@@ -79,6 +79,10 @@ in
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
       home-manager.nixosModules.home-manager
+      ({
+        nixpkgs.config.allowUnfree = true;
+        nixpkgs.config.allowUnfreePredicate = _: true;
+      })
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
@@ -159,6 +163,7 @@ in
     system = "x86_64-linux";
     specialArgs = attrs;
     modules = [
+      (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
       ../common/defaults.nix
       disko.nixosModules.default
       ../machines/hyperv-nixos

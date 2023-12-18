@@ -260,6 +260,11 @@ in
         user = "root";
         forwardAgent = true;
       };
+      hyperv-nixos = {
+        hostname = "hyperv-nixos";
+        user = "tomas";
+        forwardAgent = true;
+      };
     };
   };
 

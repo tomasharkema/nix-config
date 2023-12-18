@@ -5,7 +5,7 @@
     ./hardware-configuration.nix
     # ./overlays/efi.nix
   ];
-
+  nixpkgs.config.allowUnfree = true;
   networking.hostName = "hyperv-nixos";
   networking.hostId = "a5a1dad6";
   # deployment.tags = [ "vm" ];
