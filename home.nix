@@ -3,12 +3,37 @@
 , pkgs
 , lib
 , hostname
-, # homeDirectory ? "/home/tomas",
-  # username ? "tomas",
-  ...
+, ...
 } @ attrs:
 let
   inherit (pkgs) stdenv;
+
+  tmux-menu = pkgs.writeShellScriptBin "tmux-menu" ''
+    # Get a list of existing tmux sessions:
+    TMUX_SESSIONS=$(tmux ls | awk -F: '{print $1}')
+
+    # If there are no existing sessions:
+    if [[ -z $TMUX_SESSIONS ]]; then
+        echo "No existing tmux sessions. Creating a new session called 'default'..."
+        tmux new -s default
+    else
+        # Present a menu to the user:
+        echo "Existing tmux sessions:"
+        echo "$TMUX_SESSIONS"
+        echo "Enter the name of the session you want to attach to, or 'new' to create a new session: "
+        read user_input
+
+        # Attach to the chosen session, or create a new one:
+        if [[ $user_input == "new" ]]; then
+            echo "Enter name for new session: "
+            read new_session_name
+            tmux new -s $new_session_name
+        else
+            tmux attach -t $user_input
+        fi
+    fi
+  '';
+
 in
 {
   # nix.settings = {
@@ -205,7 +230,7 @@ in
   # 	RequestTTY yes
   # 	ForwardAgent yes
 
-  # # RemoteCommand tmux -CC new -A -s main
+  # # RemoteCommand = "tmux -CC new -A -s main
   # Host unraidferdorie
   # 	User tomas
   # 	HostName unraidferdorie
@@ -239,37 +264,71 @@ in
         hostname = "enceladus";
         user = "tomas";
         forwardAgent = true;
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new -A -s foobar";
+          # RemoteCommand = "${tmux-menu} || tmux";
+        };
       };
       raspbii = {
         hostname = "raspbii";
         user = "tomas";
         forwardAgent = true;
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new -A -s foobar";
+          # RemoteCommand = "${tmux-menu} || tmux";
+        };
       };
       supermicro = {
         hostname = "supermicro";
         user = "tomas";
         forwardAgent = true;
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new -A -s foobar";
+          # RemoteCommand = "${tmux-menu} || tmux";
+        };
       };
       cfserve = {
         hostname = "cfserve";
         user = "tomas";
         forwardAgent = true;
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new -A -s foobar";
+          # RemoteCommand = "${tmux-menu} || tmux";
+        };
       };
       tower = {
         hostname = "tower";
         user = "root";
         forwardAgent = true;
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new -A -s foobar";
+          # RemoteCommand = "${tmux-menu} || tmux";
+        };
       };
       hyperv-nixos = {
         hostname = "hyperv-nixos";
         user = "tomas";
         forwardAgent = true;
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new -A -s foobar";
+          # RemoteCommand = "${tmux-menu} || tmux";
+        };
       };
       winrtx = {
         hostname = "192.168.1.46";
         user = "root";
         forwardAgent = true;
         extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new -A -s foobar";
+          # RemoteCommand = "${tmux-menu} || tmux";
+
           "HostKeyAlgorithms" = "+ssh-rsa";
           "PubkeyAcceptedAlgorithms" = "+ssh-rsa";
         };
@@ -358,7 +417,7 @@ in
         rm = "rm -i";
         g = "git";
         gs = "git status";
-        pvxz = "pv @1 -N in | xz -9 | pv -N out > @2";
+        pvxz = "pv @1 -N in -B 500M | xz -e9 -T4 | pv -N out -B 500M > @2";
         # subl = (lib.mkIf stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
         # dev = ''
         #   nix develop --profile dev-profile -c true && \
