@@ -1,82 +1,32 @@
 { config
-, nixpkgs
-, pkgs
+, # , nixpkgs
+  # ,
+  pkgs
 , inputs
+, lib
 , ...
 } @ attrs:
 let
-  lib = nixpkgs.lib;
+  # lib = nixpkgs.lib;
   common = import ../packages/common.nix (attrs);
   gui = import ../packages/gui.nix (attrs);
 in
 {
+  # nixpkgs.config.allowUnfree = true;
   hardware.enableAllFirmware = true;
   # system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
   system.stateVersion = "23.11";
   # boot.binfmt.emulatedSystems = [ "aarch64-linux" "x86_64-linux" ];
-  imports = [ ../apps/resilio.nix ../apps/tailscale ];
+  imports = [ ../apps/resilio.nix ../apps/tailscale ./users.nix ];
 
   environment.systemPackages = common ++ gui;
-
-  nix.distributedBuilds = true;
-  # optional, useful when the builder has a faster internet connection than yours
-  nix.extraOptions = ''
-    builders-use-substitutes = true
-  '';
-
-  nix.settings = {
-    extra-experimental-features = "nix-command flakes";
-    # distributedBuilds = true;
-    trusted-users = [ "root" "tomas" ];
-    extra-substituters = [
-      "https://nix-cache.harke.ma/"
-      "https://cache.nixos.org/"
-    ];
-    extra-binary-caches = [
-      "https://nix-cache.harke.ma/"
-      "https://cache.nixos.org/"
-    ];
-    extra-trusted-public-keys = [
-
-      "nix-cache.harke.ma:2UhS18Tt0delyOEULLKLQ36uNX3/hpX4sH684B+cG3c="
-    ];
-    access-tokens = [ "github.com=***REMOVED***" ];
-  };
-
-  programs.zsh = { enable = true; };
-  users.users.tomas.shell = pkgs.zsh;
 
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Amsterdam";
 
-  security.sudo.wheelNeedsPassword = false;
-  nixpkgs.config.allowUnfree = true;
-
-  users.mutableUsers = false;
-
-  users.users.tomas = {
-    isNormalUser = true;
-    description = "tomas";
-    extraGroups = [ "networkmanager" "wheel" "rslsync" ];
-    hashedPassword = "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
-
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQkKn73qM9vjYIaFt94Kj/syd5HCw2GdpiZ3z5+Rp/r tomas@supermicro"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJRn81Pxfg4ttTocQnTUWirpC1QVeJ5bfPC63ET9fNVa root@supermicro"
-    ];
-  };
-  users.groups.tomas = {
-    name = "tomas";
-    members = [ "tomas" ];
-    gid = 1666;
-  };
   services.eternal-terminal.enable = true;
-
-  # users.users."tomas".hashedPassword =
-  #   config.users.users."tomas".initialHashedPassword;
 
   services.openssh = {
     enable = true;
