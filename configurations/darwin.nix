@@ -157,6 +157,23 @@ in
           # home.username = lib.mkDefault "tomas";
 
         }
+        ({ pkgs, ... }:
+          let
+            maclaunch = pkgs.fetchFromGitHub {
+              owner = "hazcod";
+              repo = "maclaunch";
+              rev = "0a4962623dffa84050b5b778edb69f8603fa6c1a";
+              hash = "sha256-CA0bT1auUkDdboQeb7FDl2HM2AMoocrU2/hmBbNYK8A=";
+            };
+          in
+          {
+            environment.systemPackages = [
+              (pkgs.writeShellScriptBin "attic-script" ''
+                ${lib.attrsets.getBin maclaunch}/bin/maclaunch
+              '')
+            ];
+          }
+        )
       ];
     };
 }
