@@ -145,7 +145,6 @@ in
           home-manager.users.tomas.imports = [
             agenix.homeManagerModules.default
             ../home.nix
-
             ({
               home.homeDirectory = lib.mkForce "/Users/tomas";
             })
