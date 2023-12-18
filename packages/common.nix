@@ -1,9 +1,10 @@
 { pkgs
 , inputs
 , ...
-}:
+}@attrs:
 let
   darwin-build = import ../apps/darwin-build.nix;
+  nixpkgs-build = import ./nixpkgs.nix;
 in
 with pkgs;
 [
@@ -13,12 +14,9 @@ with pkgs;
   autojump
   bash
   bat
-  # bfg-repo-cleaner
   bottom
   btop
   cheat
-  colima
-  colmena
   comma
   coreutils
   curl
@@ -81,7 +79,7 @@ with pkgs;
   #   nix-cache-watcher sign-store -k ~/Developer/nix-config/cache-priv-key.pem -v && nix-cache-watcher upload-diff -r "https://nix-cache.harke.ma/" -v
   # '')
 ]
-++ (darwin-build { inherit pkgs; })
+++ (darwin-build attrs) ++ (nixpkgs-build attrs)
 # home.packages = with pkgs; [
 #   ldns
 #   eza

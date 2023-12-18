@@ -1,5 +1,4 @@
-{ self
-, nixpkgs
+{ nixpkgs
 , nixos-generators
 , inputs
 , home-manager
@@ -13,13 +12,14 @@
 , ...
 } @ attrs:
 let
-  base = {
-    imports = [
-      # nixos-generators.nixosModules.all-formats
-      ../common/defaults.nix
-    ];
-  };
-  raspberrypis = (import ./raspberrypi.nix) (attrs);
+  # base = {
+  #   imports = [
+  #     # nixos-generators.nixosModules.all-formats
+  #     ../common/defaults.nix
+  #   ];
+  # };
+  base = (import ../common/defaults.nix (attrs));
+  raspberrypis = (import ./raspberrypi.nix (attrs));
 in
 {
   raspberrypi-3 = raspberrypis.raspberrypi-3;

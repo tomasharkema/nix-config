@@ -116,7 +116,9 @@
       home = {
         # home-manager.useGlobalPkgs = true;
         # home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit inputs; };
+        home-manager.extraSpecialArgs = {
+          inherit inputs;
+        };
         home-manager.users.tomas.imports = [ agenix.homeManagerModules.default ./home.nix ];
         home-manager.backupFileExtension = "bak";
       };
@@ -128,23 +130,21 @@
 
       colmena = import ./colmena.nix (inputs // { inherit inputs; });
 
-      nixosConfigurations =
-        import ./configurations (inputs // { inherit inputs pkgsFor; });
+      nixosConfigurations = (import ./configurations (inputs // {
+        inherit inputs pkgsFor;
+      }));
 
-      darwinConfigurations = import ./configurations/darwin.nix (inputs // {
-        inherit lib;
-      });
+      darwinConfigurations =
+        import ./configurations/darwin.nix (inputs // {
+          inherit inputs lib;
+        });
 
       homeConfigurations = {
         "root@tower" = home-manager.lib.homeManagerConfiguration {
           # system = "x86_64-linux";
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
 
-          extraSpecialArgs = {
-            inherit inputs;
-            # username = "root";
-            # homeDirectory = "/root";
-          };
+          extraSpecialArgs = { inherit inputs; };
           modules = [
             # home 
             agenix.homeManagerModules.default
@@ -333,7 +333,11 @@
       };
 
       devShells = {
-        default = import ./shell.nix { inherit pkgs system inputs nixpkgs agenix nix-index-database nix-cache-watcher attic; }; # {
+        default = import ./shell.nix (inputs // {
+          inherit inputs;
+          inherit pkgs;
+          inherit nixpkgs;
+        }); # {
       };
     });
 }

@@ -1,5 +1,6 @@
-{ self
-, nix-darwin
+{
+  #self,
+  nix-darwin
 , nixpkgs
 , lib
 , ...
@@ -24,8 +25,8 @@ let
 
           darwin-builder = {
             workingDirectory = "/var/lib/darwin-builder";
-            # diskSize = 5120;
-            memorySize = 2048;
+            diskSize = 10120;
+            memorySize = 4096;
           };
         };
 

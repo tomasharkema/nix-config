@@ -1,8 +1,9 @@
-{ pkgs, agenix, attic, nix-cache-watcher, ... }: with pkgs; [
+{ pkgs, inputs, ... }:
+with pkgs; [
 
-  agenix.packages.${system}.default
-  attic.packages.${system}.default
-  nix-cache-watcher.packages.${system}.nix-cache-watcher
+  inputs.agenix.packages.${system}.default
+  inputs.attic.packages.${system}.default
+  inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
   manix
 
   nil
