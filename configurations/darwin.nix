@@ -36,35 +36,35 @@ let
       #tower aarch64-linux - 100 1 big-parallel,benchmark,kvm
 
       nix.buildMachines = [
-        {
-          hostName = "supermicro";
-          system = "x86_64-linux";
-          maxJobs = 4;
-          supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
-          speedFactor = 7;
-        }
-        {
-          hostName = "supermicro";
-          system = "aarch64-linux";
-          maxJobs = 4;
-          supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
-          speedFactor = 5;
-        }
+        # {
+        #   hostName = "supermicro";
+        #   system = "x86_64-linux";
+        #   maxJobs = 4;
+        #   supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+        #   speedFactor = 7;
+        # }
+        # {
+        #   hostName = "supermicro";
+        #   system = "aarch64-linux";
+        #   maxJobs = 4;
+        #   supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+        #   speedFactor = 5;
+        # }
 
-        {
-          hostName = "enceladus";
-          system = "x86_64-linux";
-          maxJobs = 4;
-          supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
-          speedFactor = 10;
-        }
-        {
-          hostName = "enceladus";
-          system = "aarch64-linux";
-          maxJobs = 4;
-          supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
-          speedFactor = 5;
-        }
+        # {
+        #   hostName = "enceladus";
+        #   system = "x86_64-linux";
+        #   maxJobs = 4;
+        #   supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+        #   speedFactor = 10;
+        # }
+        # {
+        #   hostName = "enceladus";
+        #   system = "aarch64-linux";
+        #   maxJobs = 4;
+        #   supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+        #   speedFactor = 5;
+        # }
       ];
 
       nix.extraOptions = ''
