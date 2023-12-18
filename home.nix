@@ -290,6 +290,16 @@ in
           # RemoteCommand = "${tmux-menu} || tmux";
         };
       };
+      "supermicro-*" = {
+        hostname = "supermicro";
+        user = "tomas";
+        forwardAgent = true;
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new -A -s \$\{\%n\}";
+          # RemoteCommand = "${tmux-menu} || tmux";
+        };
+      };
       cfserve = {
         hostname = "cfserve";
         user = "tomas";

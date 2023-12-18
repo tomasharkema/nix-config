@@ -134,6 +134,7 @@ in
       serviceConfig = {
         Restart = "on-failure";
         RestartSec = 5;
+        MemoryLimit = "1G";
       };
       script = "${lib.attrsets.getBin attic-script}/bin/attic-script";
       wantedBy = [ "multi-user.target" ];
