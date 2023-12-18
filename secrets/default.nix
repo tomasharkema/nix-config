@@ -6,6 +6,12 @@ _: {
   #   group = "tomas";
   #   path = "/tmp/atuin.key";
   # };
+  age.secrets.attic-key = {
+    file = ./attic-key.age;
+    mode = "770";
+    # owner = "tomas";
+    # group = "tomas";
+  };
   age.secrets.tailscale = {
     file = ./tailscale.age;
     # mode = "770";
