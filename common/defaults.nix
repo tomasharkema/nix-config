@@ -8,8 +8,8 @@
 , ...
 } @ attrs:
 let
-  common = import ../packages/common.nix { inherit pkgs inputs; };
-  gui = import ../packages/gui.nix { inherit pkgs; };
+  common = import ../packages/common.nix (attrs);
+  gui = import ../packages/gui.nix (attrs);
 in
 {
   hardware.enableAllFirmware = true;
@@ -31,7 +31,6 @@ in
     # distributedBuilds = true;
     trusted-users = [ "root" "tomas" ];
     extra-substituters = [
-      # "ssh://nix-ssh@tower.ling-lizard.ts.net"
       "https://nix-cache.harke.ma/"
       "https://cache.nixos.org/"
     ];

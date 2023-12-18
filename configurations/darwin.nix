@@ -1,12 +1,19 @@
-{ nix-darwin, nix-index-database, agenix, home-manager, lib, nixpkgs, ... }@inputs:
+{ nix-darwin
+, nix-index-database
+, agenix
+, home-manager
+, lib
+, nixpkgs
+, inputs
+, ...
+}@attrs:
 let
-  builder = import ../machines/builder (inputs);
+  builder = import ../machines/builder (attrs);
 
   settings =
     ({ pkgs
      , inputs
      , ...
-
      }: {
 
       #eu.nixbuild.net x86_64-linux - 100 1 big-parallel,benchmark
@@ -40,6 +47,7 @@ let
           system = "aarch64-linux";
           maxJobs = 4;
           supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+
         }
       ];
 
@@ -88,14 +96,18 @@ in
 {
   builder = nix-darwin.lib.darwinSystem {
     system = "aarch64-darwin";
-    specialArgs = { inherit inputs; };
+    specialArgs = {
+      inherit inputs;
+    };
     modules = [ builder ];
   };
 
   "MacBook-Pro-van-Tomas" = nix-darwin.lib.darwinSystem
     {
       system = "aarch64-darwin";
-      specialArgs = { inherit inputs; };
+      specialArgs = {
+        inherit inputs;
+      };
 
       modules = [
         builder
@@ -116,7 +128,7 @@ in
           # home-manager.useGlobalPkgs = true;
           # home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
-            inherit inputs;
+            inherit (attrs) inputs;
           };
           home-manager.users.tomas.imports = [
             agenix.homeManagerModules.default
