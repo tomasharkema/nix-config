@@ -220,7 +220,7 @@ in
   programs.ssh = {
 
     enable = true;
-    forwardAgent = false;
+    forwardAgent = true;
 
     # identityAgent = "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
     extraConfig =
@@ -235,6 +235,21 @@ in
       };
       enceladus = {
         hostname = "enceladus";
+        user = "tomas";
+        forwardAgent = true;
+      };
+      raspbii = {
+        hostname = "raspbii";
+        user = "tomas";
+        forwardAgent = true;
+      };
+      supermicro = {
+        hostname = "supermicro";
+        user = "tomas";
+        forwardAgent = true;
+      };
+      cfserve = {
+        hostname = "cfserve";
         user = "tomas";
         forwardAgent = true;
       };
