@@ -53,6 +53,7 @@ in
   programs.nix-ld.enable = true;
 
   systemd.packages = [ tailscaled pkgs.tailscale ];
+
   systemd.services.tailscalesd = {
     enable = true;
     description = "tailscale-prometheus-sd";
