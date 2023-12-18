@@ -38,11 +38,11 @@
     # distributedBuilds = true;
     trusted-users = [ "root" "tomas" ];
     extra-substituters = [
-      "https://nix-cache.harke.ma/"
+      "https://nix-cache.harke.ma/tomas"
       "https://cache.nixos.org/"
     ];
     extra-binary-caches = [
-      "https://nix-cache.harke.ma/"
+      "https://nix-cache.harke.ma/tomas"
       "https://cache.nixos.org/"
     ];
     extra-trusted-public-keys = [

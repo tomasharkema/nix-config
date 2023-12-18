@@ -1,13 +1,19 @@
 { lib, ... }: {
   nixpkgs.system = "x86_64-linux";
   imports = [
-    ../../apps/desktop.nix
+    # ../../apps/desktop.nix
     ./hardware-configuration.nix
     # ./overlays/efi.nix
   ];
   nixpkgs.config.allowUnfree = true;
   networking.hostName = "hyperv-nixos";
   networking.hostId = "a5a1dad6";
+
+  services.resilio =
+    {
+      enable = lib.mkForce true;
+    };
+
   # deployment.tags = [ "vm" ];
   # deployment = {
   #   targetHost = "100.64.161.30";
