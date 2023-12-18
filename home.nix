@@ -45,9 +45,6 @@ in
     ++ [ (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; }) ]
     ++ (import ./apps/statix { inherit pkgs; })
     ++ [
-      # (pkgs.writeShellScriptBin "ap" ''
-      #   exec attic push tomas:tomas $@
-      # '')
       pkgs.nixd
     ];
   home.username = lib.mkDefault "tomas";
