@@ -315,118 +315,134 @@ in
   programs.skim.enable = true;
   fonts.fontconfig.enable = true;
 
-  programs.zsh = {
-    enable = true;
-    enableAutosuggestions = true;
-    syntaxHighlighting.enable = true;
-    enableVteIntegration = true;
-    enableSyntaxHighlighting = true;
-    # initExtra = ''
-    #   mkdir -p ~/.1password || true
-    #   ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock /Users/tomas/.1password/agent.sock || true
-    #   export SSH_AUTH_SOCK=/Users/tomas/.1password/agent.sock
-    # '';
-    antidote = {
-      enable = true;
-      plugins = [
-        "zsh-users/zsh-completions"
-        "zsh-users/zsh-history-substring-search"
-      ];
-    };
-    autocd = true;
-    history.extended = true;
-    history.expireDuplicatesFirst = true;
-    historySubstringSearch = {
-      enable = true;
-      # searchUpKey = "^[OA";
-      # searchDownKey = "^[OB";
-    };
-
-    # autosuggestions.strategy = [ "history" "completion" "match_prev_cmd" ];
-
-    shellAliases = {
-      ll = "ls -l";
-      ls = "exa";
-      la = "exa -a";
-      grep = "grep --color=auto";
-      cp = "cp -i";
-      mv = "mv -i";
-      rm = "rm -i";
-      g = "git";
-      gs = "git status";
-      pvxz = "pv @1 -N in | xz -9 | pv -N out > @2";
-      # subl = (lib.mkIf stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
-      # dev = ''
-      #   nix develop --profile dev-profile -c true && \
-      #     cachix push tomasharkema dev-profile && \
-      #     exec nix develop --profile dev-profile
-      # '';
-      # updatehome = ''
-      #   nix build ~/Developer/nix-config#homeConfigurations."tomas@$(hostname)".activationPackage --json \
-      #     | jq -r '.[].outputs | to_entries[].value' \
-      #     | cachix push tomasharkema
-      # '';
-      # upload-to-cache = ''
-      #   set -eu; \
-      #   set -f ; \
-      #   export IFS=' ' ; \
-      #   echo "Signing and uploading paths" $OUT_PATHS ; \
-      #   exec nix copy --to 'http://tower.ling-lizard.ts.net:6666/' $OUT_PATHS'';
-
-      # upload-after-build = ''
-      #   jq -r '.[].outputs | to_entries[].value' | nix copy --to 'https://nix-cache.harke.ma' --stdin
-      # '';
-    };
-
-    plugins = [
-      {
-        name = "iterm2_shell_integration";
-        src = pkgs.fetchurl {
-          url = "https://iterm2.com/shell_integration/zsh";
-          sha256 = "1xk6kx5kdn5wbqgx2f63vnafhkynlxnlshxrapkwkd9zf2531bqa";
-          # date = 2022-12-28T10:15:23-0800;
-        };
-      }
-      {
-        name = "iterm2_tmux_integration";
-        src = pkgs.fetchurl {
-          url =
-            "https://gist.githubusercontent.com/antifuchs/c8eca4bcb9d09a7bbbcd/raw/3ebfecdad7eece7c537a3cd4fa0510f25d02611b/iterm2_zsh_init.zsh";
-          sha256 = "1v1b6yz0lihxbbg26nvz85c1hngapiv7zmk4mdl5jp0fsj6c9s8c";
-          # date = 2022-12-28T10:15:27-0800;
-        };
-      }
-    ];
-
-    oh-my-zsh = {
-      enable = true;
-      plugins = [
-        "1password"
-        "autojump"
-        "aws"
-        "colorize"
-        "docker"
-        "encode64"
-        "fzf"
-        "git-extras"
-        "git"
-        "git"
-        "gitignore"
-        "macos"
-        "man"
-        "mix"
-        "nmap"
-        "sudo"
-        "sudo"
-        "systemd"
-        "thefuck"
-        "tig"
-        "tmux"
-        "vi-mode"
-        "yarn"
-        "zsh-navigation-tools"
-      ];
-      theme = "robbyrussell";
-    };
+  age.secrets.attic-key = {
+    file = ./secrets/attic-key.age;
+    mode = "770";
+    # owner = "tomas";
+    # group = "tomas";
   };
+
+  programs.zsh =
+    let
+      attic-bin = lib.attrsets.getBin inputs.attic.packages.${pkgs.system}.default;
+      attic-script = (pkgs.writeShellScriptBin "attic-script" ''
+        ${lib.attrsets.getBin attic-bin}/bin/attic login tomas https://nix-cache.harke.ma $(cat ${config.age.secrets.attic-key.path})
+        ${lib.attrsets.getBin attic-bin}/bin/attic use tomas:tomas
+      '');
+    in
+    {
+      enable = true;
+      enableAutosuggestions = true;
+      syntaxHighlighting.enable = true;
+      enableVteIntegration = true;
+      enableSyntaxHighlighting = true;
+      initExtra = ''
+        ${attic-script}/bin/attic-script
+        #   mkdir -p ~/.1password || true
+        #   ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock /Users/tomas/.1password/agent.sock || true
+        #   export SSH_AUTH_SOCK=/Users/tomas/.1password/agent.sock
+      '';
+      antidote = {
+        enable = true;
+        plugins = [
+          "zsh-users/zsh-completions"
+          "zsh-users/zsh-history-substring-search"
+        ];
+      };
+      autocd = true;
+      history.extended = true;
+      history.expireDuplicatesFirst = true;
+      historySubstringSearch = {
+        enable = true;
+        # searchUpKey = "^[OA";
+        # searchDownKey = "^[OB";
+      };
+
+      # autosuggestions.strategy = [ "history" "completion" "match_prev_cmd" ];
+
+      shellAliases = {
+        ll = "ls -l";
+        ls = "exa";
+        la = "exa -a";
+        grep = "grep --color=auto";
+        cp = "cp -i";
+        mv = "mv -i";
+        rm = "rm -i";
+        g = "git";
+        gs = "git status";
+        pvxz = "pv @1 -N in | xz -9 | pv -N out > @2";
+        # subl = (lib.mkIf stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
+        # dev = ''
+        #   nix develop --profile dev-profile -c true && \
+        #     cachix push tomasharkema dev-profile && \
+        #     exec nix develop --profile dev-profile
+        # '';
+        # updatehome = ''
+        #   nix build ~/Developer/nix-config#homeConfigurations."tomas@$(hostname)".activationPackage --json \
+        #     | jq -r '.[].outputs | to_entries[].value' \
+        #     | cachix push tomasharkema
+        # '';
+        # upload-to-cache = ''
+        #   set -eu; \
+        #   set -f ; \
+        #   export IFS=' ' ; \
+        #   echo "Signing and uploading paths" $OUT_PATHS ; \
+        #   exec nix copy --to 'http://tower.ling-lizard.ts.net:6666/' $OUT_PATHS'';
+
+        # upload-after-build = ''
+        #   jq -r '.[].outputs | to_entries[].value' | nix copy --to 'https://nix-cache.harke.ma' --stdin
+        # '';
+      };
+
+      plugins = [
+        {
+          name = "iterm2_shell_integration";
+          src = pkgs.fetchurl {
+            url = "https://iterm2.com/shell_integration/zsh";
+            sha256 = "1xk6kx5kdn5wbqgx2f63vnafhkynlxnlshxrapkwkd9zf2531bqa";
+            # date = 2022-12-28T10:15:23-0800;
+          };
+        }
+        {
+          name = "iterm2_tmux_integration";
+          src = pkgs.fetchurl {
+            url =
+              "https://gist.githubusercontent.com/antifuchs/c8eca4bcb9d09a7bbbcd/raw/3ebfecdad7eece7c537a3cd4fa0510f25d02611b/iterm2_zsh_init.zsh";
+            sha256 = "1v1b6yz0lihxbbg26nvz85c1hngapiv7zmk4mdl5jp0fsj6c9s8c";
+            # date = 2022-12-28T10:15:27-0800;
+          };
+        }
+      ];
+
+      oh-my-zsh = {
+        enable = true;
+        plugins = [
+          "1password"
+          "autojump"
+          "aws"
+          "colorize"
+          "docker"
+          "encode64"
+          "fzf"
+          "git-extras"
+          "git"
+          "git"
+          "gitignore"
+          "macos"
+          "man"
+          "mix"
+          "nmap"
+          "sudo"
+          "sudo"
+          "systemd"
+          "thefuck"
+          "tig"
+          "tmux"
+          "vi-mode"
+          "yarn"
+          "zsh-navigation-tools"
+        ];
+        theme = "robbyrussell";
+      };
+    };
 }

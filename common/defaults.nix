@@ -97,7 +97,7 @@ in
     let
       attic-bin = lib.attrsets.getBin inputs.attic.packages.${pkgs.system}.default;
       attic-script = (pkgs.writeShellScriptBin "attic-script" ''
-        attic login tomas https://nix-cache.harke.ma eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzQxMzY4OTIsInN1YiI6ImxvY2FsIiwiaHR0cHM6Ly9qd3QuYXR0aWMucnMvdjEiOnsiY2FjaGVzIjp7InRvbWFzIjp7InIiOjEsInciOjEsImNjIjoxfX19fQ.uifk_Hgd3Am_oCd8XbCU-4KSqYap_3Y_qjlWZOHLSEE
+        ${lib.attrsets.getBin attic-bin}/bin/attic login tomas https://nix-cache.harke.ma $(cat ${config.age.secrets.attic-key.path})
         ${lib.attrsets.getBin attic-bin}/bin/attic use tomas:tomas
         ${lib.attrsets.getBin attic-bin}/bin/attic watch-store tomas:tomas
       '');
