@@ -242,7 +242,7 @@
             };
           };
           supermicro = {
-            hostname = "100.67.146.61";
+            hostname = "172.25.172.112";
             # hostname = "192.168.1.77";
             profiles.system = {
               user = "root";
@@ -315,6 +315,9 @@
 
         installiso =
           self.nixosConfigurations.live.config.system.build.isoImage;
+
+        hyperv-installiso =
+          self.nixosConfigurations.hyperv-nixos.config.system.build.isoImage;
 
         netboot =
           self.nixosConfigurations.netboot.config.system.build.toplevel;
