@@ -22,6 +22,10 @@ let
   # };
   # base = { config, ... }@attrs: (import ../common/defaults.nix (attrs));
   raspberrypis = (import ./raspberrypi.nix (attrs));
+  nonfree = { ... }: {
+    nixpkgs.config.allowUnfree = true;
+    nixpkgs.config.allowUnfreePredicate = _: true;
+  };
 in
 {
   raspberrypi-3 = raspberrypis.raspberrypi-3;
@@ -63,7 +67,7 @@ in
     system = "x86_64-linux";
 
     specialArgs = {
-      inherit inputs nixpkgs;
+      inherit inputs; #  nixpkgs;
     };
 
     # specialArgs = attrs;
@@ -79,10 +83,7 @@ in
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
       home-manager.nixosModules.home-manager
-      ({
-        nixpkgs.config.allowUnfree = true;
-        nixpkgs.config.allowUnfreePredicate = _: true;
-      })
+      nonfree
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
@@ -113,11 +114,13 @@ in
       ../machines/supermicro
       ../secrets
       agenix.nixosModules.default
+      nonfree
       ({ lib, ... }: {
         services.tailscale = {
           useRoutingFeatures = lib.mkForce "both";
         };
       })
+
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
@@ -144,6 +147,7 @@ in
       ../secrets
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
+      nonfree
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
@@ -169,6 +173,7 @@ in
       ../machines/hyperv-nixos
       ../secrets
       agenix.nixosModules.default
+      nonfree
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
@@ -194,6 +199,7 @@ in
       ../machines/unraidferdorie/default.nix
       ../secrets
       agenix.nixosModules.default
+      nonfree
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
@@ -223,6 +229,7 @@ in
       ../secrets
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
+      nonfree
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
@@ -260,6 +267,7 @@ in
       ({
         boot.isContainer = true;
       })
+      nonfree
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
@@ -283,6 +291,7 @@ in
     system = "x86_64-linux";
     specialArgs = attrs;
     modules = [
+      nonfree
       inputs.nixos-wsl.nixosModules.wsl
       ../machines/winrtx
     ];
@@ -294,7 +303,7 @@ in
     modules = [
       ../common/defaults.nix
       ../machines/utm-nixos/default.nix
-
+      nonfree
       disko.nixosModules.default
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
@@ -312,16 +321,12 @@ in
           spiceUSBRedirection.enable = true;
           forwardPorts = [
             {
-              from = "
-            host
-            ";
+              from = "host";
               host.port = 2222;
               guest.port = 22;
             }
             {
-              from = "
-            host
-            ";
+              from = "host";
               host.port = 3389;
               guest.port = 3389;
             }
@@ -338,9 +343,7 @@ in
           agenix.homeManagerModules.default
           ../home.nix
         ];
-        home-manager.backupFileExtension = "
-            bak
-            ";
+        home-manager.backupFileExtension = "bak";
       }
     ];
   };
