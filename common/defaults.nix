@@ -149,7 +149,7 @@ in
     let
       attic-bin = lib.attrsets.getBin inputs.attic;
       attic-script = (pkgs.writeShellScriptBin "attic-script" ''
-        ${attic-bin}/bin/attic-bin watch-store tomas:tomas
+        ${lib.attrsets.getBin attic-bin}/bin/attic-bin watch-store tomas:tomas
       '');
     in
     {
@@ -164,7 +164,7 @@ in
         Restart = "on-failure";
         RestartSec = 5;
       };
-      script = "${attic-script}/bin/attic-script";
+      script = "${lib.attrsets.getBin attic-script}/bin/attic-script";
       wantedBy = [ "multi-user.target" ];
       path = [ attic-bin attic-script ];
       environment = {
