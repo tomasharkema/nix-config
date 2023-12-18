@@ -147,7 +147,7 @@ in
     let
       attic-bin = lib.attrsets.getBin inputs.attic.packages.${pkgs.system}.default;
       attic-script = (pkgs.writeShellScriptBin "attic-script" ''
-        ${lib.attrsets.getBin attic-bin}/bin/attic-bin watch-store tomas:tomas
+        ${lib.attrsets.getBin attic-bin}/bin/attic watch-store tomas:tomas
       '');
     in
     {
