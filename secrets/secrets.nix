@@ -24,4 +24,5 @@ in
   "resilio-docs.age".publicKeys = allKeys;
   "netdata.age".publicKeys = allKeys;
   "resilio-shared-public.age".publicKeys = allKeys;
+  "attic-key.age".publicKeys = allKeys;
 }
