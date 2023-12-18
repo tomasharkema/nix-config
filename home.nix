@@ -265,6 +265,14 @@ in
         user = "tomas";
         forwardAgent = true;
       };
+      winrtx = {
+        hostname = "192.168.1.46";
+        user = "tomas";
+        forwardAgent = true;
+        extraOptions = {
+          "HostKeyAlgorithms" = "+ssh-rsa";
+        };
+      };
     };
   };
 

@@ -262,6 +262,16 @@
                   self.nixosConfigurations.cfserve;
             };
           };
+          winrtx = {
+            hostname = "192.168.1.46";
+            profiles.system = {
+              user = "root";
+              sshUser = "root";
+              path =
+                deploy.lib.x86_64-linux.activate.nixos
+                  self.nixosConfigurations.winrtx;
+            };
+          };
         };
       };
 
