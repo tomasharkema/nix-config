@@ -41,12 +41,14 @@ let
           system = "x86_64-linux";
           maxJobs = 4;
           supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+          speedFactor = 7;
         }
         {
           hostName = "supermicro";
           system = "aarch64-linux";
           maxJobs = 4;
           supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+          speedFactor = 5;
         }
 
         {
@@ -54,12 +56,14 @@ let
           system = "x86_64-linux";
           maxJobs = 4;
           supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+          speedFactor = 10;
         }
         {
           hostName = "enceladus";
           system = "aarch64-linux";
           maxJobs = 4;
           supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+          speedFactor = 5;
         }
       ];
 

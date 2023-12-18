@@ -31,6 +31,9 @@ pkgs.mkShell {
 
   packages = with pkgs; [
     (reencrypt { inherit system; })
+
+    inputs.attic.packages.${system}.default
+    inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
     deploy-machine
     bfg-repo-cleaner
     ack

@@ -2,8 +2,6 @@
 with pkgs; [
 
   inputs.agenix.packages.${system}.default
-  inputs.attic.packages.${system}.default
-  inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
   manix
 
   nil

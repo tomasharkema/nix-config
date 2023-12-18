@@ -99,7 +99,7 @@ in
     system = "x86_64-linux";
     # specialArgs = attrs;
 
-    specialArgs = { inherit inputs; };
+    specialArgs = { inherit inputs nixpkgs; };
     modules = [
       nixos-hardware.nixosModules.common-cpu-intel
       # ./user-defaults.nix
