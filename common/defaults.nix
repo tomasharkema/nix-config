@@ -1,13 +1,12 @@
-{ self
-, config
+{ config
 , nixpkgs
 , pkgs
-, lib
 , inputs
-, outputs
+  # , outputs
 , ...
 } @ attrs:
 let
+  lib = nixpkgs.lib;
   common = import ../packages/common.nix (attrs);
   gui = import ../packages/gui.nix (attrs);
 in
