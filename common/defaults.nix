@@ -143,11 +143,9 @@ in
     ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
   };
 
-
-
-  systemd.services.attic-watch = { system, ... }:
+  systemd.services.attic-watch =
     let
-      attic-bin = lib.attrsets.getBin inputs.attic.packages.${system};
+      attic-bin = lib.attrsets.getBin inputs.attic.packages.${pkgs.system}.default;
       attic-script = (pkgs.writeShellScriptBin "attic-script" ''
         ${lib.attrsets.getBin attic-bin}/bin/attic-bin watch-store tomas:tomas
       '');
