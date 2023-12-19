@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+let known_host = "100.120.66.165:52380"; in {
   #   deployment.keys."resilio.key" = {
   #     # Alternatively, `text` (string) or `keyFile` (path to file)
   #     # may be specified.
@@ -39,7 +40,7 @@
         useRelayServer = true;
         useSyncTrash = true;
         useTracker = true;
-        knownHosts = [ "100.120.66.165:52380" ];
+        knownHosts = [ known_host ];
       }
       {
         directory = "/var/lib/resilio-sync/P-dir";
@@ -49,7 +50,7 @@
         useRelayServer = true;
         useSyncTrash = true;
         useTracker = true;
-        knownHosts = [ "100.120.66.165:52380" ];
+        knownHosts = [ known_host ];
       }
       {
         directory = "/var/lib/resilio-sync/shared-public";
@@ -57,9 +58,9 @@
         secretFile = config.age.secrets."resilio-shared-public".path;
         useDHT = false;
         useRelayServer = true;
-        useSyncTrash = true;
+        useSyncTrash = false;
         useTracker = true;
-        knownHosts = [ "100.120.66.165:52380" ];
+        knownHosts = [ known_host ];
       }
     ];
   };

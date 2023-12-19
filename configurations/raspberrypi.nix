@@ -1,8 +1,9 @@
 { disko, nixpkgs, pkgsFor, inputs, nixos-hardware, agenix, home-manager, ... }:
 let
-  defaults = { pkgs, ... }: {
+  defaults = { pkgs, lib, ... }: {
 
     imports = [
+      ../common/defaults.nix
       ../apps/tailscale
       ../apps/cockpit.nix
       ../common/users.nix
@@ -18,9 +19,14 @@ let
     ];
 
     networking = {
-      wireless.enable = false;
+      wireless.enable = true;
       networkmanager.enable = true;
-      hostName = "raspbii";
+    };
+
+    systemd.services.attic-watch.enable = lib.mkForce false;
+
+    services.resilio = {
+      enable = lib.mkForce false;
     };
 
     system.stateVersion = "23.11";
@@ -79,6 +85,7 @@ in
         boot.initrd.kernelModules = [ "vc4" "bcm2835_dma" "i2c_bcm2835" ];
         boot.loader.grub.enable = false;
         boot.loader.generic-extlinux-compatible.enable = true;
+        networking.hostName = "raspbii3";
 
         # services.avahi.extraServiceFiles = {
         #   ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
@@ -103,7 +110,7 @@ in
   raspbii = (nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
     pkgs = pkgsFor."aarch64-linux";
-    # specialArgs = { inherit inputs; };
+    specialArgs = { inherit inputs; };
 
     modules = [
       # base
@@ -131,6 +138,7 @@ in
             filter = "*rpi-4-*.dtb";
           };
         };
+        networking.hostName = "raspbii3";
       })
       # # ../common/defaults.nix
       # home-manager.nixosModules.home-manager
