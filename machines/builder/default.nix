@@ -91,7 +91,7 @@ in
       maxJobs = 4;
       supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
       sshKey = "/var/lib/darwin-builder/keys/builder_ed25519";
-      speedFactor = 5;
+      speedFactor = 20;
     }
     {
       hostName = "builder@linux-builder";
@@ -99,7 +99,7 @@ in
       maxJobs = 4;
       supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
       sshKey = "/var/lib/darwin-builder/keys/builder_ed25519";
-      speedFactor = 5;
+      speedFactor = 20;
     }
   ];
 
@@ -117,6 +117,6 @@ in
   nixpkgs.config.allowUnfreePredicate = _: true;
 
   environment.systemPackages = lib.mkIf stdenvNoCC.isDarwin [
-    launchcontrol
+    # launchcontrol
   ];
 }

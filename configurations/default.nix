@@ -194,13 +194,14 @@ raspberrypis // {
 
   unraidferdorie = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
-    specialArgs = attrs;
-    # specialArgs = { inherit inputs outputs; };
+    # specialArgs = attrs;
+    specialArgs = { inherit inputs; };
+
     modules = [
       nixos-generators.nixosModules.all-formats
       ../common/defaults.nix
       disko.nixosModules.default
-      ../machines/unraidferdorie/default.nix
+      ../machines/unraidferdorie
       ../secrets
       agenix.nixosModules.default
       nonfree

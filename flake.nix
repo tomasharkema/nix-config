@@ -190,7 +190,7 @@
             };
           };
           raspbii3 = {
-            hostname = "172.25.182.142";
+            hostname = "172.25.3.82";
             profiles.system = {
               user = "root";
               sshUser = "root";

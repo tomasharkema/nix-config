@@ -62,14 +62,14 @@
       gs = "git status";
     };
 
-    interactiveShellInit = ''
-      export FZF_BASE=$(fzf-share)
-      source "$(fzf-share)/completion.zsh"
-      source "$(fzf-share)/key-bindings.zsh"
+    # interactiveShellInit = ''
+    #   export FZF_BASE=$(fzf-share)
+    #   source "$(fzf-share)/completion.zsh"
+    #   source "$(fzf-share)/key-bindings.zsh"
 
-      compinit
+    #   compinit
 
-      eval "$(starship init zsh)"
-    '';
+    #   eval "$(starship init zsh)"
+    # '';
   };
 }
