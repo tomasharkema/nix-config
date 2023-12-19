@@ -1,5 +1,10 @@
 { lib, inputs, pkgs, config, ... }: {
 
+  age.secrets.attic-key = {
+    file = ../secrets/attic-key.age;
+    mode = "770";
+  };
+
   environment.interactiveShellInit =
     let
       attic-bin = lib.attrsets.getBin inputs.attic.packages.${pkgs.system}.default;

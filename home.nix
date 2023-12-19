@@ -190,13 +190,6 @@ in
   programs.skim.enable = true;
   fonts.fontconfig.enable = true;
 
-  age.secrets.attic-key = {
-    file = ./secrets/attic-key.age;
-    mode = "770";
-    # owner = "tomas";
-    # group = "tomas";
-  };
-
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
