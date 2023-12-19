@@ -231,7 +231,7 @@
             };
           };
           hyperv-nixos = {
-            hostname = "172.25.17.176";
+            hostname = "172.25.240.242";
             # hostname = "192.168.1.74";
             profiles.system = {
               user = "root";

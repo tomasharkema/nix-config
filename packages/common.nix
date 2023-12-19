@@ -8,6 +8,7 @@ let
 in
 with pkgs;
 [
+  packagekit
   _1password
   antidote
   atuin
