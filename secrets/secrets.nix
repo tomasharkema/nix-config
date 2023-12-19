@@ -18,7 +18,7 @@ let
 in
 {
   "atuin-key.age".publicKeys = allKeys;
-  # "atuin-session.age".publicKeys = allKeys;
+  "atuin-session.age".publicKeys = allKeys;
   "tailscale.age".publicKeys = allKeys;
   "gh.age".publicKeys = allKeys;
   "resilio-p.age".publicKeys = allKeys;
