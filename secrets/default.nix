@@ -10,13 +10,13 @@ _: {
     owner = "tomas";
     group = "tomas";
   };
-  # age.secrets.atuin-session = {
-  #   file = ./atuin-session.age;
-  #   mode = "770";
-  #   path = "/tmp/atuin-session.key";
-  #   owner = "tomas";
-  #   group = "tomas";
-  # };
+  age.secrets.atuin-session = {
+    file = ./atuin-session.age;
+    mode = "770";
+    path = "/tmp/atuin-session.key";
+    owner = "tomas";
+    group = "tomas";
+  };
   age.secrets.tailscale = {
     file = ./tailscale.age;
     mode = "770";
