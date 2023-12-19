@@ -4,13 +4,13 @@
 }: {
   age.secrets.atuin-key = {
     file = ../../secrets/atuin-key.age;
-    path = "/tmp/atuin/key";
+    path = "/tmp/atuin.key";
     # owner = "tomas";
     # group = "tomas";
   };
   age.secrets.atuin-session = {
     file = ../../secrets/atuin-session.age;
-    path = "$HOME/atuin/session";
+    path = "/tmp/atuin.session";
     # owner = "tomas";
     # group = "tomas";
   };
