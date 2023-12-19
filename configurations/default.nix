@@ -27,9 +27,10 @@ let
     nixpkgs.config.allowUnfreePredicate = _: true;
   };
 in
-{
-  raspberrypi-3 = raspberrypis.raspberrypi-3;
-  raspbii = raspberrypis.raspbii;
+raspberrypis // {
+  # raspberrypi-3 = raspberrypis.raspberrypi-3;
+  # raspbii = raspberrypis.raspbii;
+  # inherit raspberrypis;
 
   live = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
@@ -82,6 +83,7 @@ in
       ../secrets
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
+      ../apps/attic.nix
       home-manager.nixosModules.home-manager
       nonfree
       {
@@ -113,6 +115,7 @@ in
       # impermanence.nixosModules.impermanence
       ../machines/supermicro
       ../secrets
+      ../apps/attic.nix
       agenix.nixosModules.default
       nonfree
       ({ lib, ... }: {
@@ -227,6 +230,7 @@ in
       disko.nixosModules.default
       ../machines/cfserve
       ../secrets
+      ../apps/attic.nix
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
       nonfree

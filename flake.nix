@@ -80,7 +80,7 @@
       url = "github:numtide/system-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    tailscale-prometheus-sd = { url = "github:madjam002/tailscale-prometheus-sd"; };
+    # tailscale-prometheus-sd = { url = "github:madjam002/tailscale-prometheus-sd"; };
   };
 
   outputs =
@@ -187,6 +187,16 @@
               path =
                 deploy.lib.aarch64-linux.activate.nixos
                   self.nixosConfigurations.raspbii;
+            };
+          };
+          raspbii3 = {
+            hostname = "172.25.182.142";
+            profiles.system = {
+              user = "root";
+              sshUser = "root";
+              path =
+                deploy.lib.aarch64-linux.activate.nixos
+                  self.nixosConfigurations.raspbii3;
             };
           };
 
@@ -342,7 +352,7 @@
       };
 
       images = {
-        raspberrypi-3 = self.nixosConfigurations.raspberrypi-3.config.system.build.sdImage;
+        raspbii3 = self.nixosConfigurations.raspbii3.config.system.build.sdImage;
         raspbii = self.nixosConfigurations.raspbii.config.system.build.sdImage;
       };
 

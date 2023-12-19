@@ -6,8 +6,8 @@ pkgs.buildGoModule rec {
   src = pkgs.fetchFromGitHub {
     owner = "tomasharkema";
     repo = "tailscalesd";
-    rev = "e41dd0bcb07757f45728e09ea0d9e42be1819ba9";
-    hash = "sha256-Ev2zlOycKX7DAJmSMsjeCjjbiIvBiHXlw0y3FSaqNAI=";
+    rev = "4451cae097771df887eb45f7205de3609622744e";
+    hash = "sha256-fElZz2UoWA4jOdcbpGt1p8wiSttiK9P9gIAciaglQmE=";
   };
 
   vendorHash = "sha256-7/W5Mw3+CKqIT+KQVGTb1vPcYz5q+joR18dzOb3zVw0=";

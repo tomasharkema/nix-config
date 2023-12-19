@@ -19,7 +19,6 @@ let
     ];
 
     networking = {
-      wireless.enable = true;
       networkmanager.enable = true;
     };
 
@@ -30,9 +29,14 @@ let
     };
 
     system.stateVersion = "23.11";
+    boot.loader.raspberryPi.firmwareConfig = "force_turbo=1";
 
     hardware.enableRedistributableFirmware = true;
-    boot.loader.raspberryPi.firmwareConfig = "force_turbo=1";
+
+    services.avahi.extraServiceFiles = {
+      ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
+    };
+
     # users.groups = {
     #   tomas = { };
     #   rslsync = { };
@@ -61,16 +65,18 @@ let
   };
 in
 {
-  raspberrypi-3 = nixpkgs.lib.nixosSystem {
+  raspbii3 = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
     pkgs = pkgsFor."aarch64-linux";
 
-    # specialArgs = { inherit inputs; };
+    specialArgs = { inherit inputs; };
 
     modules = [
-      "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
-      "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+      "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+      # "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
       agenix.nixosModules.default
+      ../secrets
+      (defaults)
       ({ pkgs, ... }: {
 
         environment.systemPackages = with pkgs; [
@@ -79,31 +85,18 @@ in
         ];
         system.stateVersion = "23.11";
 
-        networking.wireless.enable = false;
-        networking.networkmanager.enable = true;
+        boot.kernelParams = [
+          "console=ttyS1,115200n8"
+          "cma=320M"
+        ];
 
         boot.initrd.kernelModules = [ "vc4" "bcm2835_dma" "i2c_bcm2835" ];
         boot.loader.grub.enable = false;
         boot.loader.generic-extlinux-compatible.enable = true;
         networking.hostName = "raspbii3";
 
-        # services.avahi.extraServiceFiles = {
-        #   ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
-        # };
-
-        # boot.loader.raspberryPi = {
-        #   enable = true;
-        #   version = 3;
-        #   firmwareConfig = ''
-        #     core_freq=250
-        #   '';
-        # };
-
-        # boot.initrd.kernelModules = [ "vc4" "bcm2835_dma" "i2c_bcm2835" ];
-
         hardware.enableRedistributableFirmware = true;
       })
-      (defaults)
     ];
   };
 
@@ -127,8 +120,6 @@ in
         networking.firewall = {
           enable = true;
         };
-
-        boot.loader.raspberryPi.firmwareConfig = "force_turbo=1";
         # boot.loader.raspberryPi.enable = true;
 
         hardware = {
@@ -138,7 +129,7 @@ in
             filter = "*rpi-4-*.dtb";
           };
         };
-        networking.hostName = "raspbii3";
+        networking.hostName = "raspbii4";
       })
       # # ../common/defaults.nix
       # home-manager.nixosModules.home-manager
