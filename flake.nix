@@ -362,7 +362,7 @@
       };
 
       images = {
-        raspbii3 = self.nixosConfigurations.raspbii3.config.system.build.sdImage;
+        raspbii3 = self.nixosConfigurations.raspbii3.config.formats.raw;
         raspbii = self.nixosConfigurations.raspbii.config.system.build.sdImage;
 
         cfserveiso = self.nixosConfigurations.cfserve.config.formats.install-iso;
