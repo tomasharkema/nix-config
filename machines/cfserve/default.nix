@@ -48,8 +48,9 @@
     };
     kernelModules = [ "kvm-intel" "jc42" "tpm_rng" ];
     loader = {
+      timeout = lib.mkForce 10;
       grub = {
-        enable = true;
+        enable = lib.mkForce true;
         # device = "nodev";
         efiSupport = true;
         efiInstallAsRemovable = true;
@@ -64,13 +65,7 @@
 
   networking.firewall = {
     enable = lib.mkForce true;
-    # enable = true;
   };
 
-  # security.tpm2.enable = true;
-  # security.tpm2.pkcs11.enable = true;
-  # security.tpm2.tctiEnvironment.enable = true;
-  # users.users."tomas".extraGroups = [ "tss" ];
-  # boot.initrd.systemd.enableTpm2 = true;
   services.tcsd.enable = true;
 }
