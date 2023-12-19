@@ -35,7 +35,7 @@ in
 
   services.avahi = {
     enable = true;
-    interfaces = [ "zthnhagpcb" "tailscale0" ];
+    allowInterfaces = [ "zthnhagpcb" "tailscale0" ];
     ipv6 = true;
     publish.enable = true;
     publish.userServices = true;

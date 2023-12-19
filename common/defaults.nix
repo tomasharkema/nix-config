@@ -9,7 +9,7 @@
 let
   # lib = nixpkgs.lib;
   common = import ../packages/common.nix (attrs);
-  gui = import ../packages/gui.nix (attrs);
+  # gui = import ../packages/gui.nix (attrs);
 in
 {
   # nixpkgs.config.allowUnfree = true;
@@ -24,7 +24,7 @@ in
     ../apps/cockpit.nix
   ];
 
-  environment.systemPackages = common ++ gui;
+  environment.systemPackages = common; # ++ gui;
 
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;
