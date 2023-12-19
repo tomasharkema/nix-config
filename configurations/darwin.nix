@@ -181,7 +181,7 @@ in
           in
           {
             environment.systemPackages = [
-              (pkgs.writeShellScriptBin "attic-script" ''
+              (pkgs.writeShellScriptBin "maclaunch" ''
                 ${lib.attrsets.getBin maclaunch}/bin/maclaunch
               '')
             ];

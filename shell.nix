@@ -8,16 +8,19 @@ let
   write-script = pkgs.writeShellScriptBin "write-script" ''
     set -x
     echo "pv $1 $2"
-    pv $1 -cN in -B 500M | zstd -d - | pv -cN out -B 500M > $2
+    pv $1 -cN in -B 500M -pterbT | zstd -d - | pv -cN out -B 500M -pterbT > $2
   '';
+
   deployment = pkgs.writeShellScriptBin "deployment" ''
     set -x
     ${pkgs.deploy-rs}/bin/deploy --skip-checks --targets $@ -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
   '';
+
   deploy-machine = pkgs.writeShellScriptBin "deploy-machine" ''
     set -x
     ${pkgs.deploy-rs}/bin/deploy --skip-checks ".#$@" -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
   '';
+
   reencrypt = { system }: pkgs.writeShellScriptBin "reencrypt" ''
     set -x;
     cd secrets; 
@@ -27,7 +30,12 @@ let
   mkiso = { ... }: pkgs.writeShellScriptBin "mkiso" ''
     LINK="./out/install.iso";
     nom build '.#nixosConfigurations.hyperv-nixos.config.formats.install-iso' --out-link $LINK
-    pv $LINK -cN in -B 100M | xz -T4 -9 | pv -cN out -B 100M > ./out/install.iso.xz
+    pv $LINK -cN in -B 100M -pterbT | xz -T4 -9 | pv -cN out -B 100M -pterbT > ./out/install.iso.xz
+  '';
+
+  rpi-update = pkgs.writeShellScriptBin "rpi-update" ''
+    mount /dev/disk/by-label/FIRMWARE /mnt
+    BOOTFS=/mnt FIRMWARE_RELEASE_STATUS=stable rpi-eeprom-update -d -a
   '';
 in
 
@@ -51,15 +59,16 @@ pkgs.mkShell {
     deployment
     git
     gnupg
+
     go
+    gotools
+    gopls
     go-outline
     gocode
+    gopkgs
     gocode-gomod
     godef
     golint
-    gopkgs
-    gopls
-    gotools
 
     netdiscover
     python3

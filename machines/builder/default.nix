@@ -89,7 +89,7 @@ in
       maxJobs = 4;
       supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
       sshKey = "/var/lib/darwin-builder/keys/builder_ed25519";
-      speedFactor = 6;
+      speedFactor = 5;
     }
     {
       hostName = "builder@linux-builder";
@@ -97,19 +97,21 @@ in
       maxJobs = 4;
       supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
       sshKey = "/var/lib/darwin-builder/keys/builder_ed25519";
-      speedFactor = 6;
+      speedFactor = 5;
     }
   ];
+  nixpkgs.config.allowUnfree = true;
+  # launchd.daemons.darwin-builder = {
+  #   command = "${darwin-builder.config.system.build.macos-builder-installer}/bin/create-builder";
+  #   serviceConfig = {
+  #     KeepAlive = true;
+  #     RunAtLoad = true;
+  #     StandardOutPath = "/var/log/darwin-builder.log";
+  #     StandardErrorPath = "/var/log/darwin-builder.log";
+  #   };
+  # };
 
-  launchd.daemons.darwin-builder = {
-    command = "${darwin-builder.config.system.build.macos-builder-installer}/bin/create-builder";
-    serviceConfig = {
-      KeepAlive = true;
-      RunAtLoad = true;
-      StandardOutPath = "/var/log/darwin-builder.log";
-      StandardErrorPath = "/var/log/darwin-builder.log";
-    };
-  };
-
-  environment.systemPackages = lib.mkIf stdenvNoCC.isDarwin [ launchcontrol ];
+  environment.systemPackages = lib.mkIf stdenvNoCC.isDarwin [
+    #  launchcontrol
+  ];
 }

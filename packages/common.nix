@@ -8,7 +8,6 @@ let
 in
 with pkgs;
 [
-  packagekit
   _1password
   antidote
   atuin
@@ -80,7 +79,7 @@ with pkgs;
   #   nix-cache-watcher sign-store -k ~/Developer/nix-config/cache-priv-key.pem -v && nix-cache-watcher upload-diff -r "https://nix-cache.harke.ma/" -v
   # '')
 ]
-++ (darwin-build attrs) ++ (nixpkgs-build attrs)
+++ (darwin-build attrs) ++ (nixpkgs-build attrs) ++ [ (lib.mkIf stdenv.isLinux packagekit) ]
 # home.packages = with pkgs; [
 #   ldns
 #   eza
