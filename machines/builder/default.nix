@@ -117,6 +117,6 @@ in
   nixpkgs.config.allowUnfreePredicate = _: true;
 
   environment.systemPackages = lib.mkIf stdenvNoCC.isDarwin [
-    # launchcontrol
+    launchcontrol
   ];
 }
