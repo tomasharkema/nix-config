@@ -1,14 +1,17 @@
 _: {
-  # age.secrets.atuin = {
-  #   file = ./atuin.age;
-  #   # mode = "777";
-  #   owner = "tomas";
-  #   group = "tomas";
-  #   path = "/tmp/atuin.key";
-  # };
   age.secrets.attic-key = {
     file = ./attic-key.age;
     mode = "770";
+  };
+  age.secrets.atuin-key = {
+    file = ./atuin-key.age;
+    mode = "770";
+    path = "/tmp/atuin.key";
+  };
+  age.secrets.atuin-session = {
+    file = ./atuin-session.age;
+    mode = "770";
+    path = "/tmp/atuin-session.key";
   };
   age.secrets.tailscale = {
     file = ./tailscale.age;
