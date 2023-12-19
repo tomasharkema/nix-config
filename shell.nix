@@ -12,7 +12,6 @@ let
   '';
 
   deployment = pkgs.writeShellScriptBin "deployment" ''
-    set -x
     ${pkgs.deploy-rs}/bin/deploy --skip-checks --targets $@ -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
   '';
 
