@@ -6,6 +6,7 @@
 , agenix
 , home-manager
 , impermanence
+, nixos-generators
 , ...
 }:
 let
@@ -94,13 +95,14 @@ in
     specialArgs = { inherit inputs; };
 
     modules = [
+      nixos-generators.nixosModules.all-formats
       # "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
       # "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
       impermanence.nixosModules.impermanence
       agenix.nixosModules.default
       ../secrets
       (defaults)
-      ({ pkgs, ... }: {
+      ({ pkgs, lib, ... }: {
 
         environment.systemPackages = with pkgs; [
           libraspberrypi
@@ -137,8 +139,9 @@ in
         };
 
         fileSystems."/" = {
-          device = "none";
-          fsType = "tmpfs";
+          device = lib.mkForce "none";
+          fsType = lib.mkForce "tmpfs";
+          autoResize = lib.mkForce false;
           options = [ "defaults" "size=25%" "mode=755" ];
         };
 
