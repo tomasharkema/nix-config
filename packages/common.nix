@@ -22,7 +22,6 @@ with pkgs;
   curl
   deadnix
   delta
-  deploy-rs
   dnsutils
   dog
   du-dust

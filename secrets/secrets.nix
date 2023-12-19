@@ -12,7 +12,8 @@ let
   supermicro = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJRn81Pxfg4ttTocQnTUWirpC1QVeJ5bfPC63ET9fNVa root@supermicro";
   raspbii = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExHAekJ8mbudoEcFYJdJ58nSMyHFfNFrf84GIHuIeRY root@raspbii";
   winrtx-wsl = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICI2xzlzSsxv+6QSZ6rCeG0ma4HfIH3YWJj/P4GoQ3M/ root@nixos";
-  systems = [ enceladus unraidferdorie utm-nixos cfserve hyperv-nixos supermicro raspbii ];
+  raspbii3 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEwd41uWPlgmaU6ckgFR3L4thPeKeIsaahHbjkg+qAOf root@raspbii3";
+  systems = [ enceladus unraidferdorie utm-nixos cfserve hyperv-nixos supermicro raspbii raspbii3 ];
   allKeys = users ++ systems;
 in
 {
