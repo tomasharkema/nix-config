@@ -2,18 +2,18 @@
 , pkgs
 , ...
 }: {
-  age.secrets.atuin-key = {
-    file = ../../secrets/atuin-key.age;
-    path = "$HOME/.local/share/atuin/key";
-    # owner = "tomas";
-    # group = "tomas";
-  };
-  age.secrets.atuin-session = {
-    file = ../../secrets/atuin-session.age;
-    path = "$HOME/.local/share/atuin/session";
-    # owner = "tomas";
-    # group = "tomas";
-  };
+  #   age.secrets.atuin-key = {
+  #     file = ../../secrets/atuin-key.age;
+  #     path = "/tmp/atuin/key";
+  #     # owner = "tomas";
+  #     # group = "tomas";
+  #   };
+  #   age.secrets.atuin-session = {
+  #     file = ../../secrets/atuin-session.age;
+  #     path = "$HOME/atuin/session";
+  #     # owner = "tomas";
+  #     # group = "tomas";
+  #   };
 
   home.packages = with pkgs; [ atuin ];
   programs.atuin = {
