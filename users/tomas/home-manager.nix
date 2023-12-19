@@ -60,16 +60,6 @@
     fortune
     # cachix
     niv
-
-    go
-    gotools
-    gopls
-    go-outline
-    gocode
-    gopkgs
-    gocode-gomod
-    godef
-    golint
     # colima
     docker
     neofetch
