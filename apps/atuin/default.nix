@@ -22,7 +22,7 @@
       sync_frequency = "15m";
       sync_address = "https://atuin.harke.ma";
       key_path = config.age.secrets.atuin-key.path;
-      #session_path = config.age.secrets.atuin-session.path;
+      session_path = config.age.secrets.atuin-session.path;
       enter_accept = false;
       workspaces = true;
     };
