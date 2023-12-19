@@ -71,7 +71,9 @@ let
         '';
         homepage = "https://v2.airbuddy.app";
         changelog = "https://support.airbuddy.app/articles/airbuddy-2-changelog";
-        license = with licenses; [ unfree ];
+        license = with licenses; [
+
+        ];
         sourceProvenance = with sourceTypes; [ binaryNativeCode ];
         maintainers = with maintainers; [ tomasharkema ];
         platforms = [ "aarch64-darwin" "x86_64-darwin" ];
@@ -100,7 +102,7 @@ in
       speedFactor = 5;
     }
   ];
-  nixpkgs.config.allowUnfree = true;
+
   launchd.daemons.darwin-builder = {
     command = "${darwin-builder.config.system.build.macos-builder-installer}/bin/create-builder";
     serviceConfig = {
@@ -111,7 +113,10 @@ in
     };
   };
 
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = _: true;
+
   environment.systemPackages = lib.mkIf stdenvNoCC.isDarwin [
-    #  launchcontrol
+    launchcontrol
   ];
 }

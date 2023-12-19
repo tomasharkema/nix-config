@@ -61,7 +61,6 @@ in
   imports = [
     ./apps/nvim
     ./apps/atuin
-    ./build-scripts.nix
     ./apps/tmux
   ]; # ++ [ (lib.optional (stdenv.isLinux) (./apps/flatpak.nix)) ];
   # self.home-manager.backupFileExtension = "bak";

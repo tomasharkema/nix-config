@@ -366,6 +366,8 @@
         raspbii = self.nixosConfigurations.raspbii.config.system.build.sdImage;
 
         cfserveiso = self.nixosConfigurations.cfserve.config.formats.install-iso;
+
+        unraidferdorie = self.nixosConfigurations.unraidferdorie.config.formats.qcow;
       };
 
       devShells = {

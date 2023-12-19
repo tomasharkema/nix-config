@@ -13,6 +13,7 @@ let
   settings =
     ({ pkgs
      , inputs
+     , nixpkgs
      , ...
      }: {
 
@@ -154,6 +155,7 @@ in
         # }
         # self.homeConfigurations."tomas@MacBook-Pro-van-Tomas"
         {
+
           # home-manager.useGlobalPkgs = true;
           # home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
