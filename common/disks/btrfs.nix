@@ -1,7 +1,7 @@
 { disks ? [ "/dev/vda" ], ... }: {
 
-  # services.btrfs.autoScrub.enable = true;
-  # services.snapper.snapshotRootOnBoot = true;
+  services.btrfs.autoScrub.enable = true;
+  services.snapper.snapshotRootOnBoot = true;
 
   disko.devices = {
     disk = {
@@ -36,14 +36,14 @@
                   "/rootfs" = { mountpoint = "/"; };
                   # Subvolume name is the same as the mountpoint
                   "/home" = {
-                    mountOptions = [ "compress=zstd" ];
+                    mountOptions = [ "subvol=home" "compress=zstd" ];
                     mountpoint = "/home";
                   };
                   # Sub(sub)volume doesn't need a mountpoint as its parent is mounted
                   "/home/user" = { };
                   # Parent is not mounted so the mountpoint must be set
                   "/nix" = {
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountOptions = [ "subvol=nix" "compress=zstd" "noatime" ];
                     mountpoint = "/nix";
                   };
                   # This subvolume will be created but not mounted

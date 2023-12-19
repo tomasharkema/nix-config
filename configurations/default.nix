@@ -197,6 +197,7 @@ raspberrypis // {
     specialArgs = attrs;
     # specialArgs = { inherit inputs outputs; };
     modules = [
+      nixos-generators.nixosModules.all-formats
       ../common/defaults.nix
       disko.nixosModules.default
       ../machines/unraidferdorie/default.nix
