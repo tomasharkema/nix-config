@@ -319,6 +319,16 @@
       #     format = "install-iso";
       #   };
       # };
+
+      #  let system = "x86_64-linux"; pkgs = pkgsFor.x86_64-linux; in nixos-generators.nixosGenerate {
+      #   system = system;
+      #   # specialArgs = inputs;
+      #   pkgs = pkgs;
+
+      #   specialArgs = { inherit inputs pkgs; };
+      #   modules = [ self.nixosConfigurations.cfserve.config ];
+      #   format = "install-iso";
+      # };
     }
     // inputs.flake-utils.lib.eachDefaultSystem (system:
     let
@@ -354,6 +364,8 @@
       images = {
         raspbii3 = self.nixosConfigurations.raspbii3.config.system.build.sdImage;
         raspbii = self.nixosConfigurations.raspbii.config.system.build.sdImage;
+
+        cfserveiso = self.nixosConfigurations.cfserve.config.formats.install-iso;
       };
 
       devShells = {

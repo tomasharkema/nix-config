@@ -224,6 +224,7 @@ raspberrypis // {
 
     # specialArgs = { inherit inputs outputs; };
     modules = [
+      nixos-generators.nixosModules.all-formats
       # ./user-defaults.nix
       ../common/defaults.nix
       impermanence.nixosModule
