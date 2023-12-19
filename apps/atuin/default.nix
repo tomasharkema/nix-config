@@ -6,16 +6,15 @@
     file = ../../secrets/atuin-key.age;
     mode = "770";
     path = "/tmp/atuin.key";
-    owner = "tomas";
-    group = "tomas";
-
+    # owner = "tomas";
+    # group = "tomas";
   };
   age.secrets.atuin-session = {
     file = ../../secrets/atuin-session.age;
     mode = "770";
     path = "/tmp/atuin-session.key";
-    owner = "tomas";
-    group = "tomas";
+    # owner = "tomas";
+    # group = "tomas";
   };
 
   home.packages = with pkgs; [ atuin ];
