@@ -32,11 +32,6 @@ let
     nom build '.#nixosConfigurations.hyperv-nixos.config.formats.install-iso' --out-link $LINK
     pv $LINK -cN in -B 100M -pterbT | xz -T4 -9 | pv -cN out -B 100M -pterbT > ./out/install.iso.xz
   '';
-
-  rpi-update = pkgs.writeShellScriptBin "rpi-update" ''
-    mount /dev/disk/by-label/FIRMWARE /mnt
-    BOOTFS=/mnt FIRMWARE_RELEASE_STATUS=stable rpi-eeprom-update -d -a
-  '';
 in
 
 pkgs.mkShell {
