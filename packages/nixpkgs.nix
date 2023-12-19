@@ -12,4 +12,5 @@ with pkgs; [
   nixd
   nixpkgs-fmt
   nurl
+  nixci
 ]
