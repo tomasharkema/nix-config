@@ -4,15 +4,13 @@
 }: {
   age.secrets.atuin-key = {
     file = ../../secrets/atuin-key.age;
-    mode = "770";
-    path = "/tmp/atuin.key";
+    path = "$HOME/.local/share/atuin/key";
     # owner = "tomas";
     # group = "tomas";
   };
   age.secrets.atuin-session = {
     file = ../../secrets/atuin-session.age;
-    mode = "770";
-    path = "/tmp/atuin-session.key";
+    path = "$HOME/.local/share/atuin/session";
     # owner = "tomas";
     # group = "tomas";
   };
