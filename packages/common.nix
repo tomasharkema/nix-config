@@ -46,6 +46,11 @@ with pkgs;
   morph
   mtr
   multitail
+  mosh
+  keybase
+  youtube-dl
+  just
+  tmate
   navi
   ncdu
   neofetch
