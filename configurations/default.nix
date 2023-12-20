@@ -27,7 +27,7 @@ let
 in
 raspberrypis // {
   # raspberrypi-3 = raspberrypis.raspberrypi-3;
-  # raspbii = raspberrypis.raspbii;
+  # pegasus = raspberrypis.pegasus;
   # inherit raspberrypis;
 
   live = nixpkgs.lib.nixosSystem {
@@ -62,7 +62,7 @@ raspberrypis // {
     ];
   };
 
-  enceladus = nixpkgs.lib.nixosSystem {
+  enzian = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
 
     specialArgs = {
@@ -77,7 +77,7 @@ raspberrypis // {
       # base
       ../common/defaults.nix
       disko.nixosModules.default
-      ../machines/enceladus
+      ../machines/enzian
       ../secrets
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
@@ -100,18 +100,19 @@ raspberrypis // {
     ];
   };
 
-  supermicro = nixpkgs.lib.nixosSystem {
+  blue-fire = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     # specialArgs = attrs;
 
     specialArgs = { inherit inputs nixpkgs; };
     modules = [
       nixos-hardware.nixosModules.common-cpu-intel
+      nixos-hardware.nixosModules.common-pc-ssd
       # ./user-defaults.nix
       ../common/defaults.nix
       disko.nixosModules.default
       # impermanence.nixosModules.impermanence
-      ../machines/supermicro
+      ../machines/blue-fire
       ../secrets
       ../apps/attic.nix
       agenix.nixosModules.default
@@ -190,7 +191,7 @@ raspberrypis // {
     ];
   };
 
-  unraidferdorie = nixpkgs.lib.nixosSystem {
+  silver-starferdorie = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     # specialArgs = attrs;
     specialArgs = { inherit inputs; };
@@ -199,7 +200,7 @@ raspberrypis // {
       nixos-generators.nixosModules.all-formats
       ../common/defaults.nix
       disko.nixosModules.default
-      ../machines/unraidferdorie
+      ../machines/silver-starferdorie
       ../secrets
       agenix.nixosModules.default
       nonfree
@@ -218,7 +219,7 @@ raspberrypis // {
     ];
   };
 
-  cfserve = nixpkgs.lib.nixosSystem {
+  arthur = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = attrs;
 
@@ -229,7 +230,7 @@ raspberrypis // {
       ../common/defaults.nix
       impermanence.nixosModule
       disko.nixosModules.default
-      ../machines/cfserve
+      ../machines/arthur
       ../secrets
       ../apps/attic.nix
       nix-flatpak.nixosModules.nix-flatpak
@@ -255,7 +256,7 @@ raspberrypis // {
     ];
   };
 
-  unraid = nixpkgs.lib.nixosSystem {
+  silver-star = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = attrs;
 
@@ -265,7 +266,7 @@ raspberrypis // {
       ../common/defaults.nix
       # impermanence.nixosModule
       # disko.nixosModules.default
-      # ./machines/cfserve
+      # ./machines/arthur
       ../secrets
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
@@ -292,13 +293,13 @@ raspberrypis // {
     ];
   };
 
-  winrtx = nixpkgs.lib.nixosSystem {
+  wodan = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = attrs;
     modules = [
       nonfree
       inputs.nixos-wsl.nixosModules.wsl
-      ../machines/winrtx
+      ../machines/wodan
     ];
   };
 

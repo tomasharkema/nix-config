@@ -55,6 +55,7 @@ let
       services.avahi.extraServiceFiles = {
         ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
       };
+      services.avahi.publish.userServices = true;
 
       age.secrets.wireless = {
         file = ../secrets/wireless.age;
@@ -81,9 +82,9 @@ let
       #     extraGroups = [ "wheel" "tomas" ];
       #     isNormalUser = true;
       #     openssh.authorizedKeys.keys = [
-      #       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQkKn73qM9vjYIaFt94Kj/syd5HCw2GdpiZ3z5+Rp/r tomas@supermicro"
+      #       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQkKn73qM9vjYIaFt94Kj/syd5HCw2GdpiZ3z5+Rp/r tomas@blue-fire"
       #       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas"
-      #       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJRn81Pxfg4ttTocQnTUWirpC1QVeJ5bfPC63ET9fNVa root@supermicro"
+      #       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJRn81Pxfg4ttTocQnTUWirpC1QVeJ5bfPC63ET9fNVa root@blue-fire"
       #     ];
       #   };
       #   rslsync = {
@@ -91,16 +92,16 @@ let
       #     isSystemUser = true;
       #   };
       #   root.openssh.authorizedKeys.keys = [
-      #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQkKn73qM9vjYIaFt94Kj/syd5HCw2GdpiZ3z5+Rp/r tomas@supermicro"
+      #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQkKn73qM9vjYIaFt94Kj/syd5HCw2GdpiZ3z5+Rp/r tomas@blue-fire"
       #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas"
-      #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJRn81Pxfg4ttTocQnTUWirpC1QVeJ5bfPC63ET9fNVa root@supermicro"
+      #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJRn81Pxfg4ttTocQnTUWirpC1QVeJ5bfPC63ET9fNVa root@blue-fire"
       #   ];
 
       # };
     };
 in
 {
-  raspbii3 = nixpkgs.lib.nixosSystem {
+  baaa-express = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
     pkgs = pkgsFor."aarch64-linux";
 
@@ -130,48 +131,48 @@ in
         boot.initrd.kernelModules = [ "vc4" "bcm2835_dma" "i2c_bcm2835" ];
         boot.loader.grub.enable = false;
         boot.loader.generic-extlinux-compatible.enable = true;
-        networking.hostName = "raspbii3";
+        networking.hostName = "baaa-express";
 
         hardware.enableRedistributableFirmware = true;
 
-        environment.persistence."/nix/persistent" = {
-          hideMounts = true;
-          directories = [
-            "/var/log"
-            "/var/lib/bluetooth"
-            "/var/lib/nixos"
-            "/var/lib/systemd/coredump"
-            "/etc/NetworkManager/system-connections"
-            { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
-          ];
-          files = [
-            "/etc/machine-id"
-            { file = "/etc/nix/id_rsa"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
-          ];
-        };
+        # environment.persistence."/nix/persistent" = {
+        #   hideMounts = true;
+        #   directories = [
+        #     "/var/log"
+        #     "/var/lib/bluetooth"
+        #     "/var/lib/nixos"
+        #     "/var/lib/systemd/coredump"
+        #     "/etc/NetworkManager/system-connections"
+        #     { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+        #   ];
+        #   files = [
+        #     "/etc/machine-id"
+        #     { file = "/etc/nix/id_rsa"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
+        #   ];
+        # };
 
-        fileSystems."/" = {
-          device = lib.mkForce "none";
-          fsType = lib.mkForce "tmpfs";
-          autoResize = lib.mkForce false;
-          options = [ "defaults" "size=25%" "mode=755" ];
-        };
+        # fileSystems."/" = {
+        #   device = lib.mkForce "none";
+        #   fsType = lib.mkForce "tmpfs";
+        #   autoResize = lib.mkForce false;
+        #   options = [ "defaults" "size=25%" "mode=755" ];
+        # };
 
-        fileSystems."/nix" = {
-          device = "/dev/mmcblk0";
-          fsType = "btrfs";
-          options = [ "compress-force=zstd" ];
-        };
+        # fileSystems."/nix" = {
+        #   device = "/dev/mmcblk0";
+        #   fsType = "btrfs";
+        #   options = [ "compress-force=zstd" ];
+        # };
 
-        fileSystems."/boot" = {
-          device = "/dev/disk/by-uuid/2178-694E";
-          fsType = "vfat";
-        };
+        # fileSystems."/boot" = {
+        #   device = "/dev/disk/by-uuid/2178-694E";
+        #   fsType = "vfat";
+        # };
       })
     ];
   };
 
-  raspbii = (nixpkgs.lib.nixosSystem {
+  pegasus = (nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
     pkgs = pkgsFor."aarch64-linux";
     specialArgs = { inherit inputs; };
@@ -200,7 +201,7 @@ in
             filter = "*rpi-4-*.dtb";
           };
         };
-        networking.hostName = "raspbii4";
+        networking.hostName = "pegasus";
       })
       # # ../common/defaults.nix
       # home-manager.nixosModules.home-manager

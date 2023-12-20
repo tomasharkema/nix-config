@@ -28,7 +28,7 @@
     }
   ];
 
-  networking = { hostName = "cfserve"; };
+  networking = { hostName = "arthur"; };
   networking.hostId = "529fd7bb";
   nixpkgs.config.allowUnfree = true;
   users.groups.input.members = [ "tomas" ];

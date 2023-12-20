@@ -23,7 +23,7 @@
     }
   ];
 
-  networking = { hostName = "enceladus"; };
+  networking = { hostName = "enzian"; };
   networking.hostId = "529fd7fa";
 
   # deployment.tags = [ "bare" ];

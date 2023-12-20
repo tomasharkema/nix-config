@@ -11,7 +11,6 @@
   nixpkgs.system = "x86_64-linux";
   programs.nix-ld.enable = true;
   imports = [
-    # nixos-hardware.nixosModules.common-cpu-intel
     ./hardware-configuration.nix
     ../../apps/cockpit.nix
     # ../../common/quiet-boot.nix
@@ -26,7 +25,7 @@
     }
   ];
 
-  networking = { hostName = "supermicro"; };
+  networking = { hostName = "blue-fire"; };
   networking.hostId = "529fd7aa";
 
   environment.systemPackages = with pkgs; [
@@ -62,4 +61,6 @@
   nix.sshServe.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas@tomas"
   ];
+
+  services.prometheus.exporters.ipmi.enable = true;
 }

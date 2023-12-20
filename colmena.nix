@@ -10,9 +10,9 @@
       # overlays = [ ];
     };
   };
-  enceladus = {
-    imports = [self.nixosConfigurations.enceladus.config];
-    # modules = [ self.nixosConfigurations.enceladus.config ];
+  enzian = {
+    imports = [self.nixosConfigurations.enzian.config];
+    # modules = [ self.nixosConfigurations.enzian.config ];
     specialArgs = attrs;
     deployment = {
       tags = ["bare"];
@@ -21,9 +21,9 @@
       targetUser = "root";
     };
   };
-  unraidferdorie = {
-    imports = [self.nixosConfigurations.unraidferdorie.config];
-    # modules = [ self.nixosConfigurations.enceladus.config ];
+  silver-star-ferdorie = {
+    imports = [self.nixosConfigurations.silver-star-ferdorie.config];
+    # modules = [ self.nixosConfigurations.enzian.config ];
     specialArgs = attrs;
     deployment = {
       # targetHost = "100.85.77.114";
@@ -35,11 +35,11 @@
 
   # defaults = import ./apps/defaults.nix;
 
-  # enceladus = import ./machines/enceladus/default.nix;
+  # enzian = import ./machines/enzian/default.nix;
 
   # utm-nixos = import ./machines/utm-nixos/default.nix;
 
-  # unraidferdorie = import ./machines/unraidferdorie/default.nix;
+  # silver-star-ferdorie = import ./machines/silver-star-ferdorie/default.nix;
 }
 # {
 #         meta = {
@@ -49,8 +49,8 @@
 #             overlays = [ ];
 #           };
 #         };
-#         enceladus = {
-#           imports = [ self.nixosConfigurations.enceladus.config ];
+#         enzian = {
+#           imports = [ self.nixosConfigurations.enzian.config ];
 #           # deployment.tags = [ "bare" ];
 #           deployment = {
 #             tags = [ "bare" ];
@@ -60,8 +60,8 @@
 #           };
 #         };
 #         # defaults = import ./apps/defaults.nix;
-#         # enceladus = import ./machines/enceladus/default.nix;
+#         # enzian = import ./machines/enzian/default.nix;
 #         # utm-nixos = import ./machines/utm-nixos/default.nix;
-#         # unraidferdorie = import ./machines/unraidferdorie/default.nix;
+#         # silver-star-ferdorie = import ./machines/silver-star-ferdorie/default.nix;
 #       };
 

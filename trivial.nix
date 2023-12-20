@@ -4,7 +4,7 @@
     , pkgs
     , ...
     }: {
-      deployment.targetHost = "enceladus";
+      deployment.targetHost = "enzian";
 
       networking.hostName = "nixos-utm-test"; # Define your hostname.
       # Pick only one of the below networking options.
@@ -48,7 +48,7 @@
         isNormalUser = true;
         extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
         openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQkKn73qM9vjYIaFt94Kj/syd5HCw2GdpiZ3z5+Rp/r tomas@supermicro"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQkKn73qM9vjYIaFt94Kj/syd5HCw2GdpiZ3z5+Rp/r tomas@blue-fire"
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas"
         ];
         packages = with pkgs; [ firefox tree ];
