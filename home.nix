@@ -8,31 +8,36 @@
 let
   inherit (pkgs) stdenv;
 
-  tmux-menu = pkgs.writeShellScriptBin "tmux-menu" ''
-    # Get a list of existing tmux sessions:
-    TMUX_SESSIONS=$(tmux ls | awk -F: '{print $1}')
+  # tmux-menu = pkgs.writeShellScriptBin "tmux-menu" ''
+  #   # Get a list of existing tmux sessions:
+  #   TMUX_SESSIONS=$(tmux ls | awk -F: '{print $1}')
 
-    # If there are no existing sessions:
-    if [[ -z $TMUX_SESSIONS ]]; then
-        echo "No existing tmux sessions. Creating a new session called 'default'..."
-        tmux new -s default
-    else
-        # Present a menu to the user:
-        echo "Existing tmux sessions:"
-        echo "$TMUX_SESSIONS"
-        echo "Enter the name of the session you want to attach to, or 'new' to create a new session: "
-        read user_input
+  #   # If there are no existing sessions:
+  #   if [[ -z $TMUX_SESSIONS ]]; then
+  #       echo "No existing tmux sessions. Creating a new session called 'default'..."
+  #       tmux new -s default
+  #   else
+  #       # Present a menu to the user:
+  #       echo "Existing tmux sessions:"
+  #       echo "$TMUX_SESSIONS"
+  #       echo "Enter the name of the session you want to attach to, or 'new' to create a new session: "
+  #       read user_input
 
-        # Attach to the chosen session, or create a new one:
-        if [[ $user_input == "new" ]]; then
-            echo "Enter name for new session: "
-            read new_session_name
-            tmux new -s $new_session_name
-        else
-            tmux attach -t $user_input
-        fi
-    fi
-  '';
+  #       # Attach to the chosen session, or create a new one:
+  #       if [[ $user_input == "new" ]]; then
+  #           echo "Enter name for new session: "
+  #           read new_session_name
+  #           tmux new -s $new_session_name
+  #       else
+  #           tmux attach -t $user_input
+  #       fi
+  #   fi
+  # '';
+
+  iterm = pkgs.fetchurl {
+    url = "https://iterm2.com/shell_integration/zsh";
+    sha256 = "sha256-Cq8winA/tcnnVblDTW2n1k/olN3DONEfXrzYNkufZvY=";
+  };
 
 in
 {
@@ -99,17 +104,17 @@ in
 
   programs.tmux = { enable = true; };
 
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      font = {
-        normal = {
-          family = "Fira Code";
-          style = "Retina";
-        };
-      };
-    };
-  };
+  # programs.alacritty = {
+  #   enable = true;
+  #   settings = {
+  #     font = {
+  #       normal = {
+  #         family = "Fira Code";
+  #         style = "Retina";
+  #       };
+  #     };
+  #   };
+  # };
 
   programs.starship = {
     enable = true;
@@ -120,12 +125,6 @@ in
 
       hostname.disabled = false;
 
-      # battery = {
-      #   full_symbol = "🔋 ";
-      #   charging_symbol = "⚡️ ";
-      #   discharging_symbol = "💀 ";
-      # };
-
       sudo.disabled = false;
       shell.disabled = false;
       os.disabled = false;
@@ -135,7 +134,7 @@ in
   programs.ssh = {
 
     enable = true;
-    forwardAgent = true;
+    # forwardAgent = true;
 
     # identityAgent = "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
     # extraConfig =
@@ -155,31 +154,8 @@ in
       })
     ];
   };
-  # age.secrets.gh = {
-  #   file = ./secrets/gh.age;
-  #   path =
-  #     if stdenv.isLinux
-  #     then "/home/tomas/.config/gh/hosts.yml"
-  #     else "/Users/tomas/.config/gh/hosts.yml";
-  # };
 
-  # home.file = lib.mkIf stdenv.isDarwin {
-  #   # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-  #   # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-  #   # # symlink to the Nix store copy.
-  #   # ".screenrc".source = dotfiles/screenrc;
-
-  #   # # You can also set the file content immediately.
-  #       export EDITOR='subl -w'
-  #     #   # autoload -Uz compinit
-  #     #   # compinit
-
-  #     #   # source ~/.zsh/plugins/iterm2_shell_integration
-  #     #   # . ~/.zsh/plugins/iterm2_tmux_integration
-  #   '';
-  # };
-
-  programs. git. enable = true;
+  programs.git.enable = true;
   programs.git.userName = "Tomas Harkema";
   programs.git.userEmail = "tomas@harkema.io";
 
@@ -198,6 +174,7 @@ in
     enableSyntaxHighlighting = true;
 
     autocd = true;
+
     history.extended = true;
     history.expireDuplicatesFirst = true;
     historySubstringSearch = {
@@ -207,7 +184,7 @@ in
     };
 
     initExtra = ''
-      # source /Applications/iTerm.app/Contents/Resources/iterm2_shell_integration.zsh;
+      source "${iterm}";
     '';
 
     # autosuggestions.strategy = [ "history" "completion" "match_prev_cmd" ];
@@ -264,17 +241,8 @@ in
         {
           name = "tysonwolker/iterm-tab-colors";
         }
-        # {
-        #   name = "RiverGlide/zsh-iterm2";
-        #   tags = [ from:gitlab ];
-        # }
         {
-          name = "RiverGlide/zsh-iterm2";
-          tags = [
-            "from:gitlab"
-            "as:command"
-            "use:utilities/*"
-          ];
+          name = "mafredri/zsh-async";
         }
       ];
     };
@@ -282,9 +250,6 @@ in
     oh-my-zsh = {
       enable = true;
       plugins = [
-        # "zsh-syntax-highlighting"
-        # "zsh-autosuggestions"
-        # "zsh-completions"
         "1password"
         "autojump"
         "aws"
@@ -294,13 +259,11 @@ in
         "fzf"
         "git-extras"
         "git"
-        "git"
         "gitignore"
         "macos"
         "man"
         "mix"
         "nmap"
-        "sudo"
         "sudo"
         "systemd"
         "thefuck"
