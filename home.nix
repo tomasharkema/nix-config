@@ -59,7 +59,7 @@ in
   # };
 
   imports = [
-    ./apps/nvim
+    # ./apps/nvim
     ./apps/atuin
     ./apps/tmux
   ]; # ++ [ (lib.optional (stdenv.isLinux) (./apps/flatpak.nix)) ];
@@ -207,7 +207,7 @@ in
     };
 
     initExtra = ''
-      source /Applications/iTerm.app/Contents/Resources/iterm2_shell_integration.zsh;
+      # source /Applications/iTerm.app/Contents/Resources/iterm2_shell_integration.zsh;
     '';
 
     # autosuggestions.strategy = [ "history" "completion" "match_prev_cmd" ];
@@ -261,6 +261,21 @@ in
           name = "zsh-users/zsh-completions";
           # tags = [ defer:2 ];
         }
+        {
+          name = "tysonwolker/iterm-tab-colors";
+        }
+        # {
+        #   name = "RiverGlide/zsh-iterm2";
+        #   tags = [ from:gitlab ];
+        # }
+        {
+          name = "RiverGlide/zsh-iterm2";
+          tags = [
+            "from:gitlab"
+            "as:command"
+            "use:utilities/*"
+          ];
+        }
       ];
     };
 
@@ -299,3 +314,4 @@ in
     };
   };
 }
+
