@@ -86,7 +86,7 @@ let
         builders-use-substitutes = true
       '';
       environment.systemPackages = with pkgs; [
-        kitty
+        # kitty
         terminal-notifier
       ];
 
