@@ -23,20 +23,20 @@ jobs:
       - uses: cachix/install-nix-action@v23
         with:
           nix_path: nixpkgs=channel:nixos-23.11
-      - run: nix develop -c nix build .#nixosConfigurations."enceladus".config.system.build.toplevel --json --verbose | jq -r '.[].outputs | to_entries[].value' | attic push tomas:harkema --stdin
-  supermicro:
+      - run: nix develop -c nix build .#nixosConfigurations."enzian".config.system.build.toplevel --json --verbose | jq -r '.[].outputs | to_entries[].value' | attic push tomas:harkema --stdin
+  blue-fire:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
       - uses: cachix/install-nix-action@v23
         with:
           nix_path: nixpkgs=channel:nixos-23.11
-      - run: nix develop -c nix build .#nixosConfigurations."supermicro".config.system.build.toplevel --json --verbose | jq -r '.[].outputs | to_entries[].value' | attic push tomas:harkema --stdin
-  raspbii4:
+      - run: nix develop -c nix build .#nixosConfigurations."blue-fire".config.system.build.toplevel --json --verbose | jq -r '.[].outputs | to_entries[].value' | attic push tomas:harkema --stdin
+  pegasus:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
       - uses: cachix/install-nix-action@v23
         with:
           nix_path: nixpkgs=channel:nixos-23.11
-      - run: nix develop -c nix build .#images.aarch64-darwin.raspbii4 --json --verbose | jq -r '.[].outputs | to_entries[].value' | attic push tomas:harkema --stdin
+      - run: nix develop -c nix build .#images.aarch64-darwin.pegasus --json --verbose | jq -r '.[].outputs | to_entries[].value' | attic push tomas:harkema --stdin

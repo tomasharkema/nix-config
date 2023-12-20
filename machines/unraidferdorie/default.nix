@@ -15,7 +15,7 @@
     { _module.args.disks = [ "/dev/vda" ]; }
   ];
 
-  networking.hostName = lib.mkForce "unraidferdorie";
+  networking.hostName = lib.mkForce "silver-star-ferdorie";
   networking.hostId = "1839f4ed";
   #   boot.loader.systemd-boot.enable = true;
   #   boot.loader.efi.canTouchEfiVariables = true;

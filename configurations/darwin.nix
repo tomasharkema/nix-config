@@ -2,9 +2,9 @@
 , nix-index-database
 , agenix
 , home-manager
-, nixpkgs,
-inputs,
- ...
+, nixpkgs
+, inputs
+, ...
 }@attrs:
 let
   builder = import ../machines/builder (attrs);
@@ -20,59 +20,59 @@ let
       #eu.nixbuild.net aarch64-linux - 100 1 big-parallel,benchmark
       #eu.nixbuild.net i686-linux - 100 1 big-parallel,benchmark
 
-      #enceladus x86_64-linux - 100 1 big-parallel,benchmark,kvm
-      #enceladus aarch64-linux - 100 1 big-parallel,benchmark,kvm
+      #enzian x86_64-linux - 100 1 big-parallel,benchmark,kvm
+      #enzian aarch64-linux - 100 1 big-parallel,benchmark,kvm
 
-      #cfserve x86_64-linux - 100 1 big-parallel,benchmark,kvm
-      #cfserve aarch64-linux - 100 1 big-parallel,benchmark,kvm
+      #arthur x86_64-linux - 100 1 big-parallel,benchmark,kvm
+      #arthur aarch64-linux - 100 1 big-parallel,benchmark,kvm
 
-      #unraidferdorie x86_64-linux - 100 1 big-parallel,benchmark,kvm
-      #unraidferdorie aarch64-linux - 100 1 big-parallel,benchmark,kvm
+      #silver-starferdorie x86_64-linux - 100 1 big-parallel,benchmark,kvm
+      #silver-starferdorie aarch64-linux - 100 1 big-parallel,benchmark,kvm
 
-      # supermicro x86_64-linux - 100 1 big-parallel,benchmark,kvm
-      # supermicro aarch64-linux - 100 1 big-parallel,benchmark,kvm
+      # blue-fire x86_64-linux - 100 1 big-parallel,benchmark,kvm
+      # blue-fire aarch64-linux - 100 1 big-parallel,benchmark,kvm
 
-      #tower x86_64-linux - 100 1 big-parallel,benchmark,kvm
-      #tower aarch64-linux - 100 1 big-parallel,benchmark,kvm
+      #silver-star x86_64-linux - 100 1 big-parallel,benchmark,kvm
+      #silver-star aarch64-linux - 100 1 big-parallel,benchmark,kvm
 
       nix.buildMachines = [
         {
-          hostName = "supermicro";
+          hostName = "blue-fire";
           system = "x86_64-linux";
           maxJobs = 4;
           supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
           speedFactor = 7;
         }
         {
-          hostName = "supermicro";
+          hostName = "blue-fire";
           system = "i686-linux";
           maxJobs = 4;
           supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
           speedFactor = 7;
         }
         {
-          hostName = "supermicro";
+          hostName = "blue-fire";
           system = "aarch64-linux";
           maxJobs = 4;
           supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
           speedFactor = 5;
         }
         {
-          hostName = "enceladus";
+          hostName = "enzian";
           system = "x86_64-linux";
           maxJobs = 4;
           supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
           speedFactor = 10;
         }
         {
-          hostName = "enceladus";
+          hostName = "enzian";
           system = "i686-linux";
           maxJobs = 4;
           supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
           speedFactor = 10;
         }
         {
-          hostName = "enceladus";
+          hostName = "enzian";
           system = "aarch64-linux";
           maxJobs = 4;
           supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
@@ -135,7 +135,7 @@ in
   #   modules = [ builder ];
   # };
 
-  "MacBook-Pro-van-Tomas" = nix-darwin.lib.darwinSystem
+  "euro-mir" = nix-darwin.lib.darwinSystem
     {
       # system = "aarch64-darwin";
       # specialArgs = {
@@ -143,12 +143,12 @@ in
       # };
 
       modules = [
-        ({pkgs, ...}:{
+        ({ pkgs, ... }: {
           nixpkgs.hostPlatform = "aarch64-darwin";
           nixpkgs.config.allowUnfree = true;
-            services.nix-daemon.enable = true;
-            nix.package = pkgs.nix;
-programs.zsh.enable = true;
+          services.nix-daemon.enable = true;
+          nix.package = pkgs.nix;
+          programs.zsh.enable = true;
 
         })
         # builder
@@ -158,12 +158,12 @@ programs.zsh.enable = true;
         # ../apps/iterm
         settings
         home-manager.darwinModules.home-manager
-        # self.homeConfigurations."tomas@MacBook-Pro-van-Tomas".config
-        # self.homeConfigurations."tomas@MacBook-Pro-van-Tomas"
+        # self.homeConfigurations."tomas@euro-mir".config
+        # self.homeConfigurations."tomas@euro-mir"
         # {
-        #   imports = [ self.homeConfigurations."tomas@MacBook-Pro-van-Tomas".config ];
+        #   imports = [ self.homeConfigurations."tomas@euro-mir".config ];
         # }
-        # self.homeConfigurations."tomas@MacBook-Pro-van-Tomas"
+        # self.homeConfigurations."tomas@euro-mir"
         ({
 
 
@@ -176,8 +176,8 @@ programs.zsh.enable = true;
           home-manager.users.tomas.imports = [
             agenix.homeManagerModules.default
             ../home.nix
-            ({lib, ...}: {
-  # programs.home-manager.enable = true;
+            ({ lib, ... }: {
+              # programs.home-manager.enable = true;
               home.username = lib.mkDefault "tomas";
               home.homeDirectory = lib.mkForce "/Users/tomas";
             })
