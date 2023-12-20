@@ -100,7 +100,11 @@ in
   programs.htop.settings.show_program_path = false;
 
   programs.fzf.enable = true;
-  programs.nix-index.enable = true;
+  programs.nix-index =
+    {
+      enable = true;
+      enableZshIntegration = true;
+    };
 
   programs.tmux = { enable = true; };
 
@@ -146,6 +150,15 @@ in
         "*" = {
           extraOptions = lib.mkIf stdenv.isDarwin {
             "IdentityAgent" = "/Users/tomas/.1password/agent.sock";
+          };
+        };
+        tower = {
+          hostname = "tower";
+          user = "root";
+          forwardAgent = true;
+          extraOptions = {
+            RequestTTY = "yes";
+            # RemoteCommand = "tmux new -A -s \$\{\%n\}";
           };
         };
       }
@@ -221,29 +234,29 @@ in
       # '';
     };
 
-    # zplug = {
-    #   enable = true;
-    #   plugins = [
-    #     {
-    #       name = "zsh-users/zsh-syntax-highlighting";
-    #       # tags = [ defer:2 ];
-    #     }
-    #     {
-    #       name = "zsh-users/zsh-autosuggestions";
-    #       # tags = [ defer:2 ]; 
-    #     }
-    #     {
-    #       name = "zsh-users/zsh-completions";
-    #       # tags = [ defer:2 ];
-    #     }
-    #     {
-    #       name = "tysonwolker/iterm-tab-colors";
-    #     }
-    #     {
-    #       name = "mafredri/zsh-async";
-    #     }
-    #   ];
-    # };
+    zplug = {
+      enable = true;
+      plugins = [
+        #     {
+        #       name = "zsh-users/zsh-syntax-highlighting";
+        #       # tags = [ defer:2 ];
+        #     }
+        #     {
+        #       name = "zsh-users/zsh-autosuggestions";
+        #       # tags = [ defer:2 ]; 
+        #     }
+        #     {
+        #       name = "zsh-users/zsh-completions";
+        #       # tags = [ defer:2 ];
+        #     }
+        {
+          name = "tysonwolker/iterm-tab-colors";
+        }
+        {
+          name = "mafredri/zsh-async";
+        }
+      ];
+    };
 
     oh-my-zsh = {
       enable = true;

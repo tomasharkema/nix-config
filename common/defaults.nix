@@ -55,6 +55,7 @@ in
       node = {
         enable = true;
         disabledCollectors = [ "arp" ];
+        collectors = [ "systemd" ];
       };
 
       systemd = {
