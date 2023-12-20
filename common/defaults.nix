@@ -54,12 +54,7 @@ in
     exporters = {
       node = {
         enable = true;
-        disabledCollectors = [ "arp" ];
-        collectors = [ "systemd" ];
-      };
-
-      systemd = {
-        enable = true;
+        enabledCollectors = [ "systemd" ];
       };
     };
   };
