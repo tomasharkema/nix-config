@@ -56,6 +56,10 @@ in
         enable = true;
         disabledCollectors = [ "arp" ];
       };
+
+      systemd = {
+        enable = true;
+      };
     };
   };
 
