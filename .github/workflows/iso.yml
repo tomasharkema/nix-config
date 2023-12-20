@@ -9,7 +9,7 @@ concurrency:
 
 jobs:
   tests:
-    runs-on: ubuntu-latest
+    runs-on: my-runner
     steps:
       - uses: actions/checkout@v3
       - uses: cachix/install-nix-action@v23
