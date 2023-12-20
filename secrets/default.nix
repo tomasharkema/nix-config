@@ -5,15 +5,15 @@ _: {
   };
   age.secrets.atuin-key = {
     file = ./atuin-key.age;
-    # mode = "770";
-    path = "/tmp/atuin.key";
+    mode = "770";
+    path = "$HOME/.local/share/atuin/key";
     owner = "tomas";
     group = "tomas";
   };
   age.secrets.atuin-session = {
     file = ./atuin-session.age;
-    # mode = "770";
-    path = "/tmp/atuin.session";
+    mode = "770";
+    path = "$HOME/.local/share/atuin/session";
     owner = "tomas";
     group = "tomas";
   };
