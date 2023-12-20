@@ -3,20 +3,20 @@ _: {
     file = ./attic-key.age;
     mode = "770";
   };
-  # age.secrets.atuin-key = {
-  #   file = ./atuin-key.age;
-  #   # mode = "770";
-  #   path = "/tmp/atuin/key";
-  #   owner = "tomas";
-  #   group = "tomas";
-  # };
-  # age.secrets.atuin-session = {
-  #   file = ./atuin-session.age;
-  #   # mode = "770";
-  #   path = "/tmp/atuin/session";
-  #   owner = "tomas";
-  #   group = "tomas";
-  # };
+  age.secrets.atuin-key = {
+    file = ./atuin-key.age;
+    # mode = "770";
+    path = "/tmp/atuin.key";
+    owner = "tomas";
+    group = "tomas";
+  };
+  age.secrets.atuin-session = {
+    file = ./atuin-session.age;
+    # mode = "770";
+    path = "/tmp/atuin.session";
+    owner = "tomas";
+    group = "tomas";
+  };
   age.secrets.tailscale = {
     file = ./tailscale.age;
     mode = "770";
