@@ -8,6 +8,7 @@ let
 in
 with pkgs;
 [
+  fx
   _1password
   antidote
   atuin
@@ -20,13 +21,15 @@ with pkgs;
   comma
   coreutils
   curl
+  direnv
   deadnix
   delta
   dnsutils
   dog
   du-dust
+  direnv
   eza
-  eza
+  httpie
   fd
   fortune
   fpp

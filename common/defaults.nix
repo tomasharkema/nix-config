@@ -24,10 +24,11 @@ in
     ../apps/cockpit.nix
   ];
 
+  programs.zsh.enable = true;
   environment.systemPackages = common; # ++ gui;
 
-  networking.wireless.enable = false;
-  networking.networkmanager.enable = true;
+  networking.wireless.enable = lib.mkDefault false;
+  networking.networkmanager.enable = lib.mkDefault true;
 
   time.timeZone = "Europe/Amsterdam";
 
@@ -83,7 +84,6 @@ in
   services.fwupd.enable = true;
   networking.firewall = {
     enable = true;
-    # enable = false;
   };
 
   services.avahi.extraServiceFiles = {

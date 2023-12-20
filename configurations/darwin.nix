@@ -2,10 +2,9 @@
 , nix-index-database
 , agenix
 , home-manager
-, lib
-, nixpkgs
-, inputs
-, ...
+, nixpkgs,
+inputs,
+ ...
 }@attrs:
 let
   builder = import ../machines/builder (attrs);
@@ -128,24 +127,31 @@ let
     });
 in
 {
-  builder = nix-darwin.lib.darwinSystem {
-    system = "aarch64-darwin";
-    specialArgs = {
-      inherit inputs;
-    };
-    modules = [ builder ];
-  };
+  # builder = nix-darwin.lib.darwinSystem {
+  #   system = "aarch64-darwin";
+  #   specialArgs = {
+  #     inherit inputs;
+  #   };
+  #   modules = [ builder ];
+  # };
 
   "MacBook-Pro-van-Tomas" = nix-darwin.lib.darwinSystem
     {
-      system = "aarch64-darwin";
-      specialArgs = {
-        inherit inputs;
-      };
+      # system = "aarch64-darwin";
+      # specialArgs = {
+      #   inherit inputs;
+      # };
 
       modules = [
+        ({pkgs, ...}:{
+          nixpkgs.hostPlatform = "aarch64-darwin";
+          nixpkgs.config.allowUnfree = true;
+            services.nix-daemon.enable = true;
+            nix.package = pkgs.nix;
+programs.zsh.enable = true;
+
+        })
         # builder
-        # statix.overlays.default
         nix-index-database.darwinModules.nix-index
         agenix.darwinModules.default
         ../secrets
@@ -158,25 +164,29 @@ in
         #   imports = [ self.homeConfigurations."tomas@MacBook-Pro-van-Tomas".config ];
         # }
         # self.homeConfigurations."tomas@MacBook-Pro-van-Tomas"
-        {
+        ({
 
-          # home-manager.useGlobalPkgs = true;
-          # home-manager.useUserPackages = true;
+
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
-            inherit (attrs) inputs;
+            # inherit (attrs) inputs;
+            inherit inputs;
           };
           home-manager.users.tomas.imports = [
             agenix.homeManagerModules.default
             ../home.nix
-            ({
+            ({lib, ...}: {
+  # programs.home-manager.enable = true;
+              home.username = lib.mkDefault "tomas";
               home.homeDirectory = lib.mkForce "/Users/tomas";
             })
           ];
-          home-manager.backupFileExtension = "bak";
+          # home-manager.backupFileExtension = "bak";
           # home.username = lib.mkDefault "tomas";
 
-        }
-        ({ pkgs, ... }:
+        })
+        ({ pkgs, lib, ... }:
           let
             maclaunch = pkgs.fetchFromGitHub {
               owner = "hazcod";

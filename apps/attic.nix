@@ -2,24 +2,36 @@
 
   age.secrets.attic-key = {
     file = ../secrets/attic-key.age;
-    mode = "770";
   };
 
-  environment.interactiveShellInit =
+  # environment.interactiveShellInit =
+  #   let
+  #     attic-bin = lib.attrsets.getBin inputs.attic.packages.${pkgs.system}.default;
+  #     attic-script = (pkgs.writeShellScriptBin "attic-script" ''
+  #       ${lib.attrsets.getBin attic-bin}/bin/attic login tomas https://nix-cache.harke.ma $(cat ${config.age.secrets.attic-key.path})
+  #       ${lib.attrsets.getBin attic-bin}/bin/attic use tomas:tomas
+  #     '');
+  #   in
+  #   ''
+  #     ${attic-script}/bin/attic-script
+  #     #   mkdir -p ~/.1password || true
+  #     #   ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock /Users/tomas/.1password/agent.sock || true
+  #     #   export SSH_AUTH_SOCK=/Users/tomas/.1password/agent.sock
+  #   '';
+
+  systemd.user.services.attic-login =
     let
       attic-bin = lib.attrsets.getBin inputs.attic.packages.${pkgs.system}.default;
-      attic-script = (pkgs.writeShellScriptBin "attic-script" ''
+      attic-login = (pkgs.writeShellScriptBin "attic-script" ''
         ${lib.attrsets.getBin attic-bin}/bin/attic login tomas https://nix-cache.harke.ma $(cat ${config.age.secrets.attic-key.path})
         ${lib.attrsets.getBin attic-bin}/bin/attic use tomas:tomas
       '');
     in
-    ''
-      ${attic-script}/bin/attic-script
-      #   mkdir -p ~/.1password || true
-      #   ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock /Users/tomas/.1password/agent.sock || true
-      #   export SSH_AUTH_SOCK=/Users/tomas/.1password/agent.sock
-    '';
-
+    {
+      description = "attic-login";
+      script = ''${attic-login}'';
+      wantedBy = [ "multi-user.target" ]; # starts after login
+    };
 
   systemd.services.attic-watch =
     let
