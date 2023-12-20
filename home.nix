@@ -104,17 +104,17 @@ in
 
   programs.tmux = { enable = true; };
 
-  # programs.alacritty = {
-  #   enable = true;
-  #   settings = {
-  #     font = {
-  #       normal = {
-  #         family = "Fira Code";
-  #         style = "Retina";
-  #       };
-  #     };
-  #   };
-  # };
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      font = {
+        normal = {
+          family = "Fira Code";
+          style = "Retina";
+        };
+      };
+    };
+  };
 
   programs.starship = {
     enable = true;
@@ -187,8 +187,6 @@ in
       source "${iterm}";
     '';
 
-    # autosuggestions.strategy = [ "history" "completion" "match_prev_cmd" ];
-
     shellAliases = {
       ll = "ls -l";
       ls = "exa";
@@ -223,29 +221,29 @@ in
       # '';
     };
 
-    zplug = {
-      enable = true;
-      plugins = [
-        {
-          name = "zsh-users/zsh-syntax-highlighting";
-          # tags = [ defer:2 ];
-        }
-        {
-          name = "zsh-users/zsh-autosuggestions";
-          # tags = [ defer:2 ]; 
-        }
-        {
-          name = "zsh-users/zsh-completions";
-          # tags = [ defer:2 ];
-        }
-        {
-          name = "tysonwolker/iterm-tab-colors";
-        }
-        {
-          name = "mafredri/zsh-async";
-        }
-      ];
-    };
+    # zplug = {
+    #   enable = true;
+    #   plugins = [
+    #     {
+    #       name = "zsh-users/zsh-syntax-highlighting";
+    #       # tags = [ defer:2 ];
+    #     }
+    #     {
+    #       name = "zsh-users/zsh-autosuggestions";
+    #       # tags = [ defer:2 ]; 
+    #     }
+    #     {
+    #       name = "zsh-users/zsh-completions";
+    #       # tags = [ defer:2 ];
+    #     }
+    #     {
+    #       name = "tysonwolker/iterm-tab-colors";
+    #     }
+    #     {
+    #       name = "mafredri/zsh-async";
+    #     }
+    #   ];
+    # };
 
     oh-my-zsh = {
       enable = true;
@@ -272,9 +270,9 @@ in
         "vi-mode"
         "yarn"
         "zsh-navigation-tools"
+        "wd"
       ];
-      theme = "robbyrussell";
+      # theme = "powerlevel10k/powerlevel10k";
     };
   };
 }
-
