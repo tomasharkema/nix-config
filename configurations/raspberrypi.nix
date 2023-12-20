@@ -10,7 +10,7 @@
 , ...
 }:
 let
-  defaults = { pkgs, lib, ... }@attrs:
+  defaults = { pkgs, lib, config, ... }@attrs:
     let
       rpi-update-src = pkgs.fetchFromGitHub {
         owner = "raspberrypi";
@@ -41,10 +41,6 @@ let
         rpi-update
       ];
 
-      networking = {
-        networkmanager.enable = true;
-      };
-
       systemd.services.attic-watch.enable = lib.mkForce false;
 
       services.resilio = {
@@ -58,6 +54,22 @@ let
 
       services.avahi.extraServiceFiles = {
         ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
+      };
+
+      age.secrets.wireless = {
+        file = ../secrets/wireless.age;
+        mode = "0664";
+      };
+      networking.useDHCP = true;
+      networking.networkmanager.enable = false;
+      networking.wireless = {
+
+        environmentFile = config.age.secrets."wireless".path;
+        networks = {
+          "Have a good day".psk = "@BRANDON_HOME@";
+        };
+
+        enable = true;
       };
 
       # users.groups = {
@@ -95,9 +107,9 @@ in
     specialArgs = { inherit inputs; };
 
     modules = [
-      nixos-generators.nixosModules.all-formats
-      # "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-      # "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+      # nixos-generators.nixosModules.all-formats
+      "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+      "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
       impermanence.nixosModules.impermanence
       agenix.nixosModules.default
       ../secrets

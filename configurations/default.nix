@@ -1,6 +1,4 @@
-{
-  # config,
-  nixpkgs
+{ nixpkgs
 , nixos-generators
 , inputs
 , home-manager
