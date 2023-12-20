@@ -23,8 +23,8 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-23.11-darwin";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
@@ -35,11 +35,6 @@
     };
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-darwin = {
-      url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -114,8 +109,8 @@
           config.allowUnfree = true;
         });
       home = {
-        # home-manager.useGlobalPkgs = true;
-        # home-manager.useUserPackages = true;
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
           inherit inputs;
         };
@@ -362,7 +357,7 @@
       };
 
       images = {
-        raspbii3 = self.nixosConfigurations.raspbii3.config.formats.raw;
+        raspbii3 = self.nixosConfigurations.raspbii3.config.system.build.sdImage;
         raspbii = self.nixosConfigurations.raspbii.config.system.build.sdImage;
 
         cfserveiso = self.nixosConfigurations.cfserve.config.formats.install-iso;

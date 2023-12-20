@@ -81,7 +81,7 @@ in
   home.homeDirectory = lib.mkDefault "/home/tomas";
 
   home.stateVersion = "23.11";
-
+programs.home-manager.enable = true;
   home.sessionVariables = lib.mkIf stdenv.isDarwin {
     EDITOR = "subl";
     SSH_AUTH_SOCK = "/Users/tomas/.1password/agent.sock";
@@ -138,12 +138,6 @@ in
   programs.ssh = {
 
     enable = true;
-    # forwardAgent = true;
-
-    # identityAgent = "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
-    # extraConfig =
-    #   "IdentityAgent \"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock\""
-    # ;
 
     matchBlocks = lib.mkMerge [
       {
@@ -172,11 +166,11 @@ in
   programs.git.userName = "Tomas Harkema";
   programs.git.userEmail = "tomas@harkema.io";
 
-  programs.home-manager = { enable = true; };
   programs.lazygit.enable = true;
   programs.lsd.enable = true;
   programs.jq.enable = true;
   programs.skim.enable = true;
+
   fonts.fontconfig.enable = true;
 
   programs.zsh = {
@@ -237,18 +231,18 @@ in
     zplug = {
       enable = true;
       plugins = [
-        #     {
-        #       name = "zsh-users/zsh-syntax-highlighting";
-        #       # tags = [ defer:2 ];
-        #     }
-        #     {
-        #       name = "zsh-users/zsh-autosuggestions";
-        #       # tags = [ defer:2 ]; 
-        #     }
-        #     {
-        #       name = "zsh-users/zsh-completions";
-        #       # tags = [ defer:2 ];
-        #     }
+            {
+              name = "zsh-users/zsh-syntax-highlighting";
+              # tags = [ defer:2 ];
+            }
+            {
+              name = "zsh-users/zsh-autosuggestions";
+              # tags = [ defer:2 ]; 
+            }
+            {
+              name = "zsh-users/zsh-completions";
+              # tags = [ defer:2 ];
+            }
         {
           name = "tysonwolker/iterm-tab-colors";
         }
