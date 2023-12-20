@@ -46,7 +46,7 @@ in
   #   # distributedBuilds = true;
   #   trusted-users = [ "root" "tomas" ];
   #   extra-substituters = [
-  #     # "ssh://nix-ssh@tower.ling-lizard.ts.net"
+  #     # "ssh://nix-ssh@silver-star.ling-lizard.ts.net"
   #     "https://nix-cache.harke.ma/"
   #     "https://tomasharkema.cachix.org/"
   #     "https://cache.nixos.org/"
@@ -57,7 +57,7 @@ in
   #     "https://cache.nixos.org/"
   #   ];
   #   extra-trusted-public-keys = [
-  #     "tower.ling-lizard.ts.net:MBxJ2O32x6IcWJadxdP42YGVw2eW2tAbMp85Ws6QCno="
+  #     "silver-star.ling-lizard.ts.net:MBxJ2O32x6IcWJadxdP42YGVw2eW2tAbMp85Ws6QCno="
   #     "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
   #   ];
   #   access-tokens = [ "github.com=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" ];
@@ -146,8 +146,8 @@ programs.home-manager.enable = true;
             "IdentityAgent" = "/Users/tomas/.1password/agent.sock";
           };
         };
-        tower = {
-          hostname = "tower";
+        silver-star = {
+          hostname = "silver-star";
           user = "root";
           forwardAgent = true;
           extraOptions = {
@@ -221,7 +221,7 @@ programs.home-manager.enable = true;
       #   set -f ; \
       #   export IFS=' ' ; \
       #   echo "Signing and uploading paths" $OUT_PATHS ; \
-      #   exec nix copy --to 'http://tower.ling-lizard.ts.net:6666/' $OUT_PATHS'';
+      #   exec nix copy --to 'http://silver-star.ling-lizard.ts.net:6666/' $OUT_PATHS'';
 
       # upload-after-build = ''
       #   jq -r '.[].outputs | to_entries[].value' | nix copy --to 'https://nix-cache.harke.ma' --stdin

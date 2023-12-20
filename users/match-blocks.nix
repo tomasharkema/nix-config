@@ -1,6 +1,6 @@
 { lib, ... }:
 let
-  machines = [ "supermicro" "cfserve" "enceladus" "raspbii3" "raspbii4" "hyperv-nixos" ];
+  machines = [ "blue-fire" "arthur" "enzian" "baaa-express" "pegasus" "hyperv-nixos" ];
 in
 lib.mkMerge [
   (builtins.listToAttrs (map

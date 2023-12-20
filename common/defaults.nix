@@ -22,6 +22,7 @@ in
     ../apps/tailscale
     ./users.nix
     ../apps/cockpit.nix
+    ../apps/prometheus
   ];
 
   programs.zsh.enable = true;
@@ -51,16 +52,6 @@ in
   programs.ssh.startAgent = true;
   system.autoUpgrade.enable = true;
 
-  services.prometheus = {
-    exporters = {
-      node = {
-        enable = true;
-        enabledCollectors = [ "systemd" ];
-        disabledCollectors = [ "arp" ];
-      };
-    };
-  };
-
   # services.cadvisor =
   #   {
   #     enable = true;
@@ -77,7 +68,6 @@ in
 
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
-  # systemd.services.NetworkManager-wait-online.enable = false;
 
   nix.optimise.automatic = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -89,4 +79,5 @@ in
   services.avahi.extraServiceFiles = {
     ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
   };
+
 }

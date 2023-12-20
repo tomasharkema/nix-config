@@ -135,7 +135,7 @@
         });
 
       homeConfigurations = {
-        "root@tower" = home-manager.lib.homeManagerConfiguration {
+        "root@silver-star" = home-manager.lib.homeManagerConfiguration {
           # system = "x86_64-linux";
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
 
@@ -143,16 +143,16 @@
           modules = [
             # home 
             agenix.homeManagerModules.default
-            ./machines/tower
+            ./machines/silver-star
             ./home.nix
           ];
         };
       };
 
-      # systemConfigs.unraid = system-manager.lib.makeSystemConfig {
+      # systemConfigs.silver-star = system-manager.lib.makeSystemConfig {
       #   modules = [
       #     # impermanence.nixosModules.impermanence
-      #     ./machines/tower
+      #     ./machines/silver-star
       #     home-manager.nixosModules.home-manager
       #     {
       #       home-manager.useGlobalPkgs = true;
@@ -174,55 +174,56 @@
 
       deploy = {
         nodes = {
-          raspbii = {
-            hostname = "100.66.126.23";
+          pegasus = {
+            hostname = "172.25.137.137";
+            # hostname = "100.66.126.23";
             profiles.system = {
               user = "root";
               sshUser = "root";
               path =
                 deploy.lib.aarch64-linux.activate.nixos
-                  self.nixosConfigurations.raspbii;
+                  self.nixosConfigurations.pegasus;
             };
           };
-          raspbii3 = {
+          baaa-express = {
             hostname = "172.25.3.82";
             profiles.system = {
               user = "root";
               sshUser = "root";
               path =
                 deploy.lib.aarch64-linux.activate.nixos
-                  self.nixosConfigurations.raspbii3;
+                  self.nixosConfigurations.baaa-express;
             };
           };
 
-          unraid = {
+          silver-star = {
             hostname = "100.122.146.5";
             profiles.user = {
               user = "tomas";
               sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.home-manager
-                  self.homeConfigurations."root@tower";
+                  self.homeConfigurations."root@silver-star";
             };
           };
-          enceladus = {
+          enzian = {
             hostname = "100.78.63.10";
             profiles.system = {
               user = "root";
               sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.nixos
-                  self.nixosConfigurations.enceladus;
+                  self.nixosConfigurations.enzian;
             };
           };
-          unraidferdorie = {
+          silver-star-ferdorie = {
             hostname = "100.89.172.46";
             profiles.system = {
               user = "root";
               sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.nixos
-                  self.nixosConfigurations.unraidferdorie;
+                  self.nixosConfigurations.silver-star-ferdorie;
             };
           };
           utm-nixos = {
@@ -246,7 +247,7 @@
                   self.nixosConfigurations.hyperv-nixos;
             };
           };
-          supermicro = {
+          blue-fire = {
             # hostname = "172.25.172.112";
             # hostname = "192.168.1.77";
             hostname = "100.65.162.126";
@@ -255,27 +256,27 @@
               sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.nixos
-                  self.nixosConfigurations.supermicro;
+                  self.nixosConfigurations.blue-fire;
             };
           };
-          cfserve = {
+          arthur = {
             hostname = "100.70.39.116";
             profiles.system = {
               user = "root";
               sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.nixos
-                  self.nixosConfigurations.cfserve;
+                  self.nixosConfigurations.arthur;
             };
           };
-          winrtx = {
+          wodan = {
             hostname = "192.168.1.46";
             profiles.system = {
               user = "root";
               sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.nixos
-                  self.nixosConfigurations.winrtx;
+                  self.nixosConfigurations.wodan;
             };
           };
         };
@@ -304,13 +305,13 @@
       #   #       ];
       #   #       format = "qcow";
       #   #     };
-      #   enceladusiso = nixos-generators.nixosGenerate {
+      #   enzianiso = nixos-generators.nixosGenerate {
       #     system = "x86_64-linux";
       #     # specialArgs = inputs;
       #     pkgs = pkgsFor.x86_64-linux;
 
       #     specialArgs = { inherit inputs outputs; };
-      #     modules = [ self.nixosConfigurations.enceladus.config ];
+      #     modules = [ self.nixosConfigurations.enzian.config ];
       #     format = "install-iso";
       #   };
       # };
@@ -321,7 +322,7 @@
       #   pkgs = pkgs;
 
       #   specialArgs = { inherit inputs pkgs; };
-      #   modules = [ self.nixosConfigurations.cfserve.config ];
+      #   modules = [ self.nixosConfigurations.arthur.config ];
       #   format = "install-iso";
       # };
     }
@@ -353,16 +354,16 @@
           pkgs = pkgsFor.x86_64-linux;
           pkgsLinux = pkgsFor."x86_64-linux";
         };
-        # enceladus = self.nixosConfigurations.enceladus.config.system.build.toplevel;
+        # enzian = self.nixosConfigurations.enzian.config.system.build.toplevel;
       };
 
       images = {
-        raspbii3 = self.nixosConfigurations.raspbii3.config.system.build.sdImage;
-        raspbii = self.nixosConfigurations.raspbii.config.system.build.sdImage;
+        baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
+        pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
 
-        cfserveiso = self.nixosConfigurations.cfserve.config.formats.install-iso;
+        arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
 
-        unraidferdorie = self.nixosConfigurations.unraidferdorie.config.formats.qcow;
+        silver-star-ferdorie = self.nixosConfigurations.silver-star-ferdorie.config.formats.qcow;
       };
 
       devShells = {
