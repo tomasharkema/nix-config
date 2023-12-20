@@ -1,6 +1,6 @@
 { lib, ... }:
 let
-  machines = [ "supermicro" "cfserve" "enceladus" "raspbii3" "raspbii4" "tower" "hyperv-nixos" ];
+  machines = [ "supermicro" "cfserve" "enceladus" "raspbii3" "raspbii4" "hyperv-nixos" ];
 
   valueFn = (machine: {
     hostname = "${machine}";
