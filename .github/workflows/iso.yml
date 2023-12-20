@@ -15,7 +15,7 @@ jobs:
       - uses: cachix/install-nix-action@v23
         with:
           nix_path: nixpkgs=channel:nixos-23.11
-      - run: nix develop -c nix build '.#installiso' --json | jq -r '.[].outputs | to_entries[].value' | attic push tomas:harkema --stdin
+      - run: nix develop -c nix build '.#installiso' --json --verbose | jq -r '.[].outputs | to_entries[].value' | attic push tomas:harkema --stdin
   encaladus:
     runs-on: self-hosted
     steps:
@@ -23,7 +23,7 @@ jobs:
       - uses: cachix/install-nix-action@v23
         with:
           nix_path: nixpkgs=channel:nixos-23.11
-      - run: nix develop -c nix build .#nixosConfigurations."enceladus".config.system.build.toplevel --json | jq -r '.[].outputs | to_entries[].value' | attic push tomas:harkema --stdin
+      - run: nix develop -c nix build .#nixosConfigurations."enceladus".config.system.build.toplevel --json --verbose | jq -r '.[].outputs | to_entries[].value' | attic push tomas:harkema --stdin
   supermicro:
     runs-on: self-hosted
     steps:
@@ -31,7 +31,7 @@ jobs:
       - uses: cachix/install-nix-action@v23
         with:
           nix_path: nixpkgs=channel:nixos-23.11
-      - run: nix develop -c nix build .#nixosConfigurations."supermicro".config.system.build.toplevel --json | jq -r '.[].outputs | to_entries[].value' | attic push tomas:harkema --stdin
+      - run: nix develop -c nix build .#nixosConfigurations."supermicro".config.system.build.toplevel --json --verbose | jq -r '.[].outputs | to_entries[].value' | attic push tomas:harkema --stdin
   raspbii4:
     runs-on: self-hosted
     steps:
@@ -39,4 +39,4 @@ jobs:
       - uses: cachix/install-nix-action@v23
         with:
           nix_path: nixpkgs=channel:nixos-23.11
-      - run: nix develop -c nix build .#images.aarch64-darwin.raspbii4 --json | jq -r '.[].outputs | to_entries[].value' | attic push tomas:harkema --stdin
+      - run: nix develop -c nix build .#images.aarch64-darwin.raspbii4 --json --verbose | jq -r '.[].outputs | to_entries[].value' | attic push tomas:harkema --stdin
