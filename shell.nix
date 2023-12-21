@@ -31,6 +31,10 @@ let
     nom build '.#nixosConfigurations.hyperv-nixos.config.formats.install-iso' --out-link $LINK
     pv $LINK -cN in -B 100M -pterbT | xz -T4 -9 | pv -cN out -B 100M -pterbT > ./out/install.iso.xz
   '';
+
+  remote-deploy = pkgs.writeShellScriptBin "remote-deploy" ''
+    remote deployment '.#arthur' '.#enzian'
+  '';
 in
 
 pkgs.mkShell {
@@ -38,6 +42,7 @@ pkgs.mkShell {
   # buildInputs = [pkgs.home-manager];
 
   packages = with pkgs; [
+    (import ./apps/remote-cli (attrs))
     (reencrypt { inherit system; })
     (mkiso { })
     inputs.attic.packages.${system}.default

@@ -5,3 +5,5 @@ utm-nixos-swtpm/tpm2-00.permall
 .direnv
 out
 result
+
+.remote*
