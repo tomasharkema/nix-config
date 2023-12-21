@@ -91,7 +91,7 @@ in
       maxJobs = 4;
       supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
       sshKey = "/var/lib/darwin-builder/keys/builder_ed25519";
-      speedFactor = 20;
+      speedFactor = 30;
     }
     {
       hostName = "builder@linux-builder";
@@ -99,7 +99,7 @@ in
       maxJobs = 4;
       supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
       sshKey = "/var/lib/darwin-builder/keys/builder_ed25519";
-      speedFactor = 20;
+      speedFactor = 30;
     }
   ];
 
