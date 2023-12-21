@@ -57,27 +57,27 @@ let
           supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
           speedFactor = 5;
         }
-        {
-          hostName = "enzian";
-          system = "x86_64-linux";
-          maxJobs = 4;
-          supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
-          speedFactor = 10;
-        }
-        {
-          hostName = "enzian";
-          system = "i686-linux";
-          maxJobs = 4;
-          supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
-          speedFactor = 10;
-        }
-        {
-          hostName = "enzian";
-          system = "aarch64-linux";
-          maxJobs = 4;
-          supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
-          speedFactor = 5;
-        }
+        # {
+        #   hostName = "enzian";
+        #   system = "x86_64-linux";
+        #   maxJobs = 4;
+        #   supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+        #   speedFactor = 10;
+        # }
+        # {
+        #   hostName = "enzian";
+        #   system = "i686-linux";
+        #   maxJobs = 4;
+        #   supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+        #   speedFactor = 10;
+        # }
+        # {
+        #   hostName = "enzian";
+        #   system = "aarch64-linux";
+        #   maxJobs = 4;
+        #   supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+        #   speedFactor = 5;
+        # }
       ];
 
       nix.extraOptions = ''
@@ -151,7 +151,7 @@ in
           programs.zsh.enable = true;
 
         })
-        builder
+        # builder
         nix-index-database.darwinModules.nix-index
         agenix.darwinModules.default
         ../secrets
