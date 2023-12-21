@@ -49,20 +49,29 @@ let
     };
     nativeBuildInputs = [ ];
 
-    buildInputs = [ pkgs.gradle pkgs.tree pkgs.openjdk8 ];
+    buildInputs = [ pkgs.gradle_7 pkgs.tree pkgs.openjdk19 ];
 
     buildPhase = ''
-      export GRADLE_USER_HOME="$(pwd)/.gradle"
-      ./gradlew build
+      rm -rf /tmp/gradle &> /dev/null
+      mkdir /tmp/gradle 
+      export GRADLE_USER_HOME="/tmp/gradle" 
+      gradle :rd-cli-tool:installDist
     '';
 
     installPhase = ''
-      tree rd-cli-tool/build/libs
-      mkdir -p $out/bin
+      mv rd-cli-tool/build/install/rd $out
+      tree $out
     '';
   };
-  rds = pkgs.writeShellScriptBin "rundeck" ''
-    ${rd}/bin/derp $@
+  # rds = pkgs.writeShellScriptBin "rundeck" ''
+  #   ${rd}/bin/derp $@
+  # '';
+
+  run-imager = pkgs.writeShellScriptBin "run-imager" ''
+    export RD_AUTH_PROMPT=false
+    export RD_TOKEN="9LczxcesPidTMTpPAK1LSoWdVYi9wixx"
+    export RD_URL=https://rundeck.harkema.io
+    ${rd}/bin/rd run -i 513a69b3-116b-4d7e-b396-11adcc0117e5 -f -- -image $1
   '';
 in
 
@@ -78,8 +87,9 @@ pkgs.mkShell {
     (reencrypt { inherit system; })
     (mkiso { })
 
-
-    rds
+    rd
+    run-imager
+    # rds
 
     remote-deploy
     inputs.attic.packages.${system}.default
@@ -115,6 +125,8 @@ pkgs.mkShell {
     colmena
   ] ++ (import ./packages/nixpkgs.nix (attrs));
   # shellHook = ''
+  #   export RD_TOKEN="9LczxcesPidTMTpPAK1LSoWdVYi9wixx"
+  #   export RD_URL=https://rundeck.harkema.io
   #   # cachix use tomasharkema
   # '';
 }
