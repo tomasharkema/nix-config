@@ -5,6 +5,7 @@
 } @ attrs:
 
 let
+  inherit (pkgs) stdenv;
   write-script = pkgs.writeShellScriptBin "write-script" ''
     set -x
     echo "pv $1 $2"
@@ -35,9 +36,40 @@ let
   remote-deploy = pkgs.writeShellScriptBin "remote-deploy" ''
     remote deployment '.#arthur' '.#enzian'
   '';
+
+  rd = stdenv.mkDerivation {
+
+    name = "rundeck";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "rundeck";
+      repo = "rundeck-cli";
+      rev = "d0037a653f9c57f1e62df7c0369205943ae147c9";
+      hash = "sha256-IK/WHO5s5EiJMV2nMlVqHqk5L1jXk8dklkJm15DVZ1U=";
+    };
+    nativeBuildInputs = [ ];
+
+    buildInputs = [ pkgs.gradle pkgs.tree pkgs.openjdk8 ];
+
+    buildPhase = ''
+      export GRADLE_USER_HOME="$(pwd)/.gradle"
+      ./gradlew build
+    '';
+
+    installPhase = ''
+      tree rd-cli-tool/build/libs
+      mkdir -p $out/bin
+    '';
+  };
+  rds = pkgs.writeShellScriptBin "rundeck" ''
+    ${rd}/bin/derp $@
+  '';
 in
 
 pkgs.mkShell {
+  # nixpkgs.config.allowUnfree = true;
+  allowUnfree = true;
+
   defaultPackage = pkgs.zsh;
   # buildInputs = [pkgs.home-manager];
 
@@ -45,6 +77,10 @@ pkgs.mkShell {
     (import ./apps/remote-cli (attrs))
     (reencrypt { inherit system; })
     (mkiso { })
+
+
+    rds
+
     remote-deploy
     inputs.attic.packages.${system}.default
     inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
@@ -59,7 +95,6 @@ pkgs.mkShell {
     deployment
     git
     gnupg
-
     go
     gotools
     gopls
