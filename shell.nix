@@ -49,7 +49,7 @@ let
     };
     nativeBuildInputs = [ ];
 
-    buildInputs = [ pkgs.gradle_7 pkgs.tree pkgs.openjdk19 ];
+    buildInputs = [ pkgs.gradle_7 pkgs.openjdk19 ];
 
     buildPhase = ''
       rm -rf /tmp/gradle &> /dev/null
@@ -60,7 +60,6 @@ let
 
     installPhase = ''
       mv rd-cli-tool/build/install/rd $out
-      tree $out
     '';
   };
   # rds = pkgs.writeShellScriptBin "rundeck" ''
