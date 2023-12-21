@@ -151,7 +151,7 @@ in
           programs.zsh.enable = true;
 
         })
-        # builder
+        builder
         nix-index-database.darwinModules.nix-index
         agenix.darwinModules.default
         ../secrets

@@ -1,15 +1,15 @@
 { pkgs, ... }@attrs: {
 
-  # systemd.services.promtail = {
-  #   description = "Promtail service for Loki";
-  #   wantedBy = [ "multi-user.target" ];
+  systemd.services.promtail = {
+    description = "Promtail service for Loki";
+    wantedBy = [ "multi-user.target" ];
 
-  #   serviceConfig = {
-  #     ExecStart = ''
-  #       ${pkgs.grafana-loki}/bin/promtail --config.file ${./promtail.yaml}
-  #     '';
-  #   };
-  # };
+    serviceConfig = {
+      ExecStart = ''
+        ${pkgs.grafana-loki}/bin/promtail --config.file ${./promtail.yaml}
+      '';
+    };
+  };
 
   services.prometheus = {
     exporters = {
@@ -18,7 +18,7 @@
         enabledCollectors = [ "systemd" ];
         disabledCollectors = [ "arp" ];
       };
+      process.enable = true;
     };
   };
-  services.prometheus.exporters.process.enable = true;
 }
