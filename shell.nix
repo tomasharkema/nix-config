@@ -45,6 +45,7 @@ pkgs.mkShell {
     (import ./apps/remote-cli (attrs))
     (reencrypt { inherit system; })
     (mkiso { })
+    remote-deploy
     inputs.attic.packages.${system}.default
     inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
     deploy-machine

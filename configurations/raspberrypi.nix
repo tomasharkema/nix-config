@@ -30,7 +30,7 @@ let
         ../apps/tailscale
         ../apps/cockpit.nix
         ../common/users.nix
-        ../common/wifi.nix
+        # ../common/wifi.nix
       ];
 
       services.openssh.enable = true;
