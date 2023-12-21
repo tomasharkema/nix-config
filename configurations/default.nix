@@ -19,11 +19,24 @@ let
   #   ];
   # };
   # base = { config, ... }@attrs: (import ../common/defaults.nix (attrs));
-  raspberrypis = (import ./raspberrypi.nix (attrs));
   nonfree = { ... }: {
     nixpkgs.config.allowUnfree = true;
     nixpkgs.config.allowUnfreePredicate = _: true;
   };
+  homemanager = [
+    home-manager.nixosModules.home-manager
+    {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.extraSpecialArgs = { inherit inputs; };
+      home-manager.users.tomas.imports = [
+        agenix.homeManagerModules.default
+        ../home.nix
+      ];
+      home-manager.backupFileExtension = "bak";
+    }
+  ];
+  raspberrypis = (import ./raspberrypi.nix ((attrs) // { inherit homemanager; })); # // { inherit homemanager; }));
 in
 raspberrypis // {
   # raspberrypi-3 = raspberrypis.raspberrypi-3;
@@ -82,22 +95,10 @@ raspberrypis // {
       nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
       ../apps/attic.nix
-      home-manager.nixosModules.home-manager
       nonfree
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit inputs; };
-        home-manager.users.tomas.imports = [
-          # nix-flatpak.homeManagerModules.nix-flatpak
-          agenix.homeManagerModules.default
-          ../home.nix
-        ];
-        home-manager.backupFileExtension = "bak";
-      }
       vscode-server.nixosModules.default
       ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
-    ];
+    ] ++ homemanager;
   };
 
   blue-fire = nixpkgs.lib.nixosSystem {
@@ -122,20 +123,7 @@ raspberrypis // {
           useRoutingFeatures = lib.mkForce "both";
         };
       })
-
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit inputs; };
-        home-manager.users.tomas.imports = [
-          # nix-flatpak.homeManagerModules.nix-flatpak
-          agenix.homeManagerModules.default
-          ../home.nix
-        ];
-        home-manager.backupFileExtension = "bak";
-      }
-    ];
+    ] ++ homemanager;
   };
 
   utm-nixos = nixpkgs.lib.nixosSystem {
@@ -147,22 +135,9 @@ raspberrypis // {
       disko.nixosModules.default
       ../machines/utm-nixos/default.nix
       ../secrets
-      nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
       nonfree
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit inputs; };
-        home-manager.users.tomas.imports = [
-          nix-flatpak.homeManagerModules.nix-flatpak
-          agenix.homeManagerModules.default
-          ../home.nix
-        ];
-        home-manager.backupFileExtension = "bak";
-      }
-    ];
+    ] ++ homemanager;
   };
 
   hyperv-nixos = nixpkgs.lib.nixosSystem {
@@ -176,19 +151,7 @@ raspberrypis // {
       ../secrets
       agenix.nixosModules.default
       nonfree
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit inputs; };
-        home-manager.users.tomas.imports = [
-          nix-flatpak.homeManagerModules.nix-flatpak
-          agenix.homeManagerModules.default
-          ../home.nix
-        ];
-        home-manager.backupFileExtension = "bak";
-      }
-    ];
+    ] ++ homemanager;
   };
 
   silver-starferdorie = nixpkgs.lib.nixosSystem {
@@ -204,19 +167,7 @@ raspberrypis // {
       ../secrets
       agenix.nixosModules.default
       nonfree
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit inputs; };
-        home-manager.users.tomas.imports = [
-          nix-flatpak.homeManagerModules.nix-flatpak
-          agenix.homeManagerModules.default
-          ../home.nix
-        ];
-        home-manager.backupFileExtension = "bak";
-      }
-    ];
+    ] ++ homemanager;
   };
 
   arthur = nixpkgs.lib.nixosSystem {
@@ -233,27 +184,15 @@ raspberrypis // {
       ../machines/arthur
       ../secrets
       ../apps/attic.nix
-      nix-flatpak.nixosModules.nix-flatpak
+      # nix-flatpak.nixosModules.nix-flatpak
       agenix.nixosModules.default
       nonfree
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit inputs; };
-        home-manager.users.tomas.imports = [
-          nix-flatpak.homeManagerModules.nix-flatpak
-          agenix.homeManagerModules.default
-          ../home.nix
-        ];
-        home-manager.backupFileExtension = "bak";
-      }
       # vscode-server.nixosModules.default
       # ({ config
       #  , pkgs
       #  , ...
       #  }: { services.vscode-server.enable = true; })
-    ];
+    ] ++ homemanager;
   };
 
   silver-star = nixpkgs.lib.nixosSystem {
@@ -274,26 +213,16 @@ raspberrypis // {
         boot.isContainer = true;
       })
       nonfree
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit inputs; };
-        home-manager.users.tomas.imports = [
-          agenix.homeManagerModules.default
-          ../home.nix
-        ];
-        home-manager.backupFileExtension = "bak";
-      }
+
       # vscode-server.nixosModules.default
       # ({ config
       #  , pkgs
       #  , ...
       #  }: { services.vscode-server.enable = true; })
-    ];
+    ] ++ homemanager;
   };
 
-  wodan = nixpkgs.lib.nixosSystem {
+  wodan-wsl = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = attrs;
     modules = [
@@ -339,18 +268,6 @@ raspberrypis // {
           ];
         };
       }
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit inputs; };
-        home-manager.users.tomas.imports = [
-          nix-flatpak.homeManagerModules.nix-flatpak
-          agenix.homeManagerModules.default
-          ../home.nix
-        ];
-        home-manager.backupFileExtension = "bak";
-      }
-    ];
+    ] ++ homemanager;
   };
 }

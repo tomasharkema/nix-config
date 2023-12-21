@@ -15,7 +15,7 @@ jobs:
       - uses: cachix/install-nix-action@v23
         with:
           nix_path: nixpkgs=channel:nixos-23.11
-      - run: nix develop -c nix build '.#installiso' --json --verbose | jq -r '.[].outputs | to_entries[].value' | attic push tomas:harkema --stdin
+      - run: nix develop -c nix build '.#installiso' --verbose
   encaladus:
     runs-on: self-hosted
     steps:
@@ -23,7 +23,7 @@ jobs:
       - uses: cachix/install-nix-action@v23
         with:
           nix_path: nixpkgs=channel:nixos-23.11
-      - run: nix develop -c nix build .#nixosConfigurations."enzian".config.system.build.toplevel --json --verbose | jq -r '.[].outputs | to_entries[].value' | attic push tomas:harkema --stdin
+      - run: nix develop -c nix build .#nixosConfigurations."enzian".config.system.build.toplevel --verbose
   blue-fire:
     runs-on: self-hosted
     steps:
@@ -31,7 +31,7 @@ jobs:
       - uses: cachix/install-nix-action@v23
         with:
           nix_path: nixpkgs=channel:nixos-23.11
-      - run: nix develop -c nix build .#nixosConfigurations."blue-fire".config.system.build.toplevel --json --verbose | jq -r '.[].outputs | to_entries[].value' | attic push tomas:harkema --stdin
+      - run: nix develop -c nix build .#nixosConfigurations."blue-fire".config.system.build.toplevel --verbose
   pegasus:
     runs-on: self-hosted
     steps:
@@ -39,4 +39,4 @@ jobs:
       - uses: cachix/install-nix-action@v23
         with:
           nix_path: nixpkgs=channel:nixos-23.11
-      - run: nix develop -c nix build .#images.aarch64-darwin.pegasus --json --verbose | jq -r '.[].outputs | to_entries[].value' | attic push tomas:harkema --stdin
+      - run: nix develop -c nix build .#images.aarch64-darwin.pegasus --verbose

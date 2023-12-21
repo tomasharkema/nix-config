@@ -7,6 +7,7 @@
 , home-manager
 , impermanence
 , nixos-generators
+, homemanager
 , ...
 }:
 let
@@ -29,6 +30,7 @@ let
         ../apps/tailscale
         ../apps/cockpit.nix
         ../common/users.nix
+        ../common/wifi.nix
       ];
 
       services.openssh.enable = true;
@@ -56,22 +58,6 @@ let
         ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
       };
       services.avahi.publish.userServices = true;
-
-      age.secrets.wireless = {
-        file = ../secrets/wireless.age;
-        mode = "0664";
-      };
-      networking.useDHCP = true;
-      networking.networkmanager.enable = false;
-      networking.wireless = {
-
-        environmentFile = config.age.secrets."wireless".path;
-        networks = {
-          "Have a good day".psk = "@BRANDON_HOME@";
-        };
-
-        enable = true;
-      };
 
       # users.groups = {
       #   tomas = { };
@@ -135,41 +121,41 @@ in
 
         hardware.enableRedistributableFirmware = true;
 
-        # environment.persistence."/nix/persistent" = {
-        #   hideMounts = true;
-        #   directories = [
-        #     "/var/log"
-        #     "/var/lib/bluetooth"
-        #     "/var/lib/nixos"
-        #     "/var/lib/systemd/coredump"
-        #     "/etc/NetworkManager/system-connections"
-        #     { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
-        #   ];
-        #   files = [
-        #     "/etc/machine-id"
-        #     { file = "/etc/nix/id_rsa"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
-        #   ];
-        # };
+        environment.persistence."/nix/persistent" = {
+          hideMounts = true;
+          directories = [
+            "/var/log"
+            "/var/lib/bluetooth"
+            "/var/lib/nixos"
+            "/var/lib/systemd/coredump"
+            "/etc/NetworkManager/system-connections"
+            { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+          ];
+          files = [
+            "/etc/machine-id"
+            { file = "/etc/nix/id_rsa"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
+          ];
+        };
 
-        # fileSystems."/" = {
-        #   device = lib.mkForce "none";
-        #   fsType = lib.mkForce "tmpfs";
-        #   autoResize = lib.mkForce false;
-        #   options = [ "defaults" "size=25%" "mode=755" ];
-        # };
+        fileSystems."/" = {
+          device = lib.mkForce "none";
+          fsType = lib.mkForce "tmpfs";
+          autoResize = lib.mkForce false;
+          options = [ "defaults" "size=25%" "mode=755" ];
+        };
 
-        # fileSystems."/nix" = {
-        #   device = "/dev/mmcblk0";
-        #   fsType = "btrfs";
-        #   options = [ "compress-force=zstd" ];
-        # };
+        fileSystems."/nix" = {
+          device = "/dev/mmcblk0";
+          fsType = "btrfs";
+          options = [ "compress-force=zstd" ];
+        };
 
-        # fileSystems."/boot" = {
-        #   device = "/dev/disk/by-uuid/2178-694E";
-        #   fsType = "vfat";
-        # };
+        fileSystems."/boot" = {
+          device = "/dev/disk/by-uuid/2178-694E";
+          fsType = "vfat";
+        };
       })
-    ];
+    ] ++ homemanager;
   };
 
   pegasus = (nixpkgs.lib.nixosSystem {
@@ -204,18 +190,6 @@ in
         networking.hostName = "pegasus";
       })
       # # ../common/defaults.nix
-      # home-manager.nixosModules.home-manager
-      # {
-      #   home-manager.useGlobalPkgs = true;
-      #   home-manager.useUserPackages = true;
-      #   home-manager.extraSpecialArgs = { inherit inputs; };
-      #   home-manager.users.tomas.imports = [
-      #     # nix-flatpak.homeManagerModules.nix-flatpak
-      #     agenix.homeManagerModules.default
-      #     ../home.nix
-      #   ];
-      #   home-manager.backupFileExtension = "bak";
-      # }
-    ];
+    ] ++ homemanager;
   });
 }
