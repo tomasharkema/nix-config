@@ -364,6 +364,9 @@
         arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
 
         silver-star-ferdorie = self.nixosConfigurations.silver-star-ferdorie.config.formats.qcow;
+
+        hyperv-installiso =
+          self.nixosConfigurations.hyperv-nixos.config.formats.qcow;
       };
 
       devShells = {

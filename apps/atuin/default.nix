@@ -15,6 +15,7 @@ in
       Install.WantedBy = [ "multi-user.target" ];
       Service = {
         ExecStart = ''${atuin-login}'';
+        Type = "oneshot";
       };
     };
 

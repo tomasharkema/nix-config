@@ -146,6 +146,16 @@ in
             "IdentityAgent" = "/Users/tomas/.1password/agent.sock";
           };
         };
+        wodan-wsl = {
+          hostname = "192.168.1.46";
+          user = "root";
+          forwardAgent = true;
+          extraOptions = {
+            RequestTTY = "yes";
+            HostKeyAlgorithms = "+ssh-rsa";
+            # RemoteCommand = "tmux new -A -s \$\{\%n\}";
+          };
+        };
         silver-star = {
           hostname = "silver-star";
           user = "root";
