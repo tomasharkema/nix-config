@@ -1,10 +1,10 @@
 { config, ... }: {
+
   age.secrets.wireless = {
     file = ../secrets/wireless.age;
     mode = "0664";
   };
-  networking.useDHCP = true;
-  networking.networkmanager.enable = false;
+
   networking.wireless = {
 
     environmentFile = config.age.secrets."wireless".path;
@@ -12,7 +12,7 @@
       "Have a good day".psk = "@BRANDON_HOME@";
     };
 
-    enable = true;
+    # enable = true;
   };
 
 }

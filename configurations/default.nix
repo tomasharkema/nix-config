@@ -85,6 +85,7 @@ raspberrypis // {
     # specialArgs = attrs;
 
     modules = [
+      ../common/wifi_module.nix
       inputs.nixos-hardware.nixosModules.common-cpu-intel
       inputs.nixos-hardware.nixosModules.common-pc-ssd
       # base
@@ -107,6 +108,7 @@ raspberrypis // {
 
     specialArgs = { inherit inputs nixpkgs; };
     modules = [
+      "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
       nixos-hardware.nixosModules.common-cpu-intel
       nixos-hardware.nixosModules.common-pc-ssd
       # ./user-defaults.nix

@@ -188,6 +188,7 @@ in
           };
         };
         networking.hostName = "pegasus";
+        networking.wireless.enable = lib.mkForce false;
       })
       # # ../common/defaults.nix
     ] ++ homemanager;

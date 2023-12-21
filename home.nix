@@ -64,7 +64,7 @@ in
   # };
 
   imports = [
-    # ./apps/nvim
+    ./apps/nvim
     ./apps/atuin
     ./apps/tmux
   ]; # ++ [ (lib.optional (stdenv.isLinux) (./apps/flatpak.nix)) ];
@@ -81,7 +81,7 @@ in
   home.homeDirectory = lib.mkDefault "/home/tomas";
 
   home.stateVersion = "23.11";
-programs.home-manager.enable = true;
+  programs.home-manager.enable = true;
   home.sessionVariables = lib.mkIf stdenv.isDarwin {
     EDITOR = "subl";
     SSH_AUTH_SOCK = "/Users/tomas/.1password/agent.sock";
@@ -231,24 +231,24 @@ programs.home-manager.enable = true;
     zplug = {
       enable = true;
       plugins = [
-            {
-              name = "zsh-users/zsh-syntax-highlighting";
-              # tags = [ defer:2 ];
-            }
-            {
-              name = "zsh-users/zsh-autosuggestions";
-              # tags = [ defer:2 ]; 
-            }
-            {
-              name = "zsh-users/zsh-completions";
-              # tags = [ defer:2 ];
-            }
+        # {
+        #   name = "zsh-users/zsh-syntax-highlighting";
+        #   # tags = [ defer:2 ];
+        # }
+        # {
+        #   name = "zsh-users/zsh-autosuggestions";
+        #   # tags = [ defer:2 ]; 
+        # }
+        # {
+        #   name = "zsh-users/zsh-completions";
+        #   # tags = [ defer:2 ];
+        # }
         {
           name = "tysonwolker/iterm-tab-colors";
         }
-        {
-          name = "mafredri/zsh-async";
-        }
+        # {
+        #   name = "mafredri/zsh-async";
+        # }
       ];
     };
 
