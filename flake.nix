@@ -375,6 +375,9 @@
           inherit pkgs;
           inherit nixpkgs;
         });
+        rundesk = (import ./rundesk {
+          inherit pkgs;
+        }).shell;
       };
     });
 }
