@@ -17,7 +17,7 @@
 #     fsType = "vfat";
 #   };
 { disks ? [ "/dev/vda" ], ... }: {
-  fileSystems."/persistent".neededForBoot = true;
+  fileSystems."/nix".neededForBoot = true;
   disko.devices = {
     disk.main = {
       device = builtins.elemAt disks 0;
@@ -44,7 +44,7 @@
             content = {
               type = "filesystem";
               format = "ext4";
-              mountpoint = "/persistent";
+              mountpoint = "/nix";
             };
           };
           # encryptedSwap = {
