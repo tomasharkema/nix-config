@@ -38,12 +38,6 @@ let
   '';
 
   rundesk = (import ./rundesk attrs).packages;
-
-
-  hishtory = (pkgs.callPackage ./apps/hishtory {
-    inherit (inputs.gomod2nix.legacyPackages.${pkgs.system}) buildGoApplication;
-  });
-
 in
 
 pkgs.mkShell {
