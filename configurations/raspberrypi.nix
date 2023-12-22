@@ -95,7 +95,7 @@ in
 
     modules = [
       nixos-generators.nixosModules.all-formats
-      "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+      "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel.nix"
       "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
       impermanence.nixosModules.impermanence
       agenix.nixosModules.default
@@ -166,7 +166,7 @@ in
     modules = [
       # base
       inputs.nixos-hardware.nixosModules.raspberry-pi-4
-      "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
+      "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel.nix"
       "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
       defaults
       agenix.nixosModules.default
@@ -188,9 +188,7 @@ in
           };
         };
         networking.hostName = "pegasus";
-        networking.wireless.enable = lib.mkForce false;
       })
-      # # ../common/defaults.nix
     ] ++ homemanager;
   });
 }
