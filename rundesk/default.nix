@@ -100,7 +100,7 @@ rec {
 
   runner = pkgs.writeShellApplication {
     name = "runner";
-    runtimeInputs = with pkgs; [ file imager bash bunyan-rs ];
+    runtimeInputs = with pkgs; [ file imager bash ];
     # interpreter = "${pkgs.bash}/bin/bash";
 
     text = ''
@@ -118,7 +118,7 @@ rec {
 
       echo "hello runner! $1 $2";
 
-      ${pkgs.lib.getExe imager} "$WORK_DIR/nix-config" "$2 | ${pkgs.lib.getExe pkgs.bunyan-rs} 
+      ${pkgs.lib.getExe imager} "$WORK_DIR/nix-config" "$2"
 
       rm -rf "$WORK_DIR"
     '';
