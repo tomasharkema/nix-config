@@ -8,6 +8,7 @@ let
 in
 with pkgs;
 [
+  atop
   fx
   _1password
   antidote
