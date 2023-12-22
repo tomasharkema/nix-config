@@ -1,5 +1,10 @@
 { pkgs, config, ... }:
-let hishtory-config = pkgs.writeShellScriptBin "hishtory-config" ./config.zsh; in {
+let
+  hishtory-config = pkgs.writeShellScriptBin "hishtory-config" ''
+    ${builtins.readFile ./config.zsh}
+  '';
+in
+{
 
   age.secrets.hishtory = {
     file = ../../secrets/hishtory.age;
@@ -10,7 +15,7 @@ let hishtory-config = pkgs.writeShellScriptBin "hishtory-config" ./config.zsh; i
 
   programs.zsh = {
     initExtra = ''
-      echo "${pkgs.lib.getExe hishtory-config}"
+      source "${pkgs.lib.getExe hishtory-config}"
 
       if [ ! -f ~/.hishinited ]
       then
