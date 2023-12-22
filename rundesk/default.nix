@@ -1,6 +1,7 @@
 { pkgs, ... }:
 let
   inherit (pkgs) stdenv;
+  inherit (pkgs) lib;
 in
 rec {
 
@@ -20,10 +21,10 @@ rec {
     buildInputs = [ pkgs.gradle_7 pkgs.openjdk19 ];
 
     buildPhase = ''
-      rm -rf /tmp/gradle &> /dev/null
-      mkdir /tmp/gradle 
-      export GRADLE_USER_HOME="/tmp/gradle" 
-      ./gradlew :rd-cli-tool:installDist
+      # rm -rf /tmp/gradle &> /dev/null
+      # mkdir /tmp/gradle 
+      # export GRADLE_USER_HOME="/tmp/gradle" 
+      ${lib.getExe pkgs.gradle_7} :rd-cli-tool:installDist
     '';
 
     installPhase = ''
@@ -118,7 +119,7 @@ rec {
 
       echo "hello runner! $1 $2";
 
-      ${pkgs.lib.getExe imager} "$WORK_DIR/nix-config" "$2"
+      ${lib.getExe imager} "$WORK_DIR/nix-config" "$2"
 
       rm -rf "$WORK_DIR"
     '';
