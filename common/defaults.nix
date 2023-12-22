@@ -12,7 +12,7 @@ let
   # gui = import ../packages/gui.nix (attrs);
 in
 {
-  # nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
   hardware.enableAllFirmware = true;
   # system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
   system.stateVersion = "23.11";
