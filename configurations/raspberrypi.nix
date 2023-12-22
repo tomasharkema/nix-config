@@ -96,13 +96,16 @@ in
     modules = [
       # nixos-generators.nixosModules.all-formats
       "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-      # "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+      "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
       impermanence.nixosModules.impermanence
       agenix.nixosModules.default
       disko.nixosModules.default
       ../secrets
       (defaults)
       ../common/disks/tmpfs.nix
+      {
+        _module.args.disks = [ "/dev/mmcblk0" ];
+      }
       ({ pkgs, lib, ... }: {
 
         environment.systemPackages = with pkgs; [
