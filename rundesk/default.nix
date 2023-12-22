@@ -33,7 +33,7 @@ rec {
 
   run-imager = pkgs.writeShellApplication {
     name = "imager";
-    runtimeInputs = with pkgs; [ rd grc ];
+    runtimeInputs = with pkgs; [ rd bunyan-rs ];
 
     text = ''
       export RD_AUTH_PROMPT=false
@@ -41,7 +41,7 @@ rec {
       export RD_URL=https://rundeck.harkema.io
 
       echo "Run imager: $1"
-      exec ${pkgs.lib.getExe pkgs.grc} ${pkgs.lib.getExe rd} run -i 513a69b3-116b-4d7e-b396-11adcc0117e5 -f -- -image "$1"
+      exec ${pkgs.lib.getExe pkgs.bunyan-rs} ${pkgs.lib.getExe rd} run -i 513a69b3-116b-4d7e-b396-11adcc0117e5 -f -- -image "$1"
     '';
   };
 
@@ -100,7 +100,7 @@ rec {
 
   runner = pkgs.writeShellApplication {
     name = "runner";
-    runtimeInputs = with pkgs; [ file imager bash grc ];
+    runtimeInputs = with pkgs; [ file imager bash bunyan-rs ];
     # interpreter = "${pkgs.bash}/bin/bash";
 
     text = ''
@@ -118,7 +118,7 @@ rec {
 
       echo "hello runner! $1 $2";
 
-      ${pkgs.lib.getExe pkgs.grc} ${pkgs.lib.getExe imager} "$WORK_DIR/nix-config" "$2
+      ${pkgs.lib.getExe pkgs.bunyan-rs} ${pkgs.lib.getExe imager} "$WORK_DIR/nix-config" "$2
 
       rm -rf "$WORK_DIR"
     '';
