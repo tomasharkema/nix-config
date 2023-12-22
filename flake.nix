@@ -354,6 +354,11 @@
           pkgs = pkgsFor.x86_64-linux;
           pkgsLinux = pkgsFor."x86_64-linux";
         };
+
+        rundesk = (import ./rundesk {
+          inherit pkgs lib;
+        }).runner;
+
         # enzian = self.nixosConfigurations.enzian.config.system.build.toplevel;
       };
 
@@ -376,7 +381,7 @@
           inherit nixpkgs;
         });
         rundesk = (import ./rundesk {
-          inherit pkgs;
+          inherit pkgs lib;
         }).shell;
       };
     });
