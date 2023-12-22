@@ -78,9 +78,9 @@ rec {
         --no-build-cache --info --full-stacktrace --warning-mode=all
     '';
 
-    # installPhase = ''
-    #   mv rd-cli-tool/build/install/rd $out
-    # '';
+    installPhase = ''
+      mv rd-cli-tool/build/install/rd $out
+    '';
   };
 
   run-imager = pkgs.writeShellApplication {
