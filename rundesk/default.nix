@@ -31,14 +31,28 @@ rec {
     '';
   };
 
-  run-imager = pkgs.writeShellScriptBin "run-imager" ''
-    export RD_AUTH_PROMPT=false
-    export RD_TOKEN="9LczxcesPidTMTpPAK1LSoWdVYi9wixx"
-    export RD_URL=https://rundeck.harkema.io
+  run-imager = pkgs.writeShellApplication {
+    name = "imager";
+    runtimeInputs = with pkgs; [ rd grc ];
 
-    echo "Run imager: $1"
-    ${pkgs.lib.getExe rd} run -i 513a69b3-116b-4d7e-b396-11adcc0117e5 -f -- -image $1
-  '';
+    text = ''
+      export RD_AUTH_PROMPT=false
+      export RD_TOKEN="9LczxcesPidTMTpPAK1LSoWdVYi9wixx"
+      export RD_URL=https://rundeck.harkema.io
+
+      echo "Run imager: $1"
+      exec ${pkgs.lib.getExe pkgs.grc} ${pkgs.lib.getExe rd} run -i 513a69b3-116b-4d7e-b396-11adcc0117e5 -f -- -image "$1"
+    '';
+  };
+
+  # pkgs.writeShellScriptBin "run-imager" ''
+  #   export RD_AUTH_PROMPT=false
+  #   export RD_TOKEN="9LczxcesPidTMTpPAK1LSoWdVYi9wixx"
+  #   export RD_URL=https://rundeck.harkema.io
+
+  #   echo "Run imager: $1"
+  #   ${pkgs.lib.getExe rd} run -i 513a69b3-116b-4d7e-b396-11adcc0117e5 -f -- -image $1
+  # '';
 
   imager = pkgs.writeShellApplication {
     name = "imager";
@@ -86,7 +100,7 @@ rec {
 
   runner = pkgs.writeShellApplication {
     name = "runner";
-    runtimeInputs = with pkgs; [ file imager bash ];
+    runtimeInputs = with pkgs; [ file imager bash grc ];
     # interpreter = "${pkgs.bash}/bin/bash";
 
     text = ''
@@ -104,7 +118,7 @@ rec {
 
       echo "hello runner! $1 $2";
 
-      ${pkgs.lib.getExe imager} "$WORK_DIR/nix-config" "$2"
+      ${pkgs.lib.getExe pkgs.grc} ${pkgs.lib.getExe imager} "$WORK_DIR/nix-config" "$2
 
       rm -rf "$WORK_DIR"
     '';
