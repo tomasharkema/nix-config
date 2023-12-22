@@ -87,6 +87,7 @@ let
       environment.systemPackages = with pkgs; [
         # kitty
         terminal-notifier
+        # vagrant
       ];
 
 
