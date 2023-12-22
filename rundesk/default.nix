@@ -60,6 +60,8 @@ rec {
       # rd-deps
     ];
 
+    packages = with pkgs; [ java ];
+
     # buildInputs = [ pkgs.rsync ];
     __noChroot = true;
 
@@ -69,7 +71,6 @@ rec {
     # --offline
 
     buildPhase = ''
-    
       TMPHOME="$(mktemp -d)"
       mkdir -p "$TMPHOME/init.d"
       export GRADLE_USER_HOME="$TMPHOME"
