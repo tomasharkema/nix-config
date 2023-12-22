@@ -1,10 +1,12 @@
-#! /usr/bin/env sh
+#! /usr/bin/env bash
+set -e
+set -x
 
 cd $WORK_DIR
 
 OUT="$WORK_DIR/$IMAGE"
 
-RES="$(nix build ".#images.x86_64-linux.$IMAGE" --out-link "$OUT" --json --accept-flake-config)"
+RES="$(nix build ".#images.x86_64-linux.$IMAGE" --out-link "$OUT" --json)"
 echo $RES | jq
 
 FILENAME="$IMAGE.tar.zst"

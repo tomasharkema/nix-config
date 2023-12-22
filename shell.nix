@@ -27,7 +27,7 @@ let
     ${inputs.agenix.packages.${system}.default}/bin/agenix -r
   '';
 
-  mkiso = { ... }: pkgs.writeShellScriptBin "mkiso" ''
+  mkiso = pkgs.writeShellScriptBin "mkiso" ''
     LINK="./out/install.iso";
     nom build '.#nixosConfigurations.hyperv-nixos.config.formats.install-iso' --out-link $LINK
     pv $LINK -cN in -B 100M -pterbT | xz -T4 -9 | pv -cN out -B 100M -pterbT > ./out/install.iso.xz
@@ -37,44 +37,12 @@ let
     remote deployment '.#arthur' '.#enzian'
   '';
 
-  rd = stdenv.mkDerivation {
+  rundesk = (import ./rundesk attrs).packages;
 
-    name = "rundeck";
-
-    src = pkgs.fetchFromGitHub {
-      owner = "rundeck";
-      repo = "rundeck-cli";
-      rev = "d0037a653f9c57f1e62df7c0369205943ae147c9";
-      hash = "sha256-IK/WHO5s5EiJMV2nMlVqHqk5L1jXk8dklkJm15DVZ1U=";
-    };
-    nativeBuildInputs = [ ];
-
-    buildInputs = [ pkgs.gradle_7 pkgs.openjdk19 ];
-
-    buildPhase = ''
-      rm -rf /tmp/gradle &> /dev/null
-      mkdir /tmp/gradle 
-      export GRADLE_USER_HOME="/tmp/gradle" 
-      gradle :rd-cli-tool:installDist
-    '';
-
-    installPhase = ''
-      mv rd-cli-tool/build/install/rd $out
-    '';
-  };
-  # rds = pkgs.writeShellScriptBin "rundeck" ''
-  #   ${rd}/bin/derp $@
-  # '';
-
-  run-imager = pkgs.writeShellScriptBin "run-imager" ''
-    export RD_AUTH_PROMPT=false
-    export RD_TOKEN="9LczxcesPidTMTpPAK1LSoWdVYi9wixx"
-    export RD_URL=https://rundeck.harkema.io
-    ${rd}/bin/rd run -i 513a69b3-116b-4d7e-b396-11adcc0117e5 -f -- -image $1
-  '';
 in
 
 pkgs.mkShell {
+  name = "devshell";
   # nixpkgs.config.allowUnfree = true;
   allowUnfree = true;
 
@@ -84,11 +52,7 @@ pkgs.mkShell {
   packages = with pkgs; [
     (import ./apps/remote-cli (attrs))
     (reencrypt { inherit system; })
-    (mkiso { })
-
-    rd
-    run-imager
-    # rds
+    mkiso
 
     remote-deploy
     inputs.attic.packages.${system}.default
@@ -122,7 +86,7 @@ pkgs.mkShell {
     zsh
     colima
     colmena
-  ] ++ (import ./packages/nixpkgs.nix (attrs));
+  ] ++ (import ./packages/nixpkgs.nix (attrs)) ++ rundesk;
   # shellHook = ''
   #   export RD_TOKEN="9LczxcesPidTMTpPAK1LSoWdVYi9wixx"
   #   export RD_URL=https://rundeck.harkema.io
