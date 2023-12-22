@@ -2,34 +2,82 @@
 let
   inherit (pkgs) stdenv;
   inherit (pkgs) lib;
+
+  unstable = import (fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz) { };
+  toolchains = [ unstable.jdk11 unstable.jdk17 ];
+
 in
 rec {
-
-  rd = stdenv.mkDerivation {
-
-    name = "rd";
-    meta.mainProgram = "rd";
+  rd-deps = stdenv.mkDerivation {
+    name = "rd-deps";
 
     src = pkgs.fetchFromGitHub {
       owner = "rundeck";
       repo = "rundeck-cli";
       rev = "d0037a653f9c57f1e62df7c0369205943ae147c9";
-      hash = "sha256-IK/WHO5s5EiJMV2nMlVqHqk5L1jXk8dklkJm15DVZ1U=";
+      sha256 = "sha256:IK/WHO5s5EiJMV2nMlVqHqk5L1jXk8dklkJm15DVZ1U=";
     };
-    nativeBuildInputs = [ ];
+    __noChroot = true;
 
-    buildInputs = [ pkgs.gradle_7 pkgs.openjdk19 ];
+    nativeBuildInputs = [
+      pkgs.gradle_7
+      # rd-deps 
+    ];
 
     buildPhase = ''
-      # rm -rf /tmp/gradle &> /dev/null
-      # mkdir /tmp/gradle 
-      # export GRADLE_USER_HOME="/tmp/gradle" 
-      ${lib.getExe pkgs.gradle_7} :rd-cli-tool:installDist
+      export GRADLE_USER_HOME="$(pwd)/.gradledeps"
+
+      gradle :rd-cli-tool:dependencies dependencies
     '';
 
     installPhase = ''
-      mv rd-cli-tool/build/install/rd $out
+      mkdir -p $out
+      mv .gradledeps $out
     '';
+  };
+
+
+  rd = stdenv.mkDerivation {
+
+    name = "rd";
+    meta = with lib; {
+      mainProgram = "rd";
+      sourceProvenance = with sourceTypes; [
+        binaryBytecode
+        binaryNativeCode
+      ];
+    };
+
+    src = pkgs.fetchFromGitHub {
+      owner = "rundeck";
+      repo = "rundeck-cli";
+      rev = "d0037a653f9c57f1e62df7c0369205943ae147c9";
+      sha256 = "sha256:IK/WHO5s5EiJMV2nMlVqHqk5L1jXk8dklkJm15DVZ1U=";
+    };
+
+    nativeBuildInputs = [
+      pkgs.gradle_7
+      rd-deps
+    ];
+
+    buildInputs = [ pkgs.rsync ];
+    # __noChroot = true;
+
+    buildPhase = ''
+      TMPHOME="$(mktemp -d)"
+      mkdir -p "$TMPHOME/init.d"
+      export GRADLE_USER_HOME="$TMPHOME"
+
+      rsync -a ${rd-deps}/.gradledeps/ $TMPHOME/
+      ls -la $TMPHOME
+
+      gradle :rd-cli-tool:installDist --info --no-daemon --offline \
+        --no-build-cache --info --full-stacktrace --warning-mode=all --refresh-dependencies
+    '';
+
+    # installPhase = ''
+    #   mv rd-cli-tool/build/install/rd $out
+    # '';
   };
 
   run-imager = pkgs.writeShellApplication {
