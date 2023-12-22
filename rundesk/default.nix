@@ -59,7 +59,7 @@ rec {
 
       OUT="$WORK_DIR/$IMAGE"
 
-      # RES="$(nix build ".#images.x86_64-linux.$IMAGE" --out-link "$OUT")"
+      # RES="$(nix build ".#images.x86_64-linux.$IMAGE" --out-link "$OUT" --verbose)"
       nix build ".#images.x86_64-linux.$IMAGE" --out-link "$OUT"
 
       echo "RUNDECK:DATA:OUT_LINK = $OUT"
@@ -73,9 +73,9 @@ rec {
 
       echo "RUNDECK:DATA:OUTPUT_FILE = $OUTPUT_FILE"
 
-      URL="$(curl "https://transfer.sh/$FILENAME" --upload-file "$OUTPUT_FILE")"
+      # URL="$(curl "https://transfer.sh/$FILENAME" --upload-file "$OUTPUT_FILE")"
 
-      echo "RUNDECK:DATA:OUTPUT_URL = $URL"
+      # echo "RUNDECK:DATA:OUTPUT_URL = $URL"
     '';
   };
 
