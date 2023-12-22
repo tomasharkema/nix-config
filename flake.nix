@@ -329,6 +329,9 @@
     // inputs.flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs = import inputs.nixpkgs { inherit system; };
+      rundesk = (import ./rundesk {
+        inherit pkgs lib;
+      });
     in
     {
       formatter = alejandra.defaultPackage.${system};
@@ -355,9 +358,9 @@
           pkgsLinux = pkgsFor."x86_64-linux";
         };
 
-        rundesk = (import ./rundesk {
-          inherit pkgs lib;
-        }).runner;
+        rundesk = rundesk.runner;
+
+        run-imager = rundesk.run-imager;
 
         # enzian = self.nixosConfigurations.enzian.config.system.build.toplevel;
       };
