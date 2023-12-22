@@ -49,9 +49,11 @@ rec {
       set -e
       set -x
 
-      echo "Run imager: $1"
+      WORK_DIR="$1"
+
+      echo "Run imager: $2"
       
-      IMAGE="$1"
+      IMAGE="$2"
 
       cd "$WORK_DIR"
 
@@ -101,9 +103,8 @@ rec {
       cd "$WORK_DIR/nix-config"
 
       echo "hello runner! $1 $2";
-      export WORK_DIR
 
-      ${pkgs.lib.getExe imager} "$2"
+      ${pkgs.lib.getExe imager} "$WORK_DIR" "$2"
 
       rm -rf "$WORK_DIR"
     '';
