@@ -99,9 +99,10 @@ in
       # "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
       impermanence.nixosModules.impermanence
       agenix.nixosModules.default
+      disko.nixosModules.default
       ../secrets
       (defaults)
-      ../disks/tmpfs.nix
+      ../common/disks/tmpfs.nix
       ({ pkgs, lib, ... }: {
 
         environment.systemPackages = with pkgs; [
@@ -121,6 +122,10 @@ in
         networking.hostName = "baaa-express";
 
         hardware.enableRedistributableFirmware = true;
+
+        fileSystems."/".fsType = lib.mkForce "tmpfs";
+        fileSystems."/".device = lib.mkForce "none";
+        # /dev/disk/by-label/NIXOS_SD
 
         environment.persistence."/nix/persistent" = {
           hideMounts = true;

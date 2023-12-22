@@ -5,11 +5,13 @@
 let
   darwin-build = import ../apps/darwin-build.nix;
   nixpkgs-build = import ./nixpkgs.nix;
+  hishtory = (import ../apps/hishtory attrs).hishtory;
 in
 with pkgs;
 (darwin-build attrs) ++ (nixpkgs-build attrs) ++ [ (lib.mkIf stdenv.isLinux atop) ] ++
 [ (lib.mkIf stdenv.isLinux packagekit) ] ++
 [
+  hishtory
   _1password
   ## Nix tools
   antidote
