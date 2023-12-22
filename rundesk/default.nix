@@ -34,6 +34,8 @@ rec {
     export RD_AUTH_PROMPT=false
     export RD_TOKEN="9LczxcesPidTMTpPAK1LSoWdVYi9wixx"
     export RD_URL=https://rundeck.harkema.io
+
+    echo "Run imager: $1"
     ${pkgs.lib.getExe rd} run -i 513a69b3-116b-4d7e-b396-11adcc0117e5 -f -- -image $1
   '';
 
@@ -45,14 +47,12 @@ rec {
     text = ''
       set -e
       set -x
+
+      echo "Run imager: $1"
       
       IMAGE="$1"
 
       cd "$WORK_DIR"
-
-      git clone git@github.com:tomasharkema/nix-config.git
-
-      cd "$WORK_DIR/nix-config"
 
       OUT="$WORK_DIR/$IMAGE"
 
@@ -70,7 +70,7 @@ rec {
 
       echo "RUNDECK:DATA:OUTPUT_FILE = $OUTPUT_FILE"
 
-      URL="$(curl https://transfer.sh/$FILENAME --upload-file $OUTPUT_FILE)"
+      URL="$(curl https://transfer.sh/$FILENAME --upload-file "$OUTPUT_FILE")"
 
       echo "RUNDECK:DATA:OUTPUT_URL = $URL"
     '';
@@ -91,8 +91,13 @@ rec {
       set -e
 
       WORK_DIR="$(mktemp -d)"
+      cd "$WORK_DIR"
 
-      echo "RUNDECK:DATA:TEMP = $TEMP"
+      echo "RUNDECK:DATA:TEMP = $WORK_DIR"
+
+      git clone git@github.com:tomasharkema/nix-config.git
+
+      cd "$WORK_DIR/nix-config"
 
       echo "hello runner! $1 $2";
       export WORK_DIR
