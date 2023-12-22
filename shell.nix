@@ -39,6 +39,9 @@ let
 
   rundesk = (import ./rundesk attrs).packages;
 
+
+  hishtory = (import ../apps/hishtory attrs).hishtory;
+
 in
 
 pkgs.mkShell {
@@ -53,7 +56,7 @@ pkgs.mkShell {
     (import ./apps/remote-cli (attrs))
     (reencrypt { inherit system; })
     mkiso
-
+    hishtory
     remote-deploy
     inputs.attic.packages.${system}.default
     inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
