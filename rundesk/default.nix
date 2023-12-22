@@ -6,7 +6,7 @@ rec {
 
   rd = stdenv.mkDerivation {
 
-    name = "rundeck";
+    name = "rd";
 
     src = pkgs.fetchFromGitHub {
       owner = "rundeck";
@@ -34,7 +34,7 @@ rec {
     export RD_AUTH_PROMPT=false
     export RD_TOKEN="9LczxcesPidTMTpPAK1LSoWdVYi9wixx"
     export RD_URL=https://rundeck.harkema.io
-    ${rd}/bin/rd run -i 513a69b3-116b-4d7e-b396-11adcc0117e5 -f -- -image $1
+    ${pkgs.lib.getExe rd} run -i 513a69b3-116b-4d7e-b396-11adcc0117e5 -f -- -image $1
   '';
 
   imager = pkgs.writeShellApplication {
@@ -69,6 +69,10 @@ rec {
       # cp $OUT @file.outputfile.sha@
 
       echo "RUNDECK:DATA:OUTPUT_FILE = $OUTPUT_FILE"
+
+      URL="$(curl https://transfer.sh/$FILENAME --upload-file $OUTPUT_FILE)"
+
+      echo "RUNDECK:DATA:OUTPUT_URL = $URL"
     '';
   };
 
