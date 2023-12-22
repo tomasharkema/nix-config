@@ -121,39 +121,39 @@ in
 
         hardware.enableRedistributableFirmware = true;
 
-        # environment.persistence."/nix/persistent" = {
-        #   hideMounts = true;
-        #   directories = [
-        #     "/var/log"
-        #     "/var/lib/bluetooth"
-        #     "/var/lib/nixos"
-        #     "/var/lib/systemd/coredump"
-        #     "/etc/NetworkManager/system-connections"
-        #     { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
-        #   ];
-        #   files = [
-        #     "/etc/machine-id"
-        #     { file = "/etc/nix/id_rsa"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
-        #   ];
-        # };
+        environment.persistence."/nix/persistent" = {
+          hideMounts = true;
+          directories = [
+            "/var/log"
+            "/var/lib/bluetooth"
+            "/var/lib/nixos"
+            "/var/lib/systemd/coredump"
+            "/etc/NetworkManager/system-connections"
+            { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+          ];
+          files = [
+            "/etc/machine-id"
+            { file = "/etc/nix/id_rsa"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
+          ];
+        };
 
-        # fileSystems."/" = {
-        #   device = lib.mkForce "none";
-        #   fsType = lib.mkForce "tmpfs";
-        #   autoResize = lib.mkForce false;
-        #   options = [ "defaults" "size=25%" "mode=755" ];
-        # };
+        fileSystems."/" = {
+          device = lib.mkForce "none";
+          fsType = lib.mkForce "tmpfs";
+          autoResize = lib.mkForce false;
+          options = [ "defaults" "size=25%" "mode=755" ];
+        };
 
-        # fileSystems."/nix" = {
-        #   device = "/dev/mmcblk0";
-        #   fsType = "btrfs";
-        #   options = [ "compress-force=zstd" ];
-        # };
+        fileSystems."/nix" = {
+          device = "/dev/mmcblk0";
+          fsType = "btrfs";
+          options = [ "compress-force=zstd" ];
+        };
 
-        # fileSystems."/boot" = {
-        #   device = "/dev/disk/by-uuid/2178-694E";
-        #   fsType = "vfat";
-        # };
+        fileSystems."/boot" = {
+          device = "/dev/disk/by-uuid/2178-694E";
+          fsType = "vfat";
+        };
       })
     ] ++ homemanager;
   };
