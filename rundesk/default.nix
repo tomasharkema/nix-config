@@ -60,7 +60,7 @@ rec {
       # rd-deps
     ];
 
-    packages = with pkgs; [ java ];
+    packages = with pkgs; [ jre ];
 
     # buildInputs = [ pkgs.rsync ];
     __noChroot = true;
