@@ -10,11 +10,10 @@ with pkgs;
 (darwin-build attrs) ++ (nixpkgs-build attrs) ++ [ (lib.mkIf stdenv.isLinux atop) ] ++
 [ (lib.mkIf stdenv.isLinux packagekit) ] ++
 [
-  hishtory
   _1password
   ## Nix tools
   antidote
-  atuin
+  # atuin
   autojump
   bash
   bat
