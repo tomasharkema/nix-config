@@ -41,7 +41,7 @@ rec {
       export RD_URL=https://rundeck.harkema.io
 
       echo "Run imager: $1"
-      exec ${pkgs.lib.getExe rd} run -i 513a69b3-116b-4d7e-b396-11adcc0117e5 -f -- -image "$1" | ${pkgs.lib.getExe pkgs.bunyan-rs}
+      exec ${pkgs.lib.getExe rd} run -i 513a69b3-116b-4d7e-b396-11adcc0117e5 -f -- -image "$1" |& ${pkgs.lib.getExe pkgs.bunyan-rs}
     '';
   };
 
