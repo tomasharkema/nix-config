@@ -179,7 +179,7 @@ in
   programs.lazygit.enable = true;
   programs.lsd.enable = true;
   programs.jq.enable = true;
-  programs.skim.enable = true;
+  # programs.skim.enable = true;
 
   fonts.fontconfig.enable = true;
 
