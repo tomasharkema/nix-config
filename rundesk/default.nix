@@ -23,7 +23,7 @@ rec {
       rm -rf /tmp/gradle &> /dev/null
       mkdir /tmp/gradle 
       export GRADLE_USER_HOME="/tmp/gradle" 
-      ./gradlew :rd-cli-tool:installDist
+      gradle :rd-cli-tool:installDist
     '';
 
     installPhase = ''
