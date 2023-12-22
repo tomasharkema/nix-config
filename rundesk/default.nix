@@ -41,7 +41,7 @@ rec {
       export RD_URL=https://rundeck.harkema.io
 
       gum confirm "Build $1?"
-      gum spin --show-output --title "Building $1..." -- ${pkgs.lib.getExe rd} run -i 513a69b3-116b-4d7e-b396-11adcc0117e5 -f -- -image "$1" 
+      rd run -i 513a69b3-116b-4d7e-b396-11adcc0117e5 -f -- -image "$1" 
     '';
   };
 
