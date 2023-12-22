@@ -59,10 +59,6 @@ rec {
   '';
 
   packages = with pkgs;[
-    jq
-    zstd
-    pv
-
     rd
     run-imager
   ];
@@ -70,7 +66,11 @@ rec {
   shell = pkgs.mkShell {
     name = "rundesk";
 
-    buildInputs = packages ++ [
+    buildInputs = with pkgs; [
+      jq
+      zstd
+      pv
+
       imager
     ];
     # nativeBuildInputs = [ ];
