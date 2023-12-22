@@ -88,7 +88,6 @@ with pkgs;
   tldr
   tmate
   tree
-  tree
   unrar
   unzip
   wget
