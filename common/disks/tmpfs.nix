@@ -40,27 +40,27 @@
             };
           };
           nix = {
-            end = "-4G";
+            size = "100%";
             content = {
               type = "filesystem";
               format = "ext4";
               mountpoint = "/persistent";
             };
           };
-          encryptedSwap = {
-            size = "10M";
-            content = {
-              type = "swap";
-              randomEncryption = true;
-            };
-          };
-          plainSwap = {
-            size = "100%";
-            content = {
-              type = "swap";
-              resumeDevice = true; # resume from hiberation from this device
-            };
-          };
+          # encryptedSwap = {
+          #   size = "10M";
+          #   content = {
+          #     type = "swap";
+          #     randomEncryption = true;
+          #   };
+          # };
+          # plainSwap = {
+          #   size = "100%";
+          #   content = {
+          #     type = "swap";
+          #     resumeDevice = true; # resume from hiberation from this device
+          #   };
+          # };
         };
       };
     };
