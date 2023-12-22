@@ -20,9 +20,9 @@ rec {
     buildInputs = [ pkgs.gradle_7 pkgs.openjdk19 ];
 
     buildPhase = ''
-      rm -rf /tmp/gradle &> /dev/null
-      mkdir /tmp/gradle 
-      export GRADLE_USER_HOME="/tmp/gradle" 
+      # rm -rf /tmp/gradle &> /dev/null
+      # mkdir /tmp/gradle 
+      # export GRADLE_USER_HOME="/tmp/gradle" 
       gradle :rd-cli-tool:installDist
     '';
 
