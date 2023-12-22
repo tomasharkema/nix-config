@@ -72,8 +72,7 @@ with pkgs;
   nixd
   nnn
   nodejs
-  obsidian
-  patchelf
+  # obsidian
   patchelf
   procs
   pv
