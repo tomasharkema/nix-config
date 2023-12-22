@@ -5,7 +5,9 @@
 let
   darwin-build = import ../apps/darwin-build.nix;
   nixpkgs-build = import ./nixpkgs.nix;
-  hishtory = (import ../apps/hishtory attrs);
+  hishtory = (pkgs.callPackage ../apps/hishtory {
+    inherit (inputs.gomod2nix.legacyPackages.${pkgs.system}) buildGoApplication;
+  });
 in
 with pkgs;
 (darwin-build attrs) ++ (nixpkgs-build attrs) ++ [ (lib.mkIf stdenv.isLinux atop) ] ++
