@@ -7,6 +7,7 @@ rec {
   rd = stdenv.mkDerivation {
 
     name = "rd";
+    meta.mainProgram = "rd";
 
     src = pkgs.fetchFromGitHub {
       owner = "rundeck";
