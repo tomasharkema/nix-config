@@ -241,24 +241,25 @@ in
     zplug = {
       enable = true;
       plugins = [
-        # {
-        #   name = "zsh-users/zsh-syntax-highlighting";
-        #   # tags = [ defer:2 ];
-        # }
-        # {
-        #   name = "zsh-users/zsh-autosuggestions";
-        #   # tags = [ defer:2 ]; 
-        # }
-        # {
-        #   name = "zsh-users/zsh-completions";
-        #   # tags = [ defer:2 ];
-        # }
+        {
+          name = "zsh-users/zsh-syntax-highlighting";
+          # tags = [ defer:2 ];
+        }
+        {
+          name = "zsh-users/zsh-autosuggestions";
+          # tags = [ defer:2 ]; 
+        }
+        {
+          name = "zsh-users/zsh-completions";
+          # tags = [ defer:2 ];
+        }
         {
           name = "tysonwolker/iterm-tab-colors";
         }
-        # {
-        #   name = "mafredri/zsh-async";
-        # }
+        {
+          name = "mafredri/zsh-async";
+        }
+        { name = "wulfgarpro/history-sync"; }
       ];
     };
 
@@ -288,6 +289,7 @@ in
         "yarn"
         "zsh-navigation-tools"
         "wd"
+        "history-sync"
       ];
       # theme = "powerlevel10k/powerlevel10k";
     };

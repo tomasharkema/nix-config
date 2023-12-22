@@ -272,8 +272,8 @@
           wodan-wsl = {
             hostname = "172.25.59.229";
             profiles.system = {
-              user = "tomas";
-              sshUser = "tomas";
+              user = "root";
+              sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.nixos
                   self.nixosConfigurations.wodan-wsl;

@@ -101,6 +101,7 @@ in
       agenix.nixosModules.default
       ../secrets
       (defaults)
+      ../disks/tmpfs.nix
       ({ pkgs, lib, ... }: {
 
         environment.systemPackages = with pkgs; [
@@ -135,26 +136,6 @@ in
             "/etc/machine-id"
             { file = "/etc/nix/id_rsa"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
           ];
-        };
-
-        fileSystems."/" = {
-          device = lib.mkForce "none";
-          fsType = lib.mkForce "tmpfs";
-          autoResize = lib.mkForce false;
-          options = [ "defaults" "size=25%" "mode=755" ];
-        };
-
-        fileSystems."/nix" = {
-          device = "/dev/disk/by-label/NIXOS";
-          label = "NIXOS";
-          fsType = "btrfs";
-          # options = [ "compress-force=zstd" ];
-        };
-
-        fileSystems."/boot" = {
-          label = "BOOT";
-          device = "/dev/disk/by-label/BOOT";
-          fsType = "vfat";
         };
       })
     ] ++ homemanager;
