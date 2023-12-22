@@ -270,10 +270,10 @@
             };
           };
           wodan-wsl = {
-            hostname = "192.168.1.46";
+            hostname = "172.25.59.229";
             profiles.system = {
-              user = "root";
-              sshUser = "root";
+              user = "tomas";
+              sshUser = "tomas";
               path =
                 deploy.lib.x86_64-linux.activate.nixos
                   self.nixosConfigurations.wodan-wsl;
