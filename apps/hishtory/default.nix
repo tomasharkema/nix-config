@@ -1,8 +1,6 @@
 { pkgs, config, ... }:
 let
-  hishtory-config = pkgs.writeShellScriptBin "hishtory-config" ''
-    ${builtins.readFile ./config.zsh}
-  '';
+  hishtory-config = pkgs.writeShellScript "hishtory-config.zsh" ./src/config.zsh;
 in
 {
 
@@ -15,13 +13,13 @@ in
 
   programs.zsh = {
     initExtra = ''
-      source "${pkgs.lib.getExe hishtory-config}"
+      . "${pkgs.lib.getExe hishtory-config}"
 
-      if [ ! -f ~/.hishinited ]
-      then
-        ${pkgs.lib.getExe pkgs.hishtory} init "$(cat ${config.age.secrets.hishtory.path})"
-        touch ~/.hishinited
-      fi
+      # if [ ! -f ~/.hishinited ]
+      # then
+      #   ${pkgs.lib.getExe pkgs.hishtory} init "$(cat ${config.age.secrets.hishtory.path})"
+      #   touch ~/.hishinited
+      # fi
     '';
   };
 
