@@ -7,10 +7,11 @@ let
   nixpkgs-build = import ./nixpkgs.nix;
 in
 with pkgs;
+(darwin-build attrs) ++ (nixpkgs-build attrs) ++ [ (lib.mkIf stdenv.isLinux atop) ] ++
+[ (lib.mkIf stdenv.isLinux packagekit) ] ++
 [
-  atop
-  fx
   _1password
+  ## Nix tools
   antidote
   atuin
   autojump
@@ -18,49 +19,61 @@ with pkgs;
   bat
   bottom
   btop
+  bunyan-rs
   cheat
   comma
   coreutils
   curl
-  direnv
   deadnix
   delta
+  direnv
   dnsutils
   dog
   du-dust
-  direnv
   eza
-  httpie
+  eza
+  fd
   fd
   fortune
   fpp
+  fx
+  fzf
   fzf
   gh
   git
   git-lfs
   gping
   gtop
+  httpie
   iftop
+  inputs.agenix.packages.${system}.default
   ipmitool
+  just
+  keybase
+  ldns
   ldns
   lolcat
+  lsd
   lsd
   manix
   mcfly
   morph
+  mosh
   mtr
   multitail
-  mosh
-  keybase
-  youtube-dl
-  just
-  tmate
   navi
+  ncdu
   ncdu
   neofetch
   netdiscover
+  nil
+  nix-index
+  nix-prefetch-scripts
+  nixd
   nnn
   nodejs
+  obsidian
+  patchelf
   patchelf
   procs
   pv
@@ -72,12 +85,16 @@ with pkgs;
   starship
   tailscale
   thefuck
+  thefuck
   tldr
+  tmate
+  tree
   tree
   unrar
   unzip
   wget
   xz
+  youtube-dl
   yq
   zip
   zsh
@@ -87,32 +104,8 @@ with pkgs;
   #   nix-cache-watcher sign-store -k ~/Developer/nix-config/cache-priv-key.pem -v && nix-cache-watcher upload-diff -r "https://nix-cache.harke.ma/" -v
   # '')
 ]
-++ (darwin-build attrs) ++ (nixpkgs-build attrs) ++ [ (lib.mkIf stdenv.isLinux packagekit) ]
 # home.packages = with pkgs; [
-#   ldns
-#   eza
-#   bottom
-#   multitail
-#   netdiscover
-#   obsidian
-#   tree
-#   inputs.agenix.packages.${system}.default
-#   atuin
-#   thefuck
-#   nixd
-#   nil
-#   ## Nix tools
-#   nix-index
-#   nix-prefetch-scripts
-#   patchelf
-#   bat
-#   lsd
-#   delta
-#   du-dust
-#   ncdu
-#   fd
-#   silver-searcher
-#   fzf
+
 #   # moonlight
 #   # (vscode-with-extensions.override {
 #   #   vscodeExtensions = with vscode-extensions;
