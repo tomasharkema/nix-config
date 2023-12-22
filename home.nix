@@ -289,7 +289,6 @@ in
         "yarn"
         "zsh-navigation-tools"
         "wd"
-        "history-sync"
       ];
       # theme = "powerlevel10k/powerlevel10k";
     };
