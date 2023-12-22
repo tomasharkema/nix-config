@@ -33,15 +33,15 @@ rec {
 
   run-imager = pkgs.writeShellApplication {
     name = "imager";
-    runtimeInputs = with pkgs; [ rd bunyan-rs ];
+    runtimeInputs = with pkgs; [ rd gum ];
 
     text = ''
       export RD_AUTH_PROMPT=false
       export RD_TOKEN="9LczxcesPidTMTpPAK1LSoWdVYi9wixx"
       export RD_URL=https://rundeck.harkema.io
 
-      echo "Run imager: $1"
-      exec ${pkgs.lib.getExe rd} run -i 513a69b3-116b-4d7e-b396-11adcc0117e5 -f -- -image "$1" |& ${pkgs.lib.getExe pkgs.bunyan-rs}
+      gum confirm "Build $1?"
+      gum spin --show-output --title "Building $1..." -- ${pkgs.lib.getExe rd} run -i 513a69b3-116b-4d7e-b396-11adcc0117e5 -f -- -image "$1" 
     '';
   };
 
