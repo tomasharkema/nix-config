@@ -37,45 +37,75 @@ rec {
     ${rd}/bin/rd run -i 513a69b3-116b-4d7e-b396-11adcc0117e5 -f -- -image $1
   '';
 
-  imager = pkgs.writeShellScriptBin "imager" ''
-    set -e
-    set -x
+  imager = pkgs.writeShellApplication {
+    name = "imager";
 
-    cd $WORK_DIR
+    runtimeInputs = with pkgs; [ zstd pv ];
 
-    OUT="$WORK_DIR/$IMAGE"
+    text = ''
+      set -e
+      set -x
+      
+      IMAGE="$1"
 
-    RES="$(nix build ".#images.x86_64-linux.$IMAGE" --out-link "$OUT" --json --accept-flake-config)"
-    echo $RES | jq
+      cd "$WORK_DIR"
 
-    FILENAME="$IMAGE.tar.zst"
-    OUTPUT_FILE=$HOME/$FILENAME
+      git clone git@github.com:tomasharkema/nix-config.git
 
-    tar chvf - "$OUT" | pv -N in -B 100M | zstd -e - | pv -N out -B 100M > $OUTPUT_FILE
+      cd "$WORK_DIR/nix-config"
 
-    # cp $OUT @file.outputfile.sha@
+      OUT="$WORK_DIR/$IMAGE"
 
-    echo "RUNDECK:DATA:OUTPUT_FILE = $OUTPUT_FILE"
-  '';
+      # RES="$(nix build ".#images.x86_64-linux.$IMAGE" --out-link "$OUT")"
+      nix build ".#images.x86_64-linux.$IMAGE" --out-link "$OUT"
+
+      echo "RUNDECK:DATA:OUT_LINK = $OUT"
+
+      FILENAME="$IMAGE.tar.zst"
+      OUTPUT_FILE=$HOME/$FILENAME
+
+      tar chvf - "$OUT" | pv -N in -B 100M | zstd -e - | pv -N out -B 100M > "$OUTPUT_FILE"
+
+      # cp $OUT @file.outputfile.sha@
+
+      echo "RUNDECK:DATA:OUTPUT_FILE = $OUTPUT_FILE"
+    '';
+  };
 
   packages = with pkgs;[
     rd
     run-imager
   ];
 
+  runner = pkgs.writeShellApplication {
+    name = "runner";
+    runtimeInputs = with pkgs; [ file imager bash ];
+    # interpreter = "${pkgs.bash}/bin/bash";
+
+    text = ''
+      set -x
+      set -e
+
+      WORK_DIR="$(mktemp -d)"
+
+      echo "RUNDECK:DATA:TEMP = $TEMP"
+
+      echo "hello runner! $1 $2";
+      export WORK_DIR
+
+      ${pkgs.lib.getExe imager} "$2"
+
+      rm -rf "$WORK_DIR"
+    '';
+  };
+
   shell = pkgs.mkShell {
     name = "rundesk";
-
     buildInputs = with pkgs; [
-      jq
-      zstd
-      pv
-
+      runner
       imager
     ];
-    # nativeBuildInputs = [ ];
-    shellHook = ''
-      echo "hello runner! $@";
-    '';
+
+    defaultInput = runner;
   };
 }
