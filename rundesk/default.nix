@@ -43,7 +43,7 @@ rec {
 
     cd $WORK_DIR
 
-    OUT = "$WORK_DIR/$IMAGE"
+    OUT="$WORK_DIR/$IMAGE"
 
     RES="$(nix build ".#images.x86_64-linux.$IMAGE" --out-link "$OUT" --json --accept-flake-config)"
     echo $RES | jq
