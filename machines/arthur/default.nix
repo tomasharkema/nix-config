@@ -19,9 +19,9 @@
     ../../common/game-mode.nix
     ../../apps/desktop.nix
     ../../apps/steam.nix
-    # ../../common/disks/tmpfs.nix
+    ../../common/disks/tmpfs.nix
     # ../../common/disks/ext4.nix
-    ../../common/disks/btrfs.nix
+    # ../../common/disks/btrfs.nix
     {
       _module.args.disks = [ "/dev/disk/by-id/ata-Samsung_SSD_850_PRO_256GB_S39KNX0J775697K" ];
       # [ "/dev/disk/by-id/ata-Samsung_SSD_850_PRO_256GB_S39KNX0J775697K" ];
@@ -68,4 +68,21 @@
   };
 
   services.tcsd.enable = true;
+
+
+  environment.persistence."/nix/persistent" = {
+    hideMounts = true;
+    directories = [
+      "/var/log"
+      "/var/lib/bluetooth"
+      "/var/lib/nixos"
+      "/var/lib/systemd/coredump"
+      "/etc/NetworkManager/system-connections"
+      { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+    ];
+    files = [
+      "/etc/machine-id"
+      { file = "/etc/nix/id_rsa"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
+    ];
+  };
 }

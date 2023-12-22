@@ -179,7 +179,11 @@ raspberrypis // {
     # specialArgs = { inherit inputs outputs; };
     modules = [
       nixos-generators.nixosModules.all-formats
-      # ./user-defaults.nix
+
+      "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+      nixos-hardware.nixosModules.common-cpu-intel
+      nixos-hardware.nixosModules.common-pc-ssd
+
       ../common/defaults.nix
       impermanence.nixosModule
       disko.nixosModules.default

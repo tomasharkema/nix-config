@@ -148,7 +148,7 @@ in
         };
         wodan-wsl = {
           hostname = "192.168.1.46";
-          user = "root";
+          user = "tomas";
           forwardAgent = true;
           extraOptions = {
             RequestTTY = "yes";
