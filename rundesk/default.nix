@@ -70,7 +70,7 @@ rec {
 
       echo "RUNDECK:DATA:OUTPUT_FILE = $OUTPUT_FILE"
 
-      URL="$(curl https://transfer.sh/$FILENAME --upload-file "$OUTPUT_FILE")"
+      URL="$(curl "https://transfer.sh/$FILENAME" --upload-file "$OUTPUT_FILE")"
 
       echo "RUNDECK:DATA:OUTPUT_URL = $URL"
     '';
