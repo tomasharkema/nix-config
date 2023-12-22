@@ -76,6 +76,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # tailscale-prometheus-sd = { url = "github:madjam002/tailscale-prometheus-sd"; };
+    gomod2nix.url = "github:nix-community/gomod2nix";
+    gomod2nix.inputs.nixpkgs.follows = "nixpkgs";
+    gomod2nix.inputs.flake-utils.follows = "flake-utils";
   };
 
   outputs =
@@ -364,9 +367,9 @@
 
         # enzian = self.nixosConfigurations.enzian.config.system.build.toplevel;
 
-        hishtory = (import ./apps/hishtory {
-          inherit pkgs;
-        }).hishtory;
+        hishtory = (pkgs.callPackage ./apps/hishtory {
+          inherit (inputs.gomod2nix.legacyPackages.${system}) buildGoApplication;
+        });
       };
 
       images = {

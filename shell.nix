@@ -40,7 +40,9 @@ let
   rundesk = (import ./rundesk attrs).packages;
 
 
-  hishtory = (import ../apps/hishtory attrs).hishtory;
+  hishtory = (pkgs.callPackage ./apps/hishtory {
+    inherit (inputs.gomod2nix.legacyPackages.${pkgs.system}) buildGoApplication;
+  });
 
 in
 
