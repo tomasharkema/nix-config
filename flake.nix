@@ -199,7 +199,7 @@
           silver-star = {
             hostname = "100.122.146.5";
             profiles.user = {
-              user = "tomas";
+              user = "root";
               sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.home-manager
