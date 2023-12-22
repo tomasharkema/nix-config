@@ -104,7 +104,7 @@ rec {
 
       echo "hello runner! $1 $2";
 
-      ${pkgs.lib.getExe imager} "$WORK_DIR" "$2"
+      ${pkgs.lib.getExe imager} "$WORK_DIR/nix-config" "$2"
 
       rm -rf "$WORK_DIR"
     '';
