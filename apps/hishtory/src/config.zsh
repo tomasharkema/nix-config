@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-
 autoload -U add-zsh-hook
 add-zsh-hook zshaddhistory _hishtory_add
 add-zsh-hook precmd _hishtory_precmd
