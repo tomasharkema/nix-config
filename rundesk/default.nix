@@ -21,21 +21,21 @@ rec {
 
     nativeBuildInputs = [
       pkgs.gradle_7
-      # rd-deps 
     ];
 
     buildPhase = ''
-      export GRADLE_USER_HOME="$(pwd)/.gradledeps"
+      export GRADLE_USER_HOME="/tmp/.gradledeps"
 
-      gradle :rd-cli-tool:dependencies dependencies
+      gradle --no-daemon --no-build-cache --info --full-stacktrace --warning-mode=all \
+        :rd-cli-tool:dependencies dependencies
     '';
 
     installPhase = ''
       mkdir -p $out
-      mv .gradledeps $out
+      mv /tmp/.gradledeps $out
+      mv .gradle $out
     '';
   };
-
 
   rd = stdenv.mkDerivation {
 
@@ -57,22 +57,25 @@ rec {
 
     nativeBuildInputs = [
       pkgs.gradle_7
-      rd-deps
+      # rd-deps
     ];
 
-    buildInputs = [ pkgs.rsync ];
-    # __noChroot = true;
+    # buildInputs = [ pkgs.rsync ];
+    __noChroot = true;
+
+    # rsync -a ${rd-deps}/.gradledeps/ $TMPHOME/
+    # rsync -a ${rd-deps}/.gradle/ $TMPHOME/
+    # chmod 777 -R $TMPHOME
+    # --offline
 
     buildPhase = ''
+    
       TMPHOME="$(mktemp -d)"
       mkdir -p "$TMPHOME/init.d"
       export GRADLE_USER_HOME="$TMPHOME"
 
-      rsync -a ${rd-deps}/.gradledeps/ $TMPHOME/
-      ls -la $TMPHOME
-
-      gradle :rd-cli-tool:installDist --info --no-daemon --offline \
-        --no-build-cache --info --full-stacktrace --warning-mode=all --refresh-dependencies
+      gradle :rd-cli-tool:installDist --no-daemon \
+        --no-build-cache --info --full-stacktrace --warning-mode=all
     '';
 
     # installPhase = ''
