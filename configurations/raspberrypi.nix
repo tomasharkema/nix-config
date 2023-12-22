@@ -94,9 +94,9 @@ in
     specialArgs = { inherit inputs; };
 
     modules = [
-      nixos-generators.nixosModules.all-formats
+      # nixos-generators.nixosModules.all-formats
       "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-      "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+      # "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
       impermanence.nixosModules.impermanence
       agenix.nixosModules.default
       ../secrets
@@ -145,13 +145,15 @@ in
         };
 
         fileSystems."/nix" = {
-          device = "/dev/mmcblk0";
+          device = "/dev/disk/by-label/NIXOS";
+          label = "NIXOS";
           fsType = "btrfs";
-          options = [ "compress-force=zstd" ];
+          # options = [ "compress-force=zstd" ];
         };
 
         fileSystems."/boot" = {
-          device = "/dev/disk/by-uuid/2178-694E";
+          label = "BOOT";
+          device = "/dev/disk/by-label/BOOT";
           fsType = "vfat";
         };
       })
