@@ -69,6 +69,7 @@
 
   services.tcsd.enable = true;
 
+  networking.wireless.enable = lib.mkForce false;
 
   environment.persistence."/nix/persistent" = {
     hideMounts = true;
