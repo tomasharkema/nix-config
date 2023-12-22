@@ -363,6 +363,10 @@
         run-imager = rundesk.run-imager;
 
         # enzian = self.nixosConfigurations.enzian.config.system.build.toplevel;
+
+        hishtory = (import ./apps/hishtory {
+          inherit pkgs;
+        }).hishtory;
       };
 
       images = {
