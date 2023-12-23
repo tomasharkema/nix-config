@@ -12,13 +12,13 @@ let
       buildGoModule
         rec {
           pname = "hishtory";
-          version = "0.263";
+          version = "0.262";
 
           src = fetchFromGitHub {
             owner = "ddworken";
             repo = pname;
             rev = "v${version}";
-            hash = "sha256-Pg53wYkoUKZ5mMvPVCJs8HTj5AWRUYXUArHN0f+D+Nw=";
+            hash = "sha256-E4COgQcaKn4WoEjEQZjSWEFWRRXC/VkBopss5pbGybc=";
           };
 
           vendorHash = "sha256-HzHLGrPXUSkyt2Dr7tLjfJrbg/EPBHkljoXIlPWIppU=";
