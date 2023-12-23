@@ -43,16 +43,11 @@ let
         }
     )
     { };
-  hishtory-login-script = pkgs.writeShellScriptBin "hishtory-login-script.sh" ''
-    FILE="${config.age.secrets.hishtory.path}"
-    if [ -f "$FILE" ]; then
-      ${pkgs.lib.getExe hishtory} init "$(cat $FILE)"
-    fi
-  '';
+
 in
 {
 
-  age.secrets.hishtory = {
+  age.secrets.hishtory-home = {
     file = ../../secrets/hishtory.age;
     mode = "770";
   };
@@ -66,6 +61,14 @@ in
   };
 
   systemd.user.services.hishtory-login =
+    let
+      hishtory-login-script = pkgs.writeShellScriptBin "hishtory-login-script.sh" ''
+        FILE="${config.age.secrets.hishtory-home.path}"
+        if [ -f "$FILE" ]; then
+          ${pkgs.lib.getExe hishtory} init "$(cat $FILE)"
+        fi
+      '';
+    in
     {
       Unit.Description = "hishtory-login";
       Unit.Type = "oneshot";
