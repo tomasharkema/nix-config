@@ -50,19 +50,22 @@ in
     file = ../../secrets/hishtory.age;
   };
 
-  # environment.systemPackages = with pkgs; [ hishtory ];
-  home.packages = [ hishtory ]; # [ (pkgs.callPackage hishtory) ];
+  home.packages = [ hishtory ];
 
   programs.zsh = {
     initExtra = ''
       . ${hishtory}/share/hishtory/config.zsh
-
-      # if [ ! -f ~/.hishinited ]
-      # then
-      #   ${pkgs.lib.getExe hishtory} init "$(cat ${config.age.secrets.hishtory.path})"
-      #   touch ~/.hishinited
-      # fi
     '';
   };
 
+
+  systemd.user.services.hishtory-login =
+    {
+      description = "hishtory-login";
+      script = ''
+        ${pkgs.lib.getExe hishtory} init "$(cat ${config.age.secrets.hishtory.path})"
+      '';
+      wantedBy = [ "multi-user.target" ]; # starts after login
+      unitConfig.Type = "oneshot";
+    };
 }
