@@ -7,6 +7,7 @@
   nix-cache-watcher,
   statix,
   alejandra,
+  agenix,
   ...
 } @ attrs: let
   inherit (pkgs) stdenv;
