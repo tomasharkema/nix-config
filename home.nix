@@ -64,7 +64,7 @@ in
   # };
 
   imports = [
-    ./apps/nvim
+    # ./apps/nvim
     ./apps/hishtory
   ]; # ++ [ (lib.optional (stdenv.isLinux) (./apps/flatpak.nix)) ];
   # self.home-manager.backupFileExtension = "bak";
@@ -86,6 +86,10 @@ in
     SSH_AUTH_SOCK = "/Users/tomas/.1password/agent.sock";
     SPACESHIP_PROMPT_ADD_NEWLINE = "false";
   };
+  age.identityPaths = [
+    "${config.home.homeDirectory}/.ssh/id_ed25519"
+    # "${config.home.homeDirectory}/.ssh/id_rsa"
+  ];
 
   nixpkgs.config.allowUnfreePredicate = _: true;
   nixpkgs.config.allowUnfree = true;
