@@ -33,6 +33,16 @@ let
         ../common/wifi.nix
       ];
 
+      sdImage.compressImage = false;
+
+      # NixOS wants to enable GRUB by default
+      boot.loader.grub.enable = false;
+      # Enables the generation of /boot/extlinux/extlinux.conf
+      boot.loader.generic-extlinux-compatible.enable = true;
+
+      # !!! Set to specific linux kernel version
+      boot.kernelPackages = pkgs.linuxPackages_5_4;
+
       services.openssh.enable = true;
       services.avahi.enable = true;
       console.enable = false;
@@ -52,44 +62,21 @@ let
       system.stateVersion = "23.11";
       boot.loader.raspberryPi.firmwareConfig = "force_turbo=1";
 
-      hardware.enableRedistributableFirmware = true;
-
       services.avahi.extraServiceFiles = {
         ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
       };
       services.avahi.publish.userServices = true;
 
-      # users.groups = {
-      #   tomas = { };
-      #   rslsync = { };
-      # };
-      # users.users = {
-      #   tomas = {
-      #     extraGroups = [ "wheel" "tomas" ];
-      #     isNormalUser = true;
-      #     openssh.authorizedKeys.keys = [
-      #       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQkKn73qM9vjYIaFt94Kj/syd5HCw2GdpiZ3z5+Rp/r tomas@blue-fire"
-      #       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas"
-      #       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJRn81Pxfg4ttTocQnTUWirpC1QVeJ5bfPC63ET9fNVa root@blue-fire"
-      #     ];
-      #   };
-      #   rslsync = {
-      #     group = "rslsync";
-      #     isSystemUser = true;
-      #   };
-      #   root.openssh.authorizedKeys.keys = [
-      #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQkKn73qM9vjYIaFt94Kj/syd5HCw2GdpiZ3z5+Rp/r tomas@blue-fire"
-      #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas"
-      #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJRn81Pxfg4ttTocQnTUWirpC1QVeJ5bfPC63ET9fNVa root@blue-fire"
-      #   ];
 
-      # };
+      hardware = {
+        enableRedistributableFirmware = true;
+        firmware = [ pkgs.wireless-regdb ];
+      };
     };
 in
 {
   baaa-express = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
-    # pkgs = pkgsFor."aarch64-linux";
 
     specialArgs = { inherit inputs; };
 
@@ -102,10 +89,6 @@ in
       disko.nixosModules.default
       ../secrets
       (defaults)
-      ../common/disks/tmpfs.nix
-      {
-        _module.args.disks = [ "/dev/mmcblk0" ];
-      }
       ({ pkgs, lib, ... }: {
 
         environment.systemPackages = with pkgs; [
@@ -122,13 +105,24 @@ in
         boot.initrd.kernelModules = [ "vc4" "bcm2835_dma" "i2c_bcm2835" ];
         boot.loader.grub.enable = false;
         boot.loader.generic-extlinux-compatible.enable = true;
+
         networking.hostName = "baaa-express";
 
-        hardware.enableRedistributableFirmware = true;
+        fileSystems."/" = {
+          device = lib.mkForce "none";
+          fsType = lib.mkForce "tmpfs";
+          options = [ "defaults" "size=25%" "mode=755" ];
+        };
 
-        fileSystems."/".fsType = lib.mkForce "tmpfs";
-        fileSystems."/".device = lib.mkForce "none";
-        # /dev/disk/by-label/NIXOS_SD
+        fileSystems."/nix" = {
+          device = "/dev/disk/by-label/NIXOS_SD";
+          fsType = "ext4";
+        };
+
+        # fileSystems."/boot" = {
+        #   device = "/dev/disk/by-uuid/XXXX-XXXX";
+        #   fsType = "vfat";
+        # };
 
         environment.persistence."/nix/persistent" = {
           hideMounts = true;
@@ -151,7 +145,7 @@ in
 
   pegasus = (nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
-    # pkgs = pkgsFor."aarch64-linux";
+
     specialArgs = { inherit inputs; };
 
     modules = [

@@ -16,25 +16,6 @@ let
      , ...
      }: {
 
-      #eu.nixbuild.net x86_64-linux - 100 1 big-parallel,benchmark
-      #eu.nixbuild.net aarch64-linux - 100 1 big-parallel,benchmark
-      #eu.nixbuild.net i686-linux - 100 1 big-parallel,benchmark
-
-      #enzian x86_64-linux - 100 1 big-parallel,benchmark,kvm
-      #enzian aarch64-linux - 100 1 big-parallel,benchmark,kvm
-
-      #arthur x86_64-linux - 100 1 big-parallel,benchmark,kvm
-      #arthur aarch64-linux - 100 1 big-parallel,benchmark,kvm
-
-      #silver-starferdorie x86_64-linux - 100 1 big-parallel,benchmark,kvm
-      #silver-starferdorie aarch64-linux - 100 1 big-parallel,benchmark,kvm
-
-      # blue-fire x86_64-linux - 100 1 big-parallel,benchmark,kvm
-      # blue-fire aarch64-linux - 100 1 big-parallel,benchmark,kvm
-
-      #silver-star x86_64-linux - 100 1 big-parallel,benchmark,kvm
-      #silver-star aarch64-linux - 100 1 big-parallel,benchmark,kvm
-
       nix.buildMachines = [
         {
           hostName = "blue-fire";
@@ -57,27 +38,27 @@ let
           supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
           speedFactor = 5;
         }
-        # {
-        #   hostName = "enzian";
-        #   system = "x86_64-linux";
-        #   maxJobs = 4;
-        #   supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
-        #   speedFactor = 10;
-        # }
-        # {
-        #   hostName = "enzian";
-        #   system = "i686-linux";
-        #   maxJobs = 4;
-        #   supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
-        #   speedFactor = 10;
-        # }
-        # {
-        #   hostName = "enzian";
-        #   system = "aarch64-linux";
-        #   maxJobs = 4;
-        #   supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
-        #   speedFactor = 5;
-        # }
+        {
+          hostName = "enzian";
+          system = "x86_64-linux";
+          maxJobs = 4;
+          supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+          speedFactor = 10;
+        }
+        {
+          hostName = "enzian";
+          system = "i686-linux";
+          maxJobs = 4;
+          supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+          speedFactor = 10;
+        }
+        {
+          hostName = "enzian";
+          system = "aarch64-linux";
+          maxJobs = 4;
+          supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+          speedFactor = 5;
+        }
       ];
 
       nix.extraOptions = ''
@@ -85,7 +66,7 @@ let
         builders-use-substitutes = true
       '';
       environment.systemPackages = with pkgs; [
-        # kitty
+        kitty
         terminal-notifier
         # vagrant
       ];
@@ -152,19 +133,14 @@ in
           programs.zsh.enable = true;
 
         })
-        # builder
+        builder
         nix-index-database.darwinModules.nix-index
         agenix.darwinModules.default
         ../secrets
         # ../apps/iterm
         settings
         home-manager.darwinModules.home-manager
-        # self.homeConfigurations."tomas@euro-mir".config
-        # self.homeConfigurations."tomas@euro-mir"
-        # {
-        #   imports = [ self.homeConfigurations."tomas@euro-mir".config ];
-        # }
-        # self.homeConfigurations."tomas@euro-mir"
+
         ({
 
 

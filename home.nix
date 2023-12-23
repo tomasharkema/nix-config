@@ -71,7 +71,6 @@ in
   home.packages =
     (import ./packages/common.nix attrs)
     ++ [ (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; }) ]
-    ++ (import ./apps/statix { inherit pkgs; })
     ++ [
       pkgs.nixd
     ];

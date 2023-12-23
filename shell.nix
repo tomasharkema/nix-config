@@ -1,10 +1,14 @@
-{ pkgs
-, inputs
-, nixpkgs
-, ...
-} @ attrs:
-
-let
+{
+  pkgs,
+  inputs,
+  nixpkgs,
+  nixpkgs-lint,
+  attic,
+  nix-cache-watcher,
+  statix,
+  alejandra,
+  ...
+} @ attrs: let
   inherit (pkgs) stdenv;
   write-script = pkgs.writeShellScriptBin "write-script" ''
     set -x
@@ -21,11 +25,12 @@ let
     ${pkgs.deploy-rs}/bin/deploy --skip-checks ".#$@" -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
   '';
 
-  reencrypt = { system }: pkgs.writeShellScriptBin "reencrypt" ''
-    set -x;
-    cd secrets; 
-    ${inputs.agenix.packages.${system}.default}/bin/agenix -r
-  '';
+  reencrypt = {system}:
+    pkgs.writeShellScriptBin "reencrypt" ''
+      set -x;
+      cd secrets;
+      ${inputs.agenix.packages.${system}.default}/bin/agenix -r
+    '';
 
   mkiso = pkgs.writeShellScriptBin "mkiso" ''
     LINK="./out/install.iso";
@@ -38,57 +43,45 @@ let
   '';
 
   rundesk = (import ./rundesk attrs).packages;
+  remote-cli = import ./apps/remote-cli attrs;
+  go = (import ./apps/go) attrs;
 in
+  pkgs.mkShell {
+    name = "devshell";
+    # nixpkgs.config.allowUnfree = true;
+    allowUnfree = true;
 
-pkgs.mkShell {
-  name = "devshell";
-  # nixpkgs.config.allowUnfree = true;
-  allowUnfree = true;
+    defaultPackage = pkgs.zsh;
+    # buildInputs = [pkgs.home-manager];
 
-  defaultPackage = pkgs.zsh;
-  # buildInputs = [pkgs.home-manager];
+    packages = with pkgs;
+      [
+        remote-cli
+        (reencrypt {inherit system;})
 
-  packages = with pkgs; [
-    (import ./apps/remote-cli (attrs))
-    (reencrypt { inherit system; })
-    mkiso
+        ack
+        age
+        attic.packages.${system}.default
+        bash
+        bfg-repo-cleaner
+        colima
+        comma
+        deploy-machine
+        deploy-rs
+        deployment
+        git
+        gnupg
 
-    remote-deploy
-    inputs.attic.packages.${system}.default
-    inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
-    deploy-machine
-    bfg-repo-cleaner
-    ack
-    age
-    bash
-    colmena
-    comma
-    deploy-rs
-    deployment
-    git
-    gnupg
-    go
-    gotools
-    gopls
-    go-outline
-    gocode
-    gopkgs
-    gocode-gomod
-    godef
-    golint
-
-    netdiscover
-    python3
-    sops
-    ssh-to-age
-    write-script
-    zsh
-    colima
-    colmena
-  ] ++ (import ./packages/nixpkgs.nix (attrs)) ++ rundesk;
-  # shellHook = ''
-  #   export RD_TOKEN="9LczxcesPidTMTpPAK1LSoWdVYi9wixx"
-  #   export RD_URL=https://rundeck.harkema.io
-  #   # cachix use tomasharkema
-  # '';
-}
+        mkiso
+        netdiscover
+        python3
+        remote-deploy
+        sops
+        ssh-to-age
+        write-script
+        zsh
+      ]
+      ++ (import ./packages/nixpkgs.nix attrs)
+      ++ rundesk
+      ++ go;
+  }
