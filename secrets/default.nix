@@ -7,6 +7,7 @@ _: {
     file = ./hishtory.age;
     owner = "tomas";
     group = "tomas";
+    path = "/tmp/hishtory.key";
   };
   age.secrets.tailscale = {
     file = ./tailscale.age;

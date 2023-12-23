@@ -47,10 +47,10 @@ let
 in
 {
 
-  age.secrets.hishtory-home = {
-    file = ../../secrets/hishtory.age;
-    mode = "770";
-  };
+  # age.secrets.hishtory-home = {
+  #   file = ../../secrets/hishtory.age;
+  #   mode = "770";
+  # };
 
   home.packages = [ hishtory ];
 
@@ -59,14 +59,14 @@ in
       . ${hishtory}/share/hishtory/config.zsh
     '';
   };
-
+  # "${config.age.secrets.hishtory-home.path}"
   systemd.user.services.hishtory-login =
     let
       hishtory-login-script = pkgs.writeShellScriptBin "hishtory-login-script.sh" ''
-        FILE="${config.age.secrets.hishtory-home.path}"
-        if [ -f "$FILE" ]; then
+        FILE="/tmp/hishtory.key" 
+        # if [ -f "$FILE" ]; then
           ${pkgs.lib.getExe hishtory} init "$(cat $FILE)"
-        fi
+        # fi
       '';
     in
     {
