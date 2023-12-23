@@ -253,9 +253,12 @@ in
       specialArgs = attrs;
       modules = [
         nonfree
+          agenix.nixosModules.default
+          ../common/defaults.nix
+          ../secrets
         inputs.nixos-wsl.nixosModules.wsl
         ../machines/wodan
-      ];
+      ] ++ homemanager;
     };
 
     darwinVM = nixpkgs.lib.nixosSystem {
