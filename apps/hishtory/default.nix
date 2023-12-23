@@ -64,9 +64,9 @@ in
     let
       hishtory-login-script = pkgs.writeShellScriptBin "hishtory-login-script.sh" ''
         FILE="/tmp/hishtory.key" 
-        # if [ -f "$FILE" ]; then
+        if [ -f "$FILE" ]; then
           ${pkgs.lib.getExe hishtory} init "$(cat $FILE)"
-        # fi
+        fi
       '';
     in
     {
