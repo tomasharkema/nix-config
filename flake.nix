@@ -1,26 +1,4 @@
 {
-  nixConfig = {
-    extra-experimental-features = "nix-command flakes";
-    distributedBuilds = true;
-    builders-use-substitutes = true;
-    trusted-users = [ "root" "tomas" ];
-    extra-substituters = [
-      "https://nix-cache.harke.ma/tomas"
-      "https://cache.nixos.org"
-    ];
-    extra-binary-caches = [
-      "https://nix-cache.harke.ma/tomas"
-      "https://cache.nixos.org"
-    ];
-    trusted-public-keys = [
-      "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-    ];
-    access-tokens = [ "github.com=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" ];
-    # post-build-hook = ./upload-to-cache.sh;
-
-  };
-
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
     nix-darwin.url = "github:LnL7/nix-darwin";
@@ -55,30 +33,69 @@
     anywhere.url = "github:nix-community/nixos-anywhere";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     nixvim.url = "github:pta2002/nixvim/nixos-23.11";
-    agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixpkgs";
-    nix-software-center.url = "github:vlinkz/nix-software-center";
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # nix-software-center.url = "github:vlinkz/nix-software-center";
+    # nix-flatpak.url = "github:gmodena/nix-flatpak";
+
     impermanence.url = "github:nix-community/impermanence";
     nix-cache-watcher.url = "git+https://git.sr.ht/~thatonelutenist/nix-cache-watcher?ref=trunk";
+
     statix = {
       url = "github:nerdypepper/statix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
+    nixpkgs-lint = {
+      url = "github:nix-community/nixpkgs-lint";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    attic.url = "github:zhaofengli/attic";
-    # cachix.url = "github:cachix/cachix";
+    alejandra = {
+      url = "github:kamadorueda/alejandra";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    attic = 
+    { url = "github:zhaofengli/attic";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     system-manager = {
       url = "github:numtide/system-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # tailscale-prometheus-sd = { url = "github:madjam002/tailscale-prometheus-sd"; };
-    gomod2nix.url = "github:nix-community/gomod2nix";
-    gomod2nix.inputs.nixpkgs.follows = "nixpkgs";
-    gomod2nix.inputs.flake-utils.follows = "flake-utils";
+    gomod2nix = {
+      url = "github:nix-community/gomod2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+  };
+
+  nixConfig = {
+    extra-experimental-features = "nix-command flakes";
+    distributedBuilds = true;
+    builders-use-substitutes = true;
+    trusted-users = [ "root" "tomas" ];
+    extra-substituters = [
+      "https://nix-cache.harke.ma/tomas"
+      "https://cache.nixos.org"
+    ];
+    extra-binary-caches = [
+      "https://nix-cache.harke.ma/tomas"
+      "https://cache.nixos.org"
+    ];
+    trusted-public-keys = [
+      "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    ];
+    access-tokens = [ "github.com=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" ];
   };
 
   outputs =
@@ -93,7 +110,6 @@
     , agenix
     , nix-darwin
     , nix-index-database
-    , statix
     , nix-cache-watcher
     , alejandra
     , attic
@@ -126,7 +142,7 @@
       nixpkgs.config.allowUnfree = true;
       nixpkgs.config.allowUnfreePredicate = _: true;
 
-      colmena = import ./colmena.nix (inputs // { inherit inputs; });
+      #      colmena = import ./colmena.nix (inputs // { inherit inputs; });
 
       nixosConfigurations = (import ./configurations (inputs // {
         inherit inputs pkgsFor;
@@ -139,12 +155,10 @@
 
       homeConfigurations = {
         "root@silver-star" = home-manager.lib.homeManagerConfiguration {
-          # system = "x86_64-linux";
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
 
           extraSpecialArgs = { inherit inputs; };
+
           modules = [
-            # home 
             agenix.homeManagerModules.default
             ./machines/silver-star
             ./home.nix
@@ -359,7 +373,6 @@
 
         attic = import ./attic/attic.nix {
           inherit attic;
-          # pkgs = pkgsFor.x86_64-linux;
           pkgsLinux = pkgsFor."x86_64-linux";
         };
 

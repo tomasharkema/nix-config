@@ -1,13 +1,10 @@
 {
   "nix.enableLanguageServer": true,
   "nix.serverPath": "nixd",
-  "nix.formatterPath": "nixpkgs-fmt",
   "nix.serverSettings": {
     "nil": {
       "diagnostics": {},
-      "formatting": {
-        "command": ["nixpkgs-fmt"]
-      },
+      "formatting": {},
       "flake": {
         "autoArchive": true,
         "autoEvalInputs": true,
@@ -20,9 +17,7 @@
           "args": ["-f", "flake.nix"]
         }
       },
-      "formatting": {
-        "command": "nixpkgs-fmt"
-      },
+      "formatting": {},
       "options": {
         "enable": true,
         "target": {
@@ -31,11 +26,10 @@
       }
     }
   },
-  "editor.formatOnSave": true,
-  "editor.formatOnPaste": true,
   "[nix]": {
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2
-  },
-  "editor.defaultFormatter": "jnoortheen.nix-ide"
+    "editor.defaultFormatter": "kamadorueda.alejandra",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": false
+  }
 }

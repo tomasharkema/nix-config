@@ -1,7 +1,15 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  statix,
+  alejandra,
+  nix-cache-watcher,
+  nixpkgs-lint,
+  agenix,
+  ...
+}:
 with pkgs; [
-
-  inputs.agenix.packages.${system}.default
+  agenix.packages.${system}.default
   manix
 
   nil
@@ -13,4 +21,9 @@ with pkgs; [
   nixpkgs-fmt
   nurl
   nixci
+
+  statix.packages.${system}.statix
+  alejandra.defaultPackage.${system}
+  nix-cache-watcher.packages.${system}.nix-cache-watcher
+  nixpkgs-lint.packages.${system}.default
 ]
