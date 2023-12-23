@@ -178,7 +178,8 @@
       deploy = {
         nodes = {
           pegasus = {
-            hostname = "172.25.220.155";
+            hostname = "192.168.178.93";
+            # hostname = "172.25.220.155";
             # hostname = "100.66.126.23";
             profiles.system = {
               user = "root";

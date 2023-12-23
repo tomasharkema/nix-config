@@ -18,12 +18,11 @@ let
             owner = "ddworken";
             repo = pname;
             rev = "v${version}";
-            hash = "sha256-XDxAzMQjtCfufWnEO5NXP8Zv823a85qYhkZcEZKxIXs=";
+            hash = "sha256-Pg53wYkoUKZ5mMvPVCJs8HTj5AWRUYXUArHN0f+D+Nw=";
           };
 
-          vendorHash = "sha256-aXHqPk8iBMbe0NlsY3ZR7iozBGCAKlOOQ23FAD/5hL8=";
-
-          ldflags = [ "-X github.com/ddworken/hishtory/client/lib.Version=${version}" ];
+          vendorHash = "sha256-HzHLGrPXUSkyt2Dr7tLjfJrbg/EPBHkljoXIlPWIppU=";
+          ldflags = [ " -X github.com/ddworken/hishtory/client/lib.Version=${version}" ];
 
           excludedPackages = [ "backend/server" ];
 
@@ -38,7 +37,7 @@ let
             description = "Your shell history: synced, queryable, and in context";
             homepage = "https://github.com/ddworken/hishtory";
             license = licenses.mit;
-            maintainers = with maintainers; [ Enzime ];
+            maintainers = with maintainers; [ tomasharkema ];
           };
         }
     )
@@ -78,3 +77,4 @@ in
       };
     };
 }
+
