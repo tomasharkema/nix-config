@@ -4,42 +4,28 @@
     file = ../secrets/attic-key.age;
   };
 
-  # environment.interactiveShellInit =
-  #   let
-  #     attic-bin = lib.attrsets.getBin inputs.attic.packages.${pkgs.system}.default;
-  #     attic-script = (pkgs.writeShellScriptBin "attic-script" ''
-  #       ${lib.attrsets.getBin attic-bin}/bin/attic login tomas https://nix-cache.harke.ma $(cat ${config.age.secrets.attic-key.path})
-  #       ${lib.attrsets.getBin attic-bin}/bin/attic use tomas:tomas
-  #     '');
-  #   in
-  #   ''
-  #     ${attic-script}/bin/attic-script
-  #     #   mkdir -p ~/.1password || true
-  #     #   ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock /Users/tomas/.1password/agent.sock || true
-  #     #   export SSH_AUTH_SOCK=/Users/tomas/.1password/agent.sock
-  #   '';
-
   systemd.user.services.attic-login =
     let
-      attic-bin = lib.attrsets.getBin inputs.attic.packages.${pkgs.system}.default;
+      attic-bin = lib.getExe inputs.attic.packages.${pkgs.system}.default;
       attic-login = (pkgs.writeShellScriptBin "attic-script" ''
-        ${lib.attrsets.getBin attic-bin}/bin/attic login tomas https://nix-cache.harke.ma $(cat ${config.age.secrets.attic-key.path})
-        ${lib.attrsets.getBin attic-bin}/bin/attic use tomas:tomas
+        ${attic-bin} login tomas https://nix-cache.harke.ma $(cat ${config.age.secrets.attic-key.path})
+        ${attic-bin} use tomas:tomas
       '');
     in
     {
       description = "attic-login";
-      script = ''${attic-login}'';
+      script = "${attic-login}";
       wantedBy = [ "multi-user.target" ]; # starts after login
+      unitConfig.Type = "oneshot";
     };
 
   systemd.services.attic-watch =
     let
-      attic-bin = lib.attrsets.getBin inputs.attic.packages.${pkgs.system}.default;
-      attic-script = (pkgs.writeShellScriptBin "attic-script" ''
-        ${lib.attrsets.getBin attic-bin}/bin/attic login tomas https://nix-cache.harke.ma $(cat ${config.age.secrets.attic-key.path})
-        ${lib.attrsets.getBin attic-bin}/bin/attic use tomas:tomas
-        ${lib.attrsets.getBin attic-bin}/bin/attic watch-store tomas:tomas
+      attic-bin = lib.getExe inputs.attic.packages.${pkgs.system}.default;
+      attic-script = (pkgs.writeShellScriptBin "attic-script.sh" ''
+        ${attic-bin} login tomas https://nix-cache.harke.ma "$(cat ${config.age.secrets.attic-key.path})"
+        ${attic-bin} use tomas:tomas
+        ${attic-bin} watch-store tomas:tomas
       '');
     in
     {
@@ -55,7 +41,7 @@
         RestartSec = 5;
         MemoryLimit = "1G";
       };
-      script = "${lib.attrsets.getBin attic-script}/bin/attic-script";
+      script = "${lib.getExe attic-script}";
       wantedBy = [ "multi-user.target" ];
       path = [ attic-bin attic-script ];
       environment = {
