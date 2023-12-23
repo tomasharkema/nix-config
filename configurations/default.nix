@@ -106,11 +106,11 @@ raspberrypis // {
     system = "x86_64-linux";
     # specialArgs = attrs;
 
-    specialArgs = { inherit inputs nixpkgs; };
+    specialArgs = { inherit inputs; };
     modules = [
-      "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-      nixos-hardware.nixosModules.common-cpu-intel
-      nixos-hardware.nixosModules.common-pc-ssd
+      # "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+      # nixos-hardware.nixosModules.common-cpu-intel
+      # nixos-hardware.nixosModules.common-pc-ssd
       # ./user-defaults.nix
       ../common/defaults.nix
       disko.nixosModules.default
