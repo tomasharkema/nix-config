@@ -13,7 +13,7 @@ let
   '';
 
   deployment = pkgs.writeShellScriptBin "deployment" ''
-    ${pkgs.deploy-rs}/bin/deploy --targets $@ -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
+    ${pkgs.deploy-rs}/bin/deploy --skip-checks --targets $@ -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
   '';
 
   deploy-machine = pkgs.writeShellScriptBin "deploy-machine" ''
