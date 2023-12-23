@@ -60,8 +60,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    attic = 
-    { url = "github:zhaofengli/attic";
+    attic = {
+      url = "github:zhaofengli/attic";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -82,7 +82,7 @@
     extra-experimental-features = "nix-command flakes";
     distributedBuilds = true;
     builders-use-substitutes = true;
-    trusted-users = [ "root" "tomas" ];
+    trusted-users = ["root" "tomas"];
     extra-substituters = [
       "https://nix-cache.harke.ma/tomas"
       "https://cache.nixos.org"
@@ -95,68 +95,66 @@
       "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
-    access-tokens = [ "github.com=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" ];
+    access-tokens = ["github.com=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"];
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , nixos-generators
-    , deploy
-    , home-manager
-    , nix
-    , flake-utils
-    , anywhere
-    , agenix
-    , nix-darwin
-    , nix-index-database
-    , nix-cache-watcher
-    , alejandra
-    , attic
-    , system-manager
-    , impermanence
-    , ...
-    } @ inputs:
-    let
-      inherit (self) outputs;
-      lib = nixpkgs.lib // home-manager.lib;
-      systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-linux" ];
-      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs systems (system:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        });
-      home = {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = {
-          inherit inputs;
-        };
-        home-manager.users.tomas.imports = [ agenix.homeManagerModules.default ./home.nix ];
-        home-manager.backupFileExtension = "bak";
+  outputs = {
+    self,
+    nixpkgs,
+    nixos-generators,
+    deploy,
+    home-manager,
+    nix,
+    flake-utils,
+    anywhere,
+    agenix,
+    nix-darwin,
+    nix-index-database,
+    nix-cache-watcher,
+    alejandra,
+    attic,
+    system-manager,
+    impermanence,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+    lib = nixpkgs.lib // home-manager.lib;
+    systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-linux"];
+    forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+    pkgsFor = lib.genAttrs systems (system:
+      import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      });
+    home = {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.extraSpecialArgs = {
+        inherit inputs;
       };
-    in
+      home-manager.users.tomas.imports = [agenix.homeManagerModules.default ./home.nix];
+      home-manager.backupFileExtension = "bak";
+    };
+  in
     {
-
       nixpkgs.config.allowUnfree = true;
       nixpkgs.config.allowUnfreePredicate = _: true;
 
       #      colmena = import ./colmena.nix (inputs // { inherit inputs; });
 
-      nixosConfigurations = (import ./configurations (inputs // {
-        inherit inputs pkgsFor;
-      }));
+      nixosConfigurations = import ./configurations (inputs
+        // {
+          inherit inputs pkgsFor;
+        });
 
-      darwinConfigurations =
-        import ./configurations/darwin.nix (inputs // {
+      darwinConfigurations = import ./configurations/darwin.nix (inputs
+        // {
           inherit inputs lib;
         });
 
       homeConfigurations = {
         "root@silver-star" = home-manager.lib.homeManagerConfiguration {
-
-          extraSpecialArgs = { inherit inputs; };
+          extraSpecialArgs = {inherit inputs;};
 
           modules = [
             agenix.homeManagerModules.default
@@ -200,7 +198,7 @@
               sshUser = "root";
               path =
                 deploy.lib.aarch64-linux.activate.nixos
-                  self.nixosConfigurations.pegasus;
+                self.nixosConfigurations.pegasus;
             };
           };
           baaa-express = {
@@ -210,7 +208,7 @@
               sshUser = "root";
               path =
                 deploy.lib.aarch64-linux.activate.nixos
-                  self.nixosConfigurations.baaa-express;
+                self.nixosConfigurations.baaa-express;
             };
           };
 
@@ -221,7 +219,7 @@
               sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.home-manager
-                  self.homeConfigurations."root@silver-star";
+                self.homeConfigurations."root@silver-star";
             };
           };
           enzian = {
@@ -231,7 +229,7 @@
               sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.nixos
-                  self.nixosConfigurations.enzian;
+                self.nixosConfigurations.enzian;
             };
           };
           silver-star-ferdorie = {
@@ -241,7 +239,7 @@
               sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.nixos
-                  self.nixosConfigurations.silver-star-ferdorie;
+                self.nixosConfigurations.silver-star-ferdorie;
             };
           };
           utm-nixos = {
@@ -251,7 +249,7 @@
               sshUser = "root";
               path =
                 deploy.lib.aarch64-linux.activate.nixos
-                  self.nixosConfigurations.utm-nixos;
+                self.nixosConfigurations.utm-nixos;
             };
           };
           hyperv-nixos = {
@@ -262,7 +260,7 @@
               sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.nixos
-                  self.nixosConfigurations.hyperv-nixos;
+                self.nixosConfigurations.hyperv-nixos;
             };
           };
           blue-fire = {
@@ -274,7 +272,7 @@
               sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.nixos
-                  self.nixosConfigurations.blue-fire;
+                self.nixosConfigurations.blue-fire;
             };
           };
           arthur = {
@@ -284,7 +282,7 @@
               sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.nixos
-                  self.nixosConfigurations.arthur;
+                self.nixosConfigurations.arthur;
             };
           };
           wodan-wsl = {
@@ -294,13 +292,14 @@
               sshUser = "root";
               path =
                 deploy.lib.x86_64-linux.activate.nixos
-                  self.nixosConfigurations.wodan-wsl;
+                self.nixosConfigurations.wodan-wsl;
             };
           };
         };
       };
 
-      checks = builtins.mapAttrs
+      checks =
+        builtins.mapAttrs
         (system: deployLib: deployLib.deployChecks self.deploy)
         deploy.lib;
 
@@ -345,14 +344,12 @@
       #   format = "install-iso";
       # };
     }
-    // inputs.flake-utils.lib.eachDefaultSystem (system:
-    let
-      pkgs = import inputs.nixpkgs { inherit system; };
-      rundesk = (import ./rundesk {
+    // inputs.flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = import inputs.nixpkgs {inherit system;};
+      rundesk = import ./rundesk {
         inherit pkgs lib;
-      });
-    in
-    {
+      };
+    in {
       formatter = alejandra.defaultPackage.${system};
 
       packages = {
@@ -378,7 +375,7 @@
 
         rundesk = rundesk.runner;
 
-        run-imager = rundesk.run-imager;
+        inherit (rundesk) run-imager;
 
         # enzian = self.nixosConfigurations.enzian.config.system.build.toplevel;
       };
@@ -396,15 +393,17 @@
       };
 
       devShells = {
-        default = import ./shell.nix (inputs // {
-          inherit inputs;
-          inherit pkgs;
-          inherit nixpkgs;
-        });
-        rundesk = (import ./rundesk {
-          inherit pkgs lib;
-        }).shell;
+        default = import ./shell.nix (inputs
+          // {
+            inherit inputs;
+            inherit pkgs;
+            inherit nixpkgs;
+          });
+        rundesk =
+          (import ./rundesk {
+            inherit pkgs lib;
+          })
+          .shell;
       };
     });
 }
-

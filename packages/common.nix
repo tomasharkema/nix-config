@@ -1,110 +1,111 @@
-{ pkgs
-, inputs
-, ...
-}@attrs:
-let
-  darwin-build = import ../apps/darwin-build.nix;
-  nixpkgs-build = import ./nixpkgs.nix;
+{
+  pkgs,
+  inputs,
+  ...
+} @ attrs: let
+  darwin-build = (import ../apps/darwin-build.nix) attrs;
+  nixpkgs-build = (import ./nixpkgs.nix) attrs;
 in
-with pkgs;
-(darwin-build attrs) ++ (nixpkgs-build attrs) ++ [ (lib.mkIf stdenv.isLinux atop) ] ++
-[ (lib.mkIf stdenv.isLinux packagekit) ] ++
-[
-  # vagrant
-  _1password
-  ## Nix tools
-  antidote
-  # atuin
-  autojump
-  bash
-  bat
-  bottom
-  btop
-  bunyan-rs
-  cheat
-  comma
-  coreutils
-  curl
-  deadnix
-  delta
-  direnv
-  dnsutils
-  dog
-  du-dust
-  eza
-  eza
-  fd
-  fd
-  fortune
-  fpp
-  fx
-  fzf
-  fzf
-  gh
-  git
-  git-lfs
-  gping
-  gtop
-  httpie
-  iftop
-  inputs.agenix.packages.${system}.default
-  ipmitool
-  just
-  keybase
-  ldns
-  ldns
-  lolcat
-  lsd
-  lsd
-  manix
-  mcfly
-  morph
-  mosh
-  mtr
-  multitail
-  navi
-  ncdu
-  ncdu
-  neofetch
-  netdiscover
-  nil
-  nix-index
-  nix-prefetch-scripts
-  nixd
-  nnn
-  nodejs
-  # obsidian
-  patchelf
-  procs
-  pv
-  python3
-  screen
-  silver-searcher
-  speedtest-cli
-  ssh-to-age
-  starship
-  tailscale
-  thefuck
-  thefuck
-  tldr
-  tmate
-  tree
-  unrar
-  unzip
-  wget
-  xz
-  youtube-dl
-  yq
-  zip
-  zsh
-  zsh-autosuggestions
-  # (pkgs.writeShellScriptBin "upload-cache-signed" ''
-  #   cd ~
-  #   nix-cache-watcher sign-store -k ~/Developer/nix-config/cache-priv-key.pem -v && nix-cache-watcher upload-diff -r "https://nix-cache.harke.ma/" -v
-  # '')
-]
+  with pkgs;
+    darwin-build
+    ++ nixpkgs-build
+    ++ [(lib.mkIf stdenv.isLinux atop)]
+    ++ [(lib.mkIf stdenv.isLinux packagekit)]
+    ++ [
+      # vagrant
+      _1password
+      ## Nix tools
+      antidote
+      # atuin
+      autojump
+      bash
+      bat
+      bottom
+      btop
+      bunyan-rs
+      cheat
+      comma
+      coreutils
+      curl
+      deadnix
+      delta
+      direnv
+      dnsutils
+      dog
+      du-dust
+      eza
+      eza
+      fd
+      fd
+      fortune
+      fpp
+      fx
+      fzf
+      fzf
+      gh
+      git
+      git-lfs
+      gping
+      gtop
+      httpie
+      iftop
+      inputs.agenix.packages.${system}.default
+      ipmitool
+      just
+      keybase
+      ldns
+      ldns
+      lolcat
+      lsd
+      lsd
+      manix
+      mcfly
+      morph
+      mosh
+      mtr
+      multitail
+      navi
+      ncdu
+      ncdu
+      neofetch
+      netdiscover
+      nil
+      nix-index
+      nix-prefetch-scripts
+      nixd
+      nnn
+      nodejs
+      # obsidian
+      patchelf
+      procs
+      pv
+      python3
+      screen
+      silver-searcher
+      speedtest-cli
+      ssh-to-age
+      starship
+      tailscale
+      thefuck
+      thefuck
+      tldr
+      tmate
+      tree
+      unrar
+      unzip
+      wget
+      xz
+      youtube-dl
+      yq
+      zip
+      zsh
+      zsh-autosuggestions
+      # (pkgs.writeShellScriptBin "upload-cache-signed" ''
+      #   cd ~
+      #   nix-cache-watcher sign-store -k ~/Developer/nix-config/cache-priv-key.pem -v && nix-cache-watcher upload-diff -r "https://nix-cache.harke.ma/" -v
+      # '')
+    ]
 # home.packages = with pkgs; [
-
 #   # moonlight
 #   # (vscode-with-extensions.override {
 #   #   vscodeExtensions = with vscode-extensions;

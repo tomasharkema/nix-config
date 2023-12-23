@@ -23,4 +23,4 @@ let
     )
   ];
 in
-(pkgs.python3.withPackages remote)
+pkgs.python3.withPackages remote

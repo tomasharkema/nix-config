@@ -3,7 +3,7 @@ let
   inherit (pkgs) stdenv;
   inherit (pkgs) lib;
 
-  unstable = import (fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz) { };
+  unstable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") { };
   toolchains = [ unstable.jdk11 unstable.jdk17 ];
 
 in

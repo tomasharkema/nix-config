@@ -88,7 +88,7 @@ in
       agenix.nixosModules.default
       disko.nixosModules.default
       ../secrets
-      (defaults)
+      defaults
       ({ pkgs, lib, ... }: {
 
         environment.systemPackages = with pkgs; [
@@ -143,7 +143,7 @@ in
     ] ++ homemanager;
   };
 
-  pegasus = (nixpkgs.lib.nixosSystem {
+  pegasus = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
 
     specialArgs = { inherit inputs; };
@@ -175,5 +175,5 @@ in
         networking.hostName = "pegasus";
       })
     ] ++ homemanager;
-  });
+  };
 }

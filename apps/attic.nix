@@ -7,10 +7,10 @@
   systemd.user.services.attic-login =
     let
       attic-bin = lib.getExe inputs.attic.packages.${pkgs.system}.default;
-      attic-login = (pkgs.writeShellScriptBin "attic-script" ''
+      attic-login = pkgs.writeShellScriptBin "attic-script" ''
         ${attic-bin} login tomas https://nix-cache.harke.ma $(cat ${config.age.secrets.attic-key.path})
         ${attic-bin} use tomas:tomas
-      '');
+      '';
     in
     {
       description = "attic-login";
@@ -22,11 +22,11 @@
   systemd.services.attic-watch =
     let
       attic-bin = lib.getExe inputs.attic.packages.${pkgs.system}.default;
-      attic-script = (pkgs.writeShellScriptBin "attic-script.sh" ''
+      attic-script = pkgs.writeShellScriptBin "attic-script.sh" ''
         ${attic-bin} login tomas https://nix-cache.harke.ma "$(cat ${config.age.secrets.attic-key.path})"
         ${attic-bin} use tomas:tomas
         ${attic-bin} watch-store tomas:tomas
-      '');
+      '';
     in
     {
       enable = true;

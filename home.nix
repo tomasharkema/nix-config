@@ -246,15 +246,15 @@ in
       plugins = [
         {
           name = "zsh-users/zsh-syntax-highlighting";
-          tags = [ defer:2 ];
+          tags = [ "defer:2" ];
         }
         {
           name = "zsh-users/zsh-autosuggestions";
-          tags = [ defer:2 ];
+          tags = [ "defer:2" ];
         }
         {
           name = "zsh-users/zsh-completions";
-          tags = [ defer:2 ];
+          tags = [ "defer:2" ];
         }
         {
           name = "tysonwolker/iterm-tab-colors";
