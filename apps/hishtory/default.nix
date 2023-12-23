@@ -18,7 +18,7 @@ let
             owner = "ddworken";
             repo = pname;
             rev = "v${version}";
-            hash = "sha256-E4COgQcaKn4WoEjEQZjSWEFWRRXC/VkBopss5pbGybc=";
+            hash = "sha256-Pg53wYkoUKZ5mMvPVCJs8HTj5AWRUYXUArHN0f+D+Nw=";
           };
 
           vendorHash = "sha256-HzHLGrPXUSkyt2Dr7tLjfJrbg/EPBHkljoXIlPWIppU=";
