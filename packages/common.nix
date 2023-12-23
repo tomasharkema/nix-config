@@ -10,7 +10,7 @@ with pkgs;
 (darwin-build attrs) ++ (nixpkgs-build attrs) ++ [ (lib.mkIf stdenv.isLinux atop) ] ++
 [ (lib.mkIf stdenv.isLinux packagekit) ] ++
 [
-  # vagrant
+  vagrant
   _1password
   ## Nix tools
   antidote
