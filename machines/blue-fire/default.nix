@@ -9,7 +9,7 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   hardware.cpu.intel.updateMicrocode = true;
   nixpkgs.system = "x86_64-linux";
-  programs.nix-ld.enable = true;
+  # programs.nix-ld.enable = true;
   imports = [
     ./hardware-configuration.nix
     ../../apps/cockpit.nix
@@ -30,8 +30,8 @@
 
   environment.systemPackages = with pkgs; [
     # ipmicfg
-    ipmiview
-    vagrant
+    # ipmiview
+    # vagrant
   ];
 
   # Minimal configuration for NFS support with Vagrant.
@@ -70,12 +70,12 @@
     enable = lib.mkForce false;
     # enable = true;
   };
-  boot.kernelParams = [ "console=ttyS0,115200" "console=tty1" ];
+  # boot.kernelParams = [ "console=ttyS0,115200" "console=tty1" ];
 
-  nix.sshServe.enable = true;
-  nix.sshServe.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas@tomas"
-  ];
+  # nix.sshServe.enable = true;
+  # nix.sshServe.keys = [
+  #   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas@tomas"
+  # ];
 
   services.prometheus.exporters.ipmi.enable = true;
 }
