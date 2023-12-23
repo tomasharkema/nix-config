@@ -7,10 +7,10 @@
 , ...
 }@attrs:
 let
-  builder = import ../machines/builder (attrs);
+  builder = import ../machines/builder attrs;
 
   settings =
-    ({ pkgs
+    { pkgs
      , inputs
      , nixpkgs
      , ...
@@ -106,7 +106,7 @@ let
         ];
         access-tokens = [ "github.com=***REMOVED***" ];
       };
-    });
+    };
 in
 {
   # builder = nix-darwin.lib.darwinSystem {
@@ -141,7 +141,7 @@ in
         settings
         home-manager.darwinModules.home-manager
 
-        ({
+        {
 
 
           home-manager.useGlobalPkgs = true;
@@ -162,7 +162,7 @@ in
           # home-manager.backupFileExtension = "bak";
           # home.username = lib.mkDefault "tomas";
 
-        })
+        }
         ({ pkgs, lib, ... }:
           let
             maclaunch = pkgs.fetchFromGitHub {

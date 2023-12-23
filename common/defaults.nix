@@ -8,7 +8,7 @@
 } @ attrs:
 let
   # lib = nixpkgs.lib;
-  common = import ../packages/common.nix (attrs);
+  common = import ../packages/common.nix attrs;
   # gui = import ../packages/gui.nix (attrs);
 in
 {
