@@ -43,11 +43,18 @@ let
         }
     )
     { };
+  hishtory-login-script = pkgs.writeShellScriptBin "hishtory-login-script.sh" ''
+    FILE="${config.age.secrets.hishtory.path}"
+    if [ -f "$FILE" ]; then
+      ${pkgs.lib.getExe hishtory} init "$(cat $FILE)"
+    fi
+  '';
 in
 {
 
   age.secrets.hishtory = {
     file = ../../secrets/hishtory.age;
+    mode = "770";
   };
 
   home.packages = [ hishtory ];
@@ -64,12 +71,7 @@ in
       Unit.Type = "oneshot";
       Install.WantedBy = [ "multi-user.target" ];
       Service = {
-        ExecStart = ''
-          FILE="${config.age.secrets.hishtory.path}"
-          if [ -f "$FILE" ]; then
-            ${pkgs.lib.getExe hishtory} init "$(cat $FILE)"
-          fi
-        '';
+        ExecStart = pkgs.lib.getExe hishtory-login-script;
       };
     };
 }
