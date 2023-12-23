@@ -89,7 +89,7 @@ in
 {
   baaa-express = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
-    pkgs = pkgsFor."aarch64-linux";
+    # pkgs = pkgsFor."aarch64-linux";
 
     specialArgs = { inherit inputs; };
 
@@ -151,7 +151,7 @@ in
 
   pegasus = (nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
-    pkgs = pkgsFor."aarch64-linux";
+    # pkgs = pkgsFor."aarch64-linux";
     specialArgs = { inherit inputs; };
 
     modules = [
