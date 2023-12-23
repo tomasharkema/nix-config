@@ -65,7 +65,10 @@ in
       Install.WantedBy = [ "multi-user.target" ];
       Service = {
         ExecStart = ''
-          ${pkgs.lib.getExe hishtory} init "$(cat ${config.age.secrets.hishtory.path})"
+          FILE="${config.age.secrets.hishtory.path}"
+          if [ -f "$FILE" ]; then
+            ${pkgs.lib.getExe hishtory} init "$(cat $FILE)"
+          fi
         '';
       };
     };
