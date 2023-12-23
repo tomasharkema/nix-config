@@ -285,8 +285,9 @@
         };
       };
 
-      # checks = builtins.mapAttrs
-      # (system: deployLib: deployLib.deployChecks self.deploy) deploy.lib;
+      checks = builtins.mapAttrs
+        (system: deployLib: deployLib.deployChecks self.deploy)
+        deploy.lib;
 
       # packages = { self, flake-utils, ... }:
       #   flake-utils.lib.eachDefaultSystem (system:
