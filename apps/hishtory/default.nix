@@ -58,14 +58,15 @@ in
     '';
   };
 
-
   systemd.user.services.hishtory-login =
     {
-      description = "hishtory-login";
-      script = ''
-        ${pkgs.lib.getExe hishtory} init "$(cat ${config.age.secrets.hishtory.path})"
-      '';
-      wantedBy = [ "multi-user.target" ]; # starts after login
-      unitConfig.Type = "oneshot";
+      Unit.Description = "hishtory-login";
+      Unit.Type = "oneshot";
+      Install.WantedBy = [ "multi-user.target" ];
+      Service = {
+        ExecStart = ''
+          ${pkgs.lib.getExe hishtory} init "$(cat ${config.age.secrets.hishtory.path})"
+        '';
+      };
     };
 }
