@@ -87,6 +87,7 @@ in
     SPACESHIP_PROMPT_ADD_NEWLINE = "false";
   };
   age.identityPaths = [
+    "/etc/ssh/ssh_host_ed25519_key"
     "${config.home.homeDirectory}/.ssh/id_ed25519"
     # "${config.home.homeDirectory}/.ssh/id_rsa"
   ];

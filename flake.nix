@@ -358,7 +358,7 @@
 
         attic = import ./attic/attic.nix {
           inherit attic;
-          pkgs = pkgsFor.x86_64-linux;
+          # pkgs = pkgsFor.x86_64-linux;
           pkgsLinux = pkgsFor."x86_64-linux";
         };
 
