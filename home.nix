@@ -181,6 +181,22 @@ in {
     settings = {
       key_path = "/tmp/atuin.key";
       sync_address = "https://atuin.harke.ma";
+      auto_sync = true;
+      sync_frequency = "10m";
+      workspaces = true;
+      style = "compact";
+      secrets_filter = true;
+      common_subcommands = [
+        "cargo"
+        "go"
+        "git"
+        "npm"
+        "yarn"
+        "pnpm"
+        "kubectl"
+        "nix"
+        "nom"
+      ];
     };
   };
 
