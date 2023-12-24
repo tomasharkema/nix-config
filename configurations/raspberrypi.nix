@@ -43,7 +43,7 @@
     boot.loader.generic-extlinux-compatible.enable = true;
 
     # !!! Set to specific linux kernel version
-    boot.kernelPackages = pkgs.linuxPackages_5_4;
+    # boot.kernelPackages = pkgs.linuxPackages_5_4;
 
     services.openssh.enable = true;
     services.avahi.enable = true;
