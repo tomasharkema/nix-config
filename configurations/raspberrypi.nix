@@ -47,7 +47,7 @@
 
     services.openssh.enable = true;
     services.avahi.enable = true;
-    console.enable = false;
+    console.enable = true;
 
     environment.systemPackages = with pkgs; [
       libraspberrypi
