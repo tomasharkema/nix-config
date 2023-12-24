@@ -6,6 +6,7 @@
   vscode-server,
   agenix,
   # nix-flatpak,
+  nix-index-database,
   disko,
   impermanence,
   nixos-hardware,
@@ -24,6 +25,7 @@
     nixpkgs.config.allowUnfreePredicate = _: true;
   };
   homemanager = [
+    nix-index-database.hmModules.nix-index
     home-manager.nixosModules.home-manager
     {
       home-manager.useGlobalPkgs = true;

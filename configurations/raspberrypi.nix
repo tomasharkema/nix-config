@@ -39,11 +39,7 @@
 
     # NixOS wants to enable GRUB by default
     boot.loader.grub.enable = false;
-    # Enables the generation of /boot/extlinux/extlinux.conf
     boot.loader.generic-extlinux-compatible.enable = true;
-
-    # !!! Set to specific linux kernel version
-    # boot.kernelPackages = pkgs.linuxPackages_5_4;
 
     services.openssh.enable = true;
     services.avahi.enable = true;
@@ -62,7 +58,7 @@
     };
 
     system.stateVersion = "23.11";
-    boot.loader.raspberryPi.firmwareConfig = "force_turbo=1,dtoverlay=dwc2";
+    # boot.loader.raspberryPi.firmwareConfig = "force_turbo=1";
     # boot.loader.raspberryPi.enable = true;
     boot.loader.raspberryPi.uboot.enable = true;
 
@@ -76,7 +72,7 @@
       firmware = [pkgs.wireless-regdb];
     };
 
-  networking.networkmanager.enable = false;
+    networking.networkmanager.enable = false;
 
     # Networking
     networking = {
@@ -86,27 +82,14 @@
       };
       interfaces.eth0 = {
         useDHCP = true;
-        # I used DHCP because sometimes I disconnect the LAN cable
-        #ipv4.addresses = [{
-        #  address = "192.168.100.3";
-        #  prefixLength = 24;
-        #}];
       };
 
       # Enabling WIFI
       wireless.enable = true;
       wireless.interfaces = ["wlan0"];
-      # If you want to connect also via WIFI to your router
 
-      wireless.networks."Have a good day".psk = "0fcc36c0dd587f3d85028f427c872fead0b6bb7623099fb4678ed958f2150e23";
+      wireless.networks."Have a good day".psk = "HungryOwl456";
 
-      # You can set default nameservers
-      nameservers = ["1.1.1.1" "1.0.0.1"];
-      # You can set default gateway
-      defaultGateway = {
-        address = "192.168.178.1";
-        interface = "wlan0";
-      };
       firewall = {
         enable = lib.mkForce false;
       };
@@ -120,10 +103,10 @@ in {
 
     modules =
       [
-        nixos-generators.nixosModules.all-formats
+        # nixos-generators.nixosModules.all-formats
         "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
         "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-        impermanence.nixosModules.impermanence
+        # impermanence.nixosModules.impermanence
         agenix.nixosModules.default
         # disko.nixosModules.default
         ../secrets
@@ -145,8 +128,6 @@ in {
           ];
 
           boot.initrd.kernelModules = ["vc4" "bcm2835_dma" "i2c_bcm2835"];
-          boot.loader.grub.enable = false;
-          boot.loader.generic-extlinux-compatible.enable = true;
 
           networking.hostName = "baaa-express";
 
@@ -226,7 +207,7 @@ in {
             };
           };
           networking.hostName = "pegasus";
-hardware.raspberry-pi."4".dwc2.enable = true;
+          hardware.raspberry-pi."4".dwc2.enable = true;
         })
       ]
       ++ homemanager;

@@ -42,7 +42,10 @@
     # nix-software-center.url = "github:vlinkz/nix-software-center";
     # nix-flatpak.url = "github:gmodena/nix-flatpak";
 
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
+
     nix-cache-watcher.url = "git+https://git.sr.ht/~thatonelutenist/nix-cache-watcher?ref=trunk";
 
     statix = {
@@ -62,7 +65,6 @@
 
     attic = {
       url = "github:zhaofengli/attic";
-
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
