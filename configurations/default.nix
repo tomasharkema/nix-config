@@ -25,7 +25,6 @@
     nixpkgs.config.allowUnfreePredicate = _: true;
   };
   homemanager = [
-    nix-index-database.hmModules.nix-index
     home-manager.nixosModules.home-manager
     {
       home-manager.useGlobalPkgs = true;
