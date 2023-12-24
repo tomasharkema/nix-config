@@ -3,7 +3,6 @@
   nix-index-database,
   agenix,
   home-manager,
-  nixpkgs,
   inputs,
   ...
 } @ attrs: let
@@ -13,8 +12,26 @@
     pkgs,
     inputs,
     nixpkgs,
+    lib,
     ...
-  }: {
+  }: let
+    maclaunch = pkgs.stdenv.mkDerivation {
+      name = "maclaunch";
+
+      src = pkgs.fetchFromGitHub {
+        owner = "hazcod";
+        repo = "maclaunch";
+        rev = "0a4962623dffa84050b5b778edb69f8603fa6c1a";
+        hash = "sha256-CA0bT1auUkDdboQeb7FDl2HM2AMoocrU2/hmBbNYK8A=";
+      };
+
+      installPhase = ''
+        mkdir -p $out/bin
+        mv maclaunch.sh $out/bin/maclaunch
+        chmod +x $out/bin/maclaunch
+      '';
+    };
+  in {
     nix.buildMachines = [
       {
         hostName = "blue-fire";
@@ -65,8 +82,11 @@
       builders-use-substitutes = true
     '';
     environment.systemPackages = with pkgs; [
-      kitty
-      terminal-notifier
+      maclaunch
+      # kitty
+      # terminal-notifier
+      # maclaunch
+      # launchcontrol
       # vagrant
       # fig
     ];
@@ -106,6 +126,43 @@
       access-tokens = ["github.com=***REMOVED***"];
     };
   };
+
+  fig = {
+    pkgs,
+    lib,
+  }:
+    pkgs.stdenvNoCC.mkDerivation {
+      pname = "fig";
+      version = "2.5.2";
+      src = builtins.fetchurl {
+        name = "fig.dmg";
+        url = "https://repo.fig.io/generic/stable/asset/latest/universal/fig.dmg";
+        sha256 = "sha256:1m7vx358vxyxliy0d2ry2axiah8a2rwf4pzzdc8yk4zyg19ngqkj";
+      };
+
+      phases = ["unpackPhase" "buildPhase" "installPhase"];
+      buildInputs = with pkgs; [undmg];
+      sourceRoot = ".";
+
+      installPhase = ''
+        runHook preInstall
+        mkdir -p $out/Applications
+        cp -R Fig.app $out/Applications
+        runHook postInstall
+      '';
+
+      meta = with lib; {
+        description = "fig";
+        longDescription = ''fig'';
+        homepage = "https://v2.airbuddy.app";
+        changelog = "https://support.airbuddy.app/articles/airbuddy-2-changelog";
+        license = with licenses; [
+        ];
+        sourceProvenance = with sourceTypes; [binaryNativeCode];
+        maintainers = with maintainers; [tomasharkema];
+        platforms = ["aarch64-darwin" "x86_64-darwin"];
+      };
+    };
 in {
   # builder = nix-darwin.lib.darwinSystem {
   #   system = "aarch64-darwin";
@@ -119,14 +176,11 @@ in {
     nix-darwin.lib.darwinSystem
     {
       system = "aarch64-darwin";
-      # specialArgs = {
-      #   inherit inputs;
-      # };
 
       modules = [
         ({pkgs, ...}: {
-          #   nixpkgs.hostPlatform = "aarch64-darwin";
-          #   nixpkgs.config.allowUnfree = true;
+          nixpkgs.hostPlatform = "aarch64-darwin";
+          nixpkgs.config.allowUnfree = true;
           services.nix-daemon.enable = true;
           #   nix.package = pkgs.nix;
           programs.zsh.enable = true;
@@ -149,35 +203,27 @@ in {
           home-manager.users.tomas.imports = [
             agenix.homeManagerModules.default
             ../home.nix
-            ({lib, ...}: {
-              # programs.home-manager.enable = true;
+            ({
+              lib,
+              pkgs,
+              ...
+            }: {
+              programs.home-manager.enable = true;
               home.username = lib.mkDefault "tomas";
               home.homeDirectory = lib.mkForce "/Users/tomas";
+              home.packages = with pkgs; [
+                kitty
+                terminal-notifier
+                # (fig {inherit pkgs lib;})
+                (import
+                  ../apps/launchcontrol.nix
+                  {inherit lib pkgs;})
+              ];
             })
           ];
-          # home-manager.backupFileExtension = "bak";
+          home-manager.backupFileExtension = "bak";
           # home.username = lib.mkDefault "tomas";
         }
-        (
-          {
-            pkgs,
-            lib,
-            ...
-          }: let
-            maclaunch = pkgs.fetchFromGitHub {
-              owner = "hazcod";
-              repo = "maclaunch";
-              rev = "0a4962623dffa84050b5b778edb69f8603fa6c1a";
-              hash = "sha256-CA0bT1auUkDdboQeb7FDl2HM2AMoocrU2/hmBbNYK8A=";
-            };
-          in {
-            environment.systemPackages = [
-              (pkgs.writeShellScriptBin "maclaunch" ''
-                ${lib.attrsets.getBin maclaunch}/bin/maclaunch
-              '')
-            ];
-          }
-        )
       ];
     };
 }

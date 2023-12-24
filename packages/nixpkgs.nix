@@ -3,10 +3,11 @@
   inputs,
   ...
 }:
-with pkgs; [
-  inputs.agenix.packages.${system}.default
+with pkgs;
+with inputs; [
+  agenix.packages.${system}.default
   manix
-
+  nix-init
   nil
   nix
   nix-output-monitor
@@ -17,8 +18,8 @@ with pkgs; [
   nurl
   nixci
 
-  inputs.statix.packages.${system}.statix
-  inputs.alejandra.defaultPackage.${system}
-  inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
-  inputs.nixpkgs-lint.packages.${system}.default
+  statix.packages.${system}.statix
+  alejandra.defaultPackage.${system}
+  nix-cache-watcher.packages.${system}.nix-cache-watcher
+  nixpkgs-lint.packages.${system}.default
 ]
