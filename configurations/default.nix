@@ -6,7 +6,7 @@
   vscode-server,
   agenix,
   # nix-flatpak,
-  nix-index-database,
+  # nix-index-database,
   disko,
   impermanence,
   nixos-hardware,
@@ -89,6 +89,7 @@ in
 
       modules =
         [
+          "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
           ../common/wifi_module.nix
           inputs.nixos-hardware.nixosModules.common-cpu-intel
           inputs.nixos-hardware.nixosModules.common-pc-ssd
@@ -118,7 +119,7 @@ in
       specialArgs = {inherit inputs;};
       modules =
         [
-          # "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+          "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
           # nixos-hardware.nixosModules.common-cpu-intel
           # nixos-hardware.nixosModules.common-pc-ssd
           # ./user-defaults.nix
@@ -227,6 +228,7 @@ in
       # specialArgs = { inherit inputs outputs; };
       modules =
         [
+          "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
           # ./user-defaults.nix
           ../common/defaults.nix
           # impermanence.nixosModule
