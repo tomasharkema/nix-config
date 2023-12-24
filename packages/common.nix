@@ -7,7 +7,6 @@
   nixpkgs-build = (import ./nixpkgs.nix) attrs;
 in
   with pkgs;
-  with inputs;
     darwin-build
     ++ nixpkgs-build
     ++ [(lib.mkIf stdenv.isLinux atop)]
@@ -44,7 +43,7 @@ in
       gtop
       httpie
       iftop
-      agenix.packages.${system}.default
+      inputs.agenix.packages.${system}.default
       ipmitool
       just
       keybase
