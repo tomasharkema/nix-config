@@ -9,12 +9,6 @@ _: {
     file = ./attic-key.age;
     mode = "0664";
   };
-  age.secrets.hishtory = {
-    file = ./hishtory.age;
-    owner = "tomas";
-    group = "tomas";
-    path = "/tmp/hishtory.key";
-  };
   age.secrets.tailscale = {
     file = ./tailscale.age;
     mode = "0664";
