@@ -34,13 +34,11 @@ in
       dog
       du-dust
       eza
-      eza
-      fd
       fd
       fortune
       fpp
       fx
-      fzf
+
       fzf
       gh
       git
