@@ -1,4 +1,10 @@
 _: {
+  age.secrets.atuin = {
+    file = ./atuin.age;
+    owner = "tomas";
+    group = "tomas";
+    path = "/tmp/atuin.key";
+  };
   age.secrets.attic-key = {
     file = ./attic-key.age;
     mode = "0664";

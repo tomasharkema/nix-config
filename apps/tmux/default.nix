@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   tmux-super-fingers = pkgs.tmuxPlugins.mkTmuxPlugin {
     pluginName = "tmux-super-fingers";
     version = "unstable-2023-01-06";
@@ -21,19 +20,18 @@ let
       sha256 = "sha256-HN0hJeB31MvkD12dbnF2SjefkAVgtUmhah598zAlhQs=";
     };
   };
-  # tmux-nvim = pkgs.tmuxPlugins.mkTmuxPlugin {
-  #   pluginName = "tmux.nvim";
-  #   version = "unstable-2023-01-06";
-  #   src = pkgs.fetchFromGitHub {
-  #     owner = "aserowy";
-  #     repo = "tmux.nvim/";
-  #     rev = "57220071739c723c3a318e9d529d3e5045f503b8";
-  #     sha256 = "sha256-zpg7XJky7PRa5sC7sPRsU2ZOjj0wcepITLAelPjEkSI=";
-  #   };
-  # };
-in
-{
-  home.packages = with pkgs; [ lsof brotab ];
+  tmux-nvim = pkgs.tmuxPlugins.mkTmuxPlugin {
+    pluginName = "tmux.nvim";
+    version = "unstable-2023-01-06";
+    src = pkgs.fetchFromGitHub {
+      owner = "aserowy";
+      repo = "tmux.nvim/";
+      rev = "57220071739c723c3a318e9d529d3e5045f503b8";
+      sha256 = "sha256-zpg7XJky7PRa5sC7sPRsU2ZOjj0wcepITLAelPjEkSI=";
+    };
+  };
+in {
+  home.packages = with pkgs; [lsof brotab];
 
   programs.tmux = {
     enable = true;

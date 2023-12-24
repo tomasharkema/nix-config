@@ -1,11 +1,11 @@
-{ inputs
-, config
-, pkgs
-, lib
-, hostname
-, ...
-} @ attrs:
-let
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  hostname,
+  ...
+} @ attrs: let
   inherit (pkgs) stdenv;
 
   # tmux-menu = pkgs.writeShellScriptBin "tmux-menu" ''
@@ -38,9 +38,7 @@ let
     url = "https://iterm2.com/shell_integration/zsh";
     sha256 = "sha256-Cq8winA/tcnnVblDTW2n1k/olN3DONEfXrzYNkufZvY=";
   };
-
-in
-{
+in {
   # nix.settings = {
   #   extra-experimental-features = "nix-command flakes";
   #   # distributedBuilds = true;
@@ -66,13 +64,15 @@ in
   imports = [
     ./apps/tmux
     ./apps/hishtory
-  ]; # ++ [ (lib.optional (stdenv.isLinux) (./apps/flatpak.nix)) ];
+  ];
+
   # self.home-manager.backupFileExtension = "bak";
-  home.packages =
+  home.packages = with pkgs;
     (import ./packages/common.nix attrs)
-    ++ [ (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; }) ]
+    ++ [(nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})]
     ++ [
-      pkgs.nixd
+      nixd
+      # fig
     ];
 
   home.username = lib.mkDefault "tomas";
@@ -103,13 +103,12 @@ in
   programs.htop.settings.show_program_path = false;
 
   programs.fzf.enable = true;
-  programs.nix-index =
-    {
-      enable = true;
-      enableZshIntegration = true;
-    };
+  programs.nix-index = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
-  programs.tmux = { enable = true; };
+  programs.tmux = {enable = true;};
 
   programs.alacritty = {
     enable = true;
@@ -135,11 +134,13 @@ in
       sudo.disabled = false;
       shell.disabled = false;
       os.disabled = false;
+
+      cmd_duration.min_time = 1000;
+      command_timeout = 1000;
     };
   };
 
   programs.ssh = {
-
     enable = true;
 
     matchBlocks = lib.mkMerge [
@@ -169,10 +170,19 @@ in
           };
         };
       }
-      (import ./users/match-blocks.nix {
+      (import ./apps/ssh/match-blocks.nix {
         inherit lib;
       })
     ];
+  };
+
+  programs.atuin = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      key_path = "/tmp/atuin.key";
+      sync_address = "https://atuin.harke.ma";
+    };
   };
 
   programs.git.enable = true;
@@ -246,15 +256,15 @@ in
       plugins = [
         {
           name = "zsh-users/zsh-syntax-highlighting";
-          tags = [ "defer:2" ];
+          tags = ["defer:2"];
         }
         {
           name = "zsh-users/zsh-autosuggestions";
-          tags = [ "defer:2" ];
+          tags = ["defer:2"];
         }
         {
           name = "zsh-users/zsh-completions";
-          tags = [ "defer:2" ];
+          tags = ["defer:2"];
         }
         {
           name = "tysonwolker/iterm-tab-colors";
