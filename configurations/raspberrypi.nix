@@ -1,179 +1,198 @@
-{ disko
-, nixpkgs
-, pkgsFor
-, inputs
-, nixos-hardware
-, agenix
-, home-manager
-, impermanence
-, nixos-generators
-, homemanager
-, ...
-}:
-let
-  defaults = { pkgs, lib, config, ... }@attrs:
-    let
-      rpi-update-src = pkgs.fetchFromGitHub {
-        owner = "raspberrypi";
-        repo = "rpi-update";
-        rev = "e85c4b69065260496c138b82b68566217dc89ad0";
-        hash = "sha256-D+9ERc8z5sOk3hSKh8udczTREg3VcHGMYjdwoAsPvoM=";
-      };
-      rpi-update = pkgs.writeShellScriptBin "rpi-update" ''
-        exec ${rpi-update-src}/rpi-update
-      '';
-    in
-    {
-
-      imports = [
-        ../common/defaults.nix
-        ../apps/tailscale
-        ../apps/cockpit.nix
-        ../common/users.nix
-        ../common/wifi.nix
-      ];
-
-      sdImage.compressImage = false;
-
-      # NixOS wants to enable GRUB by default
-      boot.loader.grub.enable = false;
-      # Enables the generation of /boot/extlinux/extlinux.conf
-      boot.loader.generic-extlinux-compatible.enable = true;
-
-      # !!! Set to specific linux kernel version
-      boot.kernelPackages = pkgs.linuxPackages_5_4;
-
-      services.openssh.enable = true;
-      services.avahi.enable = true;
-      console.enable = false;
-
-      environment.systemPackages = with pkgs; [
-        libraspberrypi
-        raspberrypi-eeprom
-        rpi-update
-      ];
-
-      systemd.services.attic-watch.enable = lib.mkForce false;
-
-      services.resilio = {
-        enable = lib.mkForce false;
-      };
-
-      system.stateVersion = "23.11";
-      boot.loader.raspberryPi.firmwareConfig = "force_turbo=1";
-
-      services.avahi.extraServiceFiles = {
-        ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
-      };
-      services.avahi.publish.userServices = true;
-
-
-      hardware = {
-        enableRedistributableFirmware = true;
-        firmware = [ pkgs.wireless-regdb ];
-      };
-    };
-in
 {
+  disko,
+  nixpkgs,
+  pkgsFor,
+  inputs,
+  nixos-hardware,
+  agenix,
+  home-manager,
+  impermanence,
+  nixos-generators,
+  homemanager,
+  ...
+}: let
+  defaults = {
+    pkgs,
+    lib,
+    config,
+    ...
+  } @ attrs: let
+    rpi-update-src = pkgs.fetchFromGitHub {
+      owner = "raspberrypi";
+      repo = "rpi-update";
+      rev = "e85c4b69065260496c138b82b68566217dc89ad0";
+      hash = "sha256-D+9ERc8z5sOk3hSKh8udczTREg3VcHGMYjdwoAsPvoM=";
+    };
+    rpi-update = pkgs.writeShellScriptBin "rpi-update" ''
+      exec ${rpi-update-src}/rpi-update
+    '';
+  in {
+    imports = [
+      ../common/defaults.nix
+      ../apps/tailscale
+      ../apps/cockpit.nix
+      ../common/users.nix
+      ../common/wifi.nix
+    ];
+
+    sdImage.compressImage = false;
+
+    # NixOS wants to enable GRUB by default
+    boot.loader.grub.enable = false;
+    # Enables the generation of /boot/extlinux/extlinux.conf
+    boot.loader.generic-extlinux-compatible.enable = true;
+
+    # !!! Set to specific linux kernel version
+    boot.kernelPackages = pkgs.linuxPackages_5_4;
+
+    services.openssh.enable = true;
+    services.avahi.enable = true;
+    console.enable = false;
+
+    environment.systemPackages = with pkgs; [
+      libraspberrypi
+      raspberrypi-eeprom
+      rpi-update
+    ];
+
+    systemd.services.attic-watch.enable = lib.mkForce false;
+
+    services.resilio = {
+      enable = lib.mkForce false;
+    };
+
+    system.stateVersion = "23.11";
+    boot.loader.raspberryPi.firmwareConfig = "force_turbo=1";
+
+    services.avahi.extraServiceFiles = {
+      ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
+    };
+    services.avahi.publish.userServices = true;
+
+    hardware = {
+      enableRedistributableFirmware = true;
+      firmware = [pkgs.wireless-regdb];
+    };
+  };
+in {
   baaa-express = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
 
-    specialArgs = { inherit inputs; };
+    specialArgs = {inherit inputs;};
 
-    modules = [
-      # nixos-generators.nixosModules.all-formats
-      "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-      "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-      impermanence.nixosModules.impermanence
-      agenix.nixosModules.default
-      disko.nixosModules.default
-      ../secrets
-      defaults
-      ({ pkgs, lib, ... }: {
-
-        environment.systemPackages = with pkgs; [
-          libraspberrypi
-          raspberrypi-eeprom
-        ];
-        system.stateVersion = "23.11";
-
-        boot.kernelParams = [
-          "console=ttyS1,115200n8"
-          "cma=320M"
-        ];
-
-        boot.initrd.kernelModules = [ "vc4" "bcm2835_dma" "i2c_bcm2835" ];
-        boot.loader.grub.enable = false;
-        boot.loader.generic-extlinux-compatible.enable = true;
-
-        networking.hostName = "baaa-express";
-
-        fileSystems."/" = {
-          device = lib.mkForce "none";
-          fsType = lib.mkForce "tmpfs";
-          options = [ "defaults" "size=25%" "mode=755" ];
-        };
-
-        fileSystems."/nix" = {
-          device = "/dev/disk/by-label/NIXOS_SD";
-          fsType = "ext4";
-        };
-
-        # fileSystems."/boot" = {
-        #   device = "/dev/disk/by-uuid/XXXX-XXXX";
-        #   fsType = "vfat";
-        # };
-
-        environment.persistence."/nix/persistent" = {
-          hideMounts = true;
-          directories = [
-            "/var/log"
-            "/var/lib/bluetooth"
-            "/var/lib/nixos"
-            "/var/lib/systemd/coredump"
-            "/etc/NetworkManager/system-connections"
-            { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+    modules =
+      [
+        nixos-generators.nixosModules.all-formats
+        "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+        "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+        impermanence.nixosModules.impermanence
+        agenix.nixosModules.default
+        disko.nixosModules.default
+        ../secrets
+        defaults
+        ({
+          pkgs,
+          lib,
+          ...
+        }: {
+          environment.systemPackages = with pkgs; [
+            libraspberrypi
+            raspberrypi-eeprom
           ];
-          files = [
-            "/etc/machine-id"
-            { file = "/etc/nix/id_rsa"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
+          system.stateVersion = "23.11";
+
+          boot.kernelParams = [
+            "console=ttyS1,115200n8"
+            "cma=320M"
           ];
-        };
-      })
-    ] ++ homemanager;
+
+          boot.initrd.kernelModules = ["vc4" "bcm2835_dma" "i2c_bcm2835"];
+          boot.loader.grub.enable = false;
+          boot.loader.generic-extlinux-compatible.enable = true;
+
+          networking.hostName = "baaa-express";
+
+          # fileSystems."/" = {
+          #   device = lib.mkForce "none";
+          #   fsType = lib.mkForce "tmpfs";
+          #   options = [ "defaults" "size=25%" "mode=755" ];
+          # };
+
+          # fileSystems."/nix" = {
+          #   device = "/dev/disk/by-label/NIXOS_SD";
+          #   fsType = "ext4";
+          # };
+
+          # fileSystems."/boot" = {
+          #   device = "/dev/disk/by-uuid/XXXX-XXXX";
+          #   fsType = "vfat";
+          # };
+
+          environment.persistence."/nix/persistent" = {
+            hideMounts = true;
+            directories = [
+              "/var/log"
+              "/var/lib/bluetooth"
+              "/var/lib/nixos"
+              "/var/lib/systemd/coredump"
+              "/etc/NetworkManager/system-connections"
+              {
+                directory = "/var/lib/colord";
+                user = "colord";
+                group = "colord";
+                mode = "u=rwx,g=rx,o=";
+              }
+            ];
+            files = [
+              "/etc/machine-id"
+              {
+                file = "/etc/nix/id_rsa";
+                parentDirectory = {mode = "u=rwx,g=,o=";};
+              }
+            ];
+          };
+        })
+      ]
+      ++ homemanager;
   };
 
   pegasus = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
 
-    specialArgs = { inherit inputs; };
+    specialArgs = {inherit inputs;};
 
-    modules = [
-      # base
-      inputs.nixos-hardware.nixosModules.raspberry-pi-4
-      "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-      "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-      defaults
-      agenix.nixosModules.default
+    modules =
+      [
+        # base
+        inputs.nixos-hardware.nixosModules.raspberry-pi-4
+        "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+        "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+        defaults
+        agenix.nixosModules.default
 
-      ../secrets
+        ../secrets
 
-      ({ config, pkgs, lib, ... }: {
-
-        networking.firewall = {
-          enable = true;
-        };
-        # boot.loader.raspberryPi.enable = true;
-
-        hardware = {
-          raspberry-pi."4".apply-overlays-dtmerge.enable = true;
-          deviceTree = {
+        ({
+          config,
+          pkgs,
+          lib,
+          ...
+        }: {
+          networking.firewall = {
             enable = true;
-            filter = "*rpi-4-*.dtb";
           };
-        };
-        networking.hostName = "pegasus";
-      })
-    ] ++ homemanager;
+          # boot.loader.raspberryPi.enable = true;
+
+          hardware = {
+            raspberry-pi."4".apply-overlays-dtmerge.enable = true;
+            deviceTree = {
+              enable = true;
+              filter = "*rpi-4-*.dtb";
+            };
+          };
+          networking.hostName = "pegasus";
+        })
+      ]
+      ++ homemanager;
   };
 }
