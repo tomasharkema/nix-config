@@ -284,6 +284,7 @@ in {
         "git"
         "editor"
         "tmux"
+        "fasd"
         "history"
         "history-substring-search"
         "directory"
@@ -307,7 +308,6 @@ in {
         # autoStartLocal = true;
       };
 
-      # macOS.dashKeyword = "mand";
       prompt.pwdLength = "short";
       utility.safeOps = true;
     };
@@ -316,29 +316,21 @@ in {
     #   enable = true;
     #   plugins = [
     #     "tysonwolker/iterm-tab-colors"
+    #     "MichaelAquilina/zsh-you-should-use"
     #   ];
     # };
 
     zplug = {
       enable = true;
       plugins = [
-        #     {
-        #       name = "zsh-users/zsh-syntax-highlighting";
-        #       tags = ["defer:2"];
-        #     }
-        #     {
-        #       name = "zsh-users/zsh-autosuggestions";
-        #       tags = ["defer:2"];
-        #     }
-        #     {
-        #       name = "zsh-users/zsh-completions";
-        #       tags = ["defer:2"];
-        #     }
         {
           name = "tysonwolker/iterm-tab-colors";
         }
         {
           name = "mafredri/zsh-async";
+        }
+        {
+          name = "MichaelAquilina/zsh-you-should-use";
         }
       ];
     };
