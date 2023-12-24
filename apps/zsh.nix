@@ -13,9 +13,9 @@
   programs.fzf.fuzzyCompletion = true;
   programs.zsh = {
     enable = true;
-    autosuggestions.enable = true;
-    enableCompletion = true;
-    autosuggestions.async = true;
+    # autosuggestions.enable = true;
+    # enableCompletion = true;
+    # autosuggestions.async = true;
     ohMyZsh = {
       enable = true;
       plugins = [

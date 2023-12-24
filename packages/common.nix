@@ -96,8 +96,9 @@ in
       youtube-dl
       yq
       zip
-      zsh
-      zsh-autosuggestions
+      # zsh
+      # zsh-autosuggestions
+      # zsh-autocorrection
       # (pkgs.writeShellScriptBin "upload-cache-signed" ''
       #   cd ~
       #   nix-cache-watcher sign-store -k ~/Developer/nix-config/cache-priv-key.pem -v && nix-cache-watcher upload-diff -r "https://nix-cache.harke.ma/" -v
