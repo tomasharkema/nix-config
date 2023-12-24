@@ -63,7 +63,6 @@ in {
 
   imports = [
     ./apps/tmux
-    ./apps/hishtory
   ];
 
   # self.home-manager.backupFileExtension = "bak";

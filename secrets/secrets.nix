@@ -20,7 +20,6 @@ let
   allKeys = users ++ systems;
 in {
   "atuin.age".publicKeys = allKeys;
-  "hishtory.age".publicKeys = allKeys;
   "tailscale.age".publicKeys = allKeys;
   "gh.age".publicKeys = allKeys;
   "resilio-p.age".publicKeys = allKeys;
