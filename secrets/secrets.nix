@@ -2,7 +2,7 @@ let
   tomas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";
   # wsl =
   #   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKXJJrsfcYDGtfl8zQ1hjs+0UdasQLpO4ybFNlTqtjoI tomas@DESKTOP-L8N2UGE";
-  users = [ tomas ];
+  users = [tomas];
 
   enzian = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICTiQQzh6t0sQabqkzyYpqA9zIgnA0we+nQVs54UG0ct root@enzian";
   enzian-user = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFfJzGCnEFkPB6jeyNgWC1+32w6X6JOwWnC+xqTiPYAw tomas@enzian";
@@ -16,10 +16,10 @@ let
   pegasus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKAAuNlVlLPxJxxO66tc4o687Sqs0y5MiHOuTJwOZzE8 root@pegasus";
   wodan-wsl = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICI2xzlzSsxv+6QSZ6rCeG0ma4HfIH3YWJj/P4GoQ3M/ root@nixos";
   baaa-express = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEwd41uWPlgmaU6ckgFR3L4thPeKeIsaahHbjkg+qAOf root@baaa-express";
-  systems = [ enzian enzian-user silver-star-ferdorie utm-nixos arthur hyperv-nixos blue-fire pegasus baaa-express ];
+  systems = [enzian enzian-user silver-star-ferdorie utm-nixos arthur hyperv-nixos blue-fire pegasus baaa-express];
   allKeys = users ++ systems;
-in
-{
+in {
+  "atuin.age".publicKeys = allKeys;
   "hishtory.age".publicKeys = allKeys;
   "tailscale.age".publicKeys = allKeys;
   "gh.age".publicKeys = allKeys;
