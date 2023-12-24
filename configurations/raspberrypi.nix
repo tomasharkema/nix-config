@@ -69,9 +69,42 @@
     };
     services.avahi.publish.userServices = true;
 
+    networking.firewall.enabled = false;
+
     hardware = {
       enableRedistributableFirmware = true;
       firmware = [pkgs.wireless-regdb];
+    };
+
+    # Networking
+    networking = {
+      useDHCP = true;
+      interfaces.wlan0 = {
+        useDHCP = true;
+      };
+      interfaces.eth0 = {
+        useDHCP = true;
+        # I used DHCP because sometimes I disconnect the LAN cable
+        #ipv4.addresses = [{
+        #  address = "192.168.100.3";
+        #  prefixLength = 24;
+        #}];
+      };
+
+      # Enabling WIFI
+      wireless.enable = true;
+      wireless.interfaces = ["wlan0"];
+      # If you want to connect also via WIFI to your router
+
+      wireless.networks."Have a good day".psk = "0fcc36c0dd587f3d85028f427c872fead0b6bb7623099fb4678ed958f2150e23";
+
+      # You can set default nameservers
+      nameservers = ["1.1.1.1" "1.0.0.1"];
+      # You can set default gateway
+      defaultGateway = {
+        address = "192.168.178.1";
+        interface = "wlan0";
+      };
     };
   };
 in {
