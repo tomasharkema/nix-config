@@ -186,7 +186,7 @@ in {
           programs.zsh.enable = true;
         })
         builder
-        # nix-index-database.darwinModules.nix-index
+        nix-index-database.darwinModules.nix-index
         agenix.darwinModules.default
         ../secrets
         # ../apps/iterm
@@ -201,7 +201,6 @@ in {
             inherit inputs;
           };
           home-manager.users.tomas.imports = [
-            nix-index-database.hmModules.nix-index
             agenix.homeManagerModules.default
             ../home.nix
             ({
