@@ -31,14 +31,13 @@ in
       delta
       direnv
       dnsutils
-      dog
+      dogdns
       du-dust
       eza
       fd
       fortune
       fpp
       fx
-
       fzf
       gh
       git
@@ -54,7 +53,6 @@ in
       ldns
       ldns
       lolcat
-      lsd
       lsd
       manix
       mcfly

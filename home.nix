@@ -189,8 +189,8 @@ in {
   programs.git.userName = "Tomas Harkema";
   programs.git.userEmail = "tomas@harkema.io";
 
-  # programs.lazygit.enable = true;
-  # programs.lsd.enable = true;
+  programs.lazygit.enable = true;
+  programs.lsd.enable = true;
   # programs.jq.enable = true;
   # programs.skim.enable = true;
 
@@ -250,6 +250,9 @@ in {
       g = "git";
       gs = "git status";
       pvxz = "pv @1 -N in -B 500M -pterbT | xz -e9 -T4 | pv -N out -B 500M -pterbT > @2";
+      cat = "bat";
+      dig = "dog";
+
       # subl = (lib.mkIf stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
       # dev = ''
       #   nix develop --profile dev-profile -c true && \
@@ -331,6 +334,9 @@ in {
         }
         {
           name = "MichaelAquilina/zsh-you-should-use";
+        }
+        {
+          name = "unixorn/1password-op.plugin.zsh";
         }
       ];
     };
