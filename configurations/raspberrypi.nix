@@ -32,7 +32,7 @@
       ../apps/tailscale
       ../apps/cockpit.nix
       ../common/users.nix
-      ../common/wifi.nix
+      # ../common/wifi.nix
     ];
 
     sdImage.compressImage = false;
@@ -62,7 +62,9 @@
     };
 
     system.stateVersion = "23.11";
-    boot.loader.raspberryPi.firmwareConfig = "force_turbo=1";
+    boot.loader.raspberryPi.firmwareConfig = "force_turbo=1,dtoverlay=dwc2";
+    # boot.loader.raspberryPi.enable = true;
+    boot.loader.raspberryPi.uboot.enable = true;
 
     services.avahi.extraServiceFiles = {
       ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
@@ -73,6 +75,8 @@
       enableRedistributableFirmware = true;
       firmware = [pkgs.wireless-regdb];
     };
+
+  networking.networkmanager.enable = false;
 
     # Networking
     networking = {
@@ -104,8 +108,7 @@
         interface = "wlan0";
       };
       firewall = {
-        enable = lib.mkForce true;
-        # enable = true;
+        enable = lib.mkForce false;
       };
     };
   };
@@ -213,9 +216,6 @@ in {
           lib,
           ...
         }: {
-          networking.firewall = {
-            enable = true;
-          };
           # boot.loader.raspberryPi.enable = true;
 
           hardware = {
@@ -226,6 +226,7 @@ in {
             };
           };
           networking.hostName = "pegasus";
+hardware.raspberry-pi."4".dwc2.enable = true;
         })
       ]
       ++ homemanager;
