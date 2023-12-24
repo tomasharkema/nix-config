@@ -1,13 +1,6 @@
 {
   pkgs,
   inputs,
-  nixpkgs,
-  nixpkgs-lint,
-  attic,
-  nix-cache-watcher,
-  statix,
-  alejandra,
-  agenix,
   ...
 } @ attrs: let
   inherit (pkgs) stdenv;
@@ -62,7 +55,7 @@ in
 
         ack
         age
-        attic.packages.${system}.default
+        inputs.attic.packages.${system}.default
         bash
         bfg-repo-cleaner
         colima

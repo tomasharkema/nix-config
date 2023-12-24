@@ -396,12 +396,11 @@
       };
 
       devShells = {
-        default = import ./shell.nix (inputs
-          // {
-            inherit inputs;
-            inherit pkgs;
-            inherit nixpkgs;
-          });
+        default = import ./shell.nix {
+          inherit inputs;
+          inherit pkgs;
+          inherit nixpkgs;
+        };
         rundesk =
           (import ./rundesk {
             inherit pkgs lib;
