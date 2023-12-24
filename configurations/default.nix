@@ -251,14 +251,16 @@ in
     wodan-wsl = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = attrs;
-      modules = [
-        nonfree
+      modules =
+        [
+          nonfree
           agenix.nixosModules.default
           ../common/defaults.nix
           ../secrets
-        inputs.nixos-wsl.nixosModules.wsl
-        ../machines/wodan
-      ] ++ homemanager;
+          inputs.nixos-wsl.nixosModules.wsl
+          ../machines/wodan
+        ]
+        ++ homemanager;
     };
 
     darwinVM = nixpkgs.lib.nixosSystem {

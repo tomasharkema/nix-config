@@ -139,6 +139,7 @@
     {
       nixpkgs.config.allowUnfree = true;
       nixpkgs.config.allowUnfreePredicate = _: true;
+      nixpkgs.overlays = [(import ./apps/atuin/overlay.nix)];
 
       #      colmena = import ./colmena.nix (inputs // { inherit inputs; });
 
