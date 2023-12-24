@@ -104,6 +104,7 @@ in {
   programs.htop.settings.show_program_path = false;
 
   programs.fzf.enable = true;
+
   programs.nix-index = {
     enable = true;
     enableZshIntegration = true;
@@ -206,9 +207,9 @@ in {
   programs.git.userName = "Tomas Harkema";
   programs.git.userEmail = "tomas@harkema.io";
 
-  programs.lazygit.enable = true;
-  programs.lsd.enable = true;
-  programs.jq.enable = true;
+  # programs.lazygit.enable = true;
+  # programs.lsd.enable = true;
+  # programs.jq.enable = true;
   # programs.skim.enable = true;
 
   fonts.fontconfig.enable = true;
@@ -268,29 +269,46 @@ in {
       # '';
     };
 
-    zplug = {
+    prezto = {
       enable = true;
-      plugins = [
-        {
-          name = "zsh-users/zsh-syntax-highlighting";
-          tags = ["defer:2"];
-        }
-        {
-          name = "zsh-users/zsh-autosuggestions";
-          tags = ["defer:2"];
-        }
-        {
-          name = "zsh-users/zsh-completions";
-          tags = ["defer:2"];
-        }
-        {
-          name = "tysonwolker/iterm-tab-colors";
-        }
-        {
-          name = "mafredri/zsh-async";
-        }
-      ];
+      caseSensitive = false;
+      editor.dotExpansion = true;
+      terminal.autoTitle = true;
+      tmux.autoStartRemote = true;
+      tmux.itermIntegration = true;
+      screen.autoStartLocal = true;
     };
+
+    # antidote = {
+    #   enable = true;
+    #   plugins = [
+    #     "tysonwolker/iterm-tab-colors"
+    #   ];
+    # };
+
+    # zplug = {
+    #   enable = true;
+    #   plugins = [
+    #     {
+    #       name = "zsh-users/zsh-syntax-highlighting";
+    #       tags = ["defer:2"];
+    #     }
+    #     {
+    #       name = "zsh-users/zsh-autosuggestions";
+    #       tags = ["defer:2"];
+    #     }
+    #     {
+    #       name = "zsh-users/zsh-completions";
+    #       tags = ["defer:2"];
+    #     }
+    #     {
+    #       name = "tysonwolker/iterm-tab-colors";
+    #     }
+    #     {
+    #       name = "mafredri/zsh-async";
+    #     }
+    #   ];
+    # };
 
     oh-my-zsh = {
       enable = true;
@@ -316,8 +334,9 @@ in {
         "tmux"
         "vi-mode"
         "yarn"
-        "zsh-navigation-tools"
+        # "zsh-navigation-tools"
         "wd"
+        # "iterm-tab-color"
       ];
       # theme = "powerlevel10k/powerlevel10k";
     };
