@@ -1,9 +1,9 @@
-{ config
-, pkgs
-, ...
+{
+  config,
+  pkgs,
+  ...
 }: {
-
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
   system.stateVersion = "23.11";
   programs.nix-ld.enable = true;
   wsl = {
@@ -23,15 +23,19 @@
   '';
 
   programs.git.enable = true;
-  programs.git.config = { user = { name = "Tomas Harkema"; email = "tomas@harkema.io"; }; };
+  programs.git.config = {
+    user = {
+      name = "Tomas Harkema";
+      email = "tomas@harkema.io";
+    };
+  };
 
-  environment.systemPackages = with pkgs; [ wget nodejs curl zstd ];
+  environment.systemPackages = with pkgs; [wget nodejs curl zstd];
 
   programs.zsh = {
     enable = true;
     shellAliases = {
       ll = "ls -l";
-      update = "sudo nixos-rebuild switch";
     };
   };
 
