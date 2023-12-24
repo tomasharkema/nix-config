@@ -7,16 +7,14 @@
   nixpkgs-build = (import ./nixpkgs.nix) attrs;
 in
   with pkgs;
+  with inputs;
     darwin-build
     ++ nixpkgs-build
     ++ [(lib.mkIf stdenv.isLinux atop)]
     ++ [(lib.mkIf stdenv.isLinux packagekit)]
     ++ [
-      # vagrant
       _1password
-      ## Nix tools
       antidote
-      # atuin
       autojump
       bash
       bat
@@ -46,11 +44,10 @@ in
       gtop
       httpie
       iftop
-      inputs.agenix.packages.${system}.default
+      agenix.packages.${system}.default
       ipmitool
       just
       keybase
-      ldns
       ldns
       lolcat
       lsd
@@ -62,7 +59,6 @@ in
       multitail
       navi
       ncdu
-      ncdu
       neofetch
       netdiscover
       nil
@@ -71,7 +67,6 @@ in
       nixd
       nnn
       nodejs
-      # obsidian
       patchelf
       procs
       pv
@@ -83,7 +78,6 @@ in
       starship
       tailscale
       thefuck
-      thefuck
       tldr
       tmate
       tree
@@ -94,13 +88,7 @@ in
       youtube-dl
       yq
       zip
-      # zsh
-      # zsh-autosuggestions
-      # zsh-autocorrection
-      # (pkgs.writeShellScriptBin "upload-cache-signed" ''
-      #   cd ~
-      #   nix-cache-watcher sign-store -k ~/Developer/nix-config/cache-priv-key.pem -v && nix-cache-watcher upload-diff -r "https://nix-cache.harke.ma/" -v
-      # '')
+      zsh
     ]
 # home.packages = with pkgs; [
 #   # moonlight
