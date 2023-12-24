@@ -69,8 +69,6 @@
     };
     services.avahi.publish.userServices = true;
 
-    networking.firewall.enabled = false;
-
     hardware = {
       enableRedistributableFirmware = true;
       firmware = [pkgs.wireless-regdb];
@@ -104,6 +102,10 @@
       defaultGateway = {
         address = "192.168.178.1";
         interface = "wlan0";
+      };
+      firewall = {
+        enable = lib.mkForce true;
+        # enable = true;
       };
     };
   };
