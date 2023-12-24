@@ -124,24 +124,6 @@ in {
     };
   };
 
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = {
-      gcloud.disabled = true;
-      nix_shell.disabled = false;
-
-      hostname.disabled = false;
-
-      sudo.disabled = false;
-      shell.disabled = false;
-      os.disabled = false;
-
-      cmd_duration.min_time = 1000;
-      command_timeout = 1000;
-    };
-  };
-
   programs.ssh = {
     enable = true;
 
@@ -214,22 +196,44 @@ in {
 
   fonts.fontconfig.enable = true;
 
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      gcloud.disabled = true;
+      nix_shell.disabled = false;
+
+      hostname.disabled = false;
+
+      sudo.disabled = false;
+      shell.disabled = false;
+      os.disabled = false;
+
+      cmd_duration.min_time = 1000;
+      command_timeout = 1000;
+
+      directory = {
+        fish_style_pwd_dir_length = 2;
+      };
+    };
+  };
+
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
-    enableVteIntegration = true;
+    # enableVteIntegration = true;
     enableSyntaxHighlighting = true;
 
     autocd = true;
 
-    history.extended = true;
-    history.expireDuplicatesFirst = true;
-    historySubstringSearch = {
-      enable = true;
-      # searchUpKey = "^[OA";
-      # searchDownKey = "^[OB";
-    };
+    # history.extended = true;
+    # history.expireDuplicatesFirst = true;
+    # historySubstringSearch = {
+    #   enable = true;
+    #   # searchUpKey = "^[OA";
+    #   # searchDownKey = "^[OB";
+    # };
 
     initExtra = ''
       source "${iterm}";
@@ -271,12 +275,41 @@ in {
 
     prezto = {
       enable = true;
+
+      pmodules = [
+        "osx"
+        "homebrew"
+        "environment"
+        "terminal"
+        "git"
+        "editor"
+        "tmux"
+        "history"
+        "history-substring-search"
+        "directory"
+        "spectrum"
+        "utility"
+        "completion"
+        "autosuggestions"
+        "prompt"
+        "archive"
+        "docker"
+        "syntax-highlighting"
+      ];
+
       caseSensitive = false;
       editor.dotExpansion = true;
       terminal.autoTitle = true;
-      tmux.autoStartRemote = true;
-      tmux.itermIntegration = true;
-      screen.autoStartLocal = true;
+
+      tmux = {
+        autoStartRemote = true;
+        itermIntegration = true;
+        # autoStartLocal = true;
+      };
+
+      # macOS.dashKeyword = "mand";
+      prompt.pwdLength = "short";
+      utility.safeOps = true;
     };
 
     # antidote = {
@@ -286,59 +319,59 @@ in {
     #   ];
     # };
 
-    # zplug = {
-    #   enable = true;
-    #   plugins = [
-    #     {
-    #       name = "zsh-users/zsh-syntax-highlighting";
-    #       tags = ["defer:2"];
-    #     }
-    #     {
-    #       name = "zsh-users/zsh-autosuggestions";
-    #       tags = ["defer:2"];
-    #     }
-    #     {
-    #       name = "zsh-users/zsh-completions";
-    #       tags = ["defer:2"];
-    #     }
-    #     {
-    #       name = "tysonwolker/iterm-tab-colors";
-    #     }
-    #     {
-    #       name = "mafredri/zsh-async";
-    #     }
-    #   ];
-    # };
-
-    oh-my-zsh = {
+    zplug = {
       enable = true;
       plugins = [
-        "1password"
-        "autojump"
-        "aws"
-        "colorize"
-        "docker"
-        "encode64"
-        "fzf"
-        "git-extras"
-        "git"
-        "gitignore"
-        "macos"
-        "man"
-        "mix"
-        "nmap"
-        "sudo"
-        "systemd"
-        "thefuck"
-        "tig"
-        "tmux"
-        "vi-mode"
-        "yarn"
-        # "zsh-navigation-tools"
-        "wd"
-        # "iterm-tab-color"
+        #     {
+        #       name = "zsh-users/zsh-syntax-highlighting";
+        #       tags = ["defer:2"];
+        #     }
+        #     {
+        #       name = "zsh-users/zsh-autosuggestions";
+        #       tags = ["defer:2"];
+        #     }
+        #     {
+        #       name = "zsh-users/zsh-completions";
+        #       tags = ["defer:2"];
+        #     }
+        {
+          name = "tysonwolker/iterm-tab-colors";
+        }
+        {
+          name = "mafredri/zsh-async";
+        }
       ];
-      # theme = "powerlevel10k/powerlevel10k";
     };
+
+    # oh-my-zsh = {
+    #   enable = true;
+    #   plugins = [
+    #     "1password"
+    #     "autojump"
+    #     "aws"
+    #     "colorize"
+    #     "docker"
+    #     "encode64"
+    #     "fzf"
+    #     "git-extras"
+    #     "git"
+    #     "gitignore"
+    #     "macos"
+    #     "man"
+    #     "mix"
+    #     "nmap"
+    #     "sudo"
+    #     "systemd"
+    #     "thefuck"
+    #     "tig"
+    #     "tmux"
+    #     "vi-mode"
+    #     "yarn"
+    #     # "zsh-navigation-tools"
+    #     "wd"
+    #     # "iterm-tab-color"
+    #   ];
+    #   # theme = "powerlevel10k/powerlevel10k";
+    # };
   };
 }
