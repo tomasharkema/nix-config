@@ -105,10 +105,10 @@ in {
 
   programs.fzf.enable = true;
 
-  programs.nix-index = {
-    enable = true;
-    enableZshIntegration = true;
-  };
+  # programs.nix-index = {
+  #   enable = true;
+  #   enableZshIntegration = true;
+  # };
 
   programs.tmux = {enable = true;};
 
