@@ -1,17 +1,16 @@
-{ config
-, # , nixpkgs
+{
+  config,
+  # , nixpkgs
   # ,
-  pkgs
-, inputs
-, lib
-, ...
-} @ attrs:
-let
+  pkgs,
+  inputs,
+  lib,
+  ...
+} @ attrs: let
   # lib = nixpkgs.lib;
   common = import ../packages/common.nix attrs;
   # gui = import ../packages/gui.nix (attrs);
-in
-{
+in {
   nixpkgs.config.allowUnfree = true;
   hardware.enableAllFirmware = true;
   # system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
@@ -43,10 +42,10 @@ in
     settings.PermitRootLogin = "yes";
   };
 
-  age.secrets."netdata" = { file = ../secrets/netdata.age; };
+  age.secrets."netdata" = {file = ../secrets/netdata.age;};
   services.netdata = {
     enable = true;
-    package = pkgs.netdata.override { withCloud = true; };
+    package = pkgs.netdata.override {withCloud = true;};
     claimTokenFile = config.age.secrets."netdata".path;
   };
   programs.ssh.startAgent = true;
@@ -70,7 +69,7 @@ in
   systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 
   nix.optimise.automatic = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   services.fwupd.enable = true;
   networking.firewall = {
     enable = true;
@@ -79,5 +78,4 @@ in
   services.avahi.extraServiceFiles = {
     ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
   };
-
 }
