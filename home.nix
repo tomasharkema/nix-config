@@ -67,6 +67,7 @@ in {
 
   imports = [
     ./apps/tmux
+    inputs.nix-index-database.hmModules.nix-index
   ];
 
   # self.home-manager.backupFileExtension = "bak";
@@ -111,24 +112,24 @@ in {
 
   programs.fzf.enable = true;
 
-  # programs.nix-index = {
-  #   enable = true;
-  #   enableZshIntegration = true;
-  # };
+  programs.nix-index = {
+    enable = false;
+    #   enableZshIntegration = true;
+  };
 
   programs.tmux = {enable = true;};
 
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      font = {
-        normal = {
-          family = "Fira Code";
-          style = "Retina";
-        };
-      };
-    };
-  };
+  # programs.alacritty = {
+  #   enable = true;
+  #   settings = {
+  #     font = {
+  #       normal = {
+  #         family = "Fira Code";
+  #         style = "Retina";
+  #       };
+  #     };
+  #   };
+  # };
 
   programs.ssh = {
     enable = true;
