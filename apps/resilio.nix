@@ -17,7 +17,7 @@ in {
     mkdir -p /resilio-sync || true
 
     chown -R rslsync:rslsync /resilio-sync
-    chmox -R 777 /resilio-sync
+    chmod -R 777 /resilio-sync
   '';
 
   services.resilio = {

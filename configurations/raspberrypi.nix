@@ -124,10 +124,10 @@ in {
           ];
           system.stateVersion = "23.11";
 
-          boot.kernelParams = [
-            "console=ttyS1,115200n8"
-            "cma=320M"
-          ];
+          # boot.kernelParams = [
+          #   "console=ttyS1,115200n8"
+          #   "cma=320M"
+          # ];
 
           boot.initrd.kernelModules = ["vc4" "bcm2835_dma" "i2c_bcm2835"];
 
@@ -139,6 +139,15 @@ in {
           #     core_freq=250
           #   '';
           # };
+
+          systemd.services.btattach = {
+            before = ["bluetooth.service"];
+            after = ["dev-ttyAMA0.device"];
+            wantedBy = ["multi-user.target"];
+            serviceConfig = {
+              ExecStart = "${pkgs.bluez}/bin/btattach -B /dev/ttyAMA0 -P bcm -S 3000000";
+            };
+          };
         })
       ]
       ++ homemanager;
