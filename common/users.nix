@@ -1,6 +1,6 @@
 {
   pkgs,
-  # , nixpkgs
+  lib,
   ...
 }: let
   keys = [
@@ -9,6 +9,9 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILLRj3s9oVwDREN5oO/lpYhs6ueYcEqHf8mN7dRR0UOS root@euro-mir.local"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQkKn73qM9vjYIaFt94Kj/syd5HCw2GdpiZ3z5+Rp/r tomas@supermicro"
   ];
+  githubKeys = lib.splitString "\n" (builtins.readFile (builtins.fetchurl {
+    url = "https://github.com/tomasharkema.keys";
+  }));
 in {
   programs.zsh = {enable = true;};
   users.users.tomas.shell = pkgs.zsh;

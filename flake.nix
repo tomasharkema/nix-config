@@ -98,6 +98,10 @@
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
     access-tokens = ["github.com=***REMOVED***"];
+
+    keep-outputs = true;
+    keep-derivations = true;
+    trace-function-calls = true;
   };
 
   outputs = {

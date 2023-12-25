@@ -1,11 +1,12 @@
 # Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
 {
+  osConfig,
   lib,
   pkgs,
   ...
 }:
 with lib.hm.gvariant; {
-  dconf.settings = {
+  dconf.settings = lib.mkIf osConfig.services.xserver.desktopManager.gnome.enable {
     # "org/gnome/Console" = { last-window-size = mkTuple [ 652 480 ]; };
 
     "org/gnome/control-center" = {last-panel = "privacy";};

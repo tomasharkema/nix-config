@@ -22,6 +22,8 @@ in {
     ../apps/cockpit.nix
     ../apps/prometheus
     ../apps/kdeconnect
+
+    ../apps/keybase
   ];
 
   programs.zsh.enable = true;
@@ -70,4 +72,5 @@ in {
   services.avahi.extraServiceFiles = {
     ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
   };
+  services.udev = {enable = lib.mkDefault true;};
 }
