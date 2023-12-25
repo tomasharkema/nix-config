@@ -5,36 +5,11 @@
 }: let
   known_host = "100.120.66.165:52380";
 in {
-  #   deployment.keys."resilio.key" = {
-  #     # Alternatively, `text` (string) or `keyFile` (path to file)
-  #     # may be specified.
-  #     keyCommand = [ "op" "item" "get" "shared docs key" "--fields" "password" ];
-  #     destDir = "/run/resilio";
-  #     user = "rslsync"; # Default: root
-  #     group = "rslsync"; # Default: root
-  #     # permissions = "0777"; # Default: 0600
-  #     # permissions = "0777";
-  #     uploadAt =
-  #       "pre-activation"; # Default: pre-activation, Alternative: post-activation
-  #   };
-  #   deployment.keys."resilio_p.key" = {
-  #     # Alternatively, `text` (string) or `keyFile` (path to file)
-  #     # may be specified.
-  #     keyCommand =
-  #       [ "op" "item" "get" "shared docs key p" "--fields" "password" ];
-  #     destDir = "/run/resilio";
-  #     user = "rslsync"; # Default: root
-  #     group = "rslsync"; # Default: root
-  #     # permissions = "0777"; # Default: 0600
-  #     # permissions = "0777";
-  #     uploadAt =
-  #       "pre-activation"; # Default: pre-activation, Alternative: post-activation
-  #   };
   age.secrets."resilio-p" = {file = ../secrets/resilio-p.age;};
   age.secrets."resilio-docs" = {file = ../secrets/resilio-docs.age;};
   age.secrets."resilio-shared-public" = {file = ../secrets/resilio-shared-public.age;};
 
-  system.activationScripts.resilioFolder = ''
+  system.activationScripts.resilioFolder = lib.mkIf config.services.resilio.enable ''
     rm -rf /var/lib/resilio-sync/shared-documents || true
     rm -rf /var/lib/resilio-sync/P-dir || true
     rm -rf /var/lib/resilio-sync/shared-public || true

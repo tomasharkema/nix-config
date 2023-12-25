@@ -358,7 +358,7 @@
         tailscaled = import ./apps/tailscale/tailscaled.nix {
           inherit pkgs lib;
         };
-        darwinVM = self.nixosConfigurations.darwinVM.config.system.build.vm;
+        # darwinVM = self.nixosConfigurations.darwinVM.config.system.build.vm;
         darwinBuilder = self.darwinConfigurations.builder;
 
         installiso =
