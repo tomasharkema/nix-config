@@ -45,14 +45,14 @@ in
     # pegasus = raspberrypis.pegasus;
     # inherit raspberrypis;
 
-    live = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = attrs;
-      modules = [
-        (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
-        ../installer.nix
-      ];
-    };
+    # live = nixpkgs.lib.nixosSystem {
+    #   system = "x86_64-linux";
+    #   specialArgs = attrs;
+    #   modules = [
+    #     (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+    #     ../installer.nix
+    #   ];
+    # };
 
     netboot = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -118,8 +118,8 @@ in
       specialArgs = {inherit inputs;};
       modules =
         [
-          # nixos-hardware.nixosModules.common-cpu-intel
-          # nixos-hardware.nixosModules.common-pc-ssd
+          nixos-hardware.nixosModules.common-cpu-intel
+          nixos-hardware.nixosModules.common-pc-ssd
           # ./user-defaults.nix
           ../common/defaults.nix
           disko.nixosModules.default
@@ -258,6 +258,9 @@ in
           ../secrets
           inputs.nixos-wsl.nixosModules.wsl
           ../machines/wodan
+          ({lib, ...}: {
+            services.udev.enable = lib.mkForce false;
+          })
         ]
         ++ homemanager;
     };
