@@ -8,35 +8,43 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  iso:
+  check:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
       - uses: cachix/install-nix-action@v23
         with:
           nix_path: nixpkgs=channel:nixos-23.11
-      - run: nix develop -c nix build '.#installiso' --verbose
-  encaladus:
-    runs-on: self-hosted
-    steps:
-      - uses: actions/checkout@v3
-      - uses: cachix/install-nix-action@v23
-        with:
-          nix_path: nixpkgs=channel:nixos-23.11
-      - run: nix develop -c nix build .#nixosConfigurations."enzian".config.system.build.toplevel --verbose
-  blue-fire:
-    runs-on: self-hosted
-    steps:
-      - uses: actions/checkout@v3
-      - uses: cachix/install-nix-action@v23
-        with:
-          nix_path: nixpkgs=channel:nixos-23.11
-      - run: nix develop -c nix build .#nixosConfigurations."blue-fire".config.system.build.toplevel --verbose
-  pegasus:
-    runs-on: self-hosted
-    steps:
-      - uses: actions/checkout@v3
-      - uses: cachix/install-nix-action@v23
-        with:
-          nix_path: nixpkgs=channel:nixos-23.11
-      - run: nix develop -c nix build .#images.aarch64-darwin.pegasus --verbose
+      - run: NIX_SHOW_STATS=1 NIX_COUNT_CALLS=1 nix flake check
+  # iso:
+  #   runs-on: self-hosted
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: cachix/install-nix-action@v23
+  #       with:
+  #         nix_path: nixpkgs=channel:nixos-23.11
+  #     - run: nix develop -c nix build '.#installiso' --verbose
+  # encaladus:
+  #   runs-on: self-hosted
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: cachix/install-nix-action@v23
+  #       with:
+  #         nix_path: nixpkgs=channel:nixos-23.11
+  #     - run: nix develop -c nix build .#nixosConfigurations."enzian".config.system.build.toplevel --verbose
+  # blue-fire:
+  #   runs-on: self-hosted
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: cachix/install-nix-action@v23
+  #       with:
+  #         nix_path: nixpkgs=channel:nixos-23.11
+  #     - run: nix develop -c nix build .#nixosConfigurations."blue-fire".config.system.build.toplevel --verbose
+  # pegasus:
+  #   runs-on: self-hosted
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: cachix/install-nix-action@v23
+  #       with:
+  #         nix_path: nixpkgs=channel:nixos-23.11
+  #     - run: nix develop -c nix build .#images.aarch64-darwin.pegasus --verbose

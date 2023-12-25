@@ -10,7 +10,6 @@ in {
   age.secrets."resilio-shared-public" = {file = ../secrets/resilio-shared-public.age;};
 
   system.activationScripts.resilioFolder = lib.mkIf config.services.resilio.enable ''
-    set -x
     if [ ! -d "/resilio-sync" ]; then
       rm -rf /var/lib/resilio-sync/shared-documents || true
       rm -rf /var/lib/resilio-sync/P-dir || true

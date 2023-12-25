@@ -98,6 +98,10 @@
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
     access-tokens = ["github.com=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"];
+
+    keep-outputs = true;
+    keep-derivations = true;
+    trace-function-calls = true;
   };
 
   outputs = {
