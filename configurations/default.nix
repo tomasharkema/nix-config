@@ -99,7 +99,7 @@ in
           ../secrets
           # nix-flatpak.nixosModules.nix-flatpak
           agenix.nixosModules.default
-          ../apps/attic.nix
+          ../apps/attic
           nonfree
           vscode-server.nixosModules.default
           ({
@@ -126,7 +126,7 @@ in
           # impermanence.nixosModules.impermanence
           ../machines/blue-fire
           ../secrets
-          ../apps/attic.nix
+          ../apps/attic
           agenix.nixosModules.default
           nonfree
           ({lib, ...}: {
@@ -205,7 +205,7 @@ in
           disko.nixosModules.default
           ../machines/arthur
           ../secrets
-          ../apps/attic.nix
+          ../apps/attic
           # nix-flatpak.nixosModules.nix-flatpak
           agenix.nixosModules.default
           nonfree
