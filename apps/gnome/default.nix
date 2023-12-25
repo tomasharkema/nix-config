@@ -21,7 +21,6 @@
     gnome.gnome-tweaks
     gnome-firmware
     gjs
-    # inputs.nix-software-center.packages.${system}.nix-software-center
   ];
 
   programs.dconf.enable = true;

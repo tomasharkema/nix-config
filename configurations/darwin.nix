@@ -131,12 +131,12 @@
     lib,
   }:
     pkgs.stdenvNoCC.mkDerivation {
-      pname = "fig";
+      pname = "CodeWhisperer";
       version = "2.5.2";
       src = builtins.fetchurl {
-        name = "fig.dmg";
-        url = "https://repo.fig.io/generic/stable/asset/latest/universal/fig.dmg";
-        sha256 = "sha256:1m7vx358vxyxliy0d2ry2axiah8a2rwf4pzzdc8yk4zyg19ngqkj";
+        name = "CodeWhisperer.dmg";
+        url = "https://desktop-release.codewhisperer.us-east-1.amazonaws.com/latest/CodeWhisperer.dmg";
+        sha256 = "sha256:02j4ghi132zf51pjfxmsf76h28bjmpp16mkl10n0h56xgwkslrha";
       };
 
       phases = ["unpackPhase" "buildPhase" "installPhase"];
@@ -146,7 +146,7 @@
       installPhase = ''
         runHook preInstall
         mkdir -p $out/Applications
-        cp -R Fig.app $out/Applications
+        cp -R CodeWhisperer.app $out/Applications
         runHook postInstall
       '';
 
@@ -213,7 +213,7 @@ in {
               home.packages = with pkgs; [
                 kitty
                 terminal-notifier
-                # (fig {inherit pkgs lib;})
+                (fig {inherit pkgs lib;})
                 (import
                   ../apps/launchcontrol.nix
                   {inherit lib pkgs;})

@@ -70,6 +70,7 @@ in {
     inputs.nix-index-database.hmModules.nix-index
     ./apps/keybase
     ./apps/gnome/dconf.nix
+    ./apps/nvim
   ];
 
   # self.home-manager.backupFileExtension = "bak";
@@ -79,6 +80,8 @@ in {
     ++ [
       nixd
       # fig
+
+      # inputs.nix-gui.packages.${system}.nix-gui
     ];
 
   home.username = lib.mkDefault "tomas";
@@ -110,12 +113,30 @@ in {
   programs.htop.enable = true;
   programs.htop.settings.show_program_path = false;
 
-  programs.fzf.enable = true;
-
-  programs.nix-index = {
-    enable = false;
-    #   enableZshIntegration = true;
+  # programs.autojump = {
+  #   enable = true;
+  #   enableZshIntegration = true;
+  # };
+  programs.broot = {
+    enable = true;
+    enableZshIntegration = true;
   };
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+  programs.thefuck = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+  # programs.keychain = {
+  #   enable = true;
+  #   enableZshIntegration = true;
+  # };
+  # programs.nix-index = {
+  #   enable = false;
+  #   #   enableZshIntegration = true;
+  # };
 
   programs.tmux = {enable = true;};
 
@@ -199,7 +220,7 @@ in {
   programs.lazygit.enable = true;
   programs.lsd.enable = true;
   # programs.jq.enable = true;
-  # programs.skim.enable = true;
+  programs.skim.enable = true;
 
   fonts.fontconfig.enable = true;
 
@@ -216,33 +237,35 @@ in {
       shell.disabled = false;
       os.disabled = false;
 
-      cmd_duration.min_time = 1000;
-      command_timeout = 1000;
-
+      # cmd_duration.min_time = 1000;
+      # command_timeout = 1000;
+      memory_usage.disabled = false;
       directory = {
         fish_style_pwd_dir_length = 2;
       };
+      add_newline = false;
     };
   };
-
+  programs.gh-dash.enable = true;
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
-    syntaxHighlighting.enable = true;
-    # enableVteIntegration = true;
-    enableSyntaxHighlighting = true;
+    # enableAutosuggestions = true;
+    # syntaxHighlighting.enable = true;
+    enableVteIntegration = true;
+    # enableSyntaxHighlighting = true;
 
     autocd = true;
 
-    # history.extended = true;
-    # history.expireDuplicatesFirst = true;
-    # historySubstringSearch = {
-    #   enable = true;
-    #   # searchUpKey = "^[OA";
-    #   # searchDownKey = "^[OB";
-    # };
+    history.extended = true;
+    history.expireDuplicatesFirst = true;
+    historySubstringSearch = {
+      enable = true;
+      # searchUpKey = "^[OA";
+      # searchDownKey = "^[OB";
+    };
 
-    initExtra = ''
+    initExtraFirst = ''
+      zmodload zsh/zprof
       source "${iterm}";
     '';
 
@@ -302,7 +325,8 @@ in {
         "utility"
         "completion"
         "autosuggestions"
-        "prompt"
+        # "prompt"
+        "rsync"
         "archive"
         "docker"
         "syntax-highlighting"
@@ -320,31 +344,29 @@ in {
 
       prompt.pwdLength = "short";
       utility.safeOps = true;
+      prompt.theme = null;
     };
-
-    # antidote = {
-    #   enable = true;
-    #   plugins = [
-    #     "tysonwolker/iterm-tab-colors"
-    #     "MichaelAquilina/zsh-you-should-use"
-    #   ];
-    # };
 
     zplug = {
       enable = true;
       plugins = [
-        {
-          name = "tysonwolker/iterm-tab-colors";
-        }
+        # {
+        #   name = "tysonwolker/iterm-tab-colors";
+        #   tags = ["defer:2"];
+        # }
         {
           name = "mafredri/zsh-async";
+          # tags = ["defer:2"];
         }
         {
           name = "MichaelAquilina/zsh-you-should-use";
+          tags = ["defer:2"];
         }
         {
           name = "unixorn/1password-op.plugin.zsh";
+          tags = ["defer:2"];
         }
+        {name = "mrjohannchang/zsh-interactive-cd";}
       ];
     };
 

@@ -16,7 +16,6 @@
     docker-desktop.enable = true;
   };
 
-  # programs.nix-ld.enable = true;
   # Enable nix flakes
   nix.extraOptions = ''
     experimental-features = nix-command flakes
