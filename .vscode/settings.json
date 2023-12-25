@@ -1,28 +1,14 @@
 {
   "nix.enableLanguageServer": true,
-  "nix.serverPath": "nixd",
+  "nix.serverPath": "nil",
   "nix.serverSettings": {
     "nil": {
-      "diagnostics": {},
-      "formatting": {},
+      "formatting": {
+        "command": ["alejandra"]
+      },
       "flake": {
         "autoArchive": true,
-        "autoEvalInputs": true,
-        "nixpkgsInputName": "nixpkgs"
-      }
-    },
-    "nixd": {
-      "eval": {
-        "target": {
-          "args": ["-f", "flake.nix"]
-        }
-      },
-      "formatting": {},
-      "options": {
-        "enable": true,
-        "target": {
-          "args": ["-f", "flake.nix"]
-        }
+        "autoEvalInputs": true
       }
     }
   },
