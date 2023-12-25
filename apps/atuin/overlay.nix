@@ -5,7 +5,7 @@
   fetchFromGitHub,
   ...
 }: self: super: {
-  atuin = super.houdini.overrideAttrs (old: rec {
+  atuin = super.atuin.overrideAttrs (old: rec {
     name = "atuin";
     version = "17.10";
 
