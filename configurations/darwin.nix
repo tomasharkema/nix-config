@@ -1,6 +1,5 @@
 {
   nix-darwin,
-  # nix-index-database,
   agenix,
   home-manager,
   inputs,

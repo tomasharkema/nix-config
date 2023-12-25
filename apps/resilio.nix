@@ -34,7 +34,7 @@ in {
   age.secrets."resilio-docs" = {file = ../secrets/resilio-docs.age;};
   age.secrets."resilio-shared-public" = {file = ../secrets/resilio-shared-public.age;};
 
-  config.system.activationScripts.makeVaultWardenDir = lib.stringAfter ["var"] ''
+  system.activationScripts.resilioFolder = ''
     rm -rf /var/lib/resilio-sync/shared-documents || true
     rm -rf /var/lib/resilio-sync/P-dir || true
     rm -rf /var/lib/resilio-sync/shared-public || true
