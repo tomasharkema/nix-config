@@ -11,17 +11,19 @@ in {
 
   system.activationScripts.resilioFolder = lib.mkIf config.services.resilio.enable ''
     set -x
-    if [ ! -d "/home/tomas/resilio-sync" ]; then
+    if [ ! -d "/resilio-sync" ]; then
       rm -rf /var/lib/resilio-sync/shared-documents || true
       rm -rf /var/lib/resilio-sync/P-dir || true
       rm -rf /var/lib/resilio-sync/shared-public || true
 
-      mkdir -p /home/tomas/resilio-sync || true
+      mkdir -p /resilio-sync || true
 
-      chown -R rslsync:rslsync /home/tomas/resilio-sync/.
-      chmod -R g+s /home/tomas/resilio-sync/.
-      setfacl -d -m group:rslsync:rwx /home/tomas/resilio-sync/.
-      setfacl -m group:rslsync:rwx /home/tomas/resilio-sync/.
+      chown -R rslsync:rslsync /resilio-sync/.
+      chmod -R g+s /resilio-sync/.
+      setfacl -d -m group:rslsync:rwx /resilio-sync/.
+      setfacl -m group:rslsync:rwx /resilio-sync/.
+
+      ln -s /resilio-sync/ /home/tomas/resilio-sync
     fi
   '';
 
@@ -29,7 +31,7 @@ in {
     enable = true;
     sharedFolders = [
       {
-        directory = "/home/tomas/resilio-sync/shared-documents";
+        directory = "/resilio-sync/shared-documents";
         searchLAN = true;
         secretFile = config.age.secrets."resilio-docs".path;
         useDHT = false;
@@ -39,7 +41,7 @@ in {
         knownHosts = [known_host];
       }
       {
-        directory = "/home/tomas/resilio-sync/P-dir";
+        directory = "/resilio-sync/P-dir";
         searchLAN = true;
         secretFile = config.age.secrets."resilio-p".path;
         useDHT = false;
@@ -49,7 +51,7 @@ in {
         knownHosts = [known_host];
       }
       {
-        directory = "/home/tomas/resilio-sync/shared-public";
+        directory = "/resilio-sync/shared-public";
         searchLAN = true;
         secretFile = config.age.secrets."resilio-shared-public".path;
         useDHT = false;
