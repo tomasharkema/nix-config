@@ -26,6 +26,7 @@ in {
     ../apps/keybase
   ];
 
+  environment.pathsToLink = ["/share/zsh"];
   programs.zsh.enable = true;
   environment.systemPackages = common; # ++ gui;
 
@@ -80,4 +81,5 @@ in {
       --delete-older-than "7d"
     '';
   };
+  programs.nix-ld.enable = true;
 }

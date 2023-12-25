@@ -8,7 +8,12 @@
 in {
   imports = [inputs.nixvim.homeManagerModules.nixvim];
 
-  home.packages = with pkgs; [figlet nodejs ripgrep rnix-lsp nixd nil];
+  home.packages = with pkgs; [
+    figlet
+    nodejs
+    ripgrep
+    #  rnix-lsp nixd nil
+  ];
 
   programs.neovim = {
     viAlias = true;

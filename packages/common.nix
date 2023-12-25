@@ -14,16 +14,19 @@ in
     ++ [
       _1password
       antidote
-      autojump
+      # autojump
+
       bash
       bat
       bottom
       btop
       bunyan-rs
+      ctop
       cheat
       comma
       coreutils
       curl
+      curlie
       deadnix
       delta
       direnv
@@ -32,7 +35,6 @@ in
       du-dust
       eza
       fd
-      fortune
       fpp
       fx
       fzf
@@ -44,6 +46,7 @@ in
       httpie
       iftop
       inputs.agenix.packages.${system}.default
+      inputs.nil.packages.${system}.default
       ipmitool
       just
       keybase
@@ -60,7 +63,6 @@ in
       ncdu
       neofetch
       netdiscover
-      nil
       nix-prefetch-scripts
       nixd
       nnn

@@ -1,14 +1,12 @@
-{ config
-, pkgs
-, modulesPath
-, lib
-
-, ...
-}@attrs:
-let
-  tailscaled = import ./tailscaled.nix { inherit pkgs lib; };
-in
 {
+  config,
+  pkgs,
+  modulesPath,
+  lib,
+  ...
+} @ attrs: let
+  tailscaled = import ./tailscaled.nix {inherit pkgs lib;};
+in {
   # age.secrets.tailscale = {
   #   file = ../../secrets/tailscale.age;
   #   # mode = "770";
@@ -30,12 +28,12 @@ in
 
   networking.nftables.enable = true;
 
-  networking.firewall.trustedInterfaces = [ "tailscale0" "zthnhagpcb" ];
-  networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
+  networking.firewall.trustedInterfaces = ["tailscale0" "zthnhagpcb"];
+  networking.firewall.allowedUDPPorts = [config.services.tailscale.port];
 
   services.avahi = {
     enable = true;
-    allowInterfaces = [ "zthnhagpcb" "tailscale0" ];
+    allowInterfaces = ["zthnhagpcb" "tailscale0"];
     ipv6 = true;
     publish.enable = true;
     publish.userServices = true;
@@ -48,11 +46,9 @@ in
   };
 
   services.zerotierone.enable = true;
-  services.zerotierone.joinNetworks = [ "***REMOVED***" ];
+  services.zerotierone.joinNetworks = ["***REMOVED***"];
 
-  programs.nix-ld.enable = true;
-
-  systemd.packages = [ tailscaled pkgs.tailscale ];
+  systemd.packages = [tailscaled pkgs.tailscale];
 
   systemd.services.tailscalesd = {
     enable = true;
@@ -67,10 +63,10 @@ in
       RestartSec = 5;
     };
     script = "${lib.attrsets.getBin tailscaled}/bin/tailscalesd --localapi";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "tailscale.service" ];
-    wants = [ "tailscale.service" ];
-    path = [ pkgs.tailscale tailscaled ];
+    wantedBy = ["multi-user.target"];
+    after = ["tailscale.service"];
+    wants = ["tailscale.service"];
+    path = [pkgs.tailscale tailscaled];
     environment = {
       ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH = "go1.21";
     };

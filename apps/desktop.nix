@@ -1,4 +1,8 @@
-{pkgs, ...}:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 # let
 #   nixgui = import (pkgs.fetchFromGitHub {
 #     owner = "nix-gui";
@@ -52,7 +56,10 @@
     gnome.gnome-session
     _1password-gui
     transmission
-    # moonlight
+    moonlight-embedded
+    keybase
+
+    inputs.nix-software-center.packages.${system}.nix-software-center
   ];
 
   # nativeMessagingHosts.packages = with pkgs; [ gnome-browser-connector ];

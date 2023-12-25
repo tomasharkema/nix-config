@@ -39,8 +39,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nix-software-center.url = "github:vlinkz/nix-software-center";
-    # nix-flatpak.url = "github:gmodena/nix-flatpak";
+    nix-software-center.url = "github:vlinkz/nix-software-center";
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
+
+    nil = {
+      url = "github:oxalica/nil";
+    };
 
     impermanence = {
       url = "github:nix-community/impermanence";
@@ -72,12 +76,25 @@
       url = "github:numtide/system-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     # tailscale-prometheus-sd = { url = "github:madjam002/tailscale-prometheus-sd"; };
+
     gomod2nix = {
       url = "github:nix-community/gomod2nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    # nix-gui = {
+    #   url = "github:nix-gui/nix-gui";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.flake-utils.follows = "flake-utils";
+    #   inputs.rnix-lsp.follows = "rnix-lsp";
+    # };
+    # rnix-lsp = {
+    #   url = "github:nix-community/rnix-lsp";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.flake-utils.follows = "flake-utils";
+    # };
   };
 
   nixConfig = {
@@ -101,7 +118,7 @@
 
     keep-outputs = true;
     keep-derivations = true;
-    trace-function-calls = true;
+    # trace-function-calls = true;
   };
 
   outputs = {
@@ -380,10 +397,10 @@
         netboot =
           self.nixosConfigurations.netboot.config.system.build.toplevel;
 
-        attic = import ./attic/attic.nix {
-          inherit attic;
-          pkgsLinux = pkgsFor."x86_64-linux";
-        };
+        # attic = import ./attic/attic.nix {
+        #   inherit attic;
+        #   pkgsLinux = pkgsFor."x86_64-linux";
+        # };
 
         rundesk = rundesk.runner;
 

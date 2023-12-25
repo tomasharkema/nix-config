@@ -5,20 +5,19 @@
 }:
 with pkgs; [
   inputs.agenix.packages.${system}.default
+  inputs.alejandra.defaultPackage.${system}
+  inputs.nil.packages.${system}.default
+  inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
+  inputs.nixpkgs-lint.packages.${system}.default
+  inputs.statix.packages.${system}.statix
   manix
-  nix-init
-  nil
   nix
+  nix-init
   nix-output-monitor
   nix-serve
   nix-tree
+  nixci
   nixd
   nixpkgs-fmt
   nurl
-  nixci
-
-  inputs.statix.packages.${system}.statix
-  inputs.alejandra.defaultPackage.${system}
-  inputs.nix-cache-watcher.packages.${system}.nix-cache-watcher
-  inputs.nixpkgs-lint.packages.${system}.default
 ]
