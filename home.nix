@@ -259,7 +259,7 @@ in {
       pvxz = "pv @1 -N in -B 500M -pterbT | xz -e9 -T4 | pv -N out -B 500M -pterbT > @2";
       cat = "bat";
       dig = "dog";
-
+      ap = "attic push tomas:tomas";
       # subl = (lib.mkIf stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
       # dev = ''
       #   nix develop --profile dev-profile -c true && \

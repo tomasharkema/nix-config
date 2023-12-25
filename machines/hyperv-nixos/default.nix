@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{lib, ...}: {
   nixpkgs.system = "x86_64-linux";
   imports = [
     ../../common/quiet-boot.nix
@@ -12,10 +12,9 @@
   networking.hostName = "hyperv-nixos";
   networking.hostId = "a5a1dad6";
 
-  services.resilio =
-    {
-      enable = lib.mkForce false;
-    };
+  services.resilio = {
+    enable = lib.mkForce false;
+  };
   boot.growPartition = true;
 
   # deployment.tags = [ "vm" ];
@@ -34,18 +33,18 @@
   boot.loader.grub.enable = lib.mkDefault true;
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.efiInstallAsRemovable = true;
-  boot.loader.grub.devices = [ "nodev" ];
+  boot.loader.grub.devices = ["nodev"];
 
   security.tpm2.enable = true;
   security.tpm2.pkcs11.enable =
     true; # expose /run/current-system/sw/lib/libtpm2_pkcs11.so
   security.tpm2.tctiEnvironment.enable =
     true; # TPM2TOOLS_TCTI and TPM2_PKCS11_TCTI env variables
-  users.users."tomas".extraGroups = [ "tss" ];
+  users.users."tomas".extraGroups = ["tss"];
   # virtualisation.azure.agent.enable = true;
 
   networking.firewall = {
-    enable = lib.mkForce false;
+    enable = false;
     # enable = true;
   };
 

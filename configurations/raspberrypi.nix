@@ -16,17 +16,7 @@
     lib,
     config,
     ...
-  } @ attrs: let
-    rpi-update-src = pkgs.fetchFromGitHub {
-      owner = "raspberrypi";
-      repo = "rpi-update";
-      rev = "e85c4b69065260496c138b82b68566217dc89ad0";
-      hash = "sha256-D+9ERc8z5sOk3hSKh8udczTREg3VcHGMYjdwoAsPvoM=";
-    };
-    rpi-update = pkgs.writeShellScriptBin "rpi-update" ''
-      exec ${rpi-update-src}/rpi-update
-    '';
-  in {
+  } @ attrs: {
     imports = [
       ../common/defaults.nix
       ../apps/tailscale
@@ -40,10 +30,9 @@
 
     services.openssh.enable = true;
     services.avahi.enable = true;
-    console.enable = true;
+    console.enable = false;
 
     environment.systemPackages = with pkgs; [
-      rpi-update
       libraspberrypi
       raspberrypifw
     ];
@@ -71,9 +60,9 @@
 
     networking.networkmanager.enable = false;
 
-    boot.loader.raspberryPi.firmwareConfig = ''
-      dtparam=audio=on
-    '';
+    # boot.loader.raspberryPi.firmwareConfig = ''
+    #   dtparam=audio=on
+    # '';
 
     # Networking
     networking = {
@@ -86,24 +75,28 @@
       };
 
       # Enabling WIFI
-      wireless.enable = true;
-      wireless.interfaces = ["wlan0"];
-
-      wireless.networks."Have a good day".psk = "HungryOwl456";
+      wireless = {
+        enable = true;
+        interfaces = ["wlan0"];
+        networks."Have a good day".pskRaw = "0fcc36c0dd587f3d85028f427c872fead0b6bb7623099fb4678ed958f2150e23";
+      };
 
       firewall = {
         enable = lib.mkForce false;
       };
     };
+    hardware.bluetooth.enable = true; # enables support for Bluetooth
+    hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+    services.blueman.enable = true;
 
-    systemd.services.btattach = {
-      before = ["bluetooth.service"];
-      after = ["dev-ttyAMA0.device"];
-      wantedBy = ["multi-user.target"];
-      serviceConfig = {
-        ExecStart = "${pkgs.bluez}/bin/btattach -B /dev/ttyAMA0 -P bcm -S 3000000";
-      };
-    };
+    # systemd.services.btattach = {
+    #   before = ["bluetooth.service"];
+    #   after = ["dev-ttyAMA0.device"];
+    #   wantedBy = ["multi-user.target"];
+    #   serviceConfig = {
+    #     ExecStart = "${pkgs.bluez}/bin/btattach -B /dev/ttyAMA0 -P bcm -S 3000000";
+    #   };
+    # };
   };
 in {
   baaa-express = nixpkgs.lib.nixosSystem {
@@ -160,8 +153,7 @@ in {
       [
         # base
         inputs.nixos-hardware.nixosModules.raspberry-pi-4
-        "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-        "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+        "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
         defaults
         agenix.nixosModules.default
 
@@ -176,17 +168,19 @@ in {
           environment.systemPackages = with pkgs; [
             raspberrypi-eeprom
           ];
-          # boot.loader.raspberryPi.enable = true;
 
-          # hardware = {
-          #   raspberry-pi."4".apply-overlays-dtmerge.enable = true;
-          #   deviceTree = {
-          #     enable = true;
-          #     filter = "*rpi-4-*.dtb";
-          #   };
-          # };
+          hardware = {
+            raspberry-pi."4" = {
+              apply-overlays-dtmerge.enable = true;
+              dwc2.enable = true;
+              fkms-3d.enable = true;
+            };
+            deviceTree = {
+              enable = true;
+              # filter = "*rpi-4-*.dtb";
+            };
+          };
           networking.hostName = "pegasus";
-          hardware.raspberry-pi."4".dwc2.enable = true;
         })
       ]
       ++ homemanager;

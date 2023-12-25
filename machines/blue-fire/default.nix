@@ -1,12 +1,13 @@
-{ config
-, modulesPath
-, lib
-, inputs
-, pkgs
-, nixos-hardware
-, ...
+{
+  config,
+  modulesPath,
+  lib,
+  inputs,
+  pkgs,
+  nixos-hardware,
+  ...
 }: {
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
   hardware.cpu.intel.updateMicrocode = true;
   nixpkgs.system = "x86_64-linux";
   # programs.nix-ld.enable = true;
@@ -21,32 +22,32 @@
     # ../../common/disks/tmpfs.nix
     ../../common/disks/btrfs.nix
     {
-      _module.args.disks = [ "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K" ];
+      _module.args.disks = ["/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K"];
     }
   ];
 
-  networking = { hostName = "blue-fire"; };
+  networking = {hostName = "blue-fire";};
   networking.hostId = "529fd7aa";
 
   environment.systemPackages = with pkgs; [
     # ipmicfg
-    # ipmiview
+    ipmiview
     # vagrant
   ];
 
   # Minimal configuration for NFS support with Vagrant.
-  services.nfs.server.enable = true;
+  # services.nfs.server.enable = true;
 
-  # Add firewall exception for VirtualBox provider 
-  networking.firewall.extraCommands = ''
-    ip46tables -I INPUT 1 -i vboxnet+ -p tcp -m tcp --dport 2049 -j ACCEPT
-  '';
+  # # Add firewall exception for VirtualBox provider
+  # networking.firewall.extraCommands = ''
+  #   ip46tables -I INPUT 1 -i vboxnet+ -p tcp -m tcp --dport 2049 -j ACCEPT
+  # '';
 
-  # Add firewall exception for libvirt provider when using NFSv4 
-  networking.firewall.interfaces."virbr1" = {
-    allowedTCPPorts = [ 2049 ];
-    allowedUDPPorts = [ 2049 ];
-  };
+  # # Add firewall exception for libvirt provider when using NFSv4
+  # networking.firewall.interfaces."virbr1" = {
+  #   allowedTCPPorts = [ 2049 ];
+  #   allowedUDPPorts = [ 2049 ];
+  # };
 
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;
@@ -55,14 +56,14 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.efiInstallAsRemovable = true;
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [
     "kvm-intel"
     "uinput"
     "nvme"
   ];
-  boot.kernelModules = [ "kvm-intel" "uinput" "nvme" "jc42" "tpm_rng" ];
-  boot.extraModulePackages = [ ];
+  boot.kernelModules = ["kvm-intel" "uinput" "nvme" "jc42" "tpm_rng"];
+  boot.extraModulePackages = [];
 
   networking.useDHCP = lib.mkDefault true;
 

@@ -1,8 +1,9 @@
-{ modulesPath
-, lib
-, ...
+{
+  modulesPath,
+  lib,
+  ...
 }: {
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
   nixpkgs.system = "x86_64-linux";
 
   imports = [
@@ -11,8 +12,8 @@
     ../../apps/desktop.nix
     ../../apps/steam.nix
     # ./overlays/efi.nix
-    # ../../common/disks/btrfs.nix
-    { _module.args.disks = [ "/dev/vda" ]; }
+    ../../common/disks/btrfs.nix
+    {_module.args.disks = ["/dev/vda"];}
   ];
 
   networking.hostName = lib.mkForce "silver-star-ferdorie";
@@ -23,26 +24,16 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.efiInstallAsRemovable = true;
 
-  boot.initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "ahci" "virtio_pci" "sr_mod" "virtio_blk" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = ["uhci_hcd" "ehci_pci" "ahci" "virtio_pci" "sr_mod" "virtio_blk"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
 
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
 
-  #   fileSystems."/" = {
-  #     device = "/dev/disk/by-uuid/7cfeeb6a-9324-4e8c-ad49-99a2dacba295";
-  #     fsType = "ext4";
-  #   };
-
-  #   fileSystems."/boot" = {
-  #     device = "/dev/disk/by-uuid/A890-75D3";
-  #     fsType = "vfat";
-  #   };
-
   networking.firewall = {
-    enable = lib.mkForce false;
+    enable = false;
     # enable = true;
   };
   services.resilio = {
