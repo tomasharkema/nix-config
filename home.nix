@@ -68,6 +68,8 @@ in {
   imports = [
     ./apps/tmux
     inputs.nix-index-database.hmModules.nix-index
+    ./apps/keybase
+    ./apps/gnome/dconf.nix
   ];
 
   # self.home-manager.backupFileExtension = "bak";
@@ -104,8 +106,6 @@ in {
 
     stdlib = lib.readFile "${direnv}";
   };
-
-  services.kbfs.enable = lib.mkIf stdenv.isLinux true;
 
   programs.htop.enable = true;
   programs.htop.settings.show_program_path = false;

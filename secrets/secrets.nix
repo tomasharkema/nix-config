@@ -31,4 +31,5 @@ in {
   "resilio-shared-public.age".publicKeys = allKeys;
   "attic-key.age".publicKeys = allKeys;
   "wireless.age".publicKeys = allKeys;
+  "keybase.age".publicKeys = allKeys;
 }

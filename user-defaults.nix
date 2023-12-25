@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{lib, ...}: {
   time.timeZone = "Europe/Amsterdam";
   system.stateVersion = "23.11";
   security.sudo.wheelNeedsPassword = false;
@@ -24,8 +24,7 @@
     };
     groups.tomas = {
       name = "tomas";
-      members = [ "tomas" ];
-      gid = 1666;
+      members = ["tomas"];
     };
   };
 }
