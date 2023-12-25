@@ -38,6 +38,10 @@
     url = "https://iterm2.com/shell_integration/zsh";
     sha256 = "sha256-Cq8winA/tcnnVblDTW2n1k/olN3DONEfXrzYNkufZvY=";
   };
+  direnv = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/nix-community/nix-direnv/3.0.3/direnvrc";
+    sha256 = "sha256-0EVQVNSRQWsln+rgPW3mXVmnF5sfcmKEYOmOSfLYxHg=";
+  };
 in {
   # nix.settings = {
   #   extra-experimental-features = "nix-command flakes";
@@ -96,6 +100,8 @@ in {
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+
+    stdlib = lib.readFile "${direnv}";
   };
 
   services.kbfs.enable = lib.mkIf stdenv.isLinux true;

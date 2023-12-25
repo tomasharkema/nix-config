@@ -205,7 +205,7 @@
             };
           };
           baaa-express = {
-            hostname = "172.25.3.82";
+            hostname = "100.106.55.56";
             profiles.system = {
               user = "root";
               sshUser = "root";
