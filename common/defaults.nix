@@ -73,4 +73,11 @@ in {
     ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
   };
   services.udev = {enable = lib.mkDefault true;};
+
+  nix.gc = {
+    automatic = true;
+    options = ''
+      --delete-older-than "7d"
+    '';
+  };
 }

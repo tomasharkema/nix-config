@@ -309,6 +309,12 @@
         (system: deployLib: deployLib.deployChecks self.deploy)
         deploy.lib;
 
+      hydraJobs = {
+        inherit
+          (self)
+          packages
+          ;
+      };
       # packages = { self, flake-utils, ... }:
       #   flake-utils.lib.eachDefaultSystem (system:
       #     {
