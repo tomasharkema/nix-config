@@ -111,7 +111,6 @@
     anywhere,
     agenix,
     nix-darwin,
-    nix-index-database,
     nix-cache-watcher,
     alejandra,
     attic,
@@ -205,7 +204,7 @@
             };
           };
           baaa-express = {
-            hostname = "100.106.55.56";
+            hostname = "172.25.240.89";
             profiles.system = {
               user = "root";
               sshUser = "root";
