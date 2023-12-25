@@ -35,20 +35,17 @@
       # ../common/wifi.nix
     ];
 
-    sdImage.compressImage = false;
-
     # NixOS wants to enable GRUB by default
     boot.loader.grub.enable = false;
-    boot.loader.generic-extlinux-compatible.enable = true;
 
     services.openssh.enable = true;
     services.avahi.enable = true;
     console.enable = true;
 
     environment.systemPackages = with pkgs; [
-      libraspberrypi
-      raspberrypi-eeprom
       rpi-update
+      libraspberrypi
+      raspberrypifw
     ];
 
     systemd.services.attic-watch.enable = lib.mkForce false;
@@ -56,11 +53,11 @@
     services.resilio = {
       enable = lib.mkForce false;
     };
+    services.promtail = {
+      enable = lib.mkForce false;
+    };
 
     system.stateVersion = "23.11";
-    # boot.loader.raspberryPi.firmwareConfig = "force_turbo=1";
-    # boot.loader.raspberryPi.enable = true;
-    boot.loader.raspberryPi.uboot.enable = true;
 
     services.avahi.extraServiceFiles = {
       ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
@@ -73,6 +70,10 @@
     };
 
     networking.networkmanager.enable = false;
+
+    boot.loader.raspberryPi.firmwareConfig = ''
+      dtparam=audio=on
+    '';
 
     # Networking
     networking = {
@@ -94,6 +95,15 @@
         enable = lib.mkForce false;
       };
     };
+
+    systemd.services.btattach = {
+      before = ["bluetooth.service"];
+      after = ["dev-ttyAMA0.device"];
+      wantedBy = ["multi-user.target"];
+      serviceConfig = {
+        ExecStart = "${pkgs.bluez}/bin/btattach -B /dev/ttyAMA0 -P bcm -S 3000000";
+      };
+    };
   };
 in {
   baaa-express = nixpkgs.lib.nixosSystem {
@@ -106,7 +116,6 @@ in {
         # nixos-generators.nixosModules.all-formats
         "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
         "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-        # impermanence.nixosModules.impermanence
         agenix.nixosModules.default
         # disko.nixosModules.default
         ../secrets
@@ -130,45 +139,12 @@ in {
           boot.initrd.kernelModules = ["vc4" "bcm2835_dma" "i2c_bcm2835"];
 
           networking.hostName = "baaa-express";
-
-          # fileSystems."/" = {
-          #   device = lib.mkForce "none";
-          #   fsType = lib.mkForce "tmpfs";
-          #   options = [ "defaults" "size=25%" "mode=755" ];
-          # };
-
-          # fileSystems."/nix" = {
-          #   device = "/dev/disk/by-label/NIXOS_SD";
-          #   fsType = "ext4";
-          # };
-
-          # fileSystems."/boot" = {
-          #   device = "/dev/disk/by-uuid/XXXX-XXXX";
-          #   fsType = "vfat";
-          # };
-
-          # environment.persistence."/nix/persistent" = {
-          #   hideMounts = true;
-          #   directories = [
-          #     "/var/log"
-          #     "/var/lib/bluetooth"
-          #     "/var/lib/nixos"
-          #     "/var/lib/systemd/coredump"
-          #     "/etc/NetworkManager/system-connections"
-          #     {
-          #       directory = "/var/lib/colord";
-          #       user = "colord";
-          #       group = "colord";
-          #       mode = "u=rwx,g=rx,o=";
-          #     }
-          #   ];
-          #   files = [
-          #     "/etc/machine-id"
-          #     {
-          #       file = "/etc/nix/id_rsa";
-          #       parentDirectory = {mode = "u=rwx,g=,o=";};
-          #     }
-          #   ];
+          # boot.loader.raspberryPi = {
+          #   enable = true;
+          #   version = 3;
+          #   firmwareConfig = ''
+          #     core_freq=250
+          #   '';
           # };
         })
       ]
@@ -197,15 +173,18 @@ in {
           lib,
           ...
         }: {
+          environment.systemPackages = with pkgs; [
+            raspberrypi-eeprom
+          ];
           # boot.loader.raspberryPi.enable = true;
 
-          hardware = {
-            raspberry-pi."4".apply-overlays-dtmerge.enable = true;
-            deviceTree = {
-              enable = true;
-              filter = "*rpi-4-*.dtb";
-            };
-          };
+          # hardware = {
+          #   raspberry-pi."4".apply-overlays-dtmerge.enable = true;
+          #   deviceTree = {
+          #     enable = true;
+          #     filter = "*rpi-4-*.dtb";
+          #   };
+          # };
           networking.hostName = "pegasus";
           hardware.raspberry-pi."4".dwc2.enable = true;
         })
