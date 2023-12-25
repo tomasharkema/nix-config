@@ -83,7 +83,6 @@ with lib.hm.gvariant; {
 
     "org/gnome/shell" = {
       enabled-extensions = [
-        "gsconnect@andyholmes.github.io"
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
         "appindicatorsupport@rgcjonas.gmail.com"
         "apps-menu@gnome-shell-extensions.gcampax.github.com"

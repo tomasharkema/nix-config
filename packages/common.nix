@@ -61,7 +61,6 @@ in
       neofetch
       netdiscover
       nil
-      nix-index
       nix-prefetch-scripts
       nixd
       nnn

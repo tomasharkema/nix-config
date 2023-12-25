@@ -89,7 +89,6 @@ in
 
       modules =
         [
-          "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
           ../common/wifi_module.nix
           inputs.nixos-hardware.nixosModules.common-cpu-intel
           inputs.nixos-hardware.nixosModules.common-pc-ssd
@@ -119,7 +118,6 @@ in
       specialArgs = {inherit inputs;};
       modules =
         [
-          "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
           # nixos-hardware.nixosModules.common-cpu-intel
           # nixos-hardware.nixosModules.common-pc-ssd
           # ./user-defaults.nix
@@ -199,7 +197,6 @@ in
         [
           nixos-generators.nixosModules.all-formats
 
-          "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
           nixos-hardware.nixosModules.common-cpu-intel
           nixos-hardware.nixosModules.common-pc-ssd
 
@@ -228,7 +225,6 @@ in
       # specialArgs = { inherit inputs outputs; };
       modules =
         [
-          "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
           # ./user-defaults.nix
           ../common/defaults.nix
           # impermanence.nixosModule
@@ -266,44 +262,44 @@ in
         ++ homemanager;
     };
 
-    darwinVM = nixpkgs.lib.nixosSystem {
-      system = "aarch64-linux";
-      specialArgs = attrs;
-      modules =
-        [
-          ../common/defaults.nix
-          ../machines/utm-nixos/default.nix
-          nonfree
-          disko.nixosModules.default
-          # nix-flatpak.nixosModules.nix-flatpak
-          agenix.nixosModules.default
-          {
-            # virtualisation.vmVariant.virtualisation.graphics = false;
-            virtualisation.vmVariant.virtualisation = {
-              host.pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-              resolution = {
-                x = 1920;
-                y = 1080;
-              };
-              tpm.enable = true;
-              cores = 4;
-              libvirtd.enable = true;
-              spiceUSBRedirection.enable = true;
-              forwardPorts = [
-                {
-                  from = "host";
-                  host.port = 2222;
-                  guest.port = 22;
-                }
-                {
-                  from = "host";
-                  host.port = 3389;
-                  guest.port = 3389;
-                }
-              ];
-            };
-          }
-        ]
-        ++ homemanager;
-    };
+    # darwinVM = nixpkgs.lib.nixosSystem {
+    #   system = "aarch64-linux";
+    #   specialArgs = attrs;
+    #   modules =
+    #     [
+    #       ../common/defaults.nix
+    #       ../machines/utm-nixos/default.nix
+    #       nonfree
+    #       disko.nixosModules.default
+    #       # nix-flatpak.nixosModules.nix-flatpak
+    #       agenix.nixosModules.default
+    #       {
+    #         # virtualisation.vmVariant.virtualisation.graphics = false;
+    #         virtualisation.vmVariant.virtualisation = {
+    #           host.pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+    #           resolution = {
+    #             x = 1920;
+    #             y = 1080;
+    #           };
+    #           tpm.enable = true;
+    #           cores = 4;
+    #           libvirtd.enable = true;
+    #           spiceUSBRedirection.enable = true;
+    #           forwardPorts = [
+    #             {
+    #               from = "host";
+    #               host.port = 2222;
+    #               guest.port = 22;
+    #             }
+    #             {
+    #               from = "host";
+    #               host.port = 3389;
+    #               guest.port = 3389;
+    #             }
+    #           ];
+    #         };
+    #       }
+    #     ]
+    #     ++ homemanager;
+    # };
   }
