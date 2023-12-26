@@ -213,7 +213,7 @@ in {
               home.packages = with pkgs; [
                 kitty
                 terminal-notifier
-                (fig {inherit pkgs lib;})
+                # (fig {inherit pkgs lib;})
                 (import
                   ../apps/launchcontrol.nix
                   {inherit lib pkgs;})
