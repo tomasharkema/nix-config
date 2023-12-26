@@ -62,6 +62,7 @@ in
       navi
       ncdu
       neofetch
+      nixos-shell
       netdiscover
       nix-prefetch-scripts
       nixd

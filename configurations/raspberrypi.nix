@@ -1,13 +1,6 @@
 {
-  disko,
-  nixpkgs,
-  pkgsFor,
   inputs,
-  nixos-hardware,
-  agenix,
-  home-manager,
-  impermanence,
-  nixos-generators,
+  nixpkgs,
   homemanager,
   ...
 }: let
@@ -16,7 +9,7 @@
     lib,
     config,
     ...
-  } @ attrs: {
+  }: {
     imports = [
       ../common/defaults.nix
       ../apps/tailscale
@@ -104,13 +97,18 @@ in {
 
     specialArgs = {inherit inputs;};
 
-    modules =
+    modules = with inputs;
       [
         # nixos-generators.nixosModules.all-formats
         "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
         "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
         agenix.nixosModules.default
+
         # disko.nixosModules.default
+        # ../common/disks/tmpfs.nix
+        # {
+        # _module.args.disks = ["/dev/disk/by-label/NIXOS_SD"];
+        # }
         ../secrets
         defaults
         ({
@@ -118,6 +116,8 @@ in {
           lib,
           ...
         }: {
+          sdImage.compressImage = false;
+
           environment.systemPackages = with pkgs; [
             libraspberrypi
             raspberrypi-eeprom
@@ -128,6 +128,9 @@ in {
           #   "console=ttyS1,115200n8"
           #   "cma=320M"
           # ];
+
+          # fileSystems."/".fsType = lib.mkForce "tmpfs";
+          # fileSystems."/".device = lib.mkForce "none";
 
           boot.initrd.kernelModules = ["vc4" "bcm2835_dma" "i2c_bcm2835"];
 
@@ -158,10 +161,10 @@ in {
 
     specialArgs = {inherit inputs;};
 
-    modules =
+    modules = with inputs;
       [
         # base
-        inputs.nixos-hardware.nixosModules.raspberry-pi-4
+        nixos-hardware.nixosModules.raspberry-pi-4
         "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
         defaults
         agenix.nixosModules.default

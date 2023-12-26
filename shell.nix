@@ -3,7 +3,6 @@
   inputs,
   ...
 } @ attrs: let
-  inherit (pkgs) stdenv;
   write-script = pkgs.writeShellScriptBin "write-script" ''
     set -x
     echo "pv $1 $2"
@@ -49,13 +48,15 @@ in
     # buildInputs = [pkgs.home-manager];
 
     packages = with pkgs;
+    with inputs;
       [
         remote-cli
         (reencrypt {inherit system;})
+        # nix-profiler
 
         ack
         age
-        inputs.attic.packages.${system}.default
+        attic.packages.${system}.default
         bash
         bfg-repo-cleaner
         colima
