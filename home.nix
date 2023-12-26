@@ -266,11 +266,11 @@ in {
 
     initExtraFirst = ''
       zmodload zsh/zprof
-      eval "$(~/.local/bin/cw init zsh pre)"
+      # eval "$(~/.local/bin/cw init zsh pre)"
       source "${iterm}";
     '';
     initExtra = ''
-      eval "$(~/.local/bin/cw init zsh post)"
+      # eval "$(~/.local/bin/cw init zsh post)"
     '';
 
     shellAliases = {
