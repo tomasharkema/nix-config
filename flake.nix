@@ -95,6 +95,10 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     #   inputs.flake-utils.follows = "flake-utils";
     # };
+    snowfall-lib = {
+      url = "github:snowfallorg/lib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
@@ -118,317 +122,356 @@
 
     keep-outputs = true;
     keep-derivations = true;
-    # trace-function-calls = true;
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixos-generators,
-    deploy,
-    home-manager,
-    nix,
-    flake-utils,
-    anywhere,
-    agenix,
-    nix-darwin,
-    nix-cache-watcher,
-    alejandra,
-    attic,
-    system-manager,
-    impermanence,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    lib = nixpkgs.lib // home-manager.lib;
-    systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-linux"];
-    forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-    pkgsFor = lib.genAttrs systems (system:
-      import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      });
-    home = {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.extraSpecialArgs = {
-        inherit inputs;
+  outputs = inputs: let
+    lib = inputs.snowfall-lib.mkLib {
+      # You must pass in both your flake's inputs and the root directory of
+      # your flake.
+      inherit inputs;
+
+      src = ./.;
+      snowfall = {
+        root = ./nix;
       };
-      home-manager.users.tomas.imports = [agenix.homeManagerModules.default ./home.nix];
-      home-manager.backupFileExtension = "bak";
     };
   in
-    {
-      nixpkgs.config.allowUnfree = true;
-      nixpkgs.config.allowUnfreePredicate = _: true;
-      nixpkgs.overlays = [(import ./apps/atuin/overlay.nix) (import ./apps/direnv.nix)];
-
-      #      colmena = import ./colmena.nix (inputs // { inherit inputs; });
-
-      nixosModules = {
+    lib.mkFlake {
+      channels-config = {
+        allowUnfree = true;
       };
 
-      nixosConfigurations = import ./configurations {inherit inputs nixpkgs;};
-
-      darwinConfigurations = import ./configurations/darwin.nix {inherit inputs lib;};
-
-      homeConfigurations = {
-        "root@silver-star" = home-manager.lib.homeManagerConfiguration {
-          extraSpecialArgs = {inherit inputs;};
-
-          modules = [
-            agenix.homeManagerModules.default
-            ./machines/silver-star
-            ./home.nix
-          ];
+      alias = {
+        shells = {
+          default = "devshell";
         };
       };
 
-      # systemConfigs.silver-star = system-manager.lib.makeSystemConfig {
-      #   modules = [
-      #     # impermanence.nixosModules.impermanence
-      #     ./machines/silver-star
-      #     home-manager.nixosModules.home-manager
-      #     {
-      #       home-manager.useGlobalPkgs = true;
-      #       home-manager.useUserPackages = true;
-      #       home-manager.extraSpecialArgs = { inherit inputs; };
-      #       home-manager.users.tomas.imports = [
-      #         # nix-flatpak.homeManagerModules.nix-flatpak
-      #         agenix.homeManagerModules.default
-      #         ./home.nix
-      #         {
-      #           home.username = "root";
-      #           home.homeDirectory = "/root";
-      #         }
-      #       ];
-      #       home-manager.backupFileExtension = "bak";
-      #     }
-      #   ];
-      # };
+      # overlays = with inputs; [attic.overlays.default];
 
-      deploy = {
-        nodes = {
-          pegasus = {
-            hostname = "192.168.178.93";
-            # hostname = "172.25.220.155";
-            # hostname = "100.66.126.23";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.aarch64-linux.activate.nixos
-                self.nixosConfigurations.pegasus;
-            };
-          };
-          baaa-express = {
-            hostname = "172.25.240.89";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.aarch64-linux.activate.nixos
-                self.nixosConfigurations.baaa-express;
-            };
-          };
+      systems.modules.nixos = with inputs; [
+        disko.nixosModules.default
+        home-manager.nixosModules.home-manager
+        agenix.nixosModules.default
+      ];
 
-          silver-star = {
-            hostname = "100.122.146.5";
-            profiles.user = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.x86_64-linux.activate.home-manager
-                self.homeConfigurations."root@silver-star";
-            };
-          };
-          enzian = {
-            hostname = "100.78.63.10";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.x86_64-linux.activate.nixos
-                self.nixosConfigurations.enzian;
-            };
-          };
-          silver-star-ferdorie = {
-            hostname = "100.89.172.46";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.x86_64-linux.activate.nixos
-                self.nixosConfigurations.silver-star-ferdorie;
-            };
-          };
-          utm-nixos = {
-            hostname = "100.124.108.91";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.aarch64-linux.activate.nixos
-                self.nixosConfigurations.utm-nixos;
-            };
-          };
-          hyperv-nixos = {
-            hostname = "172.25.240.242";
-            # hostname = "192.168.1.74";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.x86_64-linux.activate.nixos
-                self.nixosConfigurations.hyperv-nixos;
-            };
-          };
-          blue-fire = {
-            # hostname = "172.25.172.112";
-            # hostname = "192.168.1.77";
-            hostname = "100.65.162.126";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.x86_64-linux.activate.nixos
-                self.nixosConfigurations.blue-fire;
-            };
-          };
-          arthur = {
-            hostname = "100.70.39.116";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.x86_64-linux.activate.nixos
-                self.nixosConfigurations.arthur;
-            };
-          };
-          wodan-wsl = {
-            hostname = "172.25.59.229";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.x86_64-linux.activate.nixos
-                self.nixosConfigurations.wodan-wsl;
-            };
-          };
-        };
-      };
+      deploy = lib.mkDeploy {inherit (inputs) self;};
 
       checks =
         builtins.mapAttrs
-        (system: deployLib: deployLib.deployChecks self.deploy)
-        deploy.lib;
+        (system: deploy-lib:
+          deploy-lib.deployChecks inputs.self.deploy)
+        inputs.deploy-rs.lib;
+    };
 
-      hydraJobs = {
-        inherit
-          (self)
-          packages
-          ;
-      };
-      # packages = { self, flake-utils, ... }:
-      #   flake-utils.lib.eachDefaultSystem (system:
-      #     {
+  # outputs = {
+  #   self,
+  #   nixpkgs,
+  #   nixos-generators,
+  #   deploy,
+  #   home-manager,
+  #   nix,
+  #   flake-utils,
+  #   anywhere,
+  #   agenix,
+  #   nix-darwin,
+  #   nix-cache-watcher,
+  #   alejandra,
+  #   attic,
+  #   system-manager,
+  #   impermanence,
+  #   ...
+  # } @ inputs: let
+  #   inherit (self) outputs;
+  #   lib = nixpkgs.lib // home-manager.lib;
+  #   systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-linux"];
+  #   forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+  #   pkgsFor = lib.genAttrs systems (system:
+  #     import nixpkgs {
+  #       inherit system;
+  #       config.allowUnfree = true;
+  #     });
+  #   home = {
+  #     home-manager.useGlobalPkgs = true;
+  #     home-manager.useUserPackages = true;
+  #     home-manager.extraSpecialArgs = {
+  #       inherit inputs;
+  #     };
+  #     home-manager.users.tomas.imports = [agenix.homeManagerModules.default ./home.nix];
+  #     home-manager.backupFileExtension = "bak";
+  #   };
+  # in
+  #   {
+  #     nixpkgs.config.allowUnfree = true;
+  #     nixpkgs.config.allowUnfreePredicate = _: true;
+  #     nixpkgs.overlays = [(import ./apps/atuin/overlay.nix) (import ./apps/direnv.nix)];
 
-      #     });
+  #     #      colmena = import ./colmena.nix (inputs // { inherit inputs; });
 
-      # packages.aarch64-darwin = {
-      #   darwinVM = self.nixosConfigurations.darwinVM.config.system.build.vm;
-      #   installiso = self.packages.default.installiso;
-      # };
-      #   #     utmiso = nixos-generators.nixosGenerate {
-      #   #       # inherit nixpkgs pkgs;
-      #   #       system = "aarch64-linux";
-      #   #       specialArgs = inputs;
-      #   #       modules = [
-      #   #         self.nixosConfigurations.utm-nixos.config
-      #   #         # ({ pkgs, ... }: { })
-      #   #       ];
-      #   #       format = "qcow";
-      #   #     };
-      #   enzianiso = nixos-generators.nixosGenerate {
-      #     system = "x86_64-linux";
-      #     # specialArgs = inputs;
-      #     pkgs = pkgsFor.x86_64-linux;
+  #     nixosModules = {
+  #     };
 
-      #     specialArgs = { inherit inputs outputs; };
-      #     modules = [ self.nixosConfigurations.enzian.config ];
-      #     format = "install-iso";
-      #   };
-      # };
+  #     nixosConfigurations = import ./configurations {inherit inputs nixpkgs;};
 
-      #  let system = "x86_64-linux"; pkgs = pkgsFor.x86_64-linux; in nixos-generators.nixosGenerate {
-      #   system = system;
-      #   # specialArgs = inputs;
-      #   pkgs = pkgs;
+  #     darwinConfigurations = import ./configurations/darwin.nix {inherit inputs lib;};
 
-      #   specialArgs = { inherit inputs pkgs; };
-      #   modules = [ self.nixosConfigurations.arthur.config ];
-      #   format = "install-iso";
-      # };
-    }
-    // inputs.flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = import inputs.nixpkgs {inherit system;};
-      rundesk = import ./rundesk {
-        inherit pkgs lib;
-      };
-    in {
-      formatter = alejandra.defaultPackage.${system};
+  #     homeConfigurations = {
+  #       "root@silver-star" = home-manager.lib.homeManagerConfiguration {
+  #         extraSpecialArgs = {inherit inputs;};
 
-      packages = {
-        tailscaled = import ./apps/tailscale/tailscaled.nix {
-          inherit pkgs lib;
-        };
-        # darwinVM = self.nixosConfigurations.darwinVM.config.system.build.vm;
-        darwinBuilder = self.darwinConfigurations.builder;
+  #         modules = [
+  #           agenix.homeManagerModules.default
+  #           ./machines/silver-star
+  #           ./home.nix
+  #         ];
+  #       };
+  #     };
 
-        installiso =
-          self.nixosConfigurations.live.config.system.build.isoImage;
+  #     # systemConfigs.silver-star = system-manager.lib.makeSystemConfig {
+  #     #   modules = [
+  #     #     # impermanence.nixosModules.impermanence
+  #     #     ./machines/silver-star
+  #     #     home-manager.nixosModules.home-manager
+  #     #     {
+  #     #       home-manager.useGlobalPkgs = true;
+  #     #       home-manager.useUserPackages = true;
+  #     #       home-manager.extraSpecialArgs = { inherit inputs; };
+  #     #       home-manager.users.tomas.imports = [
+  #     #         # nix-flatpak.homeManagerModules.nix-flatpak
+  #     #         agenix.homeManagerModules.default
+  #     #         ./home.nix
+  #     #         {
+  #     #           home.username = "root";
+  #     #           home.homeDirectory = "/root";
+  #     #         }
+  #     #       ];
+  #     #       home-manager.backupFileExtension = "bak";
+  #     #     }
+  #     #   ];
+  #     # };
 
-        hyperv-installiso =
-          self.nixosConfigurations.hyperv-nixos.config.system.build.isoImage;
+  #     deploy = {
+  #       nodes = {
+  #         pegasus = {
+  #           hostname = "192.168.178.93";
+  #           # hostname = "172.25.220.155";
+  #           # hostname = "100.66.126.23";
+  #           profiles.system = {
+  #             user = "root";
+  #             sshUser = "root";
+  #             path =
+  #               deploy.lib.aarch64-linux.activate.nixos
+  #               self.nixosConfigurations.pegasus;
+  #           };
+  #         };
+  #         baaa-express = {
+  #           hostname = "172.25.240.89";
+  #           profiles.system = {
+  #             user = "root";
+  #             sshUser = "root";
+  #             path =
+  #               deploy.lib.aarch64-linux.activate.nixos
+  #               self.nixosConfigurations.baaa-express;
+  #           };
+  #         };
 
-        netboot =
-          self.nixosConfigurations.netboot.config.system.build.toplevel;
+  #         silver-star = {
+  #           hostname = "100.122.146.5";
+  #           profiles.user = {
+  #             user = "root";
+  #             sshUser = "root";
+  #             path =
+  #               deploy.lib.x86_64-linux.activate.home-manager
+  #               self.homeConfigurations."root@silver-star";
+  #           };
+  #         };
+  #         enzian = {
+  #           hostname = "100.78.63.10";
+  #           profiles.system = {
+  #             user = "root";
+  #             sshUser = "root";
+  #             path =
+  #               deploy.lib.x86_64-linux.activate.nixos
+  #               self.nixosConfigurations.enzian;
+  #           };
+  #         };
+  #         silver-star-ferdorie = {
+  #           hostname = "100.89.172.46";
+  #           profiles.system = {
+  #             user = "root";
+  #             sshUser = "root";
+  #             path =
+  #               deploy.lib.x86_64-linux.activate.nixos
+  #               self.nixosConfigurations.silver-star-ferdorie;
+  #           };
+  #         };
+  #         utm-nixos = {
+  #           hostname = "100.124.108.91";
+  #           profiles.system = {
+  #             user = "root";
+  #             sshUser = "root";
+  #             path =
+  #               deploy.lib.aarch64-linux.activate.nixos
+  #               self.nixosConfigurations.utm-nixos;
+  #           };
+  #         };
+  #         hyperv-nixos = {
+  #           hostname = "172.25.240.242";
+  #           # hostname = "192.168.1.74";
+  #           profiles.system = {
+  #             user = "root";
+  #             sshUser = "root";
+  #             path =
+  #               deploy.lib.x86_64-linux.activate.nixos
+  #               self.nixosConfigurations.hyperv-nixos;
+  #           };
+  #         };
+  #         blue-fire = {
+  #           # hostname = "172.25.172.112";
+  #           # hostname = "192.168.1.77";
+  #           hostname = "100.65.162.126";
+  #           profiles.system = {
+  #             user = "root";
+  #             sshUser = "root";
+  #             path =
+  #               deploy.lib.x86_64-linux.activate.nixos
+  #               self.nixosConfigurations.blue-fire;
+  #           };
+  #         };
+  #         arthur = {
+  #           hostname = "100.70.39.116";
+  #           profiles.system = {
+  #             user = "root";
+  #             sshUser = "root";
+  #             path =
+  #               deploy.lib.x86_64-linux.activate.nixos
+  #               self.nixosConfigurations.arthur;
+  #           };
+  #         };
+  #         wodan-wsl = {
+  #           hostname = "172.25.59.229";
+  #           profiles.system = {
+  #             user = "root";
+  #             sshUser = "root";
+  #             path =
+  #               deploy.lib.x86_64-linux.activate.nixos
+  #               self.nixosConfigurations.wodan-wsl;
+  #           };
+  #         };
+  #       };
+  #     };
 
-        # attic = import ./attic/attic.nix {
-        #   inherit attic;
-        #   pkgsLinux = pkgsFor."x86_64-linux";
-        # };
+  #     checks =
+  #       builtins.mapAttrs
+  #       (system: deployLib: deployLib.deployChecks self.deploy)
+  #       deploy.lib;
 
-        rundesk = rundesk.runner;
+  #     hydraJobs = {
+  #       inherit
+  #         (self)
+  #         packages
+  #         ;
+  #     };
+  #     # packages = { self, flake-utils, ... }:
+  #     #   flake-utils.lib.eachDefaultSystem (system:
+  #     #     {
 
-        inherit (rundesk) run-imager;
+  #     #     });
 
-        # enzian = self.nixosConfigurations.enzian.config.system.build.toplevel;
-      };
+  #     # packages.aarch64-darwin = {
+  #     #   darwinVM = self.nixosConfigurations.darwinVM.config.system.build.vm;
+  #     #   installiso = self.packages.default.installiso;
+  #     # };
+  #     #   #     utmiso = nixos-generators.nixosGenerate {
+  #     #   #       # inherit nixpkgs pkgs;
+  #     #   #       system = "aarch64-linux";
+  #     #   #       specialArgs = inputs;
+  #     #   #       modules = [
+  #     #   #         self.nixosConfigurations.utm-nixos.config
+  #     #   #         # ({ pkgs, ... }: { })
+  #     #   #       ];
+  #     #   #       format = "qcow";
+  #     #   #     };
+  #     #   enzianiso = nixos-generators.nixosGenerate {
+  #     #     system = "x86_64-linux";
+  #     #     # specialArgs = inputs;
+  #     #     pkgs = pkgsFor.x86_64-linux;
 
-      images = {
-        baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
-        pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
+  #     #     specialArgs = { inherit inputs outputs; };
+  #     #     modules = [ self.nixosConfigurations.enzian.config ];
+  #     #     format = "install-iso";
+  #     #   };
+  #     # };
 
-        arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
+  #     #  let system = "x86_64-linux"; pkgs = pkgsFor.x86_64-linux; in nixos-generators.nixosGenerate {
+  #     #   system = system;
+  #     #   # specialArgs = inputs;
+  #     #   pkgs = pkgs;
 
-        silver-star-ferdorie = self.nixosConfigurations.silver-star-ferdorie.config.formats.qcow;
+  #     #   specialArgs = { inherit inputs pkgs; };
+  #     #   modules = [ self.nixosConfigurations.arthur.config ];
+  #     #   format = "install-iso";
+  #     # };
+  #   }
+  #   // inputs.flake-utils.lib.eachDefaultSystem (system: let
+  #     pkgs = import inputs.nixpkgs {inherit system;};
+  #     rundesk = import ./rundesk {
+  #       inherit pkgs lib;
+  #     };
+  #   in {
+  #     formatter = alejandra.defaultPackage.${system};
 
-        hyperv-installiso =
-          self.nixosConfigurations.hyperv-nixos.config.formats.qcow;
-      };
+  #     packages = {
+  #       tailscaled = import ./apps/tailscale/tailscaled.nix {
+  #         inherit pkgs lib;
+  #       };
+  #       # darwinVM = self.nixosConfigurations.darwinVM.config.system.build.vm;
+  #       darwinBuilder = self.darwinConfigurations.builder;
 
-      devShells = {
-        default = import ./shell.nix {
-          inherit inputs;
-          inherit pkgs;
-          inherit nixpkgs;
-        };
-        rundesk =
-          (import ./rundesk {
-            inherit pkgs lib;
-          })
-          .shell;
-      };
-    });
+  #       installiso =
+  #         self.nixosConfigurations.live.config.system.build.isoImage;
+
+  #       hyperv-installiso =
+  #         self.nixosConfigurations.hyperv-nixos.config.system.build.isoImage;
+
+  #       netboot =
+  #         self.nixosConfigurations.netboot.config.system.build.toplevel;
+
+  #       # attic = import ./attic/attic.nix {
+  #       #   inherit attic;
+  #       #   pkgsLinux = pkgsFor."x86_64-linux";
+  #       # };
+
+  #       rundesk = rundesk.runner;
+
+  #       inherit (rundesk) run-imager;
+
+  #       # enzian = self.nixosConfigurations.enzian.config.system.build.toplevel;
+  #     };
+
+  #     images = {
+  #       baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
+  #       pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
+
+  #       arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
+
+  #       silver-star-ferdorie = self.nixosConfigurations.silver-star-ferdorie.config.formats.qcow;
+
+  #       hyperv-installiso =
+  #         self.nixosConfigurations.hyperv-nixos.config.formats.qcow;
+  #     };
+
+  #     devShells = {
+  #       default = import ./shell.nix {
+  #         inherit inputs;
+  #         inherit pkgs;
+  #         inherit nixpkgs;
+  #       };
+  #       rundesk =
+  #         (import ./rundesk {
+  #           inherit pkgs lib;
+  #         })
+  #         .shell;
+  #     };
+  #   });
 }

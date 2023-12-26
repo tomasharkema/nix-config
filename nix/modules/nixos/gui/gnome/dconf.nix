@@ -6,7 +6,7 @@
   ...
 }:
 with lib.hm.gvariant; {
-  dconf.settings = lib.mkIf osConfig.services.xserver.desktopManager.gnome.enable {
+  dconf.settings = {
     # "org/gnome/Console" = { last-window-size = mkTuple [ 652 480 ]; };
 
     "org/gnome/control-center" = {last-panel = "privacy";};
