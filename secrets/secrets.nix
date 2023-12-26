@@ -19,7 +19,20 @@ let
   baaa-express = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDIehvj2mj3tzsYoZbwSZoBi0K7Yt1ElbOd+e9DR8P2Z root@baaa-express";
   baaa-express-user = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBzNmvr4dGWHPZ/ZoFN2wIzUSDhYO2+hq4r4FeAqIPSf tomas@baaa-express";
 
-  systems = [enzian enzian-user silver-star-ferdorie utm-nixos arthur hyperv-nixos blue-fire pegasus baaa-express];
+  systems = [
+    enzian
+    enzian-user
+    silver-star-ferdorie
+    utm-nixos
+    arthur
+    hyperv-nixos
+    blue-fire
+    blue-fire-tomas
+    pegasus
+    baaa-express
+    baaa-express-user
+    wodan-wsl
+  ];
   allKeys = users ++ systems;
 in {
   "atuin.age".publicKeys = allKeys;
