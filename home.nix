@@ -1,11 +1,10 @@
 {
   inputs,
-  config,
   pkgs,
   lib,
-  hostname,
+  config,
   ...
-} @ attrs: let
+}: let
   inherit (pkgs) stdenv;
 
   # tmux-menu = pkgs.writeShellScriptBin "tmux-menu" ''
@@ -75,7 +74,7 @@ in {
 
   # self.home-manager.backupFileExtension = "bak";
   home.packages = with pkgs;
-    (import ./packages/common.nix attrs)
+    (import ./packages/common.nix {inherit pkgs inputs lib;})
     ++ [(nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})]
     ++ [
       nixd
@@ -97,7 +96,7 @@ in {
   age.identityPaths = [
     "/etc/ssh/ssh_host_ed25519_key"
     "${config.home.homeDirectory}/.ssh/id_ed25519"
-    # "${config.home.homeDirectory}/.ssh/id_rsa"
+    "${config.home.homeDirectory}/.ssh/id_rsa"
   ];
 
   nixpkgs.config.allowUnfreePredicate = _: true;

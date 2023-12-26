@@ -1,18 +1,5 @@
-{
-  nixpkgs,
-  nixos-generators,
-  inputs,
-  home-manager,
-  vscode-server,
-  agenix,
-  # nix-flatpak,
-  # nix-index-database,
-  disko,
-  impermanence,
-  nixos-hardware,
-  pkgsFor,
-  ...
-} @ attrs: let
+{inputs, ...} @ attrs:
+with inputs; let
   # base = {
   #   imports = [
   #     # nixos-generators.nixosModules.all-formats
@@ -26,6 +13,12 @@
   };
   homemanager = [
     home-manager.nixosModules.home-manager
+    # ({...}: {
+    #   home-manager.user.tomas.config = {
+    #     _module.args.inputs = inputs;
+
+    #   };
+    # })
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
@@ -41,18 +34,14 @@
 in
   raspberrypis
   // {
-    # raspberrypi-3 = raspberrypis.raspberrypi-3;
-    # pegasus = raspberrypis.pegasus;
-    # inherit raspberrypis;
-
-    # live = nixpkgs.lib.nixosSystem {
-    #   system = "x86_64-linux";
-    #   specialArgs = attrs;
-    #   modules = [
-    #     (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
-    #     ../installer.nix
-    #   ];
-    # };
+    #   # live = nixpkgs.lib.nixosSystem {
+    #   #   system = "x86_64-linux";
+    #   #   specialArgs = attrs;
+    #   #   modules = [
+    #   #     (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+    #   #     ../installer.nix
+    #   #   ];
+    #   # };
 
     netboot = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -87,11 +76,11 @@ in
 
       # specialArgs = attrs;
 
-      modules =
+      modules = with inputs;
         [
           ../common/wifi_module.nix
-          inputs.nixos-hardware.nixosModules.common-cpu-intel
-          inputs.nixos-hardware.nixosModules.common-pc-ssd
+          nixos-hardware.nixosModules.common-cpu-intel
+          nixos-hardware.nixosModules.common-pc-ssd
           # base
           ../common/defaults.nix
           disko.nixosModules.default
@@ -113,9 +102,9 @@ in
 
     blue-fire = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      # specialArgs = attrs;
 
       specialArgs = {inherit inputs;};
+
       modules =
         [
           nixos-hardware.nixosModules.common-cpu-intel
@@ -140,8 +129,9 @@ in
 
     utm-nixos = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
-      specialArgs = attrs;
-      # specialArgs = { inherit inputs outputs; };
+
+      specialArgs = {inherit inputs;};
+
       modules =
         [
           ../common/defaults.nix
@@ -156,7 +146,9 @@ in
 
     hyperv-nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = attrs;
+
+      specialArgs = {inherit inputs;};
+
       modules =
         [
           nixos-generators.nixosModules.all-formats
@@ -172,7 +164,7 @@ in
 
     silver-starferdorie = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      # specialArgs = attrs;
+
       specialArgs = {inherit inputs;};
 
       modules =
@@ -190,9 +182,9 @@ in
 
     arthur = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = attrs;
 
-      # specialArgs = { inherit inputs outputs; };
+      specialArgs = {inherit inputs;};
+
       modules =
         [
           nixos-generators.nixosModules.all-formats
@@ -220,9 +212,9 @@ in
 
     silver-star = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = attrs;
 
-      # specialArgs = { inherit inputs outputs; };
+      specialArgs = {inherit inputs;};
+
       modules =
         [
           # ./user-defaults.nix
@@ -249,7 +241,9 @@ in
 
     wodan-wsl = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = attrs;
+
+      specialArgs = {inherit inputs;};
+
       modules =
         [
           nonfree

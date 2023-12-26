@@ -165,15 +165,12 @@
 
       #      colmena = import ./colmena.nix (inputs // { inherit inputs; });
 
-      nixosConfigurations = import ./configurations (inputs
-        // {
-          inherit inputs pkgsFor;
-        });
+      nixosModules = {
+      };
 
-      darwinConfigurations = import ./configurations/darwin.nix (inputs
-        // {
-          inherit inputs lib;
-        });
+      nixosConfigurations = import ./configurations {inherit inputs nixpkgs;};
+
+      darwinConfigurations = import ./configurations/darwin.nix {inherit inputs lib;};
 
       homeConfigurations = {
         "root@silver-star" = home-manager.lib.homeManagerConfiguration {
