@@ -27,7 +27,7 @@
     gui.enable = true;
     gui.apps.steam.enable = true;
 
-    disks.btrfs = {
+    disks.btrfs = (lib.mkIf (format == null)) {
       enable = true;
       disks = ["/dev/disk/by-id/ata-Samsung_SSD_850_PRO_256GB_S39KNX0J775697K"];
     };

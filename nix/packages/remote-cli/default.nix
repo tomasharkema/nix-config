@@ -3,7 +3,7 @@ pkgs.python3.withPackages (ps:
     with ps; [
       (
         buildPythonPackage {
-          pname = "remote";
+          pname = "remote-cli";
           version = "1.13.2";
           src = pkgs.fetchFromGitHub {
             owner = "remote-cli";

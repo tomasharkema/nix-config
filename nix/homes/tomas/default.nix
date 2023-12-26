@@ -15,11 +15,21 @@
   # All other arguments come from the home home.
   config,
   ...
-}: {
+}: let
+  inherit (pkgs) stdenv;
+  inherit (lib) mkIf;
+  cfg = config.user;
+  is-linux = stdenv.isLinux;
+  is-darwin = stdenv.isDarwin;
+  home-directory = user:
+    if is-darwin
+    then "/Users/${user}"
+    else "/home/${user}";
+in {
   # Your configuration.
 
   config = {
-    home.username = lib.mkDefault "tomas";
-    home.homeDirectory = lib.mkDefault "/home/tomas";
+    # home.username = lib.mkDefault "tomas";
+    # home.homeDirectory = lib.mkDefault (home-directory "tomas");
   };
 }

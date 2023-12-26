@@ -20,18 +20,10 @@
 
   imports = [
     ./hardware-configuration.nix
-    # ../../apps/cockpit.nix
-    # ../../common/quiet-boot.nix
-    # ../../common/game-mode.nix
-    # ../../apps/desktop.nix
-    # ../../apps/steam.nix
-    # ../../common/disks/ext4.nix
-    # ../../common/disks/tmpfs.nix
-    # ../../common/disks/btrfs.nix
   ];
 
   config = {
-    disks.btrfs = {
+    disks.btrfs = (lib.mkIf (format == null)) {
       enable = true;
       disks = ["/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K"];
     };
@@ -69,6 +61,7 @@
     boot.loader.grub.enable = lib.mkDefault true;
     boot.loader.grub.efiSupport = true;
     boot.loader.grub.efiInstallAsRemovable = true;
+    boot.loader.grub.devices = ["nodev"];
 
     boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
     boot.initrd.kernelModules = [

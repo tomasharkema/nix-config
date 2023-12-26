@@ -258,6 +258,26 @@
         "type": "github"
       }
     },
+    "darwin_3": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1703415240,
+        "narHash": "sha256-SgsAYwDo2wWHUdZeNKKRRT402sRzQ/rLmzxH/wqMUPw=",
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "rev": "f454cff5fe84adca9e8aa8d546d2c9879b789950",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
     "deploy": {
       "inputs": {
         "flake-compat": "flake-compat_3",
@@ -1049,26 +1069,6 @@
         "url": "https://git.sr.ht/~thatonelutenist/nix-cache-watcher"
       }
     },
-    "nix-darwin": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1703415240,
-        "narHash": "sha256-SgsAYwDo2wWHUdZeNKKRRT402sRzQ/rLmzxH/wqMUPw=",
-        "owner": "LnL7",
-        "repo": "nix-darwin",
-        "rev": "f454cff5fe84adca9e8aa8d546d2c9879b789950",
-        "type": "github"
-      },
-      "original": {
-        "owner": "LnL7",
-        "repo": "nix-darwin",
-        "type": "github"
-      }
-    },
     "nix-flatpak": {
       "locked": {
         "lastModified": 1702756026,
@@ -1642,6 +1642,7 @@
         "attic": "attic",
         "cachix-deploy-flake": "cachix-deploy-flake",
         "colmena": "colmena",
+        "darwin": "darwin_3",
         "deploy": "deploy",
         "disko": "disko_3",
         "flake-utils": "flake-utils_3",
@@ -1650,7 +1651,6 @@
         "impermanence": "impermanence",
         "nil": "nil",
         "nix-cache-watcher": "nix-cache-watcher",
-        "nix-darwin": "nix-darwin",
         "nix-flatpak": "nix-flatpak",
         "nix-index-database": "nix-index-database",
         "nix-software-center": "nix-software-center",

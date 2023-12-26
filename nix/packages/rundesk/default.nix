@@ -20,9 +20,9 @@ stdenv.mkDerivation {
     sha256 = "sha256:IK/WHO5s5EiJMV2nMlVqHqk5L1jXk8dklkJm15DVZ1U=";
   };
 
-  nativeBuildInputs = [
-    pkgs.gradle_7
-    pkgs.rd-deps
+  nativeBuildInputs = with pkgs; [
+    gradle_7
+    tomas-pkgs.rd-deps
   ];
 
   packages = with pkgs; [jre];

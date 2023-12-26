@@ -1,8 +1,10 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
@@ -147,12 +149,22 @@
         };
       };
 
+      package-namespace = "tomas-pkgs";
+
       # overlays = with inputs; [attic.overlays.default];
 
       systems.modules.nixos = with inputs; [
         disko.nixosModules.default
-        home-manager.nixosModules.home-manager
+        # home-manager.nixosModules.home-manager
         agenix.nixosModules.default
+        nixos-generators.nixosModules.all-formats
+        {
+          system.stateVersion = "23.11";
+        }
+      ];
+
+      homes.modules = with inputs; [
+        # agenix.homeManagerModules.default
       ];
 
       deploy = lib.mkDeploy {inherit (inputs) self;};

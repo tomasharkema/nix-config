@@ -57,7 +57,7 @@ in
     packages =
       with pkgs;
       with inputs; [
-        pkgs.remote-cli
+        tomas-pkgs.remote-cli
         # (reencrypt {inherit system;})
         # nix-profiler
 
@@ -82,7 +82,7 @@ in
         ssh-to-age
         write-script
         zsh
-        rundesk
+        tomas-pkgs.rundesk
       ]
       # ++ (import ./packages/nixpkgs.nix attrs)
       #++ go;

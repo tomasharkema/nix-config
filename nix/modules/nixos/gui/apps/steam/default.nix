@@ -39,7 +39,6 @@ in {
     environment.systemPackages = with pkgs; [
       sunshine
       protontricks
-      nvtop
     ];
     services.udev.extraRules = ''
       Sunshine
