@@ -2,10 +2,8 @@
   lib,
   pkgs,
   ...
-}: let
-  inherit (pkgs) stdenv;
-in {
-  homebrew = lib.mkIf stdenv.isDarwin {
+}: {
+  homebrew = {
     enable = true;
     casks = [
       "1password"
@@ -21,7 +19,6 @@ in {
       "screenflow"
       "slack"
       "spotify"
-      "fig"
     ];
   };
 }

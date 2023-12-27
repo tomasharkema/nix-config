@@ -52,20 +52,8 @@
       url = "github:nix-community/impermanence";
     };
 
-    nix-cache-watcher.url = "git+https://git.sr.ht/~thatonelutenist/nix-cache-watcher?ref=trunk";
-
-    statix = {
-      url = "github:nerdypepper/statix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixpkgs-lint = {
-      url = "github:nix-community/nixpkgs-lint";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    alejandra = {
-      url = "github:kamadorueda/alejandra";
+    nix-cache-watcher = {
+      url = "git+https://git.sr.ht/~thatonelutenist/nix-cache-watcher?ref=trunk";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
