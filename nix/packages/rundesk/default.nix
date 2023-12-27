@@ -22,7 +22,7 @@ stdenv.mkDerivation {
 
   nativeBuildInputs = with pkgs; [
     gradle_7
-    tomas-pkgs.rd-deps
+    custom.rd-deps
   ];
 
   packages = with pkgs; [jre];

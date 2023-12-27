@@ -44,9 +44,9 @@
     nix-software-center.url = "github:vlinkz/nix-software-center";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
-    nil = {
-      url = "github:oxalica/nil";
-    };
+    # nil = {
+    #   url = "github:oxalica/nil";
+    # };
 
     impermanence = {
       url = "github:nix-community/impermanence";
@@ -180,6 +180,12 @@
         (system: deploy-lib:
           deploy-lib.deployChecks inputs.self.deploy)
         inputs.deploy-rs.lib;
+
+      outputs-builder = channels: {
+        # Outputs in the outputs builder are transformed to support each system. This
+        # entry will be turned into multiple different outputs like `formatter.x86_64-linux.*`.
+        formatter = channels.nixpkgs.alejandra;
+      };
     };
 
   # outputs = {

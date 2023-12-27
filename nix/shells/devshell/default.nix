@@ -82,7 +82,7 @@ in
         ssh-to-age
         write-script
         zsh
-        tomas-pkgs.rundesk
+        custom.rundesk
       ]
       # ++ (import ./packages/nixpkgs.nix attrs)
       #++ go;

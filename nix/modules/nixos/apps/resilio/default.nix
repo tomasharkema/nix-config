@@ -15,15 +15,22 @@
   # All other arguments come from the module system.
   config,
   ...
-}: let
+}:
+with lib;
+with lib.custom; let
+  cfg = config.resilio;
   known_host = "100.120.66.165:52380";
 in {
-  config = lib.mkIf (format == null) {
+  options.resilio = {
+    enable = mkBoolOpt true "SnowflakeOS GNOME configuration";
+  };
+
+  config = lib.mkIf (cfg.enable && format == null) {
     # age.secrets."resilio-p" = {file = ../secrets/resilio-p.age;};
     # age.secrets."resilio-docs" = {file = ../secrets/resilio-docs.age;};
     # age.secrets."resilio-shared-public" = {file = ../secrets/resilio-shared-public.age;};
 
-    system.activationScripts.resilioFolder = lib.mkIf config.services.resilio.enable ''
+    system.activationScripts.resilioFolder = ''
       if [ ! -d "/resilio-sync" ]; then
         rm -rf /var/lib/resilio-sync/shared-documents || true
         rm -rf /var/lib/resilio-sync/P-dir || true

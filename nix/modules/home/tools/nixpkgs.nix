@@ -6,11 +6,11 @@
 with pkgs;
 with inputs; {
   config.home.packages = [
-    agenix.packages.${system}.default
-    alejandra.defaultPackage.${system}
+    agenix # .packages.${system}.default
+    alejandra # .defaultPackage.${system}
     deadnix
     manix
-    nil.packages.${system}.default
+    nil #.packages.${system}.default
     nix
     nix-cache-watcher.packages.${system}.nix-cache-watcher
     nix-init
