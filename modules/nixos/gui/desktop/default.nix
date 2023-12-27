@@ -64,10 +64,10 @@ in {
       gnome.gnome-session
       _1password-gui
       transmission
-      moonlight-embedded
       keybase
-
-      inputs.nix-software-center.packages.${system}.nix-software-center
+      powertop
+      keybase_gui
+      nix-software-center
     ];
 
     # nativeMessagingHosts.packages = with pkgs; [ gnome-browser-connector ];

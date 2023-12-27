@@ -123,8 +123,6 @@
       src = ./.;
 
       snowfall = {
-        root = ./nix;
-
         meta = {
           name = "dotfiles";
           title = "dotfiles";
