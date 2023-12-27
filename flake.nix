@@ -133,8 +133,16 @@
       inherit inputs;
 
       src = ./.;
+
       snowfall = {
         root = ./nix;
+
+        meta = {
+          name = "dotfiles";
+          title = "dotfiles";
+        };
+
+        namespace = "custom";
       };
     };
   in
@@ -148,8 +156,6 @@
           default = "devshell";
         };
       };
-
-      package-namespace = "tomas-pkgs";
 
       # overlays = with inputs; [attic.overlays.default];
 

@@ -8,6 +8,7 @@
 with lib; {
   imports = with inputs; [
     home-manager.nixosModules.home-manager
+    # ../../home/default
   ];
 
   options.home = with types; {

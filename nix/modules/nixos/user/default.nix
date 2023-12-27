@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   inputs,
@@ -27,6 +28,8 @@ in {
   };
 
   config = {
+    security.sudo.wheelNeedsPassword = false;
+
     programs.zsh = {enable = true;};
 
     users.mutableUsers = false;
@@ -56,8 +59,6 @@ in {
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = keys;
     };
-
-    security.sudo.wheelNeedsPassword = false;
 
     nix.distributedBuilds = true;
     # optional, useful when the builder has a faster internet connection than yours
