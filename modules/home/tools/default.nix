@@ -1,92 +1,80 @@
-{
-  pkgs,
-  inputs,
-  ...
-}:
-# let
-# darwin-build = (import ../apps/darwin-build.nix) attrs;
-# in
+{pkgs, ...}:
 with pkgs; {
-  imports = [./nixpkgs.nix];
   config = {
-    home.packages = with pkgs;
-    with inputs;
-      [(lib.mkIf stdenv.isLinux atop)]
-      ++ [(lib.mkIf stdenv.isLinux packagekit)]
-      ++ [
-        _1password
-        antidote
-        autojump
-        bash
-        bat
-        bottom
-        btop
-        bunyan-rs
-        cheat
-        comma
-        coreutils
-        ctop
-        curl
-        curlie
-        delta
-        direnv
-        dnsutils
-        dogdns
-        du-dust
-        eza
-        fd
-        fpp
-        fx
-        fzf
-        gh
-        git
-        git-lfs
-        gping
-        gtop
-        httpie
-        iftop
-        ipmitool
-        just
-        keybase
-        ldns
-        lolcat
-        lsd
-        manix
-        mcfly
-        morph
-        mosh
-        mtr
-        multitail
-        navi
-        ncdu
-        neofetch
-        netdiscover
-        nixd
-        nnn
-        nodejs
-        patchelf
-        procs
-        pv
-        python3
-        screen
-        silver-searcher
-        speedtest-cli
-        ssh-to-age
-        starship
-        tailscale
-        thefuck
-        tldr
-        tmate
-        tree
-        unrar
-        unzip
-        wget
-        xz
-        youtube-dl
-        yq
-        zip
-        zsh
-      ];
+    home.packages = with pkgs; [
+      _1password
+      antidote
+      autojump
+      bash
+      bat
+      bottom
+      btop
+      bunyan-rs
+      cheat
+      comma
+      coreutils
+      ctop
+      curl
+      curlie
+      delta
+      direnv
+      dnsutils
+      dogdns
+      du-dust
+      eza
+      fd
+      fpp
+      fx
+      fzf
+      gh
+      git
+      git-lfs
+      gping
+      gtop
+      httpie
+      iftop
+      ipmitool
+      just
+      keybase
+      ldns
+      lolcat
+      lsd
+      manix
+      mcfly
+      morph
+      mosh
+      mtr
+      multitail
+      navi
+      ncdu
+      neofetch
+      netdiscover
+      nixd
+      nnn
+      nodejs
+      patchelf
+      procs
+      pv
+      python3
+      screen
+      silver-searcher
+      speedtest-cli
+      ssh-to-age
+      starship
+      tailscale
+      thefuck
+      tldr
+      tmate
+      tree
+      unrar
+      unzip
+      wget
+      xz
+      youtube-dl
+      yq
+      zip
+      zsh
+    ];
   };
   # home.packages = with pkgs; [
   #   # moonlight

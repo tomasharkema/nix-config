@@ -22,6 +22,9 @@ in {
       nixfmt
       nix-index
       nix-prefetch-git
+      nil
+      flake-checker
+      nixpkgs-fmt
     ];
 
     nix = let

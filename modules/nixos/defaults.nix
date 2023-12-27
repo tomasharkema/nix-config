@@ -33,41 +33,42 @@ in {
   networking.wireless.enable = lib.mkDefault false;
   networking.networkmanager.enable = lib.mkDefault true;
 
-  time.timeZone = "Europe/Amsterdam";
+  # time.timeZone = "Europe/Amsterdam";
 
-  # services.eternal-terminal.enable = true;
+  # # services.eternal-terminal.enable = true;
 
-  services.openssh = {
-    enable = true;
-    # require public key authentication for better security
-    settings.PasswordAuthentication = false;
-    settings.KbdInteractiveAuthentication = false;
-    settings.PermitRootLogin = "yes";
-  };
+  # services.openssh = {
+  #   enable = true;
+  #   # require public key authentication for better security
+  #   settings.PasswordAuthentication = false;
+  #   settings.KbdInteractiveAuthentication = false;
+  #   settings.PermitRootLogin = "yes";
+  # };
 
-  programs.ssh.startAgent = true;
-  system.autoUpgrade.enable = true;
+  # programs.ssh.startAgent = true;
 
-  systemd.targets.sleep.enable = false;
-  systemd.targets.suspend.enable = false;
-  systemd.targets.hibernate.enable = false;
-  systemd.targets.hybrid-sleep.enable = false;
+  # system.autoUpgrade.enable = true;
 
-  # systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
-  # systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
+  # systemd.targets.sleep.enable = false;
+  # systemd.targets.suspend.enable = false;
+  # systemd.targets.hibernate.enable = false;
+  # systemd.targets.hybrid-sleep.enable = false;
 
-  nix.optimise.automatic = true;
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  # # systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  # # systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 
-  services.fwupd.enable = true;
-  networking.firewall = {
-    enable = lib.mkDefault true;
-  };
+  # nix.optimise.automatic = true;
+  # nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  services.avahi.extraServiceFiles = {
-    ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
-  };
-  services.udev = {enable = lib.mkDefault true;};
+  # services.fwupd.enable = true;
+  # networking.firewall = {
+  #   enable = lib.mkDefault true;
+  # };
+
+  # services.avahi.extraServiceFiles = {
+  #   ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
+  # };
+  # services.udev = {enable = lib.mkDefault true;};
 
   nix.gc = {
     automatic = true;

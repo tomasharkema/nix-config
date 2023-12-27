@@ -89,6 +89,13 @@
       url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    flake-checker = {
+      url = "https://flakehub.com/f/DeterminateSystems/flake-checker/0.1.17.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    fh.url = "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz";
   };
 
   nixConfig = {
@@ -141,6 +148,15 @@
         shells = {
           default = "devshell";
         };
+      };
+
+      snowfall = {
+        meta = {
+          name = "dotfiles";
+          title = "dotfiles";
+        };
+
+        namespace = "custom";
       };
 
       # overlays = with inputs; [attic.overlays.default];

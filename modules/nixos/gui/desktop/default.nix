@@ -66,7 +66,7 @@ in {
       transmission
       keybase
       powertop
-      keybase_gui
+      # keybase_gui
       nix-software-center
     ];
 
