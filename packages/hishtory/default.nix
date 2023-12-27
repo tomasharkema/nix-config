@@ -15,7 +15,8 @@
 #   lib,
 # }:
 with lib;
-  pkgs.buildGoModule
+with pkgs;
+  buildGoModule
   rec {
     pname = "hishtory";
     version = "0.263";

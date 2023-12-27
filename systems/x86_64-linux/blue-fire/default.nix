@@ -23,7 +23,7 @@
   ];
 
   config = {
-    disks.btrfs = {
+    disks.btrfs = (lib.mkIf (format == "qcow" || format == "iso")) {
       enable = true;
       disks = ["/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K"];
     };

@@ -57,7 +57,7 @@ in
     packages =
       with pkgs;
       with inputs; [
-        custom.remote-cli
+        # custom.remote-cli
         # (reencrypt {inherit system;})
         # nix-profiler
 

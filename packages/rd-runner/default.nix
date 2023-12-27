@@ -5,7 +5,7 @@
 }:
 pkgs.writeShellApplication {
   name = "rd-runner";
-  runtimeInputs = with pkgs; [file rd-imager bash];
+  runtimeInputs = with pkgs; [file custom.rd-imager bash];
   # interpreter = "${pkgs.bash}/bin/bash";
 
   text = ''
@@ -23,7 +23,7 @@ pkgs.writeShellApplication {
 
     echo "hello runner! $1 $2";
 
-    ${lib.getExe pkgs.rd-imager} "$WORK_DIR/nix-config" "$2"
+    ${lib.getExe pkgs.custom.rd-imager} "$WORK_DIR/nix-config" "$2"
 
     rm -rf "$WORK_DIR"
   '';
