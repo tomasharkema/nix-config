@@ -20,20 +20,31 @@
 
   imports = [
     ./hardware-configuration.nix
+
+    inputs.nixos-hardware.nixosModules.common-cpu-intel
+    inputs.nixos-hardware.nixosModules.common-pc-ssd
   ];
 
   config = {
-    disks.btrfs = (lib.mkIf (format == "qcow" || format == "iso")) {
-      enable = true;
-      disks = ["/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K"];
-    };
+    disks.btrfs = let
+      derp = builtins.trace ">>> blue-fire format: ${format}";
+      isLinux = format == "linux";
+    in
+      derp
+      (lib.mkIf isLinux) {
+        enable = true;
+        disks = ["/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K"];
+      };
+
+    traits.builder.enable = true;
+    services.prometheus.exporters.ipmi.enable = true;
 
     boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
-    programs.nix-ld.enable = true;
-
-    networking = {hostName = "blue-fire";};
-    networking.hostId = "529fd7aa";
+    networking = {
+      hostName = "blue-fire";
+      hostId = "529fd7aa";
+    };
 
     environment.systemPackages = with pkgs; [
       # ipmicfg
@@ -84,17 +95,5 @@
     # nix.sshServe.keys = [
     #   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas@tomas"
     # ];
-
-    services.prometheus.exporters.ipmi.enable = true;
-
-    services.hydra = {
-      enable = true;
-      hydraURL = "http://localhost:3000"; # externally visible URL
-      notificationSender = "hydra@localhost"; # e-mail of hydra service
-      # a standalone hydra will require you to unset the buildMachinesFiles list to avoid using a nonexistant /etc/nix/machines
-      buildMachinesFiles = [];
-      # you will probably also want, otherwise *everything* will be built from scratch
-      useSubstitutes = true;
-    };
   };
 }

@@ -1,5 +1,6 @@
 {
   inputs = {
+    nix-netboot-serve.url = "https://flakehub.com/f/DeterminateSystems/nix-netboot-serve/0.1.79.tar.gz";
     nixpkgs.url = "nixpkgs/nixos-23.11";
     darwin = {
       url = "github:LnL7/nix-darwin";
@@ -19,7 +20,9 @@
     };
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    cachix-deploy-flake.url = "github:cachix/cachix-deploy-flake";
+
+    # cachix-deploy-flake.url = "github:cachix/cachix-deploy-flake";
+
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,8 +38,9 @@
     # colmena.url = "github:zhaofengli/colmena";
     # colmena.inputs.nixpkgs.follows = "nixpkgs";
 
+    # anywhere.url = "github:nix-community/nixos-anywhere";
+
     flake-utils.url = "github:numtide/flake-utils";
-    anywhere.url = "github:nix-community/nixos-anywhere";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     nixvim.url = "github:pta2002/nixvim/nixos-23.11";
 
@@ -47,10 +51,6 @@
 
     nix-software-center.url = "github:vlinkz/nix-software-center";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
-
-    # nil = {
-    #   url = "github:oxalica/nil";
-    # };
 
     impermanence = {
       url = "github:nix-community/impermanence";
@@ -169,7 +169,7 @@
         disko.nixosModules.default
         # home-manager.nixosModules.home-manager
         agenix.nixosModules.default
-        nixos-generators.nixosModules.all-formats
+        # nixos-generators.nixosModules.all-formats
         {
           system.stateVersion = "23.11";
         }
@@ -181,16 +181,31 @@
 
       deploy = lib.mkDeploy {inherit (inputs) self;};
 
-      # checks =
-      #   builtins.mapAttrs
-      #   (system: deploy-lib:
-      #     deploy-lib.deployChecks inputs.self.deploy)
-      #   inputs.deploy-rs.lib;
+      checks =
+        builtins.mapAttrs
+        (system: deploy-lib:
+          deploy-lib.deployChecks inputs.self.deploy)
+        inputs.deploy-rs.lib;
 
-      outputs-builder = channels: {
-        # Outputs in the outputs builder are transformed to support each system. This
-        # entry will be turned into multiple different outputs like `formatter.x86_64-linux.*`.
+      outputs-builder = channels:
+      # let
+      # derp = builtins.trace ">>> channels format: ${lib.attrsToList channels}";
+      # in
+      # derp
+      {
         formatter = channels.nixpkgs.alejandra;
+
+        images = with inputs; {
+          baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
+          pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
+
+          #   arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
+
+          #   silver-star-ferdorie = self.nixosConfigurations.silver-star-ferdorie.config.formats.qcow;
+
+          #   hyperv-installiso =
+          #     self.nixosConfigurations.hyperv-nixos.config.formats.qcow;
+        };
       };
     };
 
@@ -477,18 +492,6 @@
   #       inherit (rundesk) run-imager;
 
   #       # enzian = self.nixosConfigurations.enzian.config.system.build.toplevel;
-  #     };
-
-  #     images = {
-  #       baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
-  #       pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
-
-  #       arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
-
-  #       silver-star-ferdorie = self.nixosConfigurations.silver-star-ferdorie.config.formats.qcow;
-
-  #       hyperv-installiso =
-  #         self.nixosConfigurations.hyperv-nixos.config.formats.qcow;
   #     };
 
   #     devShells = {
