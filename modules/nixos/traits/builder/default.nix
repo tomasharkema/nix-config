@@ -2,12 +2,17 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 with lib;
 with lib.custom; let
   cfg = config.traits.builder;
 in {
+  imports = with inputs; [
+    vscode-server.nixosModules.default
+  ];
+
   options.traits = {
     builder = {
       enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
@@ -18,13 +23,20 @@ in {
     apps.attic.enable = true;
     services.hydra = {
       enable = true;
-      hydraURL = "http://localhost:3000"; # externally visible URL
-      notificationSender = "hydra@localhost"; # e-mail of hydra service
-      # a standalone hydra will require you to unset the buildMachinesFiles list to avoid using a nonexistant /etc/nix/machines
+      hydraURL = "https://hydra.harkema.io";
+      notificationSender = "tomas+hydra@harkema.io";
       buildMachinesFiles = [];
-      # you will probably also want, otherwise *everything* will be built from scratch
       useSubstitutes = true;
     };
     programs.nix-ld.enable = true;
+
+    nix.sshServe = {
+      enable = true;
+      keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas@tomas"
+      ];
+    };
+
+    services.vscode-server.enable = true;
   };
 }

@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   imports = with inputs; [
@@ -24,9 +25,9 @@
         dwc2.enable = true;
         fkms-3d.enable = true;
       };
-      deviceTree = {
+      deviceTree = with lib; {
         enable = true;
-        filter = "*rpi-4-*.dtb";
+        filter = mkForce "*rpi-4-*.dtb";
       };
     };
   };

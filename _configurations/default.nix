@@ -95,33 +95,7 @@ in
             config,
             pkgs,
             ...
-          }: {services.vscode-server.enable = true;})
-        ]
-        ++ homemanager;
-    };
-
-    blue-fire = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-
-      specialArgs = {inherit inputs;};
-
-      modules =
-        [
-          nixos-hardware.nixosModules.common-cpu-intel
-          nixos-hardware.nixosModules.common-pc-ssd
-          # ./user-defaults.nix
-          ../common/defaults.nix
-          disko.nixosModules.default
-          # impermanence.nixosModules.impermanence
-          ../machines/blue-fire
-          ../secrets
-          ../apps/attic
-          agenix.nixosModules.default
-          nonfree
-          ({lib, ...}: {
-            services.tailscale = {
-              useRoutingFeatures = lib.mkForce "both";
-            };
+          }: {services.vscode-server.enable = true;
           })
         ]
         ++ homemanager;

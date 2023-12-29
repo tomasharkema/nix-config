@@ -10,7 +10,7 @@ with lib.custom; let
 in {
   options.traits = {
     raspberry = {
-      enable = mkBoolOpt true "SnowflakeOS GNOME configuration";
+      enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
     };
   };
 

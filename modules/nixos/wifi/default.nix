@@ -18,12 +18,13 @@
 }: let
   cfg = config.wifi;
 in
-  with lib; {
+  with lib;
+  with lib.custom; {
     imports = [./wifi_module.nix];
 
     options = {
       wifi = {
-        enable = mkEnableOption "SnowflakeOS GNOME configuration";
+        enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
       };
     };
 
@@ -32,7 +33,7 @@ in
       #   file = ../secrets/wireless.age;
       #   mode = "0664";
       # };
-      networking.networkmanager.enable = true;
+      networking.networkmanager.enable = mkDefault true;
       networking.wireless = {
         environmentFile = config.age.secrets."wireless".path;
         networks = {

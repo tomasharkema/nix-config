@@ -26,6 +26,7 @@ in {
       [(nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})]
       ++ [
         nixd
+        jq
         # fig
 
         # inputs.nix-gui.packages.${system}.nix-gui

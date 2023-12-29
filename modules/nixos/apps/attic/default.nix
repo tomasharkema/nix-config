@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.custom; let
+with lib.custom;
+with pkgs; let
   cfg = config.apps.attic;
-  attic-bin = getExe inputs.attic.packages.${pkgs.system}.default;
+  attic-pkg = inputs.attic.packages.${system}.default;
+  attic-bin = "${attic-pkg}/bin/attic";
 in {
   options.apps.attic = {
     enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
@@ -20,7 +22,7 @@ in {
 
   config = mkIf cfg.enable {
     systemd.user.services.attic-login = let
-      attic-login = pkgs.writeShellScriptBin "attic-script" ''
+      attic-login = writeShellScriptBin "attic-script" ''
         ${attic-bin} login tomas https://nix-cache.harke.ma $(cat ${config.age.secrets.attic-key.path})
         ${attic-bin} use tomas:tomas
       '';
@@ -32,7 +34,7 @@ in {
     };
 
     systemd.services.attic-watch = let
-      attic-script = pkgs.writeShellScriptBin "attic-script.sh" ''
+      attic-script = writeShellScriptBin "attic-script.sh" ''
         ${attic-bin} login tomas https://nix-cache.harke.ma "$(cat ${config.age.secrets.attic-key.path})"
         ${attic-bin} use tomas:tomas
         ${attic-bin} watch-store tomas:tomas

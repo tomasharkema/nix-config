@@ -166,6 +166,7 @@
       # overlays = with inputs; [attic.overlays.default];
 
       systems.modules.nixos = with inputs; [
+        impermanence.nixosModule
         disko.nixosModules.default
         # home-manager.nixosModules.home-manager
         agenix.nixosModules.default

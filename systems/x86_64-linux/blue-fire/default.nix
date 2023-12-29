@@ -15,43 +15,47 @@
   # All other arguments come from the system system.
   config,
   ...
-}: {
+}: let
+  isLinux = format == "linux";
+in {
   # Your configuration.
 
-  imports = [
+  imports = with inputs; [
     ./hardware-configuration.nix
 
-    inputs.nixos-hardware.nixosModules.common-cpu-intel
-    inputs.nixos-hardware.nixosModules.common-pc-ssd
+    nixos-hardware.nixosModules.common-cpu-intel
+    nixos-hardware.nixosModules.common-pc-ssd
   ];
 
   config = {
-    disks.btrfs = let
-      derp = builtins.trace ">>> blue-fire format: ${format}";
-      isLinux = format == "linux";
-    in
-      derp
-      (lib.mkIf isLinux) {
-        enable = true;
-        disks = ["/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K"];
-      };
+    disks.btrfs = (lib.mkIf isLinux) {
+      enable = true;
+      disks = ["/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K"];
+    };
 
     traits.builder.enable = true;
     services.prometheus.exporters.ipmi.enable = true;
 
-    boot.binfmt.emulatedSystems = ["aarch64-linux"];
-
     networking = {
-      hostName = "blue-fire";
+      hostName = lib.mkDefault "blue-fire";
       hostId = "529fd7aa";
+
+      firewall = {
+        enable = false;
+      };
+      useDHCP = lib.mkDefault true;
     };
 
     environment.systemPackages = with pkgs; [
       # ipmicfg
       ipmiview
+      ipmiutil
       # vagrant
     ];
 
+    services.tailscale = {
+      useRoutingFeatures = lib.mkForce "both";
+    };
     # Minimal configuration for NFS support with Vagrant.
     # services.nfs.server.enable = true;
 
@@ -68,32 +72,44 @@
 
     # boot.loader.systemd-boot.enable = true;
     # boot.loader.efi.canTouchEfiVariables = true;
-    # nixpkgs.config.allowUnfree = true;
-    boot.loader.grub.enable = lib.mkDefault true;
-    boot.loader.grub.efiSupport = true;
-    boot.loader.grub.efiInstallAsRemovable = true;
-    boot.loader.grub.devices = ["nodev"];
 
-    boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-    boot.initrd.kernelModules = [
-      "kvm-intel"
-      "uinput"
-      "nvme"
-    ];
-    boot.kernelModules = ["kvm-intel" "uinput" "nvme" "jc42" "tpm_rng"];
-    boot.extraModulePackages = [];
+    boot = {
+      binfmt.emulatedSystems = ["aarch64-linux"];
 
-    networking.useDHCP = lib.mkDefault true;
+      loader.grub = {
+        enable = lib.mkDefault true;
+        efiSupport = true;
+        efiInstallAsRemovable = true;
+        devices = ["nodev"];
+      };
 
-    networking.firewall = {
-      enable = lib.mkForce false;
-      # enable = true;
+      initrd = {
+        availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
+        kernelModules = [
+          "kvm-intel"
+          "uinput"
+          "nvme"
+          # "tpm_rng"
+          "ipmi_ssif"
+          "acpi_ipmi"
+          "ipmi_si"
+          "ipmi_devintf"
+          "ipmi_msghandler"
+        ];
+      };
+      kernelModules = [
+        "kvm-intel"
+        "uinput"
+        "nvme"
+        "tpm_rng"
+        "ipmi_ssif"
+        "acpi_ipmi"
+        "ipmi_si"
+        "ipmi_devintf"
+        "ipmi_msghandler"
+      ];
+      extraModulePackages = [];
+      kernelParams = ["console=ttyS0,115200" "console=tty1"];
     };
-    # boot.kernelParams = [ "console=ttyS0,115200" "console=tty1" ];
-
-    # nix.sshServe.enable = true;
-    # nix.sshServe.keys = [
-    #   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas@tomas"
-    # ];
   };
 }

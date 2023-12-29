@@ -1,3 +1,3 @@
 {flake-checker, ...}: final: prev: {
-  inherit (flake-checker.packages.${prev.system}) flake-checker;
+  flake-checker = flake-checker.packages.${prev.system}.default;
 }
