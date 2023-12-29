@@ -3,7 +3,7 @@
   pkgs,
   lib,
   ...
-}:
+} @ attrs:
 with pkgs;
 with lib; let
   # attic-pkg = inputs.attic.packages.${system}.default;
@@ -34,6 +34,23 @@ with lib; let
   remote-deploy = writeShellScriptBin "remote-deploy" ''
     remote deployment '.#arthur' '.#enzian'
   '';
+
+  diffs = import ../diffs attrs;
+  packages-json = diffs.packages-json;
+  # gum = lib.getExe pkgs.gum;
+  # packages-json = writeShellScriptBin "packages-json" ''
+  #   export DIR="$(mktemp -d)"
+
+  #   SYSTEM_PKGS=".#$1.config.environment.systemPackages"
+  #   # gum spin --spinner line --title "Evaluating $SYSTEM_PKGS to $DIR/first.json" --
+  #   nix eval "$SYSTEM_PKGS" --json | tee "$DIR/first.json"
+
+  #   HOME_PKGS=".#$1.config.home-manager.users.tomas.home.packages"
+  #   # gum spin --spinner line --title "Evaluating $HOME_PKGS to $DIR/second.json" --
+  #   nix eval "$HOME_PKGS" --json | tee "$DIR/second.json"
+
+  #   cat "$DIR/first.json" "$DIR/second.json" | jq -s add | tee "$DIR/out.json" | gum pager
+  # '';
   nixpkgs = import ../../modules/home/tools/nix/nixpkgs.nix {inherit pkgs inputs;};
 in
   mkShell {
@@ -47,25 +64,27 @@ in
 
     packages = with inputs;
       [
-        alejandra
         ack
         age
+        agenix.packages.${system}.default
+        alejandra
+        attic.packages.${system}.default
         bash
         bfg-repo-cleaner
         colima
         comma
         deploy-machine
+        deploy-rs.packages.${system}.default
         deployment
         direnv
+        flake-checker.packages.${system}.default
         git
         gnupg
-        inputs.agenix.packages.${system}.default
-        inputs.attic.packages.${system}.default
-        inputs.deploy-rs.packages.${system}.default
-        inputs.flake-checker.packages.${system}.default
+        gum
         mkiso
         netdiscover
         nil
+        packages-json
         pkgs.custom.remote-cli
         pkgs.custom.rundesk
         python3

@@ -4,9 +4,16 @@
   modulesPath,
   lib,
   ...
-}: let
+}:
+with lib;
+with lib.custom; let
   tailscaled = import ./tailscaled.nix {inherit pkgs lib;};
+  cfg = config.tailscale;
 in {
+  options.tailscale = {
+    enable = mkBoolOpt true "SnowflakeOS GNOME configuration";
+  };
+
   # age.secrets.tailscale = {
   #   file = ../../secrets/tailscale.age;
   #   # mode = "770";
@@ -14,7 +21,7 @@ in {
   #   group = "tomas";
   # };
 
-  config = {
+  config = mkIf cfg.enable {
     services.tailscale = {
       enable = true;
       authKeyFile = config.age.secrets.tailscale.path;

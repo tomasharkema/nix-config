@@ -42,8 +42,8 @@ with lib; {
     home.extraOptions = {
       home.stateVersion = config.system.stateVersion;
       home.file = mkAliasDefinitions options.home.file;
-      # xdg.enable = true;
-      # xdg.configFile = mkAliasDefinitions options.home.configFile;
+      xdg.enable = true;
+      xdg.configFile = mkAliasDefinitions options.home.configFile;
       programs = mkAliasDefinitions options.home.programs;
     };
 

@@ -28,8 +28,8 @@
 in {
   # Your configuration.
 
-  config = {
-    home.username = lib.mkDefault "tomas";
-    home.homeDirectory = lib.mkDefault (home-directory "tomas");
-  };
+  # config = {
+  #   home.username = lib.mkDefault "tomas";
+  #   home.homeDirectory = lib.mkDefault (home-directory "tomas");
+  # };
 }

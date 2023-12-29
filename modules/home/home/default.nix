@@ -13,6 +13,12 @@
     url = "https://raw.githubusercontent.com/nix-community/nix-direnv/3.0.3/direnvrc";
     sha256 = "sha256-0EVQVNSRQWsln+rgPW3mXVmnF5sfcmKEYOmOSfLYxHg=";
   };
+  is-linux = stdenv.isLinux;
+  is-darwin = stdenv.isDarwin;
+  home-directory = user:
+    if is-darwin
+    then "/Users/${user}"
+    else "/home/${user}";
 in {
   config = {
     programs.home-manager.enable = true;
@@ -33,7 +39,7 @@ in {
       ];
 
     home.username = lib.mkDefault "tomas";
-    home.homeDirectory = lib.mkDefault "/home/tomas";
+    home.homeDirectory = lib.mkDefault (home-directory "tomas");
 
     home.sessionVariables = lib.mkIf stdenv.isDarwin {
       EDITOR = "subl";

@@ -100,6 +100,7 @@
     };
 
     fh.url = "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz";
+    bento.url = "github:rapenne-s/bento";
   };
 
   nixConfig = {
@@ -180,7 +181,17 @@
         # agenix.homeManagerModules.default
       ];
 
-      deploy = lib.mkDeploy {inherit (inputs) self;};
+      deploy = lib.mkDeploy {
+        inherit (inputs) self;
+
+        overrides = {
+          sshUser = "root";
+          wodan-wsl = {
+            sshUser = "root";
+            hostname = "192.168.1.42";
+          };
+        };
+      };
 
       checks =
         builtins.mapAttrs

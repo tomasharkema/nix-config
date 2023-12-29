@@ -16,6 +16,12 @@ with lib; {
   };
 
   config = {
+    users.users.tomas = {
+      # isNormalUser = true;
+      description = "tomas";
+      home = "/Users/tomas";
+    };
+
     nix.distributedBuilds = true;
     # optional, useful when the builder has a faster internet connection than yours
     nix.extraOptions = ''
