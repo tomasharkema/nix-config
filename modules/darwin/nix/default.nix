@@ -44,7 +44,7 @@ in {
 
         # This appears to break on darwin
         # https://github.com/NixOS/nix/issues/7273
-        auto-optimise-store = false;
+        auto-optimise-store = true;
 
         allow-import-from-derivation = true;
 
