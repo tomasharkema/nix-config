@@ -1,49 +1,44 @@
 {
+  lib,
   config,
   pkgs,
-  lib,
   ...
-}:
-with lib; {
-  # imports = [../../nixos/user];
+}: let
+  inherit (lib) types mkIf mkDefault;
+  inherit (lib.custom) mkOpt;
 
-  options.user = with types; {
-    name = mkOption {
-      type = types.str;
-      default = "tomas";
-      description = "The name to use for the user account.";
-    };
+  cfg = config.custom.user;
+
+  is-linux = pkgs.stdenv.isLinux;
+  is-darwin = pkgs.stdenv.isDarwin;
+in {
+  options.custom.user = {
+    name = mkOpt types.str "tomas" "The user account.";
+
+    fullName = mkOpt types.str "Tomas Harkema" "The full name of the user.";
+    email = mkOpt types.str "tomas@harkema.io" "The email of the user.";
+
+    uid = mkOpt (types.nullOr types.int) 501 "The uid for the user account.";
   };
 
   config = {
-    users.users.tomas = {
-      # isNormalUser = true;
-      description = "tomas";
-      home = "/Users/tomas";
+    users.users.${cfg.name} = {
+      # NOTE: Setting the uid here is required for another
+      # module to evaluate successfully since it reads
+      # `users.users.${config.user.name}.uid`.
+      uid = mkIf (cfg.uid != null) cfg.uid;
     };
 
-    nix.distributedBuilds = true;
-    # optional, useful when the builder has a faster internet connection than yours
-    nix.extraOptions = ''
-      builders-use-substitutes = true
-    '';
-
-    nix.settings = {
-      extra-experimental-features = "nix-command flakes";
-      # distributedBuilds = true;
-      trusted-users = ["root" "tomas"];
-      extra-substituters = [
-        "https://nix-cache.harke.ma/tomas"
-        "https://cache.nixos.org/"
-      ];
-      extra-binary-caches = [
-        "https://nix-cache.harke.ma/tomas"
-        "https://cache.nixos.org/"
-      ];
-      extra-trusted-public-keys = [
-        "nix-cache.harke.ma:2UhS18Tt0delyOEULLKLQ36uNX3/hpX4sH684B+cG3c="
-      ];
-      access-tokens = ["github.com=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"];
+    snowfallorg.user.${config.custom.user.name}.home.config = {
+      home = {
+        file = {
+          ".profile".text = ''
+            # The default file limit is far too low and throws an error when rebuilding the system.
+            # See the original with: ulimit -Sa
+            ulimit -n 4096
+          '';
+        };
+      };
     };
   };
 }

@@ -1,7 +1,9 @@
 {
   inputs = {
-    nix-netboot-serve.url = "https://flakehub.com/f/DeterminateSystems/nix-netboot-serve/0.1.79.tar.gz";
     nixpkgs.url = "nixpkgs/nixos-23.11";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nix-netboot-serve.url = "https://flakehub.com/f/DeterminateSystems/nix-netboot-serve/0.1.79.tar.gz";
+
     darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -78,19 +80,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
-    # nix-gui = {
-    #   url = "github:nix-gui/nix-gui";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.flake-utils.follows = "flake-utils";
-    #   inputs.rnix-lsp.follows = "rnix-lsp";
-    # };
-    # rnix-lsp = {
-    #   url = "github:nix-community/rnix-lsp";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.flake-utils.follows = "flake-utils";
-    # };
+
     snowfall-lib = {
       url = "github:snowfallorg/lib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    snowfall-flake = {
+      url = "github:snowfallorg/flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -170,7 +166,7 @@
         namespace = "custom";
       };
 
-      # overlays = with inputs; [attic.overlays.default];
+      overlays = with inputs; [snowfall-flake.overlays."package/flake"];
 
       systems.modules.nixos = with inputs; [
         impermanence.nixosModule

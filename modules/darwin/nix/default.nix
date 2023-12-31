@@ -28,7 +28,7 @@ in {
     ];
 
     nix = let
-      users = ["root" config.user.name];
+      users = ["root" config.custom.user.name];
     in {
       package = cfg.package;
 
@@ -65,7 +65,7 @@ in {
         automatic = true;
         interval = {Day = 1;};
         options = "--delete-older-than 14d";
-        user = config.user.name;
+        user = config.custom.user.name;
       };
 
       # flake-utils-plus

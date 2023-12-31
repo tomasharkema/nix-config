@@ -12,7 +12,7 @@ with pkgs; let
   };
 in [
   inputs.fh.packages.${system}.default
-
+  snowfallorg.flake
   agenix # .packages.${system}.default
   alejandra # .defaultPackage.${system}
   deadnix

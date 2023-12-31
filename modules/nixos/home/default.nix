@@ -50,7 +50,7 @@ with lib; {
     home-manager = {
       useUserPackages = true;
 
-      users.${config.user.name} =
+      users.${config.custom.user.name} =
         mkAliasDefinitions options.home.extraOptions;
     };
   };

@@ -64,6 +64,7 @@ in
 
     packages = with inputs;
       [
+        snowfallorg.flake
         ack
         age
         agenix.packages.${system}.default
