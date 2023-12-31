@@ -8,10 +8,9 @@
 with lib; {
   imports = with inputs; [
     home-manager.nixosModules.home-manager
-    # ../../home/default
   ];
 
-  options.home = with types; {
+  options.custom.home = with types; {
     file = mkOption {
       type = types.attrs;
       default = {};
@@ -39,19 +38,19 @@ with lib; {
   };
 
   config = {
-    home.extraOptions = {
+    custom.home.extraOptions = {
       home.stateVersion = config.system.stateVersion;
-      home.file = mkAliasDefinitions options.home.file;
+      home.file = mkAliasDefinitions options.custom.home.file;
       xdg.enable = true;
-      xdg.configFile = mkAliasDefinitions options.home.configFile;
-      programs = mkAliasDefinitions options.home.programs;
+      xdg.configFile = mkAliasDefinitions options.custom.home.configFile;
+      programs = mkAliasDefinitions options.custom.home.programs;
     };
 
     home-manager = {
       useUserPackages = true;
 
       users.${config.custom.user.name} =
-        mkAliasDefinitions options.home.extraOptions;
+        mkAliasDefinitions options.custom.home.extraOptions;
     };
   };
 }

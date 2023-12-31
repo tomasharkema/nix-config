@@ -53,7 +53,7 @@ in {
 
     nix = let
       users =
-        ["root" config.user.name]
+        ["root" config.custom.user.name]
         ++ optional config.services.hydra.enable "hydra";
     in {
       package = cfg.package;
