@@ -1,6 +1,6 @@
 {
   config,
-  osConfig,
+  # osConfig,
   pkgs,
   lib,
   ...
@@ -18,7 +18,10 @@ with lib.custom; let
 in {
   options.gui.apps.tilix = {
     # gui.apps.tilix.enable = mkDefault true;
-    enable = mkOpt types.bool osConfig.gui.enable "hallo";
+    enable =
+      mkOpt types.bool
+      #osConfig.gui.enable
+      true "hallo";
   };
 
   config = mkIf cfg.enable {

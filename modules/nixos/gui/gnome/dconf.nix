@@ -1,6 +1,5 @@
 # Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
 {
-  osConfig,
   lib,
   pkgs,
   ...

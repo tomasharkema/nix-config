@@ -65,7 +65,7 @@
       packages = with pkgs; [
         firefox
         vscode
-        tilix
+        # tilix
         # nvtop
         #  thunderbird
       ];
