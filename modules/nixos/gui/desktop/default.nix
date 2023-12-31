@@ -68,6 +68,8 @@ in {
       powertop
       # keybase_gui
       nix-software-center
+
+      gnome-firmware
     ];
 
     # nativeMessagingHosts.packages = with pkgs; [ gnome-browser-connector ];

@@ -101,6 +101,11 @@
 
     fh.url = "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz";
     bento.url = "github:rapenne-s/bento";
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.3.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
@@ -147,6 +152,7 @@
     lib.mkFlake {
       channels-config = {
         allowUnfree = true;
+        nvidia.acceptLicense = true;
       };
 
       alias = {
@@ -169,6 +175,9 @@
       systems.modules.nixos = with inputs; [
         impermanence.nixosModule
         disko.nixosModules.default
+
+        lanzaboote.nixosModules.lanzaboote
+
         # home-manager.nixosModules.home-manager
         agenix.nixosModules.default
         # nixos-generators.nixosModules.all-formats

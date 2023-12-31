@@ -9,6 +9,9 @@
     environment.systemPackages = with pkgs; [
       atop
       packagekit
+      fwupd
+      fwupd-efi
+      toybox
     ];
 
     # services.eternal-terminal.enable = true;
