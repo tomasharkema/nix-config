@@ -62,7 +62,7 @@ with pkgs; {
       ssh-to-age
       starship
       tailscale
-      thefuck
+      # thefuck
       tldr
       tmate
       tree

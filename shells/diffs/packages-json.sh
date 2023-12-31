@@ -1,6 +1,9 @@
-#!/bin/bash
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash -p bash nix-eval-jobs gum
 
 set -euxo pipefail
+
+ROOT=$(pwd)
 
 export DIR="$(mktemp -d)"
 
@@ -8,7 +11,27 @@ export DIR="$(mktemp -d)"
 
 # gum log --structured --level info "Using folder $DIR"
 
-HOSTS="$(nix eval ".#deploy.nodes" --json --apply builtins.attrNames | jq -r 'join("\n")')"
+# nix eval --with . --expr 'with inputs.nixpkgs.lib; (mapAttrsToList (name: value: "nixosConfigurations." + name) nixosConfigurations) ++ (mapAttrsToList (name: value: "darwinConfigurations." + name) darwinConfigurations' --json | jq
+
+GET_HOSTS="
+{system ? builtins.currentSystem}:
+toString $ROOT/.
+"
+# {system ? builtins.currentSystem}: let
+#   flake = builtins.getFlake (toString ./.);
+# in
+# flake.inputs
+#   with flake.inputs.nixpkgs.lib;
+#     mapAttrsToList (name: value: \"nixosConfigurations.\" + name) flake.outputs.nixosConfigurations ++
+#          mapAttrsToList (name: value: \"darwinConfigurations.\" + name) flake.outputs.darwinConfigurations
+# "
+
+DERP="$(nix-eval-jobs --gc-roots-dir gc-root --expr "$GET_HOSTS" | jq)"
+echo $DERP
+
+exit 1
+
+# HOSTS="$(nix eval ".#deploy.nodes" --json --apply builtins.attrNames | jq -r 'join("\n")')"
 # DARWIN_SYSTEMS=$(nix eval ".#darwinConfigurations" --json --apply builtins.attrNames | jq -r 'join(" ")')
 # NIXOS_SYSTEMS=$(nix eval ".#nixosConfigurations" --json --apply builtins.attrNames | jq -r 'join(" ")')
 
