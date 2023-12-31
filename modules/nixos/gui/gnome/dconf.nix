@@ -150,7 +150,7 @@ with lib.hm.gvariant; {
       theme-variant = "dark";
     };
     "com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = {
-      background-color = "#263238";
+      background-color = "#1E1E2E";
       badge-color = "#AC7EA8";
       badge-color-set = false;
       bold-color-set = false;
@@ -158,25 +158,41 @@ with lib.hm.gvariant; {
       foreground-color = "#A1B0B8";
       highlight-colors-set = false;
       palette = [
-        "#252525"
-        "#FF5252"
-        "#C3D82C"
-        "#FFC135"
-        "#42A5F5"
-        "#D81B60"
-        "#00ACC1"
-        "#F5F5F5"
-        "#708284"
-        "#FF5252"
-        "#C3D82C"
-        "#FFC135"
-        "#42A5F5"
-        "#D81B60"
-        "#00ACC1"
-        "#F5F5F5"
+        "#45475A"
+        "#F38BA8"
+        "#A6E3A1"
+        "#F9E2AF"
+        "#89B4FA"
+        "#F5C2E7"
+        "#94E2D5"
+        "#BAC2DE"
+        "#585B70"
+        "#F38BA8"
+        "#A6E3A1"
+        "#F9E2AF"
+        "#89B4FA"
+        "#F5C2E7"
+        "#94E2D5"
+        "#A6ADC8"
       ];
       use-theme-colors = false;
       visible-name = "Default";
     };
   };
 }
+# background-color='#1E1E2E'
+# badge-color-set=false
+# bold-color-set=false
+# cursor-background-color='#F5E0DC'
+# cursor-colors-set=true
+# cursor-foreground-color='#1E1E2E'
+# font='FiraCode Nerd Font weight=450 12'
+# foreground-color='#CDD6F4'
+# highlight-background-color='#F5E0DC'
+# highlight-colors-set=true
+# highlight-foreground-color='#1E1E2E'
+# palette=['#45475A', '#F38BA8', '#A6E3A1', '#F9E2AF', '#89B4FA', '#F5C2E7', '#94E2D5', '#BAC2DE', '#585B70', '#F38BA8', '#A6E3A1', '#F9E2AF', '#89B4FA', '#F5C2E7', '#94E2D5', '#A6ADC8']
+# use-system-font=false
+# use-theme-colors=false
+# visible-name='Default'
+
