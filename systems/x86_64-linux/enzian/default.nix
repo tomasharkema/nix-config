@@ -20,8 +20,10 @@
   ];
 
   config = {
-    gui.enable = true;
-    gui.apps.steam.enable = true;
+    gui = {
+      enable = true;
+      apps.steam.enable = true;
+    };
 
     disks.zfs = {
       enable = true;
@@ -30,6 +32,13 @@
     };
 
     wifi.enable = true;
+
+    traits = {
+      hardware = {
+        tpm.enable = true;
+        secure-boot.enable = true;
+      };
+    };
 
     boot.binfmt.emulatedSystems = ["aarch64-linux"];
     hardware.cpu.intel.updateMicrocode = true;
@@ -94,13 +103,6 @@
       nvidia_smi: yes
     '';
 
-    # boot.loader.systemd-boot.enable = true;
-    # boot.loader.efi.canTouchEfiVariables = true;
-
-    boot.loader.grub.enable = lib.mkDefault true;
-    boot.loader.grub.efiSupport = true;
-    boot.loader.grub.efiInstallAsRemovable = true;
-
     boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
     boot.initrd.kernelModules = ["kvm-intel" "uinput" "nvme"];
     boot.kernelModules = ["kvm-intel" "uinput" "nvme"];
@@ -109,11 +111,5 @@
     networking.useDHCP = lib.mkDefault true;
     hardware.bluetooth.enable = true;
     services.blueman.enable = true;
-
-    security.tpm2.enable = true;
-    security.tpm2.pkcs11.enable = true;
-    security.tpm2.tctiEnvironment.enable = true;
-    users.users."tomas".extraGroups = ["tss"];
-    boot.initrd.systemd.enableTpm2 = true;
   };
 }

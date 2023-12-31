@@ -24,15 +24,13 @@
   config = {
     gui.enable = true;
 
-    boot.lanzaboote = {
-      enable = true;
-      pkiBundle = "/etc/secureboot";
+    traits = {
+      hardware = {
+        tpm.enable = true;
+        secure-boot.enable = true;
+      };
     };
 
-    # boot.supportedFilesystems = [ "ext4" ];
-    # boot.tmp.useTmpfs = true;
-    # boot.loader.systemd-boot.enable = false;
-    boot.loader.efi.canTouchEfiVariables = true;
     # boot.loader.efi.efiSysMountPoint = "/boot/efi";
     # boot.loader.grub.efiSupport = true;
     # boot.loader.grub.efiInstallAsRemovable = true;

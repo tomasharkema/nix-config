@@ -33,7 +33,14 @@ in {
       disks = ["/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K"];
     };
 
-    traits.builder.enable = true;
+    traits = {
+      builder.enable = true;
+      hardware = {
+        tpm.enable = true;
+        secure-boot.enable = true;
+      };
+    };
+
     services.prometheus.exporters.ipmi.enable = true;
 
     networking = {
@@ -75,13 +82,6 @@ in {
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
-
-      loader.grub = {
-        enable = lib.mkDefault true;
-        efiSupport = true;
-        efiInstallAsRemovable = true;
-        devices = ["nodev"];
-      };
 
       initrd = {
         availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
