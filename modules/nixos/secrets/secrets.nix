@@ -20,6 +20,8 @@ let
   baaa-express = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDIehvj2mj3tzsYoZbwSZoBi0K7Yt1ElbOd+e9DR8P2Z root@baaa-express";
   baaa-express-user = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBzNmvr4dGWHPZ/ZoFN2wIzUSDhYO2+hq4r4FeAqIPSf tomas@baaa-express";
 
+  euro-mir-2 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKpAkUKIDV+fg3vqytinCH9ODDyB6uIqL7Dn9hYInRuk tomas@euro-mir-2";
+
   systems = [
     enzian
     enzian-user
@@ -33,6 +35,8 @@ let
     baaa-express
     baaa-express-user
     wodan-wsl
+    wodan-wsl-tomas
+    euro-mir-2
   ];
   allKeys = users ++ systems;
 in {
