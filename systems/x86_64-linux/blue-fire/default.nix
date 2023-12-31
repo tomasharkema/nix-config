@@ -45,6 +45,7 @@ in {
 
     networking = {
       networkmanager.enable = lib.mkDefault true;
+
       hostName = lib.mkDefault "blue-fire";
       hostId = "529fd7aa";
 
