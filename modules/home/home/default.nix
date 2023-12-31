@@ -9,10 +9,10 @@
     url = "https://iterm2.com/shell_integration/zsh";
     sha256 = "sha256-Cq8winA/tcnnVblDTW2n1k/olN3DONEfXrzYNkufZvY=";
   };
-  direnv = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/nix-community/nix-direnv/3.0.3/direnvrc";
-    sha256 = "sha256-0EVQVNSRQWsln+rgPW3mXVmnF5sfcmKEYOmOSfLYxHg=";
-  };
+  # direnv = pkgs.fetchurl {
+  #   url = "https://raw.githubusercontent.com/nix-community/nix-direnv/3.0.3/direnvrc";
+  #   sha256 = "sha256-0EVQVNSRQWsln+rgPW3mXVmnF5sfcmKEYOmOSfLYxHg=";
+  # };
   is-linux = stdenv.isLinux;
   is-darwin = stdenv.isDarwin;
   home-directory = user:
@@ -20,6 +20,8 @@
     then "/Users/${user}"
     else "/home/${user}";
 in {
+  imports = [../../nixos/gui/gnome/dconf.nix];
+
   config = {
     programs.home-manager.enable = true;
 
@@ -59,16 +61,16 @@ in {
       enable = true;
       nix-direnv.enable = true;
 
-      stdlib = lib.readFile "${direnv}";
+      # stdlib = lib.readFile "${direnv}";
     };
 
     programs.htop.enable = true;
     programs.htop.settings.show_program_path = false;
 
-    # programs.autojump = {
-    #   enable = true;
-    #   enableZshIntegration = true;
-    # };
+    programs.autojump = {
+      enable = true;
+      enableZshIntegration = true;
+    };
     programs.broot = {
       enable = true;
       enableZshIntegration = true;
@@ -81,28 +83,20 @@ in {
       enable = true;
       enableZshIntegration = true;
     };
-    # programs.keychain = {
-    #   enable = true;
-    #   enableZshIntegration = true;
-    # };
-    # programs.nix-index = {
-    #   enable = false;
-    #   #   enableZshIntegration = true;
-    # };
 
     programs.tmux = {enable = true;};
 
-    # programs.alacritty = {
-    #   enable = true;
-    #   settings = {
-    #     font = {
-    #       normal = {
-    #         family = "Fira Code";
-    #         style = "Retina";
-    #       };
-    #     };
-    #   };
-    # };
+    programs.alacritty = {
+      enable = true;
+      settings = {
+        font = {
+          normal = {
+            family = "Fira Code";
+            style = "Retina";
+          };
+        };
+      };
+    };
 
     programs.atuin = {
       enable = true;

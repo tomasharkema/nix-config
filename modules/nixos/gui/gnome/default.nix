@@ -28,9 +28,11 @@ in {
     services.gnome.gnome-browser-connector.enable = true;
     services.gnome.core-shell.enable = true;
     services.gnome.core-utilities.enable = true;
+    services.gnome3.chrome-gnome-shell.enable = true;
+
     services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
-    nixpkgs.config.firefox.enableGnomeExtensions = true;
+    # nixpkgs.config.firefox.enableGnomeExtensions = true;
     services.gnome.chrome-gnome-shell.enable = true;
 
     environment.systemPackages = with pkgs; [
@@ -45,6 +47,5 @@ in {
     ];
 
     programs.dconf.enable = true;
-    # programs.dconf.settings = import ./dconf.nix;
   };
 }

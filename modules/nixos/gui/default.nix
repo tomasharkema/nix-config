@@ -27,5 +27,6 @@ in {
     gui.game-mode.enable = mkDefault true;
     gui.quiet-boot.enable = mkDefault true;
     gui.desktop.enable = mkDefault true;
+    gui.gnome.enable = mkDefault true;
   };
 }
