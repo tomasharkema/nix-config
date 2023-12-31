@@ -36,7 +36,7 @@ in {
     traits = {
       builder.enable = true;
       hardware = {
-        # tpm.enable = true;
+        tpm.enable = true;
         # secure-boot.enable = true;
       };
     };
@@ -44,6 +44,7 @@ in {
     services.prometheus.exporters.ipmi.enable = true;
 
     networking = {
+      networkmanager.enable = lib.mkDefault true;
       hostName = lib.mkDefault "blue-fire";
       hostId = "529fd7aa";
 
