@@ -28,6 +28,7 @@
       hardware = {
         tpm.enable = true;
         secure-boot.enable = true;
+        laptop.enable = true;
       };
     };
 
@@ -45,15 +46,7 @@
 
     # Enable networking
     networking.networkmanager.enable = true;
-
-    powerManagement.enable = true;
-    services.thermald.enable = true;
-
-    # Enable CUPS to print documents.
-    # services.printing.enable = true;
-
-    # Enable touchpad support (enabled default in most desktopManager).
-    # services.xserver.libinput.enable = true;
+    services.xserver.libinput.enable = true;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.tomas = {
@@ -69,15 +62,9 @@
       ];
     };
 
-    # nix.settings.experimental-features = ["nix-command" "flakes"];
-    boot.loader.systemd-boot.enable = lib.mkForce false;
-    #  boot.loader.systemd-boot.enable = true;
-    #  boot.loader.systemd-boot.consoleMode = "auto";
-    #  boot.loader.efi.canTouchEfiVariables = true;
-
     # Some programs need SUID wrappers, can be configured further or are
     # started in user sessions.
-    # programs.mtr.enable = true;
+    programs.mtr.enable = true;
     # programs.gnupg.agent = {
     #   enable = true;
     #   enableSSHSupport = true;
@@ -92,6 +79,6 @@
     # networking.firewall.allowedTCPPorts = [ ... ];
     # networking.firewall.allowedUDPPorts = [ ... ];
     # Or disable the firewall altogether.
-    networking.firewall.enable = false;
+    networking.firewall.enable = true;
   };
 }

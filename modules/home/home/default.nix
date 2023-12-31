@@ -67,10 +67,10 @@ in {
     programs.htop.enable = true;
     programs.htop.settings.show_program_path = false;
 
-    programs.autojump = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+    # programs.autojump = {
+    #   enable = true;
+    #   enableZshIntegration = true;
+    # };
     programs.broot = {
       enable = true;
       enableZshIntegration = true;

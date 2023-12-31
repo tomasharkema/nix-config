@@ -4,7 +4,7 @@ with pkgs; {
     home.packages = with pkgs; [
       _1password
       antidote
-      autojump
+      # autojump
       bash
       bat
       bottom

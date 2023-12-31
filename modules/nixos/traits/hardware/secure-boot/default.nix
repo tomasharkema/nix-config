@@ -1,4 +1,8 @@
-{lib, ...}:
+{
+  lib,
+  config,
+  ...
+}:
 with lib;
 with lib.custom; let
   cfg = config.traits.hardware.secure-boot;
@@ -10,11 +14,15 @@ in {
   };
 
   config = mkIf cfg.enable {
-    boot.loader.systemd-boot.enable = lib.mkForce false;
-    boot.lanzaboote = {
-      enable = true;
-      pkiBundle = "/etc/secureboot";
+    boot = {
+      lanzaboote = {
+        enable = true;
+        pkiBundle = "/etc/secureboot";
+      };
+      loader = {
+        efi.canTouchEfiVariables = true;
+        systemd-boot.enable = lib.mkForce false;
+      };
     };
-    boot.loader.efi.canTouchEfiVariables = true;
   };
 }
