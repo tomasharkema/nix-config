@@ -30,8 +30,8 @@ in {
   programs.zsh.enable = true;
   environment.systemPackages = common; # ++ gui;
 
-  networking.wireless.enable = lib.mkDefault false;
-  networking.networkmanager.enable = lib.mkDefault true;
+  # networking.wireless.enable = lib.mkDefault false;
+  # networking.networkmanager.enable = lib.mkDefault true;
 
   # time.timeZone = "Europe/Amsterdam";
 
