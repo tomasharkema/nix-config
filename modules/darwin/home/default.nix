@@ -27,7 +27,7 @@ in {
 
   config = {
     custom.home.extraOptions = {
-      home.stateVersion = mkDefault "22.11";
+      home.stateVersion = mkDefault "23.11";
       home.file = mkAliasDefinitions options.custom.home.file;
       xdg.enable = true;
       xdg.configFile = mkAliasDefinitions options.custom.home.configFile;
