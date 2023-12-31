@@ -6,12 +6,13 @@
   inputs,
   ...
 }:
-with lib; let
+with lib;
+with lib.custom; let
   cfg = config.home;
 in {
-  imports = with inputs; [
-    home-manager.darwinModules.home-manager
-  ];
+  # imports = with inputs; [
+  #   home-manager.darwinModules.home-manager
+  # ];
 
   options.home = with types; {
     file =
@@ -32,14 +33,11 @@ in {
       xdg.configFile = mkAliasDefinitions options.home.configFile;
     };
 
-    # snowfallorg.user.${config.user.name}.home.config = mkAliasDefinitions options.home.extraOptions;
+    snowfallorg.user.${config.user.name}.home.config = mkAliasDefinitions options.home.extraOptions;
 
     home-manager = {
       useUserPackages = true;
       useGlobalPkgs = true;
-
-      users.${config.user.name} = args:
-        mkAliasDefinitions options.home.extraOptions;
     };
   };
 }

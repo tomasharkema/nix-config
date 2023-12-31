@@ -3,12 +3,14 @@
   config,
   lib,
   inputs,
+  pkgs,
   ...
 }:
 with lib; {
-  imports = with inputs; [
-    home-manager.nixosModules.home-manager
-  ];
+  # imports = with inputs; [
+  # home-manager.nixosModules.home-manager
+  # ../../home/home
+  # ];
 
   options.home = with types; {
     file = mkOption {
@@ -38,6 +40,10 @@ with lib; {
   };
 
   config = {
+    environment.systemPackages = [
+      pkgs.home-manager
+    ];
+
     home.extraOptions = {
       home.stateVersion = config.system.stateVersion;
       home.file = mkAliasDefinitions options.home.file;

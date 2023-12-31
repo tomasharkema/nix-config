@@ -20,7 +20,7 @@
     then "/Users/${user}"
     else "/home/${user}";
 in {
-  imports = [../../nixos/gui/gnome/dconf.nix];
+  # imports = [../../nixos/gui/gnome/dconf.nix];
 
   config = {
     programs.home-manager.enable = true;
@@ -41,7 +41,7 @@ in {
       ];
 
     home.username = lib.mkDefault "tomas";
-    home.homeDirectory = lib.mkDefault (home-directory "tomas");
+    # home.homeDirectory = lib.mkDefault (home-directory "tomas");
 
     home.sessionVariables = lib.mkIf stdenv.isDarwin {
       EDITOR = "subl";
