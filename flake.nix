@@ -208,12 +208,7 @@
           deploy-lib.deployChecks inputs.self.deploy)
         inputs.deploy-rs.lib;
 
-      outputs-builder = channels:
-      # let
-      # derp = builtins.trace ">>> channels format: ${lib.attrsToList channels}";
-      # in
-      # derp
-      {
+      outputs-builder = channels: {
         formatter = channels.nixpkgs.alejandra;
 
         images = with inputs; {
