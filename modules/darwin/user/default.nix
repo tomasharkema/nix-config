@@ -7,12 +7,12 @@
   inherit (lib) types mkIf mkDefault;
   inherit (lib.custom) mkOpt;
 
-  cfg = config.custom.user;
+  cfg = config.user;
 
   is-linux = pkgs.stdenv.isLinux;
   is-darwin = pkgs.stdenv.isDarwin;
 in {
-  options.custom.user = {
+  options.user = {
     name = mkOpt types.str "tomas" "The user account.";
 
     fullName = mkOpt types.str "Tomas Harkema" "The full name of the user.";
@@ -29,7 +29,7 @@ in {
       uid = mkIf (cfg.uid != null) cfg.uid;
     };
 
-    snowfallorg.user.${config.custom.user.name}.home.config = {
+    snowfallorg.user.${config.user.name}.home.config = {
       home = {
         file = {
           ".profile".text = ''

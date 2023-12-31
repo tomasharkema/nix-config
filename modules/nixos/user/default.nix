@@ -20,7 +20,7 @@ with lib.custom; let
     ]
     ++ githubKeys;
 in {
-  options.custom.user = with types; {
+  options.user = with types; {
     name = mkOpt str "tomas" "The name to use for the user account.";
     fullName = mkOpt str "Tomas Harkema" "The full name of the user.";
     email = mkOpt str "tomas@harkema.io" "The email of the user.";

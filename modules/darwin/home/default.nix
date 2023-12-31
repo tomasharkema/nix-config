@@ -6,15 +6,14 @@
   inputs,
   ...
 }:
-with lib;
-with lib.custom; let
-  cfg = config.custom.home;
+with lib; let
+  cfg = config.home;
 in {
   imports = with inputs; [
     home-manager.darwinModules.home-manager
   ];
 
-  options.custom.home = with types; {
+  options.home = with types; {
     file =
       mkOpt attrs {}
       "A set of files to be managed by home-manager's <option>home.file</option>.";
@@ -26,21 +25,21 @@ in {
   };
 
   config = {
-    custom.home.extraOptions = {
+    home.extraOptions = {
       home.stateVersion = mkDefault "23.11";
-      home.file = mkAliasDefinitions options.custom.home.file;
+      home.file = mkAliasDefinitions options.home.file;
       xdg.enable = true;
-      xdg.configFile = mkAliasDefinitions options.custom.home.configFile;
+      xdg.configFile = mkAliasDefinitions options.home.configFile;
     };
 
-    snowfallorg.user.${config.custom.user.name}.home.config = mkAliasDefinitions options.custom.home.extraOptions;
+    # snowfallorg.user.${config.user.name}.home.config = mkAliasDefinitions options.home.extraOptions;
 
     home-manager = {
       useUserPackages = true;
       useGlobalPkgs = true;
 
-      # users.${config.custom.user.name} = args:
-      #   mkAliasDefinitions options.custom.home.extraOptions;
+      users.${config.user.name} = args:
+        mkAliasDefinitions options.home.extraOptions;
     };
   };
 }
