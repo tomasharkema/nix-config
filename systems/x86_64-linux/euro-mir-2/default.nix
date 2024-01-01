@@ -22,6 +22,11 @@
   ];
 
   config = {
+    # disks.btrfs = {
+    #   enable = true;
+    #   disks = ["/dev/nvme0n1"];
+    # };
+
     gui.enable = true;
 
     traits = {
@@ -32,23 +37,11 @@
       };
     };
 
-    # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-    # boot.loader.grub.efiSupport = true;
-    # boot.loader.grub.efiInstallAsRemovable = true;
-    # boot.loader.grub.device = "nodev";
-
     networking.hostName = "euro-mir-2"; # Define your hostname.
-    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-    # Configure network proxy if necessary
-    # networking.proxy.default = "http://user:password@proxy:port/";
-    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-    # Enable networking
     networking.networkmanager.enable = true;
     services.xserver.libinput.enable = true;
 
-    # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${config.user.name} = {
       isNormalUser = true;
       description = "${config.user.name}";
@@ -62,8 +55,6 @@
       ];
     };
 
-    # Some programs need SUID wrappers, can be configured further or are
-    # started in user sessions.
     programs.mtr.enable = true;
     # programs.gnupg.agent = {
     #   enable = true;

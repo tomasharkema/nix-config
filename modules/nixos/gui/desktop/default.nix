@@ -21,6 +21,10 @@ with lib; let
 in {
   options.gui.desktop = {
     enable = mkEnableOption "hallo";
+
+    rdp = {
+      enable = mkEnableOption "hallo";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -28,9 +32,11 @@ in {
     services.xserver.displayManager.gdm.enable = true;
     services.xserver.desktopManager.gnome.enable = true;
 
-    services.xrdp.enable = true;
-    services.xrdp.openFirewall = true;
-    services.xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
+    services.xrdp = mkIf cfg.rdp.enable {
+      enable = true;
+      openFirewall = true;
+      defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
+    };
 
     services.xserver.libinput.enable = true;
     programs.mtr.enable = true;

@@ -188,7 +188,7 @@
 
         # home-manager.nixosModules.home-manager
         agenix.nixosModules.default
-        # nixos-generators.nixosModules.all-formats
+        nixos-generators.nixosModules.all-formats
         {
           system.stateVersion = "23.11";
         }

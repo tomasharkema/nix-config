@@ -33,7 +33,7 @@ in {
   ];
 
   config = {
-    disks.btrfs = (lib.mkIf isLinux) {
+    disks.btrfs = {
       enable = true;
       disks = ["/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K"];
     };

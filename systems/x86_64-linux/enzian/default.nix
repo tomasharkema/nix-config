@@ -6,8 +6,10 @@
   format,
   ...
 }: {
-  imports = [
+  imports = with inputs; [
     (modulesPath + "/installer/scan/not-detected.nix")
+    nixos-hardware.nixosModules.common-cpu-intel
+    nixos-hardware.nixosModules.common-pc-ssd
     # ../../common/quiet-boot.nix
     # ../../common/game-mode.nix
     # ../../common/wifi.nix
@@ -23,6 +25,7 @@
     gui = {
       enable = true;
       apps.steam.enable = true;
+      rdp.enable = true;
     };
 
     disks.zfs = {

@@ -24,8 +24,11 @@
   ];
 
   config = {
-    gui.enable = true;
-    gui.apps.steam.enable = true;
+    gui = {
+      enable = true;
+      rdp.enable = true;
+      apps.steam.enable = true;
+    };
 
     disks.btrfs = (lib.mkIf (format == null)) {
       enable = true;
