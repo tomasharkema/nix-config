@@ -95,8 +95,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    fh.url = "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz";
-    bento.url = "github:rapenne-s/bento";
+    fh = {
+      url = "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    bento = {
+      url = "github:rapenne-s/bento";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.3.0";

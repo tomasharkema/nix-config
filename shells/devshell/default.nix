@@ -45,7 +45,7 @@ with lib; let
   #   nix eval "$HOME_PKGS" --json | tee "$DIR/second.json"
   #   cat "$DIR/first.json" "$DIR/second.json" | jq -s add | tee "$DIR/out.json" | gum pager
   # '';
-  # nixpkgs = import ../../modules/home/tools/nix/nixpkgs.nix {inherit pkgs inputs;};
+  nix-install-pkgs = import ../../modules/home/tools/nix/nixpkgs.nix {inherit pkgs inputs;};
 in
   mkShell {
     name = "devshell";
@@ -57,22 +57,31 @@ in
     # nix-profiler
 
     packages = with inputs;
-    with pkgs.custom;
       [
+        flake-checker.packages.${system}.default
+        deploy-rs.packages.${system}.default
+        attic.packages.${system}.default
+        agenix.packages.${system}.default
+      ]
+      ++ [
+        snowfallorg.flake
+      ]
+      ++ [
+        # rundesk
+        reencrypt
+        # remote-cli
+      ]
+      ++ [
         ack
         age
-        agenix.packages.${system}.default
         alejandra
-        attic.packages.${system}.default
         bash
         bfg-repo-cleaner
         colima
         comma
         deploy-machine
-        deploy-rs.packages.${system}.default
         deployment
         direnv
-        flake-checker.packages.${system}.default
         git
         gnupg
         gum
@@ -81,17 +90,15 @@ in
         nil
         packages-json
         python3
-        reencrypt
-        remote-cli
+
         remote-deploy
-        rundesk
-        snowfallorg.flake
+
         sops
         ssh-to-age
         write-script
         zsh
       ]
-      ++ nixpkgs;
+      ++ nix-install-pkgs;
 
     shellHook = ''
       git status
