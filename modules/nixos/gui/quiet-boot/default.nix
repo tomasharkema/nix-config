@@ -36,7 +36,7 @@ in {
     boot = {
       plymouth = {
         enable = true;
-        theme = "breeze";
+        # theme = "breeze";
       };
       loader.timeout = 0;
       kernelParams = [
