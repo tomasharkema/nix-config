@@ -19,7 +19,7 @@ in {
       enable = true;
       pkcs11.enable = true;
       tctiEnvironment.enable = true;
-      abrmd.enable = true;
+      # abrmd.enable = true;
     };
 
     users.users."tomas".extraGroups = ["tss"];
@@ -29,14 +29,14 @@ in {
     services.tcsd.enable = true;
 
     environment.systemPackages = with pkgs; [
-      tpm2-tss
       tpm-luks
-      tpm2-totp
       tpm-tools
-      tpmmanager
-      tpm2-tools
       tpm2-abrmd
       tpm2-pkcs11
+      tpm2-tools
+      tpm2-totp
+      tpm2-tss
+      tpmmanager
     ];
   };
 }
