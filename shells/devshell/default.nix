@@ -67,9 +67,9 @@ in
         snowfallorg.flake
       ]
       ++ [
-        # rundesk
+        pkgs.custom.rundesk
         reencrypt
-        # remote-cli
+        pkgs.custom.remote-cli
       ]
       ++ [
         ack
@@ -87,7 +87,7 @@ in
         gum
         mkiso
         netdiscover
-        nil
+        # nil
         packages-json
         python3
 
