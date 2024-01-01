@@ -20,21 +20,21 @@ with lib.custom; let
     ]
     ++ githubKeys;
 in {
-  options.custom.user = with types; {
+  options.user = with types; {
     name = mkOpt str "tomas" "The name to use for the user account.";
-    fullName = mkOpt str "Tomas Harkema" "The full name of the user.";
-    email = mkOpt str "tomas@harkema.io" "The email of the user.";
-    initialPassword =
-      mkOpt str "password"
-      "The initial password to use when the user is first created.";
-    icon =
-      mkOpt (nullOr package) defaultIcon
-      "The profile picture to use for the user.";
-    prompt-init = mkBoolOpt true "Whether or not to show an initial message when opening a new shell.";
-    extraGroups = mkOpt (listOf str) [] "Groups for the user to be assigned.";
-    extraOptions =
-      mkOpt attrs {}
-      (mdDoc "Extra options passed to `users.users.<name>`.");
+    #   fullName = mkOpt str "Tomas Harkema" "The full name of the user.";
+    #   email = mkOpt str "tomas@harkema.io" "The email of the user.";
+    #   initialPassword =
+    #     mkOpt str "password"
+    #     "The initial password to use when the user is first created.";
+    #   icon =
+    #     mkOpt (nullOr package) defaultIcon
+    #     "The profile picture to use for the user.";
+    #   prompt-init = mkBoolOpt true "Whether or not to show an initial message when opening a new shell.";
+    #   extraGroups = mkOpt (listOf str) [] "Groups for the user to be assigned.";
+    #   extraOptions =
+    #     mkOpt attrs {}
+    #     (mdDoc "Extra options passed to `users.users.<name>`.");
   };
 
   config = {
@@ -44,20 +44,23 @@ in {
 
     users.mutableUsers = false;
 
-    users.users.tomas = {
+    users.users.${config.user.name} = {
       shell = pkgs.zsh;
       isNormalUser = true;
       description = "tomas";
-      group = "tomas";
+      group = "${config.user.name}";
       extraGroups = ["networkmanager" "wheel" "rslsync" "users"];
       hashedPassword = "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
       openssh.authorizedKeys.keys = keys;
     };
-    users.groups.tomas = {
-      name = "tomas";
-      members = ["tomas"];
+
+    users.groups.${config.user.name} = {
+      name = "${config.user.name}";
+      members = ["${config.user.name}"];
     };
+
     users.groups.agent = {};
+
     users.users.agent = {
       isNormalUser = true;
       group = "agent";

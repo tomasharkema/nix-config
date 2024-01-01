@@ -28,7 +28,7 @@ in {
     ];
 
     nix = let
-      users = ["root" config.custom.user.name];
+      users = ["root" "tomas"];
     in {
       package = cfg.package;
 
@@ -44,7 +44,7 @@ in {
 
         # This appears to break on darwin
         # https://github.com/NixOS/nix/issues/7273
-        auto-optimise-store = false;
+        auto-optimise-store = true;
 
         allow-import-from-derivation = true;
 
@@ -56,16 +56,16 @@ in {
         extra-nix-path = "nixpkgs=flake:nixpkgs";
         build-users-group = "nixbld";
       };
-      #// (lib.optionalAttrs config.plusultra.tools.direnv.enable {
-      #  keep-outputs = true;
-      #  keep-derivations = true;
-      #});
+      # // (lib.optionalAttrs config.plusultra.tools.direnv.enable {
+      #   keep-outputs = true;
+      #   keep-derivations = true;
+      # });
 
       gc = {
         automatic = true;
         interval = {Day = 1;};
         options = "--delete-older-than 14d";
-        user = config.custom.user.name;
+        user = "tomas";
       };
 
       # flake-utils-plus

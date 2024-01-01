@@ -49,9 +49,9 @@
     services.xserver.libinput.enable = true;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.tomas = {
+    users.users.${config.user.name} = {
       isNormalUser = true;
-      description = "tomas";
+      description = "${config.user.name}";
       extraGroups = ["networkmanager" "wheel"];
       packages = with pkgs; [
         firefox

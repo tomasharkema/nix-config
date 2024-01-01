@@ -29,6 +29,7 @@
       fwupd-efi
       toybox
       dconf2nix
+      hw-probe
     ];
 
     # services.eternal-terminal.enable = true;
@@ -50,8 +51,8 @@
     systemd.targets.hibernate.enable = mkDefault false;
     systemd.targets.hybrid-sleep.enable = mkDefault false;
 
-    # systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
-    # systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
+    systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+    systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 
     services.fwupd.enable = true;
     networking.firewall = {

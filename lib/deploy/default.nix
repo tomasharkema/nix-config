@@ -26,7 +26,7 @@ in rec {
       lib.foldl
       (result: name: let
         host = hosts.${name};
-        user = overrides.${name}.sshUser or host.config.user.name or overrides.sshUser or null;
+        user = overrides.${name}.sshUser or overrides.sshUser or null;
         inherit (host.pkgs) system;
       in
         result

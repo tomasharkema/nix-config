@@ -6,9 +6,6 @@
 } @ attrs:
 with pkgs;
 with lib; let
-  # attic-pkg = inputs.attic.packages.${system}.default;
-  # agenix-pkg = inputs.agenix.packages.${system}.default;
-  # deploy-rs-pkg = inputs.deploy-rs.packages.${system}.default;
   write-script = writeShellScriptBin "write-script" ''
     set -x
     echo "pv $1 $2"
@@ -40,18 +37,15 @@ with lib; let
   # gum = lib.getExe pkgs.gum;
   # packages-json = writeShellScriptBin "packages-json" ''
   #   export DIR="$(mktemp -d)"
-
   #   SYSTEM_PKGS=".#$1.config.environment.systemPackages"
   #   # gum spin --spinner line --title "Evaluating $SYSTEM_PKGS to $DIR/first.json" --
   #   nix eval "$SYSTEM_PKGS" --json | tee "$DIR/first.json"
-
   #   HOME_PKGS=".#$1.config.home-manager.users.tomas.home.packages"
   #   # gum spin --spinner line --title "Evaluating $HOME_PKGS to $DIR/second.json" --
   #   nix eval "$HOME_PKGS" --json | tee "$DIR/second.json"
-
   #   cat "$DIR/first.json" "$DIR/second.json" | jq -s add | tee "$DIR/out.json" | gum pager
   # '';
-  nixpkgs = import ../../modules/home/tools/nix/nixpkgs.nix {inherit pkgs inputs;};
+  nix-install-pkgs = import ../../modules/home/tools/nix/nixpkgs.nix {inherit pkgs inputs;};
 in
   mkShell {
     name = "devshell";
@@ -64,39 +58,47 @@ in
 
     packages = with inputs;
       [
+        flake-checker.packages.${system}.default
+        deploy-rs.packages.${system}.default
+        attic.packages.${system}.default
+        agenix.packages.${system}.default
+      ]
+      ++ [
         snowfallorg.flake
+      ]
+      ++ [
+        pkgs.custom.rundesk
+        reencrypt
+        pkgs.custom.remote-cli
+      ]
+      ++ [
         ack
         age
-        agenix.packages.${system}.default
         alejandra
-        attic.packages.${system}.default
         bash
         bfg-repo-cleaner
         colima
         comma
         deploy-machine
-        deploy-rs.packages.${system}.default
         deployment
         direnv
-        flake-checker.packages.${system}.default
         git
         gnupg
         gum
         mkiso
         netdiscover
-        nil
+        # nil
         packages-json
-        pkgs.custom.remote-cli
-        pkgs.custom.rundesk
         python3
-        reencrypt
+
         remote-deploy
+
         sops
         ssh-to-age
         write-script
         zsh
       ]
-      ++ nixpkgs;
+      ++ nix-install-pkgs;
 
     shellHook = ''
       git status

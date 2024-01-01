@@ -17,6 +17,10 @@
   ...
 }: let
   isLinux = format == "linux";
+
+  boot-into-bios = pkgs.writeShellScriptBin "attic-script" ''
+    sudo ${lib.getExe pkgs.ipmitool} chassis bootparam set bootflag force_bios
+  '';
 in {
   # Your configuration.
 
@@ -25,6 +29,7 @@ in {
 
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
+    nixos-hardware.nixosModules.supermicro-x10sll-f
   ];
 
   config = {
@@ -44,6 +49,8 @@ in {
     services.prometheus.exporters.ipmi.enable = true;
 
     networking = {
+      networkmanager.enable = lib.mkDefault true;
+
       hostName = lib.mkDefault "blue-fire";
       hostId = "529fd7aa";
 
@@ -58,11 +65,19 @@ in {
       ipmiview
       ipmiutil
       # vagrant
+      ipmitool
+      boot-into-bios
     ];
 
     services.tailscale = {
       useRoutingFeatures = lib.mkForce "both";
     };
+
+    services.cron.systemCronJobs = [
+      # Reset 5-minute watchdog timer every minute
+      "* * * * * ${lib.getExe pkgs.ipmitool} raw 0x30 0x97 1 5"
+    ];
+
     # Minimal configuration for NFS support with Vagrant.
     # services.nfs.server.enable = true;
 

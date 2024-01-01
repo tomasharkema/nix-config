@@ -97,8 +97,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    fh.url = "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz";
-    bento.url = "github:rapenne-s/bento";
+    fh = {
+      url = "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    bento = {
+      url = "github:rapenne-s/bento";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.3.0";
@@ -131,10 +138,7 @@
 
   outputs = inputs: let
     lib = inputs.snowfall-lib.mkLib {
-      # You must pass in both your flake's inputs and the root directory of
-      # your flake.
       inherit inputs;
-
       src = ./.;
 
       snowfall = {
@@ -148,6 +152,10 @@
     };
   in
     lib.mkFlake {
+      inherit inputs;
+
+      src = ./.;
+
       channels-config = {
         allowUnfree = true;
         nvidia.acceptLicense = true;
@@ -186,9 +194,9 @@
         }
       ];
 
-      homes.modules = with inputs; [
-        # agenix.homeManagerModules.default
-      ];
+      # homes.modules = with inputs; [
+      #   # agenix.homeManagerModules.default
+      # ];
 
       deploy = lib.mkDeploy {
         inherit (inputs) self;

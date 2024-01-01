@@ -18,7 +18,7 @@ with lib.custom; let
 in {
   options.custom.nix = with types; {
     enable = mkBoolOpt true "Whether or not to manage nix configuration.";
-    package = mkOpt package pkgs.nixUnstable "Which nix package to use.";
+    # package = mkOpt package nixpkgs "Which nix package to use.";
 
     default-substituter = {
       url = mkOpt str "https://cache.nixos.org" "The url for the substituter.";
@@ -56,7 +56,7 @@ in {
         ["root" config.user.name]
         ++ optional config.services.hydra.enable "hydra";
     in {
-      package = cfg.package;
+      # package = cfg.package;
 
       settings =
         {
@@ -82,11 +82,11 @@ in {
           keep-derivations = true;
         });
 
-      gc = {
-        automatic = true;
-        dates = "weekly";
-        options = "--delete-older-than 30d";
-      };
+      # gc = {
+      #   automatic = true;
+      #   dates = "weekly";
+      #   options = "--delete-older-than 30d";
+      # };
 
       # flake-utils-plus
       generateRegistryFromInputs = true;

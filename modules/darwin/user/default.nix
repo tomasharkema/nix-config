@@ -7,17 +7,15 @@
   inherit (lib) types mkIf mkDefault;
   inherit (lib.custom) mkOpt;
 
-  cfg = config.custom.user;
+  cfg = config.user;
 
   is-linux = pkgs.stdenv.isLinux;
   is-darwin = pkgs.stdenv.isDarwin;
 in {
-  options.custom.user = {
+  options.user = {
     name = mkOpt types.str "tomas" "The user account.";
-
     fullName = mkOpt types.str "Tomas Harkema" "The full name of the user.";
     email = mkOpt types.str "tomas@harkema.io" "The email of the user.";
-
     uid = mkOpt (types.nullOr types.int) 501 "The uid for the user account.";
   };
 
@@ -29,7 +27,7 @@ in {
       uid = mkIf (cfg.uid != null) cfg.uid;
     };
 
-    snowfallorg.user.${config.custom.user.name}.home.config = {
+    snowfallorg.user.${config.user.name}.home.config = {
       home = {
         file = {
           ".profile".text = ''
@@ -40,5 +38,18 @@ in {
         };
       };
     };
+
+    programs.zsh = {enable = true;};
+
+    environment.systemPackages = with pkgs; [
+      atuin
+      custom.maclaunch
+      kitty
+      terminal-notifier
+      custom.launchcontrol
+      # vagrant
+      # fig
+    ];
+    security.pam.enableSudoTouchIdAuth = true;
   };
 }
