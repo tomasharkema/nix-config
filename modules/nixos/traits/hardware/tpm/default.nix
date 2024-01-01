@@ -26,7 +26,7 @@ in {
 
     boot.initrd.systemd.enableTpm2 = true;
 
-    services.tcsd.enable = true;
+    services.tcsd.enable = lib.mkDefault true;
 
     environment.systemPackages = with pkgs; [
       tpm-luks

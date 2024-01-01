@@ -41,6 +41,8 @@
     };
 
     boot.binfmt.emulatedSystems = ["aarch64-linux"];
+    services.tcsd.enable = false;
+
     hardware.cpu.intel.updateMicrocode = true;
     # nixpkgs.system = "x86_64-linux";
 
