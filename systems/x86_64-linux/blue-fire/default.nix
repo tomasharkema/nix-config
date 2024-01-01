@@ -25,6 +25,7 @@ in {
 
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
+    nixos-hardware.nixosModules.supermicro-x10sll-f
   ];
 
   config = {
@@ -60,11 +61,18 @@ in {
       ipmiview
       ipmiutil
       # vagrant
+      ipmitool
     ];
 
     services.tailscale = {
       useRoutingFeatures = lib.mkForce "both";
     };
+
+    services.cron.systemCronJobs = [
+      # Reset 5-minute watchdog timer every minute
+      "* * * * * ${pkgs.ipmitool}/bin/ipmitool raw 0x30 0x97 1 5"
+    ];
+
     # Minimal configuration for NFS support with Vagrant.
     # services.nfs.server.enable = true;
 

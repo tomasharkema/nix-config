@@ -25,7 +25,7 @@ in {
     enable = mkBoolOpt true "SnowflakeOS GNOME configuration";
   };
 
-  config = lib.mkIf (cfg.enable && format == null) {
+  config = lib.mkIf cfg.enable {
     # age.secrets."resilio-p" = {file = ../secrets/resilio-p.age;};
     # age.secrets."resilio-docs" = {file = ../secrets/resilio-docs.age;};
     # age.secrets."resilio-shared-public" = {file = ../secrets/resilio-shared-public.age;};
