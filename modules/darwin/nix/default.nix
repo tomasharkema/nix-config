@@ -28,7 +28,7 @@ in {
     ];
 
     nix = let
-      users = ["root" config.user.name];
+      users = ["root" "tomas"];
     in {
       package = cfg.package;
 
@@ -65,13 +65,13 @@ in {
         automatic = true;
         interval = {Day = 1;};
         options = "--delete-older-than 14d";
-        user = config.user.name;
+        user = "tomas";
       };
 
       # flake-utils-plus
-      generateRegistryFromInputs = true;
-      generateNixPathFromInputs = true;
-      linkInputs = true;
+      # generateRegistryFromInputs = true;
+      # generateNixPathFromInputs = true;
+      # linkInputs = true;
     };
   };
 }

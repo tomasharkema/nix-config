@@ -20,22 +20,22 @@ with lib.custom; let
     ]
     ++ githubKeys;
 in {
-  options.user = with types; {
-    name = mkOpt str "tomas" "The name to use for the user account.";
-    fullName = mkOpt str "Tomas Harkema" "The full name of the user.";
-    email = mkOpt str "tomas@harkema.io" "The email of the user.";
-    initialPassword =
-      mkOpt str "password"
-      "The initial password to use when the user is first created.";
-    icon =
-      mkOpt (nullOr package) defaultIcon
-      "The profile picture to use for the user.";
-    prompt-init = mkBoolOpt true "Whether or not to show an initial message when opening a new shell.";
-    extraGroups = mkOpt (listOf str) [] "Groups for the user to be assigned.";
-    extraOptions =
-      mkOpt attrs {}
-      (mdDoc "Extra options passed to `users.users.<name>`.");
-  };
+  # options.user = with types; {
+  #   name = mkOpt str "tomas" "The name to use for the user account.";
+  #   fullName = mkOpt str "Tomas Harkema" "The full name of the user.";
+  #   email = mkOpt str "tomas@harkema.io" "The email of the user.";
+  #   initialPassword =
+  #     mkOpt str "password"
+  #     "The initial password to use when the user is first created.";
+  #   icon =
+  #     mkOpt (nullOr package) defaultIcon
+  #     "The profile picture to use for the user.";
+  #   prompt-init = mkBoolOpt true "Whether or not to show an initial message when opening a new shell.";
+  #   extraGroups = mkOpt (listOf str) [] "Groups for the user to be assigned.";
+  #   extraOptions =
+  #     mkOpt attrs {}
+  #     (mdDoc "Extra options passed to `users.users.<name>`.");
+  # };
 
   config = {
     security.sudo.wheelNeedsPassword = false;

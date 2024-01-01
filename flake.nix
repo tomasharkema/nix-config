@@ -127,99 +127,87 @@
     keep-derivations = true;
   };
 
-  outputs = inputs: let
-    lib = inputs.snowfall-lib.mkLib {
-      # You must pass in both your flake's inputs and the root directory of
-      # your flake.
-      inherit inputs;
+  outputs = inputs:
+    with inputs.snowfall-lib;
+      inputs.snowfall-lib.mkFlake {
+        inherit inputs;
 
-      src = ./.;
+        src = ./.;
 
-      snowfall = {
-        meta = {
-          name = "dotfiles";
-          title = "dotfiles";
+        channels-config = {
+          allowUnfree = true;
+          nvidia.acceptLicense = true;
         };
 
-        namespace = "custom";
-      };
-    };
-  in
-    lib.mkFlake {
-      channels-config = {
-        allowUnfree = true;
-        nvidia.acceptLicense = true;
-      };
-
-      alias = {
-        shells = {
-          default = "devshell";
-        };
-      };
-
-      snowfall = {
-        meta = {
-          name = "dotfiles";
-          title = "dotfiles";
+        alias = {
+          shells = {
+            default = "devshell";
+          };
         };
 
-        namespace = "custom";
-      };
+        snowfall = {
+          meta = {
+            name = "dotfiles";
+            title = "dotfiles";
+          };
 
-      overlays = with inputs; [snowfall-flake.overlays."package/flake"];
+          namespace = "custom";
+        };
 
-      systems.modules.nixos = with inputs; [
-        impermanence.nixosModule
-        disko.nixosModules.default
+        overlays = with inputs; [snowfall-flake.overlays."package/flake"];
 
-        lanzaboote.nixosModules.lanzaboote
+        systems.modules.nixos = with inputs; [
+          impermanence.nixosModule
+          disko.nixosModules.default
 
-        # home-manager.nixosModules.home-manager
-        agenix.nixosModules.default
-        # nixos-generators.nixosModules.all-formats
-        {
-          system.stateVersion = "23.11";
-        }
-      ];
+          lanzaboote.nixosModules.lanzaboote
 
-      homes.modules = with inputs; [
-        # agenix.homeManagerModules.default
-      ];
+          # home-manager.nixosModules.home-manager
+          agenix.nixosModules.default
+          # nixos-generators.nixosModules.all-formats
+          # {
+          #   system.stateVersion = "23.11";
+          # }
+        ];
 
-      deploy = lib.mkDeploy {
-        inherit (inputs) self;
+        homes.modules = with inputs; [
+          # agenix.homeManagerModules.default
+        ];
 
-        overrides = {
-          sshUser = "root";
-          wodan-wsl = {
+        deploy = mkDeploy {
+          inherit (inputs) self;
+
+          overrides = {
             sshUser = "root";
-            hostname = "192.168.1.42";
+            wodan-wsl = {
+              sshUser = "root";
+              hostname = "192.168.1.42";
+            };
+          };
+        };
+
+        checks =
+          builtins.mapAttrs
+          (system: deploy-lib:
+            deploy-lib.deployChecks inputs.self.deploy)
+          inputs.deploy-rs.lib;
+
+        outputs-builder = channels: {
+          formatter = channels.nixpkgs.alejandra;
+
+          images = with inputs; {
+            baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
+            pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
+
+            #   arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
+
+            #   silver-star-ferdorie = self.nixosConfigurations.silver-star-ferdorie.config.formats.qcow;
+
+            #   hyperv-installiso =
+            #     self.nixosConfigurations.hyperv-nixos.config.formats.qcow;
           };
         };
       };
-
-      checks =
-        builtins.mapAttrs
-        (system: deploy-lib:
-          deploy-lib.deployChecks inputs.self.deploy)
-        inputs.deploy-rs.lib;
-
-      outputs-builder = channels: {
-        formatter = channels.nixpkgs.alejandra;
-
-        images = with inputs; {
-          baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
-          pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
-
-          #   arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
-
-          #   silver-star-ferdorie = self.nixosConfigurations.silver-star-ferdorie.config.formats.qcow;
-
-          #   hyperv-installiso =
-          #     self.nixosConfigurations.hyperv-nixos.config.formats.qcow;
-        };
-      };
-    };
 
   # outputs = {
   #   self,

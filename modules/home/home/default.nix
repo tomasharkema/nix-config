@@ -13,18 +13,18 @@
   #   url = "https://raw.githubusercontent.com/nix-community/nix-direnv/3.0.3/direnvrc";
   #   sha256 = "sha256-0EVQVNSRQWsln+rgPW3mXVmnF5sfcmKEYOmOSfLYxHg=";
   # };
-  is-linux = stdenv.isLinux;
-  is-darwin = stdenv.isDarwin;
-  home-directory = user:
-    if is-darwin
-    then "/Users/${user}"
-    else "/home/${user}";
+  # is-linux = stdenv.isLinux;
+  # is-darwin = stdenv.isDarwin;
+  # home-directory = user:
+  #   if is-darwin
+  #   then "/Users/${user}"
+  #   else "/home/${user}";
 in {
   # imports = [../../nixos/gui/gnome/dconf.nix];
 
   config = {
     programs.home-manager.enable = true;
-
+    programs.yt-dlp.enable = true;
     home.stateVersion = "23.11";
 
     # self.home-manager.backupFileExtension = "bak";
@@ -40,7 +40,7 @@ in {
         # inputs.nix-gui.packages.${system}.nix-gui
       ];
 
-    home.username = lib.mkDefault "tomas";
+    # home.username = lib.mkDefault "tomas";
     # home.homeDirectory = lib.mkDefault (home-directory "tomas");
 
     home.sessionVariables = lib.mkIf stdenv.isDarwin {

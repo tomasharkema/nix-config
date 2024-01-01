@@ -7,56 +7,20 @@
   ...
 }:
 with lib; {
-  # imports = with inputs; [
-  # home-manager.nixosModules.home-manager
-  # ../../home/home
-  # ];
-
-  options.home = with types; {
-    file = mkOption {
-      type = types.attrs;
-      default = {};
-      description = "derp";
-    };
-    # "A set of files to be managed by home-manager's <option>home.file</option>.";
-    configFile = mkOption {
-      type = types.attrs;
-      default = {};
-      description = "derp";
-    };
-    # "A set of files to be managed by home-manager's <option>xdg.configFile</option>.";
-    programs = mkOption {
-      type = types.attrs;
-      default = {};
-      description = "derp";
-    };
-    #"Programs to be managed by home-manager.";
-    extraOptions = mkOption {
-      type = types.attrs;
-      default = {};
-      description = "derp";
-    };
-    #"Options to pass directly to home-manager.";
-  };
-
   config = {
-    environment.systemPackages = [
-      pkgs.home-manager
-    ];
-
-    home.extraOptions = {
-      home.stateVersion = config.system.stateVersion;
-      home.file = mkAliasDefinitions options.home.file;
+    snowfallorg.user."tomas".home.config = {
+      home.stateVersion = mkDefault "23.11";
       xdg.enable = true;
-      xdg.configFile = mkAliasDefinitions options.home.configFile;
-      programs = mkAliasDefinitions options.home.programs;
     };
 
     home-manager = {
       useUserPackages = true;
+      useGlobalPkgs = true;
 
-      users.${config.user.name} =
-        mkAliasDefinitions options.home.extraOptions;
+      users."tomas" = {
+        home.stateVersion = mkDefault "23.11";
+        xdg.enable = true;
+      };
     };
   };
 }
