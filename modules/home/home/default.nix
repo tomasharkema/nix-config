@@ -9,10 +9,6 @@
     url = "https://iterm2.com/shell_integration/zsh";
     sha256 = "sha256-Cq8winA/tcnnVblDTW2n1k/olN3DONEfXrzYNkufZvY=";
   };
-  # direnv = pkgs.fetchurl {
-  #   url = "https://raw.githubusercontent.com/nix-community/nix-direnv/3.0.3/direnvrc";
-  #   sha256 = "sha256-0EVQVNSRQWsln+rgPW3mXVmnF5sfcmKEYOmOSfLYxHg=";
-  # };
   is-linux = stdenv.isLinux;
   is-darwin = stdenv.isDarwin;
   home-directory = user:
@@ -36,7 +32,6 @@ in {
         nixd
         jq
         # fig
-
         # inputs.nix-gui.packages.${system}.nix-gui
       ];
 
@@ -60,8 +55,6 @@ in {
     programs.direnv = {
       enable = true;
       nix-direnv.enable = true;
-
-      # stdlib = lib.readFile "${direnv}";
     };
 
     programs.htop.enable = true;

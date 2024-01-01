@@ -54,6 +54,7 @@ in {
       powertop
       # keybase_gui
       nix-software-center
+      nixos-conf-editor
 
       gnome-firmware
       gnome.gnome-session

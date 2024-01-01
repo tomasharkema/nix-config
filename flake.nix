@@ -51,7 +51,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-software-center.url = "github:vlinkz/nix-software-center";
+    nix-software-center.url = "github:snowfallorg/nix-software-center";
+    nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
+
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
     impermanence = {
@@ -166,7 +168,9 @@
         namespace = "custom";
       };
 
-      overlays = with inputs; [snowfall-flake.overlays."package/flake"];
+      overlays = with inputs; [
+        snowfall-flake.overlays."package/flake"
+      ];
 
       systems.modules.nixos = with inputs; [
         impermanence.nixosModule
