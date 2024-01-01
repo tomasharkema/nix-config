@@ -29,6 +29,7 @@
       fwupd-efi
       toybox
       dconf2nix
+      hw-probe
     ];
 
     # services.eternal-terminal.enable = true;
