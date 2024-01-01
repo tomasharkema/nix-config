@@ -67,10 +67,11 @@ in {
     programs.htop.enable = true;
     programs.htop.settings.show_program_path = false;
 
-    # programs.autojump = {
-    #   enable = true;
-    #   enableZshIntegration = true;
-    # };
+    programs.autojump = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     programs.broot = {
       enable = true;
       enableZshIntegration = true;
@@ -80,10 +81,10 @@ in {
       enableZshIntegration = true;
     };
 
-    # programs.thefuck = {
-    #   enable = true;
-    #   enableZshIntegration = true;
-    # };
+    programs.thefuck = {
+      enable = true;
+      enableZshIntegration = true;
+    };
 
     programs.tmux = {enable = true;};
 
@@ -189,7 +190,7 @@ in {
       ];
 
       initExtraFirst = ''
-        zmodload zsh/zprof
+        # zmodload zsh/zprof
         # eval "$(~/.local/bin/cw init zsh pre)"
         source "${iterm}";
       '';
@@ -275,155 +276,59 @@ in {
         prompt.theme = null;
       };
 
-      zplug = {
-        enable = true;
-        plugins = [
-          # {
-          #   name = "tysonwolker/iterm-tab-colors";
-          #   tags = ["defer:2"];
-          # }
-          {
-            name = "mafredri/zsh-async";
-            # tags = ["defer:2"];
-          }
-          {
-            name = "MichaelAquilina/zsh-you-should-use";
-            tags = ["defer:2"];
-          }
-          {
-            name = "unixorn/1password-op.plugin.zsh";
-            tags = ["defer:2"];
-          }
-          {name = "mrjohannchang/zsh-interactive-cd";}
-        ];
-      };
-
-      # oh-my-zsh = {
+      # zplug = {
       #   enable = true;
       #   plugins = [
-      #     "1password"
-      #     "autojump"
-      #     "aws"
-      #     "colorize"
-      #     "docker"
-      #     "encode64"
-      #     "fzf"
-      #     "git-extras"
-      #     "git"
-      #     "gitignore"
-      #     "macos"
-      #     "man"
-      #     "mix"
-      #     "nmap"
-      #     "sudo"
-      #     "systemd"
-      #     "thefuck"
-      #     "tig"
-      #     "tmux"
-      #     "vi-mode"
-      #     "yarn"
-      #     # "zsh-navigation-tools"
-      #     "wd"
-      #     # "iterm-tab-color"
+      #     # {
+      #     #   name = "tysonwolker/iterm-tab-colors";
+      #     #   tags = ["defer:2"];
+      #     # }
+      #     {
+      #       name = "mafredri/zsh-async";
+      #       # tags = ["defer:2"];
+      #     }
+      #     {
+      #       name = "MichaelAquilina/zsh-you-should-use";
+      #       tags = ["defer:2"];
+      #     }
+      #     {
+      #       name = "unixorn/1password-op.plugin.zsh";
+      #       tags = ["defer:2"];
+      #     }
+      #     # {name = "mrjohannchang/zsh-interactive-cd";}
       #   ];
-      #   # theme = "powerlevel10k/powerlevel10k";
       # };
+
+      oh-my-zsh = {
+        enable = true;
+        plugins = [
+          "1password"
+          "autojump"
+          "aws"
+          "colorize"
+          "docker"
+          "encode64"
+          "fzf"
+          "git-extras"
+          "git"
+          "gitignore"
+          "macos"
+          "man"
+          "mix"
+          "nmap"
+          "sudo"
+          "systemd"
+          "thefuck"
+          "tig"
+          "tmux"
+          "vi-mode"
+          "yarn"
+          "zsh-navigation-tools"
+          "wd"
+          "iterm-tab-color"
+        ];
+        #   # theme = "powerlevel10k/powerlevel10k";
+      };
     };
   };
-
-  # options.home = with lib;
-  # with types; {
-  #   file = mkOption {
-  #     type = types.attrs;
-  #     default = {};
-  #     description = "derp";
-  #   };
-  #   # "A set of files to be managed by home-manager's <option>home.file</option>.";
-  #   configFile = mkOption {
-  #     type = types.attrs;
-  #     default = {};
-  #     description = "derp";
-  #   };
-  #   # "A set of files to be managed by home-manager's <option>xdg.configFile</option>.";
-  #   programs = mkOption {
-  #     type = types.attrs;
-  #     default = {};
-  #     description = "derp";
-  #   };
-  #   #"Programs to be managed by home-manager.";
-  #   extraOptions = mkOption {
-  #     type = types.attrs;
-  #     default = {};
-  #     description = "derp";
-  #   };
-  #   #"Options to pass directly to home-manager.";
-  # };
-
-  # config = with lib; {
-  #   home.extraOptions = {
-  #     home.stateVersion = config.system.stateVersion;
-  #     home.file = mkAliasDefinitions options.home.file;
-  #     # xdg.enable = true;
-  #     # xdg.configFile = mkAliasDefinitions options.home.configFile;
-  #     programs = mkAliasDefinitions options.home.programs;
-  #   };
-
-  #   home-manager = {
-  #     useUserPackages = true;
-
-  #     users.${config.user.name} =
-  #       mkAliasDefinitions options.home.extraOptions;
-  #   };
-  # };
 }
-# {
-#   # Snowfall Lib provides a customized `lib` instance with access to your flake's library
-#   # as well as the libraries available from your flake's inputs.
-#   lib,
-#   # An instance of `pkgs` with your overlays and packages applied is also available.
-#   pkgs,
-#   # You also have access to your flake's inputs.
-#   inputs,
-#   # Additional metadata is provided by Snowfall Lib.
-#   home, # The home architecture for this host (eg. `x86_64-linux`).
-#   target, # The Snowfall Lib target for this home (eg. `x86_64-home`).
-#   format, # A normalized name for the home target (eg. `home`).
-#   virtual, # A boolean to determine whether this home is a virtual target using nixos-generators.
-#   host, # The host name for this home.
-#   # All other arguments come from the home home.
-#   config,
-#   ...
-# }: let
-#   inherit (pkgs) stdenv;
-#   inherit (lib) mkIf;
-#   cfg = config.plusultra.user;
-#   is-linux = stdenv.isLinux;
-#   is-darwin = stdenv.isDarwin;
-#   home-directory = user:
-#     if is-darwin
-#     then "/Users/${user}"
-#     else "/home/${user}";
-# in {
-#   # Your configuration.
-#   config = {
-#     home.username = lib.mkDefault "tomas";
-#     home.homeDirectory = lib.mkDefault (home-directory "tomas");
-#     # # asdfasdf;
-#     # environment.systemPath = mkIf is-darwin [
-#     #   "/opt/homebrew/bin"
-#     # ];
-#     # programs.home-manager.enable = true;
-#     # home.stateVersion = "23.11";
-#     # home.sessionVariables = mkIf stdenv.isDarwin {
-#     #   EDITOR = "subl";
-#     #   SSH_AUTH_SOCK = "/Users/tomas/.1password/agent.sock";
-#     #   SPACESHIP_PROMPT_ADD_NEWLINE = "false";
-#     # };
-#     # age.identityPaths = [
-#     #   "/etc/ssh/ssh_host_ed25519_key"
-#     #   "${home-directory}/.ssh/id_ed25519"
-#     #   "${home-directory}/.ssh/id_rsa"
-#     # ];
-#   };
-# }
-

@@ -56,10 +56,10 @@ in {
         extra-nix-path = "nixpkgs=flake:nixpkgs";
         build-users-group = "nixbld";
       };
-      #// (lib.optionalAttrs config.plusultra.tools.direnv.enable {
-      #  keep-outputs = true;
-      #  keep-derivations = true;
-      #});
+      # // (lib.optionalAttrs config.plusultra.tools.direnv.enable {
+      #   keep-outputs = true;
+      #   keep-derivations = true;
+      # });
 
       gc = {
         automatic = true;
@@ -69,9 +69,9 @@ in {
       };
 
       # flake-utils-plus
-      # generateRegistryFromInputs = true;
-      # generateNixPathFromInputs = true;
-      # linkInputs = true;
+      generateRegistryFromInputs = true;
+      generateNixPathFromInputs = true;
+      linkInputs = true;
     };
   };
 }

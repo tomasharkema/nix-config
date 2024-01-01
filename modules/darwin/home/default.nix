@@ -11,8 +11,7 @@ with lib.custom; let
   cfg = config.home;
 in {
   config = {
-    programs.zsh.enable = true;
-    snowfallorg.user."tomas".home.config = {
+    snowfallorg.user.${config.user.name}.home.config = {
       home.stateVersion = mkDefault "23.11";
       xdg.enable = true;
     };
@@ -21,7 +20,7 @@ in {
       useUserPackages = true;
       useGlobalPkgs = true;
 
-      users."tomas" = {
+      users.${config.user.name} = {
         home.stateVersion = mkDefault "23.11";
         xdg.enable = true;
       };

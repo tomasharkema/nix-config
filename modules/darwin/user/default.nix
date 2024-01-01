@@ -12,33 +12,44 @@
   is-linux = pkgs.stdenv.isLinux;
   is-darwin = pkgs.stdenv.isDarwin;
 in {
-  # options.user = {
-  #   name = mkOpt types.str "tomas" "The user account.";
+  options.user = {
+    name = mkOpt types.str "tomas" "The user account.";
+    fullName = mkOpt types.str "Tomas Harkema" "The full name of the user.";
+    email = mkOpt types.str "tomas@harkema.io" "The email of the user.";
+    uid = mkOpt (types.nullOr types.int) 501 "The uid for the user account.";
+  };
 
-  #   fullName = mkOpt types.str "Tomas Harkema" "The full name of the user.";
-  #   email = mkOpt types.str "tomas@harkema.io" "The email of the user.";
+  config = {
+    users.users.${cfg.name} = {
+      # NOTE: Setting the uid here is required for another
+      # module to evaluate successfully since it reads
+      # `users.users.${config.user.name}.uid`.
+      uid = mkIf (cfg.uid != null) cfg.uid;
+    };
 
-  #   uid = mkOpt (types.nullOr types.int) 501 "The uid for the user account.";
-  # };
+    snowfallorg.user.${config.user.name}.home.config = {
+      home = {
+        file = {
+          ".profile".text = ''
+            # The default file limit is far too low and throws an error when rebuilding the system.
+            # See the original with: ulimit -Sa
+            ulimit -n 4096
+          '';
+        };
+      };
+    };
 
-  # config = {
-  #   users.users.${cfg.name} = {
-  #     # NOTE: Setting the uid here is required for another
-  #     # module to evaluate successfully since it reads
-  #     # `users.users.${config.user.name}.uid`.
-  #     uid = mkIf (cfg.uid != null) cfg.uid;
-  #   };
+    programs.zsh = {enable = true;};
 
-  #   snowfallorg.user.${config.user.name}.home.config = {
-  #     home = {
-  #       file = {
-  #         ".profile".text = ''
-  #           # The default file limit is far too low and throws an error when rebuilding the system.
-  #           # See the original with: ulimit -Sa
-  #           ulimit -n 4096
-  #         '';
-  #       };
-  #     };
-  #   };
-  # };
+    environment.systemPackages = with pkgs; [
+      atuin
+      custom.maclaunch
+      kitty
+      terminal-notifier
+      custom.launchcontrol
+      # vagrant
+      # fig
+    ];
+    security.pam.enableSudoTouchIdAuth = true;
+  };
 }
