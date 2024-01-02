@@ -21,7 +21,9 @@ in {
 
   config = mkIf cfg.enable {
     apps.attic.enable = true;
+
     services.postgresql.enable = true;
+
     services.hydra = {
       enable = true;
       hydraURL = "https://hydra.harkema.io";
@@ -29,11 +31,11 @@ in {
       buildMachinesFiles = [];
       useSubstitutes = true;
       smtpHost = "smtp-relay.gmail.com";
-      extraConfig = ''
-        <github_authorization>
-          ${config.age.secrets.ght.path}
-        </github_authorization>
-      '';
+      # extraConfig = ''
+      #   <github_authorization>
+      #     ${config.age.secrets.ght.path}
+      #   </github_authorization>
+      # '';
     };
 
     system.activationScripts = {
@@ -42,7 +44,7 @@ in {
         Host github.com
           StrictHostKeyChecking No
           UserKnownHostsFile /dev/null
-          IdentityFile /var/lib/hydra/.ssh/id_rsa
+          IdentityFile /var/lib/hydra/.ssh/id_ed25519
         EOT
       '';
     };

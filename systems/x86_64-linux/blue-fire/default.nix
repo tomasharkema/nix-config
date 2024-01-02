@@ -42,7 +42,7 @@ in {
     traits = {
       builder.enable = true;
       hardware = {
-        tpm.enable = true;
+        # tpm.enable = true;
         secure-boot.enable = true;
       };
     };
@@ -125,7 +125,7 @@ in {
         "ipmi_msghandler"
       ];
       extraModulePackages = [];
-      kernelParams = ["console=ttyS0,115200" "console=tty1"];
+      # kernelParams = ["console=ttyS0,115200" "console=tty1"];
     };
   };
 }
