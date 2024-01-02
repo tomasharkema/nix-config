@@ -28,9 +28,11 @@ in {
       '';
     in {
       description = "attic-login";
-      script = "${attic-login}";
+      script = "${lib.getExe attic-login}";
       wantedBy = ["multi-user.target"]; # starts after login
-      unitConfig.Type = "oneshot";
+      unitConfig = {
+        Type = "oneshot";
+      };
     };
 
     systemd.services.attic-watch = let

@@ -18,7 +18,7 @@
 }: let
   isLinux = format == "linux";
 
-  boot-into-bios = pkgs.writeShellScriptBin "attic-script" ''
+  boot-into-bios = pkgs.writeShellScriptBin "boot-into-bios" ''
     sudo ${lib.getExe pkgs.ipmitool} chassis bootparam set bootflag force_bios
   '';
 in {

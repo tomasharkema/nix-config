@@ -27,6 +27,7 @@
     #   disks = ["/dev/nvme0n1"];
     # };
 
+    apps.attic.enable = true;
     gui.enable = true;
 
     traits = {
