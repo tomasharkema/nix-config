@@ -28,7 +28,10 @@
     # };
 
     apps.attic.enable = true;
-    gui.enable = true;
+    gui = {
+      enable = true;
+      apps.steam.enable = true;
+    };
 
     traits = {
       hardware = {
