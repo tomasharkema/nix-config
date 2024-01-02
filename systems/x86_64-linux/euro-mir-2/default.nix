@@ -47,6 +47,8 @@
     networking.wireless.enable = false;
     services.xserver.libinput.enable = true;
 
+    services.tcsd.enable = lib.mkForce false;
+
     users.users.${config.user.name} = {
       isNormalUser = true;
       description = "${config.user.name}";
