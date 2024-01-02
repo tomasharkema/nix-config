@@ -27,6 +27,11 @@ in
           type = types.str;
           description = "Dev for main partion.";
         };
+        mainOverride = mkOption {
+          type = types.str;
+          default = "main";
+          description = "Dev for main partion.";
+        };
         media = mkOption {
           type = types.nullOr types.str;
           default = null;
@@ -58,10 +63,11 @@ in
         snapper
         snapper-gui
       ];
-
+      fileSystems."/".neededForBoot = true;
+      fileSystems."/boot".neededForBoot = true;
       disko.devices = {
         disk = {
-          main = {
+          "${cfg.mainOverride}" = {
             type = "disk";
             device = cfg.main;
             content = {

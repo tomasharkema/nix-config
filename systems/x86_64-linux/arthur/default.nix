@@ -26,13 +26,23 @@
   config = {
     gui = {
       enable = true;
-      rdp.enable = true;
+      desktop = {
+        rdp.enable = true;
+      };
       apps.steam.enable = true;
+    };
+    traits = {
+      builder.enable = true;
+      # hardware = {
+      #   tpm.enable = true;
+      #   secure-boot.enable = true;
+      # };
     };
 
     disks.btrfs = (lib.mkIf (format == null)) {
       enable = true;
-      disks = ["/dev/disk/by-id/ata-Samsung_SSD_850_PRO_256GB_S39KNX0J775697K"];
+      main = "/dev/disk/by-id/ata-Samsung_SSD_850_PRO_256GB_S39KNX0J775697K";
+      mainOverride = "vdb";
     };
 
     boot.binfmt.emulatedSystems = ["aarch64-linux"];
@@ -56,15 +66,15 @@
       kernelModules = ["kvm-intel" "jc42" "tpm_rng"];
       loader = {
         timeout = lib.mkForce 10;
-        grub = {
-          enable = lib.mkForce true;
-          # device = "nodev";
-          efiSupport = true;
-          efiInstallAsRemovable = true;
-          # gfxmodeEfi = "1920x1080";
-          # gfxmodeBios = "1920x1080";
-        };
-        # efi.efiSysMountPoint = "/boot";
+        # grub = {
+        #   enable = lib.mkForce true;
+        #   # device = "nodev";
+        #   efiSupport = true;
+        #   efiInstallAsRemovable = true;
+        #   # gfxmodeEfi = "1920x1080";
+        #   # gfxmodeBios = "1920x1080";
+        # };
+        # # efi.efiSysMountPoint = "/boot";
       };
     };
 
