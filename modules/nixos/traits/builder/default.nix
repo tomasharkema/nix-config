@@ -40,7 +40,7 @@ in {
 
     system.activationScripts = {
       hydraSshFile.text = ''
-        cat <<EOT >> /var/lib/hydra/.ssh/config
+        cat <<EOT > /var/lib/hydra/.ssh/config
         Host github.com
           StrictHostKeyChecking No
           UserKnownHostsFile /dev/null
