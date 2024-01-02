@@ -7,9 +7,9 @@
 }:
 with lib;
 with lib.custom; let
-  cfg = config.flatpak;
+  cfg = config.apps.flatpak;
 in {
-  options.flatpak = {
+  options.apps.flatpak = {
     enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
   };
 

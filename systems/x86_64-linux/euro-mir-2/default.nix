@@ -40,6 +40,7 @@
     networking.hostName = "euro-mir-2"; # Define your hostname.
 
     networking.networkmanager.enable = true;
+    networking.wireless.enable = false;
     services.xserver.libinput.enable = true;
 
     users.users.${config.user.name} = {

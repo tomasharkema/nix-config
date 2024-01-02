@@ -38,7 +38,7 @@ in {
         enable = true;
         # theme = "breeze";
       };
-      loader.timeout = 0;
+      loader.timeout = lib.mkDefault 0;
       kernelParams = [
         "quiet"
         "loglevel=3"

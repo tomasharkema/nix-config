@@ -69,6 +69,7 @@ in {
       gnome.gnome-tweaks
       _1password
       _1password-gui
+      handbrake
     ];
 
     # nativeMessagingHosts.packages = with pkgs; [ gnome-browser-connector ];
