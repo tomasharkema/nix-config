@@ -41,5 +41,9 @@
       file = ./netdata.age;
       mode = "0664";
     };
+    age.secrets.ght = {
+      file = ./ght.age;
+      mode = "0664";
+    };
   };
 }

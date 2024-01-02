@@ -21,17 +21,16 @@ in
   with lib; {
     options = {
       disks.btrfs = {
-        enable = mkEnableOption "SnowflakeOS GNOME configuration";
-        autoscrub = mkEnableOption "SnowflakeOS GNOME configuration";
+        enable = mkEnableOption "Enable BTRFS";
+        autoscrub = mkEnableOption "Enable BTRFS Autoscrub";
         main = mkOption {
           type = types.str;
-          # default = false;
-          description = "Enable Nix Software Center, a graphical software center for Nix";
+          description = "Dev for main partion.";
         };
         media = mkOption {
-          type = types.str;
+          type = types.nullOr types.str;
           default = null;
-          description = "Enable Nix Software Center, a graphical software center for Nix";
+          description = "Dev for optional media partition";
         };
       };
     };

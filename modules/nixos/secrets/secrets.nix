@@ -52,4 +52,5 @@ in {
   "attic-key.age".publicKeys = allKeys;
   "wireless.age".publicKeys = allKeys;
   "keybase.age".publicKeys = allKeys;
+  "ght.age".publicKeys = [tomas blue-fire blue-fire-tomas];
 }

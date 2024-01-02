@@ -21,12 +21,29 @@ in {
 
   config = mkIf cfg.enable {
     apps.attic.enable = true;
+    services.postgresql.enable = true;
     services.hydra = {
       enable = true;
       hydraURL = "https://hydra.harkema.io";
       notificationSender = "tomas+hydra@harkema.io";
       buildMachinesFiles = [];
       useSubstitutes = true;
+      extraConfig = ''
+        <github_authorization>
+          ${config.age.secrets.ght.path}
+        </github_authorization>
+      '';
+    };
+
+    system.activationScripts = {
+      hydraSshFile.text = ''
+        cat <<EOT >> /var/lib/hydra/.ssh/config
+        Host github.com
+          StrictHostKeyChecking No
+          UserKnownHostsFile /dev/null
+          IdentityFile /var/lib/hydra/.ssh/id_rsa
+        EOT
+      '';
     };
     programs.nix-ld.enable = true;
 
