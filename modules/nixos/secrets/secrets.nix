@@ -4,8 +4,8 @@ let
   #   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKXJJrsfcYDGtfl8zQ1hjs+0UdasQLpO4ybFNlTqtjoI tomas@DESKTOP-L8N2UGE";
   users = [tomas];
 
-  enzian = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICTiQQzh6t0sQabqkzyYpqA9zIgnA0we+nQVs54UG0ct root@enzian";
-  enzian-user = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFfJzGCnEFkPB6jeyNgWC1+32w6X6JOwWnC+xqTiPYAw tomas@enzian";
+  enzian = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFBzx75ud0S3N6N4UnSf9s+NpgMZMR8j2opSBFdo2utL root@enzian";
+  enzian-user = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBkD6Gv2OmfofzWqPihWEo2mfOWx7kFkCh5urGNn/AJ0 tomas@enzian";
   silver-star-ferdorie = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFS0T53Bwn00Vqhc9GHD+RY78LIKfWvMo2rvQOvGW+lQ root@nixos";
   utm-nixos = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICgPvSzMf7TG4ArvFFp8R/kfj6XYXkMl3r47FL5voIBN root@utm-nixos";
 

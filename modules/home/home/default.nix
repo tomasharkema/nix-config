@@ -236,7 +236,7 @@ in {
           "fasd"
           "history"
           "history-substring-search"
-          "directory"
+          # "directory"
           "spectrum"
           "utility"
           "completion"

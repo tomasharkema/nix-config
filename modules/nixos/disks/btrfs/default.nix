@@ -22,31 +22,49 @@ in
     options = {
       disks.btrfs = {
         enable = mkEnableOption "SnowflakeOS GNOME configuration";
-        disks = mkOption {
-          type = types.listOf types.str;
+        autoscrub = mkEnableOption "SnowflakeOS GNOME configuration";
+        main = mkOption {
+          type = types.str;
           # default = false;
+          description = "Enable Nix Software Center, a graphical software center for Nix";
+        };
+        media = mkOption {
+          type = types.str;
+          default = null;
           description = "Enable Nix Software Center, a graphical software center for Nix";
         };
       };
     };
 
-    # options.modules.disks = with types; {
-    #   btrfs.enable = mkOption {
-    #     type = bool;
-    #     default = false;
-    #     description = "Enable Nix Software Center, a graphical software center for Nix";
-    #   };
-    # };
-
     config = mkIf cfg.enable {
-      services.btrfs.autoScrub.enable = true;
-      services.snapper.snapshotRootOnBoot = true;
+      boot = {
+        supportedFilesystems = [
+          "btrfs"
+        ];
+      };
+
+      services = {
+        btrfs.autoScrub = mkIf cfg.autoscrub {
+          enable = true;
+          fileSystems = ["/"];
+        };
+        snapper = {
+          snapshotRootOnBoot = true;
+          snapshotInterval = "hourly";
+          cleanupInterval = "7d";
+        };
+      };
+
+      environment.systemPackages = with pkgs; [
+        snapper
+        snapper-gui
+      ];
 
       disko.devices = {
         disk = {
-          vdb = {
+          main = {
             type = "disk";
-            device = builtins.elemAt cfg.disks 0;
+            device = cfg.main;
             content = {
               type = "gpt";
               partitions = {
@@ -78,8 +96,6 @@ in
                         mountOptions = ["subvol=home" "compress=zstd"];
                         mountpoint = "/home";
                       };
-                      # Sub(sub)volume doesn't need a mountpoint as its parent is mounted
-                      "/home/user" = {};
                       # Parent is not mounted so the mountpoint must be set
                       "/nix" = {
                         mountOptions = ["subvol=nix" "compress=zstd" "noatime"];
@@ -102,6 +118,31 @@ in
                     swap = {
                       swapfile = {size = "20M";};
                       swapfile1 = {size = "20M";};
+                    };
+                  };
+                };
+              };
+            };
+          };
+
+          media = lib.mkIf (cfg.media != null) {
+            device = cfg.media;
+            type = "disk";
+            content = {
+              type = "gpt";
+              partitions = {
+                root = {
+                  size = "100%";
+                  content = {
+                    type = "btrfs";
+                    extraArgs = ["-f"]; # Override existing partition
+                    # Subvolumes must set a mountpoint in order to be mounted,
+                    # unless their parent is mounted
+                    subvolumes = {
+                      "/media" = {
+                        mountOptions = ["subvol=media" "compress=zstd"];
+                        mountpoint = "/media";
+                      };
                     };
                   };
                 };

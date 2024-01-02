@@ -37,6 +37,25 @@ in {
       openFirewall = true;
       defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
     };
+    security.polkit = mkIf cfg.rdp.enable {
+      enable = true;
+      extraConfig = ''
+        polkit.addRule(function(action, subject) {
+          if (
+            subject.isInGroup("users")
+              && (
+                action.id == "org.freedesktop.login1.reboot" ||
+                action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+                action.id == "org.freedesktop.login1.power-off" ||
+                action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+              )
+            )
+          {
+            return polkit.Result.YES;
+          }
+        })
+      '';
+    };
 
     services.xserver.libinput.enable = true;
     programs.mtr.enable = true;
@@ -58,7 +77,7 @@ in {
       transmission
       keybase
       powertop
-      # keybase_gui
+
       nix-software-center
       nixos-conf-editor
 
@@ -75,23 +94,6 @@ in {
     # nativeMessagingHosts.packages = with pkgs; [ gnome-browser-connector ];
 
     # nix.extraOptions = "experimental-features = nix-command flakes";
-    security.polkit.enable = true;
-    security.polkit.extraConfig = ''
-      polkit.addRule(function(action, subject) {
-        if (
-          subject.isInGroup("users")
-            && (
-              action.id == "org.freedesktop.login1.reboot" ||
-              action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-              action.id == "org.freedesktop.login1.power-off" ||
-              action.id == "org.freedesktop.login1.power-off-multiple-sessions"
-            )
-          )
-        {
-          return polkit.Result.YES;
-        }
-      })
-    '';
 
     # Enable sound with pipewire.
     sound.enable = true;
