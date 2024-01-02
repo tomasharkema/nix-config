@@ -216,6 +216,10 @@
           deploy-lib.deployChecks inputs.self.deploy)
         inputs.deploy-rs.lib;
 
+      hydraJobs = {
+        inherit (inputs.self) packages;
+      };
+
       outputs-builder = channels: {
         formatter = channels.nixpkgs.alejandra;
 
