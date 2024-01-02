@@ -28,6 +28,7 @@ in {
       notificationSender = "tomas+hydra@harkema.io";
       buildMachinesFiles = [];
       useSubstitutes = true;
+      smtpHost = "smtp-relay.gmail.com";
       extraConfig = ''
         <github_authorization>
           ${config.age.secrets.ght.path}
