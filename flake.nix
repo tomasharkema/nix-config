@@ -108,7 +108,12 @@
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.3.0";
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hydra-check = {
+      url = "github:nix-community/hydra-check";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
