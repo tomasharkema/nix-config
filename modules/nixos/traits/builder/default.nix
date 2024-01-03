@@ -30,6 +30,7 @@ in {
       enable = true;
       tokenFile = config.age.secrets.ght-runner.path;
       url = "https://github.com/tomasharkema";
+      ephemeral = true;
     };
 
     services.hydra = {
