@@ -2,15 +2,21 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nix-netboot-serve.url = "https://flakehub.com/f/DeterminateSystems/nix-netboot-serve/0.1.79.tar.gz";
+
+    nix-netboot-serve = {
+      url = "github:DeterminateSystems/nix-netboot-serve";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
@@ -29,8 +35,11 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     deploy-rs = {
       url = "github:serokell/deploy-rs";
@@ -42,7 +51,8 @@
 
     # anywhere.url = "github:nix-community/nixos-anywhere";
 
-    flake-utils.url = "github:numtide/flake-utils";
+    # flake-utils.url = "github:numtide/flake-utils";
+
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     nixvim.url = "github:pta2002/nixvim/nixos-23.11";
 
@@ -51,13 +61,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-software-center.url = "github:snowfallorg/nix-software-center";
-    nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
+    nix-software-center = {
+      url = "github:snowfallorg/nix-software-center";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-conf-editor = {
+      url = "github:snowfallorg/nixos-conf-editor";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     impermanence = {
       url = "github:nix-community/impermanence";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     attic = {
@@ -71,7 +91,7 @@
     };
 
     # tailscale-prometheus-sd = { url = "github:madjam002/tailscale-prometheus-sd"; };
-
+    flake-utils.url = "github:numtide/flake-utils";
     gomod2nix = {
       url = "github:nix-community/gomod2nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -88,12 +108,12 @@
     };
 
     flake-checker = {
-      url = "https://flakehub.com/f/DeterminateSystems/flake-checker/0.1.17.tar.gz";
+      url = "github:DeterminateSystems/flake-checker";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     fh = {
-      url = "https://flakehub.com/f/DeterminateSystems/fh/*.tar.gz";
+      url = "github:DeterminateSystems/fh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -103,12 +123,12 @@
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.3.0";
+      url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hydra-check = {
-      url = "https://github.com/nix-community/hydra-check/archive/refs/tags/v1.3.5.tar.gz";
+      url = "github:nix-community/hydra-check";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -234,7 +254,7 @@
 
       hydraJobs = {
         inherit (inputs.self) packages;
-        # inherit (inputs.self) checks;
+        inherit (inputs.self) checks;
       };
 
       outputs-builder = channels: {

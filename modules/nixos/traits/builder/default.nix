@@ -23,6 +23,15 @@ in {
     apps.attic.enable = true;
 
     # services.postgresql.enable = true;
+    systemd.services.hydra-queue-runner.path = [pkgs.ssmtp];
+    systemd.services.hydra-server.path = [pkgs.ssmtp];
+
+    services.hydra-dev.extraEnv = {
+      HYDRA_FORCE_SEND_MAIL = "1";
+      EMAIL_SENDER_TRANSPORT_port = 587;
+      EMAIL_SENDER_TRANSPORT_ssl = "starttls";
+      EMAIL_SENDER_TRANSPORT_host = "smtp-relay.gmail.com";
+    };
 
     services.hydra = {
       enable = true;
@@ -35,7 +44,7 @@ in {
         Include ${config.age.secrets.ght.path}
         <hydra_notify>
           <prometheus>
-            listen_address = 127.0.0.1
+            listen_address = 0.0.0.0
             port = 9199
           </prometheus>
         </hydra_notify>
@@ -45,6 +54,8 @@ in {
           inputs = src
           excludeBuildFromContext = 1
         </githubstatus>
+        using_frontend_proxy 1
+        email_notification = 1
       '';
     };
 
