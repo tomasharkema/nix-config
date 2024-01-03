@@ -22,7 +22,7 @@ in
       nix-config-snowfall =
         defaults
         // {
-          description = "nix-config";
+          description = "nix-config-snowfall";
           # inputs = {
           #   config = mkFetchGithub "https://github.com/tomasharkema/nix-config snowfall";
           #   nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
@@ -34,7 +34,7 @@ in
       nix-config-main =
         defaults
         // {
-          description = "nix-config";
+          description = "nix-config-main";
           # inputs = {
           #   config = mkFetchGithub "https://github.com/tomasharkema/nix-config snowfall";
           #   nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
