@@ -64,7 +64,7 @@ in {
           http-connections = 50;
           warn-dirty = false;
           log-lines = 50;
-          sandbox = "relaxed";
+          sandbox = false;
           auto-optimise-store = true;
           trusted-users = users;
           allowed-users = users;
