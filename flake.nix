@@ -136,6 +136,7 @@
     keep-derivations = true;
 
     allowed-uris = [
+      "https://github.com/tomasharkema.keys"
       "https://git.sr.ht/~thatonelutenist/nix-cache-watcher"
       "https://api.flakehub.com/f/pinned"
       "https://github.com/NixOS/"
