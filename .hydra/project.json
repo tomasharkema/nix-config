@@ -12,7 +12,7 @@
   "inputs": {
     "generator_config": {
       "type": "git",
-      "value": "https://github.com/tomasharkema/nix-config.git snowfall",
+      "value": "git@github.com:tomasharkema/nix-config.git snowfall",
       "emailresponsible": false
     },
     "generator": {
