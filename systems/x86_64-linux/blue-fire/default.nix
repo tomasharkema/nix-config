@@ -97,7 +97,14 @@ in {
 
     # boot.loader.systemd-boot.enable = true;
     # boot.loader.efi.canTouchEfiVariables = true;
-
+    nix.buildMachines = [
+      {
+        hostName = "localhost";
+        system = "x86_64-linux";
+        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+        maxJobs = 8;
+      }
+    ];
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
 
