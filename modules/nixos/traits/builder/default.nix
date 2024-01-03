@@ -31,11 +31,14 @@ in {
       buildMachinesFiles = [];
       useSubstitutes = true;
       smtpHost = "smtp-relay.gmail.com";
-      # extraConfig = ''
-      #   <github_authorization>
-      #     ${config.age.secrets.ght.path}
-      #   </github_authorization>
-      # '';
+      extraConfig = ''
+        <github_authorization>
+          ${config.age.secrets.ght.path}
+        </github_authorization>
+        <dynamicruncommand>
+          enable = 1
+        </dynamicruncommand>
+      '';
     };
 
     system.activationScripts = {
