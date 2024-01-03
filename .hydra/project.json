@@ -5,7 +5,7 @@
   "nixexprinput": "generator",
   "nixexprpath": "jobset/generate.nix",
   "checkinterval": 300,
-  "schedulingshares": 100,
+  "schedulingshares": 10,
   "enableemail": true,
   "emailoverride": "",
   "keepnr": 3,
