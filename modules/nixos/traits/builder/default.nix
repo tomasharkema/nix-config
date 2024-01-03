@@ -33,10 +33,6 @@ in {
       smtpHost = "smtp-relay.gmail.com";
       extraConfig = ''
         Include ${config.age.secrets.ght.path}
-
-        <dynamicruncommand>
-          enable = 1
-        </dynamicruncommand>
         <hydra_notify>
           <prometheus>
             listen_address = 127.0.0.1
