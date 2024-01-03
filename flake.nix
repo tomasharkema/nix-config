@@ -136,6 +136,7 @@
     keep-derivations = true;
 
     allowed-uris = [
+      "https://git.sr.ht/~rycee/nmd/archive"
       "https://github.com/zhaofengli/nix-base32.git"
       "https://github.com/tomasharkema.keys"
       "https://git.sr.ht/~thatonelutenist/nix-cache-watcher"
