@@ -29,7 +29,7 @@ in
           # };
 
           type = 1;
-          flake = "git+https://github.com/tomasharkema/nix-config.git?ref=snowfall";
+          flake = "git+https://github.com/tomasharkema/nix-config.git?rev=snowfall";
         };
     };
     pr_data = builtins.fromJSON (builtins.readFile pulls);
