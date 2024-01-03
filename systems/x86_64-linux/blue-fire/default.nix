@@ -47,6 +47,8 @@ in {
       };
     };
 
+    services.tcsd.enable = true;
+
     services.prometheus.exporters.ipmi.enable = true;
 
     networking = {
@@ -105,7 +107,7 @@ in {
           "kvm-intel"
           "uinput"
           "nvme"
-          # "tpm_rng"
+          "tpm_rng"
           "ipmi_ssif"
           "acpi_ipmi"
           "ipmi_si"
