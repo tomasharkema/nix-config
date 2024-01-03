@@ -1,6 +1,6 @@
 {
   pulls ? ./test-pr.json,
-  nixpkgs,
+  nixpkgs ? <nixpkgs>,
   ...
 }: let
   pkgs = import nixpkgs {};
@@ -28,7 +28,7 @@ in
           #   nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
           # };
 
-          ty = 1;
+          type = 1;
           flake = "git+https://github.com/tomasharkema/nix-config.git?ref=snowfall";
         };
     };
@@ -43,7 +43,7 @@ in
           #   config = mkFetchGithub "https://github.com/${info.head.repo.owner.login}/${info.head.repo.name}.git ${info.head.ref}";
           #   nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
           # };
-          ty = 1;
+          type = 1;
           flake = "git+https://github.com/tomasharkema/nix-config.git?rev=${info.head.ref}";
         };
     };
