@@ -108,12 +108,12 @@
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote";
+      url = "github:nix-community/lanzaboote/v0.3.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hydra-check = {
-      url = "github:nix-community/hydra-check";
+      url = "https://github.com/nix-community/hydra-check/archive/refs/tags/v1.3.5.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -135,7 +135,23 @@
       "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
-    access-tokens = ["github.com=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"];
+
+    allowed-uris = [
+      "https://api.github.com"
+      "https://git.sr.ht/~rycee/nmd/archive"
+      "https://github.com/zhaofengli/nix-base32.git"
+      "https://github.com/tomasharkema.keys"
+      "https://git.sr.ht/~thatonelutenist/nix-cache-watcher"
+      "https://api.flakehub.com/f/pinned"
+      "https://github.com/NixOS/"
+      "https://github.com/nixos/"
+      "https://github.com/hercules-ci/"
+      "https://github.com/numtide/"
+      "https://github.com/cachix/"
+      "https://github.com/nix-community/"
+      "https://github.com/tomasharkema/"
+      "git://github.com/tomasharkema"
+    ];
 
     allow-import-from-derivation = true;
     keep-outputs = true;

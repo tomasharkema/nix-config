@@ -94,7 +94,6 @@ in {
       extra-trusted-public-keys = [
         "nix-cache.harke.ma:2UhS18Tt0delyOEULLKLQ36uNX3/hpX4sH684B+cG3c="
       ];
-      access-tokens = ["github.com=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"];
     };
   };
 }
