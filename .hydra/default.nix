@@ -1,5 +1,9 @@
-{pulls ? ./test-pr.json}: let
-  pkgs = import <nixpkgs> {};
+{
+  pulls ? ./test-pr.json,
+  nixpkgs,
+  ...
+}: let
+  pkgs = import nixpkgs {};
 in
   with import ./lib.nix;
   with pkgs.lib; let
