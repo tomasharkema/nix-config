@@ -27,12 +27,12 @@ in {
     systemd.services.hydra-server.path = [pkgs.ssmtp];
 
     services.hydra = {
-      extraEnv = [
-        "HYDRA_FORCE_SEND_MAIL=1"
-        "EMAIL_SENDER_TRANSPORT_port=587"
-        "EMAIL_SENDER_TRANSPORT_ssl=starttls"
-        "EMAIL_SENDER_TRANSPORT_host=smtp-relay.gmail.com"
-      ];
+      extraEnv = {
+        HYDRA_FORCE_SEND_MAIL = "1";
+        EMAIL_SENDER_TRANSPORT_port = "587";
+        EMAIL_SENDER_TRANSPORT_ssl = "starttls";
+        EMAIL_SENDER_TRANSPORT_host = "smtp-relay.gmail.com";
+      };
 
       enable = true;
       hydraURL = "hydra.harkema.io";
