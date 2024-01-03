@@ -43,7 +43,6 @@ in {
           ## This example will match all jobs
           jobs = .*
           inputs = src
-          # authorization = Bearer gha-secret😱secret😱secret😱
           excludeBuildFromContext = 1
         </githubstatus>
       '';
