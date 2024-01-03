@@ -264,21 +264,21 @@
           #   };
           # };
         };
+      images = with inputs; {
+        baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
+        # pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
 
+        #   arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
+
+        #   silver-star-ferdorie = self.nixosConfigurations.silver-star-ferdorie.config.formats.qcow;
+
+        #   hyperv-installiso =
+        #     self.nixosConfigurations.hyperv-nixos.config.formats.qcow;
+      };
+
+      # formatter = inputs.nixpkgs.alejandra;
       outputs-builder = channels: {
         formatter = channels.nixpkgs.alejandra;
-
-        images = with inputs; {
-          baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
-          # pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
-
-          #   arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
-
-          #   silver-star-ferdorie = self.nixosConfigurations.silver-star-ferdorie.config.formats.qcow;
-
-          #   hyperv-installiso =
-          #     self.nixosConfigurations.hyperv-nixos.config.formats.qcow;
-        };
       };
     };
 
