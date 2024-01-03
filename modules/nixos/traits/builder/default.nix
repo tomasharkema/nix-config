@@ -26,7 +26,7 @@ in {
     # systemd.services.hydra-queue-runner.path = [pkgs.ssmtp];
     # systemd.services.hydra-server.path = [pkgs.ssmtp];
 
-    services.github-runners."runner" = {
+    services.github-runner = {
       enable = true;
       tokenFile = config.age.secrets.ght-runner.path;
       url = "https://github.com/tomasharkema/nix-config";
