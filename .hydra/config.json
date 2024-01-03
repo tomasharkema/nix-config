@@ -1,4 +1,5 @@
 {
+  "flake": true,
   "inputs": {
     "nixpkgs": {
       "type": "git",
