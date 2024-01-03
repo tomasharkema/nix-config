@@ -6,29 +6,29 @@
   "nixexprpath": "jobset/generate.nix",
   "checkinterval": 300,
   "schedulingshares": 10,
-  "enableemail": true,
+  "enableemail": false,
   "emailoverride": "",
-  "keepnr": 3,
+  "keepnr": 5,
   "inputs": {
     "generator_config": {
       "type": "git",
-      "value": "git@github.com:tomasharkema/nix-config.git snowfall",
-      "emailresponsible": true
+      "value": "https://github.com/tomasharkema/nix-config.git snowfall",
+      "emailresponsible": false
     },
     "generator": {
       "type": "git",
-      "value": "git@github.com:DeterminateSystems/hydra-github-jobsets-generator.git main",
+      "value": "https://github.com/DeterminateSystems/hydra-github-jobsets-generator.git main",
       "emailresponsible": false
     },
     "nixpkgs": {
       "type": "git",
-      "value": "git@github.com:NixOS/nixpkgs.git nixos-23.11",
+      "value": "https://github.com/NixOS/nixpkgs.git nixos-23.11",
       "emailresponsible": false
     },
     "pull_requests": {
       "type": "githubpulls",
       "value": "tomasharkema nix-config",
-      "emailresponsible": true
+      "emailresponsible": false
     }
   }
 }
