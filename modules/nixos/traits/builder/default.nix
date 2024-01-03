@@ -57,6 +57,7 @@ in {
         allowed-uris = https://github.com/NixOS/nixpkgs/archive https://github.com/NixOS/nixpkgs-channels/archive https://github.com/input-output-hk https://github.com/tomasharkema
       '';
       binaryCaches = mkForce ["https://cache.nixos.org"];
+      trusted-users = ["hydra" "hydra-queue-runner" "hydra-www"];
     };
 
     programs.nix-ld.enable = true;
