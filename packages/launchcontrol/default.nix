@@ -33,7 +33,8 @@ pkgs.stdenvNoCC.mkDerivation rec {
     license = with licenses; [
     ];
     sourceProvenance = with sourceTypes; [binaryNativeCode];
-    maintainers = with maintainers; [tomasharkema];
+
+    maintainers = ["tomasharkema" "tomas@harkema.io"];
     platforms = ["aarch64-darwin" "x86_64-darwin"];
   };
 }

@@ -143,6 +143,7 @@
       "https://github.com/cachix/"
       "https://github.com/nix-community/"
       "https://github.com/tomasharkema/"
+      "git://github.com/tomasharkema"
     ];
   };
 

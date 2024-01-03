@@ -1,4 +1,8 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  ...
+}:
 pkgs.buildGoModule rec {
   pname = "tailscalesd";
   version = "0.2.2-1";
@@ -16,7 +20,7 @@ pkgs.buildGoModule rec {
     description = "tomas";
     homepage = "https://github.com/tomasharkema/nix-config";
     license = licenses.mit;
-    maintainers = with maintainers; [ tomasharkema ];
+    maintainers = ["tomasharkema" "tomas@harkema.io"];
   };
 
   env = {

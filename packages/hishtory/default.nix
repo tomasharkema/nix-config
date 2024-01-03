@@ -44,6 +44,6 @@ with pkgs;
       description = "Your shell history: synced, queryable, and in context";
       homepage = "https://github.com/ddworken/hishtory";
       license = licenses.mit;
-      maintainers = with maintainers; [tomasharkema];
+      maintainers = ["tomasharkema" "tomas@harkema.io"];
     };
   }
