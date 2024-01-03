@@ -136,6 +136,7 @@
     keep-derivations = true;
 
     allowed-uris = [
+      "https://api.flakehub.com/f/pinned"
       "https://github.com/NixOS/"
       "https://github.com/nixos/"
       "https://github.com/hercules-ci/"
