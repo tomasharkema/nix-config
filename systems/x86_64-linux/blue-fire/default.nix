@@ -47,7 +47,7 @@ in {
       };
     };
 
-    services.tcsd.enable = true;
+    # services.tcsd.enable = true;
 
     services.prometheus.exporters.ipmi.enable = true;
 
