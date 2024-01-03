@@ -29,7 +29,7 @@ in
           # };
 
           type = 1;
-          flake = "git+https://github.com/tomasharkema/nix-config.git?ref=snowfall";
+          flake = "github:tomasharkema/nix-config/snowfall";
         };
       nix-config-main =
         defaults
