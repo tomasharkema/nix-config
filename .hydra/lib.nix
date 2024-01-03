@@ -54,9 +54,9 @@ rec {
       ];
       contents = builtins.toJSON contents;
     };
-  makeJobspec = contents:
+  makeJobsets = contents:
     builtins.derivation {
-      name = "jobspec.json";
+      name = "jobsets.json";
       system = "x86_64-linux";
       preferLocalBuild = true;
       allowSubstitutes = false;
