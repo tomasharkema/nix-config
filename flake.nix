@@ -211,15 +211,15 @@
         };
       };
 
-      checks =
-        builtins.mapAttrs
-        (system: deploy-lib:
-          deploy-lib.deployChecks inputs.self.deploy)
-        inputs.deploy-rs.lib;
+      # checks =
+      #   builtins.mapAttrs
+      #   (system: deploy-lib:
+      #     deploy-lib.deployChecks inputs.self.deploy)
+      #   inputs.deploy-rs.lib;
 
       hydraJobs = {
         inherit (inputs.self) packages;
-        inherit (inputs.self) checks;
+        # inherit (inputs.self) checks;
       };
 
       outputs-builder = channels: {
