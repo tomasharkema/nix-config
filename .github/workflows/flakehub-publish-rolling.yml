@@ -3,9 +3,13 @@ on:
   push:
     branches:
       - "main"
+      - "snowfall"
 jobs:
   flakehub-publish:
-    runs-on: "self-hosted"
+    strategy:
+      matrix:
+        os: [ubuntu-latest, self-hosted]
+    runs-on: ${{ matrix.os }}
     permissions:
       id-token: "write"
       contents: "read"

@@ -9,7 +9,10 @@ concurrency:
 
 jobs:
   check:
-    runs-on: self-hosted
+    strategy:
+      matrix:
+        os: [ubuntu-latest, self-hosted]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - uses: cachix/install-nix-action@v24
