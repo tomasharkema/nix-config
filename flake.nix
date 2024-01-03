@@ -229,6 +229,7 @@
 
       hydraJobs = {
         inherit (inputs.self) packages;
+        inherit (inputs.self) checks;
       };
 
       outputs-builder = channels: {
