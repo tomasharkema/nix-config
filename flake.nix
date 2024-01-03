@@ -252,16 +252,24 @@
       #     deploy-lib.deployChecks inputs.self.deploy)
       #   inputs.deploy-rs.lib;
 
-      hydraJobs = {
-        inherit (inputs.self) packages;
-        # inherit (inputs.self) checks;
-      };
-
       outputs-builder = channels: {
         formatter = channels.nixpkgs.alejandra;
 
+        hydraJobs =
+          {
+            inherit (inputs.self) packages;
+            # inherit (inputs.self) checks;
+          }
+          // {
+            # packages = {
+            #   nixos-hosts = channels.nixpkgs.nixos-hosts.override {
+            #     hosts = inputs.self.nixosConfigurations;
+            #   };
+            # };
+          };
+
         images = with inputs; {
-          # baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
+          baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
           # pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
 
           #   arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;

@@ -32,8 +32,8 @@
 # in
 pkgs.mkShell {
   name = "rundesk";
-  buildInputs = with pkgs; [
-    runner
+  buildInputs = with pkgs.custom; [
+    rd-runner
     rd-imager
   ];
 
