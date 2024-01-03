@@ -104,6 +104,12 @@ in {
         supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
         maxJobs = 8;
       }
+      {
+        hostName = "localhost";
+        system = "aarch64-linux";
+        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+        maxJobs = 8;
+      }
     ];
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
