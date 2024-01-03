@@ -22,11 +22,11 @@ in {
   config = mkIf cfg.enable {
     apps.attic.enable = true;
 
-    services.postgresql.enable = true;
+    # services.postgresql.enable = true;
 
     services.hydra = {
       enable = true;
-      hydraURL = "https://hydra.harkema.io";
+      hydraURL = "hydra.harkema.io";
       notificationSender = "tomas+hydra@harkema.io";
       buildMachinesFiles = [];
       useSubstitutes = true;
