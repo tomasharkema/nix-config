@@ -33,7 +33,10 @@ in
         // {
           description = "PR ${num}: ${info.title}";
           inputs = {
-            config = mkFetchGithub "https://github.com/${info.head.repo.owner.login}/${info.head.repo.name}.git ${info.head.ref}";
+            config = {
+              flake_uri = "git+https://github.com/${info.head.repo.owner.login}/${info.head.repo.name}.git?ref=${info.head.ref}";
+            };
+            # config = mkFetchGithub "https://github.com/${info.head.repo.owner.login}/${info.head.repo.name}.git ${info.head.ref}";
             nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
           };
         };
