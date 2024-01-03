@@ -23,11 +23,6 @@ in
         defaults
         // {
           description = "nix-config-snowfall";
-          # inputs = {
-          #   config = mkFetchGithub "https://github.com/tomasharkema/nix-config snowfall";
-          #   nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
-          # };
-
           type = 1;
           flake = "github:tomasharkema/nix-config/snowfall";
         };
@@ -35,11 +30,6 @@ in
         defaults
         // {
           description = "nix-config-main";
-          # inputs = {
-          #   config = mkFetchGithub "https://github.com/tomasharkema/nix-config snowfall";
-          #   nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
-          # };
-
           type = 1;
           flake = "github:tomasharkema/nix-config/main";
         };
