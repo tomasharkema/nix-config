@@ -45,5 +45,9 @@
       file = ./ght.age;
       mode = "0664";
     };
+    age.secrets."ght-runner" = {
+      file = ./ght-runner.age;
+      mode = "0664";
+    };
   };
 }

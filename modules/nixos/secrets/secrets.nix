@@ -53,4 +53,5 @@ in {
   "wireless.age".publicKeys = allKeys;
   "keybase.age".publicKeys = allKeys;
   "ght.age".publicKeys = [tomas blue-fire blue-fire-tomas];
+  "ght-runner.age".publicKeys = [tomas blue-fire blue-fire-tomas];
 }

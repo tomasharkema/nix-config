@@ -26,6 +26,11 @@ in {
     # systemd.services.hydra-queue-runner.path = [pkgs.ssmtp];
     # systemd.services.hydra-server.path = [pkgs.ssmtp];
 
+    services.github-runners."runner" = {
+      enable = true;
+      tokenFile = config.age.ght-runner.path;
+    };
+
     services.hydra = {
       extraEnv = {
         HYDRA_FORCE_SEND_MAIL = "1";
