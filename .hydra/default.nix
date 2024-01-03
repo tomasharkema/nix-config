@@ -15,19 +15,21 @@ in
       nixexprpath = "default.nix";
     };
     primary_jobsets = {
-      nix-config-unstable =
+      nix-config-snowfall =
         defaults
         // {
           description = "nix-config";
           inputs = {
-            config = mkFetchGithub "https://github.com/tomasharkema/nix-config snowfall";
+            config = {
+              flake_uri = "git+https://github.com/tomasharkema/nix-config?ref=snowfall";
+            };
             nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
           };
         };
     };
     pr_data = builtins.fromJSON (builtins.readFile pulls);
     makePr = num: info: {
-      name = "nix-config-${num}";
+      name = "nix-config-pr-${num}";
       value =
         defaults
         // {
