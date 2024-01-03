@@ -23,7 +23,7 @@ in
           #   config = mkFetchGithub "https://github.com/tomasharkema/nix-config snowfall";
           #   nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
           # };
-          flake = "git+https://github.com/tomasharkema/nix-config.git?ref=snowfall";
+          flake_uri = "git+https://github.com/tomasharkema/nix-config.git?ref=snowfall";
         };
     };
     pr_data = builtins.fromJSON (builtins.readFile pulls);
@@ -38,7 +38,7 @@ in
           #   nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
           # };
 
-          flake = "git+https://github.com/tomasharkema/nix-config.git?rev=${info.head.ref}";
+          flake_uri = "git+https://github.com/tomasharkema/nix-config.git?rev=${info.head.ref}";
         };
     };
     pull_requests = listToAttrs (mapAttrsToList makePr pr_data);
