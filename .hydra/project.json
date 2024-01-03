@@ -31,7 +31,7 @@
       "emailresponsible": false
     },
     "nixexpr": {
-      "value": "git@github.com:tomasharkema/nix-config.git snowfall",
+      "value": "https://github.com/tomasharkema/nix-config.git snowfall",
       "type": "git",
       "emailresponsible": false
     }
