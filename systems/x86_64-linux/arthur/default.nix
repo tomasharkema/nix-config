@@ -33,10 +33,10 @@
     };
     traits = {
       builder.enable = true;
-      # hardware = {
-      #   tpm.enable = true;
-      #   secure-boot.enable = true;
-      # };
+      hardware = {
+        tpm.enable = true;
+        secure-boot.enable = true;
+      };
     };
 
     disks.btrfs = (lib.mkIf (format == null)) {
