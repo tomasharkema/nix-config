@@ -35,7 +35,7 @@ in {
       };
 
       enable = true;
-      hydraURL = "hydra.harkema.io";
+      hydraURL = "https://hydra.harkema.io";
       notificationSender = "tomas+hydra@harkema.io";
       buildMachinesFiles = [];
       useSubstitutes = true;
