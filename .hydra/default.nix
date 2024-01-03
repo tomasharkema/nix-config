@@ -20,25 +20,20 @@ in
         // {
           description = "nix-config";
           inputs = {
-            config = {
-              flake_uri = "git+https://github.com/tomasharkema/nix-config?ref=snowfall";
-            };
+            config = mkFetchGithub "https://github.com/tomasharkema/nix-config snowfall";
             nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
           };
         };
     };
     pr_data = builtins.fromJSON (builtins.readFile pulls);
     makePr = num: info: {
-      name = "nix-config-pr-${num}";
+      name = "nix-config-${num}";
       value =
         defaults
         // {
           description = "PR ${num}: ${info.title}";
           inputs = {
-            config = {
-              flake_uri = "git+https://github.com/${info.head.repo.owner.login}/${info.head.repo.name}.git?ref=${info.head.ref}";
-            };
-            # config = mkFetchGithub "https://github.com/${info.head.repo.owner.login}/${info.head.repo.name}.git ${info.head.ref}";
+            config = mkFetchGithub "https://github.com/${info.head.repo.owner.login}/${info.head.repo.name}.git ${info.head.ref}";
             nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
           };
         };
