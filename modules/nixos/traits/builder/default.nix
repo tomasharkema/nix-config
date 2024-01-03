@@ -57,6 +57,24 @@ in {
       '';
       # allowed-uris = https://github.com/zhaofengli/nix-base32.git https://github.com/tomasharkema.keys https://git.sr.ht/~thatonelutenist/nix-cache-watcher https://api.flakehub.com/f/pinned https://github.com/NixOS/nixpkgs/archive https://github.com/NixOS/nixpkgs-channels/archive https://github.com/input-output-hk https://github.com/tomasharkema
 
+      settings = {
+        allowed-uris = [
+          "https://git.sr.ht/~rycee/nmd/archive"
+          "https://github.com/zhaofengli/nix-base32.git"
+          "https://github.com/tomasharkema.keys"
+          "https://git.sr.ht/~thatonelutenist/nix-cache-watcher"
+          "https://api.flakehub.com/f/pinned"
+          "https://github.com/NixOS/"
+          "https://github.com/nixos/"
+          "https://github.com/hercules-ci/"
+          "https://github.com/numtide/"
+          "https://github.com/cachix/"
+          "https://github.com/nix-community/"
+          "https://github.com/tomasharkema/"
+          "git://github.com/tomasharkema"
+        ];
+        allow-import-from-derivation = true;
+      };
       binaryCaches = mkForce ["https://cache.nixos.org"];
       settings.trusted-users = ["hydra" "hydra-queue-runner" "hydra-www"];
     };

@@ -132,24 +132,9 @@
     ];
     access-tokens = ["github.com=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"];
 
+    allow-import-from-derivation = true;
     keep-outputs = true;
     keep-derivations = true;
-
-    allowed-uris = [
-      "https://git.sr.ht/~rycee/nmd/archive"
-      "https://github.com/zhaofengli/nix-base32.git"
-      "https://github.com/tomasharkema.keys"
-      "https://git.sr.ht/~thatonelutenist/nix-cache-watcher"
-      "https://api.flakehub.com/f/pinned"
-      "https://github.com/NixOS/"
-      "https://github.com/nixos/"
-      "https://github.com/hercules-ci/"
-      "https://github.com/numtide/"
-      "https://github.com/cachix/"
-      "https://github.com/nix-community/"
-      "https://github.com/tomasharkema/"
-      "git://github.com/tomasharkema"
-    ];
   };
 
   outputs = inputs: let
