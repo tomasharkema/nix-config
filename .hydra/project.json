@@ -17,12 +17,12 @@
     },
     "generator": {
       "type": "git",
-      "value": "https://github.com/DeterminateSystems/hydra-github-jobsets-generator.git main",
+      "value": "git@github.com:DeterminateSystems/hydra-github-jobsets-generator.git main",
       "emailresponsible": false
     },
     "nixpkgs": {
       "type": "git",
-      "value": "https://github.com/NixOS/nixpkgs.git nixos-23.11",
+      "value": "git@github.com:NixOS/nixpkgs.git nixos-23.11",
       "emailresponsible": false
     },
     "pull_requests": {
