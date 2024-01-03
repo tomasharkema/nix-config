@@ -22,7 +22,7 @@
     },
     "nixpkgs": {
       "type": "git",
-      "value": "https://github.com/NixOS/nixpkgs.git nixos-23.11-small",
+      "value": "https://github.com/NixOS/nixpkgs.git nixos-23.11",
       "emailresponsible": false
     },
     "pull_requests": {

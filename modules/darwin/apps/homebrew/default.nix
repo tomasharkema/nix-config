@@ -5,7 +5,7 @@
 }: {
   config = {
     homebrew = {
-      enable = true;
+      # enable = true;
       casks = [
         "secretive"
         "1password"
