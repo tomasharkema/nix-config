@@ -29,7 +29,7 @@ in
           # };
 
           type = 1;
-          flake = "git+https://github.com/tomasharkema/nix-config.git?rev=snowfall";
+          flake = "git+https://github.com/tomasharkema/nix-config.git?ref=snowfall";
         };
     };
     pr_data = builtins.fromJSON (builtins.readFile pulls);
@@ -44,7 +44,7 @@ in
           #   nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
           # };
           type = 1;
-          flake = "git+https://github.com/tomasharkema/nix-config.git?rev=${info.head.ref}";
+          flake = "git+https://github.com/tomasharkema/nix-config.git?ref=${info.head.ref}";
         };
     };
     pull_requests = listToAttrs (mapAttrsToList makePr pr_data);
