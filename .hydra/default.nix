@@ -31,6 +31,18 @@ in
           type = 1;
           flake = "git+https://github.com/tomasharkema/nix-config.git?ref=snowfall";
         };
+      nix-config-main =
+        defaults
+        // {
+          description = "nix-config";
+          # inputs = {
+          #   config = mkFetchGithub "https://github.com/tomasharkema/nix-config snowfall";
+          #   nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
+          # };
+
+          type = 1;
+          flake = "git+https://github.com/tomasharkema/nix-config.git?ref=main";
+        };
     };
     pr_data = builtins.fromJSON (builtins.readFile pulls);
     makePr = num: info: {
