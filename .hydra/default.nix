@@ -11,7 +11,7 @@ in
       checkinterval = 600;
       enableemail = false;
       emailoverride = "";
-      nixexprinput = "nix-config";
+      nixexprinput = "config";
       nixexprpath = "default.nix";
     };
     primary_jobsets = {
