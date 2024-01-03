@@ -135,7 +135,15 @@
     keep-outputs = true;
     keep-derivations = true;
 
-    allowed-uris = https:// github:NixOS/ github:nixos/ github:hercules-ci/ github:numtide/ github:cachix/ github:nix-community/ github:tomasharkema;
+    allowed-uris = [
+      "https://github.com/NixOS/"
+      "https://github.com/nixos/"
+      "https://github.com/hercules-ci/"
+      "https://github.com/numtide/"
+      "https://github.com/cachix/"
+      "https://github.com/nix-community/"
+      "https://github.com/tomasharkema/"
+    ];
   };
 
   outputs = inputs: let

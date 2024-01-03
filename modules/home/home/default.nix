@@ -253,7 +253,7 @@ in {
         terminal.autoTitle = true;
 
         tmux = {
-          autoStartRemote = true;
+          # autoStartRemote = true;
           itermIntegration = true;
           # autoStartLocal = true;
         };
