@@ -1,36 +1,34 @@
 {
-  "pr": {
-    "enabled": 1,
-    "hidden": false,
-    "description": "GitHub Pull Request Jobset Generator",
-    "nixexprinput": "generator",
-    "nixexprpath": "jobset/generate.nix",
-    "checkinterval": 300,
-    "schedulingshares": 10,
-    "enableemail": false,
-    "emailoverride": "",
-    "keepnr": 5,
-    "inputs": {
-      "generator_config": {
-        "type": "git",
-        "value": "https://github.com/tomasharkema/nix-config.git snowfall",
-        "emailresponsible": false
-      },
-      "generator": {
-        "type": "git",
-        "value": "https://github.com/DeterminateSystems/hydra-github-jobsets-generator.git legacy-definition-support-private",
-        "emailresponsible": false
-      },
-      "nixpkgs": {
-        "type": "git",
-        "value": "https://github.com/NixOS/nixpkgs.git nixos-23.11-small",
-        "emailresponsible": false
-      },
-      "pull_requests": {
-        "type": "githubpulls",
-        "value": "tomasharkema nix-config",
-        "emailresponsible": false
-      }
+  "enabled": 1,
+  "hidden": false,
+  "description": "GitHub Pull Request Jobset Generator",
+  "nixexprinput": "generator",
+  "nixexprpath": "jobset/generate.nix",
+  "checkinterval": 300,
+  "schedulingshares": 10,
+  "enableemail": false,
+  "emailoverride": "",
+  "keepnr": 5,
+  "inputs": {
+    "generator_config": {
+      "type": "git",
+      "value": "https://github.com/tomasharkema/nix-config.git snowfall",
+      "emailresponsible": false
+    },
+    "generator": {
+      "type": "git",
+      "value": "https://github.com/DeterminateSystems/hydra-github-jobsets-generator.git legacy-definition-support-private",
+      "emailresponsible": false
+    },
+    "nixpkgs": {
+      "type": "git",
+      "value": "https://github.com/NixOS/nixpkgs.git nixos-23.11-small",
+      "emailresponsible": false
+    },
+    "pull_requests": {
+      "type": "githubpulls",
+      "value": "tomasharkema nix-config",
+      "emailresponsible": false
     }
   }
 }
