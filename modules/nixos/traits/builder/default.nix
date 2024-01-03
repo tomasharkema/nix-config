@@ -54,7 +54,7 @@ in {
     nix = {
       extraOptions = ''
         auto-optimise-store = true
-        allowed-uris = https://api.flakehub.com/f/pinned https://github.com/NixOS/nixpkgs/archive https://github.com/NixOS/nixpkgs-channels/archive https://github.com/input-output-hk https://github.com/tomasharkema
+        allowed-uris = https://git.sr.ht/~thatonelutenist/nix-cache-watcher https://api.flakehub.com/f/pinned https://github.com/NixOS/nixpkgs/archive https://github.com/NixOS/nixpkgs-channels/archive https://github.com/input-output-hk https://github.com/tomasharkema
       '';
       binaryCaches = mkForce ["https://cache.nixos.org"];
       settings.trusted-users = ["hydra" "hydra-queue-runner" "hydra-www"];
