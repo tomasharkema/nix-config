@@ -255,7 +255,7 @@
       hydraJobs =
         {
           inherit (inputs.self) packages;
-          # inherit (inputs.self) checks;
+          inherit (inputs.self) images;
         }
         // {
           # packages = {
