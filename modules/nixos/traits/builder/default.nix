@@ -32,12 +32,17 @@ in {
       useSubstitutes = true;
       smtpHost = "smtp-relay.gmail.com";
       extraConfig = ''
-        <github_authorization>
-          ${config.age.secrets.ght.path}
-        </github_authorization>
+        Include ${config.age.secrets.ght.path}
+
         <dynamicruncommand>
           enable = 1
         </dynamicruncommand>
+        <hydra_notify>
+          <prometheus>
+            listen_address = 127.0.0.1
+            port = 9199
+          </prometheus>
+        </hydra_notify>
       '';
     };
 
