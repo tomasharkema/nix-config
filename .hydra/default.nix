@@ -11,18 +11,19 @@ in
       checkinterval = 600;
       enableemail = false;
       emailoverride = "";
-      nixexprinput = "config";
-      nixexprpath = "default.nix";
+      # nixexprinput = "config";
+      # nixexprpath = "default.nix";
     };
     primary_jobsets = {
       nix-config-snowfall =
         defaults
         // {
           description = "nix-config";
-          inputs = {
-            config = mkFetchGithub "https://github.com/tomasharkema/nix-config snowfall";
-            nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
-          };
+          # inputs = {
+          #   config = mkFetchGithub "https://github.com/tomasharkema/nix-config snowfall";
+          #   nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
+          # };
+          flake_uri = "git+https://github.com/tomasharkema/nix-config.git?ref=snowfall";
         };
     };
     pr_data = builtins.fromJSON (builtins.readFile pulls);
@@ -32,10 +33,12 @@ in
         defaults
         // {
           description = "PR ${num}: ${info.title}";
-          inputs = {
-            config = mkFetchGithub "https://github.com/${info.head.repo.owner.login}/${info.head.repo.name}.git ${info.head.ref}";
-            nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
-          };
+          # inputs = {
+          #   config = mkFetchGithub "https://github.com/${info.head.repo.owner.login}/${info.head.repo.name}.git ${info.head.ref}";
+          #   nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
+          # };
+
+          flake_uri = "git+https://github.com/tomasharkema/nix-config.git?rev=${info.head.ref}";
         };
     };
     pull_requests = listToAttrs (mapAttrsToList makePr pr_data);
