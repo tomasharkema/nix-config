@@ -50,5 +50,5 @@ in
     pull_requests = listToAttrs (mapAttrsToList makePr pr_data);
     jobsetsAttrs = pull_requests // primary_jobsets;
   in {
-    jobsets = makeSpec jobsetsAttrs;
+    jobsets = makeJobspec jobsetsAttrs;
   }
