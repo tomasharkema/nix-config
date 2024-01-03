@@ -28,7 +28,7 @@ in {
 
     services.github-runners."runner" = {
       enable = true;
-      tokenFile = config.age.ght-runner.path;
+      tokenFile = config.age.secrets.ght-runner.path;
     };
 
     services.hydra = {
