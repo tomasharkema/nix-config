@@ -1,7 +1,7 @@
 {pulls ? ../simple-pr-dummy.json}: let
   pkgs = import <nixpkgs> {};
 in
-  with import ../lib.nix;
+  with import ./lib.nix;
   with pkgs.lib; let
     defaults = {
       enabled = 1;
@@ -33,7 +33,7 @@ in
         // {
           description = "PR ${num}: ${info.title}";
           inputs = {
-            nix-config = mkFetchGithub "https://github.com/${info.head.repo.owner.login}/${info.head.repo.name}.git ${info.head.ref}";
+            config = mkFetchGithub "https://github.com/${info.head.repo.owner.login}/${info.head.repo.name}.git ${info.head.ref}";
             nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
           };
         };
