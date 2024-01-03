@@ -60,11 +60,6 @@
       url = "github:nix-community/impermanence";
     };
 
-    nix-cache-watcher = {
-      url = "git+https://git.sr.ht/~thatonelutenist/nix-cache-watcher?ref=trunk";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     attic = {
       url = "github:zhaofengli/attic";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -141,7 +136,6 @@
       "https://git.sr.ht/~rycee/nmd/archive"
       "https://github.com/zhaofengli/nix-base32.git"
       "https://github.com/tomasharkema.keys"
-      "https://git.sr.ht/~thatonelutenist/nix-cache-watcher"
       "https://api.flakehub.com/f/pinned"
       "https://github.com/NixOS/"
       "https://github.com/nixos/"
@@ -247,8 +241,8 @@
         formatter = channels.nixpkgs.alejandra;
 
         images = with inputs; {
-          baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
-          pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
+          # baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
+          # pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
 
           #   arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
 
@@ -271,7 +265,6 @@
   #   anywhere,
   #   agenix,
   #   nix-darwin,
-  #   nix-cache-watcher,
   #   alejandra,
   #   attic,
   #   system-manager,

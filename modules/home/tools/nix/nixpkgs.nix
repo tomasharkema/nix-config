@@ -21,7 +21,6 @@ in [
   nix
   hydra-cli
   # inputs.bento.packages.${system}.default
-  # nix-cache-watcher
   nix-fast-build
   nix-eval-jobs
   nix-init
