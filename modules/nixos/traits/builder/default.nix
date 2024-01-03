@@ -42,16 +42,17 @@ in {
       '';
     };
 
-    system.activationScripts = {
-      hydraSshFile.text = ''
-        cat <<EOT > /var/lib/hydra/.ssh/config
-        Host github.com
-          StrictHostKeyChecking No
-          UserKnownHostsFile /dev/null
-          IdentityFile /var/lib/hydra/.ssh/id_ed25519
-        EOT
+    programs.ssh.extraConfig = ''
+      StrictHostKeyChecking no
+    '';
+    nix = {
+      extraOptions = ''
+        auto-optimise-store = true
+        allowed-uris = https://github.com/NixOS/nixpkgs/archive https://github.com/NixOS/nixpkgs-channels/archive https://github.com/input-output-hk https://github.com/tomasharkema
       '';
+      binaryCaches = mkForce ["https://cache.nixos.org"];
     };
+
     programs.nix-ld.enable = true;
 
     nix.sshServe = {
