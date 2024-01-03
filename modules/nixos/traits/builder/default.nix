@@ -23,8 +23,8 @@ in {
     apps.attic.enable = true;
 
     # services.postgresql.enable = true;
-    systemd.services.hydra-queue-runner.path = [pkgs.ssmtp];
-    systemd.services.hydra-server.path = [pkgs.ssmtp];
+    # systemd.services.hydra-queue-runner.path = [pkgs.ssmtp];
+    # systemd.services.hydra-server.path = [pkgs.ssmtp];
 
     services.hydra = {
       extraEnv = {
