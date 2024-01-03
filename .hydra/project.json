@@ -29,11 +29,6 @@
       "type": "githubpulls",
       "value": "tomasharkema nix-config",
       "emailresponsible": false
-    },
-    "nixexpr": {
-      "value": "https://github.com/tomasharkema/nix-config.git snowfall",
-      "type": "git",
-      "emailresponsible": false
     }
   }
 }
