@@ -41,7 +41,7 @@ in
           # };
 
           type = 1;
-          flake = "git+https://github.com/tomasharkema/nix-config.git?ref=main";
+          flake = "github:tomasharkema/nix-config/main";
         };
     };
     pr_data = builtins.fromJSON (builtins.readFile pulls);
@@ -56,7 +56,7 @@ in
           #   nixpkgs = mkFetchGithub "https://github.com/nixos/nixpkgs nixos-unstable-small";
           # };
           type = 1;
-          flake = "git+https://github.com/tomasharkema/nix-config.git?ref=${info.head.ref}";
+          flake = "github:tomasharkema/nix-config/${info.head.ref}";
         };
     };
     pull_requests = listToAttrs (mapAttrsToList makePr pr_data);
