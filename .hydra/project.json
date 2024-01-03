@@ -29,6 +29,11 @@
       "type": "githubpulls",
       "value": "tomasharkema nix-config",
       "emailresponsible": false
+    },
+    "status": {
+      "type": "githubstatus",
+      "value": "tomasharkema nix-config",
+      "emailresponsible": false
     }
   }
 }
