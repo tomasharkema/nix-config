@@ -119,7 +119,7 @@ in {
         "kvm-intel"
         "uinput"
         "nvme"
-        "tpm_rng"
+        # "tpm_rng"
         "ipmi_ssif"
         "acpi_ipmi"
         "ipmi_si"
