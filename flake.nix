@@ -253,8 +253,8 @@
       #   inputs.deploy-rs.lib;
 
       hydraJobs =
-        {
-          inherit (inputs.self) packages;
+        inputs.self.packages."${builtins.currentSystem}"
+        // {
           inherit (inputs.self) images;
         }
         // {
