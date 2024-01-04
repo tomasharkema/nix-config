@@ -289,6 +289,10 @@
       # formatter = inputs.nixpkgs.alejandra;
       outputs-builder = channels: {
         formatter = channels.nixpkgs.alejandra;
+
+checks = {
+        nixpkgs-lint = channels.nixpkgs.nixpkgs-lint ./.;
+      };
       };
     };
 
