@@ -23,16 +23,19 @@
       LC_TIME = "nl_NL.UTF-8";
     };
 
-    environment.systemPackages = with pkgs;
-      lib.mkIf (!config.traits.slim.enable) [
-        atop
-        packagekit
-        fwupd
-        fwupd-efi
-        # toybox
-        dconf2nix
-        hw-probe
-      ];
+    environment.systemPackages = with pkgs; [
+      atop
+      packagekit
+      fwupd
+      fwupd-efi
+      # toybox
+      dconf2nix
+      hw-probe
+
+      git
+      wget
+      curl
+    ];
 
     # services.eternal-terminal.enable = true;
 
