@@ -252,9 +252,11 @@
       #     deploy-lib.deployChecks inputs.self.deploy)
       #   inputs.deploy-rs.lib;
 
-      hydraJobs =
+      hydraJobs = let
+        packages = lib.filterAttrs (system: v: system == "x86_64-linux") inputs.self.packages;
+      in
         {
-          inherit (inputs.self) packages;
+          inherit packages;
           inherit (inputs.self) images;
         }
         // {
