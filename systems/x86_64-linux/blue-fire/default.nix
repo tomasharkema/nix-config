@@ -40,8 +40,6 @@ in {
 
     traits = {
       builder.enable = true;
-
-      slim.enable = true;
     };
 
     services.tcsd.enable = true;
