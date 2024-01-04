@@ -3,7 +3,7 @@
   lib,
   stdenv,
 }:
-stdenv.mkDerivation {
+pkgs.stdenvNoCC.mkDerivation {
   name = "rundesk";
   meta = with lib; {
     mainProgram = "rundesk";

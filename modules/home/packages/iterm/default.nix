@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (pkgs.stdenv) isDarwin;
+  inherit (pkgs.stdenvNoCC) isDarwin;
   inherit (lib) types mkIf mkEnableOption mkOption;
   shellInit = shell:
     "source "

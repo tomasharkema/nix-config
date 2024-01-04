@@ -5,7 +5,7 @@
   config,
   ...
 }: let
-  inherit (pkgs) stdenv;
+  inherit (pkgs) stdenvNoCC;
   # tmux-menu = pkgs.writeShellScriptBin "tmux-menu" ''
   #   # Get a list of existing tmux sessions:
   #   TMUX_SESSIONS=$(tmux ls | awk -F: '{print $1}')

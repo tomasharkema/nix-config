@@ -259,7 +259,7 @@
 
       hydraJobs = let
         packages = lib.filterAttrs (system: v: system == "x86_64-linux") inputs.self.packages;
- devShells = lib.filterAttrs (system: v: system == "x86_64-linux") inputs.self.devShells;
+        devShells = lib.filterAttrs (system: v: system == "x86_64-linux") inputs.self.devShells;
       in
         {
           inherit packages;
@@ -274,6 +274,7 @@
           #   };
           # };
         };
+
       images = with inputs; {
         baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
         pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
@@ -290,9 +291,19 @@
       outputs-builder = channels: {
         formatter = channels.nixpkgs.alejandra;
 
-checks = {
-        nixpkgs-lint = channels.nixpkgs.nixpkgs-lint ./.;
-      };
+        checks = {
+          fmt-check = channels.nixpkgs.stdenvNoCC.mkDerivation {
+            name = "fmt-check";
+            src = ./.;
+            doCheck = true;
+            nativeBuildInputs = with channels.nixpkgs; [alejandra shellcheck shfmt];
+            checkPhase = ''
+              shfmt -d -s -i 2 -ci .
+              alejandra -c .
+              shellcheck -x .
+            '';
+          };
+        };
       };
     };
 

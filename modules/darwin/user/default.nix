@@ -9,8 +9,8 @@
 
   cfg = config.user;
 
-  is-linux = pkgs.stdenv.isLinux;
-  is-darwin = pkgs.stdenv.isDarwin;
+  is-linux = pkgs.stdenvNoCC.isLinux;
+  is-darwin = pkgs.stdenvNoCC.isDarwin;
 in {
   options.user = {
     name = mkOpt types.str "tomas" "The user account.";

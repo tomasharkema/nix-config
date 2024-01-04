@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (pkgs) stdenv;
+  inherit (pkgs) stdenvNoCC;
   iterm = pkgs.fetchurl {
     url = "https://iterm2.com/shell_integration/zsh";
     sha256 = "sha256-Cq8winA/tcnnVblDTW2n1k/olN3DONEfXrzYNkufZvY=";
@@ -32,7 +32,7 @@ in {
     # home.username = lib.mkDefault "tomas";
     # home.homeDirectory = lib.mkDefault (home-directory "tomas");
 
-    home.sessionVariables = lib.mkIf stdenv.isDarwin {
+    home.sessionVariables = lib.mkIf stdenvNoCC.isDarwin {
       EDITOR = "subl";
       SSH_AUTH_SOCK = "/Users/tomas/.1password/agent.sock";
       SPACESHIP_PROMPT_ADD_NEWLINE = "false";
@@ -312,7 +312,7 @@ in {
           "yarn"
           "zsh-navigation-tools"
           "wd"
-          "iterm-tab-color"
+          # "iterm-tab-color"
         ];
         #   # theme = "powerlevel10k/powerlevel10k";
       };

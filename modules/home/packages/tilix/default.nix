@@ -24,7 +24,7 @@ in {
       true "hallo";
   };
 
-  config = mkIf (cfg.enable && pkgs.stdenv.isLinux) {
+  config = mkIf (cfg.enable && pkgs.stdenvNoCC.isLinux) {
     xdg.configFile."tilix/schemes" = {
       source = "${catppuchin}/src";
       recursive = true;

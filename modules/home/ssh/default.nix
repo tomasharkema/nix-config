@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  inherit (pkgs) stdenv;
+  inherit (pkgs) stdenvNoCC;
 in {
   imports = [./match-blocks.nix];
   config = {
@@ -12,7 +12,7 @@ in {
 
       matchBlocks = {
         "*" = {
-          extraOptions = lib.mkIf stdenv.isDarwin {
+          extraOptions = lib.mkIf stdenvNoCC.isDarwin {
             "IdentityAgent" = "/Users/tomas/.1password/agent.sock";
           };
         };

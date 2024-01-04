@@ -10,7 +10,7 @@
   stdenv,
   ...
 }:
-stdenv.mkDerivation {
+pkgs.stdenvNoCC.mkDerivation {
   name = "rd-deps";
 
   src = pkgs.fetchFromGitHub {

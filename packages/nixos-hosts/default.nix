@@ -1,6 +1,6 @@
 {pkgs, ...}:
 with pkgs;
-  stdenv.mkDerivation {
+  stdenvNoCC.mkDerivation {
     name = "nixos-hosts";
 
     src = fetchFromGitHub {

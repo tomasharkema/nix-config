@@ -1,5 +1,5 @@
 {pkgs, ...}:
-pkgs.stdenv.mkDerivation {
+pkgs.stdenvNoCC.mkDerivation {
   name = "maclaunch";
 
   src = pkgs.fetchFromGitHub {
