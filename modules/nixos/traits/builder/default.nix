@@ -35,6 +35,21 @@ in {
 
     services.das_watchdog.enable = true;
 
+    nix.buildMachines = [
+      {
+        hostName = "localhost";
+        system = "x86_64-linux";
+        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+        maxJobs = 8;
+      }
+      {
+        hostName = "localhost";
+        system = "aarch64-linux";
+        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+        maxJobs = 8;
+      }
+    ];
+
     services.hydra = {
       extraEnv = {
         HYDRA_FORCE_SEND_MAIL = "1";
@@ -46,7 +61,6 @@ in {
       enable = true;
       hydraURL = "https://hydra.harkema.io";
       notificationSender = "tomas+hydra@harkema.io";
-      buildMachinesFiles = [];
       useSubstitutes = true;
       smtpHost = "smtp-relay.gmail.com";
       extraConfig = ''
