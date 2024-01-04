@@ -37,5 +37,5 @@ pkgs.mkShell {
     rd-imager
   ];
 
-  defaultInput = pkgs.rd-runner;
+  defaultInput = pkgs.custom.rd-runner;
 }
