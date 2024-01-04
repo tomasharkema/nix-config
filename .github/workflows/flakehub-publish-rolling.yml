@@ -6,10 +6,11 @@ on:
       - "snowfall"
 jobs:
   flakehub-publish:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, self-hosted]
-    runs-on: ${{ matrix.os }}
+    # strategy:
+    #   matrix:
+    #     os: [ubuntu-latest, self-hosted]
+    # runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     permissions:
       id-token: "write"
       contents: "read"
