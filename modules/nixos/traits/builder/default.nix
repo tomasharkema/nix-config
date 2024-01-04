@@ -32,7 +32,7 @@ in {
     #   url = "https://github.com/tomasharkema/nix-config";
     #   ephemeral = true;
     # };
-
+    services.das_watchdog.enable = true;
     services.hydra = {
       extraEnv = {
         HYDRA_FORCE_SEND_MAIL = "1";
