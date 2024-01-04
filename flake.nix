@@ -259,12 +259,13 @@
 
       hydraJobs = let
         packages = lib.filterAttrs (system: v: system == "x86_64-linux") inputs.self.packages;
+ devShells = lib.filterAttrs (system: v: system == "x86_64-linux") inputs.self.devShells;
       in
         {
           inherit packages;
           inherit (inputs.self) images;
           inherit (inputs.self) checks;
-          inherit (inputs.self) devShells;
+          inherit devShells;
         }
         // {
           # packages = {
