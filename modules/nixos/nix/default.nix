@@ -28,7 +28,7 @@ in {
     extra-substituters = mkOpt (attrsOf substituters-submodule) {} "Extra substituters to configure.";
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.enable && !config.traits.slim.enable) {
     assertions =
       mapAttrsToList
       (name: value: {

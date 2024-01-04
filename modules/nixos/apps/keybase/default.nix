@@ -4,7 +4,7 @@
   ...
 }:
 with lib; {
-  config = {
+  config = mkIf (!config.traits.slim.enable) {
     services.kbfs = {
       enable = true;
     };

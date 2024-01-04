@@ -3,8 +3,16 @@
   pkgs,
   lib,
   ...
-}: {
-  config = {
+}:
+with lib;
+with lib.custom; let
+  cfg = config.prometheus;
+in {
+  options.prometheus = {
+    enable = mkBoolOpt true "SnowflakeOS GNOME configuration";
+  };
+
+  config = mkIf cfg.enable {
     services.promtail = lib.mkIf false {
       enable = false;
       configuration = {

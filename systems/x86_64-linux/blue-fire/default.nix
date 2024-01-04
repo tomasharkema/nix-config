@@ -19,7 +19,7 @@
   isLinux = format == "linux";
 
   boot-into-bios = pkgs.writeShellScriptBin "boot-into-bios" ''
-    sudo ${lib.getExe pkgs.ipmitool} chassis bootparam set bootflag force_bios
+    sudo ${pkgs.ipmitool}/bin/ipmitool chassis bootparam set bootflag force_bios
   '';
 in {
   # Your configuration.
@@ -40,10 +40,8 @@ in {
 
     traits = {
       builder.enable = true;
-      hardware = {
-        # tpm.enable = true;
-        # secure-boot.enable = true;
-      };
+
+      slim = true;
     };
 
     services.tcsd.enable = true;
@@ -78,7 +76,7 @@ in {
 
     services.cron.systemCronJobs = [
       # Reset 5-minute watchdog timer every minute
-      "* * * * * ${lib.getExe pkgs.ipmitool} raw 0x30 0x97 1 5"
+      "* * * * * ${pkgs.ipmitool}/bin/ipmitool raw 0x30 0x97 1 5"
     ];
 
     # Minimal configuration for NFS support with Vagrant.

@@ -20,7 +20,7 @@ in {
   #   file = ../secrets/attic-key.age;
   # };
 
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.enable && !config.traits.slim.enable) {
     systemd.user.services.attic-login = let
       attic-login = writeShellScriptBin "attic-script" ''
         ${attic-bin} login tomas https://nix-cache.harke.ma $(cat ${config.age.secrets.attic-key.path})

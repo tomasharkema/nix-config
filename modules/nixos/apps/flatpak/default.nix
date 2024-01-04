@@ -15,7 +15,7 @@ in {
 
   imports = with inputs; [nix-flatpak.nixosModules.nix-flatpak];
 
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.enable && !config.traits.slim.enable) {
     services.flatpak = {
       enable = true;
       remotes = [
