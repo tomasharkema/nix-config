@@ -70,6 +70,7 @@ in {
       # vagrant
       ipmitool
       boot-into-bios
+      openipmi
     ];
     # Setup headless mode.
     systemd.enableEmergencyMode = false;
@@ -136,6 +137,7 @@ in {
         "ipmi_si"
         "ipmi_devintf"
         "ipmi_msghandler"
+        "watchdog"
       ];
       extraModulePackages = [];
       # kernelParams = ["console=ttyS0,115200" "console=tty1"];
