@@ -26,13 +26,15 @@ in {
     # systemd.services.hydra-queue-runner.path = [pkgs.ssmtp];
     # systemd.services.hydra-server.path = [pkgs.ssmtp];
 
-    # services.github-runner = {
-    #   enable = true;
-    #   tokenFile = config.age.secrets.ght-runner.path;
-    #   url = "https://github.com/tomasharkema/nix-config";
-    #   ephemeral = true;
-    # };
+    services.github-runner = {
+      enable = true;
+      tokenFile = config.age.secrets.ght-runner.path;
+      url = "https://github.com/tomasharkema/nix-config";
+      ephemeral = true;
+    };
+
     services.das_watchdog.enable = true;
+
     services.hydra = {
       extraEnv = {
         HYDRA_FORCE_SEND_MAIL = "1";

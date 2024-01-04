@@ -39,7 +39,7 @@ in {
     };
 
     traits = {
-      builder.enable = true;
+      # builder.enable = true;
     };
 
     boot.growPartition = true;
@@ -61,12 +61,12 @@ in {
 
     environment.systemPackages = with pkgs; [
       # ipmicfg
-      ipmiview
-      ipmiutil
+      # ipmiview
+      # ipmiutil
       # vagrant
       ipmitool
       boot-into-bios
-      openipmi
+      # openipmi
     ];
 
     services.tailscale = {

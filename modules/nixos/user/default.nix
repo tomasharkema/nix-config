@@ -38,13 +38,14 @@ in {
   };
 
   config = {
-
-  security.pam.loginLimits = [{
-    domain = "*";
-    type = "soft";
-    item = "nofile";
-    value = "8192";
-  }];
+    security.pam.loginLimits = [
+      {
+        domain = "*";
+        type = "soft";
+        item = "nofile";
+        value = "8192";
+      }
+    ];
 
     security.sudo.wheelNeedsPassword = false;
 
@@ -89,7 +90,7 @@ in {
 
     nix.settings = {
       extra-experimental-features = "nix-command flakes";
-      # distributedBuilds = true;
+      distributedBuilds = true;
       trusted-users = ["root" "tomas"];
       extra-substituters = [
         "https://nix-cache.harke.ma/tomas"
