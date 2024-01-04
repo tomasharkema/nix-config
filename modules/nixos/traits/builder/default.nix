@@ -31,7 +31,6 @@ in {
       tokenFile = config.age.secrets.ght-runner.path;
       url = "https://github.com/tomasharkema/nix-config";
       ephemeral = true;
-      nodeRuntimes = ["node16" "node20"];
     };
 
     services.hydra = {
