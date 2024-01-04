@@ -95,7 +95,7 @@ in {
         ];
         allow-import-from-derivation = true;
       };
-      # binaryCaches = mkForce ["https://cache.nixos.org"];
+      binaryCaches = mkForce ["https://cache.nixos.org"];
       settings.trusted-users = ["hydra" "hydra-queue-runner" "hydra-www" "github-runner-blue-fire"];
     };
 
