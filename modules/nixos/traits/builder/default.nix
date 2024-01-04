@@ -46,7 +46,7 @@ in {
       enable = true;
       hydraURL = "https://hydra.harkema.io";
       notificationSender = "tomas+hydra@harkema.io";
-      buildMachinesFiles = [];
+
       useSubstitutes = true;
       smtpHost = "smtp-relay.gmail.com";
       extraConfig = ''
@@ -106,6 +106,10 @@ in {
       keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas@tomas"
       ];
+    };
+    services.nix-serve = {
+      enable = true;
+      secretKeyFile = "/var/cache-priv-key.pem";
     };
 
     services.vscode-server.enable = true;
