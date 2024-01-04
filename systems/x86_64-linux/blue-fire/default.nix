@@ -100,15 +100,9 @@ in {
     nix.buildMachines = [
       {
         hostName = "localhost";
-        system = "x86_64-linux";
-        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-        maxJobs = 8;
-      }
-      {
-        hostName = "localhost";
         system = "aarch64-linux";
         supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-        maxJobs = 8;
+        maxJobs = 1;
       }
     ];
     boot = {
