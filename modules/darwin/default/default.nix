@@ -12,7 +12,7 @@
         builders-use-substitutes = true
       '';
 
-      distributedBuilds = true;
+      # distributedBuilds = true;
 
       buildMachines = [
         {
