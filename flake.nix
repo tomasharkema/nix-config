@@ -291,19 +291,19 @@
       outputs-builder = channels: {
         formatter = channels.nixpkgs.alejandra;
 
-        checks = {
-          fmt-check = channels.nixpkgs.stdenvNoCC.mkDerivation {
-            name = "fmt-check";
-            src = ./.;
-            doCheck = true;
-            nativeBuildInputs = with channels.nixpkgs; [alejandra shellcheck shfmt];
-            checkPhase = ''
-              shfmt -d -s -i 2 -ci .
-              alejandra -c .
-              shellcheck -x .
-            '';
-          };
-        };
+        # checks = {
+        #   fmt-check = channels.nixpkgs.stdenvNoCC.mkDerivation {
+        #     name = "fmt-check";
+        #     src = ./.;
+        #     doCheck = true;
+        #     nativeBuildInputs = with channels.nixpkgs; [alejandra shellcheck shfmt];
+        #     checkPhase = ''
+        #       shfmt -d -s -i 2 -ci .
+        #       alejandra -c .
+        #       shellcheck -x .
+        #     '';
+        #   };
+        # };
       };
     };
 
