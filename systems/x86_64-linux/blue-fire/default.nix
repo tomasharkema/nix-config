@@ -71,6 +71,10 @@ in {
       ipmitool
       boot-into-bios
     ];
+  # Setup headless mode.
+  systemd.enableEmergencyMode = false;
+  documentation.enable = false;
+  services.nixosManual.showManual = lib.mkForce false;
 
     services.tailscale = {
       useRoutingFeatures = lib.mkForce "both";
