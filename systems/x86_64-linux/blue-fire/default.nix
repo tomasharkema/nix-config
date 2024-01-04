@@ -39,7 +39,7 @@ in {
     };
 
     traits = {
-      # builder.enable = true;
+      builder.enable = true;
     };
 
     boot.growPartition = true;
