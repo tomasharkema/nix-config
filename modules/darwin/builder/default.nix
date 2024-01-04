@@ -35,7 +35,7 @@ with inputs; let
   };
 in {
   config = lib.mkIf false {
-    # nix.distributedBuilds = true;
+    nix.distributedBuilds = true;
 
     nix.buildMachines = [
       {

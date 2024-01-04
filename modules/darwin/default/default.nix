@@ -5,14 +5,14 @@
     system.stateVersion = 4;
 
     nix = {
-      # enable = true;
+      enable = true;
 
       extraOptions = ''
         auto-optimise-store = true
         builders-use-substitutes = true
       '';
 
-      # distributedBuilds = true;
+      distributedBuilds = true;
 
       buildMachines = [
         {
