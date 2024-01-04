@@ -264,6 +264,7 @@
           inherit packages;
           inherit (inputs.self) images;
           inherit (inputs.self) checks;
+          inherit (inputs.self) devShells;
         }
         // {
           # packages = {
