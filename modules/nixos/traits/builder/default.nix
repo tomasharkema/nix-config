@@ -27,7 +27,7 @@ in {
     # systemd.services.hydra-server.path = [pkgs.ssmtp];
 
     services.github-runner = {
-      enable = true;
+      # enable = true;
       tokenFile = config.age.secrets.ght-runner.path;
       url = "https://github.com/tomasharkema/nix-config";
       ephemeral = true;
