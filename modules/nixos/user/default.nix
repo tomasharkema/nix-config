@@ -38,6 +38,14 @@ in {
   };
 
   config = {
+
+  security.pam.loginLimits = [{
+    domain = "*";
+    type = "soft";
+    item = "nofile";
+    value = "8192";
+  }];
+
     security.sudo.wheelNeedsPassword = false;
 
     programs.zsh = {enable = true;};
