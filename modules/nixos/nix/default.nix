@@ -50,7 +50,7 @@ in {
       nix-output-monitor
       flake-checker
     ];
-
+    hardware.enableRedistributableFirmware = true;
     nix = let
       users =
         ["root" config.user.name]
