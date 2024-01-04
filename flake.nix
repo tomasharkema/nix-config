@@ -246,6 +246,11 @@
         };
       };
 
+      checks = {
+        # nixpkgs-lint =
+        # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
+      };
+
       # checks =
       #   builtins.mapAttrs
       #   (system: deploy-lib:
@@ -258,6 +263,7 @@
         {
           inherit packages;
           inherit (inputs.self) images;
+          inherit (inputs.self) checks;
         }
         // {
           # packages = {
@@ -268,7 +274,7 @@
         };
       images = with inputs; {
         baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
-        # pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
+        pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
 
         #   arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
 

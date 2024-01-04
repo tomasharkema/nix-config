@@ -14,6 +14,8 @@
       enable = lib.mkForce false;
     };
     boot.growPartition = true;
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
 
     # deployment.tags = [ "vm" ];
     # deployment = {
