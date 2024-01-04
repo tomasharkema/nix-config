@@ -36,7 +36,6 @@ in {
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K";
-      mainOverride = "vdb";
     };
 
     traits = {
