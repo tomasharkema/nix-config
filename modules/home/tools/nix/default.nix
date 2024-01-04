@@ -4,6 +4,6 @@
   ...
 }: {
   config = {
-    home.packages = import ./nixpkgs.nix {inherit pkgs inputs;};
+    # home.packages = import ./nixpkgs.nix {inherit pkgs inputs;};
   };
 }
