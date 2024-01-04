@@ -120,10 +120,10 @@ in {
       virtualHosts = {
         # ... existing hosts config etc. ...
         "hydra-cache.harkema.io" = {
-          locations."/".proxyPass = "http://${config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}";
+          locations."/".proxyPass = "http://127.0.0.1:${toString config.services.nix-serve.port}";
         };
         "hydra.harkema.io" = {
-          locations."/".proxyPass = "http://${config.services.hydra.bindAddress}:${toString config.services.hydra.port}";
+          locations."/".proxyPass = "http://127.0.0.1:${toString config.services.hydra.port}";
         };
       };
     };
