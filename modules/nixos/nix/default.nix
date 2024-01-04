@@ -29,69 +29,71 @@ in {
   };
 
   config = mkIf (cfg.enable && !config.traits.slim.enable) {
-    assertions =
-      mapAttrsToList
-      (name: value: {
-        assertion = value.key != null;
-        message = "custom.nix.extra-substituters.${name}.key must be set";
-      })
-      cfg.extra-substituters;
+    # assertions =
+    #   mapAttrsToList
+    #   (name: value: {
+    #     assertion = value.key != null;
+    #     message = "custom.nix.extra-substituters.${name}.key must be set";
+    #   })
+    #   cfg.extra-substituters;
 
-    environment.systemPackages = with pkgs;
-    with custom; [
-      # custom.nixos-revision
-      (nixos-hosts.override {
-        hosts = inputs.self.nixosConfigurations;
-      })
-      deploy-rs
-      nixfmt
-      nix-index
-      nix-prefetch-git
-      nix-output-monitor
-      flake-checker
-    ];
-    hardware.enableRedistributableFirmware = true;
-    nix = let
-      users =
-        ["root" config.user.name]
-        ++ optional config.services.hydra.enable "hydra";
-    in {
-      # package = cfg.package;
+    # hardware.enableRedistributableFirmware = true;
 
-      settings =
-        {
-          experimental-features = "nix-command flakes";
-          http-connections = 50;
-          warn-dirty = false;
-          log-lines = 50;
-          sandbox = false;
-          auto-optimise-store = true;
-          trusted-users = users;
-          allowed-users = users;
+    # environment.systemPackages = with pkgs;
+    # with custom; [
+    #   # custom.nixos-revision
+    #   (nixos-hosts.override {
+    #     hosts = inputs.self.nixosConfigurations;
+    #   })
+    #   deploy-rs
+    #   nixfmt
+    #   nix-index
+    #   nix-prefetch-git
+    #   nix-output-monitor
+    #   flake-checker
+    # ];
 
-          substituters =
-            [cfg.default-substituter.url]
-            ++ (mapAttrsToList (name: value: name) cfg.extra-substituters);
-          trusted-public-keys =
-            [cfg.default-substituter.key]
-            ++ (mapAttrsToList (name: value: value.key) cfg.extra-substituters);
-        }
-        // (lib.optionalAttrs true {
-          # config.custom.tools.direnv.enable {
-          keep-outputs = true;
-          keep-derivations = true;
-        });
+    # nix = let
+    #   users =
+    #     ["root" config.user.name]
+    #     ++ optional config.services.hydra.enable "hydra";
+    # in {
+    # package = cfg.package;
 
-      # gc = {
-      #   automatic = true;
-      #   dates = "weekly";
-      #   options = "--delete-older-than 30d";
-      # };
+    # settings =
+    #   {
+    #     experimental-features = "nix-command flakes";
+    #     http-connections = 50;
+    #     warn-dirty = false;
+    #     log-lines = 50;
+    #     sandbox = false;
+    #     auto-optimise-store = true;
+    #     trusted-users = users;
+    #     allowed-users = users;
 
-      # flake-utils-plus
-      generateRegistryFromInputs = true;
-      generateNixPathFromInputs = true;
-      linkInputs = true;
-    };
+    #     substituters =
+    #       [cfg.default-substituter.url]
+    #       ++ (mapAttrsToList (name: value: name) cfg.extra-substituters);
+    #     trusted-public-keys =
+    #       [cfg.default-substituter.key]
+    #       ++ (mapAttrsToList (name: value: value.key) cfg.extra-substituters);
+    #   }
+    #   // (lib.optionalAttrs true {
+    #     # config.custom.tools.direnv.enable {
+    #     keep-outputs = true;
+    #     keep-derivations = true;
+    #   });
+
+    # gc = {
+    #   automatic = true;
+    #   dates = "weekly";
+    #   options = "--delete-older-than 30d";
+    # };
+
+    # flake-utils-plus
+    # generateRegistryFromInputs = true;
+    # generateNixPathFromInputs = true;
+    # linkInputs = true;
+    # };
   };
 }
