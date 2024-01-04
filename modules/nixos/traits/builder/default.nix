@@ -113,5 +113,19 @@ in {
     };
 
     services.vscode-server.enable = true;
+
+    services.nginx = {
+      enable = true;
+      recommendedProxySettings = true;
+      virtualHosts = {
+        # ... existing hosts config etc. ...
+        "hydra-cache.harkema.io" = {
+          locations."/".proxyPass = "http://${config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}";
+        };
+        "hydra.harkema.io" = {
+          locations."/".proxyPass = "http://${config.services.hydra.bindAddress}:${toString config.services.hydra.port}";
+        };
+      };
+    };
   };
 }

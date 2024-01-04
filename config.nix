@@ -4,17 +4,17 @@
     distributedBuilds = true;
     builders-use-substitutes = true;
     trusted-users = ["root" "tomas"];
-    trusted-substituters = [
+
+    substituters = [
       "https://nix-cache.harke.ma/tomas"
-      "https://cache.nixos.org"
+      "https://nix-community.cachix.org"
+      "https://cache.nixos.org/"
     ];
-    trusted-binary-caches = [
-      "https://nix-cache.harke.ma/tomas"
-      "https://cache.nixos.org"
-    ];
+
     trusted-public-keys = [
-      "nix-cache.harke.ma:2UhS18Tt0delyOEULLKLQ36uNX3/hpX4sH684B+cG3c="
+      "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
 }
