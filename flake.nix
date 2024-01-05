@@ -248,11 +248,6 @@
         };
       };
 
-      checks = {
-        # nixpkgs-lint =
-        # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
-      };
-
       # checks =
       #   builtins.mapAttrs
       #   (system: deploy-lib:
@@ -269,11 +264,17 @@
         "blue-fire-slim" = self.nixosConfigurations."blue-fire-slim".config.formats.install-iso;
       };
 
+      hydraJobs = import ./hydraJobs.nix {inherit inputs;};
+
       # formatter = inputs.nixpkgs.alejandra;
       outputs-builder = channels: {
         formatter = channels.nixpkgs.alejandra;
+        checks = {
+          # nixpkgs-lint =
+          # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
 
-        hydraJobs = import ./hydraJobs.nix {inherit channels inputs;};
+          lint = channels.nixpkgs.custom.run-checks;
+        };
       };
     };
 }
