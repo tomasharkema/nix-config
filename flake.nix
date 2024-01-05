@@ -264,12 +264,15 @@
         devShells =
           lib.filterAttrs (system: v: (system == "x86_64-linux" || system == "aarch64-linux"))
           inputs.self.devShells;
+        hosts = (builtins.mapAttrs (n: v: v.config.system.build.toplevel)
+           inputs.self.nixosConfigurations);
       in
         {
           inherit packages;
           inherit (inputs.self) images;
           #inherit (inputs.self) checks;
           inherit devShells;
+          inherit hosts;
         }
         // {
           # packages = {
@@ -284,6 +287,8 @@
         pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
 
         arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
+
+        "blue-fire-slim" = self.nixosConfigurations."blue-fire-slim".config.formats.install-iso;
 
         #   silver-star-ferdorie = self.nixosConfigurations.silver-star-ferdorie.config.formats.qcow;
 
