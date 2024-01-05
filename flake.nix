@@ -3,11 +3,6 @@
     nixpkgs.url = "nixpkgs/nixos-23.11";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nix-netboot-serve = {
-      url = "github:DeterminateSystems/nix-netboot-serve";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,6 +17,7 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,10 +37,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    deploy-rs.url = "github:serokell/deploy-rs";
 
     # colmena.url = "github:zhaofengli/colmena";
     # colmena.inputs.nixpkgs.follows = "nixpkgs";
@@ -72,7 +65,6 @@
 
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     impermanence = {
@@ -89,8 +81,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # tailscale-prometheus-sd = { url = "github:madjam002/tailscale-prometheus-sd"; };
     flake-utils.url = "github:numtide/flake-utils";
+
     gomod2nix = {
       url = "github:nix-community/gomod2nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -113,22 +105,22 @@
 
     fh = {
       url = "github:DeterminateSystems/fh";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
 
     bento = {
       url = "github:rapenne-s/bento";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hydra-check = {
       url = "github:nix-community/hydra-check";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -266,15 +258,16 @@
 
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};
 
+      checks = with inputs; {
+        # nixpkgs-lint =
+        # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
+
+        lint = self.packages.${builtins.currentSystem}.run-checks;
+      };
+
       # formatter = inputs.nixpkgs.alejandra;
       outputs-builder = channels: {
         formatter = channels.nixpkgs.alejandra;
-        checks = {
-          # nixpkgs-lint =
-          # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
-
-          lint = channels.nixpkgs.custom.run-checks;
-        };
       };
     };
 }
