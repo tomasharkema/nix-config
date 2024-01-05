@@ -258,8 +258,12 @@
       #   inputs.deploy-rs.lib;
 
       hydraJobs = let
-        packages = lib.filterAttrs (system: v: system == "x86_64-linux") inputs.self.packages;
-        devShells = lib.filterAttrs (system: v: system == "x86_64-linux") inputs.self.devShells;
+        packages =
+          #lib.filterAttrs (system: v: system == "x86_64-linux")
+          inputs.self.packages;
+        devShells =
+          #lib.filterAttrs (system: v: system == "x86_64-linux")
+          inputs.self.devShells;
       in
         {
           inherit packages;

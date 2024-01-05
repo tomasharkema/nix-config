@@ -29,71 +29,69 @@ in {
   };
 
   config = mkIf (cfg.enable && !config.traits.slim.enable) {
-    # assertions =
-    #   mapAttrsToList
-    #   (name: value: {
-    #     assertion = value.key != null;
-    #     message = "custom.nix.extra-substituters.${name}.key must be set";
-    #   })
-    #   cfg.extra-substituters;
+    assertions =
+      mapAttrsToList
+      (name: value: {
+        assertion = value.key != null;
+        message = "custom.nix.extra-substituters.${name}.key must be set";
+      })
+      cfg.extra-substituters;
 
-    # hardware.enableRedistributableFirmware = true;
+    environment.systemPackages = with pkgs;
+    with custom; [
+      # custom.nixos-revision
+      (nixos-hosts.override {
+        hosts = inputs.self.nixosConfigurations;
+      })
+      deploy-rs
+      nixfmt
+      nix-index
+      nix-prefetch-git
+      nix-output-monitor
+      flake-checker
+    ];
 
-    # environment.systemPackages = with pkgs;
-    # with custom; [
-    #   # custom.nixos-revision
-    #   (nixos-hosts.override {
-    #     hosts = inputs.self.nixosConfigurations;
-    #   })
-    #   deploy-rs
-    #   nixfmt
-    #   nix-index
-    #   nix-prefetch-git
-    #   nix-output-monitor
-    #   flake-checker
-    # ];
+    nix = let
+      users =
+        ["root" config.user.name]
+        ++ optional config.services.hydra.enable "hydra";
+    in {
+      # package = cfg.package;
 
-    # nix = let
-    #   users =
-    #     ["root" config.user.name]
-    #     ++ optional config.services.hydra.enable "hydra";
-    # in {
-    # package = cfg.package;
+      settings =
+        {
+          experimental-features = "nix-command flakes";
+          http-connections = 50;
+          warn-dirty = false;
+          log-lines = 50;
+          sandbox = false;
+          auto-optimise-store = true;
+          trusted-users = users;
+          allowed-users = users;
 
-    # settings =
-    #   {
-    #     experimental-features = "nix-command flakes";
-    #     http-connections = 50;
-    #     warn-dirty = false;
-    #     log-lines = 50;
-    #     sandbox = false;
-    #     auto-optimise-store = true;
-    #     trusted-users = users;
-    #     allowed-users = users;
+          substituters =
+            [cfg.default-substituter.url]
+            ++ (mapAttrsToList (name: value: name) cfg.extra-substituters);
+          trusted-public-keys =
+            [cfg.default-substituter.key]
+            ++ (mapAttrsToList (name: value: value.key) cfg.extra-substituters);
+        }
+        // (lib.optionalAttrs true {
+          # config.custom.tools.direnv.enable {
+          keep-outputs = true;
+          keep-derivations = true;
+        });
 
-    #     substituters =
-    #       [cfg.default-substituter.url]
-    #       ++ (mapAttrsToList (name: value: name) cfg.extra-substituters);
-    #     trusted-public-keys =
-    #       [cfg.default-substituter.key]
-    #       ++ (mapAttrsToList (name: value: value.key) cfg.extra-substituters);
-    #   }
-    #   // (lib.optionalAttrs true {
-    #     # config.custom.tools.direnv.enable {
-    #     keep-outputs = true;
-    #     keep-derivations = true;
-    #   });
+      gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 30d";
+      };
 
-    # gc = {
-    #   automatic = true;
-    #   dates = "weekly";
-    #   options = "--delete-older-than 30d";
-    # };
-
-    # flake-utils-plus
-    # generateRegistryFromInputs = true;
-    # generateNixPathFromInputs = true;
-    # linkInputs = true;
-    # };
+      # flake-utils-plus
+      generateRegistryFromInputs = true;
+      generateNixPathFromInputs = true;
+      linkInputs = true;
+    };
   };
 }

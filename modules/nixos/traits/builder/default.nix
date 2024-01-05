@@ -42,17 +42,17 @@ in {
         supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
         maxJobs = 8;
       }
-      {
-        hostName = "localhost";
-        system = "aarch64-linux";
-        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-        maxJobs = 8;
-      }
+      # {
+      #   hostName = "localhost";
+      #   system = "aarch64-linux";
+      #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+      #   maxJobs = 8;
+      # }
     ];
 
     services.hydra = {
       extraEnv = {
-        HYDRA_FORCE_SEND_MAIL = "1";
+        # HYDRA_FORCE_SEND_MAIL = "1";
         EMAIL_SENDER_TRANSPORT_port = "587";
         EMAIL_SENDER_TRANSPORT_ssl = "starttls";
         EMAIL_SENDER_TRANSPORT_host = "smtp-relay.gmail.com";
