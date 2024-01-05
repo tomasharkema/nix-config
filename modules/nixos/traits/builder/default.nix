@@ -34,6 +34,10 @@ in {
       # services.github-runners."runner1" = github-default;
       # services.github-runners."runner2" = github-default;
 
+      networking.extraHosts = ''
+        127.0.0.2 localhost-aarch64
+      '';
+
       nix.buildMachines = [
         {
           hostName = "localhost";
@@ -42,7 +46,7 @@ in {
           maxJobs = 2;
         }
         {
-          hostName = "localhost";
+          hostName = "localhost-aarch64";
           system = "aarch64-linux";
           supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
           maxJobs = 2;
