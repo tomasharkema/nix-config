@@ -2,16 +2,16 @@ name: "check"
 on:
   push:
 
-concurrency:
-  group: "check-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}"
-  cancel-in-progress: true
-
 jobs:
   check:
     strategy:
       matrix:
         os: [self-hosted, ubuntu-latest]
     runs-on: ${{ matrix.os }}
+    concurrency:
+      group: "check-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}-${{ matrix.os }}"
+      cancel-in-progress: true
+
     steps:
       - uses: actions/checkout@v4
       - uses: cachix/install-nix-action@v24
