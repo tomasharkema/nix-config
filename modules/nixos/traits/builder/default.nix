@@ -92,7 +92,6 @@ in {
         '';
         # allowed-uris = https://github.com/zhaofengli/nix-base32.git https://github.com/tomasharkema.keys https://api.flakehub.com/f/pinned https://github.com/NixOS/nixpkgs/archive https://github.com/NixOS/nixpkgs-channels/archive https://github.com/input-output-hk https://github.com/tomasharkema
 
-        binaryCaches = mkForce ["https://cache.nixos.org"];
         settings = {
           allowed-uris = [
             "https://api.github.com"
@@ -154,6 +153,12 @@ in {
           };
           "hydra.harkema.io" = {
             locations."/".proxyPass = "http://127.0.0.1:${toString config.services.hydra.port}";
+          };
+          "hydra.${config.networking.hostName}.ling-lizard.ts.net" = {
+            locations."/".proxyPass = "http://127.0.0.1:${toString config.services.hydra.port}";
+          };
+          "hydra-cache.${config.networking.hostName}.ling-lizard.ts.net" = {
+            locations."/".proxyPass = "http://127.0.0.1:${toString config.services.nix-serve.port}";
           };
         };
       };
