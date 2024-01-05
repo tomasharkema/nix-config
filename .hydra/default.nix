@@ -19,13 +19,13 @@ in
       # nixexprpath = "default.nix";
     };
     primary_jobsets = {
-      nix-config-snowfall =
-        defaults
-        // {
-          description = "nix-config-snowfall";
-          type = 1;
-          flake = "github:tomasharkema/nix-config/snowfall";
-        };
+      # nix-config-snowfall =
+      #   defaults
+      #   // {
+      #     description = "nix-config-snowfall";
+      #     type = 1;
+      #     flake = "github:tomasharkema/nix-config/snowfall";
+      #   };
       nix-config-main =
         defaults
         // {
