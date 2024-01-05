@@ -5,8 +5,6 @@
     system.stateVersion = 4;
 
     nix = {
-      enable = true;
-
       extraOptions = ''
         auto-optimise-store = true
         builders-use-substitutes = true

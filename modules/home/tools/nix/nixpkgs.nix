@@ -16,6 +16,7 @@ in [
   agenix # .packages.${system}.default
   alejandra # .defaultPackage.${system}
   deadnix
+  cachix
   manix
   nil #.packages.${system}.default
   nix
