@@ -259,10 +259,10 @@
 
       hydraJobs = let
         packages =
-          lib.filterAttrs (system: v: system == "x86_64-linux" || system == "aarch-linux")
+          lib.filterAttrs (system: v: (system == "x86_64-linux" || system == "aarch64-linux"))
           inputs.self.packages;
         devShells =
-          lib.filterAttrs (system: v: system == "x86_64-linux" || system == "aarch-linux")
+          lib.filterAttrs (system: v: (system == "x86_64-linux" || system == "aarch64-linux"))
           inputs.self.devShells;
       in
         {
