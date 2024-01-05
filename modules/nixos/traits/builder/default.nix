@@ -22,12 +22,6 @@ in {
   config = mkIf cfg.enable {
     apps.attic.enable = true;
 
-    # services.postgresql.enable = true;
-    # systemd.services.hydra-queue-runner.path = [pkgs.ssmtp];
-    # systemd.services.hydra-server.path = [pkgs.ssmtp];
-
-    services.hercules-ci-agent.enable = true;
-
     services.github-runner = {
       # enable = true;
       tokenFile = config.age.secrets.ght-runner.path;
@@ -108,24 +102,25 @@ in {
           "git://github.com/tomasharkema"
         ];
         allow-import-from-derivation = true;
+
+        binaryCaches = mkForce ["https://cache.nixos.org"];
+
+        substituters = [
+          "https://tomasharkema.cachix.org/"
+          "https://nix-cache.harke.ma/tomas/"
+          "https://nix-community.cachix.org/"
+          "https://cache.nixos.org/"
+        ];
+
+        trusted-public-keys = [
+          "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
+          "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
+          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        ];
+
+        trusted-users = ["hydra" "hydra-queue-runner" "hydra-www" "github-runner-blue-fire"];
       };
-      binaryCaches = mkForce ["https://cache.nixos.org"];
-
-      substituters = [
-        "https://tomasharkema.cachix.org/"
-        "https://nix-cache.harke.ma/tomas/"
-        "https://nix-community.cachix.org/"
-        "https://cache.nixos.org/"
-      ];
-
-      trusted-public-keys = [
-        "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
-        "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      ];
-
-      settings.trusted-users = ["hydra" "hydra-queue-runner" "hydra-www" "github-runner-blue-fire"];
     };
 
     programs.nix-ld.enable = true;
