@@ -7,7 +7,7 @@
   config = with lib; {
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
-
+    services.das_watchdog.enable = true;
     # Select internationalisation properties.
     i18n.defaultLocale = "en_US.UTF-8";
 
@@ -28,7 +28,7 @@
       packagekit
       fwupd
       fwupd-efi
-      # toybox
+      toybox
       dconf2nix
       hw-probe
 

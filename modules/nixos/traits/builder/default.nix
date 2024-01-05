@@ -33,8 +33,6 @@ in {
       ephemeral = true;
     };
 
-    services.das_watchdog.enable = true;
-
     nix.buildMachines = [
       {
         hostName = "localhost";
