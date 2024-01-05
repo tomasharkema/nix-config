@@ -23,10 +23,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-hardware.url = "github:nixos/nixos-hardware";
-
-    cachix-deploy-flake.url = "github:cachix/cachix-deploy-flake";
-
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,56 +34,35 @@
     };
 
     deploy-rs.url = "github:serokell/deploy-rs";
-
-    # colmena.url = "github:zhaofengli/colmena";
-    # colmena.inputs.nixpkgs.follows = "nixpkgs";
-
-    # anywhere.url = "github:nix-community/nixos-anywhere";
-
-    # flake-utils.url = "github:numtide/flake-utils";
-
+    colmena.url = "github:zhaofengli/colmena";
+    anywhere.url = "github:nix-community/nixos-anywhere";
+    flake-utils.url = "github:numtide/flake-utils";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     nixvim.url = "github:pta2002/nixvim/nixos-23.11";
+    agenix.url = "github:ryantm/agenix";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
+    cachix-deploy-flake.url = "github:cachix/cachix-deploy-flake";
+    nix-software-center.url = "github:snowfallorg/nix-software-center";
+    nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
+    impermanence.url = "github:nix-community/impermanence";
+    attic.url = "github:zhaofengli/attic";
+    fh.url = "github:DeterminateSystems/fh";
+    bento.url = "github:rapenne-s/bento";
+    lanzaboote.url = "github:nix-community/lanzaboote";
+    hydra-check.url = "github:nix-community/hydra-check";
+    flake-checker.url = "github:DeterminateSystems/flake-checker";
 
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # system-manager = {
+    #   url = "github:numtide/system-manager";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
-    nix-software-center = {
-      url = "github:snowfallorg/nix-software-center";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixos-conf-editor = {
-      url = "github:snowfallorg/nixos-conf-editor";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-flatpak = {
-      url = "github:gmodena/nix-flatpak";
-    };
-
-    impermanence = {
-      url = "github:nix-community/impermanence";
-    };
-
-    attic = {
-      url = "github:zhaofengli/attic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    system-manager = {
-      url = "github:numtide/system-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    flake-utils.url = "github:numtide/flake-utils";
-
-    gomod2nix = {
-      url = "github:nix-community/gomod2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
+    # gomod2nix = {
+    #   url = "github:nix-community/gomod2nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.flake-utils.follows = "flake-utils";
+    # };
 
     snowfall-lib = {
       url = "github:snowfallorg/lib";
@@ -96,31 +71,6 @@
     snowfall-flake = {
       url = "github:snowfallorg/flake";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    flake-checker = {
-      url = "github:DeterminateSystems/flake-checker";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    fh = {
-      url = "github:DeterminateSystems/fh";
-      #inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    bento = {
-      url = "github:rapenne-s/bento";
-      #inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote";
-      #inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hydra-check = {
-      url = "github:nix-community/hydra-check";
-      #inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
