@@ -19,34 +19,35 @@ in {
     };
   };
 
-  config = let
-    github-default = {
-      enable = true;
-      tokenFile = config.age.secrets.ght-runner.path;
-      url = "https://github.com/tomasharkema/nix-config";
-      ephemeral = true;
-    };
-  in
+  config =
+    # let
+    #   github-default = {
+    #     enable = true;
+    #     tokenFile = config.age.secrets.ght-runner.path;
+    #     url = "https://github.com/tomasharkema/nix-config";
+    #     ephemeral = true;
+    #   };
+    # in
     mkIf cfg.enable {
       apps.attic.enable = true;
 
-      services.github-runners."runner1" = github-default;
-      services.github-runners."runner2" = github-default;
+      # services.github-runners."runner1" = github-default;
+      # services.github-runners."runner2" = github-default;
 
-      nix.buildMachines = [
-        {
-          hostName = "localhost";
-          system = "x86_64-linux";
-          supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-          maxJobs = 2;
-        }
-        {
-          hostName = "localhost";
-          system = "aarch64-linux";
-          supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-          maxJobs = 2;
-        }
-      ];
+      # nix.buildMachines = [
+      #   {
+      #     hostName = "localhost";
+      #     system = "x86_64-linux";
+      #     supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+      #     maxJobs = 2;
+      #   }
+      #   {
+      #     hostName = "localhost";
+      #     system = "aarch64-linux";
+      #     supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+      #     maxJobs = 2;
+      #   }
+      # ];
 
       services.hydra = {
         extraEnv = {
@@ -55,6 +56,7 @@ in {
           EMAIL_SENDER_TRANSPORT_ssl = "starttls";
           EMAIL_SENDER_TRANSPORT_host = "smtp-relay.gmail.com";
         };
+        buildMachinesFiles = [];
 
         enable = true;
         hydraURL = "https://hydra.harkema.io";
