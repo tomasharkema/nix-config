@@ -23,7 +23,7 @@ in {
     apps.attic.enable = true;
 
     services.github-runner = {
-      # enable = true;
+      enable = true;
       tokenFile = config.age.secrets.ght-runner.path;
       url = "https://github.com/tomasharkema/nix-config";
       ephemeral = true;
@@ -85,6 +85,7 @@ in {
       '';
       # allowed-uris = https://github.com/zhaofengli/nix-base32.git https://github.com/tomasharkema.keys https://api.flakehub.com/f/pinned https://github.com/NixOS/nixpkgs/archive https://github.com/NixOS/nixpkgs-channels/archive https://github.com/input-output-hk https://github.com/tomasharkema
 
+      binaryCaches = mkForce ["https://cache.nixos.org"];
       settings = {
         allowed-uris = [
           "https://api.github.com"
@@ -102,8 +103,6 @@ in {
           "git://github.com/tomasharkema"
         ];
         allow-import-from-derivation = true;
-
-        binaryCaches = mkForce ["https://cache.nixos.org"];
 
         substituters = [
           "https://tomasharkema.cachix.org/"
