@@ -10,16 +10,16 @@
     lib.filterAttrs (system: v: (system == "x86_64-linux")) # || system == "aarch64-linux"))
     
     inputs.self.devShells;
-  #   hosts =
-  #     builtins.mapAttrs (n: v: v.config.system.build.toplevel)
-  #     inputs.self.nixosConfigurations;
+  hosts =
+    builtins.mapAttrs (n: v: v.config.system.build.toplevel)
+    inputs.self.nixosConfigurations;
 in
   {
     inherit packages;
     #inherit (inputs.self) images;
     #inherit (inputs.self) checks;
     inherit devShells;
-    # inherit hosts;
+    inherit hosts;
   }
   // {
     # devShells = inputs.self.devShells.${pkgs.system};
