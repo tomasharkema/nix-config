@@ -60,18 +60,18 @@ in {
     };
 
     nix.buildMachines = [
-      {
-        hostName = "enzian";
-        system = "x86_64-linux";
-        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-        maxJobs = 2;
-      }
-      {
-        hostName = "enzian";
-        system = "aarch64-linux";
-        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-        maxJobs = 2;
-      }
+      # {
+      #   hostName = "enzian";
+      #   system = "x86_64-linux";
+      #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+      #   maxJobs = 2;
+      # }
+      # {
+      #   hostName = "enzian";
+      #   system = "aarch64-linux";
+      #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+      #   maxJobs = 2;
+      # }
     ];
 
     environment.systemPackages = with pkgs; [
