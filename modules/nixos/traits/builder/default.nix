@@ -147,7 +147,6 @@ in {
         enable = true;
         recommendedProxySettings = true;
         virtualHosts = {
-          # ... existing hosts config etc. ...
           "hydra-cache.harkema.io" = {
             locations."/".proxyPass = "http://127.0.0.1:${toString config.services.nix-serve.port}";
           };

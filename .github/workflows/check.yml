@@ -28,7 +28,7 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@v2
       - run: nix run "https://flakehub.com/f/DeterminateSystems/flake-checker/0.1.17.tar.gz"
       - run: nix flake check --accept-flake-config
-      - uses: astro/deadnix-action@main
+      # - uses: astro/deadnix-action@main
       - run: nix build '.#images.blue-fire-slim'
       - run: nix build '.#images.blue-fire'
       - uses: "DeterminateSystems/flakehub-push@main"
