@@ -3,7 +3,6 @@
   pkgs,
   ...
 }: let
-  inherit (pkgs) stdenvNoCC;
   machines = ["blue-fire" "arthur" "enzian" "baaa-express" "pegasus" "hyperv-nixos"];
 in {
   config = {

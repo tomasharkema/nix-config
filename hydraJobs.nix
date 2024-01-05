@@ -1,5 +1,4 @@
 {inputs, ...}: let
-  system = builtins.currentSystem;
   lib = inputs.nixpkgs.lib;
   packages =
     lib.filterAttrs (system: v: (system == "x86_64-linux" || system == "aarch64-linux"))

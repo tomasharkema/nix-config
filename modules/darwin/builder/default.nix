@@ -4,7 +4,6 @@
   ...
 }:
 with inputs; let
-  inherit (nix-darwin.lib) darwinSystem;
   system = "aarch64-darwin";
   pkgs = nixpkgs.legacyPackages."${system}";
   linuxSystem = builtins.replaceStrings ["darwin"] ["linux"] system;

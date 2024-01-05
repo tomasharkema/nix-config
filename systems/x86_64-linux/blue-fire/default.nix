@@ -16,7 +16,6 @@
   config,
   ...
 }: let
-  isLinux = format == "linux";
 
   boot-into-bios = pkgs.writeShellScriptBin "boot-into-bios" ''
     sudo ${pkgs.ipmitool}/bin/ipmitool chassis bootparam set bootflag force_bios

@@ -4,13 +4,10 @@
   pkgs,
   ...
 }: let
-  inherit (lib) types mkIf mkDefault;
+  inherit (lib) types;
   inherit (lib.custom) mkOpt;
 
   cfg = config.user;
-
-  is-linux = pkgs.stdenvNoCC.isLinux;
-  is-darwin = pkgs.stdenvNoCC.isDarwin;
 in {
   options.user = {
     name = mkOpt types.str "tomas" "The user account.";

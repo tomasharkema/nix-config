@@ -7,7 +7,6 @@
 }:
 with lib;
 with lib.custom; let
-  tailscaled = import ./tailscaled.nix {inherit pkgs lib;};
   cfg = config.tailscale;
 in {
   options.tailscale = {
