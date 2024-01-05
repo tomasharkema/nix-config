@@ -216,7 +216,7 @@
           # nixpkgs-lint =
           # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
 
-          lint = self.packages.${hannels.nixpkgs.system}.run-checks;
+          lint = self.packages.${channels.nixpkgs.system}.run-checks;
         };
       };
     };
