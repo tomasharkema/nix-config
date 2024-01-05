@@ -208,16 +208,16 @@
 
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};
 
-      checks = with inputs; {
-        # nixpkgs-lint =
-        # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
-
-        lint = self.packages.${builtins.currentSystem}.run-checks;
-      };
-
       # formatter = inputs.nixpkgs.alejandra;
       outputs-builder = channels: {
         formatter = channels.nixpkgs.alejandra;
+
+        checks = with inputs; {
+          # nixpkgs-lint =
+          # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
+
+          lint = self.packages.${hannels.nixpkgs.system}.run-checks;
+        };
       };
     };
 }
