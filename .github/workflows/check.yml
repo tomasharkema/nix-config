@@ -10,7 +10,7 @@ jobs:
   check:
     strategy:
       matrix:
-        os: [ubuntu-latest, self-hosted]
+        os: [self-hosted] # ubuntu-latest,
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
