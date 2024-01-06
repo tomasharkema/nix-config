@@ -9,9 +9,9 @@ jobs:
         os: [self-hosted, ubuntu-latest]
     runs-on: ${{ matrix.os }}
 
-    concurrency:
-      group: "check-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}-${{ matrix.os }}"
-      cancel-in-progress: true
+    #concurrency:
+      #group: "check-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}-${{ matrix.os }}"
+      #cancel-in-progress: true
 
     steps:
       - uses: actions/checkout@v4
