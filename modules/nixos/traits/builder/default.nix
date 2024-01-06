@@ -30,7 +30,7 @@ in {
     # in
     mkIf cfg.enable {
       apps.attic.enable = true;
-
+      services.cachix-agent.enable = true;
       # services.github-runners."runner1" = github-default;
       # services.github-runners."runner2" = github-default;
 
@@ -43,7 +43,7 @@ in {
           hostName = "localhost";
           systems = ["x86_64-linux" "aarch64-linux"];
           supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-          maxJobs = 2;
+          maxJobs = 8;
         }
       ];
 
