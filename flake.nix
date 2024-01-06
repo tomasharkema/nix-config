@@ -93,10 +93,7 @@
       url = "github:DeterminateSystems/fh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    bento = {
-      url = "github:rapenne-s/bento";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";

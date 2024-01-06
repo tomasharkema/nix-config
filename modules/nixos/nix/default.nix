@@ -49,8 +49,6 @@ in {
       nix-prefetch-git
       nix-output-monitor
       flake-checker
-
-      inputs.bento.packages.${system}.default
     ];
 
     nix = let
