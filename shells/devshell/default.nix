@@ -58,6 +58,7 @@ in
 
     packages = with inputs;
       [
+        bento.packages.${system}.default
         flake-checker.packages.${system}.default
         deploy-rs.packages.${system}.default
         attic.packages.${system}.default
