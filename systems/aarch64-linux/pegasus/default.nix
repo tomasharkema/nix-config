@@ -23,7 +23,7 @@
       raspberry-pi."4" = {
         apply-overlays-dtmerge.enable = true;
         dwc2.enable = true;
-        fkms-3d.enable = true;
+        # fkms-3d.enable = true;
       };
       deviceTree = with lib; {
         enable = true;
