@@ -35,6 +35,31 @@ in {
       };
     };
 
+    systemd.services.cachix-watch = let
+      cachix-script = writeShellScriptBin "attic-script.sh" ''
+        cachix watch-store tomasharkema
+      '';
+    in {
+      enable = true;
+      description = "cachix-watch";
+      unitConfig = {
+        Type = "simple";
+        StartLimitIntervalSec = 500;
+        StartLimitBurst = 5;
+      };
+      serviceConfig = {
+        Restart = "on-failure";
+        RestartSec = 5;
+        MemoryLimit = "2G";
+      };
+      script = "${lib.getExe cachix-script}";
+      wantedBy = ["multi-user.target"];
+      path = [cachix-script pkgs.cachix];
+      environment = {
+        ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH = "go1.21";
+      };
+    };
+
     systemd.services.attic-watch = let
       attic-script = writeShellScriptBin "attic-script.sh" ''
         ${attic-bin} login tomas https://nix-cache.harke.ma "$(cat ${config.age.secrets.attic-key.path})"
