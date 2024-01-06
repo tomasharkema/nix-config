@@ -58,4 +58,7 @@ in {
   "keybase.age".publicKeys = allKeys;
   "ght.age".publicKeys = [tomas blue-fire blue-fire-tomas];
   "ght-runner.age".publicKeys = [tomas blue-fire blue-fire-tomas];
+  "cachix.age".publicKeys = allKeys;
+  "cachix-agent.age".publicKeys = allKeys;
+  "cachix-activate.age".publicKeys = allKeys;
 }

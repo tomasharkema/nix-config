@@ -28,10 +28,18 @@ in {
     };
   in
     mkIf cfg.enable {
+      age.secrets.ght = {
+        file = ../../../../secrets/ght.age;
+        mode = "0664";
+      };
+      age.secrets."ght-runner" = {
+        file = ../../../../secrets/ght-runner.age;
+        mode = "0664";
+      };
+
       apps.attic.enable = true;
-      services.cachix-agent.enable = true;
-      services.github-runners."runner1" = github-default;
-      services.github-runners."runner2" = github-default;
+      services.github-runners."runner-1" = github-default;
+      services.github-runners."runner-2" = github-default;
 
       networking.extraHosts = ''
         127.0.0.2 localhost-aarch64

@@ -41,13 +41,25 @@
       file = ./netdata.age;
       mode = "0664";
     };
-    age.secrets.ght = {
-      file = ./ght.age;
+    age.secrets."cachix" = {
+      file = ./cachix.age;
       mode = "0664";
+      path = "/home/tomas/.config/cachix/cachix.dhall";
     };
-    age.secrets."ght-runner" = {
-      file = ./ght-runner.age;
+    # age.secrets."cachix-root" = {
+    #   file = ./cachix.age;
+    #   mode = "0664";
+    #   path = "/root/.config/cachix/cachix.dhall";
+    # };
+    age.secrets."cachix-agent" = {
+      file = ./cachix-agent.age;
       mode = "0664";
+      path = "/etc/cachix-agent.token";
+    };
+    age.secrets."cachix-activate" = {
+      file = ./cachix-activate.age;
+      mode = "0664";
+      path = "/tmp/cacheix-act.sh";
     };
   };
 }

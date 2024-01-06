@@ -26,7 +26,7 @@
     #   enable = true;
     #   disks = ["/dev/nvme0n1"];
     # };
-
+    boot.binfmt.emulatedSystems = ["aarch64-linux"];
     apps.attic.enable = true;
     gui = {
       enable = true;

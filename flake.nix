@@ -259,14 +259,16 @@
 
         arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
 
-        "blue-fire" = self.nixosConfigurations."blue-fire".config.formats.install-iso;
+        # "blue-fire" = self.nixosConfigurations."blue-fire".config.formats.install-iso;
         "blue-fire-slim" = self.nixosConfigurations."blue-fire-slim".config.formats.install-iso;
       };
 
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};
 
       # formatter = inputs.nixpkgs.alejandra;
-      outputs-builder = channels: {
+      outputs-builder = channels: let
+        cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
+      in {
         formatter = channels.nixpkgs.alejandra;
 
         checks = with inputs; {
@@ -274,6 +276,16 @@
           # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
 
           lint = self.packages.${channels.nixpkgs.system}.run-checks;
+        };
+
+        defaultPackage = cachix-deploy-lib.spec {
+          agents = {
+            blue-fire = inputs.self.nixosConfigurations.blue-fire.config.system.build.toplevel;
+            enzian = inputs.self.nixosConfigurations.enzian.config.system.build.toplevel;
+            euro-mir-2 = inputs.self.nixosConfigurations.euro-mir-2.config.system.build.toplevel;
+            pegasus = inputs.self.nixosConfigurations.pegasus.config.system.build.toplevel;
+            baaa-express = inputs.self.nixosConfigurations.baaa-express.config.system.build.toplevel;
+          };
         };
       };
     };

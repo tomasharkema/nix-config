@@ -11,6 +11,8 @@
     # Select internationalisation properties.
     i18n.defaultLocale = "en_US.UTF-8";
 
+    services.cachix-agent.enable = true;
+
     i18n.extraLocaleSettings = {
       LC_ADDRESS = "nl_NL.UTF-8";
       LC_IDENTIFICATION = "nl_NL.UTF-8";
@@ -68,5 +70,8 @@
       ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
     };
     services.udev = {enable = lib.mkDefault true;};
+    programs.zsh.shellInit = ''
+      source ${config.age.secrets."cachix-activate".path}
+    '';
   };
 }
