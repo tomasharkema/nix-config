@@ -37,6 +37,7 @@ in {
 
     systemd.services.cachix-watch = let
       cachix-script = writeShellScriptBin "attic-script.sh" ''
+        export CACHIX_AUTH_TOKEN=$(cat ${config.age.secrets.cachix.path})
         cachix watch-store tomasharkema
       '';
     in {
@@ -58,6 +59,7 @@ in {
     };
     systemd.services.cachix-daemon = let
       cachix-daemon-script = writeShellScriptBin "attic-daemon-script.sh" ''
+        export CACHIX_AUTH_TOKEN=$(cat ${config.age.secrets.cachix.path})
         cachix daemon run
       '';
     in {
