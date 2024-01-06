@@ -253,7 +253,7 @@ in {
         terminal.autoTitle = true;
 
         tmux = {
-          # autoStartRemote = true;
+          autoStartRemote = true;
           itermIntegration = true;
           # autoStartLocal = true;
         };
@@ -312,6 +312,7 @@ in {
           "yarn"
           "zsh-navigation-tools"
           "wd"
+          "tmux"
           # "iterm-tab-color"
         ];
         #   # theme = "powerlevel10k/powerlevel10k";
