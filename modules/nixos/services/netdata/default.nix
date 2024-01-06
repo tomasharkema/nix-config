@@ -16,7 +16,7 @@ in {
     # age.secrets."netdata" = {file = ../secrets/netdata.age;};
     services.netdata = {
       enable = true;
-      package = pkgs.netdata.override {withCloud = true;};
+      package = pkgs.netdataCloud;
       claimTokenFile = config.age.secrets."netdata".path;
     };
   };
