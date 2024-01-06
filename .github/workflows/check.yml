@@ -2,6 +2,10 @@ name: "check"
 on:
   push:
 
+concurrency:
+  group: "check-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}-${{ matrix.os }}"
+  cancel-in-progress: true
+
 jobs:
   isos:
     runs-on: ubuntu-latest #self-hosted
@@ -45,11 +49,6 @@ jobs:
       matrix:
         os: [ubuntu-latest] # [self-hosted, ubuntu-latest]
     runs-on: ${{ matrix.os }}
-
-    #concurrency:
-    #group: "check-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}-${{ matrix.os }}"
-    #cancel-in-progress: true
-
     steps:
       - uses: actions/checkout@v4
       # - uses: docker/setup-qemu-action@v3
