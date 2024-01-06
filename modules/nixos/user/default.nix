@@ -38,16 +38,24 @@ in {
   };
 
   config = {
-    security.pam.loginLimits = [
-      {
-        domain = "*";
-        type = "soft";
-        item = "nofile";
-        value = "8192";
-      }
-    ];
+    security = {
+      pam = {
+        loginLimits = [
+          {
+            domain = "*";
+            type = "soft";
+            item = "nofile";
+            value = "8192";
+          }
+        ];
+        services = {
+          login.googleAuthenticator.enable = true;
+        };
+      };
+      sudo.wheelNeedsPassword = false;
+    };
 
-    security.sudo.wheelNeedsPassword = false;
+    environment.systemPackages = with pkgs; [google-authenticator];
 
     programs.zsh = {enable = true;};
 

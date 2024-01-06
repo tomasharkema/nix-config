@@ -61,5 +61,10 @@
       mode = "0664";
       path = "/tmp/cacheix-act.sh";
     };
+    age.secrets."otp" = {
+      file = ./otp.age;
+      mode = "0664";
+      path = "/home/tomas/.google_authenticator";
+    };
   };
 }
