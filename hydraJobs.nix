@@ -24,6 +24,7 @@ in
     inherit defaultPackage;
   }
   // {
+    defaultPackage = inputs.self.defaultPackage.x86_64-linux;
     # devShells = inputs.self.devShells.${pkgs.system};
     # packages = {
     #   nixos-hosts = channels.nixpkgs.nixos-hosts.override {
