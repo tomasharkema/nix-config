@@ -31,7 +31,14 @@ with lib; let
   remote-deploy = writeShellScriptBin "remote-deploy" ''
     remote deployment '.#arthur' '.#enzian'
   '';
-
+  cachix-deploy = writeShellScriptBin "cachix-deploy" ''
+    set -x
+    set -e
+    spec=(nom build --print-out-paths)
+    echo $spec
+    cat $spec
+    cachix push tomasharkema $spec
+  '';
   diffs = import ../diffs attrs;
   packages-json = diffs.packages-json;
   # gum = lib.getExe pkgs.gum;
@@ -98,6 +105,7 @@ in
         ssh-to-age
         write-script
         zsh
+        cachix-deploy
       ]
       ++ nix-install-pkgs;
 
