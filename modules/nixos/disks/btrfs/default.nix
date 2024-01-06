@@ -17,6 +17,62 @@
   ...
 }: let
   cfg = config.disks.btrfs;
+
+  luksContent = root: {
+    luks = {
+      size = "100%";
+      content = {
+        type = "luks";
+        name = "crypted";
+        # disable settings.keyFile if you want to use interactive password entry
+        #passwordFile = "/tmp/secret.key"; # Interactive
+        settings = {
+          allowDiscards = true;
+          keyFile = "/tmp/secret.key";
+        };
+        additionalKeyFiles = ["/tmp/additionalSecret.key"];
+        content = root;
+      };
+    };
+  };
+
+  innerContent = {
+    root = {
+      size = "100%";
+      content = {
+        type = "btrfs";
+        extraArgs = ["-f"]; # Override existing partition
+        # Subvolumes must set a mountpoint in order to be mounted,
+        # unless their parent is mounted
+        subvolumes = {
+          # Subvolume name is different from mountpoint
+          "/rootfs" = {mountpoint = "/";};
+          # Subvolume name is the same as the mountpoint
+          "/home" = {
+            mountOptions = ["subvol=home" "compress=zstd"];
+            mountpoint = "/home";
+          };
+          # Parent is not mounted so the mountpoint must be set
+          "/nix" = {
+            mountOptions = ["subvol=nix" "compress=zstd" "noatime"];
+            mountpoint = "/nix";
+          };
+          # Subvolume for the swapfile
+          "/swap" = {
+            mountpoint = "/.swapvol";
+            swap = {
+              swapfile.size = "5G";
+            };
+          };
+        };
+
+        mountpoint = "/partition-root";
+        swap = {
+          swapfile = {size = "5G";};
+        };
+      };
+    };
+  };
 in
   with lib; {
     options = {
@@ -37,6 +93,7 @@ in
           default = null;
           description = "Dev for optional media partition";
         };
+        encrypt = mkEnableOption "encrypted";
       };
     };
 
@@ -62,9 +119,12 @@ in
       environment.systemPackages = with pkgs; [
         snapper
         snapper-gui
+        tpm-luks
       ];
-      fileSystems."/".neededForBoot = true;
-      fileSystems."/boot".neededForBoot = true;
+
+      # fileSystems."/".neededForBoot = true;
+      # fileSystems."/boot".neededForBoot = true;
+
       disko.devices = {
         disk = {
           "${cfg.mainOverride}" = {
@@ -86,43 +146,14 @@ in
                     mountpoint = "/boot";
                   };
                 };
-                root = {
-                  size = "100%";
-                  content = {
-                    type = "btrfs";
-                    extraArgs = ["-f"]; # Override existing partition
-                    # Subvolumes must set a mountpoint in order to be mounted,
-                    # unless their parent is mounted
-                    subvolumes = {
-                      # Subvolume name is different from mountpoint
-                      "/rootfs" = {mountpoint = "/";};
-                      # Subvolume name is the same as the mountpoint
-                      "/home" = {
-                        mountOptions = ["subvol=home" "compress=zstd"];
-                        mountpoint = "/home";
-                      };
-                      # Parent is not mounted so the mountpoint must be set
-                      "/nix" = {
-                        mountOptions = ["subvol=nix" "compress=zstd" "noatime"];
-                        mountpoint = "/nix";
-                      };
-                      # This subvolume will be created but not mounted
-                      "/test" = {};
-                      # Subvolume for the swapfile
-                      "/swap" = {
-                        mountpoint = "/.swapvol";
-                        swap = {
-                          swapfile.size = "5G";
-                        };
-                      };
-                    };
 
-                    mountpoint = "/partition-root";
-                    swap = {
-                      swapfile = {size = "5G";};
-                    };
-                  };
-                };
+                root = mkIf (!cfg.encrypt) innerContent.root;
+                luks =
+                  mkIf cfg.encrypt
+                  (
+                    luksContent innerContent.root.content
+                  )
+                  .luks;
               };
             };
           };
