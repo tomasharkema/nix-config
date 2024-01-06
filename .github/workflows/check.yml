@@ -4,7 +4,7 @@ on:
 
 jobs:
   isos:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest #self-hosted
     steps:
       - uses: actions/checkout@v4
       # - uses: docker/setup-qemu-action@v3
@@ -23,7 +23,7 @@ jobs:
   check:
     strategy:
       matrix:
-        os: [self-hosted, ubuntu-latest]
+        os: ubuntu-latest # [self-hosted, ubuntu-latest]
     runs-on: ${{ matrix.os }}
 
     #concurrency:
