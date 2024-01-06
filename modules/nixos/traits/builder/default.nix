@@ -19,20 +19,19 @@ in {
     };
   };
 
-  config =
-    # let
-    #   github-default = {
-    #     enable = true;
-    #     tokenFile = config.age.secrets.ght-runner.path;
-    #     url = "https://github.com/tomasharkema/nix-config";
-    #     ephemeral = true;
-    #   };
-    # in
+  config = let
+    github-default = {
+      enable = true;
+      tokenFile = config.age.secrets.ght-runner.path;
+      url = "https://github.com/tomasharkema/nix-config";
+      ephemeral = true;
+    };
+  in
     mkIf cfg.enable {
       apps.attic.enable = true;
       services.cachix-agent.enable = true;
-      # services.github-runners."runner1" = github-default;
-      # services.github-runners."runner2" = github-default;
+      services.github-runners."runner1" = github-default;
+      services.github-runners."runner2" = github-default;
 
       networking.extraHosts = ''
         127.0.0.2 localhost-aarch64
