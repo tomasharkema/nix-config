@@ -27,7 +27,7 @@
       };
       deviceTree = with lib; {
         enable = true;
-        filter = mkForce "*rpi-4-*.dtb";
+        # filter = mkForce "*rpi-4-*.dtb";
       };
     };
   };
