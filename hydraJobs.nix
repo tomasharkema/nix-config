@@ -7,10 +7,9 @@
   devShells =
     lib.filterAttrs (system: v: (system == "x86_64-linux" || system == "aarch64-linux"))
     inputs.self.devShells;
-
-  defaultPackage =
-    lib.filterAttrs (system: v: (system == "x86_64-linux" || system == "aarch64-linux"))
-    inputs.self.defaultPackage;
+  # defaultPackage =
+  #   lib.filterAttrs (system: v: (system == "x86_64-linux" || system == "aarch64-linux"))
+  #   inputs.self.defaultPackage;
   # hosts =
   #   builtins.mapAttrs (n: v: v.config.system.build.installTest)
   #   inputs.self.nixosConfigurations;
@@ -21,7 +20,7 @@ in
     #inherit (inputs.self) checks;
     inherit devShells;
     # inherit hosts;
-    inherit defaultPackage;
+    # inherit defaultPackage;
   }
   // {
     defaultPackage = inputs.self.defaultPackage.x86_64-linux;

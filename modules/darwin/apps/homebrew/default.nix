@@ -1,11 +1,20 @@
 {
+  config,
   lib,
   pkgs,
   ...
-}: {
-  config = {
+}:
+with lib;
+with lib.custom; let
+  cfg = config.apps.homebrew;
+in {
+  options.apps.homebrew = {
+    enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
+  };
+
+  config = mkIf cfg.enable {
     homebrew = {
-      # enable = true;
+      enable = true;
       casks = [
         "secretive"
         "1password"

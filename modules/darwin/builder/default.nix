@@ -1,9 +1,12 @@
 {
+  config,
   lib,
   inputs,
   ...
 }:
-with inputs; let
+with inputs;
+with lib;
+with lib.custom; let
   system = "aarch64-darwin";
   pkgs = nixpkgs.legacyPackages."${system}";
   linuxSystem = builtins.replaceStrings ["darwin"] ["linux"] system;
@@ -32,8 +35,13 @@ with inputs; let
       }
     ];
   };
+  cfg = config.apps.builder;
 in {
-  config = lib.mkIf false {
+  options.apps.builder = {
+    enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
+  };
+
+  config = mkIf cfg.enable {
     nix.distributedBuilds = true;
 
     nix.buildMachines = [
