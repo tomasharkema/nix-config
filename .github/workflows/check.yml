@@ -6,7 +6,7 @@ jobs:
   check:
     strategy:
       matrix:
-        os: [ubuntu-latest] # [self-hosted, ubuntu-latest]
+        os: [self-hosted, ubuntu-latest]
     runs-on: ${{ matrix.os }}
 
     concurrency:
