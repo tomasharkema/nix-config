@@ -47,7 +47,7 @@ in {
     services.prometheus.exporters.ipmi.enable = true;
 
     networking = {
-      networkmanager.enable = lib.mkDefault true;
+      networkmanager.enable = lib.mkDefault false;
 
       hostName = lib.mkDefault "blue-fire";
       hostId = "529fd7aa";
