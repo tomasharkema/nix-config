@@ -30,7 +30,6 @@
       packagekit
       fwupd
       fwupd-efi
-      toybox
       dconf2nix
       hw-probe
 

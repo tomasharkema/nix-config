@@ -137,7 +137,6 @@ tilix
     _1password-gui
     fwupd
     fwupd-efi
-    toybox
     nix-software-center
     #nix-gui	
     gnome-firmware
