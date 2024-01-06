@@ -26,7 +26,7 @@ in {
     services.cockpit = {
       enable = true;
       port = 9090;
-      settings = {WebService = {AllowUnencrypted = true;};};
+      settings = {WebService = {AllowUnencrypted = false;};};
     };
     system.activationScripts = {
       cockpitXrdpCert = "${reencrypt}/bin/reencrypt";
