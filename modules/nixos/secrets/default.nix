@@ -64,7 +64,7 @@
     age.secrets."otp" = {
       file = ./otp.age;
       mode = "0664";
-      # path = "/home/tomas/.google_authenticator";
+      path = "/home/tomas/.google_authenticator";
     };
   };
 }
