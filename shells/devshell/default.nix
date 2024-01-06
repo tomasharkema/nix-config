@@ -34,7 +34,7 @@ with lib; let
   cachix-deploy = writeShellScriptBin "cachix-deploy" ''
     set -x
     set -e
-    spec=(nom build --print-out-paths)
+    spec=$(nom build --print-out-paths)
     echo $spec
     cat $spec
     cachix push tomasharkema $spec
