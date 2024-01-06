@@ -257,7 +257,7 @@
         arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
 
         # "blue-fire" = self.nixosConfigurations."blue-fire".config.formats.install-iso;
-        "blue-fire-slim" = self.nixosConfigurations."blue-fire-slim".config.formats.install-iso;
+        # "blue-fire-slim" = self.nixosConfigurations."blue-fire-slim".config.formats.install-iso;
       };
 
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};

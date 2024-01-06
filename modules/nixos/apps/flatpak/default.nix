@@ -8,14 +8,15 @@
 with lib;
 with lib.custom; let
   cfg = config.apps.flatpak;
+  enable = cfg.enable && !config.traits.slim.enable;
 in {
+  imports = with inputs; [nix-flatpak.nixosModules.nix-flatpak];
+
   options.apps.flatpak = {
     enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
   };
 
-  imports = with inputs; [nix-flatpak.nixosModules.nix-flatpak];
-
-  config = mkIf (cfg.enable && !config.traits.slim.enable) {
+  config = mkIf enable {
     services.flatpak = {
       enable = true;
       remotes = [

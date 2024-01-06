@@ -14,5 +14,15 @@ in {
     environment.systemPackages = [
       darwin-build
     ];
+
+    # nix.buildMachines = [
+    #   {
+    #     hostName = "localhost";
+    #     systems = ["aarch64-linux" "x86_64-linux"];
+    #     maxJobs = 4;
+    #     supportedFeatures = ["kvm" "benchmark" "big-parallel"];
+    #     speedFactor = 100;
+    #   }
+    # ];
   };
 }
