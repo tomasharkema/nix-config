@@ -262,6 +262,38 @@
 
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};
 
+      nixosConfigurations = let
+        system = "aarch64-darwin";
+        pkgs = inputs.nixpkgs.legacyPackages."${system}";
+        linuxSystem = builtins.replaceStrings ["darwin"] ["linux"] system;
+      in {
+        darwin-builder = inputs.nixpkgs.lib.nixosSystem {
+          system = linuxSystem;
+          modules = [
+            "${inputs.nixpkgs}/nixos/modules/profiles/macos-builder.nix"
+            {
+              # imports = [ ../../apps/tailscale ];
+              boot.binfmt.emulatedSystems = ["x86_64-linux"];
+              virtualisation = {
+                host.pkgs = pkgs;
+                useNixStoreImage = true;
+                writableStore = true;
+                cores = 4;
+
+                darwin-builder = {
+                  workingDirectory = "/var/lib/darwin-builder";
+                  diskSize = 64 * 1024;
+                  memorySize = 4096;
+                };
+              };
+
+              networking.useDHCP = true;
+              environment.systemPackages = with pkgs; [wget curl cacert];
+            }
+          ];
+        };
+      };
+
       # formatter = inputs.nixpkgs.alejandra;
       outputs-builder = channels: let
         cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
@@ -282,6 +314,7 @@
             euro-mir-2 = inputs.self.nixosConfigurations.euro-mir-2.config.system.build.toplevel;
             pegasus = inputs.self.nixosConfigurations.pegasus.config.system.build.toplevel;
             baaa-express = inputs.self.nixosConfigurations.baaa-express.config.system.build.toplevel;
+            darwin-builder = inputs.self.nixosConfigurations.darwin-builder.config.system.build.toplevel;
           };
         };
       };
