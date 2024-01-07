@@ -13,7 +13,7 @@ with lib.custom; let
   darwin-builder = inputs.nixpkgs.lib.nixosSystem {
     system = linuxSystem;
     modules = [
-      "${nixpkgs}/nixos/modules/profiles/macos-builder.nix"
+      "${inputs.nixpkgs}/nixos/modules/profiles/macos-builder.nix"
       {
         # imports = [ ../../apps/tailscale ];
         # boot.binfmt.emulatedSystems = ["x86_64-linux"];
@@ -65,17 +65,14 @@ in {
       ];
     };
 
-    launchd.daemons.darwin-builder = let
-      t = builtins.traceVerbose "herpederp ${darwin-builder.config.system.build.macos-builder-installer}";
-    in
-      with t; {
-        command = "${darwin-builder.config.system.build.macos-builder-installer}/bin/create-builder";
-        serviceConfig = {
-          KeepAlive = true;
-          RunAtLoad = true;
-          StandardOutPath = "/var/log/darwin-builder.log";
-          StandardErrorPath = "/var/log/darwin-builder.log";
-        };
+    launchd.daemons.darwin-builder = {
+      command = "${darwin-builder.config.system.build.macos-builder-installer}/bin/create-builder";
+      serviceConfig = {
+        KeepAlive = true;
+        RunAtLoad = true;
+        StandardOutPath = "t";
+        StandardErrorPath = "/var/log/darwin-builder.log";
       };
+    };
   };
 }
