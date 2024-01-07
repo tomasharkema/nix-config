@@ -22,11 +22,11 @@
   ];
 
   config = {
-    disks.btrfs = {
-      enable = true;
-      main = "/dev/nvme0n1";
-      encrypt = true;
-    };
+    # disks.btrfs = {
+    #   enable = true;
+    #   main = "/dev/nvme0n1";
+    #   encrypt = true;
+    # };
     boot.binfmt.emulatedSystems = ["aarch64-linux"];
     apps.attic.enable = true;
     gui = {
