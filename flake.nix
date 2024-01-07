@@ -271,6 +271,7 @@
           system = linuxSystem;
           modules = [
             "${inputs.nixpkgs}/nixos/modules/profiles/macos-builder.nix"
+            ./user-defaults.nix
             {
               # imports = [ ../../apps/tailscale ];
               boot.binfmt.emulatedSystems = ["x86_64-linux"];
@@ -289,6 +290,7 @@
 
               networking.useDHCP = true;
               environment.systemPackages = with pkgs; [wget curl cacert];
+              services.openssh.enable = true;
             }
           ];
         };
