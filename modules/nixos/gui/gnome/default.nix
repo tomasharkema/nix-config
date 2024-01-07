@@ -24,16 +24,16 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.gnome.gnome-settings-daemon.enable = true;
-    services.gnome.gnome-browser-connector.enable = true;
-    services.gnome.core-shell.enable = true;
-    services.gnome.core-utilities.enable = true;
-    services.gnome3.chrome-gnome-shell.enable = true;
+    services.gnome = {
+      gnome-settings-daemon.enable = true;
+      gnome-browser-connector.enable = true;
+      core-shell.enable = true;
+      core-utilities.enable = true;
+      chrome-gnome-shell.enable = true;
+    };
+    # services.gnome3.chrome-gnome-shell.enable = true;
 
     services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
-
-    # nixpkgs.config.firefox.enableGnomeExtensions = true;
-    services.gnome.chrome-gnome-shell.enable = true;
 
     environment.systemPackages = with pkgs; [
       gnomeExtensions.appindicator
@@ -42,8 +42,12 @@ in {
       gnomeExtensions.vitals
       gnomeExtensions.appindicator
       gnome.gnome-tweaks
+      gnome.gnome-disk-utility
       gnome-firmware
       gjs
+      font-manager
+      gamehub
+      filezilla
     ];
 
     programs.dconf.enable = true;
