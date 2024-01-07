@@ -22,7 +22,7 @@ in {
       buildMachines = [
         {
           hostName = "builder@linux-builder";
-          systems = [linuxSystem "x86_64-linux"];
+          systems = ["aarch64-linux" "x86_64-linux"];
           maxJobs = 4;
           supportedFeatures = ["kvm" "benchmark" "big-parallel"];
           sshKey = "/var/lib/darwin-builder/keys/builder_ed25519";
