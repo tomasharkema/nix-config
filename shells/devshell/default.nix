@@ -39,8 +39,8 @@ with lib; let
     cat $spec
     cachix push tomasharkema $spec
   '';
-  diffs = import ../diffs attrs;
-  packages-json = diffs.packages-json;
+  # diffs = import ../diffs attrs;
+  # packages-json = diffs.packages-json;
   # gum = lib.getExe pkgs.gum;
   # packages-json = writeShellScriptBin "packages-json" ''
   #   export DIR="$(mktemp -d)"
@@ -96,7 +96,7 @@ in
         mkiso
         netdiscover
         # nil
-        packages-json
+        # packages-json
         python3
 
         remote-deploy

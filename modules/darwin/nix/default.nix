@@ -27,6 +27,8 @@ in {
       nixpkgs-fmt
     ];
 
+    services.nix-daemon.enable = true;
+
     nix = let
       users = ["root" "tomas"];
     in {

@@ -42,7 +42,7 @@ in {
       # services.github-runners."runner-2" = github-default;
 
       networking.extraHosts = ''
-        127.0.0.2 localhost-aarch64
+        127.0.0.1 localhost-aarch64
       '';
 
       nix.buildMachines = [
