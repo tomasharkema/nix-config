@@ -34,6 +34,7 @@ in {
             "ComicShannsMono"
             "JetBrainsMono"
             "0xProto"
+            # "LeagueMono"
           ];
         })
       ]
@@ -42,10 +43,6 @@ in {
         jq
         # fig
         # inputs.nix-gui.packages.${system}.nix-gui
-        wezterm
-        jetbrains.webstorm
-        jetbrains.idea-community
-        jetbrains-toolbox
       ];
 
     # home.username = lib.mkDefault "tomas";

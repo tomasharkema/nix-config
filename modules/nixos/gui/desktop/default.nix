@@ -91,6 +91,11 @@ in {
       _1password
       _1password-gui
       handbrake
+
+      wezterm
+      jetbrains.webstorm
+      jetbrains.idea-community
+      jetbrains-toolbox
     ];
 
     # nativeMessagingHosts.packages = with pkgs; [ gnome-browser-connector ];
