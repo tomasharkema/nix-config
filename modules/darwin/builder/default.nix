@@ -8,9 +8,9 @@ with inputs;
 with lib;
 with lib.custom; let
   system = "aarch64-darwin";
-  pkgs = nixpkgs.legacyPackages."${system}";
+  pkgs = inputs.nixpkgs.legacyPackages."${system}";
   linuxSystem = builtins.replaceStrings ["darwin"] ["linux"] system;
-  darwin-builder = nixpkgs.lib.nixosSystem {
+  darwin-builder = inputs.nixpkgs.lib.nixosSystem {
     system = linuxSystem;
     modules = [
       "${nixpkgs}/nixos/modules/profiles/macos-builder.nix"
@@ -25,8 +25,8 @@ with lib.custom; let
 
           darwin-builder = {
             workingDirectory = "/var/lib/darwin-builder";
-            # diskSize = 30000;
-            # memorySize = 4096;
+            diskSize = 64 * 1024;
+            memorySize = 4096;
           };
         };
 
@@ -38,39 +38,44 @@ with lib.custom; let
   cfg = config.apps.builder;
 in {
   options.apps.builder = {
-    enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
+    enable = mkBoolOpt true "SnowflakeOS GNOME configuration";
   };
 
   config = mkIf cfg.enable {
-    nix.distributedBuilds = true;
+    nix = {
+      distributedBuilds = true;
 
-    nix.buildMachines = [
-      {
-        hostName = "builder@linux-builder";
-        system = linuxSystem;
-        maxJobs = 4;
-        supportedFeatures = ["kvm" "benchmark" "big-parallel"];
-        sshKey = "/var/lib/darwin-builder/keys/builder_ed25519";
-        speedFactor = 30;
-      }
-      # {
-      #   hostName = "builder@linux-builder";
-      #   system = "x86_64-linux";
-      #   maxJobs = 4;
-      #   supportedFeatures = ["kvm" "benchmark" "big-parallel"];
-      #   sshKey = "/var/lib/darwin-builder/keys/builder_ed25519";
-      #   speedFactor = 30;
-      # }
-    ];
-
-    launchd.daemons.darwin-builder = {
-      command = "${darwin-builder.config.system.build.macos-builder-installer}/bin/create-builder";
-      serviceConfig = {
-        KeepAlive = true;
-        RunAtLoad = true;
-        StandardOutPath = "/var/log/darwin-builder.log";
-        StandardErrorPath = "/var/log/darwin-builder.log";
-      };
+      buildMachines = [
+        {
+          hostName = "builder@linux-builder";
+          system = linuxSystem;
+          maxJobs = 4;
+          supportedFeatures = ["kvm" "benchmark" "big-parallel"];
+          sshKey = "/var/lib/darwin-builder/keys/builder_ed25519";
+          speedFactor = 30;
+        }
+        # {
+        #   hostName = "builder@linux-builder";
+        #   system = "x86_64-linux";
+        #   maxJobs = 4;
+        #   supportedFeatures = ["kvm" "benchmark" "big-parallel"];
+        #   sshKey = "/var/lib/darwin-builder/keys/builder_ed25519";
+        #   speedFactor = 30;
+        # }
+      ];
     };
+
+    launchd.daemons.darwin-builder = let
+      t = builtins.traceVerbose "herpederp ${darwin-builder.config.system.build.macos-builder-installer}";
+    in
+      with t; {
+        command = "${darwin-builder.config.system.build.macos-builder-installer}/bin/create-builder";
+        serviceConfig = {
+          KeepAlive = true;
+          RunAtLoad = true;
+          StandardOutPath = "/var/log/darwin-builder.log";
+          StandardErrorPath = "/var/log/darwin-builder.log";
+        };
+      };
   };
 }
