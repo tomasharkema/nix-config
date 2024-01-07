@@ -70,7 +70,7 @@ in {
       serviceConfig = {
         KeepAlive = true;
         RunAtLoad = true;
-        StandardOutPath = "t";
+        StandardOutPath = "/var/log/darwin-builder.log";
         StandardErrorPath = "/var/log/darwin-builder.log";
       };
     };
