@@ -45,6 +45,8 @@ in {
         127.0.0.1 localhost-aarch64
       '';
 
+      environment.systemPackages = with pkgs; [jetbrains.gateway];
+
       nix.buildMachines = [
         {
           hostName = "localhost";

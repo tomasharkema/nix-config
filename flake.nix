@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.11";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     darwin = {
@@ -14,7 +14,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -54,7 +54,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      url = "github:pta2002/nixvim/nixos-23.11";
+      url = "github:pta2002/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix = {

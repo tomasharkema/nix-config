@@ -17,16 +17,35 @@ in {
     programs.yt-dlp.enable = true;
     home.stateVersion = "23.11";
 
-    # self.home-manager.backupFileExtension = "bak";
+    # home-manager.backupFileExtension = "bak";
     home.packages = with pkgs;
     # (import ./packages/common.nix {inherit pkgs inputs lib;})
     # ++
-      [(nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})]
+      [
+        (nerdfonts.override {
+          fonts = [
+            "FiraCode"
+            "FiraMono"
+            "DroidSansMono"
+            "3270"
+            "Agave"
+            "BigBlueTerminal"
+            # "ComicMono"
+            "ComicShannsMono"
+            "JetBrainsMono"
+            "0xProto"
+          ];
+        })
+      ]
       ++ [
         nixd
         jq
         # fig
         # inputs.nix-gui.packages.${system}.nix-gui
+        wezterm
+        jetbrains.webstorm
+        jetbrains.idea-community
+        jetbrains-toolbox
       ];
 
     # home.username = lib.mkDefault "tomas";
@@ -45,7 +64,6 @@ in {
 
     # nixpkgs.config.allowUnfreePredicate = _: true;
     # nixpkgs.config.allowUnfree = true;
-
 
     # age.secrets."cachix-activate" = {
     #   file = ../../../secrets/cachix-activate.age;
