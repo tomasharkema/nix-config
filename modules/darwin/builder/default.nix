@@ -12,7 +12,7 @@ with lib.custom; let
   cfg = config.apps.builder;
 in {
   options.apps.builder = {
-    enable = mkBoolOpt true "SnowflakeOS GNOME configuration";
+    enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
   };
 
   config = mkIf cfg.enable {

@@ -277,7 +277,7 @@
               boot.binfmt.emulatedSystems = ["x86_64-linux"];
               virtualisation = {
                 host.pkgs = pkgs;
-                useNixStoreImage = true;
+                # useNixStoreImage = true;
                 writableStore = true;
                 cores = 4;
 
@@ -290,7 +290,6 @@
 
               networking.useDHCP = true;
               environment.systemPackages = with pkgs; [wget curl cacert];
-              services.openssh.enable = true;
             }
           ];
         };
@@ -318,6 +317,7 @@
             pegasus = inputs.self.nixosConfigurations.pegasus.config.system.build.toplevel;
             baaa-express = inputs.self.nixosConfigurations.baaa-express.config.system.build.toplevel;
             darwin-builder = inputs.self.nixosConfigurations.darwin-builder.config.system.build.toplevel;
+            euro-mir-vm = inputs.self.nixosConfigurations.euro-mir-vm.config.system.build.toplevel;
           };
         };
       };
