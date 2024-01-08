@@ -81,6 +81,7 @@ in
         attic.packages.${system}.default
         agenix.packages.${system}.default
         hydra-check.packages.${system}.default
+        nil.packages.${system}.default
       ]
       ++ [
         snowfallorg.flake
@@ -106,7 +107,7 @@ in
         gum
         mkiso
         netdiscover
-        nil
+        # nil
         # packages-json
         python3
 
