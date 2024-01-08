@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    # unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     darwin = {
       url = "github:LnL7/nix-darwin";
@@ -14,7 +14,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -54,11 +54,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      url = "github:pta2002/nixvim";
+      url = "github:pta2002/nixvim/nixos-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix = {
-      url = "github:ryantm/agenix";
+      url = "github:ryantm/agenix/0.15.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware = {
@@ -312,6 +312,7 @@
         defaultPackage = cachix-deploy-lib.spec {
           agents = {
             blue-fire = inputs.self.nixosConfigurations.blue-fire.config.system.build.toplevel;
+            blue-fire-slim = inputs.self.nixosConfigurations.blue-fire-slim.config.system.build.toplevel;
             enzian = inputs.self.nixosConfigurations.enzian.config.system.build.toplevel;
             euro-mir-2 = inputs.self.nixosConfigurations.euro-mir-2.config.system.build.toplevel;
             pegasus = inputs.self.nixosConfigurations.pegasus.config.system.build.toplevel;

@@ -170,32 +170,32 @@ in {
             endif
             endfunction
       '';
-      # maps = {
-      #   normal."sf" = {
-      #     silent = true;
-      #     action = "<cmd>CocCommand explorer<cr>";
-      #   };
-      #   normal.";r" = {
-      #     silent = true;
-      #     action = ":call CheckForExplorer()<CR> <cmd>lua require('telescope.builtin').live_grep()<cr>";
-      #   };
-      #   normal.";f" = {
-      #     silent = true;
-      #     action = ":call CheckForExplorer()<CR> <cmd>lua require('telescope.builtin').find_files()<cr>";
-      #   };
-      #   normal.";b" = {
-      #     silent = true;
-      #     action = ":call CheckForExplorer()<CR> <cmd>lua require('telescope.builtin').file_browser()<cr>";
-      #   };
-      #   normal."\\" = {
-      #     silent = true;
-      #     action = ":call CheckForExplorer()<CR> <cmd>Telescope buffers<cr>";
-      #   };
-      #   normal.";;" = {
-      #     silent = true;
-      #     action = ":call CheckForExplorer()<CR> <cmd>Telescope help_tags<cr>";
-      #   };
-      # };
+      maps = {
+        normal."sf" = {
+          silent = true;
+          action = "<cmd>CocCommand explorer<cr>";
+        };
+        normal.";r" = {
+          silent = true;
+          action = ":call CheckForExplorer()<CR> <cmd>lua require('telescope.builtin').live_grep()<cr>";
+        };
+        normal.";f" = {
+          silent = true;
+          action = ":call CheckForExplorer()<CR> <cmd>lua require('telescope.builtin').find_files()<cr>";
+        };
+        normal.";b" = {
+          silent = true;
+          action = ":call CheckForExplorer()<CR> <cmd>lua require('telescope.builtin').file_browser()<cr>";
+        };
+        normal."\\" = {
+          silent = true;
+          action = ":call CheckForExplorer()<CR> <cmd>Telescope buffers<cr>";
+        };
+        normal.";;" = {
+          silent = true;
+          action = ":call CheckForExplorer()<CR> <cmd>Telescope help_tags<cr>";
+        };
+      };
     };
   };
 }
