@@ -16,7 +16,7 @@ in {
       ripgrep
       rnix-lsp
       nixd
-      inputs.nil.packages.${system}.default
+      nil
     ];
 
     programs.neovim = {

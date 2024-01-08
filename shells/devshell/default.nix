@@ -106,7 +106,7 @@ in
         gum
         mkiso
         netdiscover
-        inputs.nil.packages.${system}.default
+        nil
         # packages-json
         python3
 
