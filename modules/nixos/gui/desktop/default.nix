@@ -93,9 +93,9 @@ in {
       handbrake
 
       wezterm
-      jetbrains.webstorm
-      jetbrains.idea-community
-      jetbrains-toolbox
+      #jetbrains.webstorm
+      #jetbrains.idea-community
+      #jetbrains-toolbox
     ];
 
     # nativeMessagingHosts.packages = with pkgs; [ gnome-browser-connector ];
