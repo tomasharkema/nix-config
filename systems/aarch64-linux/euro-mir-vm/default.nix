@@ -11,6 +11,12 @@
 
   config = {
     networking.hostName = "euro-mir-vm";
+    gui = {
+      enable = true;
+      desktop = {
+        enable = true;
+      };
+    };
     swapDevices = [
       {
         device = "/swapfile";
