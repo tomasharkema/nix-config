@@ -84,15 +84,14 @@ in
         env.GREET = "devenv";
 
         enterShell = ''
-          hello
-          git --version
+          git status
         '';
 
         # https://devenv.sh/languages/
         languages.nix.enable = true;
 
         # https://devenv.sh/scripts/
-        scripts.hello.exec = "echo hello from $GREET";
+        # scripts.hello.exec = "echo hello from $GREET";
 
         # https://devenv.sh/pre-commit-hooks/
         pre-commit.hooks.shellcheck.enable = true;
@@ -100,7 +99,7 @@ in
         # https://devenv.sh/processes/
         processes.ping.exec = "ping harkema.io";
 
-        dotenv.enable = true;
+        # dotenv.enable = true;
 
         difftastic.enable = true;
 
