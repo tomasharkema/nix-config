@@ -32,11 +32,12 @@ in {
     environment.systemPackages = with pkgs; [
       plymouth
       breeze-plymouth
+      catppuccin-plymouth
     ];
     boot = {
       plymouth = {
         enable = true;
-        # theme = "breeze";
+        theme = "catppuccin-mocha";
       };
       loader.timeout = lib.mkDefault 0;
       kernelParams = [

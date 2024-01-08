@@ -98,19 +98,6 @@ in {
 
     programs.tmux = {enable = true;};
 
-    gtk = {
-      enable = true;
-      theme = {
-        name = "Catppuccin-Mocha-Compact-Blue-Dark";
-        package = pkgs.catppuccin-gtk.override {
-          accents = ["blue"];
-          size = "compact";
-          tweaks = ["rimless" "black"];
-          variant = "mocha";
-        };
-      };
-    };
-
     programs.alacritty = {
       enable = true;
       settings = {
@@ -235,6 +222,7 @@ in {
         cat = "bat";
         dig = "dog";
         ap = "attic push tomas:tomas";
+        cap = "cachix push tomasharkema";
         # subl = (lib.mkIf stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
         # dev = ''
         #   nix develop --profile dev-profile -c true && \
