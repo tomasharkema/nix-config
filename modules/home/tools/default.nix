@@ -6,9 +6,11 @@
 with pkgs; {
   config = {
     home.packages = with pkgs; [
+      mattermost-desktop
+
       _1password
+      thefuck
       antidote
-      inputs.devenv.packages.${system}.default
       autojump
       bash
       bat
@@ -38,6 +40,7 @@ with pkgs; {
       gtop
       httpie
       iftop
+      inputs.devenv.packages.${system}.default
       ipmitool
       just
       keybase
@@ -45,6 +48,7 @@ with pkgs; {
       lolcat
       lsd
       manix
+      mattermost
       mcfly
       morph
       mosh
@@ -54,7 +58,6 @@ with pkgs; {
       ncdu
       neofetch
       netdiscover
-      nixd
       nnn
       nodejs
       patchelf
@@ -67,7 +70,6 @@ with pkgs; {
       ssh-to-age
       starship
       tailscale
-      # thefuck
       tldr
       tmate
       tree

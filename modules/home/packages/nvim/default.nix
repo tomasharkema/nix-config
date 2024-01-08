@@ -14,8 +14,6 @@ in {
       figlet
       nodejs
       ripgrep
-      rnix-lsp
-      nixd
       inputs.nil.packages.${system}.default
     ];
 

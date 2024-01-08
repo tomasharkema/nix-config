@@ -39,7 +39,6 @@ in {
         })
       ]
       ++ [
-        nixd
         jq
         # fig
         # inputs.nix-gui.packages.${system}.nix-gui

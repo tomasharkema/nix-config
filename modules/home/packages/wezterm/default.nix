@@ -4,7 +4,7 @@
   osConfig,
   ...
 }: {
-  config = lib.mkIf osConfig.gui.desktop.enable {
+  config = lib.mkIf (osConfig.gui.desktop.enable && false) {
     home.file = {
       ".wezterm.lua".text = builtins.readFile ./wezterm.lua;
     };

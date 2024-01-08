@@ -10,7 +10,7 @@
     hash = "sha256-wJnbXXWKX0mcqRYyE1Vs4CrgWXTwfk3kRC2IhKqQ0RI=";
   };
 in {
-  config = lib.mkIf (pkgs.system == "x86_64-linux") {
+  config = lib.mkIf pkgs.stdenvNoCC.isLinux {
     gtk = {
       enable = true;
       theme = {
