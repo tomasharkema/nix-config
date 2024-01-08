@@ -66,63 +66,95 @@ with lib; let
   nix-install-pkgs = import ../../modules/home/tools/nix/nixpkgs.nix {inherit pkgs inputs;};
 in
   inputs.devenv.lib.mkShell {
-    name = "devshell";
-    allowUnfree = true;
+    # name = "devshell";
+    # allowUnfree = true;
 
-    defaultPackage = zsh;
+    # defaultPackage = zsh;
     # buildInputs = [pkgs.home-manager];
 
+    inherit inputs pkgs;
     # nix-profiler
+    modules = [
+      ({
+        pkgs,
+        config,
+        ...
+      }: {
+        # https://devenv.sh/basics/
+        env.GREET = "devenv";
 
-    packages = with inputs;
-      [
-        flake-checker.packages.${system}.default
-        deploy-rs.packages.${system}.default
-        attic.packages.${system}.default
-        agenix.packages.${system}.default
-        hydra-check.packages.${system}.default
-        nil.packages.${system}.default
-      ]
-      ++ [
-        snowfallorg.flake
-      ]
-      ++ [
-        pkgs.custom.rundesk
-        reencrypt
-        pkgs.custom.remote-cli
-      ]
-      ++ [
-        ack
-        age
-        alejandra
-        bash
-        bfg-repo-cleaner
-        colima
-        comma
-        deploy-machine
-        deployment
-        direnv
-        git
-        gnupg
-        gum
-        mkiso
-        netdiscover
+        enterShell = ''
+          hello
+          git --version
+        '';
 
-        # packages-json
-        python3
+        # https://devenv.sh/languages/
+        languages.nix.enable = true;
 
-        remote-deploy
+        # https://devenv.sh/scripts/
+        scripts.hello.exec = "echo hello from $GREET";
 
-        sops
-        ssh-to-age
-        write-script
-        zsh
-        cachix-deploy
-        cachix-reploy-pin
-      ]
-      ++ nix-install-pkgs;
+        # https://devenv.sh/pre-commit-hooks/
+        pre-commit.hooks.shellcheck.enable = true;
 
-    shellHook = ''
-      git status
-    '';
+        # https://devenv.sh/processes/
+        processes.ping.exec = "ping harkema.io";
+
+        dotenv.enable = true;
+
+        difftastic.enable = true;
+
+        packages = with inputs;
+          [
+            flake-checker.packages.${system}.default
+            deploy-rs.packages.${system}.default
+            attic.packages.${system}.default
+            agenix.packages.${system}.default
+            hydra-check.packages.${system}.default
+            nil.packages.${system}.default
+          ]
+          ++ [
+            snowfallorg.flake
+          ]
+          ++ [
+            pkgs.custom.rundesk
+            reencrypt
+            pkgs.custom.remote-cli
+          ]
+          ++ [
+            ack
+            age
+            alejandra
+            bash
+            bfg-repo-cleaner
+            colima
+            comma
+            deploy-machine
+            deployment
+            direnv
+            git
+            gnupg
+            gum
+            mkiso
+            netdiscover
+
+            # packages-json
+            python3
+
+            remote-deploy
+
+            sops
+            ssh-to-age
+            write-script
+            zsh
+            cachix-deploy
+            cachix-reploy-pin
+          ]
+          ++ nix-install-pkgs;
+
+        # shellHook = ''
+        #   git status
+        # '';
+      })
+    ];
   }

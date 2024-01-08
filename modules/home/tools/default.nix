@@ -1,10 +1,15 @@
-{pkgs, ...}:
+{
+  inputs,
+  pkgs,
+  ...
+}:
 with pkgs; {
   config = {
     home.packages = with pkgs; [
       _1password
       antidote
-      # autojump
+      inputs.devenv.packages.${system}.default
+      autojump
       bash
       bat
       bottom
