@@ -93,6 +93,7 @@ in {
       handbrake
 
       wezterm
+
       jetbrains.webstorm
       jetbrains.idea-community
       jetbrains-toolbox

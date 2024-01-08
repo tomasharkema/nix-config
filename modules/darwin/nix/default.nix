@@ -1,8 +1,10 @@
 {
+  inputs,
   options,
   config,
   pkgs,
   lib,
+  system,
   ...
 }:
 with lib;

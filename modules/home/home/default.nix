@@ -33,7 +33,7 @@ in {
             # "ComicMono"
             "ComicShannsMono"
             "JetBrainsMono"
-            "0xProto"
+            # "0xProto"
             # "LeagueMono"
           ];
         })

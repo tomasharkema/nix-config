@@ -26,6 +26,7 @@ let
 
   euro-mir-2 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKoMxMZ40JXmsum6M7dzrIjzNyjyt/6LUu4gvGUOQALe root@euro-mir-2";
   euro-mir-2-tomas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKpAkUKIDV+fg3vqytinCH9ODDyB6uIqL7Dn9hYInRuk tomas@euro-mir-2";
+  euro-mir-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINhqDZEifvNQDzbIiv6U7g9q2hktj5VgqMFS8YLRboRz root@euro-mir-vm";
 
   systems = [
     enzian
@@ -43,6 +44,7 @@ let
     wodan-wsl-tomas
     euro-mir-2
     euro-mir-2-tomas
+    euro-mir-vm
   ];
   allKeys = users ++ systems;
 in {

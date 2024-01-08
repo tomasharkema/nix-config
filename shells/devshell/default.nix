@@ -39,6 +39,17 @@ with lib; let
     cat $spec
     cachix push tomasharkema $spec
   '';
+
+  # example: `cachix-reploy-pin "darwinConfigurations.euro-mir.config.system.build.toplevel" "darwin-0.1"`
+  cachix-reploy-pin = writeShellScriptBin "cachix-reploy-pin" ''
+    set -x
+    set -e
+
+    res="$(nom build ".#$1" --json | jq '.[0].outputs.out' -r)"
+
+    cachix push tomasharkema $res
+    cachix pin tomasharkema $2 $res
+  '';
   # diffs = import ../diffs attrs;
   # packages-json = diffs.packages-json;
   # gum = lib.getExe pkgs.gum;
@@ -95,7 +106,7 @@ in
         gum
         mkiso
         netdiscover
-        # nil
+        nil
         # packages-json
         python3
 
@@ -106,6 +117,7 @@ in
         write-script
         zsh
         cachix-deploy
+        cachix-reploy-pin
       ]
       ++ nix-install-pkgs;
 

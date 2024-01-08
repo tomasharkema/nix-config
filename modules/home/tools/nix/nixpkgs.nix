@@ -11,14 +11,15 @@ with pkgs; let
     hash = "sha256-Emh0BPoqlS4ntp2UJrwydXfIP4qIMF0VBB2FUE3/M/E=";
   };
 in [
-  inputs.fh.packages.${system}.default
+  fh
+
   snowfallorg.flake
   agenix # .packages.${system}.default
   alejandra # .defaultPackage.${system}
   deadnix
   cachix
   manix
-  nil #.packages.${system}.default
+  nil
   nix
   hydra-cli
   nix-fast-build

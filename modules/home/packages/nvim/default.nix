@@ -2,6 +2,7 @@
   inputs,
   config,
   pkgs,
+  system,
   ...
 }: let
   coc = import ./coc.nix;
