@@ -24,7 +24,7 @@ in {
       nixfmt
       nix-index
       nix-prefetch-git
-      nil
+      inputs.nil.packages.${system}.default
       flake-checker
       nixpkgs-fmt
     ];

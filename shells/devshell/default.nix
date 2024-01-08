@@ -107,7 +107,7 @@ in
         gum
         mkiso
         netdiscover
-        # nil
+
         # packages-json
         python3
 

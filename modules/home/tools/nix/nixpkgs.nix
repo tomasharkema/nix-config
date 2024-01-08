@@ -19,7 +19,7 @@ in [
   deadnix
   cachix
   manix
-  nil
+  inputs.nil.packages.${system}.default
   nix
   hydra-cli
   nix-fast-build
