@@ -128,6 +128,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nil.url = "github:oxalica/nil";
+    devenv.url = "github:cachix/devenv";
   };
 
   nixConfig = {
@@ -149,6 +150,10 @@
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
+
+    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+    extra-substituters = "https://devenv.cachix.org";
+
     binaryCaches = ["https://cache.nixos.org"];
 
     allowed-uris = [
@@ -242,6 +247,10 @@
           wodan-wsl = {
             sshUser = "root";
             hostname = "192.168.1.42";
+          };
+          euro-mir-vm = {
+            sshUser = "root";
+            hostname = "192.168.178.51";
           };
         };
       };

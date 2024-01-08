@@ -65,7 +65,7 @@ with lib; let
   # '';
   nix-install-pkgs = import ../../modules/home/tools/nix/nixpkgs.nix {inherit pkgs inputs;};
 in
-  mkShell {
+  inputs.devenv.lib.mkShell {
     name = "devshell";
     allowUnfree = true;
 

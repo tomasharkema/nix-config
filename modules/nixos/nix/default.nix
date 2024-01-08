@@ -43,7 +43,7 @@ in {
       (nixos-hosts.override {
         hosts = inputs.self.nixosConfigurations;
       })
-      deploy-rs
+      inputs.deploy-rs.packages.${system}.deploy-rs
       nixfmt
       nix-index
       nix-prefetch-git

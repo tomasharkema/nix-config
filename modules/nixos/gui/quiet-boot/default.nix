@@ -31,13 +31,13 @@ in {
 
     environment.systemPackages = with pkgs; [
       plymouth
-      breeze-plymouth
       catppuccin-plymouth
     ];
+
     boot = {
       plymouth = {
         enable = true;
-        theme = "catppuccin-mocha";
+        # theme = "catppuccin-mocha";
         themePackages = with pkgs; [catppuccin-plymouth];
       };
       loader.timeout = lib.mkDefault 0;
