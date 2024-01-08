@@ -108,10 +108,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # system-manager = {
-    #   url = "github:numtide/system-manager";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    system-manager = {
+      url = "github:numtide/system-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # gomod2nix = {
     #   url = "github:nix-community/gomod2nix";
