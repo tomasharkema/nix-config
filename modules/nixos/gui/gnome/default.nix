@@ -43,12 +43,14 @@ in {
       gnomeExtensions.appindicator
       gnome.gnome-tweaks
       gnome.gnome-disk-utility
+      gnome.gnome-themes-extra
       gnome-firmware
       gjs
       font-manager
       gamehub
       filezilla
     ];
+    programs.hyprland.enable = true;
 
     programs.dconf.enable = true;
   };

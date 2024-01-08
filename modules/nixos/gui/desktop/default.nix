@@ -96,6 +96,7 @@ in {
       jetbrains.webstorm
       jetbrains.idea-community
       jetbrains-toolbox
+      meteo
     ];
 
     # nativeMessagingHosts.packages = with pkgs; [ gnome-browser-connector ];
