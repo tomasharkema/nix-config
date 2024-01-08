@@ -91,8 +91,6 @@ in {
       _1password
       _1password-gui
       handbrake
-      wezterm
-      jetbrains-toolbox
       meteo
     ];
 

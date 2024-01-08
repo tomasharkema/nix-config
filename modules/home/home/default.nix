@@ -53,9 +53,7 @@ in {
       SSH_AUTH_SOCK = "/Users/tomas/.1password/agent.sock";
       SPACESHIP_PROMPT_ADD_NEWLINE = "false";
     };
-    home.file = {
-      ".wezterm.lua".text = builtins.readFile ./wezterm.lua;
-    };
+
     # age.identityPaths = [
     #   "/etc/ssh/ssh_host_ed25519_key"
     #   "${config.home.homeDirectory}/.ssh/id_ed25519"
