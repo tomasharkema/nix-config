@@ -37,7 +37,7 @@ in {
     boot = {
       plymouth = {
         enable = true;
-        theme = "catppuccin-mocha";
+        theme = "catppuccin";
         themePackages = with pkgs; [catppuccin-plymouth];
       };
       loader.timeout = lib.mkDefault 0;
