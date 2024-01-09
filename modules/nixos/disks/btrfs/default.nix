@@ -67,9 +67,6 @@
         };
 
         mountpoint = "/partition-root";
-        swap = {
-          swapfile = {size = "5G";};
-        };
       };
     };
   };
