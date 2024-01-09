@@ -46,7 +46,7 @@
       mode = "0664";
       path = "/home/tomas/.config/cachix/cachix.dhall";
       owner = "tomas";
-      group = "users";
+      group = "tomas";
     };
     # age.secrets."cachix-root" = {
     #   file = ./cachix.age;
@@ -68,7 +68,7 @@
       mode = "0664";
       path = "/home/tomas/.google_authenticator";
       owner = "tomas";
-      group = "users";
+      group = "tomas";
     };
   };
 }
