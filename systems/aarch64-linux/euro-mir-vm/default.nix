@@ -29,5 +29,8 @@
         size = 1024;
       }
     ];
+    services.resilio = {
+      enable = lib.mkForce false;
+    };
   };
 }

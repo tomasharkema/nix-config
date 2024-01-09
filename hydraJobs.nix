@@ -10,8 +10,11 @@
   # defaultPackage =
   #   lib.filterAttrs (system: v: (system == "x86_64-linux" || system == "aarch64-linux"))
   #   inputs.self.defaultPackage;
+  # hosts =
+  #   builtins.mapAttrs (n: v: v.config.system.build.installTest)
+  #   inputs.self.nixosConfigurations;
   hosts =
-    builtins.mapAttrs (n: v: v.config.system.build.installTest)
+    builtins.mapAttrs (n: v: v.config.system.build.toplevel)
     inputs.self.nixosConfigurations;
 in
   {
