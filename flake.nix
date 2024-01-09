@@ -258,6 +258,9 @@
 
         overrides = {
           sshUser = "root";
+          wodan-vm = {
+            hostname = "192.168.1.74";
+          };
           wodan-wsl = {
             sshUser = "root";
             hostname = "192.168.1.42";
