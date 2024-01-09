@@ -1,7 +1,11 @@
 # Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
-{lib, ...}:
+{
+  config,
+  lib,
+  ...
+}:
 with lib.hm.gvariant; {
-  dconf.settings = {
+  dconf.settings = lib.mkIf config.programs.dconf.enable {
     "org/blueman/general" = {window-properties = [560 350 1107 662];};
 
     "org/blueman/plugins/powermanager" = {auto-power-on = true;};
