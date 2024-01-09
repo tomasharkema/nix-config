@@ -17,13 +17,8 @@
     };
     boot.bootspec.enable = true;
 
-    services.resilio = {
-      enable = lib.mkForce false;
-    };
-
-    networking.firewall = {
-      enable = false;
-    };
+    services.resilio.enable = lib.mkForce false;
+    networking.firewall.enable = false;
     networking.nftables.enable = lib.mkForce false;
     networking.wireless.enable = lib.mkDefault false;
   };
