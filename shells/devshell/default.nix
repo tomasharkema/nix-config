@@ -65,57 +65,53 @@ with lib; let
   # '';
 in
   inputs.devenv.lib.mkShell {
-
     inherit inputs pkgs;
 
     modules = [
       #../../modules/home/tools/nix/nixpkgs.nix
-   {
-    languages.nix.enable = true;
-   }
-   ({
+      {
+        languages.nix.enable = true;
+      }
+      {
+        packages = with inputs; [
+          flake-checker.packages.${system}.default
+          deploy-rs.packages.${system}.default
+          attic.packages.${system}.default
+          agenix.packages.${system}.default
+          hydra-check.packages.${system}.default
+          nil.packages.${system}.default
 
-        packages = with inputs;
-          [
-            flake-checker.packages.${system}.default
-            deploy-rs.packages.${system}.default
-            attic.packages.${system}.default
-            agenix.packages.${system}.default
-            hydra-check.packages.${system}.default
-            nil.packages.${system}.default
+          # pkgs.custom.rundesk
+          reencrypt
+          pkgs.custom.remote-cli
+          ack
+          age
+          alejandra
+          bash
+          bfg-repo-cleaner
+          colima
+          comma
+          deploy-machine
+          deployment
+          direnv
+          git
+          gnupg
+          gum
+          mkiso
+          netdiscover
 
-            # pkgs.custom.rundesk
-            reencrypt
-            pkgs.custom.remote-cli
-            ack
-            age
-            alejandra
-            bash
-            bfg-repo-cleaner
-            colima
-            comma
-            deploy-machine
-            deployment
-            direnv
-            git
-            gnupg
-            gum
-            mkiso
-            netdiscover
+          # packages-json
+          python3
 
-            # packages-json
-            python3
+          remote-deploy
 
-            remote-deploy
-
-            sops
-            ssh-to-age
-            write-script
-            zsh
-            cachix-deploy
-            cachix-reploy-pin
-          ];
-      
-   })
+          sops
+          ssh-to-age
+          write-script
+          zsh
+          cachix-deploy
+          cachix-reploy-pin
+        ];
+      }
     ];
   }

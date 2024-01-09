@@ -324,9 +324,11 @@
       };
 
       # formatter = inputs.nixpkgs.alejandra;
-      outputs-builder = channels: let
-        cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
-      in {
+      outputs-builder = channels:
+      # let
+      #   cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
+      # in
+      {
         formatter = channels.nixpkgs.alejandra;
 
         checks = with inputs; {
@@ -339,18 +341,18 @@
         packages.nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
         packages.nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
 
-        defaultPackage = cachix-deploy-lib.spec {
-          agents = {
-            blue-fire = inputs.self.nixosConfigurations.blue-fire.config.system.build.toplevel;
-            blue-fire-slim = inputs.self.nixosConfigurations.blue-fire-slim.config.system.build.toplevel;
-            enzian = inputs.self.nixosConfigurations.enzian.config.system.build.toplevel;
-            euro-mir-2 = inputs.self.nixosConfigurations.euro-mir-2.config.system.build.toplevel;
-            pegasus = inputs.self.nixosConfigurations.pegasus.config.system.build.toplevel;
-            baaa-express = inputs.self.nixosConfigurations.baaa-express.config.system.build.toplevel;
-            darwin-builder = inputs.self.nixosConfigurations.darwin-builder.config.system.build.toplevel;
-            euro-mir-vm = inputs.self.nixosConfigurations.euro-mir-vm.config.system.build.toplevel;
-          };
-        };
+        # defaultPackage = cachix-deploy-lib.spec {
+        #   agents = {
+        #     blue-fire = inputs.self.nixosConfigurations.blue-fire.config.system.build.toplevel;
+        #     blue-fire-slim = inputs.self.nixosConfigurations.blue-fire-slim.config.system.build.toplevel;
+        #     enzian = inputs.self.nixosConfigurations.enzian.config.system.build.toplevel;
+        #     euro-mir-2 = inputs.self.nixosConfigurations.euro-mir-2.config.system.build.toplevel;
+        #     pegasus = inputs.self.nixosConfigurations.pegasus.config.system.build.toplevel;
+        #     baaa-express = inputs.self.nixosConfigurations.baaa-express.config.system.build.toplevel;
+        #     darwin-builder = inputs.self.nixosConfigurations.darwin-builder.config.system.build.toplevel;
+        #     euro-mir-vm = inputs.self.nixosConfigurations.euro-mir-vm.config.system.build.toplevel;
+        #   };
+        # };
       };
     };
 }

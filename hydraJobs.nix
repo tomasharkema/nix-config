@@ -16,21 +16,21 @@
   hosts =
     builtins.mapAttrs (n: v: v.config.system.build.toplevel)
     inputs.self.nixosConfigurations;
-in
-  {
-    inherit packages;
-    # inherit (inputs.self) images;
-    #inherit (inputs.self) checks;
-    # inherit devShells;
-    inherit hosts;
-    # inherit defaultPackage;
-  }
-  // {
-    defaultPackage = inputs.self.defaultPackage.x86_64-linux;
-    # devShells = inputs.self.devShells.${pkgs.system};
-    # packages = {
-    #   nixos-hosts = channels.nixpkgs.nixos-hosts.override {
-    #     hosts = inputs.self.nixosConfigurations;
-    #   };
-    # };
-  }
+in {
+  inherit packages;
+  inherit (inputs.self) images;
+  #inherit (inputs.self) checks;
+  # inherit devShells;
+  inherit hosts;
+  # inherit defaultPackage;
+}
+# // {
+# defaultPackage = inputs.self.defaultPackage.x86_64-linux;
+# devShells = inputs.self.devShells.${pkgs.system};
+# packages = {
+#   nixos-hosts = channels.nixpkgs.nixos-hosts.override {
+#     hosts = inputs.self.nixosConfigurations;
+#   };
+# };
+# }
+
