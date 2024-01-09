@@ -63,45 +63,17 @@ with lib; let
   #   nix eval "$HOME_PKGS" --json | tee "$DIR/second.json"
   #   cat "$DIR/first.json" "$DIR/second.json" | jq -s add | tee "$DIR/out.json" | gum pager
   # '';
-  nix-install-pkgs = import ../../modules/home/tools/nix/nixpkgs.nix {inherit pkgs inputs;};
 in
   inputs.devenv.lib.mkShell {
-    # name = "devshell";
-    # allowUnfree = true;
-
-    # defaultPackage = zsh;
-    # buildInputs = [pkgs.home-manager];
 
     inherit inputs pkgs;
-    # nix-profiler
+
     modules = [
-      ({
-        pkgs,
-        config,
-        ...
-      }: {
-        # https://devenv.sh/basics/
-        env.GREET = "devenv";
-
-        enterShell = ''
-          git status
-        '';
-
-        # https://devenv.sh/languages/
-        languages.nix.enable = true;
-
-        # https://devenv.sh/scripts/
-        # scripts.hello.exec = "echo hello from $GREET";
-
-        # https://devenv.sh/pre-commit-hooks/
-        pre-commit.hooks.shellcheck.enable = true;
-
-        # https://devenv.sh/processes/
-        processes.ping.exec = "ping harkema.io";
-
-        # dotenv.enable = true;
-
-        difftastic.enable = true;
+      #../../modules/home/tools/nix/nixpkgs.nix
+   {
+    languages.nix.enable = true;
+   }
+   ({
 
         packages = with inputs;
           [
@@ -111,16 +83,10 @@ in
             agenix.packages.${system}.default
             hydra-check.packages.${system}.default
             nil.packages.${system}.default
-          ]
-          ++ [
-            snowfallorg.flake
-          ]
-          ++ [
-            pkgs.custom.rundesk
+
+            # pkgs.custom.rundesk
             reencrypt
             pkgs.custom.remote-cli
-          ]
-          ++ [
             ack
             age
             alejandra
@@ -148,12 +114,8 @@ in
             zsh
             cachix-deploy
             cachix-reploy-pin
-          ]
-          ++ nix-install-pkgs;
-
-        # shellHook = ''
-        #   git status
-        # '';
-      })
+          ];
+      
+   })
     ];
   }
