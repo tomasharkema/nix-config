@@ -75,6 +75,7 @@ in {
     options = ''
       --delete-older-than "7d"
     '';
+    dates = "daily";
   };
   programs.nix-ld.enable = true;
 }

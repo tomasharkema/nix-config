@@ -25,5 +25,6 @@
       enable = false;
     };
     networking.nftables.enable = lib.mkForce false;
+    networking.wireless.enable = lib.mkDefault false;
   };
 }
