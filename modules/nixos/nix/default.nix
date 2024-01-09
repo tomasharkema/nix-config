@@ -40,9 +40,9 @@ in {
     environment.systemPackages = with pkgs;
     with custom; [
       # custom.nixos-revision
-      (nixos-hosts.override {
-        hosts = inputs.self.nixosConfigurations;
-      })
+      # (nixos-hosts.override {
+      #   hosts = inputs.self.nixosConfigurations;
+      # })
       inputs.deploy-rs.packages.${system}.deploy-rs
       nixfmt
       nix-index
