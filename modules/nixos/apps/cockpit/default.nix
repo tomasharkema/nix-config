@@ -38,7 +38,7 @@ in {
         StartLimitBurst = 5;
       };
       script = "${reencrypt}/bin/reencrypt";
-      wantedBy = ["multi-user.target" "cockpit" "tailscale"];
+      wantedBy = ["multi-user.target" "cockpit.service" "tailscale.service"];
       path = [reencrypt];
     };
 
