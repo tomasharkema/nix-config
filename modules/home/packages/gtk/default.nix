@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  osConfig,
   ...
 }: let
   catt = pkgs.fetchFromGitHub {
@@ -10,7 +11,7 @@
     hash = "sha256-wJnbXXWKX0mcqRYyE1Vs4CrgWXTwfk3kRC2IhKqQ0RI=";
   };
 in {
-  config = lib.mkIf pkgs.stdenvNoCC.isLinux {
+  config = lib.mkIf (osConfig.gui.enable && pkgs.stdenvNoCC.isLinux) {
     gtk = {
       enable = true;
       theme = {
