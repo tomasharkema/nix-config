@@ -12,7 +12,7 @@ in
       hidden = false;
       keepnr = 10;
       schedulingshares = 100;
-      checkinterval = 3600;
+      checkinterval = 0; # 3600;
       enableemail = false;
       emailoverride = "";
       # nixexprinput = "config";

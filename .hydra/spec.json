@@ -4,7 +4,7 @@
   "description": "nix-config tests",
   "nixexprinput": "configs",
   "nixexprpath": ".hydra/default.nix",
-  "checkinterval": 600,
+  "checkinterval": 0,
   "schedulingshares": 100,
   "enableemail": true,
   "emailoverride": "",
