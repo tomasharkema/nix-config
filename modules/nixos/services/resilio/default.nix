@@ -30,6 +30,7 @@ in {
     # age.secrets."resilio-p" = {file = ../secrets/resilio-p.age;};
     # age.secrets."resilio-docs" = {file = ../secrets/resilio-docs.age;};
     # age.secrets."resilio-shared-public" = {file = ../secrets/resilio-shared-public.age;};
+    environment.systemPackages = with pkgs; [acl];
 
     system.activationScripts.resilioFolder = ''
       if [ ! -d "${config.resilio.root}" ]; then
