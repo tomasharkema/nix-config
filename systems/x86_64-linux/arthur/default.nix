@@ -35,7 +35,7 @@
       # builder.enable = true;
       hardware = {
         # tpm.enable = true;
-        secure-boot.enable = true;
+        # secure-boot.enable = true;
       };
     };
 
@@ -49,8 +49,10 @@
 
     boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
-    networking = {hostName = "arthur";};
-    networking.hostId = "529fd7bb";
+    networking = {
+      hostName = "arthur";
+      hostId = "529fd7bb";
+    };
 
     boot = {
       initrd = {
@@ -66,18 +68,6 @@
         ];
       };
       kernelModules = ["kvm-intel" "jc42" "tpm_rng"];
-      loader = {
-        timeout = lib.mkForce 10;
-        # grub = {
-        #   enable = lib.mkForce true;
-        #   # device = "nodev";
-        #   efiSupport = true;
-        #   efiInstallAsRemovable = true;
-        #   # gfxmodeEfi = "1920x1080";
-        #   # gfxmodeBios = "1920x1080";
-        # };
-        # # efi.efiSysMountPoint = "/boot";
-      };
     };
 
     networking.useDHCP = lib.mkDefault true;
