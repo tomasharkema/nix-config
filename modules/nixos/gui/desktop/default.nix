@@ -80,8 +80,8 @@ in {
       keybase
       powertop
 
-      # nix-software-center
-      # nixos-conf-editor
+      nix-software-center
+      nixos-conf-editor
 
       gnome-firmware
       gnome.gnome-session
