@@ -14,10 +14,10 @@ in {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = {
     environment.systemPackages = with pkgs; [sbctl];
     boot = {
-      lanzaboote = {
+      lanzaboote = mkIf cfg.enable {
         enable = true;
         pkiBundle = "/etc/secureboot";
       };

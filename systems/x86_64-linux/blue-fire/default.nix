@@ -142,7 +142,7 @@ in {
     swapDevices = [
       {
         device = "/.swapvol/swapfile";
-        size = 1024;
+        size = 5 * 1024;
       }
     ];
   };
