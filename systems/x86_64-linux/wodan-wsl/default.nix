@@ -10,7 +10,6 @@
     # tailscale.enable = false;
     services.udev.enable = lib.mkForce false;
 
-    # boot.binfmt.emulatedSystems = ["aarch64-linux"];
     system.stateVersion = "23.11";
 
     # programs.nix-ld.enable = true;
@@ -18,10 +17,10 @@
     networking = {
       hostName = lib.mkDefault "wodan-wsl";
 
-    #   firewall = {
-    #     enable = false;
-    #   };
-    #   useDHCP = lib.mkDefault true;
+      #   firewall = {
+      #     enable = false;
+      #   };
+      #   useDHCP = lib.mkDefault true;
     };
 
     wsl = {
@@ -29,15 +28,15 @@
 
       wslConf = {
         automount = {
-        enabled = true;
+          enabled = true;
 
-      root = "/mnt";
-      };
+          root = "/mnt";
+        };
 
-      interop = {
-        enabled = true;
+        interop = {
+          enabled = true;
+        };
       };
-    };
       # defaultUser = "tomas";
 
       startMenuLaunchers = true;
@@ -50,7 +49,7 @@
     nix.extraOptions = ''
       experimental-features = nix-command flakes
     '';
-    
+
     programs.git.enable = true;
     programs.git.config = {
       user = {
@@ -63,13 +62,12 @@
 
     programs.zsh = {
       enable = true;
-      shellAliases = {
-        ll = "ls -l";
-      };
     };
 
     users.defaultUserShell = pkgs.zsh;
 
     services.openssh.enable = true;
+
+    networking.nftables.enable = lib.mkForce false;
   };
 }
