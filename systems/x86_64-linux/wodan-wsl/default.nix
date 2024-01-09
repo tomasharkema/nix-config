@@ -41,6 +41,10 @@
 
       startMenuLaunchers = true;
 
+      interop = {
+        register = true;
+      };
+
       # Enable integration with Docker Desktop (needs to be installed)
       # docker-desktop.enable = true;
     };
