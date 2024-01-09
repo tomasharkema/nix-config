@@ -32,5 +32,6 @@
     services.resilio = {
       enable = lib.mkForce false;
     };
+    networking.wireless.enable = lib.mkForce false;
   };
 }
