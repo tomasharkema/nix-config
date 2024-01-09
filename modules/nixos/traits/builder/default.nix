@@ -38,8 +38,8 @@ in {
       };
 
       apps.attic.enable = true;
-      # services.github-runners."runner-1" = github-default;
-      # services.github-runners."runner-2" = github-default;
+      services.github-runners."${config.networking.hostName}-runner-1" = github-default;
+      services.github-runners."${config.networking.hostName}-runner-2" = github-default;
 
       networking.extraHosts = ''
         127.0.0.1 localhost-aarch64
