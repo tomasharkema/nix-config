@@ -1,12 +1,13 @@
 # Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
 {
+  inputs,
   config,
   lib,
   pkgs,
   osConfig,
   ...
 }:
-with lib.hm.gvariant; {
+with inputs.home-manager.lib.hm.gvariant; {
   config = lib.mkIf osConfig.gui.gnome.enable {
     dconf.settings = {
       "org/gnome/control-center" = {last-panel = "privacy";};
