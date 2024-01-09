@@ -8,7 +8,7 @@
   ...
 }:
 with inputs.home-manager.lib.hm.gvariant; {
-  config = lib.mkIf osConfig.gui.gnome.enable {
+  config = lib.mkIf osConfig.gui.desktop.enable {
     dconf.settings = {
       "org/gnome/control-center" = {last-panel = "privacy";};
 
