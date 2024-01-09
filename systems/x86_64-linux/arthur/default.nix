@@ -45,7 +45,7 @@
       # media = "";
     };
 
-    apps.resilio.root = "/media/resilio";
+    resilio.root = "/media/resilio";
 
     boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
