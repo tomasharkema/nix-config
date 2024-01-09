@@ -12,17 +12,17 @@
   };
 in {
   config = lib.mkIf (osConfig.gui.enable && pkgs.stdenvNoCC.isLinux) {
-    gtk = {
-      enable = true;
-      theme = {
-        name = "Catppuccin-Mocha-Compact-Blue-Dark";
-        package = pkgs.catppuccin-gtk.override {
-          accents = ["blue"];
-          size = "compact";
-          tweaks = ["rimless" "black"];
-          variant = "mocha";
-        };
-      };
-    };
+    # gtk = {
+    #   enable = true;
+    #   theme = {
+    #     name = "Catppuccin-Mocha-Compact-Blue-Dark";
+    #     package = pkgs.catppuccin-gtk.override {
+    #       accents = ["blue"];
+    #       size = "compact";
+    #       tweaks = ["rimless" "black"];
+    #       variant = "mocha";
+    #     };
+    #   };
+    # };
   };
 }
