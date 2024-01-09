@@ -41,6 +41,8 @@ in {
         127.0.0.1 localhost-aarch64
       '';
 
+      systemd.services.hydra-evaluator.serviceConfig.MemoryLimit = "5G";
+
       environment.systemPackages = with pkgs; [jetbrains.gateway];
 
       nix.buildMachines = [
