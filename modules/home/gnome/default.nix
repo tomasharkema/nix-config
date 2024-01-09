@@ -7,7 +7,7 @@
   osConfig,
   ...
 }:
-with inputs.home-manager.lib.hm.gvariant; {
+with lib.hm.gvariant; {
   config = lib.mkIf (osConfig.gui.enable && osConfig.gui.gnome.enable) {
     dconf.enable = true;
     dconf.settings = {
