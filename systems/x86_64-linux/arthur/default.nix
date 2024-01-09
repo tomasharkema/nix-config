@@ -32,10 +32,10 @@
       apps.steam.enable = true;
     };
     traits = {
-      builder.enable = true;
+      # builder.enable = true;
       hardware = {
         tpm.enable = true;
-        # secure-boot.enable = true;
+        secure-boot.enable = true;
       };
     };
 

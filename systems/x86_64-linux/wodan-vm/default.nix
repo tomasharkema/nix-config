@@ -5,7 +5,6 @@
 
   config = {
     gui.enable = true;
-    gui.apps.steam.enable = true;
 
     networking.hostName = "wodan-vm";
     networking.hostId = "a5a1dad6";
