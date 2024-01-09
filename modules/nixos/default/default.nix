@@ -11,7 +11,7 @@
     # Select internationalisation properties.
     i18n.defaultLocale = "en_US.UTF-8";
 
-    services.cachix-agent.enable = true;
+    # services.cachix-agent.enable = true;
 
     i18n.extraLocaleSettings = {
       LC_ADDRESS = "nl_NL.UTF-8";
