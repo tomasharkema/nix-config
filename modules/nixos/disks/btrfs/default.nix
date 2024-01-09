@@ -99,6 +99,7 @@ in
 
     config = mkIf cfg.enable {
       boot = {
+        growPartition = true;
         supportedFilesystems = [
           "btrfs"
         ];

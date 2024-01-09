@@ -40,7 +40,6 @@ in {
       builder.enable = true;
     };
 
-    boot.growPartition = true;
     services.tcsd.enable = true;
     boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
     services.prometheus.exporters.ipmi.enable = true;

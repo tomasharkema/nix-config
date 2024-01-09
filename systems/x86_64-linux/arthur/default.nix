@@ -45,6 +45,8 @@
       mainOverride = "vdb";
     };
 
+    apps.resilio.root = "/media/resilio";
+
     boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
     networking = {hostName = "arthur";};

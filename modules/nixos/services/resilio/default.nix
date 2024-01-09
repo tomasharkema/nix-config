@@ -23,6 +23,7 @@ with lib.custom; let
 in {
   options.resilio = {
     enable = mkBoolOpt true "SnowflakeOS GNOME configuration";
+    root = mkOpt types.str "/resilio-sync" "root";
   };
 
   config = lib.mkIf cfg.enable {
@@ -31,19 +32,16 @@ in {
     # age.secrets."resilio-shared-public" = {file = ../secrets/resilio-shared-public.age;};
 
     system.activationScripts.resilioFolder = ''
-      if [ ! -d "/resilio-sync" ]; then
-        rm -rf /var/lib/resilio-sync/shared-documents || true
-        rm -rf /var/lib/resilio-sync/P-dir || true
-        rm -rf /var/lib/resilio-sync/shared-public || true
+      if [ ! -d "${config.resilio.root}" ]; then
 
-        mkdir -p /resilio-sync || true
+        mkdir -p "${config.resilio.root}" || true
 
-        chown -R rslsync:rslsync /resilio-sync/.
-        chmod -R g+s /resilio-sync/.
-        setfacl -d -m group:rslsync:rwx /resilio-sync/.
-        setfacl -m group:rslsync:rwx /resilio-sync/.
+        chown -R rslsync:rslsync "${config.resilio.root}/."
+        chmod -R g+s "${config.resilio.root}/."
+        setfacl -d -m group:rslsync:rwx "${config.resilio.root}/."
+        setfacl -m group:rslsync:rwx "${config.resilio.root}/."
 
-        ln -s /resilio-sync/ /home/tomas/resilio-sync
+        ln -s "${config.resilio.root}/" /home/tomas/resilio-sync
       fi
     '';
 
@@ -51,7 +49,7 @@ in {
       enable = true;
       sharedFolders = [
         {
-          directory = "/resilio-sync/shared-documents";
+          directory = "${config.resilio.root}/shared-documents";
           searchLAN = true;
           secretFile = config.age.secrets."resilio-docs".path;
           useDHT = false;
@@ -61,7 +59,7 @@ in {
           knownHosts = [known_host];
         }
         {
-          directory = "/resilio-sync/P-dir";
+          directory = "${config.resilio.root}/P-dir";
           searchLAN = true;
           secretFile = config.age.secrets."resilio-p".path;
           useDHT = false;
@@ -71,7 +69,7 @@ in {
           knownHosts = [known_host];
         }
         {
-          directory = "/resilio-sync/shared-public";
+          directory = "${config.resilio.root}/shared-public";
           searchLAN = true;
           secretFile = config.age.secrets."resilio-shared-public".path;
           useDHT = false;
