@@ -72,11 +72,9 @@
     };
     nix-software-center = {
       url = "github:snowfallorg/nix-software-center";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-conf-editor = {
       url = "github:snowfallorg/nixos-conf-editor";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak";

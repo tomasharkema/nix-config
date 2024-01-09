@@ -16,7 +16,6 @@
   config,
   ...
 }: let
-
   boot-into-bios = pkgs.writeShellScriptBin "boot-into-bios" ''
     sudo ${pkgs.ipmitool}/bin/ipmitool chassis bootparam set bootflag force_bios
   '';
@@ -141,5 +140,11 @@ in {
       extraModulePackages = [];
       # kernelParams = ["console=ttyS0,115200" "console=tty1"];
     };
+    swapDevices = [
+      {
+        device = "/.swapvol/swapfile";
+        size = 1024;
+      }
+    ];
   };
 }
