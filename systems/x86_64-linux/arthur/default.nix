@@ -24,13 +24,13 @@
   ];
 
   config = {
-    gui = {
-      enable = true;
-      desktop = {
-        rdp.enable = true;
-      };
-      apps.steam.enable = true;
-    };
+    # gui = {
+    #   enable = true;
+    #   desktop = {
+    #     rdp.enable = true;
+    #   };
+    #   apps.steam.enable = true;
+    # };
     traits = {
       # builder.enable = true;
       hardware = {
