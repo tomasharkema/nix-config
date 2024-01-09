@@ -1,49 +1,43 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, ... }:
-let
-  nix-software-center = import (pkgs.fetchFromGitHub {
-    owner = "snowfallorg";
-    repo = "nix-software-center";
-    rev = "0.1.2";
-    sha256 = "xiqF1mP8wFubdsAQ1BmfjzCgOD3YZf7EGWl9i69FTls=";
-  }) {};
-  
-    sources = import ./nix/sources.nix;
-    lanzaboote = import sources.lanzaboote;
-in
 {
-  imports =
-    [ # Include the results of the hardware scan.
-<nixos-hardware/dell/xps/15-9560>
-      ./hardware-configuration.nix
-      lanzaboote.nixosModules.lanzaboote
-    ];
-           nixpkgs.config.nvidia.acceptLicense = true;
-boot.plymouth.enable = true;
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  sources = import ./nix/sources.nix;
+  lanzaboote = import sources.lanzaboote;
+in {
+  imports = [
+    # Include the results of the hardware scan.
+    <nixos-hardware/dell/xps/15-9560>
+    ./hardware-configuration.nix
+    lanzaboote.nixosModules.lanzaboote
+  ];
+  nixpkgs.config.nvidia.acceptLicense = true;
+  boot.plymouth.enable = true;
 
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/etc/secureboot";
   };
-boot.loader = {
-  efi = {
-    canTouchEfiVariables = true;
-    efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
+    };
+    grub = {
+      efiSupport = true;
+      #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
+      device = "nodev";
+    };
   };
-  grub = {
-     efiSupport = true;
-     #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
-     device = "nodev";
-  };
-};
 
+  programs.kdeconnect.enable = true;
 
-programs.kdeconnect.enable = true;
-
-services.avahi.enable = true;
+  services.avahi.enable = true;
 
   networking.hostName = "euromir-2"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -79,9 +73,9 @@ services.avahi.enable = true;
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-powerManagement.enable = true;
+  powerManagement.enable = true;
 
-services.thermald.enable = true;
+  services.thermald.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -106,7 +100,7 @@ services.thermald.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
-#    media-session.enable = true;
+    #    media-session.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -116,12 +110,12 @@ services.thermald.enable = true;
   users.users.tomas = {
     isNormalUser = true;
     description = "tomas";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       firefox
-vscode
-tilix
-    #  thunderbird
+      vscode
+      tilix
+      #  thunderbird
     ];
   };
 
@@ -137,26 +131,24 @@ tilix
     _1password-gui
     fwupd
     fwupd-efi
-    nix-software-center
-    #nix-gui	
+    # nix-software-center
+    #nix-gui
     gnome-firmware
     gnome.gnome-settings-daemon
     gnome.gnome-shell-extensions
     niv
     sbctl
   ];
-nixpkgs.config.firefox.enableGnomeExtensions = true;
-services.gnome3.chrome-gnome-shell.enable = true;
-programs.dconf.enable = true;
-services.fwupd.enable = true;
+  nixpkgs.config.firefox.enableGnomeExtensions = true;
+  services.gnome3.chrome-gnome-shell.enable = true;
+  programs.dconf.enable = true;
+  services.fwupd.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   boot.loader.systemd-boot.enable = lib.mkForce false;
-#  boot.loader.systemd-boot.enable = true;
-#  boot.loader.systemd-boot.consoleMode = "auto";
-#  boot.loader.efi.canTouchEfiVariables = true;
-
-
+  #  boot.loader.systemd-boot.enable = true;
+  #  boot.loader.systemd-boot.consoleMode = "auto";
+  #  boot.loader.efi.canTouchEfiVariables = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -184,5 +176,4 @@ services.fwupd.enable = true;
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }

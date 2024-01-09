@@ -70,12 +70,12 @@
       url = "github:cachix/cachix-deploy-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-software-center = {
-      url = "github:snowfallorg/nix-software-center";
-    };
-    nixos-conf-editor = {
-      url = "github:snowfallorg/nixos-conf-editor";
-    };
+    # nix-software-center = {
+    #   url = "github:snowfallorg/nix-software-center";
+    # };
+    # nixos-conf-editor = {
+    #   url = "github:snowfallorg/nixos-conf-editor";
+    # };
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak";
       inputs.nixpkgs.follows = "nixpkgs";
