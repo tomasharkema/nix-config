@@ -25,7 +25,5 @@
       enable = false;
       # enable = true;
     };
-
-    fileSystems."/".device = lib.mkDefault "/dev/sda";
   };
 }
