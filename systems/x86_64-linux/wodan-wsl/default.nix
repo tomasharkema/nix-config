@@ -10,23 +10,36 @@
     # tailscale.enable = false;
     services.udev.enable = lib.mkForce false;
 
-    boot.binfmt.emulatedSystems = ["aarch64-linux"];
+    # boot.binfmt.emulatedSystems = ["aarch64-linux"];
     system.stateVersion = "23.11";
-    programs.nix-ld.enable = true;
+
+    # programs.nix-ld.enable = true;
 
     networking = {
       hostName = lib.mkDefault "wodan-wsl";
 
-      firewall = {
-        enable = false;
-      };
-      useDHCP = lib.mkDefault true;
+    #   firewall = {
+    #     enable = false;
+    #   };
+    #   useDHCP = lib.mkDefault true;
     };
 
     wsl = {
       enable = true;
-      automountPath = "/mnt";
-      defaultUser = "tomas";
+
+      wslConf = {
+        automount = {
+        enabled = true;
+
+      root = "/mnt";
+      };
+
+      interop = {
+        enabled = true;
+      };
+    };
+      # defaultUser = "tomas";
+
       startMenuLaunchers = true;
 
       # Enable integration with Docker Desktop (needs to be installed)
@@ -37,7 +50,7 @@
     nix.extraOptions = ''
       experimental-features = nix-command flakes
     '';
-
+    
     programs.git.enable = true;
     programs.git.config = {
       user = {

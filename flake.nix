@@ -238,12 +238,14 @@
         disko.nixosModules.default
 
         lanzaboote.nixosModules.lanzaboote
+ vscode-server.nixosModules.default
 
         # home-manager.nixosModules.home-manager
         agenix.nixosModules.default
         nixos-generators.nixosModules.all-formats
         {
           system.stateVersion = "23.11";
+          services.vscode-server.enable = true;
         }
       ];
 

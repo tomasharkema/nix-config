@@ -9,10 +9,6 @@ with lib;
 with lib.custom; let
   cfg = config.traits.builder;
 in {
-  imports = with inputs; [
-    vscode-server.nixosModules.default
-  ];
-
   options.traits = {
     builder = {
       enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
@@ -165,8 +161,6 @@ in {
         enable = true;
         secretKeyFile = "/var/cache-priv-key.pem";
       };
-
-      services.vscode-server.enable = true;
 
       services.nginx = {
         enable = true;
