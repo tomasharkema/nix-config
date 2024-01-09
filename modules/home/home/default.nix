@@ -95,17 +95,17 @@ in {
 
     programs.tmux = {enable = true;};
 
-    programs.alacritty = {
-      enable = true;
-      settings = {
-        font = {
-          normal = {
-            family = "Fira Code";
-            style = "Retina";
-          };
-        };
-      };
-    };
+    # programs.alacritty = {
+    #   enable = true;
+    #   settings = {
+    #     font = {
+    #       normal = {
+    #         family = "Fira Code";
+    #         style = "Retina";
+    #       };
+    #     };
+    #   };
+    # };
 
     programs.atuin = {
       enable = true;
