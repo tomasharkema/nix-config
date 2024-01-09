@@ -42,7 +42,7 @@
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-Samsung_SSD_850_PRO_256GB_S39KNX0J775697K";
-      mainOverride = "vdb";
+      # media = "";
     };
 
     apps.resilio.root = "/media/resilio";
