@@ -11,7 +11,6 @@ with inputs.home-manager.lib.hm.gvariant; {
   config = lib.mkIf (osConfig.gui.enable && osConfig.gui.gnome.enable) {
     dconf.enable = true;
     dconf.settings = {
-      "org/gnome/control-center" = {last-panel = "privacy";};
       "org/gnome/desktop/app-folders" = {
         folder-children = ["Utilities" "YaST" "Pardus"];
       };
@@ -43,16 +42,11 @@ with inputs.home-manager.lib.hm.gvariant; {
         name = "X-GNOME-Utilities.directory";
         translate = true;
       };
-      # "org/gnome/desktop/app-folders/folders/YaST" = {
-      #   categories = [ "X-SuSE-YaST" ];
-      #   name = "suse-yast.directory";
-      #   translate = true;
-      # };
       "org/gnome/desktop/input-sources" = {
         sources = [(mkTuple ["xkb" "us"])];
         xkb-options = ["terminate:ctrl_alt_bksp"];
       };
-      "org/gnome/desktop/interface" = {color-scheme = "prefer-dark";};
+      # "org/gnome/desktop/interface" = {color-scheme = "prefer-dark";};
       "org/gnome/desktop/notifications" = {
         application-children = ["steam" "org-gnome-console" "gnome-power-panel" "firefox"];
         show-in-lock-screen = false;
@@ -74,7 +68,6 @@ with inputs.home-manager.lib.hm.gvariant; {
         enabled-extensions = [
           "drive-menu@gnome-shell-extensions.gcampax.github.com"
           "appindicatorsupport@rgcjonas.gmail.com"
-          "apps-menu@gnome-shell-extensions.gcampax.github.com"
           "places-menu@gnome-shell-extensions.gcampax.github.com"
           "dash-to-panel@jderose9.github.com"
           "Vitals@CoreCoding.com"
