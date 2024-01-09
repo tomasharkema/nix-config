@@ -43,7 +43,7 @@
     };
     age.secrets."cachix" = {
       file = ./cachix.age;
-      mode = "0664";
+      mode = "770";
       path = "/home/tomas/.config/cachix/cachix.dhall";
       owner = "tomas";
       group = "tomas";
@@ -55,17 +55,17 @@
     # };
     age.secrets."cachix-agent" = {
       file = ./cachix-agent.age;
-      mode = "0664";
+      mode = "770";
       path = "/etc/cachix-agent.token";
     };
     age.secrets."cachix-activate" = {
       file = ./cachix-activate.age;
-      mode = "0664";
+      mode = "770";
       path = "/tmp/cacheix-act.sh";
     };
     age.secrets."otp" = {
       file = ./otp.age;
-      mode = "0664";
+      mode = "770";
       path = "/home/tomas/.google_authenticator";
       owner = "tomas";
       group = "tomas";
