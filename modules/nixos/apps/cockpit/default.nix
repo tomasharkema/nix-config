@@ -28,9 +28,20 @@ in {
       port = 9090;
       settings = {WebService = {AllowUnencrypted = false;};};
     };
-    system.activationScripts = {
-      cockpitXrdpCert = "${reencrypt}/bin/reencrypt";
+
+    systemd.services.cockpit-tailscale-cert = {
+      enable = true;
+      description = "cockpit-tailscale-cert";
+      unitConfig = {
+        Type = "oneshot";
+        StartLimitIntervalSec = 500;
+        StartLimitBurst = 5;
+      };
+      script = "${reencrypt}/bin/reencrypt";
+      wantedBy = ["multi-user.target" "cockpit" "tailscale"];
+      path = [reencrypt];
     };
+
     # environment.etc = {
     #   "pam.d/cockpit".text = lib.mkForce ''
     #     # Account management.
