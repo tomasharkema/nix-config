@@ -17,13 +17,17 @@
         enable = true;
       };
     };
+    traits = {
+      hardware = {
+        tpm.enable = true;
+        secure-boot.enable = true;
+      };
+    };
     swapDevices = [
       {
         device = "/swapfile";
         size = 1024;
       }
     ];
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
   };
 }

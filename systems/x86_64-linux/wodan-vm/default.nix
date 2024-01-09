@@ -10,21 +10,17 @@
     networking.hostName = "wodan-vm";
     networking.hostId = "a5a1dad6";
 
+    traits = {
+      hardware = {
+        tpm.enable = true;
+        secure-boot.enable = true;
+      };
+    };
+    boot.bootspec.enable = true;
+
     services.resilio = {
       enable = lib.mkForce false;
     };
-
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
-
-    # deployment.tags = [ "vm" ];
-    # deployment = {
-    #   targetHost = "100.64.161.30";
-    #   # targetHost = "192.168.1.73";
-    #   targetUser = "root";
-    # };
-
-    boot.bootspec.enable = true;
 
     networking.firewall = {
       enable = false;
