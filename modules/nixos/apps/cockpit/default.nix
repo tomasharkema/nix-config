@@ -17,9 +17,8 @@
   ...
 }: let
   reencrypt = pkgs.writeShellScriptBin "reencrypt" ''
-    set -x
     cd /etc/cockpit/ws-certs.d
-    ${pkgs.tailscale}/bin/tailscale cert $(hostname).ling-lizard.ts.net || true
+    ${pkgs.tailscale}/bin/tailscale cert "${config.networking.hostName}.ling-lizard.ts.net" || true
   '';
 in {
   config = {
@@ -39,7 +38,7 @@ in {
       };
       script = "${reencrypt}/bin/reencrypt";
       wantedBy = ["multi-user.target" "cockpit.service" "tailscale.service"];
-      path = [reencrypt];
+      path = [reencrypt pkgs.tailscale];
     };
 
     # environment.etc = {
