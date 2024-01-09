@@ -23,7 +23,7 @@
 
     networking.firewall = {
       enable = false;
-      # enable = true;
     };
+    networking.nftables.enable = lib.mkForce false;
   };
 }
