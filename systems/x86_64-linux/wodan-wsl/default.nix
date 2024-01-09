@@ -7,6 +7,7 @@
   imports = [inputs.nixos-wsl.nixosModules.wsl];
 
   config = {
+    boot.binfmt.emulatedSystems = ["aarch64-linux"];
     # tailscale.enable = false;
     services.udev.enable = lib.mkForce false;
 
