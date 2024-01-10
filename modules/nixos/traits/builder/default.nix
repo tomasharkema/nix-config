@@ -159,16 +159,16 @@ in {
 
       programs.nix-ld.enable = true;
 
-      nix.sshServe = {
-        enable = true;
-        keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas@tomas"
-        ];
-      };
-      services.nix-serve = {
-        enable = true;
-        secretKeyFile = "/var/cache-priv-key.pem";
-      };
+      # nix.sshServe = {
+      #   enable = true;
+      #   keys = [
+      #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas@tomas"
+      #   ];
+      # };
+      # services.nix-serve = {
+      #   enable = true;
+      #   secretKeyFile = "/var/cache-priv-key.pem";
+      # };
 
       services.nginx = {
         enable = true;
