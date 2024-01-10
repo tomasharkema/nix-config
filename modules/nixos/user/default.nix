@@ -89,7 +89,12 @@ in {
       isNormalUser = true;
       group = "agent";
       # extraGroups = ["rslsync"];
-      openssh.authorizedKeys.keys = keys;
+      openssh.authorizedKeys.keys =
+        keys
+        ++ [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDLZtRNaxKQwzBfC7xCjUgFl8/Zgg2dRLN6EIvx3wifh root@blue-fire"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOBloItNNcnAjlcBux/BJU0Dl9rry3SgR3VtGPK5LC6 tomas@blue-fire"
+        ];
     };
 
     users.users.root = {
