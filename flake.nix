@@ -261,10 +261,10 @@
           wodan-vm = {
             hostname = "192.168.1.74";
           };
-          wodan-wsl = {
-            sshUser = "root";
-            hostname = "192.168.1.42";
-          };
+          # wodan-wsl = {
+          #   sshUser = "root";
+          #   hostname = "192.168.1.42";
+          # };
           euro-mir-vm = {
             sshUser = "root";
             hostname = "192.168.178.51";
