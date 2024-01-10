@@ -20,6 +20,7 @@ with lib.custom; let
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDLZtRNaxKQwzBfC7xCjUgFl8/Zgg2dRLN6EIvx3wifh root@blue-fire"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOBloItNNcnAjlcBux/BJU0Dl9rry3SgR3VtGPK5LC6 tomas@blue-fire"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKKkjMLwP3DC+JnjbYc566gCYHUsE/k6ZAOy9AuKkKCH hydra@blue-fire"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBn9lCVI1qwvLY/gQH0X3kqbxvNOSHExhPynUTPSWDmH hydra-queue-runner@blue-fire"
     ]
     ++ githubKeys;
 in {
