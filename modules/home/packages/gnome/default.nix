@@ -49,6 +49,10 @@ with inputs.home-manager.lib.hm.gvariant; {
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
         gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
+        document-font-name = "Neue Haas Grotesk Display Pro Medium 11";
+        font-antialiasing = "rgba";
+        # font-hinting='medium'
+        font-name = "Neue Haas Grotesk Display Pro Medium 11";
       };
 
       # "org/gnome/desktop/notifications" = {
@@ -76,6 +80,7 @@ with inputs.home-manager.lib.hm.gvariant; {
       };
       "org/gnome/desktop/wm/preferences" = {
         button-layout = "appmenu:minimize,maximize,close";
+        titlebar-font = "Neue Haas Grotesk Display Pro Bold 11";
       };
       "org/gnome/nautilus/preferences" = {always-use-location-entry = true;};
       "org/gnome/shell/extensions/dash-to-panel" = {
