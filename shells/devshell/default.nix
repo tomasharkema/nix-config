@@ -14,6 +14,9 @@ with lib; let
   deployment = writeShellScriptBin "deployment" ''
     ${inputs.deploy-rs.packages.${system}.default}/bin/deploy --skip-checks --targets $@ -- --log-format internal-json -v |& ${nix-output-monitor}/bin/nom --json
   '';
+  deploy-all = writeShellScriptBin "deploy-all" ''
+    ${inputs.deploy-rs.packages.${system}.default}/bin/deploy --skip-checks -- --log-format internal-json -v |& ${nix-output-monitor}/bin/nom --json
+  '';
   deploy-machine = writeShellScriptBin "deploy-machine" ''
     set -x
     ${inputs.deploy-rs.packages.${system}.default}/bin/deploy --skip-checks ".#$@" -- --log-format internal-json -v |& ${nix-output-monitor}/bin/nom --json
@@ -93,6 +96,7 @@ in
           comma
           deploy-machine
           deployment
+          deploy-all
           direnv
           git
           gnupg
