@@ -39,7 +39,7 @@ in {
         })
       ]
       ++ [
-        jq
+        jq kitty
         # fig
         # inputs.nix-gui.packages.${system}.nix-gui
       ];
