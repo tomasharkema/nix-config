@@ -63,8 +63,8 @@ in {
         # TODO: Set fonts within GNOME Tweaks for the time being
         defaultFonts = {
           monospace = ["JetBrainsMono Nerd Font Mono"];
-          sansSerif = ["Neue Haas Grotesk Display Pro Regular"];
-          serif = ["Neue Haas Grotesk Display Pro Regular"];
+          sansSerif = ["Neue Haas Grotesk Display Pro Medium"];
+          serif = ["Neue Haas Grotesk Display Pro Medium"];
         };
         hinting = {
           autohint = true;
