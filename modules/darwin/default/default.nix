@@ -14,21 +14,21 @@
 
       buildMachines = [
         {
-          hostName = "blue-fire";
+          hostName = "builder@blue-fire";
           systems = ["x86_64-linux" "i686-linux" "aarch64-linux"];
           maxJobs = 2;
           supportedFeatures = ["kvm" "benchmark" "big-parallel"];
           speedFactor = 50;
         }
         {
-          hostName = "enzian";
+          hostName = "builder@enzian";
           systems = ["x86_64-linux" "i686-linux" "aarch64-linux"];
           maxJobs = 2;
           supportedFeatures = ["kvm" "benchmark" "big-parallel"];
           speedFactor = 10;
         }
         {
-          hostName = "wodan-wsl";
+          hostName = "builder@wodan-wsl";
           systems = ["x86_64-linux" "i686-linux" "aarch64-linux"];
           maxJobs = 2;
           supportedFeatures = ["kvm" "benchmark" "big-parallel"];

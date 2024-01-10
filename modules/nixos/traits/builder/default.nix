@@ -41,31 +41,31 @@ in {
         127.0.0.1 localhost-aarch64
       '';
 
-      systemd.services.hydra-evaluator.serviceConfig.MemoryLimit = "5G";
+      systemd.services.hydra-evaluator.serviceConfig.MemoryLimit = "10G";
 
       environment.systemPackages = with pkgs; [jetbrains.gateway];
 
       nix.buildMachines = [
         {
-          hostName = "localhost";
+          hostName = "builder@localhost";
           systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
           supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
           maxJobs = 2;
         }
         {
-          hostName = "wodan-vm";
+          hostName = "builder@wodan-vm";
           systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
           supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
           maxJobs = 2;
         }
         {
-          hostName = "enzian";
+          hostName = "builder@enzian";
           systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
           supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
           maxJobs = 2;
         }
         {
-          hostName = "arthur";
+          hostName = "builder@arthur";
           systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
           supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
           maxJobs = 2;
