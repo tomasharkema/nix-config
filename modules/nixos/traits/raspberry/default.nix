@@ -17,6 +17,7 @@ in {
   config = mkIf cfg.enable {
     # NixOS wants to enable GRUB by default
     boot.loader.grub.enable = false;
+    boot.loader.systemd-boot.enable = lib.mkForce false;
 
     services.openssh.enable = true;
     services.avahi.enable = true;
@@ -70,10 +71,6 @@ in {
         enable = true;
         interfaces = ["wlan0"];
         networks."Have a good day".pskRaw = "0fcc36c0dd587f3d85028f427c872fead0b6bb7623099fb4678ed958f2150e23";
-      };
-
-      firewall = {
-        enable = lib.mkForce false;
       };
     };
     hardware.bluetooth.enable = true; # enables support for Bluetooth

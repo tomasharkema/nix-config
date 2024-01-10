@@ -6,7 +6,7 @@
 with pkgs; {
   config = {
     home.packages = with pkgs; [
-      mattermost-desktop
+      # mattermost-desktop
 
       _1password
       thefuck
@@ -48,7 +48,7 @@ with pkgs; {
       lolcat
       lsd
       manix
-      mattermost
+
       mcfly
       morph
       mosh

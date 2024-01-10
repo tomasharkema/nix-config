@@ -69,8 +69,8 @@
       ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
     };
     services.udev = {enable = lib.mkDefault true;};
-    programs.zsh.shellInit = ''
-      source ${config.age.secrets."cachix-activate".path}
-    '';
+    # programs.zsh.shellInit = ''
+    #   source ${config.age.secrets."cachix-activate".path}
+    # '';
   };
 }

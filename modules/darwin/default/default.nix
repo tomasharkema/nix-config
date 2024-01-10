@@ -29,7 +29,7 @@
         }
         {
           hostName = "wodan-wsl";
-          system = ["x86_64-linux" "i686-linux" "aarch64-linux"];
+          systems = ["x86_64-linux" "i686-linux" "aarch64-linux"];
           maxJobs = 2;
           supportedFeatures = ["kvm" "benchmark" "big-parallel"];
           speedFactor = 100;

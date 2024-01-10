@@ -8,7 +8,7 @@
   ...
 }:
 with inputs.home-manager.lib.hm.gvariant; {
-  config = lib.mkIf (osConfig.gui.enable && osConfig.gui.gnome.enable) {
+  config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
     dconf.enable = true;
     dconf.settings = {
       "org/gnome/desktop/app-folders" = {

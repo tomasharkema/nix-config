@@ -3,16 +3,16 @@
   lib,
   osConfig,
   ...
-}: let
-  catt = pkgs.fetchFromGitHub {
-    owner = "Fausto-Korpsvart";
-    repo = "Catppuccin-GTK-Theme";
-    rev = "b8cffe7583876e17cc4558f32d17a072fa04ea9f";
-    hash = "sha256-wJnbXXWKX0mcqRYyE1Vs4CrgWXTwfk3kRC2IhKqQ0RI=";
-  };
-in {
-  config = lib.mkIf (osConfig.gui.enable && pkgs.stdenvNoCC.isLinux) {
-    gtk = {
+}: {
+  config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
+    gtk = let
+      catt = pkgs.fetchFromGitHub {
+        owner = "Fausto-Korpsvart";
+        repo = "Catppuccin-GTK-Theme";
+        rev = "b8cffe7583876e17cc4558f32d17a072fa04ea9f";
+        hash = "sha256-wJnbXXWKX0mcqRYyE1Vs4CrgWXTwfk3kRC2IhKqQ0RI=";
+      };
+    in {
       enable = true;
       theme = {
         name = "Catppuccin-Mocha-Compact-Blue-Dark";

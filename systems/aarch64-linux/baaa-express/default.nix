@@ -5,7 +5,6 @@
 }: {
   imports = with inputs; [
     "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
-    "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
   ];
   config = {
     networking.hostName = "baaa-express";

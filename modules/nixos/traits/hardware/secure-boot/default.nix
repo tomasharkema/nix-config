@@ -23,7 +23,9 @@ in {
       };
       loader = {
         efi.canTouchEfiVariables = true;
-        systemd-boot.enable = lib.mkForce (!cfg.enable);
+        systemd-boot = lib.mkIf cfg.enable {
+          enable = false;
+        };
       };
     };
   };
