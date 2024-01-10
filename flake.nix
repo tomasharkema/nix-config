@@ -305,7 +305,7 @@
               boot.binfmt.emulatedSystems = ["x86_64-linux"];
               virtualisation = {
                 host.pkgs = pkgs;
-                # useNixStoreImage = true;
+                useNixStoreImage = true;
                 writableStore = true;
                 cores = 4;
 

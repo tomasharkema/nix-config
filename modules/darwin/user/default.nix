@@ -35,8 +35,6 @@ in {
       kitty
       terminal-notifier
       custom.launchcontrol
-      # vagrant
-      # fig
     ];
     security.pam.enableSudoTouchIdAuth = true;
   };
