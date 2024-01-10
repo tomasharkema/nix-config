@@ -112,11 +112,14 @@ in
           snapshotInterval = "hourly";
           cleanupInterval = "7d";
         };
+        beesd = {
+          enable = true;
+        };
       };
 
       environment.systemPackages = with pkgs; [
         snapper
-        snapper-gui
+        # snapper-gui
         tpm-luks
         btrfs-assistant
       ];
