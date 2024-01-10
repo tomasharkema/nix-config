@@ -160,8 +160,8 @@ programs.terminator.enable=true;
     programs.gh-dash.enable = true;
     programs.zsh = {
       enable = true;
-      # enableAutosuggestions = true;
-      # syntaxHighlighting.enable = true;
+      enableAutosuggestions = true;
+      syntaxHighlighting.enable = true;
       enableVteIntegration = true;
       # enableSyntaxHighlighting = true;
 
