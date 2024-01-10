@@ -96,6 +96,8 @@ in {
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOBloItNNcnAjlcBux/BJU0Dl9rry3SgR3VtGPK5LC6 tomas@blue-fire"
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKKkjMLwP3DC+JnjbYc566gCYHUsE/k6ZAOy9AuKkKCH hydra@blue-fire"
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBn9lCVI1qwvLY/gQH0X3kqbxvNOSHExhPynUTPSWDmH hydra-queue-runner@blue-fire"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHwoMVtxCQilu+k9A0KNwW6lJKWQqLqHE8R7NZtef8Wj root@blue-fire"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBmE+i7RminmrURhTsKdyj/Wo4MyXz6eHET3FixY2CAv builder@blue-fire"
         ];
     };
 
@@ -111,7 +113,7 @@ in {
 
     nix.settings = {
       extra-experimental-features = "nix-command flakes";
-      trusted-users = ["root" "tomas"];
+      trusted-users = ["root" "tomas" "builder"];
       substituters = [
         "https://tomasharkema.cachix.org/"
         "https://nix-cache.harke.ma/tomas"

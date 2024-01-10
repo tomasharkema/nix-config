@@ -66,8 +66,8 @@ in {
           log-lines = 50;
           sandbox = false;
           auto-optimise-store = true;
-          trusted-users = users;
-          allowed-users = users;
+          trusted-users = users ++ ["tomas" "root"]; # "builder"];
+          allowed-users = users ++ ["tomas" "root" "builder"];
 
           substituters =
             [cfg.default-substituter.url]

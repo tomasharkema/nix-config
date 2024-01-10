@@ -32,7 +32,6 @@ in {
     environment.systemPackages = with pkgs; [
       atuin
       custom.maclaunch
-      kitty
       terminal-notifier
       custom.launchcontrol
     ];

@@ -14,14 +14,8 @@ in {
 
   config = {
     programs.home-manager.enable = true;
-    programs.yt-dlp.enable = true;
     home.stateVersion = "23.11";
-programs.kitty.enable = true;
-programs.termite.enable = true;
-programs.terminator.enable=true;
 
-
-    # home-manager.backupFileExtension = "bak";
     home.packages = with pkgs;
     # (import ./packages/common.nix {inherit pkgs inputs lib;})
     # ++
@@ -43,7 +37,7 @@ programs.terminator.enable=true;
         })
       ]
       ++ [
-        jq kitty
+        jq
         # fig
         # inputs.nix-gui.packages.${system}.nix-gui
       ];
@@ -69,6 +63,14 @@ programs.terminator.enable=true;
     # age.secrets."cachix-activate" = {
     #   file = ../../../secrets/cachix-activate.age;
     # };
+
+    programs.kitty = {
+      enable = true;
+      theme = "Catppuccin-Mocha";
+    };
+    programs.termite.enable = true;
+    programs.terminator.enable = lib.mkIf pkgs.stdenv.isLinux true;
+    programs.yt-dlp.enable = true;
 
     programs.direnv = {
       enable = true;
