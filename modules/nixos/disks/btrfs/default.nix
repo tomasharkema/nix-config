@@ -118,6 +118,7 @@ in
         snapper
         snapper-gui
         tpm-luks
+        btrfs-assistant
       ];
 
       # fileSystems."/".neededForBoot = true;
