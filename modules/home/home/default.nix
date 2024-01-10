@@ -28,12 +28,12 @@ in {
               "3270"
               "Agave"
               "BigBlueTerminal"
-              "OpenDyslectic"
+              # "OpenDyslectic"
               "ComicShannsMono"
               "JetBrainsMono"
               # "0xProto"
               # "LeagueMono"
-              "CodeNewRomanNerdFont"
+              # "CodeNewRomanNerdFont"
             ];
           }
         )
@@ -41,10 +41,10 @@ in {
         # fig
         # inputs.nix-gui.packages.${system}.nix-gui
       ];
-      sessionVariables = {
-        EDITOR = lib.mkIf stdenv.isDarwin "subl";
-        SSH_AUTH_SOCK = lib.mkIf stdenv.isDarwin "/Users/tomas/.1password/agent.sock";
-        SPACESHIP_PROMPT_ADD_NEWLINE = lib.mkIf stdenv.isDarwin "false";
+      sessionVariables = lib.mkIf stdenv.isDarwin {
+        EDITOR = "subl";
+        SSH_AUTH_SOCK = "/Users/tomas/.1password/agent.sock";
+        SPACESHIP_PROMPT_ADD_NEWLINE = "false";
       };
     };
     # home.username = lib.mkDefault "tomas";
@@ -181,28 +181,6 @@ in {
         enableVteIntegration = true;
         enableSyntaxHighlighting = true;
 
-        pmodules = [
-          "osx"
-          "homebrew"
-          "environment"
-          "terminal"
-          "git"
-          "editor"
-          "tmux"
-          "fasd"
-          "history"
-          "history-substring-search"
-          "directory"
-          "spectrum"
-          "utility"
-          #"completion"
-          #"autosuggestions"
-          # "prompt"
-          "rsync"
-          "archive"
-          "docker"
-          #"syntax-highlighting"
-        ];
         autocd = true;
 
         history.extended = true;
