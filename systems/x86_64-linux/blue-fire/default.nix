@@ -139,11 +139,5 @@ in {
       extraModulePackages = [];
       # kernelParams = ["console=ttyS0,115200" "console=tty1"];
     };
-    swapDevices = [
-      {
-        device = "/.swapvol/swapfile";
-        size = 5 * 1024;
-      }
-    ];
   };
 }
