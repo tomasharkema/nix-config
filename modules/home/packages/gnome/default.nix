@@ -19,64 +19,59 @@ with inputs.home-manager.lib.hm.gvariant; {
         name = "X-Pardus-Apps.directory";
         translate = true;
       };
-      "org/gnome/desktop/app-folders/folders/Utilities" = {
-        apps = [
-          "gnome-abrt.desktop"
-          "gnome-system-log.desktop"
-          "nm-connection-editor.desktop"
-          "org.gnome.baobab.desktop"
-          "org.gnome.Connections.desktop"
-          "org.gnome.DejaDup.desktop"
-          "org.gnome.Dictionary.desktop"
-          "org.gnome.DiskUtility.desktop"
-          "org.gnome.Evince.desktop"
-          "org.gnome.FileRoller.desktop"
-          "org.gnome.fonts.desktop"
-          "org.gnome.Loupe.desktop"
-          "org.gnome.seahorse.Application.desktop"
-          "org.gnome.tweaks.desktop"
-          "org.gnome.Usage.desktop"
-          "vinagre.desktop"
-        ];
-        categories = ["X-GNOME-Utilities"];
-        name = "X-GNOME-Utilities.directory";
-        translate = true;
-      };
+      # "org/gnome/desktop/app-folders/folders/Utilities" = {
+      #   apps = [
+      #     "gnome-abrt.desktop"
+      #     "gnome-system-log.desktop"
+      #     "nm-connection-editor.desktop"
+      #     "org.gnome.baobab.desktop"
+      #     "org.gnome.Connections.desktop"
+      #     "org.gnome.DejaDup.desktop"
+      #     "org.gnome.Dictionary.desktop"
+      #     "org.gnome.DiskUtility.desktop"
+      #     "org.gnome.Evince.desktop"
+      #     "org.gnome.FileRoller.desktop"
+      #     "org.gnome.fonts.desktop"
+      #     "org.gnome.Loupe.desktop"
+      #     "org.gnome.seahorse.Application.desktop"
+      #     "org.gnome.tweaks.desktop"
+      #     "org.gnome.Usage.desktop"
+      #     "vinagre.desktop"
+      #   ];
+      #   categories = ["X-GNOME-Utilities"];
+      #   name = "X-GNOME-Utilities.directory";
+      #   translate = true;
+      # };
       "org/gnome/desktop/input-sources" = {
         sources = [(mkTuple ["xkb" "us"])];
         xkb-options = ["terminate:ctrl_alt_bksp"];
       };
-      # "org/gnome/desktop/interface" = {color-scheme = "prefer-dark";};
-      "org/gnome/desktop/notifications" = {
-        application-children = ["steam" "org-gnome-console" "gnome-power-panel" "firefox"];
-        show-in-lock-screen = false;
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+        gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
       };
+
+      # "org/gnome/desktop/notifications" = {
+      #   application-children = ["steam" "org-gnome-console" "gnome-power-panel" "firefox"];
+      #   show-in-lock-screen = false;
+      # };
       "org/gnome/desktop/peripherals/keyboard" = {numlock-state = true;};
       "org/gnome/desktop/privacy" = {
         old-files-age = mkUint32 30;
         recent-files-max-age = -1;
       };
       "org/gnome/desktop/screensaver" = {lock-enabled = false;};
-      "org/gnome/desktop/session" = {idle-delay = mkUint32 0;};
+      # "org/gnome/desktop/session" = {idle-delay = mkUint32 0;};
       "org/gnome/evolution-data-server" = {migrated = true;};
-      "org/gnome/nautilus/preferences" = {
-        default-folder-viewer = "icon-view";
-        migrated-gtk-settings = true;
-        search-filter-time-type = "last_modified";
-      };
+      # "org/gnome/nautilus/preferences" = {
+      #   default-folder-viewer = "icon-view";
+      #   migrated-gtk-settings = true;
+      #   search-filter-time-type = "last_modified";
+      # };
       "org/gnome/shell" = {
-        enabled-extensions = [
-          "drive-menu@gnome-shell-extensions.gcampax.github.com"
-          "appindicatorsupport@rgcjonas.gmail.com"
-          "places-menu@gnome-shell-extensions.gcampax.github.com"
-          "dash-to-panel@jderose9.github.com"
-          "Vitals@CoreCoding.com"
-        ];
-        favorite-apps = [
-          "org.gnome.Nautilus.desktop"
-          "firefox.desktop"
-          "com.gexperts.Tilix.desktop"
-        ];
+        disabled-extensions = ["native-window-placement@gnome-shell-extensions.gcampax.github.com" "workspace-indicator@gnome-shell-extensions.gcampax.github.com"];
+        enabled-extensions = ["drive-menu@gnome-shell-extensions.gcampax.github.com" "appindicatorsupport@rgcjonas.gmail.com" "places-menu@gnome-shell-extensions.gcampax.github.com" "dash-to-panel@jderose9.github.com" "Vitals@CoreCoding.com" "user-theme@gnome-shell-extensions.gcampax.github.com" "systemd-manager@hardpixel.eu"];
+        favorite-apps = ["org.gnome.Nautilus.desktop" "firefox.desktop" "kitty.desktop" "code.desktop"];
         welcome-dialog-last-shown-version = "45.1";
       };
       "org/gnome/desktop/wm/preferences" = {
@@ -128,6 +123,7 @@ with inputs.home-manager.lib.hm.gvariant; {
         tab-position = "left";
         theme-variant = "dark";
       };
+
       "com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = {
         background-color = "#1E1E2E";
         badge-color = "#AC7EA8";

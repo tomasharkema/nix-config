@@ -53,6 +53,11 @@ with lib; let
     cachix push tomasharkema $res
     cachix pin tomasharkema $2 $res
   '';
+
+  dconf-update = writeShellScriptBin "dconf-update" ''
+    ${lib.getExe pkgs.dconf} dump / > dconf.settings
+    ${lib.getExe pkgs.dconf2nix} -i dconf.settings -o dconf.nix
+  '';
   # diffs = import ../diffs attrs;
   # packages-json = diffs.packages-json;
   # gum = lib.getExe pkgs.gum;
@@ -74,16 +79,16 @@ in
       #../../modules/home/tools/nix/nixpkgs.nix
       {
         languages.nix.enable = true;
-      }
-      {
+
         packages = with inputs; [
+          dconf-update
           flake-checker.packages.${system}.default
           deploy-rs.packages.${system}.default
           attic.packages.${system}.default
           agenix.packages.${system}.default
           hydra-check.packages.${system}.default
           nil.packages.${system}.default
-
+          dconf2nix
           # pkgs.custom.rundesk
           reencrypt
           pkgs.custom.remote-cli

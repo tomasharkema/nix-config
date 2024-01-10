@@ -30,7 +30,6 @@
       packagekit
       fwupd
       fwupd-efi
-      dconf2nix
       hw-probe
 
       git

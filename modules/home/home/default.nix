@@ -66,15 +66,15 @@ in {
 
     programs.kitty = {
       enable = true;
-			theme = "Catppuccin-Mocha";
-			#font = "JetBrainsMono Nerd Font Mono";
+      theme = "Catppuccin-Mocha";
+      #font = "JetBrainsMono Nerd Font Mono";
       settings = {
-				font_family = "JetBrainsMono Nerd Font Mono";
+        font_family = "JetBrainsMono Nerd Font Mono";
         font_size = "14.0";
-				};
-				shellIntegration = {
-				enableZshIntegration = true;
-				};
+      };
+      shellIntegration = {
+        enableZshIntegration = true;
+      };
     };
     programs.termite.enable = true;
     programs.terminator.enable = lib.mkIf pkgs.stdenv.isLinux true;
@@ -172,7 +172,7 @@ in {
       enable = true;
       enableAutosuggestions = true;
       syntaxHighlighting.enable = true;
-			# enableVteIntegration = true;
+      # enableVteIntegration = true;
       # enableSyntaxHighlighting = true;
 
       autocd = true;
@@ -199,9 +199,9 @@ in {
       ];
 
       initExtraFirst = ''
-        zmodload zsh/zprof
-        # eval "$(~/.local/bin/cw init zsh pre)"
-				# source "${iterm}";
+            zmodload zsh/zprof
+            # eval "$(~/.local/bin/cw init zsh pre)"
+        # source "${iterm}";
       '';
       initExtra = ''
         # eval "$(~/.local/bin/cw init zsh post)"
@@ -257,18 +257,18 @@ in {
           "editor"
           "tmux"
           "fasd"
-					"history"
-					"history-substring-search"
+          "history"
+          "history-substring-search"
           "directory"
           "spectrum"
           "utility"
           #"completion"
-					#"autosuggestions"
+          #"autosuggestions"
           # "prompt"
           "rsync"
           "archive"
           "docker"
-					#"syntax-highlighting"
+          #"syntax-highlighting"
         ];
 
         caseSensitive = false;

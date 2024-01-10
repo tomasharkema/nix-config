@@ -18,7 +18,7 @@ with lib.custom; let
 in {
   options.custom.nix = with types; {
     enable = mkBoolOpt true "Whether or not to manage nix configuration.";
-    # package = mkOpt package nixpkgs "Which nix package to use.";
+    package = mkOpt package inputs.unstable "Which nix package to use.";
 
     default-substituter = {
       url = mkOpt str "https://cache.nixos.org" "The url for the substituter.";

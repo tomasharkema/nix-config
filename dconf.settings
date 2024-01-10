@@ -5,38 +5,22 @@ theme-variant='dark'
 
 [com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
 background-color='#1E1E2E'
+badge-color='#AC7EA8'
 badge-color-set=false
 bold-color-set=false
-cursor-background-color='#F5E0DC'
-cursor-colors-set=true
-cursor-foreground-color='#1E1E2E'
-font='FiraCode Nerd Font weight=450 12'
-foreground-color='#CDD6F4'
-highlight-background-color='#F5E0DC'
-highlight-colors-set=true
-highlight-foreground-color='#1E1E2E'
+cursor-colors-set=false
+foreground-color='#A1B0B8'
+highlight-colors-set=false
 palette=['#45475A', '#F38BA8', '#A6E3A1', '#F9E2AF', '#89B4FA', '#F5C2E7', '#94E2D5', '#BAC2DE', '#585B70', '#F38BA8', '#A6E3A1', '#F9E2AF', '#89B4FA', '#F5C2E7', '#94E2D5', '#A6ADC8']
-use-system-font=false
 use-theme-colors=false
 visible-name='Default'
 
-[org/gnome/Console]
-last-window-size=(652, 955)
-
-[org/gnome/baobab/ui]
-is-maximized=false
-window-size=(960, 600)
-
 [org/gnome/control-center]
-last-panel='privacy'
+last-panel='background'
 window-state=(980, 640, false)
 
 [org/gnome/desktop/app-folders]
 folder-children=['Utilities', 'YaST', 'Pardus']
-
-[org/gnome/desktop/app-folders/folders/3062f2d3-468d-4d78-bff0-3931fec8cb96]
-apps=['org.kde.kdeconnect.app.desktop', 'org.kde.kdeconnect.nonplasma.desktop', 'org.kde.kdeconnect-settings.desktop', 'org.kde.kdeconnect.sms.desktop']
-name='Internet'
 
 [org/gnome/desktop/app-folders/folders/Pardus]
 categories=['X-Pardus-Apps']
@@ -47,11 +31,6 @@ translate=true
 apps=['gnome-abrt.desktop', 'gnome-system-log.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Connections.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.Loupe.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop', 'vinagre.desktop']
 categories=['X-GNOME-Utilities']
 name='X-GNOME-Utilities.directory'
-translate=true
-
-[org/gnome/desktop/app-folders/folders/YaST]
-categories=['X-SuSE-YaST']
-name='suse-yast.directory'
 translate=true
 
 [org/gnome/desktop/background]
@@ -68,15 +47,11 @@ xkb-options=['terminate:ctrl_alt_bksp']
 
 [org/gnome/desktop/interface]
 color-scheme='prefer-dark'
-font-antialiasing='rgba'
-font-hinting='slight'
+gtk-theme='Catppuccin-Mocha-Compact-Blue-Dark'
 
 [org/gnome/desktop/notifications]
 application-children=['steam', 'org-gnome-console', 'gnome-power-panel', 'firefox']
 show-in-lock-screen=false
-
-[org/gnome/desktop/notifications/application/code]
-application-id='code.desktop'
 
 [org/gnome/desktop/notifications/application/firefox]
 application-id='firefox.desktop'
@@ -84,14 +59,8 @@ application-id='firefox.desktop'
 [org/gnome/desktop/notifications/application/gnome-power-panel]
 application-id='gnome-power-panel.desktop'
 
-[org/gnome/desktop/notifications/application/org-gnome-baobab]
-application-id='org.gnome.baobab.desktop'
-
-[org/gnome/desktop/notifications/application/org-gnome-console]
-application-id='org.gnome.Console.desktop'
-
-[org/gnome/desktop/notifications/application/org-kde-kdeconnect-daemon]
-application-id='org.kde.kdeconnect.daemon.desktop'
+[org/gnome/desktop/notifications/application/org-gnome-software]
+application-id='org.gnome.Software.desktop'
 
 [org/gnome/desktop/peripherals/keyboard]
 numlock-state=true
@@ -117,29 +86,12 @@ button-layout='appmenu:minimize,maximize,close'
 [org/gnome/evolution-data-server]
 migrated=true
 
-[org/gnome/file-roller/dialogs/extract]
-recreate-folders=true
-skip-newer=false
-
-[org/gnome/file-roller/listing]
-list-mode='as-folder'
-name-column-width=250
-show-path=false
-sort-method='name'
-sort-type='ascending'
-
-[org/gnome/file-roller/ui]
-sidebar-width=200
-window-height=480
-window-width=600
-
 [org/gnome/gnome-system-monitor]
-current-tab='resources'
 maximized=false
 network-total-in-bits=false
 show-dependencies=false
 show-whose-processes='user'
-window-state=(700, 500, 26, 23)
+window-state=(700, 500, 102, 102)
 
 [org/gnome/gnome-system-monitor/disktreenew]
 col-6-visible=true
@@ -150,27 +102,25 @@ columns-order=[0, 1, 2, 3, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2
 sort-col=8
 sort-order=0
 
-[org/gnome/mutter]
-edge-tiling=true
-
 [org/gnome/nautilus/preferences]
 always-use-location-entry=true
 default-folder-viewer='icon-view'
 migrated-gtk-settings=true
 search-filter-time-type='last_modified'
 
-[org/gnome/nautilus/window-state]
-initial-size=(1423, 550)
-maximized=false
+[org/gnome/portal/filechooser/com.axosoft.GitKraken]
+last-folder-path='/home/tomas/Developer/nix-config'
+
+[org/gnome/portal/filechooser/com.sublimemerge.App]
+last-folder-path='/home/tomas/Developer/nix-config'
 
 [org/gnome/settings-daemon/plugins/color]
 night-light-enabled=true
 
 [org/gnome/shell]
-app-picker-layout=[{'org.gnome.Contacts.desktop': <{'position': <0>}>, 'org.gnome.Weather.desktop': <{'position': <1>}>, 'org.gnome.clocks.desktop': <{'position': <2>}>, 'org.gnome.Maps.desktop': <{'position': <3>}>, 'org.gnome.Totem.desktop': <{'position': <4>}>, 'org.gnome.Calculator.desktop': <{'position': <5>}>, 'simple-scan.desktop': <{'position': <6>}>, 'org.gnome.Settings.desktop': <{'position': <7>}>, 'gnome-system-monitor.desktop': <{'position': <8>}>, 'Utilities': <{'position': <9>}>, 'yelp.desktop': <{'position': <10>}>, '1password.desktop': <{'position': <11>}>, 'org.gnome.Snapshot.desktop': <{'position': <12>}>, 'org.gnome.Extensions.desktop': <{'position': <13>}>, 'org.gnome.Firmware.desktop': <{'position': <14>}>, '3062f2d3-468d-4d78-bff0-3931fec8cb96': <{'position': <15>}>, 'nixos-manual.desktop': <{'position': <16>}>, 'nvidia-settings.desktop': <{'position': <17>}>, 'dev.vlinkz.NixSoftwareCenter.desktop': <{'position': <18>}>, 'org.gnome.TextEditor.desktop': <{'position': <19>}>}, {'org.gnome.Tour.desktop': <{'position': <0>}>, 'code.desktop': <{'position': <1>}>, 'xterm.desktop': <{'position': <2>}>}]
-enabled-extensions=['drive-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com', 'Vitals@CoreCoding.com']
-favorite-apps=['org.gnome.Nautilus.desktop', 'firefox.desktop', 'com.gexperts.Tilix.desktop']
-last-selected-power-profile='performance'
+disabled-extensions=['native-window-placement@gnome-shell-extensions.gcampax.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com']
+enabled-extensions=['drive-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com', 'Vitals@CoreCoding.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'systemd-manager@hardpixel.eu']
+favorite-apps=['org.gnome.Nautilus.desktop', 'firefox.desktop', 'kitty.desktop', 'code.desktop']
 welcome-dialog-last-shown-version='45.1'
 
 [org/gnome/shell/extensions/dash-to-panel]
@@ -188,11 +138,22 @@ status-icon-padding=-1
 tray-padding=-1
 window-preview-title-position='TOP'
 
-[org/gnome/shell/world-clocks]
-locations=@as []
+[org/gnome/shell/extensions/systemd-manager]
+command-method='systemctl'
+systemd=@as []
 
-[org/gnome/tweaks]
-show-extensions-notice=false
+[org/gnome/shell/extensions/user-theme]
+name='Catppuccin-Mocha-Compact-Blue-Dark'
+
+[org/gnome/shell/world-clocks]
+locations=@av []
+
+[org/gnome/software]
+check-timestamp=int64 1704887259
+first-run=false
+flatpak-purge-timestamp=int64 1704894416
+install-timestamp=int64 1704836758
+update-notification-timestamp=int64 1704837003
 
 [org/gtk/gtk4/settings/file-chooser]
 date-format='regular'
@@ -206,18 +167,4 @@ sort-directories-first=true
 sort-order='ascending'
 type-format='category'
 view-type='list'
-window-size=(857, 326)
-
-[org/gtk/settings/file-chooser]
-date-format='regular'
-location-mode='path-bar'
-show-hidden=false
-show-size-column=true
-show-type-column=true
-sidebar-width=157
-sort-column='name'
-sort-directories-first=false
-sort-order='descending'
-type-format='category'
-window-position=(0, 0)
-window-size=(1203, 902)
+window-size=(857, 366)
