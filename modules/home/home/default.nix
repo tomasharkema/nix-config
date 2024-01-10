@@ -16,6 +16,7 @@ in {
     programs.home-manager.enable = true;
     programs.yt-dlp.enable = true;
     home.stateVersion = "23.11";
+programs.kitty.enable = true;
 
     # home-manager.backupFileExtension = "bak";
     home.packages = with pkgs;
