@@ -54,6 +54,31 @@ in {
 
     programs.dconf.enable = true;
 
+    fonts = {
+      enableDefaultFonts = true;
+      fontDir.enable = true;
+      fontconfig = {
+        antialias = true;
+        cache32Bit = true;
+        # TODO: Set fonts within GNOME Tweaks for the time being
+        defaultFonts = {
+          monospace = ["JetBrainsMono Nerd Font Mono"];
+          sansSerif = ["Neue Haas Grotesk Display Pro Roman"];
+          serif = ["Neue Haas Grotesk Display Pro Roman"];
+        };
+        hinting.autohint = true;
+        hinting.enable = true;
+      };
+      fonts = with pkgs; [
+        noto-fonts
+        noto-fonts-cjk
+        noto-fonts-emoji
+        # noto-fonts-extra
+        ubuntu_font_family
+        pkgs.custom.neue-haas-grotesk
+      ];
+    };
+
     environment.gnome.excludePackages =
       (with pkgs; [
         gnome-photos

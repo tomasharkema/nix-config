@@ -8,7 +8,6 @@
 }:
 with lib; {
   config = mkIf (!config.traits.slim.enable) {
-    fonts.packages = [pkgs.custom.neue-haas-grotesk];
     snowfallorg.user.${config.user.name}.home.config = {
       home.stateVersion = mkDefault "23.11";
       xdg.enable = true;

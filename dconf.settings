@@ -46,6 +46,8 @@ font-antialiasing='rgba'
 font-hinting='medium'
 font-name='Neue Haas Grotesk Display Pro Medium 11'
 gtk-theme='Catppuccin-Mocha-Compact-Blue-Dark'
+monospace-font-name='JetBrainsMono Nerd Font Propo 10'
+text-scaling-factor=1.0
 
 [org/gnome/desktop/notifications]
 application-children=['firefox', 'org-gnome-fileroller']
@@ -79,7 +81,7 @@ secondary-color='#000000'
 
 [org/gnome/desktop/wm/preferences]
 button-layout='appmenu:minimize,maximize,close'
-titlebar-font='Neue Haas Grotesk Display Pro Bold 11'
+titlebar-font='Neue Haas Grotesk Display Pro Medium 11'
 
 [org/gnome/evolution-data-server]
 migrated=true
