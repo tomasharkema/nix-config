@@ -13,8 +13,6 @@
 
     system.stateVersion = "23.11";
 
-    # programs.nix-ld.enable = true;
-
     networking = {
       hostName = lib.mkDefault "wodan-wsl";
 
@@ -55,23 +53,11 @@
       experimental-features = nix-command flakes
     '';
 
-    programs.git.enable = true;
-    programs.git.config = {
-      user = {
-        name = "Tomas Harkema";
-        email = "tomas@harkema.io";
-      };
-    };
-
-    environment.systemPackages = with pkgs; [wget nodejs curl zstd];
-
     programs.zsh = {
       enable = true;
     };
 
     users.defaultUserShell = pkgs.zsh;
-
-    services.openssh.enable = true;
 
     networking.nftables.enable = lib.mkForce false;
   };
