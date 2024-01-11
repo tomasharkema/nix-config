@@ -124,7 +124,6 @@ in {
         settings = {
           allowed-uris = [
             "https://api.github.com"
-            "https://git.sr.ht/~rycee/nmd/archive"
             "https://github.com/zhaofengli/nix-base32.git"
             "https://github.com/tomasharkema.keys"
             "https://api.flakehub.com/f/pinned"
