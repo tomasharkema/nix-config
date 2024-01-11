@@ -1,6 +1,9 @@
 {lib, ...}: {
+  imports = [./hardware-configuration.nix];
+
   config = {
     time.hardwareClockInLocalTime = true;
+    time.timeZone = "Europe/Amsterdam";
 
     networking = {
       networkmanager.enable = true;
