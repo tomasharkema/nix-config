@@ -41,16 +41,16 @@ xkb-options=['terminate:ctrl_alt_bksp']
 
 [org/gnome/desktop/interface]
 color-scheme='prefer-dark'
-document-font-name='Neue Haas Grotesk Display Pro Medium 11'
+document-font-name='Neue Haas Grotesk Display Pro Semi-Bold 12'
 font-antialiasing='rgba'
-font-hinting='medium'
-font-name='Neue Haas Grotesk Display Pro Medium 11'
+font-hinting='full'
+font-name='Neue Haas Grotesk Display Pro Semi-Bold 12'
 gtk-theme='Catppuccin-Mocha-Compact-Blue-Dark'
-monospace-font-name='JetBrainsMono Nerd Font Propo 10'
+monospace-font-name='JetBrainsMonoNL Nerd Font Propo 10'
 text-scaling-factor=1.0
 
 [org/gnome/desktop/notifications]
-application-children=['firefox', 'org-gnome-fileroller']
+application-children=['firefox', 'org-gnome-fileroller', 'gnome-power-panel', 'org-gnome-nautilus', 'steam']
 
 [org/gnome/desktop/notifications/application/firefox]
 application-id='firefox.desktop'
@@ -61,8 +61,14 @@ application-id='gnome-power-panel.desktop'
 [org/gnome/desktop/notifications/application/org-gnome-fileroller]
 application-id='org.gnome.FileRoller.desktop'
 
+[org/gnome/desktop/notifications/application/org-gnome-nautilus]
+application-id='org.gnome.Nautilus.desktop'
+
 [org/gnome/desktop/notifications/application/org-gnome-software]
 application-id='org.gnome.Software.desktop'
+
+[org/gnome/desktop/notifications/application/steam]
+application-id='steam.desktop'
 
 [org/gnome/desktop/peripherals/keyboard]
 numlock-state=true
@@ -80,8 +86,8 @@ primary-color='#3071AE'
 secondary-color='#000000'
 
 [org/gnome/desktop/wm/preferences]
-button-layout='appmenu:minimize,maximize,close'
-titlebar-font='Neue Haas Grotesk Display Pro Medium 11'
+button-layout='close,minimize,maximize:appmenu'
+titlebar-font='Neue Haas Grotesk Display Pro Semi-Bold 12'
 
 [org/gnome/evolution-data-server]
 migrated=true
@@ -102,14 +108,20 @@ window-width=600
 compare-background-color='rgb(255,255,255)'
 compare-foreground-color='rgb(0,0,0)'
 compare-list=@as []
+content-pane-position=658
 google-fonts-background-color='rgb(255,255,255)'
 google-fonts-foreground-color='rgb(0,0,0)'
-is-maximized=false
+is-maximized=true
 language-filter-list=@as []
 preview-page=1
 selected-category='0'
+selected-font='0:8'
 window-position=(102, 102)
 window-size=(900, 600)
+
+[org/gnome/font-manager/font-viewer]
+window-position=(102, 102)
+window-size=(600, 400)
 
 [org/gnome/gnome-system-monitor]
 maximized=false
@@ -129,7 +141,12 @@ sort-order=0
 
 [org/gnome/nautilus/preferences]
 always-use-location-entry=true
+default-folder-viewer='icon-view'
 migrated-gtk-settings=true
+search-filter-time-type='last_modified'
+
+[org/gnome/nautilus/window-state]
+initial-size=(890, 550)
 
 [org/gnome/portal/filechooser/com.axosoft.GitKraken]
 last-folder-path='/home/tomas/Developer/nix-config'
@@ -148,12 +165,15 @@ favorite-apps=['org.gnome.Nautilus.desktop', 'firefox.desktop', 'kitty.desktop',
 welcome-dialog-last-shown-version='45.1'
 
 [org/gnome/shell/extensions/dash-to-panel]
+animate-appicon-hover-animation-extent={'RIPPLE': 4, 'PLANK': 4, 'SIMPLE': 1}
 appicon-margin=8
 appicon-padding=4
 available-monitors=[0]
 dot-position='BOTTOM'
+dot-style-focused='DOTS'
 hotkeys-overlay-combo='TEMPORARILY'
 leftbox-padding=-1
+leftbox-size=0
 panel-anchors='{"0":"MIDDLE"}\n'
 panel-lengths='{"0":100}\n'
 panel-sizes='{"0":48}\n'
@@ -173,9 +193,9 @@ name='Catppuccin-Mocha-Compact-Blue-Dark'
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1704887259
+check-timestamp=int64 1704972435
 first-run=false
-flatpak-purge-timestamp=int64 1704894416
+flatpak-purge-timestamp=int64 1704938710
 install-timestamp=int64 1704836758
 update-notification-timestamp=int64 1704837003
 
@@ -183,7 +203,7 @@ update-notification-timestamp=int64 1704837003
 show-extensions-notice=false
 
 [org/gtk/gtk4/settings/file-chooser]
-date-format='regular'
+date-format='Medium'
 location-mode='path-bar'
 show-hidden=false
 show-size-column=true

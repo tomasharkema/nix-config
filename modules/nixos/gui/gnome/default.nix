@@ -49,6 +49,7 @@ in {
       font-manager
       gamehub
       filezilla
+      sublime-merge
     ];
     programs.hyprland.enable = true;
 
