@@ -25,6 +25,7 @@
       hardware = {
         tpm.enable = true;
         secure-boot.enable = true;
+        vm.enable = true;
       };
     };
     services.resilio = {
