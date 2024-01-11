@@ -2,7 +2,7 @@
   imports = [./hardware-configuration.nix];
 
   config = {
-    documentation.man.enable = true;
+    documentation.man.enable = false;
 
     time.hardwareClockInLocalTime = true;
     time.timeZone = "Europe/Amsterdam";
