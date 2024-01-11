@@ -15,18 +15,18 @@
       enable = true;
       main = "/dev/vda";
         };
-    # gui = {
-    #   enable = true;
-    #   desktop = {
-    #     enable = true;
-    #   };
-    # };
-    # traits = {
-    #   hardware = {
-    #     tpm.enable = true;
-    #     secure-boot.enable = true;
-    #   };
-    # };
+    gui = {
+      enable = true;
+      desktop = {
+        enable = true;
+      };
+    };
+    traits = {
+      hardware = {
+        tpm.enable = true;
+        secure-boot.enable = true;
+      };
+    };
     services.resilio = {
       enable = lib.mkForce false;
     };
