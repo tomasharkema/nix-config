@@ -17,7 +17,14 @@
       };
       useDHCP = lib.mkDefault true;
     };
-
+    gui = {
+      enable = true;
+      desktop = {
+        enable = true;
+        rdp.enable = true;
+      };
+      apps.steam.enable = true;
+    };
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/usb-TOSHIBA_MK3263GSXN_111122223333-0:0";
