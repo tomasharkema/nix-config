@@ -11,10 +11,10 @@
 
   config = {
     networking.hostName = "euro-mir-vm";
-        disks.btrfs = {
+    disks.btrfs = {
       enable = true;
       main = "/dev/vda";
-        };
+    };
     gui = {
       enable = true;
       desktop = {
@@ -31,5 +31,7 @@
       enable = lib.mkForce false;
     };
     networking.wireless.enable = lib.mkForce false;
+
+    apps.flatpak.enable = false;
   };
 }
