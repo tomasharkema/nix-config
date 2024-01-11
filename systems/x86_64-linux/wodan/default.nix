@@ -2,6 +2,7 @@
   imports = [./hardware-configuration.nix];
 
   config = {
+    documentation.man.enable = true;
     time.hardwareClockInLocalTime = true;
     time.timeZone = "Europe/Amsterdam";
 
@@ -28,7 +29,7 @@
       grub = {
         enable = true;
         device = "nodev";
-        useOSProber = true;
+        efiInstallAsRemovable = true;
       };
     };
   };
