@@ -26,8 +26,6 @@ in {
 
     boot.initrd.systemd.enableTpm2 = true;
 
-    services.tcsd.enable = lib.mkDefault true;
-
     programs.ssh.extraConfig = ''
       PKCS11Provider /run/current-system/sw/lib/libtpm2_pkcs11.so
     '';
