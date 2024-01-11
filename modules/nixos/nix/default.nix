@@ -50,7 +50,10 @@ in {
       # nix-output-monitor
       # flake-checker
     ];
-services.synergy.client.enable = true;
+    services.synergy.client = {
+      enable = true;
+      serverAddress = "0.0.0.0";
+    };
     nix = let
       users =
         ["root" config.user.name]
