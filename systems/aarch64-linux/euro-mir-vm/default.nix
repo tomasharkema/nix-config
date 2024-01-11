@@ -11,24 +11,22 @@
 
   config = {
     networking.hostName = "euro-mir-vm";
-    gui = {
+        disks.btrfs = {
       enable = true;
-      desktop = {
-        enable = true;
-      };
-    };
-    traits = {
-      hardware = {
-        tpm.enable = true;
-        secure-boot.enable = true;
-      };
-    };
-    swapDevices = [
-      {
-        device = "/swapfile";
-        size = 1024;
-      }
-    ];
+      main = "/dev/vda";
+        };
+    # gui = {
+    #   enable = true;
+    #   desktop = {
+    #     enable = true;
+    #   };
+    # };
+    # traits = {
+    #   hardware = {
+    #     tpm.enable = true;
+    #     secure-boot.enable = true;
+    #   };
+    # };
     services.resilio = {
       enable = lib.mkForce false;
     };
