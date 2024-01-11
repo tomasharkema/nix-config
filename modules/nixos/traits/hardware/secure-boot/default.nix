@@ -22,7 +22,7 @@ in {
         pkiBundle = "/etc/secureboot";
       };
       loader = {
-        efi.canTouchEfiVariables = true;
+        efi.canTouchEfiVariables = lib.mkDefault true;
         systemd-boot = lib.mkIf cfg.enable {
           enable = false;
         };
