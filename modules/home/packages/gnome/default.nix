@@ -46,14 +46,14 @@ with inputs.home-manager.lib.hm.gvariant; {
         sources = [(mkTuple ["xkb" "us"])];
         xkb-options = ["terminate:ctrl_alt_bksp"];
       };
-      # "org/gnome/desktop/interface" = {
-      # color-scheme = "prefer-dark";
-      # gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
-      # document-font-name = "Neue Haas Grotesk Display Pro Bold 12";
-      # font-antialiasing = "rgba";
-      # font-hinting = "full";
-      # font-name = "Neue Haas Grotesk Display Pro Bold 12";
-      # };
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+        gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
+        # document-font-name = "Neue Haas Grotesk Display Pro Bold 12";
+        font-antialiasing = "rgba";
+        font-hinting = "full";
+        # font-name = "Neue Haas Grotesk Display Pro Bold 12";
+      };
 
       # "org/gnome/desktop/notifications" = {
       #   application-children = ["steam" "org-gnome-console" "gnome-power-panel" "firefox"];
