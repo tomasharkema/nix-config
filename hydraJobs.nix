@@ -18,7 +18,7 @@
     inputs.self.nixosConfigurations;
 in {
   inherit packages;
-  # inherit (inputs.self) images;
+  inherit (inputs.self) images;
   #inherit (inputs.self) checks;
   # inherit devShells;
   inherit hosts;
