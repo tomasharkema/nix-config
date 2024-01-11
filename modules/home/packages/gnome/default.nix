@@ -51,7 +51,7 @@ with inputs.home-manager.lib.hm.gvariant; {
         gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
         document-font-name = "Neue Haas Grotesk Display Pro Bold 12";
         font-antialiasing = "rgba";
-        font-hinting = "medium";
+        font-hinting = "full";
         font-name = "Neue Haas Grotesk Display Pro Bold 12";
       };
 
