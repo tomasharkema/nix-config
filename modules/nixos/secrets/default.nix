@@ -41,13 +41,13 @@
       file = ./netdata.age;
       mode = "0664";
     };
-    # age.secrets."cachix" = {
-    #   file = ./cachix.age;
-    #   mode = "770";
-    #   path = "/home/tomas/.config/cachix/cachix.dhall";
-    #   owner = "tomas";
-    #   group = "tomas";
-    # };
+    age.secrets."cachix" = {
+      file = ./cachix.age;
+      mode = "770";
+      path = "/home/tomas/.config/cachix/cachix.dhall";
+      owner = "tomas";
+      group = "tomas";
+    };
     # age.secrets."cachix-root" = {
     #   file = ./cachix.age;
     #   mode = "0664";
