@@ -19,6 +19,7 @@ let
 
   pegasus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKAAuNlVlLPxJxxO66tc4o687Sqs0y5MiHOuTJwOZzE8 root@pegasus";
 
+  wodan = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKBPi/cVDs9er8g5LJuGoz+xoUGDoiNIF7w1Blb9zTU9 root@wodan";
   wodan-wsl = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICI2xzlzSsxv+6QSZ6rCeG0ma4HfIH3YWJj/P4GoQ3M/ root@wodan-wsl";
   wodan-wsl-tomas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICI2xzlzSsxv+6QSZ6rCeG0ma4HfIH3YWJj/P4GoQ3M/ root@nixos";
 
@@ -41,6 +42,7 @@ let
     pegasus
     baaa-express
     baaa-express-user
+    wodan
     wodan-wsl
     wodan-wsl-tomas
     euro-mir-2
