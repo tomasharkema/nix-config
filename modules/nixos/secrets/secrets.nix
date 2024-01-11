@@ -27,7 +27,7 @@ let
 
   euro-mir-2 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIABfvsZLVNnnTjq3Ms7AmCR+UD2HF6y1fjt8wxJ7FiAF root@euro-mir-2";
   euro-mir-2-tomas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDJQj15J+PmzFyX1jWRDmv2BzdWnEuU47kkMKg3q4QD tomas@euro-mir-2";
-  euro-mir-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINhqDZEifvNQDzbIiv6U7g9q2hktj5VgqMFS8YLRboRz root@euro-mir-vm";
+  euro-mir-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJHZOQbqiEFRhtymCd/UlbO8Y9Ti7afH5NKe7jGY1E70 root@euro-mir-vm";
 
   systems = [
     enzian
