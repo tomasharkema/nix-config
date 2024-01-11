@@ -44,9 +44,9 @@
     age.secrets."cachix" = {
       file = ./cachix.age;
       mode = "770";
-      path = "/home/tomas/.config/cachix/cachix.dhall";
-      owner = "tomas";
-      group = "tomas";
+      # path = "/home/tomas/.config/cachix/cachix.dhall";
+      # owner = "tomas";
+      # group = "tomas";
     };
     # age.secrets."cachix-root" = {
     #   file = ./cachix.age;
@@ -66,9 +66,9 @@
     age.secrets."otp" = {
       file = ./otp.age;
       mode = "770";
-      path = "/home/tomas/.google_authenticator";
-      owner = "tomas";
-      group = "tomas";
+      # path = "/home/tomas/.google_authenticator";
+      # owner = "tomas";
+      # group = "tomas";
     };
   };
 }

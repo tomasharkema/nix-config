@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  osConfig,
   ...
 }: let
   inherit (pkgs) stdenv;
@@ -14,6 +15,10 @@ in {
 
   config = {
     home = {
+      file = {
+        ".config/cachix/cachix.dhall" = config.lib.file.mkOutOfStoreSymlink osConfig.age.secrets.cachix.path;
+      };
+
       stateVersion = "23.11";
 
       # (import ./packages/common.nix {inherit pkgs inputs lib;})
