@@ -3,6 +3,12 @@
 
   config = {
     documentation.man.enable = true;
+    manual = {
+      html.enable = false;
+      manpages.enable = false;
+      json.enable = false;
+    };
+
     time.hardwareClockInLocalTime = true;
     time.timeZone = "Europe/Amsterdam";
 
