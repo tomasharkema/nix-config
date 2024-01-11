@@ -3,7 +3,7 @@
     services.nix-daemon.enable = true;
 
     system.stateVersion = 4;
-
+services.synergy.server.enable = true;
     nix = {
       extraOptions = ''
         auto-optimise-store = true

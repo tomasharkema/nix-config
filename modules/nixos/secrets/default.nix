@@ -53,11 +53,11 @@
     #   mode = "0664";
     #   path = "/root/.config/cachix/cachix.dhall";
     # };
-    # age.secrets."cachix-agent" = {
-    #   file = ./cachix-agent.age;
-    #   mode = "770";
-    #   path = "/etc/cachix-agent.token";
-    # };
+    age.secrets."cachix-agent" = {
+      file = ./cachix-agent.age;
+      mode = "770";
+      path = "/etc/cachix-agent.token";
+    };
     # age.secrets."cachix-activate" = {
     #   file = ./cachix-activate.age;
     #   mode = "770";
