@@ -17,7 +17,7 @@ in {
           };
         };
         wodan-wsl = {
-          hostname = "192.168.1.46";
+          # hostname = "192.168.1.46";
           user = "tomas";
           forwardAgent = true;
           extraOptions = {
