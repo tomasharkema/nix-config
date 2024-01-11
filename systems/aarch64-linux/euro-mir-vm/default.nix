@@ -15,7 +15,7 @@
 
     time.timeZone = "Europe/Amsterdam";
 
-    disks.btrfs = {
+    disks.bcachefs = {
       enable = true;
       main = "/dev/vda";
     };
