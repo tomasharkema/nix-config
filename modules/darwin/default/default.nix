@@ -5,7 +5,7 @@
     system.stateVersion = 4;
     services.synergy.server = {
       enable = true;
-      serverAddress = "0.0.0.0";
+      # serverAddress = "0.0.0.0";
     };
     nix = {
       extraOptions = ''
