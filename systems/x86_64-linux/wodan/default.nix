@@ -4,8 +4,12 @@
   config = {
     documentation.man.enable = false;
 
-    time.hardwareClockInLocalTime = true;
-    time.timeZone = "Europe/Amsterdam";
+    time = {
+      hardwareClockInLocalTime = true;
+      timeZone = "Europe/Amsterdam";
+    };
+
+    hardware.opengl.enable = true;
 
     networking = {
       networkmanager.enable = true;

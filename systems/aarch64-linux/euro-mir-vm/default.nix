@@ -10,7 +10,11 @@
   ];
 
   config = {
+    hardware.opengl.enable = true;
     networking.hostName = "euro-mir-vm";
+
+    time.timeZone = "Europe/Amsterdam";
+
     disks.btrfs = {
       enable = true;
       main = "/dev/vda";

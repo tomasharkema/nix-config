@@ -15,10 +15,6 @@ in {
     };
   };
 
-  imports = [
-    (modulesPath + "/profiles/qemu-guest.nix")
-  ];
-
   config = mkIf cfg.enable {
     services = {
       xserver.videoDrivers = ["qxl"];
