@@ -16,7 +16,7 @@ in {
   config = {
     home = {
       file = {
-        ".config/cachix/cachix.dhall" = config.lib.file.mkOutOfStoreSymlink osConfig.age.secrets.cachix.path;
+        ".config/cachix/cachix.dhall".source = config.lib.file.mkOutOfStoreSymlink "/etc/cachix.dhall"; # osConfig.age.secrets.cachix.path;
       };
 
       stateVersion = "23.11";
@@ -214,11 +214,11 @@ in {
           }
         ];
 
-        # initExtraFirst = ''
-        #       zmodload zsh/zprof
-        #       # eval "$(~/.local/bin/cw init zsh pre)"
-        #   # source "${iterm}";
-        # '';
+        initExtraFirst = ''
+          #       zmodload zsh/zprof
+          #       # eval "$(~/.local/bin/cw init zsh pre)"
+          source "${iterm}";
+        '';
         # initExtra = ''
         #   # eval "$(~/.local/bin/cw init zsh post)"
         # '';
