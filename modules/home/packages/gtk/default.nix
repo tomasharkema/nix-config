@@ -14,6 +14,10 @@
       };
     in {
       enable = true;
+      font = {
+        package = pkgs.custom.neue-haas-grotesk;
+        name = "Neue Haas Grotesk Display Pro";
+      };
       theme = {
         name = "Catppuccin-Mocha-Compact-Blue-Dark";
         package = pkgs.catppuccin-gtk.override {
