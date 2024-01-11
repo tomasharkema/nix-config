@@ -47,6 +47,11 @@ in {
         SPACESHIP_PROMPT_ADD_NEWLINE = "false";
       };
     };
+    manual = {
+      html.enable = false;
+      manpages.enable = false;
+      json.enable = false;
+    };
     # home.username = lib.mkDefault "tomas";
     # home.homeDirectory = lib.mkDefault (home-directory "tomas");
 
