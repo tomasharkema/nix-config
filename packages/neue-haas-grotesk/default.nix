@@ -25,14 +25,6 @@ stdenv.mkDerivation rec {
     install -D -m 444 * -t $out/share/fonts/ttf
   '';
 
-  meta = with lib; {
-    description = "Christian Schwartz after Max Miedinger ";
-    longDescription = ''
-      Christian Schwartz after Max Miedinger
-    '';
-    homepage = "https://www.huertatipografica.com/en/fonts/alegreya-sans-ht";
-    license = licenses.ofl;
-    platforms = platforms.all;
-    maintainers = with maintainers; [tomasharkema];
-  };
+  
+
 }
