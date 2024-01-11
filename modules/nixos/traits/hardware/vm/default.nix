@@ -2,15 +2,14 @@
   config,
   pkgs,
   lib,
-  nixpkgs,
   modulesPath,
   ...
 }:
 with lib;
 with lib.custom; let
-  cfg = config.traits.vm;
+  cfg = config.traits.hardware.vm;
 in {
-  options.traits = {
+  options.traits.hardware = {
     vm = {
       enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
     };
@@ -18,10 +17,13 @@ in {
 
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
-    "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
   ];
 
   config = mkIf cfg.enable {
-    services.spice-vdagentd.enable = true;
+    services = {
+      xserver.videoDrivers = ["qxl"];
+      qemuGuest.enable = true;
+      spice-vdagentd.enable = true;
+    };
   };
 }
