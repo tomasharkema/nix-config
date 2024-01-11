@@ -20,6 +20,7 @@ with lib.custom; {
     home-manager = {
       useUserPackages = true;
       useGlobalPkgs = true;
+      backupFileExtension = "bak";
 
       users.${config.user.name} = {
         home.stateVersion = mkDefault "23.11";

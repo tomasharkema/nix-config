@@ -16,7 +16,7 @@ with lib; {
     home-manager = {
       useUserPackages = true;
       useGlobalPkgs = true;
-
+      backupFileExtension = "bak";
       users.${config.user.name} = {
         home.stateVersion = mkDefault "23.11";
         xdg.enable = true;
