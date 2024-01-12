@@ -297,10 +297,26 @@
         pkgs = inputs.nixpkgs.legacyPackages."${system}";
         linuxSystem = builtins.replaceStrings ["darwin"] ["linux"] system;
       in {
-        installer = inputs.nixpkgs.lib.nixosSystem {
+        installer."x86_64-linux" = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
+            ./user-defaults.nix
+            ({
+              lib,
+              pkgs,
+              ...
+            }: {
+              boot.supportedFilesystems = ["bcachefs"];
+              boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+            })
+          ];
+        };
+        installer."aarch64-linux" = inputs.nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = [
+            "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
+            ./user-defaults.nix
             ({
               lib,
               pkgs,
