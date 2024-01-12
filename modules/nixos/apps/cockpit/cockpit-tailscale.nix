@@ -12,7 +12,7 @@ stdenv.mkDerivation rec {
     owner = "spotsnel";
     repo = "cockpit-tailscale";
     rev = "v${version}";
-    hash = "sha256-L8goa28GRai6ONFlEIhUG8sxmBwQYqvfYLyhgzpHyHc=";
+    hash = "sha256-7eZXs/IhhD190LnhGO0i87YZBifG94OkdY+Zlb5xFAI=";
   };
 
   nativeBuildInputs = [
