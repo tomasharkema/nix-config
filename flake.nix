@@ -284,7 +284,8 @@
 
         euro-mir-vm = self.nixosConfigurations.euro-mir-vm.config.system.build.isoImage;
 
-        installer = self.nixosConfigurations.installer.config.system.build.isoImage;
+        installer."x86_64-linux" = self.nixosConfigurations.installer."x86_64-linux".config.system.build.isoImage;
+        installer."aarch64-linux" = self.nixosConfigurations.installer."aarch64-linux".config.system.build.isoImage;
 
         # "blue-fire" = self.nixosConfigurations."blue-fire".config.formats.install-iso;
         # "blue-fire-slim" = self.nixosConfigurations."blue-fire-slim".config.formats.install-iso;
