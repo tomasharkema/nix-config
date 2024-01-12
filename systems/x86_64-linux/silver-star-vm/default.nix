@@ -45,6 +45,7 @@
           environment = {
             PASSWORD = "derpderpderp";
           };
+          command = "command: ipa-server-install --domain='harkema.io' --realm='tomas' --no-ntp --setup-adtrust --setup-kra --enable-compat --netbios-name=harkema --setup-dns --forwarder='1.1.1.1' --forward-policy=only --unattended";
         };
       };
     };
