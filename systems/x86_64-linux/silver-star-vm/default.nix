@@ -13,7 +13,12 @@
       hardware = {
         tpm.enable = true;
         secure-boot.enable = true;
+        vm.enable = true;
       };
+    };
+    disks.btrfs = {
+      enable = true;
+      main = "/dev/disk/by-id/virtio-vdisk1";
     };
     boot.bootspec.enable = true;
 
