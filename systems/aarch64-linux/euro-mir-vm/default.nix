@@ -18,13 +18,12 @@
       enable = true;
       main = "/dev/vda";
     };
-    gui = {
-      enable = true;
-      desktop = {
-        enable = true;
-      };
-      quiet-boot.enable = true;
-    };
+    # gui = {
+    #   enable = true;
+    #   desktop = {
+    #     enable = true;
+    #   };
+    # };
     traits = {
       hardware = {
         tpm.enable = true;
