@@ -33,6 +33,13 @@ in
           type = 1;
           flake = "github:tomasharkema/nix-config/main";
         };
+      nix-config-update =
+        defaults
+        // {
+          description = "nix-config-update";
+          type = 1;
+          flake = "github:tomasharkema/nix-config/update";
+        };
     };
     pr_data = builtins.fromJSON (builtins.readFile pulls);
     makePr = num: info: {
