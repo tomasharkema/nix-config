@@ -46,6 +46,7 @@
     };
 
     boot.bootspec.enable = true;
+    boot.kernelParams = ["systemd.unified_cgroup_hierarchy=1"];
 
     networking.firewall.enable = false;
     networking.nftables.enable = lib.mkForce false;
