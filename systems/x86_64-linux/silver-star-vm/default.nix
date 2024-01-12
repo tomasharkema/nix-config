@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -47,6 +51,7 @@
 
     boot.bootspec.enable = true;
     boot.kernelParams = ["systemd.unified_cgroup_hierarchy=1"];
+    boot.kernelPackages = pkgs.linuxPackages_latest;
 
     networking.firewall.enable = false;
     networking.nftables.enable = lib.mkForce false;
