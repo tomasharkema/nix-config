@@ -31,6 +31,14 @@
         # Required for containers under podman-compose to be able to talk to each other.
         defaultNetwork.settings.dns_enabled = true;
       };
+      oci-containers.backend = "podman";
+      oci-containers.containers = {
+        container-name = {
+          image = "freeipa/freeipa-server:rocky-9";
+          autoStart = true;
+          ports = ["6443:443"];
+        };
+      };
     };
 
     boot.bootspec.enable = true;
