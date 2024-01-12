@@ -45,10 +45,10 @@ with inputs.home-manager.lib.hm.gvariant; {
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
         gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
-        document-font-name = "Neue Haas Grotesk Display Pro Bold 12";
+        document-font-name = "Neue Haas Grotesk Display Pro Medium 11";
         font-antialiasing = "greyscale";
         font-hinting = "full";
-        font-name = "Neue Haas Grotesk Display Pro Bold 12";
+        font-name = "Neue Haas Grotesk Display Pro Medium 11";
       };
 
       # "org/gnome/desktop/notifications" = {
@@ -69,14 +69,26 @@ with inputs.home-manager.lib.hm.gvariant; {
       #   search-filter-time-type = "last_modified";
       # };
       "org/gnome/shell" = {
-        disabled-extensions = ["native-window-placement@gnome-shell-extensions.gcampax.github.com" "workspace-indicator@gnome-shell-extensions.gcampax.github.com"];
-        enabled-extensions = ["drive-menu@gnome-shell-extensions.gcampax.github.com" "appindicatorsupport@rgcjonas.gmail.com" "places-menu@gnome-shell-extensions.gcampax.github.com" "dash-to-panel@jderose9.github.com" "Vitals@CoreCoding.com" "user-theme@gnome-shell-extensions.gcampax.github.com" "systemd-manager@hardpixel.eu"];
+        disable-user-extensions = false;
+        disabled-extensions = [
+          "native-window-placement@gnome-shell-extensions.gcampax.github.com"
+          "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
+        ];
+        enabled-extensions = [
+          "drive-menu@gnome-shell-extensions.gcampax.github.com"
+          "appindicatorsupport@rgcjonas.gmail.com"
+          "places-menu@gnome-shell-extensions.gcampax.github.com"
+          "dash-to-panel@jderose9.github.com"
+          "Vitals@CoreCoding.com"
+          "user-theme@gnome-shell-extensions.gcampax.github.com"
+          "systemd-manager@hardpixel.eu"
+        ];
         favorite-apps = ["org.gnome.Nautilus.desktop" "firefox.desktop" "kitty.desktop" "code.desktop"];
         welcome-dialog-last-shown-version = "45.1";
       };
       "org/gnome/desktop/wm/preferences" = {
         button-layout = "appmenu:minimize,maximize,close";
-        titlebar-font = "Neue Haas Grotesk Display Pro Bold 12";
+        titlebar-font = "Neue Haas Grotesk Display Pro Medium 11";
       };
       "org/gnome/nautilus/preferences" = {always-use-location-entry = true;};
       "org/gnome/shell/extensions/dash-to-panel" = {
