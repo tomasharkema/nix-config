@@ -20,6 +20,7 @@
     cd /etc/cockpit/ws-certs.d
     ${pkgs.tailscale}/bin/tailscale cert "${config.networking.hostName}.ling-lizard.ts.net" || true
   '';
+  cockpit-podman = pkgs.callPackage ./cockpit-podman.nix {};
 in {
   config = {
     services.cockpit = {
@@ -27,7 +28,7 @@ in {
       port = 9090;
       settings = {WebService = {AllowUnencrypted = false;};};
     };
-
+    environment.systemPackages = with pkgs; [cockpit-podman];
     systemd.services.cockpit-tailscale-cert = {
       enable = true;
       description = "cockpit-tailscale-cert";
