@@ -49,10 +49,10 @@ with inputs.home-manager.lib.hm.gvariant; {
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
         gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
-        # document-font-name = "Neue Haas Grotesk Display Pro Bold 12";
+        document-font-name = "Neue Haas Grotesk Display Pro Bold 12";
         font-antialiasing = "rgba";
         font-hinting = "full";
-        # font-name = "Neue Haas Grotesk Display Pro Bold 12";
+        font-name = "Neue Haas Grotesk Display Pro Bold 12";
       };
 
       # "org/gnome/desktop/notifications" = {
