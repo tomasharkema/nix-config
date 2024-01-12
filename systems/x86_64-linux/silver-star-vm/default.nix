@@ -33,10 +33,14 @@
       };
       oci-containers.backend = "podman";
       oci-containers.containers = {
-        container-name = {
+        free-ipa = {
           image = "freeipa/freeipa-server:rocky-9";
           autoStart = true;
           ports = ["6443:443"];
+          hostname = "ipa.harkema.io";
+          environment = {
+            PASSWORD = "derp";
+          };
         };
       };
     };
