@@ -34,28 +34,32 @@
 
         # Required for containers under podman-compose to be able to talk to each other.
         defaultNetwork.settings.dns_enabled = true;
+
+        autoPrune.enable = true;
+        # networkSocket.enable = true;
       };
       oci-containers.backend = "podman";
       oci-containers.containers = {
         free-ipa = {
-          image = "freeipa/freeipa-server:rocky-9";
+          image = "quay.io/freeipa/freeipa-server:rocky-9";
           autoStart = true;
-          ports = ["6443:443"];
+          ports = ["0.0.0.0:6443:443" "0.0.0.0:389:389" "0.0.0.0:636:636" "0.0.0.0:88:88" "0.0.0.0:464:464" "0.0.0.0:88:88/udp" "0.0.0.0:464:464/udp"];
           hostname = "ipa.harkema.io";
-          environment = {
-            PASSWORD = "derpderpderp";
-          };
-          command = "ipa-server-install --domain='harkema.io' --realm='tomas' --no-ntp --setup-adtrust --setup-kra --enable-compat --netbios-name=harkema --setup-dns --forwarder='1.1.1.1' --forward-policy=only --unattended";
+          volumes = [
+            "/var/lib/ipa-data:/data:Z"
+          ];
         };
       };
     };
 
-    boot.bootspec.enable = true;
     boot.kernelParams = ["systemd.unified_cgroup_hierarchy=1"];
     boot.kernelPackages = pkgs.linuxPackages_latest;
 
-    networking.firewall.enable = false;
+    networking.firewall.enable = lib.mkForce false;
     networking.nftables.enable = lib.mkForce false;
     networking.wireless.enable = lib.mkDefault false;
+    networking.networkmanager.enable = true;
+    networking.useDHCP = lib.mkForce true;
+    networking.enableIPv6 = false;
   };
 }
