@@ -37,7 +37,7 @@ in {
               # "OpenDyslectic"
               "ComicShannsMono"
               "JetBrainsMono"
-              "B612Mono"
+              # "B612Mono"
               # "0xProto"
               # "LeagueMono"
               # "CodeNewRomanNerdFont"
