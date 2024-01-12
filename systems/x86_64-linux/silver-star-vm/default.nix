@@ -43,7 +43,7 @@
         free-ipa = {
           image = "quay.io/freeipa/freeipa-server:rocky-9";
           autoStart = true;
-          ports = ["0.0.0.0:6443:443" "0.0.0.0:389:389" "0.0.0.0:636:636" "0.0.0.0:88:88" "0.0.0.0:464:464" "0.0.0.0:88:88/udp" "0.0.0.0:464:464/udp"];
+          ports = ["6443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
           hostname = "ipa.harkema.io";
           volumes = [
             "/var/lib/ipa-data:/data:Z"
@@ -61,5 +61,11 @@
     networking.networkmanager.enable = true;
     networking.useDHCP = lib.mkForce true;
     networking.enableIPv6 = false;
+
+    # sudo mount --types virtiofs appdata_ssd /mnt/shared/
+    fileSystems."/mnt/shared" = {
+      fsType = "virtiofs";
+      device = "appdata_ssd";
+    };
   };
 }
