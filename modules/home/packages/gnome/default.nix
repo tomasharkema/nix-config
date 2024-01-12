@@ -42,15 +42,11 @@ with inputs.home-manager.lib.hm.gvariant; {
       #   name = "X-GNOME-Utilities.directory";
       #   translate = true;
       # };
-      "org/gnome/desktop/input-sources" = {
-        sources = [(mkTuple ["xkb" "us"])];
-        xkb-options = ["terminate:ctrl_alt_bksp"];
-      };
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
         gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
         document-font-name = "Neue Haas Grotesk Display Pro Bold 12";
-        font-antialiasing = "rgba";
+        font-antialiasing = "greyscale";
         font-hinting = "full";
         font-name = "Neue Haas Grotesk Display Pro Bold 12";
       };
