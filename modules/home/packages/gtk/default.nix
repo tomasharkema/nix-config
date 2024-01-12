@@ -16,7 +16,7 @@
       enable = true;
       font = {
         package = pkgs.custom.neue-haas-grotesk;
-        name = "Neue Haas Grotesk Display Pro Medium 12";
+        name = "Neue Haas Grotesk Display Pro Medium 11";
       };
       theme = {
         name = "Catppuccin-Mocha-Compact-Blue-Dark";
