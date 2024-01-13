@@ -10,6 +10,6 @@ with lib; {
       enable = true;
     };
 
-    environment.systemPackages = with pkgs; lib.mkIf config.gui.enable [keybase-gui];
+    environment.systemPackages = with pkgs; mkIf config.gui.enable [keybase-gui];
   };
 }

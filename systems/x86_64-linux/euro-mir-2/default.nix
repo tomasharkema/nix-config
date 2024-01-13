@@ -55,7 +55,6 @@
     };
 
     boot = {
-      kernelPackages = pkgs.linuxPackages_latest;
       binfmt.emulatedSystems = ["aarch64-linux"];
     };
     programs.mtr.enable = true;
