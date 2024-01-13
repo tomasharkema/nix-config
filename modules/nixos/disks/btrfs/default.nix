@@ -64,11 +64,11 @@
               swapfile.size = "5G";
             };
           };
-          "/.snapshots" = {
-            mountpoint = "/.snapshots";
+          # "/.snapshots" = {
+          #   mountpoint = "/.snapshots";
 
-            mountOptions = ["subvol=snapshots" "compress=zstd" "noatime"];
-          };
+          #   mountOptions = ["subvol=snapshots" "compress=zstd" "noatime"];
+          # };
         };
 
         mountpoint = "/partition-root";
