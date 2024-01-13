@@ -41,16 +41,19 @@ xkb-options=['terminate:ctrl_alt_bksp']
 
 [org/gnome/desktop/interface]
 color-scheme='prefer-dark'
-document-font-name='Neue Haas Grotesk Display Pro Semi-Bold 12'
+document-font-name='Neue Haas Grotesk Display Pro Bold 12'
 font-antialiasing='rgba'
 font-hinting='full'
-font-name='Neue Haas Grotesk Display Pro Semi-Bold 12'
+font-name='Neue Haas Grotesk Display Pro Bold 12'
 gtk-theme='Catppuccin-Mocha-Compact-Blue-Dark'
 monospace-font-name='JetBrainsMonoNL Nerd Font Propo 10'
 text-scaling-factor=1.0
 
 [org/gnome/desktop/notifications]
-application-children=['firefox', 'org-gnome-fileroller', 'gnome-power-panel', 'org-gnome-nautilus', 'steam']
+application-children=['firefox', 'org-gnome-fileroller', 'gnome-power-panel', 'org-gnome-nautilus', 'steam', 'code', 'org-gnome-software']
+
+[org/gnome/desktop/notifications/application/code]
+application-id='code.desktop'
 
 [org/gnome/desktop/notifications/application/firefox]
 application-id='firefox.desktop'
@@ -86,8 +89,8 @@ primary-color='#3071AE'
 secondary-color='#000000'
 
 [org/gnome/desktop/wm/preferences]
-button-layout='close,minimize,maximize:appmenu'
-titlebar-font='Neue Haas Grotesk Display Pro Semi-Bold 12'
+button-layout='appmenu:minimize,maximize,close'
+titlebar-font='Neue Haas Grotesk Display Pro Bold 12'
 
 [org/gnome/evolution-data-server]
 migrated=true
@@ -160,7 +163,7 @@ night-light-enabled=true
 [org/gnome/shell]
 app-picker-layout=[{'1password.desktop': <{'position': <0>}>, 'com.usebottles.bottles.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'btop.desktop': <{'position': <5>}>, 'org.gnome.Calendar.desktop': <{'position': <6>}>, 'org.gnome.Totem.desktop': <{'position': <7>}>, 'org.gnome.Calculator.desktop': <{'position': <8>}>, 'org.gnome.Snapshot.desktop': <{'position': <9>}>, 'simple-scan.desktop': <{'position': <10>}>, 'org.gnome.Settings.desktop': <{'position': <11>}>, 'gnome-system-monitor.desktop': <{'position': <12>}>, 'dev.vlinkz.NixosConfEditor.desktop': <{'position': <13>}>, 'com.mattjakeman.ExtensionManager.desktop': <{'position': <14>}>, 'Utilities': <{'position': <15>}>, 'org.gnome.Extensions.desktop': <{'position': <16>}>, 'filezilla.desktop': <{'position': <17>}>, 'org.gnome.Firmware.desktop': <{'position': <18>}>, 'org.gnome.FontManager.desktop': <{'position': <19>}>, 'org.gnome.font-viewer.desktop': <{'position': <20>}>, 'org.gnome.FontViewer.desktop': <{'position': <21>}>, 'com.github.tkashkin.gamehub.desktop': <{'position': <22>}>, 'gparted.desktop': <{'position': <23>}>}, {'fr.handbrake.ghb.desktop': <{'position': <0>}>, 'htop.desktop': <{'position': <1>}>, 'org.kde.kdeconnect.app.desktop': <{'position': <2>}>, 'org.kde.kdeconnect.nonplasma.desktop': <{'position': <3>}>, 'org.kde.kdeconnect-settings.desktop': <{'position': <4>}>, 'org.kde.kdeconnect.sms.desktop': <{'position': <5>}>, 'com.gitlab.bitseater.meteo.desktop': <{'position': <6>}>, 'io.missioncenter.MissionCenter.desktop': <{'position': <7>}>, 'com.moonlight_stream.Moonlight.desktop': <{'position': <8>}>, 'nvim.desktop': <{'position': <9>}>, 'nixos-manual.desktop': <{'position': <10>}>, 'nnn.desktop': <{'position': <11>}>, 'nvidia-settings.desktop': <{'position': <12>}>, 'nvtop.desktop': <{'position': <13>}>, 'protontricks.desktop': <{'position': <14>}>, 'org.gnome.Software.desktop': <{'position': <15>}>, 'dev.vlinkz.NixSoftwareCenter.desktop': <{'position': <16>}>, 'steam.desktop': <{'position': <17>}>, 'sunshine.desktop': <{'position': <18>}>, 'org.telegram.desktop.desktop': <{'position': <19>}>, 'terminator.desktop': <{'position': <20>}>, 'termite.desktop': <{'position': <21>}>, 'org.gnome.TextEditor.desktop': <{'position': <22>}>, 'btrfs-assistant.desktop': <{'position': <23>}>}, {'tpmmanager.desktop': <{'position': <0>}>, 'xterm.desktop': <{'position': <1>}>, 'org.gnome.FileRoller.desktop': <{'position': <2>}>, 'org.gnome.Connections.desktop': <{'position': <3>}>, 'org.gnome.Console.desktop': <{'position': <4>}>, 'org.gnome.baobab.desktop': <{'position': <5>}>, 'org.gnome.DiskUtility.desktop': <{'position': <6>}>, 'org.gnome.Evince.desktop': <{'position': <7>}>, 'org.gnome.Loupe.desktop': <{'position': <8>}>, 'org.gnome.Logs.desktop': <{'position': <9>}>, 'org.gnome.seahorse.Application.desktop': <{'position': <10>}>, 'com.gexperts.Tilix.desktop': <{'position': <11>}>, 'org.gnome.tweaks.desktop': <{'position': <12>}>}]
 disabled-extensions=['native-window-placement@gnome-shell-extensions.gcampax.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com']
-enabled-extensions=['drive-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com', 'Vitals@CoreCoding.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'systemd-manager@hardpixel.eu']
+enabled-extensions=['drive-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com', 'Vitals@CoreCoding.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'systemd-manager@hardpixel.eu', 'tailscale@joaophi.github.com']
 favorite-apps=['org.gnome.Nautilus.desktop', 'firefox.desktop', 'kitty.desktop', 'code.desktop']
 welcome-dialog-last-shown-version='45.1'
 
@@ -215,3 +218,17 @@ sort-order='ascending'
 type-format='category'
 view-type='list'
 window-size=(857, 366)
+
+[org/gtk/settings/file-chooser]
+date-format='regular'
+location-mode='path-bar'
+show-hidden=false
+show-size-column=true
+show-type-column=true
+sidebar-width=161
+sort-column='name'
+sort-directories-first=false
+sort-order='ascending'
+type-format='category'
+window-position=(0, 0)
+window-size=(1310, 982)

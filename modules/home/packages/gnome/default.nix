@@ -82,6 +82,7 @@ with inputs.home-manager.lib.hm.gvariant; {
           "Vitals@CoreCoding.com"
           "user-theme@gnome-shell-extensions.gcampax.github.com"
           "systemd-manager@hardpixel.eu"
+          "tailscale@joaophi.github.com"
         ];
         favorite-apps = ["org.gnome.Nautilus.desktop" "firefox.desktop" "kitty.desktop" "code.desktop"];
         welcome-dialog-last-shown-version = "45.1";

@@ -92,6 +92,7 @@ in {
       _1password-gui
       handbrake
       meteo
+      transmission-remote-gtk
     ];
 
     # nativeMessagingHosts.packages = with pkgs; [ gnome-browser-connector ];
