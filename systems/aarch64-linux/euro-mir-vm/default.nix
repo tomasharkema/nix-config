@@ -26,6 +26,7 @@
     #   };
     # };
     traits = {
+      slim.enable = true;
       hardware = {
         tpm.enable = true;
         secure-boot.enable = true;

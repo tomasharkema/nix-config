@@ -3,13 +3,15 @@
   config,
   pkgs,
   system,
+  lib,
+  osConfig,
   ...
 }: let
   coc = import ./coc.nix;
 in {
   imports = [inputs.nixvim.homeManagerModules.nixvim];
 
-  config = {
+  config = lib.mkIf (!osConfig.trais.slim.enable) {
     home.packages = with pkgs; [
       figlet
       nodejs
