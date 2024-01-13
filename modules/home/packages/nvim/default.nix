@@ -11,7 +11,7 @@
 in {
   imports = [inputs.nixvim.homeManagerModules.nixvim];
 
-  config = lib.mkIf (!osConfig.trais.slim.enable) {
+  config = {
     home.packages = with pkgs; [
       figlet
       nodejs
