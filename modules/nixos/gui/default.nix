@@ -24,10 +24,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    gui.game-mode.enable = mkDefault true;
-    gui.quiet-boot.enable = mkDefault true;
-    gui.desktop.enable = mkDefault true;
-    gui.gnome.enable = mkDefault true;
-    apps.flatpak.enable = mkDefault true;
+    gui = {
+      game-mode.enable = mkDefault true;
+      quiet-boot.enable = mkDefault true;
+      desktop.enable = mkDefault true;
+      gnome.enable = mkDefault true;
+      apps.flatpak.enable = mkDefault true;
+    };
   };
 }
