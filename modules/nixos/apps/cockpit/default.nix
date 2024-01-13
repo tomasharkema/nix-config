@@ -16,7 +16,7 @@
   config,
   ...
 }: let
-  reencrypt = pkgs.writeShellScriptBin "reencrypt" ''
+  cockpit-get-cert = pkgs.writeShellScriptBin "cockpit-get-cert" ''
     cd /etc/cockpit/ws-certs.d
     ${pkgs.tailscale}/bin/tailscale cert "${config.networking.hostName}.ling-lizard.ts.net" || true
   '';
@@ -41,7 +41,7 @@ in {
         StartLimitIntervalSec = 500;
         StartLimitBurst = 5;
       };
-      script = "${reencrypt}/bin/reencrypt";
+      script = "${cockpit-get-cert}/bin/cockpit-get-cert";
       wantedBy = ["multi-user.target" "cockpit.service" "tailscale.service"];
       path = [reencrypt pkgs.tailscale];
     };

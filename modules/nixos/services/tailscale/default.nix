@@ -29,6 +29,8 @@ in {
         "--ssh=false"
         "--advertise-tags=tag:nixos"
         "--operator=tomas"
+        "--accept-dns"
+        "--accept-route"
       ];
       openFirewall = true;
     };
