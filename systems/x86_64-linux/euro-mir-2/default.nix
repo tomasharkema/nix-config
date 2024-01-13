@@ -34,6 +34,13 @@
       apps.steam.enable = true;
     };
 
+    users.ldap = {
+      enable = true;
+      server = "ldap://192.168.0.15/";
+      base = "dc=harkema,dc=io";
+      daemon.enable = true;
+    };
+
     traits = {
       hardware = {
         tpm.enable = true;
