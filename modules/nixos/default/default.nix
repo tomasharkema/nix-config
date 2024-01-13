@@ -13,8 +13,6 @@
 
     # services.cachix-agent.enable = true;
 
-    services.chrony.enable = true;
-
     i18n.extraLocaleSettings = {
       LC_ADDRESS = "nl_NL.UTF-8";
       LC_IDENTIFICATION = "nl_NL.UTF-8";
