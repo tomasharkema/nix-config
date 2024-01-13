@@ -19,12 +19,12 @@
       enable = true;
       main = "/dev/vda";
     };
-    # gui = {
-    #   enable = true;
-    #   desktop = {
-    #     enable = true;
-    #   };
-    # };
+    gui = {
+      enable = true;
+      desktop = {
+        enable = true;
+      };
+    };
     traits = {
       slim.enable = true;
       hardware = {
