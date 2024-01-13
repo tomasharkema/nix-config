@@ -26,7 +26,6 @@
       };
     };
     traits = {
-      # slim.enable = true;
       hardware = {
         tpm.enable = true;
         secure-boot.enable = true;
@@ -38,6 +37,6 @@
     };
     networking.wireless.enable = lib.mkForce false;
 
-    apps.flatpak.enable = false;
+    # apps.flatpak.enable = false;
   };
 }
