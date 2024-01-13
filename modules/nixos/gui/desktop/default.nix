@@ -93,6 +93,8 @@ in {
       handbrake
       meteo
       transmission-remote-gtk
+      github-desktop
+      telegram-desktop
       # apache-directory-studio
     ];
 
