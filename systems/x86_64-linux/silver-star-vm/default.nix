@@ -43,7 +43,7 @@
         free-ipa = {
           image = "quay.io/freeipa/freeipa-server:rocky-9";
           autoStart = true;
-          ports = ["6443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
+          ports = ["443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
           hostname = "ipa.harkema.io";
           extraOptions = ["--read-only" "--sysctl" "net.ipv6.conf.all.disable_ipv6=0"];
           volumes = [

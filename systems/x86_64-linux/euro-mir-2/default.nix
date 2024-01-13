@@ -34,11 +34,16 @@
       apps.steam.enable = true;
     };
 
-    users.ldap = {
+    security.ipa = {
       enable = true;
-      server = "ldap://192.168.0.15/";
-      base = "dc=harkema,dc=io";
-      daemon.enable = true;
+      server = "ipa.harkema.io";
+      domain = "harkema.io";
+      realm = "HARKEMA.IO";
+      basedn = "dc=harkema,dc=io";
+      certificate = pkgs.fetchurl {
+        url = "https://ipa.harkema.io/ipa/config/ca.crt";
+        sha256 = "sha256-4E4xiOk2eS3i/3can3Tp5yLi+KGhd4UsEiI06Xf1HE8=";
+      };
     };
 
     traits = {

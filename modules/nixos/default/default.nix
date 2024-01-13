@@ -35,6 +35,7 @@
       git
       wget
       curl
+      freeipa
     ];
 
     # services.eternal-terminal.enable = true;
@@ -71,5 +72,9 @@
     # programs.zsh.shellInit = ''
     #   source ${config.age.secrets."cachix-activate".path}
     # '';
+
+    networking.extraHosts = ''
+      192.168.0.15 ipa.harkema.io
+    '';
   };
 }

@@ -93,6 +93,7 @@ in {
       handbrake
       meteo
       transmission-remote-gtk
+      apache-directory-studio
     ];
 
     # nativeMessagingHosts.packages = with pkgs; [ gnome-browser-connector ];
