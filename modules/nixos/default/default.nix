@@ -7,11 +7,13 @@
   config = with lib; {
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
-    services.das_watchdog.enable = true;
+    # services.das_watchdog.enable = true;
     # Select internationalisation properties.
     i18n.defaultLocale = "en_US.UTF-8";
 
     # services.cachix-agent.enable = true;
+
+    services.chrony.enable = true;
 
     i18n.extraLocaleSettings = {
       LC_ADDRESS = "nl_NL.UTF-8";
@@ -43,9 +45,11 @@
     services.openssh = {
       enable = true;
       # require public key authentication for better security
-      settings.PasswordAuthentication = false;
-      settings.KbdInteractiveAuthentication = false;
-      settings.PermitRootLogin = "yes";
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        PermitRootLogin = "yes";
+      };
     };
 
     programs.ssh.startAgent = true;
@@ -72,6 +76,10 @@
     # programs.zsh.shellInit = ''
     #   source ${config.age.secrets."cachix-activate".path}
     # '';
+
+    boot = {
+      kernelPackages = pkgs.linuxPackages_latest;
+    };
 
     networking.extraHosts = ''
       192.168.0.15 ipa.harkema.io

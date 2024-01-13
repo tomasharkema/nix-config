@@ -9,5 +9,7 @@ with lib; {
     services.kbfs = {
       enable = true;
     };
+
+    environment.systemPackages = with pkgs; lib.mkIf config.gui.enable [keybase-gui];
   };
 }
