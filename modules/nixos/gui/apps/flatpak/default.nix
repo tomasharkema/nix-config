@@ -31,6 +31,7 @@ in {
         "com.usebottles.bottles"
         "com.moonlight_stream.Moonlight"
         "org.cockpit_project.CockpitClient"
+        "com.discordapp.Discord"
       ];
       update.onActivation = true;
       update.auto = {
