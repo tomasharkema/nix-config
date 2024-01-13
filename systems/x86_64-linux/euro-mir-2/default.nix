@@ -34,18 +34,6 @@
       apps.steam.enable = true;
     };
 
-    security.ipa = {
-      enable = true;
-      server = "ipa.harkema.io";
-      domain = "harkema.io";
-      realm = "HARKEMA.IO";
-      basedn = "dc=harkema,dc=io";
-      certificate = pkgs.fetchurl {
-        url = "https://ipa.harkema.io/ipa/config/ca.crt";
-        sha256 = "sha256-4E4xiOk2eS3i/3can3Tp5yLi+KGhd4UsEiI06Xf1HE8=";
-      };
-    };
-
     traits = {
       hardware = {
         tpm.enable = true;

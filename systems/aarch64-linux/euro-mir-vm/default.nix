@@ -32,17 +32,6 @@
         vm.enable = true;
       };
     };
-    security.ipa = {
-      enable = true;
-      server = "ipa.harkema.io";
-      domain = "harkema.io";
-      realm = "HARKEMA.IO";
-      basedn = "dc=harkema,dc=io";
-      certificate = pkgs.fetchurl {
-        url = "https://ipa.harkema.io/ipa/config/ca.crt";
-        sha256 = "sha256-3XRsoBALVsBVG9HQfh9Yq/OehvPPiOuZesSgtWXh74I=";
-      };
-    };
     services.resilio = {
       enable = lib.mkForce false;
     };
