@@ -41,11 +41,12 @@
       oci-containers.backend = "podman";
       oci-containers.containers = {
         free-ipa = {
-          image = "quay.io/freeipa/freeipa-server:almalinux-9-4.9.8";
+          image = "quay.io/freeipa/freeipa-server:rocky-9";
           autoStart = true;
           ports = ["443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
           hostname = "ipa.harkema.io";
-          extraOptions = ["--sysctl" "net.ipv6.conf.all.disable_ipv6=0"];
+          extraOptions = ["--sysctl" "net.ipv6.conf.all.disable_ipv6=0" "-e" "PASSWORD=Secret123"];
+          cmd = ["ipa-server-install" "-U" "-r" "HARKEMA.IO" "--no-ntp"];
           volumes = [
             "/mnt/shared/freeipa:/data:Z"
           ];
@@ -54,7 +55,7 @@
     };
 
     boot.kernelParams = ["systemd.unified_cgroup_hierarchy=1"];
-    # boot.kernelPackages = pkgs.linuxPackages_latest;
+    boot.kernelPackages = pkgs.linuxPackages_latest;
 
     networking.firewall.enable = lib.mkForce false;
     networking.nftables.enable = lib.mkForce false;

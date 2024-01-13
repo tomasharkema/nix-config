@@ -73,8 +73,8 @@
     #   source ${config.age.secrets."cachix-activate".path}
     # '';
 
-    networking.extraHosts = ''
-      192.168.0.15 ipa.harkema.io
-    '';
+    # networking.extraHosts = ''
+    #   192.168.0.15 ipa.harkema.io
+    # '';
   };
 }
