@@ -43,7 +43,7 @@ in {
       };
       script = "${cockpit-get-cert}/bin/cockpit-get-cert";
       wantedBy = ["multi-user.target" "cockpit.service" "tailscale.service"];
-      path = [reencrypt pkgs.tailscale];
+      path = [cockpit-get-cert pkgs.tailscale];
     };
 
     # environment.etc = {
