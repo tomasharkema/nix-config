@@ -40,7 +40,7 @@
       basedn = "dc=harkema,dc=io";
       certificate = pkgs.fetchurl {
         url = "https://ipa.harkema.io/ipa/config/ca.crt";
-        sha256 = "sha256-4E4xiOk2eS3i/3can3Tp5yLi+KGhd4UsEiI06Xf1HE8=";
+        sha256 = "sha256-3XRsoBALVsBVG9HQfh9Yq/OehvPPiOuZesSgtWXh74I=";
       };
     };
     services.resilio = {
