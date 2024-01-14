@@ -97,6 +97,14 @@ in {
       '';
     };
 
+    # age.secrets."ldap" = {
+    #   file = ../../../../../secrets/ldap.age;
+    #   mode = "644";
+    #   # path = "/home/tomas/.google_authenticator";
+    #   # owner = "tomas";
+    #   # group = "tomas";
+    # };
+
     programs.ssh.extraConfig = ''
       StrictHostKeyChecking no
     '';
