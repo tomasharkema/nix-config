@@ -37,6 +37,8 @@
       freeipa
     ];
 
+    # services.thermald.enable = true;
+
     # services.eternal-terminal.enable = true;
 
     services.openssh = {

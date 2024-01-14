@@ -52,6 +52,10 @@
             mountOptions = ["subvol=home" "compress=zstd"];
             mountpoint = "/home";
           };
+          # "/home-snapshots" = {
+          #   mountOptions = ["subvol=home-snapshots" "compress=zstd"];
+          #   mountpoint = "/home/.snapshots";
+          # };
           # Parent is not mounted so the mountpoint must be set
           "/nix" = {
             mountOptions = ["subvol=nix" "compress=zstd" "noatime"];
