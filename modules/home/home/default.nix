@@ -24,6 +24,7 @@ in {
       # (import ./packages/common.nix {inherit pkgs inputs lib;})
       # ++
       packages = with pkgs; [
+        b612
         (
           nerdfonts.override {
             fonts = [
@@ -36,6 +37,7 @@ in {
               # "OpenDyslectic"
               "ComicShannsMono"
               "JetBrainsMono"
+              # "B612Mono"
               # "0xProto"
               # "LeagueMono"
               # "CodeNewRomanNerdFont"

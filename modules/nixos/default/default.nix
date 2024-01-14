@@ -7,7 +7,7 @@
   config = with lib; {
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
-    services.das_watchdog.enable = true;
+    # services.das_watchdog.enable = true;
     # Select internationalisation properties.
     i18n.defaultLocale = "en_US.UTF-8";
 
@@ -35,6 +35,7 @@
       git
       wget
       curl
+      freeipa
     ];
 
     # services.eternal-terminal.enable = true;
@@ -42,9 +43,11 @@
     services.openssh = {
       enable = true;
       # require public key authentication for better security
-      settings.PasswordAuthentication = false;
-      settings.KbdInteractiveAuthentication = false;
-      settings.PermitRootLogin = "yes";
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        PermitRootLogin = "yes";
+      };
     };
 
     programs.ssh.startAgent = true;
@@ -71,5 +74,24 @@
     # programs.zsh.shellInit = ''
     #   source ${config.age.secrets."cachix-activate".path}
     # '';
+
+    boot = {
+      kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+    };
+
+    networking.extraHosts = ''
+      192.168.0.15 ipa.harkema.io
+    '';
+    security.ipa = {
+      enable = true;
+      server = "ipa.harkema.io";
+      domain = "harkema.io";
+      realm = "HARKEMA.IO";
+      basedn = "dc=harkema,dc=io";
+      certificate = pkgs.fetchurl {
+        url = "https://ipa.harkema.io/ipa/config/ca.crt";
+        sha256 = "sha256-3XRsoBALVsBVG9HQfh9Yq/OehvPPiOuZesSgtWXh74I=";
+      };
+    };
   };
 }

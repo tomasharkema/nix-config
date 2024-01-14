@@ -77,11 +77,16 @@ with inputs.home-manager.lib.hm.gvariant; {
         enabled-extensions = [
           "drive-menu@gnome-shell-extensions.gcampax.github.com"
           "appindicatorsupport@rgcjonas.gmail.com"
-          "places-menu@gnome-shell-extensions.gcampax.github.com"
+          # "places-menu@gnome-shell-extensions.gcampax.github.com"
           "dash-to-panel@jderose9.github.com"
           "Vitals@CoreCoding.com"
           "user-theme@gnome-shell-extensions.gcampax.github.com"
           "systemd-manager@hardpixel.eu"
+          "tailscale@joaophi.github.com"
+          "ControlBlurEffectOnLockScreen@pratap.fastmail.fm"
+          "reboottouefi@ubaygd.com"
+          "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
+          "search-light@icedman.github.com"
         ];
         favorite-apps = ["org.gnome.Nautilus.desktop" "firefox.desktop" "kitty.desktop" "code.desktop"];
         welcome-dialog-last-shown-version = "45.1";

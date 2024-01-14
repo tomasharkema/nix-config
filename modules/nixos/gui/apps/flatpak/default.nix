@@ -7,12 +7,12 @@
 }:
 with lib;
 with lib.custom; let
-  cfg = config.apps.flatpak;
+  cfg = config.gui.apps.flatpak;
   enable = cfg.enable && !config.traits.slim.enable;
 in {
   imports = with inputs; [nix-flatpak.nixosModules.nix-flatpak];
 
-  options.apps.flatpak = {
+  options.gui.apps.flatpak = {
     enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
   };
 
@@ -29,8 +29,9 @@ in {
         "io.missioncenter.MissionCenter"
         "com.mattjakeman.ExtensionManager"
         "com.usebottles.bottles"
-        "org.telegram.desktop"
         "com.moonlight_stream.Moonlight"
+        "org.cockpit_project.CockpitClient"
+        "com.discordapp.Discord"
       ];
       update.onActivation = true;
       update.auto = {

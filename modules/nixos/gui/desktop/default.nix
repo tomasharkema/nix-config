@@ -92,6 +92,10 @@ in {
       _1password-gui
       handbrake
       meteo
+      transmission-remote-gtk
+      github-desktop
+      telegram-desktop
+      # apache-directory-studio
     ];
 
     # nativeMessagingHosts.packages = with pkgs; [ gnome-browser-connector ];

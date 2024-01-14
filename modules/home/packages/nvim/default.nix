@@ -3,6 +3,8 @@
   config,
   pkgs,
   system,
+  lib,
+  osConfig,
   ...
 }: let
   coc = import ./coc.nix;

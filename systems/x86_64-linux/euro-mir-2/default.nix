@@ -27,11 +27,11 @@
       main = "/dev/nvme0n1";
       # encrypt = true;
     };
-    boot.binfmt.emulatedSystems = ["aarch64-linux"];
     apps.attic.enable = true;
     gui = {
       enable = true;
       apps.steam.enable = true;
+      game-mode.enable = true;
     };
 
     traits = {
@@ -42,27 +42,21 @@
       };
     };
 
-    networking.hostName = "euro-mir-2"; # Define your hostname.
-
-    networking.networkmanager.enable = true;
-    networking.wireless.enable = false;
-    services.xserver.libinput.enable = true;
-
-    services.tcsd.enable = lib.mkForce false;
-
-    users.users.${config.user.name} = {
-      isNormalUser = true;
-      description = "${config.user.name}";
-      extraGroups = ["networkmanager" "wheel"];
-      packages = with pkgs; [
-        firefox
-        vscode
-        # tilix
-        # nvtop
-        #  thunderbird
-      ];
+    networking = {
+      hostName = "euro-mir-2"; # Define your hostname.
+      networkmanager.enable = true;
+      wireless.enable = false;
+      firewall.enable = true;
     };
 
+    services = {
+      xserver.libinput.enable = true;
+      tcsd.enable = lib.mkForce false;
+    };
+
+    boot = {
+      binfmt.emulatedSystems = ["aarch64-linux"];
+    };
     programs.mtr.enable = true;
     # programs.gnupg.agent = {
     #   enable = true;
@@ -78,6 +72,5 @@
     # networking.firewall.allowedTCPPorts = [ ... ];
     # networking.firewall.allowedUDPPorts = [ ... ];
     # Or disable the firewall altogether.
-    networking.firewall.enable = true;
   };
 }

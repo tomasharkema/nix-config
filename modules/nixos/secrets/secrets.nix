@@ -5,9 +5,10 @@ let
   users = [tomas];
 
   enzian = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN9/iOb/hw6R31UsX5b8VDq6aJEgn8M4k0Ow2IGY1qQb root@enzian";
-  enzian-user = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBkD6Gv2OmfofzWqPihWEo2mfOWx7kFkCh5urGNn/AJ0 tomas@enzian";
+  # enzian-user = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBkD6Gv2OmfofzWqPihWEo2mfOWx7kFkCh5urGNn/AJ0 tomas@enzian";
 
-  silver-star-ferdorie = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFS0T53Bwn00Vqhc9GHD+RY78LIKfWvMo2rvQOvGW+lQ root@nixos";
+  silver-star-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMjK+FEkEbBnaQZ/SgBaN0tniY2vKgx3049sf7sBH46y root@silver-star-vm";
+
   utm-nixos = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICgPvSzMf7TG4ArvFFp8R/kfj6XYXkMl3r47FL5voIBN root@utm-nixos";
 
   arthur = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE9VGnHYMX6qQ7cKCIHPDTp7ELCWURGSau97PHq/tn/y root@arthur";
@@ -19,7 +20,7 @@ let
 
   pegasus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKAAuNlVlLPxJxxO66tc4o687Sqs0y5MiHOuTJwOZzE8 root@pegasus";
 
-  wodan = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKBPi/cVDs9er8g5LJuGoz+xoUGDoiNIF7w1Blb9zTU9 root@wodan";
+  wodan = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOf9/nugPzUtMCbSZwLIaRcB+Vc+gB0yCgGjRYemtRJd root@wodan";
   wodan-wsl = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICI2xzlzSsxv+6QSZ6rCeG0ma4HfIH3YWJj/P4GoQ3M/ root@wodan-wsl";
   wodan-wsl-tomas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICI2xzlzSsxv+6QSZ6rCeG0ma4HfIH3YWJj/P4GoQ3M/ root@nixos";
 
@@ -28,12 +29,12 @@ let
 
   euro-mir-2 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIABfvsZLVNnnTjq3Ms7AmCR+UD2HF6y1fjt8wxJ7FiAF root@euro-mir-2";
   euro-mir-2-tomas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDJQj15J+PmzFyX1jWRDmv2BzdWnEuU47kkMKg3q4QD tomas@euro-mir-2";
-  euro-mir-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJHZOQbqiEFRhtymCd/UlbO8Y9Ti7afH5NKe7jGY1E70 root@euro-mir-vm";
+  euro-mir-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMtrUaj3e3Tvzk4WN3N6h88ovoIvt9YpgoYJwS9gpr2z root@euro-mir-vm";
 
   systems = [
     enzian
-    enzian-user
-    silver-star-ferdorie
+    # enzian-user
+    silver-star-vm
     utm-nixos
     arthur
     hyperv-nixos

@@ -7,7 +7,7 @@ with pkgs; {
   config = {
     home.packages = with pkgs; [
       # mattermost-desktop
-
+      tg
       _1password
       thefuck
       antidote

@@ -50,6 +50,7 @@ in {
       gamehub
       filezilla
       sublime-merge
+      remmina
     ];
     programs.hyprland.enable = true;
 
