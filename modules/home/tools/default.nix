@@ -43,7 +43,7 @@ with pkgs; {
       inputs.devenv.packages.${system}.default
       ipmitool
       just
-      keybase
+      # keybase
       ldns
       lolcat
       lsd

@@ -77,7 +77,7 @@ in {
       vscode
       fira-code-nerdfont
       transmission
-      keybase
+      # keybase
       powertop
 
       nix-software-center
