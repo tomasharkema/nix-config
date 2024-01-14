@@ -15,6 +15,9 @@ palette=['#45475A', '#F38BA8', '#A6E3A1', '#F9E2AF', '#89B4FA', '#F5C2E7', '#94E
 use-theme-colors=false
 visible-name='Default'
 
+[org/gnome/Connections]
+first-run=false
+
 [org/gnome/control-center]
 last-panel='background'
 window-state=(980, 640, false)
@@ -41,10 +44,10 @@ xkb-options=['terminate:ctrl_alt_bksp']
 
 [org/gnome/desktop/interface]
 color-scheme='prefer-dark'
-document-font-name='Neue Haas Grotesk Display Pro Bold 12'
-font-antialiasing='rgba'
+document-font-name='Neue Haas Grotesk Display Pro Medium 11'
+font-antialiasing='greyscale'
 font-hinting='full'
-font-name='Neue Haas Grotesk Display Pro Bold 12'
+font-name='Neue Haas Grotesk Display Pro Medium 11'
 gtk-theme='Catppuccin-Mocha-Compact-Blue-Dark'
 monospace-font-name='JetBrainsMonoNL Nerd Font Propo 10'
 text-scaling-factor=1.0
@@ -90,7 +93,7 @@ secondary-color='#000000'
 
 [org/gnome/desktop/wm/preferences]
 button-layout='appmenu:minimize,maximize,close'
-titlebar-font='Neue Haas Grotesk Display Pro Bold 12'
+titlebar-font='Neue Haas Grotesk Display Pro Medium 11'
 
 [org/gnome/evolution-data-server]
 migrated=true
@@ -162,8 +165,9 @@ night-light-enabled=true
 
 [org/gnome/shell]
 app-picker-layout=[{'1password.desktop': <{'position': <0>}>, 'com.usebottles.bottles.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'btop.desktop': <{'position': <5>}>, 'org.gnome.Calendar.desktop': <{'position': <6>}>, 'org.gnome.Totem.desktop': <{'position': <7>}>, 'org.gnome.Calculator.desktop': <{'position': <8>}>, 'org.gnome.Snapshot.desktop': <{'position': <9>}>, 'simple-scan.desktop': <{'position': <10>}>, 'org.gnome.Settings.desktop': <{'position': <11>}>, 'gnome-system-monitor.desktop': <{'position': <12>}>, 'dev.vlinkz.NixosConfEditor.desktop': <{'position': <13>}>, 'com.mattjakeman.ExtensionManager.desktop': <{'position': <14>}>, 'Utilities': <{'position': <15>}>, 'org.gnome.Extensions.desktop': <{'position': <16>}>, 'filezilla.desktop': <{'position': <17>}>, 'org.gnome.Firmware.desktop': <{'position': <18>}>, 'org.gnome.FontManager.desktop': <{'position': <19>}>, 'org.gnome.font-viewer.desktop': <{'position': <20>}>, 'org.gnome.FontViewer.desktop': <{'position': <21>}>, 'com.github.tkashkin.gamehub.desktop': <{'position': <22>}>, 'gparted.desktop': <{'position': <23>}>}, {'fr.handbrake.ghb.desktop': <{'position': <0>}>, 'htop.desktop': <{'position': <1>}>, 'org.kde.kdeconnect.app.desktop': <{'position': <2>}>, 'org.kde.kdeconnect.nonplasma.desktop': <{'position': <3>}>, 'org.kde.kdeconnect-settings.desktop': <{'position': <4>}>, 'org.kde.kdeconnect.sms.desktop': <{'position': <5>}>, 'com.gitlab.bitseater.meteo.desktop': <{'position': <6>}>, 'io.missioncenter.MissionCenter.desktop': <{'position': <7>}>, 'com.moonlight_stream.Moonlight.desktop': <{'position': <8>}>, 'nvim.desktop': <{'position': <9>}>, 'nixos-manual.desktop': <{'position': <10>}>, 'nnn.desktop': <{'position': <11>}>, 'nvidia-settings.desktop': <{'position': <12>}>, 'nvtop.desktop': <{'position': <13>}>, 'protontricks.desktop': <{'position': <14>}>, 'org.gnome.Software.desktop': <{'position': <15>}>, 'dev.vlinkz.NixSoftwareCenter.desktop': <{'position': <16>}>, 'steam.desktop': <{'position': <17>}>, 'sunshine.desktop': <{'position': <18>}>, 'org.telegram.desktop.desktop': <{'position': <19>}>, 'terminator.desktop': <{'position': <20>}>, 'termite.desktop': <{'position': <21>}>, 'org.gnome.TextEditor.desktop': <{'position': <22>}>, 'btrfs-assistant.desktop': <{'position': <23>}>}, {'tpmmanager.desktop': <{'position': <0>}>, 'xterm.desktop': <{'position': <1>}>, 'org.gnome.FileRoller.desktop': <{'position': <2>}>, 'org.gnome.Connections.desktop': <{'position': <3>}>, 'org.gnome.Console.desktop': <{'position': <4>}>, 'org.gnome.baobab.desktop': <{'position': <5>}>, 'org.gnome.DiskUtility.desktop': <{'position': <6>}>, 'org.gnome.Evince.desktop': <{'position': <7>}>, 'org.gnome.Loupe.desktop': <{'position': <8>}>, 'org.gnome.Logs.desktop': <{'position': <9>}>, 'org.gnome.seahorse.Application.desktop': <{'position': <10>}>, 'com.gexperts.Tilix.desktop': <{'position': <11>}>, 'org.gnome.tweaks.desktop': <{'position': <12>}>}]
-disabled-extensions=['native-window-placement@gnome-shell-extensions.gcampax.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com']
-enabled-extensions=['drive-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com', 'Vitals@CoreCoding.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'systemd-manager@hardpixel.eu', 'tailscale@joaophi.github.com']
+disable-user-extensions=false
+disabled-extensions=['native-window-placement@gnome-shell-extensions.gcampax.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com']
+enabled-extensions=['drive-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-panel@jderose9.github.com', 'Vitals@CoreCoding.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'systemd-manager@hardpixel.eu', 'tailscale@joaophi.github.com', 'ControlBlurEffectOnLockScreen@pratap.fastmail.fm', 'reboottouefi@ubaygd.com']
 favorite-apps=['org.gnome.Nautilus.desktop', 'firefox.desktop', 'kitty.desktop', 'code.desktop']
 welcome-dialog-last-shown-version='45.1'
 
@@ -192,11 +196,15 @@ systemd=@as []
 [org/gnome/shell/extensions/user-theme]
 name='Catppuccin-Mocha-Compact-Blue-Dark'
 
-[org/gnome/shell/world-clocks]
+[org/gnome/shell/weather]
+automatic-location=true
 locations=@av []
 
+[org/gnome/shell/world-clocks]
+locations=@as []
+
 [org/gnome/software]
-check-timestamp=int64 1704972435
+check-timestamp=int64 1705180693
 first-run=false
 flatpak-purge-timestamp=int64 1704938710
 install-timestamp=int64 1704836758
