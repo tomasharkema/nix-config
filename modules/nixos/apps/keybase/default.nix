@@ -13,6 +13,6 @@ with lib; {
       enable = true;
     };
 
-    environment.systemPackages = with pkgs; mkIf config.gui.enable [keybase-gui];
+    environment.systemPackages = with pkgs; mkIf (config.gui.enable && pkgs.system == "x86_64-linux") [keybase-gui];
   };
 }
