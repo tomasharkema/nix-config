@@ -31,7 +31,8 @@
     gui = {
       enable = true;
       apps.steam.enable = true;
-      game-mode.enable = true;
+      # game-mode.enable = true;
+      quiet-boot.enable = false;
     };
 
     traits = {
