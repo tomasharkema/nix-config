@@ -13,9 +13,9 @@
   # hosts =
   #   builtins.mapAttrs (n: v: v.config.system.build.installTest)
   #   inputs.self.nixosConfigurations;
-  hosts =
-    builtins.mapAttrs (n: v: v.config.system.build.toplevel)
-    inputs.self.nixosConfigurations;
+  #hosts =
+    #builtins.mapAttrs (n: v: v.config.system.build.toplevel)
+    #inputs.self.nixosConfigurations;
 in {
   inherit packages;
   images = {
@@ -23,7 +23,7 @@ in {
   };
   #inherit (inputs.self) checks;
   # inherit devShells;
-  inherit hosts;
+  #inherit hosts;
   # inherit defaultPackage;
 }
 # // {
