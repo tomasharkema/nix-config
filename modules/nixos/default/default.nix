@@ -92,7 +92,7 @@
         url = "https://ipa.harkema.io/ipa/config/ca.crt";
         sha256 = "sha256-3XRsoBALVsBVG9HQfh9Yq/OehvPPiOuZesSgtWXh74I=";
       };
-      dyndns.enable = false; # TODO: enable this??
+      dyndns.enable = true; # TODO: enable this??
     };
   };
 }

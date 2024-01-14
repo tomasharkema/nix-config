@@ -51,6 +51,7 @@ let
     euro-mir-vm
   ];
   allKeys = users ++ systems;
+  builders = [tomas blue-fire blue-fire-tomas];
 in {
   "atuin.age".publicKeys = allKeys;
   "tailscale.age".publicKeys = allKeys;
@@ -62,10 +63,11 @@ in {
   "attic-key.age".publicKeys = allKeys;
   "wireless.age".publicKeys = allKeys;
   "keybase.age".publicKeys = allKeys;
-  "ght.age".publicKeys = [tomas blue-fire blue-fire-tomas];
-  "ght-runner.age".publicKeys = [tomas blue-fire blue-fire-tomas];
+  "ght.age".publicKeys = builders;
+  "ght-runner.age".publicKeys = builders;
   "cachix.age".publicKeys = allKeys;
   "cachix-agent.age".publicKeys = allKeys;
   # "cachix-activate.age".publicKeys = allKeys;
   "otp.age".publicKeys = allKeys;
+  "ldap.age".publicKeys = builders;
 }
