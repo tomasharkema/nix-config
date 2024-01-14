@@ -18,7 +18,7 @@ pkgs.writeText "ldap.conf" ''
               timeout = 30
           </ldap_server_options>
           binddn = "cn=admin,dc=harkema,dc=io"
-          include ${config.age.secrets.ldap.path}
+          Include ${config.age.secrets.ldap.path}
           start_tls = 0
           <start_tls_options>
               verify = none
