@@ -37,7 +37,6 @@
       enable = lib.mkForce false;
     };
 
-    services.thermald.enable = true;
     boot.loader = {
       efi = {
         canTouchEfiVariables = false;

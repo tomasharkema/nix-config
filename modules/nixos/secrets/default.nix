@@ -61,19 +61,19 @@
     };
     age.secrets."cachix-activate" = {
       file = ./cachix-activate.age;
-      mode = "770";
+      mode = "777";
       path = "/tmp/cacheix-act.sh";
     };
     age.secrets."otp" = {
       file = ./otp.age;
-      mode = "770";
+      mode = "777";
       # path = "/home/tomas/.google_authenticator";
       # owner = "tomas";
       # group = "tomas";
     };
     age.secrets."ldap" = {
       file = ./ldap.age;
-      mode = "770";
+      mode = "777";
       # path = "/home/tomas/.google_authenticator";
       # owner = "tomas";
       # group = "tomas";
