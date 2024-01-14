@@ -31,8 +31,6 @@
       fwupd
       fwupd-efi
       hw-probe
-
-      boot-into-bios
       git
       wget
       curl
@@ -43,7 +41,6 @@
 
     services.openssh = {
       enable = true;
-      # require public key authentication for better security
       settings = {
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
