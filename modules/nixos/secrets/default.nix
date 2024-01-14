@@ -43,7 +43,7 @@
     };
     age.secrets."cachix" = {
       file = ./cachix.age;
-      mode = "770";
+      mode = "777";
       path = "/etc/cachix.dhall";
       # path = "/home/tomas/.config/cachix/cachix.dhall";
       # owner = "tomas";
