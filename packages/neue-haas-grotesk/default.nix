@@ -24,7 +24,4 @@ stdenv.mkDerivation rec {
   installPhase = ''
     install -D -m 444 * -t $out/share/fonts/ttf
   '';
-
-  
-
 }

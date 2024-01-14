@@ -59,11 +59,11 @@
       mode = "770";
       path = "/etc/cachix-agent.token";
     };
-    # age.secrets."cachix-activate" = {
-    #   file = ./cachix-activate.age;
-    #   mode = "770";
-    #   path = "/tmp/cacheix-act.sh";
-    # };
+    age.secrets."cachix-activate" = {
+      file = ./cachix-activate.age;
+      mode = "770";
+      path = "/tmp/cacheix-act.sh";
+    };
     age.secrets."otp" = {
       file = ./otp.age;
       mode = "770";
@@ -71,7 +71,7 @@
       # owner = "tomas";
       # group = "tomas";
     };
-        age.secrets."ldap" = {
+    age.secrets."ldap" = {
       file = ./ldap.age;
       mode = "770";
       # path = "/home/tomas/.google_authenticator";

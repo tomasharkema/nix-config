@@ -80,7 +80,6 @@ in {
       # ipmiutil
       # vagrant
       ipmitool
-      boot-into-bios
       # openipmi
     ];
 
