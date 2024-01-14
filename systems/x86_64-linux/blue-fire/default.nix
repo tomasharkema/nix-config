@@ -37,7 +37,10 @@ in {
     };
 
     traits = {
-      builder.enable = true;
+      builder = {
+        enable = true;
+        hydra.enable = true;
+      };
     };
 
     services.tcsd.enable = true;

@@ -71,5 +71,12 @@
       # owner = "tomas";
       # group = "tomas";
     };
+        age.secrets."ldap" = {
+      file = ./ldap.age;
+      mode = "770";
+      # path = "/home/tomas/.google_authenticator";
+      # owner = "tomas";
+      # group = "tomas";
+    };
   };
 }
