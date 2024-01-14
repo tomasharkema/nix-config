@@ -8,9 +8,9 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = [];
   boot.extraModulePackages = [];
-    services.resilio = {
-      enable = lib.mkForce false;
-    };
+  services.resilio = {
+    enable = lib.mkForce false;
+  };
   fileSystems."/" = {
     device = "/dev/sda2";
     fsType = "ext4";

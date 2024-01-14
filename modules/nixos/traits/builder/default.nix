@@ -39,6 +39,5 @@ in {
 
       environment.systemPackages = with pkgs; [jetbrains.gateway];
       programs.nix-ld.enable = true;
-
     };
 }
