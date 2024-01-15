@@ -62,7 +62,6 @@
     age.secrets."cachix-activate" = {
       file = ./cachix-activate.age;
       mode = "644";
-      path = "/tmp/cacheix-act.sh";
     };
     age.secrets."otp" = {
       file = ./otp.age;
