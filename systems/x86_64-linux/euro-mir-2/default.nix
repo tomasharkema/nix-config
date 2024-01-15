@@ -25,7 +25,7 @@
     disks.btrfs = {
       enable = true;
       main = "/dev/nvme0n1";
-      encrypt = true;
+      # encrypt = true;
     };
     apps.attic.enable = true;
     gui = {
