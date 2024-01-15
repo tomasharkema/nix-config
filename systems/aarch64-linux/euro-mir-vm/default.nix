@@ -38,6 +38,5 @@
     networking.wireless.enable = lib.mkForce false;
 
     gui.apps.flatpak.enable = false;
-    boot.kernelPackages = pkgs.linuxPackages_latest;
   };
 }

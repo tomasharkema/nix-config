@@ -31,15 +31,16 @@
     gui = {
       enable = true;
       apps.steam.enable = true;
-      # game-mode.enable = true;
+      game-mode.enable = true;
       quiet-boot.enable = false;
     };
-
+    services.resilio.enable = lib.mkForce false;
     traits = {
       hardware = {
         tpm.enable = true;
         secure-boot.enable = true;
         laptop.enable = true;
+        nvidia.enable = true;
       };
     };
 

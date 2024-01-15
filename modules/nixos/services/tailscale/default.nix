@@ -25,13 +25,13 @@ in {
       enable = true;
       authKeyFile = config.age.secrets.tailscale.path;
       useRoutingFeatures = "client";
-      # extraUpFlags = [
-      #   "--ssh=false"
-      #   "--advertise-tags=tag:nixos"
-      #   "--operator=tomas"
-      #   "--accept-dns"
-      #   "--accept-route"
-      # ];
+      extraUpFlags = [
+        "--ssh=false"
+        "--advertise-tags=tag:nixos"
+        "--operator=tomas"
+        "--accept-dns"
+        "--accept-routes"
+      ];
       openFirewall = true;
     };
 
@@ -43,7 +43,7 @@ in {
     services.avahi = {
       enable = true;
       allowInterfaces = ["zthnhagpcb" "tailscale0"];
-      ipv6 = true;
+      ipv6 = false;
       publish.enable = true;
       publish.userServices = true;
       publish.addresses = true;
