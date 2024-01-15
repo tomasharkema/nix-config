@@ -66,6 +66,7 @@
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
       # kernelPackages = pkgs.linuxPackages;
+      blacklistedModules = ["i915"];
     };
     programs.mtr.enable = true;
     # programs.gnupg.agent = {
