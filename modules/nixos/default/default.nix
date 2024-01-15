@@ -96,8 +96,18 @@
     };
     documentation.nixos.enable = false;
 
-    services.syslogd = {
+    services.rsyslog = {
       enable = true;
+
+      extraConfig = ''
+      $DefaultNetstreamDriverCAFile /etc/papertrail-bundle.pem
+      $ActionSendStreamDriver gtls
+      $ActionSendStreamDriverMode 1
+      $ActionSendStreamDriverAuthMode x509/name
+      $ActionSendStreamDriverPermittedPeer *.papertrailapp.com
+
+      *.*    @@logs2.papertrailapp.com:42640
+      '';
     };
   };
 }
