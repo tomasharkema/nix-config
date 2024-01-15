@@ -9,7 +9,8 @@
       url = " https://papertrailapp.com/tools/papertrail-bundle.pem";
       sha256 = "sha256-rjHss8bp/zFUy3pV8BcJBEj4hILw6UrJJ8DGeh8zuc8=";
     };
-  in
+     certfile = builtins.readFile ./ipaca.crt; in
+
     with lib; {
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";
@@ -85,9 +86,8 @@
         kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
       };
 
-      security.pki.certificates = let certfile = builtins.readFile ./ipaca.crt; in [certfile];
+      security.pki.certificates = [certfile];
 
-      # services.sssd.sshAuthorizedKeysIntegration = true;
       networking.extraHosts = ''
         192.168.0.15 ipa.harkema.io
       '';
@@ -100,7 +100,7 @@
         basedn = "dc=harkema,dc=io";
         certificate = pkgs.fetchurl {
           url = "https://ipa.harkema.io/ipa/config/ca.crt";
-          sha256 = "";
+          sha256 = "1z5k41jw1dpszxwxq1azwy6z3cdkz7lqh36h8chm63z8y6zhj6gh";
         };
         dyndns.enable = true; # TODO: enable this??
       };
