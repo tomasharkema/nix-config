@@ -10,7 +10,6 @@
   ];
 
   config = {
-    hardware.opengl.enable = true;
     networking.hostName = "euro-mir-vm";
 
     time.timeZone = "Europe/Amsterdam";
