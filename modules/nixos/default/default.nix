@@ -6,7 +6,7 @@
 }: {
   config = let papertrail-pem = pkgs.fetchurl {
     url = " https://papertrailapp.com/tools/papertrail-bundle.pem";
-    sha256 = "";
+    sha256 = "sha256-rjHss8bp/zFUy3pV8BcJBEj4hILw6UrJJ8DGeh8zuc8=";
   }; in with lib; {
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
