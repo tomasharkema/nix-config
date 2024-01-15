@@ -22,7 +22,7 @@
   ];
 
   config = {
-    disks.bcachefs = {
+    disks.btrfs = {
       enable = true;
       main = "/dev/nvme0n1";
       encrypt = true;
