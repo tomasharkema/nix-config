@@ -96,7 +96,7 @@
     };
     documentation.nixos.enable = false;
 
-    services.rsyslog = {
+    services.rsyslogd = {
       enable = true;
 
       extraConfig = ''
