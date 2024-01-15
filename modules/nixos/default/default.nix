@@ -85,9 +85,9 @@
         kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
       };
       # services.sssd.sshAuthorizedKeysIntegration = true;
-      networking.extraHosts = ''
-        192.168.0.15 ipa.harkema.io
-      '';
+      # networking.extraHosts = ''
+      #   192.168.0.15 ipa.harkema.io
+      # '';
       security.ipa = {
         enable = true;
         server = "ipa.harkema.io";
