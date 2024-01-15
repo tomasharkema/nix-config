@@ -37,7 +37,7 @@ in {
 
     systemd.services.cachix-watch = let
       cachix-script = writeShellScriptBin "attic-script.sh" ''
-        export CACHIX_AUTH_TOKEN=$(cat ${config.age.secrets.cachix.path})
+        # export CACHIX_AUTH_TOKEN="$(cat ${config.age.secrets.cachix.path})"
         cachix watch-store tomasharkema
       '';
     in {
@@ -51,7 +51,7 @@ in {
       serviceConfig = {
         Restart = "on-failure";
         RestartSec = 5;
-        MemoryLimit = "2G";
+        MemoryMax = "2G";
       };
       script = "${lib.getExe cachix-script}";
       wantedBy = ["multi-user.target"];
@@ -59,7 +59,7 @@ in {
     };
     systemd.services.cachix-daemon = let
       cachix-daemon-script = writeShellScriptBin "attic-daemon-script.sh" ''
-        export CACHIX_AUTH_TOKEN=$(cat ${config.age.secrets.cachix.path})
+        # export CACHIX_AUTH_TOKEN="$(cat ${config.age.secrets.cachix.path})"
         cachix daemon run
       '';
     in {
