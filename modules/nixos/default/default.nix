@@ -4,7 +4,10 @@
   lib,
   ...
 }: {
-  config = with lib; {
+  config = let papertrail-pem = pkgs.fetchurl {
+    url = " https://papertrailapp.com/tools/papertrail-bundle.pem";
+    sha256 = "";
+  }; in with lib; {
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
     # services.das_watchdog.enable = true;
@@ -96,11 +99,13 @@
     };
     documentation.nixos.enable = false;
 
+
+
     services.rsyslogd = {
       enable = true;
 
       extraConfig = ''
-      $DefaultNetstreamDriverCAFile /etc/papertrail-bundle.pem
+      $DefaultNetstreamDriverCAFile ${papertrail-pem}
       $ActionSendStreamDriver gtls
       $ActionSendStreamDriverMode 1
       $ActionSendStreamDriverAuthMode x509/name
