@@ -62,7 +62,6 @@
     networking.wireless.enable = lib.mkDefault false;
     networking.networkmanager.enable = true;
     networking.useDHCP = lib.mkForce true;
-    networking.enableIPv6 = false;
 
     # sudo mount --types virtiofs appdata_ssd /mnt/shared/
     fileSystems."/mnt/shared" = {
