@@ -268,6 +268,9 @@
             sshUser = "root";
             hostname = "192.168.178.51";
           };
+          pegasus = {
+            hostname = "172.25.220.155";
+          }
         };
       };
 
