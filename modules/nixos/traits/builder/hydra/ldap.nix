@@ -24,8 +24,8 @@ pkgs.writeText "ldap.conf" ''
               verify = none
           </start_tls_options>
           user_basedn = "cn=users,cn=accounts,dc=harkema,dc=io"
-          user_filter = "(&(objectClass=inetorgperson)(uid=%s))"
-          user_scope = one
+          user_filter = "(&(objectClass=inetOrgPerson)(cn=%s))"
+          #user_scope = one
           #user_field = cn
           <user_search_options>
               deref = always
