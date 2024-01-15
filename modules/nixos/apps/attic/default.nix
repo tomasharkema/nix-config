@@ -41,7 +41,7 @@ in {
 
     systemd.services.cachix-watch = let
       cachix-script = writeShellScriptBin "attic-script.sh" ''
-        # export CACHIX_AUTH_TOKEN="$(${getExe get-token})"
+        export CACHIX_AUTH_TOKEN="$(${getExe get-token})"
         cachix watch-store tomasharkema
       '';
     in {
@@ -63,7 +63,7 @@ in {
     };
     systemd.services.cachix-daemon = let
       cachix-daemon-script = writeShellScriptBin "attic-daemon-script.sh" ''
-        # export CACHIX_AUTH_TOKEN="$(${getExe get-token})"
+        export CACHIX_AUTH_TOKEN="$(${getExe get-token})"
         cachix daemon run
       '';
     in {
