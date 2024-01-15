@@ -138,7 +138,7 @@ in {
         "ipmi_si"
         "ipmi_devintf"
         "ipmi_msghandler"
-        "watchdog"
+        # "watchdog"
       ];
       extraModulePackages = [];
       # kernelParams = ["console=ttyS0,115200" "console=tty1"];

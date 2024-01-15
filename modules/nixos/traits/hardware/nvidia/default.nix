@@ -20,7 +20,7 @@ in {
     # Load nvidia driver for Xorg and Wayland
     services.xserver.videoDrivers = ["nvidia"];
 
-    hardware.nvidia = {
+    hardware.nvidia = mkDefault {
       # Modesetting is required.
       modesetting.enable = true;
 
@@ -44,7 +44,7 @@ in {
       nvidiaSettings = true;
 
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      # package = config.boot.kernelPackages.nvidiaPackages.production;
     };
 
     # systemd.services.netdata.path = [ pkgs.linuxPackages.nvidia_x11 ];
