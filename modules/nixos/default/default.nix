@@ -74,7 +74,7 @@
     programs.zsh.shellInit = ''
       source ${config.age.secrets."cachix-activate".path}
     '';
-    networking.enableIPv6 = false;
+    
     boot = {
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
     };
