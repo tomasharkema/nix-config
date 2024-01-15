@@ -59,21 +59,6 @@ in {
       manpages.enable = false;
       json.enable = false;
     };
-    # home.username = lib.mkDefault "tomas";
-    # home.homeDirectory = lib.mkDefault (home-directory "tomas");
-
-    # age.identityPaths = [
-    #   "/etc/ssh/ssh_host_ed25519_key"
-    #   "${config.home.homeDirectory}/.ssh/id_ed25519"
-    #   "${config.home.homeDirectory}/.ssh/id_rsa"
-    # ];
-
-    # nixpkgs.config.allowUnfreePredicate = _: true;
-    # nixpkgs.config.allowUnfree = true;
-
-    age.secrets."cachix-activate" = {
-      file = ../../../secrets/cachix-activate.age;
-    };
 
     fonts.fontconfig.enable = true;
 

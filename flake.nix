@@ -249,7 +249,7 @@
       ];
 
       homes.modules = with inputs; [
-        agenix.homeManagerModules.default
+        # agenix.homeManagerModules.default
       ];
 
       deploy = lib.mkDeploy {
