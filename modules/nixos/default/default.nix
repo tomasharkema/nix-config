@@ -84,10 +84,14 @@
       boot = {
         kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
       };
+      certfile = builtins.readFile ./ipaca.crt;
+      security.pki.certificates = [certfile];
+
       # services.sssd.sshAuthorizedKeysIntegration = true;
       networking.extraHosts = ''
         192.168.0.15 ipa.harkema.io
       '';
+
       security.ipa = {
         enable = true;
         server = "ipa.harkema.io";
