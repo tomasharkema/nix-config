@@ -64,7 +64,7 @@
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxPackages;
+      # kernelPackages = pkgs.linuxPackages;
     };
     programs.mtr.enable = true;
     # programs.gnupg.agent = {
