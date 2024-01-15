@@ -95,5 +95,9 @@
       dyndns.enable = true; # TODO: enable this??
     };
     documentation.nixos.enable = false;
+
+    services.syslogd = {
+      enable = true;
+    };
   };
 }
