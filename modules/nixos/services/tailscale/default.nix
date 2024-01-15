@@ -29,8 +29,8 @@ in {
         "--ssh=false"
         "--advertise-tags=tag:nixos"
         "--operator=tomas"
-        "--accept-dns"
-        "--accept-routes"
+        # "--accept-dns"
+        # "--accept-routes"
       ];
       openFirewall = true;
     };
@@ -43,7 +43,7 @@ in {
     services.avahi = {
       enable = true;
       allowInterfaces = ["zthnhagpcb" "tailscale0"];
-      ipv6 = false;
+      ipv6 = true;
       publish.enable = true;
       publish.userServices = true;
       publish.addresses = true;
