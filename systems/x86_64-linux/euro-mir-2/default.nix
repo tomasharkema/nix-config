@@ -59,6 +59,7 @@
 
     services = {
       xserver.libinput.enable = true;
+      xserver.videoDrivers = ["nvidia" "intel"];
       tcsd.enable = lib.mkForce false;
     };
 
