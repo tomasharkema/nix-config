@@ -17,25 +17,25 @@ pkgs.writeText "ldap.conf" ''
           <ldap_server_options>
               timeout = 30
           </ldap_server_options>
-          #binddn = "cn=admin,dc=harkema,dc=io"
-          #Include ${config.age.secrets.ldap.path}
+          binddn = "uid=admin,cn=users,cn=accounts,dc=harkema,dc=io"
+          Include ${config.age.secrets.ldap.path}
           start_tls = 0
           <start_tls_options>
               verify = none
           </start_tls_options>
-          user_basedn = "ou=users,dc=harkema,dc=io"
-          user_filter = "(&(objectClass=inetOrgPerson)(cn=%s))"
+          user_basedn = "cn=users,cn=accounts,dc=harkema,dc=io"
+          user_filter = "(&(objectClass=inetorgperson)(uid=%s))"
           user_scope = one
-          user_field = cn
+          #user_field = cn
           <user_search_options>
               deref = always
           </user_search_options>
           # Important for role mappings to work:
           use_roles = 1
-          role_basedn = "ou=groups,dc=harkema,dc=io"
-          role_filter = "(&(objectClass=groupOfNames)(member=%s))"
+          role_basedn = "cn=groups,cn=accounts,dc=harkema,dc=io"
+          role_filter = "(&(objectClass=groupofnames)(member=%s))"
           role_scope = one
-          role_field = cn
+          #role_field = cn
           role_value = dn
           <role_search_options>
               deref = always
