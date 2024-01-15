@@ -67,8 +67,8 @@ in
                       # keyFile = "/tmp/secret.key";
                     };
                     # additionalKeyFiles = ["/tmp/additionalSecret.key"];
-                    # content = {
-                    root = {
+                    content = {
+                      # root = {
                       name = "root";
                       end = "-0";
                       content = {
@@ -76,8 +76,8 @@ in
                         format = "bcachefs";
                         mountpoint = "/";
                       };
+                      # };
                     };
-                    # };
                   };
                 };
               };
