@@ -32,7 +32,7 @@
       enable = true;
       apps.steam.enable = true;
       game-mode.enable = true;
-      quiet-boot.enable = false;
+      quiet-boot.enable = true;
     };
     services.resilio.enable = lib.mkForce false;
     traits = {
@@ -42,6 +42,12 @@
         laptop.enable = true;
         nvidia.enable = true;
       };
+    };
+
+    hardware.nvidia = {
+      #   powerManagement.enable = true;
+      #   powerManagement.finegrained = true;
+      package = config.boot.kernelPackages.nvidiaPackages.production;
     };
 
     networking = {
@@ -58,6 +64,7 @@
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
+      kernelPackages = pkgs.linuxPackages;
     };
     programs.mtr.enable = true;
     # programs.gnupg.agent = {

@@ -11,7 +11,7 @@
     # Select internationalisation properties.
     i18n.defaultLocale = "en_US.UTF-8";
 
-    services.cachix-agent.enable = true;
+    #services.cachix-agent.enable = true;
 
     i18n.extraLocaleSettings = {
       LC_ADDRESS = "nl_NL.UTF-8";
@@ -74,11 +74,11 @@
     programs.zsh.shellInit = ''
       source ${config.age.secrets."cachix-activate".path}
     '';
-
+    networking.enableIPv6 = false;
     boot = {
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
     };
-
+    # services.sssd.sshAuthorizedKeysIntegration = true;
     networking.extraHosts = ''
       192.168.0.15 ipa.harkema.io
     '';
@@ -92,8 +92,8 @@
         url = "https://ipa.harkema.io/ipa/config/ca.crt";
         sha256 = "sha256-3XRsoBALVsBVG9HQfh9Yq/OehvPPiOuZesSgtWXh74I=";
       };
-      dyndns.enable = false; # TODO: enable this??
+      dyndns.enable = true; # TODO: enable this??
     };
-    documentation.nixos.enable = true;
+    documentation.nixos.enable = false;
   };
 }
