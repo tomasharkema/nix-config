@@ -71,9 +71,9 @@ in {
     # nixpkgs.config.allowUnfreePredicate = _: true;
     # nixpkgs.config.allowUnfree = true;
 
-    # age.secrets."cachix-activate" = {
-    #   file = ../../../secrets/cachix-activate.age;
-    # };
+    age.secrets."cachix-activate" = {
+      file = ../../../secrets/cachix-activate.age;
+    };
 
     fonts.fontconfig.enable = true;
 
