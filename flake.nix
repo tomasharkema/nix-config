@@ -248,9 +248,9 @@
         }
       ];
 
-      # homes.modules = with inputs; [
-      #   # agenix.homeManagerModules.default
-      # ];
+      homes.modules = with inputs; [
+        agenix.homeManagerModules.default
+      ];
 
       deploy = lib.mkDeploy {
         inherit (inputs) self;
