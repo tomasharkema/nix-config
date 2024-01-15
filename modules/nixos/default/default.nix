@@ -88,18 +88,18 @@
       networking.extraHosts = ''
         192.168.0.15 ipa.harkema.io
       '';
-      # security.ipa = {
-      #   enable = true;
-      #   server = "ipa.harkema.io";
-      #   domain = "harkema.io";
-      #   realm = "HARKEMA.IO";
-      #   basedn = "dc=harkema,dc=io";
-      #   certificate = pkgs.fetchurl {
-      #     url = "https://ipa.harkema.io/ipa/config/ca.crt";
-      #     sha256 = "sha256-3XRsoBALVsBVG9HQfh9Yq/OehvPPiOuZesSgtWXh74I=";
-      #   };
-      #   dyndns.enable = true; # TODO: enable this??
-      # };
+      security.ipa = {
+        enable = true;
+        server = "ipa.harkema.io";
+        domain = "harkema.io";
+        realm = "HARKEMA.IO";
+        basedn = "dc=harkema,dc=io";
+        certificate = pkgs.fetchurl {
+          url = "https://ipa.harkema.io/ipa/config/ca.crt";
+          sha256 = "sha256-3XRsoBALVsBVG9HQfh9Yq/OehvPPiOuZesSgtWXh74I=";
+        };
+        dyndns.enable = true; # TODO: enable this??
+      };
       documentation.nixos.enable = false;
 
       services.rsyslogd = {
