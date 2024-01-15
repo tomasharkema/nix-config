@@ -35,50 +35,50 @@ in {
     #   };
     # };
 
-    # systemd.services.cachix-watch = let
-    #   cachix-script = writeShellScriptBin "attic-script.sh" ''
-    #     export CACHIX_AUTH_TOKEN=$(cat ${config.age.secrets.cachix.path})
-    #     cachix watch-store tomasharkema
-    #   '';
-    # in {
-    #   enable = true;
-    #   description = "cachix-watch";
-    #   unitConfig = {
-    #     Type = "simple";
-    #     StartLimitIntervalSec = 500;
-    #     StartLimitBurst = 5;
-    #   };
-    #   serviceConfig = {
-    #     Restart = "on-failure";
-    #     RestartSec = 5;
-    #     MemoryLimit = "2G";
-    #   };
-    #   script = "${lib.getExe cachix-script}";
-    #   wantedBy = ["multi-user.target"];
-    #   path = [cachix-script pkgs.cachix];
-    # };
-    # systemd.services.cachix-daemon = let
-    #   cachix-daemon-script = writeShellScriptBin "attic-daemon-script.sh" ''
-    #     export CACHIX_AUTH_TOKEN=$(cat ${config.age.secrets.cachix.path})
-    #     cachix daemon run
-    #   '';
-    # in {
-    #   enable = true;
-    #   description = "cachix-daemon";
-    #   unitConfig = {
-    #     Type = "simple";
-    #     StartLimitIntervalSec = 500;
-    #     StartLimitBurst = 5;
-    #   };
-    #   serviceConfig = {
-    #     Restart = "on-failure";
-    #     RestartSec = 5;
-    #     MemoryLimit = "2G";
-    #   };
-    #   script = "${lib.getExe cachix-daemon-script}";
-    #   wantedBy = ["multi-user.target"];
-    #   path = [cachix-daemon-script pkgs.cachix];
-    # };
+    systemd.services.cachix-watch = let
+      cachix-script = writeShellScriptBin "attic-script.sh" ''
+        export CACHIX_AUTH_TOKEN=$(cat ${config.age.secrets.cachix.path})
+        cachix watch-store tomasharkema
+      '';
+    in {
+      enable = true;
+      description = "cachix-watch";
+      unitConfig = {
+        Type = "simple";
+        StartLimitIntervalSec = 500;
+        StartLimitBurst = 5;
+      };
+      serviceConfig = {
+        Restart = "on-failure";
+        RestartSec = 5;
+        MemoryLimit = "2G";
+      };
+      script = "${lib.getExe cachix-script}";
+      wantedBy = ["multi-user.target"];
+      path = [cachix-script pkgs.cachix];
+    };
+    systemd.services.cachix-daemon = let
+      cachix-daemon-script = writeShellScriptBin "attic-daemon-script.sh" ''
+        export CACHIX_AUTH_TOKEN=$(cat ${config.age.secrets.cachix.path})
+        cachix daemon run
+      '';
+    in {
+      enable = true;
+      description = "cachix-daemon";
+      unitConfig = {
+        Type = "simple";
+        StartLimitIntervalSec = 500;
+        StartLimitBurst = 5;
+      };
+      serviceConfig = {
+        Restart = "on-failure";
+        RestartSec = 5;
+        MemoryLimit = "2G";
+      };
+      script = "${lib.getExe cachix-daemon-script}";
+      wantedBy = ["multi-user.target"];
+      path = [cachix-daemon-script pkgs.cachix];
+    };
 
     # systemd.services.attic-watch = let
     #   attic-script = writeShellScriptBin "attic-script.sh" ''
