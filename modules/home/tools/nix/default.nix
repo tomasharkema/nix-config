@@ -3,8 +3,8 @@
   inputs,
   ...
 }: {
-  imports = [./nixpkgs.nix];
+  # imports = [./nixpkgs.nix];
   config = {
-    home.packages = []; # import ./nixpkgs.nix {inherit pkgs inputs;};
+    # home.packages = []; # import ./nixpkgs.nix {inherit pkgs inputs;};
   };
 }

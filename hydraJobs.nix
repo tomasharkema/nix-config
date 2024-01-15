@@ -4,9 +4,9 @@
     lib.filterAttrs (system: v: (system == "x86_64-linux" || system == "aarch64-linux"))
     inputs.self.packages;
 
-  devShells =
-    lib.filterAttrs (system: v: (system == "x86_64-linux" || system == "aarch64-linux"))
-    inputs.self.devShells;
+  # devShells =
+  #   lib.filterAttrs (system: v: (system == "x86_64-linux" || system == "aarch64-linux"))
+  #   inputs.self.devShells;
   # defaultPackage =
   #   lib.filterAttrs (system: v: (system == "x86_64-linux" || system == "aarch64-linux"))
   #   inputs.self.defaultPackage;

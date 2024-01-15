@@ -17,7 +17,7 @@
   ...
 }: {
   imports = with inputs; [
-    nixos-hardware.nixosModules.dell-xps-15-9560
+    # nixos-hardware.nixosModules.dell-xps-15-9560
     ./hardware-configuration.nix
   ];
 
@@ -47,7 +47,7 @@
     hardware.nvidia = {
       #   powerManagement.enable = true;
       #   powerManagement.finegrained = true;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      # package = config.boot.kernelPackages.nvidiaPackages.production;
     };
 
 
@@ -55,22 +55,22 @@
     networking = {
       hostName = "euro-mir-2"; # Define your hostname.
       networkmanager.enable = true;
-      wireless.enable = false;
-      firewall.enable = true;
+      # wireless.enable = false;
+      # firewall.enable = true;
     };
 
     services = {
       xserver.libinput.enable = true;
-      xserver.videoDrivers = ["nvidia" "intel"];
+      # xserver.videoDrivers = ["nvidia" "intel"];
       tcsd.enable = lib.mkForce false;
     };
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxPackages;
-      blacklistedKernelModules = ["i915"];
+      # kernelPackages = pkgs.linuxPackages;
+      # blacklistedKernelModules = ["i915"];
     };
-    programs.mtr.enable = true;
+    # programs.mtr.enable = true;
     # programs.gnupg.agent = {
     #   enable = true;
     #   enableSSHSupport = true;

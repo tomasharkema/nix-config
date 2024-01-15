@@ -88,10 +88,10 @@
       url = "github:zhaofengli/attic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    fh = {
-      url = "github:DeterminateSystems/fh";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # fh = {
+    #   url = "github:DeterminateSystems/fh";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
@@ -101,10 +101,10 @@
       url = "github:nix-community/hydra-check";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-checker = {
-      url = "github:DeterminateSystems/flake-checker";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # flake-checker = {
+    #   url = "github:DeterminateSystems/flake-checker";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     system-manager = {
       url = "github:numtide/system-manager";
@@ -121,10 +121,10 @@
       url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    snowfall-flake = {
-      url = "github:snowfallorg/flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # snowfall-flake = {
+    #   url = "github:snowfallorg/flake";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     nil.url = "github:oxalica/nil";
     devenv.url = "github:cachix/devenv";
   };
@@ -229,7 +229,7 @@
       };
 
       overlays = with inputs; [
-        snowfall-flake.overlays."package/flake"
+        # snowfall-flake.overlays."package/flake"
       ];
 
       systems.modules.nixos = with inputs; [
@@ -355,8 +355,8 @@
           lint = self.packages.${channels.nixpkgs.system}.run-checks;
         };
 
-        packages.nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
-        packages.nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
+        # packages.nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
+        # packages.nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
 
         # defaultPackage = cachix-deploy-lib.spec {
         #   agents = {
