@@ -11,6 +11,10 @@ with pkgs; let
   cfg = config.apps.attic;
   attic-pkg = inputs.attic.packages.${system}.default;
   attic-bin = "${attic-pkg}/bin/attic";
+
+  get-token = writeShellScriptBin "get-token" ''
+    cat ${config.age.secrets.cachix.path} | ${pkgs.dhall-json}/bin/dhall-to-json | ${pkgs.jq}/bin/jq '.authToken' -r
+  '';
 in {
   options.apps.attic = {
     enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
@@ -37,7 +41,7 @@ in {
 
     systemd.services.cachix-watch = let
       cachix-script = writeShellScriptBin "attic-script.sh" ''
-        # export CACHIX_AUTH_TOKEN="$(cat ${config.age.secrets.cachix.path})"
+        # export CACHIX_AUTH_TOKEN="$(${getExe get-token})"
         cachix watch-store tomasharkema
       '';
     in {
@@ -59,7 +63,7 @@ in {
     };
     systemd.services.cachix-daemon = let
       cachix-daemon-script = writeShellScriptBin "attic-daemon-script.sh" ''
-        # export CACHIX_AUTH_TOKEN="$(cat ${config.age.secrets.cachix.path})"
+        # export CACHIX_AUTH_TOKEN="$(${getExe get-token})"
         cachix daemon run
       '';
     in {
