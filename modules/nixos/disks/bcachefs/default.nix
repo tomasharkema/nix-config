@@ -54,13 +54,30 @@ in
                     mountpoint = "/boot";
                   };
                 };
-                root = {
-                  name = "root";
-                  end = "-0";
+
+                luks = {
+                  size = "100%";
                   content = {
-                    type = "filesystem";
-                    format = "bcachefs";
-                    mountpoint = "/";
+                    type = "luks";
+                    name = "crypted";
+                    # disable settings.keyFile if you want to use interactive password entry
+                    passwordFile = "/tmp/secret.key"; # Interactive
+                    settings = {
+                      allowDiscards = true;
+                      # keyFile = "/tmp/secret.key";
+                    };
+                    # additionalKeyFiles = ["/tmp/additionalSecret.key"];
+                    content = {
+                      root = {
+                        name = "root";
+                        end = "-0";
+                        content = {
+                          type = "filesystem";
+                          format = "bcachefs";
+                          mountpoint = "/";
+                        };
+                      };
+                    };
                   };
                 };
               };
