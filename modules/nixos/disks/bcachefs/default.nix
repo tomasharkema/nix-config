@@ -67,17 +67,17 @@ in
                       # keyFile = "/tmp/secret.key";
                     };
                     # additionalKeyFiles = ["/tmp/additionalSecret.key"];
-                    content = {
-                      root = {
-                        name = "root";
-                        end = "-0";
-                        content = {
-                          type = "filesystem";
-                          format = "bcachefs";
-                          mountpoint = "/";
-                        };
+                    # content = {
+                    root = {
+                      name = "root";
+                      end = "-0";
+                      content = {
+                        type = "filesystem";
+                        format = "bcachefs";
+                        mountpoint = "/";
                       };
                     };
+                    # };
                   };
                 };
               };
