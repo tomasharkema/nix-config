@@ -43,9 +43,9 @@
         free-ipa = {
           image = "docker.io/freeipa/freeipa-server:rocky-9";
           autoStart = true;
-          ports = ["443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
+          ports = ["80:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
           hostname = "ipa.harkema.io";
-          extraOptions = ["--read-only"];
+          extraOptions = ["--read-only" "-e" "PASSWORD=Secret123"];
           cmd = ["ipa-server-install" "-U" "-r" "HARKEMA.IO" "--no-ntp" "--ca-subject" "CN=harkema.io"];
           volumes = [
             "/mnt/shared/freeipa:/data:Z"
