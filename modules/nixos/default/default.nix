@@ -84,8 +84,8 @@
       boot = {
         kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
       };
-      certfile = builtins.readFile ./ipaca.crt;
-      security.pki.certificates = [certfile];
+
+      security.pki.certificates = let certfile = builtins.readFile ./ipaca.crt; in [certfile];
 
       # services.sssd.sshAuthorizedKeysIntegration = true;
       networking.extraHosts = ''
