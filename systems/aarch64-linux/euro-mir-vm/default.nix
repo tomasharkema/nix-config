@@ -24,6 +24,7 @@
       desktop = {
         enable = true;
       };
+      quiet-boot.enable = true;
     };
     traits = {
       hardware = {
