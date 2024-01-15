@@ -27,7 +27,7 @@
       main = "/dev/nvme0n1";
       encrypt = true;
     };
-    apps.attic.enable = true;
+    # apps.attic.enable = true;
     gui = {
       enable = true;
       # apps.steam.enable = true;
@@ -50,6 +50,8 @@
       package = config.boot.kernelPackages.nvidiaPackages.production;
     };
 
+
+
     networking = {
       hostName = "euro-mir-2"; # Define your hostname.
       networkmanager.enable = true;
@@ -65,7 +67,7 @@
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
-      # kernelPackages = pkgs.linuxPackages;
+      kernelPackages = pkgs.linuxPackages;
       blacklistedKernelModules = ["i915"];
     };
     programs.mtr.enable = true;
