@@ -25,14 +25,14 @@
     disks.btrfs = {
       enable = true;
       main = "/dev/nvme0n1";
-      # encrypt = true;
+      encrypt = true;
     };
     apps.attic.enable = true;
     gui = {
       enable = true;
-      apps.steam.enable = true;
-      game-mode.enable = true;
-      quiet-boot.enable = true;
+      # apps.steam.enable = true;
+      # game-mode.enable = true;
+      # quiet-boot.enable = true;
     };
     services.resilio.enable = lib.mkForce false;
     traits = {
@@ -40,7 +40,7 @@
         tpm.enable = true;
         secure-boot.enable = true;
         laptop.enable = true;
-        nvidia.enable = true;
+        # nvidia.enable = true;
       };
     };
 
