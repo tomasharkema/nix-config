@@ -17,7 +17,7 @@
   ...
 }: {
   imports = with inputs; [
-    # nixos-hardware.nixosModules.dell-xps-15-9560
+    nixos-hardware.nixosModules.dell-xps-15-9560
     ./hardware-configuration.nix
   ];
 
