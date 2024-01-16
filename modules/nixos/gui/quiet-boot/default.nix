@@ -50,7 +50,10 @@ in {
         "vt.global_cursor_default=0"
       ];
       consoleLogLevel = lib.mkDefault 0;
-      initrd.verbose = lib.mkDefault false;
+      initrd = {
+        systemd.enable = lib.mkDefault true;
+        verbose = lib.mkDefault false;
+      };
     };
   };
 }

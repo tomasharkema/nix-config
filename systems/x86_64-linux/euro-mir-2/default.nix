@@ -30,11 +30,13 @@
     # apps.attic.enable = true;
     gui = {
       enable = true;
-      # apps.steam.enable = true;
+      apps.steam.enable = true;
       game-mode.enable = false;
       quiet-boot.enable = true;
     };
+    
     services.resilio.enable = lib.mkForce false;
+
     traits = {
       hardware = {
         tpm.enable = true;
@@ -42,12 +44,6 @@
         laptop.enable = true;
         nvidia.enable = true;
       };
-    };
-
-    hardware.nvidia = {
-      #   powerManagement.enable = true;
-      #   powerManagement.finegrained = true;
-      # package = config.boot.kernelPackages.nvidiaPackages.production;
     };
 
     networking = {

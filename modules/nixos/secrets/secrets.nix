@@ -27,7 +27,7 @@ let
   baaa-express = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDIehvj2mj3tzsYoZbwSZoBi0K7Yt1ElbOd+e9DR8P2Z root@baaa-express";
   baaa-express-user = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBzNmvr4dGWHPZ/ZoFN2wIzUSDhYO2+hq4r4FeAqIPSf tomas@baaa-express";
 
-  euro-mir-2 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID05b/o53hZEmoZRsnLRlL6NwFxU/n2gxNLxkU+wtDTb root@euro-mir-2";
+  euro-mir-2 = " ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGqH26JOhArILMf2cgHdUUuvyf3U7rAS6jGZykLYqjWe root@euro-mir-2";
   euro-mir-2-tomas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDJQj15J+PmzFyX1jWRDmv2BzdWnEuU47kkMKg3q4QD tomas@euro-mir-2";
   euro-mir-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMtrUaj3e3Tvzk4WN3N6h88ovoIvt9YpgoYJwS9gpr2z root@euro-mir-vm";
 

@@ -71,6 +71,9 @@ in {
       xkbVariant = "";
     };
 
+    services.gnome.chrome-gnome-shell.enable = true;
+    services.gnome.gnome-browser-connector.enable = true;
+
     environment.systemPackages = with pkgs; [
       gparted
       firefox
@@ -94,22 +97,25 @@ in {
       meteo
       transmission-remote-gtk
       github-desktop
-      # telegram-desktop
+      telegram-desktop
+      gnome-menus
+      gtk-engine-murrine
+      plymouth
       # apache-directory-studio
     ];
 
-    # programs.ssh.extraConfig = ''
-    #   Host *
-    #     IdentityAgent ~/.1password/agent.sock
-    # '';
+    programs.ssh.extraConfig = ''
+      Host *
+        IdentityAgent ~/.1password/agent.sock
+    '';
 
-    # programs._1password.enable = true;
-    # programs._1password-gui = {
-    #   enable = true;
-    #   # Certain features, including CLI integration and system authentication support,
-    #   # require enabling PolKit integration on some desktop environments (e.g. Plasma).
-    #   polkitPolicyOwners = ["tomas" "tomas@harkema.io"];
-    # };
+    programs._1password.enable = true;
+    programs._1password-gui = {
+      enable = true;
+      # Certain features, including CLI integration and system authentication support,
+      # require enabling PolKit integration on some desktop environments (e.g. Plasma).
+      polkitPolicyOwners = ["tomas" "tomas@harkema.io"];
+    };
 
     # nativeMessagingHosts.packages = with pkgs; [ gnome-browser-connector ];
 
