@@ -233,7 +233,7 @@
       ];
 
       systems.modules.nixos = with inputs; [
-        impermanence.nixosModule
+        # impermanence.nixosModule
         disko.nixosModules.default
 
         lanzaboote.nixosModules.lanzaboote
@@ -280,16 +280,16 @@
       #     deploy-lib.deployChecks inputs.self.deploy)
       #   inputs.deploy-rs.lib;
 
-      images = with inputs; {
-        baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
-        pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
-        # arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
+      # images = with inputs; {
+      #   baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
+      #   pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
+      #   # arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
 
-        euro-mir-vm = self.nixosConfigurations.euro-mir-vm.config.system.build.isoImage;
+      #   euro-mir-vm = self.nixosConfigurations.euro-mir-vm.config.system.build.isoImage;
 
-        # "blue-fire" = self.nixosConfigurations."blue-fire".config.formats.install-iso;
-        # "blue-fire-slim" = self.nixosConfigurations."blue-fire-slim".config.formats.install-iso;
-      };
+      #   # "blue-fire" = self.nixosConfigurations."blue-fire".config.formats.install-iso;
+      #   # "blue-fire-slim" = self.nixosConfigurations."blue-fire-slim".config.formats.install-iso;
+      # };
 
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};
 
@@ -346,14 +346,14 @@
       #   cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
       # in
       {
-        formatter = channels.nixpkgs.alejandra;
+        # formatter = channels.nixpkgs.alejandra;
 
-        checks = with inputs; {
+        # checks = with inputs; {
           # nixpkgs-lint =
           # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
 
-          lint = self.packages.${channels.nixpkgs.system}.run-checks;
-        };
+          # lint = self.packages.${channels.nixpkgs.system}.run-checks;
+        # };
 
         # packages.nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
         # packages.nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
