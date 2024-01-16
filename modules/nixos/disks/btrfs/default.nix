@@ -49,7 +49,10 @@
           "/rootfs" = {mountpoint = "/";};
           # Subvolume name is the same as the mountpoint
           "/home" = {
-            mountOptions = ["subvol=home" "compress=zstd"];
+            mountOptions = [
+              "subvol=home"
+              #"compress=zstd"
+            ];
             mountpoint = "/home";
           };
           # "/home-snapshots" = {
@@ -120,22 +123,22 @@ in
           enable = true;
           fileSystems = ["/"];
         };
-        # snapper = {
-        #   snapshotRootOnBoot = true;
-        #   snapshotInterval = "hourly";
-        #   cleanupInterval = "7d";
+        snapper = {
+          snapshotRootOnBoot = true;
+          snapshotInterval = "hourly";
+          cleanupInterval = "7d";
 
-        #   configs."home" = {
-        #     SUBVOLUME = "/home";
-        #     TIMELINE_CREATE = true;
-        #     TIMELINE_CLEANUP = true;
-        #     TIMELINE_LIMIT_HOURLY = 2;
-        #     TIMELINE_LIMIT_DAILY = 3;
-        #     TIMELINE_LIMIT_WEEKLY = 1;
-        #     TIMELINE_LIMIT_MONTHLY = 1;
-        #     TIMELINE_LIMIT_YEARLY = 0;
-        #   };
-        # };
+          # configs."root" = {
+          #   SUBVOLUME = "/";
+          #   TIMELINE_CREATE = true;
+          #   TIMELINE_CLEANUP = true;
+          #   TIMELINE_LIMIT_HOURLY = 2;
+          #   TIMELINE_LIMIT_DAILY = 3;
+          #   TIMELINE_LIMIT_WEEKLY = 1;
+          #   TIMELINE_LIMIT_MONTHLY = 1;
+          #   TIMELINE_LIMIT_YEARLY = 0;
+          # };
+        };
         # beesd = {
         #   filesystems = {
         #     root = {
@@ -149,7 +152,7 @@ in
       environment.systemPackages = with pkgs; [
         snapper
         # snapper-gui
-        # tpm-luks
+        tpm-luks
         btrfs-assistant
       ];
 

@@ -211,6 +211,7 @@
       channels-config = {
         allowUnfree = true;
         nvidia.acceptLicense = true;
+        firefox.enableGnomeExtensions = true;
       };
 
       alias = {

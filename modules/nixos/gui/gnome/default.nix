@@ -31,7 +31,7 @@ in {
       core-utilities.enable = true;
       chrome-gnome-shell.enable = true;
     };
-    # services.gnome3.chrome-gnome-shell.enable = true;
+    services.gnome3.chrome-gnome-shell.enable = true;
 
     services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
