@@ -59,6 +59,7 @@ in {
 
     systemd.packages = [
       pkgs.custom.tailscalesd
+
       pkgs.tailscale
     ];
 
@@ -74,11 +75,12 @@ in {
         Restart = "on-failure";
         RestartSec = 5;
       };
-      script = "${lib.attrsets.getBin  pkgs.custom.tailscalesd}/bin/tailscalesd --localapi";
+
+      script = "${lib.attrsets.getBin pkgs.custom.tailscalesd}/bin/tailscalesd --localapi";
       wantedBy = ["multi-user.target"];
       after = ["tailscale.service"];
       wants = ["tailscale.service"];
-      path = [pkgs.tailscale  pkgs.custom.tailscalesd];
+      path = [pkgs.tailscale pkgs.custom.tailscalesd];
       environment = {
         ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH = "go1.21";
       };
