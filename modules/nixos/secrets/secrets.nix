@@ -29,7 +29,7 @@ let
 
   euro-mir-2 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGqH26JOhArILMf2cgHdUUuvyf3U7rAS6jGZykLYqjWe root@euro-mir-2";
   euro-mir-2-tomas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDJQj15J+PmzFyX1jWRDmv2BzdWnEuU47kkMKg3q4QD tomas@euro-mir-2";
-  euro-mir-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMtrUaj3e3Tvzk4WN3N6h88ovoIvt9YpgoYJwS9gpr2z root@euro-mir-vm";
+  euro-mir-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICW+aQs9V+gOAWN5t8g8OYFNjdTkgDFagObW+unt7TMa root@euro-mir-vm";
 
   systems = [
     enzian
