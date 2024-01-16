@@ -18,5 +18,7 @@ in {
     services.thermald.enable = true;
 
     netdata.enable = mkForce false;
+
+    services.cockpit.enable = mkForce false;
   };
 }

@@ -48,13 +48,16 @@ font-name='Neue Haas Grotesk Display Pro Medium 11'
 gtk-theme='Catppuccin-Mocha-Compact-Blue-Dark'
 
 [org/gnome/desktop/notifications]
-application-children=['org-gnome-software', 'firefox', 'org-telegram-desktop']
+application-children=['org-gnome-software', 'firefox', 'org-telegram-desktop', 'org-kde-kdeconnect-daemon']
 
 [org/gnome/desktop/notifications/application/firefox]
 application-id='firefox.desktop'
 
 [org/gnome/desktop/notifications/application/org-gnome-software]
 application-id='org.gnome.Software.desktop'
+
+[org/gnome/desktop/notifications/application/org-kde-kdeconnect-daemon]
+application-id='org.kde.kdeconnect.daemon.desktop'
 
 [org/gnome/desktop/notifications/application/org-telegram-desktop]
 application-id='org.telegram.desktop.desktop'
@@ -83,20 +86,39 @@ migrated=true
 
 [org/gnome/nautilus/preferences]
 always-use-location-entry=true
+default-folder-viewer='icon-view'
 migrated-gtk-settings=true
+search-filter-time-type='last_modified'
+
+[org/gnome/nautilus/window-state]
+maximized=true
 
 [org/gnome/settings-daemon/plugins/color]
 night-light-enabled=true
 
 [org/gnome/shell]
 disable-user-extensions=false
-disabled-extensions=['native-window-placement@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com', 'windowsNavigator@gnome-shell-extensions.gcampax.github.com']
-enabled-extensions=['drive-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-panel@jderose9.github.com', 'Vitals@CoreCoding.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'systemd-manager@hardpixel.eu', 'tailscale@joaophi.github.com', 'ControlBlurEffectOnLockScreen@pratap.fastmail.fm', 'reboottouefi@ubaygd.com', 'gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com', 'search-light@icedman.github.com', 'no-overview@fthx', 'gnome-kinit@bonzini.gnu.org', 'lan-ip-address@mrhuber.com', 'grand-theft-focus@zalckos.github.com']
+disabled-extensions=['native-window-placement@gnome-shell-extensions.gcampax.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com', 'fq@megh', 'blur-my-shell@aunetx']
+enabled-extensions=['drive-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-panel@jderose9.github.com', 'Vitals@CoreCoding.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'systemd-manager@hardpixel.eu', 'tailscale@joaophi.github.com', 'ControlBlurEffectOnLockScreen@pratap.fastmail.fm', 'reboottouefi@ubaygd.com', 'gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com', 'search-light@icedman.github.com', 'extension-list@tu.berry', 'no-overview@fthx', 'lan-ip-address@mrhuber.com', 'grand-theft-focus@zalckos.github.com', 'arcmenu@arcmenu.com', 'toggler@hedgie.tech', 'app-hider@lynith.dev', 'todo.txt@bart.libert.gmail.com', 'extgrid@neuromorph']
 favorite-apps=['org.gnome.Nautilus.desktop', 'firefox.desktop', 'kitty.desktop', 'code.desktop']
 last-selected-power-profile='performance'
 welcome-dialog-last-shown-version='45.1'
 
+[org/gnome/shell/extensions/arcmenu]
+menu-background-color='rgba(48,48,49,0.98)'
+menu-border-color='rgb(60,60,60)'
+menu-button-appearance='Icon'
+menu-foreground-color='rgb(223,223,223)'
+menu-item-active-bg-color='rgb(25,98,163)'
+menu-item-active-fg-color='rgb(255,255,255)'
+menu-item-hover-bg-color='rgb(21,83,158)'
+menu-item-hover-fg-color='rgb(255,255,255)'
+menu-separator-color='rgba(255,255,255,0.1)'
+prefs-visible-page=0
+search-entry-border-radius=(true, 25)
+
 [org/gnome/shell/extensions/dash-to-panel]
+animate-appicon-hover-animation-extent={'RIPPLE': 4, 'PLANK': 4, 'SIMPLE': 1}
 appicon-margin=8
 appicon-padding=4
 available-monitors=[0]
@@ -111,6 +133,9 @@ status-icon-padding=-1
 tray-padding=-1
 window-preview-title-position='TOP'
 
+[org/gnome/shell/extensions/extgrid]
+show-indicator=true
+
 [org/gnome/shell/extensions/user-theme]
 name='Catppuccin-Mocha-Compact-Blue-Dark'
 
@@ -120,9 +145,9 @@ locations=@av []
 [org/gnome/software]
 check-timestamp=int64 1705435634
 first-run=false
-install-timestamp=int64 1705435572
+install-timestamp=int64 1705440978
 security-timestamp=int64 1705435634258997
-update-notification-timestamp=int64 1705437535
+update-notification-timestamp=int64 1705441160
 
 [org/gnome/tweaks]
 show-extensions-notice=false

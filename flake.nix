@@ -246,6 +246,7 @@
         {
           system.stateVersion = "23.11";
           services.vscode-server.enable = true;
+          system.configurationRevision = inputs.nixpkgs.lib.mkIf (self ? rev) self.rev;
         }
       ];
 

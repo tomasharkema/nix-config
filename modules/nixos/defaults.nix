@@ -11,7 +11,6 @@
 in {
   nixpkgs.config.allowUnfree = true;
   hardware.enableAllFirmware = true;
-  # system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
 
   system.stateVersion = "23.11";
 

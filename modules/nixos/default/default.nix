@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   config = let
@@ -88,6 +89,10 @@
       networking.extraHosts = ''
         192.168.0.15 ipa.harkema.io
       '';
+      system.nixos.tags = ["with-default"];
+      # system.nixos.label = mkDefault (maybeEnv "NIXOS_LABEL"
+      #   (concatStringsSep "-" ((sort (x: y: x < y) config.system.nixos.tags)
+      #       ++ [(maybeEnv "NIXOS_LABEL_VERSION" config.system.nixos.version) self.rev])));\
 
       security.ipa = {
         # enable = true;

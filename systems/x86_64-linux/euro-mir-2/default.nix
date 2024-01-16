@@ -36,6 +36,7 @@
       game-mode.enable = true;
       quiet-boot.enable = true;
     };
+    services.fprintd.enable = true;
 
     services.resilio.enable = lib.mkForce false;
 

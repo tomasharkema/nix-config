@@ -51,6 +51,7 @@ in {
       filezilla
       sublime-merge
       remmina
+      xdg-utils
     ];
     programs.hyprland.enable = true;
 
