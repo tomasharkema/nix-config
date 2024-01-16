@@ -67,6 +67,7 @@
       binfmt.emulatedSystems = ["aarch64-linux"];
       # kernelPackages = pkgs.linuxPackages;
       # blacklistedKernelModules = ["i915"];
+      kernelParams = ["acpi_rev_override=1"];
     };
     # programs.mtr.enable = true;
     # programs.gnupg.agent = {

@@ -1,3 +1,5 @@
-{flake-checker, ...}: final: prev: {
-  flake-checker = flake-checker.packages.${prev.system}.default;
+{
+  # flake-checker,
+   ...}: final: prev: {
+  # flake-checker = flake-checker.packages.${prev.system}.default;
 }
