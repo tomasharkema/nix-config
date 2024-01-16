@@ -97,7 +97,7 @@ in {
       meteo
       transmission-remote-gtk
       github-desktop
-      telegram-desktop
+      # telegram-desktop
       gnome-menus
       gtk-engine-murrine
       plymouth
