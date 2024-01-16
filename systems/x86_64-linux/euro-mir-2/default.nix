@@ -40,7 +40,7 @@
         tpm.enable = true;
         secure-boot.enable = true;
         laptop.enable = true;
-        # nvidia.enable = true;
+        nvidia.enable = true;
       };
     };
 
@@ -49,8 +49,6 @@
       #   powerManagement.finegrained = true;
       # package = config.boot.kernelPackages.nvidiaPackages.production;
     };
-
-
 
     networking = {
       hostName = "euro-mir-2"; # Define your hostname.
