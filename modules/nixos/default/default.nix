@@ -81,9 +81,9 @@
         source ${config.age.secrets."cachix-activate".path}
       '';
 
-      # boot = {
-        # kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
-      # };
+      boot = {
+        kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+      };
 
       networking.extraHosts = ''
         192.168.0.15 ipa.harkema.io

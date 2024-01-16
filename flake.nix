@@ -94,7 +94,7 @@
     # };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/2d90d83018303f59e95ec07701625c64ea622e1a";
+      url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hydra-check = {
@@ -349,10 +349,10 @@
         # formatter = channels.nixpkgs.alejandra;
 
         # checks = with inputs; {
-          # nixpkgs-lint =
-          # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
+        # nixpkgs-lint =
+        # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
 
-          # lint = self.packages.${channels.nixpkgs.system}.run-checks;
+        # lint = self.packages.${channels.nixpkgs.system}.run-checks;
         # };
 
         # packages.nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
