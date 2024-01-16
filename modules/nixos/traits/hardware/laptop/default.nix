@@ -16,5 +16,7 @@ in {
   config = mkIf cfg.enable {
     powerManagement.enable = true;
     services.thermald.enable = true;
+
+    netdata.enable = mkForce false;
   };
 }
