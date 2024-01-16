@@ -33,7 +33,7 @@
       desktop.enable = true;
       gnome.enable = true;
       apps.steam.enable = true;
-      game-mode.enable = false;
+      game-mode.enable = true;
       quiet-boot.enable = true;
     };
 
