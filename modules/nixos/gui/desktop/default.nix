@@ -94,7 +94,7 @@ in {
       meteo
       transmission-remote-gtk
       github-desktop
-      telegram-desktop
+      # telegram-desktop
       # apache-directory-studio
     ];
 
