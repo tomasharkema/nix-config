@@ -30,11 +30,13 @@
     # apps.attic.enable = true;
     gui = {
       enable = true;
+      desktop.enable = true;
+      gnome.enable = true;
       apps.steam.enable = true;
       game-mode.enable = false;
       quiet-boot.enable = true;
     };
-    
+
     services.resilio.enable = lib.mkForce false;
 
     traits = {
