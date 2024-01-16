@@ -17,7 +17,7 @@
   ...
 }: {
   imports = with inputs; [
-    nixos-hardware.nixosModules.dell-xps-15-9560
+    nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
     ./hardware-configuration.nix
   ];
 
@@ -31,8 +31,8 @@
     gui = {
       enable = true;
       # apps.steam.enable = true;
-      # game-mode.enable = true;
-      # quiet-boot.enable = true;
+      game-mode.enable = false;
+      quiet-boot.enable = true;
     };
     services.resilio.enable = lib.mkForce false;
     traits = {
@@ -60,7 +60,7 @@
     services = {
       xserver.libinput.enable = true;
       # xserver.videoDrivers = ["nvidia" "intel"];
-      tcsd.enable = lib.mkForce false;
+      # tcsd.enable = false;
     };
 
     boot = {
@@ -69,7 +69,7 @@
       # blacklistedKernelModules = ["i915"];
       kernelParams = ["acpi_rev_override=1"];
     };
-    # programs.mtr.enable = true;
+    programs.mtr.enable = true;
     # programs.gnupg.agent = {
     #   enable = true;
     #   enableSSHSupport = true;
