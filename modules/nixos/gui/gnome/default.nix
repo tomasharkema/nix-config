@@ -66,8 +66,8 @@ in {
         # TODO: Set fonts within GNOME Tweaks for the time being
         defaultFonts = {
           monospace = ["JetBrainsMono Nerd Font Mono"];
-          sansSerif = ["Neue Haas Grotesk Display Pro Bold"];
-          serif = ["Neue Haas Grotesk Display Pro Bold"];
+          sansSerif = ["B612 Regular"];
+          serif = ["B612 Regular"];
         };
         hinting = {
           autohint = true;
@@ -76,12 +76,17 @@ in {
       };
       fonts = with pkgs; [
         noto-fonts
-        noto-fonts-cjk
+        noto-fonts-extra
         noto-fonts-emoji
-        # noto-fonts-extra
+        noto-fonts-cjk
+
         ubuntu_font_family
 
         pkgs.custom.neue-haas-grotesk
+
+        # helvetica
+        vegur # the official NixOS font
+        pkgs.custom.b612
       ];
     };
 

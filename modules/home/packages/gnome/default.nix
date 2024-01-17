@@ -45,10 +45,10 @@ with inputs.home-manager.lib.hm.gvariant; {
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
         gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
-        document-font-name = "Neue Haas Grotesk Display Pro Medium 11";
+        document-font-name = "B612 Regular 12";
         font-antialiasing = "greyscale";
         font-hinting = "full";
-        font-name = "Neue Haas Grotesk Display Pro Medium 11";
+        font-name = "B612 Regular 12";
       };
 
       # "org/gnome/desktop/notifications" = {
@@ -93,7 +93,7 @@ with inputs.home-manager.lib.hm.gvariant; {
       };
       "org/gnome/desktop/wm/preferences" = {
         button-layout = "appmenu:minimize,maximize,close";
-        titlebar-font = "Neue Haas Grotesk Display Pro Medium 11";
+        titlebar-font = "B612 Regular 11";
       };
       "org/gnome/nautilus/preferences" = {always-use-location-entry = true;};
       "org/gnome/shell/extensions/dash-to-panel" = {

@@ -15,8 +15,11 @@
     in {
       enable = true;
       font = {
-        package = pkgs.custom.neue-haas-grotesk;
-        name = "Neue Haas Grotesk Display Pro Medium 11";
+        package = pkgs.custom.b612;
+        name = "B612 Regular 12";
+
+        # package = pkgs.custom.neue-haas-grotesk;
+        # name = "B612 Regular 11";
       };
       theme = {
         name = "Catppuccin-Mocha-Compact-Blue-Dark";
