@@ -128,6 +128,10 @@
       #   (concatStringsSep "-" ((sort (x: y: x < y) config.system.nixos.tags)
       #       ++ [(maybeEnv "NIXOS_LABEL_VERSION" config.system.nixos.version) self.rev])));\
       security.pki.certificateFiles = [./ca.crt];
+      #networking.extraHosts = ''
+      #  192.168.0.15 ipa.harkema.io
+      #'';
+
       security.ipa = {
         enable = true;
         server = "ipa.harkema.io";
