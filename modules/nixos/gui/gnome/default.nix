@@ -32,26 +32,54 @@ in {
       chrome-gnome-shell.enable = true;
     };
     services.gnome3.chrome-gnome-shell.enable = true;
-
-    services.xserver.displayManager.lightdm.greeters.gtk = {
-      theme.name = "Catppuccin-Mocha-Compact-Blue-Dark";
-      theme.package = pkgs.catppuccin-gtk.override {
-        accents = ["blue"];
-        size = "compact";
-        tweaks = ["rimless" "black"];
-        variant = "mocha";
-      };
-      enable = true;
+    services.gnome = {
+      gnome-keyring.enable = true;
     };
-
     services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
     environment.systemPackages = with pkgs; [
       gnomeExtensions.appindicator
       gnomeExtensions.extension-list
       gnomeExtensions.dash-to-panel
+      gnomeExtensions.dash-to-dock
       gnomeExtensions.vitals
       gnomeExtensions.appindicator
+
+      # gnomeExtensions.git
+      # gnomeExtensions.tado
+      # gnomeExtensions.ping
+      gnomeExtensions.sermon
+      gnomeExtensions.todotxt
+      gnomeExtensions.rebootto
+      gnomeExtensions.ip-finder
+      gnomeExtensions.app-hider
+      # gnomeExtensions.force-quit
+      gnomeExtensions.no-overview
+      gnomeExtensions.tailscale-qs
+      gnomeExtensions.spotify-tray
+      # gnomeExtensions.reboottouefi
+      # gnomeExtensions.noannoyance-2
+      gnomeExtensions.blur-my-shell
+      # gnomeExtensions.systemd-status
+      gnomeExtensions.systemd-manager
+      gnomeExtensions.messaging-menu
+      gnomeExtensions.lan-ip-address
+      gnomeExtensions.kerberos-login
+      gnomeExtensions.github-actions
+      gnomeExtensions.gnome-clipboard
+      # gnomeExtensions.extensions-sync
+      gnomeExtensions.fuzzy-app-search
+      # gnomeExtensions.ssh-quick-connect
+      # gnomeExtensions.desktop-icons-neo
+      # gnomeExtensions.system76-scheduler
+      # gnomeExtensions.denon-avr-controler
+      gnomeExtensions.removable-drive-menu
+      gnomeExtensions.gpu-profile-selector
+      gnomeExtensions.server-status-indicator
+      gnomeExtensions.remmina-search-provider
+      # gnomeExtensions.home-assistant-extension
+      # gnomeExtensions.ssh-search-provider-reborn
+
       gnome.gnome-tweaks
       gnome.gnome-disk-utility
       gnome.gnome-themes-extra
@@ -64,7 +92,7 @@ in {
       remmina
       xdg-utils
     ];
-    programs.hyprland.enable = true;
+    # programs.hyprland.enable = true;
 
     programs.dconf.enable = true;
 
@@ -90,7 +118,7 @@ in {
         noto-fonts-extra
         noto-fonts-emoji
         noto-fonts-cjk
-
+        nerdfonts
         ubuntu_font_family
 
         pkgs.custom.neue-haas-grotesk

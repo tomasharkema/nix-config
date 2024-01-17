@@ -91,13 +91,18 @@ in {
       gnome.gnome-settings-daemon
       gnome.gnome-shell-extensions
       gnome.gnome-tweaks
+      gnome.gnome-nettool
+      gnome.gnome-keyring
+      gnome.gnome-control-center
+      gnome.dconf-editor
+
       _1password
       _1password-gui
       handbrake
       meteo
       transmission-remote-gtk
       github-desktop
-      # telegram-desktop
+      telegram-desktop
       gnome-menus
       gtk-engine-murrine
       plymouth
