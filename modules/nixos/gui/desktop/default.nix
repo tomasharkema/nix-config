@@ -97,6 +97,7 @@ in {
       gnome.dconf-editor
 
       gnome-menus
+      xdg-utils
 
       _1password
       _1password-gui

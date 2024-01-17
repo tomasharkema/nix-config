@@ -17,6 +17,8 @@ in {
   };
 
   config = mkIf enable {
+    xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    xdg.portal.config.common.default = "gtk";
     services.flatpak = {
       enable = true;
       remotes = [
@@ -32,8 +34,14 @@ in {
         "com.moonlight_stream.Moonlight"
         "org.cockpit_project.CockpitClient"
         "com.discordapp.Discord"
+        "com.github.tchx84.Flatseal"
+        "io.github.vikdevelop.SaveDesktop"
+        "tv.plex.PlexDesktop"
+        "org.stellarium.Stellarium"
+        "org.gnome.Boxes"
+        "com.ranfdev.Notify"
       ];
-      update.onActivation = true;
+      # update.onActivation = true;
       update.auto = {
         enable = true;
         onCalendar = "weekly"; # Default value
