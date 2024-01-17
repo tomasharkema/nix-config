@@ -5,15 +5,15 @@
   ...
 }: {
   config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
-    services.kbfs = {
-      enable = true;
-    };
+    # services.kbfs = {
+    #   enable = true;
+    # };
 
-    services.keybase = {
-      enable = true;
-      #   # package = inputs.unstable.legacyPackages."${pkgs.system}".keybase;
-    };
-    home.packages = [pkgs.keybase-gui];
+    # services.keybase = {
+    #   enable = true;
+    #   #   # package = inputs.unstable.legacyPackages."${pkgs.system}".keybase;
+    # };
+    # home.packages = [pkgs.keybase-gui];
     gtk = let
       catt = pkgs.fetchFromGitHub {
         owner = "Fausto-Korpsvart";
