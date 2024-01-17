@@ -7,8 +7,6 @@
   config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
     services.kbfs = {
       enable = true;
-      mountPoint = "/run/user/$UID/keybase/kbfs";
-      extraFlags = ["-label %u"];
     };
 
     services.keybase = {
