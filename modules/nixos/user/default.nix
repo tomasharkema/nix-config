@@ -61,13 +61,13 @@ in {
     programs.zsh = {enable = true;};
 
     users.mutableUsers = false;
-
+    programs.fuse.userAllowOther = true;
     users.users.${config.user.name} = {
       shell = pkgs.zsh;
       isNormalUser = true;
       description = "tomas";
       group = "${config.user.name}";
-      extraGroups = ["networkmanager" "wheel" "rslsync" "users"];
+      extraGroups = ["networkmanager" "wheel" "rslsync" "users" "fuse"];
       hashedPassword = "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
       openssh.authorizedKeys.keys = keys;
     };

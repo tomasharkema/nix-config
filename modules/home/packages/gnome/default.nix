@@ -73,7 +73,7 @@ with inputs.home-manager.lib.hm.gvariant; {
         "native-window-placement@gnome-shell-extensions.gcampax.github.com"
         "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
       ];
-      enabled-extensions = [
+      "org/gnome/shell".enabled-extensions = [
         "app-hider@lynith.dev"
         "blur-my-shell@aunetx"
         "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
