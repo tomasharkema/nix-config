@@ -11,9 +11,7 @@ with lib; {
 
     services.kbfs = {
       enable = true;
-      enableRedirector = true;
-      mountPoint = "/run/user/1002/keybase/kbfs";
-      extraFlags = ["-label tomas"];
+      # enableRedirector = true;
     };
     services.keybase = {
       enable = true;
