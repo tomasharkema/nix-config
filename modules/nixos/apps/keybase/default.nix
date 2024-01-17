@@ -8,7 +8,7 @@
 with lib; {
   config = mkIf (!config.traits.slim.enable) {
     services.kbfs = {
-      # enable = true;
+      enable = true;
       enableRedirector = true;
     };
     services.keybase = {
