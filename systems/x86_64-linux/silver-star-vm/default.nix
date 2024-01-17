@@ -45,7 +45,7 @@
           autoStart = true;
           ports = ["80:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
           hostname = "ipa.harkema.io";
-          extraOptions = ["--sysctl" "net.ipv6.conf.all.disable_ipv6=0"];
+          extraOptions = ["--sysctl" "net.ipv6.conf.all.disable_ipv6=0" "-e" "SECRET=Secret123" "-e" "PASSWORD=Secret123"];
           cmd = ["ipa-server-install" "-U" "-r" "HARKEMA.IO"];
           volumes = [
             "/var/lib/freeipa:/data:Z"
