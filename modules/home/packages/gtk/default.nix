@@ -14,7 +14,7 @@
       enable = true;
       #   # package = inputs.unstable.legacyPackages."${pkgs.system}".keybase;
     };
-
+    home.packages = [pkgs.keybase-gui];
     gtk = let
       catt = pkgs.fetchFromGitHub {
         owner = "Fausto-Korpsvart";

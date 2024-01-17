@@ -129,6 +129,7 @@ in {
         # helvetica
         vegur # the official NixOS font
         pkgs.custom.b612
+        pkgs.custom.san-francisco
       ];
     };
 
