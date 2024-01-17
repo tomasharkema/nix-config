@@ -57,42 +57,6 @@ with inputs.home-manager.lib.hm.gvariant; {
         font-antialiasing = "greyscale";
         font-hinting = "full";
         font-name = "B612 Regular 12";
-        enable-hot-corners = false;
-      };
-
-      "org/gnome/shell/extensions/TodoTxt" = {
-        donetxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt/done.txt";
-        todotxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt/todo.txt";
-      };
-
-      "org/gnome/gnome-session" = {
-        "auto-save-session" = true;
-      };
-
-      "/org/gnome/desktop/background" = {
-        # "picture-uri" = "/run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
-
-        # "picture-uri-dark" = "/run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
-      };
-
-      "org/gnome/shell/extensions/dash-to-dock" = {
-        always-center-icons = false;
-        apply-custom-theme = false;
-        background-opacity = 0.8;
-        custom-theme-shrink = true;
-        dash-max-icon-size = 48;
-        dock-fixed = true;
-        dock-position = "LEFT";
-        extend-height = true;
-        height-fraction = 0.9;
-        hide-tooltip = false;
-        intellihide-mode = "FOCUS_APPLICATION_WINDOWS";
-        preferred-monitor = -2;
-        preferred-monitor-by-connector = "eDP-1";
-        preview-size-scale = 0.0;
-        show-apps-at-top = true;
-        show-mounts-network = true;
-        show-trash = false;
       };
 
       # "org/gnome/desktop/notifications" = {

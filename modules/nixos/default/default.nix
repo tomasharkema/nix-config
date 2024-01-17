@@ -128,9 +128,9 @@
       #   (concatStringsSep "-" ((sort (x: y: x < y) config.system.nixos.tags)
       #       ++ [(maybeEnv "NIXOS_LABEL_VERSION" config.system.nixos.version) self.rev])));\
       security.pki.certificateFiles = [./ca.crt];
-      #networking.extraHosts = ''
-      #  192.168.0.15 ipa.harkema.io
-      #'';
+      networking.extraHosts = ''
+       192.168.0.15 ipa.harkema.io
+      '';
 
       security.ipa = {
         enable = true;
@@ -140,12 +140,15 @@
         basedn = "dc=harkema,dc=io";
         certificate = pkgs.fetchurl {
           url = "https://ipa.harkema.io/ipa/config/ca.crt";
-          sha256 = "0c69vkc45v9rga5x349l4znykcvgwngawx0axrhqq4jj3san7lb8";
+          sha256 = "";
         };
         dyndns.enable = true; # TODO: enable this??
       };
       # documentation.nixos.enable = false;
       programs.mtr.enable = true;
+      # services.rsyslogd = {
+      #   enable = true;
+
       # services.rsyslogd = {
       #   enable = true;
 
