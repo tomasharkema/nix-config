@@ -127,6 +127,9 @@
     # };
     nil.url = "github:oxalica/nil";
     devenv.url = "github:cachix/devenv";
+
+    dream2nix.url = "github:nix-community/dream2nix";
+    # nixpkgs.follows = "dream2nix/nixpkgs";
   };
 
   nixConfig = {

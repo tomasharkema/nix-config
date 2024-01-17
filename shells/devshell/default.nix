@@ -121,6 +121,7 @@ in
           zsh
           cachix-deploy
           cachix-reploy-pin
+          nix-prefetch-scripts
         ];
       }
     ];
