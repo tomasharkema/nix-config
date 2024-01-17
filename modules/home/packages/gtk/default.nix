@@ -25,7 +25,7 @@
       enable = true;
       font = {
         package = pkgs.custom.b612;
-        name = "B612 Regular 12";
+        name = "B612 Regular 11";
 
         # package = pkgs.custom.neue-haas-grotesk;
         # name = "B612 Regular 12";

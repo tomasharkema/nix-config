@@ -17,7 +17,7 @@ in {
   };
 
   config = mkIf enable {
-    # xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
     xdg.portal.config.common.default = "gtk";
     services.flatpak = {
       enable = true;
@@ -34,17 +34,11 @@ in {
         "org.cockpit_project.CockpitClient"
         "com.discordapp.Discord"
         "com.github.tchx84.Flatseal"
-        # "io.github.vikdevelop.SaveDesktop"
+        "io.github.vikdevelop.SaveDesktop"
         "tv.plex.PlexDesktop"
         "org.stellarium.Stellarium"
         "org.gnome.Boxes"
         "com.ranfdev.Notify"
-        "com.getpostman.Postman"
-        "org.gnome.meld"
-        "io.podman_desktop.PodmanDesktop"
-        "com.discordapp.Discord"
-        "com.logseq.Logseq"
-        "md.obsidian.Obsidian"
       ];
       # update.onActivation = true;
       update.auto = {
