@@ -19,6 +19,6 @@ in {
 
     netdata.enable = mkForce false;
 
-    services.cockpit.enable = mkForce false;
+    # services.cockpit.enable = mkForce false;
   };
 }

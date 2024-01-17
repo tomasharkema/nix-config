@@ -88,6 +88,7 @@ in
           agenix.packages.${system}.default
           hydra-check.packages.${system}.default
           nil.packages.${system}.default
+          nix-output-monitor
           dconf2nix
           # pkgs.custom.rundesk
           reencrypt

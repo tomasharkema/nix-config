@@ -83,7 +83,7 @@
       '';
 
       boot = {
-        kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+        # kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
       };
 
       system.nixos.tags = ["with-default"];
@@ -104,7 +104,7 @@
         dyndns.enable = true; # TODO: enable this??
       };
       documentation.nixos.enable = false;
-
+      programs.mtr.enable = true;
       # services.rsyslogd = {
       #   enable = true;
 

@@ -96,6 +96,8 @@ in {
       gnome.gnome-control-center
       gnome.dconf-editor
 
+      gnome-menus
+
       _1password
       _1password-gui
       handbrake
