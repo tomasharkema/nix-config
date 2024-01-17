@@ -44,7 +44,6 @@
         driver = pkgs.libfprint-2-tod1-goodix;
       };
     };
-    services.resilio.enable = lib.mkForce false;
 
     traits = {
       hardware = {
