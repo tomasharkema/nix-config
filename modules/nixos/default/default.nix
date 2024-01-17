@@ -120,7 +120,7 @@
       };
 
       boot = {
-        # kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+        kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
       };
 
       system.nixos.tags = ["with-default"];
