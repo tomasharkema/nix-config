@@ -76,6 +76,29 @@
 
       services.avahi.extraServiceFiles = {
         ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
+        sftp-ssh = "${pkgs.avahi}/etc/avahi/services/sftp-ssh.service";
+        vnc = ''
+          <?xml version="1.0" standalone='no'?>
+          <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+          <service-group>
+            <name replace-wildcards="yes">%h</name>
+            <service>
+              <type>_rfb._tcp</type>
+              <port>5901</port>
+            </service>
+          </service-group>
+        '';
+        smb = ''
+          <?xml version="1.0" standalone='no'?>
+           <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+           <service-group>
+             <name replace-wildcards="yes">%h</name>
+             <service>
+               <type>_smb._tcp</type>
+               <port>445</port>
+             </service>
+           </service-group>
+        '';
       };
       services.udev = {enable = lib.mkDefault true;};
       programs.zsh.shellInit = ''
