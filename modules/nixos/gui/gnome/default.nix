@@ -91,6 +91,9 @@ in {
       sublime-merge
       remmina
       xdg-utils
+      systemdgenie
+
+      spotifyd
     ];
     # programs.hyprland.enable = true;
 
