@@ -11,14 +11,14 @@ with inputs.home-manager.lib.hm.gvariant; {
   config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
     dconf.enable = true;
     dconf.settings = {
-      "org/gnome/desktop/app-folders" = {
-        folder-children = ["Utilities" "YaST" "Pardus"];
-      };
-      "org/gnome/desktop/app-folders/folders/Pardus" = {
-        categories = ["X-Pardus-Apps"];
-        name = "X-Pardus-Apps.directory";
-        translate = true;
-      };
+      # "org/gnome/desktop/app-folders" = {
+      #   folder-children = ["Utilities" "YaST" "Pardus"];
+      # };
+      # "org/gnome/desktop/app-folders/folders/Pardus" = {
+      #   categories = ["X-Pardus-Apps"];
+      #   name = "X-Pardus-Apps.directory";
+      #   translate = true;
+      # };
       # "org/gnome/desktop/app-folders/folders/Utilities" = {
       #   apps = [
       #     "gnome-abrt.desktop"
@@ -68,29 +68,39 @@ with inputs.home-manager.lib.hm.gvariant; {
       #   migrated-gtk-settings = true;
       #   search-filter-time-type = "last_modified";
       # };
-      "org/gnome/shell" = {
-        disable-user-extensions = false;
-        disabled-extensions = [
-          "native-window-placement@gnome-shell-extensions.gcampax.github.com"
-          "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
-        ];
-        enabled-extensions = [
-          "drive-menu@gnome-shell-extensions.gcampax.github.com"
-          "appindicatorsupport@rgcjonas.gmail.com"
-          # "places-menu@gnome-shell-extensions.gcampax.github.com"
-          "dash-to-panel@jderose9.github.com"
-          "Vitals@CoreCoding.com"
-          "user-theme@gnome-shell-extensions.gcampax.github.com"
-          "systemd-manager@hardpixel.eu"
-          "tailscale@joaophi.github.com"
-          "ControlBlurEffectOnLockScreen@pratap.fastmail.fm"
-          "reboottouefi@ubaygd.com"
-          "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
-          "search-light@icedman.github.com"
-        ];
-        favorite-apps = ["org.gnome.Nautilus.desktop" "firefox.desktop" "kitty.desktop" "code.desktop"];
-        welcome-dialog-last-shown-version = "45.1";
-      };
+      "org/gnome/shell".disable-user-extensions = false;
+      "org/gnome/shell".disabled-extensions = [
+        "native-window-placement@gnome-shell-extensions.gcampax.github.com"
+        "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
+      ];
+      enabled-extensions = [
+        "app-hider@lynith.dev"
+        "blur-my-shell@aunetx"
+        "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
+        "grand-theft-focus@zalckos.github.com"
+        "gsconnect@andyholmes.github.io"
+        "gnome-kinit@bonzini.gnu.org"
+        "lan-ip-address@mrhuber.com"
+        "no-overview@fthx"
+        "reboottouefi@ubaygd.com"
+        "systemd-manager@hardpixel.eu"
+        "tailscale@joaophi.github.com"
+        "todo.txt@bart.libert.gmail.com"
+        "toggler@hedgie.tech"
+        "appindicatorsupport@rgcjonas.gmail.com"
+        "extension-list@tu.berry"
+        "github-actions@arononak.github.io"
+        "GPU_profile_selector@lorenzo9904.gmail.com"
+        "messagingmenu@lauinger-clan.de"
+        "remmina-search-provider@alexmurray.github.com"
+        "drive-menu@gnome-shell-extensions.gcampax.github.com"
+        "serverstatus@footeware.ca"
+        "sp-tray@sp-tray.esenliyim.github.com"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
+        "dash-to-dock@micxgx.gmail.com"
+      ];
+      "org/gnome/shell".favorite-apps = ["org.gnome.Nautilus.desktop" "firefox.desktop" "kitty.desktop" "code.desktop"];
+
       "org/gnome/desktop/wm/preferences" = {
         button-layout = "appmenu:minimize,maximize,close";
         titlebar-font = "B612 Regular 11";

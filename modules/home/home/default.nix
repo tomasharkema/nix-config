@@ -25,25 +25,7 @@ in {
       # ++
       packages = with pkgs; [
         b612
-        (
-          nerdfonts.override {
-            fonts = [
-              "FiraCode"
-              "FiraMono"
-              "DroidSansMono"
-              "3270"
-              "Agave"
-              "BigBlueTerminal"
-              # "OpenDyslectic"
-              "ComicShannsMono"
-              "JetBrainsMono"
-              # "B612Mono"
-              # "0xProto"
-              # "LeagueMono"
-              # "CodeNewRomanNerdFont"
-            ];
-          }
-        )
+
         jq
         # fig
         # inputs.nix-gui.packages.${system}.nix-gui
