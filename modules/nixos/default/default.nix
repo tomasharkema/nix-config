@@ -132,7 +132,7 @@
       networking.extraHosts = ''
        192.168.0.15 ipa.harkema.io
       '';
-
+      
       security.ipa = {
         enable = true;
         server = "ipa.harkema.io";
@@ -150,13 +150,15 @@
       # services.rsyslogd = {
       #   enable = true;
 
+      # services.rsyslogd = {
+      #   enable = true;
+
       #   extraConfig = ''
       #     $DefaultNetstreamDriverCAFile ${papertrail-pem}
       #     $ActionSendStreamDriver gtls
       #     $ActionSendStreamDriverMode 1
       #     $ActionSendStreamDriverAuthMode x509/name
       #     $ActionSendStreamDriverPermittedPeer *.papertrailapp.com
-
       #     *.*    @@logs2.papertrailapp.com:42640
       #   '';
       # };

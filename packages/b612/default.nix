@@ -15,6 +15,11 @@ stdenv.mkDerivation rec {
     hash = "sha256-wR8/mWp9fj0Zyhf0b7IdKik9f11qngcvxbCpMbFTMUc=";
   };
 
+  nativeBuildInputs = [pkgs.nerd-font-patcher];
+
+  # buildPhase = ''
+  #   # find -name \*.ttf -o -name \*.otf -exec nerd-font-patcher -out nf -c {} \;
+  # '';
   buildPhase = ":";
 
   installPhase = ''
