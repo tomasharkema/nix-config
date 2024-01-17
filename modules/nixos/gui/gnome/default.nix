@@ -33,6 +33,17 @@ in {
     };
     services.gnome3.chrome-gnome-shell.enable = true;
 
+    services.xserver.displayManager.lightdm.greeters.gtk = {
+      theme.name = "Catppuccin-Mocha-Compact-Blue-Dark";
+      theme.package = pkgs.catppuccin-gtk.override {
+        accents = ["blue"];
+        size = "compact";
+        tweaks = ["rimless" "black"];
+        variant = "mocha";
+      };
+      enable = true;
+    };
+
     services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
     environment.systemPackages = with pkgs; [
