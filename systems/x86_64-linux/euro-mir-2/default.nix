@@ -36,8 +36,14 @@
       game-mode.enable = true;
       quiet-boot.enable = true;
     };
-    services.fprintd.enable = true;
-
+    services.fprintd = {
+      enable = true;
+      package = pkgs.fprintd-tod;
+      tod = {
+        enable = true;
+        driver = pkgs.libfprint-2-tod1-goodix;
+      };
+    };
     services.resilio.enable = lib.mkForce false;
 
     traits = {
