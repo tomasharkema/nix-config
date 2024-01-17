@@ -5,6 +5,16 @@
   ...
 }: {
   config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
+    services.kbfs = {
+      enable = true;
+      #   # package = inputs.unstable.legacyPackages."${pkgs.system}".kbfs;
+      #   # enableRedirector = true;
+    };
+    services.keybase = {
+      enable = true;
+      #   # package = inputs.unstable.legacyPackages."${pkgs.system}".keybase;
+    };
+
     gtk = let
       catt = pkgs.fetchFromGitHub {
         owner = "Fausto-Korpsvart";
