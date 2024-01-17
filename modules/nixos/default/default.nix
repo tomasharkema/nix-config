@@ -90,36 +90,33 @@
       # system.nixos.label = mkDefault (maybeEnv "NIXOS_LABEL"
       #   (concatStringsSep "-" ((sort (x: y: x < y) config.system.nixos.tags)
       #       ++ [(maybeEnv "NIXOS_LABEL_VERSION" config.system.nixos.version) self.rev])));\
-      #networking.extraHosts = ''
-      #  192.168.0.15 ipa.harkema.io
-      #'';
-
+      security.pki.certificateFiles = [./ca.crt];
       security.ipa = {
-        # enable = true;
+        enable = true;
         server = "ipa.harkema.io";
         domain = "harkema.io";
         realm = "HARKEMA.IO";
         basedn = "dc=harkema,dc=io";
         certificate = pkgs.fetchurl {
           url = "https://ipa.harkema.io/ipa/config/ca.crt";
-          sha256 = "sha256-wEtXc5torI45yz0JMfwr/Pbe3R7trx3IzJFwrHOBc5A=";
+          sha256 = "";
         };
         dyndns.enable = true; # TODO: enable this??
       };
       documentation.nixos.enable = false;
 
-      services.rsyslogd = {
-        enable = true;
+      # services.rsyslogd = {
+      #   enable = true;
 
-        extraConfig = ''
-          $DefaultNetstreamDriverCAFile ${papertrail-pem}
-          $ActionSendStreamDriver gtls
-          $ActionSendStreamDriverMode 1
-          $ActionSendStreamDriverAuthMode x509/name
-          $ActionSendStreamDriverPermittedPeer *.papertrailapp.com
+      #   extraConfig = ''
+      #     $DefaultNetstreamDriverCAFile ${papertrail-pem}
+      #     $ActionSendStreamDriver gtls
+      #     $ActionSendStreamDriverMode 1
+      #     $ActionSendStreamDriverAuthMode x509/name
+      #     $ActionSendStreamDriverPermittedPeer *.papertrailapp.com
 
-          *.*    @@logs2.papertrailapp.com:42640
-        '';
-      };
+      #     *.*    @@logs2.papertrailapp.com:42640
+      #   '';
+      # };
     };
 }
