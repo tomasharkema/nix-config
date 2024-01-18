@@ -109,7 +109,7 @@ in {
 
     networking.firewall = {
       allowedUDPPorts = [33677];
-      allowedTDPPorts = [33677];
+      allowedTCPPorts = [33677];
     };
 
     programs.dconf.enable = true;
