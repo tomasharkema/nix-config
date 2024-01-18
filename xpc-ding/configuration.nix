@@ -1,15 +1,17 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
     <nixos-hardware/dell/xps/15-9560/nvidia>
-      ./hardware-configuration.nix
-    ];
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -51,13 +53,15 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   boot.kernelParams = ["quiet"];
-boot.initrd.systemd.enable = lib.mkDefault true;
-  boot.plymouth = {enable=true;
-  
- # theme = "hexagon_dots";
- # themePackages = [ 
- #   pkgs.adi1090x-plymouth-themes
- #   ];
+  boot.initrd.systemd.enable = lib.mkDefault true;
+  boot.plymouth = {
+    enable = true;
+
+    # theme = "hexagon_dots";
+    # themePackages = [
+    #   pkgs.adi1090x-plymouth-themes
+    #   ];
+    font = "${pkgs.custom.b612}/share/fonts/B612-Regular.ttf";
   };
 
   # Configure keymap in X11
@@ -93,10 +97,10 @@ boot.initrd.systemd.enable = lib.mkDefault true;
   users.users.tomas = {
     isNormalUser = true;
     description = "Tomas";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       firefox
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -110,10 +114,16 @@ boot.initrd.systemd.enable = lib.mkDefault true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  git curl   wget vscodium gnome-menus gtk-engine-murrine plymouth
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    git
+    curl
+    wget
+    vscodium
+    gnome-menus
+    gtk-engine-murrine
+    plymouth
 
-#adi1090x-plymouth-themes
+    #adi1090x-plymouth-themes
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -142,5 +152,4 @@ boot.initrd.systemd.enable = lib.mkDefault true;
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }
