@@ -41,12 +41,29 @@
       package = pkgs.fprintd-tod;
       tod = {
         enable = true;
-        driver = pkgs.libfprint-2-tod1-goodix;
+        driver = pkgs.libfprint-2-tod1-goodix-550a; # pkgs.libfprint-2-tod1-goodix;
       };
     };
 
     environment.systemPackages = [pkgs.libfprint-2-tod1-goodix pkgs.libfprint-2-tod1-goodix-550a];
 
+    # virtualisation.virtualbox.host.enableWebService = true;
+    virtualisation.virtualbox.host.enable = true;
+    virtualisation = {
+      podman = {
+        enable = true;
+
+        # Create a `docker` alias for podman, to use it as a drop-in replacement
+        dockerCompat = true;
+
+        # Required for containers under podman-compose to be able to talk to each other.
+        defaultNetwork.settings.dns_enabled = true;
+
+        autoPrune.enable = true;
+        # networkSocket.enable = true;
+      };
+      oci-containers.backend = "podman";
+    };
     traits = {
       hardware = {
         tpm.enable = true;
