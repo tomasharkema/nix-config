@@ -43,7 +43,6 @@ in {
       gnomeExtensions.dash-to-panel
       gnomeExtensions.dash-to-dock
       gnomeExtensions.vitals
-      gnomeExtensions.appindicator
 
       # gnomeExtensions.git
       # gnomeExtensions.tado
@@ -53,7 +52,7 @@ in {
       gnomeExtensions.rebootto
       gnomeExtensions.ip-finder
       gnomeExtensions.app-hider
-      # gnomeExtensions.force-quit
+
       gnomeExtensions.no-overview
       gnomeExtensions.tailscale-qs
       gnomeExtensions.spotify-tray
@@ -61,29 +60,28 @@ in {
       # gnomeExtensions.noannoyance-2
       gnomeExtensions.blur-my-shell
       # gnomeExtensions.systemd-status
-      gnomeExtensions.systemd-manager
+      # gnomeExtensions.systemd-manager
       gnomeExtensions.messaging-menu
       gnomeExtensions.lan-ip-address
       gnomeExtensions.kerberos-login
       gnomeExtensions.github-actions
-      gnomeExtensions.gnome-clipboard
-      # gnomeExtensions.extensions-sync
+
       gnomeExtensions.fuzzy-app-search
-      # gnomeExtensions.ssh-quick-connect
-      # gnomeExtensions.desktop-icons-neo
-      # gnomeExtensions.system76-scheduler
-      # gnomeExtensions.denon-avr-controler
+
       gnomeExtensions.removable-drive-menu
       gnomeExtensions.gpu-profile-selector
       gnomeExtensions.server-status-indicator
       gnomeExtensions.remmina-search-provider
-      # gnomeExtensions.home-assistant-extension
-      # gnomeExtensions.ssh-search-provider-reborn
-      clutter
+
       gnome.gnome-tweaks
       gnome.gnome-disk-utility
       gnome.gnome-themes-extra
       gnome-firmware
+      gnome-menus
+
+      clutter
+      xdgmenumaker
+
       gjs
       font-manager
       gamehub
@@ -91,7 +89,7 @@ in {
       sublime-merge
       remmina
       xdg-utils
-      systemdgenie
+      # systemdgenie
 
       spotifyd
     ];
