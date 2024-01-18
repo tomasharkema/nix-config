@@ -11,7 +11,8 @@
       file = ./atuin.age;
       owner = "tomas";
       group = "tomas";
-      mode = "744";
+      mode = "644";
+      # symlink = false;
     };
     age.secrets.attic-key = {
       file = ./attic-key.age;
@@ -63,26 +64,20 @@
       file = ./cachix-activate.age;
       mode = "644";
     };
-    age.secrets."otp" = {
-      file = ./otp.age;
-      mode = "644";
-      # path = "/home/tomas/.google_authenticator";
-      # owner = "tomas";
-      # group = "tomas";
-    };
+    # age.secrets."otp" = {
+    #   file = ./otp.age;
+    #   mode = "644";
+    #   # path = "/home/tomas/.google_authenticator";
+    #   # owner = "tomas";
+    #   # group = "tomas";
+    # };
     age.secrets."healthcheck" = {
       file = ./healthcheck.age;
-      mode = "744";
-      # path = "/home/tomas/.google_authenticator";
-      # owner = "tomas";
-      # group = "tomas";
+      mode = "644";
     };
     age.secrets."op" = {
       file = ./op.age;
-      mode = "744";
-      # path = "/home/tomas/.google_authenticator";
-      # owner = "tomas";
-      # group = "tomas";
+      mode = "644";
     };
   };
 }
