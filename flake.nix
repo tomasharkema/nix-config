@@ -236,7 +236,7 @@
         # snowfall-flake.overlays."package/flake"
       ];
 
-      system.modules.darwin = with inputs; [agenix.darwinModules.default];
+      # system.modules.darwin = with inputs; [agenix.darwinModules.default];
 
       systems.modules.nixos = with inputs; [
         # impermanence.nixosModule
@@ -255,9 +255,9 @@
         }
       ];
 
-      homes.modules = with inputs; [
-        # agenix.homeManagerModules.default
-      ];
+      # homes.modules = with inputs; [
+      #   agenix.homeManagerModules.default
+      # ];
 
       deploy = lib.mkDeploy {
         inherit (inputs) self;

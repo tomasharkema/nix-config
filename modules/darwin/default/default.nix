@@ -1,7 +1,27 @@
-{pkgs, ...}: {
-  imports = [../../nixos/secrets];
+{
+  inputs,
+  pkgs,
+  config,
+  ...
+}: {
+  imports = [
+    inputs.agenix.darwinModules.default
+    # ../../nixos/secrets
+  ];
 
   config = {
+    age.identityPaths = [
+      # "/etc/ssh/ssh_host_ed25519_key"
+      "/Users/tomas/.ssh/id_ed25519"
+    ];
+    age.secrets.atuin = {
+      file = ../../../secrets/atuin.age;
+      # owner = "tomas";
+      # group = "tomas";
+      mode = "644";
+      # symlink = false;
+    };
+
     services.nix-daemon.enable = true;
 
     system.stateVersion = 4;
@@ -33,6 +53,7 @@
       shellInit = ''
         export OP_PLUGIN_ALIASES_SOURCED=1
         alias gh="op plugin run -- gh"
+        cat "${config.age.secrets.atuin.path}"
       '';
     };
 

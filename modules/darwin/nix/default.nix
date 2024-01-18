@@ -12,7 +12,7 @@ with lib.custom; let
   cfg = config.custom.nix;
 in {
   imports = [
-    inputs.agenix.darwinModules.default
+    # inputs.agenix.darwinModules.default
   ];
 
   options = {
