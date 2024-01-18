@@ -22,6 +22,7 @@
   ];
 
   config = {
+
     disks.btrfs = {
       enable = true;
       main = "/dev/nvme0n1";
@@ -30,7 +31,9 @@
     # apps.attic.enable = true;
     gui = {
       enable = true;
-      desktop.enable = true;
+      desktop = {
+        enable = true;
+      };
       gnome.enable = true;
       apps.steam.enable = true;
       game-mode.enable = true;
