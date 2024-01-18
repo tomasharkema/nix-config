@@ -285,16 +285,16 @@
       #     deploy-lib.deployChecks inputs.self.deploy)
       #   inputs.deploy-rs.lib;
 
-      # images = with inputs; {
-      #   baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
-      #   pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
-      #   # arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
+      images = with inputs; {
+        baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
+        pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
+        # arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
 
-      #   euro-mir-vm = self.nixosConfigurations.euro-mir-vm.config.system.build.isoImage;
+        euro-mir-vm = self.nixosConfigurations.euro-mir-vm.config.system.build.isoImage;
 
-      #   # "blue-fire" = self.nixosConfigurations."blue-fire".config.formats.install-iso;
-      #   # "blue-fire-slim" = self.nixosConfigurations."blue-fire-slim".config.formats.install-iso;
-      # };
+        # "blue-fire" = self.nixosConfigurations."blue-fire".config.formats.install-iso;
+        # "blue-fire-slim" = self.nixosConfigurations."blue-fire-slim".config.formats.install-iso;
+      };
 
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};
 
