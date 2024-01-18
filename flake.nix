@@ -236,6 +236,8 @@
         # snowfall-flake.overlays."package/flake"
       ];
 
+      system.modules.darwin = with inputs; [agenix.darwinModules.default];
+
       systems.modules.nixos = with inputs; [
         # impermanence.nixosModule
         disko.nixosModules.default

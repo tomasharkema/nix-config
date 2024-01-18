@@ -9,22 +9,7 @@
     };
 
     fonts = {
-      # enableDefaultFonts = true;
       fontDir.enable = true;
-      # fontconfig = {
-      #   antialias = true;
-      #   cache32Bit = true;
-      #   # TODO: Set fonts within GNOME Tweaks for the time being
-      #   defaultFonts = {
-      #     monospace = ["JetBrainsMono Nerd Font Mono"];
-      #     sansSerif = ["B612 Regular"];
-      #     serif = ["B612 Regular"];
-      #   };
-      #   hinting = {
-      #     autohint = true;
-      #     enable = true;
-      #   };
-      # };
       fonts = with pkgs; [
         noto-fonts
         noto-fonts-extra

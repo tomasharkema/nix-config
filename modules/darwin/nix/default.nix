@@ -11,6 +11,10 @@ with lib;
 with lib.custom; let
   cfg = config.custom.nix;
 in {
+  imports = [
+    inputs.agenix.darwinModules.default
+  ];
+
   options = {
     custom.nix = with types; {
       enable = mkBoolOpt true "Whether or not to manage nix configuration.";
@@ -30,6 +34,14 @@ in {
     ];
 
     services.nix-daemon.enable = true;
+
+    age.secrets."op" = {
+      file = ../../../secrets/op.age;
+      mode = "744";
+      # path = "/home/tomas/.google_authenticator";
+      # owner = "tomas";
+      # group = "tomas";
+    };
 
     nix = let
       users = ["root" "tomas"];

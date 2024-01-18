@@ -16,6 +16,7 @@ in {
     homebrew = {
       enable = true;
       casks = [
+        "spotifyd"
         "secretive"
         "1password"
         "cleanshot"
