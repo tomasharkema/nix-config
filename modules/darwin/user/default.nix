@@ -30,7 +30,7 @@ in {
     programs.zsh = {enable = true;};
 
     environment.systemPackages = with pkgs; [
-      atuin
+      # atuin
       custom.maclaunch
       terminal-notifier
       custom.launchcontrol

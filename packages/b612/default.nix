@@ -28,9 +28,9 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [pkgs.nerd-font-patcher];
 
-  buildPhase = ''
-    # find -name \*.ttf -o -name \*.otf -exec nerd-font-patcher -out nf -c {} \;
-  '';
+  # buildPhase = ''
+  #   # find -name \*.ttf -o -name \*.otf -exec nerd-font-patcher -out nf -c {} \;
+  # '';
 
   installPhase = ''
     mkdir -p $out/share/fonts

@@ -11,7 +11,7 @@
       file = ./atuin.age;
       owner = "tomas";
       group = "tomas";
-      path = "/tmp/atuin.key";
+      path = "${config.home.homeDirectory}/.key/atuin.key";
     };
     age.secrets.attic-key = {
       file = ./attic-key.age;

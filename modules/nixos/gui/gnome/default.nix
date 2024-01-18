@@ -95,9 +95,15 @@ in {
       spotifyd
       ncspot
       _1password
+      wezterm
+      waybar
     ];
 
-    # programs.hyprland.enable = true;
+    programs.hyprland = {
+      enable = true;
+      enableNvidiaPatches = true;
+    };
+    programs.sway.enable = true;
     services.spotifyd = {
       enable = true;
       config = ''
