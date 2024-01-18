@@ -1,3 +1,14 @@
+# { nerd-font-patcher, stdenv }:
+# font:
+# stdenv.mkDerivation {
+#   name = "${font.name}-nerd-font-patched";
+#   src = font;
+#   nativeBuildInputs = [ nerd-font-patcher ];
+#   buildPhase = ''
+#     find -name \*.ttf -o -name \*.otf -exec nerd-font-patcher -c {} \;
+#   '';
+#   installPhase = "cp -a . $out";
+# }
 {
   lib,
   stdenv,
@@ -15,11 +26,16 @@ stdenv.mkDerivation rec {
     hash = "sha256-wR8/mWp9fj0Zyhf0b7IdKik9f11qngcvxbCpMbFTMUc=";
   };
 
-  buildPhase = ":";
+  nativeBuildInputs = [pkgs.nerd-font-patcher];
+
+  buildPhase = ''
+    # find -name \*.ttf -o -name \*.otf -exec nerd-font-patcher -out nf -c {} \;
+  '';
 
   installPhase = ''
     mkdir -p $out/share/fonts
     cp ./fonts/ttf/*.ttf $out/share/fonts
+    # cp ./fonts/ttf/nf/*.ttf $out/share/fonts/nf
   '';
 
   meta = {

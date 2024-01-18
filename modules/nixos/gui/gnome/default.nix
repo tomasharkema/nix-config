@@ -89,6 +89,7 @@ in {
       sublime-merge
       remmina
       xdg-utils
+      mattermost-desktop
       # systemdgenie
 
       spotifyd
