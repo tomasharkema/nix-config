@@ -82,7 +82,7 @@ in {
         HNAME="$(${lib.getExe pkgs.hostname})"
         SNAME="dconf-$HNAME"
 
-        ${lib.getExe pkgs.runitor} -slug "$SNAME" -every 1h -- ${lib.getExe sync-script}
+        ${lib.getExe pkgs.runitor} -slug "$SNAME" -every 1h -create -- ${lib.getExe sync-script}
       '';
 
       # ${lib.getExe pkgs.curl} "$PINGURL/start?create=1" -m 10 || true

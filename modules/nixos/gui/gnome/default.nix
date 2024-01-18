@@ -79,7 +79,7 @@ in {
       gnomeExtensions.remmina-search-provider
       # gnomeExtensions.home-assistant-extension
       # gnomeExtensions.ssh-search-provider-reborn
-
+      clutter
       gnome.gnome-tweaks
       gnome.gnome-disk-utility
       gnome.gnome-themes-extra

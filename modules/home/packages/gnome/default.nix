@@ -10,6 +10,7 @@
 with inputs.home-manager.lib.hm.gvariant; {
   config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
     dconf.enable = true;
+
     dconf.settings = {
       # "org/gnome/desktop/app-folders" = {
       #   folder-children = ["Utilities" "YaST" "Pardus"];
@@ -49,6 +50,11 @@ with inputs.home-manager.lib.hm.gvariant; {
         font-antialiasing = "greyscale";
         font-hinting = "full";
         font-name = "B612 Regular 12";
+      };
+
+      "org/gnome/shell/extensions/TodoTxt" = {
+        donetxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt/done.txt";
+        todotxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt/todo.txt";
       };
 
       "org/gnome/shell/extensions/dash-to-dock" = {
