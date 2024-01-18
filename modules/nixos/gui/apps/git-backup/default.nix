@@ -8,12 +8,12 @@
 with pkgs.python3Packages; let
   cfg = config.gui.gnome;
 
-  git-backup = pkgs.fetchFromGitHub {
-    owner = "bocytko";
-    repo = "git-backup";
-    rev = "d317560d74666e3e5630b1300017a9df51d0584c";
-    hash = "sha256-+FYSoR+Q66gVIqUgJJnpitx9kMLmjBoLdTSQqRlbW64=";
-  };
+  # git-backup = pkgs.fetchFromGitHub {
+  #   owner = "bocytko";
+  #   repo = "git-backup";
+  #   rev = "d317560d74666e3e5630b1300017a9df51d0584c";
+  #   hash = "sha256-+FYSoR+Q66gVIqUgJJnpitx9kMLmjBoLdTSQqRlbW64=";
+  # };
 
   # DIRECTORY="/resilio-sync/shared-documents/dconf/$(${lib.getExe pkgs.hostname})"
   # if [ ! -d "$DIRECTORY" ]; then
@@ -31,12 +31,19 @@ with pkgs.python3Packages; let
 
   sync-script = pkgs.writeShellApplication {
     name = "sync-script";
-    runtimeInputs = with pkgs; [git hostname dconf mktemp];
+    runtimeInputs = with pkgs; [git hostname dconf mktemp openssh hostname];
     text = ''
       set -eux
 
       DIRECTORY="$(mktemp -d)"
       mkdir -p "$DIRECTORY" || true
+
+      function cleanup {
+        echo "Removing $DIRECTORY"
+        rm -rf "$DIRECTORY"
+      }
+
+      trap cleanup EXIT
 
       git clone --depth=1 git@github.com:tomasharkema/dconf-backup.git "$DIRECTORY" || {
         printf "Error: git clone of configuration repo failed\n"
@@ -48,6 +55,8 @@ with pkgs.python3Packages; let
 
       dconf dump / > "$USER_DIRECTORY/backup.conf"
 
+      cd "$DIRECTORY"
+
       if ! git diff --quiet HEAD || git status --short; then
         git add --all
         git commit -m "updating dotfiles on $(date -u)"
@@ -56,17 +65,37 @@ with pkgs.python3Packages; let
 
     '';
   };
+  key-path = config.age.secrets."healthcheck".path;
 in {
   config = lib.mkIf cfg.enable {
+    systemd.paths."healthcheck-key" = {
+      pathConfig = {
+        PathExists = key-path;
+      };
+      wantedBy = ["multi-user.target"]; # dconf-sync.service"];
+    };
+
     systemd.services."dconf-sync" = {
       script = ''
-        set -eu
-        ${lib.getExe sync-script}
+
+        export HC_PING_KEY="$(cat ${key-path})"
+        HNAME="$(${lib.getExe pkgs.hostname})"
+        SNAME="dconf-$HNAME"
+
+        ${lib.getExe pkgs.runitor} -slug "$SNAME" -every 1h -- ${lib.getExe sync-script}
       '';
+
+      # ${lib.getExe pkgs.curl} "$PINGURL/start?create=1" -m 10 || true
+      # result=$(${lib.getExe sync-script} 2>&1)
+      # echo "$result"
+      # ${lib.getExe pkgs.curl} -m 10 --retry 5 --data-raw "$result" "$PINGURL/$?" || true
+
       serviceConfig = {
         Type = "oneshot";
         User = "tomas";
       };
+      after = ["healthcheck-key.path"];
+      # wants = ["healthcheck-key.path"];
     };
 
     systemd.timers."dconf-sync" = {
@@ -75,6 +104,9 @@ in {
         OnBootSec = "5m";
         OnUnitActiveSec = "5m";
         Unit = "dconf-sync.service";
+
+        OnCalendar = "hourly";
+        Persistent = true;
       };
     };
   };

@@ -70,4 +70,5 @@ in {
   "cachix-activate.age".publicKeys = allKeys;
   "otp.age".publicKeys = allKeys;
   "ldap.age".publicKeys = builders;
+  "healthcheck.age".publicKeys = allKeys;
 }

@@ -25,10 +25,10 @@
       enable = true;
       font = {
         package = pkgs.custom.b612;
-        name = "B612 Regular 11";
+        name = "B612 Regular 12";
 
         # package = pkgs.custom.neue-haas-grotesk;
-        # name = "B612 Regular 11";
+        # name = "B612 Regular 12";
       };
       theme = {
         name = "Catppuccin-Mocha-Compact-Blue-Dark";

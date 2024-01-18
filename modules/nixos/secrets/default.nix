@@ -70,5 +70,12 @@
       # owner = "tomas";
       # group = "tomas";
     };
+    age.secrets."healthcheck" = {
+      file = ./healthcheck.age;
+      mode = "744";
+      # path = "/home/tomas/.google_authenticator";
+      # owner = "tomas";
+      # group = "tomas";
+    };
   };
 }
