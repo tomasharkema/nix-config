@@ -31,8 +31,10 @@
     };
     disks.btrfs = {
       enable = true;
-      main = "/dev/disk/by-id/usb-TOSHIBA_MK3263GSXN_111122223333-0:0";
-    };
+      main = "/dev/disk/by-id/usb-CT120BX5_00SSD1_111122223333-0:0";
+    encrypt=true;
+
+};
     services.resilio = {
       enable = lib.mkForce false;
     };
