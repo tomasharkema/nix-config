@@ -97,7 +97,7 @@ in {
       _1password
     ];
 
-    programs.hyprland.enable = true;
+    # programs.hyprland.enable = true;
     services.spotifyd = {
       enable = true;
       config = ''
