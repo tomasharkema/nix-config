@@ -30,12 +30,13 @@
       apps.steam.enable = true;
       game-mode.enable = true;
       quiet-boot.enable = true;
+      #flatpak.enable = true;
     };
 
     traits = {
       hardware = {
         tpm.enable = true;
-        secure-boot.enable = true;
+        #secure-boot.enable = true;
         nvidia.enable = true;
       };
     };
@@ -49,7 +50,6 @@
     services.resilio = {
       enable = lib.mkForce false;
     };
-    networking.firewall.enabled = mkForce false;
     boot = {
       initrd = {
         availableKernelModules = ["e1000e"];
