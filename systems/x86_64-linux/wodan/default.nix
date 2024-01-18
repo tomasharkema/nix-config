@@ -49,15 +49,17 @@
     services.resilio = {
       enable = lib.mkForce false;
     };
+
     boot = {
       initrd = {
+        systemd.users.root.shell = "/bin/systemd-tty-ask-password-agent";
         availableKernelModules = ["e1000e"];
         network = {
           enable = true;
           ssh = {
             enable = true;
             port = 22;
-            shell = "/bin/cryptsetup-askpass";
+            # shell = "/bin/cryptsetup-askpass";
             authorizedKeys = [
               "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQkKn73qM9vjYIaFt94Kj/syd5HCw2GdpiZ3z5+Rp/r tomas@blue-fire"
               "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas"
@@ -68,6 +70,7 @@
             hostKeys = [
               "/boot/secrets/ssh_host_ed25519_key"
               "/boot/secrets/ssh_host_rsa_key"
+              "/boot/secrets/ssh_host_ecdsa_key"
             ];
           };
         };
