@@ -35,13 +35,13 @@ in {
 
     services.nix-daemon.enable = true;
 
-    age.secrets."op" = {
-      file = ../../../secrets/op.age;
-      mode = "744";
-      # path = "/home/tomas/.google_authenticator";
-      # owner = "tomas";
-      # group = "tomas";
-    };
+    # age.secrets."op" = {
+    #   file = ../../../secrets/op.age;
+    #   mode = "744";
+    #   # path = "/home/tomas/.google_authenticator";
+    #   # owner = "tomas";
+    #   # group = "tomas";
+    # };
 
     nix = let
       users = ["root" "tomas"];

@@ -37,8 +37,6 @@
     };
     networking.wireless.enable = lib.mkForce false;
 
-    gui.apps.flatpak.enable = false;
-
     hardware.opengl = {
       enable = true;
       driSupport = true;
