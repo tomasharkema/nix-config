@@ -77,5 +77,12 @@
       # owner = "tomas";
       # group = "tomas";
     };
+    age.secrets."op" = {
+      file = ./op.age;
+      mode = "744";
+      # path = "/home/tomas/.google_authenticator";
+      # owner = "tomas";
+      # group = "tomas";
+    };
   };
 }

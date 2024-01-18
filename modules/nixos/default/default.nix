@@ -102,6 +102,11 @@
       };
       services.udev = {enable = lib.mkDefault true;};
 
+      environment.variables = {
+        OP_CONNECT_HOST = "http://silver-star.ling-lizard.ts.net:8080";
+        OP_CONNECT_TOKEN = "${config.age.secrets.op.path}";
+      };
+
       programs.zsh = {
         enable = true;
         shellInit = ''
