@@ -18,8 +18,9 @@ with lib.custom; let
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILLRj3s9oVwDREN5oO/lpYhs6ueYcEqHf8mN7dRR0UOS root@euro-mir.local"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQkKn73qM9vjYIaFt94Kj/syd5HCw2GdpiZ3z5+Rp/r tomas@supermicro"
       "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBL68j0j9QNtaxySo9ysSV2n3xBcqc1aYzGFblwQvi1BQoQ4KIpCLkCxOx69yOdo/LwoCriyCmEEimqM0bEL3YZs="
-    "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOgjI9ptMC39vQC84tiNOgU8LBpI05KeiLtNGT465wCL/L3DYNLOdOP6KRqUvUBVTdZP3YACUa17LQu3taPGhfQ= ShellFish@iPhone-18012024"]
-++ githubKeys;
+      "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOgjI9ptMC39vQC84tiNOgU8LBpI05KeiLtNGT465wCL/L3DYNLOdOP6KRqUvUBVTdZP3YACUa17LQu3taPGhfQ= ShellFish@iPhone-18012024"
+    ]
+    ++ githubKeys;
 in {
   options.user = with types; {
     name = mkOpt str "tomas" "The name to use for the user account.";

@@ -1,5 +1,6 @@
 {
   # flake-checker,
-   ...}: final: prev: {
+  ...
+}: final: prev: {
   # flake-checker = flake-checker.packages.${prev.system}.default;
 }

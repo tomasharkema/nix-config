@@ -22,7 +22,6 @@
   ];
 
   config = {
-
     disks.btrfs = {
       enable = true;
       main = "/dev/nvme0n1";
