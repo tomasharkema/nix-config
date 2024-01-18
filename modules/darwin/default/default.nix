@@ -8,6 +8,39 @@
       # serverAddress = "0.0.0.0";
     };
 
+    fonts = {
+      # enableDefaultFonts = true;
+      fontDir.enable = true;
+      # fontconfig = {
+      #   antialias = true;
+      #   cache32Bit = true;
+      #   # TODO: Set fonts within GNOME Tweaks for the time being
+      #   defaultFonts = {
+      #     monospace = ["JetBrainsMono Nerd Font Mono"];
+      #     sansSerif = ["B612 Regular"];
+      #     serif = ["B612 Regular"];
+      #   };
+      #   hinting = {
+      #     autohint = true;
+      #     enable = true;
+      #   };
+      # };
+      fonts = with pkgs; [
+        noto-fonts
+        noto-fonts-extra
+        noto-fonts-emoji
+        noto-fonts-cjk
+        nerdfonts
+        ubuntu_font_family
+
+        pkgs.custom.neue-haas-grotesk
+
+        # helvetica
+        vegur # the official NixOS font
+        pkgs.custom.b612
+        pkgs.custom.san-francisco
+      ];
+    };
     programs.zsh = {
       enable = true;
       shellInit = ''

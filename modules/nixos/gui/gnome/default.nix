@@ -106,6 +106,12 @@ in {
         password_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field password"
       '';
     };
+
+    networking.firewall = {
+      allowedUDPPorts = [33677];
+      allowedTDPPorts = [33677];
+    };
+
     programs.dconf.enable = true;
 
     fonts = {
