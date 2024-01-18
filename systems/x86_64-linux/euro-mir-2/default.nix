@@ -45,6 +45,8 @@
       };
     };
 
+    environment.systemPackages = [pkgs.libfprint-2-tod1-goodix pkgs.libfprint-2-tod1-goodix-550a];
+
     traits = {
       hardware = {
         tpm.enable = true;
