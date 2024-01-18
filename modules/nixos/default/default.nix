@@ -101,9 +101,15 @@
         '';
       };
       services.udev = {enable = lib.mkDefault true;};
-      programs.zsh.shellInit = ''
-        source ${config.age.secrets."cachix-activate".path}
-      '';
+
+      programs.zsh = {
+        enable = true;
+        shellInit = ''
+          source ${config.age.secrets."cachix-activate".path}
+          export OP_PLUGIN_ALIASES_SOURCED=1
+          alias gh="op plugin run -- gh"
+        '';
+      };
 
       boot = {
         kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
