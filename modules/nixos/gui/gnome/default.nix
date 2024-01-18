@@ -99,11 +99,11 @@ in {
       waybar
     ];
 
-    programs.hyprland = {
-      enable = true;
-      enableNvidiaPatches = true;
-    };
-    programs.sway.enable = true;
+    # programs.hyprland = {
+    #   enable = true;
+    #   enableNvidiaPatches = true;
+    # };
+    # programs.sway.enable = true;
     services.spotifyd = {
       enable = true;
       config = ''

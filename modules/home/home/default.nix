@@ -98,7 +98,7 @@ in
           enable = true;
           enableZshIntegration = true;
           settings = {
-            key_path = "/run/atuin.key";
+            key_path = osConfig.age.secrets.op.path;
             sync_address = "https://atuin.harke.ma";
             auto_sync = true;
             sync_frequency = "10m";
@@ -185,8 +185,6 @@ in
           ];
 
           initExtraFirst = ''
-            #       zmodload zsh/zprof
-            #       # eval "$(~/.local/bin/cw init zsh pre)"
             source "${iterm}";
           '';
           # initExtra = ''

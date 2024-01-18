@@ -24,6 +24,9 @@
         enable = true;
       };
       quiet-boot.enable = true;
+      apps = {
+        flatpak.enable = false;
+      };
     };
     traits = {
       hardware = {
