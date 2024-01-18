@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+  imports = [../../nixos/secrets];
+
   config = {
     services.nix-daemon.enable = true;
 
