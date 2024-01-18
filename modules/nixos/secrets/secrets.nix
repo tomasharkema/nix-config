@@ -4,6 +4,8 @@ let
   #   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKXJJrsfcYDGtfl8zQ1hjs+0UdasQLpO4ybFNlTqtjoI tomas@DESKTOP-L8N2UGE";
   users = [tomas];
 
+  euro = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";
+
   enzian = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN9/iOb/hw6R31UsX5b8VDq6aJEgn8M4k0Ow2IGY1qQb root@enzian";
   # enzian-user = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBkD6Gv2OmfofzWqPihWEo2mfOWx7kFkCh5urGNn/AJ0 tomas@enzian";
 
@@ -32,6 +34,7 @@ let
   euro-mir-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICW+aQs9V+gOAWN5t8g8OYFNjdTkgDFagObW+unt7TMa root@euro-mir-vm";
 
   systems = [
+    euro
     enzian
     # enzian-user
     silver-star-vm
