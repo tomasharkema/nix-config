@@ -40,6 +40,11 @@ in {
         "org.stellarium.Stellarium"
         "org.gnome.Boxes"
         "com.ranfdev.Notify"
+        "com.getpostman.Postman"
+        "org.zealdocs.Zeal"
+        "org.gnome.meld"
+        "io.podman_desktop.PodmanDesktop"
+        "com.discordapp.Discord"
       ];
       # update.onActivation = true;
       update.auto = {
