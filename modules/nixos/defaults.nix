@@ -26,7 +26,13 @@ in {
   ];
 
   environment.pathsToLink = ["/share/zsh"];
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    shellInit = ''
+      export OP_PLUGIN_ALIASES_SOURCED=1
+      alias gh="op plugin run -- gh"
+    '';
+  };
   environment.systemPackages = common; # ++ gui;
 
   networking.wireless.enable = lib.mkDefault false;

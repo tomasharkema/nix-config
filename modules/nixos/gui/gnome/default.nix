@@ -93,9 +93,19 @@ in {
       # systemdgenie
 
       spotifyd
+      ncspot
+      _1password
     ];
-    # programs.hyprland.enable = true;
 
+    programs.hyprland.enable = true;
+    services.spotifyd = {
+      enable = true;
+      config = ''
+        [global]
+        username_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field username"
+        password_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field password"
+      '';
+    };
     programs.dconf.enable = true;
 
     fonts = {
