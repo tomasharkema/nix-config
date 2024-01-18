@@ -1,5 +1,9 @@
-{config,lib,...}: {
-  config = lib.mkIf false{
+{
+  config,
+  lib,
+  ...
+}: {
+  config = lib.mkIf false {
     services = {
       # self-deploy = {};
     };
