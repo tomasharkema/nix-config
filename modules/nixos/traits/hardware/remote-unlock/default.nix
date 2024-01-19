@@ -32,8 +32,13 @@ in {
       fi
     '';
     environment.systemPackages = with pkgs; [dracut];
+
     boot = {
       initrd = {
+        luks.devices."crypted" = {
+          keyFile = "/key/keyfile";
+        };
+
         # preLVMCommands = ''
         #   mkdir -m 0755 -p /key
         #   sleep 2 # To make sure the usb key has been loaded
@@ -51,6 +56,7 @@ in {
               what = "PARTLABEL=a7098897-2784-4776-bd3d-0e217d85963d";
               where = "/key";
               type = "vfat";
+              options = "nofail";
             }
           ];
         };
@@ -64,7 +70,8 @@ in {
         # '';
 
         network = {
-          # enable = true;
+          enable = true;
+          flushBeforeStage2 = true;
           ssh = {
             enable = true;
             port = 22222;
