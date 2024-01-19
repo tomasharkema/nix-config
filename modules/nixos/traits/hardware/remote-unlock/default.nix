@@ -17,9 +17,9 @@ in {
   config = mkIf cfg.enable {
     system.activationScripts.remote-unlock-keys.text = ''
       mkdir -p /boot/secrets
-      ssh-keygen -t ecdsa -N "" -f /boot/secrets/ssh_host_ecdsa_key
-      ssh-keygen -t ed25519 -N "" -f /boot/secrets/ssh_host_ed25519_key
-      ssh-keygen -t rsa -N "" -f /boot/secrets/ssh_host_rsa_key
+      ${pkgs.openssh}/bin/ssh-keygen -t ecdsa -N "" -f /boot/secrets/ssh_host_ecdsa_key
+      ${pkgs.openssh}/bin/ssh-keygen -t ed25519 -N "" -f /boot/secrets/ssh_host_ed25519_key
+      ${pkgs.openssh}/bin/ssh-keygen -t rsa -N "" -f /boot/secrets/ssh_host_rsa_key
     '';
 
     boot = {
