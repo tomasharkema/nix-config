@@ -18,8 +18,6 @@
         tpm.enable = true;
         secure-boot.enable = true;
         vm.enable = true;
-
-        remote-unlock.enable = true;
       };
     };
     disks.btrfs = {
