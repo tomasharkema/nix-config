@@ -14,9 +14,10 @@
 
     time.timeZone = "Europe/Amsterdam";
 
-    disks.btrfs = {
+    disks."ext4" = {
       enable = true;
       main = "/dev/vda";
+      encrypt = true;
     };
     gui = {
       enable = true;
