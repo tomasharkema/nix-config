@@ -39,7 +39,7 @@ in {
         #   sleep 2 # To make sure the usb key has been loaded
         #   mount -n -t vfat -o ro /dev/disk/by-partlabel/a7098897-2784-4776-bd3d-0e217d85963d /key
         # '';
-
+        verbose = true;
         systemd = {
           enable = true;
           users.root.shell = "/bin/systemd-tty-ask-password-agent";
