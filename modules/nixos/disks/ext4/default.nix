@@ -100,7 +100,7 @@ in
 
       disko.devices = {
         disk = {
-          "${cfg.mainOverride}" = {
+          main = {
             type = "disk";
             device = cfg.main;
             content = {
