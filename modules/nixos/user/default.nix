@@ -9,7 +9,7 @@ with lib;
 with lib.custom; let
   githubKeys = lib.splitString "\n" (builtins.readFile (builtins.fetchurl {
     url = "https://github.com/tomasharkema.keys";
-    sha256 = "sha256:04jssxz58gljycwny8ay604cz03q4va1028mzb5qvwmlvps0bcrc";
+    sha256 = "sha256:07sp2dzz2py2w63rg6g6rb81657sbziz6hwfsc8xf3vciwyf5ghg";
   }));
   keys =
     [
@@ -25,7 +25,7 @@ in {
   options.user = with types; {
     name = mkOpt str "tomas" "The name to use for the user account.";
 
-    keys = keys;
+    keys = mkOpt (listOf str) keys "auth keys";
     #   fullName = mkOpt str "Tomas Harkema" "The full name of the user.";
     #   email = mkOpt str "tomas@harkema.io" "The email of the user.";
     #   initialPassword =
