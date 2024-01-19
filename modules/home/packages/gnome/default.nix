@@ -114,7 +114,7 @@ with inputs.home-manager.lib.hm.gvariant; {
         "toggler@hedgie.tech"
         "appindicatorsupport@rgcjonas.gmail.com"
         "extension-list@tu.berry"
-        "github-actions@arononak.github.io"
+        # "github-actions@arononak.github.io"
         "GPU_profile_selector@lorenzo9904.gmail.com"
         "messagingmenu@lauinger-clan.de"
         "remmina-search-provider@alexmurray.github.com"

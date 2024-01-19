@@ -29,12 +29,12 @@
         settings = {
           allowDiscards = true;
           # fallbackToPassword = true;
-          # keyFile = "/tmp/secret.key";
+          # keyFile = "/key/key";
         };
 
         # keyFile = "/key/hdd.key";
 
-        additionalKeyFiles = ["/key/key"];
+        # additionalKeyFiles = ["/key/key"];
         content = root;
       };
     };

@@ -272,28 +272,31 @@ in
             prompt.theme = null;
           };
 
-          # zplug = {
-          #   enable = true;
-          #   plugins = [
-          #     # {
-          #     #   name = "tysonwolker/iterm-tab-colors";
-          #     #   tags = ["defer:2"];
-          #     # }
-          #     {
-          #       name = "mafredri/zsh-async";
-          #       # tags = ["defer:2"];
-          #     }
-          #     {
-          #       name = "MichaelAquilina/zsh-you-should-use";
-          #       tags = ["defer:2"];
-          #     }
-          #     {
-          #       name = "unixorn/1password-op.plugin.zsh";
-          #       tags = ["defer:2"];
-          #     }
-          #     # {name = "mrjohannchang/zsh-interactive-cd";}
-          #   ];
-          # };
+          zplug = {
+            enable = true;
+            plugins = [
+              {
+                name = "marzocchi/zsh-notify";
+              }
+              #     # {
+              #     #   name = "tysonwolker/iterm-tab-colors";
+              #     #   tags = ["defer:2"];
+              #     # }
+              #     {
+              #       name = "mafredri/zsh-async";
+              #       # tags = ["defer:2"];
+              #     }
+              #     {
+              #       name = "MichaelAquilina/zsh-you-should-use";
+              #       tags = ["defer:2"];
+              #     }
+              #     {
+              #       name = "unixorn/1password-op.plugin.zsh";
+              #       tags = ["defer:2"];
+              #     }
+              #     # {name = "mrjohannchang/zsh-interactive-cd";}
+            ];
+          };
 
           oh-my-zsh = {
             enable = true;
