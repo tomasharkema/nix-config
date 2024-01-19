@@ -21,7 +21,7 @@ in
 
           "${config.xdg.dataHome}/Zeal/Zeal/docsets/nixpkgs.docset" = {
             # /nixpkgs.docset" = {
-            source = "${pkgs.custom.nixpkgs-docset}/nixpkgs.docset";
+            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.custom.nixpkgs-docset}/nixpkgs.docset";
             recursive = true;
           };
         };

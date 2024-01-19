@@ -37,6 +37,7 @@ in {
       initrd = {
         luks.devices."crypted" = {
           keyFile = "/key/key";
+          tryEmptyPassphrase = false;
           # additionalKeyFiles = ["/key/key"];
         };
 
@@ -48,9 +49,22 @@ in {
 
         # postDeviceCommands =
         preLVMCommands = pkgs.lib.mkBefore ''
+          info "looking for key file!"
           mkdir -m 0755 -p /key
           sleep 2 # To make sure the usb key has been loaded
-          mount -n -t vfat -o ro /dev/disk/by-partlabel/a7098897-2784-4776-bd3d-0e217d85963d /key
+
+          usbdevice="/dev/disk/by-partlabel/a7098897-2784-4776-bd3d-0e217d85963d"
+
+          if mount -t vfat -o ro $usbdevice /key 2>/dev/null; then
+              if [ -e /key/key ]; then
+                  info "found key"
+              else
+                echo "" > /key/key
+              fi
+              # umount $usbdevice
+          else
+            echo "" > /key/key
+          fi
         '';
 
         # systemd = {
