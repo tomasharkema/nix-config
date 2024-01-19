@@ -22,7 +22,7 @@ let
 
   pegasus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILovRLhj82nq2kK2KbydAxhLJs0RORJ6p33K3Z7rJlSA root@pegasus";
 
-  wodan = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOf9/nugPzUtMCbSZwLIaRcB+Vc+gB0yCgGjRYemtRJd root@wodan";
+  wodan = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ8YXupBtvfsI6/LD2qyUY4yOfxuFirOJK0W/CVR408S root@wodan";
   wodan-wsl = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICI2xzlzSsxv+6QSZ6rCeG0ma4HfIH3YWJj/P4GoQ3M/ root@wodan-wsl";
   wodan-wsl-tomas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICI2xzlzSsxv+6QSZ6rCeG0ma4HfIH3YWJj/P4GoQ3M/ root@nixos";
 
