@@ -24,6 +24,8 @@ with lib.custom; let
 in {
   options.user = with types; {
     name = mkOpt str "tomas" "The name to use for the user account.";
+
+    keys = keys;
     #   fullName = mkOpt str "Tomas Harkema" "The full name of the user.";
     #   email = mkOpt str "tomas@harkema.io" "The email of the user.";
     #   initialPassword =
