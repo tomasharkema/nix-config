@@ -28,9 +28,13 @@
         passwordFile = "/tmp/secret.key"; # Interactive
         settings = {
           allowDiscards = true;
+          # fallbackToPassword = true;
           # keyFile = "/tmp/secret.key";
         };
-        # additionalKeyFiles = ["/tmp/additionalSecret.key"];
+
+        # keyFile = "/key/hdd.key";
+
+        additionalKeyFiles = ["/key/key"];
         content = root;
       };
     };
