@@ -18,7 +18,7 @@
       enable = true;
       main = "/dev/vda";
 
-      # encrypt = true;
+      encrypt = true;
     };
     gui = {
       enable = true;
