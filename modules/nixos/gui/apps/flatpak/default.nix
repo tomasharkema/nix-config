@@ -35,7 +35,7 @@ in {
         "org.cockpit_project.CockpitClient"
         "com.discordapp.Discord"
         "com.github.tchx84.Flatseal"
-        "io.github.vikdevelop.SaveDesktop"
+        # "io.github.vikdevelop.SaveDesktop"
         "tv.plex.PlexDesktop"
         "org.stellarium.Stellarium"
         "org.gnome.Boxes"
