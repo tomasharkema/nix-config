@@ -15,7 +15,7 @@ in {
   };
 
   config = {
-    environment.systemPackages = with pkgs; [sbctl];
+    environment.systemPackages = with pkgs; [sbctl exfatprogs];
     boot = {
       lanzaboote = mkIf cfg.enable {
         enable = true;

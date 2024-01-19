@@ -36,7 +36,7 @@
       gnome.enable = true;
       apps.steam.enable = true;
       game-mode.enable = true;
-      quiet-boot.enable = true;
+      quiet-boot.enable = false;
     };
     services.fprintd = {
       enable = true;
@@ -72,6 +72,7 @@
         secure-boot.enable = true;
         laptop.enable = true;
         nvidia.enable = true;
+        remote-unlock.enable = true;
       };
     };
 
