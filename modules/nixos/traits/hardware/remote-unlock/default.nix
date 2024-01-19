@@ -36,38 +36,38 @@ in {
     boot = {
       initrd = {
         luks.devices."crypted" = {
-          keyFile = "/key/keyfile";
+          keyFile = "/key/key";
         };
 
-        # preLVMCommands = ''
-        #   mkdir -m 0755 -p /key
-        #   sleep 2 # To make sure the usb key has been loaded
-        #   mount -n -t vfat -o ro /dev/disk/by-partlabel/a7098897-2784-4776-bd3d-0e217d85963d /key
-        # '';
         verbose = true;
+
         systemd = {
           enable = true;
           users.root.shell = "/bin/systemd-tty-ask-password-agent";
-          # packages = [pkgs.zerotier-cli];
 
-          # services.
-          mounts = [
-            {
-              what = "PARTLABEL=a7098897-2784-4776-bd3d-0e217d85963d";
-              where = "/key";
-              type = "vfat";
-              options = "nofail";
-            }
-          ];
+          services.key-usb = {
+            description = "Rollback BTRFS root subvolume to a pristine state";
+            wantedBy = [
+              "initrd.target"
+            ];
+            after = [
+              # LUKS/TPM process
+              "systemd-cryptsetup@enc.service"
+            ];
+            before = [
+              "sysroot.mount"
+            ];
+            unitConfig.DefaultDependencies = "no";
+            serviceConfig.Type = "oneshot";
+            script = ''
+              mkdir -m 0755 -p /key
+              sleep 2 # To make sure the usb key has been loaded
+              mount -n -t vfat -o ro /dev/disk/by-partlabel/a7098897-2784-4776-bd3d-0e217d85963d /key
+            '';
+          };
         };
         availableKernelModules = ["e1000e" "r8169"];
         kernelModules = ["uas" "usbcore" "usb_storage" "vfat" "nls_cp437" "nls_iso8859_1"];
-
-        # preOpenCommands = ''
-        #   mkdir -m 0755 -p /key
-        #   sleep 2 # To make sure the usb key has been loaded
-        #   mount -n -t vfat -o ro /dev/disk/by-partlabel/a7098897-2784-4776-bd3d-0e217d85963d /key
-        # '';
 
         network = {
           enable = true;
