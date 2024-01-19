@@ -3,7 +3,8 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+with lib.custom; let
   cfg = config.traits.hardware.remote-unlock;
 in {
   options.traits = {
