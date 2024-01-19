@@ -36,7 +36,7 @@ in {
     boot = {
       initrd = {
         luks.devices."crypted" = {
-          # keyFile = "/key/key";
+          keyFile = "/key/key";
           # additionalKeyFiles = ["/key/key"];
         };
 
@@ -46,8 +46,8 @@ in {
 
         verbose = true;
 
-        postDeviceCommands = pkgs.lib.mkBefore ''
-          set -x
+        # postDeviceCommands =
+        preLVMCommands = pkgs.lib.mkBefore ''
           mkdir -m 0755 -p /key
           sleep 2 # To make sure the usb key has been loaded
           mount -n -t vfat -o ro /dev/disk/by-partlabel/a7098897-2784-4776-bd3d-0e217d85963d /key
