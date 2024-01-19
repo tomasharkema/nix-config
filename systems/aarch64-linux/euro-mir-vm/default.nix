@@ -17,7 +17,8 @@
     disks."ext4" = {
       enable = true;
       main = "/dev/vda";
-      encrypt = true;
+
+      # encrypt = true;
     };
     gui = {
       enable = true;
@@ -34,6 +35,7 @@
         tpm.enable = true;
         secure-boot.enable = true;
         vm.enable = true;
+        remote-unlock.enable = true;
       };
     };
     services.resilio = {
