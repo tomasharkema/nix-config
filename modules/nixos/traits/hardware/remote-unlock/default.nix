@@ -41,6 +41,7 @@ in {
         # '';
 
         systemd = {
+          enable = true;
           users.root.shell = "/bin/systemd-tty-ask-password-agent";
           # packages = [pkgs.zerotier-cli];
 
@@ -63,7 +64,7 @@ in {
         # '';
 
         network = {
-          enable = true;
+          # enable = true;
           ssh = {
             enable = true;
             port = 22222;
