@@ -23,6 +23,7 @@
     };
 
     services.nix-daemon.enable = true;
+    programs.bash.enable = true;
 
     system.stateVersion = 4;
     services.synergy.server = {

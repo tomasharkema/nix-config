@@ -94,6 +94,8 @@ in
 
         tmux = {enable = true;};
 
+        alacritty.enable = true;
+
         atuin = {
           enable = true;
           enableZshIntegration = true;

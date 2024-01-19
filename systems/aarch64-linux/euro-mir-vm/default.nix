@@ -18,7 +18,7 @@
       enable = true;
       main = "/dev/vda";
 
-      encrypt = true;
+      # encrypt = true;
     };
     gui = {
       enable = true;
@@ -33,7 +33,7 @@
     traits = {
       hardware = {
         tpm.enable = true;
-        secure-boot.enable = true;
+        # secure-boot.enable = true;
         vm.enable = true;
         # remote-unlock.enable = true;
       };
