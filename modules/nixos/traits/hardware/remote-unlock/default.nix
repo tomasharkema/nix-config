@@ -16,10 +16,19 @@ in {
 
   config = mkIf cfg.enable {
     system.activationScripts.remote-unlock-keys.text = ''
-      mkdir -p /boot/secrets
-      ${pkgs.openssh}/bin/ssh-keygen -t ecdsa -N "" -f /boot/secrets/ssh_host_ecdsa_key -q
-      ${pkgs.openssh}/bin/ssh-keygen -t ed25519 -N "" -f /boot/secrets/ssh_host_ed25519_key -q
-      ${pkgs.openssh}/bin/ssh-keygen -t rsa -N "" -f /boot/secrets/ssh_host_rsa_key -q
+      mkdir -p /boot/secrets || true
+
+      if [ ! -f "/boot/secrets/ssh_host_ecdsa_key" ]; then
+        ${pkgs.openssh}/bin/ssh-keygen -t ecdsa -N "" -f /boot/secrets/ssh_host_ecdsa_key -q
+      fi
+
+      if [ ! -f "/boot/secrets/ssh_host_ed25519_key" ]; then
+       ${pkgs.openssh}/bin/ssh-keygen -t ed25519 -N "" -f /boot/secrets/ssh_host_ed25519_key -q
+      fi
+
+      if [ ! -f "/boot/secrets/ssh_host_rsa_key" ]; then
+       ${pkgs.openssh}/bin/ssh-keygen -t rsa -N "" -f /boot/secrets/ssh_host_rsa_key -q
+      fi
     '';
 
     boot = {
