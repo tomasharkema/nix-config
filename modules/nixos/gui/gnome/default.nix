@@ -73,6 +73,9 @@ in {
       gnomeExtensions.server-status-indicator
       gnomeExtensions.remmina-search-provider
 
+      # logseq
+
+      gnome.seahorse
       gnome.gnome-tweaks
       gnome.gnome-disk-utility
       gnome.gnome-themes-extra
@@ -90,40 +93,20 @@ in {
       remmina
       xdg-utils
       mattermost-desktop
-      # systemdgenie
+      systemdgenie
 
-      spotifyd
       ncspot
       _1password
       wezterm
       waybar
+      bottles
     ];
 
     # programs.hyprland = {
     #   enable = true;
     #   enableNvidiaPatches = true;
     # };
-    # programs.sway.enable = true;
-    services.spotifyd = {
-      enable = true;
-      config = ''
-        [global]
-        username_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field username"
-        password_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field password"
-      '';
-    };
-    systemd.services.spotifyd = {
-      environment = {
-        OP_CONNECT_HOST = "http://silver-star.ling-lizard.ts.net:8080";
-        OP_CONNECT_TOKEN = "${config.age.secrets.op.path}";
-      };
-    };
-
-    networking.firewall = {
-      allowedUDPPorts = [33677];
-      allowedTCPPorts = [33677];
-    };
-
+    programs.sway.enable = true;
     programs.dconf.enable = true;
 
     fonts = {

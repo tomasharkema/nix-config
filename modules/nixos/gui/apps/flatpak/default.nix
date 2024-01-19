@@ -30,7 +30,6 @@ in {
       packages = [
         "io.missioncenter.MissionCenter"
         "com.mattjakeman.ExtensionManager"
-        "com.usebottles.bottles"
         "com.moonlight_stream.Moonlight"
         "org.cockpit_project.CockpitClient"
         "com.discordapp.Discord"
@@ -45,6 +44,8 @@ in {
         "org.gnome.meld"
         "io.podman_desktop.PodmanDesktop"
         "com.discordapp.Discord"
+        "com.logseq.Logseq"
+        "md.obsidian.Obsidian"
       ];
       # update.onActivation = true;
       update.auto = {
