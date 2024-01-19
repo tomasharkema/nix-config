@@ -36,8 +36,8 @@ in {
     boot = {
       initrd = {
         luks.devices."crypted" = {
-          keyFile = "/key/key";
-          tryEmptyPassphrase = false;
+          # keyFile = "/key/key";
+          # tryEmptyPassphrase = true;
           # additionalKeyFiles = ["/key/key"];
         };
 
@@ -49,22 +49,22 @@ in {
 
         # postDeviceCommands =
         preLVMCommands = pkgs.lib.mkBefore ''
-          info "looking for key file!"
-          mkdir -m 0755 -p /key
-          sleep 2 # To make sure the usb key has been loaded
+          look_for_usb() {
+            info "looking for key file!"
+            mkdir -m 0755 -p /key
+            sleep 2 # To make sure the usb key has been loaded
 
-          usbdevice="/dev/disk/by-partlabel/a7098897-2784-4776-bd3d-0e217d85963d"
+            usbdevice="/dev/disk/by-partlabel/a7098897-2784-4776-bd3d-0e217d85963d"
 
-          if mount -t vfat -o ro $usbdevice /key 2>/dev/null; then
-              if [ -e /key/key ]; then
-                  info "found key"
-              else
-                echo "" > /key/key
-              fi
-              # umount $usbdevice
-          else
-            echo "" > /key/key
-          fi
+            if mount -t vfat -o ro $usbdevice /key 2>/dev/null; then
+                if [ -e /key/key ]; then
+                    info "found key"
+                    cryptsetup luksOpen /dev/disk/by-partlabel/disk-main-luks crypted --allow-discards --key-file=/key/key
+                fi
+                umount $usbdevice
+            fi
+          }
+          look_for_usb &
         '';
 
         # systemd = {
