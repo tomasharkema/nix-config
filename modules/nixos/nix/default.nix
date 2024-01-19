@@ -50,10 +50,6 @@ in {
       # nix-output-monitor
       # flake-checker
     ];
-    services.synergy.client = {
-      enable = true;
-      serverAddress = "0.0.0.0";
-    };
     nix = let
       users =
         ["root" config.user.name]
@@ -88,7 +84,7 @@ in {
       gc = {
         automatic = true;
         dates = "weekly";
-        options = "--delete-older-than 30d";
+        options = "--delete-older-than 7d";
       };
 
       # flake-utils-plus

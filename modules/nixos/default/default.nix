@@ -137,7 +137,7 @@
         };
         dyndns.enable = true; # TODO: enable this??
       };
-      documentation.nixos.enable = false;
+      # documentation.nixos.enable = false;
       programs.mtr.enable = true;
       # services.rsyslogd = {
       #   enable = true;

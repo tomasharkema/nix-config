@@ -18,6 +18,12 @@ in
       home = {
         file = {
           ".config/cachix/cachix.dhall".source = config.lib.file.mkOutOfStoreSymlink "/etc/cachix.dhall"; # osConfig.age.secrets.cachix.path;
+
+          "${config.xdg.dataHome}/Zeal/Zeal/docsets/nixpkgs.docset" = {
+            # /nixpkgs.docset" = {
+            source = "${pkgs.custom.nixpkgs-docset}/nixpkgs.docset";
+            recursive = true;
+          };
         };
 
         stateVersion = "23.11";
@@ -26,7 +32,7 @@ in
         # ++
         packages = with pkgs; [
           pkgs.custom.b612
-
+          rtfm
           jq
           # fig
           # inputs.nix-gui.packages.${system}.nix-gui
