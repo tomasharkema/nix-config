@@ -95,12 +95,17 @@ in {
       mattermost-desktop
       systemdgenie
 
-      ncspot
       _1password
       wezterm
       waybar
       bottles
+      zeal
     ];
+
+    services.synergy.client = {
+      enable = true;
+      serverAddress = "0.0.0.0";
+    };
 
     # programs.hyprland = {
     #   enable = true;

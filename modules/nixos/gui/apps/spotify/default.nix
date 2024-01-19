@@ -10,6 +10,8 @@ in {
     environment.systemPackages = with pkgs; [
       spotify
       spotifyd
+
+      ncspot
     ];
 
     services.spotifyd = {
