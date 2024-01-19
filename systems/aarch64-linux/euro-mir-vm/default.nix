@@ -25,7 +25,7 @@
       desktop = {
         enable = true;
       };
-      quiet-boot.enable = true;
+      # quiet-boot.enable = true;
       apps = {
         flatpak.enable = false;
       };
