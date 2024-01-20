@@ -32,7 +32,7 @@ in
         # ++
         packages = with pkgs; [
           pkgs.custom.b612
-          rtfm
+          # rtfm
           jq
           # fig
           # inputs.nix-gui.packages.${system}.nix-gui
