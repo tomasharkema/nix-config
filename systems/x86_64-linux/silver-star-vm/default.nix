@@ -25,20 +25,9 @@
       main = "/dev/disk/by-id/virtio-vdisk1";
     };
 
+    apps.podman.enable = true;
+
     virtualisation = {
-      podman = {
-        enable = true;
-
-        # Create a `docker` alias for podman, to use it as a drop-in replacement
-        dockerCompat = true;
-
-        # Required for containers under podman-compose to be able to talk to each other.
-        defaultNetwork.settings.dns_enabled = true;
-
-        autoPrune.enable = true;
-        # networkSocket.enable = true;
-      };
-      oci-containers.backend = "podman";
       oci-containers.containers = {
         free-ipa = {
           image = "docker.io/freeipa/freeipa-server:almalinux-9";
