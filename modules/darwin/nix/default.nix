@@ -30,7 +30,7 @@ in {
       nix-prefetch-git
       inputs.nil.packages.${system}.default
       # flake-checker
-      inputs.alejandra.packages.${system}.default
+      # inputs.alejandra.packages.${system}.default
       nix-output-monitor
       nixpkgs-fmt
     ];

@@ -31,7 +31,7 @@ let
 
   euro-mir-2 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGqH26JOhArILMf2cgHdUUuvyf3U7rAS6jGZykLYqjWe root@euro-mir-2";
   euro-mir-2-tomas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMIZkviD01zlP3SkumEXHgLaNuoQxHqHPuBWcOqrm9rr tomas@euro-mir-2";
-  euro-mir-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICW+aQs9V+gOAWN5t8g8OYFNjdTkgDFagObW+unt7TMa root@euro-mir-vm";
+  euro-mir-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDhuCEVF1zuThObc0r9O8yclyNJHGcrW9cTnzN1kuVKx root@euro-mir-vm";
 
   systems = [
     euro
