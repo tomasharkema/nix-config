@@ -70,9 +70,9 @@ with inputs.home-manager.lib.hm.gvariant; {
       };
 
       "/org/gnome/desktop/background" = {
-        "picture-uri" = "file:///run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
+        # "picture-uri" = "/run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
 
-        "picture-uri-dark" = "file:///run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
+        # "picture-uri-dark" = "/run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
       };
 
       "org/gnome/shell/extensions/dash-to-dock" = {

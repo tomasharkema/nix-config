@@ -130,6 +130,11 @@
 
     dream2nix.url = "github:nix-community/dream2nix";
     # nixpkgs.follows = "dream2nix/nixpkgs";
+
+    peerix = {
+      url = "github:cid-chan/peerix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
@@ -233,12 +238,15 @@
       };
 
       overlays = with inputs; [
+        peerix.overlay
         # snowfall-flake.overlays."package/flake"
       ];
 
       # system.modules.darwin = with inputs; [agenix.darwinModules.default];
 
       systems.modules.nixos = with inputs; [
+        peerix.nixosModules.peerix
+
         # impermanence.nixosModule
         disko.nixosModules.default
 
