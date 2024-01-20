@@ -41,81 +41,82 @@ in {
           # additionalKeyFiles = ["/key/key"];
         };
 
-        extraUtilsCommands = ''
-          copy_bin_and_libs ${pkgs.haveged}/bin/haveged
-        '';
+        # extraUtilsCommands = ''
+        #   copy_bin_and_libs ${pkgs.haveged}/bin/haveged
+        # '';
 
         verbose = true;
 
         # postDeviceCommands =
-        preLVMCommands = pkgs.lib.mkBefore ''
-          look_for_usb() {
-            info "looking for key file!"
-            mkdir -m 0755 -p /key
-            sleep 2 # To make sure the usb key has been loaded
+        # preLVMCommands = pkgs.lib.mkBefore ''
+        #   look_for_usb() {
+        #     info "looking for key file!"
+        #     mkdir -m 0755 -p /key
+        #     sleep 2 # To make sure the usb key has been loaded
 
-            usbdevice="/dev/disk/by-partlabel/a7098897-2784-4776-bd3d-0e217d85963d"
+        #     usbdevice="/dev/disk/by-partlabel/a7098897-2784-4776-bd3d-0e217d85963d"
 
-            if mount -t vfat -o ro $usbdevice /key 2>/dev/null; then
-                if [ -e /key/key ]; then
+        #     if mount -t vfat -o ro $usbdevice /key 2>/dev/null; then
+        #         if [ -e /key/key ]; then
 
-                  device="$(cat /crypt-ramfs/device)"
-                  info "found key $device"
+        #           device="$(cat /crypt-ramfs/device)"
+        #           info "found key $device"
 
-                  passphrase="$(cat /key/key)"
+        #           passphrase="$(cat /key/key)"
 
-                  rm /crypt-ramfs/device
-                  echo -n "$passphrase" > /crypt-ramfs/passphrase
+        #           rm /crypt-ramfs/device
+        #           echo -n "$passphrase" > /crypt-ramfs/passphrase
 
-                fi
-                umount /key
-            fi
-          }
-          look_for_usb &
-        '';
+        #         fi
+        #         umount /key
+        #     fi
+        #   }
+        #   look_for_usb &
+        # '';
 
-        # systemd = {
-        #   emergencyAccess = true;
-        #   enable = true;
-        #   users.root.shell = "/bin/systemd-tty-ask-password-agent";
+        systemd = {
+          emergencyAccess = true;
+          enable = true;
+          users.root.shell = "/bin/systemd-tty-ask-password-agent";
 
-        #   services.key-usb = {
-        #     description = "Rollback BTRFS root subvolume to a pristine state";
-        #     # wantedBy = [
-        #     #   "initrd.target"
-        #     # ];
-        #     # after = [
-        #     #   # LUKS/TPM process
-        #     #   "systemd-cryptsetup@enc.service"
-        #     # ];
-        #     # before = [
-        #     #   "sysroot.mount"
-        #     # ];
-        #     wantedBy = ["sysinit.target" "initrd.target"];
-        #     before = ["cryptsetup-pre.target" "shutdown.target" "initrd-switch-root.service"];
-        #     after = ["systemd-cryptsetup@enc.service"];
+          #   services.key-usb = {
+          #     description = "Rollback BTRFS root subvolume to a pristine state";
+          #     # wantedBy = [
+          #     #   "initrd.target"
+          #     # ];
+          #     # after = [
+          #     #   # LUKS/TPM process
+          #     #   "systemd-cryptsetup@enc.service"
+          #     # ];
+          #     # before = [
+          #     #   "sysroot.mount"
+          #     # ];
+          #     wantedBy = ["sysinit.target" "initrd.target"];
+          #     before = ["cryptsetup-pre.target" "shutdown.target" "initrd-switch-root.service"];
+          #     after = ["systemd-cryptsetup@enc.service"];
 
-        #     unitConfig.DefaultDependencies = "no";
-        #     serviceConfig.Type = "oneshot";
+          #     unitConfig.DefaultDependencies = "no";
+          #     serviceConfig.Type = "oneshot";
 
-        #     script = ''
-        #       mkdir -m 0755 -p /key
-        #       sleep 2 # To make sure the usb key has been loaded
-        #       mount -n -t vfat -o ro /dev/disk/by-partlabel/a7098897-2784-4776-bd3d-0e217d85963d /key
-        #     '';
-        #   };
-        # };
+          #     script = ''
+          #       mkdir -m 0755 -p /key
+          #       sleep 2 # To make sure the usb key has been loaded
+          #       mount -n -t vfat -o ro /dev/disk/by-partlabel/a7098897-2784-4776-bd3d-0e217d85963d /key
+          #     '';
+          #   };
+        };
+
         availableKernelModules = ["e1000e" "r8169"];
         kernelModules = ["uas" "usbcore" "usb_storage" "vfat" "nls_cp437" "nls_iso8859_1"];
 
         network = {
           enable = true;
-          flushBeforeStage2 = true;
+          # flushBeforeStage2 = true;
           # udhcpc.enable = true;
           ssh = {
             enable = true;
             port = 22222;
-            shell = "/bin/cryptsetup-askpass";
+            # shell = "/bin/cryptsetup-askpass";
             authorizedKeys = config.user.keys;
             hostKeys = [
               "/boot/secrets/ssh_host_ed25519_key"

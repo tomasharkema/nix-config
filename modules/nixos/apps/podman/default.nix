@@ -1,4 +1,8 @@
-{lib,config, ...}:
+{
+  lib,
+  config,
+  ...
+}:
 with lib;
 with lib.custom; let
   cfg = config.apps.podman;

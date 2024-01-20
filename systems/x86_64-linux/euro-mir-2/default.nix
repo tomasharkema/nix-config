@@ -36,7 +36,7 @@
       gnome.enable = true;
       apps.steam.enable = true;
       game-mode.enable = true;
-      quiet-boot.enable = false;
+      quiet-boot.enable = true;
     };
     services.fprintd = {
       enable = true;
@@ -85,7 +85,6 @@
 
     services = {
       xserver.libinput.enable = true;
-      # xserver.videoDrivers = ["nvidia" "intel"];
       # tcsd.enable = false;
     };
 

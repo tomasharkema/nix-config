@@ -8,7 +8,7 @@ pkgs.stdenvNoCC.mkDerivation rec {
   version = "2024-01-19";
   src = builtins.fetchTarball {
     url = "https://nixosbrasil.github.io/nix-docgen/nixpkgs-unstable/nixpkgs.docset.tgz";
-    sha256 = "sha256:0z6iahfihj90k5y0ra2zivfq2p8qgnnifbs09y0v11x5hwjjyhy6";
+    sha256 = "sha256:1c5nv9jxy7jnvyzjwzp74qli6asl7biyd2znlzxcbnqdfxfnmq89";
   };
 
   installPhase = ''

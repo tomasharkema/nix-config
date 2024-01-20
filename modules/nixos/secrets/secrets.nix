@@ -75,4 +75,6 @@ in {
   "ldap.age".publicKeys = builders;
   "healthcheck.age".publicKeys = allKeys;
   "op.age".publicKeys = allKeys;
+  "peerix.private.age".publicKeys = allKeys;
+  "peerix.public.age".publicKeys = allKeys;
 }
