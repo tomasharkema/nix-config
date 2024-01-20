@@ -35,14 +35,20 @@ in {
         supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
         maxJobs = 2;
       }
+      # {
+      #   hostName = "builder@wodan-vm";
+      #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
+      #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+      #   maxJobs = 2;
+      # }
+      # {
+      #   hostName = "builder@wodan-wsl";
+      #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
+      #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+      #   maxJobs = 2;
+      # }
       {
-        hostName = "builder@wodan-vm";
-        systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
-        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-        maxJobs = 2;
-      }
-      {
-        hostName = "builder@wodan-wsl";
+        hostName = "builder@wodan";
         systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
         supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
         maxJobs = 2;
@@ -131,7 +137,7 @@ in {
 
         substituters = [
           "https://tomasharkema.cachix.org/"
-          "https://nix-cache.harke.ma/tomas/"
+          # "https://nix-cache.harke.ma/tomas/"
           "https://nix-community.cachix.org/"
           "https://cache.nixos.org/"
         ];
