@@ -58,10 +58,17 @@ in {
 
             if mount -t vfat -o ro $usbdevice /key 2>/dev/null; then
                 if [ -e /key/key ]; then
-                    info "found key"
-                    cryptsetup luksOpen /dev/disk/by-partlabel/disk-main-luks crypted --allow-discards --key-file=/key/key
+
+                  device="$(cat /crypt-ramfs/device)"
+                  info "found key $device"
+
+                  passphrase="$(cat /key/key)"
+
+                  rm /crypt-ramfs/device
+                  echo -n "$passphrase" > /crypt-ramfs/passphrase
+
                 fi
-                umount $usbdevice
+                umount /key
             fi
           }
           look_for_usb &
