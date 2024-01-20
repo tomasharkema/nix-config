@@ -14,6 +14,8 @@
 
     time.timeZone = "Europe/Amsterdam";
 
+    netdata.enable = mkForce false;
+
     disks."ext4" = {
       enable = true;
       main = "/dev/vda";
