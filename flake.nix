@@ -273,7 +273,7 @@
           # };
           euro-mir-vm = {
             sshUser = "root";
-            hostname = "192.168.178.51";
+            hostname = "172.25.227.57";
           };
           pegasus = {
             hostname = "172.25.220.155";
