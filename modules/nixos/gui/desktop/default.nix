@@ -149,9 +149,5 @@ in {
     services.gvfs.enable = true;
 
     boot.hardwareScan = true;
-
-    programs.kdeconnect = {
-      enable = true;
-    };
   };
 }
