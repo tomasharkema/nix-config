@@ -33,7 +33,7 @@
     traits = {
       hardware = {
         tpm.enable = true;
-        secure-boot.enable = false;
+        secure-boot.enable = true;
         vm.enable = true;
         remote-unlock.enable = false;
       };
