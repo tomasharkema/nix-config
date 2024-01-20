@@ -14,7 +14,7 @@
 
     time.timeZone = "Europe/Amsterdam";
 
-    netdata.enable = mkForce false;
+    netdata.enable = lib.mkForce false;
 
     disks."ext4" = {
       enable = true;
