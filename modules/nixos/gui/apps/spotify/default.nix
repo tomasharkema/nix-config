@@ -8,7 +8,7 @@
 in {
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      spotify
+      # spotify
       spotifyd
 
       ncspot
