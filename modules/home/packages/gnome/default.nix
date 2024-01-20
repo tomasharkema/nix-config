@@ -12,6 +12,10 @@ with inputs.home-manager.lib.hm.gvariant; {
     dconf.enable = true;
 
     dconf.settings = {
+      "org/gnome/mutter" = {
+        edge-tiling = true;
+      };
+
       # "org/gnome/desktop/app-folders" = {
       #   folder-children = ["Utilities" "YaST" "Pardus"];
       # };
@@ -43,6 +47,9 @@ with inputs.home-manager.lib.hm.gvariant; {
       #   name = "X-GNOME-Utilities.directory";
       #   translate = true;
       # };
+      "org/gnome/shell/extensions/vitals" = {
+        "position-in-panel" = 0;
+      };
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
         gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
@@ -50,11 +57,22 @@ with inputs.home-manager.lib.hm.gvariant; {
         font-antialiasing = "greyscale";
         font-hinting = "full";
         font-name = "B612 Regular 12";
+        enable-hot-corners = false;
       };
 
       "org/gnome/shell/extensions/TodoTxt" = {
         donetxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt/done.txt";
         todotxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt/todo.txt";
+      };
+
+      "org/gnome/gnome-session" = {
+        "auto-save-session" = true;
+      };
+
+      "/org/gnome/desktop/background" = {
+        "picture-uri" = "file:///run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
+
+        "picture-uri-dark" = "file:///run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
       };
 
       "org/gnome/shell/extensions/dash-to-dock" = {
@@ -123,6 +141,7 @@ with inputs.home-manager.lib.hm.gvariant; {
         "sp-tray@sp-tray.esenliyim.github.com"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
         "dash-to-dock@micxgx.gmail.com"
+        "Vitals@CoreCoding.com"
       ];
       "org/gnome/shell".favorite-apps = ["org.gnome.Nautilus.desktop" "firefox.desktop" "kitty.desktop" "code.desktop"];
 

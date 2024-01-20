@@ -44,6 +44,8 @@ in {
       gnomeExtensions.dash-to-dock
       gnomeExtensions.vitals
 
+      # gnome-extension-manager
+
       # gnomeExtensions.git
       # gnomeExtensions.tado
       # gnomeExtensions.ping
