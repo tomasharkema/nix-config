@@ -75,6 +75,7 @@ in {
     services.gnome.gnome-browser-connector.enable = true;
 
     environment.systemPackages = with pkgs; [
+polkit
       gparted
       firefox
       vscode
