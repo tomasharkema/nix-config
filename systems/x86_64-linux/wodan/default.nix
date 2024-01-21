@@ -4,6 +4,10 @@
   config = {
     documentation.man.enable = false;
 
+    boot = {
+      binfmt.emulatedSystems = ["aarch64-linux"];
+    };
+
     time = {
       hardwareClockInLocalTime = true;
       timeZone = "Europe/Amsterdam";
@@ -30,15 +34,14 @@
       apps.steam.enable = true;
       game-mode.enable = true;
       quiet-boot.enable = true;
-      #flatpak.enable = true;
+      apps.flatpak.enable = true;
     };
 
     traits = {
       hardware = {
         tpm.enable = true;
-        #secure-boot.enable = true;
+        # secure-boot.enable = true;
         nvidia.enable = true;
-        remote-unlock.enable = true;
       };
     };
 
@@ -46,9 +49,6 @@
       enable = true;
       main = "/dev/disk/by-id/usb-CT120BX5_00SSD1_111122223333-0:0";
       encrypt = true;
-    };
-    services.resilio = {
-      enable = lib.mkForce false;
     };
 
     boot = {
