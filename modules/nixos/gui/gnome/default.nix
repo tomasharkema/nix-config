@@ -74,6 +74,7 @@ in {
       gnomeExtensions.gpu-profile-selector
       gnomeExtensions.server-status-indicator
       gnomeExtensions.remmina-search-provider
+      gnomeExtensions.clipboard-indicator
 
       # logseq
 
@@ -100,7 +101,6 @@ in {
       _1password
       wezterm
       waybar
-      bottles
       zeal
     ];
 
@@ -113,7 +113,7 @@ in {
     #   enable = true;
     #   enableNvidiaPatches = true;
     # };
-    programs.sway.enable = true;
+    # programs.sway.enable = true;
     programs.dconf.enable = true;
 
     fonts = {

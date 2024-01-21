@@ -7,20 +7,21 @@
   cfg = config.gui;
 in {
   config = lib.mkIf (cfg.enable && pkgs.stdenv.hostPlatform.isx86_64) {
-    environment.systemPackages = with pkgs; [
-      # ...
+    # environment.systemPackages = with pkgs; [
+    #   # ...
 
-      # support both 32- and 64-bit applications
-      wineWowPackages.stable
+    #   # support both 32- and 64-bit applications
+    #   wineWowPackages.stable
 
-      # support 32-bit only
-      wine
+    #   # support 32-bit only
+    #   wine
 
-      # winetricks (all versions)
-      winetricks
+    #   # winetricks (all versions)
+    #   winetricks
 
-      # native wayland support (unstable)
-      wineWowPackages.waylandFull
-    ];
+    #   # native wayland support (unstable)
+    #   wineWowPackages.waylandFull 
+      # bottles
+    # ];
   };
 }

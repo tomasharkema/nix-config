@@ -7,7 +7,7 @@
 }:
 with lib; {
   config = mkIf (!config.traits.slim.enable) {
-    programs.singularity.enable = true;
+    #programs.singularity.enable = true;
 
     services.kbfs = {
       enable = true;
