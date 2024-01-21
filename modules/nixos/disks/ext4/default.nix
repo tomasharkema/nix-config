@@ -118,7 +118,7 @@ in
                   end = "100%";
                   content = {
                     type = "swap";
-                    resumeDevice = true; # resume from hiberation from this device
+                    # resumeDevice = true; # resume from hiberation from this device
                   };
                 };
               };
