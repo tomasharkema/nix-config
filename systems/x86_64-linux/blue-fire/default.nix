@@ -59,21 +59,6 @@ in {
       useDHCP = lib.mkDefault true;
     };
 
-    nix.buildMachines = [
-      # {
-      #   hostName = "enzian";
-      #   system = "x86_64-linux";
-      #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-      #   maxJobs = 2;
-      # }
-      # {
-      #   hostName = "enzian";
-      #   system = "aarch64-linux";
-      #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-      #   maxJobs = 2;
-      # }
-    ];
-
     environment.systemPackages = with pkgs; [
       # ipmicfg
       # ipmiview
@@ -146,20 +131,20 @@ in {
 
     apps.podman.enable = true;
 
-    virtualisation = {
-      oci-containers.containers = {
-        social-dl = {
-          image = "docker.io/tomasharkema7/social-dl";
-          autoStart = true;
-          # ports = ["80:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
-          # hostname = "ipa.harkema.io";
-          # extraOptions = ["--sysctl" "net.ipv6.conf.all.disable_ipv6=0"];
-          # cmd = ["ipa-server-install" "-U" "-r" "HARKEMA.IO"];
-          # volumes = [
-          #   "/var/lib/freeipa:/data:Z"
-          # ];
-        };
-      };
-    };
+    # virtualisation = {
+    #   oci-containers.containers = {
+    #     social-dl = {
+    #       image = "docker.io/tomasharkema7/social-dl";
+    #       autoStart = true;
+    #       # ports = ["80:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
+    #       # hostname = "ipa.harkema.io";
+    #       # extraOptions = ["--sysctl" "net.ipv6.conf.all.disable_ipv6=0"];
+    #       # cmd = ["ipa-server-install" "-U" "-r" "HARKEMA.IO"];
+    #       # volumes = [
+    #       #   "/var/lib/freeipa:/data:Z"
+    #       # ];
+    #     };
+    #   };
+    # };
   };
 }

@@ -98,16 +98,17 @@ in {
         </githubstatus>
         using_frontend_proxy 1
         email_notification = 1
-        Include ${import ./ldap.nix {inherit pkgs config;}}
       '';
+
+      # Include ${import ./ldap.nix {inherit pkgs config;}}
     };
 
-    age.secrets."ldap" = {
-      file = ../../../../../secrets/ldap.age;
-      mode = "644";
-      # owner = "tomas";
-      # group = "tomas";
-    };
+    # age.secrets."ldap" = {
+    #   file = ../../../../../secrets/ldap.age;
+    #   mode = "644";
+    #   # owner = "tomas";
+    #   # group = "tomas";
+    # };
 
     programs.ssh.extraConfig = ''
       StrictHostKeyChecking no
