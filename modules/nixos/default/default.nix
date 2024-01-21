@@ -47,8 +47,9 @@
         cope
         pkgs.custom.menu
       ];
-
-      # services.thermald.enable = true;
+      
+          programs._1password.enable = true;
+      services.thermald.enable = true;
 
       # services.eternal-terminal.enable = true;
 

@@ -98,7 +98,7 @@ in {
       mattermost-desktop
       systemdgenie
 
-      _1password
+      # _1password
       wezterm
       waybar
       zeal

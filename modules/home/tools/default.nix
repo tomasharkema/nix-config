@@ -8,7 +8,7 @@ with pkgs; {
     home.packages = with pkgs; [
       # mattermost-desktop
       tg
-      _1password
+      # _1password
       thefuck
       antidote
       autojump

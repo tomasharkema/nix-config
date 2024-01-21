@@ -99,8 +99,8 @@ in {
       gnome-menus
       xdg-utils
 
-      _1password
-      _1password-gui
+      # _1password
+      # _1password-gui
       handbrake
       meteo
       transmission-remote-gtk
@@ -117,7 +117,6 @@ in {
         IdentityAgent ~/.1password/agent.sock
     '';
 
-    programs._1password.enable = true;
     programs._1password-gui = {
       enable = true;
       # Certain features, including CLI integration and system authentication support,
