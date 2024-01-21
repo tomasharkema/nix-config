@@ -42,6 +42,9 @@
         wget
         curl
         freeipa
+        lm_sensors
+        pciutils
+        cope
       ];
 
       # services.thermald.enable = true;
