@@ -38,7 +38,7 @@
 
   innerContent = {
     root = {
-      end = "-10G";
+      # end = "-10G";
       content = {
         type = "filesystem";
         format = "ext4";
@@ -99,13 +99,19 @@ in
                   };
                 };
 
-                root = mkIf (!cfg.encrypt) innerContent.root;
+                root = mkIf (!cfg.encrypt) (innerContent.root
+                  // {
+                    end = "-10G";
+                  });
                 luks =
                   mkIf cfg.encrypt
-                  (
-                    luksContent innerContent.root.content
-                  )
-                  .luks;
+                  ((
+                      luksContent (innerContent.root.content // {size = "100%";})
+                    )
+                    .luks
+                    // {
+                      end = "-10G";
+                    });
 
                 # encryptedSwap = {
                 #   size = "1G";
