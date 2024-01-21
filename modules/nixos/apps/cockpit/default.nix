@@ -41,8 +41,10 @@ in {
         StartLimitIntervalSec = 500;
         StartLimitBurst = 5;
       };
-      script = "${cockpit-get-cert}/bin/cockpit-get-cert";
-      wantedBy = ["multi-user.target" "cockpit.service" "tailscale.service"];
+      script = "${lib.getExe cockpit-get-cert}";
+      wantedBy = ["multi-user.target"];
+      after = ["tailscale.service"];
+      wants = ["tailscale.service"];
       path = [cockpit-get-cert pkgs.tailscale];
     };
 

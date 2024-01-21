@@ -81,7 +81,7 @@ in {
     };
 
     users.groups.agent = {};
-
+    users.groups.rslsync = {};
     users.users.agent = {
       isNormalUser = true;
       group = "agent";
