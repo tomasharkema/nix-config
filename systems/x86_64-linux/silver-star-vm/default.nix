@@ -20,7 +20,7 @@
         vm.enable = true;
       };
     };
-    disks.btrfs = {
+    disks.ext4 = {
       enable = true;
       main = "/dev/disk/by-id/virtio-vdisk1";
     };
