@@ -18,9 +18,9 @@ with lib; {
     services.keybase = {
       enable = true;
     };
-    # security.wrappers.keybase-redirector.owner = "root";
-    # security.wrappers.keybase-redirector.group = "root";
-    # security.wrappers.keybase-redirector.setuid = true;
+    security.wrappers.keybase-redirector.owner = "root";
+    security.wrappers.keybase-redirector.group = "root";
+    security.wrappers.keybase-redirector.setuid = true;
 
     environment.systemPackages = with pkgs; mkIf (config.gui.enable && pkgs.system == "x86_64-linux") [keybase-gui];
 
