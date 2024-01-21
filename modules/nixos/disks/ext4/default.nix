@@ -20,7 +20,7 @@
 
   luksContent = root: {
     luks = {
-      end = "-10G";
+      size = "100%";
       content = {
         type = "luks";
         name = "crypted";
@@ -38,7 +38,7 @@
 
   innerContent = {
     root = {
-      # end = "-10G";
+      size = "100%";
       content = {
         type = "filesystem";
         format = "ext4";
@@ -98,20 +98,22 @@ in
                     mountpoint = "/boot";
                   };
                 };
-
-                root = mkIf (!cfg.encrypt) (innerContent.root
-                  // {
-                    end = "-10G";
-                  });
+                plainSwap = {
+                  end = "10G";
+                  content = {
+                    type = "swap";
+                    resumeDevice = true; # resume from hiberation from this device
+                  };
+                };
+                root = mkIf (!cfg.encrypt) (
+                  innerContent.root
+                );
                 luks =
                   mkIf cfg.encrypt
                   ((
-                      luksContent (innerContent.root.content // {size = "100%";})
+                      luksContent (innerContent.root.content)
                     )
-                    .luks
-                    // {
-                      end = "-10G";
-                    });
+                    .luks);
 
                 # encryptedSwap = {
                 #   size = "1G";
@@ -120,13 +122,6 @@ in
                 #     randomEncryption = true;
                 #   };
                 # };
-                plainSwap = {
-                  end = "100%";
-                  content = {
-                    type = "swap";
-                    # resumeDevice = true; # resume from hiberation from this device
-                  };
-                };
               };
             };
           };
