@@ -45,6 +45,7 @@
         lm_sensors
         pciutils
         cope
+        pkgs.custom.menu
       ];
 
       # services.thermald.enable = true;
