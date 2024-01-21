@@ -19,11 +19,11 @@ in
         file = {
           ".config/cachix/cachix.dhall".source = config.lib.file.mkOutOfStoreSymlink "/etc/cachix.dhall"; # osConfig.age.secrets.cachix.path;
 
-          "${config.xdg.dataHome}/Zeal/Zeal/docsets/nixpkgs.docset" = {
-            # /nixpkgs.docset" = {
-            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.custom.nixpkgs-docset}/nixpkgs.docset";
-            recursive = true;
-          };
+          # "${config.xdg.dataHome}/Zeal/Zeal/docsets/nixpkgs.docset" = {
+          #   # /nixpkgs.docset" = {
+          #   source = config.lib.file.mkOutOfStoreSymlink "${pkgs.custom.nixpkgs-docset}/nixpkgs.docset";
+          #   recursive = true;
+          # };
         };
 
         stateVersion = "23.11";
