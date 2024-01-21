@@ -98,13 +98,13 @@ in
                     mountpoint = "/boot";
                   };
                 };
-                plainSwap = {
-                  size = "10G";
-                  content = {
-                    type = "swap";
-                    resumeDevice = true; # resume from hiberation from this device
-                  };
-                };
+                # plainSwap = {
+                #   size = "10G";
+                #   content = {
+                #     type = "swap";
+                #     resumeDevice = true; # resume from hiberation from this device
+                #   };
+                # };
                 root = mkIf (!cfg.encrypt) (
                   innerContent.root
                 );
