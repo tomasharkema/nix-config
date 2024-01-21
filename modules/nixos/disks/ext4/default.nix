@@ -99,7 +99,7 @@ in
                   };
                 };
                 plainSwap = {
-                  end = "10G";
+                  size = "10G";
                   content = {
                     type = "swap";
                     resumeDevice = true; # resume from hiberation from this device
