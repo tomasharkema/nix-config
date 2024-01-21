@@ -21,7 +21,7 @@
               };
             };
             root = {
-              end = "-1G";
+              size = "-10G";
               content = {
                 type = "filesystem";
                 format = "ext4";
@@ -29,14 +29,14 @@
               };
             };
             encryptedSwap = {
-              size = "10M";
+              size = "1G";
               content = {
                 type = "swap";
                 randomEncryption = true;
               };
             };
             plainSwap = {
-              size = "100%";
+              end = "100%";
               content = {
                 type = "swap";
                 resumeDevice = true; # resume from hiberation from this device
