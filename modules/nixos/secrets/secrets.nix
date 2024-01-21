@@ -9,7 +9,7 @@ let
   enzian = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN9/iOb/hw6R31UsX5b8VDq6aJEgn8M4k0Ow2IGY1qQb root@enzian";
   # enzian-user = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBkD6Gv2OmfofzWqPihWEo2mfOWx7kFkCh5urGNn/AJ0 tomas@enzian";
 
-  silver-star-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMjK+FEkEbBnaQZ/SgBaN0tniY2vKgx3049sf7sBH46y root@silver-star-vm";
+  silver-star-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFyXC2bP9o48/aEm7b4k1HREJHY2H1QHYtL/z24N9Sgy root@silver-star-vm";
 
   utm-nixos = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICgPvSzMf7TG4ArvFFp8R/kfj6XYXkMl3r47FL5voIBN root@utm-nixos";
 
