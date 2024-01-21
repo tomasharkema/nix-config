@@ -20,7 +20,7 @@
 
   luksContent = root: {
     luks = {
-      size = "-10G";
+      end = "-10G";
       content = {
         type = "luks";
         name = "crypted";
@@ -38,7 +38,7 @@
 
   innerContent = {
     root = {
-      size = "-10G";
+      end = "-10G";
       content = {
         type = "filesystem";
         format = "ext4";
@@ -115,7 +115,7 @@ in
                   };
                 };
                 plainSwap = {
-                  size = "100%";
+                  end = "100%";
                   content = {
                     type = "swap";
                     resumeDevice = true; # resume from hiberation from this device
