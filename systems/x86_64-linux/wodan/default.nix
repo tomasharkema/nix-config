@@ -37,6 +37,8 @@
       apps.flatpak.enable = true;
     };
 
+    services.thermald.enable = true;
+
     traits = {
       hardware = {
         tpm.enable = true;
