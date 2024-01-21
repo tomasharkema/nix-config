@@ -107,13 +107,13 @@ in
                   )
                   .luks;
 
-                encryptedSwap = {
-                  size = "1G";
-                  content = {
-                    type = "swap";
-                    randomEncryption = true;
-                  };
-                };
+                # encryptedSwap = {
+                #   size = "1G";
+                #   content = {
+                #     type = "swap";
+                #     randomEncryption = true;
+                #   };
+                # };
                 plainSwap = {
                   end = "100%";
                   content = {
