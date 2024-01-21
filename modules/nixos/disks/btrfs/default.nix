@@ -67,7 +67,7 @@
           "/nix" = {
             mountOptions = [
               "subvol=nix"
-              #"compress=zstd"
+              "compress=zstd"
               "noatime"
             ];
             mountpoint = "/nix";
@@ -76,7 +76,7 @@
           "/swap" = {
             mountpoint = "/.swapvol";
             swap = {
-              swapfile.size = "5G";
+              swapfile.size = "10G";
             };
           };
           # "/.snapshots" = {
