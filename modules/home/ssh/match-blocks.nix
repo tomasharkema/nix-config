@@ -13,7 +13,6 @@
     "euro-mir-2"
     "euro-mir-vm"
     "wodan"
-    "silver-star"
     "silver-star-vm"
   ];
 in {
