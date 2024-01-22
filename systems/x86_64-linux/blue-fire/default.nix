@@ -77,31 +77,14 @@ in {
       useRoutingFeatures = lib.mkForce "both";
     };
 
-    services.cron.systemCronJobs = [
-      # Reset 5-minute watchdog timer every minute
-      "* * * * * ${pkgs.ipmitool}/bin/ipmitool raw 0x30 0x97 1 5"
-    ];
-
-    # Minimal configuration for NFS support with Vagrant.
-    # services.nfs.server.enable = true;
-
-    # # Add firewall exception for VirtualBox provider
-    # networking.firewall.extraCommands = ''
-    #   ip46tables -I INPUT 1 -i vboxnet+ -p tcp -m tcp --dport 2049 -j ACCEPT
-    # '';
-
-    # # Add firewall exception for libvirt provider when using NFSv4
-    # networking.firewall.interfaces."virbr1" = {
-    #   allowedTCPPorts = [ 2049 ];
-    #   allowedUDPPorts = [ 2049 ];
-    # };
-
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
-    boot.loader.systemd-boot.configurationLimit = 10;
-
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
+
+      loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
+        systemd-boot.configurationLimit = 10;
+      };
 
       initrd = {
         availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
@@ -133,22 +116,20 @@ in {
       # kernelParams = ["console=ttyS0,115200" "console=tty1"];
     };
 
-    # apps.podman.enable = true;
-
-    # virtualisation = {
-    #   oci-containers.containers = {
-    #     social-dl = {
-    #       image = "docker.io/tomasharkema7/social-dl";
-    #       autoStart = true;
-    #       # ports = ["80:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
-    #       # hostname = "ipa.harkema.io";
-    #       # extraOptions = ["--sysctl" "net.ipv6.conf.all.disable_ipv6=0"];
-    #       # cmd = ["ipa-server-install" "-U" "-r" "HARKEMA.IO"];
-    #       # volumes = [
-    #       #   "/var/lib/freeipa:/data:Z"
-    #       # ];
-    #     };
-    #   };
-    # };
+    virtualisation = {
+      oci-containers.containers = {
+        social-dl = {
+          image = "docker.io/tomasharkema7/social-dl";
+          autoStart = true;
+          # ports = ["80:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
+          # hostname = "ipa.harkema.io";
+          # extraOptions = ["--sysctl" "net.ipv6.conf.all.disable_ipv6=0"];
+          # cmd = ["ipa-server-install" "-U" "-r" "HARKEMA.IO"];
+          # volumes = [
+          #   "/var/lib/freeipa:/data:Z"
+          # ];
+        };
+      };
+    };
   };
 }
