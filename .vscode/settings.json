@@ -6,9 +6,12 @@
       "formatting": {
         "command": ["alejandra"]
       },
-      "flake": {
-        "autoArchive": true,
-        "autoEvalInputs": true
+      "nix": {
+        "maxMemoryMB": 4096,
+        "flake": {
+          "autoArchive": true,
+          "autoEvalInputs": true
+        }
       }
     }
   },
