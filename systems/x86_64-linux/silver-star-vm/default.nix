@@ -31,7 +31,12 @@
       oci-containers.containers = {
         golinks = {
           image = "ghcr.io/tomasharkema/golinks:latest";
+          autoStart = true;
           ports = ["8000:8000"];
+          environment = {
+            BIND = "0.0.0.0:8000";
+            BASEURL = "https://golinks.harkema.io";
+          };
         };
         free-ipa = {
           image = "docker.io/freeipa/freeipa-server:almalinux-9";
