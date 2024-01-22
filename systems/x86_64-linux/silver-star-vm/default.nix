@@ -25,7 +25,9 @@
       enable = true;
       main = "/dev/disk/by-id/virtio-vdisk1";
     };
-
+    security.ipa = {
+      enable = lib.mkForce true;
+    };
     apps.podman.enable = true;
 
     virtualisation = {
