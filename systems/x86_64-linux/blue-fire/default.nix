@@ -129,7 +129,7 @@ in {
       # kernelParams = ["console=ttyS0,115200" "console=tty1"];
     };
 
-    apps.podman.enable = true;
+    # apps.podman.enable = true;
 
     # virtualisation = {
     #   oci-containers.containers = {
