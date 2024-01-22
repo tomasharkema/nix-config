@@ -19,7 +19,7 @@
     };
 
     nix-index-database = {
-      url = "github:Mic92/nix-index-database";
+      url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -37,10 +37,12 @@
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    colmena = {
-      url = "github:zhaofengli/colmena";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
+    # colmena = {
+    #   url = "github:zhaofengli/colmena";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
     anywhere = {
       url = "github:nix-community/nixos-anywhere";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,48 +52,54 @@
       url = "github:numtide/flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nixvim = {
       url = "github:pta2002/nixvim/nixos-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     agenix = {
-      url = "github:ryantm/agenix/0.15.0";
+      url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nixos-hardware = {
       url = "github:nixos/nixos-hardware";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     cachix-deploy-flake = {
       url = "github:cachix/cachix-deploy-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nix-software-center = {
       url = "github:snowfallorg/nix-software-center";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nixos-conf-editor = {
       url = "github:snowfallorg/nixos-conf-editor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     impermanence = {
       url = "github:nix-community/impermanence";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     attic = {
       url = "github:zhaofengli/attic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    fh = {
-      url = "github:DeterminateSystems/fh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -99,34 +107,27 @@
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     hydra-check = {
       url = "github:nix-community/hydra-check";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     flake-checker = {
       url = "github:DeterminateSystems/flake-checker";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    system-manager = {
-      url = "github:numtide/system-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # gomod2nix = {
-    #   url = "github:nix-community/gomod2nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.flake-utils.follows = "flake-utils";
-    # };
-
     snowfall-lib = {
       url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     snowfall-flake = {
       url = "github:snowfallorg/flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nil = {
       url = "github:oxalica/nil";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -137,74 +138,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dream2nix = {
-      url = "github:nix-community/dream2nix";
-      inputs.nixpkgs.follows = "dream2nix/nixpkgs";
-    };
-
     peerix = {
       url = "github:cid-chan/peerix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  };
-
-  nixConfig = {
-    extra-experimental-features = "nix-command flakes";
-    distributedBuilds = true;
-    builders-use-substitutes = true;
-    trusted-users = ["root" "tomas"];
-
-    substituters = [
-      "https://tomasharkema.cachix.org/"
-      #      "https://nix-cache.harke.ma/tomas/"
-      "https://nix-community.cachix.org/"
-      "https://cache.nixos.org/"
-      "https://devenv.cachix.org"
-    ];
-
-    trusted-public-keys = [
-      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
-      "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-    ];
-
-    extra-trusted-public-keys = [
-      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
-      "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-    ];
-    extra-substituters = [
-      "https://tomasharkema.cachix.org/"
-      #     "https://nix-cache.harke.ma/tomas/"
-      "https://nix-community.cachix.org/"
-      "https://cache.nixos.org/"
-      "https://devenv.cachix.org"
-    ];
-
-    binaryCaches = ["https://cache.nixos.org"];
-
-    allowed-uris = [
-      "https://api.github.com"
-      "https://github.com/zhaofengli/nix-base32.git"
-      "https://github.com/tomasharkema.keys"
-      "https://api.flakehub.com/f/pinned"
-      "https://github.com/NixOS/"
-      "https://github.com/nixos/"
-      "https://github.com/hercules-ci/"
-      "https://github.com/numtide/"
-      "https://github.com/cachix/"
-      "https://github.com/nix-community/"
-      "https://github.com/tomasharkema/"
-      "git://github.com/tomasharkema"
-    ];
-
-    allow-import-from-derivation = true;
-    keep-outputs = true;
-    keep-derivations = true;
   };
 
   outputs = inputs: let
@@ -405,4 +342,63 @@
         # };
       };
     };
+
+  nixConfig = {
+    extra-experimental-features = "nix-command flakes";
+    distributedBuilds = true;
+    builders-use-substitutes = true;
+    trusted-users = ["root" "tomas"];
+
+    substituters = [
+      "https://tomasharkema.cachix.org/"
+      #      "https://nix-cache.harke.ma/tomas/"
+      "https://nix-community.cachix.org/"
+      "https://cache.nixos.org/"
+      "https://devenv.cachix.org"
+    ];
+
+    trusted-public-keys = [
+      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
+      "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+    ];
+
+    extra-trusted-public-keys = [
+      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
+      "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+    ];
+    extra-substituters = [
+      "https://tomasharkema.cachix.org/"
+      #     "https://nix-cache.harke.ma/tomas/"
+      "https://nix-community.cachix.org/"
+      "https://cache.nixos.org/"
+      "https://devenv.cachix.org"
+    ];
+
+    binaryCaches = ["https://cache.nixos.org"];
+
+    allowed-uris = [
+      "https://api.github.com"
+      "https://github.com/zhaofengli/nix-base32.git"
+      "https://github.com/tomasharkema.keys"
+      "https://api.flakehub.com/f/pinned"
+      "https://github.com/NixOS/"
+      "https://github.com/nixos/"
+      "https://github.com/hercules-ci/"
+      "https://github.com/numtide/"
+      "https://github.com/cachix/"
+      "https://github.com/nix-community/"
+      "https://github.com/tomasharkema/"
+      "git://github.com/tomasharkema"
+    ];
+
+    allow-import-from-derivation = true;
+    keep-outputs = true;
+    keep-derivations = true;
+  };
 }
