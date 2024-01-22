@@ -242,7 +242,12 @@
         # snowfall-flake.overlays."package/flake"
       ];
 
-      # system.modules.darwin = with inputs; [agenix.darwinModules.default];
+      system.modules.darwin = with inputs; [
+        {
+          system.nixos.tags = ["snowfall" (self.rev or "dirty")];
+          system.configurationRevision = self.rev or "dirty";
+        }
+      ];
 
       systems.modules.nixos = with inputs; [
         peerix.nixosModules.peerix
@@ -258,8 +263,10 @@
         nixos-generators.nixosModules.all-formats
         {
           system.stateVersion = "23.11";
+          system.nixos.tags = ["snowfall" (self.rev or "dirty")];
+          system.configurationRevision = self.rev or "dirty";
+
           services.vscode-server.enable = true;
-          system.configurationRevision = inputs.nixpkgs.lib.mkIf (self ? rev) self.rev;
         }
       ];
 
