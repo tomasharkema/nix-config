@@ -67,6 +67,10 @@ in {
       }
     ];
 
+    networking.firewall = {
+      allowedTCPPorts = [3000];
+    };
+
     services.hydra = {
       extraEnv = {
         # HYDRA_FORCE_SEND_MAIL = "1";
