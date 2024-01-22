@@ -12,6 +12,7 @@ pkgs.writeShellApplication {
     RUN_UPDATER="Run Updater..."
     OPEN_BLUE_FIRE="SSH blue-fire..."
     OPEN_SSH="SSH..."
+    CLEAR_CACHE="Clear cache..."
     OPEN_SHELL="Go to shell!"
     EXIT="Exit"
 
@@ -19,7 +20,7 @@ pkgs.writeShellApplication {
       sudo nixos-rebuild switch --flake "github:tomasharkema/nix-config/update" --refresh --verbose --log-format internal-json -v |& nom --json
     }
 
-    CHOICE=$(gum choose "$RUN_UPDATER" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$OPEN_SHELL" "$EXIT")
+    CHOICE=$(gum choose "$RUN_UPDATER" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$CLEAR_CACHE" "$OPEN_SHELL" "$EXIT")
 
     case $CHOICE in
       "$RUN_UPDATER")
@@ -36,6 +37,10 @@ pkgs.writeShellApplication {
 
       "$OPEN_SHELL")
         exec zsh
+        ;;
+
+      "$CLEAR_CACHE")
+        exec sudo nix-collect-garbage --delete-older-than '1d'
         ;;
 
       "$EXIT")

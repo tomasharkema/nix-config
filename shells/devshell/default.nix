@@ -78,6 +78,7 @@ in
     modules = [
       #../../modules/home/tools/nix/nixpkgs.nix
       {
+        starship.enable = true;
         languages.nix.enable = true;
 
         pre-commit.hooks = {
