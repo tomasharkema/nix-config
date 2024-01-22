@@ -73,9 +73,9 @@
     nix-software-center = {
       url = "github:snowfallorg/nix-software-center";
     };
-    nixos-conf-editor = {
-      url = "github:snowfallorg/nixos-conf-editor";
-    };
+    # nixos-conf-editor = {
+    #   url = "github:snowfallorg/nixos-conf-editor";
+    # };
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak";
       inputs.nixpkgs.follows = "nixpkgs";
