@@ -54,7 +54,7 @@
       # services.eternal-terminal.enable = true;
       hardware.enableAllFirmware = true;
       hardware.enableRedistributableFirmware = true;
-      hardware.fancontrol.enable = true;
+      # hardware.fancontrol.enable = true;
 
       services.openssh = {
         enable = true;
