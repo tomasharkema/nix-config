@@ -14,7 +14,7 @@ pkgs.writeShellApplication {
     EXIT="Exit"
 
     update () {
-      sudo nixos-rebuild switch --flake "github:tomasharkema/nix-config/update" --log-format internal-json -v |& nom --json
+      sudo nixos-rebuild switch --flake "github:tomasharkema/nix-config/update" --refresh --verbose --log-format internal-json -v |& nom --json
     }
 
     CHOICE=$(gum choose "$RUN_UPDATER" "$OPEN_SHELL" "$EXIT")
