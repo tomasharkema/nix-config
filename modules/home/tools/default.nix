@@ -11,7 +11,7 @@ with pkgs; {
       # _1password
       thefuck
       antidote
-      autojump
+      # autojump
       bash
       bat
       bottom

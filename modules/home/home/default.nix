@@ -309,7 +309,7 @@ in
             enable = true;
             plugins = [
               "1password"
-              "autojump"
+              # "autojump"
               "aws"
               "colorize"
               "docker"
