@@ -30,7 +30,8 @@ in {
         "--advertise-tags=tag:nixos"
         "--operator=tomas"
         "--accept-dns"
-        "--accept-routes"
+        # "--accept-routes"
+        "--webclient"
       ];
       openFirewall = true;
     };
