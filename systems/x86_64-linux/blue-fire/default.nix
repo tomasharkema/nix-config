@@ -49,6 +49,8 @@ in {
 
     headless.enable = true;
 
+    apps.podman.enable = true;
+
     networking = {
       networkmanager.enable = lib.mkDefault false;
 
