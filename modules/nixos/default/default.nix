@@ -47,11 +47,14 @@
         cope
         pkgs.custom.menu
       ];
-      
+
           programs._1password.enable = true;
       services.thermald.enable = true;
 
       # services.eternal-terminal.enable = true;
+      hardware.enableAllFirmware = true;
+      hardware.enableRedistributableFirmware = true;
+      hardware.fancontrol.enable = true;
 
       services.openssh = {
         enable = true;

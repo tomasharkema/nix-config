@@ -33,6 +33,7 @@ in {
       # inputs.alejandra.packages.${system}.default
       nix-output-monitor
       nixpkgs-fmt
+      nerd-font-patcher
     ];
 
     services.nix-daemon.enable = true;

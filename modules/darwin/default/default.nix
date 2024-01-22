@@ -39,6 +39,7 @@
         noto-fonts-emoji
         noto-fonts-cjk
         nerdfonts
+        terminus-nerdfont
         ubuntu_font_family
 
         pkgs.custom.neue-haas-grotesk
