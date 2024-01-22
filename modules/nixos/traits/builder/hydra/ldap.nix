@@ -12,33 +12,36 @@ pkgs.writeText "ldap.conf" ''
           password_type = self_check
           </credential>
           <store>
-          class = LDAP
-          ldap_server = ipa.harkema.io
-          <ldap_server_options>
-              timeout = 30
-          </ldap_server_options>
-          Include ${config.age.secrets.ldap.path}
-          start_tls = 0
-          <start_tls_options>
-              verify = none
-          </start_tls_options>
-          user_basedn = "cn=users,cn=accounts,dc=harkema,dc=io"
-          user_filter = "(&(objectClass=inetOrgPerson)(cn=%s))"
-          #user_scope = one
-          #user_field = cn
-          <user_search_options>
-              deref = always
-          </user_search_options>
-          # Important for role mappings to work:
-          use_roles = 1
-          role_basedn = "cn=groups,cn=accounts,dc=harkema,dc=io"
-          role_filter = "(&(objectClass=groupofnames)(member=%s))"
-          role_scope = one
-          #role_field = cn
-          role_value = dn
-          <role_search_options>
-              deref = always
-          </role_search_options>
+            <ldap_server_options>
+                debug = 2
+            </ldap_server_options>
+            class = LDAP
+            ldap_server = ipa.harkema.io
+            <ldap_server_options>
+                timeout = 30
+            </ldap_server_options>
+            Include ${config.age.secrets.ldap.path}
+            start_tls = 0
+            <start_tls_options>
+                verify = none
+            </start_tls_options>
+            user_basedn = "cn=users,cn=accounts,dc=harkema,dc=io"
+            user_filter = "(&(objectClass=inetOrgPerson)(cn=%s))"
+            #user_scope = one
+            #user_field = cn
+            <user_search_options>
+                deref = always
+            </user_search_options>
+            # Important for role mappings to work:
+            use_roles = 1
+            role_basedn = "cn=groups,cn=accounts,dc=harkema,dc=io"
+            role_filter = "(&(objectClass=groupofnames)(member=%s))"
+            role_scope = one
+            #role_field = cn``
+            role_value = dn
+            <role_search_options>
+                deref = always
+            </role_search_options>
           </store>
       </config>
       <role_mapping>
