@@ -17,6 +17,11 @@ in {
       OP_CONNECT_TOKEN = "${config.age.secrets.op.path}";
     };
 
+    programs.zsh.shellInit = ''
+      export OP_CONNECT_HOST="http://silver-star.ling-lizard.ts.net:7080"
+      export OP_CONNECT_TOKEN="${config.age.secrets.op.path}"
+    '';
+
     # services = {
     #   # self-deploy = {};
     # };
