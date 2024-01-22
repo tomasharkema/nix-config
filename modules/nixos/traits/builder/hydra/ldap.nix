@@ -7,9 +7,9 @@ pkgs.writeText "ldap.conf" ''
   <ldap>
       <config>
           <credential>
-          class = Password
-          password_field = password
-          password_type = self_check
+            class = Password
+            password_field = password
+            password_type = self_check
           </credential>
           <store>
             <ldap_server_options>
@@ -26,7 +26,7 @@ pkgs.writeText "ldap.conf" ''
                 verify = none
             </start_tls_options>
             user_basedn = "cn=users,cn=accounts,dc=harkema,dc=io"
-            user_filter = "(&(objectClass=inetOrgPerson)(cn=%s))"
+            user_filter = "(&(objectClass=inetorgperson)(cn=%s))"
             #user_scope = one
             #user_field = cn
             <user_search_options>
@@ -37,7 +37,7 @@ pkgs.writeText "ldap.conf" ''
             role_basedn = "cn=groups,cn=accounts,dc=harkema,dc=io"
             role_filter = "(&(objectClass=groupofnames)(member=%s))"
             role_scope = one
-            #role_field = cn``
+            #role_field = cn
             role_value = dn
             <role_search_options>
                 deref = always
