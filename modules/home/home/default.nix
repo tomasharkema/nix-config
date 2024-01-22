@@ -193,11 +193,9 @@ in
           ];
 
           initExtraFirst = ''
+            export OP_PLUGIN_ALIASES_SOURCED=1
             source "${iterm}";
           '';
-          # initExtra = ''
-          #   # eval "$(~/.local/bin/cw init zsh post)"
-          # '';
 
           shellAliases = {
             ll = "ls -l";
@@ -214,6 +212,9 @@ in
             dig = "dog";
             ap = "attic push tomas:tomas";
             cap = "cachix push tomasharkema";
+            gh = "op plugin run -- gh";
+            cachix = "op plugin run -- cachix";
+
             dockerlogin = "op item get raeclwvdys3epkmc5zthv4pdha --format=json --vault=qtvfhvfotoqynomh2wd3yzoofe | jq '.fields[1].value' -r | docker login ghcr.io --username tomasharkema --password-stdin";
             # subl = (lib.mkIf stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
             # dev = ''
