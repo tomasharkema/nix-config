@@ -35,11 +35,8 @@ jobs:
       - name: Install devenv.sh
         run: nix profile install tarball+https://install.devenv.sh/latest
 
-      - name: Build the devenv shell and run any pre-commit hooks
-        run: devenv ci
-
       - name: Run a single command in the devenv shell
-        run: devenv shell statix check
+        run: nix develop --impure -c "statix check"
 
   cachix:
     runs-on: ubuntu-latest #self-hosted

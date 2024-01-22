@@ -13,6 +13,7 @@
     services.resilio = {
       enable = lib.mkForce false;
     };
+    headless.enable = true;
     traits = {
       hardware = {
         tpm.enable = true;
