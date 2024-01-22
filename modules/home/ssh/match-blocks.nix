@@ -3,7 +3,19 @@
   pkgs,
   ...
 }: let
-  machines = ["blue-fire" "arthur" "enzian" "baaa-express" "pegasus" "hyperv-nixos" "wodan"];
+  machines = [
+    "blue-fire"
+    "arthur"
+    "enzian"
+    "baaa-express"
+    "pegasus"
+    "euro-mir"
+    "euro-mir-2"
+    "euro-mir-vm"
+    "wodan"
+    "silver-star"
+    "silver-star-vm"
+  ];
 in {
   config = {
     programs.ssh = {
