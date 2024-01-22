@@ -29,10 +29,10 @@
 
     virtualisation = {
       oci-containers.containers = {
-        golinks = { image = "brokenscripts/golinks";
-ports = ["8000:8000"];
-
-};
+        golinks = {
+          image = "ghcr.io/tomasharkema/golinks:latest";
+          ports = ["8000:8000"];
+        };
         free-ipa = {
           image = "docker.io/freeipa/freeipa-server:almalinux-9";
           autoStart = true;

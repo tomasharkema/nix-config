@@ -214,6 +214,7 @@ in
             dig = "dog";
             ap = "attic push tomas:tomas";
             cap = "cachix push tomasharkema";
+            dockerlogin = "op item get qaxh5df4tw7yvvdxwodojyoi5u --field token | docker login ghcr.io --username tomasharkema --password-stdin";
             # subl = (lib.mkIf stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
             # dev = ''
             #   nix develop --profile dev-profile -c true && \

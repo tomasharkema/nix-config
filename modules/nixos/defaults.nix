@@ -30,8 +30,12 @@ in {
     enable = true;
     shellInit = ''
       export OP_PLUGIN_ALIASES_SOURCED=1
-      alias gh="op plugin run -- gh"
     '';
+
+    shellAliases = {
+      gh = "op plugin run -- gh";
+      cachix = "op plugin run -- cachix";
+    };
   };
   environment.systemPackages = common; # ++ gui;
 
