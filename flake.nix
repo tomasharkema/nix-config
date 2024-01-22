@@ -72,10 +72,12 @@
     };
     nix-software-center = {
       url = "github:snowfallorg/nix-software-center";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-    # nixos-conf-editor = {
-    #   url = "github:snowfallorg/nixos-conf-editor";
-    # };
+    nixos-conf-editor = {
+      url = "github:snowfallorg/nixos-conf-editor";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -88,10 +90,10 @@
       url = "github:zhaofengli/attic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # fh = {
-    #   url = "github:DeterminateSystems/fh";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    fh = {
+      url = "github:DeterminateSystems/fh";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
@@ -101,10 +103,10 @@
       url = "github:nix-community/hydra-check";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # flake-checker = {
-    #   url = "github:DeterminateSystems/flake-checker";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    flake-checker = {
+      url = "github:DeterminateSystems/flake-checker";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     system-manager = {
       url = "github:numtide/system-manager";
@@ -121,15 +123,24 @@
       url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # snowfall-flake = {
-    #   url = "github:snowfallorg/flake";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    nil.url = "github:oxalica/nil";
-    devenv.url = "github:cachix/devenv";
+    snowfall-flake = {
+      url = "github:snowfallorg/flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nil = {
+      url = "github:oxalica/nil";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    dream2nix.url = "github:nix-community/dream2nix";
-    # nixpkgs.follows = "dream2nix/nixpkgs";
+    devenv = {
+      url = "github:cachix/devenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dream2nix = {
+      url = "github:nix-community/dream2nix";
+      inputs.nixpkgs.follows = "dream2nix/nixpkgs";
+    };
 
     peerix = {
       url = "github:cid-chan/peerix";
@@ -239,7 +250,7 @@
 
       overlays = with inputs; [
         peerix.overlay
-        # snowfall-flake.overlays."package/flake"
+        snowfall-flake.overlays."package/flake"
       ];
 
       system.modules.darwin = with inputs; [
@@ -252,7 +263,7 @@
       systems.modules.nixos = with inputs; [
         peerix.nixosModules.peerix
 
-        # impermanence.nixosModule
+        impermanence.nixosModule
         disko.nixosModules.default
 
         lanzaboote.nixosModules.lanzaboote
