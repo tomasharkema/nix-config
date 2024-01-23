@@ -230,16 +230,16 @@
 
         overrides = {
           sshUser = "root";
-          wodan-vm = {
-            hostname = "192.168.1.74";
-          };
+          # wodan-vm = {
+          #   hostname = "192.168.1.74";
+          # };
           # wodan-wsl = {
           #   sshUser = "root";
           #   hostname = "192.168.1.42";
           # };
           euro-mir-vm = {
             sshUser = "root";
-            hostname = "172.25.227.57";
+            hostname = "172.25.255.212";
           };
           pegasus = {
             hostname = "172.25.220.155";
@@ -247,71 +247,65 @@
         };
       };
 
-      # checks =
-      #   builtins.mapAttrs
-      #   (system: deploy-lib:
-      #     deploy-lib.deployChecks inputs.self.deploy)
-      #   inputs.deploy-rs.lib;
+      checks =
+        builtins.mapAttrs
+        (system: deploy-lib:
+          deploy-lib.deployChecks inputs.self.deploy)
+        inputs.deploy-rs.lib;
 
       images = with inputs; {
         baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
         pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
-        # arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
-
-        # euro-mir-vm = self.nixosConfigurations.euro-mir-vm.config.system.build.isoImage;
-
-        # "blue-fire" = self.nixosConfigurations."blue-fire".config.formats.install-iso;
-        # "blue-fire-slim" = self.nixosConfigurations."blue-fire-slim".config.formats.install-iso;
       };
 
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};
 
-      # nixosConfigurations = let
-      #   system = "aarch64-darwin";
-      #   pkgs = inputs.nixpkgs.legacyPackages."${system}";
-      #   linuxSystem = builtins.replaceStrings ["darwin"] ["linux"] system;
-      # in {
-      # installer = inputs.nixpkgs.lib.nixosSystem {
-      #   system = "x86_64-linux";
-      #   modules = [
-      #     "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
-      #     ({
-      #       lib,
-      #       pkgs,
-      #       ...
-      #     }: {
-      #       boot.supportedFilesystems = ["bcachefs"];
-      #       boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
-      #     })
-      #   ];
-      # };
-      #   darwin-builder = inputs.nixpkgs.lib.nixosSystem {
-      #     system = linuxSystem;
-      #     modules = [
-      #       "${inputs.nixpkgs}/nixos/modules/profiles/macos-builder.nix"
-      #       ./user-defaults.nix
-      #       {
-      #         # imports = [ ../../apps/tailscale ];
-      #         boot.binfmt.emulatedSystems = ["x86_64-linux"];
-      #         virtualisation = {
-      #           host.pkgs = pkgs;
-      #           useNixStoreImage = true;
-      #           writableStore = true;
-      #           cores = 4;
+      nixosConfigurations = let
+        system = "aarch64-darwin";
+        pkgs = inputs.nixpkgs.legacyPackages."${system}";
+        linuxSystem = builtins.replaceStrings ["darwin"] ["linux"] system;
+      in {
+        installer = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
+            ({
+              lib,
+              pkgs,
+              ...
+            }: {
+              boot.supportedFilesystems = ["bcachefs"];
+              boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+            })
+          ];
+        };
+        #   darwin-builder = inputs.nixpkgs.lib.nixosSystem {
+        #     system = linuxSystem;
+        #     modules = [
+        #       "${inputs.nixpkgs}/nixos/modules/profiles/macos-builder.nix"
+        #       ./user-defaults.nix
+        #       {
+        #         # imports = [ ../../apps/tailscale ];
+        #         boot.binfmt.emulatedSystems = ["x86_64-linux"];
+        #         virtualisation = {
+        #           host.pkgs = pkgs;
+        #           useNixStoreImage = true;
+        #           writableStore = true;
+        #           cores = 4;
 
-      #           darwin-builder = {
-      #             workingDirectory = "/var/lib/darwin-builder";
-      #             diskSize = 64 * 1024;
-      #             memorySize = 4096;
-      #           };
-      #         };
+        #           darwin-builder = {
+        #             workingDirectory = "/var/lib/darwin-builder";
+        #             diskSize = 64 * 1024;
+        #             memorySize = 4096;
+        #           };
+        #         };
 
-      #         networking.useDHCP = true;
-      #         environment.systemPackages = with pkgs; [wget curl cacert];
-      #       }
-      #     ];
-      #   };
-      # };
+        #         networking.useDHCP = true;
+        #         environment.systemPackages = with pkgs; [wget curl cacert];
+        #       }
+        #     ];
+        #   };
+      };
 
       # formatter = inputs.nixpkgs.alejandra;
       outputs-builder = channels:
@@ -319,7 +313,7 @@
       #   cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
       # in
       {
-        # formatter = channels.nixpkgs.alejandra;
+        formatter = channels.nixpkgs.alejandra;
 
         # checks = with inputs; {
         # nixpkgs-lint =
