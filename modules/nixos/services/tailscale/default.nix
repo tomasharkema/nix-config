@@ -25,14 +25,14 @@ in {
       enable = true;
       authKeyFile = config.age.secrets.tailscale.path;
       useRoutingFeatures = "client";
-      extraUpFlags = [
-        "--ssh=false"
-        "--advertise-tags=tag:nixos"
-        "--operator=tomas"
-        "--accept-dns"
-        # "--accept-routes"
-        "--webclient"
-      ];
+      # extraUpFlags = [
+      #   "--ssh=false"
+      #   "--advertise-tags=tag:nixos"
+      #   "--operator=tomas"
+      #   "--accept-dns"
+      #   # "--accept-routes"
+      #   "--webclient"
+      # ];
       openFirewall = true;
     };
 
