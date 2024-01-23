@@ -109,7 +109,7 @@ in {
 
     age.secrets."ldap" = {
       file = ../../../../../secrets/ldap.age;
-      mode = "644";
+      mode = "777";
       # owner = "tomas";
       # group = "tomas";
     };
