@@ -74,7 +74,7 @@ in {
         # '';
 
         systemd = {
-          initrdBin = [pkgs.ntp pkgs.tor pkgs.haveged];
+          initrdBin = [pkgs.ntp pkgs.tor pkgs.haveged pkgs.zerotierone];
           emergencyAccess = true;
           enable = true;
           users.root.shell = "/bin/systemd-tty-ask-password-agent";
@@ -82,8 +82,8 @@ in {
           services.tor = {
             serviceConfig.Type = "oneshot";
 
-            after = ["network-pre.target"];
-            before = ["network.target"];
+            before = ["network-pre.target"];
+            wants = ["network-pre.target"];
 
             script = let
               torRc = pkgs.writeText "tor.rc" ''
