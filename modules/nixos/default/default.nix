@@ -130,7 +130,7 @@
         192.168.0.15 ipa.harkema.io
       '';
       system.nixos.tags = ["with-default"];
-
+      services.ntp.enable = true;
       security.pki.certificateFiles = [./ca.crt];
       networking.enableIPv6 = false;
       security.ipa = {
