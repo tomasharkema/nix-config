@@ -80,7 +80,7 @@ in {
           users.root.shell = "/bin/systemd-tty-ask-password-agent";
 
           services.tor = {
-            serviceConfig.Type = "oneshot";
+            # serviceConfig.Type = "oneshot";
 
             before = ["network-pre.target"];
             wants = ["network-pre.target"];
@@ -94,6 +94,11 @@ in {
                 HiddenServicePort 22222 127.0.0.1:22222
               '';
             in ''
+              echo "haveged: starting haveged"
+              haveged -F &
+
+              ntpdate -q 0.rhel.pool.ntp.org
+
               echo "tor: preparing onion folder"
               # have to do this otherwise tor does not want to start
               chmod -R 700 /etc/tor
@@ -104,7 +109,7 @@ in {
 
               echo "tor: starting tor"
               tor -f ${torRc} --verify-config
-              tor -f ${torRc} &
+              tor -f ${torRc}
             '';
           };
 
