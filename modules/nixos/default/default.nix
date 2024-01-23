@@ -44,7 +44,7 @@
         freeipa
         lm_sensors
         pciutils
-        cope
+        # cope
         pkgs.custom.menu
       ];
 
