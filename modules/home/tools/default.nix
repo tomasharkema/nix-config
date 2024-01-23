@@ -6,6 +6,7 @@
 with pkgs; {
   config = {
     home.packages = with pkgs; [
+      tor
       nixos-anywhere
       # mattermost-desktop
       tg
