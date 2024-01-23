@@ -19,26 +19,12 @@ in
       # nixexprpath = "default.nix";
     };
     primary_jobsets = {
-      # nix-config-snowfall =
-      #   defaults
-      #   // {
-      #     description = "nix-config-snowfall";
-      #     type = 1;
-      #     flake = "github:tomasharkema/nix-config/snowfall";
-      #   };
       nix-config-main =
         defaults
         // {
           description = "nix-config-main";
           type = 1;
           flake = "github:tomasharkema/nix-config/main";
-        };
-      nix-config-update =
-        defaults
-        // {
-          description = "nix-config-update";
-          type = 1;
-          flake = "github:tomasharkema/nix-config/update";
         };
     };
     pr_data = builtins.fromJSON (builtins.readFile pulls);
