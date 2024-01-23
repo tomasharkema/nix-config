@@ -9,7 +9,7 @@ pkgs.writeShellApplication {
   runtimeInputs = with pkgs; [gum nixos-rebuild nix-output-monitor zsh fast-ssh];
 
   text = ''
-    NIX_ARGS="--accept-flake-config --refresh --verbose"
+    # NIX_ARGS="--accept-flake-config --refresh --verbose"
 
     RUN_UPDATER="Run Updater..."
     OPEN_BLUE_FIRE="SSH blue-fire..."
