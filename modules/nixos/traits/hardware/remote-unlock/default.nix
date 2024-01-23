@@ -79,21 +79,21 @@ in {
           enable = true;
           users.root.shell = "/bin/systemd-tty-ask-password-agent";
 
-          services.tor = {
+          services.tor = let
+            torRc = pkgs.writeText "tor.rc" ''
+              DataDirectory /etc/tor
+              SOCKSPort 127.0.0.1:9050 IsolateDestAddr
+              SOCKSPort 127.0.0.1:9063
+              HiddenServiceDir /etc/tor/onion/bootup
+              HiddenServicePort 22222 127.0.0.1:22222
+            '';
+          in {
             # serviceConfig.Type = "oneshot";
 
             before = ["network-pre.target"];
             wants = ["network-pre.target"];
 
-            script = let
-              torRc = pkgs.writeText "tor.rc" ''
-                DataDirectory /etc/tor
-                SOCKSPort 127.0.0.1:9050 IsolateDestAddr
-                SOCKSPort 127.0.0.1:9063
-                HiddenServiceDir /etc/tor/onion/bootup
-                HiddenServicePort 22222 127.0.0.1:22222
-              '';
-            in ''
+            preStart = ''
               echo "haveged: starting haveged"
               haveged -F &
 
@@ -109,8 +109,9 @@ in {
 
               echo "tor: starting tor"
               tor -f ${torRc} --verify-config
-              tor -f ${torRc}
             '';
+
+            script = "tor -f ${torRc}";
           };
 
           #   services.key-usb = {
