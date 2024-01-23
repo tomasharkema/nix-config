@@ -213,10 +213,13 @@ in
             dig = "dog";
             ap = "attic push tomas:tomas";
             cap = "cachix push tomasharkema";
-            gh = "op plugin run -- gh";
-            cachix = "op plugin run -- cachix";
+            # gh = "op plugin run -- gh";
+            # cachix = "op plugin run -- cachix";
+
+            silver-star-ipmi = "ipmitool -I lanplus -H 192.168.0.45 -U root -P \"$(op item get abrgfwmlbnc2zghpugawqoagjq --field password)\"";
 
             dockerlogin = "op item get raeclwvdys3epkmc5zthv4pdha --format=json --vault=qtvfhvfotoqynomh2wd3yzoofe | jq '.fields[1].value' -r | docker login ghcr.io --username tomasharkema --password-stdin";
+
             # subl = (lib.mkIf stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
             # dev = ''
             #   nix develop --profile dev-profile -c true && \
