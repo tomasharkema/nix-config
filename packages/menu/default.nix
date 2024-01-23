@@ -9,6 +9,8 @@ pkgs.writeShellApplication {
   runtimeInputs = with pkgs; [gum nixos-rebuild nix-output-monitor zsh fast-ssh];
 
   text = ''
+    NIX_ARGS="--accept-flake-config --refresh --verbose"
+
     RUN_UPDATER="Run Updater..."
     OPEN_BLUE_FIRE="SSH blue-fire..."
     OPEN_SSH="SSH..."
@@ -17,7 +19,7 @@ pkgs.writeShellApplication {
     EXIT="Exit"
 
     update () {
-      sudo nixos-rebuild switch --flake "github:tomasharkema/nix-config/update" --refresh --verbose --log-format internal-json -v |& nom --json
+      sudo nixos-rebuild switch --flake "github:tomasharkema/nix-config/update" $NIX_ARGS --log-format internal-json -v |& nom --json
     }
 
     CHOICE=$(gum choose "$RUN_UPDATER" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$CLEAR_CACHE" "$OPEN_SHELL" "$EXIT")
