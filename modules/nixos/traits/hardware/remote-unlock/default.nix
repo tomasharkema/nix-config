@@ -74,45 +74,45 @@ in {
         # '';
 
         systemd = {
-          initrdBin = [pkgs.ntp pkgs.tor pkgs.haveged pkgs.zerotierone];
+          # initrdBin = [pkgs.ntp pkgs.tor pkgs.haveged pkgs.zerotierone];
           emergencyAccess = true;
           enable = true;
           users.root.shell = "/bin/systemd-tty-ask-password-agent";
 
-          services.tor = let
-            torRc = pkgs.writeText "tor.rc" ''
-              DataDirectory /etc/tor
-              SOCKSPort 127.0.0.1:9050 IsolateDestAddr
-              SOCKSPort 127.0.0.1:9063
-              HiddenServiceDir /etc/tor/onion/bootup
-              HiddenServicePort 22222 127.0.0.1:22222
-            '';
-          in {
-            # serviceConfig.Type = "oneshot";
+          # services.tor = let
+          #   torRc = pkgs.writeText "tor.rc" ''
+          #     DataDirectory /etc/tor
+          #     SOCKSPort 127.0.0.1:9050 IsolateDestAddr
+          #     SOCKSPort 127.0.0.1:9063
+          #     HiddenServiceDir /etc/tor/onion/bootup
+          #     HiddenServicePort 22222 127.0.0.1:22222
+          #   '';
+          # in {
+          #   # serviceConfig.Type = "oneshot";
 
-            before = ["network-pre.target"];
-            wants = ["network-pre.target"];
+          #   before = ["network-pre.target"];
+          #   wants = ["network-pre.target"];
 
-            preStart = ''
-              echo "haveged: starting haveged"
-              haveged -F &
+          #   preStart = ''
+          #     echo "haveged: starting haveged"
+          #     haveged -F &
 
-              ntpdate -q 0.rhel.pool.ntp.org
+          #     ntpdate -q 0.rhel.pool.ntp.org
 
-              echo "tor: preparing onion folder"
-              # have to do this otherwise tor does not want to start
-              chmod -R 700 /etc/tor
+          #     echo "tor: preparing onion folder"
+          #     # have to do this otherwise tor does not want to start
+          #     chmod -R 700 /etc/tor
 
-              echo "make sure localhost is up"
-              ip a a 127.0.0.1/8 dev lo
-              ip link set lo up
+          #     echo "make sure localhost is up"
+          #     ip a a 127.0.0.1/8 dev lo
+          #     ip link set lo up
 
-              echo "tor: starting tor"
-              tor -f ${torRc} --verify-config
-            '';
+          #     echo "tor: starting tor"
+          #     tor -f ${torRc} --verify-config
+          #   '';
 
-            script = "tor -f ${torRc}";
-          };
+          #   script = "tor -f ${torRc}";
+          # };
 
           #   services.key-usb = {
           #     description = "Rollback BTRFS root subvolume to a pristine state";
