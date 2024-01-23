@@ -173,6 +173,14 @@ in
                   };
                 };
 
+                swap = {
+                  size = "16G";
+                  content = {
+                    type = "swap";
+                    resumeDevice = true; # resume from hiberation from this device
+                  };
+                };
+
                 root = mkIf (!cfg.encrypt) innerContent.root;
                 luks =
                   mkIf cfg.encrypt
