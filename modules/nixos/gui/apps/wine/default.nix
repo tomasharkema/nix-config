@@ -20,8 +20,8 @@ in {
     #   winetricks
 
     #   # native wayland support (unstable)
-    #   wineWowPackages.waylandFull 
-      # bottles
+    #   wineWowPackages.waylandFull
+    # bottles
     # ];
   };
 }

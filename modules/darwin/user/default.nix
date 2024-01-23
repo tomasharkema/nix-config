@@ -34,7 +34,6 @@ in {
       custom.maclaunch
       terminal-notifier
       custom.launchcontrol
-      
     ];
     security.pam.enableSudoTouchIdAuth = true;
   };

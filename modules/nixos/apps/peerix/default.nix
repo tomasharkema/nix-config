@@ -15,12 +15,12 @@
     };
 
     services.peerix = {
-#      enable = true;
+      #      enable = true;
       openFirewall = true;
       user = "tomas";
       group = "tomas";
-#      privateKeyFile = "${config.age.secrets.peerix-public.path}";
-#      publicKeyFile = "${config.age.secrets.peerix-private.path}";
+      #      privateKeyFile = "${config.age.secrets.peerix-public.path}";
+      #      publicKeyFile = "${config.age.secrets.peerix-private.path}";
     };
   };
 }
