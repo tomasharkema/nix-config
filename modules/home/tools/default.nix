@@ -6,6 +6,7 @@
 with pkgs; {
   config = {
     home.packages = with pkgs; [
+      nixos-anywhere
       # mattermost-desktop
       tg
       # _1password
