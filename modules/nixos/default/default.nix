@@ -132,7 +132,7 @@
       system.nixos.tags = ["with-default"];
 
       security.pki.certificateFiles = [./ca.crt];
-
+      networking.enableIPv6 = false;
       security.ipa = {
         enable = true;
         server = "ipa.harkema.io";
