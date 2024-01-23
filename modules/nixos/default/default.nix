@@ -46,7 +46,6 @@
         pciutils
         cope
         pkgs.custom.menu
-        nettools
       ];
 
       programs._1password.enable = true;

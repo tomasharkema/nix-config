@@ -16,7 +16,7 @@ in {
 
   config = mkIf cfg.enable {
     system.activationScripts.remote-unlock-keys.text = ''
-      set -ex
+      set -e
       mkdir -p /boot/secrets || true
 
       if [ ! -f "/boot/secrets/ssh_host_ecdsa_key" ]; then
