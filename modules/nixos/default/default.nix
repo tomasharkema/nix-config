@@ -20,6 +20,17 @@
 
       #services.cachix-agent.enable = true;
 
+      services.webhook = {
+        enable = true;
+
+        hooks = {
+          echo = {
+            execute-command = "echo";
+            response-message = "Webhook is reachable!";
+          };
+        };
+      };
+
       i18n.extraLocaleSettings = {
         LC_ADDRESS = "nl_NL.UTF-8";
         LC_IDENTIFICATION = "nl_NL.UTF-8";

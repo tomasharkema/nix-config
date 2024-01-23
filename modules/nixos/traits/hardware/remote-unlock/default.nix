@@ -36,6 +36,7 @@ in {
     boot = {
       crashDump.enable = true;
       initrd = {
+        verbose = true;
         luks.devices."crypted" = {
           # keyFile = "/key/key";
           # tryEmptyPassphrase = true;

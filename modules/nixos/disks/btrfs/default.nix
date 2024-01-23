@@ -99,6 +99,7 @@ in
           description = "Dev for optional media partition";
         };
         encrypt = mkEnableOption "encrypted";
+        swap = mkEnableOption "swap";
       };
     };
 
@@ -173,7 +174,7 @@ in
                   };
                 };
 
-                swap = {
+                swap = mkIf cfg.swap {
                   size = "16G";
                   content = {
                     type = "swap";
