@@ -10,20 +10,32 @@
   ];
 
   config = {
-    age.identityPaths = [
-      # "/etc/ssh/ssh_host_ed25519_key"
-      "/Users/tomas/.ssh/id_ed25519"
-    ];
-    age.secrets.atuin = {
-      file = ../../../secrets/atuin.age;
-      # owner = "tomas";
-      # group = "tomas";
-      mode = "644";
-      # symlink = false;
+    age = {
+      identityPaths = [
+        # "/etc/ssh/ssh_host_ed25519_key"
+        "/Users/tomas/.ssh/id_ed25519"
+      ];
+
+      secrets = {
+        atuin = {
+          file = ../../../secrets/atuin.age;
+          # owner = "tomas";
+          # group = "tomas";
+          mode = "644";
+          # symlink = false;
+        };
+        spotify-tui = {
+          file = ../../../secrets/spotify-tui.age;
+          # owner = "tomas";
+          # group = "tomas";
+          mode = "644";
+          # symlink = false;
+        };
+      };
     };
 
     services.nix-daemon.enable = true;
-    programs.bash.enable = true;
+    # programs.bash.enable = true;
 
     system.stateVersion = 4;
     services.synergy.server = {

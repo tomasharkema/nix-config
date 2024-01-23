@@ -86,6 +86,7 @@ in {
       notificationSender = "tomas+hydra@harkema.io";
       useSubstitutes = true;
       smtpHost = "smtp-relay.gmail.com";
+      debugServer = true;
       extraConfig = ''
         Include ${config.age.secrets.ght.path}
         <hydra_notify>

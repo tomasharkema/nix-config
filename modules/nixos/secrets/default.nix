@@ -79,5 +79,12 @@
       file = ./op.age;
       mode = "644";
     };
+    age.secrets.spotify-tui = {
+      file = ./spotify-tui.age;
+      # owner = "tomas";
+      # group = "tomas";
+      mode = "644";
+      # symlink = false;
+    };
   };
 }

@@ -17,10 +17,10 @@ in {
       alejandra # .defaultPackage.${system}
       cachix
       deadnix
-      # # fh
+      fh
       hydra-cli
       inputs.nil.packages.${system}.default
-      # manix
+      manix
       nix-eval-jobs
       nix-fast-build
       # nix-init

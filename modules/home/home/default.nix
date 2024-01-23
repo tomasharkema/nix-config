@@ -12,7 +12,8 @@
   };
 in
   with lib; {
-    # imports = [../../nixos/gui/gnome/dconf.nix];
+    imports = [
+    ];
 
     config = {
       home = {
@@ -45,8 +46,8 @@ in
       };
       manual = {
         html.enable = false;
-        manpages.enable = false;
-        json.enable = false;
+        # manpages.enable = false;
+        # json.enable = false;
       };
 
       fonts.fontconfig.enable = true;
