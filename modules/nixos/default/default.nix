@@ -159,18 +159,13 @@
       };
       # documentation.nixos.enable = false;
       programs.mtr.enable = true;
-      # services.rsyslogd = {
-      #   enable = true;
 
-      #   extraConfig = ''
-      #     $DefaultNetstreamDriverCAFile ${papertrail-pem}
-      #     $ActionSendStreamDriver gtls
-      #     $ActionSendStreamDriverMode 1
-      #     $ActionSendStreamDriverAuthMode x509/name
-      #     $ActionSendStreamDriverPermittedPeer *.papertrailapp.com
+      services.rsyslogd = {
+        enable = true;
 
-      #     *.*    @@logs2.papertrailapp.com:42640
-      #   '';
-      # };
+        extraConfig = ''
+          *.*    @@nix.harke.ma:5140
+        '';
+      };
     };
 }
