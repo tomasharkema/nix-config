@@ -57,7 +57,6 @@
         pciutils
         # cope
         pkgs.custom.menu
-        xpipe
         #xpipe
       ];
 
