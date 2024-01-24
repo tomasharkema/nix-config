@@ -8,7 +8,7 @@ with pkgs; {
     home.packages = with pkgs; [
       nixos-anywhere
       # mattermost-desktop
-      tg
+      # tg
       # _1password
       thefuck
       antidote

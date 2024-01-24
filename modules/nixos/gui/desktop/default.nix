@@ -62,44 +62,46 @@ in {
     services.gnome.chrome-gnome-shell.enable = true;
     services.gnome.gnome-browser-connector.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      polkit
-      gparted
-      firefox
-      vscode
-      fira-code-nerdfont
-      transmission
-      # keybase
-      powertop
+    environment.systemPackages = with pkgs;
+      [
+        polkit
+        gparted
+        firefox
+        vscode
+        fira-code-nerdfont
+        transmission
+        # keybase
+        powertop
 
-      nix-software-center
-      # nixos-conf-editor
+        nix-software-center
+        # nixos-conf-editor
 
-      gnome-firmware
-      gnome.gnome-session
-      gnome.gnome-settings-daemon
-      gnome.gnome-shell-extensions
-      gnome.gnome-tweaks
-      gnome.gnome-nettool
-      gnome.gnome-keyring
-      gnome.gnome-control-center
-      gnome.dconf-editor
+        gnome-firmware
+        gnome.gnome-session
+        gnome.gnome-settings-daemon
+        gnome.gnome-shell-extensions
+        gnome.gnome-tweaks
+        gnome.gnome-nettool
+        gnome.gnome-keyring
+        gnome.gnome-control-center
+        gnome.dconf-editor
 
-      gnome-menus
-      xdg-utils
+        gnome-menus
+        xdg-utils
 
-      # _1password
-      # _1password-gui
-      handbrake
-      meteo
-      transmission-remote-gtk
-      github-desktop
-      telegram-desktop
-      gnome-menus
-      gtk-engine-murrine
-      plymouth
-      # apache-directory-studio
-    ];
+        # _1password
+        # _1password-gui
+        handbrake
+        meteo
+        transmission-remote-gtk
+        github-desktop
+
+        gnome-menus
+        gtk-engine-murrine
+        plymouth
+        # apache-directory-studio
+      ]
+      ++ optional (pkgs.system == "x86_64-linux") telegram-desktop;
 
     programs.ssh.extraConfig = ''
       Host *
