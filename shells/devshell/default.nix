@@ -127,7 +127,7 @@ in
           gum
           mkiso
           netdiscover
-
+          statix
           # packages-json
           python3
 
