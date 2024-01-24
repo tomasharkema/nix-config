@@ -21,6 +21,8 @@ in {
       cachixTokenFile = config.age.secrets.cachix-token.path;
     };
 
+    systemd.services.cachix-watch-store-agent.serviceConfig.MemoryMax = "2G";
+
     services.cachix-agent = {
       enable = true;
     };
