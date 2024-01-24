@@ -6,7 +6,7 @@ let
 
   euro = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";
 
-  enzian = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN9/iOb/hw6R31UsX5b8VDq6aJEgn8M4k0Ow2IGY1qQb root@enzian";
+  enzian = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEtBdabS1uhzaG5uMoidV/lJxW/dXrdVPFDtsb3MxwfX root@enzian";
   # enzian-user = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBkD6Gv2OmfofzWqPihWEo2mfOWx7kFkCh5urGNn/AJ0 tomas@enzian";
 
   silver-star-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFyXC2bP9o48/aEm7b4k1HREJHY2H1QHYtL/z24N9Sgy root@silver-star-vm";

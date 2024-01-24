@@ -122,14 +122,6 @@
 
       programs.zsh = {
         enable = true;
-        # shellInit = ''
-        #   source ${config.age.secrets."cachix-activate".path}
-        #   export OP_PLUGIN_ALIASES_SOURCED=1
-        # '';
-        # shellAliases = {
-        #   gh = "op plugin run -- gh";
-        #   cachix = "op plugin run -- cachix";
-        # };
       };
 
       boot = {
