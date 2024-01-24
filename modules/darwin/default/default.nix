@@ -64,9 +64,9 @@
     };
     programs.zsh = {
       enable = true;
-      shellInit = ''
-        export OP_PLUGIN_ALIASES_SOURCED=1
-      '';
+      #   shellInit = ''
+      #     export OP_PLUGIN_ALIASES_SOURCED=1
+      #   '';
 
       # shellAliases = {
       #   gh = "op plugin run -- gh";

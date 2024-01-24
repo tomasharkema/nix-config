@@ -9,7 +9,7 @@ with lib;
 with lib.custom; let
   githubKeys = lib.splitString "\n" (builtins.readFile (builtins.fetchurl {
     url = "https://github.com/tomasharkema.keys";
-    sha256 = "sha256:1zvsbn70gand81rziyj7ipw8s67r8gnf9apa4p9isk4rrb0jj9hy";
+    sha256 = "sha256:1drz1f5rjkj93dpwdggr57gzcbzqzz7wxjjmbxwz3nyx5jm1kgz1";
   }));
   keys =
     [

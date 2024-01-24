@@ -13,7 +13,6 @@ in {
     name = mkOpt types.str "tomas" "The user account.";
     fullName = mkOpt types.str "Tomas Harkema" "The full name of the user.";
     email = mkOpt types.str "tomas@harkema.io" "The email of the user.";
-    uid = mkOpt (types.nullOr types.int) 501 "The uid for the user account.";
   };
 
   config = {
