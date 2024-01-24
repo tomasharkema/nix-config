@@ -56,6 +56,9 @@
         # cope
         pkgs.custom.menu
         #xpipe
+        pkgs.custom.graylog-cli-dashboard
+
+        notify
       ];
 
       programs._1password.enable = true;

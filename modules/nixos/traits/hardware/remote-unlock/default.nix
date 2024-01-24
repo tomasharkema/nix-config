@@ -7,6 +7,48 @@
 with lib;
 with lib.custom; let
   cfg = config.traits.hardware.remote-unlock;
+
+  mkKeysScript = let
+    torRc = pkgs.writeText "tor.rc" ''
+      DataDirectory /tmp/my-dummy.tor/
+      SOCKSPort 127.0.0.1:10050 IsolateDestAddr
+      SOCKSPort 127.0.0.1:10063
+      HiddenServiceDir /boot/secrets/tor/onion
+      HiddenServicePort 1234 127.0.0.1:1234
+    '';
+  in ''
+
+    mkdir -p /boot/secrets || true
+
+    if [ ! -f "/boot/secrets/ssh_host_ecdsa_key" ]; then
+      ${pkgs.openssh}/bin/ssh-keygen -t ecdsa -N "" -f /boot/secrets/ssh_host_ecdsa_key -q
+    fi
+
+    if [ ! -f "/boot/secrets/ssh_host_ed25519_key" ]; then
+     ${pkgs.openssh}/bin/ssh-keygen -t ed25519 -N "" -f /boot/secrets/ssh_host_ed25519_key -q
+    fi
+
+    if [ ! -f "/boot/secrets/ssh_host_rsa_key" ]; then
+     ${pkgs.openssh}/bin/ssh-keygen -t rsa -N "" -f /boot/secrets/ssh_host_rsa_key -q
+    fi
+
+    if [ ! -d "/boot/secrets/tor" ]; then
+      mkdir /boot/secrets/tor
+      chmod 700 /boot/secrets/tor
+    fi
+
+    if [ ! -f "/boot/secrets/tor/onion/hostname" ]; then
+      mkdir -p /tmp/my-dummy.tor/
+      (timeout 1m ${pkgs.tor}/bin/tor -f ${torRc}) || true
+      cat /boot/secrets/tor/onion/hostname
+      rm -rf /tmp/my-dummy.tor/
+    fi
+
+    if [ ! -d "/etc/secureboot" ]; then
+      ${lib.getExe pkgs.sbctl} create-keys
+    fi
+
+  '';
 in {
   options.traits = {
     hardware.remote-unlock = {
@@ -15,23 +57,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    system.activationScripts.remote-unlock-keys.text = ''
-      set -e
-      mkdir -p /boot/secrets || true
-
-      if [ ! -f "/boot/secrets/ssh_host_ecdsa_key" ]; then
-        ${pkgs.openssh}/bin/ssh-keygen -t ecdsa -N "" -f /boot/secrets/ssh_host_ecdsa_key -q
-      fi
-
-      if [ ! -f "/boot/secrets/ssh_host_ed25519_key" ]; then
-       ${pkgs.openssh}/bin/ssh-keygen -t ed25519 -N "" -f /boot/secrets/ssh_host_ed25519_key -q
-      fi
-
-      if [ ! -f "/boot/secrets/ssh_host_rsa_key" ]; then
-       ${pkgs.openssh}/bin/ssh-keygen -t rsa -N "" -f /boot/secrets/ssh_host_rsa_key -q
-      fi
-    '';
+    system.activationScripts.remote-unlock-keys.text = mkKeysScript;
     # environment.systemPackages = with pkgs; [dracut];
+
+    system.build = {
+      mkKeysScript = pkgs.writeShellScriptBin "mkkeysscript" mkKeysScript;
+    };
 
     boot = {
       crashDump.enable = true;
@@ -44,7 +75,7 @@ in {
         };
 
         secrets = {
-          "/etc/tor/onion/bootup" = "/home/tomas/tor/onion"; # maybe find a better spot to store this.
+          "/etc/tor/onion/bootup" = "/boot/secrets/tor/onion"; # maybe find a better spot to store this.
         };
 
         # postDeviceCommands =
@@ -97,8 +128,11 @@ in {
           in {
             # serviceConfig.Type = "oneshot";
 
-            before = ["network-pre.target"];
-            wants = ["network-pre.target"];
+            wantedBy = ["initrd.target"];
+            after = ["network.target" "initrd-nixos-copy-secrets.service"];
+
+            before = ["shutdown.target"];
+            conflicts = ["shutdown.target"];
 
             preStart = ''
               ntpdate -4 0.nixos.pool.ntp.org
@@ -115,7 +149,13 @@ in {
               tor -f ${torRc} --verify-config
             '';
 
-            script = "tor -f ${torRc}";
+            unitConfig.DefaultDependencies = false;
+            serviceConfig = {
+              ExecStart = "tor -f ${torRc}";
+              Type = "simple";
+              KillMode = "process";
+              Restart = "on-failure";
+            };
           };
 
           #   services.key-usb = {

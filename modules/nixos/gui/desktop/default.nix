@@ -46,7 +46,7 @@ in {
         })
       '';
     };
-
+    services.systembus-notify.enable = true;
     services.xserver.libinput.enable = true;
     programs.mtr.enable = true;
     # programs.gnupg.agent = {

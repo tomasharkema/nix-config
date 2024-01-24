@@ -80,4 +80,6 @@ in {
   "spotify-tui.age".publicKeys = allKeys;
 
   "cachix-token.age".publicKeys = allKeys;
+
+  "notify.age".publicKeys = allKeys;
 }
