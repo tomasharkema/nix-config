@@ -32,17 +32,17 @@
 
     virtualisation = {
       oci-containers.containers = {
-        golinks = {
-          image = "ghcr.io/tomasharkema/golinks:latest";
-          autoStart = true;
-          ports = ["8000:8000"];
-          environment = {
-            BIND = "0.0.0.0:8000";
-            BASEURL = "https://golinks.harkema.io";
-          };
-        };
+        # golinks = {
+        #   image = "ghcr.io/tomasharkema/golinks:latest";
+        #   autoStart = true;
+        #   ports = ["8000:8000"];
+        #   environment = {
+        #     BIND = "0.0.0.0:8000";
+        #     BASEURL = "https://golinks.harkema.io";
+        #   };
+        # };
         free-ipa = {
-          image = "docker.io/freeipa/freeipa-server:rocky-9";
+          image = "docker.io/freeipa/freeipa-server:almalinux-9";
           autoStart = true;
           ports = ["80:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
           hostname = "ipa.harkema.io";
