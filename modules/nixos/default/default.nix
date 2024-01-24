@@ -58,6 +58,7 @@
         # cope
         pkgs.custom.menu
         xpipe
+        #xpipe
       ];
 
       programs._1password.enable = true;
