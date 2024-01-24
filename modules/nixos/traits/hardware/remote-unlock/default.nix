@@ -75,7 +75,7 @@ in {
         # '';
 
         systemd = {
-          # initrdBin = [pkgs.ntp pkgs.tor pkgs.haveged pkgs.zerotierone];
+          initrdBin = [pkgs.ntp pkgs.tor pkgs.haveged pkgs.zerotierone];
           emergencyAccess = true;
           enable = true;
           users.root.shell = "/bin/systemd-tty-ask-password-agent";
