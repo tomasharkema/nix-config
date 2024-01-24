@@ -72,6 +72,8 @@ in {
       useSubstitutes = true;
       smtpHost = "smtp-relay.gmail.com";
       debugServer = true;
+      listenHost = "0.0.0.0";
+      port = 3000;
       extraConfig = ''
         Include ${config.age.secrets.ght.path}
         <hydra_notify>
