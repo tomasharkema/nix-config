@@ -62,7 +62,7 @@ in {
 
     system.activationScripts.notify.text = ''
       function notify_result {
-        echo "build $(hostname)" | ${lib.getExe pkgs.notify} -pc ${config.age.secrets.notify.path}
+        echo "<b>build $(hostname)</b> <pre>$(printenv)</pre>" | ${lib.getExe pkgs.notify} -bulk -pc ${config.age.secrets.notify.path}
       }
       trap notify_result EXIT
     '';
