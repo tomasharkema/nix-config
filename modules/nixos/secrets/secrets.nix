@@ -78,4 +78,6 @@ in {
   "peerix.private.age".publicKeys = allKeys;
   "peerix.public.age".publicKeys = allKeys;
   "spotify-tui.age".publicKeys = allKeys;
+
+  "cachix-token.age".publicKeys = allKeys;
 }

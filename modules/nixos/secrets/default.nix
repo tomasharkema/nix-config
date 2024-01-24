@@ -60,6 +60,10 @@
       mode = "644";
       path = "/etc/cachix-agent.token";
     };
+    age.secrets."cachix-token" = {
+      file = ./cachix-token.age;
+      mode = "644";
+    };
     age.secrets."cachix-activate" = {
       file = ./cachix-activate.age;
       mode = "644";
