@@ -13,7 +13,7 @@
           version = 3;
           map = [
             {
-              port = 22;
+              port = 22222;
               target = {
                 addr = "127.0.0.1";
                 port = 22;
