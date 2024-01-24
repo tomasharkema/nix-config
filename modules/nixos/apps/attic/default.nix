@@ -18,7 +18,7 @@ in {
     services.cachix-watch-store = {
       enable = true;
       cacheName = "tomasharkema";
-      cachixTokenFile = config.age.secrets.cachix.path;
+      cachixTokenFile = config.age.secrets.cachix-token.path;
     };
 
     services.cachix-agent = {
