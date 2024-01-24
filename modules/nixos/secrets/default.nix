@@ -62,7 +62,7 @@
     };
     age.secrets."cachix-token" = {
       file = ./cachix-token.age;
-      mode = "644";
+      mode = "744";
     };
     age.secrets."cachix-activate" = {
       file = ./cachix-activate.age;
