@@ -9,7 +9,7 @@ buildNpmPackage rec {
 
   src = fetchFromGitHub {
     owner = "graylog-labs";
-    repo = pname;
+    repo = "cli-dashboard";
     rev = "v${version}";
     hash = "sha256-4x3gxaSxQ3eRniesHBmN5s/hDfsoXISRrEOEcxttMjA=";
   };
@@ -26,10 +26,4 @@ buildNpmPackage rec {
   # NODE_OPTIONS = "--openssl-legacy-provider";
   dontBuild = true;
   dontNpmBuild = true;
-  meta = with lib; {
-    description = "A modern web UI for various torrent clients with a Node.js backend and React frontend";
-    homepage = "https://flood.js.org";
-    license = licenses.gpl3Only;
-    maintainers = with maintainers; [winter];
-  };
 }

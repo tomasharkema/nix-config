@@ -106,16 +106,34 @@ in {
         # '';
 
         systemd = {
-          initrdBin = [pkgs.ntp pkgs.tor pkgs.haveged pkgs.zerotierone];
+          initrdBin = [
+            # pkgs.ntp
+            pkgs.tor
+            # pkgs.haveged pkgs.zerotierone
+            pkgs.rsyslog
+          ];
+
           emergencyAccess = true;
           enable = true;
+
           users.root.shell = "/bin/systemd-tty-ask-password-agent";
 
-          services.haveged = {
-            script = "haveged -F";
-            before = ["network-pre.target"];
-            wants = ["network-pre.target"];
-          };
+          # services.haveged = {
+          #   script = "haveged -F";
+          #   before = ["network-pre.target"];
+          #   wants = ["network-pre.target"];
+          # };
+
+          # services.journald.extraConfig = ''
+          #   ForwardToConsole=yes
+          #   MaxLevelConsole=debug
+          # '';
+
+          contents."/etc/systemd/journald.conf".text = ''
+            [Journal]
+            ForwardToConsole=yes
+            MaxLevelConsole=debug
+          '';
 
           services.tor = let
             torRc = pkgs.writeText "tor.rc" ''
@@ -155,6 +173,19 @@ in {
               Type = "simple";
               KillMode = "process";
               Restart = "on-failure";
+            };
+          };
+          services.syslog = {
+            description = "Syslog Daemon";
+
+            requires = ["syslog.socket"];
+            wantedBy = ["initrd.target"];
+
+            serviceConfig = {
+              ExecStart = config.systemd.services.syslog.serviceConfig.ExecStart; # "${pkgs.rsyslog}/sbin/rsyslogd ${toString cfg.extraParams} -f ${syslogConf} -n";
+              ExecStartPre = config.systemd.services.syslog.serviceConfig.ExecStartPre; #"${pkgs.coreutils}/bin/mkdir -p /var/spool/rsyslog";
+              # Prevent syslogd output looping back through journald.
+              StandardOutput = "null";
             };
           };
 
