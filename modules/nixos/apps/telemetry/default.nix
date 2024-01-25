@@ -16,7 +16,7 @@ in {
       function notify_result {
 
         MESSAGE="$(mktemp)"
-        cat > "$MESSAGE" << EOL
+        cat <<EOF > $MESSAGE
           <b>build $(hostname)</b>
           $(date)
           ${self.shortRev or "dirty"}
