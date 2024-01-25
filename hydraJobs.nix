@@ -25,7 +25,7 @@ in {
   inherit hosts;
   # inherit defaultPackage;
 
-  install-test = inputs.self.nixosConfigurations.euro-mir-2.config.system.build.installTest;
+  install-test = inputs.self.nixosConfigurations.arthur.config.system.build.installTest;
 }
 # // {
 # defaultPackage = inputs.self.defaultPackage.x86_64-linux;
