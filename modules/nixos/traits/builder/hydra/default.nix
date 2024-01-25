@@ -125,6 +125,8 @@ in {
           "https://github.com/nix-community/"
           "https://github.com/tomasharkema/"
           "git://github.com/tomasharkema"
+          "https://git.sr.ht/~rycee/nmd/archive"
+          "https://git.sr.ht/~youkai/nscan"
         ];
         allow-import-from-derivation = true;
 
