@@ -6,8 +6,7 @@
 }:
 with lib;
 with pkgs;
-  buildGoModule
-  {
+  buildGoModule rec {
     pname = "nscan";
     version = "0.5.1";
 

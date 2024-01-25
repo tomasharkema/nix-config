@@ -17,9 +17,9 @@ buildNpmPackage rec {
   npmDepsHash = "sha256-tuEfyePwlOy2/mOPdXbqJskO6IowvAP4DWg8xSZwbJw=";
 
   # The prepack script runs the build script, which we'd rather do in the build phase.
-  npmPackFlags = ["--ignore-scripts"];
+  # npmPackFlags = ["--ignore-scripts"];
 
-  NODE_OPTIONS = "--openssl-legacy-provider";
+  # NODE_OPTIONS = "--openssl-legacy-provider";
 
   meta = with lib; {
     description = "A modern web UI for various torrent clients with a Node.js backend and React frontend";
