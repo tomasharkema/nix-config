@@ -41,6 +41,11 @@
         LC_TIME = "nl_NL.UTF-8";
       };
 
+      boot.tmp = {
+        useTmpfs = true;
+        cleanOnBoot = true;
+      };
+
       environment.systemPackages = with pkgs; [
         atop
         packagekit
