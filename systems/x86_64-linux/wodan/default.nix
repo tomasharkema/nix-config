@@ -1,9 +1,15 @@
-{lib, ...}: {
-  imports = [./hardware-configuration.nix];
+{
+  lib,
+  inputs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+
+    inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
+  ];
 
   config = {
-    documentation.man.enable = false;
-
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
     };
@@ -12,8 +18,6 @@
       hardwareClockInLocalTime = true;
       timeZone = "Europe/Amsterdam";
     };
-
-    hardware.opengl.enable = true;
 
     networking = {
       networkmanager.enable = true;
@@ -42,7 +46,7 @@
     traits = {
       hardware = {
         tpm.enable = true;
-        # secure-boot.enable = true;
+        secure-boot.enable = true;
         nvidia.enable = true;
       };
     };
@@ -53,19 +57,19 @@
       encrypt = true;
     };
 
-    boot = {
-      loader = {
-        efi = {
-          canTouchEfiVariables = false;
-          # efiSysMountPoint = "/boot";
-        };
-        grub = {
-          enable = true;
-          efiSupport = true;
-          device = "nodev";
-          efiInstallAsRemovable = true;
-        };
-      };
-    };
+    # boot = {
+    #   loader = {
+    #     efi = {
+    #       canTouchEfiVariables = false;
+    #       # efiSysMountPoint = "/boot";
+    #     };
+    #     grub = {
+    #       enable = true;
+    #       efiSupport = true;
+    #       device = "nodev";
+    #       efiInstallAsRemovable = true;
+    #     };
+    #   };
+    # };
   };
 }
