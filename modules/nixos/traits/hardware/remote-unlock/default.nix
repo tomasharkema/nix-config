@@ -103,15 +103,24 @@ in {
         # '';
 
         systemd = {
-          initrdBin = [
-            # pkgs.ntp
-            pkgs.tor
-            pkgs.iproute2
-            # pkgs.haveged pkgs.zerotierone
-            pkgs.rsyslog
+          # initrdBin = [
+          #   # pkgs.ntp
+          #   pkgs.tor
+          #   pkgs.iproute2
+          #   # pkgs.haveged pkgs.zerotierone
+          #   pkgs.rsyslog
+          # ];
+
+          packages = with pkgs; [
+            ntp
+            tor
+            iproute2
+            haveged
+            rsyslog
+            zerotierone
           ];
 
-          emergencyAccess = true;
+          # emergencyAccess = true;
           enable = true;
 
           users.root.shell = "/bin/systemd-tty-ask-password-agent";
