@@ -15,20 +15,9 @@ in {
     system.activationScripts.notify.text = ''
       function notify_result {
 
-        MESSAGE="$(mktemp)"
-        cat <<EOF > $MESSAGE
-          <b>build $(hostname)</b>
-          $(date)
-          ${self.shortRev or "dirty"}
-          <pre>
-            $(nix-info -m)
-          </pre>
-          <pre>
-            $(printenv)
-          </pre>
-        EOL
+        MESSAGE="<b>build $(hostname)</b> $(date) ${self.shortRev or "dirty"} <pre>$(nix-info -m)</pre> <pre>$(printenv)</pre>"
 
-        cat "$MESSAGE" | \
+        echo "$MESSAGE" | \
           ${lib.getExe pkgs.notify} -bulk -pc ${config.age.secrets.notify.path}
       }
       trap notify_result EXIT
