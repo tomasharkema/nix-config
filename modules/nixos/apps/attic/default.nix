@@ -9,6 +9,8 @@ with lib;
 with lib.custom;
 with pkgs; let
   cfg = config.apps.attic;
+
+  attic = inputs.attic.packages.${system}.default;
 in {
   options.apps.attic = {
     enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
@@ -17,8 +19,8 @@ in {
   config = mkIf (cfg.enable && !config.traits.slim.enable) {
     systemd.user.services.attic-login = let
       attic-login = writeShellScriptBin "attic-script" ''
-        ${attic-bin} login tomas https://nix-cache.harke.ma $(cat ${config.age.secrets.attic-key.path})
-        ${attic-bin} use tomas:tomas
+        ${lib.getExe attic} login tomas https://nix-cache.harke.ma $(cat ${config.age.secrets.attic-key.path})
+        ${lib.getExe attic} use tomas:tomas
       '';
     in {
       description = "attic-login";
@@ -43,9 +45,9 @@ in {
 
     systemd.services.attic-watch = let
       attic-script = writeShellScriptBin "attic-script.sh" ''
-        ${attic-bin} login tomas https://nix-cache.harke.ma "$(cat ${config.age.secrets.attic-key.path})"
-        ${attic-bin} use tomas:tomas
-        ${attic-bin} watch-store tomas:tomas
+        ${lib.getExe attic} login tomas https://nix-cache.harke.ma "$(cat ${config.age.secrets.attic-key.path})"
+        ${lib.getExe attic} use tomas:tomas
+        ${lib.getExe attic} watch-store tomas:tomas
       '';
     in {
       enable = true;
@@ -62,7 +64,7 @@ in {
       };
       script = "${lib.getExe attic-script}";
       wantedBy = ["multi-user.target"];
-      path = [attic-bin attic-script];
+      path = [attic attic-script];
       environment = {
         ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH = "go1.21";
       };

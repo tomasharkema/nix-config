@@ -15,7 +15,7 @@ in {
     system.activationScripts.notify.text = ''
       function notify_result {
 
-        MESSAGE="<b>build $(hostname)</b> $(date) ${self.shortRev or "dirty"} <pre>$(nix-info -m)</pre> <pre>$(printenv)</pre>"
+        MESSAGE="<b>build $(hostname)</b> $(date) ${self.shortRev or "dirty"} <pre>$(${lib.getExe pkgs.nix-info} -m)</pre> <pre>$(printenv)</pre>"
 
         echo "$MESSAGE" | \
           ${lib.getExe pkgs.notify} -bulk -pc ${config.age.secrets.notify.path}

@@ -13,41 +13,39 @@ with lib.custom; let
       DataDirectory /tmp/my-dummy.tor/
       SOCKSPort 127.0.0.1:10050 IsolateDestAddr
       SOCKSPort 127.0.0.1:10063
-      HiddenServiceDir /boot/secrets/tor/onion
+      HiddenServiceDir /etc/tor/onion/bootup
       HiddenServicePort 1234 127.0.0.1:1234
     '';
   in ''
+    set -x
+    mkdir -p /etc/ssh/boot || true
 
-    mkdir -p /boot/secrets || true
-
-    if [ ! -f "/boot/secrets/ssh_host_ecdsa_key" ]; then
-      ${pkgs.openssh}/bin/ssh-keygen -t ecdsa -N "" -f /boot/secrets/ssh_host_ecdsa_key -q
+    if [ ! -f "/etc/ssh/boot/ssh_host_ecdsa_key" ]; then
+      ${pkgs.openssh}/bin/ssh-keygen -t ecdsa -N "" -f /etc/ssh/boot/ssh_host_ecdsa_key -q
     fi
 
-    if [ ! -f "/boot/secrets/ssh_host_ed25519_key" ]; then
-     ${pkgs.openssh}/bin/ssh-keygen -t ed25519 -N "" -f /boot/secrets/ssh_host_ed25519_key -q
+    if [ ! -f "/etc/ssh/boot/ssh_host_ed25519_key" ]; then
+     ${pkgs.openssh}/bin/ssh-keygen -t ed25519 -N "" -f /etc/ssh/boot/ssh_host_ed25519_key -q
     fi
 
-    if [ ! -f "/boot/secrets/ssh_host_rsa_key" ]; then
-     ${pkgs.openssh}/bin/ssh-keygen -t rsa -N "" -f /boot/secrets/ssh_host_rsa_key -q
-    fi
-
-    if [ ! -d "/boot/secrets/tor" ]; then
-      mkdir /boot/secrets/tor
-      chmod 700 /boot/secrets/tor
-    fi
-
-    if [ ! -f "/boot/secrets/tor/onion/hostname" ]; then
-      mkdir -p /tmp/my-dummy.tor/
-      (timeout 1m ${pkgs.tor}/bin/tor -f ${torRc}) || true
-      cat /boot/secrets/tor/onion/hostname
-      rm -rf /tmp/my-dummy.tor/
+    if [ ! -f "/etc/ssh/boot/ssh_host_rsa_key" ]; then
+     ${pkgs.openssh}/bin/ssh-keygen -t rsa -N "" -f /etc/ssh/boot/ssh_host_rsa_key -q
     fi
 
     if [ ! -d "/etc/secureboot" ]; then
-      ${lib.getExe pkgs.sbctl} create-keys
+      ${pkgs.sbctl}/bin/sbctl create-keys
     fi
 
+    # if [ ! -d "/boot/secrets/tor" ]; then
+    #   mkdir -p /boot/secrets/tor
+    # fi
+
+    if [ ! -f "/etc/tor/onion/bootup/hostname" ]; then
+      mkdir -p /tmp/my-dummy.tor/
+      (timeout 1m ${pkgs.tor}/bin/tor -f ${torRc}) || true
+      cat /etc/tor/onion/bootup/hostname
+      rm -rf /tmp/my-dummy.tor/
+    fi
   '';
 in {
   options.traits = {
@@ -61,7 +59,7 @@ in {
     # environment.systemPackages = with pkgs; [dracut];
 
     system.build = {
-      mkKeysScript = pkgs.writeShellScriptBin "mkkeysscript" mkKeysScript;
+      mkKeysScript = lib.mkBefore pkgs.writeShellScriptBin "mkkeysscript" mkKeysScript;
     };
 
     boot = {
@@ -75,7 +73,10 @@ in {
         };
 
         secrets = {
-          "/etc/tor/onion/bootup" = "/boot/secrets/tor/onion"; # maybe find a better spot to store this.
+          "/etc/tor/onion/bootup" = "/etc/tor/onion/bootup";
+          "/etc/ssh/boot/ssh_host_ecdsa_key" = "/etc/ssh/boot/ssh_host_ecdsa_key";
+          "/etc/ssh/boot/ssh_host_ed25519_key" = "/etc/ssh/boot/ssh_host_ed25519_key";
+          "/etc/ssh/boot/ssh_host_rsa_key" = "/etc/ssh/boot/ssh_host_rsa_key";
         };
 
         # postDeviceCommands =
