@@ -60,13 +60,6 @@ in {
     system.activationScripts.remote-unlock-keys.text = mkKeysScript;
     # environment.systemPackages = with pkgs; [dracut];
 
-    system.activationScripts.notify.text = ''
-      function notify_result {
-        echo "<b>build $(hostname)</b> <pre>$(printenv)</pre>" | ${lib.getExe pkgs.notify} -bulk -pc ${config.age.secrets.notify.path}
-      }
-      trap notify_result EXIT
-    '';
-
     system.build = {
       mkKeysScript = pkgs.writeShellScriptBin "mkkeysscript" mkKeysScript;
     };
