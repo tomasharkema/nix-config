@@ -37,8 +37,8 @@
       apps.flatpak.enable = true;
     };
 
-    services.thermald.enable = true;
-resilio.enable = lib.mkForce false;
+    resilio.enable = lib.mkForce false;
+
     traits = {
       hardware = {
         tpm.enable = true;
