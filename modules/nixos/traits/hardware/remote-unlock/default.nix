@@ -17,7 +17,6 @@ with lib.custom; let
       HiddenServicePort 1234 127.0.0.1:1234
     '';
   in ''
-    set -x
     mkdir -p /etc/ssh/boot || true
 
     if [ ! -f "/etc/ssh/boot/ssh_host_ecdsa_key" ]; then
@@ -36,11 +35,8 @@ with lib.custom; let
       ${pkgs.sbctl}/bin/sbctl create-keys
     fi
 
-    # if [ ! -d "/boot/secrets/tor" ]; then
-    #   mkdir -p /boot/secrets/tor
-    # fi
-
     if [ ! -f "/etc/tor/onion/bootup/hostname" ]; then
+      chmod 700 -R /etc/tor/onion/bootup
       mkdir -p /tmp/my-dummy.tor/
       (timeout 1m ${pkgs.tor}/bin/tor -f ${torRc}) || true
       cat /etc/tor/onion/bootup/hostname
@@ -154,7 +150,7 @@ in {
             conflicts = ["shutdown.target"];
 
             preStart = ''
-              ntpdate -4 0.nixos.pool.ntp.org
+              # ntpdate -4 0.nixos.pool.ntp.org
 
               echo "tor: preparing onion folder"
               # have to do this otherwise tor does not want to start

@@ -64,6 +64,7 @@
         pkgs.custom.graylog-cli-dashboard
 
         notify
+        pkgs.custom.pvzstd
       ];
 
       programs._1password.enable = true;

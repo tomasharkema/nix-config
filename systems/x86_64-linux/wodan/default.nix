@@ -48,6 +48,7 @@
         tpm.enable = true;
         secure-boot.enable = true;
         nvidia.enable = true;
+        remote-unlock.enable = true;
       };
     };
 
