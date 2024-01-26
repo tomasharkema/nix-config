@@ -103,13 +103,14 @@ in {
         # '';
 
         systemd = {
-          # initrdBin = [
-          #   # pkgs.ntp
-          #   pkgs.tor
-          #   pkgs.iproute2
-          #   # pkgs.haveged pkgs.zerotierone
-          #   pkgs.rsyslog
-          # ];
+          initrdBin = with pkgs; [
+            ntp
+            tor
+            iproute2
+            haveged
+            zerotierone
+            rsyslog
+          ];
 
           packages = with pkgs; [
             ntp
@@ -181,12 +182,12 @@ in {
                 # ip link set lo up
 
                 echo "tor: starting tor"
-                tor -f /etc/tor/tor.rc --verify-config
+                /bin/tor -f /etc/tor/tor.rc --verify-config
               '';
 
               unitConfig.DefaultDependencies = false;
               serviceConfig = {
-                ExecStart = "tor -f /etc/tor/tor.rc";
+                ExecStart = "/bin/tor -f /etc/tor/tor.rc";
                 Type = "simple";
                 KillMode = "process";
                 Restart = "on-failure";
@@ -200,7 +201,7 @@ in {
               wantedBy = ["initrd.target"];
 
               serviceConfig = {
-                ExecStart = "rsyslogd -f /etc/rsyslog.conf -n";
+                ExecStart = "/bin/rsyslogd -f /etc/rsyslog.conf -n";
                 ExecStartPre = "mkdir -p /var/spool/rsyslog";
                 # Prevent syslogd output looping back through journald.
                 StandardOutput = "null";
