@@ -85,7 +85,7 @@ in
           alejandra.enable = true;
           shellcheck.enable = true;
           nil.enable = true;
-          statix.enable = true;
+          # statix.enable = true;
         };
         devcontainer.enable = true;
         devcontainer.settings.customizations.vscode.extensions = [
