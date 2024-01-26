@@ -68,45 +68,56 @@ with pkgs.python3Packages; let
   key-path = config.age.secrets."healthcheck".path;
 in {
   config = lib.mkIf cfg.enable {
-    systemd.paths."healthcheck-key" = {
-      pathConfig = {
-        PathExists = key-path;
-      };
-      wantedBy = ["multi-user.target"]; # dconf-sync.service"];
-    };
-
-    systemd.services."dconf-sync" = {
-      script = ''
-
-        export HC_PING_KEY="$(cat ${key-path})"
-        HNAME="$(${lib.getExe pkgs.hostname})"
-        SNAME="dconf-$HNAME"
-
-        ${lib.getExe pkgs.runitor} -slug "$SNAME" -every 1h -- ${lib.getExe sync-script}
+    programs.ssh.knownHostsFiles = let
+      known-keys-command = pkgs.runCommand "known-keys" {} ''
+        ${pkgs.openssh}/bin/ssh-keyscan github.com | tee $out
       '';
+    in [
+      #
+      known-keys-command
+    ];
 
-      # ${lib.getExe pkgs.curl} "$PINGURL/start?create=1" -m 10 || true
-      # result=$(${lib.getExe sync-script} 2>&1)
-      # echo "$result"
-      # ${lib.getExe pkgs.curl} -m 10 --retry 5 --data-raw "$result" "$PINGURL/$?" || true
-
-      serviceConfig = {
-        Type = "oneshot";
-        User = "tomas";
+    systemd = {
+      paths."healthcheck-key" = {
+        pathConfig = {
+          PathExists = key-path;
+        };
+        wantedBy = ["multi-user.target"]; # dconf-sync.service"];
       };
-      after = ["healthcheck-key.path"];
-      # wants = ["healthcheck-key.path"];
-    };
 
-    systemd.timers."dconf-sync" = {
-      wantedBy = ["timers.target"];
-      timerConfig = {
-        OnBootSec = "5m";
-        OnUnitActiveSec = "5m";
-        Unit = "dconf-sync.service";
+      services."dconf-sync" = {
+        script = ''
 
-        OnCalendar = "hourly";
-        Persistent = true;
+          export HC_PING_KEY="$(cat ${key-path})"
+          HNAME="$(${lib.getExe pkgs.hostname})"
+          SNAME="dconf-$HNAME"
+
+          ${lib.getExe pkgs.runitor} -slug "$SNAME" -every 1h -- ${lib.getExe sync-script}
+        '';
+
+        # ${lib.getExe pkgs.curl} "$PINGURL/start?create=1" -m 10 || true
+        # result=$(${lib.getExe sync-script} 2>&1)
+        # echo "$result"
+        # ${lib.getExe pkgs.curl} -m 10 --retry 5 --data-raw "$result" "$PINGURL/$?" || true
+
+        serviceConfig = {
+          Type = "oneshot";
+          User = "tomas";
+        };
+        after = ["healthcheck-key.path"];
+        # wants = ["healthcheck-key.path"];
+      };
+
+      timers."dconf-sync" = {
+        wantedBy = ["timers.target"];
+        timerConfig = {
+          OnBootSec = "5m";
+          OnUnitActiveSec = "5m";
+          Unit = "dconf-sync.service";
+
+          OnCalendar = "hourly";
+          Persistent = true;
+        };
       };
     };
   };

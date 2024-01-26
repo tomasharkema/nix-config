@@ -77,7 +77,7 @@ in
 
     modules = [
       {
-        starship.enable = true;
+        # starship.enable = true;
 
         languages.nix.enable = true;
 
