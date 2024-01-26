@@ -20,7 +20,7 @@ jobs:
         run: nix profile install tarball+https://install.devenv.sh/latest
 
       - name: Run a single command in the devenv shell
-        run: nix develop --accept-flake-config --impure -c "statix check"
+        run: nix develop --accept-flake-config --impure --command bash -c "statix check"
 
   cachix:
     runs-on: ubuntu-latest #self-hosted
@@ -38,15 +38,15 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - run: |
           export CACHIX_AUTH_TOKEN=${{ secrets.CACHIX_AUTH_TOKEN }}
-          spec=$(nix build --print-out-paths --accept-flake-config '.#images')
+          spec=$(nix build --print-out-paths --accept-flake-config '.#nixosConfigurations.blue-fire.config.system.build.toplevel')
           echo $spec
           cat $spec
           cachix push tomasharkema $spec
   check:
-    strategy:
-      matrix:
-        os: [ubuntu-latest] # [self-hosted, ubuntu-latest]
-    runs-on: ${{ matrix.os }}
+    # strategy:
+    #   matrix:
+    #     os: [ubuntu-latest] # [self-hosted, ubuntu-latest]
+    runs-on: ubuntu-latest # ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: docker/setup-qemu-action@v3
