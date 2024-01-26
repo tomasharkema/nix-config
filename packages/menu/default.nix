@@ -22,6 +22,10 @@ pkgs.writeShellApplication {
       exec sudo nixos-rebuild switch --flake "github:tomasharkema/nix-config/update" --refresh --verbose --log-format internal-json -v |& nom --json
     }
 
+    clear-cache () {
+      gum spin --spinner line --title "Deleting garbage" --show-output -- sudo nix-collect-garbage --delete-older-than '1d'
+    }
+
     CHOICE=$(gum choose "$RUN_UPDATER" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$CLEAR_CACHE" "$OPEN_SHELL" "$EXIT")
 
     case $CHOICE in
@@ -42,7 +46,7 @@ pkgs.writeShellApplication {
         ;;
 
       "$CLEAR_CACHE")
-        exec sudo nix-collect-garbage --delete-older-than '1d'
+        clear-cache
         ;;
 
       "$EXIT")

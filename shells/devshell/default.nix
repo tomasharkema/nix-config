@@ -76,9 +76,8 @@ in
     inherit inputs pkgs;
 
     modules = [
-      #../../modules/home/tools/nix/nixpkgs.nix
       {
-        # starship.enable = true;
+        starship.enable = true;
 
         languages.nix.enable = true;
 
@@ -86,7 +85,7 @@ in
           alejandra.enable = true;
           shellcheck.enable = true;
           nil.enable = true;
-          # statix.enable = true;
+          statix.enable = true;
         };
         devcontainer.enable = true;
         devcontainer.settings.customizations.vscode.extensions = [
@@ -100,7 +99,7 @@ in
 
         packages = with inputs; [
           dconf-update
-          # flake-checker.packages.${system}.default
+          flake-checker.packages.${system}.default
           deploy-rs.packages.${system}.default
           attic.packages.${system}.default
           agenix.packages.${system}.default
