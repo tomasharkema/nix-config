@@ -58,15 +58,7 @@ in {
       mkKeysScript = lib.mkBefore pkgs.writeShellScriptBin "mkkeysscript" mkKeysScript;
     };
 
-    boot = let
-      torRc = pkgs.writeText "tor.rc" ''
-        DataDirectory /etc/tor
-        SOCKSPort 127.0.0.1:9050 IsolateDestAddr
-        SOCKSPort 127.0.0.1:9063
-        HiddenServiceDir /etc/tor/onion/bootup
-        HiddenServicePort 22222 127.0.0.1:22222
-      '';
-    in {
+    boot = {
       crashDump.enable = true;
       initrd = {
         verbose = true;
@@ -150,7 +142,13 @@ in {
             MaxLevelConsole=debug
           '';
 
-          contents."/etc/tor/tor.rc".text = torRc;
+          contents."/etc/tor/tor.rc".text = ''
+            DataDirectory /etc/tor
+            SOCKSPort 127.0.0.1:9050 IsolateDestAddr
+            SOCKSPort 127.0.0.1:9063
+            HiddenServiceDir /etc/tor/onion/bootup
+            HiddenServicePort 22222 127.0.0.1:22222
+          '';
           contents."/etc/rsyslog.conf".text = ''
             *.*    @@nix.harke.ma:5140;RSYSLOG_SyslogProtocol23Format
           '';
