@@ -12,18 +12,20 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.gnome = {
-      gnome-settings-daemon.enable = true;
-      gnome-browser-connector.enable = true;
-      core-shell.enable = true;
-      core-utilities.enable = true;
-      chrome-gnome-shell.enable = true;
+    services = {
+      gnome = {
+        gnome-settings-daemon.enable = true;
+        gnome-browser-connector.enable = true;
+        core-shell.enable = true;
+        core-utilities.enable = true;
+        chrome-gnome-shell.enable = true;
+      };
+      gnome3.chrome-gnome-shell.enable = true;
+      gnome = {
+        gnome-keyring.enable = true;
+      };
+      udev.packages = with pkgs; [gnome.gnome-settings-daemon];
     };
-    services.gnome3.chrome-gnome-shell.enable = true;
-    services.gnome = {
-      gnome-keyring.enable = true;
-    };
-    services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
     environment.systemPackages = with pkgs; [
       gnomeExtensions.appindicator

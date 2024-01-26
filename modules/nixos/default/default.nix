@@ -4,7 +4,21 @@
   lib,
   inputs,
   ...
-}: {
+}: let
+  theme = inputs.themes.custom (inputs.themes.catppuccin-mocha
+    // {
+      base00 = "000000";
+    });
+in {
+  options = {
+    variables = lib.mkOption {
+      type = lib.types.attrs;
+      default = {
+        theme = theme;
+      };
+    };
+  };
+
   config = with lib; {
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
@@ -135,7 +149,16 @@
       192.168.0.15 ipa.harkema.io
     '';
     # system.nixos.tags = ["with-default"];
-    services.ntp.enable = true;
+    services.ntp = {
+      enable = true;
+      servers = [
+        "0.nl.pool.ntp.org"
+        "1.nl.pool.ntp.org"
+        "2.nl.pool.ntp.org"
+        "3.nl.pool.ntp.org"
+      ];
+    };
+
     security.pki.certificateFiles = [./ca.crt];
 
     networking.enableIPv6 = false;

@@ -4,6 +4,10 @@
   ...
 }: {
   config = {
+    programs.btop = {
+      enable = true;
+    };
+
     home.file = {
       ".config/btop/themes" = {
         source = pkgs.fetchFromGitHub {

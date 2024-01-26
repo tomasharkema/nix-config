@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
@@ -37,6 +38,7 @@ in
           jq
           # fig
           # inputs.nix-gui.packages.${system}.nix-gui
+          kitty-img
         ];
         sessionVariables = lib.mkIf stdenv.isDarwin {
           EDITOR = "subl";
@@ -54,17 +56,6 @@ in
 
       programs = {
         home-manager.enable = true;
-        kitty = {
-          enable = true;
-          theme = "Catppuccin-Mocha";
-          settings = {
-            font_family = "JetBrainsMono Nerd Font Mono Regular";
-            font_size = "12.0";
-          };
-          shellIntegration = {
-            enableZshIntegration = true;
-          };
-        };
 
         termite.enable = true;
         terminator.enable = lib.mkIf pkgs.stdenv.isLinux true;
@@ -99,7 +90,7 @@ in
           enableZshIntegration = true;
         };
 
-        tmux = {enable = true;};
+        # tmux = {enable = true;};
 
         alacritty.enable = true;
 
@@ -132,6 +123,12 @@ in
           enable = true;
           userName = "Tomas Harkema";
           userEmail = "tomas@harkema.io";
+        };
+
+        bat = {
+          enable = true;
+          config.theme = "base16";
+          themes.base16.src = pkgs.writeText "base16.tmTheme" osConfig.variables.theme.tmTheme;
         };
 
         lazygit.enable = true;
@@ -273,11 +270,11 @@ in
             editor.dotExpansion = true;
             terminal.autoTitle = true;
 
-            tmux = {
-              autoStartRemote = true;
-              itermIntegration = true;
-              # autoStartLocal = true;
-            };
+            # tmux = {
+            # autoStartRemote = true;
+            # itermIntegration = true;
+            # autoStartLocal = true;
+            # };
 
             prompt.pwdLength = "short";
             utility.safeOps = true;
@@ -311,7 +308,7 @@ in
           };
 
           oh-my-zsh = {
-            enable = true;
+            # enable = true;
             plugins = [
               "1password"
               # "autojump"
@@ -336,7 +333,7 @@ in
               "yarn"
               "zsh-navigation-tools"
               "wd"
-              "tmux"
+              # "tmux"
               # "iterm-tab-color"
             ];
             #   # theme = "powerlevel10k/powerlevel10k";

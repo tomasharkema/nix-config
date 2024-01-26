@@ -14,15 +14,12 @@
     #   #   # package = inputs.unstable.legacyPackages."${pkgs.system}".keybase;
     # };
     # home.packages = [pkgs.keybase-gui];
-    gtk = let
-      catt = pkgs.fetchFromGitHub {
-        owner = "Fausto-Korpsvart";
-        repo = "Catppuccin-GTK-Theme";
-        rev = "b8cffe7583876e17cc4558f32d17a072fa04ea9f";
-        hash = "sha256-wJnbXXWKX0mcqRYyE1Vs4CrgWXTwfk3kRC2IhKqQ0RI=";
-      };
-    in {
+    gtk = {
       enable = true;
+
+      gtk3.extraCss = osConfig.variables.theme.adwaitaGtkCss;
+      gtk4.extraCss = osConfig.variables.theme.adwaitaGtkCss;
+
       font = {
         package = pkgs.custom.b612;
         name = "B612 Regular 12";

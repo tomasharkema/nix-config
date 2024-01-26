@@ -16,17 +16,49 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.xserver = {
-      enable = true;
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
+    services = {
+      gnome = {
+        chrome-gnome-shell.enable = true;
+        gnome-browser-connector.enable = true;
+      };
+
+      xserver = {
+        enable = true;
+
+        layout = "us";
+        xkbVariant = "";
+
+        libinput.enable = true;
+        desktopManager.gnome.enable = true;
+
+        displayManager = {
+          gdm.enable = true;
+
+          lightdm.greeters.gtk = {
+            enable = true;
+
+            theme = {
+              name = "Catppuccin-Mocha-Compact-Blue-Dark";
+              package = pkgs.catppuccin-gtk.override {
+                accents = ["blue"];
+                size = "compact";
+                tweaks = ["rimless" "black"];
+                variant = "mocha";
+              };
+            };
+          };
+        };
+      };
+
+      xrdp = mkIf cfg.rdp.enable {
+        enable = true;
+        openFirewall = true;
+        defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
+      };
+
+      systembus-notify.enable = true;
     };
 
-    services.xrdp = mkIf cfg.rdp.enable {
-      enable = true;
-      openFirewall = true;
-      defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
-    };
     security.polkit = mkIf cfg.rdp.enable {
       enable = true;
       extraConfig = ''
@@ -46,21 +78,12 @@ in {
         })
       '';
     };
-    services.systembus-notify.enable = true;
-    services.xserver.libinput.enable = true;
+
     programs.mtr.enable = true;
     # programs.gnupg.agent = {
     # enable = true;
     # enableSSHSupport = true;
     # };
-
-    services.xserver = {
-      layout = "us";
-      xkbVariant = "";
-    };
-
-    services.gnome.chrome-gnome-shell.enable = true;
-    services.gnome.gnome-browser-connector.enable = true;
 
     environment.systemPackages = with pkgs;
       [
