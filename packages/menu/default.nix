@@ -6,12 +6,13 @@
 pkgs.writeShellApplication {
   name = "menu";
 
-  runtimeInputs = with pkgs; [gum nixos-rebuild nix-output-monitor zsh fast-ssh];
+  runtimeInputs = with pkgs; [gum nixos-rebuild nix-output-monitor zsh fast-ssh dialog];
 
   text = ''
     # NIX_ARGS="--accept-flake-config --refresh --verbose"
 
     RUN_UPDATER="Run Updater..."
+    ATTACH_SESSION="Attach to session..."
     OPEN_BLUE_FIRE="SSH blue-fire..."
     OPEN_SSH="SSH..."
     CLEAR_CACHE="Clear cache..."
@@ -23,10 +24,21 @@ pkgs.writeShellApplication {
     }
 
     clear-cache () {
-      gum spin --spinner line --title "Deleting garbage" --show-output -- sudo nix-collect-garbage --delete-older-than '1d'
+      OUTPUT="$(mktemp)"
+      {
+        nix-collect-garbage --delete-older-than '1d' 2>&1;
+        echo "-- nix store optimise --";
+        nix store optimise 2>&1;
+      } > "$OUTPUT" &
+      dialog --title "Run garbage collector..." --tailbox "$OUTPUT" 30 125 --clear
     }
 
-    CHOICE=$(gum choose "$RUN_UPDATER" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$CLEAR_CACHE" "$OPEN_SHELL" "$EXIT")
+    attach-session () {
+      SESSION=$(tmux list-sessions -F \#S | gum filter --placeholder "Pick session...")
+      tmux switch-client -t "$SESSION" || tmux attach -t "$SESSION"
+    }
+
+    CHOICE=$(gum choose "$RUN_UPDATER" "$ATTACH_SESSION" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$CLEAR_CACHE" "$OPEN_SHELL" "$EXIT")
 
     case $CHOICE in
       "$RUN_UPDATER")
@@ -47,6 +59,10 @@ pkgs.writeShellApplication {
 
       "$CLEAR_CACHE")
         clear-cache
+        ;;
+
+      "$ATTACH_SESSION")
+        attach-session
         ;;
 
       "$EXIT")

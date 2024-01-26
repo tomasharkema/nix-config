@@ -162,5 +162,6 @@
         *.*    @@nix.harke.ma:5140;RSYSLOG_SyslogProtocol23Format
       '';
     };
+    boot.loader.systemd-boot.netbootxyz.enable = true;
   };
 }
