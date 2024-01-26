@@ -58,7 +58,15 @@ in {
       mkKeysScript = lib.mkBefore pkgs.writeShellScriptBin "mkkeysscript" mkKeysScript;
     };
 
-    boot = {
+    boot = let
+      torRc = pkgs.writeText "tor.rc" ''
+        DataDirectory /etc/tor
+        SOCKSPort 127.0.0.1:9050 IsolateDestAddr
+        SOCKSPort 127.0.0.1:9063
+        HiddenServiceDir /etc/tor/onion/bootup
+        HiddenServicePort 22222 127.0.0.1:22222
+      '';
+    in {
       crashDump.enable = true;
       initrd = {
         verbose = true;
@@ -142,57 +150,63 @@ in {
             MaxLevelConsole=debug
           '';
 
-          services.tor = let
-            torRc = pkgs.writeText "tor.rc" ''
-              DataDirectory /etc/tor
-              SOCKSPort 127.0.0.1:9050 IsolateDestAddr
-              SOCKSPort 127.0.0.1:9063
-              HiddenServiceDir /etc/tor/onion/bootup
-              HiddenServicePort 22222 127.0.0.1:22222
-            '';
-          in {
-            # serviceConfig.Type = "oneshot";
+          contents."/etc/tor/tor.rc".text = torRc;
+          contents."/etc/rsyslog.conf".text = ''
+            *.*    @@nix.harke.ma:5140;RSYSLOG_SyslogProtocol23Format
+          '';
 
-            wantedBy = ["initrd.target"];
-            after = ["network.target" "initrd-nixos-copy-secrets.service"];
+          storePaths = [
+            "${pkgs.tor}/bin/tor"
+            "${pkgs.rsyslog}/sbin/rsyslogd"
+            "${pkgs.coreutils}/bin/mkdir"
+          ];
 
-            before = ["shutdown.target"];
-            conflicts = ["shutdown.target"];
+          services = {
+            tor = {
+              # serviceConfig.Type = "oneshot";
 
-            preStart = ''
-              # ntpdate -4 0.nixos.pool.ntp.org
+              wantedBy = ["initrd.target"];
+              after = ["network.target" "initrd-nixos-copy-secrets.service"];
 
-              echo "tor: preparing onion folder"
-              # have to do this otherwise tor does not want to start
-              chmod -R 700 /etc/tor
+              # before = ["shutdown.target"];
+              # conflicts = ["shutdown.target"];
 
-              # echo "make sure localhost is up"
-              # ip a a 127.0.0.1/8 dev lo
-              # ip link set lo up
+              preStart = ''
+                # ntpdate -4 0.nixos.pool.ntp.org
 
-              echo "tor: starting tor"
-              tor -f ${torRc} --verify-config
-            '';
+                echo "tor: preparing onion folder"
+                # have to do this otherwise tor does not want to start
+                chmod -R 700 /etc/tor
 
-            unitConfig.DefaultDependencies = false;
-            serviceConfig = {
-              ExecStart = "tor -f ${torRc}";
-              Type = "simple";
-              KillMode = "process";
-              Restart = "on-failure";
+                # echo "make sure localhost is up"
+                # ip a a 127.0.0.1/8 dev lo
+                # ip link set lo up
+
+                echo "tor: starting tor"
+                tor -f /etc/tor/tor.rc --verify-config
+              '';
+
+              unitConfig.DefaultDependencies = false;
+              serviceConfig = {
+                ExecStart = "tor -f /etc/tor/tor.rc";
+                Type = "simple";
+                KillMode = "process";
+                Restart = "on-failure";
+              };
             };
-          };
-          services.syslog = {
-            description = "Syslog Daemon";
 
-            requires = ["syslog.socket"];
-            wantedBy = ["initrd.target"];
+            syslog = {
+              description = "Syslog Daemon";
 
-            serviceConfig = {
-              ExecStart = config.systemd.services.syslog.serviceConfig.ExecStart; # "${pkgs.rsyslog}/sbin/rsyslogd ${toString cfg.extraParams} -f ${syslogConf} -n";
-              ExecStartPre = config.systemd.services.syslog.serviceConfig.ExecStartPre; #"${pkgs.coreutils}/bin/mkdir -p /var/spool/rsyslog";
-              # Prevent syslogd output looping back through journald.
-              StandardOutput = "null";
+              requires = ["syslog.socket"];
+              wantedBy = ["initrd.target"];
+
+              serviceConfig = {
+                ExecStart = "rsyslogd -f /etc/rsyslog.conf -n";
+                ExecStartPre = "mkdir -p /var/spool/rsyslog";
+                # Prevent syslogd output looping back through journald.
+                StandardOutput = "null";
+              };
             };
           };
 
