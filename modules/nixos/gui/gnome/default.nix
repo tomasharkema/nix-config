@@ -19,9 +19,7 @@ in {
         core-shell.enable = true;
         core-utilities.enable = true;
         chrome-gnome-shell.enable = true;
-      };
-      gnome3.chrome-gnome-shell.enable = true;
-      gnome = {
+
         gnome-keyring.enable = true;
       };
       udev.packages = with pkgs; [gnome.gnome-settings-daemon];
@@ -94,20 +92,25 @@ in {
       zeal
     ];
 
-    services.synergy.client = {
-      enable = true;
-      serverAddress = "0.0.0.0";
-    };
+    # services.synergy.client = {
+    #   enable = true;
+    #   serverAddress = "0.0.0.0";
+    # };
 
     # programs.hyprland = {
     #   enable = true;
     #   enableNvidiaPatches = true;
     # };
-    # programs.sway.enable = true;
-    programs.dconf.enable = true;
+    programs = {
+      sway.enable = true;
+      dconf.enable = true;
+    };
+
+    # trace: warning: The option `fonts.fonts' defined in `/nix/store/z1gqs0dm5j9g1qy5j9m7m85al7lhjpim-aca1xyh73qrpxrv4yh6lnavs59q875xf-source/modules/nixos/gui/gnome/default.nix' has been renamed to `fonts.packages'.
+    # trace: warning: The option `fonts.enableDefaultFonts' defined in `/nix/store/z1gqs0dm5j9g1qy5j9m7m85al7lhjpim-aca1xyh73qrpxrv4yh6lnavs59q875xf-source/modules/nixos/gui/gnome/default.nix' has been renamed to `fonts.enableDefaultPackages'.
 
     fonts = {
-      enableDefaultFonts = true;
+      enableDefaultPackages = true;
       fontDir.enable = true;
       fontconfig = {
         antialias = true;
@@ -123,7 +126,8 @@ in {
           enable = true;
         };
       };
-      fonts = with pkgs; [
+
+      packages = with pkgs; [
         noto-fonts
         noto-fonts-extra
         noto-fonts-emoji
@@ -151,7 +155,7 @@ in {
         gedit # text editor
         epiphany # web browser
         # geary # email reader
-        gnome-characters
+        # gnome-characters
         tali # poker game
         iagno # go game
         hitori # sudoku game

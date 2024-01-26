@@ -34,16 +34,18 @@ in {
         displayManager = {
           gdm.enable = true;
 
-          lightdm.greeters.gtk = {
-            enable = true;
+          lightdm = {
+            greeters.gtk = {
+              enable = true;
 
-            theme = {
-              name = "Catppuccin-Mocha-Compact-Blue-Dark";
-              package = pkgs.catppuccin-gtk.override {
-                accents = ["blue"];
-                size = "compact";
-                tweaks = ["rimless" "black"];
-                variant = "mocha";
+              theme = {
+                name = "Catppuccin-Mocha-Compact-Blue-Dark";
+                package = pkgs.catppuccin-gtk.override {
+                  accents = ["blue"];
+                  size = "compact";
+                  tweaks = ["rimless" "black"];
+                  variant = "mocha";
+                };
               };
             };
           };
@@ -89,7 +91,7 @@ in {
       [
         polkit
         gparted
-        firefox
+        # firefox
         vscode
         fira-code-nerdfont
         transmission
@@ -126,19 +128,26 @@ in {
       ]
       ++ optional (pkgs.system == "x86_64-linux") telegram-desktop;
 
-    programs.ssh.extraConfig = ''
-      Host *
-        IdentityAgent ~/.1password/agent.sock
-    '';
+    programs = {
+      ssh.extraConfig = ''
+        Host *
+          IdentityAgent ~/.1password/agent.sock
+      '';
 
-    programs._1password-gui = {
-      enable = true;
-      # Certain features, including CLI integration and system authentication support,
-      # require enabling PolKit integration on some desktop environments (e.g. Plasma).
-      polkitPolicyOwners = ["tomas" "tomas@harkema.io"];
+      _1password-gui = {
+        enable = true;
+        # Certain features, including CLI integration and system authentication support,
+        # require enabling PolKit integration on some desktop environments (e.g. Plasma).
+        polkitPolicyOwners = ["tomas" "tomas@harkema.io"];
+      };
+
+      firefox = {
+        enable = true;
+
+        nativeMessagingHosts.packages = with pkgs; [gnome-browser-connector];
+        nativeMessagingHosts.gsconnect = true;
+      };
     };
-
-    # nativeMessagingHosts.packages = with pkgs; [ gnome-browser-connector ];
 
     # nix.extraOptions = "experimental-features = nix-command flakes";
 
