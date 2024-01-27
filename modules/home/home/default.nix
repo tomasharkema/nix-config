@@ -241,7 +241,7 @@ in
           };
 
           prezto = {
-            enable = true;
+            enable = false;
 
             pmodules = [
               "osx"
@@ -308,10 +308,10 @@ in
           };
 
           oh-my-zsh = {
-            # enable = true;
+            enable = true;
             plugins = [
               "1password"
-              # "autojump"
+              "autojump"
               "aws"
               "colorize"
               "docker"
@@ -333,8 +333,8 @@ in
               "yarn"
               "zsh-navigation-tools"
               "wd"
-              # "tmux"
-              # "iterm-tab-color"
+              "tmux"
+              "iterm-tab-color"
             ];
             #   # theme = "powerlevel10k/powerlevel10k";
           };
