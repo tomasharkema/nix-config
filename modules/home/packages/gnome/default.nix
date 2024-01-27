@@ -47,6 +47,9 @@ with inputs.home-manager.lib.hm.gvariant; {
       #   name = "X-GNOME-Utilities.directory";
       #   translate = true;
       # };
+      "org/gnome/mutter" = {
+        experimental-features = "['scale-monitor-framebuffer']";
+      };
       "org/gnome/shell/extensions/vitals" = {
         "position-in-panel" = 0;
       };
