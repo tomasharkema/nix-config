@@ -49,6 +49,8 @@
     };
     resilio.enable = lib.mkForce false;
 
+    networking.interfaces."enp2s0".mtu = 9000;
+
     traits = {
       hardware = {
         tpm.enable = true;
