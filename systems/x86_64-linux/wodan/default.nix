@@ -1,6 +1,7 @@
 {
   lib,
   inputs,
+  config,
   ...
 }: {
   imports = [
@@ -12,6 +13,8 @@
   config = {
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
+      initrd.kernelModules = ["nvidia"];
+      extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
     };
 
     time = {

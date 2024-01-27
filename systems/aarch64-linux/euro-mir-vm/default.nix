@@ -27,7 +27,7 @@
       desktop = {
         enable = true;
       };
-      quiet-boot.enable = false;
+      quiet-boot.enable = true;
       apps = {
         flatpak.enable = false;
       };
@@ -37,7 +37,7 @@
         tpm.enable = true;
         secure-boot.enable = true;
         vm.enable = true;
-        remote-unlock.enable = false;
+        remote-unlock.enable = true;
       };
     };
     services.resilio = {

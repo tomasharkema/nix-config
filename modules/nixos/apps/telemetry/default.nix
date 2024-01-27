@@ -18,7 +18,7 @@ in {
         MESSAGE="<b>build $(hostname)</b> $(date) ${self.shortRev or "dirty"} <pre>$(${lib.getExe pkgs.nix-info} -m)</pre> <pre>$(printenv)</pre>"
 
         echo "$MESSAGE" | \
-          ${lib.getExe pkgs.notify} -bulk -pc ${config.age.secrets.notify.path}
+          ${lib.getExe pkgs.notify} -bulk -pc ${config.age.secrets.notify.path} -q
       }
       trap notify_result EXIT
     '';

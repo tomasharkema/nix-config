@@ -30,7 +30,7 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-      gnome-extension-manager
+      # gnome-extension-manager
 
       pkgs.gnome45Extensions."app-hider@lynith.dev"
       pkgs.gnome45Extensions."blur-my-shell@aunetx"

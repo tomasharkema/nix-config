@@ -144,8 +144,8 @@ in {
       firefox = {
         enable = true;
 
-        nativeMessagingHosts.packages = with pkgs; [gnome-browser-connector];
-        nativeMessagingHosts.gsconnect = true;
+        # nativeMessagingHosts.packages = with pkgs; [gnome-browser-connector];
+        # nativeMessagingHosts.gsconnect = true;
       };
     };
 
