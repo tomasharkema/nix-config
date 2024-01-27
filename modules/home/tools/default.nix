@@ -16,7 +16,7 @@ with pkgs; {
       bash
       bat
       bottom
-      btop
+
       bunyan-rs
       cheat
       comma
