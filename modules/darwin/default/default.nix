@@ -2,8 +2,23 @@
   inputs,
   pkgs,
   config,
+  lib,
   ...
-}: {
+}: let
+  theme = inputs.themes.custom (inputs.themes.catppuccin-mocha
+    // {
+      base00 = "000000";
+    });
+in {
+  options = {
+    variables = lib.mkOption {
+      type = lib.types.attrs;
+      default = {
+        theme = theme;
+      };
+    };
+  };
+
   imports = [
     inputs.agenix.darwinModules.default
     # ../../nixos/secrets
@@ -36,7 +51,7 @@
 
     services.nix-daemon.enable = true;
     # programs.bash.enable = true;
-
+    environment.systemPackages = with pkgs.custom; [menu];
     system.stateVersion = 4;
     services.synergy.server = {
       enable = true;
@@ -68,10 +83,10 @@
       #     export OP_PLUGIN_ALIASES_SOURCED=1
       #   '';
 
-      # shellAliases = {
-      #   gh = "op plugin run -- gh";
-      #   cachix = "op plugin run -- cachix";
-      # };
+      #      shellAliases = {
+      #        gh = "op plugin run -- gh";
+      #        cachix = "op plugin run -- cachix";
+      #      };
     };
 
     nix = {

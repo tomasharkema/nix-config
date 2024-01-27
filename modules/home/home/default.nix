@@ -125,11 +125,11 @@ in
           userEmail = "tomas@harkema.io";
         };
 
-        bat = {
-          enable = true;
-          config.theme = "base16";
-          themes.base16.src = pkgs.writeText "base16.tmTheme" osConfig.variables.theme.tmTheme;
-        };
+        # bat = {
+        #   enable = true;
+        #   config.theme = "base16";
+        #   themes.base16.src = pkgs.writeText "base16.tmTheme" osConfig.variables.theme.tmTheme;
+        # };
 
         lazygit.enable = true;
         lsd.enable = true;
