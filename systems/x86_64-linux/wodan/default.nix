@@ -43,7 +43,10 @@
       quiet-boot.enable = true;
       apps.flatpak.enable = true;
     };
-
+    fileSystems."/mnt/media" = {
+      device = "192.168.0.11:/mnt/media";
+      fsType = "nfs";
+    };
     resilio.enable = lib.mkForce false;
 
     traits = {

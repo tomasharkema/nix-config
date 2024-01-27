@@ -70,7 +70,7 @@ in {
       server = {
         enable = true;
         exports = ''
-          /mnt/media         192.168.0.11(rw,fsid=0,no_subtree_check)
+          /mnt/media          192.168.1.170(rw,fsid=0,no_subtree_check)
         '';
       };
     };
