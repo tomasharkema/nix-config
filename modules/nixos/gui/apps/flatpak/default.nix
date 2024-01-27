@@ -45,6 +45,7 @@ in {
         "com.discordapp.Discord"
         "com.logseq.Logseq"
         "md.obsidian.Obsidian"
+        "org.fkoehler.KTailctl"
       ];
       # update.onActivation = true;
       update.auto = {

@@ -76,7 +76,7 @@ in {
     };
 
     fileSystems."/export/media" = {
-      device = "/mnt/media";
+      device = "/media";
       options = ["bind"];
     };
 
