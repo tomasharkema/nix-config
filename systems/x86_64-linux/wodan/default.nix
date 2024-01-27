@@ -15,7 +15,7 @@
     # hardware.nvidia.forceFullCompositionPipeline = true;
     boot = {
       # binfmt.emulatedSystems = ["aarch64-linux"];
-      # initrd.kernelModules = ["nvidia"];
+      initrd.kernelModules = ["nvidia"];
       extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
       # kernelPackages = pkgs.linuxPackages;
     };
