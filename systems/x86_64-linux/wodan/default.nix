@@ -12,13 +12,22 @@
   ];
 
   config = {
-    hardware.nvidia.forceFullCompositionPipeline = true;
+    # hardware.nvidia.forceFullCompositionPipeline = true;
     boot = {
       # binfmt.emulatedSystems = ["aarch64-linux"];
       # initrd.kernelModules = ["nvidia"];
       extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
-      kernelPackages = pkgs.linuxPackages;
+      # kernelPackages = pkgs.linuxPackages;
     };
+
+    environment.variables = {
+      WLR_RENDERER = "vulkan sway";
+    };
+
+    hardware.opengl.extraPackages = with pkgs; [
+      # trying to fix `WLR_RENDERER=vulkan sway`
+      vulkan-validation-layers
+    ];
 
     time = {
       hardwareClockInLocalTime = true;
@@ -42,7 +51,7 @@
         rdp.enable = true;
       };
       apps.steam.enable = true;
-      game-mode.enable = true;
+      game-mode.enable = false;
       quiet-boot.enable = true;
       apps.flatpak.enable = true;
     };

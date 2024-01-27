@@ -129,7 +129,7 @@ in {
     #   enableNvidiaPatches = true;
     # };
     programs = {
-      sway.enable = true;
+      # sway.enable = true;
       dconf.enable = true;
     };
 
