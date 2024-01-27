@@ -124,12 +124,12 @@ in {
     #   serverAddress = "0.0.0.0";
     # };
 
-    # programs.hyprland = {
-    #   enable = true;
-    #   enableNvidiaPatches = true;
-    # };
+    programs.hyprland = {
+      enable = true;
+      enableNvidiaPatches = true;
+    };
     programs = {
-      # sway.enable = true;
+      sway.enable = true;
       dconf.enable = true;
     };
 

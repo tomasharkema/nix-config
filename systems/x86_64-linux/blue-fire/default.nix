@@ -22,7 +22,7 @@ in {
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K";
-      media = "/dev/disk/by-id/ata-WDC_WD40EZRX-00SPEB0_WD-WCC4E0VSU30H";
+      media = "/dev/disk/by-id/ata-TOSHIBA_MK3263GSXN_5066P0YHT";
     };
 
     traits = {
