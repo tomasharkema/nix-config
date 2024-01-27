@@ -21,7 +21,11 @@
     };
 
     environment.variables = {
-      WLR_RENDERER = "vulkan sway";
+      NIXOS_OZONE_WL = "1";
+    };
+
+    environment.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
     };
 
     hardware.opengl.extraPackages = with pkgs; [
