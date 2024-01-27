@@ -22,6 +22,7 @@ in {
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K";
+      media = "/dev/disk/by-label/media";
     };
 
     traits = {
@@ -64,6 +65,17 @@ in {
     services.tailscale = {
       useRoutingFeatures = lib.mkForce "both";
     };
+
+    services.nfs = {
+      server = {
+        enable = true;
+        exports = ''
+          /mnt/media         192.168.0.11(rw,fsid=0,no_subtree_check)
+        '';
+      };
+    };
+
+    networking.interfaces."eno1".mtu = 9000;
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
