@@ -90,7 +90,7 @@ in
           enableZshIntegration = true;
         };
 
-        # tmux = {enable = true;};
+        tmux = {enable = true;};
 
         alacritty.enable = true;
 
@@ -270,11 +270,11 @@ in
             editor.dotExpansion = true;
             terminal.autoTitle = true;
 
-            # tmux = {
-            # autoStartRemote = true;
-            # itermIntegration = true;
-            # autoStartLocal = true;
-            # };
+            tmux = {
+              # autoStartRemote = true;
+              itermIntegration = true;
+              # autoStartLocal = true;
+            };
 
             prompt.pwdLength = "short";
             utility.safeOps = true;
