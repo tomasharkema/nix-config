@@ -70,9 +70,14 @@ in {
       server = {
         enable = true;
         exports = ''
-          /mnt/media          192.168.1.170(rw,fsid=0,no_subtree_check)
+          /export/media        192.168.1.170(rw,fsid=0,no_subtree_check)
         '';
       };
+    };
+
+    fileSystems."/export/media" = {
+      device = "/mnt/media";
+      options = ["bind"];
     };
 
     networking.interfaces."eno1".mtu = 9000;
