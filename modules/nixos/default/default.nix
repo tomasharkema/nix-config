@@ -80,6 +80,8 @@ in {
       pkgs.deepin.udisks2-qt5
       udisks2
       pv
+
+      tpm-tools
     ];
     services.udisks2 = {
       enable = true;

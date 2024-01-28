@@ -76,5 +76,19 @@
     networking.useDHCP = lib.mkDefault true;
     hardware.bluetooth.enable = true;
     services.blueman.enable = true;
+
+    services.nfs = {
+      server = {
+        enable = true;
+        exports = ''
+          /export/media       *(rw,fsid=0,no_subtree_check)
+        '';
+      };
+    };
+
+    fileSystems."/export/media" = {
+      device = "/media";
+      options = ["bind"];
+    };
   };
 }
