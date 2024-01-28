@@ -10,7 +10,7 @@
   #   sha256 = "sha256-rA4z5DOUYoDufYXDQcIfXm/soU4CXUUhL+1FT1aukjc=";
   # };
 
-  stylix.polarity = "dark";
+  # stylix.polarity = "dark";
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
   stylix.override = {
     scheme = "Now it's my scheme >:]";
@@ -36,9 +36,9 @@
     };
   };
 
-  home-manager.sharedModules = [
-    {
-      stylix.targets.bemenu.enable = false;
-    }
-  ];
+  # home-manager.sharedModules = [
+  #   {
+  #     stylix.targets.bemenu.enable = false;
+  #   }
+  # ];
 }

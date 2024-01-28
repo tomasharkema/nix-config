@@ -14,13 +14,13 @@
       mode = "644";
     };
 
-    services.peerix = {
-      #      enable = true;
-      openFirewall = true;
-      user = "tomas";
-      group = "tomas";
-      #      privateKeyFile = "${config.age.secrets.peerix-public.path}";
-      #      publicKeyFile = "${config.age.secrets.peerix-private.path}";
-    };
+    # services.peerix = {
+    #      enable = true;
+    # openFirewall = true;
+    # user = "tomas";
+    # group = "tomas";
+    #      privateKeyFile = "${config.age.secrets.peerix-public.path}";
+    #      publicKeyFile = "${config.age.secrets.peerix-private.path}";
+    # };
   };
 }

@@ -8,7 +8,7 @@
   ...
 }:
 with inputs.home-manager.lib.hm.gvariant; {
-  config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
+  config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable && false) {
     dconf.enable = true;
 
     dconf.settings = {
