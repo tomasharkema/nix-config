@@ -73,6 +73,8 @@ in {
 
       notify
       pkgs.custom.pvzstd
+
+      pv
     ];
 
     programs._1password.enable = true;
