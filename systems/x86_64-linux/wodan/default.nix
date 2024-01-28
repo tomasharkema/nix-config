@@ -17,7 +17,8 @@
       # binfmt.emulatedSystems = ["aarch64-linux"];
       initrd.kernelModules = ["nvidia"];
       # extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
-      # kernelPackages = pkgs.linuxPackages;
+      # kernelPackages = pkgs.linuxPackages;boot.
+      supportedFilesystems = ["ntfs"];
     };
 
     environment.variables = {

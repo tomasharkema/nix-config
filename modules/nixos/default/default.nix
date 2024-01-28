@@ -79,6 +79,7 @@ in {
       pkgs.custom.pvzstd
       pkgs.deepin.udisks2-qt5
       udisks2
+      pv
     ];
     services.udisks2 = {
       enable = true;
