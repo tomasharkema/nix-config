@@ -27,15 +27,15 @@
         # package = pkgs.custom.neue-haas-grotesk;
         # name = "B612 Regular 12";
       };
-      theme = lib.mkForce {
-        name = "Catppuccin-Mocha-Compact-Blue-Dark";
-        package = pkgs.catppuccin-gtk.override {
-          accents = ["blue"];
-          size = "compact";
-          tweaks = ["rimless" "black"];
-          variant = "mocha";
-        };
-      };
+      # theme = lib.mkForce {
+      #   name = "Catppuccin-Mocha-Compact-Blue-Dark";
+      #   package = pkgs.catppuccin-gtk.override {
+      #     accents = ["blue"];
+      #     size = "compact";
+      #     tweaks = ["rimless" "black"];
+      #     variant = "mocha";
+      #   };
+      # };
     };
   };
 }

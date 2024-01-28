@@ -240,9 +240,10 @@
         }
       ];
 
-      # homes.modules = with inputs; [
-      #   agenix.homeManagerModules.default
-      # ];
+      homes.modules = with inputs; [
+        # agenix.homeManagerModules.default
+        # stylix.homeManagerModules.stylix
+      ];
 
       deploy = lib.mkDeploy {
         inherit (inputs) self;
