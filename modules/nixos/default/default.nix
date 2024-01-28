@@ -82,6 +82,8 @@ in {
       udisks2
       tpm-tools
       pv
+
+      tpm-tools
     ];
     services.udisks2 = {
       enable = true;
