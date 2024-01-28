@@ -77,11 +77,11 @@ in {
 
       notify
       pkgs.custom.pvzstd
+      
       pkgs.deepin.udisks2-qt5
       udisks2
-      pv
-
       tpm-tools
+      pv
     ];
     services.udisks2 = {
       enable = true;
