@@ -75,6 +75,8 @@ in {
       pkgs.custom.pvzstd
 
       pv
+
+      tpm-tools
     ];
 
     programs._1password.enable = true;
