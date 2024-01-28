@@ -35,7 +35,12 @@
       };
     };
 
-    environment.systemPackages = [pkgs.libfprint-2-tod1-goodix pkgs.libfprint-2-tod1-goodix-550a];
+    environment.systemPackages = [
+      pkgs.libfprint-2-tod1-goodix
+      pkgs.libfprint-2-tod1-goodix-550a
+
+      pkgs.distrobox
+    ];
 
     # virtualisation.virtualbox.host.enableWebService = true;
     virtualisation.virtualbox.host.enable = true;
