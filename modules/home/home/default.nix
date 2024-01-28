@@ -19,13 +19,19 @@ in
     config = {
       home = {
         file = {
-          ".config/cachix/cachix.dhall".source = config.lib.file.mkOutOfStoreSymlink "/etc/cachix.dhall"; # osConfig.age.secrets.cachix.path;
-          ".config/notify/provider-config.yaml".source = osConfig.age.secrets.notify.path;
+          # ".config/cachix/cachix.dhall".source = config.lib.file.mkOutOfStoreSymlink "/etc/cachix.dhall"; # osConfig.age.secrets.cachix.path;
+          # ".config/notify/provider-config.yaml".source = osConfig.age.secrets.notify.path;
           # "${config.xdg.dataHome}/Zeal/Zeal/docsets/nixpkgs.docset" = {
           #   # /nixpkgs.docset" = {
           #   source = config.lib.file.mkOutOfStoreSymlink "${pkgs.custom.nixpkgs-docset}/nixpkgs.docset";
           #   recursive = true;
           # };
+        };
+        activationScripts = {
+          userSymlinks = ''
+            ln -sfn /etc/cachix.dhall $HOME/.config/cachix/cachix.dhall
+            ln -sfn "${osConfig.age.secrets.notify.path}" $HOME/.config/notify/provider-config.yaml
+          '';
         };
 
         stateVersion = "23.11";
