@@ -77,7 +77,12 @@ in {
 
       notify
       pkgs.custom.pvzstd
+      pkgs.deepin.udisks2-qt5
+      udisks2
     ];
+    services.udisks2 = {
+      enable = true;
+    };
 
     programs._1password.enable = true;
     services.thermald.enable = lib.mkIf (pkgs.system == "x86_64-linux") true;
