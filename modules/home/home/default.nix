@@ -27,7 +27,7 @@ in
           #   recursive = true;
           # };
         };
-        activationScripts = {
+        activation = {
           userSymlinks = ''
             ln -sfn /etc/cachix.dhall $HOME/.config/cachix/cachix.dhall
             ln -sfn "${osConfig.age.secrets.notify.path}" $HOME/.config/notify/provider-config.yaml
