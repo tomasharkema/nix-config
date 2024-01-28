@@ -84,6 +84,10 @@ in {
       pv
 
       tpm-tools
+
+      pkgs.deepin.udisks2-qt5
+      udisks2
+
     ];
     services.udisks2 = {
       enable = true;
