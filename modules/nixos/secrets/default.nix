@@ -96,7 +96,7 @@
       # owner = "tomas";
       # group = "tomas";
       mode = "644";
-      path = "/home/tomas/.config/notify/provider-config.yaml";
+      # path = "/home/tomas/.config/notify/provider-config.yaml";
       # symlink = false;
     };
   };

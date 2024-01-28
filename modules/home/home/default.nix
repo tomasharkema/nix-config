@@ -20,7 +20,7 @@ in
       home = {
         file = {
           ".config/cachix/cachix.dhall".source = config.lib.file.mkOutOfStoreSymlink "/etc/cachix.dhall"; # osConfig.age.secrets.cachix.path;
-
+          ".config/notify/provider-config.yaml".source = osConfig.age.secrets.notify.path;
           # "${config.xdg.dataHome}/Zeal/Zeal/docsets/nixpkgs.docset" = {
           #   # /nixpkgs.docset" = {
           #   source = config.lib.file.mkOutOfStoreSymlink "${pkgs.custom.nixpkgs-docset}/nixpkgs.docset";
