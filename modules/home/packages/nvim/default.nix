@@ -35,7 +35,7 @@ in {
 
     programs.nixvim = {
       enable = true;
-      colorschemes.catppuccin.enable = true;
+      # colorschemes.catppuccin.enable = true;
       plugins = {
         project-nvim = {enable = true;};
         telescope = {enable = true;};

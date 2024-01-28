@@ -36,6 +36,10 @@ in {
     #     };
     #   };
     # };
+    programs.git = {
+      enable = true;
+      lfs.enable = true;
+    };
 
     i18n.extraLocaleSettings = {
       LC_ADDRESS = "nl_NL.UTF-8";
@@ -60,7 +64,7 @@ in {
       fwupd
       fwupd-efi
       hw-probe
-      git
+
       wget
       curl
       freeipa

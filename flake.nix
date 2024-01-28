@@ -159,6 +159,8 @@
     themes = {
       url = "github:RGBCube/ThemeNix";
     };
+
+    stylix.url = "github:danth/stylix";
   };
 
   outputs = inputs: let
@@ -226,6 +228,9 @@
         # home-manager.nixosModules.home-manager
         agenix.nixosModules.default
         nixos-generators.nixosModules.all-formats
+
+        stylix.nixosModules.stylix
+
         {
           system.stateVersion = "23.11";
           system.nixos.tags = ["snowfall" (self.rev or "dirty")];

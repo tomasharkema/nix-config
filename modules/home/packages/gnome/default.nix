@@ -55,11 +55,11 @@ with inputs.home-manager.lib.hm.gvariant; {
       };
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
-        gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
-        document-font-name = "B612 Regular 12";
+        # gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
+        # document-font-name = "B612 Regular 12";
         font-antialiasing = "greyscale";
         font-hinting = "full";
-        font-name = "B612 Regular 12";
+        # font-name = "B612 Regular 12";
         enable-hot-corners = false;
       };
 
