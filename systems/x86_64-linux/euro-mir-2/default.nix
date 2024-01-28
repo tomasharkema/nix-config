@@ -22,7 +22,7 @@
       };
       gnome.enable = true;
       apps.steam.enable = true;
-      game-mode.enable = true;
+      # game-mode.enable = true;
       quiet-boot.enable = true;
     };
 
@@ -48,7 +48,7 @@
         secure-boot.enable = true;
         laptop.enable = true;
         nvidia.enable = true;
-        remote-unlock.enable = true;
+        # remote-unlock.enable = true;
       };
     };
 
@@ -65,10 +65,10 @@
     };
 
     boot = {
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      # binfmt.emulatedSystems = ["aarch64-linux"];
       # kernelPackages = pkgs.linuxPackages;
       # blacklistedKernelModules = ["i915"];
-      kernelParams = ["acpi_rev_override=1"];
+      # kernelParams = ["acpi_rev_override=1"];
     };
     # programs.mtr.enable = true;
     # programs.gnupg.agent = {

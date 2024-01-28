@@ -103,23 +103,23 @@ in {
         # '';
 
         systemd = {
-          initrdBin = with pkgs; [
-            ntp
-            tor
-            iproute2
-            haveged
-            zerotierone
-            rsyslog
-          ];
+          # initrdBin = with pkgs; [
+          #   ntp
+          #   tor
+          #   iproute2
+          #   haveged
+          #   zerotierone
+          #   rsyslog
+          # ];
 
-          packages = with pkgs; [
-            ntp
-            tor
-            iproute2
-            haveged
-            rsyslog
-            zerotierone
-          ];
+          # packages = with pkgs; [
+          #   ntp
+          #   tor
+          #   iproute2
+          #   haveged
+          #   rsyslog
+          #   zerotierone
+          # ];
 
           # emergencyAccess = true;
           enable = true;
