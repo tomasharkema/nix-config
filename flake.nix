@@ -22,7 +22,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager"; # /release-23.11";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -54,7 +54,7 @@
     nixos-anywhere = {
       url = "github:nix-community/nixos-anywhere";
       # inputs.nixpkgs.follows = "nixpkgs";
-      # inputs.disko.follows = "disko";
+      inputs.disko.follows = "disko";
     };
 
     flake-utils = {
@@ -160,7 +160,7 @@
       url = "github:RGBCube/ThemeNix";
     };
 
-    stylix.url = "github:danth/stylix";
+    stylix.url = "github:danth/stylix/release-23.11";
   };
 
   outputs = inputs: let
@@ -211,8 +211,8 @@
 
       system.modules.darwin = with inputs; [
         {
-          system.nixos.tags = ["snowfall" (self.rev or "dirty")];
-          system.configurationRevision = self.rev or "dirty";
+          system.nixos.tags = ["snowfall" (self.shortRev or "dirty")];
+          system.configurationRevision = self.shortRev or "dirty";
         }
       ];
 
@@ -233,8 +233,8 @@
 
         {
           system.stateVersion = "23.11";
-          system.nixos.tags = ["snowfall" (self.rev or "dirty")];
-          system.configurationRevision = self.rev or "dirty";
+          system.nixos.tags = ["snowfall" (self.shortRev or "dirty")];
+          system.configurationRevision = self.shortRev or "dirty";
 
           services.vscode-server.enable = true;
         }
