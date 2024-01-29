@@ -128,6 +128,7 @@ in
 
           configs."root" = {
             SUBVOLUME = "/";
+            ALLOW_USERS = ["tomas"];
             TIMELINE_CREATE = true;
             TIMELINE_CLEANUP = true;
             TIMELINE_LIMIT_HOURLY = 4;
