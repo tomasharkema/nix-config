@@ -211,7 +211,7 @@
 
       system.modules.darwin = with inputs; [
         {
-          system.nixos.tags = ["snowfall" (self.shortRev or "dirty")];
+          system.nixos.tags = ["snowfall"];
           system.configurationRevision = self.shortRev or "dirty";
         }
       ];
@@ -233,7 +233,7 @@
 
         {
           system.stateVersion = "23.11";
-          system.nixos.tags = ["snowfall" (self.shortRev or "dirty")];
+          system.nixos.tags = ["snowfall"];
           system.configurationRevision = self.shortRev or "dirty";
 
           services.vscode-server.enable = true;
