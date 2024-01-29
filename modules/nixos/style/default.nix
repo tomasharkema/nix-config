@@ -8,10 +8,6 @@
     system.nixos.tags = ["stylix"];
 
     stylix.image = ../../../assets/abstract-colorful-lines-background-digital-art-4k-wallpaper-uhdpaper.com-15.jpg;
-    # stylix.image = pkgs.fetchurl {
-    #   url = "https://image-0.uhdpaper.com/wallpaper/abstract-colorful-lines-background-digital-art-4k-wallpaper-uhdpaper.com-15@0@f.jpg";
-    #   sha256 = "sha256-rA4z5DOUYoDufYXDQcIfXm/soU4CXUUhL+1FT1aukjc=";
-    # };
 
     stylix.polarity = "dark";
     stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
