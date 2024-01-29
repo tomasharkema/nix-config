@@ -138,14 +138,14 @@ in
             TIMELINE_LIMIT_YEARLY = 0;
           };
         };
-        beesd = {
-          filesystems = {
-            root = {
-              spec = "PARTLABEL=disk-main-root";
-              hashTableSizeMB = 2048;
-            };
-          };
-        };
+        # beesd = {
+        #   filesystems = {
+        #     root = {
+        #       spec = "PARTLABEL=disk-main-root";
+        #       hashTableSizeMB = 2048;
+        #     };
+        #   };
+        # };
       };
 
       environment.systemPackages = with pkgs; [
