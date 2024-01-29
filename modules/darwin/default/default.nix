@@ -27,7 +27,7 @@ in {
   config = {
     age = {
       identityPaths = [
-        # "/etc/ssh/ssh_host_ed25519_key"
+        "/etc/ssh/ssh_host_ed25519_key"
         "/Users/tomas/.ssh/id_ed25519"
       ];
 
@@ -41,6 +41,13 @@ in {
         };
         spotify-tui = {
           file = ../../../secrets/spotify-tui.age;
+          # owner = "tomas";
+          # group = "tomas";
+          mode = "644";
+          # symlink = false;
+        };
+        notify = {
+          file = ../../../secrets/notify.age;
           # owner = "tomas";
           # group = "tomas";
           mode = "644";

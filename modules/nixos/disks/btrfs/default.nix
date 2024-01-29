@@ -119,10 +119,11 @@ in
         snapper = {
           snapshotRootOnBoot = true;
           snapshotInterval = "hourly";
-          cleanupInterval = "7d";
+          cleanupInterval = "1d";
 
           configs."root" = {
             SUBVOLUME = "/";
+            ALLOW_USERS = ["tomas"];
             TIMELINE_CREATE = true;
             TIMELINE_CLEANUP = true;
             TIMELINE_LIMIT_HOURLY = 2;

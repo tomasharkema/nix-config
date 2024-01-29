@@ -15,7 +15,7 @@
     # hardware.nvidia.forceFullCompositionPipeline = true;
     boot = {
       # binfmt.emulatedSystems = ["aarch64-linux"];
-      initrd.kernelModules = ["nvidia"];
+      # initrd.kernelModules = ["nvidia"];
       # extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
       # kernelPackages = pkgs.linuxPackages;boot.
       supportedFilesystems = ["ntfs"];
@@ -79,7 +79,7 @@
 
     disks.btrfs = {
       enable = true;
-      main = "/dev/disk/by-id/usb-CT120BX5_00SSD1_111122223333-0:0";
+      main = "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768639292E";
       encrypt = true;
     };
 
