@@ -38,12 +38,17 @@
         # unless their parent is mounted
         subvolumes = {
           # Subvolume name is different from mountpoint
-          "/rootfs" = {mountpoint = "/";};
+          "/rootfs" = {
+            mountpoint = "/";
+            mountOptions = [
+              "compress=zstd"
+            ];
+          };
           # Subvolume name is the same as the mountpoint
           "/home" = {
             mountOptions = [
               "subvol=home"
-              #"compress=zstd"
+              "compress=zstd"
             ];
             mountpoint = "/home";
           };
@@ -119,7 +124,7 @@ in
         snapper = {
           snapshotRootOnBoot = true;
           snapshotInterval = "hourly";
-          cleanupInterval = "7d";
+          cleanupInterval = "1d";
 
           configs."root" = {
             SUBVOLUME = "/";
@@ -132,14 +137,14 @@ in
             TIMELINE_LIMIT_YEARLY = 0;
           };
         };
-        # beesd = {
-        #   filesystems = {
-        #     root = {
-        #       spec = "PARTLABEL=disk-main-root";
-        #       hashTableSizeMB = 2048;
-        #     };
-        #   };
-        # };
+        beesd = {
+          filesystems = {
+            root = {
+              spec = "PARTLABEL=disk-main-root";
+              hashTableSizeMB = 2048;
+            };
+          };
+        };
       };
 
       environment.systemPackages = with pkgs; [

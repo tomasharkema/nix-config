@@ -94,7 +94,7 @@ in {
         polkit
         gparted
         # firefox
-        vscode
+        # vscode
         fira-code-nerdfont
         transmission
         # keybase

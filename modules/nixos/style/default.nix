@@ -11,12 +11,12 @@
   # };
 
   stylix.polarity = "dark";
-  # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
-  # stylix.override = {
-  #   scheme = "Now it's my scheme >:]";
-  #   base00 = "000000"; # make background completely black
-  # };
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+  # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+  stylix.override = {
+    scheme = "Now it's my scheme >:]";
+    base00 = "000000"; # make background completely black
+  };
 
   # stylix.autoEnable = false;
 
