@@ -74,9 +74,9 @@ in
           nix-direnv.enable = true;
         };
 
-        vscode = {
-          enable = true;
-        };
+        # vscode = {
+        #   enable = true;
+        # };
 
         htop = {
           enable = true;
