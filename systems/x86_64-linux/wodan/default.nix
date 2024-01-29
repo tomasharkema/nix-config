@@ -21,13 +21,13 @@
       supportedFilesystems = ["ntfs"];
     };
 
-    environment.variables = {
-      NIXOS_OZONE_WL = "1";
-    };
+    # environment.variables = {
+    #   NIXOS_OZONE_WL = "1";
+    # };
 
-    environment.sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-    };
+    # environment.sessionVariables = {
+    #   NIXOS_OZONE_WL = "1";
+    # };
 
     hardware.opengl.extraPackages = with pkgs; [
       # trying to fix `WLR_RENDERER=vulkan sway`
@@ -60,11 +60,10 @@
       quiet-boot.enable = true;
       apps.flatpak.enable = true;
     };
-    fileSystems."/mnt/media" = {
-      device = "192.168.0.11:/export/media";
-      fsType = "nfs";
-    };
-    resilio.enable = lib.mkForce false;
+    # fileSystems."/mnt/media" = {
+    #   device = "192.168.0.11:/export/media";
+    #   fsType = "nfs";
+    # };
 
     networking.interfaces."enp2s0".mtu = 9000;
 
