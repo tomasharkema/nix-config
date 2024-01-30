@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  osConfig,
   ...
 }:
 with lib; let
@@ -27,7 +28,7 @@ in {
     };
   };
 
-  config = {
+  config = lib.mkIf osConfig.gui.enable {
     home.file.".mozilla/${extensionPath}" = mkIf (cfg != []) (
       let
         addonsEnv = pkgs.buildEnv {

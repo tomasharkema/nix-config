@@ -8,7 +8,7 @@
 with lib;
 with lib.custom; let
   cfg = config.gui.apps.flatpak;
-  enable = cfg.enable && !config.traits.slim.enable;
+  enable = cfg.enable && !config.traits.slim.enable && config.gui.enable;
 in {
   imports = with inputs; [nix-flatpak.nixosModules.nix-flatpak];
 

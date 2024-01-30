@@ -66,7 +66,6 @@ in {
       fwupd
       fwupd-efi
       hw-probe
-      vscode
       wget
       curl
       freeipa

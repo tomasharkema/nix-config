@@ -1,10 +1,11 @@
 {
+  lib,
   pkgs,
   inputs,
   config,
   ...
 }: {
-  config = {
+  config = lib.mkIf (config.gui.enable) {
     system.nixos.tags = ["stylix"];
 
     stylix.image = ../../../assets/abstract-colorful-lines-background-digital-art-4k-wallpaper-uhdpaper.com-15.jpg;

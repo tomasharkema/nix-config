@@ -37,7 +37,7 @@
   };
 in {
   config = lib.mkIf true {
-    home.packages = with pkgs; [lsof brotab];
+    home.packages = with pkgs; [lsof brotab tmux];
 
     programs.tmux = {
       enable = true;
