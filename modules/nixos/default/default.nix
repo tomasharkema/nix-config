@@ -75,19 +75,13 @@ in {
       pkgs.custom.menu
       #xpipe
       pkgs.custom.graylog-cli-dashboard
-
       notify
       pkgs.custom.pvzstd
-
+      udisks2
       pkgs.deepin.udisks2-qt5
       udisks2
-      tpm-tools
       pv
-
       tpm-tools
-
-      pkgs.deepin.udisks2-qt5
-      udisks2
     ];
     services.udisks2 = {
       enable = true;
