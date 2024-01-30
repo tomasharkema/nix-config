@@ -31,6 +31,8 @@
 
     environment.systemPackages = with pkgs; [rclone rclone-browser];
 
+    services.hardware.openrgb.enable = true;
+
     hardware.opengl.extraPackages = with pkgs; [
       # trying to fix `WLR_RENDERER=vulkan sway`
       vulkan-validation-layers

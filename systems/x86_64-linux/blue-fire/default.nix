@@ -75,9 +75,28 @@ in {
       };
     };
 
-    fileSystems."/export/media" = {
-      device = "/media";
-      options = ["bind"];
+    fileSystems = {
+      "/export/media" = {
+        device = "/media";
+        options = ["bind"];
+      };
+
+      "/mnt/unraid/appdata" = {
+        device = "192.168.0.100:/mnt/user/appdata";
+        fsType = "nfs";
+      };
+      "/mnt/unraid/appdata_ssd" = {
+        device = "192.168.0.100:/mnt/user/appdata_ssd";
+        fsType = "nfs";
+      };
+      "/mnt/unraid/appdata_disk" = {
+        device = "192.168.0.100:/mnt/user/appdata_disk";
+        fsType = "nfs";
+      };
+      "/mnt/dione" = {
+        device = "192.168.178.3:/volume1/homes";
+        fsType = "nfs";
+      };
     };
 
     networking.interfaces."eno1".mtu = 9000;
