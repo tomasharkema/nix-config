@@ -47,7 +47,7 @@ in {
         "md.obsidian.Obsidian"
         "org.fkoehler.KTailctl"
       ];
-      # update.onActivation = true;
+      update.onActivation = true;
       update.auto = {
         enable = true;
         onCalendar = "weekly"; # Default value

@@ -189,14 +189,6 @@ with lib.hm.gvariant; {
       locations = [];
     };
 
-    "org/gnome/software" = {
-      check-timestamp = mkInt64 1704887259;
-      first-run = false;
-      flatpak-purge-timestamp = mkInt64 1704894416;
-      install-timestamp = mkInt64 1704836758;
-      update-notification-timestamp = mkInt64 1704837003;
-    };
-
     "org/gtk/gtk4/settings/file-chooser" = {
       date-format = "regular";
       location-mode = "path-bar";
