@@ -38,12 +38,17 @@
         # unless their parent is mounted
         subvolumes = {
           # Subvolume name is different from mountpoint
-          "/rootfs" = {mountpoint = "/";};
+          "/rootfs" = {
+            mountpoint = "/";
+            mountOptions = [
+              "compress=zstd"
+            ];
+          };
           # Subvolume name is the same as the mountpoint
           "/home" = {
             mountOptions = [
               "subvol=home"
-              #"compress=zstd"
+              "compress=zstd"
             ];
             mountpoint = "/home";
           };
@@ -126,10 +131,10 @@ in
             ALLOW_USERS = ["tomas"];
             TIMELINE_CREATE = true;
             TIMELINE_CLEANUP = true;
-            TIMELINE_LIMIT_HOURLY = 2;
-            TIMELINE_LIMIT_DAILY = 3;
-            TIMELINE_LIMIT_WEEKLY = 1;
-            TIMELINE_LIMIT_MONTHLY = 1;
+            TIMELINE_LIMIT_HOURLY = 4;
+            TIMELINE_LIMIT_DAILY = 6;
+            TIMELINE_LIMIT_WEEKLY = 2;
+            TIMELINE_LIMIT_MONTHLY = 2;
             TIMELINE_LIMIT_YEARLY = 0;
           };
         };

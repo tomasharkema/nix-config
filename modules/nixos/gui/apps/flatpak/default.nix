@@ -8,7 +8,7 @@
 with lib;
 with lib.custom; let
   cfg = config.gui.apps.flatpak;
-  enable = cfg.enable && !config.traits.slim.enable;
+  enable = cfg.enable && !config.traits.slim.enable && config.gui.enable;
 in {
   imports = with inputs; [nix-flatpak.nixosModules.nix-flatpak];
 
@@ -47,7 +47,7 @@ in {
         "md.obsidian.Obsidian"
         "org.fkoehler.KTailctl"
       ];
-      # update.onActivation = true;
+      update.onActivation = true;
       update.auto = {
         enable = true;
         onCalendar = "weekly"; # Default value

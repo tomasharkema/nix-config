@@ -54,12 +54,12 @@ with inputs.home-manager.lib.hm.gvariant; {
         "position-in-panel" = 0;
       };
       "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-        gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
-        document-font-name = "B612 Regular 12";
+        # color-scheme = "prefer-dark";
+        # gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
+        # document-font-name = "B612 Regular 12";
         font-antialiasing = "greyscale";
         font-hinting = "full";
-        font-name = "B612 Regular 12";
+        # font-name = "B612 Regular 12";
         enable-hot-corners = false;
       };
 
@@ -72,11 +72,11 @@ with inputs.home-manager.lib.hm.gvariant; {
         "auto-save-session" = true;
       };
 
-      "/org/gnome/desktop/background" = {
-        # "picture-uri" = "/run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
+      # "/org/gnome/desktop/background" = {
+      # "picture-uri" = "/run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
 
-        # "picture-uri-dark" = "/run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
-      };
+      # "picture-uri-dark" = "/run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
+      # };
 
       "org/gnome/shell/extensions/dash-to-dock" = {
         always-center-icons = false;
@@ -122,7 +122,7 @@ with inputs.home-manager.lib.hm.gvariant; {
       ];
       "org/gnome/shell".enabled-extensions = [
         "app-hider@lynith.dev"
-        # "blur-my-shell@aunetx"
+        "blur-my-shell@aunetx"
         "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
         "gsconnect@andyholmes.github.io"
         "gnome-kinit@bonzini.gnu.org"

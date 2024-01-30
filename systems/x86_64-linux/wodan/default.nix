@@ -21,17 +21,22 @@
       supportedFilesystems = ["ntfs"];
     };
 
-    environment.variables = {
-      NIXOS_OZONE_WL = "1";
-    };
+    # environment.variables = {
+    #   NIXOS_OZONE_WL = "1";
+    # };
 
-    environment.sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-    };
+    # environment.sessionVariables = {
+    #   NIXOS_OZONE_WL = "1";
+    # };
+
+    environment.systemPackages = with pkgs; [rclone rclone-browser];
+
+    services.hardware.openrgb.enable = true;
 
     hardware.opengl.extraPackages = with pkgs; [
       # trying to fix `WLR_RENDERER=vulkan sway`
       vulkan-validation-layers
+      openrgb-with-all-plugins
     ];
 
     time = {
@@ -60,13 +65,32 @@
       quiet-boot.enable = true;
       apps.flatpak.enable = true;
     };
-    fileSystems."/mnt/media" = {
-      device = "192.168.0.11:/export/media";
-      fsType = "nfs";
-    };
-    resilio.enable = lib.mkForce false;
+    # fileSystems."/mnt/media" = {
+    #   device = "192.168.0.11:/export/media";
+    #   fsType = "nfs";
+    # };
+    services.udev.packages = [pkgs.openrgb];
+    boot.kernelModules = ["i2c-dev"];
+    hardware.i2c.enable = true;
 
     networking.interfaces."enp2s0".mtu = 9000;
+
+    fileSystems."/mnt/unraid/appdata" = {
+      device = "192.168.0.100:/mnt/user/appdata";
+      fsType = "nfs";
+    };
+    fileSystems."/mnt/unraid/appdata_ssd" = {
+      device = "192.168.0.100:/mnt/user/appdata_ssd";
+      fsType = "nfs";
+    };
+    fileSystems."/mnt/unraid/appdata_disk" = {
+      device = "192.168.0.100:/mnt/user/appdata_disk";
+      fsType = "nfs";
+    };
+    fileSystems."/mnt/dione" = {
+      device = "192.168.178.3:/volume1/homes";
+      fsType = "nfs";
+    };
 
     traits = {
       hardware = {

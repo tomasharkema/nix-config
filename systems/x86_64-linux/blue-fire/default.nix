@@ -33,7 +33,7 @@ in {
     };
 
     services.tcsd.enable = true;
-    boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+
     services.prometheus.exporters.ipmi.enable = true;
 
     headless.enable = true;
@@ -75,9 +75,31 @@ in {
       };
     };
 
-    fileSystems."/export/media" = {
-      device = "/media";
-      options = ["bind"];
+    fileSystems = {
+      "/export/media" = {
+        device = "/media";
+        options = ["bind"];
+      };
+      "/mnt/unraid_domains" = {
+        device = "192.168.0.100:/mnt/user/domains";
+        fsType = "nfs";
+      };
+      "/mnt/unraid/appdata" = {
+        device = "192.168.0.100:/mnt/user/appdata";
+        fsType = "nfs";
+      };
+      "/mnt/unraid/appdata_ssd" = {
+        device = "192.168.0.100:/mnt/user/appdata_ssd";
+        fsType = "nfs";
+      };
+      "/mnt/unraid/appdata_disk" = {
+        device = "192.168.0.100:/mnt/user/appdata_disk";
+        fsType = "nfs";
+      };
+      "/mnt/dione" = {
+        device = "192.168.178.3:/volume1/homes";
+        fsType = "nfs";
+      };
     };
 
     fileSystems."/mnt/unraid/appdata" = {

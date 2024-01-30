@@ -36,6 +36,12 @@ in {
     #     };
     #   };
     # };
+    programs.git = {
+      enable = true;
+      lfs.enable = true;
+    };
+
+    boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 
     i18n.extraLocaleSettings = {
       LC_ADDRESS = "nl_NL.UTF-8";
@@ -60,7 +66,6 @@ in {
       fwupd
       fwupd-efi
       hw-probe
-      git
       wget
       curl
       freeipa
@@ -70,14 +75,17 @@ in {
       pkgs.custom.menu
       #xpipe
       pkgs.custom.graylog-cli-dashboard
-
       notify
       pkgs.custom.pvzstd
-
+      udisks2
+      pkgs.deepin.udisks2-qt5
+      udisks2
       pv
-
       tpm-tools
     ];
+    services.udisks2 = {
+      enable = true;
+    };
 
     programs._1password.enable = true;
     services.thermald.enable = lib.mkIf (pkgs.system == "x86_64-linux") true;

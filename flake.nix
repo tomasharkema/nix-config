@@ -28,32 +28,32 @@
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     disko = {
       url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     deploy-rs = {
       url = "github:serokell/deploy-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # colmena = {
     #   url = "github:zhaofengli/colmena";
-    #   inputs.nixpkgs.follows = "nixpkgs";
+    # inputs.nixpkgs.follows = "nixpkgs";
     # };
 
     nixos-anywhere = {
       url = "github:nix-community/nixos-anywhere";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
       inputs.disko.follows = "disko";
     };
 
@@ -64,17 +64,17 @@
 
     vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixvim = {
       url = "github:pta2002/nixvim/nixos-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     agenix = {
       url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-hardware = {
@@ -84,17 +84,17 @@
 
     cachix-deploy-flake = {
       url = "github:cachix/cachix-deploy-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-software-center = {
       url = "github:snowfallorg/nix-software-center";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-conf-editor = {
       url = "github:snowfallorg/nixos-conf-editor";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-flatpak = {
@@ -109,22 +109,22 @@
 
     attic = {
       url = "github:zhaofengli/attic";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hydra-check = {
       url = "github:nix-community/hydra-check";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     flake-checker = {
       url = "github:DeterminateSystems/flake-checker";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     snowfall-lib = {
@@ -134,23 +134,23 @@
 
     snowfall-flake = {
       url = "github:snowfallorg/flake";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nil = {
       url = "github:oxalica/nil";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     devenv = {
       url = "github:cachix/devenv";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    peerix = {
-      url = "github:cid-chan/peerix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # peerix = {
+    # url = "github:cid-chan/peerix";
+    # inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     poetry2nix = {
       url = "github:nix-community/poetry2nix";
@@ -159,6 +159,8 @@
     themes = {
       url = "github:RGBCube/ThemeNix";
     };
+
+    stylix.url = "github:danth/stylix/release-23.11";
   };
 
   outputs = inputs: let
@@ -203,19 +205,19 @@
       };
 
       overlays = with inputs; [
-        peerix.overlay
+        # peerix.overlay
         snowfall-flake.overlays."package/flake"
       ];
 
       system.modules.darwin = with inputs; [
         {
-          system.nixos.tags = ["snowfall" (self.rev or "dirty")];
-          system.configurationRevision = self.rev or "dirty";
+          system.nixos.tags = ["snowfall"];
+          system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
         }
       ];
 
       systems.modules.nixos = with inputs; [
-        peerix.nixosModules.peerix
+        # peerix.nixosModules.peerix
 
         impermanence.nixosModule
         disko.nixosModules.default
@@ -226,18 +228,22 @@
         # home-manager.nixosModules.home-manager
         agenix.nixosModules.default
         nixos-generators.nixosModules.all-formats
+
+        stylix.nixosModules.stylix
+
         {
           system.stateVersion = "23.11";
-          system.nixos.tags = ["snowfall" (self.rev or "dirty")];
-          system.configurationRevision = self.rev or "dirty";
+          system.nixos.tags = ["snowfall"];
+          system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
 
           services.vscode-server.enable = true;
         }
       ];
 
-      # homes.modules = with inputs; [
-      #   agenix.homeManagerModules.default
-      # ];
+      homes.modules = with inputs; [
+        # agenix.homeManagerModules.default
+        # stylix.homeManagerModules.stylix
+      ];
 
       deploy = lib.mkDeploy {
         inherit (inputs) self;

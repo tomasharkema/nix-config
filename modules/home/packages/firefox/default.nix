@@ -1,10 +1,11 @@
 {
   pkgs,
   lib,
+  osConfig,
   ...
 }: {
   config = {
-    programs.firefox = lib.mkIf pkgs.stdenv.isLinux {
+    programs.firefox = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
       enable = true;
       enableGnomeExtensions = true;
       # TODO: Profile for themeing

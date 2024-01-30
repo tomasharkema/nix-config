@@ -34,21 +34,21 @@ in {
         displayManager = {
           gdm.enable = true;
 
-          lightdm = {
-            greeters.gtk = {
-              enable = true;
+          # lightdm = {
+          #   greeters.gtk = {
+          #     enable = true;
 
-              theme = {
-                name = "Catppuccin-Mocha-Compact-Blue-Dark";
-                package = pkgs.catppuccin-gtk.override {
-                  accents = ["blue"];
-                  size = "compact";
-                  tweaks = ["rimless" "black"];
-                  variant = "mocha";
-                };
-              };
-            };
-          };
+          #     theme = {
+          #       name = "Catppuccin-Mocha-Compact-Blue-Dark";
+          #       package = pkgs.catppuccin-gtk.override {
+          #         accents = ["blue"];
+          #         size = "compact";
+          #         tweaks = ["rimless" "black"];
+          #         variant = "mocha";
+          #       };
+          #     };
+          #   };
+          # };
         };
       };
 
