@@ -145,6 +145,9 @@ with inputs.home-manager.lib.hm.gvariant; {
         "user-theme@gnome-shell-extensions.gcampax.github.com"
         "dash-to-dock@micxgx.gmail.com"
         "Vitals@CoreCoding.com"
+        "search-light@icedman.github.com"
+        "mediacontrols@cliffniff.github.com"
+        "clipboard-indicator@tudmotu.com"
       ];
       "org/gnome/shell".favorite-apps = ["org.gnome.Nautilus.desktop" "firefox.desktop" "kitty.desktop" "code.desktop"];
 

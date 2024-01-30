@@ -8,10 +8,12 @@ with lib; let
   cfg = config.gui.apps.steam;
 in {
   options.gui.apps.steam = {
-    enable = mkEnableOption "hallo";
+    enable = mkEnableOption "steam";
   };
 
   config = mkIf cfg.enable {
+    system.nixos.tags = ["steam"];
+
     users.groups.input.members = ["tomas"];
 
     programs.steam = {
@@ -25,6 +27,8 @@ in {
     environment.systemPackages = with pkgs; [
       sunshine
       protontricks
+      heroic
+      cartridges
     ];
 
     services.udev.extraRules = ''

@@ -28,24 +28,24 @@ in {
         }
       ];
       packages = [
-        "io.missioncenter.MissionCenter"
+        "com.discordapp.Discord"
+        "com.getpostman.Postman"
+        "com.github.tchx84.Flatseal"
+        "com.logseq.Logseq"
         "com.mattjakeman.ExtensionManager"
         "com.moonlight_stream.Moonlight"
-        "org.cockpit_project.CockpitClient"
-        "com.discordapp.Discord"
-        "com.github.tchx84.Flatseal"
-        # "io.github.vikdevelop.SaveDesktop"
-        "tv.plex.PlexDesktop"
-        "org.stellarium.Stellarium"
-        "org.gnome.Boxes"
         "com.ranfdev.Notify"
-        "com.getpostman.Postman"
-        "org.gnome.meld"
+        "io.missioncenter.MissionCenter"
         "io.podman_desktop.PodmanDesktop"
-        "com.discordapp.Discord"
-        "com.logseq.Logseq"
         "md.obsidian.Obsidian"
+        "me.iepure.devtoolbox"
+        "org.cockpit_project.CockpitClient"
         "org.fkoehler.KTailctl"
+        "org.gnome.Boxes"
+        "org.gnome.meld"
+        "org.stellarium.Stellarium"
+        "tv.plex.PlexDesktop"
+        # "io.github.vikdevelop.SaveDesktop"
       ];
       update.onActivation = true;
       update.auto = {
