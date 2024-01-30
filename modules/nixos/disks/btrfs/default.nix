@@ -126,6 +126,11 @@ in
           snapshotInterval = "hourly";
           cleanupInterval = "1d";
 
+          filters = ''
+            /nix
+            /tmp
+          '';
+
           configs."root" = {
             SUBVOLUME = "/";
             ALLOW_USERS = ["tomas"];

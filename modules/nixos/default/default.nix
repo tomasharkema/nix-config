@@ -83,12 +83,15 @@ in {
       pv
       tpm-tools
     ];
+
     services.udisks2 = {
       enable = true;
     };
 
     programs._1password.enable = true;
     services.thermald.enable = lib.mkIf (pkgs.system == "x86_64-linux") true;
+
+    services.clipmenu.enable = true;
 
     # services.eternal-terminal.enable = true;
     hardware.enableAllFirmware = true;

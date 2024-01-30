@@ -111,7 +111,7 @@ in
           enableZshIntegration = true;
           settings = {
             key_path = osConfig.age.secrets.atuin.path;
-            sync_address = "https://atuin.harke.ma";
+            # sync_address = "https://atuin.harke.ma";
             auto_sync = true;
             sync_frequency = "10m";
             workspaces = true;
