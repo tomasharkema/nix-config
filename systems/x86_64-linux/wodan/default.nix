@@ -29,6 +29,8 @@
     #   NIXOS_OZONE_WL = "1";
     # };
 
+    environment.systemPackages = with pkgs; [rclone rclone-browser];
+
     hardware.opengl.extraPackages = with pkgs; [
       # trying to fix `WLR_RENDERER=vulkan sway`
       vulkan-validation-layers

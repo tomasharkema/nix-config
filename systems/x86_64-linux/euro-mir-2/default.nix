@@ -60,8 +60,8 @@
     networking = {
       hostName = "euro-mir-2"; # Define your hostname.
       networkmanager.enable = true;
-      # wireless.enable = false;
-      # firewall.enable = true;
+      wireless.enable = true;
+      firewall.enable = true;
     };
 
     services = {
@@ -70,12 +70,12 @@
     };
 
     boot = {
-      # binfmt.emulatedSystems = ["aarch64-linux"];
+      binfmt.emulatedSystems = ["aarch64-linux"];
       # kernelPackages = pkgs.linuxPackages;
       # blacklistedKernelModules = ["i915"];
-      # kernelParams = ["acpi_rev_override=1"];
+      kernelParams = ["acpi_rev_override=1"];
     };
-    # programs.mtr.enable = true;
+    programs.mtr.enable = true;
     # programs.gnupg.agent = {
     #   enable = true;
     #   enableSSHSupport = true;
