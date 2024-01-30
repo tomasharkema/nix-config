@@ -64,7 +64,7 @@ in {
       fwupd
       fwupd-efi
       hw-probe
-
+      vscode
       wget
       curl
       freeipa
@@ -77,7 +77,7 @@ in {
 
       notify
       pkgs.custom.pvzstd
-      
+
       pkgs.deepin.udisks2-qt5
       udisks2
       tpm-tools
@@ -87,7 +87,6 @@ in {
 
       pkgs.deepin.udisks2-qt5
       udisks2
-
     ];
     services.udisks2 = {
       enable = true;
