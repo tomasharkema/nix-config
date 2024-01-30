@@ -5,7 +5,8 @@
   config,
   ...
 }: {
-  config = lib.mkIf (config.gui.enable) {
+  config = {
+    # lib.mkIf (config.gui.enable) {
     system.nixos.tags = ["stylix"];
 
     stylix.image = ../../../assets/abstract-colorful-lines-background-digital-art-4k-wallpaper-uhdpaper.com-15.jpg;
@@ -20,7 +21,7 @@
 
     # stylix.autoEnable = false;
 
-    stylix.fonts = {
+    stylix.fonts = lib.mkIf config.gui.enable {
       serif = {
         package = pkgs.custom.b612;
         name = "B612";

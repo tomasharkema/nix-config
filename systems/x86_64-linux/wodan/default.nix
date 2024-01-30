@@ -34,6 +34,7 @@
     hardware.opengl.extraPackages = with pkgs; [
       # trying to fix `WLR_RENDERER=vulkan sway`
       vulkan-validation-layers
+      openrgb-with-all-plugins
     ];
 
     time = {

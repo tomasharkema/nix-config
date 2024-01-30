@@ -13,7 +13,7 @@
     + shell;
   cfg = config.programs.iterm2;
 in {
-  options.programs.iterm2 = lib.mkIf false {
+  options.programs.iterm2 = {
     enable =
       mkEnableOption "Enable the iTerm2 terminal emulator (system-wide).";
     package = mkOption {
