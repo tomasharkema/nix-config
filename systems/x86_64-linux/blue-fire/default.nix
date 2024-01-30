@@ -80,7 +80,10 @@ in {
         device = "/media";
         options = ["bind"];
       };
-
+      "/mnt/unraid_domains" = {
+        device = "192.168.0.100:/mnt/user/domains";
+        fsType = "nfs";
+      };
       "/mnt/unraid/appdata" = {
         device = "192.168.0.100:/mnt/user/appdata";
         fsType = "nfs";
