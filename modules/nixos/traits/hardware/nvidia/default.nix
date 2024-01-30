@@ -23,7 +23,7 @@ in {
     hardware.nvidia = mkDefault {
       # Modesetting is required.
       modesetting.enable = true;
-      # forceFullCompositionPipeline = true;
+      forceFullCompositionPipeline = true;
 
       # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
       # powerManagement.enable = true;
@@ -46,6 +46,8 @@ in {
 
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
       package = config.boot.kernelPackages.nvidiaPackages.production;
+
+      nvidiaPersistenced = true;
     };
 
     hardware.opengl = {
