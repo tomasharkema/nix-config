@@ -41,7 +41,6 @@ in {
         "me.iepure.devtoolbox"
         "org.cockpit_project.CockpitClient"
         "org.fkoehler.KTailctl"
-        "org.gnome.Boxes"
         "org.gnome.meld"
         "org.stellarium.Stellarium"
         "tv.plex.PlexDesktop"

@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }: {
   imports = with inputs; [
@@ -31,21 +32,13 @@
       package = pkgs.fprintd-tod;
       tod = {
         enable = true;
-        driver = pkgs.libfprint-2-tod1-goodix;
+        driver = pkgs.libfprint-2-tod1-goodix-550a;
       };
     };
 
-    environment.systemPackages = [
-      pkgs.libfprint-2-tod1-goodix
-      pkgs.libfprint-2-tod1-goodix-550a
-
-      pkgs.distrobox
-    ];
-
-    # virtualisation.virtualbox.host.enableWebService = true;
-    virtualisation.virtualbox.host.enable = true;
-
     apps.podman.enable = true;
+
+    headless.hypervisor.enable = true;
 
     traits = {
       hardware = {
@@ -60,7 +53,7 @@
     networking = {
       hostName = "euro-mir-2"; # Define your hostname.
       networkmanager.enable = true;
-      wireless.enable = true;
+      # wireless.enable = true;
       firewall.enable = true;
     };
 
@@ -74,7 +67,9 @@
       # kernelPackages = pkgs.linuxPackages;
       # blacklistedKernelModules = ["i915"];
       kernelParams = ["acpi_rev_override=1"];
+      extraModprobeConfig = "options kvm_intel nested=1";
     };
+
     programs.mtr.enable = true;
     # programs.gnupg.agent = {
     #   enable = true;

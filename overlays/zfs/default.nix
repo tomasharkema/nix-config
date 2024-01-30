@@ -1,5 +1,5 @@
 {...}: final: prev: {
-  zfs = prev.zfs.overrideAttrs (_: {
-    meta.platforms = [];
-  });
+  # zfs = prev.zfs.overrideAttrs (_: {
+  #   meta.platforms = [];
+  # });
 }

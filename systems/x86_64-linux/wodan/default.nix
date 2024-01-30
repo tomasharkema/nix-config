@@ -72,6 +72,7 @@
     services.udev.packages = [pkgs.openrgb];
     boot.kernelModules = ["i2c-dev"];
     hardware.i2c.enable = true;
+    headless.hypervisor.enable = true;
 
     networking.interfaces."enp2s0".mtu = 9000;
 
