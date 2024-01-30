@@ -41,6 +41,8 @@ in {
       lfs.enable = true;
     };
 
+    boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+
     i18n.extraLocaleSettings = {
       LC_ADDRESS = "nl_NL.UTF-8";
       LC_IDENTIFICATION = "nl_NL.UTF-8";
