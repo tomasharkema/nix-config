@@ -4,7 +4,8 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+with lib.custom; let
   cfgRelay = mkIf config.apps.tor.relay;
 in {
   options.apps.tor = {
