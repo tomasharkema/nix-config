@@ -21,7 +21,7 @@ in {
       };
       settings = {
         ContactInfo = "lipids.tubule.0o@icloud.com";
-        Nickname = "lipids.tubule.0o";
+        Nickname = "lipidsubuleo";
         ORPort = 9001;
         ControlPort = 9051;
         BandWidthRate = "10 MBytes";
