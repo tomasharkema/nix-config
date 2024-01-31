@@ -17,7 +17,7 @@ buildNpmPackage rec {
   npmDepsHash = "sha256-5p7q09jQYQJw7FzgPTWyS2QpjTydBo0ImbbatVaardU=";
 
   postPatch = ''
-    ln -s ${./package-lock.json} package-lock.json
+    ln -sfn ${./package-lock.json} package-lock.json
   '';
 
   # The prepack script runs the build script, which we'd rather do in the build phase.

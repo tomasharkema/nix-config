@@ -41,7 +41,7 @@
       activation = {
         spotify-tui = ''
           mkdir -p "$HOME/.config/spotify-tui" || true
-          ln -s "${osConfig.age.secrets.spotify-tui.path}" "$HOME/.config/spotify-tui/client.yml" || true
+          ln -sfn "${osConfig.age.secrets.spotify-tui.path}" "$HOME/.config/spotify-tui/client.yml" || true
         '';
       };
       packages = with pkgs; [

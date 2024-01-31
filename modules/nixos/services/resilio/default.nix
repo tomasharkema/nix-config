@@ -30,7 +30,7 @@ in {
         setfacl -d -m group:rslsync:rwx "${config.resilio.root}/."
         setfacl -m group:rslsync:rwx "${config.resilio.root}/."
 
-        ln -s "${config.resilio.root}/" /home/tomas/resilio-sync
+        ln -sfn "${config.resilio.root}/" /home/tomas/resilio-sync
       fi
     '';
 
