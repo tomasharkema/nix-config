@@ -32,6 +32,7 @@
         flatpak.enable = false;
       };
     };
+    boot.growPartition = true;
     traits = {
       hardware = {
         tpm.enable = true;
