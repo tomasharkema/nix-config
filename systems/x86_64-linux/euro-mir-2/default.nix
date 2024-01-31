@@ -59,7 +59,7 @@
 
     services = {
       xserver.libinput.enable = true;
-      # tcsd.enable = false;
+      tcsd.enable = false;
     };
 
     boot = {
