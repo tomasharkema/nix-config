@@ -24,13 +24,9 @@ pkgs.writeShellApplication {
     }
 
     clear-cache () {
-      OUTPUT="$(mktemp)"
-      {
-        nix-collect-garbage --delete-older-than '1d' 2>&1;
-        echo "-- nix store optimise --";
-        nix store optimise 2>&1;
-      } > "$OUTPUT" &
-      dialog --title "Run garbage collector..." --tailbox "$OUTPUT" 30 125 --clear
+      nix-collect-garbage --delete-older-than '1d'
+      echo "-- nix store optimise --"
+      nix store optimise
     }
 
     attach-session () {
