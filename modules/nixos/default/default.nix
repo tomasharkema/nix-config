@@ -22,20 +22,11 @@ in {
   config = with lib; {
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
-    # services.das_watchdog.enable = true;
+    services.das_watchdog.enable = true;
+
     # Select internationalisation properties.
     i18n.defaultLocale = "en_US.UTF-8";
 
-    # services.webhook = {
-    #   enable = true;
-
-    #   hooks = {
-    #     echo = {
-    #       execute-command = "echo";
-    #       response-message = "Webhook is reachable!";
-    #     };
-    #   };
-    # };
     programs.git = {
       enable = true;
       lfs.enable = true;

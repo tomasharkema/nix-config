@@ -4,10 +4,6 @@
   config,
   ...
 }: let
-  cockpit-get-cert = pkgs.writeShellScriptBin "cockpit-get-cert" ''
-    cd /etc/cockpit/ws-certs.d
-    ${pkgs.tailscale}/bin/tailscale cert "${config.networking.hostName}.ling-lizard.ts.net" || true
-  '';
   cockpit-podman = pkgs.callPackage ./cockpit-podman.nix {};
   # cockpit-tailscale = pkgs.callPackage ./cockpit-tailscale.nix {};
 in {
@@ -15,26 +11,52 @@ in {
     services.cockpit = {
       enable = true;
       port = 9090;
-      settings = {WebService = {AllowUnencrypted = false;};};
+      settings = {
+        WebService = {
+          # AllowUnencrypted = false;
+          UrlRoot = "/cockpit/";
+        };
+      };
     };
     environment.systemPackages = with pkgs; [
       cockpit-podman
       # cockpit-tailscale
     ];
-    systemd.services.cockpit-tailscale-cert = {
-      enable = true;
-      description = "cockpit-tailscale-cert";
-      unitConfig = {
-        Type = "oneshot";
-        StartLimitIntervalSec = 500;
-        StartLimitBurst = 5;
+
+    services.nginx = {
+      virtualHosts."${config.proxy-services.vhost}" = {
+        locations = {
+          "/" = {
+            return = "301 https://${config.proxy-services.vhost}/cockpit/";
+          };
+          # "/cockpit" = {
+          #   return = "301 https://${config.proxy-services.vhost}/cockpit/";
+          # };
+          # "^~ /cockpit/" = {
+          "/cockpit/" = {
+            proxyPass = "http://localhost:9090";
+            # extraConfig = ''
+            #   rewrite /cockpit(.*) $1 break;
+            # '';
+          };
+        };
       };
-      script = "${lib.getExe cockpit-get-cert}";
-      wantedBy = ["multi-user.target"];
-      after = ["tailscale.service"];
-      wants = ["tailscale.service"];
-      path = [cockpit-get-cert pkgs.tailscale];
     };
+
+    # systemd.services.cockpit-tailscale-cert = {
+    #   enable = true;
+    #   description = "cockpit-tailscale-cert";
+    #   unitConfig = {
+    #     Type = "oneshot";
+    #     StartLimitIntervalSec = 500;
+    #     StartLimitBurst = 5;
+    #   };
+    #   script = "${lib.getExe cockpit-get-cert}";
+    #   wantedBy = ["multi-user.target"];
+    #   after = ["tailscale.service"];
+    #   wants = ["tailscale.service"];
+    #   path = [cockpit-get-cert pkgs.tailscale];
+    # };
 
     # environment.etc = {
     #   "pam.d/cockpit".text = lib.mkForce ''

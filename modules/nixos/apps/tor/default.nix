@@ -19,8 +19,8 @@
       openFirewall = true;
 
       settings = {
-        UseBridges = true;
-        ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/obfs4proxy";
+        # UseBridges = true;
+        # ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/obfs4proxy";
       };
 
       relay = {
