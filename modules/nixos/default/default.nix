@@ -106,6 +106,10 @@ in {
         PermitRootLogin = "yes";
       };
     };
+    services.mackerel-agent = {
+      enable = true;
+      apiKeyFile = config.age.secrets.mak.path;
+    };
 
     programs.ssh.startAgent = true;
 

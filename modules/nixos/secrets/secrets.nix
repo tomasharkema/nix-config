@@ -82,4 +82,6 @@ in {
   "cachix-token.age".publicKeys = allKeys;
 
   "notify.age".publicKeys = allKeys;
+
+  "mak.age".publicKeys = allKeys;
 }

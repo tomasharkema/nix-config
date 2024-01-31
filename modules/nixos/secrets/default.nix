@@ -99,5 +99,9 @@
       # path = "/home/tomas/.config/notify/provider-config.yaml";
       # symlink = false;
     };
+    age.secrets.mak = {
+      file = ./mak.age;
+      mode = "644";
+    };
   };
 }
