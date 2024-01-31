@@ -3,7 +3,8 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+with lib.custom; let
   cfg = config.apps.tor.relay;
 in {
   options.apps.tor = {
