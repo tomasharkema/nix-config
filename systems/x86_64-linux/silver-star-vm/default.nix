@@ -27,6 +27,7 @@
     };
 
     services.qemuGuest.enable = true;
+    services.freeipa.enable = true;
 
     # boot.kernelPackages = pkgs.linuxPackages_latest;
 
