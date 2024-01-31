@@ -20,6 +20,9 @@ in {
       enable = mkBoolOpt true "Whether or not to manage nix configuration.";
       package = mkOpt package pkgs.nix "Which nix package to use.";
     };
+    gui = {
+      enable = mkBoolOpt false "Whether or not to manage nix configuration.";
+    };
   };
 
   config = mkIf cfg.enable {
