@@ -3,17 +3,7 @@
   lib,
   config,
   ...
-}:
-with lib;
-with lib.custom; let
-  cfgRelay = mkIf config.apps.tor.relay;
-in {
-  options.apps.tor = {
-    relay = {
-      enable = mkBoolOpt false "Enable the tor relay";
-    };
-  };
-
+}: {
   config = {
     environment.systemPackages = with pkgs; [
       tor
@@ -31,18 +21,9 @@ in {
       settings = {
         UseBridges = true;
         ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/obfs4proxy";
-        ContactInfo = mkIf cfgRelay.enable "lipids.tubule.0o@icloud.com";
-        Nickname = mkIf cfgRelay.enable "lipids.tubule.0o";
-        ORPort = 9001;
-        ControlPort = 9051;
-        BandWidthRate = mkIf cfgRelay.enable "10 MBytes";
       };
 
       relay = {
-        enable = true;
-
-        role = mkIf cfgRelay.enable "relay";
-
         onionServices = {
           ssh = {
             version = 3;

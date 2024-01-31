@@ -26,6 +26,7 @@
       main = "/dev/disk/by-id/virtio-vdisk1";
     };
 
+    apps.tor.relay.enable = true;
     services.qemuGuest.enable = true;
     services.freeipa.enable = true;
 
