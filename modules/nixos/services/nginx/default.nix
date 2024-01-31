@@ -73,12 +73,14 @@ in {
       description = "tailscale-cert";
       serviceConfig = {
         Type = "oneshot";
-        WorkingDirectory = "/etc/ssl/private/";
       };
 
-      preStart = "mkdir -p /etc/ssl/private/ || true";
-      script = "${lib.getExe pkgs.tailscale} cert ${cfg.vhost}";
-      postStart = "chown nginx:nginx -R /etc/ssl/private/";
+      script = ''
+        (mkdir -p /etc/ssl/private/ || true) && \
+        cd /etc/ssl/private/ && \
+        ${lib.getExe pkgs.tailscale} cert ${cfg.vhost} && \
+        chown nginx:nginx -R /etc/ssl/private/
+      '';
 
       wantedBy = ["multi-user.target"];
       after = ["tailscale.service" "network.target" "syslog.target"];
