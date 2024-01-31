@@ -29,12 +29,15 @@ in {
 
     virtualisation.libvirtd = {
       enable = true;
-      qemu.ovmf = {
-        enable = true;
-        packages = [
-          pkgs.pkgsCross.aarch64-multiplatform.OVMF.fd # AAVMF
-          pkgs.OVMF.fd
-        ];
+      qemu = {
+        swtpm.enable = true;
+        ovmf = {
+          enable = true;
+          packages = [
+            pkgs.pkgsCross.aarch64-multiplatform.OVMF.fd # AAVMF
+            pkgs.OVMF.fd
+          ];
+        };
       };
     };
 
