@@ -111,7 +111,6 @@ in {
       timers."dconf-sync" = {
         wantedBy = ["timers.target"];
         timerConfig = {
-          OnBootSec = "5m";
           OnUnitActiveSec = "5m";
           Unit = "dconf-sync.service";
 
