@@ -12,7 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    system.nixos.tags = ["with-hypervisor"];
+    system.nixos.tags = ["hypervisor"];
 
     # specialisation."VFIO".configuration = {
     #   system.nixos.tags = ["with-vfio"];
@@ -42,5 +42,14 @@ in {
     };
 
     users.users.${config.user.name}.extraGroups = ["libvirtd"];
+
+    # dconf.settings = {
+    #   "org/virt-manager/virt-manager/connections" = {
+    #     autoconnect = ["qemu:///system"];
+    #     uris = ["qemu:///system"];
+    #   };
+    # };
+
+    networking.firewall.trustedInterfaces = ["virbr0"];
   };
 }

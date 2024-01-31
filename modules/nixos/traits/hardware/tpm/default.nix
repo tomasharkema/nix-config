@@ -15,6 +15,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    system.nixos.tags = ["tpm"];
+
     security.tpm2 = {
       enable = true;
       pkcs11.enable = true;
@@ -30,6 +32,8 @@ in {
     programs.ssh.extraConfig = ''
       PKCS11Provider /run/current-system/sw/lib/libtpm2_pkcs11.so
     '';
+
+    services.tcsd.enable = true;
 
     environment.systemPackages = with pkgs; [
       tpm-luks

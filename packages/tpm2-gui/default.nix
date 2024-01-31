@@ -23,11 +23,13 @@ with python310Packages;
       pkgconfig # this is the Python module
       pkgs.pkg-config # this is the actual pkg-config tool
       setuptools-scm
+      tpm2-pytss
     ];
 
     buildInputs = [
       pkgs.pkg-config
       pkgs.tpm2-tss
+      tpm2-pytss
     ];
 
     propagatedBuildInputs = [
@@ -40,4 +42,8 @@ with python310Packages;
       wheel
       setuptools
     ];
+
+    postPatch = ''
+      patchShebangs script
+    '';
   }

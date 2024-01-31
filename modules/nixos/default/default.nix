@@ -123,6 +123,7 @@ in {
     networking.firewall = {
       enable = mkDefault true;
     };
+    powerManagement.powertop.enable = true;
 
     services.avahi.extraServiceFiles = {
       ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
