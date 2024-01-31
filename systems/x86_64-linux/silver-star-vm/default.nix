@@ -29,6 +29,7 @@
       enable = lib.mkForce false;
     };
     apps.podman.enable = true;
+    services.qemuGuest.enable = true;
 
     virtualisation = {
       oci-containers.containers = {
