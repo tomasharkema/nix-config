@@ -190,9 +190,9 @@ in
           };
 
           initExtra = ''
-            bindkey -M emacs -s '^A' 'menu\n'
-            bindkey -M vicmd -s '^A' 'menu\n'
-            bindkey -M viins -s '^A' 'menu\n'
+            bindkey -M emacs -s '^A' 'menu'
+            bindkey -M vicmd -s '^A' 'menu'
+            bindkey -M viins -s '^A' 'menu'
           '';
 
           plugins = [
