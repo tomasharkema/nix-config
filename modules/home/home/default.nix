@@ -191,10 +191,10 @@ in
 
           initExtra = ''
             function menu () {
-              zle push-line
-              echo " "
+              # zle push-line
+              # echo " "
               ${lib.getExe pkgs.custom.menu}
-              zle reset-prompt
+              # zle reset-prompt
             }
             zle -N menu
             bindkey '^M'  menu
