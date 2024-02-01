@@ -190,7 +190,7 @@ in
           };
 
           initExtra = ''
-            bindkey -s '^M' 'menu\n'
+            bindkey -s '^A' 'menu\n'
           '';
 
           plugins = [
