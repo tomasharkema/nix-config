@@ -190,7 +190,11 @@ in
           };
 
           initExtra = ''
-            bindkey '^[[M'  ${lib.getExe pkgs.custom.menu}
+            function menu () {
+              exec ${lib.getExe pkgs.custom.menu}
+            }
+            zle -N menu
+            bindkey '^[m'  menu
           '';
 
           plugins = [
