@@ -97,6 +97,14 @@ in {
 
           include-command-output-in-response = true;
         };
+        info-json = let
+          info-json = pkgs.writeShellScriptBin "info-json" ''
+            echo '${builtins.toJSON config.system.nixos.tags}'
+          '';
+        in {
+          execute-command = "${lib.getExe info-json}";
+          include-command-output-in-response = true;
+        };
       };
     };
   };
