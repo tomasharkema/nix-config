@@ -197,7 +197,9 @@ in
               # zle reset-prompt
             }
             zle -N menu
-            bindkey '^M'  menu
+            bindkey -M emacs "^M"  menu
+            bindkey -M vicmd "^M"  menu
+            bindkey -M viins "^M"  menu
           '';
 
           plugins = [
