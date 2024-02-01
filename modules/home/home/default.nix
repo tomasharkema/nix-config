@@ -190,9 +190,15 @@ in
           };
 
           initExtra = ''
-            bindkey -M emacs -s '^A' 'menu'
-            bindkey -M vicmd -s '^A' 'menu'
-            bindkey -M viins -s '^A' 'menu'
+            #nixos-menu () {
+            #  ${lib.getExe pkgs.custom.menu}
+            #}
+            #zle -N nixos-menu
+            #bindkey '^A' nixos-menu
+
+            bindkey -M emacs -s '^A' 'menu^M'
+            bindkey -M vicmd -s '^A' 'menu^M'
+            bindkey -M viins -s '^A' 'menu^M'
           '';
 
           plugins = [
