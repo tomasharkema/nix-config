@@ -104,7 +104,7 @@ in {
             version = config.system.stateVersion;
           };
           info-json = pkgs.writeShellScriptBin "info-json" ''
-            cat "${builtins.toFile (builtins.toJSON info)}"
+            cat "${builtins.toFile "info.json" (builtins.toJSON info)}"
           '';
         in {
           execute-command = "${lib.getExe info-json}";
