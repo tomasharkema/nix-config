@@ -16,6 +16,7 @@ in {
           # AllowUnencrypted = false;
           Origins = "https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost}";
           ProtocolHeader = "X-Forwarded-Proto";
+          UrlRoot = "/cockpit";
         };
       };
     };
@@ -28,10 +29,10 @@ in {
       virtualHosts."${config.proxy-services.vhost}" = {
         locations = {
           "/" = {
-            return = "302 https://${config.proxy-services.vhost}/cockpit";
+            return = "302 https://${config.proxy-services.vhost}/cockpit/";
           };
-          "/cockpit" = {
-            proxyPass = "http://localhost:9090";
+          "/cockpit/" = {
+            proxyPass = "http://localhost:9090/cockpit/";
             # extraConfig = ''
             #   rewrite /cockpit(.*) $1 break;
             # '';
