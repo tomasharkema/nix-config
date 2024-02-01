@@ -189,6 +189,10 @@ in
             # searchDownKey = "^[OB";
           };
 
+          initExtra = ''
+            bindkey '^[[M'  ${lib.getExe pkgs.custom.menu}
+          '';
+
           plugins = [
             {
               name = "zsh-nix-shell";
