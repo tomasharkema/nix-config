@@ -32,7 +32,7 @@ in {
             return = "302 https://${config.proxy-services.vhost}/cockpit/";
           };
           "/cockpit/" = {
-            proxyPass = "http://localhost:9090/cockpit/";
+            proxyPass = "https://localhost:9090/cockpit/";
             # extraConfig = ''
             #   rewrite /cockpit(.*) $1 break;
             # '';
