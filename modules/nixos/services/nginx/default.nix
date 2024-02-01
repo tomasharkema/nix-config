@@ -102,6 +102,8 @@ in {
             tags = config.system.nixos.tags;
             revision = config.system.configurationRevision;
             version = config.system.stateVersion;
+            label = config.system.nixos.label;
+            name = config.system.name;
           };
           info-json = pkgs.writeShellScriptBin "info-json" ''
             cat "${builtins.toFile "info.json" (builtins.toJSON info)}"
