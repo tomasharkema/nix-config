@@ -41,23 +41,7 @@ in {
         sslCertificateKey = "/etc/ssl/private/${cfg.vhost}.key";
 
         locations = {
-          # "/" = {
-          #   return = "301 https://${cfg.vhost}/cockpit/";
-          # };
-          # "/cockpit" = {
-          #   return = "301 https://${cfg.vhost}/cockpit/";
-          # };
-          # "^~ /cockpit/" = {
-          #   proxyPass = "https://localhost:9090";
-          #   extraConfig = ''
-          #     rewrite /cockpit(.*) $1 break;
-          #   '';
-          # };
-
           "/webhook" = {
-            return = "301 https://${cfg.vhost}/webhook/";
-          };
-          "/webhook/" = {
             proxyPass = "http://localhost:${builtins.toString config.services.webhook.port}";
             extraConfig = ''
               rewrite /webhook(.*) $1 break;

@@ -27,13 +27,9 @@ in {
       virtualHosts."${config.proxy-services.vhost}" = {
         locations = {
           "/" = {
-            return = "301 https://${config.proxy-services.vhost}/cockpit/";
+            return = "302 https://${config.proxy-services.vhost}/cockpit";
           };
-          # "/cockpit" = {
-          #   return = "301 https://${config.proxy-services.vhost}/cockpit/";
-          # };
-          # "^~ /cockpit/" = {
-          "/cockpit/" = {
+          "/cockpit" = {
             proxyPass = "http://localhost:9090";
             # extraConfig = ''
             #   rewrite /cockpit(.*) $1 break;
