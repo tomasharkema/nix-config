@@ -98,8 +98,13 @@ in {
           include-command-output-in-response = true;
         };
         info-json = let
+          info = {
+            tags = config.system.nixos.tags;
+            revision = config.system.configurationRevision;
+            version = config.system.stateVersion;
+          };
           info-json = pkgs.writeShellScriptBin "info-json" ''
-            echo '${builtins.toJSON config.system.nixos.tags}'
+            cat "${builtins.toFile (builtins.toJSON info)}"
           '';
         in {
           execute-command = "${lib.getExe info-json}";
