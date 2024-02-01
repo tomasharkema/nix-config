@@ -192,6 +192,7 @@ in
           initExtra = ''
             function menu () {
               zle push-line
+              echo " "
               ${lib.getExe pkgs.custom.menu}
               zle reset-prompt
             }
