@@ -29,7 +29,7 @@ in {
       virtualHosts."${config.proxy-services.vhost}" = {
         locations = {
           "/" = {
-            return = "302 https://${config.proxy-services.vhost}/cockpit/";
+            return = "302 /cockpit/";
           };
           "/cockpit/" = {
             proxyPass = "https://localhost:9090/cockpit/";
