@@ -33,18 +33,21 @@ in {
       recommendedZstdSettings = true;
 
       virtualHosts."${cfg.vhost}" = {
-        addSSL = true;
+        onlySSL = true;
         # enableACME = true;
         # root = "/var/www/root";
 
         sslCertificate = "/etc/ssl/private/${cfg.vhost}.crt";
         sslCertificateKey = "/etc/ssl/private/${cfg.vhost}.key";
 
-        forceSSL = true;
+        # forceSSL = true;
 
         locations =
           {
             "/webhook" = {
+              return = "302 /webhook/";
+            };
+            "/webhook/" = {
               proxyPass = "http://localhost:${builtins.toString config.services.webhook.port}";
               extraConfig = ''
                 rewrite /webhook(.*) $1 break;
