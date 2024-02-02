@@ -71,7 +71,7 @@ in {
       server = {
         enable = true;
         exports = ''
-          /export/media        192.168.1.170(rw,fsid=0,no_subtree_check)
+          /export/media        *(rw,fsid=0,no_subtree_check)
         '';
       };
     };
