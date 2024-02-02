@@ -97,7 +97,7 @@ in {
 
     age.secrets."ldap" = {
       file = ../../../../../secrets/ldap.age;
-      mode = "777";
+      mode = "644";
       # owner = "tomas";
       # group = "tomas";
     };
@@ -159,23 +159,23 @@ in {
     #   secretKeyFile = "/var/cache-priv-key.pem";
     # };
 
-    services.nginx = {
-      enable = true;
-      recommendedProxySettings = true;
-      virtualHosts = {
-        "hydra-cache.harkema.io" = {
-          locations."/".proxyPass = "http://127.0.0.1:${toString config.services.nix-serve.port}";
-        };
-        "hydra.harkema.io" = {
-          locations."/".proxyPass = "http://127.0.0.1:${toString config.services.hydra.port}";
-        };
-        "hydra.${config.networking.hostName}.ling-lizard.ts.net" = {
-          locations."/".proxyPass = "http://127.0.0.1:${toString config.services.hydra.port}";
-        };
-        "hydra-cache.${config.networking.hostName}.ling-lizard.ts.net" = {
-          locations."/".proxyPass = "http://127.0.0.1:${toString config.services.nix-serve.port}";
-        };
-      };
-    };
+    # services.nginx = {
+    #   enable = true;
+    #   recommendedProxySettings = true;
+    #   virtualHosts = {
+    #     "hydra-cache.harkema.io" = {
+    #       locations."/".proxyPass = "http://127.0.0.1:${toString config.services.nix-serve.port}";
+    #     };
+    #     "hydra.harkema.io" = {
+    #       locations."/".proxyPass = "http://127.0.0.1:${toString config.services.hydra.port}";
+    #     };
+    #     "hydra.${config.networking.hostName}.ling-lizard.ts.net" = {
+    #       locations."/".proxyPass = "http://127.0.0.1:${toString config.services.hydra.port}";
+    #     };
+    #     "hydra-cache.${config.networking.hostName}.ling-lizard.ts.net" = {
+    #       locations."/".proxyPass = "http://127.0.0.1:${toString config.services.nix-serve.port}";
+    #     };
+    #   };
+    # };
   };
 }
