@@ -15,7 +15,7 @@ in {
       description = "vhost";
     };
     services = mkOption {
-      type = types.attr;
+      type = types.attrs;
       default = {};
       description = "services";
     };
@@ -40,6 +40,8 @@ in {
         sslCertificate = "/etc/ssl/private/${cfg.vhost}.crt";
         sslCertificateKey = "/etc/ssl/private/${cfg.vhost}.key";
 
+        forceSSL = true;
+
         locations =
           {
             "/webhook" = {
@@ -49,7 +51,7 @@ in {
               '';
             };
           }
-          // config.proxy-services.servives;
+          // config.proxy-services.services;
       };
     };
 

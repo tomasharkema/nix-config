@@ -159,6 +159,10 @@ in {
     #   secretKeyFile = "/var/cache-priv-key.pem";
     # };
 
+    proxy-services.services = {
+      "/hydra".proxyPass = "http://127.0.0.1:${toString config.services.hydra.port}";
+    };
+
     # services.nginx = {
     #   enable = true;
     #   recommendedProxySettings = true;
