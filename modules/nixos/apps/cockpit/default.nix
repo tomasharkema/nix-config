@@ -30,7 +30,7 @@ in {
         # default = true;
         return = "302 /cockpit/";
       };
-      "/cockpit" = {
+      "/cockpit/" = {
         proxyPass = "https://localhost:9090/cockpit/";
 
         extraConfig = ''
