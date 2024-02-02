@@ -162,9 +162,6 @@ in {
 
     proxy-services.services = {
       "/hydra" = {
-        return = "302 /hydra/";
-      };
-      "/hydra/" = {
         proxyPass = "http://127.0.0.1:${toString config.services.hydra.port}";
         extraConfig = ''
           rewrite /hydra(.*) $1 break;
