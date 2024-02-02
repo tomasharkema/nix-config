@@ -97,10 +97,10 @@ in {
         device = "192.168.0.100:/mnt/user/appdata_disk";
         fsType = "nfs";
       };
-      "/mnt/dione" = {
-        device = "192.168.178.3:/volume1/homes";
-        fsType = "nfs";
-      };
+      # "/mnt/dione" = {
+      #   device = "192.168.178.3:/volume1/homes";
+      #   fsType = "nfs";
+      # };
     };
 
     # systemd.network = {
