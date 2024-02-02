@@ -14,11 +14,11 @@ in {
       default = "${config.networking.hostName}.ling-lizard.ts.net";
       description = "vhost";
     };
-    # locations = mkOption {
-    #   type = types.set;
-    #   default = [];
-    #   description = "services";
-    # };
+    services = mkOption {
+      type = types.attr;
+      default = {};
+      description = "services";
+    };
   };
 
   config = {
@@ -40,15 +40,16 @@ in {
         sslCertificate = "/etc/ssl/private/${cfg.vhost}.crt";
         sslCertificateKey = "/etc/ssl/private/${cfg.vhost}.key";
 
-        locations = {
-          "/webhook" = {
-            proxyPass = "http://localhost:${builtins.toString config.services.webhook.port}";
-            extraConfig = ''
-              rewrite /webhook(.*) $1 break;
-            '';
-          };
-        };
-        # // config.proxy-services.locations;
+        locations =
+          {
+            "/webhook" = {
+              proxyPass = "http://localhost:${builtins.toString config.services.webhook.port}";
+              extraConfig = ''
+                rewrite /webhook(.*) $1 break;
+              '';
+            };
+          }
+          // config.proxy-services.servives;
       };
     };
 
