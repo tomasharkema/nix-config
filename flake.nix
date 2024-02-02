@@ -1,434 +1,423 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
+
+    darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nix-index-database = {
-      url = "github:Mic92/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/nix-index-database";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-hardware.url = "github:nixos/nixos-hardware";
-    cachix-deploy-flake.url = "github:cachix/cachix-deploy-flake";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
-    deploy.url = "github:serokell/deploy-rs";
 
-    colmena.url = "github:zhaofengli/colmena";
-    colmena.inputs.nixpkgs.follows = "nixpkgs";
+    disko = {
+      url = "github:nix-community/disko";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    flake-utils.url = "github:numtide/flake-utils";
-    anywhere.url = "github:nix-community/nixos-anywhere";
-    vscode-server.url = "github:nix-community/nixos-vscode-server";
-    nixvim.url = "github:pta2002/nixvim/nixos-23.11";
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # colmena = {
+    #   url = "github:zhaofengli/colmena";
+    # inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    nixos-anywhere = {
+      url = "github:nix-community/nixos-anywhere";
+      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.disko.follows = "disko";
+    };
+
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    vscode-server = {
+      url = "github:nix-community/nixos-vscode-server";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixvim = {
+      url = "github:pta2002/nixvim/nixos-23.11";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     agenix = {
       url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-software-center.url = "github:vlinkz/nix-software-center";
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
+    nixos-hardware = {
+      url = "github:nixos/nixos-hardware";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nil = {
-      url = "github:oxalica/nil";
+    cachix-deploy-flake = {
+      url = "github:cachix/cachix-deploy-flake";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-software-center = {
+      url = "github:snowfallorg/nix-software-center";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-conf-editor = {
+      url = "github:snowfallorg/nixos-conf-editor";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     impermanence = {
       url = "github:nix-community/impermanence";
-    };
-
-    nix-cache-watcher.url = "git+https://git.sr.ht/~thatonelutenist/nix-cache-watcher?ref=trunk";
-
-    statix = {
-      url = "github:nerdypepper/statix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixpkgs-lint = {
-      url = "github:nix-community/nixpkgs-lint";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    alejandra = {
-      url = "github:kamadorueda/alejandra";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     attic = {
       url = "github:zhaofengli/attic";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hydra-check = {
+      url = "github:nix-community/hydra-check";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    flake-checker = {
+      url = "github:DeterminateSystems/flake-checker";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    snowfall-lib = {
+      url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    system-manager = {
-      url = "github:numtide/system-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+    snowfall-flake = {
+      url = "github:snowfallorg/flake";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # tailscale-prometheus-sd = { url = "github:madjam002/tailscale-prometheus-sd"; };
-
-    gomod2nix = {
-      url = "github:nix-community/gomod2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
+    nil = {
+      url = "github:oxalica/nil";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
-    # nix-gui = {
-    #   url = "github:nix-gui/nix-gui";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.flake-utils.follows = "flake-utils";
-    #   inputs.rnix-lsp.follows = "rnix-lsp";
+
+    devenv = {
+      url = "github:cachix/devenv";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # peerix = {
+    # url = "github:cid-chan/peerix";
+    # inputs.nixpkgs.follows = "nixpkgs";
     # };
-    # rnix-lsp = {
-    #   url = "github:nix-community/rnix-lsp";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.flake-utils.follows = "flake-utils";
-    # };
+
+    poetry2nix = {
+      url = "github:nix-community/poetry2nix";
+    };
+
+    themes = {
+      url = "github:RGBCube/ThemeNix";
+    };
+
+    stylix.url = "github:danth/stylix/release-23.11";
   };
 
-  nixConfig = {
-    extra-experimental-features = "nix-command flakes";
-    distributedBuilds = true;
-    builders-use-substitutes = true;
-    trusted-users = ["root" "tomas"];
-    extra-substituters = [
-      "https://nix-cache.harke.ma/tomas"
-      "https://cache.nixos.org"
-    ];
-    extra-binary-caches = [
-      "https://nix-cache.harke.ma/tomas"
-      "https://cache.nixos.org"
-    ];
-    trusted-public-keys = [
-      "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-    ];
-    access-tokens = ["github.com=***REMOVED***"];
+  outputs = inputs: let
+    lib = inputs.snowfall-lib.mkLib {
+      inherit inputs;
+      src = ./.;
 
-    keep-outputs = true;
-    keep-derivations = true;
-    # trace-function-calls = true;
-  };
+      snowfall = {
+        meta = {
+          name = "dotfiles";
+          title = "dotfiles";
+        };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixos-generators,
-    deploy,
-    home-manager,
-    nix,
-    flake-utils,
-    anywhere,
-    agenix,
-    nix-darwin,
-    nix-cache-watcher,
-    alejandra,
-    attic,
-    system-manager,
-    impermanence,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    lib = nixpkgs.lib // home-manager.lib;
-    systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-linux"];
-    forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-    pkgsFor = lib.genAttrs systems (system:
-      import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      });
-    home = {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.extraSpecialArgs = {
-        inherit inputs;
+        namespace = "custom";
       };
-      home-manager.users.tomas.imports = [agenix.homeManagerModules.default ./home.nix];
-      home-manager.backupFileExtension = "bak";
     };
   in
-    {
-      nixpkgs.config.allowUnfree = true;
-      nixpkgs.config.allowUnfreePredicate = _: true;
-      nixpkgs.overlays = [(import ./apps/atuin/overlay.nix) (import ./apps/direnv.nix)];
+    lib.mkFlake {
+      inherit inputs;
 
-      #      colmena = import ./colmena.nix (inputs // { inherit inputs; });
+      src = ./.;
 
-      nixosModules = {
+      channels-config = {
+        allowUnfree = true;
+        nvidia.acceptLicense = true;
+        firefox.enableGnomeExtensions = true;
       };
 
-      nixosConfigurations = import ./configurations {inherit inputs nixpkgs;};
-
-      darwinConfigurations = import ./configurations/darwin.nix {inherit inputs lib;};
-
-      homeConfigurations = {
-        "root@silver-star" = home-manager.lib.homeManagerConfiguration {
-          extraSpecialArgs = {inherit inputs;};
-
-          modules = [
-            agenix.homeManagerModules.default
-            ./machines/silver-star
-            ./home.nix
-          ];
+      alias = {
+        shells = {
+          default = "devshell";
         };
       };
 
-      # systemConfigs.silver-star = system-manager.lib.makeSystemConfig {
-      #   modules = [
-      #     # impermanence.nixosModules.impermanence
-      #     ./machines/silver-star
-      #     home-manager.nixosModules.home-manager
-      #     {
-      #       home-manager.useGlobalPkgs = true;
-      #       home-manager.useUserPackages = true;
-      #       home-manager.extraSpecialArgs = { inherit inputs; };
-      #       home-manager.users.tomas.imports = [
-      #         # nix-flatpak.homeManagerModules.nix-flatpak
-      #         agenix.homeManagerModules.default
-      #         ./home.nix
-      #         {
-      #           home.username = "root";
-      #           home.homeDirectory = "/root";
-      #         }
-      #       ];
-      #       home-manager.backupFileExtension = "bak";
-      #     }
-      #   ];
-      # };
+      snowfall = {
+        meta = {
+          name = "dotfiles";
+          title = "dotfiles";
+        };
 
-      deploy = {
-        nodes = {
+        namespace = "custom";
+      };
+
+      overlays = with inputs; [
+        # peerix.overlay
+        snowfall-flake.overlays."package/flake"
+      ];
+
+      system.modules.darwin = with inputs; [
+        {
+          system.nixos.tags = ["snowfall"];
+          system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
+        }
+      ];
+
+      systems.modules.nixos = with inputs; [
+        # peerix.nixosModules.peerix
+
+        impermanence.nixosModule
+        disko.nixosModules.default
+
+        lanzaboote.nixosModules.lanzaboote
+        vscode-server.nixosModules.default
+
+        # home-manager.nixosModules.home-manager
+        agenix.nixosModules.default
+        nixos-generators.nixosModules.all-formats
+
+        stylix.nixosModules.stylix
+
+        {
+          system.stateVersion = "23.11";
+          system.nixos.tags = ["snowfall"];
+          system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
+
+          services.vscode-server.enable = true;
+        }
+      ];
+
+      homes.modules = with inputs; [
+        # agenix.homeManagerModules.default
+        # stylix.homeManagerModules.stylix
+      ];
+
+      deploy = lib.mkDeploy {
+        inherit (inputs) self;
+
+        overrides = {
+          sshUser = "root";
+          # wodan-vm = {
+          #   hostname = "192.168.1.74";
+          # };
+          # wodan-wsl = {
+          #   sshUser = "root";
+          #   hostname = "192.168.1.42";
+          # };
+          euro-mir-vm = {
+            sshUser = "root";
+            hostname = "172.25.255.212";
+          };
           pegasus = {
-            hostname = "192.168.178.93";
-            # hostname = "172.25.220.155";
-            # hostname = "100.66.126.23";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.aarch64-linux.activate.nixos
-                self.nixosConfigurations.pegasus;
-            };
-          };
-          baaa-express = {
-            hostname = "172.25.240.89";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.aarch64-linux.activate.nixos
-                self.nixosConfigurations.baaa-express;
-            };
-          };
-
-          silver-star = {
-            hostname = "100.122.146.5";
-            profiles.user = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.x86_64-linux.activate.home-manager
-                self.homeConfigurations."root@silver-star";
-            };
-          };
-          enzian = {
-            hostname = "100.78.63.10";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.x86_64-linux.activate.nixos
-                self.nixosConfigurations.enzian;
-            };
-          };
-          silver-star-ferdorie = {
-            hostname = "100.89.172.46";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.x86_64-linux.activate.nixos
-                self.nixosConfigurations.silver-star-ferdorie;
-            };
-          };
-          utm-nixos = {
-            hostname = "100.124.108.91";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.aarch64-linux.activate.nixos
-                self.nixosConfigurations.utm-nixos;
-            };
-          };
-          hyperv-nixos = {
-            hostname = "172.25.240.242";
-            # hostname = "192.168.1.74";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.x86_64-linux.activate.nixos
-                self.nixosConfigurations.hyperv-nixos;
-            };
-          };
-          blue-fire = {
-            # hostname = "172.25.172.112";
-            # hostname = "192.168.1.77";
-            hostname = "100.65.162.126";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.x86_64-linux.activate.nixos
-                self.nixosConfigurations.blue-fire;
-            };
-          };
-          arthur = {
-            hostname = "100.70.39.116";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.x86_64-linux.activate.nixos
-                self.nixosConfigurations.arthur;
-            };
-          };
-          wodan-wsl = {
-            hostname = "172.25.59.229";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              path =
-                deploy.lib.x86_64-linux.activate.nixos
-                self.nixosConfigurations.wodan-wsl;
-            };
+            hostname = "172.25.220.155";
           };
         };
       };
 
       checks =
         builtins.mapAttrs
-        (system: deployLib: deployLib.deployChecks self.deploy)
-        deploy.lib;
+        (system: deploy-lib:
+          deploy-lib.deployChecks inputs.self.deploy)
+        inputs.deploy-rs.lib;
 
-      hydraJobs = {
-        inherit
-          (self)
-          packages
-          ;
-      };
-      # packages = { self, flake-utils, ... }:
-      #   flake-utils.lib.eachDefaultSystem (system:
-      #     {
-
-      #     });
-
-      # packages.aarch64-darwin = {
-      #   darwinVM = self.nixosConfigurations.darwinVM.config.system.build.vm;
-      #   installiso = self.packages.default.installiso;
-      # };
-      #   #     utmiso = nixos-generators.nixosGenerate {
-      #   #       # inherit nixpkgs pkgs;
-      #   #       system = "aarch64-linux";
-      #   #       specialArgs = inputs;
-      #   #       modules = [
-      #   #         self.nixosConfigurations.utm-nixos.config
-      #   #         # ({ pkgs, ... }: { })
-      #   #       ];
-      #   #       format = "qcow";
-      #   #     };
-      #   enzianiso = nixos-generators.nixosGenerate {
-      #     system = "x86_64-linux";
-      #     # specialArgs = inputs;
-      #     pkgs = pkgsFor.x86_64-linux;
-
-      #     specialArgs = { inherit inputs outputs; };
-      #     modules = [ self.nixosConfigurations.enzian.config ];
-      #     format = "install-iso";
-      #   };
-      # };
-
-      #  let system = "x86_64-linux"; pkgs = pkgsFor.x86_64-linux; in nixos-generators.nixosGenerate {
-      #   system = system;
-      #   # specialArgs = inputs;
-      #   pkgs = pkgs;
-
-      #   specialArgs = { inherit inputs pkgs; };
-      #   modules = [ self.nixosConfigurations.arthur.config ];
-      #   format = "install-iso";
-      # };
-    }
-    // inputs.flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = import inputs.nixpkgs {inherit system;};
-      rundesk = import ./rundesk {
-        inherit pkgs lib;
-      };
-    in {
-      formatter = alejandra.defaultPackage.${system};
-
-      packages = {
-        tailscaled = import ./apps/tailscale/tailscaled.nix {
-          inherit pkgs lib;
-        };
-        # darwinVM = self.nixosConfigurations.darwinVM.config.system.build.vm;
-        darwinBuilder = self.darwinConfigurations.builder;
-
-        installiso =
-          self.nixosConfigurations.live.config.system.build.isoImage;
-
-        hyperv-installiso =
-          self.nixosConfigurations.hyperv-nixos.config.system.build.isoImage;
-
-        netboot =
-          self.nixosConfigurations.netboot.config.system.build.toplevel;
-
-        # attic = import ./attic/attic.nix {
-        #   inherit attic;
-        #   pkgsLinux = pkgsFor."x86_64-linux";
-        # };
-
-        rundesk = rundesk.runner;
-
-        inherit (rundesk) run-imager;
-
-        # enzian = self.nixosConfigurations.enzian.config.system.build.toplevel;
-      };
-
-      images = {
+      images = with inputs; {
         baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
         pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
-
-        arthuriso = self.nixosConfigurations.arthur.config.formats.install-iso;
-
-        silver-star-ferdorie = self.nixosConfigurations.silver-star-ferdorie.config.formats.qcow;
-
-        hyperv-installiso =
-          self.nixosConfigurations.hyperv-nixos.config.formats.qcow;
       };
 
-      devShells = {
-        default = import ./shell.nix {
-          inherit inputs;
-          inherit pkgs;
-          inherit nixpkgs;
+      hydraJobs = import ./hydraJobs.nix {inherit inputs;};
+
+      nixosConfigurations = let
+        system = "aarch64-darwin";
+        pkgs = inputs.nixpkgs.legacyPackages."${system}";
+        linuxSystem = builtins.replaceStrings ["darwin"] ["linux"] system;
+      in {
+        installer = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
+            ({
+              lib,
+              pkgs,
+              ...
+            }: {
+              boot.supportedFilesystems = ["bcachefs"];
+              boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+            })
+          ];
         };
-        rundesk =
-          (import ./rundesk {
-            inherit pkgs lib;
-          })
-          .shell;
+        #   darwin-builder = inputs.nixpkgs.lib.nixosSystem {
+        #     system = linuxSystem;
+        #     modules = [
+        #       "${inputs.nixpkgs}/nixos/modules/profiles/macos-builder.nix"
+        #       ./user-defaults.nix
+        #       {
+        #         # imports = [ ../../apps/tailscale ];
+        #         boot.binfmt.emulatedSystems = ["x86_64-linux"];
+        #         virtualisation = {
+        #           host.pkgs = pkgs;
+        #           useNixStoreImage = true;
+        #           writableStore = true;
+        #           cores = 4;
+
+        #           darwin-builder = {
+        #             workingDirectory = "/var/lib/darwin-builder";
+        #             diskSize = 64 * 1024;
+        #             memorySize = 4096;
+        #           };
+        #         };
+
+        #         networking.useDHCP = true;
+        #         environment.systemPackages = with pkgs; [wget curl cacert];
+        #       }
+        #     ];
+        #   };
       };
-    });
+
+      # formatter = inputs.nixpkgs.alejandra;
+      outputs-builder = channels:
+      # let
+      #   cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
+      # in
+      {
+        formatter = channels.nixpkgs.alejandra;
+
+        # checks = with inputs; {
+        # nixpkgs-lint =
+        # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
+
+        # lint = self.packages.${channels.nixpkgs.system}.run-checks;
+        # };
+
+        # packages.nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
+        # packages.nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
+
+        # defaultPackage = cachix-deploy-lib.spec {
+        #   agents = {
+        #     blue-fire = inputs.self.nixosConfigurations.blue-fire.config.system.build.toplevel;
+        #     blue-fire-slim = inputs.self.nixosConfigurations.blue-fire-slim.config.system.build.toplevel;
+        #     enzian = inputs.self.nixosConfigurations.enzian.config.system.build.toplevel;
+        #     euro-mir-2 = inputs.self.nixosConfigurations.euro-mir-2.config.system.build.toplevel;
+        #     pegasus = inputs.self.nixosConfigurations.pegasus.config.system.build.toplevel;
+        #     baaa-express = inputs.self.nixosConfigurations.baaa-express.config.system.build.toplevel;
+        #     darwin-builder = inputs.self.nixosConfigurations.darwin-builder.config.system.build.toplevel;
+        #     euro-mir-vm = inputs.self.nixosConfigurations.euro-mir-vm.config.system.build.toplevel;
+        #   };
+        # };
+      };
+    };
+
+  nixConfig = {
+    extra-experimental-features = "nix-command flakes";
+    distributedBuilds = true;
+    builders-use-substitutes = true;
+    trusted-users = ["root" "tomas"];
+
+    substituters = [
+      "https://tomasharkema.cachix.org/"
+      #      "https://nix-cache.harke.ma/tomas/"
+      "https://nix-community.cachix.org/"
+      "https://cache.nixos.org/"
+      "https://devenv.cachix.org"
+    ];
+
+    trusted-public-keys = [
+      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
+      "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+    ];
+
+    extra-trusted-public-keys = [
+      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
+      "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+    ];
+    extra-substituters = [
+      "https://tomasharkema.cachix.org/"
+      # "https://nix-cache.harke.ma/tomas/"
+      "https://nix-community.cachix.org/"
+      "https://cache.nixos.org/"
+      "https://devenv.cachix.org"
+    ];
+
+    binaryCaches = ["https://cache.nixos.org"];
+
+    allowed-uris = [
+      "https://api.github.com"
+      "https://github.com/zhaofengli/nix-base32.git"
+      "https://github.com/tomasharkema.keys"
+      "https://api.flakehub.com/f/pinned"
+      "https://github.com/NixOS/"
+      "https://github.com/nixos/"
+      "https://github.com/hercules-ci/"
+      "https://github.com/numtide/"
+      "https://github.com/cachix/"
+      "https://github.com/nix-community/"
+      "https://github.com/tomasharkema/"
+      "git://github.com/tomasharkema"
+      "https://git.sr.ht/~rycee/nmd/archive"
+      "https://git.sr.ht/~youkai/nscan"
+    ];
+
+    allow-import-from-derivation = true;
+    keep-outputs = true;
+    keep-derivations = true;
+  };
 }

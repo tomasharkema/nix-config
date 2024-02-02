@@ -6,9 +6,12 @@
       "formatting": {
         "command": ["alejandra"]
       },
-      "flake": {
-        "autoArchive": true,
-        "autoEvalInputs": true
+      "nix": {
+        "maxMemoryMB": 4096,
+        "flake": {
+          "autoArchive": true,
+          "autoEvalInputs": true
+        }
       }
     }
   },
@@ -17,5 +20,6 @@
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "editor.formatOnType": false
-  }
+  },
+  "nixEnvSelector.nixFile": "${workspaceRoot}/flake.nix"
 }
