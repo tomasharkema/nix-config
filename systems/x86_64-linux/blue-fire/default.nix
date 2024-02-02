@@ -102,7 +102,45 @@ in {
       };
     };
 
-    networking.interfaces."eno1".mtu = 9000;
+    systemd.network = {
+      netdevs = {
+        "10-bond0" = {
+          netdevConfig = {
+            Kind = "bond";
+            Name = "bond0";
+          };
+          bondConfig = {
+            Mode = "802.3ad";
+            TransmitHashPolicy = "layer3+4";
+          };
+        };
+      };
+      networks = {
+        "30-eno1" = {
+          matchConfig.Name = "eno1";
+          networkConfig.Bond = "bond0";
+        };
+        "30-eno2" = {
+          matchConfig.Name = "eno2";
+          networkConfig.Bond = "bond0";
+        };
+        "30-eno3" = {
+          matchConfig.Name = "eno3";
+          networkConfig.Bond = "bond0";
+        };
+        "30-eno4" = {
+          matchConfig.Name = "eno4";
+          networkConfig.Bond = "bond0";
+        };
+        "40-bond0" = {
+          matchConfig.Name = "bond0";
+          linkConfig = {
+            RequiredForOnline = "carrier";
+          };
+          networkConfig.LinkLocalAddressing = "no";
+        };
+      };
+    };
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
