@@ -20,7 +20,7 @@ pkgs.writeShellApplication {
     EXIT="Exit"
 
     update () {
-      exec sudo nixos-rebuild switch --flake "github:tomasharkema/nix-config/update" --refresh --verbose --log-format internal-json -v |& nom --json
+      exec sudo nixos-rebuild switch --flake "github:tomasharkema/nix-config" --refresh --verbose --log-format internal-json -v |& nom --json
     }
 
     clear-cache () {
