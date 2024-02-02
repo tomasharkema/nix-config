@@ -7,7 +7,7 @@
   config = {
     environment.systemPackages = with pkgs; [
       tor
-      tor-browser-bundle-bin
+      # tor-browser-bundle-bin
     ];
 
     services.tor = {
