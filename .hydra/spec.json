@@ -17,7 +17,7 @@
     },
     "configs": {
       "type": "git",
-      "value": "https://github.com/tomasharkema/nix-config snowfall",
+      "value": "https://github.com/tomasharkema/nix-config main",
       "emailresponsible": true
     },
     "pulls": {
