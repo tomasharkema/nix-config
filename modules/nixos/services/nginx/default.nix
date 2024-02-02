@@ -33,7 +33,7 @@ in {
       recommendedZstdSettings = true;
 
       virtualHosts."${cfg.vhost}" = {
-        onlySSL = true;
+        forceSSL = true;
         # enableACME = true;
         # root = "/var/www/root";
 
@@ -44,10 +44,10 @@ in {
 
         locations =
           {
+            # "/webhook" = {
+            #   return = "302 /webhook/";
+            # };
             "/webhook" = {
-              return = "302 /webhook/";
-            };
-            "/webhook/" = {
               proxyPass = "http://localhost:${builtins.toString config.services.webhook.port}";
               extraConfig = ''
                 rewrite /webhook(.*) $1 break;
