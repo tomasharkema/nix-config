@@ -1,0 +1,166 @@
+[com/gexperts/Tilix]
+quake-specific-monitor=0
+tab-position='left'
+theme-variant='dark'
+
+[com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
+background-color='#1E1E2E'
+badge-color='#AC7EA8'
+badge-color-set=false
+bold-color-set=false
+cursor-colors-set=false
+foreground-color='#A1B0B8'
+highlight-colors-set=false
+palette=['#45475A', '#F38BA8', '#A6E3A1', '#F9E2AF', '#89B4FA', '#F5C2E7', '#94E2D5', '#BAC2DE', '#585B70', '#F38BA8', '#A6E3A1', '#F9E2AF', '#89B4FA', '#F5C2E7', '#94E2D5', '#A6ADC8']
+use-theme-colors=false
+visible-name='Default'
+
+[org/gnome/control-center]
+last-panel='sharing'
+window-state=(980, 640, false)
+
+[org/gnome/desktop/app-folders]
+folder-children=['Utilities', 'YaST', 'Pardus']
+
+[org/gnome/desktop/app-folders/folders/Pardus]
+categories=['X-Pardus-Apps']
+name='X-Pardus-Apps.directory'
+translate=true
+
+[org/gnome/desktop/background]
+color-shading-type='solid'
+picture-options='zoom'
+picture-uri='file:///run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg'
+picture-uri-dark='file:///run/current-system/sw/share/backgrounds/gnome/adwaita-d.jpg'
+primary-color='#3071AE'
+secondary-color='#000000'
+
+[org/gnome/desktop/input-sources]
+sources=[('xkb', 'us')]
+xkb-options=['terminate:ctrl_alt_bksp']
+
+[org/gnome/desktop/interface]
+color-scheme='prefer-dark'
+document-font-name='Neue Haas Grotesk Display Pro Medium 11'
+font-antialiasing='greyscale'
+font-hinting='full'
+font-name='Neue Haas Grotesk Display Pro Medium 11'
+gtk-theme='Catppuccin-Mocha-Compact-Blue-Dark'
+
+[org/gnome/desktop/notifications]
+application-children=['org-gnome-software', 'firefox', 'org-telegram-desktop', 'org-kde-kdeconnect-daemon']
+
+[org/gnome/desktop/notifications/application/firefox]
+application-id='firefox.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-software]
+application-id='org.gnome.Software.desktop'
+
+[org/gnome/desktop/notifications/application/org-kde-kdeconnect-daemon]
+application-id='org.kde.kdeconnect.daemon.desktop'
+
+[org/gnome/desktop/notifications/application/org-telegram-desktop]
+application-id='org.telegram.desktop.desktop'
+
+[org/gnome/desktop/peripherals/keyboard]
+numlock-state=true
+
+[org/gnome/desktop/privacy]
+old-files-age=uint32 30
+recent-files-max-age=-1
+
+[org/gnome/desktop/screensaver]
+color-shading-type='solid'
+lock-enabled=false
+picture-options='zoom'
+picture-uri='file:///run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg'
+primary-color='#3071AE'
+secondary-color='#000000'
+
+[org/gnome/desktop/wm/preferences]
+button-layout='appmenu:minimize,maximize,close'
+titlebar-font='Neue Haas Grotesk Display Pro Medium 11'
+
+[org/gnome/evolution-data-server]
+migrated=true
+
+[org/gnome/nautilus/preferences]
+always-use-location-entry=true
+default-folder-viewer='icon-view'
+migrated-gtk-settings=true
+search-filter-time-type='last_modified'
+
+[org/gnome/nautilus/window-state]
+maximized=true
+
+[org/gnome/settings-daemon/plugins/color]
+night-light-enabled=true
+
+[org/gnome/shell]
+disable-user-extensions=false
+disabled-extensions=['native-window-placement@gnome-shell-extensions.gcampax.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com', 'fq@megh', 'blur-my-shell@aunetx']
+enabled-extensions=['drive-menu@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-panel@jderose9.github.com', 'Vitals@CoreCoding.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'systemd-manager@hardpixel.eu', 'tailscale@joaophi.github.com', 'ControlBlurEffectOnLockScreen@pratap.fastmail.fm', 'reboottouefi@ubaygd.com', 'gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com', 'search-light@icedman.github.com', 'extension-list@tu.berry', 'no-overview@fthx', 'lan-ip-address@mrhuber.com', 'grand-theft-focus@zalckos.github.com', 'arcmenu@arcmenu.com', 'toggler@hedgie.tech', 'app-hider@lynith.dev', 'todo.txt@bart.libert.gmail.com', 'extgrid@neuromorph']
+favorite-apps=['org.gnome.Nautilus.desktop', 'firefox.desktop', 'kitty.desktop', 'code.desktop']
+last-selected-power-profile='performance'
+welcome-dialog-last-shown-version='45.1'
+
+[org/gnome/shell/extensions/arcmenu]
+menu-background-color='rgba(48,48,49,0.98)'
+menu-border-color='rgb(60,60,60)'
+menu-button-appearance='Icon'
+menu-foreground-color='rgb(223,223,223)'
+menu-item-active-bg-color='rgb(25,98,163)'
+menu-item-active-fg-color='rgb(255,255,255)'
+menu-item-hover-bg-color='rgb(21,83,158)'
+menu-item-hover-fg-color='rgb(255,255,255)'
+menu-separator-color='rgba(255,255,255,0.1)'
+prefs-visible-page=0
+search-entry-border-radius=(true, 25)
+
+[org/gnome/shell/extensions/dash-to-panel]
+animate-appicon-hover-animation-extent={'RIPPLE': 4, 'PLANK': 4, 'SIMPLE': 1}
+appicon-margin=8
+appicon-padding=4
+available-monitors=[0]
+dot-position='BOTTOM'
+hotkeys-overlay-combo='TEMPORARILY'
+leftbox-padding=-1
+panel-anchors='{"0":"MIDDLE"}\n'
+panel-lengths='{"0":100}\n'
+panel-sizes='{"0":48}\n'
+primary-monitor=0
+status-icon-padding=-1
+tray-padding=-1
+window-preview-title-position='TOP'
+
+[org/gnome/shell/extensions/extgrid]
+show-indicator=true
+
+[org/gnome/shell/extensions/user-theme]
+name='Catppuccin-Mocha-Compact-Blue-Dark'
+
+[org/gnome/shell/world-clocks]
+locations=@av []
+
+[org/gnome/software]
+check-timestamp=int64 1705435634
+first-run=false
+install-timestamp=int64 1705440978
+security-timestamp=int64 1705435634258997
+update-notification-timestamp=int64 1705441160
+
+[org/gnome/tweaks]
+show-extensions-notice=false
+
+[org/gtk/gtk4/settings/file-chooser]
+date-format='Medium'
+location-mode='path-bar'
+show-hidden=false
+show-size-column=true
+show-type-column=true
+sidebar-width=140
+sort-column='name'
+sort-directories-first=true
+sort-order='ascending'
+type-format='category'
+view-type='list'

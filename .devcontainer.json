@@ -1,0 +1,14 @@
+{
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Catppuccin.catppuccin-vsc",
+        "kamadorueda.alejandra",
+        "jnoortheen.nix-ide"
+      ]
+    }
+  },
+  "image": "ghcr.io/cachix/devenv:latest",
+  "overrideCommand": false,
+  "updateContentCommand": "devenv ci"
+}
