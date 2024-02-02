@@ -31,6 +31,6 @@ in {
     #   loader.grub.splashImage = null;
     # };
 
-    systemd.enableEmergencyMode = false;
+    # systemd.enableEmergencyMode = false;
   };
 }
