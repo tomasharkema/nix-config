@@ -49,7 +49,8 @@ in {
       firewall = {
         enable = false;
       };
-      useDHCP = lib.mkDefault true;
+      # useDHCP = lib.mkDefault true;
+      useNetworkd = true;
     };
 
     environment.systemPackages = with pkgs; [
