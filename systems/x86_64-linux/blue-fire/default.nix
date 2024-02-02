@@ -103,6 +103,7 @@ in {
     };
 
     systemd.network = {
+      enable = true;
       netdevs = {
         "10-bond0" = {
           netdevConfig = {
