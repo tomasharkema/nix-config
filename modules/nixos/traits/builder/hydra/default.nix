@@ -113,6 +113,7 @@ in {
 
       settings = {
         allowed-uris = [
+          "https://github.com/tomasharkema.keys"
           "https://api.github.com"
           "https://github.com/zhaofengli/nix-base32.git"
           "https://github.com/tomasharkema.keys"
