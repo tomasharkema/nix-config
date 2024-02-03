@@ -88,6 +88,8 @@ in {
     ];
 
     services = {
+      vscode-server.enable = true;
+
       udisks2 = {
         enable = true;
       };

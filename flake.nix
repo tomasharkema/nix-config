@@ -152,13 +152,9 @@
     # inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    poetry2nix = {
-      url = "github:nix-community/poetry2nix";
-    };
-
-    themes = {
-      url = "github:RGBCube/ThemeNix";
-    };
+    # poetry2nix = {
+    #   url = "github:nix-community/poetry2nix";
+    # };
 
     stylix.url = "github:danth/stylix/release-23.11";
   };
@@ -235,8 +231,6 @@
           system.stateVersion = "23.11";
           system.nixos.tags = ["snowfall"];
           system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
-
-          services.vscode-server.enable = true;
         }
       ];
 
