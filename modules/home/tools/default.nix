@@ -53,6 +53,7 @@ with pkgs; {
       mcfly
       morph
       mosh
+      guardian-agent
       mtr
       multitail
       navi
