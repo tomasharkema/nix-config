@@ -22,33 +22,45 @@ in {
   config = with lib; {
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
-    services.das_watchdog.enable = true;
 
     # Select internationalisation properties.
-    i18n.defaultLocale = "en_US.UTF-8";
+    i18n = {
+      defaultLocale = "en_US.UTF-8";
 
-    programs.git = {
-      enable = true;
-      lfs.enable = true;
+      extraLocaleSettings = {
+        LC_ADDRESS = "nl_NL.UTF-8";
+        LC_IDENTIFICATION = "nl_NL.UTF-8";
+        LC_MEASUREMENT = "nl_NL.UTF-8";
+        LC_MONETARY = "nl_NL.UTF-8";
+        LC_NAME = "nl_NL.UTF-8";
+        LC_NUMERIC = "nl_NL.UTF-8";
+        LC_PAPER = "nl_NL.UTF-8";
+        LC_TELEPHONE = "nl_NL.UTF-8";
+        LC_TIME = "nl_NL.UTF-8";
+      };
     };
 
-    boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+    boot = {
+      kernel.sysctl."net.ipv4.ip_forward" = 1;
 
-    i18n.extraLocaleSettings = {
-      LC_ADDRESS = "nl_NL.UTF-8";
-      LC_IDENTIFICATION = "nl_NL.UTF-8";
-      LC_MEASUREMENT = "nl_NL.UTF-8";
-      LC_MONETARY = "nl_NL.UTF-8";
-      LC_NAME = "nl_NL.UTF-8";
-      LC_NUMERIC = "nl_NL.UTF-8";
-      LC_PAPER = "nl_NL.UTF-8";
-      LC_TELEPHONE = "nl_NL.UTF-8";
-      LC_TIME = "nl_NL.UTF-8";
-    };
+      tmp = {
+        useTmpfs = true;
+        cleanOnBoot = true;
+      };
 
-    boot.tmp = {
-      useTmpfs = true;
-      cleanOnBoot = true;
+      kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+
+      kernelParams = [
+        "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
+        "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
+        "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
+      ];
+      loader = {
+        systemd-boot = {
+          netbootxyz.enable = true;
+          configurationLimit = 10;
+        };
+      };
     };
 
     environment.systemPackages = with pkgs; [
@@ -75,139 +87,160 @@ in {
       tpm-tools
     ];
 
-    services.udisks2 = {
-      enable = true;
-    };
+    services = {
+      udisks2 = {
+        enable = true;
+      };
 
-    programs._1password.enable = true;
-    services.thermald.enable = lib.mkIf (pkgs.system == "x86_64-linux") true;
+      das_watchdog.enable = true;
 
-    services.clipmenu.enable = true;
+      thermald.enable = lib.mkIf (pkgs.system == "x86_64-linux") true;
 
-    # services.eternal-terminal.enable = true;
-    hardware.enableAllFirmware = true;
-    hardware.enableRedistributableFirmware = true;
-    # hardware.fancontrol.enable = true;
+      clipmenu.enable = true;
 
-    services.openssh = {
-      enable = true;
-      settings = {
-        PasswordAuthentication = false;
-        KbdInteractiveAuthentication = false;
-        PermitRootLogin = "yes";
+      openssh = {
+        enable = true;
+        settings = {
+          PasswordAuthentication = false;
+          KbdInteractiveAuthentication = false;
+          PermitRootLogin = "yes";
+        };
+      };
+
+      mackerel-agent = {
+        enable = true;
+        apiKeyFile = config.age.secrets.mak.path;
+      };
+
+      fwupd.enable = true;
+
+      avahi.extraServiceFiles = {
+        ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
+        sftp-ssh = "${pkgs.avahi}/etc/avahi/services/sftp-ssh.service";
+        vnc = ''
+          <?xml version="1.0" standalone='no'?>
+          <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+          <service-group>
+            <name replace-wildcards="yes">%h</name>
+            <service>
+              <type>_rfb._tcp</type>
+              <port>5901</port>
+            </service>
+          </service-group>
+        '';
+        smb = ''
+          <?xml version="1.0" standalone='no'?>
+           <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+           <service-group>
+             <name replace-wildcards="yes">%h</name>
+             <service>
+               <type>_smb._tcp</type>
+               <port>445</port>
+             </service>
+           </service-group>
+        '';
+      };
+
+      udev = {enable = lib.mkDefault true;};
+
+      ntp = {
+        enable = true;
+        servers = [
+          "0.nl.pool.ntp.org"
+          "1.nl.pool.ntp.org"
+          "2.nl.pool.ntp.org"
+          "3.nl.pool.ntp.org"
+        ];
+      };
+
+      rsyslogd = {
+        enable = true;
+
+        extraConfig = ''
+          *.*    @@nix.harke.ma:5140;RSYSLOG_SyslogProtocol23Format
+        '';
       };
     };
-    services.mackerel-agent = {
-      enable = true;
-      apiKeyFile = config.age.secrets.mak.path;
+
+    programs = {
+      git = {
+        enable = true;
+        lfs.enable = true;
+      };
+
+      _1password.enable = true;
+
+      ssh.startAgent = true;
+
+      nix-ld.enable = true;
+
+      zsh = {
+        enable = true;
+      };
+
+      mtr.enable = true;
     };
 
-    programs.ssh.startAgent = true;
+    # services.eternal-terminal.enable = true;
+    hardware = {
+      enableAllFirmware = true;
+      enableRedistributableFirmware = true;
+    };
+    # hardware.fancontrol.enable = true;
 
     system.autoUpgrade.enable = true;
 
-    systemd.targets.sleep.enable = mkDefault false;
-    systemd.targets.suspend.enable = mkDefault false;
-    systemd.targets.hibernate.enable = mkDefault false;
-    systemd.targets.hybrid-sleep.enable = mkDefault false;
-
-    systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
-    systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
-
-    services.fwupd.enable = true;
-    networking.firewall = {
-      enable = mkDefault true;
+    systemd = {
+      targets = {
+        sleep.enable = mkDefault false;
+        suspend.enable = mkDefault false;
+        hibernate.enable = mkDefault false;
+        hybrid-sleep.enable = mkDefault false;
+      };
     };
+
+    nix.gc = {
+      automatic = true;
+      options = ''
+        --delete-older-than "7d"
+      '';
+      dates = "daily";
+    };
+
+    # systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+    # systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
+
+    networking = {
+      firewall = {
+        enable = mkDefault true;
+      };
+
+      extraHosts = ''
+        192.168.0.15 ipa.harkema.io
+      '';
+
+      enableIPv6 = false;
+    };
+
     powerManagement.powertop.enable = true;
 
-    services.avahi.extraServiceFiles = {
-      ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
-      sftp-ssh = "${pkgs.avahi}/etc/avahi/services/sftp-ssh.service";
-      vnc = ''
-        <?xml version="1.0" standalone='no'?>
-        <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
-        <service-group>
-          <name replace-wildcards="yes">%h</name>
-          <service>
-            <type>_rfb._tcp</type>
-            <port>5901</port>
-          </service>
-        </service-group>
-      '';
-      smb = ''
-        <?xml version="1.0" standalone='no'?>
-         <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
-         <service-group>
-           <name replace-wildcards="yes">%h</name>
-           <service>
-             <type>_smb._tcp</type>
-             <port>445</port>
-           </service>
-         </service-group>
-      '';
-    };
-    services.udev = {enable = lib.mkDefault true;};
+    security = {
+      pki.certificateFiles = [./ca.crt];
 
-    programs.zsh = {
-      enable = true;
-    };
-
-    boot = {
-      kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
-    };
-
-    networking.extraHosts = ''
-      192.168.0.15 ipa.harkema.io
-    '';
-    # system.nixos.tags = ["with-default"];
-    services.ntp = {
-      enable = true;
-      servers = [
-        "0.nl.pool.ntp.org"
-        "1.nl.pool.ntp.org"
-        "2.nl.pool.ntp.org"
-        "3.nl.pool.ntp.org"
-      ];
-    };
-
-    security.pki.certificateFiles = [./ca.crt];
-
-    networking.enableIPv6 = false;
-
-    security.ipa = {
-      enable = true;
-      server = "ipa.harkema.io";
-      domain = "harkema.io";
-      realm = "HARKEMA.IO";
-      basedn = "dc=harkema,dc=io";
-      certificate = pkgs.fetchurl {
-        url = "https://ipa.harkema.io/ipa/config/ca.crt";
-        sha256 = "0c69vkc45v9rga5x349l4znykcvgwngawx0axrhqq4jj3san7lb8";
-      };
-      dyndns.enable = true; # TODO: enable this??
-    };
-    # documentation.nixos.enable = false;
-    programs.mtr.enable = true;
-
-    services.rsyslogd = {
-      enable = true;
-
-      extraConfig = ''
-        *.*    @@nix.harke.ma:5140;RSYSLOG_SyslogProtocol23Format
-      '';
-    };
-    boot = {
-      kernelParams = [
-        "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
-        "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
-        "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
-      ];
-      loader = {
-        systemd-boot = {
-          netbootxyz.enable = true;
-          configurationLimit = 10;
+      ipa = {
+        enable = true;
+        server = "ipa.harkema.io";
+        domain = "harkema.io";
+        realm = "HARKEMA.IO";
+        basedn = "dc=harkema,dc=io";
+        certificate = pkgs.fetchurl {
+          url = "https://ipa.harkema.io/ipa/config/ca.crt";
+          sha256 = "0c69vkc45v9rga5x349l4znykcvgwngawx0axrhqq4jj3san7lb8";
         };
+        dyndns.enable = true; # TODO: enable this??
       };
     };
+
+    # documentation.nixos.enable = false;
   };
 }
