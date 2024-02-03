@@ -171,6 +171,7 @@ in {
       _1password.enable = true;
 
       ssh.startAgent = true;
+      mosh.enable = true;
 
       nix-ld.enable = true;
 
