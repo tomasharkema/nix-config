@@ -1,30 +1,41 @@
 {
   lib,
   pdm,
-  python39Packages,
-}:
-with python39Packages;
-  buildPythonPackage rec {
-    pname = "mkdocs-autorefs";
-    version = "0.4.1";
-    format = "pyproject";
+  python3,
+  python3Packages,
+  fetchFromGitHub,
+}: let
+  python = python3.withPackages (ps: with ps; [telegram]);
+in
+  python.pkgs.buildPythonApplication rec {
+    pname = "server-administration-bot";
+    version = "0.0.1";
+    # format = "pyproject";
+    pyproject = true;
 
-    src = fetchGithub {
-      inherit pname version;
-      sha256 = "sha256-cHSKe9Al+ezW1v7rqLpj+OiRoa9V9I42bW1ueEk6uoQ=";
+    src = fetchFromGitHub {
+      repo = "server-administration-bot";
+      owner = "gregdan3";
+      rev = "5a60b448d3d9864ebfef7de22e6903fa77aee0fb";
+      sha256 = "sha256-H8yhEMppfkt0l9bn3w9BkwniQiK9FFNKhbXMaYczTzw=";
     };
 
     nativeBuildInputs = [pdm];
-    propagatedBuildInputs = [
-      markdown
-      mkdocs
+    propagatedBuildInputs = with python.pkgs; [
+      pdm
+      wheel
+      pdm-pep517
+
+      setuptools
+      # markdown
+      # mkdocs
     ];
 
     doCheck = false;
 
-    meta = with lib; {
-      homepage = "https://github.com/mkdocstrings/autorefs";
-      description = "Automatically link across pages in MkDocs.";
-      license = licenses.isc;
-    };
+    # meta = with lib; {
+    #   homepage = "https://github.com/mkdocstrings/autorefs";
+    #   description = "Automatically link across pages in MkDocs.";
+    #   license = licenses.isc;
+    # };
   }
