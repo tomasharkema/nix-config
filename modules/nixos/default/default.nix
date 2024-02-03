@@ -4,17 +4,19 @@
   lib,
   inputs,
   ...
-}: let
-  theme = inputs.themes.custom (inputs.themes.catppuccin-mocha
-    // {
-      base00 = "000000";
-    });
-in {
+}:
+# let
+#   theme = inputs.themes.custom (inputs.themes.catppuccin-mocha
+#     // {
+#       base00 = "000000";
+#     });
+# in
+{
   options = {
     variables = lib.mkOption {
       type = lib.types.attrs;
       default = {
-        theme = theme;
+        # theme = theme;
       };
     };
   };
