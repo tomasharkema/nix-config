@@ -119,13 +119,13 @@ in {
           supportedFeatures = ["kvm" "benchmark" "big-parallel"];
           speedFactor = 10;
         }
-        {
-          hostName = "builder@wodan-wsl";
-          systems = ["x86_64-linux" "i686-linux" "aarch64-linux"];
-          maxJobs = 2;
-          supportedFeatures = ["kvm" "benchmark" "big-parallel"];
-          speedFactor = 100;
-        }
+        # {
+        #   hostName = "builder@wodan-wsl";
+        #   systems = ["x86_64-linux" "i686-linux" "aarch64-linux"];
+        #   maxJobs = 2;
+        #   supportedFeatures = ["kvm" "benchmark" "big-parallel"];
+        #   speedFactor = 100;
+        # }
       ];
     };
   };
