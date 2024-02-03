@@ -34,13 +34,9 @@ in {
 
       virtualHosts."${cfg.vhost}" = {
         forceSSL = true;
-        # enableACME = true;
-        # root = "/var/www/root";
 
         sslCertificate = "/etc/ssl/private/${cfg.vhost}.crt";
         sslCertificateKey = "/etc/ssl/private/${cfg.vhost}.key";
-
-        # forceSSL = true;
 
         locations =
           {
