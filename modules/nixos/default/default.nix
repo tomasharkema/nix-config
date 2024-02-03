@@ -199,14 +199,6 @@ in {
       };
     };
 
-    nix.gc = {
-      automatic = true;
-      options = ''
-        --delete-older-than "7d"
-      '';
-      dates = "daily";
-    };
-
     # systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
     # systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 
