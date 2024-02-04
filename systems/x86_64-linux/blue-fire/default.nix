@@ -32,10 +32,6 @@ in {
       };
     };
 
-    services.tcsd.enable = true;
-
-    services.prometheus.exporters.ipmi.enable = true;
-
     headless.enable = true;
 
     apps.podman.enable = true;
@@ -63,16 +59,32 @@ in {
       # openipmi
     ];
 
-    services.tailscale = {
-      useRoutingFeatures = lib.mkForce "both";
+    virtualisation = {
+      oci-containers.containers = {
+        social-dl = {
+          image = "ghcr.io/tomasharkema/go-nixos-menu";
+          autoStart = true;
+          ports = ["3000:3000"];
+        };
+      };
     };
 
-    services.nfs = {
-      server = {
-        enable = true;
-        exports = ''
-          /export/media        *(rw,fsid=0,no_subtree_check)
-        '';
+    services = {
+      tailscale = {
+        useRoutingFeatures = lib.mkForce "both";
+      };
+
+      tcsd.enable = true;
+
+      prometheus.exporters.ipmi.enable = true;
+
+      nfs = {
+        server = {
+          enable = true;
+          exports = ''
+            /export/media        *(rw,fsid=0,no_subtree_check)
+          '';
+        };
       };
     };
 
