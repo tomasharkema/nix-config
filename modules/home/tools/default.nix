@@ -10,7 +10,7 @@ with pkgs; {
       # mattermost-desktop
       # tg
       # _1password
-      thefuck
+      # thefuck
       antidote
       # autojump
       bash
@@ -34,7 +34,7 @@ with pkgs; {
       fpp
       fx
       fzf
-      gh
+
       git
       git-lfs
       gping

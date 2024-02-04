@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    unstable.url = "nixpkgs/nixos-unstable";
 
     flake-compat = {
       url = "github:edolstra/flake-compat";
@@ -147,10 +147,9 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # peerix = {
-    # url = "github:cid-chan/peerix";
-    # inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    peerix = {
+      url = "github:cid-chan/peerix";
+    };
 
     # poetry2nix = {
     #   url = "github:nix-community/poetry2nix";

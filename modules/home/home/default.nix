@@ -97,10 +97,10 @@ in
           enableZshIntegration = true;
         };
 
-        thefuck = {
-          enable = true;
-          enableZshIntegration = true;
-        };
+        # thefuck = {
+        #   enable = true;
+        #   enableZshIntegration = true;
+        # };
 
         tmux = {enable = true;};
 
