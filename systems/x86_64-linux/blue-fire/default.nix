@@ -64,7 +64,7 @@ in {
         go-nixos-menu = {
           image = "docker.io/tomasharkema7/go-nixos-menu";
           autoStart = true;
-          ports = ["3000:3000"];
+          ports = ["3001:3000"];
         };
       };
     };
