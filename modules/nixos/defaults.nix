@@ -33,7 +33,6 @@ in {
     '';
 
     shellAliases = {
-      gh = "op plugin run -- gh";
       cachix = "op plugin run -- cachix";
     };
   };

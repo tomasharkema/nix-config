@@ -171,7 +171,6 @@ in
           };
         };
 
-        gh-dash.enable = true;
         zsh = {
           enable = true;
           enableAutosuggestions = true;
