@@ -61,7 +61,7 @@ in {
 
     virtualisation = {
       oci-containers.containers = {
-        social-dl = {
+        go-nixos-menu = {
           image = "ghcr.io/tomasharkema/go-nixos-menu";
           autoStart = true;
           ports = ["3000:3000"];
