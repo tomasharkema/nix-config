@@ -1245,17 +1245,16 @@
         "systems": "systems_7"
       },
       "locked": {
-        "lastModified": 1707098629,
-        "narHash": "sha256-QJs8WLaVjiUJ4UVRetpzkob/l6llY4o0xu2t4r9za/E=",
+        "lastModified": 1707094634,
+        "narHash": "sha256-YGjGro7fOUnj+kMK07UwOXqjZpd6J/FqKd9ctkiWYMs=",
         "owner": "tomasharkema",
         "repo": "go-nixos-menu",
-        "rev": "8dfd849554ed32eadc1287055a9d2e78d21fb6da",
+        "rev": "633531f9876fdcf153db1f0f264d64466be93d90",
         "type": "github"
       },
       "original": {
         "owner": "tomasharkema",
         "repo": "go-nixos-menu",
-        "rev": "8dfd849554ed32eadc1287055a9d2e78d21fb6da",
         "type": "github"
       }
     },
