@@ -155,7 +155,13 @@
     #   url = "github:nix-community/poetry2nix";
     # };
 
-    stylix.url = "github:danth/stylix/release-23.11";
+    stylix = {
+      url = "github:danth/stylix/release-23.11";
+    };
+
+    go-nixos-menu = {
+      url = "github:tomasharkema/go-nixos-menu";
+    };
   };
 
   outputs = inputs: let
