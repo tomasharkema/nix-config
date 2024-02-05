@@ -2,7 +2,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+with lib; {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -29,7 +30,7 @@
     apps.tor.relay.enable = true;
     services.qemuGuest.enable = true;
     services.freeipa.enable = true;
-
+    service.nginx.enable = mkForce false;
     # boot.kernelPackages = pkgs.linuxPackages_latest;
 
     networking.firewall.enable = lib.mkForce false;
@@ -39,9 +40,9 @@
     networking.useDHCP = lib.mkForce true;
 
     # sudo mount --types virtiofs appdata_ssd /mnt/shared/
-    fileSystems."/mnt/shared" = {
-      fsType = "virtiofs";
-      device = "appdata_ssd";
-    };
+    # fileSystems."/mnt/shared" = {
+    #   fsType = "virtiofs";
+    #   device = "appdata_ssd";
+    # };
   };
 }
