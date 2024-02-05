@@ -34,6 +34,8 @@ in {
 
     headless.enable = true;
 
+    services.go-nixos-menu.enable = true;
+
     apps.podman.enable = true;
 
     networking = {
