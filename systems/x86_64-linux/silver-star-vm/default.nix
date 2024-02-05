@@ -28,9 +28,11 @@ with lib; {
     };
 
     apps.tor.relay.enable = true;
-    services.qemuGuest.enable = true;
-    services.freeipa.enable = true;
-    service.nginx.enable = mkForce false;
+    services = {
+      qemuGuest.enable = true;
+      freeipa.enable = true;
+      nginx.enable = mkForce false;
+    };
     # boot.kernelPackages = pkgs.linuxPackages_latest;
 
     networking.firewall.enable = lib.mkForce false;
