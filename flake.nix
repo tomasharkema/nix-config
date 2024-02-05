@@ -160,7 +160,7 @@
     };
 
     go-nixos-menu = {
-      url = "github:tomasharkema/go-nixos-menu/8dfd849554ed32eadc1287055a9d2e78d21fb6da";
+      url = "github:tomasharkema/go-nixos-menu";
     };
   };
 
