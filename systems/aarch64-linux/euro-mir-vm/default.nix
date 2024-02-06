@@ -22,6 +22,7 @@
 
       encrypt = false;
     };
+
     gui = {
       enable = true;
       desktop = {
@@ -29,10 +30,12 @@
       };
       quiet-boot.enable = true;
       apps = {
-        flatpak.enable = false;
+        flatpak.enable = true;
       };
     };
+
     boot.growPartition = true;
+
     traits = {
       hardware = {
         tpm.enable = true;
