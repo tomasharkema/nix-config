@@ -73,6 +73,9 @@
     boot.kernelModules = ["i2c-dev"];
     hardware.i2c.enable = true;
     headless.hypervisor.enable = true;
+    services.command-center = {
+      enableBot = true;
+    };
 
     networking.interfaces."enp2s0".mtu = 9000;
 
