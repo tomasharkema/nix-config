@@ -242,15 +242,16 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1707179139,
-        "narHash": "sha256-OoFzN5KHfpYs7LT+EZHkHl/iBAvIKUHYo090KsVL5Gk=",
+        "lastModified": 1707244008,
+        "narHash": "sha256-Tra9DbIQ1my64sHrishwkerdDjt5PW0ojws1MEmN7wE=",
         "owner": "tomasharkema",
         "repo": "command-center",
-        "rev": "60b6a410baa7bd473412d65826c578f351ac352f",
+        "rev": "9052c7c8923fbbbe1f4bd7c8d95e11a6de83337e",
         "type": "github"
       },
       "original": {
         "owner": "tomasharkema",
+        "ref": "0.0.1-alpha5",
         "repo": "command-center",
         "type": "github"
       }
