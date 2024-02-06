@@ -34,7 +34,9 @@ in {
 
     headless.enable = true;
 
-    # services.go-nixos-menu.enable = true;
+    services.command-center = {
+      enableBot = true;
+    };
 
     apps.podman.enable = true;
 
@@ -61,15 +63,15 @@ in {
       # openipmi
     ];
 
-    virtualisation = {
-      oci-containers.containers = {
-        go-nixos-menu = {
-          image = "docker.io/tomasharkema7/go-nixos-menu";
-          autoStart = true;
-          ports = ["3001:3000"];
-        };
-      };
-    };
+    # virtualisation = {
+    #   oci-containers.containers = {
+    #     go-nixos-menu = {
+    #       image = "docker.io/tomasharkema7/go-nixos-menu";
+    #       autoStart = true;
+    #       ports = ["3001:3000"];
+    #     };
+    #   };
+    # };
 
     services = {
       tailscale = {
