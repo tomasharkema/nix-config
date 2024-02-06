@@ -61,7 +61,7 @@ in {
     boot = {
       crashDump.enable = true;
       initrd = {
-        verbose = true;
+        # verbose = true;
         luks.devices."crypted" = {
           # keyFile = "/key/key";
           # tryEmptyPassphrase = true;
@@ -250,9 +250,9 @@ in {
             # shell = "/bin/cryptsetup-askpass";
             authorizedKeys = config.user.keys;
             hostKeys = [
-              "/boot/secrets/ssh_host_ed25519_key"
-              "/boot/secrets/ssh_host_rsa_key"
-              "/boot/secrets/ssh_host_ecdsa_key"
+              "/etc/ssh/boot/ssh_host_ed25519_key"
+              "/etc/ssh/boot/ssh_host_rsa_key"
+              "/etc/ssh/boot/ssh_host_ecdsa_key"
             ];
           };
         };
