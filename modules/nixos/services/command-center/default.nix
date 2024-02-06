@@ -7,30 +7,34 @@
 with pkgs;
 with lib;
 with lib.custom; let
-  cfg = config.services.go-nixos-dashboard;
+  cfg = config.services.command-center;
 in {
-  options.services.go-nixos-dashboard = {
+  options.services.command-center = {
     enable = mkBoolOpt true "";
+    enableBot = mkBoolOpt false "";
   };
 
   config = let
-    go-nixos-dashboard-service = {
+    command-center-service = {
       enable = true;
-      description = "go-nixos-dashboard";
+      description = "command-center";
+      environment = {
+        COMMAND_CENTER_RUN_BOT = mkIf cfg.enableBot "true";
+      };
       unitConfig = {
         Type = "notify";
       };
       serviceConfig = {
         RestartSec = 5;
-        EnvironmentFile = config.age.secrets."go-nixos-menu.env".path;
+        EnvironmentFile = config.age.secrets."command-center.env".path;
       };
-      script = "${lib.getExe go-nixos-menu} -v";
+      script = "${lib.getExe command-center} -v";
       wantedBy = ["multi-user.target"];
     };
   in
     mkIf cfg.enable {
       systemd.services = {
-        go-nixos-dashboard = go-nixos-dashboard-service;
+        command-center = command-center-service;
       };
 
       proxy-services.services = {
@@ -39,7 +43,7 @@ in {
         };
       };
 
-      age.secrets."go-nixos-menu.env" = {
+      age.secrets."command-center.env" = {
         file = ../../../../secrets/go-nixos-menu.env.age;
         mode = "644";
       };
