@@ -13,6 +13,7 @@ in {
 
   config = mkIf cfg.enable {
     apps.podman.enable = true;
+
     virtualisation = {
       oci-containers.containers = {
         # golinks = {
