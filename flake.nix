@@ -159,8 +159,8 @@
       url = "github:danth/stylix/release-23.11";
     };
 
-    go-nixos-menu = {
-      url = "github:tomasharkema/go-nixos-menu/1313e757977b0f3024ad4eccde494961d306095a";
+    command-center = {
+      url = "github:tomasharkema/command-center";
     };
   };
 
