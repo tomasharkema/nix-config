@@ -160,7 +160,7 @@
     };
 
     command-center = {
-      url = "github:tomasharkema/command-center/0.0.1-alpha5";
+      url = "github:tomasharkema/command-center";
     };
   };
 
