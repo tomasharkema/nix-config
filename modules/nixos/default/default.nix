@@ -101,7 +101,7 @@
         enable = true;
       };
 
-      das_watchdog.enable = true;
+      # das_watchdog.enable = true;
 
       thermald.enable = lib.mkIf (pkgs.system == "x86_64-linux") true;
 
