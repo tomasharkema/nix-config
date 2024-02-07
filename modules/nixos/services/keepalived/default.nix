@@ -8,7 +8,7 @@ with lib.custom; let
   cfg = config.services.ha;
 in {
   options.services.ha = {
-    enable = mkBoolOpt true "Enable ha/keepalived";
+    enable = mkBoolOpt false "Enable ha/keepalived";
 
     interface = mkOpt types.str "zthnhagpcb" "interface";
 
@@ -16,12 +16,11 @@ in {
   };
   config = mkIf true {
     services.keepalived = {
-      enable = true;
-      # openFirewall = true;
-      snmp = {
-        enable = true;
-        enableKeepalived = true;
-      };
+      # enable = true;
+      # snmp = {
+      #   enable = true;
+      #   enableKeepalived = true;
+      # };
 
       vrrpInstances."VI_1" = {
         state =
