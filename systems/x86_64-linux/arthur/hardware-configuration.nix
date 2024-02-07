@@ -10,11 +10,22 @@
 }: {
   imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
-  # boot.initrd.availableKernelModules =
-  # [ "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
-  # boot.initrd.kernelModules = [ ];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
+  boot = {
+    initrd = {
+      availableKernelModules = [
+        "xhci_pci"
+        "ehci_pci"
+        "ahci"
+        "usb_storage"
+        "sd_mod"
+        "sr_mod"
+        "rtsx_pci_sdmmc"
+        "amdgpu"
+        "usbhid"
+      ];
+    };
+    kernelModules = ["kvm-intel" "jc42" "tpm_rng"];
+  };
 
   # swapDevices = [
   # { device = "/dev/disk/by-uuid/ee4e62c6-5507-4312-ac5e-4e69a06baf24"; }
