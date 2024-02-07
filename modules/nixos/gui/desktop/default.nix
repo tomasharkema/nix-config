@@ -102,6 +102,8 @@ in {
 
         nix-software-center
         # nixos-conf-editor
+        yubikey-manager-qt
+        yubikey-touch-detector
 
         gnome-firmware
         gnome.gnome-session
