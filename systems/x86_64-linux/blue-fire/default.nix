@@ -51,6 +51,8 @@ in {
       };
       useDHCP = lib.mkDefault true;
       # useNetworkd = true;
+
+      interfaces."eno1".wakeOnLan.enable = true;
     };
 
     environment.systemPackages = with pkgs; [
