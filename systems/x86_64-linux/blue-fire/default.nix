@@ -52,9 +52,17 @@ in {
       useDHCP = lib.mkDefault true;
       # useNetworkd = true;
 
-      interfaces."eno1".wakeOnLan.enable = true;
+      interfaces = {
+        "eno1" = {wakeOnLan.enable = true;};
+        "eno2" = {wakeOnLan.enable = true;};
+        "eno3" = {wakeOnLan.enable = true;};
+        "eno4" = {wakeOnLan.enable = true;};
+      };
     };
-
+    systemd.watchdog = {
+      runtimeTime = "1m";
+      kexecTime = "1m";
+    };
     environment.systemPackages = with pkgs; [
       # ipmicfg
       # ipmiview
@@ -62,7 +70,8 @@ in {
       # vagrant
       ipmitool
       boot-into-bios
-      # openipmi
+      openipmi
+      freeipmi
     ];
 
     # virtualisation = {
@@ -84,42 +93,42 @@ in {
 
       prometheus.exporters.ipmi.enable = true;
 
-      nfs = {
-        server = {
-          enable = true;
-          exports = ''
-            /export/media        *(rw,fsid=0,no_subtree_check)
-          '';
-        };
-      };
-    };
-
-    fileSystems = {
-      "/export/media" = {
-        device = "/media";
-        options = ["bind"];
-      };
-      "/mnt/unraid/domains" = {
-        device = "192.168.0.100:/mnt/user/domains";
-        fsType = "nfs";
-      };
-      "/mnt/unraid/appdata" = {
-        device = "192.168.0.100:/mnt/user/appdata";
-        fsType = "nfs";
-      };
-      "/mnt/unraid/appdata_ssd" = {
-        device = "192.168.0.100:/mnt/user/appdata_ssd";
-        fsType = "nfs";
-      };
-      "/mnt/unraid/appdata_disk" = {
-        device = "192.168.0.100:/mnt/user/appdata_disk";
-        fsType = "nfs";
-      };
-      # "/mnt/dione" = {
-      #   device = "192.168.178.3:/volume1/homes";
-      #   fsType = "nfs";
+      # nfs = {
+      #   server = {
+      #     enable = true;
+      #     exports = ''
+      #       /export/media        *(rw,fsid=0,no_subtree_check)
+      #     '';
+      #   };
       # };
     };
+
+    # fileSystems = {
+    #   "/export/media" = {
+    #     device = "/media";
+    #     options = ["bind"];
+    #   };
+    #   "/mnt/unraid/domains" = {
+    #     device = "192.168.0.100:/mnt/user/domains";
+    #     fsType = "nfs";
+    #   };
+    #   "/mnt/unraid/appdata" = {
+    #     device = "192.168.0.100:/mnt/user/appdata";
+    #     fsType = "nfs";
+    #   };
+    #   "/mnt/unraid/appdata_ssd" = {
+    #     device = "192.168.0.100:/mnt/user/appdata_ssd";
+    #     fsType = "nfs";
+    #   };
+    #   "/mnt/unraid/appdata_disk" = {
+    #     device = "192.168.0.100:/mnt/user/appdata_disk";
+    #     fsType = "nfs";
+    #   };
+    #   # "/mnt/dione" = {
+    #   #   device = "192.168.178.3:/volume1/homes";
+    #   #   fsType = "nfs";
+    #   # };
+    # };
 
     # systemd.network = {
     #   enable = true;
@@ -195,7 +204,7 @@ in {
         "ipmi_si"
         "ipmi_devintf"
         "ipmi_msghandler"
-        # "watchdog"
+        "watchdog"
       ];
       extraModulePackages = [];
       # kernelParams = ["console=ttyS0,115200" "console=tty1"];
