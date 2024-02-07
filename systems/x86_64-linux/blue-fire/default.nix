@@ -88,7 +88,7 @@ in {
       tailscale = {
         useRoutingFeatures = lib.mkForce "both";
       };
-
+      ha.initialMaster = true;
       tcsd.enable = true;
 
       prometheus.exporters.ipmi.enable = true;

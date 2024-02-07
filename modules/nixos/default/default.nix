@@ -67,6 +67,7 @@
 
     environment.systemPackages = with pkgs; [
       atop
+      powertop
       packagekit
       fwupd
       fwupd-efi
