@@ -27,15 +27,6 @@
       quiet-boot.enable = true;
     };
 
-    services.fprintd = {
-      enable = true;
-      package = pkgs.fprintd-tod;
-      tod = {
-        enable = true;
-        driver = pkgs.libfprint-2-tod1-goodix-550a;
-      };
-    };
-
     apps.podman.enable = true;
 
     headless.hypervisor.enable = true;
@@ -59,6 +50,14 @@
 
     services = {
       xserver.libinput.enable = true;
+      fprintd = {
+        enable = true;
+        package = pkgs.fprintd-tod;
+        tod = {
+          enable = true;
+          driver = pkgs.libfprint-2-tod1-goodix-550a;
+        };
+      };
     };
 
     boot = {
@@ -70,19 +69,5 @@
     };
 
     programs.mtr.enable = true;
-    # programs.gnupg.agent = {
-    #   enable = true;
-    #   enableSSHSupport = true;
-    # };
-
-    # List services that you want to enable:
-
-    # Enable the OpenSSH daemon.
-    # services.openssh.enable = true;
-
-    # Open ports in the firewall.
-    # networking.firewall.allowedTCPPorts = [ ... ];
-    # networking.firewall.allowedUDPPorts = [ ... ];
-    # Or disable the firewall altogether.
   };
 }
