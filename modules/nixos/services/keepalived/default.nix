@@ -34,6 +34,13 @@ in {
           then 100
           else 50;
         interface = cfg.interface;
+
+        virtualIps = [
+          {
+            addr = "172.25.25.25/16";
+            dev = cfg.interface;
+          }
+        ];
       };
     };
   };

@@ -87,10 +87,14 @@
       pkgs.deepin.udisks2-qt5
       udisks2
       pv
+      yubikey-manager
+
       tpm-tools
     ];
 
     services = {
+      yubikey-agent.enable = true;
+
       vscode-server.enable = true;
 
       udisks2 = {
