@@ -34,10 +34,6 @@ in {
 
     headless.enable = true;
 
-    services.command-center = {
-      enableBot = true;
-    };
-
     apps.podman.enable = true;
 
     networking = {
@@ -90,11 +86,9 @@ in {
       tailscale = {
         useRoutingFeatures = lib.mkForce "both";
       };
-      ha.initialMaster = true;
       tcsd.enable = true;
 
       prometheus.exporters.ipmi.enable = true;
-      das_watchdog.enable = false;
       # nfs = {
       #   server = {
       #     enable = true;
