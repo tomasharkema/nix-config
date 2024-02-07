@@ -10,7 +10,7 @@
   # '' "derp";
   self = inputs.self;
 in {
-  config = {
+  config = lib.mkIf false {
     # system.configurationRevision = ""; #lib.mkIf (self ? rev) self.rev;
     system.activationScripts.notify.text = ''
       function notify_result {
