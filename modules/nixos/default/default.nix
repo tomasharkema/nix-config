@@ -98,6 +98,7 @@
       yubikey-manager
 
       tpm-tools
+      opencryptoki
     ];
 
     services = {
