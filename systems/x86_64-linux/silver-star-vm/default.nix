@@ -22,13 +22,18 @@ with lib; {
       main = "/dev/disk/by-id/virtio-vdisk1";
     };
 
-    apps.tor.relay.enable = true;
+    # apps.tor.relay.enable = true;
+
     services = {
       qemuGuest.enable = true;
       freeipa.enable = true;
       nginx.enable = mkForce false;
       resilio = {
         enable = lib.mkForce false;
+      };
+      ha.initialMaster = true;
+      command-center = {
+        enableBot = true;
       };
     };
     # boot.kernelPackages = pkgs.linuxPackages_latest;
