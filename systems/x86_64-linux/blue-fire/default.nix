@@ -94,7 +94,7 @@ in {
       tcsd.enable = true;
 
       prometheus.exporters.ipmi.enable = true;
-
+      das_watchdog.enable = false;
       # nfs = {
       #   server = {
       #     enable = true;
