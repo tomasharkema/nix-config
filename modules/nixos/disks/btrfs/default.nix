@@ -126,14 +126,9 @@ in
           snapshotInterval = "hourly";
           cleanupInterval = "1d";
 
-          filters = ''
-            /nix
-            /tmp
-          '';
-
           configs."root" = {
             SUBVOLUME = "/";
-            ALLOW_USERS = ["tomas"];
+            ALLOW_USERS = ["tomas" "root"];
             TIMELINE_CREATE = true;
             TIMELINE_CLEANUP = true;
             TIMELINE_LIMIT_HOURLY = 4;
