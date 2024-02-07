@@ -72,6 +72,8 @@ in {
       boot-into-bios
       openipmi
       freeipmi
+      ipmicfg
+      ipmiutil
     ];
 
     # virtualisation = {
