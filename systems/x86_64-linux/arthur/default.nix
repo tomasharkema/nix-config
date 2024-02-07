@@ -42,33 +42,13 @@
     networking = {
       hostName = "arthur";
       hostId = "529fd7bb";
-    };
-
-    boot = {
-      initrd = {
-        availableKernelModules = [
-          "xhci_pci"
-          "ehci_pci"
-          "ahci"
-          "usb_storage"
-          "sd_mod"
-          "sr_mod"
-          "rtsx_pci_sdmmc"
-          "amdgpu"
-        ];
-      };
-      kernelModules = ["kvm-intel" "jc42" "tpm_rng"];
-    };
-
-    networking.useDHCP = lib.mkDefault true;
-
-    networking.firewall = {
-      enable = true;
+      useDHCP = lib.mkDefault true;
+      interfaces."eno1".wakeOnLan.enable = true;
+      firewall.enable = true;
+      wireless.enable = lib.mkForce false;
     };
 
     services.tcsd.enable = true;
-
-    networking.wireless.enable = lib.mkForce false;
 
     # environment.persistence."/nix/persistent" = {
     #   hideMounts = true;
