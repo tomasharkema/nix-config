@@ -50,7 +50,7 @@
 
     # Enable nix flakes
     nix.extraOptions = ''
-      experimental-features = nix-command flakes
+      experimental-features = nix-command flakes cgroups
     '';
 
     programs.zsh = {
