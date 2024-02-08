@@ -81,5 +81,5 @@ in {
   "cachix-token.age".publicKeys = allKeys;
   "notify.age".publicKeys = allKeys;
   "mak.age".publicKeys = allKeys;
-  "go-nixos-menu.env.age".publicKeys = allKeys;
+  "command-center.env.age".publicKeys = allKeys;
 }
