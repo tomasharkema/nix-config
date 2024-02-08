@@ -41,6 +41,14 @@
         LC_TIME = "nl_NL.UTF-8";
       };
     };
+    services.earlyoom = {
+      enable = true;
+    };
+
+    zramSwap = {
+      enable = true;
+      algorithm = "lz4";
+    };
 
     boot = {
       kernel.sysctl."net.ipv4.ip_forward" = 1;
@@ -67,6 +75,7 @@
 
     environment.systemPackages = with pkgs; [
       atop
+      powertop
       packagekit
       fwupd
       fwupd-efi
@@ -86,17 +95,22 @@
       pkgs.deepin.udisks2-qt5
       udisks2
       pv
+      yubikey-manager
+
       tpm-tools
+      opencryptoki
     ];
 
     services = {
+      yubikey-agent.enable = true;
+
       vscode-server.enable = true;
 
       udisks2 = {
         enable = true;
       };
 
-      das_watchdog.enable = true;
+      # das_watchdog.enable = true;
 
       thermald.enable = lib.mkIf (pkgs.system == "x86_64-linux") true;
 

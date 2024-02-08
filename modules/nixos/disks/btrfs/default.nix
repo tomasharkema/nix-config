@@ -66,12 +66,6 @@
             mountpoint = "/nix";
           };
           # Subvolume for the swapfile
-          "/swap" = {
-            mountpoint = "/.swapvol";
-            swap = {
-              swapfile.size = "10G";
-            };
-          };
           # "/.snapshots" = {
           #   mountpoint = "/.snapshots";
 
@@ -104,7 +98,6 @@ in
           description = "Dev for optional media partition";
         };
         encrypt = mkEnableOption "encrypted";
-        swap = mkEnableOption "swap";
       };
     };
 
@@ -126,14 +119,9 @@ in
           snapshotInterval = "hourly";
           cleanupInterval = "1d";
 
-          filters = ''
-            /nix
-            /tmp
-          '';
-
           configs."root" = {
             SUBVOLUME = "/";
-            ALLOW_USERS = ["tomas"];
+            ALLOW_USERS = ["tomas" "root"];
             TIMELINE_CREATE = true;
             TIMELINE_CLEANUP = true;
             TIMELINE_LIMIT_HOURLY = 4;
@@ -182,14 +170,6 @@ in
                     type = "filesystem";
                     format = "vfat";
                     mountpoint = "/boot";
-                  };
-                };
-
-                swap = mkIf cfg.swap {
-                  size = "16G";
-                  content = {
-                    type = "swap";
-                    resumeDevice = true; # resume from hiberation from this device
                   };
                 };
 
