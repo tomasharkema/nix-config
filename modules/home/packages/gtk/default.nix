@@ -10,7 +10,12 @@
     # };
 
     home.file = let
-      autostartPrograms = with pkgs; [_1password-gui telegram-desktop keybase-gui openrgb];
+      autostartPrograms = with pkgs; [
+        _1password-gui
+        telegram-desktop
+        #keybase-gui
+        openrgb
+      ];
     in
       builtins.listToAttrs (map
         (pkg: {
