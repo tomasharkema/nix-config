@@ -10,15 +10,6 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
-    # ../../common/quiet-boot.nix
-    # ../../common/game-mode.nix
-    # ../../common/wifi.nix
-    # ../../apps/desktop.nix
-    # ../../apps/steam.nix
-    # ./disk-config.nix
-    # {
-    # _module.args.disks = ["/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y"];
-    # }
   ];
 
   config = {
@@ -51,10 +42,17 @@
     boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
     hardware.cpu.intel.updateMicrocode = true;
-    # nixpkgs.system = "x86_64-linux";
+    nixpkgs.system = "x86_64-linux";
 
-    networking = {hostName = "enzian";};
-    networking.hostId = "529fd7fa";
+    networking = {
+      hostName = "enzian";
+      hostId = "529fd7fa";
+      firewall = {
+        enable = true;
+      };
+      useDHCP = lib.mkDefault true;
+      interfaces."enp4s0".wakeOnLan.enable = true;
+    };
 
     # deployment.tags = [ "bare" ];
     # deployment = {
@@ -63,25 +61,25 @@
     #   targetUser = "root";
     # };
 
-    networking.firewall = {
-      enable = true;
+    boot = {
+      initrd = {
+        availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
+        kernelModules = ["kvm-intel" "uinput" "nvme"];
+      };
+      kernelModules = ["kvm-intel" "uinput" "nvme"];
+      extraModulePackages = [];
     };
-
-    boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-    boot.initrd.kernelModules = ["kvm-intel" "uinput" "nvme"];
-    boot.kernelModules = ["kvm-intel" "uinput" "nvme"];
-    boot.extraModulePackages = [];
-
-    networking.useDHCP = lib.mkDefault true;
     hardware.bluetooth.enable = true;
-    services.blueman.enable = true;
+    services = {
+      blueman.enable = true;
 
-    services.nfs = {
-      server = {
-        enable = true;
-        exports = ''
-          /export/media       *(rw,fsid=0,no_subtree_check)
-        '';
+      nfs = {
+        server = {
+          enable = true;
+          exports = ''
+            /export/media       *(rw,fsid=0,no_subtree_check)
+          '';
+        };
       };
     };
 

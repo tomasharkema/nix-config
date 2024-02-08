@@ -9,11 +9,6 @@ with lib; {
   ];
 
   config = {
-    networking.hostName = "silver-star-vm";
-
-    services.resilio = {
-      enable = lib.mkForce false;
-    };
     headless.enable = true;
     traits = {
       hardware = {
@@ -27,19 +22,29 @@ with lib; {
       main = "/dev/disk/by-id/virtio-vdisk1";
     };
 
-    apps.tor.relay.enable = true;
+    # apps.tor.relay.enable = true;
+
     services = {
       qemuGuest.enable = true;
       freeipa.enable = true;
-      nginx.enable = mkForce false;
+      resilio = {
+        enable = lib.mkForce false;
+      };
+      ha.initialMaster = true;
+      command-center = {
+        enableBot = true;
+      };
     };
     # boot.kernelPackages = pkgs.linuxPackages_latest;
 
-    networking.firewall.enable = lib.mkForce false;
-    networking.nftables.enable = lib.mkForce false;
-    networking.wireless.enable = lib.mkDefault false;
-    networking.networkmanager.enable = true;
-    networking.useDHCP = lib.mkForce true;
+    networking = {
+      hostName = "silver-star-vm";
+      firewall.enable = lib.mkForce false;
+      nftables.enable = lib.mkForce false;
+      wireless.enable = lib.mkDefault false;
+      networkmanager.enable = true;
+      useDHCP = lib.mkForce true;
+    };
 
     # sudo mount --types virtiofs appdata_ssd /mnt/shared/
     # fileSystems."/mnt/shared" = {
