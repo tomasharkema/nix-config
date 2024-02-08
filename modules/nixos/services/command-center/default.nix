@@ -44,7 +44,7 @@ in {
       };
 
       age.secrets."command-center.env" = {
-        file = ../../../../secrets/go-nixos-menu.env.age;
+        file = ../../../../secrets/command-center.env.age;
         mode = "644";
       };
 
