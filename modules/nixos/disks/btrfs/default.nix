@@ -41,26 +41,24 @@
           "/rootfs" = {
             mountpoint = "/";
             mountOptions = [
-              "compress=zstd"
             ];
           };
           # Subvolume name is the same as the mountpoint
           "/home" = {
             mountOptions = [
               "subvol=home"
-              "compress=zstd"
             ];
             mountpoint = "/home";
           };
           # "/home-snapshots" = {
-          #   mountOptions = ["subvol=home-snapshots" "compress=zstd"];
+          #   mountOptions = ["subvol=home-snapshots" ];
           #   mountpoint = "/home/.snapshots";
           # };
           # Parent is not mounted so the mountpoint must be set
           "/nix" = {
             mountOptions = [
               "subvol=nix"
-              "compress=zstd"
+
               "noatime"
             ];
             mountpoint = "/nix";
@@ -69,7 +67,7 @@
           # "/.snapshots" = {
           #   mountpoint = "/.snapshots";
 
-          #   mountOptions = ["subvol=snapshots" "compress=zstd" "noatime"];
+          #   mountOptions = ["subvol=snapshots"  "noatime"];
           # };
         };
 
@@ -199,7 +197,7 @@ in
                     # unless their parent is mounted
                     subvolumes = {
                       "/media" = {
-                        mountOptions = ["subvol=media" "compress=zstd"];
+                        mountOptions = ["subvol=media"];
                         mountpoint = "/media";
                       };
                     };
