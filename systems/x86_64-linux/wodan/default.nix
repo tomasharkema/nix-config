@@ -21,7 +21,7 @@
       kernelModules = ["i2c-dev"];
     };
 
-    environment.systemPackages = with pkgs; [rclone rclone-browser];
+    environment.systemPackages = with pkgs; [ddcutil];
 
     hardware = {
       opengl.extraPackages = with pkgs; [
