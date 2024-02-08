@@ -21,13 +21,12 @@
       kernelModules = ["i2c-dev"];
     };
 
-    environment.systemPackages = with pkgs; [ddcutil];
+    environment.systemPackages = with pkgs; [ddcutil openrgb-with-all-plugins];
 
     hardware = {
       opengl.extraPackages = with pkgs; [
         # trying to fix `WLR_RENDERER=vulkan sway`
         vulkan-validation-layers
-        openrgb-with-all-plugins
       ];
       i2c.enable = true;
     };
@@ -77,24 +76,24 @@
 
     headless.hypervisor.enable = true;
 
-    fileSystems = {
-      "/mnt/unraid/appdata" = {
-        device = "192.168.0.100:/mnt/user/appdata";
-        fsType = "nfs";
-      };
-      "/mnt/unraid/appdata_ssd" = {
-        device = "192.168.0.100:/mnt/user/appdata_ssd";
-        fsType = "nfs";
-      };
-      "/mnt/unraid/appdata_disk" = {
-        device = "192.168.0.100:/mnt/user/appdata_disk";
-        fsType = "nfs";
-      };
-      "/mnt/dione" = {
-        device = "192.168.178.3:/volume1/homes";
-        fsType = "nfs";
-      };
-    };
+    # fileSystems = {
+    #   "/mnt/unraid/appdata" = {
+    #     device = "192.168.0.100:/mnt/user/appdata";
+    #     fsType = "nfs";
+    #   };
+    #   "/mnt/unraid/appdata_ssd" = {
+    #     device = "192.168.0.100:/mnt/user/appdata_ssd";
+    #     fsType = "nfs";
+    #   };
+    #   "/mnt/unraid/appdata_disk" = {
+    #     device = "192.168.0.100:/mnt/user/appdata_disk";
+    #     fsType = "nfs";
+    #   };
+    #   "/mnt/dione" = {
+    #     device = "192.168.178.3:/volume1/homes";
+    #     fsType = "nfs";
+    #   };
+    # };
 
     traits = {
       hardware = {
