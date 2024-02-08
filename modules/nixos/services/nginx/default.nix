@@ -80,7 +80,7 @@ in {
     # };
 
     services.webhook = {
-      enable = true;
+      # enable = true;
 
       hooks = {
         upload-current-system = let
@@ -97,21 +97,6 @@ in {
           execute-command = "date";
           # response-message = "Webhook is reachable!";
 
-          include-command-output-in-response = true;
-        };
-        info-json = let
-          info = {
-            tags = config.system.nixos.tags;
-            revision = config.system.configurationRevision;
-            version = config.system.stateVersion;
-            label = config.system.nixos.label;
-            name = config.system.name;
-          };
-          info-json = pkgs.writeShellScriptBin "info-json" ''
-            cat "${builtins.toFile "info.json" (builtins.toJSON info)}"
-          '';
-        in {
-          execute-command = "${lib.getExe info-json}";
           include-command-output-in-response = true;
         };
       };

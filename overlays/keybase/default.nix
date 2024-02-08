@@ -4,4 +4,6 @@
   kbfs = channels.unstable.kbfs;
 
   runitor = channels.unstable.runitor;
+
+  vscode = channels.unstable.vscode;
 }
