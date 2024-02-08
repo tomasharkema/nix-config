@@ -112,6 +112,7 @@ in {
       # allowed-uris = https://github.com/zhaofengli/nix-base32.git https://github.com/tomasharkema.keys https://api.flakehub.com/f/pinned https://github.com/NixOS/nixpkgs/archive https://github.com/NixOS/nixpkgs-channels/archive https://github.com/input-output-hk https://github.com/tomasharkema
 
       settings = {
+        use-cgroups = true;
         allowed-uris = [
           "https://github.com/tomasharkema.keys"
           "https://api.github.com"
