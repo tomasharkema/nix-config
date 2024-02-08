@@ -7,8 +7,9 @@
   osConfig,
   ...
 }:
-with inputs.home-manager.lib.hm.gvariant; {
-  config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
+with inputs.home-manager.lib.hm.gvariant;
+with lib; {
+  config = mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
     dconf.enable = true;
 
     dconf.settings = {
@@ -54,19 +55,24 @@ with inputs.home-manager.lib.hm.gvariant; {
         "position-in-panel" = 0;
       };
       "org/gnome/desktop/interface" = {
-        # color-scheme = "prefer-dark";
-        # gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
+        color-scheme = "prefer-dark";
+        cursor-theme = mkForce "DMZ-Black";
+        gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
         # document-font-name = "B612 Regular 12";
-        font-antialiasing = "greyscale";
+        font-antialiasing = "grayscale";
         font-hinting = "full";
         # font-name = "B612 Regular 12";
         enable-hot-corners = false;
       };
 
-      "org/gnome/shell/extensions/TodoTxt" = {
-        donetxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt/done.txt";
-        todotxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt/todo.txt";
+      "org/gnome/shell/extensions/user-theme" = {
+        name = mkForce "Catppuccin-Mocha-Compact-Blue-Dark";
       };
+
+      # "org/gnome/shell/extensions/TodoTxt" = {
+      #   donetxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt/done.txt";
+      #   todotxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt/todo.txt";
+      # };
 
       "org/gnome/gnome-session" = {
         "auto-save-session" = true;
@@ -103,51 +109,44 @@ with inputs.home-manager.lib.hm.gvariant; {
       #   show-in-lock-screen = false;
       # };
       "org/gnome/desktop/peripherals/keyboard" = {numlock-state = true;};
-      "org/gnome/desktop/privacy" = {
-        old-files-age = mkUint32 30;
-        recent-files-max-age = -1;
-      };
       "org/gnome/desktop/screensaver" = {lock-enabled = false;};
-      # "org/gnome/desktop/session" = {idle-delay = mkUint32 0;};
-      "org/gnome/evolution-data-server" = {migrated = true;};
-      # "org/gnome/nautilus/preferences" = {
-      #   default-folder-viewer = "icon-view";
-      #   migrated-gtk-settings = true;
-      #   search-filter-time-type = "last_modified";
-      # };
       "org/gnome/shell".disable-user-extensions = false;
-      "org/gnome/shell".disabled-extensions = [
-        "native-window-placement@gnome-shell-extensions.gcampax.github.com"
-        "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
-      ];
+      # "org/gnome/shell".disabled-extensions = [
+      #   "native-window-placement@gnome-shell-extensions.gcampax.github.com"
+      #   "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
+      # ];
       "org/gnome/shell".enabled-extensions = [
         "app-hider@lynith.dev"
         "blur-my-shell@aunetx"
         "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
-        "gsconnect@andyholmes.github.io"
+        # "gsconnect@andyholmes.github.io"
         "gnome-kinit@bonzini.gnu.org"
         "lan-ip-address@mrhuber.com"
         "no-overview@fthx"
         "reboottouefi@ubaygd.com"
         # "systemd-manager@hardpixel.eu"
         "tailscale@joaophi.github.com"
-        "todo.txt@bart.libert.gmail.com"
+        # "todo.txt@bart.libert.gmail.com"
         "toggler@hedgie.tech"
         "appindicatorsupport@rgcjonas.gmail.com"
         "extension-list@tu.berry"
         # "github-actions@arononak.github.io"
         # "GPU_profile_selector@lorenzo9904.gmail.com"
-        "messagingmenu@lauinger-clan.de"
+        # "messagingmenu@lauinger-clan.de"
         "remmina-search-provider@alexmurray.github.com"
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
-        "serverstatus@footeware.ca"
-        "sp-tray@sp-tray.esenliyim.github.com"
+        # "serverstatus@footeware.ca"
+        # "sp-tray@sp-tray.esenliyim.github.com"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
         "dash-to-dock@micxgx.gmail.com"
         "Vitals@CoreCoding.com"
         "search-light@icedman.github.com"
         "mediacontrols@cliffniff.github.com"
         "clipboard-indicator@tudmotu.com"
+        "display-brightness-ddcutil@themightydeity.github.com"
+        "systemd-status@ne0sight.github.io"
+        "search-light@icedman.github.com"
+        "hue-lights@chlumskyvaclav.gmail.com"
       ];
       "org/gnome/shell".favorite-apps = ["org.gnome.Nautilus.desktop" "firefox.desktop" "kitty.desktop" "code.desktop"];
 

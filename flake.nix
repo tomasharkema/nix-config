@@ -361,7 +361,7 @@
 
   nixConfig = {
     use-cgroups = true;
-    extra-experimental-features = "nix-command flakes";
+    extra-experimental-features = "nix-command flakes cgroups";
     distributedBuilds = true;
     builders-use-substitutes = true;
     trusted-users = ["root" "tomas"];

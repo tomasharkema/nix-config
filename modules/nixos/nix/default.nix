@@ -59,7 +59,8 @@ in {
 
       settings =
         {
-          experimental-features = "nix-command flakes";
+          use-cgroups = true;
+          experimental-features = "nix-command flakes cgroups";
           http-connections = 50;
           warn-dirty = false;
           log-lines = 50;
