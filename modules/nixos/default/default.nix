@@ -41,6 +41,14 @@
         LC_TIME = "nl_NL.UTF-8";
       };
     };
+    services.earlyoom = {
+      enable = true;
+    };
+
+    zramSwap = {
+      enable = true;
+      algorithm = "lz4";
+    };
 
     boot = {
       kernel.sysctl."net.ipv4.ip_forward" = 1;
@@ -90,6 +98,7 @@
       yubikey-manager
 
       tpm-tools
+      opencryptoki
     ];
 
     services = {
