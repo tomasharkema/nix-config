@@ -21,12 +21,12 @@ in
 
       environment.systemPackages = with pkgs; [
         ddcutil
-        xorg.xbacklight
+        # xorg.xbacklight
         gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil
-        brightnessctl
+        # brightnessctl
       ];
 
       hardware.i2c.enable = true;
-      programs.light.enable = true;
+      # programs.light.enable = true;
     };
   }

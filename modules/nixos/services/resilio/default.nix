@@ -20,9 +20,10 @@ in {
     # age.secrets."resilio-shared-public" = {file = ../secrets/resilio-shared-public.age;};
     environment.systemPackages = with pkgs; [acl];
 
+    system.activationScripts.resilioLogging = ''
+      echo -e "80000000\n0" > /var/lib/resilio-sync/debug.txt
+    '';
     system.activationScripts.resilioFolder = ''
-      rm -rf /var/lib/resilio-sync/debug.txt || true
-
       if [ ! -d "${config.resilio.root}" ]; then
 
         mkdir -p "${config.resilio.root}" || true
