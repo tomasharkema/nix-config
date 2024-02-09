@@ -57,7 +57,7 @@ in {
     };
 
     # programs.bash.enable = true;
-    environment.systemPackages = with pkgs.custom; [menu];
+    environment.systemPackages = with pkgs; with pkgs.custom; [synergy menu];
     system.stateVersion = 4;
 
     services = {
