@@ -111,7 +111,7 @@
           path = "/var/lib/hercules-ci-agent/secrets/cluster-join-token.key";
         };
         "binary-cache.json" = {
-          file = ./binary-cache.json.age;
+          file = ./binary-caches.json.age;
           mode = "644";
           path = "/var/lib/hercules-ci-agent/secrets/binary-caches.json";
         };
