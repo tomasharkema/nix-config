@@ -113,7 +113,7 @@ with lib; {
 
       "org/gnome/shell/extensions/Logo-menu" = {
         menu-button-icon-image = 23;
-        menu-button-icon-size = 15;
+        menu-button-icon-size = 20;
         menu-button-terminal = "kitty";
         show-activities-button = true;
         show-power-options = true;
@@ -163,6 +163,7 @@ with lib; {
           "search-light@icedman.github.com"
           "hue-lights@chlumskyvaclav.gmail.com"
           "logomenu@aryan_k"
+          "just-perfection-desktop@just-perfection"
         ];
         favorite-apps = ["pcmanfm.desktop" "firefox.desktop" "kitty.desktop" "code.desktop"];
       };
