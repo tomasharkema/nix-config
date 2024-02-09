@@ -111,10 +111,13 @@ with lib; {
       "org/gnome/desktop/peripherals/keyboard" = {numlock-state = true;};
       "org/gnome/desktop/screensaver" = {lock-enabled = false;};
       "org/gnome/shell".disable-user-extensions = false;
-      # "org/gnome/shell".disabled-extensions = [
-      #   "native-window-placement@gnome-shell-extensions.gcampax.github.com"
-      #   "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
-      # ];
+      "org/gnome/shell".disabled-extensions = [
+        "native-window-placement@gnome-shell-extensions.gcampax.github.com"
+        "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
+      ];
+      "org/gnome/shell/extensions/display-brightness-ddcutil" = {
+        ddcutil-binary-path = "/run/current-system/sw/bin/ddcutil";
+      };
       "org/gnome/shell".enabled-extensions = [
         "app-hider@lynith.dev"
         "blur-my-shell@aunetx"
@@ -143,7 +146,7 @@ with lib; {
         "search-light@icedman.github.com"
         "mediacontrols@cliffniff.github.com"
         "clipboard-indicator@tudmotu.com"
-        "display-brightness-ddcutil@themightydeity.github.com"
+        "monitor-brightness-volume@ailin.nemui"
         "systemd-status@ne0sight.github.io"
         "search-light@icedman.github.com"
         "hue-lights@chlumskyvaclav.gmail.com"
