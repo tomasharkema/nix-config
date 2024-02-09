@@ -151,7 +151,7 @@
 
     command-center = {
       url = "github:tomasharkema/command-center";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "unstable";
     };
   };
 

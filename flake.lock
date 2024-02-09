@@ -245,7 +245,7 @@
       "inputs": {
         "devenv": "devenv",
         "nixpkgs": [
-          "nixpkgs"
+          "unstable"
         ],
         "systems": "systems_3"
       },
