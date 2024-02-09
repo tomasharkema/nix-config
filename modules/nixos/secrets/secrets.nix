@@ -82,4 +82,5 @@ in {
   "notify.age".publicKeys = allKeys;
   "mak.age".publicKeys = allKeys;
   "command-center.env.age".publicKeys = allKeys;
+  "hercules-cli.key.age".publicKeys = allKeys;
 }
