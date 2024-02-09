@@ -55,10 +55,16 @@ in {
         "eno4" = {wakeOnLan.enable = true;};
       };
     };
-    systemd.watchdog = {
-      runtimeTime = "1m";
-      kexecTime = "1m";
+
+    systemd = {
+      systemd.services."hercules-ci-agent".serviceConfig.MemoryMax = "2G";
+
+      watchdog = {
+        runtimeTime = "1m";
+        kexecTime = "1m";
+      };
     };
+
     environment.systemPackages = with pkgs; [
       # ipmicfg
       # ipmiview
