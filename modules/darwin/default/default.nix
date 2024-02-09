@@ -56,15 +56,16 @@ in {
       };
     };
 
-    services.nix-daemon.enable = true;
     # programs.bash.enable = true;
     environment.systemPackages = with pkgs.custom; [menu];
     system.stateVersion = 4;
-    services.synergy.server = {
-      enable = true;
-      # serverAddress = "0.0.0.0";
-    };
 
+    services = {
+      synergy.server = {
+        enable = true;
+      };
+      nix-daemon.enable = true;
+    };
     fonts = {
       fontDir.enable = true;
       fonts = with pkgs; [
