@@ -22,12 +22,15 @@
         enable = true;
       };
       gnome.enable = true;
-      apps.steam.enable = true;
       # game-mode.enable = true;
       quiet-boot.enable = true;
     };
 
-    apps.podman.enable = true;
+    apps = {
+      podman.enable = true;
+      android.enable = true;
+      steam.enable = true;
+    };
 
     headless.hypervisor.enable = true;
 
@@ -49,30 +52,24 @@
     };
 
     services = {
-      xserver.libinput.enable = true;
-      fprintd = {
-        enable = true;
-        package = pkgs.fprintd-tod;
-        tod = {
-          enable = true;
-          driver = pkgs.libfprint-2-tod1-goodix-550a;
-        };
-      };
+      # fprintd = {
+      #   enable = true;
+      #   package = pkgs.fprintd-tod;
+      #   tod = {
+      #     enable = true;
+      #     driver = pkgs.libfprint-2-tod1-goodix-550a;
+      #   };
+      # };
     };
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
-      # kernelPackages = pkgs.linuxPackages;
-      # blacklistedKernelModules = ["i915"];
       kernelParams = ["acpi_rev_override=1"];
       extraModprobeConfig = "options kvm_intel nested=1";
     };
 
     programs = {
       mtr.enable = true;
-      adb.enable = true;
     };
-
-    environment.systemPackages = with pkgs; [anbox android-studio android-tools];
   };
 }
