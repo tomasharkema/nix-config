@@ -36,6 +36,7 @@
         tpm.enable = true;
         secure-boot.enable = true;
         remote-unlock.enable = true;
+        monitor.enable = true;
       };
     };
 
@@ -73,19 +74,19 @@
     services = {
       blueman.enable = true;
 
-      nfs = {
-        server = {
-          enable = true;
-          exports = ''
-            /export/media       *(rw,fsid=0,no_subtree_check)
-          '';
-        };
-      };
+      # nfs = {
+      #   server = {
+      #     enable = true;
+      #     exports = ''
+      #       /export/media       *(rw,fsid=0,no_subtree_check)
+      #     '';
+      #   };
+      # };
     };
 
-    fileSystems."/export/media" = {
-      device = "/media";
-      options = ["bind"];
-    };
+    # fileSystems."/export/media" = {
+    #   device = "/media";
+    #   options = ["bind"];
+    # };
   };
 }

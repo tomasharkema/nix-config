@@ -21,7 +21,7 @@ in {
     environment.systemPackages = with pkgs; [acl];
 
     system.activationScripts.resilioFolder = ''
-      echo "00000000" > /var/lib/resilio-sync/debug.txt
+      rm -rf /var/lib/resilio-sync/debug.txt || true
 
       if [ ! -d "${config.resilio.root}" ]; then
 
