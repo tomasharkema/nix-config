@@ -68,6 +68,11 @@
       extraModprobeConfig = "options kvm_intel nested=1";
     };
 
-    programs.mtr.enable = true;
+    programs = {
+      mtr.enable = true;
+      adb.enable = true;
+    };
+
+    environment.systemPackages = with pkgs; [anbox android-studio android-tools];
   };
 }
