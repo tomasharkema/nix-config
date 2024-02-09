@@ -7,12 +7,12 @@
 }:
 with lib;
 with lib.custom; let
-  cfg = config.gui.apps.flatpak;
+  cfg = config.apps.flatpak;
   enable = cfg.enable && !config.traits.slim.enable && config.gui.enable;
 in {
   imports = with inputs; [nix-flatpak.nixosModules.nix-flatpak];
 
-  options.gui.apps.flatpak = {
+  options.apps.flatpak = {
     enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
   };
 

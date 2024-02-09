@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.gui.apps.steam;
+  cfg = config.apps.steam;
 in {
-  options.gui.apps.steam = {
+  options.apps.steam = {
     enable = mkEnableOption "steam";
   };
 

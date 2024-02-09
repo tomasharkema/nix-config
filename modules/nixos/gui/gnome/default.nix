@@ -31,6 +31,9 @@ in {
     xdg.autostart = {
       enable = true;
     };
+
+    services.xserver.libinput.enable = true;
+
     environment.systemPackages = with pkgs; [
       # gnome-extension-manager
 
@@ -63,9 +66,6 @@ in {
       gnomeExtensions.dash-to-dock
       gnomeExtensions.vitals
 
-      # gnomeExtensions.git
-      # gnomeExtensions.tado
-      # gnomeExtensions.ping
       gnomeExtensions.sermon
       gnomeExtensions.todotxt
       gnomeExtensions.rebootto
@@ -75,11 +75,7 @@ in {
       gnomeExtensions.no-overview
       gnomeExtensions.tailscale-qs
       gnomeExtensions.spotify-tray
-      # gnomeExtensions.reboottouefi
-      # gnomeExtensions.noannoyance-2
       gnomeExtensions.blur-my-shell
-      # gnomeExtensions.systemd-status
-      # gnomeExtensions.systemd-manager
       gnomeExtensions.messaging-menu
       gnomeExtensions.lan-ip-address
       gnomeExtensions.kerberos-login
