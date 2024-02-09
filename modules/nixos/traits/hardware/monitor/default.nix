@@ -19,7 +19,12 @@ in
         kernelModules = ["i2c-dev"];
       };
 
-      environment.systemPackages = with pkgs; [ddcutil xorg.xbacklight];
+      environment.systemPackages = with pkgs; [
+        ddcutil
+        xorg.xbacklight
+        gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil
+        brightnessctl
+      ];
 
       hardware.i2c.enable = true;
       programs.light.enable = true;

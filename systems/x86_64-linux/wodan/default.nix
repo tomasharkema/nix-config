@@ -102,6 +102,7 @@
         secure-boot.enable = true;
         nvidia.enable = true;
         remote-unlock.enable = true;
+        monitor.enable = true;
       };
     };
 
