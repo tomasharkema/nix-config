@@ -17,6 +17,7 @@ pkgs.writeShellApplication {
     OPEN_SSH="SSH..."
     CLEAR_CACHE="Clear cache..."
     OPEN_SHELL="Go to shell!"
+    CLEAN_RAM="Clean ram..."
     EXIT="Exit"
 
     update () {
@@ -34,7 +35,11 @@ pkgs.writeShellApplication {
       tmux switch-client -t "$SESSION" || tmux attach -t "$SESSION"
     }
 
-    CHOICE=$(gum choose "$RUN_UPDATER" "$ATTACH_SESSION" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$CLEAR_CACHE" "$OPEN_SHELL" "$EXIT")
+    clean-ram () {
+       sudo sync; echo 3 > /proc/sys/vm/drop_caches
+    }
+
+    CHOICE=$(gum choose "$RUN_UPDATER" "$ATTACH_SESSION" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$CLEAR_CACHE" "$OPEN_SHELL" "$CLEAN_RAM" "$EXIT")
 
     case $CHOICE in
       "$RUN_UPDATER")
@@ -59,6 +64,10 @@ pkgs.writeShellApplication {
 
       "$ATTACH_SESSION")
         attach-session
+        ;;
+
+      "$CLEAN_RAM")
+        clean-ram
         ;;
 
       "$EXIT")
