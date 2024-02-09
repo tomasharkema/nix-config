@@ -57,7 +57,7 @@ in {
     };
 
     systemd = {
-      systemd.services."hercules-ci-agent".serviceConfig.MemoryMax = "2G";
+      services."hercules-ci-agent".serviceConfig.MemoryMax = "2G";
 
       watchdog = {
         runtimeTime = "1m";
