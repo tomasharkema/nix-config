@@ -41,9 +41,6 @@
         LC_TIME = "nl_NL.UTF-8";
       };
     };
-    services.earlyoom = {
-      enable = true;
-    };
 
     zramSwap = {
       enable = true;
@@ -102,6 +99,10 @@
     ];
 
     services = {
+      earlyoom = {
+        enable = true;
+      };
+
       yubikey-agent.enable = true;
 
       vscode-server.enable = true;
