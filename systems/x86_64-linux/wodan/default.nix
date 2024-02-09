@@ -21,8 +21,9 @@
       kernelModules = ["i2c-dev"];
     };
 
-    environment.systemPackages = with pkgs; [ddcutil openrgb-with-all-plugins];
+    environment.systemPackages = with pkgs; [openrgb-with-all-plugins];
 
+    traits.hardware.monitor.enable = true;
     hardware = {
       opengl.extraPackages = with pkgs; [
         # trying to fix `WLR_RENDERER=vulkan sway`
