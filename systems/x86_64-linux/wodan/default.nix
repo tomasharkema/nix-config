@@ -57,10 +57,8 @@
         enable = true;
         rdp.enable = true;
       };
-      apps.steam.enable = true;
       game-mode.enable = false;
       quiet-boot.enable = true;
-      apps.flatpak.enable = true;
     };
     # fileSystems."/mnt/media" = {
     #   device = "192.168.0.11:/export/media";
@@ -74,6 +72,10 @@
       };
     };
 
+    apps = {
+      steam.enable = true;
+      flatpak.enable = true;
+    };
     headless.hypervisor.enable = true;
 
     # fileSystems = {
