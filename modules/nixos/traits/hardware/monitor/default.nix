@@ -16,9 +16,19 @@ in
       system.nixos.tags = ["monitor"];
 
       boot = {
-        kernelModules = ["i2c-dev"];
+        kernelModules = ["i2c-dev" "ddcci_backlight"];
+        extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
       };
 
+      users.groups = {
+        "i2c" = {};
+      };
+      users.users.${config.user.name} = {
+        extraGroups = ["i2c"];
+      };
+      services.udev.extraRules = ''
+        KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
+      '';
       environment.systemPackages = with pkgs; [
         ddcutil
         # xorg.xbacklight

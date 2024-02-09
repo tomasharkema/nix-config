@@ -80,8 +80,10 @@ in {
       members = ["${config.user.name}"];
     };
 
-    users.groups.agent = {};
-    users.groups.rslsync = {};
+    users.groups = {
+      agent = {};
+      rslsync = {};
+    };
     users.users.agent = {
       isNormalUser = true;
       group = "agent";
