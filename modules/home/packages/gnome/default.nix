@@ -151,7 +151,7 @@ with lib; {
         "search-light@icedman.github.com"
         "hue-lights@chlumskyvaclav.gmail.com"
       ];
-      "org/gnome/shell".favorite-apps = ["org.gnome.Nautilus.desktop" "firefox.desktop" "kitty.desktop" "code.desktop"];
+      "org/gnome/shell".favorite-apps = ["pcmanfm.desktop" "firefox.desktop" "kitty.desktop" "code.desktop"];
 
       "org/gnome/desktop/wm/preferences" = {
         button-layout = "appmenu:minimize,maximize,close";
