@@ -19,9 +19,9 @@
         enable = true;
         rdp.enable = true;
       };
-      apps.steam.enable = true;
     };
 
+    apps.steam.enable = true;
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y";
