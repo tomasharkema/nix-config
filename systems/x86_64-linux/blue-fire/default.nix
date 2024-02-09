@@ -57,7 +57,7 @@ in {
     };
 
     systemd = {
-      services."hercules-ci-agent".serviceConfig.MemoryMax = "2G";
+      # services."hercules-ci-agent".serviceConfig.MemoryMax = "2G";
 
       watchdog = {
         runtimeTime = "1m";
@@ -89,7 +89,7 @@ in {
     # };
 
     services = {
-      hercules-ci-agent = {enable = true;};
+      # hercules-ci-agent = {enable = true;};
       tailscale = {
         useRoutingFeatures = lib.mkForce "both";
       };
