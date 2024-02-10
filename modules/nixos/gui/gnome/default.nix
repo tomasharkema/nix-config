@@ -37,57 +37,57 @@ in {
     environment.systemPackages = with pkgs; [
       # gnome-extension-manager
 
-      pkgs.gnome45Extensions."app-hider@lynith.dev"
-      pkgs.gnome45Extensions."blur-my-shell@aunetx"
-      pkgs.gnome45Extensions."gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
-      pkgs.gnome45Extensions."gsconnect@andyholmes.github.io"
-      pkgs.gnome45Extensions."gnome-kinit@bonzini.gnu.org"
-      pkgs.gnome45Extensions."lan-ip-address@mrhuber.com"
-      pkgs.gnome45Extensions."no-overview@fthx"
-      pkgs.gnome45Extensions."reboottouefi@ubaygd.com"
-      pkgs.gnome45Extensions."tailscale@joaophi.github.com"
-      # pkgs.gnome45Extensions."todo.txt@bart.libert.gmail.com"
-      pkgs.gnome45Extensions."toggler@hedgie.tech"
-      pkgs.gnome45Extensions."appindicatorsupport@rgcjonas.gmail.com"
-      pkgs.gnome45Extensions."extension-list@tu.berry"
-      pkgs.gnome45Extensions."GPU_profile_selector@lorenzo9904.gmail.com"
-      pkgs.gnome45Extensions."messagingmenu@lauinger-clan.de"
-      pkgs.gnome45Extensions."remmina-search-provider@alexmurray.github.com"
-      pkgs.gnome45Extensions."drive-menu@gnome-shell-extensions.gcampax.github.com"
-      pkgs.gnome45Extensions."serverstatus@footeware.ca"
-      pkgs.gnome45Extensions."sp-tray@sp-tray.esenliyim.github.com"
-      pkgs.gnome45Extensions."user-theme@gnome-shell-extensions.gcampax.github.com"
-      pkgs.gnome45Extensions."dash-to-dock@micxgx.gmail.com"
-      pkgs.gnome45Extensions."Vitals@CoreCoding.com"
+      # pkgs.gnome45Extensions."app-hider@lynith.dev"
+      # pkgs.gnome45Extensions."blur-my-shell@aunetx"
+      # pkgs.gnome45Extensions."gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
+      # pkgs.gnome45Extensions."gsconnect@andyholmes.github.io"
+      # pkgs.gnome45Extensions."gnome-kinit@bonzini.gnu.org"
+      # pkgs.gnome45Extensions."lan-ip-address@mrhuber.com"
+      # pkgs.gnome45Extensions."no-overview@fthx"
+      # pkgs.gnome45Extensions."reboottouefi@ubaygd.com"
+      # pkgs.gnome45Extensions."tailscale@joaophi.github.com"
+      # # pkgs.gnome45Extensions."todo.txt@bart.libert.gmail.com"
+      # pkgs.gnome45Extensions."toggler@hedgie.tech"
+      # pkgs.gnome45Extensions."appindicatorsupport@rgcjonas.gmail.com"
+      # pkgs.gnome45Extensions."extension-list@tu.berry"
+      # pkgs.gnome45Extensions."GPU_profile_selector@lorenzo9904.gmail.com"
+      # pkgs.gnome45Extensions."messagingmenu@lauinger-clan.de"
+      # pkgs.gnome45Extensions."remmina-search-provider@alexmurray.github.com"
+      # pkgs.gnome45Extensions."drive-menu@gnome-shell-extensions.gcampax.github.com"
+      # pkgs.gnome45Extensions."serverstatus@footeware.ca"
+      # pkgs.gnome45Extensions."sp-tray@sp-tray.esenliyim.github.com"
+      # pkgs.gnome45Extensions."user-theme@gnome-shell-extensions.gcampax.github.com"
+      # pkgs.gnome45Extensions."dash-to-dock@micxgx.gmail.com"
+      # pkgs.gnome45Extensions."Vitals@CoreCoding.com"
 
-      gnomeExtensions.appindicator
-      gnomeExtensions.extension-list
-      gnomeExtensions.dash-to-panel
-      gnomeExtensions.dash-to-dock
-      gnomeExtensions.vitals
+      # gnomeExtensions.appindicator
+      # gnomeExtensions.extension-list
+      # gnomeExtensions.dash-to-panel
+      # gnomeExtensions.dash-to-dock
+      # gnomeExtensions.vitals
 
-      gnomeExtensions.sermon
-      gnomeExtensions.todotxt
-      gnomeExtensions.rebootto
-      gnomeExtensions.ip-finder
-      gnomeExtensions.app-hider
+      # gnomeExtensions.sermon
+      # gnomeExtensions.todotxt
+      # gnomeExtensions.rebootto
+      # gnomeExtensions.ip-finder
+      # gnomeExtensions.app-hider
 
-      gnomeExtensions.no-overview
-      gnomeExtensions.tailscale-qs
-      gnomeExtensions.spotify-tray
-      gnomeExtensions.blur-my-shell
-      gnomeExtensions.messaging-menu
-      gnomeExtensions.lan-ip-address
-      gnomeExtensions.kerberos-login
-      gnomeExtensions.github-actions
+      # gnomeExtensions.no-overview
+      # gnomeExtensions.tailscale-qs
+      # gnomeExtensions.spotify-tray
+      # gnomeExtensions.blur-my-shell
+      # gnomeExtensions.messaging-menu
+      # gnomeExtensions.lan-ip-address
+      # gnomeExtensions.kerberos-login
+      # gnomeExtensions.github-actions
 
-      gnomeExtensions.fuzzy-app-search
+      # gnomeExtensions.fuzzy-app-search
 
-      gnomeExtensions.removable-drive-menu
-      gnomeExtensions.gpu-profile-selector
-      gnomeExtensions.server-status-indicator
-      gnomeExtensions.remmina-search-provider
-      gnomeExtensions.clipboard-indicator
+      # gnomeExtensions.removable-drive-menu
+      # gnomeExtensions.gpu-profile-selector
+      # gnomeExtensions.server-status-indicator
+      # gnomeExtensions.remmina-search-provider
+      # gnomeExtensions.clipboard-indicator
 
       # logseq
 
@@ -117,10 +117,10 @@ in {
       zeal
     ];
 
-    services.synergy.client = {
-      enable = true;
-      serverAddress = "euro-mir";
-    };
+    # services.synergy.client = {
+    #   enable = true;
+    #   serverAddress = "euro-mir";
+    # };
 
     # programs.hyprland = {
     #   enable = true;

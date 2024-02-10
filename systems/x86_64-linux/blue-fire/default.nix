@@ -55,10 +55,16 @@ in {
         "eno4" = {wakeOnLan.enable = true;};
       };
     };
-    systemd.watchdog = {
-      runtimeTime = "1m";
-      kexecTime = "1m";
+
+    systemd = {
+      # services."hercules-ci-agent".serviceConfig.MemoryMax = "2G";
+
+      watchdog = {
+        runtimeTime = "1m";
+        kexecTime = "1m";
+      };
     };
+
     environment.systemPackages = with pkgs; [
       # ipmicfg
       # ipmiview
@@ -83,6 +89,7 @@ in {
     # };
 
     services = {
+      # hercules-ci-agent = {enable = true;};
       tailscale = {
         useRoutingFeatures = lib.mkForce "both";
       };
