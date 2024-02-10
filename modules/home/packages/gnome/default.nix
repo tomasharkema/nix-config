@@ -110,49 +110,63 @@ with lib; {
       # };
       "org/gnome/desktop/peripherals/keyboard" = {numlock-state = true;};
       "org/gnome/desktop/screensaver" = {lock-enabled = false;};
-      "org/gnome/shell".disable-user-extensions = false;
-      "org/gnome/shell".disabled-extensions = [
-        "native-window-placement@gnome-shell-extensions.gcampax.github.com"
-        "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
-      ];
+
+      "org/gnome/shell/extensions/Logo-menu" = {
+        menu-button-icon-image = 23;
+        menu-button-icon-size = 20;
+        menu-button-terminal = "kitty";
+        show-activities-button = true;
+        show-power-options = true;
+        symbolic-icon = true;
+        use-custom-icon = false;
+      };
+
       "org/gnome/shell/extensions/display-brightness-ddcutil" = {
         ddcutil-binary-path = "/run/current-system/sw/bin/ddcutil";
       };
-      "org/gnome/shell".enabled-extensions = [
-        "app-hider@lynith.dev"
-        "blur-my-shell@aunetx"
-        "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
-        # "gsconnect@andyholmes.github.io"
-        "gnome-kinit@bonzini.gnu.org"
-        "lan-ip-address@mrhuber.com"
-        "no-overview@fthx"
-        "reboottouefi@ubaygd.com"
-        # "systemd-manager@hardpixel.eu"
-        "tailscale@joaophi.github.com"
-        # "todo.txt@bart.libert.gmail.com"
-        "toggler@hedgie.tech"
-        "appindicatorsupport@rgcjonas.gmail.com"
-        "extension-list@tu.berry"
-        # "github-actions@arononak.github.io"
-        # "GPU_profile_selector@lorenzo9904.gmail.com"
-        # "messagingmenu@lauinger-clan.de"
-        "remmina-search-provider@alexmurray.github.com"
-        "drive-menu@gnome-shell-extensions.gcampax.github.com"
-        # "serverstatus@footeware.ca"
-        # "sp-tray@sp-tray.esenliyim.github.com"
-        "user-theme@gnome-shell-extensions.gcampax.github.com"
-        "dash-to-dock@micxgx.gmail.com"
-        "Vitals@CoreCoding.com"
-        "search-light@icedman.github.com"
-        "mediacontrols@cliffniff.github.com"
-        "clipboard-indicator@tudmotu.com"
-        "monitor-brightness-volume@ailin.nemui"
-        "systemd-status@ne0sight.github.io"
-        "search-light@icedman.github.com"
-        "hue-lights@chlumskyvaclav.gmail.com"
-      ];
-      "org/gnome/shell".favorite-apps = ["org.gnome.Nautilus.desktop" "firefox.desktop" "kitty.desktop" "code.desktop"];
-
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
+        disabled-extensions = [
+          "native-window-placement@gnome-shell-extensions.gcampax.github.com"
+          "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
+        ];
+        enabled-extensions = [
+          "app-hider@lynith.dev"
+          "blur-my-shell@aunetx"
+          "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
+          # "gsconnect@andyholmes.github.io"
+          "gnome-kinit@bonzini.gnu.org"
+          "lan-ip-address@mrhuber.com"
+          "no-overview@fthx"
+          "reboottouefi@ubaygd.com"
+          # "systemd-manager@hardpixel.eu"
+          "tailscale@joaophi.github.com"
+          # "todo.txt@bart.libert.gmail.com"
+          "toggler@hedgie.tech"
+          "appindicatorsupport@rgcjonas.gmail.com"
+          "extension-list@tu.berry"
+          # "github-actions@arononak.github.io"
+          # "GPU_profile_selector@lorenzo9904.gmail.com"
+          # "messagingmenu@lauinger-clan.de"
+          "remmina-search-provider@alexmurray.github.com"
+          "drive-menu@gnome-shell-extensions.gcampax.github.com"
+          # "serverstatus@footeware.ca"
+          # "sp-tray@sp-tray.esenliyim.github.com"
+          "user-theme@gnome-shell-extensions.gcampax.github.com"
+          "dash-to-dock@micxgx.gmail.com"
+          "Vitals@CoreCoding.com"
+          "search-light@icedman.github.com"
+          "mediacontrols@cliffniff.github.com"
+          "clipboard-indicator@tudmotu.com"
+          "monitor-brightness-volume@ailin.nemui"
+          "systemd-status@ne0sight.github.io"
+          "search-light@icedman.github.com"
+          "hue-lights@chlumskyvaclav.gmail.com"
+          "logomenu@aryan_k"
+          "just-perfection-desktop@just-perfection"
+        ];
+        favorite-apps = ["pcmanfm.desktop" "firefox.desktop" "kitty.desktop" "code.desktop"];
+      };
       "org/gnome/desktop/wm/preferences" = {
         button-layout = "appmenu:minimize,maximize,close";
         titlebar-font = "B612 Regular 12";

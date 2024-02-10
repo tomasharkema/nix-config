@@ -29,11 +29,10 @@
         enable = true;
       };
       quiet-boot.enable = false;
-      apps = {
-        flatpak.enable = true;
-      };
     };
-
+    apps = {
+      flatpak.enable = true;
+    };
     boot.growPartition = true;
 
     traits = {
