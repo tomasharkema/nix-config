@@ -73,6 +73,7 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    agenix-shell.url = "github:aciceri/agenix-shell";
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
