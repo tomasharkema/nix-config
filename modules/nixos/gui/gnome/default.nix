@@ -117,10 +117,10 @@ in {
       zeal
     ];
 
-    services.synergy.client = {
-      enable = true;
-      serverAddress = "euro-mir";
-    };
+    # services.synergy.client = {
+    #   enable = true;
+    #   serverAddress = "euro-mir";
+    # };
 
     # programs.hyprland = {
     #   enable = true;
