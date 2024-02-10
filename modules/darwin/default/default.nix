@@ -57,13 +57,13 @@ in {
     };
 
     # programs.bash.enable = true;
-    environment.systemPackages = with pkgs; with pkgs.custom; [synergy menu];
+    environment.systemPackages = with pkgs.custom; [menu];
     system.stateVersion = 4;
 
     services = {
-      synergy.server = {
-        enable = true;
-      };
+      # synergy.server = {
+      #   enable = true;
+      # };
       nix-daemon.enable = true;
     };
     fonts = {

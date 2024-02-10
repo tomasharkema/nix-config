@@ -41,9 +41,6 @@
         LC_TIME = "nl_NL.UTF-8";
       };
     };
-    services.earlyoom = {
-      enable = true;
-    };
 
     zramSwap = {
       enable = true;
@@ -67,7 +64,7 @@
       ];
       loader = {
         systemd-boot = {
-          netbootxyz.enable = true;
+          # netbootxyz.enable = true;
           configurationLimit = 10;
         };
       };
@@ -102,6 +99,10 @@
     ];
 
     services = {
+      earlyoom = {
+        enable = true;
+      };
+
       yubikey-agent.enable = true;
 
       vscode-server.enable = true;
