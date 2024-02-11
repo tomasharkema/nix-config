@@ -48,6 +48,7 @@
     };
 
     boot = {
+      hardwareScan = true;
       kernel.sysctl."net.ipv4.ip_forward" = 1;
 
       tmp = {
@@ -117,7 +118,7 @@
 
       das_watchdog.enable = true;
 
-      thermald.enable = lib.mkIf (pkgs.system == "x86_64-linux") true;
+      thermald.enable = mkIf (pkgs.system == "x86_64-linux") true;
 
       clipmenu.enable = true;
 
@@ -205,12 +206,11 @@
       mtr.enable = true;
     };
 
-    # services.eternal-terminal.enable = true;
     hardware = {
       enableAllFirmware = true;
       enableRedistributableFirmware = true;
+      # fancontrol.enable = true;
     };
-    # hardware.fancontrol.enable = true;
 
     system.autoUpgrade.enable = true;
 
@@ -256,7 +256,5 @@
         dyndns.enable = true; # TODO: enable this??
       };
     };
-
-    # documentation.nixos.enable = false;
   };
 }
