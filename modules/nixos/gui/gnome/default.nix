@@ -60,6 +60,13 @@ in {
       pkgs.gnome45Extensions."dash-to-dock@micxgx.gmail.com"
       pkgs.gnome45Extensions."Vitals@CoreCoding.com"
 
+      pkgs.gnome45Extensions."monitor-brightness-volume@ailin.nemui"
+      # pkgs.gnome45Extensions."systemd-status@ne0sight.github.io"
+      pkgs.gnome45Extensions."search-light@icedman.github.com"
+      pkgs.gnome45Extensions."hue-lights@chlumskyvaclav.gmail.com"
+      pkgs.gnome45Extensions."logomenu@aryan_k"
+      pkgs.gnome45Extensions."just-perfection-desktop@just-perfection"
+
       gnomeExtensions.appindicator
       gnomeExtensions.extension-list
       # gnomeExtensions.dash-to-panel
