@@ -22,13 +22,14 @@ with lib; {
       };
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
-        cursor-theme = mkForce "DMZ-Black";
+        cursor-theme = mkForce "Adwaita";
         gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
         # document-font-name = "B612 Regular 12";
         font-antialiasing = "grayscale";
         font-hinting = "full";
         # font-name = "B612 Regular 12";
         enable-hot-corners = false;
+        icon-theme = "Adwaita";
       };
 
       "org/gnome/shell/extensions/user-theme" = {
