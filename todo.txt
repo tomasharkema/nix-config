@@ -1,0 +1,8 @@
+(B) ping machines +command_center
+(B) add service to avahi +command_center
+(B) fix bootup text for silent boot +nixos
+(A) fix keybase issues +nixos +linux
+(C) find nice todo.txt app +nixos p:1 p:2 id:3
+(C) find nice todo.txt tui +nixos id:2
+(D) find nice todo.txt extensions +nixos id:1
+(A) find nice todo.txt ios app p:3

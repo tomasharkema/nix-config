@@ -71,37 +71,37 @@
       };
     };
 
-    environment.systemPackages = with pkgs; [
-      atop
-      powertop
-      packagekit
-      fwupd
-      fwupd-efi
-      hw-probe
-      wget
-      curl
-      freeipa
-      lm_sensors
-      pciutils
-      # cope
-      pkgs.custom.menu
-      #xpipe
-      pkgs.custom.graylog-cli-dashboard
-      notify
-      pkgs.custom.pvzstd
-      udisks2
-      pkgs.deepin.udisks2-qt5
-      udisks2
-      pv
-      yubikey-manager
+    environment.systemPackages =
+      (with pkgs; [
+        atop
+        powertop
+        packagekit
+        fwupd
+        fwupd-efi
+        hw-probe
+        wget
+        curl
+        freeipa
+        lm_sensors
+        pciutils
+        # cope
+        #xpipe
+        notify
+        udisks2
+        pkgs.deepin.udisks2-qt5
+        udisks2
+        pv
+        yubikey-manager
 
-      tpm-tools
-      opencryptoki
-      todoman
-      devtodo
-      dooit
-      ttdl
-    ];
+        tpm-tools
+        opencryptoki
+        devtodo
+      ])
+      ++ (with pkgs.custom; [
+        menu
+        graylog-cli-dashboard
+        pvzstd
+      ]);
 
     services = {
       earlyoom = {
