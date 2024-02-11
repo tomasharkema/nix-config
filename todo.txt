@@ -6,3 +6,8 @@
 (C) find nice todo.txt tui +nixos id:2
 (D) find nice todo.txt extensions +nixos id:1
 (A) find nice todo.txt ios app p:3
+(B) fix github actions runner +nixos
+(B) implement info from device +command_center
+(C) figure out right searchlight keyboard shortcut +nixos
+(B) fix menu commandline shortcut by not making it run a command +nixos
+(C) fix clip board syncing (?) +nixos
