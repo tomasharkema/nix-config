@@ -20,7 +20,6 @@ in {
     # gui.apps.tilix.enable = mkDefault true;
     enable =
       mkOpt types.bool
-      #osConfig.gui.enable
       true "hallo";
   };
 

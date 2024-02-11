@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
 }:
 with lib; let
@@ -33,22 +34,6 @@ in {
 
         displayManager = {
           gdm.enable = true;
-
-          # lightdm = {
-          #   greeters.gtk = {
-          #     enable = true;
-
-          #     theme = {
-          #       name = "Catppuccin-Mocha-Compact-Blue-Dark";
-          #       package = pkgs.catppuccin-gtk.override {
-          #         accents = ["blue"];
-          #         size = "compact";
-          #         tweaks = ["rimless" "black"];
-          #         variant = "mocha";
-          #       };
-          #     };
-          #   };
-          # };
         };
       };
 
@@ -59,6 +44,14 @@ in {
       };
 
       systembus-notify.enable = true;
+      pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        jack.enable = true;
+      };
+      gvfs.enable = true;
     };
 
     security.polkit = mkIf cfg.rdp.enable {
@@ -81,7 +74,6 @@ in {
       '';
     };
 
-    programs.mtr.enable = true;
     # programs.gnupg.agent = {
     # enable = true;
     # enableSSHSupport = true;
@@ -130,6 +122,8 @@ in {
         gtk-engine-murrine
         plymouth
         # apache-directory-studio
+        rtfm
+        # inputs.nix-gui.packages."${system}".nix-gui
       ]
       ++ optional (pkgs.system == "x86_64-linux") telegram-desktop;
 
@@ -152,6 +146,7 @@ in {
         # nativeMessagingHosts.packages = with pkgs; [gnome-browser-connector];
         # nativeMessagingHosts.gsconnect = true;
       };
+      mtr.enable = true;
     };
 
     # nix.extraOptions = "experimental-features = nix-command flakes";
@@ -160,21 +155,5 @@ in {
     sound.enable = true;
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      jack.enable = true;
-
-      # use the example session manager (no others are packaged yet so this is enabled by default,
-      # no need to redefine it in your config for now)
-      #    media-session.enable = true;
-    };
-
-    services.gvfs.enable = true;
-
-    boot.hardwareScan = true;
   };
 }

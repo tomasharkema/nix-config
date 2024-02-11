@@ -45,7 +45,6 @@ in
           # rtfm
           jq
           # fig
-          # inputs.nix-gui.packages.${system}.nix-gui
           kitty-img
         ];
         sessionVariables = lib.mkIf stdenv.isDarwin {
@@ -61,6 +60,8 @@ in
       };
 
       fonts.fontconfig.enable = true;
+
+      autostart.programs = with pkgs; [telegram-desktop];
 
       programs = {
         home-manager.enable = true;
@@ -214,7 +215,6 @@ in
           ];
 
           initExtraFirst = ''
-            export OP_PLUGIN_ALIASES_SOURCED=1
             source "${iterm}";
           '';
 
@@ -231,10 +231,6 @@ in
             pvxz = "pv @1 -N in -B 500M -pterbT | xz -e9 -T4 | pv -N out -B 500M -pterbT > @2";
             cat = "bat";
             dig = "dog";
-            ap = "attic push tomas:tomas";
-            cap = "cachix push tomasharkema";
-            # gh = "op plugin run -- gh";
-            # cachix = "op plugin run -- cachix";
 
             silver-star-ipmi = "ipmitool -I lanplus -H 192.168.0.45 -U root -P \"$(op item get abrgfwmlbnc2zghpugawqoagjq --field password)\"";
 
@@ -357,7 +353,7 @@ in
               "zsh-navigation-tools"
               "wd"
               "tmux"
-              "iterm-tab-color"
+              # "iterm-tab-color"
             ];
             #   # theme = "powerlevel10k/powerlevel10k";
           };
