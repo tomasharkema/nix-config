@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  enableGui = osConfig.gui.desktop.enable;
+  enableGui = pkgs.stdenv.isLinux && osConfig.gui.desktop.enable;
 in
   with lib; {
     config = mkIf enableGui {
