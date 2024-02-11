@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
 }:
 with lib; let
@@ -34,101 +35,93 @@ in {
 
     services.xserver.libinput.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      # gnome-extension-manager
+    environment.systemPackages =
+      (let
+        pkgsUnstable = inputs.unstable.legacyPackages."${pkgs.system}";
+      in
+        with pkgsUnstable; [
+          gnome-extension-manager
 
-      pkgs.gnome45Extensions."app-hider@lynith.dev"
-      pkgs.gnome45Extensions."blur-my-shell@aunetx"
-      pkgs.gnome45Extensions."gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
-      # pkgs.gnome45Extensions."gsconnect@andyholmes.github.io"
-      pkgs.gnome45Extensions."gnome-kinit@bonzini.gnu.org"
-      pkgs.gnome45Extensions."lan-ip-address@mrhuber.com"
-      pkgs.gnome45Extensions."no-overview@fthx"
-      pkgs.gnome45Extensions."reboottouefi@ubaygd.com"
-      pkgs.gnome45Extensions."tailscale@joaophi.github.com"
-      # pkgs.gnome45Extensions."todo.txt@bart.libert.gmail.com"
-      pkgs.gnome45Extensions."toggler@hedgie.tech"
-      pkgs.gnome45Extensions."appindicatorsupport@rgcjonas.gmail.com"
-      # pkgs.gnome45Extensions."extension-list@tu.berry"
-      # pkgs.gnome45Extensions."GPU_profile_selector@lorenzo9904.gmail.com"
-      # pkgs.gnome45Extensions."messagingmenu@lauinger-clan.de"
-      pkgs.gnome45Extensions."remmina-search-provider@alexmurray.github.com"
-      pkgs.gnome45Extensions."drive-menu@gnome-shell-extensions.gcampax.github.com"
-      # pkgs.gnome45Extensions."serverstatus@footeware.ca"
-      pkgs.gnome45Extensions."sp-tray@sp-tray.esenliyim.github.com"
-      pkgs.gnome45Extensions."user-theme@gnome-shell-extensions.gcampax.github.com"
-      pkgs.gnome45Extensions."dash-to-dock@micxgx.gmail.com"
-      pkgs.gnome45Extensions."Vitals@CoreCoding.com"
+          # # pkgs.gnome45Extensions."app-hider@lynith.dev"
+          # gnome45Extensions."gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
+          # # gnome45Extensions."gsconnect@andyholmes.github.io"
+          # gnome45Extensions."gnome-kinit@bonzini.gnu.org"
+          # gnome45Extensions."lan-ip-address@mrhuber.com"
+          # gnome45Extensions."no-overview@fthx"
+          # gnome45Extensions."reboottouefi@ubaygd.com"
+          # gnome45Extensions."tailscale@joaophi.github.com"
+          # # gnome45Extensions."todo.txt@bart.libert.gmail.com"
+          # gnome45Extensions."toggler@hedgie.tech"
+          # gnome45Extensions."appindicatorsupport@rgcjonas.gmail.com"
+          # # gnome45Extensions."extension-list@tu.berry"
+          # # gnome45Extensions."GPU_profile_selector@lorenzo9904.gmail.com"
+          # # gnome45Extensions."messagingmenu@lauinger-clan.de"
+          # # gnome45Extensions."serverstatus@footeware.ca"
+          # # gnome45Extensions."sp-tray@sp-tray.esenliyim.github.com"
+          # gnome45Extensions."user-theme@gnome-shell-extensions.gcampax.github.com"
+          # gnome45Extensions."Vitals@CoreCoding.com"
 
-      pkgs.gnome45Extensions."monitor-brightness-volume@ailin.nemui"
-      # pkgs.gnome45Extensions."systemd-status@ne0sight.github.io"
-      pkgs.gnome45Extensions."search-light@icedman.github.com"
-      pkgs.gnome45Extensions."hue-lights@chlumskyvaclav.gmail.com"
-      pkgs.gnome45Extensions."logomenu@aryan_k"
-      pkgs.gnome45Extensions."just-perfection-desktop@just-perfection"
+          gnome45Extensions."monitor-brightness-volume@ailin.nemui"
+          # # gnome45Extensions."systemd-status@ne0sight.github.io"
 
-      gnomeExtensions.appindicator
-      gnomeExtensions.extension-list
-      # gnomeExtensions.dash-to-panel
-      # gnomeExtensions.dash-to-dock
-      # gnomeExtensions.vitals
+          # gnomeExtensions.spotify-tray
+          gnomeExtensions.arc-menu
+          gnomeExtensions.app-hider
+          gnomeExtensions.appindicator
+          gnomeExtensions.blur-my-shell
+          gnomeExtensions.clipboard-indicator
+          gnomeExtensions.dash-to-dock
+          gnomeExtensions.extension-list
+          gnomeExtensions.fuzzy-app-search
+          gnomeExtensions.github-actions
+          gnomeExtensions.gpu-profile-selector
+          gnomeExtensions.hue-lights
+          gnomeExtensions.ip-finder
+          gnomeExtensions.just-perfection
+          gnomeExtensions.kerberos-login
+          gnomeExtensions.logo-menu
+          gnomeExtensions.no-overview
+          gnomeExtensions.remmina-search-provider
+          gnomeExtensions.removable-drive-menu
+          gnomeExtensions.search-light
+          gnomeExtensions.server-status-indicator
+          gnomeExtensions.tailscale-qs
+          gnomeExtensions.todotxt
+          gnomeExtensions.vitals
+          gnomeExtensions.removable-drive-menu
 
-      gnomeExtensions.sermon
-      gnomeExtensions.todotxt
-      gnomeExtensions.rebootto
-      gnomeExtensions.ip-finder
-      # gnomeExtensions.app-hider
+          clutter
+          clutter-gtk
 
-      gnomeExtensions.no-overview
-      gnomeExtensions.tailscale-qs
-      gnomeExtensions.spotify-tray
-      # gnomeExtensions.blur-my-shell
-      # gnomeExtensions.messaging-menu
-      # gnomeExtensions.lan-ip-address
-      gnomeExtensions.kerberos-login
-      gnomeExtensions.github-actions
+          gnome.seahorse
+          gnome.gnome-tweaks
+          gnome.gnome-disk-utility
+          gnome.gnome-themes-extra
+          gnome-firmware
+          gnome-menus
+        ])
+      ++ (with pkgs; [
+        effitask
+        clutter
+        xdgmenumaker
+        gotop
+        gtop
+        gjs
+        font-manager
+        gamehub
+        filezilla
+        sublime-merge
+        remmina
+        xdg-utils
+        mattermost-desktop
+        systemdgenie
 
-      gnomeExtensions.fuzzy-app-search
-
-      gnomeExtensions.removable-drive-menu
-      gnomeExtensions.gpu-profile-selector
-      gnomeExtensions.server-status-indicator
-      gnomeExtensions.remmina-search-provider
-      gnomeExtensions.clipboard-indicator
-
-      # logseq
-
-      gnomeExtensions.section-todo-list
-      clutter
-      clutter-gtk
-
-      gnome.seahorse
-      gnome.gnome-tweaks
-      gnome.gnome-disk-utility
-      gnome.gnome-themes-extra
-      gnome-firmware
-      gnome-menus
-      effitask
-      clutter
-      xdgmenumaker
-      gotop
-      gtop
-      gjs
-      font-manager
-      gamehub
-      filezilla
-      sublime-merge
-      remmina
-      xdg-utils
-      mattermost-desktop
-      systemdgenie
-
-      # _1password
-      wezterm
-      waybar
-      zeal
-      libmx
-    ];
+        # _1password
+        wezterm
+        waybar
+        zeal
+        libmx
+      ]);
 
     # services.synergy.client = {
     #   enable = true;
