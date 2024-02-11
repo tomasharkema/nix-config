@@ -4,7 +4,7 @@
   osConfig,
   ...
 }: {
-  config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
+  config = lib.mkIf (false && pkgs.stdenv.isLinux && osConfig.gui.enable) {
     # services.kbfs = {
     #   enable = true;
     # };

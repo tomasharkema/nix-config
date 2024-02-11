@@ -31,10 +31,10 @@ in {
       cartridges
     ];
 
-    services.udev.extraRules = ''
-      Sunshine
-      KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
-    '';
+    # services.udev.extraRules = ''
+    #   Sunshine
+    #   KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
+    # '';
 
     systemd.services.sunshine = {
       enable = true;
