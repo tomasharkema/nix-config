@@ -23,7 +23,7 @@ with lib; {
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
         cursor-theme = mkForce "Adwaita";
-        gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
+        gtk-theme = mkForce "Catppuccin-Mocha-Compact-Blue-Dark";
         # document-font-name = "B612 Regular 12";
         font-antialiasing = "grayscale";
         font-hinting = "full";
