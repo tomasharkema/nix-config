@@ -29,20 +29,6 @@
                 pool = "zroot";
               };
             };
-            encryptedSwap = {
-              size = "50M";
-              content = {
-                type = "swap";
-                randomEncryption = true;
-              };
-            };
-            plainSwap = {
-              size = "100%";
-              content = {
-                type = "swap";
-                resumeDevice = true; # resume from hiberation from this device
-              };
-            };
           };
         };
       };
