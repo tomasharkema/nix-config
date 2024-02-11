@@ -11,3 +11,7 @@
 (C) figure out right searchlight keyboard shortcut +nixos
 (B) fix menu commandline shortcut by not making it run a command +nixos
 (C) fix clip board syncing (?) +nixos
+(C) encrypted home folder +nixos
+(C) phone application +nixos 
+(B) GPU Gamemode fixen +nixos
+(A) fix snapper/btrfs snapshots +nixos

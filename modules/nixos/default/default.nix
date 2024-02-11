@@ -44,8 +44,8 @@
 
     zramSwap = {
       enable = true;
-      algorithm = "lz4";
     };
+    services.zram-generator.enable = true;
 
     boot = {
       hardwareScan = true;
