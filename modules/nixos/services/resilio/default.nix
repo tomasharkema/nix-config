@@ -10,7 +10,7 @@ with lib.custom; let
   known_host = "100.120.66.165:52380";
 in {
   options.resilio = {
-    enable = mkBoolOpt true "SnowflakeOS GNOME configuration";
+    enable = mkBoolOpt true "Enable preconfigured resilio service";
     root = mkOpt types.str "/resilio-sync" "root";
   };
 
@@ -20,22 +20,24 @@ in {
     # age.secrets."resilio-shared-public" = {file = ../secrets/resilio-shared-public.age;};
     environment.systemPackages = with pkgs; [acl];
 
-    system.activationScripts.resilioLogging = ''
-      echo -e "80000000\n0" > /var/lib/resilio-sync/debug.txt
-    '';
-    system.activationScripts.resilioFolder = ''
-      if [ ! -d "${config.resilio.root}" ]; then
+    system.activationScripts = {
+      resilioLogging = ''
+        echo -e "80000000\n0" > /var/lib/resilio-sync/debug.txt
+      '';
+      resilioFolder = ''
+        if [ ! -d "${config.resilio.root}" ]; then
 
-        mkdir -p "${config.resilio.root}" || true
+          mkdir -p "${config.resilio.root}" || true
 
-        chown -R rslsync:rslsync "${config.resilio.root}/."
-        chmod -R g+s "${config.resilio.root}/."
-        setfacl -d -m group:rslsync:rwx "${config.resilio.root}/."
-        setfacl -m group:rslsync:rwx "${config.resilio.root}/."
+          chown -R rslsync:rslsync "${config.resilio.root}/."
+          chmod -R g+s "${config.resilio.root}/."
+          setfacl -d -m group:rslsync:rwx "${config.resilio.root}/."
+          setfacl -m group:rslsync:rwx "${config.resilio.root}/."
+        fi
 
-        ln -sfn "${config.resilio.root}/" /home/tomas/resilio-sync
-      fi
-    '';
+        ln -sfn "${config.resilio.root}/" /home/tomas/resilio-sync || true
+      '';
+    };
 
     services.resilio = {
       enable = true;
@@ -56,7 +58,7 @@ in {
           secretFile = config.age.secrets."resilio-p".path;
           useDHT = false;
           useRelayServer = true;
-          useSyncTrash = true;
+          useSyncTrash = false;
           useTracker = true;
           knownHosts = [known_host];
         }
