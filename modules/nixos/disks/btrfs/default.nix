@@ -33,9 +33,7 @@
       size = "100%";
       content = {
         type = "btrfs";
-        extraArgs = ["-f"]; # Override existing partition
-        # Subvolumes must set a mountpoint in order to be mounted,
-        # unless their parent is mounted
+        extraArgs = ["-f"];
         subvolumes = {
           # Subvolume name is different from mountpoint
           "/rootfs" = {
@@ -43,32 +41,36 @@
             mountOptions = [
             ];
           };
-          # Subvolume name is the same as the mountpoint
           "/home" = {
             mountOptions = [
               "subvol=home"
+              "compress=zstd"
             ];
             mountpoint = "/home";
           };
-          # "/home-snapshots" = {
-          #   mountOptions = ["subvol=home-snapshots" ];
-          #   mountpoint = "/home/.snapshots";
-          # };
-          # Parent is not mounted so the mountpoint must be set
           "/nix" = {
             mountOptions = [
-              "subvol=nix"
-
+              # "subvol=nix"
               "noatime"
             ];
             mountpoint = "/nix";
           };
-          # Subvolume for the swapfile
-          # "/.snapshots" = {
-          #   mountpoint = "/.snapshots";
-
-          #   mountOptions = ["subvol=snapshots"  "noatime"];
+          # "/var/lib/flatpak" = {
+          #   mountOptions = [
+          #     # "subvol=flatpak"
+          #     "noatime"
+          #     "compress=zstd"
+          #   ];
+          #   # mountpoint = "/var/lib/flatpak";
           # };
+          "/steam" = {
+            mountOptions = [
+              # "subvol=flatpak"
+              "compress=zstd"
+              "noatime"
+            ];
+            # mountpoint = "/steam";
+          };
         };
 
         mountpoint = "/partition-root";
@@ -114,9 +116,20 @@ in
         };
         snapper = {
           snapshotRootOnBoot = true;
-          snapshotInterval = "hourly";
-          cleanupInterval = "1d";
+          # snapshotInterval = "hourly";
+          # cleanupInterval = "weekly";
 
+          configs."home" = {
+            SUBVOLUME = "/home";
+            ALLOW_USERS = ["tomas" "root"];
+            TIMELINE_CREATE = true;
+            TIMELINE_CLEANUP = true;
+            TIMELINE_LIMIT_HOURLY = 4;
+            TIMELINE_LIMIT_DAILY = 6;
+            TIMELINE_LIMIT_WEEKLY = 2;
+            TIMELINE_LIMIT_MONTHLY = 2;
+            TIMELINE_LIMIT_YEARLY = 0;
+          };
           configs."root" = {
             SUBVOLUME = "/";
             ALLOW_USERS = ["tomas" "root"];
@@ -141,7 +154,7 @@ in
 
       environment.systemPackages = with pkgs; [
         snapper
-        # snapper-gui
+        snapper-gui
         tpm-luks
         btrfs-assistant
       ];
