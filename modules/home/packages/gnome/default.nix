@@ -15,40 +15,6 @@ with lib; {
     dconf.settings = {
       "org/gnome/mutter" = {
         edge-tiling = true;
-      };
-
-      # "org/gnome/desktop/app-folders" = {
-      #   folder-children = ["Utilities" "YaST" "Pardus"];
-      # };
-      # "org/gnome/desktop/app-folders/folders/Pardus" = {
-      #   categories = ["X-Pardus-Apps"];
-      #   name = "X-Pardus-Apps.directory";
-      #   translate = true;
-      # };
-      # "org/gnome/desktop/app-folders/folders/Utilities" = {
-      #   apps = [
-      #     "gnome-abrt.desktop"
-      #     "gnome-system-log.desktop"
-      #     "nm-connection-editor.desktop"
-      #     "org.gnome.baobab.desktop"
-      #     "org.gnome.Connections.desktop"
-      #     "org.gnome.DejaDup.desktop"
-      #     "org.gnome.Dictionary.desktop"
-      #     "org.gnome.DiskUtility.desktop"
-      #     "org.gnome.Evince.desktop"
-      #     "org.gnome.FileRoller.desktop"
-      #     "org.gnome.fonts.desktop"
-      #     "org.gnome.Loupe.desktop"
-      #     "org.gnome.seahorse.Application.desktop"
-      #     "org.gnome.tweaks.desktop"
-      #     "org.gnome.Usage.desktop"
-      #     "vinagre.desktop"
-      #   ];
-      #   categories = ["X-GNOME-Utilities"];
-      #   name = "X-GNOME-Utilities.directory";
-      #   translate = true;
-      # };
-      "org/gnome/mutter" = {
         experimental-features = "['scale-monitor-framebuffer']";
       };
       "org/gnome/shell/extensions/vitals" = {
@@ -109,7 +75,7 @@ with lib; {
       #   show-in-lock-screen = false;
       # };
       "org/gnome/desktop/peripherals/keyboard" = {numlock-state = true;};
-      "org/gnome/desktop/screensaver" = {lock-enabled = false;};
+      # "org/gnome/desktop/screensaver" = {lock-enabled = false;};
 
       "org/gnome/shell/extensions/Logo-menu" = {
         menu-button-icon-image = 23;
@@ -164,6 +130,7 @@ with lib; {
           "hue-lights@chlumskyvaclav.gmail.com"
           "logomenu@aryan_k"
           "just-perfection-desktop@just-perfection"
+          "todo.txt@bart.libert.gmail.com"
         ];
         favorite-apps = ["pcmanfm.desktop" "firefox.desktop" "kitty.desktop" "code.desktop"];
       };
@@ -198,7 +165,6 @@ with lib; {
         tray-padding = -1;
         window-preview-title-position = "TOP";
       };
-      "org/gnome/shell/world-clocks" = {locations = [];};
       "org/gtk/gtk4/settings/file-chooser" = {
         date-format = "Medium";
         location-mode = "path-bar";
