@@ -57,7 +57,7 @@
       inputs.disko.follows = "disko";
     };
 
-    flake-utils . url = "github:numtide/flake-utils";
+    flake-utils.url = "github:numtide/flake-utils";
 
     vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
@@ -153,6 +153,11 @@
     command-center = {
       url = "github:tomasharkema/command-center";
       inputs.nixpkgs.follows = "unstable";
+    };
+
+    nix-gui = {
+      url = "github:nix-gui/nix-gui";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
