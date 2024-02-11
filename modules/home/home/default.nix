@@ -46,6 +46,10 @@ in
           jq
           # fig
           kitty-img
+          # todoman
+          # dooit
+          ttdl
+          topydo
         ];
         sessionVariables = lib.mkIf stdenv.isDarwin {
           EDITOR = "subl";
