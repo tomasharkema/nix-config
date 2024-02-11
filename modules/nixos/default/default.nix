@@ -96,6 +96,10 @@
 
       tpm-tools
       opencryptoki
+      todoman
+      devtodo
+      dooit
+      ttdl
     ];
 
     services = {

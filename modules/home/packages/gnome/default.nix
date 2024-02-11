@@ -69,10 +69,10 @@ with lib; {
         name = mkForce "Catppuccin-Mocha-Compact-Blue-Dark";
       };
 
-      # "org/gnome/shell/extensions/TodoTxt" = {
-      #   donetxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt/done.txt";
-      #   todotxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt/todo.txt";
-      # };
+      "org/gnome/shell/extensions/TodoTxt" = {
+        donetxt-location = "/home/tomas/resilio-sync/shared-documents/done.txt";
+        todotxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt";
+      };
 
       "org/gnome/gnome-session" = {
         "auto-save-session" = true;

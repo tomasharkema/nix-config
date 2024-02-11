@@ -98,6 +98,10 @@ in {
 
       # logseq
 
+      gnomeExtensions.section-todo-list
+      clutter
+      clutter-gtk
+
       gnome.seahorse
       gnome.gnome-tweaks
       gnome.gnome-disk-utility
@@ -123,6 +127,7 @@ in {
       wezterm
       waybar
       zeal
+      libmx
     ];
 
     # services.synergy.client = {
