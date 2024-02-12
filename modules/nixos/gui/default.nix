@@ -16,6 +16,7 @@ in {
       quiet-boot.enable = mkDefault true;
       desktop.enable = mkDefault true;
       gnome.enable = mkDefault true;
+      pantheon.enable = mkDefault false;
     };
     apps.flatpak.enable = mkDefault true;
   };
