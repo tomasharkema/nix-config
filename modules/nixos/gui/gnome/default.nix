@@ -140,41 +140,6 @@ in {
     # trace: warning: The option `fonts.fonts' defined in `/nix/store/z1gqs0dm5j9g1qy5j9m7m85al7lhjpim-aca1xyh73qrpxrv4yh6lnavs59q875xf-source/modules/nixos/gui/gnome/default.nix' has been renamed to `fonts.packages'.
     # trace: warning: The option `fonts.enableDefaultFonts' defined in `/nix/store/z1gqs0dm5j9g1qy5j9m7m85al7lhjpim-aca1xyh73qrpxrv4yh6lnavs59q875xf-source/modules/nixos/gui/gnome/default.nix' has been renamed to `fonts.enableDefaultPackages'.
 
-    fonts = {
-      enableDefaultPackages = true;
-      fontDir.enable = true;
-      fontconfig = {
-        antialias = true;
-        cache32Bit = true;
-        # TODO: Set fonts within GNOME Tweaks for the time being
-        defaultFonts = {
-          monospace = ["JetBrainsMono Nerd Font Mono"];
-          sansSerif = ["B612 Regular"];
-          serif = ["B612 Regular"];
-        };
-        hinting = {
-          autohint = true;
-          enable = true;
-        };
-      };
-
-      packages = with pkgs; [
-        noto-fonts
-        noto-fonts-extra
-        noto-fonts-emoji
-        noto-fonts-cjk
-        nerdfonts
-        ubuntu_font_family
-
-        pkgs.custom.neue-haas-grotesk
-
-        # helvetica
-        vegur # the official NixOS font
-        pkgs.custom.b612
-        pkgs.custom.san-francisco
-      ];
-    };
-
     environment.gnome.excludePackages =
       (with pkgs; [
         # gnome-photos
