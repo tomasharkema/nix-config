@@ -25,6 +25,7 @@ pkgs.writeShellApplication {
     }
 
     clear-cache () {
+      sudo nix-collect-garbage --delete-older-than '1d'
       nix-collect-garbage --delete-older-than '1d'
       echo "-- nix store optimise --"
       nix store optimise
