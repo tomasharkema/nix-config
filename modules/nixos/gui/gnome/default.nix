@@ -49,21 +49,7 @@ in {
       (let
         pkgsUnstable = inputs.unstable.legacyPackages."${pkgs.system}";
       in
-        with pkgsUnstable;
-        with pkgsUnstable.gnome; [
-          gnome-extension-manager
-
-          gnome-firmware
-          gnome-session
-          gnome-settings-daemon
-          gnome-shell-extensions
-          gnome-tweaks
-          gnome-nettool
-          gnome-keyring
-          gnome-control-center
-          dconf-editor
-
-          gnome-menus
+        with pkgsUnstable; [
           # # pkgs.gnome45Extensions."app-hider@lynith.dev"
           # gnome45Extensions."gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
           # # gnome45Extensions."gsconnect@andyholmes.github.io"
@@ -87,9 +73,9 @@ in {
           # # gnome45Extensions."systemd-status@ne0sight.github.io"
 
           # gnomeExtensions.spotify-tray
-          gnomeExtensions.arc-menu
           gnomeExtensions.app-hider
           gnomeExtensions.appindicator
+          gnomeExtensions.arc-menu
           gnomeExtensions.blur-my-shell
           gnomeExtensions.clipboard-indicator
           gnomeExtensions.dash-to-dock
@@ -110,22 +96,25 @@ in {
           gnomeExtensions.tailscale-qs
           gnomeExtensions.todotxt
           gnomeExtensions.vitals
-          gnomeExtensions.removable-drive-menu
-
-          clutter
-          clutter-gtk
-
-          gnome-menus
-          gjs
-          gnome.seahorse
-          gnome.gnome-tweaks
-          gnome.gnome-disk-utility
-          gnome.gnome-themes-extra
-          gnome-firmware
-          gnome-menus
         ])
       ++ (with pkgs; [
-        ]);
+        clutter
+        clutter-gtk
+        gjs
+        gnome-firmware
+        gnome-menus
+        gnome.dconf-editor
+        gnome.gnome-control-center
+        gnome.gnome-disk-utility
+        gnome.gnome-keyring
+        gnome.gnome-nettool
+        gnome.gnome-session
+        gnome.gnome-settings-daemon
+        gnome.gnome-shell-extensions
+        gnome.gnome-themes-extra
+        gnome.gnome-tweaks
+        gnome.seahorse
+      ]);
 
     # services.synergy.client = {
     #   enable = true;

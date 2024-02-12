@@ -85,7 +85,11 @@ in
 
         htop = {
           enable = true;
-          settings.show_program_path = false;
+          settings = {
+            show_program_path = false;
+            hide_kernel_threads = true;
+            hide_userland_threads = true;
+          };
         };
 
         autojump = {
