@@ -196,7 +196,14 @@
         enable = true;
         lfs.enable = true;
       };
-
+      htop = {
+        enable = true;
+        settings = {
+          show_program_path = false;
+          hide_kernel_threads = true;
+          hide_userland_threads = true;
+        };
+      };
       _1password.enable = true;
 
       ssh.startAgent = true;
