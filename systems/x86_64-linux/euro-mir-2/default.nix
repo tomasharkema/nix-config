@@ -53,14 +53,14 @@
     };
 
     services = {
-      # fprintd = {
-      #   enable = true;
-      #   package = pkgs.fprintd-tod;
-      #   tod = {
-      #     enable = true;
-      #     driver = pkgs.libfprint-2-tod1-goodix-550a;
-      #   };
-      # };
+      fprintd = {
+        enable = true;
+        package = pkgs.fprintd-tod;
+        tod = {
+          enable = true;
+          driver = pkgs.libfprint-2-tod1-goodix-550a;
+        };
+      };
     };
 
     boot = {
