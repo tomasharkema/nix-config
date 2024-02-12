@@ -219,8 +219,8 @@
     };
 
     hardware = {
-      enableAllFirmware = true;
-      enableRedistributableFirmware = true;
+      enableAllFirmware = mkDefault true;
+      enableRedistributableFirmware = mkDefault true;
       # fancontrol.enable = true;
     };
 
