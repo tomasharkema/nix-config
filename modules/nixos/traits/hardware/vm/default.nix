@@ -20,6 +20,12 @@ in {
       xserver.videoDrivers = ["qxl"];
       qemuGuest.enable = true;
       spice-vdagentd.enable = true;
+      spice-autorandr.enable = mkIf pkgs.stdenv.isx86_64 true;
+      spice-webdavd.enable = true;
+    };
+    hardware = {
+      cpu.intel.updateMicrocode = false;
+      enableRedistributableFirmware = false;
     };
   };
 }
