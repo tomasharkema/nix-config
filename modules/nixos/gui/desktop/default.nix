@@ -18,11 +18,6 @@ in {
 
   config = mkIf cfg.enable {
     services = {
-      gnome = {
-        chrome-gnome-shell.enable = true;
-        gnome-browser-connector.enable = true;
-      };
-
       xserver = {
         enable = true;
 
@@ -30,17 +25,11 @@ in {
         xkbVariant = "";
 
         libinput.enable = true;
-        desktopManager.gnome.enable = true;
-
-        displayManager = {
-          gdm.enable = true;
-        };
       };
 
       xrdp = mkIf cfg.rdp.enable {
         enable = true;
         openFirewall = true;
-        defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
       };
 
       systembus-notify.enable = true;
@@ -98,17 +87,6 @@ in {
         yubikey-manager-qt
         yubikey-touch-detector
 
-        gnome-firmware
-        gnome.gnome-session
-        gnome.gnome-settings-daemon
-        gnome.gnome-shell-extensions
-        gnome.gnome-tweaks
-        gnome.gnome-nettool
-        gnome.gnome-keyring
-        gnome.gnome-control-center
-        gnome.dconf-editor
-
-        gnome-menus
         xdg-utils
 
         # _1password
@@ -118,12 +96,31 @@ in {
         transmission-remote-gtk
         github-desktop
 
-        gnome-menus
         gtk-engine-murrine
         plymouth
         # apache-directory-studio
         rtfm
         # inputs.nix-gui.packages."${system}".nix-gui
+
+        effitask
+        clutter
+        xdgmenumaker
+        gotop
+        gtop
+        font-manager
+        gamehub
+        filezilla
+        sublime-merge
+        remmina
+        xdg-utils
+        mattermost-desktop
+        systemdgenie
+
+        # _1password
+        wezterm
+        waybar
+        zeal
+        libmx
       ]
       ++ optional (pkgs.system == "x86_64-linux") telegram-desktop;
 
