@@ -227,8 +227,6 @@
         agenix.nixosModules.default
         nixos-generators.nixosModules.all-formats
 
-        stylix.nixosModules.stylix
-
         {
           system.stateVersion = "23.11";
           system.nixos.tags = ["snowfall"];
