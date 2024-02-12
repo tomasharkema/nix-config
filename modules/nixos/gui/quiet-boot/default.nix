@@ -8,13 +8,13 @@ with lib; let
   cfg = config.gui.quiet-boot;
 in {
   options.gui.quiet-boot = {
-    enable = mkEnableOption "halooo";
+    enable = mkEnableOption "quiet-boot enabled";
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.enable) {
     console = {
       useXkbConfig = true;
-      earlySetup = false;
+      earlySetup = true;
     };
 
     environment.systemPackages = with pkgs; [
