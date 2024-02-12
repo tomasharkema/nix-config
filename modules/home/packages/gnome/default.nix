@@ -11,8 +11,6 @@ with inputs.home-manager.lib.hm.gvariant;
 with lib; {
   config = mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
     dconf = {
-      enable = true;
-
       settings = {
         "org/gnome/mutter" = {
           edge-tiling = true;

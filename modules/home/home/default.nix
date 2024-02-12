@@ -17,6 +17,8 @@ in
     ];
 
     config = {
+      # dconf.enable = true;
+
       home = {
         file = {
           # ".config/cachix/cachix.dhall".source = config.lib.file.mkOutOfStoreSymlink "/etc/cachix.dhall"; # osConfig.age.secrets.cachix.path;
