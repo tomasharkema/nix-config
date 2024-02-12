@@ -259,7 +259,7 @@
       pki.certificateFiles = [./ca.crt];
 
       ipa = {
-        #        enable = true;
+        enable = true;
         server = "ipa.harkema.io";
         domain = "harkema.io";
         realm = "HARKEMA.IO";
