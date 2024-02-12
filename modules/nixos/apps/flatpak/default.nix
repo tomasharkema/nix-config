@@ -27,30 +27,31 @@ in {
           location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
         }
       ];
-      packages = [
-        "com.discordapp.Discord"
-        "com.getpostman.Postman"
-        "com.github.tchx84.Flatseal"
-        "com.logseq.Logseq"
-        "com.mattjakeman.ExtensionManager"
-        "com.moonlight_stream.Moonlight"
-        "com.ranfdev.Notify"
-        "com.spotify.Client"
-        "io.emeric.toolblex"
-        "io.github.JaGoLi.ytdl_gui"
-        "io.github.sigmasd.stimulator"
-        "io.github.vikdevelop.SaveDesktop"
-        "io.missioncenter.MissionCenter"
-        "io.podman_desktop.PodmanDesktop"
-        "md.obsidian.Obsidian"
-        "me.iepure.devtoolbox"
-        "org.cockpit_project.CockpitClient"
-        "org.fkoehler.KTailctl"
-        "org.freefilesync.FreeFileSync"
-        "org.gnome.meld"
-        "org.stellarium.Stellarium"
-        "tv.plex.PlexDesktop"
-      ];
+      packages =
+        [
+          "com.getpostman.Postman"
+          "com.github.tchx84.Flatseal"
+          "com.logseq.Logseq"
+          "com.mattjakeman.ExtensionManager"
+          "com.moonlight_stream.Moonlight"
+          "com.ranfdev.Notify"
+          "com.spotify.Client"
+          "io.emeric.toolblex"
+          "io.github.JaGoLi.ytdl_gui"
+          "io.github.sigmasd.stimulator"
+          "io.github.vikdevelop.SaveDesktop"
+          "io.missioncenter.MissionCenter"
+          "io.podman_desktop.PodmanDesktop"
+          "md.obsidian.Obsidian"
+          "me.iepure.devtoolbox"
+          "org.cockpit_project.CockpitClient"
+          "org.fkoehler.KTailctl"
+          "org.freefilesync.FreeFileSync"
+          "org.gnome.meld"
+          "org.stellarium.Stellarium"
+          "tv.plex.PlexDesktop"
+        ]
+        ++ optional pkgs.stdenv.isx86_64 "com.discordapp.Discord";
       update.onActivation = true;
       update.auto = {
         enable = true;
