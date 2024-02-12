@@ -4,7 +4,7 @@
   osConfig,
   ...
 }: {
-  config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
+  config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
     gtk = {
       enable = true;
 

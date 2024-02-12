@@ -144,6 +144,7 @@ in {
         # nativeMessagingHosts.gsconnect = true;
       };
       mtr.enable = true;
+      # dconf.enable = true;
     };
 
     # nix.extraOptions = "experimental-features = nix-command flakes";
