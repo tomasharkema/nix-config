@@ -9,20 +9,30 @@ with lib; let
   cfg = config.gui.gnome;
 in {
   options.gui.gnome = {
-    enable = mkEnableOption "hallo";
+    enable = mkEnableOption "enable gnome desktop environment";
   };
 
   config = mkIf cfg.enable {
     services = {
+      xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
+
+      xserver = {
+        desktopManager.gnome.enable = true;
+
+        displayManager = {
+          gdm.enable = true;
+        };
+      };
+
       gnome = {
+        chrome-gnome-shell.enable = true;
+        gnome-browser-connector.enable = true;
         gnome-online-accounts.enable = true;
         glib-networking.enable = true;
 
         gnome-settings-daemon.enable = true;
-        gnome-browser-connector.enable = true;
         core-shell.enable = true;
         core-utilities.enable = true;
-        chrome-gnome-shell.enable = true;
 
         gnome-keyring.enable = true;
       };
@@ -39,9 +49,21 @@ in {
       (let
         pkgsUnstable = inputs.unstable.legacyPackages."${pkgs.system}";
       in
-        with pkgsUnstable; [
+        with pkgsUnstable;
+        with pkgsUnstable.gnome; [
           gnome-extension-manager
 
+          gnome-firmware
+          gnome-session
+          gnome-settings-daemon
+          gnome-shell-extensions
+          gnome-tweaks
+          gnome-nettool
+          gnome-keyring
+          gnome-control-center
+          dconf-editor
+
+          gnome-menus
           # # pkgs.gnome45Extensions."app-hider@lynith.dev"
           # gnome45Extensions."gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
           # # gnome45Extensions."gsconnect@andyholmes.github.io"
@@ -93,6 +115,8 @@ in {
           clutter
           clutter-gtk
 
+          gnome-menus
+          gjs
           gnome.seahorse
           gnome.gnome-tweaks
           gnome.gnome-disk-utility
@@ -101,27 +125,7 @@ in {
           gnome-menus
         ])
       ++ (with pkgs; [
-        effitask
-        clutter
-        xdgmenumaker
-        gotop
-        gtop
-        gjs
-        font-manager
-        gamehub
-        filezilla
-        sublime-merge
-        remmina
-        xdg-utils
-        mattermost-desktop
-        systemdgenie
-
-        # _1password
-        wezterm
-        waybar
-        zeal
-        libmx
-      ]);
+        ]);
 
     # services.synergy.client = {
     #   enable = true;
