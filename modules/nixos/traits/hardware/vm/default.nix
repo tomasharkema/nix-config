@@ -26,6 +26,7 @@ in {
     hardware = {
       cpu.intel.updateMicrocode = false;
       enableRedistributableFirmware = false;
+      enableAllFirmware = false;
     };
   };
 }
