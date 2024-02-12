@@ -251,7 +251,7 @@
       enableIPv6 = false;
     };
 
-    powerManagement.powertop.enable = true;
+    powerManagement.powertop.enable = mkDefault true;
 
     security = {
       pki.certificateFiles = [./ca.crt];
