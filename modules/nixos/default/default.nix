@@ -47,10 +47,10 @@
         size = 16 * 1024;
       }
     ];
+
     zramSwap = {
       enable = true;
     };
-    services.zram-generator.enable = true;
 
     boot = {
       hardwareScan = true;
@@ -109,6 +109,8 @@
       ]);
 
     services = {
+      zram-generator.enable = true;
+
       earlyoom = {
         enable = true;
       };
