@@ -41,7 +41,12 @@
         LC_TIME = "nl_NL.UTF-8";
       };
     };
-
+    swapDevices = [
+      {
+        device = "/var/lib/swapfile";
+        size = 16 * 1024;
+      }
+    ];
     zramSwap = {
       enable = true;
     };
