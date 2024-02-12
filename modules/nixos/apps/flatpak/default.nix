@@ -17,8 +17,11 @@ in {
   };
 
   config = mkIf enable {
-    # xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
-    xdg.portal.config.common.default = "gtk";
+    xdg.portal = {
+      enable = true;
+      config.common.default = "gnome";
+    };
+
     services.flatpak = {
       enable = true;
       remotes = [
@@ -32,16 +35,14 @@ in {
           "com.getpostman.Postman"
           "com.github.tchx84.Flatseal"
           "com.logseq.Logseq"
-          "com.mattjakeman.ExtensionManager"
+          # "com.mattjakeman.ExtensionManager"
           "com.moonlight_stream.Moonlight"
           "com.ranfdev.Notify"
-          "com.spotify.Client"
           "io.emeric.toolblex"
           "io.github.JaGoLi.ytdl_gui"
           "io.github.sigmasd.stimulator"
           "io.github.vikdevelop.SaveDesktop"
           "io.missioncenter.MissionCenter"
-          "io.podman_desktop.PodmanDesktop"
           "md.obsidian.Obsidian"
           "me.iepure.devtoolbox"
           "org.cockpit_project.CockpitClient"
@@ -49,9 +50,13 @@ in {
           "org.freefilesync.FreeFileSync"
           "org.gnome.meld"
           "org.stellarium.Stellarium"
-          "tv.plex.PlexDesktop"
         ]
-        ++ optional pkgs.stdenv.isx86_64 "com.discordapp.Discord";
+        ++ (
+          if pkgs.stdenv.isx86_64
+          then ["com.discordapp.Discord" "com.spotify.Client" "tv.plex.PlexDesktop"]
+          else []
+        )
+        ++ (optional config.apps.podman.enable "io.podman_desktop.PodmanDesktop");
       update.onActivation = true;
       update.auto = {
         enable = true;

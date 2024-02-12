@@ -15,3 +15,4 @@
 (C) phone application +nixos 
 (B) GPU Gamemode fixen +nixos
 (A) fix snapper/btrfs snapshots +nixos
+(B) fix exeptions for vm/aarch64
