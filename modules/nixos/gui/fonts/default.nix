@@ -5,7 +5,7 @@
   ...
 }:
 with lib; {
-  config = mkIf config.gui.gnome.enable {
+  config = mkIf config.gui.enable {
     fonts = {
       enableDefaultPackages = true;
       fontDir.enable = true;
@@ -38,6 +38,7 @@ with lib; {
         vegur # the official NixOS font
         pkgs.custom.b612
         pkgs.custom.san-francisco
+        inter
       ];
     };
 
