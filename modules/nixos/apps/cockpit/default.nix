@@ -14,7 +14,7 @@ in {
       settings = {
         WebService = {
           # AllowUnencrypted = false;
-          Origins = "https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost}";
+          Origins = "https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost} http://${config.proxy-services.vhost}:9090 ws://${config.proxy-services.vhost}:9090";
           ProtocolHeader = "X-Forwarded-Proto";
           UrlRoot = "/cockpit";
         };
