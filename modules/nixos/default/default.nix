@@ -95,6 +95,7 @@
         tpm-tools
         opencryptoki
         devtodo
+        yubikey-personalization
       ])
       ++ (with pkgs.custom; [
         menu
