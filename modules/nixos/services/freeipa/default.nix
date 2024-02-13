@@ -28,7 +28,7 @@ in {
         free-ipa = {
           image = "docker.io/freeipa/freeipa-server:almalinux-9";
           autoStart = true;
-          ports = ["3380:80" "3443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
+          ports = ["3380:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
           hostname = "ipa.harkema.io";
           extraOptions = ["--sysctl" "net.ipv6.conf.all.disable_ipv6=0" "-e" "SECRET=Secret123" "-e" "PASSWORD=Secret123"];
           cmd = ["ipa-server-install" "-U" "-r" "HARKEMA.IO"];
@@ -40,11 +40,12 @@ in {
     };
 
     services.nginx = {
-      virtualHosts = {
-        "ipa.harkema.io" = {
-          locations."/".proxyPass = "https://127.0.0.1:3443";
-        };
-      };
+      enable = lib.mkForce false;
+      # virtualHosts = {
+      #   "ipa.harkema.io" = {
+      #     locations."/".proxyPass = "https://127.0.0.1:3443";
+      #   };
+      # };
     };
 
     # sudo podman exec free-ipa /data/root/freeipa-letsencrypt/renew-le.sh
