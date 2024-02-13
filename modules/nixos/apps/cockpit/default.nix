@@ -12,12 +12,15 @@ in {
       enable = true;
       port = 9090;
       settings = {
-        WebService = {
-          # AllowUnencrypted = false;
-          Origins = "https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost} http://${config.proxy-services.vhost}:9090 ws://${config.proxy-services.vhost}:9090";
-          ProtocolHeader = "X-Forwarded-Proto";
-          UrlRoot = "/cockpit";
-        };
+        WebService =
+          if config.services.nginx.enable
+          then {
+            # AllowUnencrypted = false;
+            Origins = "https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost}";
+            ProtocolHeader = "X-Forwarded-Proto";
+            UrlRoot = "/cockpit";
+          }
+          else {};
       };
     };
     environment.systemPackages = with pkgs; [
