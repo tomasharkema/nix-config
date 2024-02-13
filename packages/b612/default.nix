@@ -33,9 +33,8 @@ stdenv.mkDerivation rec {
   # '';
 
   installPhase = ''
-    mkdir -p $out/share/fonts
-    cp ./fonts/ttf/*.ttf $out/share/fonts
-    # cp ./fonts/ttf/nf/*.ttf $out/share/fonts/nf
+    mkdir -p $out/share/fonts/ttf
+    cp ./fonts/ttf/*.ttf $out/share/fonts/ttf
   '';
 
   meta = {
