@@ -55,13 +55,12 @@
             ];
             mountpoint = "/nix";
           };
-          # "/var/lib/flatpak" = {
-          #   mountOptions = [
-          #     # "subvol=flatpak"
+          # "/swapfile" = {
+          #               mountOptions = [
+          #     # "subvol=nix"
           #     "noatime"
-          #     "compress=zstd"
           #   ];
-          #   # mountpoint = "/var/lib/flatpak";
+          #   mountpoint = "/swapfile";
           # };
           "/steam" = {
             mountOptions = [
@@ -108,6 +107,14 @@ in
           "btrfs"
         ];
       };
+
+          swapDevices = [
+      {
+        device = "/swapfile/swapfile";
+        size = 16 * 1024;
+      }
+    ];
+
 
       services = {
         btrfs.autoScrub = mkIf cfg.autoscrub {
