@@ -21,7 +21,7 @@ with lib; {
       enable = true;
       main = "/dev/disk/by-id/virtio-vdisk1";
     };
-
+    resilio.enable = mkForce false;
     # apps.tor.relay.enable = true;
 
     services = {
@@ -30,10 +30,10 @@ with lib; {
       resilio = {
         enable = lib.mkForce false;
       };
-      ha.initialMaster = true;
-      command-center = {
-        enableBot = true;
-      };
+      # ha.initialMaster = true;
+      # command-center = {
+      #   enableBot = true;
+      # };
     };
     # boot.kernelPackages = pkgs.linuxPackages_latest;
 

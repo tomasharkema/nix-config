@@ -90,12 +90,9 @@
         pkgs.deepin.udisks2-qt5
         udisks2
         pv
-        yubikey-manager
-
         tpm-tools
         opencryptoki
         devtodo
-        yubikey-personalization
       ])
       ++ (with pkgs.custom; [
         menu
@@ -109,8 +106,6 @@
       earlyoom = {
         enable = true;
       };
-
-      yubikey-agent.enable = true;
 
       vscode-server.enable = true;
 
