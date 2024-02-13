@@ -62,11 +62,6 @@ in {
       crashDump.enable = true;
       initrd = {
         # verbose = true;
-        luks.devices."crypted" = {
-          # keyFile = "/key/key";
-          # tryEmptyPassphrase = true;
-          # additionalKeyFiles = ["/key/key"];
-        };
 
         secrets = {
           "/etc/tor/onion/bootup" = "/etc/tor/onion/bootup";
@@ -75,51 +70,24 @@ in {
           "/etc/ssh/boot/ssh_host_rsa_key" = "/etc/ssh/boot/ssh_host_rsa_key";
         };
 
-        # postDeviceCommands =
-        # preLVMCommands = pkgs.lib.mkBefore ''
-        #   look_for_usb() {
-        #     info "looking for key file!"
-        #     mkdir -m 0755 -p /key
-        #     sleep 2 # To make sure the usb key has been loaded
-
-        #     usbdevice="/dev/disk/by-partlabel/a7098897-2784-4776-bd3d-0e217d85963d"
-
-        #     if mount -t vfat -o ro $usbdevice /key 2>/dev/null; then
-        #         if [ -e /key/key ]; then
-
-        #           device="$(cat /crypt-ramfs/device)"
-        #           info "found key $device"
-
-        #           passphrase="$(cat /key/key)"
-
-        #           rm /crypt-ramfs/device
-        #           echo -n "$passphrase" > /crypt-ramfs/passphrase
-
-        #         fi
-        #         umount /key
-        #     fi
-        #   }
-        #   look_for_usb &
-        # '';
-
         systemd = {
-          # initrdBin = with pkgs; [
-          #   ntp
-          #   tor
-          #   iproute2
-          #   haveged
-          #   zerotierone
-          #   rsyslog
-          # ];
+          initrdBin = with pkgs; [
+            haveged
+            iproute2
+            ntp
+            rsyslog
+            tor
+            zerotierone
+          ];
 
-          # packages = with pkgs; [
-          #   ntp
-          #   tor
-          #   iproute2
-          #   haveged
-          #   rsyslog
-          #   zerotierone
-          # ];
+          packages = with pkgs; [
+            haveged
+            iproute2
+            ntp
+            rsyslog
+            tor
+            zerotierone
+          ];
 
           # emergencyAccess = true;
           enable = true;
