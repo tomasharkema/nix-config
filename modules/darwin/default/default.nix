@@ -83,6 +83,7 @@ in {
         vegur # the official NixOS font
         pkgs.custom.b612
         pkgs.custom.san-francisco
+        inter
       ];
     };
     programs.zsh = {
