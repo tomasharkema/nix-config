@@ -16,8 +16,8 @@ in {
 
   config = let
     attic-login = writeShellScriptBin "attic-script" ''
-      ${lib.getExe attic} login tomas https://nix-cache.harke.ma $(cat ${config.age.secrets.attic-key.path})
-      ${lib.getExe attic} use tomas:tomas
+      ${attic}/bin/attic login tomas https://nix-cache.harke.ma $(cat ${config.age.secrets.attic-key.path})
+      ${attic}/bin/attic use tomas:tomas
     '';
   in
     mkIf cfg.enable {
@@ -57,8 +57,8 @@ in {
           RestartSec = 5;
           MemoryLimit = "2G";
         };
-        preStart = lib.getExe attic-login;
-        script = "${lib.getExe attic} watch-store tomas:tomas";
+        preStart = "${lib.getExe attic-login}";
+        script = "${attic}/bin/attic watch-store tomas:tomas";
         wantedBy = ["multi-user.target"];
         environment = {
           ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH = "go1.21";
