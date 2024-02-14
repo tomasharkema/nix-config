@@ -26,7 +26,7 @@ in {
         #   };
         # };
         free-ipa = {
-          image = "docker.io/freeipa/freeipa-server:rocky-9";
+          image = "docker.io/freeipa/freeipa-server:fedora-39";
           autoStart = true;
           ports = ["80:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
           hostname = "ipa.harkema.io";
