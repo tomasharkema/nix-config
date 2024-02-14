@@ -19,7 +19,7 @@ in {
     environment.systemPackages = with pkgs; [pantheon.granite7 pantheon.contractor appeditor monitor];
 
     services = {
-      xrdp.defaultWindowManager = "/run/current-system/sw/bin/gnome-session";
+      xrdp.defaultWindowManager = "/run/current-system/sw/bin/gnome-session --session=pantheon";
 
       xserver = {
         desktopManager = {
