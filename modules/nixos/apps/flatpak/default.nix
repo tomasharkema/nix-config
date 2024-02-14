@@ -19,7 +19,7 @@ in {
   config = mkIf enable {
     xdg.portal = {
       enable = true;
-      config.common.default = "gnome";
+      # config.common.default = "gnome";
     };
 
     services.flatpak = {
@@ -28,6 +28,10 @@ in {
         {
           name = "flathub";
           location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+        }
+        {
+          name = "appcenter";
+          location = "https://flatpak.elementary.io/repo.flatpakrepo";
         }
       ];
       packages =

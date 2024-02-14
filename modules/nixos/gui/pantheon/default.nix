@@ -15,7 +15,7 @@ in {
     system.nixos.tags = ["pantheon"];
 
     programs.pantheon-tweaks.enable = true;
-
+    environment.systemPackages = with pkgs; [pantheon.granite7];
     services = {
       xserver = {
         desktopManager = {
