@@ -44,8 +44,7 @@ with lib; {
         remote-unlock.enable = false;
       };
     };
-
-    services.resilio.enable = mkForce false;
+    resilio.enable = false;
 
     hardware.opengl = {
       enable = true;

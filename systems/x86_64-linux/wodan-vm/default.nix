@@ -8,9 +8,9 @@
 
     networking.hostName = "wodan-vm";
     networking.hostId = "a5a1dad6";
-    services.resilio = {
-      enable = lib.mkForce false;
-    };
+
+    resilio.enable = false;
+
     traits = {
       hardware = {
         tpm.enable = true;
