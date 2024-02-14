@@ -3,23 +3,24 @@
   inputs,
   lib,
   ...
-}: {
+}:
+with lib; {
   imports = with inputs; [
     "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
     ./hardware-configuration.nix
   ];
 
   config = {
-    networking.hostName = "euro-mir-vm";
+    networking = {
+      wireless.enable = mkForce false;
+      hostName = "euro-mir-vm";
+    };
 
     time.timeZone = "Europe/Amsterdam";
-
-    netdata.enable = lib.mkForce false;
 
     disks."ext4" = {
       enable = true;
       main = "/dev/vda";
-
       encrypt = false;
     };
 
@@ -28,13 +29,11 @@
       desktop = {
         enable = true;
       };
-      quiet-boot.enable = true;
+      # quiet-boot.enable = true;
       gnome.enable = false;
       pantheon.enable = true;
     };
-    apps = {
-      flatpak.enable = true;
-    };
+    apps.flatpak.enable = true;
     boot.growPartition = true;
 
     traits = {
@@ -45,15 +44,13 @@
         remote-unlock.enable = false;
       };
     };
-    services.resilio = {
-      enable = lib.mkForce false;
-    };
-    networking.wireless.enable = lib.mkForce false;
 
-    hardware.opengl = {
-      enable = true;
-      driSupport = true;
-      # driSupport32Bit = true;
-    };
+    services.resilio.enable = mkForce false;
+
+    # hardware.opengl = {
+    #   enable = true;
+    #   driSupport = true;
+    #   # driSupport32Bit = true;
+    # };
   };
 }
