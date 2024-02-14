@@ -205,7 +205,14 @@ in {
         };
 
         availableKernelModules = ["e1000e" "r8169"];
-        kernelModules = ["uas" "usbcore" "usb_storage" "vfat" "nls_cp437" "nls_iso8859_1"];
+        kernelModules = [
+          "uas"
+          # "usbcore"
+          "usb_storage"
+          "vfat"
+          "nls_cp437"
+          "nls_iso8859_1"
+        ];
 
         network = {
           enable = true;
