@@ -72,6 +72,7 @@
 
     environment.systemPackages =
       (with pkgs; [
+        pkgs.custom.sssd
         atop
         powertop
         packagekit
@@ -246,6 +247,8 @@
     };
 
     powerManagement.powertop.enable = mkDefault true;
+    
+    services.sssd.enable = true;
 
     security = {
       ipa = {
