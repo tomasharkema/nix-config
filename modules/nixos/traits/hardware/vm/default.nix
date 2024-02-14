@@ -29,5 +29,6 @@ in {
       enableRedistributableFirmware = false;
       enableAllFirmware = false;
     };
+    resilio.enable = false;
   };
 }

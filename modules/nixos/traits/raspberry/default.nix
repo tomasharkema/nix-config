@@ -31,9 +31,7 @@ in {
 
     systemd.services.attic-watch.enable = lib.mkForce false;
 
-    services.resilio = {
-      enable = lib.mkForce false;
-    };
+    resilio.enable = false;
     services.promtail = {
       enable = lib.mkForce false;
     };
