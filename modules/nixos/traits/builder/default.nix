@@ -33,7 +33,6 @@ in {
         mode = "0664";
       };
 
-      apps.attic.enable = true;
       # services.github-runners."${config.networking.hostName}-runner-1" = github-default;
       # services.github-runners."${config.networking.hostName}-runner-2" = github-default;
 
