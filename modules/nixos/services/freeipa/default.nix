@@ -32,7 +32,7 @@ in {
           hostname = "ipa.harkema.io";
           extraOptions = ["--sysctl" "net.ipv6.conf.all.disable_ipv6=0" "-e" "SECRET=Secret123" "-e" "PASSWORD=Secret123"];
           #cmd = ["/bin/bash" "-c" "yum install epel-release -y && yum install letsencrypt git -y && ipa-server-install -U -r HARKEMA.IO"];
-          cmd = ["ipa-server-install" "-U" "-r" "HARKEMA.IO"];
+          cmd = ["ipa-server-install" "-U" "-r" "HARKEMA.IO" "--no-host-dns" "--hostname=ipa.harkema.io"];
           volumes = [
             "/var/lib/freeipa:/data:Z"
             "/var/lib/freeipa-ssl:/etc/ssl/ipa.harkema.io:Z"
