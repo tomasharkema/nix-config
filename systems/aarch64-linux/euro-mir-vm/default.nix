@@ -30,8 +30,8 @@ with lib; {
         enable = true;
       };
       # quiet-boot.enable = true;
-      gnome.enable = false;
-      pantheon.enable = true;
+      gnome.enable = true;
+      pantheon.enable = false;
     };
     apps.flatpak.enable = true;
     boot.growPartition = true;
@@ -47,10 +47,10 @@ with lib; {
 
     services.resilio.enable = mkForce false;
 
-    # hardware.opengl = {
-    #   enable = true;
-    #   driSupport = true;
-    #   # driSupport32Bit = true;
-    # };
+    hardware.opengl = {
+      enable = true;
+      driSupport = true;
+      #   # driSupport32Bit = true;
+    };
   };
 }

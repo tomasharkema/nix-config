@@ -12,14 +12,14 @@
 #     });
 # in
 {
-  options = {
-    variables = lib.mkOption {
-      type = lib.types.attrs;
-      default = {
-        # theme = theme;
-      };
-    };
-  };
+  # options = {
+  #   variables = lib.mkOption {
+  #     type = lib.types.attrs;
+  #     default = {
+  #       # theme = theme;
+  #     };
+  #   };
+  # };
 
   config = with lib; {
     # Set your time zone.
