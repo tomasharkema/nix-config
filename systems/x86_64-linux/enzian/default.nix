@@ -20,8 +20,7 @@
         rdp.enable = true;
       };
     };
-    
-    
+
     apps.steam.enable = true;
     disks.btrfs = {
       enable = true;
@@ -40,7 +39,6 @@
         monitor.enable = true;
       };
     };
-
 
     hardware.cpu.intel.updateMicrocode = true;
     nixpkgs.system = "x86_64-linux";
@@ -62,9 +60,10 @@
     #   targetUser = "root";
     # };
 
-    boot = {binfmt.emulatedSystems = ["aarch64-linux"];
+    boot = {
+      binfmt.emulatedSystems = ["aarch64-linux"];
 
-    kernel.sysctl."kernel.sysrq" = 1;
+      kernel.sysctl."kernel.sysrq" = 1;
       initrd = {
         availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
         kernelModules = ["kvm-intel" "uinput" "nvme"];
