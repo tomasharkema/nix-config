@@ -15,9 +15,11 @@ in {
     system.nixos.tags = ["pantheon"];
 
     programs.pantheon-tweaks.enable = true;
+
     environment.systemPackages = with pkgs; [pantheon.granite7 pantheon.contractor appeditor monitor];
+
     services = {
-      xrdp.defaultWindowManager = "/etc/X11/Xsession";
+      xrdp.defaultWindowManager = "/run/current-system/sw/bin/gnome-session";
 
       xserver = {
         desktopManager = {
