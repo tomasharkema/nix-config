@@ -100,6 +100,8 @@
         pvzstd
       ]);
 
+    apps.attic.enable = true;
+
     services = {
       zram-generator.enable = true;
 
