@@ -44,9 +44,6 @@ in {
             "-U"
             "-r"
             "HARKEMA.IO"
-            "--no-host-dns"
-            "--hostname=ipa.harkema.io"
-            "--ip-address=192.168.0.15"
           ];
           volumes = [
             "/var/lib/freeipa:/data:Z"
