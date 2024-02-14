@@ -26,6 +26,7 @@ in {
         #   };
         # };
         free-ipa = {
+          # 10.88.0.117
           image = "docker.io/freeipa/freeipa-server:fedora-39";
           autoStart = true;
           ports = ["80:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
@@ -37,6 +38,7 @@ in {
             "SECRET=Secret123"
             "-e"
             "PASSWORD=Secret123"
+            "--dns=1.1.1.1"
           ];
           #cmd = ["/bin/bash" "-c" "yum install epel-release -y && yum install letsencrypt git -y && ipa-server-install -U -r HARKEMA.IO"];
           cmd = [
@@ -44,6 +46,7 @@ in {
             "-U"
             "-r"
             "HARKEMA.IO"
+            "-d"
           ];
           volumes = [
             "/var/lib/freeipa:/data:Z"
