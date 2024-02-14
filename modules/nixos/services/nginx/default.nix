@@ -9,6 +9,8 @@ with lib.custom; let
   cfg = config.proxy-services;
 in {
   options.proxy-services = {
+    enable = mkEnableOption "enable nginx";
+
     vhost = mkOption {
       type = types.str;
       default = "${config.networking.hostName}.ling-lizard.ts.net";
@@ -21,7 +23,7 @@ in {
     };
   };
 
-  config = {
+  config = mkIf cfg.enable {
     services.nginx = {
       enable = true;
       recommendedProxySettings = true;
