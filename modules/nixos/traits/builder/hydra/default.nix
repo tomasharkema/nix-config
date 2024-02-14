@@ -134,7 +134,7 @@ in {
 
         substituters = [
           "https://tomasharkema.cachix.org/"
-          # "https://nix-cache.harke.ma/tomas/"
+          "https://nix-cache.harke.ma/tomas/"
           "https://nix-community.cachix.org/"
           "https://cache.nixos.org/"
         ];
