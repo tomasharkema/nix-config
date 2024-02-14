@@ -243,7 +243,7 @@
       enableIPv6 = false;
     };
 
-    # powerManagement.powertop.enable = true;
+    powerManagement.powertop.enable = true;
 
     security = {
       pki.certificateFiles = [./ca.crt];
