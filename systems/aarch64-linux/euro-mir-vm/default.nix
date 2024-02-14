@@ -29,8 +29,8 @@
         enable = true;
       };
       quiet-boot.enable = true;
-      gnome.enable = true;
-      pantheon.enable = false;
+      gnome.enable = false;
+      pantheon.enable = true;
     };
     apps = {
       flatpak.enable = true;
