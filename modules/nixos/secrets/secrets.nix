@@ -57,6 +57,7 @@ let
   builders = [tomas blue-fire blue-fire-tomas];
 in {
   "attic-key.age".publicKeys = allKeys;
+  "attic-config.toml.age".publicKeys = allKeys;
   "atuin.age".publicKeys = allKeys;
   "binary-caches.json.age".publicKeys = allKeys;
   "cachix-activate.age".publicKeys = allKeys;
