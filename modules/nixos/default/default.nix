@@ -248,8 +248,6 @@
     powerManagement.powertop.enable = mkDefault true;
 
     security = {
-      # pki.certificateFiles = [./ca.crt];
-
       ipa = {
         enable = true;
         server = "ipa.harkema.io";
@@ -257,8 +255,8 @@
         realm = "HARKEMA.IO";
         basedn = "dc=harkema,dc=io";
         certificate = pkgs.fetchurl {
-          url = "https://ipa.harkema.io/ipa/config/ca.crt?t=1";
-          sha256 = "sha256-z0LIRV64wmH/xI7GFL2jVX5zAgxYqTsZUcc6jwTKJaA=";
+          url = "https://ipa.harkema.io/ipa/config/ca.crt";
+          sha256 = "1f1q3y98qlfgdj6b3823wjyrsm608xj6nqairczadrdisa9y5zkm";
         };
         dyndns.enable = true; # TODO: enable this??
       };
