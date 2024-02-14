@@ -17,6 +17,8 @@ with lib; {
           monospace = ["JetBrainsMono Nerd Font Mono"];
           #   sansSerif = ["B612 Regular"];
           #   serif = ["B612 Regular"];
+
+          sansSerif = ["Inter"];
         };
         hinting = {
           autohint = true;
@@ -24,21 +26,22 @@ with lib; {
         };
       };
 
-      packages = with pkgs; [
-        noto-fonts
-        noto-fonts-extra
-        noto-fonts-emoji
-        noto-fonts-cjk
-        nerdfonts
-        ubuntu_font_family
-
-        pkgs.custom.neue-haas-grotesk
-
-        # helvetica
-        vegur # the official NixOS font
-        pkgs.custom.b612
-        pkgs.custom.san-francisco
+      packages = with pkgs;
+      with pkgs.custom; [
+        b612
         inter
+        nerdfonts
+        neue-haas-grotesk
+        noto-fonts
+        noto-fonts-cjk
+        noto-fonts-emoji
+        noto-fonts-extra
+        open-dyslexic
+        open-sans
+        roboto-mono
+        san-francisco
+        ubuntu_font_family
+        vegur
       ];
     };
 
