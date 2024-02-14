@@ -108,13 +108,12 @@ in
         ];
       };
 
-          swapDevices = [
-      {
-        device = "/swapfile/swapfile";
-        size = 16 * 1024;
-      }
-    ];
-
+      swapDevices = [
+        {
+          device = "/swapfile/swapfile";
+          size = 16 * 1024;
+        }
+      ];
 
       services = {
         btrfs.autoScrub = mkIf cfg.autoscrub {

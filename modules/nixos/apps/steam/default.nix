@@ -13,7 +13,7 @@ in {
 
   config = mkIf cfg.enable {
     system.nixos.tags = ["steam"];
-
+    boot.kernelModules = ["uinput"];
     users.groups.input.members = ["tomas"];
 
     programs.steam = {
@@ -31,27 +31,26 @@ in {
       cartridges
     ];
 
-    # services.udev.extraRules = ''
-    #   Sunshine
-    #   KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
-    # '';
-
-    systemd.services.sunshine = {
-      enable = true;
-      description = "Sunshine self-hosted game stream host for Moonlight.";
-      unitConfig = {
-        Type = "simple";
-        StartLimitIntervalSec = 500;
-        StartLimitBurst = 5;
-      };
-      serviceConfig = {
-        ExecStart = "${pkgs.sunshine}/bin/sunshine";
-        Restart = "on-failure";
-        RestartSec = 5;
-      };
-      wantedBy = ["graphical-session.target"];
+    services.udev.extraRules = ''
+      Sunshine
+      KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
+    '';
+    security.wrappers.sunshine = {
+      owner = "root";
+      group = "root";
+      capabilities = "cap_sys_admin+p";
+      source = "${pkgs.sunshine}/bin/sunshine";
     };
 
+    systemd.user.services.sunshine = {
+      description = "sunshine";
+      wantedBy = ["graphical-session.target"];
+      serviceConfig = {
+        ExecStart = "${config.security.wrapperDir}/sunshine";
+      };
+    };
+
+    services.avahi.publish.userServices = true;
     # Enable OpenGL
     hardware.opengl = {
       enable = true;
