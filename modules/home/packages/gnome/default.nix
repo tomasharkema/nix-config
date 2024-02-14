@@ -146,7 +146,7 @@ with lib; {
         };
         "org/gnome/desktop/wm/preferences" = {
           button-layout = "appmenu:minimize,maximize,close";
-          titlebar-font = "B612 Regular 12";
+          # titlebar-font = "B612 Regular 12";
         };
         "org/gnome/nautilus/preferences" = {always-use-location-entry = true;};
         "org/gnome/shell/extensions/dash-to-panel" = {
