@@ -19,6 +19,8 @@
         "attic-config.toml" = {
           file = ./attic-config.toml.age;
           mode = "644";
+          owner = "tomas";
+          group = "tomas";
           path = "/home/tomas/.config/attic/config.toml";
         };
         attic-key = {
