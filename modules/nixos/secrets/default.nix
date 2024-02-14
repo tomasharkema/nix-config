@@ -16,6 +16,11 @@
           mode = "644";
           # symlink = false;
         };
+        "attic-config.toml" = {
+          file = ./attic-config.toml.age;
+          mode = "644";
+          path = "/home/tomas/.config/attic/config.toml";
+        };
         attic-key = {
           file = ./attic-key.age;
           mode = "644";
