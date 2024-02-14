@@ -97,8 +97,8 @@
     impermanence.url = "github:nix-community/impermanence";
 
     attic = {
-      url = "github:zhaofengli/attic";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:zhaofengli/attic/6eabc3f";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lanzaboote = {
