@@ -241,10 +241,6 @@
         enable = mkDefault true;
       };
 
-      extraHosts = ''
-        192.168.0.15 ipa.harkema.io
-      '';
-
       enableIPv6 = false;
     };
 
@@ -266,10 +262,10 @@
         domain = "harkema.io";
         realm = "HARKEMA.IO";
         basedn = "dc=harkema,dc=io";
-        certificate = pkgs.fetchurl {
-          url = "https://ipa.harkema.io/ipa/config/ca.crt?t=3";
-          sha256 = "sha256-df7ik9Kx5aY+y1Fha2RHwFSdveRDoLGMbM9RjJIfOLg=";
-        };
+        # certificate = pkgs.fetchurl {
+        #   url = "https://ipa.harkema.io/ipa/config/ca.crt?t=3";
+        #   sha256 = "sha256-df7ik9Kx5aY+y1Fha2RHwFSdveRDoLGMbM9RjJIfOLg=";
+        # };
         # dyndns.enable = true; # TODO: enable this??
       };
     };
