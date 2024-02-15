@@ -253,19 +253,12 @@
 
     services.sssd = {
       enable = true;
-      kcm = true;
+      # kcm = true;
       config = ''
         [pam]
         pam_passkey_auth = True
       '';
     };
-
-    # environment.etc = {
-    #   "sssd/conf.d/passkey.conf".text = ''
-    #     [pam]
-    #     pam_passkey_auth = True
-    #   '';
-    # };
 
     security = {
       ipa = {
