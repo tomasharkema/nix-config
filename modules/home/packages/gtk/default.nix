@@ -13,7 +13,7 @@
 
       font = {
         package = pkgs.inter;
-        name = "Inter Regular 11";
+        name = "Inter Regular 12";
 
         # package = pkgs.custom.neue-haas-grotesk;
         # name = "B612 Regular 12";

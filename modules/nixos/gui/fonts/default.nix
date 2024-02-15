@@ -15,10 +15,9 @@ with lib; {
 
         defaultFonts = {
           monospace = ["JetBrainsMono Nerd Font Mono"];
-          #   sansSerif = ["B612 Regular"];
-          serif = ["Inter Regular"];
+          serif = ["Inter"];
 
-          sansSerif = ["Inter Regular"];
+          sansSerif = ["Inter"];
         };
         hinting = {
           autohint = true;
