@@ -247,8 +247,11 @@
     };
 
     powerManagement.powertop.enable = mkDefault true;
-    
-    services.sssd.enable = true;
+
+    services.sssd = {
+      enable = true;
+      kcm = true;
+    };
 
     security = {
       ipa = {
