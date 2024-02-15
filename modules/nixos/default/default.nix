@@ -251,7 +251,7 @@
     powerManagement.powertop.enable = mkDefault true;
 
     services.sssd = {
-      enable = true;
+      # enable = true;
       # kcm = true;
       config = ''
         [pam]
@@ -261,7 +261,7 @@
 
     security = {
       ipa = {
-        enable = true;
+        # enable = true;
         server = "ipa.harkema.io";
         domain = "harkema.io";
         realm = "HARKEMA.IO";
