@@ -23,8 +23,8 @@
       yubico-piv-tool
       libfido2
     ];
-    programs.ssh.extraConfig = ''
-      PKCS11Provider /run/current-system/sw/lib/libykcs11.so
-    '';
+    # programs.ssh.extraConfig = ''
+    #   PKCS11Provider /run/current-system/sw/lib/libykcs11.so
+    # '';
   };
 }
