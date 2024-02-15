@@ -10,4 +10,4 @@ _kpasswd._udp.harkema.io. 3600 IN SRV 0 100 464 ipa.harkema.io.
 _kpasswd.harkema.io. 3600 IN URI 0 100 "krb5srv:m:tcp:ipa.harkema.io."
 _kpasswd.harkema.io. 3600 IN URI 0 100 "krb5srv:m:udp:ipa.harkema.io."
 _ldap._tcp.harkema.io. 3600 IN SRV 0 100 389 ipa.harkema.io.
-ipa-ca.harkema.io. 3600 IN A 192.168.0.15
+ipa-ca.harkema.io. 3600 IN A 85.146.181.175
