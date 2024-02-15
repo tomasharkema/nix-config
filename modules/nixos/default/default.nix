@@ -92,6 +92,7 @@
         tpm-tools
         opencryptoki
         devtodo
+        openldap
       ])
       ++ (with pkgs.custom; [
         menu
@@ -252,14 +253,14 @@
 
     powerManagement.powertop.enable = mkDefault true;
 
-    services.sssd = {
-      enable = true;
-      kcm = true;
-      config = ''
-        [pam]
-        pam_passkey_auth = True
-      '';
-    };
+    # services.sssd = {
+    #   enable = true;
+    #   kcm = true;
+    #   config = ''
+    #     [pam]
+    #     pam_passkey_auth = True
+    #   '';
+    # };
 
     security = {
       ipa = {
@@ -272,7 +273,8 @@
           url = "https://ipa.harkema.io/ipa/config/ca.crt?t=6";
           sha256 = "sha256-aqOAbZnNHncjOXqJzOyyU9lNibOAIuGUCvtn5hyq+QU=";
         };
-        # dyndns.enable = true; # TODO: enable this??
+        ifpAllowedUids = ["root" "tomas"];
+        dyndns.enable = false; # TODO: enable this??
       };
     };
   };
