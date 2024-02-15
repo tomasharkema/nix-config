@@ -26,7 +26,7 @@ with lib; {
 
     services = {
       qemuGuest.enable = true;
-      freeipa.enable = true;
+      freeipa.enable = false;
       resilio = {
         enable = lib.mkForce false;
       };
