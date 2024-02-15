@@ -92,6 +92,7 @@
         tpm-tools
         opencryptoki
         devtodo
+        openldap
       ])
       ++ (with pkgs.custom; [
         menu
@@ -251,14 +252,14 @@
 
     powerManagement.powertop.enable = mkDefault true;
 
-    services.sssd = {
-      enable = true;
-      kcm = true;
-      config = ''
-        [pam]
-        pam_passkey_auth = True
-      '';
-    };
+    # services.sssd = {
+    #   enable = true;
+    #   kcm = true;
+    #   config = ''
+    #     [pam]
+    #     pam_passkey_auth = True
+    #   '';
+    # };
 
     security = {
       ipa = {
