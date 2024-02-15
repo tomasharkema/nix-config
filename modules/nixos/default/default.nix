@@ -92,15 +92,21 @@
         tpm-tools
         opencryptoki
         devtodo
-        #bitwarden
-        #bitwarden-cli
-        #bitwarden-menu
       ])
       ++ (with pkgs.custom; [
         menu
         graylog-cli-dashboard
         pvzstd
-      ]);
+      ])
+      ++ (
+        if pkgs.stdenv.isx86_64
+        then [
+          bitwarden
+          bitwarden-cli
+          bitwarden-menu
+        ]
+        else []
+      );
 
     apps.attic.enable = mkDefault true;
 
