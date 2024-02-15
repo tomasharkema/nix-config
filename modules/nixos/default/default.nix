@@ -94,6 +94,9 @@
         tpm-tools
         opencryptoki
         devtodo
+        bitwarden
+        bitwarden-cli
+        bitwarden-menu
       ])
       ++ (with pkgs.custom; [
         menu
