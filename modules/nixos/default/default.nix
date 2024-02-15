@@ -100,11 +100,12 @@
       ])
       ++ (
         if pkgs.stdenv.isx86_64
-        then [
-          bitwarden
-          bitwarden-cli
-          bitwarden-menu
-        ]
+        then
+          with pkgs; [
+            bitwarden
+            bitwarden-cli
+            bitwarden-menu
+          ]
         else []
       );
 
