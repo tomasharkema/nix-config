@@ -247,8 +247,8 @@
     powerManagement.powertop.enable = mkDefault true;
 
     services.sssd = {
-      # enable = true;
-      # kcm = true;
+      enable = true;
+      kcm = true;
       config = ''
         [pam]
         pam_passkey_auth = True
@@ -257,15 +257,15 @@
 
     security = {
       ipa = {
-        # enable = true;
+        enable = true;
         server = "ipa.harkema.io";
         domain = "harkema.io";
         realm = "HARKEMA.IO";
         basedn = "dc=harkema,dc=io";
-        # certificate = pkgs.fetchurl {
-        #   url = "https://ipa.harkema.io/ipa/config/ca.crt?t=3";
-        #   sha256 = "sha256-df7ik9Kx5aY+y1Fha2RHwFSdveRDoLGMbM9RjJIfOLg=";
-        # };
+        certificate = pkgs.fetchurl {
+          url = "https://ipa.harkema.io/ipa/config/ca.crt?t=4";
+          sha256 = "";
+        };
         # dyndns.enable = true; # TODO: enable this??
       };
     };
