@@ -72,7 +72,6 @@
 
     environment.systemPackages =
       (with pkgs; [
-        pkgs.custom.sssd
         atop
         powertop
         packagekit
@@ -268,10 +267,10 @@
         realm = "HARKEMA.IO";
         basedn = "dc=harkema,dc=io";
         certificate = pkgs.fetchurl {
-          url = "https://ipa.harkema.io/ipa/config/ca.crt";
-          sha256 = "1f1q3y98qlfgdj6b3823wjyrsm608xj6nqairczadrdisa9y5zkm";
+          url = "https://ipa.harkema.io/ipa/config/ca.crt?t=3";
+          sha256 = "sha256-df7ik9Kx5aY+y1Fha2RHwFSdveRDoLGMbM9RjJIfOLg=";
         };
-        dyndns.enable = true; # TODO: enable this??
+        # dyndns.enable = true; # TODO: enable this??
       };
     };
   };
