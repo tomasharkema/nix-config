@@ -29,9 +29,9 @@ in {
 
     boot.initrd.systemd.enableTpm2 = true;
 
-    programs.ssh.extraConfig = ''
-      PKCS11Provider /run/current-system/sw/lib/libtpm2_pkcs11.so
-    '';
+    # programs.ssh.extraConfig = ''
+    #   PKCS11Provider /run/current-system/sw/lib/libtpm2_pkcs11.so
+    # '';
 
     environment.systemPackages = with pkgs; [
       tpm-luks
