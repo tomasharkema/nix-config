@@ -80,7 +80,6 @@
         hw-probe
         wget
         curl
-        freeipa
         lm_sensors
         pciutils
         # cope
@@ -93,9 +92,9 @@
         tpm-tools
         opencryptoki
         devtodo
-        bitwarden
-        bitwarden-cli
-        bitwarden-menu
+        #bitwarden
+        #bitwarden-cli
+        #bitwarden-menu
       ])
       ++ (with pkgs.custom; [
         menu
@@ -263,8 +262,8 @@
         realm = "HARKEMA.IO";
         basedn = "dc=harkema,dc=io";
         certificate = pkgs.fetchurl {
-          url = "https://ipa.harkema.io/ipa/config/ca.crt?t=4";
-          sha256 = "";
+          url = "https://ipa.harkema.io/ipa/config/ca.crt?t=6";
+          sha256 = "sha256-aqOAbZnNHncjOXqJzOyyU9lNibOAIuGUCvtn5hyq+QU=";
         };
         # dyndns.enable = true; # TODO: enable this??
       };
