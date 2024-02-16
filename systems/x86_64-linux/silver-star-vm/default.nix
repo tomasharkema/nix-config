@@ -17,23 +17,25 @@ with lib; {
         vm.enable = true;
       };
     };
+
     disks.ext4 = {
       enable = true;
       main = "/dev/disk/by-id/virtio-vdisk1";
     };
+
     resilio.enable = mkForce false;
     # apps.tor.relay.enable = true;
 
     services = {
       qemuGuest.enable = true;
-      freeipa.enable = false;
+      freeipa.enable = true;
       resilio = {
         enable = lib.mkForce false;
       };
-      # ha.initialMaster = true;
-      # command-center = {
-      #   enableBot = true;
-      # };
+      ha.initialMaster = true;
+      command-center = {
+        enableBot = true;
+      };
     };
     # boot.kernelPackages = pkgs.linuxPackages_latest;
 

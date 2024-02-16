@@ -89,10 +89,10 @@ in {
     # };
 
     services = {
-      ha.initialMaster = true;
-      command-center = {
-        enableBot = true;
-      };
+      # ha.initialMaster = true;
+      # command-center = {
+      #   enableBot = true;
+      # };
 
       # hercules-ci-agent = {enable = true;};
       tailscale = {
