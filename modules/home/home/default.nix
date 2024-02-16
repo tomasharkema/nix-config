@@ -31,10 +31,14 @@ in
         };
         activation = {
           userSymlinks = ''
-            mkdir $HOME/.config/cachix
-            ln -sfn /etc/cachix.dhall $HOME/.config/cachix/cachix.dhall
-            mkdir $HOME/.config/notify
-            ln -sfn "${osConfig.age.secrets.notify.path}" $HOME/.config/notify/provider-config.yaml
+            if [ ! -d "$HOME/.config/cachix" ]; then
+              mkdir $HOME/.config/cachix
+              ln -sfn /etc/cachix.dhall $HOME/.config/cachix/cachix.dhall
+            fi
+            if [ ! -d "$HOME/.config/notify" ]; then
+              mkdir $HOME/.config/notify
+              ln -sfn "${osConfig.age.secrets.notify.path}" $HOME/.config/notify/provider-config.yaml
+            fi
           '';
         };
 
