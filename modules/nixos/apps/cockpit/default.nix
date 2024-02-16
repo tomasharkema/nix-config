@@ -62,9 +62,10 @@ in {
         StartLimitBurst = 5;
       };
       script = ''
-        ${lib.getExe pkgs.tailscale} cert ${config.proxy-services.vhost} \
+        ${lib.getExe pkgs.tailscale} cert \
           --cert-file /etc/cockpit/ws-certs.d/${config.proxy-services.vhost}.cert \
-          --key-file /etc/cockpit/ws-certs.d/${config.proxy-services.vhost}.key
+          --key-file /etc/cockpit/ws-certs.d/${config.proxy-services.vhost}.key \
+          ${config.proxy-services.vhost}
       '';
       wantedBy = ["multi-user.target" "network.target"];
       after = ["tailscale.service"];
