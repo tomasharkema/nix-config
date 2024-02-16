@@ -18,6 +18,7 @@ with lib; {
       };
     };
     proxy-services.enable = false;
+
     disks.ext4 = {
       enable = true;
       main = "/dev/disk/by-id/virtio-vdisk1";
