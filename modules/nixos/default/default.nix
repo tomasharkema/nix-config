@@ -289,8 +289,8 @@
         realm = "HARKEMA.IO";
         basedn = "dc=harkema,dc=io";
         certificate = pkgs.fetchurl {
-          url = "https://ipa.harkema.io/ipa/config/ca.crt?t=8";
-          sha256 = "sha256-aqOAbZnNHncjOXqJzOyyU9lNibOAIuGUCvtn5hyq+QU=";
+          url = "https://ipa.harkema.io/ipa/config/ca.crt?t=10";
+          sha256 = "sha256-df7ik9Kx5aY+y1Fha2RHwFSdveRDoLGMbM9RjJIfOLg=";
         };
         # dyndns.enable = true;
       };
