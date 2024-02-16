@@ -256,7 +256,7 @@
 
     system.activationScripts = {
       default_ccache_name = ''
-        if [ -d "/var/cache/krb5" ]; then
+        if [ ! -d "/var/cache/krb5" ]; then
           mkdir /var/cache/krb5
           chmod 777 /var/cache/krb5
         fi
