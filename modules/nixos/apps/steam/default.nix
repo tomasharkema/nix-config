@@ -25,9 +25,9 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-      sunshine
+      # sunshine
       protontricks
-      heroic
+      # heroic
       cartridges
     ];
 

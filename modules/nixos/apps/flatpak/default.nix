@@ -54,6 +54,8 @@ in {
           "org.freefilesync.FreeFileSync"
           "org.gnome.meld"
           "org.stellarium.Stellarium"
+          "com.bitwarden.desktop"
+          "com.heroicgameslauncher.hgl"
         ]
         ++ (
           if pkgs.stdenv.isx86_64
