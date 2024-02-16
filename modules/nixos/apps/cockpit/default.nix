@@ -53,20 +53,23 @@ in {
       };
     };
 
-    # systemd.services.cockpit-tailscale-cert = {
-    #   enable = true;
-    #   description = "cockpit-tailscale-cert";
-    #   unitConfig = {
-    #     Type = "oneshot";
-    #     StartLimitIntervalSec = 500;
-    #     StartLimitBurst = 5;
-    #   };
-    #   script = "${lib.getExe cockpit-get-cert}";
-    #   wantedBy = ["multi-user.target"];
-    #   after = ["tailscale.service"];
-    #   wants = ["tailscale.service"];
-    #   path = [cockpit-get-cert pkgs.tailscale];
-    # };
+    systemd.services.cockpit-tailscale-cert = {
+      enable = true;
+      description = "cockpit-tailscale-cert";
+      unitConfig = {
+        Type = "oneshot";
+        StartLimitIntervalSec = 500;
+        StartLimitBurst = 5;
+      };
+      script = ''
+        ${lib.getExe pkgs.tailscale} cert ${config.proxy-services.vhost} \
+          --cert-file /etc/cockpit/ws-certs.d/${config.proxy-services.vhost}.cert \
+          --key-file /etc/cockpit/ws-certs.d/${config.proxy-services.vhost}.key
+      '';
+      wantedBy = ["multi-user.target" "network.target"];
+      after = ["tailscale.service"];
+      wants = ["tailscale.service"];
+    };
 
     # environment.etc = {
     #   "pam.d/cockpit".text = lib.mkForce ''
