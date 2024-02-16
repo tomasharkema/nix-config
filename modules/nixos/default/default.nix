@@ -271,11 +271,11 @@
         realm = "HARKEMA.IO";
         basedn = "dc=harkema,dc=io";
         certificate = pkgs.fetchurl {
-          url = "https://ipa.harkema.io/ipa/config/ca.crt?t=6";
-          sha256 = "sha256-aqOAbZnNHncjOXqJzOyyU9lNibOAIuGUCvtn5hyq+QU=";
+          url = "https://ipa.harkema.io/ipa/config/ca.crt?t=7";
+          sha256 = "sha256-df7ik9Kx5aY+y1Fha2RHwFSdveRDoLGMbM9RjJIfOLg=";
         };
         ifpAllowedUids = ["root" "tomas"];
-        dyndns.enable = false; # TODO: enable this??
+        dyndns.enable = false;
       };
     };
   };
