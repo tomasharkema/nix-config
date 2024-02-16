@@ -50,7 +50,7 @@ in {
     #   };
     # };
 
-    services.avahi.publish.userServices = true;
+    # services.avahi.publish.userServices = true;
     # Enable OpenGL
     hardware.opengl = {
       enable = true;
