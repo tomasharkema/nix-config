@@ -21,7 +21,7 @@ in {
       enable = true;
       pkcs11.enable = true;
       tctiEnvironment.enable = true;
-      abrmd.enable = true;
+      # abrmd.enable = true;
     };
 
     users.users."tomas".extraGroups = ["tss"];
