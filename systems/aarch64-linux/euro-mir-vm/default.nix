@@ -15,7 +15,7 @@ with lib; {
       wireless.enable = mkForce false;
       hostName = "euro-mir-vm";
     };
-
+    users.mutableUsers = true;
     time.timeZone = "Europe/Amsterdam";
 
     disks."ext4" = {
