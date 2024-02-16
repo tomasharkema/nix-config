@@ -48,6 +48,12 @@
             ];
             mountpoint = "/home";
           };
+          # "/opt/resilio-sync" = {
+          #   mountOptions = [
+          #     "compress=zstd"
+          #   ];
+          #   mountpoint = "/opt/resilio-sync";
+          # };
           "/nix" = {
             mountOptions = [
               # "subvol=nix"
