@@ -62,7 +62,7 @@ in {
 
     programs.zsh = {enable = true;};
 
-    users.mutableUsers = false;
+    users.mutableUsers = mkDefault false;
     programs.fuse.userAllowOther = true;
     users.users.${config.user.name} = {
       shell = pkgs.zsh;
