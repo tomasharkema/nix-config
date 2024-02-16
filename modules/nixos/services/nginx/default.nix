@@ -64,16 +64,15 @@ in {
       };
 
       script = ''
-        (mkdir -p /etc/ssl/private/ || true) && \
-        cd /etc/ssl/private/ && \
-        ${lib.getExe pkgs.tailscale} cert ${cfg.vhost} && \
+        mkdir -p /etc/ssl/private/ || true
+        cd /etc/ssl/private/
+        ${lib.getExe pkgs.tailscale} cert ${cfg.vhost}
         chown nginx:nginx -R /etc/ssl/private/
       '';
 
-      wantedBy = ["multi-user.target"];
+      wantedBy = ["multi-user.target" "network.target"];
       after = ["tailscale.service" "network.target" "syslog.target"];
       wants = ["tailscale.service"];
-      # path = [cockpit-get-cert pkgs.tailscale];
     };
 
     # security.acme = {
