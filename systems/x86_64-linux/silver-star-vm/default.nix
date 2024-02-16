@@ -29,7 +29,7 @@ with lib; {
 
     services = {
       qemuGuest.enable = true;
-      freeipa.enable = true;
+      # freeipa.enable = true;
       resilio = {
         enable = lib.mkForce false;
       };
