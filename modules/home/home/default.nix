@@ -31,9 +31,9 @@ in
         };
         activation = {
           userSymlinks = ''
-            mkdir -p $HOME/.config/cachix
+            mkdir $HOME/.config/cachix
             ln -sfn /etc/cachix.dhall $HOME/.config/cachix/cachix.dhall
-            mkdir -p $HOME/.config/notify
+            mkdir $HOME/.config/notify
             ln -sfn "${osConfig.age.secrets.notify.path}" $HOME/.config/notify/provider-config.yaml
           '';
         };
