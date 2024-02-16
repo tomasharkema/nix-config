@@ -11,7 +11,7 @@ with lib.custom; let
 in {
   options.resilio = {
     enable = mkBoolOpt true "Enable preconfigured resilio service";
-    root = mkOpt types.str "/resilio-sync" "root";
+    root = mkOpt types.str "/opt/resilio-sync" "root";
   };
 
   config = lib.mkIf cfg.enable {
