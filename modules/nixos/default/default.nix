@@ -70,11 +70,12 @@
       };
     };
 
+    services.packagekit.enable = true;
+
     environment.systemPackages =
       (with pkgs; [
         atop
         powertop
-        packagekit
         fwupd
         fwupd-efi
         hw-probe

@@ -3,10 +3,7 @@
   pkgs,
   config,
   ...
-}: let
-  cockpit-podman = pkgs.callPackage ./cockpit-podman.nix {};
-  # cockpit-tailscale = pkgs.callPackage ./cockpit-tailscale.nix {};
-in {
+}: {
   config = {
     services.cockpit = {
       enable = true;
@@ -25,8 +22,15 @@ in {
     };
     environment.systemPackages = with pkgs; [
       cockpit-podman
-      # cockpit-tailscale
+      cockpit-tailscale
+      cockpit-machines
+      cockpit-ostree
+      packagekit
     ];
+
+    # services.multipath = {
+    #   enable = true;
+    # };
 
     proxy-services.services = {
       "/" = {
