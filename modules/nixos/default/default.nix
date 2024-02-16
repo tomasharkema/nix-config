@@ -111,6 +111,7 @@
       );
 
     apps.attic.enable = mkDefault true;
+    proxy-services.enable = mkDefault true;
 
     services = {
       zram-generator.enable = true;
