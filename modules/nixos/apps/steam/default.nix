@@ -31,24 +31,24 @@ in {
       cartridges
     ];
 
-    services.udev.extraRules = ''
-      Sunshine
-      KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
-    '';
-    security.wrappers.sunshine = {
-      owner = "root";
-      group = "root";
-      capabilities = "cap_sys_admin+p";
-      source = "${pkgs.sunshine}/bin/sunshine";
-    };
+    # services.udev.extraRules = ''
+    #   Sunshine
+    #   KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
+    # '';
+    # security.wrappers.sunshine = {
+    #   owner = "root";
+    #   group = "root";
+    #   capabilities = "cap_sys_admin+p";
+    #   source = "${pkgs.sunshine}/bin/sunshine";
+    # };
 
-    systemd.user.services.sunshine = {
-      description = "sunshine";
-      wantedBy = ["graphical-session.target"];
-      serviceConfig = {
-        ExecStart = "${config.security.wrapperDir}/sunshine";
-      };
-    };
+    # systemd.user.services.sunshine = {
+    #   description = "sunshine";
+    #   wantedBy = ["graphical-session.target"];
+    #   serviceConfig = {
+    #     ExecStart = "${config.security.wrapperDir}/sunshine";
+    #   };
+    # };
 
     services.avahi.publish.userServices = true;
     # Enable OpenGL
