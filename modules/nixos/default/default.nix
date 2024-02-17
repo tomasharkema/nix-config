@@ -275,11 +275,10 @@
       config = ''
         [sssd]
         krb5_rcache_dir = /var/cache/krb5
+
+        [pam]
+        pam_passkey_auth = True
       '';
-      #   config = ''
-      #     [pam]
-      #     pam_passkey_auth = True
-      #   '';
     };
 
     security = {
