@@ -23,7 +23,7 @@ in {
       spice-autorandr.enable = mkIf pkgs.stdenv.isx86_64 true;
       spice-webdavd.enable = true;
     };
-    powerManagement.powertop.enable = false;
+    # powerManagement.powertop.enable = false;
     hardware = {
       cpu.intel.updateMicrocode = false;
       enableRedistributableFirmware = false;

@@ -80,7 +80,7 @@ in {
         fira-code-nerdfont
         transmission
         # keybase
-        powertop
+        # powertop
 
         nix-software-center
         # nixos-conf-editor
