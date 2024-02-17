@@ -55,11 +55,15 @@ in {
           "org.gnome.meld"
           "org.stellarium.Stellarium"
           "com.bitwarden.desktop"
-          "com.heroicgameslauncher.hgl"
         ]
         ++ (
           if pkgs.stdenv.isx86_64
-          then ["com.discordapp.Discord" "com.spotify.Client" "tv.plex.PlexDesktop"]
+          then [
+            "com.discordapp.Discord"
+            "com.spotify.Client"
+            "tv.plex.PlexDesktop"
+            "com.heroicgameslauncher.hgl"
+          ]
           else []
         )
         ++ (optional config.apps.podman.enable "io.podman_desktop.PodmanDesktop");

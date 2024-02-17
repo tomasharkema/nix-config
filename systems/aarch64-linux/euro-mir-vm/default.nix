@@ -15,7 +15,9 @@ with lib; {
       wireless.enable = mkForce false;
       hostName = "euro-mir-vm";
     };
+
     users.mutableUsers = true;
+
     time.timeZone = "Europe/Amsterdam";
 
     disks."ext4" = {
@@ -29,7 +31,7 @@ with lib; {
       desktop = {
         enable = true;
       };
-      # quiet-boot.enable = true;
+      quiet-boot.enable = false;
       gnome.enable = true;
       pantheon.enable = false;
     };
