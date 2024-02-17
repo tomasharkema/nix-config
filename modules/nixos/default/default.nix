@@ -75,7 +75,7 @@
     environment.systemPackages =
       (with pkgs; [
         atop
-        powertop
+        # powertop
         fwupd
         fwupd-efi
         hw-probe
@@ -253,7 +253,8 @@
       enableIPv6 = false;
     };
 
-    powerManagement.powertop.enable = mkDefault true;
+    # powerManagement.powertop.enable = mkDefault true;
+    programs.gnupg.agent.enable = true;
 
     system.activationScripts = {
       default_ccache_name = ''
@@ -266,16 +267,16 @@
 
     environment.etc."krb5.conf".text = ''
       [libdefaults]
-      default_ccache_name = /var/cache/krb5/krb5cc_%{uid}
+      default_ccache_name = FILE:/var/cache/krb5/krb5cc_%{uid}
     '';
 
     services.sssd = {
       enable = true;
-      kcm = true;
-      config = ''
-        [sssd]
-        krb5_rcache_dir = /var/cache/krb5
+      # kcm = true;
+      # [sssd]
+      # krb5_rcache_dir = /var/cache/krb5
 
+      config = ''
         [pam]
         pam_passkey_auth = True
       '';
@@ -289,10 +290,12 @@
         realm = "HARKEMA.IO";
         basedn = "dc=harkema,dc=io";
         certificate = pkgs.fetchurl {
-          url = "https://ipa.harkema.io/ipa/config/ca.crt?t=10";
+          url = "https://ipa.harkema.io/ipa/config/ca.crt?t=11";
           sha256 = "sha256-df7ik9Kx5aY+y1Fha2RHwFSdveRDoLGMbM9RjJIfOLg=";
         };
-        dyndns.enable = true;
+        dyndns.enable = false;
+        offlinePasswords = true;
+        ifpAllowedUids = ["root" "tomas"];
       };
     };
   };
