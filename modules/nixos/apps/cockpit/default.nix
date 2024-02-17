@@ -24,7 +24,7 @@
       cockpit-podman
       cockpit-tailscale
       cockpit-machines
-      cockpit-ostree
+      # cockpit-ostree
       packagekit
     ];
 

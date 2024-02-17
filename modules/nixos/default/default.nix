@@ -294,7 +294,6 @@
           sha256 = "sha256-df7ik9Kx5aY+y1Fha2RHwFSdveRDoLGMbM9RjJIfOLg=";
         };
         dyndns.enable = false;
-        offlinePasswords = true;
         ifpAllowedUids = ["root" "tomas"];
       };
     };
