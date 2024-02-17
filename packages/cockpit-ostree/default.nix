@@ -24,7 +24,6 @@ stdenv.mkDerivation rec {
   makeFlags = ["DESTDIR=$(out)" "PREFIX="];
 
   postPatch = ''
-    ls -la
     substituteInPlace Makefile \
       --replace "~/.local/share/cockpit" $out/share
     touch pkg/lib/cockpit-po-plugin.js
