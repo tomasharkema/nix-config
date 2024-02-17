@@ -264,17 +264,30 @@
       '';
     };
 
-    environment.etc."krb5.conf".text = ''
-      [libdefaults]
-      default_ccache_name = /var/cache/krb5/krb5cc_%{uid}
-    '';
+    environment.etc = {
+      "krb5.conf".text = ''
+        [libdefaults]
+        default_ccache_name = /var/cache/krb5/krb5cc_%{uid}
+      '';
+
+      # "static/sssd/conf.d/krb5.conf".text = ''
+      #   [sssd]
+      #   krb5_rcache_dir = /var/cache/krb5
+      # '';
+
+      # "static/sssd/conf.d/passkey.conf".text = ''
+      #   [pam]
+      #   pam_passkey_auth = True
+      # '';
+    };
 
     services.sssd = {
       enable = true;
       kcm = true;
+      sshAuthorizedKeysIntegration = true;
       config = ''
         [sssd]
-        krb5_rcache_dir = /var/cache/krb5
+        krb5_rcache_dir = /var/cache/sssd/krb5
 
         [pam]
         pam_passkey_auth = True
@@ -292,7 +305,7 @@
           url = "https://ipa.harkema.io/ipa/config/ca.crt?t=10";
           sha256 = "sha256-df7ik9Kx5aY+y1Fha2RHwFSdveRDoLGMbM9RjJIfOLg=";
         };
-        dyndns.enable = true;
+        dyndns.enable = false;
       };
     };
   };
