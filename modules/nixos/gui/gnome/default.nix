@@ -113,7 +113,7 @@ in {
         gnome.gnome-shell-extensions
         gnome.gnome-themes-extra
         gnome.gnome-tweaks
-        # gnome.seahorse
+        gnome.seahorse
       ]);
 
     # services.synergy.client = {
