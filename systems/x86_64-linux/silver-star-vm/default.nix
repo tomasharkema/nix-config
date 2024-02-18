@@ -17,7 +17,6 @@ with lib; {
         vm.enable = true;
       };
     };
-    proxy-services.enable = false;
 
     disks.ext4 = {
       enable = true;
@@ -27,9 +26,11 @@ with lib; {
     resilio.enable = mkForce false;
     # apps.tor.relay.enable = true;
 
+    apps.podman.enable = true;
+
     services = {
       qemuGuest.enable = true;
-      # freeipa.enable = true;
+      freeipa.enable = true;
       resilio = {
         enable = lib.mkForce false;
       };
