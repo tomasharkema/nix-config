@@ -257,47 +257,5 @@
 
     # powerManagement.powertop.enable = mkDefault true;
     programs.gnupg.agent.enable = true;
-
-    system.activationScripts = {
-      default_ccache_name = ''
-        if [ ! -d "/var/cache/krb5" ]; then
-          mkdir /var/cache/krb5
-          chmod 777 /var/cache/krb5
-        fi
-      '';
-    };
-
-    environment.etc."krb5.conf".text = ''
-      [libdefaults]
-      default_ccache_name = FILE:/var/cache/krb5/krb5cc_%{uid}
-    '';
-
-    services.sssd = {
-      enable = true;
-      # kcm = true;
-      # [sssd]
-      # krb5_rcache_dir = /var/cache/krb5
-
-      config = ''
-        [pam]
-        pam_passkey_auth = True
-      '';
-    };
-
-    security = {
-      ipa = {
-        enable = true;
-        server = "ipa.harkema.io";
-        domain = "harkema.io";
-        realm = "HARKEMA.IO";
-        basedn = "dc=harkema,dc=io";
-        certificate = pkgs.fetchurl {
-          url = "https://ipa.harkema.io/ipa/config/ca.crt?t=11";
-          sha256 = "sha256-df7ik9Kx5aY+y1Fha2RHwFSdveRDoLGMbM9RjJIfOLg=";
-        };
-        dyndns.enable = false;
-        ifpAllowedUids = ["root" "tomas"];
-      };
-    };
   };
 }

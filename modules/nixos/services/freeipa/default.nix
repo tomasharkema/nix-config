@@ -25,39 +25,55 @@ in {
         #     BASEURL = "https://golinks.harkema.io";
         #   };
         # };
+        free-ipa-tailscale = {
+          image = "docker.io/tailscale/tailscale:stable";
+          hostname = "tailscale.harkema.intra";
+          autoStart = true;
+          extraOptions = [
+            "--device=/dev/net/tun:/dev/net/tun"
+            "--cap-add=NET_ADMIN"
+            "--cap-add=NET_RAW"
+          ];
+          environment = {
+            TS_AUTHKEY = "tskey-auth-kwDK8C7CNTRL-eyN2SGp2iWMLZDrfYyDkWMtSPgTVoNrE";
+            TS_HOSTNAME = "tailscale.harkema.intra";
+          };
+          volumes = [
+            "/var/lib/tailscale-free-ipa:/var/lib/tailscale:Z"
+          ];
+        };
         free-ipa = {
-          # 10.88.0.117
+          dependsOn = ["free-ipa-tailscale"];
           image = "docker.io/freeipa/freeipa-server:fedora-39";
           autoStart = true;
-          ports = ["80:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
-          hostname = "ipa.harkema.io";
+          #ports = ["53:53" "53:53/udp" "80:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
+          hostname = "ipa.harkema.intra";
           extraOptions = [
-            "--sysctl"
-            "net.ipv6.conf.all.disable_ipv6=0"
-            "-e"
-            "SECRET=Secret123"
-            "-e"
-            "PASSWORD=Secret123"
-            "--dns=1.1.1.1"
+            "--network=container:free-ipa-tailscale"
           ];
+          environment = {
+            SECRET = "Secret123!";
+            PASSWORD = "Secret123!";
+          };
           #cmd = ["/bin/bash" "-c" "yum install epel-release -y && yum install letsencrypt git -y && ipa-server-install -U -r HARKEMA.IO"];
           cmd = [
             "ipa-server-install"
             "-U"
-            "-r"
-            "HARKEMA.IO"
-            "-d"
+            "--realm=HARKEMA.INTRA"
+            "--hostname=ipa.harkema.intra"
+            "--setup-dns"
+            "--no-forwarders"
+            "--no-host-dns"
+            "--ip-address=100.96.240.97"
           ];
           volumes = [
             "/var/lib/freeipa:/data:Z"
-            "/var/lib/freeipa-ssl:/etc/ssl/ipa.harkema.io:Z"
-            "/var/lib/freeipa-letsencrypt:/etc/letsencrypt:Z"
           ];
         };
       };
     };
 
-    proxy-services.enable = false;
+    # proxy-services.enable = false;
 
     # services.nginx = {
     #   enable = lib.mkForce false;
@@ -93,8 +109,8 @@ in {
     # };
 
     boot.kernelParams = ["systemd.unified_cgroup_hierarchy=1"];
-    security.ipa = {
-      enable = lib.mkForce false;
-    };
+    # security.ipa = {
+    #   enable = lib.mkForce false;
+    # };
   };
 }
