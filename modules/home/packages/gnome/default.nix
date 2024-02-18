@@ -23,7 +23,7 @@ with lib; {
           color-scheme = "prefer-dark";
           # cursor-theme = mkForce "Adwaita";
           gtk-theme = mkForce "Catppuccin-Mocha-Compact-Blue-Dark";
-          document-font-name = "Inter Regular 12";
+          document-font-name = "Inter Regular 11";
           font-antialiasing = "grayscale";
           font-hinting = "full";
           # font-name = "Inter 11";
@@ -146,7 +146,7 @@ with lib; {
         };
         "org/gnome/desktop/wm/preferences" = {
           button-layout = "appmenu:minimize,maximize,close";
-          titlebar-font = "Inter Regular 12";
+          titlebar-font = "Inter Regular 11";
         };
         "org/gnome/nautilus/preferences" = {always-use-location-entry = true;};
         "org/gnome/shell/extensions/dash-to-panel" = {
