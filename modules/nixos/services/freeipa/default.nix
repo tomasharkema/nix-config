@@ -33,9 +33,11 @@ in {
             "--device=/dev/net/tun:/dev/net/tun"
             "--cap-add=NET_ADMIN"
             "--cap-add=NET_RAW"
+            "--add-host=ipa.harkema.intra:100.64.198.108"
           ];
           environment = {
             TS_HOSTNAME = "tailscale.harkema.intra";
+            TS_STATE_DIR = "/var/lib/tailscale";
           };
           volumes = [
             "/var/lib/tailscale-free-ipa:/var/lib/tailscale:Z"
@@ -49,6 +51,7 @@ in {
           hostname = "ipa.harkema.intra";
           extraOptions = [
             "--network=container:free-ipa-tailscale"
+            # "--add-host=ipa.harkema.intra:100.64.198.108"
           ];
           environment = {
             SECRET = "Secret123!";
@@ -63,7 +66,7 @@ in {
             "--setup-dns"
             "--no-forwarders"
             "--no-host-dns"
-            "--ip-address=100.96.240.97"
+            "--ip-address=100.64.198.108"
           ];
           volumes = [
             "/var/lib/freeipa:/data:Z"
