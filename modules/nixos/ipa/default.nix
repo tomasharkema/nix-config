@@ -22,6 +22,7 @@
     services.sssd = {
       enable = true;
       kcm = true;
+      sshAuthorizedKeysIntegration = true;
       # [sssd]
       # krb5_rcache_dir = /var/cache/krb5
 
