@@ -87,7 +87,7 @@ with lib; {
           symbolic-icon = true;
           use-custom-icon = false;
         };
-        "/org/gnome/Console" = {
+        "org/gnome/Console" = {
           custom-font = "JetBrainsMono Nerd Font Mono 11";
         };
         "org/gnome/shell/extensions/display-brightness-ddcutil" = {
