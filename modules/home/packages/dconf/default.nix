@@ -25,6 +25,7 @@ with lib; {
           gtk-theme = mkForce "Catppuccin-Mocha-Compact-Blue-Dark";
           document-font-name = "Inter Regular 11";
           font-antialiasing = "grayscale";
+          monospace-font-name = "JetBrainsMono Nerd Font Mono 11";
           font-hinting = "full";
           # font-name = "Inter 11";
           enable-hot-corners = false;
@@ -86,7 +87,9 @@ with lib; {
           symbolic-icon = true;
           use-custom-icon = false;
         };
-
+        "/org/gnome/Console" = {
+          custom-font = "JetBrainsMono Nerd Font Mono 11";
+        };
         "org/gnome/shell/extensions/display-brightness-ddcutil" = {
           ddcutil-binary-path = "${lib.getExe pkgs.ddcutil}";
         };
