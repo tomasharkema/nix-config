@@ -134,8 +134,9 @@ with lib; {
           ];
           favorite-apps =
             [
-              "org.kde.index.desktop"
-              "pcmanfm.desktop"
+              # "org.kde.index.desktop"
+              # "pcmanfm.desktop"
+              "org.gnome.Nautilus.desktop"
               "firefox.desktop"
             ]
             ++ (optional pkgs.stdenv.isx86_64 "kitty.desktop")
