@@ -35,7 +35,6 @@ in {
             "--cap-add=NET_RAW"
           ];
           environment = {
-            TS_AUTHKEY = "tskey-auth-kwDK8C7CNTRL-eyN2SGp2iWMLZDrfYyDkWMtSPgTVoNrE";
             TS_HOSTNAME = "tailscale.harkema.intra";
           };
           volumes = [
