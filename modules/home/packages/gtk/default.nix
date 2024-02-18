@@ -3,28 +3,40 @@
   lib,
   osConfig,
   ...
-}: {
+}: let
+  catppuccin_name = "Catppuccin-Mocha-Compact-Blue-Dark";
+  catppuccin = pkgs.catppuccin-gtk.override {
+    accents = ["blue"];
+    size = "compact";
+    tweaks = ["rimless" "black"];
+    variant = "mocha";
+  };
+in {
   config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
     gtk = {
       enable = true;
 
-      #   gtk3.extraCss = osConfig.variables.theme.adwaitaGtkCss;
-      #  gtk4.extraCss = osConfig.variables.theme.adwaitaGtkCss;
-
       font = {
         package = pkgs.inter;
         name = "Inter Regular 11";
-
-        # package = pkgs.custom.neue-haas-grotesk;
-        # name = "B612 Regular 12";
       };
       theme = lib.mkForce {
-        name = "Catppuccin-Mocha-Compact-Blue-Dark";
-        package = pkgs.catppuccin-gtk.override {
-          accents = ["blue"];
-          size = "compact";
-          tweaks = ["rimless" "black"];
-          variant = "mocha";
+        name = catppuccin_name;
+        package = catppuccin;
+      };
+      cursorTheme = {
+        name = "Catppuccin-Macchiato-Dark-Cursors";
+        package = pkgs.catppuccin-cursors.macchiatoDark;
+      };
+    };
+    home = {
+      sessionVariables.GTK_THEME = catppuccin_name;
+      file = {
+        ".config/gtk-4.0/gtk.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk.css";
+        ".config/gtk-4.0/gtk-dark.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk-dark.css";
+        ".config/gtk-4.0/assets" = {
+          recursive = true;
+          source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/assets";
         };
       };
     };
