@@ -32,7 +32,7 @@
       '';
     };
     networking.extraHosts = ''
-      100.96.240.97 ipa.harkema.intra
+      100.64.198.108 ipa.harkema.intra
     '';
     security = {
       pki.certificateFiles = [./ca.crt];
