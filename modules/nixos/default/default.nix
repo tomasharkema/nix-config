@@ -115,6 +115,8 @@
     proxy-services.enable = mkDefault true;
 
     services = {
+      cron.enable = true;
+
       zram-generator.enable = true;
 
       earlyoom = {
