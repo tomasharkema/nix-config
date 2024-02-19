@@ -16,6 +16,7 @@ pkgs.writeShellApplication {
     OPEN_BLUE_FIRE="SSH blue-fire..."
     OPEN_SSH="SSH..."
     CLEAR_CACHE="Clear cache..."
+    REPAIR_STORE="Repair store..."
     OPEN_SHELL="Go to shell!"
     CLEAN_RAM="Clean ram..."
     EXIT="Exit"
@@ -37,10 +38,14 @@ pkgs.writeShellApplication {
     }
 
     clean-ram () {
-       sudo sync; echo 3 > /proc/sys/vm/drop_caches
+       sudo sync; sudo echo 3 > /proc/sys/vm/drop_caches
     }
 
-    CHOICE=$(gum choose "$RUN_UPDATER" "$ATTACH_SESSION" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$CLEAR_CACHE" "$OPEN_SHELL" "$CLEAN_RAM" "$EXIT")
+    fix-store () {
+      sudo nix-store --verify --check-contents --repair --verbose
+    }
+
+    CHOICE=$(gum choose "$RUN_UPDATER" "$ATTACH_SESSION" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$CLEAR_CACHE" "$REPAIR_STORE" "$OPEN_SHELL" "$CLEAN_RAM" "$EXIT")
 
     case $CHOICE in
       "$RUN_UPDATER")
@@ -74,6 +79,10 @@ pkgs.writeShellApplication {
       "$EXIT")
         echo "Exitting..."
         exit 0
+        ;;
+
+      "$REPAIR_STORE")
+        fix-store
         ;;
 
       *)

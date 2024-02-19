@@ -27,13 +27,16 @@
       # krb5_rcache_dir = /var/cache/krb5
 
       config = ''
+        [sssd]
+        krb5_rcache_dir = /var/cache/krb5
+
         [pam]
         pam_passkey_auth = True
       '';
     };
-    networking.extraHosts = ''
-      100.64.198.108 ipa.harkema.intra
-    '';
+    # networking.extraHosts = ''
+    #   100.64.198.108 ipa.harkema.intra
+    # '';
     security = {
       pki.certificateFiles = [./ca.crt];
       ipa = {
