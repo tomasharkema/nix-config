@@ -14,10 +14,30 @@
       '';
     };
 
-    environment.etc."krb5.conf".text = ''
-      [libdefaults]
-      default_ccache_name = FILE:/var/cache/krb5/krb5cc_%{uid}
-    '';
+    environment.etc = {
+      "krb5.conf" = {
+        text = ''
+          [libdefaults]
+          default_ccache_name = FILE:/var/cache/krb5/krb5cc_%{uid}
+        '';
+      };
+      "static/sssd/conf.d/99-sssd.conf" = {
+        text = ''
+          [sssd]
+          krb5_rcache_dir = /var/cache/krb5
+        '';
+        mode = "0600";
+      };
+      "static/sssd/conf.d/98-pam.conf" = {
+        text = ''
+          [pam]
+          pam_passkey_auth = True
+
+        '';
+        # pam_cert_auth = True
+        mode = "0600";
+      };
+    };
 
     services.sssd = {
       enable = true;
@@ -25,15 +45,6 @@
       sshAuthorizedKeysIntegration = true;
       # [sssd]
       # krb5_rcache_dir = /var/cache/krb5
-
-      config = ''
-        [sssd]
-        krb5_rcache_dir = /var/cache/krb5
-
-        [pam]
-        pam_passkey_auth = True
-        pam_cert_auth = True
-      '';
     };
     # networking.extraHosts = ''
     #   100.64.198.108 ipa.harkema.intra
