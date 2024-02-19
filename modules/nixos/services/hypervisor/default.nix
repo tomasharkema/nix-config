@@ -21,7 +21,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       virt-manager
-      gnome.gnome-boxes
+      # gnome.gnome-boxes
       # kvm
     ];
 
@@ -29,6 +29,7 @@ in {
 
     virtualisation.libvirtd = {
       enable = true;
+      # allowedBridges = ["virbr0"];
       qemu = {
         package = pkgs.qemu_kvm;
         runAsRoot = true;
@@ -41,7 +42,7 @@ in {
               tpmSupport = true;
             })
             .fd
-            pkgs.pkgsCross.aarch64-multiplatform.OVMF.fd #
+            # pkgs.pkgsCross.aarch64-multiplatform.OVMF.fd
           ];
         };
       };
@@ -49,14 +50,16 @@ in {
 
     users.users.${config.user.name}.extraGroups = ["libvirtd"];
 
-    virtualisation.libvirtd.allowedBridges = ["br0"];
+    networking = {
+      #   interfaces."br0".useDHCP = true;
 
-    networking.interfaces."br0".useDHCP = true;
-
-    networking.bridges = {
-      "br0" = {
-        interfaces = ["wlp59s0"];
-      };
+      #   bridges = {
+      #     "br0" = {
+      #       interfaces = ["wlp59s0"];
+      #     };
+      #   };
+      #   firewall.trustedInterfaces = ["br0"];
+      firewall.trustedInterfaces = ["vnet1" "virbr0"];
     };
 
     # dconf.settings = {
@@ -65,7 +68,5 @@ in {
     #     uris = ["qemu:///system"];
     #   };
     # };
-
-    networking.firewall.trustedInterfaces = ["virbr0"];
   };
 }
