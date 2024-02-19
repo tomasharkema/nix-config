@@ -73,6 +73,7 @@ in {
           # # gnome45Extensions."systemd-status@ne0sight.github.io"
 
           # gnomeExtensions.spotify-tray
+          gnomeExtensions.settingscenter
           gnomeExtensions.app-hider
           gnomeExtensions.appindicator
           gnomeExtensions.arc-menu
