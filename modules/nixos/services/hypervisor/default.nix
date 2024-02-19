@@ -21,8 +21,15 @@ in {
 
     environment.systemPackages = with pkgs; [
       virt-manager
-      # gnome.gnome-boxes
+      kvmtool
+      libvirt
+      gnome.gnome-boxes
+      qemu_kvm
       # kvm
+    ];
+    services.dbus.packages = with pkgs; [
+      libvirt
+      virt-manager
     ];
 
     programs.virt-manager.enable = true;
@@ -48,7 +55,8 @@ in {
       };
     };
 
-    users.users.${config.user.name}.extraGroups = ["libvirtd"];
+    users.users.${config.user.name}.extraGroups = ["libvirtd" "qemu-libvirtd"];
+    users.users."root".extraGroups = ["libvirtd" "qemu-libvirtd"];
 
     networking = {
       #   interfaces."br0".useDHCP = true;
@@ -68,5 +76,6 @@ in {
     #     uris = ["qemu:///system"];
     #   };
     # };
+    #https://github.com/eyeos/spice-web-client
   };
 }

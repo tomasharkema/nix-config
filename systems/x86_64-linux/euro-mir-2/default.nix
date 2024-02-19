@@ -66,7 +66,6 @@
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
       kernelParams = ["acpi_rev_override=1"];
-      extraModprobeConfig = "options kvm_intel nested=1";
     };
 
     programs = {
