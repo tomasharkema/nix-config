@@ -32,6 +32,7 @@
 
         [pam]
         pam_passkey_auth = True
+        pam_cert_auth = True
       '';
     };
     # networking.extraHosts = ''
