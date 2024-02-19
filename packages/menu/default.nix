@@ -8,5 +8,5 @@ pkgs.writeShellApplication {
 
   runtimeInputs = with pkgs; [gum nixos-rebuild nix-output-monitor zsh fast-ssh dialog];
 
-  text = ./menu.sh;
+  text = builtins.readFile ./menu.sh;
 }
