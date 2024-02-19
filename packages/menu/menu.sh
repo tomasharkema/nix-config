@@ -1,4 +1,4 @@
-#!/bin/sh
+# shellcheck disable=SC2148
 
 RUN_UPDATER="Run Updater..."
 ATTACH_SESSION="Attach to session..."
