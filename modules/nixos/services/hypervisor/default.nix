@@ -30,18 +30,34 @@ in {
     virtualisation.libvirtd = {
       enable = true;
       qemu = {
+        package = pkgs.qemu_kvm;
+        runAsRoot = true;
         swtpm.enable = true;
         ovmf = {
           enable = true;
           packages = [
-            pkgs.pkgsCross.aarch64-multiplatform.OVMF.fd # AAVMF
-            pkgs.OVMF.fd
+            (pkgs.OVMF.override {
+              secureBoot = true;
+              tpmSupport = true;
+            })
+            .fd
+            pkgs.pkgsCross.aarch64-multiplatform.OVMF.fd #
           ];
         };
       };
     };
 
     users.users.${config.user.name}.extraGroups = ["libvirtd"];
+
+    virtualisation.libvirtd.allowedBridges = ["br0"];
+
+    networking.interfaces."br0".useDHCP = true;
+
+    networking.bridges = {
+      "br0" = {
+        interfaces = ["wlp59s0"];
+      };
+    };
 
     # dconf.settings = {
     #   "org/virt-manager/virt-manager/connections" = {
