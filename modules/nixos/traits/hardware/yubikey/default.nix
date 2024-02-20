@@ -27,7 +27,7 @@
       age-plugin-yubikey
       libfido2
       opensc
-      pcsclite
+      # pcsclite
       pcsctools
       yubico-piv-tool
       yubikey-agent
