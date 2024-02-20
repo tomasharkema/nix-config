@@ -30,12 +30,24 @@
       };
       "static/sssd/conf.d/98-pam.conf" = {
         text = ''
+          [domain/harkema.intra]
+          cache_credentials = true
+          debug_level = 6
+
           [pam]
           pam_passkey_auth = True
+          passkey_debug_libfido2 = True
 
         '';
         # pam_cert_auth = True
         mode = "0600";
+      };
+    };
+    security.pam = {
+      services = {
+        login.sssdStrictAccess = true;
+        sudo.sssdStrictAccess = true;
+        ssh.sssdStrictAccess = true;
       };
     };
 
