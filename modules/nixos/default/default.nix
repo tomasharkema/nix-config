@@ -42,17 +42,19 @@
       };
     };
 
+    virtualisation.spiceUSBRedirection.enable = true;
+
     zramSwap = {
       enable = true;
     };
 
     boot = {
-      hardwareScan = true;
+      # hardwareScan = true;
       kernel.sysctl."net.ipv4.ip_forward" = 1;
 
       tmp = {
         useTmpfs = true;
-        cleanOnBoot = true;
+        # cleanOnBoot = true;
       };
 
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
@@ -69,8 +71,6 @@
         };
       };
     };
-
-    services.packagekit.enable = true;
 
     environment.systemPackages =
       (with pkgs; [
@@ -115,6 +115,7 @@
     proxy-services.enable = mkDefault true;
 
     services = {
+      packagekit.enable = true;
       cron.enable = true;
 
       zram-generator.enable = true;
@@ -133,7 +134,7 @@
 
       thermald.enable = mkIf (pkgs.system == "x86_64-linux") true;
 
-      # clipmenu.enable = true;
+      clipmenu.enable = true;
 
       openssh = {
         enable = true;
