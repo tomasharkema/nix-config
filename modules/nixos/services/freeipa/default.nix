@@ -16,24 +16,17 @@ in {
 
     virtualisation = {
       oci-containers.containers = {
-        # golinks = {
-        #   image = "ghcr.io/tomasharkema/golinks:latest";
-        #   autoStart = true;
-        #   ports = ["8000:8000"];
-        #   environment = {
-        #     BIND = "0.0.0.0:8000";
-        #     BASEURL = "https://golinks.harkema.io";
-        #   };
-        # };
         free-ipa-tailscale = {
           image = "docker.io/tailscale/tailscale:stable";
           hostname = "tailscale.harkema.intra";
           autoStart = true;
           extraOptions = [
+            "--sysctl=net.ipv6.conf.all.disable_ipv6=1"
             "--device=/dev/net/tun:/dev/net/tun"
             "--cap-add=NET_ADMIN"
             "--cap-add=NET_RAW"
             "--add-host=ipa.harkema.intra:100.64.198.108"
+            "--dns=1.1.1.1"
           ];
           environment = {
             TS_HOSTNAME = "tailscale.harkema.intra";
@@ -50,6 +43,8 @@ in {
           #ports = ["53:53" "53:53/udp" "80:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
           hostname = "ipa.harkema.intra";
           extraOptions = [
+            "--dns=1.1.1.1"
+            "--sysctl=net.ipv6.conf.all.disable_ipv6=1"
             "--network=container:free-ipa-tailscale"
             # "--add-host=ipa.harkema.intra:100.64.198.108"
           ];
