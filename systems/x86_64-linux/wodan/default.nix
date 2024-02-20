@@ -35,7 +35,7 @@
       hardwareClockInLocalTime = true;
       timeZone = "Europe/Amsterdam";
     };
-
+    services.freeipa.replica.enable = true;
     networking = {
       networkmanager.enable = true;
 
