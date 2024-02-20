@@ -43,7 +43,6 @@ in {
           #ports = ["53:53" "53:53/udp" "80:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
           hostname = "ipa.harkema.intra";
           extraOptions = [
-            "--dns=1.1.1.1"
             "--sysctl=net.ipv6.conf.all.disable_ipv6=1"
             "--network=container:free-ipa-tailscale"
             # "--add-host=ipa.harkema.intra:100.64.198.108"
