@@ -1,10 +1,10 @@
 {
   rustPlatform,
   fetchCrate,
-  pkgs,
+  pkg-config,
+  openssl,
+  rustfmt,
   lib,
-  stdenv,
-  rustc,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "ztui";
@@ -16,16 +16,18 @@ rustPlatform.buildRustPackage rec {
   };
 
   cargoHash = "sha256-OL/NEw8mUQJDO2ADNprHCHBwxBRBIWqCgixldYQA3zk=";
-  # cargoDepsName = pname;
 
-  nativeBuildInputs = with pkgs; [pkg-config];
-  buildInputs = with pkgs; [openssl rustfmt];
+  nativeBuildInputs = [pkg-config];
+  buildInputs = [openssl rustfmt];
 
+  RUSTFMT = "${rustfmt}/bin/rustfmt";
   OPENSSL_NO_VENDOR = 1;
   RUSTC_BOOTSTRAP = 1;
 
-  # preFixup = lib.optionalString stdenv.isDarwin ''
-  #   install_name_tool -add_rpath "${rustc.unwrapped}/lib" "$out/bin/rustfmt"
-  #   install_name_tool -add_rpath "${rustc.unwrapped}/lib" "$out/bin/git-rustfmt"
-  # '';
+  meta = with lib; {
+    description = "tomas";
+    homepage = "https://github.com/tomasharkema/nix-config";
+    license = licenses.mit;
+    maintainers = ["tomasharkema" "tomas@harkema.io"];
+  };
 }
