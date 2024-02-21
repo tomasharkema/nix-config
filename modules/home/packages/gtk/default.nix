@@ -18,16 +18,17 @@ in {
 
       font = {
         package = pkgs.inter;
-        name = "Inter Regular 11";
+        name = "Inter Regular";
+        size = 11;
       };
       theme = lib.mkForce {
         name = catppuccin_name;
         package = catppuccin;
       };
-      cursorTheme = {
-        name = "Catppuccin-Macchiato-Dark-Cursors";
-        package = pkgs.catppuccin-cursors.macchiatoDark;
-      };
+      # cursorTheme = {
+      #   name = "Catppuccin-Macchiato-Dark-Cursors";
+      #   package = pkgs.catppuccin-cursors.macchiatoDark;
+      # };
     };
     home = {
       sessionVariables.GTK_THEME = catppuccin_name;

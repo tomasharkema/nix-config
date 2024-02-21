@@ -20,12 +20,4 @@ in
       };
       autostart.programs = with pkgs; [_1password-gui];
     };
-    # let
-    #       autostartPrograms = with pkgs; [
-    #         _1password-gui
-    #         telegram-desktop
-    #         #keybase-gui
-    #         openrgb
-    #       ];
-    #     in
   }

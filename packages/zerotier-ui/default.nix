@@ -13,51 +13,59 @@
   webkitgtk,
   libui,
   cargo,
-  tree,
-}:
-stdenv.mkDerivation rec {
-  pname = "zerotier_desktop_ui";
-  version = "1.8.3";
-  src = fetchFromGitHub {
+}: let
+  assets = fetchFromGitHub {
     owner = "zerotier";
     repo = "DesktopUI";
-    rev = "${version}";
-    hash = "sha256-k9RAI6ii8W+sr+wHnuiqjk4O30xemNspXU6EUNTxU/4=";
+    rev = "aeee9eb346853e6f4ea3f6a0b61d8fe5252724ca";
+    hash = "sha256-Y0ZEUGZwtKexS3S0f3SjJ5g0gCe1HIBoPDEdRFcdaK0=";
   };
-  nativeBuildInputs = [
-    # meson
-    pkg-config
-  ];
-  buildInputs = [
-    # nixos-appstream-data
-    glib
-    libsoup
-    cairo
-    pango
-    gdk-pixbuf
-    gtk3
-    libappindicator
-    webkitgtk
-    libui
-    cargo
-  ];
+in
+  stdenv.mkDerivation rec {
+    pname = "zerotier-ui";
+    version = "1.8.4";
 
-  buildPhase = ''
-    make linux
-  '';
+    src = fetchFromGitHub {
+      owner = "zerotier";
+      repo = "DesktopUI";
+      rev = "${version}";
+      hash = "sha256-OxwNskKAeBjkV15XLtzMYrNt+FQaJd2bXxoKboCRxPE=";
+    };
+    nativeBuildInputs = [
+      pkg-config
+    ];
+    buildInputs = [
+      glib
+      libsoup
+      cairo
+      pango
+      gdk-pixbuf
+      gtk3
+      libappindicator
+      webkitgtk
+      libui
+      cargo
+    ];
 
-  installPhase = ''
-    mkdir -p $out/bin
-    cp -r target/release/zerotier_desktop_ui $out/bin
-  '';
+    buildPhase = ''
+      make linux
+    '';
 
-  meta = with lib; {
-    description = "tomas";
-    homepage = "https://github.com/tomasharkema/nix-config";
-    license = licenses.mit;
-    maintainers = ["tomasharkema" "tomas@harkema.io"];
-  };
-}
+    installPhase = ''
+      mkdir -p $out/bin
+      mkdir -p $out/share/applications
+      cp target/release/zerotier_desktop_ui $out/bin/zerotier-ui
+      cp ${assets}/ZeroTierIcon.png $out/share
+      cp ${assets}/zerotier-ui.desktop $out/share/applications
+    '';
+
+    meta = with lib; {
+      description = "tomas";
+      homepage = "https://github.com/tomasharkema/nix-config";
+      license = licenses.mit;
+      maintainers = ["tomasharkema" "tomas@harkema.io"];
+    };
+  }
 # {
 #   callPackage,
 #   lib,
