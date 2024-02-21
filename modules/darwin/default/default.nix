@@ -4,20 +4,22 @@
   config,
   lib,
   ...
-}: let
-  theme = inputs.themes.custom (inputs.themes.catppuccin-mocha
-    // {
-      base00 = "000000";
-    });
-in {
-  options = {
-    variables = lib.mkOption {
-      type = lib.types.attrs;
-      default = {
-        theme = theme;
-      };
-    };
-  };
+}:
+# let
+#   theme = inputs.themes.custom (inputs.themes.catppuccin-mocha
+#     // {
+#       base00 = "000000";
+#     });
+# in
+{
+  # options = {
+  #   variables = lib.mkOption {
+  #     type = lib.types.attrs;
+  #     default = {
+  #       theme = theme;
+  #     };
+  #   };
+  # };
 
   imports = [
     inputs.agenix.darwinModules.default
@@ -61,9 +63,9 @@ in {
     system.stateVersion = 4;
 
     services = {
-      # synergy.server = {
-      #   enable = true;
-      # };
+      synergy.server = {
+        enable = true;
+      };
       nix-daemon.enable = true;
     };
     fonts = {
@@ -82,20 +84,19 @@ in {
         # helvetica
         vegur # the official NixOS font
         pkgs.custom.b612
-        pkgs.custom.san-francisco
         inter
       ];
     };
     programs.zsh = {
       enable = true;
-      #   shellInit = ''
-      #     export OP_PLUGIN_ALIASES_SOURCED=1
-      #   '';
+      # shellInit = ''
+      #   export OP_PLUGIN_ALIASES_SOURCED=1
+      # '';
 
-      #      shellAliases = {
-      #        gh = "op plugin run -- gh";
-      #        cachix = "op plugin run -- cachix";
-      #      };
+      # shellAliases = {
+      #   gh = "op plugin run -- gh";
+      #   cachix = "op plugin run -- cachix";
+      # };
     };
 
     nix = {
