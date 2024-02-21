@@ -99,6 +99,7 @@
         menu
         graylog-cli-dashboard
         pvzstd
+        ztui
       ])
       ++ (
         if pkgs.stdenv.isx86_64

@@ -85,4 +85,5 @@ in {
   "spotify-tui.age".publicKeys = allKeys;
   "tailscale.age".publicKeys = allKeys;
   "wireless.age".publicKeys = allKeys;
+  "config.zerotier.settings.age".publicKeys = allKeys;
 }
