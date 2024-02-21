@@ -106,8 +106,8 @@
         then
           with pkgs; [
             # bitwarden
-            # bitwarden-cli
-            # bitwarden-menu
+            bitwarden-cli
+            bitwarden-menu
           ]
         else []
       );
