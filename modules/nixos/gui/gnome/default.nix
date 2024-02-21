@@ -105,16 +105,26 @@ in {
         gnome-firmware
         gnome-menus
         gnome.dconf-editor
+        gnome.gnome-applets
+        gnome.gnome-autoar
+        gnome.gnome-clocks
         gnome.gnome-control-center
         gnome.gnome-disk-utility
         gnome.gnome-keyring
         gnome.gnome-nettool
+        gnome.gnome-online-miners
+        gnome.gnome-packagekit
+        gnome.gnome-power-manager
         gnome.gnome-session
+        gnome.gnome-session-ctl
         gnome.gnome-settings-daemon
         gnome.gnome-shell-extensions
         gnome.gnome-themes-extra
         gnome.gnome-tweaks
+        gnome.gnome-user-share
+        gnome.libgnome-keyring
         gnome.seahorse
+        gnome.zenity
       ]);
 
     # services.synergy.client = {
