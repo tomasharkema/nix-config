@@ -50,6 +50,7 @@ in {
         pkgsUnstable = inputs.unstable.legacyPackages."${pkgs.system}";
       in
         with pkgsUnstable; [
+          gtop
           # # pkgs.gnome45Extensions."app-hider@lynith.dev"
           # gnome45Extensions."gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
           # # gnome45Extensions."gsconnect@andyholmes.github.io"
@@ -96,6 +97,7 @@ in {
           gnomeExtensions.server-status-indicator
           gnomeExtensions.tailscale-qs
           gnomeExtensions.todotxt
+          gnomeExtensions.tophat
           gnomeExtensions.vitals
         ])
       ++ (with pkgs; [
