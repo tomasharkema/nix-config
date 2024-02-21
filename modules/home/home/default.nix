@@ -17,7 +17,8 @@ in
     ];
 
     config = {
-      # dconf.enable = true;
+      #dconf.enable = true;
+      # xserver.enable = true;
 
       home = {
         file = {
@@ -34,17 +35,21 @@ in
           '';
         };
         activation = {
-          userSymlinks = ''
+          userSymlinks-fonts = ''
             ln -sfn /run/current-system/sw/share/X11/fonts ~/.local/share/fonts
+          '';
 
+          userSymlinks-cachix = ''
             if [ ! -d "$HOME/.config/cachix" ]; then
               mkdir $HOME/.config/cachix
-              ln -sfn /etc/cachix.dhall $HOME/.config/cachix/cachix.dhall
             fi
+            ln -sfn /etc/cachix.dhall $HOME/.config/cachix/cachix.dhall
+          '';
+          userSymlinks-notify = ''
             if [ ! -d "$HOME/.config/notify" ]; then
               mkdir $HOME/.config/notify
-              ln -sfn "${osConfig.age.secrets.notify.path}" ~/.config/notify/provider-config.yaml
             fi
+            ln -sfn "${osConfig.age.secrets.notify.path}" ~/.config/notify/provider-config.yaml
           '';
         };
 
@@ -84,7 +89,7 @@ in
         settings = {
           "*" = {
             indent_style = "space";
-            indent_size = "4";
+            indent_size = "2";
           };
         };
       };
