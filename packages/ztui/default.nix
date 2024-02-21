@@ -5,6 +5,8 @@
   openssl,
   rustfmt,
   lib,
+  stdenv,
+  darwin,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "ztui";
@@ -18,7 +20,7 @@ rustPlatform.buildRustPackage rec {
   cargoHash = "sha256-OL/NEw8mUQJDO2ADNprHCHBwxBRBIWqCgixldYQA3zk=";
 
   nativeBuildInputs = [pkg-config];
-  buildInputs = [openssl rustfmt];
+  buildInputs = [openssl rustfmt] ++ (lib.optional stdenv.isDarwin darwin.Security);
 
   RUSTFMT = "${rustfmt}/bin/rustfmt";
   OPENSSL_NO_VENDOR = 1;

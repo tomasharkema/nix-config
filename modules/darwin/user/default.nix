@@ -33,6 +33,7 @@ in {
       custom.maclaunch
       terminal-notifier
       custom.launchcontrol
+      ztui
     ];
     security.pam.enableSudoTouchIdAuth = true;
   };
