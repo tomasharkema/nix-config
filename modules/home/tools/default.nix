@@ -57,7 +57,7 @@ with pkgs; {
       mtr
       multitail
       navi
-      ncdu
+      # ncdu
       neofetch
       netdiscover
       nnn
