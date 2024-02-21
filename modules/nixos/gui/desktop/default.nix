@@ -96,7 +96,7 @@ in {
 
         gtk-engine-murrine
         plymouth
-        # apache-directory-studio
+        apache-directory-studio
         rtfm
         # inputs.nix-gui.packages."${system}".nix-gui
 
@@ -121,7 +121,7 @@ in {
         libmx
       ]
       ++ optional (pkgs.system == "x86_64-linux") telegram-desktop
-      ++ (with pkgs.custom; [zerotier_desktop_ui]);
+      ++ (with pkgs.custom; [zerotier-ui]);
 
     programs = {
       ssh.extraConfig = ''
@@ -133,7 +133,7 @@ in {
         enable = true;
         # Certain features, including CLI integration and system authentication support,
         # require enabling PolKit integration on some desktop environments (e.g. Plasma).
-        polkitPolicyOwners = ["tomas" "tomas@harkema.io"];
+        polkitPolicyOwners = ["tomas" "root"];
       };
 
       firefox = {

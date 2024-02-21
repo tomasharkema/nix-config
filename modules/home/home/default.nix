@@ -28,16 +28,22 @@ in
           #   source = config.lib.file.mkOutOfStoreSymlink "${pkgs.custom.nixpkgs-docset}/nixpkgs.docset";
           #   recursive = true;
           # };
+          ".local/share/flatpak/overrides/global".text = ''
+            [Context]
+            filesystems=/run/current-system/sw/share/X11/fonts:ro;/nix/store:ro;/home/tomas/.local/share/fonts:ro;/home/tomas/.icons:ro;/home/tomas/.config/gtk-4.0:ro;/home/tomas/.config/gtk-3.0:ro;
+          '';
         };
         activation = {
           userSymlinks = ''
+            ln -sfn /run/current-system/sw/share/X11/fonts ~/.local/share/fonts
+
             if [ ! -d "$HOME/.config/cachix" ]; then
               mkdir $HOME/.config/cachix
               ln -sfn /etc/cachix.dhall $HOME/.config/cachix/cachix.dhall
             fi
             if [ ! -d "$HOME/.config/notify" ]; then
               mkdir $HOME/.config/notify
-              ln -sfn "${osConfig.age.secrets.notify.path}" $HOME/.config/notify/provider-config.yaml
+              ln -sfn "${osConfig.age.secrets.notify.path}" ~/.config/notify/provider-config.yaml
             fi
           '';
         };
@@ -60,7 +66,7 @@ in
         sessionVariables = lib.mkIf stdenv.isDarwin {
           EDITOR = "subl";
           SSH_AUTH_SOCK = "/Users/tomas/.1password/agent.sock";
-          SPACESHIP_PROMPT_ADD_NEWLINE = "false";
+          # SPACESHIP_PROMPT_ADD_NEWLINE = "false";
         };
       };
       manual = {
@@ -72,6 +78,16 @@ in
       fonts.fontconfig.enable = true;
 
       autostart.programs = with pkgs; [telegram-desktop];
+
+      editorconfig = {
+        enable = true;
+        settings = {
+          "*" = {
+            indent_style = "space";
+            indent_size = "4";
+          };
+        };
+      };
 
       programs = {
         home-manager.enable = true;
