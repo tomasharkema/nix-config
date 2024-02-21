@@ -120,7 +120,8 @@ in {
         zeal
         libmx
       ]
-      ++ optional (pkgs.system == "x86_64-linux") telegram-desktop;
+      ++ optional (pkgs.system == "x86_64-linux") telegram-desktop
+      ++ (with pkgs.custom; [zerotier_desktop_ui]);
 
     programs = {
       ssh.extraConfig = ''
