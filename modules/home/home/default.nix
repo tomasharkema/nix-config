@@ -29,13 +29,13 @@ in
           #   source = config.lib.file.mkOutOfStoreSymlink "${pkgs.custom.nixpkgs-docset}/nixpkgs.docset";
           #   recursive = true;
           # };
-          ".local/share/flatpak/overrides/global".text = ''
+          ".local/share/flatpak/overrides/global".text = mkIf stdenv.isLinux ''
             [Context]
             filesystems=/run/current-system/sw/share/X11/fonts:ro;/nix/store:ro;/home/tomas/.local/share/fonts:ro;/home/tomas/.icons:ro;/home/tomas/.config/gtk-4.0:ro;/home/tomas/.config/gtk-3.0:ro;
           '';
         };
         activation = {
-          userSymlinks-fonts = ''
+          userSymlinks-fonts = mkIf (stdenv.isLinux && osConfig.gui.enable) ''
             ln -sfn /run/current-system/sw/share/X11/fonts ~/.local/share/fonts
           '';
 
@@ -45,7 +45,7 @@ in
             fi
             ln -sfn /etc/cachix.dhall $HOME/.config/cachix/cachix.dhall
           '';
-          userSymlinks-notify = ''
+          userSymlinks-notify = mkIf osConfig.gui.enable ''
             if [ ! -d "$HOME/.config/notify" ]; then
               mkdir $HOME/.config/notify
             fi
@@ -62,7 +62,7 @@ in
           # rtfm
           jq
           # fig
-          kitty-img
+          # kitty-img
           # todoman
           # dooit
           ttdl
@@ -80,9 +80,9 @@ in
         # json.enable = false;
       };
 
-      fonts.fontconfig.enable = true;
+      fonts.fontconfig.enable = osConfig.gui.enable;
 
-      autostart.programs = with pkgs; [telegram-desktop];
+      autostart.programs = with pkgs; mkIf osConfig.gui.enable [telegram-desktop];
 
       editorconfig = {
         enable = true;
@@ -97,8 +97,8 @@ in
       programs = {
         home-manager.enable = true;
 
-        termite.enable = true;
-        terminator.enable = lib.mkIf pkgs.stdenv.isLinux true;
+        termite.enable = osConfig.gui.enable;
+        terminator.enable = lib.mkIf pkgs.stdenv.isLinux osConfig.gui.enable;
         yt-dlp.enable = true;
 
         direnv = {
@@ -140,7 +140,7 @@ in
 
         tmux = {enable = true;};
 
-        alacritty.enable = true;
+        alacritty.enable = osConfig.gui.enable;
 
         atuin = {
           enable = true;
