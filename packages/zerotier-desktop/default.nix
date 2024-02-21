@@ -1,3 +1,26 @@
+# {
+#   callPackage,
+#   lib,
+#   pkgs,
+# }: let
+#   customBuildRustCrateForPkgs = pkgs:
+#     pkgs.buildRustCrate.override {
+#       defaultCrateOverrides =
+#         pkgs.defaultCrateOverrides
+#         // {
+#           # cssparser-macros = attrs: {
+#           #   buildInputs =
+#           #     lib.optionals
+#           #     pkgs.stdenv.isDarwin
+#           #     [pkgs.darwin.apple_sdk.frameworks.Security];
+#           # };
+#         };
+#     };
+#   generatedBuild = callPackage ./Cargo.nix {
+#     buildRustCrateForPkgs = customBuildRustCrateForPkgs;
+#   };
+# in
+#   generatedBuild.rootCrate.build
 {
   stdenv,
   pkgs,
@@ -12,48 +35,34 @@ rustPlatform.buildRustPackage rec {
   version = "1.8.3";
 
   src = fetchFromGitHub {
-    owner = "tomasharkema";
+    owner = "zerotier";
     repo = "DesktopUI";
-    rev = "ecb71b90f6cf39c9c909f91389e417c04496c50a";
-    hash = "sha256-YL0P+1+m8qIppA0BjcIHzSb4F/015AYc2NAvhRKoevc=";
+    rev = "${version}";
+    hash = "sha256-k9RAI6ii8W+sr+wHnuiqjk4O30xemNspXU6EUNTxU/4=";
   };
+  cargoVendorDir = "vendor";
+  # cargoDeps = rustPlatform.fetchCargoTarball {
+  #   inherit src;
+  #   name = "${pname}-${version}";
+  #   hash = "sha256-miW//pnOmww2i6SOGbkrAIdc/JMDT4FJLqdMFojZeoY=";
+  # };
 
-  cargoSha256 = lib.fakeSha256;
-  cargoDeps = rustPlatform.fetchCargoTarball {
-    inherit src;
-    hash = lib.fakeSha256;
-  };
+  # cargoSha256 = "";
+  # cargoDepsName = pname;
+
   # cargoLock = rustPlatform.importCargoLock {
   #   lockFileContents = builtins.readFile "${src}/Cargo.lock";
   #   # hash = "";
   # };
-
-  # nativeBuildInputs = with pkgs; [
-  #   appstream-glib
-  #   polkit
-  #   gettext
-  #   desktop-file-utils
-  #   meson
-  #   ninja
-  #   pkg-config
-  #   git
-  #   wrapGAppsHook4
-  # ];
-
-  # buildInputs = with pkgs; [
-  #   gdk-pixbuf
-  #   glib
-  #   gtk4
-  #   gtksourceview5
-  #   libadwaita
-  #   libxml2
-  #   openssl
-  #   wayland
-  #   gnome.adwaita-icon-theme
-  #   desktop-file-utils
-  #   # nixos-appstream-data
-  # ];
-
+  nativeBuildInputs = with pkgs; [
+    meson
+    pkg-config
+    libsoup
+  ];
+  buildInputs = with pkgs; [
+    # nixos-appstream-data
+    glib
+  ];
   meta = with lib; {
     description = "tomas";
     homepage = "https://github.com/tomasharkema/nix-config";
