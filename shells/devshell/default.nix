@@ -99,11 +99,11 @@ in
 
         packages = with inputs; [
           dconf-update
-          flake-checker.packages.${system}.default
+          # flake-checker.packages.${system}.default
           deploy-rs.packages.${system}.default
           attic.packages.${system}.default
           agenix.packages.${system}.default
-          hydra-check.packages.${system}.default
+          # hydra-check.packages.${system}.default
           nil.packages.${system}.default
           nix-output-monitor
           dconf2nix
