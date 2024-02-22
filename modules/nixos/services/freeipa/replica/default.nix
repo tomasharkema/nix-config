@@ -22,9 +22,9 @@ in {
           autoStart = true;
           extraOptions = [
             # "--sysctl=net.ipv6.conf.all.disable_ipv6=1"
-            # "--device=/dev/net/tun:/dev/net/tun"
-            # "--cap-add=NET_ADMIN"
-            # "--cap-add=NET_RAW"
+            "--device=/dev/net/tun:/dev/net/tun"
+            "--cap-add=NET_ADMIN"
+            "--cap-add=NET_RAW"
             # "--dns=1.1.1.1"
           ];
           environment = {
