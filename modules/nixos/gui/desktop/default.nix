@@ -96,7 +96,6 @@ in {
 
         gtk-engine-murrine
         plymouth
-        apache-directory-studio
         rtfm
         # inputs.nix-gui.packages."${system}".nix-gui
 

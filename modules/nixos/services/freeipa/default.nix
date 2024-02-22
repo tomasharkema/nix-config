@@ -18,15 +18,17 @@ in {
       oci-containers.containers = {
         free-ipa-tailscale = {
           image = "docker.io/tailscale/tailscale:stable";
-          hostname = "${config.networking.hostName}-freeipa-tailscale.harkema.intra";
+          hostname = "ipa.harkema.intra";
           autoStart = true;
           extraOptions = [
             "--device=/dev/net/tun:/dev/net/tun"
             "--cap-add=NET_ADMIN"
             "--cap-add=NET_RAW"
+            "--add-host=ipa.harkema.intra:100.76.50.114"
+            "--add-host=free-ipa-tailscale:100.76.50.114"
           ];
           environment = {
-            TS_HOSTNAME = "${config.networking.hostName}-freeipa-tailscale.harkema.intra";
+            TS_HOSTNAME = "ipa.harkema.intra";
             TS_STATE_DIR = "/var/lib/tailscale";
             TS_ROUTES = "10.88.0.0/16";
           };
@@ -38,16 +40,15 @@ in {
           dependsOn = ["free-ipa-tailscale"];
           image = "docker.io/freeipa/freeipa-server:fedora-39";
           autoStart = true;
-          #ports = ["53:53" "53:53/udp" "80:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
           hostname = "ipa.harkema.intra";
           extraOptions = [
             "--network=container:free-ipa-tailscale"
+            # "--add-host=ipa.harkema.intra:100.76.50.114"
           ];
           environment = {
             SECRET = "Secret123!";
             PASSWORD = "Secret123!";
           };
-          #cmd = ["/bin/bash" "-c" "yum install epel-release -y && yum install letsencrypt git -y && ipa-server-install -U -r HARKEMA.IO"];
           cmd = [
             "ipa-server-install"
             "-U"
