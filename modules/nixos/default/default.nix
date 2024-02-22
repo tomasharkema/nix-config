@@ -43,7 +43,7 @@
     };
 
     virtualisation.spiceUSBRedirection.enable = true;
-
+    services.fstrim.enable = true;
     zramSwap = {
       enable = true;
     };
@@ -54,7 +54,7 @@
 
       tmp = {
         useTmpfs = true;
-        # cleanOnBoot = true;
+        cleanOnBoot = true;
       };
 
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
