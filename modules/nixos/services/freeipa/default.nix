@@ -18,19 +18,19 @@ in {
       oci-containers.containers = {
         free-ipa-tailscale = {
           image = "docker.io/tailscale/tailscale:stable";
-          hostname = "tailscale.harkema.intra";
+          hostname = "${config.networking.hostName}-freeipa-tailscale.harkema.intra";
           autoStart = true;
           extraOptions = [
-            "--sysctl=net.ipv6.conf.all.disable_ipv6=1"
             "--device=/dev/net/tun:/dev/net/tun"
             "--cap-add=NET_ADMIN"
             "--cap-add=NET_RAW"
-            "--add-host=ipa.harkema.intra:100.64.198.108"
-            "--dns=1.1.1.1"
+            # "--add-host=ipa.harkema.intra:100.76.50.114"
+            # "--dns=1.1.1.1"
           ];
           environment = {
-            TS_HOSTNAME = "tailscale.harkema.intra";
+            TS_HOSTNAME = "${config.networking.hostName}-freeipa-tailscale.harkema.intra";
             TS_STATE_DIR = "/var/lib/tailscale";
+            TS_ROUTES = "10.88.0.0/16";
           };
           volumes = [
             "/var/lib/tailscale-free-ipa:/var/lib/tailscale:Z"
@@ -43,9 +43,7 @@ in {
           #ports = ["53:53" "53:53/udp" "80:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
           hostname = "ipa.harkema.intra";
           extraOptions = [
-            "--sysctl=net.ipv6.conf.all.disable_ipv6=1"
             "--network=container:free-ipa-tailscale"
-            # "--add-host=ipa.harkema.intra:100.64.198.108"
           ];
           environment = {
             SECRET = "Secret123!";
@@ -60,7 +58,7 @@ in {
             "--setup-dns"
             "--no-forwarders"
             "--no-host-dns"
-            "--ip-address=100.64.198.108"
+            "--ip-address=100.76.50.114"
           ];
           volumes = [
             "/var/lib/freeipa:/data:Z"
