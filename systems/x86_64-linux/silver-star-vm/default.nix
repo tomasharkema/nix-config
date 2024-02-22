@@ -26,7 +26,7 @@ with lib; {
     resilio.enable = mkForce false;
     # apps.tor.relay.enable = true;
 
-    apps.podman.enable = true;
+    services.podman.enable = true;
 
     services = {
       qemuGuest.enable = true;
