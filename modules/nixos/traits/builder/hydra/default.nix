@@ -20,7 +20,11 @@ in {
       127.0.0.1 localhost-aarch64
     '';
 
-    systemd.services.hydra-evaluator.serviceConfig.MemoryLimit = "10G";
+    systemd.services.hydra-evaluator.serviceConfig = {
+      MemoryHigh = "5G";
+      MemoryMax = "9G";
+      MemoryLimit = "10G";
+    };
 
     nix.buildMachines = [
       {
