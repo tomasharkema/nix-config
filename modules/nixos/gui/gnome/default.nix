@@ -98,7 +98,7 @@ in {
           gnomeExtensions.tailscale-qs
           gnomeExtensions.todotxt
           gnomeExtensions.tophat
-          gnomeExtensions.vitals
+          # gnomeExtensions.vitals
         ])
       ++ (with pkgs; [
         clutter

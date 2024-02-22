@@ -47,7 +47,7 @@
       hostName = "enzian";
       hostId = "529fd7fa";
       firewall = {
-        enable = true;
+        enable = false; # true
       };
       useDHCP = lib.mkDefault true;
       interfaces."enp4s0".wakeOnLan.enable = true;

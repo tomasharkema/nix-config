@@ -26,8 +26,8 @@
         remote-unlock.enable = true;
       };
     };
-
-    services.freeipa.replica.enable = true;
+    services.podman.enable = true;
+    # services.freeipa.replica.enable = true;
 
     disks.btrfs = {
       enable = true;
@@ -45,11 +45,11 @@
       hostId = "529fd7bb";
       useDHCP = lib.mkDefault true;
       interfaces."eno1".wakeOnLan.enable = true;
-      # firewall.enable = true;
+      firewall.enable = true;
       wireless.enable = lib.mkForce false;
     };
 
-    services.tcsd.enable = true;
+    # services.tcsd.enable = true;
 
     # environment.persistence."/nix/persistent" = {
     #   hideMounts = true;
