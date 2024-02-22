@@ -19,4 +19,11 @@
   cockpit-tailscale = self.packages."${prev.system}".cockpit-tailscale;
   # cockpit-ostree = self.packages."${prev.system}".cockpit-ostree;
   cockpit-machines = self.packages."${prev.system}".cockpit-machines;
+
+  keybase = channels.unstable.keybase;
+  keybase-gui = channels.unstable.keybase-gui;
+  kbfs = channels.unstable.kbfs;
+
+  atuin = channels.unstable.atuin;
+  xpipe = channels.unstable.xpipe;
 }

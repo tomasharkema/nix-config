@@ -18,7 +18,7 @@ in {
       cachix
       deadnix
       fh
-      hydra-cli
+      # hydra-cli
       inputs.nil.packages.${system}.default
       manix
       nix-eval-jobs
