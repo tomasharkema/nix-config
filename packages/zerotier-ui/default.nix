@@ -56,7 +56,7 @@ in
       mkdir -p $out/share/applications
       cp target/release/zerotier_desktop_ui $out/bin/zerotier-ui
       cp ${assets}/ZeroTierIcon.png $out/share
-      cp ${assets}/zerotier-ui.desktop $out/share/applications
+      cp ${./zerotier-ui.desktop} $out/share/applications
     '';
 
     meta = with lib; {
