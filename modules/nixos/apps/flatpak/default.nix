@@ -53,7 +53,6 @@ in {
           "org.fkoehler.KTailctl"
           "org.freefilesync.FreeFileSync"
           "org.gnome.meld"
-          "org.stellarium.Stellarium"
           "com.bitwarden.desktop"
         ]
         ++ (
