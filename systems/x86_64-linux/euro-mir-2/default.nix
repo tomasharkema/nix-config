@@ -28,11 +28,14 @@
     };
 
     apps = {
-      android.enable = true;
+      # android.enable = true;
       steam.enable = true;
     };
 
-    headless.hypervisor.enable = true;
+    headless.hypervisor = {
+      enable = true;
+      bridgeInterfaces = ["wlp59s0"];
+    };
 
     traits = {
       hardware = {
@@ -53,6 +56,7 @@
 
     services = {
       podman.enable = true;
+
       fprintd = {
         # enable = true;
         package = pkgs.fprintd-tod;

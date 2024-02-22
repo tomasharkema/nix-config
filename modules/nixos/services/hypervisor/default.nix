@@ -4,11 +4,14 @@
   lib,
   ...
 }:
-with lib; let
+with lib;
+with lib.custom; let
   cfg = config.headless.hypervisor;
 in {
   options.headless.hypervisor = {
     enable = mkEnableOption "hypervisor";
+
+    bridgeInterfaces = mkOpt (types.listOf types.str) [] "bridgeInterfaces";
   };
 
   config = mkIf cfg.enable {
@@ -23,14 +26,23 @@ in {
       virt-manager
       kvmtool
       libvirt
-      gnome.gnome-boxes
       qemu_kvm
       # kvm
+      gnome
     ];
     services.dbus.packages = with pkgs; [
       libvirt
       virt-manager
     ];
+
+    networking = {
+      # interfaces.br0.useDHCP = true;
+      # bridges = {
+      #   "br0" = {
+      #     interfaces = cfg.bridgeInterfaces;
+      #   };
+      # };
+    };
 
     programs.virt-manager.enable = true;
 

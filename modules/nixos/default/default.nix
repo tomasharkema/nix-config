@@ -75,25 +75,22 @@
     environment.systemPackages =
       (with pkgs; [
         atop
-        # powertop
+        bitwarden-cli
+        curl
+        devtodo
         fwupd
         fwupd-efi
         hw-probe
-        wget
-        curl
         lm_sensors
-        pciutils
-        # cope
-        #xpipe
         notify
-        udisks2
+        opencryptoki
+        openldap
+        pciutils
         pkgs.deepin.udisks2-qt5
-        udisks2
         pv
         tpm-tools
-        opencryptoki
-        devtodo
-        openldap
+        udisks2
+        wget
       ])
       ++ (with pkgs.custom; [
         flashprog
@@ -107,7 +104,6 @@
           with pkgs; [
             pkgs.custom.ztui
             # bitwarden
-            bitwarden-cli
             bitwarden-menu
           ]
         else []
@@ -218,7 +214,7 @@
       _1password.enable = true;
 
       ssh.startAgent = true;
-      mosh.enable = true;
+      # mosh.enable = true;
 
       nix-ld.enable = true;
 
@@ -254,7 +250,7 @@
       firewall = {
         enable = mkDefault true;
       };
-
+      networkmanager.enable = true;
       # enableIPv6 = false;
     };
 

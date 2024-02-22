@@ -84,17 +84,17 @@
 
     nix-software-center = {
       url = "github:snowfallorg/nix-software-center";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-conf-editor = {
       url = "github:snowfallorg/nixos-conf-editor";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
-    impermanence.url = "github:nix-community/impermanence";
+    # impermanence.url = "github:nix-community/impermanence";
 
     attic = {
       url = "github:zhaofengli/attic/6eabc3f";
@@ -106,15 +106,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hydra-check = {
-      url = "github:nix-community/hydra-check";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hydra-check = {
+    #   url = "github:nix-community/hydra-check";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
-    flake-checker = {
-      url = "github:DeterminateSystems/flake-checker";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # flake-checker = {
+    #   url = "github:DeterminateSystems/flake-checker";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     snowfall-lib = {
       url = "github:snowfallorg/lib";
@@ -145,19 +145,14 @@
     #   url = "github:nix-community/poetry2nix";
     # };
 
-    stylix = {
-      url = "github:danth/stylix/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # stylix = {
+    #   url = "github:danth/stylix/release-23.11";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     command-center = {
       url = "github:tomasharkema/command-center";
       inputs.nixpkgs.follows = "unstable";
-    };
-
-    nix-gui = {
-      url = "github:nix-gui/nix-gui";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -217,7 +212,7 @@
       systems.modules.nixos = with inputs; [
         # peerix.nixosModules.peerix
 
-        impermanence.nixosModule
+        # impermanence.nixosModule
         disko.nixosModules.default
 
         lanzaboote.nixosModules.lanzaboote
