@@ -251,7 +251,7 @@
 
     networking = {
       firewall = {
-        enable = mkDefault true;
+        enable = false; # mkDefault true;
       };
 
       enableIPv6 = false;
