@@ -15,7 +15,7 @@ in {
     system.nixos.tags = ["podman"];
     networking.firewall.trustedInterfaces = ["podman0"];
 
-    networking.firewall.enable = false;
+    # networking.firewall.enable = false;
 
     virtualisation = {
       podman = {
