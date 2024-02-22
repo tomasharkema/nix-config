@@ -235,30 +235,30 @@
       # fancontrol.enable = true;
     };
 
-    system.autoUpgrade.enable = true;
+    # system.autoUpgrade.enable = true;
 
-    systemd = {
-      targets = {
-        sleep.enable = mkDefault false;
-        suspend.enable = mkDefault false;
-        hibernate.enable = mkDefault false;
-        hybrid-sleep.enable = mkDefault false;
-      };
-      services = {
-        NetworkManager-wait-online.enable = lib.mkForce false;
-        systemd-networkd-wait-online.enable = lib.mkForce false;
-      };
-    };
+    # systemd = {
+    #   targets = {
+    #     sleep.enable = mkDefault false;
+    #     suspend.enable = mkDefault false;
+    #     hibernate.enable = mkDefault false;
+    #     hybrid-sleep.enable = mkDefault false;
+    #   };
+    #   services = {
+    #     NetworkManager-wait-online.enable = lib.mkForce false;
+    #     systemd-networkd-wait-online.enable = lib.mkForce false;
+    #   };
+    # };
 
     networking = {
       firewall = {
-        enable = false; # mkDefault true;
+        enable = mkDefault true;
       };
 
-      enableIPv6 = false;
+      # enableIPv6 = false;
     };
 
     # powerManagement.powertop.enable = mkDefault true;
-    programs.gnupg.agent.enable = true;
+    # programs.gnupg.agent.enable = true;
   };
 }

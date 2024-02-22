@@ -44,8 +44,8 @@
       hostName = "arthur";
       hostId = "529fd7bb";
       useDHCP = lib.mkDefault true;
-      # interfaces."eno1".wakeOnLan.enable = true;
-      firewall.enable = false;
+      interfaces."eno1".wakeOnLan.enable = true;
+      firewall.enable = true;
       wireless.enable = lib.mkForce false;
     };
 
