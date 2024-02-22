@@ -47,7 +47,6 @@ in {
           "io.github.sigmasd.stimulator"
           "io.github.vikdevelop.SaveDesktop"
           "io.missioncenter.MissionCenter"
-          "md.obsidian.Obsidian"
           "me.iepure.devtoolbox"
           "org.cockpit_project.CockpitClient"
           "org.fkoehler.KTailctl"
