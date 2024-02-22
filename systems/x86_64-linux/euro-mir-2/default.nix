@@ -28,7 +28,6 @@
     };
 
     apps = {
-      podman.enable = true;
       android.enable = true;
       steam.enable = true;
     };
@@ -49,10 +48,11 @@
       hostName = "euro-mir-2"; # Define your hostname.
       networkmanager.enable = true;
       # wireless.enable = true;
-      # firewall.enable = true;
+      firewall.enable = false;
     };
 
     services = {
+      podman.enable = true;
       fprintd = {
         # enable = true;
         package = pkgs.fprintd-tod;
