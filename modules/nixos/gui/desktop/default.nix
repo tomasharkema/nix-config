@@ -72,32 +72,33 @@ in {
 
     environment.systemPackages = with pkgs;
       [
-        pcmanfm
+        gtop
+        gnome.gnome-boxes
+        # pcmanfm
         polkit
         gparted
         # firefox
         vscode
-        fira-code-nerdfont
-        transmission
+        # fira-code-nerdfont
+        # transmission
         # keybase
         # powertop
 
         nix-software-center
-        # nixos-conf-editor
+        nixos-conf-editor
 
         xdg-utils
 
         # _1password
         # _1password-gui
-        handbrake
-        meteo
-        transmission-remote-gtk
-        github-desktop
+        # handbrake
+        # meteo
+        # transmission-remote-gtk
+        # github-desktop
 
         gtk-engine-murrine
-        plymouth
-        rtfm
-        # inputs.nix-gui.packages."${system}".nix-gui
+        # plymouth
+        # rtfm
 
         effitask
         clutter
@@ -105,22 +106,22 @@ in {
         gotop
 
         font-manager
-        gamehub
-        filezilla
-        sublime-merge
+        # gamehub
+        # filezilla
+        # sublime-merge
         remmina
         xdg-utils
-        mattermost-desktop
-        systemdgenie
+        # mattermost-desktop
+        # systemdgenie
+        # # _1password
+        # wezterm
+        # waybar
+        # zeal
 
-        # _1password
-        wezterm
-        waybar
-        zeal
         libmx
       ]
       ++ optional (pkgs.system == "x86_64-linux") telegram-desktop
-      ++ (with pkgs.custom; [zerotier-ui]);
+      ++ (with pkgs.custom; [zerotier-ui zerotier-gui]);
 
     programs = {
       ssh.extraConfig = ''
