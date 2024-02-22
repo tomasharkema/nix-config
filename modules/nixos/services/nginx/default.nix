@@ -71,8 +71,8 @@ in {
       '';
 
       wantedBy = ["multi-user.target" "network.target"];
-      after = ["tailscale.service" "network.target" "syslog.target"];
-      wants = ["tailscale.service"];
+      after = ["tailscaled.service" "network.target" "syslog.target"];
+      wants = ["tailscaled.service"];
     };
 
     # security.acme = {

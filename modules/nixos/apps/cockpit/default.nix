@@ -72,8 +72,8 @@
           ${config.proxy-services.vhost}
       '';
       wantedBy = ["multi-user.target" "network.target"];
-      after = ["tailscale.service"];
-      wants = ["tailscale.service"];
+      after = ["tailscaled.service"];
+      wants = ["tailscaled.service"];
     };
 
     # environment.etc = {
