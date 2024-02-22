@@ -96,8 +96,9 @@
         openldap
       ])
       ++ (with pkgs.custom; [
-        menu
+        flashprog
         graylog-cli-dashboard
+        menu
         pvzstd
         ztui
       ])
