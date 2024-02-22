@@ -100,12 +100,12 @@
         graylog-cli-dashboard
         menu
         pvzstd
-        ztui
       ])
       ++ (
         if pkgs.stdenv.isx86_64
         then
           with pkgs; [
+            pkgs.custom.ztui
             # bitwarden
             bitwarden-cli
             bitwarden-menu
