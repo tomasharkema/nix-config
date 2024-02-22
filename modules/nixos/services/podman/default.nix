@@ -21,9 +21,12 @@ in {
       podman = {
         enable = true;
 
-        # dockerCompat = true;
+        dockerCompat = true;
 
-        defaultNetwork.settings.dns_enabled = true;
+        defaultNetwork.settings = {
+          dns_enabled = true;
+          ipam_options = {driver = "dhcp";};
+        };
 
         autoPrune.enable = true;
         # networkSocket.enable = true;
