@@ -10,63 +10,63 @@ CLEAN_RAM="Clean ram..."
 EXIT="Exit"
 
 update() {
-    sudo nixos-rebuild switch --flake "github:tomasharkema/nix-config" --refresh --verbose --log-format internal-json -v 2>&1 | nom --json
+  sudo nixos-rebuild switch --flake "github:tomasharkema/nix-config" --refresh --verbose --log-format internal-json -v 2>&1 | nom --json
 }
 
 clearcache() {
-    sudo nix-collect-garbage --delete-older-than '1d'
-    nix-collect-garbage --delete-older-than '1d'
-    echo "-- nix store optimise --"
-    nix store optimise
+  sudo nix-collect-garbage --delete-older-than '1d'
+  nix-collect-garbage --delete-older-than '1d'
+  echo "-- nix store optimise --"
+  nix store optimise
 }
 
 attachsession() {
-    SESSION=$(tmux list-sessions -F \#S | gum filter --placeholder "Pick session...")
-    tmux switch-client -t "$SESSION" || tmux attach -t "$SESSION"
+  SESSION=$(tmux list-sessions -F \#S | gum filter --placeholder "Pick session...")
+  tmux switch-client -t "$SESSION" || tmux attach -t "$SESSION"
 }
 
 cleanram() {
-    sudo sync
-    echo 3 >/proc/sys/vm/drop_caches
+  sudo sync
+  sudo echo 3 | tee /proc/sys/vm/drop_caches
 }
 
 CHOICE=$(gum choose "$RUN_UPDATER" "$ATTACH_SESSION" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$CLEAR_CACHE" "$OPEN_SHELL" "$CLEAN_RAM" "$EXIT")
 
 case $CHOICE in
 "$RUN_UPDATER")
-    update
-    ;;
+  update
+  ;;
 
 "$OPEN_BLUE_FIRE")
-    exec ssh blue-fire-menu
-    ;;
+  exec ssh blue-fire-menu
+  ;;
 
 "$OPEN_SSH")
-    exec fast-ssh
-    ;;
+  exec fast-ssh
+  ;;
 
 "$OPEN_SHELL")
-    exec zsh
-    ;;
+  exec zsh
+  ;;
 
 "$CLEAR_CACHE")
-    clearcache
-    ;;
+  clearcache
+  ;;
 
 "$ATTACH_SESSION")
-    attachsession
-    ;;
+  attachsession
+  ;;
 
 "$CLEAN_RAM")
-    cleanram
-    ;;
+  cleanram
+  ;;
 
 "$EXIT")
-    echo "Exitting..."
-    exit 0
-    ;;
+  echo "Exitting..."
+  exit 0
+  ;;
 
 *)
-    exit 1
-    ;;
+  exit 1
+  ;;
 esac
