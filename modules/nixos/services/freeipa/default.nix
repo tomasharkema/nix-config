@@ -12,24 +12,24 @@ in {
   };
 
   config = mkIf cfg.enable {
-    apps.podman.enable = true;
+    services.podman.enable = true;
 
     virtualisation = {
       oci-containers.containers = {
         free-ipa-tailscale = {
           image = "docker.io/tailscale/tailscale:stable";
-          hostname = "tailscale.harkema.intra";
+          hostname = "${config.networking.hostName}-freeipa-tailscale.harkema.intra";
           autoStart = true;
           extraOptions = [
             "--sysctl=net.ipv6.conf.all.disable_ipv6=1"
             "--device=/dev/net/tun:/dev/net/tun"
             "--cap-add=NET_ADMIN"
             "--cap-add=NET_RAW"
-            "--add-host=ipa.harkema.intra:100.64.198.108"
-            "--dns=1.1.1.1"
+            # "--add-host=ipa.harkema.intra:100.64.198.108"
+            # "--dns=1.1.1.1"
           ];
           environment = {
-            TS_HOSTNAME = "tailscale.harkema.intra";
+            TS_HOSTNAME = "${config.networking.hostName}-freeipa-tailscale.harkema.intra";
             TS_STATE_DIR = "/var/lib/tailscale";
           };
           volumes = [
