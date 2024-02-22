@@ -104,7 +104,7 @@ in {
         clutter
         xdgmenumaker
         gotop
-        gtop
+
         font-manager
         gamehub
         filezilla
