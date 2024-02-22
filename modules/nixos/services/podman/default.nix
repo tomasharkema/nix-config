@@ -5,23 +5,23 @@
 }:
 with lib;
 with lib.custom; let
-  cfg = config.apps.podman;
+  cfg = config.services.podman;
 in {
-  options.apps.podman = {
+  options.services.podman = {
     enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
   };
 
   config = mkIf cfg.enable {
     system.nixos.tags = ["podman"];
-    networking.firewall.trustedInterfaces = ["podman0"];
+    # networking.firewall.trustedInterfaces = ["podman0"];
 
-    # networking.firewall.enable = false;
+    networking.firewall.enable = false;
 
     virtualisation = {
       podman = {
         enable = true;
 
-        dockerCompat = true;
+        # dockerCompat = true;
 
         defaultNetwork.settings.dns_enabled = true;
 
