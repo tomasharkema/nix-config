@@ -56,6 +56,8 @@ in {
           Restart = "on-failure";
           RestartSec = 5;
           MemoryLimit = "2G";
+          MemoryHigh = "1G";
+          MemoryMax = "2G";
         };
         preStart = "${lib.getExe attic-login}";
         script = "${attic}/bin/attic watch-store tomas:tomas";
