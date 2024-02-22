@@ -38,7 +38,7 @@ with pkgs; {
       git
       git-lfs
       gping
-      gtop
+
       httpie
       iftop
       inputs.devenv.packages.${system}.default
