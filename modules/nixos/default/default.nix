@@ -91,6 +91,7 @@
         tpm-tools
         udisks2
         wget
+        sshportal
       ])
       ++ (with pkgs.custom; [
         flashprog
@@ -189,13 +190,39 @@
         ];
       };
 
-      rsyslogd = {
-        enable = true;
+      # rsyslogd = {
+      #   enable = true;
 
-        extraConfig = ''
-          *.*    @@nix.harke.ma:5140;RSYSLOG_SyslogProtocol23Format
-        '';
-      };
+      #   extraConfig = ''
+      #     *.*    @@nix.harke.ma:5140;RSYSLOG_SyslogProtocol23Format
+      #   '';
+      # };
+    };
+
+    services.fluentd = {
+      enable = true;
+
+      config = ''
+        # Match all patterns
+        <match **>
+          @type http
+
+          endpoint https://oneuptime.com/fluentd/logs
+          open_timeout 2
+
+          headers {"x-oneuptime-service-token":"96c7bca0-d290-11ee-9b6a-55a2f9409bca"}
+
+          content_type application/json
+          json_array true
+
+          <format>
+            @type json
+          </format>
+          <buffer>
+            flush_interval 10s
+          </buffer>
+        </match>
+      '';
     };
 
     programs = {
