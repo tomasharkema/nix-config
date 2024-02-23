@@ -22,7 +22,6 @@
         enable = true;
       };
       gnome.enable = true;
-      # pantheon.enable = true;
       # game-mode.enable = true;
       quiet-boot.enable = true;
     };
