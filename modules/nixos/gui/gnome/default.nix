@@ -14,7 +14,7 @@ in {
 
   config = mkIf cfg.enable {
     services = {
-      xrdp.defaultWindowManager = "gnome-session";
+      xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
 
       xserver = {
         desktopManager.gnome.enable = true;
@@ -51,29 +51,7 @@ in {
       in
         with pkgsUnstable; [
           gtop
-          # # pkgs.gnome45Extensions."app-hider@lynith.dev"
-          # gnome45Extensions."gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
-          # # gnome45Extensions."gsconnect@andyholmes.github.io"
-          # gnome45Extensions."gnome-kinit@bonzini.gnu.org"
-          # gnome45Extensions."lan-ip-address@mrhuber.com"
-          # gnome45Extensions."no-overview@fthx"
-          # gnome45Extensions."reboottouefi@ubaygd.com"
-          # gnome45Extensions."tailscale@joaophi.github.com"
-          # # gnome45Extensions."todo.txt@bart.libert.gmail.com"
-          # gnome45Extensions."toggler@hedgie.tech"
-          # gnome45Extensions."appindicatorsupport@rgcjonas.gmail.com"
-          # # gnome45Extensions."extension-list@tu.berry"
-          # # gnome45Extensions."GPU_profile_selector@lorenzo9904.gmail.com"
-          # # gnome45Extensions."messagingmenu@lauinger-clan.de"
-          # # gnome45Extensions."serverstatus@footeware.ca"
-          # # gnome45Extensions."sp-tray@sp-tray.esenliyim.github.com"
-          # gnome45Extensions."user-theme@gnome-shell-extensions.gcampax.github.com"
-          # gnome45Extensions."Vitals@CoreCoding.com"
-
-          gnome45Extensions."monitor-brightness-volume@ailin.nemui"
-          # # gnome45Extensions."systemd-status@ne0sight.github.io"
-
-          # gnomeExtensions.spotify-tray
+          libgtop
           gnomeExtensions.settingscenter
           gnomeExtensions.app-hider
           gnomeExtensions.appindicator
@@ -162,3 +140,25 @@ in {
       ]);
   };
 }
+# # pkgs.gnome45Extensions."app-hider@lynith.dev"
+# gnome45Extensions."gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
+# # gnome45Extensions."gsconnect@andyholmes.github.io"
+# gnome45Extensions."gnome-kinit@bonzini.gnu.org"
+# gnome45Extensions."lan-ip-address@mrhuber.com"
+# gnome45Extensions."no-overview@fthx"
+# gnome45Extensions."reboottouefi@ubaygd.com"
+# gnome45Extensions."tailscale@joaophi.github.com"
+# # gnome45Extensions."todo.txt@bart.libert.gmail.com"
+# gnome45Extensions."toggler@hedgie.tech"
+# gnome45Extensions."appindicatorsupport@rgcjonas.gmail.com"
+# # gnome45Extensions."extension-list@tu.berry"
+# # gnome45Extensions."GPU_profile_selector@lorenzo9904.gmail.com"
+# # gnome45Extensions."messagingmenu@lauinger-clan.de"
+# # gnome45Extensions."serverstatus@footeware.ca"
+# # gnome45Extensions."sp-tray@sp-tray.esenliyim.github.com"
+# gnome45Extensions."user-theme@gnome-shell-extensions.gcampax.github.com"
+# gnome45Extensions."Vitals@CoreCoding.com"
+# gnome45Extensions."monitor-brightness-volume@ailin.nemui"
+# # gnome45Extensions."systemd-status@ne0sight.github.io"
+# gnomeExtensions.spotify-tray
+
