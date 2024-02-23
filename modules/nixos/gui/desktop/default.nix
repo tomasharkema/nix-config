@@ -72,7 +72,6 @@ in {
 
     environment.systemPackages = with pkgs;
       [
-        gtop
         gnome.gnome-boxes
         # pcmanfm
         polkit

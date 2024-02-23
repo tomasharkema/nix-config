@@ -36,23 +36,23 @@ in {
       ];
       packages =
         [
-          "com.getpostman.Postman"
+          #"com.getpostman.Postman"
           "com.github.tchx84.Flatseal"
           "com.logseq.Logseq"
           # "com.mattjakeman.ExtensionManager"
-          "com.moonlight_stream.Moonlight"
+          #"com.moonlight_stream.Moonlight"
           "com.ranfdev.Notify"
-          "io.emeric.toolblex"
+          #"io.emeric.toolblex"
           "io.github.JaGoLi.ytdl_gui"
           "io.github.sigmasd.stimulator"
-          "io.github.vikdevelop.SaveDesktop"
-          "io.missioncenter.MissionCenter"
+          #"io.github.vikdevelop.SaveDesktop"
+          #"io.missioncenter.MissionCenter"
           "me.iepure.devtoolbox"
           "org.cockpit_project.CockpitClient"
           "org.fkoehler.KTailctl"
-          "org.freefilesync.FreeFileSync"
-          "org.gnome.meld"
-          "com.bitwarden.desktop"
+          #"org.freefilesync.FreeFileSync"
+          #"org.gnome.meld"
+          #"com.bitwarden.desktop"
         ]
         ++ (
           if pkgs.stdenv.isx86_64
