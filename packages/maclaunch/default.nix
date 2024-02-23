@@ -1,17 +1,25 @@
-{pkgs, ...}:
-pkgs.stdenvNoCC.mkDerivation {
+{
+  fetchFromGitHub,
+  stdenv,
+}:
+stdenv.mkDerivation rec {
   name = "maclaunch";
+  version = "2.5";
 
-  src = pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "hazcod";
-    repo = "maclaunch";
-    rev = "0a4962623dffa84050b5b778edb69f8603fa6c1a";
+    repo = name;
+    rev = "${version}";
     hash = "sha256-CA0bT1auUkDdboQeb7FDl2HM2AMoocrU2/hmBbNYK8A=";
   };
 
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out/bin
     mv maclaunch.sh $out/bin/maclaunch
     chmod +x $out/bin/maclaunch
+
+    runHook postInstall
   '';
 }
