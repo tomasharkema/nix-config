@@ -25,6 +25,10 @@ in {
         name = catppuccin_name;
         package = catppuccin;
       };
+      # theme = {
+      #   name = "Tokyonight-Dark";
+      #   package = pkgs.tokyo-night-gtk;
+      # };
       # cursorTheme = {
       #   name = "Catppuccin-Macchiato-Dark-Cursors";
       #   package = pkgs.catppuccin-cursors.macchiatoDark;
