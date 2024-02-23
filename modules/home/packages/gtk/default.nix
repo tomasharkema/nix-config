@@ -21,10 +21,12 @@ in {
         name = "Inter Regular";
         size = 11;
       };
+
       theme = lib.mkForce {
         name = catppuccin_name;
         package = catppuccin;
       };
+
       # theme = {
       #   name = "Tokyonight-Dark";
       #   package = pkgs.tokyo-night-gtk;
@@ -33,6 +35,7 @@ in {
       #   name = "Catppuccin-Macchiato-Dark-Cursors";
       #   package = pkgs.catppuccin-cursors.macchiatoDark;
       # };
+
       gtk3.extraConfig = {
         Settings = ''
           gtk-application-prefer-dark-theme=1
