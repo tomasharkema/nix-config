@@ -91,7 +91,6 @@
         tpm-tools
         udisks2
         wget
-        nix-index
       ])
       ++ (with pkgs.custom; [
         flashprog
