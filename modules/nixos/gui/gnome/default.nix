@@ -78,7 +78,7 @@ in {
           gnomeExtensions.todotxt
           gnomeExtensions.tophat
           gnomeExtensions.no-title-bar
-          # gnomeExtensions.vitals
+          gnomeExtensions.vitals
         ])
       ++ (with pkgs; [
         clutter
