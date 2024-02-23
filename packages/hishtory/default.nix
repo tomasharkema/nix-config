@@ -19,16 +19,16 @@ with pkgs;
   buildGoModule
   rec {
     pname = "hishtory";
-    version = "0.263";
+    version = "0.277";
 
     src = fetchFromGitHub {
       owner = "ddworken";
       repo = pname;
       rev = "v${version}";
-      hash = "sha256-Pg53wYkoUKZ5mMvPVCJs8HTj5AWRUYXUArHN0f+D+Nw=";
+      hash = "sha256-Gb2E9IlXU+3WuEDIh/McwoHPEUqVAxMeaGVmers5Hvw=";
     };
 
-    vendorHash = "sha256-HzHLGrPXUSkyt2Dr7tLjfJrbg/EPBHkljoXIlPWIppU=";
+    vendorHash = "sha256-qWKLYGDbL5LL3CjD2yz9CjwAM6lL9Pjnbk+ERCmW94c=";
     ldflags = [" -X github.com/ddworken/hishtory/client/lib.Version=${version}"];
 
     excludedPackages = ["backend/server" "client"];

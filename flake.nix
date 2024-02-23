@@ -230,12 +230,6 @@
         }
       ];
 
-      homes.modules = with inputs; [
-        nix-index-database.hmModules.nix-index
-        # agenix.homeManagerModules.default
-        # stylix.homeManagerModules.stylix
-      ];
-
       deploy = lib.mkDeploy {
         inherit (inputs) self;
 
