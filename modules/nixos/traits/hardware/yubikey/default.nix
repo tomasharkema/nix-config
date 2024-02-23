@@ -6,7 +6,7 @@
 }: {
   config = {
     security.pam = {
-      p11.enable = true;
+      # p11.enable = true;
       services = {
         login.u2fAuth = true;
         sudo.u2fAuth = true;
@@ -14,16 +14,16 @@
       };
     };
 
-    programs = {
-      yubikey-touch-detector.enable = true;
-      ssh.extraConfig = ''
-        PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
-      '';
-    };
+    # programs = {
+    #   yubikey-touch-detector.enable = true;
+    #   ssh.extraConfig = ''
+    #     PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
+    #   '';
+    # };
 
     services = {
-      pcscd.enable = true;
-      yubikey-agent.enable = true;
+      # pcscd.enable = true;
+      # yubikey-agent.enable = true;
     };
 
     boot.initrd = {
@@ -34,15 +34,15 @@
     environment.systemPackages = with pkgs; [
       age-plugin-yubikey
       libfido2
-      opensc
-      pcsctools
-      yubico-piv-tool
+      # opensc
+      # pcsctools
+      # yubico-piv-tool
       yubikey-agent
       yubikey-manager
       yubikey-manager-qt
       yubikey-personalization
       yubikey-personalization-gui
-      yubikey-touch-detector
+      # yubikey-touch-detector
     ];
   };
 }
