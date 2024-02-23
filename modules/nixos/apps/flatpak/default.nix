@@ -20,6 +20,8 @@ in {
     xdg.portal = {
       enable = true;
       config.common.default = "gnome";
+      gtkUsePortal = true;
+      xdgOpenUsePortal = true;
     };
 
     services.flatpak = {
@@ -38,10 +40,10 @@ in {
         [
           #"com.getpostman.Postman"
           "com.github.tchx84.Flatseal"
-          "com.logseq.Logseq"
+          # "com.logseq.Logseq"
           # "com.mattjakeman.ExtensionManager"
           #"com.moonlight_stream.Moonlight"
-          "com.ranfdev.Notify"
+          # "com.ranfdev.Notify"
           #"io.emeric.toolblex"
           "io.github.JaGoLi.ytdl_gui"
           "io.github.sigmasd.stimulator"
