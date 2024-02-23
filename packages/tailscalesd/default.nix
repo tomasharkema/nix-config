@@ -1,13 +1,13 @@
 {
-  pkgs,
+  fetchFromGitHub,
+  buildGoModule,
   lib,
-  ...
 }:
-pkgs.buildGoModule rec {
+buildGoModule rec {
   pname = "tailscalesd";
   version = "0.2.2-1";
 
-  src = pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "tomasharkema";
     repo = "tailscalesd";
     rev = "4451cae097771df887eb45f7205de3609622744e";

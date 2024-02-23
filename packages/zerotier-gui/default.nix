@@ -21,8 +21,12 @@ with python3Packages;
     propagatedBuildInputs = [tkinter];
 
     installPhase = ''
+      runHook preInstall
+
       mkdir -p $out/bin
       cp -r src/. $out/bin
+
+      runHook postInstall
     '';
 
     # nativeBuildInputs = [alen];

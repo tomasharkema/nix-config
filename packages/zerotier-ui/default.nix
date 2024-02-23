@@ -48,15 +48,23 @@ in
     ];
 
     buildPhase = ''
+      runHook preBuild
+
       make linux
+
+      runHook postBuild
     '';
 
     installPhase = ''
+      runHook preInstall
+
       mkdir -p $out/bin
       mkdir -p $out/share/applications
       cp target/release/zerotier_desktop_ui $out/bin/zerotier-ui
       cp ${assets}/ZeroTierIcon.png $out/share
       cp ${./zerotier-ui.desktop} $out/share/applications
+
+      runHook postInstall
     '';
 
     meta = with lib; {
