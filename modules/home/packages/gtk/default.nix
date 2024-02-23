@@ -29,9 +29,20 @@ in {
       #   name = "Catppuccin-Macchiato-Dark-Cursors";
       #   package = pkgs.catppuccin-cursors.macchiatoDark;
       # };
+      gtk3.extraConfig = {
+        Settings = ''
+          gtk-application-prefer-dark-theme=1
+        '';
+      };
+
+      gtk4.extraConfig = {
+        Settings = ''
+          gtk-application-prefer-dark-theme=1
+        '';
+      };
     };
-    home = {
-      sessionVariables.GTK_THEME = catppuccin_name;
+    home = lib.mkIf true {
+      #sessionVariables.GTK_THEME = catppuccin_name;
       file = {
         ".config/gtk-4.0/gtk.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk.css";
         ".config/gtk-4.0/gtk-dark.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk-dark.css";
