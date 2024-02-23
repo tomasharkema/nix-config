@@ -52,6 +52,7 @@ in {
         with pkgsUnstable; [
           gtop
           libgtop
+          gnomeExtensions.appindicator
           gnomeExtensions.settingscenter
           gnomeExtensions.app-hider
           gnomeExtensions.appindicator
@@ -70,18 +71,20 @@ in {
           gnomeExtensions.logo-menu
           gnomeExtensions.no-overview
           gnomeExtensions.remmina-search-provider
-          gnomeExtensions.removable-drive-menu
+          #gnomeExtensions.removable-drive-menu
           gnomeExtensions.search-light
           gnomeExtensions.server-status-indicator
           gnomeExtensions.tailscale-qs
           gnomeExtensions.todotxt
           gnomeExtensions.tophat
+          gnomeExtensions.no-title-bar
           # gnomeExtensions.vitals
         ])
       ++ (with pkgs; [
         clutter
         clutter-gtk
         gjs
+        gnome.adwaita-icon-theme
         gnome-firmware
         gnome-menus
         gnome.dconf-editor
