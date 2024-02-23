@@ -211,18 +211,16 @@
           hide_userland_threads = true;
         };
       };
+
       _1password.enable = true;
-
       ssh.startAgent = true;
-      # mosh.enable = true;
-
+      mosh.enable = true;
       nix-ld.enable = true;
-
-      zsh = {
-        enable = true;
-      };
-
+      zsh.enable = true;
       mtr.enable = true;
+      nix-index.enable = true;
+      nix-index-database.comma.enable = true;
+      command-not-found.enable = false;
     };
 
     hardware = {

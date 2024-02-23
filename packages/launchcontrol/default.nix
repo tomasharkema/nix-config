@@ -4,7 +4,7 @@
 }:
 pkgs.stdenvNoCC.mkDerivation rec {
   pname = "LaunchControl";
-  version = "2.5.2";
+  version = "2.5.3";
 
   src = pkgs.fetchurl {
     url = "https://www.soma-zone.com/download/files/LaunchControl-${version}.tar.xz";
@@ -17,9 +17,11 @@ pkgs.stdenvNoCC.mkDerivation rec {
 
   installPhase = ''
     runHook preInstall
+
     mkdir -p $out/Applications
     tree .
     cp -R LaunchControl.app $out/Applications
+
     runHook postInstall
   '';
 

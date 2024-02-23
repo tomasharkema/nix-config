@@ -28,7 +28,7 @@ in {
       libvirt
       qemu_kvm
       # kvm
-      gnome
+      # gnome
     ];
     services.dbus.packages = with pkgs; [
       libvirt
