@@ -26,4 +26,6 @@
 
   atuin = channels.unstable.atuin;
   xpipe = channels.unstable.xpipe;
+
+  catppuccin-gtk = channels.unstable.catppuccin-gtk;
 }

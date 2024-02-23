@@ -29,12 +29,12 @@ with lib; {
           font-hinting = "full";
           # font-name = "Inter 11";
           enable-hot-corners = false;
-          # icon-theme = "Adwaita";
+          icon-theme = "Adwaita";
         };
 
-        "org/gnome/shell/extensions/user-theme" = {
-          name = mkForce "Catppuccin-Mocha-Compact-Blue-Dark";
-        };
+        # "org/gnome/shell/extensions/user-theme" = {
+        #   name = mkForce "Catppuccin-Mocha-Compact-Blue-Dark";
+        # };
 
         "org/gnome/shell/extensions/TodoTxt" = {
           donetxt-location = "/home/tomas/resilio-sync/shared-documents/done.txt";
@@ -118,7 +118,6 @@ with lib; {
             # "GPU_profile_selector@lorenzo9904.gmail.com"
             # "messagingmenu@lauinger-clan.de"
             "remmina-search-provider@alexmurray.github.com"
-            "drive-menu@gnome-shell-extensions.gcampax.github.com"
             # "serverstatus@footeware.ca"
             # "sp-tray@sp-tray.esenliyim.github.com"
             "user-theme@gnome-shell-extensions.gcampax.github.com"
@@ -180,19 +179,19 @@ with lib; {
           tray-padding = -1;
           window-preview-title-position = "TOP";
         };
-        "org/gtk/gtk4/settings/file-chooser" = {
-          date-format = "Medium";
-          location-mode = "path-bar";
-          show-hidden = false;
-          show-size-column = true;
-          show-type-column = true;
-          sidebar-width = 140;
-          sort-column = "name";
-          sort-directories-first = true;
-          sort-order = "ascending";
-          type-format = "category";
-          view-type = "list";
-        };
+        # "org/gtk/gtk4/settings/file-chooser" = {
+        #   date-format = "Medium";
+        #   location-mode = "path-bar";
+        #   show-hidden = false;
+        #   show-size-column = true;
+        #   show-type-column = true;
+        #   sidebar-width = 140;
+        #   sort-column = "name";
+        #   sort-directories-first = true;
+        #   sort-order = "ascending";
+        #   type-format = "category";
+        #   view-type = "list";
+        # };
         "com/gexperts/Tilix" = {
           quake-specific-monitor = 0;
           tab-position = "left";
