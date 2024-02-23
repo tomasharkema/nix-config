@@ -29,7 +29,6 @@ in {
     environment.systemPackages = with pkgs; [
       inputs.deploy-rs.packages.${system}.deploy-rs
       nixfmt
-      nix-index
       nix-prefetch-git
       inputs.nil.packages.${system}.default
       # flake-checker
