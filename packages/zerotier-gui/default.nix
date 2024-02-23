@@ -14,7 +14,7 @@ with python3Packages;
       owner = "tralph3";
       repo = "ZeroTier-GUI";
       rev = "v${version}";
-      hash = "sha256-ReuGYm5q3xiyhfOP1vXhc+8tABIg8YxUXzT5A7k2cWk=";
+      hash = "sha256-ffplTpW1ezrMwMsBFEj3b0LtIHh4Gc8rw+2QYSVEB/A=";
     };
 
     dontBuild = true;
