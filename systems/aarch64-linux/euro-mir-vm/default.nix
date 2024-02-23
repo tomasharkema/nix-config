@@ -33,7 +33,6 @@ with lib; {
       };
       quiet-boot.enable = false;
       gnome.enable = true;
-      pantheon.enable = false;
     };
     apps.flatpak.enable = true;
     boot.growPartition = true;
