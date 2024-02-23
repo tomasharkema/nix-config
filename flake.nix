@@ -210,6 +210,7 @@
       ];
 
       systems.modules.nixos = with inputs; [
+        nix-index-database.nixosModules.nix-index
         # peerix.nixosModules.peerix
 
         # impermanence.nixosModule
@@ -230,6 +231,7 @@
       ];
 
       homes.modules = with inputs; [
+        nix-index-database.hmModules.nix-index
         # agenix.homeManagerModules.default
         # stylix.homeManagerModules.stylix
       ];
