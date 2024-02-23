@@ -22,7 +22,7 @@ with lib; {
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
           # cursor-theme = mkForce "Adwaita";
-          gtk-theme = mkForce "Catppuccin-Mocha-Compact-Blue-Dark";
+          gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
           document-font-name = "Inter Regular 11";
           font-antialiasing = "grayscale";
           monospace-font-name = "JetBrainsMono Nerd Font Mono 11";
@@ -32,9 +32,9 @@ with lib; {
           icon-theme = "Adwaita";
         };
 
-        # "org/gnome/shell/extensions/user-theme" = {
-        #   name = mkForce "Catppuccin-Mocha-Compact-Blue-Dark";
-        # };
+        "org/gnome/shell/extensions/user-theme" = {
+          name = "Catppuccin-Mocha-Compact-Blue-Dark";
+        };
 
         "org/gnome/shell/extensions/TodoTxt" = {
           donetxt-location = "/home/tomas/resilio-sync/shared-documents/done.txt";
