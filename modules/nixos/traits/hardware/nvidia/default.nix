@@ -15,7 +15,7 @@ in {
   };
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      nvtop
+      # nvtop
     ];
     # Load nvidia driver for Xorg and Wayland
     services = {
@@ -24,18 +24,18 @@ in {
       #  nvidia_smi: yes
       #'';
     };
-    boot.initrd.kernelModules = ["nvidia"];
-    boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+    # boot.initrd.kernelModules = ["nvidia"];
+    # boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
 
     hardware = {
       nvidia = mkDefault {
-        modesetting.enable = true;
+        # modesetting.enable = true;
         forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        package = config.boot.kernelPackages.nvidiaPackages.production;
 
-        # nvidiaPersistenced = true;
+        nvidiaPersistenced = true;
       };
 
       opengl = {
