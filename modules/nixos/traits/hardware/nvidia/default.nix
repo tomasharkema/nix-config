@@ -20,18 +20,20 @@ in {
     # Load nvidia driver for Xorg and Wayland
     services = {
       xserver.videoDrivers = ["nvidia"];
-      netdata.configDir."python.d.conf" = pkgs.writeText "python.d.conf" ''
-        nvidia_smi: yes
-      '';
+      #netdata.configDir."python.d.conf" = pkgs.writeText "python.d.conf" ''
+      #  nvidia_smi: yes
+      #'';
     };
+    boot.initrd.kernelModules = ["nvidia"];
+    boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
 
     hardware = {
       nvidia = mkDefault {
         modesetting.enable = true;
-        # forceFullCompositionPipeline = true;
+        forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.production;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
 
         # nvidiaPersistenced = true;
       };
@@ -43,6 +45,6 @@ in {
       };
     };
 
-    systemd.services.netdata.path = [pkgs.linuxPackages.nvidia_x11];
+    #    systemd.services.netdata.path = [pkgs.linuxPackages.nvidia_x11];
   };
 }
