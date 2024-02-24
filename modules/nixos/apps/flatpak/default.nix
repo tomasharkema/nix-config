@@ -20,8 +20,6 @@ in {
     xdg.portal = {
       enable = true;
       config.common.default = "gnome";
-      gtkUsePortal = true;
-      xdgOpenUsePortal = true;
     };
 
     services.flatpak = {
