@@ -6,7 +6,7 @@
   ...
 }: {
   imports = [
-    ./hardware-configuration.nix
+    # ./hardware-configuration.nix
 
     # inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
   ];
@@ -14,7 +14,7 @@
   config = {
     # hardware.nvidia.forceFullCompositionPipeline = true;
     boot = {
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      # binfmt.emulatedSystems = ["aarch64-linux"];
       initrd.kernelModules = ["nvidia"];
       # extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
       supportedFilesystems = ["ntfs"];
@@ -24,18 +24,20 @@
     environment.systemPackages = with pkgs; [openrgb-with-all-plugins];
 
     hardware = {
-      # opengl.extraPackages = with pkgs; [
-      # trying to fix `WLR_RENDERER=vulkan sway`
-      # vulkan-validation-layers
-      # ];
+      opengl.extraPackages = with pkgs; [
+        # trying to fix `WLR_RENDERER=vulkan sway`
+        vulkan-validation-layers
+      ];
       i2c.enable = true;
     };
 
     time = {
-      hardwareClockInLocalTime = true;
+      # hardwareClockInLocalTime = true;
       timeZone = "Europe/Amsterdam";
     };
+
     services.freeipa.replica.enable = true;
+
     networking = {
       networkmanager.enable = true;
 
