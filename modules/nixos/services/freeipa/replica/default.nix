@@ -13,6 +13,7 @@ in {
 
   config = mkIf cfg.enable {
     services.podman.enable = true;
+    system.nixos.tags = ["freeipa-replica"];
 
     virtualisation = {
       oci-containers.containers = {
