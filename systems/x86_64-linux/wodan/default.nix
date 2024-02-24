@@ -8,7 +8,7 @@
   imports = [
     ./hardware-configuration.nix
 
-    inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
+    # inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
   ];
 
   config = {
@@ -24,10 +24,10 @@
     environment.systemPackages = with pkgs; [openrgb-with-all-plugins];
 
     hardware = {
-      opengl.extraPackages = with pkgs; [
-        # trying to fix `WLR_RENDERER=vulkan sway`
-        vulkan-validation-layers
-      ];
+      # opengl.extraPackages = with pkgs; [
+      # trying to fix `WLR_RENDERER=vulkan sway`
+      # vulkan-validation-layers
+      # ];
       i2c.enable = true;
     };
 
@@ -46,9 +46,15 @@
       };
       useDHCP = lib.mkDefault true;
 
-      interfaces."enp2s0" = {
-        mtu = 9000;
-        wakeOnLan.enable = true;
+      interfaces = {
+        "enp2s0" = {
+          mtu = 9000;
+          wakeOnLan.enable = true;
+        };
+        "eno1" = {
+          mtu = 9000;
+          wakeOnLan.enable = true;
+        };
       };
     };
     gui = {
