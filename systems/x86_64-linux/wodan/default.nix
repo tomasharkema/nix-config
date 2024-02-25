@@ -83,6 +83,8 @@
     };
     headless.hypervisor.enable = true;
 
+    hardware.nvidia.modesetting.enable = false;
+
     # fileSystems = {
     #   "/mnt/unraid/appdata" = {
     #     device = "192.168.0.100:/mnt/user/appdata";
