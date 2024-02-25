@@ -34,11 +34,11 @@
     };
 
     # services.freeipa.replica.enable = true;
-
+    hardware.cpu.intel.updateMicrocode = true;
     networking = {
       networkmanager.enable = true;
 
-      hostName = lib.mkDefault "wodan";
+      hostName = "wodan";
 
       firewall = {
         enable = false;
