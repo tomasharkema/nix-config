@@ -118,9 +118,9 @@ in {
             HiddenServiceDir /etc/tor/onion/bootup
             HiddenServicePort 22222 127.0.0.1:22222
           '';
-          contents."/etc/rsyslog.conf".text = ''
-            *.*    @@nix.harke.ma:5140;RSYSLOG_SyslogProtocol23Format
-          '';
+          # contents."/etc/rsyslog.conf".text = ''
+          #   *.*    @@nix.harke.ma:5140;RSYSLOG_SyslogProtocol23Format
+          # '';
 
           storePaths = [
             "${pkgs.tor}/bin/tor"

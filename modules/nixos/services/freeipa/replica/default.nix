@@ -11,7 +11,7 @@ in {
     enable = mkEnableOption "freeipa replica";
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.enable && false) {
     services.podman.enable = true;
     system.nixos.tags = ["freeipa-replica"];
 
