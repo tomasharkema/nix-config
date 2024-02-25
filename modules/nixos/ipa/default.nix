@@ -62,17 +62,18 @@
     #   100.64.198.108 ipa.harkema.intra
     # '';
     security = {
-      pki.certificateFiles = [./ca.crt];
+      # pki.certificateFiles = [./ca.crt];
       ipa = {
         enable = true;
         server = "ipa.harkema.intra";
         domain = "harkema.intra";
         realm = "HARKEMA.INTRA";
         basedn = "dc=harkema,dc=intra";
-        certificate = pkgs.fetchurl {
-          url = "https://ipa.harkema.intra/ipa/config/ca.crt";
-          sha256 = "1479i13wzznz7986sqlpmx6r108d24kbn84yp5n3s50q7wpgdfxz";
-        };
+        # certificate = pkgs.fetchurl {
+        #   url = "https://ipa.harkema.intra/ipa/config/ca.crt";
+        #   sha256 = "1479i13wzznz7986sqlpmx6r108d24kbn84yp5n3s50q7wpgdfxz";
+        # };
+        certificate = ./ca.crt;
         dyndns.enable = true;
         ifpAllowedUids = ["root" "tomas"];
       };
