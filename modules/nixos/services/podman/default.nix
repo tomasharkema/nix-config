@@ -13,21 +13,24 @@ in {
 
   config = mkIf cfg.enable {
     system.nixos.tags = ["podman"];
-    # networking.firewall.trustedInterfaces = ["podman0"];
 
     networking = {
-      firewall.enable = mkDefault false;
+      firewall = {
+        trustedInterfaces = ["podman0"];
+        interfaces.podman0.allowedUDPPorts = [53];
+        enable = mkDefault false;
+      };
     };
 
     virtualisation = {
       podman = {
         enable = true;
 
-        # dockerCompat = true;
+        dockerCompat = true;
 
         defaultNetwork.settings = {
           dns_enabled = true;
-          ipam_options = {driver = "dhcp";};
+          # ipam_options = {driver = "dhcp";};
         };
 
         # autoPrune.enable = true;

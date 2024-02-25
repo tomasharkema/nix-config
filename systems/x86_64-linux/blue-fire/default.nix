@@ -35,6 +35,7 @@ in {
     headless.enable = true;
 
     services.podman.enable = true;
+    services.freeipa.replica.enable = true;
 
     networking = {
       networkmanager.enable = lib.mkDefault false;
@@ -57,8 +58,6 @@ in {
     };
 
     systemd = {
-      # services."hercules-ci-agent".serviceConfig.MemoryMax = "2G";
-
       watchdog = {
         runtimeTime = "1m";
         kexecTime = "1m";
