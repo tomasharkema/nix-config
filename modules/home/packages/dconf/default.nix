@@ -146,6 +146,8 @@ with lib; {
             ++ (optional (!pkgs.stdenv.isx86_64) "org.gnome.Console.desktop")
             ++ [
               "code.desktop"
+              "org.cockpit_project.CockpitClient.desktop"
+              "org.gnome.Epiphany.WebApp_b336fc558722224b7ffe98607055d55f0fe52450.desktop"
             ];
         };
         "org/gnome/desktop/wm/preferences" = {
