@@ -13,11 +13,11 @@
 
   config = {
     boot = {
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      # binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = ["ntfs"];
       kernelModules = ["i2c-dev"];
     };
-
+    programs.gamemode.enable = true;
     # environment.systemPackages = with pkgs; [openrgb-with-all-plugins];
 
     hardware = {
