@@ -35,8 +35,5 @@ in {
 
       # services.github-runners."${config.networking.hostName}-runner-1" = github-default;
       # services.github-runners."${config.networking.hostName}-runner-2" = github-default;
-
-      environment.systemPackages = with pkgs; [jetbrains.gateway];
-      programs.nix-ld.enable = true;
     };
 }

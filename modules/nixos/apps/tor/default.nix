@@ -3,8 +3,9 @@
   lib,
   config,
   ...
-}: {
-  config = {
+}:
+with lib; {
+  config = mkIf false {
     environment.systemPackages = with pkgs; [
       tor
       # tor-browser-bundle-bin
