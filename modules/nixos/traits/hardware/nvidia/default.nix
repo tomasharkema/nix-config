@@ -29,11 +29,11 @@ in {
 
     hardware = {
       nvidia = mkDefault {
-        # modesetting.enable = true;
+        modesetting.enable = true;
         forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.production;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
 
         nvidiaPersistenced = true;
       };
