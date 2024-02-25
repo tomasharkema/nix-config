@@ -35,7 +35,7 @@
       hardware = {
         tpm.enable = true;
         secure-boot.enable = true;
-        remote-unlock.enable = false;
+        remote-unlock.enable = true;
         monitor.enable = true;
       };
     };
