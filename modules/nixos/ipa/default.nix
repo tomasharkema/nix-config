@@ -73,7 +73,7 @@
         #   url = "https://ipa.harkema.intra/ipa/config/ca.crt";
         #   sha256 = "1479i13wzznz7986sqlpmx6r108d24kbn84yp5n3s50q7wpgdfxz";
         # };
-        certificate = ./ca.crt;
+        certificate = "${./ca.crt}";
         dyndns.enable = true;
         ifpAllowedUids = ["root" "tomas"];
       };
