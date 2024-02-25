@@ -91,6 +91,5 @@ in {
     #     uris = ["qemu:///system"];
     #   };
     # };
-    #https://github.com/eyeos/spice-web-client
   };
 }
