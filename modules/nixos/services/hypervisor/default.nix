@@ -36,12 +36,12 @@ in {
     ];
 
     networking = {
-      # interfaces.br0.useDHCP = true;
-      # bridges = {
-      #   "br0" = {
-      #     interfaces = cfg.bridgeInterfaces;
-      #   };
-      # };
+      interfaces.br0.useDHCP = true;
+      bridges = {
+        "br0" = {
+          interfaces = cfg.bridgeInterfaces;
+        };
+      };
     };
 
     programs.virt-manager.enable = true;
@@ -72,18 +72,6 @@ in {
       "${config.user.name}".extraGroups = ["libvirtd" "qemu-libvirtd"];
       "root".extraGroups = ["libvirtd" "qemu-libvirtd"];
     };
-
-    # networking = {
-    #   interfaces."br0".useDHCP = true;
-
-    #   firewall.trustedInterfaces = ["br0"];
-
-    #   bridges = {
-    #     "br0" = {
-    #       interfaces = ["wlp59s0"];
-    #     };
-    #   };
-    # };
 
     # dconf.settings = {
     #   "org/virt-manager/virt-manager/connections" = {

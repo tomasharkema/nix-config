@@ -34,8 +34,10 @@ in {
 
     headless.enable = true;
 
-    services.podman.enable = true;
-    services.freeipa.replica.enable = true;
+    # services = {
+    # podman.enable = true;
+    # freeipa.replica.enable = true;
+    # };
 
     networking = {
       networkmanager.enable = lib.mkDefault false;
