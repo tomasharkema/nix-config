@@ -26,6 +26,8 @@
       quiet-boot.enable = true;
     };
 
+    hardware.nvidia.nvidiaPersistenced = false;
+
     apps = {
       # android.enable = true;
       steam.enable = true;
