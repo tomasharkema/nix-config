@@ -13,7 +13,7 @@ in {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.enable && false) {
     # services.tor = {
     #   relay = {
     #     enable = true;
