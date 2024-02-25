@@ -15,17 +15,20 @@ in {
   };
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      # nvtop
+      nvtop
     ];
-    # Load nvidia driver for Xorg and Wayland
+
     services = {
       xserver.videoDrivers = ["nvidia"];
       #netdata.configDir."python.d.conf" = pkgs.writeText "python.d.conf" ''
       #  nvidia_smi: yes
       #'';
     };
-    # boot.initrd.kernelModules = ["nvidia"];
-    # boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+
+    boot = {
+      initrd.kernelModules = ["nvidia"];
+      # extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+    };
 
     hardware = {
       nvidia = mkDefault {
