@@ -64,11 +64,16 @@
             ];
             mountpoint = "/swapfile";
           };
+                    "snapshots" = {
+                        mountOptions = ["noatime" "nodatacow" "nodatasum" "discard=async"
+            ];
+            mountpoint = "/.snapshots";
+          };
           "steam" = {
             mountOptions = [
             "noatime" "compress=zstd:1" "discard=async"
             ];
-            mountpoint = "/steam";
+            mountpoint = "/opt/steam";
           };
           "flatpak" = {
             mountOptions = [
@@ -76,6 +81,14 @@
             ];
             mountpoint = "/var/lib/flatpak";
           };
+          "log" = {
+                        mountOptions = [
+            "noatime"  "discard=async"
+            ];
+            mountpoint = "/var/log";
+          };
+
+
         };
 
         mountpoint = "/partition-root";
