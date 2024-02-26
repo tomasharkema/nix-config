@@ -44,17 +44,17 @@
       };
     };
     security.pam = {
-      #services = {
-      #  login.sssdStrictAccess = true;
-      #  sudo.sssdStrictAccess = true;
-      #  ssh.sssdStrictAccess = true;
-      #};
+      services = {
+        login.sssdStrictAccess = true;
+        #  sudo.sssdStrictAccess = true;
+        #  ssh.sssdStrictAccess = true;
+      };
     };
 
     services.sssd = {
       enable = true;
-      #kcm = true;
-      #sshAuthorizedKeysIntegration = true;
+      kcm = true;
+      sshAuthorizedKeysIntegration = true;
       # [sssd]
       # krb5_rcache_dir = /var/cache/krb5
     };
