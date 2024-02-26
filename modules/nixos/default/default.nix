@@ -256,8 +256,6 @@
       # fancontrol.enable = true;
     };
 
-    system.autoUpgrade.enable = true;
-
     systemd = {
       targets = {
         sleep.enable = mkDefault false;
