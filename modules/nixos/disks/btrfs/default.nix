@@ -41,40 +41,40 @@
             mountOptions = [
             ];
           };
-          "/home" = {
+          "home" = {
             mountOptions = [
-              "subvol=home"
-              "compress=zstd"
+            "noatime" "compress=zstd:1" "discard=async"
             ];
             mountpoint = "/home";
           };
-          # "/opt/resilio-sync" = {
-          #   mountOptions = [
-          #     "compress=zstd"
-          #   ];
-          #   mountpoint = "/opt/resilio-sync";
-          # };
-          "/nix" = {
+          "resilio-sync" = {
             mountOptions = [
-              # "subvol=nix"
-              "noatime"
+            "noatime" "compress=zstd:1" "discard=async"
+            ];
+            mountpoint = "/opt/resilio-sync";
+          };
+          "nix" = {
+            mountOptions = [
+            "noatime" "compress=zstd:1" "discard=async"
             ];
             mountpoint = "/nix";
           };
-          # "/swapfile" = {
-          #               mountOptions = [
-          #     # "subvol=nix"
-          #     "noatime"
-          #   ];
-          #   mountpoint = "/swapfile";
-          # };
-          "/steam" = {
-            mountOptions = [
-              # "subvol=flatpak"
-              "compress=zstd"
-              "noatime"
+          "swapfile" = {
+                        mountOptions = ["noatime" "nodatacow" "nodatasum" "discard=async"
             ];
-            # mountpoint = "/steam";
+            mountpoint = "/swapfile";
+          };
+          "steam" = {
+            mountOptions = [
+            "noatime" "compress=zstd:1" "discard=async"
+            ];
+            mountpoint = "/steam";
+          };
+          "flatpak" = {
+            mountOptions = [
+            "noatime" "compress=zstd:1" "discard=async"
+            ];
+            mountpoint = "/var/lib/flatpak";
           };
         };
 
@@ -223,8 +223,9 @@ in
                     # Subvolumes must set a mountpoint in order to be mounted,
                     # unless their parent is mounted
                     subvolumes = {
-                      "/media" = {
-                        mountOptions = ["subvol=media"];
+                      "media" = {
+                        mountOptions = [
+            "noatime" "compress=zstd:1" "discard=async"];
                         mountpoint = "/media";
                       };
                     };
