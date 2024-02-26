@@ -43,52 +43,69 @@
           };
           "home" = {
             mountOptions = [
-            "noatime" "compress=zstd:1" "discard=async"
+              "noatime"
+              "compress=zstd:1"
+              "discard=async"
             ];
             mountpoint = "/home";
           };
           "resilio-sync" = {
             mountOptions = [
-            "noatime" "compress=zstd:1" "discard=async"
+              "noatime"
+              "compress=zstd:1"
+              "discard=async"
             ];
             mountpoint = "/opt/resilio-sync";
           };
           "nix" = {
             mountOptions = [
-            "noatime" "compress=zstd:1" "discard=async"
+              "noatime"
+              "compress=zstd:1"
+              "discard=async"
             ];
             mountpoint = "/nix";
           };
           "swapfile" = {
-                        mountOptions = ["noatime" "nodatacow" "nodatasum" "discard=async"
+            mountOptions = [
+              "noatime"
+              "nodatacow"
+              "nodatasum"
+              "discard=async"
             ];
             mountpoint = "/swapfile";
           };
-                    "snapshots" = {
-                        mountOptions = ["noatime" "nodatacow" "nodatasum" "discard=async"
+          "snapshots" = {
+            mountOptions = [
+              "noatime"
+              "nodatacow"
+              "nodatasum"
+              "discard=async"
             ];
             mountpoint = "/.snapshots";
           };
           "steam" = {
             mountOptions = [
-            "noatime" "compress=zstd:1" "discard=async"
+              "noatime"
+              "compress=zstd:1"
+              "discard=async"
             ];
             mountpoint = "/opt/steam";
           };
           "flatpak" = {
             mountOptions = [
-            "noatime" "compress=zstd:1" "discard=async"
+              "noatime"
+              "compress=zstd:1"
+              "discard=async"
             ];
             mountpoint = "/var/lib/flatpak";
           };
           "log" = {
-                        mountOptions = [
-            "noatime"  "discard=async"
+            mountOptions = [
+              "noatime"
+              "discard=async"
             ];
             mountpoint = "/var/log";
           };
-
-
         };
 
         mountpoint = "/partition-root";
@@ -238,7 +255,10 @@ in
                     subvolumes = {
                       "media" = {
                         mountOptions = [
-            "noatime" "compress=zstd:1" "discard=async"];
+                          "noatime"
+                          "compress=zstd:1"
+                          "discard=async"
+                        ];
                         mountpoint = "/media";
                       };
                     };

@@ -23,7 +23,7 @@
     };
 
     apps.steam.enable = true;
-    systemd.enableEmergencyMode =false;
+    systemd.enableEmergencyMode = false;
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y";
