@@ -8,7 +8,7 @@ pkgs.stdenvNoCC.mkDerivation rec {
 
   src = pkgs.fetchurl {
     url = "https://www.soma-zone.com/download/files/LaunchControl-${version}.tar.xz";
-    sha256 = "sha256-8Br64EkahN56kdE30vM8PPJSXPfnfAq9X5+sUrYEexY=";
+    sha256 = "0zi6c9l8lwwll212h6majdgw9c6xicmin2sykjri6zpgspdf7y7v";
   };
 
   nativeBuildInputs = with pkgs; [xz tree];
@@ -19,8 +19,7 @@ pkgs.stdenvNoCC.mkDerivation rec {
     runHook preInstall
 
     mkdir -p $out/Applications
-    tree .
-    cp -R LaunchControl.app $out/Applications
+    cp -R . $out/Applications
 
     runHook postInstall
   '';
