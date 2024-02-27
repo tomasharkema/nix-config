@@ -22,6 +22,14 @@ in {
     #   vfio.enable = true;
     # };
 
+    # programs.looking-glass = {
+    #   enable = true;
+
+    #   shm = {
+    #     user = "tomas";
+    #   };
+    # };
+
     environment.systemPackages = with pkgs; [
       virt-manager
       kvmtool
