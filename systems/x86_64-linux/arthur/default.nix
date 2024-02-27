@@ -27,7 +27,7 @@
       };
     };
     services.podman.enable = true;
-    # services.freeipa.replica.enable = true;
+    services.freeipa.replica.enable = true;
 
     systemd.enableEmergencyMode = false;
 

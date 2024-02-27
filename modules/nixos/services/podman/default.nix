@@ -38,7 +38,7 @@ in {
         # ipam_options = {driver = "dhcp";};
         # };
 
-        # autoPrune.enable = true;
+        autoPrune.enable = true;
         # networkSocket.enable = true;
       };
     };
