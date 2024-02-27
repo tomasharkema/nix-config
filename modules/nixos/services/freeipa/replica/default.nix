@@ -124,7 +124,7 @@ in {
           cmd = [
             "/bin/sh"
             "-c"
-            "dnf -y install freeipa-client && ipa-client-install"
+            "dnf -y install freeipa-client freeipa-server && ipa-client-install && sleep 1000"
             # "ipa-replica-install"
             # "--server=ipa.harkema.intra"
             # "--domain=harkema.intra"
