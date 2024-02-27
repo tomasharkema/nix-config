@@ -43,14 +43,14 @@ in {
       virt-manager
     ];
 
-    networking = {
-      interfaces.br0.useDHCP = true;
-      bridges = {
-        "br0" = {
-          interfaces = cfg.bridgeInterfaces;
-        };
-      };
-    };
+    # networking = {
+    #   interfaces.br0.useDHCP = true;
+    #   bridges = {
+    #     "br0" = {
+    #       interfaces = cfg.bridgeInterfaces;
+    #     };
+    #   };
+    # };
 
     programs.virt-manager.enable = true;
 
