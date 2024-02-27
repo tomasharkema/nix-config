@@ -50,13 +50,21 @@ with lib; let
             ];
             mountpoint = "/home";
           };
-          "resilio-sync" = mkIf cfg.newSubvolumes {
+          "resilio-sync" = mkIf (cfg.newSubvolumes && cfg.media == null) {
             mountOptions = [
               "noatime"
               "compress=zstd:1"
               "discard=async"
             ];
             mountpoint = "/opt/resilio-sync";
+          };
+          "resilio-sync-lib" = {
+            mountOptions = [
+              "noatime"
+              "compress=zstd:1"
+              "discard=async"
+            ];
+            mountpoint = "/var/lib/resilio-sync";
           };
           "nix" = mkIf cfg.newSubvolumes {
             mountOptions = [
@@ -273,6 +281,15 @@ in
                         ];
                         mountpoint = "/media";
                       };
+                      # "resilio-sync" = {
+                      #   mountOptions = [
+                      #     "noatime"
+                      #     "compress=zstd:1"
+                      #     "discard=async"
+                      #   ];
+
+                      #   mountpoint = "/opt/resilio-sync";
+                      # };
                     };
                   };
                 };
