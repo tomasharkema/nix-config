@@ -29,6 +29,8 @@
     services.podman.enable = true;
     # services.freeipa.replica.enable = true;
 
+    systemd.enableEmergencyMode = false;
+
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-Samsung_SSD_850_PRO_256GB_S39KNX0J775697K";
@@ -54,5 +56,10 @@
     };
 
     services.tcsd.enable = true;
+
+    headless.hypervisor = {
+      enable = true;
+      bridgeInterfaces = ["eno1"];
+    };
   };
 }
