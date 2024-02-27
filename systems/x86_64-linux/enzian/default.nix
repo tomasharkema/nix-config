@@ -53,8 +53,11 @@
       firewall = {
         enable = false; # true
       };
-      useDHCP = lib.mkDefault true;
-      interfaces."enp4s0".wakeOnLan.enable = true;
+      useDHCP = lib.mkDefault false;
+      interfaces."enp4s0" = {
+        useDHCP = lib.mkDefault true;
+        wakeOnLan.enable = true;
+      };
     };
 
     headless.hypervisor = {

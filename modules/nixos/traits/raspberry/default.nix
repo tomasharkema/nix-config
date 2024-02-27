@@ -56,7 +56,7 @@ in {
 
     # Networking
     networking = {
-      useDHCP = true;
+      useDHCP = false;
       interfaces.wlan0 = {
         useDHCP = true;
       };

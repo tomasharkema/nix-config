@@ -21,46 +21,57 @@ in {
   # };
 
   config = mkIf cfg.enable {
-    services.tailscale = {
-      enable = true;
-      authKeyFile = config.age.secrets.tailscale.path;
-      useRoutingFeatures = "client";
-      extraUpFlags = [
-        "--advertise-tags=tag:nixos"
-        "--operator=tomas"
-        "--accept-dns"
-        # "--accept-routes"
-        # "--webclient"
-      ];
-      openFirewall = true;
+    networking = {
+      useDHCP = false;
+
+      nftables.enable = true;
+
+      firewall = {
+        trustedInterfaces = ["tailscale0" "zthnhagpcb"];
+        allowedUDPPorts = [config.services.tailscale.port];
+      };
     };
 
-    networking.nftables.enable = true;
+    services = {
+      resolved.enable = true;
 
-    networking.firewall.trustedInterfaces = ["tailscale0" "zthnhagpcb"];
-    networking.firewall.allowedUDPPorts = [config.services.tailscale.port];
+      tailscale = {
+        enable = true;
+        authKeyFile = config.age.secrets.tailscale.path;
+        useRoutingFeatures = "both";
+        extraUpFlags = [
+          "--advertise-tags=tag:nixos"
+          "--operator=tomas"
+          "--accept-dns"
+          "--accept-routes"
+          "--webclient"
+        ];
+        openFirewall = true;
+      };
 
-    services.avahi = {
-      enable = true;
-      allowInterfaces = ["zthnhagpcb" "tailscale0"];
-      ipv6 = false;
-      publish.enable = true;
-      publish.userServices = true;
-      publish.addresses = true;
-      publish.domain = true;
-      publish.hinfo = true;
-      nssmdns = true;
-      publish.workstation = true;
-      openFirewall = true;
-      reflector = true;
+      avahi = {
+        enable = true;
+        allowInterfaces = ["zthnhagpcb" "tailscale0"];
+        ipv6 = false;
+        publish.enable = true;
+        publish.userServices = true;
+        publish.addresses = true;
+        publish.domain = true;
+        publish.hinfo = true;
+        nssmdns = true;
+        publish.workstation = true;
+        openFirewall = true;
+        reflector = true;
+      };
+
+      zerotierone = {
+        enable = true;
+        joinNetworks = ["af78bf9436bca877"];
+      };
     };
-
-    services.zerotierone.enable = true;
-    services.zerotierone.joinNetworks = ["af78bf9436bca877"];
 
     systemd.packages = [
       pkgs.custom.tailscalesd
-      pkgs.tailscale
     ];
 
     # systemd.services.tailscalesd = {

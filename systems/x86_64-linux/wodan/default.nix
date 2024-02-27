@@ -43,7 +43,7 @@
       firewall = {
         enable = false;
       };
-      useDHCP = lib.mkDefault true;
+      useDHCP = lib.mkDefault false;
 
       interfaces = {
         "enp2s0" = {

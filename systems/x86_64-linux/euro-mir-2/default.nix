@@ -23,7 +23,7 @@
         enable = true;
       };
       gnome.enable = true;
-      # game-mode.enable = true;
+      game-mode.enable = true;
       quiet-boot.enable = true;
     };
 
@@ -34,10 +34,10 @@
       steam.enable = true;
     };
 
-    headless.hypervisor = {
-      enable = true;
-      bridgeInterfaces = ["wlp59s0"];
-    };
+    # headless.hypervisor = {
+    #   enable = true;
+    #   bridgeInterfaces = ["wlp59s0"];
+    # };
 
     traits = {
       hardware = {
@@ -60,10 +60,10 @@
       podman.enable = true;
 
       fprintd = {
-        # enable = true;
+        enable = true;
         package = pkgs.fprintd-tod;
         tod = {
-          # enable = true;
+          enable = true;
           driver = pkgs.libfprint-2-tod1-goodix-550a;
         };
       };
