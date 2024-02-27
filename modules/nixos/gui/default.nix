@@ -18,5 +18,7 @@ in {
       gnome.enable = mkDefault true;
     };
     apps.flatpak.enable = mkDefault true;
+
+    services.ddccontrol.enable = true;
   };
 }
