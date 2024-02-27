@@ -274,7 +274,7 @@
         enable = mkDefault true;
       };
       networkmanager.enable = true;
-      # enableIPv6 = false;
+      enableIPv6 = false;
     };
 
     # powerManagement.powertop.enable = mkDefault true;

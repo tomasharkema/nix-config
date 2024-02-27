@@ -1,3 +1,3 @@
 {attic, ...}: final: prev: {
-  attic = attic.packages.${prev.system}.default;
+  attic = attic.packages.${prev.system}.attic;
 }

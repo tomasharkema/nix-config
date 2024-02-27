@@ -3,7 +3,8 @@
   pkgs,
   config,
   ...
-}: let
+}:
+with lib; let
   cfg = config.disks.btrfs;
 
   luksContent = root: {
@@ -49,7 +50,7 @@
             ];
             mountpoint = "/home";
           };
-          "resilio-sync" = {
+          "resilio-sync" = mkIf cfg.newSubvolumes {
             mountOptions = [
               "noatime"
               "compress=zstd:1"
@@ -57,7 +58,7 @@
             ];
             mountpoint = "/opt/resilio-sync";
           };
-          "nix" = {
+          "nix" = mkIf cfg.newSubvolumes {
             mountOptions = [
               "noatime"
               "compress=zstd:1"
@@ -65,7 +66,15 @@
             ];
             mountpoint = "/nix";
           };
-          "swapfile" = {
+          "containers" = mkIf cfg.newSubvolumes {
+            mountOptions = [
+              "noatime"
+              "compress=zstd:1"
+              "discard=async"
+            ];
+            mountpoint = "/var/lib/containers";
+          };
+          "swapfile" = mkIf cfg.newSubvolumes {
             mountOptions = [
               "noatime"
               "nodatacow"
@@ -74,7 +83,7 @@
             ];
             mountpoint = "/swapfile";
           };
-          "snapshots" = {
+          "snapshots" = mkIf cfg.newSubvolumes {
             mountOptions = [
               "noatime"
               "nodatacow"
@@ -83,7 +92,7 @@
             ];
             mountpoint = "/.snapshots";
           };
-          "steam" = {
+          "steam" = mkIf cfg.newSubvolumes {
             mountOptions = [
               "noatime"
               "compress=zstd:1"
@@ -91,7 +100,7 @@
             ];
             mountpoint = "/opt/steam";
           };
-          "flatpak" = {
+          "flatpak" = mkIf cfg.newSubvolumes {
             mountOptions = [
               "noatime"
               "compress=zstd:1"
@@ -99,7 +108,7 @@
             ];
             mountpoint = "/var/lib/flatpak";
           };
-          "log" = {
+          "log" = mkIf cfg.newSubvolumes {
             mountOptions = [
               "noatime"
               "discard=async"
@@ -118,6 +127,9 @@ in
       disks.btrfs = {
         enable = mkEnableOption "Enable BTRFS";
         autoscrub = mkEnableOption "Enable BTRFS Autoscrub";
+
+        newSubvolumes = mkEnableOption "Enable BTRFS newSubvolumes";
+
         main = mkOption {
           type = types.str;
           description = "Dev for main partion.";

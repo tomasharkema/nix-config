@@ -14,6 +14,7 @@
       enable = true;
       main = "/dev/nvme0n1";
       encrypt = true;
+      newSubvolumes = true;
     };
 
     gui = {
