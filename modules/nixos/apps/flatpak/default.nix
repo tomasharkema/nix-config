@@ -63,8 +63,7 @@ in {
             "com.heroicgameslauncher.hgl"
           ]
           else []
-        )
-        ++ (optional config.services.podman.enable "io.podman_desktop.PodmanDesktop");
+        );
       update.onActivation = true;
       update.auto = {
         enable = true;

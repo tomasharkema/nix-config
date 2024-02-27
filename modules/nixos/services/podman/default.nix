@@ -14,13 +14,13 @@ in {
   config = mkIf cfg.enable {
     system.nixos.tags = ["podman"];
 
-    networking = {
-      firewall = {
-        trustedInterfaces = ["podman0"];
-        interfaces.podman0.allowedUDPPorts = [53];
-        enable = mkDefault false;
-      };
-    };
+    # networking = {
+    #   firewall = {
+    #     trustedInterfaces = ["podman0"];
+    #     interfaces.podman0.allowedUDPPorts = [53];
+    #     enable = mkDefault false;
+    #   };
+    # };
 
     virtualisation = {
       podman = {
@@ -28,10 +28,12 @@ in {
 
         dockerCompat = true;
 
-        defaultNetwork.settings = {
-          dns_enabled = true;
-          # ipam_options = {driver = "dhcp";};
-        };
+        enableNvidia = config.traits.hardware.nvidia.enable;
+
+        # defaultNetwork.settings = {
+        # dns_enabled = true;
+        # ipam_options = {driver = "dhcp";};
+        # };
 
         # autoPrune.enable = true;
         # networkSocket.enable = true;

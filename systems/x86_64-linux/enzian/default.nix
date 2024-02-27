@@ -24,6 +24,7 @@
 
     apps.steam.enable = true;
     systemd.enableEmergencyMode = false;
+
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y";
@@ -40,10 +41,11 @@
         secure-boot.enable = true;
         remote-unlock.enable = true;
         monitor.enable = true;
+        nvidia.enable = true;
       };
     };
 
-    nixpkgs.system = "x86_64-linux";
+    # nixpkgs.system = "x86_64-linux";
 
     networking = {
       hostName = "enzian";
@@ -54,10 +56,12 @@
       useDHCP = lib.mkDefault true;
       interfaces."enp4s0".wakeOnLan.enable = true;
     };
+
     headless.hypervisor = {
       enable = true;
       bridgeInterfaces = ["enp4s0"];
     };
+
     # deployment.tags = [ "bare" ];
     # deployment = {
     #   targetHost = "100.67.118.80";
@@ -76,7 +80,9 @@
       kernelModules = ["kvm-intel" "uinput" "nvme"];
       extraModulePackages = [];
     };
+
     hardware.bluetooth.enable = true;
+
     services = {
       blueman.enable = true;
 
