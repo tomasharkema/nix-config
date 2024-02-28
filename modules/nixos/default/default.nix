@@ -263,10 +263,10 @@
         hibernate.enable = mkDefault false;
         hybrid-sleep.enable = mkDefault false;
       };
-      #   services = {
-      #     NetworkManager-wait-online.enable = lib.mkForce false;
-      #     systemd-networkd-wait-online.enable = lib.mkForce false;
-      #   };
+      services = {
+        NetworkManager-wait-online.enable = lib.mkForce false;
+        #     systemd-networkd-wait-online.enable = lib.mkForce false;
+      };
     };
 
     networking = {
