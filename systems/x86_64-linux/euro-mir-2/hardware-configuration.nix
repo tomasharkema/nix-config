@@ -35,7 +35,7 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault false;
   networking.interfaces.wlp59s0.useDHCP = lib.mkDefault true;
-  networking.interfaces.enp58s0u1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp58s0u1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

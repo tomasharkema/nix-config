@@ -44,7 +44,7 @@ in {
           "--operator=tomas"
           "--accept-dns"
           "--accept-routes"
-          "--webclient"
+          # "--webclient"
         ];
         openFirewall = true;
       };
