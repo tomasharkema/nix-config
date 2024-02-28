@@ -26,7 +26,7 @@
   libverto,
   libpwquality,
   systemd,
-  python3,
+  python39,
   bind,
   sssd,
   jre,
@@ -38,7 +38,7 @@
 }: let
   pathsPy = ./paths.py;
 
-  pythonInputs = with python3.pkgs; [
+  pythonInputs = with python39.pkgs; [
     six
     python-ldap
     dnspython
@@ -72,7 +72,7 @@ in
     };
 
     nativeBuildInputs = [
-      python3.pkgs.wrapPython
+      python39.pkgs.wrapPython
       jre
       rhino
       lesscpy
@@ -87,13 +87,14 @@ in
       [
         kerberos
         openldap
+        openldap.dev
         popt
         cyrus_sasl
         curl
         xmlrpc_c
         ding-libs
         p11-kit
-        python3
+        python39
         nspr
         nss
         _389-ds-base
@@ -137,21 +138,31 @@ in
 
     # Building and installing the server fails with silent Rhino errors, skipping
     # for now. Need a newer Rhino version.
-    #buildFlags = [ "client" "server" ]
+    # buildFlags = ["client" "server"];
+    inputsFrom = [openldap openldap.dev];
 
     configureFlags = [
       "--with-systemdsystemunitdir=$out/lib/systemd/system"
       "--with-ipaplatform=nixos"
       "--disable-server"
+
+      # "--enable-server"
+      # "--with-ldap"
+      # "LDAP_DIR=${openldap.dev}"
+      # "LDAPIDIR=${openldap.dev}"
+      # "LDAP_INCDIR=${openldap.dev}/include"
+      # "LDAP_LIBDIR=${openldap.out}/lib"
+      # "LDAP_LIBS=${openldap.out}/lib"
+      # "LDAP_CFLAGS=-I${openldap.dev}/include"
     ];
 
-    postInstall = ''
-      echo "
-       #!${runtimeShell}
-       echo 'ipa-client-install is not available on NixOS. Please see security.ipa, instead.'
-       exit 1
-      " > $out/sbin/ipa-client-install
-    '';
+    # postInstall = ''
+    #   echo "
+    #    #!${runtimeShell}
+    #    echo 'ipa-client-install is not available on NixOS. Please see security.ipa, instead.'
+    #    exit 1
+    #   " > $out/sbin/ipa-client-install
+    # '';
 
     postFixup = ''
       wrapPythonPrograms

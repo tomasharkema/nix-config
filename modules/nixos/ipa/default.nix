@@ -14,6 +14,8 @@
       '';
     };
 
+    environment.systemPackages = with pkgs; [ldapvi ldapmonitor jxplorer];
+
     environment.etc = {
       "krb5.conf" = {
         text = ''

@@ -71,21 +71,29 @@ in {
       "sasl2/qemu-kvm.conf" = {
         text = ''
           mech_list: gssapi
-          keytab: /etc/qemu-kvm/krb5.tab
+          keytab: /etc/qemu/krb5.tab
         '';
       };
+    };
+
+    services.saslauthd = {
+      enable = true;
+      config = ''
+        mech_list: gssapi
+        keytab: /var/lib/libvirt/krb5.tab
+      '';
     };
 
     virtualisation.libvirtd = {
       enable = true;
       # allowedBridges = ["virbr1"];
 
-      extraConfig = ''
-        listen_tls = 0
-        listen_tcp = 1
-        auth_tcp = "sasl"
-        sasl_allowed_username_list = ["\*@HARKEMA.INTRA" ]
-      '';
+      # extraConfig = ''
+      #   listen_tls = 0
+      #   listen_tcp = 1
+      #   auth_tcp = "sasl"
+      #   sasl_allowed_username_list = ["\*@HARKEMA.INTRA" ]
+      # '';
 
       allowedBridges = ["virbr0" "br0"];
 
