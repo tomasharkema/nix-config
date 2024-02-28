@@ -39,7 +39,7 @@
           [pam]
           pam_passkey_auth = True
           passkey_debug_libfido2 = True
-
+          pam_cert_auth = True
         '';
         # pam_cert_auth = True
         mode = "0600";
