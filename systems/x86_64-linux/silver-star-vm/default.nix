@@ -10,7 +10,10 @@ with lib; {
 
   config = {
     headless.enable = true;
-    services.netbox.enable = true;
+    services.netbox = {
+      enable = true;
+      secretKeyFile = "/var/lib/netbox/secret-key-file";
+    };
     traits = {
       hardware = {
         tpm.enable = true;
