@@ -10,10 +10,10 @@
 
   OVMF = channels.unstable.OVMF;
 
-  # freeipa = self.packages."${prev.system}".freeipa;
-  # sssd = self.packages."${prev.system}".sssd;
-  freeipa = channels.unstable.freeipa;
-  sssd = channels.unstable.sssd;
+  freeipa = self.packages."${prev.system}".freeipa;
+  sssd = self.packages."${prev.system}".sssd;
+  # freeipa = channels.unstable.freeipa;
+  # sssd = channels.unstable.sssd;
 
   cockpit-podman = self.packages."${prev.system}".cockpit-podman;
   cockpit-tailscale = self.packages."${prev.system}".cockpit-tailscale;

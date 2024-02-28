@@ -13,7 +13,7 @@
       #   cockpit.u2fAuth = true;
       # };
     };
-
+    hardware.u2f.enable = true;
     programs = {
       #   yubikey-touch-detector.enable = true;
       # ssh.extraConfig = ''
@@ -25,12 +25,12 @@
       # pcscd.enable = true;
       # yubikey-agent.enable = true;
       udev.packages = with pkgs; [
-        libfido2
+        # libfido2
         # yubioath-flutter
         # yubikey-agent
         # yubikey-manager
         # yubikey-manager-qt
-        # yubikey-personalization
+        yubikey-personalization
         # yubikey-personalization-gui
         # yubico-piv-tool
       ];
@@ -47,12 +47,12 @@
       # opensc
       # pcsctools
       # yubico-piv-tool
-      # yubioath-flutter
+      yubioath-flutter
       # yubikey-agent
-      # yubikey-manager
-      # yubikey-manager-qt
-      # yubikey-personalization
-      # yubikey-personalization-gui
+      yubikey-manager
+      yubikey-manager-qt
+      yubikey-personalization
+      yubikey-personalization-gui
       # yubikey-touch-detector
     ];
   };

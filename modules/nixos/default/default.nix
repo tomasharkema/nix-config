@@ -133,7 +133,7 @@
 
       thermald.enable = mkIf (pkgs.system == "x86_64-linux") true;
 
-      clipmenu.enable = true;
+      # clipmenu.enable = true;
 
       openssh = {
         enable = true;
