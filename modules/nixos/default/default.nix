@@ -114,7 +114,7 @@
     proxy-services.enable = mkDefault true;
 
     services = {
-      packagekit.enable = true;
+      # packagekit.enable = true;
       cron.enable = true;
 
       zram-generator.enable = true;

@@ -25,7 +25,7 @@
       cockpit-tailscale
       cockpit-machines
       # cockpit-ostree
-      packagekit
+      # packagekit
     ];
 
     # services.multipath = {
