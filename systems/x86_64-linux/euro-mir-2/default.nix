@@ -34,10 +34,10 @@
       steam.enable = true;
     };
 
-    # headless.hypervisor = {
-    #   enable = true;
-    #   bridgeInterfaces = ["wlp59s0"];
-    # };
+    headless.hypervisor = {
+      enable = true;
+      # bridgeInterfaces = ["wlp59s0"];
+    };
 
     traits = {
       hardware = {

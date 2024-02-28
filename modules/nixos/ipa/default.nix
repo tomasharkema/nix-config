@@ -43,11 +43,26 @@
         mode = "0600";
       };
     };
-    security.pam = {
-      services = {
-        login.sssdStrictAccess = true;
-        #  sudo.sssdStrictAccess = true;
-        #  ssh.sssdStrictAccess = true;
+
+    security = {
+      polkit = {
+        enable = true;
+        extraConfig = ''
+          polkit.addRule(function(action, subject) {
+              if (action.id == "org.freedesktop.policykit.exec" &&
+                  subject.isInGroup("admins")) {
+                  return polkit.Result.YES;
+              }
+          });
+        '';
+      };
+
+      pam = {
+        services = {
+          login.sssdStrictAccess = true;
+          #  sudo.sssdStrictAccess = true;
+          #  ssh.sssdStrictAccess = true;
+        };
       };
     };
 
