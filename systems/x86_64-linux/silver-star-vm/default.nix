@@ -10,6 +10,7 @@ with lib; {
 
   config = {
     headless.enable = true;
+    services.netbox.enable = true;
     traits = {
       hardware = {
         tpm.enable = true;

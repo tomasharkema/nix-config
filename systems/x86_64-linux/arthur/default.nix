@@ -22,13 +22,16 @@
       # builder.enable = true;
       hardware = {
         # tpm.enable = true;
-        secure-boot.enable = true;
+        # secure-boot.enable = true;
         remote-unlock.enable = true;
       };
     };
 
-    services.podman.enable = true;
-    services.freeipa.replica.enable = true;
+    services = {
+      podman.enable = true;
+      freeipa.replica.enable = true;
+      tcsd.enable = true;
+    };
 
     systemd.enableEmergencyMode = false;
 
@@ -55,8 +58,6 @@
       firewall.enable = true;
       wireless.enable = lib.mkForce false;
     };
-
-    services.tcsd.enable = true;
 
     headless.hypervisor = {
       enable = true;

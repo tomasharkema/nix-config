@@ -7,6 +7,9 @@
 with lib;
 with lib.custom; let
   cfg = config.headless.hypervisor;
+
+  libvirtKeytab = "/var/lib/libvirt/krb5.tab";
+  qemuKeytab = "/etc/qemu/krb5.tab";
 in {
   options.headless.hypervisor = {
     enable = mkEnableOption "hypervisor";
@@ -15,7 +18,22 @@ in {
   };
 
   config = mkIf cfg.enable {
-    system.nixos.tags = ["hypervisor"];
+    system = {
+      nixos.tags = ["hypervisor"];
+
+      activationScripts = {
+        libvirtKeytab = ''
+          if [ ! -f "${libvirtKeytab}" ]; then
+            ${pkgs.freeipa}/bin/ipa-getkeytab -s ipa.harkema.intra -p libvirt/${config.networking.hostName}.harkema.intra -k ${libvirtKeytab} --principal=domainjoin --password "$(cat ${config.age.secrets.domainjoin.path})"
+          fi
+        '';
+        qemuKeytab = ''
+          if [ ! -f "${qemuKeytab}" ]; then
+            ${pkgs.freeipa}/bin/ipa-getkeytab -s ipa.harkema.intra -p vnc/${config.networking.hostName}.harkema.intra -k ${qemuKeytab} --principal=domainjoin --password "$(cat ${config.age.secrets.domainjoin.path})"
+          fi
+        '';
+      };
+    };
 
     # specialisation."VFIO".configuration = {
     #   system.nixos.tags = ["with-vfio"];
@@ -58,7 +76,7 @@ in {
       "sasl2/libvirt.conf" = {
         text = ''
           mech_list: gssapi
-          keytab: /var/lib/libvirt/krb5.tab
+          keytab: ${libvirtKeytab}
         '';
       };
       "libvirt/qemu.conf" = {
@@ -71,7 +89,7 @@ in {
       "sasl2/qemu-kvm.conf" = {
         text = ''
           mech_list: gssapi
-          keytab: /etc/qemu/krb5.tab
+          keytab: ${qemuKeytab}
         '';
       };
     };
@@ -80,7 +98,7 @@ in {
       enable = true;
       config = ''
         mech_list: gssapi
-        keytab: /var/lib/libvirt/krb5.tab
+        keytab: ${libvirtKeytab}
       '';
     };
 

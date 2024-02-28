@@ -122,6 +122,9 @@
           mode = "644";
           path = "/var/lib/hercules-ci-agent/secrets/binary-caches.json";
         };
+        "domainjoin" = {
+          file = ./domainjoin.age;
+        };
       };
     };
   };
