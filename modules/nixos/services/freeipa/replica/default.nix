@@ -102,6 +102,7 @@ in {
           environment = {
             TS_HOSTNAME = "${config.networking.hostName}-replica-tailscale.harkema.intra";
             TS_STATE_DIR = "/var/lib/tailscale";
+            TS_EXTRA_ARGS = "--accept-routes --accept-dns";
           };
           volumes = [
             "/var/lib/tailscale-free-ipa-replica:/var/lib/tailscale:Z"
@@ -109,7 +110,7 @@ in {
         };
         free-ipa-replica = {
           dependsOn = ["free-ipa-replica-tailscale"];
-          image = "fedora:39";
+          image = "docker.io/freeipa/freeipa-server:fedora-39";
           autoStart = true;
           #ports = ["53:53" "53:53/udp" "80:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
           hostname = "${config.networking.hostName}-replica.harkema.intra";
@@ -122,9 +123,8 @@ in {
             DEBUG_NO_EXIT = "1";
           };
           cmd = [
-            "/bin/sh"
-            "-c"
-            "dnf -y install freeipa-client freeipa-server && ipa-client-install && sleep 1000"
+            "ipa-replica-install"
+            "-U"
             # "ipa-replica-install"
             # "--server=ipa.harkema.intra"
             # "--domain=harkema.intra"
