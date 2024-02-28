@@ -90,7 +90,7 @@ in {
       oci-containers.containers = {
         free-ipa-replica-tailscale = {
           image = "docker.io/tailscale/tailscale:stable";
-          hostname = "${config.networking.hostName}-replica-tailscale.harkema.intra";
+          hostname = "${config.networking.hostName}-replica.harkema.intra";
           autoStart = true;
           extraOptions = [
             "--device=/dev/net/tun:/dev/net/tun"
@@ -98,7 +98,7 @@ in {
             "--cap-add=NET_RAW"
           ];
           environment = {
-            TS_HOSTNAME = "${config.networking.hostName}-replica";
+            TS_HOSTNAME = "${config.networking.hostName}-replica.harkema.intra";
             TS_STATE_DIR = "/var/lib/tailscale";
             TS_EXTRA_ARGS = "--accept-routes --accept-dns";
           };
