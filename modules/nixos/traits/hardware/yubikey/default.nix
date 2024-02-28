@@ -13,7 +13,7 @@
       #   cockpit.u2fAuth = true;
       # };
     };
-    hardware.u2f.enable = true;
+
     programs = {
       #   yubikey-touch-detector.enable = true;
       # ssh.extraConfig = ''
