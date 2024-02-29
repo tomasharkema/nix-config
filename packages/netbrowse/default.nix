@@ -3,6 +3,7 @@
   rustPlatform,
   fetchCrate,
   xorg,
+  makeWrapper,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "netbrowse";
@@ -15,5 +16,9 @@ rustPlatform.buildRustPackage rec {
 
   cargoSha256 = "sha256-FzKDKm3TJNelDRUL3BJp8UJnjrCb++g1osXOT6X55ho=";
 
-  buildInputs = [xorg.libxcb xorg.libX11];
+  buildInputs = [xorg.libxcb xorg.libX11 makeWrapper];
+
+  postInstall = ''
+    wrapProgram $out/bin/netbrowse --prefix LD_LIBRARY_PATH : "${xorg.libX11.out}/lib"
+  '';
 }
