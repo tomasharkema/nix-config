@@ -273,8 +273,7 @@
       firewall = {
         enable = mkDefault true;
       };
-      networkmanager.enable = true;
-      # enableIPv6 = false;
+      networkmanager.enable = mkDefault true;
     };
 
     # powerManagement.powertop.enable = mkDefault true;
