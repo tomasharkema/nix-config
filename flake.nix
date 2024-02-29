@@ -128,7 +128,6 @@
 
     nil = {
       url = "github:oxalica/nil";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     devenv = {
@@ -138,7 +137,6 @@
 
     peerix = {
       url = "github:cid-chan/peerix";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # poetry2nix = {
@@ -198,7 +196,7 @@
       };
 
       overlays = with inputs; [
-        # peerix.overlay
+        peerix.overlay
         snowfall-flake.overlays."package/flake"
       ];
 
@@ -211,7 +209,7 @@
 
       systems.modules.nixos = with inputs; [
         nix-index-database.nixosModules.nix-index
-        # peerix.nixosModules.peerix
+        peerix.nixosModules.peerix
 
         # impermanence.nixosModule
         disko.nixosModules.default
