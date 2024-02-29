@@ -14,6 +14,10 @@ in {
   config = mkIf cfg.enable {
     services.podman.enable = true;
 
+    networking = {
+      enableIPv6 = false;
+    };
+
     virtualisation = {
       oci-containers.containers = {
         free-ipa-tailscale = {
@@ -24,8 +28,6 @@ in {
             "--device=/dev/net/tun:/dev/net/tun"
             "--cap-add=NET_ADMIN"
             "--cap-add=NET_RAW"
-            # "--add-host=ipa.harkema.intra:100.76.50.114"
-            # "--add-host=free-ipa-tailscale:100.76.50.114"
           ];
           environment = {
             TS_HOSTNAME = "ipa.harkema.intra";
@@ -45,6 +47,7 @@ in {
           extraOptions = [
             "--network=container:free-ipa-tailscale"
             # "--add-host=ipa.harkema.intra:100.76.50.114"
+            "--sysctl=net.ipv6.conf.all.disable_ipv6=1"
           ];
           environment = {
             SECRET = "Secret123!";
