@@ -48,8 +48,6 @@ in {
       firmware = [pkgs.wireless-regdb];
     };
 
-    networking.networkmanager.enable = false;
-
     # boot.loader.raspberryPi.firmwareConfig = ''
     #   dtparam=audio=on
     # '';
