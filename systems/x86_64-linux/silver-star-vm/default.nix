@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }:
 with lib; {
@@ -10,10 +11,7 @@ with lib; {
 
   config = {
     headless.enable = true;
-    services.netbox = {
-      enable = true;
-      secretKeyFile = "/var/lib/netbox/secret-key-file";
-    };
+
     traits = {
       hardware = {
         tpm.enable = true;
@@ -30,9 +28,34 @@ with lib; {
     resilio.enable = mkForce false;
     # apps.tor.relay.enable = true;
 
-    services.podman.enable = true;
+    systemd.services.netbox = {
+      serviceConfig = {
+        TimeoutSec = 900;
+      };
+    };
+
+    proxy-services.services = {
+      "/netbox/static/" = {alias = "${config.services.netbox.dataDir}/static/";};
+      "/netbox/" = {
+        proxyPass = "http://${config.services.netbox.listenAddress}:${toString config.services.netbox.port}";
+        # extraConfig = ''
+        #   rewrite /netbox(.*) $1 break;
+        # '';
+      };
+    };
 
     services = {
+      podman.enable = true;
+
+      netbox = {
+        enable = true;
+        secretKeyFile = "/var/lib/netbox/secret-key-file";
+        listenAddress = "127.0.0.1";
+        settings = {
+          BASE_PATH = "netbox/";
+        };
+      };
+
       qemuGuest.enable = true;
       freeipa.enable = true;
       resilio = {
