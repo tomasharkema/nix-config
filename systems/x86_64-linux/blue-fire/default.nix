@@ -40,8 +40,6 @@ in {
     # };
 
     networking = {
-      networkmanager.enable = lib.mkDefault false;
-
       hostName = lib.mkDefault "blue-fire";
       hostId = "529fd7aa";
 
@@ -49,7 +47,6 @@ in {
         enable = false;
       };
       useDHCP = lib.mkDefault true;
-      # useNetworkd = true;
 
       interfaces = {
         "eno1" = {wakeOnLan.enable = true;};
