@@ -86,18 +86,18 @@
         opencryptoki
         openldap
         pciutils
-        pkgs.deepin.udisks2-qt5
+        # pkgs.deepin.udisks2-qt5
         pv
         tpm-tools
-        udisks2
+        # udisks2
         wget
         sshportal
       ])
       ++ (with pkgs.custom; [
-        flashprog
-        graylog-cli-dashboard
+        # flashprog
         menu
         pvzstd
+        netbrowse
       ])
       ++ (
         if pkgs.stdenv.isx86_64
@@ -127,6 +127,8 @@
 
       udisks2 = {
         enable = true;
+
+        mountOnMedia = true;
       };
 
       das_watchdog.enable = true;

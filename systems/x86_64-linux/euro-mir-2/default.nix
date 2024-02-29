@@ -2,8 +2,10 @@
   pkgs,
   inputs,
   config,
+  lib,
   ...
-}: {
+}:
+with lib; {
   imports = with inputs; [
     nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
     ./hardware-configuration.nix
@@ -58,6 +60,12 @@
 
     services = {
       podman.enable = true;
+
+      avahi = {
+        enable = true;
+        allowInterfaces = ["wlp59s0"];
+        reflector = mkForce false;
+      };
 
       # fprintd = {
       #   enable = true;

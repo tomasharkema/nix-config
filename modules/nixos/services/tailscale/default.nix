@@ -51,7 +51,7 @@ in {
       avahi = {
         enable = true;
         allowInterfaces = ["zthnhagpcb" "tailscale0"];
-        ipv6 = false;
+        ipv6 = true;
         publish.enable = true;
         publish.userServices = true;
         publish.addresses = true;

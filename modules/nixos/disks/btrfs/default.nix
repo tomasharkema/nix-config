@@ -279,7 +279,7 @@ in
                           "compress=zstd:1"
                           "discard=async"
                         ];
-                        mountpoint = "/media";
+                        mountpoint = "/opt/media";
                       };
                       # "resilio-sync" = {
                       #   mountOptions = [
