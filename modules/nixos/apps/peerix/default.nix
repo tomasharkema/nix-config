@@ -4,13 +4,24 @@
   ...
 }: {
   config = {
-    # nix-store --generate-binary-cache-key tomas-peerix /home/tomas/tomas-peerix-secret.key /home/tomas/tomas-peerix-public.key
+    age.secrets = {
+      "peerix-public" = {
+        file = ../../../../secrets/peerix.public.age;
+        mode = "644";
+      };
+
+      "peerix-private" = {
+        file = ../../../../secrets/peerix.private.age;
+        mode = "644";
+      };
+    };
+
     services.peerix = {
       enable = true;
       user = "tomas";
       group = "tomas";
-      publicKeyFile = "/home/tomas/tomas-peerix-public.key";
-      privateKeyFile = "/home/tomas/tomas-peerix-secret.key";
+      publicKey = "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA=";
+      privateKeyFile = config.age.secrets."peerix-private".path;
     };
   };
 }
