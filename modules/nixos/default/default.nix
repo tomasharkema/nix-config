@@ -98,6 +98,7 @@
         menu
         pvzstd
         netbrowse
+        tailscale-tui
       ])
       ++ (
         if pkgs.stdenv.isx86_64

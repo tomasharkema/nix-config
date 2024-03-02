@@ -1,4 +1,3 @@
-# https://github.com/bilguun0203/tailscale-tui
 {
   buildGoModule,
   fetchFromGitHub,
