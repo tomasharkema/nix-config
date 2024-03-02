@@ -72,6 +72,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        pkgs.custom.netbrowse
         gnome.gnome-boxes
         # pcmanfm
         polkit
@@ -84,7 +85,7 @@ in {
         # powertop
 
         nix-software-center
-        nixos-conf-editor
+        # nixos-conf-editor
 
         xdg-utils
 
@@ -111,13 +112,13 @@ in {
         remmina
         xdg-utils
         # mattermost-desktop
-        # systemdgenie
+        systemdgenie
         # # _1password
         # wezterm
         # waybar
         # zeal
 
-        libmx
+        # libmx
       ]
       ++ optional (pkgs.system == "x86_64-linux") telegram-desktop
       ++ (with pkgs.custom; [zerotier-ui zerotier-gui]);

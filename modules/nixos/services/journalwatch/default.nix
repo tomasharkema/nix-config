@@ -17,17 +17,17 @@
         enable = true;
       };
 
-      # mailcatcher.enable = true;
+      mailcatcher.enable = true;
 
       public-inbox = {
         enable = true;
         postfix.enable = true;
-        # nntp.enable = true;
-        # imap.enable = true;
+        nntp.enable = true;
+        imap.enable = true;
         http = {
           enable = true;
           port = "/run/public-inbox-httpd.sock";
-          mounts = ["/" "/inbox" "/inbox/lists/tomas"];
+          mounts = ["/" "/inbox" "/inbox/lists/tomas" "/lists/tomas"];
         };
         mda.enable = true;
 

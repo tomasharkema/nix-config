@@ -3,6 +3,7 @@
   rustPlatform,
   fetchCrate,
   xorg,
+  libGL,
   makeWrapper,
 }:
 rustPlatform.buildRustPackage rec {
@@ -16,9 +17,19 @@ rustPlatform.buildRustPackage rec {
 
   cargoSha256 = "sha256-FzKDKm3TJNelDRUL3BJp8UJnjrCb++g1osXOT6X55ho=";
 
-  buildInputs = [xorg.libxcb xorg.libX11 makeWrapper];
+  buildInputs = [
+    xorg.libxcb
+    xorg.libX11
+    xorg.libXcursor
+    xorg.libXrandr
+    xorg.libXi
+    libGL
+    makeWrapper
+  ];
 
   postInstall = ''
-    wrapProgram $out/bin/netbrowse --prefix LD_LIBRARY_PATH : "${xorg.libX11.out}/lib"
+    mkdir -p $out/share/applications
+    cp ${./netbrowse.desktop} $out/share/applications
+    wrapProgram $out/bin/netbrowse --prefix LD_LIBRARY_PATH : "${xorg.libX11.out}/lib:${xorg.libXcursor.out}/lib:${xorg.libXrandr.out}/lib:${xorg.libXi.out}/lib:${libGL}/lib"
   '';
 }
