@@ -29,7 +29,7 @@ rustPlatform.buildRustPackage rec {
 
   postInstall = ''
     mkdir -p $out/share/applications
-    cp ${./netbrowse.desktop} $out/share/applications
+    cp ${./netbrowse.desktop} $out/share/applications/netbrowse.desktop
     wrapProgram $out/bin/netbrowse --prefix LD_LIBRARY_PATH : "${xorg.libX11.out}/lib:${xorg.libXcursor.out}/lib:${xorg.libXrandr.out}/lib:${xorg.libXi.out}/lib:${libGL}/lib"
   '';
 }
