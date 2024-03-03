@@ -18,13 +18,9 @@ in {
       firewall = {
         trustedInterfaces = ["podman0"];
         interfaces."podman0".allowedUDPPorts = [53 5353];
-        #     enable = mkDefault false;
       };
     };
-
-    services.resolved = {
-      enable = true;
-    };
+    services.resolved.enable = true;
 
     virtualisation = {
       oci-containers.backend = "podman";
@@ -33,16 +29,13 @@ in {
         enable = true;
 
         dockerCompat = true;
+        dockerSocket.enable = true;
 
         enableNvidia = config.traits.hardware.nvidia.enable;
+
         defaultNetwork.settings.dns_enabled = true;
 
-        # defaultNetwork.settings = {
-        # dns_enabled = true;
-        # ipam_options = {driver = "dhcp";};
-        # };
-
-        autoPrune.enable = true;
+        # autoPrune.enable = true;
         # networkSocket.enable = true;
       };
     };

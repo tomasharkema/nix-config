@@ -15,10 +15,20 @@ in {
     services.podman.enable = true;
 
     virtualisation = {
+      podman = {
+        defaultNetwork.settings = mkForce {
+          subnets = [
+            {
+              gateway = "10.87.0.1";
+              subnet = "10.87.0.0/16";
+            }
+          ];
+        };
+      };
       oci-containers.containers = {
-        free-ipa-tailscale = {
+        free-ipa-tailscale = mkIf false {
           image = "docker.io/tailscale/tailscale:stable";
-          hostname = "ipa.harkema.intra";
+          # hostname = "ipa.harkema.intra";
           autoStart = true;
           extraOptions = [
             "--device=/dev/net/tun:/dev/net/tun"
@@ -28,7 +38,7 @@ in {
           environment = {
             TS_HOSTNAME = "ipa.harkema.intra";
             TS_STATE_DIR = "/var/lib/tailscale";
-            TS_ROUTES = "10.88.0.0/16";
+            TS_ROUTES = "10.87.0.0/16";
             TS_ACCEPT_DNS = "true";
             TS_EXTRA_ARGS = "--accept-routes";
           };
@@ -36,15 +46,13 @@ in {
             "/var/lib/tailscale-free-ipa:/var/lib/tailscale:Z"
           ];
         };
-        free-ipa = {
+        free-ipa = mkIf false {
           dependsOn = ["free-ipa-tailscale"];
           image = "docker.io/freeipa/freeipa-server:fedora-39";
           autoStart = true;
-          hostname = "ipa.harkema.intra";
+          # hostname = "ipa.harkema.intra";
           extraOptions = [
             "--network=container:free-ipa-tailscale"
-            # "--add-host=ipa.harkema.intra:100.76.50.114"
-            "--sysctl=net.ipv6.conf.all.disable_ipv6=1"
           ];
           environment = {
             SECRET = "Secret123!";
