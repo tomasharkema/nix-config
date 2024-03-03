@@ -35,7 +35,7 @@ in {
 
         defaultNetwork.settings.dns_enabled = true;
 
-        # autoPrune.enable = true;
+        autoPrune.enable = true;
         # networkSocket.enable = true;
       };
     };
