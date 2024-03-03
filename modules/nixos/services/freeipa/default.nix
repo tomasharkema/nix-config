@@ -14,10 +14,6 @@ in {
   config = mkIf cfg.enable {
     services.podman.enable = true;
 
-    networking = {
-      enableIPv6 = false;
-    };
-
     virtualisation = {
       oci-containers.containers = {
         free-ipa-tailscale = {
@@ -28,14 +24,13 @@ in {
             "--device=/dev/net/tun:/dev/net/tun"
             "--cap-add=NET_ADMIN"
             "--cap-add=NET_RAW"
-            "--add-host=ipa.harkema.intra:100.76.50.114"
-            "--add-host=free-ipa-tailscale:100.76.50.114"
-            "--sysctl=net.ipv6.conf.all.disable_ipv6=1"
           ];
           environment = {
             TS_HOSTNAME = "ipa.harkema.intra";
             TS_STATE_DIR = "/var/lib/tailscale";
             TS_ROUTES = "10.88.0.0/16";
+            TS_ACCEPT_DNS = "true";
+            TS_EXTRA_ARGS = "--accept-routes";
           };
           volumes = [
             "/var/lib/tailscale-free-ipa:/var/lib/tailscale:Z"

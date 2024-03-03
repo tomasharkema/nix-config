@@ -22,6 +22,7 @@
       group = "tomas";
       publicKey = "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA=";
       privateKeyFile = config.age.secrets."peerix-private".path;
+      openFirewall = true;
     };
   };
 }

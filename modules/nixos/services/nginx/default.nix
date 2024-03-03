@@ -81,19 +81,19 @@ in {
     # };
 
     services.webhook = {
-      # enable = true;
+      enable = true;
 
       hooks = {
-        upload-current-system = let
-          push-cachix = pkgs.writeShellScriptBin "push-cachix" ''
-            whoami
-            ${lib.getExe pkgs.cachix} push tomasharkema /nix/var/nix/profiles/system
-          '';
-        in {
-          execute-command = "${lib.getExe push-cachix}";
-          # response-message = "done";
-          include-command-output-in-response = true;
-        };
+        # upload-current-system = let
+        #   push-cachix = pkgs.writeShellScriptBin "push-cachix" ''
+        #     whoami
+        #     ${lib.getExe pkgs.cachix} push tomasharkema /nix/var/nix/profiles/system
+        #   '';
+        # in {
+        #   execute-command = "${lib.getExe push-cachix}";
+        #   # response-message = "done";
+        #   include-command-output-in-response = true;
+        # };
         echo = {
           execute-command = "date";
           # response-message = "Webhook is reachable!";
