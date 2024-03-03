@@ -13,6 +13,7 @@
   ];
 
   config = {
+    hardware.cpu.intel.updateMicrocode = true;
     gui = {
       enable = true;
       desktop = {
@@ -22,11 +23,14 @@
     };
 
     apps.steam.enable = true;
+    systemd.enableEmergencyMode = false;
+
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y";
       media = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01";
       encrypt = true;
+      newSubvolumes = true;
     };
 
     wifi.enable = true;
@@ -37,11 +41,11 @@
         secure-boot.enable = true;
         remote-unlock.enable = true;
         monitor.enable = true;
+        nvidia.enable = true;
       };
     };
 
-    hardware.cpu.intel.updateMicrocode = true;
-    nixpkgs.system = "x86_64-linux";
+    # nixpkgs.system = "x86_64-linux";
 
     networking = {
       hostName = "enzian";
@@ -49,8 +53,16 @@
       firewall = {
         enable = false; # true
       };
-      useDHCP = lib.mkDefault true;
-      interfaces."enp4s0".wakeOnLan.enable = true;
+      useDHCP = lib.mkDefault false;
+      interfaces."enp4s0" = {
+        useDHCP = lib.mkDefault true;
+        wakeOnLan.enable = true;
+      };
+    };
+
+    headless.hypervisor = {
+      enable = true;
+      bridgeInterfaces = ["enp4s0"];
     };
 
     # deployment.tags = [ "bare" ];
@@ -71,7 +83,9 @@
       kernelModules = ["kvm-intel" "uinput" "nvme"];
       extraModulePackages = [];
     };
+
     hardware.bluetooth.enable = true;
+
     services = {
       blueman.enable = true;
 

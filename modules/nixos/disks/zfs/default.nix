@@ -98,7 +98,7 @@ in
               compression = "zstd";
               "com.sun:auto-snapshot" = "false";
             };
-            mountpoint = "/media";
+            mountpoint = "/opt/media";
             postCreateHook = "zfs snapshot zmedia@blank";
 
             datasets = {

@@ -2,8 +2,10 @@
   pkgs,
   inputs,
   config,
+  lib,
   ...
-}: {
+}:
+with lib; {
   imports = with inputs; [
     nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
     ./hardware-configuration.nix
@@ -14,6 +16,7 @@
       enable = true;
       main = "/dev/nvme0n1";
       encrypt = true;
+      newSubvolumes = true;
     };
 
     gui = {
@@ -22,7 +25,7 @@
         enable = true;
       };
       gnome.enable = true;
-      # game-mode.enable = true;
+      game-mode.enable = true;
       quiet-boot.enable = true;
     };
 
@@ -35,7 +38,7 @@
 
     headless.hypervisor = {
       enable = true;
-      bridgeInterfaces = ["wlp59s0"];
+      # bridgeInterfaces = ["wlp59s0"];
     };
 
     traits = {
@@ -58,14 +61,20 @@
     services = {
       podman.enable = true;
 
-      fprintd = {
-        # enable = true;
-        package = pkgs.fprintd-tod;
-        tod = {
-          # enable = true;
-          driver = pkgs.libfprint-2-tod1-goodix-550a;
-        };
+      avahi = {
+        enable = true;
+        allowInterfaces = ["wlp59s0"];
+        reflector = mkForce false;
       };
+
+      # fprintd = {
+      #   enable = true;
+      #   package = pkgs.fprintd-tod;
+      #   tod = {
+      #     enable = true;
+      #     driver = pkgs.libfprint-2-tod1-goodix-550a;
+      #   };
+      # };
     };
 
     boot = {

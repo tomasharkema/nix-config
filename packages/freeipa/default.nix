@@ -87,6 +87,7 @@ in
       [
         kerberos
         openldap
+        openldap.dev
         popt
         cyrus_sasl
         curl
@@ -137,21 +138,37 @@ in
 
     # Building and installing the server fails with silent Rhino errors, skipping
     # for now. Need a newer Rhino version.
-    #buildFlags = [ "client" "server" ]
+    # buildFlags = ["client" "server"];
 
     configureFlags = [
       "--with-systemdsystemunitdir=$out/lib/systemd/system"
       "--with-ipaplatform=nixos"
       "--disable-server"
+
+      # "--enable-server"
+      # "--with-ldap"
+      # "LDAP_DIR=${openldap.dev}"
+      # "LDAPIDIR=${openldap.dev}"
+      # "LDAP_INCDIR=${openldap.dev}/include"
+      # "LDAP_LIBDIR=${openldap.out}/lib"
+      # "LDAP_LIBS=${openldap.out}/lib"
+      # "LDAP_CFLAGS=-I${openldap.dev}/include"
     ];
 
-    postInstall = ''
-      echo "
-       #!${runtimeShell}
-       echo 'ipa-client-install is not available on NixOS. Please see security.ipa, instead.'
-       exit 1
-      " > $out/sbin/ipa-client-install
-    '';
+    # LDAP_DIR = "${openldap.dev}";
+    # LDAPIDIR = "${openldap.dev}";
+    # LDAP_INCDIR = "${openldap.dev}/include";
+    # LDAP_LIBDIR = "${openldap.out}/lib";
+    # LDAP_LIBS = "${openldap.out}/lib";
+    # LDAP_CFLAGS = "-I${openldap.dev}/include";
+
+    # postInstall = ''
+    #   echo "
+    #    #!${runtimeShell}
+    #    echo 'ipa-client-install is not available on NixOS. Please see security.ipa, instead.'
+    #    exit 1
+    #   " > $out/sbin/ipa-client-install
+    # '';
 
     postFixup = ''
       wrapPythonPrograms

@@ -7,23 +7,33 @@
   config = {
     security.pam = {
       # p11.enable = true;
-      services = {
-        login.u2fAuth = true;
-        sudo.u2fAuth = true;
-        cockpit.u2fAuth = true;
-      };
+      # services = {
+      #   login.u2fAuth = true;
+      #   sudo.u2fAuth = true;
+      #   cockpit.u2fAuth = true;
+      # };
     };
 
-    # programs = {
-    #   yubikey-touch-detector.enable = true;
-    #   ssh.extraConfig = ''
-    #     PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
-    #   '';
-    # };
+    programs = {
+      #   yubikey-touch-detector.enable = true;
+      # ssh.extraConfig = ''
+      #   PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
+      # '';
+    };
 
     services = {
       # pcscd.enable = true;
       # yubikey-agent.enable = true;
+      udev.packages = with pkgs; [
+        # libfido2
+        # yubioath-flutter
+        # yubikey-agent
+        # yubikey-manager
+        # yubikey-manager-qt
+        yubikey-personalization
+        # yubikey-personalization-gui
+        # yubico-piv-tool
+      ];
     };
 
     boot.initrd = {
@@ -37,7 +47,8 @@
       # opensc
       # pcsctools
       # yubico-piv-tool
-      yubikey-agent
+      yubioath-flutter
+      # yubikey-agent
       yubikey-manager
       yubikey-manager-qt
       yubikey-personalization

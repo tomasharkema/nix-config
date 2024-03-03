@@ -43,31 +43,34 @@
     };
 
     virtualisation.spiceUSBRedirection.enable = true;
-    services.fstrim.enable = true;
+
     zramSwap = {
       enable = true;
     };
 
+    systemd.enableEmergencyMode = false;
+
     boot = {
-      # hardwareScan = true;
+      hardwareScan = true;
       kernel.sysctl."net.ipv4.ip_forward" = 1;
 
-      tmp = {
-        useTmpfs = true;
-        cleanOnBoot = true;
-      };
+      # tmp = {
+      #   useTmpfs = true;
+      #   cleanOnBoot = true;
+      # };
 
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
-      # kernelParams = [
-      #   "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
-      #   "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
-      #   "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
-      # ];
+      kernelParams = [
+        "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
+        "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
+        "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
+      ];
+
       loader = {
         systemd-boot = {
           # netbootxyz.enable = true;
-          configurationLimit = 10;
+          configurationLimit = 20;
         };
       };
     };
@@ -86,27 +89,28 @@
         opencryptoki
         openldap
         pciutils
-        pkgs.deepin.udisks2-qt5
+        # pkgs.deepin.udisks2-qt5
         pv
         tpm-tools
-        udisks2
+        # udisks2
         wget
         sshportal
       ])
       ++ (with pkgs.custom; [
-        flashprog
-        graylog-cli-dashboard
+        # flashprog
         menu
         pvzstd
+        netbrowse
+        tailscale-tui
+        systemctl-tui
       ])
       ++ (
         if pkgs.stdenv.isx86_64
-        then
-          with pkgs; [
-            pkgs.custom.ztui
-            # bitwarden
-            bitwarden-menu
-          ]
+        then [
+          pkgs.custom.ztui
+          # bitwarden
+          # bitwarden-menu
+        ]
         else []
       );
 
@@ -114,7 +118,8 @@
     proxy-services.enable = mkDefault true;
 
     services = {
-      packagekit.enable = true;
+      fstrim.enable = true;
+      # packagekit.enable = true;
       cron.enable = true;
 
       zram-generator.enable = true;
@@ -127,13 +132,15 @@
 
       udisks2 = {
         enable = true;
+
+        mountOnMedia = true;
       };
 
       das_watchdog.enable = true;
 
       thermald.enable = mkIf (pkgs.system == "x86_64-linux") true;
 
-      clipmenu.enable = true;
+      # clipmenu.enable = true;
 
       openssh = {
         enable = true;
@@ -197,32 +204,32 @@
       #     *.*    @@nix.harke.ma:5140;RSYSLOG_SyslogProtocol23Format
       #   '';
       # };
-    };
 
-    services.fluentd = {
-      enable = true;
+      fluentd = {
+        enable = true;
 
-      config = ''
-        # Match all patterns
-        <match **>
-          @type http
+        config = ''
+          # Match all patterns
+          <match **>
+            @type http
 
-          endpoint https://oneuptime.com/fluentd/logs
-          open_timeout 2
+            endpoint https://oneuptime.com/fluentd/logs
+            open_timeout 2
 
-          headers {"x-oneuptime-service-token":"96c7bca0-d290-11ee-9b6a-55a2f9409bca"}
+            headers {"x-oneuptime-service-token":"96c7bca0-d290-11ee-9b6a-55a2f9409bca"}
 
-          content_type application/json
-          json_array true
+            content_type application/json
+            json_array true
 
-          <format>
-            @type json
-          </format>
-          <buffer>
-            flush_interval 10s
-          </buffer>
-        </match>
-      '';
+            <format>
+              @type json
+            </format>
+            <buffer>
+              flush_interval 10s
+            </buffer>
+          </match>
+        '';
+      };
     };
 
     programs = {
@@ -263,16 +270,17 @@
         hibernate.enable = mkDefault false;
         hybrid-sleep.enable = mkDefault false;
       };
-      #   services = {
-      #     NetworkManager-wait-online.enable = lib.mkForce false;
-      #     systemd-networkd-wait-online.enable = lib.mkForce false;
-      #   };
+      services = {
+        NetworkManager-wait-online.enable = lib.mkForce false;
+        #     systemd-networkd-wait-online.enable = lib.mkForce false;
+      };
     };
 
     networking = {
       firewall = {
         enable = mkDefault true;
       };
+
       networkmanager.enable = mkDefault true;
     };
 
