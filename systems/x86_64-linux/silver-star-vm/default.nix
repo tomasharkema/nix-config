@@ -34,49 +34,47 @@ with lib; {
       };
     };
 
-    proxy-services.services = {
-      "/netbox/static/" = {alias = "${config.services.netbox.dataDir}/static/";};
-      "/netbox/" = {
-        proxyPass = "http://${config.services.netbox.listenAddress}:${toString config.services.netbox.port}";
-        # extraConfig = ''
-        #   rewrite /netbox(.*) $1 break;
-        # '';
-      };
-    };
+    # proxy-services.services = {
+    #   "/netbox/static/" = {alias = "${config.services.netbox.dataDir}/static/";};
+    #   "/netbox/" = {
+    #     proxyPass = "http://${config.services.netbox.listenAddress}:${toString config.services.netbox.port}";
+    #     # extraConfig = ''
+    #     #   rewrite /netbox(.*) $1 break;
+    #     # '';
+    #   };
+    # };
 
     services = {
-      podman.enable = true;
+      # podman.enable = true;
 
-      netbox = {
-        enable = true;
-        secretKeyFile = "/var/lib/netbox/secret-key-file";
-        listenAddress = "127.0.0.1";
-        settings = {
-          BASE_PATH = "netbox/";
-        };
-      };
-
-      spice-vdagentd.enable = true;
-      qemuGuest.enable = true;
+      # netbox = {
+      #   enable = true;
+      #   secretKeyFile = "/var/lib/netbox/secret-key-file";
+      #   listenAddress = "127.0.0.1";
+      #   settings = {
+      #     BASE_PATH = "netbox/";
+      #   };
+      # };
 
       freeipa.enable = true;
 
-      resilio = {
-        enable = lib.mkForce false;
-      };
+      resilio.enable = lib.mkForce false;
+
       ha.initialMaster = true;
+
       command-center = {
         enableBot = true;
       };
     };
-    # boot.kernelPackages = pkgs.linuxPackages_latest;
 
     networking = {
       hostName = "silver-star-vm";
-      firewall.enable = lib.mkForce false;
-      nftables.enable = lib.mkForce false;
+
+      firewall.enable = true;
+      nftables.enable = true;
       # wireless.enable = lib.mkDefault false;
-      networkmanager.enable = false; # true;
+      networkmanager.enable = true;
+
       useDHCP = false;
       interfaces."enp3s0".useDHCP = true;
     };

@@ -11,7 +11,7 @@ with lib.custom; let
 in {
   options.traits.hardware = {
     vm = {
-      enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
+      enable = mkBoolOpt false "hardware vm";
     };
   };
 
