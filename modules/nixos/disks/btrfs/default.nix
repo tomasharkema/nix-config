@@ -58,7 +58,7 @@ with lib; let
             ];
             mountpoint = "/opt/resilio-sync";
           };
-          "resilio-sync-lib" = {
+          "resilio-sync-lib" = mkIf cfg.newSubvolumes {
             mountOptions = [
               "noatime"
               "compress=zstd:1"
