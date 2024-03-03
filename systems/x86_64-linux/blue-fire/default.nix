@@ -46,13 +46,26 @@ in {
       firewall = {
         enable = false;
       };
-      useDHCP = lib.mkDefault true;
+
+      useDHCP = lib.mkDefault false;
 
       interfaces = {
-        "eno1" = {wakeOnLan.enable = true;};
-        "eno2" = {wakeOnLan.enable = true;};
-        "eno3" = {wakeOnLan.enable = true;};
-        "eno4" = {wakeOnLan.enable = true;};
+        "eno1" = {
+          useDHCP = true;
+          wakeOnLan.enable = true;
+        };
+        "eno2" = {
+          useDHCP = true;
+          wakeOnLan.enable = true;
+        };
+        "eno3" = {
+          useDHCP = true;
+          wakeOnLan.enable = true;
+        };
+        "eno4" = {
+          useDHCP = true;
+          wakeOnLan.enable = true;
+        };
       };
     };
 
@@ -188,7 +201,7 @@ in {
       loader = {
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
-        systemd-boot.configurationLimit = 10;
+        # systemd-boot.configurationLimit = 10;
       };
 
       initrd = {

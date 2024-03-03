@@ -3,7 +3,8 @@
   pkgs,
   config,
   ...
-}: let
+}:
+with lib; let
   cfg = config.disks.btrfs;
 
   luksContent = root: {
@@ -41,40 +42,86 @@
             mountOptions = [
             ];
           };
-          "/home" = {
+          "home" = {
             mountOptions = [
-              "subvol=home"
-              "compress=zstd"
+              "noatime"
+              "compress=zstd:1"
+              "discard=async"
             ];
             mountpoint = "/home";
           };
-          # "/opt/resilio-sync" = {
-          #   mountOptions = [
-          #     "compress=zstd"
-          #   ];
-          #   mountpoint = "/opt/resilio-sync";
-          # };
-          "/nix" = {
+          "resilio-sync" = mkIf (cfg.newSubvolumes && cfg.media == null) {
             mountOptions = [
-              # "subvol=nix"
               "noatime"
+              "compress=zstd:1"
+              "discard=async"
+            ];
+            mountpoint = "/opt/resilio-sync";
+          };
+          "resilio-sync-lib" = mkIf cfg.newSubvolumes {
+            mountOptions = [
+              "noatime"
+              "compress=zstd:1"
+              "discard=async"
+            ];
+            mountpoint = "/var/lib/resilio-sync";
+          };
+          "nix" = mkIf cfg.newSubvolumes {
+            mountOptions = [
+              "noatime"
+              "compress=zstd:1"
+              "discard=async"
             ];
             mountpoint = "/nix";
           };
-          # "/swapfile" = {
-          #               mountOptions = [
-          #     # "subvol=nix"
-          #     "noatime"
-          #   ];
-          #   mountpoint = "/swapfile";
-          # };
-          "/steam" = {
+          "containers" = mkIf cfg.newSubvolumes {
             mountOptions = [
-              # "subvol=flatpak"
-              "compress=zstd"
               "noatime"
+              "compress=zstd:1"
+              "discard=async"
             ];
-            # mountpoint = "/steam";
+            mountpoint = "/var/lib/containers";
+          };
+          "swapfile" = mkIf cfg.newSubvolumes {
+            mountOptions = [
+              "noatime"
+              "nodatacow"
+              "nodatasum"
+              "discard=async"
+            ];
+            mountpoint = "/swapfile";
+          };
+          "snapshots" = mkIf cfg.newSubvolumes {
+            mountOptions = [
+              "noatime"
+              "nodatacow"
+              "nodatasum"
+              "discard=async"
+            ];
+            mountpoint = "/.snapshots";
+          };
+          "steam" = mkIf cfg.newSubvolumes {
+            mountOptions = [
+              "noatime"
+              "compress=zstd:1"
+              "discard=async"
+            ];
+            mountpoint = "/opt/steam";
+          };
+          "flatpak" = mkIf cfg.newSubvolumes {
+            mountOptions = [
+              "noatime"
+              "compress=zstd:1"
+              "discard=async"
+            ];
+            mountpoint = "/var/lib/flatpak";
+          };
+          "log" = mkIf cfg.newSubvolumes {
+            mountOptions = [
+              "noatime"
+              "discard=async"
+            ];
+            mountpoint = "/var/log";
           };
         };
 
@@ -88,6 +135,9 @@ in
       disks.btrfs = {
         enable = mkEnableOption "Enable BTRFS";
         autoscrub = mkEnableOption "Enable BTRFS Autoscrub";
+
+        newSubvolumes = mkEnableOption "Enable BTRFS newSubvolumes";
+
         main = mkOption {
           type = types.str;
           description = "Dev for main partion.";
@@ -223,10 +273,23 @@ in
                     # Subvolumes must set a mountpoint in order to be mounted,
                     # unless their parent is mounted
                     subvolumes = {
-                      "/media" = {
-                        mountOptions = ["subvol=media"];
-                        mountpoint = "/media";
+                      "media" = {
+                        mountOptions = [
+                          "noatime"
+                          "compress=zstd:1"
+                          "discard=async"
+                        ];
+                        mountpoint = "/opt/media";
                       };
+                      # "resilio-sync" = {
+                      #   mountOptions = [
+                      #     "noatime"
+                      #     "compress=zstd:1"
+                      #     "discard=async"
+                      #   ];
+
+                      #   mountpoint = "/opt/resilio-sync";
+                      # };
                     };
                   };
                 };

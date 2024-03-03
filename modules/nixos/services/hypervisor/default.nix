@@ -7,6 +7,9 @@
 with lib;
 with lib.custom; let
   cfg = config.headless.hypervisor;
+
+  libvirtKeytab = "/var/lib/libvirt/krb5.tab";
+  qemuKeytab = "/etc/qemu/krb5.tab";
 in {
   options.headless.hypervisor = {
     enable = mkEnableOption "hypervisor";
@@ -15,7 +18,22 @@ in {
   };
 
   config = mkIf cfg.enable {
-    system.nixos.tags = ["hypervisor"];
+    system = {
+      nixos.tags = ["hypervisor"];
+
+      # activationScripts = {
+      #   libvirtKeytab = ''
+      #     if [ ! -f "${libvirtKeytab}" ]; then
+      #       ${pkgs.freeipa}/bin/ipa-getkeytab -s ipa.harkema.intra -p libvirt/${config.networking.hostName}.harkema.intra -k ${libvirtKeytab} --principal=domainjoin --password "$(cat ${config.age.secrets.domainjoin.path})"
+      #     fi
+      #   '';
+      #   qemuKeytab = ''
+      #     if [ ! -f "${qemuKeytab}" ]; then
+      #       ${pkgs.freeipa}/bin/ipa-getkeytab -s ipa.harkema.intra -p vnc/${config.networking.hostName}.harkema.intra -k ${qemuKeytab} --principal=domainjoin --password "$(cat ${config.age.secrets.domainjoin.path})"
+      #     fi
+      #   '';
+      # };
+    };
 
     # specialisation."VFIO".configuration = {
     #   system.nixos.tags = ["with-vfio"];
@@ -54,14 +72,54 @@ in {
 
     programs.virt-manager.enable = true;
 
+    environment.etc = {
+      # "sasl2/libvirt.conf" = {
+      #   text = ''
+      #     mech_list: gssapi
+      #     keytab: ${libvirtKeytab}
+      #   '';
+      # };
+      # "libvirt/qemu.conf" = {
+      #   text = ''
+      #     vnc_listen = "0.0.0.0"
+      #     vnc_tls = 0
+      #     vnc_sasl = 1
+      #   '';
+      # };
+      # "sasl2/qemu-kvm.conf" = {
+      #   text = ''
+      #     mech_list: gssapi
+      #     keytab: ${qemuKeytab}
+      #   '';
+      # };
+    };
+
+    services.saslauthd = {
+      enable = true;
+      # config = ''
+      #   mech_list: gssapi
+      #   keytab: ${libvirtKeytab}
+      # '';
+    };
+
     virtualisation.libvirtd = {
       enable = true;
       # allowedBridges = ["virbr1"];
+
+      # extraConfig = ''
+      #   listen_tls = 0
+      #   listen_tcp = 1
+      #   auth_tcp = "sasl"
+      #   sasl_allowed_username_list = ["\*@HARKEMA.INTRA" ]
+      # '';
+
       allowedBridges = ["virbr0" "br0"];
+
       qemu = {
         package = pkgs.qemu_kvm;
         runAsRoot = true;
         swtpm.enable = true;
+
         ovmf = {
           enable = true;
           packages = [

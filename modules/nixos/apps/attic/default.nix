@@ -24,7 +24,10 @@ in {
       systemd.user.services.attic-login = {
         description = "attic-login";
         script = "${lib.getExe attic-login}";
-        wantedBy = ["multi-user.target" "network.target"]; # starts after login
+
+        wants = ["multi-user.target" "network.target"];
+        after = ["multi-user.target" "network.target"];
+
         unitConfig = {
           Type = "oneshot";
         };
@@ -61,7 +64,8 @@ in {
         };
         preStart = "${lib.getExe attic-login}";
         script = "${attic}/bin/attic watch-store tomas:tomas";
-        wantedBy = ["multi-user.target" "network.target"];
+        wants = ["multi-user.target" "network.target"];
+        after = ["multi-user.target" "network.target"];
         environment = {
           ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH = "go1.21";
         };

@@ -14,6 +14,8 @@
       '';
     };
 
+    environment.systemPackages = with pkgs; [ldapvi ldapmonitor jxplorer];
+
     environment.etc = {
       "krb5.conf" = {
         text = ''
@@ -37,17 +39,32 @@
           [pam]
           pam_passkey_auth = True
           passkey_debug_libfido2 = True
-
+          pam_cert_auth = True
         '';
         # pam_cert_auth = True
         mode = "0600";
       };
     };
-    security.pam = {
-      services = {
-        login.sssdStrictAccess = true;
-        sudo.sssdStrictAccess = true;
-        ssh.sssdStrictAccess = true;
+
+    security = {
+      polkit = {
+        enable = true;
+        extraConfig = ''
+          polkit.addRule(function(action, subject) {
+              if (action.id == "org.freedesktop.policykit.exec" &&
+                  subject.isInGroup("admins")) {
+                  return polkit.Result.YES;
+              }
+          });
+        '';
+      };
+
+      pam = {
+        services = {
+          login.sssdStrictAccess = true;
+          #  sudo.sssdStrictAccess = true;
+          #  ssh.sssdStrictAccess = true;
+        };
       };
     };
 

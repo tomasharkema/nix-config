@@ -96,7 +96,7 @@ in {
         gnome.gnome-keyring
         gnome.gnome-nettool
         gnome.gnome-online-miners
-        gnome.gnome-packagekit
+        # gnome.gnome-packagekit
         gnome.gnome-power-manager
         gnome.gnome-session
         gnome.gnome-session-ctl
