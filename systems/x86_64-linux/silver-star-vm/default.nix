@@ -73,11 +73,12 @@ with lib; {
 
     networking = {
       hostName = "silver-star-vm";
-      firewall.enable = lib.mkForce false;
-      nftables.enable = lib.mkForce false;
-      wireless.enable = lib.mkDefault false;
+      # firewall.enable = lib.mkForce false;
+      # nftables.enable = lib.mkForce false;
+      # wireless.enable = lib.mkDefault false;
       networkmanager.enable = true;
-      useDHCP = lib.mkForce true;
+      useDHCP = false;
+      interfaces."enp3s0".useDHCP = true;
     };
 
     # sudo mount --types virtiofs appdata_ssd /mnt/shared/

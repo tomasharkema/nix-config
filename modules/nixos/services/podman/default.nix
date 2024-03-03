@@ -16,8 +16,8 @@ in {
 
     networking = {
       firewall = {
-        trustedInterfaces = ["podman-+"];
-        interfaces."podman-+".allowedUDPPorts = [53 5353];
+        trustedInterfaces = ["podman0"];
+        interfaces."podman0".allowedUDPPorts = [53 5353];
         #     enable = mkDefault false;
       };
     };
