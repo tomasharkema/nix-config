@@ -8,7 +8,7 @@ with lib.custom; let
   cfg = config.services.podman;
 in {
   options.services.podman = {
-    enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
+    enable = mkBoolOpt false "enable podman";
   };
 
   config = mkIf cfg.enable {
@@ -16,10 +16,14 @@ in {
 
     networking = {
       firewall = {
-        trustedInterfaces = ["podman0"];
-        #     interfaces.podman0.allowedUDPPorts = [53];
+        trustedInterfaces = ["podman-+"];
+        interfaces."podman-+".allowedUDPPorts = [53 5353];
         #     enable = mkDefault false;
       };
+    };
+
+    services.resolved = {
+      enable = true;
     };
 
     virtualisation = {
