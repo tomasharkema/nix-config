@@ -26,7 +26,7 @@ in {
         };
       };
       oci-containers.containers = {
-        free-ipa-tailscale = mkIf false {
+        free-ipa-tailscale = {
           image = "docker.io/tailscale/tailscale:stable";
           # hostname = "ipa.harkema.intra";
           autoStart = true;
@@ -46,7 +46,7 @@ in {
             "/var/lib/tailscale-free-ipa:/var/lib/tailscale:Z"
           ];
         };
-        free-ipa = mkIf false {
+        free-ipa = {
           dependsOn = ["free-ipa-tailscale"];
           image = "docker.io/freeipa/freeipa-server:fedora-39";
           autoStart = true;
