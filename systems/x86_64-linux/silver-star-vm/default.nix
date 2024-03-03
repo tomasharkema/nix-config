@@ -73,10 +73,10 @@ with lib; {
 
     networking = {
       hostName = "silver-star-vm";
-      # firewall.enable = lib.mkForce false;
-      # nftables.enable = lib.mkForce false;
+      firewall.enable = lib.mkForce false;
+      nftables.enable = lib.mkForce false;
       # wireless.enable = lib.mkDefault false;
-      networkmanager.enable = true;
+      networkmanager.enable = false; # true;
       useDHCP = false;
       interfaces."enp3s0".useDHCP = true;
     };
