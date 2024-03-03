@@ -56,8 +56,11 @@ with lib; {
         };
       };
 
+      spice-vdagentd.enable = true;
       qemuGuest.enable = true;
+
       freeipa.enable = true;
+
       resilio = {
         enable = lib.mkForce false;
       };
