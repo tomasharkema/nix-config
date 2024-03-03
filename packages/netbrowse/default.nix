@@ -1,5 +1,4 @@
 {
-  fetchFromGitHub,
   rustPlatform,
   fetchCrate,
   xorg,

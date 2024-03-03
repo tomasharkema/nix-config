@@ -32,8 +32,7 @@
       freeipa.replica.enable = true;
       tcsd.enable = true;
     };
-
-    systemd.enableEmergencyMode = false;
+    apps.home-assistant.enable = true;
 
     disks.btrfs = {
       enable = true;

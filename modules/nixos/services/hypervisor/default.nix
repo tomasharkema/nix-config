@@ -21,18 +21,18 @@ in {
     system = {
       nixos.tags = ["hypervisor"];
 
-      activationScripts = {
-        libvirtKeytab = ''
-          if [ ! -f "${libvirtKeytab}" ]; then
-            ${pkgs.freeipa}/bin/ipa-getkeytab -s ipa.harkema.intra -p libvirt/${config.networking.hostName}.harkema.intra -k ${libvirtKeytab} --principal=domainjoin --password "$(cat ${config.age.secrets.domainjoin.path})"
-          fi
-        '';
-        qemuKeytab = ''
-          if [ ! -f "${qemuKeytab}" ]; then
-            ${pkgs.freeipa}/bin/ipa-getkeytab -s ipa.harkema.intra -p vnc/${config.networking.hostName}.harkema.intra -k ${qemuKeytab} --principal=domainjoin --password "$(cat ${config.age.secrets.domainjoin.path})"
-          fi
-        '';
-      };
+      # activationScripts = {
+      #   libvirtKeytab = ''
+      #     if [ ! -f "${libvirtKeytab}" ]; then
+      #       ${pkgs.freeipa}/bin/ipa-getkeytab -s ipa.harkema.intra -p libvirt/${config.networking.hostName}.harkema.intra -k ${libvirtKeytab} --principal=domainjoin --password "$(cat ${config.age.secrets.domainjoin.path})"
+      #     fi
+      #   '';
+      #   qemuKeytab = ''
+      #     if [ ! -f "${qemuKeytab}" ]; then
+      #       ${pkgs.freeipa}/bin/ipa-getkeytab -s ipa.harkema.intra -p vnc/${config.networking.hostName}.harkema.intra -k ${qemuKeytab} --principal=domainjoin --password "$(cat ${config.age.secrets.domainjoin.path})"
+      #     fi
+      #   '';
+      # };
     };
 
     # specialisation."VFIO".configuration = {
@@ -73,33 +73,33 @@ in {
     programs.virt-manager.enable = true;
 
     environment.etc = {
-      "sasl2/libvirt.conf" = {
-        text = ''
-          mech_list: gssapi
-          keytab: ${libvirtKeytab}
-        '';
-      };
-      "libvirt/qemu.conf" = {
-        text = ''
-          vnc_listen = "0.0.0.0"
-          vnc_tls = 0
-          vnc_sasl = 1
-        '';
-      };
-      "sasl2/qemu-kvm.conf" = {
-        text = ''
-          mech_list: gssapi
-          keytab: ${qemuKeytab}
-        '';
-      };
+      # "sasl2/libvirt.conf" = {
+      #   text = ''
+      #     mech_list: gssapi
+      #     keytab: ${libvirtKeytab}
+      #   '';
+      # };
+      # "libvirt/qemu.conf" = {
+      #   text = ''
+      #     vnc_listen = "0.0.0.0"
+      #     vnc_tls = 0
+      #     vnc_sasl = 1
+      #   '';
+      # };
+      # "sasl2/qemu-kvm.conf" = {
+      #   text = ''
+      #     mech_list: gssapi
+      #     keytab: ${qemuKeytab}
+      #   '';
+      # };
     };
 
     services.saslauthd = {
       enable = true;
-      config = ''
-        mech_list: gssapi
-        keytab: ${libvirtKeytab}
-      '';
+      # config = ''
+      #   mech_list: gssapi
+      #   keytab: ${libvirtKeytab}
+      # '';
     };
 
     virtualisation.libvirtd = {
