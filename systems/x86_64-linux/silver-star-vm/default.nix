@@ -28,10 +28,12 @@ with lib; {
     resilio.enable = mkForce false;
     # apps.tor.relay.enable = true;
 
-    services = {
-      netbox-service.enable = true;
+    apps.ipa.enable = false;
 
-      freeipa.enable = true;
+    services = {
+      # netbox-service.enable = true;
+
+      # freeipa.enable = true;
 
       resilio.enable = lib.mkForce false;
 
@@ -46,9 +48,9 @@ with lib; {
       hostName = "silver-star-vm";
 
       firewall.enable = true;
-      nftables.enable = true;
+      # iptables.enable = true;
       # wireless.enable = lib.mkDefault false;
-      networkmanager.enable = true;
+      networkmanager.enable = mkForce false; #true;
 
       useDHCP = false;
       interfaces."enp3s0".useDHCP = true;
