@@ -20,8 +20,20 @@ in
       #dconf.enable = true;
       # xserver.enable = true;
 
+      # home.file.".face" = {
+      #     source = .../assets/pics/face.png;
+      #   };
+
+      # mv /path/to/image.jpg ~/.face
+
       home = {
         file = {
+          ".face" = {
+            source = builtins.fetchurl {
+              url = "https://avatars.githubusercontent.com/u/4534203";
+              sha256 = "sha256:1s8ab15sxi5ga2rs380vc7acdz7ywh6sx1dl6svbirskngivbs4g";
+            };
+          };
           # ".config/cachix/cachix.dhall".source = config.lib.file.mkOutOfStoreSymlink "/etc/cachix.dhall"; # osConfig.age.secrets.cachix.path;
           # ".config/notify/provider-config.yaml".source = osConfig.age.secrets.notify.path;
           # "${config.xdg.dataHome}/Zeal/Zeal/docsets/nixpkgs.docset" = {
