@@ -29,7 +29,7 @@
 
     services = {
       podman.enable = true;
-      freeipa.replica.enable = true;
+      # freeipa.replica.enable = true;
       tcsd.enable = true;
     };
     apps.home-assistant.enable = true;
