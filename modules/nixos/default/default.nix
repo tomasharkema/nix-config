@@ -54,10 +54,10 @@
       hardwareScan = true;
       kernel.sysctl."net.ipv4.ip_forward" = 1;
 
-      # tmp = {
-      #   useTmpfs = true;
-      #   cleanOnBoot = true;
-      # };
+      tmp = {
+        useTmpfs = true;
+        cleanOnBoot = true;
+      };
 
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
