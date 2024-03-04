@@ -75,7 +75,7 @@ in {
             "--hostname=ipa.harkema.intra"
             "--setup-dns"
             "--no-forwarders"
-            "--no-host-dns"
+            # "--no-host-dns"
             "--ip-address=100.76.50.114"
           ];
           volumes = [
