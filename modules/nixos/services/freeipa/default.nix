@@ -14,6 +14,28 @@ in {
   config = mkIf cfg.enable {
     services.podman.enable = true;
 
+    networking = {
+      firewall = {
+        trustedInterfaces = ["veth0" "veth1"];
+      };
+      enableIPv6 = false;
+    };
+
+    systemd.services.pod-freeipa = {
+      description = "Start podman 'freeipa' pod";
+      wants = ["network-online.target"];
+      after = ["network-online.target"];
+      requiredBy = ["podman-free-ipa-tailscale.service" "podman-free-ipa.service"];
+      unitConfig = {
+        RequiresMountsFor = "/run/containers";
+      };
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${pkgs.podman}/bin/podman pod create freeipa";
+      };
+      path = [pkgs.podman];
+    };
+
     virtualisation = {
       podman = {
         defaultNetwork.settings = mkForce {
@@ -25,6 +47,7 @@ in {
           ];
         };
       };
+
       oci-containers.containers = {
         free-ipa-tailscale = {
           image = "docker.io/tailscale/tailscale:stable";
@@ -34,13 +57,15 @@ in {
             "--device=/dev/net/tun:/dev/net/tun"
             "--cap-add=NET_ADMIN"
             "--cap-add=NET_RAW"
+            "--privileged"
+            "--pod=freeipa"
           ];
           environment = {
-            TS_HOSTNAME = "ipa.harkema.intra";
+            # TS_HOSTNAME = "ipa.harkema.intra";
             TS_STATE_DIR = "/var/lib/tailscale";
             TS_ROUTES = "10.87.0.0/16";
-            TS_ACCEPT_DNS = "true";
-            TS_EXTRA_ARGS = "--accept-routes";
+            TS_ACCEPT_DNS = "false";
+            TS_EXTRA_ARGS = "--reset"; #"--accept-routes";
           };
           volumes = [
             "/var/lib/tailscale-free-ipa:/var/lib/tailscale:Z"
@@ -53,6 +78,8 @@ in {
           # hostname = "ipa.harkema.intra";
           extraOptions = [
             "--network=container:free-ipa-tailscale"
+            "--privileged"
+            "--pod=freeipa"
           ];
           environment = {
             SECRET = "Secret123!";
@@ -66,7 +93,7 @@ in {
             "--setup-dns"
             "--no-forwarders"
             "--no-host-dns"
-            "--ip-address=100.76.50.114"
+            # "--ip-address=100.76.50.114"
           ];
           volumes = [
             "/var/lib/freeipa:/data:Z"
