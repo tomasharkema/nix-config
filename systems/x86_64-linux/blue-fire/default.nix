@@ -69,13 +69,6 @@ in {
       };
     };
 
-    systemd = {
-      watchdog = {
-        runtimeTime = "1m";
-        kexecTime = "1m";
-      };
-    };
-
     headless.hypervisor = {
       enable = true;
       bridgeInterfaces = ["eno1"];
@@ -117,42 +110,45 @@ in {
       tcsd.enable = true;
 
       prometheus.exporters.ipmi.enable = true;
-      # nfs = {
-      #   server = {
-      #     enable = true;
-      #     exports = ''
-      #       /export/media        *(rw,fsid=0,no_subtree_check)
-      #     '';
-      #   };
-      # };
+
+      nfs = {
+        server = {
+          enable = true;
+          exports = ''
+            /export/media        *(rw,fsid=0,no_subtree_check)
+          '';
+        };
+      };
     };
 
-    # fileSystems = {
-    #   "/export/media" = {
-    #     device = "/media";
-    #     options = ["bind"];
-    #   };
-    #   "/mnt/unraid/domains" = {
-    #     device = "192.168.0.100:/mnt/user/domains";
-    #     fsType = "nfs";
-    #   };
-    #   "/mnt/unraid/appdata" = {
-    #     device = "192.168.0.100:/mnt/user/appdata";
-    #     fsType = "nfs";
-    #   };
-    #   "/mnt/unraid/appdata_ssd" = {
-    #     device = "192.168.0.100:/mnt/user/appdata_ssd";
-    #     fsType = "nfs";
-    #   };
-    #   "/mnt/unraid/appdata_disk" = {
-    #     device = "192.168.0.100:/mnt/user/appdata_disk";
-    #     fsType = "nfs";
-    #   };
-    #   # "/mnt/dione" = {
-    #   #   device = "192.168.178.3:/volume1/homes";
-    #   #   fsType = "nfs";
-    #   # };
-    # };
+    networking.firewall.allowedTCPPorts = [2049];
+
+    fileSystems = {
+      "/export/media" = {
+        device = "/media";
+        options = ["bind"];
+      };
+      #   "/mnt/unraid/domains" = {
+      #     device = "192.168.0.100:/mnt/user/domains";
+      #     fsType = "nfs";
+      #   };
+      #   "/mnt/unraid/appdata" = {
+      #     device = "192.168.0.100:/mnt/user/appdata";
+      #     fsType = "nfs";
+      #   };
+      #   "/mnt/unraid/appdata_ssd" = {
+      #     device = "192.168.0.100:/mnt/user/appdata_ssd";
+      #     fsType = "nfs";
+      #   };
+      #   "/mnt/unraid/appdata_disk" = {
+      #     device = "192.168.0.100:/mnt/user/appdata_disk";
+      #     fsType = "nfs";
+      #   };
+      #   # "/mnt/dione" = {
+      #   #   device = "192.168.178.3:/volume1/homes";
+      #   #   fsType = "nfs";
+      #   # };
+    };
 
     # systemd.network = {
     #   enable = true;
