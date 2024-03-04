@@ -76,7 +76,7 @@ in {
             "--setup-dns"
             "--no-forwarders"
             "--no-host-dns"
-            # "--ip-address=100.76.50.114"
+            "--ip-address=100.76.50.114"
           ];
           volumes = [
             "/var/lib/freeipa:/data:Z"
