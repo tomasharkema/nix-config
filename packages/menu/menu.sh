@@ -14,8 +14,8 @@ update() {
 }
 
 clearcache() {
-  sudo nix-collect-garbage --delete-older-than '1d'
-  nix-collect-garbage --delete-older-than '1d'
+  sudo nix-collect-garbage --delete-older-than '7d'
+  nix-collect-garbage --delete-older-than '7d'
   echo "-- nix store optimise --"
   nix store optimise
 }
@@ -27,7 +27,7 @@ attachsession() {
 
 cleanram() {
   sudo sync
-  sudo echo 3 | tee /proc/sys/vm/drop_caches
+  sudo echo 3 | sudo tee /proc/sys/vm/drop_caches
 }
 
 CHOICE=$(gum choose "$RUN_UPDATER" "$ATTACH_SESSION" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$CLEAR_CACHE" "$OPEN_SHELL" "$CLEAN_RAM" "$EXIT")
