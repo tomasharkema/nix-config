@@ -60,10 +60,10 @@
       };
     };
 
-    headless.hypervisor = {
-      enable = true;
-      bridgeInterfaces = ["enp4s0"];
-    };
+    # headless.hypervisor = {
+    #   enable = true;
+    #   bridgeInterfaces = ["enp4s0"];
+    # };
 
     # deployment.tags = [ "bare" ];
     # deployment = {
