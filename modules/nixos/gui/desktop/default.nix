@@ -72,6 +72,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        qjournalctl
         pkgs.custom.netbrowse
         gnome.gnome-boxes
         # pcmanfm
