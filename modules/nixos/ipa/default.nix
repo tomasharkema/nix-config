@@ -13,35 +13,31 @@ in {
   };
 
   config = mkIf cfg.enable {
-    boot.tmp = {
-      useTmpfs = false;
-    };
-
     system.activationScripts = {
-      # default_ccache_name = ''
-      #   if [ ! -d "/var/cache/krb5" ]; then
-      #     mkdir /var/cache/krb5
-      #     chmod 777 /var/cache/krb5
-      #   fi
-      # '';
+      default_ccache_name = ''
+        if [ ! -d "/var/cache/krb5" ]; then
+          mkdir /var/cache/krb5
+          chmod 777 /var/cache/krb5
+        fi
+      '';
     };
 
-    environment.systemPackages = with pkgs; [ldapvi ldapmonitor jxplorer];
+    environment.systemPackages = with pkgs; [ldapvi ldapmonitor];
 
     environment.etc = {
-      # "krb5.conf" = {
-      #   text = ''
-      #     [libdefaults]
-      #     default_ccache_name = FILE:/var/cache/krb5/krb5cc_%{uid}
-      #   '';
-      # };
-      # "static/sssd/conf.d/99-sssd.conf" = {
-      #   text = ''
-      #     [sssd]
-      #     krb5_rcache_dir = /var/cache/krb5
-      #   '';
-      #   mode = "0600";
-      # };
+      "krb5.conf" = {
+        text = ''
+          [libdefaults]
+          default_ccache_name = FILE:/var/cache/krb5/krb5cc_%{uid}
+        '';
+      };
+      "static/sssd/conf.d/99-sssd.conf" = {
+        text = ''
+          [sssd]
+          krb5_rcache_dir = /var/cache/krb5
+        '';
+        mode = "0600";
+      };
       "static/sssd/conf.d/98-pam.conf" = {
         text = ''
           [domain/harkema.intra]
@@ -74,8 +70,8 @@ in {
       pam = {
         services = {
           login.sssdStrictAccess = true;
-          #  sudo.sssdStrictAccess = true;
-          #  ssh.sssdStrictAccess = true;
+          sudo.sssdStrictAccess = true;
+          ssh.sssdStrictAccess = true;
         };
       };
     };
