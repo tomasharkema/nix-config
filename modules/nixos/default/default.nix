@@ -54,10 +54,10 @@
       hardwareScan = true;
       kernel.sysctl."net.ipv4.ip_forward" = 1;
 
-      # tmp = {
-      #   useTmpfs = true;
-      #   cleanOnBoot = true;
-      # };
+      tmp = {
+        useTmpfs = true;
+        cleanOnBoot = true;
+      };
 
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
@@ -78,7 +78,6 @@
     environment.systemPackages =
       (with pkgs; [
         atop
-        bitwarden-cli
         curl
         devtodo
         fwupd
@@ -86,7 +85,6 @@
         hw-probe
         lm_sensors
         notify
-        opencryptoki
         openldap
         pciutils
         # pkgs.deepin.udisks2-qt5
@@ -108,8 +106,6 @@
         if pkgs.stdenv.isx86_64
         then [
           pkgs.custom.ztui
-          # bitwarden
-          # bitwarden-menu
         ]
         else []
       );
@@ -120,7 +116,7 @@
 
     services = {
       fstrim.enable = true;
-      # packagekit.enable = true;
+
       cron.enable = true;
 
       zram-generator.enable = true;
@@ -147,7 +143,7 @@
         enable = true;
         settings = {
           PasswordAuthentication = false;
-          KbdInteractiveAuthentication = false;
+          KbdInteractiveAuthentication = true;
           PermitRootLogin = "yes";
         };
       };
