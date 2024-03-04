@@ -93,6 +93,7 @@
         # udisks2
         wget
         sshportal
+        systemctl-tui
       ])
       ++ (with pkgs.custom; [
         # flashprog
@@ -100,7 +101,6 @@
         pvzstd
         netbrowse
         tailscale-tui
-        systemctl-tui
       ])
       ++ (
         if pkgs.stdenv.isx86_64
