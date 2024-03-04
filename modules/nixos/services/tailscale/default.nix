@@ -24,7 +24,7 @@ in {
     networking = {
       useDHCP = false;
 
-      nftables.enable = true;
+      # iptables.enable = true;
 
       firewall = {
         trustedInterfaces = ["tailscale0" "zthnhagpcb"];
