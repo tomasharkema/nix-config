@@ -94,6 +94,12 @@ with lib;
           wget
           sshportal
           systemctl-tui
+          tiptop
+          bmon
+          ctop
+          dry
+          kmon
+          lazydocker
         ])
         ++ (with pkgs.custom; [
           # flashprog
