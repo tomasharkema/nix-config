@@ -55,7 +55,6 @@ in {
           gnomeExtensions.appindicator
           gnomeExtensions.settingscenter
           gnomeExtensions.app-hider
-          gnomeExtensions.appindicator
           gnomeExtensions.arc-menu
           gnomeExtensions.blur-my-shell
           gnomeExtensions.clipboard-indicator
