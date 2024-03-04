@@ -20,6 +20,7 @@ in {
       firewall = {
         trustedInterfaces = ["veth0" "veth1"];
       };
+      enableIPv6 = false;
     };
 
     virtualisation = {
@@ -43,6 +44,7 @@ in {
             "--device=/dev/net/tun:/dev/net/tun"
             "--cap-add=NET_ADMIN"
             "--cap-add=NET_RAW"
+            "--sysctl=net.ipv6.conf.all.disable_ipv6=1"
           ];
           environment = {
             TS_HOSTNAME = "ipa.harkema.intra";
@@ -50,16 +52,17 @@ in {
             TS_ROUTES = "10.87.0.0/16";
           };
           volumes = [
-            "/var/lib/tailscale-free-ipa-2:/var/lib/tailscale:Z"
+            "/var/lib/tailscale-free-ipa:/var/lib/tailscale:Z"
           ];
         };
-        free-ipa = mkIf false {
-          # dependsOn = ["free-ipa-tailscale"];
+        free-ipa = {
+          dependsOn = ["free-ipa-tailscale"];
           image = "docker.io/freeipa/freeipa-server:fedora-39";
           autoStart = true;
           # hostname = "ipa.harkema.intra";
           extraOptions = [
-            # "--network=container:free-ipa-tailscale"
+            "--network=container:free-ipa-tailscale"
+            "--sysctl=net.ipv6.conf.all.disable_ipv6=1"
           ];
           environment = {
             SECRET = "Secret123!";

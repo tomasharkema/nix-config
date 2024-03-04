@@ -33,9 +33,16 @@ with lib; {
     services = {
       # netbox-service.enable = true;
 
-      # freeipa.enable = true;
+      tailscale = {
+        extraUpFlags = mkForce [
+          "--advertise-tags=tag:nixos"
+          "--operator=tomas"
+        ];
+      };
 
-      resilio.enable = lib.mkForce false;
+      freeipa.enable = true;
+
+      resilio.enable = mkForce false;
 
       ha.initialMaster = true;
 
@@ -48,7 +55,6 @@ with lib; {
       hostName = "silver-star-vm";
 
       firewall.enable = true;
-      # iptables.enable = true;
       # wireless.enable = lib.mkDefault false;
       networkmanager.enable = mkForce false; #true;
 
