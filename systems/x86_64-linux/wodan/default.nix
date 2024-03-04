@@ -81,11 +81,13 @@
       steam.enable = true;
       flatpak.enable = true;
     };
+
     headless.hypervisor = {
       enable = true;
       bridgeInterfaces = ["enp2s0"];
     };
-    hardware.nvidia.modesetting.enable = false;
+
+    # hardware.nvidia.modesetting.enable = false;
 
     # fileSystems = {
     #   "/mnt/unraid/appdata" = {
