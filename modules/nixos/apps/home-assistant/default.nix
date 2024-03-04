@@ -21,11 +21,10 @@ in {
           image = "ghcr.io/home-assistant/home-assistant:stable";
 
           autoStart = true;
-          # extraOptions = [
-          #   "--device=/dev/net/tun:/dev/net/tun"
-          #   "--cap-add=NET_ADMIN"
-          #   "--cap-add=NET_RAW"
-          # ];
+          extraOptions = [
+            "--privileged"
+            "--network=host"
+          ];
           volumes = [
             "/run/dbus:/run/dbus:ro"
             "/var/lib/home-assistant:/config:Z"
