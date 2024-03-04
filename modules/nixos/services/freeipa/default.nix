@@ -12,28 +12,14 @@ in {
   };
 
   config = mkIf cfg.enable {
+    apps.ipa.enable = false;
+
     services.podman.enable = true;
 
     networking = {
       firewall = {
         trustedInterfaces = ["veth0" "veth1"];
       };
-      enableIPv6 = false;
-    };
-
-    systemd.services.pod-freeipa = {
-      description = "Start podman 'freeipa' pod";
-      wants = ["network-online.target"];
-      after = ["network-online.target"];
-      requiredBy = ["podman-free-ipa-tailscale.service" "podman-free-ipa.service"];
-      unitConfig = {
-        RequiresMountsFor = "/run/containers";
-      };
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "${pkgs.podman}/bin/podman pod create freeipa";
-      };
-      path = [pkgs.podman];
     };
 
     virtualisation = {
@@ -51,35 +37,29 @@ in {
       oci-containers.containers = {
         free-ipa-tailscale = {
           image = "docker.io/tailscale/tailscale:stable";
-          # hostname = "ipa.harkema.intra";
+          hostname = "ipa.harkema.intra";
           autoStart = true;
           extraOptions = [
             "--device=/dev/net/tun:/dev/net/tun"
             "--cap-add=NET_ADMIN"
             "--cap-add=NET_RAW"
-            "--privileged"
-            "--pod=freeipa"
           ];
           environment = {
-            # TS_HOSTNAME = "ipa.harkema.intra";
+            TS_HOSTNAME = "ipa.harkema.intra";
             TS_STATE_DIR = "/var/lib/tailscale";
             TS_ROUTES = "10.87.0.0/16";
-            TS_ACCEPT_DNS = "false";
-            TS_EXTRA_ARGS = "--reset"; #"--accept-routes";
           };
           volumes = [
-            "/var/lib/tailscale-free-ipa:/var/lib/tailscale:Z"
+            "/var/lib/tailscale-free-ipa-2:/var/lib/tailscale:Z"
           ];
         };
-        free-ipa = {
-          dependsOn = ["free-ipa-tailscale"];
+        free-ipa = mkIf false {
+          # dependsOn = ["free-ipa-tailscale"];
           image = "docker.io/freeipa/freeipa-server:fedora-39";
           autoStart = true;
           # hostname = "ipa.harkema.intra";
           extraOptions = [
-            "--network=container:free-ipa-tailscale"
-            "--privileged"
-            "--pod=freeipa"
+            # "--network=container:free-ipa-tailscale"
           ];
           environment = {
             SECRET = "Secret123!";
