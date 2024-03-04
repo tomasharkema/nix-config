@@ -16,15 +16,14 @@ in {
 
     networking = {
       firewall = {
-        trustedInterfaces = ["podman0"];
-        interfaces."podman0" = {
+        interfaces."podman+" = {
           allowedUDPPorts = [53];
           allowedTCPPorts = [53];
         };
       };
     };
 
-    services.resolved.enable = true;
+    # services.resolved.enable = true;
 
     virtualisation = {
       oci-containers.backend = "podman";
