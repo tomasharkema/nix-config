@@ -17,9 +17,13 @@ in {
     networking = {
       firewall = {
         trustedInterfaces = ["podman0"];
-        interfaces."podman0".allowedUDPPorts = [53 5353];
+        interfaces."podman0" = {
+          allowedUDPPorts = [53];
+          allowedTCPPorts = [53];
+        };
       };
     };
+
     services.resolved.enable = true;
 
     virtualisation = {
