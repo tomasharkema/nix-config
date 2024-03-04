@@ -26,19 +26,19 @@ in {
     };
 
     boot = {
-      # initrd.kernelModules = ["nvidia"];
+      initrd.kernelModules = ["nvidia"];
       # extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
     };
 
     hardware = {
       nvidia = mkDefault {
         modesetting.enable = true;
-        # forceFullCompositionPipeline = true;
+        forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
 
-        # nvidiaPersistenced = true;
+        nvidiaPersistenced = true;
       };
 
       opengl = {
