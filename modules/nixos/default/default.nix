@@ -48,8 +48,6 @@
       enable = true;
     };
 
-    systemd.enableEmergencyMode = false;
-
     boot = {
       hardwareScan = true;
       kernel.sysctl."net.ipv4.ip_forward" = 1;
@@ -113,6 +111,16 @@
     apps.attic.enable = mkDefault true;
     apps.ipa.enable = mkDefault true;
     proxy-services.enable = mkDefault true;
+
+    systemd = {
+      enableEmergencyMode = false;
+      watchdog = {
+        device = "/dev/watchdog";
+        runtimeTime = "10m";
+        kexecTime = "10m";
+        rebootTime = "10m";
+      };
+    };
 
     services = {
       fstrim.enable = true;
