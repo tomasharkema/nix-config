@@ -10,7 +10,7 @@ buildGoModule rec {
     owner = "elliot40404";
     repo = "ssm";
     rev = "v${version}";
-    hash = "sha256-bx1I8IW6YvUDTjj5O9WwbXMb7s+HUt1BOsPBzgN8gjw=";
+    hash = "sha256-ZZVT9RvfFnf0j454OUgOF2xzhKFDZKRaq/QBgyt0UbM=";
   };
 
   vendorHash = null;
