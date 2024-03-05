@@ -108,6 +108,7 @@ with lib;
           pvzstd
           netbrowse
           tailscale-tui
+          podman-tui
         ])
         ++ (
           if pkgs.stdenv.isx86_64
