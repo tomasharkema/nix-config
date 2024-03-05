@@ -6,11 +6,11 @@
 }:
 stdenv.mkDerivation rec {
   pname = "cockpit-machines";
-  version = "307";
+  version = "308.1";
 
   src = fetchzip {
     url = "https://github.com/cockpit-project/cockpit-machines/releases/download/${version}/cockpit-machines-${version}.tar.xz";
-    sha256 = "sha256-JZXTP32ykIpf3hZlWdE8QWVjdlqNEbKR5q8BJ5qww+8=";
+    sha256 = "sha256-jmbXMTzNzdErKCHdK3tlzpiaXQYBPJb314H6lSi0IQE=";
   };
 
   nativeBuildInputs = [
@@ -19,20 +19,20 @@ stdenv.mkDerivation rec {
 
   makeFlags = ["DESTDIR=$(out)" "PREFIX="];
 
-  postPatch = ''
-    substituteInPlace Makefile \
-      --replace /usr/share $out/share
-    touch pkg/lib/cockpit.js
-    touch pkg/lib/cockpit-po-plugin.js
-    touch dist/manifest.json
-  '';
+  # postPatch = ''
+  #   substituteInPlace Makefile \
+  #     --replace /usr/share $out/share
+  #   touch pkg/lib/cockpit.js
+  #   touch pkg/lib/cockpit-po-plugin.js
+  #   touch dist/manifest.json
+  # '';
 
-  postFixup = ''
-    gunzip $out/share/cockpit/machines/index.js.gz
-    sed -i "s#/usr/bin/python3#/usr/bin/env python3#ig" $out/share/cockpit/machines/index.js
-    sed -i "s#/usr/bin/pwscore#/usr/bin/env pwscore#ig" $out/share/cockpit/machines/index.js
-    gzip -9 $out/share/cockpit/machines/index.js
-  '';
+  # postFixup = ''
+  #   gunzip $out/share/cockpit/machines/index.js.gz
+  #   sed -i "s#/usr/bin/python3#/usr/bin/env python3#ig" $out/share/cockpit/machines/index.js
+  #   sed -i "s#/usr/bin/pwscore#/usr/bin/env pwscore#ig" $out/share/cockpit/machines/index.js
+  #   gzip -9 $out/share/cockpit/machines/index.js
+  # '';
 
   dontBuild = true;
 
