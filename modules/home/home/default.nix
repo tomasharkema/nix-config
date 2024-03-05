@@ -17,6 +17,7 @@ in
     ];
 
     config = {
+      programs.inshellisense.enable = true;
       #dconf.enable = true;
       # xserver.enable = true;
 

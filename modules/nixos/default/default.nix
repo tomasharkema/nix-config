@@ -100,6 +100,7 @@ with lib;
           # dry
           kmon
           lazydocker
+          compsize
         ])
         ++ (with pkgs.custom; [
           # flashprog
