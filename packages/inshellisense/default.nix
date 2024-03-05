@@ -1,6 +1,13 @@
 {
   buildNpmPackage,
   fetchFromGitHub,
+  # libptytty,
+  darwin,
+  lib,
+  stdenv,
+  nodePackages,
+  python3,
+  pkg-config,
 }:
 buildNpmPackage rec {
   pname = "inshellisense";
@@ -17,4 +24,10 @@ buildNpmPackage rec {
   postInstall = ''
     cp -r shell $out/share
   '';
+
+  buildInputs = (
+    if stdenv.isDarwin
+    then [darwin.Libsystem nodePackages.node-gyp-build python3 pkg-config]
+    else []
+  );
 }
