@@ -89,11 +89,11 @@ in
           # SPACESHIP_PROMPT_ADD_NEWLINE = "false";
         };
       };
-      manual = {
-        html.enable = false;
-        # manpages.enable = false;
-        # json.enable = false;
-      };
+      # manual = {
+      #   html.enable = false;
+      #   # manpages.enable = false;
+      #   # json.enable = false;
+      # };
 
       fonts.fontconfig.enable = osConfig.gui.enable;
 
@@ -112,8 +112,9 @@ in
       programs = {
         home-manager.enable = true;
 
-        termite.enable = osConfig.gui.enable;
-        terminator.enable = lib.mkIf pkgs.stdenv.isLinux osConfig.gui.enable;
+        # termite.enable = osConfig.gui.enable;
+        # terminator.enable = lib.mkIf pkgs.stdenv.isLinux osConfig.gui.enable;
+
         yt-dlp.enable = true;
 
         direnv = {
@@ -155,7 +156,7 @@ in
 
         tmux = {enable = true;};
 
-        alacritty.enable = osConfig.gui.enable;
+        # alacritty.enable = osConfig.gui.enable;
 
         atuin = {
           enable = true;
@@ -264,9 +265,9 @@ in
             }
           ];
 
-          initExtraFirst = ''
-            source "${iterm}";
-          '';
+          # initExtraFirst = ''
+          #   source "${iterm}";
+          # '';
 
           shellAliases = {
             ll = "ls -l";
