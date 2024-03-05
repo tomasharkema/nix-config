@@ -53,22 +53,16 @@ in {
       kvmtool
       libvirt
       qemu_kvm
-      # kvm
-      # gnome
-    ];
-    services.dbus.packages = with pkgs; [
-      libvirt
-      virt-manager
+      pkgs.custom.libvirt-dbus
     ];
 
-    # networking = {
-    #   interfaces.br0.useDHCP = true;
-    #   bridges = {
-    #     "br0" = {
-    #       interfaces = cfg.bridgeInterfaces;
-    #     };
-    #   };
-    # };
+    services.dbus.packages = with pkgs; [
+      virt-manager
+      kvmtool
+      libvirt
+      qemu_kvm
+      pkgs.custom.libvirt-dbus
+    ];
 
     programs.virt-manager.enable = true;
 
@@ -94,13 +88,13 @@ in {
       # };
     };
 
-    services.saslauthd = {
-      enable = true;
-      # config = ''
-      #   mech_list: gssapi
-      #   keytab: ${libvirtKeytab}
-      # '';
-    };
+    # services.saslauthd = {
+    # enable = true;
+    # config = ''
+    #   mech_list: gssapi
+    #   keytab: ${libvirtKeytab}
+    # '';
+    # };
 
     virtualisation.libvirtd = {
       enable = true;

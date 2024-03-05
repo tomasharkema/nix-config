@@ -79,12 +79,11 @@ with lib;
           # dry
           # pkgs.deepin.udisks2-qt5
           # udisks2
-          bashmount
-          usermount
-          udiskie
 
-          ncdu
+          iptraf-ng
           atop
+          bandwhich
+          bashmount
           bmon
           compsize
           ctop
@@ -94,9 +93,9 @@ with lib;
           fwupd-efi
           hw-probe
           kmon
-          bandwhich
           lazydocker
           lm_sensors
+          ncdu
           nfs-utils
           notify
           openldap
@@ -106,6 +105,9 @@ with lib;
           systemctl-tui
           tiptop
           tpm-tools
+          udiskie
+          usermount
+          viddy
           wget
           zellij
         ])
