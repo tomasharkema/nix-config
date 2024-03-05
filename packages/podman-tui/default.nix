@@ -1,10 +1,10 @@
-# https://github.com/containers/podman-tui
 {
   fetchFromGitHub,
-  # stdenv,
-  # pkg-config,
+  pkg-config,
   buildGoModule,
-  # btrfs,
+  btrfs-progs,
+  gpgme,
+  lvm2,
 }:
 buildGoModule
 rec {
@@ -15,15 +15,12 @@ rec {
     owner = "containers";
     repo = "podman-tui";
     rev = "v${version}";
-    hash = "sha256-QUHwLoNIjJBhIRPskOrPHwd8kwVUyXVNGRLNT/zGZ+A=";
+    hash = "sha256-nPSUpGLSuIZMzgvmZtCZ3nqT5b1+0VkCmzPnUMLYkss=";
   };
 
   vendorHash = null;
 
-  nativeBuildInputs = [
-    # pkg-config
-  ];
-  buildInputs = [
-    # btrfs
-  ];
+  nativeBuildInputs = [pkg-config];
+
+  buildInputs = [btrfs-progs gpgme lvm2];
 }
