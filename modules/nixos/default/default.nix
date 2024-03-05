@@ -94,6 +94,7 @@ with lib;
           fwupd-efi
           hw-probe
           kmon
+          bandwhich
           lazydocker
           lm_sensors
           nfs-utils

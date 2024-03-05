@@ -10,7 +10,7 @@ buildGoModule rec {
     owner = "trntv";
     repo = "sshed";
     rev = "${version}";
-    hash = "sha256-YCAySFNN3bP0wVUHtqJ94YjjTujZx2VPFTFI25CZLg0=";
+    hash = "sha256-y8IQzOGs78T44jLcNNjPlfopyptX3Mhv2LdawqS1T+U=";
   };
 
   vendorHash = "sha256-21Vh5Zaja5rx9RVCTFQquNvMNvaUlUV6kfhkIvXwbVw=";
