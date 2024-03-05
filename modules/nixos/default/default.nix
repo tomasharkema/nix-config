@@ -109,6 +109,7 @@ with lib;
           pvzstd
           ssm
           tailscale-tui
+          sshed
         ])
         ++ (
           if pkgs.stdenv.isx86_64
