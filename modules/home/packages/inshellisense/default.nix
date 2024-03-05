@@ -26,21 +26,17 @@ in {
 
       programs.zsh = {
         initExtra = ''
-          if [[ -f "${rcFile}" ]]; then
-            . "${rcFile}"
-          else
-            echo "inshellisense rc file not found..."
-          fi
+          source "${rcFile}"
         '';
-        profileExtra = ''
-          . "${cfg.package}/lib/node_modules/@microsoft/inshellisense/shell/shellIntegration-profile.zsh"
-        '';
-        loginExtra = ''
-          . "${cfg.package}/lib/node_modules/@microsoft/inshellisense/shell/shellIntegration-login.zsh"
-        '';
-        envExtra = ''
-          . "${cfg.package}/lib/node_modules/@microsoft/inshellisense/shell/shellIntegration-env.zsh"
-        '';
+        # profileExtra = ''
+        #   . "${cfg.package}/lib/node_modules/@microsoft/inshellisense/shell/shellIntegration-profile.zsh"
+        # '';
+        # loginExtra = ''
+        #   . "${cfg.package}/lib/node_modules/@microsoft/inshellisense/shell/shellIntegration-login.zsh"
+        # '';
+        # envExtra = ''
+        #   . "${cfg.package}/lib/node_modules/@microsoft/inshellisense/shell/shellIntegration-env.zsh"
+        # '';
       };
     };
 }
