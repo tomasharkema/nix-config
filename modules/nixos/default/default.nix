@@ -79,6 +79,7 @@ with lib;
           # dry
           # pkgs.deepin.udisks2-qt5
           # udisks2
+          ncdu
           atop
           bmon
           compsize
@@ -101,6 +102,7 @@ with lib;
           tiptop
           tpm-tools
           wget
+          zellij
         ])
         ++ (with pkgs.custom; [
           menu
