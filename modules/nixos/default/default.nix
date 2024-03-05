@@ -97,7 +97,7 @@ with lib;
           tiptop
           bmon
           ctop
-          dry
+          # dry
           kmon
           lazydocker
         ])
@@ -107,6 +107,7 @@ with lib;
           pvzstd
           netbrowse
           tailscale-tui
+          gpustat
         ])
         ++ (
           if pkgs.stdenv.isx86_64
