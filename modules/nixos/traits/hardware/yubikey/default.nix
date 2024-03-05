@@ -6,33 +6,40 @@
 }: {
   config = {
     security.pam = {
-      # p11.enable = true;
-      # services = {
-      #   login.u2fAuth = true;
-      #   sudo.u2fAuth = true;
-      #   cockpit.u2fAuth = true;
+      # yubico = {
+      #   enable = true;
+      #   debug = true;
       # };
+
+      p11.enable = true;
+
+      services = {
+        login.u2fAuth = true;
+        sudo.u2fAuth = true;
+        cockpit.u2fAuth = true;
+        ssh.u2fAuth = true;
+      };
     };
 
     programs = {
       #   yubikey-touch-detector.enable = true;
-      # ssh.extraConfig = ''
-      #   PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
-      # '';
+      ssh.extraConfig = ''
+        PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
+      '';
     };
 
     services = {
-      # pcscd.enable = true;
-      # yubikey-agent.enable = true;
+      pcscd.enable = true;
+      yubikey-agent.enable = true;
       udev.packages = with pkgs; [
-        # libfido2
-        # yubioath-flutter
-        # yubikey-agent
-        # yubikey-manager
-        # yubikey-manager-qt
+        libfido2
+        yubioath-flutter
+        yubikey-agent
+        yubikey-manager
+        yubikey-manager-qt
         yubikey-personalization
-        # yubikey-personalization-gui
-        # yubico-piv-tool
+        yubikey-personalization-gui
+        yubico-piv-tool
       ];
     };
 
@@ -46,14 +53,13 @@
       libfido2
       # opensc
       # pcsctools
-      # yubico-piv-tool
+      yubico-piv-tool
       yubioath-flutter
-      # yubikey-agent
+      yubikey-agent
       yubikey-manager
       yubikey-manager-qt
       yubikey-personalization
       yubikey-personalization-gui
-      # yubikey-touch-detector
     ];
   };
 }

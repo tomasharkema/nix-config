@@ -83,9 +83,7 @@ in {
       # [sssd]
       # krb5_rcache_dir = /var/cache/krb5
     };
-    # networking.extraHosts = ''
-    #   100.64.198.108 ipa.harkema.intra
-    # '';
+
     security = {
       # pki.certificateFiles = [./ca.crt];
       ipa = {
