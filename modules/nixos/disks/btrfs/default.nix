@@ -221,6 +221,11 @@ in
         snapper-gui
         tpm-luks
         btrfs-assistant
+        btrfs-snap
+        btrfs-progs
+        btrfs-heatmap
+        btrbk
+        timeshift
       ];
 
       # fileSystems."/".neededForBoot = true;
