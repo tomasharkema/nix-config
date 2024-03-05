@@ -113,7 +113,6 @@ with lib;
           if pkgs.stdenv.isx86_64
           then [
             pkgs.custom.ztui
-            pkgs.custom.gpustat
           ]
           else []
         );
