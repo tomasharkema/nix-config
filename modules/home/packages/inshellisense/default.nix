@@ -9,6 +9,7 @@ with lib; let
 in {
   options.programs.inshellisense = {
     enable = mkEnableOption "inshellisense";
+    enableZshIntegration = mkEnableOption "inshellisense zsh integration";
 
     package = mkOption {
       # name = "inshellisense package";
@@ -17,26 +18,22 @@ in {
     };
   };
 
-  config = let
-    scriptRoot = "${cfg.package}/lib/node_modules/@microsoft/inshellisense/shell";
-    rcFile = "${scriptRoot}/shellIntegration-rc.zsh";
-  in
-    mkIf cfg.enable {
-      home.packages = [cfg.package];
+  config = mkIf cfg.enable {
+    home.packages = [cfg.package];
 
-      programs.zsh = {
-        initExtra = ''
-          source "${rcFile}"
-        '';
-        # profileExtra = ''
-        #   . "${cfg.package}/lib/node_modules/@microsoft/inshellisense/shell/shellIntegration-profile.zsh"
-        # '';
-        # loginExtra = ''
-        #   . "${cfg.package}/lib/node_modules/@microsoft/inshellisense/shell/shellIntegration-login.zsh"
-        # '';
-        # envExtra = ''
-        #   . "${cfg.package}/lib/node_modules/@microsoft/inshellisense/shell/shellIntegration-env.zsh"
-        # '';
-      };
+    programs.zsh = mkIf cfg.enableZshIntegration {
+      initExtra = ''
+        . "${cfg.package}/share/shellIntegration-rc.zsh"
+      '';
+      profileExtra = ''
+        . "${cfg.package}/share/shellIntegration-profile.zsh"
+      '';
+      loginExtra = ''
+        . "${cfg.package}/share/shellIntegration-login.zsh"
+      '';
+      envExtra = ''
+        . "${cfg.package}/share/shellIntegration-env.zsh"
+      '';
     };
+  };
 }
