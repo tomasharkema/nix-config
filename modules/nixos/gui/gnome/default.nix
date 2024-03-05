@@ -91,7 +91,6 @@ in {
         gnome.gnome-autoar
         gnome.gnome-clocks
         gnome.gnome-control-center
-        gnome.gnome-disk-utility
         gnome.gnome-keyring
         gnome.gnome-nettool
         gnome.gnome-online-miners

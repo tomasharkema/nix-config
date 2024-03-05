@@ -79,6 +79,10 @@ with lib;
           # dry
           # pkgs.deepin.udisks2-qt5
           # udisks2
+          bashmount
+          usermount
+          udiskie
+
           ncdu
           atop
           bmon
