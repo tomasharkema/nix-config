@@ -11,13 +11,13 @@
       #   debug = true;
       # };
 
-      p11.enable = true;
+      # p11.enable = true;
 
       services = {
-        login.u2fAuth = true;
-        sudo.u2fAuth = true;
-        cockpit.u2fAuth = true;
-        ssh.u2fAuth = true;
+        # login.u2fAuth = true;
+        # sudo.u2fAuth = true;
+        # cockpit.u2fAuth = true;
+        # ssh.u2fAuth = true;
       };
     };
 
@@ -32,13 +32,13 @@
       pcscd.enable = true;
       yubikey-agent.enable = true;
       udev.packages = with pkgs; [
-        libfido2
-        yubioath-flutter
-        yubikey-agent
-        yubikey-manager
-        yubikey-manager-qt
-        yubikey-personalization
-        yubikey-personalization-gui
+        #   libfido2
+        #   # yubioath-flutter
+        #   yubikey-agent
+        #   # yubikey-manager
+        #   # yubikey-manager-qt
+        #   # yubikey-personalization
+        #   # yubikey-personalization-gui
         yubico-piv-tool
       ];
     };
