@@ -76,39 +76,39 @@ with lib;
 
       environment.systemPackages =
         (with pkgs; [
-          nfs-utils
+          # dry
+          # pkgs.deepin.udisks2-qt5
+          # udisks2
           atop
+          bmon
+          compsize
+          ctop
           curl
           devtodo
           fwupd
           fwupd-efi
           hw-probe
+          kmon
+          lazydocker
           lm_sensors
+          nfs-utils
           notify
           openldap
           pciutils
-          # pkgs.deepin.udisks2-qt5
           pv
-          tpm-tools
-          # udisks2
-          wget
           sshportal
           systemctl-tui
           tiptop
-          bmon
-          ctop
-          # dry
-          kmon
-          lazydocker
-          compsize
+          tpm-tools
+          wget
         ])
         ++ (with pkgs.custom; [
-          # flashprog
           menu
-          pvzstd
           netbrowse
-          tailscale-tui
           podman-tui
+          pvzstd
+          ssm
+          tailscale-tui
         ])
         ++ (
           if pkgs.stdenv.isx86_64
