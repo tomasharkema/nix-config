@@ -20,7 +20,6 @@ in {
       firewall = {
         trustedInterfaces = ["veth0" "veth1"];
       };
-      enableIPv6 = false;
     };
 
     virtualisation = {
@@ -44,7 +43,6 @@ in {
             "--device=/dev/net/tun:/dev/net/tun"
             "--cap-add=NET_ADMIN"
             "--cap-add=NET_RAW"
-            "--sysctl=net.ipv6.conf.all.disable_ipv6=1"
           ];
           environment = {
             TS_HOSTNAME = "ipa.harkema.intra";
@@ -59,14 +57,12 @@ in {
           dependsOn = ["free-ipa-tailscale"];
           image = "docker.io/freeipa/freeipa-server:fedora-39";
           autoStart = true;
-          # hostname = "ipa.harkema.intra";
+          hostname = "ipa.harkema.intra";
           extraOptions = [
             "--network=container:free-ipa-tailscale"
-            "--sysctl=net.ipv6.conf.all.disable_ipv6=1"
           ];
           environment = {
-            SECRET = "Secret123!";
-            PASSWORD = "Secret123!";
+            # DEBUG_NO_EXIT = "1";
           };
           cmd = [
             "ipa-server-install"
@@ -75,8 +71,9 @@ in {
             "--hostname=ipa.harkema.intra"
             "--setup-dns"
             "--no-forwarders"
-            # "--no-host-dns"
             "--ip-address=100.76.50.114"
+            "--ds-password=Secret123!"
+            "--admin-password=Secret123!"
           ];
           volumes = [
             "/var/lib/freeipa:/data:Z"
