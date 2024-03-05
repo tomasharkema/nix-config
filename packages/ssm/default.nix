@@ -1,6 +1,4 @@
-# https://github.com/elliot40404/ssm
 {
-  stdenv,
   buildGoModule,
   fetchFromGitHub,
 }:
