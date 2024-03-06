@@ -61,7 +61,7 @@
 
     vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixvim = {
@@ -73,6 +73,7 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     agenix-shell.url = "github:aciceri/agenix-shell";
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
@@ -97,7 +98,7 @@
     # impermanence.url = "github:nix-community/impermanence";
 
     attic = {
-      url = "github:zhaofengli/attic/6eabc3f";
+      url = "github:zhaofengli/attic";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -106,15 +107,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # hydra-check = {
-    #   url = "github:nix-community/hydra-check";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    hydra-check = {
+      url = "github:nix-community/hydra-check";
+      #   inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    # flake-checker = {
-    #   url = "github:DeterminateSystems/flake-checker";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    flake-checker = {
+      url = "github:DeterminateSystems/flake-checker";
+      #   inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     snowfall-lib = {
       url = "github:snowfallorg/lib";
