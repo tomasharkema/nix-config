@@ -39,7 +39,7 @@ in {
 
       proxy-services.services = {
         "/dashboard/" = {
-          proxyPass = "http://localhost:3333/";
+          proxyPass = "http://localhost:3456/";
         };
       };
 
@@ -73,7 +73,7 @@ in {
           networking = {
             firewall = {
               enable = false;
-              allowedTCPPorts = [3333];
+              allowedTCPPorts = [3456];
             };
             # Use systemd-resolved inside the container
             # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
