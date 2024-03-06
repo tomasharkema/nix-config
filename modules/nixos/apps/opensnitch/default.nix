@@ -3,12 +3,15 @@
   config,
   lib,
   ...
-}: {
+}:
+with lib; let
+  cfg = config.apps.opensnitch;
+in {
   options.apps.opensnitch = {
     enable = lib.mkEnableOption "opensnitch";
   };
 
-  config = {
+  config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [opensnitch-ui];
 
     services.opensnitch = {
