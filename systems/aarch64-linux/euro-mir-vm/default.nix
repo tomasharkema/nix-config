@@ -34,7 +34,12 @@ with lib; {
       quiet-boot.enable = false;
       gnome.enable = true;
     };
-    apps.flatpak.enable = true;
+
+    apps = {
+      flatpak.enable = true;
+      opensnitch.enable = true;
+    };
+
     boot.growPartition = true;
 
     traits = {
