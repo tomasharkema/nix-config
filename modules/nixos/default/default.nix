@@ -21,8 +21,13 @@ with lib;
     #     };
     #   };
     # };
+    config = with lib; {
+      system.activationScripts = {
+        symlink-zsh = ''
+          ln -sfn ${pkgs.zsh} /bin/zsh
+        '';
+      };
 
-    config = {
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";
 

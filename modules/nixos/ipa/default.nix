@@ -31,23 +31,22 @@ in {
           default_ccache_name = FILE:/var/cache/krb5/krb5cc_%{uid}
         '';
       };
-      "static/sssd/conf.d/99-sssd.conf" = {
-        text = ''
-          [sssd]
-          krb5_rcache_dir = /var/cache/krb5
-        '';
-        mode = "0600";
-      };
       "static/sssd/conf.d/98-pam.conf" = {
         text = ''
           [domain/harkema.intra]
-          cache_credentials = true
+          cache_credentials = True
           debug_level = 6
 
           [pam]
           pam_passkey_auth = True
           passkey_debug_libfido2 = True
-          pam_cert_auth = True
+          # pam_cert_auth = True
+
+          [sssd]
+          krb5_rcache_dir = /var/cache/krb5
+
+          [prompting/passkey]
+          interactive = "ojoo"
         '';
         # pam_cert_auth = True
         mode = "0600";
@@ -80,8 +79,6 @@ in {
       enable = true;
       kcm = true;
       sshAuthorizedKeysIntegration = true;
-      # [sssd]
-      # krb5_rcache_dir = /var/cache/krb5
     };
 
     security = {
