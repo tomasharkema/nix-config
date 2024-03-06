@@ -16,8 +16,7 @@ pkgs.writeText "ldap.conf" ''
                 debug = 2
             </ldap_server_options>
             class = LDAP
-            ldap_server = ipa.harkema.io
-            #ldap_server = 192.168.0.15
+            ldap_server = ipa.harkema.intra
             <ldap_server_options>
                 timeout = 30
             </ldap_server_options>
