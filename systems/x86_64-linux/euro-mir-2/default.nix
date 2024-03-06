@@ -59,7 +59,7 @@ with lib; {
     };
 
     services = {
-      podman.enable = true;
+      # podman.enable = true;
 
       avahi = {
         enable = true;
@@ -67,14 +67,14 @@ with lib; {
         reflector = mkForce false;
       };
 
-      # fprintd = {
-      #   enable = true;
-      #   package = pkgs.fprintd-tod;
-      #   tod = {
-      #     enable = true;
-      #     driver = pkgs.libfprint-2-tod1-goodix-550a;
-      #   };
-      # };
+      fprintd = {
+        enable = true;
+        package = pkgs.fprintd-tod;
+        tod = {
+          enable = true;
+          driver = pkgs.custom.libfprint-2-tod1-goodix; #pkgs.libfprint-2-tod1-goodix;
+        };
+      };
     };
 
     boot = {
