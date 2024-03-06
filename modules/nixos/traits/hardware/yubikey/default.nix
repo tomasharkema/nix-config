@@ -32,7 +32,7 @@
       pcscd.enable = true;
       yubikey-agent.enable = true;
       udev.packages = with pkgs; [
-        #   libfido2
+        libfido2
         #   # yubioath-flutter
         #   yubikey-agent
         #   # yubikey-manager
