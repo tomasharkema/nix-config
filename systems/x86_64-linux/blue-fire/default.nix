@@ -79,6 +79,12 @@ in {
       httpPort = 3457;
     };
 
+    proxy-services.services = {
+      "/ntopng/" = {
+        proxyPass = "http://localhost:${config.services.ntopng.httpPort}/";
+      };
+    };
+
     environment.systemPackages = with pkgs; [
       # ipmicfg
       # ipmiview
