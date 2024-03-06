@@ -76,7 +76,7 @@ in {
 
     services.ntopng = {
       enable = true;
-      httpPort = 3333;
+      httpPort = 3457;
     };
 
     environment.systemPackages = with pkgs; [

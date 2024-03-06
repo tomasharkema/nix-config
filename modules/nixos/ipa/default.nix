@@ -32,6 +32,7 @@ in {
         '';
       };
       "static/sssd/conf.d/98-pam.conf" = {
+        # pam_cert_auth = True
         text = ''
           [domain/harkema.intra]
           cache_credentials = True
@@ -40,7 +41,6 @@ in {
           [pam]
           pam_passkey_auth = True
           passkey_debug_libfido2 = True
-          # pam_cert_auth = True
 
           [sssd]
           krb5_rcache_dir = /var/cache/krb5
@@ -58,10 +58,9 @@ in {
         enable = true;
         extraConfig = ''
           polkit.addRule(function(action, subject) {
-              if (action.id == "org.freedesktop.policykit.exec" &&
-                  subject.isInGroup("admins")) {
-                  return polkit.Result.YES;
-              }
+            if (action.id == "org.freedesktop.policykit.exec" && subject.isInGroup("admins")) {
+              return polkit.Result.YES;
+            }
           });
         '';
       };
