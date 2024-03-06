@@ -34,6 +34,7 @@ with lib; {
     apps = {
       # android.enable = true;
       steam.enable = true;
+      opensnitch.enable = true;
     };
 
     headless.hypervisor = {
