@@ -121,11 +121,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1707437276,
-        "narHash": "sha256-fNbasPCHrLe+7GjZ0miMamWEX1zqLbsDi62jeAFF0Sc=",
+        "lastModified": 1709751318,
+        "narHash": "sha256-DW/re8hDRZ6Dx8NxjqL2iQbTo53H4BZ8LJMBP7tM01s=",
         "owner": "tomasharkema",
         "repo": "command-center",
-        "rev": "0581eed6b9d9804a3cefab2646befd7c16474a8c",
+        "rev": "f40882a9bb026ce8d3fbf714dd9b3d32fd8ececa",
         "type": "github"
       },
       "original": {
@@ -266,11 +266,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1707004164,
-        "narHash": "sha256-9Hr8onWtvLk5A8vCEkaE9kxA0D7PR62povFokM1oL5Q=",
+        "lastModified": 1709750969,
+        "narHash": "sha256-LDTZ2aRlnXSwYZnUnv6cJ3WQp8LmDYKMtouv2gTQmAA=",
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "0e68853bb27981a4ffd7a7225b59ed84f7180fc7",
+        "rev": "e53e5cc77bb6e1073b136ec98a0a9cfbb582c7a8",
         "type": "github"
       },
       "original": {
@@ -289,11 +289,11 @@
         "pre-commit-hooks": "pre-commit-hooks_2"
       },
       "locked": {
-        "lastModified": 1709711120,
-        "narHash": "sha256-Xjv4mAX1MJOsmzTKzjxY8UXBd4NeL7OK0T06F4afHd0=",
+        "lastModified": 1709750969,
+        "narHash": "sha256-LDTZ2aRlnXSwYZnUnv6cJ3WQp8LmDYKMtouv2gTQmAA=",
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "acc01d3eac2c858887f44df96c8121b70d3b03cc",
+        "rev": "e53e5cc77bb6e1073b136ec98a0a9cfbb582c7a8",
         "type": "github"
       },
       "original": {
