@@ -78,7 +78,10 @@ in {
       debugServer = true;
       listenHost = "0.0.0.0";
       port = 3000;
-      extraConfig = ''
+
+      extraConfig = let
+        ldap = import ./ldap.nix {inherit pkgs config;};
+      in ''
         Include ${config.age.secrets.ght.path}
         <hydra_notify>
           <prometheus>
@@ -95,8 +98,8 @@ in {
         using_frontend_proxy 1
         email_notification = 1
 
+        Include ${ldap}
       '';
-      #Include ${import ./ldap.nix {inherit pkgs config;}}
     };
 
     age.secrets."ldap" = {
