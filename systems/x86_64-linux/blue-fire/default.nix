@@ -18,7 +18,7 @@ in {
     nixos-hardware.nixosModules.supermicro-x10sll-f
   ];
 
-  config = {
+  config = with lib; {
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K";
@@ -40,14 +40,14 @@ in {
     # };
 
     networking = {
-      hostName = lib.mkDefault "blue-fire";
+      hostName = "blue-fire";
       hostId = "529fd7aa";
 
       firewall = {
-        enable = false;
+        enable = mkForce false;
       };
 
-      useDHCP = lib.mkDefault false;
+      useDHCP = false;
 
       interfaces = {
         "eno1" = {
@@ -72,6 +72,11 @@ in {
     headless.hypervisor = {
       enable = true;
       bridgeInterfaces = ["eno1"];
+    };
+
+    services.ntopng = {
+      enable = true;
+      httpPort = 3333;
     };
 
     environment.systemPackages = with pkgs; [
