@@ -20,8 +20,8 @@ with lib; {
         set logfile syslog
 
         set httpd port ${config.apps.monit.port} and
-          use address localhost
-          allow localhost
+          use address 0.0.0.0
+          allow 0.0.0.0
           allow admin:monit
       '';
     };
