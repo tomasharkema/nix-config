@@ -2,6 +2,7 @@
   lib,
   pkgs,
   inputs,
+  config,
   ...
 }: let
   boot-into-bios = pkgs.writeShellScriptBin "boot-into-bios" ''
@@ -77,11 +78,17 @@ in {
     services.ntopng = {
       enable = true;
       httpPort = 3457;
+      extraConfig = ''
+        --http-prefix="/ntopng"
+      '';
     };
 
     proxy-services.services = {
-      "/ntopng/" = {
-        proxyPass = "http://localhost:${config.services.ntopng.httpPort}/";
+      "/ntopng" = {
+        proxyPass = "http://localhost:${toString config.services.ntopng.httpPort}/";
+        extraConfig = ''
+          rewrite /ntopng(.*) $1 break;
+        '';
       };
     };
 
