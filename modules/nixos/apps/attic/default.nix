@@ -30,6 +30,7 @@ in {
 
         unitConfig = {
           Type = "oneshot";
+          RemainAfterExit = true;
         };
       };
 

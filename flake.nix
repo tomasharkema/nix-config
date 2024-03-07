@@ -347,63 +347,63 @@
   nixConfig = {
     use-cgroups = true;
     extra-experimental-features = "nix-command flakes cgroups";
-    distributedBuilds = true;
-    builders-use-substitutes = true;
+    # distributedBuilds = true;
+    # builders-use-substitutes = true;
     trusted-users = ["root" "tomas"];
 
-    substituters = [
-      "https://tomasharkema.cachix.org/"
-      "https://nix-cache.harke.ma/tomas/"
-      "https://nix-community.cachix.org/"
-      "https://cache.nixos.org/"
-      "https://devenv.cachix.org"
-    ];
+    # substituters = [
+    #   "https://tomasharkema.cachix.org/"
+    #   "https://nix-cache.harke.ma/tomas/"
+    #   "https://nix-community.cachix.org/"
+    #   "https://cache.nixos.org/"
+    #   "https://devenv.cachix.org"
+    # ];
 
-    trusted-public-keys = [
-      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
-      "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-    ];
+    # trusted-public-keys = [
+    #   "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
+    #   "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
+    #   "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    #   "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    #   "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+    # ];
 
-    extra-trusted-public-keys = [
-      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
-      "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-    ];
-    extra-substituters = [
-      "https://tomasharkema.cachix.org/"
-      "https://nix-cache.harke.ma/tomas/"
-      "https://nix-community.cachix.org/"
-      "https://cache.nixos.org/"
-      "https://devenv.cachix.org"
-    ];
+    # extra-trusted-public-keys = [
+    #   "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
+    #   "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
+    #   "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    #   "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    #   "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+    # ];
+    # extra-substituters = [
+    #   "https://tomasharkema.cachix.org/"
+    #   "https://nix-cache.harke.ma/tomas/"
+    #   "https://nix-community.cachix.org/"
+    #   "https://cache.nixos.org/"
+    #   "https://devenv.cachix.org"
+    # ];
 
-    binaryCaches = ["https://cache.nixos.org"];
+    # binaryCaches = ["https://cache.nixos.org"];
 
-    allowed-uris = [
-      "https://github.com/tomasharkema.keys"
-      "https://api.github.com"
-      "https://github.com/zhaofengli/nix-base32.git"
-      "https://github.com/tomasharkema.keys"
-      "https://api.flakehub.com/f/pinned"
-      "https://github.com/NixOS/"
-      "https://github.com/nixos/"
-      "https://github.com/hercules-ci/"
-      "https://github.com/numtide/"
-      "https://github.com/cachix/"
-      "https://github.com/nix-community/"
-      "https://github.com/tomasharkema/"
-      "git://github.com/tomasharkema"
-      "https://git.sr.ht/~rycee/nmd/archive"
-      "https://git.sr.ht/~youkai/nscan"
-    ];
+    # allowed-uris = [
+    #   "https://github.com/tomasharkema.keys"
+    #   "https://api.github.com"
+    #   "https://github.com/zhaofengli/nix-base32.git"
+    #   "https://github.com/tomasharkema.keys"
+    #   "https://api.flakehub.com/f/pinned"
+    #   "https://github.com/NixOS/"
+    #   "https://github.com/nixos/"
+    #   "https://github.com/hercules-ci/"
+    #   "https://github.com/numtide/"
+    #   "https://github.com/cachix/"
+    #   "https://github.com/nix-community/"
+    #   "https://github.com/tomasharkema/"
+    #   "git://github.com/tomasharkema"
+    #   "https://git.sr.ht/~rycee/nmd/archive"
+    #   "https://git.sr.ht/~youkai/nscan"
+    # ];
 
-    allow-import-from-derivation = true;
-    keep-outputs = true;
-    keep-derivations = true;
+    # allow-import-from-derivation = true;
+    # keep-outputs = true;
+    # keep-derivations = true;
   };
 }
