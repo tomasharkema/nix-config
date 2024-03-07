@@ -88,19 +88,12 @@ in {
 
     systemd = {
       tmpfiles.rules = [
-        "d '${cfg.cert.dir}' 660 root ssl-cert -"
-        "Z '${cfg.cert.dir}' 660 root ssl-cert"
+        "d '${cfg.cert.dir}' 0770 root ssl-cert -"
+        "Z '${cfg.cert.dir}' 0770 root ssl-cert"
+        "f '${keyPath}' 0770 root ssl-cert - -"
+        "f '${certPath}' 0770 root ssl-cert - -"
       ];
 
-      # services.tailscale-cert-location = {
-      #   description = "tailscale-cert";
-      #   serviceConfig = {
-      #     Type = "oneshot";
-      #     ExecStart = pkgs.writeShellScript "tailscale-cert-location-script" ''
-      #       echo "got file!"
-      #     '';
-      #   };
-      # };
       paths.tailscale-cert-location = {
         description = "tailscale-cert";
         wantedBy = []; # ["multi-user.target"];
@@ -110,14 +103,15 @@ in {
 
       services.tailscale-cert = {
         enable = true;
-        description = "tailscale-cert";
+        description = "tailscale-cert-refresh";
+
         serviceConfig = {
           Type = "oneshot";
-          ExecStart = pkgs.writeShellScript "tailscale-cert-script" ''
-            ${lib.getExe pkgs.tailscale} cert --cert-file "${certPath}" --key-file "${keyPath}" ${cfg.vhost}
-          '';
+          RemainAfterExit = true;
         };
-
+        script = ''
+          ${lib.getExe pkgs.tailscale} cert --cert-file "${certPath}" --key-file "${keyPath}" ${cfg.vhost}
+        '';
         # mkdir -p "${cfg.dir}"
         # chown root:ssl-cert -R "${cfg.dir}"
         # chmod 660 -R "${cfg.dir}"
