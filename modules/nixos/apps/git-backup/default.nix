@@ -78,23 +78,21 @@ in {
     # ];
 
     systemd = {
-      paths."healthcheck-key" = {
-        pathConfig = {
-          PathExists = key-path;
+      services.healthcheck-key = {
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = pkgs.writeShellScript "healthcheck-key-script" ''
+            echo "got file!"
+          '';
         };
-        wantedBy = ["multi-user.target"]; # dconf-sync.service"];
+      };
+      paths.healthcheck-key = {
+        wantedBy = []; # ["multi-user.target"];
+        # This file must be copied last
+        pathConfig.PathExists = ["${key-path}"];
       };
 
       services."dconf-sync" = {
-        script = ''
-
-          export HC_PING_KEY="$(cat ${key-path})"
-          HNAME="$(${lib.getExe pkgs.hostname})"
-          SNAME="dconf-$HNAME"
-
-          ${lib.getExe pkgs.runitor} -slug "$SNAME" -every 1h -- ${lib.getExe sync-script}
-        '';
-
         # ${lib.getExe pkgs.curl} "$PINGURL/start?create=1" -m 10 || true
         # result=$(${lib.getExe sync-script} 2>&1)
         # echo "$result"
@@ -103,6 +101,13 @@ in {
         serviceConfig = {
           Type = "oneshot";
           User = "tomas";
+          ExecStart = pkgs.writeShellScript "dconf-sync-scrupt" ''
+            export HC_PING_KEY="$(cat ${key-path})"
+            HNAME="$(${lib.getExe pkgs.hostname})"
+            SNAME="dconf-$HNAME"
+
+            ${lib.getExe pkgs.runitor} -slug "$SNAME" -every 1h -- ${lib.getExe sync-script}
+          '';
         };
         after = ["healthcheck-key.path"];
         # wants = ["healthcheck-key.path"];
