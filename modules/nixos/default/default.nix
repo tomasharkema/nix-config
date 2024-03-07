@@ -147,8 +147,6 @@ with lib;
         };
       };
 
-      programs.ssh.forwardX11 = true;
-
       services = {
         fstrim.enable = true;
 
@@ -280,7 +278,10 @@ with lib;
         };
 
         _1password.enable = true;
-        ssh.startAgent = true;
+        ssh = {
+          startAgent = true;
+          forwardX11 = true;
+        };
         mosh.enable = true;
         nix-ld.enable = true;
         zsh.enable = true;
