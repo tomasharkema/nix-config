@@ -104,14 +104,16 @@ in {
         serviceConfig = {
           Type = "oneshot";
           User = "tomas";
-          ExecStart = pkgs.writeShellScript "dconf-sync-scrupt" ''
-            export HC_PING_KEY="$(cat ${key-path})"
-            HNAME="$(${lib.getExe pkgs.hostname})"
-            SNAME="dconf-$HNAME"
 
-            ${lib.getExe pkgs.runitor} -slug "$SNAME" -every 1h -- ${lib.getExe sync-script}
-          '';
+          RemainAfterExit = true;
         };
+        script = ''
+          export HC_PING_KEY="$(cat ${key-path})"
+          HNAME="$(${lib.getExe pkgs.hostname})"
+          SNAME="dconf-$HNAME"
+
+          ${lib.getExe pkgs.runitor} -slug "$SNAME" -every 1h -- ${lib.getExe sync-script}
+        '';
         after = ["healthcheck-key.path"];
         wants = ["healthcheck-key.path"];
       };
