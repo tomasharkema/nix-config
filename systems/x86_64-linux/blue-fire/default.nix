@@ -31,6 +31,11 @@ in {
         enable = true;
         hydra.enable = true;
       };
+      hardware = {
+        # tpm.enable = true;
+        secure-boot.enable = true;
+        remote-unlock.enable = true;
+      };
     };
 
     headless.enable = true;
@@ -213,7 +218,7 @@ in {
       binfmt.emulatedSystems = ["aarch64-linux"];
 
       loader = {
-        systemd-boot.enable = true;
+        # systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
         # systemd-boot.configurationLimit = 10;
       };
