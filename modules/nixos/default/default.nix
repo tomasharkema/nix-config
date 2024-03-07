@@ -178,6 +178,7 @@ with lib;
             PasswordAuthentication = false;
             KbdInteractiveAuthentication = true;
             PermitRootLogin = "yes";
+            X11Forwarding = true;
           };
         };
 

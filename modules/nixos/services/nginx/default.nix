@@ -7,6 +7,9 @@
 with lib;
 with lib.custom; let
   cfg = config.proxy-services;
+
+  certPath = "${cfg.cert.dir}/${cfg.cert.crt}";
+  keyPath = "${cfg.cert.dir}/${cfg.cert.key}";
 in {
   options.proxy-services = {
     enable = mkEnableOption "enable nginx";
@@ -23,22 +26,24 @@ in {
       description = "services";
     };
 
-    dir = mkOption {
-      type = types.path;
-      default = "/var/lib/tailscale-cert";
-      description = "vhost";
-    };
+    cert = {
+      dir = mkOption {
+        type = types.path;
+        default = "/var/lib/tailscale-cert";
+        description = "vhost";
+      };
 
-    key = mkOption {
-      type = types.str;
-      default = "tailscale.key";
-      description = "vhost";
-    };
+      key = mkOption {
+        type = types.str;
+        default = "tailscale.key";
+        description = "vhost";
+      };
 
-    crt = mkOption {
-      type = types.str;
-      default = "tailscale.crt";
-      description = "vhost";
+      crt = mkOption {
+        type = types.str;
+        default = "tailscale.crt";
+        description = "vhost";
+      };
     };
   };
 
@@ -56,8 +61,8 @@ in {
       virtualHosts."${cfg.vhost}" = {
         forceSSL = true;
 
-        sslCertificate = "${cfg.dir}/${cfg.crt}";
-        sslCertificateKey = "${cfg.dir}/${cfg.key}";
+        sslCertificate = "${certPath}";
+        sslCertificateKey = "${keyPath}";
 
         locations =
           {
@@ -83,8 +88,8 @@ in {
 
     systemd = {
       tmpfiles.rules = [
-        "d '${cfg.dir}' 660 root ssl-cert -"
-        "Z '${cfg.dir}' 660 root ssl-cert"
+        "d '${cfg.cert.dir}' 660 root ssl-cert -"
+        "Z '${cfg.cert.dir}' 660 root ssl-cert"
       ];
 
       services.tailscale-cert-location = {
@@ -98,7 +103,7 @@ in {
       paths.tailscale-cert-location = {
         wantedBy = []; # ["multi-user.target"];
         # This file must be copied last
-        pathConfig.PathExists = ["${cfg.dir + "/" + cfg.key}" "${cfg.dir + "/" + cfg.crt}"];
+        pathConfig.PathExists = [certPath keyPath];
       };
 
       services.tailscale-cert = {
@@ -107,7 +112,7 @@ in {
         serviceConfig = {
           Type = "oneshot";
           ExecStart = pkgs.writeShellScript "tailscale-cert-script" ''
-            ${lib.getExe pkgs.tailscale} cert --cert-file "${cfg.dir + "/" + cfg.crt}" --key-file "${cfg.dir + "/" + cfg.key}" ${cfg.vhost}
+            ${lib.getExe pkgs.tailscale} cert --cert-file "${certPath}" --key-file "${keyPath}" ${cfg.vhost}
           '';
         };
 
@@ -115,9 +120,14 @@ in {
         # chown root:ssl-cert -R "${cfg.dir}"
         # chmod 660 -R "${cfg.dir}"
 
-        wantedBy = ["multi-user.target" "network.target"];
-        after = ["tailscaled.service" "network.target" "syslog.target"];
+        # wantedBy = ["multi-user.target" "network.target"];
+        after = ["tailscaled.service" "network.target"];
         wants = ["tailscaled.service"];
+      };
+
+      services.nginx = {
+        requires = ["tailscale-cert-location.path"];
+        wants = ["tailscale-cert-location.path"];
       };
     };
     # security.acme = {
