@@ -16,10 +16,29 @@ in {
       default = "${config.networking.hostName}.ling-lizard.ts.net";
       description = "vhost";
     };
+
     services = mkOption {
       type = types.attrs;
       default = {};
       description = "services";
+    };
+
+    dir = mkOption {
+      type = types.path;
+      default = "/var/lib/tailscale-cert";
+      description = "vhost";
+    };
+
+    key = mkOption {
+      type = types.str;
+      default = "tailscale.key";
+      description = "vhost";
+    };
+
+    crt = mkOption {
+      type = types.str;
+      default = "tailscale.crt";
+      description = "vhost";
     };
   };
 
@@ -37,8 +56,8 @@ in {
       virtualHosts."${cfg.vhost}" = {
         forceSSL = true;
 
-        sslCertificate = "/etc/ssl/private/${cfg.vhost}.crt";
-        sslCertificateKey = "/etc/ssl/private/${cfg.vhost}.key";
+        sslCertificate = "${cfg.dir}/${cfg.crt}";
+        sslCertificateKey = "${cfg.dir}/${cfg.key}";
 
         locations =
           {
@@ -56,25 +75,51 @@ in {
       };
     };
 
-    systemd.services.tailscale-cert = {
-      enable = true;
-      description = "tailscale-cert";
-      serviceConfig = {
-        Type = "oneshot";
+    users.groups = {
+      "ssl-cert" = {
+        members = ["root" "tomas" "nginx" "tailscale"];
       };
-
-      script = ''
-        mkdir -p /etc/ssl/private/ || true
-        cd /etc/ssl/private/
-        ${lib.getExe pkgs.tailscale} cert ${cfg.vhost}
-        chown nginx:nginx -R /etc/ssl/private/
-      '';
-
-      wantedBy = ["multi-user.target" "network.target"];
-      after = ["tailscaled.service" "network.target" "syslog.target"];
-      wants = ["tailscaled.service"];
     };
 
+    systemd = {
+      tmpfiles.rules = [
+        "d '${cfg.dir}' 660 root ssl-cert -"
+        "Z '${cfg.dir}' 660 root ssl-cert"
+      ];
+
+      services.tailscale-cert-location = {
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = pkgs.writeShellScript "tailscale-cert-location-script" ''
+            echo "got file!"
+          '';
+        };
+      };
+      paths.tailscale-cert-location = {
+        wantedBy = []; # ["multi-user.target"];
+        # This file must be copied last
+        pathConfig.PathExists = ["${cfg.dir + "/" + cfg.key}" "${cfg.dir + "/" + cfg.crt}"];
+      };
+
+      services.tailscale-cert = {
+        enable = true;
+        description = "tailscale-cert";
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = pkgs.writeShellScript "tailscale-cert-script" ''
+            ${lib.getExe pkgs.tailscale} cert --cert-file "${cfg.dir + "/" + cfg.crt}" --key-file "${cfg.dir + "/" + cfg.key}" ${cfg.vhost}
+          '';
+        };
+
+        # mkdir -p "${cfg.dir}"
+        # chown root:ssl-cert -R "${cfg.dir}"
+        # chmod 660 -R "${cfg.dir}"
+
+        wantedBy = ["multi-user.target" "network.target"];
+        after = ["tailscaled.service" "network.target" "syslog.target"];
+        wants = ["tailscaled.service"];
+      };
+    };
     # security.acme = {
     #   acceptTerms = true;
     #   defaults.email = "tomas@harkema.io";
