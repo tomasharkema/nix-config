@@ -78,21 +78,24 @@ in {
     # ];
 
     systemd = {
-      services.healthcheck-key = {
-        serviceConfig = {
-          Type = "oneshot";
-          ExecStart = pkgs.writeShellScript "healthcheck-key-script" ''
-            echo "got file!"
-          '';
-        };
-      };
+      # services.healthcheck-key = {
+      #   description = "healthcheck";
+      #   serviceConfig = {
+      #     Type = "oneshot";
+      #     ExecStart = pkgs.writeShellScript "healthcheck-key-script" ''
+      #       echo "got file!"
+      #     '';
+      #   };
+      # };
       paths.healthcheck-key = {
+        description = "healthcheck";
         wantedBy = []; # ["multi-user.target"];
         # This file must be copied last
         pathConfig.PathExists = ["${key-path}"];
       };
 
       services."dconf-sync" = {
+        description = "healthcheck";
         # ${lib.getExe pkgs.curl} "$PINGURL/start?create=1" -m 10 || true
         # result=$(${lib.getExe sync-script} 2>&1)
         # echo "$result"
@@ -110,16 +113,17 @@ in {
           '';
         };
         after = ["healthcheck-key.path"];
-        # wants = ["healthcheck-key.path"];
+        wants = ["healthcheck-key.path"];
       };
 
       timers."dconf-sync" = {
+        description = "healthcheck";
         wantedBy = ["timers.target"];
         timerConfig = {
           OnUnitActiveSec = "5m";
           Unit = "dconf-sync.service";
 
-          OnCalendar = "hourly";
+          OnCalendar = "*-*-* *:00,10,20,30,40,50:00";
           Persistent = true;
         };
       };
