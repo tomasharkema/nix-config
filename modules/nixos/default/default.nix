@@ -147,6 +147,8 @@ with lib;
         };
       };
 
+      programs.ssh.forwardX11 = true;
+
       services = {
         fstrim.enable = true;
 
