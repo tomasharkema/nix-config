@@ -84,14 +84,14 @@ in {
       rslsync = {};
     };
     users.users.agent = {
-      isNormalUser = true;
+      isSystemUser = true;
       group = "agent";
       extraGroups = ["rslsync"];
       openssh.authorizedKeys.keys = keys ++ ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMnvSLFgBw3An9URn/X+UZ7Z0kkzUXDtL3dO9sr7iT/u"];
     };
 
     users.users.builder = {
-      isNormalUser = true;
+      isSystemUser = true;
       group = "agent";
       # extraGroups = ["rslsync"];
       openssh.authorizedKeys.keys =
