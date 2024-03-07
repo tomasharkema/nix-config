@@ -103,7 +103,7 @@ in
           deploy-rs.packages.${system}.default
           attic.packages.${system}.default
           agenix.packages.${system}.default
-          # hydra-check.packages.${system}.default
+          hydra-check.packages.${system}.default
           nil.packages.${system}.default
           nix-output-monitor
           dconf2nix
