@@ -92,15 +92,17 @@ in {
         "Z '${cfg.cert.dir}' 660 root ssl-cert"
       ];
 
-      services.tailscale-cert-location = {
-        serviceConfig = {
-          Type = "oneshot";
-          ExecStart = pkgs.writeShellScript "tailscale-cert-location-script" ''
-            echo "got file!"
-          '';
-        };
-      };
+      # services.tailscale-cert-location = {
+      #   description = "tailscale-cert";
+      #   serviceConfig = {
+      #     Type = "oneshot";
+      #     ExecStart = pkgs.writeShellScript "tailscale-cert-location-script" ''
+      #       echo "got file!"
+      #     '';
+      #   };
+      # };
       paths.tailscale-cert-location = {
+        description = "tailscale-cert";
         wantedBy = []; # ["multi-user.target"];
         # This file must be copied last
         pathConfig.PathExists = [certPath keyPath];
