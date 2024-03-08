@@ -30,11 +30,11 @@
 
     services = {
       pcscd.enable = true;
-      # yubikey-agent.enable = true;
+      yubikey-agent.enable = true;
       udev.packages = with pkgs; [
         libfido2
         #   # yubioath-flutter
-        #   yubikey-agent
+        # yubikey-agent
         #   # yubikey-manager
         #   # yubikey-manager-qt
         #   # yubikey-personalization
@@ -46,6 +46,10 @@
     boot.initrd = {
       kernelModules = ["vfat" "nls_cp437" "nls_iso8859-1" "usbhid"];
       # luks.yubikeySupport = true;
+    };
+
+    users.groups = {
+      "plugdev" = {};
     };
 
     environment.systemPackages = with pkgs; [
