@@ -156,6 +156,7 @@ with lib;
 
         earlyoom = {
           enable = true;
+          enableNotifications = true;
         };
 
         vscode-server.enable = true;
