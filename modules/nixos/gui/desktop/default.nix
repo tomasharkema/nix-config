@@ -27,6 +27,8 @@ in {
         libinput.enable = true;
       };
 
+      x2goserver = mkIf cfg.rdp.enable {enable = true;};
+
       xrdp = mkIf cfg.rdp.enable {
         enable = true;
         openFirewall = true;
