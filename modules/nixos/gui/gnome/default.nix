@@ -14,7 +14,7 @@ in {
 
   config = mkIf cfg.enable {
     services = {
-      xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
+      xrdp.defaultWindowManager = "${pkgs.gnome.gnome-remote-desktop}/bin/gnome-remote-desktop";
 
       xserver = {
         desktopManager.gnome.enable = true;
