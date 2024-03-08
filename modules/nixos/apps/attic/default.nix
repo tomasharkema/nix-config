@@ -15,7 +15,7 @@ in {
   };
 
   config = let
-    attic-login = writeShellScriptBin "attic-script" ''
+    attic-login = writeShellScript "attic-script" ''
       ${attic}/bin/attic login tomas https://nix-cache.harke.ma $(cat ${config.age.secrets.attic-key.path})
       ${attic}/bin/attic use tomas:tomas
     '';
@@ -23,12 +23,12 @@ in {
     mkIf cfg.enable {
       systemd.user.services.attic-login = {
         description = "attic-login";
-        script = "${lib.getExe attic-login}";
+        script = ''${attic-login}'';
 
         wants = ["multi-user.target" "network.target"];
         after = ["multi-user.target" "network.target"];
 
-        unitConfig = {
+        serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = true;
         };
@@ -40,7 +40,12 @@ in {
         cachixTokenFile = config.age.secrets.cachix-token.path;
       };
 
-      systemd.services.cachix-watch-store-agent.serviceConfig.MemoryMax = "2G";
+      systemd.services.cachix-watch-store-agent.serviceConfig = {
+        Nice = 15;
+        MemoryLimit = "2G";
+        MemoryHigh = "1G";
+        MemoryMax = "2G";
+      };
 
       environment.systemPackages = with pkgs; [attic];
 
@@ -52,7 +57,6 @@ in {
         enable = true;
         description = "attic-watch";
         unitConfig = {
-          Type = "simple";
           StartLimitIntervalSec = 500;
           StartLimitBurst = 5;
         };
@@ -62,8 +66,11 @@ in {
           MemoryLimit = "2G";
           MemoryHigh = "1G";
           MemoryMax = "2G";
+          Nice = 15;
         };
-        preStart = "${lib.getExe attic-login}";
+        preStart = ''
+          ${attic-login}
+        '';
         script = "${attic}/bin/attic watch-store tomas:tomas";
         wants = ["multi-user.target" "network.target"];
         after = ["multi-user.target" "network.target"];
