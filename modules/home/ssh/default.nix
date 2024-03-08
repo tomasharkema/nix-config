@@ -12,9 +12,14 @@ in {
 
       matchBlocks = {
         "*" = {
-          extraOptions = lib.mkIf stdenvNoCC.isDarwin {
-            "IdentityAgent" = "/Users/tomas/.1password/agent.sock";
-          };
+          extraOptions =
+            if stdenvNoCC.isDarwin
+            then {
+              "IdentityAgent" = "/Users/tomas/.1password/agent.sock";
+            }
+            else {
+              "IdentityAgent" = "/home/tomas/.1password/agent.sock";
+            };
         };
         wodan-wsl = {
           # hostname = "192.168.1.46";
