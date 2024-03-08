@@ -45,7 +45,7 @@ with lib; let
           "home" = {
             mountOptions = [
               "noatime"
-              "compress=zstd:1"
+              "compress=zstd"
               "discard=async"
             ];
             mountpoint = "/home";
@@ -53,7 +53,6 @@ with lib; let
           "resilio-sync" = mkIf (cfg.newSubvolumes && cfg.media == null) {
             mountOptions = [
               "noatime"
-              "compress=zstd:1"
               "discard=async"
             ];
             mountpoint = "/opt/resilio-sync";
@@ -61,7 +60,6 @@ with lib; let
           "resilio-sync-lib" = mkIf cfg.newSubvolumes {
             mountOptions = [
               "noatime"
-              "compress=zstd:1"
               "discard=async"
             ];
             mountpoint = "/var/lib/resilio-sync";
@@ -69,7 +67,7 @@ with lib; let
           "nix" = mkIf cfg.newSubvolumes {
             mountOptions = [
               "noatime"
-              "compress=zstd:1"
+              "compress=zstd"
               "discard=async"
             ];
             mountpoint = "/nix";
@@ -77,7 +75,7 @@ with lib; let
           "containers" = mkIf cfg.newSubvolumes {
             mountOptions = [
               "noatime"
-              "compress=zstd:1"
+              "compress=zstd"
               "discard=async"
             ];
             mountpoint = "/var/lib/containers";
@@ -103,7 +101,7 @@ with lib; let
           "steam" = mkIf cfg.newSubvolumes {
             mountOptions = [
               "noatime"
-              "compress=zstd:1"
+              "compress=zstd"
               "discard=async"
             ];
             mountpoint = "/opt/steam";
@@ -111,7 +109,7 @@ with lib; let
           "flatpak" = mkIf cfg.newSubvolumes {
             mountOptions = [
               "noatime"
-              "compress=zstd:1"
+              "compress=zstd"
               "discard=async"
             ];
             mountpoint = "/var/lib/flatpak";
@@ -281,7 +279,7 @@ in
                       "media" = {
                         mountOptions = [
                           "noatime"
-                          "compress=zstd:1"
+                          "compress=zstd"
                           "discard=async"
                         ];
                         mountpoint = "/opt/media";
@@ -289,7 +287,7 @@ in
                       # "resilio-sync" = {
                       #   mountOptions = [
                       #     "noatime"
-                      #     "compress=zstd:1"
+                      #     "compress=zstd"
                       #     "discard=async"
                       #   ];
 
