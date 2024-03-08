@@ -20,23 +20,15 @@ in {
     # age.secrets."resilio-shared-public" = {file = ../secrets/resilio-shared-public.age;};
     environment.systemPackages = with pkgs; [acl];
 
-    system.activationScripts = {
-      resilioLogging = ''
-        echo -e "80000000\n0" > /var/lib/resilio-sync/debug.txt
-      '';
-      resilioFolder = ''
-        if [ ! -d "${config.resilio.root}" ]; then
-
-          mkdir -p "${config.resilio.root}" || true
-
-          chown -R rslsync:rslsync "${config.resilio.root}/."
-          chmod -R g+s "${config.resilio.root}/."
-          setfacl -d -m group:rslsync:rwx "${config.resilio.root}/."
-          setfacl -m group:rslsync:rwx "${config.resilio.root}/."
-        fi
-
-        ln -sfn "${config.resilio.root}/" /home/tomas/resilio-sync || true
-      '';
+    systemd = {
+      tmpfiles.rules = [
+        "d '${config.resilio.root}' 0777 rslsync rslsync -"
+        "Z '${config.resilio.root}' 0777 rslsync rslsync"
+        # "d '/var/lib/resilio-sync' 0777 rslsync rslsync -"
+        # "Z '/var/lib/resilio-sync' 0777 rslsync rslsync"
+        "f '/var/lib/resilio-sync/debug.txt' 0600 rslsync rslsync - \"80000000\n0\""
+        "L+ '${config.resilio.root}' - - - - '/home/tomas/resilio-sync'"
+      ];
     };
 
     services.resilio = {
