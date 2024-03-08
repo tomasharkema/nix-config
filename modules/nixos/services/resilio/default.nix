@@ -24,12 +24,13 @@ in {
       tmpfiles.rules = [
         "d '${config.resilio.root}' 0777 rslsync rslsync -"
         "Z '${config.resilio.root}' 0777 rslsync rslsync"
-        # "d '/var/lib/resilio-sync' 0777 rslsync rslsync -"
-        # "Z '/var/lib/resilio-sync' 0777 rslsync rslsync"
-        "f '/var/lib/resilio-sync/debug.txt' 0600 rslsync rslsync - \"80000000\n0\""
+        "d '/var/lib/resilio-sync' 0777 rslsync rslsync -"
+        "f+ '/var/lib/resilio-sync/debug.txt' 0600 rslsync rslsync - 80000000\\n0"
         "L+ '${config.resilio.root}' - - - - '/home/tomas/resilio-sync'"
       ];
     };
+
+    systemd.services.resilio.serviceConfig.Nice = 19;
 
     services.resilio = {
       enable = true;
