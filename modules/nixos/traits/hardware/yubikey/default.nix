@@ -30,7 +30,7 @@
 
     services = {
       pcscd.enable = true;
-      yubikey-agent.enable = true;
+      # yubikey-agent.enable = true;
       udev.packages = with pkgs; [
         libfido2
         #   # yubioath-flutter
@@ -39,7 +39,7 @@
         #   # yubikey-manager-qt
         #   # yubikey-personalization
         #   # yubikey-personalization-gui
-        yubico-piv-tool
+        # yubico-piv-tool
       ];
     };
 
