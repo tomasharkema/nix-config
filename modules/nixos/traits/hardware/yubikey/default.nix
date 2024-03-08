@@ -23,9 +23,9 @@
 
     programs = {
       #   yubikey-touch-detector.enable = true;
-      ssh.extraConfig = ''
-        PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
-      '';
+      # ssh.extraConfig = ''
+      # PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
+      # '';
     };
 
     services = {
