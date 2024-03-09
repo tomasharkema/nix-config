@@ -139,7 +139,6 @@ in
           cachix-deploy
           cachix-reploy-pin
           nix-prefetch-scripts
-          nix-doc
         ];
       }
     ];

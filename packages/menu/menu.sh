@@ -4,6 +4,7 @@ RUN_UPDATER="Run Updater..."
 ATTACH_SESSION="Attach to session..."
 OPEN_BLUE_FIRE="SSH blue-fire..."
 OPEN_SSH="SSH..."
+SEARCH_DOCS="Search docs..."
 CLEAR_CACHE="Clear cache..."
 OPEN_SHELL="Go to shell!"
 CLEAN_RAM="Clean ram..."
@@ -30,7 +31,12 @@ cleanram() {
   sudo echo 3 | sudo tee /proc/sys/vm/drop_caches
 }
 
-CHOICE=$(gum choose "$RUN_UPDATER" "$ATTACH_SESSION" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$CLEAR_CACHE" "$OPEN_SHELL" "$CLEAN_RAM" "$EXIT")
+search_docs() {
+  INPUT="$(gum input --placeholder "Search in docs...")"
+  exec manix "$INPUT"
+}
+
+CHOICE=$(gum choose "$RUN_UPDATER" "$ATTACH_SESSION" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$SEARCH_DOCS" "$CLEAR_CACHE" "$OPEN_SHELL" "$CLEAN_RAM" "$EXIT")
 
 case $CHOICE in
 "$RUN_UPDATER")
@@ -47,6 +53,9 @@ case $CHOICE in
 
 "$OPEN_SHELL")
   exec zsh
+  ;;
+"$SEARCH_DOCS")
+  search_docs
   ;;
 
 "$CLEAR_CACHE")
