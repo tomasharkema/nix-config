@@ -15,6 +15,7 @@ update() {
 }
 
 clearcache() {
+  nix-du
   sudo nix-collect-garbage --delete-older-than '7d'
   nix-collect-garbage --delete-older-than '7d'
   echo "-- nix store optimise --"
@@ -33,7 +34,8 @@ cleanram() {
 
 search_docs() {
   INPUT="$(gum input --placeholder "Search in docs...")"
-  exec manix "$INPUT"
+  manix "$INPUT"
+  nix-search "$INPUT"
 }
 
 CHOICE=$(gum choose "$RUN_UPDATER" "$ATTACH_SESSION" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$SEARCH_DOCS" "$CLEAR_CACHE" "$OPEN_SHELL" "$CLEAN_RAM" "$EXIT")

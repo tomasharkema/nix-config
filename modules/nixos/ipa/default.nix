@@ -94,7 +94,7 @@ in {
         # };
         certificate = "${./ca.crt}";
         dyndns.enable = true;
-        # ifpAllowedUids = ["root" "tomas"];
+        ifpAllowedUids = ["root" "tomas"];
       };
     };
   };
