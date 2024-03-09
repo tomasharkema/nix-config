@@ -101,7 +101,7 @@ in {
 
         gtk-engine-murrine
         # plymouth
-        # rtfm
+        rtfm
 
         effitask
         clutter
