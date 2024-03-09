@@ -54,6 +54,8 @@ with lib;
         enable = true;
       };
 
+      services.throttled.enable = pkgs.stdenv.isx86_64;
+
       boot = {
         hardwareScan = true;
         kernel.sysctl."net.ipv4.ip_forward" = 1;
@@ -94,6 +96,8 @@ with lib;
           ctop
           curl
           devtodo
+          devdash
+          wtf
           fwupd
           fwupd-efi
           hw-probe
@@ -115,6 +119,7 @@ with lib;
           viddy
           wget
           zellij
+          nix-top
         ])
         ++ (with pkgs.custom; [
           menu
@@ -160,6 +165,8 @@ with lib;
         };
 
         vscode-server.enable = true;
+
+        # seatd.enable = true;
 
         udisks2 = {
           enable = true;
@@ -265,6 +272,7 @@ with lib;
       };
 
       programs = {
+        flashrom.enable = true;
         git = {
           enable = true;
           lfs.enable = true;
