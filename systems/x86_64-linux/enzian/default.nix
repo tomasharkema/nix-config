@@ -51,7 +51,7 @@
       hostName = "enzian";
       hostId = "529fd7fa";
       firewall = {
-        enable = false; # true
+        enable = true;
       };
       useDHCP = lib.mkDefault false;
       interfaces."enp4s0" = {
