@@ -87,15 +87,15 @@ in {
       #     '';
       #   };
       # };
-      paths.healthcheck-key = {
-        description = "healthcheck";
-        wantedBy = []; # ["multi-user.target"];
-        # This file must be copied last
-        pathConfig.PathExists = ["${key-path}"];
-      };
+      # paths.healthcheck-key = {
+      #   description = "healthcheck";
+      #   wantedBy = []; # ["multi-user.target"];
+      #   # This file must be copied last
+      #   pathConfig.PathExists = ["${key-path}"];
+      # };
 
       services."dconf-sync" = {
-        description = "healthcheck";
+        description = "dconf-sync-service";
         # ${lib.getExe pkgs.curl} "$PINGURL/start?create=1" -m 10 || true
         # result=$(${lib.getExe sync-script} 2>&1)
         # echo "$result"
@@ -114,12 +114,12 @@ in {
 
           ${lib.getExe pkgs.runitor} -slug "$SNAME" -every 1h -- ${lib.getExe sync-script}
         '';
-        after = ["healthcheck-key.path"];
-        wants = ["healthcheck-key.path"];
+        # after = ["healthcheck-key.path"];
+        # wants = ["healthcheck-key.path"];
       };
 
       timers."dconf-sync" = {
-        description = "healthcheck";
+        description = "dconf-sync";
         wantedBy = ["timers.target"];
         timerConfig = {
           OnUnitActiveSec = "5m";
