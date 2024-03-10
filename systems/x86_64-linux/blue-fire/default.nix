@@ -126,7 +126,6 @@ in {
       #   enableBot = true;
       # };
 
-      # hercules-ci-agent = {enable = true;};
       tailscale = {
         useRoutingFeatures = lib.mkForce "both";
       };
