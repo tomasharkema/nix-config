@@ -7,7 +7,7 @@ with lib; let
   cfg = config.gui.game-mode;
 in {
   options.gui.game-mode = {
-    enable = mkEnableOption "hallo";
+    enable = mkEnableOption "game-mode";
   };
 
   config = mkIf cfg.enable {
