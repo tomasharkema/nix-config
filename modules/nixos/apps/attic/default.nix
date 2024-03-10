@@ -20,7 +20,7 @@ in {
       ${attic}/bin/attic use tomas:tomas
     '';
   in
-    mkIf cfg.enable {
+    mkIf (cfg.enable && false) {
       systemd.user.services.attic-login = {
         description = "attic-login";
         script = ''${attic-login}'';
