@@ -10,13 +10,23 @@ with lib.custom; let
 in {
   options.traits = {
     hardware.nvidia = {
-      enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
+      enable = mkBoolOpt false "nvidia";
     };
   };
+
+
   config = mkIf cfg.enable {
+assertions = [
+  {
+    assertion = config.boot.kernelPackages.nvidia_x11.version == config.boot.kernelPackages.nvidiaPackages.stable.version;
+    message = "VERSION: ${config.boot.kernelPackages.nvidia_x11.version}";
+  }
+];
+
+system.nixos.tags = [ "nvidia-${config.boot.kernelPackages.nvidia_x11.version}" ];
+
     environment.systemPackages = with pkgs; [
       nvtop
-
       pkgs.custom.gpustat
     ];
 
@@ -29,13 +39,13 @@ in {
 
     boot = {
       initrd.kernelModules = ["nvidia"];
-      # extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+      extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
     };
 
     hardware = {
       nvidia = mkDefault {
         modesetting.enable = true;
-        forceFullCompositionPipeline = true;
+        # forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
