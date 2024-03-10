@@ -5,7 +5,7 @@
   pkgs,
   format,
   ...
-}: {
+}: with lib; {
   imports = with inputs; [
     (modulesPath + "/installer/scan/not-detected.nix")
     nixos-hardware.nixosModules.common-cpu-intel
@@ -20,6 +20,8 @@
         enable = true;
         rdp.enable = true;
       };
+      quiet-boot.enable = true;
+      game-mode.enable = true;
     };
 
     apps.steam.enable = true;
@@ -85,6 +87,8 @@
     };
 
     hardware.bluetooth.enable = true;
+
+      resilio.enable = lib.mkForce false;
 
     services = {
       blueman.enable = true;

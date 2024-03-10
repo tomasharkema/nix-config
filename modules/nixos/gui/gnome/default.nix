@@ -13,8 +13,19 @@ in {
   };
 
   config = mkIf cfg.enable {
+    sound.mediaKeys.enable = true;
+
     services = {
-      xrdp.defaultWindowManager = "${pkgs.gnome.gnome-remote-desktop}/bin/gnome-remote-desktop";
+      # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-remote-desktop}/bin/gnome-remote-desktop";
+
+      xrdp.defaultWindowManager = "${pkgs.writeScript "xrdp-xsession-gnome" ''
+        ${pkgs.gnome3.gnome-shell}/bin/gnome-shell &
+        waitPID=$!
+        ${lib.getBin pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
+        test -n "$waitPID" && wait "$waitPID"
+        /run/current-system/systemd/bin/systemctl --user stop graphical-session.target
+        exit 0
+      ''}";
 
       xserver = {
         desktopManager.gnome.enable = true;
@@ -38,12 +49,11 @@ in {
       };
 
       udev.packages = with pkgs; [gnome.gnome-settings-daemon];
+      xserver.libinput.enable = true;
     };
     xdg.autostart = {
       enable = true;
     };
-
-    services.xserver.libinput.enable = true;
 
     environment.systemPackages =
       (let
