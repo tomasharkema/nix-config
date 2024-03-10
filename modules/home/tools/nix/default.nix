@@ -15,7 +15,7 @@ in {
     home.packages = [
       agenix # .packages.${system}.default
       alejandra # .defaultPackage.${system}
-      cachix
+      # cachix
       deadnix
       fh
       # hydra-cli
