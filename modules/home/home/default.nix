@@ -83,11 +83,17 @@ in
           ttdl
           topydo
         ];
-        sessionVariables = lib.mkIf stdenv.isDarwin {
-          EDITOR = "subl";
-          SSH_AUTH_SOCK = "/Users/tomas/.1password/agent.sock";
-          # SPACESHIP_PROMPT_ADD_NEWLINE = "false";
-        };
+        sessionVariables =
+          if stdenv.isDarwin
+          then {
+            EDITOR = "subl";
+            SSH_AUTH_SOCK = "/Users/tomas/.1password/agent.sock";
+            # SPACESHIP_PROMPT_ADD_NEWLINE = "false";
+          }
+          else {
+            EDITOR = "nano";
+            SSH_AUTH_SOCK = "/home/tomas/.1password/agent.sock";
+          };
       };
       # manual = {
       #   html.enable = false;
