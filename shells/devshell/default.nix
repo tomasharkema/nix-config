@@ -22,7 +22,6 @@ with lib; let
     ${inputs.deploy-rs.packages.${system}.default}/bin/deploy --skip-checks ".#$@" -- --log-format internal-json -v |& ${nix-output-monitor}/bin/nom --json
   '';
   reencrypt = writeShellScriptBin "reencrypt" ''
-    set -x;
     cd secrets;
     ${inputs.agenix.packages.${system}.default}/bin/agenix -r
   '';
@@ -34,29 +33,35 @@ with lib; let
   remote-deploy = writeShellScriptBin "remote-deploy" ''
     remote deployment '.#arthur' '.#enzian'
   '';
-  cachix-deploy = writeShellScriptBin "cachix-deploy" ''
-    set -x
-    set -e
-    spec=$(nom build --print-out-paths)
-    echo $spec
-    cat $spec
-    cachix push tomasharkema $spec
-  '';
+  # cachix-deploy = writeShellScriptBin "cachix-deploy" ''
+  #   set -x
+  #   set -e
+  #   spec=$(nom build --print-out-paths)
+  #   echo $spec
+  #   cat $spec
+  #   cachix push tomasharkema $spec
+  # '';
 
   # example: `cachix-reploy-pin "darwinConfigurations.euro-mir.config.system.build.toplevel" "darwin-0.1"`
-  cachix-reploy-pin = writeShellScriptBin "cachix-reploy-pin" ''
-    set -x
-    set -e
+  # cachix-reploy-pin = writeShellScriptBin "cachix-reploy-pin" ''
+  #   set -x
+  #   set -e
 
-    res="$(nom build ".#$1" --json | jq '.[0].outputs.out' -r)"
+  #   res="$(nom build ".#$1" --json | jq '.[0].outputs.out' -r)"
 
-    cachix push tomasharkema $res
-    cachix pin tomasharkema $2 $res
-  '';
+  #   cachix push tomasharkema $res
+  #   cachix pin tomasharkema $2 $res
+  # '';
 
   dconf-update = writeShellScriptBin "dconf-update" ''
     ${lib.getExe pkgs.dconf} dump / > dconf.settings
     ${lib.getExe pkgs.dconf2nix} -i dconf.settings -o dconf.nix
+  '';
+
+  test-remote = writeShellScriptBin "test-remote" ''
+    SERVER="$1"
+    echo "test remote $SERVER..."
+    exec nixos-rebuild test --flake ".#$SERVER" --target-host "$SERVER" --use-remote-sudo --verbose --show-trace -L
   '';
   # diffs = import ../diffs attrs;
   # packages-json = diffs.packages-json;
@@ -136,9 +141,10 @@ in
           ssh-to-age
           write-script
           zsh
-          cachix-deploy
-          cachix-reploy-pin
+          # cachix-deploy
+          # cachix-reploy-pin
           nix-prefetch-scripts
+          test-remote
         ];
       }
     ];

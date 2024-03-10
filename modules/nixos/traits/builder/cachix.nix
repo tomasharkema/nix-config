@@ -17,8 +17,8 @@
     exec ${pkgs.cachix}/bin/cachix -c /etc/cachix/cachix.dhall push tomasharkema $OUT_PATHS > /tmp/hydra_cachix 2>&1
   '';
 in {
-  nix.extraOptions = ''
-    builders-use-substitutes = true
-    post-build-hook = ${upload_to_cachix}/bin/upload-to-cachix
-  '';
+  # nix.extraOptions = ''
+  #   builders-use-substitutes = true
+  #   post-build-hook = ${upload_to_cachix}/bin/upload-to-cachix
+  # '';
 }
