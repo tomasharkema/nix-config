@@ -61,7 +61,7 @@ with lib; let
   test-remote = writeShellScriptBin "test-remote" ''
     SERVER="$1"
     echo "test remote $SERVER..."
-    exec nixos-rebuild test --flake ".#$SERVER" --target-host "$SERVER" --use-remote-sudo --verbose --show-trace -L
+    exec ${lib.getExe pkgs.buildPackages.nixos-rebuild} test --flake ".#$SERVER" --target-host "$SERVER" --use-remote-sudo --verbose --show-trace -L
   '';
   # diffs = import ../diffs attrs;
   # packages-json = diffs.packages-json;
