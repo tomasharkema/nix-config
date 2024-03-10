@@ -18,7 +18,7 @@ in {
     services = {
       # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-remote-desktop}/bin/gnome-remote-desktop";
 
-      services.xrdp.defaultWindowManager = "${pkgs.writeScript "xrdp-xsession-gnome" ''
+      xrdp.defaultWindowManager = "${pkgs.writeScript "xrdp-xsession-gnome" ''
         ${pkgs.gnome3.gnome-shell}/bin/gnome-shell &
         waitPID=$!
         ${lib.getBin pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
