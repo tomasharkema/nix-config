@@ -1,6 +1,7 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.11";
+    # nixpkgs.url = "nixpkgs/nixos-23.11";
+    nixpkgs.url = "nixpkgs/d503ebacda199d03f06f71ff776545e53700ec84";
     unstable.url = "nixpkgs/nixos-unstable";
 
     flake-compat = {
