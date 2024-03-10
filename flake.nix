@@ -85,12 +85,12 @@
 
     nix-software-center = {
       url = "github:snowfallorg/nix-software-center";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-conf-editor = {
       url = "github:snowfallorg/nixos-conf-editor";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
@@ -99,7 +99,7 @@
 
     attic = {
       url = "github:zhaofengli/attic";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lanzaboote = {
@@ -109,12 +109,12 @@
 
     hydra-check = {
       url = "github:nix-community/hydra-check";
-      #   inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     flake-checker = {
       url = "github:DeterminateSystems/flake-checker";
-      #   inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     snowfall-lib = {
@@ -129,15 +129,17 @@
 
     nil = {
       url = "github:oxalica/nil";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     devenv = {
       url = "github:cachix/devenv";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "unstable";
     };
 
     peerix = {
       url = "github:cid-chan/peerix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # poetry2nix = {
