@@ -87,7 +87,7 @@
       bridgeInterfaces = ["enp2s0"];
     };
 
-    # hardware.nvidia.modesetting.enable = false;
+    hardware.nvidia.modesetting.enable = false;
 
     fileSystems = {
       # "/mnt/blue-fire/media" = {
