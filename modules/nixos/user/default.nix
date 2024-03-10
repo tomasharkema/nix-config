@@ -81,12 +81,12 @@ in {
 
     users.groups = {
       agent = {};
-      rslsync = {};
+      rslsync = lib.mkIf config.resilio.enable {};
     };
     users.users.agent = {
       isSystemUser = true;
       group = "agent";
-      extraGroups = ["rslsync"];
+      extraGroups = lib.mkIf config.resilio.enable ["rslsync"];
       openssh.authorizedKeys.keys = keys ++ ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMnvSLFgBw3An9URn/X+UZ7Z0kkzUXDtL3dO9sr7iT/u"];
     };
 
