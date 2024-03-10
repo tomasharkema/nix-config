@@ -1,9 +1,10 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: {
-  config = {
+  config = lib.mkIf false {
     age.secrets = {
       "peerix-public" = {
         file = ../../../../secrets/peerix.public.age;

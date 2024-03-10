@@ -11,7 +11,7 @@ in {
     enable = lib.mkEnableOption "opensnitch";
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.enable && false) {
     environment.systemPackages = with pkgs; [opensnitch-ui];
 
     services.opensnitch = {
