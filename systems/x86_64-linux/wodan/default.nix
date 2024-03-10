@@ -87,13 +87,13 @@
       bridgeInterfaces = ["enp2s0"];
     };
 
-    # hardware.nvidia.modesetting.enable = false;
+    hardware.nvidia.modesetting.enable = false;
 
     fileSystems = {
-      "/mnt/blue-fire/media" = {
-        device = "192.168.0.11:/exports/media";
-        fsType = "nfs";
-      };
+      # "/mnt/blue-fire/media" = {
+      #   device = "192.168.0.11:/exports/media";
+      #   fsType = "nfs";
+      # };
       #   "/mnt/unraid/appdata" = {
       #     device = "192.168.0.100:/mnt/user/appdata";
       #     fsType = "nfs";
