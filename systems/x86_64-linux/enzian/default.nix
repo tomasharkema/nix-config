@@ -37,8 +37,6 @@
 
     wifi.enable = true;
 
-    programs.gamemode.enable = true;
-
     traits = {
       hardware = {
         tpm.enable = true;
