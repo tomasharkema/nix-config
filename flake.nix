@@ -1,7 +1,7 @@
 {
   inputs = {
-    # nixpkgs.url = "nixpkgs/nixos-23.11";
-    nixpkgs.url = "nixpkgs/d503ebacda199d03f06f71ff776545e53700ec84";
+    nixpkgs.url = "nixpkgs/nixos-23.11";
+    # nixpkgs.url = "nixpkgs/d503ebacda199d03f06f71ff776545e53700ec84";
     unstable.url = "nixpkgs/nixos-unstable";
 
     flake-compat = {
@@ -353,7 +353,9 @@
     distributedBuilds = true;
     builders-use-substitutes = true;
     trusted-users = ["root" "tomas"];
-
+    permittedInsecurePackages = [
+      "nix-2.17.1"
+    ];
     substituters = [
       "https://tomasharkema.cachix.org/"
       "https://nix-cache.harke.ma/tomas/"
