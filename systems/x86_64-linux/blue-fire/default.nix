@@ -45,6 +45,11 @@ in {
     # freeipa.replica.enable = true;
     # };
 
+    services.icingaweb2 = {
+      enable = true;
+      virtualHost = "mon.blue-fire.harkema.intra";
+    };
+
     networking = {
       hostName = "blue-fire";
       hostId = "529fd7aa";
