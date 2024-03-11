@@ -14,16 +14,15 @@ in {
     };
   };
 
-
   config = mkIf cfg.enable {
-assertions = [
-  {
-    assertion = config.boot.kernelPackages.nvidia_x11.version == config.boot.kernelPackages.nvidiaPackages.stable.version;
-    message = "VERSION: ${config.boot.kernelPackages.nvidia_x11.version}";
-  }
-];
+    assertions = [
+      {
+        assertion = config.boot.kernelPackages.nvidia_x11.version == config.boot.kernelPackages.nvidiaPackages.stable.version;
+        message = "VERSION: ${config.boot.kernelPackages.nvidia_x11.version}";
+      }
+    ];
 
-system.nixos.tags = [ "nvidia-${config.boot.kernelPackages.nvidia_x11.version}" ];
+    system.nixos.tags = ["nvidia-${config.boot.kernelPackages.nvidia_x11.version}"];
 
     environment.systemPackages = with pkgs; [
       nvtop
@@ -45,7 +44,7 @@ system.nixos.tags = [ "nvidia-${config.boot.kernelPackages.nvidia_x11.version}" 
     hardware = {
       nvidia = mkDefault {
         modesetting.enable = true;
-        # forceFullCompositionPipeline = true;
+        forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
