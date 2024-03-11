@@ -33,6 +33,7 @@ in {
         enable = true;
         # openFirewall = true;
       };
+      clipmenu.enable = true;
 
       systembus-notify.enable = true;
       pipewire = {

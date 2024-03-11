@@ -5,7 +5,8 @@
   pkgs,
   format,
   ...
-}: with lib; {
+}:
+with lib; {
   imports = with inputs; [
     (modulesPath + "/installer/scan/not-detected.nix")
     nixos-hardware.nixosModules.common-cpu-intel
@@ -88,7 +89,7 @@
 
     hardware.bluetooth.enable = true;
 
-      resilio.enable = lib.mkForce false;
+    resilio.enable = lib.mkForce false;
 
     services = {
       blueman.enable = true;
