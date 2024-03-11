@@ -38,6 +38,8 @@ in {
         enable = true;
         cacheName = "tomasharkema";
         cachixTokenFile = config.age.secrets.cachix-token.path;
+        jobs = 1;
+        compressionLevel = 16;
       };
 
       systemd.services.cachix-watch-store-agent.serviceConfig = {
@@ -71,7 +73,7 @@ in {
         preStart = ''
           ${attic-login}
         '';
-        script = "${attic}/bin/attic watch-store tomas:tomas";
+        script = "${attic}/bin/attic watch-store tomas:tomas -j 1";
         wants = ["multi-user.target" "network.target"];
         after = ["multi-user.target" "network.target"];
         environment = {
