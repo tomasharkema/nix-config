@@ -37,7 +37,7 @@ with lib; {
 
     apps = {
       flatpak.enable = true;
-      opensnitch.enable = true;
+      # opensnitch.enable = true;
     };
 
     boot.growPartition = true;

@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  config = lib.mkIf false {
+  config = {
     age.secrets = {
       "peerix-public" = {
         file = ../../../../secrets/peerix.public.age;
