@@ -312,9 +312,7 @@
       "inputs": {
         "flake-compat": "flake-compat_4",
         "nix": "nix_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_4",
         "pre-commit-hooks": "pre-commit-hooks_2"
       },
       "locked": {
@@ -1839,6 +1837,22 @@
     },
     "nixpkgs_4": {
       "locked": {
+        "lastModified": 1710129248,
+        "narHash": "sha256-bWF8ZEL5VHS+mLXrd4kpe4QnthMvxXofjMzFd9yG5gs=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "8c4e5e571696d4c476881cf90257c3dd0e66b0dd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
         "lastModified": 1710031763,
         "narHash": "sha256-qEx8/tQGwQ3e8JcFUIoCcSgQUL+3x26IGy36ok22fis=",
         "owner": "NixOS",
@@ -1852,7 +1866,7 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_5": {
+    "nixpkgs_6": {
       "locked": {
         "lastModified": 1682134069,
         "narHash": "sha256-TnI/ZXSmRxQDt2sjRYK/8j8iha4B4zP2cnQCZZ3vp7k=",
@@ -2111,7 +2125,7 @@
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
         "nixos-wsl": "nixos-wsl",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "nixvim": "nixvim",
         "peerix": "peerix",
         "snowfall-flake": "snowfall-flake",
@@ -2686,7 +2700,7 @@
     "vscode-server": {
       "inputs": {
         "flake-utils": "flake-utils_15",
-        "nixpkgs": "nixpkgs_5"
+        "nixpkgs": "nixpkgs_6"
       },
       "locked": {
         "lastModified": 1709622318,

@@ -31,4 +31,6 @@
   catppuccin-gtk = channels.unstable.catppuccin-gtk;
 
   systembus-notify = self.packages."${prev.system}".systembus-notify;
+
+  # flake-checker = channels.flake-checker.packages.${prev.system}.default;
 }
