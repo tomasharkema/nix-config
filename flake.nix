@@ -140,7 +140,7 @@
 
     peerix = {
       url = "github:cid-chan/peerix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "unstable";
     };
 
     # poetry2nix = {
@@ -365,7 +365,7 @@
       "https://nix-community.cachix.org/"
       "https://cache.nixos.org/"
       "https://devenv.cachix.org/"
-      # "http://127.0.0.1:12304/"
+      "http://127.0.0.1:12304/"
     ];
 
     trusted-public-keys = [
@@ -374,7 +374,7 @@
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-      # "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA="
+      "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA="
     ];
 
     # extra-trusted-public-keys = [
