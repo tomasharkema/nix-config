@@ -104,7 +104,7 @@ in
 
         packages = with inputs; [
           dconf-update
-          # flake-checker.packages.${system}.default
+          flake-checker
           deploy-rs.packages.${system}.default
           attic.packages.${system}.default
           agenix.packages.${system}.default
