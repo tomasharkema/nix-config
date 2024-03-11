@@ -48,6 +48,13 @@ in {
     services.icingaweb2 = {
       enable = true;
       virtualHost = "mon.blue-fire.harkema.intra";
+      modules.setup.enable = true;
+      authentications = {
+        icingaweb = {
+          backend = "db";
+          resource = "icingaweb_db";
+        };
+      };
     };
 
     networking = {
@@ -113,17 +120,9 @@ in {
       freeipmi
       ipmicfg
       ipmiutil
-    ];
 
-    # virtualisation = {
-    #   oci-containers.containers = {
-    #     go-nixos-menu = {
-    #       image = "docker.io/tomasharkema7/go-nixos-menu";
-    #       autoStart = true;
-    #       ports = ["3001:3000"];
-    #     };
-    #   };
-    # };
+      icingaweb2
+    ];
 
     services = {
       # ha.initialMaster = true;
@@ -138,23 +137,23 @@ in {
 
       prometheus.exporters.ipmi.enable = true;
 
-      nfs = {
-        server = {
-          enable = true;
-          exports = ''
-            /export/media        *(rw,fsid=0,no_subtree_check)
-          '';
-        };
-      };
+      # nfs = {
+      #   server = {
+      #     enable = true;
+      #     exports = ''
+      #       /export/media        *(rw,fsid=0,no_subtree_check)
+      #     '';
+      #   };
+      # };
     };
 
     networking.firewall.allowedTCPPorts = [2049];
 
     fileSystems = {
-      "/export/media" = {
-        device = "/media";
-        options = ["bind"];
-      };
+      # "/export/media" = {
+      #   device = "/media";
+      #   options = ["bind"];
+      # };
       #   "/mnt/unraid/domains" = {
       #     device = "192.168.0.100:/mnt/user/domains";
       #     fsType = "nfs";
