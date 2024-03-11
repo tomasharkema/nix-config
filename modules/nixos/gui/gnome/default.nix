@@ -15,7 +15,7 @@ in {
   config = mkIf cfg.enable {
     sound.mediaKeys.enable = true;
 
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
     environment.etc."X11/Xwrapper.config".text = ''
       allowed_users=anybody
@@ -76,7 +76,7 @@ in {
           gnomeExtensions.clipboard-indicator
           gnomeExtensions.dash-to-dock
           gnomeExtensions.extension-list
-          gnomeExtensions.fuzzy-app-search
+          # gnomeExtensions.fuzzy-app-search
           gnomeExtensions.github-actions
           gnomeExtensions.gpu-profile-selector
           gnomeExtensions.hue-lights

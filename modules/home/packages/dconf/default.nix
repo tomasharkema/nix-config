@@ -102,7 +102,7 @@ with lib; {
           enabled-extensions = [
             "app-hider@lynith.dev"
             "blur-my-shell@aunetx"
-            "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
+            # "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
             # "gsconnect@andyholmes.github.io"
             "gnome-kinit@bonzini.gnu.org"
             "lan-ip-address@mrhuber.com"
