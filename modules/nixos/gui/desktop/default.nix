@@ -17,7 +17,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services = {
+    services = let
+      whatsapp =
+        lib.custom.mkWebapp pkgs
+        "WhatsApp"
+        "whatsapp";
+    in {
       xserver = {
         enable = true;
 
