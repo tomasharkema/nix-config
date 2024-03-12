@@ -289,15 +289,15 @@ in
                         ];
                         mountpoint = "/opt/media";
                       };
-                      "resilio-sync" = {
-                        mountOptions = [
-                          "noatime"
-                          "compress=zstd"
-                          "discard=async"
-                        ];
+                      # "resilio" = {
+                      #   mountOptions = [
+                      #     "noatime"
+                      #     "compress=zstd"
+                      #     "discard=async"
+                      #   ];
 
-                        mountpoint = "/opt/resilio-sync";
-                      };
+                      #   mountpoint = "/opt/resilio";
+                      # };
                     };
                   };
                 };
