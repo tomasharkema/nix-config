@@ -20,7 +20,7 @@ let
   blue-fire = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDLZtRNaxKQwzBfC7xCjUgFl8/Zgg2dRLN6EIvx3wifh root@blue-fire";
   blue-fire-tomas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOBloItNNcnAjlcBux/BJU0Dl9rry3SgR3VtGPK5LC6 tomas@blue-fire";
 
-  pegasus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILovRLhj82nq2kK2KbydAxhLJs0RORJ6p33K3Z7rJlSA root@pegasus";
+  pegasus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP7/aLVysb4kgpygwqQj2o7ys890bMcTxIPvswZ6oOHY root@pegasus";
 
   wodan = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHIiiOI9vP4fmNE+OTS+cPuoSysCwJVNQxQYSRgLYWX/ root@wodan";
   wodan-wsl = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICI2xzlzSsxv+6QSZ6rCeG0ma4HfIH3YWJj/P4GoQ3M/ root@wodan-wsl";
@@ -77,8 +77,8 @@ in {
   "notify.age".publicKeys = allKeys;
   "op.age".publicKeys = allKeys;
   "otp.age".publicKeys = allKeys;
-  "peerix.private.age".publicKeys = allKeys;
-  "peerix.public.age".publicKeys = allKeys;
+  # "peerix.private.age".publicKeys = allKeys;
+  # "peerix.public.age".publicKeys = allKeys;
   "resilio-docs.age".publicKeys = allKeys;
   "resilio-p.age".publicKeys = allKeys;
   "resilio-shared-public.age".publicKeys = allKeys;
