@@ -15,11 +15,25 @@ in {
   };
 
   config = mkIf cfg.enable {
+    fileSystems = {
+      "/boot" = {
+        device = "/dev/disk/by-label/NIXOS_BOOT";
+        fsType = "vfat";
+      };
+      "/" = {
+        device = "/dev/disk/by-label/NIXOS_SD";
+        fsType = "ext4";
+      };
+    };
+
     # NixOS wants to enable GRUB by default
     boot.loader = {
       grub.enable = false;
       systemd-boot.enable = mkForce false;
     };
+    # boot.loader.generic-extlinux-compatible.enable = true;
+
+    # sdImage.compressImage = false;
 
     services = {
       openssh.enable = true;
@@ -62,6 +76,8 @@ in {
     # boot.loader.raspberryPi.firmwareConfig = ''
     #   dtparam=audio=on
     # '';
+
+    networking.wireless.enable = true;
 
     networking = {
       networkmanager.enable = false;

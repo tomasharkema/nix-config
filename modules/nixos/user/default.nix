@@ -61,7 +61,7 @@ in {
     environment.systemPackages = with pkgs; [google-authenticator];
 
     programs.zsh = {enable = true;};
-
+    services.getty.autologinUser = null;
     users.mutableUsers = mkDefault false;
     programs.fuse.userAllowOther = true;
     users.users.${config.user.name} = {
@@ -72,6 +72,7 @@ in {
       extraGroups = ["networkmanager" "wheel" "rslsync" "users" "fuse"];
       hashedPassword = "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
       openssh.authorizedKeys.keys = keys;
+      linger = true;
     };
 
     users.groups.${config.user.name} = {

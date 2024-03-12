@@ -3,15 +3,16 @@
   inputs,
   ...
 }: {
-  imports = with inputs; [
-    "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
-  ];
   config = {
     networking.hostName = "baaa-express";
 
     traits.raspberry.enable = true;
 
-    sdImage.compressImage = false;
+    boot.loader.raspberryPi.enable = true;
+    # Set the version depending on your raspberry pi.
+    boot.loader.raspberryPi.version = 3;
+    # We need uboot
+    boot.loader.raspberryPi.uboot.enable = true;
 
     environment.systemPackages = with pkgs; [
       libraspberrypi
