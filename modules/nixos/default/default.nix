@@ -178,7 +178,7 @@ with lib;
             PasswordAuthentication = false;
             KbdInteractiveAuthentication = true;
             PermitRootLogin = "yes";
-            X11Forwarding = true;
+            # X11Forwarding = true;
           };
         };
 
@@ -281,7 +281,7 @@ with lib;
         _1password.enable = true;
         ssh = {
           startAgent = true;
-          forwardX11 = true;
+          # forwardX11 = true;
         };
         mosh.enable = true;
         nix-ld.enable = true;
