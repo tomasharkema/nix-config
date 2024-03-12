@@ -42,7 +42,7 @@
       newSubvolumes = true;
     };
 
-    resilio.root = "/opt/media/resilio";
+    # resilio.root = "/opt/media/resilio";
 
     boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
