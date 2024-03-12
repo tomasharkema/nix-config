@@ -170,7 +170,7 @@ with lib;
 
         das_watchdog.enable = true;
 
-        # thermald.enable = mkIf (pkgs.system == "x86_64-linux") true;
+        thermald.enable = mkIf (pkgs.system == "x86_64-linux") true;
 
         openssh = {
           enable = true;
@@ -199,7 +199,7 @@ with lib;
               <name replace-wildcards="yes">%h</name>
               <service>
                 <type>_rfb._tcp</type>
-                <port>5901</port>
+                <port>5900</port>
               </service>
             </service-group>
           '';
@@ -211,6 +211,17 @@ with lib;
                <service>
                  <type>_smb._tcp</type>
                  <port>445</port>
+               </service>
+             </service-group>
+          '';
+          rdp = ''
+            <?xml version="1.0" standalone='no'?>
+             <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+             <service-group>
+               <name replace-wildcards="yes">%h</name>
+               <service>
+                 <type>_rdp._tcp</type>
+                 <port>${toString config.services.xrdp.port}</port>
                </service>
              </service-group>
           '';
