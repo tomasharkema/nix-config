@@ -276,11 +276,11 @@ in
                     # Subvolumes must set a mountpoint in order to be mounted,
                     # unless their parent is mounted
                     subvolumes = {
-                      "/mediaroot" = {
-                        mountpoint = "/mediaroot";
-                        mountOptions = [
-                        ];
-                      };
+                      # "/mediaroot" = {
+                      #   mountpoint = "/mediaroot";
+                      #   mountOptions = [
+                      #   ];
+                      # };
                       "media" = {
                         mountOptions = [
                           "noatime"
