@@ -45,17 +45,17 @@ in {
     # freeipa.replica.enable = true;
     # };
 
-    services.icingaweb2 = {
-      enable = true;
-      virtualHost = "mon.blue-fire.harkema.intra";
-      modules.setup.enable = true;
-      authentications = {
-        icingaweb = {
-          backend = "db";
-          resource = "icingaweb_db";
-        };
-      };
-    };
+    # services.icingaweb2 = {
+    #   enable = true;
+    #   virtualHost = "mon.blue-fire.harkema.intra";
+    #   modules.setup.enable = true;
+    #   authentications = {
+    #     icingaweb = {
+    #       backend = "db";
+    #       resource = "icingaweb_db";
+    #     };
+    #   };
+    # };
 
     networking = {
       hostName = "blue-fire";
@@ -121,7 +121,7 @@ in {
       ipmicfg
       ipmiutil
 
-      icingaweb2
+      # icingaweb2
     ];
 
     services = {
