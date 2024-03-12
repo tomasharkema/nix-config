@@ -102,7 +102,6 @@ in {
       };
 
       services.tailscale-cert = {
-        enable = true;
         description = "tailscale-cert-refresh";
 
         serviceConfig = {

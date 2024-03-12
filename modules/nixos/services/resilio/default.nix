@@ -8,10 +8,12 @@ with lib;
 with lib.custom; let
   cfg = config.resilio;
   known_host = "100.120.66.165:52380";
+
+  root = "/opt/resilio-sync";
 in {
   options.resilio = {
     enable = mkBoolOpt true "Enable preconfigured resilio service";
-    root = mkOpt types.str "/opt/resilio-sync" "root";
+    # root = mkOpt types.str "/opt/resilio-sync" "root";
   };
 
   config = lib.mkIf cfg.enable {
@@ -22,11 +24,11 @@ in {
 
     systemd = {
       tmpfiles.rules = [
-        "d '${config.resilio.root}' 0777 rslsync rslsync -"
-        "Z '${config.resilio.root}' 0777 rslsync rslsync"
-        "d '/var/lib/resilio-sync' 0777 rslsync rslsync -"
-        "f+ '/var/lib/resilio-sync/debug.txt' 0600 rslsync rslsync - 80000000\\n0"
-        "L+ '${config.resilio.root}' - - - - '/home/tomas/resilio-sync'"
+        "d ${root} 0777 rslsync rslsync -"
+        "Z ${root} 0777 rslsync rslsync"
+        "d /var/lib/resilio-sync 0777 rslsync rslsync -"
+        "f+ /var/lib/resilio-sync/debug.txt 0600 rslsync rslsync - 80000000\\n0"
+        "L+ /home/tomas/resilio-sync - - - - ${root}"
       ];
     };
 
@@ -36,7 +38,7 @@ in {
       enable = true;
       sharedFolders = [
         {
-          directory = "${config.resilio.root}/shared-documents";
+          directory = "${root}/shared-documents";
           searchLAN = true;
           secretFile = config.age.secrets."resilio-docs".path;
           useDHT = false;
@@ -46,7 +48,7 @@ in {
           knownHosts = [known_host];
         }
         {
-          directory = "${config.resilio.root}/P-dir";
+          directory = "${root}/P-dir";
           searchLAN = true;
           secretFile = config.age.secrets."resilio-p".path;
           useDHT = false;
@@ -56,7 +58,7 @@ in {
           knownHosts = [known_host];
         }
         {
-          directory = "${config.resilio.root}/shared-public";
+          directory = "${root}/shared-public";
           searchLAN = true;
           secretFile = config.age.secrets."resilio-shared-public".path;
           useDHT = false;
