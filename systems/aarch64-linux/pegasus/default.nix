@@ -20,10 +20,23 @@
       raspberrypi-eeprom
     ];
 
-    boot.kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_rpi4;
+    boot = {
+      kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_rpi4;
+
+      initrd.availableKernelModules = ["xhci_pci" "usbhid" "usb_storage" "dwc2" "g_serial"];
+    };
 
     hardware = {
-      raspberry-pi."4".apply-overlays-dtmerge.enable = true;
+      i2c.enable = true;
+
+      raspberry-pi."4" = {
+        apply-overlays-dtmerge.enable = true;
+        dwc2 = {
+          enable = true;
+          dr_mode = "peripheral";
+        };
+      };
+
       deviceTree = {
         enable = true;
         filter = "*rpi-4-*.dtb";
