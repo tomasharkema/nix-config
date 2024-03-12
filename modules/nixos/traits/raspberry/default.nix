@@ -82,13 +82,13 @@ in {
     networking = {
       networkmanager.enable = false;
 
-      useDHCP = false;
-      interfaces.wlan0 = {
-        useDHCP = true;
-      };
-      interfaces.eth0 = {
-        useDHCP = true;
-      };
+      # useDHCP = false;
+      # interfaces.wlan0 = {
+      #   useDHCP = true;
+      # };
+      # interfaces.eth0 = {
+      #   useDHCP = true;
+      # };
 
       # Enabling WIFI
       # wireless = {

@@ -16,8 +16,11 @@
     traits.raspberry.enable = true;
 
     environment.systemPackages = with pkgs; [
+      libraspberrypi
       raspberrypi-eeprom
     ];
+
+    boot.kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_rpi4;
 
     hardware = {
       raspberry-pi."4".apply-overlays-dtmerge.enable = true;
