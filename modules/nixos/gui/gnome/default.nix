@@ -15,11 +15,17 @@ in {
   config = mkIf cfg.enable {
     sound.mediaKeys.enable = true;
 
+    # environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+    environment.etc."X11/Xwrapper.config".text = ''
+      allowed_users=anybody
+    '';
+
     services = {
       # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-remote-desktop}/bin/gnome-remote-desktop";
 
       xrdp.defaultWindowManager = "${pkgs.writeScript "xrdp-xsession-gnome" ''
-        ${pkgs.gnome3.gnome-shell}/bin/gnome-shell &
+        ${pkgs.gnome.gnome-shell}/bin/gnome-shell &
         waitPID=$!
         ${lib.getBin pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
         test -n "$waitPID" && wait "$waitPID"
@@ -70,7 +76,7 @@ in {
           gnomeExtensions.clipboard-indicator
           gnomeExtensions.dash-to-dock
           gnomeExtensions.extension-list
-          gnomeExtensions.fuzzy-app-search
+          # gnomeExtensions.fuzzy-app-search
           gnomeExtensions.github-actions
           gnomeExtensions.gpu-profile-selector
           gnomeExtensions.hue-lights
