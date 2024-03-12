@@ -276,6 +276,11 @@ in
                     # Subvolumes must set a mountpoint in order to be mounted,
                     # unless their parent is mounted
                     subvolumes = {
+                      "/mediaroot" = {
+                        mountpoint = "/mediaroot";
+                        mountOptions = [
+                        ];
+                      };
                       "media" = {
                         mountOptions = [
                           "noatime"
@@ -284,15 +289,15 @@ in
                         ];
                         mountpoint = "/opt/media";
                       };
-                      # "resilio-sync" = {
-                      #   mountOptions = [
-                      #     "noatime"
-                      #     "compress=zstd"
-                      #     "discard=async"
-                      #   ];
+                      "resilio-sync" = {
+                        mountOptions = [
+                          "noatime"
+                          "compress=zstd"
+                          "discard=async"
+                        ];
 
-                      #   mountpoint = "/opt/resilio-sync";
-                      # };
+                        mountpoint = "/opt/resilio-sync";
+                      };
                     };
                   };
                 };

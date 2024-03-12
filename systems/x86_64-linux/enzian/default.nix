@@ -24,6 +24,7 @@ with lib; {
       quiet-boot.enable = true;
       game-mode.enable = true;
     };
+    # resilio.root = "/opt/media/resilio";
 
     apps.steam.enable = true;
     systemd.enableEmergencyMode = false;
@@ -88,8 +89,6 @@ with lib; {
     };
 
     hardware.bluetooth.enable = true;
-
-    resilio.enable = lib.mkForce false;
 
     services = {
       blueman.enable = true;
