@@ -17,7 +17,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services = {
+    services = let
+      whatsapp =
+        lib.custom.mkWebapp pkgs
+        "WhatsApp"
+        "whatsapp";
+    in {
       xserver = {
         enable = true;
 
@@ -70,8 +75,6 @@ in {
     # enable = true;
     # enableSSHSupport = true;
     # };
-
-    # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
     environment.systemPackages = with pkgs;
       [
