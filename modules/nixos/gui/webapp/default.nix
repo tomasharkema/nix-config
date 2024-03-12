@@ -111,13 +111,33 @@ in {
           url,
           desktopName,
           icon,
-        } @ attr: rec {
-          inherit attr;
-          hash = builtins.hashString "md5" "${name}_${url}";
-          webName = "org.gnome.Epiphany.WebApp_${hash}";
-          path = "/home/tomas/.local/share/${webName}";
-        });
+        } @ attr: (rec {
+            hash = builtins.hashString "md5" "${name}_${url}";
+            webName = "org.gnome.Epiphany.WebApp_${hash}";
+            path = "/home/tomas/.local/share/${webName}";
+          }
+          // attr));
+    apps = lib.lists.forEach folders ({
+      name,
+      hash,
+      desktopName,
+      path,
+      url,
+      icon,
+      webName,
+    }:
+      pkgs.makeDesktopItem {
+        name = "${name}_${hash}";
+        desktopName = desktopName;
+        exec = "${pkgs.gnome.epiphany}/bin/epiphany --application-mode --profile=${path} ${url}";
+        startupNotify = true;
+        terminal = false;
+        startupWMClass = webName;
+        mimeTypes = ["x-scheme-handler/org-protocol"];
+        icon = icon;
+      });
   in {
     systemd.tmpfiles.rules = lib.lists.forEach folders ({path, ...}: "d ${path} 0744 tomas tomas -");
+    environment.systemPackages = apps;
   };
 }
