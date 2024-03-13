@@ -127,9 +127,9 @@ in {
       ++ (with pkgs.custom; [zerotier-ui zerotier-gui]);
 
     programs = {
-      # ssh.extraConfig = mkAfter ''
-      #   IdentityAgent /home/tomas/.1password/agent.sock
-      # '';
+      ssh.extraConfig = ''
+        IdentityAgent /home/tomas/.1password/agent.sock
+      '';
 
       _1password-gui = {
         enable = true;
