@@ -32,6 +32,9 @@ with lib; {
 
     services = {
       # netbox-service.enable = true;
+      earlyoom = {
+        enable = mkForce false;
+      };
 
       tailscale = {
         extraUpFlags = mkForce [
