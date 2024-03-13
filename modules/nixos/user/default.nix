@@ -61,7 +61,7 @@ in {
     environment.systemPackages = with pkgs; [google-authenticator];
 
     programs.zsh = {enable = true;};
-    services.getty.autologinUser = null;
+
     users.mutableUsers = mkDefault false;
     programs.fuse.userAllowOther = true;
     users.users.${config.user.name} = {
