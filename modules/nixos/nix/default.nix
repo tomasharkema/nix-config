@@ -60,9 +60,6 @@ in {
 
       settings =
         {
-          # permittedInsecurePackages = [
-          #   "nix-2.17.1"
-          # ];
           use-cgroups = true;
           experimental-features = "nix-command flakes cgroups";
           http-connections = 50;
