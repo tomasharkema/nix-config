@@ -3,16 +3,13 @@
   inputs,
   ...
 }: {
+  imports = with inputs; [
+    nixos-hardware.nixosModules.raspberry-pi-4
+  ];
   config = {
     networking.hostName = "baaa-express";
 
     traits.raspberry.enable = true;
-
-    boot.loader.raspberryPi.enable = true;
-    # Set the version depending on your raspberry pi.
-    boot.loader.raspberryPi.version = 3;
-    # We need uboot
-    boot.loader.raspberryPi.uboot.enable = true;
 
     environment.systemPackages = with pkgs; [
       libraspberrypi
@@ -33,11 +30,27 @@
     # boot.loader.raspberryPi = {
     #   enable = true;
     #   version = 3;
-    #   firmwareConfig = ''
-    #     core_freq=250
-    #   '';
+    #   #   firmwareConfig = ''
+    #   #     core_freq=250
+    #   #   '';
+    #   uboot.enable = true;
     # };
+    hardware = {
+      i2c.enable = true;
 
+      raspberry-pi."4" = {
+        apply-overlays-dtmerge.enable = true;
+        dwc2 = {
+          enable = true;
+          dr_mode = "peripheral";
+        };
+      };
+
+      deviceTree = {
+        enable = true;
+        filter = "*rpi-3-b-*.dtb";
+      };
+    };
     # systemd.services.btattach = {
     #   before = ["bluetooth.service"];
     #   after = ["dev-ttyAMA0.device"];
