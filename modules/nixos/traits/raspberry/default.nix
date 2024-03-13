@@ -26,6 +26,13 @@ in {
       };
     };
 
+    boot = {
+      kernelParams = [
+        "console=ttyS1,115200n8"
+      ];
+      kernelModules = ["dwc2" "g_serial"];
+    };
+
     # NixOS wants to enable GRUB by default
     boot.loader = {
       grub.enable = false;
