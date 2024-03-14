@@ -6,10 +6,11 @@
 }:
 with lib; {
   config = {
-    environment.systemPackages = with pkgs; [
-      tor
-      # tor-browser-bundle-bin
-    ];
+    environment.systemPackages = with pkgs;
+      [
+        tor
+      ]
+      ++ optional (pkgs.system == "x86_64-linux") tor-browser-bundle-bin;
 
     services.tor = {
       enable = true;
