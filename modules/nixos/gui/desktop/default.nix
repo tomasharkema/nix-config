@@ -121,7 +121,6 @@ in {
         # zeal
 
         # libmx
-        tor-browser
       ]
       ++ optional (pkgs.system == "x86_64-linux") telegram-desktop
       ++ (with pkgs.custom; [zerotier-ui zerotier-gui]);
