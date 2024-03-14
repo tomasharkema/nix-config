@@ -164,8 +164,6 @@ with lib;
 
         udisks2 = {
           enable = true;
-
-          mountOnMedia = true;
         };
 
         das_watchdog.enable = true;
@@ -292,7 +290,10 @@ with lib;
         _1password.enable = true;
         ssh = {
           startAgent = true;
-          # forwardX11 = true;
+          forwardX11 = true;
+          extraConfig = ''
+            ForwardAgent = yes
+          '';
         };
         mosh.enable = true;
         nix-ld.enable = true;

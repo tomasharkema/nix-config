@@ -272,32 +272,27 @@ in
                   size = "100%";
                   content = {
                     type = "btrfs";
-                    extraArgs = ["-f"]; # Override existing partition
-                    # Subvolumes must set a mountpoint in order to be mounted,
-                    # unless their parent is mounted
+                    extraArgs = ["-f"];
+
                     subvolumes = {
-                      # "/mediaroot" = {
-                      #   mountpoint = "/mediaroot";
-                      #   mountOptions = [
-                      #   ];
-                      # };
+                      "/mediaroot" = {
+                        mountpoint = "/mediaroot";
+                        mountOptions = [];
+                      };
                       "media" = {
                         mountOptions = [
                           "noatime"
                           "compress=zstd"
-                          "discard=async"
                         ];
                         mountpoint = "/opt/media";
                       };
-                      # "resilio" = {
-                      #   mountOptions = [
-                      #     "noatime"
-                      #     "compress=zstd"
-                      #     "discard=async"
-                      #   ];
-
-                      #   mountpoint = "/opt/resilio";
-                      # };
+                      "resilio" = {
+                        mountOptions = [
+                          "noatime"
+                          "compress=zstd"
+                        ];
+                        mountpoint = "/opt/resilio";
+                      };
                     };
                   };
                 };
