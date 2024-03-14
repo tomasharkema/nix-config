@@ -1,11 +1,9 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: {
-  imports = with inputs; [
-    nixos-hardware.nixosModules.raspberry-pi-4
-  ];
   config = {
     networking.hostName = "baaa-express";
 
@@ -27,29 +25,30 @@
 
     boot.initrd.kernelModules = ["vc4" "bcm2835_dma" "i2c_bcm2835"];
 
-    # boot.loader.raspberryPi = {
-    #   enable = true;
-    #   version = 3;
-    #   #   firmwareConfig = ''
-    #   #     core_freq=250
-    #   #   '';
-    #   uboot.enable = true;
-    # };
+    boot.loader.raspberryPi = {
+      enable = true;
+      version = 3;
+      #   firmwareConfig = ''
+      #     core_freq=250
+      #   '';
+      uboot.enable = true;
+    };
+
     hardware = {
       i2c.enable = true;
 
-      raspberry-pi."4" = {
-        apply-overlays-dtmerge.enable = true;
-        dwc2 = {
-          enable = true;
-          dr_mode = "peripheral";
-        };
-      };
+      #      raspberry-pi."4" = {
+      #        apply-overlays-dtmerge.enable = true;
+      #        dwc2 = {
+      #          enable = true;
+      #          dr_mode = "peripheral";
+      #};
+      #  };
 
-      deviceTree = {
-        enable = true;
-        filter = "*rpi-3-b-*.dtb";
-      };
+      #   deviceTree = {
+      #      enable = true;
+      #       filter = "*rpi-3-b-*.dtb";
+      #      };
     };
     # systemd.services.btattach = {
     #   before = ["bluetooth.service"];

@@ -59,7 +59,7 @@ with lib;
           cleanOnBoot = true;
         };
 
-        kernelPackages = pkgs.linuxPackages_latest;
+        kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
         # kernelParams = [
         #   "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
@@ -172,6 +172,7 @@ with lib;
 
         openssh = {
           enable = true;
+
           settings = {
             PasswordAuthentication = false;
             KbdInteractiveAuthentication = true;
@@ -273,7 +274,8 @@ with lib;
       };
 
       programs = {
-        flashrom.enable = true;
+        # flashrom.enable = true;
+
         git = {
           enable = true;
           lfs.enable = true;
@@ -288,11 +290,12 @@ with lib;
         };
 
         _1password.enable = true;
+
         ssh = {
           startAgent = true;
           forwardX11 = true;
           extraConfig = ''
-            ForwardAgent = yes
+            ForwardAgent yes
           '';
         };
         mosh.enable = true;
