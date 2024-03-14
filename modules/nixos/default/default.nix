@@ -45,7 +45,7 @@ with lib;
       virtualisation.spiceUSBRedirection.enable = true;
 
       zramSwap = {
-        enable = true;
+        enable = mkDefault true;
       };
 
       # services.throttled.enable = pkgs.stdenv.isx86_64;
@@ -54,7 +54,7 @@ with lib;
         hardwareScan = true;
         kernel.sysctl."net.ipv4.ip_forward" = 1;
 
-        tmp = {
+        tmp = mkDefault {
           useTmpfs = true;
           cleanOnBoot = true;
         };
