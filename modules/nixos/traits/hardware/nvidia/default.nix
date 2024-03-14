@@ -38,7 +38,7 @@ in {
 
     boot = {
       initrd.kernelModules = ["nvidia"];
-      extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+      # extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
     };
 
     hardware = {
@@ -47,7 +47,7 @@ in {
         forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        package = config.boot.kernelPackages.nvidiaPackages.production;
 
         nvidiaPersistenced = true;
       };
