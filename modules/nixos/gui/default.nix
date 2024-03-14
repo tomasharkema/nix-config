@@ -1,11 +1,16 @@
 {
   lib,
   config,
+  inputs,
   ...
 }:
 with lib; let
   cfg = config.gui;
 in {
+  imports = [
+    "${inputs.unstable}/nixos/modules/services/desktops/seatd.nix"
+  ];
+
   options.gui = {
     enable = mkEnableOption "gui.defaults";
   };
@@ -20,5 +25,6 @@ in {
     apps.flatpak.enable = mkDefault true;
     programs.gnome-disks.enable = true;
     services.ddccontrol.enable = true;
+    services.seatd.enable = true;
   };
 }
