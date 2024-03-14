@@ -61,7 +61,7 @@
 
     vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
-      # inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "unstable";
     };
 
     nixvim = {
@@ -71,12 +71,18 @@
 
     agenix = {
       url = "github:ryantm/agenix";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    agenix-shell.url = "github:aciceri/agenix-shell";
+    agenix-shell = {
+      url = "github:aciceri/agenix-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nixos-hardware.url = "github:nixos/nixos-hardware";
+    nixos-hardware = {
+      url = "github:nixos/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     cachix-deploy-flake = {
       url = "github:cachix/cachix-deploy-flake";
@@ -99,22 +105,22 @@
 
     attic = {
       url = "github:zhaofengli/attic";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hydra-check = {
       url = "github:nix-community/hydra-check";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     flake-checker = {
       url = "github:DeterminateSystems/flake-checker";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     snowfall-lib = {
@@ -129,12 +135,12 @@
 
     nil = {
       url = "github:oxalica/nil";
-      # inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "unstable";
     };
 
     devenv = {
       url = "github:cachix/devenv";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # peerix = {
