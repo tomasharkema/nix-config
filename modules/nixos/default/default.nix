@@ -59,7 +59,7 @@ with lib;
           cleanOnBoot = true;
         };
 
-        kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+        kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
 
         # kernelParams = [
         #   "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
