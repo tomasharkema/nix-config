@@ -31,6 +31,15 @@ in {
         "console=ttyS1,115200n8"
       ];
       kernelModules = ["dwc2" "g_serial"];
+
+      tmp = {
+        useTmpfs = false;
+        cleanOnBoot = true;
+      };
+    };
+
+    zramSwap = {
+      enable = false;
     };
 
     # NixOS wants to enable GRUB by default
