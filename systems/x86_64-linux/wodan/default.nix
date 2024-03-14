@@ -12,21 +12,8 @@
   ];
 
   config = {
-    boot = {
-      binfmt.emulatedSystems = ["aarch64-linux"];
-      supportedFilesystems = ["ntfs"];
-      kernelModules = ["i2c-dev"];
-    };
     programs.gamemode.enable = true;
     # environment.systemPackages = with pkgs; [openrgb-with-all-plugins];
-
-    hardware = {
-      # opengl.extraPackages = with pkgs; [
-      # trying to fix `WLR_RENDERER=vulkan sway`
-      # vulkan-validation-layers
-      # ];
-      i2c.enable = true;
-    };
 
     time = {
       # hardwareClockInLocalTime = true;
@@ -34,7 +21,7 @@
     };
 
     # services.freeipa.replica.enable = true;
-    hardware.cpu.intel.updateMicrocode = true;
+
     networking = {
       networkmanager.enable = true;
 
@@ -56,6 +43,7 @@
         };
       };
     };
+
     gui = {
       enable = true;
       desktop = {
@@ -87,7 +75,11 @@
       bridgeInterfaces = ["enp2s0"];
     };
 
-    hardware.nvidia.modesetting.enable = false;
+    hardware = {
+      nvidia.modesetting.enable = false;
+      cpu.intel.updateMicrocode = true;
+      i2c.enable = true;
+    };
 
     fileSystems = {
       # "/mnt/blue-fire/media" = {
@@ -126,6 +118,12 @@
       enable = true;
       main = "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768639292E";
       encrypt = true;
+    };
+
+    boot = {
+      binfmt.emulatedSystems = ["aarch64-linux"];
+      supportedFilesystems = ["ntfs"];
+      kernelModules = ["i2c-dev"];
     };
 
     # boot = {
