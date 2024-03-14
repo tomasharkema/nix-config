@@ -62,6 +62,10 @@ with lib; {
     services = {
       # podman.enable = true;
 
+      synergy.server = {
+        enable = true;
+      };
+
       avahi = {
         enable = true;
         allowInterfaces = ["wlp59s0"];
