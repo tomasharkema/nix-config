@@ -116,8 +116,8 @@ in {
         # chmod 660 -R "${cfg.dir}"
 
         # wantedBy = ["multi-user.target" "network.target"];
-        after = ["tailscaled.service" "network.target"];
-        wants = ["tailscaled.service"];
+        # after = ["tailscaled.service" "network.target"];
+        # wants = ["tailscaled.service"];
       };
 
       services.nginx = {
