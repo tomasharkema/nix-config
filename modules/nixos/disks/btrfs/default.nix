@@ -275,23 +275,12 @@ in
                     extraArgs = ["-f"];
 
                     subvolumes = {
-                      "/mediaroot" = {
-                        mountpoint = "/mediaroot";
-                        mountOptions = [];
-                      };
                       "media" = {
                         mountOptions = [
                           "noatime"
                           "compress=zstd"
                         ];
                         mountpoint = "/opt/media";
-                      };
-                      "resilio" = {
-                        mountOptions = [
-                          "noatime"
-                          "compress=zstd"
-                        ];
-                        mountpoint = "/opt/resilio";
                       };
                     };
                   };
@@ -301,5 +290,10 @@ in
           };
         };
       };
+
+      systemd.tmpfiles.rules = mkIf (cfg.media != null) [
+        "d /opt/media/resilio-sync 0777 rslsync rslsync -"
+        "L+ /opt/resilio-sync - - - - /opt/media/resilio-sync"
+      ];
     };
   }
