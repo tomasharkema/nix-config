@@ -76,7 +76,10 @@
     };
 
     hardware = {
-      nvidia.modesetting.enable = false;
+      nvidia = {
+        modesetting.enable = false;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+      };
       cpu.intel.updateMicrocode = true;
       i2c.enable = true;
     };
