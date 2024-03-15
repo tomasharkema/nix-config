@@ -79,6 +79,7 @@
       nvidia.modesetting.enable = false;
       cpu.intel.updateMicrocode = true;
       i2c.enable = true;
+      nvidia.nvidiaPersistenced = true;
     };
 
     fileSystems = {
