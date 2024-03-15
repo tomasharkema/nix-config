@@ -14,7 +14,6 @@ with lib; {
   ];
 
   config = {
-    hardware.cpu.intel.updateMicrocode = true;
     gui = {
       enable = true;
       desktop = {
@@ -88,7 +87,11 @@ with lib; {
       extraModulePackages = [];
     };
 
-    hardware.bluetooth.enable = true;
+    hardware = {
+      cpu.intel.updateMicrocode = true;
+      bluetooth.enable = true;
+      nvidia.modesetting.enable = false;
+    };
 
     services = {
       blueman.enable = true;
