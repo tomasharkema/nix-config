@@ -2,12 +2,17 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 with lib;
 with lib.custom; let
   cfg = config.apps.ipa;
 in {
+  disabledModules = ["security/ipa.nix"];
+
+  imports = ["${inputs.unstable}/nixos/modules/security/ipa.nix"];
+
   options.apps.ipa = {
     enable = mkEnableOption "enable ipa";
   };
@@ -24,34 +29,34 @@ in {
 
     environment.systemPackages = with pkgs; [ldapvi ldapmonitor];
 
-    # environment.etc = {
-    #   "krb5.conf" = {
-    #     text = ''
-    #       [libdefaults]
-    #       default_ccache_name = FILE:/var/cache/krb5/krb5cc_%{uid}
-    #     '';
-    #   };
-    #   "static/sssd/conf.d/98-pam.conf" = {
-    #     # pam_cert_auth = True
-    #     text = ''
-    #       [domain/harkema.intra]
-    #       cache_credentials = True
-    #       debug_level = 6
+    environment.etc = {
+      # "krb5.conf" = {
+      #   text = ''
+      #     [libdefaults]
+      #     default_ccache_name = FILE:/var/cache/krb5/krb5cc_%{uid}
+      #   '';
+      # };
+      #   "static/sssd/conf.d/98-pam.conf" = {
+      #     # pam_cert_auth = True
+      #     text = ''
+      #       [domain/harkema.intra]
+      #       cache_credentials = True
+      #       debug_level = 6
 
-    #       [pam]
-    #       pam_passkey_auth = True
-    #       passkey_debug_libfido2 = True
+      #       [pam]
+      #       pam_passkey_auth = True
+      #       passkey_debug_libfido2 = True
 
-    #       [sssd]
-    #       krb5_rcache_dir = /var/cache/krb5
+      #       [sssd]
+      #       krb5_rcache_dir = /var/cache/krb5
 
-    #       [prompting/passkey]
-    #       interactive = "ojoo"
-    #     '';
-    #     # pam_cert_auth = True
-    #     mode = "0600";
-    #   };
-    # };
+      #       [prompting/passkey]
+      #       interactive = "ojoo"
+      #     '';
+      #     # pam_cert_auth = True
+      #     mode = "0600";
+      #   };
+    };
 
     security = {
       polkit = {
@@ -67,9 +72,9 @@ in {
 
       pam = {
         services = {
-          # login.sssdStrictAccess = true;
-          # sudo.sssdStrictAccess = true;
-          # ssh.sssdStrictAccess = true;
+          login.sssdStrictAccess = true;
+          sudo.sssdStrictAccess = true;
+          ssh.sssdStrictAccess = true;
         };
       };
     };
