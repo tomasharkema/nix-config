@@ -12,24 +12,14 @@ in {
       forwardAgent = true;
       matchBlocks = {
         "*" = {
-          # extraOptions =
-          #   if stdenvNoCC.isDarwin
-          #   then {
-          #     "IdentityAgent" = "/Users/tomas/.1password/agent.sock";
-          #   }
-          #   else {
-          #     "IdentityAgent" = "/home/tomas/.1password/agent.sock";
-          #   };
-        };
-        wodan-wsl = {
-          # hostname = "192.168.1.46";
-          user = "tomas";
-          forwardAgent = true;
-          extraOptions = {
-            RequestTTY = "yes";
-            HostKeyAlgorithms = "+ssh-rsa";
-            # RemoteCommand = "tmux new -A -s \$\{\%n\}";
-          };
+          extraOptions =
+            if stdenvNoCC.isDarwin
+            then {
+              "IdentityAgent" = "/Users/tomas/.1password/agent.sock";
+            }
+            else {
+              "IdentityAgent" = "/home/tomas/.1password/agent.sock";
+            };
         };
         silver-star = {
           hostname = "silver-star";
