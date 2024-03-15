@@ -7,6 +7,8 @@
 with lib;
 with lib.custom; let
   cfg = config.traits.hardware.nvidia;
+
+  nvidiaVersion = config.hardware.nvidia.package.version;
 in {
   options.traits = {
     hardware.nvidia = {
@@ -15,14 +17,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = config.boot.kernelPackages.nvidia_x11.version == config.boot.kernelPackages.nvidiaPackages.stable.version;
-        message = "VERSION: ${config.boot.kernelPackages.nvidia_x11.version}";
-      }
-    ];
-
-    system.nixos.tags = ["nvidia-${config.boot.kernelPackages.nvidia_x11.version}"];
+    system.nixos.tags = ["nvidia-X11:${nvidia_x11Version}-D:${nvidiaVersion}"];
 
     environment.systemPackages = with pkgs; [
       nvtop
@@ -38,7 +33,7 @@ in {
 
     boot = {
       initrd.kernelModules = ["nvidia"];
-      # extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+      extraModulePackages = [config.hardware.nvidia.package];
     };
 
     hardware = {
