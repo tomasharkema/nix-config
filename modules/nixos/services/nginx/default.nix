@@ -120,10 +120,10 @@ in {
         # wants = ["tailscaled.service"];
       };
 
-      services.nginx = {
-        requires = ["tailscale-cert-location.path"];
-        wants = ["tailscale-cert-location.path"];
-      };
+      # services.nginx = {
+      #   requires = ["tailscale-cert-location.path"];
+      #   wants = ["tailscale-cert-location.path"];
+      # };
     };
     # security.acme = {
     #   acceptTerms = true;
