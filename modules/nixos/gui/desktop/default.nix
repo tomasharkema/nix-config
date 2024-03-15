@@ -131,7 +131,7 @@ in {
       # '';
 
       ssh = {
-        startAgent = true;
+        # startAgent = true;
       };
 
       _1password-gui = {
