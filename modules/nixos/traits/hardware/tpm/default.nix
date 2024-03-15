@@ -44,7 +44,7 @@ in {
       # tpm2-totp
       # tpm2-tss
       tpmmanager
-      pkgs.custom.ssh-tpm-agent
+      # pkgs.custom.ssh-tpm-agent
     ];
   };
 }
