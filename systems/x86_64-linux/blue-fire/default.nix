@@ -40,21 +40,56 @@ in {
 
     headless.enable = true;
 
+    services = {
+      ntopng = {
+        enable = true;
+        httpPort = 3457;
+        extraConfig = ''
+          --http-prefix="/ntopng"
+        '';
+      };
+      icingaweb2 = {
+        enable = true;
+        virtualHost = "mon.blue-fire.harkema.intra";
+        modules.setup.enable = true;
+        authentications = {
+          icingaweb = {
+            backend = "db";
+            resource = "icingaweb_db";
+          };
+        };
+      };
+
+      # ha.initialMaster = true;
+      # command-center = {
+      #   enableBot = true;
+      # };
+
+      tailscale = {
+        useRoutingFeatures = lib.mkForce "both";
+      };
+      tcsd.enable = true;
+
+      prometheus.exporters.ipmi.enable = true;
+
+      nix-serve = {
+        enable = true;
+        secretKeyFile = config.age.secrets."peerix-private".path;
+      };
+
+      # nfs = {
+      #   server = {
+      #     enable = true;
+      #     exports = ''
+      #       /export/media        *(rw,fsid=0,no_subtree_check)
+      #     '';
+      #   };
+      # };
+    };
+
     # services = {
     # podman.enable = true;
     # freeipa.replica.enable = true;
-    # };
-
-    # services.icingaweb2 = {
-    #   enable = true;
-    #   virtualHost = "mon.blue-fire.harkema.intra";
-    #   modules.setup.enable = true;
-    #   authentications = {
-    #     icingaweb = {
-    #       backend = "db";
-    #       resource = "icingaweb_db";
-    #     };
-    #   };
     # };
 
     networking = {
@@ -92,14 +127,6 @@ in {
       bridgeInterfaces = ["eno1"];
     };
 
-    services.ntopng = {
-      enable = true;
-      httpPort = 3457;
-      extraConfig = ''
-        --http-prefix="/ntopng"
-      '';
-    };
-
     proxy-services.services = {
       "/ntopng" = {
         proxyPass = "http://localhost:${toString config.services.ntopng.httpPort}/";
@@ -123,34 +150,6 @@ in {
 
       # icingaweb2
     ];
-
-    services = {
-      # ha.initialMaster = true;
-      # command-center = {
-      #   enableBot = true;
-      # };
-
-      tailscale = {
-        useRoutingFeatures = lib.mkForce "both";
-      };
-      tcsd.enable = true;
-
-      prometheus.exporters.ipmi.enable = true;
-
-      nix-serve = {
-        enable = true;
-        secretKeyFile = config.age.secrets."peerix-private".path;
-      };
-
-      # nfs = {
-      #   server = {
-      #     enable = true;
-      #     exports = ''
-      #       /export/media        *(rw,fsid=0,no_subtree_check)
-      #     '';
-      #   };
-      # };
-    };
 
     networking.firewall.allowedTCPPorts = [2049];
 
