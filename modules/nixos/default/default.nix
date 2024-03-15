@@ -298,7 +298,7 @@ with lib;
         _1password.enable = true;
 
         ssh = {
-          startAgent = true;
+          # startAgent = true;
           forwardX11 = true;
           extraConfig = ''
             ForwardAgent yes
