@@ -92,7 +92,7 @@ in
           }
           else {
             EDITOR = "nano";
-            SSH_AUTH_SOCK = "/home/tomas/.1password/agent.sock";
+            # SSH_AUTH_SOCK = "/home/tomas/.1password/agent.sock";
           };
       };
       # manual = {
