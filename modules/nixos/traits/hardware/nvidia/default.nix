@@ -42,7 +42,7 @@ in {
         forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.production;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
 
         nvidiaPersistenced = false;
       };
