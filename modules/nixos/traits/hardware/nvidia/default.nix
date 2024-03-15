@@ -53,7 +53,5 @@ in {
         driSupport32Bit = true;
       };
     };
-
-    #    systemd.services.netdata.path = [pkgs.linuxPackages.nvidia_x11];
   };
 }
