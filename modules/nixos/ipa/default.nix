@@ -9,54 +9,30 @@ with lib;
 with lib.custom; let
   cfg = config.apps.ipa;
 in {
-  disabledModules = ["security/ipa.nix"];
+  disabledModules = [
+    "security/ipa.nix"
+    "security/pam.nix"
+    "krb5/default.nix"
+    "config/krb5/default.nix"
+    "services/misc/sssd.nix"
+  ];
 
-  imports = ["${inputs.unstable}/nixos/modules/security/ipa.nix"];
+  imports = [
+    "${inputs.unstable}/nixos/modules/security/ipa.nix"
+    "${inputs.unstable}/nixos/modules/security/pam.nix"
+    "${inputs.unstable}/nixos/modules/security/krb5"
+    "${inputs.unstable}/nixos/modules/services/misc/sssd.nix"
+  ];
 
-  options.apps.ipa = {
-    enable = mkEnableOption "enable ipa";
+  options = {
+    apps.ipa = {
+      enable = mkEnableOption "enable ipa";
+    };
+    services.intune.enable = mkEnableOption "intune";
   };
 
   config = mkIf cfg.enable {
-    # system.activationScripts = {
-    #   default_ccache_name = ''
-    #     if [ ! -d "/var/cache/krb5" ]; then
-    #       mkdir /var/cache/krb5
-    #       chmod 777 /var/cache/krb5
-    #     fi
-    #   '';
-    # };
-
     environment.systemPackages = with pkgs; [ldapvi ldapmonitor];
-
-    environment.etc = {
-      # "krb5.conf" = {
-      #   text = ''
-      #     [libdefaults]
-      #     default_ccache_name = FILE:/var/cache/krb5/krb5cc_%{uid}
-      #   '';
-      # };
-      #   "static/sssd/conf.d/98-pam.conf" = {
-      #     # pam_cert_auth = True
-      #     text = ''
-      #       [domain/harkema.intra]
-      #       cache_credentials = True
-      #       debug_level = 6
-
-      #       [pam]
-      #       pam_passkey_auth = True
-      #       passkey_debug_libfido2 = True
-
-      #       [sssd]
-      #       krb5_rcache_dir = /var/cache/krb5
-
-      #       [prompting/passkey]
-      #       interactive = "ojoo"
-      #     '';
-      #     # pam_cert_auth = True
-      #     mode = "0600";
-      #   };
-    };
 
     security = {
       polkit = {
@@ -81,7 +57,7 @@ in {
 
     services.sssd = {
       enable = true;
-      kcm = true;
+      # kcm = true;
       sshAuthorizedKeysIntegration = true;
     };
 
