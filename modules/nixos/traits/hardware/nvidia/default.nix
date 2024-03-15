@@ -17,7 +17,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    system.nixos.tags = ["nvidia-X11:${nvidia_x11Version}-D:${nvidiaVersion}"];
+    system.nixos.tags = ["nvidia:${nvidiaVersion}"];
 
     environment.systemPackages = with pkgs; [
       nvtop
