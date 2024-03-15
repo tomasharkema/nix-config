@@ -125,6 +125,10 @@
         "domainjoin" = {
           file = ./domainjoin.age;
         };
+        "peerix-private" = {
+          file = ./peerix.private.age;
+          mode = "644";
+        };
       };
     };
   };
