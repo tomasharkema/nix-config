@@ -79,10 +79,10 @@
       nvidia = {
         modesetting.enable = false;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
+        nvidiaPersistenced = true;
       };
       cpu.intel.updateMicrocode = true;
       i2c.enable = true;
-      nvidia.nvidiaPersistenced = true;
     };
 
     fileSystems = {
