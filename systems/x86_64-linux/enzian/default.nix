@@ -11,6 +11,7 @@ with lib; {
     (modulesPath + "/installer/scan/not-detected.nix")
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
+    ./samba.nix
   ];
 
   config = {
@@ -24,7 +25,7 @@ with lib; {
       game-mode.enable = true;
     };
     # resilio.root = "/opt/media/resilio";
-
+    resilio.enable = mkForce false;
     apps.steam.enable = true;
     systemd.enableEmergencyMode = false;
 
