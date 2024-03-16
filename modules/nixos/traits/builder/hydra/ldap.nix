@@ -25,7 +25,7 @@ pkgs.writeText "ldap.conf" ''
             <start_tls_options>
                 verify = none
             </start_tls_options>
-            user_basedn = "cn=users,cn=accounts,dc=harkema,dc=io"
+            user_basedn = "cn=users,cn=accounts,dc=harkema,dc=intra"
             user_filter = "(&(objectClass=inetorgperson)(cn=%s))"
             #user_scope = one
             #user_field = cn
@@ -34,7 +34,7 @@ pkgs.writeText "ldap.conf" ''
             </user_search_options>
             # Important for role mappings to work:
             use_roles = 1
-            role_basedn = "cn=groups,cn=accounts,dc=harkema,dc=io"
+            role_basedn = "cn=groups,cn=accounts,dc=harkema,dc=intra"
             role_filter = "(&(objectClass=groupofnames)(member=%s))"
             role_scope = one
             #role_field = cn
