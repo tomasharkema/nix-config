@@ -48,9 +48,9 @@ in {
 
       pam = {
         services = {
-          login.sssdStrictAccess = true;
-          sudo.sssdStrictAccess = true;
-          ssh.sssdStrictAccess = true;
+          login.sssdStrictAccess = mkDefault true;
+          sudo.sssdStrictAccess = mkDefault true;
+          ssh.sssdStrictAccess = mkDefault true;
         };
       };
     };
