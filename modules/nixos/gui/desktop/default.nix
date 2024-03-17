@@ -106,7 +106,7 @@ in {
         clutter
         xdgmenumaker
         gotop
-
+        handbrake
         font-manager
         # gamehub
         # filezilla
