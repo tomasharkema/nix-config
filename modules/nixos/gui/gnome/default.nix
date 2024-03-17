@@ -24,14 +24,16 @@ in {
     services = {
       # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-remote-desktop}/bin/gnome-remote-desktop";
 
-      xrdp.defaultWindowManager = "${pkgs.writeScript "xrdp-xsession-gnome" ''
-        ${pkgs.gnome.gnome-shell}/bin/gnome-shell &
-        waitPID=$!
-        ${lib.getBin pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
-        test -n "$waitPID" && wait "$waitPID"
-        /run/current-system/systemd/bin/systemctl --user stop graphical-session.target
-        exit 0
-      ''}";
+      # xrdp.defaultWindowManager = "${pkgs.writeScript "xrdp-xsession-gnome" ''
+      #   ${pkgs.gnome.gnome-shell}/bin/gnome-shell &
+      #   waitPID=$!
+      #   ${lib.getBin pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
+      #   test -n "$waitPID" && wait "$waitPID"
+      #   /run/current-system/systemd/bin/systemctl --user stop graphical-session.target
+      #   exit 0
+      # ''}";
+
+      xrdp.defaultWindowManager = "${pkgs.gnome.gnome-shell}/bin/gnome-shell";
 
       xserver = {
         desktopManager.gnome.enable = true;
