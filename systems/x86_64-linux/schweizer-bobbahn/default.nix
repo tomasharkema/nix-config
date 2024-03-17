@@ -51,6 +51,12 @@ with lib; {
       };
     };
 
+    security.pam.services = {
+      login.sssdStrictAccess = false;
+      sudo.sssdStrictAccess = false;
+      ssh.sssdStrictAccess = false;
+    };
+
     networking = {
       # hostName = "euro-mir-2"; # Define your hostname.
       networkmanager.enable = true;
