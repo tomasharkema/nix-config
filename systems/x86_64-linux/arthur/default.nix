@@ -11,6 +11,7 @@
   ];
 
   config = {
+    installed = true;
     # gui = {
     #   enable = true;
     #   desktop = {

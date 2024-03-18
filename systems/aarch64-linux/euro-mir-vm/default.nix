@@ -11,6 +11,7 @@ with lib; {
   ];
 
   config = {
+    installed = true;
     networking = {
       wireless.enable = mkForce false;
       hostName = "euro-mir-vm";

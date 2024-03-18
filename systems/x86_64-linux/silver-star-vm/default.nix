@@ -10,6 +10,7 @@ with lib; {
   ];
 
   config = {
+    installed = true;
     headless.enable = true;
 
     traits = {

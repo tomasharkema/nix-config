@@ -11,6 +11,7 @@ with lib; {
   ];
 
   config = {
+    installed = true;
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01";
@@ -36,8 +37,8 @@ with lib; {
       # opensnitch.enable = true;
     };
 
-resilio.enable = false;
-    
+    resilio.enable = false;
+
     headless.hypervisor = {
       # enable = true;
       #   bridgeInterfaces = ["wlp59s0"];
@@ -51,12 +52,6 @@ resilio.enable = false;
         # nvidia.enable = true;
         remote-unlock.enable = true;
       };
-    };
-
-    security.pam.services = {
-      login.sssdStrictAccess = false;
-      sudo.sssdStrictAccess = false;
-      ssh.sssdStrictAccess = false;
     };
 
     networking = {
