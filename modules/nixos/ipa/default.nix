@@ -47,7 +47,7 @@ in {
       };
 
       pam = {
-        services = {
+        services = mkIf config.installed {
           login.sssdStrictAccess = mkDefault true;
           sudo.sssdStrictAccess = mkDefault true;
           ssh.sssdStrictAccess = mkDefault true;
