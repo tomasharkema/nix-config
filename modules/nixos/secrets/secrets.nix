@@ -33,6 +33,8 @@ let
   euro-mir-2-tomas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMIZkviD01zlP3SkumEXHgLaNuoQxHqHPuBWcOqrm9rr tomas@euro-mir-2";
   euro-mir-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII9jQFlABagOAqiRKUrk1k2Rw/U1BDbsfWmoz0+wO2Pz root@euro-mir-vm";
 
+  schweizer-bobbahn = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJvt0ljBDmSkU8roLq9XULxQ14MLEtfm/GmXDFkw663Q root@schweizer-bobbahn";
+
   systems = [
     euro
     enzian
@@ -52,6 +54,7 @@ let
     euro-mir-2
     euro-mir-2-tomas
     euro-mir-vm
+    schweizer-bobbahn
   ];
   allKeys = users ++ systems;
   builders = [tomas blue-fire blue-fire-tomas];
