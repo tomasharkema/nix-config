@@ -33,27 +33,27 @@ in {
         supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
         maxJobs = 10;
       }
-      {
-        hostName = "builder@wodan";
-        systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
-        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-        maxJobs = 2;
-        speedFactor = 100;
-      }
-      {
-        hostName = "builder@enzian";
-        systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
-        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-        maxJobs = 1;
-        speedFactor = 50;
-      }
-      {
-        hostName = "builder@arthur";
-        systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
-        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-        maxJobs = 1;
-        speedFactor = 10;
-      }
+      # {
+      #   hostName = "builder@wodan";
+      #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
+      #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+      #   maxJobs = 2;
+      #   speedFactor = 100;
+      # }
+      # {
+      #   hostName = "builder@enzian";
+      #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
+      #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+      #   maxJobs = 1;
+      #   speedFactor = 50;
+      # }
+      # {
+      #   hostName = "builder@arthur";
+      #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
+      #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+      #   maxJobs = 1;
+      #   speedFactor = 10;
+      # }
     ];
 
     networking.firewall = {
@@ -97,10 +97,11 @@ in {
         </githubstatus>
         using_frontend_proxy 1
         email_notification = 1
-
         Include ${ldap}
       '';
     };
+    #${builtins.readFile ldap}
+    # Include ${ldap}
 
     age.secrets."ldap" = {
       file = ../../../../../secrets/ldap.age;
