@@ -21,11 +21,11 @@ in {
             }
             else {
               "PKCS11Provider" =
-                if osConfig.traits.hardware.tpm.enable
+                if (osConfig.traits.hardware.tpm.enable && osConfig.gui.enable)
                 then "/run/current-system/sw/lib/libtpm2_pkcs11.so"
                 else "/run/current-system/sw/lib/libykcs11.so";
 
-              "IdentityAgent" = "/home/tomas/.1password/agent.sock";
+              "IdentityAgent" = lib.mkIf osConfig.gui.enable "/home/tomas/.1password/agent.sock";
             };
         };
         silver-star = {
