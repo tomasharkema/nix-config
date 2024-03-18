@@ -46,7 +46,7 @@ with lib; {
 
     traits = {
       hardware = {
-        tpm.enable = true;
+        # tpm.enable = true;
         secure-boot.enable = true;
         laptop.enable = true;
         # nvidia.enable = true;
