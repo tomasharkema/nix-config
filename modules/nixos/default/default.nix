@@ -13,14 +13,19 @@ with lib;
 #     });
 # in
   {
-    # options = {
+    options = {
+    
+    installed = mkEnableOption "installed";
+    
     #   variables = lib.mkOption {
     #     type = lib.types.attrs;
     #     default = {
     #       # theme = theme;
     #     };
     #   };
-    # };
+    };
+
+
     config = with lib; {
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";
