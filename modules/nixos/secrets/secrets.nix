@@ -80,8 +80,8 @@ in {
   "notify.age".publicKeys = allKeys;
   "op.age".publicKeys = allKeys;
   "otp.age".publicKeys = allKeys;
-  # "peerix.private.age".publicKeys = allKeys;
-  # "peerix.public.age".publicKeys = allKeys;
+  "peerix.private.age".publicKeys = allKeys;
+  "peerix.public.age".publicKeys = allKeys;
   "resilio-docs.age".publicKeys = allKeys;
   "resilio-p.age".publicKeys = allKeys;
   "resilio-shared-public.age".publicKeys = allKeys;
