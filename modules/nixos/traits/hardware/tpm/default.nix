@@ -20,7 +20,7 @@ in {
     security.tpm2 = {
       enable = true;
 
-      # pkcs11.enable = true;
+      pkcs11.enable = true;
 
       tctiEnvironment.enable = true;
       # abrmd.enable = true;
@@ -30,10 +30,6 @@ in {
     users.users."root".extraGroups = ["tss"];
 
     boot.initrd.systemd.enableTpm2 = true;
-
-    # programs.ssh.extraConfig = ''
-    #   PKCS11Provider /run/current-system/sw/lib/libtpm2_pkcs11.so
-    # '';
 
     environment.systemPackages = with pkgs; [
       tpm-luks
