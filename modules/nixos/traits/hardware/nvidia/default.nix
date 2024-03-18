@@ -32,8 +32,8 @@ in {
     };
 
     boot = {
-      initrd.kernelModules = ["nvidia"];
-      extraModulePackages = [config.hardware.nvidia.package];
+      # initrd.kernelModules = ["nvidia"];
+      # extraModulePackages = [config.hardware.nvidia.package];
     };
 
     hardware = {
