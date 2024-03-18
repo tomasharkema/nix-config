@@ -4,22 +4,23 @@
   inputs,
   config,
   ...
-}: let
+}:
+with lib; let
   boot-into-bios = pkgs.writeShellScriptBin "boot-into-bios" ''
     sudo ${pkgs.ipmitool}/bin/ipmitool chassis bootparam set bootflag force_bios
   '';
 in {
-  # Your configuration.
-
   imports = with inputs; [
     ./hardware-configuration.nix
 
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
     nixos-hardware.nixosModules.supermicro-x10sll-f
+
+    nix-serve-ng.nixosModules.default
   ];
 
-  config = with lib; {
+  config = {
     installed = true;
     disks.btrfs = {
       enable = true;
