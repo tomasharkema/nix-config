@@ -17,6 +17,7 @@ with lib; {
     installed = true;
 
     traits.low-power.enable = true;
+    gui."media-center".enable = true;
 
     disks.btrfs = {
       enable = true;
