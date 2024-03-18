@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  osConfig,
   ...
 }: let
   inherit (pkgs) stdenvNoCC;
@@ -19,6 +20,10 @@ in {
             }
             else {
               "IdentityAgent" = "/home/tomas/.1password/agent.sock";
+              "PKCS11Provider" =
+                if osConfig.traits.hardware.tpm.enable
+                then "/run/current-system/sw/lib/libtpm2_pkcs11.so"
+                else "/run/current-system/sw/lib/libykcs11.so";
             };
         };
         silver-star = {
