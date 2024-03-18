@@ -17,7 +17,7 @@ with lib; {
     installed = true;
 
     traits.low-power.enable = true;
-    
+
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01";
@@ -80,7 +80,13 @@ with lib; {
 
     programs = {
       mtr.enable = true;
-      flashrom.enable=true;
+      flashrom.enable = true;
+    };
+
+    hardware.opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
     };
   };
 }

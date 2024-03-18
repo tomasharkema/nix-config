@@ -48,7 +48,7 @@ with lib; let
                 "noatime"
                 "discard=async"
               ]
-              ++ lib.optional config.traits.low-power.enable "compress=zstd";
+              ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/home";
           };
           "resilio-sync" = mkIf (cfg.newSubvolumes && cfg.media == null) {
@@ -71,7 +71,7 @@ with lib; let
                 "noatime"
                 "discard=async"
               ]
-              ++ lib.optional config.traits.low-power.enable "compress=zstd";
+              ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/nix";
           };
           "containers" = mkIf cfg.newSubvolumes {
@@ -80,7 +80,7 @@ with lib; let
                 "noatime"
                 "discard=async"
               ]
-              ++ lib.optional config.traits.low-power.enable "compress=zstd";
+              ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/var/lib/containers";
           };
           "swapfile" = mkIf cfg.newSubvolumes {
@@ -107,7 +107,7 @@ with lib; let
                 "noatime"
                 "discard=async"
               ]
-              ++ lib.optional config.traits.low-power.enable "compress=zstd";
+              ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/opt/steam";
           };
           "flatpak" = mkIf cfg.newSubvolumes {
@@ -116,7 +116,7 @@ with lib; let
                 "noatime"
                 "discard=async"
               ]
-              ++ lib.optional config.traits.low-power.enable "compress=zstd";
+              ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/var/lib/flatpak";
           };
           "log" = mkIf cfg.newSubvolumes {
