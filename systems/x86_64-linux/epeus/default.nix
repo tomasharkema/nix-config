@@ -1,1 +1,6 @@
-{...}: {}
+{...}: {
+  config = {
+
+resilio.enable = false;
+  };
+}
