@@ -136,37 +136,38 @@ in {
     #     mimeTypes = ["x-scheme-handler/org-protocol"];
     #     icon = icon;
     #   });
-  in {
-    # systemd.tmpfiles.rules = lib.lists.forEach folders ({path, ...}: "d ${path} 0744 tomas tomas -");
-    # environment.systemPackages = apps;
-    # home.file = builtins.listToAttrs (lib.lists.forEach apps (attr: {
-    #   name = attr.name;
-    #   value = {
-    #     source = attr;
-    #   };
-    # }));
+  in
+    mkIf pkgs.stdenv.isLinux {
+      # systemd.tmpfiles.rules = lib.lists.forEach folders ({path, ...}: "d ${path} 0744 tomas tomas -");
+      # environment.systemPackages = apps;
+      # home.file = builtins.listToAttrs (lib.lists.forEach apps (attr: {
+      #   name = attr.name;
+      #   value = {
+      #     source = attr;
+      #   };
+      # }));
 
-    xdg.desktopEntries = builtins.listToAttrs (lib.lists.forEach folders ({
-      name,
-      hash,
-      desktopName,
-      path,
-      url,
-      icon,
-      webName,
-    }: {
-      name = "${name}_${hash}";
-      value = {
-        # name = "${name}_${hash}";
-        # desktopName = desktopName;
-        name = desktopName;
-        exec = "${pkgs.gnome.epiphany}/bin/epiphany --application-mode --profile=${path} ${url}";
-        startupNotify = true;
-        terminal = false;
-        # startupWMClass = webName;
-        mimeType = ["x-scheme-handler/org-protocol"];
-        icon = icon;
-      };
-    }));
-  };
+      xdg.desktopEntries = builtins.listToAttrs (lib.lists.forEach folders ({
+        name,
+        hash,
+        desktopName,
+        path,
+        url,
+        icon,
+        webName,
+      }: {
+        name = "${name}_${hash}";
+        value = {
+          # name = "${name}_${hash}";
+          # desktopName = desktopName;
+          name = desktopName;
+          exec = "${pkgs.gnome.epiphany}/bin/epiphany --application-mode --profile=${path} ${url}";
+          startupNotify = true;
+          terminal = false;
+          # startupWMClass = webName;
+          mimeType = ["x-scheme-handler/org-protocol"];
+          icon = icon;
+        };
+      }));
+    };
 }
