@@ -142,6 +142,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-serve-ng = {
+      url = "github:aristanetworks/nix-serve-ng";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # peerix = {
     # url = "github:cid-chan/peerix";
     # inputs.nixpkgs.follows = "unstable";
@@ -403,7 +408,6 @@
       "https://api.github.com"
       "https://github.com/zhaofengli/nix-base32.git"
       "https://github.com/tomasharkema.keys"
-      "https://api.flakehub.com/f/pinned"
       "https://github.com/NixOS/"
       "https://github.com/nixos/"
       "https://github.com/hercules-ci/"
@@ -414,6 +418,9 @@
       "git://github.com/tomasharkema"
       "https://git.sr.ht/~rycee/nmd/archive"
       "https://git.sr.ht/~youkai/nscan"
+
+      "https://api.flakehub.com/f/pinned"
+      "https://api.flakehub.com/f/pinned/edolstra/flake-compat"
     ];
 
     allow-import-from-derivation = true;

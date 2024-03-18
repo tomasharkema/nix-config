@@ -35,6 +35,8 @@ with pkgs.python3Packages; let
     text = ''
       set -eux
 
+      export GIT_SSH_COMMAND="git -o IdentitiesOnly=yes"
+
       DIRECTORY="$(mktemp -d)"
       mkdir -p "$DIRECTORY" || true
 
