@@ -14,7 +14,7 @@ in {
   config = mkIf cfg.enable {
     specialisation = {
       media-center = {
-        inheritParentConfig = false;
+        # inheritParentConfig = false;
         configuration = {
           system.nixos.tags = ["media-center"];
 
@@ -25,6 +25,7 @@ in {
                 enable = true;
                 user = "media";
               };
+              gdm.enable = mkForce false;
               sddm = {
                 enable = true;
               };
@@ -34,9 +35,9 @@ in {
               '';
             };
           };
-          hardware.pulseaudio = {
-            enable = true;
-          };
+          # hardware.pulseaudio = {
+          #   enable = true;
+          # };
           environment.systemPackages = with pkgs; [
             plex-media-player
             ratpoison
