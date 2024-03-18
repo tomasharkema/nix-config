@@ -12,6 +12,9 @@ with lib; {
 
   config = {
     installed = true;
+
+    traits.low-power.enable = true;
+    
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01";
@@ -29,8 +32,6 @@ with lib; {
       quiet-boot.enable = true;
     };
 
-    # hardware.nvidia.nvidiaPersistenced = false;
-
     apps = {
       # android.enable = true;
       # steam.enable = true;
@@ -38,11 +39,6 @@ with lib; {
     };
 
     resilio.enable = false;
-
-    headless.hypervisor = {
-      # enable = true;
-      #   bridgeInterfaces = ["wlp59s0"];
-    };
 
     traits = {
       hardware = {
@@ -55,10 +51,9 @@ with lib; {
     };
 
     networking = {
-      # hostName = "euro-mir-2"; # Define your hostname.
       networkmanager.enable = true;
       # wireless.enable = true;
-      firewall.enable = false;
+      firewall.enable = true;
     };
 
     services = {
@@ -70,42 +65,10 @@ with lib; {
 
       avahi = {
         enable = true;
-        # allowInterfaces = ["wlp59s0"];
+        allowInterfaces = ["wlo1"];
         reflector = mkForce false;
       };
-
-      # fprintd = {
-      #   enable = true;
-      #   package = pkgs.fprintd-tod;
-      #   tod = {
-      #     enable = true;
-      #     driver = pkgs.custom.libfprint-2-tod1-goodix; #pkgs.libfprint-2-tod1-goodix;
-      #   };
-      # };
     };
-
-    # services.fprintd = let
-    #   libfprint-tod = pkgs.libfprint.overrideAttrs (_: rec {
-    #     pname = "libfprint-tod";
-    #     version = "1.94.7+tod1";
-    #     src = pkgs.fetchFromGitLab {
-    #       domain = "gitlab.freedesktop.org";
-    #       owner = "3v1n0";
-    #       repo = "libfprint";
-    #       rev = "v${version}";
-    #       sha256 = "sha256-q6m/J5GH86/z/mKnrYoanhKWR7+reKIRHqhDOUkknFA=";
-    #     };
-    #     doCheck = false;
-    #   });
-    # in {
-    #   enable = true;
-    #   package = pkgs.fprintd.override {libfprint = libfprint-tod;};
-    #   tod = {
-    #     enable = true;
-    #     driver = pkgs.libfprint-2-tod1-goodix.override {libfprint-tod = libfprint-tod;};
-    #   };
-    # };
-    # systemd.services."fprintd".environment."G_MESSAGES_DEBUG" = "all"; # for good measure
 
     boot = {
       # binfmt.emulatedSystems = ["aarch64-linux"];
@@ -114,6 +77,7 @@ with lib; {
 
     programs = {
       mtr.enable = true;
+      flashrom.enable=true;
     };
   };
 }

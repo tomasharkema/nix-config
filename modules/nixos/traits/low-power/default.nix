@@ -6,11 +6,11 @@
 }:
 with lib;
 with lib.custom; let
-  cfg = config.traits.slim;
+  cfg = config.traits.low-power;
 in {
   options.traits = {
-    slim = {
-      enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
+    low-power = {
+      enable = mkBoolOpt false "low-power";
     };
   };
 

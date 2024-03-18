@@ -43,11 +43,12 @@ with lib; let
             ];
           };
           "home" = {
-            mountOptions = [
-              "noatime"
-              "compress=zstd"
-              "discard=async"
-            ];
+            mountOptions =
+              [
+                "noatime"
+                "discard=async"
+              ]
+              ++ lib.optional config.traits.low-power.enable "compress=zstd";
             mountpoint = "/home";
           };
           "resilio-sync" = mkIf (cfg.newSubvolumes && cfg.media == null) {
@@ -65,19 +66,21 @@ with lib; let
             mountpoint = "/var/lib/resilio-sync";
           };
           "nix" = mkIf cfg.newSubvolumes {
-            mountOptions = [
-              "noatime"
-              "compress=zstd"
-              "discard=async"
-            ];
+            mountOptions =
+              [
+                "noatime"
+                "discard=async"
+              ]
+              ++ lib.optional config.traits.low-power.enable "compress=zstd";
             mountpoint = "/nix";
           };
           "containers" = mkIf cfg.newSubvolumes {
-            mountOptions = [
-              "noatime"
-              "compress=zstd"
-              "discard=async"
-            ];
+            mountOptions =
+              [
+                "noatime"
+                "discard=async"
+              ]
+              ++ lib.optional config.traits.low-power.enable "compress=zstd";
             mountpoint = "/var/lib/containers";
           };
           "swapfile" = mkIf cfg.newSubvolumes {
@@ -99,19 +102,21 @@ with lib; let
             mountpoint = "/.snapshots";
           };
           "steam" = mkIf cfg.newSubvolumes {
-            mountOptions = [
-              "noatime"
-              "compress=zstd"
-              "discard=async"
-            ];
+            mountOptions =
+              [
+                "noatime"
+                "discard=async"
+              ]
+              ++ lib.optional config.traits.low-power.enable "compress=zstd";
             mountpoint = "/opt/steam";
           };
           "flatpak" = mkIf cfg.newSubvolumes {
-            mountOptions = [
-              "noatime"
-              "compress=zstd"
-              "discard=async"
-            ];
+            mountOptions =
+              [
+                "noatime"
+                "discard=async"
+              ]
+              ++ lib.optional config.traits.low-power.enable "compress=zstd";
             mountpoint = "/var/lib/flatpak";
           };
           "log" = mkIf cfg.newSubvolumes {
