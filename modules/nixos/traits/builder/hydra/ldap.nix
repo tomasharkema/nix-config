@@ -13,22 +13,20 @@ pkgs.writeText "ldap.conf" ''
           </credential>
           <store>
             <ldap_server_options>
-                debug = 2
+                debug = 3
+                timeout = 30
             </ldap_server_options>
             class = LDAP
             ldap_server = ipa.harkema.intra
-            <ldap_server_options>
-                timeout = 30
-            </ldap_server_options>
             Include ${config.age.secrets.ldap.path}
             start_tls = 0
             <start_tls_options>
                 verify = none
             </start_tls_options>
             user_basedn = "cn=users,cn=accounts,dc=harkema,dc=intra"
-            user_filter = "(&(objectClass=inetorgperson)(cn=%s))"
-            #user_scope = one
-            #user_field = cn
+            user_filter = "(&(objectClass=inetorgperson)(uid=%s))"
+            user_scope = one
+            user_field = uid
             <user_search_options>
                 deref = always
             </user_search_options>
@@ -37,7 +35,7 @@ pkgs.writeText "ldap.conf" ''
             role_basedn = "cn=groups,cn=accounts,dc=harkema,dc=intra"
             role_filter = "(&(objectClass=groupofnames)(member=%s))"
             role_scope = one
-            #role_field = cn
+            role_field = cn
             role_value = dn
             <role_search_options>
                 deref = always
