@@ -14,17 +14,15 @@ with lib;
 # in
   {
     options = {
-    
-    installed = mkEnableOption "installed";
-    
-    #   variables = lib.mkOption {
-    #     type = lib.types.attrs;
-    #     default = {
-    #       # theme = theme;
-    #     };
-    #   };
-    };
+      installed = mkEnableOption "installed";
 
+      #   variables = lib.mkOption {
+      #     type = lib.types.attrs;
+      #     default = {
+      #       # theme = theme;
+      #     };
+      #   };
+    };
 
     config = with lib; {
       # Set your time zone.
@@ -53,7 +51,13 @@ with lib;
         enable = mkDefault true;
       };
 
-      services.throttled.enable = pkgs.stdenv.isx86_64;
+      console = {
+        earlySetup = true;
+        font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
+        packages = with pkgs; [terminus_font];
+        #    keyMap = "us";
+        useXkbConfig = true; # use xkb.options in tty.
+      };
 
       boot = {
         hardwareScan = true;
@@ -159,6 +163,8 @@ with lib;
 
       services = {
         fstrim.enable = true;
+
+        throttled.enable = pkgs.stdenv.isx86_64;
 
         cron.enable = true;
 
