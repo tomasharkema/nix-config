@@ -142,6 +142,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-serve-ng = {
+      url = "github:aristanetworks/nix-serve-ng";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # peerix = {
     # url = "github:cid-chan/peerix";
     # inputs.nixpkgs.follows = "unstable";
