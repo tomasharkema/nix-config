@@ -28,7 +28,7 @@ with lib; {
     security.wrappers.keybase-redirector.group = "root";
     security.wrappers.keybase-redirector.setuid = true;
 
-    # environment.systemPackages = with pkgs; mkIf (config.gui.enable && pkgs.system == "x86_64-linux") [keybase kbfs keybase-gui];
+    environment.systemPackages = with pkgs; mkIf (config.gui.enable && pkgs.system == "x86_64-linux") [keybase-gui];
 
     # environment.systemPackages = with pkgs; [keybase kbfs];
   };
