@@ -48,7 +48,7 @@ with lib;
         enable = mkDefault true;
       };
 
-      # services.throttled.enable = pkgs.stdenv.isx86_64;
+      services.throttled.enable = pkgs.stdenv.isx86_64;
 
       boot = {
         hardwareScan = true;
