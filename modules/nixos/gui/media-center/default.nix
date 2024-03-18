@@ -17,7 +17,7 @@ in {
         # inheritParentConfig = false;
         configuration = {
           system.nixos.tags = ["media-center"];
-
+          gui.quiet-boot.enable = mkForce false;
           services.xserver = {
             enable = true;
             displayManager = {
