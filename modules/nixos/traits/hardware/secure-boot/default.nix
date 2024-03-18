@@ -10,7 +10,7 @@ with lib.custom; let
 in {
   options.traits = {
     hardware.secure-boot = {
-      enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
+      enable = mkBoolOpt false "secure-boot lanzaboote";
     };
   };
 
