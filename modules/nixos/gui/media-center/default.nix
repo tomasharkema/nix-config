@@ -39,7 +39,6 @@ in {
                 enable = true;
               };
               sessionCommands = ''
-                ratpoison &
                 exec plexmediaplayer --fullscreen --tv > ~/.plexlogs
               '';
             };
