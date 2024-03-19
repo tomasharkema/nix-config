@@ -17,10 +17,17 @@ in {
         # inheritParentConfig = false;
         configuration = {
           system.nixos.tags = ["media-center"];
-          gui.quiet-boot.enable = mkForce false;
+
+          documentation.man.enable = false;
+
+          # gui.quiet-boot.enable = mkForce false;
           services.xserver = {
             enable = true;
-            desktopManager.gnome.enable = mkForce false;
+
+            windowManager = {
+              ratpoison.enable = true;
+              gnome.enable = false;
+            };
 
             displayManager = {
               autoLogin = {
@@ -31,16 +38,35 @@ in {
               sddm = {
                 enable = true;
               };
-
               sessionCommands = ''
                 ratpoison &
                 exec plexmediaplayer --fullscreen --tv > ~/.plexlogs
               '';
             };
           };
-          # hardware.pulseaudio = {
-          #   enable = true;
+          #   # desktopManager.gnome.enable = mkForce false;
+
+          #   displayManager = {
+          #     autoLogin = {
+          #       enable = true;
+          #       user = "media";
+          #     };
+          #     gdm.enable = mkForce false;
+          #     sddm = {
+          #       enable = true;
+          #     };
+
+          #     sessionCommands = ''
+          #       ratpoison &
+          #       exec plexmediaplayer --fullscreen --tv > ~/.plexlogs
+          #     '';
+          #   };
           # };
+
+          hardware.pulseaudio = {
+            enable = true;
+          };
+
           environment.systemPackages = with pkgs; [
             plex-media-player
             ratpoison

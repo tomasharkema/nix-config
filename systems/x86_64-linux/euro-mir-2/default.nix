@@ -30,7 +30,10 @@ with lib; {
       quiet-boot.enable = true;
     };
 
-    hardware.nvidia.nvidiaPersistenced = false;
+    hardware = {
+      nvidia.nvidiaPersistenced = false;
+      # fancontrol.enable = true;
+    };
 
     apps = {
       # android.enable = true;

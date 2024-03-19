@@ -2,6 +2,7 @@
   inputs,
   pkgs,
   lib,
+  config,
   ...
 } @ attrs:
 with pkgs;
@@ -62,6 +63,10 @@ with lib; let
     SERVER="$1"
     echo "test remote $SERVER..."
     exec ${lib.getExe pkgs.buildPackages.nixos-rebuild} test --flake ".#$SERVER" --target-host "$SERVER" --use-remote-sudo --verbose --show-trace -L
+  '';
+
+  upload-local = writeShellScriptBin "upload-local" ''
+    nix copy -v --substitute-on-destination --to 'ssh://blue-fire?compression=zstd&secret-key=/run/agenix/peerix-private' /run/current-system
   '';
   # diffs = import ../diffs attrs;
   # packages-json = diffs.packages-json;
@@ -145,6 +150,10 @@ in
           # cachix-reploy-pin
           nix-prefetch-scripts
           test-remote
+          upload-local
+
+          hydra-cli
+          inputs.nil.packages."${system}".default
         ];
       }
     ];
