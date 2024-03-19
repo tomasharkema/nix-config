@@ -26,7 +26,7 @@ in {
 
             windowManager = {
               ratpoison.enable = true;
-              gnome.enable = false;
+              # gnome.enable = false;
             };
 
             displayManager = {
@@ -39,7 +39,7 @@ in {
                 enable = true;
               };
               sessionCommands = ''
-                exec plexmediaplayer --fullscreen --tv > ~/.plexlogs
+                exec ${lib.getExe pkgs.plex-media-player} --fullscreen --tv > ~/.plexlogs
               '';
             };
           };

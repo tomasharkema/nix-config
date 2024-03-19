@@ -51,12 +51,12 @@ in {
 
     # sdImage.compressImage = false;
 
-    swapDevices = [
-      {
-        device = "/swapfile";
-        size = 8 * 1024;
-      }
-    ];
+    # swapDevices = [
+    #   {
+    #     device = "/swapfile";
+    #     size = 8 * 1024;
+    #   }
+    # ];
 
     services = {
       openssh.enable = true;
