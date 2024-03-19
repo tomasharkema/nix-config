@@ -2,6 +2,7 @@
   lib,
   config,
   inputs,
+  pkgs,
   ...
 }:
 with lib; let
@@ -26,5 +27,7 @@ in {
     programs.gnome-disks.enable = true;
     services.ddccontrol.enable = true;
     services.seatd.enable = true;
+
+    environment.systemPackages = with pkgs; [plex-media-player];
   };
 }
