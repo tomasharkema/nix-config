@@ -27,10 +27,10 @@ in {
     };
 
     boot = {
-      kernelParams = [
-        "console=ttyS1,115200n8"
-      ];
-      kernelModules = ["dwc2" "g_serial"];
+      # kernelParams = [
+      # "console=ttyS1,115200n8"
+      # ];
+      # kernelModules = ["dwc2" "g_serial"];
 
       tmp = {
         useTmpfs = false;
@@ -46,10 +46,17 @@ in {
     boot.loader = {
       grub.enable = false;
       systemd-boot.enable = mkForce false;
+      generic-extlinux-compatible.enable = mkDefault true;
     };
-    # boot.loader.generic-extlinux-compatible.enable = true;
 
     # sdImage.compressImage = false;
+
+    swapDevices = [
+      {
+        device = "/swapfile";
+        size = 8 * 1024;
+      }
+    ];
 
     services = {
       openssh.enable = true;
