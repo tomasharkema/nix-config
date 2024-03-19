@@ -53,7 +53,7 @@ with lib;
 
       console = {
         earlySetup = true;
-        font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
+        font = "${pkgs.terminus_font}/share/consolefonts/ter-116n.psf.gz";
         packages = with pkgs; [terminus_font];
         #    keyMap = "us";
         useXkbConfig = true; # use xkb.options in tty.
@@ -68,7 +68,8 @@ with lib;
           cleanOnBoot = true;
         };
 
-        kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
+        # kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
+        kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
         # kernelParams = [
         #   "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
