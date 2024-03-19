@@ -5,6 +5,10 @@
   ...
 }:
 with lib; {
+  imports = with inputs; [
+    nixos-hardware.nixosModules.raspberry-pi-4
+  ];
+
   config = {
     networking.hostName = "baaa-express";
 
@@ -15,50 +19,82 @@ with lib; {
       raspberrypi-eeprom
     ];
 
-    services = {
-      netdata.enable = mkForce false;
-    };
+    traits.low-power.enable = true;
+    gui."media-center".enable = true;
+
     # system.stateVersion = "23.11";
 
     # fileSystems."/".fsType = lib.mkForce "tmpfs";
     # fileSystems."/".device = lib.mkForce "none";
 
     boot = {
-      initrd.availableKernelModules = ["vc4" "bcm2835_dma" "i2c_bcm2835"];
-      initrd.kernelModules = ["dwc2" "g_serial"];
-
-      kernelPackages = pkgs.linuxPackages_rpi4;
-
-      kernelParams = [
-        "console=ttyS1,115200n8"
-        "cma=320M"
+      loader.generic-extlinux-compatible.enable = true;
+      initrd.availableKernelModules = mkForce [
+        "vc4"
+        "bcm2835_dma"
+        "i2c_bcm2835"
+        "usbhid"
+        "usb_storage"
+        "vc4"
+        # "pcie_brcmstb"
+        "reset-raspberrypi"
+        "ext2"
+        "ext4"
+        # "ahci"
+        # "sata_nv"
+        # "sata_via"
+        # "sata_sis"
+        # "sata_uli"
+        # "ata_piix"
+        # "pata_marvell"
+        # "nvme"
+        "sd_mod"
+        "sr_mod"
+        "mmc_block"
+        # "uhci_hcd"
+        # "ehci_hcd"
+        # "ehci_pci"
+        # "ohci_hcd"
+        # "ohci_pci"
+        # "xhci_hcd"
+        # "xhci_pci"
+        "usbhid"
+        # "hid_generic"
+        # "hid_lenovo"
+        # "hid_apple"
+        # "hid_roccat"
+        # "hid_logitech_hidpp"
+        # "hid_logitech_dj"
+        # "hid_microsoft"
+        # "hid_cherry"
       ];
+      # initrd.kernelModules = ["dwc2" "g_serial"];
 
-      loader.raspberryPi = {
-        enable = true;
-        version = 3;
-        #     core_freq=250
-        firmwareConfig = ''
-          dtoverlay=dwc2
-        '';
-        # uboot.enable = true;
-      };
+      # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
+      kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
+
+      # kernelParams = [
+      # "console=ttyS1,115200n8"
+      # "cma=320M"
+      # ];
     };
+
     hardware = {
+      enableRedistributableFirmware = true;
       i2c.enable = true;
 
-      #      raspberry-pi."4" = {
-      #        apply-overlays-dtmerge.enable = true;
-      #        dwc2 = {
-      #          enable = true;
-      #          dr_mode = "peripheral";
-      #};
-      #  };
+      raspberry-pi."4" = {
+        apply-overlays-dtmerge.enable = true;
+        dwc2 = {
+          enable = true;
+          dr_mode = "peripheral";
+        };
+      };
 
-      #   deviceTree = {
-      #      enable = true;
-      #       filter = "*rpi-3-b-*.dtb";
-      #      };
+      deviceTree = {
+        enable = true;
+        filter = "*rpi-3-*.dtb";
+      };
     };
     # systemd.services.btattach = {
     #   before = ["bluetooth.service"];

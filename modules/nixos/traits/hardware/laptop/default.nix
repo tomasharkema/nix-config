@@ -16,7 +16,7 @@ in {
   config = mkIf cfg.enable {
     system.nixos.tags = ["laptop"];
     powerManagement.enable = true;
-    services.thermald.enable = true;
+    # services.thermald.enable = true;
 
     netdata.enable = mkForce false;
 
