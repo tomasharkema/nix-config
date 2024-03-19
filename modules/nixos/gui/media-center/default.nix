@@ -20,6 +20,8 @@ in {
           gui.quiet-boot.enable = mkForce false;
           services.xserver = {
             enable = true;
+            desktopManager.gnome.enable = mkForce false;
+
             displayManager = {
               autoLogin = {
                 enable = true;
@@ -29,6 +31,7 @@ in {
               sddm = {
                 enable = true;
               };
+
               sessionCommands = ''
                 ratpoison &
                 exec plexmediaplayer --fullscreen --tv > ~/.plexlogs
