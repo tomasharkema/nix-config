@@ -22,6 +22,7 @@ in {
 
   config = {
     installed = true;
+
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K";
@@ -42,6 +43,8 @@ in {
 
     headless.enable = true;
 
+    apps.attic-server.enable = true;
+
     services = {
       ntopng = {
         enable = true;
@@ -50,17 +53,17 @@ in {
           --http-prefix="/ntopng"
         '';
       };
-      icingaweb2 = {
-        enable = true;
-        virtualHost = "mon.blue-fire.harkema.intra";
-        modules.setup.enable = true;
-        authentications = {
-          icingaweb = {
-            backend = "db";
-            resource = "icingaweb_db";
-          };
-        };
-      };
+      # icingaweb2 = {
+      #   enable = true;
+      #   virtualHost = "mon.blue-fire.harkema.intra";
+      #   modules.setup.enable = true;
+      #   authentications = {
+      #     icingaweb = {
+      #       backend = "db";
+      #       resource = "icingaweb_db";
+      #     };
+      #   };
+      # };
 
       # ha.initialMaster = true;
       # command-center = {

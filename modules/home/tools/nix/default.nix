@@ -19,7 +19,7 @@ in {
       deadnix
       fh
       # hydra-cli
-      inputs.nil.packages.${system}.default
+      # inputs.nil.packages.${system}.default
       manix
       nix-eval-jobs
       nix-fast-build

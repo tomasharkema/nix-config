@@ -16,7 +16,6 @@ in {
       figlet
       nodejs
       ripgrep
-      inputs.nil.packages.${system}.default
     ];
 
     programs.neovim = {
