@@ -71,11 +71,6 @@ in {
 
       prometheus.exporters.ipmi.enable = true;
 
-      nix-serve = {
-        enable = true;
-        secretKeyFile = config.age.secrets."peerix-private".path;
-      };
-
       # nfs = {
       #   server = {
       #     enable = true;
