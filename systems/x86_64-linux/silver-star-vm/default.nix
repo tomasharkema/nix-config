@@ -29,7 +29,10 @@ with lib; {
     resilio.enable = mkForce false;
     # apps.tor.relay.enable = true;
 
-    apps.ipa.enable = false;
+    apps = {
+      attic-server.enable = true;
+      ipa.enable = false;
+    };
 
     services = {
       # netbox-service.enable = true;

@@ -16,9 +16,37 @@ in {
       "/attic" = {
         proxyPass = "http://localhost:8080/";
         extraConfig = ''
+          client_max_body_size 5G;
           rewrite /attic(.*) $1 break;
         '';
       };
+    };
+
+    services.postgresql = {
+      enable = true;
+
+      enableTCPIP = true;
+      port = 5432;
+
+      identMap = ''
+        atticd-users atticd atticd
+        atticd-users root atticd
+        # The postgres user is used to create the pg_trgm extension for the hydra database
+        atticd-users postgres postgres
+      '';
+
+      authentication = ''
+        #type database  DBuser  auth-method
+        host  all       all     127.0.0.1/32 trust
+        host  all       all     100.0.0.0/8 trust
+        local atticd    all     ident map=atticd-users
+      '';
+
+      initialScript = pkgs.writeText "backend-initScript-atticd" ''
+        CREATE ROLE atticd WITH LOGIN PASSWORD 'atticd' CREATEDB;
+        CREATE DATABASE atticd;
+        GRANT ALL PRIVILEGES ON DATABASE atticd TO atticd;
+      '';
     };
 
     services.atticd = {
@@ -30,32 +58,35 @@ in {
         listen = "0.0.0.0:8080";
         api-endpoint = "https://blue-fire.ling-lizard.ts.net/attic/";
 
-        database.url = "postgresql://localhost";
-
-        storage = {
-          # Storage type
-          #
-          # Can be "local" or "s3".
-          type = "s3";
-
-          # ## Local storage
-
-          # The directory to store all files under
-          # path = "/data"
-
-          # ## S3 Storage (set type to "s3" and uncomment below)
-
-          # The AWS region
-          region = "us-east-1";
-
-          # The name of the bucket
-          bucket = "attic";
-
-          # Custom S3 endpoint
-          #
-          # Set this if you are using an S3-compatible object storage (e.g., Minio).
-          endpoint = "https://cce1d3af687f672684f23cf7aa7731f7.r2.cloudflarestorage.com/";
+        database = {
+          # url = "postgresql:///atticd?host=/run/postgresql&user=atticd";
+          url = "postgresql://atticd:@127.0.0.1/atticd";
         };
+
+        # storage = {
+        #   # Storage type
+        #   #
+        #   # Can be "local" or "s3".
+        #   type = "s3";
+
+        #   # ## Local storage
+
+        #   # The directory to store all files under
+        #   # path = "/data"
+
+        #   # ## S3 Storage (set type to "s3" and uncomment below)
+
+        #   # The AWS region
+        #   region = "us-east-1";
+
+        #   # The name of the bucket
+        #   bucket = "attic";
+
+        #   # Custom S3 endpoint
+        #   #
+        #   # Set this if you are using an S3-compatible object storage (e.g., Minio).
+        #   endpoint = "https://cce1d3af687f672684f23cf7aa7731f7.r2.cloudflarestorage.com/";
+        # };
 
         compression = {
           # Can be "none", "brotli", "zstd", or "xz"
