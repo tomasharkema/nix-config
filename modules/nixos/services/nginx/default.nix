@@ -53,10 +53,10 @@ in {
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
 
-      recommendedBrotliSettings = true;
-      recommendedGzipSettings = true;
-      recommendedOptimisation = true;
-      recommendedZstdSettings = true;
+      # recommendedBrotliSettings = true;
+      # recommendedGzipSettings = true;
+      # recommendedOptimisation = true;
+      # recommendedZstdSettings = true;
 
       virtualHosts."${cfg.vhost}" = {
         forceSSL = true;
