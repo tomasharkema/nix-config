@@ -6,6 +6,7 @@
 }:
 with lib; let
   cfg = config.apps.attic-server;
+  port = 5000;
 in {
   options.apps.attic-server = {
     enable = mkEnableOption "attic-server";
@@ -14,7 +15,7 @@ in {
   config = mkIf cfg.enable {
     proxy-services.services = {
       "/attic" = {
-        proxyPass = "http://localhost:8080/";
+        proxyPass = "http://localhost:${builtins.toString port}";
         extraConfig = ''
           client_max_body_size 50G;
           rewrite /attic(.*) $1 break;
@@ -49,14 +50,16 @@ in {
       '';
     };
 
+    networking.firewall.allowedTCPPorts = [port];
+
     services.atticd = {
       enable = true;
 
       credentialsFile = "/etc/atticd.env";
 
       settings = {
-        listen = "0.0.0.0:8080";
-        api-endpoint = "https://blue-fire.ling-lizard.ts.net/attic/";
+        listen = "0.0.0.0:${builtins.toString port}";
+        # api-endpoint = "https://blue-fire.ling-lizard.ts.net/attic/";
 
         database = {
           # url = "postgresql:///atticd?host=/run/postgresql&user=atticd";

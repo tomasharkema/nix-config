@@ -86,6 +86,8 @@ in {
       };
     };
 
+    networking.firewall.allowedTCPPorts = [80 443];
+
     systemd = {
       tmpfiles.rules = [
         "d '${cfg.cert.dir}' 0770 root ssl-cert -"
