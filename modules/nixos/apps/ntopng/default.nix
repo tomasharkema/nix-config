@@ -4,11 +4,13 @@
   config,
   ...
 }:
-with lib; {
+with lib; let
+  cfg = config.apps.ntopng;
+in {
   options.apps.ntopng = {
     enable = mkEnableOption "ntopng";
   };
-  config = {
+  config = mkIf cfg.enable {
     services = {
       ntopng = {
         enable = true;
