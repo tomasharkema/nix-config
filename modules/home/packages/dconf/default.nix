@@ -135,20 +135,21 @@ with lib; {
             "todo.txt@bart.libert.gmail.com"
             "display-brightness-ddcutil@themightydeity.github.com"
           ];
-          favorite-apps = [
-            # "org.kde.index.desktop"
-            # "pcmanfm.desktop"
-            "org.gnome.Nautilus.desktop"
-            "firefox.desktop"
-            "org.gnome.Console.desktop"
-            # ]
-            # ++ (optional pkgs.stdenv.isx86_64 "kitty.desktop")
-            # ++ (optional (!pkgs.stdenv.isx86_64) "org.gnome.Console.desktop")
-            # ++ [
-            "code.desktop"
-            "org.cockpit_project.CockpitClient.desktop"
-            "org.gnome.Epiphany.WebApp_b336fc558722224b7ffe98607055d55f0fe52450.desktop"
-          ];
+          favorite-apps =
+            [
+              # "org.kde.index.desktop"
+              # "pcmanfm.desktop"
+              "org.gnome.Nautilus.desktop"
+              "firefox.desktop"
+              # "org.gnome.Console.desktop"
+            ]
+            ++ (optional pkgs.stdenv.isx86_64 "kitty.desktop")
+            ++ (optional (!pkgs.stdenv.isx86_64) "org.gnome.Console.desktop")
+            ++ [
+              "code.desktop"
+              "org.cockpit_project.CockpitClient.desktop"
+              "org.gnome.Epiphany.WebApp_b336fc558722224b7ffe98607055d55f0fe52450.desktop"
+            ];
         };
         "org/gnome/desktop/wm/preferences" = {
           button-layout = "appmenu:minimize,maximize,close";
