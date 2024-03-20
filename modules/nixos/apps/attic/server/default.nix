@@ -26,32 +26,31 @@ in {
 
       credentialsFile = "/etc/atticd.env";
 
-      storage = {
-        # Storage type
-        #
-        # Can be "local" or "s3".
-        type = "s3";
-
-        # ## Local storage
-
-        # The directory to store all files under
-        # path = "/data"
-
-        # ## S3 Storage (set type to "s3" and uncomment below)
-
-        # The AWS region
-        #region = "us-east-1"
-
-        # The name of the bucket
-        bucket = "attic";
-
-        # Custom S3 endpoint
-        #
-        # Set this if you are using an S3-compatible object storage (e.g., Minio).
-        endpoint = "https://cce1d3af687f672684f23cf7aa7731f7.r2.cloudflarestorage.com/";
-      };
-
       settings = {
+        storage = {
+          # Storage type
+          #
+          # Can be "local" or "s3".
+          type = "s3";
+
+          # ## Local storage
+
+          # The directory to store all files under
+          # path = "/data"
+
+          # ## S3 Storage (set type to "s3" and uncomment below)
+
+          # The AWS region
+          #region = "us-east-1"
+
+          # The name of the bucket
+          bucket = "attic";
+
+          # Custom S3 endpoint
+          #
+          # Set this if you are using an S3-compatible object storage (e.g., Minio).
+          endpoint = "https://cce1d3af687f672684f23cf7aa7731f7.r2.cloudflarestorage.com/";
+        };
         listen = "0.0.0.0:8080";
         api-endpoint = "https://blue-fire.ling-lizard.ts.net/attic/";
         compression = {
