@@ -27,14 +27,15 @@ in {
     };
 
     boot = {
-      # kernelParams = [
-      # "console=ttyS1,115200n8"
-      # ];
+      kernelParams = [
+        "console=serial0,115200"
+        "console=tty1"
+      ];
       # kernelModules = ["dwc2" "g_serial"];
 
       tmp = {
         useTmpfs = false;
-        cleanOnBoot = true;
+        cleanOnBoot = false;
       };
     };
 
