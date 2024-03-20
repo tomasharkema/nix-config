@@ -34,6 +34,14 @@ with lib; let
   remote-deploy = writeShellScriptBin "remote-deploy" ''
     remote deployment '.#arthur' '.#enzian'
   '';
+  upload-all = writeShellScriptBin "upload-all" ''
+    FILES="/nix/store/*"
+    for f in $FILES
+    do
+      echo "Processing $f file..."
+      ${pkgs.attic}/bin/attic push tomas "$f"
+    done
+  '';
   # cachix-deploy = writeShellScriptBin "cachix-deploy" ''
   #   set -x
   #   set -e
@@ -154,6 +162,7 @@ in
           upload-local
 
           hydra-cli
+          upload-all
           inputs.nil.packages."${system}".default
         ];
       }
