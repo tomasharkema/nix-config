@@ -9,7 +9,7 @@
     substituters = [
       "https://nix-community.cachix.org"
       "https://cache.nixos.org/"
-      "http://blue-fire.harkema.intra:8080"
+      "https://blue-fire.ling-lizard.ts.net/attic/"
     ];
 
     trusted-public-keys = [

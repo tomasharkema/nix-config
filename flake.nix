@@ -382,7 +382,7 @@
       "https://cache.nixos.org/"
       "https://devenv.cachix.org/"
       # "http://127.0.0.1:12304/"
-      "http://blue-fire.harkema.intra:5000"
+      "https://blue-fire.ling-lizard.ts.net/attic/"
     ];
 
     trusted-public-keys = [
