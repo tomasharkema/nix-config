@@ -67,6 +67,10 @@ with lib; {
 
       useDHCP = false;
       interfaces."enp3s0".useDHCP = true;
+
+      hosts = {
+        "192.168.0.11" = ["blue-fire.harkema.intra" "blue-fire.ling-lizard.ts.net"];
+      };
     };
 
     # sudo mount --types virtiofs appdata_ssd /mnt/shared/
