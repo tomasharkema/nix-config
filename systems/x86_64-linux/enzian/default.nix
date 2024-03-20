@@ -16,6 +16,9 @@ with lib; {
 
   config = {
     installed = true;
+    apps = {
+      ntopng.enable = true;
+    };
 
     gui = {
       enable = true;
