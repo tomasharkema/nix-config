@@ -22,6 +22,7 @@ in {
       spice-vdagentd.enable = true;
       spice-autorandr.enable = mkIf pkgs.stdenv.isx86_64 true;
       spice-webdavd.enable = true;
+      throttled.enable = mkForce false;
     };
 
     hardware = {
