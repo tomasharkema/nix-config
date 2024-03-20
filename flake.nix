@@ -377,7 +377,6 @@
 
     substituters = [
       "https://tomasharkema.cachix.org/"
-      "https://nix-cache.harke.ma/tomas/"
       "https://nix-community.cachix.org/"
       "https://cache.nixos.org/"
       "https://devenv.cachix.org/"
@@ -392,6 +391,7 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA="
+      "tomas:qzaaV24nfgwcarekICaYr2c9ZBFDQnvvydOywbwAeys="
     ];
 
     # extra-trusted-public-keys = [
