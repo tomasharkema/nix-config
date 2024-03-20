@@ -16,7 +16,7 @@ in {
 
   config = let
     attic-login = writeShellScript "attic-script" ''
-      ${attic}/bin/attic login tomas https://blue-fire.harkema.intra $(cat ${config.age.secrets.attic-key.path})
+      ${attic}/bin/attic login tomas https://blue-fire.ling-lizard.ts.net/attic/ $(cat ${config.age.secrets.attic-key.path})
       ${attic}/bin/attic use tomas:tomas
     '';
   in
