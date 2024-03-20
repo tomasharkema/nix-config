@@ -376,11 +376,9 @@
     trusted-users = ["root" "tomas"];
 
     substituters = [
-      "https://tomasharkema.cachix.org/"
-      "https://nix-community.cachix.org/"
+      "https://nix-community.cachix.org"
+      "https://tomasharkema.cachix.org"
       "https://cache.nixos.org/"
-      "https://devenv.cachix.org/"
-      # "http://127.0.0.1:12304/"
       "https://blue-fire.ling-lizard.ts.net/attic/"
     ];
 
