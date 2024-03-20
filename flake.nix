@@ -383,6 +383,7 @@
       "https://devenv.cachix.org/"
       # "http://127.0.0.1:12304/"
       "https://blue-fire.ling-lizard.ts.net/attic/"
+      "https://blue-fire.harkema.intra/attic/"
     ];
 
     trusted-public-keys = [

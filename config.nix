@@ -10,6 +10,7 @@
       "https://nix-community.cachix.org"
       "https://cache.nixos.org/"
       "https://blue-fire.ling-lizard.ts.net/attic/"
+      "https://blue-fire.harkema.intra/attic/"
     ];
 
     trusted-public-keys = [
