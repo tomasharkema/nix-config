@@ -16,8 +16,6 @@ in {
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
     nixos-hardware.nixosModules.supermicro-x10sll-f
-
-    nix-serve-ng.nixosModules.default
   ];
 
   config = {
@@ -43,16 +41,12 @@ in {
 
     headless.enable = true;
 
-    apps.attic-server.enable = true;
+    apps = {
+      attic-server.enable = true;
+      ntopng.enable = true;
+    };
 
     services = {
-      ntopng = {
-        enable = true;
-        httpPort = 3457;
-        extraConfig = ''
-          --http-prefix="/ntopng"
-        '';
-      };
       # icingaweb2 = {
       #   enable = true;
       #   virtualHost = "mon.blue-fire.harkema.intra";
@@ -130,15 +124,6 @@ in {
     headless.hypervisor = {
       enable = true;
       bridgeInterfaces = ["eno1"];
-    };
-
-    proxy-services.services = {
-      "/ntopng" = {
-        proxyPass = "http://localhost:${toString config.services.ntopng.httpPort}/";
-        extraConfig = ''
-          rewrite /ntopng(.*) $1 break;
-        '';
-      };
     };
 
     environment.systemPackages = with pkgs; [

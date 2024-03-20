@@ -231,6 +231,9 @@
 
       systems.modules.nixos = with inputs; [
         nix-index-database.nixosModules.nix-index
+
+        nix-serve-ng.nixosModules.default
+        attic.nixosModules.atticd
         # peerix.nixosModules.peerix
 
         # impermanence.nixosModule
