@@ -27,6 +27,11 @@ in {
       credentialsFile = "/etc/atticd.env";
 
       settings = {
+        listen = "0.0.0.0:8080";
+        api-endpoint = "https://blue-fire.ling-lizard.ts.net/attic/";
+
+        database.url = "postgresql://localhost";
+
         storage = {
           # Storage type
           #
@@ -41,7 +46,7 @@ in {
           # ## S3 Storage (set type to "s3" and uncomment below)
 
           # The AWS region
-          #region = "us-east-1"
+          region = "us-east-1";
 
           # The name of the bucket
           bucket = "attic";
@@ -51,8 +56,7 @@ in {
           # Set this if you are using an S3-compatible object storage (e.g., Minio).
           endpoint = "https://cce1d3af687f672684f23cf7aa7731f7.r2.cloudflarestorage.com/";
         };
-        listen = "0.0.0.0:8080";
-        api-endpoint = "https://blue-fire.ling-lizard.ts.net/attic/";
+
         compression = {
           # Can be "none", "brotli", "zstd", or "xz"
           type = "zstd";
@@ -76,7 +80,7 @@ in {
           # The preferred maximum size of a chunk, in bytes
           max-size = 256 * 1024; # 256 KiB
         };
-        garbage-collecting = {
+        garbage-collection = {
           # The frequency to run garbage collection at
           #
           # By default it's 12 hours. You can use natural language
