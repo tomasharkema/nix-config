@@ -96,6 +96,7 @@ in
           shellcheck.enable = true;
           nil.enable = true;
           # statix.enable = true;
+          enabledPackages = {};
         };
         devcontainer.enable = true;
         devcontainer.settings.customizations.vscode.extensions = [
