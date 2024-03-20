@@ -68,6 +68,8 @@ with lib;
           cleanOnBoot = true;
         };
 
+        availableKernelModules = ["netatop"];
+
         kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
         # kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
@@ -85,6 +87,11 @@ with lib;
         };
       };
 
+      programs.atop = {
+        enable = true;
+        netatop.enable = true;
+      };
+
       environment.systemPackages =
         (with pkgs; [
           # dry
@@ -92,7 +99,7 @@ with lib;
           # udisks2
 
           iptraf-ng
-          atop
+
           bandwhich
           bashmount
           bmon
