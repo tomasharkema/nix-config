@@ -379,7 +379,7 @@
       "https://nix-community.cachix.org"
       "https://tomasharkema.cachix.org"
       "https://cache.nixos.org/"
-      "https://blue-fire.ling-lizard.ts.net/attic/"
+      "https://blue-fire.ling-lizard.ts.net/attic/tomas/"
     ];
 
     trusted-public-keys = [
