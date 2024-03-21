@@ -126,6 +126,7 @@ in {
         "https://tomasharkema.cachix.org"
         "https://cache.nixos.org/"
         "https://blue-fire.ling-lizard.ts.net/attic/tomas/"
+        "https://devenv.cachix.org"
       ];
 
       trusted-public-keys = [
@@ -136,6 +137,7 @@ in {
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
         "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA="
         "tomas:qzaaV24nfgwcarekICaYr2c9ZBFDQnvvydOywbwAeys="
+        "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       ];
     };
   };
