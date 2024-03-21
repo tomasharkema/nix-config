@@ -99,13 +99,13 @@ in
 
         languages.nix.enable = true;
 
-        pre-commit.hooks = {
-          alejandra.enable = true;
-          shellcheck.enable = true;
-          nil.enable = true;
-          # statix.enable = true;
-          # enabledPackages = {};
-        };
+        # pre-commit.hooks = {
+        #   alejandra.enable = true;
+        #   shellcheck.enable = true;
+        #   nil.enable = true;
+        #   # statix.enable = true;
+        #   # enabledPackages = {};
+        # };
 
         devcontainer = {
           enable = true;
@@ -119,53 +119,49 @@ in
 
         # dotenv.enable = true;
 
-        packages = with inputs; [
-          dconf-update
-          # flake-checker
-          deploy-rs
-          attic
-          agenix
-          hydra-check
-          nil
-          nix-output-monitor
-          dconf2nix
+        packages = [
           # pkgs.custom.rundesk
-          reencrypt
-          pkgs.custom.remote-cli
           ack
           age
+          agenix
           alejandra
+          attic
           bash
           bfg-repo-cleaner
+          # cachix-deploy
+          # cachix-reploy-pin
           colima
           comma
-          deploy-machine
-          deployment
+          dconf-update
+          dconf2nix
           deploy-all
+          deploy-machine
+          # deploy-rs
+          # deployment
           direnv
+          flake-checker
           git
           gnupg
           gum
+          hydra-check
+          hydra-cli
           mkiso
           netdiscover
-          statix
-          # packages-json
+          nil
+          nix-output-monitor
+          nix-prefetch-scripts
+          pkgs.custom.remote-cli
           python3
-
+          reencrypt
           remote-deploy
-
           sops
           ssh-to-age
+          statix
+          test-remote
+          upload-all
+          upload-local
           write-script
           zsh
-          # cachix-deploy
-          # cachix-reploy-pin
-          nix-prefetch-scripts
-          test-remote
-          upload-local
-
-          hydra-cli
-          upload-all
         ];
       }
     ];
