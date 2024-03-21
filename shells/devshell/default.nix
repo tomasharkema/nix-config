@@ -99,19 +99,22 @@ in
 
         languages.nix.enable = true;
 
-        pre-commit.hooks = {
-          alejandra.enable = true;
-          shellcheck.enable = true;
-          nil.enable = true;
-          # statix.enable = true;
-          enabledPackages = {};
+        # pre-commit.hooks = {
+        #   alejandra.enable = true;
+        #   shellcheck.enable = true;
+        #   nil.enable = true;
+        #   # statix.enable = true;
+        #   enabledPackages = {};
+        # };
+
+        devcontainer = {
+          enable = true;
+          settings.customizations.vscode.extensions = [
+            "Catppuccin.catppuccin-vsc"
+            "kamadorueda.alejandra"
+            "jnoortheen.nix-ide"
+          ];
         };
-        devcontainer.enable = true;
-        devcontainer.settings.customizations.vscode.extensions = [
-          "Catppuccin.catppuccin-vsc"
-          "kamadorueda.alejandra"
-          "jnoortheen.nix-ide"
-        ];
         difftastic.enable = true;
 
         # dotenv.enable = true;
