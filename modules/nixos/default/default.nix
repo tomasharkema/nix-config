@@ -97,7 +97,7 @@ with lib;
       programs.atop.setuidWrapper.enable = true;
       programs.atop.atopService.enable = true;
       programs.atop.atopacctService.enable = true;
-      programs.atop.atopgpu.enable = true;
+      programs.atop.atopgpu.enable = config.traits.hardware.nvidia.enable;
       programs.atop.netatop.enable = true;
 
       environment.systemPackages =
