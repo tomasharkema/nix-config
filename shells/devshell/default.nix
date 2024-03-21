@@ -99,13 +99,13 @@ in
 
         languages.nix.enable = true;
 
-        # pre-commit.hooks = {
-        #   alejandra.enable = true;
-        #   shellcheck.enable = true;
-        #   nil.enable = true;
-        #   # statix.enable = true;
-        #   enabledPackages = {};
-        # };
+        pre-commit.hooks = {
+          alejandra.enable = true;
+          shellcheck.enable = true;
+          nil.enable = true;
+          # statix.enable = true;
+          # enabledPackages = {};
+        };
 
         devcontainer = {
           enable = true;
