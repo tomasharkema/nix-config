@@ -68,6 +68,7 @@ in {
           "/etc/ssh/boot/ssh_host_ecdsa_key" = "/etc/ssh/boot/ssh_host_ecdsa_key";
           "/etc/ssh/boot/ssh_host_ed25519_key" = "/etc/ssh/boot/ssh_host_ed25519_key";
           "/etc/ssh/boot/ssh_host_rsa_key" = "/etc/ssh/boot/ssh_host_rsa_key";
+          "/etc/notify.key" = "${config.age.secrets.notify.path}";
         };
 
         systemd = {
@@ -78,6 +79,7 @@ in {
             rsyslog
             tor
             zerotierone
+            notify
           ];
 
           packages = with pkgs; [
@@ -87,6 +89,7 @@ in {
             rsyslog
             tor
             zerotierone
+            notify
           ];
 
           # emergencyAccess = true;
@@ -105,11 +108,11 @@ in {
           #   MaxLevelConsole=debug
           # '';
 
-          contents."/etc/systemd/journald.conf".text = ''
-            [Journal]
-            ForwardToConsole=yes
-            MaxLevelConsole=debug
-          '';
+          # contents."/etc/systemd/journald.conf".text = ''
+          #   [Journal]
+          #   ForwardToConsole=yes
+          #   MaxLevelConsole=debug
+          # '';
 
           contents."/etc/tor/tor.rc".text = ''
             DataDirectory /etc/tor
@@ -126,6 +129,7 @@ in {
             "${pkgs.tor}/bin/tor"
             "${pkgs.rsyslog}/sbin/rsyslogd"
             "${pkgs.coreutils}/bin/mkdir"
+            "${pkgs.notify}/bin/notify"
           ];
 
           services = {
@@ -162,46 +166,29 @@ in {
               };
             };
 
-            syslog = {
-              description = "Syslog Daemon";
+            notify = {
+              script = ''
+                echo "OJOO!" | /bin/notify -bulk -pc /etc/notify.key
+              '';
 
-              requires = ["syslog.socket"];
               wantedBy = ["initrd.target"];
-
-              serviceConfig = {
-                ExecStart = "/bin/rsyslogd -f /etc/rsyslog.conf -n";
-                ExecStartPre = "mkdir -p /var/spool/rsyslog";
-                # Prevent syslogd output looping back through journald.
-                StandardOutput = "null";
-              };
+              after = ["network.target" "initrd-nixos-copy-secrets.service"];
+              serviceConfig = {Type = "oneshot";};
             };
+
+            # syslog = {
+            #   description = "Syslog Daemon";
+
+            #   requires = ["syslog.socket"];
+            #   wantedBy = ["initrd.target"];
+
+            #   serviceConfig = {
+            #     ExecStart = "/bin/rsyslogd -f /etc/rsyslog.conf -n";
+            #     ExecStartPre = "mkdir -p /var/spool/rsyslog";
+            #     # Prevent syslogd output looping back through journald.
+            #     StandardOutput = "null";
+            #   };
           };
-
-          #   services.key-usb = {
-          #     description = "Rollback BTRFS root subvolume to a pristine state";
-          #     # wantedBy = [
-          #     #   "initrd.target"
-          #     # ];
-          #     # after = [
-          #     #   # LUKS/TPM process
-          #     #   "systemd-cryptsetup@enc.service"
-          #     # ];
-          #     # before = [
-          #     #   "sysroot.mount"
-          #     # ];
-          #     wantedBy = ["sysinit.target" "initrd.target"];
-          #     before = ["cryptsetup-pre.target" "shutdown.target" "initrd-switch-root.service"];
-          #     after = ["systemd-cryptsetup@enc.service"];
-
-          #     unitConfig.DefaultDependencies = "no";
-          #     serviceConfig.Type = "oneshot";
-
-          #     script = ''
-          #       mkdir -m 0755 -p /key
-          #       sleep 2 # To make sure the usb key has been loaded
-          #       mount -n -t vfat -o ro /dev/disk/by-partlabel/a7098897-2784-4776-bd3d-0e217d85963d /key
-          #     '';
-          #   };
         };
 
         availableKernelModules = ["e1000e" "r8169"];
