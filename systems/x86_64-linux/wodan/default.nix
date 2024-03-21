@@ -59,7 +59,11 @@
     #   fsType = "nfs";
     # };
     services = {
-      hardware.openrgb.enable = true;
+      hardware = {
+        openrgb.enable = true;
+        bolt.enable = true;
+      };
+
       udev.packages = [pkgs.openrgb];
       command-center = {
         #enableBot = true;

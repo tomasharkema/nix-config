@@ -20,6 +20,8 @@ with lib; {
       newSubvolumes = true;
     };
 
+    services.hardware.bolt.enable = true;
+
     gui = {
       enable = true;
       desktop = {
