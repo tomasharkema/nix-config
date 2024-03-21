@@ -34,6 +34,8 @@ in {
       terminal-notifier
       custom.launchcontrol
       custom.ztui
+
+      inputs.devenv.packages.${system}.default
     ];
     security.pam.enableSudoTouchIdAuth = true;
   };

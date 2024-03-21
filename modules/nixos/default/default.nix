@@ -98,6 +98,7 @@ with lib;
           # pkgs.deepin.udisks2-qt5
           # udisks2
 
+          inputs.devenv.packages.${system}.default
           iptraf-ng
 
           bandwhich
