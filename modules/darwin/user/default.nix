@@ -34,8 +34,19 @@ in {
       terminal-notifier
       custom.launchcontrol
       custom.ztui
+      devenv
 
-      inputs.devenv.packages.${system}.default
+      sysz
+      iptraf-ng
+      netscanner
+      bandwhich
+      bashmount
+      bmon
+      compsize
+      ctop
+      curl
+      devtodo
+      devdash
     ];
     security.pam.enableSudoTouchIdAuth = true;
   };
