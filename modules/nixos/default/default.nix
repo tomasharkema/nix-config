@@ -70,8 +70,8 @@ with lib;
 
         initrd.availableKernelModules = ["netatop"];
 
-        kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
-        # kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+        # kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
+        kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
         # kernelParams = [
         #   "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
@@ -87,10 +87,18 @@ with lib;
         };
       };
 
-      programs.atop = {
-        enable = true;
-        netatop.enable = true;
-      };
+      # programs.atop = {
+      #   enable = true;
+      #   netatop.enable = true;
+      # };
+
+      programs.atop.atopRotateTimer.enable = true;
+      programs.atop.enable = true;
+      programs.atop.setuidWrapper.enable = true;
+      programs.atop.atopService.enable = true;
+      programs.atop.atopacctService.enable = true;
+      programs.atop.atopgpu.enable = true;
+      programs.atop.netatop.enable = true;
 
       environment.systemPackages =
         (with pkgs; [

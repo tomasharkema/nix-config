@@ -90,9 +90,9 @@ with lib; {
         "org/gnome/Console" = {
           custom-font = "JetBrainsMono Nerd Font Mono 11";
         };
-        "org/gnome/shell/extensions/display-brightness-ddcutil" = {
-          ddcutil-binary-path = "${lib.getExe pkgs.ddcutil}";
-        };
+        # "org/gnome/shell/extensions/display-brightness-ddcutil" = {
+        #   ddcutil-binary-path = "${lib.getExe pkgs.ddcutil}";
+        # };
         "org/gnome/shell" = {
           disable-user-extensions = false;
           disabled-extensions = [
@@ -133,7 +133,7 @@ with lib; {
             "logomenu@aryan_k"
             "just-perfection-desktop@just-perfection"
             "todo.txt@bart.libert.gmail.com"
-            "display-brightness-ddcutil@themightydeity.github.com"
+            # "display-brightness-ddcutil@themightydeity.github.com"
           ];
           favorite-apps =
             [

@@ -25,7 +25,7 @@ in {
     };
     apps.flatpak.enable = mkDefault true;
     programs.gnome-disks.enable = true;
-    services.ddccontrol.enable = true;
+    # services.ddccontrol.enable = true;
     services.seatd.enable = true;
 
     environment.systemPackages = with pkgs; [plex-media-player];
