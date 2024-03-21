@@ -28,7 +28,7 @@ with lib;
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";
 
-      nix.package = pkgs.nixVersions.nix_2_19;
+      nix.package = pkgs.nixUnstable;
 
       # Select internationalisation properties.
       i18n = {
