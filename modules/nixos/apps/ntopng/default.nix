@@ -10,7 +10,7 @@ in {
   options.apps.ntopng = {
     enable = mkEnableOption "ntopng";
   };
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.enable && false) {
     services = {
       ntopng = {
         enable = true;
