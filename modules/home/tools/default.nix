@@ -41,7 +41,6 @@ with pkgs; {
 
       httpie
       iftop
-      inputs.devenv.packages.${system}.default
       ipmitool
       just
       # keybase
