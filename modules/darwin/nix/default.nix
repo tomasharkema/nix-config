@@ -51,7 +51,7 @@ in {
     nix = let
       users = ["root" "tomas"];
     in {
-      package = pkgs.nixVersions.nix_2_19;
+      package = pkgs.nixUnstable;
 
       settings = {
         experimental-features = "nix-command flakes";
