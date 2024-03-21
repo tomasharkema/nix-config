@@ -37,15 +37,14 @@ in {
       devenv
 
       sysz
-      iptraf-ng
-      netscanner
+      # iptraf-ng
+      # netscanner
       bandwhich
       bashmount
       bmon
-      compsize
       ctop
-      curl
-      devtodo
+
+      # devtodo
       devdash
     ];
     security.pam.enableSudoTouchIdAuth = true;
