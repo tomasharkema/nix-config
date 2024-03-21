@@ -51,13 +51,13 @@ with lib;
         enable = mkDefault true;
       };
 
-      # console = {
-      #   earlySetup = true;
-      #   font = "${pkgs.terminus_font}/share/consolefonts/ter-116n.psf.gz";
-      #   packages = with pkgs; [terminus_font];
-      #   #    keyMap = "us";
-      #   useXkbConfig = true; # use xkb.options in tty.
-      # };
+      console = {
+        earlySetup = true;
+        #   font = "${pkgs.terminus_font}/share/consolefonts/ter-116n.psf.gz";
+        packages = with pkgs; [terminus_font];
+        #   #    keyMap = "us";
+        useXkbConfig = true; # use xkb.options in tty.
+      };
 
       boot = {
         hardwareScan = true;
@@ -92,14 +92,15 @@ with lib;
       #   netatop.enable = true;
       # };
 
-      programs.atop.atopRotateTimer.enable = true;
-      programs.atop.enable = true;
-      programs.atop.setuidWrapper.enable = true;
-      programs.atop.atopService.enable = true;
-      programs.atop.atopacctService.enable = true;
-      programs.atop.atopgpu.enable = config.traits.hardware.nvidia.enable;
-      programs.atop.netatop.enable = true;
-
+      programs.atop = {
+        atopRotateTimer.enable = true;
+        enable = true;
+        setuidWrapper.enable = true;
+        atopService.enable = true;
+        atopacctService.enable = true;
+        atopgpu.enable = config.traits.hardware.nvidia.enable;
+        netatop.enable = true;
+      };
       environment.systemPackages =
         (with pkgs; [
           # dry
