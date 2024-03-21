@@ -96,6 +96,7 @@ in {
           gnomeExtensions.tophat
           gnomeExtensions.no-title-bar
           gnomeExtensions.vitals
+          gnomeExtensions.pip-on-top
         ])
       ++ (with pkgs; [
         clutter
