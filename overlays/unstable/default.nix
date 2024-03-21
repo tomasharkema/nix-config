@@ -34,5 +34,7 @@
 
   systembus-notify = self.packages."${prev.system}".systembus-notify;
 
-  # flake-checker = channels.flake-checker.packages.${prev.system}.default;
+  flake-checker = channels.flake-checker.packages."${prev.system}".default;
+
+  netscanner = channels.unstable.netscanner;
 }
