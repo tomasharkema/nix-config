@@ -59,7 +59,7 @@ in {
 
       settings = {
         listen = "0.0.0.0:${builtins.toString port}";
-        # api-endpoint = "https://blue-fire.ling-lizard.ts.net/attic/";
+        api-endpoint = "https://blue-fire.ling-lizard.ts.net/attic/";
 
         database = {
           # url = "postgresql:///atticd?host=/run/postgresql&user=atticd";
