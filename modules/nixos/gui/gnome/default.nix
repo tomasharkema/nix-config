@@ -54,6 +54,7 @@ in {
         core-utilities.enable = true;
         gnome-user-share.enable = true;
         gnome-keyring.enable = true;
+        games.enable = true;
       };
 
       udev.packages = with pkgs; [gnome.gnome-settings-daemon];
@@ -88,7 +89,7 @@ in {
           gnomeExtensions.logo-menu
           gnomeExtensions.no-overview
           gnomeExtensions.remmina-search-provider
-          #gnomeExtensions.removable-drive-menu
+          gnomeExtensions.removable-drive-menu
           gnomeExtensions.search-light
           gnomeExtensions.server-status-indicator
           gnomeExtensions.tailscale-qs
@@ -113,7 +114,7 @@ in {
         gnome.gnome-keyring
         gnome.gnome-nettool
         gnome.gnome-online-miners
-        # gnome.gnome-packagekit
+        gnome.gnome-packagekit
         gnome.gnome-power-manager
         gnome.gnome-session
         gnome.gnome-session-ctl
