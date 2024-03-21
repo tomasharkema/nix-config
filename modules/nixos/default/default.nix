@@ -28,6 +28,8 @@ with lib;
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";
 
+      nix.package = pkgs.nixVersions.nix_2_19;
+
       # Select internationalisation properties.
       i18n = {
         defaultLocale = "en_US.UTF-8";
@@ -105,10 +107,10 @@ with lib;
           # dry
           # pkgs.deepin.udisks2-qt5
           # udisks2
-
-          inputs.devenv.packages.${system}.default
+          devenv
+          sysz
           iptraf-ng
-
+          netscanner
           bandwhich
           bashmount
           bmon
