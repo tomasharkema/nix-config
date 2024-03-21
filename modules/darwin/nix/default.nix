@@ -31,7 +31,7 @@ in {
       nixfmt
       nix-prefetch-git
       inputs.nil.packages.${system}.default
-      # flake-checker
+      flake-checker
       # inputs.alejandra.packages.${system}.default
       nix-output-monitor
       nixpkgs-fmt
@@ -51,7 +51,7 @@ in {
     nix = let
       users = ["root" "tomas"];
     in {
-      package = pkgs.nix;
+      package = pkgs.nixVersions.nix_2_19;
 
       settings = {
         experimental-features = "nix-command flakes";
