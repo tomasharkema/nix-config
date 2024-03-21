@@ -122,11 +122,11 @@ in
         packages = with inputs; [
           dconf-update
           # flake-checker
-          deploy-rs.packages.${system}.default
-          attic.packages.${system}.default
-          agenix.packages.${system}.default
-          hydra-check.packages.${system}.default
-          nil.packages.${system}.default
+          deploy-rs
+          attic
+          agenix
+          hydra-check
+          nil
           nix-output-monitor
           dconf2nix
           # pkgs.custom.rundesk
@@ -166,7 +166,6 @@ in
 
           hydra-cli
           upload-all
-          inputs.nil.packages."${system}".default
         ];
       }
     ];
