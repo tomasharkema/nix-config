@@ -319,16 +319,33 @@ with lib;
           settings = {
             global = {
               progress_full_character = "=";
+              progress_empty_character = "=";
+              progress_prefix = "[";
+              progress_suffix = "]";
               time_format = "%Y-%m-%d %H:%M:%S";
             };
             banner = {
               color = "red";
-              command = "hostname | figlet -f slant";
+              command = "hostname | ${pkgs.figlet}/bin/figlet -f slant";
+            };
+            uptime = {
+              prefix = "Up";
             };
             weather = {
-              url = "https://wttr.in/New+York,New+York?0";
-              user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36";
+              url = "https://wttr.in/Amsterdam";
             };
+            service_status = {
+              Accounts = "accounts-daemon";
+              Cron = "cron";
+            };
+            filesystems = {
+              root = "/";
+            };
+            memory = {
+              swap_pos = "beside"; # or "below" or "none"
+            };
+            last_login = {tomas = 2;};
+            last_run = {};
           };
           # [global]
           # progress_full_character = "="
