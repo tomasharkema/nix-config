@@ -3,6 +3,8 @@
     nixpkgs.url = "nixpkgs/nixos-23.11";
     unstable.url = "nixpkgs/nixos-unstable";
 
+    nixpkgs-gnome.url = "nixpkgs/gnome-46";
+
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
@@ -147,11 +149,6 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-serve-ng = {
-      url = "github:aristanetworks/nix-serve-ng";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # peerix = {
     # url = "github:cid-chan/peerix";
     # inputs.nixpkgs.follows = "unstable";
@@ -232,7 +229,6 @@
       systems.modules.nixos = with inputs; [
         nix-index-database.nixosModules.nix-index
 
-        nix-serve-ng.nixosModules.default
         attic.nixosModules.atticd
         # peerix.nixosModules.peerix
 
