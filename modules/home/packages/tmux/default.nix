@@ -39,6 +39,14 @@ in {
   config = lib.mkIf true {
     home.packages = with pkgs; [lsof brotab tmux];
 
+    programs.zellij = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = {
+        themes = "catppuccin-mocha";
+      };
+    };
+
     programs.tmux = {
       enable = true;
       clock24 = true;
