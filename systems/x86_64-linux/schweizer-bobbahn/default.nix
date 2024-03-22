@@ -16,7 +16,7 @@ with lib; {
   ];
 
   config = {
-    installed = true;
+    # installed = true;
 
     traits.low-power.enable = true;
     gui."media-center".enable = true;

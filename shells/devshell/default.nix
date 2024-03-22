@@ -85,6 +85,8 @@ with lib; let
     echo "Copy $flake to $host"
 
     nix copy --to "ssh-ng://$host?remote-store=local?root=/mnt" ".#$flake" --derivation --no-check-sigs
+
+    nix build ".#$flake" --eval-store auto --store "ssh-ng://$host?remote-store=local?root=/mnt"
   '';
   # diffs = import ../diffs attrs;
   # packages-json = diffs.packages-json;
