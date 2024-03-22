@@ -180,7 +180,7 @@ in
           fileSystems = ["/"];
         };
         snapper = {
-          snapshotRootOnBoot = true;
+          # snapshotRootOnBoot = true;
           snapshotInterval = "hourly";
           cleanupInterval = "1d";
 
