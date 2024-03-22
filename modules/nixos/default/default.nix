@@ -165,6 +165,19 @@ with lib;
       apps.ipa.enable = mkDefault true;
       proxy-services.enable = mkDefault true;
 
+      services.kmscon = {
+        enable = true;
+        hwRender = config.traits.hardware.nvidia.enable;
+        fonts = [
+          {
+            name = "JetBrainsMono Nerd Font Mono";
+            package = pkgs.nerdfonts.override {
+              fonts = ["JetBrainsMono"];
+            };
+          }
+        ];
+      };
+
       systemd = {
         enableEmergencyMode = false;
         watchdog = {
