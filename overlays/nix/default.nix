@@ -16,5 +16,5 @@
   agenix = agenix.packages."${prev.system}".default;
   hydra-check = hydra-check.packages."${prev.system}".default;
   flake-checker = flake-checker.packages."${prev.system}".default;
-  nixUnstable = channels.unstable.nixVersions.nix_2_20;
+  nixUnstable = channels.unstable.nixVersions.nix_2_21;
 }
