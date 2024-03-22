@@ -73,6 +73,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        caffeine-ng
         qjournalctl
         pkgs.custom.netbrowse
         gnome.gnome-boxes
@@ -81,22 +82,21 @@ in {
         gparted
         # firefox
         vscode
-        # fira-code-nerdfont
         # transmission
         # keybase
-        # powertop
+        powertop
 
         nix-software-center
-        # nixos-conf-editor
+        nixos-conf-editor
 
         xdg-utils
 
         # _1password
         # _1password-gui
         # handbrake
-        # meteo
+        meteo
         # transmission-remote-gtk
-        # github-desktop
+        github-desktop
 
         gtk-engine-murrine
         # plymouth
@@ -108,17 +108,17 @@ in {
         gotop
         handbrake
         font-manager
-        # gamehub
-        # filezilla
+        gamehub
+        filezilla
         # sublime-merge
         remmina
         xdg-utils
         # mattermost-desktop
         systemdgenie
         # # _1password
-        # wezterm
+        wezterm
         # waybar
-        # zeal
+        zeal
 
         # libmx
       ]
