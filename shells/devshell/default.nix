@@ -76,6 +76,17 @@ with lib; let
   upload-local = writeShellScriptBin "upload-local" ''
     nix copy -v --substitute-on-destination --to 'ssh://blue-fire?compression=zstd&secret-key=/run/agenix/peerix-private' /run/current-system
   '';
+
+  upload-to-installer = writeShellScriptBin "upload-to-installer" ''
+    local host="$1"
+    local configuration="$2"
+    local flake="nixosConfigurations.\"$configuration\".config.system.build.toplevel"
+
+    echo "Copy $flake to $host"
+
+    #nix copy --to "ssh-ng://$ssh_connection?remote-store=local?root=/mnt" ".#$flake" \
+    #  --derivation --no-check-sigs
+  '';
   # diffs = import ../diffs attrs;
   # packages-json = diffs.packages-json;
   # gum = lib.getExe pkgs.gum;
@@ -120,6 +131,7 @@ in
         # dotenv.enable = true;
 
         packages = [
+          upload-to-installer
           # pkgs.custom.rundesk
           ack
           age

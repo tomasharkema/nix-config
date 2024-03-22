@@ -11,6 +11,8 @@ with lib; {
 
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
+
+    nixos-hardware.nixosModules.common-gpu-intel
   ];
 
   config = {
@@ -19,11 +21,9 @@ with lib; {
     traits.low-power.enable = true;
     gui."media-center".enable = true;
 
-    disks.btrfs = {
+    disks.ext4 = {
       enable = true;
       main = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01";
-      encrypt = true;
-      newSubvolumes = true;
     };
 
     gui = {
@@ -54,14 +54,16 @@ with lib; {
       firewall.enable = true;
     };
 
+    programs = {
+      atop.enable = mkForce false;
+    };
+
     services = {
       # podman.enable = true;
       clipmenu.enable = mkForce false;
       synergy.server = {
         # enable = true;
       };
-      atop.enable = mkForce false;
-
       avahi = {
         enable = true;
         allowInterfaces = ["wlo1"];
