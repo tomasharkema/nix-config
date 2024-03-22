@@ -43,7 +43,7 @@ in {
       enable = true;
       enableZshIntegration = true;
       settings = {
-        themes = "catppuccin-mocha";
+        theme = "catppuccin-mocha";
       };
     };
 
