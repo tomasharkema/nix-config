@@ -70,8 +70,6 @@ with lib;
           cleanOnBoot = true;
         };
 
-        initrd.availableKernelModules = ["netatop"];
-
         # kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
         kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
