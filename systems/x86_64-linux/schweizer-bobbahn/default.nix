@@ -32,14 +32,8 @@ with lib; {
         enable = true;
       };
       gnome.enable = true;
-      game-mode.enable = true;
+      game-mode.enable = false;
       quiet-boot.enable = true;
-    };
-
-    apps = {
-      # android.enable = true;
-      # steam.enable = true;
-      # opensnitch.enable = true;
     };
 
     resilio.enable = false;
@@ -62,10 +56,11 @@ with lib; {
 
     services = {
       # podman.enable = true;
-
+      clipmenu.enable = mkForce false;
       synergy.server = {
         # enable = true;
       };
+      atop.enable = mkForce false;
 
       avahi = {
         enable = true;
@@ -74,20 +69,11 @@ with lib; {
       };
     };
 
-    boot = {
-      # binfmt.emulatedSystems = ["aarch64-linux"];
-      # kernelParams = ["acpi_rev_override=1"];
-    };
-
-    programs = {
-      mtr.enable = true;
-      flashrom.enable = true;
-    };
-
     hardware.opengl = {
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
+      extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau];
     };
   };
 }
