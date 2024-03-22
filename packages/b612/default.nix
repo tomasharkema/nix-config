@@ -11,12 +11,12 @@
 # }
 {
   lib,
-  stdenv,
+  stdenvNoCC,
   fetchFromGitHub,
   pkgs,
   ...
 }:
-stdenv.mkDerivation rec {
+stdenvNoCC.mkDerivation rec {
   name = "b612-font-2019-01-21";
 
   src = fetchFromGitHub {
