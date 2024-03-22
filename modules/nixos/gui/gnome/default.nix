@@ -7,6 +7,7 @@
 }:
 with lib; let
   cfg = config.gui.gnome;
+  pkgsUnstable = inputs.unstable.legacyPackages."${pkgs.system}";
 in {
   options.gui.gnome = {
     enable = mkEnableOption "enable gnome desktop environment";
@@ -17,9 +18,9 @@ in {
 
     # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-    environment.etc."X11/Xwrapper.config".text = ''
-      allowed_users=anybody
-    '';
+    # environment.etc."X11/Xwrapper.config".text = ''
+    #   allowed_users=anybody
+    # '';
 
     services = {
       # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-remote-desktop}/bin/gnome-remote-desktop";
@@ -65,9 +66,7 @@ in {
     };
 
     environment.systemPackages =
-      (let
-        pkgsUnstable = inputs.unstable.legacyPackages."${pkgs.system}";
-      in
+      (
         with pkgsUnstable; [
           gtop
           libgtop
@@ -98,7 +97,8 @@ in {
           gnomeExtensions.no-title-bar
           gnomeExtensions.vitals
           gnomeExtensions.pip-on-top
-        ])
+        ]
+      )
       ++ (with pkgs; [
         clutter
         clutter-gtk
