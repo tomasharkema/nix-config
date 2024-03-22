@@ -20,7 +20,7 @@ in {
       ${attic}/bin/attic use tomas:tomas
     '';
   in
-    mkIf (cfg.enable && false) {
+    mkIf cfg.enable {
       systemd.user.services.attic-login = {
         description = "attic-login";
         script = ''${attic-login}'';
@@ -34,20 +34,20 @@ in {
         };
       };
 
-      services.cachix-watch-store = {
-        enable = true;
-        cacheName = "tomasharkema";
-        cachixTokenFile = config.age.secrets.cachix-token.path;
-        jobs = 1;
-        compressionLevel = 16;
-      };
+      # services.cachix-watch-store = {
+      #   enable = true;
+      #   cacheName = "tomasharkema";
+      #   cachixTokenFile = config.age.secrets.cachix-token.path;
+      #   jobs = 1;
+      #   compressionLevel = 16;
+      # };
 
-      systemd.services.cachix-watch-store-agent.serviceConfig = {
-        Nice = 15;
-        MemoryLimit = "2G";
-        MemoryHigh = "1G";
-        MemoryMax = "2G";
-      };
+      # systemd.services.cachix-watch-store-agent.serviceConfig = {
+      #   Nice = 15;
+      #   MemoryLimit = "2G";
+      #   MemoryHigh = "1G";
+      #   MemoryMax = "2G";
+      # };
 
       environment.systemPackages = with pkgs; [attic];
 
@@ -65,9 +65,9 @@ in {
         serviceConfig = {
           Restart = "on-failure";
           RestartSec = 5;
-          MemoryLimit = "2G";
-          MemoryHigh = "1G";
-          MemoryMax = "2G";
+          MemoryLimit = "5G";
+          MemoryHigh = "2G";
+          MemoryMax = "4G";
           Nice = 15;
         };
         preStart = ''
@@ -76,9 +76,9 @@ in {
         script = "${attic}/bin/attic watch-store tomas:tomas -j 1";
         wants = ["multi-user.target" "network.target"];
         after = ["multi-user.target" "network.target"];
-        environment = {
-          ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH = "go1.21";
-        };
+        # environment = {
+        #   ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH = "go1.21";
+        # };
       };
     };
 }
