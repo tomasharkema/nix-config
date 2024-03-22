@@ -12,15 +12,21 @@ in {
   };
 
   config = mkIf cfg.enable {
+
+gui.quiet-boot.enable = mkForce false;
+
     specialisation = {
       media-center = {
-        # inheritParentConfig = false;
+        #inheritParentConfig = false;
         configuration = {
           system.nixos.tags = ["media-center"];
+          xdg.portal.enable = mkForce false;
 
           documentation.man.enable = false;
+          apps.flatpak.enable = mkForce false; 
+          gui.gnome.enable=mkForce false;
 
-          # gui.quiet-boot.enable = mkForce false;
+          gui.quiet-boot.enable = mkForce false;
           services.xserver = {
             enable = true;
 
@@ -63,8 +69,10 @@ in {
           # };
 
           hardware.pulseaudio = {
-            enable = true;
+            enable = mkForce true;
           };
+
+          services.pipewire.enable = mkForce false;
 
           environment.systemPackages = with pkgs; [
             plex-media-player
