@@ -44,6 +44,7 @@ in {
     apps = {
       attic-server.enable = true;
       ntopng.enable = true;
+      atophttpd.enable = true;
     };
 
     services = {

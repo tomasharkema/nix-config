@@ -1,13 +1,32 @@
 {
   stdenv,
   git,
+  pkgs,
+  zlib,
+  openssl,
 }:
 stdenv.mkDerivation rec {
   name = "atophttpd";
   version = "2.8.0";
-  src = fetchTarball {
-    url = "https://github.com/pizhenwei/atophttpd/archive/refs/tags/v${version}.tar.gz";
-    sha256 = "sha256:1zzsrg2zwc2sk44qv8a2lh18gdaxi54nznzhlalyg4jy4kbls53v";
+
+  src = pkgs.fetchgit {
+    url = "https://github.com/pizhenwei/atophttpd.git";
+    rev = "v${version}";
+    sha256 = "sha256-/j04D7dRdRyAN36iISo+ndQERex5BtqbadVFDO4OH48=";
+    fetchSubmodules = true;
   };
-  buildInputs = [git];
+
+  makeFlags = ["DESTDIR=$(out)" "PREFIX=$(out)"];
+
+  buildPhase = "make bin";
+
+  postInstall = ''
+    mkdir $out/bin
+    mkdir $out/share
+    mv $out/usr/bin/atophttpd $out/bin/atophttpd
+    mv $out/usr/share/man $out/share
+    rm -rf $out/usr
+  '';
+
+  buildInputs = [git zlib openssl];
 }
