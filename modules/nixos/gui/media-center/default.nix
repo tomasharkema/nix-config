@@ -12,8 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-
-gui.quiet-boot.enable = mkForce false;
+    gui.quiet-boot.enable = mkForce false;
 
     specialisation = {
       media-center = {
@@ -23,10 +22,14 @@ gui.quiet-boot.enable = mkForce false;
           xdg.portal.enable = mkForce false;
 
           documentation.man.enable = false;
-          apps.flatpak.enable = mkForce false; 
-          gui.gnome.enable=mkForce false;
 
-          gui.quiet-boot.enable = mkForce false;
+          apps.flatpak.enable = mkForce false;
+
+          gui = {
+            gnome.enable = mkForce false;
+            quiet-boot.enable = mkForce false;
+          };
+
           services.xserver = {
             enable = true;
 
@@ -49,36 +52,12 @@ gui.quiet-boot.enable = mkForce false;
               '';
             };
           };
-          #   # desktopManager.gnome.enable = mkForce false;
-
-          #   displayManager = {
-          #     autoLogin = {
-          #       enable = true;
-          #       user = "media";
-          #     };
-          #     gdm.enable = mkForce false;
-          #     sddm = {
-          #       enable = true;
-          #     };
-
-          #     sessionCommands = ''
-          #       ratpoison &
-          #       exec plexmediaplayer --fullscreen --tv > ~/.plexlogs
-          #     '';
-          #   };
-          # };
-
-          hardware.pulseaudio = {
-            enable = mkForce true;
-          };
-
-          services.pipewire.enable = mkForce false;
 
           environment.systemPackages = with pkgs; [
             plex-media-player
             ratpoison
             pavucontrol
-            #syncplay
+            syncplay
             mpv
             # teamspeak_client
           ];
