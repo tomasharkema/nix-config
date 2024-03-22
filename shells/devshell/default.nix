@@ -4,7 +4,7 @@
   lib,
   config,
   ...
-} @ attrs:
+}:
 with pkgs;
 with lib; let
   write-script = writeShellScriptBin "write-script" ''
@@ -13,18 +13,18 @@ with lib; let
     pv $1 -cN in -B 500M -pterbT | zstd -d - | pv -cN out -B 500M -pterbT > $2
   '';
   deployment = writeShellScriptBin "deployment" ''
-    ${inputs.deploy-rs.packages.${system}.default}/bin/deploy --skip-checks --targets $@ -- --log-format internal-json -v |& ${nix-output-monitor}/bin/nom --json
+    ${pkgs.deploy-rs}/bin/deploy --skip-checks --targets $@ -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
   '';
   deploy-all = writeShellScriptBin "deploy-all" ''
-    ${inputs.deploy-rs.packages.${system}.default}/bin/deploy --skip-checks -- --log-format internal-json -v |& ${nix-output-monitor}/bin/nom --json
+    ${pkgs.deploy-rs}/bin/deploy --skip-checks -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
   '';
   deploy-machine = writeShellScriptBin "deploy-machine" ''
     set -x
-    ${inputs.deploy-rs.packages.${system}.default}/bin/deploy --skip-checks ".#$@" -- --log-format internal-json -v |& ${nix-output-monitor}/bin/nom --json
+    ${pkgs.deploy-rs}/bin/deploy --skip-checks ".#$@" -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
   '';
   reencrypt = writeShellScriptBin "reencrypt" ''
     cd secrets;
-    ${inputs.agenix.packages.${system}.default}/bin/agenix -r
+    ${pkgs.agenix}/bin/agenix -r
   '';
   mkiso = writeShellScriptBin "mkiso" ''
     LINK="./out/install.iso";
@@ -136,8 +136,8 @@ in
           dconf2nix
           deploy-all
           deploy-machine
-          # deploy-rs
-          # deployment
+          pkgs.deploy-rs
+          deployment
           direnv
           flake-checker
           git
@@ -151,7 +151,6 @@ in
           nix-output-monitor
           nix-prefetch-scripts
           pkgs.custom.remote-cli
-          python3
           reencrypt
           remote-deploy
           sops
