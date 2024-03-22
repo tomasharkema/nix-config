@@ -37,7 +37,7 @@ with lib; {
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y";
-      media = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01";
+      # media = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01";
       encrypt = true;
       newSubvolumes = true;
     };
