@@ -44,7 +44,7 @@ with lib; {
         secure-boot.enable = true;
         laptop.enable = true;
         # nvidia.enable = true;
-        remote-unlock.enable = true;
+        remote-unlock.enable = false;
       };
     };
 

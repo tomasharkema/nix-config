@@ -78,14 +78,13 @@ with lib; let
   '';
 
   upload-to-installer = writeShellScriptBin "upload-to-installer" ''
-    local host="$1"
-    local configuration="$2"
-    local flake="nixosConfigurations.\"$configuration\".config.system.build.toplevel"
+    host="$1"
+    configuration="$2"
+    flake="nixosConfigurations.\"$configuration\".config.system.build.toplevel"
 
     echo "Copy $flake to $host"
 
-    #nix copy --to "ssh-ng://$ssh_connection?remote-store=local?root=/mnt" ".#$flake" \
-    #  --derivation --no-check-sigs
+    nix copy --to "ssh-ng://$host?remote-store=local?root=/mnt" ".#$flake" --derivation --no-check-sigs
   '';
   # diffs = import ../diffs attrs;
   # packages-json = diffs.packages-json;
