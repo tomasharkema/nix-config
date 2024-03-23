@@ -27,18 +27,30 @@ in {
       quiet-boot.enable = mkForce false;
     };
 
-    services.xserver.enable = true;
-    services.xserver.desktopManager.kodi.enable = true;
-    services.xserver.displayManager.autoLogin.enable = true;
-    services.xserver.displayManager.autoLogin.user = "kodi";
-
-    # This may be needed to force Lightdm into 'autologin' mode.
-    # Setting an integer for the amount of time lightdm will wait
-    # between attempts to try to autologin again.
-    services.xserver.displayManager.lightdm.autoLogin.timeout = 3;
-
-    # Define a user account
     users.extraUsers.kodi.isNormalUser = true;
+    users.users.kodi.extraGroups = ["data" "video" "audio" "input"];
+    services.cage.user = "kodi";
+    services.cage.program = "${pkgs.kodi-wayland}/bin/kodi-standalone";
+    services.cage.enable = true;
+
+    hardware.opengl = {
+      enable = true;
+      extraPackages = with pkgs; [libva];
+    };
+
+    environment.systemPackages = [
+      (pkgs.kodi-wayland.passthru.withPackages (kodiPkgs:
+        with kodiPkgs; [
+          inputstreamhelper
+          inputstream-adaptive
+          inputstream-ffmpegdirect
+          inputstream-rtmp
+          vfs-libarchive
+          vfs-rar
+          youtube
+        ]))
+    ];
+
     # services.xserver = {
     #   enable = true;
 
@@ -61,9 +73,6 @@ in {
     #     '';
     #   };
     # };
-    environment.systemPackages = with pkgs; [
-      plymouth
-    ];
 
     boot = {
       plymouth = {
