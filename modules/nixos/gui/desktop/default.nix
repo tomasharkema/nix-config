@@ -119,7 +119,7 @@ in {
         wezterm
         # waybar
         zeal
-
+        mission-center
         # libmx
       ]
       ++ optional (pkgs.system == "x86_64-linux") telegram-desktop

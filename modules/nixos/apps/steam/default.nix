@@ -28,7 +28,7 @@ in {
       # sunshine
       protontricks
       # heroic
-      cartridges
+      # cartridges
     ];
 
     # services.udev.extraRules = ''
