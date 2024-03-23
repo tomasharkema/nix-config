@@ -22,6 +22,8 @@ with lib; {
 
     services.hardware.bolt.enable = true;
 
+    environment.systemPackages = with pkgs; [bolt];
+
     gui = {
       enable = true;
       desktop = {
