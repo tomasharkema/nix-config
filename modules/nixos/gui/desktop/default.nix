@@ -70,6 +70,7 @@ in {
     # enable = true;
     # enableSSHSupport = true;
     # };
+    services.cpupower-gui.enable = true;
 
     environment.systemPackages = with pkgs;
       [
