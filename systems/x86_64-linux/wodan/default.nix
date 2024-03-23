@@ -14,7 +14,7 @@
   config = {
     installed = true;
     # programs.gamemode.enable = true;
-    # environment.systemPackages = with pkgs; [openrgb-with-all-plugins];
+    environment.systemPackages = with pkgs; [openrgb-with-all-plugins];
 
     time = {
       # hardwareClockInLocalTime = true;
