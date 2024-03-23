@@ -4,7 +4,7 @@
   ...
 }: final: prev: {
   runitor = channels.unstable.runitor;
-  hydra_unstable = channels.hydra_unstable.vscode;
+  hydra_unstable = channels.unstable.hydra_unstable;
   vscode = channels.unstable.vscode;
   android-tools = channels.unstable.android-tools;
 
@@ -12,10 +12,10 @@
 
   netdata = channels.unstable.netdata;
 
-  freeipa = self.packages."${prev.system}".freeipa;
-  sssd = self.packages."${prev.system}".sssd;
-  # freeipa = channels.unstable.freeipa;
-  # sssd = channels.unstable.sssd;
+  # freeipa = self.packages."${prev.system}".freeipa;
+  # sssd = self.packages."${prev.system}".sssd;
+  freeipa = channels.unstable.freeipa;
+  sssd = channels.unstable.sssd;
 
   cockpit = channels.unstable.cockpit;
   cockpit-podman = self.packages."${prev.system}".cockpit-podman;
