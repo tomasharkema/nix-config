@@ -11,6 +11,7 @@ with lib; {
   ];
 
   config = {
+    nixpkgs.crossSystem.system = "aarch64-linux";
     installed = true;
     networking = {
       wireless.enable = mkForce false;
