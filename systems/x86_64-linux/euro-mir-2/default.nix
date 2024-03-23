@@ -7,7 +7,7 @@
 }:
 with lib; {
   imports = with inputs; [
-    nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
+    nixos-hardware.nixosModules.dell-xps-15-9570-nvidia
     ./hardware-configuration.nix
   ];
 
@@ -35,6 +35,9 @@ with lib; {
     hardware = {
       nvidia.nvidiaPersistenced = false;
       # fancontrol.enable = true;
+      opengl = {
+        extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau];
+      };
     };
 
     apps = {
