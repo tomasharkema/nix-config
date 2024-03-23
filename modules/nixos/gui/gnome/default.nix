@@ -92,6 +92,7 @@ in {
           gnomeExtensions.search-light
           gnomeExtensions.server-status-indicator
           gnomeExtensions.tailscale-qs
+          gnomeExtensions.tailscale-status
           gnomeExtensions.todotxt
           gnomeExtensions.tophat
           gnomeExtensions.no-title-bar
