@@ -33,7 +33,7 @@
       yubikey-agent.enable = true;
       udev.packages = with pkgs; [
         libfido2
-        yubioath-flutter
+        # yubioath-flutter
         yubikey-agent
         yubikey-manager
         yubikey-manager-qt
@@ -58,7 +58,7 @@
       # opensc
       # pcsctools
       yubico-piv-tool
-      yubioath-flutter
+      # yubioath-flutter
       yubikey-agent
       yubikey-manager
       yubikey-manager-qt
