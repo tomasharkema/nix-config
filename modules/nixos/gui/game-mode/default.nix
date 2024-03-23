@@ -12,6 +12,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [gnomeExtensions.gamemode-indicator-in-system-settings];
+
     programs.gamemode = {
       enable = true;
 
