@@ -4,7 +4,7 @@
   ...
 }: final: prev: {
   runitor = channels.unstable.runitor;
-
+  hydra_unstable = channels.hydra_unstable.vscode;
   vscode = channels.unstable.vscode;
   android-tools = channels.unstable.android-tools;
 

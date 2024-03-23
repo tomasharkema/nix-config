@@ -167,6 +167,7 @@ in
           git
           gnupg
           gum
+          tydra
           hydra-check
           hydra-cli
           mkiso
