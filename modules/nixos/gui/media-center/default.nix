@@ -21,8 +21,6 @@ in {
           system.nixos.tags = ["media-center"];
           xdg.portal.enable = mkForce false;
 
-          documentation.man.enable = false;
-
           apps.flatpak.enable = mkForce false;
 
           gui = {
@@ -35,7 +33,6 @@ in {
 
             windowManager = {
               ratpoison.enable = true;
-              # gnome.enable = false;
             };
 
             displayManager = {
