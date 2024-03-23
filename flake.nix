@@ -428,9 +428,10 @@
       "https://"
       "git://"
       "http://"
+      "github:"
     ];
 
-    allow-import-from-derivation = true;
+    # allow-import-from-derivation = true;
     keep-outputs = true;
     keep-derivations = true;
   };
