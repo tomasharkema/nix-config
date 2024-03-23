@@ -39,6 +39,7 @@ in {
     };
 
     environment.systemPackages = [
+      pkgs.pavucontrol
       (pkgs.kodi-wayland.passthru.withPackages (kodiPkgs:
         with kodiPkgs; [
           inputstreamhelper

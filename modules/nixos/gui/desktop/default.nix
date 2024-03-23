@@ -120,6 +120,7 @@ in {
         # waybar
         zeal
         mission-center
+        pavucontrol
         # libmx
       ]
       ++ optional (pkgs.system == "x86_64-linux") telegram-desktop
