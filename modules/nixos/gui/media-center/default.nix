@@ -57,7 +57,7 @@ in {
             plex-media-player
             ratpoison
             pavucontrol
-            syncplay
+            # syncplay
             mpv
             # teamspeak_client
           ];
