@@ -59,6 +59,8 @@ in {
     #   }
     # ];
 
+    gui."media-center".enable = true;
+
     services = {
       openssh.enable = true;
       avahi = {
@@ -101,10 +103,10 @@ in {
     #   dtparam=audio=on
     # '';
 
-    networking.wireless.enable = true;
+    # networking.wireless.enable = true;
 
     networking = {
-      networkmanager.enable = false;
+      networkmanager.enable = true;
 
       useDHCP = false;
       interfaces.wlan0 = {
