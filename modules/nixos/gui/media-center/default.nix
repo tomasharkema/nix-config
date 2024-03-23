@@ -46,7 +46,7 @@ in {
                 enable = true;
               };
               sessionCommands = ''
-                exec ${lib.getExe pkgs.plex-media-player} --fullscreen --tv > ~/.plexlogs
+                pasuspender -- env AE_SINK=ALSA ${lib.getExe pkgs.plex-media-player} --fullscreen --tv # > ~/.plexlogs
               '';
             };
           };
@@ -58,6 +58,8 @@ in {
             # syncplay
             mpv
             # teamspeak_client
+            # alsamixer
+            pulseaudioFull
           ];
           users.extraUsers.media = {
             isNormalUser = true;
