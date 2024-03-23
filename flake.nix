@@ -426,9 +426,13 @@
 
     allowed-uris = [
       "https://"
-      "git://"
-      "http://"
-      "github:"
+      "github:NixOS/"
+      "github:nixos/"
+      "github:hercules-ci/"
+      "github:numtide/"
+      "github:cachix/"
+      "github:nix-community/"
+      "github:snowfallorg/"
     ];
 
     # allow-import-from-derivation = true;
