@@ -425,23 +425,9 @@
     binaryCaches = ["https://cache.nixos.org"];
 
     allowed-uris = [
-      "https://github.com/tomasharkema.keys"
-      "https://api.github.com"
-      "https://github.com/zhaofengli/nix-base32.git"
-      "https://github.com/tomasharkema.keys"
-      "https://github.com/NixOS/"
-      "https://github.com/nixos/"
-      "https://github.com/hercules-ci/"
-      "https://github.com/numtide/"
-      "https://github.com/cachix/"
-      "https://github.com/nix-community/"
-      "https://github.com/tomasharkema/"
-      "git://github.com/tomasharkema"
-      "https://git.sr.ht/~rycee/nmd/archive"
-      "https://git.sr.ht/~youkai/nscan"
-
-      "https://api.flakehub.com/f/pinned"
-      "https://api.flakehub.com/f/pinned/edolstra/flake-compat"
+      "https://"
+      "git://"
+      "http://"
     ];
 
     allow-import-from-derivation = true;
