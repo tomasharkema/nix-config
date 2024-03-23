@@ -211,7 +211,7 @@
           title = "dotfiles";
         };
 
-        namespace = "custom";
+        # namespace = "custom";
       };
 
       overlays = with inputs; [
