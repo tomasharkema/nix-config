@@ -88,6 +88,16 @@ with lib; let
 
     nix build ".#$flake" --eval-store auto --store "ssh-ng://$host?remote-store=local?root=/mnt"
   '';
+
+  dp = writeShellScriptBin "dp" ''
+    host="$1"
+    configuration="$2"
+    flake="nixosConfigurations.\"$configuration\".config.system.build.toplevel"
+
+    echo "Copy $flake to $host"
+
+    exec nixos-rebuild test --flake ".#$configuration" --verbose --target-host $host --use-remote-sudo
+  '';
   # diffs = import ../diffs attrs;
   # packages-json = diffs.packages-json;
   # gum = lib.getExe pkgs.gum;
@@ -132,6 +142,7 @@ in
         # dotenv.enable = true;
 
         packages = [
+          dp
           upload-to-installer
           # pkgs.custom.rundesk
           ack
