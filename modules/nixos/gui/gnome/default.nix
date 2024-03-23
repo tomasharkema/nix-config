@@ -56,6 +56,7 @@ in {
         gnome-user-share.enable = true;
         gnome-keyring.enable = true;
         games.enable = true;
+        evolution-data-server.enable = true;
       };
 
       udev.packages = with pkgs; [gnome.gnome-settings-daemon];
@@ -70,6 +71,7 @@ in {
         with pkgsUnstable; [
           gtop
           libgtop
+          gnomeExtensions.network-interfaces-info
           gnomeExtensions.denon-avr-controler
           gnomeExtensions.appindicator
           gnomeExtensions.settingscenter
@@ -129,6 +131,7 @@ in {
         gnome.libgnome-keyring
         gnome.seahorse
         gnome.zenity
+        gnome-network-displays
       ]);
 
     # services.synergy.client = {
