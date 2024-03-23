@@ -20,6 +20,7 @@ in {
         configuration = {
           system.nixos.tags = ["media-center"];
           xdg.portal.enable = mkForce false;
+          sound.mediaKeys.enable = true;
 
           apps.flatpak.enable = mkForce false;
 
