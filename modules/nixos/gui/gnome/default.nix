@@ -71,8 +71,7 @@ in {
         with pkgsUnstable; [
           gtop
           libgtop
-          gnomeExtensions.network-interfaces-info
-          gnomeExtensions.denon-avr-controler
+          # gnomeExtensions.network-interfaces-info
           gnomeExtensions.appindicator
           gnomeExtensions.settingscenter
           gnomeExtensions.app-hider

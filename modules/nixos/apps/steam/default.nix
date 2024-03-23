@@ -22,6 +22,7 @@ in {
         true;
       dedicatedServer.openFirewall =
         true;
+      gamescopeSession.enable = true;
     };
 
     environment.systemPackages = with pkgs; [
@@ -29,6 +30,7 @@ in {
       protontricks
       # heroic
       # cartridges
+      steamcmd
     ];
 
     # services.udev.extraRules = ''
