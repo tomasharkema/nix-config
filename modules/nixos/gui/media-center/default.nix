@@ -19,13 +19,13 @@ in {
         #inheritParentConfig = false;
         configuration = {
           system.nixos.tags = ["media-center"];
-          xdg.portal.enable = mkForce false;
+          # xdg.portal.enable = mkForce false;
           sound.mediaKeys.enable = true;
 
-          apps.flatpak.enable = mkForce false;
+          # apps.flatpak.enable = mkForce false;
 
           gui = {
-            gnome.enable = mkForce false;
+            # gnome.enable = mkForce false;
             quiet-boot.enable = mkForce false;
           };
 
