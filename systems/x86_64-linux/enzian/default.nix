@@ -116,5 +116,22 @@ with lib; {
     #   device = "/media";
     #   options = ["bind"];
     # };
+
+    services.podman.enable = true;
+    virtualisation = {
+      oci-containers.containers = {
+        netboot = {
+          image = "lscr.io/linuxserver/netbootxyz:latest";
+          autoStart = true;
+          ports = ["3000:3000" "69:69/udp" "8080:80"];
+          # hostname = "ipa.harkema.io";
+          # extraOptions = ["--sysctl" "net.ipv6.conf.all.disable_ipv6=0"];
+          # cmd = ["ipa-server-install" "-U" "-r" "HARKEMA.IO"];
+          # volumes = [
+          #   "/var/lib/freeipa:/data:Z"
+          # ];
+        };
+      };
+    };
   };
 }

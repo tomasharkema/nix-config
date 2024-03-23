@@ -48,6 +48,9 @@ in {
     };
 
     services = {
+      healthchecks = {
+        enable = true;
+      };
       # icingaweb2 = {
       #   enable = true;
       #   virtualHost = "mon.blue-fire.harkema.intra";
