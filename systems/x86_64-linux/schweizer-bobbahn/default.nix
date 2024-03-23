@@ -31,7 +31,7 @@ with lib; {
       desktop = {
         enable = true;
       };
-      gnome.enable = true;
+      gnome.enable = false;
       game-mode.enable = false;
       quiet-boot.enable = true;
     };
