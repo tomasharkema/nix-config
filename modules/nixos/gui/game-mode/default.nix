@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 with lib; let
@@ -21,8 +22,8 @@ in {
           renice = 10;
         };
         custom = {
-          start = "notify-send -a 'Gamemode' 'Optimizations activated'";
-          end = "notify-send -a 'Gamemode' 'Optimizations deactivated'";
+          start = "${pkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Optimizations activated'";
+          end = "${pkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Optimizations deactivated'";
         };
       };
       # settings = {
