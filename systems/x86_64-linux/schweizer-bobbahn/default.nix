@@ -19,6 +19,7 @@ with lib; {
     # installed = true;
 
     traits.low-power.enable = true;
+
     gui."media-center".enable = true;
 
     disks.ext4 = {
@@ -26,15 +27,15 @@ with lib; {
       main = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01";
     };
 
-    gui = {
-      enable = true;
-      desktop = {
-        enable = true;
-      };
-      gnome.enable = false;
-      game-mode.enable = false;
-      quiet-boot.enable = true;
-    };
+    # gui = {
+    #   enable = true;
+    #   desktop = {
+    #     enable = true;
+    #   };
+    #   gnome.enable = false;
+    #   game-mode.enable = false;
+    #   quiet-boot.enable = true;
+    # };
 
     resilio.enable = false;
 

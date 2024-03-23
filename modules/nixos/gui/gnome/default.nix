@@ -80,7 +80,7 @@ in {
           gnomeExtensions.extension-list
           # gnomeExtensions.fuzzy-app-search
           gnomeExtensions.github-actions
-          gnomeExtensions.gpu-profile-selector
+          # gnomeExtensions.gpu-profile-selector
           gnomeExtensions.hue-lights
           gnomeExtensions.ip-finder
           gnomeExtensions.just-perfection
@@ -94,13 +94,14 @@ in {
           gnomeExtensions.tailscale-qs
           gnomeExtensions.tailscale-status
           gnomeExtensions.todotxt
-          gnomeExtensions.tophat
-          gnomeExtensions.no-title-bar
+          # gnomeExtensions.tophat
+          # gnomeExtensions.no-title-bar
           gnomeExtensions.vitals
           gnomeExtensions.pip-on-top
+          gnomeExtensions.prime-helper
         ]
       )
-      ++ (with pkgs; [
+      ++ (with pkgsUnstable; [
         clutter
         clutter-gtk
         gjs
