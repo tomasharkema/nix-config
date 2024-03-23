@@ -70,6 +70,7 @@ in {
         with pkgsUnstable; [
           gtop
           libgtop
+          gnomeExtensions.denon-avr-controler
           gnomeExtensions.appindicator
           gnomeExtensions.settingscenter
           gnomeExtensions.app-hider
