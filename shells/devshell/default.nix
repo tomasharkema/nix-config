@@ -78,8 +78,8 @@ with lib; let
   '';
 
   upload-to-installer = writeShellScriptBin "upload-to-installer" ''
-    host="$1"
-    configuration="$2"
+    configuration="$1"
+    host="$2"
     flake="nixosConfigurations.\"$configuration\".config.system.build.toplevel"
 
     echo "Copy $flake to $host"
@@ -90,8 +90,8 @@ with lib; let
   '';
 
   dp = writeShellScriptBin "dp" ''
-    host="$1"
-    configuration="$2"
+    configuration="$1"
+    host="$2"
     flake="nixosConfigurations.\"$configuration\".config.system.build.toplevel"
 
     echo "Copy $flake to $host"
@@ -121,13 +121,13 @@ in
 
         languages.nix.enable = true;
 
-        # pre-commit.hooks = {
-        #   alejandra.enable = true;
-        #   shellcheck.enable = true;
-        #   nil.enable = true;
-        #   # statix.enable = true;
-        #   # enabledPackages = {};
-        # };
+        pre-commit.hooks = {
+          alejandra.enable = true;
+          shellcheck.enable = true;
+          nil.enable = true;
+          # statix.enable = true;
+          # enabledPackages = {};
+        };
 
         devcontainer = {
           enable = true;

@@ -12,66 +12,76 @@ in {
   };
 
   config = mkIf cfg.enable {
-    gui.quiet-boot.enable = mkForce false;
+    system.nixos.tags = ["media-center"];
+    xdg.portal.enable = mkForce false;
+    sound.mediaKeys.enable = true;
+    sound.enable = true;
+    apps.flatpak.enable = mkForce false;
 
-    specialisation = {
-      media-center = {
-        #inheritParentConfig = false;
-        configuration = {
-          system.nixos.tags = ["media-center"];
-          # xdg.portal.enable = mkForce false;
-          sound.mediaKeys.enable = true;
+    services.pipewire = {
+      enable = mkForce false;
+    };
 
-          # apps.flatpak.enable = mkForce false;
+    gui = {
+      gnome.enable = mkForce false;
+      quiet-boot.enable = mkForce false;
+    };
 
-          gui = {
-            # gnome.enable = mkForce false;
-            quiet-boot.enable = mkForce false;
-          };
+    services.xserver.enable = true;
+    services.xserver.desktopManager.kodi.enable = true;
+    services.xserver.displayManager.autoLogin.enable = true;
+    services.xserver.displayManager.autoLogin.user = "kodi";
 
-          services.xserver = {
-            enable = true;
+    # This may be needed to force Lightdm into 'autologin' mode.
+    # Setting an integer for the amount of time lightdm will wait
+    # between attempts to try to autologin again.
+    services.xserver.displayManager.lightdm.autoLogin.timeout = 3;
 
-            windowManager = {
-              ratpoison.enable = true;
-            };
+    # Define a user account
+    users.extraUsers.kodi.isNormalUser = true;
+    # services.xserver = {
+    #   enable = true;
 
-            displayManager = {
-              autoLogin = {
-                enable = true;
-                user = "media";
-              };
-              gdm.enable = mkForce false;
-              sddm = {
-                enable = true;
-              };
-              sessionCommands = ''
-                pasuspender -- env AE_SINK=ALSA ${lib.getExe pkgs.plex-media-player} --fullscreen --tv # > ~/.plexlogs
-              '';
-            };
-          };
+    #   windowManager = {
+    #     ratpoison.enable = true;
+    #   };
 
-          environment.systemPackages = with pkgs; [
-            plex-media-player
-            ratpoison
-            pavucontrol
-            # syncplay
-            mpv
-            # teamspeak_client
-            # alsamixer
-            pulseaudioFull
-          ];
-          users.extraUsers.media = {
-            isNormalUser = true;
-            uid = 1100;
-            extraGroups = ["audio"];
-          };
-          networking.firewall.allowedTCPPorts = [
-            8060 # the plex frontend does upnp things
-            32433 # plex-media-player
-          ];
-        };
+    #   displayManager = {
+    #     autoLogin = {
+    #       enable = true;
+    #       user = "media";
+    #     };
+    #     gdm.enable = mkForce false;
+    #     sddm = {
+    #       enable = true;
+    #     };
+    #     # pasuspender -- env AE_SINK=ALSA
+    #     sessionCommands = ''
+    #       exec ${lib.getExe pkgs.plex-media-player} --fullscreen --tv
+    #     '';
+    #   };
+    # };
+    environment.systemPackages = with pkgs; [
+      plymouth
+    ];
+
+    boot = {
+      plymouth = {
+        enable = true;
       };
+    };
+    # users.extraUsers.media = {
+    #   isNormalUser = true;
+    #   uid = 1100;
+    #   extraGroups = ["audio"];
+    # };
+    networking.firewall = {
+      enable = mkForce false;
+      allowedTCPPorts = [
+        8080
+        8060 # the plex frontend does upnp things
+        32433 # plex-media-player
+      ];
     };
   };
 }
