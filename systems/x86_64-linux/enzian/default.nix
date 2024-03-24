@@ -62,9 +62,9 @@ with lib; {
       firewall = {
         enable = true;
       };
-      useDHCP = lib.mkDefault false;
+      # useDHCP = lib.mkDefault false;
       interfaces."enp4s0" = {
-        useDHCP = lib.mkDefault true;
+        # useDHCP = lib.mkDefault true;
         wakeOnLan.enable = true;
       };
     };
