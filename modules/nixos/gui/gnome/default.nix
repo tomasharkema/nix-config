@@ -56,6 +56,7 @@ in {
         gnome-user-share.enable = true;
         gnome-keyring.enable = true;
         games.enable = true;
+        evolution-data-server.enable = true;
       };
 
       udev.packages = with pkgs; [gnome.gnome-settings-daemon];
@@ -70,6 +71,7 @@ in {
         with pkgsUnstable; [
           gtop
           libgtop
+          # gnomeExtensions.network-interfaces-info
           gnomeExtensions.appindicator
           gnomeExtensions.settingscenter
           gnomeExtensions.app-hider
@@ -80,7 +82,7 @@ in {
           gnomeExtensions.extension-list
           # gnomeExtensions.fuzzy-app-search
           gnomeExtensions.github-actions
-          gnomeExtensions.gpu-profile-selector
+          # gnomeExtensions.gpu-profile-selector
           gnomeExtensions.hue-lights
           gnomeExtensions.ip-finder
           gnomeExtensions.just-perfection
@@ -94,13 +96,14 @@ in {
           gnomeExtensions.tailscale-qs
           gnomeExtensions.tailscale-status
           gnomeExtensions.todotxt
-          gnomeExtensions.tophat
-          gnomeExtensions.no-title-bar
+          # gnomeExtensions.tophat
+          # gnomeExtensions.no-title-bar
           gnomeExtensions.vitals
           gnomeExtensions.pip-on-top
+          gnomeExtensions.prime-helper
         ]
       )
-      ++ (with pkgs; [
+      ++ (with pkgsUnstable; [
         clutter
         clutter-gtk
         gjs
@@ -127,6 +130,7 @@ in {
         gnome.libgnome-keyring
         gnome.seahorse
         gnome.zenity
+        gnome-network-displays
       ]);
 
     # services.synergy.client = {
