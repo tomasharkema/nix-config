@@ -92,14 +92,16 @@ in {
           gnomeExtensions.search-light
           gnomeExtensions.server-status-indicator
           gnomeExtensions.tailscale-qs
+          gnomeExtensions.tailscale-status
           gnomeExtensions.todotxt
-          gnomeExtensions.tophat
-          gnomeExtensions.no-title-bar
+          # gnomeExtensions.tophat
+          # gnomeExtensions.no-title-bar
           gnomeExtensions.vitals
           gnomeExtensions.pip-on-top
+          gnomeExtensions.prime-helper
         ]
       )
-      ++ (with pkgs; [
+      ++ (with pkgsUnstable; [
         clutter
         clutter-gtk
         gjs
@@ -126,6 +128,7 @@ in {
         gnome.libgnome-keyring
         gnome.seahorse
         gnome.zenity
+        gnome-network-displays
       ]);
 
     # services.synergy.client = {
