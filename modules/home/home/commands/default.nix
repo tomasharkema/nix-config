@@ -9,7 +9,7 @@
       commands = [
         {
           "title" = "Update";
-          "command" = "${lib.getExe pkgs.xdg-terminal-exec} menu";
+          "command" = "${pkgs.gnome.gnome-terminal}/binn/gnome-terminal -- menu"; # "${lib.getExe pkgs.xdg-terminal-exec} menu";
           "icon" = "utilities-terminal";
         }
         {
