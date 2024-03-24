@@ -85,10 +85,10 @@
       url = "github:nixos/nixos-hardware";
     };
 
-    cachix-deploy-flake = {
-      url = "github:cachix/cachix-deploy-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # cachix-deploy-flake = {
+    #   url = "github:cachix/cachix-deploy-flake";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nix-software-center = {
       url = "github:snowfallorg/nix-software-center";
@@ -211,7 +211,7 @@
           title = "dotfiles";
         };
 
-        # namespace = "custom";
+        namespace = "custom";
       };
 
       overlays = with inputs; [
@@ -246,6 +246,12 @@
           system.stateVersion = "23.11";
           system.nixos.tags = ["snowfall"];
           system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
+          nix = {
+            registry.nixpkgs.flake = inputs.nixpkgs;
+            registry.home-manager.flake = inputs.home-manager;
+            registry.unstable.flake = inputs.unstable;
+            registry.darwin.flake = inputs.darwin;
+          };
         }
       ];
 
