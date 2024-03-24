@@ -82,6 +82,7 @@ in
           # dooit
           ttdl
           topydo
+          git-credential-1password
         ];
         sessionVariables =
           if stdenv.isDarwin
@@ -188,13 +189,33 @@ in
             ];
           };
         };
+
+        gh = {
+          enable = true;
+          gitCredentialHelper.enable = true;
+
+          settings = {
+            git_protocol = "https";
+            prompt = "enabled";
+          };
+        };
+        gh-dash.enable = true;
+
         gitui.enable = true;
+
         git = {
           enable = true;
           userName = "Tomas Harkema";
           userEmail = "tomas@harkema.io";
 
+          # signing.key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";
+
+          # prompt.enable = true;
+
+          lfs.enable = true;
+
           extraConfig = {
+            maintenance.auto = true;
             rerere = {
               enable = true;
             };
@@ -204,8 +225,15 @@ in
             branch = {
               autosetupmerge = true;
             };
-            gpg = {format = "ssh";};
-            commit = {gpgsign = true;};
+
+            commit.gpgsign = true;
+
+            gpg = {
+              format = "ssh";
+              ssh.program = "${pkgs._1password-gui}/bin/op-ssh-sign";
+            };
+
+            user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";
           };
         };
 
