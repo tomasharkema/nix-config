@@ -22,13 +22,15 @@ in {
         true;
       dedicatedServer.openFirewall =
         true;
+      gamescopeSession.enable = true;
     };
 
     environment.systemPackages = with pkgs; [
       # sunshine
       protontricks
       # heroic
-      cartridges
+      # cartridges
+      steamcmd
     ];
 
     # services.udev.extraRules = ''

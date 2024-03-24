@@ -70,6 +70,7 @@ in {
     # enable = true;
     # enableSSHSupport = true;
     # };
+    services.cpupower-gui.enable = true;
 
     environment.systemPackages = with pkgs;
       [
@@ -119,7 +120,8 @@ in {
         wezterm
         # waybar
         zeal
-
+        mission-center
+        pavucontrol
         # libmx
       ]
       ++ optional (pkgs.system == "x86_64-linux") telegram-desktop

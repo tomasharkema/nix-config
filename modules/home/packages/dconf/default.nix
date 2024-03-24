@@ -100,6 +100,7 @@ with lib; {
             "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
           ];
           enabled-extensions = [
+            "gmind@tungstnballon.gitlab.com"
             "app-hider@lynith.dev"
             "blur-my-shell@aunetx"
             # "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
