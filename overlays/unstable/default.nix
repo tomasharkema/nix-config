@@ -35,4 +35,6 @@
   systembus-notify = self.packages."${prev.system}".systembus-notify;
 
   netscanner = channels.unstable.netscanner;
+
+  xdg-terminal-exec = channels.unstable.xdg-terminal-exec;
 }
