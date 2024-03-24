@@ -66,6 +66,11 @@ with lib; let
     ${lib.getExe pkgs.dconf} dump / > dconf.settings
     ${lib.getExe pkgs.dconf2nix} -i dconf.settings -o dconf.nix
   '';
+  dconf-save = writeShellScriptBin "dconf-save" ''
+    current_hostname="$(hostname)"
+    echo "Saving dconf for $current_hostname"
+    ${lib.getExe pkgs.dconf} dump / > "dconf/$current_hostname.conf"
+  '';
 
   test-remote = writeShellScriptBin "test-remote" ''
     SERVER="$1"
@@ -142,6 +147,7 @@ in
         # dotenv.enable = true;
 
         packages = [
+          dconf-save
           dp
           upload-to-installer
           # pkgs.custom.rundesk

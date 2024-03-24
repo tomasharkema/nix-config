@@ -135,6 +135,7 @@ with lib; {
             "just-perfection-desktop@just-perfection"
             "todo.txt@bart.libert.gmail.com"
             "pip-on-top@rafostar.github.com"
+            "tailscale-status@maxgallup.github.com"
             # "display-brightness-ddcutil@themightydeity.github.com"
           ];
           favorite-apps =
