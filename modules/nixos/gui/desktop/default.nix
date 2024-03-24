@@ -74,6 +74,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        pkgs.custom.gitbutler
         caffeine-ng
         qjournalctl
         pkgs.custom.netbrowse
