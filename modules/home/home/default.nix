@@ -188,11 +188,25 @@ in
             ];
           };
         };
-
+        gitui.enable = true;
         git = {
           enable = true;
           userName = "Tomas Harkema";
           userEmail = "tomas@harkema.io";
+
+          extraConfig = {
+            rerere = {
+              enable = true;
+            };
+            pull = {
+              rebase = false;
+            };
+            branch = {
+              autosetupmerge = true;
+            };
+            gpg = {format = "ssh";};
+            commit = {gpgsign = true;};
+          };
         };
 
         # bat = {
