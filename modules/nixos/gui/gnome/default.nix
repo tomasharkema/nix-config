@@ -73,7 +73,6 @@ in {
           libgtop
 
           gnomeExtensions.executor
-          gnomeExtensions.command-menu
           gnomeExtensions.battery-health-charging
           gnomeExtensions.app-menu-icon-remove-symbolic
 
