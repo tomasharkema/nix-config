@@ -29,28 +29,36 @@ in {
 
     users.extraUsers.kodi.isNormalUser = true;
     users.users.kodi.extraGroups = ["data" "video" "audio" "input"];
-    services.cage.user = "kodi";
-    services.cage.program = "${pkgs.kodi-wayland}/bin/kodi-standalone";
-    services.cage.enable = true;
+    # services.cage.user = "kodi";
+    # services.cage.program = "${pkgs.kodi-wayland}/bin/kodi-standalone";
+    # services.cage.enable = true;
+    services.xserver.desktopManager.kodi.enable = true;
+    services.xserver.displayManager.autoLogin.enable = true;
+    services.xserver.displayManager.autoLogin.user = "kodi";
 
     hardware.opengl = {
       enable = true;
       extraPackages = with pkgs; [libva];
     };
 
-    environment.systemPackages = [
-      (pkgs.kodi-wayland.passthru.withPackages (kodiPkgs:
-        with kodiPkgs; [
-          inputstreamhelper
-          inputstream-adaptive
-          inputstream-ffmpegdirect
-          inputstream-rtmp
-          vfs-libarchive
-          vfs-rar
-          youtube
-        ]))
-    ];
-
+    services.xserver.desktopManager.kodi.package = pkgs.kodi.withPackages (pkgs:
+      with pkgs; [
+        inputstreamhelper
+        inputstream-adaptive
+        inputstream-ffmpegdirect
+        inputstream-rtmp
+        vfs-libarchive
+        vfs-rar
+        inputstreamhelper
+        inputstream-adaptive
+        inputstream-ffmpegdirect
+        inputstream-rtmp
+        vfs-libarchive
+        vfs-rar
+        youtube
+        netflix
+        sendtokodi
+      ]);
     # services.xserver = {
     #   enable = true;
 
