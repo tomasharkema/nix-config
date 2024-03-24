@@ -36,6 +36,15 @@ with lib; {
 
     services = {
       # netbox-service.enable = true;
+
+      healthchecks = {
+        enable = true;
+
+        settings = {
+          SECRET_KEY_FILE = "/etc/healthchecks.key";
+        };
+      };
+
       earlyoom = {
         enable = mkForce false;
       };
