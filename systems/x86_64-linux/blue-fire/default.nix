@@ -49,7 +49,7 @@ in {
 
     services = {
       healthchecks = {
-        enable = true;
+        #        enable = true;
       };
       # icingaweb2 = {
       #   enable = true;
