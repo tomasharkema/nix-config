@@ -64,6 +64,7 @@
       yubikey-manager-qt
       yubikey-personalization
       yubikey-personalization-gui
+      opensc
     ];
   };
 }
