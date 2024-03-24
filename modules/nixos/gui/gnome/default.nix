@@ -71,6 +71,14 @@ in {
         with pkgsUnstable; [
           gtop
           libgtop
+
+          gnomeExtensions.executor
+          gnomeExtensions.command-menu
+          gnomeExtensions.battery-health-charging
+          gnomeExtensions.app-menu-icon-remove-symbolic
+
+          gnomeExtensions.window-is-ready-remover
+
           # gnomeExtensions.network-interfaces-info
           gnomeExtensions.appindicator
           gnomeExtensions.settingscenter
@@ -94,16 +102,14 @@ in {
           gnomeExtensions.search-light
           gnomeExtensions.server-status-indicator
           gnomeExtensions.tailscale-qs
-          gnomeExtensions.tailscale-status
           gnomeExtensions.todotxt
-          # gnomeExtensions.tophat
-          # gnomeExtensions.no-title-bar
+          gnomeExtensions.tophat
+          gnomeExtensions.no-title-bar
           gnomeExtensions.vitals
           gnomeExtensions.pip-on-top
-          gnomeExtensions.prime-helper
         ]
       )
-      ++ (with pkgsUnstable; [
+      ++ (with pkgs; [
         clutter
         clutter-gtk
         gjs
@@ -130,7 +136,6 @@ in {
         gnome.libgnome-keyring
         gnome.seahorse
         gnome.zenity
-        gnome-network-displays
       ]);
 
     # services.synergy.client = {
