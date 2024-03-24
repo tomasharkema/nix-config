@@ -63,10 +63,10 @@ in {
   "attic-config.toml.age".publicKeys = allKeys;
   "atuin.age".publicKeys = allKeys;
   "binary-caches.json.age".publicKeys = allKeys;
-  "cachix-activate.age".publicKeys = allKeys;
-  "cachix-agent.age".publicKeys = allKeys;
-  "cachix-token.age".publicKeys = allKeys;
-  "cachix.age".publicKeys = allKeys;
+  # "cachix-activate.age".publicKeys = allKeys;
+  # "cachix-agent.age".publicKeys = allKeys;
+  # "cachix-token.age".publicKeys = allKeys;
+  # "cachix.age".publicKeys = allKeys;
   "command-center.env.age".publicKeys = allKeys;
   "gh.age".publicKeys = allKeys;
   "ght-runner.age".publicKeys = builders;
