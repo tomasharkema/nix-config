@@ -416,10 +416,10 @@ with lib;
 
           # [last_run]
         };
-        git = {
-          enable = true;
-          lfs.enable = true;
-        };
+        # git = {
+        #   enable = true;
+        #   lfs.enable = true;
+        # };
         htop = {
           enable = true;
           settings = {
