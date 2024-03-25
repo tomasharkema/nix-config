@@ -147,6 +147,7 @@ in
         # dotenv.enable = true;
 
         packages = [
+          nixUnstable
           dconf-save
           dp
           upload-to-installer
