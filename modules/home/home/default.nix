@@ -27,6 +27,8 @@ in
 
       # mv /path/to/image.jpg ~/.face
 
+      # nix.package = pkgs.nixUnstable;
+
       home = {
         file = {
           ".face" = {
