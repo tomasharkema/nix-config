@@ -40,7 +40,7 @@ in {
     };
 
     zramSwap = {
-      enable = false;
+      enable = true;
     };
 
     # NixOS wants to enable GRUB by default
@@ -108,13 +108,13 @@ in {
     networking = {
       networkmanager.enable = true;
 
-      useDHCP = false;
-      interfaces.wlan0 = {
-        useDHCP = true;
-      };
-      interfaces.eth0 = {
-        useDHCP = true;
-      };
+      # useDHCP = false;
+      # interfaces.wlan0 = {
+      #   useDHCP = true;
+      # };
+      # interfaces.eth0 = {
+      #   useDHCP = true;
+      # };
 
       # Enabling WIFI
       # wireless = {
