@@ -15,6 +15,14 @@ in {
   };
 
   config = mkIf cfg.enable {
+    virtualisation.vmVariant = {
+      virtualisation = {
+        cores = 4;
+        memorySize = 4 * 1024;
+        diskSize = 50 * 1024;
+      };
+    };
+
     fileSystems = {
       "/boot" = {
         device = "/dev/disk/by-label/NIXOS_BOOT";
@@ -28,10 +36,10 @@ in {
 
     boot = {
       kernelParams = [
-        "console=serial0,115200"
         "console=tty1"
       ];
-      # kernelModules = ["dwc2" "g_serial"];
+      kernelModules = ["dwc2" "g_serial"];
+      # kernelParams = ["console=tty0"];
 
       tmp = {
         useTmpfs = false;
@@ -103,11 +111,8 @@ in {
     #   dtparam=audio=on
     # '';
 
-    # networking.wireless.enable = true;
-
     networking = {
       networkmanager.enable = true;
-
       useDHCP = false;
       interfaces.wlan0 = {
         useDHCP = true;

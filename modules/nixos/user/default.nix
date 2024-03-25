@@ -69,7 +69,7 @@ in {
       isNormalUser = true;
       description = "tomas";
       group = "${config.user.name}";
-      extraGroups = ["networkmanager" "wheel" "rslsync" "users" "fuse" "disk"];
+      extraGroups = ["networkmanager" "wheel" "rslsync" "users" "fuse"];
       hashedPassword = "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
       openssh.authorizedKeys.keys = keys;
       linger = true;
