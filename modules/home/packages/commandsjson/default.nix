@@ -19,7 +19,7 @@ in {
     };
   };
 
-  config = {
+  config = mkIf cfg.enable {
     dconf = {
       settings = {
         "org/gnome/shell" = {
