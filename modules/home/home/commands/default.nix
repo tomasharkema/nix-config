@@ -1,11 +1,12 @@
 {
   lib,
   pkgs,
+  osConfig,
   ...
 }: {
   config = {
     programs.commands = {
-      enable = true;
+      enable = osConfig.gui.gnome.enable;
       commands = [
         {
           "title" = "Update";
