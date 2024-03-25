@@ -22,6 +22,8 @@ with lib; {
     gui."media-center".enable = true;
     apps.spotifyd.enable = true;
 
+    environment.systemPackages = with pkgs; [intel-gpu-tools];
+
     disks.ext4 = {
       enable = true;
       main = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01";
