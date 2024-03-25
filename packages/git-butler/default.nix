@@ -18,10 +18,7 @@ appimageTools.wrapType2 rec {
     contents = appimageTools.extractType2 {inherit pname version src;};
   in ''
     mkdir -p "$out/share/applications"
-    # cp "${contents}/${pname}.desktop" "$out/share/applications/"
     cp -r ${contents}/usr/share/* "$out/share"
     ln -fns "$out/bin/${pname}-${version}" "$out/bin/${pname}"
-
-    # substituteInPlace $out/share/applications/${pname}.desktop --replace 'Exec=AppRun' 'Exec=${pname}'
   '';
 }
