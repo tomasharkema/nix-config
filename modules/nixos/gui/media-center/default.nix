@@ -27,14 +27,19 @@ in {
       quiet-boot.enable = mkForce false;
     };
 
-    users.extraUsers.kodi.isNormalUser = true;
-    users.users.kodi.extraGroups = ["data" "video" "audio" "input"];
-    # services.cage.user = "kodi";
-    # services.cage.program = "${pkgs.kodi-wayland}/bin/kodi-standalone";
-    # services.cage.enable = true;
-    services.xserver.desktopManager.kodi.enable = true;
-    services.xserver.displayManager.autoLogin.enable = true;
-    services.xserver.displayManager.autoLogin.user = "kodi";
+    # users.extraUsers.kodi.isNormalUser = true;
+    # users.users.kodi.extraGroups = ["data" "video" "audio" "input"];
+    # # services.cage.user = "kodi";
+    # # services.cage.program = "${pkgs.kodi-wayland}/bin/kodi-standalone";
+    # # services.cage.enable = true;
+    # services.xserver.desktopManager.kodi.enable = true;
+    # services.xserver.displayManager.autoLogin.enable = true;
+    # services.xserver.displayManager.autoLogin.user = "kodi";
+
+    systemd.targets.sleep.enable = mkForce false;
+    systemd.targets.suspend.enable = mkForce false;
+    systemd.targets.hibernate.enable = mkForce false;
+    systemd.targets.hybrid-sleep.enable = mkForce false;
 
     hardware.opengl = {
       enable = true;
@@ -59,6 +64,19 @@ in {
         netflix
         sendtokodi
       ]);
+
+    services.kmscon = {
+      enable = mkForce false;
+    };
+
+    services.cage = {
+      user = "media";
+      program = "${lib.getExe pkgs.plex-media-player} --fullscreen --tv";
+
+      enable = true;
+      extraArguments = ["-d" "-m" "last"];
+    };
+
     # services.xserver = {
     #   enable = true;
 
@@ -83,15 +101,16 @@ in {
     # };
 
     boot = {
+      kernelParams = ["quiet"];
       plymouth = {
         enable = true;
       };
     };
-    # users.extraUsers.media = {
-    #   isNormalUser = true;
-    #   uid = 1100;
-    #   extraGroups = ["audio"];
-    # };
+    users.extraUsers.media = {
+      isNormalUser = true;
+      uid = 1100;
+      extraGroups = ["audio"];
+    };
     networking.firewall = {
       enable = mkForce false;
       allowedTCPPorts = [
