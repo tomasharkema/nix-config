@@ -21,6 +21,7 @@ with lib; {
 
     traits.low-power.enable = true;
     gui."media-center".enable = true;
+    apps.spotifyd.enable = true;
 
     # system.stateVersion = "23.11";
 
@@ -73,7 +74,7 @@ with lib; {
       # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
       # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
 
-      kernelPackages = pkgs.linuxPackages_6_7;
+      kernelPackages = pkgs.linuxPackages_latest;
 
       # kernelParams = [
       # "console=ttyS1,115200n8"
