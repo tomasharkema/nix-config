@@ -454,16 +454,16 @@ with lib;
       };
 
       systemd = {
-        targets = {
-          sleep.enable = mkDefault false;
-          suspend.enable = mkDefault false;
-          hibernate.enable = mkDefault false;
-          hybrid-sleep.enable = mkDefault false;
-        };
-        services = {
-          NetworkManager-wait-online.enable = lib.mkForce false;
-          #     systemd-networkd-wait-online.enable = lib.mkForce false;
-        };
+        # targets = {
+        #   sleep.enable = mkDefault false;
+        #   suspend.enable = mkDefault false;
+        #   hibernate.enable = mkDefault false;
+        #   hybrid-sleep.enable = mkDefault false;
+        # };
+        # services = {
+        # NetworkManager-wait-online.enable = lib.mkForce false;
+        #     systemd-networkd-wait-online.enable = lib.mkForce false;
+        # };
       };
 
       networking = {
