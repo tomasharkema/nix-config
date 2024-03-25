@@ -30,14 +30,14 @@ with lib; {
       game-mode.enable = true;
     };
     # resilio.root = "/opt/media/resilio";
-    resilio.enable = mkForce false;
+    # resilio.enable = mkForce false;
     apps.steam.enable = true;
     systemd.enableEmergencyMode = false;
 
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y";
-      # media = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01";
+      media = "/dev/disk/by-id/ata-TOSHIBA_MQ01ABD100_Y6I8PBOHT";
       encrypt = true;
       newSubvolumes = true;
     };
