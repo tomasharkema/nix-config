@@ -75,7 +75,7 @@ in {
       notificationSender = "tomas+hydra@harkema.io";
       useSubstitutes = true;
       smtpHost = "smtp-relay.gmail.com";
-      debugServer = true;
+      debugServer = false;
       listenHost = "0.0.0.0";
       port = 3000;
 
@@ -100,8 +100,6 @@ in {
         Include ${ldap}
       '';
     };
-    #${builtins.readFile ldap}
-    # Include ${ldap}
 
     age.secrets."ldap" = {
       file = ../../../../../secrets/ldap.age;
@@ -114,11 +112,10 @@ in {
       StrictHostKeyChecking no
     '';
     nix = {
-      #   extraOptions = ''
-      #     auto-optimise-store = true
-      #   '';
-      #   # allowed-uris = https://github.com/zhaofengli/nix-base32.git https://github.com/tomasharkema.keys https://api.flakehub.com/f/pinned https://github.com/NixOS/nixpkgs/archive https://github.com/NixOS/nixpkgs-channels/archive https://github.com/input-output-hk https://github.com/tomasharkema
-
+      # extraOptions = ''
+      #   auto-optimise-store = true
+      #   allowed-uris = https:// github:NixOS/ github:nixos/ github:hercules-ci/ github:numtide/ github:cachix/ github:nix-community/ github:snowfallorg/
+      # '';
       settings = {
         use-cgroups = true;
         #     allowed-uris = [
