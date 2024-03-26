@@ -15,6 +15,7 @@ in {
 
   config = mkIf cfg.enable {
     sound.mediaKeys.enable = true;
+    traits.developer.enable = true;
 
     # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
