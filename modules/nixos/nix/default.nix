@@ -43,12 +43,6 @@ in {
       # (nixos-hosts.override {
       #   hosts = inputs.self.nixosConfigurations;
       # })
-      inputs.deploy-rs.packages."${system}".deploy-rs
-      nixfmt
-      nix-prefetch-git
-      nix-output-monitor
-      # flake-checker
-      inputs.flake-checker.packages."${system}".default
     ];
 
     nix = let
