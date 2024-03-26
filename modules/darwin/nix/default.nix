@@ -27,10 +27,10 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      inputs.deploy-rs.packages.${system}.deploy-rs
+      deploy-rs
       nixfmt
       nix-prefetch-git
-      inputs.nil.packages.${system}.default
+      nil
       flake-checker
       # inputs.alejandra.packages.${system}.default
       nix-output-monitor

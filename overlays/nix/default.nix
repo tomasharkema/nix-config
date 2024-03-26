@@ -1,5 +1,4 @@
 {
-  nil,
   devenv,
   deploy-rs,
   attic,
@@ -12,7 +11,6 @@
   channels,
   ...
 }: final: prev: {
-  nil = nil.packages."${prev.system}".default;
   devenv = devenv.packages."${prev.system}".default;
   deploy-rs = deploy-rs.packages."${prev.system}".deploy-rs;
   attic = attic.packages."${prev.system}".default;
