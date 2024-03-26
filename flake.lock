@@ -307,11 +307,11 @@
         "pre-commit-hooks": "pre-commit-hooks_3"
       },
       "locked": {
-        "lastModified": 1711381451,
-        "narHash": "sha256-KMaARkZsMdEhDgGzIGHrKaWdMCnHvnY05BnZpOBA5MY=",
+        "lastModified": 1711452029,
+        "narHash": "sha256-e5URogEmWSKb/uSCX9TNprIYQE0fhv/y/Goepkq99r0=",
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "5d99d9fb18882d2b2ceeb09688c158e39b927394",
+        "rev": "15f55864583ffec378694d6b1c3889b8b597204c",
         "type": "github"
       },
       "original": {
@@ -1230,11 +1230,11 @@
         "rust-overlay": "rust-overlay_3"
       },
       "locked": {
-        "lastModified": 1711372858,
-        "narHash": "sha256-OS07Su2TnH/WqMcdk/vzi1FIw1WwYVUtzCGnKmrEl4Q=",
+        "lastModified": 1711442573,
+        "narHash": "sha256-/A3YzcY5erYOPojp5Ffwgxv4X5MTnRiWwuaXfgXbK2g=",
         "owner": "nix-community",
         "repo": "lanzaboote",
-        "rev": "d67e1cc1374e2a11be6bbd21237a1e7fdf63afa9",
+        "rev": "df7ac26bd24fac8baa94d60a02c3e0f0d4d16368",
         "type": "github"
       },
       "original": {
@@ -1619,11 +1619,11 @@
     },
     "nixpkgs-gnome": {
       "locked": {
-        "lastModified": 1711031211,
-        "narHash": "sha256-GVcddsMj1ZqmLa6HvnmyIeaOkTp1Ll5O1326zQJ9KZs=",
+        "lastModified": 1711421414,
+        "narHash": "sha256-Ms8eN+qXbFbUWDpRpavmnxuRMy/dbKDkf0RISF7/y8w=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "748475a59f56799166a7c655f045a67e1a216dd5",
+        "rev": "32ec3036509156b53c327c9aee81c270a9691c5f",
         "type": "github"
       },
       "original": {
