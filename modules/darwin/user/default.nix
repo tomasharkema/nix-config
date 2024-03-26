@@ -34,7 +34,6 @@ in {
       terminal-notifier
       custom.launchcontrol
       custom.ztui
-      devenv
 
       sysz
       # iptraf-ng

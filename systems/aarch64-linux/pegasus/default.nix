@@ -12,11 +12,10 @@
 
   config = {
     networking.hostName = "pegasus";
-
     virtualisation.vmVariant = {
       virtualisation = {
         diskSize = 50 * 1024;
-        memorySize = 8 * 1024;
+        memorySize = 4 * 1024;
         cores = 4;
       };
     };
