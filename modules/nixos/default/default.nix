@@ -110,7 +110,7 @@ with lib;
           lshw
           usbutils
           ttop
-          devenv
+
           sysz
           iptraf-ng
           netscanner

@@ -139,11 +139,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nil = {
-      url = "github:oxalica/nil";
-      inputs.nixpkgs.follows = "unstable";
-    };
-
     devenv = {
       url = "github:cachix/devenv";
       # inputs.nixpkgs.follows = "nixpkgs";

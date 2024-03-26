@@ -48,7 +48,7 @@ in {
     };
 
     zramSwap = {
-      enable = false;
+      enable = true;
     };
 
     # NixOS wants to enable GRUB by default
@@ -69,21 +69,21 @@ in {
 
     gui."media-center".enable = true;
 
-    services = {
-      openssh.enable = true;
-      avahi = {
-        enable = true;
-        publish.userServices = true;
-        extraServiceFiles = {
-          ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
-        };
-      };
+    # services = {
+    #   openssh.enable = true;
+    #   avahi = {
+    #     enable = true;
+    #     publish.userServices = true;
+    #     extraServiceFiles = {
+    #       ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
+    #     };
+    #   };
 
-      promtail = {
-        enable = mkForce false;
-      };
-      blueman.enable = true;
-    };
+    #   promtail = {
+    #     enable = mkForce false;
+    #   };
+    #   blueman.enable = true;
+    # };
     # console.enable = false;
 
     environment.systemPackages = with pkgs; [
@@ -93,7 +93,6 @@ in {
     ];
 
     systemd.services.attic-watch.enable = mkForce false;
-
     resilio.enable = false;
 
     # system.stateVersion = "23.11";
@@ -113,20 +112,20 @@ in {
 
     networking = {
       networkmanager.enable = true;
-      useDHCP = false;
-      interfaces.wlan0 = {
-        useDHCP = true;
-      };
-      interfaces.eth0 = {
-        useDHCP = true;
-      };
+      # useDHCP = false;
+      # interfaces.wlan0 = {
+      #   useDHCP = true;
+      # };
+      # interfaces.eth0 = {
+      #   useDHCP = true;
+      # };
 
       # Enabling WIFI
-      # wireless = {
-      #   enable = true;
-      #   interfaces = ["wlan0"];
-      #   networks."Have a good day".pskRaw = "0fcc36c0dd587f3d85028f427c872fead0b6bb7623099fb4678ed958f2150e23";
-      # };
+      wireless = {
+        enable = false;
+        #   interfaces = ["wlan0"];
+        #   networks."Have a good day".pskRaw = "0fcc36c0dd587f3d85028f427c872fead0b6bb7623099fb4678ed958f2150e23";
+      };
     };
   };
 }
