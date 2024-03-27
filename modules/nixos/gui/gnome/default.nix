@@ -15,7 +15,7 @@ in {
 
   config = mkIf cfg.enable {
     sound.mediaKeys.enable = true;
-    traits.developer.enable = true;
+    traits.developer.enable = mkDefault true;
 
     # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
@@ -109,7 +109,7 @@ in {
           gnomeExtensions.pip-on-top
         ]
       )
-      ++ (with pkgs; [
+      ++ (with pkgsUnstable; [
         clutter
         clutter-gtk
         gjs
