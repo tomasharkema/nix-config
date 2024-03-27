@@ -74,7 +74,6 @@ in {
 
     environment.systemPackages = with pkgs;
       [
-        angryipscanner
         pkgs.custom.git-butler
         caffeine-ng
         qjournalctl
