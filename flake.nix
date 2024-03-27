@@ -162,6 +162,11 @@
       url = "github:tomasharkema/command-center";
       inputs.nixpkgs.follows = "unstable";
     };
+
+    crane = {
+      url = "github:ipetkov/crane";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
