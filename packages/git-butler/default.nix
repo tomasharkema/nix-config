@@ -40,31 +40,44 @@
   rustPlatform,
   openssl,
   pkg-config,
+  cargo,
+  gcc,
+  perl,
+  webkitgtk,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "git-butler";
-  version = "0.10.29";
+  version = "0.10.28";
 
   src = fetchFromGitHub {
     owner = "gitbutlerapp";
     repo = "gitbutler";
     rev = "release%2F${version}";
-    hash = "sha256-Cbvb3mT4XuonB3oluaqXICP/5OMOHJBb5fceTJH1gDs=";
-  };
-  cargoLock.lockFile = "${src}/Cargo.lock";
-  cargoLock.outputHashes = {
-    "tauri-plugin-context-menu-0.7.0" = "sha256-/4eWzZwQtvw+XYTUHPimB4qNAujkKixyo8WNbREAZg8=";
-    "tauri-plugin-log-0.0.0" = "sha256-uOPFpWz715jT8zl9E6cF+tIsthqv4x9qx/z3dJKVtbw=";
+    hash = "sha256-j1ioqLcYxrBni8siO5DXLLPCQawAzzZgDumKizPhh1Y=";
   };
 
-  buildInputs = [
-    # cargo
-    # gcc
-    openssl
-    openssl.dev
-    # perl
+  cargoLock = {
+    lockFile = "${src}/Cargo.lock";
+    outputHashes = {
+      "tauri-plugin-context-menu-0.7.0" = "sha256-/4eWzZwQtvw+XYTUHPimB4qNAujkKixyo8WNbREAZg8=";
+      "tauri-plugin-log-0.0.0" = "sha256-uOPFpWz715jT8zl9E6cF+tIsthqv4x9qx/z3dJKVtbw=";
+    };
+  };
+
+  OPENSSL_NO_VENDOR = 1;
+  RUSTC_BOOTSTRAP = 1;
+
+  nativeBuildInputs = [
+    pkg-config
   ];
-  nativeBuildinputs = [pkg-config];
-  OPENSSL_DIR = openssl.dev;
-  PKG_CONFIG_PATH = "${openssl.dev}/lib/pkgconfig";
+
+  buildInputs =
+    [
+      # ncurses
+      openssl
+      webkitgtk
+    ]
+    ++ lib.optionals stdenv.isDarwin [
+      # Security
+    ];
 }
