@@ -45,6 +45,7 @@ with lib; {
     boot.growPartition = true;
 
     traits = {
+      developer.enable = false;
       hardware = {
         tpm.enable = true;
         secure-boot.enable = true;
