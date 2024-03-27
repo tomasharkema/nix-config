@@ -127,6 +127,7 @@ in {
         # libmx
       ]
       ++ optional (pkgs.system == "x86_64-linux") telegram-desktop
+      ++ optional pkgs.stdenv.isx86_64 angryipscanner
       ++ (with pkgs.custom; [zerotier-ui zerotier-gui]);
 
     programs = {
