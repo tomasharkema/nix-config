@@ -22,6 +22,7 @@ in {
     };
     gui = {
       enable = mkBoolOpt false "Whether or not to manage nix configuration.";
+      gnome.enable = mkBoolOpt false "Whether or not to manage nix configuration.";
     };
   };
 
