@@ -347,9 +347,10 @@
         # lint = self.packages.${channels.nixpkgs.system}.run-checks;
         # };
 
-        # packages.nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
-        # packages.nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
-
+        packages = {
+          nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
+          nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
+        };
         # defaultPackage = cachix-deploy-lib.spec {
         #   agents = {
         #     blue-fire = inputs.self.nixosConfigurations.blue-fire.config.system.build.toplevel;
@@ -433,6 +434,9 @@
       "github:numtide/"
       "github:cachix/"
       "github:nix-community/"
+      "github:snowfallorg/"
+      "github:edolstra/"
+      "github:tomasharkema/"
       "github:snowfallorg/"
     ];
 
