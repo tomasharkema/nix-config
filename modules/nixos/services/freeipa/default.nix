@@ -60,7 +60,7 @@ in {
           hostname = "ipa.harkema.intra";
           extraOptions = [
             "--network=container:free-ipa-tailscale"
-            "-p=389:389"
+            # "-p=389:389"
           ];
           environment = {
             # DEBUG_NO_EXIT = "1";
