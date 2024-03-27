@@ -85,7 +85,7 @@ with lib; {
     # };
 
     boot = {
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      # binfmt.emulatedSystems = ["aarch64-linux"];
 
       kernel.sysctl."kernel.sysrq" = 1;
       initrd = {

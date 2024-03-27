@@ -27,9 +27,17 @@ with lib; {
 
     # fileSystems."/".fsType = lib.mkForce "tmpfs";
     # fileSystems."/".device = lib.mkForce "none";
-
     boot = {
-      loader.generic-extlinux-compatible.enable = true;
+      loader = {
+        generic-extlinux-compatible.enable = true;
+        raspberryPi.firmwareConfig = ''
+          force_turbo=1
+          start_x=1
+          gpu_mem=256
+          cma=320M
+        '';
+      };
+      initrd.kernelModules = ["vc4" "bcm2835_dma" "i2c_bcm2835"];
       # initrd.availableKernelModules = mkForce [
       #   "vc4"
       #   "bcm2835_dma"
