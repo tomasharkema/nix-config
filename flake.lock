@@ -166,6 +166,26 @@
     },
     "crane_2": {
       "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1711407199,
+        "narHash": "sha256-A/nB4j3JHL51ztlMQdfKw6y8tUJJzai3bLsZUEEaBxY=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "7e468a455506f2e65550e08dfd45092f0857a009",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
+    "crane_3": {
+      "inputs": {
         "flake-compat": [
           "flake-checker",
           "flake-compat"
@@ -192,7 +212,7 @@
         "url": "https://flakehub.com/f/ipetkov/crane/0.14.%2A.tar.gz"
       }
     },
-    "crane_3": {
+    "crane_4": {
       "inputs": {
         "nixpkgs": [
           "lanzaboote",
@@ -373,7 +393,7 @@
     },
     "flake-checker": {
       "inputs": {
-        "crane": "crane_2",
+        "crane": "crane_3",
         "flake-compat": "flake-compat_8",
         "flake-utils": "flake-utils_5",
         "nixpkgs": [
@@ -1219,7 +1239,7 @@
     },
     "lanzaboote": {
       "inputs": {
-        "crane": "crane_3",
+        "crane": "crane_4",
         "flake-compat": "flake-compat_11",
         "flake-parts": "flake-parts_2",
         "flake-utils": "flake-utils_8",
@@ -1508,11 +1528,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1711375484,
-        "narHash": "sha256-+d4HqehyQvuHUKR8Nv9HGGd/SP5wjg3MA/hEYJBWQq0=",
+        "lastModified": 1711568591,
+        "narHash": "sha256-S90O8zLGxGvcVMopiWEe0bK0nq4x7bKrVKkmYptNVE4=",
         "owner": "nix-community",
         "repo": "nixos-generators",
-        "rev": "2b3720c7af2271be8cee713cd2f69c5127b0a8e4",
+        "rev": "1e2a04b6fd0bd1cd0e18a6416c99442d67dee732",
         "type": "github"
       },
       "original": {
@@ -1619,11 +1639,11 @@
     },
     "nixpkgs-gnome": {
       "locked": {
-        "lastModified": 1711465072,
-        "narHash": "sha256-TT8/hcBlLMHOZ1VkdNqcbfxKnbmmzC/Znl+TeVMgSm0=",
+        "lastModified": 1711576650,
+        "narHash": "sha256-N/no1HJpsV5O6dV5HzeoQpQb/O0DjhrvSzN1aVEzPjE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3bcbf1f2afdd75a6a35490914b13d094de16fbb5",
+        "rev": "7e7a7afbfc07f8423c71d9002f19ec50244045f9",
         "type": "github"
       },
       "original": {
@@ -2093,6 +2113,7 @@
         "agenix-shell": "agenix-shell",
         "attic": "attic",
         "command-center": "command-center",
+        "crane": "crane_2",
         "darwin": "darwin_2",
         "deploy-rs": "deploy-rs",
         "devenv": "devenv_2",
