@@ -24,7 +24,7 @@ with lib; let
   '';
   reencrypt = writeShellScriptBin "reencrypt" ''
     cd secrets;
-    ${pkgs.agenix}/bin/agenix -r
+    agenix -r
   '';
   mkiso = writeShellScriptBin "mkiso" ''
     LINK="./out/install.iso";
@@ -39,7 +39,7 @@ with lib; let
     for f in $FILES
     do
       echo "Processing $f file..."
-      ${pkgs.attic}/bin/attic push tomas "$f"
+      attic push tomas "$f"
     done
   '';
   # cachix-deploy = writeShellScriptBin "cachix-deploy" ''
@@ -66,6 +66,11 @@ with lib; let
     ${lib.getExe pkgs.dconf} dump / > dconf.settings
     ${lib.getExe pkgs.dconf2nix} -i dconf.settings -o dconf.nix
   '';
+  dconf-save = writeShellScriptBin "dconf-save" ''
+    current_hostname="$(hostname)"
+    echo "Saving dconf for $current_hostname"
+    ${lib.getExe pkgs.dconf} dump / > "dconf/$current_hostname.conf"
+  '';
 
   test-remote = writeShellScriptBin "test-remote" ''
     SERVER="$1"
@@ -75,6 +80,28 @@ with lib; let
 
   upload-local = writeShellScriptBin "upload-local" ''
     nix copy -v --substitute-on-destination --to 'ssh://blue-fire?compression=zstd&secret-key=/run/agenix/peerix-private' /run/current-system
+  '';
+
+  upload-to-installer = writeShellScriptBin "upload-to-installer" ''
+    configuration="$1"
+    host="$2"
+    flake="nixosConfigurations.\"$configuration\".config.system.build.toplevel"
+
+    echo "Copy $flake to $host"
+
+    nix copy --to "ssh-ng://$host?remote-store=local?root=/mnt" ".#$flake" --derivation --no-check-sigs
+
+    nix build ".#$flake" --eval-store auto --store "ssh-ng://$host?remote-store=local?root=/mnt"
+  '';
+
+  dp = writeShellScriptBin "dp" ''
+    configuration="$1"
+    host="$2"
+    flake="nixosConfigurations.\"$configuration\".config.system.build.toplevel"
+
+    echo "Copy $flake to $host"
+
+    exec nixos-rebuild test --flake ".#$configuration" --verbose --target-host $host --use-remote-sudo
   '';
   # diffs = import ../diffs attrs;
   # packages-json = diffs.packages-json;
@@ -99,13 +126,13 @@ in
 
         languages.nix.enable = true;
 
-        # pre-commit.hooks = {
-        #   alejandra.enable = true;
-        #   shellcheck.enable = true;
-        #   nil.enable = true;
-        #   # statix.enable = true;
-        #   # enabledPackages = {};
-        # };
+        pre-commit.hooks = {
+          alejandra.enable = true;
+          shellcheck.enable = true;
+          nil.enable = true;
+          # statix.enable = true;
+          # enabledPackages = {};
+        };
 
         devcontainer = {
           enable = true;
@@ -120,12 +147,14 @@ in
         # dotenv.enable = true;
 
         packages = [
+          dconf-save
+          dp
+          upload-to-installer
           # pkgs.custom.rundesk
           ack
           age
           agenix
           alejandra
-          attic
           bash
           bfg-repo-cleaner
           # cachix-deploy
@@ -143,6 +172,7 @@ in
           git
           gnupg
           gum
+          tydra
           hydra-check
           hydra-cli
           mkiso
@@ -161,6 +191,27 @@ in
           upload-local
           write-script
           zsh
+          agenix # .packages.${system}.default
+          alejandra # .defaultPackage.${system}
+          # cachix
+          deadnix
+          fh
+          # hydra-cli
+          nil
+          manix
+          nix-eval-jobs
+          # nix-init
+          nix-output-monitor
+          nix-prefetch-scripts
+          nix-serve
+          nix-tree
+          # nixci
+          # nixos-shell
+          # nixpkgs-fmt
+          # nixpkgs-lint
+          nurl
+          # # snowfallorg.flake
+          statix
         ];
       }
     ];

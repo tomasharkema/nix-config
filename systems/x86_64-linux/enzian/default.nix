@@ -16,8 +16,10 @@ with lib; {
 
   config = {
     installed = true;
+
     apps = {
       ntopng.enable = true;
+      steam.enable = true;
     };
 
     gui = {
@@ -30,14 +32,14 @@ with lib; {
       game-mode.enable = true;
     };
     # resilio.root = "/opt/media/resilio";
-    resilio.enable = mkForce false;
-    apps.steam.enable = true;
+    # resilio.enable = mkForce false;
+
     systemd.enableEmergencyMode = false;
 
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y";
-      # media = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01";
+      media = "/dev/disk/by-id/ata-TOSHIBA_MQ01ABD100_Y6I8PBOHT";
       encrypt = true;
       newSubvolumes = true;
     };
@@ -45,6 +47,7 @@ with lib; {
     wifi.enable = true;
 
     traits = {
+      developer.enable = true;
       hardware = {
         tpm.enable = true;
         secure-boot.enable = true;
@@ -62,12 +65,16 @@ with lib; {
       firewall = {
         enable = true;
       };
-      useDHCP = lib.mkDefault false;
+      # useDHCP = lib.mkDefault false;
       interfaces."enp4s0" = {
-        useDHCP = lib.mkDefault true;
+        # useDHCP = lib.mkDefault true;
         wakeOnLan.enable = true;
       };
     };
+    systemd.targets.sleep.enable = mkForce false;
+    systemd.targets.suspend.enable = mkForce false;
+    systemd.targets.hibernate.enable = mkForce false;
+    systemd.targets.hybrid-sleep.enable = mkForce false;
 
     # headless.hypervisor = {
     #   enable = true;
@@ -82,7 +89,7 @@ with lib; {
     # };
 
     boot = {
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      # binfmt.emulatedSystems = ["aarch64-linux"];
 
       kernel.sysctl."kernel.sysrq" = 1;
       initrd = {
@@ -115,6 +122,23 @@ with lib; {
     # fileSystems."/export/media" = {
     #   device = "/media";
     #   options = ["bind"];
+    # };
+
+    # services.podman.enable = true;
+    # virtualisation = {
+    #   oci-containers.containers = {
+    #     netboot = {
+    #       image = "lscr.io/linuxserver/netbootxyz:latest";
+    #       autoStart = true;
+    #       ports = ["3000:3000" "69:69/udp" "8080:80"];
+    #       # hostname = "ipa.harkema.io";
+    #       # extraOptions = ["--sysctl" "net.ipv6.conf.all.disable_ipv6=0"];
+    #       # cmd = ["ipa-server-install" "-U" "-r" "HARKEMA.IO"];
+    #       # volumes = [
+    #       #   "/var/lib/freeipa:/data:Z"
+    #       # ];
+    #     };
+    #   };
     # };
   };
 }

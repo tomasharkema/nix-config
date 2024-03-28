@@ -138,7 +138,7 @@ in {
     #   });
   in
     mkIf pkgs.stdenv.isLinux {
-      # systemd.tmpfiles.rules = lib.lists.forEach folders ({path, ...}: "d ${path} 0744 tomas tomas -");
+      systemd.user.tmpfiles.rules = lib.lists.forEach folders ({path, ...}: "d ${path} 0777 tomas tomas -");
       # environment.systemPackages = apps;
       # home.file = builtins.listToAttrs (lib.lists.forEach apps (attr: {
       #   name = attr.name;
@@ -146,6 +146,10 @@ in {
       #     source = attr;
       #   };
       # }));
+
+      # systemd.user.tmpfiles.rules = [
+      # "d "
+      # ];
 
       xdg.desktopEntries = builtins.listToAttrs (lib.lists.forEach folders ({
         name,
@@ -165,7 +169,7 @@ in {
           startupNotify = true;
           terminal = false;
           # startupWMClass = webName;
-          mimeType = ["x-scheme-handler/org-protocol"];
+          # mimeType = ["x-scheme-handler/org-protocol"];
           icon = icon;
         };
       }));

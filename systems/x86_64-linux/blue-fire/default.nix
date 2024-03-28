@@ -87,6 +87,24 @@ in {
     # freeipa.replica.enable = true;
     # };
 
+    nix.settings.allowed-uris = [
+      "https://"
+      "git+https://"
+      "github:"
+      "github:NixOS/"
+      "github:nixos/"
+      "github:hercules-ci/"
+      "github:numtide/"
+      "github:cachix/"
+      "github:nix-community/"
+      "github:snowfallorg/"
+      "github:edolstra/"
+      "github:tomasharkema/"
+      "github:snowfallorg/"
+      "github:gytis-ivaskevicius/"
+      "github:ryantm/"
+    ];
+
     networking = {
       hostName = "blue-fire";
       hostId = "529fd7aa";
@@ -138,6 +156,10 @@ in {
     ];
 
     networking.firewall.allowedTCPPorts = [2049];
+
+    services.kmscon = {
+      enable = mkForce false;
+    };
 
     fileSystems = {
       # "/export/media" = {

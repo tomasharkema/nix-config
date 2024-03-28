@@ -11,15 +11,16 @@
 }:
 buildNpmPackage rec {
   pname = "inshellisense";
-  version = "0.0.1-rc.7";
+  version = "0.0.1-rc.10";
 
   src = fetchFromGitHub {
     owner = "microsoft";
     repo = pname;
     rev = "${version}";
-    hash = "sha256-cWSynWQaCK2Ru+s+MpKbd3SX3gWaEWgOzIACy2yHk9c=";
+    hash = "sha256-TuZZaa0ie7Y2Wp6P4qFeQeAiXQ9quVYpiXjOEIadi7w=";
   };
-  npmDepsHash = "sha256-sGGBKyyoLdK49ml1VACi8h9OMgLSE20w34n2B08OGLk=";
+
+  npmDepsHash = "sha256-mPhpDysr/8Ic31s1CBBfx0hBD+vw5yE5vnXKm/N9ITk=";
 
   postInstall = ''
     cp -r shell $out/share

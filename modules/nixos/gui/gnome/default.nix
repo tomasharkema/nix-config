@@ -15,6 +15,7 @@ in {
 
   config = mkIf cfg.enable {
     sound.mediaKeys.enable = true;
+    traits.developer.enable = mkDefault true;
 
     # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
@@ -56,6 +57,7 @@ in {
         gnome-user-share.enable = true;
         gnome-keyring.enable = true;
         games.enable = true;
+        evolution-data-server.enable = true;
       };
 
       udev.packages = with pkgs; [gnome.gnome-settings-daemon];
@@ -70,6 +72,14 @@ in {
         with pkgsUnstable; [
           gtop
           libgtop
+
+          gnomeExtensions.executor
+          gnomeExtensions.battery-health-charging
+          gnomeExtensions.app-menu-icon-remove-symbolic
+
+          gnomeExtensions.window-is-ready-remover
+
+          # gnomeExtensions.network-interfaces-info
           gnomeExtensions.appindicator
           gnomeExtensions.settingscenter
           gnomeExtensions.app-hider
@@ -80,7 +90,7 @@ in {
           gnomeExtensions.extension-list
           # gnomeExtensions.fuzzy-app-search
           gnomeExtensions.github-actions
-          gnomeExtensions.gpu-profile-selector
+          # gnomeExtensions.gpu-profile-selector
           gnomeExtensions.hue-lights
           gnomeExtensions.ip-finder
           gnomeExtensions.just-perfection
@@ -99,7 +109,7 @@ in {
           gnomeExtensions.pip-on-top
         ]
       )
-      ++ (with pkgs; [
+      ++ (with pkgsUnstable; [
         clutter
         clutter-gtk
         gjs

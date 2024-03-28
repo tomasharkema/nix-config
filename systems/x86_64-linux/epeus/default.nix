@@ -11,6 +11,7 @@
 
   config = {
     traits.slim.enable = true;
+    traits.hardware.laptop.enable = true;
     # Use the GRUB 2 boot loader.
     boot.loader.grub.enable = true;
     # boot.loader.grub.efiSupport = true;
@@ -69,8 +70,7 @@
         };
       };
     };
-    # services.auto-cpufreq.enable = true;
-    # services.thermald.enable = true;
+
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.tomas = {
       isNormalUser = true;

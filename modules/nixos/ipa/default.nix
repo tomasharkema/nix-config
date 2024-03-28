@@ -51,6 +51,7 @@ in {
           login.sssdStrictAccess = mkDefault true;
           sudo.sssdStrictAccess = mkDefault true;
           ssh.sssdStrictAccess = mkDefault true;
+          askpass.sssdStrictAccess = mkDefault true;
         };
       };
     };

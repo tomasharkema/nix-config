@@ -25,7 +25,7 @@
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "unstable";
     };
 
     nix-index-database = {
@@ -85,10 +85,10 @@
       url = "github:nixos/nixos-hardware";
     };
 
-    cachix-deploy-flake = {
-      url = "github:cachix/cachix-deploy-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # cachix-deploy-flake = {
+    #   url = "github:cachix/cachix-deploy-flake";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nix-software-center = {
       url = "github:snowfallorg/nix-software-center";
@@ -137,11 +137,6 @@
     snowfall-flake = {
       url = "github:snowfallorg/flake";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nil = {
-      url = "github:oxalica/nil";
-      inputs.nixpkgs.follows = "unstable";
     };
 
     devenv = {
@@ -193,7 +188,7 @@
         allowUnfree = true;
         nvidia.acceptLicense = true;
         firefox.enableGnomeExtensions = true;
-
+        kodi.enableAdvancedLauncher = true;
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
         # buildPlatform.system = "x86_64-linux";
@@ -246,6 +241,12 @@
           system.stateVersion = "23.11";
           system.nixos.tags = ["snowfall"];
           system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
+          nix = {
+            registry.nixpkgs.flake = inputs.nixpkgs;
+            registry.home-manager.flake = inputs.home-manager;
+            registry.unstable.flake = inputs.unstable;
+            registry.darwin.flake = inputs.darwin;
+          };
         }
       ];
 
@@ -265,31 +266,19 @@
             sshUser = "root";
             hostname = "172.25.255.212";
           };
-          pegasus = {
-            hostname = "172.25.220.155";
-          };
         };
       };
 
-      checks =
-        builtins.mapAttrs
-        (system: deploy-lib:
-          deploy-lib.deployChecks inputs.self.deploy)
-        inputs.deploy-rs.lib;
-
-      images = with inputs; {
-        baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
-        pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
-      };
+      # checks =
+      #   builtins.mapAttrs
+      #   (system: deploy-lib:
+      #     deploy-lib.deployChecks inputs.self.deploy)
+      #   inputs.deploy-rs.lib;
 
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};
 
-      nixosConfigurations = let
-        system = "aarch64-darwin";
-        pkgs = inputs.nixpkgs.legacyPackages."${system}";
-        linuxSystem = builtins.replaceStrings ["darwin"] ["linux"] system;
-      in {
-        installer = inputs.nixpkgs.lib.nixosSystem {
+      nixosConfigurations = {
+        installer-x86 = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
@@ -298,37 +287,30 @@
               pkgs,
               ...
             }: {
-              boot.supportedFilesystems = ["bcachefs"];
               boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
             })
           ];
         };
-        #   darwin-builder = inputs.nixpkgs.lib.nixosSystem {
-        #     system = linuxSystem;
-        #     modules = [
-        #       "${inputs.nixpkgs}/nixos/modules/profiles/macos-builder.nix"
-        #       ./user-defaults.nix
-        #       {
-        #         # imports = [ ../../apps/tailscale ];
-        #         boot.binfmt.emulatedSystems = ["x86_64-linux"];
-        #         virtualisation = {
-        #           host.pkgs = pkgs;
-        #           useNixStoreImage = true;
-        #           writableStore = true;
-        #           cores = 4;
 
-        #           darwin-builder = {
-        #             workingDirectory = "/var/lib/darwin-builder";
-        #             diskSize = 64 * 1024;
-        #             memorySize = 4096;
-        #           };
-        #         };
+        installer-arm = inputs.nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = [
+            "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
+            ({
+              lib,
+              pkgs,
+              ...
+            }: {
+              boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+            })
+          ];
+        };
+      };
 
-        #         networking.useDHCP = true;
-        #         environment.systemPackages = with pkgs; [wget curl cacert];
-        #       }
-        #     ];
-        #   };
+      images = with inputs; {
+        baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
+        pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
+        installer-x86 = self.nixosConfigurations.installer-x86.config.system.build.isoImage;
       };
 
       # formatter = inputs.nixpkgs.alejandra;
@@ -346,9 +328,10 @@
         # lint = self.packages.${channels.nixpkgs.system}.run-checks;
         # };
 
-        # packages.nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
-        # packages.nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
-
+        # packages = {
+        #   nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
+        #   nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
+        # };
         # defaultPackage = cachix-deploy-lib.spec {
         #   agents = {
         #     blue-fire = inputs.self.nixosConfigurations.blue-fire.config.system.build.toplevel;
@@ -373,14 +356,12 @@
 
     substituters = [
       "https://nix-community.cachix.org"
-      "https://tomasharkema.cachix.org"
       "https://cache.nixos.org/"
       "https://blue-fire.ling-lizard.ts.net/attic/tomas/"
       "https://devenv.cachix.org"
     ];
 
     trusted-public-keys = [
-      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
@@ -391,14 +372,12 @@
 
     extra-substituters = [
       "https://nix-community.cachix.org"
-      "https://tomasharkema.cachix.org"
       "https://cache.nixos.org/"
       "https://blue-fire.ling-lizard.ts.net/attic/tomas/"
       "https://devenv.cachix.org"
     ];
 
     extra-trusted-public-keys = [
-      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
@@ -408,14 +387,11 @@
     ];
 
     # extra-trusted-public-keys = [
-    #   "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
-
     #   "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     #   "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     #   "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
     # ];
     # extra-substituters = [
-    #   "https://tomasharkema.cachix.org/"
     #   "https://nix-cache.harke.ma/tomas/"
     #   "https://nix-community.cachix.org/"
     #   "https://cache.nixos.org/"
@@ -425,23 +401,18 @@
     binaryCaches = ["https://cache.nixos.org"];
 
     allowed-uris = [
-      "https://github.com/tomasharkema.keys"
-      "https://api.github.com"
-      "https://github.com/zhaofengli/nix-base32.git"
-      "https://github.com/tomasharkema.keys"
-      "https://github.com/NixOS/"
-      "https://github.com/nixos/"
-      "https://github.com/hercules-ci/"
-      "https://github.com/numtide/"
-      "https://github.com/cachix/"
-      "https://github.com/nix-community/"
-      "https://github.com/tomasharkema/"
-      "git://github.com/tomasharkema"
-      "https://git.sr.ht/~rycee/nmd/archive"
-      "https://git.sr.ht/~youkai/nscan"
-
-      "https://api.flakehub.com/f/pinned"
-      "https://api.flakehub.com/f/pinned/edolstra/flake-compat"
+      "https://"
+      "git+https://"
+      "github:NixOS/"
+      "github:nixos/"
+      "github:hercules-ci/"
+      "github:numtide/"
+      "github:cachix/"
+      "github:nix-community/"
+      "github:snowfallorg/"
+      "github:edolstra/"
+      "github:tomasharkema/"
+      "github:snowfallorg/"
     ];
 
     allow-import-from-derivation = true;

@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  enableGui = pkgs.stdenv.isLinux && osConfig.gui.desktop.enable;
+  enableGui = pkgs.stdenv.isLinux && osConfig.gui.desktop.enable && osConfig.gui.gnome.enable;
 in
   with lib; {
     config = mkIf enableGui {
@@ -15,7 +15,7 @@ in
         '';
         shellAliases = {
           gh = "op plugin run -- gh";
-          cachix = "op plugin run -- cachix";
+          # cachix = "op plugin run -- cachix";
         };
       };
       autostart.programs = with pkgs; [_1password-gui];

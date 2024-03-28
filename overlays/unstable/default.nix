@@ -4,7 +4,6 @@
   ...
 }: final: prev: {
   runitor = channels.unstable.runitor;
-
   vscode = channels.unstable.vscode;
   android-tools = channels.unstable.android-tools;
 
@@ -30,9 +29,14 @@
   atuin = channels.unstable.atuin;
   xpipe = channels.unstable.xpipe;
 
-  catppuccin-gtk = channels.unstable.catppuccin-gtk;
+  # catppuccin-gtk = channels.unstable.catppuccin-gtk;
 
   systembus-notify = self.packages."${prev.system}".systembus-notify;
 
   netscanner = channels.unstable.netscanner;
+
+  xdg-terminal-exec = channels.unstable.xdg-terminal-exec;
+
+  _1password-gui = channels.unstable._1password-gui;
+  _1password = channels.unstable._1password;
 }

@@ -100,6 +100,7 @@ with lib; {
             "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
           ];
           enabled-extensions = [
+            "gmind@tungstnballon.gitlab.com"
             "app-hider@lynith.dev"
             "blur-my-shell@aunetx"
             # "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
@@ -133,6 +134,8 @@ with lib; {
             "logomenu@aryan_k"
             "just-perfection-desktop@just-perfection"
             "todo.txt@bart.libert.gmail.com"
+            "pip-on-top@rafostar.github.com"
+            "tailscale-status@maxgallup.github.com"
             # "display-brightness-ddcutil@themightydeity.github.com"
           ];
           favorite-apps =

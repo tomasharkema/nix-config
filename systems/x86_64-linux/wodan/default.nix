@@ -13,8 +13,8 @@
 
   config = {
     installed = true;
-    programs.gamemode.enable = true;
-    # environment.systemPackages = with pkgs; [openrgb-with-all-plugins];
+    # programs.gamemode.enable = true;
+    environment.systemPackages = with pkgs; [openrgb-with-all-plugins];
 
     time = {
       # hardwareClockInLocalTime = true;
@@ -51,7 +51,7 @@
         enable = true;
         rdp.enable = true;
       };
-      game-mode.enable = false;
+      game-mode.enable = true;
       quiet-boot.enable = true;
     };
     # fileSystems."/mnt/media" = {
@@ -134,9 +134,9 @@
     };
 
     boot = {
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      # binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = ["ntfs"];
-      kernelModules = ["i2c-dev"];
+      # kernelModules = ["i2c-dev"];
     };
 
     # boot = {

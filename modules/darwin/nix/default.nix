@@ -22,16 +22,20 @@ in {
     };
     gui = {
       enable = mkBoolOpt false "Whether or not to manage nix configuration.";
+      gnome.enable = mkBoolOpt false "Whether or not to manage nix configuration.";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = {
     environment.systemPackages = with pkgs; [
-      inputs.deploy-rs.packages.${system}.deploy-rs
+      deploy-rs
       nixfmt
       nix-prefetch-git
-      inputs.nil.packages.${system}.default
+      nil
       flake-checker
+      direnv
+      # attic
+      alejandra
       # inputs.alejandra.packages.${system}.default
       nix-output-monitor
       nixpkgs-fmt

@@ -70,9 +70,12 @@ in {
     # enable = true;
     # enableSSHSupport = true;
     # };
+    services.cpupower-gui.enable = true;
 
     environment.systemPackages = with pkgs;
       [
+        pkgs.custom.git-butler
+        caffeine-ng
         qjournalctl
         pkgs.custom.netbrowse
         gnome.gnome-boxes
@@ -81,22 +84,21 @@ in {
         gparted
         # firefox
         vscode
-        # fira-code-nerdfont
         # transmission
         # keybase
-        # powertop
+        powertop
 
         nix-software-center
-        # nixos-conf-editor
+        nixos-conf-editor
 
         xdg-utils
 
         # _1password
         # _1password-gui
         # handbrake
-        # meteo
+        meteo
         # transmission-remote-gtk
-        # github-desktop
+        github-desktop
 
         gtk-engine-murrine
         # plymouth
@@ -108,21 +110,23 @@ in {
         gotop
         handbrake
         font-manager
-        # gamehub
-        # filezilla
+        gamehub
+        filezilla
         # sublime-merge
         remmina
         xdg-utils
         # mattermost-desktop
         systemdgenie
         # # _1password
-        # wezterm
+        wezterm
         # waybar
-        # zeal
-
+        zeal
+        mission-center
+        pavucontrol
         # libmx
       ]
       ++ optional (pkgs.system == "x86_64-linux") telegram-desktop
+      ++ optional pkgs.stdenv.isx86_64 angryipscanner
       ++ (with pkgs.custom; [zerotier-ui zerotier-gui]);
 
     programs = {

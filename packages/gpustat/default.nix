@@ -21,4 +21,8 @@ with python3Packages;
       blessed
       pynvml
     ];
+
+    meta.platforms = [
+      "x86_64-linux"
+    ];
   }

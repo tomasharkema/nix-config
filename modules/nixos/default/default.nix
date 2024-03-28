@@ -65,12 +65,10 @@ with lib;
         hardwareScan = true;
         kernel.sysctl."net.ipv4.ip_forward" = 1;
 
-        tmp = mkDefault {
-          useTmpfs = true;
-          cleanOnBoot = true;
-        };
-
-        initrd.availableKernelModules = ["netatop"];
+        # tmp = mkDefault {
+        #   useTmpfs = true;
+        #   cleanOnBoot = true;
+        # };
 
         # kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
         kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
@@ -103,6 +101,7 @@ with lib;
         atopgpu.enable = config.traits.hardware.nvidia.enable;
         netatop.enable = true;
       };
+
       environment.systemPackages =
         (with pkgs; [
           fancy-motd
@@ -110,8 +109,9 @@ with lib;
           # pkgs.deepin.udisks2-qt5
           # udisks2
           lshw
+          usbutils
           ttop
-          devenv
+
           sysz
           iptraf-ng
           netscanner
@@ -163,9 +163,13 @@ with lib;
           ]
           else []
         );
+      # services.ntfy-sh.enable = true;
 
-      apps.attic.enable = mkDefault true;
-      apps.ipa.enable = mkDefault true;
+      apps = {
+        attic.enable = mkDefault true;
+        ipa.enable = mkDefault true;
+      };
+
       proxy-services.enable = mkDefault true;
 
       systemd = {
@@ -185,6 +189,19 @@ with lib;
       };
 
       services = {
+        kmscon = {
+          enable = true;
+          hwRender = config.traits.hardware.nvidia.enable;
+          fonts = [
+            {
+              name = "JetBrainsMono Nerd Font Mono";
+              package = pkgs.nerdfonts.override {
+                fonts = ["JetBrainsMono"];
+              };
+            }
+          ];
+        };
+
         fstrim.enable = true;
 
         throttled.enable = pkgs.stdenv.isx86_64;
@@ -226,7 +243,7 @@ with lib;
           apiKeyFile = config.age.secrets.mak.path;
         };
 
-        fwupd.enable = true;
+        fwupd.enable = mkDefault true;
 
         avahi.extraServiceFiles = {
           ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
@@ -405,10 +422,10 @@ with lib;
 
           # [last_run]
         };
-        git = {
-          enable = true;
-          lfs.enable = true;
-        };
+        # git = {
+        #   enable = true;
+        #   lfs.enable = true;
+        # };
         htop = {
           enable = true;
           settings = {
@@ -442,18 +459,18 @@ with lib;
         # fancontrol.enable = true;
       };
 
-      systemd = {
-        targets = {
-          sleep.enable = mkDefault false;
-          suspend.enable = mkDefault false;
-          hibernate.enable = mkDefault false;
-          hybrid-sleep.enable = mkDefault false;
-        };
-        services = {
-          NetworkManager-wait-online.enable = lib.mkForce false;
-          #     systemd-networkd-wait-online.enable = lib.mkForce false;
-        };
-      };
+      # systemd = {
+      # targets = {
+      #   sleep.enable = mkDefault false;
+      #   suspend.enable = mkDefault false;
+      #   hibernate.enable = mkDefault false;
+      #   hybrid-sleep.enable = mkDefault false;
+      # };
+      # services = {
+      # NetworkManager-wait-online.enable = lib.mkForce false;
+      #     systemd-networkd-wait-online.enable = lib.mkForce false;
+      # };
+      # };
 
       networking = {
         firewall = {

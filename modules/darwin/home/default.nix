@@ -13,7 +13,7 @@ with lib.custom; {
       home.stateVersion = mkDefault "23.11";
       xdg.enable = true;
       home.sessionVariables = {
-        HYDRA_HOST = "https://hydra.harkema.io";
+        HYDRA_HOST = "http://blue-fire.ling-lizard.ts.net:3000/"; # "https://hydra.harkema.io";
       };
     };
 
@@ -26,7 +26,7 @@ with lib.custom; {
         home.stateVersion = mkDefault "23.11";
         xdg.enable = true;
         home.sessionVariables = {
-          HYDRA_HOST = "https://hydra.harkema.io";
+          HYDRA_HOST = "http://blue-fire.ling-lizard.ts.net:3000/"; # "https://hydra.harkema.io";
         };
       };
     };
