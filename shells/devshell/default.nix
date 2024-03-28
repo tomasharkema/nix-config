@@ -193,6 +193,28 @@ in
           upload-local
           write-script
           zsh
+          agenix # .packages.${system}.default
+          alejandra # .defaultPackage.${system}
+          # cachix
+          deadnix
+          fh
+          # hydra-cli
+          nil
+          manix
+          nix-eval-jobs
+          nix-fast-build
+          # nix-init
+          nix-output-monitor
+          nix-prefetch-scripts
+          nix-serve
+          nix-tree
+          # nixci
+          # nixos-shell
+          # nixpkgs-fmt
+          # nixpkgs-lint
+          nurl
+          # # snowfallorg.flake
+          statix
         ];
       }
     ];
