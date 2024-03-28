@@ -14,6 +14,10 @@ with lib; {
 
     traits.raspberry.enable = true;
 
+    sound.extraConfig = ''
+      defaults.pcm.!card 1
+    '';
+
     environment.systemPackages = with pkgs; [
       libraspberrypi
       raspberrypi-eeprom
