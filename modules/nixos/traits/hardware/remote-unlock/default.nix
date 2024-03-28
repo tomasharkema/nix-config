@@ -210,7 +210,7 @@ in {
             enable = true;
             port = 22222;
             # shell = "/bin/cryptsetup-askpass";
-            authorizedKeys = config.user.keys;
+            authorizedKeys = lib.splitString "\n" (builtins.readFile pkgs.custom.authorized-keys);
             hostKeys = [
               "/etc/ssh/boot/ssh_host_ed25519_key"
               "/etc/ssh/boot/ssh_host_rsa_key"
