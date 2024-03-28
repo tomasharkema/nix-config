@@ -266,9 +266,6 @@
             sshUser = "root";
             hostname = "172.25.255.212";
           };
-          pegasus = {
-            hostname = "172.25.220.155";
-          };
         };
       };
 
@@ -277,11 +274,6 @@
       #   (system: deploy-lib:
       #     deploy-lib.deployChecks inputs.self.deploy)
       #   inputs.deploy-rs.lib;
-
-      # images = with inputs; {
-      #   baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
-      #   pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
-      # };
 
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};
 
@@ -313,6 +305,12 @@
             })
           ];
         };
+      };
+
+      images = with inputs; {
+        baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
+        pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
+        installer-x86 = self.nixosConfigurations.installer-x86.config.system.build.isoImage;
       };
 
       # formatter = inputs.nixpkgs.alejandra;
