@@ -14,13 +14,14 @@ in {
   config = mkIf cfg.enable {
     system.nixos.tags = ["media-center"];
     xdg.portal.enable = mkForce false;
-    sound.mediaKeys.enable = true;
-    sound.enable = true;
-    apps.flatpak.enable = mkForce false;
+    # sound.mediaKeys.enable = true;
 
-    services.pipewire = {
-      enable = mkForce false;
+    hardware.pulseaudio = {
+      enable = true;
+      support32Bit = true;
     };
+
+    apps.flatpak.enable = mkForce false;
 
     gui = {
       gnome.enable = mkForce false;
@@ -31,10 +32,12 @@ in {
     # # services.cage.program = "${pkgs.kodi-wayland}/bin/kodi-standalone";
     # # services.cage.enable = true;
 
-    systemd.targets.sleep.enable = mkForce false;
-    systemd.targets.suspend.enable = mkForce false;
-    systemd.targets.hibernate.enable = mkForce false;
-    systemd.targets.hybrid-sleep.enable = mkForce false;
+    systemd.targets = {
+      sleep.enable = mkForce false;
+      suspend.enable = mkForce false;
+      hibernate.enable = mkForce false;
+      hybrid-sleep.enable = mkForce false;
+    };
 
     hardware.opengl = {
       enable = true;
@@ -98,12 +101,18 @@ in {
     #   };
     # };
 
-    boot = {
-      kernelParams = ["quiet"];
-      plymouth = {
-        enable = true;
-      };
+    # boot = {
+    #   kernelParams = ["quiet"];
+    #   plymouth = {
+    #     enable = true;
+    #   };
+    # };
+
+    services.shairport-sync = {
+      enable = true;
+      openFirewall = true;
     };
+    users.extraUsers.shairport.extraGroups = ["audio" "input"];
 
     users.extraUsers.media = {
       isNormalUser = true;
