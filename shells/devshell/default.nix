@@ -40,7 +40,7 @@ with lib; let
     for f in $FILES
     do
       echo "Processing $f file..."
-      ${pkgs.attic}/bin/attic push tomas "$f"
+      attic push tomas "$f"
       attic push tomas "$f"
     done
   '';
