@@ -202,7 +202,6 @@ in
           nil
           manix
           nix-eval-jobs
-          nix-fast-build
           # nix-init
           nix-output-monitor
           nix-prefetch-scripts
