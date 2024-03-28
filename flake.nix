@@ -409,6 +409,7 @@
 
     allowed-uris = [
       "https://"
+      "git+https://"
       "github:NixOS/"
       "github:nixos/"
       "github:hercules-ci/"

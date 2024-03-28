@@ -20,5 +20,5 @@
   nixos-anywhere = nixos-anywhere.packages.${prev.system}.nixos-anywhere;
   nixos-conf-editor = nixos-conf-editor.packages.${prev.system}.nixos-conf-editor;
   nix-software-center = nix-software-center.packages.${prev.system}.nix-software-center;
-  nixUnstable = channels.unstable.nixVersions.nix_2_20;
+  nixUnstable = channels.unstable.nixVersions.nix_2_21;
 }
