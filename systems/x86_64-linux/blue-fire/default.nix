@@ -89,6 +89,7 @@ in {
 
     nix.settings.allowed-uris = [
       "https://"
+      "git+https://"
       "github:"
       "github:NixOS/"
       "github:nixos/"

@@ -162,6 +162,11 @@
       url = "github:tomasharkema/command-center";
       inputs.nixpkgs.follows = "unstable";
     };
+
+    crane = {
+      url = "github:ipetkov/crane";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
@@ -285,12 +290,8 @@
 
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};
 
-      nixosConfigurations = let
-        system = "aarch64-darwin";
-        pkgs = inputs.nixpkgs.legacyPackages."${system}";
-        linuxSystem = builtins.replaceStrings ["darwin"] ["linux"] system;
-      in {
-        installer = inputs.nixpkgs.lib.nixosSystem {
+      nixosConfigurations = {
+        installer-x86 = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
@@ -299,37 +300,24 @@
               pkgs,
               ...
             }: {
-              boot.supportedFilesystems = ["bcachefs"];
               boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
             })
           ];
         };
-        #   darwin-builder = inputs.nixpkgs.lib.nixosSystem {
-        #     system = linuxSystem;
-        #     modules = [
-        #       "${inputs.nixpkgs}/nixos/modules/profiles/macos-builder.nix"
-        #       ./user-defaults.nix
-        #       {
-        #         # imports = [ ../../apps/tailscale ];
-        #         boot.binfmt.emulatedSystems = ["x86_64-linux"];
-        #         virtualisation = {
-        #           host.pkgs = pkgs;
-        #           useNixStoreImage = true;
-        #           writableStore = true;
-        #           cores = 4;
 
-        #           darwin-builder = {
-        #             workingDirectory = "/var/lib/darwin-builder";
-        #             diskSize = 64 * 1024;
-        #             memorySize = 4096;
-        #           };
-        #         };
-
-        #         networking.useDHCP = true;
-        #         environment.systemPackages = with pkgs; [wget curl cacert];
-        #       }
-        #     ];
-        #   };
+        installer-arm = inputs.nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = [
+            "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
+            ({
+              lib,
+              pkgs,
+              ...
+            }: {
+              boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+            })
+          ];
+        };
       };
 
       # formatter = inputs.nixpkgs.alejandra;
@@ -375,14 +363,12 @@
 
     substituters = [
       "https://nix-community.cachix.org"
-      "https://tomasharkema.cachix.org"
       "https://cache.nixos.org/"
       "https://blue-fire.ling-lizard.ts.net/attic/tomas/"
       "https://devenv.cachix.org"
     ];
 
     trusted-public-keys = [
-      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
@@ -393,14 +379,12 @@
 
     extra-substituters = [
       "https://nix-community.cachix.org"
-      "https://tomasharkema.cachix.org"
       "https://cache.nixos.org/"
       "https://blue-fire.ling-lizard.ts.net/attic/tomas/"
       "https://devenv.cachix.org"
     ];
 
     extra-trusted-public-keys = [
-      "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
@@ -410,14 +394,11 @@
     ];
 
     # extra-trusted-public-keys = [
-    #   "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
-
     #   "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     #   "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     #   "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
     # ];
     # extra-substituters = [
-    #   "https://tomasharkema.cachix.org/"
     #   "https://nix-cache.harke.ma/tomas/"
     #   "https://nix-community.cachix.org/"
     #   "https://cache.nixos.org/"
@@ -428,6 +409,7 @@
 
     allowed-uris = [
       "https://"
+      "git+https://"
       "github:NixOS/"
       "github:nixos/"
       "github:hercules-ci/"
