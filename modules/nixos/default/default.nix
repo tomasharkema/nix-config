@@ -162,7 +162,7 @@ with lib;
           ]
           else []
         );
-
+      # services.ntfy-sh.enable = true;
       apps.attic.enable = mkDefault true;
       apps.ipa.enable = mkDefault true;
       proxy-services.enable = mkDefault true;
