@@ -104,15 +104,15 @@
 
     # impermanence.url = "github:nix-community/impermanence";
 
-    attic = {
-      url = "github:zhaofengli/attic";
-      inputs = {
-        nixpkgs.follows = "unstable";
-        nixpkgs-stable.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-        flake-compat.follows = "flake-compat";
-      };
-    };
+    # attic = {
+    #   url = "github:zhaofengli/attic";
+    #   inputs = {
+    #     nixpkgs.follows = "unstable";
+    #     nixpkgs-stable.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #     flake-compat.follows = "flake-compat";
+    #   };
+    # };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
@@ -229,7 +229,7 @@
       systems.modules.nixos = with inputs; [
         nix-index-database.nixosModules.nix-index
 
-        attic.nixosModules.atticd
+        # attic.nixosModules.atticd
         # peerix.nixosModules.peerix
 
         # impermanence.nixosModule
@@ -246,47 +246,47 @@
           system.stateVersion = "23.11";
           system.nixos.tags = ["snowfall"];
           system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
-          nix = {
-            registry.nixpkgs.flake = inputs.nixpkgs;
-            registry.home-manager.flake = inputs.home-manager;
-            registry.unstable.flake = inputs.unstable;
-            registry.darwin.flake = inputs.darwin;
-          };
+          # nix = {
+          #   registry.nixpkgs.flake = inputs.nixpkgs;
+          #   registry.home-manager.flake = inputs.home-manager;
+          #   registry.unstable.flake = inputs.unstable;
+          #   registry.darwin.flake = inputs.darwin;
+          # };
         }
       ];
 
-      deploy = lib.mkDeploy {
-        inherit (inputs) self;
+      # deploy = lib.mkDeploy {
+      #   inherit (inputs) self;
 
-        overrides = {
-          sshUser = "root";
-          # wodan-vm = {
-          #   hostname = "192.168.1.74";
-          # };
-          # wodan-wsl = {
-          #   sshUser = "root";
-          #   hostname = "192.168.1.42";
-          # };
-          euro-mir-vm = {
-            sshUser = "root";
-            hostname = "172.25.255.212";
-          };
-          pegasus = {
-            hostname = "172.25.220.155";
-          };
-        };
-      };
+      #   overrides = {
+      #     sshUser = "root";
+      #     # wodan-vm = {
+      #     #   hostname = "192.168.1.74";
+      #     # };
+      #     # wodan-wsl = {
+      #     #   sshUser = "root";
+      #     #   hostname = "192.168.1.42";
+      #     # };
+      #     euro-mir-vm = {
+      #       sshUser = "root";
+      #       hostname = "172.25.255.212";
+      #     };
+      #     pegasus = {
+      #       hostname = "172.25.220.155";
+      #     };
+      #   };
+      # };
 
-      checks =
-        builtins.mapAttrs
-        (system: deploy-lib:
-          deploy-lib.deployChecks inputs.self.deploy)
-        inputs.deploy-rs.lib;
+      # checks =
+      #   builtins.mapAttrs
+      #   (system: deploy-lib:
+      #     deploy-lib.deployChecks inputs.self.deploy)
+      #   inputs.deploy-rs.lib;
 
-      images = with inputs; {
-        baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
-        pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
-      };
+      # images = with inputs; {
+      #   baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
+      #   pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
+      # };
 
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};
 
@@ -335,10 +335,10 @@
         # lint = self.packages.${channels.nixpkgs.system}.run-checks;
         # };
 
-        packages = {
-          nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
-          nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
-        };
+        # packages = {
+        #   nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
+        #   nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
+        # };
         # defaultPackage = cachix-deploy-lib.spec {
         #   agents = {
         #     blue-fire = inputs.self.nixosConfigurations.blue-fire.config.system.build.toplevel;
@@ -422,7 +422,7 @@
       "github:snowfallorg/"
     ];
 
-    # allow-import-from-derivation = true;
+    allow-import-from-derivation = true;
     keep-outputs = true;
     keep-derivations = true;
   };
