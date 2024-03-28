@@ -68,6 +68,10 @@ with lib; {
         wakeOnLan.enable = true;
       };
     };
+    systemd.targets.sleep.enable = mkForce false;
+    systemd.targets.suspend.enable = mkForce false;
+    systemd.targets.hibernate.enable = mkForce false;
+    systemd.targets.hybrid-sleep.enable = mkForce false;
 
     # headless.hypervisor = {
     #   enable = true;
