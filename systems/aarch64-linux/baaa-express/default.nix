@@ -24,6 +24,7 @@ with lib; {
     ];
 
     traits.low-power.enable = true;
+    traits.slim.enable = true;
     gui."media-center".enable = true;
     apps.spotifyd.enable = true;
 

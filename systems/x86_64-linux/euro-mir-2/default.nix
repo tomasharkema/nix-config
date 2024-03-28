@@ -117,7 +117,7 @@ with lib; {
     # systemd.services."fprintd".environment."G_MESSAGES_DEBUG" = "all"; # for good measure
 
     boot = {
-      # binfmt.emulatedSystems = ["aarch64-linux"];
+      binfmt.emulatedSystems = ["aarch64-linux"];
       kernelParams = ["acpi_rev_override=1"];
     };
 
