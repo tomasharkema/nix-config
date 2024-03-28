@@ -1,7 +1,7 @@
 {
   devenv,
   deploy-rs,
-  attic,
+  # attic,
   agenix,
   hydra-check,
   flake-checker,
