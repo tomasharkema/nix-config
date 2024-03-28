@@ -43,6 +43,7 @@ in {
       # (nixos-hosts.override {
       #   hosts = inputs.self.nixosConfigurations;
       # })
+      attic
     ];
 
     nix = let
