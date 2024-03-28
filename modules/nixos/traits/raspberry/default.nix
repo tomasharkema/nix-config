@@ -35,9 +35,9 @@ in {
     };
 
     boot = {
-      kernelParams = [
-        "console=tty1"
-      ];
+      # kernelParams = [
+      #   "console=tty1"
+      # ];
       kernelModules = ["dwc2" "g_serial"];
       # kernelParams = ["console=tty0"];
 
@@ -47,6 +47,10 @@ in {
       };
     };
 
+    services.shairport-sync.enable = true;
+    services.shairport-sync.openFirewall = true;
+
+    services.fwupd.enable = mkForce false;
     zramSwap = {
       enable = true;
     };
