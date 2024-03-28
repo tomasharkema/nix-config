@@ -149,10 +149,10 @@ in
           enableZshIntegration = true;
         };
 
-        broot = {
-          enable = true;
-          enableZshIntegration = true;
-        };
+        # broot = {
+        #   enable = true;
+        #   enableZshIntegration = true;
+        # };
         fzf = {
           enable = true;
           enableZshIntegration = true;
