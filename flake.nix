@@ -224,7 +224,7 @@
       systems.modules.nixos = with inputs; [
         nix-index-database.nixosModules.nix-index
 
-        # attic.nixosModules.atticd
+        attic.nixosModules.atticd
         # peerix.nixosModules.peerix
 
         # impermanence.nixosModule
@@ -241,12 +241,12 @@
           system.stateVersion = "23.11";
           system.nixos.tags = ["snowfall"];
           system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
-          # nix = {
-          #   registry.nixpkgs.flake = inputs.nixpkgs;
-          #   registry.home-manager.flake = inputs.home-manager;
-          #   registry.unstable.flake = inputs.unstable;
-          #   registry.darwin.flake = inputs.darwin;
-          # };
+          nix = {
+            registry.nixpkgs.flake = inputs.nixpkgs;
+            registry.home-manager.flake = inputs.home-manager;
+            registry.unstable.flake = inputs.unstable;
+            registry.darwin.flake = inputs.darwin;
+          };
         }
       ];
 

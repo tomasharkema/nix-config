@@ -84,7 +84,7 @@ in
           # dooit
           ttdl
           topydo
-          git-credential-1password
+          # git-credential-1password
         ];
         sessionVariables =
           if stdenv.isDarwin
@@ -232,7 +232,7 @@ in
 
             gpg = {
               format = "ssh";
-              ssh.program = "${pkgs._1password-gui}/bin/op-ssh-sign";
+              # ssh.program = "${pkgs._1password-gui}/bin/op-ssh-sign";
             };
 
             user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";
