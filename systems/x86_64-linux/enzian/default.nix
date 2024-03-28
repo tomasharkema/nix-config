@@ -55,7 +55,6 @@ with lib; {
         monitor.enable = true;
         nvidia.enable = true;
       };
-      developer.enable = false;
     };
 
     # nixpkgs.system = "x86_64-linux";
