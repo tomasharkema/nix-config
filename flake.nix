@@ -250,27 +250,27 @@
         }
       ];
 
-      # deploy = lib.mkDeploy {
-      #   inherit (inputs) self;
+      deploy = lib.mkDeploy {
+        inherit (inputs) self;
 
-      #   overrides = {
-      #     sshUser = "root";
-      #     # wodan-vm = {
-      #     #   hostname = "192.168.1.74";
-      #     # };
-      #     # wodan-wsl = {
-      #     #   sshUser = "root";
-      #     #   hostname = "192.168.1.42";
-      #     # };
-      #     euro-mir-vm = {
-      #       sshUser = "root";
-      #       hostname = "172.25.255.212";
-      #     };
-      #     pegasus = {
-      #       hostname = "172.25.220.155";
-      #     };
-      #   };
-      # };
+        overrides = {
+          sshUser = "root";
+          # wodan-vm = {
+          #   hostname = "192.168.1.74";
+          # };
+          # wodan-wsl = {
+          #   sshUser = "root";
+          #   hostname = "192.168.1.42";
+          # };
+          euro-mir-vm = {
+            sshUser = "root";
+            hostname = "172.25.255.212";
+          };
+          pegasus = {
+            hostname = "172.25.220.155";
+          };
+        };
+      };
 
       # checks =
       #   builtins.mapAttrs
