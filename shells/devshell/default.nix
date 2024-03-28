@@ -25,6 +25,7 @@ with lib; let
   reencrypt = writeShellScriptBin "reencrypt" ''
     cd secrets;
     ${pkgs.agenix}/bin/agenix -r
+    agenix -r
   '';
   mkiso = writeShellScriptBin "mkiso" ''
     LINK="./out/install.iso";
@@ -40,6 +41,7 @@ with lib; let
     do
       echo "Processing $f file..."
       ${pkgs.attic}/bin/attic push tomas "$f"
+      attic push tomas "$f"
     done
   '';
   # cachix-deploy = writeShellScriptBin "cachix-deploy" ''
@@ -147,7 +149,6 @@ in
         # dotenv.enable = true;
 
         packages = [
-          nixUnstable
           dconf-save
           dp
           upload-to-installer
@@ -156,7 +157,6 @@ in
           age
           agenix
           alejandra
-          attic
           bash
           bfg-repo-cleaner
           # cachix-deploy

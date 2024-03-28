@@ -13,7 +13,6 @@
 }: final: prev: {
   devenv = devenv.packages."${prev.system}".default;
   deploy-rs = deploy-rs.packages."${prev.system}".deploy-rs;
-  attic = attic.packages."${prev.system}".default;
   agenix = agenix.packages."${prev.system}".default;
   hydra-check = hydra-check.packages."${prev.system}".default;
   flake-checker = flake-checker.packages."${prev.system}".default;
