@@ -290,12 +290,8 @@
 
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};
 
-      nixosConfigurations = let
-        system = "aarch64-darwin";
-        pkgs = inputs.nixpkgs.legacyPackages."${system}";
-        linuxSystem = builtins.replaceStrings ["darwin"] ["linux"] system;
-      in {
-        installer = inputs.nixpkgs.lib.nixosSystem {
+      nixosConfigurations = {
+        installer-x86 = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
@@ -304,37 +300,24 @@
               pkgs,
               ...
             }: {
-              boot.supportedFilesystems = ["bcachefs"];
               boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
             })
           ];
         };
-        #   darwin-builder = inputs.nixpkgs.lib.nixosSystem {
-        #     system = linuxSystem;
-        #     modules = [
-        #       "${inputs.nixpkgs}/nixos/modules/profiles/macos-builder.nix"
-        #       ./user-defaults.nix
-        #       {
-        #         # imports = [ ../../apps/tailscale ];
-        #         boot.binfmt.emulatedSystems = ["x86_64-linux"];
-        #         virtualisation = {
-        #           host.pkgs = pkgs;
-        #           useNixStoreImage = true;
-        #           writableStore = true;
-        #           cores = 4;
 
-        #           darwin-builder = {
-        #             workingDirectory = "/var/lib/darwin-builder";
-        #             diskSize = 64 * 1024;
-        #             memorySize = 4096;
-        #           };
-        #         };
-
-        #         networking.useDHCP = true;
-        #         environment.systemPackages = with pkgs; [wget curl cacert];
-        #       }
-        #     ];
-        #   };
+        installer-arm = inputs.nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = [
+            "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
+            ({
+              lib,
+              pkgs,
+              ...
+            }: {
+              boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+            })
+          ];
+        };
       };
 
       # formatter = inputs.nixpkgs.alejandra;
