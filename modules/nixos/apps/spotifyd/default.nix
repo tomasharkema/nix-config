@@ -16,12 +16,16 @@ in {
     #     # spotify
     #     spotifyd
     #   ];
+    users.users."tomas".extraGroups = ["audio"];
+    users.users."root".extraGroups = ["audio"];
 
     services.spotifyd = {
       enable = true;
       config = ''
         [global]
         use_mpris = false
+        backend = "pulseaudio"
+        bitrate = 320
       '';
       #   username_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field username"
       #   password_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field password"
