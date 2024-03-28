@@ -26,13 +26,16 @@ in {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = {
     environment.systemPackages = with pkgs; [
       deploy-rs
       nixfmt
       nix-prefetch-git
       nil
       flake-checker
+      direnv
+      # attic
+      alejandra
       # inputs.alejandra.packages.${system}.default
       nix-output-monitor
       nixpkgs-fmt
@@ -68,7 +71,7 @@ in {
         # https://github.com/NixOS/nix/issues/7273
         auto-optimise-store = true;
 
-        # allow-import-from-derivation = true;
+        allow-import-from-derivation = true;
 
         trusted-users = users;
         allowed-users = users;
