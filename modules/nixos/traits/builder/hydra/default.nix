@@ -138,20 +138,18 @@ in {
         #     allow-import-from-derivation = true;
 
         #     substituters = [
-        #       "https://tomasharkema.cachix.org/"
         #       "https://nix-cache.harke.ma/tomas/"
         #       "https://nix-community.cachix.org/"
         #       "https://cache.nixos.org/"
         #     ];
 
         #     trusted-public-keys = [
-        #       "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
         #       "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
         #       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         #       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         #     ];
 
-        #     trusted-users = ["hydra" "hydra-queue-runner" "hydra-www" "github-runner-blue-fire" "builder"];
+        trusted-users = ["hydra" "hydra-queue-runner" "hydra-www" "github-runner-blue-fire" "builder"];
       };
     };
 

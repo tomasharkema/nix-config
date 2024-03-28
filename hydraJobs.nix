@@ -18,7 +18,7 @@
 in {
   inherit packages;
   images = {
-    installer = inputs.self.images.installer;
+    installer-x86 = inputs.self.nixosConfigurations.installer-x86.config.system.build.isoImage;
   };
 
   #inherit (inputs.self) checks;
