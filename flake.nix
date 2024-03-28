@@ -104,15 +104,15 @@
 
     # impermanence.url = "github:nix-community/impermanence";
 
-    # attic = {
-    #   url = "github:zhaofengli/attic";
-    #   inputs = {
-    #     nixpkgs.follows = "unstable";
-    #     nixpkgs-stable.follows = "nixpkgs";
-    #     flake-utils.follows = "flake-utils";
-    #     flake-compat.follows = "flake-compat";
-    #   };
-    # };
+    attic = {
+      url = "github:zhaofengli/attic";
+      inputs = {
+        nixpkgs.follows = "unstable";
+        nixpkgs-stable.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+        flake-compat.follows = "flake-compat";
+      };
+    };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
@@ -161,11 +161,6 @@
     command-center = {
       url = "github:tomasharkema/command-center";
       inputs.nixpkgs.follows = "unstable";
-    };
-
-    crane = {
-      url = "github:ipetkov/crane";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
