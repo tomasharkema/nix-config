@@ -16,8 +16,10 @@ with lib; {
 
   config = {
     installed = true;
+
     apps = {
       ntopng.enable = true;
+      steam.enable = true;
     };
 
     gui = {
@@ -31,7 +33,7 @@ with lib; {
     };
     # resilio.root = "/opt/media/resilio";
     # resilio.enable = mkForce false;
-    apps.steam.enable = true;
+
     systemd.enableEmergencyMode = false;
 
     disks.btrfs = {
@@ -53,6 +55,7 @@ with lib; {
         monitor.enable = true;
         nvidia.enable = true;
       };
+      developer.enable = false;
     };
 
     # nixpkgs.system = "x86_64-linux";
@@ -122,21 +125,21 @@ with lib; {
     #   options = ["bind"];
     # };
 
-    services.podman.enable = true;
-    virtualisation = {
-      oci-containers.containers = {
-        netboot = {
-          image = "lscr.io/linuxserver/netbootxyz:latest";
-          autoStart = true;
-          ports = ["3000:3000" "69:69/udp" "8080:80"];
-          # hostname = "ipa.harkema.io";
-          # extraOptions = ["--sysctl" "net.ipv6.conf.all.disable_ipv6=0"];
-          # cmd = ["ipa-server-install" "-U" "-r" "HARKEMA.IO"];
-          # volumes = [
-          #   "/var/lib/freeipa:/data:Z"
-          # ];
-        };
-      };
-    };
+    # services.podman.enable = true;
+    # virtualisation = {
+    #   oci-containers.containers = {
+    #     netboot = {
+    #       image = "lscr.io/linuxserver/netbootxyz:latest";
+    #       autoStart = true;
+    #       ports = ["3000:3000" "69:69/udp" "8080:80"];
+    #       # hostname = "ipa.harkema.io";
+    #       # extraOptions = ["--sysctl" "net.ipv6.conf.all.disable_ipv6=0"];
+    #       # cmd = ["ipa-server-install" "-U" "-r" "HARKEMA.IO"];
+    #       # volumes = [
+    #       #   "/var/lib/freeipa:/data:Z"
+    #       # ];
+    #     };
+    #   };
+    # };
   };
 }
