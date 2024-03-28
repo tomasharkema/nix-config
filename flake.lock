@@ -44,36 +44,6 @@
         "type": "github"
       }
     },
-    "attic": {
-      "inputs": {
-        "crane": "crane",
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "unstable"
-        ],
-        "nixpkgs-stable": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1707922053,
-        "narHash": "sha256-wSZjK+rOXn+UQiP1NbdNn5/UW6UcBxjvlqr2wh++MbM=",
-        "owner": "zhaofengli",
-        "repo": "attic",
-        "rev": "6eabc3f02fae3683bffab483e614bebfcd476b21",
-        "type": "github"
-      },
-      "original": {
-        "owner": "zhaofengli",
-        "repo": "attic",
-        "type": "github"
-      }
-    },
     "beautysh": {
       "inputs": {
         "nixpkgs": [
@@ -146,27 +116,6 @@
     "crane": {
       "inputs": {
         "nixpkgs": [
-          "attic",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1702918879,
-        "narHash": "sha256-tWJqzajIvYcaRWxn+cLUB9L9Pv4dQ3Bfit/YjU5ze3g=",
-        "owner": "ipetkov",
-        "repo": "crane",
-        "rev": "7195c00c272fdd92fc74e7d5a0a2844b9fadb2fb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ipetkov",
-        "repo": "crane",
-        "type": "github"
-      }
-    },
-    "crane_2": {
-      "inputs": {
-        "nixpkgs": [
           "nixpkgs"
         ]
       },
@@ -184,7 +133,7 @@
         "type": "github"
       }
     },
-    "crane_3": {
+    "crane_2": {
       "inputs": {
         "flake-compat": [
           "flake-checker",
@@ -212,7 +161,7 @@
         "url": "https://flakehub.com/f/ipetkov/crane/0.14.%2A.tar.gz"
       }
     },
-    "crane_4": {
+    "crane_3": {
       "inputs": {
         "nixpkgs": [
           "lanzaboote",
@@ -393,7 +342,7 @@
     },
     "flake-checker": {
       "inputs": {
-        "crane": "crane_3",
+        "crane": "crane_2",
         "flake-compat": "flake-compat_8",
         "flake-utils": "flake-utils_5",
         "nixpkgs": [
@@ -1239,7 +1188,7 @@
     },
     "lanzaboote": {
       "inputs": {
-        "crane": "crane_4",
+        "crane": "crane_3",
         "flake-compat": "flake-compat_11",
         "flake-parts": "flake-parts_2",
         "flake-utils": "flake-utils_8",
@@ -2111,9 +2060,8 @@
       "inputs": {
         "agenix": "agenix",
         "agenix-shell": "agenix-shell",
-        "attic": "attic",
         "command-center": "command-center",
-        "crane": "crane_2",
+        "crane": "crane",
         "darwin": "darwin_2",
         "deploy-rs": "deploy-rs",
         "devenv": "devenv_2",
