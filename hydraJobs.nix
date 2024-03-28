@@ -17,11 +17,8 @@
     inputs.self.nixosConfigurations;
 in {
   inherit packages;
-  images = {
-    installer-x86 = inputs.self.nixosConfigurations.installer-x86.config.system.build.isoImage;
-  };
-
-  #inherit (inputs.self) checks;
+  inherit (inputs.self) images;
+  inherit (inputs.self) checks;
   # inherit devShells;
   inherit hosts;
   # inherit defaultPackage;
