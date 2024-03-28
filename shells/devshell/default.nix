@@ -24,7 +24,6 @@ with lib; let
   '';
   reencrypt = writeShellScriptBin "reencrypt" ''
     cd secrets;
-    ${pkgs.agenix}/bin/agenix -r
     agenix -r
   '';
   mkiso = writeShellScriptBin "mkiso" ''
@@ -40,7 +39,6 @@ with lib; let
     for f in $FILES
     do
       echo "Processing $f file..."
-      attic push tomas "$f"
       attic push tomas "$f"
     done
   '';
