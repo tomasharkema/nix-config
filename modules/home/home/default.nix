@@ -232,7 +232,7 @@ in
 
             gpg = {
               format = "ssh";
-              # ssh.program = "${pkgs._1password-gui}/bin/op-ssh-sign";
+              ssh.program = mkIf osConfig.programs._1password-gui.enable "${pkgs._1password-gui}/bin/op-ssh-sign";
             };
 
             user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";
@@ -269,7 +269,7 @@ in
             directory = {
               fish_style_pwd_dir_length = 2;
             };
-            add_newline = false;
+            # add_newline = false;
           };
         };
 
