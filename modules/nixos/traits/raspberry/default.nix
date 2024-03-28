@@ -47,9 +47,6 @@ in {
       };
     };
 
-    services.shairport-sync.enable = true;
-    services.shairport-sync.openFirewall = true;
-
     services.fwupd.enable = mkForce false;
     zramSwap = {
       enable = true;

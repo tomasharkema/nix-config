@@ -35,9 +35,11 @@ with lib; {
     boot = {
       loader = {
         generic-extlinux-compatible.enable = true;
+
+        # start_x=1
+
         raspberryPi.firmwareConfig = ''
           force_turbo=1
-          start_x=1
           gpu_mem=256
           cma=320M
         '';
