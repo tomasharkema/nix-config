@@ -168,6 +168,19 @@ in {
         atomix # puzzle game
         yelp # Help view
         gnome-initial-setup
+      ])
+      ++ (with pkgsUnstable; [
+        # gnome-photos
+        gnome-tour
+      ])
+      ++ (with pkgsUnstable.gnome; [
+        cheese # webcam tool
+        tali # poker game
+        iagno # go game
+        hitori # sudoku game
+        atomix # puzzle game
+        yelp # Help view
+        gnome-initial-setup
       ]);
   };
 }
