@@ -31,7 +31,7 @@ in {
         hostName = "localhost";
         systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
         supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-        maxJobs = 2;
+        maxJobs = 1;
       }
       # {
       #   hostName = "builder@wodan";
