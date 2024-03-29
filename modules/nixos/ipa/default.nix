@@ -60,6 +60,11 @@ in {
       enable = true;
       # kcm = true;
       sshAuthorizedKeysIntegration = true;
+
+      config = ''
+        [pam]
+        pam_passkey_auth = True
+      '';
     };
 
     security = {
@@ -76,7 +81,7 @@ in {
         # };
         certificate = "${./ca.crt}";
         dyndns.enable = true;
-        ifpAllowedUids = ["root" "tomas"];
+        # ifpAllowedUids = ["root" "tomas"];
       };
     };
   };
