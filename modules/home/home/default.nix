@@ -56,12 +56,12 @@ in
             ln -sfn /run/current-system/sw/share/X11/fonts ~/.local/share/fonts
           '';
 
-          userSymlinks-cachix = ''
-            if [ ! -d "$HOME/.config/cachix" ]; then
-              mkdir $HOME/.config/cachix
-            fi
-            ln -sfn /etc/cachix.dhall $HOME/.config/cachix/cachix.dhall
-          '';
+          # userSymlinks-cachix = ''
+          #   if [ ! -d "$HOME/.config/cachix" ]; then
+          #     mkdir $HOME/.config/cachix
+          #   fi
+          #   ln -sfn /etc/cachix.dhall $HOME/.config/cachix/cachix.dhall
+          # '';
           userSymlinks-notify = mkIf osConfig.gui.enable ''
             if [ ! -d "$HOME/.config/notify" ]; then
               mkdir $HOME/.config/notify
@@ -98,25 +98,10 @@ in
             # SSH_AUTH_SOCK = "/home/tomas/.1password/agent.sock";
           };
       };
-      # manual = {
-      #   html.enable = false;
-      #   # manpages.enable = false;
-      #   # json.enable = false;
-      # };
 
       fonts.fontconfig.enable = osConfig.gui.enable;
 
       autostart.programs = with pkgs; mkIf osConfig.gui.enable [telegram-desktop];
-
-      editorconfig = {
-        enable = true;
-        settings = {
-          "*" = {
-            indent_style = "space";
-            indent_size = "2";
-          };
-        };
-      };
 
       programs = {
         home-manager.enable = true;
@@ -141,6 +126,8 @@ in
             show_program_path = false;
             hide_kernel_threads = true;
             hide_userland_threads = true;
+            show_cpu_frequency = true;
+            show_cpu_temperature = true;
           };
         };
 
@@ -149,10 +136,11 @@ in
           enableZshIntegration = true;
         };
 
-        # broot = {
-        #   enable = true;
-        #   enableZshIntegration = true;
-        # };
+        broot = {
+          enable = true;
+          enableZshIntegration = true;
+        };
+
         fzf = {
           enable = true;
           enableZshIntegration = true;
@@ -192,60 +180,12 @@ in
           };
         };
 
-        gh = {
-          enable = true;
-          gitCredentialHelper.enable = true;
-
-          settings = {
-            git_protocol = "https";
-            prompt = "enabled";
-          };
-        };
-        gh-dash.enable = true;
-
-        gitui.enable = true;
-
-        git = {
-          enable = true;
-          userName = "Tomas Harkema";
-          userEmail = "tomas@harkema.io";
-
-          # signing.key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";
-
-          # prompt.enable = true;
-
-          lfs.enable = true;
-
-          extraConfig = {
-            maintenance.auto = true;
-            rerere = {
-              enable = true;
-            };
-            pull = {
-              rebase = false;
-            };
-            branch = {
-              autosetupmerge = true;
-            };
-
-            commit.gpgsign = true;
-
-            gpg = {
-              format = "ssh";
-              ssh.program = mkIf osConfig.programs._1password-gui.enable "${pkgs._1password-gui}/bin/op-ssh-sign";
-            };
-
-            user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";
-          };
-        };
-
         # bat = {
         #   enable = true;
         #   config.theme = "base16";
         #   themes.base16.src = pkgs.writeText "base16.tmTheme" osConfig.variables.theme.tmTheme;
         # };
 
-        lazygit.enable = true;
         lsd.enable = true;
         jq.enable = true;
         skim.enable = true;
