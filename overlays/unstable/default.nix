@@ -29,9 +29,11 @@
   atuin = channels.unstable.atuin;
   xpipe = channels.unstable.xpipe;
 
-  # catppuccin-gtk = channels.unstable.catppuccin-gtk;
+  catppuccin-gtk = channels.unstable.catppuccin-gtk;
 
   systembus-notify = self.packages."${prev.system}".systembus-notify;
+
+  authorized-keys = self.packages."${prev.system}".authorized-keys;
 
   netscanner = channels.unstable.netscanner;
 
