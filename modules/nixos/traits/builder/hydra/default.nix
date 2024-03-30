@@ -20,10 +20,14 @@ in {
       127.0.0.1 localhost-aarch64
     '';
 
-    systemd.services.hydra-evaluator.serviceConfig = {
-      MemoryHigh = "5G";
-      MemoryMax = "9G";
-      MemoryLimit = "10G";
+    systemd.services = {
+      hydra-queue-runner.serviceConfig.Nice = 10;
+      hydra-evaluator.serviceConfig = {
+        MemoryHigh = "5G";
+        MemoryMax = "9G";
+        MemoryLimit = "10G";
+        Nice = 10;
+      };
     };
 
     nix.buildMachines = [
@@ -106,11 +110,6 @@ in {
       mode = "644";
       # owner = "tomas";
       # group = "tomas";
-    };
-
-    systemd.services = {
-      hydra-queue-runner.serviceConfig.Nice = 10;
-      hydra-evaluator.serviceConfig.Nice = 10;
     };
 
     programs.ssh.extraConfig = ''
