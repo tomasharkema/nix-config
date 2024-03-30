@@ -108,6 +108,11 @@ in {
       # group = "tomas";
     };
 
+    systemd.services = {
+      hydra-queue-runner.serviceConfig.Nice = 10;
+      hydra-evaluator.serviceConfig.Nice = 10;
+    };
+
     programs.ssh.extraConfig = ''
       StrictHostKeyChecking no
     '';
