@@ -14,14 +14,14 @@ with lib; {
 
       p11.enable = true;
 
-      services = {
-        login.u2fAuth = true;
-        sudo.u2fAuth = true;
-        cockpit.u2fAuth = true;
-        ssh.u2fAuth = true;
-      };
+      # services = {
+      #   login.u2fAuth = true;
+      #   sudo.u2fAuth = true;
+      #   cockpit.u2fAuth = true;
+      #   ssh.u2fAuth = true;
+      # };
     };
-
+    hardware.gpgSmartcards.enable = true;
     programs = {
       yubikey-touch-detector.enable = true;
       ssh.extraConfig = ''
@@ -30,10 +30,11 @@ with lib; {
     };
 
     services = {
-      # pcscd.enable = true;
+      pcscd.enable = true;
       yubikey-agent.enable = true;
       udev.packages = with pkgs; [
         libfido2
+        opensc
         # yubioath-flutter
         yubikey-agent
         yubikey-manager
@@ -56,8 +57,7 @@ with lib; {
     environment.systemPackages = with pkgs; [
       age-plugin-yubikey
       libfido2
-      # opensc
-      # pcsctools
+      pcsctools
       yubico-piv-tool
       # yubioath-flutter
       yubikey-agent
@@ -65,7 +65,7 @@ with lib; {
       yubikey-manager-qt
       yubikey-personalization
       yubikey-personalization-gui
-      # opensc
+      opensc
     ];
   };
 }
