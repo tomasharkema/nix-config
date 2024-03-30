@@ -124,12 +124,14 @@ in
       {
         # starship.enable = true;
 
-        languages.nix.enable = true;
-
+        languages.nix = {
+          enable = true;
+          lsp.package = nixd;
+        };
         pre-commit.hooks = {
           alejandra.enable = true;
           shellcheck.enable = true;
-          nil.enable = true;
+          # nil.enable = true;
           # statix.enable = true;
           # enabledPackages = {};
         };
@@ -178,6 +180,7 @@ in
           mkiso
           netdiscover
           nil
+          nixd
           nix-output-monitor
           nix-prefetch-scripts
           pkgs.custom.remote-cli
