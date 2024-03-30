@@ -272,7 +272,8 @@ in
             pvxz = "pv @1 -N in -B 500M -pterbT | xz -e9 -T4 | pv -N out -B 500M -pterbT > @2";
             cat = "bat";
             dig = "dog";
-
+            # silver-star-ipmi raw 0x30 0x30 0x01 0x00
+            # silver-star-ipmi raw 0x30 0x30 0x02 0xff 0x10
             silver-star-ipmi = "ipmitool -I lanplus -H 192.168.0.45 -U root -P \"$(op item get abrgfwmlbnc2zghpugawqoagjq --field password)\"";
 
             dockerlogin = "op item get raeclwvdys3epkmc5zthv4pdha --format=json --vault=qtvfhvfotoqynomh2wd3yzoofe | jq '.fields[1].value' -r | docker login ghcr.io --username tomasharkema --password-stdin";
