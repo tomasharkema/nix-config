@@ -10,7 +10,7 @@ with lib; {
       [
         tor
       ]
-      ++ optional (pkgs.system == "x86_64-linux") tor-browser-bundle-bin;
+      ++ optional (pkgs.system == "x86_64-linux" && config.gui.enable) tor-browser-bundle-bin;
 
     services.tor = {
       enable = true;
