@@ -16,14 +16,22 @@ in {
     #     # spotify
     #     spotifyd
     #   ];
-    users.users."tomas".extraGroups = ["audio"];
-    users.users."root".extraGroups = ["audio"];
+    users.users = {
+      "tomas".extraGroups = ["audio"];
+      "root".extraGroups = ["audio"];
+      "spotifyd" = {
+        isSystemUser = true;
+        extraGroups = ["audio"];
+        group = "spotifyd";
+      };
+    };
+    users.groups.spotifyd = {};
 
     services.spotifyd = {
       enable = true;
+      # use_mpris = false
       config = ''
         [global]
-        use_mpris = false
         backend = "pulseaudio"
         bitrate = 320
       '';
