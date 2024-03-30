@@ -111,7 +111,9 @@ with lib;
           lshw
           usbutils
           ttop
-
+          git
+          wget
+          curl
           sysz
           iptraf-ng
           netscanner
