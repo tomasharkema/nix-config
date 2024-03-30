@@ -52,6 +52,7 @@ in {
           sudo.sssdStrictAccess = mkDefault true;
           ssh.sssdStrictAccess = mkDefault true;
           askpass.sssdStrictAccess = mkDefault true;
+          cockpit.sssdStrictAccess = mkDefault true;
         };
       };
     };
@@ -61,10 +62,10 @@ in {
       # kcm = true;
       sshAuthorizedKeysIntegration = true;
 
-      config = ''
-        [pam]
-        pam_passkey_auth = True
-      '';
+      # config = ''
+      #   [pam]
+      #   pam_passkey_auth = True
+      # '';
     };
 
     security = {
@@ -81,7 +82,7 @@ in {
         # };
         certificate = "${./ca.crt}";
         dyndns.enable = true;
-        # ifpAllowedUids = ["root" "tomas"];
+        ifpAllowedUids = ["root" "tomas"];
       };
     };
   };
