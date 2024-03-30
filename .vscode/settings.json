@@ -1,16 +1,39 @@
 {
   "nix.enableLanguageServer": true,
-  "nix.serverPath": "nil",
+  "nix.serverPath": "nixd",
   "nix.serverSettings": {
     "nil": {
       "formatting": {
-        "command": ["alejandra"]
+        "command": [
+          "alejandra"
+        ]
       },
       "nix": {
         "maxMemoryMB": 4096,
         "flake": {
           "autoArchive": true,
           "autoEvalInputs": true
+        }
+      }
+    },
+    "nixd": {
+      "eval": {
+        // stuff
+      },
+      "formatting": {
+        "command": "alejandra"
+      },
+      "options": {
+        "enable": true,
+        "target": {
+          // tweak arguments here
+          "args": [],
+          // NixOS options
+          "installable": "${workspaceRoot}#nixosConfigurations.euro-mir-2.options"
+          // Flake-parts options
+          // "installable": "<flakeref>#debug.options"
+          // Home-manager options
+          // "installable": "<flakeref>#homeConfigurations.<name>.options"
         }
       }
     }
