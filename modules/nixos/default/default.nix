@@ -104,6 +104,7 @@ with lib;
 
       environment.systemPackages =
         (with pkgs; [
+          plex-mpv-shim
           # rtop
           ipcalc
           fancy-motd
