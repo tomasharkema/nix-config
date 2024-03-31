@@ -9,20 +9,20 @@ with lib;
 with lib.custom; let
   cfg = config.apps.ipa;
 in {
-  disabledModules = [
-    "security/ipa.nix"
-    "security/pam.nix"
-    "krb5/default.nix"
-    "config/krb5/default.nix"
-    "services/misc/sssd.nix"
-  ];
+  # disabledModules = [
+  #   "security/ipa.nix"
+  #   "security/pam.nix"
+  #   "krb5/default.nix"
+  #   "config/krb5/default.nix"
+  #   "services/misc/sssd.nix"
+  # ];
 
-  imports = [
-    "${inputs.unstable}/nixos/modules/security/ipa.nix"
-    "${inputs.unstable}/nixos/modules/security/pam.nix"
-    "${inputs.unstable}/nixos/modules/security/krb5"
-    "${inputs.unstable}/nixos/modules/services/misc/sssd.nix"
-  ];
+  # imports = [
+  #   "${inputs.unstable}/nixos/modules/security/ipa.nix"
+  #   "${inputs.unstable}/nixos/modules/security/pam.nix"
+  #   "${inputs.unstable}/nixos/modules/security/krb5"
+  #   "${inputs.unstable}/nixos/modules/services/misc/sssd.nix"
+  # ];
 
   options = {
     apps.ipa = {
