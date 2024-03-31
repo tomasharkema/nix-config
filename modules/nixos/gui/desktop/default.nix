@@ -74,7 +74,6 @@ in {
 
     environment.systemPackages = with pkgs;
       [
-        pkgs.custom.git-butler
         caffeine-ng
         qjournalctl
         pkgs.custom.netbrowse
@@ -125,8 +124,11 @@ in {
         pavucontrol
         # libmx
       ]
-      ++ optional (pkgs.system == "x86_64-linux") telegram-desktop
-      ++ optional pkgs.stdenv.isx86_64 angryipscanner
+      ++ optionals pkgs.stdenv.isx86_64 [
+        angryipscanner
+        telegram-desktop
+        pkgs.custom.git-butler
+      ]
       ++ (with pkgs.custom; [zerotier-ui zerotier-gui]);
 
     programs = {
