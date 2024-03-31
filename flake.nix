@@ -1,7 +1,7 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.11";
-    unstable.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/gnome-46"; # "nixpkgs/nixos-23.11";
+    unstable.url = "nixpkgs/gnome-46"; # "nixpkgs/nixos-unstable";
 
     nixpkgs-gnome.url = "nixpkgs/gnome-46";
 
