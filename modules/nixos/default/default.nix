@@ -104,6 +104,8 @@ with lib;
 
       environment.systemPackages =
         (with pkgs; [
+          rtop
+          ipcalc
           fancy-motd
           # dry
           # pkgs.deepin.udisks2-qt5
