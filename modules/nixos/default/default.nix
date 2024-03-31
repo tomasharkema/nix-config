@@ -104,7 +104,7 @@ with lib;
 
       environment.systemPackages =
         (with pkgs; [
-          rtop
+          # rtop
           ipcalc
           fancy-motd
           # dry
