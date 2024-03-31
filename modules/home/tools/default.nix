@@ -6,6 +6,10 @@
 with pkgs; {
   config = {
     home.packages = with pkgs; [
+      wiki-tui
+      tran
+      lazycli
+      # stig
       trash-cli
       gtrash
       rmtrash
