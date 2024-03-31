@@ -6,7 +6,57 @@
 with pkgs; {
   config = {
     home.packages = with pkgs; [
+      trash-cli
+      gtrash
+      rmtrash
+      grex
+      dasht
+      ipcalc
+      sshs
+      # bup
+      # shallow-backup
+      # dry
+      # pkgs.deepin.udisks2-qt5
+      # udisks2
+      portal
+      git
+      wget
+      curl
+      sysz
+      # netscanner
+      bandwhich
+      bashmount
+      bmon
+      # compsize
+      ctop
+      curl
+      # devtodo
+      devdash
+      wtf
+      # fwupd
+      # fwupd-efi
+      # hw-probe
+      # kmon
+      lazydocker
+      # lm_sensors
+      # ncdu
+      # nfs-utils
+      notify
+      openldap
+      # pciutils
+      pv
+      sshportal
+      systemctl-tui
+      # tiptop
+      # tpm-tools
+      # udiskie
+      # usermount
+      viddy
+      wget
+      zellij
+      nix-top
       nixos-anywhere
+      lnav
       # mattermost-desktop
       # tg
       # _1password
