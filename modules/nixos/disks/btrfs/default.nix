@@ -220,6 +220,10 @@ in
       };
 
       environment.systemPackages = with pkgs; [
+        dfc
+        diskonaut
+        erdtree
+
         snapper
         snapper-gui
         tpm-luks
