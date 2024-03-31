@@ -155,33 +155,33 @@ in {
     # trace: warning: The option `fonts.fonts' defined in `/nix/store/z1gqs0dm5j9g1qy5j9m7m85al7lhjpim-aca1xyh73qrpxrv4yh6lnavs59q875xf-source/modules/nixos/gui/gnome/default.nix' has been renamed to `fonts.packages'.
     # trace: warning: The option `fonts.enableDefaultFonts' defined in `/nix/store/z1gqs0dm5j9g1qy5j9m7m85al7lhjpim-aca1xyh73qrpxrv4yh6lnavs59q875xf-source/modules/nixos/gui/gnome/default.nix' has been renamed to `fonts.enableDefaultPackages'.
 
-    environment.gnome.excludePackages =
-      (with pkgs; [
-        # gnome-photos
-        gnome-tour
-      ])
-      ++ (with pkgs.gnome; [
-        cheese # webcam tool
-        tali # poker game
-        iagno # go game
-        hitori # sudoku game
-        atomix # puzzle game
-        yelp # Help view
-        gnome-initial-setup
-      ])
-      ++ (with pkgsUnstable; [
-        # gnome-photos
-        gnome-tour
-      ])
-      ++ (with pkgsUnstable.gnome; [
-        cheese # webcam tool
-        tali # poker game
-        iagno # go game
-        hitori # sudoku game
-        atomix # puzzle game
-        yelp # Help view
-        gnome-initial-setup
-      ]);
+    # environment.gnome.excludePackages =
+    #   (with pkgs; [
+    #     # gnome-photos
+    #     gnome-tour
+    #   ])
+    #   ++ (with pkgs.gnome; [
+    #     cheese # webcam tool
+    #     tali # poker game
+    #     iagno # go game
+    #     hitori # sudoku game
+    #     atomix # puzzle game
+    #     yelp # Help view
+    #     gnome-initial-setup
+    #   ])
+    #   ++ (with pkgsUnstable; [
+    #     # gnome-photos
+    #     gnome-tour
+    #   ])
+    #   ++ (with pkgsUnstable.gnome; [
+    #     cheese # webcam tool
+    #     tali # poker game
+    #     iagno # go game
+    #     hitori # sudoku game
+    #     atomix # puzzle game
+    #     yelp # Help view
+    #     gnome-initial-setup
+    #   ]);
   };
 }
 # # pkgs.gnome45Extensions."app-hider@lynith.dev"
