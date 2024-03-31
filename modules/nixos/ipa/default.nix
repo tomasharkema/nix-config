@@ -52,11 +52,11 @@ in {
           login.sssdStrictAccess = mkDefault true;
           sudo.sssdStrictAccess = mkDefault true;
           ssh.sssdStrictAccess = mkDefault true;
-          askpass.sssdStrictAccess = mkDefault true;
-          cockpit.sssdStrictAccess = mkDefault true;
-          "password-auth".sssdStrictAccess = mkDefault true;
-          "system-auth".sssdStrictAccess = mkDefault true;
-          "gdm-password".sssdStrictAccess = mkDefault true;
+          # askpass.sssdStrictAccess = mkDefault true;
+          # cockpit.sssdStrictAccess = mkDefault true;
+          # "password-auth".sssdStrictAccess = mkDefault true;
+          # "system-auth".sssdStrictAccess = mkDefault true;
+          # "gdm-password".sssdStrictAccess = mkDefault true;
         };
       };
     };
