@@ -1619,11 +1619,11 @@
     },
     "nixpkgs-gnome": {
       "locked": {
-        "lastModified": 1711812133,
+        "lastModified": 1711841318,
         "narHash": "sha256-JZmR4Pzrt6PumsmksgVAf4YOuj//zCCDRnZWNp4WRgc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b71597fbff9c3c93a5cecd649e82acd91f15e739",
+        "rev": "3827170f4f1979434da627a20d2b996eefe46e96",
         "type": "github"
       },
       "original": {

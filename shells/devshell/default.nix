@@ -131,9 +131,9 @@ in
         pre-commit.hooks = {
           alejandra.enable = true;
           shellcheck.enable = true;
+          # nixd.enable = true;
           # nil.enable = true;
           # statix.enable = true;
-          # enabledPackages = {};
         };
 
         devcontainer = {
