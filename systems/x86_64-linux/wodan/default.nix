@@ -82,7 +82,7 @@
 
     hardware = {
       nvidia = {
-        # modesetting.enable = false;
+        modesetting.enable = false;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
         nvidiaPersistenced = true;
       };
