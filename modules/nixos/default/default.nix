@@ -105,6 +105,7 @@ with lib;
       environment.systemPackages =
         (with pkgs; [
           fancy-motd
+          kexec-tools
           # dry
           # pkgs.deepin.udisks2-qt5
           # udisks2
