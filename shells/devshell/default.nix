@@ -149,6 +149,7 @@ in
         # dotenv.enable = true;
 
         packages = [
+          attic
           dconf-save
           dp
           upload-to-installer
