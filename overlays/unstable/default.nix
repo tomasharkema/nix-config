@@ -11,10 +11,10 @@
 
   netdata = channels.unstable.netdata;
 
-  # freeipa = self.packages."${prev.system}".freeipa;
-  # sssd = self.packages."${prev.system}".sssd;
-  freeipa = channels.unstable.freeipa;
-  sssd = channels.unstable.sssd;
+  freeipa = self.packages."${prev.system}".freeipa;
+  sssd = self.packages."${prev.system}".sssd;
+  # freeipa = channels.unstable.freeipa;
+  # sssd = channels.unstable.sssd;
 
   cockpit = channels.unstable.cockpit;
   cockpit-podman = self.packages."${prev.system}".cockpit-podman;
