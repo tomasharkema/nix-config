@@ -267,6 +267,11 @@
             sshUser = "root";
             hostname = "172.25.255.212";
           };
+          schweizer-bobbahn = {
+            hostnamw = "schweizer-bobbahn.local";
+            # targetHost = "192.168.178.46";
+            sshUser = "root";
+          };
         };
       };
 

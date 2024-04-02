@@ -13,7 +13,7 @@ let
 
   utm-nixos = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICgPvSzMf7TG4ArvFFp8R/kfj6XYXkMl3r47FL5voIBN root@utm-nixos";
 
-  arthur = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ0N7wvhwFkccHR5bVQUC47H/Rb4asO3emf//Ut9cx0Q root@arthur";
+  arthur = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPNjMAH00cvtgNj1+5bMhUi0woJJ5kmhu1o2h2AmzRJW root@arthur";
 
   hyperv-nixos = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA74le7rZXdvB5aeET0Wy1JTn3fKonN+pAQPdPjVyzO8 root@hyperv-nixos";
 
