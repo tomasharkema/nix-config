@@ -6,6 +6,7 @@
 with pkgs; {
   config = {
     home.packages = with pkgs; [
+      tg
       wiki-tui
       tran
       lazycli
