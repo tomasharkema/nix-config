@@ -189,6 +189,7 @@
         nvidia.acceptLicense = true;
         firefox.enableGnomeExtensions = true;
         kodi.enableAdvancedLauncher = true;
+        # allowAliases = false;
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
         # buildPlatform.system = "x86_64-linux";
