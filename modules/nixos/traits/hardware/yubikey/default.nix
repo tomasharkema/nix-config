@@ -23,15 +23,15 @@ with lib; {
     };
     # hardware.gpgSmartcards.enable = true;
     programs = {
-      # yubikey-touch-detector.enable = true;
-      # ssh.extraConfig = ''
-      #   PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
-      # '';
+      yubikey-touch-detector.enable = true;
+      ssh.extraConfig = ''
+        PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
+      '';
     };
 
     services = {
       # pcscd.enable = true;
-      # yubikey-agent.enable = true;
+      yubikey-agent.enable = true;
       udev.packages = with pkgs; [
         libfido2
         opensc
