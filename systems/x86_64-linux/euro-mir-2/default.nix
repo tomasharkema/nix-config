@@ -119,10 +119,7 @@ with lib; {
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
       kernelParams = ["acpi_rev_override=1"];
-    };
-
-    programs = {
-      mtr.enable = true;
+      supportedFilesystems = ["ntfs"];
     };
   };
 }
