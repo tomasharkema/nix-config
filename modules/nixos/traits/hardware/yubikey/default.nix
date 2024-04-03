@@ -55,6 +55,7 @@ with lib; {
     };
 
     environment.systemPackages = with pkgs; [
+      p11-kit
       age-plugin-yubikey
       libfido2
       pcsctools
