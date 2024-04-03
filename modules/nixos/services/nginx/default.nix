@@ -66,6 +66,9 @@ in {
 
         locations =
           {
+            "/basic_status" = {
+              extraConfig = ''stub_status;'';
+            };
             # "/webhook" = {
             #   return = "302 /webhook/";
             # };

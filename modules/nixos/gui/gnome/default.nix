@@ -109,11 +109,12 @@ in {
           gnomeExtensions.pip-on-top
         ]
       )
-      ++ (with pkgsUnstable; [
+      ++ (with pkgs; [
+        # pkgsUnstable; [
         clutter
         clutter-gtk
         gjs
-        gnome.adwaita-icon-theme
+        # gnome.adwaita-icon-theme
         gnome-firmware
         gnome-menus
         gnome.dconf-editor
