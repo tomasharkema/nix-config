@@ -54,6 +54,7 @@ with lib; {
         remote-unlock.enable = true;
         monitor.enable = true;
         nvidia.enable = true;
+        disable-sleep.enable = true;
       };
     };
 
@@ -71,10 +72,6 @@ with lib; {
         wakeOnLan.enable = true;
       };
     };
-    systemd.targets.sleep.enable = mkForce false;
-    systemd.targets.suspend.enable = mkForce false;
-    systemd.targets.hibernate.enable = mkForce false;
-    systemd.targets.hybrid-sleep.enable = mkForce false;
 
     # headless.hypervisor = {
     #   enable = true;

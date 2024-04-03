@@ -64,7 +64,7 @@ in {
           auto-optimise-store = true;
           trusted-users = users ++ ["tomas" "root"]; # "builder"];
           allowed-users = users ++ ["tomas" "root" "builder"];
-          netrc-file = "/etc/nix/netrc";
+          # netrc-file = "/etc/nix/netrc";
           substituters =
             [cfg.default-substituter.url]
             ++ (mapAttrsToList (name: value: name) cfg.extra-substituters);
