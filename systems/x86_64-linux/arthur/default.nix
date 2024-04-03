@@ -33,6 +33,7 @@
       # freeipa.replica.enable = true;
       tcsd.enable = true;
     };
+
     apps.home-assistant.enable = true;
 
     disks.btrfs = {
@@ -45,7 +46,10 @@
 
     # resilio.root = "/opt/media/resilio";
 
-    # boot.binfmt.emulatedSystems = ["aarch64-linux"];
+    boot = {
+      binfmt.emulatedSystems = ["aarch64-linux"];
+      loader.systemd-boot.enable = true;
+    };
 
     networking = {
       hostName = "arthur";

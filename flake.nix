@@ -189,6 +189,7 @@
         nvidia.acceptLicense = true;
         firefox.enableGnomeExtensions = true;
         kodi.enableAdvancedLauncher = true;
+        # allowAliases = false;
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
         # buildPlatform.system = "x86_64-linux";
@@ -265,6 +266,11 @@
           euro-mir-vm = {
             sshUser = "root";
             hostname = "172.25.255.212";
+          };
+          schweizer-bobbahn = {
+            hostnamw = "schweizer-bobbahn.local";
+            # targetHost = "192.168.178.46";
+            sshUser = "root";
           };
         };
       };

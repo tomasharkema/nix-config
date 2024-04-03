@@ -108,6 +108,7 @@ with lib;
           # rtop
           ipcalc
           fancy-motd
+          kexec-tools
           # dry
           # pkgs.deepin.udisks2-qt5
           # udisks2
