@@ -33,7 +33,7 @@ in {
         enable = true;
         # openFirewall = true;
       };
-      clipmenu.enable = true;
+      # clipmenu.enable = true;
 
       systembus-notify.enable = true;
       pipewire = {
@@ -70,7 +70,7 @@ in {
     # enable = true;
     # enableSSHSupport = true;
     # };
-    services.cpupower-gui.enable = true;
+    # services.cpupower-gui.enable = true;
 
     environment.systemPackages = with pkgs;
       [

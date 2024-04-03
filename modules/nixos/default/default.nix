@@ -30,6 +30,11 @@ with lib;
 
       nix.package = pkgs.nixUnstable;
 
+      system.nixos.tags =
+        if config.installed
+        then ["installed"]
+        else ["notinstalled"];
+
       # Select internationalisation properties.
       i18n = {
         defaultLocale = "en_US.UTF-8";

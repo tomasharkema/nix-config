@@ -2,7 +2,8 @@
   lib,
   inputs,
   ...
-}: {
+}:
+with lib; {
   imports = with inputs; [
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
@@ -49,6 +50,10 @@
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
       loader.systemd-boot.enable = true;
+    };
+
+    services.kmscon = {
+      enable = mkForce false;
     };
 
     networking = {
