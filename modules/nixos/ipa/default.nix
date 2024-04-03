@@ -55,7 +55,7 @@ in {
           id_provider = proxy
           proxy_lib_name = files
           auth_provider = none
-          local_auth_policy = only
+          local_auth_policy = match
 
         '';
       };
