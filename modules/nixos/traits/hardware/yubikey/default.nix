@@ -12,7 +12,7 @@ with lib; {
       #   debug = true;
       # };
 
-      p11.enable = true;
+      # p11.enable = true;
 
       # services = {
       #   login.u2fAuth = true;
@@ -21,17 +21,17 @@ with lib; {
       #   ssh.u2fAuth = true;
       # };
     };
-    hardware.gpgSmartcards.enable = true;
+    # hardware.gpgSmartcards.enable = true;
     programs = {
-      yubikey-touch-detector.enable = true;
-      ssh.extraConfig = ''
-        PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
-      '';
+      # yubikey-touch-detector.enable = true;
+      # ssh.extraConfig = ''
+      #   PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
+      # '';
     };
 
     services = {
-      pcscd.enable = true;
-      yubikey-agent.enable = true;
+      # pcscd.enable = true;
+      # yubikey-agent.enable = true;
       udev.packages = with pkgs; [
         libfido2
         opensc

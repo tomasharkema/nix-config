@@ -6,6 +6,8 @@
     builders-use-substitutes = true;
     trusted-users = ["root" "tomas"];
 
+    # netrc-file = "/etc/nix/netrc";
+
     substituters = [
       "https://nix-community.cachix.org"
       "https://cache.nixos.org/"
