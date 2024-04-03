@@ -2,7 +2,7 @@
   keys = pkgs.callPackage ./packages/authorized-keys {};
 in {
   config = {
-    nix.extraOptions = "experimental-features = nix-command flakes";
+    # nix.extraOptions = "experimental-features = nix-command flakes c";
 
     users = {
       users.tomas = {
