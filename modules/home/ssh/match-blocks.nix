@@ -43,7 +43,7 @@ in {
               forwardAgent = true;
               extraOptions = {
                 RequestTTY = "yes";
-                RemoteCommand = "tmux new -A -s \$\{\%n\}";
+                # RemoteCommand = "tmux new -A -s \$\{\%n\}";
               };
             };
           })
