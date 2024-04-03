@@ -124,6 +124,7 @@
         nvidia.enable = true;
         remote-unlock.enable = true;
         monitor.enable = true;
+        disable-sleep.enable = true;
       };
     };
 

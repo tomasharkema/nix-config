@@ -58,7 +58,6 @@ in {
       package = pkgs.nixUnstable;
 
       settings = {
-        experimental-features = "nix-command flakes";
         http-connections = 50;
         warn-dirty = false;
         log-lines = 50;

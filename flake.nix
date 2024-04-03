@@ -48,10 +48,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # colmena = {
-    #   url = "github:zhaofengli/colmena";
-    # inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    colmena = {
+      url = "github:zhaofengli/colmena";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixos-anywhere = {
       url = "github:nix-community/nixos-anywhere";
@@ -102,7 +102,7 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
-    # impermanence.url = "github:nix-community/impermanence";
+    impermanence.url = "github:nix-community/impermanence";
 
     attic = {
       url = "github:zhaofengli/attic";
@@ -144,22 +144,32 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # peerix = {
-    # url = "github:cid-chan/peerix";
-    # inputs.nixpkgs.follows = "unstable";
-    # };
+    peerix = {
+      url = "github:cid-chan/peerix";
+      inputs.nixpkgs.follows = "unstable";
+    };
 
-    # poetry2nix = {
-    #   url = "github:nix-community/poetry2nix";
-    # };
+    poetry2nix = {
+      url = "github:nix-community/poetry2nix";
+    };
 
-    # stylix = {
-    #   url = "github:danth/stylix/release-23.11";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    stylix = {
+      url = "github:danth/stylix/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-search = {
+      url = "github:NixOS/nixos-search";
+      inputs.nixpkgs.follows = "unstable";
+    };
 
     command-center = {
       url = "github:tomasharkema/command-center";
+      inputs.nixpkgs.follows = "unstable";
+    };
+
+    filestash-nix = {
+      url = "github:matthewcroughan/filestash-nix";
       inputs.nixpkgs.follows = "unstable";
     };
   };
@@ -362,6 +372,7 @@
     distributedBuilds = true;
     builders-use-substitutes = true;
     trusted-users = ["root" "tomas"];
+    # netrc-file = "/etc/nix/netrc";
 
     substituters = [
       "https://nix-community.cachix.org"
@@ -384,6 +395,7 @@
       "https://cache.nixos.org/"
       "https://blue-fire.ling-lizard.ts.net/attic/tomas/"
       "https://devenv.cachix.org"
+      "https://nixos-search.cachix.org"
     ];
 
     extra-trusted-public-keys = [
@@ -393,6 +405,7 @@
       "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       "tomas:qzaaV24nfgwcarekICaYr2c9ZBFDQnvvydOywbwAeys="
+      "nixos-search.cachix.org-1:1HV3YF8az4fywnH+pAd+CXFEdpTXtv9WpoivPi+H70o="
     ];
 
     # extra-trusted-public-keys = [
