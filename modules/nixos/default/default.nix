@@ -201,7 +201,7 @@ with lib;
 
       services = {
         kmscon = {
-          enable = true;
+          enable = mkDefault true;
           hwRender = config.traits.hardware.nvidia.enable;
           fonts = [
             {
