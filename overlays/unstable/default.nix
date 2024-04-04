@@ -39,6 +39,6 @@
 
   xdg-terminal-exec = channels.unstable.xdg-terminal-exec;
 
-  _1password-gui = channels.unstable._1password-gui;
-  _1password = channels.unstable._1password;
+  # _1password-gui = channels.unstable._1password-gui;
+  # _1password = channels.unstable._1password;
 }
