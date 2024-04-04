@@ -92,11 +92,6 @@ with lib;
         };
       };
 
-      # programs.atop = {
-      #   enable = true;
-      #   netatop.enable = true;
-      # };
-
       programs.atop = {
         atopRotateTimer.enable = true;
         enable = true;
