@@ -135,7 +135,7 @@
     };
 
     boot = {
-      # binfmt.emulatedSystems = ["aarch64-linux"];
+      binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = ["ntfs"];
       # kernelModules = ["i2c-dev"];
     };
