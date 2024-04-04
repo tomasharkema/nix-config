@@ -55,6 +55,14 @@ with lib; {
         monitor.enable = true;
         nvidia.enable = true;
         disable-sleep.enable = true;
+
+        nfs = {
+          enable = true;
+
+          machines = {
+            silver-star.enable = true;
+          };
+        };
       };
     };
 
