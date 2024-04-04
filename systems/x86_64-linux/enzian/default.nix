@@ -61,6 +61,7 @@ with lib; {
 
           machines = {
             silver-star.enable = true;
+            dione.enable = true;
           };
         };
       };
