@@ -37,6 +37,10 @@ with lib; {
     services = {
       # netbox-service.enable = true;
 
+      kmscon = {
+        enable = false;
+      };
+
       healthchecks = {
         enable = true;
         listenAddress = "0.0.0.0";

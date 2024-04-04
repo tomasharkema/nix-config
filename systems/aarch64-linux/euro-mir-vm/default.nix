@@ -70,5 +70,10 @@ with lib; {
       driSupport = true;
       #   # driSupport32Bit = true;
     };
+    services = {
+      kmscon = {
+        enable = false;
+      };
+    };
   };
 }
