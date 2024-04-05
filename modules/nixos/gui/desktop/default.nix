@@ -74,6 +74,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        grsync
         caffeine-ng
         qjournalctl
         pkgs.custom.netbrowse
