@@ -195,6 +195,7 @@
       src = ./.;
 
       channels-config = {
+        allowUnfreePredicate = _: true;
         allowUnfree = true;
         nvidia.acceptLicense = true;
         firefox.enableGnomeExtensions = true;
