@@ -52,8 +52,14 @@ with lib; {
       # opensnitch.enable = true;
     };
 
-    boot.growPartition = true;
+    boot = {
+      growPartition = true;
 
+      tmp = {
+        useTmpfs = false;
+        cleanOnBoot = false;
+      };
+    };
     traits = {
       developer.enable = false;
       hardware = {
