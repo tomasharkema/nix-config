@@ -104,6 +104,9 @@ with lib;
 
       environment.systemPackages =
         (with pkgs; [
+          # ntfy
+          ntfy-sh
+          ntfs3g
           plex-mpv-shim
           # rtop
           ipcalc
@@ -440,8 +443,6 @@ with lib;
             hide_userland_threads = true;
           };
         };
-
-        _1password.enable = true;
 
         ssh = {
           # startAgent = true;

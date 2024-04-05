@@ -19,7 +19,7 @@
   cockpit = channels.unstable.cockpit;
   cockpit-podman = self.packages."${prev.system}".cockpit-podman;
   cockpit-tailscale = self.packages."${prev.system}".cockpit-tailscale;
-  # cockpit-ostree = self.packages."${prev.system}".cockpit-ostree;
+  cockpit-ostree = self.packages."${prev.system}".cockpit-ostree;
   cockpit-machines = self.packages."${prev.system}".cockpit-machines;
 
   keybase = channels.unstable.keybase;
@@ -39,6 +39,8 @@
 
   xdg-terminal-exec = channels.unstable.xdg-terminal-exec;
 
-  # _1password-gui = channels.unstable._1password-gui;
-  # _1password = channels.unstable._1password;
+  _1password-gui = channels.unstable._1password-gui;
+  _1password = channels.unstable._1password;
+
+  ntfs2btrfs = channels.unstable.ntfs2btrfs;
 }

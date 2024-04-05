@@ -84,7 +84,6 @@ in
           # dooit
           ttdl
           topydo
-          # git-credential-1password
         ];
         sessionVariables =
           if stdenv.isDarwin
