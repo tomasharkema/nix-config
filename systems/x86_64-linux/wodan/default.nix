@@ -79,11 +79,19 @@
       enable = true;
       bridgeInterfaces = ["enp2s0"];
     };
+    services.beesd.filesystems = {
+      root = {
+        spec = "UUID=b91c8226-5e0e-4c0e-9c6e-b7a39fc9bdd0";
+        hashTableSizeMB = 4096;
+        verbosity = "crit";
+        extraOptions = ["--loadavg-target" "2.0"];
+      };
+    };
 
     hardware = {
       nvidia = {
-        modesetting.enable = false;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        # modesetting.enable = false;
+        # package = config.boot.kernelPackages.nvidiaPackages.stable;
         nvidiaPersistenced = true;
       };
       cpu.intel.updateMicrocode = true;
@@ -132,6 +140,7 @@
       enable = true;
       main = "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768639292E";
       encrypt = true;
+      newSubvolumes = true;
     };
 
     boot = {
