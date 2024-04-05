@@ -78,6 +78,7 @@ with lib; let
             mountOptions =
               [
                 "noatime"
+                "compress=zstd"
                 "discard=async"
               ]
               ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
@@ -114,6 +115,7 @@ with lib; let
             mountOptions =
               [
                 "noatime"
+                "compress=zstd"
                 "discard=async"
               ]
               ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
@@ -122,6 +124,7 @@ with lib; let
           "log" = mkIf cfg.newSubvolumes {
             mountOptions = [
               "noatime"
+              "compress=zstd"
               "discard=async"
             ];
             mountpoint = "/var/log";
