@@ -12,9 +12,14 @@
   ];
 
   config = {
+    # btrfs balance -dconvert=raid0 -mconvert=raid1 /home
+
     installed = true;
     # programs.gamemode.enable = true;
-    environment.systemPackages = with pkgs; [openrgb-with-all-plugins];
+    environment.systemPackages = with pkgs; [
+      ntfs2btrfs
+      openrgb-with-all-plugins
+    ];
 
     time = {
       # hardwareClockInLocalTime = true;
@@ -133,14 +138,27 @@
         remote-unlock.enable = true;
         monitor.enable = true;
         disable-sleep.enable = true;
+
+        nfs = {
+          enable = true;
+
+          machines = {
+            silver-star.enable = true;
+            # dione.enable = true;
+          };
+        };
       };
     };
 
     disks.btrfs = {
       enable = true;
+
       main = "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768639292E";
+      # second = "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768637D1FE";
+
       encrypt = true;
       newSubvolumes = true;
+      swapSize = 64 * 1024;
     };
 
     boot = {

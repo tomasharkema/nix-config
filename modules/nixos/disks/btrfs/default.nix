@@ -7,12 +7,12 @@
 with lib; let
   cfg = config.disks.btrfs;
 
-  luksContent = root: {
+  luksContent = root: name: {
     luks = {
       size = "100%";
       content = {
         type = "luks";
-        name = "crypted";
+        name = name;
         # disable settings.keyFile if you want to use interactive password entry
         passwordFile = "/tmp/secret.key"; # Interactive
         settings = {
@@ -138,6 +138,17 @@ with lib; let
       };
     };
   };
+
+  secondContent = {
+    size = "100%";
+    content = {
+      type = "btrfs";
+      extraArgs = ["-f"];
+      subvolumes = {};
+
+      mountpoint = "/partition-root-2";
+    };
+  };
 in
   with lib; {
     options = {
@@ -151,6 +162,13 @@ in
           type = types.str;
           description = "Dev for main partion.";
         };
+
+        second = mkOption {
+          type = types.nullOr types.str;
+          default = null;
+          description = "second disk for raid0";
+        };
+
         mainOverride = mkOption {
           type = types.str;
           default = "main";
@@ -162,12 +180,17 @@ in
           description = "Dev for optional media partition";
         };
         encrypt = mkEnableOption "encrypted";
+        swapSize = mkOption {
+          type = types.int;
+          default = 16 * 1024;
+          description = "swap size";
+        };
       };
     };
 
     config = mkIf cfg.enable {
       boot = {
-        # growPartition = true;
+        growPartition = true;
         supportedFilesystems = [
           "btrfs"
         ];
@@ -176,7 +199,7 @@ in
       swapDevices = [
         {
           device = "/swapfile/swapfile";
-          size = 16 * 1024;
+          size = cfg.swapSize;
         }
       ];
 
@@ -270,7 +293,7 @@ in
                 luks =
                   mkIf cfg.encrypt
                   (
-                    luksContent innerContent.root.content
+                    luksContent innerContent.root.content "crypted"
                   )
                   .luks;
               };
@@ -300,6 +323,23 @@ in
                     };
                   };
                 };
+              };
+            };
+          };
+          second = mkIf (cfg.second != null) {
+            type = "disk";
+            device = cfg.second;
+
+            content = {
+              type = "gpt";
+              partitions = {
+                root = mkIf (!cfg.encrypt) secondContent;
+                luks-second =
+                  mkIf cfg.encrypt
+                  (
+                    luksContent secondContent.content "crypted-second"
+                  )
+                  .luks;
               };
             };
           };
