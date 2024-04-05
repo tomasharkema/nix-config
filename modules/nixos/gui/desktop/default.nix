@@ -82,6 +82,7 @@ in {
         # pcmanfm
         polkit
         gparted
+        partition-manager
         # firefox
         vscode
         # transmission
@@ -93,8 +94,6 @@ in {
 
         xdg-utils
 
-        # _1password
-        # _1password-gui
         # handbrake
         meteo
         # transmission-remote-gtk
@@ -117,7 +116,6 @@ in {
         xdg-utils
         # mattermost-desktop
         systemdgenie
-        # # _1password
         wezterm
         # waybar
         zeal
@@ -133,19 +131,8 @@ in {
       ++ (with pkgs.custom; [zerotier-ui zerotier-gui]);
 
     programs = {
-      ssh.extraConfig = ''
-        IdentityAgent /home/tomas/.1password/agent.sock
-      '';
-
       ssh = {
         # startAgent = true;
-      };
-
-      _1password-gui = {
-        enable = true;
-        # Certain features, including CLI integration and system authentication support,
-        # require enabling PolKit integration on some desktop environments (e.g. Plasma).
-        polkitPolicyOwners = ["tomas" "root"];
       };
 
       firefox = {
