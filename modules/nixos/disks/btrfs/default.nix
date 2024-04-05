@@ -54,6 +54,7 @@ with lib; let
           "resilio-sync" = mkIf (cfg.newSubvolumes && cfg.media == null) {
             mountOptions = [
               "noatime"
+              "compress=zstd"
               "discard=async"
             ];
             mountpoint = "/opt/resilio-sync";
@@ -61,6 +62,7 @@ with lib; let
           "resilio-sync-lib" = mkIf cfg.newSubvolumes {
             mountOptions = [
               "noatime"
+              "compress=zstd"
               "discard=async"
             ];
             mountpoint = "/var/lib/resilio-sync";
@@ -69,6 +71,7 @@ with lib; let
             mountOptions =
               [
                 "noatime"
+                "compress=zstd"
                 "discard=async"
               ]
               ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
