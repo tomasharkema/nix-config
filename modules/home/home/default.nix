@@ -269,7 +269,7 @@ in
             rm = "rm -i";
             g = "git";
             gs = "git status";
-            pvxz = "pv @1 -N in -B 500M -pterbT | xz -e9 -T4 | pv -N out -B 500M -pterbT > @2";
+            pvzst = "pv @1 -N in -B 500M -pterbT | zstd - -e -T4 | pv -N out -B 500M -pterbT > @2";
             cat = "bat";
             dig = "dog";
             # silver-star-ipmi raw 0x30 0x30 0x01 0x00
