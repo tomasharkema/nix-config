@@ -18,7 +18,13 @@
     },
     "nixd": {
       "eval": {
-        // stuff
+        "target": {
+          "args": [
+            "-f",
+            "default.nix"
+          ],
+          "installable": "nixosConfigurations.euro-mir-2.options"
+        }
       },
       "formatting": {
         "command": "alejandra"
@@ -27,9 +33,12 @@
         "enable": true,
         "target": {
           // tweak arguments here
-          "args": [],
+          "args": [
+            "-f",
+            "default.nix"
+          ],
           // NixOS options
-          "installable": "${workspaceRoot}#nixosConfigurations.euro-mir-2.options"
+          "installable": "nixosConfigurations.euro-mir-2.options"
           // Flake-parts options
           // "installable": "<flakeref>#debug.options"
           // Home-manager options
