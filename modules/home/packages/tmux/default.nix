@@ -35,6 +35,14 @@
       sha256 = "sha256-AMeYo3HVtRP1w8gQpok+/9fvNCXiMEzZ9ct+gUoL2V4=";
     };
   };
+  monocle = builtins.fetchurl {
+    url = "https://github.com/imsnif/monocle/releases/latest/download/monocle.wasm";
+    sha256 = "194ylwz31q1nr8zyxp3yq9pjavmbgsxw1ppv8lpbfxhl24wbj51k";
+  };
+  multitask = builtins.fetchurl {
+    url = "https://github.com/imsnif/multitask/releases/download/0.38.2v2/multitask.wasm";
+    sha256 = "1zms3mgfjdrq97rar5g7b73gfdc8xgx7jpafynqklaczj823sqxs";
+  };
 in
   with lib; {
     config = mkIf true {
@@ -45,45 +53,65 @@ in
         # enableZshIntegration = true;
         settings = {
           theme = "catppuccin-mocha";
+          keybinds = {
+            normal = {
+              "bind \"Alt m\"" = {
+                LaunchPlugin = {
+                  _args = ["file:${monocle}"];
+                  in_place = true;
+                  kiosk = true;
+                };
+                SwitchToMode = "Normal";
+              };
+
+              "bind \"Alt x\"" = {
+                LaunchPlugin = {
+                  _args = ["file:${multitask}"];
+                  configuration = "shell=$SHELL,cwd=`pwd`";
+                };
+                SwitchToMode = "Normal";
+              };
+            };
+          };
         };
       };
 
       home.file = {
-        ".config/zellij/layouts/_default.kdl".text = ''
+        ".config/zellij/layouts/default.kdl".text = ''
           layout {
-              default_tab_template {
-                  children
-                  pane size=1 borderless=false {
-                      plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
-                          format_left   "{mode} #[fg=#89B4FA,bold]{session}"
-                          format_center "{tabs}"
-                          format_right  "{command_git_branch} {datetime}"
-                          format_space  ""
+            default_tab_template {
+              children
+              pane size=1 borderless=true {
+                plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
+                  format_left   "{mode} #[fg=#89B4FA,bold]{session}"
+                  format_center "{tabs}"
+                  format_right  "{command_git_branch} {datetime}"
+                  format_space  ""
 
-                          border_enabled  "false"
-                          border_char     "─"
-                          border_format   "#[fg=#6C7086]{cha`r}"
-                          border_position "top"
+                  border_enabled  "false"
+                  border_char     "─"
+                  border_format   "#[fg=#6C7086]{cha`r}"
+                  border_position "top"
 
-                          hide_frame_for_single_pane "true"
+                  hide_frame_for_single_pane "true"
 
-                          mode_normal  "#[bg=blue] "
-                          mode_tmux    "#[bg=#ffc387] "
+                  mode_normal  "#[bg=blue] "
+                  mode_tmux    "#[bg=#ffc387] "
 
-                          tab_normal   "#[fg=#6C7086] {name} "
-                          tab_active   "#[fg=#9399B2,bold,italic] {name} "
+                  tab_normal   "#[fg=#6C7086] {name} "
+                  tab_active   "#[fg=#9399B2,bold,italic] {name} "
 
-                          command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
-                          command_git_branch_format      "#[fg=blue] {stdout} "
-                          command_git_branch_interval    "10"
-                          command_git_branch_rendermode  "static"
+                  command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
+                  command_git_branch_format      "#[fg=blue] {stdout} "
+                  command_git_branch_interval    "10"
+                  command_git_branch_rendermode  "static"
 
-                          datetime        "#[fg=#6C7086,bold] {format} "
-                          datetime_format "%A, %d %b %Y %H:%M"
-                          datetime_timezone "Europe/Berlin"
-                      }
-                  }
+                  datetime        "#[fg=#6C7086,bold] {format} "
+                  datetime_format "%A, %d %b %Y %H:%M"
+                  datetime_timezone "Europe/Berlin"
+                }
               }
+            }
           }
 
         '';
