@@ -26,10 +26,11 @@ in {
               hostname = "${machine}";
               user = "tomas";
               forwardAgent = true;
-              # extraOptions = {
-              #   RequestTTY = "yes";
-              #   RemoteCommand = "tmux new -A -s \$\{\%n\}";
-              # };
+              extraOptions = {
+                RequestTTY = "yes";
+                RemoteCommand = "zellij attach -c \"\$\{\%n\}\"";
+                # RemoteCommand = "tmux new -A -s \$\{\%n\}";
+              };
             };
           })
           machines))
@@ -43,6 +44,7 @@ in {
               forwardAgent = true;
               extraOptions = {
                 RequestTTY = "yes";
+                RemoteCommand = "zellij attach -c \"\$\{\%n\}\"";
                 # RemoteCommand = "tmux new -A -s \$\{\%n\}";
               };
             };
