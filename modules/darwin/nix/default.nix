@@ -57,6 +57,22 @@ in {
     in {
       package = pkgs.nixUnstable;
 
+      linux-builder = {
+        enable = true;
+        ephemeral = true;
+        maxJobs = 4;
+        config = {
+          virtualisation = {
+            # rosetta.enable = true;
+            darwin-builder = {
+              diskSize = 40 * 1024;
+              memorySize = 8 * 1024;
+            };
+            cores = 6;
+          };
+        };
+      };
+
       settings = {
         http-connections = 50;
         warn-dirty = false;
@@ -68,7 +84,7 @@ in {
 
         # This appears to break on darwin
         # https://github.com/NixOS/nix/issues/7273
-        auto-optimise-store = true;
+        auto-optimise-store = false;
 
         allow-import-from-derivation = true;
 
