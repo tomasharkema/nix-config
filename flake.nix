@@ -172,6 +172,10 @@
       url = "github:matthewcroughan/filestash-nix";
       inputs.nixpkgs.follows = "unstable";
     };
+
+    zjstatus = {
+      url = "github:dj95/zjstatus";
+    };
   };
 
   outputs = inputs: let
