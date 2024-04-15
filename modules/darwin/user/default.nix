@@ -31,10 +31,7 @@ in {
     environment.systemPackages =
       (with pkgs; [
         # atuin
-        custom.maclaunch
         terminal-notifier
-        custom.launchcontrol
-        custom.ztui
 
         sysz
         # iptraf-ng
@@ -46,6 +43,12 @@ in {
 
         # devtodo
         devdash
+      ])
+      ++ (with pkgs.custom; [
+        launchcontrol
+        ztui
+        maclaunch
+        tailscale-tui
       ])
       ++ (with pkgs.darwin; [
         lsusb

@@ -16,13 +16,13 @@ in {
     ];
 
     nix.buildMachines = [
-      {
-        hostName = "blue-fie";
-        systems = ["aarch64-linux" "x86_64-linux"];
-        maxJobs = 4;
-        supportedFeatures = ["kvm" "benchmark" "big-parallel"];
-        speedFactor = 100;
-      }
+      # {
+      #   hostName = "blue-fire";
+      #   systems = ["aarch64-linux" "x86_64-linux"];
+      #   maxJobs = 4;
+      #   supportedFeatures = ["kvm" "benchmark" "big-parallel"];
+      #   speedFactor = 100;
+      # }
     ];
   };
 }
