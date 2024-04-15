@@ -166,11 +166,9 @@ with lib;
           sshed
         ])
         ++ (
-          if pkgs.stdenv.isx86_64
-          then [
+          optionals pkgs.stdenv.isx86_64 [
             pkgs.custom.ztui
           ]
-          else []
         );
       # services.ntfy-sh.enable = true;
 
@@ -340,6 +338,7 @@ with lib;
       };
 
       programs = {
+        darling.enable = pkgs.stdenv.isx86_64;
         flashrom.enable = true;
         rust-motd = {
           enable = true;
