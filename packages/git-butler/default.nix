@@ -47,8 +47,8 @@
   lib,
   stdenv,
 }: let
-  shortVersion = "0.10.28";
-  build = "764";
+  shortVersion = "0.11.1";
+  build = "814";
   fullVersion = "${shortVersion}-${build}";
   fullArch =
     if stdenv.isx86_64
