@@ -2,28 +2,34 @@
   "nix.enableLanguageServer": true,
   "nix.serverPath": "nixd",
   "nix.serverSettings": {
-    "nil": {
-      "formatting": {
-        "command": [
-          "alejandra"
-        ]
-      },
-      "nix": {
-        "maxMemoryMB": 4096,
-        "flake": {
-          "autoArchive": true,
-          "autoEvalInputs": true
-        }
-      }
-    },
+    // "nil": {
+    //   "formatting": {
+    //     "command": [
+    //       "alejandra"
+    //     ]
+    //   },
+    //   "nix": {
+    //     "maxMemoryMB": 4096,
+    //     "flake": {
+    //       "autoArchive": true,
+    //       "autoEvalInputs": true
+    //     }
+    //   }
+    // },
     "nixd": {
       "eval": {
         "target": {
+          // tweak arguments here
           "args": [
-            "-f",
-            "default.nix"
+            // "-f",
+            // "default.nix"
           ],
-          "installable": "nixosConfigurations.euro-mir-2.options"
+          // NixOS options
+          "installable": ".#nixosConfigurations.euro-mir-2.options"
+          // Flake-parts options
+          // "installable": "<flakeref>#debug.options"
+          // Home-manager options
+          // "installable": "<flakeref>#homeConfigurations.<name>.options"
         }
       },
       "formatting": {
@@ -47,11 +53,12 @@
       }
     }
   },
-  "[nix]": {
-    "editor.defaultFormatter": "kamadorueda.alejandra",
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
-    "editor.formatOnType": false
-  },
-  "nixEnvSelector.nixFile": "${workspaceRoot}/flake.nix"
+  "nixEnvSelector.nixFile": "${workspaceFolder}/shell.nix",
+  // "[nix]": {
+  //   "editor.defaultFormatter": "kamadorueda.alejandra",
+  //   "editor.formatOnPaste": true,
+  //   "editor.formatOnSave": true,
+  //   "editor.formatOnType": false
+  // },
+  // "nixEnvSelector.nixFile": "${workspaceRoot}/flake.nix"
 }
