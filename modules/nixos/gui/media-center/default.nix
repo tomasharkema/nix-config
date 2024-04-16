@@ -14,12 +14,16 @@ in {
   config = mkIf cfg.enable {
     system.nixos.tags = ["media-center"];
     xdg.portal.enable = mkForce false;
-    # sound.mediaKeys.enable = true;
 
-    hardware.pulseaudio = {
+    sound = {
       enable = true;
-      support32Bit = true;
+      mediaKeys.enable = true;
     };
+
+    # hardware.pulseaudio = {
+    #   enable = true;
+    #   support32Bit = true;
+    # };
 
     apps.flatpak.enable = mkForce false;
 
@@ -39,9 +43,11 @@ in {
       hybrid-sleep.enable = mkForce false;
     };
 
-    hardware.opengl = {
-      enable = true;
-      extraPackages = with pkgs; [libva];
+    hardware = {
+      opengl = {
+        enable = true;
+        extraPackages = with pkgs; [libva];
+      };
     };
 
     # services.xserver.desktopManager.kodi.package = pkgs.kodi.withPackages (pkgs:
@@ -101,17 +107,17 @@ in {
     #   };
     # };
 
-    # boot = {
-    #   kernelParams = ["quiet"];
-    #   plymouth = {
-    #     enable = true;
-    #   };
-    # };
-
-    services.shairport-sync = {
-      enable = true;
-      openFirewall = true;
+    boot = {
+      kernelParams = ["quiet"];
+      plymouth = {
+        enable = true;
+      };
     };
+
+    # services.shairport-sync = {
+    #   enable = true;
+    #   openFirewall = true;
+    # };
     users.extraUsers.shairport.extraGroups = ["audio" "input"];
 
     users.extraUsers.media = {
@@ -121,7 +127,7 @@ in {
     };
 
     networking.firewall = {
-      enable = mkForce false;
+      enable = mkForce true;
       allowedTCPPorts = [
         8080
         8060 # the plex frontend does upnp things
