@@ -64,7 +64,7 @@ in
     version = fullVersion;
     src = fetchurl {
       url = "https://releases.gitbutler.com/releases/release/${fullVersion}/linux/${fullArch}/git-butler_${shortVersion}_${arch}.AppImage";
-      hash = "sha256-kE98uVTObtYQvlFvStVBgvwVsX05qLSkgt+sk1oaNY0=";
+      hash = "sha256-N/6aaB7RWCjF0jIMKR6ymvm6Md9o+sRB8cetPxEBUAo=";
     };
     extraPkgs = pkgs: with pkgs; [libthai];
     extraInstallCommands = let
