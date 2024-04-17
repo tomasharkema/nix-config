@@ -207,9 +207,7 @@ with lib;
           fonts = [
             {
               name = "JetBrainsMono Nerd Font Mono";
-              package = pkgs.nerdfonts.override {
-                fonts = ["JetBrainsMono"];
-              };
+              package = pkgs.nerdfonts;
             }
           ];
         };
