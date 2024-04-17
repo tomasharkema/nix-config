@@ -18,10 +18,24 @@
   agenix = agenix.packages."${prev.system}".default;
   hydra-check = hydra-check.packages."${prev.system}".default;
   flake-checker = flake-checker.packages."${prev.system}".default;
-  nixos-anywhere = nixos-anywhere.packages.${prev.system}.nixos-anywhere;
-  nixos-conf-editor = nixos-conf-editor.packages.${prev.system}.nixos-conf-editor;
-  nix-software-center = nix-software-center.packages.${prev.system}.nix-software-center;
-  nixUnstable = channels.unstable.nixVersions.nix_2_20;
+  nixos-anywhere = nixos-anywhere.packages."${prev.system}".nixos-anywhere;
+  nixos-conf-editor = nixos-conf-editor.packages."${prev.system}".nixos-conf-editor;
+  nix-software-center = nix-software-center.packages."${prev.system}".nix-software-center;
+  nixUnstable = channels.unstable.nixVersions.nix_2_21;
 
-  zjstatus = zjstatus.packages.${prev.system}.default;
+  zjstatus = zjstatus.packages."${prev.system}".default;
+
+  nerdfonts = channels.unstable.nerdfonts.override {
+    fonts = [
+      "JetBrainsMono"
+      "FiraCode"
+      "FiraMono"
+      "Terminus"
+      "ComicShannsMono"
+      "BigBlueTerminal"
+
+      "OpenDyslexic"
+      "Noto"
+    ];
+  };
 }
