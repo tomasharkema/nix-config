@@ -104,6 +104,11 @@ with lib;
 
       environment.systemPackages =
         (with pkgs; [
+          pamixer
+          pulsemixer
+          pamix
+          pavucontrol
+          ponymix
           # ntfy
           ntfy-sh
           ntfs3g
