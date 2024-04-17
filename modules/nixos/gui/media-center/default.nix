@@ -20,10 +20,14 @@ in {
       mediaKeys.enable = true;
     };
 
-    # hardware.pulseaudio = {
-    #   enable = true;
-    #   support32Bit = true;
-    # };
+    hardware.pulseaudio = {
+      enable = true;
+      support32Bit = true;
+      package = pkgs.pulseaudioFull;
+      extraConfig = ''
+        load-module module-dbus-protocol
+      '';
+    };
 
     apps.flatpak.enable = mkForce false;
 
@@ -118,16 +122,16 @@ in {
     #   enable = true;
     #   openFirewall = true;
     # };
-    users.extraUsers.shairport.extraGroups = ["audio" "input"];
+    # users.extraUsers.shairport.extraGroups = ["audio" "input"];
 
-    users.extraUsers.media = {
+    users.users.media = {
       isNormalUser = true;
-      uid = 1100;
+      # uid = 1100;
       extraGroups = ["data" "video" "audio" "input"];
     };
 
     networking.firewall = {
-      enable = mkForce true;
+      enable = mkForce false;
       allowedTCPPorts = [
         8080
         8060 # the plex frontend does upnp things

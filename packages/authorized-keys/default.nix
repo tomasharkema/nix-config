@@ -1,9 +1,9 @@
 {
   fetchurl,
   lib,
-  stdenv,
+  stdenvNoCC,
 }:
-stdenv.mkDerivation rec {
+stdenvNoCC.mkDerivation rec {
   pname = "authorized_keys";
   version = "0.0.1";
 
