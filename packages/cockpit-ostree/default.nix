@@ -8,11 +8,11 @@
 }:
 stdenv.mkDerivation rec {
   pname = "cockpit-ostree";
-  version = "200";
+  version = "201";
 
   src = fetchzip {
-    url = "https://github.com/cockpit-project/${pname}/releases/download/${version}/${pname}-${version}.tar.xz";
-    sha256 = "sha256-94GgJeiHU7KEiSi7gqVAyjmNlrhNkwcyUm+VmBRuGs8=";
+    url = "https://github.com/cockpit-project/${pname}/releases/download/${version}/${pname}-${version}.tar.gz";
+    sha256 = "sha256-aFXQrKI68L5rbzul4jRDQDkA/wdCEkyIqVfJU/yJG24=";
   };
 
   nativeBuildInputs = [
