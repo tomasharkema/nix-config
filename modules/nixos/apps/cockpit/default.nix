@@ -13,7 +13,7 @@
           if config.services.nginx.enable
           then {
             # AllowUnencrypted = false;
-            Origins = "https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost}";
+            Origins = "https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost} http://localhost:9090 ws://localhost:9090";
             ProtocolHeader = "X-Forwarded-Proto";
             UrlRoot = "/cockpit";
           }
@@ -24,7 +24,7 @@
       cockpit-podman
       cockpit-tailscale
       cockpit-machines
-      # cockpit-ostree
+      cockpit-ostree
       # packagekit
     ];
 
