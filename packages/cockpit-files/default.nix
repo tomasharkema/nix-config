@@ -5,12 +5,13 @@
   gettext,
 }:
 stdenv.mkDerivation rec {
-  pname = "cockpit-machines";
-  version = "311";
+  pname = "cockpit-files";
+  version = "1";
 
   src = fetchzip {
-    url = "https://github.com/cockpit-project/cockpit-machines/releases/download/${version}/cockpit-machines-${version}.tar.xz";
-    sha256 = "sha256-WcWCFr02uZ3zuKsLPAiyQP/vsjwv5BdUt03UEv/DARc=";
+    # url = "https://github.com/cockpit-project/cockpit-files/download/${version}/cockpit-machines-${version}.tar.xz";
+    url = "https://github.com/cockpit-project/cockpit-files/archive/07f93dd656f0e6da1f57a5e5d53834635924ff61.zip";
+    sha256 = "";
   };
 
   nativeBuildInputs = [
@@ -37,9 +38,9 @@ stdenv.mkDerivation rec {
   dontBuild = true;
 
   meta = with lib; {
-    description = "Cockpit UI for virtual machines";
+    description = "Cockpit UI for local files";
     license = licenses.lgpl21;
-    homepage = "https://github.com/cockpit-project/cockpit-machines";
+    homepage = "https://github.com/cockpit-project/cockpit-files";
     platforms = platforms.linux;
     maintainers = with maintainers; [];
   };
