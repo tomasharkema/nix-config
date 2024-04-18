@@ -30,7 +30,7 @@ with lib; {
         enable = true;
       };
       gnome.enable = true;
-      game-mode.enable = true;
+      gamemode.enable = true;
       quiet-boot.enable = true;
     };
 
