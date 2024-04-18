@@ -334,7 +334,7 @@ in
               type = "gpt";
               partitions = {
                 root = mkIf (!cfg.encrypt) secondContent;
-                luks-second =
+                luks =
                   mkIf cfg.encrypt
                   (
                     luksContent secondContent.content "crypted-second"
