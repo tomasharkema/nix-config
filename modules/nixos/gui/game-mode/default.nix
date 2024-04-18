@@ -5,10 +5,10 @@
   ...
 }:
 with lib; let
-  cfg = config.gui.game-mode;
+  cfg = config.gui.gamemode;
 in {
-  options.gui.game-mode = {
-    enable = mkEnableOption "game-mode";
+  options.gui.gamemode = {
+    enable = mkEnableOption "gamemode";
   };
 
   config = mkIf cfg.enable {

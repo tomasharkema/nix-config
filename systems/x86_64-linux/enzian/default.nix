@@ -29,7 +29,7 @@ with lib; {
         rdp.enable = true;
       };
       quiet-boot.enable = true;
-      game-mode.enable = true;
+      gamemode.enable = true;
     };
     # resilio.root = "/opt/media/resilio";
     # resilio.enable = mkForce false;
