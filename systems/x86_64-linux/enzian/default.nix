@@ -36,6 +36,15 @@ with lib; {
 
     systemd.enableEmergencyMode = false;
 
+    services.beesd.filesystems = {
+      root = {
+        spec = "/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y";
+        hashTableSizeMB = 4096;
+        verbosity = "crit";
+        extraOptions = ["--loadavg-target" "2.0"];
+      };
+    };
+
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y";
