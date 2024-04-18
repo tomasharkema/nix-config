@@ -56,7 +56,7 @@
         enable = true;
         rdp.enable = true;
       };
-      game-mode.enable = true;
+      gamemode.enable = true;
       quiet-boot.enable = true;
     };
     # fileSystems."/mnt/media" = {

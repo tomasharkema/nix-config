@@ -18,7 +18,7 @@ in {
 
   config = mkIf cfg.enable {
     gui = {
-      game-mode.enable = mkDefault false;
+      gamemode.enable = mkDefault false;
       quiet-boot.enable = mkDefault true;
       desktop.enable = mkDefault true;
       gnome.enable = mkDefault true;
