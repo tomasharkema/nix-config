@@ -1,3 +1,5 @@
+# cockpit-sensors
+# https://github.com/ocristopfer/cockpit-sensors
 {
   lib,
   stdenv,
@@ -5,12 +7,12 @@
   gettext,
 }:
 stdenv.mkDerivation rec {
-  pname = "cockpit-machines";
-  version = "311";
+  pname = "cockpit-sensors";
+  version = "1.1";
 
   src = fetchzip {
-    url = "https://github.com/cockpit-project/cockpit-machines/releases/download/${version}/cockpit-machines-${version}.tar.xz";
-    sha256 = "sha256-WcWCFr02uZ3zuKsLPAiyQP/vsjwv5BdUt03UEv/DARc=";
+    url = "https://github.com/ocristopfer/cockpit-sensors/releases/download/${version}/cockpit-sensors.tar.xz";
+    sha256 = "sha256-HWcUUqXtxN00paaqRpcTwIlYy6D0Qz27C2PDekrGU+U=";
   };
 
   nativeBuildInputs = [
@@ -39,7 +41,7 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     description = "Cockpit UI for virtual machines";
     license = licenses.lgpl21;
-    homepage = "https://github.com/cockpit-project/cockpit-machines";
+    homepage = "https://github.com/cockpit-project/cockpit-sensors";
     platforms = platforms.linux;
     maintainers = with maintainers; [];
   };
