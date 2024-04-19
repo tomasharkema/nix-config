@@ -20,8 +20,6 @@ with lib; {
       newSubvolumes = true;
     };
 
-    services.hardware.bolt.enable = true;
-
     environment.systemPackages = with pkgs; [bolt];
 
     gui = {
@@ -32,15 +30,6 @@ with lib; {
       gnome.enable = true;
       gamemode.enable = true;
       quiet-boot.enable = true;
-    };
-
-    services.beesd.filesystems = {
-      root = {
-        spec = "UUID=3e30181c-9df4-4412-a1ee-cb97819f218c";
-        hashTableSizeMB = 4096;
-        verbosity = "crit";
-        extraOptions = ["--loadavg-target" "2.0"];
-      };
     };
 
     hardware = {
@@ -81,7 +70,15 @@ with lib; {
 
     services = {
       # podman.enable = true;
-
+      hardware.bolt.enable = true;
+      beesd.filesystems = {
+        root = {
+          spec = "UUID=3e30181c-9df4-4412-a1ee-cb97819f218c";
+          hashTableSizeMB = 4096;
+          verbosity = "crit";
+          extraOptions = ["--loadavg-target" "2.0"];
+        };
+      };
       synergy.server = {
         enable = true;
       };
@@ -97,7 +94,8 @@ with lib; {
         package = pkgs.fprintd-tod;
         tod = {
           enable = true;
-          driver = pkgs.custom.libfprint-2-tod1-goodix; #pkgs.libfprint-2-tod1-goodix;
+          # driver = pkgs.custom.libfprint-2-tod1-goodix;
+          driver = pkgs.libfprint-2-tod1-goodix;
         };
       };
     };
