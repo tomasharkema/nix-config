@@ -15,6 +15,7 @@ in {
 
   config = mkIf cfg.enable {
     sound.mediaKeys.enable = true;
+    traits.developer.enable = mkDefault true;
 
     # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
@@ -56,6 +57,7 @@ in {
         gnome-user-share.enable = true;
         gnome-keyring.enable = true;
         games.enable = true;
+        evolution-data-server.enable = true;
       };
 
       udev.packages = with pkgs; [gnome.gnome-settings-daemon];
@@ -70,6 +72,14 @@ in {
         with pkgsUnstable; [
           gtop
           libgtop
+
+          gnomeExtensions.executor
+          gnomeExtensions.battery-health-charging
+          gnomeExtensions.app-menu-icon-remove-symbolic
+
+          gnomeExtensions.window-is-ready-remover
+
+          # gnomeExtensions.network-interfaces-info
           gnomeExtensions.appindicator
           gnomeExtensions.settingscenter
           gnomeExtensions.app-hider
@@ -80,7 +90,7 @@ in {
           gnomeExtensions.extension-list
           # gnomeExtensions.fuzzy-app-search
           gnomeExtensions.github-actions
-          gnomeExtensions.gpu-profile-selector
+          # gnomeExtensions.gpu-profile-selector
           gnomeExtensions.hue-lights
           gnomeExtensions.ip-finder
           gnomeExtensions.just-perfection
@@ -100,10 +110,11 @@ in {
         ]
       )
       ++ (with pkgs; [
+        # pkgsUnstable; [
         clutter
         clutter-gtk
         gjs
-        gnome.adwaita-icon-theme
+        # gnome.adwaita-icon-theme
         gnome-firmware
         gnome-menus
         gnome.dconf-editor
@@ -145,20 +156,33 @@ in {
     # trace: warning: The option `fonts.fonts' defined in `/nix/store/z1gqs0dm5j9g1qy5j9m7m85al7lhjpim-aca1xyh73qrpxrv4yh6lnavs59q875xf-source/modules/nixos/gui/gnome/default.nix' has been renamed to `fonts.packages'.
     # trace: warning: The option `fonts.enableDefaultFonts' defined in `/nix/store/z1gqs0dm5j9g1qy5j9m7m85al7lhjpim-aca1xyh73qrpxrv4yh6lnavs59q875xf-source/modules/nixos/gui/gnome/default.nix' has been renamed to `fonts.enableDefaultPackages'.
 
-    environment.gnome.excludePackages =
-      (with pkgs; [
-        # gnome-photos
-        gnome-tour
-      ])
-      ++ (with pkgs.gnome; [
-        cheese # webcam tool
-        tali # poker game
-        iagno # go game
-        hitori # sudoku game
-        atomix # puzzle game
-        yelp # Help view
-        gnome-initial-setup
-      ]);
+    # environment.gnome.excludePackages =
+    #   (with pkgs; [
+    #     # gnome-photos
+    #     gnome-tour
+    #   ])
+    #   ++ (with pkgs.gnome; [
+    #     cheese # webcam tool
+    #     tali # poker game
+    #     iagno # go game
+    #     hitori # sudoku game
+    #     atomix # puzzle game
+    #     yelp # Help view
+    #     gnome-initial-setup
+    #   ])
+    #   ++ (with pkgsUnstable; [
+    #     # gnome-photos
+    #     gnome-tour
+    #   ])
+    #   ++ (with pkgsUnstable.gnome; [
+    #     cheese # webcam tool
+    #     tali # poker game
+    #     iagno # go game
+    #     hitori # sudoku game
+    #     atomix # puzzle game
+    #     yelp # Help view
+    #     gnome-initial-setup
+    #   ]);
   };
 }
 # # pkgs.gnome45Extensions."app-hider@lynith.dev"

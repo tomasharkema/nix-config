@@ -58,11 +58,9 @@ in {
           StartLimitBurst = 5;
         };
         serviceConfig = {
-          Restart = "on-failure";
           RestartSec = 5;
-          MemoryLimit = "5G";
-          MemoryHigh = "3G";
-          MemoryMax = "4G";
+          MemoryHigh = "4G";
+          MemoryMax = "5G";
           Nice = 15;
         };
         preStart = ''

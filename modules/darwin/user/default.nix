@@ -28,25 +28,33 @@ in {
 
     programs.zsh = {enable = true;};
 
-    environment.systemPackages = with pkgs; [
-      # atuin
-      custom.maclaunch
-      terminal-notifier
-      custom.launchcontrol
-      custom.ztui
-      devenv
+    environment.systemPackages =
+      (with pkgs; [
+        # atuin
+        terminal-notifier
 
-      sysz
-      # iptraf-ng
-      # netscanner
-      bandwhich
-      bashmount
-      bmon
-      ctop
+        sysz
+        # iptraf-ng
+        # netscanner
+        bandwhich
+        bashmount
+        bmon
+        ctop
 
-      # devtodo
-      devdash
-    ];
+        # devtodo
+        devdash
+      ])
+      ++ (with pkgs.custom; [
+        launchcontrol
+        ztui
+        maclaunch
+        tailscale-tui
+      ])
+      ++ (with pkgs.darwin; [
+        lsusb
+
+        linux-builder
+      ]);
     security.pam.enableSudoTouchIdAuth = true;
   };
 }

@@ -27,6 +27,8 @@ in
 
       # mv /path/to/image.jpg ~/.face
 
+      # nix.package = pkgs.nixUnstable;
+
       home = {
         file = {
           ".face" = {
@@ -54,12 +56,12 @@ in
             ln -sfn /run/current-system/sw/share/X11/fonts ~/.local/share/fonts
           '';
 
-          userSymlinks-cachix = ''
-            if [ ! -d "$HOME/.config/cachix" ]; then
-              mkdir $HOME/.config/cachix
-            fi
-            ln -sfn /etc/cachix.dhall $HOME/.config/cachix/cachix.dhall
-          '';
+          # userSymlinks-cachix = ''
+          #   if [ ! -d "$HOME/.config/cachix" ]; then
+          #     mkdir $HOME/.config/cachix
+          #   fi
+          #   ln -sfn /etc/cachix.dhall $HOME/.config/cachix/cachix.dhall
+          # '';
           userSymlinks-notify = mkIf osConfig.gui.enable ''
             if [ ! -d "$HOME/.config/notify" ]; then
               mkdir $HOME/.config/notify
@@ -95,25 +97,10 @@ in
             # SSH_AUTH_SOCK = "/home/tomas/.1password/agent.sock";
           };
       };
-      # manual = {
-      #   html.enable = false;
-      #   # manpages.enable = false;
-      #   # json.enable = false;
-      # };
 
       fonts.fontconfig.enable = osConfig.gui.enable;
 
       autostart.programs = with pkgs; mkIf osConfig.gui.enable [telegram-desktop];
-
-      editorconfig = {
-        enable = true;
-        settings = {
-          "*" = {
-            indent_style = "space";
-            indent_size = "2";
-          };
-        };
-      };
 
       programs = {
         home-manager.enable = true;
@@ -138,6 +125,8 @@ in
             show_program_path = false;
             hide_kernel_threads = true;
             hide_userland_threads = true;
+            show_cpu_frequency = true;
+            show_cpu_temperature = true;
           };
         };
 
@@ -150,6 +139,7 @@ in
           enable = true;
           enableZshIntegration = true;
         };
+
         fzf = {
           enable = true;
           enableZshIntegration = true;
@@ -189,19 +179,12 @@ in
           };
         };
 
-        git = {
-          enable = true;
-          userName = "Tomas Harkema";
-          userEmail = "tomas@harkema.io";
-        };
-
         # bat = {
         #   enable = true;
         #   config.theme = "base16";
         #   themes.base16.src = pkgs.writeText "base16.tmTheme" osConfig.variables.theme.tmTheme;
         # };
 
-        lazygit.enable = true;
         lsd.enable = true;
         jq.enable = true;
         skim.enable = true;
@@ -225,7 +208,7 @@ in
             directory = {
               fish_style_pwd_dir_length = 2;
             };
-            add_newline = false;
+            # add_newline = false;
           };
         };
 
@@ -285,10 +268,11 @@ in
             rm = "rm -i";
             g = "git";
             gs = "git status";
-            pvxz = "pv @1 -N in -B 500M -pterbT | xz -e9 -T4 | pv -N out -B 500M -pterbT > @2";
+            pvzst = "pv @1 -N in -B 500M -pterbT | zstd - -e -T4 | pv -N out -B 500M -pterbT > @2";
             cat = "bat";
             dig = "dog";
-
+            # silver-star-ipmi raw 0x30 0x30 0x01 0x00
+            # silver-star-ipmi raw 0x30 0x30 0x02 0xff 0x10
             silver-star-ipmi = "ipmitool -I lanplus -H 192.168.0.45 -U root -P \"$(op item get abrgfwmlbnc2zghpugawqoagjq --field password)\"";
 
             dockerlogin = "op item get raeclwvdys3epkmc5zthv4pdha --format=json --vault=qtvfhvfotoqynomh2wd3yzoofe | jq '.fields[1].value' -r | docker login ghcr.io --username tomasharkema --password-stdin";

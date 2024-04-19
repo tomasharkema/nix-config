@@ -16,8 +16,10 @@ with lib; {
 
   config = {
     installed = true;
+
     apps = {
       ntopng.enable = true;
+      steam.enable = true;
     };
 
     gui = {
@@ -27,17 +29,26 @@ with lib; {
         rdp.enable = true;
       };
       quiet-boot.enable = true;
-      game-mode.enable = true;
+      gamemode.enable = true;
     };
     # resilio.root = "/opt/media/resilio";
-    resilio.enable = mkForce false;
-    apps.steam.enable = true;
+    # resilio.enable = mkForce false;
+
     systemd.enableEmergencyMode = false;
+
+    services.beesd.filesystems = {
+      root = {
+        spec = "UUID=4fb99410-225f-4c6a-a647-2cae35f879f0";
+        hashTableSizeMB = 2048;
+        verbosity = "crit";
+        extraOptions = ["--loadavg-target" "2.0"];
+      };
+    };
 
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y";
-      # media = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01";
+      media = "/dev/disk/by-id/ata-TOSHIBA_MQ01ABD100_Y6I8PBOHT";
       encrypt = true;
       newSubvolumes = true;
     };
@@ -45,12 +56,23 @@ with lib; {
     wifi.enable = true;
 
     traits = {
+      developer.enable = true;
       hardware = {
         tpm.enable = true;
         secure-boot.enable = true;
         remote-unlock.enable = true;
         monitor.enable = true;
         nvidia.enable = true;
+        disable-sleep.enable = true;
+
+        nfs = {
+          enable = true;
+
+          machines = {
+            silver-star.enable = true;
+            dione.enable = true;
+          };
+        };
       };
     };
 
@@ -62,9 +84,9 @@ with lib; {
       firewall = {
         enable = true;
       };
-      useDHCP = lib.mkDefault false;
+      # useDHCP = lib.mkDefault false;
       interfaces."enp4s0" = {
-        useDHCP = lib.mkDefault true;
+        # useDHCP = lib.mkDefault true;
         wakeOnLan.enable = true;
       };
     };
@@ -115,6 +137,23 @@ with lib; {
     # fileSystems."/export/media" = {
     #   device = "/media";
     #   options = ["bind"];
+    # };
+
+    # services.podman.enable = true;
+    # virtualisation = {
+    #   oci-containers.containers = {
+    #     netboot = {
+    #       image = "lscr.io/linuxserver/netbootxyz:latest";
+    #       autoStart = true;
+    #       ports = ["3000:3000" "69:69/udp" "8080:80"];
+    #       # hostname = "ipa.harkema.io";
+    #       # extraOptions = ["--sysctl" "net.ipv6.conf.all.disable_ipv6=0"];
+    #       # cmd = ["ipa-server-install" "-U" "-r" "HARKEMA.IO"];
+    #       # volumes = [
+    #       #   "/var/lib/freeipa:/data:Z"
+    #       # ];
+    #     };
+    #   };
     # };
   };
 }

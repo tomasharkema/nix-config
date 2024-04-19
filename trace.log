@@ -1,0 +1,9 @@
+trace: warning: The cfg.enableGnomeExtensions argument for `firefox.override` is deprecated, please add `pkgs.gnome-browser-connector` to `nativeMessagingHosts.packages` instead
+trace: warning: tomas profile: The option `programs.zsh.enableSyntaxHighlighting' defined in `/nix/store/w56y9pgbhaqc15zg7lnkkal9wj4ak4sr-by2g1hf1fyvc792yryz4w9qksv2wcd0q-source/modules/home/home/default.nix' has been renamed to `programs.zsh.syntaxHighlighting.enable'.
+trace: warning: tomas profile: The option `plugins.indent-blankline.filetypeExclude' defined in `/nix/store/w56y9pgbhaqc15zg7lnkkal9wj4ak4sr-by2g1hf1fyvc792yryz4w9qksv2wcd0q-source/modules/home/packages/nvim/default.nix' has been renamed to `plugins.indent-blankline.exclude.filetypes'.
+trace: warning: tomas profile: Using 'programs.firefox.enableGnomeExtensions' has been deprecated and
+will be removed in the future. Please change to overriding the package
+configuration using 'programs.firefox.package' instead. You can refer to
+its example for how to do this.
+
+trace: warning: The option `services.gnome.chrome-gnome-shell.enable' defined in `/nix/store/w56y9pgbhaqc15zg7lnkkal9wj4ak4sr-by2g1hf1fyvc792yryz4w9qksv2wcd0q-source/modules/nixos/gui/gnome/default.nix' has been renamed to `services.gnome.gnome-browser-connector.enable'.

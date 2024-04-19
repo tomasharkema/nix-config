@@ -2,7 +2,8 @@
   lib,
   inputs,
   ...
-}: {
+}:
+with lib; {
   imports = with inputs; [
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
@@ -33,6 +34,7 @@
       # freeipa.replica.enable = true;
       tcsd.enable = true;
     };
+
     apps.home-assistant.enable = true;
 
     disks.btrfs = {
@@ -45,7 +47,14 @@
 
     # resilio.root = "/opt/media/resilio";
 
-    boot.binfmt.emulatedSystems = ["aarch64-linux"];
+    boot = {
+      binfmt.emulatedSystems = ["aarch64-linux"];
+      loader.systemd-boot.enable = true;
+    };
+
+    services.kmscon = {
+      enable = mkForce false;
+    };
 
     networking = {
       hostName = "arthur";

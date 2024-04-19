@@ -22,16 +22,20 @@ in {
     };
     gui = {
       enable = mkBoolOpt false "Whether or not to manage nix configuration.";
+      gnome.enable = mkBoolOpt false "Whether or not to manage nix configuration.";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = {
     environment.systemPackages = with pkgs; [
-      inputs.deploy-rs.packages.${system}.deploy-rs
+      deploy-rs
       nixfmt
       nix-prefetch-git
-      inputs.nil.packages.${system}.default
+      nil
       flake-checker
+      direnv
+      # attic
+      alejandra
       # inputs.alejandra.packages.${system}.default
       nix-output-monitor
       nixpkgs-fmt
@@ -53,8 +57,23 @@ in {
     in {
       package = pkgs.nixUnstable;
 
+      linux-builder = {
+        enable = true;
+        ephemeral = true;
+        maxJobs = 4;
+        config = {
+          virtualisation = {
+            # rosetta.enable = true;
+            darwin-builder = {
+              diskSize = 40 * 1024;
+              memorySize = 8 * 1024;
+            };
+            cores = 6;
+          };
+        };
+      };
+
       settings = {
-        experimental-features = "nix-command flakes";
         http-connections = 50;
         warn-dirty = false;
         log-lines = 50;
@@ -65,7 +84,7 @@ in {
 
         # This appears to break on darwin
         # https://github.com/NixOS/nix/issues/7273
-        auto-optimise-store = true;
+        auto-optimise-store = false;
 
         allow-import-from-derivation = true;
 

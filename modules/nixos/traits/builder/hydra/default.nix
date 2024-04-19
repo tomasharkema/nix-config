@@ -20,10 +20,14 @@ in {
       127.0.0.1 localhost-aarch64
     '';
 
-    systemd.services.hydra-evaluator.serviceConfig = {
-      MemoryHigh = "5G";
-      MemoryMax = "9G";
-      MemoryLimit = "10G";
+    systemd.services = {
+      hydra-queue-runner.serviceConfig.Nice = 10;
+      hydra-evaluator.serviceConfig = {
+        MemoryHigh = "5G";
+        MemoryMax = "9G";
+        MemoryLimit = "10G";
+        Nice = 10;
+      };
     };
 
     nix.buildMachines = [
@@ -31,15 +35,15 @@ in {
         hostName = "localhost";
         systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
         supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-        maxJobs = 10;
+        maxJobs = 1;
       }
-      # {
-      #   hostName = "builder@wodan";
-      #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
-      #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-      #   maxJobs = 2;
-      #   speedFactor = 100;
-      # }
+      {
+        hostName = "builder@wodan";
+        systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
+        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+        maxJobs = 2;
+        speedFactor = 100;
+      }
       # {
       #   hostName = "builder@enzian";
       #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
@@ -75,7 +79,7 @@ in {
       notificationSender = "tomas+hydra@harkema.io";
       useSubstitutes = true;
       smtpHost = "smtp-relay.gmail.com";
-      debugServer = true;
+      debugServer = false;
       listenHost = "0.0.0.0";
       port = 3000;
 
@@ -100,8 +104,6 @@ in {
         Include ${ldap}
       '';
     };
-    #${builtins.readFile ldap}
-    # Include ${ldap}
 
     age.secrets."ldap" = {
       file = ../../../../../secrets/ldap.age;
@@ -114,11 +116,10 @@ in {
       StrictHostKeyChecking no
     '';
     nix = {
-      #   extraOptions = ''
-      #     auto-optimise-store = true
-      #   '';
-      #   # allowed-uris = https://github.com/zhaofengli/nix-base32.git https://github.com/tomasharkema.keys https://api.flakehub.com/f/pinned https://github.com/NixOS/nixpkgs/archive https://github.com/NixOS/nixpkgs-channels/archive https://github.com/input-output-hk https://github.com/tomasharkema
-
+      # extraOptions = ''
+      #   auto-optimise-store = true
+      #   allowed-uris = https:// github:NixOS/ github:nixos/ github:hercules-ci/ github:numtide/ github:cachix/ github:nix-community/ github:snowfallorg/
+      # '';
       settings = {
         use-cgroups = true;
         #     allowed-uris = [
@@ -141,20 +142,18 @@ in {
         #     allow-import-from-derivation = true;
 
         #     substituters = [
-        #       "https://tomasharkema.cachix.org/"
         #       "https://nix-cache.harke.ma/tomas/"
         #       "https://nix-community.cachix.org/"
         #       "https://cache.nixos.org/"
         #     ];
 
         #     trusted-public-keys = [
-        #       "tomasharkema.cachix.org-1:LOeGvH7jlA3vZmW9+gHyw0BDd1C8a0xrQSl9WHHTRuA="
         #       "tomas:/cvjdgRjoTx9xPqCkeMWkf9csRSAmnqLgN3Oqkpx2Tg="
         #       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         #       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         #     ];
 
-        #     trusted-users = ["hydra" "hydra-queue-runner" "hydra-www" "github-runner-blue-fire" "builder"];
+        trusted-users = ["hydra" "hydra-queue-runner" "hydra-www" "github-runner-blue-fire" "builder"];
       };
     };
 
