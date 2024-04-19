@@ -11,11 +11,22 @@ with lib; {
   ];
 
   config = {
+    # nixpkgs.crossSystem.system = "aarch64-linux";
     installed = true;
     networking = {
       wireless.enable = mkForce false;
       hostName = "euro-mir-vm";
     };
+
+    nix.buildMachines = [
+      {
+        hostName = "blue-fie";
+        systems = ["aarch64-linux" "x86_64-linux"];
+        maxJobs = 4;
+        supportedFeatures = ["kvm" "benchmark" "big-parallel"];
+        speedFactor = 100;
+      }
+    ];
 
     users.mutableUsers = true;
 
@@ -41,9 +52,16 @@ with lib; {
       # opensnitch.enable = true;
     };
 
-    boot.growPartition = true;
+    boot = {
+      growPartition = true;
 
+      tmp = {
+        useTmpfs = false;
+        cleanOnBoot = false;
+      };
+    };
     traits = {
+      developer.enable = false;
       hardware = {
         tpm.enable = true;
         secure-boot.enable = true;
@@ -57,6 +75,11 @@ with lib; {
       enable = true;
       driSupport = true;
       #   # driSupport32Bit = true;
+    };
+    services = {
+      kmscon = {
+        enable = false;
+      };
     };
   };
 }

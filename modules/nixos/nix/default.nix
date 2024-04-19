@@ -43,12 +43,7 @@ in {
       # (nixos-hosts.override {
       #   hosts = inputs.self.nixosConfigurations;
       # })
-      inputs.deploy-rs.packages."${system}".deploy-rs
-      nixfmt
-      nix-prefetch-git
-      nix-output-monitor
-      # flake-checker
-      inputs.flake-checker.packages."${system}".default
+      attic
     ];
 
     nix = let
@@ -69,7 +64,7 @@ in {
           auto-optimise-store = true;
           trusted-users = users ++ ["tomas" "root"]; # "builder"];
           allowed-users = users ++ ["tomas" "root" "builder"];
-          netrc-file = "/etc/nix/netrc";
+          # netrc-file = "/etc/nix/netrc";
           substituters =
             [cfg.default-substituter.url]
             ++ (mapAttrsToList (name: value: name) cfg.extra-substituters);

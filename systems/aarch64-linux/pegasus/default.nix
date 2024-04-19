@@ -12,8 +12,19 @@
 
   config = {
     networking.hostName = "pegasus";
+    virtualisation.vmVariant = {
+      virtualisation = {
+        diskSize = 50 * 1024;
+        memorySize = 4 * 1024;
+        cores = 4;
+      };
+    };
 
     traits.raspberry.enable = true;
+
+    traits.low-power.enable = true;
+    gui."media-center".enable = true;
+    apps.spotifyd.enable = true;
 
     environment.systemPackages = with pkgs; [
       libraspberrypi
