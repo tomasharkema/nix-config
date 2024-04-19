@@ -30,6 +30,11 @@ with lib;
 
       nix.package = pkgs.nixUnstable;
 
+      system.nixos.tags =
+        if config.installed
+        then ["installed"]
+        else ["notinstalled"];
+
       # Select internationalisation properties.
       i18n = {
         defaultLocale = "en_US.UTF-8";
@@ -65,12 +70,10 @@ with lib;
         hardwareScan = true;
         kernel.sysctl."net.ipv4.ip_forward" = 1;
 
-        tmp = mkDefault {
-          useTmpfs = true;
-          cleanOnBoot = true;
-        };
-
-        initrd.availableKernelModules = ["netatop"];
+        # tmp = mkDefault {
+        #   useTmpfs = true;
+        #   cleanOnBoot = true;
+        # };
 
         # kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
         kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
@@ -89,11 +92,6 @@ with lib;
         };
       };
 
-      # programs.atop = {
-      #   enable = true;
-      #   netatop.enable = true;
-      # };
-
       programs.atop = {
         atopRotateTimer.enable = true;
         enable = true;
@@ -103,15 +101,32 @@ with lib;
         atopgpu.enable = config.traits.hardware.nvidia.enable;
         netatop.enable = true;
       };
+
       environment.systemPackages =
         (with pkgs; [
+          # etcher
+          pamixer
+          pulsemixer
+          pamix
+          pavucontrol
+          ponymix
+          # ntfy
+          ntfy-sh
+          ntfs3g
+          plex-mpv-shim
+          # rtop
+          ipcalc
           fancy-motd
+          kexec-tools
           # dry
           # pkgs.deepin.udisks2-qt5
           # udisks2
           lshw
+          usbutils
           ttop
-          devenv
+          git
+          wget
+          curl
           sysz
           iptraf-ng
           netscanner
@@ -157,15 +172,17 @@ with lib;
           sshed
         ])
         ++ (
-          if pkgs.stdenv.isx86_64
-          then [
+          optionals pkgs.stdenv.isx86_64 [
             pkgs.custom.ztui
           ]
-          else []
         );
+      # services.ntfy-sh.enable = true;
 
-      apps.attic.enable = mkDefault true;
-      apps.ipa.enable = mkDefault true;
+      apps = {
+        attic.enable = mkDefault true;
+        ipa.enable = mkDefault true;
+      };
+
       proxy-services.enable = mkDefault true;
 
       systemd = {
@@ -185,6 +202,17 @@ with lib;
       };
 
       services = {
+        kmscon = {
+          enable = mkDefault true;
+          hwRender = config.traits.hardware.nvidia.enable;
+          fonts = [
+            {
+              name = "JetBrainsMono Nerd Font Mono";
+              package = pkgs.nerdfonts;
+            }
+          ];
+        };
+
         fstrim.enable = true;
 
         throttled.enable = pkgs.stdenv.isx86_64;
@@ -226,7 +254,7 @@ with lib;
           apiKeyFile = config.age.secrets.mak.path;
         };
 
-        fwupd.enable = true;
+        fwupd.enable = mkDefault true;
 
         avahi.extraServiceFiles = {
           ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
@@ -314,6 +342,7 @@ with lib;
       };
 
       programs = {
+        darling.enable = pkgs.stdenv.isx86_64;
         flashrom.enable = true;
         rust-motd = {
           enable = true;
@@ -405,10 +434,10 @@ with lib;
 
           # [last_run]
         };
-        git = {
-          enable = true;
-          lfs.enable = true;
-        };
+        # git = {
+        #   enable = true;
+        #   lfs.enable = true;
+        # };
         htop = {
           enable = true;
           settings = {
@@ -417,8 +446,6 @@ with lib;
             hide_userland_threads = true;
           };
         };
-
-        _1password.enable = true;
 
         ssh = {
           # startAgent = true;
@@ -442,18 +469,18 @@ with lib;
         # fancontrol.enable = true;
       };
 
-      systemd = {
-        targets = {
-          sleep.enable = mkDefault false;
-          suspend.enable = mkDefault false;
-          hibernate.enable = mkDefault false;
-          hybrid-sleep.enable = mkDefault false;
-        };
-        services = {
-          NetworkManager-wait-online.enable = lib.mkForce false;
-          #     systemd-networkd-wait-online.enable = lib.mkForce false;
-        };
-      };
+      # systemd = {
+      # targets = {
+      #   sleep.enable = mkDefault false;
+      #   suspend.enable = mkDefault false;
+      #   hibernate.enable = mkDefault false;
+      #   hybrid-sleep.enable = mkDefault false;
+      # };
+      # services = {
+      # NetworkManager-wait-online.enable = lib.mkForce false;
+      #     systemd-networkd-wait-online.enable = lib.mkForce false;
+      # };
+      # };
 
       networking = {
         firewall = {

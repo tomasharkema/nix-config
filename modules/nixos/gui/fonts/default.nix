@@ -12,6 +12,7 @@ with lib; {
       fontconfig = {
         antialias = true;
         cache32Bit = true;
+        allowBitmaps = true;
 
         defaultFonts = {
           monospace = ["JetBrainsMono Nerd Font Mono"];
@@ -19,10 +20,10 @@ with lib; {
 
           sansSerif = ["Inter"];
         };
-        hinting = {
-          autohint = true;
-          enable = true;
-        };
+        # hinting = {
+        #   autohint = true;
+        #   enable = true;
+        # };
       };
 
       packages = with pkgs;
