@@ -47,8 +47,8 @@
   lib,
   stdenv,
 }: let
-  shortVersion = "0.11.2";
-  build = "831";
+  shortVersion = "0.11.1";
+  build = "814";
   fullVersion = "${shortVersion}-${build}";
   fullArch =
     if stdenv.isx86_64
@@ -64,7 +64,7 @@ in
     version = fullVersion;
     src = fetchurl {
       url = "https://releases.gitbutler.com/releases/release/${fullVersion}/linux/${fullArch}/git-butler_${shortVersion}_${arch}.AppImage";
-      hash = "";
+      hash = "sha256-N/6aaB7RWCjF0jIMKR6ymvm6Md9o+sRB8cetPxEBUAo=";
     };
     extraPkgs = pkgs: with pkgs; [libthai];
     extraInstallCommands = let
