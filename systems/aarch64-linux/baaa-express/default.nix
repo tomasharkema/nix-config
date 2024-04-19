@@ -14,21 +14,37 @@ with lib; {
 
     traits.raspberry.enable = true;
 
+    sound.extraConfig = ''
+      defaults.pcm.!card 1
+    '';
+
     environment.systemPackages = with pkgs; [
       libraspberrypi
       raspberrypi-eeprom
     ];
 
     traits.low-power.enable = true;
+    traits.slim.enable = true;
     gui."media-center".enable = true;
+    apps.spotifyd.enable = true;
 
     # system.stateVersion = "23.11";
 
     # fileSystems."/".fsType = lib.mkForce "tmpfs";
     # fileSystems."/".device = lib.mkForce "none";
-
     boot = {
-      loader.generic-extlinux-compatible.enable = true;
+      loader = {
+        generic-extlinux-compatible.enable = true;
+
+        # start_x=1
+
+        raspberryPi.firmwareConfig = ''
+          force_turbo=1
+          gpu_mem=256
+          cma=320M
+        '';
+      };
+      initrd.kernelModules = ["vc4" "bcm2835_dma" "i2c_bcm2835"];
       # initrd.availableKernelModules = mkForce [
       #   "vc4"
       #   "bcm2835_dma"
@@ -73,7 +89,7 @@ with lib; {
       # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
       # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
 
-      kernelPackages = pkgs.linuxPackages_6_7;
+      kernelPackages = pkgs.linuxPackages_latest;
 
       # kernelParams = [
       # "console=ttyS1,115200n8"

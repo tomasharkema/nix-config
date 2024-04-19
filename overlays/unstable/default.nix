@@ -4,9 +4,8 @@
   ...
 }: final: prev: {
   runitor = channels.unstable.runitor;
-
   vscode = channels.unstable.vscode;
-  android-tools = channels.unstable.android-tools;
+  # android-tools = channels.unstable.android-tools;
 
   OVMF = channels.unstable.OVMF;
 
@@ -20,7 +19,7 @@
   cockpit = channels.unstable.cockpit;
   cockpit-podman = self.packages."${prev.system}".cockpit-podman;
   cockpit-tailscale = self.packages."${prev.system}".cockpit-tailscale;
-  # cockpit-ostree = self.packages."${prev.system}".cockpit-ostree;
+  cockpit-ostree = self.packages."${prev.system}".cockpit-ostree;
   cockpit-machines = self.packages."${prev.system}".cockpit-machines;
 
   keybase = channels.unstable.keybase;
@@ -34,5 +33,14 @@
 
   systembus-notify = self.packages."${prev.system}".systembus-notify;
 
+  authorized-keys = self.packages."${prev.system}".authorized-keys;
+
   netscanner = channels.unstable.netscanner;
+
+  xdg-terminal-exec = channels.unstable.xdg-terminal-exec;
+
+  _1password-gui = channels.unstable._1password-gui;
+  _1password = channels.unstable._1password;
+
+  ntfs2btrfs = channels.unstable.ntfs2btrfs;
 }

@@ -100,36 +100,36 @@
     };
 
     nix = {
+      # auto-optimise-store = true
       extraOptions = ''
-        auto-optimise-store = true
         builders-use-substitutes = true
       '';
 
       distributedBuilds = true;
 
-      buildMachines = [
-        {
-          hostName = "builder@blue-fire";
-          systems = ["x86_64-linux" "i686-linux" "aarch64-linux"];
-          maxJobs = 2;
-          supportedFeatures = ["kvm" "benchmark" "big-parallel"];
-          speedFactor = 50;
-        }
-        {
-          hostName = "builder@enzian";
-          systems = ["x86_64-linux" "i686-linux" "aarch64-linux"];
-          maxJobs = 2;
-          supportedFeatures = ["kvm" "benchmark" "big-parallel"];
-          speedFactor = 10;
-        }
-        # {
-        #   hostName = "builder@wodan-wsl";
-        #   systems = ["x86_64-linux" "i686-linux" "aarch64-linux"];
-        #   maxJobs = 2;
-        #   supportedFeatures = ["kvm" "benchmark" "big-parallel"];
-        #   speedFactor = 100;
-        # }
-      ];
+      # buildMachines = [
+      #   {
+      #     hostName = "builder@blue-fire";
+      #     systems = ["x86_64-linux" "i686-linux" "aarch64-linux"];
+      #     maxJobs = 2;
+      #     supportedFeatures = ["kvm" "benchmark" "big-parallel"];
+      #     speedFactor = 50;
+      #   }
+      #   {
+      #     hostName = "builder@enzian";
+      #     systems = ["x86_64-linux" "i686-linux" "aarch64-linux"];
+      #     maxJobs = 2;
+      #     supportedFeatures = ["kvm" "benchmark" "big-parallel"];
+      #     speedFactor = 10;
+      #   }
+      #   # {
+      #   #   hostName = "builder@wodan-wsl";
+      #   #   systems = ["x86_64-linux" "i686-linux" "aarch64-linux"];
+      #   #   maxJobs = 2;
+      #   #   supportedFeatures = ["kvm" "benchmark" "big-parallel"];
+      #   #   speedFactor = 100;
+      #   # }
+      # ];
     };
   };
 }

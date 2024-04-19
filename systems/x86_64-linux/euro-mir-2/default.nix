@@ -7,7 +7,7 @@
 }:
 with lib; {
   imports = with inputs; [
-    nixos-hardware.nixosModules.dell-xps-15-9560-nvidia
+    nixos-hardware.nixosModules.dell-xps-15-9570-nvidia
     ./hardware-configuration.nix
   ];
 
@@ -20,7 +20,7 @@ with lib; {
       newSubvolumes = true;
     };
 
-    services.hardware.bolt.enable = true;
+    environment.systemPackages = with pkgs; [bolt];
 
     gui = {
       enable = true;
@@ -28,13 +28,16 @@ with lib; {
         enable = true;
       };
       gnome.enable = true;
-      game-mode.enable = true;
+      gamemode.enable = true;
       quiet-boot.enable = true;
     };
 
     hardware = {
       nvidia.nvidiaPersistenced = false;
       # fancontrol.enable = true;
+      opengl = {
+        extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau];
+      };
     };
 
     apps = {
@@ -67,7 +70,15 @@ with lib; {
 
     services = {
       # podman.enable = true;
-
+      hardware.bolt.enable = true;
+      beesd.filesystems = {
+        root = {
+          spec = "UUID=3e30181c-9df4-4412-a1ee-cb97819f218c";
+          hashTableSizeMB = 4096;
+          verbosity = "crit";
+          extraOptions = ["--loadavg-target" "2.0"];
+        };
+      };
       synergy.server = {
         enable = true;
       };
@@ -78,46 +89,21 @@ with lib; {
         reflector = mkForce false;
       };
 
-      # fprintd = {
-      #   enable = true;
-      #   package = pkgs.fprintd-tod;
-      #   tod = {
-      #     enable = true;
-      #     driver = pkgs.custom.libfprint-2-tod1-goodix; #pkgs.libfprint-2-tod1-goodix;
-      #   };
-      # };
+      fprintd = {
+        enable = true;
+        package = pkgs.fprintd-tod;
+        tod = {
+          enable = true;
+          # driver = pkgs.custom.libfprint-2-tod1-goodix;
+          driver = pkgs.libfprint-2-tod1-goodix;
+        };
+      };
     };
-
-    # services.fprintd = let
-    #   libfprint-tod = pkgs.libfprint.overrideAttrs (_: rec {
-    #     pname = "libfprint-tod";
-    #     version = "1.94.7+tod1";
-    #     src = pkgs.fetchFromGitLab {
-    #       domain = "gitlab.freedesktop.org";
-    #       owner = "3v1n0";
-    #       repo = "libfprint";
-    #       rev = "v${version}";
-    #       sha256 = "sha256-q6m/J5GH86/z/mKnrYoanhKWR7+reKIRHqhDOUkknFA=";
-    #     };
-    #     doCheck = false;
-    #   });
-    # in {
-    #   enable = true;
-    #   package = pkgs.fprintd.override {libfprint = libfprint-tod;};
-    #   tod = {
-    #     enable = true;
-    #     driver = pkgs.libfprint-2-tod1-goodix.override {libfprint-tod = libfprint-tod;};
-    #   };
-    # };
-    # systemd.services."fprintd".environment."G_MESSAGES_DEBUG" = "all"; # for good measure
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
       kernelParams = ["acpi_rev_override=1"];
-    };
-
-    programs = {
-      mtr.enable = true;
+      supportedFilesystems = ["ntfs"];
     };
   };
 }

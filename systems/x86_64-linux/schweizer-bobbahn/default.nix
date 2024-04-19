@@ -11,30 +11,33 @@ with lib; {
 
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
+
+    nixos-hardware.nixosModules.common-gpu-intel
   ];
 
   config = {
-    installed = true;
+    # installed = true;
 
     traits.low-power.enable = true;
     gui."media-center".enable = true;
+    apps.spotifyd.enable = true;
 
-    disks.btrfs = {
+    environment.systemPackages = with pkgs; [intel-gpu-tools];
+
+    disks.ext4 = {
       enable = true;
       main = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01";
-      encrypt = true;
-      newSubvolumes = true;
     };
 
-    gui = {
-      enable = true;
-      desktop = {
-        enable = true;
-      };
-      gnome.enable = true;
-      game-mode.enable = false;
-      quiet-boot.enable = true;
-    };
+    # gui = {
+    #   enable = true;
+    #   desktop = {
+    #     enable = true;
+    #   };
+    #   gnome.enable = false;
+    #   gamemode.enable = false;
+    #   quiet-boot.enable = true;
+    # };
 
     resilio.enable = false;
 
@@ -44,7 +47,7 @@ with lib; {
         secure-boot.enable = true;
         laptop.enable = true;
         # nvidia.enable = true;
-        remote-unlock.enable = true;
+        remote-unlock.enable = false;
       };
     };
 
@@ -54,14 +57,16 @@ with lib; {
       firewall.enable = true;
     };
 
+    programs = {
+      atop.enable = mkForce false;
+    };
+
     services = {
       # podman.enable = true;
       clipmenu.enable = mkForce false;
       synergy.server = {
         # enable = true;
       };
-      atop.enable = mkForce false;
-
       avahi = {
         enable = true;
         allowInterfaces = ["wlo1"];
