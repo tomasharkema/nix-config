@@ -3,7 +3,7 @@
     nixpkgs.url = "nixpkgs/nixos-23.11";
     unstable.url = "nixpkgs/nixos-unstable";
 
-    nixpkgs-gnome.url = "nixpkgs/gnome-46";
+    # nixpkgs-gnome.url = "nixpkgs/gnome-46";
 
     flake-compat = {
       url = "github:edolstra/flake-compat";
@@ -15,13 +15,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-wsl = {
-      url = "github:nix-community/NixOS-WSL";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
+    # nixos-wsl = {
+    #   url = "github:nix-community/NixOS-WSL";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #   };
+    # };
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
@@ -48,10 +48,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    colmena = {
-      url = "github:zhaofengli/colmena";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # colmena = {
+    #   url = "github:zhaofengli/colmena";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nixos-anywhere = {
       url = "github:nix-community/nixos-anywhere";
@@ -73,17 +73,17 @@
 
     agenix = {
       url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     agenix-shell = {
       url = "github:aciceri/agenix-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-hardware = {
       url = "github:nixos/nixos-hardware";
     };
+
+    nix-gaming.url = "github:fufexan/nix-gaming";
 
     # cachix-deploy-flake = {
     #   url = "github:cachix/cachix-deploy-flake";
@@ -92,17 +92,15 @@
 
     nix-software-center = {
       url = "github:snowfallorg/nix-software-center";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-conf-editor = {
       url = "github:snowfallorg/nixos-conf-editor";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
-    impermanence.url = "github:nix-community/impermanence";
+    # impermanence.url = "github:nix-community/impermanence";
 
     attic = {
       url = "github:zhaofengli/attic";
@@ -144,19 +142,19 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    peerix = {
-      url = "github:cid-chan/peerix";
-      inputs.nixpkgs.follows = "unstable";
-    };
+    # peerix = {
+    #   url = "github:cid-chan/peerix";
+    #   inputs.nixpkgs.follows = "unstable";
+    # };
 
-    poetry2nix = {
-      url = "github:nix-community/poetry2nix";
-    };
+    # poetry2nix = {
+    #   url = "github:nix-community/poetry2nix";
+    # };
 
-    stylix = {
-      url = "github:danth/stylix/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # stylix = {
+    #   url = "github:danth/stylix/release-23.11";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nixos-search = {
       url = "github:NixOS/nixos-search";
@@ -168,10 +166,10 @@
       inputs.nixpkgs.follows = "unstable";
     };
 
-    filestash-nix = {
-      url = "github:matthewcroughan/filestash-nix";
-      inputs.nixpkgs.follows = "unstable";
-    };
+    # filestash-nix = {
+    #   url = "github:matthewcroughan/filestash-nix";
+    #   inputs.nixpkgs.follows = "unstable";
+    # };
 
     zjstatus = {
       url = "github:dj95/zjstatus";
@@ -380,6 +378,7 @@
     # netrc-file = "/etc/nix/netrc";
 
     substituters = [
+      "https://nix-gaming.cachix.org"
       "https://nix-community.cachix.org"
       "https://cache.nixos.org/"
       "https://blue-fire.ling-lizard.ts.net/attic/tomas/"
@@ -393,37 +392,8 @@
       "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       "tomas:qzaaV24nfgwcarekICaYr2c9ZBFDQnvvydOywbwAeys="
+      "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
     ];
-
-    extra-substituters = [
-      "https://nix-community.cachix.org"
-      "https://cache.nixos.org/"
-      "https://blue-fire.ling-lizard.ts.net/attic/tomas/"
-      "https://devenv.cachix.org"
-      "https://nixos-search.cachix.org"
-    ];
-
-    extra-trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-      "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA="
-      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-      "tomas:qzaaV24nfgwcarekICaYr2c9ZBFDQnvvydOywbwAeys="
-      "nixos-search.cachix.org-1:1HV3YF8az4fywnH+pAd+CXFEdpTXtv9WpoivPi+H70o="
-    ];
-
-    # extra-trusted-public-keys = [
-    #   "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-    #   "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    #   "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-    # ];
-    # extra-substituters = [
-    #   "https://nix-cache.harke.ma/tomas/"
-    #   "https://nix-community.cachix.org/"
-    #   "https://cache.nixos.org/"
-    #   "https://devenv.cachix.org"
-    # ];
 
     binaryCaches = ["https://cache.nixos.org"];
 
