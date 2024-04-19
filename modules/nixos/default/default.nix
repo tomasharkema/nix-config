@@ -70,10 +70,10 @@ with lib;
         hardwareScan = true;
         kernel.sysctl."net.ipv4.ip_forward" = 1;
 
-        # tmp = mkDefault {
-        #   useTmpfs = true;
-        #   cleanOnBoot = true;
-        # };
+        tmp = mkDefault {
+          useTmpfs = true;
+          cleanOnBoot = true;
+        };
 
         # kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
         kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;

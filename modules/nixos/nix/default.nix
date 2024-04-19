@@ -27,9 +27,9 @@ with lib.custom; {
 
       settings =
         {
-          # use-cgroups = true;
-          # experimental-features = "nix-command flakes cgroups";
-          # http-connections = 50;
+          use-cgroups = true;
+          experimental-features = "nix-command flakes cgroups";
+          http-connections = 50;
           # warn-dirty = false;
           # log-lines = 50;
           # sandbox = false;
@@ -45,7 +45,6 @@ with lib.custom; {
           #   ++ (mapAttrsToList (name: value: value.key) cfg.extra-substituters);
         }
         // (lib.optionalAttrs true {
-          # config.custom.tools.direnv.enable {
           keep-outputs = true;
           keep-derivations = true;
         });
