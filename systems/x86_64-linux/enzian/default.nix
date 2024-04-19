@@ -38,8 +38,8 @@ with lib; {
 
     services.beesd.filesystems = {
       root = {
-        spec = "/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y";
-        hashTableSizeMB = 4096;
+        spec = "UUID=4fb99410-225f-4c6a-a647-2cae35f879f0";
+        hashTableSizeMB = 2048;
         verbosity = "crit";
         extraOptions = ["--loadavg-target" "2.0"];
       };
