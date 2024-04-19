@@ -12,9 +12,14 @@
   ];
 
   config = {
+    # btrfs balance -dconvert=raid0 -mconvert=raid1 /home
+
     installed = true;
-    programs.gamemode.enable = true;
-    # environment.systemPackages = with pkgs; [openrgb-with-all-plugins];
+    # programs.gamemode.enable = true;
+    environment.systemPackages = with pkgs; [
+      ntfs2btrfs
+      openrgb-with-all-plugins
+    ];
 
     time = {
       # hardwareClockInLocalTime = true;
@@ -51,7 +56,7 @@
         enable = true;
         rdp.enable = true;
       };
-      game-mode.enable = false;
+      gamemode.enable = true;
       quiet-boot.enable = true;
     };
     # fileSystems."/mnt/media" = {
@@ -79,11 +84,19 @@
       enable = true;
       bridgeInterfaces = ["enp2s0"];
     };
+    services.beesd.filesystems = {
+      root = {
+        spec = "UUID=b91c8226-5e0e-4c0e-9c6e-b7a39fc9bdd0";
+        hashTableSizeMB = 4096;
+        verbosity = "crit";
+        extraOptions = ["--loadavg-target" "2.0"];
+      };
+    };
 
     hardware = {
       nvidia = {
-        modesetting.enable = false;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        # modesetting.enable = false;
+        # package = config.boot.kernelPackages.nvidiaPackages.stable;
         nvidiaPersistenced = true;
       };
       cpu.intel.updateMicrocode = true;
@@ -95,22 +108,22 @@
       #   device = "192.168.0.11:/exports/media";
       #   fsType = "nfs";
       # };
-      "/mnt/unraid/appdata" = {
-        device = "192.168.0.100:/mnt/user/appdata";
-        fsType = "nfs";
-      };
-      "/mnt/unraid/appdata_ssd" = {
-        device = "192.168.0.100:/mnt/user/appdata_ssd";
-        fsType = "nfs";
-      };
-      "/mnt/unraid/appdata_disk" = {
-        device = "192.168.0.100:/mnt/user/appdata_disk";
-        fsType = "nfs";
-      };
-      "/mnt/unraid/data" = {
-        device = "192.168.0.100:/mnt/user/data";
-        fsType = "nfs";
-      };
+      # "/mnt/unraid/appdata" = {
+      #   device = "192.168.0.100:/mnt/user/appdata";
+      #   fsType = "nfs";
+      # };
+      # "/mnt/unraid/appdata_ssd" = {
+      #   device = "192.168.0.100:/mnt/user/appdata_ssd";
+      #   fsType = "nfs";
+      # };
+      # "/mnt/unraid/appdata_disk" = {
+      #   device = "192.168.0.100:/mnt/user/appdata_disk";
+      #   fsType = "nfs";
+      # };
+      # "/mnt/unraid/data" = {
+      #   device = "192.168.0.100:/mnt/user/data";
+      #   fsType = "nfs";
+      # };
       #   "/mnt/dione" = {
       #     device = "192.168.178.3:/volume1/homes";
       #     fsType = "nfs";
@@ -124,19 +137,34 @@
         nvidia.enable = true;
         remote-unlock.enable = true;
         monitor.enable = true;
+        disable-sleep.enable = true;
+
+        nfs = {
+          enable = true;
+
+          machines = {
+            silver-star.enable = true;
+            # dione.enable = true;
+          };
+        };
       };
     };
 
     disks.btrfs = {
       enable = true;
+
       main = "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768639292E";
+      second = "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768637D1FE";
+
       encrypt = true;
+      newSubvolumes = true;
+      swapSize = 64 * 1024;
     };
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = ["ntfs"];
-      kernelModules = ["i2c-dev"];
+      # kernelModules = ["i2c-dev"];
     };
 
     # boot = {

@@ -9,20 +9,20 @@ with lib;
 with lib.custom; let
   cfg = config.apps.ipa;
 in {
-  disabledModules = [
-    "security/ipa.nix"
-    "security/pam.nix"
-    "krb5/default.nix"
-    "config/krb5/default.nix"
-    "services/misc/sssd.nix"
-  ];
+  # disabledModules = [
+  #   "security/ipa.nix"
+  #   "security/pam.nix"
+  #   "krb5/default.nix"
+  #   "config/krb5/default.nix"
+  #   "services/misc/sssd.nix"
+  # ];
 
-  imports = [
-    "${inputs.unstable}/nixos/modules/security/ipa.nix"
-    "${inputs.unstable}/nixos/modules/security/pam.nix"
-    "${inputs.unstable}/nixos/modules/security/krb5"
-    "${inputs.unstable}/nixos/modules/services/misc/sssd.nix"
-  ];
+  # imports = [
+  #   "${inputs.unstable}/nixos/modules/security/ipa.nix"
+  #   "${inputs.unstable}/nixos/modules/security/pam.nix"
+  #   "${inputs.unstable}/nixos/modules/security/krb5"
+  #   "${inputs.unstable}/nixos/modules/services/misc/sssd.nix"
+  # ];
 
   options = {
     apps.ipa = {
@@ -34,31 +34,31 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [ldapvi ldapmonitor];
 
-    security = {
-      polkit = {
+    services = {
+      autofs = {
+        # enable = true;
+      };
+      sssd = {
         enable = true;
-        extraConfig = ''
-          polkit.addRule(function(action, subject) {
-            if (action.id == "org.freedesktop.policykit.exec" && subject.isInGroup("admins")) {
-              return polkit.Result.YES;
-            }
-          });
+        kcm = true;
+        sshAuthorizedKeysIntegration = true;
+
+        config = ''
+          [pam]
+          pam_passkey_auth = True
+          passkey_debug_libfido2 = True
+
+          [prompting/passkey]
+          interactive_prompt = "Insert your Passkey device, then press ENTER."
+
+          [domain/shadowutils]
+          id_provider = proxy
+          proxy_lib_name = files
+          auth_provider = none
+          local_auth_policy = match
+
         '';
       };
-
-      pam = {
-        services = mkIf config.installed {
-          login.sssdStrictAccess = mkDefault true;
-          sudo.sssdStrictAccess = mkDefault true;
-          ssh.sssdStrictAccess = mkDefault true;
-        };
-      };
-    };
-
-    services.sssd = {
-      enable = true;
-      # kcm = true;
-      sshAuthorizedKeysIntegration = true;
     };
 
     security = {
@@ -76,6 +76,33 @@ in {
         certificate = "${./ca.crt}";
         dyndns.enable = true;
         ifpAllowedUids = ["root" "tomas"];
+      };
+
+      sudo.package = mkIf config.installed (pkgs.sudo.override {withSssd = true;});
+
+      polkit = {
+        enable = true;
+        extraConfig = ''
+          polkit.addRule(function(action, subject) {
+            if (action.id == "org.freedesktop.policykit.exec" && subject.isInGroup("admins")) {
+              return polkit.Result.YES;
+            }
+          });
+        '';
+      };
+
+      pam = {
+        #   krb5.enable = true;
+        services = mkIf config.installed {
+          login.sssdStrictAccess = mkDefault true;
+          sudo.sssdStrictAccess = mkDefault true;
+          ssh.sssdStrictAccess = mkDefault true;
+          askpass.sssdStrictAccess = mkDefault true;
+          cockpit.sssdStrictAccess = mkDefault true;
+          "password-auth".sssdStrictAccess = mkDefault true;
+          "system-auth".sssdStrictAccess = mkDefault true;
+          "gdm-password".sssdStrictAccess = mkDefault true;
+        };
       };
     };
   };

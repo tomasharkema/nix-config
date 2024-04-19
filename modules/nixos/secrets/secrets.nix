@@ -13,7 +13,7 @@ let
 
   utm-nixos = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICgPvSzMf7TG4ArvFFp8R/kfj6XYXkMl3r47FL5voIBN root@utm-nixos";
 
-  arthur = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ0N7wvhwFkccHR5bVQUC47H/Rb4asO3emf//Ut9cx0Q root@arthur";
+  arthur = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPNjMAH00cvtgNj1+5bMhUi0woJJ5kmhu1o2h2AmzRJW root@arthur";
 
   hyperv-nixos = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA74le7rZXdvB5aeET0Wy1JTn3fKonN+pAQPdPjVyzO8 root@hyperv-nixos";
 
@@ -26,14 +26,13 @@ let
   wodan-wsl = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICI2xzlzSsxv+6QSZ6rCeG0ma4HfIH3YWJj/P4GoQ3M/ root@wodan-wsl";
   wodan-wsl-tomas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICI2xzlzSsxv+6QSZ6rCeG0ma4HfIH3YWJj/P4GoQ3M/ root@nixos";
 
-  baaa-express = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILU+xGIfTfinOqUhBs/7tdzuKRl5XRC7dyCzcWqxRZ7H root@baaa-express";
-  baaa-express-user = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBzNmvr4dGWHPZ/ZoFN2wIzUSDhYO2+hq4r4FeAqIPSf tomas@baaa-express";
+  baaa-express = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF4MWVtID78l9YP7qyrQ+GkGQm8dwRQofHz2FQG4k8+A root@nixos";
 
   euro-mir-2 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIICb4X+GYjcvvpjiRPhNdyqMyda6kFTkD9N4ZB2oOsEQ root@euro-mir-2";
   euro-mir-2-tomas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMIZkviD01zlP3SkumEXHgLaNuoQxHqHPuBWcOqrm9rr tomas@euro-mir-2";
   euro-mir-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII9jQFlABagOAqiRKUrk1k2Rw/U1BDbsfWmoz0+wO2Pz root@euro-mir-vm";
 
-  schweizer-bobbahn = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJvt0ljBDmSkU8roLq9XULxQ14MLEtfm/GmXDFkw663Q root@schweizer-bobbahn";
+  schweizer-bobbahn = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAAE0lUbuTagQx0rxcJP8CQrzpQTKFVD9qqsMpITR6YJ root@schweizer-bobbahn";
 
   systems = [
     euro
@@ -47,7 +46,6 @@ let
     blue-fire-tomas
     pegasus
     baaa-express
-    baaa-express-user
     wodan
     wodan-wsl
     wodan-wsl-tomas
@@ -63,10 +61,10 @@ in {
   "attic-config.toml.age".publicKeys = allKeys;
   "atuin.age".publicKeys = allKeys;
   "binary-caches.json.age".publicKeys = allKeys;
-  "cachix-activate.age".publicKeys = allKeys;
-  "cachix-agent.age".publicKeys = allKeys;
-  "cachix-token.age".publicKeys = allKeys;
-  "cachix.age".publicKeys = allKeys;
+  # "cachix-activate.age".publicKeys = allKeys;
+  # "cachix-agent.age".publicKeys = allKeys;
+  # "cachix-token.age".publicKeys = allKeys;
+  # "cachix.age".publicKeys = allKeys;
   "command-center.env.age".publicKeys = allKeys;
   "gh.age".publicKeys = allKeys;
   "ght-runner.age".publicKeys = builders;

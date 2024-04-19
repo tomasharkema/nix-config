@@ -39,7 +39,7 @@ in {
     hardware = {
       nvidia = mkDefault {
         modesetting.enable = true;
-        forceFullCompositionPipeline = true;
+        # forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -51,6 +51,8 @@ in {
         enable = true;
         driSupport = true;
         driSupport32Bit = true;
+
+        extraPackages = with pkgs; [nvidia-vaapi-driver libvdpau-va-gl vaapiVdpau];
       };
     };
   };

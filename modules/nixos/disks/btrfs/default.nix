@@ -7,12 +7,12 @@
 with lib; let
   cfg = config.disks.btrfs;
 
-  luksContent = root: {
+  luksContent = root: name: {
     luks = {
       size = "100%";
       content = {
         type = "luks";
-        name = "crypted";
+        name = name;
         # disable settings.keyFile if you want to use interactive password entry
         passwordFile = "/tmp/secret.key"; # Interactive
         settings = {
@@ -54,6 +54,7 @@ with lib; let
           "resilio-sync" = mkIf (cfg.newSubvolumes && cfg.media == null) {
             mountOptions = [
               "noatime"
+              "compress=zstd"
               "discard=async"
             ];
             mountpoint = "/opt/resilio-sync";
@@ -61,6 +62,7 @@ with lib; let
           "resilio-sync-lib" = mkIf cfg.newSubvolumes {
             mountOptions = [
               "noatime"
+              "compress=zstd"
               "discard=async"
             ];
             mountpoint = "/var/lib/resilio-sync";
@@ -69,6 +71,7 @@ with lib; let
             mountOptions =
               [
                 "noatime"
+                "compress=zstd"
                 "discard=async"
               ]
               ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
@@ -78,6 +81,7 @@ with lib; let
             mountOptions =
               [
                 "noatime"
+                "compress=zstd"
                 "discard=async"
               ]
               ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
@@ -114,6 +118,7 @@ with lib; let
             mountOptions =
               [
                 "noatime"
+                "compress=zstd"
                 "discard=async"
               ]
               ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
@@ -122,6 +127,7 @@ with lib; let
           "log" = mkIf cfg.newSubvolumes {
             mountOptions = [
               "noatime"
+              "compress=zstd"
               "discard=async"
             ];
             mountpoint = "/var/log";
@@ -130,6 +136,17 @@ with lib; let
 
         mountpoint = "/partition-root";
       };
+    };
+  };
+
+  secondContent = {
+    size = "100%";
+    content = {
+      type = "btrfs";
+      extraArgs = ["-f"];
+      subvolumes = {};
+
+      mountpoint = "/partition-root-2";
     };
   };
 in
@@ -145,6 +162,13 @@ in
           type = types.str;
           description = "Dev for main partion.";
         };
+
+        second = mkOption {
+          type = types.nullOr types.str;
+          default = null;
+          description = "second disk for raid0";
+        };
+
         mainOverride = mkOption {
           type = types.str;
           default = "main";
@@ -156,12 +180,17 @@ in
           description = "Dev for optional media partition";
         };
         encrypt = mkEnableOption "encrypted";
+        swapSize = mkOption {
+          type = types.int;
+          default = 16 * 1024;
+          description = "swap size";
+        };
       };
     };
 
     config = mkIf cfg.enable {
       boot = {
-        # growPartition = true;
+        growPartition = true;
         supportedFilesystems = [
           "btrfs"
         ];
@@ -170,7 +199,7 @@ in
       swapDevices = [
         {
           device = "/swapfile/swapfile";
-          size = 16 * 1024;
+          size = cfg.swapSize;
         }
       ];
 
@@ -220,6 +249,10 @@ in
       };
 
       environment.systemPackages = with pkgs; [
+        dfc
+        diskonaut
+        erdtree
+
         snapper
         snapper-gui
         tpm-luks
@@ -247,7 +280,7 @@ in
                   type = "EF02"; # for grub MBR
                 };
                 ESP = {
-                  size = "512M";
+                  size = "1G";
                   type = "EF00";
                   content = {
                     type = "filesystem";
@@ -260,7 +293,7 @@ in
                 luks =
                   mkIf cfg.encrypt
                   (
-                    luksContent innerContent.root.content
+                    luksContent innerContent.root.content "crypted"
                   )
                   .luks;
               };
@@ -290,6 +323,23 @@ in
                     };
                   };
                 };
+              };
+            };
+          };
+          second = mkIf (cfg.second != null) {
+            type = "disk";
+            device = cfg.second;
+
+            content = {
+              type = "gpt";
+              partitions = {
+                root = mkIf (!cfg.encrypt) secondContent;
+                luks =
+                  mkIf cfg.encrypt
+                  (
+                    luksContent secondContent.content "crypted-second"
+                  )
+                  .luks;
               };
             };
           };
