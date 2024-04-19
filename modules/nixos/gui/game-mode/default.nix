@@ -17,11 +17,12 @@ in {
     programs.gamemode = {
       enable = true;
 
-      enableRenice = true;
+      enableRenice = false;
+
       settings = {
         general = {
           softrealtime = "auto";
-          renice = 10;
+          # renice = 10;
         };
         custom = {
           start = "${pkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Optimizations activated'";
