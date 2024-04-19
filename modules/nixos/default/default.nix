@@ -92,6 +92,14 @@ with lib;
         };
       };
 
+      services.preload.enable = true;
+
+      services.ananicy = {
+        enable = true;
+        package = pkgs.ananicy-cpp;
+        rulesProvider = pkgs.ananicy-rules-cachyos;
+      };
+
       programs.atop = {
         atopRotateTimer.enable = true;
         enable = true;
