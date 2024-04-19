@@ -104,6 +104,7 @@ with lib;
 
       environment.systemPackages =
         (with pkgs; [
+          # etcher
           pamixer
           pulsemixer
           pamix
