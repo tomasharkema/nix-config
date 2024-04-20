@@ -14,7 +14,7 @@
   config = {
     # btrfs balance -dconvert=raid0 -mconvert=raid1 /home
 
-    installed = true;
+    installed = false;
     # programs.gamemode.enable = true;
     environment.systemPackages = with pkgs; [
       ntfs2btrfs
@@ -86,7 +86,7 @@
     };
     services.beesd.filesystems = {
       root = {
-        spec = "UUID=b91c8226-5e0e-4c0e-9c6e-b7a39fc9bdd0";
+        spec = "UUID=f3558990-77b0-4113-b45c-3d2da3f46c14";
         hashTableSizeMB = 4096;
         verbosity = "crit";
         extraOptions = ["--loadavg-target" "2.0"];
