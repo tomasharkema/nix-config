@@ -261,8 +261,10 @@ in
         btrfs-progs
         btrfs-heatmap
         btrbk
-        timeshift
+        # timeshift
       ];
+
+      boot.kernelModules = ["sha256"];
 
       # fileSystems."/".neededForBoot = true;
       # fileSystems."/boot".neededForBoot = true;
