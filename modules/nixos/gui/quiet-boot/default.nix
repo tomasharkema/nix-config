@@ -14,7 +14,7 @@ in {
   config = mkIf (cfg.enable) {
     console = {
       useXkbConfig = true;
-      # earlySetup = true;
+      earlySetup = true;
     };
 
     environment.systemPackages = with pkgs; [
