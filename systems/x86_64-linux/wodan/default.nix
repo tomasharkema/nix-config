@@ -168,11 +168,15 @@
       binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = ["ntfs"];
       kernelModules = ["i2c-dev"];
-      blacklistedKernelModules = lib.mkDefault ["i915"];
+      blacklistedKernelModules = lib.mkDefault ["i915" "nouveau"];
       # KMS will load the module, regardless of blacklisting
       kernelParams = lib.mkDefault ["i915.modeset=0"];
 
-      extraModprobeConfig = "options nvidia-drm modeset=1";
+      extraModprobeConfig = ''
+        options nvidia-drm modeset=1";
+        blacklist nouveau
+        options nouveau modeset=0
+      '';
 
       initrd.kernelModules = [
         "nvidia"
