@@ -32,14 +32,14 @@ in {
     };
 
     boot = {
-      # initrd.kernelModules = ["nvidia"];
-      # extraModulePackages = [config.hardware.nvidia.package];
+      initrd.kernelModules = ["nvidia"];
+      extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
     };
 
     hardware = {
       nvidia = mkDefault {
         modesetting.enable = true;
-        # forceFullCompositionPipeline = true;
+        forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
