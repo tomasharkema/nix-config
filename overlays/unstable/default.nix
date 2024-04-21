@@ -43,4 +43,12 @@
   _1password = channels.unstable._1password;
 
   ntfs2btrfs = channels.unstable.ntfs2btrfs;
+
+  steam = channels.unstable.steam.override {
+    extraPkgs = pkgs:
+      with pkgs; [
+        gamescope
+        mangohud
+      ];
+  };
 }
