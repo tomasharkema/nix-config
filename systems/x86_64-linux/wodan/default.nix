@@ -106,17 +106,6 @@
       i2c.enable = true;
     };
 
-    boot = {
-      extraModprobeConfig = "options nvidia-drm modeset=1";
-
-      initrd.kernelModules = [
-        "nvidia"
-        "nvidia_modeset"
-        "nvidia_uvm"
-        "nvidia_drm"
-      ];
-    };
-
     fileSystems = {
       # "/mnt/blue-fire/media" = {
       #   device = "192.168.0.11:/exports/media";
@@ -178,7 +167,19 @@
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = ["ntfs"];
-      # kernelModules = ["i2c-dev"];
+      kernelModules = ["i2c-dev"];
+      blacklistedKernelModules = lib.mkDefault ["i915"];
+      # KMS will load the module, regardless of blacklisting
+      kernelParams = lib.mkDefault ["i915.modeset=0"];
+
+      extraModprobeConfig = "options nvidia-drm modeset=1";
+
+      initrd.kernelModules = [
+        "nvidia"
+        "nvidia_modeset"
+        "nvidia_uvm"
+        "nvidia_drm"
+      ];
     };
 
     # boot = {
