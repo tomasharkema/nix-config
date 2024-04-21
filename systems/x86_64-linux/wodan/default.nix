@@ -19,6 +19,7 @@
     environment.systemPackages = with pkgs; [
       ntfs2btrfs
       openrgb-with-all-plugins
+      glxinfo
     ];
 
     time = {
@@ -93,6 +94,8 @@
       };
     };
 
+    console.earlySetup = true;
+
     hardware = {
       nvidia = {
         # modesetting.enable = false;
@@ -101,6 +104,17 @@
       };
       cpu.intel.updateMicrocode = true;
       i2c.enable = true;
+    };
+
+    boot = {
+      extraModprobeConfig = "options nvidia-drm modeset=1";
+
+      initrd.kernelModules = [
+        "nvidia"
+        "nvidia_modeset"
+        "nvidia_uvm"
+        "nvidia_drm"
+      ];
     };
 
     fileSystems = {
