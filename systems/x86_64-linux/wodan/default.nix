@@ -8,7 +8,7 @@
   imports = [
     ./hardware-configuration.nix
 
-    # inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
+    inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
   ];
 
   config = {
@@ -143,7 +143,7 @@
         disable-sleep.enable = true;
 
         nfs = {
-          enable = true;
+          # enable = true;
 
           machines = {
             silver-star.enable = true;
