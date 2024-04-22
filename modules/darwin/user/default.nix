@@ -20,7 +20,7 @@ in {
       # NOTE: Setting the uid here is required for another
       # module to evaluate successfully since it reads
       # `users.users.${config.user.name}.uid`.
-      # uid = mkIf (cfg.uid != null) cfg.uid;
+      uid = "1000";
     };
 
     snowfallorg.user.${config.user.name}.home.config = {
