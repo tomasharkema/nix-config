@@ -20,7 +20,7 @@ with lib; {
       newSubvolumes = true;
     };
 
-    environment.systemPackages = with pkgs; [bolt];
+    environment.systemPackages = with pkgs; [bolt calibre];
 
     gui = {
       enable = true;

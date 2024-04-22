@@ -126,7 +126,7 @@ in {
 
     users.users.media = {
       isNormalUser = true;
-      # uid = 1100;
+      uid = 1100;
       extraGroups = ["data" "video" "audio" "input"];
     };
 
