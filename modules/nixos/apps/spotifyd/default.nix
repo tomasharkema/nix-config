@@ -23,6 +23,7 @@ in {
         isSystemUser = true;
         extraGroups = ["audio"];
         group = "spotifyd";
+        uid = 1042;
       };
     };
     users.groups.spotifyd = {};

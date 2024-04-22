@@ -60,6 +60,7 @@ with lib.custom; {
 
       openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
       linger = true;
+      uid = 1000;
     };
 
     users.groups.${config.user.name} = {
@@ -76,13 +77,14 @@ with lib.custom; {
       group = "agent";
       extraGroups = lib.mkIf config.resilio.enable ["rslsync"];
       openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+      uid = 1099;
     };
 
     users.users.builder = {
       isSystemUser = true;
       group = "agent";
       # extraGroups = ["rslsync"];
-
+      uid = 1098;
       openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
     };
 
