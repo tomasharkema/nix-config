@@ -83,8 +83,10 @@
       url = "github:nixos/nixos-hardware";
     };
 
-    nix-gaming.url = "github:fufexan/nix-gaming";
-
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "unstable";
+    };
     # cachix-deploy-flake = {
     #   url = "github:cachix/cachix-deploy-flake";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -92,10 +94,12 @@
 
     nix-software-center = {
       url = "github:snowfallorg/nix-software-center";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-conf-editor = {
       url = "github:snowfallorg/nixos-conf-editor";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
@@ -251,9 +255,12 @@
         agenix.nixosModules.default
         nixos-generators.nixosModules.all-formats
 
+        nix-gaming.nixosModules.pipewireLowLatency
+        nix-gaming.nixosModules.platformOptimizations
+
         {
           system.stateVersion = "23.11";
-          system.nixos.tags = ["snowfall"];
+          system.nixos.tags = ["snowfall" (self.shortRev or "dirty")];
           system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
           nix = {
             registry.nixpkgs.flake = inputs.nixpkgs;
