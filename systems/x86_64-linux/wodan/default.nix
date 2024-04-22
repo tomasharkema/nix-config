@@ -153,9 +153,6 @@
       };
     };
 
-    programs.gamescope.enable = true;
-    programs.steam.gamescopeSession.enable = true;
-
     disks.btrfs = {
       enable = true;
 
