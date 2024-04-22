@@ -2,8 +2,9 @@
   pkgs,
   lib,
   ...
-}: {
-  config = {
+}:
+with lib; {
+  config = mkIf pkgs.stdenv.isx86_64 {
     environment.systemPackages = with pkgs; [
       # dropbox - we don't need this in the environment. systemd unit pulls it in
       dropbox-cli

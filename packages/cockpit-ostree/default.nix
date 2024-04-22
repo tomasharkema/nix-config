@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
   version = "201";
 
   src = fetchzip {
-    url = "https://github.com/cockpit-project/${pname}/releases/download/${version}/${pname}-${version}.tar.gz";
+    url = "https://github.com/cockpit-project/${pname}/releases/download/${version}/${pname}-${version}.tar.xz";
     sha256 = "sha256-aFXQrKI68L5rbzul4jRDQDkA/wdCEkyIqVfJU/yJG24=";
   };
 

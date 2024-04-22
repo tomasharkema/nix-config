@@ -9,7 +9,7 @@ with lib.custom; let
   cfg = config.apps.homebrew;
 in {
   options.apps.homebrew = {
-    enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
+    enable = mkBoolOpt true "homebrew";
   };
 
   config = mkIf cfg.enable {
@@ -26,11 +26,12 @@ in {
         "imageoptim"
         "istat-menus"
         "monodraw"
-        "raycast"
+        # "raycast"
         "rectangle"
         "screenflow"
-        "slack"
+        # "slack"
         "spotify"
+        "kobo"
       ];
     };
   };
