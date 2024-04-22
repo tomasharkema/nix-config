@@ -34,14 +34,14 @@ in {
 
         package = pkgs.steam.override {
           extraEnv = {
-            MANGOHUD = true;
-            OBS_VKCAPTURE = true;
-            RADV_TEX_ANISO = 16;
+            # MANGOHUD = true;
+            # OBS_VKCAPTURE = true;
+            # RADV_TEX_ANISO = 16;
           };
-          extraLibraries = p:
-            with p; [
-              atk
-            ];
+          # extraLibraries = p:
+          #   with p; [
+          #     atk
+          #   ];
         };
 
         remotePlay.openFirewall =
@@ -59,8 +59,9 @@ in {
     environment.systemPackages = with pkgs; [
       # sunshine
       protontricks
-      # heroic
-      # cartridges
+      heroic
+      gamehub
+      cartridges
       steamcmd
       steam-run
     ];
