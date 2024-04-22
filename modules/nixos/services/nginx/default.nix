@@ -93,10 +93,10 @@ in {
 
     systemd = {
       tmpfiles.rules = [
-        "d '${cfg.cert.dir}' 0770 root ssl-cert -"
-        "Z '${cfg.cert.dir}' 0770 root ssl-cert"
-        "f '${keyPath}' 0770 root ssl-cert - -"
-        "f '${certPath}' 0770 root ssl-cert - -"
+        "d '${cfg.cert.dir}' 0660 root ssl-cert -"
+        "Z '${cfg.cert.dir}' 0660 root ssl-cert"
+        "f '${keyPath}' 0660 root ssl-cert - -"
+        "f '${certPath}' 0660 root ssl-cert - -"
       ];
 
       paths.tailscale-cert-location = {
