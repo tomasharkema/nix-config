@@ -75,7 +75,7 @@ in {
         # };
         certificate = "${./ca.crt}";
         dyndns.enable = true;
-        ifpAllowedUids = ["root" "tomas"];
+        ifpAllowedUids = ["root" "tomas" "1000"];
       };
 
       sudo.package = mkIf config.installed (pkgs.sudo.override {withSssd = true;});
@@ -93,7 +93,8 @@ in {
 
       pam = {
         #   krb5.enable = true;
-        services = mkIf config.installed {
+        services = mkIf false {
+          #config.installed {
           login.sssdStrictAccess = mkDefault true;
           sudo.sssdStrictAccess = mkDefault true;
           ssh.sssdStrictAccess = mkDefault true;
