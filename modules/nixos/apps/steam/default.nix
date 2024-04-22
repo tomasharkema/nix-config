@@ -2,11 +2,23 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
 }:
 with lib; let
   cfg = config.apps.steam;
 in {
+  disabledModules = [
+    "services/desktops/pipewire/pipewire.nix"
+    "services/desktops/pipewire/wireplumber.nix"
+  ];
+
+  imports = [
+    "${inputs.unstable}/nixos/modules/services/desktops/pipewire/pipewire.nix"
+    "${inputs.unstable}/nixos/modules/services/desktops/pipewire/wireplumber.nix"
+    #   "${inputs.unstable}/nixos/modules/security/pam.nix"
+    #   "${inputs.unstable}/nixos/modules/security/krb5"
+  ];
   options.apps.steam = {
     enable = mkEnableOption "steam";
   };
@@ -16,21 +28,41 @@ in {
     boot.kernelModules = ["uinput"];
     users.groups.input.members = ["tomas"];
 
-    programs.steam = {
-      enable = true;
-      remotePlay.openFirewall =
-        true;
-      dedicatedServer.openFirewall =
-        true;
-      gamescopeSession.enable = true;
-    };
+    programs = {
+      steam = {
+        enable = true;
 
+        package = pkgs.steam.override {
+          extraEnv = {
+            MANGOHUD = true;
+            OBS_VKCAPTURE = true;
+            RADV_TEX_ANISO = 16;
+          };
+          extraLibraries = p:
+            with p; [
+              atk
+            ];
+        };
+
+        remotePlay.openFirewall =
+          true;
+        dedicatedServer.openFirewall =
+          true;
+        gamescopeSession.enable = true;
+        platformOptimizations.enable = true;
+      };
+      gamescope = {
+        enable = true;
+        capSysNice = true;
+      };
+    };
     environment.systemPackages = with pkgs; [
       # sunshine
       protontricks
       # heroic
       # cartridges
       steamcmd
+      steam-run
     ];
 
     # services.udev.extraRules = ''
