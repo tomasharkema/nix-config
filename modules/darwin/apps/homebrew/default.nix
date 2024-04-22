@@ -32,6 +32,7 @@ in {
         # "slack"
         "spotify"
         "kobo"
+        "gitbutler"
       ];
     };
   };
