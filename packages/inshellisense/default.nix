@@ -8,27 +8,45 @@
   nodePackages,
   python3,
   pkg-config,
+  gcc,
+  libgcc,
+  libcxx,
+  libcxxabi,
+  llvmPackages,
 }:
 buildNpmPackage rec {
   pname = "inshellisense";
-  version = "0.0.1-rc.10";
+  version = "0.0.1-rc.14";
 
   src = fetchFromGitHub {
     owner = "microsoft";
     repo = pname;
     rev = "${version}";
-    hash = "sha256-TuZZaa0ie7Y2Wp6P4qFeQeAiXQ9quVYpiXjOEIadi7w=";
+    hash = "sha256-ZsEAE9EDJLREpKjHLbvqAUNM/y9eCH44g3D8NHYHiT4=";
   };
 
-  npmDepsHash = "sha256-mPhpDysr/8Ic31s1CBBfx0hBD+vw5yE5vnXKm/N9ITk=";
+  npmDepsHash = "sha256-p0/GnAdWNM/wjB/w+rXbOrh3Hr/smIW0IVQga7uCKYY=";
 
   postInstall = ''
     cp -r shell $out/share
   '';
 
-  buildInputs = (
-    if stdenv.isDarwin
-    then [darwin.Libsystem nodePackages.node-gyp-build python3 pkg-config]
-    else []
-  );
+  nativeBuildInputs = [pkg-config];
+
+  buildInputs =
+    (
+      if stdenv.isDarwin
+      then [darwin.Libsystem nodePackages.node-gyp-build python3]
+      else []
+    )
+    ++ [
+      gcc
+      libgcc
+      libcxx
+      libcxxabi
+      nodePackages.node-gyp-build
+      nodePackages.node-gyp
+      python3
+      llvmPackages.libcxxStdenv
+    ];
 }
