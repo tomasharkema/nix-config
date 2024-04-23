@@ -112,6 +112,7 @@ with lib;
 
       environment.systemPackages =
         (with pkgs; [
+          mbuffer
           # etcher
           pamixer
           pulsemixer

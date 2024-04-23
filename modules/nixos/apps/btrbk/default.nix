@@ -6,7 +6,7 @@
 }: {
   config = with lib; {
     services.btrbk = mkIf config.disks.btrfs.enable {
-      extraPackages = with pkgs; [zstd];
+      extraPackages = with pkgs; [zstd mbuffer];
       instances."${config.networking.hostName}-btrbk" = {
         settings = {
           snapshot_preserve = "14d";
@@ -18,8 +18,11 @@
               subvolume = {
                 home = {
                   snapshot_create = "always";
+                  snapshot_name = "${config.networking.hostName}-home";
                 };
-                rootfs = {};
+                rootfs = {
+                  snapshot_name = "${config.networking.hostName}-rootfs";
+                };
               };
 
               target = {
