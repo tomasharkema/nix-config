@@ -39,9 +39,9 @@
     ];
   };
 
-  lib =
-    (prev.lib.maintainers or {})
-    // {
-      tomas = {};
-    };
+  # lib =
+  #   (prev.lib.maintainers or {})
+  #   // {
+  #     tomas = {};
+  #   };
 }

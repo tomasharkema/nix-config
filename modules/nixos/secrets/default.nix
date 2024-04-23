@@ -27,6 +27,10 @@
           file = ./attic-key.age;
           mode = "644";
         };
+        btrbk = {
+          file = ./btrbk.age;
+          mode = "644";
+        };
         tailscale = {
           file = ./tailscale.age;
           mode = "644";
