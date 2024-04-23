@@ -4,17 +4,15 @@
   config,
   ...
 }: {
-  config = {
-    services.btrbk = {
+  config = with lib; {
+    services.btrbk = mkIf config.disks.btrfs.enable {
+      extraPackages = with pkgs; [zstd];
       instances."${config.networking.hostName}-btrbk" = {
         settings = {
           snapshot_preserve = "14d";
           snapshot_preserve_min = "2d";
-
+          raw_target_compress = "zstd";
           ssh_identity = "${config.age.secrets.btrbk.path}";
-          ssh_user = "root";
-          stream_compress = "zstd";
-
           volume = {
             "/partition-root" = {
               subvolume = {
@@ -23,7 +21,13 @@
                 };
                 rootfs = {};
               };
-              target = "ssh://192.168.0.100/mnt/user/backup/btrbk";
+
+              target = {
+                # raw
+                "ssh://192.168.0.100/mnt/user/backup/btrbk" = {
+                  ssh_user = "root";
+                };
+              };
             };
           };
         };
