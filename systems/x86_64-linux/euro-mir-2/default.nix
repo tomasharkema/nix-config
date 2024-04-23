@@ -33,7 +33,14 @@ with lib; {
     };
 
     hardware = {
-      nvidia.nvidiaPersistenced = false;
+      nvidia = {
+        nvidiaPersistenced = false;
+        dynamicBoost.enable = true;
+        prime = {
+          sync.enable = true;
+          offload.enable = false;
+        };
+      };
       # fancontrol.enable = true;
       opengl = {
         extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau];

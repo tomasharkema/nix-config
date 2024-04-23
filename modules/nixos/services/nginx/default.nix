@@ -95,7 +95,7 @@ in {
       tmpfiles.rules = [
         "d '${cfg.cert.dir}' 0660 root ssl-cert -"
         "Z '${cfg.cert.dir}' 0660 root ssl-cert"
-        "f '${keyPath}' 0660 root ssl-cert - -"
+        "f '${keyPath}' 0640 root ssl-cert - -"
         "f '${certPath}' 0660 root ssl-cert - -"
       ];
 
@@ -107,6 +107,7 @@ in {
       };
 
       services.tailscale-cert = {
+        enable = true;
         description = "tailscale-cert-refresh";
 
         serviceConfig = {
@@ -115,6 +116,8 @@ in {
         };
         script = ''
           ${lib.getExe pkgs.tailscale} cert --cert-file "${certPath}" --key-file "${keyPath}" ${cfg.vhost}
+          chmod 660 -R "${cfg.cert.dir}"
+          chown root:ssl-cert -R "${cfg.cert.dir}"
         '';
         # mkdir -p "${cfg.dir}"
         # chown root:ssl-cert -R "${cfg.dir}"
