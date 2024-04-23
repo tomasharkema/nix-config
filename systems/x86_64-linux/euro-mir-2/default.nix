@@ -38,6 +38,7 @@ with lib; {
         dynamicBoost.enable = true;
         prime = {
           sync.enable = true;
+
           offload.enable = false;
         };
       };

@@ -16,6 +16,8 @@
   # freeipa = channels.unstable.freeipa;
   # sssd = channels.unstable.sssd;
 
+  # tailscale = channels.unstable.tailscale;
+
   cockpit = channels.unstable.cockpit;
   cockpit-podman = self.packages."${prev.system}".cockpit-podman;
   cockpit-tailscale = self.packages."${prev.system}".cockpit-tailscale;
