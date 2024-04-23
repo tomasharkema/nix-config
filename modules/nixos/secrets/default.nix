@@ -29,7 +29,9 @@
         };
         btrbk = {
           file = ./btrbk.age;
-          mode = "644";
+          mode = "600";
+          owner = "btrbk";
+          group = "btrbk";
         };
         tailscale = {
           file = ./tailscale.age;
