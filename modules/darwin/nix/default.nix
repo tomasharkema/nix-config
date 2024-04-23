@@ -41,6 +41,7 @@ in {
       nixpkgs-fmt
       nerd-font-patcher
     ];
+    traits.developer.enable = true;
 
     services.nix-daemon.enable = true;
 

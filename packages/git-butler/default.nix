@@ -6,6 +6,7 @@
   makeWrapper,
   zlib,
   webkitgtk,
+  gitUpdater,
 }: let
   shortVersion = "0.11.3";
   build = "838";
@@ -27,6 +28,11 @@ in
       url = "https://releases.gitbutler.com/releases/release/${fullVersion}/linux/${fullArch}/git-butler_${shortVersion}_${arch}.deb";
       hash = "sha256-GwyW5t2LslC3KoAvcngrec3qscsZaLWH5CyjI9nrZoo=";
     };
+
+    #     passthru.updateScript = gitUpdater {
+    #   url = "https://github.com/grpc/grpc-node.git";
+    #   rev-prefix = "grpc-tools@";
+    # };
 
     nativeBuildInputs = [
       autoPatchelfHook
