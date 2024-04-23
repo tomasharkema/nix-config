@@ -422,5 +422,6 @@
     allow-import-from-derivation = true;
     keep-outputs = true;
     keep-derivations = true;
+    accept-flake-config = true;
   };
 }
