@@ -17,7 +17,11 @@
           raw_target_compress = "zstd";
           raw_target_split = "100M";
 
+          transaction_syslog = "daemon";
+          lockfile = "/var/lock/btrbk.lock";
+
           ssh_identity = "${config.age.secrets.btrbk.path}";
+          stream_buffer = "10M";
 
           volume = {
             "/partition-root" = {
