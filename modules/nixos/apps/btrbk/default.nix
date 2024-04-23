@@ -23,8 +23,7 @@
               };
 
               target = {
-                # raw
-                "ssh://192.168.0.100/mnt/user/backup/btrbk" = {
+                "raw ssh://192.168.0.100/mnt/user0/backup/btrbk" = {
                   ssh_user = "root";
                 };
               };
