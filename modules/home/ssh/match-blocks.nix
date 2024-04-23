@@ -28,7 +28,7 @@ in {
               forwardAgent = true;
               extraOptions = {
                 RequestTTY = "yes";
-                RemoteCommand = "zellij attach -c \"ssh-\$\{\%n\}\"";
+                # RemoteCommand = "zellij attach -c \"ssh-\$\{\%n\}\"";
                 # RemoteCommand = "tmux new -A -s \$\{\%n\}";
               };
             };
