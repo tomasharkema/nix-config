@@ -55,5 +55,5 @@ buildNpmPackage rec {
       python3
       llvmPackages.libcxxStdenv
     ];
-  meta = {maintainers = lib.maintainers.tomas;};
+  # meta = {maintainers = lib.maintainers.tomas;};
 }
