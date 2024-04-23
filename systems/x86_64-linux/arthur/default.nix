@@ -1,6 +1,7 @@
 {
   lib,
   inputs,
+  pkgs,
   ...
 }:
 with lib; {
@@ -36,6 +37,10 @@ with lib; {
     };
 
     apps.home-assistant.enable = true;
+
+    services.xrdp.enable = true;
+    services.xrdp.defaultWindowManager = "${pkgs.icewm}/bin/icewm";
+    # networking.firewall.allowedTCPPorts = [3389];
 
     disks.btrfs = {
       enable = true;
