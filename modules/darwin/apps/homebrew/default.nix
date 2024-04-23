@@ -9,7 +9,7 @@ with lib.custom; let
   cfg = config.apps.homebrew;
 in {
   options.apps.homebrew = {
-    enable = mkBoolOpt true "homebrew";
+    enable = mkBoolOpt false "homebrew";
   };
 
   config = mkIf cfg.enable {

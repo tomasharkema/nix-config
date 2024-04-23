@@ -13,6 +13,7 @@
   libcxx,
   libcxxabi,
   llvmPackages,
+  gitUpdater,
 }:
 buildNpmPackage rec {
   pname = "inshellisense";
@@ -23,6 +24,11 @@ buildNpmPackage rec {
     repo = pname;
     rev = "${version}";
     hash = "sha256-ZsEAE9EDJLREpKjHLbvqAUNM/y9eCH44g3D8NHYHiT4=";
+  };
+
+  passthru.updateScript = gitUpdater {
+    url = "https://github.com/microsoft/inshellisense.git";
+    rev-prefix = "grpc-tools@";
   };
 
   npmDepsHash = "sha256-p0/GnAdWNM/wjB/w+rXbOrh3Hr/smIW0IVQga7uCKYY=";
@@ -49,4 +55,5 @@ buildNpmPackage rec {
       python3
       llvmPackages.libcxxStdenv
     ];
+  meta = {maintainers = lib.maintainers.tomas;};
 }
