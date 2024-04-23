@@ -42,6 +42,17 @@ with lib; let
       attic push tomas "$f"
     done
   '';
+
+  update-pkgs = writeShellScriptBin "update-pkgs" ''
+    set -x
+    nixPath="$(nix eval -f . inputs.nixpkgs.outPath --json | jq -r)"
+    echo "found $nixPath"
+    nixUpdate="$nixPath/maintainers/scripts/update.nix"
+    echo "found $nixUpdate"
+    overlayExpr="(import {./.} {{ }}).outputs.overlays"
+    nix-shell $nixUpdate --arg include-overlays $overlayExpr --arg predicate '(path: pkg: true)' --verbose --show-trace $@
+  '';
+
   # cachix-deploy = writeShellScriptBin "cachix-deploy" ''
   #   set -x
   #   set -e
@@ -149,6 +160,7 @@ in
         # dotenv.enable = true;
 
         packages = [
+          update-pkgs
           attic
           dconf-save
           dp

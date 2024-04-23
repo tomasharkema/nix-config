@@ -38,4 +38,10 @@
       "Noto"
     ];
   };
+
+  lib =
+    (prev.lib.maintainers or {})
+    // {
+      tomas = {};
+    };
 }
