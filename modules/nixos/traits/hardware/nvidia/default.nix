@@ -20,7 +20,9 @@ in {
     system.nixos.tags = ["nvidia:${nvidiaVersion}"];
 
     environment.systemPackages = with pkgs; [
-      nvtop
+      nvtop-nvidia
+      zenith-nvidia
+      gnomeExtensions.prime-helper
       pkgs.custom.gpustat
     ];
 
@@ -42,7 +44,7 @@ in {
         # forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        package = config.boot.kernelPackages.nvidiaPackages.production;
 
         nvidiaPersistenced = false;
       };
