@@ -60,7 +60,6 @@ in {
   "attic-key.age".publicKeys = allKeys;
   "attic-config.toml.age".publicKeys = allKeys;
   "atuin.age".publicKeys = allKeys;
-  "binary-caches.json.age".publicKeys = allKeys;
   # "cachix-activate.age".publicKeys = allKeys;
   # "cachix-agent.age".publicKeys = allKeys;
   # "cachix-token.age".publicKeys = allKeys;
