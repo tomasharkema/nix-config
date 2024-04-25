@@ -20,7 +20,7 @@ with lib; {
       newSubvolumes = true;
     };
 
-    environment.systemPackages = with pkgs; [bolt calibre];
+    environment.systemPackages = with pkgs; [bolt calibre glxinfo inxi];
 
     gui = {
       enable = true;
@@ -35,7 +35,7 @@ with lib; {
     hardware = {
       nvidia = {
         nvidiaPersistenced = false;
-        dynamicBoost.enable = true;
+        # dynamicBoost.enable = true;
         prime = {
           sync.enable = true;
 
@@ -110,7 +110,10 @@ with lib; {
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelParams = ["acpi_rev_override=1"];
+      extraModprobeConfig = ''
+        options nvidia NVreg_DynamicPowerManagement=0x02
+        options nvidia NVreg_PreserveVideoMemoryAllocations=1
+      '';
       supportedFilesystems = ["ntfs"];
     };
   };
