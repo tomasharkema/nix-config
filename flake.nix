@@ -83,10 +83,11 @@
       url = "github:nixos/nixos-hardware";
     };
 
-    # nix-gaming = {
-    #   url = "github:fufexan/nix-gaming";
-    #   inputs.nixpkgs.follows = "unstable";
-    # };
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "unstable";
+    };
+
     # cachix-deploy-flake = {
     #   url = "github:cachix/cachix-deploy-flake";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -255,8 +256,8 @@
         agenix.nixosModules.default
         nixos-generators.nixosModules.all-formats
 
-        # nix-gaming.nixosModules.pipewireLowLatency
-        # nix-gaming.nixosModules.platformOptimizations
+        nix-gaming.nixosModules.pipewireLowLatency
+        nix-gaming.nixosModules.platformOptimizations
 
         {
           system.stateVersion = "23.11";
