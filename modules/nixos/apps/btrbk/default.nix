@@ -3,9 +3,17 @@
   lib,
   config,
   ...
-}: {
-  config = with lib; {
-    services.btrbk = mkIf config.disks.btrfs.enable {
+}:
+with lib; {
+  config = mkIf config.disks.btrfs.enable {
+    age.secrets.btrbk = {
+      file = ../../../../secrets/btrbk.age;
+      mode = "600";
+      owner = "btrbk";
+      group = "btrbk";
+    };
+
+    services.btrbk = {
       extraPackages = with pkgs; [zstd mbuffer];
       instances."${config.networking.hostName}-btrbk" = {
         onCalendar = "hourly";
@@ -21,7 +29,7 @@
           lockfile = "/var/lock/btrbk.lock";
 
           ssh_identity = "${config.age.secrets.btrbk.path}";
-          stream_buffer = "10M";
+          stream_buffer = "50M";
 
           volume = {
             "/partition-root" = {
