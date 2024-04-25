@@ -53,7 +53,7 @@ with lib; {
     };
 
     boot = {
-      growPartition = true;
+      # growPartition = true;
 
       tmp = {
         useTmpfs = false;
