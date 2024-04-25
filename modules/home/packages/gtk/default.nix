@@ -22,10 +22,10 @@ in {
         size = 11;
       };
 
-      # theme = lib.mkForce {
-      #   name = catppuccin_name;
-      #   package = catppuccin;
-      # };
+      theme = lib.mkForce {
+        name = catppuccin_name;
+        package = catppuccin;
+      };
 
       # theme = {
       #   name = "Tokyonight-Dark";
@@ -36,17 +36,17 @@ in {
       #   package = pkgs.catppuccin-cursors.macchiatoDark;
       # };
 
-      # gtk3.extraConfig = {
-      #   Settings = ''
-      #     gtk-application-prefer-dark-theme=1
-      #   '';
-      # };
+      gtk3.extraConfig = {
+        Settings = ''
+          gtk-application-prefer-dark-theme=1
+        '';
+      };
 
-      # gtk4.extraConfig = {
-      #   Settings = ''
-      #     gtk-application-prefer-dark-theme=1
-      #   '';
-      # };
+      gtk4.extraConfig = {
+        Settings = ''
+          gtk-application-prefer-dark-theme=1
+        '';
+      };
     };
     home = lib.mkIf true {
       #sessionVariables.GTK_THEME = catppuccin_name;
