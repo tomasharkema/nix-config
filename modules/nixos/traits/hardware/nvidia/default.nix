@@ -9,6 +9,13 @@ with lib.custom; let
   cfg = config.traits.hardware.nvidia;
 
   nvidiaVersion = config.hardware.nvidia.package.version;
+  # nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+  #   export __NV_PRIME_RENDER_OFFLOAD=1
+  #   export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+  #   export __GLX_VENDOR_LIBRARY_NAME=nvidia
+  #   export __VK_LAYER_NV_optimus=NVIDIA_only
+  #   exec "$@"
+  # '';
 in {
   options.traits = {
     hardware.nvidia = {
@@ -22,15 +29,15 @@ in {
     environment.systemPackages = with pkgs; [
       nvtop-nvidia
       zenith-nvidia
-      gnomeExtensions.prime-helper
       pkgs.custom.gpustat
+      # nvidia-offload
     ];
 
     services = {
       xserver.videoDrivers = ["nvidia"];
-      #netdata.configDir."python.d.conf" = pkgs.writeText "python.d.conf" ''
-      #  nvidia_smi: yes
-      #'';
+      netdata.configDir."python.d.conf" = pkgs.writeText "python.d.conf" ''
+        nvidia_smi: yes
+      '';
     };
 
     boot = {
@@ -44,7 +51,7 @@ in {
         # forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.production;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
 
         nvidiaPersistenced = false;
       };

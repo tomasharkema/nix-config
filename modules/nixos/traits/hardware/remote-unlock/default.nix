@@ -81,6 +81,7 @@ in {
             tor
             zerotierone
             notify
+            libcxx
           ];
 
           packages = with pkgs; [
@@ -91,6 +92,7 @@ in {
             tor
             zerotierone
             notify
+            libcxx
           ];
 
           # emergencyAccess = true;
