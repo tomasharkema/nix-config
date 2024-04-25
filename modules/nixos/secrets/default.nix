@@ -27,12 +27,7 @@
           file = ./attic-key.age;
           mode = "644";
         };
-        btrbk = {
-          file = ./btrbk.age;
-          mode = "600";
-          owner = "btrbk";
-          group = "btrbk";
-        };
+
         tailscale = {
           file = ./tailscale.age;
           mode = "644";
