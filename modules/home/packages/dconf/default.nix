@@ -26,7 +26,6 @@ with lib; {
           document-font-name = "Inter Regular 11";
           font-antialiasing = "grayscale";
           monospace-font-name = "JetBrainsMono Nerd Font Mono 11";
-          font-hinting = "full";
           # font-name = "Inter 11";
           enable-hot-corners = false;
           icon-theme = "Adwaita";
