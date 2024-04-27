@@ -1,6 +1,6 @@
 {
   "recommendations": [
-    "arrterian.nix-env-selector",
+    // "arrterian.nix-env-selector",
     "pinage404.nix-extension-pack"
   ]
 }
