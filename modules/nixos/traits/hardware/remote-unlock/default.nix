@@ -46,7 +46,7 @@ with lib.custom; let
 in {
   options.traits = {
     hardware.remote-unlock = {
-      enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
+      enable = mkBoolOpt false "Remote unlocking";
     };
   };
 
@@ -82,6 +82,7 @@ in {
             zerotierone
             notify
             libcxx
+            glibc
           ];
 
           packages = with pkgs; [
@@ -93,6 +94,7 @@ in {
             zerotierone
             notify
             libcxx
+            glibc
           ];
 
           # emergencyAccess = true;
