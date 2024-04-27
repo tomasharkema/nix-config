@@ -1,11 +1,12 @@
 # shellcheck disable=SC2148
 
+SEARCH_DOCS="Search docs..."
+RUN_REPL="nix repl..."
+CLEAR_CACHE="Clear cache..."
 RUN_UPDATER="Run Updater..."
 ATTACH_SESSION="Attach to session..."
 OPEN_BLUE_FIRE="SSH blue-fire..."
 OPEN_SSH="SSH..."
-SEARCH_DOCS="Search docs..."
-CLEAR_CACHE="Clear cache..."
 OPEN_SHELL="Go to shell!"
 CLEAN_RAM="Clean ram..."
 EXIT="Exit"
@@ -37,7 +38,7 @@ search_docs() {
   nix-search "$INPUT"
 }
 
-CHOICE=$(gum choose "$RUN_UPDATER" "$ATTACH_SESSION" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$SEARCH_DOCS" "$CLEAR_CACHE" "$OPEN_SHELL" "$CLEAN_RAM" "$EXIT")
+CHOICE=$(gum choose "$RUN_REPL" "$RUN_UPDATER" "$ATTACH_SESSION" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$SEARCH_DOCS" "$CLEAR_CACHE" "$OPEN_SHELL" "$CLEAN_RAM" "$EXIT")
 
 case $CHOICE in
 "$RUN_UPDATER")
@@ -71,6 +72,10 @@ case $CHOICE in
   cleanram
   ;;
 
+"$RUN_REPL")
+  repl
+  ;;
+  
 "$EXIT")
   echo "Exitting..."
   exit 0

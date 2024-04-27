@@ -179,6 +179,12 @@
     zjstatus = {
       url = "github:dj95/zjstatus";
     };
+
+    tree-sitter-nix = {
+      url = "github:nix-community/tree-sitter-nix";
+
+      inputs.nixpkgs.follows = "unstable";
+    };
   };
 
   outputs = inputs: let
@@ -250,7 +256,7 @@
         disko.nixosModules.default
 
         lanzaboote.nixosModules.lanzaboote
-        vscode-server.nixosModules.default
+        # vscode-server.nixosModules.default
 
         # home-manager.nixosModules.home-manager
         agenix.nixosModules.default
