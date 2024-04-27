@@ -73,6 +73,18 @@ in {
         git-worktree = {enable = true;};
         #direnv = {enable=true;};
         multicursors.enable = true;
+        toggleterm = {enable = true;};
+        floaterm = {enable = true;};
+        zig = {enable = true;};
+        cmp-zsh.enable = true;
+        conform-nvim = {
+          enable = true;
+          #formatOnSave=true;
+          formattersByFt = {
+            lua = ["stylua"];
+            nix = ["alejandra"];
+          };
+        };
       };
 
       extraPlugins = with pkgs.vimPlugins; [
@@ -89,6 +101,7 @@ in {
         encoding = "utf-8";
         title = true;
         autoindent = true;
+
         background = "dark";
         backup = false;
         hlsearch = true;
