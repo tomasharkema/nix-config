@@ -74,6 +74,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        bottles
         trayscale
         grsync
         caffeine-ng
