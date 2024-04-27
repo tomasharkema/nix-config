@@ -109,7 +109,7 @@ with lib;
         atopgpu.enable = config.traits.hardware.nvidia.enable;
         netatop.enable = true;
       };
-
+      programs.fzf.fuzzyCompletion = true;
       environment.systemPackages =
         (with pkgs; [
           mbuffer
