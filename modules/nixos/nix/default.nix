@@ -11,6 +11,7 @@ with lib.custom; {
   config = mkIf (!config.traits.slim.enable) {
     environment.systemPackages = with pkgs;
     with custom; [
+      fup-repl
       # custom.nixos-revision
       # (nixos-hosts.override {
       #   hosts = inputs.self.nixosConfigurations;
