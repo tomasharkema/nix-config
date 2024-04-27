@@ -88,7 +88,6 @@ with pkgs; {
       fd
       fpp
       fx
-      fzf
 
       git
       git-lfs
