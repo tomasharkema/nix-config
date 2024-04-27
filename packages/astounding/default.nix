@@ -71,11 +71,16 @@ in
     ];
     buildInputs = [jdk openjfx21];
     installPhase = ''
+      runHook preInstall
+
       mkdir -p $out/bin $out/share/astounding
       install -Dm644 ${executable} $out/share/astounding/astounding.jar
       makeWrapper ${jdk}/bin/java $out/bin/astounding \
         --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath extraLdPath}" \
         --add-flags "-jar $out/share/astounding/astounding.jar"
+
+
+      runHook postInstall
     '';
     passthru = {inherit jdk;};
   }
