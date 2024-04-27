@@ -10,7 +10,7 @@
   OVMF = channels.unstable.OVMF;
 
   netdata = channels.unstable.netdata;
-
+  nh = channels.unstable.nh;
   freeipa = self.packages."${prev.system}".freeipa;
   sssd = self.packages."${prev.system}".sssd;
   # freeipa = channels.unstable.freeipa;

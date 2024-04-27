@@ -8,9 +8,21 @@
 }:
 with lib;
 with lib.custom; {
+  imports = [
+    "${inputs.unstable}/nixos/modules/programs/nh.nix"
+  ];
+
   config = mkIf (!config.traits.slim.enable) {
+    programs.nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "/home/tomas/Developer/nix-config";
+    };
+
     environment.systemPackages = with pkgs;
     with custom; [
+      nix-update
       fup-repl
       # custom.nixos-revision
       # (nixos-hosts.override {
