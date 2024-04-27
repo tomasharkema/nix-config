@@ -28,7 +28,7 @@ with lib;
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";
 
-      nix.package = pkgs.nixUnstable;
+      # nix.package = pkgs.nixUnstable;
 
       system.nixos.tags =
         if config.installed
@@ -236,7 +236,7 @@ with lib;
           enableNotifications = true;
         };
 
-        vscode-server.enable = true;
+        # vscode-server.enable = true;
 
         # seatd.enable = true;
 
