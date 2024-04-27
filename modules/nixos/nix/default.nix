@@ -33,7 +33,7 @@ with lib.custom; {
           # warn-dirty = false;
           # log-lines = 50;
           # sandbox = false;
-          # auto-optimise-store = true;
+          auto-optimise-store = true;
           # trusted-users = users ++ ["tomas" "root"]; # "builder"];
           # allowed-users = users ++ ["tomas" "root" "builder"];
           # # netrc-file = "/etc/nix/netrc";
