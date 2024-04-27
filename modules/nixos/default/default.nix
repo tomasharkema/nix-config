@@ -179,6 +179,7 @@ with lib;
           ssm
           tailscale-tui
           sshed
+          rmfuse
         ])
         ++ (
           optionals pkgs.stdenv.isx86_64 [
