@@ -38,6 +38,10 @@ in {
       colorschemes.catppuccin.enable = true;
 
       plugins = {
+        treesitter = {
+          enable = true;
+          # package = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+        };
         dashboard = {enable = true;};
         neo-tree = {enable = true;};
         project-nvim = {enable = true;};
