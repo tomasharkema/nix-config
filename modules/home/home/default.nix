@@ -75,6 +75,7 @@ in
         # (import ./packages/common.nix {inherit pkgs inputs lib;})
         # ++
         packages = with pkgs; [
+          udict
           pkgs.custom.b612
           # rtfm
           jq
