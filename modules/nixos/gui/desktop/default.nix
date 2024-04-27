@@ -74,6 +74,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        trayscale
         grsync
         caffeine-ng
         qjournalctl
