@@ -1894,13 +1894,13 @@
       "locked": {
         "lastModified": 1713951100,
         "narHash": "sha256-ObeER1qB/i06lk7jQqVp9DdTKnykNaojOVoX9GcCoRc=",
-        "owner": "pta2002",
+        "owner": "nix-community",
         "repo": "nixvim",
         "rev": "7c59615585f691b560d9522c94d8f3195853ca8e",
         "type": "github"
       },
       "original": {
-        "owner": "pta2002",
+        "owner": "nix-community",
         "ref": "nixos-23.11",
         "repo": "nixvim",
         "type": "github"

@@ -76,7 +76,8 @@ in
         # ++
         packages = with pkgs; [
           udict
-          pkgs.custom.b612
+          #pkgs.custom.b612
+          b612
           # rtfm
           jq
           # fig
