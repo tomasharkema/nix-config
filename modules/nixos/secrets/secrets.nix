@@ -88,4 +88,5 @@ in {
   "config.zerotier.settings.age".publicKeys = allKeys;
   "domainjoin.age".publicKeys = allKeys;
   "btrbk.age".publicKeys = allKeys;
+  "rmapi.age".publicKeys = allKeys;
 }

@@ -49,7 +49,6 @@ in {
           #"io.missioncenter.MissionCenter"
           "me.iepure.devtoolbox"
           "org.cockpit_project.CockpitClient"
-          "org.fkoehler.KTailctl"
           #"org.freefilesync.FreeFileSync"
           #"org.gnome.meld"
           #"com.bitwarden.desktop"
