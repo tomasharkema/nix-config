@@ -6,7 +6,7 @@
 }:
 with lib; {
   imports = with inputs; [
-    # "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
+    "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
     ./hardware-configuration.nix
   ];
 
@@ -37,6 +37,10 @@ with lib; {
     #   main = "/dev/vda";
     #   encrypt = false;
     # };
+
+    services.spice-autorandr.enable = true;
+    services.spice-vdagentd.enable = true;
+    services.spice-webdavd.enable = true;
 
     boot = {
       loader = {
