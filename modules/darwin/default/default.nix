@@ -98,7 +98,7 @@
       #   cachix = "op plugin run -- cachix";
       # };
     };
-
+    # programs.fzf.fuzzyCompletion = true;
     nix = {
       # auto-optimise-store = true
       extraOptions = ''

@@ -75,7 +75,10 @@ in
         # (import ./packages/common.nix {inherit pkgs inputs lib;})
         # ++
         packages = with pkgs; [
-          pkgs.custom.b612
+          fup-repl
+          udict
+          #pkgs.custom.b612
+          b612
           # rtfm
           jq
           # fig
