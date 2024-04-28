@@ -29,6 +29,8 @@ in {
         flake-checker
         hydra-cli
         manix
+        nix-search-cli
+
         nil
         nixd
         nix-eval-jobs
@@ -56,6 +58,7 @@ in {
         gopkgs
         gopls
         gotools
-      ];
+      ]
+      ++ (lib.optional pkgs.stdenv.isLinux nix-du);
   };
 }

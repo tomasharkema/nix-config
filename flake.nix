@@ -2,6 +2,10 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
     unstable.url = "nixpkgs/nixos-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-23.11";
+      inputs.nixpkgs.follows = "unstable";
+    };
 
     # nixpkgs-gnome.url = "nixpkgs/gnome-46";
 
@@ -22,11 +26,6 @@
     #     flake-utils.follows = "flake-utils";
     #   };
     # };
-
-    home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "unstable";
-    };
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -67,7 +66,7 @@
     };
 
     nixvim = {
-      url = "github:pta2002/nixvim/nixos-23.11";
+      url = "github:nix-community/nixvim/nixos-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -179,6 +178,12 @@
     zjstatus = {
       url = "github:dj95/zjstatus";
     };
+
+    tree-sitter-nix = {
+      url = "github:nix-community/tree-sitter-nix";
+
+      inputs.nixpkgs.follows = "unstable";
+    };
   };
 
   outputs = inputs: let
@@ -248,9 +253,9 @@
 
         # impermanence.nixosModule
         disko.nixosModules.default
-
+        # nh.nixosModules.default
         lanzaboote.nixosModules.lanzaboote
-        vscode-server.nixosModules.default
+        # vscode-server.nixosModules.default
 
         # home-manager.nixosModules.home-manager
         agenix.nixosModules.default
