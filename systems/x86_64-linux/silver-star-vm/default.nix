@@ -16,8 +16,15 @@ with lib; {
     traits = {
       hardware = {
         tpm.enable = true;
-        secure-boot.enable = true;
+        # secure-boot.enable = true;
         vm.enable = true;
+      };
+    };
+
+    boot = {
+      loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
       };
     };
 
