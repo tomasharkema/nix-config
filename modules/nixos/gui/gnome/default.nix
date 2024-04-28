@@ -17,7 +17,13 @@ in {
     sound.mediaKeys.enable = true;
     traits.developer.enable = mkDefault true;
 
-    # environment.sessionVariables.NIXOS_OZONE_WL = "1";
+     environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+     xdg.portal.wlr.enable = true;
+
+     programs.sway.enable=true;
+
+     programs.xwayland.enable =true;
 
     # environment.etc."X11/Xwrapper.config".text = ''
     #   allowed_users=anybody
