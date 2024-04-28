@@ -146,10 +146,10 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # peerix = {
-    #   url = "github:cid-chan/peerix";
-    #   inputs.nixpkgs.follows = "unstable";
-    # };
+    peerix = {
+      url = "github:cid-chan/peerix";
+      inputs.nixpkgs.follows = "unstable";
+    };
 
     # poetry2nix = {
     #   url = "github:nix-community/poetry2nix";
