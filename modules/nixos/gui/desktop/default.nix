@@ -71,9 +71,13 @@ in {
     # enableSSHSupport = true;
     # };
     # services.cpupower-gui.enable = true;
-
+    environment.variables = {
+      LD_LIBRARY_PATH = mkForce "$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib";
+    };
     environment.systemPackages = with pkgs;
       [
+        libGL
+        libGLU
         bottles
         trayscale
         grsync
