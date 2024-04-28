@@ -31,7 +31,7 @@ with lib; {
       gamemode.enable = true;
       quiet-boot.enable = true;
     };
-
+    environment.enableDebugInfo = true;
     hardware = {
       nvidia = {
         nvidiaPersistenced = false;
