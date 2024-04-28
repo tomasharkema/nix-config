@@ -8,8 +8,8 @@ with lib;
 with lib.custom; let
   cfg = config.proxy-services;
 
-  certPath = "${cfg.cert.dir}/${cfg.cert.crt}";
-  keyPath = "${cfg.cert.dir}/${cfg.cert.key}";
+  certPath = "${cfg.cert.crt}";
+  keyPath = "${cfg.cert.key}";
 in {
   options.proxy-services = {
     enable = mkEnableOption "enable nginx";
@@ -27,21 +27,15 @@ in {
     };
 
     cert = {
-      dir = mkOption {
-        type = types.path;
-        default = "/var/lib/tailscale-cert";
-        description = "vhost";
-      };
-
       key = mkOption {
         type = types.str;
-        default = "tailscale.key";
+        default = "/etc/ssl/private/tailscale.key";
         description = "vhost";
       };
 
       crt = mkOption {
         type = types.str;
-        default = "tailscale.crt";
+        default = "/etc/ssl/certs/tailscale.crt";
         description = "vhost";
       };
     };
@@ -66,18 +60,18 @@ in {
 
         locations =
           {
-            "/basic_status" = {
-              extraConfig = ''stub_status;'';
-            };
+            #      "/basic_status" = {
+            #        extraConfig = ''stub_status;'';
+            #      };
             # "/webhook" = {
             #   return = "302 /webhook/";
             # };
-            "/webhook" = {
-              proxyPass = "http://localhost:${builtins.toString config.services.webhook.port}";
-              extraConfig = ''
-                rewrite /webhook(.*) $1 break;
-              '';
-            };
+            #     "/webhook" = {
+            #       proxyPass = "http://localhost:${builtins.toString config.services.webhook.port}";
+            #       extraConfig = ''
+            #         rewrite /webhook(.*) $1 break;
+            #       '';
+            #     };
           }
           // config.proxy-services.services;
       };
@@ -92,19 +86,19 @@ in {
     networking.firewall.allowedTCPPorts = [80 443];
 
     systemd = {
-      tmpfiles.rules = [
-        "d '${cfg.cert.dir}' 0660 root ssl-cert -"
-        "Z '${cfg.cert.dir}' 0660 root ssl-cert"
-        "f '${keyPath}' 0640 root ssl-cert - -"
-        "f '${certPath}' 0660 root ssl-cert - -"
-      ];
+      #tmpfiles.rules = [
+      #  "d '${cfg.cert.dir}' 0660 root ssl-cert -"
+      #  "Z '${cfg.cert.dir}' 0660 root ssl-cert"
+      #  "f '${keyPath}' 0640 root ssl-cert - -"
+      #  "f '${certPath}' 0660 root ssl-cert - -"
+      #];
 
-      paths.tailscale-cert-location = {
-        description = "tailscale-cert";
-        wantedBy = []; # ["multi-user.target"];
-        # This file must be copied last
-        pathConfig.PathExists = [certPath keyPath];
-      };
+      #paths.tailscale-cert-location = {
+      #  description = "tailscale-cert";
+      #  wantedBy = []; # ["multi-user.target"];
+      #  # This file must be copied last
+      #  pathConfig.PathExists = [certPath keyPath];
+      #};
 
       services.tailscale-cert = {
         enable = true;
@@ -114,17 +108,25 @@ in {
           Type = "oneshot";
           RemainAfterExit = true;
         };
+        # script = ''
+        # mkdir "${cfg.cert.dir}" || true
         script = ''
-          ${lib.getExe pkgs.tailscale} cert --cert-file "${certPath}" --key-file "${keyPath}" ${cfg.vhost}
-          chmod 660 -R "${cfg.cert.dir}"
-          chown root:ssl-cert -R "${cfg.cert.dir}"
+          ${lib.getExe pkgs.tailscale} cert --cert-file "${certPath}" --key-file "${keyPath}" "${cfg.vhost}"
+          chown -R nginx:ssl-cert "${keyPath}"
         '';
+        #chmod 664 -R "${cfg.cert.dir}"
+        #chown nginx:ssl-cert -R "${cfg.cert.dir}"
+
+        # mkdir -p /etc/nginx/ssl/
+        # cp -r "${cfg.cert.dir}" /etc/nginx/ssl/
+        # chown nginx:nginx -R /etc/nginx/ssl/
+        # '';
         # mkdir -p "${cfg.dir}"
         # chown root:ssl-cert -R "${cfg.dir}"
         # chmod 660 -R "${cfg.dir}"
 
         # wantedBy = ["multi-user.target" "network.target"];
-        # after = ["tailscaled.service" "network.target"];
+        after = ["tailscaled.service" "network.target"];
         # wants = ["tailscaled.service"];
       };
 
@@ -139,7 +141,7 @@ in {
     # };
 
     services.webhook = {
-      enable = true;
+      #enable = true;
 
       hooks = {
         # upload-current-system = let
