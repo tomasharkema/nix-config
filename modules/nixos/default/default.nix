@@ -184,6 +184,7 @@ with lib;
         ++ (
           optionals pkgs.stdenv.isx86_64 [
             pkgs.custom.ztui
+            # pkgs.wolfram-engine
           ]
         );
       # services.ntfy-sh.enable = true;
