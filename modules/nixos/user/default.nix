@@ -60,7 +60,7 @@ with lib.custom; {
 
       openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
       linger = true;
-      uid = 1002;
+      uid = 1000;
     };
 
     users.groups.${config.user.name} = {
