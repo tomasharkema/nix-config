@@ -6,7 +6,7 @@
 }:
 with lib; {
   imports = with inputs; [
-    "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
+    # "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
     ./hardware-configuration.nix
   ];
 
@@ -18,24 +18,42 @@ with lib; {
       hostName = "euro-mir-vm";
     };
 
-    nix.buildMachines = [
-      {
-        hostName = "blue-fie";
-        systems = ["aarch64-linux" "x86_64-linux"];
-        maxJobs = 4;
-        supportedFeatures = ["kvm" "benchmark" "big-parallel"];
-        speedFactor = 100;
-      }
-    ];
+    # nix.buildMachines = [
+    #   {
+    #     hostName = "blue-fie";
+    #     systems = ["aarch64-linux" "x86_64-linux"];
+    #     maxJobs = 4;
+    #     supportedFeatures = ["kvm" "benchmark" "big-parallel"];
+    #     speedFactor = 100;
+    #   }
+    # ];
 
     users.mutableUsers = true;
 
     time.timeZone = "Europe/Amsterdam";
 
-    disks."ext4" = {
-      enable = true;
-      main = "/dev/vda";
-      encrypt = false;
+    # disks."ext4" = {
+    #   enable = true;
+    #   main = "/dev/vda";
+    #   encrypt = false;
+    # };
+
+    boot = {
+      loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
+      };
+    };
+
+    fileSystems."/" = {
+      device = "/dev/disk/by-uuid/fd0e4d0a-b101-4c92-9dee-c9b4ee171836";
+      fsType = "ext4";
+    };
+
+    fileSystems."/boot" = {
+      device = "/dev/disk/by-uuid/A6D4-8A1F";
+      fsType = "vfat";
+      options = ["fmask=0022" "dmask=0022"];
     };
 
     gui = {
