@@ -1,9 +1,9 @@
 {
   pkgs,
-  config,
+  config,lib,
   ...
-}: {
-  config = {
+}: with lib; {
+  config = mkIf false {
     age.secrets."rmapi" = {
       file = ../../../../secrets/rmapi.age;
       mode = "644";
