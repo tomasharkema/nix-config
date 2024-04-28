@@ -34,8 +34,8 @@ in {
         #   location = "https://flatpak.elementary.io/repo.flatpakrepo";
         # }
       ];
-      packages =
-        [
+      packages = mkIf pkgs.stdenv.isx86_64
+        ([
           #"com.getpostman.Postman"
           "com.github.tchx84.Flatseal"
           # "com.logseq.Logseq"
@@ -62,9 +62,9 @@ in {
             "com.heroicgameslauncher.hgl"
           ]
           else []
-        );
-      update.onActivation = true;
-      update.auto = {
+        ));
+      update.onActivation = mkIf pkgs.stdenv.isx86_64 true;
+      update.auto = mkIf pkgs.stdenv.isx86_64 {
         enable = true;
         onCalendar = "weekly"; # Default value
       };
