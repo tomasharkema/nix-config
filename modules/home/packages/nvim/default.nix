@@ -34,8 +34,16 @@ in {
 
     programs.nixvim = {
       enable = true;
-      # colorschemes.catppuccin.enable = true;
+
+      colorschemes.catppuccin.enable = true;
+
       plugins = {
+        treesitter = {
+          enable = true;
+          # package = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+        };
+        dashboard = {enable = true;};
+        neo-tree = {enable = true;};
         project-nvim = {enable = true;};
         telescope = {enable = true;};
         fugitive = {enable = true;};
@@ -57,13 +65,39 @@ in {
         gitgutter = {enable = true;};
         surround = {enable = true;};
         nvim-colorizer = {enable = true;};
+        nix-develop.enable = true;
+        notify.enable = true;
+        # zellij.enable = true;
+        nix = {enable = true;};
+        #fzf-lua = {enable = true;};
+        auto-save = {
+          enable = true;
+          enableAutoSave = true;
+        };
+        git-worktree = {enable = true;};
+        #direnv = {enable=true;};
+        multicursors.enable = true;
+        toggleterm = {enable = true;};
+        floaterm = {enable = true;};
+        zig = {enable = true;};
+        cmp-zsh.enable = true;
+        conform-nvim = {
+          enable = true;
+          #formatOnSave=true;
+          formattersByFt = {
+            lua = ["stylua"];
+            nix = ["alejandra"];
+          };
+        };
       };
+
       extraPlugins = with pkgs.vimPlugins; [
         # ansible-vim
         vim-nix
         coc-nvim
         suda-vim
       ];
+
       options = {
         number = true;
         syntax = "enable";
@@ -71,6 +105,7 @@ in {
         encoding = "utf-8";
         title = true;
         autoindent = true;
+
         background = "dark";
         backup = false;
         hlsearch = true;
@@ -79,7 +114,7 @@ in {
         laststatus = 2;
         scrolloff = 10;
         expandtab = true;
-        shell = "fish";
+        shell = "zsh";
         backupskip = "/tmp/*,/private/tmp/*";
         inccommand = "split";
         ruler = false;
@@ -98,7 +133,7 @@ in {
         cursorline = true;
         exrc = true;
         mouse = "a";
-        suffixesadd = ".js,.es,.jsx,.json,.css,.less,.sass,.styl,.php,.py,.md";
+        suffixesadd = ".js,.es,.jsx,.json,.css,.less,.sass,.styl,.php,.py,.md,.nix";
       };
 
       autoCmd = [
@@ -161,6 +196,8 @@ in {
         vim.api.nvim_set_hl(0, "MatchParen", { bg="#4c566a", fg="#88c0d0" })
       '';
       extraConfigVim = ''
+        nnoremap <c-s> :w<cr>
+
         inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
         set undofile
         set clipboard+=unnamedplus
@@ -170,6 +207,14 @@ in {
             endif
             endfunction
       '';
+
+      keymaps = [
+        {
+          key = ";";
+          action = ":";
+        }
+      ];
+
       # maps = {
       #   normal."sf" = {
       #     silent = true;
