@@ -81,8 +81,8 @@ with lib; {
     traits = {
       developer.enable = false;
       hardware = {
-        tpm.enable = true;
-        secure-boot.enable = true;
+        tpm.enable = false;
+        secure-boot.enable = false;
         vm.enable = true;
         remote-unlock.enable = false;
       };
