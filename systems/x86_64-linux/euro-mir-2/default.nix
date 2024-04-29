@@ -20,7 +20,13 @@ with lib; {
       newSubvolumes = true;
     };
 
-    environment.systemPackages = with pkgs; [bolt calibre glxinfo inxi];
+    environment.systemPackages = with pkgs; [
+      bolt
+      calibre
+      glxinfo
+      inxi
+      linuxPackages.usbip
+    ];
 
     gui = {
       enable = true;
@@ -115,6 +121,7 @@ with lib; {
         options nvidia NVreg_PreserveVideoMemoryAllocations=1
       '';
       supportedFilesystems = ["ntfs"];
+      kernelModules = ["vhci-hcd"];
     };
   };
 }
