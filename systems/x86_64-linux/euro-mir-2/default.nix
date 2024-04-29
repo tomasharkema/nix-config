@@ -121,7 +121,7 @@ with lib; {
         options nvidia NVreg_PreserveVideoMemoryAllocations=1
       '';
       supportedFilesystems = ["ntfs"];
-      kernelModules = ["vhci-hcd"];
+      kernelModules = ["vhci-hcd" "usbip_host" "usbip_core"];
     };
   };
 }
