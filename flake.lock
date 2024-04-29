@@ -402,11 +402,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1714103775,
-        "narHash": "sha256-kcBiIrmqzt3bNTr2GMBfAyA+on8BEKO1iKzzDFQZkjI=",
+        "lastModified": 1714405407,
+        "narHash": "sha256-h3pOvHCXkSdp1KOZqtkQmHgkR7VaOJXDhqhumk7sZLY=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "285e26465a0bae510897ca04da26ce6307c652b4",
+        "rev": "5eaf747af38dd272e1ab28a8ec4bd972424b07cf",
         "type": "github"
       },
       "original": {
@@ -426,11 +426,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1714390077,
-        "narHash": "sha256-L3cRc21BQokJf/LkEQzfL9lsjgVJMjjaMLZdbZCRSAY=",
+        "lastModified": 1714416351,
+        "narHash": "sha256-Oln56WMkIFEuKe/q/pkD0IvdM28Y2Igtcye2wdYxe+Y=",
         "owner": "DeterminateSystems",
         "repo": "flake-checker",
-        "rev": "68573b8e0d37bbf2086c9cc3c9af917b77b9aeb3",
+        "rev": "358b3de4d41c7ddee4f5f2b3d841c68d08e107f3",
         "type": "github"
       },
       "original": {
@@ -1549,11 +1549,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1713877898,
-        "narHash": "sha256-la8zsLyHWtDQdrbCvZxLi5uqoL4HrvGSza0wVLpJH+M=",
+        "lastModified": 1714407833,
+        "narHash": "sha256-ULfy8tQc/9hBOuVqsNkfuaGsLCmOOMTkU4Blo2OxmLk=",
         "owner": "nix-community",
         "repo": "nixos-anywhere",
-        "rev": "4958ff8bf569d50a100402f54928d6ba16f5783c",
+        "rev": "3170c45be47d1f1488b997cb1755c965e3c232eb",
         "type": "github"
       },
       "original": {
