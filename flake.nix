@@ -396,6 +396,7 @@
       "https://cache.nixos.org/"
       "https://blue-fire.ling-lizard.ts.net/attic/tomas/"
       "https://devenv.cachix.org"
+      "https://tomasharkema.cachix.org"
     ];
 
     trusted-public-keys = [
@@ -406,6 +407,7 @@
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       "tomas:qzaaV24nfgwcarekICaYr2c9ZBFDQnvvydOywbwAeys="
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+      "tomasharkema.cachix.org-1:BV3Sv3qGZ0bcybPFeigwKoxnpj/NBAFYHq9FMO1XgH4="
     ];
 
     binaryCaches = ["https://cache.nixos.org"];
