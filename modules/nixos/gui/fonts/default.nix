@@ -5,7 +5,11 @@
   ...
 }:
 with lib; {
-  config = mkIf config.gui.enable {
+  options.gui.fonts = {
+    enable = mkEnableOption "gui.fonts";
+  };
+
+  config = mkIf config.gui.fonts.enable {
     fonts = {
       enableDefaultPackages = true;
       fontDir.enable = true;
