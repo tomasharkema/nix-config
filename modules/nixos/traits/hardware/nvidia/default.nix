@@ -53,7 +53,7 @@ in {
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
 
-        nvidiaPersistenced = false;
+        #        nvidiaPersistenced = false;
       };
 
       opengl = {
