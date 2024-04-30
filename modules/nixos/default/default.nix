@@ -112,6 +112,7 @@ with lib;
       programs.fzf.fuzzyCompletion = true;
       environment.systemPackages =
         (with pkgs; [
+          ssh-tools
           mbuffer
           # etcher
           pamixer
@@ -256,7 +257,7 @@ with lib;
             PasswordAuthentication = false;
             KbdInteractiveAuthentication = true;
             PermitRootLogin = "yes";
-            AcceptEnv = "yes";
+            AcceptEnv = "*";
             # X11Forwarding = true;
           };
         };
