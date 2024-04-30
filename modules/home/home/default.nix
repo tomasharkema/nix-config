@@ -30,11 +30,32 @@ in
       # nix.package = pkgs.nixUnstable;
 
       home = {
+        pointerCursor = {
+          name = "Adwaita";
+          package = pkgs.gnome.adwaita-icon-theme;
+          size = 24;
+          x11 = {
+            enable = true;
+            defaultCursor = "Adwaita";
+          };
+        };
         file = {
           ".face" = {
             source = builtins.fetchurl {
               url = "https://avatars.githubusercontent.com/u/4534203";
-              sha256 = "sha256:1s8ab15sxi5ga2rs380vc7acdz7ywh6sx1dl6svbirskngivbs4g";
+              sha256 = "1g4mrz2d8h13rp8z2b9cn1wdr4la5zzrfkqgblayb56zg7706ga6";
+            };
+          };
+          "wp.jpg" = {
+            source = builtins.fetchurl {
+              url = "https://t.ly/n3kq7";
+              sha256 = "sha256:0p9lyarqw63b1npicc5ps8h6c34n1137f7i6qz3jrcxg550girh0";
+            };
+          };
+          "wp.png" = {
+            source = builtins.fetchurl {
+              url = "https://t.ly/r76YX";
+              sha256 = "sha256:0g4a6a5yy4mdlqkvw3lc02wgp4hmlvj0nc8lvlgigkra95jq9x3x";
             };
           };
           # ".config/cachix/cachix.dhall".source = config.lib.file.mkOutOfStoreSymlink "/etc/cachix.dhall"; # osConfig.age.secrets.cachix.path;

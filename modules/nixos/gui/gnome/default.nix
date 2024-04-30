@@ -17,14 +17,16 @@ in {
     sound.mediaKeys.enable = true;
     traits.developer.enable = mkDefault true;
 
-     environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-     xdg.portal.wlr.enable = true;
+    xdg.portal.wlr.enable = true;
 
-     programs.sway.enable=true;
-
-     programs.xwayland.enable =true;
-
+    programs.hyprland = {
+      # Install the packages from nixpkgs
+      enable = true;
+      # Whether to enable XWayland
+      xwayland.enable = true;
+    };
     # environment.etc."X11/Xwrapper.config".text = ''
     #   allowed_users=anybody
     # '';
@@ -41,7 +43,8 @@ in {
       #   exit 0
       # ''}";
 
-      xrdp.defaultWindowManager = "${pkgs.gnome.gnome-shell}/bin/gnome-shell";
+      # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-shell}/bin/gnome-shell";
+      xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session --session=gnomexrdp";
 
       xserver = {
         desktopManager.gnome.enable = true;
