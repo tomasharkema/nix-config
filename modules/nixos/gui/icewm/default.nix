@@ -6,10 +6,9 @@
 }:
 with lib; let
   cfg = config.gui.icewm;
-  iceConfig = pkgs.fetchzip {
-    url = "https://github.com/ottop/blueicewm/archive/refs/tags/v1.0.tar.gz";
-    hash = "sha256-UkUVtb2444YkztHJi1VacY4/dZDdkAHcScW9082tfoE=";
-  };
+
+  preferencesFile = "${./preferences.conf}";
+  themeFile = "${./theme.conf}";
 in {
   options.gui.icewm = {
     enable = mkEnableOption "icewm";
@@ -20,6 +19,23 @@ in {
       enable = true;
       # Whether to enable XWayland
       xwayland.enable = true;
+    };
+
+    home.homeFiles = {
+      ".icewm/themes/IceAdwaita-Dark-Medium-alpha" = {
+        # enable = true;
+        source = "${pkgs.custom.awesome-icewm}/themes/IceAdwaita-Dark-Medium-alpha";
+      };
+      ".icewm/preferences" = {
+        source = preferencesFile;
+      };
+      ".icewm/theme" = {
+        source = themeFile;
+      };
+      # ".config/rofi/config.rasi" = {
+      #   # enable = true;
+      #   source = "${iceConfig}/rofi/config.rasi";
+      # };
     };
 
     services = {
@@ -37,11 +53,11 @@ in {
     environment = {
       systemPackages = [pkgs.icewm];
       etc = {
-        "icevm-theme" = {
-          enable = true;
-          source = "${iceConfig}/icewm";
-          target = "icewm";
-        };
+        # "icevm-theme" = {
+        #   enable = true;
+        #   source = "${iceConfig}/icewm";
+        #   target = "icewm";
+        # };
       };
     };
   };
