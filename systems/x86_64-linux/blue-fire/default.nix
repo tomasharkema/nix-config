@@ -47,6 +47,8 @@ in {
       atophttpd.enable = true;
     };
 
+    gui.icewm.enable = true;
+
     services = {
       # icingaweb2 = {
       #   enable = true;
