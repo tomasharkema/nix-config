@@ -37,15 +37,17 @@ with lib; {
       gamemode.enable = true;
       quiet-boot.enable = true;
     };
+
     environment.enableDebugInfo = true;
+
     hardware = {
       nvidia = {
         nvidiaPersistenced = false;
-        dynamicBoost.enable = true;
+        # dynamicBoost.enable = true;
         prime = {
-          sync.enable = true;
-          offload.enable = false;
-          offload.enableOffloadCmd = false;
+          #sync.enable = true;
+          offload.enable = true;
+          offload.enableOffloadCmd = true;
         };
       };
       # fancontrol.enable = true;
