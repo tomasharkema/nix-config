@@ -18,16 +18,15 @@ in
 
     config = {
       programs.inshellisense.enable = true;
-      #dconf.enable = true;
-      # xserver.enable = true;
 
-      # home.file.".face" = {
-      #     source = .../assets/pics/face.png;
-      #   };
-
-      # mv /path/to/image.jpg ~/.face
-
-      # nix.package = pkgs.nixUnstable;
+      xdg = {
+        userDirs = {
+          enable = true;
+          extraConfig = {
+            XDG_DEV_DIR = "${config.home.homeDirectory}/Developer";
+          };
+        };
+      };
 
       home = {
         pointerCursor = {
@@ -122,7 +121,7 @@ in
           };
       };
 
-      fonts.fontconfig.enable = osConfig.gui.enable;
+      fonts.fontconfig.enable = true;
 
       autostart.programs = with pkgs; mkIf osConfig.gui.enable [telegram-desktop trayscale];
 
@@ -176,7 +175,7 @@ in
 
         tmux = {enable = true;};
 
-        # alacritty.enable = osConfig.gui.enable;
+        alacritty.enable = osConfig.gui.enable;
 
         atuin = {
           enable = true;
