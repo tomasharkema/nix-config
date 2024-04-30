@@ -111,7 +111,14 @@ in {
         # script = ''
         # mkdir "${cfg.cert.dir}" || true
         script = ''
+          cert_dir="$(dirname "${certPath}")"
+          key_dir="$(dirname "${keyPath}")"
+
+          mkdir -p "$cert_dir" || true
+          mkdir -p "$key_dir" || true
+
           ${lib.getExe pkgs.tailscale} cert --cert-file "${certPath}" --key-file "${keyPath}" "${cfg.vhost}"
+
           chown -R nginx:ssl-cert "${keyPath}"
         '';
         #chmod 664 -R "${cfg.cert.dir}"
