@@ -38,39 +38,41 @@ in
             defaultCursor = "Adwaita";
           };
         };
-        file = {
-          ".face" = {
-            source = builtins.fetchurl {
-              url = "https://avatars.githubusercontent.com/u/4534203";
-              sha256 = "1g4mrz2d8h13rp8z2b9cn1wdr4la5zzrfkqgblayb56zg7706ga6";
+        file =
+          osConfig.home.homeFiles
+          // {
+            ".face" = {
+              source = builtins.fetchurl {
+                url = "https://avatars.githubusercontent.com/u/4534203";
+                sha256 = "1g4mrz2d8h13rp8z2b9cn1wdr4la5zzrfkqgblayb56zg7706ga6";
+              };
+            };
+            "wp.jpg" = {
+              source = builtins.fetchurl {
+                url = "https://t.ly/n3kq7";
+                sha256 = "sha256:0p9lyarqw63b1npicc5ps8h6c34n1137f7i6qz3jrcxg550girh0";
+              };
+            };
+            "wp.png" = {
+              source = builtins.fetchurl {
+                url = "https://t.ly/r76YX";
+                sha256 = "sha256:0g4a6a5yy4mdlqkvw3lc02wgp4hmlvj0nc8lvlgigkra95jq9x3x";
+              };
+            };
+            # ".config/cachix/cachix.dhall".source = config.lib.file.mkOutOfStoreSymlink "/etc/cachix.dhall"; # osConfig.age.secrets.cachix.path;
+            # ".config/notify/provider-config.yaml".source = osConfig.age.secrets.notify.path;
+            # "${config.xdg.dataHome}/Zeal/Zeal/docsets/nixpkgs.docset" = {
+            #   # /nixpkgs.docset" = {
+            #   source = config.lib.file.mkOutOfStoreSymlink "${pkgs.custom.nixpkgs-docset}/nixpkgs.docset";
+            #   recursive = true;
+            # };
+            ".local/share/flatpak/overrides/global" = mkIf stdenv.isLinux {
+              text = ''
+                [Context]
+                filesystems=/run/current-system/sw/share/X11/fonts:ro;/nix/store:ro;/home/tomas/.local/share/fonts:ro;/home/tomas/.config/gtk-4.0:ro;/home/tomas/.config/gtk-3.0:ro;
+              '';
             };
           };
-          "wp.jpg" = {
-            source = builtins.fetchurl {
-              url = "https://t.ly/n3kq7";
-              sha256 = "sha256:0p9lyarqw63b1npicc5ps8h6c34n1137f7i6qz3jrcxg550girh0";
-            };
-          };
-          "wp.png" = {
-            source = builtins.fetchurl {
-              url = "https://t.ly/r76YX";
-              sha256 = "sha256:0g4a6a5yy4mdlqkvw3lc02wgp4hmlvj0nc8lvlgigkra95jq9x3x";
-            };
-          };
-          # ".config/cachix/cachix.dhall".source = config.lib.file.mkOutOfStoreSymlink "/etc/cachix.dhall"; # osConfig.age.secrets.cachix.path;
-          # ".config/notify/provider-config.yaml".source = osConfig.age.secrets.notify.path;
-          # "${config.xdg.dataHome}/Zeal/Zeal/docsets/nixpkgs.docset" = {
-          #   # /nixpkgs.docset" = {
-          #   source = config.lib.file.mkOutOfStoreSymlink "${pkgs.custom.nixpkgs-docset}/nixpkgs.docset";
-          #   recursive = true;
-          # };
-          ".local/share/flatpak/overrides/global" = mkIf stdenv.isLinux {
-            text = ''
-              [Context]
-              filesystems=/run/current-system/sw/share/X11/fonts:ro;/nix/store:ro;/home/tomas/.local/share/fonts:ro;/home/tomas/.config/gtk-4.0:ro;/home/tomas/.config/gtk-3.0:ro;
-            '';
-          };
-        };
         activation = {
           userSymlinks-fonts = mkIf (stdenv.isLinux && osConfig.gui.enable) ''
             ln -sfn /run/current-system/sw/share/X11/fonts ~/.local/share/fonts
