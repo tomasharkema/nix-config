@@ -14,6 +14,8 @@ in {
     enable = mkEnableOption "icewm";
   };
   config = mkIf cfg.enable {
+    gui.fonts.enable = true;
+
     programs.hyprland = {
       # Install the packages from nixpkgs
       enable = true;
@@ -22,9 +24,9 @@ in {
     };
 
     home.homeFiles = {
-      ".icewm/themes/IceAdwaita-Dark-Medium-alpha" = {
+      ".icewm/themes" = {
         # enable = true;
-        source = "${pkgs.custom.awesome-icewm}/themes/IceAdwaita-Dark-Medium-alpha";
+        source = "${pkgs.custom.awesome-icewm}/themes";
       };
       ".icewm/preferences" = {
         source = preferencesFile;
@@ -47,9 +49,18 @@ in {
 
       xrdp = {
         enable = true;
-        defaultWindowManager = "${pkgs.icewm}/bin/icewm-session";
+        defaultWindowManager = "${pkgs.icewm}/bin/icewm";
+        # defaultWindowManager = "${pkgs.icewm}/bin/icewm-session";
       };
     };
+
+    xdg = {
+      autostart.enable = true;
+      menus.enable = true;
+      mime.enable = true;
+      icons.enable = true;
+    };
+
     environment = {
       systemPackages = [pkgs.icewm];
       etc = {
