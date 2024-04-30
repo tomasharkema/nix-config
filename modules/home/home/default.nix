@@ -18,39 +18,62 @@ in
 
     config = {
       programs.inshellisense.enable = true;
-      #dconf.enable = true;
-      # xserver.enable = true;
 
-      # home.file.".face" = {
-      #     source = .../assets/pics/face.png;
-      #   };
-
-      # mv /path/to/image.jpg ~/.face
-
-      # nix.package = pkgs.nixUnstable;
-
-      home = {
-        file = {
-          ".face" = {
-            source = builtins.fetchurl {
-              url = "https://avatars.githubusercontent.com/u/4534203";
-              sha256 = "sha256:1s8ab15sxi5ga2rs380vc7acdz7ywh6sx1dl6svbirskngivbs4g";
-            };
-          };
-          # ".config/cachix/cachix.dhall".source = config.lib.file.mkOutOfStoreSymlink "/etc/cachix.dhall"; # osConfig.age.secrets.cachix.path;
-          # ".config/notify/provider-config.yaml".source = osConfig.age.secrets.notify.path;
-          # "${config.xdg.dataHome}/Zeal/Zeal/docsets/nixpkgs.docset" = {
-          #   # /nixpkgs.docset" = {
-          #   source = config.lib.file.mkOutOfStoreSymlink "${pkgs.custom.nixpkgs-docset}/nixpkgs.docset";
-          #   recursive = true;
-          # };
-          ".local/share/flatpak/overrides/global" = mkIf stdenv.isLinux {
-            text = ''
-              [Context]
-              filesystems=/run/current-system/sw/share/X11/fonts:ro;/nix/store:ro;/home/tomas/.local/share/fonts:ro;/home/tomas/.config/gtk-4.0:ro;/home/tomas/.config/gtk-3.0:ro;
-            '';
+      xdg = {
+        userDirs = {
+          enable = true;
+          extraConfig = {
+            XDG_DEV_DIR = "${config.home.homeDirectory}/Developer";
           };
         };
+      };
+
+      home = {
+        pointerCursor = mkIf pkgs.stdenv.isLinux {
+          name = "Adwaita";
+          package = pkgs.gnome.adwaita-icon-theme;
+          size = 24;
+          x11 = {
+            enable = true;
+            defaultCursor = "Adwaita";
+          };
+        };
+
+        file =
+          osConfig.home.homeFiles
+          // {
+            ".face" = {
+              source = builtins.fetchurl {
+                url = "https://avatars.githubusercontent.com/u/4534203";
+                sha256 = "1g4mrz2d8h13rp8z2b9cn1wdr4la5zzrfkqgblayb56zg7706ga6";
+              };
+            };
+            "wp.jpg" = {
+              source = builtins.fetchurl {
+                url = "https://t.ly/n3kq7";
+                sha256 = "sha256:0p9lyarqw63b1npicc5ps8h6c34n1137f7i6qz3jrcxg550girh0";
+              };
+            };
+            "wp.png" = {
+              source = builtins.fetchurl {
+                url = "https://t.ly/r76YX";
+                sha256 = "sha256:0g4a6a5yy4mdlqkvw3lc02wgp4hmlvj0nc8lvlgigkra95jq9x3x";
+              };
+            };
+            # ".config/cachix/cachix.dhall".source = config.lib.file.mkOutOfStoreSymlink "/etc/cachix.dhall"; # osConfig.age.secrets.cachix.path;
+            # ".config/notify/provider-config.yaml".source = osConfig.age.secrets.notify.path;
+            # "${config.xdg.dataHome}/Zeal/Zeal/docsets/nixpkgs.docset" = {
+            #   # /nixpkgs.docset" = {
+            #   source = config.lib.file.mkOutOfStoreSymlink "${pkgs.custom.nixpkgs-docset}/nixpkgs.docset";
+            #   recursive = true;
+            # };
+            ".local/share/flatpak/overrides/global" = mkIf stdenv.isLinux {
+              text = ''
+                [Context]
+                filesystems=/run/current-system/sw/share/X11/fonts:ro;/nix/store:ro;/home/tomas/.local/share/fonts:ro;/home/tomas/.config/gtk-4.0:ro;/home/tomas/.config/gtk-3.0:ro;
+              '';
+            };
+          };
         activation = {
           userSymlinks-fonts = mkIf (stdenv.isLinux && osConfig.gui.enable) ''
             ln -sfn /run/current-system/sw/share/X11/fonts ~/.local/share/fonts
@@ -75,6 +98,7 @@ in
         # (import ./packages/common.nix {inherit pkgs inputs lib;})
         # ++
         packages = with pkgs; [
+          wget2
           fup-repl
           udict
           #pkgs.custom.b612
@@ -101,7 +125,7 @@ in
           };
       };
 
-      fonts.fontconfig.enable = osConfig.gui.enable;
+      fonts.fontconfig.enable = true;
 
       autostart.programs = with pkgs; mkIf osConfig.gui.enable [telegram-desktop trayscale];
 
@@ -155,7 +179,7 @@ in
 
         tmux = {enable = true;};
 
-        # alacritty.enable = osConfig.gui.enable;
+        alacritty.enable = osConfig.gui.enable;
 
         atuin = {
           enable = true;
@@ -274,6 +298,7 @@ in
             pvzst = "pv @1 -N in -B 500M -pterbT | zstd - -e -T4 | pv -N out -B 500M -pterbT > @2";
             cat = "bat";
             dig = "dog";
+
             # silver-star-ipmi raw 0x30 0x30 0x01 0x00
             # silver-star-ipmi raw 0x30 0x30 0x02 0xff 0x10
             silver-star-ipmi = "ipmitool -I lanplus -H 192.168.0.45 -U root -P \"$(op item get abrgfwmlbnc2zghpugawqoagjq --field password)\"";
