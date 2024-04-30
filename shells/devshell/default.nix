@@ -153,6 +153,7 @@ in
             "Catppuccin.catppuccin-vsc"
             "kamadorueda.alejandra"
             "jnoortheen.nix-ide"
+            "mkhl.direnv"
           ];
         };
         difftastic.enable = true;

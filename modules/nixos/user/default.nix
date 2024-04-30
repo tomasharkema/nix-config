@@ -11,8 +11,8 @@ with lib.custom; {
     name = mkOpt str "tomas" "The name to use for the user account.";
 
     # keys = mkOpt (listOf str) keys "auth keys";
-    #   fullName = mkOpt str "Tomas Harkema" "The full name of the user.";
-    #   email = mkOpt str "tomas@harkema.io" "The email of the user.";
+    fullName = mkOpt str "Tomas Harkema" "The full name of the user.";
+    email = mkOpt str "tomas@harkema.io" "The email of the user.";
     #   initialPassword =
     #     mkOpt str "password"
     #     "The initial password to use when the user is first created.";

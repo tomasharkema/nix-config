@@ -6,6 +6,7 @@
 with pkgs; {
   config = {
     home.packages = with pkgs; [
+      ssh-tools
       tg
       wiki-tui
       tran
