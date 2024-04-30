@@ -17,6 +17,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    gui.fonts.enable = true;
     services = {
       xserver = {
         enable = true;
