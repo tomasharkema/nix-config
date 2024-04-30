@@ -36,6 +36,7 @@ in {
         # tpm.enable = true;
         secure-boot.enable = true;
         remote-unlock.enable = true;
+        nvidia.enable = true;
       };
     };
 
@@ -46,6 +47,8 @@ in {
       ntopng.enable = true;
       atophttpd.enable = true;
     };
+
+    gui.icewm.enable = true;
 
     services = {
       # icingaweb2 = {

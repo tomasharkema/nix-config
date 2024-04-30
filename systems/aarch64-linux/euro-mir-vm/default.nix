@@ -38,7 +38,7 @@ with lib; {
     #   encrypt = false;
     # };
 
-    services.spice-autorandr.enable = true;
+    # services.spice-autorandr.enable = true;
     services.spice-vdagentd.enable = true;
     services.spice-webdavd.enable = true;
 
@@ -75,7 +75,7 @@ with lib; {
     };
 
     boot = {
-      # growPartition = true;
+      growPartition = true;
 
       tmp = {
         useTmpfs = false;
@@ -100,7 +100,7 @@ with lib; {
     };
     services = {
       kmscon = {
-        enable = false;
+        # enable = false;
       };
     };
   };
