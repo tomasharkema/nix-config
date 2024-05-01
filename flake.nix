@@ -7,7 +7,7 @@
       inputs.nixpkgs.follows = "unstable";
     };
 
-    # nixpkgs-gnome.url = "nixpkgs/gnome-46";
+    nixpkgs-gnome.url = "nixpkgs/gnome-46";
 
     flake-compat = {
       url = "github:edolstra/flake-compat";

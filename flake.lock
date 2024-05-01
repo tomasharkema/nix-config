@@ -1716,6 +1716,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-gnome": {
+      "locked": {
+        "lastModified": 1713814968,
+        "narHash": "sha256-WI+qn3uHqIZowzB5ih9GZEOSqvZ0bKftAvGCDMiP1Ns=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "3d96608e696256e110666409a0ddca12c9d835c1",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "gnome-46",
+        "type": "indirect"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "dir": "lib",
@@ -1930,11 +1945,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1714409183,
-        "narHash": "sha256-Wacm/DrzLD7mjFGnSxxyGkJgg2unU/dNdNgdngBH+RU=",
+        "lastModified": 1714531828,
+        "narHash": "sha256-ILsf3bdY/hNNI/Hu5bSt2/KbmHaAVhBbNUOdGztTHEg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "576ecd43d3b864966b4423a853412d6177775e8b",
+        "rev": "0638fe2715d998fa81d173aad264eb671ce2ebc1",
         "type": "github"
       },
       "original": {
@@ -2275,6 +2290,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-search": "nixos-search",
         "nixpkgs": "nixpkgs_6",
+        "nixpkgs-gnome": "nixpkgs-gnome",
         "nixvim": "nixvim",
         "peerix": "peerix",
         "snowfall-flake": "snowfall-flake",
