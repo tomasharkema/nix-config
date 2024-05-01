@@ -5,12 +5,7 @@
   ...
 }: let
   catppuccin_name = "Catppuccin-Mocha-Compact-Blue-Dark";
-  catppuccinOverride =
-    pkgs.catppuccin-gtk.overrideAttrs
-    (oldAttrs: {
-      version = "0.7.4";
-    });
-  catppuccin = catppuccinOverride.override {
+  catppuccin = pkgs.catppuccin-gtk.override {
     accents = ["blue"];
     size = "compact";
     tweaks = ["rimless" "black"];
