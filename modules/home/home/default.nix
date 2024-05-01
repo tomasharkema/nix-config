@@ -45,7 +45,7 @@ in
             ".face" = {
               source = builtins.fetchurl {
                 url = "https://avatars.githubusercontent.com/u/4534203";
-                sha256 = "1g4mrz2d8h13rp8z2b9cn1wdr4la5zzrfkqgblayb56zg7706ga6";
+                sha256 = "sha256:1s8ab15sxi5ga2rs380vc7acdz7ywh6sx1dl6svbirskngivbs4g";
               };
             };
             "wp.jpg" = {
