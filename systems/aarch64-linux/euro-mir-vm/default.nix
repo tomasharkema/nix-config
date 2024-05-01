@@ -41,12 +41,14 @@ with lib; {
     # services.spice-autorandr.enable = true;
     services.spice-vdagentd.enable = true;
     services.spice-webdavd.enable = true;
+    services.qemuGuest.enable = true;
 
     boot = {
       loader = {
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
       };
+      kernelModules = ["virtio_gpu"];
     };
 
     fileSystems."/" = {
