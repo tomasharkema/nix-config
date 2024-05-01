@@ -18,21 +18,25 @@
   # freeipa = self.packages."${prev.system}".freeipa;
   # sssd = self.packages."${prev.system}".sssd;
 
-  ldbUnstable = channels.unstable.ldb.override {
-    python3 = channels.unstable.python311;
-    cmocka = channels.unstable.cmocka;
-  };
+  ldb =
+    #builtins.trace "ldb overlay prev: ${builtins.toString (builtins.attrNames prev)}"
+    channels.unstable.ldb.override {
+      python3 = channels.unstable.python311;
+      cmocka = channels.unstable.cmocka;
+    };
 
   sssd = channels.unstable.sssd.override {
-    ldb = ldbUnstable;
+    ldb = ldb;
     withSudo = true;
   };
 
   freeipa = channels.unstable.freeipa.override {
-    ldb = ldbUnstable;
+    # ldb = ldbUnstable;
     sssd = sssd;
     _389-ds-base = _389-ds-base;
   };
+
+  samba = channels.unstable.samba;
 
   disko = disko.packages."${prev.system}".disko;
   # tailscale = channels.unstable.tailscale;
