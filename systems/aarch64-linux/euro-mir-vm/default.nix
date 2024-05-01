@@ -32,11 +32,11 @@ with lib; {
 
     time.timeZone = "Europe/Amsterdam";
 
-    # disks."ext4" = {
-    #   enable = true;
-    #   main = "/dev/vda";
-    #   encrypt = false;
-    # };
+    disks."ext4" = {
+      enable = true;
+      main = "/dev/vda";
+      encrypt = false;
+    };
 
     # services.spice-autorandr.enable = true;
     services.spice-vdagentd.enable = true;
@@ -51,16 +51,16 @@ with lib; {
       kernelModules = ["virtio_gpu"];
     };
 
-    fileSystems."/" = {
-      device = "/dev/disk/by-uuid/fd0e4d0a-b101-4c92-9dee-c9b4ee171836";
-      fsType = "ext4";
-    };
+    # fileSystems."/" = {
+    #   device = "/dev/disk/by-uuid/fd0e4d0a-b101-4c92-9dee-c9b4ee171836";
+    #   fsType = "ext4";
+    # };
 
-    fileSystems."/boot" = {
-      device = "/dev/disk/by-uuid/A6D4-8A1F";
-      fsType = "vfat";
-      options = ["fmask=0022" "dmask=0022"];
-    };
+    # fileSystems."/boot" = {
+    #   device = "/dev/disk/by-uuid/A6D4-8A1F";
+    #   fsType = "vfat";
+    #   options = ["fmask=0022" "dmask=0022"];
+    # };
 
     gui = {
       enable = true;
