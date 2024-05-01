@@ -75,6 +75,12 @@ in {
     environment.variables = {
       LD_LIBRARY_PATH = mkForce "$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib";
     };
+
+    hardware.opengl = {
+      enable = true;
+      extraPackages = [pkgs.mesa.drivers];
+    };
+
     environment.systemPackages = with pkgs;
       [
         libGL
