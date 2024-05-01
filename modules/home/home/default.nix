@@ -19,7 +19,7 @@ in
     config = {
       programs.inshellisense.enable = true;
 
-      xdg = {
+      xdg = mkIf pkgs.stdenv.isLinux {
         userDirs = {
           enable = true;
           extraConfig = {
@@ -29,7 +29,7 @@ in
       };
 
       home = {
-        pointerCursor = {
+        pointerCursor = mkIf pkgs.stdenv.isLinux {
           name = "Adwaita";
           package = pkgs.gnome.adwaita-icon-theme;
           size = 24;
@@ -38,6 +38,7 @@ in
             defaultCursor = "Adwaita";
           };
         };
+
         file =
           osConfig.home.homeFiles
           // {
@@ -97,6 +98,7 @@ in
         # (import ./packages/common.nix {inherit pkgs inputs lib;})
         # ++
         packages = with pkgs; [
+          wget2
           fup-repl
           udict
           #pkgs.custom.b612
@@ -296,8 +298,6 @@ in
             pvzst = "pv @1 -N in -B 500M -pterbT | zstd - -e -T4 | pv -N out -B 500M -pterbT > @2";
             cat = "bat";
             dig = "dog";
-
-            wget2 = "${pkgs.wget2}";
 
             # silver-star-ipmi raw 0x30 0x30 0x01 0x00
             # silver-star-ipmi raw 0x30 0x30 0x02 0xff 0x10
