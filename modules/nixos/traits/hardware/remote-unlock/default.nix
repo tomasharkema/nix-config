@@ -80,9 +80,10 @@ in {
             rsyslog
             tor
             zerotierone
-            notify
+            # notify
             libcxx
             glibc
+            ntfy-sh
           ];
 
           packages = with pkgs; [
@@ -92,9 +93,17 @@ in {
             rsyslog
             tor
             zerotierone
-            notify
+            # notify
             libcxx
             glibc
+            ntfy-sh
+          ];
+
+          storePaths = [
+            "${pkgs.tor}/bin/tor"
+            "${pkgs.rsyslog}/sbin/rsyslogd"
+            "${pkgs.coreutils}/bin/mkdir"
+            "${pkgs.ntfy-sh}/bin/ntfy-sh"
           ];
 
           # emergencyAccess = true;
@@ -129,13 +138,6 @@ in {
           # contents."/etc/rsyslog.conf".text = ''
           #   *.*    @@nix.harke.ma:5140;RSYSLOG_SyslogProtocol23Format
           # '';
-
-          storePaths = [
-            "${pkgs.tor}/bin/tor"
-            "${pkgs.rsyslog}/sbin/rsyslogd"
-            "${pkgs.coreutils}/bin/mkdir"
-            "${pkgs.notify}/bin/notify"
-          ];
 
           services = {
             tor = {
@@ -173,7 +175,7 @@ in {
 
             notify = {
               script = ''
-                echo "OJOO!" | /bin/notify -bulk -pc /etc/notify.key
+                /bin/ntfy publish tomasharkema-nixos "OJOO!"
               '';
 
               wantedBy = ["initrd.target"];
