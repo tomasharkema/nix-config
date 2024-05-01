@@ -31,9 +31,9 @@ with lib; {
           icon-theme = "Adwaita";
         };
 
-        # "org/gnome/shell/extensions/user-theme" = {
-        #   name = "Catppuccin-Mocha-Compact-Blue-Dark";
-        # };
+        "org/gnome/shell/extensions/user-theme" = {
+          name = "Catppuccin-Mocha-Compact-Blue-Dark";
+        };
 
         "org/gnome/shell/extensions/TodoTxt" = {
           donetxt-location = "/home/tomas/resilio-sync/shared-documents/done.txt";
