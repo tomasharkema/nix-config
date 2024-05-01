@@ -72,9 +72,9 @@ in {
     # enableSSHSupport = true;
     # };
     # services.cpupower-gui.enable = true;
-    environment.variables = {
-      LD_LIBRARY_PATH = mkForce "$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib";
-    };
+    # environment.variables = {
+    #   LD_LIBRARY_PATH = mkForce "$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib";
+    # };
 
     hardware.opengl = {
       enable = true;
@@ -83,15 +83,16 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        xdiskusage
         libGL
         libGLU
-        bottles
+        # bottles
         trayscale
         grsync
         caffeine-ng
         qjournalctl
         pkgs.custom.netbrowse
-        gnome.gnome-boxes
+        # gnome.gnome-boxes
         # pcmanfm
         polkit
         gparted
