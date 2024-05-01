@@ -50,6 +50,7 @@ with lib; {
       };
       kernelModules = ["virtio_gpu"];
     };
+    virtualisation.rosetta.enable = true;
 
     # fileSystems."/" = {
     #   device = "/dev/disk/by-uuid/fd0e4d0a-b101-4c92-9dee-c9b4ee171836";
