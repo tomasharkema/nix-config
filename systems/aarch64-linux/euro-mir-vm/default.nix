@@ -58,11 +58,11 @@ with lib; {
     #   fsType = "ext4";
     # };
 
-    # fileSystems."/boot" = {
-    #   device = "/dev/disk/by-uuid/A6D4-8A1F";
-    #   fsType = "vfat";
-    #   options = ["fmask=0022" "dmask=0022"];
-    # };
+    fileSystems."/boot" = {
+      #   device = "/dev/disk/by-uuid/A6D4-8A1F";
+      #   fsType = "vfat";
+      options = ["fmask=0022" "dmask=0022"];
+    };
 
     gui = {
       enable = true;
