@@ -20,8 +20,6 @@ with lib; {
       newSubvolumes = true;
     };
 
-    virtualisation.rosetta.enable = true;
-
     environment.systemPackages = with pkgs; [
       bolt
       calibre
