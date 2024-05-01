@@ -49,15 +49,15 @@ in {
       };
     };
     home = lib.mkIf true {
-      #sessionVariables.GTK_THEME = catppuccin_name;
-      # file = {
-      #   ".config/gtk-4.0/gtk.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk.css";
-      #   ".config/gtk-4.0/gtk-dark.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk-dark.css";
-      #   ".config/gtk-4.0/assets" = {
-      #     recursive = true;
-      #     source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/assets";
-      #   };
-      # };
+      sessionVariables.GTK_THEME = catppuccin_name;
+      file = {
+        ".config/gtk-4.0/gtk.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk.css";
+        ".config/gtk-4.0/gtk-dark.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk-dark.css";
+        ".config/gtk-4.0/assets" = {
+          recursive = true;
+          source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/assets";
+        };
+      };
     };
   };
 }

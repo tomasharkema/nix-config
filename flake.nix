@@ -7,7 +7,7 @@
       inputs.nixpkgs.follows = "unstable";
     };
 
-    # nixpkgs-gnome.url = "nixpkgs/gnome-46";
+    nixpkgs-gnome.url = "nixpkgs/gnome-46";
 
     flake-compat = {
       url = "github:edolstra/flake-compat";
@@ -212,6 +212,7 @@
         nvidia.acceptLicense = true;
         firefox.enableGnomeExtensions = true;
         kodi.enableAdvancedLauncher = true;
+        allowBroken = true;
         # allowAliases = false;
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";

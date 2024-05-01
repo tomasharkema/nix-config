@@ -20,7 +20,7 @@ in {
   # imports = [
   #   "${inputs.unstable}/nixos/modules/security/ipa.nix"
   #   "${inputs.unstable}/nixos/modules/security/pam.nix"
-  #   "${inputs.unstable}/nixos/modules/security/krb5"
+  #   # "${inputs.unstable}/nixos/modules/security/krb5"
   #   "${inputs.unstable}/nixos/modules/services/misc/sssd.nix"
   # ];
 

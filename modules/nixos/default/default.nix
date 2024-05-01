@@ -112,6 +112,10 @@ with lib;
       programs.fzf.fuzzyCompletion = true;
       environment.systemPackages =
         (with pkgs; [
+          gdu
+          swapview
+          dfrs
+          duc
           ssh-tools
           mbuffer
           # etcher
