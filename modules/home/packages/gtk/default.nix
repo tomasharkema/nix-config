@@ -5,7 +5,12 @@
   ...
 }: let
   catppuccin_name = "Catppuccin-Mocha-Compact-Blue-Dark";
-  catppuccin = pkgs.catppuccin-gtk.override {
+  catppuccinOverride =
+    pkgs.catppuccin-gtk.overrideAttrs
+    (oldAttrs: {
+      version = "0.7.4";
+    });
+  catppuccin = catppuccinOverride.override {
     accents = ["blue"];
     size = "compact";
     tweaks = ["rimless" "black"];
@@ -49,15 +54,15 @@ in {
       };
     };
     home = lib.mkIf true {
-      #sessionVariables.GTK_THEME = catppuccin_name;
-      # file = {
-      #   ".config/gtk-4.0/gtk.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk.css";
-      #   ".config/gtk-4.0/gtk-dark.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk-dark.css";
-      #   ".config/gtk-4.0/assets" = {
-      #     recursive = true;
-      #     source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/assets";
-      #   };
-      # };
+      sessionVariables.GTK_THEME = catppuccin_name;
+      file = {
+        ".config/gtk-4.0/gtk.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk.css";
+        ".config/gtk-4.0/gtk-dark.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk-dark.css";
+        ".config/gtk-4.0/assets" = {
+          recursive = true;
+          source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/assets";
+        };
+      };
     };
   };
 }
