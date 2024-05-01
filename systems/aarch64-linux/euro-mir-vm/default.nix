@@ -18,15 +18,15 @@ with lib; {
       hostName = "euro-mir-vm";
     };
 
-    # nix.buildMachines = [
-    #   {
-    #     hostName = "blue-fie";
-    #     systems = ["aarch64-linux" "x86_64-linux"];
-    #     maxJobs = 4;
-    #     supportedFeatures = ["kvm" "benchmark" "big-parallel"];
-    #     speedFactor = 100;
-    #   }
-    # ];
+    nix.buildMachines = [
+      {
+        hostName = "blue-fire";
+        systems = ["aarch64-linux" "x86_64-linux"];
+        maxJobs = 4;
+        supportedFeatures = ["kvm" "benchmark" "big-parallel"];
+        speedFactor = 100;
+      }
+    ];
 
     users.mutableUsers = true;
 
@@ -50,6 +50,7 @@ with lib; {
       };
       kernelModules = ["virtio_gpu"];
     };
+
     virtualisation.rosetta.enable = true;
 
     # fileSystems."/" = {
@@ -68,7 +69,7 @@ with lib; {
       desktop = {
         enable = true;
       };
-      quiet-boot.enable = false;
+      quiet-boot.enable = true;
       gnome.enable = true;
     };
 
