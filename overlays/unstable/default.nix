@@ -1,5 +1,6 @@
 {
   channels,
+  disko,
   self,
   ...
 }: final: prev: {
@@ -15,7 +16,7 @@
   sssd = self.packages."${prev.system}".sssd;
   # freeipa = channels.unstable.freeipa;
   # sssd = channels.unstable.sssd;
-
+  disko = disko.packages."${prev.system}".disko;
   # tailscale = channels.unstable.tailscale;
 
   cockpit = channels.unstable.cockpit;
