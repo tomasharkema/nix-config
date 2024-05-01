@@ -53,6 +53,11 @@ with lib; let
     nix-shell $nixUpdate --arg include-overlays $overlayExpr --arg predicate '(path: pkg: true)' --verbose --show-trace $@
   '';
 
+  test-installer = writeShellScriptBin "test-installer" ''
+    VM_PATH="$(nix build '.#nixosConfigurations.installer-x86.config.system.build.vm' --print-out-paths)"
+    QEMU_KERNEL_PARAMS=console=ttyS0 $VM_PATH/bin/run-nixos-vm -nographic; reset
+  '';
+
   # cachix-deploy = writeShellScriptBin "cachix-deploy" ''
   #   set -x
   #   set -e
@@ -214,6 +219,7 @@ in
           deadnix
           fh
           # hydra-cli
+          test-installer
           nil
           manix
           nix-eval-jobs
