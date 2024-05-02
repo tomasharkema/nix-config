@@ -7,10 +7,34 @@
   ...
 }: let
   inherit (pkgs) stdenv;
+
+  bgGenerate = name: srcc:
+    stdenv.mkDerivation {
+      name = "png-${name}.png";
+
+      phases = ["buildPhase"];
+      buildInputs = with pkgs; [imagemagick];
+
+      buildPhase = ''
+        touch $out
+        convert -density 1536 -background none -size 3840x2160 ${srcc} $out
+      '';
+    };
+
   iterm = pkgs.fetchurl {
     url = "https://iterm2.com/shell_integration/zsh";
     sha256 = "sha256-Cq8winA/tcnnVblDTW2n1k/olN3DONEfXrzYNkufZvY=";
   };
+  bg = pkgs.fetchurl {
+    url = "https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/raw/main/backgrounds/blobs-d.svg";
+    sha256 = "sha256-IG9BGCOXTD5RtBZOCnC/CJnjUtqJcoz+gijlMscrnEY=";
+  };
+  bgLight = pkgs.fetchurl {
+    url = "https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/raw/main/backgrounds/blobs-l.svg";
+    sha256 = "sha256-zVNMDAgfZvEwPHbhJ0/NBSNseNjIF+jxD3K2zcSj36U=";
+  };
+  bgPng = bgGenerate "bg" bg;
+  bgLightPng = bgGenerate "bgLight" bgLight;
 in
   with lib; {
     imports = [
@@ -27,38 +51,38 @@ in
           };
         };
       };
-
-      home = {
-        pointerCursor = mkIf pkgs.stdenv.isLinux {
-          name = "Adwaita";
-          package = pkgs.gnome.adwaita-icon-theme;
-          size = 24;
-          x11 = {
-            enable = true;
-            defaultCursor = "Adwaita";
-          };
+      dconf.settings = {
+        "org/gnome/desktop/background" = {
+          picture-uri = "file://${bg}";
+          picture-uri-dark = "file://${bg}";
         };
+      };
+      home = {
         file =
           osConfig.home.homeFiles
           // {
             ".face" = {
-              source = builtins.fetchurl {
+              source = pkgs.fetchurl {
                 url = "https://avatars.githubusercontent.com/u/4534203?t=1";
                 sha256 = "sha256:1g4mrz2d8h13rp8z2b9cn1wdr4la5zzrfkqgblayb56zg7706ga6";
               };
             };
-            "wp.jpg" = {
-              source = builtins.fetchurl {
-                url = "https://t.ly/n3kq7";
-                sha256 = "sha256:0p9lyarqw63b1npicc5ps8h6c34n1137f7i6qz3jrcxg550girh0";
-              };
-            };
-            "wp.png" = {
-              source = builtins.fetchurl {
-                url = "https://t.ly/r76YX";
-                sha256 = "sha256:0g4a6a5yy4mdlqkvw3lc02wgp4hmlvj0nc8lvlgigkra95jq9x3x";
-              };
-            };
+            ".background-image.svg".source = "${bg}";
+            ".background-image".source = "${bg}";
+            ".background-image.png".source = "${bgPng}";
+            ".background-image-light.png".source = "${bgLightPng}";
+            # "wp.jpg" = {
+            #   source = builtins.fetchurl {
+            #     url = "https://t.ly/n3kq7";
+            #     sha256 = "sha256:0p9lyarqw63b1npicc5ps8h6c34n1137f7i6qz3jrcxg550girh0";
+            #   };
+            # };
+            # "wp.png" = {
+            #   source = builtins.fetchurl {
+            #     url = "https://t.ly/r76YX";
+            #     sha256 = "sha256:0g4a6a5yy4mdlqkvw3lc02wgp4hmlvj0nc8lvlgigkra95jq9x3x";
+            #   };
+            # };
             # ".config/cachix/cachix.dhall".source = config.lib.file.mkOutOfStoreSymlink "/etc/cachix.dhall"; # osConfig.age.secrets.cachix.path;
             # ".config/notify/provider-config.yaml".source = osConfig.age.secrets.notify.path;
             # "${config.xdg.dataHome}/Zeal/Zeal/docsets/nixpkgs.docset" = {
