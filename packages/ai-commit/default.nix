@@ -30,5 +30,7 @@ buildNpmPackage rec {
     cp ${./package-lock.json} package-lock.json
   '';
 
-  npmDepsHash = "";
+  npmDepsHash = "sha256-sZJM/n6T5uw8EO3txglh3VVS3jPhKF+wbbpDn2n1D+k=";
+  dontNpmBuild = true;
+  NODE_OPTIONS = "--openssl-legacy-provider";
 }
