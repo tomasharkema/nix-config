@@ -16,6 +16,7 @@
   gitUpdater,
   clang,
   vips,
+  cacert,
 }:
 buildNpmPackage rec {
   pname = "inshellisense";
@@ -27,7 +28,7 @@ buildNpmPackage rec {
     rev = "${version}";
     hash = "sha256-/6pU8ubasONPMe1qnE+Db0nzdHRQTo9fhMr7Xxjgsos="; # "sha256-ZsEAE9EDJLREpKjHLbvqAUNM/y9eCH44g3D8NHYHiT4=";
   };
-  makeCacheWritable = true;
+
   # passthru.updateScript = gitUpdater {
   #   url = "https://github.com/microsoft/inshellisense.git";
   #   rev-prefix = "grpc-tools@";
@@ -38,36 +39,13 @@ buildNpmPackage rec {
   postInstall = ''
     cp -r shell $out/share
   '';
-
-  nativeBuildInputs =
-    (
-      if stdenv.isDarwin
-      then [darwin.cctools]
-      else []
-    )
-    ++ [pkg-config python3];
-
-  buildInputs =
-    (
-      if stdenv.isDarwin
-      then [
-        darwin.Libsystem
-        #darwin.cctools
-        nodePackages.node-gyp-build
-      ]
-      else []
-    )
-    ++ [
-      vips
-      clang
-      gcc
-      libgcc
-      libcxx
-      libcxxabi
-      nodePackages.node-gyp-build
-      nodePackages.node-gyp
-
-      llvmPackages.libcxxStdenv
-    ];
-  # meta = {maintainers = lib.maintainers.tomas;};
+  # Needed for dependency `@homebridge/node-pty-prebuilt-multiarch`
+  # On Darwin systems the build fails with,
+  #
+  # npm ERR! ../src/unix/pty.cc:413:13: error: use of undeclared identifier 'openpty'
+  # npm ERR!   int ret = openpty(&master, &slave, nullptr, NULL, static_cast<winsi ze*>(&winp));
+  #
+  # when `node-gyp` tries to build the dep. The below allows `npm` to download the prebuilt binary.
+  makeCacheWritable = stdenv.isDarwin;
+  nativeBuildInputs = lib.optional stdenv.isDarwin cacert;
 }
