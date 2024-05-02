@@ -12,12 +12,12 @@ in {
     enableZshIntegration = mkEnableOption "inshellisense zsh integration";
 
     package = mkOption {
-      default = pkgs.custom.inshellisense;
+      default = pkgs.inshellisense;
       type = with types; package;
     };
   };
 
-  config = mkIf (cfg.enable && !pkgs.stdenv.isDarwin) {
+  config = mkIf (cfg.enable) {
     home.packages = [cfg.package];
 
     programs.zsh = mkIf cfg.enableZshIntegration {
