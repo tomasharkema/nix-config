@@ -19,10 +19,8 @@
     else "true";
 
   configurationNames = lib.attrNames configurations;
-  configurationNamesString = builtins.trace configurationNames (builtins.toString configurationNames);
-  hosts = builtins.trace configurationNamesString (writeText "hosts.txt" ''
-    ${configurationNamesString}
-  '');
+  configurationNamesString = builtins.trace configurationNames (builtins.concatStringsSep "\n" configurationNames);
+  hosts = builtins.trace configurationNamesString (writeText "hosts.txt" configurationNamesString);
 in
   writeShellApplication {
     name = "installer-script";
@@ -55,7 +53,7 @@ in
         tailscale up --qr --accept-dns
       }
 
-      HOSTNAME_INST="$(gum filter --placeholder Hostname < ${hosts})"
+      HOSTNAME_INST="$(gum choose --header Hostname < ${hosts})"
 
       echo "Installing $HOSTNAME_INST..."
 
