@@ -17,6 +17,7 @@
   clang,
   vips,
   cacert,
+  autoPatchelfHook,
 }:
 buildNpmPackage rec {
   pname = "inshellisense";

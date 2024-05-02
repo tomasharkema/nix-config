@@ -12,7 +12,7 @@ in {
     enableZshIntegration = mkEnableOption "inshellisense zsh integration";
 
     package = mkOption {
-      default = pkgs.inshellisense;
+      default = pkgs.custom.inshellisense;
       type = with types; package;
     };
   };
