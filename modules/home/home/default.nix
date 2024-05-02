@@ -109,6 +109,14 @@ in
           # dooit
           ttdl
           topydo
+
+          # (pkgs.writeShellScriptBin "ai-commit" ''
+          #   #OPENAI_API_KEY="$(${pkgs._1password}/bin/op item get 2vzrjmprwi25zts7mzb4zmmad4 --field credential)"
+          #   exec ${pkgs.custom.ai-commit}/bin/ai-commit "$@"
+          # '')
+          pkgs.custom.ai-commit
+
+          openai
         ];
         sessionVariables =
           if stdenv.isDarwin
