@@ -43,7 +43,7 @@ in {
       btop
       htop
       atop
-      installer
+      pkgs.custom.installer
       disko
       tailscale
     ];
