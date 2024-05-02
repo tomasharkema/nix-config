@@ -2,17 +2,16 @@
   pkgs,
   lib,
   inputs,
+  config,
   ...
 }:
 with lib; let
   disko = inputs.disko.packages."${pkgs.system}".disko;
   keys = pkgs.callPackage ./packages/authorized-keys {};
-  installer = inputs.self.packages."${pkgs.system}".installer.override {
-    configurations = inputs.self.nixosConfigurations;
-  };
 in {
   config = {
     # nix.extraOptions = "experimental-features = nix-command flakes c";
+    isoImage.squashfsCompression = builtins.trace config "gzip -Xcompression-level 1";
 
     nix = {
       package = pkgs.nix;
@@ -45,7 +44,9 @@ in {
       btop
       htop
       atop
-      installer
+      (inputs.self.packages."${pkgs.system}".installer-script.override {
+        configurations = inputs.self.nixosConfigurations;
+      })
       disko
       tailscale
     ];
