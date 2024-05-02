@@ -2,12 +2,14 @@
   pkgs,
   lib,
   inputs,
-  self,
   ...
 }:
 with lib; let
   disko = inputs.disko.packages."${pkgs.system}".disko;
   keys = pkgs.callPackage ./packages/authorized-keys {};
+  installer = inputs.self.packages."${pkgs.system}".installer.override {
+    configurations = inputs.self.nixosConfigurations;
+  };
 in {
   config = {
     # nix.extraOptions = "experimental-features = nix-command flakes c";
@@ -43,7 +45,7 @@ in {
       btop
       htop
       atop
-      pkgs.custom.installer
+      installer
       disko
       tailscale
     ];
