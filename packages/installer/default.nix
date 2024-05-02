@@ -23,35 +23,11 @@
   hosts = builtins.trace configurationNamesString (writeText "hosts.txt" ''
     ${configurationNamesString}
   '');
-
-  tailscaleStatus = writeShellApplication {
-    name = "tailscaleStatus";
-
-    runtimeInputs = [
-      tailscale
-      jq
-    ];
-
-    text = ''
-      set -ex
-      TAILSCALE_STATUS="$(tailscale status --json | jq -r '.BackendState')"
-      case "$TAILSCALE_STATUS" in
-        "Stopped")
-          exit 1
-          ;;
-
-        *)
-          exit 0
-          ;;
-      esac
-    '';
-  };
 in
   writeShellApplication {
     name = "installer";
 
     runtimeInputs = [
-      tailscaleStatus
       gum
       tailscale
       jq
@@ -73,7 +49,6 @@ in
         esac
       }
 
-
       tailscaleStatus || {
         echo "Login with Tailscale..."
 
@@ -83,6 +58,7 @@ in
       HOSTNAME_INST="$(gum filter --placeholder Hostname < ${hosts})"
 
       echo "Installing $HOSTNAME_INST..."
+
       disko --mode mount --flake "github:tomasharkema/nix-config#$HOSTNAME_INST" || {
         gum confirm "Format disk?" && disko --mode disko --flake "github:tomasharkema/nix-config#$HOSTNAME_INST"
       }
