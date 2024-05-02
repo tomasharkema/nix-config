@@ -64,6 +64,7 @@ in {
       cartridges
       steamcmd
       steam-run
+      adwsteamgtk
     ];
 
     # services.udev.extraRules = ''
