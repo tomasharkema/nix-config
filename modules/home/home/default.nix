@@ -19,7 +19,7 @@ in
     config = {
       programs.inshellisense = {
         enable = true;
-        enableZshIntegration = true;
+        # enableZshIntegration = true;
       };
       xdg = mkIf pkgs.stdenv.isLinux {
         userDirs = {
