@@ -24,7 +24,7 @@
       python3 = channels.unstable.python311;
       cmocka = channels.unstable.cmocka;
     };
-
+  inshellisense = channels.unstable.inshellisense;
   # sssd = channels.unstable.sssd.override {
   #   ldb = ldb;
   #   withSudo = true;

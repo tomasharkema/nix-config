@@ -14,6 +14,8 @@
   libcxxabi,
   llvmPackages,
   gitUpdater,
+  clang,
+  vips,
 }:
 buildNpmPackage rec {
   pname = "inshellisense";
@@ -25,7 +27,7 @@ buildNpmPackage rec {
     rev = "${version}";
     hash = "sha256-/6pU8ubasONPMe1qnE+Db0nzdHRQTo9fhMr7Xxjgsos="; # "sha256-ZsEAE9EDJLREpKjHLbvqAUNM/y9eCH44g3D8NHYHiT4=";
   };
-
+  makeCacheWritable = true;
   # passthru.updateScript = gitUpdater {
   #   url = "https://github.com/microsoft/inshellisense.git";
   #   rev-prefix = "grpc-tools@";
@@ -37,22 +39,34 @@ buildNpmPackage rec {
     cp -r shell $out/share
   '';
 
-  nativeBuildInputs = [pkg-config];
+  nativeBuildInputs =
+    (
+      if stdenv.isDarwin
+      then [darwin.cctools]
+      else []
+    )
+    ++ [pkg-config python3];
 
   buildInputs =
     (
       if stdenv.isDarwin
-      then [darwin.Libsystem nodePackages.node-gyp-build python3]
+      then [
+        darwin.Libsystem
+        #darwin.cctools
+        nodePackages.node-gyp-build
+      ]
       else []
     )
     ++ [
+      vips
+      clang
       gcc
       libgcc
       libcxx
       libcxxabi
       nodePackages.node-gyp-build
       nodePackages.node-gyp
-      python3
+
       llvmPackages.libcxxStdenv
     ];
   # meta = {maintainers = lib.maintainers.tomas;};
