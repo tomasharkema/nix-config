@@ -124,6 +124,10 @@ with lib; {
       '';
       supportedFilesystems = ["ntfs"];
       kernelModules = ["vhci-hcd" "usbip_host" "usbip_core"];
+      tmp = {
+        useTmpfs = false;
+        cleanOnBoot = true;
+      };
     };
   };
 }
