@@ -140,7 +140,7 @@ in {
       ++ optionals pkgs.stdenv.isx86_64 [
         angryipscanner
         telegram-desktop
-        pkgs.custom.git-butler
+        # pkgs.custom.git-butler
       ]
       ++ (with pkgs.custom; [zerotier-ui zerotier-gui]);
 
