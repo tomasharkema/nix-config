@@ -49,7 +49,7 @@ in {
     hardware = {
       nvidia = mkDefault {
         modesetting.enable = true;
-        forceFullCompositionPipeline = true;
+        # forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
