@@ -12,12 +12,12 @@
     stdenv.mkDerivation {
       name = "png-${name}.png";
 
-      # src = src;
       phases = ["buildPhase"];
-      buildInputs = with pkgs; [inkscape];
-      #-h 1024
+      buildInputs = with pkgs; [imagemagick];
+
       buildPhase = ''
-        inkscape -w  3840 ${srcc} -o $out
+        touch $out
+        convert -density 1536 -background none -size 3840x2160 ${srcc} $out
       '';
     };
 
