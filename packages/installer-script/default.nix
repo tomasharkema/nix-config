@@ -25,7 +25,7 @@
   '');
 in
   writeShellApplication {
-    name = "installer";
+    name = "installer-script";
 
     runtimeInputs = [
       gum
