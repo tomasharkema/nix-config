@@ -19,7 +19,7 @@ in
     config = {
       programs.inshellisense.enable = true;
 
-      xdg = {
+      xdg = mkIf pkgs.stdenv.isLinux {
         userDirs = {
           enable = true;
           extraConfig = {
@@ -29,7 +29,7 @@ in
       };
 
       home = {
-        pointerCursor = {
+        pointerCursor = mkIf pkgs.stdenv.isLinux {
           name = "Adwaita";
           package = pkgs.gnome.adwaita-icon-theme;
           size = 24;
