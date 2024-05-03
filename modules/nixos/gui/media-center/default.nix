@@ -14,7 +14,7 @@ in {
   config = mkIf cfg.enable {
     system.nixos.tags = ["media-center"];
     xdg.portal.enable = mkForce false;
-
+programs.dconf.enable = true;
     sound = {
       enable = true;
       mediaKeys.enable = true;
