@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  enableGui = pkgs.stdenv.isLinux && osConfig.gui.desktop.enable && osConfig.gui.gnome.enable;
+  enableGui = pkgs.stdenv.isDarwin || (pkgs.stdenv.isLinux && osConfig.gui.desktop.enable && osConfig.gui.gnome.enable);
 in
   with lib; {
     config = mkIf enableGui {
@@ -15,9 +15,10 @@ in
         '';
         shellAliases = {
           gh = "op plugin run -- gh";
-          # cachix = "op plugin run -- cachix";
+          cachix = "op plugin run -- cachix";
+          openai = "op plugin run -- openai";
         };
       };
-      autostart.programs = with pkgs; [_1password-gui];
+      autostart.programs = with pkgs; mkIf pkgs.stdenv.isLinux [_1password-gui];
     };
   }
