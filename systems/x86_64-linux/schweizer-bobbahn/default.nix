@@ -20,7 +20,7 @@ with lib; {
 
     traits.low-power.enable = true;
     gui."media-center".enable = true;
-#    apps.spotifyd.enable = true;
+    #    apps.spotifyd.enable = true;
 
     environment.systemPackages = with pkgs; [intel-gpu-tools];
 
@@ -38,6 +38,12 @@ with lib; {
     #   gamemode.enable = false;
     #   quiet-boot.enable = true;
     # };
+
+    security = {
+      ipa = {
+        ifpAllowedUids = mkForce ["root" "tomas" "media"];
+      };
+    };
 
     resilio.enable = false;
 
