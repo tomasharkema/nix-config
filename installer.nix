@@ -11,7 +11,7 @@ with lib; let
 in {
   config = {
     # nix.extraOptions = "experimental-features = nix-command flakes c";
-    isoImage.squashfsCompression = builtins.trace config "gzip -Xcompression-level 1";
+    isoImage.squashfsCompression = "gzip -Xcompression-level 1";
 
     nix = {
       package = pkgs.nix;
