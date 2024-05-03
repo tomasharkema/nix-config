@@ -5,23 +5,63 @@
   gum,
   system,
   writeShellApplication,
+  writeShellScriptBin,
   tailscale,
   configurations ? {
-    "foo" = {};
-    bar = {};
+    "foo" = {
+      config = {
+        disko = {};
+        system.build.diskoScript = "SCRIPT";
+      };
+    };
+    bar = {
+      _module.specialArgs.system = system;
+      config = {
+        disko = {};
+        system.build.diskoScript = writeShellScriptBin "derp" ''
+          derp
+        '';
+      };
+    };
+    skip = {
+      config.system.build = {};
+    };
+
+    skip-installer = {
+      config.system.build = {};
+    };
+
+    weird-installer = {
+      config = {
+        disko = {};
+        system.build.diskoScript = "SCRIPT";
+      };
+    };
   },
   writeText,
   stdenv,
 }: let
-  disko =
-    if stdenv.isLinux
-    then inputs.disko.packages."${system}".disko
-    else "true";
+  # disko =
+  #   if stdenv.isLinux
+  #   then inputs.disko.packages."${system}".disko
+  #   else "true";
+  # originalConfigurations = lib.attrsets.filterAttrs (name: v: !(lib.strings.hasInfix "installer" name)) configurations;
+  diskoScripts = lib.attrsets.concatMapAttrs (name: value:
+    if ((!(lib.strings.hasInfix "installer" name)) && ((builtins.hasAttr "_module" value) && value._module.specialArgs.system == system) && (builtins.hasAttr "diskoScript" value.config.system.build))
+    then {
+      "${name}" = value.config.system.build.diskoScript;
+    }
+    else {})
+  configurations;
 
-  configurationNames = lib.attrNames configurations;
-  configurationNamesString = builtins.trace configurationNames (builtins.concatStringsSep "\n" configurationNames);
-  hosts = builtins.trace configurationNamesString (writeText "hosts.txt" configurationNamesString);
+  diskoScriptsJsonString = builtins.toJSON diskoScripts;
+  diskoScriptsJson = builtins.trace diskoScriptsJsonString writeText "diskoMappings.json" diskoScriptsJsonString;
+
+  configurationNames = lib.attrNames diskoScripts;
+  configurationNamesString = builtins.trace configurationNames builtins.concatStringsSep "\n" configurationNames;
+  hosts = builtins.trace configurationNamesString writeText "hosts.txt" configurationNamesString;
 in
+  builtins.trace (builtins.toJSON "${hosts} ${diskoScriptsJson}")
   writeShellApplication {
     name = "installer-script";
 
@@ -32,17 +72,17 @@ in
     ];
 
     text = ''
-      set -ex
+      set -e
 
       function tailscaleStatus () {
         TAILSCALE_STATUS="$(tailscale status --json | jq -r '.BackendState')"
         case "$TAILSCALE_STATUS" in
-          "Stopped")
-            return 1
+          "Running")
+            return 0
             ;;
 
           *)
-            return 0
+            return 1
             ;;
         esac
       }
