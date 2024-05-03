@@ -89,4 +89,5 @@ in {
   "domainjoin.age".publicKeys = allKeys;
   "btrbk.age".publicKeys = allKeys;
   "rmapi.age".publicKeys = allKeys;
+  "openaiapirc.age".publicKeys = allKeys;
 }
