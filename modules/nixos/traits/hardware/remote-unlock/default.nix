@@ -103,7 +103,7 @@ in {
             "${pkgs.tor}/bin/tor"
             "${pkgs.rsyslog}/sbin/rsyslogd"
             "${pkgs.coreutils}/bin/mkdir"
-            "${pkgs.ntfy-sh}/bin/ntfy-sh"
+            "${pkgs.ntfy-sh}/bin/ntfy"
           ];
 
           # emergencyAccess = true;
