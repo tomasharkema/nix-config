@@ -13,8 +13,10 @@ in {
 
   config = mkIf cfg.enable {
     system.nixos.tags = ["media-center"];
-    xdg.portal.enable = mkForce false;
-programs.dconf.enable = true;
+#    xdg.portal.enable = mkForce false;
+    
+    programs.dconf.enable = true;
+    
     sound = {
       enable = true;
       mediaKeys.enable = true;
@@ -24,9 +26,9 @@ programs.dconf.enable = true;
       enable = true;
       support32Bit = true;
       package = pkgs.pulseaudioFull;
-      extraConfig = ''
-        load-module module-dbus-protocol
-      '';
+      #extraConfig = ''
+      #  load-module module-dbus-protocol
+      #'';
     };
 
     apps.flatpak.enable = mkForce false;
@@ -130,13 +132,14 @@ programs.dconf.enable = true;
       uid = 1100;
       extraGroups = ["data" "video" "audio" "input"];
     };
- home-manager = {
     
+    home-manager = {
       users.media = {
         home.stateVersion = mkDefault "23.11";
         xdg.enable = true;
       };
     };
+
     networking.firewall = {
       enable = mkForce false;
       allowedTCPPorts = [
