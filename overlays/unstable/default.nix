@@ -25,12 +25,21 @@
       cmocka = channels.unstable.cmocka;
     };
 
-  sssd = channels.unstable.sssd.override {
+  # sssd = channels.unstable.sssd.override {
+  #   ldb = ldb;
+  #   withSudo = true;
+  # };
+  sssd = self.packages."${prev.system}".sssd.override {
     ldb = ldb;
     withSudo = true;
   };
 
-  freeipa = channels.unstable.freeipa.override {
+  # freeipa = channels.unstable.freeipa.override {
+  #   # ldb = ldbUnstable;
+  #   sssd = sssd;
+  #   _389-ds-base = _389-ds-base;
+  # };
+  freeipa = self.packages."${prev.system}".freeipa.override {
     # ldb = ldbUnstable;
     sssd = sssd;
     _389-ds-base = _389-ds-base;
