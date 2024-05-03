@@ -97,9 +97,10 @@ in
 
       echo "Installing $HOSTNAME_INST..."
 
-      disko --mode mount --flake "github:tomasharkema/nix-config#$HOSTNAME_INST" || {
-        gum confirm "Format disk?" && disko --mode disko --flake "github:tomasharkema/nix-config#$HOSTNAME_INST"
-      }
+      DISKO_COMMAND="$(jq -r ".\"$HOSTNAME_INST\"" < ${diskoScriptsJson})"
 
+      # shellcheck disable=SC1090
+      gum confirm "Format disk?" && "$DISKO_COMMAND"
+      gum confirm "Ready to install?" && nixos-install --flake "github:tomasharkema/nix-config#$HOSTNAME_INST" --accept-flake-config
     '';
   }
