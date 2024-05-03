@@ -56,6 +56,7 @@
   nix-update-script,
   nixosTests,
   withSudo ? false,
+  fetchpatch,
 }: let
   docbookFiles = "${docbook_xsl}/share/xml/docbook-xsl/catalog.xml:${docbook_xml_dtd_44}/xml/dtd/docbook/catalog.xml";
 in
@@ -70,6 +71,13 @@ in
       hash = "sha256-VJXZndbmC6mAVxzvv5Wjb4adrQkP16Rt4cgjl4qGDIc=";
     };
 
+    patches = [
+      # Fix the build with Samba 4.20
+      (fetchpatch {
+        url = "https://github.com/SSSD/sssd/commit/1bf51929a48b84d62ac54f2a42f17e7fbffe1612.patch";
+        hash = "sha256-VLx04APEipp860iOJNIwTGywxZ7rIDdyh3te6m7Ymlo=";
+      })
+    ];
     postPatch = ''
       patchShebangs ./sbus_generate.sh.in
     '';
