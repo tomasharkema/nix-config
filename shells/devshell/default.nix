@@ -166,6 +166,7 @@ in
         # dotenv.enable = true;
 
         packages = [
+          # cntr
           update-pkgs
           attic
           dconf-save

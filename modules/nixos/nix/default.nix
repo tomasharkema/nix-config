@@ -62,11 +62,11 @@ with lib.custom; {
           keep-derivations = true;
         });
 
-      gc = {
-        automatic = true;
-        dates = "daily";
-        options = "--delete-older-than 14d";
-      };
+      # gc = {
+      #   automatic = true;
+      #   dates = "daily";
+      #   options = "--delete-older-than 14d";
+      # };
 
       # flake-utils-plus
       generateRegistryFromInputs = true;

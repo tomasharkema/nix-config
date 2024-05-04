@@ -2,38 +2,20 @@
   pkgs,
   lib,
   inputs,
+  config,
   ...
 }:
 with lib; let
   disko = inputs.disko.packages."${pkgs.system}".disko;
   keys = pkgs.callPackage ./packages/authorized-keys {};
-
-  gum = "${pkgs.gum}/bin/gum";
-
-  installerScript = pkgs.writeShellScriptBin "installer-script" ''
-    set -e
-    echo "Login with Tailscale..."
-
-    ${pkgs.tailscale}/bin/tailscale up --qr --accept-dns
-
-    HOSTNAME_INST="$(${gum} filter --placeholder \"Hostname\")"
-
-    echo "Installing $HOSTNAME_INST..."
-
-    ${disko}/bin/disko --mode mount --flake 'github:tomasharkema/nix-config#$HOSTNAME_INST' || {
-      ${gum} confirm "Format disk?" && ${disko}/bin/disko --mode disko --flake 'github:tomasharkema/nix-config#$HOSTNAME_INST'
-    }
-  '';
-  installer = pkgs.writeShellScriptBin "installer" ''
-    sudo ${installerScript}/bin/installer-script
-  '';
 in {
   config = {
     # nix.extraOptions = "experimental-features = nix-command flakes c";
+    isoImage.squashfsCompression = "gzip -Xcompression-level 1";
 
     nix = {
       package = pkgs.nix;
-      settings.experimental-features = ["nix-command" "flakes"];
+      settings.experimental-features = ["nix-command" "flakes" "cgroups"];
     };
     users = {
       users.tomas = {
@@ -62,7 +44,9 @@ in {
       btop
       htop
       atop
-      installer
+      (inputs.self.packages."${pkgs.system}".installer-script.override {
+        configurations = inputs.self.nixosConfigurations;
+      })
       disko
       tailscale
     ];

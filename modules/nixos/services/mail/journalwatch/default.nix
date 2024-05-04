@@ -4,7 +4,7 @@
   ...
 }: {
   config = {
-    environment.systemPackages = [pkgs.mailutils];
+    # environment.systemPackages = [pkgs.mailutils];
 
     # systemd.tmpfiles.rules = let
     #   svc = config.systemd.services.public-inbox-httpd.serviceConfig;
@@ -17,16 +17,16 @@
     # ];
 
     services = {
-      postfix = {
-        enable = true;
-      };
+      # postfix = {
+      #   enable = true;
+      # };
 
       # mailcatcher.enable = true;
 
-      journalwatch = {
-        enable = true;
-        mailTo = "tomas";
-      };
+      # journalwatch = {
+      #   enable = true;
+      #   mailTo = "tomas";
+      # };
     };
   };
 }

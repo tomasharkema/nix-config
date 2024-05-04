@@ -3,7 +3,7 @@
   disko,
   self,
   ...
-}: final: prev: {
+}: final: prev: rec {
   runitor = channels.unstable.runitor;
   vscode = channels.unstable.vscode;
   # android-tools = channels.unstable.android-tools;
@@ -12,12 +12,44 @@
 
   netdata = channels.unstable.netdata;
   nh = channels.unstable.nh;
-  freeipa = self.packages."${prev.system}".freeipa;
-  sssd = self.packages."${prev.system}".sssd;
-  # freeipa = channels.unstable.freeipa;
-  # sssd = channels.unstable.sssd;
+
+  _389-ds-base = self.packages."${prev.system}"._389;
+
+  # freeipa = self.packages."${prev.system}".freeipa;
+  # sssd = self.packages."${prev.system}".sssd;
+
+  ldb =
+    #builtins.trace "ldb overlay prev: ${builtins.toString (builtins.attrNames prev)}"
+    channels.unstable.ldb.override {
+      python3 = channels.unstable.python311;
+      cmocka = channels.unstable.cmocka;
+    };
+
+  # sssd = channels.unstable.sssd.override {
+  #   ldb = ldb;
+  #   withSudo = true;
+  # };
+  sssd = self.packages."${prev.system}".sssd.override {
+    ldb = ldb;
+    withSudo = true;
+  };
+
+  # freeipa = channels.unstable.freeipa.override {
+  #   # ldb = ldbUnstable;
+  #   sssd = sssd;
+  #   _389-ds-base = _389-ds-base;
+  # };
+  freeipa = self.packages."${prev.system}".freeipa.override {
+    # ldb = ldbUnstable;
+    sssd = sssd;
+    _389-ds-base = _389-ds-base;
+  };
+
+  samba = channels.unstable.samba;
+
   disko = disko.packages."${prev.system}".disko;
-  # tailscale = channels.unstable.tailscale;
+
+  tailscale = channels.unstable.tailscale;
 
   cockpit = channels.unstable.cockpit;
   cockpit-podman = self.packages."${prev.system}".cockpit-podman;
@@ -32,7 +64,13 @@
   atuin = channels.unstable.atuin;
   xpipe = channels.unstable.xpipe;
 
-  catppuccin-gtk = channels.unstable.catppuccin-gtk;
+  catppuccin-gtk =
+    channels
+    .unstable
+    .catppuccin-gtk
+    .overrideAttrs (final: old: {
+      version = "0.7.4";
+    });
 
   systembus-notify = self.packages."${prev.system}".systembus-notify;
 
@@ -54,4 +92,6 @@
   #       mangohud
   #     ];
   # };
+
+  sunshine = channels.unstable.sunshine;
 }
