@@ -59,6 +59,8 @@ let
 in {
   "attic-key.age".publicKeys = allKeys;
   "attic-config.toml.age".publicKeys = allKeys;
+  "attic-netrc.age".publicKeys = allKeys;
+
   "atuin.age".publicKeys = allKeys;
   # "cachix-activate.age".publicKeys = allKeys;
   # "cachix-agent.age".publicKeys = allKeys;
