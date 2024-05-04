@@ -7,7 +7,7 @@
       inputs.nixpkgs.follows = "unstable";
     };
 
-    # nixpkgs-gnome.url = "nixpkgs/gnome-46";
+    nixpkgs-gnome.url = "nixpkgs/gnome-46";
 
     flake-compat = {
       url = "github:edolstra/flake-compat";
@@ -212,6 +212,7 @@
         nvidia.acceptLicense = true;
         firefox.enableGnomeExtensions = true;
         kodi.enableAdvancedLauncher = true;
+        allowBroken = true;
         # allowAliases = false;
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
@@ -413,7 +414,7 @@
       "https://nix-gaming.cachix.org"
       "https://nix-community.cachix.org"
       "https://cache.nixos.org/"
-      "https://blue-fire.ling-lizard.ts.net/attic/tomas/"
+      "https://nix-cache.harke.ma/tomas/"
       "https://devenv.cachix.org"
       "https://tomasharkema.cachix.org"
     ];
@@ -421,10 +422,9 @@
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-      "tomas:qzaaV24nfgwcarekICaYr2c9ZBFDQnvvydOywbwAeys="
+      "tomas:yyzVkcCGYkbf3kzM80H45L70w7LS6M8mDQL+x+GbfUs="
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       "tomasharkema.cachix.org-1:BV3Sv3qGZ0bcybPFeigwKoxnpj/NBAFYHq9FMO1XgH4="
     ];
