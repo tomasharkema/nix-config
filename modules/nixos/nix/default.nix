@@ -49,7 +49,7 @@ with lib.custom; {
           auto-optimise-store = true;
           # trusted-users = users ++ ["tomas" "root"]; # "builder"];
           # allowed-users = users ++ ["tomas" "root" "builder"];
-          # # netrc-file = "/etc/nix/netrc";
+          netrc-file = config.age.secrets.attic-netrc.path;
           # substituters =
           #   [cfg.default-substituter.url]
           #   ++ (mapAttrsToList (name: value: name) cfg.extra-substituters);

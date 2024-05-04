@@ -87,7 +87,7 @@ in {
         libGL
         libGLU
         # bottles
-        trayscale
+        # trayscale
         grsync
         caffeine-ng
         qjournalctl
