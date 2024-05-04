@@ -4,11 +4,11 @@
 }:
 pkgs.stdenvNoCC.mkDerivation rec {
   pname = "LaunchControl";
-  version = "2.5.3";
+  version = "2.5.5";
 
   src = pkgs.fetchurl {
     url = "https://www.soma-zone.com/download/files/LaunchControl-${version}.tar.xz";
-    sha256 = "0zi6c9l8lwwll212h6majdgw9c6xicmin2sykjri6zpgspdf7y7v";
+    sha256 = "sha256-sCK1JN7xM9gHpd2ad5kki9TVMFwWLdo4apzQNDbmOVc=";
   };
 
   nativeBuildInputs = with pkgs; [xz tree];
@@ -29,10 +29,10 @@ pkgs.stdenvNoCC.mkDerivation rec {
     longDescription = ''
       LaunchControl
     '';
-    homepage = "https://v2.airbuddy.app";
-    changelog = "https://support.airbuddy.app/articles/airbuddy-2-changelog";
-    license = with licenses; [
-    ];
+    # homepage = "https://v2.airbuddy.app";
+    # changelog = "https://support.airbuddy.app/articles/airbuddy-2-changelog";
+    # license = with licenses; [
+    # ];
     sourceProvenance = with sourceTypes; [binaryNativeCode];
 
     maintainers = ["tomasharkema" "tomas@harkema.io"];
