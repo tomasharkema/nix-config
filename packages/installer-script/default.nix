@@ -54,8 +54,20 @@
     else {})
   configurations;
 
+  diskoMountScripts = lib.attrsets.concatMapAttrs (name: value:
+    if ((!(lib.strings.hasInfix "installer" name)) && ((builtins.hasAttr "_module" value) && value._module.specialArgs.system == system) && (builtins.hasAttr "diskoScript" value.config.system.build))
+    then {
+      "${name}" = value.config.system.build.mountScript;
+    }
+    else {})
+  configurations;
+
   diskoScriptsJsonString = builtins.toJSON diskoScripts;
+  diskoMountScriptsJsonString = builtins.toJSON diskoMountScripts;
+
   diskoScriptsJson = builtins.trace diskoScriptsJsonString writeText "diskoMappings.json" diskoScriptsJsonString;
+
+  diskoMountScriptsJson = writeText "diskoMountMappings.json" diskoMountScriptsJsonString;
 
   configurationNames = lib.attrNames diskoScripts;
   configurationNamesString = builtins.trace configurationNames builtins.concatStringsSep "\n" configurationNames;
@@ -89,8 +101,7 @@ in
 
       tailscaleStatus || {
         echo "Login with Tailscale..."
-
-        tailscale up --qr --accept-dns
+        tailscale up --qr --accept-dns --accept-routes
       }
 
       HOSTNAME_INST="$(gum choose --header Hostname < ${hosts})"
@@ -98,9 +109,14 @@ in
       echo "Installing $HOSTNAME_INST..."
 
       DISKO_COMMAND="$(jq -r ".\"$HOSTNAME_INST\"" < ${diskoScriptsJson})"
+      DISKO_MOUNT_COMMAND="$(jq -r ".\"$HOSTNAME_INST\"" < ${diskoMountScriptsJson})"
 
       # shellcheck disable=SC1090
-      gum confirm "Format disk?" && "$DISKO_COMMAND"
-      gum confirm "Ready to install?" && nixos-install --flake "github:tomasharkema/nix-config#$HOSTNAME_INST" --accept-flake-config
+      "$DISKO_MOUNT_COMMAND" || {
+        # shellcheck disable=SC1090
+        gum confirm "Format disk?" && "$DISKO_COMMAND"
+      }
+
+      gum confirm "Ready to install?" && nixos-install --flake "github:tomasharkema/nix-config#$HOSTNAME_INST"
     '';
   }
