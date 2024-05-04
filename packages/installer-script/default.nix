@@ -101,6 +101,7 @@ in
 
       tailscaleStatus || {
         echo "Login with Tailscale..."
+
         tailscale up --qr --accept-dns --accept-routes
       }
 
