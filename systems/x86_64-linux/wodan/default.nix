@@ -30,6 +30,9 @@
     # services.freeipa.replica.enable = true;
 
     networking = {
+      hosts = {
+        "192.168.0.100" = ["nix-cache.harke.ma"];
+      };
       networkmanager.enable = true;
 
       hostName = "wodan";
