@@ -69,7 +69,7 @@ with pkgs.python3Packages; let
   };
   key-path = config.age.secrets."healthcheck".path;
 in {
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     # programs.ssh.knownHostsFiles = let
     #   known-keys-command = pkgs.runCommand "known-keys" {} ''
     #     ${pkgs.openssh}/bin/ssh-keyscan github.com | tee $out
