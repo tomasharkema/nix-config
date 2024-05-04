@@ -48,7 +48,8 @@
   samba = channels.unstable.samba;
 
   disko = disko.packages."${prev.system}".disko;
-  # tailscale = channels.unstable.tailscale;
+
+  tailscale = channels.unstable.tailscale;
 
   cockpit = channels.unstable.cockpit;
   cockpit-podman = self.packages."${prev.system}".cockpit-podman;
@@ -91,4 +92,6 @@
   #       mangohud
   #     ];
   # };
+
+  sunshine = channels.unstable.sunshine;
 }
