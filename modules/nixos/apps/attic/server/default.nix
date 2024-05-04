@@ -17,7 +17,7 @@ in {
       "/attic" = {
         proxyPass = "http://localhost:${builtins.toString port}";
         extraConfig = ''
-          client_max_body_size 50G;
+          client_max_body_size 10G;
           rewrite /attic(.*) $1 break;
         '';
       };
