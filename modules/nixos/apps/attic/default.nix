@@ -63,9 +63,9 @@ in {
           MemoryMax = "5G";
           Nice = 15;
         };
-        # preStart = ''
-        #   ${attic-login}
-        # '';
+        preStart = ''
+          ${attic-login}
+        '';
         script = "${pkgs.attic}/bin/attic watch-store tomas:tomas -j 1";
         wants = ["multi-user.target" "network.target"];
         after = ["multi-user.target" "network.target"];
