@@ -157,7 +157,11 @@ in
 
       fonts.fontconfig.enable = true;
 
-      autostart.programs = with pkgs; mkIf osConfig.gui.enable [telegram-desktop trayscale];
+      autostart.programs = with pkgs;
+        mkIf osConfig.gui.enable [
+          telegram-desktop
+          # trayscale
+        ];
 
       programs = {
         home-manager.enable = true;
