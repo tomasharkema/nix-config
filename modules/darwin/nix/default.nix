@@ -27,6 +27,21 @@ in {
   };
 
   config = {
+    age = {
+      # identityPaths = [
+      #   "/etc/ssh/ssh_host_ed25519_key"
+      # ];
+      secrets = {
+        "attic-config.toml" = {
+          file = ../../../secrets/attic-config.toml.age;
+          mode = "644";
+          owner = "tomas";
+          group = "tomas";
+          path = "/Users/tomas/.config/attic/config.toml";
+        };
+      };
+    };
+
     environment.systemPackages = with pkgs; [
       deploy-rs
       nixfmt
