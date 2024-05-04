@@ -23,14 +23,14 @@ in {
       type = str;
     };
     serverAddress = mkOption {
-      default = "https://blue-fire.ling-lizard.ts.net/attic/";
+      default = "https://nix-cache.harke.ma/";
       type = str;
     };
   };
 
   config = let
     attic-login = writeShellScript "attic-script" ''
-      ${pkgs.attic}/bin/attic login tomas https://blue-fire.ling-lizard.ts.net/attic/ $(cat ${config.age.secrets.attic-key.path})
+      ${pkgs.attic}/bin/attic login tomas https://nix-cache.harke.ma/ $(cat ${config.age.secrets.attic-key.path})
       ${pkgs.attic}/bin/attic use tomas:tomas
     '';
   in
@@ -63,9 +63,9 @@ in {
           MemoryMax = "5G";
           Nice = 15;
         };
-        # preStart = ''
-        #   ${attic-login}
-        # '';
+        preStart = ''
+          ${attic-login}
+        '';
         script = "${pkgs.attic}/bin/attic watch-store tomas:tomas -j 1";
         wants = ["multi-user.target" "network.target"];
         after = ["multi-user.target" "network.target"];
