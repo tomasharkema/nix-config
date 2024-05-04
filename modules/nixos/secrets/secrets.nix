@@ -32,7 +32,7 @@ let
   euro-mir-2-tomas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMIZkviD01zlP3SkumEXHgLaNuoQxHqHPuBWcOqrm9rr tomas@euro-mir-2";
   euro-mir-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMBPK/Lrf6NtRyCCNH3NhTL7KMYje49KbQM7Ew4ytWZX root@euro-mir-vm";
 
-  schweizer-bobbahn = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAAE0lUbuTagQx0rxcJP8CQrzpQTKFVD9qqsMpITR6YJ root@schweizer-bobbahn";
+  schweizer-bobbahn = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEWjUEO+IKf/N7FLtZk3ub+xzp7vNT1B4p+wDjzubbPf root@schweizer-bobbahn";
 
   systems = [
     euro
@@ -89,4 +89,5 @@ in {
   "domainjoin.age".publicKeys = allKeys;
   "btrbk.age".publicKeys = allKeys;
   "rmapi.age".publicKeys = allKeys;
+  "openaiapirc.age".publicKeys = allKeys;
 }

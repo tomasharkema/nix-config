@@ -35,11 +35,11 @@
       sha256 = "sha256-AMeYo3HVtRP1w8gQpok+/9fvNCXiMEzZ9ct+gUoL2V4=";
     };
   };
-  monocle = builtins.fetchurl {
+  monocle = pkgs.fetchurl {
     url = "https://github.com/imsnif/monocle/releases/latest/download/monocle.wasm";
     sha256 = "194ylwz31q1nr8zyxp3yq9pjavmbgsxw1ppv8lpbfxhl24wbj51k";
   };
-  multitask = builtins.fetchurl {
+  multitask = pkgs.fetchurl {
     url = "https://github.com/imsnif/multitask/releases/download/0.38.2v2/multitask.wasm";
     sha256 = "1zms3mgfjdrq97rar5g7b73gfdc8xgx7jpafynqklaczj823sqxs";
   };
