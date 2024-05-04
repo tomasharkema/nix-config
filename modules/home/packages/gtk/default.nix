@@ -3,7 +3,8 @@
   lib,
   osConfig,
   ...
-}: let
+}:
+with lib; let
   catppuccin_name = "Catppuccin-Mocha-Compact-Blue-Dark";
   catppuccin = pkgs.catppuccin-gtk.override {
     accents = ["blue"];
@@ -12,7 +13,13 @@
     variant = "mocha";
   };
 in {
-  config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
+  config = mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
+    # xsession.pointerCursor = mkIf pkgs.stdenv.isLinux {
+    #   name = "macOS-Monterey";
+    #   package = pkgs.apple-cursor;
+    #   size = 28;
+    # };
+
     gtk = {
       enable = true;
 
@@ -25,6 +32,12 @@ in {
       theme = lib.mkForce {
         name = catppuccin_name;
         package = catppuccin;
+      };
+
+      cursorTheme = {
+        name = "macOS-Monterey";
+        package = pkgs.apple-cursor;
+        size = 28;
       };
 
       # theme = {
@@ -40,16 +53,30 @@ in {
         Settings = ''
           gtk-application-prefer-dark-theme=1
         '';
+        gtk-cursor-theme-name = "macOS-Monterey";
+        gtk-cursor-theme-size = 28;
       };
 
       gtk4.extraConfig = {
         Settings = ''
           gtk-application-prefer-dark-theme=1
         '';
+        gtk-cursor-theme-name = "macOS-Monterey";
+        gtk-cursor-theme-size = 28;
       };
     };
     home = lib.mkIf true {
-      #sessionVariables.GTK_THEME = catppuccin_name;
+      pointerCursor = mkIf pkgs.stdenv.isLinux {
+        name = "macOS-Monterey";
+        package = pkgs.apple-cursor;
+        size = 28;
+        x11 = {
+          enable = true;
+          defaultCursor = "macOS-Monterey";
+          # size = 32;
+        };
+      };
+      sessionVariables.GTK_THEME = catppuccin_name;
       # file = {
       #   ".config/gtk-4.0/gtk.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk.css";
       #   ".config/gtk-4.0/gtk-dark.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk-dark.css";

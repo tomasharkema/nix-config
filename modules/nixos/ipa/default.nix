@@ -20,7 +20,7 @@ in {
   # imports = [
   #   "${inputs.unstable}/nixos/modules/security/ipa.nix"
   #   "${inputs.unstable}/nixos/modules/security/pam.nix"
-  #   "${inputs.unstable}/nixos/modules/security/krb5"
+  #   # "${inputs.unstable}/nixos/modules/security/krb5"
   #   "${inputs.unstable}/nixos/modules/services/misc/sssd.nix"
   # ];
 
@@ -47,6 +47,8 @@ in {
           [pam]
           pam_passkey_auth = True
           passkey_debug_libfido2 = True
+          passkey_child_timeout = 60
+          pam_cert_auth = True
 
           [prompting/passkey]
           interactive_prompt = "Insert your Passkey device, then press ENTER."
@@ -74,8 +76,8 @@ in {
         #   sha256 = "1479i13wzznz7986sqlpmx6r108d24kbn84yp5n3s50q7wpgdfxz";
         # };
         certificate = "${./ca.crt}";
-        dyndns.enable = true;
-        ifpAllowedUids = ["root" "tomas" "1000"];
+        #   dyndns.enable = true;
+        ifpAllowedUids = ["root" "tomas" "1000" "1002" "gdm" "132"];
       };
 
       # sudo.package = mkIf config.installed (pkgs.sudo.override {withSssd = true;});
@@ -92,18 +94,19 @@ in {
       };
 
       pam = {
-        #   krb5.enable = true;
-        # services = mkIf false {
-        #   #config.installed {
-        #   login.sssdStrictAccess = mkDefault true;
-        #   sudo.sssdStrictAccess = mkDefault true;
-        #   ssh.sssdStrictAccess = mkDefault true;
-        #   askpass.sssdStrictAccess = mkDefault true;
-        #   cockpit.sssdStrictAccess = mkDefault true;
-        #   "password-auth".sssdStrictAccess = mkDefault true;
-        #   "system-auth".sssdStrictAccess = mkDefault true;
-        #   "gdm-password".sssdStrictAccess = mkDefault true;
-        # };
+        krb5.enable = true;
+        services = {
+          #   #config.installed {
+          login.sssdStrictAccess = mkDefault true;
+          sudo.sssdStrictAccess = mkDefault true;
+          ssh.sssdStrictAccess = mkDefault true;
+          askpass.sssdStrictAccess = mkDefault true;
+          cockpit.sssdStrictAccess = mkDefault true;
+          "password-auth".sssdStrictAccess = mkDefault true;
+          "system-auth".sssdStrictAccess = mkDefault true;
+          "gdm-password".sssdStrictAccess = mkDefault true;
+          "gdm".sssdStrictAccess = mkDefault true;
+        };
       };
     };
   };

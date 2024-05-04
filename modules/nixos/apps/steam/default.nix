@@ -59,11 +59,12 @@ in {
     environment.systemPackages = with pkgs; [
       # sunshine
       protontricks
-      heroic
+      # heroic
       gamehub
       cartridges
       steamcmd
       steam-run
+      adwsteamgtk
     ];
 
     # services.udev.extraRules = ''
