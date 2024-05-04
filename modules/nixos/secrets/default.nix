@@ -23,6 +23,13 @@
           group = "tomas";
           path = "/home/tomas/.config/attic/config.toml";
         };
+        "attic-netrc" = {
+          file = ./attic-netrc.age;
+          mode = "644";
+          owner = "tomas";
+          group = "tomas";
+          path = "/home/tomas/.config/attic/netrc";
+        };
         attic-key = {
           file = ./attic-key.age;
           mode = "644";
