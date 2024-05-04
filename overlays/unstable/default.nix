@@ -91,4 +91,6 @@
   #       mangohud
   #     ];
   # };
+
+  sunshine = channels.unstable.sunshine;
 }
