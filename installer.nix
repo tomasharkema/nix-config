@@ -8,15 +8,23 @@
 with lib; let
   disko = inputs.disko.packages."${pkgs.system}".disko;
   keys = pkgs.callPackage ./packages/authorized-keys {};
+
+  inputValues = builtins.attrValues inputs; # .out
+  drvs = builtins.trace inputValues builtins.map (v: v.outPath) inputValues;
 in {
   config = {
     # nix.extraOptions = "experimental-features = nix-command flakes c";
-    isoImage.squashfsCompression = "gzip -Xcompression-level 1";
+    isoImage = {
+      squashfsCompression = "gzip -Xcompression-level 1";
+      # includeSystemBuildDependencies = true;
+      storeContents = builtins.trace drvs drvs;
+    };
 
     nix = {
       package = pkgs.nix;
-      settings.experimental-features = ["nix-command" "flakes" "cgroups"];
+      settings = import ./config.nix;
     };
+
     users = {
       users.tomas = {
         shell = pkgs.zsh;
