@@ -81,7 +81,7 @@ in {
         with pkgsUnstable; [
           gtop
           libgtop
-
+          gnomeExtensions.dash-to-panel
           gnomeExtensions.executor
           gnomeExtensions.battery-health-charging
           gnomeExtensions.app-menu-icon-remove-symbolic
@@ -114,7 +114,7 @@ in {
           gnomeExtensions.todotxt
           gnomeExtensions.tophat
           gnomeExtensions.no-title-bar
-          gnomeExtensions.vitals
+          # gnomeExtensions.vitals
           gnomeExtensions.pip-on-top
         ]
       )
