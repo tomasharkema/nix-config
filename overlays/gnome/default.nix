@@ -13,4 +13,5 @@
       #   };
       # });
     });
+  dconf = channels.unstable.dconf;
 }
