@@ -12,10 +12,10 @@ with lib; {
   config = mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
     dconf = {
       settings = {
-        # "org/gnome/mutter" = {
-        #   edge-tiling = true;
-        #   experimental-features = "['scale-monitor-framebuffer']";
-        # };
+        "org/gnome/mutter" = {
+          edge-tiling = true;
+          experimental-features = "['scale-monitor-framebuffer']";
+        };
         "org/gnome/shell/extensions/vitals" = {
           "position-in-panel" = 0;
         };
