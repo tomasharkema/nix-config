@@ -1,13 +1,13 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
+
     unstable.url = "nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "unstable";
     };
-
-    nixpkgs-gnome.url = "nixpkgs/gnome-46";
 
     flake-compat = {
       url = "github:edolstra/flake-compat";
