@@ -14,4 +14,5 @@
       # });
     });
   dconf = channels.unstable.dconf;
+  flatpak = channels.unstable.flatpak;
 }
