@@ -252,6 +252,8 @@
       # ];
 
       systems.modules.nixos = with inputs; [
+        catppuccin.nixosModules.catppuccin
+
         nix-index-database.nixosModules.nix-index
 
         attic.nixosModules.atticd

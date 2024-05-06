@@ -5,14 +5,18 @@
   gtk3,
   gnome-themes-extra,
   gtk-engine-murrine,
-  python3,
+  # python3,
   sassc,
   nix-update-script,
   accents ? ["blue"],
   size ? "standard",
   tweaks ? [],
   variant ? "frappe",
+  inputs,
+  system,
 }: let
+  python3 = inputs.unstable.legacyPackages."${system}".python3;
+
   validAccents = ["blue" "flamingo" "green" "lavender" "maroon" "mauve" "peach" "pink" "red" "rosewater" "sapphire" "sky" "teal" "yellow"];
   validSizes = ["standard" "compact"];
   validTweaks = ["black" "rimless" "normal" "float"];

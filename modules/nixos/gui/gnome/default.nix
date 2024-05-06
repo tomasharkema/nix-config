@@ -118,8 +118,7 @@ in {
           gnomeExtensions.pip-on-top
         ]
       )
-      ++ (with pkgs; [
-        # pkgsUnstable; [
+      ++ (with pkgsUnstable; [
         clutter
         clutter-gtk
         gjs

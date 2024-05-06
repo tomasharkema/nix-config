@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   osConfig,
   inputs,
   ...
@@ -29,6 +30,13 @@ in {
     #   size = 28;
     # };
 
+    catppuccin = {
+      enable = true;
+
+      flavour = "mocha";
+      accent = "blue";
+    };
+
     gtk = {
       enable = true;
 
@@ -45,16 +53,16 @@ in {
       catppuccin = {
         enable = true;
 
-        # flavor = "mocha";
+        flavour = "mocha";
         accent = "blue";
         size = "compact";
-        tweaks = ["normal"];
+        tweaks = ["black"];
       };
 
-      cursorTheme = {
+      cursorTheme = mkForce {
         name = "macOS-Monterey";
         package = pkgs.apple-cursor;
-        size = 28;
+        #   size = 28;
       };
 
       # theme = {
@@ -93,14 +101,14 @@ in {
       #     # size = 32;
       #   };
       # };
-      # sessionVariables.GTK_THEME = catppuccin_name;
+      sessionVariables.GTK_THEME = "${config.gtk.theme.name}:dark";
       # file = {
-      #   ".config/gtk-4.0/gtk.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk.css";
-      #   ".config/gtk-4.0/gtk-dark.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk-dark.css";
-      #   ".config/gtk-4.0/assets" = {
-      #     recursive = true;
-      #     source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/assets";
-      #   };
+      # ".config/gtk-4.0".source = "${config.gtk.theme.package}/share/themes/${catppuccin_name}/gtk-4.0";
+      # ".config/gtk-4.0/gtk-dark.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk-dark.css";
+      # ".config/gtk-4.0/assets" = {
+      #   recursive = true;
+      #   source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/assets";
+      # };
       # };
     };
   };

@@ -246,9 +246,9 @@ with lib;
 
         # seatd.enable = true;
 
-        udisks2 = {
-          enable = true;
-        };
+        # udisks2 = {
+        #   enable = true;
+        # };
 
         das_watchdog.enable = true;
 
