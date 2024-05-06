@@ -65,21 +65,27 @@
   diskoScriptsJsonString = builtins.toJSON diskoScripts;
   diskoMountScriptsJsonString = builtins.toJSON diskoMountScripts;
 
-  diskoScriptsJson = builtins.trace diskoScriptsJsonString writeText "diskoMappings.json" diskoScriptsJsonString;
+  diskoScriptsJson =
+    #builtins.trace diskoScriptsJsonString
+    writeText "diskoMappings.json" diskoScriptsJsonString;
 
   diskoMountScriptsJson = writeText "diskoMountMappings.json" diskoMountScriptsJsonString;
 
   configurationNames = lib.attrNames diskoScripts;
-  configurationNamesString = builtins.trace configurationNames builtins.concatStringsSep "\n" configurationNames;
-  hosts = builtins.trace configurationNamesString writeText "hosts.txt" configurationNamesString;
+  configurationNamesString =
+    #builtins.trace configurationNames
+    builtins.concatStringsSep "\n" configurationNames;
+  hosts =
+    #builtins.trace configurationNamesString
+    writeText "hosts.txt" configurationNamesString;
 in
-  builtins.trace (builtins.toJSON "${hosts} ${diskoScriptsJson}")
+  # builtins.trace (builtins.toJSON "${hosts} ${diskoScriptsJson}")
   writeShellApplication {
     name = "installer-script";
 
     runtimeInputs = [
       gum
-      tailscale
+      # tailscale
       jq
     ];
 
@@ -99,11 +105,11 @@ in
         esac
       }
 
-      tailscaleStatus || {
-        echo "Login with Tailscale..."
+      # tailscaleStatus || {
+      #   echo "Login with Tailscale..."
 
-        tailscale up --qr --accept-dns --accept-routes
-      }
+      #   tailscale up --qr --accept-dns --accept-routes
+      # }
 
       HOSTNAME_INST="$(gum choose --header Hostname < ${hosts})"
 
