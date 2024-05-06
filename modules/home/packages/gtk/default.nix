@@ -16,6 +16,12 @@ with lib; let
 in {
   imports = [inputs.catppuccin.homeManagerModules.catppuccin];
 
+  # disabledModules=["home-manager/tofi.nix"];
+
+  options = {
+    programs.tofi.settings = mkOption {};
+  };
+
   config = mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
     # xsession.pointerCursor = mkIf pkgs.stdenv.isLinux {
     #   name = "macOS-Monterey";
@@ -38,6 +44,7 @@ in {
       # };
       catppuccin = {
         enable = true;
+
         # flavor = "mocha";
         accent = "blue";
         size = "compact";
