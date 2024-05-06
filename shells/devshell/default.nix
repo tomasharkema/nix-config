@@ -132,6 +132,12 @@ with lib; let
   #   nix eval "$HOME_PKGS" --json | tee "$DIR/second.json"
   #   cat "$DIR/first.json" "$DIR/second.json" | jq -s add | tee "$DIR/out.json" | gum pager
   # '';
+  upload-all-store = writeShellScriptBin "upload-all-store" ''
+    NPATHS=50
+    NPROCS=4
+
+    exec nix path-info --all | xargs -n$NPATHS -P$NPROCS attic push tomas
+  '';
 in
   inputs.devenv.lib.mkShell {
     inherit inputs pkgs;
@@ -166,6 +172,7 @@ in
         # dotenv.enable = true;
 
         packages = [
+          upload-all-store
           # cntr
           update-pkgs
           attic
@@ -227,7 +234,7 @@ in
           # nix-init
           nix-output-monitor
           nix-prefetch-scripts
-          nix-serve
+          # nix-serve
           nix-tree
           # nixci
           # nixos-shell
