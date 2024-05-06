@@ -184,6 +184,7 @@
 
       inputs.nixpkgs.follows = "unstable";
     };
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = inputs: let
@@ -245,6 +246,10 @@
           system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
         }
       ];
+
+      # homes.modules = with inputs; [
+      #   catppuccin.homeManagerModules.catppuccin
+      # ];
 
       systems.modules.nixos = with inputs; [
         nix-index-database.nixosModules.nix-index
