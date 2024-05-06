@@ -13,22 +13,23 @@ in {
 
   config = mkIf cfg.enable {
     system.nixos.tags = ["media-center"];
-#    xdg.portal.enable = mkForce false;
-    
+    #    xdg.portal.enable = mkForce false;
+
     programs.dconf.enable = true;
-    
+
     sound = {
-      enable = true;
-      mediaKeys.enable = true;
+      enable = false;
+      mediaKeys.enable = false;
     };
 
-    hardware.pulseaudio = {
+    security.rtkit.enable = true;
+    services.pipewire = {
       enable = true;
-      support32Bit = true;
-      package = pkgs.pulseaudioFull;
-      #extraConfig = ''
-      #  load-module module-dbus-protocol
-      #'';
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      jack.enable = true;
     };
 
     apps.flatpak.enable = mkForce false;
@@ -85,7 +86,6 @@ in {
 
       enable = true;
       extraArguments = ["-d" "-m" "last"];
-      
     };
 
     # services.xserver = {
@@ -132,7 +132,7 @@ in {
       uid = 1100;
       extraGroups = ["data" "video" "audio" "input"];
     };
-    
+
     home-manager = {
       users.media = {
         home.stateVersion = mkDefault "23.11";
