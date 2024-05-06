@@ -234,7 +234,7 @@ in
           # nix-init
           nix-output-monitor
           nix-prefetch-scripts
-          nix-serve
+          # nix-serve
           nix-tree
           # nixci
           # nixos-shell

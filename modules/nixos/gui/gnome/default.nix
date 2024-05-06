@@ -32,7 +32,7 @@ in {
     # '';
 
     services = {
-      # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-remote-desktop}/bin/gnome-remote-desktop";
+      xrdp.defaultWindowManager = "${pkgs.gnome.gnome-remote-desktop}/bin/gnome-remote-desktop";
 
       # xrdp.defaultWindowManager = "${pkgs.writeScript "xrdp-xsession-gnome" ''
       #   ${pkgs.gnome.gnome-shell}/bin/gnome-shell &
@@ -44,7 +44,7 @@ in {
       # ''}";
 
       # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-shell}/bin/gnome-shell";
-      xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session --session=gnomexrdp";
+      # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session --session=gnomexrdp";
 
       xserver = {
         desktopManager.gnome.enable = true;
