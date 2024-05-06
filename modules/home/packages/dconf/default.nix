@@ -156,6 +156,8 @@ with lib; {
             "tailscale-status@maxgallup.github.com"
             # "display-brightness-ddcutil@themightydeity.github.com"
             "dash-to-panel@jderose9.github.com"
+            "sermon@rovellipaolo-gmail.com"
+            "Airpod-Battery-Monitor@maniacx.github.com"
           ];
 
           favorite-apps =
