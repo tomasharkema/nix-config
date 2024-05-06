@@ -14,16 +14,24 @@ in {
 
   config = mkIf cfg.enable {
     proxy-services.services = {
+      # "/attic" = {
+      #   proxyPass = "http://localhost:${builtins.toString port}";
+      #   extraConfig = ''
+      #     client_max_body_size 10G;
+      #     rewrite /attic(.*) $1 break;
+      #   '';
+      # };
       "/attic" = {
-        proxyPass = "http://localhost:${builtins.toString port}";
+        # proxyPass = "http://localhost:${builtins.toString port}";
         extraConfig = ''
-          client_max_body_size 10G;
-          rewrite /attic(.*) $1 break;
+          # client_max_body_size 10G;
+          rewrite /attic(.*) https://nix-cache.harke.ma$1;
+          return 301;
         '';
       };
     };
 
-    services.postgresql = {
+    services.postgresql = mkIf false {
       enable = true;
 
       enableTCPIP = true;
@@ -50,9 +58,9 @@ in {
       '';
     };
 
-    networking.firewall.allowedTCPPorts = [port];
+    networking.firewall.allowedTCPPorts = mkIf false [port];
 
-    services.atticd = {
+    services.atticd = mkIf false {
       enable = true;
 
       credentialsFile = "/etc/atticd.env";

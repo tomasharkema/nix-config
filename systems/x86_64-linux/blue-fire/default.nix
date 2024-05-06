@@ -112,6 +112,9 @@ in {
     ];
 
     networking = {
+      hosts = {
+        "192.168.0.100" = ["nix-cache.harke.ma"];
+      };
       hostName = "blue-fire";
       hostId = "529fd7aa";
 
