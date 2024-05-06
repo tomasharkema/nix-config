@@ -43,23 +43,23 @@ in {
         kcm = true;
         sshAuthorizedKeysIntegration = true;
 
-        config = ''
-          [pam]
-          pam_passkey_auth = True
-          passkey_debug_libfido2 = True
-          passkey_child_timeout = 60
-          pam_cert_auth = True
+        # config = ''
+        #   [pam]
+        #   pam_passkey_auth = True
+        #   passkey_debug_libfido2 = True
+        #   passkey_child_timeout = 60
+        #   pam_cert_auth = True
 
-          [prompting/passkey]
-          interactive_prompt = "Insert your Passkey device, then press ENTER."
+        #   [prompting/passkey]
+        #   interactive_prompt = "Insert your Passkey device, then press ENTER."
 
-          [domain/shadowutils]
-          id_provider = proxy
-          proxy_lib_name = files
-          auth_provider = none
-          local_auth_policy = match
+        #   [domain/shadowutils]
+        #   id_provider = proxy
+        #   proxy_lib_name = files
+        #   auth_provider = none
+        #   local_auth_policy = match
 
-        '';
+        # '';
       };
     };
 
@@ -77,7 +77,7 @@ in {
         # };
         certificate = "${./ca.crt}";
         #   dyndns.enable = true;
-        ifpAllowedUids = ["root" "tomas" "1000" "1002" "gdm" "132"];
+        # ifpAllowedUids = ["root" "tomas" "1000" "1002" "gdm" "132"];
       };
 
       # sudo.package = mkIf config.installed (pkgs.sudo.override {withSssd = true;});
@@ -94,18 +94,18 @@ in {
       };
 
       pam = {
-        krb5.enable = true;
+        # krb5.enable = true;
         services = {
           #   #config.installed {
-          login.sssdStrictAccess = mkDefault true;
-          sudo.sssdStrictAccess = mkDefault true;
-          ssh.sssdStrictAccess = mkDefault true;
-          askpass.sssdStrictAccess = mkDefault true;
-          cockpit.sssdStrictAccess = mkDefault true;
-          "password-auth".sssdStrictAccess = mkDefault true;
-          "system-auth".sssdStrictAccess = mkDefault true;
-          "gdm-password".sssdStrictAccess = mkDefault true;
-          "gdm".sssdStrictAccess = mkDefault true;
+          # login.sssdStrictAccess = mkDefault true;
+          # sudo.sssdStrictAccess = mkDefault true;
+          # ssh.sssdStrictAccess = mkDefault true;
+          # askpass.sssdStrictAccess = mkDefault true;
+          # cockpit.sssdStrictAccess = mkDefault true;
+          # "password-auth".sssdStrictAccess = mkDefault true;
+          # "system-auth".sssdStrictAccess = mkDefault true;
+          # "gdm-password".sssdStrictAccess = mkDefault true;
+          # "gdm".sssdStrictAccess = mkDefault true;
         };
       };
     };
