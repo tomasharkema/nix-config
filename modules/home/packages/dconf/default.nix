@@ -14,7 +14,7 @@ with lib; {
       settings = {
         "org/gnome/mutter" = {
           edge-tiling = true;
-          experimental-features = "['scale-monitor-framebuffer']";
+          experimental-features = "['scale-monitor-framebuffer','variable-refresh-rate']";
         };
         "org/gnome/shell/extensions/vitals" = {
           "position-in-panel" = 0;
