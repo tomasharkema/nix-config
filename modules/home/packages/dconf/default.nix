@@ -70,6 +70,25 @@ with lib; {
           show-trash = false;
         };
 
+        "org/gnome/shell/extensions/dash-to-panel" = {
+          animate-appicon-hover-animation-extent = "{'RIPPLE': 4, 'PLANK': 4, 'SIMPLE': 1}";
+          appicon-margin = 4;
+          appicon-padding = 4;
+          appicon-style = "NORMAL";
+          available-monitors = "[0]";
+          dot-position = "BOTTOM";
+          hotkeys-overlay-combo = "TEMPORARILY";
+          leftbox-padding = -1;
+          panel-anchors = ''{"0":"MIDDLE"}'';
+          panel-lengths = ''{"0":100}'';
+          panel-sizes = ''{"0":48}'';
+          primary-monitor = 0;
+          status-icon-padding = -1;
+          stockgs-keep-dash = false;
+          stockgs-keep-top-panel = false;
+          tray-padding = -1;
+          window-preview-title-position = "TOP";
+        };
         # "org/gnome/desktop/notifications" = {
         #   application-children = ["steam" "org-gnome-console" "gnome-power-panel" "firefox"];
         #   show-in-lock-screen = false;
@@ -121,7 +140,7 @@ with lib; {
             # "serverstatus@footeware.ca"
             # "sp-tray@sp-tray.esenliyim.github.com"
             "user-theme@gnome-shell-extensions.gcampax.github.com"
-            "dash-to-dock@micxgx.gmail.com"
+            # "dash-to-dock@micxgx.gmail.com"
             "Vitals@CoreCoding.com"
             "search-light@icedman.github.com"
             "mediacontrols@cliffniff.github.com"
@@ -136,7 +155,9 @@ with lib; {
             "pip-on-top@rafostar.github.com"
             "tailscale-status@maxgallup.github.com"
             # "display-brightness-ddcutil@themightydeity.github.com"
+            "dash-to-panel@jderose9.github.com"
           ];
+
           favorite-apps =
             [
               # "org.kde.index.desktop"
@@ -158,32 +179,32 @@ with lib; {
           titlebar-font = "Inter Regular 11";
         };
         "org/gnome/nautilus/preferences" = {always-use-location-entry = true;};
-        "org/gnome/shell/extensions/dash-to-panel" = {
-          # animate-appicon-hover-animation-extent = {
-          #   RIPPLE = 4;
-          #   PLANK = 4;
-          #   SIMPLE = 1;
-          # };
-          appicon-margin = 8;
-          appicon-padding = 4;
-          available-monitors = [0];
-          dot-position = "BOTTOM";
-          hotkeys-overlay-combo = "TEMPORARILY";
-          leftbox-padding = -1;
-          panel-anchors = ''
-            {"0":"MIDDLE"}
-          '';
-          panel-lengths = ''
-            {"0":100}
-          '';
-          panel-sizes = ''
-            {"0":48}
-          '';
-          primary-monitor = 0;
-          status-icon-padding = -1;
-          tray-padding = -1;
-          window-preview-title-position = "TOP";
-        };
+        # "org/gnome/shell/extensions/dash-to-panel" = {
+        #   # animate-appicon-hover-animation-extent = {
+        #   #   RIPPLE = 4;
+        #   #   PLANK = 4;
+        #   #   SIMPLE = 1;
+        #   # };
+        #   appicon-margin = 8;
+        #   appicon-padding = 4;
+        #   available-monitors = [0];
+        #   dot-position = "BOTTOM";
+        #   hotkeys-overlay-combo = "TEMPORARILY";
+        #   leftbox-padding = -1;
+        #   panel-anchors = ''
+        #     {"0":"MIDDLE"}
+        #   '';
+        #   panel-lengths = ''
+        #     {"0":100}
+        #   '';
+        #   panel-sizes = ''
+        #     {"0":48}
+        #   '';
+        #   primary-monitor = 0;
+        #   status-icon-padding = -1;
+        #   tray-padding = -1;
+        #   window-preview-title-position = "TOP";
+        # };
         # "org/gtk/gtk4/settings/file-chooser" = {
         #   date-format = "Medium";
         #   location-mode = "path-bar";
