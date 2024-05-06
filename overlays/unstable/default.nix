@@ -68,7 +68,7 @@
   #   channels
   #   .unstable
   #   .catppuccin-gtk;
-  catppuccin-gtk = self.packages."${prev.system}".catppuccin-gtk;
+  # catppuccin-gtk = self.packages."${prev.system}".catppuccin-gtk;
 
   systembus-notify = self.packages."${prev.system}".systembus-notify;
 

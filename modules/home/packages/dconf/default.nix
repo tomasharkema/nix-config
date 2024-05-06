@@ -22,7 +22,7 @@ with lib; {
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
           # cursor-theme = mkForce "Adwaita";
-          gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
+          # gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
           document-font-name = "Inter Regular 11";
           font-antialiasing = "grayscale";
           monospace-font-name = "JetBrainsMono Nerd Font Mono 11";
