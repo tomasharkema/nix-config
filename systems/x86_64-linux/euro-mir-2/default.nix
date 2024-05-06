@@ -22,7 +22,7 @@ with lib; {
 
     environment.systemPackages = with pkgs; [
       bolt
-      calibre
+      # calibre
       glxinfo
       inxi
       linuxPackages.usbip
