@@ -12,7 +12,7 @@ in {
     enable = mkEnableOption "attic-server";
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.enable && false) {
     proxy-services.services = {
       "/attic" = {
         proxyPass = "http://localhost:${builtins.toString port}";
