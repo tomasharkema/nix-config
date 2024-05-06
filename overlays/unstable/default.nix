@@ -64,13 +64,11 @@
   atuin = channels.unstable.atuin;
   xpipe = channels.unstable.xpipe;
 
-  catppuccin-gtk =
-    channels
-    .unstable
-    .catppuccin-gtk
-    .overrideAttrs (final: old: {
-      version = "0.7.4";
-    });
+  # catppuccin-gtk =
+  #   channels
+  #   .unstable
+  #   .catppuccin-gtk;
+  catppuccin-gtk = self.packages."${prev.system}".catppuccin-gtk;
 
   systembus-notify = self.packages."${prev.system}".systembus-notify;
 
