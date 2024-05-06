@@ -38,7 +38,7 @@ in {
         nix-output-monitor
         nix-prefetch-git
         nix-prefetch-scripts
-        nix-serve
+        # nix-serve
         nix-tree
         nixfmt
         nixos-shell
