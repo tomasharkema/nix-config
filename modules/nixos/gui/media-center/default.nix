@@ -121,11 +121,11 @@ in {
       };
     };
 
-    # services.shairport-sync = {
-    #   enable = true;
-    #   openFirewall = true;
-    # };
-    # users.extraUsers.shairport.extraGroups = ["audio" "input"];
+    services.shairport-sync = {
+      enable = true;
+      openFirewall = true;
+    };
+    users.extraUsers.shairport.extraGroups = ["data" "video" "audio" "input"];
 
     users.users.media = {
       isNormalUser = true;
