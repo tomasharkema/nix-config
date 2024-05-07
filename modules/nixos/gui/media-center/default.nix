@@ -88,32 +88,6 @@ in {
       extraArguments = ["-d" "-m" "last"];
     };
 
-    # services.xserver = {
-    #   enable = true;
-
-    # services.xserver = {
-    #   enable = true;
-
-    #   windowManager = {
-    #     ratpoison.enable = true;
-    #   };
-
-    #   displayManager = {
-    #     autoLogin = {
-    #       enable = true;
-    #       user = "media";
-    #     };
-    #     gdm.enable = mkForce false;
-    #     sddm = {
-    #       enable = true;
-    #     };
-    #     # pasuspender -- env AE_SINK=ALSA
-    #     sessionCommands = ''
-    #       exec ${lib.getExe pkgs.plex-media-player} --fullscreen --tv
-    #     '';
-    #   };
-    # };
-
     boot = {
       kernelParams = ["quiet"];
       plymouth = {
