@@ -19,7 +19,7 @@ in {
 
     sound = {
       enable = false;
-      mediaKeys.enable = false;
+      mediaKeys.enable = true;
     };
 
     security.rtkit.enable = true;
@@ -28,8 +28,26 @@ in {
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
       jack.enable = true;
+    };
+
+    services.pipewire.extraConfig.pipewire-pulse."92-tcp" = {
+      context.modules = [
+        {
+          name = "module-native-protocol-tcp";
+          args = {
+          };
+        }
+        {
+          name = "module-zeroconf-publish";
+          args = {
+          };
+        }
+      ];
+      stream.properties = {
+        node.latency = "32/48000";
+        resample.quality = 1;
+      };
     };
 
     apps.flatpak.enable = mkForce false;
