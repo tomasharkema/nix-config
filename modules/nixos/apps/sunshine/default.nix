@@ -16,7 +16,7 @@ in {
     enable = mkEnableOption "sunshine";
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.enable && false) {
     # Sunshine user, service and config
     users.users.sunshine = {
       isNormalUser = true;
