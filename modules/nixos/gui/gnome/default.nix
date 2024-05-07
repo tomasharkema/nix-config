@@ -75,7 +75,24 @@ in {
     xdg.autostart = {
       enable = true;
     };
-
+    services.pipewire.extraConfig.pipewire-pulse."92-tcp" = {
+      context.modules = [
+        {
+          name = "module-native-protocol-tcp";
+          args = {
+          };
+        }
+        {
+          name = "module-zeroconf-discover";
+          args = {
+          };
+        }
+      ];
+      stream.properties = {
+        node.latency = "32/48000";
+        resample.quality = 1;
+      };
+    };
     environment.systemPackages =
       (
         with pkgsUnstable; [
@@ -151,18 +168,6 @@ in {
     #   enable = true;
     #   serverAddress = "euro-mir";
     # };
-
-    # programs.hyprland = {
-    #   enable = true;
-    #   enableNvidiaPatches = true;
-    # };
-    # programs = {
-    #   sway.enable = true;
-    #   dconf.enable = true;
-    # };
-
-    # trace: warning: The option `fonts.fonts' defined in `/nix/store/z1gqs0dm5j9g1qy5j9m7m85al7lhjpim-aca1xyh73qrpxrv4yh6lnavs59q875xf-source/modules/nixos/gui/gnome/default.nix' has been renamed to `fonts.packages'.
-    # trace: warning: The option `fonts.enableDefaultFonts' defined in `/nix/store/z1gqs0dm5j9g1qy5j9m7m85al7lhjpim-aca1xyh73qrpxrv4yh6lnavs59q875xf-source/modules/nixos/gui/gnome/default.nix' has been renamed to `fonts.enableDefaultPackages'.
 
     # environment.gnome.excludePackages =
     #   (with pkgs; [
