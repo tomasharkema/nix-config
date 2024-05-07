@@ -22,12 +22,13 @@ in {
     xdg.portal.wlr.enable = true;
     programs.sway.enable = true;
 
-    # programs.hyprland = {
-    #   # Install the packages from nixpkgs
-    #   enable = true;
-    #   # Whether to enable XWayland
-    #   xwayland.enable = true;
-    # };
+    programs.hyprland = {
+      # Install the packages from nixpkgs
+      enable = true;
+      # Whether to enable XWayland
+      xwayland.enable = true;
+    };
+
     # environment.etc."X11/Xwrapper.config".text = ''
     #   allowed_users=anybody
     # '';
