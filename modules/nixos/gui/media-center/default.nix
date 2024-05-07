@@ -28,7 +28,6 @@ in {
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
       jack.enable = true;
     };
 
@@ -140,11 +139,11 @@ in {
       };
     };
 
-    # services.shairport-sync = {
-    #   enable = true;
-    #   openFirewall = true;
-    # };
-    # users.extraUsers.shairport.extraGroups = ["audio" "input"];
+    services.shairport-sync = {
+      enable = true;
+      openFirewall = true;
+    };
+    users.extraUsers.shairport.extraGroups = ["data" "video" "audio" "input"];
 
     users.users.media = {
       isNormalUser = true;
