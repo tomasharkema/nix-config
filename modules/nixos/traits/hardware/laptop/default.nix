@@ -32,10 +32,12 @@ in {
         };
       };
     };
-
-    systemd.targets.sleep.enable = true;
-    systemd.targets.suspend.enable = true;
-    systemd.targets.hibernate.enable = true;
-    systemd.targets.hybrid-sleep.enable = true;
+    # services.tlp.enable = true;
+    systemd.targets = {
+      sleep.enable = true;
+      suspend.enable = true;
+      hibernate.enable = true;
+      hybrid-sleep.enable = true;
+    };
   };
 }
