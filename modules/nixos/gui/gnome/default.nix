@@ -20,6 +20,7 @@ in {
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
     xdg.portal.wlr.enable = true;
+    programs.sway.enable = true;
 
     # programs.hyprland = {
     #   # Install the packages from nixpkgs
