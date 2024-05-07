@@ -19,6 +19,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    catppuccin = {
+      url = "github:tomasharkema/catppuccin-nix/6c3a26f0f5979b885d8c978cdb82ba9e71664d8f";
+    };
+
     # nixos-wsl = {
     #   url = "github:nix-community/NixOS-WSL";
     #   inputs = {
@@ -181,10 +185,8 @@
 
     tree-sitter-nix = {
       url = "github:nix-community/tree-sitter-nix";
-
       inputs.nixpkgs.follows = "unstable";
     };
-    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = inputs: let

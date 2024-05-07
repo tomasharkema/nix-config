@@ -52,7 +52,7 @@ in {
       # };
       catppuccin = {
         enable = true;
-
+        package = pkgs.catppuccin-gtk;
         flavour = "mocha";
         accent = "blue";
         size = "compact";
@@ -101,7 +101,7 @@ in {
       #     # size = 32;
       #   };
       # };
-      sessionVariables.GTK_THEME = "${config.gtk.theme.name}:dark";
+      # sessionVariables.GTK_THEME = "${config.gtk.theme.name}:dark";
       # file = {
       # ".config/gtk-4.0".source = "${config.gtk.theme.package}/share/themes/${catppuccin_name}/gtk-4.0";
       # ".config/gtk-4.0/gtk-dark.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk-dark.css";
