@@ -7,8 +7,6 @@
       inputs.nixpkgs.follows = "unstable";
     };
 
-    nixpkgs-gnome.url = "nixpkgs/gnome-46";
-
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
@@ -175,9 +173,9 @@
     #   inputs.nixpkgs.follows = "unstable";
     # };
 
-    zjstatus = {
-      url = "github:dj95/zjstatus";
-    };
+    # zjstatus = {
+    #   url = "github:dj95/zjstatus";
+    # };
 
     tree-sitter-nix = {
       url = "github:nix-community/tree-sitter-nix";
