@@ -197,7 +197,7 @@ in
           pkgs.deploy-rs
           deployment
           direnv
-          flake-checker
+          # flake-checker
           git
           gnupg
           gum

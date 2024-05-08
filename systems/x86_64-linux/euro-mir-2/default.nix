@@ -95,9 +95,9 @@ with lib; {
           extraOptions = ["--loadavg-target" "2.0"];
         };
       };
-      synergy.server = {
-        enable = true;
-      };
+      # synergy.server = {
+      #   enable = true;
+      # };
 
       avahi = {
         enable = true;
