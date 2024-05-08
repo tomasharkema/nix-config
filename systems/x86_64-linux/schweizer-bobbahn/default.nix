@@ -49,8 +49,6 @@ with lib; {
 
     resilio.enable = false;
 
-    gui.icewm.enable = true;
-
     traits = {
       hardware = {
         # tpm.enable = true;
