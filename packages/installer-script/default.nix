@@ -7,6 +7,7 @@
   writeShellApplication,
   writeShellScriptBin,
   tailscale,
+  krb5,
   configurations ? {
     "foo" = {
       config = {
@@ -84,6 +85,7 @@ in
     name = "installer-script";
 
     runtimeInputs = [
+      krb5
       gum
       # tailscale
       jq
