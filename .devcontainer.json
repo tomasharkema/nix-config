@@ -4,7 +4,8 @@
       "extensions": [
         "Catppuccin.catppuccin-vsc",
         "kamadorueda.alejandra",
-        "jnoortheen.nix-ide"
+        "jnoortheen.nix-ide",
+        "mkhl.direnv"
       ]
     }
   },

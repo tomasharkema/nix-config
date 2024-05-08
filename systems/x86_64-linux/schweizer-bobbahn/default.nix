@@ -20,6 +20,7 @@ with lib; {
 
     traits.low-power.enable = true;
     gui."media-center".enable = true;
+    apps.spotifyd.enable = true;
 
     environment.systemPackages = with pkgs; [intel-gpu-tools];
 
@@ -43,6 +44,8 @@ with lib; {
         ifpAllowedUids = mkForce ["root" "tomas" "media"];
       };
     };
+
+    gui.icewm.enable = true;
 
     resilio.enable = false;
 
