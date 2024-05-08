@@ -9,6 +9,7 @@ with lib.custom; let
   cfg = config.traits.hardware.nvidia;
 
   nvidiaVersion = config.hardware.nvidia.package.version;
+  nvidiax11Version = config.boot.kernelPackages.nvidia_x11.version;
   # nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
   #   export __NV_PRIME_RENDER_OFFLOAD=1
   #   export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
@@ -24,7 +25,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    system.nixos.tags = ["nvidia:${nvidiaVersion}"];
+    system.nixos.tags = ["nvidia:${nvidiaVersion}:nvidiax11Version:${nvidiax11Version}"];
 
     environment.systemPackages = with pkgs; [
       nvtop-nvidia
@@ -52,8 +53,6 @@ in {
         open = false;
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-        #        nvidiaPersistenced = false;
       };
 
       opengl = {
