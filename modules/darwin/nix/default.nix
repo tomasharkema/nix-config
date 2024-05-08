@@ -47,7 +47,7 @@ in {
       nixfmt
       nix-prefetch-git
       nil
-      flake-checker
+      # flake-checker
       direnv
       # attic
       alejandra
