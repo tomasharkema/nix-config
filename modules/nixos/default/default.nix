@@ -237,10 +237,10 @@ with lib;
 
         zram-generator.enable = true;
 
-        earlyoom = {
-          enable = true;
-          enableNotifications = true;
-        };
+        # earlyoom = {
+        #   enable = true;
+        #   enableNotifications = true;
+        # };
 
         # vscode-server.enable = true;
 
