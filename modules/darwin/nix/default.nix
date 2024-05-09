@@ -47,7 +47,7 @@ in {
       nixfmt
       nix-prefetch-git
       nil
-      flake-checker
+      # flake-checker
       direnv
       # attic
       alejandra
@@ -72,6 +72,7 @@ in {
       users = ["root" "tomas"];
     in {
       # package = pkgs.nixUnstable;
+      package = pkgs.nix; #Unstable;
 
       linux-builder = {
         enable = true;

@@ -125,7 +125,6 @@ in
         packages = with pkgs; [
           fup-repl
           udict
-          #pkgs.custom.b612
           b612
           # rtfm
           jq
