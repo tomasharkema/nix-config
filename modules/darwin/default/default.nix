@@ -41,13 +41,13 @@
           mode = "644";
           # symlink = false;
         };
-        spotify-tui = {
-          file = ../../../secrets/spotify-tui.age;
-          # owner = "tomas";
-          # group = "tomas";
-          mode = "644";
-          # symlink = false;
-        };
+        # spotify-tui = {
+        # file = ../../../secrets/spotify-tui.age;
+        # owner = "tomas";
+        # group = "tomas";
+        # mode = "644";
+        # symlink = false;
+        # };
         notify = {
           file = ../../../secrets/notify.age;
           # owner = "tomas";

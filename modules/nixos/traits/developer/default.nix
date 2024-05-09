@@ -51,8 +51,7 @@ in {
       ++ [
         go
         go-outline
-        gocode
-        gocode-gomod
+        gopls
         godef
         golint
         gopkgs
