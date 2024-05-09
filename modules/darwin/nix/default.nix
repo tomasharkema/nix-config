@@ -49,7 +49,7 @@ in {
       nil
       # flake-checker
       direnv
-      # attic
+      attic
       alejandra
       # inputs.alejandra.packages.${system}.default
       nix-output-monitor
