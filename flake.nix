@@ -1,12 +1,10 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.11";
-
-    unstable.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "unstable";
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     flake-compat = {
@@ -70,7 +68,7 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-23.11";
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -88,7 +86,7 @@
 
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # cachix-deploy-flake = {
@@ -113,7 +111,7 @@
     attic = {
       url = "github:zhaofengli/attic";
       inputs = {
-        nixpkgs.follows = "unstable";
+        nixpkgs.follows = "nixpkgs";
         nixpkgs-stable.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
         flake-compat.follows = "flake-compat";
@@ -152,7 +150,7 @@
 
     peerix = {
       url = "github:cid-chan/peerix";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # poetry2nix = {
@@ -166,12 +164,12 @@
 
     nixos-search = {
       url = "github:NixOS/nixos-search";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     command-center = {
       url = "github:tomasharkema/command-center";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # filestash-nix = {
@@ -185,7 +183,7 @@
 
     tree-sitter-nix = {
       url = "github:nix-community/tree-sitter-nix";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -281,7 +279,7 @@
           nix = {
             registry.nixpkgs.flake = inputs.nixpkgs;
             registry.home-manager.flake = inputs.home-manager;
-            registry.unstable.flake = inputs.unstable;
+            # registry.unstable.flake = inputs.unstable;
             registry.darwin.flake = inputs.darwin;
           };
         }

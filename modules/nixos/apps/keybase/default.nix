@@ -6,11 +6,11 @@
   ...
 }:
 with lib; {
-  disabledModules = ["services/network-filesystems/kbfs.nix"];
+  # disabledModules = ["services/network-filesystems/kbfs.nix"];
 
-  imports = [
-    "${inputs.unstable}/nixos/modules/services/network-filesystems/kbfs.nix"
-  ];
+  # imports = [
+  #   "${inputs.unstable}/nixos/modules/services/network-filesystems/kbfs.nix"
+  # ];
 
   config = mkIf (!config.traits.slim.enable) {
     #programs.singularity.enable = true;

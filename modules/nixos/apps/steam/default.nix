@@ -8,17 +8,18 @@
 with lib; let
   cfg = config.apps.steam;
 in {
-  disabledModules = [
-    "services/desktops/pipewire/pipewire.nix"
-    "services/desktops/pipewire/wireplumber.nix"
-  ];
+  # disabledModules = [
+  #   "services/desktops/pipewire/pipewire.nix"
+  #   "services/desktops/pipewire/wireplumber.nix"
+  # ];
 
-  imports = [
-    "${inputs.unstable}/nixos/modules/services/desktops/pipewire/pipewire.nix"
-    "${inputs.unstable}/nixos/modules/services/desktops/pipewire/wireplumber.nix"
-    #   "${inputs.unstable}/nixos/modules/security/pam.nix"
-    #   "${inputs.unstable}/nixos/modules/security/krb5"
-  ];
+  # imports = [
+  #   "${inputs.unstable}/nixos/modules/services/desktops/pipewire/pipewire.nix"
+  #   "${inputs.unstable}/nixos/modules/services/desktops/pipewire/wireplumber.nix"
+  #   #   "${inputs.unstable}/nixos/modules/security/pam.nix"
+  #   #   "${inputs.unstable}/nixos/modules/security/krb5"
+  # ];
+
   options.apps.steam = {
     enable = mkEnableOption "steam";
   };

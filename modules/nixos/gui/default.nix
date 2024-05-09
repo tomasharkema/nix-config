@@ -8,9 +8,9 @@
 with lib; let
   cfg = config.gui;
 in {
-  imports = [
-    "${inputs.unstable}/nixos/modules/services/desktops/seatd.nix"
-  ];
+  # imports = [
+  #   "${inputs.unstable}/nixos/modules/services/desktops/seatd.nix"
+  # ];
 
   options.gui = {
     enable = mkEnableOption "gui.defaults";

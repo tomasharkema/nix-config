@@ -51,16 +51,16 @@ in {
           enable = true;
           sections = {lualine_x = ["diagnostics" "encoding" "filetype"];};
         };
-        startify = {
-          enable = true;
-          customHeader = ''
-            startify#pad(split(system('figlet -f larry3d neovim'), '
-            '))'';
-        };
-        indent-blankline = {
-          enable = true;
-          filetypeExclude = ["startify"];
-        };
+        # startify = {
+        #   enable = true;
+        #   customHeader = ''
+        #     startify#pad(split(system('figlet -f larry3d neovim'), '
+        #     '))'';
+        # };
+        # indent-blankline = {
+        #   enable = true;
+        #   filetypeExclude = ["startify"];
+        # };
         barbar = {enable = true;};
         gitgutter = {enable = true;};
         surround = {enable = true;};
