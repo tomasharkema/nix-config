@@ -17,4 +17,6 @@ stdenvNoCC.mkDerivation rec {
   installPhase = ''
     cp ${src} $out
   '';
+
+  passthru.keys = lib.splitString "\n" (builtins.readFile src);
 }
