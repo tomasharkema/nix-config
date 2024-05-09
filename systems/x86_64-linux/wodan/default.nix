@@ -4,7 +4,8 @@
   inputs,
   config,
   ...
-}: {
+}:
+with lib; {
   imports = [
     ./hardware-configuration.nix
 
@@ -18,7 +19,7 @@
     # programs.gamemode.enable = true;
     environment.systemPackages = with pkgs; [
       ntfs2btrfs
-      openrgb-with-all-plugins
+      # openrgb-with-all-plugins
       glxinfo
     ];
 
@@ -28,6 +29,7 @@
     };
 
     # services.freeipa.replica.enable = true;
+    services.upower.enable = mkForce false;
 
     networking = {
       hosts = {

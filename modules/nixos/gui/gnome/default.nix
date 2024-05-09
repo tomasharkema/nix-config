@@ -20,6 +20,7 @@ in {
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
     xdg.portal.wlr.enable = true;
+    programs.sway.enable = true;
 
     programs.hyprland = {
       # Install the packages from nixpkgs
@@ -27,6 +28,7 @@ in {
       # Whether to enable XWayland
       xwayland.enable = true;
     };
+
     # environment.etc."X11/Xwrapper.config".text = ''
     #   allowed_users=anybody
     # '';
@@ -75,7 +77,24 @@ in {
     xdg.autostart = {
       enable = true;
     };
-
+    services.pipewire.extraConfig.pipewire-pulse."92-tcp" = {
+      context.modules = [
+        {
+          name = "module-native-protocol-tcp";
+          args = {
+          };
+        }
+        {
+          name = "module-zeroconf-discover";
+          args = {
+          };
+        }
+      ];
+      stream.properties = {
+        node.latency = "32/48000";
+        resample.quality = 1;
+      };
+    };
     environment.systemPackages =
       (
         with pkgsUnstable; [
@@ -152,45 +171,33 @@ in {
     #   serverAddress = "euro-mir";
     # };
 
-    # programs.hyprland = {
-    #   enable = true;
-    #   enableNvidiaPatches = true;
-    # };
-    # programs = {
-    #   sway.enable = true;
-    #   dconf.enable = true;
-    # };
-
-    # trace: warning: The option `fonts.fonts' defined in `/nix/store/z1gqs0dm5j9g1qy5j9m7m85al7lhjpim-aca1xyh73qrpxrv4yh6lnavs59q875xf-source/modules/nixos/gui/gnome/default.nix' has been renamed to `fonts.packages'.
-    # trace: warning: The option `fonts.enableDefaultFonts' defined in `/nix/store/z1gqs0dm5j9g1qy5j9m7m85al7lhjpim-aca1xyh73qrpxrv4yh6lnavs59q875xf-source/modules/nixos/gui/gnome/default.nix' has been renamed to `fonts.enableDefaultPackages'.
-
-    # environment.gnome.excludePackages =
-    #   (with pkgs; [
-    #     # gnome-photos
-    #     gnome-tour
-    #   ])
-    #   ++ (with pkgs.gnome; [
-    #     cheese # webcam tool
-    #     tali # poker game
-    #     iagno # go game
-    #     hitori # sudoku game
-    #     atomix # puzzle game
-    #     yelp # Help view
-    #     gnome-initial-setup
-    #   ])
-    #   ++ (with pkgsUnstable; [
-    #     # gnome-photos
-    #     gnome-tour
-    #   ])
-    #   ++ (with pkgsUnstable.gnome; [
-    #     cheese # webcam tool
-    #     tali # poker game
-    #     iagno # go game
-    #     hitori # sudoku game
-    #     atomix # puzzle game
-    #     yelp # Help view
-    #     gnome-initial-setup
-    #   ]);
+    environment.gnome.excludePackages =
+      (with pkgs; [
+        # gnome-photos
+        gnome-tour
+      ])
+      ++ (with pkgs.gnome; [
+        cheese # webcam tool
+        tali # poker game
+        iagno # go game
+        hitori # sudoku game
+        atomix # puzzle game
+        yelp # Help view
+        gnome-initial-setup
+      ])
+      ++ (with pkgsUnstable; [
+        # gnome-photos
+        gnome-tour
+      ])
+      ++ (with pkgsUnstable.gnome; [
+        cheese # webcam tool
+        tali # poker game
+        iagno # go game
+        hitori # sudoku game
+        atomix # puzzle game
+        yelp # Help view
+        gnome-initial-setup
+      ]);
   };
 }
 # # pkgs.gnome45Extensions."app-hider@lynith.dev"
