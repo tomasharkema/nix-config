@@ -175,7 +175,7 @@ in
           upload-all-store
           # cntr
           update-pkgs
-          attic
+          # attic
           dconf-save
           dp
           upload-to-installer
@@ -197,7 +197,7 @@ in
           pkgs.deploy-rs
           deployment
           direnv
-          flake-checker
+          # flake-checker
           git
           gnupg
           gum

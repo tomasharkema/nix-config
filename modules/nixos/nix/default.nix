@@ -36,7 +36,7 @@ with lib.custom; {
         ["root" config.user.name]
         ++ optional config.services.hydra.enable "hydra";
     in {
-      package = pkgs.nixUnstable;
+      package = pkgs.nix; #Unstable;
 
       settings =
         {
