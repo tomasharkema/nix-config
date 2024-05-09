@@ -15,11 +15,7 @@ with lib; let
 in {
   config = {
     # nix.extraOptions = "experimental-features = nix-command flakes c";
-    isoImage = {
-      squashfsCompression = "gzip -Xcompression-level 1";
-      # includeSystemBuildDependencies = true;
-      storeContents = drvs;
-    };
+    # isbinaryCaches
 
     nix =
       {
