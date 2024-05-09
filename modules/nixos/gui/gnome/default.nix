@@ -7,7 +7,7 @@
 }:
 with lib; let
   cfg = config.gui.gnome;
-  pkgsUnstable = inputs.unstable.legacyPackages."${pkgs.system}";
+  # pkgsUnstable = inputs.unstable.legacyPackages."${pkgs.system}";
 in {
   options.gui.gnome = {
     enable = mkEnableOption "enable gnome desktop environment";
@@ -57,7 +57,7 @@ in {
       };
 
       gnome = {
-        chrome-gnome-shell.enable = true;
+        # chrome-gnome-shell.enable = true;
         gnome-browser-connector.enable = true;
         gnome-online-accounts.enable = true;
         glib-networking.enable = true;
@@ -97,7 +97,7 @@ in {
     };
     environment.systemPackages =
       (
-        with pkgsUnstable; [
+        with pkgs; [
           gtop
           libgtop
           gnomeExtensions.dash-to-panel
@@ -137,7 +137,7 @@ in {
           gnomeExtensions.pip-on-top
         ]
       )
-      ++ (with pkgsUnstable; [
+      ++ (with pkgs; [
         clutter
         clutter-gtk
         gjs
@@ -185,11 +185,11 @@ in {
         yelp # Help view
         gnome-initial-setup
       ])
-      ++ (with pkgsUnstable; [
+      ++ (with pkgs; [
         # gnome-photos
         gnome-tour
       ])
-      ++ (with pkgsUnstable.gnome; [
+      ++ (with pkgs.gnome; [
         cheese # webcam tool
         tali # poker game
         iagno # go game
