@@ -45,6 +45,8 @@ with lib; {
       };
     };
 
+    gui.icewm.enable = true;
+
     resilio.enable = false;
 
     traits = {
