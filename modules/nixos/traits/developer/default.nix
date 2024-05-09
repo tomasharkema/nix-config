@@ -26,7 +26,7 @@ in {
         deploy-rs
         devenv
         fh
-        flake-checker
+        # flake-checker
         hydra-cli
         manix
         nix-search-cli
