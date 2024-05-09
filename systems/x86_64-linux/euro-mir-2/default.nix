@@ -45,9 +45,9 @@ with lib; {
         nvidiaPersistenced = false;
         # dynamicBoost.enable = true;
         prime = {
-          #sync.enable = true;
-          offload.enable = true;
-          offload.enableOffloadCmd = true;
+          sync.enable = true;
+          offload.enable = false;
+          offload.enableOffloadCmd = false;
         };
       };
       # fancontrol.enable = true;

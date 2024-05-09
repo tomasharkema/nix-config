@@ -12,17 +12,17 @@ with lib; {
   config = mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
     dconf = {
       settings = {
-        # "org/gnome/mutter" = {
-        #   edge-tiling = true;
-        #   experimental-features = "['scale-monitor-framebuffer']";
-        # };
+        "org/gnome/mutter" = {
+          edge-tiling = true;
+          experimental-features = "['scale-monitor-framebuffer','variable-refresh-rate']";
+        };
         "org/gnome/shell/extensions/vitals" = {
           "position-in-panel" = 0;
         };
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
           # cursor-theme = mkForce "Adwaita";
-          gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
+          # gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
           document-font-name = "Inter Regular 11";
           font-antialiasing = "grayscale";
           monospace-font-name = "JetBrainsMono Nerd Font Mono 11";
@@ -156,6 +156,8 @@ with lib; {
             "tailscale-status@maxgallup.github.com"
             # "display-brightness-ddcutil@themightydeity.github.com"
             "dash-to-panel@jderose9.github.com"
+            "sermon@rovellipaolo-gmail.com"
+            "Airpod-Battery-Monitor@maniacx.github.com"
           ];
 
           favorite-apps =
