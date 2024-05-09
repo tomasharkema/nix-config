@@ -29,7 +29,7 @@ in {
     };
     home = {
       packages = with pkgs; [
-        gnomeExtensions.command-menu
+        # gnomeExtensions.command-menu
       ];
 
       file = {

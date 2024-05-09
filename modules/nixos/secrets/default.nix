@@ -100,13 +100,13 @@
           file = ./op.age;
           mode = "644";
         };
-        spotify-tui = {
-          file = ./spotify-tui.age;
-          # owner = "tomas";
-          # group = "tomas";
-          mode = "644";
-          # symlink = false;
-        };
+        # spotify-tui = {
+        #   file = ./spotify-tui.age;
+        #   # owner = "tomas";
+        #   # group = "tomas";
+        #   mode = "644";
+        #   # symlink = false;
+        # };
 
         notify = {
           file = ./notify.age;

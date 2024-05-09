@@ -8,21 +8,22 @@
 with lib;
 with lib.custom; let
   cfg = config.apps._1password;
-  unstable = inputs.unstable.legacyPackages."${pkgs.system}";
+  # unstable = inputs.unstable.legacyPackages."${pkgs.system}";
 in {
   options.apps._1password = {
     enable = mkBoolOpt true "1Password";
   };
 
-  disabledModules = [
-    "programs/_1password.nix"
-    "programs/_1password-gui.nix"
-  ];
+  # disabledModules = [
+  #   "programs/_1password.nix"
+  #   "programs/_1password-gui.nix"
+  # ];
 
-  imports = [
-    "${inputs.unstable}/nixos/modules/programs/_1password.nix"
-    "${inputs.unstable}/nixos/modules/programs/_1password-gui.nix"
-  ];
+  # imports = [
+  #   "${inputs.unstable}/nixos/modules/programs/_1password.nix"
+  #   "${inputs.unstable}/nixos/modules/programs/_1password-gui.nix"
+  # ];
+
   config = mkIf cfg.enable {
     programs = {
       ssh.extraConfig = mkIf config.gui.desktop.enable ''

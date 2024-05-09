@@ -8,9 +8,9 @@
 }:
 with lib;
 with lib.custom; {
-  imports = [
-    "${inputs.unstable}/nixos/modules/programs/nh.nix"
-  ];
+  # imports = [
+  #   "${inputs.unstable}/nixos/modules/programs/nh.nix"
+  # ];
 
   config = mkIf (!config.traits.slim.enable) {
     programs.nh = {
