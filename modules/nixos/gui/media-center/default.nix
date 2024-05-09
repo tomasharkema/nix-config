@@ -13,22 +13,43 @@ in {
 
   config = mkIf cfg.enable {
     system.nixos.tags = ["media-center"];
-#    xdg.portal.enable = mkForce false;
-    
+    #    xdg.portal.enable = mkForce false;
+
     programs.dconf.enable = true;
-    
+
     sound = {
-      enable = true;
+      enable = false;
+
       mediaKeys.enable = true;
     };
 
-    hardware.pulseaudio = {
+    security.rtkit.enable = true;
+    services.pipewire = {
       enable = true;
-      support32Bit = true;
-      package = pkgs.pulseaudioFull;
-      #extraConfig = ''
-      #  load-module module-dbus-protocol
-      #'';
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      jack.enable = true;
+    };
+
+    services.pipewire.extraConfig.pipewire-pulse."92-tcp" = {
+      context.modules = [
+        {
+          name = "module-native-protocol-tcp";
+          args = {
+          };
+        }
+        {
+          name = "module-zeroconf-publish";
+          args = {
+          };
+        }
+      ];
+      stream.properties = {
+        node.latency = "32/48000";
+        resample.quality = 1;
+      };
     };
 
     apps.flatpak.enable = mkForce false;
@@ -85,34 +106,7 @@ in {
 
       enable = true;
       extraArguments = ["-d" "-m" "last"];
-      
     };
-
-    # services.xserver = {
-    #   enable = true;
-
-    # services.xserver = {
-    #   enable = true;
-
-    #   windowManager = {
-    #     ratpoison.enable = true;
-    #   };
-
-    #   displayManager = {
-    #     autoLogin = {
-    #       enable = true;
-    #       user = "media";
-    #     };
-    #     gdm.enable = mkForce false;
-    #     sddm = {
-    #       enable = true;
-    #     };
-    #     # pasuspender -- env AE_SINK=ALSA
-    #     sessionCommands = ''
-    #       exec ${lib.getExe pkgs.plex-media-player} --fullscreen --tv
-    #     '';
-    #   };
-    # };
 
     boot = {
       kernelParams = ["quiet"];
@@ -121,18 +115,18 @@ in {
       };
     };
 
-    # services.shairport-sync = {
-    #   enable = true;
-    #   openFirewall = true;
-    # };
-    # users.extraUsers.shairport.extraGroups = ["audio" "input"];
+    services.shairport-sync = {
+      enable = true;
+      openFirewall = true;
+    };
+    users.extraUsers.shairport.extraGroups = ["data" "video" "audio" "input"];
 
     users.users.media = {
       isNormalUser = true;
       uid = 1100;
       extraGroups = ["data" "video" "audio" "input"];
     };
-    
+
     home-manager = {
       users.media = {
         home.stateVersion = mkDefault "23.11";

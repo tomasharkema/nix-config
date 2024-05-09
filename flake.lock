@@ -123,6 +123,22 @@
         "type": "github"
       }
     },
+    "catppuccin": {
+      "locked": {
+        "lastModified": 1715025624,
+        "narHash": "sha256-iTEzeC+rF+L/6KP5NujMElSL0P7amhmpxMOKf1pEm5A=",
+        "owner": "tomasharkema",
+        "repo": "catppuccin-nix",
+        "rev": "6c3a26f0f5979b885d8c978cdb82ba9e71664d8f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tomasharkema",
+        "repo": "catppuccin-nix",
+        "rev": "6c3a26f0f5979b885d8c978cdb82ba9e71664d8f",
+        "type": "github"
+      }
+    },
     "command-center": {
       "inputs": {
         "devenv": "devenv",
@@ -2220,6 +2236,7 @@
         "agenix": "agenix",
         "agenix-shell": "agenix-shell",
         "attic": "attic",
+        "catppuccin": "catppuccin",
         "command-center": "command-center",
         "darwin": "darwin_2",
         "deploy-rs": "deploy-rs",
