@@ -22,7 +22,7 @@ with lib; {
 
     environment.systemPackages = with pkgs; [
       bolt
-      calibre
+      # calibre
       glxinfo
       inxi
       linuxPackages.usbip
@@ -95,9 +95,9 @@ with lib; {
           extraOptions = ["--loadavg-target" "2.0"];
         };
       };
-      synergy.server = {
-        enable = true;
-      };
+      # synergy.server = {
+      #   enable = true;
+      # };
 
       avahi = {
         enable = true;
