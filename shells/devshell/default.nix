@@ -172,7 +172,7 @@ in
         # dotenv.enable = true;
 
         packages = [
-          nixUnstable
+          nix # Unstable
           upload-all-store
           # cntr
           update-pkgs
