@@ -8,6 +8,11 @@
   vscode = channels.unstable.vscode;
   # android-tools = channels.unstable.android-tools;
 
+  glib = channels.unstable.glib;
+
+  glibc = channels.unstable.glibc;
+  webkitgtk = channels.unstable.webkitgtk;
+
   OVMF = channels.unstable.OVMF;
 
   netdata = channels.unstable.netdata;
