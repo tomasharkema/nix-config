@@ -71,7 +71,8 @@ in {
     nix = let
       users = ["root" "tomas"];
     in {
-      package = pkgs.nixUnstable;
+      # package = pkgs.nixUnstable;
+      package = pkgs.nix; #Unstable;
 
       linux-builder = {
         enable = true;
