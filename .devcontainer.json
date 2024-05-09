@@ -2,7 +2,7 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "Catppuccin.catppuccin-vsc",
+        "Catppuccin.catppuccin-vsc-pack",
         "kamadorueda.alejandra",
         "jnoortheen.nix-ide",
         "mkhl.direnv"
