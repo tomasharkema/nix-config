@@ -9,7 +9,7 @@
   nixos-conf-editor,
   nix-software-center,
   channels,
-  zjstatus,
+  # zjstatus,
   # manix,
   ...
 }: final: prev: {
@@ -26,7 +26,7 @@
   # nix = channels.unstable.nixVersions.latest;
   # manix = manix.packages."${prev.system}".manix;
 
-  zjstatus = zjstatus.packages."${prev.system}".default;
+  # zjstatus = zjstatus.packages."${prev.system}".default;
 
   nerdfonts = channels.unstable.nerdfonts.override {
     fonts = [

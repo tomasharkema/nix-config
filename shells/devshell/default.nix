@@ -161,7 +161,7 @@ in
         devcontainer = {
           enable = true;
           settings.customizations.vscode.extensions = [
-            "Catppuccin.catppuccin-vsc"
+            "Catppuccin.catppuccin-vsc-pack"
             "kamadorueda.alejandra"
             "jnoortheen.nix-ide"
             "mkhl.direnv"
@@ -176,7 +176,7 @@ in
           upload-all-store
           # cntr
           update-pkgs
-          attic
+          # attic
           dconf-save
           dp
           upload-to-installer
@@ -198,7 +198,7 @@ in
           pkgs.deploy-rs
           deployment
           direnv
-          flake-checker
+          # flake-checker
           git
           gnupg
           gum
@@ -227,7 +227,7 @@ in
           # cachix
           deadnix
           fh
-          # hydra-cli
+          hydra-cli
           test-installer
           nil
           manix
@@ -239,8 +239,8 @@ in
           nix-tree
           # nixci
           # nixos-shell
-          # nixpkgs-fmt
-          # nixpkgs-lint
+          nixpkgs-fmt
+          nixpkgs-lint
           nurl
           # # snowfallorg.flake
           statix

@@ -63,9 +63,9 @@
     system.stateVersion = 4;
 
     services = {
-      synergy.server = {
-        enable = true;
-      };
+      # synergy.server = {
+      #   enable = true;
+      # };
       nix-daemon.enable = true;
     };
     fonts = {
@@ -83,7 +83,7 @@
 
         # helvetica
         vegur # the official NixOS font
-        pkgs.custom.b612
+        b612
         inter
       ];
     };
