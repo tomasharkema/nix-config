@@ -19,7 +19,8 @@ in {
 
     sound = {
       enable = false;
-      mediaKeys.enable = false;
+
+      mediaKeys.enable = true;
     };
 
     security.rtkit.enable = true;
@@ -30,6 +31,25 @@ in {
       pulse.enable = true;
       # If you want to use JACK applications, uncomment this
       jack.enable = true;
+    };
+
+    services.pipewire.extraConfig.pipewire-pulse."92-tcp" = {
+      context.modules = [
+        {
+          name = "module-native-protocol-tcp";
+          args = {
+          };
+        }
+        {
+          name = "module-zeroconf-publish";
+          args = {
+          };
+        }
+      ];
+      stream.properties = {
+        node.latency = "32/48000";
+        resample.quality = 1;
+      };
     };
 
     apps.flatpak.enable = mkForce false;
@@ -87,32 +107,6 @@ in {
       enable = true;
       extraArguments = ["-d" "-m" "last"];
     };
-
-    # services.xserver = {
-    #   enable = true;
-
-    # services.xserver = {
-    #   enable = true;
-
-    #   windowManager = {
-    #     ratpoison.enable = true;
-    #   };
-
-    #   displayManager = {
-    #     autoLogin = {
-    #       enable = true;
-    #       user = "media";
-    #     };
-    #     gdm.enable = mkForce false;
-    #     sddm = {
-    #       enable = true;
-    #     };
-    #     # pasuspender -- env AE_SINK=ALSA
-    #     sessionCommands = ''
-    #       exec ${lib.getExe pkgs.plex-media-player} --fullscreen --tv
-    #     '';
-    #   };
-    # };
 
     boot = {
       kernelParams = ["quiet"];
