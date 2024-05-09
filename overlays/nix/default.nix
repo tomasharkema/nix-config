@@ -28,19 +28,21 @@
 
   # zjstatus = zjstatus.packages."${prev.system}".default;
 
-  nerdfonts = channels.unstable.nerdfonts.override {
-    fonts = [
-      "JetBrainsMono"
-      "FiraCode"
-      "FiraMono"
-      "Terminus"
-      "ComicShannsMono"
-      "BigBlueTerminal"
+  nerdfonts =
+    #channels.unstable
+    prev.nerdfonts.override {
+      fonts = [
+        "JetBrainsMono"
+        "FiraCode"
+        "FiraMono"
+        "Terminus"
+        "ComicShannsMono"
+        "BigBlueTerminal"
 
-      "OpenDyslexic"
-      "Noto"
-    ];
-  };
+        "OpenDyslexic"
+        "Noto"
+      ];
+    };
 
   # lib =
   #   (prev.lib.maintainers or {})
