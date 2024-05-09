@@ -28,7 +28,7 @@ with lib;
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";
 
-      # nix.package = pkgs.nixUnstable;
+      #nix.package = pkgs.nix; #Unstable;
 
       system.nixos.tags =
         if config.installed
@@ -109,7 +109,9 @@ with lib;
         atopgpu.enable = config.traits.hardware.nvidia.enable;
         netatop.enable = true;
       };
+
       programs.fzf.fuzzyCompletion = true;
+      
       environment.systemPackages =
         (with pkgs; [
           gdu
@@ -246,9 +248,9 @@ with lib;
 
         # seatd.enable = true;
 
-        udisks2 = {
-          enable = true;
-        };
+        # udisks2 = {
+        #   enable = true;
+        # };
 
         das_watchdog.enable = true;
 
@@ -472,7 +474,7 @@ with lib;
           '';
         };
         mosh.enable = true;
-        nix-ld.enable = true;
+     nix-ld.enable = true;
         zsh.enable = true;
         mtr.enable = true;
         nix-index.enable = true;

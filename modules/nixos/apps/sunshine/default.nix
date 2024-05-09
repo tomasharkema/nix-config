@@ -3,17 +3,23 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+with lib; let
+  cfg = config.apps.sunshine;
   configFile =
     pkgs.writeTextDir "config/sunshine.conf"
     ''
       origin_web_ui_allowed=wan
     '';
 in {
-  config = {
+  options.apps.sunshine = {
+    enable = mkEnableOption "sunshine";
+  };
+  config = mkIf (cfg.enable && false) {
     # Sunshine user, service and config
     users.users.sunshine = {
-      isNormalUser = true;      linger = true;
+      isNormalUser = true;
+      linger = true;
       home = "/home/sunshine";
       description = "Sunshine Server";
       extraGroups = ["wheel" "networkmanager" "input" "video" "sound"];
@@ -59,33 +65,32 @@ in {
     };
 
     services.xserver = {
+      # Dummy screen
+      monitorSection = ''
+        VendorName     "Unknown"
+        HorizSync   30-85
+        VertRefresh 48-120
 
-        # Dummy screen
-        monitorSection = ''
-            VendorName     "Unknown"
-            HorizSync   30-85
-            VertRefresh 48-120
+        ModelName      "Unknown"
+        Option         "DPMS"
+      '';
 
-            ModelName      "Unknown"
-            Option         "DPMS"
-        '';
+      deviceSection = ''
+        VendorName "NVIDIA Corporation"
+        Option      "AllowEmptyInitialConfiguration"
+        Option      "ConnectedMonitor" "DFP"
+        Option      "CustomEDID" "DFP-0"
 
-        deviceSection = ''
-            VendorName "NVIDIA Corporation"
-            Option      "AllowEmptyInitialConfiguration"
-            Option      "ConnectedMonitor" "DFP"
-            Option      "CustomEDID" "DFP-0"
+      '';
 
-        '';
-
-        screenSection = ''
-            DefaultDepth    24
-            Option      "ModeValidation" "AllowNonEdidModes, NoVesaModes"
-            Option      "MetaModes" "1920x1080"
-            SubSection     "Display"
-                Depth       24
-            EndSubSection
-        '';
+      screenSection = ''
+        DefaultDepth    24
+        Option      "ModeValidation" "AllowNonEdidModes, NoVesaModes"
+        Option      "MetaModes" "1920x1080"
+        SubSection     "Display"
+            Depth       24
+        EndSubSection
+      '';
     };
 
     # Required to simulate input

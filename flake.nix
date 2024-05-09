@@ -1,7 +1,9 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
+
     unstable.url = "nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "unstable";
@@ -15,6 +17,10 @@
     darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    catppuccin = {
+      url = "github:tomasharkema/catppuccin-nix/6c3a26f0f5979b885d8c978cdb82ba9e71664d8f";
     };
 
     # nixos-wsl = {
@@ -179,7 +185,6 @@
 
     tree-sitter-nix = {
       url = "github:nix-community/tree-sitter-nix";
-
       inputs.nixpkgs.follows = "unstable";
     };
   };
@@ -244,7 +249,13 @@
         }
       ];
 
+      # homes.modules = with inputs; [
+      #   catppuccin.homeManagerModules.catppuccin
+      # ];
+
       systems.modules.nixos = with inputs; [
+        catppuccin.nixosModules.catppuccin
+
         nix-index-database.nixosModules.nix-index
 
         attic.nixosModules.atticd
