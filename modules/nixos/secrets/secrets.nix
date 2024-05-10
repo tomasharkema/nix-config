@@ -20,7 +20,7 @@ let
   blue-fire = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDLZtRNaxKQwzBfC7xCjUgFl8/Zgg2dRLN6EIvx3wifh root@blue-fire";
   blue-fire-tomas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOBloItNNcnAjlcBux/BJU0Dl9rry3SgR3VtGPK5LC6 tomas@blue-fire";
 
-  pegasus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP7/aLVysb4kgpygwqQj2o7ys890bMcTxIPvswZ6oOHY root@pegasus";
+  pegasus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBanxLefIcrVxhtzYj7OvNwZj3P5upoj7AwVyV0Id5T7 root@nixos";
 
   wodan = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII8iCdfina2waZYTj0toLyknDT3eJmMtPsVN3iFgnGUR root@wodan";
   wodan-wsl = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICI2xzlzSsxv+6QSZ6rCeG0ma4HfIH3YWJj/P4GoQ3M/ root@wodan-wsl";
