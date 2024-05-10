@@ -95,6 +95,7 @@
     };
     # programs.fzf.fuzzyCompletion = true;
     nix = {
+      # package = pkgs.nixVersions.nix_2_19;
       # auto-optimise-store = true
       extraOptions = ''
         builders-use-substitutes = true
@@ -117,6 +118,7 @@
           "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA="
           "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
           "tomas:hER/5A08v05jH8GnQUZRrh33+HDNbeiJj8z/8JY6ZvI="
+          "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
         ];
       }; # netrc-file = "/etc/nix/netrc";
 
