@@ -3,7 +3,8 @@
   inputs,
   lib,
   ...
-}: {
+}:
+with lib; {
   imports = with inputs; [
     nixos-hardware.nixosModules.raspberry-pi-4
     # "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
@@ -19,6 +20,9 @@
         cores = 4;
       };
     };
+    zramSwap = {
+      enable = mkDefault false;
+    };
 
     traits.raspberry.enable = true;
 
@@ -30,7 +34,11 @@
       libraspberrypi
       raspberrypi-eeprom
       play-with-mpv
+      open-in-mpv
+      plex-mpv-shim
       mpv
+      mpvc
+      celluloid
     ];
 
     boot = {
