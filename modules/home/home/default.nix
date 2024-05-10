@@ -161,7 +161,7 @@ in
       autostart.programs = with pkgs;
         mkIf osConfig.gui.enable [
           telegram-desktop
-          trayscale
+          # trayscale
         ];
 
       programs = {
