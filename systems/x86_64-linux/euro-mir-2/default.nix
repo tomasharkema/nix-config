@@ -52,7 +52,13 @@ with lib; {
       };
       # fancontrol.enable = true;
       opengl = {
-        extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau];
+        extraPackages = with pkgs; [
+          vaapiIntel
+          libvdpau-va-gl
+          vaapiVdpau
+          intel-media-driver # LIBVA_DRIVER_NAME=iHD
+          intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+        ];
       };
     };
 

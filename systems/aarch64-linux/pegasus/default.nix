@@ -40,6 +40,14 @@
     hardware = {
       i2c.enable = true;
 
+      opengl = {
+        enable = true;
+        extraPackages = with pkgs; [
+          vaapiVdpau
+          libvdpau-va-gl
+        ];
+      };
+
       raspberry-pi."4" = {
         apply-overlays-dtmerge.enable = true;
         fkms-3d.enable = true;
