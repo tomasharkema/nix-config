@@ -70,7 +70,7 @@ in {
     };
 
     systemd.packages = [
-      pkgs.custom.tailscalesd
+      # pkgs.custom.tailscalesd
     ];
 
     # systemd.services.tailscalesd = {

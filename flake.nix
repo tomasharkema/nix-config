@@ -366,13 +366,30 @@
         };
       };
 
-      images = with inputs; {
+      images = with inputs; rec {
         # baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
         # pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
         installer-x86 = self.nixosConfigurations.installer-x86.config.system.build.isoImage;
         installer-arm = self.nixosConfigurations.installer-arm.config.system.build.isoImage;
 
         installer-arm-img = self.nixosConfigurations.installer-arm-img.config.system.build.sdImage;
+
+        services = let
+          config = "pegasus";
+          tryHasAttr = path: value: attr: let
+            v = builtins.tryEval (lib.attrsets.hasAttrByPath path attr);
+          in
+            builtins.trace "${builtins.toJSON path} ${builtins.toJSON (builtins.tryEval (builtins.toJSON attr))} ${builtins.toJSON v}" (
+              v.success
+              && v.value == value
+            );
+          serviceNames = builtins.attrNames self.nixosConfigurations."${config}".config.services;
+        in
+          builtins.filter (n: tryHasAttr [n "enable"] true self.nixosConfigurations."${config}".config.services) serviceNames;
+
+        servicesJson = builtins.toJSON services;
+
+        # lib.attrsets.filterAttrs (n: v: (builtins.hasAttr "enable" n) && n.enable) self.nixosConfigurations.pegasus.config.services;
       };
 
       # formatter = inputs.nixpkgs.alejandra;
@@ -417,44 +434,23 @@
     trusted-users = ["root" "tomas"];
     # netrc-file = "/etc/nix/netrc";
 
-    trustedBinaryCaches = ["https://cache.nixos.org"];
-    binaryCaches = ["https://cache.nixos.org"];
+    # trustedBinaryCaches = ["https://cache.nixos.org"];
+    # binaryCaches = ["https://cache.nixos.org"];
 
     substituters = [
+      "https://cache.nixos.org/"
       "https://nix-gaming.cachix.org"
       "https://nix-community.cachix.org"
-      "https://cache.nixos.org/"
       "https://nix-cache.harke.ma/tomas/"
       "https://devenv.cachix.org"
-      "https://tomasharkema.cachix.org"
     ];
-
-    trusted-substituters = [
-      "https://nix-gaming.cachix.org"
-      "https://nix-community.cachix.org"
-      "https://cache.nixos.org/"
-      "https://nix-cache.harke.ma/tomas/"
-      "https://devenv.cachix.org"
-      "https://tomasharkema.cachix.org"
-    ];
-
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       "tomas:hER/5A08v05jH8GnQUZRrh33+HDNbeiJj8z/8JY6ZvI="
-      "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-      "tomasharkema.cachix.org-1:BV3Sv3qGZ0bcybPFeigwKoxnpj/NBAFYHq9FMO1XgH4="
-    ];
-    public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA="
-      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-      "tomas:hER/5A08v05jH8GnQUZRrh33+HDNbeiJj8z/8JY6ZvI="
-      "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-      "tomasharkema.cachix.org-1:BV3Sv3qGZ0bcybPFeigwKoxnpj/NBAFYHq9FMO1XgH4="
     ];
 
     allowed-uris = [

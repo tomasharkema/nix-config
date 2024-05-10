@@ -44,6 +44,16 @@
       ];
     };
 
+  tailscale =
+    prev
+    .tailscale
+    # .override {
+    #   buildGoModule = prev.buildGo122Module;
+    # };
+    .overrideAttrs (old: {
+      ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH = "go1.22";
+    });
+
   # lib =
   #   (prev.lib.maintainers or {})
   #   // {
