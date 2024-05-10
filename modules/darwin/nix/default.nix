@@ -18,7 +18,7 @@ in {
   options = {
     custom.nix = with types; {
       enable = mkBoolOpt true "Whether or not to manage nix configuration.";
-      package = mkOpt package pkgs.nix "Which nix package to use.";
+      package = mkOpt package pkgs.nixVersions.nix_2_19 "Which nix package to use.";
     };
     gui = {
       enable = mkBoolOpt false "Whether or not to manage nix configuration.";
@@ -49,7 +49,8 @@ in {
       nil
       # flake-checker
       direnv
-      attic
+      devenv
+      # attic
       alejandra
       # inputs.alejandra.packages.${system}.default
       nix-output-monitor
@@ -72,7 +73,7 @@ in {
       users = ["root" "tomas"];
     in {
       # package = pkgs.nixUnstable;
-      package = pkgs.nix; #Unstable;
+      package = pkgs.nixVersions.nix_2_19; #Unstable;
 
       linux-builder = {
         enable = true;
