@@ -29,7 +29,7 @@ with lib; {
     };
 
     # services.freeipa.replica.enable = true;
-    services.upower.enable = mkForce false;
+    # services.upower.enable = mkForce false;
 
     networking = {
       hosts = {
