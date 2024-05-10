@@ -28,7 +28,10 @@ with lib; {
 
     traits.low-power.enable = true;
     gui."media-center".enable = true;
-    apps.spotifyd.enable = true;
+    apps = {
+      spotifyd.enable = true;
+      cec.enable = true;
+    };
 
     environment.systemPackages = with pkgs; [
       libraspberrypi
