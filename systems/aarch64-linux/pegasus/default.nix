@@ -42,6 +42,7 @@
 
       raspberry-pi."4" = {
         apply-overlays-dtmerge.enable = true;
+        fkms-3d.enable = true;
         dwc2 = {
           enable = true;
           dr_mode = "peripheral";
@@ -50,7 +51,7 @@
 
       deviceTree = {
         enable = true;
-        filter = "*rpi-4-*.dtb";
+        # filter = "*rpi-4-*.dtb";
       };
     };
   };
