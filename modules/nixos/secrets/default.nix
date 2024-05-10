@@ -59,32 +59,32 @@
           file = ./netdata.age;
           mode = "644";
         };
-        "cachix" = {
-          file = ./cachix.age;
-          mode = "644";
-          path = "/etc/cachix.dhall";
-          # path = "/home/tomas/.config/cachix/cachix.dhall";
-          # owner = "tomas";
-          # group = "tomas";
-        };
-        "cachix-root" = {
-          file = ./cachix.age;
-          mode = "644";
-          path = "/root/.config/cachix/cachix.dhall";
-        };
-        "cachix-agent" = {
-          file = ./cachix-agent.age;
-          mode = "644";
-          path = "/etc/cachix-agent.token";
-        };
-        "cachix-token" = {
-          file = ./cachix-token.age;
-          mode = "744";
-        };
-        "cachix-activate" = {
-          file = ./cachix-activate.age;
-          mode = "644";
-        };
+        # "cachix" = {
+        #   file = ./cachix.age;
+        #   mode = "644";
+        #   path = "/etc/cachix.dhall";
+        # path = "/home/tomas/.config/cachix/cachix.dhall";
+        # owner = "tomas";
+        # group = "tomas";
+        # };
+        # "cachix-root" = {
+        #   file = ./cachix.age;
+        #   mode = "644";
+        #   path = "/root/.config/cachix/cachix.dhall";
+        # };
+        # "cachix-agent" = {
+        #   file = ./cachix-agent.age;
+        #   mode = "644";
+        #   path = "/etc/cachix-agent.token";
+        # };
+        # "cachix-token" = {
+        #   file = ./cachix-token.age;
+        #   mode = "744";
+        # };
+        # "cachix-activate" = {
+        #   file = ./cachix-activate.age;
+        #   mode = "644";
+        # };
         # age.secrets."otp" = {
         #   file = ./otp.age;
         #   mode = "644";

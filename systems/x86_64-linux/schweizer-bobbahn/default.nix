@@ -19,7 +19,14 @@ with lib; {
     # installed = true;
 
     traits.low-power.enable = true;
-    gui."media-center".enable = true;
+
+    # gui."media-center".enable = true;
+
+    gui = {
+      desktop.enable = true;
+      gnome.enable = true;
+    };
+
     apps.spotifyd.enable = true;
 
     environment.systemPackages = with pkgs; [intel-gpu-tools];
