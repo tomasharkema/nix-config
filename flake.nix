@@ -109,12 +109,12 @@
     # impermanence.url = "github:nix-community/impermanence";
 
     attic = {
-      url = "github:zhaofengli/attic";
+      url = "github:zhaofengli/attic/8e64f8ba45897bddaaffd7dae36984c3eea92f2c";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nixpkgs-stable.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-        flake-compat.follows = "flake-compat";
+        #   flake-utils.follows = "flake-utils";
+        #   flake-compat.follows = "flake-compat";
       };
     };
 
@@ -451,6 +451,7 @@
       "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       "tomas:hER/5A08v05jH8GnQUZRrh33+HDNbeiJj8z/8JY6ZvI="
+      "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
     ];
 
     allowed-uris = [
