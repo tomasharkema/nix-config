@@ -15,7 +15,7 @@ in
         '';
         shellAliases = {
           gh = "op plugin run -- gh";
-          cachix = "op plugin run -- cachix";
+          # cachix = "op plugin run -- cachix";
           openai = "op plugin run -- openai";
         };
       };

@@ -29,12 +29,20 @@
     environment.systemPackages = with pkgs; [
       libraspberrypi
       raspberrypi-eeprom
+      play-with-mpv
+      mpv
     ];
 
     boot = {
       kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_rpi4;
 
-      initrd.availableKernelModules = ["xhci_pci" "usbhid" "usb_storage" "dwc2" "g_serial"];
+      initrd.availableKernelModules = [
+        "xhci_pci"
+        "usbhid"
+        "usb_storage"
+        #  "dwc2"
+        "g_serial"
+      ];
     };
 
     hardware = {
@@ -51,10 +59,10 @@
       raspberry-pi."4" = {
         apply-overlays-dtmerge.enable = true;
         fkms-3d.enable = true;
-        dwc2 = {
-          enable = true;
-          dr_mode = "peripheral";
-        };
+        # dwc2 = {
+        #   enable = true;
+        #   dr_mode = "peripheral";
+        # };
       };
 
       deviceTree = {
