@@ -172,11 +172,11 @@ in
         # dotenv.enable = true;
 
         packages = [
-          nix # Unstable
+          nixVersions.nix_2_19 # Unstable
           upload-all-store
           # cntr
           update-pkgs
-          # attic
+          attic
           dconf-save
           dp
           upload-to-installer

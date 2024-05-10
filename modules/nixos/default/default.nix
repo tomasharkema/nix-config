@@ -28,7 +28,7 @@ with lib;
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";
 
-      #nix.package = pkgs.nix; #Unstable;
+      # nix.package = pkgs.nixVersions.nix_2_19; #Unstable;
 
       system.nixos.tags =
         if config.installed
