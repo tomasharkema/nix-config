@@ -19,7 +19,6 @@ in {
 
     sound = {
       enable = false;
-
       mediaKeys.enable = true;
     };
 
@@ -108,17 +107,23 @@ in {
       extraArguments = ["-d" "-m" "last"];
     };
 
-    boot = {
-      kernelParams = ["quiet"];
-      plymouth = {
-        enable = true;
-      };
-    };
+    # boot = {
+    #   kernelParams = ["quiet"];
+    #   plymouth = {
+    #     enable = true;
+    #   };
+    # };
 
     services.shairport-sync = {
       enable = true;
       openFirewall = true;
+
+      arguments = "-v -o pipe";
+
+      # user = "media";
+      # group = "media";
     };
+
     users.extraUsers.shairport.extraGroups = ["data" "video" "audio" "input"];
 
     users.users.media = {
