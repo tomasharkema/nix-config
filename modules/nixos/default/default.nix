@@ -111,7 +111,7 @@ with lib;
       };
 
       programs.fzf.fuzzyCompletion = true;
-      
+
       environment.systemPackages =
         (with pkgs; [
           gdu
@@ -186,7 +186,7 @@ with lib;
           ssm
           tailscale-tui
           sshed
-          rmfuse
+          # rmfuse
         ])
         ++ (
           optionals pkgs.stdenv.isx86_64 [
@@ -474,7 +474,7 @@ with lib;
           '';
         };
         mosh.enable = true;
-     nix-ld.enable = true;
+        nix-ld.enable = true;
         zsh.enable = true;
         mtr.enable = true;
         nix-index.enable = true;
