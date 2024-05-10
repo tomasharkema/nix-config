@@ -32,6 +32,7 @@ with lib; {
       spotifyd.enable = true;
       cec.enable = true;
     };
+    netdata.enable = mkForce true;
 
     environment.systemPackages = with pkgs; [
       libraspberrypi
