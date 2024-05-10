@@ -323,11 +323,11 @@
         "pre-commit-hooks": "pre-commit-hooks_2"
       },
       "locked": {
-        "lastModified": 1715246369,
-        "narHash": "sha256-gpdfUGNLXr64y+EAUMA3YP/sUO0wBVthrlPIm2PDJpw=",
+        "lastModified": 1715271741,
+        "narHash": "sha256-UTwBulIO+psVpM9p6FZMlrxI+mqdekA05Q8Rw/QIxC8=",
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "8f089ccfdef53f2ea5e0bfabe25dba4769f5390f",
+        "rev": "b49775751880cdd85dcb1bfb1f0a07a0b2f154ca",
         "type": "github"
       },
       "original": {

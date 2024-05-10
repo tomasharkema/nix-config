@@ -57,6 +57,8 @@
   # tailscale = channels.unstable.tailscale;
 
   # cockpit = channels.unstable.cockpit;
+
+  _389-ds-base = self.packages."${prev.system}"._389-ds-base;
   cockpit-podman = self.packages."${prev.system}".cockpit-podman;
   cockpit-tailscale = self.packages."${prev.system}".cockpit-tailscale;
   cockpit-ostree = self.packages."${prev.system}".cockpit-ostree;
