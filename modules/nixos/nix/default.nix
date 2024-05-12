@@ -43,12 +43,12 @@ with lib.custom; {
           use-cgroups = true;
           experimental-features = "nix-command flakes cgroups";
           http-connections = 50;
-          # warn-dirty = false;
-          # log-lines = 50;
-          # sandbox = false;
+          warn-dirty = false;
+          log-lines = 50;
+          sandbox = true;
           auto-optimise-store = true;
-          # trusted-users = users ++ ["tomas" "root"]; # "builder"];
-          # allowed-users = users ++ ["tomas" "root" "builder"];
+          trusted-users = users ++ ["tomas" "root"]; # "builder"];
+          allowed-users = users ++ ["tomas" "root" "builder"];
           netrc-file = config.age.secrets.attic-netrc.path;
           # substituters =
           #   [cfg.default-substituter.url]
