@@ -17,7 +17,7 @@ stdenv.mkDerivation rec {
     recursiveHash = true;
     postFetch = ''
       mkdir $out
-      cp file $out/urserver.deb
+      cp $downloadedFile $out/urserver.deb
     '';
   };
 
