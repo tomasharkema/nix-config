@@ -35,6 +35,7 @@ with lib; {
     traits = {
       raspberry.enable = true;
       low-power.enable = true;
+      hardware.bluetooth.enable = true;
     };
 
     gui."media-center".enable = true;
@@ -68,9 +69,12 @@ with lib; {
         "g_serial"
       ];
     };
+    boot.kernelParams = lib.mkForce ["console=ttyS0,115200n8" "console=tty0"];
 
     hardware = {
       i2c.enable = true;
+
+      bluetooth.package = pkgs.bluez;
 
       opengl = {
         enable = true;
@@ -91,7 +95,7 @@ with lib; {
 
       deviceTree = {
         enable = true;
-        # filter = "*rpi-4-*.dtb";
+        filter = mkForce "*rpi-4-*.dtb";
       };
     };
   };
