@@ -141,7 +141,7 @@ with lib; {
             # "sp-tray@sp-tray.esenliyim.github.com"
             "user-theme@gnome-shell-extensions.gcampax.github.com"
             # "dash-to-dock@micxgx.gmail.com"
-            "Vitals@CoreCoding.com"
+            # "Vitals@CoreCoding.com"
             "search-light@icedman.github.com"
             "mediacontrols@cliffniff.github.com"
             "clipboard-indicator@tudmotu.com"
