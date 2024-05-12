@@ -18,8 +18,6 @@ with lib; {
   config = {
     # installed = true;
 
-    traits.low-power.enable = true;
-
     gui = {
       enable = true;
       desktop.enable = true;
@@ -47,6 +45,8 @@ with lib; {
     resilio.enable = false;
 
     traits = {
+      low-power.enable = true;
+
       hardware = {
         # tpm.enable = true;
         secure-boot.enable = true;
@@ -89,11 +89,13 @@ with lib; {
       }
     ];
 
-    hardware.opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-      extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau];
+    hardware = {
+      opengl = {
+        enable = true;
+        driSupport = true;
+        driSupport32Bit = true;
+        extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau];
+      };
     };
   };
 }
