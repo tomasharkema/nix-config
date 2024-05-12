@@ -18,7 +18,8 @@
     };
 
     catppuccin = {
-      url = "github:tomasharkema/catppuccin-nix/6c3a26f0f5979b885d8c978cdb82ba9e71664d8f";
+      url =
+        "github:tomasharkema/catppuccin-nix/6c3a26f0f5979b885d8c978cdb82ba9e71664d8f";
     };
 
     # nixos-wsl = {
@@ -72,17 +73,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    agenix = {
-      url = "github:ryantm/agenix";
-    };
+    agenix = { url = "github:ryantm/agenix"; };
 
-    agenix-shell = {
-      url = "github:aciceri/agenix-shell";
-    };
+    agenix-shell = { url = "github:aciceri/agenix-shell"; };
 
-    nixos-hardware = {
-      url = "github:nixos/nixos-hardware";
-    };
+    nixos-hardware = { url = "github:nixos/nixos-hardware"; };
 
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
@@ -187,22 +182,22 @@
     };
   };
 
-  outputs = inputs: let
-    lib = inputs.snowfall-lib.mkLib {
-      inherit inputs;
-      src = ./.;
+  outputs = inputs:
+    let
+      lib = inputs.snowfall-lib.mkLib {
+        inherit inputs;
+        src = ./.;
 
-      snowfall = {
-        meta = {
-          name = "dotfiles";
-          title = "dotfiles";
+        snowfall = {
+          meta = {
+            name = "dotfiles";
+            title = "dotfiles";
+          };
+
+          namespace = "custom";
         };
-
-        namespace = "custom";
       };
-    };
-  in
-    lib.mkFlake {
+    in lib.mkFlake {
       inherit inputs;
 
       src = ./.;
@@ -220,11 +215,7 @@
         # buildPlatform.system = "x86_64-linux";
       };
 
-      alias = {
-        shells = {
-          default = "devshell";
-        };
-      };
+      alias = { shells = { default = "devshell"; }; };
 
       snowfall = {
         meta = {
@@ -235,17 +226,16 @@
         namespace = "custom";
       };
 
-      overlays = with inputs; [
-        # peerix.overlay
-        snowfall-flake.overlays."package/flake"
-      ];
+      overlays = with inputs;
+        [
+          # peerix.overlay
+          snowfall-flake.overlays."package/flake"
+        ];
 
-      system.modules.darwin = with inputs; [
-        {
-          system.nixos.tags = ["snowfall"];
-          system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
-        }
-      ];
+      system.modules.darwin = with inputs; [{
+        system.nixos.tags = [ "snowfall" ];
+        system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
+      }];
 
       # homes.modules = with inputs; [
       #   catppuccin.homeManagerModules.catppuccin
@@ -274,7 +264,7 @@
 
         {
           system.stateVersion = "23.11";
-          system.nixos.tags = ["snowfall" (self.shortRev or "dirty")];
+          system.nixos.tags = [ "snowfall" (self.shortRev or "dirty") ];
           system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
           nix = {
             registry.nixpkgs.flake = inputs.nixpkgs;
@@ -315,20 +305,16 @@
       #     deploy-lib.deployChecks inputs.self.deploy)
       #   inputs.deploy-rs.lib;
 
-      hydraJobs = import ./hydraJobs.nix {inherit inputs;};
+      hydraJobs = import ./hydraJobs.nix { inherit inputs; };
 
       nixosConfigurations = {
         installer-x86 = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = {inherit inputs;};
+          specialArgs = { inherit inputs; };
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
             ./installer.nix
-            ({
-              lib,
-              pkgs,
-              ...
-            }: {
+            ({ lib, pkgs, ... }: {
               boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
             })
           ];
@@ -336,30 +322,22 @@
 
         installer-arm = inputs.nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = {inherit inputs;};
+          specialArgs = { inherit inputs; };
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
             ./installer.nix
-            ({
-              lib,
-              pkgs,
-              ...
-            }: {
+            ({ lib, pkgs, ... }: {
               boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
             })
           ];
         };
         installer-arm-img = inputs.nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = {inherit inputs;};
+          specialArgs = { inherit inputs; };
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
             ./installer.nix
-            ({
-              lib,
-              pkgs,
-              ...
-            }: {
+            ({ lib, pkgs, ... }: {
               boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
             })
           ];
@@ -369,61 +347,64 @@
       images = with inputs; rec {
         # baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
         # pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
-        installer-x86 = self.nixosConfigurations.installer-x86.config.system.build.isoImage;
-        installer-arm = self.nixosConfigurations.installer-arm.config.system.build.isoImage;
+        installer-x86 =
+          self.nixosConfigurations.installer-x86.config.system.build.isoImage;
+        installer-arm =
+          self.nixosConfigurations.installer-arm.config.system.build.isoImage;
 
-        installer-arm-img = self.nixosConfigurations.installer-arm-img.config.system.build.sdImage;
+        installer-arm-img =
+          self.nixosConfigurations.installer-arm-img.config.system.build.sdImage;
 
         services = let
           config = "pegasus";
-          tryHasAttr = path: value: attr: let
-            v = builtins.tryEval (lib.attrsets.hasAttrByPath path attr);
-          in
-            builtins.trace "${builtins.toJSON path} ${builtins.toJSON (builtins.tryEval (builtins.toJSON attr))} ${builtins.toJSON v}" (
-              v.success
-              && v.value == value
-            );
-          serviceNames = builtins.attrNames self.nixosConfigurations."${config}".config.services;
-        in
-          builtins.filter (n: tryHasAttr [n "enable"] true self.nixosConfigurations."${config}".config.services) serviceNames;
+          tryHasAttr = path: value: attr:
+            let v = builtins.tryEval (lib.attrsets.hasAttrByPath path attr);
+            in builtins.trace "${builtins.toJSON path} ${
+              builtins.toJSON (builtins.tryEval (builtins.toJSON attr))
+            } ${builtins.toJSON v}" (v.success && v.value == value);
+          serviceNames = builtins.attrNames
+            self.nixosConfigurations."${config}".config.services;
+        in builtins.filter (n:
+          tryHasAttr [ n "enable" ] true
+          self.nixosConfigurations."${config}".config.services) serviceNames;
 
         servicesJson = builtins.toJSON services;
 
         # lib.attrsets.filterAttrs (n: v: (builtins.hasAttr "enable" n) && n.enable) self.nixosConfigurations.pegasus.config.services;
       };
 
-      # formatter = inputs.nixpkgs.alejandra;
+      # formatter = inputs.nixpkgs.nixfmt;
       outputs-builder = channels:
-      # let
-      #   cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
-      # in
-      {
-        formatter = channels.nixpkgs.alejandra;
+        # let
+        #   cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
+        # in
+        {
+          formatter = channels.nixpkgs.nixfmt;
 
-        # checks = with inputs; {
-        # nixpkgs-lint =
-        # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
+          # checks = with inputs; {
+          # nixpkgs-lint =
+          # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
 
-        # lint = self.packages.${channels.nixpkgs.system}.run-checks;
-        # };
+          # lint = self.packages.${channels.nixpkgs.system}.run-checks;
+          # };
 
-        # packages = {
-        #   nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
-        #   nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
-        # };
-        # defaultPackage = cachix-deploy-lib.spec {
-        #   agents = {
-        #     blue-fire = inputs.self.nixosConfigurations.blue-fire.config.system.build.toplevel;
-        #     blue-fire-slim = inputs.self.nixosConfigurations.blue-fire-slim.config.system.build.toplevel;
-        #     enzian = inputs.self.nixosConfigurations.enzian.config.system.build.toplevel;
-        #     euro-mir-2 = inputs.self.nixosConfigurations.euro-mir-2.config.system.build.toplevel;
-        #     pegasus = inputs.self.nixosConfigurations.pegasus.config.system.build.toplevel;
-        #     baaa-express = inputs.self.nixosConfigurations.baaa-express.config.system.build.toplevel;
-        #     darwin-builder = inputs.self.nixosConfigurations.darwin-builder.config.system.build.toplevel;
-        #     euro-mir-vm = inputs.self.nixosConfigurations.euro-mir-vm.config.system.build.toplevel;
-        #   };
-        # };
-      };
+          # packages = {
+          #   nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
+          #   nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
+          # };
+          # defaultPackage = cachix-deploy-lib.spec {
+          #   agents = {
+          #     blue-fire = inputs.self.nixosConfigurations.blue-fire.config.system.build.toplevel;
+          #     blue-fire-slim = inputs.self.nixosConfigurations.blue-fire-slim.config.system.build.toplevel;
+          #     enzian = inputs.self.nixosConfigurations.enzian.config.system.build.toplevel;
+          #     euro-mir-2 = inputs.self.nixosConfigurations.euro-mir-2.config.system.build.toplevel;
+          #     pegasus = inputs.self.nixosConfigurations.pegasus.config.system.build.toplevel;
+          #     baaa-express = inputs.self.nixosConfigurations.baaa-express.config.system.build.toplevel;
+          #     darwin-builder = inputs.self.nixosConfigurations.darwin-builder.config.system.build.toplevel;
+          #     euro-mir-vm = inputs.self.nixosConfigurations.euro-mir-vm.config.system.build.toplevel;
+          #   };
+          # };
+        };
     };
 
   nixConfig = {
@@ -431,7 +412,7 @@
     extra-experimental-features = "nix-command flakes cgroups";
     distributedBuilds = true;
     builders-use-substitutes = true;
-    trusted-users = ["root" "tomas"];
+    trusted-users = [ "root" "tomas" ];
     # netrc-file = "/etc/nix/netrc";
 
     # trustedBinaryCaches = ["https://cache.nixos.org"];
