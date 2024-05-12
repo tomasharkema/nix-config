@@ -1,12 +1,7 @@
-{
-  inputs,
-  pkgs,
-  lib,
-  config,
-  ...
-}:
+{ inputs, pkgs, lib, config, ... }:
 with pkgs;
-with lib; let
+with lib;
+let
   write-script = writeShellScriptBin "write-script" ''
     set -x
     echo "pv $1 $2"
@@ -91,7 +86,9 @@ with lib; let
   test-remote = writeShellScriptBin "test-remote" ''
     SERVER="$1"
     echo "test remote $SERVER..."
-    exec ${lib.getExe pkgs.buildPackages.nixos-rebuild} test --flake ".#$SERVER" --target-host "$SERVER" --use-remote-sudo --verbose --show-trace -L
+    exec ${
+      lib.getExe pkgs.buildPackages.nixos-rebuild
+    } test --flake ".#$SERVER" --target-host "$SERVER" --use-remote-sudo --verbose --show-trace -L
   '';
 
   upload-local = writeShellScriptBin "upload-local" ''
@@ -138,113 +135,105 @@ with lib; let
 
     exec nix path-info --all | xargs -n$NPATHS -P$NPROCS attic push tomas
   '';
-in
-  inputs.devenv.lib.mkShell {
-    inherit inputs pkgs;
+in inputs.devenv.lib.mkShell {
+  inherit inputs pkgs;
 
-    modules = [
-      {
-        # starship.enable = true;
+  modules = [{
+    # starship.enable = true;
 
-        languages.nix = {
-          enable = true;
-          lsp.package = nixd;
-        };
-        pre-commit.hooks = {
-          alejandra.enable = true;
-          shellcheck.enable = true;
-          # nixd.enable = true;
-          # nil.enable = true;
-          # statix.enable = true;
-        };
+    languages.nix = {
+      enable = true;
+      lsp.package = nixd;
+    };
+    pre-commit.hooks = {
+      nixfmt.enable = true;
+      shellcheck.enable = true;
+      # nixd.enable = true;
+      # nil.enable = true;
+      # statix.enable = true;
+    };
 
-        devcontainer = {
-          enable = true;
-          settings.customizations.vscode.extensions = [
-            "Catppuccin.catppuccin-vsc-pack"
-            "kamadorueda.alejandra"
-            "jnoortheen.nix-ide"
-            "mkhl.direnv"
-          ];
-        };
-        difftastic.enable = true;
+    devcontainer = {
+      enable = true;
+      settings.customizations.vscode.extensions =
+        [ "Catppuccin.catppuccin-vsc-pack" "jnoortheen.nix-ide" "mkhl.direnv" ];
+    };
+    difftastic.enable = true;
 
-        # dotenv.enable = true;
+    # dotenv.enable = true;
 
-        packages = [
-          nixVersions.nix_2_19 # Unstable
-          upload-all-store
-          # cntr
-          update-pkgs
-          attic
-          dconf-save
-          dp
-          upload-to-installer
-          # pkgs.custom.rundesk
-          ack
-          age
-          agenix
-          alejandra
-          bash
-          bfg-repo-cleaner
-          # cachix-deploy
-          # cachix-reploy-pin
-          colima
-          comma
-          dconf-update
-          dconf2nix
-          deploy-all
-          deploy-machine
-          pkgs.deploy-rs
-          deployment
-          direnv
-          # flake-checker
-          git
-          gnupg
-          gum
-          tydra
-          hydra-check
-          hydra-cli
-          mkiso
-          netdiscover
-          nil
-          nixd
-          nix-output-monitor
-          nix-prefetch-scripts
-          pkgs.custom.remote-cli
-          reencrypt
-          remote-deploy
-          sops
-          ssh-to-age
-          statix
-          test-remote
-          upload-all
-          upload-local
-          write-script
-          zsh
-          agenix # .packages.${system}.default
-          alejandra # .defaultPackage.${system}
-          # cachix
-          deadnix
-          fh
-          hydra-cli
-          test-installer
-          nil
-          manix
-          nix-eval-jobs
-          # nix-init
-          nix-output-monitor
-          nix-prefetch-scripts
-          # nix-serve
-          nix-tree
-          # nixci
-          # nixos-shell
-          nixpkgs-fmt
-          nixpkgs-lint
-          nurl
-          # # snowfallorg.flake
-          statix
-        ];
-      }
+    packages = [
+      nixVersions.nix_2_19 # Unstable
+      upload-all-store
+      # cntr
+      update-pkgs
+      # attic
+      dconf-save
+      dp
+      upload-to-installer
+      # pkgs.custom.rundesk
+      ack
+      age
+      agenix
+      bash
+      bfg-repo-cleaner
+      # cachix-deploy
+      # cachix-reploy-pin
+      colima
+      comma
+      dconf-update
+      dconf2nix
+      deploy-all
+      deploy-machine
+      pkgs.deploy-rs
+      deployment
+      direnv
+      # flake-checker
+      git
+      gnupg
+      gum
+      tydra
+      hydra-check
+      hydra-cli
+      mkiso
+      netdiscover
+      nil
+      nixd
+      nix-output-monitor
+      nix-prefetch-scripts
+      pkgs.custom.remote-cli
+      reencrypt
+      remote-deploy
+      sops
+      ssh-to-age
+      statix
+      test-remote
+      upload-all
+      upload-local
+      write-script
+      zsh
+      agenix # .packages.${system}.default
+      nixfmt # .defaultPackage.${system}
+      # cachix
+      deadnix
+      fh
+      hydra-cli
+      test-installer
+      nil
+      manix
+      nix-eval-jobs
+      # nix-init
+      nix-output-monitor
+      nix-prefetch-scripts
+      # nix-serve
+      nix-tree
+      # nixci
+      # nixos-shell
+      nixpkgs-fmt
+      nixpkgs-lint
+      nurl
+      # # snowfallorg.flake
+      statix
     ];
-  }
+  }];
+}
