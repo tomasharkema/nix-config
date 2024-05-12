@@ -71,8 +71,8 @@ with lib;
         kernel.sysctl."net.ipv4.ip_forward" = 1;
 
         tmp = mkDefault {
-          useTmpfs = true;
-          cleanOnBoot = true;
+          useTmpfs = false;
+          cleanOnBoot = false;
         };
 
         # kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
