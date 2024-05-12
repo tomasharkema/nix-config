@@ -13,6 +13,7 @@ with lib; {
 
   config = {
     networking.hostName = "pegasus";
+
     virtualisation.vmVariant = {
       virtualisation = {
         diskSize = 50 * 1024;
@@ -20,18 +21,29 @@ with lib; {
         cores = 4;
       };
     };
+
     zramSwap = {
-      enable = mkDefault false;
+      enable = true;
+    };
+    swapDevices = [
+      {
+        device = "/swapfile";
+        size = 16 * 1024;
+      }
+    ];
+
+    traits = {
+      raspberry.enable = true;
+      low-power.enable = true;
     };
 
-    traits.raspberry.enable = true;
-
-    traits.low-power.enable = true;
     gui."media-center".enable = true;
+
     apps = {
       spotifyd.enable = true;
       cec.enable = true;
     };
+
     netdata.enable = mkForce true;
 
     environment.systemPackages = with pkgs; [

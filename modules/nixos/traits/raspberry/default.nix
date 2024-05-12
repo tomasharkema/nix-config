@@ -47,10 +47,7 @@ in {
       };
     };
 
-    services.fwupd.enable = mkForce false;
-    zramSwap = {
-      enable = true;
-    };
+    services.fwupd.enable = true;
 
     # NixOS wants to enable GRUB by default
     boot.loader = {
@@ -61,14 +58,7 @@ in {
 
     # sdImage.compressImage = false;
 
-    # swapDevices = [
-    #   {
-    #     device = "/swapfile";
-    #     size = 8 * 1024;
-    #   }
-    # ];
-
-    gui."media-center".enable = true;
+    # gui."media-center".enable = true;
 
     # services = {
     #   openssh.enable = true;
