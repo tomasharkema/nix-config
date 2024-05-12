@@ -1,15 +1,8 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-with lib; let
-  cfg = config.traits.developer;
+{ pkgs, lib, config, ... }:
+with lib;
+let cfg = config.traits.developer;
 in {
-  options.traits.developer = {
-    enable = mkEnableOption "dev";
-  };
+  options.traits.developer = { enable = mkEnableOption "dev"; };
   config = mkIf cfg.enable {
     # system.nixos.tags = ["developer"];
 
@@ -21,7 +14,7 @@ in {
         # nix-init
         # nixci
         agenix
-        alejandra
+
         deadnix
         deploy-rs
         devenv

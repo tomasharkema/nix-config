@@ -1,17 +1,10 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, pkgs, lib, ... }:
 with lib;
-with lib.custom; let
-  cfg = config.traits.raspberry;
+with lib.custom;
+let cfg = config.traits.raspberry;
 in {
   options.traits = {
-    raspberry = {
-      enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
-    };
+    raspberry = { enable = mkBoolOpt false "SnowflakeOS GNOME configuration"; };
   };
 
   config = mkIf cfg.enable {
@@ -38,7 +31,7 @@ in {
       # kernelParams = [
       #   "console=tty1"
       # ];
-      kernelModules = ["dwc2" "g_serial"];
+      # kernelModules = ["dwc2" "g_serial"];
       # kernelParams = ["console=tty0"];
 
       tmp = {
@@ -90,7 +83,7 @@ in {
 
     hardware = {
       enableRedistributableFirmware = true;
-      firmware = [pkgs.wireless-regdb];
+      # firmware = [pkgs.wireless-regdb];
       bluetooth = {
         enable = true;
         powerOnBoot = true;

@@ -1,15 +1,7 @@
-{
-  inputs,
-  options,
-  config,
-  pkgs,
-  lib,
-  system,
-  ...
-}:
+{ inputs, options, config, pkgs, lib, system, ... }:
 with lib;
-with lib.custom; let
-  cfg = config.custom.nix;
+with lib.custom;
+let cfg = config.custom.nix;
 in {
   imports = [
     # inputs.agenix.darwinModules.default
@@ -18,11 +10,13 @@ in {
   options = {
     custom.nix = with types; {
       enable = mkBoolOpt true "Whether or not to manage nix configuration.";
-      package = mkOpt package pkgs.nixVersions.nix_2_19 "Which nix package to use.";
+      package =
+        mkOpt package pkgs.nixVersions.nix_2_19 "Which nix package to use.";
     };
     gui = {
       enable = mkBoolOpt false "Whether or not to manage nix configuration.";
-      gnome.enable = mkBoolOpt false "Whether or not to manage nix configuration.";
+      gnome.enable =
+        mkBoolOpt false "Whether or not to manage nix configuration.";
     };
   };
 
@@ -50,9 +44,7 @@ in {
       # flake-checker
       direnv
       devenv
-      # attic
-      alejandra
-      # inputs.alejandra.packages.${system}.default
+      attic
       nix-output-monitor
       nixpkgs-fmt
       nerd-font-patcher
@@ -69,11 +61,10 @@ in {
     #   # group = "tomas";
     # };
 
-    nix = let
-      users = ["root" "tomas"];
+    nix = let users = [ "root" "tomas" ];
     in {
       # package = pkgs.nixUnstable;
-      package = pkgs.nixVersions.nix_2_19; #Unstable;
+      package = pkgs.nixVersions.nix_2_19; # Unstable;
 
       linux-builder = {
         enable = true;
@@ -121,7 +112,7 @@ in {
 
       gc = {
         automatic = true;
-        interval = {Day = 1;};
+        interval = { Day = 1; };
         options = "--delete-older-than 14d";
         user = "tomas";
       };
