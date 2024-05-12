@@ -20,11 +20,11 @@ with lib; {
 
     traits.low-power.enable = true;
 
-    # gui."media-center".enable = true;
-
     gui = {
+      enable = true;
       desktop.enable = true;
       gnome.enable = true;
+      quiet-boot.enable = true;
     };
 
     apps.spotifyd.enable = true;
@@ -36,23 +36,13 @@ with lib; {
       main = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01";
     };
 
-    # gui = {
-    #   enable = true;
-    #   desktop = {
-    #     enable = true;
-    #   };
-    #   gnome.enable = false;
-    #   gamemode.enable = false;
-    #   quiet-boot.enable = true;
-    # };
-
     security = {
       ipa = {
         ifpAllowedUids = mkForce ["root" "tomas" "media"];
       };
     };
 
-    gui.icewm.enable = true;
+    netdata.enable = mkForce true;
 
     resilio.enable = false;
 
@@ -88,6 +78,16 @@ with lib; {
         reflector = mkForce false;
       };
     };
+
+    zramSwap = {
+      enable = true;
+    };
+    swapDevices = [
+      {
+        device = "/swapfile";
+        size = 16 * 1024;
+      }
+    ];
 
     hardware.opengl = {
       enable = true;
