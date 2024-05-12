@@ -18,7 +18,7 @@ in {
     powerManagement.enable = true;
     services.thermald.enable = true;
 
-    netdata.enable = mkForce false;
+    netdata.enable = mkDefault false;
     services.auto-cpufreq = {
       enable = true;
       settings = {
