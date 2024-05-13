@@ -216,7 +216,6 @@ in inputs.devenv.lib.mkShell {
       nixfmt # .defaultPackage.${system}
       # cachix
       deadnix
-      fh
       hydra-cli
       test-installer
       nil
