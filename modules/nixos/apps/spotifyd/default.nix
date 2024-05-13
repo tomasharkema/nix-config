@@ -28,6 +28,7 @@ in {
         global = {
           backend = "pulseaudio";
           bitrate = 320;
+          mpris=true;
           device_name = "${config.networking.hostName} SpotifyD";
         };
       };
