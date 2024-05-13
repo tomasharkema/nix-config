@@ -48,6 +48,7 @@ with lib; {
       mpv
       mpvc
       celluloid
+      pkgs.custom.playercast
     ];
 
     boot = {
@@ -69,7 +70,7 @@ with lib; {
     proxy-services = { enable = true; };
     hardware.enableRedistributableFirmware = true;
     # hardware.deviceTree.filter = mkForce "bcm2711-rpi-4-b.dtb";
-    systemd.services."getty@".enable = false;
+    # systemd.services."getty@".enable = false;
 
     hardware = {
       i2c.enable = true;
@@ -87,19 +88,19 @@ with lib; {
           enable = true;
           # cma = 1024;
         };
-        dwc2 = {
-          enable = true;
-          dr_mode = "peripheral";
-        };
-        xhci.enable = true;
-        i2c0.enable = true;
+        # dwc2 = {
+        #   enable = true;
+        #   dr_mode = "peripheral";
+        # };
+        # xhci.enable = true;
+        # i2c0.enable = true;
         # audio.enable = true;
       };
 
-      # deviceTree = {
-      # enable = true;
+      deviceTree = {
+      enable = true;
       # filter = mkForce "*rpi-4-*.dtb";
-      # };
+      };
     };
   };
 }
