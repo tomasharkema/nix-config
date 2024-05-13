@@ -8,9 +8,9 @@ with lib; {
     ];
 
   config = {
-    networking={
+    networking = {
       hostName = "pegasus";
-    firewall.enable = false;
+      firewall.enable = false;
     };
     virtualisation.vmVariant = {
       virtualisation = {
@@ -75,13 +75,14 @@ with lib; {
     # systemd.services."getty@".enable = false;
 
     hardware = {
-      i2c.enable = true;
+      # i2c.enable = true;
 
-      bluetooth.package = pkgs.bluez;
+      # bluetooth.package = pkgs.bluez;
 
       opengl = {
         enable = true;
         extraPackages = with pkgs; [ vaapiVdpau libvdpau-va-gl ];
+        driSupport = true;
       };
 
       raspberry-pi."4" = {
@@ -100,8 +101,8 @@ with lib; {
       };
 
       deviceTree = {
-      enable = true;
-      # filter = mkForce "*rpi-4-*.dtb";
+        enable = true;
+        filter = mkForce "*rpi-4-*.dtb";
       };
     };
   };
