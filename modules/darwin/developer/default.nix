@@ -18,7 +18,6 @@ in {
         deadnix
         deploy-rs
         devenv
-        fh
         # flake-checker
         hydra-cli
         manix

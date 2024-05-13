@@ -17,7 +17,7 @@ in {
         deadnix
         deploy-rs
         devenv
-        fh
+
         # flake-checker
         hydra-cli
         manix
@@ -38,9 +38,7 @@ in {
         nixpkgs-lint
         nurl
         statix
-      ]
-      # go
-      ++ [ go go-outline gopls godef golint gopkgs gopls gotools ]
+      ] ++ [ go go-outline gopls godef golint gopkgs gopls gotools ]
       ++ (lib.optional pkgs.stdenv.isLinux nix-du);
   };
 }

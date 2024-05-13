@@ -66,7 +66,7 @@ with lib; {
       # ];
       # kernelParams = lib.mkForce ["console=ttyS0,115200n8" "console=tty0"];
     };
-
+    proxy-services = { enable = true; };
     hardware.enableRedistributableFirmware = true;
     # hardware.deviceTree.filter = mkForce "bcm2711-rpi-4-b.dtb";
     systemd.services."getty@".enable = false;
@@ -85,7 +85,7 @@ with lib; {
         apply-overlays-dtmerge.enable = true;
         fkms-3d = {
           enable = true;
-          cma = 1024;
+          # cma = 1024;
         };
         dwc2 = {
           enable = true;
