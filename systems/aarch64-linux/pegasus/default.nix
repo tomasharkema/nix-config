@@ -48,7 +48,7 @@ with lib; {
       mpv
       mpvc
       celluloid
-      pkgs.custom.playercast
+      # pkgs.custom.playercast
     ];
 
     boot = {
