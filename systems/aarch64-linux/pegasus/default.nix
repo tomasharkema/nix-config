@@ -8,8 +8,10 @@ with lib; {
     ];
 
   config = {
-    networking.hostName = "pegasus";
-
+    networking={
+      hostName = "pegasus";
+    firewall.enable = false;
+    };
     virtualisation.vmVariant = {
       virtualisation = {
         diskSize = 50 * 1024;
