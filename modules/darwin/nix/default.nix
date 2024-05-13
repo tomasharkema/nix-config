@@ -8,11 +8,6 @@ in {
   ];
 
   options = {
-    custom.nix = with types; {
-      enable = mkBoolOpt true "Whether or not to manage nix configuration.";
-      package =
-        mkOpt package pkgs.nixVersions.nix_2_19 "Which nix package to use.";
-    };
     gui = {
       enable = mkBoolOpt false "Whether or not to manage nix configuration.";
       gnome.enable =
@@ -44,7 +39,7 @@ in {
       # flake-checker
       direnv
       devenv
-      attic
+      # attic
       nix-output-monitor
       nixpkgs-fmt
       nerd-font-patcher
@@ -63,8 +58,7 @@ in {
 
     nix = let users = [ "root" "tomas" ];
     in {
-      # package = pkgs.nixUnstable;
-      package = pkgs.nixVersions.nix_2_19; # Unstable;
+      package = pkgs.nixVersions.nix_2_19;
 
       linux-builder = {
         enable = true;
