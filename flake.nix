@@ -104,12 +104,12 @@
     # impermanence.url = "github:nix-community/impermanence";
 
     attic = {
-      url = "github:zhaofengli/attic/8e64f8ba45897bddaaffd7dae36984c3eea92f2c";
+      url = "github:zhaofengli/attic";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nixpkgs-stable.follows = "nixpkgs";
-        #   flake-utils.follows = "flake-utils";
-        #   flake-compat.follows = "flake-compat";
+        flake-utils.follows = "flake-utils";
+        flake-compat.follows = "flake-compat";
       };
     };
 
