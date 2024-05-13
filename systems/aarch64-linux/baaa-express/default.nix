@@ -84,7 +84,7 @@ with lib; {
 
       deviceTree = {
         enable = true;
-        filter = "bcm2710-rpi-3-b-plus.dtb";
+        filter = "*rpi-3-b*";
       };
     };
     # systemd.services.btattach = {
