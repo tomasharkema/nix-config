@@ -1,15 +1,8 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
-with lib; let
-  cfg = config.apps.spotifyd;
+{ lib, pkgs, config, ... }:
+with lib;
+let cfg = config.apps.spotifyd;
 in {
-  options.apps.spotifyd = {
-    enable = mkEnableOption "spotifyd";
-  };
+  options.apps.spotifyd = { enable = mkEnableOption "spotifyd"; };
 
   config = mkIf cfg.enable {
     #   environment.systemPackages = with pkgs; [
@@ -17,25 +10,27 @@ in {
     #     spotifyd
     #   ];
     users.users = {
-      "tomas".extraGroups = ["audio"];
-      "root".extraGroups = ["audio"];
+      "tomas".extraGroups = [ "audio" ];
+      "root".extraGroups = [ "audio" ];
       "spotifyd" = {
         isSystemUser = true;
-        extraGroups = ["audio"];
+        extraGroups = [ "audio" "inputblue" ];
         group = "spotifyd";
         uid = 1042;
       };
     };
-    users.groups.spotifyd = {};
+    users.groups.spotifyd = { };
 
     services.spotifyd = {
       enable = true;
       # use_mpris = false
-      config = ''
-        [global]
-        backend = "pulseaudio"
-        bitrate = 320
-      '';
+      settings = {
+        global = {
+          backend = "pulseaudio";
+          bitrate = 320;
+          device_name = "${config.networking.hostName} SpotifyD";
+        };
+      };
       #   username_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field username"
       #   password_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field password"
     };
@@ -47,8 +42,8 @@ in {
     #   # };
 
     networking.firewall = {
-      allowedUDPPorts = [33677];
-      allowedTCPPorts = [33677];
+      allowedUDPPorts = [ 33677 ];
+      allowedTCPPorts = [ 33677 ];
     };
     # };
   };

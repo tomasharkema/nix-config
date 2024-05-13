@@ -1,18 +1,11 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-with lib; let
-  cfg = config.gui."media-center";
+{ pkgs, lib, config, ... }:
+with lib;
+let cfg = config.gui."media-center";
 in {
-  options.gui."media-center" = {
-    enable = mkEnableOption "gui.media-center";
-  };
+  options.gui."media-center" = { enable = mkEnableOption "gui.media-center"; };
 
   config = mkIf cfg.enable {
-    system.nixos.tags = ["media-center"];
+    system.nixos.tags = [ "media-center" ];
     #    xdg.portal.enable = mkForce false;
 
     programs.dconf.enable = true;
@@ -36,13 +29,11 @@ in {
       context.modules = [
         {
           name = "module-native-protocol-tcp";
-          args = {
-          };
+          args = { };
         }
         {
           name = "module-zeroconf-publish";
-          args = {
-          };
+          args = { };
         }
       ];
       stream.properties = {
@@ -72,7 +63,7 @@ in {
     hardware = {
       opengl = {
         enable = true;
-        extraPackages = with pkgs; [libva];
+        extraPackages = with pkgs; [ libva ];
       };
     };
 
@@ -95,16 +86,14 @@ in {
     #     sendtokodi
     #   ]);
 
-    services.kmscon = {
-      enable = mkForce false;
-    };
+    services.kmscon = { enable = mkForce false; };
 
     services.cage = {
       user = "media";
       program = "${lib.getExe pkgs.plex-media-player} --fullscreen --tv";
 
       enable = true;
-      extraArguments = ["-d" "-m" "last"];
+      extraArguments = [ "-d" "-m" "last" ];
     };
 
     # boot = {
@@ -118,18 +107,18 @@ in {
       enable = true;
       openFirewall = true;
 
-      arguments = "-v -o pipe";
+      arguments = "-v";
 
       # user = "media";
       # group = "media";
     };
 
-    users.extraUsers.shairport.extraGroups = ["data" "video" "audio" "input"];
+    users.extraUsers.shairport.extraGroups = [ "data" "video" "audio" "input" ];
 
     users.users.media = {
       isNormalUser = true;
       uid = 1100;
-      extraGroups = ["data" "video" "audio" "input"];
+      extraGroups = [ "data" "video" "audio" "input" ];
     };
 
     home-manager = {

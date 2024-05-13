@@ -1,13 +1,6 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, config, ... }:
 with lib; {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
   config = {
     installed = true;
@@ -44,9 +37,7 @@ with lib; {
     services = {
       # netbox-service.enable = true;
 
-      kmscon = {
-        enable = false;
-      };
+      kmscon = { enable = false; };
 
       healthchecks = {
         enable = true;
@@ -68,15 +59,11 @@ with lib; {
         };
       };
 
-      earlyoom = {
-        enable = mkForce false;
-      };
+      earlyoom = { enable = mkForce false; };
 
       tailscale = {
-        extraUpFlags = mkForce [
-          "--advertise-tags=tag:nixos"
-          "--operator=tomas"
-        ];
+        extraUpFlags =
+          mkForce [ "--advertise-tags=tag:nixos" "--operator=tomas" ];
       };
 
       freeipa.enable = true;
@@ -85,9 +72,7 @@ with lib; {
 
       ha.initialMaster = true;
 
-      command-center = {
-        enableBot = true;
-      };
+      command-center = { enableBot = true; };
     };
 
     networking = {
@@ -95,14 +80,10 @@ with lib; {
 
       firewall.enable = true;
       # wireless.enable = lib.mkDefault false;
-      networkmanager.enable = mkForce false; #true;
+      networkmanager.enable = mkForce false; # true;
 
       useDHCP = false;
       interfaces."enp3s0".useDHCP = true;
-
-      hosts = {
-        "192.168.0.11" = ["blue-fire.harkema.intra" "blue-fire.ling-lizard.ts.net"];
-      };
     };
 
     # sudo mount --types virtiofs appdata_ssd /mnt/shared/
