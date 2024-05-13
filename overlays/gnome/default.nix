@@ -15,4 +15,11 @@
   #   });
   # dconf = channels.unstable.dconf;
   # flatpak = channels.unstable.flatpak;
+
+  mpv = prev.mpv.override {
+        scripts = [ final.mpvScripts.mpris ];
+      };
+       spotifyd = prev.spotifyd.override {
+    withMpris = true;
+  };
 }
