@@ -1,22 +1,13 @@
-{
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
+{ pkgs, inputs, lib, ... }:
 with lib; {
-  imports = with inputs; [
-    nixos-hardware.nixosModules.raspberry-pi-4
-  ];
+  # imports = with inputs; [
+  # nixos-hardware.nixosModules.raspberry-pi-4
+  # ];
 
   config = {
     networking.hostName = "baaa-express";
 
     traits.raspberry.enable = true;
-
-    sound.extraConfig = ''
-      defaults.pcm.!card 1
-    '';
 
     environment.systemPackages = with pkgs; [
       libraspberrypi
@@ -24,7 +15,7 @@ with lib; {
     ];
 
     traits.low-power.enable = true;
-    traits.slim.enable = true;
+    # traits.slim.enable = true;
     gui."media-center".enable = true;
     apps.spotifyd.enable = true;
 
@@ -33,6 +24,8 @@ with lib; {
     # fileSystems."/".fsType = lib.mkForce "tmpfs";
     # fileSystems."/".device = lib.mkForce "none";
     boot = {
+      blacklistedKernelModules = [ "pcie_brcmstb" ];
+
       loader = {
         generic-extlinux-compatible.enable = true;
 
@@ -44,52 +37,32 @@ with lib; {
           cma=320M
         '';
       };
-      initrd.kernelModules = ["vc4" "bcm2835_dma" "i2c_bcm2835"];
-      # initrd.availableKernelModules = mkForce [
-      #   "vc4"
-      #   "bcm2835_dma"
-      #   "i2c_bcm2835"
-      #   "usbhid"
-      #   "usb_storage"
-      #   "vc4"
-      #   # "pcie_brcmstb"
-      #   "reset-raspberrypi"
-      #   "ext2"
-      #   "ext4"
-      #   # "ahci"
-      #   # "sata_nv"
-      #   # "sata_via"
-      #   # "sata_sis"
-      #   # "sata_uli"
-      #   # "ata_piix"
-      #   # "pata_marvell"
-      #   # "nvme"
-      #   "sd_mod"
-      #   "sr_mod"
-      #   "mmc_block"
-      #   # "uhci_hcd"
-      #   # "ehci_hcd"
-      #   # "ehci_pci"
-      #   # "ohci_hcd"
-      #   # "ohci_pci"
-      #   # "xhci_hcd"
-      #   # "xhci_pci"
-      #   "usbhid"
-      #   # "hid_generic"
-      #   # "hid_lenovo"
-      #   # "hid_apple"
-      #   # "hid_roccat"
-      #   # "hid_logitech_hidpp"
-      #   # "hid_logitech_dj"
-      #   # "hid_microsoft"
-      #   # "hid_cherry"
-      # ];
+      # initrd.kernelModules = ["vc4" "bcm2835_dma" "i2c_bcm2835"];
+      initrd.availableKernelModules = mkForce [
+        "ext2"
+        "ext4"
+        "sd_mod"
+        "sr_mod"
+        "ehci_hcd"
+        "ohci_hcd"
+        "xhci_hcd"
+        "usbhid"
+        "hid_generic"
+        "hid_lenovo"
+        "hid_apple"
+        "hid_roccat"
+        "hid_logitech_hidpp"
+        "hid_logitech_dj"
+        "hid_microsoft"
+        "hid_cherry"
+        "hid_corsair"
+      ];
       # initrd.kernelModules = ["dwc2" "g_serial"];
 
       # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
-      # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
+      kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
 
-      kernelPackages = pkgs.linuxPackages_latest;
+      # kernelPackages = pkgs.linuxPackages_latest;
 
       # kernelParams = [
       # "console=ttyS1,115200n8"
@@ -101,17 +74,17 @@ with lib; {
       enableRedistributableFirmware = true;
       i2c.enable = true;
 
-      raspberry-pi."4" = {
-        apply-overlays-dtmerge.enable = true;
-        dwc2 = {
-          enable = true;
-          dr_mode = "peripheral";
-        };
-      };
+      # raspberry-pi."4" = {
+      #   apply-overlays-dtmerge.enable = true;
+      #   dwc2 = {
+      #     enable = true;
+      #     dr_mode = "peripheral";
+      #   };
+      # };
 
       deviceTree = {
         enable = true;
-        filter = "*rpi-3-*.dtb";
+        filter = "bcm2710-rpi-3-b-plus.dtb";
       };
     };
     # systemd.services.btattach = {

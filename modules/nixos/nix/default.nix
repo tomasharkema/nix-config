@@ -1,11 +1,4 @@
-{
-  options,
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}:
+{ options, config, pkgs, lib, inputs, ... }:
 with lib;
 with lib.custom; {
   # imports = [
@@ -21,46 +14,43 @@ with lib.custom; {
     # };
 
     environment.systemPackages = with pkgs;
-    with custom; [
-      nix-update
-      fup-repl
-      # custom.nixos-revision
-      # (nixos-hosts.override {
-      #   hosts = inputs.self.nixosConfigurations;
-      # })
-      attic
-    ];
+      with custom; [
+        nix-update
+        fup-repl
+        # custom.nixos-revision
+        # (nixos-hosts.override {
+        #   hosts = inputs.self.nixosConfigurations;
+        # })
+        attic
+      ];
 
     nix = let
-      users =
-        ["root" config.user.name]
+      users = [ "root" config.user.name ]
         ++ optional config.services.hydra.enable "hydra";
     in {
-      package = pkgs.nixVersions.nix_2_19; #Unstable;
+      package = pkgs.nixVersions.nix_2_19;
 
-      settings =
-        {
-          use-cgroups = true;
-          experimental-features = "nix-command flakes cgroups";
-          http-connections = 50;
-          warn-dirty = false;
-          log-lines = 50;
-          sandbox = true;
-          auto-optimise-store = true;
-          trusted-users = users ++ ["tomas" "root"]; # "builder"];
-          allowed-users = users ++ ["tomas" "root" "builder"];
-          netrc-file = config.age.secrets.attic-netrc.path;
-          # substituters =
-          #   [cfg.default-substituter.url]
-          #   ++ (mapAttrsToList (name: value: name) cfg.extra-substituters);
-          # trusted-public-keys =
-          #   [cfg.default-substituter.key]
-          #   ++ (mapAttrsToList (name: value: value.key) cfg.extra-substituters);
-        }
-        // (lib.optionalAttrs true {
-          keep-outputs = true;
-          keep-derivations = true;
-        });
+      settings = {
+        use-cgroups = true;
+        experimental-features = "nix-command flakes cgroups";
+        http-connections = 50;
+        warn-dirty = false;
+        log-lines = 50;
+        sandbox = true;
+        auto-optimise-store = true;
+        trusted-users = users ++ [ "tomas" "root" ]; # "builder"];
+        allowed-users = users ++ [ "tomas" "root" "builder" ];
+        netrc-file = config.age.secrets.attic-netrc.path;
+        # substituters =
+        #   [cfg.default-substituter.url]
+        #   ++ (mapAttrsToList (name: value: name) cfg.extra-substituters);
+        # trusted-public-keys =
+        #   [cfg.default-substituter.key]
+        #   ++ (mapAttrsToList (name: value: value.key) cfg.extra-substituters);
+      } // (lib.optionalAttrs true {
+        keep-outputs = true;
+        keep-derivations = true;
+      });
 
       # gc = {
       #   automatic = true;
