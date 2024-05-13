@@ -1,8 +1,5 @@
-{
-  channels,
-  self,
-  ...
-}: final: prev: {
+{ channels, self, ... }:
+final: prev: {
   # gnome =
   #   #prev.gnome
   #   channels.unstable.gnome.overrideScope' (gnomeFinal: gnomePrev: {
@@ -16,10 +13,9 @@
   # dconf = channels.unstable.dconf;
   # flatpak = channels.unstable.flatpak;
 
-  mpv = prev.mpv.override {
-        scripts = [ final.mpvScripts.mpris ];
-      };
-       spotifyd = prev.spotifyd.override {
-    withMpris = true;
-  };
+  mpv = prev.mpv.override { scripts = [ final.mpvScripts.mpris ]; };
+
+  mpv-unwrapped = prev.mpv-unwrapped.override { ffmpeg = prev.ffmpeg-full; };
+
+  spotifyd = prev.spotifyd.override { withMpris = true; };
 }
