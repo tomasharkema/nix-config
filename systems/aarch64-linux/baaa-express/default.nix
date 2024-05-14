@@ -39,6 +39,11 @@ with lib; {
       size = 16 * 1024;
     }];
 
+    programs.atop = {
+      enable = mkForce false;
+      netatop.enable = false;
+    };
+
     boot = {
       blacklistedKernelModules = [ "pcie_brcmstb" ];
 
