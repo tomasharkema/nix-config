@@ -242,7 +242,7 @@
       # ];
 
       systems.modules.nixos = with inputs; [
-        catppuccin.nixosModules.catppuccin
+        # catppuccin.nixosModules.catppuccin
 
         nix-index-database.nixosModules.nix-index
 
