@@ -103,6 +103,7 @@ with lib;
     programs.fzf.fuzzyCompletion = true;
 
     environment.systemPackages = (with pkgs; [
+      xpipe
       gdu
       swapview
       dfrs
