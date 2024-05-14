@@ -3,7 +3,6 @@ with lib; {
   imports = [ ./hardware-configuration.nix ];
 
   config = {
-    installed = true;
     headless.enable = true;
 
     traits = {
