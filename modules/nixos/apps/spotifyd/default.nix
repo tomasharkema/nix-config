@@ -14,21 +14,32 @@ in {
       "root".extraGroups = [ "audio" ];
     };
 
-    services.spotifyd = {
-      enable = true;
-      # use_mpris = false
-      settings = {
-        global = {
-          backend = "pulseaudio";
-          bitrate = 320;
-          mpris = true;
-          device_name = "${config.networking.hostName} SpotifyD";
-          # use_keyring = false;
-          dbus_type = "system";
-        };
+    services = {
+      shairport-sync = {
+        enable = true;
+        openFirewall = true;
+
+        arguments = "-v -o pipe";
+
+        # user = "media";
+        # group = "media";
       };
-      #   username_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field username"
-      #   password_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field password"
+      spotifyd = {
+        enable = true;
+        # use_mpris = false
+        settings = {
+          global = {
+            backend = "pulseaudio";
+            bitrate = 320;
+            mpris = true;
+            device_name = "${config.networking.hostName} SpotifyD";
+            # use_keyring = false;
+            dbus_type = "system";
+          };
+        };
+        #   username_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field username"
+        #   password_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field password"
+      };
     };
     #   # systemd.services.spotifyd = {
     #   # environment = {
