@@ -28,7 +28,7 @@ with lib.custom; {
       users = [ "root" config.user.name ]
         ++ optional config.services.hydra.enable "hydra";
     in {
-      package = pkgs.nixVersions.nix_2_19;
+      package = pkgs.nixVersions.nix_2_20;
 
       settings = {
         use-cgroups = true;
