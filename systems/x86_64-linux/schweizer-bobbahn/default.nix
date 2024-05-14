@@ -1,10 +1,4 @@
-{
-  pkgs,
-  inputs,
-  config,
-  lib,
-  ...
-}:
+{ pkgs, inputs, config, lib, ... }:
 with lib; {
   imports = with inputs; [
     ./hardware-configuration.nix
@@ -16,7 +10,6 @@ with lib; {
   ];
 
   config = {
-    # installed = true;
 
     gui = {
       enable = true;
@@ -27,7 +20,7 @@ with lib; {
 
     apps.spotifyd.enable = true;
 
-    environment.systemPackages = with pkgs; [intel-gpu-tools];
+    environment.systemPackages = with pkgs; [ intel-gpu-tools ];
 
     disks.ext4 = {
       enable = true;
@@ -35,9 +28,7 @@ with lib; {
     };
 
     security = {
-      ipa = {
-        ifpAllowedUids = mkForce ["root" "tomas" "media"];
-      };
+      ipa = { ifpAllowedUids = mkForce [ "root" "tomas" "media" ]; };
     };
 
     netdata.enable = mkForce true;
@@ -62,9 +53,7 @@ with lib; {
       firewall.enable = true;
     };
 
-    programs = {
-      atop.enable = mkForce false;
-    };
+    programs = { atop.enable = mkForce false; };
 
     services = {
       # podman.enable = true;
@@ -74,27 +63,23 @@ with lib; {
       };
       avahi = {
         enable = true;
-        allowInterfaces = ["wlo1"];
+        allowInterfaces = [ "wlo1" ];
         reflector = mkForce false;
       };
     };
 
-    zramSwap = {
-      enable = true;
-    };
-    swapDevices = [
-      {
-        device = "/swapfile";
-        size = 16 * 1024;
-      }
-    ];
+    zramSwap = { enable = true; };
+    swapDevices = [{
+      device = "/swapfile";
+      size = 16 * 1024;
+    }];
 
     hardware = {
       opengl = {
         enable = true;
         driSupport = true;
         driSupport32Bit = true;
-        extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau];
+        extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
       };
     };
   };

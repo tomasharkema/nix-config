@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-  inputs,
-  config,
-  ...
-}:
+{ pkgs, lib, inputs, config, ... }:
 with lib; {
   imports = [
     ./hardware-configuration.nix
@@ -15,7 +9,6 @@ with lib; {
   config = {
     # btrfs balance -dconvert=raid0 -mconvert=raid1 /home
 
-    installed = false;
     # programs.gamemode.enable = true;
     environment.systemPackages = with pkgs; [
       ntfs2btrfs
@@ -32,16 +25,12 @@ with lib; {
     # services.upower.enable = mkForce false;
 
     networking = {
-      hosts = {
-        "192.168.0.100" = ["nix-cache.harke.ma"];
-      };
+      hosts = { "192.168.0.100" = [ "nix-cache.harke.ma" ]; };
       networkmanager.enable = true;
 
       hostName = "wodan";
 
-      firewall = {
-        enable = false;
-      };
+      firewall = { enable = false; };
       useDHCP = lib.mkDefault false;
 
       interfaces = {
@@ -75,7 +64,7 @@ with lib; {
         bolt.enable = true;
       };
 
-      udev.packages = [pkgs.openrgb];
+      udev.packages = [ pkgs.openrgb ];
       command-center = {
         #enableBot = true;
       };
@@ -88,14 +77,14 @@ with lib; {
 
     headless.hypervisor = {
       enable = true;
-      bridgeInterfaces = ["enp2s0"];
+      bridgeInterfaces = [ "enp2s0" ];
     };
     services.beesd.filesystems = {
       root = {
         spec = "UUID=f3558990-77b0-4113-b45c-3d2da3f46c14";
         hashTableSizeMB = 4096;
         verbosity = "crit";
-        extraOptions = ["--loadavg-target" "2.0"];
+        extraOptions = [ "--loadavg-target" "2.0" ];
       };
     };
 
@@ -170,12 +159,12 @@ with lib; {
     };
 
     boot = {
-      binfmt.emulatedSystems = ["aarch64-linux"];
-      supportedFilesystems = ["ntfs"];
-      kernelModules = ["i2c-dev"];
-      blacklistedKernelModules = lib.mkDefault ["i915" "nouveau"];
+      binfmt.emulatedSystems = [ "aarch64-linux" ];
+      supportedFilesystems = [ "ntfs" ];
+      kernelModules = [ "i2c-dev" ];
+      blacklistedKernelModules = lib.mkDefault [ "i915" "nouveau" ];
       # KMS will load the module, regardless of blacklisting
-      kernelParams = lib.mkDefault ["i915.modeset=0"];
+      kernelParams = lib.mkDefault [ "i915.modeset=0" ];
 
       extraModprobeConfig = ''
         options nvidia-drm modeset=1";
@@ -183,12 +172,8 @@ with lib; {
         options nouveau modeset=0
       '';
 
-      initrd.kernelModules = [
-        "nvidia"
-        "nvidia_modeset"
-        "nvidia_uvm"
-        "nvidia_drm"
-      ];
+      initrd.kernelModules =
+        [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     };
 
     # boot = {
