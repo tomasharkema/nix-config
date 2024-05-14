@@ -41,6 +41,13 @@ with lib; {
       unified-remote.enable = true;
     };
 
+    services = {
+      avahi = {
+        enable = true;
+        allowInterfaces = [ "wlan0" "enu1u1" ];
+      };
+    };
+
     # system.stateVersion = "23.11";
 
     # fileSystems."/".fsType = lib.mkForce "tmpfs";
