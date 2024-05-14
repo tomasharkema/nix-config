@@ -116,18 +116,6 @@ in {
     #   };
     # };
 
-    services.shairport-sync = {
-      enable = true;
-      openFirewall = true;
-
-      arguments = "-v";
-
-      # user = "media";
-      # group = "media";
-    };
-
-    users.extraUsers.shairport.extraGroups = [ "data" "video" "audio" "input" ];
-
     users.users.media = {
       isNormalUser = true;
       uid = 1100;
