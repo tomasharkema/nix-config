@@ -1,19 +1,11 @@
-{
-  lib,
-  pkgs,
-  config,
-  inputs,
-  ...
-}:
-with lib; let
-  cfg = config.gui.desktop;
+{ lib, pkgs, config, inputs, ... }:
+with lib;
+let cfg = config.gui.desktop;
 in {
   options.gui.desktop = {
     enable = mkEnableOption "hallo";
 
-    rdp = {
-      enable = mkEnableOption "hallo";
-    };
+    rdp = { enable = mkEnableOption "hallo"; };
   };
 
   config = mkIf cfg.enable {
@@ -78,7 +70,7 @@ in {
 
     hardware.opengl = {
       enable = true;
-      extraPackages = [pkgs.mesa.drivers];
+      extraPackages = [ pkgs.mesa.drivers ];
     };
 
     environment.systemPackages = with pkgs;
@@ -136,13 +128,11 @@ in {
         mission-center
         pavucontrol
         # libmx
-      ]
-      ++ optionals pkgs.stdenv.isx86_64 [
+      ] ++ optionals pkgs.stdenv.isx86_64 [
         angryipscanner
         telegram-desktop
         # pkgs.custom.git-butler
-      ]
-      ++ (with pkgs.custom; [zerotier-ui zerotier-gui]);
+      ] ++ (with pkgs.custom; [ zerotier-ui zerotier-gui ]);
 
     programs = {
       ssh = {

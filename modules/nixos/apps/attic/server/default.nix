@@ -1,16 +1,10 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-with lib; let
+{ pkgs, lib, config, ... }:
+with lib;
+let
   cfg = config.apps.attic-server;
   port = 5000;
 in {
-  options.apps.attic-server = {
-    enable = mkEnableOption "attic-server";
-  };
+  options.apps.attic-server = { enable = mkEnableOption "attic-server"; };
 
   config = mkIf (cfg.enable && false) {
     proxy-services.services = {
@@ -58,7 +52,7 @@ in {
       '';
     };
 
-    networking.firewall.allowedTCPPorts = mkIf false [port];
+    networking.firewall.allowedTCPPorts = mkIf false [ port ];
 
     services.atticd = mkIf false {
       enable = true;

@@ -1,36 +1,23 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
-with lib; let
-  cfg = config.services.freeipa;
+{ lib, config, pkgs, ... }:
+with lib;
+let cfg = config.services.freeipa;
 in {
-  options.services.freeipa = {
-    enable = mkEnableOption "freeipa";
-  };
+  options.services.freeipa = { enable = mkEnableOption "freeipa"; };
 
   config = mkIf cfg.enable {
     apps.ipa.enable = false;
 
     services.podman.enable = true;
 
-    networking = {
-      firewall = {
-        trustedInterfaces = ["veth0" "veth1"];
-      };
-    };
+    networking = { firewall = { trustedInterfaces = [ "veth0" "veth1" ]; }; };
 
     virtualisation = {
       podman = {
         defaultNetwork.settings = mkForce {
-          subnets = [
-            {
-              gateway = "10.87.0.1";
-              subnet = "10.87.0.0/16";
-            }
-          ];
+          subnets = [{
+            gateway = "10.87.0.1";
+            subnet = "10.87.0.0/16";
+          }];
         };
       };
 
@@ -49,12 +36,10 @@ in {
             TS_STATE_DIR = "/var/lib/tailscale";
             TS_ROUTES = "10.87.0.0/16";
           };
-          volumes = [
-            "/var/lib/tailscale-free-ipa:/var/lib/tailscale:Z"
-          ];
+          volumes = [ "/var/lib/tailscale-free-ipa:/var/lib/tailscale:Z" ];
         };
         free-ipa = {
-          dependsOn = ["free-ipa-tailscale"];
+          dependsOn = [ "free-ipa-tailscale" ];
           image = "docker.io/freeipa/freeipa-server:fedora-39";
           autoStart = true;
           hostname = "ipa.harkema.intra";
@@ -76,9 +61,7 @@ in {
             "--ds-password=Secret123!"
             "--admin-password=Secret123!"
           ];
-          volumes = [
-            "/var/lib/freeipa:/data:Z"
-          ];
+          volumes = [ "/var/lib/freeipa:/data:Z" ];
         };
       };
     };
@@ -118,7 +101,7 @@ in {
     #   };
     # };
 
-    boot.kernelParams = ["systemd.unified_cgroup_hierarchy=1"];
+    boot.kernelParams = [ "systemd.unified_cgroup_hierarchy=1" ];
     # security.ipa = {
     #   enable = lib.mkForce false;
     # };

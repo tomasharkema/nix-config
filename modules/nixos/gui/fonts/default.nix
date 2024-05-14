@@ -1,13 +1,6 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}:
+{ pkgs, config, lib, ... }:
 with lib; {
-  options.gui.fonts = {
-    enable = mkEnableOption "gui.fonts";
-  };
+  options.gui.fonts = { enable = mkEnableOption "gui.fonts"; };
 
   config = mkIf config.gui.fonts.enable {
     fonts = {
@@ -19,10 +12,10 @@ with lib; {
         allowBitmaps = true;
 
         defaultFonts = {
-          monospace = ["JetBrainsMono Nerd Font Mono"];
-          serif = ["Inter"];
+          monospace = [ "JetBrainsMono Nerd Font Mono" ];
+          serif = [ "Inter" ];
 
-          sansSerif = ["Inter"];
+          sansSerif = [ "Inter" ];
         };
         # hinting = {
         #   autohint = true;
@@ -31,22 +24,22 @@ with lib; {
       };
 
       packages = with pkgs;
-      with pkgs.custom; [
-        b612
-        inter
-        nerdfonts
-        neue-haas-grotesk
-        noto-fonts
-        noto-fonts-cjk
-        noto-fonts-emoji
-        noto-fonts-extra
-        open-dyslexic
-        open-sans
-        roboto-mono
-        san-francisco
-        ubuntu_font_family
-        vegur
-      ];
+        with pkgs.custom; [
+          b612
+          inter
+          nerdfonts
+          neue-haas-grotesk
+          noto-fonts
+          noto-fonts-cjk
+          noto-fonts-emoji
+          noto-fonts-extra
+          open-dyslexic
+          open-sans
+          roboto-mono
+          san-francisco
+          ubuntu_font_family
+          vegur
+        ];
     };
 
     # system.fsPackages = [pkgs.bindfs];

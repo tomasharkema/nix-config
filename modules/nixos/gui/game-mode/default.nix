@@ -1,15 +1,8 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
-with lib; let
-  cfg = config.gui.gamemode;
+{ lib, config, pkgs, ... }:
+with lib;
+let cfg = config.gui.gamemode;
 in {
-  options.gui.gamemode = {
-    enable = mkEnableOption "gamemode";
-  };
+  options.gui.gamemode = { enable = mkEnableOption "gamemode"; };
 
   config = mkIf cfg.enable {
     # environment.systemPackages = with pkgs; [gnomeExtensions.gamemode-indicator-in-system-settings];
@@ -25,8 +18,10 @@ in {
           # renice = 10;
         };
         custom = {
-          start = "${pkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Optimizations activated'";
-          end = "${pkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Optimizations deactivated'";
+          start =
+            "${pkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Optimizations activated'";
+          end =
+            "${pkgs.libnotify}/bin/notify-send -a 'Gamemode' 'Optimizations deactivated'";
         };
       };
       # settings = {

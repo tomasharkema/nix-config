@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
+{ pkgs, lib, config, ... }:
 with lib; {
   config = {
     security.pam = {
@@ -45,13 +40,11 @@ with lib; {
     };
 
     boot.initrd = {
-      kernelModules = ["vfat" "nls_cp437" "nls_iso8859-1" "usbhid"];
+      kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" ];
       # luks.yubikeySupport = true;
     };
 
-    users.groups = {
-      "plugdev" = {};
-    };
+    users.groups = { "plugdev" = { }; };
 
     environment.systemPackages = with pkgs; [
       p11-kit

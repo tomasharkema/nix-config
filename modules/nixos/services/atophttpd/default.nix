@@ -1,13 +1,6 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, pkgs, lib, ... }:
 with lib; {
-  options.apps.atophttpd = {
-    enable = mkEnableOption "atophttpd";
-  };
+  options.apps.atophttpd = { enable = mkEnableOption "atophttpd"; };
 
   config = mkIf config.apps.atophttpd.enable {
     systemd.services.atophttpd = {
@@ -23,7 +16,7 @@ with lib; {
         Restart = "on-failure";
         RestartSec = 5;
       };
-      wantedBy = ["multi-user.target"];
+      wantedBy = [ "multi-user.target" ];
     };
   };
 }
