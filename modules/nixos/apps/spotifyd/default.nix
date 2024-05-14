@@ -25,7 +25,9 @@ in {
         enable = true;
         openFirewall = true;
 
-        arguments = "-v -o pipe";
+        arguments = ''
+          -v -a "%H Shairport" --statistics -o pipe
+        '';
 
         # user = "media";
         # group = "media";
@@ -55,9 +57,23 @@ in {
     #   # };
     #   # };
 
-    systemd.services.spotifyd = {
-      environment = {
-        SPOTIFYD_CLIENT_ID = "be2bcefc4eeb43b8b13b4a0e05e572a4";
+    systemd.services = {
+      "nqptp" = {
+        description = "nqptp";
+        enable = true;
+        serviceConfig = {
+          ExecStart = "${pkgs.nqptp}/bin/nqptp";
+          #Restart = "always";
+        };
+        wantedBy = [ "default.target" ];
+      };
+
+      spotifyd = {
+        environment = {
+          SPOTIFYD_CLIENT_ID = "be2bcefc4eeb43b8b13b4a0e05e572a4";
+          SPOTIFYD_REDIRECT_URI = "http://localhost:8888/callback";
+          SPOTIFYD_CLIENT_SECRET = "6d079368a5e64e3bb6a9d232aa043789";
+        };
       };
     };
 
