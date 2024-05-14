@@ -40,10 +40,10 @@ in {
           global = {
             backend = "pulseaudio";
             bitrate = 320;
-            # mpris = true;
+            mpris = true;
             device_name = "${config.networking.hostName} SpotifyD";
-            # use_keyring = false;
-            # dbus_type = "system";
+            use_keyring = true;
+            dbus_type = "system";
           };
         };
         #   username_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field username"
@@ -66,14 +66,6 @@ in {
           #Restart = "always";
         };
         wantedBy = [ "default.target" ];
-      };
-
-      spotifyd = {
-        environment = {
-          SPOTIFYD_CLIENT_ID = "be2bcefc4eeb43b8b13b4a0e05e572a4";
-          SPOTIFYD_REDIRECT_URI = "http://localhost:8888/callback";
-          SPOTIFYD_CLIENT_SECRET = "6d079368a5e64e3bb6a9d232aa043789";
-        };
       };
     };
 
