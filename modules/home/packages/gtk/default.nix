@@ -9,7 +9,7 @@ let
   #   variant = "mocha";
   # };
 in {
-  imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
+  # imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
 
   # disabledModules=["home-manager/tofi.nix"];
 
