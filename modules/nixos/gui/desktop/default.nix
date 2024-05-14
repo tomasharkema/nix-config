@@ -75,11 +75,12 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        pwvucontrol
         xdiskusage
         libGL
         libGLU
-        # bottles
-        # trayscale
+        bottles
+        trayscale
         grsync
         caffeine-ng
         qjournalctl
@@ -117,7 +118,7 @@ in {
         font-manager
         gamehub
         filezilla
-        # sublime-merge
+        sublime-merge
         remmina
         xdg-utils
         # mattermost-desktop
