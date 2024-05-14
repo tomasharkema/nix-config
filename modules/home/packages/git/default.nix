@@ -22,7 +22,7 @@ with lib; {
 
       # gh-dash.enable = true;
 
-      gitui.enable = true;
+      # gitui.enable = true;
 
       git = {
         enable = true;
