@@ -344,7 +344,7 @@ with lib;
     };
 
     programs = {
-      darling.enable = pkgs.stdenv.isx86_64;
+      # darling.enable = pkgs.stdenv.isx86_64;
       flashrom.enable = true;
       rust-motd = {
         enable = true;
