@@ -130,6 +130,7 @@ in {
         pavucontrol
         # libmx
       ] ++ optionals pkgs.stdenv.isx86_64 [
+        xpipe
         angryipscanner
         telegram-desktop
         # pkgs.custom.git-butler
