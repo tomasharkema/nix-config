@@ -5,7 +5,7 @@
     extra-experimental-features = "nix-command flakes cgroups";
 
     builders-use-substitutes = true;
-    trusted-users = ["root" "tomas"];
+    trusted-users = [ "root" "tomas" ];
 
     # netrc-file = "/etc/nix/netrc";
 

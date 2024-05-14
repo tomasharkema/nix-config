@@ -1,14 +1,9 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{ config, lib, pkgs, ... }:
+let
   inherit (pkgs.stdenvNoCC) isDarwin;
   inherit (lib) types mkIf mkEnableOption mkOption;
   shellInit = shell:
-    "source "
-    + cfg.package
+    "source " + cfg.package
     + "/Applications/iTerm2.app/Contents/Resources/iterm2_shell_integration."
     + shell;
   cfg = config.programs.iterm2;
@@ -18,19 +13,16 @@ in {
       mkEnableOption "Enable the iTerm2 terminal emulator (system-wide).";
     package = mkOption {
       type = types.package;
-      default =
-        if isDarwin
-        then pkgs.iterm2
-        else
-          pkgs.iterm2.overrideAttrs (o: {
-            # Remove the generated binary
-            installPhase =
-              o.installPhase
-              + ''
-                rm -rf $out/bin
-              '';
-            meta.platforms = o.meta.platforms ++ lib.platforms.linux;
-          });
+      default = if isDarwin then
+        pkgs.iterm2
+      else
+        pkgs.iterm2.overrideAttrs (o: {
+          # Remove the generated binary
+          installPhase = o.installPhase + ''
+            rm -rf $out/bin
+          '';
+          meta.platforms = o.meta.platforms ++ lib.platforms.linux;
+        });
       description = "The iTerm2 package to use.";
     };
     enableBashIntegration = mkOption {
@@ -51,9 +43,10 @@ in {
     };
   };
   config = mkIf false {
-    home.packages = mkIf cfg.enable [cfg.package];
+    home.packages = mkIf cfg.enable [ cfg.package ];
     programs.bash.initExtra = mkIf cfg.enableBashIntegration (shellInit "bash");
-    programs.zsh.initExtraFirst = mkIf cfg.enableZshIntegration (shellInit "zsh");
+    programs.zsh.initExtraFirst =
+      mkIf cfg.enableZshIntegration (shellInit "zsh");
     programs.fish.shellInit = mkIf cfg.enableFishIntegration (shellInit "fish");
   };
 }

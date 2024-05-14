@@ -1,11 +1,6 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
-with lib; let
-  cfg = config.programs.inshellisense;
+{ config, pkgs, lib, ... }:
+with lib;
+let cfg = config.programs.inshellisense;
 in {
   options.programs.inshellisense = {
     enable = mkEnableOption "inshellisense";
@@ -18,7 +13,7 @@ in {
   };
 
   config = mkIf (cfg.enable) {
-    home.packages = [cfg.package];
+    home.packages = [ cfg.package ];
 
     programs.zsh = mkIf cfg.enableZshIntegration {
       # initExtra = ''

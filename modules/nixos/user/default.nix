@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}:
+{ config, pkgs, lib, inputs, ... }:
 with lib;
 with lib.custom; {
   options.user = with types; {
@@ -29,14 +23,12 @@ with lib.custom; {
   config = {
     security = {
       pam = {
-        loginLimits = [
-          {
-            domain = "*";
-            type = "soft";
-            item = "nofile";
-            value = "8192";
-          }
-        ];
+        loginLimits = [{
+          domain = "*";
+          type = "soft";
+          item = "nofile";
+          value = "8192";
+        }];
         # services = {
         #   login.googleAuthenticator.enable = true;
         # };
@@ -44,9 +36,9 @@ with lib.custom; {
       sudo.wheelNeedsPassword = false;
     };
 
-    environment.systemPackages = with pkgs; [];
+    environment.systemPackages = with pkgs; [ ];
 
-    programs.zsh = {enable = true;};
+    programs.zsh = { enable = true; };
 
     users.mutableUsers = mkDefault false;
     programs.fuse.userAllowOther = true;
@@ -55,28 +47,38 @@ with lib.custom; {
       isNormalUser = true;
       description = "tomas";
       group = "${config.user.name}";
-      extraGroups = ["networkmanager" "wheel" "rslsync" "users" "fuse" "disk" "plugdev" "dailout"];
-      hashedPassword = "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "rslsync"
+        "users"
+        "fuse"
+        "disk"
+        "plugdev"
+        "dailout"
+      ];
+      hashedPassword =
+        "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
 
-      openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+      openssh.authorizedKeys.keyFiles = [ pkgs.custom.authorized-keys ];
       linger = true;
       uid = 1000;
     };
 
     users.groups.${config.user.name} = {
       name = "${config.user.name}";
-      members = ["${config.user.name}"];
+      members = [ "${config.user.name}" ];
     };
 
     users.groups = {
-      agent = {};
-      rslsync = lib.mkIf config.resilio.enable {};
+      agent = { };
+      rslsync = lib.mkIf config.resilio.enable { };
     };
     users.users.agent = {
       isSystemUser = true;
       group = "agent";
-      extraGroups = lib.mkIf config.resilio.enable ["rslsync"];
-      openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+      extraGroups = lib.mkIf config.resilio.enable [ "rslsync" ];
+      openssh.authorizedKeys.keyFiles = [ pkgs.custom.authorized-keys ];
       uid = 1099;
     };
 
@@ -85,12 +87,12 @@ with lib.custom; {
       group = "agent";
       # extraGroups = ["rslsync"];
       uid = 1098;
-      openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+      openssh.authorizedKeys.keyFiles = [ pkgs.custom.authorized-keys ];
     };
 
     users.users.root = {
       shell = pkgs.zsh;
-      openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+      openssh.authorizedKeys.keyFiles = [ pkgs.custom.authorized-keys ];
     };
 
     # optional, useful when the builder has a faster internet connection than yours
@@ -100,7 +102,7 @@ with lib.custom; {
 
     nix.settings = {
       extra-experimental-features = "nix-command flakes cgroups";
-      trusted-users = ["root" "tomas" "builder"];
+      trusted-users = [ "root" "tomas" "builder" ];
       # trustedBinaryCaches = ["https://cache.nixos.org"];
       # binaryCaches = ["https://cache.nixos.org"];
 

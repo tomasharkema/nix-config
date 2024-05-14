@@ -1,34 +1,28 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}: {
+{ lib, pkgs, config, ... }: {
   config = {
     services.cockpit = {
       enable = true;
       port = 9090;
       settings = {
-        WebService =
-          if config.services.nginx.enable
-          then {
-            # AllowUnencrypted = false;
-            Origins = "https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost} http://localhost:9090 ws://localhost:9090";
-            ProtocolHeader = "X-Forwarded-Proto";
-            UrlRoot = "/cockpit";
-          }
-          else {};
+        WebService = if config.services.nginx.enable then {
+          # AllowUnencrypted = false;
+          Origins =
+            "https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost} http://localhost:9090 ws://localhost:9090";
+          ProtocolHeader = "X-Forwarded-Proto";
+          UrlRoot = "/cockpit";
+        } else
+          { };
       };
     };
     environment.systemPackages = with pkgs;
-    with pkgs.custom; [
-      cockpit-podman
-      cockpit-tailscale
-      cockpit-machines
-      cockpit-ostree
-      cockpit-sensors
-      # packagekit
-    ];
+      with pkgs.custom; [
+        cockpit-podman
+        cockpit-tailscale
+        cockpit-machines
+        cockpit-ostree
+        cockpit-sensors
+        # packagekit
+      ];
 
     # services.multipath = {
     #   enable = true;

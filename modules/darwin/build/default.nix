@@ -1,9 +1,6 @@
-{
-  pkgs,
-  lib,
-  ...
-}:
-with pkgs; let
+{ pkgs, lib, ... }:
+with pkgs;
+let
   darwin-build =
     #lib.mkIf pkgs.stdenv.isDarwin
     writeShellScriptBin "darwin-build" ''
@@ -11,9 +8,7 @@ with pkgs; let
     '';
 in {
   config = {
-    environment.systemPackages = [
-      darwin-build
-    ];
+    environment.systemPackages = [ darwin-build ];
 
     nix.buildMachines = [
       # {

@@ -1,12 +1,5 @@
-{
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, lib, ... }:
 with pkgs;
 with lib; {
-  config = mkIf false {
-    home.packages = [
-    ];
-  };
+  config = mkIf false { home.packages = [ ]; };
 }

@@ -1,11 +1,7 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, config, ... }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.traits.hardware.remote-unlock;
 
   mkKeysScript = let
@@ -45,9 +41,7 @@ with lib.custom; let
   '';
 in {
   options.traits = {
-    hardware.remote-unlock = {
-      enable = mkBoolOpt false "Remote unlocking";
-    };
+    hardware.remote-unlock = { enable = mkBoolOpt false "Remote unlocking"; };
   };
 
   config = mkIf cfg.enable {
@@ -55,19 +49,22 @@ in {
     # environment.systemPackages = with pkgs; [dracut];
 
     system.build = {
-      mkKeysScript = lib.mkBefore pkgs.writeShellScriptBin "mkkeysscript" mkKeysScript;
+      mkKeysScript =
+        lib.mkBefore pkgs.writeShellScriptBin "mkkeysscript" mkKeysScript;
     };
 
     boot = {
       crashDump.enable = true;
       initrd = {
         # verbose = true;
-        compressorArgs = ["-19"];
+        compressorArgs = [ "-19" ];
 
         secrets = {
           "/etc/tor/onion/bootup" = "/etc/tor/onion/bootup";
-          "/etc/ssh/boot/ssh_host_ecdsa_key" = "/etc/ssh/boot/ssh_host_ecdsa_key";
-          "/etc/ssh/boot/ssh_host_ed25519_key" = "/etc/ssh/boot/ssh_host_ed25519_key";
+          "/etc/ssh/boot/ssh_host_ecdsa_key" =
+            "/etc/ssh/boot/ssh_host_ecdsa_key";
+          "/etc/ssh/boot/ssh_host_ed25519_key" =
+            "/etc/ssh/boot/ssh_host_ed25519_key";
           "/etc/ssh/boot/ssh_host_rsa_key" = "/etc/ssh/boot/ssh_host_rsa_key";
           "/etc/notify.key" = "${config.age.secrets.notify.path}";
         };
@@ -143,8 +140,8 @@ in {
             tor = {
               # serviceConfig.Type = "oneshot";
 
-              wantedBy = ["initrd.target"];
-              after = ["network.target" "initrd-nixos-copy-secrets.service"];
+              wantedBy = [ "initrd.target" ];
+              after = [ "network.target" "initrd-nixos-copy-secrets.service" ];
 
               # before = ["shutdown.target"];
               # conflicts = ["shutdown.target"];
@@ -178,9 +175,9 @@ in {
                 /bin/ntfy publish tomasharkema-nixos "OJOO!"
               '';
 
-              wantedBy = ["initrd.target"];
-              after = ["network.target" "initrd-nixos-copy-secrets.service"];
-              serviceConfig = {Type = "oneshot";};
+              wantedBy = [ "initrd.target" ];
+              after = [ "network.target" "initrd-nixos-copy-secrets.service" ];
+              serviceConfig = { Type = "oneshot"; };
             };
 
             # syslog = {
@@ -198,7 +195,7 @@ in {
           };
         };
 
-        availableKernelModules = ["e1000e" "r8169"];
+        availableKernelModules = [ "e1000e" "r8169" ];
         kernelModules = [
           "uas"
           # "usbcore"
@@ -217,7 +214,8 @@ in {
             enable = true;
             port = 22222;
             # shell = "/bin/cryptsetup-askpass";
-            authorizedKeys = lib.splitString "\n" (builtins.readFile pkgs.custom.authorized-keys);
+            authorizedKeys = lib.splitString "\n"
+              (builtins.readFile pkgs.custom.authorized-keys);
             hostKeys = [
               "/etc/ssh/boot/ssh_host_ed25519_key"
               "/etc/ssh/boot/ssh_host_rsa_key"
@@ -226,7 +224,7 @@ in {
           };
         };
       };
-      kernelParams = ["ip=dhcp"];
+      kernelParams = [ "ip=dhcp" ];
     };
   };
 }
