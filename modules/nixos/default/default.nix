@@ -12,7 +12,7 @@ with lib;
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
 
-    # nix.package = pkgs.nixVersions.nix_2_19; #Unstable;
+    # nix.package = pkgs.nixVersions.nix_2_20; #Unstable;
 
     # Select internationalisation properties.
     i18n = {
