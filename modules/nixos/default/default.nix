@@ -189,6 +189,19 @@ with lib;
         wants = [ "multi-user.target" "network.target" ];
         after = [ "multi-user.target" "network.target" ];
       };
+
+      services = {
+        "numlockx" = {
+
+          wants = [ "multi-user.target" "network.target" ];
+          after = [ "multi-user.target" "network.target" ];
+
+          script = ''
+            ${pkgs.numlockx}/bin/numlockx on
+          '';
+          serviceConfig = { Type = "oneshot"; };
+        };
+      };
     };
 
     services = {

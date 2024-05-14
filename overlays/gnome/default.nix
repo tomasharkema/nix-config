@@ -19,5 +19,5 @@ final: prev: {
 
   spotifyd = prev.spotifyd.override { withMpris = true; };
 
-  # shairport-sync = prev.shairport-sync.override { enableAirplay2 = true; };
+  shairport-sync = prev.shairport-sync.override { enableAirplay2 = true; };
 }
