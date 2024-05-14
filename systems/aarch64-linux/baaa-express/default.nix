@@ -44,7 +44,7 @@ with lib; {
     services = {
       avahi = {
         enable = true;
-        allowInterfaces = [ "wlan0" "enu1u1" ];
+        allowInterfaces = mkForce null;
       };
     };
 
