@@ -1,24 +1,18 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 with lib;
-with lib.custom; let
-  cfg = config.services.podman;
+with lib.custom;
+let cfg = config.services.podman;
 in {
-  options.services.podman = {
-    enable = mkBoolOpt false "enable podman";
-  };
+  options.services.podman = { enable = mkBoolOpt false "enable podman"; };
 
   config = mkIf cfg.enable {
-    system.nixos.tags = ["podman"];
+    system.nixos.tags = [ "podman" ];
 
     networking = {
       firewall = {
         interfaces."podman+" = {
-          allowedUDPPorts = [53];
-          allowedTCPPorts = [53];
+          allowedUDPPorts = [ 53 ];
+          allowedTCPPorts = [ 53 ];
         };
       };
     };

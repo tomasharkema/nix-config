@@ -1,12 +1,7 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: {
+{ pkgs, lib, config, ... }: {
   config = lib.mkIf false {
     security.pam.enableEcryptfs = true;
-    boot.kernelModules = ["ecryptfs"];
-    environment.systemPackages = with pkgs; [ecryptfs];
+    boot.kernelModules = [ "ecryptfs" ];
+    environment.systemPackages = with pkgs; [ ecryptfs ];
   };
 }

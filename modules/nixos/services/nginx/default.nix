@@ -1,11 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.proxy-services;
 
   certPath = "${cfg.cert.crt}";
@@ -22,7 +18,7 @@ in {
 
     services = mkOption {
       type = types.attrs;
-      default = {};
+      default = { };
       description = "services";
     };
 
@@ -58,32 +54,26 @@ in {
         sslCertificate = "${certPath}";
         sslCertificateKey = "${keyPath}";
 
-        locations =
-          {
-            "/basic_status" = {
-              extraConfig = ''stub_status;'';
-            };
-            # "/webhook" = {
-            #   return = "302 /webhook/";
-            # };
-            #     "/webhook" = {
-            #       proxyPass = "http://localhost:${builtins.toString config.services.webhook.port}";
-            #       extraConfig = ''
-            #         rewrite /webhook(.*) $1 break;
-            #       '';
-            #     };
-          }
-          // config.proxy-services.services;
+        locations = {
+          "/basic_status" = { extraConfig = "stub_status;"; };
+          # "/webhook" = {
+          #   return = "302 /webhook/";
+          # };
+          #     "/webhook" = {
+          #       proxyPass = "http://localhost:${builtins.toString config.services.webhook.port}";
+          #       extraConfig = ''
+          #         rewrite /webhook(.*) $1 break;
+          #       '';
+          #     };
+        } // config.proxy-services.services;
       };
     };
 
     users.groups = {
-      "ssl-cert" = {
-        members = ["root" "tomas" "nginx" "tailscale"];
-      };
+      "ssl-cert" = { members = [ "root" "tomas" "nginx" "tailscale" ]; };
     };
 
-    networking.firewall.allowedTCPPorts = [80 443];
+    networking.firewall.allowedTCPPorts = [ 80 443 ];
 
     systemd = {
       #tmpfiles.rules = [
@@ -117,7 +107,9 @@ in {
           mkdir -p "$cert_dir" || true
           mkdir -p "$key_dir" || true
 
-          ${lib.getExe pkgs.tailscale} cert --cert-file "${certPath}" --key-file "${keyPath}" "${cfg.vhost}"
+          ${
+            lib.getExe pkgs.tailscale
+          } cert --cert-file "${certPath}" --key-file "${keyPath}" "${cfg.vhost}"
 
           chown -R nginx:ssl-cert "${keyPath}"
         '';
@@ -133,7 +125,7 @@ in {
         # chmod 660 -R "${cfg.dir}"
 
         # wantedBy = ["multi-user.target" "network.target"];
-        after = ["tailscaled.service" "network.target"];
+        after = [ "tailscaled.service" "network.target" ];
         # wants = ["tailscaled.service"];
       };
 

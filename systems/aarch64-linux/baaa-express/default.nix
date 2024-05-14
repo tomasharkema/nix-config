@@ -7,7 +7,17 @@ with lib; {
   config = {
     networking.hostName = "baaa-express";
 
-    traits.raspberry.enable = true;
+    fileSystems = {
+      # "/boot" = {
+      #   device = "/dev/disk/by-label/NIXOS_BOOT";
+      #   fsType = "vfat";
+      # };
+      "/" = {
+        device = "/dev/disk/by-label/NIXOS_SD";
+        fsType = "ext4";
+      };
+    };
+    # traits.raspberry.enable = true;
 
     environment.systemPackages = with pkgs; [
       libraspberrypi
@@ -23,21 +33,33 @@ with lib; {
 
     # fileSystems."/".fsType = lib.mkForce "tmpfs";
     # fileSystems."/".device = lib.mkForce "none";
+    zramSwap = { enable = true; };
+    swapDevices = [{
+      device = "/swapfile";
+      size = 16 * 1024;
+    }];
+
     boot = {
       blacklistedKernelModules = [ "pcie_brcmstb" ];
 
       loader = {
-        generic-extlinux-compatible.enable = true;
+        grub.enable = false;
+        systemd-boot.enable = mkForce false;
+        generic-extlinux-compatible.enable = mkDefault false;
 
         # start_x=1
-
-        raspberryPi.firmwareConfig = ''
-          force_turbo=1
-          gpu_mem=256
-          cma=320M
-        '';
+        raspberryPi = {
+          enable = true;
+          version = 3;
+          firmwareConfig = ''
+            force_turbo=1
+            gpu_mem=256
+            cma=320M
+          '';
+        };
       };
-      # initrd.kernelModules = ["vc4" "bcm2835_dma" "i2c_bcm2835"];
+
+      initrd.kernelModules = [ "vc4" "bcm2835_dma" "i2c_bcm2835" ];
       initrd.availableKernelModules = mkForce [
         "ext2"
         "ext4"
@@ -64,28 +86,13 @@ with lib; {
 
       # kernelPackages = pkgs.linuxPackages_latest;
 
-      # kernelParams = [
-      # "console=ttyS1,115200n8"
-      # "cma=320M"
-      # ];
+      kernelParams = [ "console=ttyS1,115200n8" "cma=320M" ];
     };
 
     hardware = {
       enableRedistributableFirmware = true;
       i2c.enable = true;
 
-      # raspberry-pi."4" = {
-      #   apply-overlays-dtmerge.enable = true;
-      #   dwc2 = {
-      #     enable = true;
-      #     dr_mode = "peripheral";
-      #   };
-      # };
-
-      deviceTree = {
-        enable = true;
-        filter = "*rpi-3-b*";
-      };
     };
     # systemd.services.btattach = {
     #   before = ["bluetooth.service"];
