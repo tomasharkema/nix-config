@@ -1,10 +1,6 @@
+{ pkgs, config, lib, ... }:
+with lib;
 {
-  pkgs,
-  config,
-  lib,
-  ...
-}:
-with lib; {
   # config = mkIf false {
   #   age.secrets = {
   #     "peerix-public" = {

@@ -16,7 +16,7 @@
 #   { device = "/dev/disk/by-uuid/UUID";
 #     fsType = "vfat";
 #   };
-{disks ? ["/dev/vda"], ...}: {
+{ disks ? [ "/dev/vda" ], ... }: {
   fileSystems."/nix".neededForBoot = true;
   disko.devices = {
     disk.main = {
@@ -66,7 +66,7 @@
     };
     nodev."/" = {
       fsType = "tmpfs";
-      mountOptions = ["size=2G" "defaults" "mode=755"];
+      mountOptions = [ "size=2G" "defaults" "mode=755" ];
     };
   };
 }

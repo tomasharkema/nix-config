@@ -1,13 +1,7 @@
-{
-  lib,
-  config,
-  ...
-}: {
+{ lib, config, ... }: {
   config = {
     age = {
-      identityPaths = [
-        "/etc/ssh/ssh_host_ed25519_key"
-      ];
+      identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
       secrets = {
         atuin = {
           file = ./atuin.age;
@@ -125,9 +119,7 @@
         #   mode = "644";
         #   path = "/var/lib/hercules-ci-agent/secrets/cluster-join-token.key";
         # };
-        "domainjoin" = {
-          file = ./domainjoin.age;
-        };
+        "domainjoin" = { file = ./domainjoin.age; };
         "peerix-private" = {
           file = ./peerix.private.age;
           mode = "644";

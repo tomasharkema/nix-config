@@ -1,8 +1,5 @@
-{
-  lib,
-  pkgs,
-  ...
-}: let
+{ lib, pkgs, ... }:
+let
   machines = [
     "blue-fire"
     "arthur"
@@ -19,37 +16,33 @@ in {
   config = {
     programs.ssh = {
       matchBlocks = lib.mkMerge [
-        (builtins.listToAttrs (map
-          (machine: {
-            name = "${machine}";
-            value = {
-              hostname = "${machine}";
-              user = "tomas";
-              forwardAgent = true;
-              extraOptions = {
-                RequestTTY = "yes";
-                # RemoteCommand = "zellij attach -c \"ssh-\$\{\%n\}\"";
-                # RemoteCommand = "tmux new -A -s \$\{\%n\}";
-              };
+        (builtins.listToAttrs (map (machine: {
+          name = "${machine}";
+          value = {
+            hostname = "${machine}";
+            user = "tomas";
+            forwardAgent = true;
+            extraOptions = {
+              RequestTTY = "yes";
+              # RemoteCommand = "zellij attach -c \"ssh-\$\{\%n\}\"";
+              # RemoteCommand = "tmux new -A -s \$\{\%n\}";
             };
-          })
-          machines))
+          };
+        }) machines))
 
-        (builtins.listToAttrs (map
-          (machine: {
-            name = "${machine}-*";
-            value = {
-              hostname = "${machine}";
-              user = "tomas";
-              forwardAgent = true;
-              extraOptions = {
-                RequestTTY = "yes";
-                RemoteCommand = "zellij attach -c \"ssh-\$\{\%n\}\"";
-                # RemoteCommand = "tmux new -A -s \$\{\%n\}";
-              };
+        (builtins.listToAttrs (map (machine: {
+          name = "${machine}-*";
+          value = {
+            hostname = "${machine}";
+            user = "tomas";
+            forwardAgent = true;
+            extraOptions = {
+              RequestTTY = "yes";
+              RemoteCommand = ''zellij attach -c "ssh-''${%n}"'';
+              # RemoteCommand = "tmux new -A -s \$\{\%n\}";
             };
-          })
-          machines))
+          };
+        }) machines))
       ];
     };
   };

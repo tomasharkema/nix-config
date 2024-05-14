@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 pkgs.writeText "ldap.conf" ''
   <ldap>
       <config>

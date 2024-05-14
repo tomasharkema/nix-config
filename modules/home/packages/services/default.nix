@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, lib, ... }:
 with lib; {
   config = mkIf (pkgs.stdenv.isLinux && false) {
     services = {

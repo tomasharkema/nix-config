@@ -1,12 +1,6 @@
-{
-  lib,
-  pkgs,
-  config,
-  inputs,
-  ...
-}:
-with lib; let
-  cfg = config.apps.steam;
+{ lib, pkgs, config, inputs, ... }:
+with lib;
+let cfg = config.apps.steam;
 in {
   # disabledModules = [
   #   "services/desktops/pipewire/pipewire.nix"
@@ -20,14 +14,12 @@ in {
   #   #   "${inputs.unstable}/nixos/modules/security/krb5"
   # ];
 
-  options.apps.steam = {
-    enable = mkEnableOption "steam";
-  };
+  options.apps.steam = { enable = mkEnableOption "steam"; };
 
   config = mkIf cfg.enable {
-    system.nixos.tags = ["steam"];
-    boot.kernelModules = ["uinput"];
-    users.groups.input.members = ["tomas"];
+    system.nixos.tags = [ "steam" ];
+    boot.kernelModules = [ "uinput" ];
+    users.groups.input.members = [ "tomas" ];
 
     programs = {
       steam = {
@@ -45,10 +37,8 @@ in {
           #   ];
         };
 
-        remotePlay.openFirewall =
-          true;
-        dedicatedServer.openFirewall =
-          true;
+        remotePlay.openFirewall = true;
+        dedicatedServer.openFirewall = true;
         gamescopeSession.enable = true;
         platformOptimizations.enable = true;
       };
