@@ -8,10 +8,7 @@ with lib; {
     ];
 
   config = {
-    networking = {
-      hostName = "pegasus";
-      firewall.enable = false;
-    };
+    networking = { hostName = "pegasus"; };
     virtualisation.vmVariant = {
       virtualisation = {
         diskSize = 50 * 1024;
@@ -37,6 +34,7 @@ with lib; {
     apps = {
       spotifyd.enable = true;
       cec.enable = true;
+      unified-remote.enable = true;
     };
 
     netdata.enable = mkForce true;
@@ -44,12 +42,7 @@ with lib; {
     environment.systemPackages = with pkgs; [
       libraspberrypi
       raspberrypi-eeprom
-      play-with-mpv
-      open-in-mpv
-      plex-mpv-shim
-      mpv
-      mpvc
-      celluloid
+
       # pkgs.custom.playercast
     ];
 
