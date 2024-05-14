@@ -63,9 +63,22 @@ in {
     hardware = {
       opengl = {
         enable = true;
-        extraPackages = with pkgs; [ libva ];
+        extraPackages = with pkgs; [ libva vaapiVdpau libvdpau-va-gl ];
+        driSupport = true;
       };
+
     };
+
+    environment.systemPackages = with pkgs; [
+      play-with-mpv
+      open-in-mpv
+      plex-mpv-shim
+      mpv
+      mpvc
+      celluloid
+      pwvucontrol
+
+    ];
 
     # services.xserver.desktopManager.kodi.package = pkgs.kodi.withPackages (pkgs:
     #   with pkgs; [
