@@ -90,7 +90,7 @@ with lib;
       rulesProvider = pkgs.ananicy-rules-cachyos;
     };
 
-    programs.atop = {
+    programs.atop = mkDefault {
       atopRotateTimer.enable = true;
       enable = true;
       setuidWrapper.enable = true;
