@@ -43,14 +43,14 @@ in {
         #   name = catppuccin_name;
         #   package = catppuccin;
         # };
-        catppuccin = {
-          enable = true;
-          package = pkgs.catppuccin-gtk;
-          flavour = "mocha";
-          accent = "blue";
-          size = "compact";
-          tweaks = [ "black" ];
-        };
+        # catppuccin = {
+        #   enable = true;
+        #   package = pkgs.catppuccin-gtk;
+        #   flavour = "mocha";
+        #   accent = "blue";
+        #   size = "compact";
+        #   tweaks = [ "black" ];
+        # };
 
         cursorTheme = mkForce {
           name = "macOS-Monterey";
