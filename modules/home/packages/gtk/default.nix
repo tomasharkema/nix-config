@@ -23,12 +23,12 @@ in {
       #   size = 28;
       # };
 
-      catppuccin = {
-        enable = true;
+      # catppuccin = {
+      #   enable = true;
 
-        flavour = "mocha";
-        accent = "blue";
-      };
+      #   flavour = "mocha";
+      #   accent = "blue";
+      # };
 
       gtk = {
         enable = true;
