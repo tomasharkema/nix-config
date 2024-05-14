@@ -12,14 +12,7 @@ in {
     users.users = {
       "tomas".extraGroups = [ "audio" ];
       "root".extraGroups = [ "audio" ];
-      "spotifyd" = {
-        isSystemUser = true;
-        extraGroups = [ "audio" "inputblue" ];
-        group = "spotifyd";
-        uid = 1042;
-      };
     };
-    users.groups.spotifyd = { };
 
     services.spotifyd = {
       enable = true;
@@ -30,6 +23,8 @@ in {
           bitrate = 320;
           mpris = true;
           device_name = "${config.networking.hostName} SpotifyD";
+          # use_keyring = false;
+          dbus_type = "system";
         };
       };
       #   username_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field username"

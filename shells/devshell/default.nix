@@ -155,8 +155,12 @@ in inputs.devenv.lib.mkShell {
 
     devcontainer = {
       enable = true;
-      settings.customizations.vscode.extensions =
-        [ "Catppuccin.catppuccin-vsc-pack" "jnoortheen.nix-ide" "mkhl.direnv" ];
+      settings.customizations.vscode.extensions = [
+        "Catppuccin.catppuccin-vsc-pack"
+        "jnoortheen.nix-ide"
+        "mkhl.direnv"
+        "brettm12345.nixfmt-vscode"
+      ];
     };
     difftastic.enable = true;
 

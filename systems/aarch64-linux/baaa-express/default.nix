@@ -5,7 +5,10 @@ with lib; {
   # ];
 
   config = {
-    networking.hostName = "baaa-express";
+    networking = {
+      firewall.enable = false;
+      hostName = "baaa-express";
+    };
 
     fileSystems = {
       # "/boot" = {
@@ -24,10 +27,19 @@ with lib; {
       raspberrypi-eeprom
     ];
 
-    traits.low-power.enable = true;
+    traits = {
+      low-power.enable = true;
+      hardware = { bluetooth.enable = true; };
+    };
     # traits.slim.enable = true;
+
     gui."media-center".enable = true;
-    apps.spotifyd.enable = true;
+
+    apps = {
+      spotifyd.enable = true;
+      cec.enable = true;
+      unified-remote.enable = true;
+    };
 
     # system.stateVersion = "23.11";
 
@@ -45,60 +57,52 @@ with lib; {
     };
 
     boot = {
-      blacklistedKernelModules = [ "pcie_brcmstb" ];
 
       loader = {
-        grub.enable = false;
-        systemd-boot.enable = mkForce false;
-        generic-extlinux-compatible.enable = mkDefault false;
-
-        # start_x=1
-        raspberryPi = {
-          enable = true;
-          version = 3;
-          firmwareConfig = ''
-            force_turbo=1
-            gpu_mem=256
-            cma=320M
-          '';
-        };
+        grub.enable = lib.mkDefault false;
+        generic-extlinux-compatible.enable = lib.mkDefault true;
       };
 
       initrd.kernelModules = [ "vc4" "bcm2835_dma" "i2c_bcm2835" ];
-      initrd.availableKernelModules = mkForce [
-        "ext2"
-        "ext4"
-        "sd_mod"
-        "sr_mod"
-        "ehci_hcd"
-        "ohci_hcd"
-        "xhci_hcd"
-        "usbhid"
-        "hid_generic"
-        "hid_lenovo"
-        "hid_apple"
-        "hid_roccat"
-        "hid_logitech_hidpp"
-        "hid_logitech_dj"
-        "hid_microsoft"
-        "hid_cherry"
-        "hid_corsair"
-      ];
+      # initrd.availableKernelModules = mkForce [
+      #   "ext2"
+      #   "ext4"
+      #   "sd_mod"
+      #   "sr_mod"
+      #   "ehci_hcd"
+      #   "ohci_hcd"
+      #   "xhci_hcd"
+      #   "usbhid"
+      #   "hid_generic"
+      #   "hid_lenovo"
+      #   "hid_apple"
+      #   "hid_roccat"
+      #   "hid_logitech_hidpp"
+      #   "hid_logitech_dj"
+      #   "hid_microsoft"
+      #   "hid_cherry"
+      #   "hid_corsair"
+      # ];
       # initrd.kernelModules = ["dwc2" "g_serial"];
 
       # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
-      kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
+      # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
 
-      # kernelPackages = pkgs.linuxPackages_latest;
+      kernelPackages = pkgs.linuxPackages_latest;
 
       kernelParams = [ "console=ttyS1,115200n8" "cma=320M" ];
     };
 
     hardware = {
       enableRedistributableFirmware = true;
-      i2c.enable = true;
+      # i2c.enable = true;
 
+      deviceTree = {
+        filter = lib.mkDefault "*-rpi-3-b*.dtb";
+        enable = true;
+      };
     };
+
     # systemd.services.btattach = {
     #   before = ["bluetooth.service"];
     #   after = ["dev-ttyAMA0.device"];
