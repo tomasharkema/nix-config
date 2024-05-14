@@ -15,6 +15,12 @@ in {
     };
 
     services = {
+
+      dbus = {
+        enable = true;
+        packages = [ pkgs.shairport-sync pkgs.spotifyd pkgs.mpv ];
+      };
+
       shairport-sync = {
         enable = true;
         openFirewall = true;
@@ -24,6 +30,7 @@ in {
         # user = "media";
         # group = "media";
       };
+
       spotifyd = {
         enable = true;
         # use_mpris = false
@@ -31,10 +38,10 @@ in {
           global = {
             backend = "pulseaudio";
             bitrate = 320;
-            mpris = true;
+            # mpris = true;
             device_name = "${config.networking.hostName} SpotifyD";
             # use_keyring = false;
-            dbus_type = "system";
+            # dbus_type = "system";
           };
         };
         #   username_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field username"
@@ -47,6 +54,8 @@ in {
     #   #   OP_CONNECT_TOKEN = "${config.age.secrets.op.path}";
     #   # };
     #   # };
+
+    systemd.services.spotifyd = { environment = { SPOTIFYD_CLIENT_ID = ""; }; };
 
     networking.firewall = {
       allowedUDPPorts = [ 33677 ];
