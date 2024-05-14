@@ -17,11 +17,14 @@ with lib; {
           snapshot_preserve = "14d";
           snapshot_preserve_min = "2d";
 
+          target_preserve_min = "no";
+          target_preserve = "20d 10w 1m";
+
           raw_target_compress = "zstd";
           raw_target_split = "100M";
 
           transaction_syslog = "daemon";
-          lockfile = "/var/lock/btrbk.lock";
+          lockfile = "/run/btrbk.lock";
 
           ssh_identity = "${config.age.secrets.btrbk.path}";
           stream_buffer = "50M";
