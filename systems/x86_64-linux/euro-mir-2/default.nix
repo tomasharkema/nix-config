@@ -6,7 +6,7 @@ with lib; {
   ];
 
   config = {
-    installed = true;
+
     disks.btrfs = {
       enable = true;
       main = "/dev/nvme0n1";
