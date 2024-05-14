@@ -55,7 +55,11 @@ in {
     #   # };
     #   # };
 
-    systemd.services.spotifyd = { environment = { SPOTIFYD_CLIENT_ID = ""; }; };
+    systemd.services.spotifyd = {
+      environment = {
+        SPOTIFYD_CLIENT_ID = "be2bcefc4eeb43b8b13b4a0e05e572a4";
+      };
+    };
 
     networking.firewall = {
       allowedUDPPorts = [ 33677 ];
