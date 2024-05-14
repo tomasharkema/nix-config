@@ -47,7 +47,6 @@ in {
       wget
       btop
       htop
-      atop
       (inputs.self.packages."${pkgs.system}".installer-script.override {
         configurations = inputs.self.nixosConfigurations;
       })
