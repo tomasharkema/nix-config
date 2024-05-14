@@ -1,12 +1,6 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{ pkgs, lib, ... }: {
   config = {
-    programs.btop = {
-      enable = true;
-    };
+    programs.btop = { enable = true; };
 
     home.file = {
       # ".config/btop/themes" = {

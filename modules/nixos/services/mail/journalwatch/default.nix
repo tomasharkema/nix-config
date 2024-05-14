@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{ pkgs, config, ... }: {
   config = {
     # environment.systemPackages = [pkgs.mailutils];
 

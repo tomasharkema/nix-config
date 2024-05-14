@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
+{ pkgs, lib, config, ... }:
 with lib; {
   config = mkIf config.disks.btrfs.enable {
     age.secrets.btrbk = {
@@ -14,7 +9,7 @@ with lib; {
     };
 
     services.btrbk = {
-      extraPackages = with pkgs; [zstd mbuffer];
+      extraPackages = with pkgs; [ zstd mbuffer ];
       instances."${config.networking.hostName}-btrbk" = {
         onCalendar = "hourly";
 

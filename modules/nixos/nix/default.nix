@@ -41,16 +41,15 @@ with lib.custom; {
         trusted-users = users ++ [ "tomas" "root" ]; # "builder"];
         allowed-users = users ++ [ "tomas" "root" "builder" ];
         netrc-file = config.age.secrets.attic-netrc.path;
+        keep-outputs = true;
+        keep-derivations = true;
         # substituters =
         #   [cfg.default-substituter.url]
         #   ++ (mapAttrsToList (name: value: name) cfg.extra-substituters);
         # trusted-public-keys =
         #   [cfg.default-substituter.key]
         #   ++ (mapAttrsToList (name: value: value.key) cfg.extra-substituters);
-      } // (lib.optionalAttrs true {
-        keep-outputs = true;
-        keep-derivations = true;
-      });
+      };
 
       # gc = {
       #   automatic = true;

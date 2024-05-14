@@ -1,12 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, pkgs, lib, ... }:
 with lib;
-with lib.custom; let
-  cfg = config.netdata;
+with lib.custom;
+let cfg = config.netdata;
 in {
   options.netdata = {
     enable = mkBoolOpt true "SnowflakeOS GNOME configuration";
