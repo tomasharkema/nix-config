@@ -75,7 +75,7 @@ with lib; {
             leftbox-padding = -1;
             panel-anchors = ''{"0":"MIDDLE"}'';
             panel-lengths = ''{"0":100}'';
-            panel-sizes = ''{"0":36}'';
+            panel-sizes = ''{"0":48}'';
             status-icon-padding = -1;
             stockgs-keep-dash = false;
             stockgs-keep-top-panel = false;

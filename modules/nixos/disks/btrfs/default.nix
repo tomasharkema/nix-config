@@ -196,10 +196,7 @@ in with lib; {
     };
 
     environment.systemPackages = with pkgs; [
-      dfc
-      diskonaut
-      erdtree
-
+      btdu
       snapper
       snapper-gui
       tpm-luks

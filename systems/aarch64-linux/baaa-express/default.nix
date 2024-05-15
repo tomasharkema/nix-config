@@ -49,6 +49,8 @@ with lib; {
         enable = true;
         allowInterfaces = mkForce null;
       };
+      mopidy.enable = true;
+
     };
 
     # system.stateVersion = "23.11";
