@@ -18,8 +18,8 @@
     };
 
     catppuccin = {
-      url =
-        "github:tomasharkema/catppuccin-nix/6c3a26f0f5979b885d8c978cdb82ba9e71664d8f";
+      # url = "github:tomasharkema/catppuccin-nix";
+      url = "github:catppuccin/nix";
     };
 
     # nixos-wsl = {
@@ -237,12 +237,14 @@
         system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
       }];
 
-      # homes.modules = with inputs; [
-      #   catppuccin.homeManagerModules.catppuccin
-      # ];
+      # homes.modules = with inputs;
+      #   [
+      #     catppuccin.homeManagerModules.catppuccin
+
+      #   ];
 
       systems.modules.nixos = with inputs; [
-        # catppuccin.nixosModules.catppuccin
+        catppuccin.nixosModules.catppuccin
 
         nix-index-database.nixosModules.nix-index
 
@@ -263,14 +265,17 @@
         nix-gaming.nixosModules.platformOptimizations
 
         {
-          system.stateVersion = "23.11";
-          system.nixos.tags = [ "snowfall" (self.shortRev or "dirty") ];
-          system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
-          nix = {
-            registry.nixpkgs.flake = inputs.nixpkgs;
-            registry.home-manager.flake = inputs.home-manager;
-            # registry.unstable.flake = inputs.unstable;
-            registry.darwin.flake = inputs.darwin;
+          config = {
+            system.stateVersion = "23.11";
+            system.nixos.tags = [ "snowfall" (self.shortRev or "dirty") ];
+            system.configurationRevision =
+              lib.mkForce (self.shortRev or "dirty");
+            nix = {
+              registry.nixpkgs.flake = inputs.nixpkgs;
+              registry.home-manager.flake = inputs.home-manager;
+              # registry.unstable.flake = inputs.unstable;
+              registry.darwin.flake = inputs.darwin;
+            };
           };
         }
       ];
@@ -355,20 +360,20 @@
         installer-arm-img =
           self.nixosConfigurations.installer-arm-img.config.system.build.sdImage;
 
-        services = let
-          config = "pegasus";
-          tryHasAttr = path: value: attr:
-            let v = builtins.tryEval (lib.attrsets.hasAttrByPath path attr);
-            in builtins.trace "${builtins.toJSON path} ${
-              builtins.toJSON (builtins.tryEval (builtins.toJSON attr))
-            } ${builtins.toJSON v}" (v.success && v.value == value);
-          serviceNames = builtins.attrNames
-            self.nixosConfigurations."${config}".config.services;
-        in builtins.filter (n:
-          tryHasAttr [ n "enable" ] true
-          self.nixosConfigurations."${config}".config.services) serviceNames;
+        # services = let
+        #   config = "pegasus";
+        #   tryHasAttr = path: value: attr:
+        #     let v = builtins.tryEval (lib.attrsets.hasAttrByPath path attr);
+        #     in builtins.trace "${builtins.toJSON path} ${
+        #       builtins.toJSON (builtins.tryEval (builtins.toJSON attr))
+        #     } ${builtins.toJSON v}" (v.success && v.value == value);
+        #   serviceNames = builtins.attrNames
+        #     self.nixosConfigurations."${config}".config.services;
+        # in builtins.filter (n:
+        #   tryHasAttr [ n "enable" ] true
+        #   self.nixosConfigurations."${config}".config.services) serviceNames;
 
-        servicesJson = builtins.toJSON services;
+        # servicesJson = builtins.toJSON services;
 
         # lib.attrsets.filterAttrs (n: v: (builtins.hasAttr "enable" n) && n.enable) self.nixosConfigurations.pegasus.config.services;
       };
