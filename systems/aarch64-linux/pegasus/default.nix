@@ -38,11 +38,11 @@ with lib; {
 
     apps = {
       spotifyd.enable = true;
-      cec.enable = true;
+      # cec.enable = true;
       unified-remote.enable = true;
     };
 
-    netdata.enable = mkForce true;
+    netdata.enable = mkForce false;
 
     environment.systemPackages = with pkgs; [
       libraspberrypi
@@ -64,9 +64,11 @@ with lib; {
       #   #  "dwc2"
       #   "g_serial"
       # ];
-      kernelParams = lib.mkForce [ "console=ttyS0,115200n8" ];
+      # kernelParams = lib.mkForce [ "console=ttyS0,115200n8" ];
     };
+
     proxy-services = { enable = true; };
+
     hardware.enableRedistributableFirmware = true;
     # hardware.deviceTree.filter = mkForce "bcm2711-rpi-4-b.dtb";
     # systemd.services."getty@".enable = false;
@@ -99,7 +101,7 @@ with lib; {
 
       deviceTree = {
         enable = true;
-        filter = mkForce "*rpi-4-*.dtb";
+        # filter = mkForce "*rpi-4-*.dtb";
       };
     };
   };

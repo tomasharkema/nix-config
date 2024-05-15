@@ -75,6 +75,9 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        qdirstat
+        xdiskusage
+
         pwvucontrol
         xdiskusage
         libGL
