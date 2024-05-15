@@ -9,7 +9,7 @@ let
   #   variant = "mocha";
   # };
 in {
-  # imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
+  imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
 
   # disabledModules=["home-manager/tofi.nix"];
 
@@ -23,12 +23,12 @@ in {
       #   size = 28;
       # };
 
-      # catppuccin = {
-      #   enable = true;
+      catppuccin = {
+        enable = true;
 
-      #   flavour = "mocha";
-      #   accent = "blue";
-      # };
+        flavour = "mocha";
+        accent = "blue";
+      };
 
       gtk = {
         enable = true;
@@ -43,14 +43,15 @@ in {
         #   name = catppuccin_name;
         #   package = catppuccin;
         # };
-        # catppuccin = {
-        #   enable = true;
-        #   package = pkgs.catppuccin-gtk;
-        #   flavour = "mocha";
-        #   accent = "blue";
-        #   size = "compact";
-        #   tweaks = [ "black" ];
-        # };
+        catppuccin = {
+          enable = true;
+          # package = pkgs.catppuccin-gtk;
+          flavour = "mocha";
+          accent = "blue";
+          size = "compact";
+          tweaks = [ "black" ];
+          gnomeShellTheme = true;
+        };
 
         cursorTheme = mkForce {
           name = "macOS-Monterey";
