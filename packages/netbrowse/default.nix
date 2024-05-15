@@ -1,20 +1,31 @@
-{
-  rustPlatform,
-  fetchCrate,
-  xorg,
-  libGL,
-  makeWrapper,
-}:
-rustPlatform.buildRustPackage rec {
-  pname = "netbrowse";
-  version = "0.1.0";
+{ rustPlatform, fetchCrate, xorg, libGL, makeWrapper, makeDesktopItem, fetchurl
+, copyDesktopItems, }:
 
-  src = fetchCrate {
-    inherit pname version;
-    hash = "sha256-dA8oDeQSPDPXPAgX6jPLLPWXxje+1L80zC8SVaQ2WTs=";
+let
+  icon = fetchurl {
+    url =
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Gnome-preferences-system-network.svg/1920px-Gnome-preferences-system-network.svg.png";
+    hash = "sha256-Uvkq78H8k5p0E8dU37SknXzd4xb1nELNWMPUH90iLgM=";
+  };
+  desktopItem = makeDesktopItem {
+    desktopName = "Netbrowse";
+    name = "Netbrowse";
+    exec = "netbrowse";
+    icon = icon;
+    categories = [ "System" ];
   };
 
-  cargoSha256 = "sha256-FzKDKm3TJNelDRUL3BJp8UJnjrCb++g1osXOT6X55ho=";
+in rustPlatform.buildRustPackage rec {
+  pname = "netbrowse";
+  version = "0.1.1";
+  src = fetchCrate {
+    inherit pname version;
+    hash = "sha256-wUznGsKAZrd6Ut/XpCNIMS9XA0mS1ORVouIpD2nX1JE=";
+  };
+
+  cargoSha256 = "sha256-M7IK9++EY87cv8poa2qFc5iAvMYd2NmPrR8SfH+nqNk=";
+
+  nativeBuildInput = [ copyDesktopItems ];
 
   buildInputs = [
     xorg.libxcb
@@ -25,10 +36,9 @@ rustPlatform.buildRustPackage rec {
     libGL
     makeWrapper
   ];
+  desktopItems = [ desktopItem ];
 
   postInstall = ''
-    mkdir -p $out/share/applications
-    cp ${./netbrowse.desktop} $out/share/applications/netbrowse.desktop
     wrapProgram $out/bin/netbrowse --prefix LD_LIBRARY_PATH : "${xorg.libX11.out}/lib:${xorg.libXcursor.out}/lib:${xorg.libXrandr.out}/lib:${xorg.libXi.out}/lib:${libGL}/lib"
   '';
 }

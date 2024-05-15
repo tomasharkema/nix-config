@@ -1,9 +1,4 @@
-{
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
+{ pkgs, inputs, lib, ... }:
 with lib; {
   imports = with inputs; [
     "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
@@ -12,21 +7,18 @@ with lib; {
 
   config = {
     # nixpkgs.crossSystem.system = "aarch64-linux";
-    installed = true;
     networking = {
       wireless.enable = mkForce false;
       hostName = "euro-mir-vm";
     };
 
-    nix.buildMachines = [
-      {
-        hostName = "blue-fire";
-        systems = ["aarch64-linux" "x86_64-linux"];
-        maxJobs = 4;
-        supportedFeatures = ["kvm" "benchmark" "big-parallel"];
-        speedFactor = 100;
-      }
-    ];
+    nix.buildMachines = [{
+      hostName = "blue-fire";
+      systems = [ "aarch64-linux" "x86_64-linux" ];
+      maxJobs = 4;
+      supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+      speedFactor = 100;
+    }];
 
     users.mutableUsers = true;
 
@@ -48,7 +40,7 @@ with lib; {
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
       };
-      kernelModules = ["virtio_gpu"];
+      kernelModules = [ "virtio_gpu" ];
     };
 
     virtualisation.rosetta.enable = true;
@@ -61,14 +53,12 @@ with lib; {
     fileSystems."/boot" = {
       #   device = "/dev/disk/by-uuid/A6D4-8A1F";
       #   fsType = "vfat";
-      options = ["fmask=0022" "dmask=0022"];
+      options = [ "fmask=0022" "dmask=0022" ];
     };
 
     gui = {
       enable = true;
-      desktop = {
-        enable = true;
-      };
+      desktop = { enable = true; };
       quiet-boot.enable = true;
       gnome.enable = true;
     };

@@ -10,7 +10,7 @@ in {
     # nix.extraOptions = "experimental-features = nix-command flakes c";
     # isbinaryCaches
 
-    nix = { package = pkgs.nixVersions.nix_2_19; } // import ./config.nix;
+    nix = { package = pkgs.nixVersions.nix_2_20; } // import ./config.nix;
 
     users = {
       users.nixos = { uid = 2000; };
