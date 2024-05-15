@@ -7,25 +7,12 @@ with lib;
 #     });
 # in
 {
-  options = {
-    installed = mkEnableOption "installed";
-
-    #   variables = lib.mkOption {
-    #     type = lib.types.attrs;
-    #     default = {
-    #       # theme = theme;
-    #     };
-    #   };
-  };
 
   config = with lib; {
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
 
-    # nix.package = pkgs.nixVersions.nix_2_19; #Unstable;
-
-    system.nixos.tags =
-      if config.installed then [ "installed" ] else [ "notinstalled" ];
+    # nix.package = pkgs.nixVersions.nix_2_20; #Unstable;
 
     # Select internationalisation properties.
     i18n = {
@@ -121,7 +108,7 @@ with lib;
       plex-mpv-shim
       # rtop
       ipcalc
-      fancy-motd
+      # fancy-motd
       kexec-tools
       # dry
       # pkgs.deepin.udisks2-qt5
@@ -168,7 +155,6 @@ with lib;
       nix-top
     ]) ++ (with pkgs.custom; [
       menu
-      netbrowse
       podman-tui
       pvzstd
       ssm
@@ -201,6 +187,19 @@ with lib;
         enable = true;
         wants = [ "multi-user.target" "network.target" ];
         after = [ "multi-user.target" "network.target" ];
+      };
+
+      services = {
+        "numlockx" = {
+
+          wants = [ "multi-user.target" "network.target" ];
+          after = [ "multi-user.target" "network.target" ];
+
+          script = ''
+            ${pkgs.numlockx}/bin/numlockx on
+          '';
+          serviceConfig = { Type = "oneshot"; };
+        };
       };
     };
 
@@ -344,7 +343,7 @@ with lib;
     };
 
     programs = {
-      darling.enable = pkgs.stdenv.isx86_64;
+      # darling.enable = pkgs.stdenv.isx86_64;
       flashrom.enable = true;
       rust-motd = {
         enable = true;

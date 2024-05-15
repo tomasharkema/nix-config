@@ -21,7 +21,7 @@ with lib; {
             monospace-font-name = "JetBrainsMono Nerd Font Mono 11";
             # font-name = "Inter 11";
             enable-hot-corners = false;
-            icon-theme = "Adwaita";
+            # icon-theme = "Adwaita";
           };
 
           "org/gnome/shell/extensions/user-theme" = {
