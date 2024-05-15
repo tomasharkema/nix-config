@@ -155,7 +155,6 @@ with lib;
       nix-top
     ]) ++ (with pkgs.custom; [
       menu
-      netbrowse
       podman-tui
       pvzstd
       ssm

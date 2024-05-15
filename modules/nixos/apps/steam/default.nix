@@ -56,6 +56,8 @@ in {
       steamcmd
       steam-run
       adwsteamgtk
+      steam-tui
+
     ];
 
     # services.udev.extraRules = ''

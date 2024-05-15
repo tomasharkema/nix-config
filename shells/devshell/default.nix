@@ -141,10 +141,10 @@ in inputs.devenv.lib.mkShell {
   modules = [{
     # starship.enable = true;
 
-    languages.nix = {
-      enable = true;
-      lsp.package = nixd;
-    };
+    # languages.nix = {
+    #   enable = true;
+    #   lsp.package = nixd;
+    # };
     pre-commit.hooks = {
       nixfmt.enable = true;
       shellcheck.enable = true;

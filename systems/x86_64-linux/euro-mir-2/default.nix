@@ -64,7 +64,7 @@ with lib; {
       enable = true;
       #   bridgeInterfaces = ["wlp59s0"];
     };
-
+    virtualisation.waydroid.enable = true;
     traits = {
       hardware = {
         tpm.enable = true;
