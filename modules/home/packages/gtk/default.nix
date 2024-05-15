@@ -45,11 +45,11 @@ in {
         # };
         catppuccin = {
           enable = true;
-          package = pkgs.catppuccin-gtk;
           flavour = "mocha";
           accent = "blue";
           size = "compact";
           tweaks = [ "black" ];
+          gnomeShellTheme = true;
         };
 
         cursorTheme = mkForce {

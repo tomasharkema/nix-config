@@ -1,9 +1,4 @@
-{
-  lib,
-  inputs,
-  pkgs,
-  ...
-}:
+{ lib, inputs, pkgs, ... }:
 with lib; {
   imports = with inputs; [
     nixos-hardware.nixosModules.common-cpu-intel
@@ -13,7 +8,6 @@ with lib; {
   ];
 
   config = {
-    installed = true;
     # gui = {
     #   enable = true;
     #   desktop = {
@@ -52,13 +46,11 @@ with lib; {
     # resilio.root = "/opt/media/resilio";
 
     boot = {
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      binfmt.emulatedSystems = [ "aarch64-linux" ];
       loader.systemd-boot.enable = true;
     };
 
-    services.kmscon = {
-      enable = mkForce false;
-    };
+    services.kmscon = { enable = mkForce false; };
 
     networking = {
       hostName = "arthur";
@@ -74,7 +66,7 @@ with lib; {
 
     headless.hypervisor = {
       enable = true;
-      bridgeInterfaces = ["eno1"];
+      bridgeInterfaces = [ "eno1" ];
     };
   };
 }

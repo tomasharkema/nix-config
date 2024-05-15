@@ -141,10 +141,10 @@ in inputs.devenv.lib.mkShell {
   modules = [{
     # starship.enable = true;
 
-    languages.nix = {
-      enable = true;
-      lsp.package = nixd;
-    };
+    # languages.nix = {
+    #   enable = true;
+    #   lsp.package = nixd;
+    # };
     pre-commit.hooks = {
       nixfmt.enable = true;
       shellcheck.enable = true;
@@ -155,15 +155,19 @@ in inputs.devenv.lib.mkShell {
 
     devcontainer = {
       enable = true;
-      settings.customizations.vscode.extensions =
-        [ "Catppuccin.catppuccin-vsc-pack" "jnoortheen.nix-ide" "mkhl.direnv" ];
+      settings.customizations.vscode.extensions = [
+        "Catppuccin.catppuccin-vsc-pack"
+        "jnoortheen.nix-ide"
+        "mkhl.direnv"
+        "brettm12345.nixfmt-vscode"
+      ];
     };
     difftastic.enable = true;
 
     # dotenv.enable = true;
 
     packages = [
-      nixVersions.nix_2_19 # Unstable
+      nixVersions.nix_2_20 # Unstable
       upload-all-store
       # cntr
       update-pkgs

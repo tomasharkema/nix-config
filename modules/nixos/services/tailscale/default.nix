@@ -54,7 +54,7 @@ in {
         nssmdns = true;
         publish.workstation = true;
         openFirewall = true;
-        reflector = true;
+        # reflector = true;
       };
 
       zerotierone = {

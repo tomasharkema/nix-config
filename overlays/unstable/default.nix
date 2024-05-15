@@ -1,9 +1,5 @@
-{
-  channels,
-  disko,
-  self,
-  ...
-}: final: prev: rec {
+{ channels, disko, self, ... }:
+final: prev: rec {
   # runitor = channels.unstable.runitor;
   # vscode = channels.unstable.vscode;
   # # android-tools = channels.unstable.android-tools;
@@ -72,12 +68,6 @@
   # xpipe = channels.unstable.xpipe;
 
   # trayscale = channels.unstable.trayscale;
-
-  # catppuccin-gtk =
-  #   channels
-  #   .unstable
-  #   .catppuccin-gtk;
-  catppuccin-gtk = self.packages."${prev.system}"."catppuccin-gtk-7.4.0";
 
   systembus-notify = self.packages."${prev.system}".systembus-notify;
 

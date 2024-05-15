@@ -7,7 +7,7 @@ with lib; {
         enable = true;
         extensions = with pkgs;
           [
-            gh-dash
+            # gh-dash
             # gh-token
           ];
         gitCredentialHelper.enable = true;
@@ -20,9 +20,9 @@ with lib; {
 
       lazygit.enable = true;
 
-      gh-dash.enable = true;
+      # gh-dash.enable = true;
 
-      gitui.enable = true;
+      # gitui.enable = true;
 
       git = {
         enable = true;
