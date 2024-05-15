@@ -8,7 +8,12 @@ with lib; {
     ];
 
   config = {
-    networking = { hostName = "pegasus"; };
+    networking = {
+      hostName = "pegasus";
+      firewall.enable = false;
+      networkmanager.enable = true;
+    };
+
     virtualisation.vmVariant = {
       virtualisation = {
         diskSize = 50 * 1024;
@@ -47,9 +52,8 @@ with lib; {
     ];
 
     boot = {
-      # kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
-
-      kernelPackages = mkForce pkgs.linuxPackages_latest;
+      kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
+      # kernelPackages = mkForce pkgs.linuxPackages_latest;
 
       # initrd.availableKernelModules = [
       #   "pcie-brcmstb"
@@ -60,7 +64,7 @@ with lib; {
       #   #  "dwc2"
       #   "g_serial"
       # ];
-      # kernelParams = lib.mkForce ["console=ttyS0,115200n8" "console=tty0"];
+      kernelParams = lib.mkForce [ "console=ttyS0,115200n8" ];
     };
     proxy-services = { enable = true; };
     hardware.enableRedistributableFirmware = true;
@@ -68,7 +72,7 @@ with lib; {
     # systemd.services."getty@".enable = false;
 
     hardware = {
-      # i2c.enable = true;
+      i2c.enable = true;
 
       # bluetooth.package = pkgs.bluez;
 
