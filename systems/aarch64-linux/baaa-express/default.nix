@@ -8,6 +8,7 @@ with lib; {
     networking = {
       firewall.enable = false;
       hostName = "baaa-express";
+      networkmanager.enable = true;
     };
 
     fileSystems = {
@@ -42,6 +43,8 @@ with lib; {
     };
 
     services = {
+      cage.enable = false;
+
       avahi = {
         enable = true;
         allowInterfaces = mkForce null;
@@ -70,7 +73,8 @@ with lib; {
         generic-extlinux-compatible.enable = lib.mkDefault true;
       };
 
-      initrd.kernelModules = [ "vc4" "bcm2835_dma" "i2c_bcm2835" ];
+      initrd.kernelModules =
+        [ "vc4" "bcm2835_dma" "i2c_bcm2835" "dwc2" "g_serial" ];
       # initrd.availableKernelModules = mkForce [
       #   "ext2"
       #   "ext4"
@@ -90,23 +94,32 @@ with lib; {
       #   "hid_cherry"
       #   "hid_corsair"
       # ];
-      # initrd.kernelModules = ["dwc2" "g_serial"];
 
       # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
-      # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
-
       kernelPackages = pkgs.linuxPackages_latest;
 
-      kernelParams = [ "console=ttyS1,115200n8" "cma=320M" ];
+      kernelParams = [
+        # "console=ttyS0,115200n8"
+        "console=ttyS1,115200n8"
+        "cma=320M"
+        "otg_mode=1"
+      ];
     };
 
     hardware = {
       enableRedistributableFirmware = true;
-      # i2c.enable = true;
+      i2c.enable = true;
 
-      deviceTree = {
-        filter = lib.mkDefault "*-rpi-3-b*.dtb";
+      deviceTree = let drMode = "otg";
+      in {
+        filter = lib.mkDefault "*rpi-3-b.dtb";
         enable = true;
+
+        overlays = [{
+          name = "dwc2";
+          dtboFile =
+            "${pkgs.raspberrypifw}/share/raspberrypi/boot/overlays/dwc2.dtbo";
+        }];
       };
     };
 
