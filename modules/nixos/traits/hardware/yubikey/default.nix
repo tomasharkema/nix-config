@@ -24,7 +24,7 @@ with lib; {
     };
 
     services = {
-      # pcscd.enable = true;
+      pcscd.enable = true;
       yubikey-agent.enable = true;
       udev.packages = with pkgs; [
         libfido2
