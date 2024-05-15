@@ -12,28 +12,43 @@ in {
     users.users = {
       "tomas".extraGroups = [ "audio" ];
       "root".extraGroups = [ "audio" ];
-      "spotifyd" = {
-        isSystemUser = true;
-        extraGroups = [ "audio" "inputblue" ];
-        group = "spotifyd";
-        uid = 1042;
-      };
     };
-    users.groups.spotifyd = { };
 
-    services.spotifyd = {
-      enable = true;
-      # use_mpris = false
-      settings = {
-        global = {
-          backend = "pulseaudio";
-          bitrate = 320;
-          mpris = true;
-          device_name = "${config.networking.hostName} SpotifyD";
-        };
+    services = {
+
+      dbus = {
+        enable = true;
+        packages = [ pkgs.shairport-sync pkgs.spotifyd pkgs.mpv ];
       };
-      #   username_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field username"
-      #   password_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field password"
+
+      shairport-sync = {
+        enable = true;
+        openFirewall = true;
+
+        arguments = ''
+          -v -a "%H Shairport" --statistics -o pipe
+        '';
+
+        # user = "media";
+        # group = "media";
+      };
+
+      spotifyd = {
+        enable = true;
+        # use_mpris = false
+        settings = {
+          global = {
+            backend = "pulseaudio";
+            bitrate = 320;
+            mpris = true;
+            device_name = "${config.networking.hostName} SpotifyD";
+            use_keyring = true;
+            dbus_type = "system";
+          };
+        };
+        #   username_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field username"
+        #   password_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field password"
+      };
     };
     #   # systemd.services.spotifyd = {
     #   # environment = {
@@ -41,6 +56,18 @@ in {
     #   #   OP_CONNECT_TOKEN = "${config.age.secrets.op.path}";
     #   # };
     #   # };
+
+    systemd.services = {
+      "nqptp" = {
+        description = "nqptp";
+        enable = true;
+        serviceConfig = {
+          ExecStart = "${pkgs.nqptp}/bin/nqptp";
+          #Restart = "always";
+        };
+        wantedBy = [ "default.target" ];
+      };
+    };
 
     networking.firewall = {
       allowedUDPPorts = [ 33677 ];

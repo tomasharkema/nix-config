@@ -10,7 +10,6 @@ with lib; {
   config = {
     # btrfs balance -dconvert=raid0 -mconvert=raid1 /home
 
-    installed = false;
     # programs.gamemode.enable = true;
     environment.systemPackages = with pkgs; [
       ntfs2btrfs

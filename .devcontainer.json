@@ -4,7 +4,8 @@
       "extensions": [
         "Catppuccin.catppuccin-vsc-pack",
         "jnoortheen.nix-ide",
-        "mkhl.direnv"
+        "mkhl.direnv",
+        "brettm12345.nixfmt-vscode"
       ]
     }
   },

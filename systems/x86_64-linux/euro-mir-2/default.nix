@@ -1,10 +1,4 @@
-{
-  pkgs,
-  inputs,
-  config,
-  lib,
-  ...
-}:
+{ pkgs, inputs, config, lib, ... }:
 with lib; {
   imports = with inputs; [
     nixos-hardware.nixosModules.dell-xps-15-9570-nvidia
@@ -12,7 +6,7 @@ with lib; {
   ];
 
   config = {
-    installed = true;
+
     disks.btrfs = {
       enable = true;
       main = "/dev/nvme0n1";
@@ -30,9 +24,7 @@ with lib; {
 
     gui = {
       enable = true;
-      desktop = {
-        enable = true;
-      };
+      desktop = { enable = true; };
       gnome.enable = true;
       gamemode.enable = true;
       quiet-boot.enable = true;
@@ -72,7 +64,7 @@ with lib; {
       enable = true;
       #   bridgeInterfaces = ["wlp59s0"];
     };
-
+    virtualisation.waydroid.enable = true;
     traits = {
       hardware = {
         tpm.enable = true;
@@ -80,6 +72,7 @@ with lib; {
         laptop.enable = true;
         nvidia.enable = true;
         # remote-unlock.enable = true;
+        bluetooth.enable = true;
       };
     };
 
@@ -98,7 +91,7 @@ with lib; {
           spec = "UUID=3e30181c-9df4-4412-a1ee-cb97819f218c";
           hashTableSizeMB = 4096;
           verbosity = "crit";
-          extraOptions = ["--loadavg-target" "2.0"];
+          extraOptions = [ "--loadavg-target" "2.0" ];
         };
       };
       # synergy.server = {
@@ -107,7 +100,7 @@ with lib; {
 
       avahi = {
         enable = true;
-        allowInterfaces = ["wlp59s0"];
+        allowInterfaces = [ "wlp59s0" ];
         reflector = mkForce false;
       };
 
@@ -123,13 +116,13 @@ with lib; {
     };
 
     boot = {
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      binfmt.emulatedSystems = [ "aarch64-linux" ];
       extraModprobeConfig = ''
         options nvidia NVreg_DynamicPowerManagement=0x02
         options nvidia NVreg_PreserveVideoMemoryAllocations=1
       '';
-      supportedFilesystems = ["ntfs"];
-      kernelModules = ["vhci-hcd" "usbip_host" "usbip_core"];
+      supportedFilesystems = [ "ntfs" ];
+      kernelModules = [ "vhci-hcd" "usbip_host" "usbip_core" ];
       tmp = {
         useTmpfs = false;
         cleanOnBoot = true;

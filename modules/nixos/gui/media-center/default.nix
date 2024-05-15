@@ -63,9 +63,22 @@ in {
     hardware = {
       opengl = {
         enable = true;
-        extraPackages = with pkgs; [ libva ];
+        extraPackages = with pkgs; [ libva vaapiVdpau libvdpau-va-gl ];
+        driSupport = true;
       };
+
     };
+
+    environment.systemPackages = with pkgs; [
+      play-with-mpv
+      open-in-mpv
+      plex-mpv-shim
+      mpv
+      mpvc
+      celluloid
+      pwvucontrol
+
+    ];
 
     # services.xserver.desktopManager.kodi.package = pkgs.kodi.withPackages (pkgs:
     #   with pkgs; [
@@ -102,18 +115,6 @@ in {
     #     enable = true;
     #   };
     # };
-
-    services.shairport-sync = {
-      enable = true;
-      openFirewall = true;
-
-      arguments = "-v";
-
-      # user = "media";
-      # group = "media";
-    };
-
-    users.extraUsers.shairport.extraGroups = [ "data" "video" "audio" "input" ];
 
     users.users.media = {
       isNormalUser = true;
