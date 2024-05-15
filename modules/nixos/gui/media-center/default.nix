@@ -105,7 +105,7 @@ in {
       user = "media";
       program = "${lib.getExe pkgs.plex-media-player} --fullscreen --tv";
 
-      enable = true;
+      enable = mkDefault true;
       extraArguments = [ "-d" "-m" "last" ];
     };
 

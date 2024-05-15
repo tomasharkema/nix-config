@@ -95,7 +95,7 @@ in {
     # '';
 
     networking = {
-      networkmanager.enable = false;
+      networkmanager.enable = true;
       # useDHCP = false;
       # interfaces.wlan0 = {
       #   useDHCP = true;
@@ -105,11 +105,11 @@ in {
       # };
 
       # Enabling WIFI
-      wireless = {
-        enable = true;
-        #   interfaces = ["wlan0"];
-        #   networks."Have a good day".pskRaw = "0fcc36c0dd587f3d85028f427c872fead0b6bb7623099fb4678ed958f2150e23";
-      };
+      # wireless = {
+      # enable = true;
+      #   interfaces = ["wlan0"];
+      #   networks."Have a good day".pskRaw = "0fcc36c0dd587f3d85028f427c872fead0b6bb7623099fb4678ed958f2150e23";
+      # };
     };
   };
 }
