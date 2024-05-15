@@ -18,7 +18,7 @@ with lib; {
       quiet-boot.enable = true;
     };
 
-    apps.spotifyd.enable = true;
+    # apps.spotifyd.enable = true;
 
     environment.systemPackages = with pkgs; [ intel-gpu-tools ];
 
@@ -27,9 +27,9 @@ with lib; {
       main = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01";
     };
 
-    security = {
-      ipa = { ifpAllowedUids = mkForce [ "root" "tomas" "media" ]; };
-    };
+    # security = {
+    #   ipa = { ifpAllowedUids = mkForce [ "root" "tomas" "media" ]; };
+    # };
 
     netdata.enable = mkForce true;
 
@@ -53,7 +53,7 @@ with lib; {
       firewall.enable = true;
     };
 
-    programs = { atop.enable = mkForce false; };
+    # programs = { atop.enable = mkForce false; };
 
     services = {
       # podman.enable = true;
@@ -63,7 +63,7 @@ with lib; {
       };
       avahi = {
         enable = true;
-        allowInterfaces = [ "wlo1" ];
+        # allowInterfaces = [ "wlo1" ];
         reflector = mkForce false;
       };
     };

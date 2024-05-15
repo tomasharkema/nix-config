@@ -43,25 +43,25 @@ with lib; {
           # "picture-uri-dark" = "/run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
           # };
 
-          "org/gnome/shell/extensions/dash-to-dock" = {
-            always-center-icons = false;
-            apply-custom-theme = false;
-            background-opacity = 0.8;
-            custom-theme-shrink = true;
-            dash-max-icon-size = 48;
-            dock-fixed = true;
-            dock-position = "LEFT";
-            extend-height = true;
-            height-fraction = 0.9;
-            hide-tooltip = false;
-            intellihide-mode = "FOCUS_APPLICATION_WINDOWS";
-            preferred-monitor = -2;
-            preferred-monitor-by-connector = "eDP-1";
-            preview-size-scale = 0.0;
-            show-apps-at-top = true;
-            show-mounts-network = true;
-            show-trash = false;
-          };
+          # "org/gnome/shell/extensions/dash-to-dock" = {
+          #   always-center-icons = false;
+          #   apply-custom-theme = false;
+          #   background-opacity = 0.8;
+          #   custom-theme-shrink = true;
+          #   dash-max-icon-size = 48;
+          #   dock-fixed = true;
+          #   dock-position = "LEFT";
+          #   extend-height = true;
+          #   height-fraction = 0.9;
+          #   hide-tooltip = false;
+          #   intellihide-mode = "FOCUS_APPLICATION_WINDOWS";
+          #   preferred-monitor = -2;
+          #   preferred-monitor-by-connector = "eDP-1";
+          #   preview-size-scale = 0.0;
+          #   show-apps-at-top = true;
+          #   show-mounts-network = true;
+          #   show-trash = false;
+          # };
 
           "org/gnome/shell/extensions/dash-to-panel" = {
             animate-appicon-hover-animation-extent =
@@ -75,13 +75,16 @@ with lib; {
             leftbox-padding = -1;
             panel-anchors = ''{"0":"MIDDLE"}'';
             panel-lengths = ''{"0":100}'';
-            panel-sizes = ''{"0":48}'';
-            primary-monitor = 0;
+            panel-sizes = ''{"0":36}'';
             status-icon-padding = -1;
             stockgs-keep-dash = false;
             stockgs-keep-top-panel = false;
-            tray-padding = -1;
+            tray-padding = 4;
             window-preview-title-position = "TOP";
+            panel-element-positions = ''
+              {"0":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":false,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}
+            '';
+
           };
           # "org/gnome/desktop/notifications" = {
           #   application-children = ["steam" "org-gnome-console" "gnome-power-panel" "firefox"];
@@ -90,21 +93,30 @@ with lib; {
           "org/gnome/desktop/peripherals/keyboard" = { numlock-state = true; };
           # "org/gnome/desktop/screensaver" = {lock-enabled = false;};
 
-          "org/gnome/shell/extensions/Logo-menu" = {
-            menu-button-icon-image = 23;
-            menu-button-icon-size = 20;
-            menu-button-terminal = "kitty";
-            show-activities-button = true;
-            show-power-options = true;
-            symbolic-icon = true;
-            use-custom-icon = false;
-          };
+          # "org/gnome/shell/extensions/Logo-menu" = {
+          #   menu-button-icon-image = 23;
+          #   menu-button-icon-size = 20;
+          #   menu-button-terminal = "kitty";
+          #   show-activities-button = true;
+          #   show-power-options = true;
+          #   symbolic-icon = true;
+          #   use-custom-icon = false;
+          # };
           "org/gnome/Console" = {
             custom-font = "JetBrainsMono Nerd Font Mono 11";
           };
           # "org/gnome/shell/extensions/display-brightness-ddcutil" = {
           #   ddcutil-binary-path = "${lib.getExe pkgs.ddcutil}";
           # };
+
+          "org/gnome/shell/extensions/arcmenu" = {
+            button-padding = -1;
+            custom-menu-button-icon-size = 28.0;
+            distro-icon = 22;
+            menu-button-appearance = "Icon";
+            menu-button-icon = "Distro_Icon";
+          };
+
           "org/gnome/shell" = {
             disable-user-extensions = false;
             disabled-extensions = [
@@ -112,6 +124,7 @@ with lib; {
               "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
             ];
             enabled-extensions = [
+              "arcmenu@arcmenu.com"
               "gmind@tungstnballon.gitlab.com"
               "app-hider@lynith.dev"
               "blur-my-shell@aunetx"
@@ -142,8 +155,8 @@ with lib; {
               "monitor-brightness-volume@ailin.nemui"
               "systemd-status@ne0sight.github.io"
               "search-light@icedman.github.com"
-              "hue-lights@chlumskyvaclav.gmail.com"
-              "logomenu@aryan_k"
+              # "hue-lights@chlumskyvaclav.gmail.com"
+              # "logomenu@aryan_k"
               "just-perfection-desktop@just-perfection"
               "todo.txt@bart.libert.gmail.com"
               "pip-on-top@rafostar.github.com"
