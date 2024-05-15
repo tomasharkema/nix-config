@@ -38,7 +38,7 @@ search_docs() {
   nix-search "$INPUT"
 }
 
-CHOICE=$(gum choose "$RUN_REPL" "$RUN_UPDATER" "$ATTACH_SESSION" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$SEARCH_DOCS" "$CLEAR_CACHE" "$OPEN_SHELL" "$CLEAN_RAM" "$EXIT")
+CHOICE=$(gum choose "$RUN_REPL" "$RUN_UPDATER" "$ATTACH_SESSION" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$SEARCH_DOCS" "$CLEAR_CACHE" "$OPEN_SHELL" "$CLEAN_RAM" "$EXIT" --height 20)
 
 case $CHOICE in
 "$RUN_UPDATER")
@@ -75,7 +75,7 @@ case $CHOICE in
 "$RUN_REPL")
   repl
   ;;
-  
+
 "$EXIT")
   echo "Exitting..."
   exit 0
