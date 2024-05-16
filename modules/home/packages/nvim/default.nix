@@ -82,7 +82,7 @@ in {
         # ansible-vim
         vim-nix
         coc-nvim
-        suda-vim
+        # suda-vim
       ];
 
       options = {
@@ -177,8 +177,8 @@ in {
       globals = {
         # coc_filetype_map = { "yaml.ansible" = "ansible"; };
         # coc_global_extensions = [ "coc-explorer" "@yaegassy/coc-ansible" ];
-        suda_smart_edit = 1;
-        "suda#nopass" = 1;
+        # suda_smart_edit = 1;
+        # "suda#nopass" = 1;
       };
       extraConfigLua = ''
         vim.api.nvim_set_hl(0, "MatchParen", { bg="#4c566a", fg="#88c0d0" })
