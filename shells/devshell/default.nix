@@ -133,7 +133,7 @@ let
     NPATHS=50
     NPROCS=4
 
-    exec nix path-info --all | xargs -n$NPATHS -P$NPROCS attic push tomas
+    exec nix path-info --all | xargs -n$NPATHS -P$NPROCS attic push tomas -j 1
   '';
 in inputs.devenv.lib.mkShell {
   inherit inputs pkgs;
