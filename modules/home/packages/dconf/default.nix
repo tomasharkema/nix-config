@@ -79,7 +79,7 @@ with lib; {
             status-icon-padding = -1;
             stockgs-keep-dash = false;
             stockgs-keep-top-panel = false;
-            tray-padding = 4;
+            tray-padding = 5;
             window-preview-title-position = "TOP";
             panel-element-positions = ''
               {"0":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":false,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}
