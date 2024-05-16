@@ -64,7 +64,11 @@ with lib; {
       #   #  "dwc2"
       #   "g_serial"
       # ];
-      # kernelParams = lib.mkForce [ "console=ttyS0,115200n8" ];
+      kernelParams = mkForce [
+        # "console=ttyS0,115200n8"
+        "console=ttyS1,115200n8"
+        "console=tty0"
+      ];
     };
 
     proxy-services = { enable = true; };

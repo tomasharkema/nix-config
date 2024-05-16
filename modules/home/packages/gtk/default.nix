@@ -35,8 +35,8 @@ in {
 
         font = {
           package = pkgs.inter;
-          name = "Inter Regular";
-          size = 11;
+          name = "Inter Display Light";
+          size = 12;
         };
 
         # theme = lib.mkForce {
@@ -55,7 +55,7 @@ in {
         cursorTheme = mkForce {
           name = "macOS-Monterey";
           package = pkgs.apple-cursor;
-          size = 28;
+          # size = 28;
         };
 
         # theme = {
