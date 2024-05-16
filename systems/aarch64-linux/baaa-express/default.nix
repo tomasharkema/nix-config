@@ -43,14 +43,11 @@ with lib; {
     };
 
     services = {
-      cage.enable = false;
-
       avahi = {
         enable = true;
         allowInterfaces = mkForce null;
       };
       mopidy.enable = true;
-
     };
 
     # system.stateVersion = "23.11";
@@ -100,29 +97,77 @@ with lib; {
       # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
       kernelPackages = pkgs.linuxPackages_latest;
 
-      kernelParams = [
+      kernelParams = mkForce [
         # "console=ttyS0,115200n8"
         "console=ttyS1,115200n8"
+        "console=tty0"
         "cma=320M"
         "otg_mode=1"
       ];
+    };
+
+    services.pipewire = {
+
+      wireplumber = {
+        enable = true;
+        extraConfig = {
+          "monitor.bluez.properties" = {
+            "bluez5.roles" = [
+              "a2dp_sink"
+              "a2dp_source"
+              "bap_sink"
+              "bap_source"
+              "hsp_hs"
+              "hsp_ag"
+              "hfp_hf"
+              "hfp_ag"
+            ];
+            "bluez5.codecs" = [ "sbc" "sbc_xq" "aac" ];
+            "bluez5.enable-sbc-xq" = true;
+            "bluez5.hfphsp-backend" = "native";
+          };
+        };
+
+      };
+      systemWide = true;
+
+      extraConfig.pipewire-pulse."91-bluetooth" = {
+        context.modules = [
+          {
+            name = "module-bluetooth-discover";
+            args = { };
+          }
+          {
+            name = "module-bluetooth-policy";
+            args = { };
+          }
+        ];
+      };
     };
 
     hardware = {
       enableRedistributableFirmware = true;
       i2c.enable = true;
 
-      deviceTree = let drMode = "otg";
-      in {
-        filter = lib.mkDefault "*rpi-3-b.dtb";
-        enable = true;
-
-        overlays = [{
-          name = "dwc2";
-          dtboFile =
-            "${pkgs.raspberrypifw}/share/raspberrypi/boot/overlays/dwc2.dtbo";
-        }];
+      bluetooth.settings = {
+        General = {
+          Class = "0x200414";
+          DiscoverableTimeout = 0;
+        };
+        Policy = { AutoEnable = true; };
       };
+
+      # deviceTree = let drMode = "otg";
+      # in {
+      #   filter = lib.mkDefault "*rpi-3-b.dtb";
+      #   enable = true;
+
+      #   overlays = [{
+      #     name = "dwc2";
+      #     dtboFile =
+      #       "${pkgs.raspberrypifw}/share/raspberrypi/boot/overlays/dwc2.dtbo";
+      #   }];
+      # };
     };
 
     # systemd.services.btattach = {

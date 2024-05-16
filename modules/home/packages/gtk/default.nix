@@ -55,7 +55,7 @@ in {
         cursorTheme = mkForce {
           name = "macOS-Monterey";
           package = pkgs.apple-cursor;
-          #   size = 28;
+          size = 28;
         };
 
         # theme = {
