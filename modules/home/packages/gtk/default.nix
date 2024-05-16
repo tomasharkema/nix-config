@@ -8,6 +8,7 @@ let
   #   tweaks = ["rimless" "black"];
   #   variant = "mocha";
   # };
+  cursorSize = 24;
 in {
   imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
 
@@ -35,8 +36,8 @@ in {
 
         font = {
           package = pkgs.inter;
-          name = "Inter Regular";
-          size = 11;
+          name = "Inter Display Regular";
+          size = 12;
         };
 
         # theme = lib.mkForce {
@@ -55,7 +56,7 @@ in {
         cursorTheme = mkForce {
           name = "macOS-Monterey";
           package = pkgs.apple-cursor;
-          size = 28;
+          size = cursorSize;
         };
 
         # theme = {
@@ -67,21 +68,21 @@ in {
         #   package = pkgs.catppuccin-cursors.macchiatoDark;
         # };
 
-        # gtk3.extraConfig = {
-        #   Settings = ''
-        #     gtk-application-prefer-dark-theme=1
-        #   '';
-        #   gtk-cursor-theme-name = "macOS-Monterey";
-        #   gtk-cursor-theme-size = 28;
-        # };
+        gtk3.extraConfig = {
+          #   Settings = ''
+          #     gtk-application-prefer-dark-theme=1
+          #   '';
+          gtk-cursor-theme-name = "macOS-Monterey";
+          gtk-cursor-theme-size = cursorSize;
+        };
 
-        # gtk4.extraConfig = {
-        #   Settings = ''
-        #     gtk-application-prefer-dark-theme=1
-        #   '';
-        #   gtk-cursor-theme-name = "macOS-Monterey";
-        #   gtk-cursor-theme-size = 28;
-        # };
+        gtk4.extraConfig = {
+          #   Settings = ''
+          #     gtk-application-prefer-dark-theme=1
+          #   '';
+          gtk-cursor-theme-name = "macOS-Monterey";
+          gtk-cursor-theme-size = cursorSize;
+        };
       };
       home = lib.mkIf true {
         # pointerCursor = mkIf pkgs.stdenv.isLinux {
