@@ -22,7 +22,7 @@ in {
       alsa.support32Bit = true;
       pulse.enable = true;
       # If you want to use JACK applications, uncomment this
-      jack.enable = true;
+      # jack.enable = true;
     };
 
     services.pipewire.extraConfig.pipewire-pulse."92-tcp" = {
@@ -116,18 +116,18 @@ in {
     #   };
     # };
 
-    users.users.media = {
-      isNormalUser = true;
-      uid = 1100;
-      extraGroups = [ "data" "video" "audio" "input" ];
-    };
+    # users.users.media = {
+    #   isNormalUser = true;
+    #   uid = 1100;
+    #   extraGroups = [ "data" "video" "audio" "input" ];
+    # };
 
-    home-manager = {
-      users.media = {
-        home.stateVersion = mkDefault "23.11";
-        xdg.enable = true;
-      };
-    };
+    # home-manager = {
+    #   users.media = {
+    #     home.stateVersion = mkDefault "23.11";
+    #     xdg.enable = true;
+    #   };
+    # };
 
     networking.firewall = {
       enable = mkForce false;

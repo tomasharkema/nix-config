@@ -246,7 +246,7 @@ with lib;
           KbdInteractiveAuthentication = true;
           PermitRootLogin = "yes";
           AcceptEnv = "*";
-          # X11Forwarding = true;
+          X11Forwarding = true;
         };
       };
 
