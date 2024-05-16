@@ -40,9 +40,9 @@ in {
           global = {
             backend = "pulseaudio";
             bitrate = 320;
-            mpris = true;
+            mpris = false;
             device_name = "${config.networking.hostName} SpotifyD";
-            use_keyring = true;
+            # use_keyring = true;
             dbus_type = "system";
           };
         };

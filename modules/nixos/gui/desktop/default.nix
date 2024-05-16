@@ -34,7 +34,7 @@ in {
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;
-        jack.enable = true;
+        # jack.enable = true;
       };
       gvfs.enable = true;
     };
@@ -90,7 +90,7 @@ in {
         pkgs.custom.netbrowse
         # gnome.gnome-boxes
         # pcmanfm
-        polkit
+        # polkit
         gparted
         partition-manager
         # firefox
