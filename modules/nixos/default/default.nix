@@ -12,6 +12,8 @@ with lib;
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
 
+    environment.variables.XCURSOR_SIZE = "24";
+
     # nix.package = pkgs.nixVersions.nix_2_20; #Unstable;
 
     # Select internationalisation properties.
@@ -78,13 +80,13 @@ with lib;
     };
 
     programs.atop = mkDefault {
-      atopRotateTimer.enable = true;
-      enable = true;
-      setuidWrapper.enable = true;
-      atopService.enable = true;
-      atopacctService.enable = true;
-      atopgpu.enable = config.traits.hardware.nvidia.enable;
-      netatop.enable = true;
+      #   atopRotateTimer.enable = true;
+      # enable = true;
+      #   setuidWrapper.enable = true;
+      #   # atopService.enable = true;
+      #   atopacctService.enable = true;
+      #   atopgpu.enable = config.traits.hardware.nvidia.enable;
+      #   netatop.enable = true;
     };
 
     programs.fzf.fuzzyCompletion = true;
