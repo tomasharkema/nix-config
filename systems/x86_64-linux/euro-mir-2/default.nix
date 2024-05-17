@@ -20,7 +20,11 @@ with lib; {
       glxinfo
       inxi
       linuxPackages.usbip
+      pkgs.gnomeExtensions.battery-health-charging
     ];
+
+    home-manager.users.tomas.dconf.settings."org/gnome/shell".enabled-extensions =
+      [ "Battery-Health-Charging@maniacx.github.com" ];
 
     gui = {
       enable = true;
@@ -64,7 +68,7 @@ with lib; {
       enable = true;
       #   bridgeInterfaces = ["wlp59s0"];
     };
-    virtualisation.waydroid.enable = true;
+    # virtualisation.waydroid.enable = true;
     traits = {
       hardware = {
         tpm.enable = true;
