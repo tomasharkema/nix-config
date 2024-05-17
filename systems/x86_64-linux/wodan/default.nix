@@ -141,14 +141,12 @@ with lib; {
           # enable = true;
 
           machines = {
-            silver-star.enable = true;
+            # silver-star.enable = true;
             # dione.enable = true;
           };
         };
       };
     };
-
-    environment.variables = { MUTTER_DEBUG_KMS_THREAD_TYPE = "user"; };
 
     disks.btrfs = {
       enable = true;
@@ -175,8 +173,8 @@ with lib; {
       #  options nouveau modeset=0
       #'';
 
-      initrd.kernelModules =
-        [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+      # initrd.kernelModules =
+      # [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     };
 
     # boot = {

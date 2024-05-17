@@ -88,12 +88,9 @@ in {
         pointerCursor = mkIf pkgs.stdenv.isLinux {
           name = "macOS-Monterey";
           package = pkgs.apple-cursor;
-          size = 28;
-          x11 = {
-            enable = true;
-            defaultCursor = "macOS-Monterey";
-            # size = 28;
-          };
+          size = cursorSize;
+          x11.enable = true;
+
           gtk.enable = true;
         };
         # sessionVariables.GTK_THEME = "${config.gtk.theme.name}:dark";

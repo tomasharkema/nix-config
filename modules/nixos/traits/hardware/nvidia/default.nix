@@ -29,8 +29,19 @@ in {
       # nvidia-offload
     ];
 
-    environment.sessionVariables.VK_DRIVER_FILES =
-      "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+    environment.sessionVariables = {
+      VK_DRIVER_FILES =
+        "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+
+      MUTTER_DEBUG_KMS_THREAD_TYPE = "user";
+    };
+
+    environment.variables = {
+      VK_DRIVER_FILES =
+        "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+
+      MUTTER_DEBUG_KMS_THREAD_TYPE = "user";
+    };
 
     services = {
       xserver.videoDrivers = [ "nvidia" ];
