@@ -47,7 +47,29 @@ with lib; {
         enable = true;
         allowInterfaces = mkForce null;
       };
-      mopidy.enable = true;
+      mopidy = {
+        enable = true;
+        extensionPackages = with pkgs; [
+          mopidy-spotify
+          mopidy-mpd
+          # mopidy-mpris
+          mopidy-notify
+          mopidy-mopify
+          mopidy-podcast
+          mopidy-musicbox-webclient
+        ];
+        configuration = ''
+          [http]
+          enabled = true
+          hostname = 0.0.0.0
+
+          [spotify]
+          username = ***REMOVED***
+          password = ***REMOVED***
+          client_id = 7e67ff0f-3f01-4b2b-be49-263f2c9c8e43
+          client_secret = 1WFE4aj9W51FoWUwBerVoeF-aFvx54GsmbfUzBNh3O4=
+        '';
+      };
     };
 
     # system.stateVersion = "23.11";
@@ -106,8 +128,9 @@ with lib; {
       ];
     };
 
-    services.pipewire = {
+    hardware.pulseaudio.enable = false;
 
+    services.pipewire = {
       wireplumber = {
         enable = true;
         extraConfig = {
@@ -125,24 +148,25 @@ with lib; {
             "bluez5.codecs" = [ "sbc" "sbc_xq" "aac" ];
             "bluez5.enable-sbc-xq" = true;
             "bluez5.hfphsp-backend" = "native";
+            "bluez5.auto-connect" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
           };
         };
 
       };
       systemWide = true;
 
-      extraConfig.pipewire-pulse."91-bluetooth" = {
-        context.modules = [
-          {
-            name = "module-bluetooth-discover";
-            args = { };
-          }
-          {
-            name = "module-bluetooth-policy";
-            args = { };
-          }
-        ];
-      };
+      # extraConfig.pipewire-pulse."91-bluetooth" = {
+      #   context.modules = [
+      #     {
+      #       name = "module-bluetooth-discover";
+      #       args = { };
+      #     }
+      #     {
+      #       name = "module-bluetooth-policy";
+      #       args = { };
+      #     }
+      #   ];
+      # };
     };
 
     hardware = {
