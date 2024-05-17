@@ -209,6 +209,7 @@
         firefox.enableGnomeExtensions = true;
         kodi.enableAdvancedLauncher = true;
         allowBroken = true;
+        cudaSupport = true;
         # allowAliases = false;
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
