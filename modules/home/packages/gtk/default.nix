@@ -85,16 +85,17 @@ in {
         };
       };
       home = lib.mkIf true {
-        # pointerCursor = mkIf pkgs.stdenv.isLinux {
-        #   name = "macOS-Monterey";
-        #   package = pkgs.apple-cursor;
-        #   size = 28;
-        #   x11 = {
-        #     enable = true;
-        #     defaultCursor = "macOS-Monterey";
-        #     # size = 32;
-        #   };
-        # };
+        pointerCursor = mkIf pkgs.stdenv.isLinux {
+          name = "macOS-Monterey";
+          package = pkgs.apple-cursor;
+          size = 28;
+          x11 = {
+            enable = true;
+            defaultCursor = "macOS-Monterey";
+            # size = 28;
+          };
+          gtk.enable = true;
+        };
         # sessionVariables.GTK_THEME = "${config.gtk.theme.name}:dark";
         # file = {
         # ".config/gtk-4.0".source = "${config.gtk.theme.package}/share/themes/${catppuccin_name}/gtk-4.0";
