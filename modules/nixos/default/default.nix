@@ -166,6 +166,8 @@ with lib;
     ]) ++ (optionals pkgs.stdenv.isx86_64 [
       pkgs.custom.ztui
       # pkgs.wolfram-engine
+      pkgs.libsmbios
+      pkgs.dmidecode
     ]);
     # services.ntfy-sh.enable = true;
 
