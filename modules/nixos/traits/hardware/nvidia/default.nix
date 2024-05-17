@@ -44,7 +44,7 @@ in {
     hardware = {
       nvidia = mkDefault {
         modesetting.enable = true;
-        # forceFullCompositionPipeline = true;
+        forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -56,6 +56,7 @@ in {
         driSupport32Bit = true;
 
         extraPackages = with pkgs; [
+          pkgs.mesa.drivers
           nvidia-vaapi-driver
           libvdpau-va-gl
           vaapiVdpau

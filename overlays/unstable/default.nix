@@ -17,7 +17,7 @@ final: prev: rec {
   # _389-ds-base = self.packages."${prev.system}"._389;
 
   # freeipa = self.packages."${prev.system}".freeipa;
-  # sssd = self.packages."${prev.system}".sssd;
+  sssd = self.packages."${prev.system}".sssd;
 
   # ldb =
   #   #builtins.trace "ldb overlay prev: ${builtins.toString (builtins.attrNames prev)}"
