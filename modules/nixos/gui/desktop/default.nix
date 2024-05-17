@@ -77,7 +77,7 @@ in {
       [
         qdirstat
         xdiskusage
-
+        davinci-resolve
         pwvucontrol
         xdiskusage
         libGL
