@@ -9,7 +9,7 @@ in {
   config = {
     # nix.extraOptions = "experimental-features = nix-command flakes c";
     # isbinaryCaches
-
+    environment.etc."current-nixos".source = ./.;
     nix = { package = pkgs.nixVersions.nix_2_20; } // import ./config.nix;
 
     users = {
