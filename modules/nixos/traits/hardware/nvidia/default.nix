@@ -29,6 +29,9 @@ in {
       # nvidia-offload
     ];
 
+    environment.sessionVariables.VK_DRIVER_FILES =
+      "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+
     services = {
       xserver.videoDrivers = [ "nvidia" ];
       netdata.configDir."python.d.conf" = pkgs.writeText "python.d.conf" ''
@@ -60,6 +63,8 @@ in {
           nvidia-vaapi-driver
           libvdpau-va-gl
           vaapiVdpau
+          config.hardware.nvidia.package
+
         ];
       };
     };
