@@ -148,6 +148,8 @@ with lib; {
       };
     };
 
+    environment.variables = { MUTTER_DEBUG_KMS_THREAD_TYPE = "user"; };
+
     disks.btrfs = {
       enable = true;
 
@@ -163,15 +165,15 @@ with lib; {
       binfmt.emulatedSystems = [ "aarch64-linux" ];
       supportedFilesystems = [ "ntfs" ];
       kernelModules = [ "i2c-dev" ];
-      blacklistedKernelModules = lib.mkDefault [ "i915" "nouveau" ];
+      # blacklistedKernelModules = lib.mkDefault [ "i915" "nouveau" ];
       # KMS will load the module, regardless of blacklisting
-      kernelParams = lib.mkDefault [ "i915.modeset=0" ];
+      # kernelParams = lib.mkDefault [ "i915.modeset=0" ];
 
-      extraModprobeConfig = ''
-        options nvidia-drm modeset=1";
-        blacklist nouveau
-        options nouveau modeset=0
-      '';
+      #extraModprobeConfig = ''
+      #  options nvidia-drm modeset=1";
+      #  blacklist nouveau
+      #  options nouveau modeset=0
+      #'';
 
       initrd.kernelModules =
         [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
