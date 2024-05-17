@@ -109,18 +109,16 @@ in {
       extraArguments = [ "-d" "-m" "last" ];
     };
 
-    # boot = {
-    #   kernelParams = ["quiet"];
-    #   plymouth = {
-    #     enable = true;
-    #   };
-    # };
+    boot = {
+      kernelParams = [ "quiet" ];
+      plymouth = { enable = true; };
+    };
 
-    # users.users.media = {
-    #   isNormalUser = true;
-    #   uid = 1100;
-    #   extraGroups = [ "data" "video" "audio" "input" ];
-    # };
+    users.users.media = {
+      isNormalUser = true;
+      uid = 1100;
+      extraGroups = [ "data" "video" "audio" "input" ];
+    };
 
     # home-manager = {
     #   users.media = {

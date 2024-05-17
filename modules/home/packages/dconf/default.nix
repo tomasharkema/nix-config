@@ -16,7 +16,7 @@ with lib; {
             color-scheme = "prefer-dark";
             # cursor-theme = mkForce "Adwaita";
             # gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
-            document-font-name = "Inter Regular 11";
+            document-font-name = "Inter Display Light 12";
             font-antialiasing = "grayscale";
             monospace-font-name = "JetBrainsMono Nerd Font Mono 11";
             # font-name = "Inter 11";
@@ -115,7 +115,33 @@ with lib; {
             distro-icon = 22;
             menu-button-appearance = "Icon";
             menu-button-icon = "Distro_Icon";
+            menu-font-size = 14;
+            menu-layout = "Redmond";
+
           };
+
+          # [org/gnome/shell/extensions/arcmenu]
+          # apps-show-extra-details=true
+          # button-padding=-1
+          # custom-menu-button-icon-size=28.0
+          # distro-icon=22
+          # menu-background-color='rgba(48,48,49,0.98)'
+          # menu-border-color='rgb(60,60,60)'
+          # menu-button-appearance='Icon'
+          # menu-button-icon='Distro_Icon'
+          # menu-font-size=11
+          # menu-foreground-color='rgb(223,223,223)'
+          # menu-item-active-bg-color='rgb(25,98,163)'
+          # menu-item-active-fg-color='rgb(255,255,255)'
+          # menu-item-hover-bg-color='rgb(21,83,158)'
+          # menu-item-hover-fg-color='rgb(255,255,255)'
+          # menu-layout='Redmond'
+          # menu-separator-color='rgba(255,255,255,0.1)'
+          # override-menu-theme=false
+          # prefs-visible-page=0
+          # recently-installed-apps=['io.github.zefr0x.hashes.desktop', 'jetbrains-fleet.desktop', 'jetbrains-fleet-90197957-61d8-4533-a5f7-c295589d7b0e.desktop', 'jetbrains-goland-aa894a40-91d9-41a6-8f8a-a563c92db01f.desktop', 'qdirstat.desktop']
+          # search-entry-border-radius=(true, 25)
+          # show-category-sub-menus=true
 
           "org/gnome/shell" = {
             disable-user-extensions = false;
