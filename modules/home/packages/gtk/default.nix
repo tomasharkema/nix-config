@@ -36,7 +36,7 @@ in {
 
         font = {
           package = pkgs.inter;
-          name = "Inter Display Regular";
+          name = "Inter Display Light";
           size = 12;
         };
 
