@@ -89,11 +89,8 @@ in {
           name = "macOS-Monterey";
           package = pkgs.apple-cursor;
           size = cursorSize;
-          x11 = {
-            enable = true;
-            defaultCursor = "macOS-Monterey";
-            # size = 28;
-          };
+          x11.enable = true;
+
           gtk.enable = true;
         });
         # sessionVariables.GTK_THEME = "${config.gtk.theme.name}:dark";
