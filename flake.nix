@@ -205,15 +205,20 @@
       channels-config = {
         allowUnfreePredicate = _: true;
         allowUnfree = true;
-        nvidia.acceptLicense = true;
+
         firefox.enableGnomeExtensions = true;
         kodi.enableAdvancedLauncher = true;
         allowBroken = true;
-        cudaSupport = true;
+
         # allowAliases = false;
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
         # buildPlatform.system = "x86_64-linux";
+
+        config = {
+          # For example, enable smartcard support in Firefox.
+          firefox.smartcardSupport = true;
+        };
       };
 
       alias = { shells = { default = "devshell"; }; };
