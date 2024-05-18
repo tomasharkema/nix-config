@@ -8,7 +8,7 @@ let
   #   tweaks = ["rimless" "black"];
   #   variant = "mocha";
   # };
-  cursorSize = 24;
+  cursorSize = 26;
 in {
   imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
 
@@ -18,11 +18,11 @@ in {
 
   config = mkIf
     (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
-      # xsession.pointerCursor = mkIf pkgs.stdenv.isLinux {
-      #   name = "macOS-Monterey";
-      #   package = pkgs.apple-cursor;
-      #   size = 28;
-      # };
+      xsession.pointerCursor = mkIf pkgs.stdenv.isLinux {
+        name = "macOS-Monterey";
+        package = pkgs.apple-cursor;
+        size = cursorSize;
+      };
 
       catppuccin = {
         enable = true;
@@ -85,17 +85,17 @@ in {
         };
       };
       home = lib.mkIf true {
-        pointerCursor = mkIf pkgs.stdenv.isLinux {
+        pointerCursor = mkIf pkgs.stdenv.isLinux (mkForce {
           name = "macOS-Monterey";
           package = pkgs.apple-cursor;
-          size = 28;
+          size = cursorSize;
           x11 = {
             enable = true;
             defaultCursor = "macOS-Monterey";
             # size = 28;
           };
           gtk.enable = true;
-        };
+        });
         # sessionVariables.GTK_THEME = "${config.gtk.theme.name}:dark";
         # file = {
         # ".config/gtk-4.0".source = "${config.gtk.theme.package}/share/themes/${catppuccin_name}/gtk-4.0";
