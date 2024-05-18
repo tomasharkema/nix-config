@@ -15,14 +15,16 @@ in {
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
     xdg.portal.wlr.enable = true;
-    programs.sway.enable = true;
+    # programs.sway.enable = true;
 
-    programs.hyprland = {
-      # Install the packages from nixpkgs
-      enable = true;
-      # Whether to enable XWayland
-      xwayland.enable = true;
-    };
+    # programs.hyprland = {
+    #   # Install the packages from nixpkgs
+    #   enable = true;
+    #   # Whether to enable XWayland
+    #   xwayland.enable = true;
+    # };
+
+    programs.xwayland.enable = true;
 
     # environment.etc."X11/Xwrapper.config".text = ''
     #   allowed_users=anybody
@@ -47,7 +49,13 @@ in {
       xserver = {
         desktopManager.gnome.enable = true;
 
-        displayManager = { gdm.enable = true; };
+        displayManager = {
+          gdm = {
+            enable = true;
+            wayland = true;
+            # nvidiaWayland = true;
+          };
+        };
       };
 
       gnome = {
