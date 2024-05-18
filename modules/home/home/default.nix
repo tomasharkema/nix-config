@@ -128,7 +128,7 @@ in with lib; {
         ttdl
         topydo
         jqp
-        nchat
+        # nchat
 
         projectable
         # stig
