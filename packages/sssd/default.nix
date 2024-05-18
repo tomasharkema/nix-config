@@ -28,6 +28,7 @@ in stdenv.mkDerivation (finalAttrs: {
   #     hash = "sha256-VLx04APEipp860iOJNIwTGywxZ7rIDdyh3te6m7Ymlo=";
   #   })
   # ];
+
   postPatch = ''
     patchShebangs ./sbus_generate.sh.in
   '';

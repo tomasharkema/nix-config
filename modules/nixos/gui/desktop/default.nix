@@ -64,9 +64,11 @@ in {
     # enableSSHSupport = true;
     # };
     services.cpupower-gui.enable = true;
-    # environment.variables = {
-    #   LD_LIBRARY_PATH = mkForce "$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib";
-    # };
+
+    environment.variables = {
+      LD_LIBRARY_PATH =
+        "$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib";
+    };
 
     hardware.opengl = {
       enable = true;
@@ -160,5 +162,15 @@ in {
     sound.enable = true;
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
+
+    boot.binfmt.registrations.appimage = {
+      wrapInterpreterInShell = false;
+      interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+      recognitionType = "magic";
+      offset = 0;
+      mask = "\\xff\\xff\\xff\\xff\\x00\\x00\\x00\\x00\\xff\\xff\\xff";
+      magicOrExtension = "\\x7fELF....AI\\x02";
+    };
+
   };
 }
