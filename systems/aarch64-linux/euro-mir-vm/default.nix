@@ -30,11 +30,6 @@ with lib; {
       encrypt = false;
     };
 
-    # services.spice-autorandr.enable = true;
-    services.spice-vdagentd.enable = true;
-    services.spice-webdavd.enable = true;
-    services.qemuGuest.enable = true;
-
     boot = {
       loader = {
         systemd-boot.enable = true;
@@ -69,7 +64,7 @@ with lib; {
     };
 
     boot = {
-      growPartition = true;
+      growPartition = false;
 
       tmp = {
         useTmpfs = false;
@@ -92,10 +87,24 @@ with lib; {
       driSupport = true;
       #   # driSupport32Bit = true;
     };
-    services = {
-      kmscon = {
-        # enable = false;
-      };
+
+    zramSwap.enable = false;
+
+    services = mkForce {
+      kmscon.enable = false;
+      upower.enable = false;
+      auto-cpufreq.enable = false;
+      monit.enable = false;
+      tor.enable = false;
+      udisks2.enable = false;
+      xrdp.enable = false;
+      fwupd.enable = false;
+
+      # spice-autorandr.enable = true;
+      spice-vdagentd.enable = true;
+      spice-webdavd.enable = true;
+      qemuGuest.enable = true;
+
     };
   };
 }
