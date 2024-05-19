@@ -102,7 +102,7 @@ in {
         powertop
 
         nix-software-center
-        nixos-conf-editor
+        # nixos-conf-editor
 
         xdg-utils
 
