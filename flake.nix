@@ -94,10 +94,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-conf-editor = {
-      url = "github:snowfallorg/nixos-conf-editor";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixos-conf-editor = {
+    #   url = "github:snowfallorg/nixos-conf-editor";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
@@ -143,10 +143,10 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    peerix = {
-      url = "github:cid-chan/peerix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # peerix = {
+    #   url = "github:cid-chan/peerix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # poetry2nix = {
     #   url = "github:nix-community/poetry2nix";
