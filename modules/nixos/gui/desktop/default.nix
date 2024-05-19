@@ -139,7 +139,7 @@ in {
         angryipscanner
         telegram-desktop
         # pkgs.custom.git-butler
-      ] ++ (with pkgs.custom; [ zerotier-ui zerotier-gui ]);
+      ] ++ (with pkgs.custom; [ zerotier-ui ]);
 
     programs = {
       ssh = {
