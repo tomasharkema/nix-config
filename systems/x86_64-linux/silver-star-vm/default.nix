@@ -36,6 +36,17 @@ with lib; {
     services = {
       # netbox-service.enable = true;
 
+      mailrise = {
+        enable = true;
+
+        settings = {
+          configs = {
+            "(user)@*" = { urls = [ "ntfys://notify.example.com/(user)" ]; };
+          };
+          smtp = { auth = { basic = { username = "password"; }; }; };
+        };
+      };
+
       kmscon = { enable = false; };
 
       healthchecks = {
