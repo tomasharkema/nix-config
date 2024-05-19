@@ -10,14 +10,14 @@ in {
   config = {
     environment.systemPackages = [ darwin-build ];
 
-    nix.buildMachines = [
-      # {
-      #   hostName = "blue-fire";
-      #   systems = ["aarch64-linux" "x86_64-linux"];
-      #   maxJobs = 4;
-      #   supportedFeatures = ["kvm" "benchmark" "big-parallel"];
-      #   speedFactor = 100;
-      # }
-    ];
+    # nix.buildMachines = [
+    # {
+    #   hostName = "blue-fire";
+    #   systems = ["aarch64-linux" "x86_64-linux"];
+    #   maxJobs = 4;
+    #   supportedFeatures = ["kvm" "benchmark" "big-parallel"];
+    #   speedFactor = 100;
+    # }
+    # ];
   };
 }

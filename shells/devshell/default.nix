@@ -167,6 +167,8 @@ in inputs.devenv.lib.mkShell {
     # dotenv.enable = true;
 
     packages = [
+      nixos-generate
+
       nixVersions.nix_2_20 # Unstable
       upload-all-store
       # cntr

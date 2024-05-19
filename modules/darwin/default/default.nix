@@ -85,10 +85,24 @@
       #   export OP_PLUGIN_ALIASES_SOURCED=1
       # '';
     };
+
     # programs.fzf.fuzzyCompletion = true;
+
     nix = {
-      # package = pkgs.nix; # pkgs.nixVersions.nix_2_19;
+      buildMachines = [{
+        hostName = "blue-fire";
+        systems = [ "x86_64-linux" ];
+        # maxJobs = 4;
+        supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+        # speedFactor = 100;
+      }];
+
+      distributedBuilds = true;
+
+      # package = pkgs.nixVersions.nix_2_20;
+
       # auto-optimise-store = true
+
       extraOptions = ''
         builders-use-substitutes = true
       '';
@@ -113,8 +127,6 @@
           "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
         ];
       }; # netrc-file = "/etc/nix/netrc";
-
-      distributedBuilds = true;
 
       # buildMachines = [
       #   {
