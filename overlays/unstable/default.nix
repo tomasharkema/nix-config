@@ -1,4 +1,4 @@
-{ channels, disko, self, ... }:
+{ channels, disko, nixos-generators, self, ... }:
 final: prev: rec {
   # runitor = channels.unstable.runitor;
   # vscode = channels.unstable.vscode;
@@ -15,6 +15,8 @@ final: prev: rec {
   # nh = channels.unstable.nh;
 
   # _389-ds-base = self.packages."${prev.system}"._389;
+
+  nixos-generate = nixos-generators.packages."${prev.system}".nixos-generate;
 
   freeipa = self.packages."${prev.system}".freeipa;
   sssd = self.packages."${prev.system}".sssd;
