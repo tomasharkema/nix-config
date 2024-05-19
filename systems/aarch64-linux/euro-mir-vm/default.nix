@@ -24,11 +24,11 @@ with lib; {
 
     time.timeZone = "Europe/Amsterdam";
 
-    # disks."ext4" = mkDefault {
-    #   enable = true;
-    #   main = "/dev/vda";
-    #   encrypt = false;
-    # };
+    disks."ext4" = mkDefault {
+      enable = true;
+      main = "/dev/vda";
+      encrypt = false;
+    };
 
     boot = {
       loader = {
@@ -45,11 +45,11 @@ with lib; {
     #   fsType = "ext4";
     # };
 
-    # fileSystems."/boot" = {
-    #   #   device = "/dev/disk/by-uuid/A6D4-8A1F";
-    #   #   fsType = "vfat";
-    #   options = [ "fmask=0022" "dmask=0022" ];
-    # };
+    fileSystems."/boot" = {
+      #   device = "/dev/disk/by-uuid/A6D4-8A1F";
+      #   fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
 
     gui = {
       enable = true;
