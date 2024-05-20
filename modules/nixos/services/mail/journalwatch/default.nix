@@ -19,10 +19,10 @@
 
       # mailcatcher.enable = true;
 
-      # journalwatch = {
-      #   enable = true;
-      #   mailTo = "tomas";
-      # };
+      journalwatch = {
+        enable = true;
+        mailTo = "all@mailrise.xyz";
+      };
     };
   };
 }
