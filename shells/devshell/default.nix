@@ -173,7 +173,7 @@ in inputs.devenv.lib.mkShell {
       upload-all-store
       # cntr
       update-pkgs
-      # attic
+      attic
       dconf-save
       dp
       upload-to-installer
@@ -219,7 +219,8 @@ in inputs.devenv.lib.mkShell {
       write-script
       zsh
       agenix # .packages.${system}.default
-      nixfmt # .defaultPackage.${system}
+      nixfmt-rfc-style
+
       # cachix
       deadnix
       hydra-cli

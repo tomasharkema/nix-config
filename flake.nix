@@ -20,6 +20,7 @@
     catppuccin = {
       # url = "github:tomasharkema/catppuccin-nix";
       url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # nixos-wsl = {
@@ -65,7 +66,7 @@
 
     vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
-      # inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixvim = {
@@ -73,11 +74,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    agenix = { url = "github:ryantm/agenix"; };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    agenix-shell = { url = "github:aciceri/agenix-shell"; };
+    agenix-shell = {
+      url = "github:aciceri/agenix-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nixos-hardware = { url = "github:nixos/nixos-hardware"; };
+    nixos-hardware = {
+      url = "github:nixos/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
@@ -99,8 +109,11 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak";
 
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # impermanence.url = "github:nix-community/impermanence";
 
     attic = {
@@ -140,7 +153,7 @@
 
     devenv = {
       url = "github:cachix/devenv";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # peerix = {
