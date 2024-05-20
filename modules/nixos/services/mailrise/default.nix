@@ -3,12 +3,16 @@ with lib;
 let
   cfg = config.services.mailrise;
   settingsFormat = pkgs.formats.yaml { };
-  configFile = settingsFormat.generate "goss.yaml" cfg.settings;
+  configFile = settingsFormat.generate "mailrise.conf" cfg.settings;
+  configFileRecreated = "/run/mailrise/mailrise.conf";
 in {
   options.services.mailrise = {
     enable = mkEnableOption "mailrise";
-    # package = mkPackageOption pkgs "goss" { };
     settings = mkOption {
+      type = lib.types.submodule { freeformType = settingsFormat.type; };
+      default = { };
+    };
+    secrets = mkOption {
       type = lib.types.submodule { freeformType = settingsFormat.type; };
       default = { };
     };
@@ -20,7 +24,23 @@ in {
       description = "mailrise";
       enable = true;
 
-      script = "${pkgs.custom.mailrise}/bin/mailrise ${configFile}";
+      preStart = let
+        cmds = (lib.attrsets.mapAttrsToList (name: value:
+          "${pkgs.replace-secret}/bin/replace-secret ${name} ${value} ${configFileRecreated}")
+          cfg.secrets);
+
+        cmdsString = (lib.strings.concatMapStrings (x: x + "\n") cmds);
+
+      in builtins.trace cmdsString ''
+        mkdir -p $(dirname ${configFileRecreated}) || true
+        cat ${configFile} > ${configFileRecreated}
+
+        ${cmdsString}
+      '';
+
+      restartTriggers = [ configFile configFileRecreated ];
+
+      script = "${pkgs.custom.mailrise}/bin/mailrise ${configFileRecreated}";
       wantedBy = [ "multi-user.target" ];
     };
 
