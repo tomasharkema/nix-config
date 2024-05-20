@@ -58,9 +58,9 @@ in {
     services.hydra = {
       extraEnv = {
         # HYDRA_FORCE_SEND_MAIL = "1";
-        # EMAIL_SENDER_TRANSPORT_port = "587";
+        EMAIL_SENDER_TRANSPORT_port = "8025";
         # EMAIL_SENDER_TRANSPORT_ssl = "starttls";
-        # EMAIL_SENDER_TRANSPORT_host = "smtp-relay.gmail.com";
+        EMAIL_SENDER_TRANSPORT_host = "silver-star-vm.ling-lizard.ts.net";
       };
 
       # buildMachinesFiles = [];
