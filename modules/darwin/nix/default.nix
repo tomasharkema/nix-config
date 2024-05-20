@@ -33,13 +33,14 @@ in {
 
     environment.systemPackages = with pkgs; [
       deploy-rs
-      nixfmt
+      nixfmt-rfc-style
+
       nix-prefetch-git
       nil
       # flake-checker
       direnv
       devenv
-      # attic
+      attic
       nix-output-monitor
       nixpkgs-fmt
       nerd-font-patcher
