@@ -40,17 +40,17 @@ with lib; {
         enable = true;
 
         settings = {
-          configs = {
-            "(user)@*" = { urls = [ "ntfys://notify.example.com/(user)" ]; };
+          configs = { "*@*" = { urls = [ "ntfys://tomasharkema-nixos" ]; }; };
+          smtp = {
+            # auth = { basic = { "admin" = "admin"; }; };
           };
-          smtp = { auth = { basic = { username = "password"; }; }; };
         };
       };
 
       kmscon = { enable = false; };
 
       healthchecks = {
-        enable = true;
+        # enable = true;
         listenAddress = "0.0.0.0";
 
         # notificationSender = "tomas+hydra@harkema.io";
@@ -60,12 +60,12 @@ with lib; {
         settings = {
           SECRET_KEY_FILE = "/etc/healthchecks.key";
 
-          EMAIL_HOST = "smtp-relay.gmail.com";
-          EMAIL_PORT = "587";
-          EMAIL_HOST_USER = "tomas@harkema.io";
-          # EMAIL_HOST_PASSWORD=mypassword
+          EMAIL_HOST = "silver-star-vm.ling-lizard.ts.net";
+          EMAIL_PORT = "8025";
+          # EMAIL_HOST_USER = "tomas@harkema.io";
+          # # EMAIL_HOST_PASSWORD=mypassword
           EMAIL_USE_SSL = "False";
-          EMAIL_USE_TLS = "True";
+          EMAIL_USE_TLS = "False";
         };
       };
 
