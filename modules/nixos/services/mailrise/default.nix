@@ -13,7 +13,7 @@ in {
       default = { };
     };
     secrets = mkOption {
-      type = lib.types.submodule { freeformType = settingsFormat.type; };
+      type = with types; attrsOf (oneOf [ (listOf str) str path ]);
       default = { };
     };
   };
@@ -31,7 +31,7 @@ in {
 
         cmdsString = (lib.strings.concatMapStrings (x: x + "\n") cmds);
 
-      in builtins.trace cmdsString ''
+      in ''
         mkdir -p $(dirname ${configFileRecreated}) || true
         cat ${configFile} > ${configFileRecreated}
 
