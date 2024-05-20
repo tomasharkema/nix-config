@@ -40,10 +40,23 @@ with lib; {
         enable = true;
 
         settings = {
-          configs = { "*@*" = { urls = [ "ntfys://tomasharkema-nixos" ]; }; };
+          configs = {
+            "*@*" = {
+              urls = [
+                "ntfys://tomasharkema-nixos"
+                "tgram://TGRAM_SECRET/TGRAM_CHAT_ID/?image=Yes"
+              ];
+            };
+          };
           smtp = {
             # auth = { basic = { "admin" = "admin"; }; };
           };
+        };
+        secrets = {
+          TGRAM_CHAT_ID =
+            "<(${pkgs.coreutils}/bin/cat /run/agenix/notify | ${pkgs.yq}/bin/yq '.telegram[0].telegram_chat_id' -r)";
+          TGRAM_SECRET =
+            "<(${pkgs.coreutils}/bin/cat /run/agenix/notify | ${pkgs.yq}/bin/yq '.telegram[0].telegram_api_key' -r)";
         };
       };
 

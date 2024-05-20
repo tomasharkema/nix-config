@@ -66,7 +66,7 @@ in {
           "/etc/ssh/boot/ssh_host_ed25519_key" =
             "/etc/ssh/boot/ssh_host_ed25519_key";
           "/etc/ssh/boot/ssh_host_rsa_key" = "/etc/ssh/boot/ssh_host_rsa_key";
-          "/etc/notify.key" = "${config.age.secrets.notify.path}";
+          # "/etc/notify.key" = "${config.age.secrets.notify.path}";
         };
 
         systemd = {
@@ -170,15 +170,15 @@ in {
               };
             };
 
-            notify = {
-              script = ''
-                /bin/ntfy publish tomasharkema-nixos "OJOO!"
-              '';
+            # notify = {
+            #   script = ''
+            #     /bin/ntfy publish tomasharkema-nixos "OJOO!"
+            #   '';
 
-              wantedBy = [ "initrd.target" ];
-              after = [ "network.target" "initrd-nixos-copy-secrets.service" ];
-              serviceConfig = { Type = "oneshot"; };
-            };
+            #   wantedBy = [ "initrd.target" ];
+            #   after = [ "network.target" "initrd-nixos-copy-secrets.service" ];
+            #   serviceConfig = { Type = "oneshot"; };
+            # };
 
             # syslog = {
             #   description = "Syslog Daemon";
