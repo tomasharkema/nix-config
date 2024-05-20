@@ -1,6 +1,12 @@
-{ pkgs, lib, config, osConfig, inputs, ... }:
-with lib;
-let
+{
+  pkgs,
+  lib,
+  config,
+  osConfig,
+  inputs,
+  ...
+}:
+with lib; let
   catppuccin_name = "Catppuccin-Mocha-Compact-Blue-Dark";
   # catppuccin = pkgs.catppuccin-gtk.override {
   #   accents = ["blue"];
@@ -10,13 +16,14 @@ let
   # };
   cursorSize = 26;
 in {
-  imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
+  imports = [inputs.catppuccin.homeManagerModules.catppuccin];
 
   # disabledModules=["home-manager/tofi.nix"];
 
-  options = { programs.tofi.settings = mkOption { }; };
+  options = {programs.tofi.settings = mkOption {};};
 
-  config = mkIf
+  config =
+    mkIf
     (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
       xsession.pointerCursor = mkIf pkgs.stdenv.isLinux {
         name = "macOS-Monterey";
@@ -36,7 +43,7 @@ in {
 
         font = {
           package = pkgs.inter;
-          name = "Inter Display Light";
+          name = "Inter Display Regular";
           size = 12;
         };
 
@@ -49,7 +56,7 @@ in {
           flavour = "mocha";
           accent = "blue";
           size = "compact";
-          tweaks = [ "black" ];
+          tweaks = ["black"];
           gnomeShellTheme = true;
         };
 
