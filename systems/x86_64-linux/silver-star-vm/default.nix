@@ -47,6 +47,9 @@ with lib; {
                 "tgram://TGRAM_SECRET/TGRAM_CHAT_ID/?image=Yes"
               ];
             };
+            "systemd" = {
+              urls = [ "tgram://TGRAM_SECRET/TGRAM_CHAT_ID/?image=Yes" ];
+            };
           };
           smtp = {
             # auth = { basic = { "admin" = "admin"; }; };
