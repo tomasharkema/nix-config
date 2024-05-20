@@ -22,7 +22,7 @@ with lib; {
       };
     };
 
-    zramSwap = { enable = true; };
+    zramSwap = { enable = false; };
     swapDevices = [{
       device = "/swapfile";
       size = 16 * 1024;
@@ -47,7 +47,7 @@ with lib; {
     environment.systemPackages = with pkgs; [
       libraspberrypi
       raspberrypi-eeprom
-
+      ncspot
       # pkgs.custom.playercast
     ];
 
@@ -64,11 +64,11 @@ with lib; {
       #   #  "dwc2"
       #   "g_serial"
       # ];
-      kernelParams = mkForce [
-        # "console=ttyS0,115200n8"
-        "console=ttyS1,115200n8"
-        "console=tty0"
-      ];
+      #kernelParams = mkForce [
+      # "console=ttyS0,115200n8"
+      #        "console=ttyS1,115200n8"
+      #       "console=tty0"
+      #];
     };
 
     proxy-services = { enable = true; };
