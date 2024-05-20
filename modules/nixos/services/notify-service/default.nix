@@ -4,14 +4,12 @@ let
   sendmail = pkgs.writeScript "sendmail" ''
     #!/bin/sh
     ${pkgs.system-sendmail}/bin/sendmail -t <<ERRMAIL
-    To: $1
+    To: systemd@mailrise.xyz
     From: tomas@harkema.io
-    Subject: Status of service $2 on $HOSTNAME
+    Subject: $HOSTNAME Status of service $1
     Content-Transfer-Encoding: 8bit
     Content-Type: text/plain; charset=UTF-8
-    ```
-    $(systemctl status --full "$2")
-    ```
+    $(systemctl status --full "$1")
     ERRMAIL
   '';
   notifyServiceName = "notify-service";
@@ -31,9 +29,9 @@ in {
 
       serviceConfig = {
         Type = "oneshot";
-        ExecStart = "${sendmail} all@mailrise.xyz %i";
+        ExecStart = "${sendmail} %i";
       };
-      wantedBy = [ "multi-user.target" ];
+      wantedBy = [ "default.target" ];
     };
   };
 }
