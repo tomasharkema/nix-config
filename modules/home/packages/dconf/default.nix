@@ -1,22 +1,32 @@
 # Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
-{ inputs, config, lib, pkgs, osConfig, ... }:
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  osConfig,
+  ...
+}:
 with inputs.home-manager.lib.hm.gvariant;
 with lib; {
-  config = mkIf
+  config =
+    mkIf
     (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
       dconf = {
         settings = {
           "org/gnome/mutter" = {
             edge-tiling = true;
-            experimental-features =
-              "['scale-monitor-framebuffer','variable-refresh-rate']";
+            experimental-features = builtins.toJSON [
+              "scale-monitor-framebuffer"
+              "variable-refresh-rate"
+            ];
           };
-          "org/gnome/shell/extensions/vitals" = { "position-in-panel" = 0; };
+          "org/gnome/shell/extensions/vitals" = {"position-in-panel" = 0;};
           "org/gnome/desktop/interface" = {
             color-scheme = "prefer-dark";
             # cursor-theme = mkForce "Adwaita";
             # gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
-            document-font-name = "Inter Display Light 12";
+            document-font-name = "Inter Display Regular 12";
             font-antialiasing = "grayscale";
             monospace-font-name = "JetBrainsMono Nerd Font Mono 11";
             # font-name = "Inter 11";
@@ -29,13 +39,11 @@ with lib; {
           };
 
           "org/gnome/shell/extensions/TodoTxt" = {
-            donetxt-location =
-              "/home/tomas/resilio-sync/shared-documents/done.txt";
-            todotxt-location =
-              "/home/tomas/resilio-sync/shared-documents/todo.txt";
+            donetxt-location = "/home/tomas/resilio-sync/shared-documents/done.txt";
+            todotxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt";
           };
 
-          "org/gnome/gnome-session" = { "auto-save-session" = true; };
+          "org/gnome/gnome-session" = {"auto-save-session" = true;};
 
           # "/org/gnome/desktop/background" = {
           # "picture-uri" = "/run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
@@ -64,8 +72,11 @@ with lib; {
           # };
 
           "org/gnome/shell/extensions/dash-to-panel" = {
-            animate-appicon-hover-animation-extent =
-              "{'RIPPLE': 4, 'PLANK': 4, 'SIMPLE': 1}";
+            animate-appicon-hover-animation-extent = builtins.toJSON {
+              RIPPLE = 4;
+              PLANK = 4;
+              SIMPLE = 1;
+            };
             appicon-margin = 4;
             appicon-padding = 4;
             appicon-style = "NORMAL";
@@ -84,13 +95,12 @@ with lib; {
             panel-element-positions = ''
               {"0":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":false,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}
             '';
-
           };
           # "org/gnome/desktop/notifications" = {
           #   application-children = ["steam" "org-gnome-console" "gnome-power-panel" "firefox"];
           #   show-in-lock-screen = false;
           # };
-          "org/gnome/desktop/peripherals/keyboard" = { numlock-state = true; };
+          "org/gnome/desktop/peripherals/keyboard" = {numlock-state = true;};
           # "org/gnome/desktop/screensaver" = {lock-enabled = false;};
 
           # "org/gnome/shell/extensions/Logo-menu" = {
@@ -117,7 +127,6 @@ with lib; {
             menu-button-icon = "Distro_Icon";
             menu-font-size = 14;
             menu-layout = "Redmond";
-
           };
 
           # [org/gnome/shell/extensions/arcmenu]
@@ -193,13 +202,15 @@ with lib; {
               "Airpod-Battery-Monitor@maniacx.github.com"
             ];
 
-            favorite-apps = [
-              # "org.kde.index.desktop"
-              # "pcmanfm.desktop"
-              "org.gnome.Nautilus.desktop"
-              "firefox.desktop"
-              # "org.gnome.Console.desktop"
-            ] ++ (optional pkgs.stdenv.isx86_64 "kitty.desktop")
+            favorite-apps =
+              [
+                # "org.kde.index.desktop"
+                # "pcmanfm.desktop"
+                "org.gnome.Nautilus.desktop"
+                "firefox.desktop"
+                # "org.gnome.Console.desktop"
+              ]
+              ++ (optional pkgs.stdenv.isx86_64 "kitty.desktop")
               ++ (optional (!pkgs.stdenv.isx86_64) "org.gnome.Console.desktop")
               ++ [
                 "code.desktop"
