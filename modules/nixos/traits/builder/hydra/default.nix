@@ -58,9 +58,9 @@ in {
     services.hydra = {
       extraEnv = {
         # HYDRA_FORCE_SEND_MAIL = "1";
-        EMAIL_SENDER_TRANSPORT_port = "587";
-        EMAIL_SENDER_TRANSPORT_ssl = "starttls";
-        EMAIL_SENDER_TRANSPORT_host = "smtp-relay.gmail.com";
+        # EMAIL_SENDER_TRANSPORT_port = "587";
+        # EMAIL_SENDER_TRANSPORT_ssl = "starttls";
+        # EMAIL_SENDER_TRANSPORT_host = "smtp-relay.gmail.com";
       };
 
       # buildMachinesFiles = [];
@@ -69,7 +69,7 @@ in {
       hydraURL = "https://hydra.harkema.io";
       notificationSender = "tomas+hydra@harkema.io";
       useSubstitutes = true;
-      smtpHost = "smtp-relay.gmail.com";
+      smtpHost = "silver-star-vm.ling-lizard.ts.net";
       debugServer = false;
       listenHost = "0.0.0.0";
       port = 3000;
