@@ -23,7 +23,7 @@ in {
       secrets = {
         "attic-config.toml" = {
           file = ../../../secrets/attic-config.toml.age;
-          mode = "644";
+          mode = "777";
           owner = "tomas";
           group = "tomas";
           path = "/Users/tomas/.config/attic/config.toml";
