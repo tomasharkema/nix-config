@@ -30,6 +30,11 @@ with lib.custom; {
     in {
       package = pkgs.nixVersions.nix_2_20;
 
+      extraOptions = ''
+        min-free = ${toString (100 * 1024 * 1024)}
+        max-free = ${toString (1024 * 1024 * 1024)}
+      '';
+
       settings = {
         use-cgroups = true;
         experimental-features = "nix-command flakes cgroups";
@@ -38,7 +43,7 @@ with lib.custom; {
         log-lines = 50;
         sandbox = true;
         auto-optimise-store = true;
-        trusted-users = users ++ [ "tomas" "root" ]; # "builder"];
+        trusted-users = users ++ [ "tomas" "root" "builder" ];
         allowed-users = users ++ [ "tomas" "root" "builder" ];
         netrc-file = config.age.secrets.attic-netrc.path;
         keep-outputs = true;
@@ -51,11 +56,11 @@ with lib.custom; {
         #   ++ (mapAttrsToList (name: value: value.key) cfg.extra-substituters);
       };
 
-      # gc = {
-      #   automatic = true;
-      #   dates = "daily";
-      #   options = "--delete-older-than 14d";
-      # };
+      gc = {
+        automatic = true;
+        dates = "daily";
+        options = "--delete-older-than 14d";
+      };
 
       # flake-utils-plus
       generateRegistryFromInputs = true;
