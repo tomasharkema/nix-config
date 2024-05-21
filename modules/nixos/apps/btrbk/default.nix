@@ -1,6 +1,9 @@
 { pkgs, lib, config, ... }:
 with lib; {
-  config = mkIf config.disks.btrfs.enable {
+
+  options.disks.btrfs.btrbk = { enable = mkEnableOption "btrbk"; };
+
+  config = mkIf (config.disks.btrfs.enable && config.disks.btrfs.btrbk.enable) {
     age.secrets.btrbk = {
       file = ../../../../secrets/btrbk.age;
       mode = "600";
