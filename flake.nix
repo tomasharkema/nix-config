@@ -131,15 +131,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hydra-check = {
-      url = "github:nix-community/hydra-check";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hydra-check = {
+    #   url = "github:nix-community/hydra-check";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
-    flake-checker = {
-      url = "github:DeterminateSystems/flake-checker";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # flake-checker = {
+    #   url = "github:DeterminateSystems/flake-checker";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     snowfall-lib = {
       url = "github:snowfallorg/lib";
