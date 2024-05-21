@@ -14,7 +14,7 @@ with lib;
 
     environment.variables.XCURSOR_SIZE = "24";
 
-    # nix.package = pkgs.nixVersions.nix_2_20; #Unstable;
+    # nix.package = pkgs.nixVersions.nix_2_21; #Unstable;
 
     # Select internationalisation properties.
     i18n = {
