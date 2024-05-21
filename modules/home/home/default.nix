@@ -36,7 +36,7 @@ in with lib; {
 
   config = {
     programs.inshellisense = {
-      enable = true;
+      # enable = true;
       # enableZshIntegration = true;
     };
     xdg = mkIf pkgs.stdenv.isLinux {
