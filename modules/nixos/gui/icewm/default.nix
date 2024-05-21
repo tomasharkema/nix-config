@@ -10,13 +10,6 @@ in {
   config = mkIf cfg.enable {
     gui.fonts.enable = true;
 
-    programs.hyprland = {
-      # Install the packages from nixpkgs
-      enable = true;
-      # Whether to enable XWayland
-      xwayland.enable = true;
-    };
-
     home.homeFiles = {
       ".icewm/themes" = {
         # enable = true;
