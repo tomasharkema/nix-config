@@ -24,10 +24,11 @@ with lib; {
 
     time.timeZone = "Europe/Amsterdam";
 
-    disks."ext4" = mkDefault {
+    disks.btrfs = {
       enable = true;
       main = "/dev/vda";
       encrypt = false;
+      newSubvolumes = true;
     };
 
     boot = {
