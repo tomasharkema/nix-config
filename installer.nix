@@ -9,30 +9,33 @@ in {
   config = {
     # nix.extraOptions = "experimental-features = nix-command flakes c";
     # isbinaryCaches
-    environment.etc."current-nixos".source = ./.;
+    # environment.etc."current-nixos".source = ./.;
     nix = { package = pkgs.nixVersions.nix_2_21; } // import ./config.nix;
 
     users = {
-      users.nixos = { uid = 2000; };
-      users.tomas = {
-        shell = pkgs.zsh;
-        isNormalUser = true;
-        description = "tomas";
-        group = "tomas";
-        extraGroups = [
-          "networkmanager"
-          "wheel"
-          "rslsync"
-          "users"
-          "fuse"
-          "disk"
-          "plugdev"
-          "dailout"
-        ];
-        hashedPassword =
-          "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
-        uid = 1000;
-        openssh.authorizedKeys.keyFiles = [ "${keys}" ];
+      users = {
+        nixos = { uid = 2000; };
+        tomas = {
+          shell = pkgs.zsh;
+          isNormalUser = true;
+          description = "tomas";
+          group = "tomas";
+          extraGroups = [
+            "networkmanager"
+            "wheel"
+            "rslsync"
+            "users"
+            "fuse"
+            "disk"
+            "plugdev"
+            "dailout"
+          ];
+          hashedPassword =
+            "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
+          uid = 1000;
+          openssh.authorizedKeys.keyFiles = [ "${keys}" ];
+        };
+        root.openssh.authorizedKeys.keyFiles = [ "${keys}" ];
       };
       groups.tomas = { };
     };
