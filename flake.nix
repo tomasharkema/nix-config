@@ -175,10 +175,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    command-center = {
-      url = "github:tomasharkema/command-center";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # command-center = {
+    #   url = "github:tomasharkema/command-center";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # filestash-nix = {
     #   url = "github:matthewcroughan/filestash-nix";
