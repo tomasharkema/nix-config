@@ -124,8 +124,9 @@ in {
         # chown root:ssl-cert -R "${cfg.dir}"
         # chmod 660 -R "${cfg.dir}"
 
-        # wantedBy = ["multi-user.target" "network.target"];
-        after = [ "tailscaled.service" "network.target" ];
+        wantedBy =
+          [ "multi-user.target" "tailscaled.service" "network.target" ];
+        after = [ "multi-user.target" "tailscaled.service" "network.target" ];
         # wants = ["tailscaled.service"];
       };
 
