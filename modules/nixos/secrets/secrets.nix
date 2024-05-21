@@ -47,7 +47,7 @@ let
   euro-mir-2-tomas =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMIZkviD01zlP3SkumEXHgLaNuoQxHqHPuBWcOqrm9rr tomas@euro-mir-2";
   euro-mir-vm =
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFxp960VLp07fNbU+DfE04ldSQb46zG+0KSLYS7msOro root@euro-mir-vm";
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEdxysnXLftX1ztDgyDeHlW/6Kmgi7fa7iqMX24M7YJJ root@euro-mir-vm";
 
   schweizer-bobbahn =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEWjUEO+IKf/N7FLtZk3ub+xzp7vNT1B4p+wDjzubbPf root@schweizer-bobbahn";
