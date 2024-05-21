@@ -193,6 +193,11 @@
       url = "github:nix-community/tree-sitter-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-checkmk = {
+      url = "github:tomasharkema/nixos-checkmk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
@@ -245,11 +250,11 @@
         namespace = "custom";
       };
 
-      overlays = with inputs;
-        [
-          # peerix.overlay
-          snowfall-flake.overlays."package/flake"
-        ];
+      overlays = with inputs; [
+        # peerix.overlay
+        snowfall-flake.overlays."package/flake"
+        nixos-checkmk.overlays.default
+      ];
 
       system.modules.darwin = with inputs; [{
         system.nixos.tags = [ "snowfall" ];
@@ -263,6 +268,8 @@
       #   ];
 
       systems.modules.nixos = with inputs; [
+        nixos-checkmk.nixosModules.check_mk_agent
+
         catppuccin.nixosModules.catppuccin
 
         nix-index-database.nixosModules.nix-index

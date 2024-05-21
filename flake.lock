@@ -106,16 +106,33 @@
     },
     "catppuccin": {
       "locked": {
-        "lastModified": 1716276506,
-        "narHash": "sha256-OjdP5uPgdRA79vy45V0O2HdK4ztbSZ6aHcvikjjPFKU=",
+        "lastModified": 1716325071,
+        "narHash": "sha256-8Af4YMLRB4ca+fKPFB+R6eB9xQrlAl+UJesOsFJuj2s=",
         "owner": "catppuccin",
         "repo": "nix",
-        "rev": "57e8376fdb3514fb4c4eae432e6dfa4137f1a260",
+        "rev": "1f11b0aeb0a321e427f491aa2c5270daf0b13c1f",
         "type": "github"
       },
       "original": {
         "owner": "catppuccin",
         "repo": "nix",
+        "type": "github"
+      }
+    },
+    "checkmk": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1715668589,
+        "narHash": "sha256-rk+OZOvAFWTaV5TZrWjoDQdH9atb78m0dUZvAQLSE8E=",
+        "owner": "tribe29",
+        "repo": "checkmk",
+        "rev": "5ba483a2e011b281853e3d4789c7f77d5bd2915c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tribe29",
+        "ref": "v2.3.0p2",
+        "repo": "checkmk",
         "type": "github"
       }
     },
@@ -328,11 +345,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1716168343,
-        "narHash": "sha256-82oT27w9smpItZ+PyN2C0PjIwZYbIocwXSM4u1igXuc=",
+        "lastModified": 1716291492,
+        "narHash": "sha256-Qvfoa99WdYIneGrrLFIKQCevLgB5vnxvwJe5aWbGYZY=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "6f01b9710bc4d3bf006eb8df928b4b15e0430901",
+        "rev": "f1654e07728008d354c704d265fc710e3f5f42ee",
         "type": "github"
       },
       "original": {
@@ -1245,6 +1262,27 @@
         "type": "github"
       }
     },
+    "nixos-checkmk": {
+      "inputs": {
+        "checkmk": "checkmk",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1716315383,
+        "narHash": "sha256-QdwG+YflZWF3DzsCdWWJMH58GnVjhknAvZMtTjRJBm0=",
+        "owner": "tomasharkema",
+        "repo": "nixos-checkmk",
+        "rev": "973f7977aef94da8ae86b43d440582590de762ee",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tomasharkema",
+        "repo": "nixos-checkmk",
+        "type": "github"
+      }
+    },
     "nixos-generators": {
       "inputs": {
         "nixlib": "nixlib",
@@ -1517,11 +1555,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1716274770,
-        "narHash": "sha256-uljGfzFKetmvwYyfMCa3WY7jZbRnN/g7C/qk0/bKsWA=",
+        "lastModified": 1716326274,
+        "narHash": "sha256-1LyTvpjb8Cmlg3TRnP56rvqK1WSNa518pD6F0tjgM+U=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "c9f3d15796c80c336662e9dd2a0d6820e5fa2841",
+        "rev": "5d2e01495944dcf7cf7ee53a7074c4010165d756",
         "type": "github"
       },
       "original": {
@@ -1692,6 +1730,7 @@
         "nix-index-database": "nix-index-database",
         "nix-software-center": "nix-software-center",
         "nixos-anywhere": "nixos-anywhere",
+        "nixos-checkmk": "nixos-checkmk",
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
         "nixos-search": "nixos-search",
