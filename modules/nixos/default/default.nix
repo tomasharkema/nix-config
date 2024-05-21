@@ -207,6 +207,8 @@ with lib;
       };
     };
 
+    programs.dconf.enable = true;
+
     services = {
       kmscon = {
         enable = mkDefault true;
