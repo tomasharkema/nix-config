@@ -169,7 +169,7 @@ in inputs.devenv.lib.mkShell {
     packages = [
       nixos-generate
 
-      nixVersions.nix_2_20 # Unstable
+      nixVersions.nix_2_21 # Unstable
       upload-all-store
       # cntr
       update-pkgs
