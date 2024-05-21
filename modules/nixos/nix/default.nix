@@ -28,7 +28,7 @@ with lib.custom; {
       users = [ "root" config.user.name ]
         ++ optional config.services.hydra.enable "hydra";
     in {
-      package = pkgs.nixVersions.nix_2_20;
+      package = pkgs.nixVersions.nix_2_21;
 
       extraOptions = ''
         min-free = ${toString (100 * 1024 * 1024)}
