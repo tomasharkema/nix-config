@@ -99,7 +99,7 @@
 
       distributedBuilds = true;
 
-      # package = pkgs.nixVersions.nix_2_20;
+      # package = pkgs.nixVersions.nix_2_21;
 
       # auto-optimise-store = true
 
