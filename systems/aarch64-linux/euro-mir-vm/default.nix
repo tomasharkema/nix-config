@@ -24,11 +24,11 @@ with lib; {
 
     time.timeZone = "Europe/Amsterdam";
 
-    disks."ext4" = mkDefault {
-      enable = true;
-      main = "/dev/vda";
-      encrypt = false;
-    };
+    # disks."ext4" = mkDefault {
+    #   enable = true;
+    #   main = "/dev/vda";
+    #   encrypt = false;
+    # };
 
     boot = {
       loader = {
@@ -104,7 +104,6 @@ with lib; {
       spice-vdagentd.enable = true;
       spice-webdavd.enable = true;
       qemuGuest.enable = true;
-
     };
   };
 }
