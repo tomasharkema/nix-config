@@ -4,12 +4,12 @@ let
   sendmail = pkgs.writeScript "sendmail" ''
     #!/bin/sh
     ${pkgs.system-sendmail}/bin/sendmail -t <<ERRMAIL
-      To: systemd@mailrise.xyz
-      From: tomas@harkema.io
-      Subject: $HOSTNAME Status of service $1
-      Content-Transfer-Encoding: 8bit
-      Content-Type: text/plain; charset=UTF-8
-      $(systemctl status --full "$1")
+    To: systemd@mailrise.xyz
+    From: tomas@harkema.io
+    Subject: $HOSTNAME Status of service $1
+    Content-Transfer-Encoding: 8bit
+    Content-Type: text/plain; charset=UTF-8
+    $(systemctl status --full "$1")
     ERRMAIL
   '';
   notifyServiceName = "notify-service";
