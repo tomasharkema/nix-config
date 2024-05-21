@@ -18,6 +18,7 @@ in {
       enable = true;
       main = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K";
       media = "/dev/disk/by-id/ata-TOSHIBA_MK3263GSXN_5066P0YHT";
+      btrbk.enable = false;
     };
 
     traits = {

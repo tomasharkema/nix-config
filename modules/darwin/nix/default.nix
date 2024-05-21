@@ -23,7 +23,7 @@ in {
       secrets = {
         "attic-config.toml" = {
           file = ../../../secrets/attic-config.toml.age;
-          mode = "644";
+          mode = "777";
           owner = "tomas";
           group = "tomas";
           path = "/Users/tomas/.config/attic/config.toml";
@@ -33,13 +33,14 @@ in {
 
     environment.systemPackages = with pkgs; [
       deploy-rs
-      nixfmt
+      nixfmt-rfc-style
+
       nix-prefetch-git
       nil
       # flake-checker
       direnv
       devenv
-      # attic
+      attic
       nix-output-monitor
       nixpkgs-fmt
       nerd-font-patcher
