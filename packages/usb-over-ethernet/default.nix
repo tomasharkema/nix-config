@@ -1,7 +1,7 @@
 # https://cdn.electronic.us/products/usb-over-ethernet/linux/download/bullseye/usb_network_gate_bullseye_x64.deb
 
 { dpkg, lib, stdenv, fetchurl, autoPatchelfHook, pkg-config, gcc, libgcc, libcxx
-, glibc, gcc-unwrapped, libGL, zlib, qt5, }:
+, glibc, gcc-unwrapped, libGL, zlib, qt5, makeWrapper, openssl_1_1, }:
 stdenv.mkDerivation rec {
   name = "usb-over-ethernet";
   version = "1.0.0";
@@ -26,15 +26,34 @@ stdenv.mkDerivation rec {
     runHook preInstall
 
     mkdir -p $out
-    cp -r ./usr/bin $out
-    cp -r ./lib $out
-    cp -r ./opt $out
-    cp -r ./etc $out
+    cp -r ./opt/ElectronicTeam/eveusb/bin $out
+    # cp -r ./opt/ElectronicTeam/eveusb/lib $out
+    # cp -r ./opt/ElectronicTeam/eveusb/etc $out
+    # cp -r ./etc $out 
+
+    mkdir $out/lib
+    cp -r ./opt/ElectronicTeam/eveusb/lib/libeveusb.so $out/lib
+    cp -r ./opt/ElectronicTeam/eveusb/lib/libeveusb.so.5 $out/lib
+    cp -r ./opt/ElectronicTeam/eveusb/lib/libeveusb.so.5.0.0 $out/lib
+    cp -r ./opt/ElectronicTeam/eveusb/lib/libboost* $out/lib
+
+    wrapProgram $out/bin/eveusb
 
     runHook postInstall
   '';
 
-  nativeBuildInputs = [ autoPatchelfHook dpkg qt5.wrapQtAppsHook ];
+  nativeBuildInputs = [ autoPatchelfHook dpkg qt5.wrapQtAppsHook makeWrapper ];
 
-  buildInputs = [ glibc gcc-unwrapped pkg-config gcc libgcc libcxx libGL zlib ];
+  buildInputs = [
+    glibc
+    gcc-unwrapped
+    pkg-config
+    gcc
+    libgcc
+    libcxx
+    libGL
+    zlib
+    openssl_1_1
+    qt5.qtbase
+  ];
 }
