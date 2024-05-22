@@ -131,7 +131,7 @@ in with lib; {
         {
           plugin = tmuxPlugins.catppuccin;
           extraConfig = ''
-            set -g @catppuccin_flavour 'mocha'
+            set -g @catppuccin_flavor 'mocha'
 
             set -g @catppuccin_window_left_separator ""
             set -g @catppuccin_window_right_separator " "
