@@ -244,12 +244,12 @@ with lib;
 
       thermald.enable = mkIf (pkgs.system == "x86_64-linux") true;
 
-      check_mk_agent = {
-        enable = true;
-        bind = "0.0.0.0";
-        openFirewall = true;
-        package = pkgs.check_mk_agent.override { enablePluginSmart = true; };
-      };
+      # check_mk_agent = {
+      #   enable = true;
+      #   bind = "0.0.0.0";
+      #   openFirewall = true;
+      #   package = pkgs.check_mk_agent.override { enablePluginSmart = true; };
+      # };
 
       openssh = {
         enable = true;
