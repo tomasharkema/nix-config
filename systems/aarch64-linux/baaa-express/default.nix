@@ -82,6 +82,8 @@ with lib; {
       size = 16 * 1024;
     }];
 
+    services.cage.program = mkForce "${pkgs.kodi-wayland}/bin/kodi-standalone";
+
     programs.atop = {
       enable = mkForce false;
       netatop.enable = false;
@@ -122,7 +124,7 @@ with lib; {
       kernelParams = mkForce [
         # "console=ttyS0,115200n8"
         "console=ttyS1,115200n8"
-        "console=tty0"
+        # "console=tty0"
         "cma=320M"
         "otg_mode=1"
       ];
@@ -151,7 +153,6 @@ with lib; {
             "bluez5.auto-connect" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
           };
         };
-
       };
       systemWide = true;
 
