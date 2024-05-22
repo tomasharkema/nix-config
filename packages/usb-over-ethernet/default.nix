@@ -10,7 +10,7 @@ stdenv.mkDerivation rec {
     fetchurl {
       url =
         "https://cdn.electronic.us/products/usb-over-ethernet/linux/download/usb_network_gate_x64-2.deb";
-      hash = "sha256-jvDpO4G/W0SLbRWNjKSYxQKSfJqn/1JnvBJvYxy0wv4=";
+      hash = "sha256-kTgnLbe4UiIJw1VyFnWHzb/20lFsRuyfHs19JfjM5pA=";
     }
   else
     fetchurl {
