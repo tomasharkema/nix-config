@@ -28,7 +28,10 @@
           file = ./attic-key.age;
           mode = "644";
         };
-
+        ght = {
+          file = ./ght.age;
+          mode = "0664";
+        };
         tailscale = {
           file = ./tailscale.age;
           mode = "644";
