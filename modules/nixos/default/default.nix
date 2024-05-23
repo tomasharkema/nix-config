@@ -92,6 +92,7 @@ with lib;
     programs.fzf.fuzzyCompletion = true;
 
     environment.systemPackages = (with pkgs; [
+      socat
       gdu
       swapview
       dfrs
@@ -234,7 +235,7 @@ with lib;
 
       # vscode-server.enable = true;
 
-      # seatd.enable = true;
+      seatd.enable = true;
 
       # udisks2 = {
       #   enable = true;
