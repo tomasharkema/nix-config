@@ -232,7 +232,7 @@
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
         # buildPlatform.system = "x86_64-linux";
-
+        permittedInsecurePackages = [ "openssl-1.1.1w" ];
         config = {
           # For example, enable smartcard support in Firefox.
           firefox.smartcardSupport = true;
