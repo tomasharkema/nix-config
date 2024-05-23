@@ -115,24 +115,21 @@ with lib; {
         package = pkgs.fprintd-tod;
         tod = {
           enable = true;
-          # driver = pkgs.custom.libfprint-2-tod1-goodix;
-          driver = pkgs.libfprint-2-tod1-goodix;
+
+          # driver = pkgs.libfprint-2-tod1-goodix;
+          driver = pkgs.libfprint-2-tod1-goodix-550a;
         };
       };
     };
 
     boot = {
       binfmt.emulatedSystems = [ "aarch64-linux" ];
-      extraModprobeConfig = ''
-        options nvidia NVreg_DynamicPowerManagement=0x02
-        options nvidia NVreg_PreserveVideoMemoryAllocations=1
-      '';
+      # extraModprobeConfig = ''
+      #   options nvidia NVreg_DynamicPowerManagement=0x02
+      #   options nvidia NVreg_PreserveVideoMemoryAllocations=1
+      # '';
       supportedFilesystems = [ "ntfs" ];
       kernelModules = [ "vhci-hcd" "usbip_host" "usbip_core" ];
-      tmp = {
-        useTmpfs = false;
-        cleanOnBoot = true;
-      };
     };
   };
 }
