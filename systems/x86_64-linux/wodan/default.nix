@@ -147,7 +147,10 @@ with lib; {
         };
       };
     };
-
+    swapDevices = [{
+      device = "/dev/disk/by-label/disk-1-swap";
+      size = 16 * 1024;
+    }];
     disks.btrfs = {
       enable = true;
 
