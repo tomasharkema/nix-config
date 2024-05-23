@@ -1,7 +1,8 @@
 # https://cdn.electronic.us/products/usb-over-ethernet/linux/download/bullseye/usb_network_gate_bullseye_x64.deb
 
 { dpkg, lib, stdenv, fetchurl, autoPatchelfHook, pkg-config, gcc, libgcc, libcxx
-, glibc, gcc-unwrapped, libGL, zlib, qt5, makeWrapper, openssl_1_1, }:
+, glibc, gcc-unwrapped, libGL, zlib, qt5, makeWrapper, openssl_1_1
+, linuxPackages, kernel ? linuxPackages.kernel, kmod, tree, }:
 stdenv.mkDerivation rec {
   name = "usb-over-ethernet";
   version = "1.0.0";
@@ -22,29 +23,50 @@ stdenv.mkDerivation rec {
   dontConfigure = true;
   dontBuild = true;
 
+  # postUnpack = ''
+  #   pwd
+  #   cd root/opt/ElectronicTeam/eveusb/module
+  #   sourceRoot="$(pwd -P)"
+  # '';
+
+  # makeFlags = [
+  #   "KERNELRELEASE=${kernel.modDirVersion}" # 3
+  #   "KERNEL_DIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build" # 4
+  #   "INSTALL_MOD_PATH=$(out)" # 5
+  # ];
+  # makeFlags = kernel.makeFlags ++ [
+  #   # "-C"
+  #   "KERNEL_DIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
+  #   "M=$(sourceRoot)"
+  # ];
   installPhase = ''
     runHook preInstall
 
     mkdir -p $out
     cp -r ./opt/ElectronicTeam/eveusb/bin $out
-    # cp -r ./opt/ElectronicTeam/eveusb/lib $out
-    # cp -r ./opt/ElectronicTeam/eveusb/etc $out
-    # cp -r ./etc $out 
+    cp -r ./etc $out
 
     mkdir $out/lib
-    cp -r ./opt/ElectronicTeam/eveusb/lib/libeveusb.so $out/lib
-    cp -r ./opt/ElectronicTeam/eveusb/lib/libeveusb.so.5 $out/lib
-    cp -r ./opt/ElectronicTeam/eveusb/lib/libeveusb.so.5.0.0 $out/lib
+    cp -r ./opt/ElectronicTeam/eveusb/lib/libeveusb* $out/lib
     cp -r ./opt/ElectronicTeam/eveusb/lib/libboost* $out/lib
 
+    mkdir -p $out/share/applications
+    cp -r ./opt/ElectronicTeam/eveusb/desktop/ $out/share/applications/
+
     wrapProgram $out/bin/eveusb
+
+    pwd .
+    pwd $out
+    ls $out
 
     runHook postInstall
   '';
 
-  nativeBuildInputs = [ autoPatchelfHook dpkg qt5.wrapQtAppsHook makeWrapper ];
+  nativeBuildInputs = [ autoPatchelfHook dpkg qt5.wrapQtAppsHook makeWrapper ]
+    ++ kernel.moduleBuildDependencies;
 
   buildInputs = [
+    tree
     glibc
     gcc-unwrapped
     pkg-config
