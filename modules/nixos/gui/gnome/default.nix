@@ -129,8 +129,9 @@ in {
       gnomeExtensions.todotxt
       gnomeExtensions.tophat
       gnomeExtensions.no-title-bar
-      # gnomeExtensions.vitals
+      gnomeExtensions.vitals
       gnomeExtensions.pip-on-top
+      gnomeExtensions.systemd-manager
     ]) ++ (with pkgs; [
       clutter
       clutter-gtk
@@ -146,7 +147,7 @@ in {
       gnome.gnome-keyring
       gnome.gnome-nettool
       gnome.gnome-online-miners
-      gnome.gnome-packagekit
+      # gnome.gnome-packagekit
       gnome.gnome-power-manager
       gnome.gnome-session
       gnome.gnome-session-ctl
@@ -177,19 +178,7 @@ in {
         atomix # puzzle game
         yelp # Help view
         gnome-initial-setup
-      ]) ++ (with pkgs;
-        [
-          # gnome-photos
-          gnome-tour
-        ]) ++ (with pkgs.gnome; [
-          cheese # webcam tool
-          tali # poker game
-          iagno # go game
-          hitori # sudoku game
-          atomix # puzzle game
-          yelp # Help view
-          gnome-initial-setup
-        ]);
+      ]);
   };
 }
 # # pkgs.gnome45Extensions."app-hider@lynith.dev"
