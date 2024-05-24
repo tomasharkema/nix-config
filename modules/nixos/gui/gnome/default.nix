@@ -31,8 +31,8 @@ in {
     # '';
 
     services = {
-      xrdp.defaultWindowManager =
-        "${pkgs.gnome.gnome-remote-desktop}/bin/gnome-remote-desktop";
+      # xrdp.defaultWindowManager =
+      #   "${pkgs.gnome.gnome-remote-desktop}/bin/gnome-remote-desktop";
 
       # xrdp.defaultWindowManager = "${pkgs.writeScript "xrdp-xsession-gnome" ''
       #   ${pkgs.gnome.gnome-shell}/bin/gnome-shell &
@@ -43,7 +43,7 @@ in {
       #   exit 0
       # ''}";
 
-      # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-shell}/bin/gnome-shell";
+      xrdp.defaultWindowManager = "${pkgs.gnome.gnome-shell}/bin/gnome-shell";
       # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session --session=gnomexrdp";
 
       xserver = {
@@ -213,4 +213,3 @@ in {
 # gnome45Extensions."monitor-brightness-volume@ailin.nemui"
 # # gnome45Extensions."systemd-status@ne0sight.github.io"
 # gnomeExtensions.spotify-tray
-
