@@ -19,7 +19,6 @@ with lib; {
       # calibre
       glxinfo
       inxi
-      linuxPackages.usbip
       pkgs.gnomeExtensions.battery-health-charging
     ];
 
@@ -62,6 +61,7 @@ with lib; {
       # android.enable = true;
       steam.enable = true;
       # opensnitch.enable = true;
+      usbip.enable = true;
     };
 
     headless.hypervisor = {
@@ -129,7 +129,6 @@ with lib; {
       #   options nvidia NVreg_PreserveVideoMemoryAllocations=1
       # '';
       supportedFilesystems = [ "ntfs" ];
-      kernelModules = [ "vhci-hcd" "usbip_host" "usbip_core" ];
     };
   };
 }
