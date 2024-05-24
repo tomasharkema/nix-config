@@ -64,8 +64,8 @@ with lib; {
         openrgb.enable = true;
         bolt.enable = true;
       };
-
-      udev.packages = [ pkgs.openrgb ];
+      dbus.packages = [ pkgs.openrgb-with-all-plugins ];
+      udev.packages = [ pkgs.openrgb-with-all-plugins ];
       command-center = {
         #enableBot = true;
       };
@@ -159,7 +159,6 @@ with lib; {
 
       encrypt = true;
       newSubvolumes = true;
-      swapSize = 64 * 1024;
     };
 
     boot = {
