@@ -69,10 +69,10 @@ in {
         # };
         certificate = "${./ca.crt}";
         dyndns.enable = true;
-        ifpAllowedUids = [ "root" "tomas" "1000" "1002" "gdm" "132" ];
+        # ifpAllowedUids = [ "root" "tomas" "1000" "1002" "gdm" "132" ];
       };
 
-      sudo.package = (pkgs.sudo.override { withSssd = true; });
+      # sudo.package = (pkgs.sudo.override { withSssd = true; });
 
       polkit = {
         enable = true;
@@ -89,15 +89,15 @@ in {
         krb5.enable = true;
         services = {
           #   #config.installed {
-          login.sssdStrictAccess = mkDefault true;
-          sudo.sssdStrictAccess = mkDefault true;
-          ssh.sssdStrictAccess = mkDefault true;
-          askpass.sssdStrictAccess = mkDefault true;
-          cockpit.sssdStrictAccess = mkDefault true;
-          "password-auth".sssdStrictAccess = mkDefault true;
-          "system-auth".sssdStrictAccess = mkDefault true;
-          "gdm-password".sssdStrictAccess = mkDefault true;
-          "gdm".sssdStrictAccess = mkDefault true;
+          # login.sssdStrictAccess = mkDefault true;
+          # sudo.sssdStrictAccess = mkDefault true;
+          # ssh.sssdStrictAccess = mkDefault true;
+          # askpass.sssdStrictAccess = mkDefault true;
+          # cockpit.sssdStrictAccess = mkDefault true;
+          # "password-auth".sssdStrictAccess = mkDefault true;
+          # "system-auth".sssdStrictAccess = mkDefault true;
+          # "gdm-password".sssdStrictAccess = mkDefault true;
+          # "gdm".sssdStrictAccess = mkDefault true;
         };
       };
     };
