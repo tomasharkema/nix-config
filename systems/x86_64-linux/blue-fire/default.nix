@@ -42,8 +42,9 @@ in {
       atophttpd.enable = true;
     };
 
+    programs.dconf.enable = mkForce false;
     gui = {
-      icewm.enable = true;
+      # icewm.enable = true;
       # desktop.enable = true;
     };
 
