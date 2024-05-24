@@ -132,8 +132,8 @@ in with lib; {
       };
       encrypt = mkEnableOption "encrypted";
       swapSize = mkOption {
-        type = types.int;
-        default = 16 * 1024;
+        type = types.nullOr types.int;
+        default = null;
         description = "swap size";
       };
     };
@@ -145,7 +145,7 @@ in with lib; {
       supportedFilesystems = [ "btrfs" ];
     };
 
-    swapDevices = [{
+    swapDevices = mkIf (cfg.swapSize != null) [{
       device = "/swapfile/swapfile";
       size = cfg.swapSize;
     }];
