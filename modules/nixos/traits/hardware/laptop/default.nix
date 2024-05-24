@@ -12,6 +12,7 @@ in {
     powerManagement.enable = true;
     services.thermald.enable = true;
 
+    services.xrdp.enable = mkForce false;
     netdata.enable = mkDefault false;
     services.auto-cpufreq = {
       enable = true;
