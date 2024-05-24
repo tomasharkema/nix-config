@@ -20,6 +20,8 @@ with lib; {
 
     # apps.spotifyd.enable = true;
 
+    apps = { usbip.enable = true; };
+
     environment.systemPackages = with pkgs; [ intel-gpu-tools ];
 
     disks.ext4 = {
@@ -44,6 +46,7 @@ with lib; {
         laptop.enable = true;
         # nvidia.enable = true;
         remote-unlock.enable = false;
+        bluetooth.enable = true;
       };
     };
 
