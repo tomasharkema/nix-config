@@ -95,13 +95,6 @@ in {
       '';
     };
 
-    age.secrets."ldap" = {
-      file = ../../../../../secrets/ldap.age;
-      mode = "644";
-      # owner = "tomas";
-      # group = "tomas";
-    };
-
     programs.ssh.extraConfig = ''
       StrictHostKeyChecking no
     '';

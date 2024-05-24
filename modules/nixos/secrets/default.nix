@@ -44,6 +44,13 @@
           file = ./resilio-p.age;
           mode = "644";
         };
+        "ldap" = {
+          file = ./ldap.age;
+          mode = "644";
+          # owner = "tomas";
+          # group = "tomas";
+        };
+
         "resilio-docs" = {
           file = ./resilio-docs.age;
           mode = "644";
