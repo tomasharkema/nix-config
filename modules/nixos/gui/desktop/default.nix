@@ -100,7 +100,7 @@ in {
         # transmission
         # keybase
         powertop
-
+        tabby
         nix-software-center
         # nixos-conf-editor
 
