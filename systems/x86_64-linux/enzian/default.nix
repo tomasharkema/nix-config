@@ -12,6 +12,7 @@ with lib; {
     apps = {
       ntopng.enable = true;
       steam.enable = true;
+      usbip.enable = true;
     };
 
     gui = {
