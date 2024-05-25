@@ -18,7 +18,7 @@ with lib;
 
     # Select internationalisation properties.
     i18n = {
-      defaultLocale = "en_US.UTF-export NIXPKGS_ALLOW_UNFREE=1";
+      defaultLocale = "en_US.UTF-8";
 
       extraLocaleSettings = {
         LC_ADDRESS = "nl_NL.UTF-8";
