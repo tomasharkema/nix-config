@@ -22,7 +22,7 @@ in {
       # ];
       secrets = {
         "attic-config.toml" = {
-          file = ../../../secrets/attic-config.toml.age;
+          file = ../../nixos/secrets/attic-config.toml.age;
           mode = "777";
           owner = "tomas";
           group = "tomas";
@@ -40,7 +40,7 @@ in {
       # flake-checker
       direnv
       devenv
-      attic
+      # attic
       nix-output-monitor
       nixpkgs-fmt
       nerd-font-patcher
