@@ -21,7 +21,7 @@ with lib.custom; {
         # (nixos-hosts.override {
         #   hosts = inputs.self.nixosConfigurations;
         # })
-        attic
+        # attic
       ];
 
     nix = let
