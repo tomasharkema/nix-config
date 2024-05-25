@@ -45,6 +45,7 @@ in {
         #"org.freefilesync.FreeFileSync"
         #"org.gnome.meld"
         #"com.bitwarden.desktop"
+        # "com.termius.Termius"
       ] ++ (if pkgs.stdenv.isx86_64 then [
         "com.discordapp.Discord"
         "com.spotify.Client"
