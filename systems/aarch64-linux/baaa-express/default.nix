@@ -40,6 +40,7 @@ with lib; {
       spotifyd.enable = true;
       cec.enable = true;
       unified-remote.enable = true;
+      remote-builders.enable = true;
     };
 
     services = {

@@ -20,7 +20,10 @@ with lib; {
 
     # apps.spotifyd.enable = true;
 
-    apps = { usbip.enable = true; };
+    apps = {
+      usbip.enable = true;
+      remote-builders.enable = true;
+    };
 
     environment.systemPackages = with pkgs; [ intel-gpu-tools ];
 
