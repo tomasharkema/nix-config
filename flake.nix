@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-24.05";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -232,7 +232,7 @@
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
         # buildPlatform.system = "x86_64-linux";
-        permittedInsecurePackages = [ "openssl-1.1.1w" ];
+        # permittedInsecurePackages = [ "openssl-1.1.1w" ];
         config = {
           # For example, enable smartcard support in Firefox.
           firefox.smartcardSupport = true;
@@ -293,7 +293,7 @@
 
         {
           config = {
-            system.stateVersion = "23.11";
+            system.stateVersion = "24.05";
             system.nixos.tags = [ "snowfall" (self.shortRev or "dirty") ];
             system.configurationRevision =
               lib.mkForce (self.shortRev or "dirty");
