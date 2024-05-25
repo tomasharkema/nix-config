@@ -27,7 +27,7 @@
 
       secrets = {
         atuin = {
-          file = ../../../secrets/atuin.age;
+          file = ../../nixos/secrets/atuin.age;
           # owner = "tomas";
           # group = "tomas";
           mode = "644";
@@ -41,7 +41,7 @@
         # symlink = false;
         # };
         notify = {
-          file = ../../../secrets/notify.age;
+          file = ../../nixos/secrets/notify.age;
           # owner = "tomas";
           # group = "tomas";
           mode = "644";
