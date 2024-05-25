@@ -12,14 +12,6 @@ with lib; {
       hostName = "euro-mir-vm";
     };
 
-    nix.buildMachines = [{
-      hostName = "blue-fire";
-      systems = [ "aarch64-linux" "x86_64-linux" ];
-      maxJobs = 4;
-      supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
-      speedFactor = 100;
-    }];
-
     users.mutableUsers = true;
 
     time.timeZone = "Europe/Amsterdam";
@@ -62,6 +54,7 @@ with lib; {
     apps = {
       flatpak.enable = true;
       # opensnitch.enable = true;
+      remote-builders.enable = true;
     };
 
     boot = {
