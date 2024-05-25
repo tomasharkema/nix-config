@@ -63,8 +63,6 @@ in {
         EMAIL_SENDER_TRANSPORT_host = "silver-star-vm.ling-lizard.ts.net";
       };
 
-      # buildMachinesFiles = [];
-
       enable = true;
       hydraURL = "https://hydra.harkema.io";
       notificationSender = "tomas+hydra@harkema.io";

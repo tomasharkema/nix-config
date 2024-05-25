@@ -99,7 +99,6 @@ with lib;
       duc
       ssh-tools
       mbuffer
-      termius
       # etcher
       pamixer
       pulsemixer
@@ -170,6 +169,7 @@ with lib;
       # pkgs.wolfram-engine
       pkgs.libsmbios
       pkgs.dmidecode
+      pkgs.termius
     ]);
     # services.ntfy-sh.enable = true;
 
