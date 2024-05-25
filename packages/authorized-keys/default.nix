@@ -1,15 +1,11 @@
-{
-  fetchurl,
-  lib,
-  stdenvNoCC,
-}:
+{ fetchurl, lib, stdenvNoCC, }:
 stdenvNoCC.mkDerivation rec {
   pname = "authorized-keys";
-  version = "0.0.2";
+  version = "0.0.3";
 
   src = fetchurl {
     url = "https://github.com/tomasharkema.keys";
-    sha256 = "sha256-d/hbf/9/WKKgkIdTxcuB7S8FO/3KudhXOuoHU5xjuOA=";
+    sha256 = "0cbbbcy0qqshp82hx67k8g7cpcjhq7k5mk0095jjf58b71h18z1x";
   };
 
   dontUnpack = true;
