@@ -4,7 +4,7 @@ let cfg = config.apps.cec;
 in {
   options.apps.cec = { enable = mkEnableOption "cec"; };
 
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.enable && false) {
     # an overlay to enable raspberrypi support in libcec, and thus cec-client
     nixpkgs.overlays = [
       # nixos-22.05
