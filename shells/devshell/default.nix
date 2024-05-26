@@ -173,7 +173,7 @@ in inputs.devenv.lib.mkShell {
       upload-all-store
       # cntr
       update-pkgs
-      # attic
+      attic-client
       dconf-save
       dp
       upload-to-installer
