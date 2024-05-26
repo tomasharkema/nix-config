@@ -38,8 +38,8 @@ in {
 
     apps = {
       attic-server.enable = true;
-      ntopng.enable = true;
-      atophttpd.enable = true;
+      # ntopng.enable = true;
+      # atophttpd.enable = true;
     };
 
     gui = {
@@ -65,8 +65,7 @@ in {
       #   enableBot = true;
       # };
 
-      tailscale = { useRoutingFeatures = lib.mkForce "both"; };
-      tcsd.enable = true;
+      # tcsd.enable = true;
 
       prometheus.exporters.ipmi.enable = true;
 
@@ -108,9 +107,13 @@ in {
       hostName = "blue-fire";
       hostId = "529fd7aa";
 
-      firewall = { enable = mkForce false; };
+      firewall = {
+        enable = false;
+        allowPing = true;
+      };
 
-      useDHCP = false;
+      # useDHCP = false;
+      networkmanager.enable = false;
 
       interfaces = {
         "eno1" = {
@@ -132,10 +135,10 @@ in {
       };
     };
 
-    headless.hypervisor = {
-      enable = true;
-      bridgeInterfaces = [ "eno1" ];
-    };
+    # headless.hypervisor = {
+    #   enable = true;
+    #   bridgeInterfaces = [ "eno1" ];
+    # };
 
     environment.systemPackages = with pkgs; [
       # ipmicfg
