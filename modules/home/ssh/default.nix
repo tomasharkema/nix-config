@@ -11,7 +11,7 @@ in {
           forwardAgent = true;
           extraOptions = if stdenvNoCC.isDarwin then {
             "IdentityAgent" = "/Users/tomas/.1password/agent.sock";
-            "UseKeychain" = "yes";
+            # "UseKeychain" = "yes";
           } else {
             "PKCS11Provider" = if (osConfig.traits.hardware.tpm.enable
               && osConfig.gui.enable) then
