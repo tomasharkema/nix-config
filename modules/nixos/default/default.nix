@@ -250,7 +250,16 @@ with lib;
         enable = true;
         bind = "0.0.0.0";
         openFirewall = true;
-        package = pkgs.check_mk_agent.override { enablePluginSmart = true; };
+        package = pkgs.check_mk_agent.override rec {
+          enablePluginSmart = true;
+          cmkaVersion = "v2.1.0p19";
+          cmkaSrc = pkgs.fetchFromGitHub {
+            owner = "Checkmk";
+            repo = "checkmk";
+            rev = cmkaVersion;
+            sha256 = "sha256-/8vLRWIt3aG7538X+a8tqJUAcHqE1yKUJnvVZGmQr7I=";
+          };
+        };
       };
 
       openssh = {
