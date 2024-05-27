@@ -70,13 +70,15 @@
         nerdfonts
         terminus-nerdfont
         ubuntu_font_family
-
         pkgs.custom.neue-haas-grotesk
-
         # helvetica
         vegur # the official NixOS font
         b612
         inter
+        bakoma_ttf
+        lmmath
+        exult
+        cm_unicode
       ];
     };
     programs.zsh = {
