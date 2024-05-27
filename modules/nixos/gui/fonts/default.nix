@@ -39,6 +39,10 @@ with lib; {
           san-francisco
           ubuntu_font_family
           vegur
+          bakoma_ttf
+          lmmath
+          exult
+          cm_unicode
         ];
     };
 
