@@ -1,16 +1,8 @@
 # Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
-{
-  inputs,
-  config,
-  lib,
-  pkgs,
-  osConfig,
-  ...
-}:
+{ inputs, config, lib, pkgs, osConfig, ... }:
 with inputs.home-manager.lib.hm.gvariant;
 with lib; {
-  config =
-    mkIf
+  config = mkIf
     (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
       dconf = {
         settings = {
@@ -21,7 +13,7 @@ with lib; {
               "variable-refresh-rate"
             ];
           };
-          "org/gnome/shell/extensions/vitals" = {"position-in-panel" = 0;};
+          "org/gnome/shell/extensions/vitals" = { "position-in-panel" = 0; };
           "org/gnome/desktop/interface" = {
             color-scheme = "prefer-dark";
             # cursor-theme = mkForce "Adwaita";
@@ -39,11 +31,13 @@ with lib; {
           };
 
           "org/gnome/shell/extensions/TodoTxt" = {
-            donetxt-location = "/home/tomas/resilio-sync/shared-documents/done.txt";
-            todotxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt";
+            donetxt-location =
+              "/home/tomas/resilio-sync/shared-documents/done.txt";
+            todotxt-location =
+              "/home/tomas/resilio-sync/shared-documents/todo.txt";
           };
 
-          "org/gnome/gnome-session" = {"auto-save-session" = true;};
+          "org/gnome/gnome-session" = { "auto-save-session" = true; };
 
           # "/org/gnome/desktop/background" = {
           # "picture-uri" = "/run/current-system/sw/share/backgrounds/gnome/adwaita-l.jpg";
@@ -100,7 +94,7 @@ with lib; {
           #   application-children = ["steam" "org-gnome-console" "gnome-power-panel" "firefox"];
           #   show-in-lock-screen = false;
           # };
-          "org/gnome/desktop/peripherals/keyboard" = {numlock-state = true;};
+          "org/gnome/desktop/peripherals/keyboard" = { numlock-state = true; };
           # "org/gnome/desktop/screensaver" = {lock-enabled = false;};
 
           # "org/gnome/shell/extensions/Logo-menu" = {
@@ -188,7 +182,7 @@ with lib; {
               "mediacontrols@cliffniff.github.com"
               "clipboard-indicator@tudmotu.com"
               "monitor-brightness-volume@ailin.nemui"
-              "systemd-status@ne0sight.github.io"
+              # "systemd-status@ne0sight.github.io"
               "search-light@icedman.github.com"
               # "hue-lights@chlumskyvaclav.gmail.com"
               # "logomenu@aryan_k"
@@ -202,15 +196,13 @@ with lib; {
               "Airpod-Battery-Monitor@maniacx.github.com"
             ];
 
-            favorite-apps =
-              [
-                # "org.kde.index.desktop"
-                # "pcmanfm.desktop"
-                "org.gnome.Nautilus.desktop"
-                "firefox.desktop"
-                # "org.gnome.Console.desktop"
-              ]
-              ++ (optional pkgs.stdenv.isx86_64 "kitty.desktop")
+            favorite-apps = [
+              # "org.kde.index.desktop"
+              # "pcmanfm.desktop"
+              "org.gnome.Nautilus.desktop"
+              "firefox.desktop"
+              # "org.gnome.Console.desktop"
+            ] ++ (optional pkgs.stdenv.isx86_64 "kitty.desktop")
               ++ (optional (!pkgs.stdenv.isx86_64) "org.gnome.Console.desktop")
               ++ [
                 "code.desktop"
@@ -318,4 +310,3 @@ with lib; {
 # use-system-font=false
 # use-theme-colors=false
 # visible-name='Default'
-
