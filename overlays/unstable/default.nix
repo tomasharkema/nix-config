@@ -18,7 +18,7 @@ final: prev: rec {
 
   _389-ds-base = self.packages."${prev.system}"._389-ds-base;
   freeipa = self.packages."${prev.system}".freeipa;
-  sssd = self.packages."${prev.system}".sssd.override { withSudo = true; };
+  sssd = self.packages."${prev.system}".sssd; # .override { withSudo = true; };
 
   # ldb =
   #   #builtins.trace "ldb overlay prev: ${builtins.toString (builtins.attrNames prev)}"

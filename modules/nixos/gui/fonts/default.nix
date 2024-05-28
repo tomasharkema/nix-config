@@ -41,7 +41,7 @@ with lib; {
           vegur
           bakoma_ttf
           lmmath
-          exult
+          # exult
           cm_unicode
         ];
     };
