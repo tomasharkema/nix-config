@@ -320,7 +320,8 @@ in with lib; {
           cat = "bat";
           dig = "dog";
 
-          wget2 = "${pkgs.wget2}";
+          wget = "${pkgs.wget2}/bin/wget2";
+          wget2 = "${pkgs.wget2}/bin/wget2";
 
           # silver-star-ipmi raw 0x30 0x30 0x01 0x00
           # silver-star-ipmi raw 0x30 0x30 0x02 0xff 0x10
