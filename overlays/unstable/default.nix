@@ -14,12 +14,11 @@ final: prev: rec {
   # netdata = channels.unstable.netdata;
   # nh = channels.unstable.nh;
 
-  # _389-ds-base = self.packages."${prev.system}"._389;
-
   nixos-generate = nixos-generators.packages."${prev.system}".nixos-generate;
 
+  _389-ds-base = self.packages."${prev.system}"._389-ds-base;
   freeipa = self.packages."${prev.system}".freeipa;
-  sssd = self.packages."${prev.system}".sssd;
+  sssd = self.packages."${prev.system}".sssd.override { withSudo = true; };
 
   # ldb =
   #   #builtins.trace "ldb overlay prev: ${builtins.toString (builtins.attrNames prev)}"
@@ -56,7 +55,6 @@ final: prev: rec {
 
   # cockpit = channels.unstable.cockpit;
 
-  _389-ds-base = self.packages."${prev.system}"._389-ds-base;
   cockpit-podman = self.packages."${prev.system}".cockpit-podman;
   cockpit-tailscale = self.packages."${prev.system}".cockpit-tailscale;
   cockpit-ostree = self.packages."${prev.system}".cockpit-ostree;
