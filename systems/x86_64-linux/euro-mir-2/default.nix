@@ -118,16 +118,16 @@ with lib; {
         reflector = mkForce false;
       };
 
-      fprintd = {
-        enable = true;
-        package = pkgs.fprintd-tod;
-        tod = {
-          enable = true;
+      # fprintd = {
+      #   enable = true;
+      #   package = pkgs.fprintd-tod;
+      #   tod = {
+      #     enable = true;
 
-          # driver = pkgs.libfprint-2-tod1-goodix;
-          driver = pkgs.libfprint-2-tod1-goodix-550a;
-        };
-      };
+      #     # driver = pkgs.libfprint-2-tod1-goodix;
+      #     driver = pkgs.libfprint-2-tod1-goodix-550a;
+      #   };
+      # };
     };
 
     boot = {
