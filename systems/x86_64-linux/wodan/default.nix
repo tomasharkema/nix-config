@@ -138,10 +138,9 @@ with lib; {
         disable-sleep.enable = true;
 
         nfs = {
-          # enable = true;
-
+          enable = true;
           machines = {
-            # silver-star.enable = true;
+            silver-star.enable = true;
             # dione.enable = true;
           };
         };

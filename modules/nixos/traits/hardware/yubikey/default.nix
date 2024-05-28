@@ -18,7 +18,7 @@ with lib; {
     };
     # hardware.gpgSmartcards.enable = true;
     programs = {
-      yubikey-touch-detector.enable = true;
+      # yubikey-touch-detector.enable = true;
       ssh.extraConfig = ''
         PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
       '';
@@ -27,17 +27,18 @@ with lib; {
     services = {
       pcscd.enable = true;
       yubikey-agent.enable = true;
-      udev.packages = with pkgs; [
-        libfido2
-        # opensc
-        # yubioath-flutter
-        yubikey-agent
-        yubikey-manager
-        yubikey-manager-qt
-        yubikey-personalization
-        yubikey-personalization-gui
-        yubico-piv-tool
-      ];
+      udev.packages = with pkgs;
+        [
+          libfido2
+          # opensc
+          # yubioath-flutter
+          # yubikey-agent
+          # yubikey-manager
+          # yubikey-manager-qt
+          # yubikey-personalization
+          # yubikey-personalization-gui
+          # yubico-piv-tool
+        ];
     };
 
     boot.initrd = {
@@ -52,13 +53,13 @@ with lib; {
       age-plugin-yubikey
       libfido2
       # pcsctools
-      yubico-piv-tool
+      # yubico-piv-tool
       # yubioath-flutter
-      yubikey-agent
-      yubikey-manager
-      yubikey-manager-qt
-      yubikey-personalization
-      yubikey-personalization-gui
+      # yubikey-agent
+      # yubikey-manager
+      # yubikey-manager-qt
+      # yubikey-personalization
+      # yubikey-personalization-gui
       # opensc
     ];
   };
