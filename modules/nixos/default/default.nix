@@ -366,6 +366,8 @@ with lib;
       # };
     };
 
+    security.sudo.package = pkgs.sudo.override { withSssd = true; };
+
     programs = {
       # darling.enable = pkgs.stdenv.isx86_64;
       flashrom.enable = true;
