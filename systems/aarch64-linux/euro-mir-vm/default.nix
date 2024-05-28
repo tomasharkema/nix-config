@@ -16,11 +16,17 @@ with lib; {
 
     time.timeZone = "Europe/Amsterdam";
 
-    disks.btrfs = {
+    # disks.btrfs = {
+    #   enable = true;
+    #   main = "/dev/vda";
+    #   encrypt = false;
+    #   newSubvolumes = true;
+    # };
+
+    disks.ext4 = {
       enable = true;
       main = "/dev/vda";
       encrypt = false;
-      newSubvolumes = true;
     };
 
     boot = {
