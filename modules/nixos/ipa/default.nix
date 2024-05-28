@@ -63,23 +63,23 @@ in {
         # kcm = true;
         sshAuthorizedKeysIntegration = true;
 
-        config = mkAfter ''
-          [pam]
-          pam_passkey_auth = True
-          #   passkey_debug_libfido2 = True
-          #   passkey_child_timeout = 60
-          #   pam_cert_auth = True
+        # config = mkAfter ''
+        #   [pam]
+        #   pam_passkey_auth = True
+        #   #   passkey_debug_libfido2 = True
+        #   #   passkey_child_timeout = 60
+        #   #   pam_cert_auth = True
 
-          #   [prompting/passkey]
-          #   interactive_prompt = "Insert your Passkey device, then press ENTER."
+        #   #   [prompting/passkey]
+        #   #   interactive_prompt = "Insert your Passkey device, then press ENTER."
 
-          [domain/shadowutils]
-          id_provider = proxy
-          proxy_lib_name = files
-          auth_provider = none
-          local_auth_policy = match
+        #   [domain/shadowutils]
+        #   id_provider = proxy
+        #   proxy_lib_name = files
+        #   auth_provider = none
+        #   local_auth_policy = match
 
-        '';
+        # '';
       };
     };
 
@@ -127,8 +127,8 @@ in {
         # krb5.enable = true;
         services = {
           #   #config.installed {
-          login.sssdStrictAccess = mkDefault true;
-          sudo.sssdStrictAccess = mkDefault true;
+          # login.sssdStrictAccess = mkDefault true;
+          # sudo.sssdStrictAccess = mkDefault true;
           # su.sssdStrictAccess = mkDefault true;
           # ssh.sssdStrictAccess = mkDefault true;
           # askpass.sssdStrictAccess = mkDefault true;
