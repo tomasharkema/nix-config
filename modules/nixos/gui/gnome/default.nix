@@ -144,7 +144,7 @@ in {
       gnome.gnome-autoar
       gnome.gnome-clocks
       gnome.gnome-control-center
-      gnome.gnome-keyring
+      # gnome.gnome-keyring
       gnome.gnome-nettool
       gnome.gnome-online-miners
       # gnome.gnome-packagekit
@@ -156,7 +156,7 @@ in {
       gnome.gnome-themes-extra
       gnome.gnome-tweaks
       gnome.gnome-user-share
-      gnome.libgnome-keyring
+      # gnome.libgnome-keyring
       gnome.seahorse
       gnome.zenity
     ]);
