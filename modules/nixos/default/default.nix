@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 with lib;
 # let
 #   theme = inputs.themes.custom (inputs.themes.catppuccin-mocha
@@ -35,7 +41,9 @@ with lib;
 
     virtualisation.spiceUSBRedirection.enable = true;
 
-    zramSwap = { enable = mkDefault true; };
+    zramSwap = {
+      enable = mkDefault true;
+    };
 
     console = {
       earlySetup = true;
@@ -91,86 +99,89 @@ with lib;
 
     programs.fzf.fuzzyCompletion = true;
 
-    environment.systemPackages = (with pkgs; [
-      socat
-      gdu
-      swapview
-      dfrs
-      duc
-      ssh-tools
-      mbuffer
-      # etcher
-      pamixer
-      pulsemixer
-      pamix
-      pavucontrol
-      ponymix
-      # ntfy
-      ntfy-sh
-      ntfs3g
-      plex-mpv-shim
-      # rtop
-      ipcalc
-      # fancy-motd
-      kexec-tools
-      # dry
-      # pkgs.deepin.udisks2-qt5
-      # udisks2
-      lshw
-      usbutils
-      ttop
-      git
-      wget
-      curl
-      sysz
-      iptraf-ng
-      netscanner
-      bandwhich
-      bashmount
-      bmon
-      compsize
-      ctop
-      curl
-      devtodo
-      devdash
-      wtf
-      fwupd
-      fwupd-efi
-      hw-probe
-      kmon
-      lazydocker
-      lm_sensors
-      ncdu
-      nfs-utils
-      notify
-      openldap
-      pciutils
-      pv
-      sshportal
-      systemctl-tui
-      tiptop
-      tpm-tools
-      udiskie
-      usermount
-      viddy
-      wget
-      zellij
-      nix-top
-    ]) ++ (with pkgs.custom; [
-      menu
-      podman-tui
-      pvzstd
-      ssm
-      tailscale-tui
-      sshed
-      # rmfuse
-    ]) ++ (optionals pkgs.stdenv.isx86_64 [
-      pkgs.custom.ztui
-      # pkgs.wolfram-engine
-      pkgs.libsmbios
-      pkgs.dmidecode
-      pkgs.termius
-    ]);
+    environment.systemPackages =
+      (with pkgs; [
+        socat
+        gdu
+        swapview
+        dfrs
+        duc
+        ssh-tools
+        mbuffer
+        # etcher
+        pamixer
+        pulsemixer
+        pamix
+        pavucontrol
+        ponymix
+        # ntfy
+        ntfy-sh
+        ntfs3g
+        plex-mpv-shim
+        # rtop
+        ipcalc
+        # fancy-motd
+        kexec-tools
+        # dry
+        # pkgs.deepin.udisks2-qt5
+        # udisks2
+        lshw
+        usbutils
+        ttop
+        git
+        wget
+        curl
+        sysz
+        iptraf-ng
+        netscanner
+        bandwhich
+        bashmount
+        bmon
+        compsize
+        ctop
+        curl
+        devtodo
+        devdash
+        wtf
+        fwupd
+        fwupd-efi
+        hw-probe
+        kmon
+        lazydocker
+        lm_sensors
+        ncdu
+        nfs-utils
+        notify
+        openldap
+        pciutils
+        pv
+        sshportal
+        systemctl-tui
+        tiptop
+        tpm-tools
+        udiskie
+        usermount
+        viddy
+        wget
+        zellij
+        nix-top
+      ])
+      ++ (with pkgs.custom; [
+        menu
+        podman-tui
+        pvzstd
+        ssm
+        tailscale-tui
+        sshed
+        # rmfuse
+      ])
+      ++ (optionals pkgs.stdenv.isx86_64 [
+        pkgs.custom.ztui
+        # pkgs.wolfram-engine
+        pkgs.libsmbios
+        pkgs.dmidecode
+        pkgs.termius
+      ]);
     # services.ntfy-sh.enable = true;
 
     apps = {
@@ -191,20 +202,34 @@ with lib;
 
       user.services.auto-fix-vscode-server = {
         enable = true;
-        wants = [ "multi-user.target" "network.target" ];
-        after = [ "multi-user.target" "network.target" ];
+        wants = [
+          "multi-user.target"
+          "network.target"
+        ];
+        after = [
+          "multi-user.target"
+          "network.target"
+        ];
       };
 
       services = {
         "numlockx" = {
 
-          wants = [ "multi-user.target" "network.target" ];
-          after = [ "multi-user.target" "network.target" ];
+          wants = [
+            "multi-user.target"
+            "network.target"
+          ];
+          after = [
+            "multi-user.target"
+            "network.target"
+          ];
 
           script = ''
             ${pkgs.numlockx}/bin/numlockx on
           '';
-          serviceConfig = { Type = "oneshot"; };
+          serviceConfig = {
+            Type = "oneshot";
+          };
         };
       };
     };
@@ -215,10 +240,12 @@ with lib;
       kmscon = {
         enable = mkDefault true;
         hwRender = config.traits.hardware.nvidia.enable;
-        fonts = [{
-          name = "JetBrainsMono Nerd Font Mono";
-          package = pkgs.nerdfonts;
-        }];
+        fonts = [
+          {
+            name = "JetBrainsMono Nerd Font Mono";
+            package = pkgs.nerdfonts;
+          }
+        ];
       };
 
       fstrim.enable = true;
@@ -250,16 +277,7 @@ with lib;
         enable = true;
         bind = "0.0.0.0";
         openFirewall = true;
-        package = pkgs.check_mk_agent.override rec {
-          enablePluginSmart = true;
-          cmkaVersion = "v2.1.0p19";
-          cmkaSrc = pkgs.fetchFromGitHub {
-            owner = "Checkmk";
-            repo = "checkmk";
-            rev = cmkaVersion;
-            sha256 = "sha256-/8vLRWIt3aG7538X+a8tqJUAcHqE1yKUJnvVZGmQr7I=";
-          };
-        };
+        package = pkgs.check_mk_agent.override { enablePluginSmart = true; };
       };
 
       openssh = {
@@ -385,7 +403,9 @@ with lib;
             color = "red";
             command = "hostname | ${pkgs.figlet}/bin/figlet -f slant";
           };
-          uptime = { prefix = "Up"; };
+          uptime = {
+            prefix = "Up";
+          };
           # weather = {
           #   url = "https://wttr.in/Amsterdam";
           # };
@@ -393,11 +413,15 @@ with lib;
             Accounts = "accounts-daemon";
             Cron = "cron";
           };
-          filesystems = { root = "/"; };
+          filesystems = {
+            root = "/";
+          };
           memory = {
             swap_pos = "beside"; # or "below" or "none"
           };
-          last_login = { tomas = 2; };
+          last_login = {
+            tomas = 2;
+          };
           last_run = { };
         };
         # [global]
@@ -506,7 +530,9 @@ with lib;
     # };
 
     networking = {
-      firewall = { enable = mkDefault true; };
+      firewall = {
+        enable = mkDefault true;
+      };
 
       networkmanager.enable = mkDefault true;
     };
