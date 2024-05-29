@@ -100,9 +100,9 @@ in {
       gnomeExtensions.executor
       gnomeExtensions.battery-health-charging
       gnomeExtensions.app-menu-icon-remove-symbolic
-
+      gnomeExtensions.pinguxnetlabel
       gnomeExtensions.window-is-ready-remover
-
+      gnomeExtensions.wayland-or-x11
       # gnomeExtensions.network-interfaces-info
       gnomeExtensions.appindicator
       gnomeExtensions.settingscenter
