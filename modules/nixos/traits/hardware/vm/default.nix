@@ -18,8 +18,8 @@ in {
     };
 
     nix.settings = {
-      keep-outputs = false;
-      keep-derivations = false;
+      keep-outputs = mkForce false;
+      keep-derivations = mkForce false;
     };
 
     hardware = {
