@@ -1,11 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, pkgs, lib, ... }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.traits.hardware.nvidia;
 
   nvidiaVersion = config.hardware.nvidia.package.version;
@@ -19,7 +15,7 @@ with lib.custom; let
   # '';
 in {
   options.traits = {
-    hardware.nvidia = {enable = mkBoolOpt false "nvidia";};
+    hardware.nvidia = { enable = mkBoolOpt false "nvidia"; };
   };
 
   config = mkIf cfg.enable {
@@ -28,7 +24,8 @@ in {
       cudaSupport = true;
     };
 
-    system.nixos.tags = ["nvidia:${nvidiaVersion}:nvidiax11Version:${nvidiax11Version}"];
+    system.nixos.tags =
+      [ "nvidia:${nvidiaVersion}:nvidiax11Version:${nvidiax11Version}" ];
 
     environment.systemPackages = with pkgs; [
       nvtop-nvidia
@@ -38,27 +35,31 @@ in {
     ];
 
     environment.sessionVariables = {
-      VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+      VK_DRIVER_FILES =
+        "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
 
       MUTTER_DEBUG_KMS_THREAD_TYPE = "user";
     };
 
     environment.variables = {
-      VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+      VK_DRIVER_FILES =
+        "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
 
       MUTTER_DEBUG_KMS_THREAD_TYPE = "user";
     };
 
+    virtualisation.podman.enableNvidia = true;
+
     services = {
-      xserver.videoDrivers = ["nvidia"];
+      xserver.videoDrivers = [ "nvidia" ];
       netdata.configDir."python.d.conf" = pkgs.writeText "python.d.conf" ''
         nvidia_smi: yes
       '';
     };
 
     boot = {
-      initrd.kernelModules = ["nvidia"];
-      extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+      initrd.kernelModules = [ "nvidia" ];
+      extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
     };
 
     hardware = {
