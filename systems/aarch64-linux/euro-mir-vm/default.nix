@@ -99,7 +99,6 @@ with lib; {
       udisks2.enable = false;
       xrdp.enable = false;
       fwupd.enable = false;
-      cpupower-gui.enable = true;
 
       # spice-autorandr.enable = true;
       spice-vdagentd.enable = true;
