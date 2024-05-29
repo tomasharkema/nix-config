@@ -57,12 +57,6 @@ with lib;
       # kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
-      # kernelParams = [
-      #   "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
-      #   "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
-      #   "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
-      # ];
-
       loader = {
         systemd-boot = {
           netbootxyz.enable = true;
@@ -70,26 +64,6 @@ with lib;
         };
       };
     };
-
-    services.preload.enable = true;
-
-    services.ananicy = {
-      enable = true;
-      package = pkgs.ananicy-cpp;
-      rulesProvider = pkgs.ananicy-rules-cachyos;
-    };
-
-    programs.atop = mkDefault {
-      #   atopRotateTimer.enable = true;
-      # enable = true;
-      #   setuidWrapper.enable = true;
-      #   # atopService.enable = true;
-      #   atopacctService.enable = true;
-      #   atopgpu.enable = config.traits.hardware.nvidia.enable;
-      #   netatop.enable = true;
-    };
-
-    programs.fzf.fuzzyCompletion = true;
 
     environment.systemPackages = (with pkgs; [
       socat
@@ -176,14 +150,16 @@ with lib;
     apps = {
       attic.enable = mkDefault true;
       ipa.enable = mkDefault true;
+      atop.enable = mkDefault true;
     };
 
     proxy-services.enable = mkDefault true;
 
     systemd = {
       enableEmergencyMode = false;
+
       watchdog = {
-        device = "/dev/watchdog";
+        # device = "/dev/watchdog";
         runtimeTime = "10m";
         kexecTime = "10m";
         rebootTime = "10m";
@@ -195,21 +171,27 @@ with lib;
         after = [ "multi-user.target" "network.target" ];
       };
 
-      services = {
-        "numlockx" = {
+      #   services = {
+      #     "numlockx" = {
 
-          wants = [ "multi-user.target" "network.target" ];
-          after = [ "multi-user.target" "network.target" ];
+      #       wants = [
+      #         "multi-user.target"
+      #         "network.target"
+      #       ];
+      #       after = [
+      #         "multi-user.target"
+      #         "network.target"
+      #       ];
 
-          script = ''
-            ${pkgs.numlockx}/bin/numlockx on
-          '';
-          serviceConfig = { Type = "oneshot"; };
-        };
-      };
+      #       script = ''
+      #         ${pkgs.numlockx}/bin/numlockx on
+      #       '';
+      #       serviceConfig = {
+      #         Type = "oneshot";
+      #       };
+      #     };
+      #   };
     };
-
-    programs.dconf.enable = true;
 
     services = {
       kmscon = {
@@ -219,6 +201,14 @@ with lib;
           name = "JetBrainsMono Nerd Font Mono";
           package = pkgs.nerdfonts;
         }];
+      };
+
+      preload.enable = true;
+
+      ananicy = {
+        enable = true;
+        package = pkgs.ananicy-cpp;
+        rulesProvider = pkgs.ananicy-rules-cachyos;
       };
 
       fstrim.enable = true;
@@ -360,8 +350,14 @@ with lib;
     # security.sudo.package = pkgs.sudo.override { withSssd = true; };
 
     programs = {
+      fzf.fuzzyCompletion = true;
+
+      dconf.enable = true;
+
       # darling.enable = pkgs.stdenv.isx86_64;
+
       flashrom.enable = true;
+
       rust-motd = {
         enable = true;
         settings = {
@@ -391,62 +387,6 @@ with lib;
           last_login = { tomas = 2; };
           last_run = { };
         };
-        # [global]
-        # progress_full_character = "="
-        # progress_empty_character = "="
-        # progress_prefix = "["
-        # progress_suffix = "]"
-        # time_format = "%Y-%m-%d %H:%M:%S"
-
-        # [banner]
-        # color = "red"
-        # command = "hostname | figlet -f slant"
-        # if you don't want a dependency on figlet, you can generate your
-        # banner however you want, put it in a file, and then use something like:
-        # command = "cat banner.txt"
-
-        # [weather]
-        # url = "https://wttr.in/New+York,New+York?0"
-        # user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"
-        # proxy = "http://proxy:8080"
-
-        # [service_status]
-        # Accounts = "accounts-daemon"
-        # Cron = "cron"
-
-        # [docker]
-        # Local containers MUST start with a slash
-        # https://github.com/moby/moby/issues/6705
-        # "/nextcloud-nextcloud-1" = "Nextcloud"
-        # "/nextcloud-nextcloud-mariadb-1" = "Nextcloud Database"
-
-        # [uptime]
-        # prefix = "Up"
-
-        # [user_service_status]
-        # gpg-agent = "gpg-agent"
-
-        # [ssl_certificates]
-        # sort_method = "manual"
-        #
-        #    [ssl_certificates.certs]
-        #    CertName1 = "/path/to/cert1.pem"
-        #    CertName2 = "/path/to/cert2.pem"
-
-        # [filesystems]
-        # root = "/"
-
-        # [memory]
-        # swap_pos = "beside" # or "below" or "none"
-
-        # [fail_2_ban]
-        # jails = ["sshd", "anotherjail"]
-
-        # [last_login]
-        # sally = 2
-        # jimmy = 1
-
-        # [last_run]
       };
       # git = {
       #   enable = true;
