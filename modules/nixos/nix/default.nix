@@ -35,6 +35,8 @@ with lib.custom; {
         max-free = ${toString (1024 * 1024 * 1024)}
       '';
 
+      optimise.automatic = true;
+
       settings = {
         use-cgroups = true;
         experimental-features = "nix-command flakes cgroups";

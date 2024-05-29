@@ -17,6 +17,11 @@ in {
       throttled.enable = mkForce false;
     };
 
+    nix.settings = {
+      keep-outputs = false;
+      keep-derivations = false;
+    };
+
     hardware = {
       cpu.intel.updateMicrocode = false;
       enableRedistributableFirmware = false;
