@@ -59,7 +59,7 @@ in {
 
     nix = let users = [ "root" "tomas" ];
     in {
-      package = pkgs.nixVersions.nix_2_21;
+      package = pkgs.nixVersions.nix_2_22;
 
       linux-builder = {
         enable = true;
