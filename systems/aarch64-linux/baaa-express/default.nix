@@ -90,9 +90,9 @@ with lib; {
       netatop.enable = false;
     };
 
-    nix.settings = mkForce {
-      keep-outputs = false;
-      keep-derivations = false;
+    nix.settings = {
+      keep-outputs = mkForce false;
+      keep-derivations = mkForce false;
     };
 
     boot = {
