@@ -13,6 +13,12 @@ with lib; {
       ntopng.enable = true;
       steam.enable = true;
       usbip.enable = true;
+      home-assistant.enable = true;
+    };
+
+    nix.settings = {
+      keep-outputs = mkForce false;
+      keep-derivations = mkForce false;
     };
 
     gui = {
