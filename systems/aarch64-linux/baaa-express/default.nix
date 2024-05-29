@@ -90,6 +90,11 @@ with lib; {
       netatop.enable = false;
     };
 
+    nix.settings = mkForce {
+      keep-outputs = false;
+      keep-derivations = false;
+    };
+
     boot = {
 
       loader = {
