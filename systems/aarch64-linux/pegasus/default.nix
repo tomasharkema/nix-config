@@ -51,6 +51,10 @@ with lib; {
       ncspot
       # pkgs.custom.playercast
     ];
+    nix.settings = mkForce {
+      keep-outputs = false;
+      keep-derivations = false;
+    };
 
     boot = {
       kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;

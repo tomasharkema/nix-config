@@ -66,18 +66,17 @@ in {
         extraPackages = with pkgs; [ libva vaapiVdpau libvdpau-va-gl ];
         driSupport = true;
       };
-
     };
 
     environment.systemPackages = with pkgs; [
-      play-with-mpv
-      open-in-mpv
-      plex-mpv-shim
       mpv
       mpvc
+      play-with-mpv
+
+      plex-mpv-shim
+      open-in-mpv
       celluloid
       pwvucontrol
-
     ];
 
     # services.xserver.desktopManager.kodi.package = pkgs.kodi.withPackages (pkgs:
