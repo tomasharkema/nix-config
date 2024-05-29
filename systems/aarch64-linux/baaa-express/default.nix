@@ -65,8 +65,8 @@ with lib; {
           hostname = 0.0.0.0
 
           [spotify]
-          username = ***REMOVED***
-          password = ***REMOVED***
+          username = 1116196627
+          password = a^=97c>2}6nD8%.p8k{^J9ry#9o4G*6e
           client_id = 7e67ff0f-3f01-4b2b-be49-263f2c9c8e43
           client_secret = 1WFE4aj9W51FoWUwBerVoeF-aFvx54GsmbfUzBNh3O4=
         '';
