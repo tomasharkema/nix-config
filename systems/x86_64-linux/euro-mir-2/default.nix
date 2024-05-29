@@ -47,7 +47,7 @@ with lib; {
     hardware = {
       nvidia = {
         nvidiaPersistenced = false;
-        # dynamicBoost.enable = true;
+        dynamicBoost.enable = true;
         prime = {
           sync.enable = true;
           offload.enable = false;
