@@ -16,9 +16,9 @@ with lib; {
       home-assistant.enable = true;
     };
 
-    nix.settings = mkForce {
-      keep-outputs = false;
-      keep-derivations = false;
+    nix.settings = {
+      keep-outputs = mkForce false;
+      keep-derivations = mkForce false;
     };
 
     gui = {

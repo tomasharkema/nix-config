@@ -81,9 +81,9 @@ in {
 
     # system.stateVersion = "23.11";
 
-    nix.settings = mkForce {
-      keep-outputs = false;
-      keep-derivations = false;
+    nix.settings = {
+      keep-outputs = mkForce false;
+      keep-derivations = mkForce false;
     };
 
     hardware = {
