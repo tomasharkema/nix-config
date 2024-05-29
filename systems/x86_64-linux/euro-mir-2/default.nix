@@ -107,7 +107,7 @@ with lib; {
     services = {
       # usb-over-ethernet.enable = true;
 
-      # podman.enable = true;
+      podman.enable = true;
       hardware.bolt.enable = true;
       beesd.filesystems = {
         root = {

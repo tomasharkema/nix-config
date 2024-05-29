@@ -62,8 +62,10 @@ in {
     # programs.gnupg.agent = {
     # enable = true;
     # enableSSHSupport = true;
+    # # };
+    # services = {
+    #   tabby.enable = true;
     # };
-    services.cpupower-gui.enable = true;
 
     environment.variables = {
       LD_LIBRARY_PATH =
@@ -100,7 +102,7 @@ in {
         # transmission
         # keybase
         powertop
-        tabby
+        # tabby
         nix-software-center
         # nixos-conf-editor
 
