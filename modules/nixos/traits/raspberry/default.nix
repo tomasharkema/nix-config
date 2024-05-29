@@ -81,6 +81,11 @@ in {
 
     # system.stateVersion = "23.11";
 
+    nix.settings = mkForce {
+      keep-outputs = false;
+      keep-derivations = false;
+    };
+
     hardware = {
       enableRedistributableFirmware = true;
       # firmware = [pkgs.wireless-regdb];
