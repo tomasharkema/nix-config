@@ -78,6 +78,7 @@ in {
     };
 
     programs.evolution.enable = true;
+    programs.geary.enable = false;
 
     environment.systemPackages = with pkgs;
       [
