@@ -1,13 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}:
+{ config, pkgs, lib, inputs, ... }:
 with lib;
-with lib.custom; let
-  cfg = config.traits.builder.hydra;
+with lib.custom;
+let cfg = config.traits.builder.hydra;
 in {
   options.traits = {
     builder.hydra = {
@@ -30,61 +24,55 @@ in {
       };
     };
 
-    nix.buildMachines = [
-      {
-        hostName = "localhost";
-        systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
-        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-        maxJobs = 1;
-      }
-      # {
-      #   hostName = "builder@wodan";
-      #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
-      #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-      #   maxJobs = 2;
-      #   speedFactor = 100;
-      # }
-      # {
-      #   hostName = "builder@enzian";
-      #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
-      #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-      #   maxJobs = 1;
-      #   speedFactor = 50;
-      # }
-      # {
-      #   hostName = "builder@arthur";
-      #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
-      #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-      #   maxJobs = 1;
-      #   speedFactor = 10;
-      # }
-    ];
+    nix.buildMachines = [{
+      hostName = "localhost";
+      systems = [ "x86_64-linux" "aarch64-linux" "i686-linux" ];
+      supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
+      maxJobs = 1;
+    }
+    # {
+    #   hostName = "builder@wodan";
+    #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
+    #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+    #   maxJobs = 2;
+    #   speedFactor = 100;
+    # }
+    # {
+    #   hostName = "builder@enzian";
+    #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
+    #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+    #   maxJobs = 1;
+    #   speedFactor = 50;
+    # }
+    # {
+    #   hostName = "builder@arthur";
+    #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
+    #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+    #   maxJobs = 1;
+    #   speedFactor = 10;
+    # }
+      ];
 
-    networking.firewall = {
-      allowedTCPPorts = [3000];
-    };
+    networking.firewall = { allowedTCPPorts = [ 3000 ]; };
 
     services.hydra = {
       extraEnv = {
         # HYDRA_FORCE_SEND_MAIL = "1";
-        EMAIL_SENDER_TRANSPORT_port = "587";
-        EMAIL_SENDER_TRANSPORT_ssl = "starttls";
-        EMAIL_SENDER_TRANSPORT_host = "smtp-relay.gmail.com";
+        EMAIL_SENDER_TRANSPORT_port = "8025";
+        # EMAIL_SENDER_TRANSPORT_ssl = "starttls";
+        EMAIL_SENDER_TRANSPORT_host = "silver-star-vm.ling-lizard.ts.net";
       };
-
-      # buildMachinesFiles = [];
 
       enable = true;
       hydraURL = "https://hydra.harkema.io";
       notificationSender = "tomas+hydra@harkema.io";
       useSubstitutes = true;
-      smtpHost = "smtp-relay.gmail.com";
+      smtpHost = "silver-star-vm.ling-lizard.ts.net";
       debugServer = false;
       listenHost = "0.0.0.0";
       port = 3000;
 
-      extraConfig = let
-        ldap = import ./ldap.nix {inherit pkgs config;};
+      extraConfig = let ldap = import ./ldap.nix { inherit pkgs config; };
       in ''
         Include ${config.age.secrets.ght.path}
         <hydra_notify>
@@ -103,13 +91,6 @@ in {
         email_notification = 1
         Include ${ldap}
       '';
-    };
-
-    age.secrets."ldap" = {
-      file = ../../../../../secrets/ldap.age;
-      mode = "644";
-      # owner = "tomas";
-      # group = "tomas";
     };
 
     programs.ssh.extraConfig = ''
@@ -153,7 +134,13 @@ in {
         #       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         #     ];
 
-        trusted-users = ["hydra" "hydra-queue-runner" "hydra-www" "github-runner-blue-fire" "builder"];
+        trusted-users = [
+          "hydra"
+          "hydra-queue-runner"
+          "hydra-www"
+          "github-runner-blue-fire"
+          "builder"
+        ];
       };
     };
 

@@ -1,11 +1,7 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, config, ... }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.resilio;
   known_host = "100.120.66.165:52380";
 
@@ -20,7 +16,7 @@ in {
     # age.secrets."resilio-p" = {file = ../secrets/resilio-p.age;};
     # age.secrets."resilio-docs" = {file = ../secrets/resilio-docs.age;};
     # age.secrets."resilio-shared-public" = {file = ../secrets/resilio-shared-public.age;};
-    environment.systemPackages = with pkgs; [acl];
+    environment.systemPackages = with pkgs; [ acl ];
 
     systemd = {
       tmpfiles.rules = [
@@ -45,7 +41,7 @@ in {
           useRelayServer = true;
           useSyncTrash = true;
           useTracker = true;
-          knownHosts = [known_host];
+          knownHosts = [ known_host ];
         }
         {
           directory = "${root}/P-dir";
@@ -55,7 +51,7 @@ in {
           useRelayServer = true;
           useSyncTrash = false;
           useTracker = true;
-          knownHosts = [known_host];
+          knownHosts = [ known_host ];
         }
         {
           directory = "${root}/shared-public";
@@ -65,7 +61,7 @@ in {
           useRelayServer = true;
           useSyncTrash = false;
           useTracker = true;
-          knownHosts = [known_host];
+          knownHosts = [ known_host ];
         }
       ];
     };

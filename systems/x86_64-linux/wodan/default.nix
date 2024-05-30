@@ -1,21 +1,15 @@
-{
-  pkgs,
-  lib,
-  inputs,
-  config,
-  ...
-}:
+{ pkgs, lib, inputs, config, ... }:
 with lib; {
   imports = [
     ./hardware-configuration.nix
-
+    inputs.nixos-hardware.nixosModules.common-gpu-intel
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
+    inputs.nixos-hardware.nixosModules.common-hidpi
   ];
 
   config = {
     # btrfs balance -dconvert=raid0 -mconvert=raid1 /home
 
-    installed = false;
     # programs.gamemode.enable = true;
     environment.systemPackages = with pkgs; [
       ntfs2btrfs
@@ -29,19 +23,15 @@ with lib; {
     };
 
     # services.freeipa.replica.enable = true;
-    services.upower.enable = mkForce false;
+    # services.upower.enable = mkForce false;
 
     networking = {
-      hosts = {
-        "192.168.0.100" = ["nix-cache.harke.ma"];
-      };
+      hosts = { "192.168.0.100" = [ "nix-cache.harke.ma" ]; };
       networkmanager.enable = true;
 
       hostName = "wodan";
 
-      firewall = {
-        enable = false;
-      };
+      firewall = { enable = false; };
       useDHCP = lib.mkDefault false;
 
       interfaces = {
@@ -74,8 +64,8 @@ with lib; {
         openrgb.enable = true;
         bolt.enable = true;
       };
-
-      udev.packages = [pkgs.openrgb];
+      dbus.packages = [ pkgs.openrgb-with-all-plugins ];
+      udev.packages = [ pkgs.openrgb-with-all-plugins ];
       command-center = {
         #enableBot = true;
       };
@@ -88,14 +78,14 @@ with lib; {
 
     headless.hypervisor = {
       enable = true;
-      bridgeInterfaces = ["enp2s0"];
+      bridgeInterfaces = [ "enp2s0" ];
     };
     services.beesd.filesystems = {
       root = {
         spec = "UUID=f3558990-77b0-4113-b45c-3d2da3f46c14";
         hashTableSizeMB = 4096;
         verbosity = "crit";
-        extraOptions = ["--loadavg-target" "2.0"];
+        extraOptions = [ "--loadavg-target" "2.0" ];
       };
     };
 
@@ -148,8 +138,7 @@ with lib; {
         disable-sleep.enable = true;
 
         nfs = {
-          # enable = true;
-
+          enable = true;
           machines = {
             silver-star.enable = true;
             # dione.enable = true;
@@ -157,7 +146,10 @@ with lib; {
         };
       };
     };
-
+    swapDevices = [{
+      device = "/dev/disk/by-label/disk-1-swap";
+      size = 16 * 1024;
+    }];
     disks.btrfs = {
       enable = true;
 
@@ -166,29 +158,24 @@ with lib; {
 
       encrypt = true;
       newSubvolumes = true;
-      swapSize = 64 * 1024;
     };
 
     boot = {
-      binfmt.emulatedSystems = ["aarch64-linux"];
-      supportedFilesystems = ["ntfs"];
-      kernelModules = ["i2c-dev"];
-      blacklistedKernelModules = lib.mkDefault ["i915" "nouveau"];
+      binfmt.emulatedSystems = [ "aarch64-linux" ];
+      supportedFilesystems = [ "ntfs" ];
+      kernelModules = [ "i2c-dev" ];
+      # blacklistedKernelModules = lib.mkDefault [ "i915" "nouveau" ];
       # KMS will load the module, regardless of blacklisting
-      kernelParams = lib.mkDefault ["i915.modeset=0"];
+      # kernelParams = lib.mkDefault [ "i915.modeset=0" ];
 
-      extraModprobeConfig = ''
-        options nvidia-drm modeset=1";
-        blacklist nouveau
-        options nouveau modeset=0
-      '';
+      #extraModprobeConfig = ''
+      #  options nvidia-drm modeset=1";
+      #  blacklist nouveau
+      #  options nouveau modeset=0
+      #'';
 
-      initrd.kernelModules = [
-        "nvidia"
-        "nvidia_modeset"
-        "nvidia_uvm"
-        "nvidia_drm"
-      ];
+      # initrd.kernelModules =
+      # [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     };
 
     # boot = {

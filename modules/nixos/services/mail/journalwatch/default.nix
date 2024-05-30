@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{ pkgs, config, ... }: {
   config = {
     # environment.systemPackages = [pkgs.mailutils];
 
@@ -25,7 +21,7 @@
 
       # journalwatch = {
       #   enable = true;
-      #   mailTo = "tomas";
+      #   mailTo = "all@mailrise.xyz";
       # };
     };
   };

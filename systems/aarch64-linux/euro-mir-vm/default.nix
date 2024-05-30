@@ -1,9 +1,4 @@
-{
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
+{ pkgs, inputs, lib, ... }:
 with lib; {
   imports = with inputs; [
     "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
@@ -12,43 +7,34 @@ with lib; {
 
   config = {
     # nixpkgs.crossSystem.system = "aarch64-linux";
-    installed = true;
     networking = {
       wireless.enable = mkForce false;
       hostName = "euro-mir-vm";
     };
 
-    nix.buildMachines = [
-      {
-        hostName = "blue-fire";
-        systems = ["aarch64-linux" "x86_64-linux"];
-        maxJobs = 4;
-        supportedFeatures = ["kvm" "benchmark" "big-parallel"];
-        speedFactor = 100;
-      }
-    ];
-
     users.mutableUsers = true;
 
     time.timeZone = "Europe/Amsterdam";
 
-    disks."ext4" = {
+    # disks.btrfs = {
+    #   enable = true;
+    #   main = "/dev/vda";
+    #   encrypt = false;
+    #   newSubvolumes = true;
+    # };
+
+    disks.ext4 = {
       enable = true;
       main = "/dev/vda";
       encrypt = false;
     };
-
-    # services.spice-autorandr.enable = true;
-    services.spice-vdagentd.enable = true;
-    services.spice-webdavd.enable = true;
-    services.qemuGuest.enable = true;
 
     boot = {
       loader = {
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
       };
-      kernelModules = ["virtio_gpu"];
+      kernelModules = [ "virtio_gpu" ];
     };
 
     virtualisation.rosetta.enable = true;
@@ -61,14 +47,12 @@ with lib; {
     fileSystems."/boot" = {
       #   device = "/dev/disk/by-uuid/A6D4-8A1F";
       #   fsType = "vfat";
-      options = ["fmask=0022" "dmask=0022"];
+      options = [ "fmask=0022" "dmask=0022" ];
     };
 
     gui = {
       enable = true;
-      desktop = {
-        enable = true;
-      };
+      desktop = { enable = true; };
       quiet-boot.enable = true;
       gnome.enable = true;
     };
@@ -76,10 +60,11 @@ with lib; {
     apps = {
       flatpak.enable = true;
       # opensnitch.enable = true;
+      remote-builders.enable = true;
     };
 
     boot = {
-      growPartition = true;
+      growPartition = mkDefault false;
 
       tmp = {
         useTmpfs = false;
@@ -102,10 +87,23 @@ with lib; {
       driSupport = true;
       #   # driSupport32Bit = true;
     };
-    services = {
-      kmscon = {
-        # enable = false;
-      };
+
+    zramSwap.enable = false;
+
+    services = mkForce {
+      kmscon.enable = false;
+      upower.enable = false;
+      auto-cpufreq.enable = false;
+      monit.enable = false;
+      tor.enable = false;
+      udisks2.enable = false;
+      xrdp.enable = false;
+      fwupd.enable = false;
+
+      # spice-autorandr.enable = true;
+      spice-vdagentd.enable = true;
+      spice-webdavd.enable = true;
+      qemuGuest.enable = true;
     };
   };
 }

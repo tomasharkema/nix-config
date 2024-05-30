@@ -1,17 +1,10 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, pkgs, lib, ... }:
 with lib;
-with lib.custom; let
-  cfg = config.traits.raspberry;
+with lib.custom;
+let cfg = config.traits.raspberry;
 in {
   options.traits = {
-    raspberry = {
-      enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
-    };
+    raspberry = { enable = mkBoolOpt false "SnowflakeOS GNOME configuration"; };
   };
 
   config = mkIf cfg.enable {
@@ -24,10 +17,10 @@ in {
     };
 
     fileSystems = {
-      "/boot" = {
-        device = "/dev/disk/by-label/NIXOS_BOOT";
-        fsType = "vfat";
-      };
+      # "/boot" = {
+      #   device = "/dev/disk/by-label/NIXOS_BOOT";
+      #   fsType = "vfat";
+      # };
       "/" = {
         device = "/dev/disk/by-label/NIXOS_SD";
         fsType = "ext4";
@@ -38,7 +31,7 @@ in {
       # kernelParams = [
       #   "console=tty1"
       # ];
-      kernelModules = ["dwc2" "g_serial"];
+      # kernelModules = ["dwc2" "g_serial"];
       # kernelParams = ["console=tty0"];
 
       tmp = {
@@ -47,10 +40,7 @@ in {
       };
     };
 
-    services.fwupd.enable = mkForce false;
-    zramSwap = {
-      enable = true;
-    };
+    services.fwupd.enable = true;
 
     # NixOS wants to enable GRUB by default
     boot.loader = {
@@ -61,14 +51,7 @@ in {
 
     # sdImage.compressImage = false;
 
-    # swapDevices = [
-    #   {
-    #     device = "/swapfile";
-    #     size = 8 * 1024;
-    #   }
-    # ];
-
-    gui."media-center".enable = true;
+    # gui."media-center".enable = true;
 
     # services = {
     #   openssh.enable = true;
@@ -98,9 +81,14 @@ in {
 
     # system.stateVersion = "23.11";
 
+    nix.settings = {
+      keep-outputs = mkForce false;
+      keep-derivations = mkForce false;
+    };
+
     hardware = {
       enableRedistributableFirmware = true;
-      firmware = [pkgs.wireless-regdb];
+      # firmware = [pkgs.wireless-regdb];
       bluetooth = {
         enable = true;
         powerOnBoot = true;
@@ -122,11 +110,11 @@ in {
       # };
 
       # Enabling WIFI
-      wireless = {
-        enable = false;
-        #   interfaces = ["wlan0"];
-        #   networks."Have a good day".pskRaw = "0fcc36c0dd587f3d85028f427c872fead0b6bb7623099fb4678ed958f2150e23";
-      };
+      # wireless = {
+      # enable = true;
+      #   interfaces = ["wlan0"];
+      #   networks."Have a good day".pskRaw = "0fcc36c0dd587f3d85028f427c872fead0b6bb7623099fb4678ed958f2150e23";
+      # };
     };
   };
 }

@@ -1,17 +1,19 @@
-{
-  pkgs,
-  inputs,
-  lib,
-  ...
-}: {
-  imports = with inputs; [
-    nixos-hardware.nixosModules.raspberry-pi-4
-    # "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
-    # "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-  ];
+{ pkgs, inputs, lib, ... }:
+with lib; {
+  imports = with inputs;
+    [
+      nixos-hardware.nixosModules.raspberry-pi-4
+      # "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
+      # "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+    ];
 
   config = {
-    networking.hostName = "pegasus";
+    networking = {
+      hostName = "pegasus";
+      firewall.enable = false;
+      networkmanager.enable = true;
+    };
+
     virtualisation.vmVariant = {
       virtualisation = {
         diskSize = 50 * 1024;
@@ -20,37 +22,96 @@
       };
     };
 
-    traits.raspberry.enable = true;
+    zramSwap = { enable = false; };
+    swapDevices = [{
+      device = "/swapfile";
+      size = 16 * 1024;
+    }];
 
-    traits.low-power.enable = true;
+    traits = {
+      raspberry.enable = true;
+      low-power.enable = true;
+      hardware.bluetooth.enable = true;
+    };
+
     gui."media-center".enable = true;
-    apps.spotifyd.enable = true;
+
+    apps = {
+      spotifyd.enable = true;
+      cec.enable = true;
+      unified-remote.enable = true;
+      remote-builders.enable = true;
+    };
+
+    netdata.enable = mkForce false;
 
     environment.systemPackages = with pkgs; [
       libraspberrypi
       raspberrypi-eeprom
+      ncspot
+      # pkgs.custom.playercast
     ];
 
-    boot = {
-      kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_rpi4;
-
-      initrd.availableKernelModules = ["xhci_pci" "usbhid" "usb_storage" "dwc2" "g_serial"];
+    nix.settings = {
+      keep-outputs = mkForce false;
+      keep-derivations = mkForce false;
     };
+
+    boot = {
+      kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
+      # kernelPackages = mkForce pkgs.linuxPackages_latest;
+
+      # initrd.availableKernelModules = [
+      #   "pcie-brcmstb"
+      #   "reset-raspberrypi"
+      #   "xhci_pci"
+      #   "usbhid"
+      #   "usb_storage"
+      #   #  "dwc2"
+      #   "g_serial"
+      # ];
+      #kernelParams = mkForce [
+      # "console=ttyS0,115200n8"
+      #        "console=ttyS1,115200n8"
+      #       "console=tty0"
+      #];
+    };
+
+    proxy-services = { enable = true; };
+
+    hardware.enableRedistributableFirmware = true;
+    # hardware.deviceTree.filter = mkForce "bcm2711-rpi-4-b.dtb";
+    # systemd.services."getty@".enable = false;
 
     hardware = {
       i2c.enable = true;
 
+      # bluetooth.package = pkgs.bluez;
+
+      opengl = {
+        enable = true;
+        extraPackages = with pkgs; [ vaapiVdpau libvdpau-va-gl ];
+        driSupport = true;
+      };
+
       raspberry-pi."4" = {
         apply-overlays-dtmerge.enable = true;
-        dwc2 = {
+        fkms-3d = {
           enable = true;
-          dr_mode = "peripheral";
+          # cma = 1024;
         };
+        # dwc2 = {
+        #   enable = true;
+        #   dr_mode = "peripheral";
+        # };
+        # xhci.enable = true;
+        # i2c0.enable = true;
+        # audio.enable = true;
       };
 
       deviceTree = {
         enable = true;
-        filter = "*rpi-4-*.dtb";
+        # filter = mkForce "*rpi-4-*.dtb";
       };
     };
   };
