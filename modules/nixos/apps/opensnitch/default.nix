@@ -1,24 +1,15 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}:
-with lib; let
-  cfg = config.apps.opensnitch;
+{ pkgs, config, lib, ... }:
+with lib;
+let cfg = config.apps.opensnitch;
 in {
-  options.apps.opensnitch = {
-    enable = lib.mkEnableOption "opensnitch";
-  };
+  options.apps.opensnitch = { enable = lib.mkEnableOption "opensnitch"; };
 
   config = mkIf (cfg.enable && false) {
-    environment.systemPackages = with pkgs; [opensnitch-ui];
+    environment.systemPackages = with pkgs; [ opensnitch-ui ];
 
     services.opensnitch = {
       enable = true;
-      settings = {
-        DefaultAction = "allow";
-      };
+      settings = { DefaultAction = "allow"; };
     };
   };
 }

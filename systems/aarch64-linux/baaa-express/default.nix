@@ -1,119 +1,206 @@
-{
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
+{ pkgs, inputs, lib, ... }:
 with lib; {
-  imports = with inputs; [
-    nixos-hardware.nixosModules.raspberry-pi-4
-  ];
+  # imports = with inputs; [
+  # nixos-hardware.nixosModules.raspberry-pi-4
+  # ];
 
   config = {
-    networking.hostName = "baaa-express";
+    networking = {
+      firewall.enable = false;
+      hostName = "baaa-express";
+      networkmanager.enable = true;
+    };
 
-    traits.raspberry.enable = true;
-
-    sound.extraConfig = ''
-      defaults.pcm.!card 1
-    '';
+    fileSystems = {
+      # "/boot" = {
+      #   device = "/dev/disk/by-label/NIXOS_BOOT";
+      #   fsType = "vfat";
+      # };
+      "/" = {
+        device = "/dev/disk/by-label/NIXOS_SD";
+        fsType = "ext4";
+      };
+    };
+    # traits.raspberry.enable = true;
 
     environment.systemPackages = with pkgs; [
       libraspberrypi
       raspberrypi-eeprom
     ];
 
-    traits.low-power.enable = true;
-    traits.slim.enable = true;
+    traits = {
+      low-power.enable = true;
+      hardware = { bluetooth.enable = true; };
+    };
+    # traits.slim.enable = true;
+
     gui."media-center".enable = true;
-    apps.spotifyd.enable = true;
+
+    apps = {
+      spotifyd.enable = true;
+      cec.enable = true;
+      unified-remote.enable = true;
+      remote-builders.enable = true;
+    };
+
+    services = {
+      avahi = {
+        enable = true;
+        allowInterfaces = mkForce null;
+      };
+      mopidy = {
+        enable = true;
+        extensionPackages = with pkgs; [
+          mopidy-spotify
+          mopidy-mpd
+          # mopidy-mpris
+          mopidy-notify
+          mopidy-mopify
+          mopidy-podcast
+          mopidy-musicbox-webclient
+        ];
+        configuration = ''
+          [http]
+          enabled = true
+          hostname = 0.0.0.0
+
+          [spotify]
+          username = ***REMOVED***
+          password = ***REMOVED***
+          client_id = 7e67ff0f-3f01-4b2b-be49-263f2c9c8e43
+          client_secret = 1WFE4aj9W51FoWUwBerVoeF-aFvx54GsmbfUzBNh3O4=
+        '';
+      };
+    };
 
     # system.stateVersion = "23.11";
 
     # fileSystems."/".fsType = lib.mkForce "tmpfs";
     # fileSystems."/".device = lib.mkForce "none";
+    zramSwap = { enable = true; };
+    swapDevices = [{
+      device = "/swapfile";
+      size = 16 * 1024;
+    }];
+
+    services.cage.program = mkForce "${pkgs.kodi-wayland}/bin/kodi-standalone";
+
+    programs.atop = {
+      enable = mkForce false;
+      netatop.enable = false;
+    };
+
+    nix.settings = {
+      keep-outputs = mkForce false;
+      keep-derivations = mkForce false;
+    };
+
     boot = {
+
       loader = {
-        generic-extlinux-compatible.enable = true;
-
-        # start_x=1
-
-        raspberryPi.firmwareConfig = ''
-          force_turbo=1
-          gpu_mem=256
-          cma=320M
-        '';
+        grub.enable = lib.mkDefault false;
+        generic-extlinux-compatible.enable = lib.mkDefault true;
       };
-      initrd.kernelModules = ["vc4" "bcm2835_dma" "i2c_bcm2835"];
+
+      initrd.kernelModules =
+        [ "vc4" "bcm2835_dma" "i2c_bcm2835" "dwc2" "g_serial" ];
       # initrd.availableKernelModules = mkForce [
-      #   "vc4"
-      #   "bcm2835_dma"
-      #   "i2c_bcm2835"
-      #   "usbhid"
-      #   "usb_storage"
-      #   "vc4"
-      #   # "pcie_brcmstb"
-      #   "reset-raspberrypi"
       #   "ext2"
       #   "ext4"
-      #   # "ahci"
-      #   # "sata_nv"
-      #   # "sata_via"
-      #   # "sata_sis"
-      #   # "sata_uli"
-      #   # "ata_piix"
-      #   # "pata_marvell"
-      #   # "nvme"
       #   "sd_mod"
       #   "sr_mod"
-      #   "mmc_block"
-      #   # "uhci_hcd"
-      #   # "ehci_hcd"
-      #   # "ehci_pci"
-      #   # "ohci_hcd"
-      #   # "ohci_pci"
-      #   # "xhci_hcd"
-      #   # "xhci_pci"
+      #   "ehci_hcd"
+      #   "ohci_hcd"
+      #   "xhci_hcd"
       #   "usbhid"
-      #   # "hid_generic"
-      #   # "hid_lenovo"
-      #   # "hid_apple"
-      #   # "hid_roccat"
-      #   # "hid_logitech_hidpp"
-      #   # "hid_logitech_dj"
-      #   # "hid_microsoft"
-      #   # "hid_cherry"
+      #   "hid_generic"
+      #   "hid_lenovo"
+      #   "hid_apple"
+      #   "hid_roccat"
+      #   "hid_logitech_hidpp"
+      #   "hid_logitech_dj"
+      #   "hid_microsoft"
+      #   "hid_cherry"
+      #   "hid_corsair"
       # ];
-      # initrd.kernelModules = ["dwc2" "g_serial"];
 
       # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
-      # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
-
       kernelPackages = pkgs.linuxPackages_latest;
 
-      # kernelParams = [
-      # "console=ttyS1,115200n8"
-      # "cma=320M"
-      # ];
+      kernelParams = mkForce [
+        # "console=ttyS0,115200n8"
+        "console=ttyS1,115200n8"
+        # "console=tty0"
+        "cma=320M"
+        "otg_mode=1"
+      ];
+    };
+
+    hardware.pulseaudio.enable = false;
+
+    services.pipewire = {
+      wireplumber = {
+        enable = true;
+        extraConfig = {
+          "monitor.bluez.properties" = {
+            "bluez5.roles" = [
+              "a2dp_sink"
+              "a2dp_source"
+              "bap_sink"
+              "bap_source"
+              "hsp_hs"
+              "hsp_ag"
+              "hfp_hf"
+              "hfp_ag"
+            ];
+            "bluez5.codecs" = [ "sbc" "sbc_xq" "aac" ];
+            "bluez5.enable-sbc-xq" = true;
+            "bluez5.hfphsp-backend" = "native";
+            "bluez5.auto-connect" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
+          };
+        };
+      };
+      systemWide = true;
+
+      # extraConfig.pipewire-pulse."91-bluetooth" = {
+      #   context.modules = [
+      #     {
+      #       name = "module-bluetooth-discover";
+      #       args = { };
+      #     }
+      #     {
+      #       name = "module-bluetooth-policy";
+      #       args = { };
+      #     }
+      #   ];
+      # };
     };
 
     hardware = {
       enableRedistributableFirmware = true;
       i2c.enable = true;
 
-      raspberry-pi."4" = {
-        apply-overlays-dtmerge.enable = true;
-        dwc2 = {
-          enable = true;
-          dr_mode = "peripheral";
+      bluetooth.settings = {
+        General = {
+          Class = "0x200414";
+          DiscoverableTimeout = 0;
         };
+        Policy = { AutoEnable = true; };
       };
 
-      deviceTree = {
-        enable = true;
-        filter = "*rpi-3-*.dtb";
-      };
+      # deviceTree = let drMode = "otg";
+      # in {
+      #   filter = lib.mkDefault "*rpi-3-b.dtb";
+      #   enable = true;
+
+      #   overlays = [{
+      #     name = "dwc2";
+      #     dtboFile =
+      #       "${pkgs.raspberrypifw}/share/raspberrypi/boot/overlays/dwc2.dtbo";
+      #   }];
+      # };
     };
+
     # systemd.services.btattach = {
     #   before = ["bluetooth.service"];
     #   after = ["dev-ttyAMA0.device"];
