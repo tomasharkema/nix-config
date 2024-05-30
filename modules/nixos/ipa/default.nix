@@ -1,13 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}:
+{ config, pkgs, lib, inputs, ... }:
 with lib;
-with lib.custom; let
-  cfg = config.apps.ipa;
+with lib.custom;
+let cfg = config.apps.ipa;
 in {
   # disabledModules = [
   #   "security/ipa.nix"
@@ -25,14 +19,40 @@ in {
   # ];
 
   options = {
-    apps.ipa = {
-      enable = mkEnableOption "enable ipa";
-    };
-    services.intune.enable = mkEnableOption "intune";
+    apps.ipa = { enable = mkEnableOption "enable ipa"; };
+    # services.intune.enable = mkEnableOption "intune";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ldapvi ldapmonitor];
+    environment.systemPackages = with pkgs; [ ldapvi ldapmonitor ];
+
+    environment.etc = {
+      # "krb5.conf".text = mkBefore ''
+      #   includedir /etc/krb5.conf.d/
+      # '';
+      # "krb5.conf.d/enable_passkey".text = ''
+      #   [plugins]
+      #     clpreauth = {
+      #       module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
+      #     }
+
+      #     kdcpreauth = {
+      #       module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
+      #     }
+
+      # '';
+      "krb5.conf".text = mkAfter ''
+        [plugins]
+          clpreauth = {
+            module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
+          }
+
+          kdcpreauth = {
+            module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
+          }
+
+      '';
+    };
 
     services = {
       autofs = {
@@ -40,18 +60,18 @@ in {
       };
       sssd = {
         enable = true;
-        kcm = true;
+        # kcm = true;
         sshAuthorizedKeysIntegration = true;
 
-        # config = ''
+        # config = mkAfter ''
         #   [pam]
         #   pam_passkey_auth = True
-        #   passkey_debug_libfido2 = True
-        #   passkey_child_timeout = 60
-        #   pam_cert_auth = True
+        #   #   passkey_debug_libfido2 = True
+        #   #   passkey_child_timeout = 60
+        #   #   pam_cert_auth = True
 
-        #   [prompting/passkey]
-        #   interactive_prompt = "Insert your Passkey device, then press ENTER."
+        #   #   [prompting/passkey]
+        #   #   interactive_prompt = "Insert your Passkey device, then press ENTER."
 
         #   [domain/shadowutils]
         #   id_provider = proxy
@@ -63,24 +83,34 @@ in {
       };
     };
 
+    systemd.tmpfiles.rules = [
+      "L /bin/bash - - - - /run/current-system/sw/bin/bash"
+      "L /bin/sh - - - - /run/current-system/sw/bin/sh"
+      "L /bin/zsh - - - - /run/current-system/sw/bin/zsh"
+    ];
+
     security = {
       # pki.certificateFiles = [./ca.crt];
       ipa = {
         enable = true;
-        server = "ipa.harkema.intra";
-        domain = "harkema.intra";
-        realm = "HARKEMA.INTRA";
-        basedn = "dc=harkema,dc=intra";
-        # certificate = pkgs.fetchurl {
-        #   url = "https://ipa.harkema.intra/ipa/config/ca.crt";
-        #   sha256 = "1479i13wzznz7986sqlpmx6r108d24kbn84yp5n3s50q7wpgdfxz";
-        # };
-        certificate = "${./ca.crt}";
-        #   dyndns.enable = true;
-        # ifpAllowedUids = ["root" "tomas" "1000" "1002" "gdm" "132"];
+        server = "ipa.harkema.io";
+        domain = "harkema.io";
+        realm = "HARKEMA.IO";
+        basedn = "dc=harkema,dc=io";
+        certificate = pkgs.fetchurl {
+          url = "https://ipa.harkema.io/ipa/config/ca.crt";
+          sha256 = "sha256-s93HRgX4AwCnsY9sWX6SAYrUg9BrSEg8Us5QruOunf0=";
+        };
+        # certificate = "${./ca.crt}";
+        dyndns.enable = true;
+        ifpAllowedUids = [
+          "root"
+          "tomas"
+          #"1000" "1002" "gdm" "132"
+        ];
       };
 
-      # sudo.package = mkIf config.installed (pkgs.sudo.override {withSssd = true;});
+      # sudo.package = (pkgs.sudo.override { withSssd = true; });
 
       polkit = {
         enable = true;
@@ -99,13 +129,16 @@ in {
           #   #config.installed {
           # login.sssdStrictAccess = mkDefault true;
           # sudo.sssdStrictAccess = mkDefault true;
+          # su.sssdStrictAccess = mkDefault true;
           # ssh.sssdStrictAccess = mkDefault true;
           # askpass.sssdStrictAccess = mkDefault true;
           # cockpit.sssdStrictAccess = mkDefault true;
           # "password-auth".sssdStrictAccess = mkDefault true;
           # "system-auth".sssdStrictAccess = mkDefault true;
           # "gdm-password".sssdStrictAccess = mkDefault true;
-          # "gdm".sssdStrictAccess = mkDefault true;
+
+          # "gdm-launch-environment".sssdStrictAccess = mkDefault true;
+          # "gdm-password".sssdStrictAccess = mkDefault true;
         };
       };
     };

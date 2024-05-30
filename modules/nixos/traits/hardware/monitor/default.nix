@@ -1,42 +1,30 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
-  cfg = config.traits.hardware.monitor;
-in
-  with lib;
-  with lib.custom; {
-    options.traits.hardware.monitor = {
-      enable = mkBoolOpt false "monitor";
+{ config, lib, pkgs, ... }:
+let cfg = config.traits.hardware.monitor;
+in with lib;
+with lib.custom; {
+  options.traits.hardware.monitor = { enable = mkBoolOpt false "monitor"; };
+
+  config = mkIf cfg.enable {
+    system.nixos.tags = [ "monitor" ];
+
+    boot = {
+      # kernelModules = ["i2c-dev" "ddcci_backlight"];
+      # extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
     };
 
-    config = mkIf cfg.enable {
-      system.nixos.tags = ["monitor"];
+    users.groups = { "i2c" = { }; };
 
-      boot = {
-        # kernelModules = ["i2c-dev" "ddcci_backlight"];
-        # extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
-      };
+    users.users.${config.user.name} = { extraGroups = [ "i2c" ]; };
 
-      users.groups = {
-        "i2c" = {};
-      };
+    environment.systemPackages = with pkgs; [
+      ddcutil
+      # xorg.xbacklight
+      gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil
+      brightnessctl
+    ];
 
-      users.users.${config.user.name} = {
-        extraGroups = ["i2c"];
-      };
-
-      environment.systemPackages = with pkgs; [
-        ddcutil
-        # xorg.xbacklight
-        gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil
-        brightnessctl
-      ];
-
-      services.ddccontrol.enable = true;
-      hardware.i2c.enable = true;
-      # programs.light.enable = true;
-    };
-  }
+    services.ddccontrol.enable = true;
+    hardware.i2c.enable = true;
+    # programs.light.enable = true;
+  };
+}

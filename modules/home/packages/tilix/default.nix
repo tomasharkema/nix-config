@@ -1,12 +1,7 @@
-{
-  config,
-  osConfig,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, osConfig, pkgs, lib, ... }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.gui.apps.tilix;
 
   catppuchin = pkgs.fetchFromGitHub {
@@ -18,9 +13,7 @@ with lib.custom; let
 in {
   options.gui.apps.tilix = {
     # gui.apps.tilix.enable = mkDefault true;
-    enable =
-      mkOpt types.bool
-      true "hallo";
+    enable = mkOpt types.bool true "hallo";
   };
 
   config = mkIf (cfg.enable && pkgs.stdenvNoCC.isLinux && osConfig.gui.enable) {
@@ -29,8 +22,6 @@ in {
       recursive = true;
     };
 
-    home.packages = with pkgs; [
-      tilix
-    ];
+    home.packages = with pkgs; [ tilix ];
   };
 }

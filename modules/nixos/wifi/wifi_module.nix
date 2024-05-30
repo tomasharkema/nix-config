@@ -1,16 +1,9 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-with lib; let
+{ config, lib, pkgs, ... }:
+with lib;
+let
   cfg = config.wifi;
 
-  getFileName = stringAsChars (x:
-    if x == " "
-    then "-"
-    else x);
+  getFileName = stringAsChars (x: if x == " " then "-" else x);
 
   createWifi = ssid: opt: {
     name = ''
@@ -48,7 +41,7 @@ in {
         ExecReload = "${pkgs.networkmanager}/bin/nmcli connection reload";
       };
       reloadIfChanged = true;
-      wantedBy = ["multi-user.target"];
+      wantedBy = [ "multi-user.target" ];
     };
   };
 }

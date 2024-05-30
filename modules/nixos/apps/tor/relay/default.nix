@@ -1,16 +1,10 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 with lib;
-with lib.custom; let
-  cfg = config.apps.tor.relay;
+with lib.custom;
+let cfg = config.apps.tor.relay;
 in {
   options.apps.tor = {
-    relay = {
-      enable = mkBoolOpt false "Enable the tor relay";
-    };
+    relay = { enable = mkBoolOpt false "Enable the tor relay"; };
   };
 
   config = mkIf (cfg.enable && false) {

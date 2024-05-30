@@ -1,25 +1,17 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-with lib; let
-  cfg = config.gui."media-center";
+{ pkgs, lib, config, ... }:
+with lib;
+let cfg = config.gui."media-center";
 in {
-  options.gui."media-center" = {
-    enable = mkEnableOption "gui.media-center";
-  };
+  options.gui."media-center" = { enable = mkEnableOption "gui.media-center"; };
 
   config = mkIf cfg.enable {
-    system.nixos.tags = ["media-center"];
+    system.nixos.tags = [ "media-center" ];
     #    xdg.portal.enable = mkForce false;
 
     programs.dconf.enable = true;
 
     sound = {
       enable = false;
-
       mediaKeys.enable = true;
     };
 
@@ -30,20 +22,18 @@ in {
       alsa.support32Bit = true;
       pulse.enable = true;
       # If you want to use JACK applications, uncomment this
-      jack.enable = true;
+      # jack.enable = true;
     };
 
     services.pipewire.extraConfig.pipewire-pulse."92-tcp" = {
       context.modules = [
         {
           name = "module-native-protocol-tcp";
-          args = {
-          };
+          args = { };
         }
         {
           name = "module-zeroconf-publish";
-          args = {
-          };
+          args = { };
         }
       ];
       stream.properties = {
@@ -73,9 +63,21 @@ in {
     hardware = {
       opengl = {
         enable = true;
-        extraPackages = with pkgs; [libva];
+        extraPackages = with pkgs; [ libva vaapiVdpau libvdpau-va-gl ];
+        driSupport = true;
       };
     };
+
+    environment.systemPackages = with pkgs; [
+      mpv
+      mpvc
+      play-with-mpv
+
+      plex-mpv-shim
+      open-in-mpv
+      celluloid
+      pwvucontrol
+    ];
 
     # services.xserver.desktopManager.kodi.package = pkgs.kodi.withPackages (pkgs:
     #   with pkgs; [
@@ -96,43 +98,33 @@ in {
     #     sendtokodi
     #   ]);
 
-    services.kmscon = {
-      enable = mkForce false;
-    };
+    services.kmscon = { enable = mkForce false; };
 
     services.cage = {
       user = "media";
       program = "${lib.getExe pkgs.plex-media-player} --fullscreen --tv";
 
-      enable = true;
-      extraArguments = ["-d" "-m" "last"];
+      enable = mkDefault true;
+      extraArguments = [ "-d" "-m" "last" ];
     };
 
     boot = {
-      kernelParams = ["quiet"];
-      plymouth = {
-        enable = true;
-      };
+      kernelParams = [ "quiet" ];
+      plymouth = { enable = true; };
     };
-
-    services.shairport-sync = {
-      enable = true;
-      openFirewall = true;
-    };
-    users.extraUsers.shairport.extraGroups = ["data" "video" "audio" "input"];
 
     users.users.media = {
       isNormalUser = true;
       uid = 1100;
-      extraGroups = ["data" "video" "audio" "input"];
+      extraGroups = [ "data" "video" "audio" "input" ];
     };
 
-    home-manager = {
-      users.media = {
-        home.stateVersion = mkDefault "23.11";
-        xdg.enable = true;
-      };
-    };
+    # home-manager = {
+    #   users.media = {
+    #     home.stateVersion = mkDefault "23.11";
+    #     xdg.enable = true;
+    #   };
+    # };
 
     networking.firewall = {
       enable = mkForce false;

@@ -1,22 +1,10 @@
-{
-  inputs,
-  config,
-  pkgs,
-  system,
-  lib,
-  osConfig,
-  ...
-}: let
-  coc = import ./coc.nix;
+{ inputs, config, pkgs, system, lib, osConfig, ... }:
+let coc = import ./coc.nix;
 in {
-  imports = [inputs.nixvim.homeManagerModules.nixvim];
+  imports = [ inputs.nixvim.homeManagerModules.nixvim ];
 
   config = {
-    home.packages = with pkgs; [
-      figlet
-      nodejs
-      ripgrep
-    ];
+    home.packages = with pkgs; [ figlet nodejs ripgrep ];
 
     programs.neovim = {
       viAlias = true;
@@ -26,9 +14,8 @@ in {
 
     xdg.configFile = {
       "nvim/coc-settings.json" = {
-        source =
-          builtins.toFile "coc-settings.json"
-          (builtins.toJSON (coc {homeDir = config.xdg.configHome;}));
+        source = builtins.toFile "coc-settings.json"
+          (builtins.toJSON (coc { homeDir = config.xdg.configHome; }));
       };
     };
 
@@ -42,51 +29,51 @@ in {
           enable = true;
           # package = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
         };
-        dashboard = {enable = true;};
-        neo-tree = {enable = true;};
-        project-nvim = {enable = true;};
-        telescope = {enable = true;};
-        fugitive = {enable = true;};
+        dashboard = { enable = true; };
+        neo-tree = { enable = true; };
+        project-nvim = { enable = true; };
+        telescope = { enable = true; };
+        fugitive = { enable = true; };
         lualine = {
           enable = true;
-          sections = {lualine_x = ["diagnostics" "encoding" "filetype"];};
+          sections = { lualine_x = [ "diagnostics" "encoding" "filetype" ]; };
         };
-        startify = {
-          enable = true;
-          customHeader = ''
-            startify#pad(split(system('figlet -f larry3d neovim'), '
-            '))'';
-        };
-        indent-blankline = {
-          enable = true;
-          filetypeExclude = ["startify"];
-        };
-        barbar = {enable = true;};
-        gitgutter = {enable = true;};
-        surround = {enable = true;};
-        nvim-colorizer = {enable = true;};
+        # startify = {
+        #   enable = true;
+        #   customHeader = ''
+        #     startify#pad(split(system('figlet -f larry3d neovim'), '
+        #     '))'';
+        # };
+        # indent-blankline = {
+        #   enable = true;
+        #   filetypeExclude = ["startify"];
+        # };
+        barbar = { enable = true; };
+        gitgutter = { enable = true; };
+        surround = { enable = true; };
+        nvim-colorizer = { enable = true; };
         nix-develop.enable = true;
         notify.enable = true;
         # zellij.enable = true;
-        nix = {enable = true;};
+        nix = { enable = true; };
         #fzf-lua = {enable = true;};
         auto-save = {
           enable = true;
           enableAutoSave = true;
         };
-        git-worktree = {enable = true;};
+        git-worktree = { enable = true; };
         #direnv = {enable=true;};
         multicursors.enable = true;
-        toggleterm = {enable = true;};
-        floaterm = {enable = true;};
-        zig = {enable = true;};
+        toggleterm = { enable = true; };
+        floaterm = { enable = true; };
+        zig = { enable = true; };
         cmp-zsh.enable = true;
         conform-nvim = {
           enable = true;
           #formatOnSave=true;
           formattersByFt = {
-            lua = ["stylua"];
-            nix = ["alejandra"];
+            lua = [ "stylua" ];
+            nix = [ "nixfmt" ];
           };
         };
       };
@@ -95,7 +82,7 @@ in {
         # ansible-vim
         vim-nix
         coc-nvim
-        suda-vim
+        # suda-vim
       ];
 
       options = {
@@ -133,23 +120,24 @@ in {
         cursorline = true;
         exrc = true;
         mouse = "a";
-        suffixesadd = ".js,.es,.jsx,.json,.css,.less,.sass,.styl,.php,.py,.md,.nix";
+        suffixesadd =
+          ".js,.es,.jsx,.json,.css,.less,.sass,.styl,.php,.py,.md,.nix";
       };
 
       autoCmd = [
         {
-          event = ["InsertLeave"];
-          pattern = ["*"];
+          event = [ "InsertLeave" ];
+          pattern = [ "*" ];
           command = "set nopaste";
         }
         {
-          event = ["WinEnter"];
-          pattern = ["*"];
+          event = [ "WinEnter" ];
+          pattern = [ "*" ];
           command = "set cul";
         }
         {
-          event = ["WinLeave"];
-          pattern = ["*"];
+          event = [ "WinLeave" ];
+          pattern = [ "*" ];
           command = "set nocul";
         }
       ];
@@ -168,7 +156,7 @@ in {
           fg = "#4c566a";
           bg = "#4c566a";
         };
-        BufferCurrentTarget = {bg = "#434c5e";};
+        BufferCurrentTarget = { bg = "#434c5e"; };
         BufferInactive = {
           fg = "#4c566a";
           bg = "none";
@@ -189,8 +177,8 @@ in {
       globals = {
         # coc_filetype_map = { "yaml.ansible" = "ansible"; };
         # coc_global_extensions = [ "coc-explorer" "@yaegassy/coc-ansible" ];
-        suda_smart_edit = 1;
-        "suda#nopass" = 1;
+        # suda_smart_edit = 1;
+        # "suda#nopass" = 1;
       };
       extraConfigLua = ''
         vim.api.nvim_set_hl(0, "MatchParen", { bg="#4c566a", fg="#88c0d0" })
@@ -208,12 +196,10 @@ in {
             endfunction
       '';
 
-      keymaps = [
-        {
-          key = ";";
-          action = ":";
-        }
-      ];
+      keymaps = [{
+        key = ";";
+        action = ":";
+      }];
 
       # maps = {
       #   normal."sf" = {

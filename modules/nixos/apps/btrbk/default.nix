@@ -1,11 +1,9 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
+{ pkgs, lib, config, ... }:
 with lib; {
-  config = mkIf config.disks.btrfs.enable {
+
+  options.disks.btrfs.btrbk = { enable = mkEnableOption "btrbk"; };
+
+  config = mkIf (config.disks.btrfs.enable && config.disks.btrfs.btrbk.enable) {
     age.secrets.btrbk = {
       file = ../../../../secrets/btrbk.age;
       mode = "600";
@@ -14,7 +12,7 @@ with lib; {
     };
 
     services.btrbk = {
-      extraPackages = with pkgs; [zstd mbuffer];
+      extraPackages = with pkgs; [ zstd mbuffer ];
       instances."${config.networking.hostName}-btrbk" = {
         onCalendar = "hourly";
 
@@ -22,11 +20,14 @@ with lib; {
           snapshot_preserve = "14d";
           snapshot_preserve_min = "2d";
 
+          target_preserve_min = "no";
+          target_preserve = "20d 10w 1m";
+
           raw_target_compress = "zstd";
           raw_target_split = "100M";
 
           transaction_syslog = "daemon";
-          lockfile = "/var/lock/btrbk.lock";
+          lockfile = "/run/btrbk.lock";
 
           ssh_identity = "${config.age.secrets.btrbk.path}";
           stream_buffer = "50M";

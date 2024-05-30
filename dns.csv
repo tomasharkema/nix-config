@@ -1,0 +1,16 @@
+_kerberos-master._tcp.harkema.io. 3600 IN SRV 0 100 88 ipa.harkema.io.
+_kerberos-master._udp.harkema.io. 3600 IN SRV 0 100 88 ipa.harkema.io.
+_kerberos._tcp.harkema.io. 3600 IN SRV 0 100 88 ipa.harkema.io.
+_kerberos._udp.harkema.io. 3600 IN SRV 0 100 88 ipa.harkema.io.
+_kerberos.harkema.io. 3600 IN TXT "HARKEMA.IO"
+_kerberos.harkema.io. 3600 IN URI 0 100 "krb5srv:m:tcp:ipa.harkema.io."
+_kerberos.harkema.io. 3600 IN URI 0 100 "krb5srv:m:udp:ipa.harkema.io."
+_kpasswd._tcp.harkema.io. 3600 IN SRV 0 100 464 ipa.harkema.io.
+_kpasswd._udp.harkema.io. 3600 IN SRV 0 100 464 ipa.harkema.io.
+_kpasswd.harkema.io. 3600 IN URI 0 100 "krb5srv:m:tcp:ipa.harkema.io."
+_kpasswd.harkema.io. 3600 IN URI 0 100 "krb5srv:m:udp:ipa.harkema.io."
+_ldap._tcp.harkema.io. 3600 IN SRV 0 100 389 ipa.harkema.io.
+ipa-ca.harkema.io. 3600 IN A 167.235.54.110
+
+
+

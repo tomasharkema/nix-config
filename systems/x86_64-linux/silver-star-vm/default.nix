@@ -1,16 +1,8 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, config, ... }:
 with lib; {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
   config = {
-    installed = true;
     headless.enable = true;
 
     traits = {
@@ -44,12 +36,37 @@ with lib; {
     services = {
       # netbox-service.enable = true;
 
-      kmscon = {
-        enable = false;
+      mailrise = {
+        enable = true;
+
+        settings = {
+          configs = {
+            "*@*" = {
+              urls = [
+                "ntfys://tomasharkema-nixos"
+                "tgram://TGRAM_SECRET/TGRAM_CHAT_ID/?image=Yes"
+              ];
+            };
+            "systemd" = {
+              urls = [ "tgram://TGRAM_SECRET/TGRAM_CHAT_ID/?image=Yes" ];
+            };
+          };
+          smtp = {
+            # auth = { basic = { "admin" = "admin"; }; };
+          };
+        };
+        secrets = {
+          TGRAM_CHAT_ID =
+            "<(${pkgs.coreutils}/bin/cat /run/agenix/notify | ${pkgs.yq}/bin/yq '.telegram[0].telegram_chat_id' -r)";
+          TGRAM_SECRET =
+            "<(${pkgs.coreutils}/bin/cat /run/agenix/notify | ${pkgs.yq}/bin/yq '.telegram[0].telegram_api_key' -r)";
+        };
       };
 
+      kmscon = { enable = false; };
+
       healthchecks = {
-        enable = true;
+        # enable = true;
         listenAddress = "0.0.0.0";
 
         # notificationSender = "tomas+hydra@harkema.io";
@@ -59,24 +76,20 @@ with lib; {
         settings = {
           SECRET_KEY_FILE = "/etc/healthchecks.key";
 
-          EMAIL_HOST = "smtp-relay.gmail.com";
-          EMAIL_PORT = "587";
-          EMAIL_HOST_USER = "tomas@harkema.io";
-          # EMAIL_HOST_PASSWORD=mypassword
+          EMAIL_HOST = "silver-star-vm.ling-lizard.ts.net";
+          EMAIL_PORT = "8025";
+          # EMAIL_HOST_USER = "tomas@harkema.io";
+          # # EMAIL_HOST_PASSWORD=mypassword
           EMAIL_USE_SSL = "False";
-          EMAIL_USE_TLS = "True";
+          EMAIL_USE_TLS = "False";
         };
       };
 
-      earlyoom = {
-        enable = mkForce false;
-      };
+      earlyoom = { enable = mkForce false; };
 
       tailscale = {
-        extraUpFlags = mkForce [
-          "--advertise-tags=tag:nixos"
-          "--operator=tomas"
-        ];
+        extraUpFlags =
+          mkForce [ "--advertise-tags=tag:nixos" "--operator=tomas" ];
       };
 
       freeipa.enable = true;
@@ -85,9 +98,7 @@ with lib; {
 
       ha.initialMaster = true;
 
-      command-center = {
-        enableBot = true;
-      };
+      command-center = { enableBot = true; };
     };
 
     networking = {
@@ -95,14 +106,10 @@ with lib; {
 
       firewall.enable = true;
       # wireless.enable = lib.mkDefault false;
-      networkmanager.enable = mkForce false; #true;
+      networkmanager.enable = mkForce false; # true;
 
       useDHCP = false;
       interfaces."enp3s0".useDHCP = true;
-
-      hosts = {
-        "192.168.0.11" = ["blue-fire.harkema.intra" "blue-fire.ling-lizard.ts.net"];
-      };
     };
 
     # sudo mount --types virtiofs appdata_ssd /mnt/shared/

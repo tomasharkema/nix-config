@@ -1,13 +1,8 @@
-{
-  lib,
-  pkgs,
-  config,
-  inputs,
-  ...
-}:
-with lib; let
+{ lib, pkgs, config, inputs, ... }:
+with lib;
+let
   cfg = config.gui.gnome;
-  pkgsUnstable = inputs.unstable.legacyPackages."${pkgs.system}";
+  # pkgsUnstable = inputs.unstable.legacyPackages."${pkgs.system}";
 in {
   options.gui.gnome = {
     enable = mkEnableOption "enable gnome desktop environment";
@@ -20,21 +15,24 @@ in {
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
     xdg.portal.wlr.enable = true;
-    programs.sway.enable = true;
+    # programs.sway.enable = true;
 
-    programs.hyprland = {
-      # Install the packages from nixpkgs
-      enable = true;
-      # Whether to enable XWayland
-      xwayland.enable = true;
-    };
+    # programs.hyprland = {
+    #   # Install the packages from nixpkgs
+    #   enable = true;
+    #   # Whether to enable XWayland
+    #   xwayland.enable = true;
+    # };
+
+    programs.xwayland.enable = true;
 
     # environment.etc."X11/Xwrapper.config".text = ''
     #   allowed_users=anybody
     # '';
 
     services = {
-      xrdp.defaultWindowManager = "${pkgs.gnome.gnome-remote-desktop}/bin/gnome-remote-desktop";
+      # xrdp.defaultWindowManager =
+      #   "${pkgs.gnome.gnome-remote-desktop}/bin/gnome-remote-desktop";
 
       # xrdp.defaultWindowManager = "${pkgs.writeScript "xrdp-xsession-gnome" ''
       #   ${pkgs.gnome.gnome-shell}/bin/gnome-shell &
@@ -45,19 +43,23 @@ in {
       #   exit 0
       # ''}";
 
-      # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-shell}/bin/gnome-shell";
+      xrdp.defaultWindowManager = "${pkgs.gnome.gnome-shell}/bin/gnome-shell";
       # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session --session=gnomexrdp";
 
       xserver = {
         desktopManager.gnome.enable = true;
 
         displayManager = {
-          gdm.enable = true;
+          gdm = {
+            enable = true;
+            wayland = true;
+            # nvidiaWayland = true;
+          };
         };
       };
 
       gnome = {
-        chrome-gnome-shell.enable = true;
+        # chrome-gnome-shell.enable = true;
         gnome-browser-connector.enable = true;
         gnome-online-accounts.enable = true;
         glib-networking.enable = true;
@@ -71,23 +73,19 @@ in {
         evolution-data-server.enable = true;
       };
 
-      udev.packages = with pkgs; [gnome.gnome-settings-daemon];
+      udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
       xserver.libinput.enable = true;
     };
-    xdg.autostart = {
-      enable = true;
-    };
+    xdg.autostart = { enable = true; };
     services.pipewire.extraConfig.pipewire-pulse."92-tcp" = {
       context.modules = [
         {
           name = "module-native-protocol-tcp";
-          args = {
-          };
+          args = { };
         }
         {
           name = "module-zeroconf-discover";
-          args = {
-          };
+          args = { };
         }
       ];
       stream.properties = {
@@ -95,101 +93,84 @@ in {
         resample.quality = 1;
       };
     };
-    environment.systemPackages =
-      (
-        with pkgsUnstable; [
-          gtop
-          libgtop
-          gnomeExtensions.dash-to-panel
-          gnomeExtensions.executor
-          gnomeExtensions.battery-health-charging
-          gnomeExtensions.app-menu-icon-remove-symbolic
-
-          gnomeExtensions.window-is-ready-remover
-
-          # gnomeExtensions.network-interfaces-info
-          gnomeExtensions.appindicator
-          gnomeExtensions.settingscenter
-          gnomeExtensions.app-hider
-          gnomeExtensions.arc-menu
-          gnomeExtensions.blur-my-shell
-          gnomeExtensions.clipboard-indicator
-          gnomeExtensions.dash-to-dock
-          gnomeExtensions.extension-list
-          # gnomeExtensions.fuzzy-app-search
-          gnomeExtensions.github-actions
-          # gnomeExtensions.gpu-profile-selector
-          gnomeExtensions.hue-lights
-          gnomeExtensions.ip-finder
-          gnomeExtensions.just-perfection
-          gnomeExtensions.kerberos-login
-          gnomeExtensions.logo-menu
-          gnomeExtensions.no-overview
-          gnomeExtensions.remmina-search-provider
-          gnomeExtensions.removable-drive-menu
-          gnomeExtensions.search-light
-          gnomeExtensions.server-status-indicator
-          gnomeExtensions.tailscale-qs
-          gnomeExtensions.todotxt
-          gnomeExtensions.tophat
-          gnomeExtensions.no-title-bar
-          # gnomeExtensions.vitals
-          gnomeExtensions.pip-on-top
-        ]
-      )
-      ++ (with pkgsUnstable; [
-        clutter
-        clutter-gtk
-        gjs
-        # gnome.adwaita-icon-theme
-        gnome-firmware
-        gnome-menus
-        gnome.dconf-editor
-        gnome.gnome-applets
-        gnome.gnome-autoar
-        gnome.gnome-clocks
-        gnome.gnome-control-center
-        gnome.gnome-keyring
-        gnome.gnome-nettool
-        gnome.gnome-online-miners
-        gnome.gnome-packagekit
-        gnome.gnome-power-manager
-        gnome.gnome-session
-        gnome.gnome-session-ctl
-        gnome.gnome-settings-daemon
-        gnome.gnome-shell-extensions
-        gnome.gnome-themes-extra
-        gnome.gnome-tweaks
-        gnome.gnome-user-share
-        gnome.libgnome-keyring
-        gnome.seahorse
-        gnome.zenity
-      ]);
+    environment.systemPackages = (with pkgs; [
+      gtop
+      libgtop
+      gnomeExtensions.dash-to-panel
+      gnomeExtensions.executor
+      gnomeExtensions.battery-health-charging
+      gnomeExtensions.app-menu-icon-remove-symbolic
+      gnomeExtensions.pinguxnetlabel
+      gnomeExtensions.window-is-ready-remover
+      gnomeExtensions.wayland-or-x11
+      # gnomeExtensions.network-interfaces-info
+      gnomeExtensions.appindicator
+      gnomeExtensions.settingscenter
+      gnomeExtensions.app-hider
+      gnomeExtensions.arc-menu
+      gnomeExtensions.blur-my-shell
+      gnomeExtensions.clipboard-indicator
+      gnomeExtensions.dash-to-dock
+      gnomeExtensions.extension-list
+      # gnomeExtensions.fuzzy-app-search
+      gnomeExtensions.github-actions
+      # gnomeExtensions.gpu-profile-selector
+      gnomeExtensions.hue-lights
+      gnomeExtensions.ip-finder
+      gnomeExtensions.just-perfection
+      gnomeExtensions.kerberos-login
+      gnomeExtensions.logo-menu
+      gnomeExtensions.no-overview
+      gnomeExtensions.remmina-search-provider
+      gnomeExtensions.removable-drive-menu
+      gnomeExtensions.search-light
+      gnomeExtensions.server-status-indicator
+      gnomeExtensions.tailscale-qs
+      gnomeExtensions.todotxt
+      gnomeExtensions.tophat
+      gnomeExtensions.no-title-bar
+      gnomeExtensions.vitals
+      gnomeExtensions.pip-on-top
+      gnomeExtensions.systemd-manager
+    ]) ++ (with pkgs; [
+      clutter
+      clutter-gtk
+      gjs
+      # gnome.adwaita-icon-theme
+      gnome-firmware
+      gnome-menus
+      gnome.dconf-editor
+      gnome.gnome-applets
+      gnome.gnome-autoar
+      gnome.gnome-clocks
+      gnome.gnome-control-center
+      # gnome.gnome-keyring
+      gnome.gnome-nettool
+      gnome.gnome-online-miners
+      # gnome.gnome-packagekit
+      gnome.gnome-power-manager
+      gnome.gnome-session
+      gnome.gnome-session-ctl
+      gnome.gnome-settings-daemon
+      gnome.gnome-shell-extensions
+      gnome.gnome-themes-extra
+      gnome.gnome-tweaks
+      gnome.gnome-user-share
+      # gnome.libgnome-keyring
+      gnome.seahorse
+      gnome.zenity
+    ]);
 
     # services.synergy.client = {
     #   enable = true;
     #   serverAddress = "euro-mir";
     # };
 
-    environment.gnome.excludePackages =
-      (with pkgs; [
+    environment.gnome.excludePackages = (with pkgs;
+      [
         # gnome-photos
         gnome-tour
-      ])
-      ++ (with pkgs.gnome; [
-        cheese # webcam tool
-        tali # poker game
-        iagno # go game
-        hitori # sudoku game
-        atomix # puzzle game
-        yelp # Help view
-        gnome-initial-setup
-      ])
-      ++ (with pkgsUnstable; [
-        # gnome-photos
-        gnome-tour
-      ])
-      ++ (with pkgsUnstable.gnome; [
+      ]) ++ (with pkgs.gnome; [
         cheese # webcam tool
         tali # poker game
         iagno # go game
@@ -221,4 +202,3 @@ in {
 # gnome45Extensions."monitor-brightness-volume@ailin.nemui"
 # # gnome45Extensions."systemd-status@ne0sight.github.io"
 # gnomeExtensions.spotify-tray
-

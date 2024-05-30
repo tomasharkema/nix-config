@@ -1,9 +1,5 @@
-#  background              #1e1e2e
-{
-  config,
-  osConfig,
-  ...
-}: {
+# background              #1e1e2e
+{ config, osConfig, ... }: {
   config = {
     programs = {
       kitty = {
@@ -17,9 +13,7 @@
           #osConfig.variables.theme.withHashtag.base00; #"#000000";
         };
 
-        shellIntegration = {
-          enableZshIntegration = true;
-        };
+        shellIntegration = { enableZshIntegration = true; };
       };
     };
   };

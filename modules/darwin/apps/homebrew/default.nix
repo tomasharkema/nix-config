@@ -1,16 +1,9 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 with lib;
-with lib.custom; let
-  cfg = config.apps.homebrew;
+with lib.custom;
+let cfg = config.apps.homebrew;
 in {
-  options.apps.homebrew = {
-    enable = mkBoolOpt false "homebrew";
-  };
+  options.apps.homebrew = { enable = mkBoolOpt false "homebrew"; };
 
   config = mkIf cfg.enable {
     homebrew = {

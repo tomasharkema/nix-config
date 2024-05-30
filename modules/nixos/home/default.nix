@@ -1,21 +1,12 @@
-{
-  options,
-  config,
-  lib,
-  inputs,
-  pkgs,
-  ...
-}:
+{ options, config, lib, inputs, pkgs, ... }:
 with lib; {
   options.home = {
     homeFiles = mkOption {
       description = "Attribute set of files to link into the user home.";
-      default = {};
+      default = { };
       type = types.attrsOf (types.submodule {
         options = {
-          source = mkOption {
-            type = types.path;
-          };
+          source = mkOption { type = types.path; };
           # target = mkOption {
           #   type = types.str;
           # };

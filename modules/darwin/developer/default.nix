@@ -1,15 +1,8 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-with lib; let
-  cfg = config.traits.developer;
+{ pkgs, lib, config, ... }:
+with lib;
+let cfg = config.traits.developer;
 in {
-  options.traits.developer = {
-    enable = mkEnableOption "dev";
-  };
+  options.traits.developer = { enable = mkEnableOption "dev"; };
   config = mkIf cfg.enable {
     # system.nixos.tags = ["developer"];
 
@@ -21,11 +14,10 @@ in {
         # nix-init
         # nixci
         agenix
-        alejandra
+
         deadnix
         deploy-rs
         devenv
-        fh
         # flake-checker
         hydra-cli
         manix
@@ -38,7 +30,7 @@ in {
         nix-prefetch-scripts
         # nix-serve
         nix-tree
-        nixfmt
+        nixfmt-rfc-style
         nixos-shell
         nixpkgs-fmt
         nixpkgs-lint
@@ -49,8 +41,7 @@ in {
       ++ [
         go
         go-outline
-        gocode
-        gocode-gomod
+        gopls
         godef
         golint
         gopkgs

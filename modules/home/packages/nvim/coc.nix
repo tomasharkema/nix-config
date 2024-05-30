@@ -1,4 +1,4 @@
-{homeDir}: {
+{ homeDir }: {
   eslint.autoFixOnSave = true;
   coc.preferences.colorSupport = false;
   prettier.disableSuccessMessage = true;
@@ -50,7 +50,7 @@
   languageserver = {
     nix = {
       command = "nil";
-      filetypes = ["nix"];
+      filetypes = [ "nix" ];
     };
   };
 
@@ -60,18 +60,19 @@
     file.showHiddenFiles = true;
     openAction.strategy = "sourceWindow";
     root.customRules = {
-      vcs = {patterns = [".git" ".hg" ".projections.json"];};
+      vcs = { patterns = [ ".git" ".hg" ".projections.json" ]; };
       vcs-r = {
-        patterns = [".git" ".hg" ".projections.json"];
+        patterns = [ ".git" ".hg" ".projections.json" ];
         bottomUp = true;
       };
     };
-    root.strategies = ["custom:vcs" "workspace" "cwd"];
+    root.strategies = [ "custom:vcs" "workspace" "cwd" ];
     quitOnOpen = true;
     buffer.root.template = "[icon & 1] OPEN EDITORS";
     file.reveal.auto = false;
     file.root.template = "[icon & 1] PROJECT ([root])";
-    file.child.template = "[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1][filename omitCenter 1][modified][readonly] [linkIcon & 1][link growRight 1 omitCenter 5]";
+    file.child.template =
+      "[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1][filename omitCenter 1][modified][readonly] [linkIcon & 1][link growRight 1 omitCenter 5]";
     explorer.keyMappings = {
       s = "open:vsplit";
       mm = "rename";
