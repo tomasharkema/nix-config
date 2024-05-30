@@ -70,17 +70,29 @@
 
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        nix-darwin.follows = "darwin";
+      };
     };
 
     agenix = {
       url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        # nix-darwin.follows = "darwin";
+      };
     };
 
     agenix-shell = {
       url = "github:aciceri/agenix-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        #TODO
+        # flake-parts.follows = "flake-parts";
+      };
     };
 
     nixos-hardware = {
@@ -151,10 +163,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    devenv = {
-      url = "github:cachix/devenv";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # cachix = { };
+
+    # devenv = {
+    #   url = "github:cachix/devenv";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # peerix = {
     #   url = "github:cid-chan/peerix";

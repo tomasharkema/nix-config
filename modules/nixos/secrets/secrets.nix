@@ -89,7 +89,7 @@ in {
   "ght-runner.age".publicKeys = builders;
   "ght.age".publicKeys = builders;
   "healthcheck.age".publicKeys = allKeys;
-  # "hercules-cli.key.age".publicKeys = allKeys;
+  "hercules-cli.key.age".publicKeys = allKeys;
   "keybase.age".publicKeys = allKeys;
   "ldap.age".publicKeys = builders;
   "mak.age".publicKeys = allKeys;

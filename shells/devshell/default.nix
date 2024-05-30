@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, config, ... }:
+{ inputs, pkgs, lib, config, mkShell, ... }:
 with pkgs;
 with lib;
 let
@@ -135,111 +135,195 @@ let
 
     exec nix path-info --all | xargs -n$NPATHS -P$NPROCS attic push tomas -j 1
   '';
-in inputs.devenv.lib.mkShell {
-  inherit inputs pkgs;
+in mkShell {
 
-  modules = [{
-    # starship.enable = true;
+  # shellHook = ''
+  #   ${pre-commit.pre-commit-check.shellHook}
+  # '';
+  # buildInputs = pre-commit.pre-commit-check.enabledPackages;
 
-    # languages.nix = {
-    #   enable = true;
-    #   lsp.package = nixd;
-    # };
-    pre-commit.hooks = {
-      nixfmt.enable = true;
-      shellcheck.enable = true;
-      # nixd.enable = true;
-      # nil.enable = true;
-      # statix.enable = true;
-    };
+  packages = with pkgs; [
+    nixos-generate
 
-    devcontainer = {
-      enable = true;
-      settings.customizations.vscode.extensions = [
-        "Catppuccin.catppuccin-vsc-pack"
-        "jnoortheen.nix-ide"
-        "mkhl.direnv"
-        "brettm12345.nixfmt-vscode"
-      ];
-    };
-    difftastic.enable = true;
+    nixVersions.nix_2_22 # Unstable
+    upload-all-store
+    # cntr
+    update-pkgs
+    attic-client
+    dconf-save
+    dp
+    upload-to-installer
+    # pkgs.custom.rundesk
+    ack
+    age
+    agenix
+    bash
+    bfg-repo-cleaner
+    # cachix-deploy
+    # cachix-reploy-pin
+    colima
+    comma
+    dconf-update
+    dconf2nix
+    deploy-all
+    deploy-machine
+    pkgs.deploy-rs
+    deployment
+    direnv
+    # flake-checker
+    git
+    gnupg
+    gum
+    tydra
+    hydra-check
+    hydra-cli
+    mkiso
+    netdiscover
+    nil
+    nixd
+    nix-output-monitor
+    nix-prefetch-scripts
+    pkgs.custom.remote-cli
+    reencrypt
+    remote-deploy
+    sops
+    ssh-to-age
+    statix
+    test-remote
+    upload-all
+    upload-local
+    write-script
+    zsh
+    agenix # .packages.${system}.default
+    nixfmt-rfc-style
 
-    # dotenv.enable = true;
-
-    packages = [
-      nixos-generate
-
-      nixVersions.nix_2_22 # Unstable
-      upload-all-store
-      # cntr
-      update-pkgs
-      attic-client
-      dconf-save
-      dp
-      upload-to-installer
-      # pkgs.custom.rundesk
-      ack
-      age
-      agenix
-      bash
-      bfg-repo-cleaner
-      # cachix-deploy
-      # cachix-reploy-pin
-      colima
-      comma
-      dconf-update
-      dconf2nix
-      deploy-all
-      deploy-machine
-      pkgs.deploy-rs
-      deployment
-      direnv
-      # flake-checker
-      git
-      gnupg
-      gum
-      tydra
-      hydra-check
-      hydra-cli
-      mkiso
-      netdiscover
-      nil
-      nixd
-      nix-output-monitor
-      nix-prefetch-scripts
-      pkgs.custom.remote-cli
-      reencrypt
-      remote-deploy
-      sops
-      ssh-to-age
-      statix
-      test-remote
-      upload-all
-      upload-local
-      write-script
-      zsh
-      agenix # .packages.${system}.default
-      nixfmt-rfc-style
-
-      # cachix
-      deadnix
-      hydra-cli
-      test-installer
-      nil
-      manix
-      nix-eval-jobs
-      # nix-init
-      nix-output-monitor
-      nix-prefetch-scripts
-      # nix-serve
-      nix-tree
-      # nixci
-      # nixos-shell
-      nixpkgs-fmt
-      nixpkgs-lint
-      nurl
-      # # snowfallorg.flake
-      statix
-    ];
-  }];
+    # cachix
+    deadnix
+    hydra-cli
+    test-installer
+    nil
+    manix
+    nix-eval-jobs
+    # nix-init
+    nix-output-monitor
+    nix-prefetch-scripts
+    # nix-serve
+    nix-tree
+    # nixci
+    # nixos-shell
+    nixpkgs-lint
+    nurl
+    # # snowfallorg.flake
+    statix
+  ];
 }
+# inputs.devenv.lib.mkShell {
+#   inherit inputs pkgs;
+
+#   modules = [
+#     {
+#       # starship.enable = true;
+
+#       # languages.nix = {
+#       #   enable = true;
+#       #   lsp.package = nixd;
+#       # };
+#       pre-commit.hooks = {
+#         nixfmt.enable = true;
+#         shellcheck.enable = true;
+#         # nixd.enable = true;
+#         # nil.enable = true;
+#         # statix.enable = true;
+#       };
+
+#       devcontainer = {
+#         enable = true;
+#         settings.customizations.vscode.extensions = [
+#           "Catppuccin.catppuccin-vsc-pack"
+#           "jnoortheen.nix-ide"
+#           "mkhl.direnv"
+#           "brettm12345.nixfmt-vscode"
+#         ];
+#       };
+#       difftastic.enable = true;
+
+#       # dotenv.enable = true;
+
+#       packages = [
+#         nixos-generate
+
+#         nixVersions.nix_2_22 # Unstable
+#         upload-all-store
+#         # cntr
+#         update-pkgs
+#         attic-client
+#         dconf-save
+#         dp
+#         upload-to-installer
+#         # pkgs.custom.rundesk
+#         ack
+#         age
+#         agenix
+#         bash
+#         bfg-repo-cleaner
+#         # cachix-deploy
+#         # cachix-reploy-pin
+#         colima
+#         comma
+#         dconf-update
+#         dconf2nix
+#         deploy-all
+#         deploy-machine
+#         pkgs.deploy-rs
+#         deployment
+#         direnv
+#         # flake-checker
+#         git
+#         gnupg
+#         gum
+#         tydra
+#         hydra-check
+#         hydra-cli
+#         mkiso
+#         netdiscover
+#         nil
+#         nixd
+#         nix-output-monitor
+#         nix-prefetch-scripts
+#         pkgs.custom.remote-cli
+#         reencrypt
+#         remote-deploy
+#         sops
+#         ssh-to-age
+#         statix
+#         test-remote
+#         upload-all
+#         upload-local
+#         write-script
+#         zsh
+#         agenix # .packages.${system}.default
+#         nixfmt-rfc-style
+
+#         # cachix
+#         deadnix
+#         hydra-cli
+#         test-installer
+#         nil
+#         manix
+#         nix-eval-jobs
+#         # nix-init
+#         nix-output-monitor
+#         nix-prefetch-scripts
+#         # nix-serve
+#         nix-tree
+#         # nixci
+#         # nixos-shell
+#         nixpkgs-fmt
+#         nixpkgs-lint
+#         nurl
+#         # # snowfallorg.flake
+#         statix
+#       ];
+#     }
+#   ];
+# }

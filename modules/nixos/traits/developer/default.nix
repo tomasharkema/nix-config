@@ -35,7 +35,6 @@ in {
         nixfmt-rfc-style
 
         nixos-shell
-        nixpkgs-fmt
         nixpkgs-lint
         nurl
         statix

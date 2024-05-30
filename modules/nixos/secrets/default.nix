@@ -124,11 +124,7 @@
           file = ./mak.age;
           mode = "644";
         };
-        # "hercules-cli.key" = {
-        #   file = ./hercules-cli.key.age;
-        #   mode = "644";
-        #   path = "/var/lib/hercules-ci-agent/secrets/cluster-join-token.key";
-        # };
+
         "domainjoin" = { file = ./domainjoin.age; };
         "peerix-private" = {
           file = ./peerix.private.age;

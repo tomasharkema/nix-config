@@ -42,7 +42,6 @@ in {
       devenv
       # attic
       nix-output-monitor
-      nixpkgs-fmt
       nerd-font-patcher
     ];
     traits.developer.enable = true;
