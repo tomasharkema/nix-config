@@ -77,6 +77,8 @@ in {
       extraPackages = [ pkgs.mesa.drivers ];
     };
 
+    programs.evolution.enable = true;
+
     environment.systemPackages = with pkgs;
       [
         qdirstat

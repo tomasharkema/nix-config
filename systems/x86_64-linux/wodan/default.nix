@@ -100,6 +100,7 @@ with lib; {
       cpu.intel.updateMicrocode = true;
       i2c.enable = true;
     };
+    services.podman.enable = true;
 
     fileSystems = {
       # "/mnt/blue-fire/media" = {
