@@ -162,7 +162,11 @@ in {
 
     networking.firewall.allowedTCPPorts = [ 2049 ];
 
-    services.kmscon = { enable = mkForce false; };
+    services = {
+      kmscon.enable = mkForce false;
+
+      builder-service.enable = true;
+    };
 
     fileSystems = {
       # "/export/media" = {
