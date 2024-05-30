@@ -28,7 +28,7 @@ in {
     };
   };
 
-  config = let atticBin = lib.getExe pkgs.attic;
+  config = let atticBin = "${pkgs.attic}/bin/attic";
   in mkIf cfg.enable {
     systemd.services.attic-watch = {
       description = "attic-watch";
