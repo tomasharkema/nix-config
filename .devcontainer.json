@@ -3,9 +3,9 @@
     "vscode": {
       "extensions": [
         "Catppuccin.catppuccin-vsc-pack",
-        "kamadorueda.alejandra",
         "jnoortheen.nix-ide",
-        "mkhl.direnv"
+        "mkhl.direnv",
+        "brettm12345.nixfmt-vscode"
       ]
     }
   },

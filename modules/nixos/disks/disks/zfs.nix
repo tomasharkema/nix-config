@@ -1,4 +1,4 @@
-{disks ? ["/dev/vda"], ...}: {
+{ disks ? [ "/dev/vda" ], ... }: {
   services.zfs.autoScrub.enable = true;
   services.zfs.trim.enable = true;
   disko.devices = {

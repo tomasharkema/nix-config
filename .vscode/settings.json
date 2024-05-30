@@ -34,7 +34,7 @@
         }
       },
       "formatting": {
-        "command": "alejandra"
+        "command": "nixfmt"
       },
       "options": {
         "enable": true,
@@ -54,12 +54,13 @@
       }
     }
   },
+  "nix.formatterPath": "nixfmt",
   // "nixEnvSelector.nixFile": "${workspaceFolder}/shell.nix",
-  // "[nix]": {
-  //   "editor.defaultFormatter": "kamadorueda.alejandra",
-  //   "editor.formatOnPaste": true,
-  //   "editor.formatOnSave": true,
-  //   "editor.formatOnType": false
-  // },
+  "[nix]": {
+    "editor.defaultFormatter": "brettm12345.nixfmt-vscode",
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": false
+  },
   // "nixEnvSelector.nixFile": "${workspaceRoot}/flake.nix"
 }

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}:
+{ pkgs, inputs, ... }:
 # with pkgs; let
 # nix-fast-build = fetchFromGitHub {
 #   owner = "Mic92";
@@ -15,7 +11,6 @@
   config = {
     # home.packages = [
     #   agenix # .packages.${system}.default
-    #   alejandra # .defaultPackage.${system}
     #   # cachix
     #   deadnix
     #   fh

@@ -1,19 +1,11 @@
-{
-  lib,
-  pkgs,
-  config,
-  inputs,
-  ...
-}:
-with lib; let
-  cfg = config.gui.desktop;
+{ lib, pkgs, config, inputs, ... }:
+with lib;
+let cfg = config.gui.desktop;
 in {
   options.gui.desktop = {
     enable = mkEnableOption "hallo";
 
-    rdp = {
-      enable = mkEnableOption "hallo";
-    };
+    rdp = { enable = mkEnableOption "hallo"; };
   };
 
   config = mkIf cfg.enable {
@@ -42,7 +34,7 @@ in {
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;
-        jack.enable = true;
+        # jack.enable = true;
       };
       gvfs.enable = true;
     };
@@ -70,23 +62,31 @@ in {
     # programs.gnupg.agent = {
     # enable = true;
     # enableSSHSupport = true;
+    # # };
+    # services = {
+    #   tabby.enable = true;
     # };
-    # services.cpupower-gui.enable = true;
-    # environment.variables = {
-    #   LD_LIBRARY_PATH = mkForce "$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib";
-    # };
+
+    environment.variables = {
+      LD_LIBRARY_PATH =
+        "$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib";
+    };
 
     hardware.opengl = {
       enable = true;
-      extraPackages = [pkgs.mesa.drivers];
+      extraPackages = [ pkgs.mesa.drivers ];
     };
 
     environment.systemPackages = with pkgs;
       [
+        qdirstat
+        xdiskusage
+        # davinci-resolve
+        pwvucontrol
         xdiskusage
         libGL
         libGLU
-        # bottles
+        bottles
         trayscale
         grsync
         caffeine-ng
@@ -94,7 +94,7 @@ in {
         pkgs.custom.netbrowse
         # gnome.gnome-boxes
         # pcmanfm
-        polkit
+        # polkit
         gparted
         partition-manager
         # firefox
@@ -102,9 +102,9 @@ in {
         # transmission
         # keybase
         powertop
-
+        # tabby
         nix-software-center
-        nixos-conf-editor
+        # nixos-conf-editor
 
         xdg-utils
 
@@ -125,7 +125,7 @@ in {
         font-manager
         gamehub
         filezilla
-        # sublime-merge
+        sublime-merge
         remmina
         xdg-utils
         # mattermost-desktop
@@ -136,13 +136,12 @@ in {
         mission-center
         pavucontrol
         # libmx
-      ]
-      ++ optionals pkgs.stdenv.isx86_64 [
+      ] ++ optionals pkgs.stdenv.isx86_64 [
+        xpipe
         angryipscanner
         telegram-desktop
         # pkgs.custom.git-butler
-      ]
-      ++ (with pkgs.custom; [zerotier-ui zerotier-gui]);
+      ] ++ (with pkgs.custom; [ zerotier-ui ]);
 
     programs = {
       ssh = {
@@ -165,5 +164,14 @@ in {
     sound.enable = true;
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
+
+    boot.binfmt.registrations.appimage = {
+      wrapInterpreterInShell = false;
+      interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+      recognitionType = "magic";
+      offset = 0;
+      mask = "\\xff\\xff\\xff\\xff\\x00\\x00\\x00\\x00\\xff\\xff\\xff";
+      magicOrExtension = "\\x7fELF....AI\\x02";
+    };
   };
 }

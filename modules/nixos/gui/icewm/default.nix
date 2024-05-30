@@ -1,39 +1,22 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
-with lib; let
+{ config, pkgs, lib, ... }:
+with lib;
+let
   cfg = config.gui.icewm;
 
   preferencesFile = "${./preferences.conf}";
   themeFile = "${./theme.conf}";
 in {
-  options.gui.icewm = {
-    enable = mkEnableOption "icewm";
-  };
+  options.gui.icewm = { enable = mkEnableOption "icewm"; };
   config = mkIf cfg.enable {
     gui.fonts.enable = true;
-
-    programs.hyprland = {
-      # Install the packages from nixpkgs
-      enable = true;
-      # Whether to enable XWayland
-      xwayland.enable = true;
-    };
 
     home.homeFiles = {
       ".icewm/themes" = {
         # enable = true;
         source = "${pkgs.custom.awesome-icewm}/themes";
       };
-      ".icewm/preferences" = {
-        source = preferencesFile;
-      };
-      ".icewm/theme" = {
-        source = themeFile;
-      };
+      ".icewm/preferences" = { source = preferencesFile; };
+      ".icewm/theme" = { source = themeFile; };
       # ".config/rofi/config.rasi" = {
       #   # enable = true;
       #   source = "${iceConfig}/rofi/config.rasi";
@@ -62,7 +45,7 @@ in {
     };
 
     environment = {
-      systemPackages = [pkgs.icewm];
+      systemPackages = [ pkgs.icewm ];
       etc = {
         # "icevm-theme" = {
         #   enable = true;
