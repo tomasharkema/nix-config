@@ -1,11 +1,4 @@
-{
-  modulesPath,
-  lib,
-  inputs,
-  pkgs,
-  format,
-  ...
-}:
+{ modulesPath, lib, inputs, pkgs, format, ... }:
 with lib; {
   imports = with inputs; [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -15,11 +8,17 @@ with lib; {
   ];
 
   config = {
-    installed = true;
 
     apps = {
       ntopng.enable = true;
       steam.enable = true;
+      usbip.enable = true;
+      home-assistant.enable = true;
+    };
+
+    nix.settings = {
+      keep-outputs = mkForce false;
+      keep-derivations = mkForce false;
     };
 
     gui = {
@@ -41,7 +40,7 @@ with lib; {
         spec = "UUID=4fb99410-225f-4c6a-a647-2cae35f879f0";
         hashTableSizeMB = 2048;
         verbosity = "crit";
-        extraOptions = ["--loadavg-target" "2.0"];
+        extraOptions = [ "--loadavg-target" "2.0" ];
       };
     };
 
@@ -81,9 +80,7 @@ with lib; {
     networking = {
       hostName = "enzian";
       hostId = "529fd7fa";
-      firewall = {
-        enable = true;
-      };
+      firewall = { enable = true; };
       # useDHCP = lib.mkDefault false;
       interfaces."enp4s0" = {
         # useDHCP = lib.mkDefault true;
@@ -104,15 +101,16 @@ with lib; {
     # };
 
     boot = {
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      binfmt.emulatedSystems = [ "aarch64-linux" ];
 
       kernel.sysctl."kernel.sysrq" = 1;
       initrd = {
-        availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-        kernelModules = ["kvm-intel" "uinput" "nvme"];
+        availableKernelModules =
+          [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+        kernelModules = [ "kvm-intel" "uinput" "nvme" ];
       };
-      kernelModules = ["kvm-intel" "uinput" "nvme"];
-      extraModulePackages = [];
+      kernelModules = [ "kvm-intel" "uinput" "nvme" ];
+      extraModulePackages = [ ];
     };
 
     hardware = {

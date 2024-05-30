@@ -14,9 +14,9 @@
   variant ? "frappe",
   inputs,
   system,
+  python3,
 }: let
-  python3 = inputs.unstable.legacyPackages."${system}".python3;
-
+  # python3 = inputs.unstable.legacyPackages."${system}".python3;
   validAccents = ["blue" "flamingo" "green" "lavender" "maroon" "mauve" "peach" "pink" "red" "rosewater" "sapphire" "sky" "teal" "yellow"];
   validSizes = ["standard" "compact"];
   validTweaks = ["black" "rimless" "normal" "float"];

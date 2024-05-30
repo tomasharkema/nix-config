@@ -1,10 +1,6 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
-with lib; let
+{ lib, config, pkgs, ... }:
+with lib;
+let
   cfg = config.services.freeipa.replica;
   hostHostName = config.networking.hostName;
   hostConfig = config;
@@ -14,7 +10,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    system.nixos.tags = ["freeipa-replica"];
+    system.nixos.tags = [ "freeipa-replica" ];
 
     # networking.nat = {
     #   enable = true;
@@ -79,12 +75,10 @@ in {
     virtualisation = {
       podman = {
         defaultNetwork.settings = mkForce {
-          subnets = [
-            {
-              gateway = "10.89.0.1";
-              subnet = "10.89.0.0/16";
-            }
-          ];
+          subnets = [{
+            gateway = "10.89.0.1";
+            subnet = "10.89.0.0/16";
+          }];
         };
       };
       oci-containers.containers = {
@@ -102,22 +96,17 @@ in {
             TS_STATE_DIR = "/var/lib/tailscale";
             TS_EXTRA_ARGS = "--accept-routes --accept-dns";
           };
-          volumes = [
-            "/var/lib/tailscale-free-ipa-replica:/var/lib/tailscale:Z"
-          ];
+          volumes =
+            [ "/var/lib/tailscale-free-ipa-replica:/var/lib/tailscale:Z" ];
         };
         free-ipa-replica = {
-          dependsOn = ["free-ipa-replica-tailscale"];
+          dependsOn = [ "free-ipa-replica-tailscale" ];
           image = "docker.io/freeipa/freeipa-server:fedora-39";
           autoStart = true;
           #ports = ["53:53" "53:53/udp" "80:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
           hostname = "${config.networking.hostName}-replica.harkema.intra";
-          extraOptions = [
-            "--network=container:free-ipa-replica-tailscale"
-          ];
-          environment = {
-            DEBUG_NO_EXIT = "1";
-          };
+          extraOptions = [ "--network=container:free-ipa-replica-tailscale" ];
+          environment = { DEBUG_NO_EXIT = "1"; };
           cmd = [
             "ipa-replica-install"
             "-U"

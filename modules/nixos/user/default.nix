@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}:
+{ config, pkgs, lib, inputs, ... }:
 with lib;
 with lib.custom; {
   options.user = with types; {
@@ -29,14 +23,12 @@ with lib.custom; {
   config = {
     security = {
       pam = {
-        loginLimits = [
-          {
-            domain = "*";
-            type = "soft";
-            item = "nofile";
-            value = "8192";
-          }
-        ];
+        loginLimits = [{
+          domain = "*";
+          type = "soft";
+          item = "nofile";
+          value = "8192";
+        }];
         # services = {
         #   login.googleAuthenticator.enable = true;
         # };
@@ -44,9 +36,9 @@ with lib.custom; {
       sudo.wheelNeedsPassword = false;
     };
 
-    environment.systemPackages = with pkgs; [];
+    environment.systemPackages = with pkgs; [ ];
 
-    programs.zsh = {enable = true;};
+    programs.zsh = { enable = true; };
 
     users.mutableUsers = mkDefault false;
     programs.fuse.userAllowOther = true;
@@ -55,28 +47,38 @@ with lib.custom; {
       isNormalUser = true;
       description = "tomas";
       group = "${config.user.name}";
-      extraGroups = ["networkmanager" "wheel" "rslsync" "users" "fuse" "disk" "plugdev" "dailout"];
-      hashedPassword = "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "rslsync"
+        "users"
+        "fuse"
+        "disk"
+        "plugdev"
+        "dailout"
+      ];
+      hashedPassword =
+        "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
 
-      openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+      openssh.authorizedKeys.keyFiles = [ pkgs.custom.authorized-keys ];
       linger = true;
       uid = 1000;
     };
 
     users.groups.${config.user.name} = {
       name = "${config.user.name}";
-      members = ["${config.user.name}"];
+      members = [ "${config.user.name}" ];
     };
 
     users.groups = {
-      agent = {};
-      rslsync = lib.mkIf config.resilio.enable {};
+      agent = { };
+      rslsync = lib.mkIf config.resilio.enable { };
     };
     users.users.agent = {
       isSystemUser = true;
       group = "agent";
-      extraGroups = lib.mkIf config.resilio.enable ["rslsync"];
-      openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+      extraGroups = lib.mkIf config.resilio.enable [ "rslsync" ];
+      openssh.authorizedKeys.keyFiles = [ pkgs.custom.authorized-keys ];
       uid = 1099;
     };
 
@@ -85,30 +87,32 @@ with lib.custom; {
       group = "agent";
       # extraGroups = ["rslsync"];
       uid = 1098;
-      openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+      openssh.authorizedKeys.keyFiles = [ pkgs.custom.authorized-keys ];
     };
 
     users.users.root = {
       shell = pkgs.zsh;
-      openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+      openssh.authorizedKeys.keyFiles = [ pkgs.custom.authorized-keys ];
     };
 
     # optional, useful when the builder has a faster internet connection than yours
-    nix.extraOptions = ''
-      builders-use-substitutes = true
-    '';
+    # nix.extraOptions = ''
+    #   builders-use-substitutes = true
+    # '';
 
     nix.settings = {
       extra-experimental-features = "nix-command flakes cgroups";
-      trusted-users = ["root" "tomas" "builder"];
+      trusted-users = [ "root" "tomas" "builder" ];
+      # trustedBinaryCaches = ["https://cache.nixos.org"];
+      # binaryCaches = ["https://cache.nixos.org"];
 
       substituters = [
-        "https://nix-community.cachix.org"
         "https://cache.nixos.org/"
+        "https://nix-gaming.cachix.org"
+        "https://nix-community.cachix.org"
         "https://nix-cache.harke.ma/tomas/"
         "https://devenv.cachix.org"
       ];
-
       trusted-public-keys = [
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
@@ -116,6 +120,7 @@ with lib.custom; {
         "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA="
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
         "tomas:hER/5A08v05jH8GnQUZRrh33+HDNbeiJj8z/8JY6ZvI="
+        "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       ];
     };
   };

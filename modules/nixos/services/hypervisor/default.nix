@@ -1,11 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, pkgs, lib, ... }:
 with lib;
-with lib.custom; let
+with lib.custom;
+let
   cfg = config.headless.hypervisor;
 
   libvirtKeytab = "/var/lib/libvirt/krb5.tab";
@@ -14,12 +10,12 @@ in {
   options.headless.hypervisor = {
     enable = mkEnableOption "hypervisor";
 
-    bridgeInterfaces = mkOpt (types.listOf types.str) [] "bridgeInterfaces";
+    bridgeInterfaces = mkOpt (types.listOf types.str) [ ] "bridgeInterfaces";
   };
 
   config = mkIf cfg.enable {
     system = {
-      nixos.tags = ["hypervisor"];
+      nixos.tags = [ "hypervisor" ];
 
       # activationScripts = {
       #   libvirtKeytab = ''
@@ -107,7 +103,7 @@ in {
       #   sasl_allowed_username_list = ["\*@HARKEMA.INTRA" ]
       # '';
 
-      allowedBridges = ["virbr0" "br0"];
+      allowedBridges = [ "virbr0" "br0" ];
 
       qemu = {
         package = pkgs.qemu_kvm;
@@ -120,8 +116,7 @@ in {
             (pkgs.OVMF.override {
               secureBoot = true;
               tpmSupport = true;
-            })
-            .fd
+            }).fd
             # pkgs.pkgsCross.aarch64-multiplatform.OVMF.fd
           ];
         };
@@ -129,14 +124,14 @@ in {
     };
 
     users.users = {
-      "${config.user.name}".extraGroups = ["libvirtd" "qemu-libvirtd"];
-      "root".extraGroups = ["libvirtd" "qemu-libvirtd"];
+      "${config.user.name}".extraGroups = [ "libvirtd" "qemu-libvirtd" ];
+      "root".extraGroups = [ "libvirtd" "qemu-libvirtd" ];
     };
 
     networking = {
       #   interfaces."br0".useDHCP = true;
 
-      firewall.trustedInterfaces = ["br0" "virbr0"];
+      firewall.trustedInterfaces = [ "br0" "virbr0" ];
 
       #   bridges = {
       #     "br0" = {

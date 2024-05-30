@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Encoding=UTF-8
-Name=Netbrowse
-Exec=netbrowse
-Icon=/run/current-system/sw/share/ZeroTierIcon.png
-Categories=System;

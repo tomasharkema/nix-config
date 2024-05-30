@@ -1,9 +1,4 @@
-{
-  config,
-  osConfig,
-  lib,
-  ...
-}:
+{ config, osConfig, lib, ... }:
 with lib; {
   config = mkIf osConfig.apps.flatpak.enable {
     home = {

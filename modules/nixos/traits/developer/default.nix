@@ -1,31 +1,23 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-with lib; let
-  cfg = config.traits.developer;
+{ pkgs, lib, config, ... }:
+with lib;
+let cfg = config.traits.developer;
 in {
-  options.traits.developer = {
-    enable = mkEnableOption "dev";
-  };
+  options.traits.developer = { enable = mkEnableOption "dev"; };
   config = mkIf cfg.enable {
-    system.nixos.tags = ["developer"];
+    system.nixos.tags = [ "developer" ];
 
     environment.systemPackages = with pkgs;
     # nix
       [
         # # snowfallorg.flake
-        cachix
+        # cachix
         # nix-init
         # nixci
         agenix
-        alejandra
         deadnix
         deploy-rs
         devenv
-        fh
+
         # flake-checker
         hydra-cli
         manix
@@ -40,25 +32,14 @@ in {
         nix-prefetch-scripts
         # nix-serve
         nix-tree
-        nixfmt
+        nixfmt-rfc-style
+
         nixos-shell
         nixpkgs-fmt
         nixpkgs-lint
         nurl
         statix
-      ]
-      # go
-      ++ [
-        go
-        go-outline
-        gocode
-        gocode-gomod
-        godef
-        golint
-        gopkgs
-        gopls
-        gotools
-      ]
+      ] ++ [ go go-outline gopls godef golint gopkgs gopls gotools ]
       ++ (lib.optional pkgs.stdenv.isLinux nix-du);
   };
 }

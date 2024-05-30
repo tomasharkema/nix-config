@@ -1,15 +1,8 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
-with lib; let
-  cfg = config.gui.quiet-boot;
+{ lib, pkgs, config, ... }:
+with lib;
+let cfg = config.gui.quiet-boot;
 in {
-  options.gui.quiet-boot = {
-    enable = mkEnableOption "quiet-boot enabled";
-  };
+  options.gui.quiet-boot = { enable = mkEnableOption "quiet-boot enabled"; };
 
   config = mkIf (cfg.enable) {
     console = {
@@ -17,9 +10,7 @@ in {
       earlySetup = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      plymouth
-    ];
+    environment.systemPackages = with pkgs; [ plymouth ];
 
     boot = {
       plymouth = {

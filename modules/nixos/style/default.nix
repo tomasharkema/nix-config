@@ -1,10 +1,4 @@
-{
-  lib,
-  pkgs,
-  inputs,
-  config,
-  ...
-}:
+{ lib, pkgs, inputs, config, ... }:
 with lib; {
   # stylix.nixosModules.stylix
   config = mkIf false {

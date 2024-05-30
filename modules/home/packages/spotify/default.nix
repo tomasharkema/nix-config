@@ -1,10 +1,4 @@
-{
-  config,
-  osConfig,
-  pkgs,
-  lib,
-  ...
-}: {
+{ config, osConfig, pkgs, lib, ... }: {
   config = {
     # config = lib.mkIf cfg.enable {
     #   environment.systemPackages = with pkgs; [
@@ -39,15 +33,16 @@
       #   ".config/spotify-tui/client.yml".source = osConfig.age.secrets.spotify-tui.path;
       # };
       activation = {
-        spotify-tui = ''
-          mkdir -p "$HOME/.config/spotify-tui" || true
-          ln -sfn "${osConfig.age.secrets.spotify-tui.path}" "$HOME/.config/spotify-tui/client.yml" || true
-        '';
+        # spotify-tui = ''
+        #   mkdir -p "$HOME/.config/spotify-tui" || true
+        #   ln -sfn "${osConfig.age.secrets.spotify-tui.path}" "$HOME/.config/spotify-tui/client.yml" || true
+        # '';
       };
-      packages = with pkgs; [
-        ncspot
-        spotify-tui
-      ];
+      packages = with pkgs;
+        [
+          ncspot
+          # spotify-tui
+        ];
     };
   };
 }

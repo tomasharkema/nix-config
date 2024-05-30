@@ -1,9 +1,6 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
-  config = {
+{ pkgs, lib, ... }:
+with lib; {
+  config = mkIf false {
     services.postfix = {
       enable = true;
 
@@ -30,10 +27,7 @@
         type = "unix";
         privileged = true;
         command = "pipe";
-        args = [
-          "user=tomas:tomas"
-          "argv=${sendtelegram-script}"
-        ];
+        args = [ "user=tomas:tomas" "argv=${sendtelegram-script}" ];
       };
     };
   };

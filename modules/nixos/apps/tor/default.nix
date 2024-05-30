@@ -1,16 +1,9 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
+{ pkgs, lib, config, ... }:
 with lib; {
   config = {
     environment.systemPackages = with pkgs;
-      [
-        tor
-      ]
-      ++ optional (pkgs.system == "x86_64-linux" && config.gui.enable) tor-browser-bundle-bin;
+      [ tor ] ++ optional (pkgs.system == "x86_64-linux" && config.gui.enable)
+      tor-browser-bundle-bin;
 
     services.tor = {
       enable = true;
@@ -29,15 +22,13 @@ with lib; {
         onionServices = {
           ssh = {
             version = 3;
-            map = [
-              {
-                port = 22222;
-                target = {
-                  addr = "127.0.0.1";
-                  port = 22;
-                };
-              }
-            ];
+            map = [{
+              port = 22222;
+              target = {
+                addr = "127.0.0.1";
+                port = 22;
+              };
+            }];
           };
         };
       };

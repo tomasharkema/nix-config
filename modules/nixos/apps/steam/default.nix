@@ -1,32 +1,25 @@
-{
-  lib,
-  pkgs,
-  config,
-  inputs,
-  ...
-}:
-with lib; let
-  cfg = config.apps.steam;
+{ lib, pkgs, config, inputs, ... }:
+with lib;
+let cfg = config.apps.steam;
 in {
-  disabledModules = [
-    "services/desktops/pipewire/pipewire.nix"
-    "services/desktops/pipewire/wireplumber.nix"
-  ];
+  # disabledModules = [
+  #   "services/desktops/pipewire/pipewire.nix"
+  #   "services/desktops/pipewire/wireplumber.nix"
+  # ];
 
-  imports = [
-    "${inputs.unstable}/nixos/modules/services/desktops/pipewire/pipewire.nix"
-    "${inputs.unstable}/nixos/modules/services/desktops/pipewire/wireplumber.nix"
-    #   "${inputs.unstable}/nixos/modules/security/pam.nix"
-    #   "${inputs.unstable}/nixos/modules/security/krb5"
-  ];
-  options.apps.steam = {
-    enable = mkEnableOption "steam";
-  };
+  # imports = [
+  #   "${inputs.unstable}/nixos/modules/services/desktops/pipewire/pipewire.nix"
+  #   "${inputs.unstable}/nixos/modules/services/desktops/pipewire/wireplumber.nix"
+  #   #   "${inputs.unstable}/nixos/modules/security/pam.nix"
+  #   #   "${inputs.unstable}/nixos/modules/security/krb5"
+  # ];
+
+  options.apps.steam = { enable = mkEnableOption "steam"; };
 
   config = mkIf cfg.enable {
-    system.nixos.tags = ["steam"];
-    boot.kernelModules = ["uinput"];
-    users.groups.input.members = ["tomas"];
+    system.nixos.tags = [ "steam" ];
+    boot.kernelModules = [ "uinput" ];
+    users.groups.input.members = [ "tomas" ];
 
     programs = {
       steam = {
@@ -44,10 +37,8 @@ in {
           #   ];
         };
 
-        remotePlay.openFirewall =
-          true;
-        dedicatedServer.openFirewall =
-          true;
+        remotePlay.openFirewall = true;
+        dedicatedServer.openFirewall = true;
         gamescopeSession.enable = true;
         platformOptimizations.enable = true;
       };
@@ -65,6 +56,8 @@ in {
       steamcmd
       steam-run
       adwsteamgtk
+      steam-tui
+
     ];
 
     # services.udev.extraRules = ''

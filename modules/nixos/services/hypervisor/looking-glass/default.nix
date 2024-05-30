@@ -1,15 +1,12 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
-with lib; let
-  settingsFormat = pkgs.formats.ini {};
+{ config, pkgs, lib, ... }:
+with lib;
+let
+  settingsFormat = pkgs.formats.ini { };
   cfg = config.programs.looking-glass;
 in {
   options.programs.looking-glass = {
-    enable = mkEnableOption "Module for installing and configuring <package>looking-glass-client</package>";
+    enable = mkEnableOption
+      "Module for installing and configuring <package>looking-glass-client</package>";
     package = mkOption {
       type = types.package;
       description = "The looking-glass-client package to install";
@@ -47,17 +44,19 @@ in {
         See <link xlink:href="https://looking-glass.io/docs/stable/install/#full-command-line-options">documentation</link> for list of supported options.
       '';
       type = settingsFormat.type;
-      default = {};
+      default = { };
     };
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [cfg.package];
+    environment.systemPackages = [ cfg.package ];
 
-    systemd.tmpfiles.rules = with cfg.shm; ["f /dev/shm/${name} ${permissions} ${user} ${group} -"];
+    systemd.tmpfiles.rules = with cfg.shm;
+      [ "f /dev/shm/${name} ${permissions} ${user} ${group} -" ];
 
-    environment.etc."looking-glass-client.ini".source = settingsFormat.generate "looking-glass-client.ini" cfg.settings;
+    environment.etc."looking-glass-client.ini".source =
+      settingsFormat.generate "looking-glass-client.ini" cfg.settings;
   };
 
-  meta.maintainers = with maintainers; [babbaj];
+  meta.maintainers = with maintainers; [ babbaj ];
 }

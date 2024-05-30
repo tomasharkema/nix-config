@@ -1,11 +1,6 @@
-{
-  lib,
-  pkgs,
-  inputs,
-  config,
-  ...
-}:
-with lib; let
+{ lib, pkgs, inputs, config, ... }:
+with lib;
+let
   boot-into-bios = pkgs.writeShellScriptBin "boot-into-bios" ''
     sudo ${pkgs.ipmitool}/bin/ipmitool chassis bootparam set bootflag force_bios
   '';
@@ -19,12 +14,11 @@ in {
   ];
 
   config = {
-    installed = true;
-
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K";
       media = "/dev/disk/by-id/ata-TOSHIBA_MK3263GSXN_5066P0YHT";
+      btrbk.enable = false;
     };
 
     traits = {
@@ -37,6 +31,11 @@ in {
         secure-boot.enable = true;
         remote-unlock.enable = true;
         nvidia.enable = true;
+
+        nfs = {
+          enable = true;
+          machines = { silver-star.enable = true; };
+        };
       };
     };
 
@@ -44,8 +43,8 @@ in {
 
     apps = {
       attic-server.enable = true;
-      ntopng.enable = true;
-      atophttpd.enable = true;
+      # ntopng.enable = true;
+      # atophttpd.enable = true;
     };
 
     gui = {
@@ -71,10 +70,7 @@ in {
       #   enableBot = true;
       # };
 
-      tailscale = {
-        useRoutingFeatures = lib.mkForce "both";
-      };
-      tcsd.enable = true;
+      # tcsd.enable = true;
 
       prometheus.exporters.ipmi.enable = true;
 
@@ -112,17 +108,17 @@ in {
     ];
 
     networking = {
-      hosts = {
-        "192.168.0.100" = ["nix-cache.harke.ma"];
-      };
+      hosts = { "192.168.0.100" = [ "nix-cache.harke.ma" ]; };
       hostName = "blue-fire";
       hostId = "529fd7aa";
 
       firewall = {
-        enable = mkForce false;
+        enable = false;
+        allowPing = true;
       };
 
-      useDHCP = false;
+      # useDHCP = false;
+      networkmanager.enable = false;
 
       interfaces = {
         "eno1" = {
@@ -144,10 +140,10 @@ in {
       };
     };
 
-    headless.hypervisor = {
-      enable = true;
-      bridgeInterfaces = ["eno1"];
-    };
+    # headless.hypervisor = {
+    #   enable = true;
+    #   bridgeInterfaces = [ "eno1" ];
+    # };
 
     environment.systemPackages = with pkgs; [
       # ipmicfg
@@ -164,11 +160,9 @@ in {
       # icingaweb2
     ];
 
-    networking.firewall.allowedTCPPorts = [2049];
+    networking.firewall.allowedTCPPorts = [ 2049 ];
 
-    services.kmscon = {
-      enable = mkForce false;
-    };
+    services.kmscon = { enable = mkForce false; };
 
     fileSystems = {
       # "/export/media" = {
@@ -239,7 +233,7 @@ in {
     # };
 
     boot = {
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      binfmt.emulatedSystems = [ "aarch64-linux" ];
 
       loader = {
         # systemd-boot.enable = true;
@@ -248,7 +242,8 @@ in {
       };
 
       initrd = {
-        availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
+        availableKernelModules =
+          [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
         kernelModules = [
           "kvm-intel"
           "uinput"
@@ -273,7 +268,7 @@ in {
         "ipmi_msghandler"
         "watchdog"
       ];
-      extraModulePackages = [];
+      extraModulePackages = [ ];
       # kernelParams = ["console=ttyS0,115200" "console=tty1"];
     };
 

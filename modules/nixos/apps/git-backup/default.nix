@@ -1,11 +1,7 @@
 # https://github.com/bocytko/git-backup
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-with pkgs.python3Packages; let
+{ pkgs, lib, config, ... }:
+with pkgs.python3Packages;
+let
   cfg = config.gui.gnome;
 
   # git-backup = pkgs.fetchFromGitHub {
@@ -31,7 +27,7 @@ with pkgs.python3Packages; let
 
   sync-script = pkgs.writeShellApplication {
     name = "sync-script";
-    runtimeInputs = with pkgs; [git hostname dconf mktemp openssh hostname];
+    runtimeInputs = with pkgs; [ git hostname dconf mktemp openssh hostname ];
     text = ''
       set -eux
 
@@ -114,7 +110,9 @@ in {
           HNAME="$(${lib.getExe pkgs.hostname})"
           SNAME="dconf-$HNAME"
 
-          ${lib.getExe pkgs.runitor} -slug "$SNAME" -every 1h -- ${lib.getExe sync-script}
+          ${lib.getExe pkgs.runitor} -slug "$SNAME" -every 1h -- ${
+            lib.getExe sync-script
+          }
         '';
         # after = ["healthcheck-key.path"];
         # wants = ["healthcheck-key.path"];
@@ -122,7 +120,7 @@ in {
 
       timers."dconf-sync" = {
         description = "dconf-sync";
-        wantedBy = ["timers.target"];
+        wantedBy = [ "timers.target" ];
         timerConfig = {
           OnUnitActiveSec = "5m";
           Unit = "dconf-sync.service";

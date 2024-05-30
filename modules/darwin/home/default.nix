@@ -1,22 +1,13 @@
-{
-  options,
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}:
+{ options, config, pkgs, lib, inputs, ... }:
 with lib;
 with lib.custom; {
   options.home = {
     homeFiles = mkOption {
       description = "Attribute set of files to link into the user home.";
-      default = {};
+      default = { };
       type = types.attrsOf (types.submodule {
         options = {
-          source = mkOption {
-            type = types.path;
-          };
+          source = mkOption { type = types.path; };
           # target = mkOption {
           #   type = types.str;
           # };
@@ -29,7 +20,8 @@ with lib.custom; {
       home.stateVersion = mkDefault "23.11";
       xdg.enable = true;
       home.sessionVariables = {
-        HYDRA_HOST = "http://blue-fire.ling-lizard.ts.net:3000/"; # "https://hydra.harkema.io";
+        HYDRA_HOST =
+          "http://blue-fire.ling-lizard.ts.net:3000/"; # "https://hydra.harkema.io";
       };
     };
 
@@ -42,7 +34,8 @@ with lib.custom; {
         home.stateVersion = mkDefault "23.11";
         xdg.enable = true;
         home.sessionVariables = {
-          HYDRA_HOST = "http://blue-fire.ling-lizard.ts.net:3000/"; # "https://hydra.harkema.io";
+          HYDRA_HOST =
+            "http://blue-fire.ling-lizard.ts.net:3000/"; # "https://hydra.harkema.io";
         };
       };
     };

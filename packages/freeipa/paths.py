@@ -9,5 +9,5 @@ class NixOSPathNamespace(FedoraPathNamespace):
     BIN_CURL = "@curl@/bin/curl"
     KINIT = "@kerberos@/bin/kinit"
     KDESTROY = "@kerberos@/bin/kdestroy"
-    PASSKEY_CHILD = "@sssd@/libexec/sssd/passkey_child"
+
 paths = NixOSPathNamespace()

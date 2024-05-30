@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  osConfig,
-  ...
-}: {
+{ pkgs, lib, osConfig, ... }: {
   config = {
     programs.firefox = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
       enable = true;

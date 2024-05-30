@@ -1,11 +1,6 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-with lib; let
-  cfg = config.traits.hardware.disable-sleep;
+{ pkgs, lib, config, ... }:
+with lib;
+let cfg = config.traits.hardware.disable-sleep;
 in {
   options.traits.hardware.disable-sleep = {
     enable = mkEnableOption "disable sleep";
