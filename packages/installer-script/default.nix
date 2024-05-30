@@ -113,6 +113,6 @@ in writeShellApplication {
       gum confirm "Format disk?" && "$DISKO_COMMAND"
     }
 
-    gum confirm "Ready to install?" && nixos-install --flake "github:tomasharkema/nix-config/gnome46#$HOSTNAME_INST" --verbose
+    gum confirm "Ready to install?" && nixos-install --flake "github:tomasharkema/nix-config#$HOSTNAME_INST" --verbose
   '';
 }
