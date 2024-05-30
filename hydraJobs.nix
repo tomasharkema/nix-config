@@ -1,7 +1,8 @@
-{inputs, ...}: let
+{ inputs, ... }:
+let
   lib = inputs.nixpkgs.lib;
-  packages =
-    lib.filterAttrs (system: v: (system == "x86_64-linux" || system == "aarch64-linux"))
+  packages = lib.filterAttrs
+    (system: v: (system == "x86_64-linux" || system == "aarch64-linux"))
     inputs.self.packages;
   # devShells =
   #   lib.filterAttrs (system: v: (system == "x86_64-linux" || system == "aarch64-linux"))
@@ -12,8 +13,7 @@
   # hosts =
   #   builtins.mapAttrs (n: v: v.config.system.build.installTest)
   #   inputs.self.nixosConfigurations;
-  hosts =
-    builtins.mapAttrs (n: v: v.config.system.path)
+  hosts = builtins.mapAttrs (n: v: v.config.system.path)
     inputs.self.nixosConfigurations;
 in {
   inherit packages;

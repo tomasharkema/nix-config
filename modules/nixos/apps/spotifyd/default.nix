@@ -1,15 +1,8 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
-with lib; let
-  cfg = config.apps.spotifyd;
+{ lib, pkgs, config, ... }:
+with lib;
+let cfg = config.apps.spotifyd;
 in {
-  options.apps.spotifyd = {
-    enable = mkEnableOption "spotifyd";
-  };
+  options.apps.spotifyd = { enable = mkEnableOption "spotifyd"; };
 
   config = mkIf cfg.enable {
     #   environment.systemPackages = with pkgs; [
@@ -17,27 +10,45 @@ in {
     #     spotifyd
     #   ];
     users.users = {
-      "tomas".extraGroups = ["audio"];
-      "root".extraGroups = ["audio"];
-      "spotifyd" = {
-        isSystemUser = true;
-        extraGroups = ["audio"];
-        group = "spotifyd";
-        uid = 1042;
-      };
+      "tomas".extraGroups = [ "audio" ];
+      "root".extraGroups = [ "audio" ];
     };
-    users.groups.spotifyd = {};
 
-    services.spotifyd = {
-      enable = true;
-      # use_mpris = false
-      config = ''
-        [global]
-        backend = "pulseaudio"
-        bitrate = 320
-      '';
-      #   username_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field username"
-      #   password_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field password"
+    services = {
+
+      dbus = {
+        enable = true;
+        packages = [ pkgs.shairport-sync pkgs.spotifyd pkgs.mpv ];
+      };
+
+      shairport-sync = {
+        enable = true;
+        openFirewall = true;
+
+        arguments = ''
+          -v -a "%H Shairport" --statistics -o pipe
+        '';
+
+        # user = "media";
+        # group = "media";
+      };
+
+      spotifyd = {
+        enable = true;
+        # use_mpris = false
+        settings = {
+          global = {
+            backend = "pulseaudio";
+            bitrate = 320;
+            mpris = false;
+            device_name = "${config.networking.hostName} SpotifyD";
+            # use_keyring = true;
+            dbus_type = "system";
+          };
+        };
+        #   username_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field username"
+        #   password_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field password"
+      };
     };
     #   # systemd.services.spotifyd = {
     #   # environment = {
@@ -46,9 +57,21 @@ in {
     #   # };
     #   # };
 
+    systemd.services = {
+      "nqptp" = {
+        description = "nqptp";
+        enable = true;
+        serviceConfig = {
+          ExecStart = "${pkgs.nqptp}/bin/nqptp";
+          #Restart = "always";
+        };
+        wantedBy = [ "default.target" ];
+      };
+    };
+
     networking.firewall = {
-      allowedUDPPorts = [33677];
-      allowedTCPPorts = [33677];
+      allowedUDPPorts = [ 33677 ];
+      allowedTCPPorts = [ 33677 ];
     };
     # };
   };

@@ -1,12 +1,10 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.11";
-
-    unstable.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-24.05";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "unstable";
+      url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     flake-compat = {
@@ -20,7 +18,8 @@
     };
 
     catppuccin = {
-      url = "github:tomasharkema/catppuccin-nix/6c3a26f0f5979b885d8c978cdb82ba9e71664d8f";
+      url = "github:catppuccin/nix";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # nixos-wsl = {
@@ -66,29 +65,33 @@
 
     vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
-      # inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-23.11";
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     agenix = {
       url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     agenix-shell = {
       url = "github:aciceri/agenix-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-hardware = {
       url = "github:nixos/nixos-hardware";
+
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # cachix-deploy-flake = {
@@ -101,19 +104,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-conf-editor = {
-      url = "github:snowfallorg/nixos-conf-editor";
-      inputs.nixpkgs.follows = "nixpkgs";
+    # nixos-conf-editor = {
+    #   url = "github:snowfallorg/nixos-conf-editor";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak";
+
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
-
     # impermanence.url = "github:nix-community/impermanence";
 
     attic = {
       url = "github:zhaofengli/attic";
       inputs = {
-        nixpkgs.follows = "unstable";
+        nixpkgs.follows = "nixpkgs";
         nixpkgs-stable.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
         flake-compat.follows = "flake-compat";
@@ -125,15 +131,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hydra-check = {
-      url = "github:nix-community/hydra-check";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hydra-check = {
+    #   url = "github:nix-community/hydra-check";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
-    flake-checker = {
-      url = "github:DeterminateSystems/flake-checker";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # flake-checker = {
+    #   url = "github:DeterminateSystems/flake-checker";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     snowfall-lib = {
       url = "github:snowfallorg/lib";
@@ -150,10 +156,10 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    peerix = {
-      url = "github:cid-chan/peerix";
-      inputs.nixpkgs.follows = "unstable";
-    };
+    # peerix = {
+    #   url = "github:cid-chan/peerix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # poetry2nix = {
     #   url = "github:nix-community/poetry2nix";
@@ -166,13 +172,13 @@
 
     nixos-search = {
       url = "github:NixOS/nixos-search";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    command-center = {
-      url = "github:tomasharkema/command-center";
-      inputs.nixpkgs.follows = "unstable";
-    };
+    # command-center = {
+    #   url = "github:tomasharkema/command-center";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # filestash-nix = {
     #   url = "github:matthewcroughan/filestash-nix";
@@ -185,26 +191,31 @@
 
     tree-sitter-nix = {
       url = "github:nix-community/tree-sitter-nix";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-checkmk = {
+      url = "github:tomasharkema/nixos-checkmk";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs: let
-    lib = inputs.snowfall-lib.mkLib {
-      inherit inputs;
-      src = ./.;
+  outputs = inputs:
+    let
+      lib = inputs.snowfall-lib.mkLib {
+        inherit inputs;
+        src = ./.;
 
-      snowfall = {
-        meta = {
-          name = "dotfiles";
-          title = "dotfiles";
+        snowfall = {
+          meta = {
+            name = "dotfiles";
+            title = "dotfiles";
+          };
+
+          namespace = "custom";
         };
-
-        namespace = "custom";
       };
-    };
-  in
-    lib.mkFlake {
+    in lib.mkFlake {
       inherit inputs;
 
       src = ./.;
@@ -212,21 +223,23 @@
       channels-config = {
         allowUnfreePredicate = _: true;
         allowUnfree = true;
-        nvidia.acceptLicense = true;
+
         firefox.enableGnomeExtensions = true;
         kodi.enableAdvancedLauncher = true;
         allowBroken = true;
+
         # allowAliases = false;
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
         # buildPlatform.system = "x86_64-linux";
-      };
-
-      alias = {
-        shells = {
-          default = "devshell";
+        # permittedInsecurePackages = [ "openssl-1.1.1w" ];
+        config = {
+          # For example, enable smartcard support in Firefox.
+          firefox.smartcardSupport = true;
         };
       };
+
+      alias = { shells = { default = "devshell"; }; };
 
       snowfall = {
         meta = {
@@ -240,20 +253,23 @@
       overlays = with inputs; [
         # peerix.overlay
         snowfall-flake.overlays."package/flake"
+        nixos-checkmk.overlays.default
       ];
 
-      system.modules.darwin = with inputs; [
-        {
-          system.nixos.tags = ["snowfall"];
-          system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
-        }
-      ];
+      system.modules.darwin = with inputs; [{
+        system.nixos.tags = [ "snowfall" ];
+        system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
+      }];
 
-      # homes.modules = with inputs; [
-      #   catppuccin.homeManagerModules.catppuccin
-      # ];
+      # homes.modules = with inputs;
+      #   [
+      #     catppuccin.homeManagerModules.catppuccin
+
+      #   ];
 
       systems.modules.nixos = with inputs; [
+        nixos-checkmk.nixosModules.check_mk_agent
+
         catppuccin.nixosModules.catppuccin
 
         nix-index-database.nixosModules.nix-index
@@ -275,14 +291,17 @@
         nix-gaming.nixosModules.platformOptimizations
 
         {
-          system.stateVersion = "23.11";
-          system.nixos.tags = ["snowfall" (self.shortRev or "dirty")];
-          system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
-          nix = {
-            registry.nixpkgs.flake = inputs.nixpkgs;
-            registry.home-manager.flake = inputs.home-manager;
-            registry.unstable.flake = inputs.unstable;
-            registry.darwin.flake = inputs.darwin;
+          config = {
+            system.stateVersion = "24.05";
+            system.nixos.tags = [ "snowfall" (self.shortRev or "dirty") ];
+            system.configurationRevision =
+              lib.mkForce (self.shortRev or "dirty");
+            nix = {
+              registry.nixpkgs.flake = inputs.nixpkgs;
+              registry.home-manager.flake = inputs.home-manager;
+              # registry.unstable.flake = inputs.unstable;
+              registry.darwin.flake = inputs.darwin;
+            };
           };
         }
       ];
@@ -317,20 +336,16 @@
       #     deploy-lib.deployChecks inputs.self.deploy)
       #   inputs.deploy-rs.lib;
 
-      hydraJobs = import ./hydraJobs.nix {inherit inputs;};
+      hydraJobs = import ./hydraJobs.nix { inherit inputs; };
 
       nixosConfigurations = {
         installer-x86 = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = {inherit inputs;};
+          specialArgs = { inherit inputs; };
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
             ./installer.nix
-            ({
-              lib,
-              pkgs,
-              ...
-            }: {
+            ({ lib, pkgs, ... }: {
               boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
             })
           ];
@@ -338,77 +353,89 @@
 
         installer-arm = inputs.nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = {inherit inputs;};
+          specialArgs = { inherit inputs; };
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
             ./installer.nix
-            ({
-              lib,
-              pkgs,
-              ...
-            }: {
+            ({ lib, pkgs, ... }: {
               boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
             })
           ];
         };
         installer-arm-img = inputs.nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = {inherit inputs;};
+          specialArgs = { inherit inputs; };
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
             ./installer.nix
-            ({
-              lib,
-              pkgs,
-              ...
-            }: {
+            ({ lib, pkgs, ... }: {
               boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
             })
           ];
         };
       };
 
-      images = with inputs; {
+      images = with inputs; rec {
         # baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
         # pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
-        installer-x86 = self.nixosConfigurations.installer-x86.config.system.build.isoImage;
-        installer-arm = self.nixosConfigurations.installer-arm.config.system.build.isoImage;
+        installer-x86 =
+          self.nixosConfigurations.installer-x86.config.system.build.isoImage;
+        installer-arm =
+          self.nixosConfigurations.installer-arm.config.system.build.isoImage;
 
-        installer-arm-img = self.nixosConfigurations.installer-arm-img.config.system.build.sdImage;
+        installer-arm-img =
+          self.nixosConfigurations.installer-arm-img.config.system.build.sdImage;
+
+        # services = let
+        #   config = "pegasus";
+        #   tryHasAttr = path: value: attr:
+        #     let v = builtins.tryEval (lib.attrsets.hasAttrByPath path attr);
+        #     in builtins.trace "${builtins.toJSON path} ${
+        #       builtins.toJSON (builtins.tryEval (builtins.toJSON attr))
+        #     } ${builtins.toJSON v}" (v.success && v.value == value);
+        #   serviceNames = builtins.attrNames
+        #     self.nixosConfigurations."${config}".config.services;
+        # in builtins.filter (n:
+        #   tryHasAttr [ n "enable" ] true
+        #   self.nixosConfigurations."${config}".config.services) serviceNames;
+
+        # servicesJson = builtins.toJSON services;
+
+        # lib.attrsets.filterAttrs (n: v: (builtins.hasAttr "enable" n) && n.enable) self.nixosConfigurations.pegasus.config.services;
       };
 
-      # formatter = inputs.nixpkgs.alejandra;
+      # formatter = inputs.nixpkgs.nixfmt;
       outputs-builder = channels:
-      # let
-      #   cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
-      # in
-      {
-        formatter = channels.nixpkgs.alejandra;
+        # let
+        #   cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
+        # in
+        {
+          formatter = channels.nixpkgs.nixfmt;
 
-        # checks = with inputs; {
-        # nixpkgs-lint =
-        # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
+          # checks = with inputs; {
+          # nixpkgs-lint =
+          # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
 
-        # lint = self.packages.${channels.nixpkgs.system}.run-checks;
-        # };
+          # lint = self.packages.${channels.nixpkgs.system}.run-checks;
+          # };
 
-        # packages = {
-        #   nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
-        #   nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
-        # };
-        # defaultPackage = cachix-deploy-lib.spec {
-        #   agents = {
-        #     blue-fire = inputs.self.nixosConfigurations.blue-fire.config.system.build.toplevel;
-        #     blue-fire-slim = inputs.self.nixosConfigurations.blue-fire-slim.config.system.build.toplevel;
-        #     enzian = inputs.self.nixosConfigurations.enzian.config.system.build.toplevel;
-        #     euro-mir-2 = inputs.self.nixosConfigurations.euro-mir-2.config.system.build.toplevel;
-        #     pegasus = inputs.self.nixosConfigurations.pegasus.config.system.build.toplevel;
-        #     baaa-express = inputs.self.nixosConfigurations.baaa-express.config.system.build.toplevel;
-        #     darwin-builder = inputs.self.nixosConfigurations.darwin-builder.config.system.build.toplevel;
-        #     euro-mir-vm = inputs.self.nixosConfigurations.euro-mir-vm.config.system.build.toplevel;
-        #   };
-        # };
-      };
+          # packages = {
+          #   nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
+          #   nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
+          # };
+          # defaultPackage = cachix-deploy-lib.spec {
+          #   agents = {
+          #     blue-fire = inputs.self.nixosConfigurations.blue-fire.config.system.build.toplevel;
+          #     blue-fire-slim = inputs.self.nixosConfigurations.blue-fire-slim.config.system.build.toplevel;
+          #     enzian = inputs.self.nixosConfigurations.enzian.config.system.build.toplevel;
+          #     euro-mir-2 = inputs.self.nixosConfigurations.euro-mir-2.config.system.build.toplevel;
+          #     pegasus = inputs.self.nixosConfigurations.pegasus.config.system.build.toplevel;
+          #     baaa-express = inputs.self.nixosConfigurations.baaa-express.config.system.build.toplevel;
+          #     darwin-builder = inputs.self.nixosConfigurations.darwin-builder.config.system.build.toplevel;
+          #     euro-mir-vm = inputs.self.nixosConfigurations.euro-mir-vm.config.system.build.toplevel;
+          #   };
+          # };
+        };
     };
 
   nixConfig = {
@@ -416,47 +443,27 @@
     extra-experimental-features = "nix-command flakes cgroups";
     distributedBuilds = true;
     builders-use-substitutes = true;
-    trusted-users = ["root" "tomas"];
+    trusted-users = [ "root" "tomas" ];
     # netrc-file = "/etc/nix/netrc";
 
-    trustedBinaryCaches = ["https://cache.nixos.org"];
-    binaryCaches = ["https://cache.nixos.org"];
+    # trustedBinaryCaches = ["https://cache.nixos.org"];
+    # binaryCaches = ["https://cache.nixos.org"];
 
     substituters = [
+      "https://cache.nixos.org/"
       "https://nix-gaming.cachix.org"
       "https://nix-community.cachix.org"
-      "https://cache.nixos.org/"
       "https://nix-cache.harke.ma/tomas/"
       "https://devenv.cachix.org"
-      "https://tomasharkema.cachix.org"
     ];
-
-    trusted-substituters = [
-      "https://nix-gaming.cachix.org"
-      "https://nix-community.cachix.org"
-      "https://cache.nixos.org/"
-      "https://nix-cache.harke.ma/tomas/"
-      "https://devenv.cachix.org"
-      "https://tomasharkema.cachix.org"
-    ];
-
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       "tomas:hER/5A08v05jH8GnQUZRrh33+HDNbeiJj8z/8JY6ZvI="
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-      "tomasharkema.cachix.org-1:BV3Sv3qGZ0bcybPFeigwKoxnpj/NBAFYHq9FMO1XgH4="
-    ];
-    public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA="
-      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-      "tomas:hER/5A08v05jH8GnQUZRrh33+HDNbeiJj8z/8JY6ZvI="
-      "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-      "tomasharkema.cachix.org-1:BV3Sv3qGZ0bcybPFeigwKoxnpj/NBAFYHq9FMO1XgH4="
     ];
 
     allowed-uris = [

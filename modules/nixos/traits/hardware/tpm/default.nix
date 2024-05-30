@@ -1,12 +1,7 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ lib, config, pkgs, ... }:
 with lib;
-with lib.custom; let
-  cfg = config.traits.hardware.tpm;
+with lib.custom;
+let cfg = config.traits.hardware.tpm;
 in {
   options.traits = {
     hardware.tpm = {
@@ -15,7 +10,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    system.nixos.tags = ["tpm"];
+    system.nixos.tags = [ "tpm" ];
 
     security.tpm2 = {
       enable = true;
@@ -26,8 +21,8 @@ in {
       # abrmd.enable = true;
     };
 
-    users.users."tomas".extraGroups = ["tss"];
-    users.users."root".extraGroups = ["tss"];
+    users.users."tomas".extraGroups = [ "tss" ];
+    users.users."root".extraGroups = [ "tss" ];
 
     boot.initrd.systemd.enableTpm2 = true;
 
