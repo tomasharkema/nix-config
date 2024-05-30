@@ -53,6 +53,7 @@ in {
     };
 
     services = {
+      # builder-service.enable=true;
       # icingaweb2 = {
       #   enable = true;
       #   virtualHost = "mon.blue-fire.harkema.intra";
@@ -71,6 +72,7 @@ in {
       # };
 
       # tcsd.enable = true;
+      kmscon.enable = mkForce false;
 
       prometheus.exporters.ipmi.enable = true;
 
@@ -161,12 +163,6 @@ in {
     ];
 
     networking.firewall.allowedTCPPorts = [ 2049 ];
-
-    services = {
-      kmscon.enable = mkForce false;
-
-      builder-service.enable = true;
-    };
 
     fileSystems = {
       # "/export/media" = {
