@@ -25,7 +25,7 @@ with lib; {
 
     disks.ext4 = {
       enable = true;
-      main = "/dev/vda";
+      main = "/dev/nvme0n1";
       encrypt = false;
     };
 
