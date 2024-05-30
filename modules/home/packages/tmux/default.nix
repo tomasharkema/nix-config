@@ -33,44 +33,49 @@ let
     };
   };
   monocle = pkgs.fetchurl {
-    url =
-      "https://github.com/imsnif/monocle/releases/latest/download/monocle.wasm";
+    url = "https://github.com/imsnif/monocle/releases/latest/download/monocle.wasm";
     sha256 = "194ylwz31q1nr8zyxp3yq9pjavmbgsxw1ppv8lpbfxhl24wbj51k";
   };
   multitask = pkgs.fetchurl {
-    url =
-      "https://github.com/imsnif/multitask/releases/download/0.38.2v2/multitask.wasm";
+    url = "https://github.com/imsnif/multitask/releases/download/0.38.2v2/multitask.wasm";
     sha256 = "1zms3mgfjdrq97rar5g7b73gfdc8xgx7jpafynqklaczj823sqxs";
   };
-in with lib; {
+in
+with lib;
+{
   config = mkIf true {
-    home.packages = with pkgs; [ lsof brotab tmux zellij ];
+    home.packages = with pkgs; [
+      lsof
+      brotab
+      tmux
+      zellij
+    ];
 
     programs.zellij = {
       enable = true;
       # enableZshIntegration = true;
       settings = {
         theme = "catppuccin-mocha";
-        keybinds = {
-          normal = {
-            "bind \"Alt m\"" = {
-              LaunchPlugin = {
-                _args = [ "file:${monocle}" ];
-                in_place = true;
-                kiosk = true;
-              };
-              SwitchToMode = "Normal";
-            };
+        # keybinds = {
+        #   normal = {
+        #     "bind \"Alt m\"" = {
+        #       LaunchPlugin = {
+        #         _args = [ "file:${monocle}" ];
+        #         in_place = true;
+        #         kiosk = true;
+        #       };
+        #       SwitchToMode = "Normal";
+        #     };
 
-            "bind \"Alt x\"" = {
-              LaunchPlugin = {
-                _args = [ "file:${multitask}" ];
-                configuration = "shell=$SHELL,cwd=`pwd`";
-              };
-              SwitchToMode = "Normal";
-            };
-          };
-        };
+        #     "bind \"Alt x\"" = {
+        #       LaunchPlugin = {
+        #         _args = [ "file:${multitask}" ];
+        #         configuration = "shell=$SHELL,cwd=`pwd`";
+        #       };
+        #       SwitchToMode = "Normal";
+        #     };
+        #   };
+        # };
       };
     };
 

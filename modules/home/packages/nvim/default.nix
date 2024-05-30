@@ -54,7 +54,7 @@ in {
         nvim-colorizer = { enable = true; };
         nix-develop.enable = true;
         notify.enable = true;
-        # zellij.enable = true;
+        zellij.enable = true;
         nix = { enable = true; };
         #fzf-lua = {enable = true;};
         auto-save = {
