@@ -1,5 +1,11 @@
-{ pkgs, inputs, lib, ... }:
-with lib; {
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
+with lib;
+{
   imports = with inputs; [
     "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
     ./hardware-configuration.nix
@@ -23,11 +29,11 @@ with lib; {
     #   newSubvolumes = true;
     # };
 
-    disks.ext4 = {
-      enable = true;
-      main = "/dev/nvme0n1";
-      encrypt = false;
-    };
+    # disks.ext4 = {
+    #   enable = true;
+    #   main = "/dev/nvme0n1";
+    #   encrypt = false;
+    # };
 
     boot = {
       loader = {
@@ -39,20 +45,25 @@ with lib; {
 
     virtualisation.rosetta.enable = true;
 
-    # fileSystems."/" = {
-    #   device = "/dev/disk/by-uuid/fd0e4d0a-b101-4c92-9dee-c9b4ee171836";
-    #   fsType = "ext4";
-    # };
+    fileSystems."/" = {
+      device = "/dev/nvme0n1";
+      fsType = "ext4";
+    };
 
     fileSystems."/boot" = {
-      #   device = "/dev/disk/by-uuid/A6D4-8A1F";
-      #   fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
+      device = "/dev/vda";
+      fsType = "vfat";
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
     };
 
     gui = {
       enable = true;
-      desktop = { enable = true; };
+      desktop = {
+        enable = true;
+      };
       quiet-boot.enable = true;
       gnome.enable = true;
     };
