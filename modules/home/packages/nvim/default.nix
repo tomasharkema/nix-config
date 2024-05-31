@@ -1,10 +1,25 @@
-{ inputs, config, pkgs, system, lib, osConfig, ... }:
-let coc = import ./coc.nix;
-in {
-  imports = [ inputs.nixvim.homeManagerModules.nixvim ];
+{
+  inputs,
+  config,
+  pkgs,
+  system,
+  lib,
+  osConfig,
+  ...
+}:
+with lib;
+let
+  coc = import ./coc.nix;
+in
+{
+  # imports = [ inputs.nixvim.homeManagerModules.nixvim ];
 
-  config = {
-    home.packages = with pkgs; [ figlet nodejs ripgrep ];
+  config = mkIf false {
+    home.packages = with pkgs; [
+      figlet
+      nodejs
+      ripgrep
+    ];
 
     programs.neovim = {
       viAlias = true;
@@ -14,8 +29,11 @@ in {
 
     xdg.configFile = {
       "nvim/coc-settings.json" = {
-        source = builtins.toFile "coc-settings.json"
-          (builtins.toJSON (coc { homeDir = config.xdg.configHome; }));
+        source = builtins.toFile "coc-settings.json" (
+          builtins.toJSON (coc {
+            homeDir = config.xdg.configHome;
+          })
+        );
       };
     };
 
@@ -29,14 +47,30 @@ in {
           enable = true;
           # package = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
         };
-        dashboard = { enable = true; };
-        neo-tree = { enable = true; };
-        project-nvim = { enable = true; };
-        telescope = { enable = true; };
-        fugitive = { enable = true; };
+        dashboard = {
+          enable = true;
+        };
+        neo-tree = {
+          enable = true;
+        };
+        project-nvim = {
+          enable = true;
+        };
+        telescope = {
+          enable = true;
+        };
+        fugitive = {
+          enable = true;
+        };
         lualine = {
           enable = true;
-          sections = { lualine_x = [ "diagnostics" "encoding" "filetype" ]; };
+          sections = {
+            lualine_x = [
+              "diagnostics"
+              "encoding"
+              "filetype"
+            ];
+          };
         };
         # startify = {
         #   enable = true;
@@ -48,25 +82,43 @@ in {
         #   enable = true;
         #   filetypeExclude = ["startify"];
         # };
-        barbar = { enable = true; };
-        gitgutter = { enable = true; };
-        surround = { enable = true; };
-        nvim-colorizer = { enable = true; };
+        barbar = {
+          enable = true;
+        };
+        gitgutter = {
+          enable = true;
+        };
+        surround = {
+          enable = true;
+        };
+        nvim-colorizer = {
+          enable = true;
+        };
         nix-develop.enable = true;
         notify.enable = true;
         zellij.enable = true;
-        nix = { enable = true; };
+        nix = {
+          enable = true;
+        };
         #fzf-lua = {enable = true;};
         auto-save = {
           enable = true;
           enableAutoSave = true;
         };
-        git-worktree = { enable = true; };
+        git-worktree = {
+          enable = true;
+        };
         #direnv = {enable=true;};
         multicursors.enable = true;
-        toggleterm = { enable = true; };
-        floaterm = { enable = true; };
-        zig = { enable = true; };
+        toggleterm = {
+          enable = true;
+        };
+        floaterm = {
+          enable = true;
+        };
+        zig = {
+          enable = true;
+        };
         cmp-zsh.enable = true;
         conform-nvim = {
           enable = true;
@@ -120,8 +172,7 @@ in {
         cursorline = true;
         exrc = true;
         mouse = "a";
-        suffixesadd =
-          ".js,.es,.jsx,.json,.css,.less,.sass,.styl,.php,.py,.md,.nix";
+        suffixesadd = ".js,.es,.jsx,.json,.css,.less,.sass,.styl,.php,.py,.md,.nix";
       };
 
       autoCmd = [
@@ -156,7 +207,9 @@ in {
           fg = "#4c566a";
           bg = "#4c566a";
         };
-        BufferCurrentTarget = { bg = "#434c5e"; };
+        BufferCurrentTarget = {
+          bg = "#434c5e";
+        };
         BufferInactive = {
           fg = "#4c566a";
           bg = "none";
@@ -196,10 +249,12 @@ in {
             endfunction
       '';
 
-      keymaps = [{
-        key = ";";
-        action = ":";
-      }];
+      keymaps = [
+        {
+          key = ";";
+          action = ":";
+        }
+      ];
 
       # maps = {
       #   normal."sf" = {
