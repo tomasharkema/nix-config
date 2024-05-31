@@ -52,8 +52,11 @@ in
 
     apps = {
       attic-server.enable = true;
-      # ntopng.enable = true;
-      # atophttpd.enable = true;
+      ntopng.enable = true;
+      atop = {
+        enable = true;
+        httpd = true;
+      };
     };
 
     gui = {

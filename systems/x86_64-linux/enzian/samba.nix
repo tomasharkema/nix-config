@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   config = {
     services.samba = {
       enable = true;
@@ -51,7 +52,7 @@
       openFirewall = true;
     };
 
-    networking.firewall.enable = true;
+    # networking.firewall.enable = true;
     networking.firewall.allowPing = true;
   };
 }
