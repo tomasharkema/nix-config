@@ -1,5 +1,12 @@
-{ pkgs, inputs, config, lib, ... }:
-with lib; {
+{
+  pkgs,
+  inputs,
+  config,
+  lib,
+  ...
+}:
+with lib;
+{
   imports = with inputs; [
     ./hardware-configuration.nix
 
@@ -74,18 +81,26 @@ with lib; {
       };
     };
 
-    zramSwap = { enable = true; };
-    swapDevices = [{
-      device = "/swapfile";
-      size = 16 * 1024;
-    }];
+    zramSwap = {
+      enable = true;
+    };
+    swapDevices = [
+      {
+        device = "/swapfile";
+        size = 16 * 1024;
+      }
+    ];
 
     hardware = {
       opengl = {
         enable = true;
         driSupport = true;
         driSupport32Bit = true;
-        extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
+        extraPackages = with pkgs; [
+          vaapiIntel
+          libvdpau-va-gl
+          vaapiVdpau
+        ];
       };
     };
   };

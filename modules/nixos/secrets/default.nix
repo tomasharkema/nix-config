@@ -1,4 +1,5 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+{
   config = {
     age = {
       identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
@@ -28,10 +29,6 @@
           file = ./attic-key.age;
           mode = "644";
         };
-        ght = {
-          file = ./ght.age;
-          mode = "0664";
-        };
         tailscale = {
           file = ./tailscale.age;
           mode = "644";
@@ -43,12 +40,6 @@
         "resilio-p" = {
           file = ./resilio-p.age;
           mode = "644";
-        };
-        "ldap" = {
-          file = ./ldap.age;
-          mode = "644";
-          # owner = "tomas";
-          # group = "tomas";
         };
 
         "resilio-docs" = {
@@ -125,7 +116,9 @@
           mode = "644";
         };
 
-        "domainjoin" = { file = ./domainjoin.age; };
+        "domainjoin" = {
+          file = ./domainjoin.age;
+        };
         "peerix-private" = {
           file = ./peerix.private.age;
           mode = "644";

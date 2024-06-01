@@ -54,7 +54,6 @@ with lib;
     services = {
       avahi = {
         enable = true;
-        allowInterfaces = mkForce null;
       };
       mopidy = {
         enable = true;
@@ -141,8 +140,8 @@ with lib;
       #   "hid_corsair"
       # ];
 
-      kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
-      # kernelPackages = pkgs.linuxPackages_latest;
+      # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
+      kernelPackages = pkgs.linuxPackages_latest;
 
       kernelParams = mkForce [
         # "console=ttyS0,115200n8"
