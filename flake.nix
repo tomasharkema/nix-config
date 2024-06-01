@@ -162,10 +162,10 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    peerix = {
-      url = "github:cid-chan/peerix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # peerix = {
+    #   url = "github:cid-chan/peerix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # poetry2nix = {
     #   url = "github:nix-community/poetry2nix";
@@ -263,7 +263,7 @@
       };
 
       overlays = with inputs; [
-        peerix.overlay
+        # peerix.overlay
         snowfall-flake.overlays."package/flake"
         nixos-checkmk.overlays.default
       ];
@@ -288,7 +288,7 @@
         nix-index-database.nixosModules.nix-index
 
         attic.nixosModules.atticd
-        peerix.nixosModules.peerix
+        # peerix.nixosModules.peerix
 
         # impermanence.nixosModule
         disko.nixosModules.default
