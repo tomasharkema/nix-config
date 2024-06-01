@@ -1,14 +1,57 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 with lib;
-let cfg = config.gui."media-center";
-in {
-  options.gui."media-center" = { enable = mkEnableOption "gui.media-center"; };
+let
+  cfg = config.gui."media-center";
+
+  kodi = pkgs.kodi-wayland.withPackages (
+    pkgs: with pkgs; [
+      kodi
+      inputstreamhelper
+      inputstream-adaptive
+      inputstream-ffmpegdirect
+      inputstream-rtmp
+      inputstreamhelper
+      inputstream-adaptive
+      inputstream-ffmpegdirect
+      inputstream-rtmp
+      # vfs-libarchive
+      # vfs-rar
+      youtube
+      netflix
+      sendtokodi
+      websocket
+      # urllib3
+      certifi
+      keymap
+      trakt
+      future
+      urllib3
+      # pvr-hts
+      signals
+      iagl
+    ]
+  );
+in
+{
+  options.gui."media-center" = {
+    enable = mkEnableOption "gui.media-center";
+  };
 
   config = mkIf cfg.enable {
     system.nixos.tags = [ "media-center" ];
     #    xdg.portal.enable = mkForce false;
 
     programs.dconf.enable = true;
+
+    services.cockpit = {
+      enable = true;
+      port = 9091;
+    };
 
     sound = {
       enable = false;
@@ -63,7 +106,11 @@ in {
     hardware = {
       opengl = {
         enable = true;
-        extraPackages = with pkgs; [ libva vaapiVdpau libvdpau-va-gl ];
+        extraPackages = with pkgs; [
+          libva
+          vaapiVdpau
+          libvdpau-va-gl
+        ];
         driSupport = true;
       };
     };
@@ -77,46 +124,79 @@ in {
       open-in-mpv
       celluloid
       pwvucontrol
+      kodi-cli
+      libcec_platform
+      libcec
     ];
-
-    # services.xserver.desktopManager.kodi.package = pkgs.kodi.withPackages (pkgs:
-    #   with pkgs; [
-    #     inputstreamhelper
-    #     inputstream-adaptive
-    #     inputstream-ffmpegdirect
-    #     inputstream-rtmp
-    #     vfs-libarchive
-    #     vfs-rar
-    #     inputstreamhelper
-    #     inputstream-adaptive
-    #     inputstream-ffmpegdirect
-    #     inputstream-rtmp
-    #     vfs-libarchive
-    #     vfs-rar
-    #     youtube
-    #     netflix
-    #     sendtokodi
-    #   ]);
-
-    services.kmscon = { enable = mkForce false; };
 
     services.cage = {
       user = "media";
-      program = "${lib.getExe pkgs.plex-media-player} --fullscreen --tv";
-
-      enable = mkDefault true;
-      extraArguments = [ "-d" "-m" "last" ];
+      program = "${kodi}/bin/kodi-standalone";
+      enable = true;
     };
+
+    # services.xserver = {
+    #   enable = true;
+    #   displayManager.autoLogin = {
+    #     enable = true;
+    #     user = "media";
+    #   };
+    #   desktopManager.kodi = {
+    #     enable = true;
+    #     package = pkgs.kodi.withPackages (
+    #       pkgs: with pkgs; [
+    #         inputstreamhelper
+    #         inputstream-adaptive
+    #         inputstream-ffmpegdirect
+    #         inputstream-rtmp
+    #         vfs-libarchive
+    #         vfs-rar
+    #         inputstreamhelper
+    #         inputstream-adaptive
+    #         inputstream-ffmpegdirect
+    #         inputstream-rtmp
+    #         vfs-libarchive
+    #         vfs-rar
+    #         youtube
+    #         netflix
+    #         sendtokodi
+    #       ]
+    #     );
+    #   };
+    # };
+
+    services.kmscon = {
+      enable = mkForce false;
+    };
+
+    # services.cage = {
+    #   user = "media";
+    #   program = "${lib.getExe pkgs.plex-media-player} --fullscreen --tv";
+
+    #   enable = mkDefault true;
+    #   extraArguments = [
+    #     "-d"
+    #     "-m"
+    #     "last"
+    #   ];
+    # };
 
     boot = {
       kernelParams = [ "quiet" ];
-      plymouth = { enable = true; };
+      plymouth = {
+        enable = true;
+      };
     };
 
     users.users.media = {
       isNormalUser = true;
       uid = 1100;
-      extraGroups = [ "data" "video" "audio" "input" ];
+      extraGroups = [
+        "data"
+        "video"
+        "audio"
+        "input"
+      ];
     };
 
     # home-manager = {
