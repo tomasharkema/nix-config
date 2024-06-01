@@ -65,7 +65,7 @@ with lib;
       desktop = {
         enable = true;
       };
-      quiet-boot.enable = true;
+      quiet-boot.enable = false;
       gnome.enable = true;
     };
 
