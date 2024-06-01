@@ -1,5 +1,12 @@
-{ pkgs, inputs, config, lib, ... }:
-with lib; {
+{
+  pkgs,
+  inputs,
+  config,
+  lib,
+  ...
+}:
+with lib;
+{
   imports = with inputs; [
     nixos-hardware.nixosModules.dell-xps-15-9570-nvidia
     ./hardware-configuration.nix
@@ -31,12 +38,15 @@ with lib; {
       pwvucontrol
     ];
 
-    home-manager.users.tomas.dconf.settings."org/gnome/shell".enabled-extensions =
-      [ "Battery-Health-Charging@maniacx.github.com" ];
+    home-manager.users.tomas.dconf.settings."org/gnome/shell".enabled-extensions = [
+      "Battery-Health-Charging@maniacx.github.com"
+    ];
 
     gui = {
       enable = true;
-      desktop = { enable = true; };
+      desktop = {
+        enable = true;
+      };
       gnome.enable = true;
       gamemode.enable = true;
       quiet-boot.enable = true;
@@ -114,7 +124,10 @@ with lib; {
           spec = "UUID=3e30181c-9df4-4412-a1ee-cb97819f218c";
           hashTableSizeMB = 4096;
           verbosity = "crit";
-          extraOptions = [ "--loadavg-target" "2.0" ];
+          extraOptions = [
+            "--loadavg-target"
+            "2.0"
+          ];
         };
       };
       # synergy.server = {
@@ -146,6 +159,7 @@ with lib; {
       #   options nvidia NVreg_PreserveVideoMemoryAllocations=1
       # '';
       supportedFilesystems = [ "ntfs" ];
+      kernelModules = [ "kvm-intel" ];
     };
   };
 }

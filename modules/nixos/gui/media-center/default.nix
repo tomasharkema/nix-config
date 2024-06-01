@@ -50,7 +50,7 @@ in
 
     services.cockpit = {
       enable = true;
-      port = 9091;
+      port = mkForce 9091;
     };
 
     sound = {

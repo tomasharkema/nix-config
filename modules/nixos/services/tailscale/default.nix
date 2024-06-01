@@ -33,6 +33,7 @@ in
           "tailscale0"
           "zthnhagpcb"
         ];
+        allowedTCPPorts = [ config.services.tailscale.port ];
         allowedUDPPorts = [ config.services.tailscale.port ];
       };
     };
