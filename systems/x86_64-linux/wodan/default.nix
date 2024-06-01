@@ -12,6 +12,7 @@ with lib;
     inputs.nixos-hardware.nixosModules.common-gpu-intel
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
     inputs.nixos-hardware.nixosModules.common-hidpi
+    inputs.nixos-nvidia-vgpu.nixosModules.nvidia-vgpu
   ];
 
   config = {
@@ -110,6 +111,9 @@ with lib;
         # modesetting.enable = false;
         # package = config.boot.kernelPackages.nvidiaPackages.stable;
         nvidiaPersistenced = true;
+
+        vgpu.enable = true; # Enable NVIDIA KVM vGPU + GRID driver
+        vgpu.unlock.enable = true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
       };
       cpu.intel.updateMicrocode = true;
       i2c.enable = true;

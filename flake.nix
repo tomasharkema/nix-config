@@ -204,6 +204,9 @@
       url = "github:tomasharkema/nixos-checkmk";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-nvidia-vgpu = {
+      url = "github:tomasharkema/nixos-nvidia-vgpu";
+    };
   };
 
   outputs =

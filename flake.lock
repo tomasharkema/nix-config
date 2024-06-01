@@ -1080,6 +1080,21 @@
         "type": "github"
       }
     },
+    "nixos-nvidia-vgpu": {
+      "locked": {
+        "lastModified": 1717258038,
+        "narHash": "sha256-4reMB2t5w59UxrG6w17KoolAGnZCZe/XM+Q1GbH1flg=",
+        "owner": "tomasharkema",
+        "repo": "nixos-nvidia-vgpu",
+        "rev": "c0044955b1f380ab5f492a9922dfb56eca836bcb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tomasharkema",
+        "repo": "nixos-nvidia-vgpu",
+        "type": "github"
+      }
+    },
     "nixos-search": {
       "inputs": {
         "flake-utils": "flake-utils_3",
@@ -1215,11 +1230,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1717250894,
-        "narHash": "sha256-WGj8Ssc+ghRVw7AmpXGxCTRW9w9TU/SxZWTt1cWnynE=",
+        "lastModified": 1717255175,
+        "narHash": "sha256-MtsnAwzY2cmufUoFQvI/1mTzd3FKbZLCb8zF4jXkZLY=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "87d6654a9f5b636dbd1876018075166478d85f10",
+        "rev": "df3aa867137227bda9e44beab82a63443d700f18",
         "type": "github"
       },
       "original": {
@@ -1312,6 +1327,7 @@
         "nixos-checkmk": "nixos-checkmk",
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
+        "nixos-nvidia-vgpu": "nixos-nvidia-vgpu",
         "nixos-search": "nixos-search",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
