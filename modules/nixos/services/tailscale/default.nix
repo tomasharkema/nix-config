@@ -1,8 +1,16 @@
-{ config, pkgs, modulesPath, lib, ... }:
+{
+  config,
+  pkgs,
+  modulesPath,
+  lib,
+  ...
+}:
 with lib;
 with lib.custom;
-let cfg = config.tailscale;
-in {
+let
+  cfg = config.tailscale;
+in
+{
   options.tailscale = {
     enable = mkBoolOpt true "SnowflakeOS GNOME configuration";
   };
@@ -21,7 +29,10 @@ in {
       # iptables.enable = true;
 
       firewall = {
-        trustedInterfaces = [ "tailscale0" "zthnhagpcb" ];
+        trustedInterfaces = [
+          "tailscale0"
+          "zthnhagpcb"
+        ];
         allowedUDPPorts = [ config.services.tailscale.port ];
       };
     };
@@ -44,7 +55,7 @@ in {
 
       avahi = {
         enable = true;
-        allowInterfaces = [ "zthnhagpcb" "tailscale0" ];
+        # allowInterfaces = [ "zthnhagpcb" "tailscale0" ];
         ipv6 = true;
         publish.enable = true;
         publish.userServices = true;

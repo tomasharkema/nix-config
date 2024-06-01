@@ -1,11 +1,16 @@
-{ pkgs, inputs, lib, ... }:
-with lib; {
-  imports = with inputs;
-    [
-      nixos-hardware.nixosModules.raspberry-pi-4
-      # "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
-      # "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-    ];
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
+with lib;
+{
+  imports = with inputs; [
+    nixos-hardware.nixosModules.raspberry-pi-4
+    # "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
+    # "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+  ];
 
   config = {
     networking = {
@@ -22,23 +27,27 @@ with lib; {
       };
     };
 
-    zramSwap = { enable = false; };
-    swapDevices = [{
-      device = "/swapfile";
-      size = 16 * 1024;
-    }];
+    zramSwap = {
+      enable = false;
+    };
+    swapDevices = [
+      {
+        device = "/swapfile";
+        size = 16 * 1024;
+      }
+    ];
 
     traits = {
       raspberry.enable = true;
       low-power.enable = true;
-      hardware.bluetooth.enable = true;
+      # hardware.bluetooth.enable = true;
     };
 
     gui."media-center".enable = true;
 
     apps = {
-      spotifyd.enable = true;
-      cec.enable = true;
+      # spotifyd.enable = true;
+      # cec.enable = true;
       unified-remote.enable = true;
       remote-builders.enable = true;
     };
@@ -77,7 +86,9 @@ with lib; {
       #];
     };
 
-    proxy-services = { enable = true; };
+    proxy-services = {
+      enable = true;
+    };
 
     hardware.enableRedistributableFirmware = true;
     # hardware.deviceTree.filter = mkForce "bcm2711-rpi-4-b.dtb";
@@ -90,7 +101,10 @@ with lib; {
 
       opengl = {
         enable = true;
-        extraPackages = with pkgs; [ vaapiVdpau libvdpau-va-gl ];
+        extraPackages = with pkgs; [
+          vaapiVdpau
+          libvdpau-va-gl
+        ];
         driSupport = true;
       };
 
