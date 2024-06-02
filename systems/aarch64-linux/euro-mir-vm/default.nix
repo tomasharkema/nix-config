@@ -30,7 +30,7 @@ with lib; {
       kernelModules = [ "virtio_gpu" ];
     };
 
-    virtualisation.rosetta.enable = true;
+    # virtualisation.rosetta.enable = true;
 
     # fileSystems = {
     #   "/" = {
