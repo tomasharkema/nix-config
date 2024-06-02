@@ -12,8 +12,8 @@ final: prev: rec {
   # OVMF = channels.unstable.OVMF;
 
   # netdata = channels.unstable.netdata;
-  # nh = channels.unstable.nh;
-
+  # nh = ch libcec = super.libcec.override { withLibraspberrypi = true; }; annels.unstable.nh;
+ libcec = prev.libcec.override { withLibraspberrypi = true; }; 
   nixos-generate = nixos-generators.packages."${prev.system}".nixos-generate;
 
   _389-ds-base = self.packages."${prev.system}"._389-ds-base;
