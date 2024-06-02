@@ -1,11 +1,5 @@
-{
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
-with lib;
-{
+{ pkgs, inputs, lib, ... }:
+with lib; {
   imports = with inputs; [
     "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
     ./hardware-configuration.nix
@@ -22,18 +16,11 @@ with lib;
 
     time.timeZone = "Europe/Amsterdam";
 
-    disks.btrfs = {
+    disks.ext4 = {
       enable = true;
       main = "/dev/vda";
       encrypt = false;
-      newSubvolumes = true;
     };
-
-    # disks.ext4 = {
-    #   enable = true;
-    #   main = "/dev/nvme0n1";
-    #   encrypt = false;
-    # };
 
     boot = {
       loader = {
@@ -62,9 +49,7 @@ with lib;
 
     gui = {
       enable = true;
-      desktop = {
-        enable = true;
-      };
+      desktop = { enable = true; };
       quiet-boot.enable = false;
       gnome.enable = true;
     };
