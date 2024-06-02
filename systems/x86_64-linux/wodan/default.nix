@@ -109,7 +109,7 @@ with lib;
       nvidia = {
         # modesetting.enable = false;
         # package = config.boot.kernelPackages.nvidiaPackages.stable;
-        nvidiaPersistenced = true;
+        # nvidiaPersistenced = true;
       };
       cpu.intel.updateMicrocode = true;
       i2c.enable = true;
@@ -183,10 +183,10 @@ with lib;
       kernelModules = [ "i2c-dev" ];
       # blacklistedKernelModules = lib.mkDefault [ "i915" "nouveau" ];
       # KMS will load the module, regardless of blacklisting
-      kernelParams = [
-        "intel_iommu=on"
-        "iommu=pt"
-      ];
+      # kernelParams = [
+      #   "intel_iommu=on"
+      #   "iommu=pt"
+      # ];
 
       #extraModprobeConfig = ''
       #  options nvidia-drm modeset=1";
