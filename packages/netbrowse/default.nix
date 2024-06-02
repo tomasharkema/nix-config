@@ -7,7 +7,7 @@ let
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Gnome-preferences-system-network.svg/1920px-Gnome-preferences-system-network.svg.png";
     hash = "sha256-Uvkq78H8k5p0E8dU37SknXzd4xb1nELNWMPUH90iLgM=";
   };
-  desktopItem = makeDesktopItem {
+  desktopItemm = makeDesktopItem {
     desktopName = "Netbrowse";
     name = "Netbrowse";
     exec = "netbrowse";
@@ -25,7 +25,7 @@ in rustPlatform.buildRustPackage rec {
 
   cargoSha256 = "sha256-M7IK9++EY87cv8poa2qFc5iAvMYd2NmPrR8SfH+nqNk=";
 
-  nativeBuildInput = [ copyDesktopItems ];
+  nativeBuildInput = [ copyDesktopItems makeWrapper ];
 
   buildInputs = [
     xorg.libxcb
@@ -36,7 +36,9 @@ in rustPlatform.buildRustPackage rec {
     libGL
     makeWrapper
   ];
-  desktopItems = [ desktopItem ];
+
+  # desktopItems = [ desktopItem ]; 
+  desktopItem = desktopItemm;
 
   postInstall = ''
     wrapProgram $out/bin/netbrowse --prefix LD_LIBRARY_PATH : "${xorg.libX11.out}/lib:${xorg.libXcursor.out}/lib:${xorg.libXrandr.out}/lib:${xorg.libXi.out}/lib:${libGL}/lib"

@@ -77,11 +77,15 @@ in {
       extraPackages = [ pkgs.mesa.drivers ];
     };
 
-    programs.evolution.enable = true;
-    programs.geary.enable = false;
+    programs = {
+      evolution.enable = true;
+      geary.enable = false;
+    };
 
     environment.systemPackages = with pkgs;
       [
+        vsce
+        vte-gtk4
         qdirstat
         xdiskusage
         # davinci-resolve

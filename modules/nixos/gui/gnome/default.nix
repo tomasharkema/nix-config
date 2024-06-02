@@ -71,11 +71,18 @@ in {
         gnome-keyring.enable = true;
         games.enable = true;
         evolution-data-server.enable = true;
+        rygel.enable = true;
+        tracker.enable = true;
+
+        tracker-miners.enable = true;
+
+        sushi.enable = true;
       };
 
       udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
       xserver.libinput.enable = true;
     };
+
     xdg.autostart = { enable = true; };
     services.pipewire.extraConfig.pipewire-pulse."92-tcp" = {
       context.modules = [
@@ -94,8 +101,10 @@ in {
       };
     };
     environment.systemPackages = (with pkgs; [
+      #compiz
       gtop
       libgtop
+      gnome-extension-manager
       gnomeExtensions.dash-to-panel
       gnomeExtensions.executor
       gnomeExtensions.battery-health-charging
@@ -171,6 +180,21 @@ in {
         # gnome-photos
         gnome-tour
       ]) ++ (with pkgs.gnome; [
+        aisleriot
+        four-in-a-row
+        five-or-more
+        swell-foop
+        lightsoff
+        quadrapassel
+
+        gnome-chess
+        gnome-klotski
+        gnome-mahjongg
+        gnome-nibbles
+        gnome-tetravex
+        gnome-robots
+        gnome-taquin
+
         cheese # webcam tool
         tali # poker game
         iagno # go game

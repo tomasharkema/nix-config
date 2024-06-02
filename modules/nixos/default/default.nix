@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}:
+{ config, pkgs, lib, inputs, ... }:
 with lib;
 # let
 #   theme = inputs.themes.custom (inputs.themes.catppuccin-mocha
@@ -22,8 +16,7 @@ let
     echo "Uploading paths" $OUT_PATHS
     # exec nix copy --to "s3://example-nix-cache" $OUT_PATHS
   '';
-in
-{
+in {
 
   config = with lib; {
     # Set your time zone.
@@ -54,9 +47,7 @@ in
 
     virtualisation.spiceUSBRedirection.enable = true;
 
-    zramSwap = {
-      enable = mkDefault true;
-    };
+    zramSwap = { enable = mkDefault true; };
 
     console = {
       earlySetup = true;
@@ -86,114 +77,111 @@ in
       };
     };
 
-    environment.systemPackages =
-      (with pkgs; [
-        socat
-        gdu
-        swapview
+    environment.systemPackages = (with pkgs; [
+      socat
+      gdu
+      swapview
+      devenv
+      nix-web
+      nix-pin
+      nix-doc
+      nix-index
+      nix-update
+      nix-bundle
+      nix-bisect
+      nix-plugins
+      nix-inspect
+      # nix-janitor
+      nixos-option
+      # nix-delegate
+      nix-visualize
+      nix-update-source
+      nix-simple-deploy
+      nix-query-tree-viewer
 
-        nix-web
-        nix-pin
-        nix-doc
-        nix-index
-        nix-update
-        nix-bundle
-        nix-bisect
-        nix-plugins
-        nix-inspect
-        # nix-janitor
-        nixos-option
-        # nix-delegate
-        nix-visualize
-        nix-update-source
-        nix-simple-deploy
-        nix-query-tree-viewer
+      # nix-switcher : needs github auth
 
-        # nix-switcher : needs github auth
+      nux
+      disnix
+      nox
+      nh
 
-        nux
-        disnix
-        nox
-        nh
-
-        dfrs
-        duc
-        ssh-tools
-        mbuffer
-        # etcher
-        pamixer
-        pulsemixer
-        pamix
-        pavucontrol
-        ponymix
-        # ntfy
-        ntfy-sh
-        ntfs3g
-        plex-mpv-shim
-        # rtop
-        ipcalc
-        # fancy-motd
-        kexec-tools
-        # dry
-        # pkgs.deepin.udisks2-qt5
-        # udisks2
-        lshw
-        usbutils
-        ttop
-        git
-        wget
-        curl
-        sysz
-        iptraf-ng
-        netscanner
-        bandwhich
-        bashmount
-        bmon
-        compsize
-        ctop
-        curl
-        devtodo
-        devdash
-        wtf
-        fwupd
-        fwupd-efi
-        hw-probe
-        kmon
-        lazydocker
-        lm_sensors
-        ncdu
-        nfs-utils
-        notify
-        openldap
-        pciutils
-        pv
-        sshportal
-        systemctl-tui
-        tiptop
-        tpm-tools
-        udiskie
-        usermount
-        viddy
-        wget
-        zellij
-        nix-top
-      ])
-      ++ (with pkgs.custom; [
-        menu
-        podman-tui
-        pvzstd
-        ssm
-        tailscale-tui
-        sshed
-        # rmfuse
-      ])
-      ++ (optionals pkgs.stdenv.isx86_64 [
-        pkgs.custom.ztui
-        # pkgs.wolfram-engine
-        pkgs.libsmbios
-        pkgs.dmidecode
-        pkgs.termius
-      ]);
+      dfrs
+      duc
+      ssh-tools
+      mbuffer
+      # etcher
+      pamixer
+      pulsemixer
+      pamix
+      pavucontrol
+      ponymix
+      # ntfy
+      ntfy-sh
+      ntfs3g
+      plex-mpv-shim
+      # rtop
+      ipcalc
+      # fancy-motd
+      kexec-tools
+      # dry
+      # pkgs.deepin.udisks2-qt5
+      # udisks2
+      lshw
+      usbutils
+      ttop
+      git
+      wget
+      curl
+      sysz
+      iptraf-ng
+      netscanner
+      bandwhich
+      bashmount
+      bmon
+      compsize
+      ctop
+      curl
+      devtodo
+      devdash
+      wtf
+      fwupd
+      fwupd-efi
+      hw-probe
+      kmon
+      lazydocker
+      lm_sensors
+      ncdu
+      nfs-utils
+      notify
+      openldap
+      pciutils
+      pv
+      sshportal
+      systemctl-tui
+      tiptop
+      tpm-tools
+      udiskie
+      usermount
+      viddy
+      wget
+      zellij
+      nix-top
+    ]) ++ (with pkgs.custom; [
+      menu
+      podman-tui
+      pvzstd
+      ssm
+      tailscale-tui
+      sshed
+      # rmfuse
+    ]) ++ (optionals pkgs.stdenv.isx86_64 [
+      pkgs.custom.ztui
+      # pkgs.wolfram-engine
+      pkgs.libsmbios
+      pkgs.dmidecode
+      pkgs.termius
+    ]);
     # services.ntfy-sh.enable = true;
 
     apps = {
@@ -216,14 +204,8 @@ in
 
       user.services.auto-fix-vscode-server = {
         enable = true;
-        wants = [
-          "multi-user.target"
-          "network.target"
-        ];
-        after = [
-          "multi-user.target"
-          "network.target"
-        ];
+        wants = [ "multi-user.target" "network.target" ];
+        after = [ "multi-user.target" "network.target" ];
       };
 
       #   services = {
@@ -252,12 +234,10 @@ in
       kmscon = {
         enable = mkDefault true;
         hwRender = config.traits.hardware.nvidia.enable;
-        fonts = [
-          {
-            name = "JetBrainsMono Nerd Font Mono";
-            package = pkgs.nerdfonts;
-          }
-        ];
+        fonts = [{
+          name = "JetBrainsMono Nerd Font Mono";
+          package = pkgs.nerdfonts;
+        }];
       };
 
       preload.enable = true;
@@ -429,9 +409,7 @@ in
             color = "red";
             command = "hostname | ${pkgs.figlet}/bin/figlet -f slant";
           };
-          uptime = {
-            prefix = "Up";
-          };
+          uptime = { prefix = "Up"; };
           # weather = {
           #   url = "https://wttr.in/Amsterdam";
           # };
@@ -439,15 +417,11 @@ in
             Accounts = "accounts-daemon";
             Cron = "cron";
           };
-          filesystems = {
-            root = "/";
-          };
+          filesystems = { root = "/"; };
           memory = {
             swap_pos = "beside"; # or "below" or "none"
           };
-          last_login = {
-            tomas = 2;
-          };
+          last_login = { tomas = 2; };
           last_run = { };
         };
       };
@@ -500,9 +474,7 @@ in
     # };
 
     networking = {
-      firewall = {
-        enable = mkDefault true;
-      };
+      firewall = { enable = mkDefault true; };
 
       networkmanager.enable = mkDefault true;
     };
