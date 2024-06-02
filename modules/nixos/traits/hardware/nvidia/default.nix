@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 with lib.custom;
 let
@@ -6,16 +11,19 @@ let
 
   nvidiaVersion = config.hardware.nvidia.package.version;
   nvidiax11Version = config.boot.kernelPackages.nvidia_x11.version;
-  # nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-  #   export __NV_PRIME_RENDER_OFFLOAD=1
-  #   export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-  #   export __GLX_VENDOR_LIBRARY_NAME=nvidia
-  #   export __VK_LAYER_NV_optimus=NVIDIA_only
-  #   exec "$@"
-  # '';
-in {
+in
+# nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+#   export __NV_PRIME_RENDER_OFFLOAD=1
+#   export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+#   export __GLX_VENDOR_LIBRARY_NAME=nvidia
+#   export __VK_LAYER_NV_optimus=NVIDIA_only
+#   exec "$@"
+# '';
+{
   options.traits = {
-    hardware.nvidia = { enable = mkBoolOpt false "nvidia"; };
+    hardware.nvidia = {
+      enable = mkBoolOpt false "nvidia";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -24,8 +32,7 @@ in {
       cudaSupport = true;
     };
 
-    system.nixos.tags =
-      [ "nvidia:${nvidiaVersion}:nvidiax11Version:${nvidiax11Version}" ];
+    system.nixos.tags = [ "nvidia:${nvidiaVersion}:nvidiax11Version:${nvidiax11Version}" ];
 
     environment.systemPackages = with pkgs; [
       nvtop-nvidia
@@ -34,19 +41,18 @@ in {
       # nvidia-offload
     ];
 
-    environment.sessionVariables = {
-      VK_DRIVER_FILES =
-        "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+    # environment.sessionVariables = {
+    #   VK_DRIVER_FILES =
+    #     "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
 
-      MUTTER_DEBUG_KMS_THREAD_TYPE = "user";
-    };
+    #   MUTTER_DEBUG_KMS_THREAD_TYPE = "user";
+    # };
 
-    environment.variables = {
-      VK_DRIVER_FILES =
-        "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+    # environment.variables = {
+    #   VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
 
-      MUTTER_DEBUG_KMS_THREAD_TYPE = "user";
-    };
+    #   MUTTER_DEBUG_KMS_THREAD_TYPE = "user";
+    # };
 
     virtualisation.podman.enableNvidia = true;
 
@@ -56,6 +62,8 @@ in {
         nvidia_smi: yes
       '';
     };
+
+    systemd.services.netdata.path = [ pkgs.linuxPackages.nvidia_x11 ];
 
     boot = {
       initrd.kernelModules = [ "nvidia" ];
