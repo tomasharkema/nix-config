@@ -22,12 +22,12 @@ with lib;
 
     time.timeZone = "Europe/Amsterdam";
 
-    # disks.btrfs = {
-    #   enable = true;
-    #   main = "/dev/vda";
-    #   encrypt = false;
-    #   newSubvolumes = true;
-    # };
+    disks.btrfs = {
+      enable = true;
+      main = "/dev/vda";
+      encrypt = false;
+      newSubvolumes = true;
+    };
 
     # disks.ext4 = {
     #   enable = true;
@@ -45,20 +45,20 @@ with lib;
 
     virtualisation.rosetta.enable = true;
 
-    fileSystems = {
-      "/" = {
-        device = "/dev/nvme0n1";
-        fsType = "ext4";
-      };
-      "/boot" = {
-        device = "/dev/vda1";
-        fsType = "vfat";
-        options = [
-          "fmask=0022"
-          "dmask=0022"
-        ];
-      };
-    };
+    # fileSystems = {
+    #   "/" = {
+    #     device = "/dev/nvme0n1";
+    #     fsType = "ext4";
+    #   };
+    #   "/boot" = {
+    #     device = "/dev/vda1";
+    #     fsType = "vfat";
+    #     options = [
+    #       "fmask=0022"
+    #       "dmask=0022"
+    #     ];
+    #   };
+    # };
 
     gui = {
       enable = true;
