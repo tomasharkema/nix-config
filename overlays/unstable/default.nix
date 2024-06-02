@@ -1,4 +1,4 @@
-{ channels, disko, nixos-generators, self, ... }:
+{ channels, disko, self, ... }:
 final: prev: rec {
   # runitor = channels.unstable.runitor;
   # vscode = channels.unstable.vscode;
@@ -13,8 +13,7 @@ final: prev: rec {
 
   # netdata = channels.unstable.netdata;
   # nh = ch libcec = super.libcec.override { withLibraspberrypi = true; }; annels.unstable.nh;
- libcec = prev.libcec.override { withLibraspberrypi = true; }; 
-  nixos-generate = nixos-generators.packages."${prev.system}".nixos-generate;
+  libcec = prev.libcec.override { withLibraspberrypi = true; };
 
   _389-ds-base = self.packages."${prev.system}"._389-ds-base;
   freeipa = self.packages."${prev.system}".freeipa;

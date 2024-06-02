@@ -1,6 +1,6 @@
 {
 #  devenv,
-deploy-rs, attic, agenix,
+attic, agenix,
 # hydra-check, flake-checker,
 nixos-anywhere,
 # nixos-conf-editor,
@@ -11,7 +11,6 @@ nix-software-center, channels,
 final: prev: {
   attic = attic.packages."${prev.system}".default;
   # devenv = devenv.packages."${prev.system}".default;
-  deploy-rs = deploy-rs.packages."${prev.system}".deploy-rs;
   agenix = agenix.packages."${prev.system}".default;
   # hydra-check = hydra-check.packages."${prev.system}".default;
   # flake-checker = flake-checker.packages."${prev.system}".default;

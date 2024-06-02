@@ -27,18 +27,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     disko = {
       url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -195,10 +185,10 @@
     #   url = "github:dj95/zjstatus";
     # };
 
-    tree-sitter-nix = {
-      url = "github:nix-community/tree-sitter-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # tree-sitter-nix = {
+    #   url = "github:nix-community/tree-sitter-nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nixos-checkmk = {
       url = "github:tomasharkema/nixos-checkmk";
@@ -206,8 +196,7 @@
     };
   };
 
-  outputs =
-    inputs:
+  outputs = inputs:
     let
       lib = inputs.snowfall-lib.mkLib {
         inherit inputs;
@@ -222,8 +211,7 @@
           namespace = "custom";
         };
       };
-    in
-    lib.mkFlake {
+    in lib.mkFlake {
       inherit inputs;
 
       src = ./.;
@@ -247,11 +235,7 @@
         };
       };
 
-      alias = {
-        shells = {
-          default = "devshell";
-        };
-      };
+      alias = { shells = { default = "devshell"; }; };
 
       snowfall = {
         meta = {
@@ -268,17 +252,16 @@
         nixos-checkmk.overlays.default
       ];
 
-      system.modules.darwin = with inputs; [
-        {
-          system.nixos.tags = [ "snowfall" ];
-          system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
-        }
-      ];
+      system.modules.darwin = with inputs; [{
+        system.nixos.tags = [ "snowfall" ];
+        system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
+      }];
 
-      homes.modules = with inputs; [
-        #     catppuccin.homeManagerModules.catppuccin
-        nixvim.homeManagerModules.nixvim
-      ];
+      homes.modules = with inputs;
+        [
+          #     catppuccin.homeManagerModules.catppuccin
+          nixvim.homeManagerModules.nixvim
+        ];
 
       systems.modules.nixos = with inputs; [
         nixos-checkmk.nixosModules.check_mk_agent
@@ -298,7 +281,6 @@
 
         # home-manager.nixosModules.home-manager
         agenix.nixosModules.default
-        nixos-generators.nixosModules.all-formats
 
         nix-gaming.nixosModules.pipewireLowLatency
         nix-gaming.nixosModules.platformOptimizations
@@ -306,11 +288,9 @@
         {
           config = {
             system.stateVersion = "24.05";
-            system.nixos.tags = [
-              "snowfall"
-              (self.shortRev or "dirty")
-            ];
-            system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
+            system.nixos.tags = [ "snowfall" (self.shortRev or "dirty") ];
+            system.configurationRevision =
+              lib.mkForce (self.shortRev or "dirty");
             nix = {
               registry.nixpkgs.flake = inputs.nixpkgs;
               registry.home-manager.flake = inputs.home-manager;
@@ -356,51 +336,36 @@
       nixosConfigurations = {
         installer-x86 = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = {
-            inherit inputs;
-          };
+          specialArgs = { inherit inputs; };
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
             ./installer.nix
-            (
-              { lib, pkgs, ... }:
-              {
-                boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
-              }
-            )
+            ({ lib, pkgs, ... }: {
+              boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+            })
           ];
         };
 
         installer-arm = inputs.nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = {
-            inherit inputs;
-          };
+          specialArgs = { inherit inputs; };
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
             ./installer.nix
-            (
-              { lib, pkgs, ... }:
-              {
-                boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
-              }
-            )
+            ({ lib, pkgs, ... }: {
+              boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+            })
           ];
         };
         installer-arm-img = inputs.nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = {
-            inherit inputs;
-          };
+          specialArgs = { inherit inputs; };
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
             ./installer.nix
-            (
-              { lib, pkgs, ... }:
-              {
-                boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
-              }
-            )
+            ({ lib, pkgs, ... }: {
+              boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+            })
           ];
         };
       };
@@ -408,10 +373,13 @@
       images = with inputs; rec {
         # baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
         # pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
-        installer-x86 = self.nixosConfigurations.installer-x86.config.system.build.isoImage;
-        installer-arm = self.nixosConfigurations.installer-arm.config.system.build.isoImage;
+        installer-x86 =
+          self.nixosConfigurations.installer-x86.config.system.build.isoImage;
+        installer-arm =
+          self.nixosConfigurations.installer-arm.config.system.build.isoImage;
 
-        installer-arm-img = self.nixosConfigurations.installer-arm-img.config.system.build.sdImage;
+        installer-arm-img =
+          self.nixosConfigurations.installer-arm-img.config.system.build.sdImage;
 
         # services = let
         #   config = "pegasus";
@@ -432,8 +400,7 @@
       };
 
       # formatter = inputs.nixpkgs.nixfmt;
-      outputs-builder =
-        channels:
+      outputs-builder = channels:
         # let
         #   cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
         # in
@@ -471,10 +438,7 @@
     extra-experimental-features = "nix-command flakes cgroups";
     distributedBuilds = true;
     builders-use-substitutes = true;
-    trusted-users = [
-      "root"
-      "tomas"
-    ];
+    trusted-users = [ "root" "tomas" ];
     # netrc-file = "/etc/nix/netrc";
 
     # trustedBinaryCaches = ["https://cache.nixos.org"];
