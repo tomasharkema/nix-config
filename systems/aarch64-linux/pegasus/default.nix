@@ -13,14 +13,6 @@ with lib;
   ];
 
   config = {
-
-    nixpkgs.overlays = [
-      # nixos-22.05
-      # (self: super: { libcec = super.libcec.override { inherit (self) libraspberrypi; }; })
-      # nixos-22.11
-      (self: super: { libcec = super.libcec.override { withLibraspberrypi = true; }; })
-    ];
-
     services.udev.extraRules = ''
       # allow access to raspi cec device for video group (and optionally register it as a systemd device, used below)
       KERNEL=="vchiq", GROUP="video", MODE="0660", TAG+="systemd", ENV{SYSTEMD_ALIAS}="/dev/vchiq"
