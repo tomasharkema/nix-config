@@ -27,18 +27,17 @@ with lib; {
     services = {
       pcscd.enable = true;
       yubikey-agent.enable = true;
-      udev.packages = with pkgs;
-        [
-          libfido2
-          # opensc
-          # yubioath-flutter
-          # yubikey-agent
-          # yubikey-manager
-          # yubikey-manager-qt
-          # yubikey-personalization
-          # yubikey-personalization-gui
-          # yubico-piv-tool
-        ];
+      udev.packages = with pkgs; [
+        libfido2
+        # opensc
+        # yubioath-flutter
+        # yubikey-agent
+        # yubikey-manager
+        # yubikey-manager-qt
+        # yubikey-personalization
+        # yubikey-personalization-gui
+        yubico-piv-tool
+      ];
     };
 
     boot.initrd = {
