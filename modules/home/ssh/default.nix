@@ -17,7 +17,7 @@ in {
               && osConfig.gui.enable) then
               "/run/current-system/sw/lib/libtpm2_pkcs11.so"
             else
-              "/run/current-system/sw/lib/libykcs11.so";
+              "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
 
             "IdentityAgent" =
               lib.mkIf osConfig.gui.enable "/home/tomas/.1password/agent.sock";
