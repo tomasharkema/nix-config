@@ -103,6 +103,7 @@ in {
     environment.systemPackages = (with pkgs; [
       #compiz
       gtop
+      wike
       libgtop
       gnome-extension-manager
       gnomeExtensions.dash-to-panel
