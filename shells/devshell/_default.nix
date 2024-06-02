@@ -1,11 +1,4 @@
-{
-  inputs,
-  pkgs,
-  lib,
-  config,
-  mkShell,
-  ...
-}:
+{ inputs, pkgs, lib, config, mkShell, ... }:
 with pkgs;
 with lib;
 let
@@ -93,7 +86,9 @@ let
   test-remote = writeShellScriptBin "test-remote" ''
     SERVER="$1"
     echo "test remote $SERVER..."
-    exec ${lib.getExe pkgs.buildPackages.nixos-rebuild} test --flake ".#$SERVER" --target-host "$SERVER" --use-remote-sudo --verbose --show-trace -L
+    exec ${
+      lib.getExe pkgs.buildPackages.nixos-rebuild
+    } test --flake ".#$SERVER" --target-host "$SERVER" --use-remote-sudo --verbose --show-trace -L
   '';
 
   upload-local = writeShellScriptBin "upload-local" ''
@@ -140,8 +135,7 @@ let
 
     exec nix path-info --all | xargs -n$NPATHS -P$NPROCS attic push tomas -j 1
   '';
-in
-mkShell {
+in mkShell {
 
   # shellHook = ''
   #   ${pre-commit.pre-commit-check.shellHook}
