@@ -1,6 +1,7 @@
 { inputs, pkgs, ... }:
 with pkgs; {
   config = {
+
     home.packages = with pkgs; [
       ssh-tools
       tg
@@ -71,7 +72,6 @@ with pkgs; {
 
       bunyan-rs
       cheat
-      comma
       coreutils
       ctop
       curl

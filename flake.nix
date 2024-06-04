@@ -257,18 +257,17 @@
         system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
       }];
 
-      homes.modules = with inputs;
-        [
-          #     catppuccin.homeManagerModules.catppuccin
-          nixvim.homeManagerModules.nixvim
-        ];
+      homes.modules = with inputs; [
+        #     catppuccin.homeManagerModules.catppuccin
+        nixvim.homeManagerModules.nixvim
+
+        nix-index-database.hmModules.nix-index
+      ];
 
       systems.modules.nixos = with inputs; [
         nixos-checkmk.nixosModules.check_mk_agent
 
         catppuccin.nixosModules.catppuccin
-
-        nix-index-database.nixosModules.nix-index
 
         attic.nixosModules.atticd
         # peerix.nixosModules.peerix
