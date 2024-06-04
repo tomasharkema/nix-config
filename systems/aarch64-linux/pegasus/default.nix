@@ -1,16 +1,11 @@
-{
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
-with lib;
-{
-  imports = with inputs; [
-    nixos-hardware.nixosModules.raspberry-pi-4
-    # "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
-    # "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-  ];
+{ pkgs, inputs, lib, ... }:
+with lib; {
+  imports = with inputs;
+    [
+      nixos-hardware.nixosModules.raspberry-pi-4
+      # "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
+      # "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+    ];
 
   config = {
     services.udev.extraRules = ''
@@ -38,7 +33,7 @@ with lib;
         bindsTo = [ "dev-vchiq.device" ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
-          ExecStart = ''${pkgs.libcec}/bin/cec-client -d 1'';
+          ExecStart = "${pkgs.libcec}/bin/cec-client -d 1";
           ExecStop = ''/bin/sh -c "echo q > /run/cec.fifo"'';
           StandardInput = "socket";
           StandardOutput = "journal";
@@ -61,15 +56,11 @@ with lib;
       };
     };
 
-    zramSwap = {
-      enable = false;
-    };
-    swapDevices = [
-      {
-        device = "/swapfile";
-        size = 16 * 1024;
-      }
-    ];
+    zramSwap = { enable = false; };
+    swapDevices = [{
+      device = "/swapfile";
+      size = 16 * 1024;
+    }];
 
     traits = {
       raspberry.enable = true;
@@ -84,9 +75,8 @@ with lib;
       cec.enable = true;
       unified-remote.enable = true;
       remote-builders.enable = true;
+      netdata.enable = true;
     };
-
-    netdata.enable = mkForce false;
 
     environment.systemPackages = with pkgs; [
       libraspberrypi
@@ -106,9 +96,7 @@ with lib;
       # kernelPackages = mkForce pkgs.linuxPackages_latest;
     };
 
-    proxy-services = {
-      enable = false;
-    };
+    proxy-services = { enable = false; };
     systemd.enableEmergencyMode = true;
     hardware = {
       enableRedistributableFirmware = true;
@@ -118,10 +106,7 @@ with lib;
 
       opengl = {
         enable = true;
-        extraPackages = with pkgs; [
-          vaapiVdpau
-          libvdpau-va-gl
-        ];
+        extraPackages = with pkgs; [ vaapiVdpau libvdpau-va-gl ];
         driSupport = true;
       };
 
