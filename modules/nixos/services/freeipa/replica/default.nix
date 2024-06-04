@@ -70,7 +70,7 @@ in {
     #   };
     # };
 
-    services.podman.enable = true;
+    apps.podman.enable = true;
 
     virtualisation = {
       podman = {

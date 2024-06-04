@@ -1,13 +1,5 @@
-{
-  fetchFromGitHub,
-  pkg-config,
-  buildGoModule,
-  btrfs-progs,
-  gpgme,
-  lvm2,
-}:
-buildGoModule
-rec {
+{ fetchFromGitHub, pkg-config, buildGoModule, btrfs-progs, gpgme, lvm2, }:
+buildGoModule rec {
   pname = "podman-tui";
   version = "0.17.0";
 
@@ -20,7 +12,7 @@ rec {
 
   vendorHash = null;
 
-  nativeBuildInputs = [pkg-config];
+  nativeBuildInputs = [ pkg-config ];
 
-  buildInputs = [btrfs-progs gpgme lvm2];
+  buildInputs = [ btrfs-progs gpgme lvm2 ];
 }

@@ -4,8 +4,8 @@ with lib.custom;
 let
   cfg = config.proxy-services;
 
-  certPath = "${cfg.cert.crt}";
-  keyPath = "${cfg.cert.key}";
+  certPath = "${cfg.crt.crt}";
+  keyPath = "${cfg.crt.key}";
 in {
   options.proxy-services = {
     enable = mkEnableOption "enable nginx";
@@ -22,7 +22,7 @@ in {
       description = "services";
     };
 
-    cert = {
+    crt = {
       key = mkOption {
         type = types.str;
         default = "/etc/ssl/private/tailscale.key";

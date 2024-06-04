@@ -7,7 +7,6 @@ in {
 
   config = mkIf cfg.enable {
     traits.builder.enable = mkForce false;
-    netdata.enable = mkDefault false;
     prometheus.enable = mkForce false;
     resilio.enable = mkForce false;
   };

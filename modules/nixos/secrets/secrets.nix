@@ -63,16 +63,14 @@ let
   allKeys = users ++ systems;
   builders = [ tomas blue-fire blue-fire-tomas ];
 in {
-  "attic-key.age".publicKeys = allKeys;
   "attic-config.toml.age".publicKeys = allKeys;
+  "attic-key.age".publicKeys = allKeys;
   "attic-netrc.age".publicKeys = allKeys;
-
   "atuin.age".publicKeys = allKeys;
-  # "cachix-activate.age".publicKeys = allKeys;
-  # "cachix-agent.age".publicKeys = allKeys;
-  # "cachix-token.age".publicKeys = allKeys;
-  # "cachix.age".publicKeys = allKeys;
+  "btrbk.age".publicKeys = allKeys;
   "command-center.env.age".publicKeys = allKeys;
+  "config.zerotier.settings.age".publicKeys = allKeys;
+  "domainjoin.age".publicKeys = allKeys;
   "gh.age".publicKeys = allKeys;
   "ght-runner.age".publicKeys = builders;
   "ght.age".publicKeys = builders;
@@ -83,19 +81,21 @@ in {
   "mak.age".publicKeys = allKeys;
   "netdata.age".publicKeys = allKeys;
   "notify.age".publicKeys = allKeys;
+  "ntfy.age".publicKeys = allKeys;
   "op.age".publicKeys = allKeys;
+  "openaiapirc.age".publicKeys = allKeys;
   "otp.age".publicKeys = allKeys;
   "peerix.private.age".publicKeys = allKeys;
   "peerix.public.age".publicKeys = allKeys;
   "resilio-docs.age".publicKeys = allKeys;
   "resilio-p.age".publicKeys = allKeys;
   "resilio-shared-public.age".publicKeys = allKeys;
+  "rmapi.age".publicKeys = allKeys;
   "spotify-tui.age".publicKeys = allKeys;
   "tailscale.age".publicKeys = allKeys;
   "wireless.age".publicKeys = allKeys;
-  "config.zerotier.settings.age".publicKeys = allKeys;
-  "domainjoin.age".publicKeys = allKeys;
-  "btrbk.age".publicKeys = allKeys;
-  "rmapi.age".publicKeys = allKeys;
-  "openaiapirc.age".publicKeys = allKeys;
+  # "cachix-activate.age".publicKeys = allKeys;
+  # "cachix-agent.age".publicKeys = allKeys;
+  # "cachix-token.age".publicKeys = allKeys;
+  # "cachix.age".publicKeys = allKeys;
 }

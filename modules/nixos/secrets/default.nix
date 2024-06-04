@@ -1,5 +1,4 @@
-{ lib, config, ... }:
-{
+{ lib, config, ... }: {
   config = {
     age = {
       identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
@@ -50,10 +49,11 @@
           file = ./resilio-shared-public.age;
           mode = "644";
         };
-        netdata = {
-          file = ./netdata.age;
+        "ntfy" = {
+          file = ./ntfy.age;
           mode = "644";
         };
+
         # "cachix" = {
         #   file = ./cachix.age;
         #   mode = "644";
@@ -116,9 +116,7 @@
           mode = "644";
         };
 
-        "domainjoin" = {
-          file = ./domainjoin.age;
-        };
+        "domainjoin" = { file = ./domainjoin.age; };
         "peerix-private" = {
           file = ./peerix.private.age;
           mode = "644";

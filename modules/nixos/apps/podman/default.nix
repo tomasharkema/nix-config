@@ -1,12 +1,13 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 with lib;
-with lib.custom;
-let cfg = config.services.podman;
+let cfg = config.apps.podman;
 in {
-  options.services.podman = { enable = mkBoolOpt false "enable podman"; };
+  options.apps.podman = { enable = mkEnableOption "enable podman"; };
 
   config = mkIf cfg.enable {
     system.nixos.tags = [ "podman" ];
+
+    environment.systemPackages = with pkgs; [ podman-tui dive docker-compose ];
 
     networking = {
       firewall = {
@@ -22,6 +23,8 @@ in {
     virtualisation = {
       oci-containers.backend = "podman";
 
+      containers.enable = true;
+
       podman = {
         enable = true;
 
@@ -31,9 +34,14 @@ in {
         enableNvidia = config.traits.hardware.nvidia.enable;
 
         defaultNetwork.settings.dns_enabled = true;
-
-        autoPrune.enable = true;
-        # networkSocket.enable = true;
+        # networkSocket = {
+        #   enable = true;
+        #   server = "ghostunnel";
+        #   tls = {
+        #     key = config.proxy-services.crt.key;
+        #     cert = config.proxy-services.crt.crt;
+        #   };
+        # };
       };
     };
   };

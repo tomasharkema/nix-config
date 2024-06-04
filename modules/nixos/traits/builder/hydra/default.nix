@@ -1,16 +1,8 @@
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}:
+{ config, pkgs, lib, inputs, ... }:
 with lib;
 with lib.custom;
-let
-  cfg = config.traits.builder.hydra;
-in
-{
+let cfg = config.traits.builder.hydra;
+in {
   options.traits = {
     builder.hydra = {
       enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
@@ -25,13 +17,13 @@ in
     age.secrets = {
 
       "ldap" = {
-        file = ../../ldap.age;
+        file = ../../../secrets/ldap.age;
         mode = "644";
         # owner = "tomas";
         # group = "tomas";
       };
       ght = {
-        file = ../../ght.age;
+        file = ../../../secrets/ght.age;
         mode = "0664";
       };
     };
@@ -46,48 +38,36 @@ in
       };
     };
 
-    nix.buildMachines = [
-      {
-        hostName = "localhost";
-        systems = [
-          "x86_64-linux"
-          "aarch64-linux"
-          "i686-linux"
-        ];
-        supportedFeatures = [
-          "kvm"
-          "nixos-test"
-          "big-parallel"
-          "benchmark"
-        ];
-        maxJobs = 1;
-      }
-      # {
-      #   hostName = "builder@wodan";
-      #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
-      #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-      #   maxJobs = 2;
-      #   speedFactor = 100;
-      # }
-      # {
-      #   hostName = "builder@enzian";
-      #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
-      #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-      #   maxJobs = 1;
-      #   speedFactor = 50;
-      # }
-      # {
-      #   hostName = "builder@arthur";
-      #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
-      #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
-      #   maxJobs = 1;
-      #   speedFactor = 10;
-      # }
-    ];
+    nix.buildMachines = [{
+      hostName = "localhost";
+      systems = [ "x86_64-linux" "aarch64-linux" "i686-linux" ];
+      supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
+      maxJobs = 1;
+    }
+    # {
+    #   hostName = "builder@wodan";
+    #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
+    #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+    #   maxJobs = 2;
+    #   speedFactor = 100;
+    # }
+    # {
+    #   hostName = "builder@enzian";
+    #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
+    #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+    #   maxJobs = 1;
+    #   speedFactor = 50;
+    # }
+    # {
+    #   hostName = "builder@arthur";
+    #   systems = ["x86_64-linux" "aarch64-linux" "i686-linux"];
+    #   supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+    #   maxJobs = 1;
+    #   speedFactor = 10;
+    # }
+      ];
 
-    networking.firewall = {
-      allowedTCPPorts = [ 3000 ];
-    };
+    networking.firewall = { allowedTCPPorts = [ 3000 ]; };
 
     services.hydra = {
       extraEnv = {
@@ -106,28 +86,25 @@ in
       listenHost = "0.0.0.0";
       port = 3000;
 
-      extraConfig =
-        let
-          ldap = import ./ldap.nix { inherit pkgs config; };
-        in
-        ''
-          Include ${config.age.secrets.ght.path}
-          <hydra_notify>
-            <prometheus>
-              listen_address = 0.0.0.0
-              port = 9199
-            </prometheus>
-          </hydra_notify>
-          <githubstatus>
-            ## This example will match all jobs
-            jobs = .*
-            inputs = src
-            excludeBuildFromContext = 1
-          </githubstatus>
-          using_frontend_proxy 1
-          email_notification = 1
-          Include ${ldap}
-        '';
+      extraConfig = let ldap = import ./ldap.nix { inherit pkgs config; };
+      in ''
+        Include ${config.age.secrets.ght.path}
+        <hydra_notify>
+          <prometheus>
+            listen_address = 0.0.0.0
+            port = 9199
+          </prometheus>
+        </hydra_notify>
+        <githubstatus>
+          ## This example will match all jobs
+          jobs = .*
+          inputs = src
+          excludeBuildFromContext = 1
+        </githubstatus>
+        using_frontend_proxy 1
+        email_notification = 1
+        Include ${ldap}
+      '';
     };
 
     programs.ssh.extraConfig = ''
