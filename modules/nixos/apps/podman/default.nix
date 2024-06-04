@@ -7,7 +7,12 @@ in {
   config = mkIf cfg.enable {
     system.nixos.tags = [ "podman" ];
 
-    environment.systemPackages = with pkgs; [ podman-tui dive docker-compose ];
+    environment.systemPackages = with pkgs; [
+      podman-tui
+      dive
+      docker-compose
+      pods
+    ];
 
     networking = {
       firewall = {
