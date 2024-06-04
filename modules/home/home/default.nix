@@ -165,6 +165,8 @@ in with lib; {
     programs = {
       home-manager.enable = true;
 
+      nix-index-database.comma.enable = true;
+
       # termite.enable = osConfig.gui.enable;
       # terminator.enable = lib.mkIf pkgs.stdenv.isLinux osConfig.gui.enable;
 

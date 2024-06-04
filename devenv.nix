@@ -188,7 +188,6 @@ in {
     bash
     bfg-repo-cleaner
     colima
-    comma
     dconf-save
     dconf-update
     dconf2nix

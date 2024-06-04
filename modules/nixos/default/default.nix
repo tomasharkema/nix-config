@@ -85,7 +85,6 @@ in {
       nix-web
       nix-pin
       nix-doc
-      nix-index
       nix-update
       nix-bundle
       nix-bisect
@@ -449,8 +448,6 @@ in {
       nix-ld.enable = true;
       zsh.enable = true;
       mtr.enable = true;
-      nix-index.enable = true;
-      nix-index-database.comma.enable = true;
       command-not-found.enable = false;
     };
 

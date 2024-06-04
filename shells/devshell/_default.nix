@@ -162,7 +162,6 @@ in mkShell {
     # cachix-deploy
     # cachix-reploy-pin
     colima
-    comma
     dconf-update
     dconf2nix
     deploy-all
@@ -271,7 +270,6 @@ in mkShell {
 #         # cachix-deploy
 #         # cachix-reploy-pin
 #         colima
-#         comma
 #         dconf-update
 #         dconf2nix
 #         deploy-all
