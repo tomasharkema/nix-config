@@ -1,12 +1,5 @@
-{
-  pkgs,
-  inputs,
-  config,
-  lib,
-  ...
-}:
-with lib;
-{
+{ pkgs, inputs, config, lib, ... }:
+with lib; {
   imports = with inputs; [
     ./hardware-configuration.nix
 
@@ -30,6 +23,7 @@ with lib;
     apps = {
       usbip.enable = true;
       remote-builders.enable = true;
+      netdata.enable = true;
     };
 
     environment.systemPackages = with pkgs; [ intel-gpu-tools ];
@@ -42,8 +36,6 @@ with lib;
     # security = {
     #   ipa = { ifpAllowedUids = mkForce [ "root" "tomas" "media" ]; };
     # };
-
-    netdata.enable = mkForce true;
 
     resilio.enable = false;
 
@@ -81,26 +73,18 @@ with lib;
       };
     };
 
-    zramSwap = {
-      enable = true;
-    };
-    swapDevices = [
-      {
-        device = "/swapfile";
-        size = 16 * 1024;
-      }
-    ];
+    zramSwap = { enable = true; };
+    swapDevices = [{
+      device = "/swapfile";
+      size = 16 * 1024;
+    }];
 
     hardware = {
       opengl = {
         enable = true;
         driSupport = true;
         driSupport32Bit = true;
-        extraPackages = with pkgs; [
-          vaapiIntel
-          libvdpau-va-gl
-          vaapiVdpau
-        ];
+        extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
       };
     };
   };
