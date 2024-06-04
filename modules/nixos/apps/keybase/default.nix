@@ -1,24 +1,24 @@
 { config, lib, pkgs, inputs, ... }:
 with lib; {
-  # disabledModules = ["services/network-filesystems/kbfs.nix"];
 
-  # imports = [
-  #   "${inputs.unstable}/nixos/modules/services/network-filesystems/kbfs.nix"
-  # ];
-
-  config = mkIf (!config.traits.slim.enable) {
+  config = {
     #programs.singularity.enable = true;
 
-    services.kbfs = {
-      enable = true;
-      enableRedirector = true;
-      # mountPoint = "/run/user/1002/keybase/kbfs";
-      # extraFlags = ["-label tomas"];
+    services = {
+      kbfs = {
+        enable = true;
+        enableRedirector = true;
+        # mountPoint = "/run/user/1002/keybase/kbfs";
+        # extraFlags = ["-label tomas"];
+      };
+
+      keybase = { enable = true; };
     };
-    services.keybase = { enable = true; };
-    security.wrappers.keybase-redirector.owner = "tomas";
-    security.wrappers.keybase-redirector.group = "tomas";
-    security.wrappers.keybase-redirector.setuid = true;
+    security.wrappers.keybase-redirector = {
+      owner = "root";
+      group = "wheel";
+      setuid = true;
+    };
 
     environment.systemPackages = with pkgs;
       mkIf (config.gui.enable && pkgs.system == "x86_64-linux") [ keybase-gui ];
