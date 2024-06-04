@@ -1,12 +1,5 @@
-{
-  pkgs,
-  lib,
-  inputs,
-  config,
-  ...
-}:
-with lib;
-{
+{ pkgs, lib, inputs, config, ... }:
+with lib; {
   imports = [
     ./hardware-configuration.nix
     inputs.nixos-hardware.nixosModules.common-gpu-intel
@@ -33,16 +26,12 @@ with lib;
     # services.upower.enable = mkForce false;
 
     networking = {
-      hosts = {
-        "192.168.0.100" = [ "nix-cache.harke.ma" ];
-      };
+      hosts = { "192.168.0.100" = [ "nix-cache.harke.ma" ]; };
       networkmanager.enable = true;
 
       hostName = "wodan";
 
-      firewall = {
-        enable = false;
-      };
+      firewall = { enable = false; };
       useDHCP = lib.mkDefault false;
 
       interfaces = {
@@ -96,10 +85,7 @@ with lib;
         spec = "UUID=f3558990-77b0-4113-b45c-3d2da3f46c14";
         hashTableSizeMB = 4096;
         verbosity = "crit";
-        extraOptions = [
-          "--loadavg-target"
-          "2.0"
-        ];
+        extraOptions = [ "--loadavg-target" "2.0" ];
       };
     };
 
@@ -114,7 +100,8 @@ with lib;
       cpu.intel.updateMicrocode = true;
       i2c.enable = true;
     };
-    services.podman.enable = true;
+
+    apps.podman.enable = true;
 
     fileSystems = {
       # "/mnt/blue-fire/media" = {
@@ -161,12 +148,10 @@ with lib;
         };
       };
     };
-    swapDevices = [
-      {
-        device = "/dev/disk/by-label/disk-1-swap";
-        size = 16 * 1024;
-      }
-    ];
+    swapDevices = [{
+      device = "/dev/disk/by-label/disk-1-swap";
+      size = 16 * 1024;
+    }];
     disks.btrfs = {
       enable = true;
 

@@ -27,8 +27,9 @@ with lib; {
       };
     };
 
+    apps.podman.enable = true;
+
     services = {
-      podman.enable = true;
       # freeipa.replica.enable = true;
       tcsd.enable = true;
     };

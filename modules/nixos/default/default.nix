@@ -168,7 +168,6 @@ in {
       nix-top
     ]) ++ (with pkgs.custom; [
       menu
-      podman-tui
       pvzstd
       ssm
       tailscale-tui

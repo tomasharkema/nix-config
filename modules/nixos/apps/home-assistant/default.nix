@@ -6,7 +6,7 @@ in {
   options.apps.home-assistant = { enable = mkBoolOpt false "home-assistant"; };
 
   config = mkIf cfg.enable {
-    services.podman.enable = true;
+    apps.podman.enable = true;
 
     virtualisation = {
       oci-containers.containers = {

@@ -5,9 +5,11 @@ in {
   options.services.freeipa = { enable = mkEnableOption "freeipa"; };
 
   config = mkIf cfg.enable {
-    apps.ipa.enable = false;
+    apps = {
+      ipa.enable = false;
 
-    services.podman.enable = true;
+      podman.enable = true;
+    };
 
     networking = { firewall = { trustedInterfaces = [ "veth0" "veth1" ]; }; };
 

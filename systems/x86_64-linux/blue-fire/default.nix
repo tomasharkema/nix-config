@@ -1,17 +1,10 @@
-{
-  lib,
-  pkgs,
-  inputs,
-  config,
-  ...
-}:
+{ lib, pkgs, inputs, config, ... }:
 with lib;
 let
   boot-into-bios = pkgs.writeShellScriptBin "boot-into-bios" ''
     sudo ${pkgs.ipmitool}/bin/ipmitool chassis bootparam set bootflag force_bios
   '';
-in
-{
+in {
   imports = with inputs; [
     ./hardware-configuration.nix
 
@@ -41,9 +34,7 @@ in
 
         nfs = {
           enable = true;
-          machines = {
-            silver-star.enable = true;
-          };
+          machines = { silver-star.enable = true; };
         };
       };
     };
@@ -98,6 +89,8 @@ in
       # };
     };
 
+    apps.podman.enable = true;
+
     # services = {
     # podman.enable = true;
     # freeipa.replica.enable = true;
@@ -122,9 +115,7 @@ in
     ];
 
     networking = {
-      hosts = {
-        "192.168.0.100" = [ "nix-cache.harke.ma" ];
-      };
+      hosts = { "192.168.0.100" = [ "nix-cache.harke.ma" ]; };
       hostName = "blue-fire";
       hostId = "529fd7aa";
 
@@ -256,13 +247,8 @@ in
       };
 
       initrd = {
-        availableKernelModules = [
-          "xhci_pci"
-          "ahci"
-          "usbhid"
-          "usb_storage"
-          "sd_mod"
-        ];
+        availableKernelModules =
+          [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
         kernelModules = [
           "kvm-intel"
           "uinput"
