@@ -10,12 +10,7 @@ with lib; {
   config = {
     # btrfs balance -dconvert=raid0 -mconvert=raid1 /home
 
-    # programs.gamemode.enable = true;
-    environment.systemPackages = with pkgs; [
-      ntfs2btrfs
-      # openrgb-with-all-plugins
-      glxinfo
-    ];
+    environment.systemPackages = with pkgs; [ ntfs2btrfs glxinfo ];
 
     time = {
       # hardwareClockInLocalTime = true;
@@ -64,8 +59,6 @@ with lib; {
         openrgb.enable = true;
         bolt.enable = true;
       };
-      dbus.packages = [ pkgs.openrgb-with-all-plugins ];
-      udev.packages = [ pkgs.openrgb-with-all-plugins ];
       command-center = {
         #enableBot = true;
       };
@@ -80,6 +73,7 @@ with lib; {
       enable = true;
       bridgeInterfaces = [ "enp2s0" ];
     };
+
     services.beesd.filesystems = {
       root = {
         spec = "UUID=f3558990-77b0-4113-b45c-3d2da3f46c14";
@@ -92,43 +86,12 @@ with lib; {
     console.earlySetup = true;
 
     hardware = {
-      nvidia = {
-        # modesetting.enable = false;
-        # package = config.boot.kernelPackages.nvidiaPackages.stable;
-        # nvidiaPersistenced = true;
-      };
+      nvidia = { nvidiaPersistenced = true; };
       cpu.intel.updateMicrocode = true;
       i2c.enable = true;
     };
 
     apps.podman.enable = true;
-
-    fileSystems = {
-      # "/mnt/blue-fire/media" = {
-      #   device = "192.168.0.11:/exports/media";
-      #   fsType = "nfs";
-      # };
-      # "/mnt/unraid/appdata" = {
-      #   device = "192.168.0.100:/mnt/user/appdata";
-      #   fsType = "nfs";
-      # };
-      # "/mnt/unraid/appdata_ssd" = {
-      #   device = "192.168.0.100:/mnt/user/appdata_ssd";
-      #   fsType = "nfs";
-      # };
-      # "/mnt/unraid/appdata_disk" = {
-      #   device = "192.168.0.100:/mnt/user/appdata_disk";
-      #   fsType = "nfs";
-      # };
-      # "/mnt/unraid/data" = {
-      #   device = "192.168.0.100:/mnt/user/data";
-      #   fsType = "nfs";
-      # };
-      #   "/mnt/dione" = {
-      #     device = "192.168.178.3:/volume1/homes";
-      #     fsType = "nfs";
-      #   };
-    };
 
     traits = {
       hardware = {
@@ -149,8 +112,9 @@ with lib; {
       };
     };
     swapDevices = [{
-      device = "/dev/disk/by-label/disk-1-swap";
+      device = "/dev/disk/by-partuuid/b1fe4821-e631-494e-bb76-4e9ae272789a";
       size = 16 * 1024;
+      randomEncryption.enable = true;
     }];
     disks.btrfs = {
       enable = true;
