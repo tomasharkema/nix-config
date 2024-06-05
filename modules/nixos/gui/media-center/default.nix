@@ -1,15 +1,10 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
+{ pkgs, lib, config, ... }:
 with lib;
 let
   cfg = config.gui."media-center";
 
-  kodi = pkgs.kodi-wayland.withPackages (
-    pkgs: with pkgs; [
+  kodi = pkgs.kodi-wayland.withPackages (pkgs:
+    with pkgs; [
       kodi
       inputstreamhelper
       inputstream-adaptive
@@ -34,13 +29,9 @@ let
       # pvr-hts
       signals
       iagl
-    ]
-  );
-in
-{
-  options.gui."media-center" = {
-    enable = mkEnableOption "gui.media-center";
-  };
+    ]);
+in {
+  options.gui."media-center" = { enable = mkEnableOption "gui.media-center"; };
 
   config = mkIf cfg.enable {
     system.nixos.tags = [ "media-center" ];
@@ -48,40 +39,45 @@ in
 
     programs.dconf.enable = true;
 
-    services.cockpit = {
-      enable = true;
-      port = mkForce 9091;
-    };
-
     sound = {
       enable = false;
       mediaKeys.enable = true;
     };
 
     security.rtkit.enable = true;
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      # jack.enable = true;
-    };
 
-    services.pipewire.extraConfig.pipewire-pulse."92-tcp" = {
-      context.modules = [
-        {
-          name = "module-native-protocol-tcp";
-          args = { };
-        }
-        {
-          name = "module-zeroconf-publish";
-          args = { };
-        }
-      ];
-      stream.properties = {
-        node.latency = "32/48000";
-        resample.quality = 1;
+    services = {
+      cage = {
+        user = "media";
+        program = "${kodi}/bin/kodi-standalone";
+        enable = true;
+      };
+
+      kmscon = { enable = mkForce false; };
+
+      pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        # If you want to use JACK applications, uncomment this
+        # jack.enable = true;
+        extraConfig.pipewire-pulse."92-tcp" = {
+          context.modules = [
+            {
+              name = "module-native-protocol-tcp";
+              args = { };
+            }
+            {
+              name = "module-zeroconf-publish";
+              args = { };
+            }
+          ];
+          stream.properties = {
+            node.latency = "32/48000";
+            resample.quality = 1;
+          };
+        };
       };
     };
 
@@ -92,25 +88,23 @@ in
       quiet-boot.enable = mkForce false;
     };
 
-    # # services.cage.user = "kodi";
-    # # services.cage.program = "${pkgs.kodi-wayland}/bin/kodi-standalone";
-    # # services.cage.enable = true;
+    systemd = {
+      tmpfiles.rules = [
+        "L /home/media/.kodi/cdm/libwidevinecdm.so - - - - ${pkgs.custom.widevine}/lib/libwidevinecdm.so"
+      ];
 
-    systemd.targets = {
-      sleep.enable = mkForce false;
-      suspend.enable = mkForce false;
-      hibernate.enable = mkForce false;
-      hybrid-sleep.enable = mkForce false;
+      targets = {
+        sleep.enable = mkForce false;
+        suspend.enable = mkForce false;
+        hibernate.enable = mkForce false;
+        hybrid-sleep.enable = mkForce false;
+      };
     };
 
     hardware = {
       opengl = {
         enable = true;
-        extraPackages = with pkgs; [
-          libva
-          vaapiVdpau
-          libvdpau-va-gl
-        ];
+        extraPackages = with pkgs; [ libva vaapiVdpau libvdpau-va-gl ];
         driSupport = true;
       };
     };
@@ -118,8 +112,8 @@ in
     environment.systemPackages = with pkgs; [
       mpv
       mpvc
-      play-with-mpv
 
+      play-with-mpv
       plex-mpv-shim
       open-in-mpv
       celluloid
@@ -127,76 +121,19 @@ in
       kodi-cli
       libcec_platform
       libcec
+
+      pkgs.custom.widevine
     ];
-
-    services.cage = {
-      user = "media";
-      program = "${kodi}/bin/kodi-standalone";
-      enable = true;
-    };
-
-    # services.xserver = {
-    #   enable = true;
-    #   displayManager.autoLogin = {
-    #     enable = true;
-    #     user = "media";
-    #   };
-    #   desktopManager.kodi = {
-    #     enable = true;
-    #     package = pkgs.kodi.withPackages (
-    #       pkgs: with pkgs; [
-    #         inputstreamhelper
-    #         inputstream-adaptive
-    #         inputstream-ffmpegdirect
-    #         inputstream-rtmp
-    #         vfs-libarchive
-    #         vfs-rar
-    #         inputstreamhelper
-    #         inputstream-adaptive
-    #         inputstream-ffmpegdirect
-    #         inputstream-rtmp
-    #         vfs-libarchive
-    #         vfs-rar
-    #         youtube
-    #         netflix
-    #         sendtokodi
-    #       ]
-    #     );
-    #   };
-    # };
-
-    services.kmscon = {
-      enable = mkForce false;
-    };
-
-    # services.cage = {
-    #   user = "media";
-    #   program = "${lib.getExe pkgs.plex-media-player} --fullscreen --tv";
-
-    #   enable = mkDefault true;
-    #   extraArguments = [
-    #     "-d"
-    #     "-m"
-    #     "last"
-    #   ];
-    # };
 
     boot = {
       kernelParams = [ "quiet" ];
-      plymouth = {
-        enable = true;
-      };
+      plymouth = { enable = true; };
     };
 
     users.users.media = {
       isNormalUser = true;
       uid = 1100;
-      extraGroups = [
-        "data"
-        "video"
-        "audio"
-        "input"
-      ];
+      extraGroups = [ "data" "video" "audio" "input" ];
     };
 
     # home-manager = {
