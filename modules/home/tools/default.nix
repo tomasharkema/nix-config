@@ -56,7 +56,6 @@ with pkgs; {
       # usermount
       viddy
       wget
-      zellij
       nix-top
       nixos-anywhere
       lnav
