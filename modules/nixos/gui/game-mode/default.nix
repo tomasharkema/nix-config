@@ -5,7 +5,9 @@ in {
   options.gui.gamemode = { enable = mkEnableOption "gamemode"; };
 
   config = mkIf cfg.enable {
-    # environment.systemPackages = with pkgs; [gnomeExtensions.gamemode-indicator-in-system-settings];
+
+    gui.gnome.extensions =
+      [ pkgs.gnomeExtensions.gamemode-indicator-in-system-settings ];
 
     programs.gamemode = {
       enable = true;

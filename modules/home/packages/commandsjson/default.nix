@@ -24,10 +24,7 @@ in {
       };
     };
     home = {
-      packages = with pkgs;
-        [
-          # gnomeExtensions.command-menu
-        ];
+      # packages = [ pkgs.gnomeExtensions.command-menu ];
 
       file = { ".commands.json".text = "${builtins.toJSON cfg.commands}"; };
     };

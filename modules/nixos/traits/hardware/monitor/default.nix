@@ -19,10 +19,12 @@ with lib.custom; {
     environment.systemPackages = with pkgs; [
       ddcutil
       # xorg.xbacklight
-      gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil
       brightnessctl
     ];
 
+    gui.gnome.extensions = [
+      pkgs.gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil
+    ];
     services.ddccontrol.enable = true;
     hardware.i2c.enable = true;
     # programs.light.enable = true;
