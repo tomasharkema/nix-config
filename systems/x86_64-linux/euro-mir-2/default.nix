@@ -19,8 +19,6 @@ with lib; {
       # calibre
       glxinfo
       inxi
-      pkgs.gnomeExtensions.battery-health-charging
-
       mpv
       mpvc
       play-with-mpv
@@ -31,13 +29,10 @@ with lib; {
       pwvucontrol
     ];
 
-    home-manager.users.tomas.dconf.settings."org/gnome/shell".enabled-extensions =
-      [ "Battery-Health-Charging@maniacx.github.com" ];
-
     gui = {
       enable = true;
       desktop = { enable = true; };
-      gnome.enable = true;
+      gnome = { enable = true; };
       gamemode.enable = true;
       quiet-boot.enable = true;
     };

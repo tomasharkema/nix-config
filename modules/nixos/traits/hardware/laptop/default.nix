@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 with lib;
 with lib.custom;
 let cfg = config.traits.hardware.laptop;
@@ -34,5 +34,7 @@ in {
       hibernate.enable = true;
       hybrid-sleep.enable = true;
     };
+
+    gui.gnome.extensions = [ pkgs.gnomeExtensions.battery-health-charging ];
   };
 }
