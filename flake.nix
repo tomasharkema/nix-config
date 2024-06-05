@@ -194,6 +194,11 @@
       url = "github:tomasharkema/nixos-checkmk";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    poetry2nix = {
+      url = "github:nix-community/poetry2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:

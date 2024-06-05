@@ -164,7 +164,6 @@ in {
       usermount
       viddy
       wget
-      zellij
       nix-top
     ]) ++ (with pkgs.custom; [
       menu
