@@ -70,6 +70,11 @@ let
               [ "noatime" "nodatacow" "nodatasum" "discard=async" ];
             mountpoint = "/.snapshots";
           };
+          "home-snapshots" = mkIf cfg.newSubvolumes {
+            mountOptions =
+              [ "noatime" "nodatacow" "nodatasum" "discard=async" ];
+            mountpoint = "/home/.snapshots";
+          };
           "steam" = mkIf cfg.newSubvolumes {
             mountOptions = [ "noatime" "discard=async" ]
               ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
