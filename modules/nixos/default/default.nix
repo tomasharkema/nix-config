@@ -152,7 +152,6 @@ in {
       lm_sensors
       ncdu
       nfs-utils
-      notify
       openldap
       pciutils
       pv
