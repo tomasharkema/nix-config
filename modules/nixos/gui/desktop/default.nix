@@ -84,6 +84,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        notify-client
         vsce
         vte-gtk4
         qdirstat
