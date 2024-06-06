@@ -981,11 +981,11 @@
         "npmlock2nix": "npmlock2nix"
       },
       "locked": {
-        "lastModified": 1717623471,
-        "narHash": "sha256-1rW8qLKgqvOryMwFsjliQXJcguCeQL/m9aLnWJzHJxA=",
+        "lastModified": 1717689643,
+        "narHash": "sha256-CscbNalwpTAtRBmzhjxk7uGMvKOFkLaVC0F6Q/T+BFA=",
         "owner": "NixOS",
         "repo": "nixos-search",
-        "rev": "039bd5cf0a3d6d35737a5cd78e6d85cedd084dfd",
+        "rev": "2758f7657a8f9ef5ec4f9d15cdf1e2830e6ea870",
         "type": "github"
       },
       "original": {
