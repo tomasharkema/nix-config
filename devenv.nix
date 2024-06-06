@@ -5,6 +5,12 @@ let
   nixos-generate =
     inputs.nixos-generators.packages."${pkgs.system}".nixos-generate;
 
+  _mbufferSend = writeShellScriptBin "_mbufferSend" ''
+    mbuffer -I pegasus:8000 -m 1G | zstd -e - -19 | > pegasus-bak-2.tar.zst
+    ssh media@pegasus.local "tar chf - /home/media | mbuffer -m 100M -O euro-mir-2:8000"
+
+  '';
+
   write-script = writeShellScriptBin "write-script" ''
     set -x
     echo "pv $1 $2"
