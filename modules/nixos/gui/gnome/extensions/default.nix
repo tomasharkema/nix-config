@@ -13,50 +13,53 @@ in {
 
     gui.gnome = {
       extensions = with pkgs; [
-        gnomeExtensions.spotify-tray
-        gnomeExtensions.dash-to-panel
-        gnomeExtensions.executor
-        gnomeExtensions.battery-health-charging
-        gnomeExtensions.app-menu-icon-remove-symbolic
-        gnomeExtensions.pinguxnetlabel
-        gnomeExtensions.window-is-ready-remover
-        gnomeExtensions.wayland-or-x11
+        # gnomeExtensions.custom-command-list
+        # gnomeExtensions.custom-command-toggle
+        # gnomeExtensions.dash-to-dock
+        # gnomeExtensions.fuzzy-app-search
+        # gnomeExtensions.gpu-profile-selector
+        # gnomeExtensions.ip-finder
+        # gnomeExtensions.logo-menu
         # gnomeExtensions.network-interfaces-info
-        gnomeExtensions.appindicator
+        # gnomeExtensions.no-title-bar
         # gnomeExtensions.settingscenter
+        # gnomeExtensions.tophat
+        # gnomeExtensions.vitals
+        gnomeExtensions.another-window-session-manager
         gnomeExtensions.app-hider
+        gnomeExtensions.app-menu-icon-remove-symbolic
+        gnomeExtensions.appindicator
         gnomeExtensions.arc-menu
         gnomeExtensions.blur-my-shell
         gnomeExtensions.clipboard-indicator
-        # gnomeExtensions.dash-to-dock
+        gnomeExtensions.dash-to-panel
+        gnomeExtensions.executor
         gnomeExtensions.extension-list
-        # gnomeExtensions.fuzzy-app-search
         gnomeExtensions.github-actions
-        # gnomeExtensions.gpu-profile-selector
+        gnomeExtensions.guillotine
         gnomeExtensions.hue-lights
-        # gnomeExtensions.ip-finder
         gnomeExtensions.just-perfection
         gnomeExtensions.kerberos-login
-        # gnomeExtensions.logo-menu
         gnomeExtensions.no-overview
+        gnomeExtensions.pinguxnetlabel
+        gnomeExtensions.pip-on-top
+        gnomeExtensions.reboottouefi
         gnomeExtensions.remmina-search-provider
         gnomeExtensions.removable-drive-menu
         gnomeExtensions.search-light
         gnomeExtensions.server-status-indicator
+        gnomeExtensions.spotify-tray
+        gnomeExtensions.systemd-manager
         gnomeExtensions.tailscale-qs
         gnomeExtensions.todotxt
-        # gnomeExtensions.tophat
-        # gnomeExtensions.no-title-bar
-        # gnomeExtensions.vitals
-        gnomeExtensions.pip-on-top
-        gnomeExtensions.systemd-manager
-        gnomeExtensions.another-window-session-manager
+        gnomeExtensions.wayland-or-x11
+        gnomeExtensions.window-is-ready-remover
 
-        # gnomeExtensions.custom-command-toggle
-        # gnomeExtensions.custom-command-list
-        gnomeExtensions.guillotine
-        gnomeExtensions.executor
-        gnomeExtensions.reboottouefi
+        gnomeExtensions.home-assistant-extension
+        gnomeExtensions.ssh-search-provider-reborn
+        gnomeExtensions.prime-helper
+        gnomeExtensions.spotify-controller
+        gnomeExtensions.media-controls
       ];
 
       extensionsUuids = builtins.map (ext: ext.extensionUuid) cfg.extensions;
