@@ -77,7 +77,6 @@ in {
             rsyslog
             tor
             zerotierone
-            # notify
             libcxx
             glibc
             ntfy-sh
@@ -90,7 +89,6 @@ in {
             rsyslog
             tor
             zerotierone
-            # notify
             libcxx
             glibc
             ntfy-sh
