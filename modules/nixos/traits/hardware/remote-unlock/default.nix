@@ -54,7 +54,6 @@ in {
     };
 
     boot = {
-      crashDump.enable = true;
       initrd = {
         # verbose = true;
         compressorArgs = [ "-19" ];
@@ -70,17 +69,17 @@ in {
         };
 
         systemd = {
-          initrdBin = with pkgs; [
-            haveged
-            iproute2
-            ntp
-            rsyslog
-            tor
-            zerotierone
-            libcxx
-            glibc
-            ntfy-sh
-          ];
+          # initrdBin = with pkgs; [
+          #   haveged
+          #   iproute2
+          #   ntp
+          #   rsyslog
+          #   tor
+          #   zerotierone
+          #   libcxx
+          #   glibc
+          #   ntfy-sh
+          # ];
 
           packages = with pkgs; [
             haveged

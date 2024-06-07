@@ -58,7 +58,12 @@ in {
     };
 
     boot = {
+      initrd.systemd.emergencyAccess = true;
+
+      crashDump.enable = true;
+
       hardwareScan = true;
+
       kernel.sysctl."net.ipv4.ip_forward" = 1;
 
       tmp = mkDefault {
@@ -189,8 +194,7 @@ in {
     proxy-services.enable = mkDefault true;
 
     systemd = {
-      enableEmergencyMode = mkDefault false;
-
+      enableEmergencyMode = mkDefault true;
       watchdog = {
         # device = "/dev/watchdog";
         runtimeTime = "10m";
