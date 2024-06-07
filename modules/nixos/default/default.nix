@@ -58,7 +58,12 @@ in {
     };
 
     boot = {
+      # initrd.systemd.emergencyAccess = "abcdefg";
+
+      crashDump.enable = true;
+
       hardwareScan = true;
+
       kernel.sysctl."net.ipv4.ip_forward" = 1;
 
       tmp = mkDefault {
@@ -187,8 +192,6 @@ in {
     };
 
     proxy-services.enable = mkDefault true;
-
-    boot.initrd.systemd.emergencyAccess = "abcdefg";
 
     systemd = {
       enableEmergencyMode = mkDefault true;
