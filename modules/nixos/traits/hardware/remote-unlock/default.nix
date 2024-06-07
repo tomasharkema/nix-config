@@ -70,18 +70,6 @@ in {
         };
 
         systemd = {
-          initrdBin = with pkgs; [
-            haveged
-            iproute2
-            ntp
-            rsyslog
-            tor
-            zerotierone
-            libcxx
-            glibc
-            ntfy-sh
-          ];
-
           packages = with pkgs; [
             haveged
             iproute2
@@ -94,14 +82,22 @@ in {
             ntfy-sh
           ];
 
+          extraBin = {
+            tor = "${pkgs.tor}/bin/tor";
+            rsyslogd = "${pkgs.rsyslog}/sbin/rsyslogd";
+            mkdir = "${pkgs.coreutils}/bin/mkdir";
+            ntfy = "${pkgs.ntfy-sh}/bin/ntfy";
+            curl = "${pkgs.curl}/bin/curl";
+            libc = "${pkgs.musl}/lib/libc.so";
+          };
           storePaths = [
             "${pkgs.tor}/bin/tor"
             "${pkgs.rsyslog}/sbin/rsyslogd"
             "${pkgs.coreutils}/bin/mkdir"
             "${pkgs.ntfy-sh}/bin/ntfy"
+            "${pkgs.curl}/bin/curl"
+            "${pkgs.musl}/lib/libc.so"
           ];
-
-          # emergencyAccess = true;
           enable = true;
 
           users.root.shell = "/bin/systemd-tty-ask-password-agent";
