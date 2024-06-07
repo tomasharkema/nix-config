@@ -11,10 +11,10 @@ with lib; {
 
         postInstall = oldAttrs.postInstall + ''
           substituteInPlace $out/etc/xrdp/xrdp.ini \
+            --replace "use_vsock=false" "use_vsock=true" \
             --replace "port=3389" "port=tcp://0.0.0.0:3389" \
             --replace "security_layer=negotiate" "security_layer=rdp" \
-            --replace "crypt_level=high" "crypt_level=none" #\
-            #--replace "bitmap_compression=true" "bitmap_compression=false"
+            --replace "crypt_level=high" "crypt_level=none"
         '';
         # substituteInPlace $out/etc/xrdp/sesman.ini \
         #   --replace "X11DisplayOffset=10" "X11DisplayOffset=0" 
