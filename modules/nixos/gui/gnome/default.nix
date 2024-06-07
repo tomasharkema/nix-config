@@ -43,8 +43,9 @@ in {
       #   exit 0
       # ''}";
 
-      xrdp.defaultWindowManager = "${pkgs.gnome.gnome-shell}/bin/gnome-shell";
-      # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session --session=gnomexrdp";
+      # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-shell}/bin/gnome-shell";
+      xrdp.defaultWindowManager =
+        "${pkgs.gnome.gnome-session}/bin/gnome-session";
 
       xserver = {
         desktopManager.gnome.enable = true;
