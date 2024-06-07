@@ -67,14 +67,15 @@ in {
     #   tabby.enable = true;
     # };
 
-    environment.variables = {
-      LD_LIBRARY_PATH =
-        "$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib";
-    };
+    # environment.variables = {
+    #   LD_LIBRARY_PATH =
+    #     "$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib";
+    # };
 
     hardware.opengl = {
       enable = true;
       extraPackages = [ pkgs.mesa.drivers ];
+      setLdLibraryPath = true;
     };
 
     programs = {
@@ -149,7 +150,7 @@ in {
         xpipe
         angryipscanner
         telegram-desktop
-        # pkgs.custom.git-butler
+        pkgs.custom.git-butler
       ] ++ (with pkgs.custom; [ zerotier-ui ]);
 
     programs = {

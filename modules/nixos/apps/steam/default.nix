@@ -57,7 +57,6 @@ in {
       steam-run
       adwsteamgtk
       steam-tui
-
     ];
 
     # services.udev.extraRules = ''
@@ -85,6 +84,7 @@ in {
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
+      setLdLibraryPath = true;
     };
   };
 }

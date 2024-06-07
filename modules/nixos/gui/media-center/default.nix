@@ -117,6 +117,7 @@ in {
         enable = true;
         extraPackages = with pkgs; [ libva vaapiVdpau libvdpau-va-gl ];
         driSupport = true;
+        setLdLibraryPath = true;
       };
     };
 

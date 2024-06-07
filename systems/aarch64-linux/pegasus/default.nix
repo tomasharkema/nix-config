@@ -106,8 +106,13 @@ with lib; {
 
       opengl = {
         enable = true;
-        extraPackages = with pkgs; [ vaapiVdpau libvdpau-va-gl ];
+        extraPackages = with pkgs; [
+          vaapiVdpau
+          libvdpau-va-gl
+          pkgs.mesa.drivers
+        ];
         driSupport = true;
+        setLdLibraryPath = true;
       };
 
       raspberry-pi."4" = {

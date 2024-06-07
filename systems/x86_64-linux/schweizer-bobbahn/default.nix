@@ -85,6 +85,7 @@ with lib; {
         driSupport = true;
         driSupport32Bit = true;
         extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
+        setLdLibraryPath = true;
       };
     };
   };

@@ -103,15 +103,15 @@ in with lib; {
         #   fi
         #   ln -sfn /etc/cachix.dhall $HOME/.config/cachix/cachix.dhall
         # '';
-        userSymlinks-notify = mkIf osConfig.gui.enable ''
-          if [ ! -d "$HOME/.config/notify" ]; then
-            mkdir $HOME/.config/notify
-          fi
-          ln -sfn "${osConfig.age.secrets.notify.path}" ~/.config/notify/provider-config.yaml
-        '';
+        # userSymlinks-notify = mkIf osConfig.gui.enable ''
+        #   if [ ! -d "$HOME/.config/notify" ]; then
+        #     mkdir $HOME/.config/notify
+        #   fi
+        #   ln -sfn "${osConfig.age.secrets.notify.path}" ~/.config/notify/provider-config.yaml
+        # '';
       };
 
-      stateVersion = "23.11";
+      stateVersion = "24.05";
 
       # (import ./packages/common.nix {inherit pkgs inputs lib;})
       # ++
@@ -161,6 +161,8 @@ in with lib; {
         trayscale
         pkgs.custom.zerotier-ui
       ];
+
+    services.status-notifier-watcher.enable = true;
 
     programs = {
       home-manager.enable = true;
@@ -290,18 +292,32 @@ in with lib; {
           bindkey -M emacs -s '^A' 'menu^M'
           bindkey -M vicmd -s '^A' 'menu^M'
           bindkey -M viins -s '^A' 'menu^M'
+
+          zstyle ':notify:*' enable-on-ssh yes
         '';
 
-        plugins = [{
-          name = "zsh-nix-shell";
-          file = "nix-shell.plugin.zsh";
-          src = pkgs.fetchFromGitHub {
-            owner = "chisui";
-            repo = "zsh-nix-shell";
-            rev = "v0.4.0";
-            sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
-          };
-        }];
+        plugins = [
+          {
+            name = "zsh-nix-shell";
+            file = "nix-shell.plugin.zsh";
+            src = pkgs.fetchFromGitHub {
+              owner = "chisui";
+              repo = "zsh-nix-shell";
+              rev = "v0.4.0";
+              sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
+            };
+          }
+          {
+            name = "zsh-notify";
+            file = "notify.plugin.zsh";
+            src = pkgs.fetchFromGitHub {
+              owner = "marzocchi";
+              repo = "zsh-notify";
+              rev = "v1.0";
+              sha256 = "d0MD3D4xiYVhMIjAW4npdtwHSobq6yEqyeSbOPq3aQM=";
+            };
+          }
+        ];
 
         # initExtraFirst = ''
         #   source "${iterm}";
@@ -397,30 +413,29 @@ in with lib; {
           prompt.theme = null;
         };
 
-        zplug = {
-          enable = true;
-          plugins = [{
-            name = "marzocchi/zsh-notify";
-          }
-          #     # {
-          #     #   name = "tysonwolker/iterm-tab-colors";
-          #     #   tags = ["defer:2"];
-          #     # }
-          #     {
-          #       name = "mafredri/zsh-async";
-          #       # tags = ["defer:2"];
-          #     }
-          #     {
-          #       name = "MichaelAquilina/zsh-you-should-use";
-          #       tags = ["defer:2"];
-          #     }
-          #     {
-          #       name = "unixorn/1password-op.plugin.zsh";
-          #       tags = ["defer:2"];
-          #     }
-          #     # {name = "mrjohannchang/zsh-interactive-cd";}
-            ];
-        };
+        # zplug = {
+        # enable = true;
+        # plugins = [
+        # { name = "marzocchi/zsh-notify"; }
+        #     # {
+        #     #   name = "tysonwolker/iterm-tab-colors";
+        #     #   tags = ["defer:2"];
+        #     # }
+        #     {
+        #       name = "mafredri/zsh-async";
+        #       # tags = ["defer:2"];
+        #     }
+        #     {
+        #       name = "MichaelAquilina/zsh-you-should-use";
+        #       tags = ["defer:2"];
+        #     }
+        #     {
+        #       name = "unixorn/1password-op.plugin.zsh";
+        #       tags = ["defer:2"];
+        #     }
+        #     # {name = "mrjohannchang/zsh-interactive-cd";}
+        # ];
+        # };
 
         oh-my-zsh = {
           enable = true;
@@ -439,6 +454,7 @@ in with lib; {
             "man"
             "mix"
             "nmap"
+            "notify"
             "sudo"
             "systemd"
             "thefuck"

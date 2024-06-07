@@ -51,7 +51,9 @@ with lib; {
       };
       # fancontrol.enable = true;
       opengl = {
+        setLdLibraryPath = true;
         extraPackages = with pkgs; [
+          pkgs.mesa.drivers
           vaapiIntel
           libvdpau-va-gl
           vaapiVdpau

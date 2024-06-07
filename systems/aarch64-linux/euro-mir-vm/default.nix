@@ -82,7 +82,7 @@ with lib; {
     hardware.opengl = {
       enable = true;
       driSupport = true;
-      #   # driSupport32Bit = true;
+      setLdLibraryPath = true;
     };
 
     zramSwap.enable = false;
