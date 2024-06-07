@@ -54,7 +54,6 @@ in {
     };
 
     boot = {
-      crashDump.enable = true;
       initrd = {
         # verbose = true;
         compressorArgs = [ "-19" ];

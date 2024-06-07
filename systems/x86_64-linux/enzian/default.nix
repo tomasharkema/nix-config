@@ -33,8 +33,6 @@ with lib; {
     # resilio.root = "/opt/media/resilio";
     # resilio.enable = mkForce false;
 
-    systemd.enableEmergencyMode = false;
-
     services.beesd.filesystems = {
       root = {
         spec = "UUID=4fb99410-225f-4c6a-a647-2cae35f879f0";

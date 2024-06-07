@@ -20,7 +20,7 @@ in {
         #   pkgs.custom.plymouth-progress
         # ];
       };
-      loader.timeout = lib.mkDefault 0;
+      loader.timeout = mkDefault 0;
       kernelParams = [
         "quiet"
         "loglevel=3"
@@ -29,10 +29,10 @@ in {
         "rd.udev.log_level=3"
         "vt.global_cursor_default=0"
       ];
-      consoleLogLevel = lib.mkDefault 0;
+      consoleLogLevel = mkDefault 0;
       initrd = {
-        systemd.enable = lib.mkDefault true;
-        verbose = lib.mkDefault false;
+        systemd.enable = mkDefault true;
+        verbose = mkDefault false;
       };
     };
   };
