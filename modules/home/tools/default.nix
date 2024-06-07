@@ -44,7 +44,7 @@ with pkgs; {
       # lm_sensors
       # ncdu
       # nfs-utils
-      notify
+
       openldap
       # pciutils
       pv

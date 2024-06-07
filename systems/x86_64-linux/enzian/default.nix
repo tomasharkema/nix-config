@@ -1,18 +1,10 @@
-{
-  modulesPath,
-  lib,
-  inputs,
-  pkgs,
-  format,
-  ...
-}:
-with lib;
-{
+{ modulesPath, lib, inputs, pkgs, format, ... }:
+with lib; {
   imports = with inputs; [
-    (modulesPath + "/installer/scan/not-detected.nix")
+    # (modulesPath + "/installer/scan/not-detected.nix")
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
-    ./samba.nix
+    # ./samba.nix
   ];
 
   config = {
@@ -41,17 +33,12 @@ with lib;
     # resilio.root = "/opt/media/resilio";
     # resilio.enable = mkForce false;
 
-    systemd.enableEmergencyMode = false;
-
     services.beesd.filesystems = {
       root = {
         spec = "UUID=4fb99410-225f-4c6a-a647-2cae35f879f0";
         hashTableSizeMB = 2048;
         verbosity = "crit";
-        extraOptions = [
-          "--loadavg-target"
-          "2.0"
-        ];
+        extraOptions = [ "--loadavg-target" "2.0" ];
       };
     };
 
@@ -75,14 +62,14 @@ with lib;
         nvidia.enable = true;
         disable-sleep.enable = true;
 
-        nfs = {
-          enable = true;
+        # nfs = {
+        #   enable = true;
 
-          machines = {
-            silver-star.enable = true;
-            dione.enable = true;
-          };
-        };
+        #   machines = {
+        #     silver-star.enable = true;
+        #     dione.enable = true;
+        #   };
+        # };
       };
     };
 
@@ -91,9 +78,7 @@ with lib;
     networking = {
       hostName = "enzian";
       hostId = "529fd7fa";
-      firewall = {
-        enable = false;
-      };
+      firewall = { enable = false; };
       # useDHCP = lib.mkDefault false;
       interfaces."enp4s0" = {
         # useDHCP = lib.mkDefault true;
@@ -118,31 +103,19 @@ with lib;
 
       kernel.sysctl."kernel.sysrq" = 1;
       initrd = {
-        availableKernelModules = [
-          "xhci_pci"
-          "ahci"
-          "usbhid"
-          "usb_storage"
-          "sd_mod"
-        ];
-        kernelModules = [
-          "kvm-intel"
-          "uinput"
-          "nvme"
-        ];
+        availableKernelModules =
+          [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+        kernelModules = [ "kvm-intel" "uinput" "nvme" ];
       };
-      kernelModules = [
-        "kvm-intel"
-        "uinput"
-        "nvme"
-      ];
+      kernelModules = [ "kvm-intel" "uinput" "nvme" ];
       extraModulePackages = [ ];
     };
 
     hardware = {
       cpu.intel.updateMicrocode = true;
       bluetooth.enable = true;
-      nvidia.modesetting.enable = false;
+      # nvidia.modesetting.enable = false;
+      nvidia.nvidiaPersistenced = true;
     };
 
     services = {

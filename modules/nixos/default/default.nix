@@ -58,7 +58,12 @@ in {
     };
 
     boot = {
+      # initrd.systemd.emergencyAccess = "abcdefg";
+
+      crashDump.enable = true;
+
       hardwareScan = true;
+
       kernel.sysctl."net.ipv4.ip_forward" = 1;
 
       tmp = mkDefault {
@@ -152,7 +157,6 @@ in {
       lm_sensors
       ncdu
       nfs-utils
-      notify
       openldap
       pciutils
       pv
@@ -190,7 +194,7 @@ in {
     proxy-services.enable = mkDefault true;
 
     systemd = {
-      enableEmergencyMode = mkDefault false;
+      enableEmergencyMode = mkDefault true;
 
       watchdog = {
         # device = "/dev/watchdog";

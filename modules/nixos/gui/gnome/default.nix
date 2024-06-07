@@ -1,9 +1,16 @@
-{ lib, pkgs, config, inputs, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
 with lib;
 let
   cfg = config.gui.gnome;
-  # pkgsUnstable = inputs.unstable.legacyPackages."${pkgs.system}";
-in {
+in
+# pkgsUnstable = inputs.unstable.legacyPackages."${pkgs.system}";
+{
   options.gui.gnome = {
     enable = mkEnableOption "enable gnome desktop environment";
   };
@@ -43,8 +50,7 @@ in {
       #   exit 0
       # ''}";
 
-      xrdp.defaultWindowManager = "${pkgs.gnome.gnome-shell}/bin/gnome-session";
-      # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session --session=gnomexrdp";
+      xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
 
       xserver = {
         desktopManager.gnome.enable = true;
@@ -83,7 +89,9 @@ in {
       xserver.libinput.enable = true;
     };
 
-    xdg.autostart = { enable = true; };
+    xdg.autostart = {
+      enable = true;
+    };
     services.pipewire.extraConfig.pipewire-pulse."92-tcp" = {
       context.modules = [
         {
@@ -100,50 +108,53 @@ in {
         resample.quality = 1;
       };
     };
-    environment.systemPackages = (with pkgs; [
-      #compiz
-      gtop
-      wike
-      libgtop
-    ]) ++ (with pkgs; [
-      clutter
-      clutter-gtk
-      gjs
-      # gnome.adwaita-icon-theme
-      gnome-firmware
-      gnome-menus
-      gnome.dconf-editor
-      gnome.gnome-applets
-      gnome.gnome-autoar
-      gnome.gnome-clocks
-      gnome.gnome-control-center
-      # gnome.gnome-keyring
-      gnome.gnome-nettool
-      gnome.gnome-online-miners
-      # gnome.gnome-packagekit
-      gnome.gnome-power-manager
-      gnome.gnome-session
-      gnome.gnome-session-ctl
-      gnome.gnome-settings-daemon
-      gnome.gnome-shell-extensions
-      gnome.gnome-themes-extra
-      gnome.gnome-tweaks
-      gnome.gnome-user-share
-      # gnome.libgnome-keyring
-      gnome.seahorse
-      gnome.zenity
-    ]);
+    environment.systemPackages =
+      (with pkgs; [
+        #compiz
+        gtop
+        wike
+        libgtop
+      ])
+      ++ (with pkgs; [
+        clutter
+        clutter-gtk
+        gjs
+        # gnome.adwaita-icon-theme
+        gnome-firmware
+        gnome-menus
+        gnome.dconf-editor
+        gnome.gnome-applets
+        gnome.gnome-autoar
+        gnome.gnome-clocks
+        gnome.gnome-control-center
+        # gnome.gnome-keyring
+        gnome.gnome-nettool
+        gnome.gnome-online-miners
+        # gnome.gnome-packagekit
+        gnome.gnome-power-manager
+        gnome.gnome-session
+        gnome.gnome-session-ctl
+        gnome.gnome-settings-daemon
+        gnome.gnome-shell-extensions
+        gnome.gnome-themes-extra
+        gnome.gnome-tweaks
+        gnome.gnome-user-share
+        # gnome.libgnome-keyring
+        gnome.seahorse
+        gnome.zenity
+      ]);
 
     # services.synergy.client = {
     #   enable = true;
     #   serverAddress = "euro-mir";
     # };
 
-    environment.gnome.excludePackages = (with pkgs;
-      [
+    environment.gnome.excludePackages =
+      (with pkgs; [
         # gnome-photos
         gnome-tour
-      ]) ++ (with pkgs.gnome; [
+      ])
+      ++ (with pkgs.gnome; [
         aisleriot
         four-in-a-row
         five-or-more
