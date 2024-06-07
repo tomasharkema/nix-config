@@ -108,6 +108,7 @@ in
         resample.quality = 1;
       };
     };
+    
     environment.systemPackages =
       (with pkgs; [
         #compiz
