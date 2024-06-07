@@ -84,6 +84,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        xdotool
         vsce
         vte-gtk4
         qdirstat
