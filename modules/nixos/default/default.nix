@@ -188,8 +188,10 @@ in {
 
     proxy-services.enable = mkDefault true;
 
+    boot.initrd.systemd.emergencyAccess = "abcdefg";
+
     systemd = {
-      enableEmergencyMode = mkDefault false;
+      enableEmergencyMode = mkDefault true;
 
       watchdog = {
         # device = "/dev/watchdog";
