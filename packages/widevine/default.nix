@@ -32,18 +32,21 @@ else
 
     src = fetchurl {
       url =
-        "http://archive.raspberrypi.org/debian/pool/main/w/widevine/libwidevinecdm0_${version}_arm64.deb";
-      hash = "sha256-DoeCOiKCRvTxx8kKxIxfiI0GB9AorA/9F/5hDVSPW7M=";
+        "https://archive.raspberrypi.org/debian/pool/main/w/widevine/widevine_${version}.tar.xz";
+      hash = "sha256-cqeV0Od3ErH/JR30UybygryYW80HapKR/64nuF9JVEM=";
     };
 
-    nativeBuildInputs = [ tree dpkg ];
+    nativeBuildInputs = [
+      # tree
+      # dpkg
+    ];
 
     installPhase = ''
       runHook preInstall
 
-      install -vD ./opt/WidevineCdm/gmp-widevinecdm/latest/manifest.json $out/share/google/chrome/WidevineCdm/manifest.json
-      install -vD ./opt/WidevineCdm/gmp-widevinecdm/latest/libwidevinecdm.so $out/share/google/chrome/WidevineCdm/_platform_specific/linux_x64/libwidevinecdm.so
-      install -vD ./opt/WidevineCdm/gmp-widevinecdm/latest/libwidevinecdm.so $out/lib/libwidevinecdm.so
+      install -vD ./opt/WidevineCdm/_platform_specific/linux_arm64/manifest.json $out/share/google/chrome/WidevineCdm/manifest.json
+      install -vD ./opt/WidevineCdm/_platform_specific/linux_arm64/libwidevinecdm.so $out/share/google/chrome/WidevineCdm/_platform_specific/linux_x64/libwidevinecdm.so
+      install -vD ./opt/WidevineCdm/_platform_specific/linux_arm64/libwidevinecdm.so $out/lib/libwidevinecdm.so
 
       runHook postInstall
     '';

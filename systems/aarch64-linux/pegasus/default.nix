@@ -97,7 +97,7 @@ with lib; {
     };
 
     proxy-services = { enable = false; };
-    systemd.enableEmergencyMode = true;
+
     hardware = {
       enableRedistributableFirmware = true;
       i2c.enable = true;

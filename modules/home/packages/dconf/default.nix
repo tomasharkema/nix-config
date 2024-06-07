@@ -83,9 +83,9 @@ with lib; {
             panel-sizes = ''{"0":48}'';
             status-icon-padding = -1;
             stockgs-keep-dash = false;
-            stockgs-keep-top-panel = false;
             tray-padding = 5;
             window-preview-title-position = "TOP";
+            stockgs-keep-top-panel = true;
             panel-element-positions = builtins.toJSON {
               "0" = [
                 {

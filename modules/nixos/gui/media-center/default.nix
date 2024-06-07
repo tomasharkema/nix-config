@@ -89,8 +89,9 @@ in {
     };
 
     systemd = {
-      tmpfiles.rules = [
-        "L /home/media/.kodi/cdm/libwidevinecdm.so - - - - ${pkgs.custom.widevine}/lib/libwidevinecdm.so"
+      user.tmpfiles.users.media.rules = [
+        #   "d /home/media/.kodi/cdm 0777 media users -"
+        "L+ /home/media/.kodi/cdm/libwidevinecdm.so - - - - ${pkgs.custom.widevine}/lib/libwidevinecdm.so"
       ];
 
       targets = {
@@ -99,6 +100,16 @@ in {
         hibernate.enable = mkForce false;
         hybrid-sleep.enable = mkForce false;
       };
+    };
+
+    programs.nix-ld = {
+      enable = true;
+      libraries = [
+        pkgs.stdenv.cc.cc
+        pkgs.openssl
+        pkgs.glib
+        # ...
+      ];
     };
 
     hardware = {

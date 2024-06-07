@@ -84,6 +84,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        xdotool
         notify-client
         vsce
         vte-gtk4
