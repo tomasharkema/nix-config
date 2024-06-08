@@ -90,7 +90,6 @@ in {
         vte-gtk4
         qdirstat
         xdiskusage
-        davinci-resolve
         pwvucontrol
         xdiskusage
         libGL
