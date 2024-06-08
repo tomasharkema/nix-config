@@ -90,7 +90,7 @@ in {
         vte-gtk4
         qdirstat
         xdiskusage
-        # davinci-resolve
+        davinci-resolve
         pwvucontrol
         xdiskusage
         libGL
@@ -111,7 +111,7 @@ in {
         # transmission
         # keybase
         powertop
-        # tabby
+        tabby
         nix-software-center
         # nixos-conf-editor
 
