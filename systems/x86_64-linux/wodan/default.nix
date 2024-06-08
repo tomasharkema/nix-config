@@ -10,7 +10,11 @@ with lib; {
   config = {
     # btrfs balance -dconvert=raid0 -mconvert=raid1 /home
 
-    environment.systemPackages = with pkgs; [ ntfs2btrfs glxinfo ];
+    environment.systemPackages = with pkgs; [
+      davinci-resolve
+      ntfs2btrfs
+      glxinfo
+    ];
 
     time = {
       # hardwareClockInLocalTime = true;
