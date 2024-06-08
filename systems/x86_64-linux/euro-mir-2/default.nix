@@ -15,6 +15,7 @@ with lib; {
     };
 
     environment.systemPackages = with pkgs; [
+      davinci-resolve
       bolt
       # calibre
       glxinfo
