@@ -98,6 +98,8 @@ with lib; {
     #   targetUser = "root";
     # };
 
+    services.factorio.enable = true;
+
     boot = {
       binfmt.emulatedSystems = [ "aarch64-linux" ];
 

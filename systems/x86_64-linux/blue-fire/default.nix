@@ -169,6 +169,8 @@ in {
 
     networking.firewall.allowedTCPPorts = [ 2049 ];
 
+    services.factorio.enable = true;
+
     fileSystems = {
       # "/export/media" = {
       #   device = "/media";
