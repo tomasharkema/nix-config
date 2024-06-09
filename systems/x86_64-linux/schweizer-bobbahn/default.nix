@@ -24,6 +24,8 @@ with lib; {
       usbip.enable = true;
       remote-builders.enable = true;
       netdata.enable = true;
+      unified-remote.enable = true;
+      cec.enable = true;
     };
 
     environment.systemPackages = with pkgs; [ intel-gpu-tools ];

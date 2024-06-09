@@ -72,7 +72,10 @@ with lib; {
 
     apps = {
       # spotifyd.enable = true;
-      cec.enable = true;
+      cec = {
+        enable = true;
+        raspberry = true;
+      };
       unified-remote.enable = true;
       remote-builders.enable = true;
       netdata.enable = true;

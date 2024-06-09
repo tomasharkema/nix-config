@@ -2,16 +2,16 @@
 with lib;
 let cfg = config.apps.cec;
 in {
-  options.apps.cec = { enable = mkEnableOption "cec"; };
+  options.apps.cec = {
+    enable = mkEnableOption "cec";
+    raspberry = mkEnableOption "raspberry";
+  };
 
-  config = mkIf (cfg.enable && false) {
-    # an overlay to enable raspberrypi support in libcec, and thus cec-client
+  config = mkIf cfg.enable {
+
     nixpkgs.overlays = [
-      # nixos-22.05
-      # (self: super: { libcec = super.libcec.override { inherit (self) libraspberrypi; }; })
-      # nixos-22.11
       (self: super: {
-        libcec = super.libcec.override { withLibraspberrypi = true; };
+        libcec = super.libcec.override { withLibraspberrypi = cfg.raspberry; };
       })
     ];
 
