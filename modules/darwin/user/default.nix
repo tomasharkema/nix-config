@@ -38,11 +38,7 @@ in {
       # devtodo
       devdash
     ]) ++ (with pkgs.custom; [ launchcontrol ztui maclaunch tailscale-tui ])
-      ++ (with pkgs.darwin; [
-        lsusb
-
-        linux-builder
-      ]);
+      ++ (with pkgs.darwin; [ lsusb ]);
     security.pam.enableSudoTouchIdAuth = true;
   };
 }
