@@ -64,6 +64,7 @@ in {
         enable = true;
         ephemeral = true;
         maxJobs = 4;
+        systems = [ "x86_64-linux" "aarch64-linux" ];
         config = {
           virtualisation = {
             # rosetta.enable = true;

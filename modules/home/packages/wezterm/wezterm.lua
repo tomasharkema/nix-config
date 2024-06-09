@@ -27,6 +27,8 @@ config.keys = {{
     action = wezterm.action.ShowLauncher
 }}
 
+config.enable_wayland = true
+
 config.launch_menu = {{
     args = {'menu'}
 }, {
