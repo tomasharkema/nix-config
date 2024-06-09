@@ -91,24 +91,24 @@
     # programs.fzf.fuzzyCompletion = true;
 
     nix = {
-      buildMachines = [
-        {
-          hostName = "builder@blue-fire";
-          systems = [ "aarch64-linux" "x86_64-linux" ];
-          maxJobs = 4;
-          supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
-          speedFactor = 70;
-          protocol = "ssh-ng";
-        }
-        {
-          hostName = "builder@wodan";
-          systems = [ "aarch64-linux" "x86_64-linux" ];
-          maxJobs = 4;
-          supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
-          speedFactor = 100;
-          protocol = "ssh-ng";
-        }
-      ];
+      # buildMachines = [
+      # {
+      #   hostName = "builder@blue-fire";
+      #   systems = [ "aarch64-linux" "x86_64-linux" ];
+      #   maxJobs = 4;
+      #   supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+      #   speedFactor = 70;
+      #   protocol = "ssh-ng";
+      # }
+      # {
+      #   hostName = "builder@wodan";
+      #   systems = [ "aarch64-linux" "x86_64-linux" ];
+      #   maxJobs = 4;
+      #   supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+      #   speedFactor = 100;
+      #   protocol = "ssh-ng";
+      # }
+      # ];
 
       distributedBuilds = true;
 
