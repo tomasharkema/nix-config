@@ -14,7 +14,6 @@ let
     };
 
   settingsFile = pkgs.writeText "settings.json" (builtins.toJSON cfg.settings);
-
 in {
 
   options.apps.unified-remote = {
@@ -46,34 +45,37 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = [ pkgs.custom.unified-remote ];
 
-    systemd.services."unified-remote" = {
-      wantedBy = [ "multi-user.target" ];
-      wants = [ "network-online.target" ];
-      after = [ "network-online.target" ];
-      description = "unified-remote";
-      # environment.SHELL = "/bin/sh";
+    systemd = {
+      tmpfiles.rules = [
+        "d ${home}/.urserver 0777 root root -"
+        "L+ ${home}/.urserver/urserver.config - - - - ${settingsFile}"
+      ];
+      services."unified-remote" = {
+        wantedBy = [ "multi-user.target" ];
+        wants = [ "network-online.target" ];
+        after = [ "network-online.target" ];
+        description = "unified-remote";
+        # environment.SHELL = "/bin/sh";
 
-      path = [ cfg.package ];
+        path = [ cfg.package ];
 
-      environment = { HOME = home; };
+        environment = { HOME = home; };
 
-      preStart = ''
-        cp "${settingsFile}" "${home}/.urserver/urserver.config"
-      '';
-      script = ''
-        ${cfg.package}/bin/urserver --remotes=${cfg.package}/opt/urserver/remotes --pidfile=${cfg.pid} --daemon
-      '';
+        script = ''
+          ${cfg.package}/bin/urserver --remotes=${cfg.package}/opt/urserver/remotes --pidfile=${cfg.pid} --daemon
+        '';
 
-      serviceConfig = {
-        PIDFile = "${cfg.pid}";
+        serviceConfig = {
+          PIDFile = "${cfg.pid}";
 
-        Type = "simple";
+          Type = "simple";
 
-        Restart = "always";
-        RestartSec = 12;
-        # DynamicUser = true;
-        # CacheDirectory = "spotifyd";
-        # SupplementaryGroups = [ "audio" ];
+          Restart = "always";
+          RestartSec = 12;
+          # DynamicUser = true;
+          # CacheDirectory = "spotifyd";
+          # SupplementaryGroups = [ "audio" ];
+        };
       };
     };
   };
