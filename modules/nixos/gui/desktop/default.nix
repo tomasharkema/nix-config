@@ -84,6 +84,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        tremotesf
         xdotool
         notify-client
         vsce
@@ -116,9 +117,9 @@ in {
 
         xdg-utils
 
-        # handbrake
+        handbrake
         meteo
-        # transmission-remote-gtk
+        transmission-remote-gtk
         github-desktop
 
         gtk-engine-murrine
