@@ -98,7 +98,10 @@ with lib; {
     #   targetUser = "root";
     # };
 
-    services.factorio.enable = true;
+    services.factorio = {
+      enable = true;
+      lan = true;
+    };
 
     boot = {
       binfmt.emulatedSystems = [ "aarch64-linux" ];
