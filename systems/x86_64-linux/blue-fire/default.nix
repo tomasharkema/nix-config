@@ -154,7 +154,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       # ipmicfg
-      # ipmiview
+      ipmiview
       # ipmiutil
       # vagrant
       ipmitool
@@ -163,7 +163,7 @@ in {
       freeipmi
       ipmicfg
       ipmiutil
-
+      tremotesf
       # icingaweb2
     ];
 

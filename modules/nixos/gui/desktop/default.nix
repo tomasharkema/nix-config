@@ -84,6 +84,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        tremotesf
         xdotool
         notify-client
         vsce
