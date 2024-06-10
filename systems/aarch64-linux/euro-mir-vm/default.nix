@@ -88,7 +88,7 @@ with lib; {
     zramSwap.enable = false;
 
     services = mkForce {
-      kmscon.enable = false;
+      #      kmscon.enable = false;
       upower.enable = false;
       auto-cpufreq.enable = false;
       monit.enable = false;
