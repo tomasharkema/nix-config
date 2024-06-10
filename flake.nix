@@ -7,13 +7,27 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    systems.url = "github:nix-systems/default";
+
+    darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
     };
 
-    darwin = {
-      url = "github:LnL7/nix-darwin";
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs = { systems.follows = "systems"; };
+    };
+
+    flake-parts = { url = "github:hercules-ci/flake-parts"; };
+
+    crane = {
+      url = "github:ipetkov/crane";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -32,23 +46,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # colmena = {
-    #   url = "github:zhaofengli/colmena";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     nixos-anywhere = {
       url = "github:nix-community/nixos-anywhere";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.disko.follows = "disko";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        disko.follows = "disko";
+        flake-parts.follows = "flake-parts";
+      };
     };
 
-    flake-utils.url = "github:numtide/flake-utils";
-
-    vscode-server = {
-      url = "github:nix-community/nixos-vscode-server";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # vscode-server = {
+    #   url = "github:nix-community/nixos-vscode-server";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -56,6 +66,8 @@
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
         nix-darwin.follows = "darwin";
+        flake-compat.follows = "flake-compat";
+        flake-parts.follows = "flake-parts";
       };
     };
 
@@ -64,7 +76,8 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
-        # nix-darwin.follows = "darwin";
+        darwin.follows = "darwin";
+        systems.follows = "systems";
       };
     };
 
@@ -72,8 +85,7 @@
       url = "github:aciceri/agenix-shell";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        #TODO
-        # flake-parts.follows = "flake-parts";
+        flake-parts.follows = "flake-parts";
       };
     };
 
@@ -85,7 +97,10 @@
 
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
     };
 
     # cachix-deploy-flake = {
@@ -117,12 +132,19 @@
         nixpkgs-stable.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
         flake-compat.follows = "flake-compat";
+        crane.follows = "crane";
       };
     };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        crane.follows = "crane";
+        flake-parts.follows = "flake-parts";
+        flake-compat.follows = "flake-compat";
+        flake-utils.follows = "flake-utils";
+      };
     };
 
     # hydra-check = {
@@ -137,12 +159,18 @@
 
     snowfall-lib = {
       url = "github:snowfallorg/lib";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "flake-compat";
+      };
     };
 
     snowfall-flake = {
       url = "github:snowfallorg/flake";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        snowfall-lib.follows = "snowfall-lib";
+      };
     };
 
     # cachix = { };
@@ -168,7 +196,10 @@
 
     nixos-search = {
       url = "github:NixOS/nixos-search";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
     };
 
     # command-center = {
@@ -197,12 +228,14 @@
 
     poetry2nix = {
       url = "github:nix-community/poetry2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
     };
   };
 
-  outputs =
-    inputs:
+  outputs = inputs:
     let
       lib = inputs.snowfall-lib.mkLib {
         inherit inputs;
@@ -217,8 +250,7 @@
           namespace = "custom";
         };
       };
-    in
-    lib.mkFlake {
+    in lib.mkFlake {
       inherit inputs;
 
       src = ./.;
@@ -259,12 +291,10 @@
         nixos-checkmk.overlays.default
       ];
 
-      system.modules.darwin = with inputs; [
-        {
-          system.nixos.tags = [ "snowfall" ];
-          system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
-        }
-      ];
+      system.modules.darwin = with inputs; [{
+        system.nixos.tags = [ "snowfall" ];
+        system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
+      }];
 
       homes.modules = with inputs; [
         #     catppuccin.homeManagerModules.catppuccin
@@ -296,11 +326,9 @@
         {
           config = {
             system.stateVersion = "24.05";
-            system.nixos.tags = [
-              "snowfall"
-              (self.shortRev or "dirty")
-            ];
-            system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
+            system.nixos.tags = [ "snowfall" (self.shortRev or "dirty") ];
+            system.configurationRevision =
+              lib.mkForce (self.shortRev or "dirty");
             nix = {
               registry.nixpkgs.flake = inputs.nixpkgs;
               registry.home-manager.flake = inputs.home-manager;
@@ -346,71 +374,56 @@
       nixosConfigurations = {
         installer-x86 = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = {
-            inherit inputs;
-          };
+          specialArgs = { inherit inputs; };
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
             ./installer.nix
-            (
-              { lib, pkgs, ... }:
-              {
-                boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
-              }
-            )
+            ({ lib, pkgs, ... }: {
+              boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+            })
           ];
         };
 
         installer-arm = inputs.nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = {
-            inherit inputs;
-          };
+          specialArgs = { inherit inputs; };
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
             ./installer.nix
-            (
-              { lib, pkgs, ... }:
-              {
-                boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
-              }
-            )
+            ({ lib, pkgs, ... }: {
+              boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+            })
           ];
         };
         installer-arm-img = inputs.nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = {
-            inherit inputs;
-          };
+          specialArgs = { inherit inputs; };
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
             ./installer.nix
-            (
-              { lib, pkgs, ... }:
-              {
-                boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
-              }
-            )
+            ({ lib, pkgs, ... }: {
+              boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+            })
           ];
         };
       };
 
-      servers =
-        with inputs;
-        let
-          names = builtins.attrNames self.nixosConfigurations;
-        in
-        builtins.filter (
-          name: self.nixosConfigurations."${name}".config.networking.hostName != "nixos"
-        ) names;
+      servers = with inputs;
+        let names = builtins.attrNames self.nixosConfigurations;
+        in builtins.filter (name:
+          self.nixosConfigurations."${name}".config.networking.hostName
+          != "nixos") names;
 
       images = with inputs; rec {
         # baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
         # pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
-        installer-x86 = self.nixosConfigurations.installer-x86.config.system.build.isoImage;
-        installer-arm = self.nixosConfigurations.installer-arm.config.system.build.isoImage;
+        installer-x86 =
+          self.nixosConfigurations.installer-x86.config.system.build.isoImage;
+        installer-arm =
+          self.nixosConfigurations.installer-arm.config.system.build.isoImage;
 
-        installer-arm-img = self.nixosConfigurations.installer-arm-img.config.system.build.sdImage;
+        installer-arm-img =
+          self.nixosConfigurations.installer-arm-img.config.system.build.sdImage;
 
         # services = let
         #   config = "pegasus";
@@ -431,8 +444,7 @@
       };
 
       # formatter = inputs.nixpkgs.nixfmt;
-      outputs-builder =
-        channels:
+      outputs-builder = channels:
         # let
         #   cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
         # in
@@ -470,10 +482,7 @@
     extra-experimental-features = "nix-command flakes cgroups";
     distributedBuilds = true;
     builders-use-substitutes = true;
-    trusted-users = [
-      "root"
-      "tomas"
-    ];
+    trusted-users = [ "root" "tomas" ];
     # netrc-file = "/etc/nix/netrc";
 
     # trustedBinaryCaches = ["https://cache.nixos.org"];

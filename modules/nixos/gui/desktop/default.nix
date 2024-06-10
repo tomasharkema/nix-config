@@ -95,7 +95,6 @@ in {
         xdiskusage
         libGL
         libGLU
-        bottles
         trayscale
         grsync
         caffeine-ng
@@ -150,6 +149,7 @@ in {
         angryipscanner
         telegram-desktop
         # pkgs.custom.git-butler
+        bottles
       ] ++ (with pkgs.custom; [ zerotier-ui ]);
 
     programs = {
