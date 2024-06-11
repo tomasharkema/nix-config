@@ -95,8 +95,8 @@ with lib; {
     };
 
     boot = {
-      # kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
-      kernelPackages = mkForce pkgs.linuxPackages_latest;
+      kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
+      # kernelPackages = mkForce pkgs.linuxPackages_latest;
     };
 
     proxy-services = { enable = false; };
