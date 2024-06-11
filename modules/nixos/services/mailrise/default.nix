@@ -30,7 +30,6 @@ in {
           cfg.secrets);
 
         cmdsString = (lib.strings.concatMapStrings (x: x + "\n") cmds);
-
       in ''
         mkdir -p $(dirname ${configFileRecreated}) || true
         cat ${configFile} > ${configFileRecreated}
@@ -43,6 +42,5 @@ in {
       script = "${pkgs.custom.mailrise}/bin/mailrise ${configFileRecreated}";
       wantedBy = [ "multi-user.target" ];
     };
-
   };
 }

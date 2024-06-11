@@ -45,7 +45,7 @@ in {
     };
 
     environment = {
-      systemPackages = [ pkgs.icewm ];
+      systemPackages = with pkgs; [ icewm firefox ];
       etc = {
         # "icevm-theme" = {
         #   enable = true;

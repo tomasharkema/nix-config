@@ -58,7 +58,7 @@ in {
     };
 
     boot = {
-      # initrd.systemd.emergencyAccess = "abcdefg";
+      initrd.systemd.emergencyAccess = "abcdefg";
 
       crashDump.enable = true;
 
@@ -194,7 +194,7 @@ in {
     proxy-services.enable = mkDefault true;
 
     systemd = {
-      enableEmergencyMode = mkDefault true;
+      enableEmergencyMode = false;
 
       watchdog = {
         # device = "/dev/watchdog";
