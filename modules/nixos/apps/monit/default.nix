@@ -7,7 +7,7 @@ with lib; {
     };
   };
 
-  config = {
+  config = mkIf false {
     services.monit = {
       enable = true;
       config = mkBefore ''
