@@ -47,8 +47,7 @@ with lib; {
 
     hardware = {
       nvidia = {
-        nvidiaPersistenced = true; # ?
-        # dynamicBoost.enable = true;
+        # nvidiaPersistenced = true; 
         prime = {
           sync.enable = true;
           offload.enable = false;
@@ -61,7 +60,6 @@ with lib; {
           vaapiIntel
           libvdpau-va-gl
           vaapiVdpau
-          intel-media-driver # LIBVA_DRIVER_NAME=iHD
           intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
         ];
       };
@@ -128,16 +126,16 @@ with lib; {
         reflector = mkForce false;
       };
 
-      # fprintd = {
-      #   enable = true;
-      #   package = pkgs.fprintd-tod;
-      #   tod = {
-      #     enable = true;
+      fprintd = {
+        enable = true;
+        package = pkgs.fprintd-tod;
+        tod = {
+          enable = true;
 
-      #     # driver = pkgs.libfprint-2-tod1-goodix;
-      #     driver = pkgs.libfprint-2-tod1-goodix-550a;
-      #   };
-      # };
+          #     # driver = pkgs.libfprint-2-tod1-goodix;
+          driver = pkgs.libfprint-2-tod1-goodix-550a;
+        };
+      };
     };
 
     boot = {
