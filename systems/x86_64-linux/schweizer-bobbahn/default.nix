@@ -11,6 +11,8 @@ with lib; {
 
   config = {
 
+    environment.systemPackages = with pkgs; [ intel-gpu-tools ];
+
     gui = {
       enable = true;
       desktop.enable = true;
@@ -27,8 +29,6 @@ with lib; {
       unified-remote.enable = true;
       cec.enable = true;
     };
-
-    environment.systemPackages = with pkgs; [ intel-gpu-tools ];
 
     disks.ext4 = {
       enable = true;
