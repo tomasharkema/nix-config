@@ -10,26 +10,31 @@ in {
   config = mkIf cfg.enable {
     system.nixos.tags = [ "laptop" ];
     powerManagement.enable = true;
-    services.thermald.enable = true;
-
-    services.xrdp.enable = mkForce false;
 
     environment.systemPackages =
       [ inputs.nbfc-linux.packages.x86_64-linux.default ];
 
-    services.auto-cpufreq = {
-      enable = true;
-      settings = {
-        battery = {
-          governor = "powersave";
-          turbo = "never";
-        };
-        charger = {
-          governor = "performance";
-          turbo = "auto";
+    services = {
+
+      thermald.enable = true;
+
+      xrdp.enable = mkForce false;
+
+      auto-cpufreq = {
+        enable = true;
+        settings = {
+          battery = {
+            governor = "powersave";
+            turbo = "never";
+          };
+          charger = {
+            governor = "performance";
+            turbo = "auto";
+          };
         };
       };
     };
+
     # services.tlp.enable = true;
     systemd.targets = {
       sleep.enable = true;
