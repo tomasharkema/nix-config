@@ -233,6 +233,11 @@
         flake-utils.follows = "flake-utils";
       };
     };
+
+    nbfc-linux = {
+      url = "github:nbfc-linux/nbfc-linux";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:

@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, inputs, ... }:
 with lib;
 with lib.custom;
 let cfg = config.traits.hardware.laptop;
@@ -13,6 +13,9 @@ in {
     services.thermald.enable = true;
 
     services.xrdp.enable = mkForce false;
+
+    environment.systemPackages =
+      [ inputs.nbfc-linux.packages.x86_64-linux.default ];
 
     services.auto-cpufreq = {
       enable = true;
