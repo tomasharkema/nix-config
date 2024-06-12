@@ -7,13 +7,20 @@ with lib; {
       #   debug = true;
       # };
 
-      p11.enable = true;
+      # p11.enable = true;
 
       services = {
-        login.u2fAuth = true;
-        sudo.u2fAuth = true;
+        # login.u2fAuth = true;
+        # sudo.u2fAuth = true;
         #   ssh.u2fAuth = true;
         #   userpass.u2fAuth = true;
+
+        login.sssdStrictAccess = true;
+        login.enableGnomeKeyring = true;
+        login.fprintAuth = true;
+        xscreensaver.sssdStrictAccess = true;
+        xscreensaver.fprintAuth = true;
+        sudo.sssdStrictAccess = true;
       };
     };
     # hardware.gpgSmartcards.enable = true;

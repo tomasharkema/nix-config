@@ -7,18 +7,16 @@ with lib; {
       dconf = {
         settings = {
           "org/gnome/mutter" = {
-            edge-tiling = true;
-            experimental-features = builtins.toJSON [
-              "scale-monitor-framebuffer"
-              "variable-refresh-rate"
-            ];
+            # edge-tiling = true;
+            # 'variable-refresh-rate'
+            experimental-features = [ "scale-monitor-framebuffer" ];
           };
           "org/gnome/shell/extensions/vitals" = { "position-in-panel" = 0; };
           "org/gnome/desktop/interface" = {
             color-scheme = "prefer-dark";
             # cursor-theme = mkForce "Adwaita";
             # gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
-            document-font-name = "Inter Regular 12";
+            document-font-name = "Inter Regular 11";
             font-antialiasing = "grayscale";
             monospace-font-name = "JetBrainsMono Nerd Font Mono 11";
             # font-name = "Inter 11";
@@ -213,7 +211,7 @@ with lib; {
               "tailscale@joaophi.github.com"
               # "todo.txt@bart.libert.gmail.com"
               "toggler@hedgie.tech"
-              "appindicatorsupport@rgcjonas.gmail.com"
+              # "appindicatorsupport@rgcjonas.gmail.com"
               "extension-list@tu.berry"
               # "github-actions@arononak.github.io"
               # "GPU_profile_selector@lorenzo9904.gmail.com"

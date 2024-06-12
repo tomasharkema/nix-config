@@ -12,6 +12,20 @@ final: prev: {
   # dconf = channels.unstable.dconf;
   # flatpak = channels.unstable.flatpak;
 
+  # GNOME 46: triple-buffering-v4-46
+
+  gnome = prev.gnome.overrideScope (gnomeFinal: gnomePrev: {
+    mutter = gnomePrev.mutter.overrideAttrs (old: {
+      src = prev.fetchFromGitLab {
+        domain = "gitlab.gnome.org";
+        owner = "vanvugt";
+        repo = "mutter";
+        rev = "triple-buffering-v4-46";
+        hash = "sha256-fkPjB/5DPBX06t7yj0Rb3UEuu5b9mu3aS+jhH18+lpI=";
+      };
+    });
+  });
+
   mpv = prev.mpv.override { scripts = [ final.mpvScripts.mpris ]; };
 
   mpv-unwrapped = prev.mpv-unwrapped.override { ffmpeg = prev.ffmpeg-full; };
