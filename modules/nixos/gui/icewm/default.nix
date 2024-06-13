@@ -27,13 +27,13 @@ in {
       xserver = {
         enable = true;
         windowManager.icewm.enable = true;
-        displayManager.defaultSession = lib.mkDefault "none+icewm";
+        displayManager.defaultSession = mkDefault "none+icewm";
       };
 
       xrdp = {
         enable = true;
-        defaultWindowManager = "${pkgs.icewm}/bin/icewm";
-        # defaultWindowManager = "${pkgs.icewm}/bin/icewm-session";
+        # defaultWindowManager = "${pkgs.icewm}/bin/icewm";
+        defaultWindowManager = "${pkgs.icewm}/bin/icewm-session";
       };
     };
 

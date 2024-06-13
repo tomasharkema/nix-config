@@ -150,7 +150,8 @@ with lib; {
       #   options nvidia NVreg_PreserveVideoMemoryAllocations=1
       # '';
       supportedFilesystems = [ "ntfs" ];
-      kernelModules = [ "kvm-intel" ];
+      kernelModules = [ "kvm-intel" "watchdog" ];
+      initrd.kernelModules = [ "watchdog" ];
     };
   };
 }
