@@ -49,13 +49,13 @@ in {
 
     zramSwap = { enable = mkDefault true; };
 
-    # console = {
-    # earlySetup = true;
-    #   font = "${pkgs.terminus_font}/share/consolefonts/ter-116n.psf.gz";
-    #      packages = with pkgs; [ terminus_font ];
-    #   #    keyMap = "us";
-    # useXkbConfig = true; # use xkb.options in tty.
-    # };
+    console = {
+      earlySetup = true;
+      font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
+      packages = with pkgs; [ terminus_font ];
+      keyMap = "us";
+      # useXkbConfig = true; # use xkb.options in tty.
+    };
 
     boot = {
       initrd.systemd.emergencyAccess = "abcdefg";
