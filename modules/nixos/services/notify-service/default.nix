@@ -23,6 +23,8 @@ in {
 
   config = {
 
+    services.atd.enable = true;
+
     systemd.services = {
       "${notifyServiceName}@" = {
         description = "Send onFailure Notification";
@@ -30,9 +32,15 @@ in {
 
         serviceConfig = {
           Type = "oneshot";
-          ExecStart = "${sendmail} %i";
+          ExecStart = ''
+            at now <<! 
+              ${sendmail} %i
+            !
+          '';
         };
         wantedBy = [ "default.target" ];
+        after = [ "network-online.target" ];
+        wants = [ "network-online.target" ];
       };
     };
   };

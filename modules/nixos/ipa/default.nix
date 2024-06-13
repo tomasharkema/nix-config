@@ -82,7 +82,6 @@ in {
     ];
 
     security = {
-      # pki.certificateFiles = [./ca.crt];
       ipa = {
         enable = true;
         server = "ipa.harkema.io";
@@ -98,7 +97,6 @@ in {
         ifpAllowedUids = [
           "root"
           "tomas"
-          "gdm"
           #"1000" "1002" "gdm" "132"
         ];
       };
