@@ -15,12 +15,10 @@ with lib; {
         #   ssh.u2fAuth = true;
         #   userpass.u2fAuth = true;
 
-        login.sssdStrictAccess = true;
+        # login.sssdStrictAccess = true;
         login.enableGnomeKeyring = true;
-        login.fprintAuth = true;
-        xscreensaver.sssdStrictAccess = true;
-        xscreensaver.fprintAuth = true;
-        sudo.sssdStrictAccess = true;
+        # xscreensaver.sssdStrictAccess = true;
+        # sudo.sssdStrictAccess = true;
       };
     };
     # hardware.gpgSmartcards.enable = true;

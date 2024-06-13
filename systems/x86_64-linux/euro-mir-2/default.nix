@@ -138,6 +138,11 @@ with lib; {
       };
     };
 
+    security.pam.services = {
+      xscreensaver.fprintAuth = true;
+      login.fprintAuth = true;
+    };
+
     boot = {
       binfmt.emulatedSystems = [ "aarch64-linux" ];
       # extraModprobeConfig = ''

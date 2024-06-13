@@ -7,9 +7,10 @@ with lib; {
       dconf = {
         settings = {
           "org/gnome/mutter" = {
-            # edge-tiling = true;
-            # 'variable-refresh-rate'
-            experimental-features = [ "scale-monitor-framebuffer" ];
+            edge-tiling = true;
+
+            experimental-features =
+              [ "scale-monitor-framebuffer" "variable-refresh-rate" ];
           };
           "org/gnome/shell/extensions/vitals" = { "position-in-panel" = 0; };
           "org/gnome/desktop/interface" = {
@@ -164,7 +165,7 @@ with lib; {
             menu-button-appearance = "Icon";
             menu-button-icon = "Distro_Icon";
             menu-font-size = 14;
-            menu-layout = "Redmond";
+            menu-layout = "Insider";
           };
 
           # [org/gnome/shell/extensions/arcmenu]

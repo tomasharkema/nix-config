@@ -7,22 +7,14 @@ in {
   options.gui.gnome = {
     enable = mkEnableOption "enable gnome desktop environment";
 
-    gsettings = mkOption {
-      default = pkgs.gnome.nixos-gsettings-overrides.override {
-        extraGSettingsOverridePackages = [ pkgs.gnome.mutter ];
-        extraGSettingsOverrides = ''
-          [org.gnome.mutter]
-          experimental-features=['scale-monitor-framebuffer', ]
-        '';
-      };
-    };
+    hidpi.enable = mkEnableOption "enable gnome desktop environment";
   };
 
   config = mkIf cfg.enable {
     sound.mediaKeys.enable = true;
     traits.developer.enable = mkDefault true;
 
-    # environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
     # programs.hyprland = {
     #   # Install the packages from nixpkgs
@@ -35,13 +27,20 @@ in {
       xwayland.enable = true;
 
       dconf.profiles = {
-        gdm.databases = [{
-          settings."org/gnome/desktop/interface".scaling-factor =
-            lib.gvariant.mkUint32 2;
-        }];
+        gdm = mkIf cfg.hidpi.enable {
+          databases = [{
+            settings."org/gnome/desktop/interface".scaling-factor =
+              lib.gvariant.mkUint32 2;
+          }];
+        };
         tomas.databases = [{
-          settings."org/gnome/desktop/interface".scaling-factor =
-            lib.gvariant.mkUint32 2;
+          settings."org/gnome/mutter" = {
+            experimental-features =
+              [ "scale-monitor-framebuffer" "variable-refresh-rate" ];
+            edge-tiling = true;
+          };
+          #   settings."org/gnome/desktop/interface".scaling-factor =
+          #     lib.gvariant.mkUint32 2;
         }];
       };
 
@@ -53,9 +52,11 @@ in {
       gpaste.enable = true;
     };
 
-    # environment.etc."X11/Xwrapper.config".text = ''
-    #   allowed_users=anybody
-    # '';
+    environment.etc."X11/Xwrapper.config".text = ''
+      allowed_users=anybody
+    '';
+
+    security.ipa.ifpAllowedUids = [ "gdm" ];
 
     services = {
 
@@ -73,7 +74,8 @@ in {
 
           extraGSettingsOverrides = ''
             [org.gnome.mutter]
-            experimental-features=['scale-monitor-framebuffer']
+            experimental-features=['scale-monitor-framebuffer', 'variable-refresh-rate']
+            edge-tiling=true
           '';
 
           sessionPath = with pkgs; [
@@ -117,7 +119,7 @@ in {
         sushi.enable = true;
       };
 
-      udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+      # udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
     };
 
     xdg = {
@@ -223,34 +225,35 @@ in {
     #   serverAddress = "euro-mir";
     # };
 
-    environment.gnome.excludePackages = (with pkgs;
-      [
-        # gnome-photos
-        gnome-tour
-      ]) ++ (with pkgs.gnome; [
-        aisleriot
-        four-in-a-row
-        five-or-more
-        swell-foop
-        lightsoff
-        quadrapassel
+    # environment.gnome.excludePackages =
+    #   (with pkgs; [
+    #     # gnome-photos
+    #     gnome-tour
+    #   ])
+    #   ++ (with pkgs.gnome; [
+    #     aisleriot
+    #     four-in-a-row
+    #     five-or-more
+    #     swell-foop
+    #     lightsoff
+    #     quadrapassel
 
-        gnome-chess
-        gnome-klotski
-        gnome-mahjongg
-        gnome-nibbles
-        gnome-tetravex
-        gnome-robots
-        gnome-taquin
+    #     gnome-chess
+    #     gnome-klotski
+    #     gnome-mahjongg
+    #     gnome-nibbles
+    #     gnome-tetravex
+    #     gnome-robots
+    #     gnome-taquin
 
-        cheese # webcam tool
-        tali # poker game
-        iagno # go game
-        hitori # sudoku game
-        atomix # puzzle game
-        yelp # Help view
-        gnome-initial-setup
-      ]);
+    #     cheese # webcam tool
+    #     tali # poker game
+    #     iagno # go game
+    #     hitori # sudoku game
+    #     atomix # puzzle game
+    #     yelp # Help view
+    #     gnome-initial-setup
+    #   ]);
   };
 }
 # # pkgs.gnome45Extensions."app-hider@lynith.dev"
