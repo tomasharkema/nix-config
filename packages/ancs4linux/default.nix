@@ -1,7 +1,21 @@
 # https://github.com/pzmarzly/ancs4linux
 
 { lib, stdenv, python3Packages, fetchFromGitHub, fetchPypi, inputs, pkgs, }:
-(inputs.poetry2nix.lib.mkPoetry2Nix { inherit pkgs; }).mkPoetryApplication {
+let
+  p2n = (inputs.poetry2nix.lib.mkPoetry2Nix { inherit pkgs; });
+  p2nix = p2n.overrideScope (final: prev: {
+
+    # pyself & pyprev refers to python packages
+    defaultPoetryOverrides = prev.defaultPoetryOverrides.extend
+      (pyfinal: pyprev: {
+
+        hatchling = python3Packages.hatchling;
+        pygobject = python3Packages.pygobject3;
+        pygobject3 = python3Packages.pygobject3;
+      });
+  });
+
+in (p2nix.mkPoetryApplication {
   pname = "ancs4linux";
   version = "0.0.1";
   # format = "pyproject";
@@ -12,44 +26,15 @@
     rev = "ce8d3f173fd14566e516334ef23af632d840d64e";
     hash = "sha256-iP4OkWvX2RjMPQYoR+erQoB10d7+4NKYFsJoZUqhcDs=";
   };
-}
-# with python3Packages;
-# let
-#   typerOld = typer.overrideAttrs (old: rec {
-#     pname = "typer";
-#     version = "0.4.2";
+  # nativeBuildInputs = with python3Packages; [ mypy ];
+  preferWheels = true;
 
-#     src = fetchPypi {
-#       inherit pname version;
-#       hash = "sha256-uCYcbAFS3XNHi1upa6Z35daUjHFcMQ98kQefMR9i7AM=";
-#     };
-#     # nativeBuildInputs = old.nativeBuildInputs ++ [ flit-core ];
-#     propagatedBuildInputs = old.propagatedBuildInputs ++ [ flit-core ];
-#   });
-# in
-# buildPythonApplication rec {
-#   pname = "ancs4linux";
-#   version = "0.0.1";
-#   format = "pyproject";
+  postInstall = ''
+    install -Dm 644 autorun/ancs4linux-observer.service $out/lib/systemd/system/ancs4linux-observer.service
+    install -Dm 644 autorun/ancs4linux-advertising.service $out/lib/systemd/system/ancs4linux-advertising.service
+    install -Dm 644 autorun/ancs4linux-desktop-integration.service $out/lib/systemd/user/ancs4linux-desktop-integration.service
 
-#   src = fetchFromGitHub {
-#     owner = "pzmarzly";
-#     repo = "ancs4linux";
-#     rev = "ce8d3f173fd14566e516334ef23af632d840d64e";
-#     hash = "sha256-iP4OkWvX2RjMPQYoR+erQoB10d7+4NKYFsJoZUqhcDs=";
-#   };
-
-#   postPatch = ''
-#     substituteInPlace pyproject.toml \
-#     --replace poetry.masonry.api poetry.core.masonry.api \
-#     --replace "poetry>=" "poetry-core>="
-#   '';
-
-#   nativeBuildInputs = [
-#     poetry-core
-#     setuptools-scm
-#     pygobject3
-#     dasbus
-#     typerOld
-#   ];
-# }
+    install -Dm 644 autorun/ancs4linux-observer.xml $out/etc/dbus-1/system.d/ancs4linux-observer.conf
+    install -Dm 644 autorun/ancs4linux-advertising.xml $out/etc/dbus-1/system.d/ancs4linux-advertising.conf
+  '';
+})
