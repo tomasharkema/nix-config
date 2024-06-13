@@ -39,8 +39,8 @@ in {
           '';
         };
         wantedBy = [ "default.target" ];
-        after = [ "network-online.target" ];
-        wants = [ "network-online.target" ];
+        # after = [ "network-online.target" ];
+        # wants = [ "network-online.target" ];
       };
     };
   };
