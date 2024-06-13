@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}: {
+{ pkgs, config, lib, ... }: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -23,7 +18,8 @@
     networking.hostName = "epeus"; # Define your hostname.
     # Pick only one of the below networking options.
     #  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-    networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+    networking.networkmanager.enable =
+      true; # Easiest to use and most distros use this by default.
 
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
@@ -50,7 +46,7 @@
     hardware.pulseaudio.enable = true;
 
     # Enable touchpad support (enabled default in most desktopManager).
-    services.xserver.libinput.enable = true;
+    # services.xserver.libinput.enable = true;
     #powerManagement.powertop.enable = true;
 
     services.xserver = {
@@ -65,7 +61,7 @@
     specialisation = {
       cli = {
         configuration = {
-          system.nixos.tags = ["cli"];
+          system.nixos.tags = [ "cli" ];
           services.xserver.enable = lib.mkForce false;
         };
       };
@@ -74,11 +70,12 @@
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.tomas = {
       isNormalUser = true;
-      extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
-      packages = with pkgs; [
-        #     firefox
-        tree
-      ];
+      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+      packages = with pkgs;
+        [
+          #     firefox
+          tree
+        ];
     };
 
     # List packages installed in system profile. To search, run:

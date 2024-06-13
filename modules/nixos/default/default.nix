@@ -15,6 +15,9 @@ let
 
     echo "Uploading paths" $OUT_PATHS
     # exec nix copy --to "s3://example-nix-cache" $OUT_PATHS
+    ${pkgs.at}/bin/at -q b now <<! 
+      attic push tomas $OUT_PATHS
+    !
   '';
 in {
 
@@ -22,7 +25,7 @@ in {
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
 
-    environment.variables.XCURSOR_SIZE = "24";
+    # environment.variables.XCURSOR_SIZE = "24";
 
     # nix.package = pkgs.nixVersions.nix_2_22; #Unstable;
 
@@ -51,14 +54,14 @@ in {
 
     console = {
       earlySetup = true;
-      #   font = "${pkgs.terminus_font}/share/consolefonts/ter-116n.psf.gz";
-      #      packages = with pkgs; [ terminus_font ];
-      #   #    keyMap = "us";
-      useXkbConfig = true; # use xkb.options in tty.
+      font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
+      packages = with pkgs; [ terminus_font ];
+      keyMap = "us";
+      # useXkbConfig = true; # use xkb.options in tty.
     };
 
     boot = {
-      # initrd.systemd.emergencyAccess = "abcdefg";
+      initrd.systemd.emergencyAccess = "abcdefg";
 
       crashDump.enable = true;
 
@@ -194,7 +197,7 @@ in {
     proxy-services.enable = mkDefault true;
 
     systemd = {
-      enableEmergencyMode = mkDefault true;
+      enableEmergencyMode = false;
 
       watchdog = {
         # device = "/dev/watchdog";
@@ -232,6 +235,7 @@ in {
     };
 
     services = {
+      atd.enable = true;
       kmscon = {
         enable = mkDefault true;
         hwRender = config.traits.hardware.nvidia.enable;

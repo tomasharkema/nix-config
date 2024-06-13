@@ -14,6 +14,8 @@ let
     };
 
   settingsFile = pkgs.writeText "settings.json" (builtins.toJSON cfg.settings);
+
+  configTarget = "${home}/.urserver/urserver.config";
 in {
 
   options.apps.unified-remote = {
@@ -46,10 +48,7 @@ in {
     environment.systemPackages = [ pkgs.custom.unified-remote ];
 
     systemd = {
-      tmpfiles.rules = [
-        "d ${home}/.urserver 0777 root root -"
-        "L+ ${home}/.urserver/urserver.config - - - - ${settingsFile}"
-      ];
+      tmpfiles.rules = [ "d ${home}/.urserver 0777 root root -" ];
       services."unified-remote" = {
         wantedBy = [ "multi-user.target" ];
         wants = [ "network-online.target" ];
@@ -61,8 +60,14 @@ in {
 
         environment = { HOME = home; };
 
+        preStart = ''
+          if [ ! -f "${configTarget}" ]; then
+            cp ${settingsFile} ${configTarget}
+          fi
+        '';
+
         script = ''
-          ${cfg.package}/bin/urserver --remotes=${cfg.package}/opt/urserver/remotes --pidfile=${cfg.pid} --daemon
+          exec ${cfg.package}/bin/urserver --remotes=${cfg.package}/opt/urserver/remotes --pidfile=${cfg.pid} --daemon
         '';
 
         serviceConfig = {

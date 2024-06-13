@@ -14,15 +14,16 @@ in {
 
   # disabledModules=["home-manager/tofi.nix"];
 
-  options = { programs.tofi.settings = mkOption { }; };
+  # options = { programs.tofi.settings = mkOption { }; };
 
   config = mkIf
     (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
-      xsession.pointerCursor = mkIf pkgs.stdenv.isLinux {
-        name = "macOS-Monterey";
-        package = pkgs.apple-cursor;
-        size = cursorSize;
-      };
+
+      # xsession.pointerCursor = mkIf pkgs.stdenv.isLinux {
+      #   name = "macOS-Monterey";
+      #   package = pkgs.apple-cursor;
+      #   size = cursorSize;
+      # };
 
       catppuccin = {
         enable = true;
@@ -37,13 +38,9 @@ in {
         font = {
           package = pkgs.inter;
           name = "Inter Regular";
-          size = 12;
+          size = 11;
         };
 
-        # theme = lib.mkForce {
-        #   name = catppuccin_name;
-        #   package = catppuccin;
-        # };
         catppuccin = {
           enable = true;
           flavor = "mocha";
@@ -52,47 +49,18 @@ in {
           tweaks = [ "black" ];
           gnomeShellTheme = true;
         };
-
-        cursorTheme = mkForce {
-          name = "macOS-Monterey";
-          package = pkgs.apple-cursor;
-          size = cursorSize;
-        };
-
-        # theme = {
-        #   name = "Tokyonight-Dark";
-        #   package = pkgs.tokyo-night-gtk;
-        # };
-        # cursorTheme = {
-        #   name = "Catppuccin-Macchiato-Dark-Cursors";
-        #   package = pkgs.catppuccin-cursors.macchiatoDark;
-        # };
-
-        gtk3.extraConfig = {
-          #   Settings = ''
-          #     gtk-application-prefer-dark-theme=1
-          #   '';
-          gtk-cursor-theme-name = "macOS-Monterey";
-          gtk-cursor-theme-size = cursorSize;
-        };
-
-        gtk4.extraConfig = {
-          #   Settings = ''
-          #     gtk-application-prefer-dark-theme=1
-          #   '';
-          gtk-cursor-theme-name = "macOS-Monterey";
-          gtk-cursor-theme-size = cursorSize;
-        };
       };
-      home = lib.mkIf true {
-        pointerCursor = mkIf pkgs.stdenv.isLinux (mkForce {
-          name = "macOS-Monterey";
-          package = pkgs.apple-cursor;
-          size = cursorSize;
-          x11.enable = true;
 
+      home = lib.mkIf true {
+        pointerCursor = mkIf pkgs.stdenv.isLinux {
+          name = mkForce "macOS-Monterey";
+          package = mkForce pkgs.apple-cursor;
+          x11.enable = true;
           gtk.enable = true;
-        });
+        };
+
+        file = { ".config/gnome-initial-setup-done".text = "yes"; };
+
         # sessionVariables.GTK_THEME = "${config.gtk.theme.name}:dark";
         # file = {
         # ".config/gtk-4.0".source = "${config.gtk.theme.package}/share/themes/${catppuccin_name}/gtk-4.0";

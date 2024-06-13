@@ -3,20 +3,6 @@ with lib;
 with lib.custom;
 let cfg = config.apps.ipa;
 in {
-  # disabledModules = [
-  #   "security/ipa.nix"
-  #   "security/pam.nix"
-  #   "krb5/default.nix"
-  #   "config/krb5/default.nix"
-  #   "services/misc/sssd.nix"
-  # ];
-
-  # imports = [
-  #   "${inputs.unstable}/nixos/modules/security/ipa.nix"
-  #   "${inputs.unstable}/nixos/modules/security/pam.nix"
-  #   # "${inputs.unstable}/nixos/modules/security/krb5"
-  #   "${inputs.unstable}/nixos/modules/services/misc/sssd.nix"
-  # ];
 
   options = {
     apps.ipa = { enable = mkEnableOption "enable ipa"; };
@@ -63,23 +49,29 @@ in {
         # kcm = true;
         sshAuthorizedKeysIntegration = true;
 
-        # config = mkAfter ''
-        #   [pam]
-        #   pam_passkey_auth = True
-        #   #   passkey_debug_libfido2 = True
-        #   #   passkey_child_timeout = 60
         #   #   pam_cert_auth = True
 
         #   #   [prompting/passkey]
         #   #   interactive_prompt = "Insert your Passkey device, then press ENTER."
 
-        #   [domain/shadowutils]
-        #   id_provider = proxy
-        #   proxy_lib_name = files
-        #   auth_provider = none
-        #   local_auth_policy = match
+        config = mkAfter ''
+          [pam]
+          pam_passkey_auth = True
+          passkey_debug_libfido2 = True
+          passkey_child_timeout = 60
+          debug_level = 0x1310
+          pam_verbosity = 3
 
-        # '';
+          [domain/shadowutils]
+          id_provider = proxy
+          proxy_lib_name = files
+          auth_provider = none
+          local_auth_policy = match
+          debug_level = 0x1310
+
+          [sssd]
+          debug_level = 0x1310
+        '';
       };
     };
 
@@ -90,7 +82,6 @@ in {
     ];
 
     security = {
-      # pki.certificateFiles = [./ca.crt];
       ipa = {
         enable = true;
         server = "ipa.harkema.io";
@@ -102,7 +93,7 @@ in {
           sha256 = "sha256-s93HRgX4AwCnsY9sWX6SAYrUg9BrSEg8Us5QruOunf0=";
         };
         # certificate = "${./ca.crt}";
-        dyndns.enable = true;
+        dyndns.enable = false;
         ifpAllowedUids = [
           "root"
           "tomas"

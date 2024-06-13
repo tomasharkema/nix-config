@@ -87,7 +87,7 @@ with lib; {
       };
     };
 
-    console.earlySetup = true;
+    # console.earlySetup = true;
 
     hardware = {
       nvidia = { nvidiaPersistenced = true; };

@@ -6,16 +6,15 @@ let
 in {
   options.gui.gnome = {
     enable = mkEnableOption "enable gnome desktop environment";
+
+    hidpi.enable = mkEnableOption "enable gnome desktop environment";
   };
 
   config = mkIf cfg.enable {
     sound.mediaKeys.enable = true;
     traits.developer.enable = mkDefault true;
 
-    # environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-    xdg.portal.wlr.enable = true;
-    # programs.sway.enable = true;
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
     # programs.hyprland = {
     #   # Install the packages from nixpkgs
@@ -24,31 +23,71 @@ in {
     #   xwayland.enable = true;
     # };
 
-    programs.xwayland.enable = true;
+    programs = {
+      xwayland.enable = true;
 
-    # environment.etc."X11/Xwrapper.config".text = ''
-    #   allowed_users=anybody
-    # '';
+      dconf.profiles = {
+        gdm = mkIf cfg.hidpi.enable {
+          databases = [{
+            settings."org/gnome/desktop/interface".scaling-factor =
+              lib.gvariant.mkUint32 2;
+          }];
+        };
+        tomas.databases = [{
+          settings."org/gnome/mutter" = {
+            experimental-features =
+              [ "scale-monitor-framebuffer" "variable-refresh-rate" ];
+            edge-tiling = true;
+          };
+          #   settings."org/gnome/desktop/interface".scaling-factor =
+          #     lib.gvariant.mkUint32 2;
+        }];
+      };
+
+      file-roller.enable = true;
+      evince.enable = true;
+
+      gnome-disks.enable = true;
+      gnome-terminal.enable = true;
+      gpaste.enable = true;
+    };
+
+    environment.etc."X11/Xwrapper.config".text = ''
+      allowed_users=anybody
+    '';
+
+    security.ipa.ifpAllowedUids = [ "gdm" ];
 
     services = {
-      # xrdp.defaultWindowManager =
-      #   "${pkgs.gnome.gnome-remote-desktop}/bin/gnome-remote-desktop";
 
-      # xrdp.defaultWindowManager = "${pkgs.writeScript "xrdp-xsession-gnome" ''
-      #   ${pkgs.gnome.gnome-shell}/bin/gnome-shell &
-      #   waitPID=$!
-      #   ${lib.getBin pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
-      #   test -n "$waitPID" && wait "$waitPID"
-      #   /run/current-system/systemd/bin/systemctl --user stop graphical-session.target
-      #   exit 0
-      # ''}";
-
-      # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-shell}/bin/gnome-shell";
       xrdp.defaultWindowManager =
         "${pkgs.gnome.gnome-session}/bin/gnome-session";
 
       xserver = {
-        desktopManager.gnome.enable = true;
+        desktopManager.gnome = {
+          enable = true;
+
+          extraGSettingsOverridePackages = with pkgs; [
+            gnome.mutter
+            gnome.gpaste
+          ];
+
+          extraGSettingsOverrides = ''
+            [org.gnome.mutter]
+            experimental-features=['scale-monitor-framebuffer', 'variable-refresh-rate']
+            edge-tiling=true
+          '';
+
+          sessionPath = with pkgs; [
+            gnome.mutter
+            gtop
+            libgtop
+            clutter
+            clutter-gtk
+            gjs
+            gnome.gpaste
+          ];
+        };
 
         displayManager = {
           gdm = {
@@ -58,7 +97,7 @@ in {
           };
         };
       };
-
+      libinput.enable = true;
       gnome = {
         # chrome-gnome-shell.enable = true;
         gnome-browser-connector.enable = true;
@@ -70,7 +109,7 @@ in {
         core-utilities.enable = true;
         gnome-user-share.enable = true;
         gnome-keyring.enable = true;
-        games.enable = true;
+        games.enable = false;
         evolution-data-server.enable = true;
         rygel.enable = true;
         tracker.enable = true;
@@ -80,11 +119,20 @@ in {
         sushi.enable = true;
       };
 
-      udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
-      xserver.libinput.enable = true;
+      # udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
     };
 
-    xdg.autostart = { enable = true; };
+    xdg = {
+      autostart = { enable = true; };
+      # portal.wlr.enable = true;
+      terminal-exec = {
+        enable = true;
+        settings = { default = [ "kitty.desktop" ]; };
+      };
+      icons.enable = true;
+      menus.enable = true;
+    };
+
     services.pipewire.extraConfig.pipewire-pulse."92-tcp" = {
       context.modules = [
         {
@@ -102,9 +150,9 @@ in {
       };
     };
     environment.systemPackages = (with pkgs; [
-      #compiz
-      gtop
+
       wike
+      gtop
       libgtop
       gnome-extension-manager
       gnomeExtensions.dash-to-panel
@@ -115,7 +163,7 @@ in {
       gnomeExtensions.window-is-ready-remover
       gnomeExtensions.wayland-or-x11
       # gnomeExtensions.network-interfaces-info
-      gnomeExtensions.appindicator
+      # gnomeExtensions.appindicator
       gnomeExtensions.settingscenter
       gnomeExtensions.app-hider
       gnomeExtensions.arc-menu
@@ -147,7 +195,7 @@ in {
       clutter
       clutter-gtk
       gjs
-      # gnome.adwaita-icon-theme
+      gnome.adwaita-icon-theme
       gnome-firmware
       gnome-menus
       gnome.dconf-editor
@@ -155,7 +203,7 @@ in {
       gnome.gnome-autoar
       gnome.gnome-clocks
       gnome.gnome-control-center
-      # gnome.gnome-keyring
+      gnome.gnome-keyring
       gnome.gnome-nettool
       gnome.gnome-online-miners
       # gnome.gnome-packagekit
@@ -167,7 +215,7 @@ in {
       gnome.gnome-themes-extra
       gnome.gnome-tweaks
       gnome.gnome-user-share
-      # gnome.libgnome-keyring
+      gnome.libgnome-keyring
       gnome.seahorse
       gnome.zenity
     ]);
@@ -177,34 +225,35 @@ in {
     #   serverAddress = "euro-mir";
     # };
 
-    environment.gnome.excludePackages = (with pkgs;
-      [
-        # gnome-photos
-        gnome-tour
-      ]) ++ (with pkgs.gnome; [
-        aisleriot
-        four-in-a-row
-        five-or-more
-        swell-foop
-        lightsoff
-        quadrapassel
+    # environment.gnome.excludePackages =
+    #   (with pkgs; [
+    #     # gnome-photos
+    #     gnome-tour
+    #   ])
+    #   ++ (with pkgs.gnome; [
+    #     aisleriot
+    #     four-in-a-row
+    #     five-or-more
+    #     swell-foop
+    #     lightsoff
+    #     quadrapassel
 
-        gnome-chess
-        gnome-klotski
-        gnome-mahjongg
-        gnome-nibbles
-        gnome-tetravex
-        gnome-robots
-        gnome-taquin
+    #     gnome-chess
+    #     gnome-klotski
+    #     gnome-mahjongg
+    #     gnome-nibbles
+    #     gnome-tetravex
+    #     gnome-robots
+    #     gnome-taquin
 
-        cheese # webcam tool
-        tali # poker game
-        iagno # go game
-        hitori # sudoku game
-        atomix # puzzle game
-        yelp # Help view
-        gnome-initial-setup
-      ]);
+    #     cheese # webcam tool
+    #     tali # poker game
+    #     iagno # go game
+    #     hitori # sudoku game
+    #     atomix # puzzle game
+    #     yelp # Help view
+    #     gnome-initial-setup
+    #   ]);
   };
 }
 # # pkgs.gnome45Extensions."app-hider@lynith.dev"

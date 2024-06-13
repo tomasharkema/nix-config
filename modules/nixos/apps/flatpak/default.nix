@@ -7,14 +7,18 @@ let
 in {
   imports = with inputs; [ nix-flatpak.nixosModules.nix-flatpak ];
 
-  options.apps.flatpak = {
-    enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
-  };
+  options.apps.flatpak = { enable = mkBoolOpt false "flatpak"; };
 
   config = mkIf enable {
+
     xdg.portal = {
       enable = true;
       config.common.default = "gnome";
+
+      # extraPortals = with pkgs; [
+      #   xdg-desktop-portal-kde
+      #   xdg-desktop-portal-gtk
+      # ];
     };
 
     services.flatpak = {

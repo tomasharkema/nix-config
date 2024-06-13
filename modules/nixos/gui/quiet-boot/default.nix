@@ -5,10 +5,9 @@ in {
   options.gui.quiet-boot = { enable = mkEnableOption "quiet-boot enabled"; };
 
   config = mkIf (cfg.enable) {
-    console = {
-      useXkbConfig = true;
-      earlySetup = true;
-    };
+    # console = {
+    #   earlySetup = true;
+    # };
 
     environment.systemPackages = with pkgs; [ plymouth ];
 
