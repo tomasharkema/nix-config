@@ -33,7 +33,7 @@ in {
         serviceConfig = {
           Type = "oneshot";
           ExecStart = ''
-            at now <<! 
+            ${pkgs.at}/bin/at -q a now <<! 
               ${sendmail} %i
             !
           '';
