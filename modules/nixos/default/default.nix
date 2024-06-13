@@ -86,6 +86,7 @@ in {
     };
 
     environment.systemPackages = (with pkgs; [
+      ethtool
       socat
       gdu
       swapview

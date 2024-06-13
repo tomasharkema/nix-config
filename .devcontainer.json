@@ -5,7 +5,8 @@
         "Catppuccin.catppuccin-vsc-pack",
         "jnoortheen.nix-ide",
         "mkhl.direnv",
-        "brettm12345.nixfmt-vscode"
+        "brettm12345.nixfmt-vscode",
+        "1Password.op-vscode"
       ]
     }
   },
