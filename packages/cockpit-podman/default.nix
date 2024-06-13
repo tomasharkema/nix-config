@@ -1,23 +1,17 @@
-{
-  lib,
-  stdenv,
-  fetchzip,
-  gettext,
-}:
+{ lib, stdenv, fetchzip, gettext, }:
 stdenv.mkDerivation rec {
   pname = "cockpit-podman";
-  version = "86";
+  version = "89";
 
   src = fetchzip {
-    url = "https://github.com/cockpit-project/${pname}/releases/download/${version}/${pname}-${version}.tar.xz";
-    sha256 = "sha256-zgbha02Jpc23ayZ89o37f4Y6jG6YOtNzrYzpgaepUQs=";
+    url =
+      "https://github.com/cockpit-project/${pname}/releases/download/${version}/${pname}-${version}.tar.xz";
+    sha256 = "sha256-qLt6x9W+M/DztzcFxyWZLHUTM1ZsPCOykO+6o/URa6c=";
   };
 
-  nativeBuildInputs = [
-    gettext
-  ];
+  nativeBuildInputs = [ gettext ];
 
-  makeFlags = ["DESTDIR=$(out)" "PREFIX="];
+  makeFlags = [ "DESTDIR=$(out)" "PREFIX=" ];
 
   postPatch = ''
     substituteInPlace Makefile \
@@ -33,6 +27,6 @@ stdenv.mkDerivation rec {
     license = licenses.lgpl21;
     homepage = "https://github.com/cockpit-project/cockpit-podman";
     platforms = platforms.linux;
-    maintainers = with maintainers; [];
+    maintainers = with maintainers; [ ];
   };
 }
