@@ -240,6 +240,8 @@
       url = "github:nbfc-linux/nbfc-linux";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    _1password-shell-plugins.url = "github:1Password/shell-plugins";
   };
 
   outputs = inputs:
@@ -309,6 +311,8 @@
         nixvim.homeManagerModules.nixvim
 
         nix-index-database.hmModules.nix-index
+
+        _1password-shell-plugins.hmModules.default
       ];
 
       systems.modules.nixos = with inputs; [
