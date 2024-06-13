@@ -199,12 +199,12 @@ in {
     systemd = {
       enableEmergencyMode = false;
 
-      watchdog = {
-        # device = "/dev/watchdog";
-        runtimeTime = "10m";
-        kexecTime = "10m";
-        rebootTime = "10m";
-      };
+      # watchdog = {
+      # device = "/dev/watchdog";
+      # runtimeTime = "10m";
+      # kexecTime = "10m";
+      # rebootTime = "10m";
+      # };
 
       user.services.auto-fix-vscode-server = {
         enable = true;
@@ -274,7 +274,7 @@ in {
       #   enable = true;
       # };
 
-      das_watchdog.enable = true;
+      # das_watchdog.enable = true;
 
       thermald.enable = mkIf (pkgs.system == "x86_64-linux") true;
 

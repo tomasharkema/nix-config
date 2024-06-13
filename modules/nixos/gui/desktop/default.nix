@@ -77,8 +77,14 @@ in {
       geary.enable = false;
     };
 
+    services.dbus = {
+      enable = true;
+      packages = [ pkgs.custom.ancs4linux ];
+    };
+
     environment.systemPackages = with pkgs;
       [
+        pkgs.custom.ancs4linux
         # firefox
         # gnome.gnome-boxes
         # keybase

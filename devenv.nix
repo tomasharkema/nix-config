@@ -144,6 +144,12 @@ let
 
     exec nix path-info --all | xargs -n$NPATHS -P$NPROCS attic push tomas -j 1
   '';
+
+  build-host-pkgs = writeShellScriptBin "build-host-pkgs" ''
+    PACKAGE="$1"
+    echo "Build $PACKAGE"
+    exec nom build ".#nixosConfigurations.$HOSTNAME.pkgs.$PACKAGE" --out-link ./out/$PACKAGE --verbose --show-trace -L
+  '';
 in {
 
   # starship.enable = true;
@@ -174,6 +180,7 @@ in {
   # dotenv.enable = true;
 
   packages = with pkgs; [
+    build-host-pkgs
     # # snowfallorg.flake
     # agenix
     # cachix
