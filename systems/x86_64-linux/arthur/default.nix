@@ -8,6 +8,8 @@ with lib; {
   ];
 
   config = {
+    nixpkgs.config.rocmSupport = true;
+
     gui = {
       # enable = true;
       # desktop = {
@@ -27,14 +29,16 @@ with lib; {
       };
     };
 
-    apps.podman.enable = true;
-
     services = {
       # freeipa.replica.enable = true;
       tcsd.enable = true;
+      xserver.videoDrivers = [ "amdgpu" ];
     };
 
-    apps.home-assistant.enable = true;
+    apps = {
+      home-assistant.enable = true;
+      podman.enable = true;
+    };
 
     disks.btrfs = {
       enable = true;
@@ -49,9 +53,16 @@ with lib; {
     boot = {
       binfmt.emulatedSystems = [ "aarch64-linux" ];
       loader.systemd-boot.enable = true;
+      initrd.kernelModules = [ "amdgpu" ];
     };
 
-    services.kmscon = { enable = mkForce false; };
+    hardware.opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+      extraPackages = with pkgs; [ amdvlk ];
+      extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
+    };
 
     networking = {
       hostName = "arthur";

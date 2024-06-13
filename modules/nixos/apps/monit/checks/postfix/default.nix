@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 with lib; {
-  config =
-    mkIf (config.services.monit.enable && config.services.postfix.enable) {
+  config = mkIf
+    (config.services.monit.enable && config.services.postfix.enable && false) {
       services.monit = {
         config = ''
           check process postfix with pidfile /var/lib/postfix/queue/pid/master.pid

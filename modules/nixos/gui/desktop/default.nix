@@ -10,17 +10,17 @@ in {
 
   config = mkIf cfg.enable {
     gui.fonts.enable = true;
+
     services = {
+
+      libinput.enable = true;
+
       xserver = {
         enable = true;
 
         layout = "us";
-        xkbVariant = "";
-
-        libinput.enable = true;
+        # xkbVariant = "";
       };
-
-      # x2goserver = mkIf cfg.rdp.enable {enable = true;};
 
       xrdp = mkIf cfg.rdp.enable {
         enable = true;
@@ -34,7 +34,7 @@ in {
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;
-        # jack.enable = true;
+        jack.enable = true;
       };
       gvfs.enable = true;
     };
@@ -59,18 +59,13 @@ in {
       '';
     };
 
-    # programs.gnupg.agent = {
-    # enable = true;
-    # enableSSHSupport = true;
-    # # };
     # services = {
     #   tabby.enable = true;
     # };
 
-    environment.variables = {
-      LD_LIBRARY_PATH =
-        "$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib";
-    };
+    # environment.variables = {
+    #   LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib";
+    # };
 
     hardware.opengl = {
       enable = true;
@@ -84,66 +79,61 @@ in {
 
     environment.systemPackages = with pkgs;
       [
-        tremotesf
-        xdotool
-        notify-client
-        vsce
-        vte-gtk4
-        qdirstat
-        xdiskusage
-        pwvucontrol
-        xdiskusage
-        libGL
-        libGLU
-        trayscale
-        grsync
-        caffeine-ng
-        qjournalctl
-        pkgs.custom.netbrowse
-        # gnome.gnome-boxes
-        # pcmanfm
-        # polkit
-        gparted
-        partition-manager
         # firefox
-        vscode
-        # transmission
+        # gnome.gnome-boxes
         # keybase
-        powertop
-        tabby
-        nix-software-center
+        # libmx
+        # mattermost-desktop
         # nixos-conf-editor
-
-        xdg-utils
-
-        handbrake
-        meteo
-        transmission-remote-gtk
-        github-desktop
-
-        gtk-engine-murrine
+        # pcmanfm
         # plymouth
-        rtfm
-
-        effitask
+        # polkit
+        # transmission
+        # waybar
+        caffeine-ng
         clutter
-        xdgmenumaker
-        gotop
-        handbrake
+        effitask
+        filezilla
         font-manager
         gamehub
-        filezilla
-        sublime-merge
-        remmina
-        xdg-utils
-        # mattermost-desktop
-        systemdgenie
-        wezterm
-        # waybar
-        zeal
+        github-desktop
+        gotop
+        gparted
+        grsync
+        gtk-engine-murrine
+        handbrake
+        handbrake
+        libGL
+        libGLU
+        meteo
         mission-center
+        nix-software-center
+        notify-client
+        partition-manager
         pavucontrol
-        # libmx
+        pkgs.custom.netbrowse
+        powertop
+        pwvucontrol
+        qdirstat
+        qjournalctl
+        remmina
+        rtfm
+        sublime-merge
+        systemdgenie
+        tabby
+        transmission-remote-gtk
+        trayscale
+        tremotesf
+        vsce
+        vscode
+        vte-gtk4
+        wezterm
+        xdg-utils
+        xdgmenumaker
+        xdiskusage
+        xdiskusage
+        xdotool
+        zeal
       ] ++ optionals pkgs.stdenv.isx86_64 [
         xpipe
         angryipscanner
@@ -164,7 +154,7 @@ in {
         # nativeMessagingHosts.gsconnect = true;
       };
       mtr.enable = true;
-      # dconf.enable = true;
+      dconf.enable = true;
     };
 
     # nix.extraOptions = "experimental-features = nix-command flakes";
@@ -174,13 +164,13 @@ in {
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
 
-    boot.binfmt.registrations.appimage = {
-      wrapInterpreterInShell = false;
-      interpreter = "${pkgs.appimage-run}/bin/appimage-run";
-      recognitionType = "magic";
-      offset = 0;
-      mask = "\\xff\\xff\\xff\\xff\\x00\\x00\\x00\\x00\\xff\\xff\\xff";
-      magicOrExtension = "\\x7fELF....AI\\x02";
-    };
+    # boot.binfmt.registrations.appimage = {
+    #   wrapInterpreterInShell = false;
+    #   interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+    #   recognitionType = "magic";
+    #   offset = 0;
+    #   mask = "\\xff\\xff\\xff\\xff\\x00\\x00\\x00\\x00\\xff\\xff\\xff";
+    #   magicOrExtension = "\\x7fELF....AI\\x02";
+    # };
   };
 }

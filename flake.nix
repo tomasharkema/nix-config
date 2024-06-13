@@ -233,6 +233,11 @@
         flake-utils.follows = "flake-utils";
       };
     };
+
+    nbfc-linux = {
+      url = "github:nbfc-linux/nbfc-linux";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
@@ -261,9 +266,10 @@
 
         firefox.enableGnomeExtensions = true;
         kodi.enableAdvancedLauncher = true;
-        allowBroken = true;
+        # allowBroken = true;
 
         # allowAliases = false;
+
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
         # buildPlatform.system = "x86_64-linux";
