@@ -23,11 +23,11 @@ with lib; {
     # apps.spotifyd.enable = true;
 
     apps = {
-      usbip.enable = true;
+      # usbip.enable = true;
       remote-builders.enable = true;
       netdata.enable = true;
-      unified-remote.enable = true;
-      cec.enable = true;
+      # unified-remote.enable = true;
+      # cec.enable = true;
     };
 
     disks.ext4 = {
@@ -65,9 +65,7 @@ with lib; {
     services = {
       # podman.enable = true;
       clipmenu.enable = mkForce false;
-      synergy.server = {
-        # enable = true;
-      };
+      synergy.server = { enable = true; };
       avahi = {
         enable = true;
         # allowInterfaces = [ "wlo1" ];
