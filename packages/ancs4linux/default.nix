@@ -14,7 +14,6 @@ let
         pygobject3 = python3Packages.pygobject3;
       });
   });
-
 in (p2nix.mkPoetryApplication {
   pname = "ancs4linux";
   version = "0.0.1";
@@ -30,11 +29,26 @@ in (p2nix.mkPoetryApplication {
   preferWheels = true;
 
   postInstall = ''
-    install -Dm 644 autorun/ancs4linux-observer.service $out/lib/systemd/system/ancs4linux-observer.service
-    install -Dm 644 autorun/ancs4linux-advertising.service $out/lib/systemd/system/ancs4linux-advertising.service
-    install -Dm 644 autorun/ancs4linux-desktop-integration.service $out/lib/systemd/user/ancs4linux-desktop-integration.service
-
     install -Dm 644 autorun/ancs4linux-observer.xml $out/etc/dbus-1/system.d/ancs4linux-observer.conf
     install -Dm 644 autorun/ancs4linux-advertising.xml $out/etc/dbus-1/system.d/ancs4linux-advertising.conf
+
+    install -Dm 644 autorun/ancs4linux-observer.service $out/lib/systemd/system/ancs4linux-observer.service
+    install -Dm 644 autorun/ancs4linux-advertising.service $out/lib/systemd/system/ancs4linux-advertising.service
+    install -Dm 644 autorun/ancs4linux-desktop-integration.service $out/lib/systemd/system/ancs4linux-desktop-integration.service
   '';
 })
+
+# substituteInPlace "$out/lib/systemd/system/ancs4linux-observer.service" \ 
+#   --replace "/usr/local/bin/ancs4linux-advertising" "$out/bin/ancs4linux-advertising" \
+#   --replace "/usr/local/bin/ancs4linux-observer" "$out/bin/ancs4linux-observer" \
+#   --replace "/usr/local/bin/ancs4linux-desktop-integration" "$out/bin/ancs4linux-desktop-integration"
+
+# substituteInPlace "$out/lib/systemd/system/ancs4linux-advertising.service" \ 
+#   --replace "/usr/local/bin/ancs4linux-advertising" "$out/bin/ancs4linux-advertising" \
+#   --replace "/usr/local/bin/ancs4linux-observer" "$out/bin/ancs4linux-observer" \
+#   --replace "/usr/local/bin/ancs4linux-desktop-integration" "$out/bin/ancs4linux-desktop-integration"
+
+# substituteInPlace "$out/lib/systemd/user/ancs4linux-desktop-integration.service" \ 
+#   --replace "/usr/local/bin/ancs4linux-advertising" "$out/bin/ancs4linux-advertising" \
+#   --replace "/usr/local/bin/ancs4linux-observer" "$out/bin/ancs4linux-observer" \
+#   --replace "/usr/local/bin/ancs4linux-desktop-integration" "$out/bin/ancs4linux-desktop-integration"
