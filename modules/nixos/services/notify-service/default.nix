@@ -32,11 +32,8 @@ in {
 
         serviceConfig = {
           Type = "oneshot";
-          ExecStart = ''
-            ${pkgs.at}/bin/at -q a now <<! 
-              ${sendmail} %i
-            !
-          '';
+          ExecStart =
+            "/bin/sh -c 'set -x; echo \"${sendmail} %i\" | ${pkgs.at}/bin/at -q n now'";
         };
         wantedBy = [ "default.target" ];
         # after = [ "network-online.target" ];
