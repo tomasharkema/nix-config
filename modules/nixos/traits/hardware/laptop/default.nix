@@ -15,6 +15,7 @@ in {
       [ inputs.nbfc-linux.packages.x86_64-linux.default ];
 
     services = {
+      synergy.server = { enable = true; };
 
       thermald.enable = true;
 
