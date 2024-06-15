@@ -13,8 +13,14 @@ with lib; {
       encrypt = true;
       newSubvolumes = true;
     };
+
+    programs.gnupg.agent = { enable = true; };
+
     services.dbus.packages = with pkgs; [ custom.ancs4linux ];
     environment.systemPackages = with pkgs; [
+      ventoy-full
+      gnupg
+      custom.distrib-dl
       custom.ancs4linux
       davinci-resolve
       bolt

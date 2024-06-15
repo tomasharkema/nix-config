@@ -23,7 +23,10 @@ in {
 
   config = {
 
-    services.atd.enable = true;
+    services.atd = {
+      enable = true;
+      allowEveryone = true;
+    };
 
     systemd.services = {
       "${notifyServiceName}@" = {
