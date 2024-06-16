@@ -14,7 +14,7 @@
   #     };
   #   };
   # };
-
+  #why depends linux-6.6.33
   imports = [
     inputs.agenix.darwinModules.default
     # ../../nixos/secrets
@@ -61,8 +61,8 @@
       nix-daemon.enable = true;
     };
     fonts = {
-      fontDir.enable = true;
-      fonts = with pkgs; [
+      # fontDir.enable = true;
+      packages = with pkgs; [
         noto-fonts
         noto-fonts-extra
         noto-fonts-emoji
