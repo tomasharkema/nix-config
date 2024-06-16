@@ -120,7 +120,7 @@ in with lib; {
         '';
       };
 
-      stateVersion = "23.11";
+      stateVersion = "24.05";
 
       # (import ./packages/common.nix {inherit pkgs inputs lib;})
       # ++

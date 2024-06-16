@@ -12,7 +12,7 @@
   "inputs": {
     "nixpkgs": {
       "type": "git",
-      "value": "https://github.com/nixos/nixpkgs 23.11",
+      "value": "https://github.com/nixos/nixpkgs 24.05",
       "emailresponsible": false
     },
     "configs": {

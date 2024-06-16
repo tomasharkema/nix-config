@@ -79,7 +79,7 @@ in {
     systemd.services.attic-watch.enable = mkForce false;
     resilio.enable = false;
 
-    # system.stateVersion = "23.11";
+    # system.stateVersion = "24.05";
 
     nix.settings = {
       keep-outputs = mkForce false;

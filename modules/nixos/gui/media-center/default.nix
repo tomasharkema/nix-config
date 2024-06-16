@@ -149,7 +149,7 @@ in {
 
     # home-manager = {
     #   users.media = {
-    #     home.stateVersion = mkDefault "23.11";
+    #     home.stateVersion = mkDefault "24.05";
     #     xdg.enable = true;
     #   };
     # };

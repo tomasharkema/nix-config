@@ -1,7 +1,7 @@
 { lib, ... }: {
   config = {
     time.timeZone = "Europe/Amsterdam";
-    system.stateVersion = "23.11";
+    system.stateVersion = "24.05";
     security.sudo.wheelNeedsPassword = false;
     nixpkgs.config.allowUnfree = true;
 
