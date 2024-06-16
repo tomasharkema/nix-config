@@ -17,7 +17,7 @@ with lib; {
 
   config = {
     snowfallorg.user.${config.user.name}.home.config = {
-      home.stateVersion = mkDefault "23.11";
+      home.stateVersion = mkDefault "24.05";
       xdg.enable = true;
     };
 
@@ -26,9 +26,15 @@ with lib; {
       useGlobalPkgs = true;
       backupFileExtension = "bak";
       users.${config.user.name} = {
-        home.stateVersion = mkDefault "23.11";
+        home.stateVersion = mkDefault "24.05";
         xdg.enable = true;
       };
+    };
+
+    qt = {
+      enable = true;
+      platformTheme = "gnome";
+      style = "adwaita-dark";
     };
   };
 }

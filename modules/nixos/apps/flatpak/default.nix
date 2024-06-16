@@ -41,7 +41,7 @@ in {
         # "com.ranfdev.Notify"
         #"io.emeric.toolblex"
         "io.github.JaGoLi.ytdl_gui"
-        "io.github.sigmasd.stimulator"
+        # "io.github.sigmasd.stimulator"
         #"io.github.vikdevelop.SaveDesktop"
         #"io.missioncenter.MissionCenter"
         "me.iepure.devtoolbox"

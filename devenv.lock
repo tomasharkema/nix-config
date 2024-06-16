@@ -56,11 +56,11 @@
     },
     "nixlib": {
       "locked": {
-        "lastModified": 1717894324,
+        "lastModified": 1718499101,
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "rev": "13eac98dc5233fe7e52f0cd0e2cba7dcd77feca5",
-        "treeHash": "cf15e2ab8406f0baee5a67832e9768e65d1e220a",
+        "rev": "6fba0c5a27b984914794ffdab8d7bb5c29ab11b6",
+        "treeHash": "5976a36acd7acb3d942d450197fec84cf72714ca",
         "type": "github"
       },
       "original": {

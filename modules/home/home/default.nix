@@ -19,16 +19,24 @@ let
     url = "https://iterm2.com/shell_integration/zsh";
     sha256 = "sha256-Cq8winA/tcnnVblDTW2n1k/olN3DONEfXrzYNkufZvY=";
   };
+  # bg = pkgs.fetchurl {
+  #   url =
+  #     "https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/raw/main/backgrounds/blobs-d.svg";
+  #   sha256 = "sha256-IG9BGCOXTD5RtBZOCnC/CJnjUtqJcoz+gijlMscrnEY=";
+  # };
+  # bgLight = pkgs.fetchurl {
+  #   url =
+  #     "https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/raw/main/backgrounds/blobs-l.svg";
+  #   sha256 = "sha256-zVNMDAgfZvEwPHbhJ0/NBSNseNjIF+jxD3K2zcSj36U=";
+  # };
+
+  #https://i.redd.it/52bb00rh254d1.jpeg
+  isSvg = false;
   bg = pkgs.fetchurl {
-    url =
-      "https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/raw/main/backgrounds/blobs-d.svg";
-    sha256 = "sha256-IG9BGCOXTD5RtBZOCnC/CJnjUtqJcoz+gijlMscrnEY=";
+    url = "https://i.redd.it/4yglzy4rkh4d1.jpeg";
+    sha256 = "sha256-HxfX3ekUuZLluyN1yvfqVIQaNSejhV03sGFzi22zZ24=";
   };
-  bgLight = pkgs.fetchurl {
-    url =
-      "https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/raw/main/backgrounds/blobs-l.svg";
-    sha256 = "sha256-zVNMDAgfZvEwPHbhJ0/NBSNseNjIF+jxD3K2zcSj36U=";
-  };
+  bgLight = bg;
   bgPng = bgGenerate "bg" bg;
   bgLightPng = bgGenerate "bgLight" bgLight;
 in with lib; {
@@ -62,7 +70,8 @@ in with lib; {
               "sha256:1g4mrz2d8h13rp8z2b9cn1wdr4la5zzrfkqgblayb56zg7706ga6";
           };
         };
-        ".background-image.svg".source = "${bg}";
+        ".background-image.svg" = mkIf isSvg { source = "${bg}"; };
+        ".background-image.jpg" = mkIf (!isSvg) { source = "${bg}"; };
         ".background-image".source = "${bg}";
         ".background-image.png".source = "${bgPng}";
         ".background-image-light.png".source = "${bgLightPng}";
