@@ -14,11 +14,14 @@ final: prev: rec {
   netdata = channels.unstable.netdata;
   netdataCloud = channels.unstable.netdataCloud;
 
+  btop = channels.unstable.btop;
+  htop = channels.unstable.htop;
+
   # samba = channels.unstable.samba;
 
   tailscale = channels.unstable.tailscale;
 
-  # cockpit = channels.unstable.cockpit;
+  cockpit = channels.unstable.cockpit;
 
   # keybase = channels.unstable.keybase;
   # keybase-gui = channels.unstable.keybase-gui;
@@ -40,4 +43,6 @@ final: prev: rec {
 
   wezterm = channels.unstable.wezterm;
   # sunshine = channels.unstable.sunshine;
+
+  devenv = channels.unstable.devenv;
 }

@@ -96,7 +96,7 @@ in {
         # polkit
         # transmission
         # waybar
-        caffeine-ng
+        # caffeine-ng
         clutter
         effitask
         filezilla

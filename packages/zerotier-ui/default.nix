@@ -1,79 +1,66 @@
-{
-  stdenv,
-  fetchFromGitHub,
-  lib,
-  pkg-config,
-  glib,
-  libsoup,
-  cairo,
-  pango,
-  gdk-pixbuf,
-  gtk3,
-  libappindicator,
-  webkitgtk,
-  libui,
-  cargo,
-}: let
+{ stdenv, fetchFromGitHub, lib, pkg-config, glib, libsoup, cairo, pango
+, gdk-pixbuf, gtk3, libappindicator, webkitgtk, libui, cargo, }:
+let
   assets = fetchFromGitHub {
     owner = "zerotier";
     repo = "DesktopUI";
-    rev = "aeee9eb346853e6f4ea3f6a0b61d8fe5252724ca";
-    hash = "sha256-Y0ZEUGZwtKexS3S0f3SjJ5g0gCe1HIBoPDEdRFcdaK0=";
+    rev = "cc5b7b9fea6f9552892ab5599e8bda5bc1a4b042";
+    hash = "sha256-6OOZTsZMxdB+XvzNeNcY2hJ5LOmBDDsFG84Af090sR0=";
   };
-in
-  stdenv.mkDerivation rec {
-    pname = "zerotier-ui";
-    version = "1.8.4";
+in stdenv.mkDerivation rec {
+  pname = "zerotier-ui";
+  version = "1.8.4";
 
-    src = fetchFromGitHub {
-      owner = "zerotier";
-      repo = "DesktopUI";
-      rev = "${version}";
-      hash = "sha256-OxwNskKAeBjkV15XLtzMYrNt+FQaJd2bXxoKboCRxPE=";
-    };
-    nativeBuildInputs = [
-      pkg-config
-    ];
-    buildInputs = [
-      glib
-      libsoup
-      cairo
-      pango
-      gdk-pixbuf
-      gtk3
-      libappindicator
-      webkitgtk
-      libui
-      cargo
-    ];
+  src = fetchFromGitHub {
+    owner = "zerotier";
+    repo = "DesktopUI";
+    rev = "${version}";
+    hash = "sha256-OxwNskKAeBjkV15XLtzMYrNt+FQaJd2bXxoKboCRxPE=";
+  };
 
-    buildPhase = ''
-      runHook preBuild
+  nativeBuildInputs = [ pkg-config ];
 
-      make linux
+  buildInputs = [
+    glib
+    libsoup
+    cairo
+    pango
+    gdk-pixbuf
+    gtk3
+    libappindicator
+    webkitgtk
+    libui
+    cargo
+  ];
 
-      runHook postBuild
-    '';
+  buildPhase = ''
+    runHook preBuild
 
-    installPhase = ''
-      runHook preInstall
+    make linux
 
-      mkdir -p $out/bin
-      mkdir -p $out/share/applications
-      cp target/release/zerotier_desktop_ui $out/bin/zerotier-ui
-      cp ${assets}/ZeroTierIcon.png $out/share
-      cp ${./zerotier-ui.desktop} $out/share/applications
+    runHook postBuild
+  '';
 
-      runHook postInstall
-    '';
+  installPhase = ''
+    runHook preInstall
 
-    meta = with lib; {
-      description = "tomas";
-      homepage = "https://github.com/tomasharkema/nix-config";
-      license = licenses.mit;
-      maintainers = ["tomasharkema" "tomas@harkema.io"];
-    };
-  }
+    mkdir -p $out/bin
+    mkdir -p $out/share/applications
+
+    cp target/release/zerotier_desktop_ui $out/bin/zerotier-ui
+    cp ${assets}/ZeroTierIcon.png $out/share
+    cp ${assets}/zerotier-ui.desktop $out/share/applications
+
+    runHook postInstall
+  '';
+
+  meta = with lib; {
+    description = "tomas";
+    homepage = "https://github.com/tomasharkema/nix-config";
+    license = licenses.mit;
+    maintainers = [ "tomasharkema" "tomas@harkema.io" ];
+  };
+}
 # {
 #   callPackage,
 #   lib,
@@ -150,4 +137,3 @@ in
 #     maintainers = ["tomasharkema" "tomas@harkema.io"];
 #   };
 # }
-

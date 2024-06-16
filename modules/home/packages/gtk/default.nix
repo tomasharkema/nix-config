@@ -12,10 +12,6 @@ let
 in {
   imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
 
-  # disabledModules=["home-manager/tofi.nix"];
-
-  # options = { programs.tofi.settings = mkOption { }; };
-
   config = mkIf
     (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
 
@@ -41,23 +37,23 @@ in {
           size = 11;
         };
 
-        catppuccin = {
-          enable = true;
-          flavor = "mocha";
-          accent = "blue";
-          size = "compact";
-          tweaks = [ "black" ];
-          gnomeShellTheme = true;
-        };
+        # catppuccin = {
+        #   enable = true;
+        #   flavor = "mocha";
+        #   accent = "blue";
+        #   size = "compact";
+        #   tweaks = [ "black" ];
+        #   gnomeShellTheme = true;
+        # };
       };
 
       home = lib.mkIf true {
-        pointerCursor = mkIf pkgs.stdenv.isLinux {
-          name = mkForce "macOS-Monterey";
-          package = mkForce pkgs.apple-cursor;
-          x11.enable = true;
-          gtk.enable = true;
-        };
+        # pointerCursor = mkIf pkgs.stdenv.isLinux {
+        #   name = mkForce "macOS-Monterey";
+        #   package = mkForce pkgs.apple-cursor;
+        #   x11.enable = true;
+        #   gtk.enable = true;
+        # };
 
         file = { ".config/gnome-initial-setup-done".text = "yes"; };
 
