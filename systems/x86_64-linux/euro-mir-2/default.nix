@@ -22,8 +22,7 @@ with lib; {
       enable = true;
       packages = with pkgs; [ heimdall-gui libusb ];
       extraRules = ''
-        SUBSYSTEM=="usb", ATTRS{idVendor}=="VID", ATTRS{idProduct}=="PID", MODE="0666"
-        SUBSYSTEM=="usb", ATTR{idVendor}=="04e8", ATTR{idProduct}=="685d", MODE="0666", ATTR{power/control}="on"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="04e8", ATTR{idProduct}=="685d", MODE="0666"
       '';
     };
 
@@ -94,7 +93,7 @@ with lib; {
       # android.enable = true;
       steam.enable = true;
       # opensnitch.enable = true;
-      usbip.enable = true;
+      # usbip.enable = true;
     };
 
     headless.hypervisor = {
