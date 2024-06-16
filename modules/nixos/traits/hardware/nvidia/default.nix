@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, pkgs, lib, ... }:
 with lib;
 with lib.custom;
 let
@@ -11,19 +6,16 @@ let
 
   nvidiaVersion = config.hardware.nvidia.package.version;
   nvidiax11Version = config.boot.kernelPackages.nvidia_x11.version;
-in
-# nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-#   export __NV_PRIME_RENDER_OFFLOAD=1
-#   export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-#   export __GLX_VENDOR_LIBRARY_NAME=nvidia
-#   export __VK_LAYER_NV_optimus=NVIDIA_only
-#   exec "$@"
-# '';
-{
+  # nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+  #   export __NV_PRIME_RENDER_OFFLOAD=1
+  #   export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+  #   export __GLX_VENDOR_LIBRARY_NAME=nvidia
+  #   export __VK_LAYER_NV_optimus=NVIDIA_only
+  #   exec "$@"
+  # '';
+in {
   options.traits = {
-    hardware.nvidia = {
-      enable = mkBoolOpt false "nvidia";
-    };
+    hardware.nvidia = { enable = mkBoolOpt false "nvidia"; };
   };
 
   config = mkIf cfg.enable {
@@ -32,10 +24,11 @@ in
       cudaSupport = true;
     };
 
-    system.nixos.tags = [ "nvidia:${nvidiaVersion}:nvidiax11Version:${nvidiax11Version}" ];
+    system.nixos.tags =
+      [ "nvidia:${nvidiaVersion}:nvidiax11Version:${nvidiax11Version}" ];
 
     environment.systemPackages = with pkgs; [
-      nvtop-nvidia
+      nvtopPackages.full
       zenith-nvidia
       pkgs.custom.gpustat
       # nvidia-offload
