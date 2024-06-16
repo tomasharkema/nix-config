@@ -14,10 +14,8 @@ let
     export IFS=' '
 
     echo "Uploading paths" $OUT_PATHS
-    # exec nix copy --to "s3://example-nix-cache" $OUT_PATHS
-    ${pkgs.at}/bin/at -q b now <<! 
-      attic push tomas $OUT_PATHS
-    !
+
+    echo "attic push tomas $OUT_PATHS" | ${pkgs.at}/bin/at -q b now
   '';
 in {
 

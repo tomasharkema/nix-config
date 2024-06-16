@@ -17,7 +17,21 @@ with lib; {
     programs.gnupg.agent = { enable = true; };
 
     services.dbus.packages = with pkgs; [ custom.ancs4linux ];
+
+    services.udev = {
+      enable = true;
+      packages = with pkgs; [ heimdall-gui libusb ];
+      extraRules = ''
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="VID", ATTRS{idProduct}=="PID", MODE="0666"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="04e8", ATTR{idProduct}=="685d", MODE="0666", ATTR{power/control}="on"
+      '';
+    };
+
     environment.systemPackages = with pkgs; [
+      android-tools
+      heimdall-gui
+      libusb
+
       ventoy-full
       gnupg
       custom.distrib-dl
@@ -50,16 +64,20 @@ with lib; {
       quiet-boot.enable = true;
     };
 
-    environment.enableDebugInfo = true;
-
     hardware = {
       nvidia = {
         # nvidiaPersistenced = true; 
+        forceFullCompositionPipeline = true;
+
         prime = {
           sync.enable = true;
           offload.enable = false;
           offload.enableOffloadCmd = false;
         };
+        # powerManagement = {
+        #   enable = true;
+        #   finegrained = true;
+        # };
       };
       # fancontrol.enable = true;
       opengl = {
@@ -71,14 +89,6 @@ with lib; {
         ];
       };
     };
-
-    # environment.variables = {
-    #   GDK_SCALE = "2";
-    #   GDK_DPI_SCALE = "0.5";
-    #   QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-    # };
-
-    # services.xserver.dpi = 227;
 
     apps = {
       # android.enable = true;
@@ -123,6 +133,7 @@ with lib; {
           extraOptions = [ "--loadavg-target" "2.0" ];
         };
       };
+
       # synergy.server = {
       #   enable = true;
       # };
@@ -152,13 +163,15 @@ with lib; {
 
     boot = {
       binfmt.emulatedSystems = [ "aarch64-linux" ];
-      # extraModprobeConfig = ''
-      #   options nvidia NVreg_DynamicPowerManagement=0x02
-      #   options nvidia NVreg_PreserveVideoMemoryAllocations=1
-      # '';
+
       supportedFilesystems = [ "ntfs" ];
-      kernelModules = [ "kvm-intel" "watchdog" ];
-      initrd.kernelModules = [ "watchdog" ];
+      kernelModules = [
+        "kvm-intel"
+        # "watchdog"
+      ];
+      initrd.kernelModules = [
+        #  "watchdog" 
+      ];
     };
   };
 }

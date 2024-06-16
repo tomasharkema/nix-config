@@ -169,7 +169,7 @@ in {
       # # gnomeExtensions.appindicator
       # gnomeExtensions.settingscenter
       # gnomeExtensions.app-hider
-      # gnomeExtensions.arc-menu
+      gnomeExtensions.arc-menu
       # gnomeExtensions.blur-my-shell
       # gnomeExtensions.clipboard-indicator
       # gnomeExtensions.dash-to-dock
