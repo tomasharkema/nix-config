@@ -15,33 +15,33 @@ let
   notifyServiceName = "notify-service";
 in {
 
-  # options.systemd.services = mkOption {
-  #   type = with types;
-  #     attrsOf
-  #     (submodule { config.onFailure = [ "${notifyServiceName}@%n.service" ]; });
-  # };
+  options.systemd.services = mkOption {
+    type = with types;
+      attrsOf
+      (submodule { config.onFailure = [ "${notifyServiceName}@%n.service" ]; });
+  };
 
-  # config = {
+  config = {
 
-  #   services.atd = {
-  #     enable = true;
-  #     allowEveryone = true;
-  #   };
+    services.atd = {
+      enable = true;
+      allowEveryone = true;
+    };
 
-  #   systemd.services = {
-  #     "${notifyServiceName}@" = {
-  #       description = "Send onFailure Notification";
-  #       onFailure = mkForce [ ];
+    systemd.services = {
+      "${notifyServiceName}@" = {
+        description = "Send onFailure Notification";
+        onFailure = mkForce [ ];
 
-  #       serviceConfig = {
-  #         Type = "oneshot";
-  #         ExecStart =
-  #           "/bin/sh -c 'set -x; echo \"${sendmail} %i\" | ${pkgs.at}/bin/at -q n now'";
-  #       };
-  #       wantedBy = [ "default.target" ];
-  #       # after = [ "network-online.target" ];
-  #       # wants = [ "network-online.target" ];
-  #     };
-  #   };
-  # };
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart =
+            "/bin/sh -c 'echo \"${sendmail} %i\" | ${pkgs.at}/bin/at -q n now'";
+        };
+        wantedBy = [ "default.target" ];
+        after = [ "network-online.target" ];
+        wants = [ "network-online.target" ];
+      };
+    };
+  };
 }
