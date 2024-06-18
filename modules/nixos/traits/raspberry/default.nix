@@ -76,7 +76,6 @@ in {
       bluez
     ];
 
-    systemd.services.attic-watch.enable = mkForce false;
     resilio.enable = false;
 
     # system.stateVersion = "24.05";

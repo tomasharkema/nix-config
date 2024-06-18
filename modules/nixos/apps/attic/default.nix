@@ -28,30 +28,41 @@ in {
     };
   };
 
-  config = let atticBin = "${pkgs.attic}/bin/attic";
+  config = let
+    postBuildScript = pkgs.writeScript "upload-to-cache.sh" ''
+      set -eu
+      set -f # disable globbing
+      export IFS=' '
+
+      echo "Uploading paths" $OUT_PATHS
+
+      echo "${pkgs.attic}/bin/attic push tomas $OUT_PATHS" | ${pkgs.at}/bin/at -q b now
+    '';
   in mkIf cfg.enable {
-    systemd.services.attic-watch = {
-      description = "attic-watch";
-      enable = true;
-      preStart = ''
-        ${atticBin} login "${cfg.serverName}" "${cfg.serverAddress}" "$(cat "${config.age.secrets.attic-key.path}")"
-      '';
-      script = ''
-        ${atticBin} watch-store "${cfg.serverName}:${cfg.storeName}" -j1
-      '';
+    nix.settings.post-build-hook = postBuildScript;
 
-      unitConfig = {
-        StartLimitIntervalSec = 500;
-        StartLimitBurst = 5;
-      };
-      serviceConfig = {
-        RestartSec = 5;
-        MemoryHigh = "4G";
-        MemoryMax = "5G";
-        Nice = 15;
-      };
+    # systemd.services.attic-watch = {
+    #   description = "attic-watch";
+    #   enable = true;
+    #   preStart = ''
+    #     ${atticBin} login "${cfg.serverName}" "${cfg.serverAddress}" "$(cat "${config.age.secrets.attic-key.path}")"
+    #   '';
+    #   script = ''
+    #     ${atticBin} watch-store "${cfg.serverName}:${cfg.storeName}" -j1
+    #   '';
 
-      wantedBy = [ "default.target" ];
-    };
+    #   unitConfig = {
+    #     StartLimitIntervalSec = 500;
+    #     StartLimitBurst = 5;
+    #   };
+    #   serviceConfig = {
+    #     RestartSec = 5;
+    #     MemoryHigh = "4G";
+    #     MemoryMax = "5G";
+    #     Nice = 15;
+    #   };
+
+    #   wantedBy = [ "default.target" ];
+    # };
   };
 }

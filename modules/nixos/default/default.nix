@@ -7,17 +7,7 @@ with lib;
 #     });
 # in
 
-let
-  postBuildScript = pkgs.writeScript "upload-to-cache.sh" ''
-    set -eu
-    set -f # disable globbing
-    export IFS=' '
-
-    echo "Uploading paths" $OUT_PATHS
-
-    echo "attic push tomas $OUT_PATHS" | ${pkgs.at}/bin/at -q b now
-  '';
-in {
+{
 
   config = with lib; {
     # Set your time zone.
@@ -26,8 +16,6 @@ in {
     # environment.variables.XCURSOR_SIZE = "24";
 
     # nix.package = pkgs.nixVersions.nix_2_22; #Unstable;
-
-    nix.settings.post-build-hook = postBuildScript;
 
     # Select internationalisation properties.
     i18n = {
