@@ -1,4 +1,11 @@
-{ options, config, pkgs, lib, inputs, ... }:
+{
+  options,
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 with lib;
 with lib.custom; {
   # imports = [
@@ -14,18 +21,22 @@ with lib.custom; {
     # };
 
     environment.systemPackages = with pkgs;
-      with custom; [
-        nix-update
-        fup-repl
-        # custom.nixos-revision
-        # (nixos-hosts.override {
-        #   hosts = inputs.self.nixosConfigurations;
-        # })
-        attic-client
-      ];
+    with custom; [
+      nix-update
+      fup-repl
+      # custom.nixos-revision
+      # (nixos-hosts.override {
+      #   hosts = inputs.self.nixosConfigurations;
+      # })
+      attic-client
+    ];
 
     nix = let
-      users = [ "root" config.user.name ]
+      users =
+        [
+          "root"
+          config.user.name
+        ]
         ++ optional config.services.hydra.enable "hydra";
     in {
       package = pkgs.nixVersions.nix_2_22;
@@ -45,9 +56,22 @@ with lib.custom; {
         log-lines = 50;
         sandbox = true;
         auto-optimise-store = true;
-        trusted-users = users ++ [ "tomas" "root" "builder" ];
-        allowed-users = users ++ [ "tomas" "root" "builder" ];
-        netrc-file = config.age.secrets.attic-netrc.path;
+        trusted-users =
+          users
+          ++ [
+            "tomas"
+            "root"
+            "builder"
+          ];
+        allowed-users =
+          users
+          ++ [
+            "tomas"
+            "root"
+            "builder"
+          ];
+        #netrc-file = config.age.secrets.attic-netrc.path ++ config.age.secrets.netrc.path;
+        netrc-file = config.age.secrets.netrc.path;
         keep-outputs = true;
         keep-derivations = true;
         # substituters =

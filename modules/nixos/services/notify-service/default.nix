@@ -1,6 +1,10 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   sendmail = pkgs.writeScript "sendmail" ''
     #!/bin/sh
     ${pkgs.system-sendmail}/bin/sendmail -t <<ERRMAIL
@@ -14,15 +18,14 @@ let
   '';
   notifyServiceName = "notify-service";
 in {
-
   options.systemd.services = mkOption {
     type = with types;
-      attrsOf
-      (submodule { config.onFailure = [ "${notifyServiceName}@%n.service" ]; });
+      attrsOf (submodule {
+        config.onFailure = ["${notifyServiceName}@%n.service"];
+      });
   };
 
   config = {
-
     services.atd = {
       enable = true;
       allowEveryone = true;
@@ -31,16 +34,15 @@ in {
     systemd.services = {
       "${notifyServiceName}@" = {
         description = "Send onFailure Notification";
-        onFailure = mkForce [ ];
+        onFailure = mkForce [];
 
         serviceConfig = {
           Type = "oneshot";
-          ExecStart =
-            "/bin/sh -c 'echo \"${sendmail} %i\" | ${pkgs.at}/bin/at -q n now'";
+          ExecStart = "/bin/sh -c 'echo \"${sendmail} %i\" | ${pkgs.at}/bin/at -m -q n now'";
         };
-        wantedBy = [ "default.target" ];
-        after = [ "network-online.target" ];
-        wants = [ "network-online.target" ];
+        wantedBy = ["default.target"];
+        after = ["network-online.target"];
+        wants = ["network-online.target"];
       };
     };
   };

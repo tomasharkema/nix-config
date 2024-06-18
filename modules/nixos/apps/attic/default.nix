@@ -1,8 +1,14 @@
-{ lib, inputs, pkgs, config, ... }:
+{
+  lib,
+  inputs,
+  pkgs,
+  config,
+  ...
+}:
 with lib;
 # with lib.custom;
-with pkgs;
-let cfg = config.apps.attic;
+with pkgs; let
+  cfg = config.apps.attic;
 in {
   options.apps.attic = with lib.types; {
     enable = mkEnableOption "enable attic conf";
@@ -28,18 +34,17 @@ in {
     };
   };
 
-  config = let
-    postBuildScript = pkgs.writeScript "upload-to-cache.sh" ''
-      set -eu
-      set -f # disable globbing
-      export IFS=' '
+  config = mkIf cfg.enable {
+    services.nixos-service = {
+      enable = true;
 
-      echo "Uploading paths" $OUT_PATHS
+      serverName = cfg.storeName;
+      serverUrl = cfg.serverAddress;
+      secretPath = config.age.secrets.attic-key.path;
+      mode = "0777";
+    };
 
-      echo "${pkgs.attic}/bin/attic push tomas $OUT_PATHS" | ${pkgs.at}/bin/at -q b now
-    '';
-  in mkIf cfg.enable {
-    nix.settings.post-build-hook = postBuildScript;
+    users.users.tomas.extraGroups = [config.services.nixos-service.group];
 
     # systemd.services.attic-watch = {
     #   description = "attic-watch";

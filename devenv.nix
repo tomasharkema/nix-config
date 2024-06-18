@@ -1,9 +1,13 @@
-{ pkgs, lib, config, inputs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}:
 with lib;
-with pkgs;
-let
-  nixos-generate =
-    inputs.nixos-generators.packages."${pkgs.system}".nixos-generate;
+with pkgs; let
+  nixos-generate = inputs.nixos-generators.packages."${pkgs.system}".nixos-generate;
 
   _mbufferSend = writeShellScriptBin "_mbufferSend" ''
     mbuffer -I pegasus:8000 -m 1G | zstd -e - -19 | > pegasus-bak-2.tar.zst
@@ -95,9 +99,7 @@ let
   test-remote = writeShellScriptBin "test-remote" ''
     SERVER="$1"
     echo "test remote $SERVER..."
-    exec ${
-      lib.getExe pkgs.buildPackages.nixos-rebuild
-    } test --flake ".#$SERVER" --target-host "$SERVER" --use-remote-sudo --verbose --show-trace -L
+    exec ${lib.getExe pkgs.buildPackages.nixos-rebuild} test --flake ".#$SERVER" --target-host "$SERVER" --use-remote-sudo --verbose --show-trace -L
   '';
 
   upload-local = writeShellScriptBin "upload-local" ''
@@ -151,7 +153,6 @@ let
     exec nom build ".#nixosConfigurations.$HOSTNAME.pkgs.$PACKAGE" --out-link ./out/$PACKAGE --verbose --show-trace -L
   '';
 in {
-
   # starship.enable = true;
 
   # languages.nix = {
@@ -159,7 +160,7 @@ in {
   #   lsp.package = nixd;
   # };
   pre-commit.hooks = {
-    nixfmt.enable = true;
+    alejandra.enable = true;
     shellcheck.enable = true;
     # nixd.enable = true;
     # nil.enable = true;
@@ -197,6 +198,7 @@ in {
     # pkgs.custom.rundesk
     ack
     age
+    alejandra
     attic-client
     bash
     bfg-repo-cleaner
