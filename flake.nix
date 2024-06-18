@@ -504,7 +504,7 @@
       #   cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
       # in
       {
-        formatter = channels.nixpkgs.nixfmt;
+        formatter = channels.nixpkgs.alejandra;
 
         # checks = with inputs; {
         # nixpkgs-lint =
