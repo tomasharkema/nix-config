@@ -4,13 +4,12 @@
   inputs,
   ...
 }:
-with lib;
-with lib.custom; let
+with lib; let
   cfg = config.traits.hardware.laptop;
 in {
   options.traits = {
     hardware.laptop = {
-      enable = mkBoolOpt false "laptop";
+      enable = mkEnableOption "laptop";
     };
   };
 
