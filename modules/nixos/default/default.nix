@@ -67,7 +67,7 @@ with lib;
         };
 
         # kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
-        kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+        kernelPackages = lib.mkDefault pkgs.linuxKernel.packages.linux_xanmod_stable;
         extraModulePackages = with config.boot.kernelPackages; [wireguard];
 
         loader = {
