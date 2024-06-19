@@ -1,4 +1,9 @@
-{ pkgs, inputs, lib, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 with lib; {
   # imports = with inputs; [
   # nixos-hardware.nixosModules.raspberry-pi-4
@@ -30,7 +35,9 @@ with lib; {
 
     traits = {
       low-power.enable = true;
-      hardware = { bluetooth.enable = true; };
+      hardware = {
+        bluetooth.enable = true;
+      };
     };
     # traits.slim.enable = true;
 
@@ -44,7 +51,9 @@ with lib; {
     };
 
     services = {
-      avahi = { enable = true; };
+      avahi = {
+        enable = true;
+      };
       mopidy = {
         enable = true;
         extensionPackages = with pkgs; [
@@ -74,11 +83,15 @@ with lib; {
 
     # fileSystems."/".fsType = lib.mkForce "tmpfs";
     # fileSystems."/".device = lib.mkForce "none";
-    zramSwap = { enable = false; };
-    swapDevices = [{
-      device = "/swapfile";
-      size = 16 * 1024;
-    }];
+    zramSwap = {
+      enable = false;
+    };
+    swapDevices = [
+      {
+        device = "/swapfile";
+        size = 16 * 1024;
+      }
+    ];
 
     services.cage.program = mkForce "${pkgs.kodi-wayland}/bin/kodi-standalone";
 
@@ -93,7 +106,6 @@ with lib; {
     };
 
     boot = {
-
       loader = {
         grub.enable = lib.mkDefault false;
         generic-extlinux-compatible.enable = lib.mkDefault true;
@@ -127,7 +139,7 @@ with lib; {
       # ];
 
       # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
-      kernelPackages = pkgs.linuxPackages_latest;
+      kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
 
       kernelParams = mkForce [
         # "console=ttyS0,115200n8"
@@ -154,10 +166,18 @@ with lib; {
               "hfp_hf"
               "hfp_ag"
             ];
-            "bluez5.codecs" = [ "sbc" "sbc_xq" "aac" ];
+            "bluez5.codecs" = [
+              "sbc"
+              "sbc_xq"
+              "aac"
+            ];
             "bluez5.enable-sbc-xq" = true;
             "bluez5.hfphsp-backend" = "native";
-            "bluez5.auto-connect" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
+            "bluez5.auto-connect" = [
+              "hfp_hf"
+              "hsp_hs"
+              "a2dp_sink"
+            ];
           };
         };
       };
@@ -186,7 +206,9 @@ with lib; {
           Class = "0x200414";
           DiscoverableTimeout = 0;
         };
-        Policy = { AutoEnable = true; };
+        Policy = {
+          AutoEnable = true;
+        };
       };
 
       # deviceTree = let drMode = "otg";
