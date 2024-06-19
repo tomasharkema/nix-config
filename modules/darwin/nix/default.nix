@@ -47,6 +47,10 @@ in {
       nil
       nixd
       flake-checker
+      hydra-check
+      hydra-cli
+      autoflake
+      fh
       direnv
       devenv
       # attic
@@ -70,6 +74,8 @@ in {
       users = ["root" "tomas"];
     in {
       package = pkgs.nixVersions.nix_2_22;
+
+      nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
       linux-builder = {
         enable = true;
