@@ -1,16 +1,26 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 with lib;
-with lib.custom;
-let cfg = config.apps.ipa;
+with lib.custom; let
+  cfg = config.apps.ipa;
 in {
-
   options = {
-    apps.ipa = { enable = mkEnableOption "enable ipa"; };
+    apps.ipa = {
+      enable = mkEnableOption "enable ipa";
+    };
     # services.intune.enable = mkEnableOption "intune";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ ldapvi ldapmonitor ];
+    environment.systemPackages = with pkgs; [
+      ldapvi
+      ldapmonitor
+    ];
 
     environment.etc = {
       # "krb5.conf".text = mkBefore ''
@@ -77,7 +87,6 @@ in {
 
     systemd.tmpfiles.rules = [
       "L /bin/bash - - - - /run/current-system/sw/bin/bash"
-      "L /bin/sh - - - - /run/current-system/sw/bin/sh"
       "L /bin/zsh - - - - /run/current-system/sw/bin/zsh"
     ];
 
