@@ -155,15 +155,14 @@ with pkgs; let
 in {
   # starship.enable = true;
 
-  # languages.nix = {
-  #   enable = true;
-  #   lsp.package = nixd;
-  # };
+  languages.nix = {
+    enable = true;
+  };
+
   pre-commit.hooks = {
     alejandra.enable = true;
     shellcheck.enable = true;
-    # nixd.enable = true;
-    # nil.enable = true;
+    nil.enable = true;
     # statix.enable = true;
   };
 
@@ -173,7 +172,7 @@ in {
       "Catppuccin.catppuccin-vsc-pack"
       "jnoortheen.nix-ide"
       "mkhl.direnv"
-      "brettm12345.nixfmt-vscode"
+      "kamadorueda.alejandra"
     ];
   };
   difftastic.enable = true;
@@ -222,7 +221,6 @@ in {
     mkiso
     netdiscover
     nil
-    nil
     nix-eval-jobs
     nix-output-monitor
     nix-output-monitor
@@ -235,7 +233,7 @@ in {
     nixpkgs-fmt
     nixpkgs-lint
     nurl
-    pkgs.deploy-rs
+    deploy-rs
     reencrypt
     remote-deploy
     sops
