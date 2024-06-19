@@ -284,7 +284,8 @@
         firefox.enableGnomeExtensions = true;
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;
-
+        nvidia.acceptLicense = true;
+        cudaSupport = true;
         # allowAliases = false;
 
         # config.allowUnsupportedSystem = true;
