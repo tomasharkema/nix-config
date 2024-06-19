@@ -1,6 +1,11 @@
-{ lib, pkgs, inputs, config, ... }:
-with lib;
-let
+{
+  lib,
+  pkgs,
+  inputs,
+  config,
+  ...
+}:
+with lib; let
   boot-into-bios = pkgs.writeShellScriptBin "boot-into-bios" ''
     sudo ${pkgs.ipmitool}/bin/ipmitool chassis bootparam set bootflag force_bios
   '';
@@ -21,6 +26,18 @@ in {
       btrbk.enable = false;
     };
 
+    services.beesd.filesystems = {
+      root = {
+        spec = "UUID=3b512fef-be0f-4fb0-aaef-40fe4fa01b2e";
+        hashTableSizeMB = 1024;
+        verbosity = "crit";
+        extraOptions = [
+          "--loadavg-target"
+          "2.0"
+        ];
+      };
+    };
+
     traits = {
       builder = {
         enable = true;
@@ -34,7 +51,9 @@ in {
 
         nfs = {
           enable = true;
-          machines = { silver-star.enable = true; };
+          machines = {
+            silver-star.enable = true;
+          };
         };
       };
     };
@@ -115,7 +134,9 @@ in {
     ];
 
     networking = {
-      hosts = { "192.168.0.100" = [ "nix-cache.harke.ma" ]; };
+      hosts = {
+        "192.168.0.100" = ["nix-cache.harke.ma"];
+      };
       hostName = "blue-fire";
       hostId = "529fd7aa";
 
@@ -167,7 +188,7 @@ in {
       # icingaweb2
     ];
 
-    networking.firewall.allowedTCPPorts = [ 2049 ];
+    networking.firewall.allowedTCPPorts = [2049];
 
     services.factorio.enable = true;
 
@@ -240,7 +261,7 @@ in {
     # };
 
     boot = {
-      binfmt.emulatedSystems = [ "aarch64-linux" ];
+      binfmt.emulatedSystems = ["aarch64-linux"];
 
       loader = {
         # systemd-boot.enable = true;
@@ -249,8 +270,13 @@ in {
       };
 
       initrd = {
-        availableKernelModules =
-          [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+        availableKernelModules = [
+          "xhci_pci"
+          "ahci"
+          "usbhid"
+          "usb_storage"
+          "sd_mod"
+        ];
         kernelModules = [
           "kvm-intel"
           "uinput"
@@ -275,7 +301,7 @@ in {
         "ipmi_msghandler"
         "watchdog"
       ];
-      extraModulePackages = [ ];
+      extraModulePackages = [];
       # kernelParams = ["console=ttyS0,115200" "console=tty1"];
     };
 
