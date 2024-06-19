@@ -23,7 +23,10 @@ in {
         deadnix
         deploy-rs
         devenv
+        autoflake
         flake-checker
+        hydra-check
+        fh
         hydra-cli
         manix
         nil

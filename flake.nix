@@ -156,23 +156,6 @@
       };
     };
 
-    hydra-check = {
-      url = "github:nix-community/hydra-check";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-        poetry2nix.follows = "poetry2nix";
-      };
-    };
-
-    flake-checker = {
-      url = "github:DeterminateSystems/flake-checker";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
-
     snowfall-lib = {
       url = "github:snowfallorg/lib";
       inputs = {

@@ -14,6 +14,8 @@ with lib;
 # in
   {
     config = with lib; {
+      nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";
 
@@ -84,6 +86,7 @@ with lib;
 
       environment.systemPackages =
         (with pkgs; [
+          tydra
           ethtool
           socat
           gdu

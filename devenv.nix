@@ -194,7 +194,9 @@ in {
     # cachix-deploy
     # cachix-reploy-pin
     # cntr
-    # flake-checker
+    flake-checker
+    hydra-cli
+    autoflake
     # nix-init
     # nix-serve
     # nixci
