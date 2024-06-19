@@ -1,21 +1,30 @@
-{ lib, config, inputs, ... }:
+{
+  lib,
+  config,
+  inputs,
+  ...
+}:
 with lib;
-with lib.custom;
-let cfg = config.traits.hardware.laptop;
+with lib.custom; let
+  cfg = config.traits.hardware.laptop;
 in {
   options.traits = {
-    hardware.laptop = { enable = mkBoolOpt false "laptop"; };
+    hardware.laptop = {
+      enable = mkBoolOpt false "laptop";
+    };
   };
 
   config = mkIf cfg.enable {
-    system.nixos.tags = [ "laptop" ];
+    system.nixos.tags = ["laptop"];
     powerManagement.enable = true;
 
-    environment.systemPackages =
-      [ inputs.nbfc-linux.packages.x86_64-linux.default ];
+    # environment.systemPackages =
+    #   [ inputs.nbfc-linux.packages.x86_64-linux.default ];
 
     services = {
-      synergy.server = { enable = true; };
+      synergy.server = {
+        enable = true;
+      };
 
       thermald.enable = true;
 

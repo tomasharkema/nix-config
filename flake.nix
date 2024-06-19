@@ -240,10 +240,10 @@
       };
     };
 
-    nbfc-linux = {
-      url = "github:nbfc-linux/nbfc-linux";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nbfc-linux = {
+    #   url = "github:nbfc-linux/nbfc-linux";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     _1password-shell-plugins = {
       url = "github:1Password/shell-plugins";

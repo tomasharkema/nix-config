@@ -1,6 +1,12 @@
-{ lib, pkgs, config, inputs, ... }:
-with lib;
-let cfg = config.apps.steam;
+{
+  lib,
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
+with lib; let
+  cfg = config.apps.steam;
 in {
   # disabledModules = [
   #   "services/desktops/pipewire/pipewire.nix"
@@ -14,28 +20,18 @@ in {
   #   #   "${inputs.unstable}/nixos/modules/security/krb5"
   # ];
 
-  options.apps.steam = { enable = mkEnableOption "steam"; };
+  options.apps.steam = {
+    enable = mkEnableOption "steam";
+  };
 
   config = mkIf cfg.enable {
-    system.nixos.tags = [ "steam" ];
-    boot.kernelModules = [ "uinput" ];
-    users.groups.input.members = [ "tomas" ];
+    system.nixos.tags = ["steam"];
+    boot.kernelModules = ["uinput"];
+    users.groups.input.members = ["tomas"];
 
     programs = {
       steam = {
         enable = true;
-
-        package = pkgs.steam.override {
-          extraEnv = {
-            # MANGOHUD = true;
-            # OBS_VKCAPTURE = true;
-            # RADV_TEX_ANISO = 16;
-          };
-          # extraLibraries = p:
-          #   with p; [
-          #     atk
-          #   ];
-        };
 
         remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = true;
@@ -47,6 +43,17 @@ in {
         capSysNice = true;
       };
     };
+
+    #    programs.mangohud = {
+    #      enable = true;
+    #      enableSessionWide = true;
+    #      settings = {
+    #        full = true;
+    #    no_display = true;
+    #        cpu_load_change = true;
+    #      };
+    #   };
+
     environment.systemPackages = with pkgs; [
       # sunshine
       protontricks
@@ -57,7 +64,7 @@ in {
       steam-run
       adwsteamgtk
       steam-tui
-
+      mangohud
     ];
 
     # services.udev.extraRules = ''
@@ -85,6 +92,9 @@ in {
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
+
+      extraPackages = with pkgs; [mangohud];
+      extraPackages32 = with pkgs; [mangohud];
     };
   };
 }

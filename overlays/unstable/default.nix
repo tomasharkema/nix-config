@@ -1,5 +1,9 @@
-{ channels, disko, self, ... }:
-final: prev: rec {
+{
+  channels,
+  disko,
+  self,
+  ...
+}: final: prev: rec {
   # runitor = channels.unstable.runitor;
   vscode = channels.unstable.vscode;
   # # android-tools = channels.unstable.android-tools;
@@ -45,4 +49,22 @@ final: prev: rec {
   # sunshine = channels.unstable.sunshine;
 
   devenv = channels.unstable.devenv;
+
+  steam = channels.unstable.steam.override {
+    extraEnv = {
+      MANGOHUD = true;
+      OBS_VKCAPTURE = true;
+      RADV_TEX_ANISO = 16;
+    };
+    extraPkgs = pkgs:
+      with pkgs; [
+        mangohud
+        gamemode
+      ];
+    extraLibraries = p:
+      with p; [
+        atk
+        mangohud
+      ];
+  };
 }
