@@ -67,8 +67,12 @@ with lib;
         };
 
         # kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
-        kernelPackages = lib.mkDefault pkgs.linuxKernel.packages.linux_xanmod_stable;
-        extraModulePackages = with config.boot.kernelPackages; [wireguard];
+        kernelPackages =
+          if (pkgs.stdenv.isAarch64 || config.traits.hardware.vm.enable)
+          then mkDefault pkgs.linuxPackages_6_8
+          else mkDefault pkgs.linuxPackages_xanmod_stable;
+
+        kernelModules = ["wireguard"];
 
         loader = {
           systemd-boot = {
