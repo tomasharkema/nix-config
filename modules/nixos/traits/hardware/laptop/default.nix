@@ -2,6 +2,7 @@
   lib,
   config,
   inputs,
+  pkgs,
   ...
 }:
 with lib; let
@@ -17,8 +18,7 @@ in {
     system.nixos.tags = ["laptop"];
     powerManagement.enable = true;
 
-    # environment.systemPackages =
-    #   [ inputs.nbfc-linux.packages.x86_64-linux.default ];
+    environment.systemPackages = [inputs.nbfc-linux.packages."${pkgs.system}".default];
 
     services = {
       synergy.server = {

@@ -4,20 +4,19 @@
   lib,
   ...
 }:
-with lib;
-{
-  config = {
-    #   age.secrets = {
-    #     "peerix-public" = {
-    #       file = ../../../../secrets/peerix.public.age;
-    #       mode = "644";
-    #     };
+with lib; {
+  config = mkIf false {
+    age.secrets = {
+      "peerix-public" = {
+        file = ../../../../secrets/peerix.public.age;
+        mode = "644";
+      };
 
-    #     "peerix-private" = {
-    #       file = ../../../../secrets/peerix.private.age;
-    #       mode = "644";
-    #     };
-    #   };
+      "peerix-private" = {
+        file = ../../../../secrets/peerix.private.age;
+        mode = "644";
+      };
+    };
 
     # services.peerix = {
     #   enable = true;

@@ -1,8 +1,13 @@
-{ pkgs, lib, config, ... }:
-with lib;
-let cfg = config.traits.developer;
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.traits.developer;
 in {
-  options.traits.developer = { enable = mkEnableOption "dev"; };
+  options.traits.developer = {enable = mkEnableOption "dev";};
   config = mkIf cfg.enable {
     # system.nixos.tags = ["developer"];
 
@@ -18,7 +23,7 @@ in {
         deadnix
         deploy-rs
         devenv
-        # flake-checker
+        flake-checker
         hydra-cli
         manix
         nil
