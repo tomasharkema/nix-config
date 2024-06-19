@@ -1,5 +1,9 @@
-{ lib, config, pkgs, ... }:
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   inherit (lib) types;
   inherit (lib.custom) mkOpt;
 
@@ -19,26 +23,35 @@ in {
       uid = "1000";
     };
 
-    snowfallorg.user.${config.user.name}.home.config = { };
+    snowfallorg.user.${config.user.name}.home.config = {};
 
-    programs.zsh = { enable = true; };
+    programs.zsh = {
+      enable = true;
+    };
 
-    environment.systemPackages = (with pkgs; [
-      # atuin
-      terminal-notifier
+    environment.systemPackages =
+      (with pkgs; [
+        # atuin
+        terminal-notifier
 
-      sysz
-      # iptraf-ng
-      # netscanner
-      bandwhich
-      bashmount
-      bmon
-      ctop
+        sysz
+        # iptraf-ng
+        # netscanner
+        bandwhich
+        bashmount
+        bmon
+        ctop
 
-      # devtodo
-      devdash
-    ]) ++ (with pkgs.custom; [ launchcontrol ztui maclaunch tailscale-tui ])
-      ++ (with pkgs.darwin; [ lsusb ]);
+        # devtodo
+        devdash
+      ])
+      ++ (with pkgs.custom; [
+        launchcontrol
+        ztui
+        maclaunch
+        tailscale-tui
+      ])
+      ++ (with pkgs.darwin; [lsusb]);
     security.pam.enableSudoTouchIdAuth = true;
   };
 }
