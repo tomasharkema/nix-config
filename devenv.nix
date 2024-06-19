@@ -152,17 +152,23 @@ with pkgs; let
     echo "Build $PACKAGE"
     exec nom build ".#nixosConfigurations.$HOSTNAME.pkgs.$PACKAGE" --out-link ./out/$PACKAGE --verbose --show-trace -L
   '';
+  build-host-system = writeShellScriptBin "build-host-system" ''
+    HOST="$1"
+    echo "Build $HOST"
+    exec nom build ".#nixosConfigurations.$HOST.config.system.build.toplevel" --out-link ./out/$HOST --verbose --show-trace -L
+  '';
 in {
   # starship.enable = true;
 
   languages.nix = {
     enable = true;
+    lsp.package = nixd;
   };
 
   pre-commit.hooks = {
     alejandra.enable = true;
     shellcheck.enable = true;
-    nil.enable = true;
+    # nixd.enable = true;
     # statix.enable = true;
   };
 
@@ -180,6 +186,7 @@ in {
   # dotenv.enable = true;
 
   packages = with pkgs; [
+    build-host-system
     build-host-pkgs
     # # snowfallorg.flake
     # agenix

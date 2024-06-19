@@ -105,8 +105,8 @@ with lib;
           nix-simple-deploy
           nix-query-tree-viewer
 
-          # nix-switcher : needs github auth
-
+          # nix-switcher # : needs github auth
+          lorri
           nux
           disnix
           nox

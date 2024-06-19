@@ -1,7 +1,15 @@
-{ inputs, options, config, pkgs, lib, system, ... }:
+{
+  inputs,
+  options,
+  config,
+  pkgs,
+  lib,
+  system,
+  ...
+}:
 with lib;
-with lib.custom;
-let cfg = config.custom.nix;
+with lib.custom; let
+  cfg = config.custom.nix;
 in {
   imports = [
     # inputs.agenix.darwinModules.default
@@ -37,12 +45,14 @@ in {
 
       nix-prefetch-git
       nil
-      # flake-checker
+      nixd
+      flake-checker
       direnv
       devenv
       # attic
       nix-output-monitor
       nerd-font-patcher
+      alejandra
     ];
     traits.developer.enable = true;
 
@@ -56,7 +66,8 @@ in {
     #   # group = "tomas";
     # };
 
-    nix = let users = [ "root" "tomas" ];
+    nix = let
+      users = ["root" "tomas"];
     in {
       package = pkgs.nixVersions.nix_2_22;
 
@@ -64,7 +75,7 @@ in {
         enable = true;
         ephemeral = true;
         maxJobs = 4;
-        systems = [ "x86_64-linux" "aarch64-linux" ];
+        systems = ["x86_64-linux" "aarch64-linux"];
         config = {
           virtualisation = {
             # rosetta.enable = true;
@@ -111,7 +122,7 @@ in {
 
       gc = {
         automatic = true;
-        interval = { Day = 1; };
+        interval = {Day = 1;};
         options = "--delete-older-than 14d";
         user = "tomas";
       };

@@ -61,10 +61,13 @@
       };
     };
 
-    # vscode-server = {
-    #   url = "github:nix-community/nixos-vscode-server";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    vscode-server = {
+      url = "github:nix-community/nixos-vscode-server";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
 
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -87,13 +90,13 @@
       };
     };
 
-    agenix-shell = {
-      url = "github:aciceri/agenix-shell";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
+    # agenix-shell = {
+    #   url = "github:aciceri/agenix-shell";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-parts.follows = "flake-parts";
+    #   };
+    # };
 
     nixos-hardware = {
       url = "github:nixos/nixos-hardware";
@@ -153,15 +156,22 @@
       };
     };
 
-    # hydra-check = {
-    #   url = "github:nix-community/hydra-check";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    hydra-check = {
+      url = "github:nix-community/hydra-check";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+        poetry2nix.follows = "poetry2nix";
+      };
+    };
 
-    # flake-checker = {
-    #   url = "github:DeterminateSystems/flake-checker";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    flake-checker = {
+      url = "github:DeterminateSystems/flake-checker";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
 
     snowfall-lib = {
       url = "github:snowfallorg/lib";
@@ -179,20 +189,12 @@
       };
     };
 
-    # cachix = { };
-
-    # devenv = {
-    #   url = "github:cachix/devenv";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     # peerix = {
     #   url = "github:cid-chan/peerix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # poetry2nix = {
-    #   url = "github:nix-community/poetry2nix";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #   };
     # };
 
     # stylix = {
@@ -240,10 +242,10 @@
       };
     };
 
-    # nbfc-linux = {
-    #   url = "github:nbfc-linux/nbfc-linux";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    nbfc-linux = {
+      url = "github:nbfc-linux/nbfc-linux";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     _1password-shell-plugins = {
       url = "github:1Password/shell-plugins";

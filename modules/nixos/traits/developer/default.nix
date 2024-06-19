@@ -1,10 +1,15 @@
-{ pkgs, lib, config, ... }:
-with lib;
-let cfg = config.traits.developer;
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.traits.developer;
 in {
-  options.traits.developer = { enable = mkEnableOption "dev"; };
+  options.traits.developer = {enable = mkEnableOption "dev";};
   config = mkIf cfg.enable {
-    system.nixos.tags = [ "developer" ];
+    system.nixos.tags = ["developer"];
 
     environment.systemPackages = with pkgs;
     # nix
@@ -18,7 +23,7 @@ in {
         deploy-rs
         devenv
 
-        # flake-checker
+        flake-checker
         hydra-cli
         manix
         nix-search-cli
@@ -38,7 +43,8 @@ in {
         nixpkgs-lint
         nurl
         statix
-      ] ++ [ go go-outline gopls godef golint gopkgs gopls gotools ]
+      ]
+      ++ [go go-outline gopls godef golint gopkgs gopls gotools]
       ++ (lib.optional pkgs.stdenv.isLinux nix-du);
   };
 }
