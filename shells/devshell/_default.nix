@@ -1,7 +1,13 @@
-{ inputs, pkgs, lib, config, mkShell, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  mkShell,
+  ...
+}:
 with pkgs;
-with lib;
-let
+with lib; let
   write-script = writeShellScriptBin "write-script" ''
     set -x
     echo "pv $1 $2"
@@ -135,96 +141,95 @@ let
 
     exec nix path-info --all | xargs -n$NPATHS -P$NPROCS attic push tomas -j 1
   '';
-in mkShell {
+in
+  mkShell {
+    # shellHook = ''
+    #   ${pre-commit.pre-commit-check.shellHook}
+    # '';
+    # buildInputs = pre-commit.pre-commit-check.enabledPackages;
 
-  # shellHook = ''
-  #   ${pre-commit.pre-commit-check.shellHook}
-  # '';
-  # buildInputs = pre-commit.pre-commit-check.enabledPackages;
+    packages = with pkgs; [
+      nixos-generate
+      # Unstable
+      upload-all-store
+      # cntr
+      update-pkgs
+      attic-client
+      dconf-save
+      dp
+      upload-to-installer
+      # pkgs.custom.rundesk
+      ack
+      age
+      agenix
+      bash
+      bfg-repo-cleaner
+      # cachix-deploy
+      # cachix-reploy-pin
+      colima
+      dconf-update
+      dconf2nix
+      deploy-all
+      deploy-machine
+      pkgs.deploy-rs
+      deployment
+      direnv
+      flake-checker
+      autoflake
+      fh
+      hci
+      git
+      gnupg
+      gum
+      tydra
+      hydra-check
+      hydra-cli
+      mkiso
+      netdiscover
+      nil
+      nixd
+      nix-output-monitor
+      nix-prefetch-scripts
+      nixel
+      pkgs.custom.remote-cli
+      reencrypt
+      remote-deploy
+      sops
+      ssh-to-age
+      statix
+      test-remote
+      upload-all
+      upload-local
+      write-script
+      zsh
+      agenix # .packages.${system}.default
+      nixfmt-rfc-style
 
-  packages = with pkgs; [
-    nixos-generate
-
-    nixVersions.nix_2_22 # Unstable
-    upload-all-store
-    # cntr
-    update-pkgs
-    attic-client
-    dconf-save
-    dp
-    upload-to-installer
-    # pkgs.custom.rundesk
-    ack
-    age
-    agenix
-    bash
-    bfg-repo-cleaner
-    # cachix-deploy
-    # cachix-reploy-pin
-    colima
-    dconf-update
-    dconf2nix
-    deploy-all
-    deploy-machine
-    pkgs.deploy-rs
-    deployment
-    direnv
-    # flake-checker
-    hci
-    git
-    gnupg
-    gum
-    tydra
-    hydra-check
-    hydra-cli
-    mkiso
-    netdiscover
-    nil
-    nixd
-    nix-output-monitor
-    nix-prefetch-scripts
-    nixel
-    pkgs.custom.remote-cli
-    reencrypt
-    remote-deploy
-    sops
-    ssh-to-age
-    statix
-    test-remote
-    upload-all
-    upload-local
-    write-script
-    zsh
-    agenix # .packages.${system}.default
-    nixfmt-rfc-style
-
-    # cachix
-    deadnix
-    hydra-cli
-    test-installer
-    nil
-    manix
-    nix-eval-jobs
-    # nix-init
-    nix-output-monitor
-    nix-prefetch-scripts
-    # nix-serve
-    nix-tree
-    # nixci
-    # nixos-shell
-    nixpkgs-lint
-    nurl
-    # # snowfallorg.flake
-    statix
-  ];
-}
+      # cachix
+      deadnix
+      hydra-cli
+      test-installer
+      nil
+      manix
+      nix-eval-jobs
+      # nix-init
+      nix-output-monitor
+      nix-prefetch-scripts
+      # nix-serve
+      nix-tree
+      # nixci
+      # nixos-shell
+      nixpkgs-lint
+      nurl
+      # # snowfallorg.flake
+      statix
+    ];
+  }
 # inputs.devenv.lib.mkShell {
 #   inherit inputs pkgs;
-
 #   modules = [
 #     {
 #       # starship.enable = true;
-
 #       # languages.nix = {
 #       #   enable = true;
 #       #   lsp.package = nixd;
@@ -236,7 +241,6 @@ in mkShell {
 #         # nil.enable = true;
 #         # statix.enable = true;
 #       };
-
 #       devcontainer = {
 #         enable = true;
 #         settings.customizations.vscode.extensions = [
@@ -247,13 +251,9 @@ in mkShell {
 #         ];
 #       };
 #       difftastic.enable = true;
-
 #       # dotenv.enable = true;
-
 #       packages = [
 #         nixos-generate
-
-#         nixVersions.nix_2_22 # Unstable
 #         upload-all-store
 #         # cntr
 #         update-pkgs
@@ -303,7 +303,6 @@ in mkShell {
 #         zsh
 #         agenix # .packages.${system}.default
 #         nixfmt-rfc-style
-
 #         # cachix
 #         deadnix
 #         hydra-cli
@@ -327,3 +326,4 @@ in mkShell {
 #     }
 #   ];
 # }
+

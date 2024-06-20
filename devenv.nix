@@ -152,18 +152,28 @@ with pkgs; let
     echo "Build $PACKAGE"
     exec nom build ".#nixosConfigurations.$HOSTNAME.pkgs.$PACKAGE" --out-link ./out/$PACKAGE --verbose --show-trace -L
   '';
+  nixos-system = writeShellScriptBin "nixos-system" ''
+    HOST="$1"
+    echo "Build $HOST"
+    exec nom build ".#nixosConfigurations.$HOST.config.system.build.toplevel" --out-link ./out/$HOST --verbose --show-trace -L
+  '';
+  darwin-system = writeShellScriptBin "darwin-system" ''
+    HOST="$1"
+    echo "Build $HOST"
+    exec nom build ".#darwinConfigurations.$HOST.config.system.build.toplevel" --out-link ./out/$HOST --verbose --show-trace -L
+  '';
 in {
   # starship.enable = true;
 
-  # languages.nix = {
-  #   enable = true;
-  #   lsp.package = nixd;
-  # };
+  languages.nix = {
+    # enable = true;
+    lsp.package = nixd;
+  };
+
   pre-commit.hooks = {
     alejandra.enable = true;
     shellcheck.enable = true;
     # nixd.enable = true;
-    # nil.enable = true;
     # statix.enable = true;
   };
 
@@ -173,7 +183,7 @@ in {
       "Catppuccin.catppuccin-vsc-pack"
       "jnoortheen.nix-ide"
       "mkhl.direnv"
-      "brettm12345.nixfmt-vscode"
+      "kamadorueda.alejandra"
     ];
   };
   difftastic.enable = true;
@@ -181,6 +191,9 @@ in {
   # dotenv.enable = true;
 
   packages = with pkgs; [
+    nixVersions.nix_2_21
+    nixos-system
+    darwin-system
     build-host-pkgs
     # # snowfallorg.flake
     # agenix
@@ -188,12 +201,13 @@ in {
     # cachix-deploy
     # cachix-reploy-pin
     # cntr
-    # flake-checker
+    flake-checker
+    hydra-cli
+    autoflake
     # nix-init
     # nix-serve
     # nixci
     # nixos-shell
-    # nixVersions.nix_2_22 # Unstable
     # pkgs.custom.remote-cli
     # pkgs.custom.rundesk
     ack
@@ -222,7 +236,6 @@ in {
     mkiso
     netdiscover
     nil
-    nil
     nix-eval-jobs
     nix-output-monitor
     nix-output-monitor
@@ -235,7 +248,7 @@ in {
     nixpkgs-fmt
     nixpkgs-lint
     nurl
-    pkgs.deploy-rs
+    deploy-rs
     reencrypt
     remote-deploy
     sops

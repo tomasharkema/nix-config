@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 # with pkgs; let
 # nix-fast-build = fetchFromGitHub {
 #   owner = "Mic92";
@@ -9,28 +13,7 @@
 # in
 {
   config = {
-    # home.packages = [
-    #   agenix # .packages.${system}.default
-    #   # cachix
-    #   deadnix
-    #   fh
-    #   # hydra-cli
-    #   nil
-    #   manix
-    #   nix-eval-jobs
-    #   nix-fast-build
-    #   # nix-init
-    #   nix-output-monitor
-    #   nix-prefetch-scripts
-    #   nix-serve
-    #   nix-tree
-    #   # nixci
-    #   # nixos-shell
-    #   # nixpkgs-fmt
-    #   # nixpkgs-lint
-    #   nurl
-    #   # # snowfallorg.flake
-    #   statix
-    # ];
+    home.packages = with pkgs; [
+    ];
   };
 }

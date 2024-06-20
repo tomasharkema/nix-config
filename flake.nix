@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.05";
+    # nixpkgs-nvidia = nixpkgs;
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
@@ -59,10 +60,13 @@
       };
     };
 
-    # vscode-server = {
-    #   url = "github:nix-community/nixos-vscode-server";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    vscode-server = {
+      url = "github:nix-community/nixos-vscode-server";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
 
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -85,13 +89,13 @@
       };
     };
 
-    agenix-shell = {
-      url = "github:aciceri/agenix-shell";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
+    # agenix-shell = {
+    #   url = "github:aciceri/agenix-shell";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-parts.follows = "flake-parts";
+    #   };
+    # };
 
     nixos-hardware = {
       url = "github:nixos/nixos-hardware";
@@ -129,17 +133,6 @@
     };
     # impermanence.url = "github:nix-community/impermanence";
 
-    attic = {
-      url = "github:zhaofengli/attic";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        nixpkgs-stable.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-        flake-compat.follows = "flake-compat";
-        crane.follows = "crane";
-      };
-    };
-
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs = {
@@ -150,16 +143,6 @@
         flake-utils.follows = "flake-utils";
       };
     };
-
-    # hydra-check = {
-    #   url = "github:nix-community/hydra-check";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # flake-checker = {
-    #   url = "github:DeterminateSystems/flake-checker";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
 
     snowfall-lib = {
       url = "github:snowfallorg/lib";
@@ -177,20 +160,12 @@
       };
     };
 
-    # cachix = { };
-
-    # devenv = {
-    #   url = "github:cachix/devenv";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     # peerix = {
     #   url = "github:cid-chan/peerix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # poetry2nix = {
-    #   url = "github:nix-community/poetry2nix";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #   };
     # };
 
     # stylix = {
@@ -282,7 +257,8 @@
         firefox.enableGnomeExtensions = true;
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;
-
+        nvidia.acceptLicense = true;
+        cudaSupport = true;
         # allowAliases = false;
 
         # config.allowUnsupportedSystem = true;
@@ -334,7 +310,7 @@
 
         catppuccin.nixosModules.catppuccin
 
-        attic.nixosModules.atticd
+        # attic.nixosModules.atticd
         # peerix.nixosModules.peerix
 
         # impermanence.nixosModule

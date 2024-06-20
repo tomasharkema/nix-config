@@ -139,7 +139,6 @@ with lib; {
       # ];
 
       # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
-      kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
 
       kernelParams = mkForce [
         # "console=ttyS0,115200n8"

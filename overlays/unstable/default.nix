@@ -18,8 +18,8 @@
   # netdata = channels.unstable.netdata;
   # netdataCloud = channels.unstable.netdataCloud;
 
-  # btop = channels.unstable.btop;
-  # htop = channels.unstable.htop;
+  # # btop = channels.unstable.btop;
+  # # htop = channels.unstable.htop;
 
   # # samba = channels.unstable.samba;
 
@@ -49,4 +49,6 @@
   # # sunshine = channels.unstable.sunshine;
 
   # devenv = channels.unstable.devenv;
+
+  nix = prev.nixVersions.nix_2_21;
 }

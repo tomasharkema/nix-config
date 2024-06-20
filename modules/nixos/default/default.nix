@@ -14,12 +14,12 @@ with lib;
 # in
   {
     config = with lib; {
+      nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";
 
       # environment.variables.XCURSOR_SIZE = "24";
-
-      # nix.package = pkgs.nixVersions.nix_2_22; #Unstable;
 
       # Select internationalisation properties.
       i18n = {
@@ -44,13 +44,13 @@ with lib;
         enable = mkDefault true;
       };
 
-      console = {
-        earlySetup = true;
-        # font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
-        packages = with pkgs; [terminus_font];
-        keyMap = "us";
-        # useXkbConfig = true; # use xkb.options in tty.
-      };
+      # console = {
+      # earlySetup = true;
+      # font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
+      # packages = with pkgs; [terminus_font];
+      # keyMap = "us";
+      # useXkbConfig = true; # use xkb.options in tty.
+      # };
 
       boot = {
         initrd.systemd.emergencyAccess = "abcdefg";
@@ -61,15 +61,15 @@ with lib;
 
         kernel.sysctl."net.ipv4.ip_forward" = 1;
 
-        tmp = mkDefault {
-          useTmpfs = false;
-          cleanOnBoot = false;
+        tmp = {
+          useTmpfs = mkDefault false;
+          cleanOnBoot = mkDefault false;
         };
 
         # kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
         kernelPackages =
           if (pkgs.stdenv.isAarch64 || config.traits.hardware.vm.enable)
-          then mkDefault pkgs.linuxPackages_6_8
+          then mkDefault pkgs.linuxPackages_latest
           else mkDefault pkgs.linuxPackages_xanmod_stable;
 
         kernelModules = ["wireguard"];
@@ -84,33 +84,14 @@ with lib;
 
       environment.systemPackages =
         (with pkgs; [
+          tydra
           ethtool
           socat
           gdu
+
           swapview
-          devenv
-          nix-web
-          nix-pin
-          nix-doc
-          nix-update
-          nix-bundle
-          nix-bisect
-          nix-plugins
-          nix-inspect
-          # nix-janitor
-          nixos-option
-          # nix-delegate
-          nix-visualize
-          nix-update-source
-          nix-simple-deploy
-          nix-query-tree-viewer
-
-          # nix-switcher : needs github auth
-
-          nux
-          disnix
-          nox
-          nh
+          # nix-switcher # : needs github auth
+          lorri
 
           dfrs
           duc
