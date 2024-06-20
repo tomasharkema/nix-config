@@ -29,6 +29,8 @@ in
         ];
       };
 
+      environment.systemPackages = with pkgs; [bcachefs-tools];
+
       disko.devices = {
         disk = {
           main = {
