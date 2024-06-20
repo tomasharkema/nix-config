@@ -20,7 +20,14 @@ in
     };
 
     config = mkIf cfg.enable {
-      boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
+      boot = {
+        kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
+        initrd.availableKernelModules = [
+          #        "crypted"
+          "aesni_intel"
+        ];
+      };
+
       disko.devices = {
         disk = {
           main = {
@@ -66,6 +73,13 @@ in
                       # };
                       # };
                     };
+                  };
+                };
+                encryptedSwap = {
+                  size = "16G";
+                  content = {
+                    type = "swap";
+                    randomEncryption = true;
                   };
                 };
               };
