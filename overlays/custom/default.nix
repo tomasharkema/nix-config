@@ -38,9 +38,19 @@
   authorized-keys = self.packages."${prev.system}".authorized-keys;
 
   steam = prev.steam.override {
+    extraEnv = {
+      MANGOHUD = true;
+      OBS_VKCAPTURE = true;
+      RADV_TEX_ANISO = 16;
+    };
     extraPkgs = pkgs:
       with pkgs; [
-        gamescope
+        mangohud
+        gamemode
+      ];
+    extraLibraries = p:
+      with p; [
+        atk
         mangohud
       ];
   };

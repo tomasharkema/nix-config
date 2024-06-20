@@ -1,4 +1,10 @@
-{ inputs, pkgs, config, lib, ... }:
+{
+  inputs,
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 # let
 #   theme = inputs.themes.custom (inputs.themes.catppuccin-mocha
 #     // {
@@ -22,8 +28,7 @@
 
   config = {
     age = {
-      identityPaths =
-        [ "/etc/ssh/ssh_host_ed25519_key" "/Users/tomas/.ssh/id_ed25519" ];
+      identityPaths = ["/etc/ssh/ssh_host_ed25519_key" "/Users/tomas/.ssh/id_ed25519"];
 
       secrets = {
         atuin = {
@@ -51,7 +56,7 @@
     };
 
     # programs.bash.enable = true;
-    environment.systemPackages = with pkgs.custom; [ menu ];
+    environment.systemPackages = with pkgs.custom; [menu];
     system.stateVersion = 4;
 
     services = {
@@ -112,8 +117,6 @@
 
       distributedBuilds = true;
 
-      # package = pkgs.nixVersions.nix_2_22;
-
       # auto-optimise-store = true
 
       extraOptions = ''
@@ -121,7 +124,7 @@
       '';
 
       settings = {
-        trusted-users = [ "root" "tomas" ];
+        trusted-users = ["root" "tomas"];
 
         substituters = [
           "https://cache.nixos.org/"

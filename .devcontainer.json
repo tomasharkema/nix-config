@@ -5,7 +5,7 @@
         "Catppuccin.catppuccin-vsc-pack",
         "jnoortheen.nix-ide",
         "mkhl.direnv",
-        "brettm12345.nixfmt-vscode"
+        "kamadorueda.alejandra"
       ]
     }
   },

@@ -20,7 +20,7 @@ in
     };
 
     config = mkIf cfg.enable {
-      boot = {  
+      boot = {
         supportedFilesystems = ["bcachefs"];
         kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
         initrd.availableKernelModules = [
@@ -51,31 +51,46 @@ in
                   };
                 };
 
-                luks = {
+                main = {
                   size = "100%";
                   content = {
-                    type = "luks";
-                    name = "crypted";
-                    # disable settings.keyFile if you want to use interactive password entry
-                    passwordFile = "/tmp/secret.key"; # Interactive
-                    settings = {
-                      allowDiscards = true;
-                      # keyFile = "/tmp/secret.key";
-                    };
-                    # additionalKeyFiles = ["/tmp/additionalSecret.key"];
-                    content = {
-                      # root = {
-                      # name = "root";
-                      # end = "-0";
-                      # content = {
-                      type = "filesystem";
-                      format = "bcachefs";
-                      mountpoint = "/";
-                      # };
-                      # };
-                    };
+                    # root = {
+                    # name = "root";
+                    # end = "-0";
+                    # content = {
+                    type = "filesystem";
+                    format = "bcachefs";
+                    mountpoint = "/";
+                    # };
+                    # };
                   };
                 };
+
+                # luks = {
+                #   size = "100%";
+                #   content = {
+                #     type = "luks";
+                #     name = "crypted";
+                #     # disable settings.keyFile if you want to use interactive password entry
+                #     passwordFile = "/tmp/secret.key"; # Interactive
+                #     settings = {
+                #       allowDiscards = true;
+                #       # keyFile = "/tmp/secret.key";
+                #     };
+                #     # additionalKeyFiles = ["/tmp/additionalSecret.key"];
+                #     content = {
+                #       # root = {
+                #       # name = "root";
+                #       # end = "-0";
+                #       # content = {
+                #       type = "filesystem";
+                #       format = "bcachefs";
+                #       mountpoint = "/";
+                #       # };
+                #       # };
+                #     };
+                #   };
+                # };
                 encryptedSwap = {
                   size = "16G";
                   content = {

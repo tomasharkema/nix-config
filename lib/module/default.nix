@@ -1,5 +1,7 @@
-{ lib, ... }:
+{lib, ...}:
 with lib; rec {
+  isInstaller = self: name: self.nixosConfigurations."${name}".config.networking.hostName != "nixos";
+
   ## Create a NixOS module option.
   ##
   ## ```nix
@@ -8,7 +10,7 @@ with lib; rec {
   ##
   #@ Type -> Any -> String
   mkOpt = type: default: description:
-    mkOption { inherit type default description; };
+    mkOption {inherit type default description;};
 
   ## Create a NixOS module option without a description.
   ##

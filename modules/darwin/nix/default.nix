@@ -1,17 +1,25 @@
-{ inputs, options, config, pkgs, lib, system, ... }:
+{
+  inputs,
+  options,
+  config,
+  pkgs,
+  lib,
+  system,
+  ...
+}:
 with lib;
-with lib.custom;
-let cfg = config.custom.nix;
+with lib.custom; let
+  cfg = config.custom.nix;
 in {
   imports = [
-    # inputs.agenix.darwinModules.default
+    ../../../nix-pkgs.nix
   ];
 
   options = {
     gui = {
-      enable = mkBoolOpt false "Whether or not to manage nix configuration.";
+      enable = mkEnableOption "Whether or not to manage nix configuration.";
       gnome.enable =
-        mkBoolOpt false "Whether or not to manage nix configuration.";
+        mkEnableOption "Whether or not to manage nix configuration.";
     };
   };
 
@@ -31,19 +39,6 @@ in {
       };
     };
 
-    environment.systemPackages = with pkgs; [
-      deploy-rs
-      nixfmt-rfc-style
-
-      nix-prefetch-git
-      nil
-      # flake-checker
-      direnv
-      devenv
-      # attic
-      nix-output-monitor
-      nerd-font-patcher
-    ];
     traits.developer.enable = true;
 
     services.nix-daemon.enable = true;
@@ -56,15 +51,17 @@ in {
     #   # group = "tomas";
     # };
 
-    nix = let users = [ "root" "tomas" ];
+    nix = let
+      users = ["root" "tomas"];
     in {
-      package = pkgs.nixVersions.nix_2_22;
+      package = pkgs.nix;
+      nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
       linux-builder = {
         enable = true;
         ephemeral = true;
         maxJobs = 4;
-        systems = [ "x86_64-linux" "aarch64-linux" ];
+        systems = ["x86_64-linux" "aarch64-linux"];
         config = {
           virtualisation = {
             # rosetta.enable = true;
@@ -111,7 +108,7 @@ in {
 
       gc = {
         automatic = true;
-        interval = { Day = 1; };
+        interval = {Day = 1;};
         options = "--delete-older-than 14d";
         user = "tomas";
       };
