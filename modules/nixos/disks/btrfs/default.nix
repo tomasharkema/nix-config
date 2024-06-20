@@ -1,6 +1,10 @@
-{ lib, pkgs, config, ... }:
-with lib;
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
+with lib; let
   cfg = config.disks.btrfs;
 
   luksContent = root: name: {
@@ -30,63 +34,65 @@ let
       size = "100%";
       content = {
         type = "btrfs";
-        extraArgs = [ "-f" ];
+        extraArgs = ["-f"];
         subvolumes = {
           # Subvolume name is different from mountpoint
           "/rootfs" = {
             mountpoint = "/";
-            mountOptions = [ ];
+            mountOptions = [];
           };
           "home" = {
-            mountOptions = [ "noatime" "discard=async" ]
+            mountOptions =
+              ["noatime" "discard=async"]
               ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/home";
           };
           "resilio-sync" = mkIf (cfg.newSubvolumes && cfg.media == null) {
-            mountOptions = [ "noatime" "compress=zstd" "discard=async" ];
+            mountOptions = ["noatime" "compress=zstd" "discard=async"];
             mountpoint = "/opt/resilio-sync";
           };
           "resilio-sync-lib" = mkIf cfg.newSubvolumes {
-            mountOptions = [ "noatime" "compress=zstd" "discard=async" ];
+            mountOptions = ["noatime" "compress=zstd" "discard=async"];
             mountpoint = "/var/lib/resilio-sync";
           };
           "nix" = mkIf cfg.newSubvolumes {
-            mountOptions = [ "noatime" "compress=zstd" "discard=async" ]
+            mountOptions =
+              ["noatime" "compress=zstd" "discard=async"]
               ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/nix";
           };
           "containers" = mkIf cfg.newSubvolumes {
-            mountOptions = [ "noatime" "compress=zstd" "discard=async" ]
+            mountOptions =
+              ["noatime" "compress=zstd" "discard=async"]
               ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/var/lib/containers";
           };
           "swapfile" = mkIf cfg.newSubvolumes {
-            mountOptions =
-              [ "noatime" "nodatacow" "nodatasum" "discard=async" ];
+            mountOptions = ["noatime" "nodatacow" "nodatasum" "discard=async"];
             mountpoint = "/swapfile";
           };
           "snapshots" = mkIf cfg.newSubvolumes {
-            mountOptions =
-              [ "noatime" "nodatacow" "nodatasum" "discard=async" ];
+            mountOptions = ["noatime" "nodatacow" "nodatasum" "discard=async"];
             mountpoint = "/.snapshots";
           };
           "home-snapshots" = mkIf cfg.newSubvolumes {
-            mountOptions =
-              [ "noatime" "nodatacow" "nodatasum" "discard=async" ];
+            mountOptions = ["noatime" "nodatacow" "nodatasum" "discard=async"];
             mountpoint = "/home/.snapshots";
           };
           "steam" = mkIf cfg.newSubvolumes {
-            mountOptions = [ "noatime" "discard=async" ]
+            mountOptions =
+              ["noatime" "discard=async"]
               ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/opt/steam";
           };
           "flatpak" = mkIf cfg.newSubvolumes {
-            mountOptions = [ "noatime" "compress=zstd" "discard=async" ]
+            mountOptions =
+              ["noatime" "compress=zstd" "discard=async"]
               ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/var/lib/flatpak";
           };
           "log" = mkIf cfg.newSubvolumes {
-            mountOptions = [ "noatime" "compress=zstd" "discard=async" ];
+            mountOptions = ["noatime" "compress=zstd" "discard=async"];
             mountpoint = "/var/log";
           };
         };
@@ -100,195 +106,201 @@ let
     size = "100%";
     content = {
       type = "btrfs";
-      extraArgs = [ "-f" ];
-      subvolumes = { };
+      extraArgs = ["-f"];
+      subvolumes = {};
 
       mountpoint = "/partition-root-2";
     };
   };
-in with lib; {
-  options = {
-    disks.btrfs = {
-      enable = mkEnableOption "Enable BTRFS";
-      autoscrub = mkEnableOption "Enable BTRFS Autoscrub";
+in
+  with lib; {
+    options = {
+      disks.btrfs = {
+        enable = mkEnableOption "Enable BTRFS";
+        autoscrub = mkEnableOption "Enable BTRFS Autoscrub";
 
-      newSubvolumes = mkEnableOption "Enable BTRFS newSubvolumes";
+        newSubvolumes = mkEnableOption "Enable BTRFS newSubvolumes";
 
-      main = mkOption {
-        type = types.str;
-        description = "Dev for main partion.";
-      };
+        main = mkOption {
+          type = types.str;
+          description = "Dev for main partion.";
+        };
 
-      second = mkOption {
-        type = types.nullOr types.str;
-        default = null;
-        description = "second disk for raid0";
-      };
+        second = mkOption {
+          type = types.nullOr types.str;
+          default = null;
+          description = "second disk for raid0";
+        };
 
-      mainOverride = mkOption {
-        type = types.str;
-        default = "main";
-        description = "Dev for main partion.";
-      };
-      media = mkOption {
-        type = types.nullOr types.str;
-        default = null;
-        description = "Dev for optional media partition";
-      };
-      encrypt = mkEnableOption "encrypted";
-      swapSize = mkOption {
-        type = types.nullOr types.int;
-        default = null;
-        description = "swap size";
-      };
-    };
-  };
-
-  config = mkIf cfg.enable {
-    boot = {
-      # growPartition = true;
-      supportedFilesystems = [ "btrfs" ];
-    };
-
-    swapDevices = mkIf (cfg.swapSize != null) [{
-      device = "/swapfile/swapfile";
-      size = cfg.swapSize;
-    }];
-
-    services = {
-      btrfs.autoScrub = mkIf cfg.autoscrub {
-        enable = true;
-        fileSystems = [ "/" ];
-      };
-      snapper = {
-        # snapshotRootOnBoot = true;
-        snapshotInterval = "hourly";
-        cleanupInterval = "1d";
-
-        configs = {
-          "home" = {
-            SUBVOLUME = "/home";
-            ALLOW_USERS = [ "tomas" "root" ];
-            TIMELINE_CREATE = true;
-            TIMELINE_CLEANUP = true;
-            TIMELINE_LIMIT_HOURLY = 5;
-            TIMELINE_LIMIT_DAILY = 7;
-            TIMELINE_LIMIT_WEEKLY = 2;
-            TIMELINE_LIMIT_MONTHLY = 1;
-            TIMELINE_LIMIT_YEARLY = 0;
-          };
-          "root" = {
-            SUBVOLUME = "/";
-            ALLOW_USERS = [ "tomas" "root" ];
-            TIMELINE_CREATE = true;
-            TIMELINE_CLEANUP = true;
-            TIMELINE_LIMIT_HOURLY = 5;
-            TIMELINE_LIMIT_DAILY = 7;
-            TIMELINE_LIMIT_WEEKLY = 2;
-            TIMELINE_LIMIT_MONTHLY = 1;
-            TIMELINE_LIMIT_YEARLY = 0;
-          };
+        mainOverride = mkOption {
+          type = types.str;
+          default = "main";
+          description = "Dev for main partion.";
+        };
+        media = mkOption {
+          type = types.nullOr types.str;
+          default = null;
+          description = "Dev for optional media partition";
+        };
+        encrypt = mkEnableOption "encrypted";
+        swapSize = mkOption {
+          type = types.nullOr types.int;
+          default = null;
+          description = "swap size";
         };
       };
-      # beesd = {
-      #   filesystems = {
-      #     root = {
-      #       spec = "PARTLABEL=disk-main-root";
-      #       hashTableSizeMB = 2048;
-      #     };
-      #   };
-      # };
     };
 
-    environment.systemPackages = with pkgs; [
-      btdu
-      snapper
-      snapper-gui
-      tpm-luks
-      btrfs-assistant
-      btrfs-snap
-      btrfs-progs
-      btrfs-heatmap
-      btrbk
-      # timeshift
-    ];
+    config = mkIf cfg.enable {
+      boot = {
+        # growPartition = true;
+        supportedFilesystems = ["btrfs"];
+        initrd.availableKernelModules = ["aesni_intel" "cryptd"];
+      };
 
-    boot.kernelModules = [ "sha256" ];
+      swapDevices = mkIf (cfg.swapSize != null) [
+        {
+          device = "/swapfile/swapfile";
+          size = cfg.swapSize;
+        }
+      ];
 
-    # fileSystems."/".neededForBoot = true;
-    # fileSystems."/boot".neededForBoot = true;
+      services = {
+        btrfs.autoScrub = mkIf cfg.autoscrub {
+          enable = true;
+          fileSystems = ["/"];
+        };
+        snapper = {
+          # snapshotRootOnBoot = true;
+          snapshotInterval = "hourly";
+          cleanupInterval = "1d";
 
-    disko.devices = {
-      disk = {
-        "${cfg.mainOverride}" = {
-          type = "disk";
-          device = cfg.main;
-          content = {
-            type = "gpt";
-            partitions = {
-              boot = {
-                size = "1M";
-                type = "EF02"; # for grub MBR
-              };
-              ESP = {
-                size = "1G";
-                type = "EF00";
-                content = {
-                  type = "filesystem";
-                  format = "vfat";
-                  mountpoint = "/boot";
-                };
-              };
-
-              root = mkIf (!cfg.encrypt) innerContent.root;
-              luks = mkIf cfg.encrypt
-                (luksContent innerContent.root.content "crypted").luks;
+          configs = {
+            "home" = {
+              SUBVOLUME = "/home";
+              ALLOW_USERS = ["tomas" "root"];
+              TIMELINE_CREATE = true;
+              TIMELINE_CLEANUP = true;
+              TIMELINE_LIMIT_HOURLY = 5;
+              TIMELINE_LIMIT_DAILY = 7;
+              TIMELINE_LIMIT_WEEKLY = 2;
+              TIMELINE_LIMIT_MONTHLY = 1;
+              TIMELINE_LIMIT_YEARLY = 0;
+            };
+            "root" = {
+              SUBVOLUME = "/";
+              ALLOW_USERS = ["tomas" "root"];
+              TIMELINE_CREATE = true;
+              TIMELINE_CLEANUP = true;
+              TIMELINE_LIMIT_HOURLY = 5;
+              TIMELINE_LIMIT_DAILY = 7;
+              TIMELINE_LIMIT_WEEKLY = 2;
+              TIMELINE_LIMIT_MONTHLY = 1;
+              TIMELINE_LIMIT_YEARLY = 0;
             };
           };
         };
+        # beesd = {
+        #   filesystems = {
+        #     root = {
+        #       spec = "PARTLABEL=disk-main-root";
+        #       hashTableSizeMB = 2048;
+        #     };
+        #   };
+        # };
+      };
 
-        media = lib.mkIf (cfg.media != null) {
-          device = cfg.media;
-          type = "disk";
-          content = {
-            type = "gpt";
-            partitions = {
-              root = {
-                size = "100%";
-                content = {
-                  type = "btrfs";
-                  extraArgs = [ "-f" ];
+      environment.systemPackages = with pkgs; [
+        btdu
+        snapper
+        snapper-gui
+        tpm-luks
+        btrfs-assistant
+        btrfs-snap
+        btrfs-progs
+        btrfs-heatmap
+        btrbk
+        # timeshift
+      ];
 
-                  subvolumes = {
-                    "media" = {
-                      mountOptions = [ "noatime" "compress=zstd" ];
-                      mountpoint = "/opt/media";
+      boot.kernelModules = ["sha256"];
+
+      # fileSystems."/".neededForBoot = true;
+      # fileSystems."/boot".neededForBoot = true;
+
+      disko.devices = {
+        disk = {
+          "${cfg.mainOverride}" = {
+            type = "disk";
+            device = cfg.main;
+            content = {
+              type = "gpt";
+              partitions = {
+                boot = {
+                  size = "1M";
+                  type = "EF02"; # for grub MBR
+                };
+                ESP = {
+                  size = "1G";
+                  type = "EF00";
+                  content = {
+                    type = "filesystem";
+                    format = "vfat";
+                    mountpoint = "/boot";
+                  };
+                };
+
+                root = mkIf (!cfg.encrypt) innerContent.root;
+                luks =
+                  mkIf cfg.encrypt
+                  (luksContent innerContent.root.content "crypted").luks;
+              };
+            };
+          };
+
+          media = lib.mkIf (cfg.media != null) {
+            device = cfg.media;
+            type = "disk";
+            content = {
+              type = "gpt";
+              partitions = {
+                root = {
+                  size = "100%";
+                  content = {
+                    type = "btrfs";
+                    extraArgs = ["-f"];
+
+                    subvolumes = {
+                      "media" = {
+                        mountOptions = ["noatime" "compress=zstd"];
+                        mountpoint = "/opt/media";
+                      };
                     };
                   };
                 };
               };
             };
           };
-        };
-        second = mkIf (cfg.second != null) {
-          type = "disk";
-          device = cfg.second;
+          second = mkIf (cfg.second != null) {
+            type = "disk";
+            device = cfg.second;
 
-          content = {
-            type = "gpt";
-            partitions = {
-              root = mkIf (!cfg.encrypt) secondContent;
-              luks = mkIf cfg.encrypt
-                (luksContent secondContent.content "crypted-second").luks;
+            content = {
+              type = "gpt";
+              partitions = {
+                root = mkIf (!cfg.encrypt) secondContent;
+                luks =
+                  mkIf cfg.encrypt
+                  (luksContent secondContent.content "crypted-second").luks;
+              };
             };
           };
         };
       };
-    };
 
-    systemd.tmpfiles.rules = mkIf (cfg.media != null) [
-      "d /opt/media/resilio-sync 0777 rslsync rslsync -"
-      "L+ /opt/resilio-sync - - - - /opt/media/resilio-sync"
-    ];
-  };
-}
+      systemd.tmpfiles.rules = mkIf (cfg.media != null) [
+        "d /opt/media/resilio-sync 0777 rslsync rslsync -"
+        "L+ /opt/resilio-sync - - - - /opt/media/resilio-sync"
+      ];
+    };
+  }
