@@ -152,10 +152,15 @@ with pkgs; let
     echo "Build $PACKAGE"
     exec nom build ".#nixosConfigurations.$HOSTNAME.pkgs.$PACKAGE" --out-link ./out/$PACKAGE --verbose --show-trace -L
   '';
-  build-host-system = writeShellScriptBin "build-host-system" ''
+  nixos-system = writeShellScriptBin "nixos-system" ''
     HOST="$1"
     echo "Build $HOST"
     exec nom build ".#nixosConfigurations.$HOST.config.system.build.toplevel" --out-link ./out/$HOST --verbose --show-trace -L
+  '';
+  darwin-system = writeShellScriptBin "darwin-system" ''
+    HOST="$1"
+    echo "Build $HOST"
+    exec nom build ".#darwinConfigurations.$HOST.config.system.build.toplevel" --out-link ./out/$HOST --verbose --show-trace -L
   '';
 in {
   # starship.enable = true;
@@ -186,7 +191,9 @@ in {
   # dotenv.enable = true;
 
   packages = with pkgs; [
-    build-host-system
+    nixVersions.nix_2_21
+    nixos-system
+    darwin-system
     build-host-pkgs
     # # snowfallorg.flake
     # agenix
@@ -201,7 +208,6 @@ in {
     # nix-serve
     # nixci
     # nixos-shell
-    # nixVersions.nix_2_22 # Unstable
     # pkgs.custom.remote-cli
     # pkgs.custom.rundesk
     ack

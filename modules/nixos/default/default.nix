@@ -21,8 +21,6 @@ with lib;
 
       # environment.variables.XCURSOR_SIZE = "24";
 
-      # nix.package = pkgs.nixVersions.nix_2_22; #Unstable;
-
       # Select internationalisation properties.
       i18n = {
         defaultLocale = "en_US.UTF-8";
@@ -90,30 +88,10 @@ with lib;
           ethtool
           socat
           gdu
-          swapview
-          devenv
-          nix-web
-          nix-pin
-          nix-doc
-          nix-update
-          nix-bundle
-          nix-bisect
-          nix-plugins
-          nix-inspect
-          # nix-janitor
-          nixos-option
-          # nix-delegate
-          nix-visualize
-          nix-update-source
-          nix-simple-deploy
-          nix-query-tree-viewer
 
+          swapview
           # nix-switcher # : needs github auth
           lorri
-          nux
-          disnix
-          nox
-          nh
 
           dfrs
           duc

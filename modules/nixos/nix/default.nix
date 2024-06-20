@@ -8,9 +8,10 @@
 }:
 with lib;
 with lib.custom; {
-  # imports = [
-  #   "${inputs.unstable}/nixos/modules/programs/nh.nix"
-  # ];
+  imports = [
+    #   "${inputs.unstable}/nixos/modules/programs/nh.nix"
+    ../../../nix-pkgs.nix
+  ];
 
   config = mkIf (!config.traits.slim.enable) {
     # programs.nh = {
@@ -20,17 +21,6 @@ with lib.custom; {
     #   flake = "/home/tomas/Developer/nix-config";
     # };
 
-    environment.systemPackages = with pkgs;
-    with custom; [
-      nix-update
-      fup-repl
-      # custom.nixos-revision
-      # (nixos-hosts.override {
-      #   hosts = inputs.self.nixosConfigurations;
-      # })
-      attic-client
-    ];
-
     nix = let
       users =
         [
@@ -39,7 +29,7 @@ with lib.custom; {
         ]
         ++ optional config.services.hydra.enable "hydra";
     in {
-      package = pkgs.nixVersions.nix_2_22;
+      package = pkgs.nix; #Versions.nix_2_22;
 
       extraOptions = ''
         min-free = ${toString (100 * 1024 * 1024)}

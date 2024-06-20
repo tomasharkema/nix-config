@@ -135,17 +135,6 @@
     };
     # impermanence.url = "github:nix-community/impermanence";
 
-    attic = {
-      url = "github:zhaofengli/attic";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        nixpkgs-stable.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-        flake-compat.follows = "flake-compat";
-        crane.follows = "crane";
-      };
-    };
-
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs = {
@@ -323,7 +312,7 @@
 
         catppuccin.nixosModules.catppuccin
 
-        attic.nixosModules.atticd
+        # attic.nixosModules.atticd
         # peerix.nixosModules.peerix
 
         # impermanence.nixosModule

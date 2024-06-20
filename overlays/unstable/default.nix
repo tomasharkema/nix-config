@@ -49,5 +49,5 @@
   # # sunshine = channels.unstable.sunshine;
 
   # devenv = channels.unstable.devenv;
-  nix = prev.nixVersions.nix_2_22;
+  nix = prev.nixVersions.nix_2_21;
 }
