@@ -458,11 +458,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1718890157,
-        "narHash": "sha256-iv4SVPTjCC8QU5KbNKRe0XAhn6YcnwYlka0jaBTgn4I=",
+        "lastModified": 1718912804,
+        "narHash": "sha256-Mtm1LRrXAsXM1F4CmutakoClz3fUrv336+3lo/gEbko=",
         "owner": "nbfc-linux",
         "repo": "nbfc-linux",
-        "rev": "e5058735f4cd51a9ccd26abde198cfed02049c89",
+        "rev": "006b318a4d12c106d63347523df19f7cb1b0f8b0",
         "type": "github"
       },
       "original": {
