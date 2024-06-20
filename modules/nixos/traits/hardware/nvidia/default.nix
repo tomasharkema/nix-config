@@ -26,10 +26,10 @@ in
     };
 
     config = mkIf cfg.enable {
-      nixpkgs.config = {
-        nvidia.acceptLicense = true;
-        cudaSupport = true;
-      };
+      # nixpkgs.config = {
+      #   nvidia.acceptLicense = true;
+      #   cudaSupport = true;
+      # };
 
       system.nixos.tags = ["nvidia:${nvidiaVersion}:nvidiax11Version:${nvidiax11Version}"];
 

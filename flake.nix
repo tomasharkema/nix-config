@@ -1,8 +1,9 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.05";
+    # nixpkgs-nvidia = nixpkgs;
 
-    unstable.url = "nixpkgs/nixos-unstable";
+    # unstable.url = "nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
@@ -137,7 +138,7 @@
     attic = {
       url = "github:zhaofengli/attic";
       inputs = {
-        nixpkgs.follows = "unstable";
+        nixpkgs.follows = "nixpkgs";
         nixpkgs-stable.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
         flake-compat.follows = "flake-compat";
