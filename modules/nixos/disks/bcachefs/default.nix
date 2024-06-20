@@ -20,7 +20,6 @@ in
     };
 
     config = mkIf cfg.enable {
-      boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
       disko.devices = {
         disk = {
           main = {

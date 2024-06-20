@@ -1,11 +1,14 @@
-{ channels, disko, self, ... }:
-final: prev: rec {
-
-  libcec = prev.libcec.override { withLibraspberrypi = true; };
+{
+  channels,
+  disko,
+  self,
+  ...
+}: final: prev: rec {
+  libcec = prev.libcec.override {withLibraspberrypi = true;};
 
   _389-ds-base = self.packages."${prev.system}"._389-ds-base;
   freeipa = self.packages."${prev.system}".freeipa;
-  sssd = self.packages."${prev.system}".sssd.override { withSudo = true; };
+  sssd = self.packages."${prev.system}".sssd.override {withSudo = true;};
 
   # inshellisense = channels.unstable.inshellisense;
   # # sssd = channels.unstable.sssd.override {
@@ -34,7 +37,21 @@ final: prev: rec {
   cockpit-machines = self.packages."${prev.system}".cockpit-machines;
   authorized-keys = self.packages."${prev.system}".authorized-keys;
 
-  steam = channels.unstable.steam.override {
-    extraPkgs = pkgs: with pkgs; [ gamescope mangohud ];
+  steam = prev.steam.override {
+    extraEnv = {
+      MANGOHUD = true;
+      OBS_VKCAPTURE = true;
+      RADV_TEX_ANISO = 16;
+    };
+    extraPkgs = pkgs:
+      with pkgs; [
+        mangohud
+        gamemode
+      ];
+    extraLibraries = p:
+      with p; [
+        atk
+        mangohud
+      ];
   };
 }
