@@ -20,6 +20,8 @@ in
     };
 
     config = mkIf cfg.enable {
+      boot.supportedFilesystems = ["bcachefs"];
+
       disko.devices = {
         disk = {
           main = {

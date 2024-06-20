@@ -39,6 +39,10 @@
   attic-client = prev.attic-client.override {
     nix = prev.nixVersions.nix_2_18;
   };
+
+  devenv = prev.devenv.override {
+    nix = prev.nixVersions.nix_2_18;
+  };
   # .overrideAttrs (old: {
   #   nix = prev.nixVersions.nix_2_18;
   # });

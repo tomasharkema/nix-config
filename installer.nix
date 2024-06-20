@@ -16,7 +16,7 @@ in {
     # isbinaryCaches
     # environment.etc."current-nixos".source = ./.;
     nix = {package = pkgs.nix;} // import ./config.nix;
-
+    boot.supportedFilesystems = ["bcachefs"];
     users = {
       users = {
         nixos = {uid = 2000;};

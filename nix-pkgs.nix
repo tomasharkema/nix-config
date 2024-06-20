@@ -7,7 +7,7 @@ with lib; {
   config = {
     environment.systemPackages = with pkgs;
       (optionals pkgs.stdenv.isx86_64 [
-        nix-doc
+        # nix-doc
       ])
       ++ [
         #   # # snowfallorg.flake
