@@ -20,7 +20,8 @@ in
     };
 
     config = mkIf cfg.enable {
-      boot = {
+      boot = {  
+        supportedFilesystems = ["bcachefs"];
         kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
         initrd.availableKernelModules = [
           #        "crypted"
