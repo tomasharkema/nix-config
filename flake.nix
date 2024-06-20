@@ -228,6 +228,11 @@
       url = "github:tomasharkema/nixos-service";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-virt = {
+      url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
@@ -317,7 +322,7 @@
         disko.nixosModules.default
         # nh.nixosModules.default
         lanzaboote.nixosModules.lanzaboote
-        # vscode-server.nixosModules.default
+        vscode-server.nixosModules.default
 
         # home-manager.nixosModules.home-manager
         agenix.nixosModules.default
@@ -326,6 +331,7 @@
         nix-gaming.nixosModules.platformOptimizations
 
         nixos-service.nixosModules.nixos-service
+        nix-virt.nixosModules.default
 
         {
           config = {

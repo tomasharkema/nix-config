@@ -1,7 +1,11 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-with lib.custom;
-let
+with lib.custom; let
   cfg = config.headless.hypervisor;
 
   libvirtKeytab = "/var/lib/libvirt/krb5.tab";
@@ -10,12 +14,12 @@ in {
   options.headless.hypervisor = {
     enable = mkEnableOption "hypervisor";
 
-    bridgeInterfaces = mkOpt (types.listOf types.str) [ ] "bridgeInterfaces";
+    bridgeInterfaces = mkOpt (types.listOf types.str) [] "bridgeInterfaces";
   };
 
   config = mkIf cfg.enable {
     system = {
-      nixos.tags = [ "hypervisor" ];
+      nixos.tags = ["hypervisor"];
 
       # activationScripts = {
       #   libvirtKeytab = ''
@@ -50,6 +54,8 @@ in {
       libvirt
       qemu_kvm
       pkgs.custom.libvirt-dbus
+      nemu
+      qtemu
     ];
 
     services.dbus.packages = with pkgs; [
@@ -92,46 +98,54 @@ in {
     # '';
     # };
 
-    virtualisation.libvirtd = {
-      enable = true;
-      # allowedBridges = ["virbr1"];
+    boot.extraModprobeConfig = "options kvm_intel nested=1";
 
-      # extraConfig = ''
-      #   listen_tls = 0
-      #   listen_tcp = 1
-      #   auth_tcp = "sasl"
-      #   sasl_allowed_username_list = ["\*@HARKEMA.INTRA" ]
-      # '';
+    virtualisation = {
+      kvmgt.enable = true;
+      libvirt.enable = true;
 
-      allowedBridges = [ "virbr0" "br0" ];
+      # libvirtd = {
+      #   enable = true;
+      #   # allowedBridges = ["virbr1"];
 
-      qemu = {
-        package = pkgs.qemu_kvm;
-        runAsRoot = true;
-        swtpm.enable = true;
+      #   # extraConfig = ''
+      #   #   listen_tls = 0
+      #   #   listen_tcp = 1
+      #   #   auth_tcp = "sasl"
+      #   #   sasl_allowed_username_list = ["\*@HARKEMA.INTRA" ]
+      #   # '';
 
-        ovmf = {
-          enable = true;
-          packages = [
-            (pkgs.OVMF.override {
-              secureBoot = true;
-              tpmSupport = true;
-            }).fd
-            # pkgs.pkgsCross.aarch64-multiplatform.OVMF.fd
-          ];
-        };
-      };
+      #   allowedBridges = ["virbr0" "br0"];
+
+      #   qemu = {
+      #     package = pkgs.qemu_kvm;
+      #     runAsRoot = true;
+      #     swtpm.enable = true;
+
+      #     ovmf = {
+      #       enable = true;
+      #       packages = [
+      #         # (pkgs.OVMF.override {
+      #         #   secureBoot = true;
+      #         #   tpmSupport = true;
+      #         # })
+      #         pkgs.OVMFFull.fd
+      #         # pkgs.pkgsCross.aarch64-multiplatform.OVMF.fd
+      #       ];
+      #     };
+      #   };
+      # };
     };
 
     users.users = {
-      "${config.user.name}".extraGroups = [ "libvirtd" "qemu-libvirtd" ];
-      "root".extraGroups = [ "libvirtd" "qemu-libvirtd" ];
+      "${config.user.name}".extraGroups = ["libvirtd" "qemu-libvirtd"];
+      "root".extraGroups = ["libvirtd" "qemu-libvirtd"];
     };
 
     networking = {
       #   interfaces."br0".useDHCP = true;
 
-      firewall.trustedInterfaces = [ "br0" "virbr0" ];
+      firewall.trustedInterfaces = ["br0" "virbr0"];
 
       #   bridges = {
       #     "br0" = {
