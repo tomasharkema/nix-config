@@ -1,4 +1,10 @@
-{ pkgs, inputs, config, lib, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  lib,
+  ...
+}:
 with lib; {
   imports = with inputs; [
     ./hardware-configuration.nix
@@ -10,8 +16,7 @@ with lib; {
   ];
 
   config = {
-
-    environment.systemPackages = with pkgs; [ intel-gpu-tools ];
+    environment.systemPackages = with pkgs; [intel-gpu-tools];
 
     gui = {
       enable = true;
@@ -30,7 +35,7 @@ with lib; {
       # cec.enable = true;
     };
 
-    disks.ext4 = {
+    disks.bcachefs = {
       enable = true;
       main = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01";
     };
@@ -65,7 +70,7 @@ with lib; {
     services = {
       # podman.enable = true;
       clipmenu.enable = mkForce false;
-      synergy.server = { enable = true; };
+      synergy.server = {enable = true;};
       avahi = {
         enable = true;
         # allowInterfaces = [ "wlo1" ];
@@ -73,18 +78,20 @@ with lib; {
       };
     };
 
-    zramSwap = { enable = true; };
-    swapDevices = [{
-      device = "/swapfile";
-      size = 16 * 1024;
-    }];
+    zramSwap = {enable = true;};
+    swapDevices = [
+      {
+        device = "/swapfile";
+        size = 16 * 1024;
+      }
+    ];
 
     hardware = {
       opengl = {
         enable = true;
         driSupport = true;
         driSupport32Bit = true;
-        extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
+        extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau];
       };
     };
   };
