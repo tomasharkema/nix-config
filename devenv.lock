@@ -132,11 +132,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1718825512,
+        "lastModified": 1718872830,
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
-        "rev": "97c0dc865fe9a062c5970f4bcf55bb9e6028bcf5",
-        "treeHash": "2d1fdb2a83ce7d30fb87e7f1352bf6f30eb5af50",
+        "rev": "e4ea49a8c0c35b5bea2d033263c6c6b4b2a19a41",
+        "treeHash": "065d3b9649e749b2ff7be5a556e45b0c8a2eda97",
         "type": "github"
       },
       "original": {
