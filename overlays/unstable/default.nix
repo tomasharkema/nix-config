@@ -49,22 +49,5 @@
   # # sunshine = channels.unstable.sunshine;
 
   # devenv = channels.unstable.devenv;
-
-  steam = prev.steam.override {
-    extraEnv = {
-      MANGOHUD = true;
-      OBS_VKCAPTURE = true;
-      RADV_TEX_ANISO = 16;
-    };
-    extraPkgs = pkgs:
-      with pkgs; [
-        mangohud
-        gamemode
-      ];
-    extraLibraries = p:
-      with p; [
-        atk
-        mangohud
-      ];
-  };
+  nix = prev.nixVersions.nix_2_22;
 }
