@@ -150,8 +150,7 @@ in
 
     packages = with pkgs; [
       nixos-generate
-
-      nixVersions.nix_2_22 # Unstable
+      # Unstable
       upload-all-store
       # cntr
       update-pkgs
@@ -255,7 +254,6 @@ in
 #       # dotenv.enable = true;
 #       packages = [
 #         nixos-generate
-#         nixVersions.nix_2_22 # Unstable
 #         upload-all-store
 #         # cntr
 #         update-pkgs

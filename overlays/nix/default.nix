@@ -1,6 +1,5 @@
 {
   #  devenv,
-  attic,
   agenix,
   nixos-anywhere,
   # nixos-conf-editor,
@@ -10,7 +9,6 @@
   # manix,
   ...
 }: final: prev: {
-  attic = attic.packages."${prev.system}".default;
   # devenv = devenv.packages."${prev.system}".default;
   agenix = agenix.packages."${prev.system}".default;
   nixos-anywhere = nixos-anywhere.packages."${prev.system}".nixos-anywhere;
@@ -38,16 +36,23 @@
   #     ];
   #   };
 
-  tailscale =
-    prev
-    .tailscale
-    # .override {
-    #   buildGoModule = prev.buildGo122Module;
-    # };
-    .overrideAttrs
-    (old: {
-      ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH = "go1.22";
-    });
+  attic-client = prev.attic-client.override {
+    nix = prev.nixVersions.nix_2_18;
+  };
+  # .overrideAttrs (old: {
+  #   nix = prev.nixVersions.nix_2_18;
+  # });
+
+  # tailscale =
+  #   prev
+  #   .tailscale
+  #   # .override {
+  #   #   buildGoModule = prev.buildGo122Module;
+  #   # };
+  #   .overrideAttrs
+  #   (old: {
+  #     ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH = "go1.22";
+  #   });
 
   # lib =
   #   (prev.lib.maintainers or {})

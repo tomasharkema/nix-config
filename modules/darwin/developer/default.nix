@@ -11,51 +11,16 @@ in {
   config = mkIf cfg.enable {
     # system.nixos.tags = ["developer"];
 
-    environment.systemPackages = with pkgs;
-    # nix
-      [
-        # # snowfallorg.flake
-        # cachix
-        # nix-init
-        # nixci
-        agenix
-
-        deadnix
-        deploy-rs
-        devenv
-        autoflake
-        flake-checker
-        hydra-check
-        fh
-        hydra-cli
-        manix
-        nil
-        nixd
-        nix-eval-jobs
-        # nix-fast-build
-        nix-output-monitor
-        nix-prefetch-git
-        nix-prefetch-scripts
-        # nix-serve
-        nix-tree
-        nixfmt-rfc-style
-        nixos-shell
-        nixpkgs-fmt
-        nixpkgs-lint
-        nurl
-        statix
-      ]
-      # go
-      ++ [
-        go
-        go-outline
-        gopls
-        godef
-        golint
-        gopkgs
-        gopls
-        gotools
-        golangci-lint
-      ];
+    environment.systemPackages = with pkgs; [
+      go
+      go-outline
+      gopls
+      godef
+      golint
+      gopkgs
+      gopls
+      gotools
+      golangci-lint
+    ];
   };
 }

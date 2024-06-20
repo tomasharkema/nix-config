@@ -1,6 +1,11 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib; {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [./hardware-configuration.nix];
 
   config = {
     headless.enable = true;
@@ -29,7 +34,7 @@ with lib; {
     # apps.tor.relay.enable = true;
 
     apps = {
-      attic-server.enable = true;
+      # attic-server.enable = true;
       ipa.enable = false;
       mailrise.enable = true;
     };
@@ -37,7 +42,7 @@ with lib; {
     services = {
       # netbox-service.enable = true;
 
-      kmscon = { enable = false; };
+      kmscon = {enable = false;};
 
       healthchecks = {
         # enable = true;
@@ -59,11 +64,11 @@ with lib; {
         };
       };
 
-      earlyoom = { enable = mkForce false; };
+      earlyoom = {enable = mkForce false;};
 
       tailscale = {
         extraUpFlags =
-          mkForce [ "--advertise-tags=tag:nixos" "--operator=tomas" ];
+          mkForce ["--advertise-tags=tag:nixos" "--operator=tomas"];
       };
 
       freeipa.enable = true;
@@ -72,7 +77,7 @@ with lib; {
 
       ha.initialMaster = true;
 
-      command-center = { enableBot = true; };
+      command-center = {enableBot = true;};
     };
 
     networking = {

@@ -12,14 +12,14 @@ with lib.custom; let
   cfg = config.custom.nix;
 in {
   imports = [
-    # inputs.agenix.darwinModules.default
+    ../../../nix-pkgs.nix
   ];
 
   options = {
     gui = {
-      enable = mkBoolOpt false "Whether or not to manage nix configuration.";
+      enable = mkEnableOption "Whether or not to manage nix configuration.";
       gnome.enable =
-        mkBoolOpt false "Whether or not to manage nix configuration.";
+        mkEnableOption "Whether or not to manage nix configuration.";
     };
   };
 
@@ -39,25 +39,6 @@ in {
       };
     };
 
-    environment.systemPackages = with pkgs; [
-      deploy-rs
-      nixfmt-rfc-style
-
-      nix-prefetch-git
-      nil
-      nixd
-      flake-checker
-      hydra-check
-      hydra-cli
-      autoflake
-      fh
-      direnv
-      devenv
-      # attic
-      nix-output-monitor
-      nerd-font-patcher
-      alejandra
-    ];
     traits.developer.enable = true;
 
     services.nix-daemon.enable = true;
@@ -73,8 +54,7 @@ in {
     nix = let
       users = ["root" "tomas"];
     in {
-      package = pkgs.nixVersions.nix_2_22;
-
+      package = pkgs.nix;
       nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
       linux-builder = {
