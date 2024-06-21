@@ -56,6 +56,8 @@ in {
       pkgs.custom.libvirt-dbus
       nemu
       qtemu
+      dosbox-x
+      qemu-utils
     ];
 
     services.dbus.packages = with pkgs; [
@@ -63,6 +65,7 @@ in {
       kvmtool
       libvirt
       qemu_kvm
+
       pkgs.custom.libvirt-dbus
     ];
 
