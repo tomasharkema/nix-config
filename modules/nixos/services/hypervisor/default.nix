@@ -102,7 +102,11 @@ in {
 
     virtualisation = {
       kvmgt.enable = true;
-      libvirt.enable = true;
+
+      libvirt = {
+        enable = true;
+        swtpm.enable = true;
+      };
 
       # libvirtd = {
       #   enable = true;
