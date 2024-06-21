@@ -1,4 +1,10 @@
-{ pkgs, inputs, config, lib, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  lib,
+  ...
+}:
 with lib; {
   imports = with inputs; [
     nixos-hardware.nixosModules.dell-xps-15-9570-nvidia
@@ -6,7 +12,6 @@ with lib; {
   ];
 
   config = {
-
     disks.btrfs = {
       enable = true;
       main = "/dev/nvme0n1";
@@ -14,13 +19,13 @@ with lib; {
       newSubvolumes = true;
     };
 
-    programs.gnupg.agent = { enable = true; };
+    programs.gnupg.agent = {enable = true;};
 
-    services.dbus.packages = with pkgs; [ custom.ancs4linux ];
+    services.dbus.packages = with pkgs; [custom.ancs4linux];
 
     services.udev = {
       enable = true;
-      packages = with pkgs; [ heimdall-gui libusb ];
+      packages = with pkgs; [heimdall-gui libusb];
       extraRules = ''
         SUBSYSTEM=="usb", ATTR{idVendor}=="04e8", ATTR{idProduct}=="685d", MODE="0666"
       '';
@@ -52,12 +57,11 @@ with lib; {
       pwvucontrol
     ];
 
-    home-manager.users.tomas.dconf.settings."org/gnome/shell".enabled-extensions =
-      [ "Battery-Health-Charging@maniacx.github.com" ];
+    home-manager.users.tomas.dconf.settings."org/gnome/shell".enabled-extensions = ["Battery-Health-Charging@maniacx.github.com"];
 
     gui = {
       enable = true;
-      desktop = { enable = true; };
+      desktop = {enable = true;};
       gnome.enable = true;
       gamemode.enable = true;
       quiet-boot.enable = true;
@@ -65,7 +69,7 @@ with lib; {
 
     hardware = {
       nvidia = {
-        # nvidiaPersistenced = true; 
+        # nvidiaPersistenced = true;
         forceFullCompositionPipeline = true;
 
         prime = {
@@ -129,7 +133,7 @@ with lib; {
           spec = "UUID=3e30181c-9df4-4412-a1ee-cb97819f218c";
           hashTableSizeMB = 4096;
           verbosity = "crit";
-          extraOptions = [ "--loadavg-target" "2.0" ];
+          extraOptions = ["--loadavg-target" "2.0"];
         };
       };
 
@@ -139,7 +143,7 @@ with lib; {
 
       avahi = {
         enable = true;
-        allowInterfaces = [ "wlp59s0" ];
+        allowInterfaces = ["wlp59s0"];
         reflector = mkForce false;
       };
 
@@ -161,15 +165,15 @@ with lib; {
     };
 
     boot = {
-      binfmt.emulatedSystems = [ "aarch64-linux" ];
+      binfmt.emulatedSystems = ["aarch64-linux"];
 
-      supportedFilesystems = [ "ntfs" ];
+      supportedFilesystems = ["ntfs"];
       kernelModules = [
         "kvm-intel"
         # "watchdog"
       ];
       initrd.kernelModules = [
-        #  "watchdog" 
+        #  "watchdog"
       ];
     };
   };
