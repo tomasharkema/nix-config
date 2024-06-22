@@ -58,9 +58,13 @@ in {
       qtemu
       dosbox-x
       qemu-utils
+      virtiofsd
     ];
 
+    services.udev.packages = with pkgs; [virtiofsd];
+
     services.dbus.packages = with pkgs; [
+      virtiofsd
       virt-manager
       kvmtool
       libvirt
