@@ -109,6 +109,7 @@ with lib; {
         enable = true;
         lan = true;
         requireUserVerification = false;
+        admins = ["brendon" "teumaauss"];
       };
 
       pufferpanel = {
