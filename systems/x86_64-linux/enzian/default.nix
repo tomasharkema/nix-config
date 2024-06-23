@@ -110,6 +110,7 @@ with lib; {
         lan = true;
         requireUserVerification = false;
         admins = ["brendon" "teumaauss"];
+        autosave-interval = 10;
       };
 
       pufferpanel = {
