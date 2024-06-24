@@ -178,7 +178,7 @@ in
           gnomeExtensions.window-is-ready-remover
           gnomeExtensions.wayland-or-x11
           # gnomeExtensions.network-interfaces-info
-          # gnomeExtensions.appindicator
+          gnomeExtensions.appindicator
           gnomeExtensions.settingscenter
           gnomeExtensions.app-hider
           gnomeExtensions.arc-menu

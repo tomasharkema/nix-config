@@ -245,7 +245,7 @@ with lib; {
             "user-theme@gnome-shell-extensions.gcampax.github.com"
             "vscode-search-provider@mrmarble.github.com"
             # "Airpod-Battery-Monitor@maniacx.github.com"
-            # "appindicatorsupport@rgcjonas.gmail.com"
+            "appindicatorsupport@rgcjonas.gmail.com"
             # "dash-to-dock@micxgx.gmail.com"
             "display-brightness-ddcutil@themightydeity.github.com"
             # "github-actions@arononak.github.io"
