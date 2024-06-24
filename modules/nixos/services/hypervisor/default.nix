@@ -54,7 +54,7 @@ in {
       libvirt
       qemu_kvm
       pkgs.custom.libvirt-dbus
-      nemu
+      # nemu
       qtemu
       dosbox-x
       qemu-utils
