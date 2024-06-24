@@ -1,6 +1,12 @@
-{ pkgs, lib, config, osConfig, inputs, ... }:
-with lib;
-let
+{
+  pkgs,
+  lib,
+  config,
+  osConfig,
+  inputs,
+  ...
+}:
+with lib; let
   catppuccin_name = "Catppuccin-Mocha-Compact-Blue-Dark";
   # catppuccin = pkgs.catppuccin-gtk.override {
   #   accents = ["blue"];
@@ -10,11 +16,11 @@ let
   # };
   cursorSize = 26;
 in {
-  imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
+  imports = [inputs.catppuccin.homeManagerModules.catppuccin];
 
-  config = mkIf
+  config =
+    mkIf
     (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
-
       # xsession.pointerCursor = mkIf pkgs.stdenv.isLinux {
       #   name = "macOS-Monterey";
       #   package = pkgs.apple-cursor;
@@ -48,14 +54,14 @@ in {
       };
 
       home = lib.mkIf true {
-        # pointerCursor = mkIf pkgs.stdenv.isLinux {
-        #   name = mkForce "macOS-Monterey";
-        #   package = mkForce pkgs.apple-cursor;
-        #   x11.enable = true;
-        #   gtk.enable = true;
-        # };
+        pointerCursor = mkIf pkgs.stdenv.isLinux {
+          name = mkForce "macOS-Monterey";
+          package = mkForce pkgs.apple-cursor;
+          x11.enable = true;
+          gtk.enable = true;
+        };
 
-        file = { ".config/gnome-initial-setup-done".text = "yes"; };
+        file = {".config/gnome-initial-setup-done".text = "yes";};
 
         # sessionVariables.GTK_THEME = "${config.gtk.theme.name}:dark";
         # file = {
