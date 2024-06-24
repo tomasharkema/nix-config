@@ -1,4 +1,10 @@
-{ pkgs, lib, inputs, config, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  config,
+  ...
+}:
 with lib; {
   imports = [
     ./hardware-configuration.nix
@@ -25,12 +31,12 @@ with lib; {
     # services.upower.enable = mkForce false;
 
     networking = {
-      hosts = { "192.168.0.100" = [ "nix-cache.harke.ma" ]; };
+      hosts = {"192.168.0.100" = ["nix-cache.harke.ma"];};
       networkmanager.enable = true;
 
       hostName = "wodan";
 
-      firewall = { enable = false; };
+      firewall = {enable = false;};
       useDHCP = lib.mkDefault false;
 
       interfaces = {
@@ -75,7 +81,7 @@ with lib; {
 
     headless.hypervisor = {
       enable = true;
-      bridgeInterfaces = [ "enp2s0" ];
+      bridgeInterfaces = ["enp2s0"];
     };
 
     services.beesd.filesystems = {
@@ -83,14 +89,14 @@ with lib; {
         spec = "UUID=f3558990-77b0-4113-b45c-3d2da3f46c14";
         hashTableSizeMB = 4096;
         verbosity = "crit";
-        extraOptions = [ "--loadavg-target" "2.0" ];
+        extraOptions = ["--loadavg-target" "2.0"];
       };
     };
 
     # console.earlySetup = true;
 
     hardware = {
-      nvidia = { nvidiaPersistenced = true; };
+      nvidia = {nvidiaPersistenced = true;};
       cpu.intel.updateMicrocode = true;
       i2c.enable = true;
     };
@@ -115,11 +121,13 @@ with lib; {
         };
       };
     };
-    swapDevices = [{
-      device = "/dev/disk/by-partuuid/b1fe4821-e631-494e-bb76-4e9ae272789a";
-      size = 16 * 1024;
-      randomEncryption.enable = true;
-    }];
+
+    # swapDevices = [{
+    #   device = "/dev/disk/by-partuuid/b1fe4821-e631-494e-bb76-4e9ae272789a";
+    #   size = 16 * 1024;
+    #   randomEncryption.enable = true;
+    # }];
+
     disks.btrfs = {
       enable = true;
 
@@ -131,11 +139,11 @@ with lib; {
     };
 
     boot = {
-      binfmt.emulatedSystems = [ "aarch64-linux" ];
-      supportedFilesystems = [ "ntfs" ];
-      kernelModules = [ "i2c-dev" "watchdog" "ixgbe" "btusb" ];
+      binfmt.emulatedSystems = ["aarch64-linux"];
+      supportedFilesystems = ["ntfs"];
+      kernelModules = ["i2c-dev" "watchdog" "ixgbe" "btusb"];
 
-      initrd.kernelModules = [ "watchdog" "ixgbe" "btusb" ];
+      initrd.kernelModules = ["watchdog" "ixgbe" "btusb"];
 
       # blacklistedKernelModules = lib.mkDefault [ "i915" "nouveau" ];
       # KMS will load the module, regardless of blacklisting
