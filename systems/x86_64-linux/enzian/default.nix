@@ -1,4 +1,11 @@
-{ modulesPath, lib, inputs, pkgs, format, ... }:
+{
+  modulesPath,
+  lib,
+  inputs,
+  pkgs,
+  format,
+  ...
+}:
 with lib; {
   imports = with inputs; [
     # (modulesPath + "/installer/scan/not-detected.nix")
@@ -8,7 +15,6 @@ with lib; {
   ];
 
   config = {
-
     apps = {
       ntopng.enable = true;
       steam.enable = true;
@@ -38,7 +44,7 @@ with lib; {
         spec = "UUID=4fb99410-225f-4c6a-a647-2cae35f879f0";
         hashTableSizeMB = 2048;
         verbosity = "crit";
-        extraOptions = [ "--loadavg-target" "2.0" ];
+        extraOptions = ["--loadavg-target" "2.0"];
       };
     };
 
@@ -78,7 +84,7 @@ with lib; {
     networking = {
       hostName = "enzian";
       hostId = "529fd7fa";
-      firewall = { enable = false; };
+      firewall = {enable = false;};
       # useDHCP = lib.mkDefault false;
       interfaces."enp4s0" = {
         # useDHCP = lib.mkDefault true;
@@ -98,22 +104,36 @@ with lib; {
     #   targetUser = "root";
     # };
 
-    services.factorio = {
-      enable = true;
-      lan = true;
+    services = {
+      factorio = {
+        enable = true;
+        lan = true;
+        requireUserVerification = false;
+        admins = ["brendon" "teumaauss"];
+        autosave-interval = 10;
+      };
+
+      pufferpanel = {
+        enable = true;
+        extraPackages = with pkgs; [bash curl gawk gnutar gzip];
+        package = pkgs.buildFHSEnv {
+          name = "pufferpanel-fhs";
+          runScript = lib.getExe pkgs.pufferpanel;
+          targetPkgs = pkgs': with pkgs'; [icu openssl zlib factorio-headless];
+        };
+      };
     };
 
     boot = {
-      binfmt.emulatedSystems = [ "aarch64-linux" ];
+      binfmt.emulatedSystems = ["aarch64-linux"];
 
       kernel.sysctl."kernel.sysrq" = 1;
       initrd = {
-        availableKernelModules =
-          [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-        kernelModules = [ "kvm-intel" "uinput" "nvme" ];
+        availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
+        kernelModules = ["kvm-intel" "uinput" "nvme"];
       };
-      kernelModules = [ "kvm-intel" "uinput" "nvme" ];
-      extraModulePackages = [ ];
+      kernelModules = ["kvm-intel" "uinput" "nvme"];
+      extraModulePackages = [];
     };
 
     hardware = {
