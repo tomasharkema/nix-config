@@ -1,18 +1,23 @@
-{ lib, pkgs, config, inputs, ... }:
-with lib;
-let cfg = config.gui.desktop;
+{
+  lib,
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
+with lib; let
+  cfg = config.gui.desktop;
 in {
   options.gui.desktop = {
     enable = mkEnableOption "hallo";
 
-    rdp = { enable = mkEnableOption "hallo"; };
+    rdp = {enable = mkEnableOption "hallo";};
   };
 
   config = mkIf cfg.enable {
     gui.fonts.enable = true;
 
     services = {
-
       libinput.enable = true;
 
       xserver = {
@@ -69,7 +74,7 @@ in {
 
     hardware.opengl = {
       enable = true;
-      extraPackages = [ pkgs.mesa.drivers ];
+      extraPackages = [pkgs.mesa.drivers];
     };
 
     programs = {
@@ -79,7 +84,7 @@ in {
 
     services.dbus = {
       enable = true;
-      packages = [ pkgs.custom.ancs4linux ];
+      packages = [pkgs.custom.ancs4linux];
     };
 
     environment.systemPackages = with pkgs;
@@ -97,6 +102,7 @@ in {
         # transmission
         # waybar
         # caffeine-ng
+        ktailctl
         clutter
         effitask
         filezilla
@@ -140,13 +146,15 @@ in {
         xdiskusage
         xdotool
         zeal
-      ] ++ optionals pkgs.stdenv.isx86_64 [
+      ]
+      ++ optionals pkgs.stdenv.isx86_64 [
         xpipe
         angryipscanner
         telegram-desktop
         # pkgs.custom.git-butler
         bottles
-      ] ++ (with pkgs.custom; [ zerotier-ui ]);
+      ]
+      ++ (with pkgs.custom; [zerotier-ui]);
 
     programs = {
       ssh = {
