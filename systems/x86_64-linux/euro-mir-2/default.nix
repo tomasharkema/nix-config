@@ -26,14 +26,9 @@ with lib; {
     services.udev = {
       enable = true;
       packages = with pkgs; [heimdall-gui libusb];
-      extraRules = ''
-        SUBSYSTEM=="usb", ATTR{idVendor}=="04e8", ATTR{idProduct}=="685d", MODE="0666"
-      '';
     };
 
     environment.systemPackages = with pkgs; [
-      android-tools
-      heimdall-gui
       libusb
 
       ventoy-full
@@ -98,6 +93,7 @@ with lib; {
       steam.enable = true;
       # opensnitch.enable = true;
       # usbip.enable = true;
+      samsung.enable = true;
     };
 
     headless.hypervisor = {
