@@ -1,11 +1,16 @@
-{ pkgs, config, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; {
   config = {
     dconf.settings = {
-
-      "org/gnome/desktop/interface" = { color-scheme = "prefer-dark"; };
+      "org/gnome/desktop/interface" = {color-scheme = "prefer-dark";};
     };
 
-    gtk = {
+    gtk = mkIf false {
       enable = true;
       theme = {
         name = "Adwaita-dark";

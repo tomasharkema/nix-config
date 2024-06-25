@@ -36,7 +36,7 @@ with lib; {
         };
 
         "org/gnome/shell/extensions/user-theme" = {
-          name = "Catppuccin-Mocha-Compact-Blue-Dark";
+          name = mkDefault "Catppuccin-Mocha-Compact-Blue-Dark";
         };
 
         "org/gnome/shell/extensions/TodoTxt" = {

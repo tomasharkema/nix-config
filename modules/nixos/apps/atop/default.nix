@@ -5,12 +5,9 @@
   ...
 }:
 with lib;
-with lib.custom;
-let
+with lib.custom; let
   cfg = config.apps.atop;
-in
-{
-
+in {
   options.apps.atop = {
     enable = mkEnableOption "atop";
     service = mkBoolOpt true "atop service";
@@ -19,13 +16,12 @@ in
   };
 
   config = mkIf cfg.enable {
-
     programs.atop = {
-      #   atopRotateTimer.enable = true;
+      atopRotateTimer.enable = true;
       enable = true;
       setuidWrapper.enable = true;
       atopService.enable = cfg.service;
-      #   atopacctService.enable = true;
+      atopacctService.enable = true;
       atopgpu.enable = cfg.gpu;
       netatop.enable = true;
     };
@@ -43,7 +39,7 @@ in
         Restart = "on-failure";
         RestartSec = 5;
       };
-      wantedBy = [ "multi-user.target" ];
+      wantedBy = ["multi-user.target"];
     };
   };
 }
