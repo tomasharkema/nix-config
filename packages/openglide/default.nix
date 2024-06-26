@@ -4,21 +4,25 @@
   autoreconfHook,
   libGL,
   libGLU,
-  SDL,
+  SDL2,
+  SDL2_net,
   xorg,
 }:
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "openglide";
   version = "0.0.1";
 
   # https://github.com/voyageur/openglide
+  # https://github.com/kjliew/qemu-xtra/tree/master/openglide
   src = fetchFromGitHub {
-    owner = "voyageur";
-    repo = "openglide";
-    rev = "ad9a3ddbf17b42e73fa7fbae09bceef1ebddcd92";
-    sha256 = "sha256-wiwylW3Ab5CoMbCzIf9UpTe7cn271c2V5nvBKE6W/t0=";
+    owner = "kjliew";
+    repo = "qemu-xtra";
+    rev = "23bb5bed959320417e12c5a4c1610f9d84fcd3f5";
+    sha256 = "sha256-sJzvYNgomGzXrZH/9dmDgpbueYelLf2LJ/DQHut0Bz0=";
   };
 
+  sourceRoot = "${src.name}/openglide";
+
   nativeBuildInputs = [autoreconfHook];
-  buildInputs = [libGL SDL xorg.libX11 libGLU];
+  buildInputs = [libGL SDL2 SDL2_net xorg.libX11 libGLU];
 }
