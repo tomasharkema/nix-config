@@ -4,7 +4,8 @@
   lib,
   inputs,
   ...
-}: {
+}:
+with lib; {
   imports = [inputs.catppuccin.homeManagerModules.catppuccin];
 
   config = {
@@ -15,7 +16,7 @@
       accent = "blue";
     };
 
-    gtk = {
+    gtk = mkIf config.gtk.enable {
       catppuccin = {
         enable = true;
         flavor = "mocha";
