@@ -34,7 +34,7 @@ in {
       };
     };
 
-    home = {
+    home = mkIf pkgs.stdenv.isLinux {
       pointerCursor = {
         name = mkForce "macOS-Monterey";
         package = mkForce pkgs.apple-cursor;

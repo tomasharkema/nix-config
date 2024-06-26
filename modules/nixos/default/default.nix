@@ -189,17 +189,17 @@ with lib;
           rebootTime = "10m";
         };
 
-        user.services.auto-fix-vscode-server = {
-          enable = true;
-          wants = [
-            "multi-user.target"
-            "network.target"
-          ];
-          after = [
-            "multi-user.target"
-            "network.target"
-          ];
-        };
+        # user.services.auto-fix-vscode-server = {
+        #   enable = true;
+        #   wants = [
+        #     "multi-user.target"
+        #     "network.target"
+        #   ];
+        #   after = [
+        #     "multi-user.target"
+        #     "network.target"
+        #   ];
+        # };
 
         #   services = {
         #     "numlockx" = {
