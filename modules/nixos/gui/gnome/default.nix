@@ -68,10 +68,10 @@ in
 
       security.ipa.ifpAllowedUids = ["gdm"];
 
-      environment.sessionVariables = {
-        LD_LIBRARY_PATH = [
-        ];
-      };
+      # environment.sessionVariables = {
+      #   LD_LIBRARY_PATH = [
+      #   ];
+      # };
 
       services = {
         xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
