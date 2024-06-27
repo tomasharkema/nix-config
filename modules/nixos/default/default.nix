@@ -190,7 +190,7 @@ with lib.custom;
         enableEmergencyMode = false;
 
         watchdog = {
-          device = "/dev/watchdog";
+          # device = "/dev/watchdog";
           runtimeTime = "10m";
           kexecTime = "10m";
           rebootTime = "10m";
@@ -231,6 +231,8 @@ with lib.custom;
       };
 
       services = {
+        watchdogd = {enable = true;};
+
         atd.enable = true;
         kmscon = {
           enable = mkDefault true;
