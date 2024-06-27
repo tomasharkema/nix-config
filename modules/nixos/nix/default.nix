@@ -29,7 +29,7 @@ with lib.custom; {
         ]
         ++ optional config.services.hydra.enable "hydra";
     in {
-      package = pkgs.nix; #Versions.nix_2_22;
+      package = pkgs.nixVersions.nix_2_21;
 
       extraOptions = ''
         min-free = ${toString (100 * 1024 * 1024)}
