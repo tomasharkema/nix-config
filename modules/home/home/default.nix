@@ -310,13 +310,13 @@ in
             # searchDownKey = "^[OB";
           };
 
-          initExtra = ''
-            #nixos-menu () {
-            #  ${lib.getExe pkgs.custom.menu}
-            #}
-            #zle -N nixos-menu
-            #bindkey '^A' nixos-menu
+          #nixos-menu () {
+          #  ${lib.getExe pkgs.custom.menu}
+          #}
+          #zle -N nixos-menu
+          #bindkey '^A' nixos-menu
 
+          initExtra = ''
             bindkey -M emacs -s '^A' 'menu^M'
             bindkey -M vicmd -s '^A' 'menu^M'
             bindkey -M viins -s '^A' 'menu^M'
