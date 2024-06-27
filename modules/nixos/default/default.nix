@@ -6,6 +6,7 @@
   ...
 }:
 with lib;
+with lib.custom;
 # let
 #   theme = inputs.themes.custom (inputs.themes.catppuccin-mocha
 #     // {
@@ -13,7 +14,13 @@ with lib;
 #     });
 # in
   {
-    config = with lib; {
+    config = {
+      assertions = [
+        (assertPackage pkgs "_389-ds-base")
+        (assertPackage pkgs "freeipa")
+        (assertPackage pkgs "sssd")
+      ];
+
       nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
       # Set your time zone.
