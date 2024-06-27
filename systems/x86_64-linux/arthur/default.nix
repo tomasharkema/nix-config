@@ -1,4 +1,9 @@
-{ lib, inputs, pkgs, ... }:
+{
+  lib,
+  inputs,
+  pkgs,
+  ...
+}:
 with lib; {
   imports = with inputs; [
     nixos-hardware.nixosModules.common-cpu-intel
@@ -32,7 +37,7 @@ with lib; {
     services = {
       # freeipa.replica.enable = true;
       tcsd.enable = true;
-      xserver.videoDrivers = [ "amdgpu" ];
+      xserver.videoDrivers = ["amdgpu"];
     };
 
     apps = {
@@ -48,20 +53,20 @@ with lib; {
       newSubvolumes = true;
     };
 
-    # resilio.root = "/opt/media/resilio";
+    # resilio.root = "/mnt/media/resilio";
 
     boot = {
-      binfmt.emulatedSystems = [ "aarch64-linux" ];
+      binfmt.emulatedSystems = ["aarch64-linux"];
       loader.systemd-boot.enable = true;
-      initrd.kernelModules = [ "amdgpu" ];
+      initrd.kernelModules = ["amdgpu"];
     };
 
     hardware.opengl = {
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-      extraPackages = with pkgs; [ amdvlk ];
-      extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
+      extraPackages = with pkgs; [amdvlk];
+      extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
     };
 
     networking = {
@@ -78,7 +83,7 @@ with lib; {
 
     headless.hypervisor = {
       enable = true;
-      bridgeInterfaces = [ "eno1" ];
+      bridgeInterfaces = ["eno1"];
     };
   };
 }

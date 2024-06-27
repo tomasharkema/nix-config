@@ -49,7 +49,7 @@ with lib; let
           };
           "resilio-sync" = mkIf (cfg.newSubvolumes && cfg.media == null) {
             mountOptions = ["noatime" "compress=zstd" "discard=async"];
-            mountpoint = "/opt/resilio-sync";
+            mountpoint = "/mnt/resilio-sync";
           };
           "resilio-sync-lib" = mkIf cfg.newSubvolumes {
             mountOptions = ["noatime" "compress=zstd" "discard=async"];
@@ -83,7 +83,7 @@ with lib; let
             mountOptions =
               ["noatime" "discard=async"]
               ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
-            mountpoint = "/opt/steam";
+            mountpoint = "/mnt/steam";
           };
           "flatpak" = mkIf cfg.newSubvolumes {
             mountOptions =
@@ -273,7 +273,7 @@ in
                     subvolumes = {
                       "media" = {
                         mountOptions = ["noatime" "compress=zstd"];
-                        mountpoint = "/opt/media";
+                        mountpoint = "/mnt/media";
                       };
                     };
                   };
@@ -299,8 +299,8 @@ in
       };
 
       systemd.tmpfiles.rules = mkIf (cfg.media != null) [
-        "d /opt/media/resilio-sync 0777 rslsync rslsync -"
-        "L+ /opt/resilio-sync - - - - /opt/media/resilio-sync"
+        "d /mnt/media/resilio-sync 0777 rslsync rslsync -"
+        "L+ /mnt/resilio-sync - - - - /mnt/media/resilio-sync"
       ];
     };
   }
