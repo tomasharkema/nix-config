@@ -36,7 +36,7 @@ with lib; {
       quiet-boot.enable = true;
       gamemode.enable = true;
     };
-    # resilio.root = "/opt/media/resilio";
+    # resilio.root = "/mnt/media/resilio";
     # resilio.enable = mkForce false;
 
     services.beesd.filesystems = {
