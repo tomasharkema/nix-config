@@ -39,6 +39,9 @@ in {
       pkgs.custom.gpustat
       nvidia-offload
       gnomeExtensions.prime-helper
+      nvfancontrol
+      nvitop
+      gwe
     ];
     home-manager.users.tomas.dconf.settings."org/gnome/shell".enabled-extensions = [pkgs.gnomeExtensions.prime-helper.extensionUuid];
 
@@ -71,7 +74,8 @@ in {
 
     boot = {
       initrd.kernelModules = ["nvidia"];
-      extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+      # extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+      kernelParams = ["nvidia-drm.modeset=1" "nvidia_drm.fbdev=1" "apm=power_off" "acpi=force"];
     };
 
     hardware = {
@@ -80,7 +84,14 @@ in {
         forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+          version = "555.52.04";
+          sha256_64bit = "sha256-nVOubb7zKulXhux9AruUTVBQwccFFuYGWrU1ZiakRAI=";
+          sha256_aarch64 = lib.fakeSha256;
+          openSha256 = lib.fakeSha256;
+          settingsSha256 = "sha256-PMh5efbSEq7iqEMBr2+VGQYkBG73TGUh6FuDHZhmwHk=";
+          persistencedSha256 = "sha256-KAYIvPjUVilQQcD04h163MHmKcQrn2a8oaXujL2Bxro=";
+        };
       };
 
       opengl = {
