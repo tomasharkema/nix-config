@@ -64,13 +64,15 @@ in {
       '';
     };
 
-    # services = {
-    #   tabby.enable = true;
-    # };
-
-    # environment.variables = {
-    #   LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib";
-    # };
+    environment.sessionVariables = {
+      LD_LIBRARY_PATH = [
+        # "$LD_LIBRARY_PATH"
+        "/run/current-system/sw/lib"
+        "/run/opengl-driver/lib"
+        "/run/opengl-driver-32/lib"
+        "${pkgs.custom.openglide}/lib"
+      ];
+    };
 
     hardware.opengl = {
       enable = true;
@@ -103,6 +105,7 @@ in {
         # transmission
         # waybar
         # caffeine-ng
+        ktailctl
         clutter
         effitask
         filezilla

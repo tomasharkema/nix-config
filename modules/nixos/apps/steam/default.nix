@@ -61,7 +61,7 @@ in {
       gamehub
       cartridges
       steamcmd
-      steam-run
+      # steam-run
       adwsteamgtk
       steam-tui
       mangohud

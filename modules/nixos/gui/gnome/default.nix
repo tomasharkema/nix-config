@@ -68,6 +68,11 @@ in
 
       security.ipa.ifpAllowedUids = ["gdm"];
 
+      environment.sessionVariables = {
+        LD_LIBRARY_PATH = [
+        ];
+      };
+
       services = {
         xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
 
@@ -96,6 +101,7 @@ in
               gjs
               gnome.gpaste
               gnome-menus
+              pkgs.custom.openglide
             ];
           };
 
@@ -178,7 +184,7 @@ in
           gnomeExtensions.window-is-ready-remover
           gnomeExtensions.wayland-or-x11
           # gnomeExtensions.network-interfaces-info
-          # gnomeExtensions.appindicator
+          gnomeExtensions.appindicator
           gnomeExtensions.settingscenter
           gnomeExtensions.app-hider
           gnomeExtensions.arc-menu
@@ -232,7 +238,7 @@ in
           gnome.gnome-tweaks
           gnome.gnome-user-share
           gnome.libgnome-keyring
-          gnome.seahorse
+          # gnome.seahorse
           gnome.zenity
         ]);
 

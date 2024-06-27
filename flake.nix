@@ -60,13 +60,13 @@
       };
     };
 
-    vscode-server = {
-      url = "github:nix-community/nixos-vscode-server";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
+    # vscode-server = {
+    #   url = "github:nix-community/nixos-vscode-server";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #   };
+    # };
 
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -89,16 +89,8 @@
       };
     };
 
-    # agenix-shell = {
-    #   url = "github:aciceri/agenix-shell";
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     flake-parts.follows = "flake-parts";
-    #   };
-    # };
-
     nixos-hardware = {
-      url = "github:nixos/nixos-hardware/083823b7904e43a4fc1c7229781417e875359a42";
+      url = "github:nixos/nixos-hardware";
 
       # inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -233,12 +225,25 @@
       url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    agenix-rekey = {
+      url = "github:oddlama/agenix-rekey";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
   };
 
   outputs = inputs: let
     lib = inputs.snowfall-lib.mkLib {
       inherit inputs;
+
       src = ./.;
+
+      imports = [
+        inputs.agenix-rekey.flakeModule
+      ];
 
       snowfall = {
         meta = {
@@ -253,7 +258,7 @@
     lib.mkFlake {
       inherit inputs;
 
-      src = ./.;
+      # src = ./.;
 
       channels-config = {
         allowUnfreePredicate = _: true;
@@ -263,7 +268,7 @@
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;
         nvidia.acceptLicense = true;
-        cudaSupport = true;
+        cudaSupport = builtins.break true;
         # allowAliases = false;
 
         # config.allowUnsupportedSystem = true;
@@ -322,7 +327,7 @@
         disko.nixosModules.default
         # nh.nixosModules.default
         lanzaboote.nixosModules.lanzaboote
-        vscode-server.nixosModules.default
+        # vscode-server.nixosModules.default
 
         # home-manager.nixosModules.home-manager
         agenix.nixosModules.default
