@@ -42,6 +42,9 @@ in {
     ];
     home-manager.users.tomas.dconf.settings."org/gnome/shell".enabled-extensions = [pkgs.gnomeExtensions.prime-helper.extensionUuid];
 
+    services.supergfxd.enable = true;
+    systemd.services.supergfxd.path = [pkgs.pciutils];
+
     # environment.sessionVariables = {
     #   VK_DRIVER_FILES =
     #     "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";

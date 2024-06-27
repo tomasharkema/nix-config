@@ -10,7 +10,7 @@ with lib; {
     ./hardware-configuration.nix
     inputs.nixos-hardware.nixosModules.common-gpu-intel
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
-    inputs.nixos-hardware.nixosModules.common-hidpi
+    # inputs.nixos-hardware.nixosModules.common-hidpi
   ];
 
   config = {
@@ -37,7 +37,7 @@ with lib; {
       hostName = "wodan";
 
       firewall = {enable = false;};
-      useDHCP = lib.mkDefault false;
+      useDHCP = mkDefault false;
 
       interfaces = {
         "enp2s0" = {
