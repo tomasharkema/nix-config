@@ -526,6 +526,9 @@
       "root"
       "tomas"
     ];
+
+    allow-unsafe-native-code-during-evaluation = true;
+
     # netrc-file = "/etc/nix/netrc";
 
     # trustedBinaryCaches = ["https://cache.nixos.org"];
