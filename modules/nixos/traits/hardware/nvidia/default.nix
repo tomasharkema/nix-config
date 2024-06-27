@@ -8,9 +8,6 @@ with lib;
 with lib.custom; let
   cfg = config.traits.hardware.nvidia;
 
-  nvidiaVersion = config.hardware.nvidia.package.version;
-  nvidiax11Version = config.boot.kernelPackages.nvidia_x11.version;
-
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
     export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
@@ -31,8 +28,6 @@ in {
     #   cudaSupport = true;
     # };
 
-    system.nixos.tags = ["nvidia:${nvidiaVersion}:nvidiax11Version:${nvidiax11Version}"];
-
     environment.systemPackages = with pkgs; [
       nvtopPackages.full
       zenith-nvidia
@@ -43,6 +38,7 @@ in {
       nvitop
       gwe
     ];
+
     home-manager.users.tomas.dconf.settings."org/gnome/shell".enabled-extensions = [pkgs.gnomeExtensions.prime-helper.extensionUuid];
 
     services.supergfxd.enable = true;
