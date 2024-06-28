@@ -21,7 +21,7 @@ with lib.custom;
         (assertPackage pkgs "sssd")
       ];
 
-      nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+      nix.channel.enable = false;
 
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";
