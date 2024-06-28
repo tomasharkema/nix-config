@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.05";
-    # nixpkgs-nvidia = nixpkgs;
+    unstable.url = "nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
@@ -349,7 +349,7 @@
             nix = {
               registry.nixpkgs.flake = inputs.nixpkgs;
               registry.home-manager.flake = inputs.home-manager;
-              # registry.unstable.flake = inputs.unstable;
+              registry.unstable.flake = inputs.unstable;
               registry.darwin.flake = inputs.darwin;
             };
           };
