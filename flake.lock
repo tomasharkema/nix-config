@@ -822,11 +822,11 @@
         "npmlock2nix": "npmlock2nix"
       },
       "locked": {
-        "lastModified": 1719520973,
-        "narHash": "sha256-6lESQGmcuST3OD6ficHYRBa7t/OihJOU1yg7W52eB18=",
+        "lastModified": 1719563968,
+        "narHash": "sha256-YFGCTLIRtMTHppP4qKxmeQybjxePOPNYWcSdJRCXn3g=",
         "owner": "NixOS",
         "repo": "nixos-search",
-        "rev": "68c2267b0a446113b0f30f9c622f4e97f156aec1",
+        "rev": "5c86cbc6b97651e8ff90e7fe2104f9e5f2a694be",
         "type": "github"
       },
       "original": {
