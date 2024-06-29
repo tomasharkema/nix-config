@@ -66,11 +66,8 @@ in {
       '';
     };
 
-    systemd.services.netdata.path = [config.boot.kernelPackages.nvidia_x11];
-
     boot = {
       initrd.kernelModules = ["nvidia"];
-      # extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
       kernelParams = ["nvidia-drm.modeset=1" "nvidia_drm.fbdev=1" "apm=power_off" "acpi=force"];
     };
 
@@ -86,7 +83,8 @@ in {
           sha256_aarch64 = lib.fakeSha256;
           openSha256 = lib.fakeSha256;
           settingsSha256 = "sha256-PMh5efbSEq7iqEMBr2+VGQYkBG73TGUh6FuDHZhmwHk=";
-          persistencedSha256 = "sha256-KAYIvPjUVilQQcD04h163MHmKcQrn2a8oaXujL2Bxro=";
+          # persistencedSha256 = "sha256-KAYIvPjUVilQQcD04h163MHmKcQrn2a8oaXujL2Bxro=";
+          persistencedSha256 = lib.fakeSha256;
         };
       };
 

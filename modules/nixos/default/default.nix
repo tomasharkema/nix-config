@@ -21,7 +21,7 @@ with lib.custom;
         (assertPackage pkgs "sssd")
       ];
 
-      nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+      # nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";
@@ -80,6 +80,8 @@ with lib.custom;
           else mkDefault pkgs.linuxPackages_xanmod_stable;
 
         kernelModules = ["wireguard"];
+
+        supportedFilesystems = ["ntfs" "apfs"];
 
         loader = {
           systemd-boot = {

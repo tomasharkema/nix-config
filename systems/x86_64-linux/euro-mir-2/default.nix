@@ -64,7 +64,6 @@ with lib; {
 
     hardware = {
       nvidia = {
-        # nvidiaPersistenced = true;
         forceFullCompositionPipeline = true;
 
         prime = {

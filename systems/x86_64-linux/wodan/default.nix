@@ -96,7 +96,6 @@ with lib; {
     # console.earlySetup = true;
 
     hardware = {
-      nvidia = {nvidiaPersistenced = true;};
       cpu.intel.updateMicrocode = true;
       i2c.enable = true;
     };
