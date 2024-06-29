@@ -105,14 +105,6 @@ with lib; {
     # };
 
     services = {
-      factorio = {
-        enable = true;
-        lan = true;
-        requireUserVerification = false;
-        admins = ["brendon" "teumaauss"];
-        autosave-interval = 10;
-      };
-
       pufferpanel = {
         enable = true;
         extraPackages = with pkgs; [bash curl gawk gnutar gzip];
@@ -139,8 +131,6 @@ with lib; {
     hardware = {
       cpu.intel.updateMicrocode = true;
       bluetooth.enable = true;
-      # nvidia.modesetting.enable = false;
-      nvidia.nvidiaPersistenced = true;
     };
 
     services = {
