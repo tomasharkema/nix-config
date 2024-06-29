@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.05";
-    # nixpkgs-nvidia = nixpkgs;
+    unstable.url = "nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
@@ -349,7 +349,7 @@
             nix = {
               registry.nixpkgs.flake = inputs.nixpkgs;
               registry.home-manager.flake = inputs.home-manager;
-              # registry.unstable.flake = inputs.unstable;
+              registry.unstable.flake = inputs.unstable;
               registry.darwin.flake = inputs.darwin;
             };
           };
@@ -534,16 +534,14 @@
     # trustedBinaryCaches = ["https://cache.nixos.org"];
     # binaryCaches = ["https://cache.nixos.org"];
 
-    substituters = [
-      "https://cache.nixos.org/"
+    extra-substituters = [
       "https://nix-gaming.cachix.org"
       "https://nix-community.cachix.org"
       "https://nix-cache.harke.ma/tomas/"
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
     ];
-    trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA="
