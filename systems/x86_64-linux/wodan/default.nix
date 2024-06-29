@@ -20,6 +20,7 @@ with lib; {
       davinci-resolve
       ntfs2btrfs
       glxinfo
+      apfsprogs
     ];
 
     time = {
@@ -141,7 +142,7 @@ with lib; {
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = ["ntfs"];
-      kernelModules = ["i2c-dev" "watchdog" "ixgbe" "btusb"];
+      kernelModules = ["i2c-dev" "watchdog" "ixgbe" "btusb" "apfs"];
 
       initrd.kernelModules = ["watchdog" "ixgbe" "btusb"];
 
