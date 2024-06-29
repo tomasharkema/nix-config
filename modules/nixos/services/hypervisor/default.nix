@@ -56,7 +56,14 @@ in {
       pkgs.custom.libvirt-dbus
       # nemu
       qtemu
-      dosbox-x
+      (pkgs.buildFHSEnv {
+        name = "dosbox-x-glide";
+        targetPkgs = pkgs: (with pkgs; [
+          custom.openglide
+          dosbox-x
+        ]);
+        runScript = "dosbox-x";
+      })
       qemu-utils
       virtiofsd
     ];
