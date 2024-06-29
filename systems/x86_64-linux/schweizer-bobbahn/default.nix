@@ -28,6 +28,7 @@ with lib; {
     # apps.spotifyd.enable = true;
 
     apps = {
+      steam.enable = true;
       # usbip.enable = true;
       remote-builders.enable = true;
       netdata.enable = true;
