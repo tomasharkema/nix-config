@@ -22,6 +22,7 @@ with lib.custom;
       ];
 
       # nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+      nix.channel.enable = false;
 
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";
@@ -93,6 +94,17 @@ with lib.custom;
 
       environment.systemPackages =
         (with pkgs; [
+          googler
+          google-chrome
+          netflix
+          play-with-mpv
+          castnow
+          go-chromecast
+          gnomecast
+          catt
+          mkchromecast
+          fcast-receiver
+
           tydra
           ethtool
           socat

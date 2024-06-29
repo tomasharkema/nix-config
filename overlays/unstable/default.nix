@@ -5,7 +5,7 @@
   ...
 }: final: prev: rec {
   # # runitor = channels.unstable.runitor;
-  # vscode = channels.unstable.vscode;
+  vscode = channels.unstable.vscode;
   # # # android-tools = channels.unstable.android-tools;
 
   # # glib = channels.unstable.glib;
@@ -15,8 +15,10 @@
 
   # # OVMF = channels.unstable.OVMF;
 
-  # netdata = channels.unstable.netdata;
-  # netdataCloud = channels.unstable.netdataCloud;
+  netdata = channels.unstable.netdata;
+  netdataCloud = channels.unstable.netdataCloud;
+
+  firefox = channels.unstable.firefox;
 
   # # btop = channels.unstable.btop;
   # # htop = channels.unstable.htop;
@@ -45,7 +47,7 @@
 
   # # ntfs2btrfs = channels.unstable.ntfs2btrfs;
 
-  # wezterm = channels.unstable.wezterm;
+  wezterm = channels.unstable.wezterm;
   # # sunshine = channels.unstable.sunshine;
 
   # devenv = channels.unstable.devenv;
