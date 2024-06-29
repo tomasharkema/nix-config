@@ -18,6 +18,8 @@
   netdata = channels.unstable.netdata;
   netdataCloud = channels.unstable.netdataCloud;
 
+  firefox = channels.unstable.firefox;
+
   # # btop = channels.unstable.btop;
   # # htop = channels.unstable.htop;
 

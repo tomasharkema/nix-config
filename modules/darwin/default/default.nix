@@ -68,6 +68,7 @@
     fonts = {
       # fontDir.enable = true;
       packages = with pkgs; [
+        google-fonts
         noto-fonts
         noto-fonts-extra
         noto-fonts-emoji
