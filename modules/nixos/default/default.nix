@@ -91,6 +91,17 @@ with lib.custom;
 
       environment.systemPackages =
         (with pkgs; [
+          googler
+          google-chrome
+          netflix
+          play-with-mpv
+          castnow
+          go-chromecast
+          gnomecast
+          catt
+          mkchromecast
+          fcast-receiver
+
           tydra
           ethtool
           socat
