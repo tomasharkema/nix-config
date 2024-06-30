@@ -73,7 +73,7 @@ with lib; {
         nix-update-source
         nix-visualize
         nix-web
-        nixd
+        # nixd
         nixfmt-rfc-style
         nixos-option
         nixos-shell
