@@ -411,6 +411,10 @@ with lib.custom;
 
         dconf.enable = true;
 
+        appimage = {
+          enable = true;
+          binfmt = true;
+        };
         # darling.enable = pkgs.stdenv.isx86_64;
 
         flashrom.enable = true;
