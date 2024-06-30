@@ -54,9 +54,15 @@
         };
       };
     };
-
+    # environment.extraOutputsToInstall = with pkgs; [custom.openglide];
     # programs.bash.enable = true;
-    environment.systemPackages = with pkgs.custom; [menu];
+    environment.systemPackages =
+      (with pkgs.custom; [
+        menu
+        openglide
+      ])
+      ++ (with pkgs; [dosbox-x]);
+    environment.pathsToLink = ["/lib"];
     system.stateVersion = 4;
 
     services = {

@@ -31,6 +31,15 @@
   #   _389-ds-base = _389-ds-base;
   # };
 
+  dosbox-x = prev.dosbox-x.overrideAttrs ({postInstall ? "", ...}: {
+    postInstall =
+      postInstall
+      + prev.lib.optionalString prev.hostPlatform.isDarwin ''
+        cp -v ${prev.custom.openglide}/lib/* $out/Applications/dosbox-x.app/Contents/Resources/
+      '';
+    # https://www.vogons.org/download/file.php?id=102360
+  });
+
   cockpit-podman = self.packages."${prev.system}".cockpit-podman;
   cockpit-tailscale = self.packages."${prev.system}".cockpit-tailscale;
   cockpit-ostree = self.packages."${prev.system}".cockpit-ostree;
