@@ -268,7 +268,7 @@
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;
         nvidia.acceptLicense = true;
-        cudaSupport = builtins.break true;
+        cudaSupport = true;
         # allowAliases = false;
 
         # config.allowUnsupportedSystem = true;
@@ -313,6 +313,19 @@
         nix-index-database.hmModules.nix-index
 
         _1password-shell-plugins.hmModules.default
+      ];
+
+      systems.hosts.euro-mir-vm.modules = [
+        {
+          nixpkgs = {
+            localSystem = "x86_64-linux";
+            crossSystem = {
+              config = "aarch64-unknown-linux-gnu";
+            };
+
+            config = {cudaSupport = false;};
+          };
+        }
       ];
 
       systems.modules.nixos = with inputs; [
@@ -452,7 +465,8 @@
       servers = with inputs; let
         names = builtins.attrNames self.nixosConfigurations;
       in
-        builtins.filter (
+        builtins.filter
+        (
           name: self.nixosConfigurations."${name}".config.networking.hostName != "nixos"
         )
         names;
@@ -526,6 +540,8 @@
       "root"
       "tomas"
     ];
+
+    extra-platforms = ["aarch64-linux"];
 
     allow-unsafe-native-code-during-evaluation = true;
 
