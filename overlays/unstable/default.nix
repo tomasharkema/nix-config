@@ -20,25 +20,25 @@
 
   firefox = channels.unstable.firefox;
 
-  # # btop = channels.unstable.btop;
-  # # htop = channels.unstable.htop;
+  btop = channels.unstable.btop;
+  htop = channels.unstable.htop;
 
   # # samba = channels.unstable.samba;
 
-  # tailscale = channels.unstable.tailscale;
+  tailscale = channels.unstable.tailscale;
 
-  # cockpit = channels.unstable.cockpit;
+  cockpit = channels.unstable.cockpit;
 
   # # keybase = channels.unstable.keybase;
   # # keybase-gui = channels.unstable.keybase-gui;
   # # kbfs = channels.unstable.kbfs;
 
-  # atuin = channels.unstable.atuin;
+  atuin = channels.unstable.atuin;
   # xpipe = channels.unstable.xpipe;
 
-  # trayscale = channels.unstable.trayscale;
+  trayscale = channels.unstable.trayscale;
 
-  # netscanner = channels.unstable.netscanner;
+  netscanner = channels.unstable.netscanner;
 
   # # xdg-terminal-exec = channels.unstable.xdg-terminal-exec;
 
