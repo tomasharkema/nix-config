@@ -1,6 +1,6 @@
 {
   "nix.enableLanguageServer": true,
-  "nix.serverPath": "nil",
+  "nix.serverPath": "/run/current-system/sw/bin/nil",
   "nix.serverSettings": {
     "nil": {
       "formatting": {
@@ -12,7 +12,8 @@
         "maxMemoryMB": 4096,
         "flake": {
           "autoArchive": true,
-          "autoEvalInputs": true
+          "autoEvalInputs": true,
+          "nixpkgsInputName": "nixpkgs",
         }
       }
     },
@@ -61,5 +62,5 @@
     "editor.formatOnSave": true,
     "editor.formatOnType": false
   },
-  // "nixEnvSelector.nixFile": "${workspaceRoot}/flake.nix"
+  "nixEnvSelector.nixFile": "${workspaceRoot}/flake.nix"
 }
