@@ -95,8 +95,6 @@ with lib.custom;
       environment.systemPackages =
         (with pkgs; [
           googler
-          google-chrome
-          netflix
           play-with-mpv
           castnow
           go-chromecast
@@ -189,6 +187,9 @@ with lib.custom;
           pkgs.libsmbios
           pkgs.dmidecode
           pkgs.termius
+
+          pkgs.google-chrome
+          pkgs.netflix
         ]);
       # services.ntfy-sh.enable = true;
 
