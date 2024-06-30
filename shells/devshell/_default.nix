@@ -187,7 +187,7 @@ in
       mkiso
       netdiscover
       nil
-      nixd
+      # nixd
       nix-output-monitor
       nix-prefetch-scripts
       nixel

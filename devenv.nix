@@ -167,7 +167,7 @@ in {
 
   languages.nix = {
     # enable = true;
-    lsp.package = nixd;
+    lsp.package = nil;
   };
 
   pre-commit.hooks = {
@@ -242,7 +242,7 @@ in {
     nix-prefetch-scripts
     nix-prefetch-scripts
     nix-tree
-    nixd
+    # nixd
     nixfmt-rfc-style
     nixos-generate
     nixpkgs-fmt

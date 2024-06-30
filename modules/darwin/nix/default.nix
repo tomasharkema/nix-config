@@ -54,7 +54,8 @@ in {
     nix = let
       users = ["root" "tomas"];
     in {
-      package = pkgs.nix;
+      package = pkgs.nixVersions.nix_2_21;
+
       nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
       linux-builder = {

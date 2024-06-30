@@ -33,7 +33,7 @@ in {
         nix-search-cli
 
         nil
-        nixd
+        # nixd
         nix-eval-jobs
         # nix-fast-build
         nix-output-monitor

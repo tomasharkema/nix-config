@@ -94,6 +94,7 @@ with lib.custom;
 
       environment.systemPackages =
         (with pkgs; [
+          nil
           googler
           play-with-mpv
           castnow
