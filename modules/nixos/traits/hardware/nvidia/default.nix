@@ -82,8 +82,7 @@ in {
           sha256_aarch64 = lib.fakeSha256;
           openSha256 = lib.fakeSha256;
           settingsSha256 = "sha256-PMh5efbSEq7iqEMBr2+VGQYkBG73TGUh6FuDHZhmwHk=";
-          # persistencedSha256 = "sha256-KAYIvPjUVilQQcD04h163MHmKcQrn2a8oaXujL2Bxro=";
-          persistencedSha256 = lib.fakeSha256;
+          persistencedSha256 = "sha256-KAYIvPjUVilQQcD04h163MHmKcQrn2a8oaXujL2Bxro=";
         };
       };
 
