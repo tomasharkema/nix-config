@@ -1,12 +1,18 @@
-{ lib, config, inputs, pkgs, ... }:
-with lib;
-let cfg = config.gui;
+{
+  lib,
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.gui;
 in {
   # imports = [
   #   "${inputs.unstable}/nixos/modules/services/desktops/seatd.nix"
   # ];
 
-  options.gui = { enable = mkEnableOption "gui.defaults"; };
+  options.gui = {enable = mkEnableOption "gui.defaults";};
 
   config = mkIf cfg.enable {
     gui = {
@@ -21,6 +27,7 @@ in {
       ddccontrol.enable = true;
       seatd.enable = true;
     };
-    environment.systemPackages = with pkgs; [ plex-media-player ];
+    environment.systemPackages = with pkgs; [
+    ];
   };
 }

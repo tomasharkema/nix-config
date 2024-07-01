@@ -16,12 +16,24 @@ with lib; {
   ];
 
   config = {
+    specialisation = {
+      mediacenter.configuration = {
+        gui = {
+          gnome.enable = false;
+          media-center.enable = true;
+        };
+        apps = {
+          cec.enable = true;
+        };
+      };
+    };
+
     environment.systemPackages = with pkgs; [intel-gpu-tools];
 
     gui = {
       enable = true;
       desktop.enable = true;
-      gnome.enable = true;
+      gnome.enable = mkDefault true;
       quiet-boot.enable = true;
     };
 
