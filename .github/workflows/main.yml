@@ -111,6 +111,8 @@ jobs:
     #     endpoint: ${{ secrets.ATTIC_ENDPOINT }}
     #     cache: ${{ secrets.ATTIC_CACHE }}
     #     token: ${{ secrets.ATTIC_TOKEN }}
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
     - run: nix build '.#nixosConfigurations.euro-mir-vm.config.system.build.initialRamdisk'
 
 
