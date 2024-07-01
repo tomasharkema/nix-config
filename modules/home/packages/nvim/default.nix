@@ -7,11 +7,9 @@
   osConfig,
   ...
 }:
-with lib;
-let
+with lib; let
   coc = import ./coc.nix;
-in
-{
+in {
   # imports = [ inputs.nixvim.homeManagerModules.nixvim ];
 
   config = {
@@ -39,95 +37,93 @@ in
 
     programs.nixvim = {
       enable = true;
-      enableMan = false;
+      # enableMan = false;
 
       colorschemes.catppuccin.enable = true;
 
-      plugins = {
-        treesitter = {
-          enable = true;
-          # package = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+      # treesitter = {
+      # enable = true;
+      # package = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+      # };
+      plugins.dashboard = {
+        enable = true;
+      };
+      plugins.neo-tree = {
+        enable = true;
+      };
+      plugins.project-nvim = {
+        enable = true;
+      };
+      plugins.telescope = {
+        enable = true;
+      };
+      plugins.fugitive = {
+        enable = true;
+      };
+      plugins.lualine = {
+        enable = true;
+        sections = {
+          lualine_x = [
+            "diagnostics"
+            "encoding"
+            "filetype"
+          ];
         };
-        dashboard = {
-          enable = true;
-        };
-        neo-tree = {
-          enable = true;
-        };
-        project-nvim = {
-          enable = true;
-        };
-        telescope = {
-          enable = true;
-        };
-        fugitive = {
-          enable = true;
-        };
-        lualine = {
-          enable = true;
-          sections = {
-            lualine_x = [
-              "diagnostics"
-              "encoding"
-              "filetype"
-            ];
-          };
-        };
-        # startify = {
-        #   enable = true;
-        #   customHeader = ''
-        #     startify#pad(split(system('figlet -f larry3d neovim'), '
-        #     '))'';
-        # };
-        # indent-blankline = {
-        #   enable = true;
-        #   filetypeExclude = ["startify"];
-        # };
-        barbar = {
-          enable = true;
-        };
-        gitgutter = {
-          enable = true;
-        };
-        surround = {
-          enable = true;
-        };
-        nvim-colorizer = {
-          enable = true;
-        };
-        nix-develop.enable = true;
-        notify.enable = true;
-        zellij.enable = true;
-        nix = {
-          enable = true;
-        };
-        #fzf-lua = {enable = true;};
-        auto-save = {
-          enable = true;
-          enableAutoSave = true;
-        };
-        git-worktree = {
-          enable = true;
-        };
-        #direnv = {enable=true;};
-        multicursors.enable = true;
-        toggleterm = {
-          enable = true;
-        };
-        floaterm = {
-          enable = true;
-        };
-        zig = {
-          enable = true;
-        };
-        cmp-zsh.enable = true;
-        conform-nvim = {
-          enable = true;
-          #formatOnSave=true;
-          formattersByFt = {
-            lua = [ "stylua" ];
-            nix = [ "nixfmt" ];
-          };
+      };
+      # startify = {
+      #   enable = true;
+      #   customHeader = ''
+      #     startify#pad(split(system('figlet -f larry3d neovim'), '
+      #     '))'';
+      # };
+      # indent-blankline = {
+      #   enable = true;
+      #   filetypeExclude = ["startify"];
+      # };
+      plugins.barbar = {
+        enable = true;
+      };
+      plugins.gitgutter = {
+        enable = true;
+      };
+      plugins.surround = {
+        enable = true;
+      };
+      plugins.nvim-colorizer = {
+        enable = true;
+      };
+      plugins.nix-develop.enable = true;
+      plugins.notify.enable = true;
+      plugins.zellij.enable = true;
+      plugins.nix = {
+        enable = true;
+      };
+      plugins.fzf-lua = {enable = true;};
+      plugins.auto-save = {
+        enable = true;
+        enableAutoSave = true;
+      };
+      plugins.git-worktree = {
+        enable = true;
+      };
+      plugins.direnv = {enable = true;};
+      plugins.multicursors.enable = true;
+      plugins.toggleterm = {
+        enable = true;
+      };
+      plugins.floaterm = {
+        enable = true;
+      };
+      plugins.zig = {
+        enable = true;
+      };
+      # cmp-zsh.enable = true;
+      plugins.conform-nvim = {
+        enable = true;
+        # formatOnSave = true;
+        formattersByFt = {
+          lua = ["stylua"];
+          nix = ["alejandra"];
         };
       };
 
@@ -178,18 +174,18 @@ in
 
       autoCmd = [
         {
-          event = [ "InsertLeave" ];
-          pattern = [ "*" ];
+          event = ["InsertLeave"];
+          pattern = ["*"];
           command = "set nopaste";
         }
         {
-          event = [ "WinEnter" ];
-          pattern = [ "*" ];
+          event = ["WinEnter"];
+          pattern = ["*"];
           command = "set cul";
         }
         {
-          event = [ "WinLeave" ];
-          pattern = [ "*" ];
+          event = ["WinLeave"];
+          pattern = ["*"];
           command = "set nocul";
         }
       ];

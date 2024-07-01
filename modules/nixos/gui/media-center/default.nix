@@ -1,6 +1,10 @@
-{ pkgs, lib, config, ... }:
-with lib;
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
   cfg = config.gui."media-center";
 
   kodi = pkgs.kodi-wayland.withPackages (pkgs:
@@ -31,10 +35,10 @@ let
       iagl
     ]);
 in {
-  options.gui."media-center" = { enable = mkEnableOption "gui.media-center"; };
+  options.gui."media-center" = {enable = mkEnableOption "gui.media-center";};
 
   config = mkIf cfg.enable {
-    system.nixos.tags = [ "media-center" ];
+    system.nixos.tags = ["media-center"];
     #    xdg.portal.enable = mkForce false;
 
     programs.dconf.enable = true;
@@ -53,7 +57,7 @@ in {
         enable = true;
       };
 
-      kmscon = { enable = mkForce false; };
+      kmscon = {enable = mkForce false;};
 
       pipewire = {
         enable = true;
@@ -66,11 +70,11 @@ in {
           context.modules = [
             {
               name = "module-native-protocol-tcp";
-              args = { };
+              args = {};
             }
             {
               name = "module-zeroconf-publish";
-              args = { };
+              args = {};
             }
           ];
           stream.properties = {
@@ -115,7 +119,7 @@ in {
     hardware = {
       opengl = {
         enable = true;
-        extraPackages = with pkgs; [ libva vaapiVdpau libvdpau-va-gl ];
+        extraPackages = with pkgs; [libva vaapiVdpau libvdpau-va-gl];
         driSupport = true;
       };
     };
@@ -137,14 +141,14 @@ in {
     ];
 
     boot = {
-      kernelParams = [ "quiet" ];
-      plymouth = { enable = true; };
+      kernelParams = ["quiet"];
+      plymouth = {enable = true;};
     };
 
     users.users.media = {
       isNormalUser = true;
       uid = 1100;
-      extraGroups = [ "data" "video" "audio" "input" ];
+      extraGroups = ["data" "video" "audio" "input"];
     };
 
     # home-manager = {

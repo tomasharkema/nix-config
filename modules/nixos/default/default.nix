@@ -96,7 +96,6 @@ with lib.custom;
         (with pkgs; [
           nil
           googler
-          play-with-mpv
           castnow
           go-chromecast
           gnomecast
@@ -126,7 +125,6 @@ with lib.custom;
           # ntfy
           ntfy-sh
           ntfs3g
-          plex-mpv-shim
           # rtop
           ipcalc
           # fancy-motd
@@ -182,16 +180,19 @@ with lib.custom;
           sshed
           # rmfuse
         ])
-        ++ (optionals pkgs.stdenv.isx86_64 [
+        ++ (optionals pkgs.stdenv.isx86_64 (with pkgs; [
+          plex-media-player
           pkgs.custom.ztui
           # pkgs.wolfram-engine
-          pkgs.libsmbios
-          pkgs.dmidecode
-          pkgs.termius
+          libsmbios
+          dmidecode
+          termius
 
-          pkgs.google-chrome
-          pkgs.netflix
-        ]);
+          google-chrome
+          netflix
+
+          play-with-mpv
+        ]));
       # services.ntfy-sh.enable = true;
 
       apps = {

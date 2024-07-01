@@ -36,7 +36,7 @@ in {
       gnomeExtensions.prime-helper
       nvfancontrol
       nvitop
-      gwe
+      # gwe
     ];
 
     home-manager.users.tomas.dconf.settings."org/gnome/shell".enabled-extensions = [pkgs.gnomeExtensions.prime-helper.extensionUuid];

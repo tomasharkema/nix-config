@@ -116,8 +116,6 @@ in {
         gparted
         grsync
         gtk-engine-murrine
-        handbrake
-        handbrake
         libGL
         libGLU
         meteo
@@ -156,6 +154,8 @@ in {
         telegram-desktop
         # pkgs.custom.git-butler
         bottles
+
+        handbrake
       ]
       ++ (with pkgs.custom; [zerotier-ui]);
 
