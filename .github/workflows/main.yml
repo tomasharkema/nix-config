@@ -13,6 +13,39 @@ permissions:
   contents: read
 
 jobs:
+  build-euro-mir-2:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: nixbuild/nix-quick-install-action@v27
+    - name: Restore and cache Nix store
+      uses: nix-community/cache-nix-action@v5
+      with:
+        # restore and save a cache using this key
+        primary-key: nix-euro-mir-2-${{ runner.os }}-${{ hashFiles('**/*.nix') }}
+        # if there's no cache hit, restore a cache by this prefix
+        restore-prefixes-first-match: nix-euro-mir-2-${{ runner.os }}-
+        # collect garbage until Nix store size (in bytes) is at most this number
+        # before trying to save a new cache
+        gc-max-store-size-linux: 1073741824
+        # do purge caches
+        purge: true
+        # purge all versions of the cache
+        purge-prefixes: cache-euro-mir-2-${{ runner.os }}-
+        # created more than this number of seconds ago relative to the start of the `Post Restore` phase
+        purge-created: 0
+        # except the version with the `primary-key`, if it exists
+        purge-primary-key: never
+    # - name: Setup Attic cache
+    #   uses: ryanccn/attic-action@v0
+    #   with:
+    #     endpoint: ${{ secrets.ATTIC_ENDPOINT }}
+    #     cache: ${{ secrets.ATTIC_CACHE }}
+    #     token: ${{ secrets.ATTIC_TOKEN }}
+    - run: nix build '.#nixosConfigurations.euro-mir-2.config.system.build.toplevel'
+
   build-euro-mir-vm:
 
     runs-on: ubuntu-latest
@@ -24,16 +57,16 @@ jobs:
       uses: nix-community/cache-nix-action@v5
       with:
         # restore and save a cache using this key
-        primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix') }}
+        primary-key: nix-euro-mir-vm-${{ runner.os }}-${{ hashFiles('**/*.nix') }}
         # if there's no cache hit, restore a cache by this prefix
-        restore-prefixes-first-match: nix-${{ runner.os }}-
+        restore-prefixes-first-match: nix-euro-mir-vm-${{ runner.os }}-
         # collect garbage until Nix store size (in bytes) is at most this number
         # before trying to save a new cache
         gc-max-store-size-linux: 1073741824
         # do purge caches
         purge: true
         # purge all versions of the cache
-        purge-prefixes: cache-${{ runner.os }}-
+        purge-prefixes: cache-euro-mir-vm-${{ runner.os }}-
         # created more than this number of seconds ago relative to the start of the `Post Restore` phase
         purge-created: 0
         # except the version with the `primary-key`, if it exists
