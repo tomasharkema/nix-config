@@ -1,10 +1,24 @@
-{ buildNpmPackage, fetchFromGitHub,
-# libptytty,
-darwin, lib, stdenv, nodePackages, python3, pkg-config, gcc, libgcc, libcxx
-, libcxxabi, llvmPackages, gitUpdater, unstableGitUpdater, }:
+{
+  buildNpmPackage,
+  fetchFromGitHub,
+  # libptytty,
+  darwin,
+  lib,
+  stdenv,
+  nodePackages,
+  python3,
+  pkg-config,
+  gcc,
+  libgcc,
+  libcxx,
+  libcxxabi,
+  llvmPackages,
+  gitUpdater,
+  unstableGitUpdater,
+}:
 buildNpmPackage rec {
   pname = "ai-commit";
-  version = "0.0.1";
+  version = "0.0.1-76f3f99";
 
   src = fetchFromGitHub {
     owner = "insulineru";
@@ -22,5 +36,5 @@ buildNpmPackage rec {
   NODE_OPTIONS = "--openssl-legacy-provider";
 
   passthru.updateScript =
-    unstableGitUpdater { url = "https://github.com/insulineru/ai-commit.git"; };
+    unstableGitUpdater {url = "https://github.com/insulineru/ai-commit.git";};
 }

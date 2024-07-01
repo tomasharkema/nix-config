@@ -1,11 +1,11 @@
 {
-  pkgs,
-  config,
+  buildGoModule,
+  darwin,
+  stdenv,
   lib,
-  ...
+  lolcat,
 }:
 with lib;
-with pkgs;
   buildGoModule rec {
     pname = "nscan";
     version = "0.5.1";
@@ -16,4 +16,12 @@ with pkgs;
     };
 
     vendorHash = null;
+
+    buildInputs =
+      (optionals stdenv.isDarwin [
+        darwin.apple_sdk.frameworks.CoreMedia
+        darwin.apple_sdk.frameworks.Cocoa
+        darwin.apple_sdk.frameworks.AppKit
+      ])
+      ++ (optionals stdenv.isDarwin [lolcat]);
   }
