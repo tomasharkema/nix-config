@@ -110,7 +110,7 @@ with lib.custom; {
     # '';
 
     nix.settings = {
-      extra-experimental-features = "nix-command flakes cgroups";
+      extra-experimental-features = "nix-command flakes"; # cgroups";
       trusted-users = ["root" "tomas" "builder"];
       # trustedBinaryCaches = ["https://cache.nixos.org"];
       # binaryCaches = ["https://cache.nixos.org"];
