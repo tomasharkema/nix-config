@@ -30,9 +30,18 @@ with lib; {
 
       packages = with pkgs;
       with pkgs.custom; [
-        google-fonts
+        # exult
         b612
+        bakoma_ttf
+        cm_unicode
+        dina-font
+        fira-code
+        fira-code-symbols
+        google-fonts
         inter
+        liberation_ttf
+        lmmath
+        mplus-outline-fonts.githubRelease
         nerdfonts
         neue-haas-grotesk
         noto-fonts
@@ -41,14 +50,11 @@ with lib; {
         noto-fonts-extra
         open-dyslexic
         open-sans
+        proggyfonts
         roboto-mono
         san-francisco
         ubuntu_font_family
         vegur
-        bakoma_ttf
-        lmmath
-        # exult
-        cm_unicode
       ];
     };
   };
