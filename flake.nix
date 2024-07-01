@@ -318,12 +318,14 @@
       systems.hosts.euro-mir-vm.modules = [
         {
           nixpkgs = {
-            localSystem = "x86_64-linux";
-            crossSystem = {
-              config = "aarch64-unknown-linux-gnu";
-            };
+            # localSystem = "x86_64-linux";
+            # localSystem = "aarch64-darwin";
+            # crossSystem = {
+            # system = "aarch64-linux";
+            # config = "aarch64-unknown-linux-gnu";
+            # };
 
-            config = {cudaSupport = false;};
+            # config = {cudaSupport = false;};
           };
         }
       ];

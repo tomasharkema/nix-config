@@ -1,57 +1,58 @@
 {
   "nix.enableLanguageServer": true,
-  "nix.serverPath": "nil",
+  "nix.serverPath": "/run/current-system/sw/bin/nil",
   "nix.serverSettings": {
-    // "nil": {
-    //   "formatting": {
-    //     "command": [
-    //       "alejandra"
-    //     ]
-    //   },
-    //   "nix": {
-    //     "maxMemoryMB": 4096,
-    //     "flake": {
-    //       "autoArchive": true,
-    //       "autoEvalInputs": true
-    //     }
-    //   }
-    // },
-    "nixd": {
-      "eval": {
-        "target": {
-          // tweak arguments here
-          "args": [
-            // "-f",
-            // "default.nix"
-          ],
-          // NixOS options
-          "installable": ".#nixosConfigurations.euro-mir-2.options"
-          // Flake-parts options
-          // "installable": "<flakeref>#debug.options"
-          // Home-manager options
-          // "installable": "<flakeref>#homeConfigurations.<name>.options"
-        }
-      },
+    "nil": {
       "formatting": {
-        "command": "alejandra"
+        "command": [
+          "alejandra"
+        ]
       },
-      "options": {
-        "enable": true,
-        "target": {
-          // tweak arguments here
-          "args": [
-            "-f",
-            "default.nix"
-          ],
-          // NixOS options
-          "installable": "nixosConfigurations.euro-mir-2.options"
-          // Flake-parts options
-          // "installable": "<flakeref>#debug.options"
-          // Home-manager options
-          // "installable": "<flakeref>#homeConfigurations.<name>.options"
+      "nix": {
+        "maxMemoryMB": 4096,
+        "flake": {
+          "autoArchive": true,
+          "autoEvalInputs": true,
+          "nixpkgsInputName": "nixpkgs",
         }
       }
-    }
+    },
+    // "nixd": {
+    //   "eval": {
+    //     "target": {
+    //       // tweak arguments here
+    //       "args": [
+    //         // "-f",
+    //         // "default.nix"
+    //       ],
+    //       // NixOS options
+    //       "installable": ".#nixosConfigurations.euro-mir-2.options"
+    //       // Flake-parts options
+    //       // "installable": "<flakeref>#debug.options"
+    //       // Home-manager options
+    //       // "installable": "<flakeref>#homeConfigurations.<name>.options"
+    //     }
+    //   },
+    //   "formatting": {
+    //     "command": "alejandra"
+    //   },
+    //   "options": {
+    //     "enable": true,
+    //     "target": {
+    //       // tweak arguments here
+    //       "args": [
+    //         "-f",
+    //         "default.nix"
+    //       ],
+    //       // NixOS options
+    //       "installable": "nixosConfigurations.euro-mir-2.options"
+    //       // Flake-parts options
+    //       // "installable": "<flakeref>#debug.options"
+    //       // Home-manager options
+    //       // "installable": "<flakeref>#homeConfigurations.<name>.options"
+    //     }
+    //   }
+    // }
   },
   "nix.formatterPath": "alejandra",
   // "nixEnvSelector.nixFile": "${workspaceFolder}/shell.nix",
@@ -61,5 +62,5 @@
     "editor.formatOnSave": true,
     "editor.formatOnType": false
   },
-  // "nixEnvSelector.nixFile": "${workspaceRoot}/flake.nix"
+  "nixEnvSelector.nixFile": "${workspaceRoot}/flake.nix"
 }
