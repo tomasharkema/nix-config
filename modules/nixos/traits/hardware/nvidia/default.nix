@@ -31,7 +31,6 @@ in {
     environment.systemPackages = with pkgs; [
       nvtopPackages.full
       zenith-nvidia
-      pkgs.custom.gpustat
       nvidia-offload
       gnomeExtensions.prime-helper
       nvfancontrol
