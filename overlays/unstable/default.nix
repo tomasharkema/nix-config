@@ -37,6 +37,7 @@
   # xpipe = channels.unstable.xpipe;
 
   trayscale = channels.unstable.trayscale;
+  nil = channels.unstable.nil;
 
   netscanner = channels.unstable.netscanner;
 

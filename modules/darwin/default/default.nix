@@ -61,7 +61,7 @@
         menu
         openglide
       ])
-      ++ (with pkgs; [dosbox-x]);
+      ++ (with pkgs; [dosbox-x nil]);
     environment.pathsToLink = ["/lib"];
     system.stateVersion = 4;
 
