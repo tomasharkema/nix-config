@@ -1,7 +1,10 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  ...
+}:
 with pkgs; {
   config = {
-
     home.packages = with pkgs; [
       ssh-tools
       tg
@@ -57,7 +60,7 @@ with pkgs; {
       viddy
       wget
       nix-top
-      nixos-anywhere
+      # nixos-anywhere
       lnav
       # mattermost-desktop
       # tg
