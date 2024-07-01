@@ -268,7 +268,7 @@
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;
         nvidia.acceptLicense = true;
-        cudaSupport = true;
+        # cudaSupport = true;
         # allowAliases = false;
 
         # config.allowUnsupportedSystem = true;
@@ -315,20 +315,20 @@
         _1password-shell-plugins.hmModules.default
       ];
 
-      systems.hosts.euro-mir-vm.modules = [
-        {
-          nixpkgs = {
-            # localSystem = "x86_64-linux";
-            # localSystem = "aarch64-darwin";
-            # crossSystem = {
-            # system = "aarch64-linux";
-            # config = "aarch64-unknown-linux-gnu";
-            # };
+      # systems.hosts.euro-mir-vm.modules = [
+      #   {
+      #     nixpkgs = {
+      #       # localSystem = "x86_64-linux";
+      #       # localSystem = "aarch64-darwin";
+      #       # crossSystem = {
+      #       # system = "aarch64-linux";
+      #       # config = "aarch64-unknown-linux-gnu";
+      #       # };
 
-            # config = {cudaSupport = false;};
-          };
-        }
-      ];
+      #       # config = {cudaSupport = false;};
+      #     };
+      #   }
+      # ];
 
       systems.modules.nixos = with inputs; [
         nixos-checkmk.nixosModules.check_mk_agent

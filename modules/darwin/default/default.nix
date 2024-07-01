@@ -54,15 +54,17 @@
         };
       };
     };
+
     # environment.extraOutputsToInstall = with pkgs; [custom.openglide];
-    # programs.bash.enable = true;
+
     environment.systemPackages =
       (with pkgs.custom; [
         menu
-        openglide
+        nscan
+        # openglide
       ])
       ++ (with pkgs; [dosbox-x nil]);
-    environment.pathsToLink = ["/lib"];
+    # environment.pathsToLink = ["/lib"];
     system.stateVersion = 4;
 
     services = {
@@ -93,11 +95,14 @@
         cm_unicode
       ];
     };
-    programs.zsh = {
-      enable = true;
-      # shellInit = ''
-      #   export OP_PLUGIN_ALIASES_SOURCED=1
-      # '';
+    programs = {
+      zsh = {
+        enable = true;
+        # shellInit = ''
+        #   export OP_PLUGIN_ALIASES_SOURCED=1
+        # '';
+      };
+      bash.enable = true;
     };
 
     # programs.fzf.fuzzyCompletion = true;
