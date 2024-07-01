@@ -191,7 +191,7 @@ in {
   # dotenv.enable = true;
 
   packages = with pkgs; [
-    # nixVersions.nix_2_21
+    #pkgs.nixVersions.latest
     nixos-system
     darwin-system
     build-host-pkgs

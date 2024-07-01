@@ -22,12 +22,12 @@
     };
     environment.systemPackages = with pkgs;
     with pkgs.custom; [
-      # cockpit-podman
-      # cockpit-tailscale
-      # cockpit-machines
-      # cockpit-ostree
-      # cockpit-sensors
-      # cockpit-files
+      cockpit-podman
+      cockpit-tailscale
+      cockpit-machines
+      cockpit-ostree
+      cockpit-sensors
+      cockpit-files
       # packagekit
     ];
 
