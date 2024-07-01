@@ -21,7 +21,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: nixbuild/nix-quick-install-action@v27
     - name: Restore and cache Nix store
-    - uses: nix-community/cache-nix-action@v5
+      uses: nix-community/cache-nix-action@v5
       with:
         # restore and save a cache using this key
         primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix') }}
