@@ -1,17 +1,21 @@
-{ lib, stdenv, fetchzip, gettext, }:
+{
+  lib,
+  stdenv,
+  fetchzip,
+  gettext,
+}:
 stdenv.mkDerivation rec {
   pname = "cockpit-machines";
-  version = "314";
+  version = "315";
 
   src = fetchzip {
-    url =
-      "https://github.com/cockpit-project/cockpit-machines/releases/download/${version}/cockpit-machines-${version}.tar.xz";
-    sha256 = "sha256-9TuCEkQYLEjBjcmXqF6usPEjw/UmRx9gtcN54LuIBIA=";
+    url = "https://github.com/cockpit-project/cockpit-machines/releases/download/${version}/cockpit-machines-${version}.tar.xz";
+    sha256 = "sha256-iAHSQUdxZFziP2RoMBnmfoLkg1GUXS6RUfGDjC7Yguo=";
   };
 
-  nativeBuildInputs = [ gettext ];
+  nativeBuildInputs = [gettext];
 
-  makeFlags = [ "DESTDIR=$(out)" "PREFIX=" ];
+  makeFlags = ["DESTDIR=$(out)" "PREFIX="];
 
   # postPatch = ''
   #   substituteInPlace Makefile \
@@ -35,6 +39,6 @@ stdenv.mkDerivation rec {
     license = licenses.lgpl21;
     homepage = "https://github.com/cockpit-project/cockpit-machines";
     platforms = platforms.linux;
-    maintainers = with maintainers; [ ];
+    maintainers = with maintainers; [];
   };
 }

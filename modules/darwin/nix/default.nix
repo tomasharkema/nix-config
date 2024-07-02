@@ -54,25 +54,28 @@ in {
     nix = let
       users = ["root" "tomas"];
     in {
-      package = pkgs.nixVersions.nix_2_21;
+      package = pkgs.nixVersions.latest;
 
       nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
       linux-builder = {
         enable = true;
-        ephemeral = true;
-        maxJobs = 4;
-        systems = ["x86_64-linux" "aarch64-linux"];
-        config = {
-          virtualisation = {
-            # rosetta.enable = true;
-            darwin-builder = {
-              diskSize = 30 * 1024;
-              memorySize = 4 * 1024;
-            };
-            cores = 4;
-          };
-        };
+        # ephemeral = true;
+        # maxJobs = 4;
+        # systems = [
+        #   # "x86_64-linux"
+        #   "aarch64-linux"
+        # ];
+        # config = {
+        #   virtualisation = {
+        #     #     # rosetta.enable = true;
+        #     darwin-builder = {
+        #       diskSize = 40 * 1024;
+        #       memorySize = 6 * 1024;
+        #     };
+        #     cores = 4;
+        #   };
+        # };
       };
 
       settings = {
@@ -102,10 +105,6 @@ in {
         #extra-nix-path = "nixpkgs=flake:nixpkgs";
         build-users-group = "nixbld";
       };
-      # // (lib.optionalAttrs config.plusultra.tools.direnv.enable {
-      #   keep-outputs = true;
-      #   keep-derivations = true;
-      # });
 
       gc = {
         automatic = true;

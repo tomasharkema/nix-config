@@ -54,4 +54,5 @@
   # devenv = channels.unstable.devenv;
 
   # nix = prev.nixVersions.nix_2_21;
+  pnpm = channels.unstable.pnpm;
 }

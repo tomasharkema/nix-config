@@ -1,14 +1,19 @@
 # https://github.com/pzmarzly/ancs4linux
-
-{ lib, stdenv, python3Packages, fetchFromGitHub, fetchPypi, inputs, pkgs, }:
-let
-  p2n = (inputs.poetry2nix.lib.mkPoetry2Nix { inherit pkgs; });
+{
+  lib,
+  stdenv,
+  python3Packages,
+  fetchFromGitHub,
+  fetchPypi,
+  inputs,
+  pkgs,
+}: let
+  p2n = inputs.poetry2nix.lib.mkPoetry2Nix {inherit pkgs;};
   p2nix = p2n.overrideScope (final: prev: {
-
     # pyself & pyprev refers to python packages
-    defaultPoetryOverrides = prev.defaultPoetryOverrides.extend
+    defaultPoetryOverrides =
+      prev.defaultPoetryOverrides.extend
       (pyfinal: pyprev: {
-
         hatchling = python3Packages.hatchling;
         pygobject = python3Packages.pygobject3;
         pygobject3 = python3Packages.pygobject3;
@@ -16,7 +21,7 @@ let
   });
 in (p2nix.mkPoetryApplication {
   pname = "ancs4linux";
-  version = "0.0.1";
+  version = "0.0.1-ce8d3f1";
   # format = "pyproject";
 
   projectDir = fetchFromGitHub {
@@ -37,18 +42,16 @@ in (p2nix.mkPoetryApplication {
     install -Dm 644 autorun/ancs4linux-desktop-integration.service $out/lib/systemd/system/ancs4linux-desktop-integration.service
   '';
 })
-
-# substituteInPlace "$out/lib/systemd/system/ancs4linux-observer.service" \ 
+# substituteInPlace "$out/lib/systemd/system/ancs4linux-observer.service" \
+#   --replace "/usr/local/bin/ancs4linux-advertising" "$out/bin/ancs4linux-advertising" \
+#   --replace "/usr/local/bin/ancs4linux-observer" "$out/bin/ancs4linux-observer" \
+#   --replace "/usr/local/bin/ancs4linux-desktop-integration" "$out/bin/ancs4linux-desktop-integration"
+# substituteInPlace "$out/lib/systemd/system/ancs4linux-advertising.service" \
+#   --replace "/usr/local/bin/ancs4linux-advertising" "$out/bin/ancs4linux-advertising" \
+#   --replace "/usr/local/bin/ancs4linux-observer" "$out/bin/ancs4linux-observer" \
+#   --replace "/usr/local/bin/ancs4linux-desktop-integration" "$out/bin/ancs4linux-desktop-integration"
+# substituteInPlace "$out/lib/systemd/user/ancs4linux-desktop-integration.service" \
 #   --replace "/usr/local/bin/ancs4linux-advertising" "$out/bin/ancs4linux-advertising" \
 #   --replace "/usr/local/bin/ancs4linux-observer" "$out/bin/ancs4linux-observer" \
 #   --replace "/usr/local/bin/ancs4linux-desktop-integration" "$out/bin/ancs4linux-desktop-integration"
 
-# substituteInPlace "$out/lib/systemd/system/ancs4linux-advertising.service" \ 
-#   --replace "/usr/local/bin/ancs4linux-advertising" "$out/bin/ancs4linux-advertising" \
-#   --replace "/usr/local/bin/ancs4linux-observer" "$out/bin/ancs4linux-observer" \
-#   --replace "/usr/local/bin/ancs4linux-desktop-integration" "$out/bin/ancs4linux-desktop-integration"
-
-# substituteInPlace "$out/lib/systemd/user/ancs4linux-desktop-integration.service" \ 
-#   --replace "/usr/local/bin/ancs4linux-advertising" "$out/bin/ancs4linux-advertising" \
-#   --replace "/usr/local/bin/ancs4linux-observer" "$out/bin/ancs4linux-observer" \
-#   --replace "/usr/local/bin/ancs4linux-desktop-integration" "$out/bin/ancs4linux-desktop-integration"

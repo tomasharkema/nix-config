@@ -15,7 +15,11 @@ in {
     # nix.extraOptions = "experimental-features = nix-command flakes c";
     # isbinaryCaches
     # environment.etc."current-nixos".source = ./.;
-    nix = {package = pkgs.nixVersions.nix_2_21;} // import ./config.nix;
+    nix =
+      {
+        package = pkgs.nixVersions.latest;
+      }
+      // import ./config.nix;
     boot.supportedFilesystems = ["bcachefs"];
     users = {
       users = {

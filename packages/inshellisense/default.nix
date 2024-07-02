@@ -18,6 +18,7 @@
   vips,
   cacert,
   autoPatchelfHook,
+  patchelf,
 }:
 buildNpmPackage rec {
   pname = "inshellisense";
@@ -26,8 +27,8 @@ buildNpmPackage rec {
   src = fetchFromGitHub {
     owner = "microsoft";
     repo = pname;
-    rev = "${version}";
-    hash = "sha256-/6pU8ubasONPMe1qnE+Db0nzdHRQTo9fhMr7Xxjgsos="; # "sha256-ZsEAE9EDJLREpKjHLbvqAUNM/y9eCH44g3D8NHYHiT4=";
+    rev = "3479c5a"; # "${version}";
+    hash = "sha256-lLSTncrKQUWUmqtd+cldWZ+NCnkvi4hgVTPzdtiJfI8=";
   };
 
   # passthru.updateScript = gitUpdater {
@@ -35,7 +36,7 @@ buildNpmPackage rec {
   #   rev-prefix = "grpc-tools@";
   # };
 
-  npmDepsHash = "sha256-rOyvFA5X3o1TCgY54XxNSg0+QotA8IUauLngTtJuRj4="; #"sha256-p0/GnAdWNM/wjB/w+rXbOrh3Hr/smIW0IVQga7uCKYY=";
+  npmDepsHash = "sha256-Rbo5TGEgvtUpu4BItsS8mX5ZY+jg56Su9ZafvC7Dozc=";
 
   postInstall = ''
     cp -r shell $out/share
@@ -48,5 +49,5 @@ buildNpmPackage rec {
   #
   # when `node-gyp` tries to build the dep. The below allows `npm` to download the prebuilt binary.
   makeCacheWritable = stdenv.isDarwin;
-  nativeBuildInputs = lib.optional stdenv.isDarwin cacert;
+  nativeBuildInputs = (lib.optional stdenv.isDarwin cacert) ++ [patchelf];
 }
