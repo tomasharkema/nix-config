@@ -268,7 +268,7 @@
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;
         nvidia.acceptLicense = true;
-        # cudaSupport = true;
+        cudaSupport = true;
         # allowAliases = false;
 
         # config.allowUnsupportedSystem = true;
