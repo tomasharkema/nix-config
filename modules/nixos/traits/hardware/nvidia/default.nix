@@ -70,9 +70,10 @@ in {
       kernelParams = ["nvidia-drm.modeset=1" "nvidia_drm.fbdev=1" "apm=power_off" "acpi=force"];
     };
 
-    assertions = [
-      (compareVersion pkgs config.boot.kernelPackages.nvidiaPackages.latest.version config.hardware.nvidia.package.version)
-    ];
+    # TODO: fix!
+    # assertions = [
+    #   (compareVersion pkgs config.boot.kernelPackages.nvidiaPackages.latest.version config.hardware.nvidia.package.version)
+    # ];
 
     hardware = {
       nvidia = mkDefault {

@@ -99,7 +99,7 @@ with pkgs; let
   test-remote = writeShellScriptBin "test-remote" ''
     SERVER="$1"
     echo "test remote $SERVER..."
-    exec ${lib.getExe pkgs.buildPackages.nixos-rebuild} test --flake ".#$SERVER" --target-host "$SERVER" --use-remote-sudo --verbose --show-trace -L
+    exec ${lib.getExe pkgs.buildPackages.nixos-rebuild} test --flake ".#$SERVER" --target-host "$SERVER" --use-remote-sudo --verbose --show-trace -L --use-substitutes
   '';
 
   upload-local = writeShellScriptBin "upload-local" ''
@@ -125,7 +125,7 @@ with pkgs; let
 
     echo "Copy $flake to $host"
 
-    exec nixos-rebuild test --flake ".#$configuration" --verbose --target-host $host --use-remote-sudo
+    exec nixos-rebuild test --flake ".#$configuration" --verbose --target-host $host --use-remote-sudo --use-substitutes
   '';
   # diffs = import ../diffs attrs;
   # packages-json = diffs.packages-json;
