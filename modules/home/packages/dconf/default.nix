@@ -272,7 +272,7 @@ with lib; {
               # "org.gnome.Console.desktop"
             ]
             ++ (optional pkgs.stdenv.isx86_64 "kitty.desktop")
-            ++ (optional (!pkgs.stdenv.isx86_64) "org.gnome.Console.desktop")
+            ++ (optional (!pkgs.stdenv.isx86_64) "com.gexperts.Tilix.desktop")
             ++ [
               "code.desktop"
               "org.cockpit_project.CockpitClient.desktop"

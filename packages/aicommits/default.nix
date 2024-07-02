@@ -26,8 +26,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "Nutlope";
     repo = "aicommits";
-    rev = "v${version}";
-    sha256 = "sha256-JWZywM/pJNG2HbIuM8jqOVEMomvFmLnZjmkJfy9M1j8=";
+    rev = "604def8284361b8827087350fe6fcb6d9e2de836";
+    hash = "sha256-JWZywM/pJNG2HbIuM8jqOVEMomvFmLnZjmkJfy9M1j8=";
   };
 
   nativeBuildInputs = [
@@ -43,7 +43,9 @@ stdenv.mkDerivation rec {
 
   buildPhase = ''
     runHook preBuild
+
     pnpm build
+
     runHook postBuild
   '';
 

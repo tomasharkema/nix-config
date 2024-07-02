@@ -56,6 +56,11 @@
   bgLight = bg;
   bgPng = bgGenerate "bg" bg;
   bgLightPng = bgGenerate "bgLight" bgLight;
+
+  aicommits = pkgs.writeShellScriptBin "aicommits" ''
+    OPENAI_API_KEY="$(${pkgs._1password}/bin/op item get 2vzrjmprwi25zts7mzb4zmmad4 --field credential)"
+    exec ${pkgs.custom.aicommits}/bin/aicommits "$@"
+  '';
 in
   with lib; {
     imports = [];
@@ -166,12 +171,7 @@ in
           xplr
           lazycli
           f1viewer
-
-          (pkgs.writeShellScriptBin "aicommits" ''
-            OPENAI_API_KEY="$(${pkgs._1password}/bin/op item get 2vzrjmprwi25zts7mzb4zmmad4 --field credential)"
-            exec ${pkgs.custom.aicommits}/bin/aicommits "$@"
-          '')
-
+          aicommits
           openai
         ];
         sessionVariables =
