@@ -9,7 +9,7 @@
         ]
       },
       "nix": {
-        "maxMemoryMB": 8096,
+        "maxMemoryMB": 2048,
         "flake": {
           "autoArchive": true,
           "autoEvalInputs": true,
