@@ -97,6 +97,10 @@ with lib; {
           tray-padding = 5;
           window-preview-title-position = "TOP";
           stockgs-keep-top-panel = true;
+
+          trans-use-custom-opacity = true;
+          trans-panel-opacity = 0.4;
+
           panel-element-positions = builtins.toJSON {
             "0" = [
               {

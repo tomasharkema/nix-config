@@ -3,18 +3,16 @@
   "nix.serverPath": "/run/current-system/sw/bin/nil",
   "nix.serverSettings": {
     "nil": {
+      "diagnostics": {
+        // "ignored": [
+        //   "unused_binding",
+        //   "unused_with"
+        // ]
+      },
       "formatting": {
         "command": [
           "alejandra"
         ]
-      },
-      "nix": {
-        "maxMemoryMB": 2048,
-        "flake": {
-          "autoArchive": true,
-          "autoEvalInputs": true,
-          "nixpkgsInputName": "nixpkgs",
-        }
       }
     },
     // "nixd": {
