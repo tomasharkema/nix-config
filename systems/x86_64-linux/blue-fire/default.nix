@@ -173,10 +173,10 @@ in {
       };
     };
 
-    # headless.hypervisor = {
-    #   enable = true;
-    #   bridgeInterfaces = [ "eno1" ];
-    # };
+    headless.hypervisor = {
+      enable = true;
+      # bridgeInterfaces = [ "eno1" ];
+    };
 
     environment.systemPackages = with pkgs; [
       # ipmicfg

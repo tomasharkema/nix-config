@@ -481,6 +481,20 @@
 
         installer-arm-img = self.nixosConfigurations.installer-arm-img.config.system.build.sdImage;
 
+        ovmfx86 =
+          (inputs.nixpkgs.legacyPackages.x86_64-linux.OVMFFull.override {
+            secureBoot = true;
+            tpmSupport = true;
+          })
+          .fd;
+
+        ovmfaarch64 =
+          (inputs.nixpkgs.legacyPackages.x86_64-linux.pkgsCross.aarch64-multiplatform.OVMFFull.override {
+            secureBoot = true;
+            tpmSupport = true;
+          })
+          .fd;
+
         # services = let
         #   config = "pegasus";
         #   tryHasAttr = path: value: attr:
