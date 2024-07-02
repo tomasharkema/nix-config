@@ -217,7 +217,7 @@
     };
 
     nixos-service = {
-      url = "github:tomasharkema/nixos-service";
+      url = "github:tomasharkema/nixos-service/d1ef4729509332060a9a18379d92e0d0356a058a";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
