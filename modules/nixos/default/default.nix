@@ -21,6 +21,8 @@ with lib.custom;
         (assertPackage pkgs "sssd")
       ];
 
+      programs.bash.undistractMe.enable = true;
+
       # nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
       nix.channel.enable = false;
 
