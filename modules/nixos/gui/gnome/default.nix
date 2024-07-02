@@ -33,23 +33,25 @@ in
         xwayland.enable = true;
 
         dconf.profiles = {
-          # gdm = mkIf cfg.hidpi.enable {
-          #   databases = [{
-          #     settings."org/gnome/desktop/interface".scaling-factor =
-          #       lib.gvariant.mkUint32 2;
-          #   }];
-          # };
+          gdm = mkIf cfg.hidpi.enable {
+            databases = [
+              {
+                settings."org/gnome/desktop/interface".scaling-factor =
+                  lib.gvariant.mkUint32 2;
+              }
+            ];
+          };
           tomas.databases = [
             {
-              # settings."org/gnome/mutter" = {
-              #   experimental-features = [
-              #     "scale-monitor-framebuffer"
-              #     "variable-refresh-rate"
-              #   ];
-              #   edge-tiling = true;
-              # };
-              #   settings."org/gnome/desktop/interface".scaling-factor =
-              #     lib.gvariant.mkUint32 2;
+              settings."org/gnome/mutter" = {
+                experimental-features = [
+                  "scale-monitor-framebuffer"
+                  "variable-refresh-rate"
+                ];
+                edge-tiling = true;
+              };
+              settings."org/gnome/desktop/interface".scaling-factor =
+                lib.gvariant.mkUint32 2;
             }
           ];
         };
@@ -86,11 +88,11 @@ in
               # gnome-menus
             ];
 
-            # extraGSettingsOverrides = ''
-            #   [org.gnome.mutter]
-            #   experimental-features=['scale-monitor-framebuffer', 'variable-refresh-rate']
-            #   edge-tiling=true
-            # '';
+            extraGSettingsOverrides = ''
+              [org.gnome.mutter]
+              experimental-features=['scale-monitor-framebuffer', 'variable-refresh-rate']
+              edge-tiling=true
+            '';
 
             sessionPath = with pkgs; [
               gnome.mutter

@@ -217,7 +217,7 @@
     };
 
     nixos-service = {
-      url = "github:tomasharkema/nixos-service";
+      url = "github:tomasharkema/nixos-service/d1ef4729509332060a9a18379d92e0d0356a058a";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -315,20 +315,20 @@
         _1password-shell-plugins.hmModules.default
       ];
 
-      systems.hosts.euro-mir-vm.modules = [
-        {
-          nixpkgs = {
-            # localSystem = "x86_64-linux";
-            # localSystem = "aarch64-darwin";
-            # crossSystem = {
-            # system = "aarch64-linux";
-            # config = "aarch64-unknown-linux-gnu";
-            # };
+      # systems.hosts.euro-mir-vm.modules = [
+      #   {
+      #     nixpkgs = {
+      #       # localSystem = "x86_64-linux";
+      #       # localSystem = "aarch64-darwin";
+      #       # crossSystem = {
+      #       # system = "aarch64-linux";
+      #       # config = "aarch64-unknown-linux-gnu";
+      #       # };
 
-            # config = {cudaSupport = false;};
-          };
-        }
-      ];
+      #       # config = {cudaSupport = false;};
+      #     };
+      #   }
+      # ];
 
       systems.modules.nixos = with inputs; [
         nixos-checkmk.nixosModules.check_mk_agent
@@ -534,8 +534,8 @@
     };
 
   nixConfig = {
-    # use-cgroups = true;
-    extra-experimental-features = "nix-command flakes"; # cgroups";
+    use-cgroups = true;
+    extra-experimental-features = "nix-command flakes cgroups";
     distributedBuilds = true;
     builders-use-substitutes = true;
     trusted-users = [
@@ -588,5 +588,6 @@
     keep-outputs = true;
     keep-derivations = true;
     accept-flake-config = true;
+    # sandbox = false;
   };
 }

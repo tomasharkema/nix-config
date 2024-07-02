@@ -29,7 +29,7 @@ with lib.custom; {
         ]
         ++ optional config.services.hydra.enable "hydra";
     in {
-      package = pkgs.nixVersions.nix_2_21;
+      package = pkgs.nixVersions.latest;
 
       extraOptions = ''
         min-free = ${toString (100 * 1024 * 1024)}
@@ -39,8 +39,8 @@ with lib.custom; {
       optimise.automatic = true;
 
       settings = {
-        # use-cgroups = true;
-        experimental-features = "nix-command flakes"; # cgroups";
+        use-cgroups = true;
+        experimental-features = "nix-command flakes cgroups";
         http-connections = 50;
         warn-dirty = false;
         log-lines = 50;

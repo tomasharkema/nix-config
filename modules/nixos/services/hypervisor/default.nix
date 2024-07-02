@@ -68,17 +68,19 @@ in {
       virtiofsd
     ];
 
-    services.udev.packages = with pkgs; [virtiofsd];
+    services = {
+      udev.packages = with pkgs; [virtiofsd];
 
-    services.dbus.packages = with pkgs; [
-      virtiofsd
-      virt-manager
-      kvmtool
-      libvirt
-      qemu_kvm
+      dbus.packages = with pkgs; [
+        virtiofsd
+        virt-manager
+        kvmtool
+        libvirt
+        qemu_kvm
 
-      pkgs.custom.libvirt-dbus
-    ];
+        pkgs.custom.libvirt-dbus
+      ];
+    };
 
     programs.virt-manager.enable = true;
 
@@ -102,6 +104,13 @@ in {
       #     keytab: ${qemuKeytab}
       #   '';
       # };
+      # "libvirt/qemu.conf" = {
+      #   text = ''
+      #     # Adapted from /var/lib/libvirt/qemu.conf
+      #     # Note that AAVMF and OVMF are for Aarch64 and x86 respectively
+      #     nvram = [ "/run/libvirt/nix-ovmf/AAVMF_CODE.fd:/run/libvirt/nix-ovmf/AAVMF_VARS.fd", "/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd" ]
+      #   '';
+      # };
     };
 
     # services.saslauthd = {
@@ -120,6 +129,32 @@ in {
       libvirt = {
         enable = true;
         swtpm.enable = true;
+      };
+
+      libvirtd = {
+        qemu = {
+          verbatimConfig = ''
+            # Adapted from /var/lib/libvirt/qemu.conf
+            # Note that AAVMF and OVMF are for Aarch64 and x86 respectively
+            nvram = [ "/run/libvirt/nix-ovmf/AAVMF_CODE.fd:/run/libvirt/nix-ovmf/AAVMF_VARS.fd", "/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd" ]
+          '';
+
+          ovmf = {
+            enable = true;
+            packages = [
+              ((pkgs.OVMFFull.override {
+                  secureBoot = true;
+                  tpmSupport = true;
+                })
+                .fd)
+              ((pkgs.pkgsCross.aarch64-multiplatform.OVMFFull.override {
+                  secureBoot = true;
+                  tpmSupport = true;
+                })
+                .fd)
+            ];
+          };
+        };
       };
 
       # libvirtd = {
