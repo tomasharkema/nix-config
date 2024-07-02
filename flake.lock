@@ -843,16 +843,17 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1719877587,
-        "narHash": "sha256-a2y6604c5FUoGLhmYsIOI84T6ZIxIBq9olc/Oe+LwYE=",
+        "lastModified": 1718887542,
+        "narHash": "sha256-ybWoopSDlhHynu1ystmGT6mR5PcVkyd4EgCe6ysSfcI=",
         "owner": "tomasharkema",
         "repo": "nixos-service",
-        "rev": "825d7c1e85e4f7d0a31883653de9f7e20677dae7",
+        "rev": "d1ef4729509332060a9a18379d92e0d0356a058a",
         "type": "github"
       },
       "original": {
         "owner": "tomasharkema",
         "repo": "nixos-service",
+        "rev": "d1ef4729509332060a9a18379d92e0d0356a058a",
         "type": "github"
       }
     },
