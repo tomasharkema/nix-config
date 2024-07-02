@@ -325,10 +325,12 @@ with lib; {
         #   type-format = "category";
         #   view-type = "list";
         # };
+
         "com/gexperts/Tilix" = {
           quake-specific-monitor = 0;
-          tab-position = "left";
+          tab-position = "top";
           theme-variant = "dark";
+          use-tabs = true;
         };
 
         "com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d" = {
