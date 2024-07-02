@@ -9,6 +9,7 @@
   # manix,
   ...
 }: final: prev: {
+  devenv = channels.unstable.devenv;
   # devenv = devenv.packages."${prev.system}".default;
   agenix = agenix.packages."${prev.system}".default;
   # nixos-anywhere = nixos-anywhere.packages."${prev.system}".nixos-anywhere;
