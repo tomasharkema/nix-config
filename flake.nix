@@ -233,6 +233,13 @@
         flake-utils.follows = "flake-utils";
       };
     };
+
+    gnome-manager = {
+      url = "github:fudoniten/gnome-manager/hm-module";
+      inputs = {
+        home-manager.follows = "home-manager";
+      };
+    };
   };
 
   outputs = inputs: let
@@ -270,6 +277,7 @@
         nvidia.acceptLicense = true;
         cudaSupport = true;
         # allowAliases = false;
+        config.allowAliases = false;
 
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";

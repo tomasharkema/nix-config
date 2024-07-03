@@ -29,10 +29,10 @@ in {
     # };
 
     environment.systemPackages = with pkgs; [
-      nvtopPackages.full
+      (nvtopPackages.full)
       zenith-nvidia
       nvidia-offload
-      gnomeExtensions.prime-helper
+      (gnomeExtensions.prime-helper)
       nvfancontrol
       nvitop
       # gwe
@@ -82,12 +82,12 @@ in {
         open = false;
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-          version = "555.52.04";
-          sha256_64bit = "sha256-nVOubb7zKulXhux9AruUTVBQwccFFuYGWrU1ZiakRAI=";
+          version = "555.58.02";
+          sha256_64bit = "sha256-xctt4TPRlOJ6r5S54h5W6PT6/3Zy2R4ASNFPu8TSHKM=";
           sha256_aarch64 = lib.fakeSha256;
           openSha256 = lib.fakeSha256;
-          settingsSha256 = "sha256-PMh5efbSEq7iqEMBr2+VGQYkBG73TGUh6FuDHZhmwHk=";
-          persistencedSha256 = "sha256-KAYIvPjUVilQQcD04h163MHmKcQrn2a8oaXujL2Bxro=";
+          settingsSha256 = "sha256-ZpuVZybW6CFN/gz9rx+UJvQ715FZnAOYfHn5jt5Z2C8=";
+          persistencedSha256 = lib.fakeSha256;
         };
       };
 
@@ -97,11 +97,11 @@ in {
         driSupport32Bit = true;
 
         extraPackages = with pkgs; [
-          pkgs.mesa.drivers
+          (pkgs.mesa.drivers)
           nvidia-vaapi-driver
           libvdpau-va-gl
           vaapiVdpau
-          config.hardware.nvidia.package
+          (config.hardware.nvidia.package)
         ];
       };
     };
