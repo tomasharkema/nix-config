@@ -146,6 +146,8 @@ with lib; {
       supportedFilesystems = ["ntfs"];
       kernelModules = ["i2c-dev" "watchdog" "ixgbe" "btusb" "apfs"];
 
+      blacklistedKernelModules = lib.mkDefault ["nouveau"];
+
       initrd = {
         systemd.emergencyAccess = "abcdefg";
         kernelModules = ["watchdog" "ixgbe" "btusb"];
