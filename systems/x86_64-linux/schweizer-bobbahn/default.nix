@@ -28,6 +28,8 @@ with lib; {
       };
     };
 
+    ecrypt.enable = true;
+
     environment.systemPackages = with pkgs; [intel-gpu-tools];
 
     gui = {
