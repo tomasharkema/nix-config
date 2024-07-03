@@ -30,7 +30,7 @@ with lib; {
     # services.freeipa.replica.enable = true;
     # services.upower.enable = mkForce false;
     systemd.enableEmergencyMode = true;
-    boot.initrd.systemd.emergencyAccess = "abcdef";
+
     networking = {
       hosts = {"192.168.0.100" = ["nix-cache.harke.ma"];};
       networkmanager.enable = true;
@@ -146,7 +146,10 @@ with lib; {
       supportedFilesystems = ["ntfs"];
       kernelModules = ["i2c-dev" "watchdog" "ixgbe" "btusb" "apfs"];
 
-      initrd.kernelModules = ["watchdog" "ixgbe" "btusb"];
+      initrd = {
+        systemd.emergencyAccess = "abcdefg";
+        kernelModules = ["watchdog" "ixgbe" "btusb"];
+      };
 
       # blacklistedKernelModules = lib.mkDefault [ "i915" "nouveau" ];
       # KMS will load the module, regardless of blacklisting

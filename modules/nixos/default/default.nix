@@ -212,7 +212,7 @@ with lib.custom;
       proxy-services.enable = mkDefault true;
 
       systemd = {
-        enableEmergencyMode = false;
+        enableEmergencyMode = mkDefault false;
 
         watchdog = {
           # device = "/dev/watchdog";
