@@ -13,13 +13,7 @@ with lib; {
     services.conky = {
       enable = true;
 
-      extraConfig = ''
-        conky.config = {
-
-          alignment = 'bottom_right',
-          font = 'JetBrainsMono Nerd Font Mono:size=10',
-        };
-      '';
+      extraConfig = builtins.readFile ./conky.lua;
     };
 
     dconf = {
@@ -51,10 +45,10 @@ with lib; {
           name = mkDefault "Catppuccin-Mocha-Compact-Blue-Dark";
         };
 
-        "org/gnome/shell/extensions/TodoTxt" = {
-          donetxt-location = "/home/tomas/resilio-sync/shared-documents/done.txt";
-          todotxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt";
-        };
+        # "org/gnome/shell/extensions/TodoTxt" = {
+        #   donetxt-location = "/home/tomas/resilio-sync/shared-documents/done.txt";
+        #   todotxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt";
+        # };
 
         "org/gnome/gnome-session" = {
           "auto-save-session" = true;
