@@ -10,6 +10,18 @@
 with inputs.home-manager.lib.hm.gvariant;
 with lib; {
   config = mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
+    services.conky = {
+      enable = true;
+
+      extraConfig = ''
+        conky.config = {
+
+          alignment = 'bottom_right',
+          font = 'JetBrainsMono Nerd Font Mono:size=10',
+        };
+      '';
+    };
+
     dconf = {
       settings = {
         "org/gnome/mutter" = {
@@ -228,7 +240,6 @@ with lib; {
             "gmind@tungstnballon.gitlab.com"
             "gnome-kinit@bonzini.gnu.org"
             "GPU_profile_selector@lorenzo9904.gmail.com"
-            "GPU_profile_selector@lorenzo9904.gmail.com"
             "gsconnect@andyholmes.github.io"
             "hass-gshell@geoph9-on-github"
             "hue-lights@chlumskyvaclav.gmail.com"
@@ -236,22 +247,20 @@ with lib; {
             "mediacontrols@cliffniff.github.com"
             "monitor-brightness-volume@ailin.nemui"
             "no-overview@fthx"
-            "no-overview@fthx"
             "pip-on-top@rafostar.github.com"
             "reboottouefi@ubaygd.com"
             "remmina-search-provider@alexmurray.github.com"
             "search-light@icedman.github.com"
-            "search-light@icedman.github.com"
-            "sermon@rovellipaolo-gmail.com"
+            # "sermon@rovellipaolo-gmail.com"
             "ssh-search-provider@extensions.gnome-shell.fifi.org"
             "tailscale-status@maxgallup.github.com"
             "tailscale@joaophi.github.com"
-            "todo.txt@bart.libert.gmail.com"
             "todo.txt@bart.libert.gmail.com"
             "toggler@hedgie.tech"
             "user-theme@gnome-shell-extensions.gcampax.github.com"
             "Vitals@CoreCoding.com"
             "vscode-search-provider@mrmarble.github.com"
+            "windowIsReady_Remover@nunofarruca@gmail.com"
             # "Airpod-Battery-Monitor@maniacx.github.com"
             # "clipboard-indicator@tudmotu.com"
             # "dash-to-dock@micxgx.gmail.com"
@@ -275,8 +284,9 @@ with lib; {
               "firefox.desktop"
               # "org.gnome.Console.desktop"
             ]
-            ++ (optional pkgs.stdenv.isx86_64 "kitty.desktop")
-            ++ (optional (!pkgs.stdenv.isx86_64) "com.gexperts.Tilix.desktop")
+            # ++ (optional pkgs.stdenv.isx86_64 "kitty.desktop")
+            # ++ (optional (!pkgs.stdenv.isx86_64) "com.gexperts.Tilix.desktop")
+            ++ ["com.gexperts.Tilix.desktop"]
             ++ [
               "code.desktop"
               "org.cockpit_project.CockpitClient.desktop"
