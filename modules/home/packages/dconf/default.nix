@@ -10,12 +10,6 @@
 with inputs.home-manager.lib.hm.gvariant;
 with lib; {
   config = mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
-    services.conky = {
-      enable = true;
-
-      extraConfig = builtins.readFile ./conky.lua;
-    };
-
     dconf = {
       settings = {
         "org/gnome/mutter" = {

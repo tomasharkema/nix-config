@@ -32,6 +32,7 @@ with lib; {
       with pkgs.custom; [
         # exult
         b612
+        b612-nerdfont
         bakoma_ttf
         cm_unicode
         dina-font
