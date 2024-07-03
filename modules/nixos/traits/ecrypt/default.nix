@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.ecrypt;
+  cfg = config.traits.ecrypt;
 in {
-  options.ecrypt.enable = mkEnableOption "ecryptfs";
+  options.traits.ecrypt.enable = mkEnableOption "ecryptfs";
 
   config = mkIf cfg.enable {
     security.pam.enableEcryptfs = true;
@@ -15,7 +15,5 @@ in {
     boot.kernelModules = ["ecryptfs"];
 
     programs.ecryptfs.enable = true;
-
-    environment.systemPackages = with pkgs; [ecryptfs-helper];
   };
 }

@@ -28,8 +28,6 @@ with lib; {
       };
     };
 
-    ecrypt.enable = true;
-
     environment.systemPackages = with pkgs; [intel-gpu-tools];
 
     gui = {
@@ -63,7 +61,7 @@ with lib; {
 
     traits = {
       low-power.enable = true;
-
+      ecrypt.enable = true;
       hardware = {
         # tpm.enable = true;
         secure-boot.enable = true;

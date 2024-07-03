@@ -1,5 +1,8 @@
-{ channels, self, ... }:
-final: prev: {
+{
+  channels,
+  self,
+  ...
+}: final: prev: {
   # gnome = prev.gnome.overrideScope' (gnomeFinal: gnomePrev: {
   #   mutter = gnomePrev.mutter.overrideAttrs (old: {
   #     src = fetchTarball {
@@ -20,17 +23,17 @@ final: prev: {
         domain = "gitlab.gnome.org";
         owner = "vanvugt";
         repo = "mutter";
-        rev = "triple-buffering-v4-46";
+        rev = "94f500589efe6b04aa478b3df8322eb81307d89f";
         hash = "sha256-fkPjB/5DPBX06t7yj0Rb3UEuu5b9mu3aS+jhH18+lpI=";
       };
     });
   });
 
-  mpv = prev.mpv.override { scripts = [ final.mpvScripts.mpris ]; };
+  mpv = prev.mpv.override {scripts = [prev.mpvScripts.mpris];};
 
-  mpv-unwrapped = prev.mpv-unwrapped.override { ffmpeg = prev.ffmpeg-full; };
+  mpv-unwrapped = prev.mpv-unwrapped.override {ffmpeg = prev.ffmpeg-full;};
 
-  spotifyd = prev.spotifyd.override { withMpris = true; };
+  spotifyd = prev.spotifyd.override {withMpris = true;};
 
-  shairport-sync = prev.shairport-sync.override { enableAirplay2 = true; };
+  shairport-sync = prev.shairport-sync.override {enableAirplay2 = true;};
 }

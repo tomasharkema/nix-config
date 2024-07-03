@@ -15,7 +15,8 @@
 -- Configuration settings: https://conky.cc/config_settings
 conky.config = {
     alignment = 'bottom_right',
-    font = 'JetBrainsMono Nerd Font Mono:size=8',
+    -- font = 'JetBrainsMono Nerd Font Mono:size=8',
+    font = 'B612 Mono:size=10',
     background = false,
     border_width = 1,
     cpu_avg_samples = 2,
