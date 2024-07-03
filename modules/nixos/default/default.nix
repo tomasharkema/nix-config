@@ -194,6 +194,12 @@ with lib.custom;
           netflix
 
           play-with-mpv
+          cmospwd
+          uefisettings
+          libsmbios
+          uefi-firmware-parser
+          dmidecode
+          refind
         ]));
       # services.ntfy-sh.enable = true;
 

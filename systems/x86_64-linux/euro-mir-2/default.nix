@@ -30,7 +30,7 @@ with lib; {
 
     environment.systemPackages = with pkgs; [
       libusb
-
+      dell-command-configure
       ventoy-full
       gnupg
       custom.distrib-dl

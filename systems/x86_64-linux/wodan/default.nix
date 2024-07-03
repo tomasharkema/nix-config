@@ -29,7 +29,8 @@ with lib; {
 
     # services.freeipa.replica.enable = true;
     # services.upower.enable = mkForce false;
-
+    systemd.enableEmergencyMode = true;
+    boot.initrd.systemd.emergencyAccess = "abcdef";
     networking = {
       hosts = {"192.168.0.100" = ["nix-cache.harke.ma"];};
       networkmanager.enable = true;
