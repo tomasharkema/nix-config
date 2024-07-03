@@ -109,7 +109,7 @@ with lib.custom;
           ethtool
           socat
           gdu
-
+          wmctrl
           swapview
           # nix-switcher # : needs github auth
           lorri
