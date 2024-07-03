@@ -11,7 +11,11 @@ in {
 
   config = mkIf cfg.enable {
     security.pam.enableEcryptfs = true;
+
     boot.kernelModules = ["ecryptfs"];
-    environment.systemPackages = with pkgs; [ecryptfs];
+
+    programs.ecryptfs.enable = true;
+
+    environment.systemPackages = with pkgs; [ecryptfs-helper];
   };
 }
