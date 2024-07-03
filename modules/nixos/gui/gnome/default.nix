@@ -38,9 +38,9 @@ in
       # };
 
       environment.variables = mkIf cfg.hidpi.enable {
-        GDK_SCALE = "2";
-        GDK_DPI_SCALE = "0.5";
-        _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+        # GDK_SCALE = "2";
+        # GDK_DPI_SCALE = "0.5";
+        # _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
       };
 
       programs = {
@@ -93,7 +93,7 @@ in
         xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
 
         xserver = {
-          dpi = mkIf cfg.hidpi.enable 200;
+          # dpi = mkIf cfg.hidpi.enable 200;
 
           desktopManager.gnome = {
             enable = true;
