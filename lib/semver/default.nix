@@ -5,8 +5,8 @@
 }:
 with lib; rec {
   compareVersion = pkgs: lhs: rhs: let
-    command = "${getExe pkgs.semver-tool} compare ${lhs} ${rhs}";
-    resultPath = pkgs.runCommand "semver-${lhs}-${rhs}" {} "${command} > $out";
+    command = "${getExe pkgs.semver-tool} compare ${versions.pad 3 lhs} ${versions.pad 3 rhs}";
+    resultPath = pkgs.runCommandLocal "semver-${versions.pad 3 lhs}-${versions.pad 3 rhs}" {} "${command} > $out";
   in
     strings.toInt (readFile resultPath);
 

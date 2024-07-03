@@ -57,7 +57,10 @@ with lib; {
     gui = {
       enable = true;
       desktop = {enable = true;};
-      gnome.enable = true;
+      gnome = {
+        enable = true;
+        hidpi.enable = true;
+      };
       gamemode.enable = true;
       quiet-boot.enable = true;
     };

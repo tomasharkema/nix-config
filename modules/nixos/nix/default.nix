@@ -30,7 +30,7 @@ with lib.custom; {
         ++ optional config.services.hydra.enable "hydra";
     in {
       package = pkgs.nixVersions.latest;
-
+      nixPath = ["nixpkgs=${inputs.nixpkgs}"];
       extraOptions = ''
         min-free = ${toString (100 * 1024 * 1024)}
         max-free = ${toString (1024 * 1024 * 1024)}

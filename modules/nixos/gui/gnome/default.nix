@@ -22,12 +22,26 @@ in
 
       environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
+      services.displayManager.defaultSession = "gnome";
+
+      system.nixos.tags =
+        [
+          "gnome"
+        ]
+        ++ (optional cfg.hidpi.enable "hidpi");
+
       # programs.hyprland = {
       #   # Install the packages from nixpkgs
       #   enable = true;
       #   # Whether to enable XWayland
       #   xwayland.enable = true;
       # };
+
+      environment.variables = mkIf cfg.hidpi.enable {
+        GDK_SCALE = "2";
+        GDK_DPI_SCALE = "0.5";
+        _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+      };
 
       programs = {
         xwayland.enable = true;
@@ -79,6 +93,8 @@ in
         xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
 
         xserver = {
+          dpi = mkIf cfg.hidpi.enable 200;
+
           desktopManager.gnome = {
             enable = true;
 
@@ -144,7 +160,7 @@ in
         autostart = {
           enable = true;
         };
-        # portal.wlr.enable = true;
+        portal.wlr.enable = true;
         terminal-exec = {
           enable = true;
           settings = {
@@ -173,6 +189,7 @@ in
       };
       environment.systemPackages =
         (with pkgs; [
+          themix-gui
           wike
           gtop
           libgtop

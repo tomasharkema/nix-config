@@ -10,7 +10,6 @@ with lib; {
     ./hardware-configuration.nix
     inputs.nixos-hardware.nixosModules.common-gpu-intel
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
-    # inputs.nixos-hardware.nixosModules.common-hidpi
   ];
 
   config = {
@@ -60,6 +59,9 @@ with lib; {
       };
       gamemode.enable = true;
       quiet-boot.enable = true;
+      gnome = {
+        hidpi.enable = true;
+      };
     };
     # fileSystems."/mnt/media" = {
     #   device = "192.168.0.11:/export/media";
