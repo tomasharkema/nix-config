@@ -58,17 +58,17 @@ conky.config = {
 conky.text = [[
 ${color lightgrey}$color$nodename ${color lightgrey}${addr}
 $hr
-${color grey}$color $sysname $nodename $kernel $machine
+${color grey}$color $sysname $nodename $kernel $machine $color
 $hr
 ${color grey}UPT$color0 $uptime
 ${color grey}FRQ$color0 $freq_g
 ${color grey}RAM$color0 $mem/$memmax $color${membar 4}
 ${color grey}SWP$color0 $swap/$swapmax $color${swapbar 4}
 ${color grey}CPU$color0 $cpu% $color${cpubar 4}
-${color grey}PRC$color0 $processes  ${color grey}Running:$color0 $running_processes
+${color grey}PRC$color0 $processes  ${color grey}RUN$color0 $running_processes
 $color$hr
-${color grey}FSS: $color0${fs_used /}/${fs_size /} $color${fs_bar 6 /}
-${color grey}NET UP$color0 ${upspeed} ${color grey} - DWN$color0 ${downspeed}
+${color grey}FSS $color0${fs_used /}/${fs_size /} $color${fs_bar 6 /}
+${color grey}NET UP$color0 ${upspeed} ${color grey} DWN$color0 ${downspeed}
 ]]
 
 -- $hr
