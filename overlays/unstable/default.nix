@@ -2,6 +2,7 @@
   channels,
   disko,
   self,
+  inputs,
   ...
 }: final: prev: rec {
   # # runitor = channels.unstable.runitor;
@@ -55,4 +56,7 @@
 
   # nix = prev.nixVersions.nix_2_21;
   pnpm = channels.unstable.pnpm;
+
+  # conky = inputs.conky.packages."${prev.system}".default;
+  # conky = channel
 }
