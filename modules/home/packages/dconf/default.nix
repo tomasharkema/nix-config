@@ -14,7 +14,7 @@ with lib; {
       settings = {
         "org/gnome/mutter" = {
           edge-tiling = true;
-
+          center-new-windows = true;
           experimental-features = [
             "scale-monitor-framebuffer"
             "variable-refresh-rate"
@@ -284,7 +284,8 @@ with lib; {
             ];
         };
         "org/gnome/desktop/wm/preferences" = {
-          button-layout = "appmenu:minimize,maximize,close";
+          # button-layout = "appmenu:minimize,maximize,close";
+          button-layout = "close,minimize,maximize:";
           titlebar-font = "Inter Regular 11";
         };
         "org/gnome/nautilus/preferences" = {
