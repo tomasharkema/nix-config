@@ -15,7 +15,7 @@ with lib; {
         "org/gnome/mutter" = {
           edge-tiling = true;
           center-new-windows = true;
-          experimental-features = [
+          experimental-features = mkIf osConfig.traits.hardware.laptop.enable [
             "scale-monitor-framebuffer"
             "variable-refresh-rate"
           ];

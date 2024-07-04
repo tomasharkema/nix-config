@@ -58,7 +58,7 @@ in
           tomas.databases = [
             {
               settings."org/gnome/mutter" = {
-                experimental-features = [
+                experimental-features = mkIf config.traits.hardware.laptop.enable [
                   "scale-monitor-framebuffer"
                   "variable-refresh-rate"
                 ];
