@@ -234,13 +234,6 @@
       };
     };
 
-    gnome-manager = {
-      url = "github:fudoniten/gnome-manager/hm-module";
-      inputs = {
-        home-manager.follows = "home-manager";
-      };
-    };
-
     conky = {
       url = "github:brndnmtthws/conky";
       inputs = {

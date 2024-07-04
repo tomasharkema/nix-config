@@ -32,6 +32,24 @@ in {
         name = "Inter Regular";
         size = 11;
       };
+
+      theme = {
+        name = "Flat-Remix-GTK-Blue-Dark";
+        # iconTheme = "Flat-Remix-Blue-Light";
+        package = pkgs.flat-remix-gtk;
+      };
+      iconTheme = {
+        name = "Flat-Remix-Blue-Dark";
+        package = pkgs.flat-remix-icon-theme;
+      };
+    };
+
+    programs.gnome-shell = {
+      enable = true;
+      theme = {
+        name = "Flat-Remix-Blue-Dark-fullPanel";
+        package = pkgs.flat-remix-gnome;
+      };
     };
 
     home = mkIf pkgs.stdenv.isLinux {
@@ -41,6 +59,11 @@ in {
         x11.enable = true;
         gtk.enable = true;
       };
+      packages = with pkgs; [
+        flat-remix-gtk
+        flat-remix-gnome
+        flat-remix-icon-theme
+      ];
 
       file = {".config/gnome-initial-setup-done".text = "yes";};
 

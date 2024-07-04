@@ -503,27 +503,6 @@
         "type": "github"
       }
     },
-    "gnome-manager": {
-      "inputs": {
-        "home-manager": [
-          "home-manager"
-        ]
-      },
-      "locked": {
-        "lastModified": 1673465156,
-        "narHash": "sha256-pr6ytEViK59zHUNt4CZWi1zB0MarBbGP1oNNdU7lOSQ=",
-        "owner": "fudoniten",
-        "repo": "gnome-manager",
-        "rev": "0da66d80d12d051846f3a7a29013c29b705e04a6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "fudoniten",
-        "ref": "hm-module",
-        "repo": "gnome-manager",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -1152,7 +1131,6 @@
         "flake-compat": "flake-compat_2",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils_2",
-        "gnome-manager": "gnome-manager",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "nbfc-linux": "nbfc-linux",
