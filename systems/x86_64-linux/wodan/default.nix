@@ -102,6 +102,8 @@ with lib; {
     hardware = {
       cpu.intel.updateMicrocode = true;
       i2c.enable = true;
+      enableAllFirmware = true;
+      enableRedistributableFirmware = true;
     };
 
     apps.podman.enable = true;
