@@ -13,5 +13,6 @@ with lib; {
 
       extraConfig = builtins.readFile ./conky.lua;
     };
+    systemd.user.services.conky.Install.WantedBy = ["default.target"];
   };
 }
