@@ -39,8 +39,9 @@ with lib.custom; {
       optimise.automatic = true;
 
       settings = {
-        use-cgroups = true;
-        experimental-features = "nix-command flakes cgroups";
+        # use-cgroups = true;
+        extra-experimental-features = "nix-command flakes"; # cgroups";
+
         http-connections = 50;
         warn-dirty = false;
         log-lines = 50;

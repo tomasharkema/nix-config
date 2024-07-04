@@ -69,7 +69,10 @@ with lib.custom;
 
         hardwareScan = true;
 
-        kernel.sysctl."net.ipv4.ip_forward" = 1;
+        kernel.sysctl = {
+          "net.ipv4.ip_forward" = 1;
+          "kernel.sysrq" = 1;
+        };
 
         tmp = {
           useTmpfs = mkDefault false;
