@@ -16,10 +16,11 @@
 conky.config = {
     alignment = 'bottom_right',
     -- font = 'JetBrainsMono Nerd Font Mono:size=8',
-    font = 'B612Mono Nerd Font:size=10',
-    background = false,
+    font = 'B612Mono Nerd Font:size=12',
+    background = true,
     border_width = 1,
     cpu_avg_samples = 2,
+    color0 = '36E21D',
     default_color = 'white',
     default_outline_color = 'white',
     default_shade_color = 'white',
@@ -38,8 +39,8 @@ conky.config = {
     out_to_console = false,
     out_to_ncurses = false,
     out_to_stderr = false,
-    out_to_wayland = true,
-    out_to_x = false,
+    out_to_wayland = false,
+    out_to_x = true,
     own_window = true,
     own_window_class = 'Conky',
     own_window_type = 'normal',
@@ -48,7 +49,7 @@ conky.config = {
     show_graph_scale = false,
     stippled_borders = 0,
     update_interval = 2.0,
-    uppercase = false,
+    uppercase = true,
     use_spacer = 'none',
     use_xft = true
 }
@@ -57,24 +58,22 @@ conky.config = {
 conky.text = [[
 ${color lightgrey}$color$nodename ${color lightgrey}${addr}
 $hr
-${color grey}Info:$color ${scroll 32 Conky $conky_version - $sysname $nodename $kernel $machine}
+${color grey}Info:$color $sysname $nodename $kernel $machine
 $hr
-${color grey}Uptime:$color $uptime
-${color grey}Frequency (in MHz):$color $freq
-${color grey}Frequency (in GHz):$color $freq_g
-${color grey}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
-${color grey}Swap Usage:$color $swap/$swapmax - $swapperc% ${swapbar 4}
-${color grey}CPU Usage:$color $cpu% ${cpubar 4}
-${color grey}Processes:$color $processes  ${color grey}Running:$color $running_processes
-$hr
-${color grey}File systems:
- / $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
-${color grey}Networking:
-Up:$color ${upspeed} ${color grey} - Down:$color ${downspeed}
-$hr
-${color grey}Name              PID     CPU%   MEM%
-${color lightgrey} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
-${color lightgrey} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
-${color lightgrey} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
-${color lightgrey} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}
+${color grey}Uptime:$color0 $uptime
+${color grey}Frequency:$color0 $freq_g
+${color grey}RAM Usage:$color0 $mem/$memmax $color${membar 4}
+${color grey}Swap Usage:$color0 $swap/$swapmax $color${swapbar 4}
+${color grey}CPU Usage:$color0 $cpu% $color${cpubar 4}
+${color grey}Processes:$color0 $processes  ${color grey}Running:$color0 $running_processes
+$color$hr
+${color grey}File systems: $color0${fs_used /}/${fs_size /} $color${fs_bar 6 /}
+${color grey}Networking: Up:$color0 ${upspeed} ${color grey} - Down:$color0 ${downspeed}
 ]]
+
+-- $hr
+-- ${color grey}Name              PID     CPU%   MEM%
+-- ${color lightgrey} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
+-- ${color lightgrey} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
+-- ${color lightgrey} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
+-- ${color lightgrey} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}

@@ -57,6 +57,10 @@
   # nix = prev.nixVersions.nix_2_21;
   pnpm = channels.unstable.pnpm;
 
-  # conky = inputs.conky.packages."${prev.system}".default;
-  # conky = channel
+  conky = inputs.conky.packages."${prev.system}".default;
+  # conky = channels.unstable.conky.overrideAttrs {
+  #   x11Support = false;
+  #   waylandSupport = true;
+  #   nvidiaSupport = true;
+  # };
 }
