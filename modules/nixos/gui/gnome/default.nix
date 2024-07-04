@@ -58,10 +58,13 @@ in
           tomas.databases = [
             {
               settings."org/gnome/mutter" = {
-                experimental-features = mkIf config.traits.hardware.laptop.enable [
-                  "scale-monitor-framebuffer"
-                  "variable-refresh-rate"
-                ];
+                experimental-features =
+                  if config.traits.hardware.laptop.enable
+                  then [
+                    "scale-monitor-framebuffer"
+                    "variable-refresh-rate"
+                  ]
+                  else lib.gvariant.mkEmptyArray (lib.gvariant.type.string);
                 edge-tiling = true;
               };
               settings."org/gnome/desktop/interface".scaling-factor =
