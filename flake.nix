@@ -240,6 +240,14 @@
         home-manager.follows = "home-manager";
       };
     };
+
+    conky = {
+      url = "github:brndnmtthws/conky";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
   };
 
   outputs = inputs: let
