@@ -9,10 +9,10 @@ with lib; {
   imports = with inputs; [
     ./hardware-configuration.nix
 
-      # ...
-      nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
-      nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
-    ];
+    # ...
+    nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
+    nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
+  ];
 
   config = {
     disks.btrfs = {
@@ -24,23 +24,25 @@ with lib; {
 
     programs.gnupg.agent = {enable = true;};
 
-    services={
+    services = {
       dbus.packages = with pkgs; [custom.ancs4linux];
 
-    udev = {
-      enable = true;
-      packages = with pkgs; [heimdall-gui libusb];
+      udev = {
+        enable = true;
+        packages = with pkgs; [heimdall-gui libusb];
+      };
+      open-fprintd.enable = true;
+      python-validity.enable = true;
     };
-    open-fprintd.enable = true;
-python-validity.enable = true;
-    };
-    
+
     environment.systemPackages = with pkgs; [
       libusb
       tp-auto-kbbl
 
-      
-thinkfan  gnomeExtensions.thinkpad-thermal gnomeExtensions.fnlock-switch-thinkpad-compact-usb-keyboard tpacpi-bat
+      thinkfan
+      gnomeExtensions.thinkpad-thermal
+      gnomeExtensions.fnlock-switch-thinkpad-compact-usb-keyboard
+      tpacpi-bat
 
       ventoy-full
       gnupg
@@ -70,7 +72,7 @@ thinkfan  gnomeExtensions.thinkpad-thermal gnomeExtensions.fnlock-switch-thinkpa
       desktop = {enable = true;};
       gnome = {
         enable = true;
-        hidpi.enable = true;
+        # hidpi.enable = true;
       };
       gamemode.enable = true;
       quiet-boot.enable = true;
@@ -84,9 +86,8 @@ thinkfan  gnomeExtensions.thinkpad-thermal gnomeExtensions.fnlock-switch-thinkpa
           sync.enable = true;
           offload.enable = false;
           offload.enableOffloadCmd = false;
-intelBusId = "PCI:0:2:0";
-		nvidiaBusId = "PCI:02:0:0";
-
+          intelBusId = "PCI:0:2:0";
+          nvidiaBusId = "PCI:02:0:0";
         };
         # powerManagement = {
         #   enable = true;
@@ -131,7 +132,7 @@ intelBusId = "PCI:0:2:0";
     };
 
     networking = {
-      hostName = "euro-mir-3"; # Define your hostname.
+      hostName = "voltron"; # Define your hostname.
       networkmanager.enable = true;
       # wireless.enable = true;
       firewall.enable = false;
@@ -142,14 +143,14 @@ intelBusId = "PCI:0:2:0";
     services = {
       # usb-over-ethernet.enable = true;
       hardware.bolt.enable = true;
-      # beesd.filesystems = {
-      #   root = {
-      #     spec = "UUID=3e30181c-9df4-4412-a1ee-cb97819f218c";
-      #     hashTableSizeMB = 4096;
-      #     verbosity = "crit";
-      #     extraOptions = ["--loadavg-target" "2.0"];
-      #   };
-      # };
+      beesd.filesystems = {
+        root = {
+          spec = "UUID=22a02900-5321-481c-af47-ff8700570cc6";
+          hashTableSizeMB = 4096;
+          verbosity = "crit";
+          extraOptions = ["--loadavg-target" "2.0"];
+        };
+      };
 
       # synergy.server = {
       #   enable = true;
@@ -160,23 +161,12 @@ intelBusId = "PCI:0:2:0";
         # allowInterfaces = ["wlp59s0"];
         reflector = mkForce false;
       };
-
-      # fprintd = {
-      #   enable = true;
-      #   package = pkgs.fprintd-tod;
-      #   tod = {
-      #     enable = true;
-
-      #     #     # driver = pkgs.libfprint-2-tod1-goodix;
-      #     driver = pkgs.libfprint-2-tod1-goodix-550a;
-      #   };
-      # };
     };
 
-    security.pam.services = {
-      xscreensaver.fprintAuth = true;
-      login.fprintAuth = true;
-    };
+    # security.pam.services = {
+    #   xscreensaver.fprintAuth = true;
+    #   login.fprintAuth = true;
+    # };
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];

@@ -147,6 +147,11 @@ in {
                   tpmSupport = true;
                 })
                 .fd)
+              # ((pkgs.pkgsCross.aarch64-multiplatform.OVMFFull.override {
+              #     secureBoot = true;
+              #     tpmSupport = true;
+              #   })
+              #   .fd)
             ];
           };
         };
