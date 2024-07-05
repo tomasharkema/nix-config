@@ -7,9 +7,12 @@
 }:
 with lib; {
   imports = with inputs; [
-    nixos-hardware.nixosModules.dell-xps-15-9570-nvidia
     ./hardware-configuration.nix
-  ];
+
+      # ...
+      nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
+      nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
+    ];
 
   config = {
     disks.btrfs = {
@@ -21,16 +24,24 @@ with lib; {
 
     programs.gnupg.agent = {enable = true;};
 
-    services.dbus.packages = with pkgs; [custom.ancs4linux];
+    services={
+      dbus.packages = with pkgs; [custom.ancs4linux];
 
-    services.udev = {
+    udev = {
       enable = true;
       packages = with pkgs; [heimdall-gui libusb];
     };
-
+    open-fprintd.enable = true;
+python-validity.enable = true;
+    };
+    
     environment.systemPackages = with pkgs; [
       libusb
-      dell-command-configure
+      tp-auto-kbbl
+
+      
+thinkfan  gnomeExtensions.thinkpad-thermal gnomeExtensions.fnlock-switch-thinkpad-compact-usb-keyboard tpacpi-bat
+
       ventoy-full
       gnupg
       custom.distrib-dl
@@ -73,6 +84,9 @@ with lib; {
           sync.enable = true;
           offload.enable = false;
           offload.enableOffloadCmd = false;
+intelBusId = "PCI:0:2:0";
+		nvidiaBusId = "PCI:02:0:0";
+
         };
         # powerManagement = {
         #   enable = true;
