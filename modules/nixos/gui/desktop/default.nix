@@ -92,6 +92,8 @@ in {
     environment.systemPackages = with pkgs;
       (optional ((stdenv.isLinux && stdenv.isx86_64) || stdenv.isDarwin) mailspring)
       ++ [
+        yelp
+        livecaptions
         pkgs.custom.ancs4linux
         # firefox
         # gnome.gnome-boxes

@@ -67,10 +67,6 @@ with lib; let
               ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/var/lib/containers";
           };
-          "swapfile" = mkIf cfg.newSubvolumes {
-            mountOptions = ["noatime" "nodatacow" "nodatasum" "discard=async"];
-            mountpoint = "/swapfile";
-          };
           "snapshots" = mkIf cfg.newSubvolumes {
             mountOptions = ["noatime" "nodatacow" "nodatasum" "discard=async"];
             mountpoint = "/.snapshots";
@@ -157,13 +153,6 @@ in
         supportedFilesystems = ["btrfs"];
         initrd.availableKernelModules = ["aesni_intel" "cryptd"];
       };
-
-      swapDevices = mkIf (cfg.swapSize != null) [
-        {
-          device = "/swapfile/swapfile";
-          size = cfg.swapSize;
-        }
-      ];
 
       services = {
         btrfs.autoScrub = mkIf cfg.autoscrub {
@@ -254,6 +243,14 @@ in
                 luks =
                   mkIf cfg.encrypt
                   (luksContent innerContent.root.content "crypted").luks;
+
+                encryptedSwap = {
+                  size = "16G";
+                  content = {
+                    type = "swap";
+                    randomEncryption = true;
+                  };
+                };
               };
             };
           };
