@@ -23,7 +23,8 @@ let
   baaa-express = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGUTP5KhcV1yxEU58RGanzhh5x/mWVH5aGJVSPGz1r6B root@nixos";
 
   euro-mir-2 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIICb4X+GYjcvvpjiRPhNdyqMyda6kFTkD9N4ZB2oOsEQ root@euro-mir-2";
-  euro-mir-3 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID5Uk61f6YGX+JLTIzP/CceJ3imKQZiTgFP96Y96m3pP root@euro-mir-3";
+  euro-mir-3 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIImcDgt9Pzve8g2auikBFQ3JkXB5UqoRfr7D22caGMgB root@euro-mir-3";
+
   euro-mir-2-tomas = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMIZkviD01zlP3SkumEXHgLaNuoQxHqHPuBWcOqrm9rr tomas@euro-mir-2";
   euro-mir-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJvvDPvcdtTqOqKdAc5ixilJjQYGJFamhVLN6cjn67wz root@euro-mir-vm";
 
