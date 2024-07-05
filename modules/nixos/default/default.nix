@@ -287,8 +287,15 @@ with lib.custom;
 
         cron.enable = true;
 
-        zram-generator.enable = true;
-
+        zram-generator = {
+          enable = true;
+          settings = {
+            zram0 = {
+              # zram-size = "ram / 2";
+              compression-algorithm = "zstd";
+            };
+          };
+        };
         # earlyoom = {
         #   enable = true;
         #   enableNotifications = true;
