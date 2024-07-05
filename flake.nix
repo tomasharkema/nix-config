@@ -242,10 +242,10 @@
       };
     };
 
-      nixos-06cb-009a-fingerprint-sensor = {
-    url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
+    nixos-06cb-009a-fingerprint-sensor = {
+      url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
@@ -569,8 +569,8 @@
     };
 
   nixConfig = {
-    # use-cgroups = true;
-    extra-experimental-features = "nix-command flakes"; # cgroups";
+    use-cgroups = true;
+    extra-experimental-features = "nix-command flakes cgroups";
 
     distributedBuilds = true;
     builders-use-substitutes = true;
