@@ -241,6 +241,11 @@
         flake-utils.follows = "flake-utils";
       };
     };
+
+      nixos-06cb-009a-fingerprint-sensor = {
+    url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
   };
 
   outputs = inputs: let
