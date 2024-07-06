@@ -89,6 +89,7 @@ in {
   "wireless.age".publicKeys = allKeys;
 
   "netrc.age".publicKeys = allKeys;
+  "calib-data.age".publicKeys = allKeys;
 
   # "cachix-activate.age".publicKeys = allKeys;
   # "cachix-agent.age".publicKeys = allKeys;
