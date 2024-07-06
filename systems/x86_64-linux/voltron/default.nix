@@ -9,9 +9,8 @@ with lib; {
   imports = with inputs; [
     ./hardware-configuration.nix
 
-    # ...
-    nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
-    nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
+    # nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
+    # nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
   ];
 
   config = {
@@ -31,8 +30,26 @@ with lib; {
         enable = true;
         packages = with pkgs; [heimdall-gui libusb];
       };
-      open-fprintd.enable = true;
-      python-validity.enable = true;
+      # open-fprintd.enable = true;
+      # python-validity.enable = true;
+
+      fprintd = {
+        enable = true;
+        tod = {
+          enable = true;
+          driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
+            calib-data-file = ./calib-data.bin; #config.age.secrets."calib-data".path; #./calib-data.bin;
+          };
+        };
+      };
+    };
+
+    age.secrets."calib-data" = {
+      file = ../../../secrets/calib-data.age;
+      # owner = "tomas";
+      # group = "tomas";
+      # mode = "644";
+      # symlink = false;
     };
 
     environment.systemPackages = with pkgs; [
@@ -163,10 +180,10 @@ with lib; {
       };
     };
 
-    # security.pam.services = {
-    #   xscreensaver.fprintAuth = true;
-    #   login.fprintAuth = true;
-    # };
+    security.pam.services = {
+      xscreensaver.fprintAuth = true;
+      login.fprintAuth = true;
+    };
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
