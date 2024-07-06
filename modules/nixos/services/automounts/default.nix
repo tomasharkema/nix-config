@@ -8,7 +8,7 @@
 with lib; let
   machines = inputs.self.servers;
 in {
-  config = {
+  config = mkIf false {
     services.autofs = {
       enable = true;
 
