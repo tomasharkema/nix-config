@@ -44,6 +44,13 @@ with lib; {
       };
     };
 
+    netkit = {
+      xmm7360 = {
+        enable = true;
+        autoStart = true;
+      };
+    };
+
     age.secrets."calib-data" = {
       file = ../../../secrets/calib-data.age;
       # owner = "tomas";
@@ -55,6 +62,10 @@ with lib; {
     environment.systemPackages = with pkgs; [
       libusb
       tp-auto-kbbl
+      modemmanager
+      modem-manager-gui
+      libmbim
+      libqmi
 
       thinkfan
       gnomeExtensions.thinkpad-thermal
