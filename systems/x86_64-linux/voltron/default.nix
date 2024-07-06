@@ -44,12 +44,12 @@ with lib; {
       };
     };
 
-    netkit = {
-      xmm7360 = {
-        enable = true;
-        autoStart = true;
-      };
-    };
+    #netkit = {
+    # xmm7360 = {
+    #  enable = true;
+    # autoStart = true;
+    #};
+    #};
 
     age.secrets."calib-data" = {
       file = ../../../secrets/calib-data.age;
