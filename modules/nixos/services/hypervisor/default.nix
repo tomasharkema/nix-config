@@ -56,11 +56,15 @@ in {
       pkgs.custom.libvirt-dbus
       # nemu
       qtemu
+
+      _86Box-with-roms
+
       (pkgs.buildFHSEnv {
         name = "dosbox-x-glide";
         targetPkgs = pkgs: (with pkgs; [
           custom.openglide
           dosbox-x
+          _86Box-with-roms
         ]);
         runScript = "dosbox-x";
       })
