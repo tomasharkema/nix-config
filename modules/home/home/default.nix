@@ -150,6 +150,7 @@ in
         # (import ./packages/common.nix {inherit pkgs inputs lib;})
         # ++
         packages = with pkgs; [
+          wget2
           libnotify
 
           fup-repl

@@ -23,8 +23,8 @@ with lib.custom;
 
       programs.bash.undistractMe.enable = true;
 
-      nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
-      # nix.channel.enable = false;
+      nix.nixPath = ["nixpkgs=${inputs.nixpkgs}" "home-manager=${inputs.home-manager}"];
+      nix.channel.enable = false;
 
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";
@@ -287,8 +287,15 @@ with lib.custom;
 
         cron.enable = true;
 
-        zram-generator.enable = true;
-
+        zram-generator = {
+          enable = true;
+          settings = {
+            zram0 = {
+              # zram-size = "ram / 2";
+              compression-algorithm = "zstd";
+            };
+          };
+        };
         # earlyoom = {
         #   enable = true;
         #   enableNotifications = true;

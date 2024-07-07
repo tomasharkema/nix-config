@@ -20,6 +20,11 @@ in {
 
     # environment.systemPackages = [inputs.nbfc-linux.packages."${pkgs.system}".default];
 
+    boot = {
+      kernelModules = ["acpi_call"];
+      extraModulePackages = with config.boot.kernelPackages; [acpi_call];
+    };
+
     services = {
       synergy.server = {
         enable = true;

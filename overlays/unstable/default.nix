@@ -30,12 +30,12 @@
 
   cockpit = channels.unstable.cockpit;
 
-  # # keybase = channels.unstable.keybase;
-  # # keybase-gui = channels.unstable.keybase-gui;
-  # # kbfs = channels.unstable.kbfs;
+  # keybase = channels.unstable.keybase;
+  # keybase-gui = channels.unstable.keybase-gui;
+  # kbfs = channels.unstable.kbfs;
 
   atuin = channels.unstable.atuin;
-  # xpipe = channels.unstable.xpipe;
+  xpipe = channels.unstable.xpipe;
 
   trayscale = channels.unstable.trayscale;
   nil = channels.unstable.nil;
@@ -44,15 +44,15 @@
 
   # # xdg-terminal-exec = channels.unstable.xdg-terminal-exec;
 
-  # _1password-gui = channels.unstable._1password-gui;
-  # _1password = channels.unstable._1password;
+  _1password-gui = channels.unstable._1password-gui;
+  _1password = channels.unstable._1password;
 
   # # ntfs2btrfs = channels.unstable.ntfs2btrfs;
 
   wezterm = channels.unstable.wezterm;
   # # sunshine = channels.unstable.sunshine;
 
-  # devenv = channels.unstable.devenv;
+  devenv = channels.unstable.devenv;
 
   # nix = prev.nixVersions.nix_2_21;
   pnpm = channels.unstable.pnpm;
