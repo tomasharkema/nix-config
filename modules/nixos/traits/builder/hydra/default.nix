@@ -123,7 +123,7 @@ in {
       #   allowed-uris = https:// github:NixOS/ github:nixos/ github:hercules-ci/ github:numtide/ github:cachix/ github:nix-community/ github:snowfallorg/
       # '';
       settings = {
-        # use-cgroups = true;
+        use-cgroups = true;
         #     allowed-uris = [
         #       "https://github.com/tomasharkema.keys"
         #       "https://api.github.com"

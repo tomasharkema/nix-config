@@ -61,7 +61,7 @@ in {
           then [
             "com.discordapp.Discord"
             "com.spotify.Client"
-            "tv.plex.PlexDesktop"
+            # "tv.plex.PlexDesktop"
           ]
           else []
         ));
