@@ -896,7 +896,6 @@
       "original": {
         "owner": "tomasharkema",
         "repo": "nixos-service",
-        "rev": "8a66497622c990a748d372e9c71bdaeef30bf4d3",
         "type": "github"
       }
     },
