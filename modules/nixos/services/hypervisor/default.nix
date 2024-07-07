@@ -137,25 +137,22 @@ in {
 
       libvirtd = {
         qemu = {
-          verbatimConfig = ''
-            # Adapted from /var/lib/libvirt/qemu.conf
-            # Note that AAVMF and OVMF are for Aarch64 and x86 respectively
-            nvram = [ "/run/libvirt/nix-ovmf/AAVMF_CODE.fd:/run/libvirt/nix-ovmf/AAVMF_VARS.fd", "/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd" ]
-          '';
+          # verbatimConfig = ''
+          #   # Adapted from /var/lib/libvirt/qemu.conf
+          #   # Note that AAVMF and OVMF are for Aarch64 and x86 respectively
+          #   nvram = [ "/run/libvirt/nix-ovmf/AAVMF_CODE.fd:/run/libvirt/nix-ovmf/AAVMF_VARS.fd", "/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd" ]
+          # '';
 
           ovmf = {
             enable = true;
             packages = [
-              ((pkgs.OVMFFull.override {
+              ((pkgs.OVMFFull)
+                .fd)
+              ((pkgs.pkgsCross.aarch64-multiplatform.OVMF.override {
                   secureBoot = true;
                   tpmSupport = true;
                 })
                 .fd)
-              # ((pkgs.pkgsCross.aarch64-multiplatform.OVMFFull.override {
-              #     secureBoot = true;
-              #     tpmSupport = true;
-              #   })
-              #   .fd)
             ];
           };
         };

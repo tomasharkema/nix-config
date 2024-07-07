@@ -198,42 +198,6 @@ in
           libgtop
           gnome-extension-manager
           gnome-menus
-          gnomeExtensions.dash-to-panel
-          gnomeExtensions.executor
-          gnomeExtensions.battery-health-charging
-          gnomeExtensions.app-menu-icon-remove-symbolic
-          gnomeExtensions.pinguxnetlabel
-          gnomeExtensions.window-is-ready-remover
-          gnomeExtensions.wayland-or-x11
-          # gnomeExtensions.network-interfaces-info
-          gnomeExtensions.appindicator
-          gnomeExtensions.settingscenter
-          gnomeExtensions.app-hider
-          gnomeExtensions.arc-menu
-          gnomeExtensions.blur-my-shell
-          gnomeExtensions.clipboard-indicator
-          gnomeExtensions.dash-to-dock
-          gnomeExtensions.extension-list
-          # gnomeExtensions.fuzzy-app-search
-          gnomeExtensions.github-actions
-          # gnomeExtensions.gpu-profile-selector
-          gnomeExtensions.hue-lights
-          gnomeExtensions.ip-finder
-          gnomeExtensions.just-perfection
-          gnomeExtensions.kerberos-login
-          gnomeExtensions.logo-menu
-          gnomeExtensions.no-overview
-          gnomeExtensions.remmina-search-provider
-          gnomeExtensions.removable-drive-menu
-          gnomeExtensions.search-light
-          gnomeExtensions.server-status-indicator
-          gnomeExtensions.tailscale-qs
-          gnomeExtensions.todotxt
-          gnomeExtensions.tophat
-          gnomeExtensions.no-title-bar
-          gnomeExtensions.vitals
-          gnomeExtensions.pip-on-top
-          gnomeExtensions.systemd-manager
         ])
         ++ (with pkgs; [
           clutter

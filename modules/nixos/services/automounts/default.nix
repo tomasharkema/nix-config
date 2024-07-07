@@ -8,28 +8,17 @@
 with lib; let
   machines = inputs.self.servers;
 in {
-  config = mkIf false {
+  config = {
     services.autofs = {
       enable = true;
 
       autoMaster = let
         lines =
-          map (machine: ''
-          '')
-          servers;
-        mapConf = pkgs.writeText "auto" ''
-          kernel    -ro,soft,intr       ftp.kernel.org:/pub/linux
-          boot      -fstype=ext2        :/dev/hda1
-          windoze   -fstype=smbfs       ://windoze/c
-          removable -fstype=ext2        :/dev/hdd
-          cd        -fstype=iso9660,ro  :/dev/hdc
-          floppy    -fstype=auto        :/dev/fd0
-          server    -rw,hard,intr       / -ro myserver.me.org:/ \
-                                        /usr myserver.me.org:/usr \
-                                        /home myserver.me.org:/home
-        '';
+          map (machine: "${machine}  -fstype=fuse,port=22,idmap=user,rw,allow_other,noatime :sshfs\\#tomas@${machine}\\:/")
+          machines;
+        mapConf = pkgs.writeText "servers" (lib.concatStringsSep "\n" lines);
       in ''
-        /mnt/servers file:${mapConf}
+        /mnt/servers file:${mapConf} --timeout=30
       '';
     };
     # [Unit]
