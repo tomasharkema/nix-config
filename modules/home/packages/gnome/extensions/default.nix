@@ -4,44 +4,45 @@
       enable = true;
 
       extensions = with pkgs.gnomeExtensions; [
+        {package = thinkpad-thermal;}
+        {package = fnlock-switch-thinkpad-compact-usb-keyboard;}
+        {package = caffeine;}
         {
           package =
             dash-to-panel;
         }
-        {
-          package =
-            executor;
-        }
+        # {
+        #   package =
+        #     executor;
+        # }
         {
           package =
             battery-health-charging;
         }
-        {
-          package =
-            app-menu-icon-remove-symbolic;
-        }
-        {
-          package =
-            pinguxnetlabel;
-        }
+        # {
+        #   package =
+        #     app-menu-icon-remove-symbolic;
+        # }
+        # {
+        #   package =
+        #     pinguxnetlabel;
+        # }
         {
           package =
             window-is-ready-remover;
         }
-        {
-          package =
-            wayland-or-x11
-            # ;}{ package = network-interfaces-info
-            ;
-        }
+        # {
+        #   package =
+        #     wayland-or-x11;
+        # }
         {
           package =
             appindicator;
         }
-        {
-          package =
-            settingscenter;
-        }
+        # {
+        #   package =
+        #     settingscenter;
+        # }
         {
           package =
             app-hider;
@@ -56,40 +57,29 @@
         }
         {
           package =
-            clipboard-indicator;
+            extension-list;
         }
-        {
-          package =
-            dash-to-dock;
-        }
-        {
-          package =
-            extension-list
-            # ;}{ package = fuzzy-app-search
-            ;
-        }
-        {package = github-actions;}
-        # ;}{ package = gpu-profile-selector
+        {package = gpu-profile-selector;}
         {
           package =
             hue-lights;
         }
-        {
-          package =
-            ip-finder;
-        }
-        {
-          package =
-            just-perfection;
-        }
+        # {
+        #   package =
+        #     ip-finder;
+        # }
+        # {
+        #   package =
+        #     just-perfection;
+        # }
         {
           package =
             kerberos-login;
         }
-        {
-          package =
-            logo-menu;
-        }
+        # {
+        #   package =
+        #     logo-menu;
+        # }
         {
           package =
             no-overview;
@@ -102,26 +92,26 @@
           package =
             removable-drive-menu;
         }
-        {
-          package =
-            search-light;
-        }
-        {
-          package =
-            server-status-indicator;
-        }
+        # {
+        #   package =
+        #     search-light;
+        # }
+        # {
+        #   package =
+        #     server-status-indicator;
+        # }
         {
           package =
             tailscale-qs;
         }
-        {
-          package =
-            todotxt;
-        }
-        {
-          package =
-            tophat;
-        }
+        # {
+        #   package =
+        #     todotxt;
+        # }
+        # {
+        #   package =
+        #     tophat;
+        # }
         {
           package =
             no-title-bar;
@@ -134,7 +124,7 @@
           package =
             pip-on-top;
         }
-        {package = systemd-manager;}
+        # {package = systemd-manager;}
       ];
     };
   };
