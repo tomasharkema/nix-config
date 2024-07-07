@@ -44,6 +44,8 @@ with lib; {
       };
     };
 
+    security.pam.services."gdm-fingerprint".enableGnomeKeyring = true;
+
     #netkit = {
     # xmm7360 = {
     #  enable = true;

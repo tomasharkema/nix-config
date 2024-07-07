@@ -49,12 +49,12 @@ in {
         remote-unlock.enable = true;
         nvidia.enable = true;
 
-        nfs = {
-          enable = true;
-          machines = {
-            silver-star.enable = true;
-          };
-        };
+        # nfs = {
+        #   enable = true;
+        #   machines = {
+        #     silver-star.enable = true;
+        #   };
+        # };
       };
     };
 
