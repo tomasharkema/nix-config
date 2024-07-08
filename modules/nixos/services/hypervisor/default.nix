@@ -129,6 +129,7 @@ in {
 
     virtualisation = {
       kvmgt.enable = true;
+      tpm.enable = true;
 
       libvirt = {
         enable = true;
