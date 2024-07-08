@@ -26,6 +26,11 @@ with lib; {
         "org/gnome/shell/extensions/vitals" = {
           "position-in-panel" = 0;
         };
+
+        "org/gnome/desktop/wm/keybindings" = {
+          close = "<Super>q";
+        };
+
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
           # cursor-theme = mkForce "Adwaita";
@@ -186,7 +191,7 @@ with lib; {
           menu-button-appearance = "Icon";
           menu-button-icon = "Distro_Icon";
           menu-font-size = 14;
-          menu-layout = "Insider";
+          menu-layout = "Redmond";
         };
 
         # [org/gnome/shell/extensions/arcmenu]
