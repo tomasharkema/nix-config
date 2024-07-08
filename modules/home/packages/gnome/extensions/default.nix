@@ -4,6 +4,15 @@
       enable = true;
 
       extensions = with pkgs.gnomeExtensions; [
+        # {
+        #   id = "drive-menu@gnome-shell-extensions.gcampax.github.com";
+        #   package = null;
+        # }
+        # {
+        #   id = "GPaste@gnome-shell-extensions.gnome.org";
+        #   package = null;
+        # }
+
         {package = thinkpad-thermal;}
         {package = fnlock-switch-thinkpad-compact-usb-keyboard;}
         {package = caffeine;}
