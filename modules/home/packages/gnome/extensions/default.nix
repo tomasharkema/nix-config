@@ -1,5 +1,10 @@
-{pkgs, ...}: {
-  config = {
+{
+  pkgs,
+  lib,
+  ...
+}:
+with lib; {
+  config = mkIf pkgs.stdenv.isLinux {
     programs.gnome-shell = {
       enable = true;
 
@@ -121,10 +126,7 @@
         #   package =
         #     tophat;
         # }
-        {
-          package =
-            no-title-bar;
-        }
+
         {
           package =
             vitals;

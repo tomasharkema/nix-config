@@ -29,7 +29,7 @@ in {
 
       font = {
         package = pkgs.inter;
-        name = "Inter Regular";
+        name = "Inter Variable";
         size = 11;
       };
 

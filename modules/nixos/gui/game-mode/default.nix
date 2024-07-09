@@ -10,10 +10,10 @@ in {
   options.gui.gamemode = {enable = mkEnableOption "gamemode";};
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      gnomeExtensions.gamemode-indicator-in-system-settings
-    ];
-    home-manager.users.tomas.dconf.settings."org/gnome/shell".enabled-extensions = [pkgs.gnomeExtensions.gamemode-indicator-in-system-settings.extensionUuid];
+    # environment.systemPackages = with pkgs; [
+    #   gnomeExtensions.gamemode-indicator-in-system-settings
+    # ];
+    # home-manager.users.tomas.dconf.settings."org/gnome/shell".enabled-extensions = [pkgs.gnomeExtensions.gamemode-indicator-in-system-settings.extensionUuid];
 
     programs.gamemode = {
       enable = true;

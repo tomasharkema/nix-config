@@ -35,7 +35,7 @@ with lib; {
           color-scheme = "prefer-dark";
           # cursor-theme = mkForce "Adwaita";
           # gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
-          document-font-name = "Inter Regular 11";
+          document-font-name = "Inter Variable 11";
           font-antialiasing = "grayscale";
           monospace-font-name = "JetBrainsMono Nerd Font Mono 11";
           # font-name = "Inter 11";

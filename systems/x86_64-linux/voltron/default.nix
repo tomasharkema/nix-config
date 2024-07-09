@@ -70,8 +70,8 @@ with lib; {
       libqmi
 
       thinkfan
-      gnomeExtensions.thinkpad-thermal
-      gnomeExtensions.fnlock-switch-thinkpad-compact-usb-keyboard
+      # gnomeExtensions.thinkpad-thermal
+      # gnomeExtensions.fnlock-switch-thinkpad-compact-usb-keyboard
       tpacpi-bat
 
       ventoy-full
@@ -83,7 +83,7 @@ with lib; {
       # calibre
       glxinfo
       inxi
-      pkgs.gnomeExtensions.battery-health-charging
+      # pkgs.gnomeExtensions.battery-health-charging
 
       mpv
       mpvc
@@ -165,7 +165,11 @@ with lib; {
       hostName = "voltron"; # Define your hostname.
       networkmanager.enable = true;
       # wireless.enable = true;
-      firewall.enable = false;
+      firewall = {
+        enable = true;
+
+        trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
+      };
     };
 
     apps.podman.enable = true;
