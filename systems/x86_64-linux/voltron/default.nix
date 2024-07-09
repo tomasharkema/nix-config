@@ -8,9 +8,6 @@
 with lib; {
   imports = with inputs; [
     ./hardware-configuration.nix
-
-    # nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
-    # nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
   ];
 
   config = {
@@ -31,28 +28,24 @@ with lib; {
         enable = true;
         packages = with pkgs; [heimdall-gui libusb];
       };
-      # open-fprintd.enable = true;
-      # python-validity.enable = true;
 
       fprintd = {
         enable = true;
         tod = {
           enable = true;
           driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
-            calib-data-file = ./calib-data.bin; #config.age.secrets."calib-data".path; #./calib-data.bin;
+            calib-data-file = ./calib-data/share/calib-data.bin; #config.age.secrets."calib-data".path; #./calib-data.bin;
           };
         };
       };
     };
 
-    security.pam.services."gdm-fingerprint".enableGnomeKeyring = true;
+    home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
+      {package = thinkpad-thermal;}
+      {package = fnlock-switch-thinkpad-compact-usb-keyboard;}
+    ];
 
-    #netkit = {
-    # xmm7360 = {
-    #  enable = true;
-    # autoStart = true;
-    #};
-    #};
+    security.pam.services."gdm-fingerprint".enableGnomeKeyring = true;
 
     age.secrets."calib-data" = {
       file = ../../../secrets/calib-data.age;

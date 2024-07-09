@@ -49,7 +49,7 @@ with lib; {
               };
 
               target = {
-                "raw ssh://192.168.0.100/mnt/user0/backup/btrbk" = {
+                "raw ssh://silver-star/mnt/user0/backup/btrbk" = {
                   ssh_user = "root";
                 };
               };

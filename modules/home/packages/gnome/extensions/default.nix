@@ -17,9 +17,7 @@ with lib; {
         #   id = "GPaste@gnome-shell-extensions.gnome.org";
         #   package = null;
         # }
-
-        {package = thinkpad-thermal;}
-        {package = fnlock-switch-thinkpad-compact-usb-keyboard;}
+        {package = home-assistant-extension;}
         {package = caffeine;}
         {
           package =
