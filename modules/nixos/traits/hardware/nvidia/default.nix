@@ -32,16 +32,17 @@ in {
       (nvtopPackages.full)
       zenith-nvidia
       nvidia-offload
-      # (gnomeExtensions.prime-helper)
       nvfancontrol
       nvitop
       # gwe
     ];
 
-    home-manager.users.tomas.dconf.settings."org/gnome/shell".enabled-extensions = [pkgs.gnomeExtensions.prime-helper.extensionUuid];
+    home-manager.users.tomas.programs.gnome-shell.extensions = [
+      {package = pkgs.gnomeExtensions.prime-helper;}
+    ];
 
-    services.supergfxd.enable = true;
-    systemd.services.supergfxd.path = [pkgs.pciutils];
+    # services.supergfxd.enable = true;
+    # systemd.services.supergfxd.path = [pkgs.pciutils];
 
     # environment.sessionVariables = {
     #   VK_DRIVER_FILES =
