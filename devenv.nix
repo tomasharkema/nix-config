@@ -175,6 +175,12 @@ in {
     shellcheck.enable = true;
     # nixd.enable = true;
     # statix.enable = true;
+
+    "by-name" = {
+      enable = true;
+      entry = "sh ./by-name.sh";
+      pass_filenames = false;
+    };
   };
 
   devcontainer = {

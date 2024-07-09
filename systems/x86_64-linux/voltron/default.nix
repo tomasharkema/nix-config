@@ -64,8 +64,7 @@ with lib; {
       libqmi
 
       thinkfan
-      # gnomeExtensions.thinkpad-thermal
-      # gnomeExtensions.fnlock-switch-thinkpad-compact-usb-keyboard
+
       tpacpi-bat
 
       ventoy-full
@@ -77,7 +76,6 @@ with lib; {
       # calibre
       glxinfo
       inxi
-      # pkgs.gnomeExtensions.battery-health-charging
 
       mpv
       mpvc
@@ -89,7 +87,7 @@ with lib; {
       pwvucontrol
     ];
 
-    home-manager.users.tomas.dconf.settings."org/gnome/shell".enabled-extensions = ["Battery-Health-Charging@maniacx.github.com"];
+    # home-manager.users.tomas.dconf.settings."org/gnome/shell".enabled-extensions = ["Battery-Health-Charging@maniacx.github.com"];
 
     gui = {
       enable = true;
@@ -199,9 +197,14 @@ with lib; {
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
 
-      supportedFilesystems = ["ntfs"];
+      modprobeConfig.enable = true;
+      extraModprobeConfig = ''
+        options thinkpad_acpi fan_control=1
+      '';
+
       kernelModules = [
         "kvm-intel"
+        "thinkpad_acpi"
         # "watchdog"
       ];
       initrd.kernelModules = [
