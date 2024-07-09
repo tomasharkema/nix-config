@@ -119,7 +119,6 @@ with lib; {
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
 
-      kernel.sysctl."kernel.sysrq" = 1;
       initrd = {
         availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
         kernelModules = ["kvm-intel" "uinput" "nvme"];
