@@ -29,9 +29,20 @@
     });
   });
 
-  mpv = prev.mpv.override {scripts = [prev.mpvScripts.mpris];};
+  mpv = channels.unstable.mpv.override {
+    # scripts = with channels.unstable.mpvScripts; [
+    #   mpris
+    #   youtube-upnext
+    #   simple-mpv-webui
+    #   mpv-playlistmanager
+    #   mpv-cheatsheet
+    #   # mpv-notify-send
+    # ];
+    youtubeSupport = true;
+  };
+  mpvScripts = channels.unstable.mpvScripts;
 
-  mpv-unwrapped = prev.mpv-unwrapped.override {ffmpeg = prev.ffmpeg-full;};
+  mpv-unwrapped = channels.unstable.mpv-unwrapped.override {ffmpeg = channels.unstable.ffmpeg-full;};
 
   spotifyd = prev.spotifyd.override {withMpris = true;};
 

@@ -89,6 +89,22 @@ in {
       packages = [pkgs.custom.ancs4linux];
     };
 
+    networking.firewall = {
+      allowedTCPPorts = [
+        1900
+        5353
+        8324
+        8080
+        8060 # the plex frontend does upnp things
+        32433 # plex-media-player
+        32410
+        32412
+        32413
+        32414
+        32469
+      ];
+    };
+
     environment.systemPackages = with pkgs;
       (optional ((stdenv.isLinux && stdenv.isx86_64) || stdenv.isDarwin) mailspring)
       ++ [
