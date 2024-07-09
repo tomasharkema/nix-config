@@ -42,13 +42,6 @@ with lib; {
       inxi
       pkgs.gnomeExtensions.battery-health-charging
 
-      mpv
-      mpvc
-      play-with-mpv
-
-      plex-mpv-shim
-      open-in-mpv
-      celluloid
       pwvucontrol
     ];
 

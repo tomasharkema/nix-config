@@ -5,10 +5,18 @@
 }:
 with lib; {
   config = mkIf pkgs.stdenv.isLinux {
+    home.packages = with pkgs; [appindicator-sharp];
+
+    dconf.settings ."org/gnome/shell".enabled-extensions = [
+      "GPaste@gnome-shell-extensions.gnome.org"
+    ];
+
     programs.gnome-shell = {
       enable = true;
 
       extensions = with pkgs.gnomeExtensions; [
+        {package = media-controls;}
+        {package = gsconnect;}
         # {
         #   id = "drive-menu@gnome-shell-extensions.gcampax.github.com";
         #   package = null;

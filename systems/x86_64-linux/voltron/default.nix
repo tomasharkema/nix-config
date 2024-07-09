@@ -77,13 +77,6 @@ with lib; {
       glxinfo
       inxi
 
-      mpv
-      mpvc
-      play-with-mpv
-
-      plex-mpv-shim
-      open-in-mpv
-      celluloid
       pwvucontrol
     ];
 

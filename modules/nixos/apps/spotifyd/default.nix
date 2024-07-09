@@ -1,8 +1,13 @@
-{ lib, pkgs, config, ... }:
-with lib;
-let cfg = config.apps.spotifyd;
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.apps.spotifyd;
 in {
-  options.apps.spotifyd = { enable = mkEnableOption "spotifyd"; };
+  options.apps.spotifyd = {enable = mkEnableOption "spotifyd";};
 
   config = mkIf cfg.enable {
     #   environment.systemPackages = with pkgs; [
@@ -10,15 +15,14 @@ in {
     #     spotifyd
     #   ];
     users.users = {
-      "tomas".extraGroups = [ "audio" ];
-      "root".extraGroups = [ "audio" ];
+      "tomas".extraGroups = ["audio"];
+      "root".extraGroups = ["audio"];
     };
 
     services = {
-
       dbus = {
         enable = true;
-        packages = [ pkgs.shairport-sync pkgs.spotifyd pkgs.mpv ];
+        packages = [pkgs.shairport-sync pkgs.spotifyd];
       };
 
       shairport-sync = {
@@ -40,7 +44,7 @@ in {
           global = {
             backend = "pulseaudio";
             bitrate = 320;
-            mpris = false;
+            mpris = true;
             device_name = "${config.networking.hostName} SpotifyD";
             # use_keyring = true;
             dbus_type = "system";
@@ -65,13 +69,13 @@ in {
           ExecStart = "${pkgs.nqptp}/bin/nqptp";
           #Restart = "always";
         };
-        wantedBy = [ "default.target" ];
+        wantedBy = ["default.target"];
       };
     };
 
     networking.firewall = {
-      allowedUDPPorts = [ 33677 ];
-      allowedTCPPorts = [ 33677 ];
+      allowedUDPPorts = [33677];
+      allowedTCPPorts = [33677];
     };
     # };
   };

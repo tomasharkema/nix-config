@@ -125,12 +125,6 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-      mpv
-      mpvc
-
-      play-with-mpv
-      plex-mpv-shim
-      open-in-mpv
       celluloid
       pwvucontrol
       kodi-cli
@@ -160,11 +154,6 @@ in {
 
     networking.firewall = {
       enable = mkForce false;
-      allowedTCPPorts = [
-        8080
-        8060 # the plex frontend does upnp things
-        32433 # plex-media-player
-      ];
     };
   };
 }

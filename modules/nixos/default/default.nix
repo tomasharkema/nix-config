@@ -187,6 +187,7 @@ with lib.custom;
         ])
         ++ (optionals pkgs.stdenv.isx86_64 (with pkgs; [
           plex-media-player
+          plexamp
           pkgs.custom.ztui
           # pkgs.wolfram-engine
           libsmbios
@@ -196,7 +197,6 @@ with lib.custom;
           google-chrome
           netflix
 
-          play-with-mpv
           cmospwd
           uefisettings
           libsmbios
@@ -260,6 +260,11 @@ with lib.custom;
 
       services = {
         watchdogd = {enable = true;};
+
+        dbus = {
+          enable = true;
+          packages = with pkgs; [mpv];
+        };
 
         atd.enable = true;
         kmscon = {
