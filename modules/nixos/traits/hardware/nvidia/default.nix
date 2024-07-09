@@ -32,7 +32,7 @@ in {
       (nvtopPackages.full)
       zenith-nvidia
       nvidia-offload
-      (gnomeExtensions.prime-helper)
+      # (gnomeExtensions.prime-helper)
       nvfancontrol
       nvitop
       # gwe

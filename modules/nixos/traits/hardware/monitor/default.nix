@@ -25,7 +25,7 @@ in
       environment.systemPackages = with pkgs; [
         ddcutil
         # xorg.xbacklight
-        gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil
+        # gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil
         brightnessctl
       ];
 
