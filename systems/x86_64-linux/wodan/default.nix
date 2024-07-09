@@ -141,6 +141,7 @@ with lib; {
 
       encrypt = true;
       newSubvolumes = true;
+      btrbk.enable = true;
     };
 
     boot = {
