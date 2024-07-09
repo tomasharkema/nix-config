@@ -1,7 +1,11 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 with lib; {
-
-  options.disks.btrfs.btrbk = { enable = mkEnableOption "btrbk"; };
+  options.disks.btrfs.btrbk = {enable = mkEnableOption "btrbk";};
 
   config = mkIf (config.disks.btrfs.enable && config.disks.btrfs.btrbk.enable) {
     age.secrets.btrbk = {
@@ -12,7 +16,7 @@ with lib; {
     };
 
     services.btrbk = {
-      extraPackages = with pkgs; [ zstd mbuffer ];
+      extraPackages = with pkgs; [zstd mbuffer];
       instances."${config.networking.hostName}-btrbk" = {
         onCalendar = "hourly";
 
@@ -39,9 +43,9 @@ with lib; {
                   snapshot_create = "always";
                   snapshot_name = "${config.networking.hostName}-home";
                 };
-                rootfs = {
-                  snapshot_name = "${config.networking.hostName}-rootfs";
-                };
+                # rootfs = {
+                #   snapshot_name = "${config.networking.hostName}-rootfs";
+                # };
               };
 
               target = {
