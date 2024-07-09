@@ -307,7 +307,7 @@ in {
         "watchdog"
       ];
       extraModulePackages = [];
-      # kernelParams = ["console=ttyS0,115200" "console=tty1"];
+      kernelParams = ["console=tty0" "console=ttyS0,115200"];
     };
 
     # virtualisation = {

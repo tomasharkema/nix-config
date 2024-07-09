@@ -17,6 +17,7 @@ with lib; {
 
     services.btrbk = {
       extraPackages = with pkgs; [zstd mbuffer];
+
       instances."${config.networking.hostName}-btrbk" = {
         onCalendar = "hourly";
 
@@ -34,7 +35,7 @@ with lib; {
           lockfile = "/run/btrbk.lock";
 
           ssh_identity = "${config.age.secrets.btrbk.path}";
-          stream_buffer = "50M";
+          stream_buffer = "100M";
 
           volume = {
             "/partition-root" = {
