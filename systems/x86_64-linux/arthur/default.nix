@@ -13,6 +13,10 @@ with lib; {
   ];
 
   config = {
+    age.rekey = {
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPNjMAH00cvtgNj1+5bMhUi0woJJ5kmhu1o2h2AmzRJW root@arthur";
+    };
+
     nixpkgs.config.rocmSupport = true;
 
     gui = {
