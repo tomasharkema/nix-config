@@ -1,8 +1,13 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 with lib; {
   config = mkIf false {
     age.secrets."rmapi" = {
-      file = ../../../../secrets/rmapi.age;
+      rekeyFile = ../../../../secrets/rmapi.age;
       mode = "644";
       path = "/home/tomas/.config/rmapi/rmapi.conf";
       owner = "tomas";
@@ -13,6 +18,6 @@ with lib; {
       ln -sfn /home/tomas/.config/rmapi/rmapi.conf /home/tomas/.rmapi
     '';
 
-    environment.systemPackages = with pkgs; [ rmapi pkgs.custom.astounding ];
+    environment.systemPackages = with pkgs; [rmapi pkgs.custom.astounding];
   };
 }

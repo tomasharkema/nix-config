@@ -322,11 +322,22 @@
       ];
 
       system.modules.darwin = with inputs; [
-        agenix.nixosModules.default
-        agenix-rekey.nixosModules.default
         ({...}: {
-          system.nixos.tags = ["snowfall"];
-          system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
+          config = {
+            system.nixos.tags = ["snowfall"];
+            system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
+
+            age.rekey = {
+              masterIdentities = [
+                ./age-yubikey-identity.pub
+                "/Users/tomas/.ssh/id_ed25519"
+                "/etc/ssh/ssh_host_ed25519_key"
+              ];
+
+              storageMode = "local";
+              localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+            };
+          };
         })
       ];
 
@@ -391,6 +402,7 @@
             age.rekey = {
               masterIdentities = [
                 ./age-yubikey-identity.pub
+                "/etc/ssh/ssh_host_ed25519_key"
               ];
 
               storageMode = "local";
@@ -418,7 +430,7 @@
 
       deploy = lib.mkDeploy {
         inherit (inputs) self;
-
+        inherit inputs;
         # overrides = {
         #   sshUser = "root";
         #   # wodan-vm = {
@@ -450,7 +462,7 @@
 
       agenix-rekey = inputs.agenix-rekey.configure {
         userFlake = inputs.self;
-        nodes = lib.attrsets.filterAttrs (n: v: (!(lib.strings.hasPrefix "installer" n))) inputs.self.nixosConfigurations; # // inputs.self.darwinConfigurations;
+        nodes = lib.attrsets.filterAttrs (n: v: (!(lib.strings.hasPrefix "installer" n))) (inputs.self.nixosConfigurations // inputs.self.darwinConfigurations);
         # Example for colmena:
         # inherit ((colmena.lib.makeHive self.colmena).introspect (x: x)) nodes;
       };
