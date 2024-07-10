@@ -15,6 +15,10 @@ with lib; {
   ];
 
   config = {
+    age.rekey = {
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFWBSBsCepulXWmLkxCirZ0yv0BXXSHB3/iq2NFkHBxs root@enzian";
+    };
+
     apps = {
       ntopng.enable = true;
       steam.enable = true;

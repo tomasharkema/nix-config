@@ -255,6 +255,10 @@
     lib = inputs.snowfall-lib.mkLib {
       inherit inputs;
 
+      imports = [
+        inputs.agenix-rekey.flakeModule
+      ];
+
       src = ./.;
 
       snowfall = {
@@ -314,6 +318,7 @@
         snowfall-flake.overlays."package/flake"
         nixos-checkmk.overlays.default
         nixos-service.overlays.default
+        agenix-rekey.overlays.default
       ];
 
       system.modules.darwin = with inputs; [
@@ -381,9 +386,16 @@
         nixos-service.nixosModules.nixos-service
         nix-virt.nixosModules.default
 
-        ({...}: {
+        ({config, ...}: {
           config = {
-            age.rekey = {masterIdentities = ["/etc/ssh/ssh_host_ed25519_key" "/home/tomas/.ssh/id_ed25519"];};
+            age.rekey = {
+              masterIdentities = [
+                ./age-yubikey-identity.pub
+              ];
+
+              storageMode = "local";
+              localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+            };
 
             system = {
               stateVersion = "24.05";
@@ -438,7 +450,7 @@
 
       agenix-rekey = inputs.agenix-rekey.configure {
         userFlake = inputs.self;
-        nodes = inputs.self.nixosConfigurations;
+        nodes = lib.attrsets.filterAttrs (n: v: (!(lib.strings.hasPrefix "installer" n))) inputs.self.nixosConfigurations; # // inputs.self.darwinConfigurations;
         # Example for colmena:
         # inherit ((colmena.lib.makeHive self.colmena).introspect (x: x)) nodes;
       };
@@ -452,13 +464,16 @@
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
             ./installer.nix
+
             (
               {
                 lib,
                 pkgs,
                 ...
               }: {
-                boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+                config = {
+                  boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+                };
               }
             )
           ];
@@ -472,13 +487,16 @@
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
             ./installer.nix
+
             (
               {
                 lib,
                 pkgs,
                 ...
               }: {
-                boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+                config = {
+                  boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+                };
               }
             )
           ];
@@ -491,13 +509,16 @@
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
             ./installer.nix
+
             (
               {
                 lib,
                 pkgs,
                 ...
               }: {
-                boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+                config = {
+                  boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+                };
               }
             )
           ];

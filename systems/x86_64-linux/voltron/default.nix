@@ -11,6 +11,10 @@ with lib; {
   ];
 
   config = {
+    age.rekey = {
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIImcDgt9Pzve8g2auikBFQ3JkXB5UqoRfr7D22caGMgB root@euro-mir-3";
+    };
+
     disks.btrfs = {
       enable = true;
       main = "/dev/nvme0n1";

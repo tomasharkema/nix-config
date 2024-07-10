@@ -8,6 +8,10 @@ with lib; {
   imports = [./hardware-configuration.nix];
 
   config = {
+    age.rekey = {
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILZP/NhYd8ZBJBXDEDwUgkxQHEBD3DT2KsAQA3bn1MSC root@silver-star-vm";
+    };
+
     headless.enable = true;
 
     traits = {

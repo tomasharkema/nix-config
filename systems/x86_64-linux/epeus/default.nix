@@ -1,10 +1,19 @@
-{ pkgs, config, lib, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
   config = {
+    age.rekey = {
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVhJ1k25x/1A/zN96p48MGrPJxVboTe17rO9Mcb61qG root@blue-fire";
+    };
+
     traits.slim.enable = true;
     traits.hardware.laptop.enable = true;
     # Use the GRUB 2 boot loader.
@@ -61,7 +70,7 @@
     specialisation = {
       cli = {
         configuration = {
-          system.nixos.tags = [ "cli" ];
+          system.nixos.tags = ["cli"];
           services.xserver.enable = lib.mkForce false;
         };
       };
@@ -70,12 +79,11 @@
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.tomas = {
       isNormalUser = true;
-      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-      packages = with pkgs;
-        [
-          #     firefox
-          tree
-        ];
+      extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
+      packages = with pkgs; [
+        #     firefox
+        tree
+      ];
     };
 
     # List packages installed in system profile. To search, run:
