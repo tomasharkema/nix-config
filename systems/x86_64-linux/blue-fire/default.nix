@@ -98,7 +98,7 @@ in {
       #   enableBot = true;
       # };
 
-      # tcsd.enable = true;
+      tcsd.enable = true;
       kmscon.enable = mkForce false;
 
       prometheus.exporters.ipmi.enable = true;
@@ -307,7 +307,7 @@ in {
         "watchdog"
       ];
       extraModulePackages = [];
-      kernelParams = ["console=tty0" "console=ttyS0,115200"];
+      kernelParams = ["console=tty0" "console=ttyS1,115200n8"];
     };
 
     # virtualisation = {
