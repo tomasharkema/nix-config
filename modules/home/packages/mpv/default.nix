@@ -40,7 +40,7 @@
 
     home = {
       packages = with pkgs; [
-        play-with-mpv
+        # play-with-mpv
         open-in-mpv
         mpvc
       ];
