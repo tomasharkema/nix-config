@@ -43,7 +43,7 @@ with lib; {
         nox
         nh
 
-        agenix
+        # agenix
         alejandra
         autoflake
         attic-client
