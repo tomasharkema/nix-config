@@ -257,10 +257,6 @@
 
       src = ./.;
 
-      imports = [
-        inputs.agenix-rekey.flakeModule
-      ];
-
       snowfall = {
         meta = {
           name = "dotfiles";
@@ -273,6 +269,10 @@
   in
     lib.mkFlake {
       inherit inputs;
+
+      imports = [
+        inputs.agenix-rekey.flakeModule
+      ];
 
       # src = ./.;
 
@@ -317,6 +317,8 @@
       ];
 
       system.modules.darwin = with inputs; [
+        agenix.nixosModules.default
+        agenix-rekey.nixosModules.default
         ({...}: {
           system.nixos.tags = ["snowfall"];
           system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
