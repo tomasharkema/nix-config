@@ -3,8 +3,9 @@
   config,
   lib,
   ...
-}: {
-  config = {
+}:
+with lib; {
+  config = mkIf pkgs.stdenv.isLinux {
     services = {
       # plex-mpv-shim.enable = true;
       mpd-mpris.enable = true;
