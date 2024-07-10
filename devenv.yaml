@@ -6,5 +6,8 @@ inputs:
         follows: nixpkgs
   agenix-rekey:
     url: github:oddlama/agenix-rekey
+    inputs:
+      nixpkgs:
+        follows: nixpkgs
   nixpkgs:
     url: github:cachix/devenv-nixpkgs/rolling
