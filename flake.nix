@@ -89,6 +89,14 @@
       };
     };
 
+    agenix-rekey = {
+      url = "github:oddlama/agenix-rekey";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
     nixos-hardware = {
       url = "github:nixos/nixos-hardware";
 
@@ -226,14 +234,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    agenix-rekey = {
-      url = "github:oddlama/agenix-rekey";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
-
     conky = {
       url = "github:brndnmtthws/conky";
       inputs = {
@@ -317,10 +317,10 @@
       ];
 
       system.modules.darwin = with inputs; [
-        {
+        ({...}: {
           system.nixos.tags = ["snowfall"];
           system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
-        }
+        })
       ];
 
       homes.modules = with inputs; [
@@ -340,7 +340,7 @@
       # };
 
       systems.hosts = let
-        cudaOff = {
+        cudaOff = {...}: {
           nixpkgs = {
             config = {cudaSupport = false;};
           };
@@ -371,6 +371,7 @@
 
         # home-manager.nixosModules.home-manager
         agenix.nixosModules.default
+        agenix-rekey.nixosModules.default
 
         nix-gaming.nixosModules.pipewireLowLatency
         nix-gaming.nixosModules.platformOptimizations
@@ -378,14 +379,19 @@
         nixos-service.nixosModules.nixos-service
         nix-virt.nixosModules.default
 
-        {
+        ({...}: {
           config = {
-            system.stateVersion = "24.05";
-            system.nixos.tags = [
-              "snowfall"
-              (self.shortRev or "dirty")
-            ];
-            system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
+            age.rekey = {masterIdentities = ["/etc/ssh/ssh_host_ed25519_key" "/home/tomas/.ssh/id_ed25519"];};
+
+            system = {
+              stateVersion = "24.05";
+              nixos.tags = [
+                "snowfall"
+                (self.shortRev or "dirty")
+              ];
+              configurationRevision = lib.mkForce (self.shortRev or "dirty");
+            };
+
             nix = {
               registry.nixpkgs.flake = inputs.nixpkgs;
               registry.home-manager.flake = inputs.home-manager;
@@ -393,7 +399,7 @@
               registry.darwin.flake = inputs.darwin;
             };
           };
-        }
+        })
       ];
 
       deploy = lib.mkDeploy {

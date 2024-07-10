@@ -105,7 +105,7 @@ with lib.custom;
           go-chromecast
           gnomecast
           catt
-          mkchromecast
+          # mkchromecast
           fcast-receiver
 
           tydra
