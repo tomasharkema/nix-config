@@ -321,17 +321,21 @@
         agenix-rekey.overlays.default
       ];
 
-      system.modules.darwin = with inputs; [
-        ({...}: {
+      systems.modules.darwin = with inputs; [
+        agenix.darwinModules.default
+        # agenix.darwinModules.default
+        agenix-rekey.nixosModules.default
+
+        ({config, ...}: {
           config = {
-            system.nixos.tags = ["snowfall"];
+            # system.nixos.tags = ["snowfall"];
             system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
 
             age.rekey = {
               masterIdentities = [
                 ./age-yubikey-identity.pub
-                "/Users/tomas/.ssh/id_ed25519"
-                "/etc/ssh/ssh_host_ed25519_key"
+                # "/Users/tomas/.ssh/id_ed25519"
+                # "/etc/ssh/ssh_host_ed25519_key"
               ];
 
               storageMode = "local";
@@ -402,7 +406,7 @@
             age.rekey = {
               masterIdentities = [
                 ./age-yubikey-identity.pub
-                "/etc/ssh/ssh_host_ed25519_key"
+                # "/etc/ssh/ssh_host_ed25519_key"
               ];
 
               storageMode = "local";
