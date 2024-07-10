@@ -34,7 +34,7 @@ with lib; {
         tod = {
           enable = true;
           driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
-            calib-data-file = ./calib-data/share/calib-data.bin; #config.age.secrets."calib-data".path; #./calib-data.bin;
+            calib-data-file = config.age.secrets."calib-data".path; #./calib-data.bin;
           };
         };
       };
@@ -51,7 +51,7 @@ with lib; {
       file = ../../../secrets/calib-data.age;
       # owner = "tomas";
       # group = "tomas";
-      # mode = "644";
+      mode = "666";
       # symlink = false;
     };
 
