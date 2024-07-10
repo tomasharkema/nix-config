@@ -8,58 +8,58 @@
       identityPaths = ["/etc/ssh/ssh_host_ed25519_key"];
       secrets = {
         atuin = {
-          file = ./atuin.age;
+          rekeyFile = ./atuin.age;
           owner = "tomas";
           group = "tomas";
           mode = "644";
           # symlink = false;
         };
         "attic-config.toml" = {
-          file = ./attic-config.toml.age;
+          rekeyFile = ./attic-config.toml.age;
           mode = "644";
           owner = "tomas";
           group = "tomas";
           path = "/home/tomas/.config/attic/config.toml";
         };
         "attic-netrc" = {
-          file = ./attic-netrc.age;
+          rekeyFile = ./attic-netrc.age;
           mode = "644";
           owner = "tomas";
           group = "tomas";
           path = "/home/tomas/.config/attic/netrc";
         };
         attic-key = {
-          file = ./attic-key.age;
+          rekeyFile = ./attic-key.age;
           mode = "644";
         };
         tailscale = {
-          file = ./tailscale.age;
+          rekeyFile = ./tailscale.age;
           mode = "644";
         };
         gh = {
-          file = ./gh.age;
+          rekeyFile = ./gh.age;
           mode = "644";
         };
         "resilio-p" = {
-          file = ./resilio-p.age;
+          rekeyFile = ./resilio-p.age;
           mode = "644";
         };
 
         "resilio-docs" = {
-          file = ./resilio-docs.age;
+          rekeyFile = ./resilio-docs.age;
           mode = "644";
         };
         "resilio-shared-public" = {
-          file = ./resilio-shared-public.age;
+          rekeyFile = ./resilio-shared-public.age;
           mode = "644";
         };
         "ntfy" = {
-          file = ./ntfy.age;
+          rekeyFile = ./ntfy.age;
           mode = "644";
         };
 
         # "cachix" = {
-        #   file = ./cachix.age;
+        #   rekeyFile = ./cachix.age;
         #   mode = "644";
         #   path = "/etc/cachix.dhall";
         # path = "/home/tomas/.config/cachix/cachix.dhall";
@@ -67,40 +67,40 @@
         # group = "tomas";
         # };
         # "cachix-root" = {
-        #   file = ./cachix.age;
+        #   rekeyFile = ./cachix.age;
         #   mode = "644";
         #   path = "/root/.config/cachix/cachix.dhall";
         # };
         # "cachix-agent" = {
-        #   file = ./cachix-agent.age;
+        #   rekeyFile = ./cachix-agent.age;
         #   mode = "644";
         #   path = "/etc/cachix-agent.token";
         # };
         # "cachix-token" = {
-        #   file = ./cachix-token.age;
+        #   rekeyFile = ./cachix-token.age;
         #   mode = "744";
         # };
         # "cachix-activate" = {
-        #   file = ./cachix-activate.age;
+        #   rekeyFile = ./cachix-activate.age;
         #   mode = "644";
         # };
         # age.secrets."otp" = {
-        #   file = ./otp.age;
+        #   rekeyFile = ./otp.age;
         #   mode = "644";
         #   # path = "/home/tomas/.google_authenticator";
         #   # owner = "tomas";
         #   # group = "tomas";
         # };
         "healthcheck" = {
-          file = ./healthcheck.age;
+          rekeyFile = ./healthcheck.age;
           mode = "644";
         };
         "op" = {
-          file = ./op.age;
+          rekeyFile = ./op.age;
           mode = "644";
         };
         # spotify-tui = {
-        #   file = ./spotify-tui.age;
+        #   rekeyFile = ./spotify-tui.age;
         #   # owner = "tomas";
         #   # group = "tomas";
         #   mode = "644";
@@ -108,7 +108,7 @@
         # };
 
         notify = {
-          file = ./notify.age;
+          rekeyFile = ./notify.age;
           # owner = "tomas";
           # group = "tomas";
           mode = "644";
@@ -116,19 +116,19 @@
           # symlink = false;
         };
         mak = {
-          file = ./mak.age;
+          rekeyFile = ./mak.age;
           mode = "644";
         };
 
         "domainjoin" = {
-          file = ./domainjoin.age;
+          rekeyFile = ./domainjoin.age;
         };
         "peerix-private" = {
-          file = ./peerix.private.age;
+          rekeyFile = ./peerix.private.age;
           mode = "644";
         };
         netrc = {
-          file = ./netrc.age;
+          rekeyFile = ./netrc.age;
         };
       };
     };

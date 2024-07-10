@@ -6,17 +6,15 @@
   ...
 }:
 with lib;
-with lib.custom;
-let
+with lib.custom; let
   cfg = config.tailscale;
-in
-{
+in {
   options.tailscale = {
     enable = mkBoolOpt true "SnowflakeOS GNOME configuration";
   };
 
   # age.secrets.tailscale = {
-  #   file = ../../secrets/tailscale.age;
+  #   rekeyFile = ../../secrets/tailscale.age;
   #   # mode = "770";
   #   owner = "tomas";
   #   group = "tomas";
@@ -33,8 +31,8 @@ in
           "tailscale0"
           "zthnhagpcb"
         ];
-        allowedTCPPorts = [ config.services.tailscale.port ];
-        allowedUDPPorts = [ config.services.tailscale.port ];
+        allowedTCPPorts = [config.services.tailscale.port];
+        allowedUDPPorts = [config.services.tailscale.port];
       };
     };
 
@@ -71,7 +69,7 @@ in
 
       zerotierone = {
         enable = true;
-        joinNetworks = [ "***REMOVED***" ];
+        joinNetworks = ["***REMOVED***"];
       };
     };
 

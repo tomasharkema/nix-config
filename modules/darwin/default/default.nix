@@ -23,16 +23,26 @@
   #why depends linux-6.6.33
   imports = [
     inputs.agenix.darwinModules.default
+    # agenix.darwinModules.default
+    inputs.agenix-rekey.nixosModules.default
     # ../../nixos/secrets
   ];
 
   config = {
     age = {
-      identityPaths = ["/etc/ssh/ssh_host_ed25519_key" "/Users/tomas/.ssh/id_ed25519"];
+      rekey = {
+        masterIdentities = [
+          ./age-yubikey-identity.pub
+          "/etc/ssh/ssh_host_ed25519_key"
+          "/Users/tomas/.ssh/id_ed25519"
+        ];
 
+        storageMode = "local";
+        localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+      };
       secrets = {
         atuin = {
-          file = ../../nixos/secrets/atuin.age;
+          rekeyFile = ../../nixos/secrets/atuin.age;
           # owner = "tomas";
           # group = "tomas";
           mode = "644";
@@ -46,7 +56,7 @@
         # symlink = false;
         # };
         notify = {
-          file = ../../nixos/secrets/notify.age;
+          rekeyFile = ../../nixos/secrets/notify.age;
           # owner = "tomas";
           # group = "tomas";
           mode = "644";

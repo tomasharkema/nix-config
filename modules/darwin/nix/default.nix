@@ -25,12 +25,12 @@ in {
 
   config = {
     age = {
-      # identityPaths = [
-      #   "/etc/ssh/ssh_host_ed25519_key"
-      # ];
+      identityPaths = [
+        "/etc/ssh/ssh_host_ed25519_key"
+      ];
       secrets = {
         "attic-config.toml" = {
-          file = ../../nixos/secrets/attic-config.toml.age;
+          rekeyFile = ../../nixos/secrets/attic-config.toml.age;
           mode = "777";
           owner = "tomas";
           group = "tomas";
@@ -44,7 +44,7 @@ in {
     services.nix-daemon.enable = true;
 
     # age.secrets."op" = {
-    #   file = ../../../secrets/op.age;
+    #   rekeyFile = ../../../secrets/op.age;
     #   mode = "744";
     #   # path = "/home/tomas/.google_authenticator";
     #   # owner = "tomas";
