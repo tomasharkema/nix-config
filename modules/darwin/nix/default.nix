@@ -25,9 +25,6 @@ in {
 
   config = {
     age = {
-      identityPaths = [
-        "/etc/ssh/ssh_host_ed25519_key"
-      ];
       secrets = {
         "attic-config.toml" = {
           rekeyFile = ../../nixos/secrets/attic-config.toml.age;

@@ -11,8 +11,16 @@ with lib; {
   ];
 
   config = {
-    age.rekey = {
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIImcDgt9Pzve8g2auikBFQ3JkXB5UqoRfr7D22caGMgB root@euro-mir-3";
+    age = {
+      rekey = {
+        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIImcDgt9Pzve8g2auikBFQ3JkXB5UqoRfr7D22caGMgB root@voltron";
+      };
+
+      secrets = {
+        "calib-data" = {
+          rekeyFile = ./calib-data.age;
+        };
+      };
     };
 
     disks.btrfs = {
