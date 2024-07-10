@@ -436,6 +436,13 @@
 
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};
 
+      agenix-rekey = inputs.agenix-rekey.configure {
+        userFlake = inputs.self;
+        nodes = inputs.self.nixosConfigurations;
+        # Example for colmena:
+        # inherit ((colmena.lib.makeHive self.colmena).introspect (x: x)) nodes;
+      };
+
       nixosConfigurations = {
         installer-x86 = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
