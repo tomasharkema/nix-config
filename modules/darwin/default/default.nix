@@ -60,7 +60,7 @@
         nscan
         # openglide
       ])
-      ++ (with pkgs; [dosbox-x nil]);
+      ++ (with pkgs; [dosbox-x unstable.nil]);
     # environment.pathsToLink = ["/lib"];
     system.stateVersion = 4;
 

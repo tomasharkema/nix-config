@@ -123,7 +123,7 @@ with pkgs; {
       speedtest-cli
       ssh-to-age
       starship
-      tailscale
+
       tldr
       tmate
       tree

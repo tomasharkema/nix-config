@@ -28,10 +28,10 @@ in {
       secrets = {
         "attic-config.toml" = {
           rekeyFile = ../../nixos/secrets/attic-config.toml.age;
-          mode = "777";
-          owner = "tomas";
-          group = "tomas";
-          path = "/Users/tomas/.config/attic/config.toml";
+          # mode = "777";
+          # owner = "tomas";
+          # group = "tomas";
+          # path = "/Users/tomas/.config/attic/config.toml";
         };
       };
     };

@@ -99,7 +99,8 @@ with lib.custom;
 
       environment.systemPackages =
         (with pkgs; [
-          nil
+          nvchecker
+          unstable.nil
           googler
           castnow
           go-chromecast
@@ -146,7 +147,7 @@ with lib.custom;
           curl
           sysz
           iptraf-ng
-          netscanner
+          unstable.netscanner
           bandwhich
           bashmount
           bmon
@@ -486,6 +487,7 @@ with lib.custom;
         # };
         htop = {
           enable = true;
+          package = pkgs.unstable.htop;
           settings = {
             show_program_path = false;
             hide_kernel_threads = true;

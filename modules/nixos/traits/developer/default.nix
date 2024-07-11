@@ -21,7 +21,7 @@ in {
         # agenix
         deadnix
         deploy-rs
-        devenv
+        unstable.devenv
 
         flake-checker
         hydra-check
@@ -32,7 +32,7 @@ in {
         manix
         nix-search-cli
 
-        nil
+        unstable.nil
         # nixd
         nix-eval-jobs
         # nix-fast-build
