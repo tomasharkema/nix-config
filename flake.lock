@@ -566,11 +566,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1719408896,
-        "narHash": "sha256-tn1LY3IcqwrgJgWb3SvPdovQTLVD79/eriZNJxYbUyY=",
+        "lastModified": 1720626236,
+        "narHash": "sha256-wI2A5GbNrKfGkf0EHIFzIjIHFE1Kcja3hq/M362k2m4=",
         "owner": "nbfc-linux",
         "repo": "nbfc-linux",
-        "rev": "530f0d08017be02569d31a642c2b0269af71b226",
+        "rev": "16e0261d16a818c155a714c00d857daf0d2fc1cb",
         "type": "github"
       },
       "original": {
@@ -917,11 +917,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1720386169,
-        "narHash": "sha256-NGKVY4PjzwAa4upkGtAMz1npHGoRzWotlSnVlqI40mo=",
+        "lastModified": 1720553833,
+        "narHash": "sha256-IXMiHQMtdShDXcBW95ctA+m5Oq2kLxnBt7WlMxvDQXA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "194846768975b7ad2c4988bdb82572c00222c0d7",
+        "rev": "249fbde2a178a2ea2638b65b9ecebd531b338cf9",
         "type": "github"
       },
       "original": {

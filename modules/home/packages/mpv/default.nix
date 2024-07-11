@@ -3,8 +3,9 @@
   config,
   lib,
   ...
-}: {
-  config = {
+}:
+with lib; {
+  config = mkIf pkgs.stdenv.isLinux {
     services = {
       plex-mpv-shim.enable = true;
       mpd-mpris.enable = true;
@@ -45,7 +46,7 @@
 
     home = {
       packages = with pkgs; [
-        play-with-mpv
+        # play-with-mpv
         open-in-mpv
         mpvc
       ];

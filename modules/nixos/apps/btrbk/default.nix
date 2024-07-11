@@ -9,7 +9,7 @@ with lib; {
 
   config = mkIf (config.disks.btrfs.enable && config.disks.btrfs.btrbk.enable) {
     age.secrets.btrbk = {
-      file = ../../../../secrets/btrbk.age;
+      rekeyFile = ../../../../secrets/btrbk.age;
       mode = "600";
       owner = "btrbk";
       group = "btrbk";

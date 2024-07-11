@@ -22,13 +22,13 @@ in {
 
     age.secrets = {
       "ldap" = {
-        file = ../../../secrets/ldap.age;
+        rekeyFile = ../../../secrets/ldap.age;
         mode = "644";
         # owner = "tomas";
         # group = "tomas";
       };
       ght = {
-        file = ../../../secrets/ght.age;
+        rekeyFile = ../../../secrets/ght.age;
         mode = "0664";
       };
     };

@@ -23,10 +23,10 @@ with lib; let
     set -x
     ${pkgs.deploy-rs}/bin/deploy --skip-checks ".#$@" -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
   '';
-  reencrypt = writeShellScriptBin "reencrypt" ''
-    cd secrets;
-    agenix -r
-  '';
+  # reencrypt = writeShellScriptBin "reencrypt" ''
+  # cd secrets;
+  # agenix -r
+  # '';
   mkiso = writeShellScriptBin "mkiso" ''
     LINK="./out/install.iso";
     nom build '.#nixosConfigurations.hyperv-nixos.config.formats.install-iso' --out-link $LINK
@@ -192,7 +192,7 @@ in
       nix-prefetch-scripts
       nixel
       pkgs.custom.remote-cli
-      reencrypt
+      # reencrypt
       remote-deploy
       sops
       ssh-to-age

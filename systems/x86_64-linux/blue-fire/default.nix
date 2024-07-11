@@ -19,6 +19,10 @@ in {
   ];
 
   config = {
+    age.rekey = {
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVhJ1k25x/1A/zN96p48MGrPJxVboTe17rO9Mcb61qG root@blue-fire";
+    };
+
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K";
@@ -98,7 +102,7 @@ in {
       #   enableBot = true;
       # };
 
-      # tcsd.enable = true;
+      tcsd.enable = true;
       kmscon.enable = mkForce false;
 
       prometheus.exporters.ipmi.enable = true;
@@ -307,7 +311,7 @@ in {
         "watchdog"
       ];
       extraModulePackages = [];
-      kernelParams = ["console=tty0" "console=ttyS0,115200"];
+      kernelParams = ["console=tty0" "console=ttyS1,115200n8"];
     };
 
     # virtualisation = {

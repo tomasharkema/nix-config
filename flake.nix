@@ -89,6 +89,14 @@
       };
     };
 
+    agenix-rekey = {
+      url = "github:oddlama/agenix-rekey";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
     nixos-hardware = {
       url = "github:nixos/nixos-hardware";
 
@@ -226,14 +234,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    agenix-rekey = {
-      url = "github:oddlama/agenix-rekey";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
-
     conky = {
       url = "github:brndnmtthws/conky";
       inputs = {
@@ -255,11 +255,11 @@
     lib = inputs.snowfall-lib.mkLib {
       inherit inputs;
 
-      src = ./.;
-
       imports = [
         inputs.agenix-rekey.flakeModule
       ];
+
+      src = ./.;
 
       snowfall = {
         meta = {
@@ -273,6 +273,10 @@
   in
     lib.mkFlake {
       inherit inputs;
+
+      imports = [
+        inputs.agenix-rekey.flakeModule
+      ];
 
       # src = ./.;
 
@@ -314,13 +318,31 @@
         snowfall-flake.overlays."package/flake"
         nixos-checkmk.overlays.default
         nixos-service.overlays.default
+        agenix-rekey.overlays.default
       ];
 
-      system.modules.darwin = with inputs; [
-        {
-          system.nixos.tags = ["snowfall"];
-          system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
-        }
+      systems.modules.darwin = with inputs; [
+        agenix.darwinModules.default
+        # agenix.darwinModules.default
+        agenix-rekey.nixosModules.default
+
+        ({config, ...}: {
+          config = {
+            # system.nixos.tags = ["snowfall"];
+            system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
+
+            age.rekey = {
+              masterIdentities = [
+                ./age-yubikey-identity.pub
+                # "/Users/tomas/.ssh/id_ed25519"
+                # "/etc/ssh/ssh_host_ed25519_key"
+              ];
+
+              storageMode = "local";
+              localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+            };
+          };
+        })
       ];
 
       homes.modules = with inputs; [
@@ -340,7 +362,7 @@
       # };
 
       systems.hosts = let
-        cudaOff = {
+        cudaOff = {...}: {
           nixpkgs = {
             config = {cudaSupport = false;};
           };
@@ -371,6 +393,7 @@
 
         # home-manager.nixosModules.home-manager
         agenix.nixosModules.default
+        agenix-rekey.nixosModules.default
 
         nix-gaming.nixosModules.pipewireLowLatency
         nix-gaming.nixosModules.platformOptimizations
@@ -378,14 +401,27 @@
         nixos-service.nixosModules.nixos-service
         nix-virt.nixosModules.default
 
-        {
+        ({config, ...}: {
           config = {
-            system.stateVersion = "24.05";
-            system.nixos.tags = [
-              "snowfall"
-              (self.shortRev or "dirty")
-            ];
-            system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
+            age.rekey = {
+              masterIdentities = [
+                ./age-yubikey-identity.pub
+                # "/etc/ssh/ssh_host_ed25519_key"
+              ];
+
+              storageMode = "local";
+              localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+            };
+
+            system = {
+              stateVersion = "24.05";
+              nixos.tags = [
+                "snowfall"
+                (self.shortRev or "dirty")
+              ];
+              configurationRevision = lib.mkForce (self.shortRev or "dirty");
+            };
+
             nix = {
               registry.nixpkgs.flake = inputs.nixpkgs;
               registry.home-manager.flake = inputs.home-manager;
@@ -393,12 +429,12 @@
               registry.darwin.flake = inputs.darwin;
             };
           };
-        }
+        })
       ];
 
       deploy = lib.mkDeploy {
         inherit (inputs) self;
-
+        inherit inputs;
         # overrides = {
         #   sshUser = "root";
         #   # wodan-vm = {
@@ -428,6 +464,13 @@
 
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};
 
+      agenix-rekey = inputs.agenix-rekey.configure {
+        userFlake = inputs.self;
+        nodes = lib.attrsets.filterAttrs (n: v: (!(lib.strings.hasPrefix "installer" n))) (inputs.self.nixosConfigurations // inputs.self.darwinConfigurations);
+        # Example for colmena:
+        # inherit ((colmena.lib.makeHive self.colmena).introspect (x: x)) nodes;
+      };
+
       nixosConfigurations = {
         installer-x86 = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -437,13 +480,16 @@
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
             ./installer.nix
+
             (
               {
                 lib,
                 pkgs,
                 ...
               }: {
-                boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+                config = {
+                  boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+                };
               }
             )
           ];
@@ -457,13 +503,16 @@
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
             ./installer.nix
+
             (
               {
                 lib,
                 pkgs,
                 ...
               }: {
-                boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+                config = {
+                  boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+                };
               }
             )
           ];
@@ -476,13 +525,16 @@
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
             ./installer.nix
+
             (
               {
                 lib,
                 pkgs,
                 ...
               }: {
-                boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+                config = {
+                  boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
+                };
               }
             )
           ];

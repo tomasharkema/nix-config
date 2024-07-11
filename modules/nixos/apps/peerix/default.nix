@@ -8,7 +8,7 @@ with lib; {
   config = mkIf false {
     age.secrets = {
       "peerix-public" = {
-        file = ../../../../secrets/peerix.public.age;
+        rekeyFile = ../../../../secrets/peerix.public.age;
         mode = "644";
       };
 

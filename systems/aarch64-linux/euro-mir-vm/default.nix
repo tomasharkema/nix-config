@@ -1,4 +1,9 @@
-{ pkgs, inputs, lib, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 with lib; {
   imports = with inputs; [
     "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
@@ -6,6 +11,10 @@ with lib; {
   ];
 
   config = {
+    age.rekey = {
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJvvDPvcdtTqOqKdAc5ixilJjQYGJFamhVLN6cjn67wz root@euro-mir-vm";
+    };
+
     # nixpkgs.crossSystem.system = "aarch64-linux";
     networking = {
       wireless.enable = mkForce false;
@@ -27,7 +36,7 @@ with lib; {
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
       };
-      kernelModules = [ "virtio_gpu" ];
+      kernelModules = ["virtio_gpu"];
     };
 
     # virtualisation.rosetta.enable = true;
@@ -49,7 +58,7 @@ with lib; {
 
     gui = {
       enable = true;
-      desktop = { enable = true; };
+      desktop = {enable = true;};
       quiet-boot.enable = false;
       gnome.enable = true;
     };
