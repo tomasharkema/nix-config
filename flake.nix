@@ -575,11 +575,15 @@
           .fd;
 
         ovmfaarch64 =
-          (inputs.nixpkgs.legacyPackages.x86_64-linux.pkgsCross.aarch64-multiplatform.OVMFFull.override {
+          (inputs.nixpkgs.legacyPackages.x86_64-linux.pkgsCross.aarch64-multiplatform.OVMF.override {
             secureBoot = true;
             tpmSupport = true;
           })
           .fd;
+
+        linuxKernel_x86 = self.nixosConfigurations.wodan.boot.kernelPackages.kernel;
+
+        linuxKernel_arm = self.nixosConfigurations.euro-mir-vm.boot.kernelPackages.kernel;
 
         # services = let
         #   config = "pegasus";
