@@ -14,6 +14,20 @@ with lib.custom; {
   ];
 
   config = {
+    systemd.packages = with pkgs; [nix-web];
+
+    systemd.sockets.nix-supervisor = {
+      socketConfig.ListenStream = [
+        "/run/nix-supervisor.sock"
+        "[::1]:9649"
+      ];
+      wantedBy = ["sockets.target"];
+    };
+
+    environment.variables = {
+      NIX_DAEMON_SOCKET_PATH = "/run/nix-supervisor.sock";
+    };
+
     programs = {
       nh = {
         enable = true;

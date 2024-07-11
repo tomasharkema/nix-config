@@ -53,7 +53,7 @@ with lib; {
         #unstable.
         devenv
 
-        fh
+        # fh
         flake-checker
         fup-repl
         hydra-check
@@ -75,7 +75,7 @@ with lib; {
         nix-update
         nix-update-source
         nix-visualize
-        nix-web
+
         # nixd
         nixfmt-rfc-style
         nixos-option

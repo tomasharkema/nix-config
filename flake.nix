@@ -614,12 +614,21 @@
       };
 
       # formatter = inputs.nixpkgs.nixfmt;
-      outputs-builder = channels:
-      # let
-      #   cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
-      # in
-      {
+      outputs-builder = channels: let
+        pkgs = channels.nixpkgs;
+        # cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
+      in {
         formatter = channels.nixpkgs.alejandra;
+
+        topology = import inputs.nix-topology {
+          inherit pkgs;
+          modules = [
+            # Your own file to define global topology. Works in principle like a nixos module but uses different options.
+            # ./topology.nix
+            # Inline module to inform topology of your existing NixOS hosts.
+            {nixosConfigurations = inputs.self.nixosConfigurations;}
+          ];
+        };
 
         # checks = with inputs; {
         # nixpkgs-lint =
