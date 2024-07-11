@@ -16,11 +16,7 @@ with lib; {
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIImcDgt9Pzve8g2auikBFQ3JkXB5UqoRfr7D22caGMgB root@voltron";
       };
 
-      secrets = {
-        "calib-data" = {
-          rekeyFile = ./calib-data.age;
-        };
-      };
+      secrets."calib-data".rekeyFile = ./calib-data.age;
     };
 
     disks.btrfs = {
