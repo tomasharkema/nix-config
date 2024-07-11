@@ -1,0 +1,7 @@
+#       Serial: 23605901, Slot: 1
+#         Name: nixos-age
+#      Created: Thu, 11 Jul 2024 09:28:21 +0000
+#   PIN policy: Once   (A PIN is required once per session, if set)
+# Touch policy: Always (A physical touch is required for every decryption)
+#    Recipient: age1yubikey1qflclgt28deu9q338gfekhv3aqhxclqlnkzt20w3unh0secc273kvy9a5xh
+AGE-PLUGIN-YUBIKEY-135EXSQVZKETMLDSV640PP
