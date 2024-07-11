@@ -14,25 +14,27 @@ with lib.custom; {
   ];
 
   config = {
-    programs.nh = {
-      enable = true;
-      clean.enable = true;
-      clean.extraArgs = "--keep-since 4d --keep 3";
-      flake = "/home/tomas/Developer/nix-config";
-      package = pkgs.unstable.nh;
-    };
+    programs = {
+      nh = {
+        enable = true;
+        clean.enable = true;
+        clean.extraArgs = "--keep-since 4d --keep 3";
+        flake = ./.; # "/home/tomas/Developer/nix-config";
+        package = pkgs.unstable.nh;
+      };
 
-    programs.ccache = {
-      enable = true;
-      packageNames = [
-        "linuxPackages_xanmod_stable"
-        "linuxPackages_latest"
-        # "ffmpeg"
-        #   "ffmpeg-full"
-      ];
-    };
+      ccache = {
+        enable = true;
+        packageNames = [
+          "linuxPackages_xanmod_stable"
+          "linuxPackages_latest"
+          # "ffmpeg"
+          #   "ffmpeg-full"
+        ];
+      };
 
-    programs.bash.undistractMe.enable = true;
+      bash.undistractMe.enable = true;
+    };
 
     nix = let
       users =
