@@ -199,6 +199,7 @@ in {
   # dotenv.enable = true;
 
   packages = with pkgs; [
+    actionlint
     agenix-rekey
     #pkgs.nixVersions.latest
     nixos-system

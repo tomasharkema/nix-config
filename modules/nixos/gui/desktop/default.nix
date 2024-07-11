@@ -108,6 +108,7 @@ in {
     environment.systemPackages = with pkgs;
       (optional ((stdenv.isLinux && stdenv.isx86_64) || stdenv.isDarwin) mailspring)
       ++ [
+        ulauncher
         yelp
         livecaptions
         pkgs.custom.ancs4linux
