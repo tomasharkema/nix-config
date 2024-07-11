@@ -13,7 +13,11 @@ with lib.custom; {
     ../../../nix-pkgs.nix
   ];
 
-  config = {
+  config = let
+    nix-otel = pkgs.nix-otel.overrideAttrs (final: {
+      nix = config.nix.package;
+    });
+  in {
     systemd.packages = with pkgs; [nix-web];
 
     systemd.sockets.nix-supervisor = {
@@ -26,6 +30,8 @@ with lib.custom; {
 
     environment.variables = {
       NIX_DAEMON_SOCKET_PATH = "/run/nix-supervisor.sock";
+      OTEL_EXPORTER_OTLP_ENDPOINT = "http://silver-star:5080/api/default/traces";
+      OTEL_EXPORTER_OTLP_HEADERS = "Authorization=\"Basic dG9tYXNAaGFya2VtYS5pbzpQdXIxN0RCb21CZVd4U0xV\"";
     };
 
     programs = {
@@ -69,6 +75,8 @@ with lib.custom; {
       extraOptions = ''
         min-free = ${toString (100 * 1024 * 1024)}
         max-free = ${toString (1024 * 1024 * 1024)}
+
+        plugin-files = ${nix-otel}/lib
       '';
 
       optimise.automatic = true;

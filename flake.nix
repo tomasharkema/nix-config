@@ -160,13 +160,13 @@
       };
     };
 
-    # peerix = {
-    #   url = "github:cid-chan/peerix";
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     flake-utils.follows = "flake-utils";
-    #   };
-    # };
+    peerix = {
+      url = "github:cid-chan/peerix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
 
     # stylix = {
     #   url = "github:danth/stylix/release-24.05";
@@ -249,7 +249,29 @@
     # netkit = {
     #   url = "github:icebox-nix/netkit.nix";
     # };
-    nix-topology.url = "github:oddlama/nix-topology";
+    nix-topology = {
+      url = "github:oddlama/nix-topology";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
+    opentelemetry-nix = {
+      url = "github:FriendsOfOpenTelemetry/opentelemetry-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
+    nix-otel = {
+      url = "github:tomasharkema/nix-otel";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
   };
 
   outputs = inputs: let
@@ -315,13 +337,15 @@
       };
 
       overlays = with inputs; [
-        # peerix.overlay
+        nix-otel.overlays.default
+        peerix.overlay
         snowfall-flake.overlays."package/flake"
         nixos-checkmk.overlays.default
         nixos-service.overlays.default
         agenix-rekey.overlays.default
         nixvim.overlays.default
         nix-topology.overlays.default
+        opentelemetry-nix.overlays.default
       ];
 
       homes.modules = with inputs; [
@@ -364,7 +388,7 @@
           catppuccin.nixosModules.catppuccin
 
           # attic.nixosModules.atticd
-          # peerix.nixosModules.peerix
+          peerix.nixosModules.peerix
 
           # impermanence.nixosModule
           disko.nixosModules.default
@@ -395,9 +419,9 @@
               };
 
               age.secrets.nix-access-tokens-github.rekeyFile = ./github.age;
-              nix.extraOptions = ''
-                !include ${config.age.secrets.nix-access-tokens-github.path}
-              '';
+              # nix.extraOptions = ''
+              #   !include ${config.age.secrets.nix-access-tokens-github.path}
+              # '';
 
               system = {
                 stateVersion = "24.05";
