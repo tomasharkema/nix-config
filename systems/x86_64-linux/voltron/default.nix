@@ -55,14 +55,6 @@ with lib; {
 
     security.pam.services."gdm-fingerprint".enableGnomeKeyring = true;
 
-    age.secrets."calib-data" = {
-      file = ../../../secrets/calib-data.age;
-      # owner = "tomas";
-      # group = "tomas";
-      mode = "666";
-      # symlink = false;
-    };
-
     environment.systemPackages = with pkgs; [
       libusb
       tp-auto-kbbl
