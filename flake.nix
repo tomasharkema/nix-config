@@ -249,6 +249,7 @@
     # netkit = {
     #   url = "github:icebox-nix/netkit.nix";
     # };
+    nix-topology.url = "github:oddlama/nix-topology";
   };
 
   outputs = inputs: let
@@ -320,6 +321,7 @@
         nixos-service.overlays.default
         agenix-rekey.overlays.default
         nixvim.overlays.default
+        nix-topology.overlays.default
       ];
 
       homes.modules = with inputs; [
@@ -355,6 +357,7 @@
 
       systems.modules = {
         nixos = with inputs; [
+          nix-topology.nixosModules.default
           # netkit.nixosModule
           nixos-checkmk.nixosModules.check_mk_agent
 
