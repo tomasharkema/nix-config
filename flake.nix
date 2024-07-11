@@ -319,6 +319,7 @@
         nixos-checkmk.overlays.default
         nixos-service.overlays.default
         agenix-rekey.overlays.default
+        nixvim.overlays.default
       ];
 
       homes.modules = with inputs; [
@@ -472,6 +473,10 @@
       #   (system: deploy-lib:
       #     deploy-lib.deployChecks inputs.self.deploy)
       #   inputs.deploy-rs.lib;
+
+      flakeItems = {
+        inherit inputs;
+      };
 
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};
 

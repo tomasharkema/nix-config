@@ -37,93 +37,102 @@ in {
 
     programs.nixvim = {
       enable = true;
-      # enableMan = false;
+      enableMan = true;
 
       colorschemes.catppuccin.enable = true;
 
-      # treesitter = {
-      # enable = true;
-      # package = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
-      # };
-      plugins.dashboard = {
-        enable = true;
-      };
-      plugins.neo-tree = {
-        enable = true;
-      };
-      plugins.project-nvim = {
-        enable = true;
-      };
-      plugins.telescope = {
-        enable = true;
-      };
-      plugins.fugitive = {
-        enable = true;
-      };
-      plugins.lualine = {
-        enable = true;
-        sections = {
-          lualine_x = [
-            "diagnostics"
-            "encoding"
-            "filetype"
-          ];
+      plugins = {
+        treesitter = {
+          enable = true;
+          # package = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
         };
-      };
-      # startify = {
-      #   enable = true;
-      #   customHeader = ''
-      #     startify#pad(split(system('figlet -f larry3d neovim'), '
-      #     '))'';
-      # };
-      # indent-blankline = {
-      #   enable = true;
-      #   filetypeExclude = ["startify"];
-      # };
-      plugins.barbar = {
-        enable = true;
-      };
-      plugins.gitgutter = {
-        enable = true;
-      };
-      plugins.surround = {
-        enable = true;
-      };
-      plugins.nvim-colorizer = {
-        enable = true;
-      };
-      plugins.nix-develop.enable = true;
-      plugins.notify.enable = true;
-      plugins.zellij.enable = true;
-      plugins.nix = {
-        enable = true;
-      };
-      plugins.fzf-lua = {enable = true;};
-      plugins.auto-save = {
-        enable = true;
-        enableAutoSave = true;
-      };
-      plugins.git-worktree = {
-        enable = true;
-      };
-      plugins.direnv = {enable = true;};
-      plugins.multicursors.enable = true;
-      plugins.toggleterm = {
-        enable = true;
-      };
-      plugins.floaterm = {
-        enable = true;
-      };
-      plugins.zig = {
-        enable = true;
-      };
-      # cmp-zsh.enable = true;
-      plugins.conform-nvim = {
-        enable = true;
-        # formatOnSave = true;
-        formattersByFt = {
-          lua = ["stylua"];
-          nix = ["alejandra"];
+        packer = {
+          enable = true;
+          plugins = [{name = "FluxxField/bionic-reading.nvim";}];
+        };
+        dashboard = {
+          enable = true;
+        };
+        neo-tree = {
+          enable = true;
+        };
+        project-nvim = {
+          enable = true;
+        };
+        telescope = {
+          enable = true;
+        };
+        fugitive = {
+          enable = true;
+        };
+        lualine = {
+          enable = true;
+          sections = {
+            lualine_x = [
+              "diagnostics"
+              "encoding"
+              "filetype"
+            ];
+          };
+        };
+        # startify = {
+        #   enable = true;
+        #   customHeader = ''
+        #     startify#pad(split(system('figlet -f larry3d neovim'), '
+        #     '))'';
+        # };
+        # indent-blankline = {
+        #   enable = true;
+        #   filetypeExclude = ["startify"];
+        # };
+        barbar = {
+          enable = true;
+        };
+        gitgutter = {
+          enable = true;
+        };
+        surround = {
+          enable = true;
+        };
+        nvim-colorizer = {
+          enable = true;
+        };
+        nix-develop.enable = true;
+        notify.enable = true;
+        zellij.enable = true;
+        statuscol.enable = true;
+        nix = {
+          enable = true;
+        };
+        fzf-lua = {enable = true;};
+        auto-save = {
+          enable = true;
+          enableAutoSave = true;
+        };
+        git-worktree = {
+          enable = true;
+        };
+        direnv = {enable = true;};
+        multicursors.enable = true;
+        toggleterm = {
+          enable = true;
+        };
+        floaterm = {
+          enable = true;
+        };
+        zig = {
+          enable = true;
+        };
+        cmp-zsh.enable = true;
+        conform-nvim = {
+          enable = true;
+          formatOnSave = {
+            timeoutMs = 1000;
+          };
+          formattersByFt = {
+            lua = ["stylua"];
+            nix = ["alejandra"];
+          };
         };
       };
 

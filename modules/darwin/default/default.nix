@@ -82,6 +82,7 @@
         terminus-nerdfont
         ubuntu_font_family
         pkgs.custom.neue-haas-grotesk
+        custom.fast-font
         # helvetica
         vegur # the official NixOS font
         b612

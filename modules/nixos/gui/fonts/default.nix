@@ -30,6 +30,7 @@ with lib; {
 
       packages = with pkgs;
       with pkgs.custom; [
+        fast-font
         # exult
         b612
         b612-nerdfont
