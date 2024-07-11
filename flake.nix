@@ -321,30 +321,6 @@
         agenix-rekey.overlays.default
       ];
 
-      systems.modules.darwin = with inputs; [
-        agenix.darwinModules.default
-        # agenix.darwinModules.default
-        agenix-rekey.nixosModules.default
-
-        ({config, ...}: {
-          config = {
-            # system.nixos.tags = ["snowfall"];
-            system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
-
-            age.rekey = {
-              masterIdentities = [
-                ./age-yubikey-identity.pub
-                # "/Users/tomas/.ssh/id_ed25519"
-                # "/etc/ssh/ssh_host_ed25519_key"
-              ];
-
-              storageMode = "local";
-              localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
-            };
-          };
-        })
-      ];
-
       homes.modules = with inputs; [
         #     catppuccin.homeManagerModules.catppuccin
         nixvim.homeManagerModules.nixvim
@@ -376,61 +352,89 @@
         ];
       };
 
-      systems.modules.nixos = with inputs; [
-        # netkit.nixosModule
-        nixos-checkmk.nixosModules.check_mk_agent
+      systems.modules = {
+        nixos = with inputs; [
+          # netkit.nixosModule
+          nixos-checkmk.nixosModules.check_mk_agent
 
-        catppuccin.nixosModules.catppuccin
+          catppuccin.nixosModules.catppuccin
 
-        # attic.nixosModules.atticd
-        # peerix.nixosModules.peerix
+          # attic.nixosModules.atticd
+          # peerix.nixosModules.peerix
 
-        # impermanence.nixosModule
-        disko.nixosModules.default
-        # nh.nixosModules.default
-        lanzaboote.nixosModules.lanzaboote
-        # vscode-server.nixosModules.default
+          # impermanence.nixosModule
+          disko.nixosModules.default
+          # nh.nixosModules.default
+          lanzaboote.nixosModules.lanzaboote
+          # vscode-server.nixosModules.default
 
-        # home-manager.nixosModules.home-manager
-        agenix.nixosModules.default
-        agenix-rekey.nixosModules.default
+          # home-manager.nixosModules.home-manager
+          agenix.nixosModules.default
+          agenix-rekey.nixosModules.default
 
-        nix-gaming.nixosModules.pipewireLowLatency
-        nix-gaming.nixosModules.platformOptimizations
+          nix-gaming.nixosModules.pipewireLowLatency
+          nix-gaming.nixosModules.platformOptimizations
 
-        nixos-service.nixosModules.nixos-service
-        nix-virt.nixosModules.default
+          nixos-service.nixosModules.nixos-service
+          nix-virt.nixosModules.default
 
-        ({config, ...}: {
-          config = {
-            age.rekey = {
-              masterIdentities = [
-                ./age-yubikey-identity.pub
-                # "/etc/ssh/ssh_host_ed25519_key"
-              ];
+          ({config, ...}: {
+            config = {
+              age.rekey = {
+                masterIdentities = [
+                  ./age-yubikey-identity.pub
+                  # "/etc/ssh/ssh_host_ed25519_key"
 
-              storageMode = "local";
-              localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+                  # "/Users/tomas/.ssh/id_ed25519"
+                ];
+
+                storageMode = "local";
+                localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+              };
+
+              system = {
+                stateVersion = "24.05";
+                nixos.tags = [
+                  "snowfall"
+                  (self.shortRev or "dirty")
+                ];
+                configurationRevision = lib.mkForce (self.shortRev or "dirty");
+              };
+
+              nix = {
+                registry.nixpkgs.flake = inputs.nixpkgs;
+                registry.home-manager.flake = inputs.home-manager;
+                registry.unstable.flake = inputs.unstable;
+                registry.darwin.flake = inputs.darwin;
+              };
             };
+          })
+        ];
 
-            system = {
-              stateVersion = "24.05";
-              nixos.tags = [
-                "snowfall"
-                (self.shortRev or "dirty")
-              ];
-              configurationRevision = lib.mkForce (self.shortRev or "dirty");
-            };
+        darwin = with inputs; [
+          agenix.darwinModules.default
+          # agenix.darwinModules.default
+          agenix-rekey.nixosModules.default
 
-            nix = {
-              registry.nixpkgs.flake = inputs.nixpkgs;
-              registry.home-manager.flake = inputs.home-manager;
-              registry.unstable.flake = inputs.unstable;
-              registry.darwin.flake = inputs.darwin;
+          ({config, ...}: {
+            config = {
+              # system.nixos.tags = ["snowfall"];
+              system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
+
+              age.rekey = {
+                masterIdentities = [
+                  ./age-yubikey-identity.pub
+                  # "/Users/tomas/.ssh/id_ed25519"
+                  # "/etc/ssh/ssh_host_ed25519_key"
+                ];
+
+                storageMode = "local";
+                localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+              };
             };
-          };
-        })
-      ];
+          })
+        ];
+      };
 
       deploy = lib.mkDeploy {
         inherit (inputs) self;
