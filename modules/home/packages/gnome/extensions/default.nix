@@ -9,6 +9,7 @@ with lib; {
 
     dconf.settings ."org/gnome/shell".enabled-extensions = [
       "GPaste@gnome-shell-extensions.gnome.org"
+      "drive-menu@gnome-shell-extensions.gcampax.github.com"
     ];
 
     programs.gnome-shell = {
@@ -17,14 +18,7 @@ with lib; {
       extensions = with pkgs.gnomeExtensions; [
         {package = media-controls;}
         {package = gsconnect;}
-        # {
-        #   id = "drive-menu@gnome-shell-extensions.gcampax.github.com";
-        #   package = null;
-        # }
-        # {
-        #   id = "GPaste@gnome-shell-extensions.gnome.org";
-        #   package = null;
-        # }
+
         {package = home-assistant-extension;}
         {package = caffeine;}
         {
