@@ -382,7 +382,8 @@
             config = {
               age.rekey = {
                 masterIdentities = [
-                  ./age-yubikey-identity.pub
+                  ./age-yubikey-identity-usba.pub
+                  ./age-yubikey-identity-usbc.pub
                 ];
 
                 storageMode = "local";
@@ -430,7 +431,8 @@
 
               age.rekey = {
                 masterIdentities = [
-                  ./age-yubikey-identity.pub
+                  ./age-yubikey-identity-usba.pub
+                  ./age-yubikey-identity-usbc.pub
                 ];
 
                 storageMode = "local";
