@@ -41,7 +41,6 @@ with lib; {
         nux
         disnix
         nox
-        nh
 
         # agenix
         alejandra
@@ -50,7 +49,10 @@ with lib; {
         cachix
         deadnix
         deploy-rs
-        unstable.devenv
+
+        #unstable.
+        devenv
+
         fh
         flake-checker
         fup-repl

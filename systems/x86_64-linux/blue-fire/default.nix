@@ -32,7 +32,7 @@ in {
 
     services.beesd.filesystems = {
       root = {
-        spec = "UUID=3b512fef-be0f-4fb0-aaef-40fe4fa01b2e";
+        spec = "UUID=8be68839-1415-4500-87d1-80f9400c42cb";
         hashTableSizeMB = 1024;
         verbosity = "crit";
         extraOptions = [

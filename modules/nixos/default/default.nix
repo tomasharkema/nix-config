@@ -21,11 +21,6 @@ with lib.custom;
         (assertPackage pkgs "sssd")
       ];
 
-      programs.bash.undistractMe.enable = true;
-
-      # nix.nixPath = ["nixpkgs=${inputs.nixpkgs}" "home-manager=${inputs.home-manager}"];
-      nix.channel.enable = true;
-
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";
 

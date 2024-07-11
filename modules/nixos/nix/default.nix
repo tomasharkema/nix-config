@@ -13,13 +13,26 @@ with lib.custom; {
     ../../../nix-pkgs.nix
   ];
 
-  config = mkIf (!config.traits.slim.enable) {
-    # programs.nh = {
-    #   enable = true;
-    #   clean.enable = true;
-    #   clean.extraArgs = "--keep-since 4d --keep 3";
-    #   flake = "/home/tomas/Developer/nix-config";
-    # };
+  config = {
+    programs.nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "/home/tomas/Developer/nix-config";
+      package = pkgs.unstable.nh;
+    };
+
+    programs.ccache = {
+      enable = true;
+      packageNames = [
+        "linuxPackages_xanmod_stable"
+        "linuxPackages_latest"
+        # "ffmpeg"
+        #   "ffmpeg-full"
+      ];
+    };
+
+    programs.bash.undistractMe.enable = true;
 
     nix = let
       users =
@@ -30,7 +43,13 @@ with lib.custom; {
         ++ optional config.services.hydra.enable "hydra";
     in {
       package = pkgs.nixVersions.latest;
+
       nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+
+      channel.enable = true;
+
+      sandboxPaths = [config.programs.ccache.cacheDir];
+
       extraOptions = ''
         min-free = ${toString (100 * 1024 * 1024)}
         max-free = ${toString (1024 * 1024 * 1024)}
@@ -71,12 +90,6 @@ with lib.custom; {
         # trusted-public-keys =
         #   [cfg.default-substituter.key]
         #   ++ (mapAttrsToList (name: value: value.key) cfg.extra-substituters);
-      };
-
-      gc = {
-        automatic = true;
-        dates = "daily";
-        options = "--delete-older-than 14d";
       };
 
       # flake-utils-plus

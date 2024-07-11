@@ -364,7 +364,7 @@
 
           # impermanence.nixosModule
           disko.nixosModules.default
-          # nh.nixosModules.default
+
           lanzaboote.nixosModules.lanzaboote
           # vscode-server.nixosModules.default
 
