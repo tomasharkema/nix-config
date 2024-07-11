@@ -6,7 +6,7 @@
 }: {
   config = {
     services = {
-      # plex-mpv-shim.enable = true;
+      plex-mpv-shim.enable = true;
       mpd-mpris.enable = true;
     };
 
@@ -23,7 +23,6 @@
         hwdec = "auto-safe";
         vo = "gpu";
         gpu-context = "wayland";
-        webui-port = 8000;
       };
 
       scripts = with pkgs.mpvScripts; [
@@ -36,6 +35,12 @@
         uosc
         memo
       ];
+
+      scriptOpts = {
+        webui = {
+          webui-port = 8000;
+        };
+      };
     };
 
     home = {
