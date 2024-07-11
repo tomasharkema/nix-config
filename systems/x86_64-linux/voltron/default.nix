@@ -42,11 +42,12 @@ with lib; {
         tod = {
           enable = true;
           driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
-            calib-data-file = builtins.path {
-              path = config.age.secrets."calib-data".path;
-              name = "calib-data-file";
-            };
-            #pkgs.writeText "calib" (builtins.readFile config.age.secrets."calib-data".path); #./calib-data.bin;
+            # calib-data-file = builtins.path {
+            #   path = config.age.secrets."calib-data".path;
+            #   name = "calib-data-file";
+            # };
+            #pkgs.writeText "calib" (builtins.readFile config.age.secrets."calib-data".path);
+            calib-data-file = ./calib-data.bin;
           };
         };
       };
@@ -62,10 +63,10 @@ with lib; {
     environment.systemPackages = with pkgs; [
       libusb
       tp-auto-kbbl
-      modemmanager
-      modem-manager-gui
-      libmbim
-      libqmi
+      # modemmanager
+      # modem-manager-gui
+      # libmbim
+      # libqmi
 
       thinkfan
 
