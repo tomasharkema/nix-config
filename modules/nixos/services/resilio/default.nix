@@ -17,9 +17,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    # age.secrets."resilio-p" = {file = ../secrets/resilio-p.age;};
-    # age.secrets."resilio-docs" = {file = ../secrets/resilio-docs.age;};
-    # age.secrets."resilio-shared-public" = {file = ../secrets/resilio-shared-public.age;};
+    # age.secrets."resilio-p" = {rekeyFile = ../secrets/resilio-p.age;};
+    # age.secrets."resilio-docs" = {rekeyFile = ../secrets/resilio-docs.age;};
+    # age.secrets."resilio-shared-public" = {rekeyFile = ../secrets/resilio-shared-public.age;};
     environment.systemPackages = with pkgs; [acl];
 
     systemd = {

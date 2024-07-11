@@ -18,7 +18,7 @@ in {
         # cachix
         # nix-init
         # nixci
-        agenix
+        # agenix
         deadnix
         deploy-rs
         devenv

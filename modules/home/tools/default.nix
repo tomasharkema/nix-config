@@ -131,7 +131,6 @@ with pkgs; {
       unzip
       wget
       xz
-      youtube-dl
       yq
       zip
       zsh

@@ -1,10 +1,16 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 with lib;
-with lib.custom;
-let cfg = config.traits.builder;
+with lib.custom; let
+  cfg = config.traits.builder;
 in {
   options.traits = {
-    builder = { enable = mkBoolOpt false "SnowflakeOS GNOME configuration"; };
+    builder = {enable = mkBoolOpt false "SnowflakeOS GNOME configuration";};
   };
 
   config =
@@ -18,11 +24,11 @@ in {
     # in
     mkIf cfg.enable {
       # age.secrets.ght = {
-      #   file = "${../../secrets/ght.age}";
+      #   rekeyFile = "${../../secrets/ght.age}";
       #   mode = "0664";
       # };
       # age.secrets."ght-runner" = {
-      #   file = ../../../secrets/ght-runner.age;
+      #   rekeyFile = ../../../secrets/ght-runner.age;
       #   mode = "0664";
       # };
 
