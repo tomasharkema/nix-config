@@ -166,7 +166,7 @@ in
           topydo
           jqp
           # nchat
-
+          git-agecrypt
           projectable
           # stig
           xplr

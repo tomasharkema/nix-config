@@ -1,0 +1,2 @@
+[config]
+"systems-by-name/voltron/calib-data.bin" = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIImcDgt9Pzve8g2auikBFQ3JkXB5UqoRfr7D22caGMgB root@euro-mir-3"]
