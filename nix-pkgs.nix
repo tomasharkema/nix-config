@@ -50,7 +50,7 @@ with lib; {
         cachix
         deadnix
         deploy-rs
-        devenv
+        unstable.devenv
         fh
         flake-checker
         fup-repl
@@ -58,7 +58,7 @@ with lib; {
         hydra-cli
         manix
         nerd-font-patcher
-        nil
+        pkgs.unstable.nil
         nix-bisect
         nix-bundle
         nix-eval-jobs

@@ -153,10 +153,10 @@ in {
         systemdgenie
         tabby
         transmission-remote-gtk
-        trayscale
+        unstable.trayscale
         tremotesf
         vsce
-        vscode
+        unstable.vscode
         vte-gtk4
         wezterm
         xdg-utils
@@ -168,7 +168,7 @@ in {
       ]
       ++ optionals pkgs.stdenv.isx86_64 [
         gitkraken
-        xpipe
+        unstable.xpipe
         angryipscanner
         telegram-desktop
         # pkgs.custom.git-butler
@@ -185,6 +185,7 @@ in {
 
       firefox = {
         enable = true;
+        package = pkgs.unstable.firefox;
 
         # nativeMessagingHosts.packages = with pkgs; [gnome-browser-connector];
         # nativeMessagingHosts.gsconnect = true;

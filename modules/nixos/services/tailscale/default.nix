@@ -41,6 +41,7 @@ in {
 
       tailscale = {
         enable = true;
+        package = pkgs.unstable.tailscale;
         authKeyFile = config.age.secrets.tailscale.path;
         useRoutingFeatures = "both";
         extraUpFlags = [

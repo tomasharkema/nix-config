@@ -18,7 +18,7 @@ in {
 
     services.netdata = {
       enable = true;
-      package = pkgs.netdataCloud;
+      package = pkgs.unstable.netdataCloud;
       claimTokenFile = config.age.secrets."netdata".path;
       python.enable = true;
       configDir = {

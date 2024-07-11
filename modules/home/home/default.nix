@@ -193,7 +193,7 @@ in
       autostart.programs = with pkgs;
         mkIf osConfig.gui.enable [
           telegram-desktop
-          trayscale
+          unstable.trayscale
           pkgs.custom.zerotier-ui
         ];
 
@@ -218,6 +218,7 @@ in
 
         htop = {
           enable = true;
+          package = pkgs.unstable.htop;
           settings = {
             show_program_path = false;
             hide_kernel_threads = true;
@@ -254,6 +255,7 @@ in
         atuin = {
           enable = true;
           enableZshIntegration = true;
+          package = pkgs.unstable.atuin;
           settings = {
             key_path = osConfig.age.secrets.atuin.path;
             sync_address = "https://atuin.harke.ma";

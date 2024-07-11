@@ -186,7 +186,7 @@ in
       hydra-cli
       mkiso
       netdiscover
-      nil
+      unstable.nil
       # nixd
       nix-output-monitor
       nix-prefetch-scripts
@@ -209,7 +209,7 @@ in
       deadnix
       hydra-cli
       test-installer
-      nil
+
       manix
       nix-eval-jobs
       # nix-init
