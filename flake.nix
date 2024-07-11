@@ -383,14 +383,16 @@
               age.rekey = {
                 masterIdentities = [
                   ./age-yubikey-identity.pub
-                  # "/etc/ssh/ssh_host_ed25519_key"
-
-                  # "/Users/tomas/.ssh/id_ed25519"
                 ];
 
                 storageMode = "local";
                 localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
               };
+
+              age.secrets.nix-access-tokens-github.rekeyFile = ./github.age;
+              nix.extraOptions = ''
+                !include ${config.age.secrets.nix-access-tokens-github.path}
+              '';
 
               system = {
                 stateVersion = "24.05";
@@ -421,11 +423,14 @@
               # system.nixos.tags = ["snowfall"];
               system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
 
+              age.secrets.nix-access-tokens-github.rekeyFile = ./github.age;
+              nix.extraOptions = ''
+                !include ${config.age.secrets.nix-access-tokens-github.path}
+              '';
+
               age.rekey = {
                 masterIdentities = [
                   ./age-yubikey-identity.pub
-                  # "/Users/tomas/.ssh/id_ed25519"
-                  # "/etc/ssh/ssh_host_ed25519_key"
                 ];
 
                 storageMode = "local";
