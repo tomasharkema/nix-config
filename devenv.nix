@@ -197,7 +197,7 @@ in {
   };
   difftastic.enable = true;
 
-  # dotenv.enable = true;
+  dotenv.enable = true;
 
   packages = with pkgs; [
     actionlint
