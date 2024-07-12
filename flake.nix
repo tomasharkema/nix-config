@@ -394,6 +394,7 @@
           disko.nixosModules.default
 
           lanzaboote.nixosModules.lanzaboote
+          # lanzaboote.nixosModules.uki
           # vscode-server.nixosModules.default
 
           # home-manager.nixosModules.home-manager
@@ -515,6 +516,30 @@
       };
 
       nixosConfigurations = {
+        installer-netboot-x86 = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            "${inputs.nixpkgs}/nixos/modules/installer/netboot/netboot-minimal.nix"
+            # ./installer.nix
+
+            (
+              {
+                lib,
+                pkgs,
+                ...
+              }: {
+                config = {
+                  boot.supportedFilesystems.zfs = lib.mkForce false;
+                  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+                };
+              }
+            )
+          ];
+        };
+
         installer-x86 = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {

@@ -18,20 +18,20 @@ with lib.custom; {
       nix = config.nix.package;
     });
   in {
-    systemd.packages = with pkgs; [nix-web];
+    # systemd.packages = with pkgs; [nix-web];
 
-    systemd.sockets.nix-supervisor = {
-      socketConfig.ListenStream = [
-        "/run/nix-supervisor.sock"
-        "[::1]:9649"
-      ];
-      wantedBy = ["sockets.target"];
-    };
+    # systemd.sockets.nix-supervisor = {
+    #   socketConfig.ListenStream = [
+    #     "/run/nix-supervisor.sock"
+    #     "[::1]:9649"
+    #   ];
+    #   wantedBy = ["sockets.target"];
+    # };
 
     environment.variables = {
-      NIX_DAEMON_SOCKET_PATH = "/run/nix-supervisor.sock";
-      OTEL_EXPORTER_OTLP_ENDPOINT = "http://silver-star:5080/api/default/traces";
-      OTEL_EXPORTER_OTLP_HEADERS = "Authorization=\"Basic dG9tYXNAaGFya2VtYS5pbzpQdXIxN0RCb21CZVd4U0xV\"";
+      # NIX_DAEMON_SOCKET_PATH = "/run/nix-supervisor.sock";
+      # OTEL_EXPORTER_OTLP_ENDPOINT = "http://silver-star:5080/api/default/traces";
+      # OTEL_EXPORTER_OTLP_HEADERS = "Authorization=\"Basic dG9tYXNAaGFya2VtYS5pbzpQdXIxN0RCb21CZVd4U0xV\"";
     };
 
     programs = {
@@ -39,7 +39,7 @@ with lib.custom; {
         enable = true;
         clean.enable = true;
         clean.extraArgs = "--keep-since 4d --keep 3";
-        flake = ./.; # "/home/tomas/Developer/nix-config";
+        flake = "/home/tomas/Developer/nix-config";
         package = pkgs.unstable.nh;
       };
 
@@ -66,7 +66,7 @@ with lib.custom; {
     in {
       package = pkgs.nixVersions.latest;
 
-      nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+      # nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
       channel.enable = true;
 
@@ -75,9 +75,7 @@ with lib.custom; {
       extraOptions = ''
         min-free = ${toString (100 * 1024 * 1024)}
         max-free = ${toString (1024 * 1024 * 1024)}
-
-        plugin-files = ${nix-otel}/lib
-      '';
+      ''; # plugin-files = ${nix-otel}/lib
 
       optimise.automatic = true;
 
