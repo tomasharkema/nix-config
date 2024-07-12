@@ -20,15 +20,20 @@ with lib; {
   in {
     # ${lib.getExe efibootmgr} --create --disk /dev/sdb --part 1 --label "Debian" --loader EFI/Debian/vmlinuz --unicode "root=UUID=$UUID ro initrd=EFI\\Debian\\initrd.img"
 
+    # ISO="${inputs.self.nixosConfigurations.installer-x86.config.system.build.isoImage}"
+    # RAMDISK="${inputs.self.nixosConfigurations.installer-x86.config.system.build.initialRamdisk}"
+    # KERNEL="${inputs.self.nixosConfigurations.installer-x86.config.system.build.kernel}/bzImage"
+
     system.activationScripts = {
       recovery.text = ''
         empty_file=$(${pkgs.coreutils}/bin/mktemp)
 
-        ISO="${inputs.self.nixosConfigurations.installer-x86.config.system.build.isoImage}"
-        RAMDISK="${inputs.self.nixosConfigurations.installer-x86.config.system.build.initialRamdisk}"
-        KERNEL="${inputs.self.nixosConfigurations.installer-x86.config.system.build.kernel}/bzImage"
 
-        echo $ISO $RAMDISK $KERNEL
+        RAMDISK="${inputs.self.nixosConfigurations.installer-netboot-x86.config.system.build.netbootRamdisk}"
+        SCRIPT="${inputs.self.nixosConfigurations.installer-netboot-x86.config.system.build.netbootIpxeScript}"
+        KERNEL="${inputs.self.nixosConfigurations.installer-netboot-x86.config.system.build.kexecTree}"
+
+        echo $SCRIPT $RAMDISK $KERNEL
 
         ${pkgs.coreutils}/bin/install -D "${pkgs.netbootxyz-efi}" "${bootMountPoint}/EFI/netbootxyz/netboot.xyz.efi"
 
