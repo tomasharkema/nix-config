@@ -18,14 +18,16 @@ with lib; {
     };
     bootMountPoint = efi.efiSysMountPoint;
   in {
+    # ${lib.getExe efibootmgr} --create --disk /dev/sdb --part 1 --label "Debian" --loader EFI/Debian/vmlinuz --unicode "root=UUID=$UUID ro initrd=EFI\\Debian\\initrd.img"
+
     system.activationScripts = {
       recovery.text = ''
         empty_file=$(${pkgs.coreutils}/bin/mktemp)
 
-        RAMDISK="${inputs.self.nixosConfigurations.installer-netboot-x86.config.system.build.netbootRamdisk}"
-        IPXE="${inputs.self.nixosConfigurations.installer-netboot-x86.config.system.build.netbootIpxeScript}"
+        RAMDISK="${inputs.self.nixosConfigurations.installer-x86.config.system.build.initialRamdisk}"
+        KERNEL="${inputs.self.nixosConfigurations.installer-x86.config.system.build.kernel}/bzImage"
 
-        echo $RAMDISK $IPXE
+        echo $RAMDISK $KERNEL
 
         ${pkgs.coreutils}/bin/install -D "${pkgs.netbootxyz-efi}" "${bootMountPoint}/EFI/netbootxyz/netboot.xyz.efi"
 
