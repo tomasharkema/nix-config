@@ -523,7 +523,7 @@
           };
           modules = [
             "${inputs.nixpkgs}/nixos/modules/installer/netboot/netboot-minimal.nix"
-            # ./installer.nix
+            ./installer.nix
 
             (
               {
