@@ -32,7 +32,7 @@ in {
 
     services.beesd.filesystems = {
       root = {
-        spec = "UUID=8be68839-1415-4500-87d1-80f9400c42cb";
+        spec = "UUID=91663f26-5426-4a0d-96f0-e507f2cd8196";
         hashTableSizeMB = 1024;
         verbosity = "crit";
         extraOptions = [
@@ -62,10 +62,10 @@ in {
       };
     };
 
-    services.cron.systemCronJobs = [
-      # Reset 5-minute watchdog timer every minute
-      "* * * * * ${pkgs.ipmitool}/bin/ipmitool raw 0x30 0x97 1 5"
-    ];
+    # services.cron.systemCronJobs = [
+    #   # Reset 5-minute watchdog timer every minute
+    #   "* * * * * ${pkgs.ipmitool}/bin/ipmitool raw 0x30 0x97 1 5"
+    # ];
 
     headless.enable = true;
 
@@ -308,9 +308,9 @@ in {
         "ipmi_si"
         "ipmi_devintf"
         "ipmi_msghandler"
-        "watchdog"
+        "ipmi_watchdog"
       ];
-      extraModulePackages = [];
+      # extraModulePackages = [pkgs.freeipmi];
       kernelParams = ["console=tty0" "console=ttyS1,115200n8"];
     };
 
