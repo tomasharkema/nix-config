@@ -24,10 +24,11 @@ with lib; {
       recovery.text = ''
         empty_file=$(${pkgs.coreutils}/bin/mktemp)
 
+        ISO="${inputs.self.nixosConfigurations.installer-x86.config.system.build.isoImage}"
         RAMDISK="${inputs.self.nixosConfigurations.installer-x86.config.system.build.initialRamdisk}"
         KERNEL="${inputs.self.nixosConfigurations.installer-x86.config.system.build.kernel}/bzImage"
 
-        echo $RAMDISK $KERNEL
+        echo $ISO $RAMDISK $KERNEL
 
         ${pkgs.coreutils}/bin/install -D "${pkgs.netbootxyz-efi}" "${bootMountPoint}/EFI/netbootxyz/netboot.xyz.efi"
 
