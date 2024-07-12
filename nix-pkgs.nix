@@ -50,8 +50,7 @@ with lib; {
         deadnix
         deploy-rs
 
-        #unstable.
-        devenv
+        unstable.devenv
 
         # fh
         flake-checker
