@@ -422,6 +422,7 @@
                   masterIdentities = [
                     ./age-yubikey-identity-usba.pub
                     ./age-yubikey-identity-usbc.pub
+                    "/etc/ssh/ssh_host_ed25519_key"
                   ];
 
                   storageMode = "local";
