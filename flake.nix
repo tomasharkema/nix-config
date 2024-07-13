@@ -540,6 +540,7 @@
               {
                 lib,
                 pkgs,
+                config,
                 ...
               }: {
                 config = {
@@ -547,6 +548,8 @@
                     supportedFilesystems.zfs = lib.mkForce false;
                     kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
                   };
+                  system.stateVersion = config.system.nixos.release;
+                  netboot.squashfsCompression = "zstd -Xcompression-level 6";
                 };
               }
             )

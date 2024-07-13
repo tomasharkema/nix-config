@@ -12,8 +12,8 @@ with lib; let
   drvs = builtins.map (v: v.outPath) inputValues;
 
   wifi-connect = pkgs.writeShellScriptBin "wifi-connect" ''
-    SSID="$(${getExe gum} input --placeholder SSID)"
-    PASS="$(${getExe gum} input --password --placeholder PASS)"
+    SSID="$(${getExe pkgs.gum} input --placeholder SSID)"
+    PASS="$(${getExe pkgs.gum} input --password --placeholder PASS)"
 
     sudo systemctl enable --now wpa_supplicant
 
@@ -28,7 +28,7 @@ in {
   config = {
     # nix.extraOptions = "experimental-features = nix-command flakes c";
     # isbinaryCaches
-    # environment.etc."current-nixos".source = ./.;
+    environment.etc."current-nixos".source = ./.;
     nix =
       {
         package = pkgs.nixVersions.latest;
