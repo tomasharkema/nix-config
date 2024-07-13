@@ -716,6 +716,10 @@
       "tomas"
     ];
 
+    permittedInsecurePackages = [
+      "python3.11-youtube-dl-2021.12.17"
+    ];
+
     extra-platforms = ["aarch64-linux"];
 
     allow-unsafe-native-code-during-evaluation = true;
