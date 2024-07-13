@@ -6,6 +6,14 @@
   ...
 }:
 with lib; {
+  options.boot.recovery = {
+    enable = mkEnableOption "enable recovery";
+
+    configuration = mkOption {
+      default = inputs.self.nixosConfigurations.installer-netboot-x86;
+    };
+  };
+
   config = let
     efi = config.boot.loader.efi;
     nixosDir = "/EFI/nixos";
@@ -23,9 +31,17 @@ with lib; {
     };
     bootMountPoint = efi.efiSysMountPoint;
 
-    ramdisk = inputs.self.nixosConfigurations.installer-netboot-x86.config.system.build.netbootRamdisk;
-    installer = inputs.self.nixosConfigurations.installer-netboot-x86.config.system.build.toplevel;
-    kernelVersion = inputs.self.nixosConfigurations.installer-netboot-x86.config.system.build.kernel.version;
+    configuration = config.boot.recovery.configuration;
+    configurationBuild = configuration.config.system.build;
+    toplevel = configurationBuild.toplevel;
+    configurationHash = builtins.hashString "sha256" toplevel.drvPath;
+    configurationHashFile = pkgs.writeText "configuration-hash" "${configurationHash}";
+
+    ramdisk = configurationBuild.netbootRamdisk;
+    installer = toplevel;
+    kernelVersion = configurationBuild.kernel.version;
+
+    hostnameFile = pkgs.writeText "hostname" "${config.networking.hostName}";
   in {
     # ${lib.getExe efibootmgr} --create --disk /dev/sdb --part 1 --label "Debian" --loader EFI/Debian/vmlinuz --unicode "root=UUID=$UUID ro initrd=EFI\\Debian\\initrd.img"
 
@@ -64,8 +80,12 @@ with lib; {
       recovery.text = ''
         empty_file=$(${pkgs.coreutils}/bin/mktemp)
 
-        ${pkgs.coreutils}/bin/install -D "${config.system.build.recoveryImage}" "${bootMountPoint}/EFI/recovery.efi"
-        ${pkgs.sbctl}/bin/sbctl sign -s "${bootMountPoint}/EFI/recovery.efi"
+        ${pkgs.coreutils}/bin/install -D "${config.system.build.recoveryImage}" "${bootMountPoint}/EFI/recovery/recovery.efi"
+        ${pkgs.sbctl}/bin/sbctl sign -s "${bootMountPoint}/EFI/recovery/recovery.efi"
+
+        ${pkgs.coreutils}/bin/install -D "${hostnameFile}" "${bootMountPoint}/EFI/recovery/hostname"
+
+        ${pkgs.coreutils}/bin/install -D "${configurationHashFile}" "${bootMountPoint}/EFI/recovery/configuration.hash"
 
         ${pkgs.coreutils}/bin/install -D "${pkgs.netbootxyz-efi}" "${bootMountPoint}/EFI/netbootxyz/netboot.xyz.efi"
 
