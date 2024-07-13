@@ -417,20 +417,22 @@
 
           ({config, ...}: {
             config = {
-              age.rekey = {
-                masterIdentities = [
-                  ./age-yubikey-identity-usba.pub
-                  ./age-yubikey-identity-usbc.pub
-                ];
+              age = {
+                rekey = {
+                  masterIdentities = [
+                    ./age-yubikey-identity-usba.pub
+                    ./age-yubikey-identity-usbc.pub
+                  ];
 
-                storageMode = "local";
-                localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+                  storageMode = "local";
+                  localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+                };
+                secrets.nix-access-tokens-github.rekeyFile = ./github.age;
               };
 
-              age.secrets.nix-access-tokens-github.rekeyFile = ./github.age;
-              # nix.extraOptions = ''
-              #   !include ${config.age.secrets.nix-access-tokens-github.path}
-              # '';
+              nix.extraOptions = ''
+                !include ${config.age.secrets.nix-access-tokens-github.path}
+              '';
 
               system = {
                 stateVersion = "24.05";
@@ -540,8 +542,10 @@
                 ...
               }: {
                 config = {
-                  boot.supportedFilesystems.zfs = lib.mkForce false;
-                  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+                  boot = {
+                    supportedFilesystems.zfs = lib.mkForce false;
+                    kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+                  };
                 };
               }
             )

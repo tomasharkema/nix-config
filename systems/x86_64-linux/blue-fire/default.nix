@@ -51,7 +51,7 @@ in {
         # tpm.enable = true;
         secure-boot.enable = true;
         remote-unlock.enable = true;
-        nvidia.enable = true;
+        # nvidia.enable = true;
 
         # nfs = {
         #   enable = true;
@@ -199,7 +199,7 @@ in {
 
     networking.firewall.allowedTCPPorts = [2049];
 
-    services.factorio.enable = true;
+    # services.factorio.enable = true;
 
     fileSystems = {
       # "/export/media" = {
