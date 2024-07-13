@@ -22,7 +22,7 @@ with lib; let
       # vfs-rar
       youtube
       netflix
-      sendtokodi
+      # sendtokodi
       websocket
       # urllib3
       certifi
