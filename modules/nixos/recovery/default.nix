@@ -24,9 +24,8 @@ with lib; {
     bootMountPoint = efi.efiSysMountPoint;
 
     ramdisk = inputs.self.nixosConfigurations.installer-netboot-x86.config.system.build.netbootRamdisk;
-    # script = inputs.self.nixosConfigurations.installer-netboot-x86.config.system.build.netbootIpxeScript;
-    # kernel = inputs.self.nixosConfigurations.installer-netboot-x86.config.system.build.kexecTree;
     installer = inputs.self.nixosConfigurations.installer-netboot-x86.config.system.build.toplevel;
+    kernelVersion = inputs.self.nixosConfigurations.installer-netboot-x86.config.system.build.kernel.version;
   in {
     # ${lib.getExe efibootmgr} --create --disk /dev/sdb --part 1 --label "Debian" --loader EFI/Debian/vmlinuz --unicode "root=UUID=$UUID ro initrd=EFI\\Debian\\initrd.img"
 
@@ -41,22 +40,31 @@ with lib; {
     # ${pkgs.efibootmgr}/bin/efibootmgr --create --disk /dev/sdb --part 1 --label "Debian" --loader EFI/Debian/vmlinuz --unicode "root=UUID=$UUID ro initrd=EFI\\Recovery\\initrd.img"
     #    ${pkgs.efibootmgr}/bin/efibootmgr -c -d /dev/nvme0n1 -p 2 -L NixosRecovery -l '\EFI\recovery.efi'
 
+    system.build.recoveryImage = pkgs.stdenvNoCC.mkDerivation {
+      name = "recovery.efi";
+      src = installer;
+      # version = "1.0.0";
+
+      dontPatch = true;
+
+      buildInputs = with pkgs; [systemdUkify];
+
+      installPhase = builtins.trace "build uki for ${installer}" ''
+        ukify build \
+          --linux="${installer}/kernel" \
+          --initrd="${ramdisk}/initrd" \
+          --uname="${kernelVersion}" \
+          --os-release="${installer}/etc/os-release" \
+          --cmdline="debug init=${installer}/init" \
+          --output=$out
+      '';
+    };
+
     system.activationScripts = {
       recovery.text = ''
         empty_file=$(${pkgs.coreutils}/bin/mktemp)
-        tmp_dir=$(${pkgs.coreutils}/bin/mktemp -d)
 
-        RAMDISK="${ramdisk}"
-        KERNEL="${installer}/kernel"
-        INITS="${installer}/init"
-
-        echo $SCRIPT $RAMDISK $KERNEL $tmp_dir
-
-        ${pkgs.systemdUkify}/bin/ukify build --linux=$KERNEL --initrd=$RAMDISK/initrd \
-          --cmdline="init=$INITS" \
-          --output=$tmp_dir/recovery.efi
-
-        ${pkgs.coreutils}/bin/install -D "$tmp_dir/recovery.efi" "${bootMountPoint}/EFI/recovery.efi"
+        ${pkgs.coreutils}/bin/install -D "${config.system.build.recoveryImage}" "${bootMountPoint}/EFI/recovery.efi"
         ${pkgs.sbctl}/bin/sbctl sign -s "${bootMountPoint}/EFI/recovery.efi"
 
         ${pkgs.coreutils}/bin/install -D "${pkgs.netbootxyz-efi}" "${bootMountPoint}/EFI/netbootxyz/netboot.xyz.efi"
