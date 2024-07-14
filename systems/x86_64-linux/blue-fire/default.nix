@@ -104,7 +104,7 @@ in {
       #   enableBot = true;
       # };
 
-      tcsd.enable = true;
+      # tcsd.enable = true;
       kmscon.enable = mkForce false;
 
       prometheus.exporters.ipmi.enable = true;
@@ -298,6 +298,10 @@ in {
           # "ipmi_si"
           # "ipmi_devintf"
           # "ipmi_msghandler"
+          "ipmi_si"
+          "ipmi_devintf"
+          "ipmi_msghandler"
+          "ipmi_watchdog"
         ];
       };
       kernelModules = [
@@ -305,7 +309,7 @@ in {
         "uinput"
         "nvme"
         # "tpm_rng"
-        "ipmi_ssif"
+        # "ipmi_ssif"
         # "acpi_ipmi"
         "ipmi_si"
         "ipmi_devintf"
@@ -313,7 +317,8 @@ in {
         "ipmi_watchdog"
       ];
       # extraModulePackages = [pkgs.freeipmi];
-      kernelParams = ["console=tty0" "console=ttyS2,115200n8"];
+      # kernelParams = ["console=tty0" "console=ttyS2,115200n8"];
+      systemd.services."serial-getty@ttyS2".wantedBy = ["multi-user.target"];
     };
 
     # virtualisation = {
