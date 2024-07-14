@@ -108,7 +108,6 @@ in {
     environment.systemPackages = with pkgs;
       (optional ((stdenv.isLinux && stdenv.isx86_64) || stdenv.isDarwin) mailspring)
       ++ [
-        jetbrains-toolbox
         ulauncher
         yelp
         livecaptions
@@ -169,6 +168,7 @@ in {
         zeal
       ]
       ++ optionals pkgs.stdenv.isx86_64 [
+        jetbrains-toolbox
         gitkraken
         unstable.xpipe
         angryipscanner
