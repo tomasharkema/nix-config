@@ -25,7 +25,7 @@ with lib; {
       '';
       "recovery.conf" = ''
         title  NixOS Recovery
-        efi    /efi/recovery.efi
+        efi    /efi/recovery/recovery.efi
         sort-key nixosrecovery
       '';
     };
@@ -34,7 +34,7 @@ with lib; {
     configuration = config.boot.recovery.configuration;
     configurationBuild = configuration.config.system.build;
     toplevel = configurationBuild.toplevel;
-    configurationHash = builtins.hashString "sha256" toplevel.drvPath;
+    configurationHash = builtins.hashString "sha256" "${toplevel.drvPath}${config.system.build.recoveryImage.drvPath}";
     configurationHashFile = pkgs.writeText "configuration-hash" "${configurationHash}";
 
     ramdisk = configurationBuild.netbootRamdisk;
@@ -42,6 +42,17 @@ with lib; {
     kernelVersion = configurationBuild.kernel.version;
 
     hostnameFile = pkgs.writeText "hostname" "${config.networking.hostName}";
+
+    splash = pkgs.stdenvNoCC.mkDerivation {
+      name = "splash.xpm.gz";
+      src = ./nix-snowflake-rainbow-svg.xpm;
+
+      dontUnpack = true;
+
+      installPhase = ''
+        cat $src | gzip -9 > $out
+      '';
+    };
   in {
     # ${lib.getExe efibootmgr} --create --disk /dev/sdb --part 1 --label "Debian" --loader EFI/Debian/vmlinuz --unicode "root=UUID=$UUID ro initrd=EFI\\Debian\\initrd.img"
 
@@ -65,23 +76,49 @@ with lib; {
 
       buildInputs = with pkgs; [systemdUkify];
 
-      installPhase = builtins.trace "build uki for ${installer}" ''
+      installPhase = ''
         ukify build \
           --linux="${installer}/kernel" \
           --initrd="${ramdisk}/initrd" \
           --uname="${kernelVersion}" \
           --os-release="${installer}/etc/os-release" \
           --cmdline="debug init=${installer}/init" \
+          --splash="${splash}" \
+          --measure \
           --output=$out
       '';
     };
 
     system.activationScripts = {
       recovery.text = ''
+
+        CONFIGURATION_HASH_FILE="${bootMountPoint}/EFI/recovery/configuration.hash"
+        NEW_HASH="$(cat ${configurationHashFile})"
+
+        if [ -f "$CONFIGURATION_HASH_FILE" ]; then
+          CURRENT_HASH="$(cat $CONFIGURATION_HASH_FILE)"
+          echo "check hash: OLD: $CURRENT_HASH NEW: $NEW_HASH"
+
+          if [ "$NEW_HASH" = "$CURRENT_HASH" ]; then
+            echo "HASH $(cat $CONFIGURATION_HASH_FILE) ALREADY INSTALLED"
+            exit 0
+          fi
+        fi
+
         empty_file=$(${pkgs.coreutils}/bin/mktemp)
 
         ${pkgs.coreutils}/bin/install -D "${config.system.build.recoveryImage}" "${bootMountPoint}/EFI/recovery/recovery.efi"
         ${pkgs.sbctl}/bin/sbctl sign -s "${bootMountPoint}/EFI/recovery/recovery.efi"
+
+        BOOT_ENTRY=$(${pkgs.efibootmgr}/bin/efibootmgr --verbose | ${pkgs.gnugrep}/bin/grep NixosRecovery)
+        BOOT_ENTRY_CODE="$?"
+
+        if [ $BOOT_ENTRY_CODE -gt 0 ]; then
+          BOOT_PART="$(${pkgs.util-linux}/bin/findmnt -J "${bootMountPoint}" | ${pkgs.jq}/bin/jq ".filesystems[0].source" -r)"
+          DEVICE="/dev/$(${pkgs.util-linux}/bin/lsblk -no pkname $BOOT_PART)"
+          PARTN="$(${pkgs.util-linux}/bin/lsblk -no PARTN $BOOT_PART)"
+          ${pkgs.efibootmgr}/bin/efibootmgr -c -d $DEVICE -p $PARTN -L NixosRecovery -l '\EFI\recovery\recovery.efi'
+        fi
 
         ${pkgs.coreutils}/bin/install -D "${hostnameFile}" "${bootMountPoint}/EFI/recovery/hostname"
 
