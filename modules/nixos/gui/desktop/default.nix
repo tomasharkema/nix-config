@@ -110,7 +110,6 @@ in {
       ++ [
         ulauncher
         yelp
-        livecaptions
         pkgs.custom.ancs4linux
         # firefox
         # gnome.gnome-boxes
@@ -177,6 +176,8 @@ in {
         bottles
 
         handbrake
+
+        livecaptions
       ]
       ++ (with pkgs.custom; [zerotier-ui]);
 
