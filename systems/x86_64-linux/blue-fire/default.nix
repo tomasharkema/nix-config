@@ -291,11 +291,11 @@ in {
           "uinput"
           "nvme"
           # "tpm_rng"
-          "ipmi_ssif"
-          "acpi_ipmi"
-          "ipmi_si"
-          "ipmi_devintf"
-          "ipmi_msghandler"
+          # "ipmi_ssif"
+          # "acpi_ipmi"
+          # "ipmi_si"
+          # "ipmi_devintf"
+          # "ipmi_msghandler"
         ];
       };
       kernelModules = [
