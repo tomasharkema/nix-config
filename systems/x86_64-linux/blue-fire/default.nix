@@ -84,6 +84,8 @@ in {
     };
 
     services = {
+      das_watchdog.enable = mkForce false;
+
       builder-service.enable = true;
       # icingaweb2 = {
       #   enable = true;
@@ -311,7 +313,7 @@ in {
         "ipmi_watchdog"
       ];
       # extraModulePackages = [pkgs.freeipmi];
-      kernelParams = ["console=ttyS0,115200n8" "console=tty1"];
+      # kernelParams = ["console=ttyS2,115200n8" "console=tty0"];
     };
 
     # virtualisation = {
