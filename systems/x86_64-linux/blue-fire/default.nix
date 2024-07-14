@@ -27,7 +27,7 @@ in {
       enable = true;
       main = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K";
       media = "/dev/disk/by-id/ata-TOSHIBA_MK3263GSXN_5066P0YHT";
-      btrbk.enable = false;
+      btrbk.enable = true;
     };
 
     services.beesd.filesystems = {
@@ -51,7 +51,7 @@ in {
         # tpm.enable = true;
         secure-boot.enable = true;
         remote-unlock.enable = true;
-        # nvidia.enable = true;
+        nvidia.enable = true;
 
         # nfs = {
         #   enable = true;
@@ -311,7 +311,7 @@ in {
         "ipmi_watchdog"
       ];
       # extraModulePackages = [pkgs.freeipmi];
-      kernelParams = ["console=tty0" "console=ttyS1,115200n8"];
+      kernelParams = ["console=ttyS0,115200n8" "console=tty1"];
     };
 
     # virtualisation = {
