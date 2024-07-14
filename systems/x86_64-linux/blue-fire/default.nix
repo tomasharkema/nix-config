@@ -311,7 +311,7 @@ in {
         "ipmi_watchdog"
       ];
       # extraModulePackages = [pkgs.freeipmi];
-      kernelParams = ["console=tty0" "console=ttyS1,115200n8"];
+      kernelParams = ["console=ttyS0,115200n8" "console=tty1"];
     };
 
     # virtualisation = {
