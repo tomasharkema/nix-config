@@ -28,7 +28,7 @@ in {
   config = {
     # nix.extraOptions = "experimental-features = nix-command flakes c";
     # isbinaryCaches
-    environment.etc."current-nixos".source = ./.;
+    # environment.etc."current-nixos".source = ./.;
     nix =
       {
         package = pkgs.nixVersions.latest;
