@@ -58,6 +58,8 @@ with lib.custom;
       # };
 
       boot = {
+        bcache.enable = true;
+
         initrd.systemd.emergencyAccess = "abcdefg";
 
         crashDump.enable = true;
@@ -215,9 +217,9 @@ with lib.custom;
 
         watchdog = {
           device = "/dev/watchdog";
-          runtimeTime = "10m";
-          kexecTime = "10m";
-          rebootTime = "10m";
+          runtimeTime = "1m";
+          kexecTime = "1m";
+          rebootTime = "1m";
         };
 
         # user.services.auto-fix-vscode-server = {
