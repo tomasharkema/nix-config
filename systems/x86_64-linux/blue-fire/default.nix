@@ -303,15 +303,15 @@ in {
         "uinput"
         "nvme"
         "tpm_rng"
-        "ipmi_ssif"
-        "acpi_ipmi"
-        "ipmi_si"
-        "ipmi_devintf"
-        "ipmi_msghandler"
+        # "ipmi_ssif"
+        # "acpi_ipmi"
+        # "ipmi_si"
+        # "ipmi_devintf"
+        # "ipmi_msghandler"
         "ipmi_watchdog"
       ];
       # extraModulePackages = [pkgs.freeipmi];
-      kernelParams = ["console=ttyS0,115200n8" "console=tty1"];
+      # kernelParams = ["console=ttyS0,115200n8" "console=tty1"];
     };
 
     # virtualisation = {
