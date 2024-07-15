@@ -22,7 +22,7 @@ in {
         # };
 
         script = ''
-          exec ${pkgs.freeipmi}/bin/bmc-watchdog -d -u 4 -p 0 -a 1 -i 300 --debug
+          exec ${pkgs.freeipmi}/bin/bmc-watchdog -d --timer-use=4 --pre-timeout-interrupt=2 --timeout-action=3 --initial-countdown=300 --log=0 --debug
         '';
 
         wantedBy = ["multi-user.target"];
