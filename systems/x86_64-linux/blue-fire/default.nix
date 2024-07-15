@@ -276,7 +276,7 @@ in {
 
       loader = {
         systemd-boot = {
-          enable = true;
+          # enable = true;
           configurationLimit = 10;
         };
         efi.canTouchEfiVariables = true;
@@ -284,11 +284,12 @@ in {
 
       initrd = {
         availableKernelModules = [
+          "nvme"
           "xhci_pci"
           "ahci"
           "usbhid"
           "usb_storage"
-          "sd_mod"
+          # "sd_mod"
         ];
         kernelModules = [
           "kvm-intel"
@@ -307,16 +308,16 @@ in {
         ];
       };
       kernelModules = [
+        "coretemp"
         "kvm-intel"
         "uinput"
-        "nvme"
         # "tpm_rng"
         # "ipmi_ssif"
         # "acpi_ipmi"
-        "ipmi_si"
-        "ipmi_devintf"
-        "ipmi_msghandler"
-        "ipmi_watchdog"
+        # "ipmi_si"
+        # "ipmi_devintf"
+        # "ipmi_msghandler"
+        # "ipmi_watchdog"
       ];
       # extraModulePackages = [pkgs.freeipmi];
       # kernelParams = ["console=tty0" "console=ttyS2,115200n8"];
