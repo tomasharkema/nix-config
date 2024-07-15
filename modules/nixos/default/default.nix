@@ -215,12 +215,12 @@ with lib.custom;
       systemd = {
         enableEmergencyMode = mkDefault false;
 
-        # watchdog = {
-        #   device = "/dev/watchdog";
-        #   runtimeTime = "1m";
-        #   kexecTime = "1m";
-        #   rebootTime = "1m";
-        # };
+        watchdog = {
+          device = "/dev/watchdog";
+          runtimeTime = "5m";
+          kexecTime = "5m";
+          rebootTime = "5m";
+        };
 
         # user.services.auto-fix-vscode-server = {
         #   enable = true;
