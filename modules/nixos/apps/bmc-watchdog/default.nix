@@ -16,22 +16,22 @@ in {
         enable = true;
         description = "BMC Watchdog Timer Daemon";
 
-        environment = {
-          PID = "${pid}";
-          PIDFILE = "${pid}";
-        };
+        # environment = {
+        #   PID = "${pid}";
+        #   PIDFILE = "${pid}";
+        # };
 
         script = ''
-          exec ${pkgs.freeipmi}/bin/bmc-watchdog -d -u 4 -p 0 -a 1 -i 300 --debug
+          exec ${pkgs.freeipmi}/bin/bmc-watchdog -d --timer-use=4 --pre-timeout-interrupt=2 --timeout-action=3 --initial-countdown=300 --log=0 --debug
         '';
 
         wantedBy = ["multi-user.target"];
         after = ["network.target"];
 
         serviceConfig = {
-          PIDFile = "${pid}";
+          # PIDFile = "${pid}";
 
-          Type = "forking";
+          Type = "simple";
 
           Restart = "always";
           RestartSec = 12;
