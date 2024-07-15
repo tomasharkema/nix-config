@@ -378,7 +378,7 @@ in
             blue-fire-ipmi = ''
               ipmitool -I lanplus -H 192.168.0.46 -U ADMIN -P "$(op item get ydq2vns3nc4hj43n4avtryckpa --field password)"'';
 
-            dockerlogin = "op item get raeclwvdys3epkmc5zthv4pdha --format=json --vault=qtvfhvfotoqynomh2wd3yzoofe | jq '.fields[1].value' -r | docker login ghcr.io --username tomasharkema --password-stdin";
+            docker-login = "op item get raeclwvdys3epkmc5zthv4pdha --format=json --vault=qtvfhvfotoqynomh2wd3yzoofe | jq '.fields[1].value' -r | docker login ghcr.io --username tomasharkema --password-stdin";
 
             # subl = (lib.mkIf stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
             # dev = ''
