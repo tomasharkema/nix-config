@@ -30,18 +30,6 @@ in {
       btrbk.enable = true;
     };
 
-    services.beesd.filesystems = {
-      root = {
-        spec = "UUID=91663f26-5426-4a0d-96f0-e507f2cd8196";
-        hashTableSizeMB = 1024;
-        verbosity = "crit";
-        extraOptions = [
-          "--loadavg-target"
-          "2.0"
-        ];
-      };
-    };
-
     traits = {
       builder = {
         enable = true;
@@ -86,6 +74,18 @@ in {
 
     services = {
       das_watchdog.enable = mkForce false;
+
+      beesd.filesystems = {
+        root = {
+          spec = "UUID=91663f26-5426-4a0d-96f0-e507f2cd8196";
+          hashTableSizeMB = 1024;
+          verbosity = "crit";
+          extraOptions = [
+            "--loadavg-target"
+            "2.0"
+          ];
+        };
+      };
 
       builder-service.enable = true;
       # icingaweb2 = {
@@ -302,9 +302,9 @@ in {
           # "tpm_rng"
           # "ipmi_ssif"
           # "acpi_ipmi"
-          # "ipmi_si"
-          # "ipmi_devintf"
-          # "ipmi_msghandler"
+          "ipmi_si"
+          "ipmi_devintf"
+          "ipmi_msghandler"
         ];
       };
       kernelModules = [
@@ -315,10 +315,10 @@ in {
         # "tpm_rng"
         # "ipmi_ssif"
         # "acpi_ipmi"
-        #        "ipmi_si"
-        #        "ipmi_devintf"
-        #        "ipmi_msghandler"
-        #       "ipmi_watchdog"
+        "ipmi_si"
+        "ipmi_devintf"
+        "ipmi_msghandler"
+        # "ipmi_watchdog"
       ];
       # extraModulePackages = [pkgs.freeipmi];
       kernelParams = ["console=tty0" "console=ttyS2,115200n8"];
