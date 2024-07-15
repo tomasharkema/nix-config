@@ -75,6 +75,7 @@ in {
     services = {
       das_watchdog.enable = mkForce false;
 
+      remote-builders.server.enable = true;
       beesd.filesystems = {
         root = {
           spec = "UUID=91663f26-5426-4a0d-96f0-e507f2cd8196";
@@ -187,7 +188,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       # ipmicfg
-      ipmiview
+      # ipmiview
       # ipmiutil
       # vagrant
       ipmitool

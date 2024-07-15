@@ -165,6 +165,7 @@ with lib; {
     apps.podman.enable = true;
 
     services = {
+      remote-builders.client.enable = true;
       # usb-over-ethernet.enable = true;
       hardware.bolt.enable = true;
       beesd.filesystems = {

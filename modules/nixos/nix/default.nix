@@ -95,14 +95,12 @@ with lib.custom; {
             ++ [
               "tomas"
               "root"
-              "builder"
             ];
           allowed-users =
             users
             ++ [
               "tomas"
               "root"
-              "builder"
             ];
           #netrc-file = config.age.secrets.attic-netrc.path ++ config.age.secrets.netrc.path;
           netrc-file = config.age.secrets.netrc.path;

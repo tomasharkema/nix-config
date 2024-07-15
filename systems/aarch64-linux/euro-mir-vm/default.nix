@@ -66,7 +66,6 @@ with lib; {
     apps = {
       flatpak.enable = true;
       # opensnitch.enable = true;
-      remote-builders.enable = true;
     };
 
     boot = {
@@ -96,7 +95,8 @@ with lib; {
 
     zramSwap.enable = false;
 
-    services = mkForce {
+    services = {
+      remote-builders.client.enable = true;
       #      kmscon.enable = false;
       upower.enable = false;
       auto-cpufreq.enable = false;
