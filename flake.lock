@@ -958,11 +958,11 @@
     "nixos-infra": {
       "flake": false,
       "locked": {
-        "lastModified": 1719849596,
-        "narHash": "sha256-Zxl2EltZSCk9K4lGwo0vc3FrH/YmC/Lj6u8xLr/s154=",
+        "lastModified": 1720869490,
+        "narHash": "sha256-Cj5h2zSCGTuIlbEWasB4aIBl8IEhdxq/JZX+vQmyffk=",
         "owner": "NixOS",
         "repo": "infra",
-        "rev": "9532a8bb92ae9319de11b6c2052b0d68ff3b4dae",
+        "rev": "0e4ddbf7943699b9d61bc6eaae9b2ef536ffeb5a",
         "type": "github"
       },
       "original": {
@@ -984,11 +984,11 @@
         "npmlock2nix": "npmlock2nix"
       },
       "locked": {
-        "lastModified": 1720317250,
-        "narHash": "sha256-6X+U6HVM+mp6wso14ghO+JoQLr9nstdkreMMXwtCTiM=",
+        "lastModified": 1721050729,
+        "narHash": "sha256-TTYT7WengNKlRWkQJMKuccB/MgYvNU0c59cpJEy6NOY=",
         "owner": "NixOS",
         "repo": "nixos-search",
-        "rev": "6d35e46fec02967e44514aea269232c6919b6d27",
+        "rev": "f46a52abf356365277c70268098772c6de5381b3",
         "type": "github"
       },
       "original": {
@@ -1162,11 +1162,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1721041597,
-        "narHash": "sha256-QllYXTsdS285R/kQ0C0oByXx4g6YjytZm46K16I+MBw=",
+        "lastModified": 1721045803,
+        "narHash": "sha256-dQGvOK+t45unF7DTp5bfO37hY0NkDUw6X3MH5CCTEAs=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "6c0793158de520d453bc478100371d7eab4360f8",
+        "rev": "eef2f4c6b190d92e296e47e5fe10e7ced65fd959",
         "type": "github"
       },
       "original": {
@@ -1650,11 +1650,11 @@
     },
     "unstable": {
       "locked": {
-        "lastModified": 1720768451,
-        "narHash": "sha256-EYekUHJE2gxeo2pM/zM9Wlqw1Uw2XTJXOSAO79ksc4Y=",
+        "lastModified": 1720957393,
+        "narHash": "sha256-oedh2RwpjEa+TNxhg5Je9Ch6d3W1NKi7DbRO1ziHemA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7e7c39ea35c5cdd002cd4588b03a3fb9ece6fad9",
+        "rev": "693bc46d169f5af9c992095736e82c3488bf7dbb",
         "type": "github"
       },
       "original": {
