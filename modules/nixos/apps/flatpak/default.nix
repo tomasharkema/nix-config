@@ -60,7 +60,7 @@ in {
           if pkgs.stdenv.isx86_64
           then [
             "com.discordapp.Discord"
-            "com.spotify.Client"
+            # "com.spotify.Client"
             # "tv.plex.PlexDesktop"
           ]
           else []

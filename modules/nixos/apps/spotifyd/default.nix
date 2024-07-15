@@ -10,10 +10,6 @@ in {
   options.apps.spotifyd = {enable = mkEnableOption "spotifyd";};
 
   config = mkIf cfg.enable {
-    #   environment.systemPackages = with pkgs; [
-    #     # spotify
-    #     spotifyd
-    #   ];
     users.users = {
       "tomas".extraGroups = ["audio"];
       "root".extraGroups = ["audio"];

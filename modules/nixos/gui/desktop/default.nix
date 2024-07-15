@@ -108,6 +108,8 @@ in {
     environment.systemPackages = with pkgs;
       (optional ((stdenv.isLinux && stdenv.isx86_64) || stdenv.isDarwin) mailspring)
       ++ [
+        spotify
+        spot
         ulauncher
         yelp
         pkgs.custom.ancs4linux
