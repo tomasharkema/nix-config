@@ -257,21 +257,21 @@
       };
     };
 
-    opentelemetry-nix = {
-      url = "github:FriendsOfOpenTelemetry/opentelemetry-nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        # flake-utils.follows = "flake-utils";
-      };
-    };
+    # opentelemetry-nix = {
+    #   url = "github:FriendsOfOpenTelemetry/opentelemetry-nix";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     # flake-utils.follows = "flake-utils";
+    #   };
+    # };
 
-    nix-otel = {
-      url = "github:tomasharkema/nix-otel";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
+    # nix-otel = {
+    #   url = "github:tomasharkema/nix-otel";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #   };
+    # };
   };
 
   outputs = inputs: let
@@ -345,7 +345,7 @@
       };
 
       overlays = with inputs; [
-        nix-otel.overlays.default
+        # nix-otel.overlays.default
         peerix.overlay
         snowfall-flake.overlays."package/flake"
         nixos-checkmk.overlays.default
@@ -353,7 +353,7 @@
         agenix-rekey.overlays.default
         nixvim.overlays.default
         nix-topology.overlays.default
-        opentelemetry-nix.overlays.default
+        # opentelemetry-nix.overlays.default
       ];
 
       homes.modules = with inputs; [
