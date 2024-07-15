@@ -311,11 +311,6 @@ in {
         "coretemp"
         "kvm-intel"
         "uinput"
-        "ipmi_si"
-        "ipmi_devintf"
-        "ipmi_msghandler"
-        "ipmi_watchdog"
-
         "fuse"
         # "tpm_rng"
         # "ipmi_ssif"
