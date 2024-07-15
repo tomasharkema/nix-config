@@ -273,7 +273,10 @@ in {
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
-
+      recovery = {
+        sign = false;
+        install = false;
+      };
       loader = {
         systemd-boot = {
           # enable = true;
