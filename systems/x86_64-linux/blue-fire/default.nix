@@ -319,10 +319,10 @@ in {
         # "tpm_rng"
         # "ipmi_ssif"
         # "acpi_ipmi"
-        # "ipmi_si"
-        # "ipmi_devintf"
-        # "ipmi_msghandler"
-        # "ipmi_watchdog"
+        "ipmi_si"
+        "ipmi_devintf"
+        "ipmi_msghandler"
+        "ipmi_watchdog"
       ];
       # extraModulePackages = [pkgs.freeipmi];
       # kernelParams = ["console=tty0" "console=ttyS2,115200n8"];
