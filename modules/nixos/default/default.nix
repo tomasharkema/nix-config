@@ -58,7 +58,7 @@ with lib.custom;
       # };
 
       boot = {
-        bcache.enable = true;
+        # bcache.enable = true;
 
         initrd.systemd.emergencyAccess = "abcdefg";
 
