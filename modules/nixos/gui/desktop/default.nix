@@ -167,6 +167,7 @@ in {
         zeal
       ]
       ++ optionals pkgs.stdenv.isx86_64 [
+        ipmiview
         jetbrains-toolbox
         gitkraken
         unstable.xpipe

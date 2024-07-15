@@ -76,6 +76,7 @@ in {
         enable = true;
         httpd = true;
       };
+      "bmc-watchdog".enable = true;
     };
 
     gui = {
