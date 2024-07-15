@@ -80,6 +80,15 @@ with lib; {
       command-center = {
         #enableBot = true;
       };
+      remote-builders.server.enable = true;
+      beesd.filesystems = {
+        root = {
+          spec = "UUID=f3558990-77b0-4113-b45c-3d2da3f46c14";
+          hashTableSizeMB = 4096;
+          verbosity = "crit";
+          extraOptions = ["--loadavg-target" "2.0"];
+        };
+      };
     };
 
     apps = {
@@ -90,15 +99,6 @@ with lib; {
     headless.hypervisor = {
       enable = true;
       bridgeInterfaces = ["enp2s0"];
-    };
-
-    services.beesd.filesystems = {
-      root = {
-        spec = "UUID=f3558990-77b0-4113-b45c-3d2da3f46c14";
-        hashTableSizeMB = 4096;
-        verbosity = "crit";
-        extraOptions = ["--loadavg-target" "2.0"];
-      };
     };
 
     # console.earlySetup = true;

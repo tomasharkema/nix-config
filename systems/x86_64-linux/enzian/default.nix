@@ -137,6 +137,7 @@ with lib; {
     };
 
     services = {
+      remote-builders.client.enable = true;
       blueman.enable = true;
 
       # nfs = {

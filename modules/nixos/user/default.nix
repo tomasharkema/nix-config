@@ -91,14 +91,6 @@ with lib.custom; {
       uid = 1099;
     };
 
-    users.users.builder = {
-      isSystemUser = true;
-      group = "agent";
-      # extraGroups = ["rslsync"];
-      uid = 1098;
-      openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
-    };
-
     users.users.root = {
       shell = pkgs.zsh;
       openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];

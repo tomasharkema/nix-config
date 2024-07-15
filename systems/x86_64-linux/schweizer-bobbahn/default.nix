@@ -46,7 +46,6 @@ with lib; {
     apps = {
       steam.enable = true;
       # usbip.enable = true;
-      remote-builders.enable = true;
       netdata.enable = true;
       # unified-remote.enable = true;
       # cec.enable = true;
@@ -85,6 +84,7 @@ with lib; {
     # programs = { atop.enable = mkForce false; };
 
     services = {
+      remote-builders.client.enable = true;
       # podman.enable = true;
       clipmenu.enable = mkForce false;
       synergy.server = {enable = true;};

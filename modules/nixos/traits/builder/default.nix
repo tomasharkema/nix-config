@@ -10,7 +10,7 @@ with lib.custom; let
   cfg = config.traits.builder;
 in {
   options.traits = {
-    builder = {enable = mkBoolOpt false "SnowflakeOS GNOME configuration";};
+    builder = {enable = mkEnableOption "SnowflakeOS GNOME configuration";};
   };
 
   config =
