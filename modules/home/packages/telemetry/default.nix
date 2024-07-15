@@ -9,6 +9,7 @@
       enable = true;
       configFile = pkgs.writeText "otel.yml" ''
         receivers:
+          journald:
           filelog/std:
             include: [ /var/log/**log ]
             # start_at: beginning
@@ -57,7 +58,7 @@
               processors: [resourcedetection/system, memory_limiter, batch]
               exporters: [otlphttp/openobserve]
             logs:
-              receivers: [filelog/std]
+              receivers: [filelog/std, journald]
               processors: [resourcedetection/system, memory_limiter, batch]
               exporters: [otlphttp/openobserve]
       '';
