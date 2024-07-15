@@ -8,7 +8,10 @@ with lib; {
   config = {
     systemd.services.opentelemetry-collector = {
       serviceConfig = {
+        DynamicUser = mkForce null;
         ProtectSystem = mkForce null;
+        DevicePolicy = mkForce null;
+        NoNewPrivileges = mkForce null;
       };
     };
 
