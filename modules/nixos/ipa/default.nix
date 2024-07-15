@@ -51,9 +51,6 @@ in {
     };
 
     services = {
-      autofs = {
-        # enable = true;
-      };
       sssd = {
         enable = true;
         # kcm = true;
