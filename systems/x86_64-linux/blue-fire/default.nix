@@ -15,7 +15,7 @@ in {
 
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
-    nixos-hardware.nixosModules.supermicro-x10sll-f
+    # nixos-hardware.nixosModules.supermicro-x10sll-f
   ];
 
   config = {
@@ -302,9 +302,9 @@ in {
           # "tpm_rng"
           # "ipmi_ssif"
           # "acpi_ipmi"
-          "ipmi_si"
-          "ipmi_devintf"
-          "ipmi_msghandler"
+          # "ipmi_si"
+          # "ipmi_devintf"
+          # "ipmi_msghandler"
         ];
       };
       kernelModules = [
