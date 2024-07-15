@@ -12,9 +12,20 @@ with lib; {
     configuration = mkOption {
       default = inputs.self.nixosConfigurations.installer-netboot-x86;
     };
+
+    sign = mkOption {
+      default = true;
+      type = types.bool;
+    };
+
+    install = mkOption {
+      default = true;
+      type = types.bool;
+    };
   };
 
   config = let
+    cfg = config.boot.recovery;
     efi = config.boot.loader.efi;
     nixosDir = "/EFI/nixos";
     entries = {
@@ -31,7 +42,7 @@ with lib; {
     };
     bootMountPoint = efi.efiSysMountPoint;
 
-    configuration = config.boot.recovery.configuration;
+    configuration = cfg.configuration;
     configurationBuild = configuration.config.system.build;
     toplevel = configurationBuild.toplevel;
     configurationHash = builtins.hashString "sha256" "${toplevel.drvPath}${config.system.build.recoveryImage.drvPath}";
@@ -89,7 +100,7 @@ with lib; {
       '';
     };
 
-    system.activationScripts = {
+    system.activationScripts = mkIf cfg.install {
       recovery.text = ''
 
         CONFIGURATION_HASH_FILE="${bootMountPoint}/EFI/recovery/configuration.hash"
@@ -108,7 +119,9 @@ with lib; {
         empty_file=$(${pkgs.coreutils}/bin/mktemp)
 
         ${pkgs.coreutils}/bin/install -D "${config.system.build.recoveryImage}" "${bootMountPoint}/EFI/recovery/recovery.efi"
-        ${pkgs.sbctl}/bin/sbctl sign -s "${bootMountPoint}/EFI/recovery/recovery.efi"
+        ${optionalString cfg.sign ''
+          ${pkgs.sbctl}/bin/sbctl sign -s "${bootMountPoint}/EFI/recovery/recovery.efi"
+        ''}
 
         BOOT_ENTRY=$(${pkgs.efibootmgr}/bin/efibootmgr --verbose | ${pkgs.gnugrep}/bin/grep NixosRecovery)
         BOOT_ENTRY_CODE="$?"
@@ -126,7 +139,9 @@ with lib; {
 
         ${pkgs.coreutils}/bin/install -D "${pkgs.netbootxyz-efi}" "${bootMountPoint}/EFI/netbootxyz/netboot.xyz.efi"
 
-        ${pkgs.sbctl}/bin/sbctl sign -s "${bootMountPoint}/EFI/netbootxyz/netboot.xyz.efi"
+        ${optionalString cfg.sign ''
+          ${pkgs.sbctl}/bin/sbctl sign -s "${bootMountPoint}/EFI/netbootxyz/netboot.xyz.efi"
+        ''}
 
         ${concatStrings (mapAttrsToList (n: v: ''
             ${pkgs.coreutils}/bin/install -Dp "${pkgs.writeText n v}" "${bootMountPoint}/loader/entries/"${escapeShellArg n}

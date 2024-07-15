@@ -84,6 +84,8 @@ in {
     };
 
     services = {
+      das_watchdog.enable = mkForce false;
+
       builder-service.enable = true;
       # icingaweb2 = {
       #   enable = true;
@@ -102,7 +104,7 @@ in {
       #   enableBot = true;
       # };
 
-      tcsd.enable = true;
+      # tcsd.enable = true;
       kmscon.enable = mkForce false;
 
       prometheus.exporters.ipmi.enable = true;
@@ -271,47 +273,60 @@ in {
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
-
+      recovery = {
+        sign = false;
+        install = false;
+      };
       loader = {
-        # systemd-boot.enable = true;
+        systemd-boot = {
+          # enable = true;
+          configurationLimit = 10;
+        };
         efi.canTouchEfiVariables = true;
-        # systemd-boot.configurationLimit = 10;
       };
 
       initrd = {
         availableKernelModules = [
+          "nvme"
           "xhci_pci"
           "ahci"
           "usbhid"
           "usb_storage"
-          "sd_mod"
+          # "sd_mod"
         ];
         kernelModules = [
           "kvm-intel"
           "uinput"
           "nvme"
           # "tpm_rng"
-          "ipmi_ssif"
-          "acpi_ipmi"
-          "ipmi_si"
-          "ipmi_devintf"
-          "ipmi_msghandler"
+          # "ipmi_ssif"
+          # "acpi_ipmi"
+          # "ipmi_si"
+          # "ipmi_devintf"
+          # "ipmi_msghandler"
         ];
       };
       kernelModules = [
+        "coretemp"
         "kvm-intel"
         "uinput"
-        "nvme"
-        "tpm_rng"
-        "ipmi_ssif"
-        "acpi_ipmi"
         "ipmi_si"
         "ipmi_devintf"
         "ipmi_msghandler"
         "ipmi_watchdog"
+
+        "fuse"
+        # "tpm_rng"
+        # "ipmi_ssif"
+        # "acpi_ipmi"
+        # "ipmi_si"
+        # "ipmi_devintf"
+        # "ipmi_msghandler"
+        # "ipmi_watchdog"
       ];
       # extraModulePackages = [pkgs.freeipmi];
-      kernelParams = ["console=ttyS0,115200n8" "console=tty1"];
+      # kernelParams = ["console=tty0" "console=ttyS2,115200n8"];
+      systemd.services."serial-getty@ttyS2".wantedBy = ["multi-user.target"];
     };
 
     # virtualisation = {
