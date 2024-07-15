@@ -70,9 +70,19 @@ in
         # enable = true;
         # enableZshIntegration = true;
       };
+
+      gtk.gtk3.bookmarks = [
+        "file:///home/tomas/Developer"
+        "file:///home/tomas/Developer/nix-config"
+        "file:///mnt/steam"
+        "file:///mnt/resilio-sync"
+        "file:///mnt/servers"
+      ];
+
       xdg = mkIf pkgs.stdenv.isLinux {
         userDirs = {
           enable = true;
+          createDirectories = true;
           extraConfig = {
             XDG_DEV_DIR = "${config.home.homeDirectory}/Developer";
           };
