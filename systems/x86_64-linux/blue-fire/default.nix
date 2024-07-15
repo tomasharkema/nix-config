@@ -301,16 +301,18 @@ in {
           # "ipmi_si"
           # "ipmi_devintf"
           # "ipmi_msghandler"
-          "ipmi_si"
-          "ipmi_devintf"
-          "ipmi_msghandler"
-          "ipmi_watchdog"
         ];
       };
       kernelModules = [
         "coretemp"
         "kvm-intel"
         "uinput"
+        "ipmi_si"
+        "ipmi_devintf"
+        "ipmi_msghandler"
+        "ipmi_watchdog"
+
+        "fuse"
         # "tpm_rng"
         # "ipmi_ssif"
         # "acpi_ipmi"
