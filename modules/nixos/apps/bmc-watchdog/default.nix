@@ -16,10 +16,10 @@ in {
         enable = true;
         description = "BMC Watchdog Timer Daemon";
 
-        environment = {
-          PID = "${pid}";
-          PIDFILE = "${pid}";
-        };
+        # environment = {
+        #   PID = "${pid}";
+        #   PIDFILE = "${pid}";
+        # };
 
         script = ''
           exec ${pkgs.freeipmi}/bin/bmc-watchdog -d -u 4 -p 0 -a 1 -i 300 --debug
@@ -29,9 +29,10 @@ in {
         after = ["network.target"];
 
         serviceConfig = {
-          PIDFile = "${pid}";
+          # PIDFile = "${pid}";
 
-          Type = "forking";
+          Type = "simple";
+          # Type = "forking";
 
           Restart = "always";
           RestartSec = 12;
