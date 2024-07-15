@@ -88,18 +88,17 @@ in {
         };
       };
 
-      builder-service.enable = true;
-      # icingaweb2 = {
-      #   enable = true;
-      #   virtualHost = "mon.blue-fire.harkema.intra";
-      #   modules.setup.enable = true;
-      #   authentications = {
-      #     icingaweb = {
-      #       backend = "db";
-      #       resource = "icingaweb_db";
-      #     };
-      #   };
-      # };
+      icingaweb2 = {
+        enable = true;
+        virtualHost = "mon.blue-fire.harkema.intra";
+        modules.setup.enable = true;
+        authentications = {
+          icingaweb = {
+            backend = "db";
+            resource = "icingaweb_db";
+          };
+        };
+      };
 
       # ha.initialMaster = true;
       # command-center = {
