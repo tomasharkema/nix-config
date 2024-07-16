@@ -29,7 +29,7 @@ in {
         sshFsMapConf = pkgs.writeText "sshfs.conf" (concatStringsSep "\n" sshFsLines);
         nfsConf = pkgs.writeText "nfs.conf" ''
           ${concatStringsSep "\n" (map (folder: ''
-            silver-star-${folder} -rw,soft,intr,rsize=8192,wsize=8192 silver-star.local:/mnt/user/${folder}
+            silver-star-${folder} -rw,soft,intr,rsize=8192,wsize=8192 silver-star:/mnt/user/${folder}
           '') ["downloads" "data" "appdata" "backup" "games" "games_ssd" "domains" "isos"])}
         '';
       in ''
