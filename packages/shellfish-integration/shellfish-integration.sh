@@ -431,7 +431,7 @@ EOF
 #
 # This command sends encrypted data through push notifications such
 # that it doesn't need to run from a Secure ShellFish terminal.
-notify() {
+notify-shellfish() {
   if [[ $# -eq 0 ]]; then
     cat <<EOF
 Usage: notify [--shortcut NameOfShortcut] [--url https://url.to.open/] [title] <body> ...
