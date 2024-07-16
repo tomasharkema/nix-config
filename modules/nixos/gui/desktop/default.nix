@@ -80,8 +80,8 @@ in {
     };
 
     programs = {
-      evolution.enable = true;
-      geary.enable = false;
+      evolution.enable = false;
+      geary.enable = true;
     };
 
     services.dbus = {
