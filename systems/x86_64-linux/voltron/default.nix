@@ -81,6 +81,7 @@ with lib; {
       # calibre
       glxinfo
       inxi
+      livecaptions
 
       pwvucontrol
     ];
