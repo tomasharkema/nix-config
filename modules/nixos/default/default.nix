@@ -96,6 +96,7 @@ with lib.custom;
 
       environment.systemPackages =
         (with pkgs; [
+          bash
           discordo
           nvchecker
           unstable.nil
