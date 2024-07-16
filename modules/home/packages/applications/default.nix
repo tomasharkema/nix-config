@@ -85,6 +85,7 @@ in {
 
         (findDesktopFileBase pkgs.spotify)
         (findDesktopFileBase pkgs._1password-gui)
+        (findDesktopFileBase pkgs.notify-client)
       ]
       # ++ (optional pkgs.stdenv.isx86_64 "kitty.desktop")
       # ++ (optional (!pkgs.stdenv.isx86_64) "com.gexperts.Tilix.desktop")

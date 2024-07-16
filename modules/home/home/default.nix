@@ -206,6 +206,8 @@ in
           telegram-desktop
           unstable.trayscale
           pkgs.custom.zerotier-ui
+
+          notify-client
         ];
 
       programs = {
