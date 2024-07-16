@@ -59,7 +59,7 @@ with lib.custom;
 
       boot = {
         # bcache.enable = true;
-
+        recovery.enable = mkDefault true;
         initrd.systemd.emergencyAccess = "abcdefg";
 
         crashDump.enable = true;

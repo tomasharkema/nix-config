@@ -225,7 +225,7 @@ in {
     age
     alejandra
     attic-client
-    bash
+    # bash
     bfg-repo-cleaner
     colima
     dconf-save

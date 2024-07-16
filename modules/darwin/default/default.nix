@@ -100,7 +100,7 @@
         #   export OP_PLUGIN_ALIASES_SOURCED=1
         # '';
       };
-      bash.enable = true;
+      # bash.enable = true;
     };
 
     # programs.fzf.fuzzyCompletion = true;
