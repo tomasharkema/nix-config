@@ -148,6 +148,7 @@ with lib; {
         nvidia.enable = true;
         # remote-unlock.enable = true;
         bluetooth.enable = true;
+        monitor.enable = true;
       };
     };
 
