@@ -278,10 +278,10 @@ in
             style = "compact";
             secrets_filter = true;
             common_subcommands = ["cargo" "go" "git" "npm" "yarn" "pnpm" "kubectl" "nix" "nom"];
-            daemon = {
-              enabled = true;
-              systemd_socket = true;
-            };
+            # daemon = {
+            #   enabled = true;
+            #   systemd_socket = true;
+            # };
           };
         };
 
