@@ -211,6 +211,8 @@ in
         ];
 
       programs = {
+        freetube.enable = true;
+
         home-manager.enable = true;
 
         nix-index-database.comma.enable = true;

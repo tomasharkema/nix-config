@@ -109,7 +109,7 @@ in {
       (optional ((stdenv.isLinux && stdenv.isx86_64) || stdenv.isDarwin) mailspring)
       ++ [
         discord
-        spotify
+
         spot
         ulauncher
         yelp
@@ -170,6 +170,7 @@ in {
         zeal
       ]
       ++ optionals pkgs.stdenv.isx86_64 [
+        spotify
         ipmiview
         jetbrains-toolbox
         gitkraken

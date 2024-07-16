@@ -162,7 +162,7 @@ in
       ack
       age
       agenix
-      bash
+      # bash
       bfg-repo-cleaner
       # cachix-deploy
       # cachix-reploy-pin
