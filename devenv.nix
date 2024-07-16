@@ -178,7 +178,7 @@ in {
     shfmt.enable = true;
     nil.enable = true;
     stylua.enable = true;
-    treefmt.enable = true;
+    # treefmt.enable = true;
     # statix.enable = true;
     # deadnix.enable = true;
 
