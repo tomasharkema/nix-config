@@ -75,6 +75,9 @@ with lib; {
         useTmpfs = false;
         cleanOnBoot = false;
       };
+      recovery = {
+        enable = false;
+      };
     };
     traits = {
       developer.enable = false;
