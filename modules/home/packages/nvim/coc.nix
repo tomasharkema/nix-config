@@ -1,4 +1,8 @@
-{homeDir}: {
+{
+  homeDir,
+  pkgs,
+  ...
+}: {
   eslint.autoFixOnSave = true;
   coc.preferences.colorSupport = false;
   prettier.disableSuccessMessage = true;
@@ -49,7 +53,7 @@
 
   languageserver = {
     nix = {
-      command = "nil";
+      command = "nixd";
       filetypes = ["nix"];
     };
   };

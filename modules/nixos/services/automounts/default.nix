@@ -7,7 +7,7 @@
 }:
 with lib; let
   cfg = config.services.automounts;
-  machines = inputs.self.servers;
+  machines = inputs.self.machines.excludingSelf config;
 in {
   options.services.automounts = {
     enable = mkOption {

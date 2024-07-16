@@ -99,7 +99,8 @@ with lib.custom;
           bash
           discordo
           nvchecker
-          unstable.nil
+          # unstable.nil
+          unstable.nixd
           googler
           castnow
           go-chromecast
@@ -217,12 +218,12 @@ with lib.custom;
       systemd = {
         enableEmergencyMode = mkDefault false;
 
-        watchdog = {
-          device = "/dev/watchdog";
-          runtimeTime = "5m";
-          kexecTime = "5m";
-          rebootTime = "5m";
-        };
+        # watchdog = {
+        #   device = "/dev/watchdog";
+        #   runtimeTime = "5m";
+        #   kexecTime = "5m";
+        #   rebootTime = "5m";
+        # };
 
         # user.services.auto-fix-vscode-server = {
         #   enable = true;
@@ -259,7 +260,7 @@ with lib.custom;
       };
 
       services = {
-        watchdogd = {enable = true;};
+        # watchdogd = {enable = true;};
 
         dbus = {
           enable = true;
