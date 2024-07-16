@@ -98,13 +98,12 @@ with lib; {
     services = {
       remote-builders.client.enable = true;
       #      kmscon.enable = false;
-      upower.enable = false;
-      auto-cpufreq.enable = false;
-      monit.enable = false;
-      tor.enable = false;
-      udisks2.enable = false;
-      xrdp.enable = false;
-      fwupd.enable = false;
+      upower.enable = mkForce false;
+      auto-cpufreq.enable = mkForce false;
+      monit.enable = mkForce false;
+      # tor.enable = false;
+      xrdp.enable = mkForce false;
+      fwupd.enable = mkForce false;
 
       # spice-autorandr.enable = true;
       spice-vdagentd.enable = true;
