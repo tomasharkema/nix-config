@@ -83,7 +83,7 @@ in {
 
         (findDesktopFileBase pkgs.telegram-desktop)
       ]
-      ++ (optional pkgs.stdenv.isLinux (findDesktopFileBase pkgs.spotify))
+      ++ (optional pkgs.stdenv.isx86_64 (findDesktopFileBase pkgs.spotify))
       ++ [
         (findDesktopFileBase pkgs._1password-gui)
         (findDesktopFileBase pkgs.notify-client)
