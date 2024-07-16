@@ -30,6 +30,7 @@ in {
         source = builtins.toFile "coc-settings.json" (
           builtins.toJSON (coc {
             homeDir = config.xdg.configHome;
+            inherit pkgs;
           })
         );
       };

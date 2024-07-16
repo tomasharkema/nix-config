@@ -110,7 +110,7 @@ in {
       ++ [
         fractal
         discord
-
+        unstable.zed-editor
         spot
         ulauncher
         yelp
@@ -151,7 +151,6 @@ in {
         pwvucontrol
         qdirstat
         qjournalctl
-        remmina
         rtfm
         sublime-merge
         systemdgenie

@@ -95,6 +95,11 @@ with lib; {
       };
     };
 
+    boot.recovery = {
+      enable = false;
+      install = false;
+    };
+
     zramSwap = {enable = true;};
 
     hardware = {
