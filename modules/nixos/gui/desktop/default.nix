@@ -177,11 +177,9 @@ in {
         angryipscanner
         telegram-desktop
         # pkgs.custom.git-butler
-        bottles
+        unstable.bottles
 
         handbrake
-
-        livecaptions
       ]
       ++ (with pkgs.custom; [zerotier-ui]);
 
