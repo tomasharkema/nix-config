@@ -122,7 +122,8 @@ in
               gjs
               gnome.gpaste
               gnome-menus
-              pkgs.custom.openglide
+              # pkgs.custom.openglide
+              ddcutil
             ];
           };
 

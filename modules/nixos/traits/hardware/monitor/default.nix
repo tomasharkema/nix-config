@@ -8,7 +8,7 @@
 in
   with lib;
   with lib.custom; {
-    options.traits.hardware.monitor = {enable = mkBoolOpt false "monitor";};
+    options.traits.hardware.monitor = {enable = mkEnableOption "monitor";};
 
     config = mkIf cfg.enable {
       system.nixos.tags = ["monitor"];

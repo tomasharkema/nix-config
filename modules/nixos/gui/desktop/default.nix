@@ -108,6 +108,7 @@ in {
     environment.systemPackages = with pkgs;
       (optional ((stdenv.isLinux && stdenv.isx86_64) || stdenv.isDarwin) mailspring)
       ++ [
+        discord
         spotify
         spot
         ulauncher
