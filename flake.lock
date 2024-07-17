@@ -307,6 +307,22 @@
     "flake-compat_4": {
       "flake": false,
       "locked": {
+        "lastModified": 1673956053,
+        "narHash": "sha256-4gtG9iQuiKITOjNQQeQIpoIB6b16fm+504Ch3sNKLd8=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "35bb57c0c8d8b62bbfd284272c928ceb64ddbde9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-compat_5": {
+      "flake": false,
+      "locked": {
         "lastModified": 1696426674,
         "narHash": "sha256-kvjfFW7WAETZlt09AgDn1MrtKzP7t90Vf7vypd3OL1U=",
         "owner": "edolstra",
@@ -320,7 +336,7 @@
         "type": "github"
       }
     },
-    "flake-compat_5": {
+    "flake-compat_6": {
       "flake": false,
       "locked": {
         "lastModified": 1627913399,
@@ -336,7 +352,7 @@
         "type": "github"
       }
     },
-    "flake-compat_6": {
+    "flake-compat_7": {
       "flake": false,
       "locked": {
         "lastModified": 1696426674,
@@ -484,7 +500,7 @@
     },
     "git-hooks": {
       "inputs": {
-        "flake-compat": "flake-compat_4",
+        "flake-compat": "flake-compat_5",
         "gitignore": "gitignore_4",
         "nixpkgs": [
           "nixvim",
@@ -915,6 +931,30 @@
         "type": "github"
       }
     },
+    "nixos-dash-docset": {
+      "inputs": {
+        "flake-compat": "flake-compat_4",
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1689685239,
+        "narHash": "sha256-TLy0steDat0VpWqD3Dcs+SKWkwjqbIuxkNViN13yv2g=",
+        "owner": "ptitfred",
+        "repo": "nixos-dash-docset",
+        "rev": "bc9b624627670cb7ff5963f19c2690848837bd70",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ptitfred",
+        "repo": "nixos-dash-docset",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1720737798,
@@ -1194,7 +1234,7 @@
     },
     "peerix": {
       "inputs": {
-        "flake-compat": "flake-compat_5",
+        "flake-compat": "flake-compat_6",
         "flake-utils": [
           "flake-utils"
         ],
@@ -1350,6 +1390,7 @@
         "nixos-06cb-009a-fingerprint-sensor": "nixos-06cb-009a-fingerprint-sensor",
         "nixos-anywhere": "nixos-anywhere",
         "nixos-checkmk": "nixos-checkmk",
+        "nixos-dash-docset": "nixos-dash-docset",
         "nixos-hardware": "nixos-hardware",
         "nixos-search": "nixos-search",
         "nixos-service": "nixos-service",
@@ -1390,7 +1431,7 @@
     },
     "snowfall-flake": {
       "inputs": {
-        "flake-compat": "flake-compat_6",
+        "flake-compat": "flake-compat_7",
         "nixpkgs": [
           "nixpkgs"
         ],

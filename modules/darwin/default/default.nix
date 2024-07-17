@@ -20,18 +20,14 @@
   #     };
   #   };
   # };
-  #why depends linux-6.6.33
-  imports = [
-    # ../../nixos/secrets
-  ];
 
   config = {
     age = {
       secrets = {
         atuin = {
           rekeyFile = ../../nixos/secrets/atuin.age;
-          # owner = "tomas";
-          # group = "tomas";
+          owner = "tomas";
+          group = "tomas";
           mode = "644";
           # symlink = false;
         };
@@ -44,8 +40,8 @@
         # };
         notify = {
           rekeyFile = ../../nixos/secrets/notify.age;
-          # owner = "tomas";
-          # group = "tomas";
+          owner = "tomas";
+          group = "tomas";
           mode = "644";
           # symlink = false;
         };
