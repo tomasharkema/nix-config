@@ -17,7 +17,7 @@ with lib; {
 
   config = {
     age.rekey = {
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMXXVyhUP5J1WrjluDhqZdOdsQoa+z+1aGhNh3LATYYV root@schweizer-bobbahn";
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIa7OowjESNuouZx/QVFryBWjjEHphKDZDq4hOD4C5xS root@schweizer-bobbahn";
     };
 
     specialisation = {
@@ -95,10 +95,10 @@ with lib; {
       };
     };
 
-    boot.recovery = {
-      enable = false;
-      install = false;
-    };
+    # boot.recovery = {
+    #   enable = false;
+    #   install = false;
+    # };
 
     zramSwap = {enable = true;};
 
