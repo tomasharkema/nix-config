@@ -162,7 +162,7 @@ in
       ack
       age
       agenix
-      # bash
+      bash
       bfg-repo-cleaner
       # cachix-deploy
       # cachix-reploy-pin
@@ -186,8 +186,8 @@ in
       hydra-cli
       mkiso
       netdiscover
-      unstable.nil
-      # nixd
+      # unstable.nil
+      unstable.nixd
       nix-output-monitor
       nix-prefetch-scripts
       nixel

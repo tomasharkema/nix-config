@@ -68,7 +68,7 @@ with pkgs; {
       # thefuck
       antidote
       # autojump
-      # bash
+      bash
       bat
       bottom
 

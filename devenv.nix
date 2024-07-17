@@ -169,13 +169,16 @@ in {
 
   languages.nix = {
     # enable = true;
-    lsp.package = nil;
+    lsp.package = nixd;
   };
 
   pre-commit.hooks = {
     alejandra.enable = true;
     shellcheck.enable = true;
+    shfmt.enable = true;
     nil.enable = true;
+    stylua.enable = true;
+    # treefmt.enable = true;
     # statix.enable = true;
     # deadnix.enable = true;
 
@@ -225,7 +228,7 @@ in {
     age
     alejandra
     attic-client
-    # bash
+    bash
     bfg-repo-cleaner
     colima
     dconf-save
@@ -246,7 +249,7 @@ in {
     manix
     mkiso
     netdiscover
-    nil
+    # nil
     nix-eval-jobs
     nix-output-monitor
     nix-output-monitor

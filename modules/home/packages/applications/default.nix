@@ -46,7 +46,7 @@ in {
 
   config = {
     home.file = builtins.listToAttrs (map (pkg: {
-        name = ".config/autostart/" + pkg.pname + ".desktop";
+        name = ".config/autostart/${pkg.pname}.desktop";
         value =
           if pkg ? desktopItem
           then {
