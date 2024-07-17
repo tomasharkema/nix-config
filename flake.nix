@@ -365,9 +365,7 @@
       homes.modules = with inputs; [
         #     catppuccin.homeManagerModules.catppuccin
         nixvim.homeManagerModules.nixvim
-
         nix-index-database.hmModules.nix-index
-
         _1password-shell-plugins.hmModules.default
       ];
 
@@ -462,7 +460,6 @@
 
         darwin = with inputs; [
           agenix.darwinModules.default
-          # agenix.darwinModules.default
           agenix-rekey.nixosModules.default
 
           ({config, ...}: {
@@ -480,7 +477,7 @@
                   masterIdentities = [
                     ./age-yubikey-identity-usba.pub
                     ./age-yubikey-identity-usbc.pub
-                    # "/Users/tomas/.ssh/id_ed25519"
+                    "/Users/tomas/.ssh/id_ed25519"
                   ];
 
                   storageMode = "local";
