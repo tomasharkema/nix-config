@@ -44,6 +44,11 @@ in
           description = "Dev for main partion.";
         };
         encrypt = mkEnableOption "encrypted";
+        swapSize = mkOption {
+          type = types.str;
+          default = "2G";
+          description = "swapSize";
+        };
       };
     };
 
@@ -86,19 +91,18 @@ in
                     mountpoint = "/boot";
                   };
                 };
+                swap = {
+                  size = cfg.swapSize;
+                  content = {
+                    type = "swap";
+                    randomEncryption = true;
+                  };
+                };
 
                 root = mkIf (!cfg.encrypt) (innerContent.root);
                 luks =
                   mkIf cfg.encrypt
                   ((luksContent (innerContent.root.content)).luks);
-
-                # encryptedSwap = {
-                #   size = "1G";
-                #   content = {
-                #     type = "swap";
-                #     randomEncryption = true;
-                #   };
-                # };
               };
             };
           };
