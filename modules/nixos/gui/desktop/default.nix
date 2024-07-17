@@ -109,7 +109,7 @@ in {
       (optional ((stdenv.isLinux && stdenv.isx86_64) || stdenv.isDarwin) mailspring)
       ++ [
         fractal
-        discord
+
         unstable.zed-editor
         spot
         ulauncher
@@ -170,6 +170,7 @@ in {
         zeal
       ]
       ++ optionals pkgs.stdenv.isx86_64 [
+        discord
         spotify
         ipmiview
         jetbrains-toolbox
