@@ -256,7 +256,13 @@
         flake-utils.follows = "flake-utils";
       };
     };
-
+    nixos-dash-docset = {
+      url = "github:ptitfred/nixos-dash-docset";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
     # opentelemetry-nix = {
     #   url = "github:FriendsOfOpenTelemetry/opentelemetry-nix";
     #   inputs = {
