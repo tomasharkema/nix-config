@@ -478,7 +478,6 @@
                   masterIdentities = [
                     ./age-yubikey-identity-usba.pub
                     ./age-yubikey-identity-usbc.pub
-                    "/Users/tomas/.ssh/id_ed25519"
                   ];
 
                   storageMode = "local";
