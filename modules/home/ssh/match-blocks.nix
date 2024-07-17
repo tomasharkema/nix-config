@@ -5,11 +5,9 @@
   inputs,
   ...
 }:
-with lib;
-let
-  machines = inputs.self.servers;
-in
-{
+with lib; let
+  machines = inputs.self.machines.excludingSelf osConfig;
+in {
   config = {
     programs.ssh = {
       matchBlocks = mkMerge [
@@ -26,7 +24,8 @@ in
                 # RemoteCommand = "tmux new -A -s \$\{\%n\}";
               };
             };
-          }) machines
+          })
+          machines
         ))
 
         (builtins.listToAttrs (
@@ -44,7 +43,8 @@ in
                 # RemoteCommand = "tmux new -A -s \$\{\%n\}";
               };
             };
-          }) machines
+          })
+          machines
         ))
       ];
     };

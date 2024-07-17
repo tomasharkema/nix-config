@@ -80,8 +80,8 @@ in {
     };
 
     programs = {
-      evolution.enable = true;
-      geary.enable = false;
+      evolution.enable = false;
+      geary.enable = true;
     };
 
     services.dbus = {
@@ -108,8 +108,9 @@ in {
     environment.systemPackages = with pkgs;
       (optional ((stdenv.isLinux && stdenv.isx86_64) || stdenv.isDarwin) mailspring)
       ++ [
+        fractal
         discord
-
+        unstable.zed-editor
         spot
         ulauncher
         yelp
@@ -150,7 +151,6 @@ in {
         pwvucontrol
         qdirstat
         qjournalctl
-        remmina
         rtfm
         sublime-merge
         systemdgenie

@@ -628,14 +628,20 @@
         };
       };
 
-      servers = with inputs; let
+      machines = with inputs; let
         names = builtins.attrNames self.nixosConfigurations;
-      in
-        builtins.filter
-        (
-          name: self.nixosConfigurations."${name}".config.networking.hostName != "nixos"
-        )
-        names;
+      in rec {
+        all =
+          builtins.filter (
+            name: let
+              cfg = self.nixosConfigurations."${name}".config;
+            in
+              cfg.networking.hostName != "nixos" && cfg.networking.hostName != "test"
+          )
+          names;
+
+        excludingSelf = cfg: (builtins.filter (name: cfg.networking.hostName != name) all);
+      };
 
       images = with inputs; rec {
         # baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;

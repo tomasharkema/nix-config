@@ -60,7 +60,7 @@
         nscan
         # openglide
       ])
-      ++ (with pkgs; [dosbox-x unstable.nil]);
+      ++ (with pkgs; [dosbox-x unstable.nixd]);
     # environment.pathsToLink = ["/lib"];
     system.stateVersion = 4;
 
@@ -100,7 +100,7 @@
         #   export OP_PLUGIN_ALIASES_SOURCED=1
         # '';
       };
-      # bash.enable = true;
+      bash.enable = true;
     };
 
     # programs.fzf.fuzzyCompletion = true;

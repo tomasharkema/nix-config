@@ -32,8 +32,8 @@ in {
         manix
         nix-search-cli
 
-        unstable.nil
-        # nixd
+        # unstable.nil
+        unstable.nixd
         nix-eval-jobs
         # nix-fast-build
         nix-output-monitor
