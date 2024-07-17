@@ -132,7 +132,7 @@ with lib; {
               BOOT_PART="$(${pkgs.util-linux}/bin/findmnt -J "${bootMountPoint}" | ${pkgs.jq}/bin/jq ".filesystems[0].source" -r)"
               DEVICE="/dev/$(${pkgs.util-linux}/bin/lsblk -no pkname $BOOT_PART)"
               PARTN="$(${pkgs.util-linux}/bin/lsblk -no PARTN $BOOT_PART)"
-              ${pkgs.efibootmgr}/bin/efibootmgr -c -d $DEVICE -p $PARTN -L NixosRecovery -l '\EFI\recovery\recovery.efi' -I 2
+              ${pkgs.efibootmgr}/bin/efibootmgr -c --index 2 -d $DEVICE -p $PARTN -L NixosRecovery -l '\EFI\recovery\recovery.efi'
             fi
 
             ${pkgs.coreutils}/bin/install -D "${hostnameFile}" "${bootMountPoint}/EFI/recovery/hostname"
