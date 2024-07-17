@@ -1,57 +1,6 @@
 {
   "nix.enableLanguageServer": true,
   "nix.serverPath": "/run/current-system/sw/bin/nixd",
-  "nix.serverSettings": {
-    // "nil": {
-    //   "diagnostics": {
-    //     // "ignored": [
-    //     //   "unused_binding",
-    //     //   "unused_with"
-    //     // ]
-    //   },
-    //   "formatting": {
-    //     "command": [
-    //       "alejandra"
-    //     ]
-    //   }
-    // },
-    "nixd": {
-      "eval": {
-        "target": {
-          // tweak arguments here
-          "args": [
-            // "-f",
-            // "default.nix"
-          ],
-          // NixOS options
-          "installable": ".#nixosConfigurations.voltron.options"
-          // Flake-parts options
-          // "installable": "<flakeref>#debug.options"
-          // Home-manager options
-          // "installable": "<flakeref>#homeConfigurations.<name>.options"
-        }
-      },
-      "formatting": {
-        "command": "alejandra"
-      },
-      "options": {
-        "enable": true,
-        "target": {
-          // tweak arguments here
-          "args": [
-            "-f",
-            "default.nix"
-          ],
-          // NixOS options
-          "installable": "nixosConfigurations.euro-mir-2.options"
-          // Flake-parts options
-          // "installable": "<flakeref>#debug.options"
-          // Home-manager options
-          // "installable": "<flakeref>#homeConfigurations.<name>.options"
-        }
-      }
-    }
-  },
   "nix.formatterPath": "alejandra",
   // "nixEnvSelector.nixFile": "${workspaceFolder}/shell.nix",
   "[nix]": {
