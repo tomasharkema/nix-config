@@ -102,55 +102,57 @@ with lib; {
       };
 
       system.activationScripts = mkIf cfg.install {
-        recovery.text = ''
+        recovery.text = let
+          recov = pkgs.writeShellScript "recovery.sh" ''
 
-          CONFIGURATION_HASH_FILE="${bootMountPoint}/EFI/recovery/configuration.hash"
-          NEW_HASH="$(cat ${configurationHashFile})"
+            CONFIGURATION_HASH_FILE="${bootMountPoint}/EFI/recovery/configuration.hash"
+            NEW_HASH="$(cat ${configurationHashFile})"
 
-          if [ -f "$CONFIGURATION_HASH_FILE" ]; then
-            CURRENT_HASH="$(cat $CONFIGURATION_HASH_FILE)"
-            echo "check hash: OLD: $CURRENT_HASH NEW: $NEW_HASH"
+            if [ -f "$CONFIGURATION_HASH_FILE" ]; then
+              CURRENT_HASH="$(cat $CONFIGURATION_HASH_FILE)"
+              echo "check hash: OLD: $CURRENT_HASH NEW: $NEW_HASH"
 
-            if [ "$NEW_HASH" = "$CURRENT_HASH" ]; then
-              echo "HASH $(cat $CONFIGURATION_HASH_FILE) ALREADY INSTALLED"
-              exit 0
+              if [ "$NEW_HASH" = "$CURRENT_HASH" ]; then
+                echo "HASH $(cat $CONFIGURATION_HASH_FILE) ALREADY INSTALLED"
+                exit 0
+              fi
             fi
-          fi
 
-          empty_file=$(${pkgs.coreutils}/bin/mktemp)
+            empty_file=$(${pkgs.coreutils}/bin/mktemp)
 
-          ${pkgs.coreutils}/bin/install -D "${config.system.build.recoveryImage}" "${bootMountPoint}/EFI/recovery/recovery.efi"
-          ${optionalString cfg.sign ''
-            ${pkgs.sbctl}/bin/sbctl sign -s "${bootMountPoint}/EFI/recovery/recovery.efi"
-          ''}
+            ${pkgs.coreutils}/bin/install -D "${config.system.build.recoveryImage}" "${bootMountPoint}/EFI/recovery/recovery.efi"
+            ${optionalString cfg.sign ''
+              ${pkgs.sbctl}/bin/sbctl sign -s "${bootMountPoint}/EFI/recovery/recovery.efi"
+            ''}
 
-          BOOT_ENTRY=$(${pkgs.efibootmgr}/bin/efibootmgr --verbose | ${pkgs.gnugrep}/bin/grep NixosRecovery)
-          BOOT_ENTRY_CODE="$?"
+            BOOT_ENTRY=$(${pkgs.efibootmgr}/bin/efibootmgr --verbose | ${pkgs.gnugrep}/bin/grep NixosRecovery)
+            BOOT_ENTRY_CODE="$?"
 
-          if [ $BOOT_ENTRY_CODE -gt 0 ]; then
-            BOOT_PART="$(${pkgs.util-linux}/bin/findmnt -J "${bootMountPoint}" | ${pkgs.jq}/bin/jq ".filesystems[0].source" -r)"
-            DEVICE="/dev/$(${pkgs.util-linux}/bin/lsblk -no pkname $BOOT_PART)"
-            PARTN="$(${pkgs.util-linux}/bin/lsblk -no PARTN $BOOT_PART)"
-            ${pkgs.efibootmgr}/bin/efibootmgr -c -d $DEVICE -p $PARTN -L NixosRecovery -l '\EFI\recovery\recovery.efi' -I 2
-          fi
+            if [ $BOOT_ENTRY_CODE -gt 0 ]; then
+              BOOT_PART="$(${pkgs.util-linux}/bin/findmnt -J "${bootMountPoint}" | ${pkgs.jq}/bin/jq ".filesystems[0].source" -r)"
+              DEVICE="/dev/$(${pkgs.util-linux}/bin/lsblk -no pkname $BOOT_PART)"
+              PARTN="$(${pkgs.util-linux}/bin/lsblk -no PARTN $BOOT_PART)"
+              ${pkgs.efibootmgr}/bin/efibootmgr -c -d $DEVICE -p $PARTN -L NixosRecovery -l '\EFI\recovery\recovery.efi' -I 2
+            fi
 
-          ${pkgs.coreutils}/bin/install -D "${hostnameFile}" "${bootMountPoint}/EFI/recovery/hostname"
+            ${pkgs.coreutils}/bin/install -D "${hostnameFile}" "${bootMountPoint}/EFI/recovery/hostname"
 
-          ${pkgs.coreutils}/bin/install -D "${configurationHashFile}" "${bootMountPoint}/EFI/recovery/configuration.hash"
+            ${pkgs.coreutils}/bin/install -D "${configurationHashFile}" "${bootMountPoint}/EFI/recovery/configuration.hash"
 
-          ${pkgs.coreutils}/bin/install -D "${pkgs.netbootxyz-efi}" "${bootMountPoint}/EFI/netbootxyz/netboot.xyz.efi"
+            ${pkgs.coreutils}/bin/install -D "${pkgs.netbootxyz-efi}" "${bootMountPoint}/EFI/netbootxyz/netboot.xyz.efi"
 
-          ${optionalString cfg.sign ''
-            ${pkgs.sbctl}/bin/sbctl sign -s "${bootMountPoint}/EFI/netbootxyz/netboot.xyz.efi"
-          ''}
+            ${optionalString cfg.sign ''
+              ${pkgs.sbctl}/bin/sbctl sign -s "${bootMountPoint}/EFI/netbootxyz/netboot.xyz.efi"
+            ''}
 
-          ${concatStrings (mapAttrsToList (n: v: ''
-              ${pkgs.coreutils}/bin/install -Dp "${pkgs.writeText n v}" "${bootMountPoint}/loader/entries/"${escapeShellArg n}
-              ${pkgs.coreutils}/bin/install -D $empty_file "${bootMountPoint}/${nixosDir}/.extra-files/loader/entries/"${escapeShellArg n}
-            '')
-            entries)}
+            ${concatStrings (mapAttrsToList (n: v: ''
+                ${pkgs.coreutils}/bin/install -Dp "${pkgs.writeText n v}" "${bootMountPoint}/loader/entries/"${escapeShellArg n}
+                ${pkgs.coreutils}/bin/install -D $empty_file "${bootMountPoint}/${nixosDir}/.extra-files/loader/entries/"${escapeShellArg n}
+              '')
+              entries)}
 
-        '';
+          '';
+        in "${recov}";
       };
     };
 }
