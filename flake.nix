@@ -367,6 +367,7 @@
         nixvim.homeManagerModules.nixvim
         nix-index-database.hmModules.nix-index
         _1password-shell-plugins.hmModules.default
+        # agenix.homeManagerModules.default
       ];
 
       # localSystem = "x86_64-linux";
