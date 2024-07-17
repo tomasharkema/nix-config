@@ -55,7 +55,7 @@ with lib.custom; {
           ];
         };
 
-        bash.undistractMe.enable = true;
+        # bash.undistractMe.enable = true;
       };
 
       nix = let
