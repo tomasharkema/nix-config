@@ -6,13 +6,13 @@
   config = {
     age = {
       secrets = {
-        # atuin = {
-        #   rekeyFile = ./atuin.age;
-        #   owner = "tomas";
-        #   group = "tomas";
-        #   mode = "644";
-        #   # symlink = false;
-        # };
+        atuin = {
+          rekeyFile = ./atuin.age;
+          owner = "tomas";
+          group = "tomas";
+          mode = "644";
+          # symlink = false;
+        };
         "attic-config.toml" = {
           rekeyFile = ./attic-config.toml.age;
           mode = "644";
