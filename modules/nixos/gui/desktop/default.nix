@@ -171,7 +171,7 @@ in {
       ]
       ++ optionals pkgs.stdenv.isx86_64 [
         discord
-        spotify
+        # spotify
         ipmiview
         jetbrains-toolbox
         gitkraken
