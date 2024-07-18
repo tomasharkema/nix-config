@@ -48,6 +48,9 @@ with lib; {
 
     configFile = pkgs.writeText "config.json" (builtins.toJSON {
       hostname = "${config.networking.hostName}";
+      imageDrv = "${config.system.build.recoveryImage.drvPath}";
+      sign = cfg.sign;
+      inherit kernelVersion;
     });
   in
     mkIf cfg.enable {
@@ -88,18 +91,15 @@ with lib; {
         recovery.text = let
           recov = pkgs.writeShellScript "recovery.sh" ''
 
-            if ! ${pkgs.diffutils}/bin/diff "${config.system.build.recoveryImage}" "${bootMountPoint}/EFI/recovery/recovery.efi" > /dev/null 2>&1; then
+
+            if ! ${pkgs.diffutils}/bin/diff "${configFile}" "${bootMountPoint}/EFI/recovery/config.json" > /dev/null 2>&1; then
               ${pkgs.coreutils}/bin/install -D "${config.system.build.recoveryImage}" "${bootMountPoint}/EFI/recovery/recovery.efi"
               ${optionalString cfg.sign ''
               ${pkgs.sbctl}/bin/sbctl sign -s "${bootMountPoint}/EFI/recovery/recovery.efi"
             ''}
-            fi
 
-            if ! ${pkgs.diffutils}/bin/diff "${configFile}" "${bootMountPoint}/EFI/recovery/config.json" > /dev/null 2>&1; then
               ${pkgs.coreutils}/bin/install -D "${configFile}" "${bootMountPoint}/EFI/recovery/config.json"
-            fi
 
-            if ! ${pkgs.diffutils}/bin/diff "${pkgs.netbootxyz-efi}" "${bootMountPoint}/EFI/netbootxyz/netboot.xyz.efi" > /dev/null 2>&1; then
               ${pkgs.coreutils}/bin/install -D "${pkgs.netbootxyz-efi}" "${bootMountPoint}/EFI/netbootxyz/netboot.xyz.efi"
 
               ${optionalString cfg.sign ''
