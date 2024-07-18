@@ -50,6 +50,28 @@ in {
       '';
     };
 
+    # FROM: https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/misc/sssd.nix
+    systemd.services.sssd-kcm = {
+      description = "SSSD Kerberos Cache Manager";
+      requires = ["sssd-kcm.socket"];
+      serviceConfig = {
+        ExecStartPre = "-${pkgs.sssd}/bin/sssd --genconf-section=kcm";
+        ExecStart = "${pkgs.sssd}/libexec/sssd/sssd_kcm --uid 0 --gid 0";
+      };
+      restartTriggers = [
+        # settingsFileUnsubstituted
+      ];
+    };
+    systemd.sockets.sssd-kcm = {
+      description = "SSSD Kerberos Cache Manager responder socket";
+      wantedBy = ["sockets.target"];
+      # Matches the default in MIT krb5 and Heimdal:
+      # https://github.com/krb5/krb5/blob/krb5-1.19.3-final/src/include/kcm.h#L43
+      listenStreams = ["/var/run/.heim_org.h5l.kcm-socket"];
+    };
+
+    security.krb5.settings.libdefaults.default_ccache_name = "KCM:";
+
     services = {
       sssd = {
         enable = true;
