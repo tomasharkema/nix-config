@@ -58,7 +58,7 @@ in {
           else {
             # Application does *not* have a desktopItem entry. Try to find a
             # matching .desktop name in /share/apaplications
-            source = findDesktopFile pkg;
+            source = config.lib.file.mkOutOfStoreSymlink (findDesktopFile pkg);
           };
       })
       config.autostart.programs);
@@ -73,6 +73,8 @@ in {
 
         (findDesktopFileBase pkgs.firefox)
         # "org.gnome.Console.desktop"
+
+        (findDesktopFileBase pkgs.gnome.geary)
 
         (findDesktopFileBase pkgs.vscode)
 

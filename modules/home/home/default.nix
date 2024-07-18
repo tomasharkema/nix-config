@@ -208,6 +208,7 @@ in
           pkgs.custom.zerotier-ui
 
           notify-client
+          gnome.geary
         ];
 
       programs = {

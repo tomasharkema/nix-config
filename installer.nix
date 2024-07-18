@@ -17,12 +17,12 @@ with lib; let
 
     sudo systemctl enable --now wpa_supplicant
 
-    wpa_cli add_network 0
-    wpa_cli set_network 0 key_mgmt WPA-PSK
-    wpa_cli set_network 0 ssid "$SSID"
-    wpa_cli set_network 0 psk "$PASS"
-    wpa_cli enable_network 0
-    wpa_cli save_config
+    ${pkgs.wpa_supplicant}/bin/wpa_cli add_network 0
+    ${pkgs.wpa_supplicant}/bin/wpa_cli set_network 0 key_mgmt WPA-PSK
+    ${pkgs.wpa_supplicant}/bin/wpa_cli set_network 0 ssid "$SSID"
+    ${pkgs.wpa_supplicant}/bin/wpa_cli set_network 0 psk "$PASS"
+    ${pkgs.wpa_supplicant}/bin/wpa_cli enable_network 0
+    ${pkgs.wpa_supplicant}/bin/wpa_cli save_config
   '';
 in {
   config = {

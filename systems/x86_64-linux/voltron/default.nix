@@ -196,6 +196,13 @@ with lib; {
     };
 
     boot = {
+      recovery = {
+        enable = true;
+        install = true;
+        sign = true;
+        netboot.enable = true;
+      };
+
       binfmt.emulatedSystems = ["aarch64-linux"];
 
       modprobeConfig.enable = true;

@@ -16,9 +16,11 @@ in {
 
     home.file = builtins.listToAttrs (map (machine: {
         name = ".local/share/remmina/nixos_rdp_${machine}_${machine}.remmina";
-        value.source = pkgs.substituteAll {
-          src = ./remmina-template.ini;
-          inherit machine;
+        value = {
+          source = pkgs.substituteAll {
+            src = ./remmina-template.ini;
+            inherit machine;
+          };
         };
       })
       machines);
