@@ -538,105 +538,6 @@
         # inherit ((colmena.lib.makeHive self.colmena).introspect (x: x)) nodes;
       };
 
-      nixosConfigurations = {
-        installer-netboot-x86 = inputs.nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            "${inputs.nixpkgs}/nixos/modules/installer/netboot/netboot-minimal.nix"
-            ./installer.nix
-
-            (
-              {
-                lib,
-                pkgs,
-                config,
-                ...
-              }: {
-                config = {
-                  boot = {
-                    supportedFilesystems.zfs = lib.mkForce false;
-                    kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
-                  };
-                  system.stateVersion = config.system.nixos.release;
-                  netboot.squashfsCompression = "zstd -Xcompression-level 6";
-                };
-              }
-            )
-          ];
-        };
-
-        installer-x86 = inputs.nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
-            ./installer.nix
-
-            (
-              {
-                lib,
-                pkgs,
-                ...
-              }: {
-                config = {
-                  boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
-                };
-              }
-            )
-          ];
-        };
-
-        installer-arm = inputs.nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
-            ./installer.nix
-
-            (
-              {
-                lib,
-                pkgs,
-                ...
-              }: {
-                config = {
-                  boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
-                };
-              }
-            )
-          ];
-        };
-        installer-arm-img = inputs.nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
-            ./installer.nix
-
-            (
-              {
-                lib,
-                pkgs,
-                ...
-              }: {
-                config = {
-                  boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
-                };
-              }
-            )
-          ];
-        };
-      };
-
       machines = with inputs; let
         names = builtins.attrNames self.nixosConfigurations;
       in rec {
@@ -710,6 +611,85 @@
             # ./topology.nix
             # Inline module to inform topology of your existing NixOS hosts.
             {nixosConfigurations = inputs.self.nixosConfigurations;}
+          ];
+        };
+
+        installer-iso = inputs.nixpkgs.lib.nixosSystem {
+          system = "${channels.nixpkgs.system}";
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
+            ./installer.nix
+
+            (
+              {
+                lib,
+                pkgs,
+                ...
+              }: {
+                config = {
+                  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+                  networking.wireless.enable = true;
+                };
+              }
+            )
+          ];
+        };
+
+        installer-img = inputs.nixpkgs.lib.nixosSystem {
+          system = "${channels.nixpkgs.system}";
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
+            ./installer.nix
+
+            (
+              {
+                lib,
+                pkgs,
+                ...
+              }: {
+                config = {
+                  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+
+                  networking.wireless.enable = true;
+                };
+              }
+            )
+          ];
+        };
+
+        installer-netboot = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            "${inputs.nixpkgs}/nixos/modules/installer/netboot/netboot-minimal.nix"
+            ./installer.nix
+
+            (
+              {
+                lib,
+                pkgs,
+                config,
+                ...
+              }: {
+                config = {
+                  boot = {
+                    supportedFilesystems.zfs = lib.mkForce false;
+                    kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+                  };
+                  system.stateVersion = config.system.nixos.release;
+                  netboot.squashfsCompression = "zstd -Xcompression-level 6";
+                  networking.wireless.enable = true;
+                };
+              }
+            )
           ];
         };
 
