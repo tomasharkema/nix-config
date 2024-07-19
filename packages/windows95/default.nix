@@ -52,7 +52,6 @@ stdenv.mkDerivation rec {
     xorg.libXrandr
   ];
   installPhase = ''
-    ls -la
     cp -vr . $out
   '';
 }

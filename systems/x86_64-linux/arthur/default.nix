@@ -29,6 +29,8 @@ with lib; {
       icewm.enable = true;
     };
 
+    environment.systemPackages = with pkgs; [custom.elxflash];
+
     traits = {
       builder.enable = true;
       hardware = {
