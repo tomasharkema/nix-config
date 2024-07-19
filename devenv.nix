@@ -206,9 +206,9 @@ in {
     attic.exec = "attic watch-store tomas -j1";
   };
 
-  enterShell = ''
-    nix flake update && devenv update
-  '';
+  # enterShell = ''
+  #   nix flake update && devenv update
+  # '';
 
   packages = with pkgs; [
     actionlint
