@@ -280,7 +280,7 @@
     # };
 
     nixos-nvidia-vgpu = {
-      url = "github:tomasharkema/nixos-nvidia-vgpu/c829dd3c5e0ef94b0ed6979dd702d543aaceec74";
+      url = "github:tomasharkema/nixos-nvidia-vgpu/ac653f75d314a66fce7bc32096a74b71546eee03";
       # url = "/home/tomas/Developer/nixos-nvidia-vgpu";
     };
   };
