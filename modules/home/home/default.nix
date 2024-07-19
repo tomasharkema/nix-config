@@ -135,6 +135,10 @@ in
               '';
               # /home/tomas/.config/gtk-4.0:ro;/home/tomas/.config/gtk-3.0:ro;
             };
+            ".local/share/Zeal/Zeal/docsets" = {
+              source = "${pkgs.docset}/share";
+              recursive = true;
+            };
           };
         activation = {
           # userSymlinks-fonts = mkIf (stdenv.isLinux && osConfig.gui.enable) ''
@@ -147,6 +151,7 @@ in
           #   fi
           #   ln -sfn /etc/cachix.dhall $HOME/.config/cachix/cachix.dhall
           # '';
+
           userSymlinks-notify = mkIf osConfig.gui.enable ''
             if [ ! -d "$HOME/.config/notify" ]; then
               mkdir $HOME/.config/notify

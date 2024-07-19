@@ -137,11 +137,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1721058578,
-        "narHash": "sha256-fs/PVa3H5dS1//4BjecWi3nitXm5fRObx0JxXIAo+JA=",
+        "lastModified": 1721322122,
+        "narHash": "sha256-a0G1NvyXGzdwgu6e1HQpmK5R5yLsfxeBe07nNDyYd+g=",
         "owner": "ipetkov",
         "repo": "crane",
-        "rev": "17e5109bb1d9fb393d70fba80988f7d70d1ded1a",
+        "rev": "8a68b987c476a33e90f203f0927614a75c3f47ea",
         "type": "github"
       },
       "original": {
@@ -957,11 +957,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1720737798,
-        "narHash": "sha256-G/OtEAts7ZUvW5lrGMXSb8HqRp2Jr9I7reBuvCOL54w=",
+        "lastModified": 1721331912,
+        "narHash": "sha256-h2yaU+QEU4pHxMySHPIsRV2T/pihDHnrXBca8BY6xgc=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "c5013aa7ce2c7ec90acee5d965d950c8348db751",
+        "rev": "bb90787ea034c8b9035dfcfc9b4dc23898d414be",
         "type": "github"
       },
       "original": {
@@ -1008,6 +1008,22 @@
       "original": {
         "owner": "NixOS",
         "repo": "infra",
+        "type": "github"
+      }
+    },
+    "nixos-nvidia-vgpu": {
+      "locked": {
+        "lastModified": 1721349775,
+        "narHash": "sha256-1fOeWlNkL7etFEn7Y/lS6p8Ppl5kFyC42VOTHJLalZM=",
+        "owner": "tomasharkema",
+        "repo": "nixos-nvidia-vgpu",
+        "rev": "3174d3ca9bc244772ae8c8d87935ce65bcc8b0aa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tomasharkema",
+        "repo": "nixos-nvidia-vgpu",
+        "rev": "3174d3ca9bc244772ae8c8d87935ce65bcc8b0aa",
         "type": "github"
       }
     },
@@ -1392,6 +1408,7 @@
         "nixos-checkmk": "nixos-checkmk",
         "nixos-dash-docset": "nixos-dash-docset",
         "nixos-hardware": "nixos-hardware",
+        "nixos-nvidia-vgpu": "nixos-nvidia-vgpu",
         "nixos-search": "nixos-search",
         "nixos-service": "nixos-service",
         "nixpkgs": "nixpkgs",
@@ -1691,11 +1708,11 @@
     },
     "unstable": {
       "locked": {
-        "lastModified": 1720957393,
-        "narHash": "sha256-oedh2RwpjEa+TNxhg5Je9Ch6d3W1NKi7DbRO1ziHemA=",
+        "lastModified": 1721138476,
+        "narHash": "sha256-+W5eZOhhemLQxelojLxETfbFbc19NWawsXBlapYpqIA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "693bc46d169f5af9c992095736e82c3488bf7dbb",
+        "rev": "ad0b5eed1b6031efaed382844806550c3dcb4206",
         "type": "github"
       },
       "original": {

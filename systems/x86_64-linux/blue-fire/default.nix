@@ -272,7 +272,20 @@ in {
     #   };
     # };
 
+    hardware.nvidia.vgpu = {
+      enable = true; # Enable NVIDIA KVM vGPU + GRID driver
+      unlock.enable = true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
+    };
+
     boot = {
+      kernelParams = [
+        "intel_iommu=on"
+        "iommu=pt"
+        "console=tty0"
+        "console=ttyS2,115200n8"
+      ];
+      blacklistedKernelModules = lib.mkDefault ["nouveau"];
+
       binfmt.emulatedSystems = ["aarch64-linux"];
       recovery = {
         sign = false;
@@ -321,7 +334,6 @@ in {
         # "ipmi_watchdog"
       ];
       # extraModulePackages = [pkgs.freeipmi];
-      kernelParams = ["console=tty0" "console=ttyS2,115200n8"];
       systemd.services."serial-getty@ttyS2".wantedBy = ["multi-user.target"];
     };
 

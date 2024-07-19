@@ -278,6 +278,11 @@
     #     flake-utils.follows = "flake-utils";
     #   };
     # };
+
+    nixos-nvidia-vgpu = {
+      url = "github:tomasharkema/nixos-nvidia-vgpu/3174d3ca9bc244772ae8c8d87935ce65bcc8b0aa";
+      # url = "/home/tomas/Developer/nixos-nvidia-vgpu";
+    };
   };
 
   outputs = inputs: let
@@ -419,6 +424,7 @@
 
           nixos-service.nixosModules.nixos-service
           nix-virt.nixosModules.default
+          nixos-nvidia-vgpu.nixosModules.nvidia-vgpu
 
           ({config, ...}: {
             config = {
