@@ -2,12 +2,14 @@
   stdenv,
   pkgs,
   fetchurl,
-  tree,
   rpm,
   cpio,
   autoPatchelfHook,
   glibc,
   hwloc,
+  ethtool,
+  sysfsutils,
+  libnl,
 }:
 stdenv.mkDerivation {
   pname = "elxflash";
@@ -23,21 +25,26 @@ stdenv.mkDerivation {
     cpio
     hwloc
     glibc
+    sysfsutils
+    ethtool
+    libnl
   ];
+
   buildInputs = [
-    tree
+    ethtool
+    sysfsutils
+    libnl
   ];
 
   installPhase = ''
-    tree .
+
     rpm2cpio x86_64/rhel-7/elxflashOffline-10.0.878.0-1.x86_64.rpm | cpio -idmv
-    tree .
 
     mkdir -p $out/bin
-    mkdir -p $out/share
+    # mkdir -p $out/share
 
-    cp ./usr/sbin/linlpcfg/elxflash $out/bin/elxflash
-    cp -r ./usr/sbin/linlpcfg/firmware $out/share/
-    cp ./usr/sbin/linlpcfg/fwmatrix.txt $out/share/fwmatrix.txt
+    cp -vr ./usr/sbin/linlpcfg/* $out/bin
+    # cp -r ./usr/sbin/linlpcfg/firmware $out/share/
+    # cp ./usr/sbin/linlpcfg/fwmatrix.txt $out/share/fwmatrix.txt
   '';
 }
