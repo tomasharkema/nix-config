@@ -714,11 +714,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1720920199,
-        "narHash": "sha256-0dNwRhtUVQha5S+NFeoeMXEt/6v0x56DCdyUk+vEFeY=",
+        "lastModified": 1721381874,
+        "narHash": "sha256-fA78AQqvEUTyPlq7KYkYldAzV9eaGTCs8yj16nJy52U=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "fce565402d5b1ed4e92c4a9dfcd094d0172d8f0b",
+        "rev": "35c551a783b53adae0b9ce81b94cf70e363411fa",
         "type": "github"
       },
       "original": {
@@ -1013,17 +1013,17 @@
     },
     "nixos-nvidia-vgpu": {
       "locked": {
-        "lastModified": 1721349775,
-        "narHash": "sha256-1fOeWlNkL7etFEn7Y/lS6p8Ppl5kFyC42VOTHJLalZM=",
+        "lastModified": 1721400183,
+        "narHash": "sha256-CA/2LE4KoRoWVWIQwrRzRKA+BGzjY3FP6mJN1ZCVyc0=",
         "owner": "tomasharkema",
         "repo": "nixos-nvidia-vgpu",
-        "rev": "3174d3ca9bc244772ae8c8d87935ce65bcc8b0aa",
+        "rev": "99a37171a8e1ce41b583393a9df52b38fb8564a5",
         "type": "github"
       },
       "original": {
         "owner": "tomasharkema",
         "repo": "nixos-nvidia-vgpu",
-        "rev": "3174d3ca9bc244772ae8c8d87935ce65bcc8b0aa",
+        "rev": "99a37171a8e1ce41b583393a9df52b38fb8564a5",
         "type": "github"
       }
     },

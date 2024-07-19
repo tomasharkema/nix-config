@@ -135,9 +135,8 @@ in
               '';
               # /home/tomas/.config/gtk-4.0:ro;/home/tomas/.config/gtk-3.0:ro;
             };
-            ".local/share/Zeal/Zeal/docsets" = {
-              source = "${pkgs.docset}/share";
-              recursive = true;
+            ".local/share/Zeal/Zeal/docsets/nixos.docset" = {
+              source = "${pkgs.docset}/share/docset-24.05.docset";
             };
           };
         activation = {
