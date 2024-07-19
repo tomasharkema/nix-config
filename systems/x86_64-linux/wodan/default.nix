@@ -112,11 +112,6 @@ with lib; {
 
     apps.podman.enable = true;
 
-    hardware.nvidia.vgpu = {
-      enable = true; # Enable NVIDIA KVM vGPU + GRID driver
-      unlock.enable = true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
-    };
-
     traits = {
       hardware = {
         tpm.enable = true;
@@ -151,6 +146,11 @@ with lib; {
       encrypt = true;
       newSubvolumes = true;
       btrbk.enable = true;
+    };
+
+    hardware.nvidia.vgpu = {
+      enable = true; # Enable NVIDIA KVM vGPU + GRID driver
+      unlock.enable = true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
     };
 
     boot = {
