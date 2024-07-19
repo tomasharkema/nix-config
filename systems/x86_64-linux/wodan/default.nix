@@ -112,6 +112,11 @@ with lib; {
 
     apps.podman.enable = true;
 
+    hardware.nvidia.vgpu = {
+      enable = true; # Enable NVIDIA KVM vGPU + GRID driver
+      unlock.enable = true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
+    };
+
     traits = {
       hardware = {
         tpm.enable = true;
@@ -153,20 +158,17 @@ with lib; {
       supportedFilesystems = ["ntfs"];
       kernelModules = ["i2c-dev" "watchdog" "ixgbe" "btusb" "apfs"];
 
-      blacklistedKernelModules = lib.mkDefault ["nouveau"];
-
       initrd = {
         systemd.emergencyAccess = "abcdefg";
         kernelModules = ["watchdog" "ixgbe" "btusb"];
       };
 
-      # blacklistedKernelModules = lib.mkDefault [ "i915" "nouveau" ];
       # KMS will load the module, regardless of blacklisting
-      # kernelParams = [
-      #   "intel_iommu=on"
-      #   "iommu=pt"
-      # ];
-
+      kernelParams = [
+        "intel_iommu=on"
+        "iommu=pt"
+      ];
+      blacklistedKernelModules = lib.mkDefault ["nouveau"];
       #extraModprobeConfig = ''
       #  options nvidia-drm modeset=1";
       #  blacklist nouveau

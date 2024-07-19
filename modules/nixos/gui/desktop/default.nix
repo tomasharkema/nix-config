@@ -167,7 +167,7 @@ in {
         xdiskusage
         xdiskusage
         xdotool
-        zeal
+        unstable.zeal
       ]
       ++ optionals pkgs.stdenv.isx86_64 [
         discord
