@@ -218,21 +218,6 @@ with lib; {
         options thinkpad_acpi fan_control=1
       '';
 
-      kernelParams = [
-        "intel_iommu=on"
-        "iommu=pt"
-      ];
-      blacklistedKernelModules = lib.mkDefault ["nouveau"];
-
-      kernelModules = [
-        "kvm-intel"
-        "thinkpad_acpi"
-        "vfio"
-        "vfio_iommu_type1"
-        "vfio_pci"
-        "vfio_virqfd"
-        # "watchdog"
-      ];
       initrd.kernelModules = [
         #  "watchdog"
       ];

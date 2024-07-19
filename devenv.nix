@@ -202,6 +202,14 @@ in {
 
   dotenv.enable = true;
 
+  processes = {
+    attic.exec = "attic watch-store tomas -j1";
+  };
+
+  enterShell = ''
+    nix flake update && devenv update
+  '';
+
   packages = with pkgs; [
     actionlint
     agenix-rekey
