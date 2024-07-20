@@ -24,35 +24,52 @@ in {
       secrets = {
         buildbot-github.rekeyFile = ./buildbot-github-app.age;
         buildbot-github-oauth.rekeyFile = ./buildbot-github-oauth.age;
+
+        buildbot-webhook = {
+          rekeyFile = ./buildbot-webhook.age;
+          generator.script = "base64";
+        };
       };
       rekey = {
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVhJ1k25x/1A/zN96p48MGrPJxVboTe17rO9Mcb61qG root@blue-fire";
       };
     };
 
-    services.buildbot-master.extraConfig = ''
-      c["protocols"] = {"pb": {"port": "tcp:9989:interface=\\:\\:"}}
-    '';
+    services = {
+      buildbot-master.extraConfig = ''
+        c["protocols"] = "${builtins.toJSON {
+          pb = {port = "tcp:9989:interface=\\:\\:";};
+        }}"
+      '';
 
-    services.buildbot-nix = {
-      master = {
-        enable = true;
-        domain = "buildbot.harkema.io";
-        admins = ["tomasharkema"];
-        buildbotNixpkgs = {
-          buildbot = pkgs.unstable.buildbot;
-        };
+      buildbot-nix = {
+        master = {
+          enable = true;
+          domain = "buildbot.harkema.io";
+          admins = ["tomasharkema"];
+          buildbotNixpkgs = pkgs.unstable;
 
-        github = {
-          authType.app = {
-            id = 949982;
-            secretKeyFile = config.age.secrets.buildbot-github-app.path;
+          workersFile = pkgs.writeText "workers.json" (builtins.toJSON
+            [
+              {
+                name = "eve";
+                pass = "XXXXXXXXXXXXXXXXXXXX";
+                cores = 16;
+              }
+            ]); # FIXME fix to but in secure
+
+          github = {
+            authType.app = {
+              id = 949982;
+              secretKeyFile = config.age.secrets.buildbot-github-app.path;
+            };
+            oauthId = "Iv23ctLlUoYy2C1SFDZy";
+            oauthSecretFile = config.age.secrets.buildbot-github-oauth.path;
+            webhookSecretFile = config.age.secrets.buildbot-webhook.path;
           };
-          oauthId = "Iv23ctLlUoYy2C1SFDZy";
-          oauthSecretFile = config.age.secrets.buildbot-github-oauth.path;
         };
+        worker.masterUrl = ''tcp:host=blue-fire:port=9989'';
       };
-      worker.masterUrl = ''tcp:host=blue-fire:port=9989'';
     };
 
     disks.btrfs = {
@@ -65,7 +82,7 @@ in {
     traits = {
       builder = {
         enable = true;
-        hydra.enable = true;
+        # hydra.enable = true;
       };
       hardware = {
         # tpm.enable = true;
