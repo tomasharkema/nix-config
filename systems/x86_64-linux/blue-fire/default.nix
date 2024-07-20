@@ -22,8 +22,14 @@ in {
   config = {
     age = {
       secrets = {
-        buildbot-github-app.rekeyFile = ./buildbot-github-app.age;
-        buildbot-github-oauth.rekeyFile = ./buildbot-github-oauth.age;
+        buildbot-github-app = {
+          rekeyFile = ./buildbot-github-app.age;
+          owner = "buildbot";
+        };
+        buildbot-github-oauth = {
+          rekeyFile = ./buildbot-github-oauth.age;
+          owner = "buildbot";
+        };
       };
       rekey = {
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVhJ1k25x/1A/zN96p48MGrPJxVboTe17rO9Mcb61qG root@blue-fire";
@@ -32,25 +38,27 @@ in {
 
     services = {
       buildbot-master.extraConfig = ''
-        c["protocols"] = ${builtins.toJSON {
-          pb = {port = "tcp:9989:interface=\\:\\:";};
-        }}
+        c["protocols"] = {"pb": {"port": "tcp:9989:interface=0.0.0.0:"}}
       '';
+
+      buildbot-master = {
+        # pythonPackages = pythonPackages: [pythonPackages.cryptography];
+      };
 
       buildbot-nix = {
         master = {
           enable = true;
           domain = "buildbot.harkema.io";
           admins = ["tomasharkema"];
-          buildbotNixpkgs = pkgs.unstable;
+          # buildbotNixpkgs = inputs.unstable.legacyPackages."${pkgs.system}";
 
           workersFile = pkgs.writeText "workers.json" (builtins.toJSON
             [
-              {
-                name = "eve";
-                pass = "XXXXXXXXXXXXXXXXXXXX";
-                cores = 16;
-              }
+              # {
+              #   name = "eve";
+              #   pass = "XXXXXXXXXXXXXXXXXXXX";
+              #   cores = 16;
+              # }
             ]); # FIXME fix to but in secure
 
           github = {
