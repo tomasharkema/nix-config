@@ -21,7 +21,10 @@ in {
   ];
   config = {
     age = {
-      secrets.buildbot-github.rekeyFile = ./buildbot-github.age;
+      secrets = {
+        buildbot-github.rekeyFile = ./buildbot-github-app.age;
+        buildbot-github-oauth.rekeyFile = ./buildbot-github-oauth.age;
+      };
       rekey = {
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVhJ1k25x/1A/zN96p48MGrPJxVboTe17rO9Mcb61qG root@blue-fire";
       };
@@ -40,9 +43,11 @@ in {
         github = {
           # Use this when you have set up a GitHub App
           authType.app = {
-            id = "Ov23li4Rl8gHJYqxrZ6N";
-            secretKeyFile = config.age.secrets.buildbot-github.path;
+            id = 949982;
+            secretKeyFile = config.age.secrets.buildbot-github-app.path;
           };
+          oauthId = "Iv23ctLlUoYy2C1SFDZy";
+          oauthSecretFile = config.age.secrets.buildbot-github-oauth.path;
         };
       };
       worker.masterUrl = ''tcp:host=blue-fire:port=9989'';
