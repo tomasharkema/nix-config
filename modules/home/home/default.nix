@@ -161,6 +161,7 @@ in
         # (import ./packages/common.nix {inherit pkgs inputs lib;})
         # ++
         packages = with pkgs; [
+          augeas
           custom.bieye
           wget2
           libnotify
