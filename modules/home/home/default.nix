@@ -6,21 +6,6 @@
   osConfig,
   ...
 }: let
-  inherit (pkgs) stdenv;
-
-  bgGenerate = name: srcc:
-    stdenv.mkDerivation {
-      name = "png-${name}.png";
-
-      phases = ["buildPhase"];
-      buildInputs = with pkgs; [imagemagick];
-
-      buildPhase = ''
-        touch $out
-        convert -density 1536 -background none -size 3840x2160 ${srcc} $out
-      '';
-    };
-
   iterm = pkgs.fetchurl {
     url = "https://iterm2.com/shell_integration/zsh";
     sha256 = "sha256-Cq8winA/tcnnVblDTW2n1k/olN3DONEfXrzYNkufZvY=";
@@ -36,27 +21,6 @@
   #   sha256 = "sha256-zVNMDAgfZvEwPHbhJ0/NBSNseNjIF+jxD3K2zcSj36U=";
   # };
 
-  isSvg = false;
-
-  __bg = pkgs.fetchurl {
-    url = "https://i.redd.it/52bb00rh254d1.jpeg";
-    sha256 = "sha256-HxfX3ekUuZLluyN1yvfqVIQaNSejhV03sGFzi22zZ24=";
-  };
-
-  _bg = pkgs.fetchurl {
-    url = "https://i.redd.it/4yglzy4rkh4d1.jpeg";
-    sha256 = "sha256-HxfX3ekUuZLluyN1yvfqVIQaNSejhV03sGFzi22zZ24=";
-  };
-
-  bg = pkgs.fetchurl {
-    url = "https://i.redd.it/52bb00rh254d1.jpeg";
-    sha256 = "sha256-2BQKeHFUPXk6YzF8XzIuvYestvBp27/WZqvZqAdZewE=";
-  };
-
-  bgLight = bg;
-  bgPng = bgGenerate "bg" bg;
-  bgLightPng = bgGenerate "bgLight" bgLight;
-
   aicommits = pkgs.writeShellScriptBin "aicommits" ''
     OPENAI_API_KEY="$(${pkgs._1password}/bin/op item get 2vzrjmprwi25zts7mzb4zmmad4 --field credential)"
     exec ${pkgs.custom.aicommits}/bin/aicommits "$@"
@@ -65,99 +29,20 @@ in
   with lib; {
     imports = [];
 
-    config = mkIf pkgs.stdenv.isLinux {
+    config = {
+      services.lorri = mkIf pkgs.stdenv.isLinux {
+        enable = true;
+
+        enableNotifications = true;
+      };
+
       programs.inshellisense = {
         # enable = true;
         # enableZshIntegration = true;
       };
 
-      gtk.gtk3.bookmarks = [
-        "file:///home/tomas/Developer"
-        "file:///home/tomas/Developer/nix-config"
-        "file:///mnt/steam"
-        "file:///mnt/resilio-sync"
-        "file:///mnt/servers"
-      ];
-
-      xdg = mkIf pkgs.stdenv.isLinux {
-        userDirs = {
-          enable = true;
-          createDirectories = true;
-          extraConfig = {
-            XDG_DEV_DIR = "${config.home.homeDirectory}/Developer";
-          };
-        };
-      };
-      dconf.settings = {
-        "org/gnome/desktop/background" = {
-          picture-uri = "file://${bg}";
-          picture-uri-dark = "file://${bg}";
-        };
-      };
       home = {
-        file =
-          osConfig.home.homeFiles
-          // {
-            ".face" = {
-              source = pkgs.fetchurl {
-                url = "https://avatars.githubusercontent.com/u/4534203?t=1";
-                sha256 = "sha256:1g4mrz2d8h13rp8z2b9cn1wdr4la5zzrfkqgblayb56zg7706ga6";
-              };
-            };
-            ".background-image.svg" = mkIf isSvg {source = "${bg}";};
-            ".background-image.jpg" = mkIf (!isSvg) {source = "${bg}";};
-            ".background-image".source = "${bg}";
-            ".background-image.png".source = "${bgPng}";
-            ".background-image-light.png".source = "${bgLightPng}";
-            # "wp.jpg" = {
-            #   source = builtins.fetchurl {
-            #     url = "https://t.ly/n3kq7";
-            #     sha256 = "sha256:0p9lyarqw63b1npicc5ps8h6c34n1137f7i6qz3jrcxg550girh0";
-            #   };
-            # };
-            # "wp.png" = {
-            #   source = builtins.fetchurl {
-            #     url = "https://t.ly/r76YX";
-            #     sha256 = "sha256:0g4a6a5yy4mdlqkvw3lc02wgp4hmlvj0nc8lvlgigkra95jq9x3x";
-            #   };
-            # };
-            # ".config/cachix/cachix.dhall".source = config.lib.file.mkOutOfStoreSymlink "/etc/cachix.dhall"; # osConfig.age.secrets.cachix.path;
-            # ".config/notify/provider-config.yaml".source = osConfig.age.secrets.notify.path;
-            # "${config.xdg.dataHome}/Zeal/Zeal/docsets/nixpkgs.docset" = {
-            #   # /nixpkgs.docset" = {
-            #   source = config.lib.file.mkOutOfStoreSymlink "${pkgs.custom.nixpkgs-docset}/nixpkgs.docset";
-            #   recursive = true;
-            # };
-            ".local/share/flatpak/overrides/global" = mkIf stdenv.isLinux {
-              text = ''
-                [Context]
-                filesystems=/run/current-system/sw/share/X11/fonts:ro;/nix/store:ro;/home/tomas/.local/share/fonts:ro;
-              '';
-              # /home/tomas/.config/gtk-4.0:ro;/home/tomas/.config/gtk-3.0:ro;
-            };
-            ".local/share/Zeal/Zeal/docsets/nixos.docset" = mkIf pkgs.stdenv.isLinux {
-              source = "${pkgs.docset}/share/docset-24.05.docset";
-            };
-          };
-        activation = {
-          # userSymlinks-fonts = mkIf (stdenv.isLinux && osConfig.gui.enable) ''
-          #   ln -sfn /run/current-system/sw/share/X11/fonts ~/.local/share/fonts
-          # '';
-
-          # userSymlinks-cachix = ''
-          #   if [ ! -d "$HOME/.config/cachix" ]; then
-          #     mkdir $HOME/.config/cachix
-          #   fi
-          #   ln -sfn /etc/cachix.dhall $HOME/.config/cachix/cachix.dhall
-          # '';
-
-          userSymlinks-notify = mkIf osConfig.gui.enable ''
-            if [ ! -d "$HOME/.config/notify" ]; then
-              mkdir $HOME/.config/notify
-            fi
-            ln -sfn "${osConfig.age.secrets.notify.path}" ~/.config/notify/provider-config.yaml
-          '';
-        };
+        file = osConfig.home.homeFiles;
 
         stateVersion = "24.05";
 
@@ -192,7 +77,7 @@ in
           openai
         ];
         sessionVariables =
-          if stdenv.isDarwin
+          if pkgs.stdenv.hostPlatform.isDarwin
           then {
             EDITOR = "subl";
             SSH_AUTH_SOCK = "/Users/tomas/.1password/agent.sock";
@@ -205,16 +90,6 @@ in
       };
 
       fonts.fontconfig.enable = true;
-
-      autostart.programs = with pkgs;
-        mkIf osConfig.gui.enable [
-          telegram-desktop
-          unstable.trayscale
-          pkgs.custom.zerotier-ui
-
-          notify-client
-          gnome.geary
-        ];
 
       programs = {
         freetube.enable = true;
@@ -271,27 +146,7 @@ in
 
         tmux = {enable = true;};
 
-        alacritty.enable = osConfig.gui.enable;
-
-        atuin = {
-          enable = true;
-          enableZshIntegration = true;
-          package = pkgs.unstable.atuin;
-          settings = {
-            key_path = osConfig.age.secrets.atuin.path;
-            sync_address = "https://atuin.harke.ma";
-            auto_sync = true;
-            sync_frequency = "10m";
-            workspaces = true;
-            style = "compact";
-            secrets_filter = true;
-            common_subcommands = ["cargo" "go" "git" "npm" "yarn" "pnpm" "kubectl" "nix" "nom"];
-            # daemon = {
-            #   enabled = true;
-            #   systemd_socket = true;
-            # };
-          };
-        };
+        # alacritty.enable = osConfig.gui.enable;
 
         # bat = {
         #   enable = true;

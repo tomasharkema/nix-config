@@ -26,7 +26,7 @@
       secrets = {
         atuin = {
           rekeyFile = ../../nixos/secrets/atuin.age;
-          # owner = "tomas";
+          owner = "tomas";
           # group = "tomas";
           # mode = "644";
           # symlink = false;
@@ -40,7 +40,7 @@
         # };
         notify = {
           rekeyFile = ../../nixos/secrets/notify.age;
-          # owner = "tomas";
+          owner = "tomas";
           # group = "tomas";
           # mode = "644";
           # symlink = false;
@@ -89,6 +89,7 @@
         cm_unicode
       ];
     };
+
     programs = {
       zsh = {
         enable = true;
