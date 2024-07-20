@@ -280,8 +280,13 @@
     # };
 
     nixos-nvidia-vgpu = {
-      url = "github:tomasharkema/nixos-nvidia-vgpu/ac653f75d314a66fce7bc32096a74b71546eee03";
-      # url = "/home/tomas/Developer/nixos-nvidia-vgpu";
+      # url = "github:tomasharkema/nixos-nvidia-vgpu/ac653f75d314a66fce7bc32096a74b71546eee03";
+      url = "/home/tomas/Developer/nixos-nvidia-vgpu";
+    };
+
+    buildbot-nix = {
+      url = "github:nix-community/buildbot-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
