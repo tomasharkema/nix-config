@@ -285,8 +285,8 @@
     };
 
     buildbot-nix = {
-      # url = "github:nix-community/buildbot-nix";
-      url = "/home/tomas/Developer/buildbot-nix";
+      url = "github:nix-community/buildbot-nix";
+      # url = "/home/tomas/Developer/buildbot-nix";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
   };
