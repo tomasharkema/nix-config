@@ -353,6 +353,11 @@
         };
 
         namespace = "custom";
+
+        user = {
+          enable = true;
+          name = "tomas";
+        };
       };
 
       overlays = with inputs; [
