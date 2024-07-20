@@ -34,11 +34,13 @@ in {
     services.buildbot-nix = {
       master = {
         enable = true;
-        # Domain name under which the buildbot frontend is reachable
         domain = "buildbot.harkema.io";
         admins = ["tomasharkema"];
+        buildbotNixpkgs = {
+          buildbot = pkgs.unstable.buildbot;
+        };
+
         github = {
-          # Use this when you have set up a GitHub App
           authType.app = {
             id = "Ov23li4Rl8gHJYqxrZ6N";
             secretKeyFile = config.age.secrets.buildbot-github.path;
