@@ -11,7 +11,7 @@ with lib; {
       gh = {
         enable = true;
         extensions = with pkgs; [
-          # gh-dash
+          gh-dash
           # gh-token
         ];
         gitCredentialHelper.enable = true;

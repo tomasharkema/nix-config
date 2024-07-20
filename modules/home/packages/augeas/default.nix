@@ -16,10 +16,10 @@ with lib; {
 
     '';
   in {
-    # home.activation = {
-    #   augeas = ''
-
-    #   '';
-    # };
+    home.activation = {
+      augeas = ''
+        echo "augeas"
+      '';
+    };
   };
 }

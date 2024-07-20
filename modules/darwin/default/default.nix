@@ -26,9 +26,9 @@
       secrets = {
         atuin = {
           rekeyFile = ../../nixos/secrets/atuin.age;
-          owner = "tomas";
-          group = "tomas";
-          mode = "644";
+          # owner = "tomas";
+          # group = "tomas";
+          # mode = "644";
           # symlink = false;
         };
         # spotify-tui = {
@@ -40,9 +40,9 @@
         # };
         notify = {
           rekeyFile = ../../nixos/secrets/notify.age;
-          owner = "tomas";
-          group = "tomas";
-          mode = "644";
+          # owner = "tomas";
+          # group = "tomas";
+          # mode = "644";
           # symlink = false;
         };
       };

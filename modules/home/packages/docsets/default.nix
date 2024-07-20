@@ -21,7 +21,7 @@ with lib; let
   #   ${pkgs.custom.doc2dash}/bin/doc2dash ${gtk4'.devdoc}/share/doc/gtk4
   # '';
 in {
-  config = {
+  config = mkIf pkgs.stdenv.isLinux {
     home = {
       packages = with pkgs; [unstable.zeal];
       file = {
