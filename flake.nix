@@ -224,10 +224,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-service = {
-      url = "github:tomasharkema/nixos-service";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixos-service = {
+    #   url = "github:tomasharkema/nixos-service";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nix-virt = {
       url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
@@ -370,7 +370,7 @@
         peerix.overlay
         snowfall-flake.overlays."package/flake"
         nixos-checkmk.overlays.default
-        nixos-service.overlays.default
+        #        nixos-service.overlays.default
         agenix-rekey.overlays.default
         nixvim.overlays.default
         nix-topology.overlays.default
@@ -432,7 +432,7 @@
           nix-gaming.nixosModules.pipewireLowLatency
           nix-gaming.nixosModules.platformOptimizations
 
-          nixos-service.nixosModules.nixos-service
+          # nixos-service.nixosModules.nixos-service
           nix-virt.nixosModules.default
           nixos-nvidia-vgpu.nixosModules.nvidia-vgpu
 
@@ -552,7 +552,8 @@
         names = builtins.attrNames self.nixosConfigurations;
       in rec {
         all =
-          builtins.filter (
+          builtins.filter
+          (
             name: let
               cfg = self.nixosConfigurations."${name}".config;
             in
