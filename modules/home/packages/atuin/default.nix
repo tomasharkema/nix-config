@@ -21,45 +21,45 @@ with lib; {
         secrets_filter = true;
         common_subcommands = ["cargo" "go" "git" "npm" "yarn" "pnpm" "kubectl" "nix" "nom" "nh"];
         daemon = {
-          enabled = true;
+          # enabled = true;
           # systemd_socket = pkgs.stdenv.isLinux;
           # socket_path = "/run/user/1000/atuin.sock";
         };
       };
     };
 
-    launchd.agents."atuin" = {
-      enable = true;
-      config = {
-        ProgramArguments = [
-          "${(pkgs.writeShellScript "atuin-daemon" ''
-            exec ${getExe config.programs.atuin.package} daemon
-          '')}"
-        ];
-        KeepAlive = true;
-      };
-    };
+    # launchd.agents."atuin" = {
+    #   enable = true;
+    #   config = {
+    #     ProgramArguments = [
+    #       "${(pkgs.writeShellScript "atuin-daemon" ''
+    #         exec ${getExe config.programs.atuin.package} daemon
+    #       '')}"
+    #     ];
+    #     KeepAlive = true;
+    #   };
+    # };
 
-    systemd.user = {
-      services."atuin" = {
-        Unit = {Description = "atuin";};
+    # systemd.user = {
+    #   services."atuin" = {
+    #     Unit = {Description = "atuin";};
 
-        Install.WantedBy = ["multi-user.target" "default.target"];
+    #     Install.WantedBy = ["multi-user.target" "default.target"];
 
-        Service = {
-          ExecStart = "exec ${getExe config.programs.atuin.package} daemon";
-          Restart = "on-failure";
-          RestartSec = "5s";
-        };
-      };
-      # sockets."atuin" = {
-      #   Unit = {Description = "atuin";};
-      #   Socket = {
-      #     ListenStream = "%t/atuin.sock";
-      #     RuntimeDirectory = "atuin";
-      #   };
-      #   Install.WantedBy = ["sockets.target"];
-      # };
-    };
+    #     Service = {
+    #       ExecStart = "exec ${getExe config.programs.atuin.package} daemon";
+    #       Restart = "on-failure";
+    #       RestartSec = "5s";
+    #     };
+    #   };
+    # sockets."atuin" = {
+    #   Unit = {Description = "atuin";};
+    #   Socket = {
+    #     ListenStream = "%t/atuin.sock";
+    #     RuntimeDirectory = "atuin";
+    #   };
+    #   Install.WantedBy = ["sockets.target"];
+    # };
+    # };
   };
 }
