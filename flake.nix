@@ -280,13 +280,14 @@
     # };
 
     nixos-nvidia-vgpu = {
-      url = "github:tomasharkema/nixos-nvidia-vgpu/ac653f75d314a66fce7bc32096a74b71546eee03";
+      url = "github:tomasharkema/nixos-nvidia-vgpu";
       # url = "/home/tomas/Developer/nixos-nvidia-vgpu";
     };
 
     buildbot-nix = {
-      url = "github:nix-community/buildbot-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # url = "github:nix-community/buildbot-nix";
+      url = "/home/tomas/Developer/buildbot-nix";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -450,10 +451,14 @@
                   localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
                 };
                 secrets = {
-                  nix-access-tokens-github.rekeyFile = ./secrets/github.age;
+                  nix-access-tokens-github = {
+                    rekeyFile = ./secrets/github.age;
+                    mode = "666";
+                  };
                   buildbot-webhook = {
                     rekeyFile = ./secrets/buildbot-webhook.age;
                     generator.script = "base64";
+                    mode = "666";
                   };
                 };
               };

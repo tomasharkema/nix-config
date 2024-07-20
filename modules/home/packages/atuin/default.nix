@@ -44,7 +44,7 @@ with lib; {
       services."atuin" = {
         Unit = {Description = "atuin";};
 
-        Install.WantedBy = ["multi-user.target"];
+        Install.WantedBy = ["multi-user.target" "default.target"];
 
         Service = {
           ExecStart = "exec ${getExe config.programs.atuin.package} daemon";
