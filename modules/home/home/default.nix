@@ -65,7 +65,7 @@ in
   with lib; {
     imports = [];
 
-    config = {
+    config = mkIf pkgs.stdenv.isLinux {
       programs.inshellisense = {
         # enable = true;
         # enableZshIntegration = true;
@@ -134,6 +134,9 @@ in
                 filesystems=/run/current-system/sw/share/X11/fonts:ro;/nix/store:ro;/home/tomas/.local/share/fonts:ro;
               '';
               # /home/tomas/.config/gtk-4.0:ro;/home/tomas/.config/gtk-3.0:ro;
+            };
+            ".local/share/Zeal/Zeal/docsets/nixos.docset" = mkIf pkgs.stdenv.isLinux {
+              source = "${pkgs.docset}/share/docset-24.05.docset";
             };
           };
         activation = {
