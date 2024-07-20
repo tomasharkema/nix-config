@@ -31,9 +31,9 @@ with lib; {
       enable = true;
       config = {
         ProgramArguments = [
-          (pkgs.writeShellScript "atuin-daemon" ''
+          "${(pkgs.writeShellScript "atuin-daemon" ''
             exec ${getExe config.programs.atuin.package} daemon
-          '')
+          '')}"
         ];
         KeepAlive = true;
       };
