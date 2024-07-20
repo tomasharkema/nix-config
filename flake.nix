@@ -441,15 +441,21 @@
               age = {
                 rekey = {
                   masterIdentities = [
-                    ./age-yubikey-identity-usbc.pub
+                    ./secrets/age-yubikey-identity-usbc.pub
                     # "/etc/ssh/ssh_host_ed25519_key"
                   ];
-                  extraEncryptionPubkeys = [./age-yubikey-identity-usba.pub];
+                  extraEncryptionPubkeys = [./secrets/age-yubikey-identity-usba.pub];
 
                   storageMode = "local";
                   localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
                 };
-                secrets.nix-access-tokens-github.rekeyFile = ./github.age;
+                secrets = {
+                  nix-access-tokens-github.rekeyFile = ./secrets/github.age;
+                  buildbot-webhook = {
+                    rekeyFile = ./secrets/buildbot-webhook.age;
+                    generator.script = "base64";
+                  };
+                };
               };
 
               nix.extraOptions = ''
@@ -489,13 +495,16 @@
               '';
 
               age = {
-                secrets.nix-access-tokens-github.rekeyFile = ./github.age;
+                secrets = {
+                  nix-access-tokens-github.rekeyFile = ./secrets/github.age;
+                };
+
                 rekey = {
                   masterIdentities = [
-                    ./age-yubikey-identity-usbc.pub
+                    ./secrets/age-yubikey-identity-usbc.pub
                   ];
 
-                  extraEncryptionPubkeys = [./age-yubikey-identity-usba.pub];
+                  extraEncryptionPubkeys = [./secrets/age-yubikey-identity-usba.pub];
 
                   storageMode = "local";
                   localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
