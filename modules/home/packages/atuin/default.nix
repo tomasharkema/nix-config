@@ -23,6 +23,7 @@ with lib; {
         daemon = {
           enabled = true;
           systemd_socket = pkgs.stdenv.isLinux;
+          socket_path = "/run/user/1000/atuin.sock";
         };
       };
     };
