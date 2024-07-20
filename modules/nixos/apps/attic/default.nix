@@ -35,16 +35,16 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.nixos-service = {
-      enable = true;
+    # services.nixos-service = {
+    #   enable = true;
 
-      serverName = cfg.storeName;
-      serverUrl = cfg.serverAddress;
-      secretPath = config.age.secrets.attic-key.path;
-      mode = "0777";
-    };
+    #   serverName = cfg.storeName;
+    #   serverUrl = cfg.serverAddress;
+    #   secretPath = config.age.secrets.attic-key.path;
+    #   mode = "0777";
+    # };
 
-    users.users.tomas.extraGroups = [config.services.nixos-service.group];
+    # users.users.tomas.extraGroups = [config.services.nixos-service.group];
 
     # systemd.services.attic-watch = {
     #   description = "attic-watch";
