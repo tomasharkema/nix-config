@@ -24,11 +24,6 @@ in {
       secrets = {
         buildbot-github.rekeyFile = ./buildbot-github-app.age;
         buildbot-github-oauth.rekeyFile = ./buildbot-github-oauth.age;
-
-        buildbot-webhook = {
-          rekeyFile = ./buildbot-webhook.age;
-          generator.script = "base64";
-        };
       };
       rekey = {
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVhJ1k25x/1A/zN96p48MGrPJxVboTe17rO9Mcb61qG root@blue-fire";
