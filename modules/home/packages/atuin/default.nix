@@ -22,8 +22,8 @@ with lib; {
         common_subcommands = ["cargo" "go" "git" "npm" "yarn" "pnpm" "kubectl" "nix" "nom" "nh"];
         daemon = {
           enabled = true;
-          systemd_socket = pkgs.stdenv.isLinux;
-          socket_path = "/run/user/1000/atuin.sock";
+          # systemd_socket = pkgs.stdenv.isLinux;
+          # socket_path = "/run/user/1000/atuin.sock";
         };
       };
     };
@@ -52,14 +52,14 @@ with lib; {
           RestartSec = "5s";
         };
       };
-      sockets."atuin" = {
-        Unit = {Description = "atuin";};
-        Socket = {
-          ListenStream = "%t/atuin.sock";
-          RuntimeDirectory = "atuin";
-        };
-        Install.WantedBy = ["sockets.target"];
-      };
+      # sockets."atuin" = {
+      #   Unit = {Description = "atuin";};
+      #   Socket = {
+      #     ListenStream = "%t/atuin.sock";
+      #     RuntimeDirectory = "atuin";
+      #   };
+      #   Install.WantedBy = ["sockets.target"];
+      # };
     };
   };
 }
