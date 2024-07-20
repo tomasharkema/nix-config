@@ -16,11 +16,36 @@ in {
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
     # nixos-hardware.nixosModules.supermicro-x10sll-f
+    buildbot-nix.nixosModules.buildbot-master
+    buildbot-nix.nixosModules.buildbot-worker
   ];
-
   config = {
-    age.rekey = {
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVhJ1k25x/1A/zN96p48MGrPJxVboTe17rO9Mcb61qG root@blue-fire";
+    age = {
+      secrets.buildbot-github.rekeyFile = ./buildbot-github.age;
+      rekey = {
+        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVhJ1k25x/1A/zN96p48MGrPJxVboTe17rO9Mcb61qG root@blue-fire";
+      };
+    };
+
+    services.buildbot-master.extraConfig = ''
+      c["protocols"] = {"pb": {"port": "tcp:9989:interface=\\:\\:"}}
+    '';
+
+    services.buildbot-nix = {
+      master = {
+        enable = true;
+        # Domain name under which the buildbot frontend is reachable
+        domain = "buildbot.harkema.io";
+        admins = ["tomasharkema"];
+        github = {
+          # Use this when you have set up a GitHub App
+          authType.app = {
+            id = "Ov23li4Rl8gHJYqxrZ6N";
+            secretKeyFile = config.age.secrets.buildbot-github.path;
+          };
+        };
+      };
+      worker.masterUrl = ''tcp:host=blue-fire:port=9989'';
     };
 
     disks.btrfs = {
