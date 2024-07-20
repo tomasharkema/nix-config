@@ -22,7 +22,7 @@ in {
   config = {
     age = {
       secrets = {
-        buildbot-github.rekeyFile = ./buildbot-github-app.age;
+        buildbot-github-app.rekeyFile = ./buildbot-github-app.age;
         buildbot-github-oauth.rekeyFile = ./buildbot-github-oauth.age;
       };
       rekey = {
@@ -32,9 +32,9 @@ in {
 
     services = {
       buildbot-master.extraConfig = ''
-        c["protocols"] = "${builtins.toJSON {
+        c["protocols"] = ${builtins.toJSON {
           pb = {port = "tcp:9989:interface=\\:\\:";};
-        }}"
+        }}
       '';
 
       buildbot-nix = {
