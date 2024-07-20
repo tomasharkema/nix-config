@@ -6,6 +6,10 @@
   config = {
     age = {
       secrets = {
+        buildbot-webhook = {
+          rekeyFile = ./buildbot-webhook.age;
+          generator.script = "base64";
+        };
         atuin = {
           rekeyFile = ./atuin.age;
           owner = "tomas";
