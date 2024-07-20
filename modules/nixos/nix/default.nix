@@ -82,6 +82,8 @@ with lib.custom; {
         optimise.automatic = true;
 
         settings = {
+          extra-platforms = ["aarch64-linux" "i686-linux"];
+
           use-cgroups = true;
           extra-experimental-features = "nix-command flakes cgroups";
 

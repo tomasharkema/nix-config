@@ -287,7 +287,7 @@
     buildbot-nix = {
       url = "github:nix-community/buildbot-nix";
       # url = "/home/tomas/Developer/buildbot-nix";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "unstable";
     };
   };
 
@@ -755,8 +755,6 @@
       "root"
       "tomas"
     ];
-
-    extra-platforms = ["aarch64-linux"];
 
     allow-unsafe-native-code-during-evaluation = true;
 
