@@ -9,21 +9,13 @@
 
   cfg = config.user;
 in {
-  options.user = {
-    name = mkOpt types.str "tomas" "The user account.";
-    fullName = mkOpt types.str "Tomas Harkema" "The full name of the user.";
-    email = mkOpt types.str "tomas@harkema.io" "The email of the user.";
-  };
-
   config = {
-    users.users.${cfg.name} = {
-      # NOTE: Setting the uid here is required for another
-      # module to evaluate successfully since it reads
-      # `users.users.${config.user.name}.uid`.
-      uid = "1000";
-    };
-
-    snowfallorg.user.${config.user.name}.home.config = {};
+    # users.users.${cfg.name} = {
+    #   # NOTE: Setting the uid here is required for another
+    #   # module to evaluate successfully since it reads
+    #   # `users.users.${config.user.name}.uid`.
+    #   uid = "1000";
+    # };
 
     programs.zsh = {
       enable = true;
