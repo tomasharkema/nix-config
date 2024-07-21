@@ -139,11 +139,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1721061910,
-        "narHash": "sha256-kl8I5/yqketj0Oo77fG8iV9zbJLZl3NGWlgvj/uJGYM=",
+        "lastModified": 1721563690,
+        "narHash": "sha256-00ZnwWZgci/3/sl07nSCmhWsxbi7jXoD0MRNN7kscLk=",
         "owner": "brndnmtthws",
         "repo": "conky",
-        "rev": "ac25fcce8bb16aadc7a613ac979504e4a51cc639",
+        "rev": "ed6d18827da8f24919396ee796d1b529a48e727f",
         "type": "github"
       },
       "original": {
@@ -688,9 +688,6 @@
         "flake-parts": [
           "flake-parts"
         ],
-        "flake-utils": [
-          "flake-utils"
-        ],
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -698,11 +695,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1721501207,
-        "narHash": "sha256-umzgs8hXYUyQe6wJm7AnJ3kx8M/h0/WXR2OemAZs3Qs=",
+        "lastModified": 1721581642,
+        "narHash": "sha256-Bd9ujkwkxwAYCnYKEKeY1fjsvD4vyiFjFS20Lxr/FD4=",
         "owner": "nix-community",
         "repo": "lanzaboote",
-        "rev": "60e4578feca3d894f1474a9b08780c9a5433ad08",
+        "rev": "f3b4ade14392861388265e949b7007a8b62e21dc",
         "type": "github"
       },
       "original": {

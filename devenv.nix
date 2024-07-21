@@ -181,6 +181,7 @@ in {
     # treefmt.enable = true;
     # statix.enable = true;
     # deadnix.enable = true;
+    check-added-large-files.enable = true;
 
     "by-name" = {
       enable = true;
