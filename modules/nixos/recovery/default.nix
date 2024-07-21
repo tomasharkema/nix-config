@@ -10,7 +10,7 @@ with lib; {
     enable = mkEnableOption "enable recovery";
 
     configuration = mkOption {
-      default = inputs.self.nixosConfigurations.installer-netboot-x86;
+      default = inputs.self.nixosConfigurations.installer-netboot."${pkgs.system}";
     };
 
     sign = mkEnableOption "sign";
