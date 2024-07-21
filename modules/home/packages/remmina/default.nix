@@ -11,7 +11,7 @@ in {
   config = mkIf pkgs.stdenv.isLinux {
     services.remmina = {
       enable = true;
-      systemdService.enable = true;
+      # systemdService.enable = true;
     };
 
     home.file = builtins.listToAttrs (map (machine: {
