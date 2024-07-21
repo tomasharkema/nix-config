@@ -7,7 +7,7 @@
 with lib; {
   options.disks.btrfs.btrbk = {enable = mkEnableOption "btrbk";};
 
-  config = mkIf (config.disks.btrfs.enable && config.disks.btrfs.btrbk.enable) {
+  config = mkIf (config.disks.btrfs.enable && config.disks.btrfs.btrbk.enable && false) {
     age.secrets.btrbk = {
       rekeyFile = ../../secrets/btrbk.age;
       mode = "600";
