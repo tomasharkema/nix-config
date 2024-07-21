@@ -8,21 +8,26 @@
 }:
 with lib;
 with lib.custom; {
-  options.home = {
-    homeFiles = mkOption {
-      description = "Attribute set of files to link into the user home.";
-      default = {};
-      type = types.attrsOf (types.submodule {
-        options = {
-          source = mkOption {type = types.path;};
-          # target = mkOption {
-          #   type = types.str;
-          # };
-        };
-      });
-    };
-  };
+  # options.home = {
+  #   homeFiles = mkOption {
+  #     description = "Attribute set of files to link into the user home.";
+  #     default = {};
+  #     type = types.attrsOf (types.submodule {
+  #       options = {
+  #         source = mkOption {type = types.path;};
+  #         # target = mkOption {
+  #         #   type = types.str;
+  #         # };
+  #       };
+  #     });
+  #   };
+  # };
   config = {
+    environment = {
+      variables.XDG_DATA_DIRS = ["/usr/local/share"];
+      systemPackages = with pkgs; [virt-manager];
+    };
+
     snowfallorg.users."tomas" = {
       create = true;
       # admin = true;
@@ -36,6 +41,7 @@ with lib.custom; {
           #   HYDRA_HOST =
           #     "http://blue-fire.ling-lizard.ts.net:3000/"; # "https://hydra.harkema.io";
           # };
+
           programs.home-manager.enable = true;
         };
       };
