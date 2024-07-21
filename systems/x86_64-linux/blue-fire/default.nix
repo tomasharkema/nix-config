@@ -364,12 +364,12 @@ in {
           "kvm-intel"
           "uinput"
           "nvme"
-          # "tpm_rng"
-          # "ipmi_ssif"
+          "tpm_rng"
+          "ipmi_ssif"
           # "acpi_ipmi"
-          # "ipmi_si"
-          # "ipmi_devintf"
-          # "ipmi_msghandler"
+          "ipmi_si"
+          "ipmi_devintf"
+          "ipmi_msghandler"
         ];
       };
       kernelModules = [
@@ -377,13 +377,13 @@ in {
         "kvm-intel"
         "uinput"
         "fuse"
-        # "tpm_rng"
-        # "ipmi_ssif"
+        "tpm_rng"
+        "ipmi_ssif"
         # "acpi_ipmi"
         "ipmi_si"
         "ipmi_devintf"
         "ipmi_msghandler"
-        # "ipmi_watchdog"
+        "ipmi_watchdog"
       ];
       # extraModulePackages = [pkgs.freeipmi];
       systemd.services."serial-getty@ttyS2".wantedBy = ["multi-user.target"];
