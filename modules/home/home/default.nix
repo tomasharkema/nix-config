@@ -42,7 +42,7 @@ in
       };
 
       home = {
-        file = osConfig.home.homeFiles;
+        # file = osConfig.home.homeFiles;
 
         stateVersion = "24.05";
 
