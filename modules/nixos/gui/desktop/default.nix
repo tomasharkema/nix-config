@@ -169,6 +169,7 @@ in {
         xdotool
       ]
       ++ optionals pkgs.stdenv.isx86_64 [
+        devdocs-desktop
         discord
         # spotify
         ipmiview
