@@ -46,28 +46,26 @@ in {
 
     # users.users.tomas.extraGroups = [config.services.nixos-service.group];
 
-    # systemd.services.attic-watch = {
-    #   description = "attic-watch";
-    #   enable = true;
-    #   preStart = ''
-    #     ${atticBin} login "${cfg.serverName}" "${cfg.serverAddress}" "$(cat "${config.age.secrets.attic-key.path}")"
-    #   '';
-    #   script = ''
-    #     ${atticBin} watch-store "${cfg.serverName}:${cfg.storeName}" -j1
-    #   '';
-
-    #   unitConfig = {
-    #     StartLimitIntervalSec = 500;
-    #     StartLimitBurst = 5;
-    #   };
-    #   serviceConfig = {
-    #     RestartSec = 5;
-    #     MemoryHigh = "4G";
-    #     MemoryMax = "5G";
-    #     Nice = 15;
-    #   };
-
-    #   wantedBy = [ "default.target" ];
-    # };
+    systemd.services.attic-watch-store = {
+      wantedBy = ["multi-user.target"];
+      after = ["network-online.target"];
+      environment.HOME = "/var/lib/attic-watch-store";
+      serviceConfig = {
+        DynamicUser = true;
+        MemoryHigh = "5%";
+        MemoryMax = "10%";
+        LoadCredential = "prod-auth-token:${config.age.secrets.attic-key.path}";
+        StateDirectory = "attic-watch-store";
+      };
+      path = [pkgs.attic-client];
+      script = ''
+        set -eux -o pipefail
+        ATTIC_TOKEN=$(< $CREDENTIALS_DIRECTORY/prod-auth-token)
+        # Replace https://cache.<domain> with your own cache URL.
+        attic login tomas https://nix-cache.harke.ma $ATTIC_TOKEN
+        attic use tomas
+        exec attic watch-store tomas:tomas
+      '';
+    };
   };
 }
