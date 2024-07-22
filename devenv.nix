@@ -188,6 +188,11 @@ in {
       entry = "sh ./by-name.sh";
       pass_filenames = false;
     };
+    # "flake-show" = {
+    #   enable = true;
+    #   entry = "nix flake show";
+    #   pass_filenames = false;
+    # };
   };
 
   devcontainer = {

@@ -31,6 +31,23 @@
       url = "github:hercules-ci/flake-parts";
     };
 
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
+    pre-commit-hooks-nix = {url = "github:cachix/pre-commit-hooks.nix";};
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     crane = {
       url = "github:ipetkov/crane";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,6 +74,7 @@
         nixpkgs.follows = "nixpkgs";
         disko.follows = "disko";
         flake-parts.follows = "flake-parts";
+        treefmt-nix.follows = "treefmt-nix";
       };
     };
 
@@ -76,6 +94,8 @@
         nix-darwin.follows = "darwin";
         flake-compat.follows = "flake-compat";
         flake-parts.follows = "flake-parts";
+        devshell.follows = "devshell";
+        treefmt-nix.follows = "treefmt-nix";
       };
     };
 
@@ -94,6 +114,8 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
+        devshell.follows = "devshell";
+        pre-commit-hooks.follows = "pre-commit-hooks-nix";
       };
     };
 
@@ -118,7 +140,10 @@
 
     nix-software-center = {
       url = "github:snowfallorg/nix-software-center";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        utils.follows = "flake-utils";
+      };
     };
 
     # nixos-conf-editor = {
@@ -140,7 +165,8 @@
         crane.follows = "crane";
         flake-parts.follows = "flake-parts";
         flake-compat.follows = "flake-compat";
-        flake-utils.follows = "flake-utils";
+        # flake-utils.follows = "flake-utils";
+        pre-commit-hooks-nix.follows = "pre-commit-hooks-nix";
       };
     };
 
@@ -160,26 +186,26 @@
       };
     };
 
-    peerix = {
-      url = "github:cid-chan/peerix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
+    # peerix = {
+    #   url = "github:cid-chan/peerix";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #   };
+    # };
 
     # stylix = {
     #   url = "github:danth/stylix/release-24.05";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    nixos-search = {
-      url = "github:NixOS/nixos-search";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
+    # nixos-search = {
+    #   url = "github:NixOS/nixos-search";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #   };
+    # };
 
     # command-center = {
     #   url = "github:tomasharkema/command-center";
@@ -210,18 +236,23 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
+        treefmt-nix.follows = "treefmt-nix";
       };
     };
 
-    nbfc-linux = {
-      url = "github:nbfc-linux/nbfc-linux";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nbfc-linux = {
+    #   url = "github:nbfc-linux/nbfc-linux";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     _1password-shell-plugins = {
       url = "github:1Password/shell-plugins";
 
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+
+        flake-utils.follows = "flake-utils";
+      };
     };
 
     # nixos-service = {
@@ -246,16 +277,19 @@
       url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     # netkit = {
     #   url = "github:icebox-nix/netkit.nix";
     # };
-    nix-topology = {
-      url = "github:oddlama/nix-topology";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
+
+    # nix-topology = {
+    #   url = "github:oddlama/nix-topology";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #   };
+    # };
+
     nixos-dash-docset = {
       url = "github:ptitfred/nixos-dash-docset";
       inputs = {
@@ -287,7 +321,10 @@
     buildbot-nix = {
       url = "github:nix-community/buildbot-nix";
       # url = "/home/tomas/Developer/buildbot-nix";
-      inputs.nixpkgs.follows = "unstable";
+      inputs = {
+        nixpkgs.follows = "unstable";
+        treefmt-nix.follows = "treefmt-nix";
+      };
     };
   };
 
@@ -368,13 +405,13 @@
 
       overlays = with inputs; [
         # nix-otel.overlays.default
-        peerix.overlay
+        # peerix.overlay
         snowfall-flake.overlays."package/flake"
         nixos-checkmk.overlays.default
         #        nixos-service.overlays.default
         agenix-rekey.overlays.default
         nixvim.overlays.default
-        nix-topology.overlays.default
+        # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
       ];
 
@@ -410,14 +447,14 @@
 
       systems.modules = {
         nixos = with inputs; [
-          nix-topology.nixosModules.default
+          # nix-topology.nixosModules.default
           # netkit.nixosModule
           nixos-checkmk.nixosModules.check_mk_agent
 
           catppuccin.nixosModules.catppuccin
 
           # attic.nixosModules.atticd
-          peerix.nixosModules.peerix
+          # peerix.nixosModules.peerix
 
           # impermanence.nixosModule
           disko.nixosModules.default
@@ -582,10 +619,13 @@
       images = with inputs; rec {
         # baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
         # pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
-        installer-x86 = self.nixosConfigurations.installer-x86.config.system.build.isoImage;
-        installer-arm = self.nixosConfigurations.installer-arm.config.system.build.isoImage;
-
-        installer-arm-img = self.nixosConfigurations.installer-arm-img.config.system.build.sdImage;
+        installer = {
+          iso = {
+            "x86_64-linux" = self.installer."x86_64-linux".iso.config.system.build.isoImage;
+            "aarch64-linux" = self.installer."aarch64-linux".iso.config.system.build.isoImage;
+          };
+          img = {"aarch64-linux" = self.installer."aarch64-linux".img.config.system.build.sdImage;};
+        };
 
         ovmfx86 =
           (inputs.nixpkgs.legacyPackages.x86_64-linux.OVMFFull.override {
@@ -601,9 +641,9 @@
           })
           .fd;
 
-        linuxKernel_x86 = self.nixosConfigurations.wodan.boot.kernelPackages.kernel;
+        linuxKernel_x86 = self.nixosConfigurations.wodan.config.boot.kernelPackages.kernel;
 
-        linuxKernel_arm = self.nixosConfigurations.euro-mir-vm.boot.kernelPackages.kernel;
+        linuxKernel_arm = self.nixosConfigurations.euro-mir-vm.config.boot.kernelPackages.kernel;
 
         # services = let
         #   config = "pegasus";
@@ -640,83 +680,9 @@
           ];
         };
 
-        installer-iso = inputs.nixpkgs.lib.nixosSystem {
-          system = "${channels.nixpkgs.system}";
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
-            ./installer.nix
-
-            (
-              {
-                lib,
-                pkgs,
-                ...
-              }: {
-                config = {
-                  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
-                  networking.wireless.enable = true;
-                };
-              }
-            )
-          ];
-        };
-
-        installer-img = inputs.nixpkgs.lib.nixosSystem {
-          system = "${channels.nixpkgs.system}";
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
-            ./installer.nix
-
-            (
-              {
-                lib,
-                pkgs,
-                ...
-              }: {
-                config = {
-                  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
-
-                  networking.wireless.enable = true;
-                };
-              }
-            )
-          ];
-        };
-
-        installer-netboot = inputs.nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            "${inputs.nixpkgs}/nixos/modules/installer/netboot/netboot-minimal.nix"
-            ./installer.nix
-
-            (
-              {
-                lib,
-                pkgs,
-                config,
-                ...
-              }: {
-                config = {
-                  boot = {
-                    supportedFilesystems.zfs = lib.mkForce false;
-                    kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
-                  };
-                  system.stateVersion = config.system.nixos.release;
-                  netboot.squashfsCompression = "zstd -Xcompression-level 6";
-                  networking.wireless.enable = true;
-                };
-              }
-            )
-          ];
+        installer = import ./installer {
+          inherit channels;
+          inherit inputs;
         };
 
         # checks = with inputs; {
