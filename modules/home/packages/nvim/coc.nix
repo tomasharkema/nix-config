@@ -56,6 +56,11 @@
       command = "nixd";
       filetypes = ["nix"];
     };
+    "csharp-ls" = {
+      command = "csharp-ls";
+      filetypes = ["cs"];
+      rootPatterns = ["*.csproj" ".vim/" ".git/" ".hg/"];
+    };
   };
 
   explorer = {
