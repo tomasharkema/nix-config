@@ -17,6 +17,7 @@ in {
       figlet
       nodejs
       ripgrep
+      csharp-ls
     ];
 
     programs.neovim = {
@@ -49,7 +50,10 @@ in {
         };
         packer = {
           enable = true;
-          plugins = [{name = "FluxxField/bionic-reading.nvim";}];
+          plugins = [
+            {name = "FluxxField/bionic-reading.nvim";}
+            {name = "jmederosalvarado/roslyn.nvim";}
+          ];
         };
         dashboard = {
           enable = true;
@@ -142,6 +146,8 @@ in {
         vim-nix
         coc-nvim
         # suda-vim
+        vim-csharp
+        csharpls-extended-lsp-nvim
       ];
 
       options = {
