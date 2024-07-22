@@ -319,11 +319,11 @@
     };
 
     buildbot-nix = {
-      url = "github:nix-community/buildbot-nix";
+      url = "github:nix-community/buildbot-nix/hercules";
       # url = "/home/tomas/Developer/buildbot-nix";
       inputs = {
-        nixpkgs.follows = "unstable";
-        treefmt-nix.follows = "treefmt-nix";
+        # nixpkgs.follows = "unstable";
+        #   treefmt-nix.follows = "treefmt-nix";
       };
     };
   };
@@ -373,17 +373,17 @@
         # hostPlatform.system = "aarch64-linux";
         # buildPlatform.system = "x86_64-linux";
         # permittedInsecurePackages = [ "openssl-1.1.1w" ];
-        permittedInsecurePackages = [
-          "python3.11-youtube-dl-2021.12.17"
-        ];
+        # permittedInsecurePackages = [
+        #   "python3.11-youtube-dl-2021.12.17"
+        # ];
 
         config = {
           # For example, enable smartcard support in Firefox.
           firefox.smartcardSupport = true;
 
-          permittedInsecurePackages = [
-            "python3.11-youtube-dl-2021.12.17"
-          ];
+          # permittedInsecurePackages = [
+          #   "python3.11-youtube-dl-2021.12.17"
+          # ];
         };
       };
 
