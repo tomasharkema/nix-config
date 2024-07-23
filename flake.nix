@@ -409,7 +409,7 @@
         # peerix.overlay
         snowfall-flake.overlays."package/flake"
         nixos-checkmk.overlays.default
-        #        nixos-service.overlays.default
+        # nixos-service.overlays.default
         agenix-rekey.overlays.default
         nixvim.overlays.default
         # nix-topology.overlays.default
