@@ -1,5 +1,13 @@
-{ lib, ... }: {
+{lib, ...}: {
   config = {
+    assertions = [
+      {
+        assertion = false;
+        message = ''
+          Need this?
+        '';
+      }
+    ];
     time.timeZone = "Europe/Amsterdam";
     system.stateVersion = "24.05";
     security.sudo.wheelNeedsPassword = false;
@@ -25,12 +33,12 @@
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4 tomas"
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJRn81Pxfg4ttTocQnTUWirpC1QVeJ5bfPC63ET9fNVa root@blue-fire"
           ];
-          extraGroups = [ "video" "audio" ];
+          extraGroups = ["video" "audio"];
         };
       };
       groups.tomas = {
         name = "tomas";
-        members = [ "tomas" ];
+        members = ["tomas"];
       };
     };
   };

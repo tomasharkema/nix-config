@@ -30,6 +30,20 @@ with lib.custom; {
       #   wantedBy = ["sockets.target"];
       # };
 
+      documentation = {
+        man = {
+          enable = true;
+          # mandoc.enable = true;
+          man-db.enable = true;
+          generateCaches = true;
+        };
+        dev.enable = true;
+        doc.enable = true;
+        nixos = {
+          # includeAllModules = true;
+        };
+      };
+
       environment.variables = {
         # NIX_DAEMON_SOCKET_PATH = "/run/nix-supervisor.sock";
         # OTEL_EXPORTER_OTLP_ENDPOINT = "http://silver-star:5080/api/default/traces";

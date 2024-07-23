@@ -19,16 +19,17 @@ in {
     buildbot-nix.nixosModules.buildbot-master
     buildbot-nix.nixosModules.buildbot-worker
   ];
+
   config = {
     age = {
       secrets = {
         buildbot-github-app = {
           rekeyFile = ./buildbot-github-app.age;
-          owner = "buildbot";
+          # owner = "buildbot";
         };
         buildbot-github-oauth = {
           rekeyFile = ./buildbot-github-oauth.age;
-          owner = "buildbot";
+          # owner = "buildbot";
         };
       };
       rekey = {
@@ -37,20 +38,31 @@ in {
     };
 
     services = {
-      buildbot-master.extraConfig = ''
-        c["protocols"] = {"pb": {"port": "tcp:9989:interface=0.0.0.0:"}}
-      '';
-
       buildbot-master = {
-        # pythonPackages = pythonPackages: [pythonPackages.cryptography];
+        extraConfig = ''
+          from buildbot.manhole import AuthorizedKeysManhole
+          c['manhole'] = AuthorizedKeysManhole("tcp:12456", "/etc/ssh/authorized_keys.d/joerg", "/var/lib/buildbot/master/ssh/")
+          c["protocols"] = {"pb": {"port": "tcp:9989:interface=\\:\\:"}}
+        '';
+        pythonPackages = ps: [
+          pkgs.python312Packages.bcrypt
+          pkgs.python312Packages.cryptography
+        ];
       };
+      nginx.virtualHosts."buildbot.harkema.io" = {
+        # forceSSL = true;
+        # useACMEHost = "harkema.io";
+      };
+    };
 
+    services = {
       buildbot-nix = {
         master = {
-          enable = true;
+          # enable = true;
           domain = "buildbot.harkema.io";
           admins = ["tomasharkema"];
-          # buildbotNixpkgs = inputs.unstable.legacyPackages."${pkgs.system}";
+          outputsPath = "/var/www/buildbot/nix-outputs";
+          # buildbotNixpkgs = pkgs; #inputs.unstable.legacyPackages."${pkgs.system}";
 
           workersFile = pkgs.writeText "workers.json" (builtins.toJSON
             [
@@ -128,6 +140,7 @@ in {
       das_watchdog.enable = mkForce false;
 
       remote-builders.server.enable = true;
+
       beesd.filesystems = {
         root = {
           spec = "UUID=91663f26-5426-4a0d-96f0-e507f2cd8196";
@@ -140,17 +153,17 @@ in {
         };
       };
 
-      icingaweb2 = {
-        enable = true;
-        virtualHost = "mon.blue-fire.harkema.intra";
-        modules.setup.enable = true;
-        authentications = {
-          icingaweb = {
-            backend = "db";
-            resource = "icingaweb_db";
-          };
-        };
-      };
+      # icingaweb2 = {
+      #   enable = true;
+      #   virtualHost = "mon.blue-fire.harkema.intra";
+      #   modules.setup.enable = true;
+      #   authentications = {
+      #     icingaweb = {
+      #       backend = "db";
+      #       resource = "icingaweb_db";
+      #     };
+      #   };
+      # };
 
       # ha.initialMaster = true;
       # command-center = {
