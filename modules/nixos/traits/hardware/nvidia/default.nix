@@ -86,6 +86,16 @@ in {
         forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = true;
+
+        # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+        #   version = "560.28.03";
+        #   sha256_64bit = "";
+        #   sha256_aarch64 = lib.fakeSha256;
+        #   openSha256 = lib.fakeSha256;
+        #   settingsSha256 = "";
+        #   persistencedSha256 = lib.fakeSha256;
+        # };
+
         package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
           version = "555.52.04";
           sha256_64bit = "sha256-nVOubb7zKulXhux9AruUTVBQwccFFuYGWrU1ZiakRAI=";

@@ -193,7 +193,6 @@ with lib.custom;
           # pkgs.wolfram-engine
           libsmbios
           dmidecode
-          termius
 
           google-chrome
           netflix

@@ -39,8 +39,9 @@ with lib.custom; {
         };
         dev.enable = true;
         doc.enable = true;
+        info.enable = true;
         nixos = {
-          # includeAllModules = true;
+          enable = true;
         };
       };
 

@@ -2,12 +2,14 @@
 {
   config,
   osConfig,
+  pkgs,
   ...
 }: {
   config = {
     programs = {
       kitty = {
         enable = true;
+        package = pkgs.unstable.kitty;
         theme = "Catppuccin-Mocha";
 
         font = {name = "JetBrainsMono Nerd Font Mono";};

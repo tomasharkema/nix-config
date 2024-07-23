@@ -67,12 +67,8 @@ with lib; {
       # modem-manager-gui
       # libmbim
       # libqmi
-
       thinkfan
-
       tpacpi-bat
-
-      ventoy-full
       gnupg
       custom.distrib-dl
       custom.ancs4linux
@@ -81,8 +77,6 @@ with lib; {
       # calibre
       glxinfo
       inxi
-      livecaptions
-
       pwvucontrol
     ];
 
