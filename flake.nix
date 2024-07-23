@@ -319,7 +319,8 @@
     };
 
     buildbot-nix = {
-      url = "github:nix-community/buildbot-nix/hercules";
+      url = "github:nix-community/buildbot-nix";
+      # url = "github:nix-community/buildbot-nix/hercules";
       # url = "/home/tomas/Developer/buildbot-nix";
       inputs = {
         # nixpkgs.follows = "unstable";
@@ -482,7 +483,9 @@
                     ./secrets/age-yubikey-identity-usbc.pub
                     # "/etc/ssh/ssh_host_ed25519_key"
                   ];
-                  extraEncryptionPubkeys = [./secrets/age-yubikey-identity-usba.pub];
+                  extraEncryptionPubkeys = [
+                    ./secrets/age-yubikey-identity-usba.pub
+                  ];
 
                   storageMode = "local";
                   localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
@@ -546,7 +549,9 @@
                     ./secrets/age-yubikey-identity-usbc.pub
                   ];
 
-                  extraEncryptionPubkeys = [./secrets/age-yubikey-identity-usba.pub];
+                  extraEncryptionPubkeys = [
+                    ./secrets/age-yubikey-identity-usba.pub
+                  ];
 
                   storageMode = "local";
                   localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
@@ -670,15 +675,15 @@
       in {
         formatter = channels.nixpkgs.alejandra;
 
-        topology = import inputs.nix-topology {
-          inherit pkgs;
-          modules = [
-            # Your own file to define global topology. Works in principle like a nixos module but uses different options.
-            # ./topology.nix
-            # Inline module to inform topology of your existing NixOS hosts.
-            {nixosConfigurations = inputs.self.nixosConfigurations;}
-          ];
-        };
+        # topology = import inputs.nix-topology {
+        #   inherit pkgs;
+        #   modules = [
+        #     # Your own file to define global topology. Works in principle like a nixos module but uses different options.
+        #     # ./topology.nix
+        #     # Inline module to inform topology of your existing NixOS hosts.
+        #     {nixosConfigurations = inputs.self.nixosConfigurations;}
+        #   ];
+        # };
 
         installer = import ./installer {
           inherit channels;
