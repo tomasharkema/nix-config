@@ -58,7 +58,7 @@ in {
     services = {
       buildbot-nix = {
         master = {
-          # enable = true;
+          enable = true;
           domain = "buildbot.harkema.io";
           admins = ["tomasharkema"];
           outputsPath = "/var/www/buildbot/nix-outputs";

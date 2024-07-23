@@ -40,64 +40,71 @@ with lib.custom; let
   ''));
   findDesktopFileBase = ps: builtins.baseNameOf (findDesktopFile ps);
 in {
-  options.autostart = {
-    programs = mkOpt (types.listOf types.package) [] "Autostart programs";
+  options = {
+    autostart = {
+      programs = mkOpt (types.listOf types.package) [] "Autostart programs";
+    };
+    # home.favoriteAppIds = mkOption {};
   };
+  config = let
+    favoriteApplications = with pkgs; [
+      {package = gnome.nautilus;}
+      {package = firefox;}
+      {package = gnome.geary;}
+      {package = unstable.vscode;}
+      {package = unstable.kitty;}
+      {package = unstable.telegram-desktop;}
+      {package = unstable._1password-gui;}
+      {package = unstable.notify-client;}
+      {package = unstable.termius;}
+      {id = "org.cockpit_project.CockpitClient.desktop";}
+    ];
 
-  config = {
-    home.file = builtins.listToAttrs (map (pkg: {
-        name = ".config/autostart/${pkg.pname}.desktop";
-        value =
-          if pkg ? desktopItem
-          then {
-            # Application has a desktopItem entry.
-            # Assume that it was made with makeDesktopEntry, which exposes a
-            # text attribute with the contents of the .desktop file
-            text = pkg.desktopItem.text;
-          }
-          else {
-            # Application does *not* have a desktopItem entry. Try to find a
-            # matching .desktop name in /share/apaplications
-            source = config.lib.file.mkOutOfStoreSymlink (findDesktopFile pkg);
-          };
-      })
-      config.autostart.programs);
+    packagesToAdd = lists.concatMap ({
+      package ? null,
+      id ? null,
+    }:
+      if package != null
+      then [package]
+      else [])
+    favoriteApplications;
 
-    dconf.settings."org/gnome/shell".favorite-apps = (
-      [
-        # "org.kde.index.desktop"
-        # "pcmanfm.desktop"
-        (findDesktopFileBase pkgs.gnome.nautilus)
-        # "org.gnome.Nautilus.desktop"
-        # "firefox.desktop"
+    favoriteAppIds = lists.concatMap ({
+      package ? null,
+      id ? null,
+    }:
+      if package != null
+      then [(findDesktopFileBase package)]
+      else [id])
+    favoriteApplications;
+  in {
+    home = {
+      file = builtins.listToAttrs (map (pkg: {
+          name = ".config/autostart/${pkg.pname}.desktop";
+          value =
+            if pkg ? desktopItem
+            then {
+              # Application has a desktopItem entry.
+              # Assume that it was made with makeDesktopEntry, which exposes a
+              # text attribute with the contents of the .desktop file
+              text = pkg.desktopItem.text;
+            }
+            else {
+              # Application does *not* have a desktopItem entry. Try to find a
+              # matching .desktop name in /share/apaplications
+              source = config.lib.file.mkOutOfStoreSymlink (findDesktopFile pkg);
+            };
+        })
+        config.autostart.programs);
 
-        (findDesktopFileBase pkgs.firefox)
-        # "org.gnome.Console.desktop"
+      packages = packagesToAdd ++ (with pkgs; [gnome.vinagre gnome.devhelp]);
+      # favoriteAppIds = favoriteAppIds;
+    };
 
-        (findDesktopFileBase pkgs.gnome.geary)
+    dconf.settings."org/gnome/shell".favorite-apps = favoriteAppIds;
 
-        (findDesktopFileBase pkgs.vscode)
-
-        (findDesktopFileBase pkgs.wezterm)
-
-        (findDesktopFileBase pkgs.tilix)
-        (findDesktopFileBase pkgs.kitty)
-
-        (findDesktopFileBase pkgs.telegram-desktop)
-      ]
-      ++ (optional pkgs.stdenv.isx86_64 (findDesktopFileBase pkgs.spotify))
-      ++ [
-        (findDesktopFileBase pkgs._1password-gui)
-        (findDesktopFileBase pkgs.notify-client)
-      ]
-      # ++ (optional pkgs.stdenv.isx86_64 "kitty.desktop")
-      # ++ (optional (!pkgs.stdenv.isx86_64) "com.gexperts.Tilix.desktop")
-      # ++ ["com.gexperts.Tilix.desktop"]
-      ++ [
-        # "code.desktop"
-        "org.cockpit_project.CockpitClient.desktop"
-        # "org.gnome.Epiphany.WebApp_b336fc558722224b7ffe98607055d55f0fe52450.desktop"
-      ]
-    );
+    xdg.mimeApps.defaultApplications = {
+      "application/pdf" = [(findDesktopFileBase osConfig.programs.evince.package)];
+    };
   };
 }

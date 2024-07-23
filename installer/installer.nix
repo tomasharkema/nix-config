@@ -7,7 +7,7 @@
 }:
 with lib; let
   disko = inputs.disko.packages."${pkgs.system}".disko;
-  keys = pkgs.callPackage ./packages/authorized-keys {};
+  keys = pkgs.callPackage ../packages/authorized-keys {};
   inputValues = builtins.attrValues inputs; # .out
   drvs = builtins.map (v: v.outPath) inputValues;
 

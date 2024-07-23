@@ -106,10 +106,9 @@ in {
     };
 
     environment.systemPackages = with pkgs;
-      (optional ((stdenv.isLinux && stdenv.isx86_64) || stdenv.isDarwin) mailspring)
-      ++ [
+      [
         fractal
-
+        ventoy-full
         unstable.zed-editor
         spot
         ulauncher
