@@ -47,18 +47,21 @@ in {
     # home.favoriteAppIds = mkOption {};
   };
   config = let
-    favoriteApplications = with pkgs; [
-      {package = gnome.nautilus;}
-      {package = firefox;}
-      {package = gnome.geary;}
-      {package = unstable.vscode;}
-      {package = unstable.kitty;}
-      {package = unstable.telegram-desktop;}
-      {package = unstable._1password-gui;}
-      {package = unstable.notify-client;}
-      {package = unstable.termius;}
-      {id = "org.cockpit_project.CockpitClient.desktop";}
-    ];
+    favoriteApplications = with pkgs;
+      [
+        {package = gnome.nautilus;}
+        {package = firefox;}
+        {package = gnome.geary;}
+        {package = unstable.vscode;}
+        {package = unstable.kitty;}
+        {package = unstable.telegram-desktop;}
+        {package = unstable._1password-gui;}
+        {package = unstable.notify-client;}
+      ]
+      ++ (optional pkgs.stdenv.isx86_64 {package = unstable.termius;})
+      ++ [
+        {id = "org.cockpit_project.CockpitClient.desktop";}
+      ];
 
     packagesToAdd = lists.concatMap ({
       package ? null,
