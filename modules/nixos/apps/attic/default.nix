@@ -43,6 +43,7 @@ in {
       path = [pkgs.attic-client];
       script = ''
         set -eux -o pipefail
+        whoami
         ATTIC_TOKEN=$(< $CREDENTIALS_DIRECTORY/prod-auth-token)
         # Replace https://cache.<domain> with your own cache URL.
         attic login ${cfg.serverName} ${cfg.serverAddress} $ATTIC_TOKEN
@@ -50,5 +51,7 @@ in {
         exec attic watch-store ${cfg.serverName}:${cfg.storeName}
       '';
     };
+
+    nix.settings.trusted-users = ["attic-watch-store"];
   };
 }
