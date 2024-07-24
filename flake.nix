@@ -320,6 +320,7 @@
 
     buildbot-nix = {
       url = "github:nix-community/buildbot-nix";
+      # url = "github:tomasharkema/buildbot-nix";
       # url = "github:nix-community/buildbot-nix/hercules";
       # url = "/home/tomas/Developer/buildbot-nix";
       inputs = {
@@ -453,7 +454,7 @@
           nixos-checkmk.nixosModules.check_mk_agent
 
           catppuccin.nixosModules.catppuccin
-
+          buildbot-nix.nixosModules.buildbot-worker
           # attic.nixosModules.atticd
           # peerix.nixosModules.peerix
 
