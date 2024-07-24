@@ -16,7 +16,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    traits.slim.enable = true;
+    # traits.slim.enable = true;
 
     services = {
       # xserver.videoDrivers = [ "qxl" ];
