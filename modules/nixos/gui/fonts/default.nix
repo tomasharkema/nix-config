@@ -29,35 +29,36 @@ with lib; {
       };
 
       packages = with pkgs;
-      with pkgs.custom; [
-        fast-font
-        # exult
-        b612
-        b612-nerdfont
-        bakoma_ttf
-        cm_unicode
-        dina-font
-        fira-code
-        fira-code-symbols
-        google-fonts
-        inter
-        liberation_ttf
-        lmmath
-        mplus-outline-fonts.githubRelease
-        nerdfonts
-        neue-haas-grotesk
-        noto-fonts
-        noto-fonts-cjk
-        noto-fonts-emoji
-        noto-fonts-extra
-        open-dyslexic
-        open-sans
-        proggyfonts
-        roboto-mono
-        san-francisco
-        ubuntu_font_family
-        vegur
-      ];
+      with pkgs.custom;
+        mkIf (!config.traits.slim.enable) [
+          fast-font
+          # exult
+          b612
+          b612-nerdfont
+          bakoma_ttf
+          cm_unicode
+          dina-font
+          fira-code
+          fira-code-symbols
+          google-fonts
+          inter
+          liberation_ttf
+          lmmath
+          mplus-outline-fonts.githubRelease
+          nerdfonts
+          neue-haas-grotesk
+          noto-fonts
+          noto-fonts-cjk
+          noto-fonts-emoji
+          noto-fonts-extra
+          open-dyslexic
+          open-sans
+          proggyfonts
+          roboto-mono
+          san-francisco
+          ubuntu_font_family
+          vegur
+        ];
     };
   };
 }

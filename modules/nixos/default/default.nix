@@ -267,6 +267,7 @@ with lib.custom;
         };
 
         atd.enable = true;
+
         kmscon = {
           enable = mkDefault true;
           hwRender = config.traits.hardware.nvidia.enable;
