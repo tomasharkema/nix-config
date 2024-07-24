@@ -18,18 +18,22 @@ in {
     # nixos-hardware.nixosModules.supermicro-x10sll-f
     buildbot-nix.nixosModules.buildbot-master
     buildbot-nix.nixosModules.buildbot-worker
+
+    ./buildbot-master.nix
   ];
+
+  disabledModules = ["services/continuous-integration/buildbot/master.nix"];
 
   config = {
     age = {
       secrets = {
         buildbot-github-app = {
           rekeyFile = ./buildbot-github-app.age;
-          # owner = "buildbot";
+          owner = "buildbot";
         };
         buildbot-github-oauth = {
           rekeyFile = ./buildbot-github-oauth.age;
-          # owner = "buildbot";
+          owner = "buildbot";
         };
       };
       rekey = {
@@ -39,15 +43,16 @@ in {
 
     services = {
       buildbot-master = {
-        extraConfig = ''
-          from buildbot.manhole import AuthorizedKeysManhole
-          c['manhole'] = AuthorizedKeysManhole("tcp:12456", "/etc/ssh/authorized_keys.d/joerg", "/var/lib/buildbot/master/ssh/")
-          c["protocols"] = {"pb": {"port": "tcp:9989:interface=\\:\\:"}}
-        '';
-        pythonPackages = ps: [
-          pkgs.python312Packages.bcrypt
-          pkgs.python312Packages.cryptography
-        ];
+        # extraConfig = ''
+        #   from buildbot.manhole import AuthorizedKeysManhole
+        #   c['manhole'] = AuthorizedKeysManhole("tcp:12456", "/etc/ssh/authorized_keys.d/joerg", "/var/lib/buildbot/master/ssh/")
+        #   c["protocols"] = {"pb": {"port": "tcp:9989:interface=\\:\\:"}}
+        # '';
+        # pythonPackages = ps: [
+        #   ps.bcrypt
+        #   ps.cryptography
+        #   ps.alembic
+        # ];
       };
       nginx.virtualHosts."buildbot.harkema.io" = {
         # forceSSL = true;
@@ -62,7 +67,7 @@ in {
           domain = "buildbot.harkema.io";
           admins = ["tomasharkema"];
           outputsPath = "/var/www/buildbot/nix-outputs";
-          # buildbotNixpkgs = pkgs; #inputs.unstable.legacyPackages."${pkgs.system}";
+          buildbotNixpkgs = pkgs.unstable; #inputs.unstable.legacyPackages."${pkgs.system}";
 
           workersFile = pkgs.writeText "workers.json" (builtins.toJSON
             [

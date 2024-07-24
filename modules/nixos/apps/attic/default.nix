@@ -9,22 +9,22 @@ with lib;
 with pkgs; let
   cfg = config.apps.attic;
 in {
-  options.apps.attic = with lib.types; {
+  options.apps.attic = {
     enable = mkEnableOption "enable attic conf";
 
     serverName = mkOption {
       default = "tomas";
-      type = str;
+      type = types.str;
     };
 
     storeName = mkOption {
       default = "tomas";
-      type = str;
+      type = types.str;
     };
 
     serverAddress = mkOption {
       default = "http://192.168.0.100:6067/";
-      type = str;
+      type = types.str;
     };
   };
 
