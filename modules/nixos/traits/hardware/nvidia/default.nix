@@ -85,7 +85,7 @@ in {
         modesetting.enable = true;
         forceFullCompositionPipeline = true;
         open = false;
-        nvidiaSettings = true;
+        nvidiaSettings = false;
 
         # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
         #   version = "560.28.03";
@@ -97,11 +97,11 @@ in {
         # };
 
         package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-          version = "555.52.04";
-          sha256_64bit = "sha256-nVOubb7zKulXhux9AruUTVBQwccFFuYGWrU1ZiakRAI=";
+          version = "560.28.03";
+          sha256_64bit = "sha256-martv18vngYBJw1IFUCAaYr+uc65KtlHAMdLMdtQJ+Y=";
           sha256_aarch64 = lib.fakeSha256;
           openSha256 = lib.fakeSha256;
-          settingsSha256 = "sha256-PMh5efbSEq7iqEMBr2+VGQYkBG73TGUh6FuDHZhmwHk=";
+          settingsSha256 = "sha256-b4nhUMCzZc3VANnNb0rmcEH6H7SK2D5eZIplgPV59c8=";
           persistencedSha256 = lib.fakeSha256;
         };
       };
