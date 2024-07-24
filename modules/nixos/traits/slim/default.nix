@@ -5,9 +5,9 @@
   ...
 }:
 with lib; {
-  options.traits.slim = {
-    enable = mkEnableOption "slim";
-  };
+  # options.traits.slim = {
+  #   enable = mkEnableOption "slim";
+  # };
 
   config = {
     services = {

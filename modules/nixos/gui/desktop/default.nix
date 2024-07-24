@@ -14,7 +14,7 @@ in {
     rdp = {enable = mkEnableOption "hallo";};
   };
 
-  config = mkIf (cfg.enable && (!config.traits.slim.enable)) {
+  config = mkIf (cfg.enable) {
     gui.fonts.enable = true;
 
     services = {

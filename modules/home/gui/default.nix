@@ -51,7 +51,7 @@ in {
       "file:///mnt/servers"
     ];
 
-    xdg = mkIf pkgs.stdenv.isLinux {
+    xdg = {
       userDirs = {
         enable = true;
         createDirectories = true;
