@@ -52,6 +52,9 @@ in {
       '';
     };
 
-    nix.settings.trusted-users = ["attic-watch-store"];
+    nix.settings = {
+      trusted-users = ["attic-watch-store"];
+      allowed-users = ["attic-watch-store"];
+    };
   };
 }

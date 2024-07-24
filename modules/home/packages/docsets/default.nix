@@ -25,7 +25,7 @@ in {
     home = {
       packages = with pkgs; [unstable.zeal];
       file = {
-        "${docsRoot}/nixos-${pkgs.docset.version}.docset".source = "${pkgs.docset}/share/nixos-${pkgs.docset.version}.docset";
+        # "${docsRoot}/nixos-${pkgs.docset.version}.docset".source = "${pkgs.docset}/share/nixos-${pkgs.docset.version}.docset";
         # TODO: generate with doc2dash
         "${docsRoot}/Gtk.docset".source = "${pkgs.rtfm}/share/rtfm/docsets/Gtk.docset";
       };
