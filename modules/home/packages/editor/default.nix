@@ -32,26 +32,26 @@ with lib; {
     #   '';
     # in
     {
-      home.activation = {
-        # editor = ''
-        #   ${editorFile}
-        # '';
-        editor = ''
-          ${concatStrings (map (opt: let
-              mods = pkgs.writeText "mods.txt" opt.modifications;
-            in ''
-              # ===
-              # path: ${opt.path}
-              # type: ${opt.type}
-              # modifications: ${mods}
+      # home.activation = {
+      #   # editor = ''
+      #   #   ${editorFile}
+      #   # '';
+      #   editor = ''
+      #     ${concatStrings (map (opt: let
+      #         mods = pkgs.writeText "mods.txt" opt.modifications;
+      #       in ''
+      #         # ===
+      #         # path: ${opt.path}
+      #         # type: ${opt.type}
+      #         # modifications: ${mods}
 
-              ${getExe pkgs.initool} get ${opt.path} ${mods}
+      #         ${getExe pkgs.initool} get ${opt.path} ${mods}
 
-              # ${opt.modifications}
-              # ===
-            '')
-            config.editor.modifications)}
-        '';
-      };
+      #         # ${opt.modifications}
+      #         # ===
+      #       '')
+      #       config.editor.modifications)}
+      #   '';
+      # };
     };
 }
