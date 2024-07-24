@@ -84,7 +84,7 @@ with lib.custom;
 
         kernelModules = ["wireguard"];
 
-        supportedFilesystems = ["ntfs" "apfs"];
+        supportedFilesystems = ["ntfs"];
 
         loader = {
           systemd-boot = {
