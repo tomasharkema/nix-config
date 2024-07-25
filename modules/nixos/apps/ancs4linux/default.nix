@@ -14,11 +14,11 @@ with lib; {
     users.groups.ancs4linux.members = ["root" "tomas"];
 
     systemd = {
-      packages = [pkgs.custom.ancs4linux];
-      services = {
-        ancs4linux-observer.enable = true;
-        ancs4linux-advertising.enable = true;
-      };
+      packages = [pkgs.custom.ancs4linux pkgs.unstable.packagekit];
+      # services = {
+      #   ancs4linux-observer.enable = true;
+      #   ancs4linux-advertising.enable = true;
+      # };
       # user.services.ancs4linux-desktop-integration.enable = true;
     };
 
@@ -32,3 +32,8 @@ with lib; {
     # systemctl restart ancs4linux-advertising.service
   };
 }
+# mkdir -p ~/.config/systemd/user/default.target.wants
+# ln -s /run/current-system/sw/lib/systemd/user/syncthing.service ~/.config/systemd/user/default.target.wants/
+# systemctl --user daemon-reload
+# systemctl --user enable syncthing.service
+
