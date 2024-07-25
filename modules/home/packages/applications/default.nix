@@ -55,7 +55,7 @@ in {
         {package = unstable.vscode;}
         {package = unstable.kitty;}
         {package = unstable.telegram-desktop;}
-        {package = unstable._1password-gui;}
+        {package = osConfig.programs._1password-gui.package;}
         {package = unstable.notify-client;}
       ]
       ++ (optional pkgs.stdenv.isx86_64 {package = unstable.termius;})
