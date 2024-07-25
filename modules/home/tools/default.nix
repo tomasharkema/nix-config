@@ -123,8 +123,7 @@ with pkgs; {
       speedtest-cli
       ssh-to-age
       starship
-
-      tldr
+      tlrc
       tmate
       tree
       unrar
