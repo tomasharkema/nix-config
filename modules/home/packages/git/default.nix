@@ -51,7 +51,7 @@ with lib; {
             ssh.program =
               mkIf
               (pkgs.stdenv.isLinux && osConfig.programs._1password-gui.enable)
-              "${pkgs._1password-gui}/bin/op-ssh-sign";
+              "${osConfig.programs._1password-gui.package}/bin/op-ssh-sign";
           };
 
           user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";
