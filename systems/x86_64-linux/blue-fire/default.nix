@@ -25,11 +25,11 @@ in {
       secrets = {
         buildbot-github-app = {
           rekeyFile = ./buildbot-github-app.age;
-          # owner = "buildbot";
+          owner = "buildbot";
         };
         buildbot-github-oauth = {
           rekeyFile = ./buildbot-github-oauth.age;
-          # owner = "buildbot";
+          owner = "buildbot";
         };
       };
       rekey = {
@@ -39,15 +39,15 @@ in {
 
     services = {
       buildbot-master = {
-        extraConfig = ''
-          from buildbot.manhole import AuthorizedKeysManhole
-          c['manhole'] = AuthorizedKeysManhole("tcp:12456", "/etc/ssh/authorized_keys.d/joerg", "/var/lib/buildbot/master/ssh/")
-          c["protocols"] = {"pb": {"port": "tcp:9989:interface=\\:\\:"}}
-        '';
-        pythonPackages = ps: [
-          pkgs.python312Packages.bcrypt
-          pkgs.python312Packages.cryptography
-        ];
+        # extraConfig = ''
+        #   from buildbot.manhole import AuthorizedKeysManhole
+        #   c['manhole'] = AuthorizedKeysManhole("tcp:12456", "/etc/ssh/authorized_keys.d/joerg", "/var/lib/buildbot/master/ssh/")
+        #   c["protocols"] = {"pb": {"port": "tcp:9989:interface=\\:\\:"}}
+        # '';
+        # pythonPackages = ps: [
+        #   pkgs.python312Packages.bcrypt
+        #   pkgs.python312Packages.cryptography
+        # ];
       };
       nginx.virtualHosts."buildbot.harkema.io" = {
         # forceSSL = true;
