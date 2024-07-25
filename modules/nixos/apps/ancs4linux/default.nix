@@ -14,27 +14,9 @@ with lib; {
     users.groups.ancs4linux.members = ["root" "tomas"];
 
     systemd = {
+      additionalUpstreamSystemUnits = ["ancs4linux-observer" "ancs4linux-advertising"];
+      additionalUpstreamUserUnits = ["ancs4linux-desktop-integration"];
       packages = [pkgs.custom.ancs4linux];
-      # services = {
-      #   ancs4linux-observer.enable = true;
-      #   ancs4linux-advertising.enable = true;
-      # };
-      # user.services.ancs4linux-desktop-integration.enable = true;
     };
-
-    system.activationScripts.ancs = ''
-      systemctl --global enable ancs4linux-desktop-integration.service
-      systemctl restart ancs4linux-observer.service
-      systemctl restart ancs4linux-advertising.service
-    '';
-
-    # systemctl daemon-reload
-
-    # systemctl enable ancs4linux-observer.service
-    # systemctl enable ancs4linux-advertising.service
-    # systemctl --global enable ancs4linux-desktop-integration.service
-
-    # systemctl restart ancs4linux-observer.service
-    # systemctl restart ancs4linux-advertising.service
   };
 }
