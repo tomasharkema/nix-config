@@ -25,6 +25,8 @@ in {
       extraModulePackages = with config.boot.kernelPackages; [acpi_call];
     };
 
+    systemd.services.auto-cpufreq.path = [pkgs.getent];
+
     services = {
       synergy.server = {
         enable = true;
