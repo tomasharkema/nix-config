@@ -50,8 +50,7 @@ with lib; {
         deadnix
         deploy-rs
 
-        #unstable.
-        devenv
+        unstable.devenv
 
         # fh
         flake-checker
@@ -60,7 +59,7 @@ with lib; {
         hydra-cli
         manix
         nerd-font-patcher
-        pkgs.unstable.nil
+        # unstable.nil
         nix-bisect
         nix-bundle
         nix-eval-jobs
@@ -76,7 +75,7 @@ with lib; {
         nix-update-source
         nix-visualize
 
-        # nixd
+        unstable.nixd
         nixfmt-rfc-style
         nixos-option
         nixos-shell

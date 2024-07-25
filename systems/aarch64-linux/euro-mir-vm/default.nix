@@ -66,7 +66,6 @@ with lib; {
     apps = {
       flatpak.enable = true;
       # opensnitch.enable = true;
-      remote-builders.enable = true;
     };
 
     boot = {
@@ -75,6 +74,9 @@ with lib; {
       tmp = {
         useTmpfs = false;
         cleanOnBoot = false;
+      };
+      recovery = {
+        enable = false;
       };
     };
     traits = {
@@ -96,15 +98,15 @@ with lib; {
 
     zramSwap.enable = false;
 
-    services = mkForce {
+    services = {
+      remote-builders.client.enable = true;
       #      kmscon.enable = false;
-      upower.enable = false;
-      auto-cpufreq.enable = false;
-      monit.enable = false;
-      tor.enable = false;
-      udisks2.enable = false;
-      xrdp.enable = false;
-      fwupd.enable = false;
+      upower.enable = mkForce false;
+      auto-cpufreq.enable = mkForce false;
+      monit.enable = mkForce false;
+      # tor.enable = false;
+      xrdp.enable = mkForce false;
+      fwupd.enable = mkForce false;
 
       # spice-autorandr.enable = true;
       spice-vdagentd.enable = true;

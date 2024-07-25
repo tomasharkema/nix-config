@@ -67,12 +67,8 @@ with lib; {
       # modem-manager-gui
       # libmbim
       # libqmi
-
       thinkfan
-
       tpacpi-bat
-
-      ventoy-full
       gnupg
       custom.distrib-dl
       custom.ancs4linux
@@ -81,7 +77,6 @@ with lib; {
       # calibre
       glxinfo
       inxi
-
       pwvucontrol
     ];
 
@@ -148,6 +143,7 @@ with lib; {
         nvidia.enable = true;
         # remote-unlock.enable = true;
         bluetooth.enable = true;
+        monitor.enable = true;
       };
     };
 
@@ -165,6 +161,7 @@ with lib; {
     apps.podman.enable = true;
 
     services = {
+      remote-builders.client.enable = true;
       # usb-over-ethernet.enable = true;
       hardware.bolt.enable = true;
       beesd.filesystems = {
@@ -192,7 +189,22 @@ with lib; {
       login.fprintAuth = true;
     };
 
+    environment.etc."vgpu_unlock/profile_override.toml".text = ''
+    '';
+
+    hardware.nvidia.vgpu = {
+      enable = true; # Enable NVIDIA KVM vGPU + GRID driver
+      unlock.enable = true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
+    };
+
     boot = {
+      recovery = {
+        enable = true;
+        install = true;
+        sign = true;
+        netboot.enable = true;
+      };
+
       binfmt.emulatedSystems = ["aarch64-linux"];
 
       modprobeConfig.enable = true;
@@ -200,11 +212,6 @@ with lib; {
         options thinkpad_acpi fan_control=1
       '';
 
-      kernelModules = [
-        "kvm-intel"
-        "thinkpad_acpi"
-        # "watchdog"
-      ];
       initrd.kernelModules = [
         #  "watchdog"
       ];

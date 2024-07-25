@@ -80,6 +80,15 @@ with lib; {
       command-center = {
         #enableBot = true;
       };
+      remote-builders.server.enable = true;
+      beesd.filesystems = {
+        root = {
+          spec = "UUID=f3558990-77b0-4113-b45c-3d2da3f46c14";
+          hashTableSizeMB = 4096;
+          verbosity = "crit";
+          extraOptions = ["--loadavg-target" "2.0"];
+        };
+      };
     };
 
     apps = {
@@ -90,15 +99,6 @@ with lib; {
     headless.hypervisor = {
       enable = true;
       bridgeInterfaces = ["enp2s0"];
-    };
-
-    services.beesd.filesystems = {
-      root = {
-        spec = "UUID=f3558990-77b0-4113-b45c-3d2da3f46c14";
-        hashTableSizeMB = 4096;
-        verbosity = "crit";
-        extraOptions = ["--loadavg-target" "2.0"];
-      };
     };
 
     # console.earlySetup = true;
@@ -148,25 +148,28 @@ with lib; {
       btrbk.enable = true;
     };
 
+    # hardware.nvidia.vgpu = {
+    #   enable = true; # Enable NVIDIA KVM vGPU + GRID driver
+    #   unlock.enable = true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
+    #   version = "v17.1";
+    # };
+
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = ["ntfs"];
       kernelModules = ["i2c-dev" "watchdog" "ixgbe" "btusb" "apfs"];
-
-      blacklistedKernelModules = lib.mkDefault ["nouveau"];
 
       initrd = {
         systemd.emergencyAccess = "abcdefg";
         kernelModules = ["watchdog" "ixgbe" "btusb"];
       };
 
-      # blacklistedKernelModules = lib.mkDefault [ "i915" "nouveau" ];
       # KMS will load the module, regardless of blacklisting
-      # kernelParams = [
-      #   "intel_iommu=on"
-      #   "iommu=pt"
-      # ];
-
+      kernelParams = [
+        "intel_iommu=on"
+        "iommu=pt"
+      ];
+      blacklistedKernelModules = lib.mkDefault ["nouveau"];
       #extraModprobeConfig = ''
       #  options nvidia-drm modeset=1";
       #  blacklist nouveau

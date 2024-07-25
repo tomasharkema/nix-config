@@ -27,6 +27,7 @@ in {
 
     services.flatpak = {
       enable = true;
+
       remotes = [
         {
           name = "flathub";
@@ -37,7 +38,9 @@ in {
         #   location = "https://flatpak.elementary.io/repo.flatpakrepo";
         # }
       ];
-      packages = mkIf pkgs.stdenv.isx86_64 ([
+
+      packages =
+        [
           #"com.getpostman.Postman"
           "com.github.tchx84.Flatseal"
           # "com.logseq.Logseq"
@@ -57,18 +60,21 @@ in {
           # "com.termius.Termius"
         ]
         ++ (
-          if pkgs.stdenv.isx86_64
-          then [
-            "com.discordapp.Discord"
+          optionals pkgs.stdenv.isx86_64
+          [
+            # "com.discordapp.Discord"
             "com.spotify.Client"
             # "tv.plex.PlexDesktop"
           ]
-          else []
-        ));
-      update.onActivation = mkIf pkgs.stdenv.isx86_64 true;
-      update.auto = mkIf pkgs.stdenv.isx86_64 {
-        enable = true;
-        onCalendar = "weekly"; # Default value
+        );
+
+      #  mkIf pkgs.stdenv.isx86_64
+      update = {
+        onActivation = true;
+        auto = {
+          enable = true;
+          onCalendar = "daily"; # Default value
+        };
       };
     };
   };

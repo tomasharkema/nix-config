@@ -31,6 +31,23 @@
       url = "github:hercules-ci/flake-parts";
     };
 
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
+    pre-commit-hooks-nix = {url = "github:cachix/pre-commit-hooks.nix";};
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     crane = {
       url = "github:ipetkov/crane";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,6 +74,7 @@
         nixpkgs.follows = "nixpkgs";
         disko.follows = "disko";
         flake-parts.follows = "flake-parts";
+        treefmt-nix.follows = "treefmt-nix";
       };
     };
 
@@ -76,6 +94,8 @@
         nix-darwin.follows = "darwin";
         flake-compat.follows = "flake-compat";
         flake-parts.follows = "flake-parts";
+        devshell.follows = "devshell";
+        treefmt-nix.follows = "treefmt-nix";
       };
     };
 
@@ -94,6 +114,8 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
+        devshell.follows = "devshell";
+        pre-commit-hooks.follows = "pre-commit-hooks-nix";
       };
     };
 
@@ -118,7 +140,10 @@
 
     nix-software-center = {
       url = "github:snowfallorg/nix-software-center";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        utils.follows = "flake-utils";
+      };
     };
 
     # nixos-conf-editor = {
@@ -140,7 +165,8 @@
         crane.follows = "crane";
         flake-parts.follows = "flake-parts";
         flake-compat.follows = "flake-compat";
-        flake-utils.follows = "flake-utils";
+        # flake-utils.follows = "flake-utils";
+        pre-commit-hooks-nix.follows = "pre-commit-hooks-nix";
       };
     };
 
@@ -160,26 +186,26 @@
       };
     };
 
-    peerix = {
-      url = "github:cid-chan/peerix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
+    # peerix = {
+    #   url = "github:cid-chan/peerix";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #   };
+    # };
 
     # stylix = {
     #   url = "github:danth/stylix/release-24.05";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    nixos-search = {
-      url = "github:NixOS/nixos-search";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
+    # nixos-search = {
+    #   url = "github:NixOS/nixos-search";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #   };
+    # };
 
     # command-center = {
     #   url = "github:tomasharkema/command-center";
@@ -210,24 +236,29 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
+        treefmt-nix.follows = "treefmt-nix";
       };
     };
 
-    nbfc-linux = {
-      url = "github:nbfc-linux/nbfc-linux";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nbfc-linux = {
+    #   url = "github:nbfc-linux/nbfc-linux";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     _1password-shell-plugins = {
       url = "github:1Password/shell-plugins";
 
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+
+        flake-utils.follows = "flake-utils";
+      };
     };
 
-    nixos-service = {
-      url = "github:tomasharkema/nixos-service";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixos-service = {
+    #   url = "github:tomasharkema/nixos-service";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nix-virt = {
       url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
@@ -246,30 +277,62 @@
       url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     # netkit = {
     #   url = "github:icebox-nix/netkit.nix";
     # };
-    nix-topology = {
-      url = "github:oddlama/nix-topology";
+
+    # nix-topology = {
+    #   url = "github:oddlama/nix-topology";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #   };
+    # };
+
+    nixos-dash-docset = {
+      url = "github:ptitfred/nixos-dash-docset";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
       };
     };
+    # opentelemetry-nix = {
+    #   url = "github:FriendsOfOpenTelemetry/opentelemetry-nix";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     # flake-utils.follows = "flake-utils";
+    #   };
+    # };
 
-    opentelemetry-nix = {
-      url = "github:FriendsOfOpenTelemetry/opentelemetry-nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
+    # nix-otel = {
+    #   url = "github:tomasharkema/nix-otel";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #   };
+    # };
+
+    nixos-nvidia-vgpu = {
+      url = "github:tomasharkema/nixos-nvidia-vgpu";
+      # url = "/home/tomas/Developer/nixos-nvidia-vgpu";
     };
 
-    nix-otel = {
-      url = "github:tomasharkema/nix-otel";
+    nix-htop = {
+      url = "https://flakehub.com/f/tomasharkema/nix-htop/0.0.*.tar.gz";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
+        flake-parts.follows = "flake-parts";
+      };
+    };
+    buildbot-nix = {
+      url = "github:nix-community/buildbot-nix";
+      # url = "github:tomasharkema/buildbot-nix";
+      # url = "github:nix-community/buildbot-nix/hercules";
+      # url = "/home/tomas/Developer/buildbot-nix";
+      inputs = {
+        # nixpkgs.follows = "unstable";
+        #   treefmt-nix.follows = "treefmt-nix";
       };
     };
   };
@@ -319,9 +382,17 @@
         # hostPlatform.system = "aarch64-linux";
         # buildPlatform.system = "x86_64-linux";
         # permittedInsecurePackages = [ "openssl-1.1.1w" ];
+        # permittedInsecurePackages = [
+        #   "python3.11-youtube-dl-2021.12.17"
+        # ];
+
         config = {
           # For example, enable smartcard support in Firefox.
           firefox.smartcardSupport = true;
+
+          # permittedInsecurePackages = [
+          #   "python3.11-youtube-dl-2021.12.17"
+          # ];
         };
       };
 
@@ -334,27 +405,31 @@
         };
 
         namespace = "custom";
+
+        user = {
+          enable = true;
+          name = "tomas";
+        };
       };
 
       overlays = with inputs; [
-        nix-otel.overlays.default
-        peerix.overlay
+        # nix-otel.overlays.default
+        # peerix.overlay
         snowfall-flake.overlays."package/flake"
         nixos-checkmk.overlays.default
-        nixos-service.overlays.default
+        # nixos-service.overlays.default
         agenix-rekey.overlays.default
         nixvim.overlays.default
-        nix-topology.overlays.default
-        opentelemetry-nix.overlays.default
+        # nix-topology.overlays.default
+        # opentelemetry-nix.overlays.default
       ];
 
       homes.modules = with inputs; [
         #     catppuccin.homeManagerModules.catppuccin
         nixvim.homeManagerModules.nixvim
-
         nix-index-database.hmModules.nix-index
-
         _1password-shell-plugins.hmModules.default
+        # agenix.homeManagerModules.default
       ];
 
       # localSystem = "x86_64-linux";
@@ -381,19 +456,20 @@
 
       systems.modules = {
         nixos = with inputs; [
-          nix-topology.nixosModules.default
+          # nix-topology.nixosModules.default
           # netkit.nixosModule
           nixos-checkmk.nixosModules.check_mk_agent
 
           catppuccin.nixosModules.catppuccin
-
+          buildbot-nix.nixosModules.buildbot-worker
           # attic.nixosModules.atticd
-          peerix.nixosModules.peerix
+          # peerix.nixosModules.peerix
 
           # impermanence.nixosModule
           disko.nixosModules.default
 
           lanzaboote.nixosModules.lanzaboote
+          # lanzaboote.nixosModules.uki
           # vscode-server.nixosModules.default
 
           # home-manager.nixosModules.home-manager
@@ -403,25 +479,41 @@
           nix-gaming.nixosModules.pipewireLowLatency
           nix-gaming.nixosModules.platformOptimizations
 
-          nixos-service.nixosModules.nixos-service
+          # nixos-service.nixosModules.nixos-service
           nix-virt.nixosModules.default
+          nixos-nvidia-vgpu.nixosModules.nvidia-vgpu
 
           ({config, ...}: {
             config = {
-              age.rekey = {
-                masterIdentities = [
-                  ./age-yubikey-identity-usba.pub
-                  ./age-yubikey-identity-usbc.pub
-                ];
+              age = {
+                rekey = {
+                  masterIdentities = [
+                    ./secrets/age-yubikey-identity-usbc.pub
+                    # "/etc/ssh/ssh_host_ed25519_key"
+                  ];
+                  extraEncryptionPubkeys = [
+                    ./secrets/age-yubikey-identity-usba.pub
+                  ];
 
-                storageMode = "local";
-                localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+                  storageMode = "local";
+                  localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+                };
+                secrets = {
+                  nix-access-tokens-github = {
+                    rekeyFile = ./secrets/github.age;
+                    mode = "666";
+                  };
+                  buildbot-webhook = {
+                    rekeyFile = ./secrets/buildbot-webhook.age;
+                    generator.script = "base64";
+                    mode = "666";
+                  };
+                };
               };
 
-              age.secrets.nix-access-tokens-github.rekeyFile = ./github.age;
-              # nix.extraOptions = ''
-              #   !include ${config.age.secrets.nix-access-tokens-github.path}
-              # '';
+              nix.extraOptions = ''
+                !include ${config.age.secrets.nix-access-tokens-github.path}
+              '';
 
               system = {
                 stateVersion = "24.05";
@@ -444,7 +536,6 @@
 
         darwin = with inputs; [
           agenix.darwinModules.default
-          # agenix.darwinModules.default
           agenix-rekey.nixosModules.default
 
           ({config, ...}: {
@@ -452,19 +543,27 @@
               # system.nixos.tags = ["snowfall"];
               system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
 
-              age.secrets.nix-access-tokens-github.rekeyFile = ./github.age;
               nix.extraOptions = ''
                 !include ${config.age.secrets.nix-access-tokens-github.path}
               '';
 
-              age.rekey = {
-                masterIdentities = [
-                  ./age-yubikey-identity-usba.pub
-                  ./age-yubikey-identity-usbc.pub
-                ];
+              age = {
+                secrets = {
+                  nix-access-tokens-github.rekeyFile = ./secrets/github.age;
+                };
 
-                storageMode = "local";
-                localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+                rekey = {
+                  masterIdentities = [
+                    ./secrets/age-yubikey-identity-usbc.pub
+                  ];
+
+                  extraEncryptionPubkeys = [
+                    ./secrets/age-yubikey-identity-usba.pub
+                  ];
+
+                  storageMode = "local";
+                  localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+                };
               };
             };
           })
@@ -514,92 +613,32 @@
         # inherit ((colmena.lib.makeHive self.colmena).introspect (x: x)) nodes;
       };
 
-      nixosConfigurations = {
-        installer-x86 = inputs.nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
-            ./installer.nix
-
-            (
-              {
-                lib,
-                pkgs,
-                ...
-              }: {
-                config = {
-                  boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
-                };
-              }
-            )
-          ];
-        };
-
-        installer-arm = inputs.nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
-            ./installer.nix
-
-            (
-              {
-                lib,
-                pkgs,
-                ...
-              }: {
-                config = {
-                  boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
-                };
-              }
-            )
-          ];
-        };
-        installer-arm-img = inputs.nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
-            ./installer.nix
-
-            (
-              {
-                lib,
-                pkgs,
-                ...
-              }: {
-                config = {
-                  boot.kernelPackages = lib.mkOverride 0 pkgs.linuxPackages_latest;
-                };
-              }
-            )
-          ];
-        };
-      };
-
-      servers = with inputs; let
+      machines = with inputs; let
         names = builtins.attrNames self.nixosConfigurations;
-      in
-        builtins.filter
-        (
-          name: self.nixosConfigurations."${name}".config.networking.hostName != "nixos"
-        )
-        names;
+      in rec {
+        all =
+          builtins.filter
+          (
+            name: let
+              cfg = self.nixosConfigurations."${name}".config;
+            in
+              cfg.networking.hostName != "nixos" && cfg.networking.hostName != "test"
+          )
+          names;
+
+        excludingSelf = cfg: (builtins.filter (name: cfg.networking.hostName != name) all);
+      };
 
       images = with inputs; rec {
         # baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
         # pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
-        installer-x86 = self.nixosConfigurations.installer-x86.config.system.build.isoImage;
-        installer-arm = self.nixosConfigurations.installer-arm.config.system.build.isoImage;
-
-        installer-arm-img = self.nixosConfigurations.installer-arm-img.config.system.build.sdImage;
+        installer = {
+          iso = {
+            "x86_64-linux" = self.installer."x86_64-linux".iso.config.system.build.isoImage;
+            "aarch64-linux" = self.installer."aarch64-linux".iso.config.system.build.isoImage;
+          };
+          img = {"aarch64-linux" = self.installer."aarch64-linux".img.config.system.build.sdImage;};
+        };
 
         ovmfx86 =
           (inputs.nixpkgs.legacyPackages.x86_64-linux.OVMFFull.override {
@@ -615,9 +654,9 @@
           })
           .fd;
 
-        linuxKernel_x86 = self.nixosConfigurations.wodan.boot.kernelPackages.kernel;
+        linuxKernel_x86 = self.nixosConfigurations.wodan.config.boot.kernelPackages.kernel;
 
-        linuxKernel_arm = self.nixosConfigurations.euro-mir-vm.boot.kernelPackages.kernel;
+        linuxKernel_arm = self.nixosConfigurations.euro-mir-vm.config.boot.kernelPackages.kernel;
 
         # services = let
         #   config = "pegasus";
@@ -644,14 +683,19 @@
       in {
         formatter = channels.nixpkgs.alejandra;
 
-        topology = import inputs.nix-topology {
-          inherit pkgs;
-          modules = [
-            # Your own file to define global topology. Works in principle like a nixos module but uses different options.
-            # ./topology.nix
-            # Inline module to inform topology of your existing NixOS hosts.
-            {nixosConfigurations = inputs.self.nixosConfigurations;}
-          ];
+        # topology = import inputs.nix-topology {
+        #   inherit pkgs;
+        #   modules = [
+        #     # Your own file to define global topology. Works in principle like a nixos module but uses different options.
+        #     # ./topology.nix
+        #     # Inline module to inform topology of your existing NixOS hosts.
+        #     {nixosConfigurations = inputs.self.nixosConfigurations;}
+        #   ];
+        # };
+
+        installer = import ./installer {
+          inherit channels;
+          inherit inputs;
         };
 
         # checks = with inputs; {
@@ -690,8 +734,6 @@
       "root"
       "tomas"
     ];
-
-    extra-platforms = ["aarch64-linux"];
 
     allow-unsafe-native-code-during-evaluation = true;
 

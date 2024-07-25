@@ -51,10 +51,10 @@ with lib; {
       spotifyd.enable = true;
       cec.enable = true;
       unified-remote.enable = true;
-      remote-builders.enable = true;
     };
 
     services = {
+      remote-builders.client.enable = true;
       avahi = {
         enable = true;
       };
@@ -97,7 +97,9 @@ with lib; {
       }
     ];
 
-    services.cage.program = mkForce "${pkgs.kodi-wayland}/bin/kodi-standalone";
+    services = {
+      cage.program = mkForce "${pkgs.kodi-wayland}/bin/kodi-standalone";
+    };
 
     programs.atop = {
       enable = mkForce false;

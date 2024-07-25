@@ -1,4 +1,8 @@
-{homeDir}: {
+{
+  homeDir,
+  pkgs,
+  ...
+}: {
   eslint.autoFixOnSave = true;
   coc.preferences.colorSupport = false;
   prettier.disableSuccessMessage = true;
@@ -49,8 +53,13 @@
 
   languageserver = {
     nix = {
-      command = "nil";
+      command = "nixd";
       filetypes = ["nix"];
+    };
+    "csharp-ls" = {
+      command = "csharp-ls";
+      filetypes = ["cs"];
+      rootPatterns = ["*.csproj" ".vim/" ".git/" ".hg/"];
     };
   };
 

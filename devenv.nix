@@ -169,21 +169,30 @@ in {
 
   languages.nix = {
     # enable = true;
-    lsp.package = nil;
+    lsp.package = nixd;
   };
 
   pre-commit.hooks = {
     alejandra.enable = true;
     shellcheck.enable = true;
+    shfmt.enable = true;
     nil.enable = true;
+    stylua.enable = true;
+    # treefmt.enable = true;
     # statix.enable = true;
     # deadnix.enable = true;
+    check-added-large-files.enable = true;
 
     "by-name" = {
       enable = true;
       entry = "sh ./by-name.sh";
       pass_filenames = false;
     };
+    # "flake-show" = {
+    #   enable = true;
+    #   entry = "nix flake show";
+    #   pass_filenames = false;
+    # };
   };
 
   devcontainer = {
@@ -198,6 +207,14 @@ in {
   difftastic.enable = true;
 
   dotenv.enable = true;
+
+  processes = {
+    attic.exec = "attic watch-store tomas -j1";
+  };
+
+  # enterShell = ''
+  #   nix flake update && devenv update
+  # '';
 
   packages = with pkgs; [
     actionlint
@@ -246,7 +263,7 @@ in {
     manix
     mkiso
     netdiscover
-    nil
+    # nil
     nix-eval-jobs
     nix-output-monitor
     nix-output-monitor

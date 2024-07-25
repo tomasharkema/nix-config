@@ -20,19 +20,15 @@
   #     };
   #   };
   # };
-  #why depends linux-6.6.33
-  imports = [
-    # ../../nixos/secrets
-  ];
 
   config = {
     age = {
       secrets = {
         atuin = {
           rekeyFile = ../../nixos/secrets/atuin.age;
-          # owner = "tomas";
+          owner = "tomas";
           # group = "tomas";
-          mode = "644";
+          # mode = "644";
           # symlink = false;
         };
         # spotify-tui = {
@@ -44,9 +40,9 @@
         # };
         notify = {
           rekeyFile = ../../nixos/secrets/notify.age;
-          # owner = "tomas";
+          owner = "tomas";
           # group = "tomas";
-          mode = "644";
+          # mode = "644";
           # symlink = false;
         };
       };
@@ -60,7 +56,7 @@
         nscan
         # openglide
       ])
-      ++ (with pkgs; [dosbox-x unstable.nil]);
+      ++ (with pkgs; [dosbox-x unstable.nixd]);
     # environment.pathsToLink = ["/lib"];
     system.stateVersion = 4;
 
@@ -93,6 +89,7 @@
         cm_unicode
       ];
     };
+
     programs = {
       zsh = {
         enable = true;

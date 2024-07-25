@@ -29,6 +29,8 @@ with lib; {
       icewm.enable = true;
     };
 
+    environment.systemPackages = with pkgs; [custom.elxflash];
+
     traits = {
       builder.enable = true;
       hardware = {
@@ -55,6 +57,7 @@ with lib; {
       media = "/dev/disk/by-id/ata-ST2000DX001-1CM164_Z1E99G1N";
       encrypt = true;
       newSubvolumes = true;
+      swap = false;
     };
 
     # resilio.root = "/mnt/media/resilio";

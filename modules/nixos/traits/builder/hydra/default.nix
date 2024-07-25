@@ -124,6 +124,7 @@ in {
       # '';
       settings = {
         use-cgroups = true;
+        extra-experimental-features = "nix-command flakes cgroups";
         #     allowed-uris = [
         #       "https://github.com/tomasharkema.keys"
         #       "https://api.github.com"

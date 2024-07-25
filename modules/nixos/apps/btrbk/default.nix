@@ -7,7 +7,7 @@
 with lib; {
   options.disks.btrfs.btrbk = {enable = mkEnableOption "btrbk";};
 
-  config = mkIf (config.disks.btrfs.enable && config.disks.btrfs.btrbk.enable) {
+  config = mkIf (config.disks.btrfs.enable && config.disks.btrfs.btrbk.enable && false) {
     age.secrets.btrbk = {
       rekeyFile = ../../secrets/btrbk.age;
       mode = "600";
@@ -32,7 +32,6 @@ with lib; {
           raw_target_split = "100M";
 
           transaction_syslog = "daemon";
-          lockfile = "/run/btrbk.lock";
 
           ssh_identity = "${config.age.secrets.btrbk.path}";
           stream_buffer = "100M";
@@ -48,6 +47,8 @@ with lib; {
                 #   snapshot_name = "${config.networking.hostName}-rootfs";
                 # };
               };
+
+              # target = "/mnt/servers/nfs/silver-star-backup/btrbk/${config.networking.hostName}";
 
               target = {
                 "raw ssh://silver-star/mnt/user0/backup/btrbk/${config.networking.hostName}" = {
