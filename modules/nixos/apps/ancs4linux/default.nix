@@ -4,36 +4,65 @@
   lib,
   ...
 }:
-with lib; {
+with lib; let
+  package = pkgs.custom.ancs4linux;
+in {
   config = {
+    environment.systemPackages = [package];
+
     services.dbus = {
       enable = true;
-      packages = [pkgs.custom.ancs4linux];
+      packages = [package];
     };
 
     users.groups.ancs4linux.members = ["root" "tomas"];
 
+    services.packagekit.enable = true;
+
     systemd = {
-      packages = [pkgs.custom.ancs4linux pkgs.unstable.packagekit];
-      # services = {
-      #   ancs4linux-observer.enable = true;
-      #   ancs4linux-advertising.enable = true;
-      # };
-      # user.services.ancs4linux-desktop-integration.enable = true;
+      packages = [package];
+      services = {
+        ancs4linux-advertising = {
+          enable = true;
+          description = "ancs4linux Advertising daemon";
+          requires = ["bluetooth.service"];
+          after = ["bluetooth.service"];
+          wantedBy = ["default.target"];
+
+          serviceConfig = {
+            Type = "dbus";
+            BusName = "ancs4linux.Advertising";
+            ExecStart = "${package}/bin/ancs4linux-advertising";
+          };
+        };
+        ancs4linux-observer = {
+          enable = true;
+          description = "ancs4linux Observer daemon";
+          requires = ["bluetooth.service"];
+          after = ["bluetooth.service"];
+          wantedBy = ["default.target"];
+
+          serviceConfig = {
+            Type = "dbus";
+            BusName = "ancs4linux.Observer";
+            ExecStart = "${package}/bin/ancs4linux-observer";
+          };
+        };
+      };
+      user.services.ancs4linux-desktop-integration = {
+        enable = true;
+        unitConfig = {
+          Description = "ancs4linux Desktop Integration daemon (should run as user)";
+          Requires = "bluetooth.target";
+          After = "bluetooth.target";
+        };
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${package}/bin/ancs4linux-desktop-integration";
+        };
+
+        wantedBy = ["default.target"];
+      };
     };
-
-    # systemctl daemon-reload
-
-    # systemctl enable ancs4linux-observer.service
-    # systemctl enable ancs4linux-advertising.service
-    # systemctl --global enable ancs4linux-desktop-integration.service
-
-    # systemctl restart ancs4linux-observer.service
-    # systemctl restart ancs4linux-advertising.service
   };
 }
-# mkdir -p ~/.config/systemd/user/default.target.wants
-# ln -s /run/current-system/sw/lib/systemd/user/syncthing.service ~/.config/systemd/user/default.target.wants/
-# systemctl --user daemon-reload
-# systemctl --user enable syncthing.service
-

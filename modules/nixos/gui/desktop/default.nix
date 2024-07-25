@@ -108,7 +108,6 @@ in {
         spot
         ulauncher
         yelp
-        pkgs.custom.ancs4linux
         # firefox
         # gnome.gnome-boxes
         # keybase
