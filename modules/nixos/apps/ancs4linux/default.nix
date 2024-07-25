@@ -8,7 +8,7 @@ with lib; let
   package = pkgs.custom.ancs4linux;
 in {
   config = {
-    environment.systemPackages = [package];
+    environment.systemPackages = [package pkgs.custom.bluetooth-autoconnect];
 
     services.dbus = {
       enable = true;
@@ -20,7 +20,7 @@ in {
     services.packagekit.enable = true;
 
     systemd = {
-      packages = [package];
+      packages = [package pkgs.custom.bluetooth-autoconnect];
       services = {
         ancs4linux-advertising = {
           enable = true;
