@@ -25,15 +25,8 @@
   });
 
   startScript = pkgs.writeShellScript "ancs4linux-start" ''
-    set -x
-    sudo systemctl restart ancs4linux-observer.service
-    sudo systemctl restart ancs4linux-advertising.service
-
-    systemctl --user enable --now ancs4linux-desktop-integration.service
-
     address=$(sudo ancs4linux-ctl get-all-hci | jq -r '.[0]')
     sudo ancs4linux-ctl enable-advertising --hci-address $address --name $HOSTNAME
-
   '';
 in (p2nix.mkPoetryApplication {
   pname = "ancs4linux";
@@ -41,7 +34,7 @@ in (p2nix.mkPoetryApplication {
   # format = "pyproject";
 
   projectDir = fetchFromGitHub {
-    owner = "pzmarzly";
+    owner = "tomasharkema";
     repo = "ancs4linux";
     rev = "ce8d3f173fd14566e516334ef23af632d840d64e";
     hash = "sha256-iP4OkWvX2RjMPQYoR+erQoB10d7+4NKYFsJoZUqhcDs=";
@@ -52,38 +45,25 @@ in (p2nix.mkPoetryApplication {
   preferWheels = true;
 
   postInstall = ''
-    install -Dm 644 autorun/ancs4linux-observer.service $out/lib/systemd/system/ancs4linux-observer.service
+    # install -Dm 644 autorun/ancs4linux-observer.service $out/lib/systemd/system/ancs4linux-observer.service
     install -Dm 644 autorun/ancs4linux-observer.xml $out/share/dbus-1/system.d/ancs4linux-observer.conf
-    install -Dm 644 autorun/ancs4linux-advertising.service $out/lib/systemd/system/ancs4linux-advertising.service
+    # install -Dm 644 autorun/ancs4linux-advertising.service $out/lib/systemd/system/ancs4linux-advertising.service
     install -Dm 644 autorun/ancs4linux-advertising.xml $out/share/dbus-1/system.d/ancs4linux-advertising.conf
-    install -Dm 644 autorun/ancs4linux-desktop-integration.service $out/lib/systemd/user/ancs4linux-desktop-integration.service
+    # install -Dm 644 autorun/ancs4linux-desktop-integration.service $out/lib/systemd/user/ancs4linux-desktop-integration.service
 
     install -Dm 644 ${startScript} $out/bin/ancs4linux-start
     chmod +x $out/bin/ancs4linux-start
 
-    substituteInPlace "$out/lib/systemd/system/ancs4linux-observer.service" \
-      --replace-fail "/usr/local/bin" "$out/bin"
+    # substituteInPlace "$out/lib/systemd/system/ancs4linux-observer.service" \
+    #   --replace-fail "/usr/local/bin" "$out/bin"
 
-    substituteInPlace "$out/lib/systemd/system/ancs4linux-advertising.service" \
-      --replace-fail "/usr/local/bin" "$out/bin"
+    # substituteInPlace "$out/lib/systemd/system/ancs4linux-advertising.service" \
+    #   --replace-fail "/usr/local/bin" "$out/bin"
 
-    substituteInPlace "$out/lib/systemd/user/ancs4linux-desktop-integration.service" \
-      --replace-fail "/usr/local/bin" "$out/bin"
+    # substituteInPlace "$out/lib/systemd/user/ancs4linux-desktop-integration.service" \
+    #   --replace-fail "/usr/local/bin" "$out/bin"
 
     substituteInPlace "$out/bin/ancs4linux-start" \
       --replace-fail "ancs4linux-ctl" "$out/bin/ancs4linux-ctl"
   '';
 })
-# substituteInPlace "$out/lib/systemd/system/ancs4linux-observer.service" \
-#   --replace "/usr/local/bin/ancs4linux-advertising" "$out/bin/ancs4linux-advertising" \
-#   --replace "/usr/local/bin/ancs4linux-observer" "$out/bin/ancs4linux-observer" \
-#   --replace "/usr/local/bin/ancs4linux-desktop-integration" "$out/bin/ancs4linux-desktop-integration"
-# substituteInPlace "$out/lib/systemd/system/ancs4linux-advertising.service" \
-#   --replace "/usr/local/bin/ancs4linux-advertising" "$out/bin/ancs4linux-advertising" \
-#   --replace "/usr/local/bin/ancs4linux-observer" "$out/bin/ancs4linux-observer" \
-#   --replace "/usr/local/bin/ancs4linux-desktop-integration" "$out/bin/ancs4linux-desktop-integration"
-# substituteInPlace "$out/lib/systemd/user/ancs4linux-desktop-integration.service" \
-#   --replace "/usr/local/bin/ancs4linux-advertising" "$out/bin/ancs4linux-advertising" \
-#   --replace "/usr/local/bin/ancs4linux-observer" "$out/bin/ancs4linux-observer" \
-#   --replace "/usr/local/bin/ancs4linux-desktop-integration" "$out/bin/ancs4linux-desktop-integration"
-
