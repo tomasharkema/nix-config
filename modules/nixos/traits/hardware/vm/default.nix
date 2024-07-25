@@ -6,11 +6,9 @@
   ...
 }:
 with lib;
-with lib.custom;
-let
+with lib.custom; let
   cfg = config.traits.hardware.vm;
-in
-{
+in {
   options.traits.hardware = {
     vm = {
       enable = mkBoolOpt false "hardware vm";
@@ -18,6 +16,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    # traits.slim.enable = true;
+
     services = {
       # xserver.videoDrivers = [ "qxl" ];
       qemuGuest.enable = true;
