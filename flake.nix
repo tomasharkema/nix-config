@@ -318,8 +318,16 @@
       # url = "/home/tomas/Developer/nixos-nvidia-vgpu";
     };
 
+    nix-htop = {
+      url = "https://flakehub.com/f/tomasharkema/nix-htop/0.0.*.tar.gz";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
     buildbot-nix = {
       url = "github:nix-community/buildbot-nix";
+      # url = "github:tomasharkema/buildbot-nix";
       # url = "github:nix-community/buildbot-nix/hercules";
       # url = "/home/tomas/Developer/buildbot-nix";
       inputs = {
@@ -453,7 +461,7 @@
           nixos-checkmk.nixosModules.check_mk_agent
 
           catppuccin.nixosModules.catppuccin
-
+          buildbot-nix.nixosModules.buildbot-worker
           # attic.nixosModules.atticd
           # peerix.nixosModules.peerix
 

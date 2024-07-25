@@ -18,6 +18,7 @@ with lib; {
       extensions = with pkgs.gnomeExtensions; [
         {package = media-controls;}
         {package = gsconnect;}
+        {package = systemd-manager;}
 
         {package = home-assistant-extension;}
         {package = caffeine;}

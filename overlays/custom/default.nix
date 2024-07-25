@@ -2,16 +2,19 @@
   channels,
   disko,
   self,
-  nixos-dash-docset,
+  inputs,
+  nix-htop,
   ...
 }: final: prev: rec {
   libcec = prev.libcec.override {withLibraspberrypi = true;};
+
+  nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
   # _389-ds-base = self.packages."${prev.system}"._389-ds-base;
   freeipa = self.packages."${prev.system}".freeipa;
   sssd = self.packages."${prev.system}".sssd.override {withSudo = true;};
 
-  docset = nixos-dash-docset.packages."${prev.system}".docset;
+  docset = inputs.nixos-dash-docset.packages."${prev.system}".docset;
 
   # inshellisense = channels.unstable.inshellisense;
   # # sssd = channels.unstable.sssd.override {

@@ -9,22 +9,22 @@ with lib;
 with pkgs; let
   cfg = config.apps.attic;
 in {
-  options.apps.attic = with lib.types; {
+  options.apps.attic = {
     enable = mkEnableOption "enable attic conf";
 
     serverName = mkOption {
       default = "tomas";
-      type = str;
+      type = types.str;
     };
 
     storeName = mkOption {
       default = "tomas";
-      type = str;
+      type = types.str;
     };
 
     serverAddress = mkOption {
       default = "http://192.168.0.100:6067/";
-      type = str;
+      type = types.str;
     };
   };
 
@@ -43,12 +43,18 @@ in {
       path = [pkgs.attic-client];
       script = ''
         set -eux -o pipefail
+        whoami
         ATTIC_TOKEN=$(< $CREDENTIALS_DIRECTORY/prod-auth-token)
         # Replace https://cache.<domain> with your own cache URL.
         attic login ${cfg.serverName} ${cfg.serverAddress} $ATTIC_TOKEN
         attic use ${cfg.serverName}
         exec attic watch-store ${cfg.serverName}:${cfg.storeName}
       '';
+    };
+
+    nix.settings = {
+      trusted-users = ["attic-watch-store"];
+      # allowed-users = ["attic-watch-store"];
     };
   };
 }

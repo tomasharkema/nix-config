@@ -103,11 +103,11 @@
     },
     "catppuccin": {
       "locked": {
-        "lastModified": 1720472194,
-        "narHash": "sha256-CYscFEts6tyvosc1T29nxhzIYJAj/1CCEkV3ZMzSN/c=",
+        "lastModified": 1721784420,
+        "narHash": "sha256-bgF6fN4Qgk7NErFKGuuqWXcLORsiykTYyqMUFRiAUBY=",
         "owner": "catppuccin",
         "repo": "nix",
-        "rev": "d75d5803852fb0833767dc969a4581ac13204e22",
+        "rev": "8bdb55cc1c13f572b6e4307a3c0d64f1ae286a4f",
         "type": "github"
       },
       "original": {
@@ -163,11 +163,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1721699339,
-        "narHash": "sha256-UqtSwU13vpzzM6w8tGghEbA7ObM3NCDzSpz19QQo9XE=",
+        "lastModified": 1721842668,
+        "narHash": "sha256-k3oiD2z2AAwBFLa4+xfU+7G5fisRXfkvrMTCJrjZzXo=",
         "owner": "ipetkov",
         "repo": "crane",
-        "rev": "0081e9c447f3b70822c142908f08ceeb436982b8",
+        "rev": "529c1a0b1f29f0d78fa3086b8f6a134c71ef3aaf",
         "type": "github"
       },
       "original": {
@@ -600,6 +600,28 @@
         "type": "github"
       }
     },
+    "nix-htop": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1721860429,
+        "narHash": "sha256-cqm5e/GVILdnvwly6n/5KFqYHuU5Auhok+R4OCm0d/o=",
+        "rev": "6177c3bc15203c6fde6283ac9d913199611a0220",
+        "revCount": 16,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/tomasharkema/nix-htop/0.0.1/0190e6e3-9505-7288-8c35-6131c4a6438f/source.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://flakehub.com/f/tomasharkema/nix-htop/0.0.%2A.tar.gz"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -788,11 +810,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1721754224,
-        "narHash": "sha256-JEVfxzZRo+/zdWKBjHpAUG905SDZL9fmoLJxf9b5CGU=",
+        "lastModified": 1721839713,
+        "narHash": "sha256-apTv16L9h5ONS2VTPbKEgwAOVmWGku0MsfprjgwBFHo=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "405b654893aba16c8014de6a17e84439d3fb8e46",
+        "rev": "a7432ebaefc9a400dcda399d48b949230378d784",
         "type": "github"
       },
       "original": {
@@ -919,11 +941,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1721548954,
-        "narHash": "sha256-7cCC8+Tdq1+3OPyc3+gVo9dzUNkNIQfwSDJ2HSi2u3o=",
+        "lastModified": 1721686456,
+        "narHash": "sha256-nw/BnNzATDPfzpJVTnY8mcSKKsz6BJMEFRkJ332QSN0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "63d37ccd2d178d54e7fb691d7ec76000740ea24a",
+        "rev": "575f3027caa1e291d24f1e9fb0e3a19c2f26d96b",
         "type": "github"
       },
       "original": {
@@ -1056,6 +1078,7 @@
         "lanzaboote": "lanzaboote",
         "nix-flatpak": "nix-flatpak",
         "nix-gaming": "nix-gaming",
+        "nix-htop": "nix-htop",
         "nix-index-database": "nix-index-database",
         "nix-software-center": "nix-software-center",
         "nix-virt": "nix-virt",
