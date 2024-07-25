@@ -58,6 +58,8 @@ with lib.custom;
       # };
 
       boot = {
+        # bcache.enable = true;
+        recovery.enable = mkDefault true;
         initrd.systemd.emergencyAccess = "abcdefg";
 
         crashDump.enable = true;
@@ -82,7 +84,7 @@ with lib.custom;
 
         kernelModules = ["wireguard"];
 
-        supportedFilesystems = ["ntfs" "apfs"];
+        supportedFilesystems = ["ntfs"];
 
         loader = {
           systemd-boot = {
@@ -94,8 +96,11 @@ with lib.custom;
 
       environment.systemPackages =
         (with pkgs; [
+          bash
+          discordo
           nvchecker
-          unstable.nil
+          # unstable.nil
+          unstable.nixd
           googler
           castnow
           go-chromecast
@@ -188,7 +193,6 @@ with lib.custom;
           # pkgs.wolfram-engine
           libsmbios
           dmidecode
-          termius
 
           google-chrome
           netflix
@@ -213,12 +217,12 @@ with lib.custom;
       systemd = {
         enableEmergencyMode = mkDefault false;
 
-        watchdog = {
-          device = "/dev/watchdog";
-          runtimeTime = "10m";
-          kexecTime = "10m";
-          rebootTime = "10m";
-        };
+        # watchdog = {
+        #   device = "/dev/watchdog";
+        #   runtimeTime = "5m";
+        #   kexecTime = "5m";
+        #   rebootTime = "5m";
+        # };
 
         # user.services.auto-fix-vscode-server = {
         #   enable = true;
@@ -255,7 +259,7 @@ with lib.custom;
       };
 
       services = {
-        watchdogd = {enable = true;};
+        # watchdogd = {enable = true;};
 
         dbus = {
           enable = true;
@@ -263,6 +267,7 @@ with lib.custom;
         };
 
         atd.enable = true;
+
         kmscon = {
           enable = mkDefault true;
           hwRender = config.traits.hardware.nvidia.enable;
@@ -425,7 +430,7 @@ with lib.custom;
         # };
       };
 
-      # security.sudo.package = pkgs.sudo.override { withSssd = true; };
+      security.sudo.package = pkgs.sudo.override {withSssd = true;};
 
       programs = {
         fzf.fuzzyCompletion = true;

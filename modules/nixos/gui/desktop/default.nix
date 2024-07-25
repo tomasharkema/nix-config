@@ -14,7 +14,7 @@ in {
     rdp = {enable = mkEnableOption "hallo";};
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.enable) {
     gui.fonts.enable = true;
 
     services = {
@@ -80,13 +80,8 @@ in {
     };
 
     programs = {
-      evolution.enable = true;
-      geary.enable = false;
-    };
-
-    services.dbus = {
-      enable = true;
-      packages = [pkgs.custom.ancs4linux];
+      evolution.enable = false;
+      geary.enable = true;
     };
 
     networking.firewall = {
@@ -106,13 +101,13 @@ in {
     };
 
     environment.systemPackages = with pkgs;
-      (optional ((stdenv.isLinux && stdenv.isx86_64) || stdenv.isDarwin) mailspring)
-      ++ [
-        jetbrains-toolbox
+      [
+        fractal
+        ventoy-full
+        unstable.zed-editor
+        spot
         ulauncher
         yelp
-        livecaptions
-        pkgs.custom.ancs4linux
         # firefox
         # gnome.gnome-boxes
         # keybase
@@ -141,7 +136,7 @@ in {
         meteo
         mission-center
         nix-software-center
-        notify-client
+        # notify-client
         partition-manager
         pavucontrol
         pkgs.custom.netbrowse
@@ -149,7 +144,6 @@ in {
         pwvucontrol
         qdirstat
         qjournalctl
-        remmina
         rtfm
         sublime-merge
         systemdgenie
@@ -166,15 +160,19 @@ in {
         xdiskusage
         xdiskusage
         xdotool
-        zeal
       ]
       ++ optionals pkgs.stdenv.isx86_64 [
+        devdocs-desktop
+        discord
+        # spotify
+        ipmiview
+        jetbrains-toolbox
         gitkraken
         unstable.xpipe
         angryipscanner
         telegram-desktop
         # pkgs.custom.git-butler
-        bottles
+        unstable.bottles
 
         handbrake
       ]

@@ -6,19 +6,35 @@
   ...
 }:
 with lib; let
-  machines = inputs.self.servers;
+  cfg = config.services.automounts;
+  machines = inputs.self.machines.excludingSelf config;
 in {
-  config = {
+  options.services.automounts = {
+    enable = mkOption {
+      type =
+        types.bool;
+      default = true;
+      description = "automounts";
+    };
+  };
+
+  config = mkIf cfg.enable {
     services.autofs = {
       enable = true;
 
       autoMaster = let
-        lines =
+        sshFsLines =
           map (machine: "${machine}  -fstype=fuse,port=22,idmap=user,rw,allow_other,noatime :sshfs\\#tomas@${machine}\\:/")
           machines;
-        mapConf = pkgs.writeText "servers" (lib.concatStringsSep "\n" lines);
+        sshFsMapConf = pkgs.writeText "sshfs.conf" (concatStringsSep "\n" sshFsLines);
+        nfsConf = pkgs.writeText "nfs.conf" ''
+          ${concatStringsSep "\n" (map (folder: ''
+            silver-star-${folder} -rw,soft,intr,rsize=8192,wsize=8192 silver-star:/mnt/user/${folder}
+          '') ["downloads" "data" "appdata" "backup" "games" "games_ssd" "domains" "isos"])}
+        '';
       in ''
-        /mnt/servers file:${mapConf} --timeout=30
+        /mnt/servers/sshfs file:${sshFsMapConf} --timeout=30
+        /mnt/servers/nfs file:${nfsConf} --timeout=30
       '';
     };
     # [Unit]

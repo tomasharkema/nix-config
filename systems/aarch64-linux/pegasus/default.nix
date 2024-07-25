@@ -16,11 +16,14 @@ with lib; {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBanxLefIcrVxhtzYj7OvNwZj3P5upoj7AwVyV0Id5T7 root@pegasus";
     };
 
-    services.udev.extraRules = ''
-      # allow access to raspi cec device for video group (and optionally register it as a systemd device, used below)
-      KERNEL=="vchiq", GROUP="video", MODE="0660", TAG+="systemd", ENV{SYSTEMD_ALIAS}="/dev/vchiq"
-    '';
+    services = {
+      udev.extraRules = ''
+        # allow access to raspi cec device for video group (and optionally register it as a systemd device, used below)
+        KERNEL=="vchiq", GROUP="video", MODE="0660", TAG+="systemd", ENV{SYSTEMD_ALIAS}="/dev/vchiq"
+      '';
 
+      remote-builders.client.enable = true;
+    };
     # optional: attach a persisted cec-client to `/run/cec.fifo`, to avoid the CEC ~1s startup delay per command
     # scan for devices: `echo 'scan' > /run/cec.fifo ; journalctl -u cec-client.service`
     # set pi as active source: `echo 'as' > /run/cec.fifo`
@@ -87,7 +90,6 @@ with lib; {
         raspberry = true;
       };
       unified-remote.enable = true;
-      remote-builders.enable = true;
       netdata.enable = true;
     };
 

@@ -50,10 +50,29 @@ in {
       '';
     };
 
+    # FROM: https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/misc/sssd.nix
+    #    systemd.services.sssd-kcm = {
+    #      description = "SSSD Kerberos Cache Manager";
+    #      requires = ["sssd-kcm.socket"];
+    #      serviceConfig = {
+    #        ExecStartPre = "-${pkgs.sssd}/bin/sssd --genconf-section=kcm";
+    #        ExecStart = "${pkgs.sssd}/libexec/sssd/sssd_kcm --uid 0 --gid 0";
+    #      };
+    #      restartTriggers = [
+    # settingsFileUnsubstituted
+    #      ];
+    #    };
+    #   systemd.sockets.sssd-kcm = {
+    #     description = "SSSD Kerberos Cache Manager responder socket";
+    #     wantedBy = ["sockets.target"];
+    # Matches the default in MIT krb5 and Heimdal:
+    # https://github.com/krb5/krb5/blob/krb5-1.19.3-final/src/include/kcm.h#L43
+    #     listenStreams = ["/var/run/.heim_org.h5l.kcm-socket"];
+    #   };
+
+    #    security.krb5.settings.libdefaults.default_ccache_name = "KCM:";
+
     services = {
-      autofs = {
-        # enable = true;
-      };
       sssd = {
         enable = true;
         # kcm = true;
@@ -69,26 +88,26 @@ in {
           pam_passkey_auth = True
           passkey_debug_libfido2 = True
           passkey_child_timeout = 60
-          debug_level = 0x1310
-          pam_verbosity = 3
+
 
           [domain/shadowutils]
           id_provider = proxy
           proxy_lib_name = files
           auth_provider = none
           local_auth_policy = match
-          debug_level = 0x1310
 
-          [sssd]
-          debug_level = 0x1310
+
         '';
+
+        # [sssd]
+        # debug_level 0x1310
       };
     };
 
-    systemd.tmpfiles.rules = [
-      "L /bin/bash - - - - /run/current-system/sw/bin/bash"
-      "L /bin/zsh - - - - /run/current-system/sw/bin/zsh"
-    ];
+    # systemd.tmpfiles.rules = [
+    #   "L /bin/bash - - - - /run/current-system/sw/bin/bash"
+    #   "L /bin/zsh - - - - /run/current-system/sw/bin/zsh"
+    # ];
 
     security = {
       ipa = {

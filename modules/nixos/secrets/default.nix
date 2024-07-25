@@ -29,7 +29,7 @@
         };
         attic-key = {
           rekeyFile = ./attic-key.age;
-          mode = "644";
+          mode = "666";
         };
         tailscale = {
           rekeyFile = ./tailscale.age;

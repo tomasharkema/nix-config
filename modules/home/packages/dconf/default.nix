@@ -223,23 +223,6 @@ with lib; {
             "native-window-placement@gnome-shell-extensions.gcampax.github.com"
             "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
           ];
-
-          favorite-apps =
-            [
-              # "org.kde.index.desktop"
-              # "pcmanfm.desktop"
-              "org.gnome.Nautilus.desktop"
-              "firefox.desktop"
-              # "org.gnome.Console.desktop"
-            ]
-            # ++ (optional pkgs.stdenv.isx86_64 "kitty.desktop")
-            # ++ (optional (!pkgs.stdenv.isx86_64) "com.gexperts.Tilix.desktop")
-            ++ ["com.gexperts.Tilix.desktop"]
-            ++ [
-              "code.desktop"
-              "org.cockpit_project.CockpitClient.desktop"
-              "org.gnome.Epiphany.WebApp_b336fc558722224b7ffe98607055d55f0fe52450.desktop"
-            ];
         };
         "org/gnome/desktop/wm/preferences" = {
           button-layout = "appmenu:minimize,maximize,close";

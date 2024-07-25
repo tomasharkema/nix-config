@@ -139,10 +139,10 @@ in
           description = "Dev for optional media partition";
         };
         encrypt = mkEnableOption "encrypted";
-        swapSize = mkOption {
-          type = types.nullOr types.int;
-          default = null;
-          description = "swap size";
+        swap = mkOption {
+          type = types.bool;
+          default = true;
+          description = "swap";
         };
       };
     };
@@ -239,18 +239,17 @@ in
                   };
                 };
 
-                root = mkIf (!cfg.encrypt) innerContent.root;
-                luks =
-                  mkIf cfg.encrypt
-                  (luksContent innerContent.root.content "crypted").luks;
-
-                encryptedSwap = {
+                encryptedSwap = mkIf cfg.swap {
                   size = "16G";
                   content = {
                     type = "swap";
                     randomEncryption = true;
                   };
                 };
+                root = mkIf (!cfg.encrypt) innerContent.root;
+                luks =
+                  mkIf cfg.encrypt
+                  (luksContent innerContent.root.content "crypted").luks;
               };
             };
           };

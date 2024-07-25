@@ -15,37 +15,94 @@ in {
 
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
-    nixos-hardware.nixosModules.supermicro-x10sll-f
+    # nixos-hardware.nixosModules.supermicro-x10sll-f
+    buildbot-nix.nixosModules.buildbot-master
+    buildbot-nix.nixosModules.buildbot-worker
+
+    ./buildbot-master.nix
   ];
 
+  disabledModules = ["services/continuous-integration/buildbot/master.nix"];
+
   config = {
-    age.rekey = {
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVhJ1k25x/1A/zN96p48MGrPJxVboTe17rO9Mcb61qG root@blue-fire";
+    age = {
+      secrets = {
+        buildbot-github-app = {
+          rekeyFile = ./buildbot-github-app.age;
+          owner = "buildbot";
+        };
+        buildbot-github-oauth = {
+          rekeyFile = ./buildbot-github-oauth.age;
+          owner = "buildbot";
+        };
+      };
+      rekey = {
+        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVhJ1k25x/1A/zN96p48MGrPJxVboTe17rO9Mcb61qG root@blue-fire";
+      };
+    };
+
+    services = {
+      buildbot-master = {
+        # extraConfig = ''
+        #   from buildbot.manhole import AuthorizedKeysManhole
+        #   c['manhole'] = AuthorizedKeysManhole("tcp:12456", "/etc/ssh/authorized_keys.d/joerg", "/var/lib/buildbot/master/ssh/")
+        #   c["protocols"] = {"pb": {"port": "tcp:9989:interface=\\:\\:"}}
+        # '';
+        # pythonPackages = ps: [
+        #   ps.bcrypt
+        #   ps.cryptography
+        #   ps.alembic
+        # ];
+      };
+      nginx.virtualHosts."buildbot.harkema.io" = {
+        # forceSSL = true;
+        # useACMEHost = "harkema.io";
+      };
+    };
+
+    services = {
+      buildbot-nix = {
+        master = {
+          enable = true;
+          domain = "buildbot.harkema.io";
+          admins = ["tomasharkema"];
+          outputsPath = "/var/www/buildbot/nix-outputs";
+          buildbotNixpkgs = pkgs.unstable; #inputs.unstable.legacyPackages."${pkgs.system}";
+
+          workersFile = pkgs.writeText "workers.json" (builtins.toJSON
+            [
+              # {
+              #   name = "eve";
+              #   pass = "XXXXXXXXXXXXXXXXXXXX";
+              #   cores = 16;
+              # }
+            ]); # FIXME fix to but in secure
+
+          github = {
+            authType.app = {
+              id = 949982;
+              secretKeyFile = config.age.secrets.buildbot-github-app.path;
+            };
+            oauthId = "Iv23ctLlUoYy2C1SFDZy";
+            oauthSecretFile = config.age.secrets.buildbot-github-oauth.path;
+            webhookSecretFile = config.age.secrets.buildbot-webhook.path;
+          };
+        };
+        worker.masterUrl = ''tcp:host=blue-fire:port=9989'';
+      };
     };
 
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K";
       media = "/dev/disk/by-id/ata-TOSHIBA_MK3263GSXN_5066P0YHT";
-      btrbk.enable = false;
-    };
-
-    services.beesd.filesystems = {
-      root = {
-        spec = "UUID=8be68839-1415-4500-87d1-80f9400c42cb";
-        hashTableSizeMB = 1024;
-        verbosity = "crit";
-        extraOptions = [
-          "--loadavg-target"
-          "2.0"
-        ];
-      };
+      btrbk.enable = true;
     };
 
     traits = {
       builder = {
         enable = true;
-        hydra.enable = true;
+        # hydra.enable = true;
       };
       hardware = {
         # tpm.enable = true;
@@ -62,10 +119,10 @@ in {
       };
     };
 
-    services.cron.systemCronJobs = [
-      # Reset 5-minute watchdog timer every minute
-      "* * * * * ${pkgs.ipmitool}/bin/ipmitool raw 0x30 0x97 1 5"
-    ];
+    # services.cron.systemCronJobs = [
+    #   # Reset 5-minute watchdog timer every minute
+    #   "* * * * * ${pkgs.ipmitool}/bin/ipmitool raw 0x30 0x97 1 5"
+    # ];
 
     headless.enable = true;
 
@@ -76,6 +133,7 @@ in {
         enable = true;
         httpd = true;
       };
+      "bmc-watchdog".enable = true;
     };
 
     gui = {
@@ -84,7 +142,22 @@ in {
     };
 
     services = {
-      builder-service.enable = true;
+      das_watchdog.enable = mkForce false;
+
+      remote-builders.server.enable = true;
+
+      beesd.filesystems = {
+        root = {
+          spec = "UUID=91663f26-5426-4a0d-96f0-e507f2cd8196";
+          hashTableSizeMB = 1024;
+          verbosity = "crit";
+          extraOptions = [
+            "--loadavg-target"
+            "2.0"
+          ];
+        };
+      };
+
       # icingaweb2 = {
       #   enable = true;
       #   virtualHost = "mon.blue-fire.harkema.intra";
@@ -102,7 +175,7 @@ in {
       #   enableBot = true;
       # };
 
-      tcsd.enable = true;
+      # tcsd.enable = true;
       kmscon.enable = mkForce false;
 
       prometheus.exporters.ipmi.enable = true;
@@ -184,7 +257,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       # ipmicfg
-      ipmiview
+      # ipmiview
       # ipmiutil
       # vagrant
       ipmitool
@@ -199,7 +272,7 @@ in {
 
     networking.firewall.allowedTCPPorts = [2049];
 
-    services.factorio.enable = true;
+    # services.factorio.enable = true;
 
     fileSystems = {
       # "/export/media" = {
@@ -269,49 +342,69 @@ in {
     #   };
     # };
 
-    boot = {
-      binfmt.emulatedSystems = ["aarch64-linux"];
+    hardware.nvidia.vgpu = {
+      enable = true; # Enable NVIDIA KVM vGPU + GRID driver
+      unlock.enable = true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
+    };
 
+    boot = {
+      kernelParams = [
+        "intel_iommu=on"
+        "iommu=pt"
+        "console=tty0"
+        "console=ttyS2,115200n8"
+      ];
+      blacklistedKernelModules = lib.mkDefault ["nouveau"];
+
+      binfmt.emulatedSystems = ["aarch64-linux"];
+      recovery = {
+        sign = false;
+        install = false;
+      };
       loader = {
-        # systemd-boot.enable = true;
+        systemd-boot = {
+          # enable = true;
+          configurationLimit = 10;
+        };
         efi.canTouchEfiVariables = true;
-        # systemd-boot.configurationLimit = 10;
       };
 
       initrd = {
         availableKernelModules = [
+          "nvme"
           "xhci_pci"
           "ahci"
           "usbhid"
           "usb_storage"
-          "sd_mod"
+          # "sd_mod"
         ];
         kernelModules = [
           "kvm-intel"
           "uinput"
           "nvme"
-          # "tpm_rng"
+          #          "tpm_rng"
           "ipmi_ssif"
-          "acpi_ipmi"
+          # "acpi_ipmi"
           "ipmi_si"
           "ipmi_devintf"
           "ipmi_msghandler"
         ];
       };
       kernelModules = [
+        "coretemp"
         "kvm-intel"
         "uinput"
-        "nvme"
-        "tpm_rng"
+        "fuse"
+        #       "tpm_rng"
         "ipmi_ssif"
-        "acpi_ipmi"
+        # "acpi_ipmi"
         "ipmi_si"
         "ipmi_devintf"
         "ipmi_msghandler"
-        "watchdog"
+        "ipmi_watchdog"
       ];
-      extraModulePackages = [];
-      kernelParams = ["console=tty0" "console=ttyS1,115200n8"];
+      # extraModulePackages = [pkgs.freeipmi];
+      systemd.services."serial-getty@ttyS2".wantedBy = ["multi-user.target"];
     };
 
     # virtualisation = {
