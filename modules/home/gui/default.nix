@@ -72,7 +72,7 @@ in {
       unstable.trayscale
       custom.zerotier-ui
 
-      notify-client
+      # notify-client
       gnome.geary
     ];
 

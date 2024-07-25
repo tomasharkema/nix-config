@@ -49,6 +49,7 @@ in
         # (import ./packages/common.nix {inherit pkgs inputs lib;})
         # ++
         packages = with pkgs; [
+          nix-htop
           augeas
           custom.bieye
           wget2

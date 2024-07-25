@@ -600,6 +600,28 @@
         "type": "github"
       }
     },
+    "nix-htop": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1721860429,
+        "narHash": "sha256-cqm5e/GVILdnvwly6n/5KFqYHuU5Auhok+R4OCm0d/o=",
+        "rev": "6177c3bc15203c6fde6283ac9d913199611a0220",
+        "revCount": 16,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/tomasharkema/nix-htop/0.0.1/0190e6e3-9505-7288-8c35-6131c4a6438f/source.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://flakehub.com/f/tomasharkema/nix-htop/0.0.%2A.tar.gz"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -1056,6 +1078,7 @@
         "lanzaboote": "lanzaboote",
         "nix-flatpak": "nix-flatpak",
         "nix-gaming": "nix-gaming",
+        "nix-htop": "nix-htop",
         "nix-index-database": "nix-index-database",
         "nix-software-center": "nix-software-center",
         "nix-virt": "nix-virt",
