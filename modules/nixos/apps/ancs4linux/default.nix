@@ -33,6 +33,8 @@ in {
             Type = "dbus";
             BusName = "ancs4linux.Advertising";
             ExecStart = "${package}/bin/ancs4linux-advertising";
+            Restart = "on-failure";
+            RestartSec = "5s";
           };
         };
         ancs4linux-observer = {
@@ -46,6 +48,8 @@ in {
             Type = "dbus";
             BusName = "ancs4linux.Observer";
             ExecStart = "${package}/bin/ancs4linux-observer";
+            Restart = "on-failure";
+            RestartSec = "5s";
           };
         };
       };
@@ -59,6 +63,8 @@ in {
         serviceConfig = {
           Type = "simple";
           ExecStart = "${package}/bin/ancs4linux-desktop-integration";
+          Restart = "on-failure";
+          RestartSec = "5s";
         };
 
         wantedBy = ["default.target"];
