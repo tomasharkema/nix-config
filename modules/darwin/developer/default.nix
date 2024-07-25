@@ -14,7 +14,8 @@ in {
     environment.systemPackages = with pkgs; [
       go
       go-outline
-      gopls
+      gdlv
+      delve
       godef
       golint
       gopkgs
