@@ -13,7 +13,7 @@ in {
     enable = mkEnableOption "enable attic conf";
 
     serverName = mkOption {
-      default = "tomas";
+      default = "backup";
       type = types.str;
     };
 
@@ -29,32 +29,32 @@ in {
   };
 
   config = mkIf cfg.enable {
-    systemd.services.attic-watch-store = {
-      wantedBy = ["multi-user.target"];
+    systemd.user.services.attic-watch-store = {
+      wantedBy = ["default.target"];
       after = ["network-online.target"];
-      environment.HOME = "/var/lib/attic-watch-store";
+      # Install.WantedBy = ["multi-user.target" "default.target"];
+      # environment.HOME = "/var/lib/attic-watch-store";
       serviceConfig = {
-        DynamicUser = true;
+        # DynamicUser = true;
         MemoryHigh = "5%";
         MemoryMax = "10%";
         LoadCredential = "prod-auth-token:${config.age.secrets.attic-key.path}";
-        StateDirectory = "attic-watch-store";
+        # StateDirectory = "attic-watch-store";
       };
       path = [pkgs.attic-client];
       script = ''
         set -eux -o pipefail
-        whoami
         ATTIC_TOKEN=$(< $CREDENTIALS_DIRECTORY/prod-auth-token)
-        # Replace https://cache.<domain> with your own cache URL.
+
         attic login ${cfg.serverName} ${cfg.serverAddress} $ATTIC_TOKEN
         attic use ${cfg.serverName}
         exec attic watch-store ${cfg.serverName}:${cfg.storeName}
       '';
     };
 
-    nix.settings = {
-      trusted-users = ["attic-watch-store"];
-      allowed-users = ["attic-watch-store"];
-    };
+    # nix.settings = {
+    #   trusted-users = ["attic-watch-store"];
+    #   allowed-users = ["attic-watch-store"];
+    # };
   };
 }

@@ -206,7 +206,7 @@ in {
   };
   difftastic.enable = true;
 
-  dotenv.enable = true;
+  # dotenv.enable = true;
 
   processes = {
     attic.exec = "attic watch-store tomas -j1";

@@ -153,6 +153,7 @@ in {
         tremotesf
         vsce
         unstable.vscode
+        unstable.vscodium
         vte-gtk4
         wezterm
         xdg-utils
