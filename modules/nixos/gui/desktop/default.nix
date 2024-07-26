@@ -150,7 +150,7 @@ in {
         tabby
         transmission-remote-gtk
         unstable.trayscale
-        tremotesf
+        unstable.tremotesf
         vsce
         unstable.vscode
         unstable.vscodium

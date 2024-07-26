@@ -393,17 +393,15 @@
         # hostPlatform.system = "aarch64-linux";
         # buildPlatform.system = "x86_64-linux";
         # permittedInsecurePackages = [ "openssl-1.1.1w" ];
-        # permittedInsecurePackages = [
-        #   "python3.11-youtube-dl-2021.12.17"
-        # ];
-
+        permittedInsecurePackages = [
+          "python3.11-youtube-dl-2021.12.17"
+        ];
         config = {
           # For example, enable smartcard support in Firefox.
           firefox.smartcardSupport = true;
-
-          # permittedInsecurePackages = [
-          #   "python3.11-youtube-dl-2021.12.17"
-          # ];
+          permittedInsecurePackages = [
+            "python3.11-youtube-dl-2021.12.17"
+          ];
         };
       };
 

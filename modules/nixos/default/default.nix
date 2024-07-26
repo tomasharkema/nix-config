@@ -24,8 +24,6 @@ with lib.custom;
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";
 
-      # environment.variables.XCURSOR_SIZE = "24";
-
       # Select internationalisation properties.
       i18n = {
         defaultLocale = "en_US.UTF-8";
@@ -304,8 +302,6 @@ with lib.custom;
         # };
 
         das_watchdog.enable = true;
-
-        thermald.enable = mkIf (pkgs.system == "x86_64-linux") true;
 
         check_mk_agent = {
           enable = true;
