@@ -24,8 +24,6 @@ with lib.custom;
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";
 
-      # environment.variables.XCURSOR_SIZE = "24";
-
       # Select internationalisation properties.
       i18n = {
         defaultLocale = "en_US.UTF-8";
