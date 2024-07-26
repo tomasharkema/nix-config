@@ -35,6 +35,7 @@ in {
       xrdp.enable = mkForce false;
 
       tlp.enable = true;
+      power-profiles-daemon.enable = false;
     };
 
     systemd.targets = {
