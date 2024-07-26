@@ -106,7 +106,7 @@ with lib; {
         {package = ssh-search-provider-reborn;}
         {package = another-window-session-manager;}
         {package = search-light;}
-        {package = tweaks-in-system-menu;}
+        # {package = tweaks-in-system-menu;}
         {
           package =
             removable-drive-menu;
