@@ -315,8 +315,6 @@ with lib.custom;
 
         das_watchdog.enable = true;
 
-        thermald.enable = mkIf (pkgs.system == "x86_64-linux") true;
-
         check_mk_agent = {
           enable = true;
           bind = "0.0.0.0";

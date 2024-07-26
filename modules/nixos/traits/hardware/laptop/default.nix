@@ -25,8 +25,6 @@ in {
       extraModulePackages = with config.boot.kernelPackages; [acpi_call];
     };
 
-    systemd.services.auto-cpufreq.path = [pkgs.getent];
-
     services = {
       # synergy.server = {
       #   enable = true;
@@ -36,22 +34,9 @@ in {
 
       xrdp.enable = mkForce false;
 
-      auto-cpufreq = {
-        enable = true;
-        settings = {
-          battery = {
-            governor = "powersave";
-            turbo = "never";
-          };
-          charger = {
-            governor = "performance";
-            turbo = "auto";
-          };
-        };
-      };
+      tlp.enable = true;
     };
 
-    # services.tlp.enable = true;
     systemd.targets = {
       sleep.enable = true;
       suspend.enable = true;

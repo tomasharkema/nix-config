@@ -11,7 +11,6 @@ with pkgs; {
       wiki-tui
       tran
       lazycli
-      # stig
       trash-cli
       gtrash
       rmtrash
@@ -56,6 +55,7 @@ with pkgs; {
       # tiptop
       # tpm-tools
       # udiskie
+      tremc
       # usermount
       viddy
       wget
