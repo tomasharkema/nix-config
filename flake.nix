@@ -70,6 +70,7 @@
 
     nixos-anywhere = {
       url = "github:nix-community/nixos-anywhere";
+
       inputs = {
         nixpkgs.follows = "nixpkgs";
         disko.follows = "disko";
@@ -88,6 +89,7 @@
 
     nixvim = {
       url = "github:nix-community/nixvim/nixos-24.05";
+
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
@@ -101,6 +103,7 @@
 
     agenix = {
       url = "github:ryantm/agenix";
+
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
@@ -111,6 +114,7 @@
 
     agenix-rekey = {
       url = "github:oddlama/agenix-rekey";
+
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
@@ -127,6 +131,7 @@
 
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
+
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
@@ -140,6 +145,7 @@
 
     nix-software-center = {
       url = "github:snowfallorg/nix-software-center";
+
       inputs = {
         nixpkgs.follows = "nixpkgs";
         utils.follows = "flake-utils";
@@ -160,6 +166,7 @@
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
+
       inputs = {
         nixpkgs.follows = "nixpkgs";
         crane.follows = "crane";
@@ -172,6 +179,7 @@
 
     snowfall-lib = {
       url = "github:snowfallorg/lib";
+
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "flake-compat";
@@ -180,6 +188,7 @@
 
     snowfall-flake = {
       url = "github:snowfallorg/flake";
+
       inputs = {
         nixpkgs.follows = "nixpkgs";
         snowfall-lib.follows = "snowfall-lib";
@@ -228,11 +237,13 @@
 
     nixos-checkmk = {
       url = "github:tomasharkema/nixos-checkmk";
+
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     poetry2nix = {
       url = "github:nix-community/poetry2nix";
+
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
@@ -250,7 +261,6 @@
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
-
         flake-utils.follows = "flake-utils";
       };
     };
@@ -262,11 +272,13 @@
 
     nix-virt = {
       url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
+
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     conky = {
       url = "github:brndnmtthws/conky";
+
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
@@ -275,6 +287,7 @@
 
     nixos-06cb-009a-fingerprint-sensor = {
       url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor";
+
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -282,16 +295,20 @@
     #   url = "github:icebox-nix/netkit.nix";
     # };
 
-    # nix-topology = {
-    #   url = "github:oddlama/nix-topology";
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     flake-utils.follows = "flake-utils";
-    #   };
-    # };
+    nix-topology = {
+      url = "github:oddlama/nix-topology";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+        devshell.follows = "devshell";
+        pre-commit-hooks.follows = "pre-commit-hooks-nix";
+      };
+    };
 
     nixos-dash-docset = {
       url = "github:ptitfred/nixos-dash-docset";
+
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
@@ -320,11 +337,13 @@
 
     nix-htop = {
       url = "https://flakehub.com/f/tomasharkema/nix-htop/0.0.*.tar.gz";
+
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
       };
     };
+
     buildbot-nix = {
       url = "github:nix-community/buildbot-nix";
       # url = "github:tomasharkema/buildbot-nix";
@@ -600,9 +619,9 @@
       #     deploy-lib.deployChecks inputs.self.deploy)
       #   inputs.deploy-rs.lib;
 
-      flakeItems = {
-        inherit inputs;
-      };
+      # flakeItems = {
+      #   inherit inputs;
+      # };
 
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};
 

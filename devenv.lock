@@ -49,11 +49,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1721902368,
+        "lastModified": 1721986491,
         "owner": "numtide",
         "repo": "devshell",
-        "rev": "cf8c7405479cfde7ea4dc815e195391d2328df10",
-        "treeHash": "be0a8b1e58d8b2569a1039ff044d09bda595d75f",
+        "rev": "cc8700135fb0740199ac248063f20c6b1a3c7e42",
+        "treeHash": "844f5a29efe188624bff6b320e1d44e109f4d0d8",
         "type": "github"
       },
       "original": {

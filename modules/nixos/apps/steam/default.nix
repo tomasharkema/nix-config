@@ -64,7 +64,7 @@ in {
       # steam-run
       adwsteamgtk
       steam-tui
-      mangohud
+      # mangohud
     ];
 
     # services.udev.extraRules = ''

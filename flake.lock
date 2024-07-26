@@ -88,11 +88,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1721872230,
-        "narHash": "sha256-DbQETc8xPZuoXxxWuxIKxwKyVmxJ6NJMQAZel7qUnL0=",
+        "lastModified": 1721994607,
+        "narHash": "sha256-75crtX+rMqNmCIOv2ZDuRQgQzYv7uuyZM702JoGDMNA=",
         "owner": "nix-community",
         "repo": "buildbot-nix",
-        "rev": "9086472a5f46982cae7047565102685e901c62bc",
+        "rev": "eb746d95a40cc9d79ca6a56e53e1104419ace7c4",
         "type": "github"
       },
       "original": {
@@ -206,11 +206,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1721902368,
-        "narHash": "sha256-noQ5SghRPe0jzQEbFQb3fYbV6LZEzr7lIRQoxlU7fyI=",
+        "lastModified": 1721986491,
+        "narHash": "sha256-lVAlUOIPszv5HMYQGscskeGdRIYpTY6xrPfEok0hHgI=",
         "owner": "numtide",
         "repo": "devshell",
-        "rev": "cf8c7405479cfde7ea4dc815e195391d2328df10",
+        "rev": "cc8700135fb0740199ac248063f20c6b1a3c7e42",
         "type": "github"
       },
       "original": {
@@ -566,11 +566,11 @@
         "umu": "umu"
       },
       "locked": {
-        "lastModified": 1721870519,
-        "narHash": "sha256-ykhbWNZlEFg2rmnIMR0YL6IUcJ0M/M8GkfjYuOft1hY=",
+        "lastModified": 1721956892,
+        "narHash": "sha256-bjVE3UcI00MG/APNJVuxJanvWOt2Ya8UlwsJ5Fi4SfI=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "6796ca907f4e0cd8427eca33c25c599f20a2a674",
+        "rev": "408ece610424a74fca88fd0f11711345f75e314a",
         "type": "github"
       },
       "original": {
@@ -663,6 +663,35 @@
       "original": {
         "owner": "snowfallorg",
         "repo": "nix-software-center",
+        "type": "github"
+      }
+    },
+    "nix-topology": {
+      "inputs": {
+        "devshell": [
+          "devshell"
+        ],
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "pre-commit-hooks": [
+          "pre-commit-hooks-nix"
+        ]
+      },
+      "locked": {
+        "lastModified": 1721160643,
+        "narHash": "sha256-ZkjJnwgDUkjzgySZv9GjKnDsDmNJVkU2u2pLD4a1QKA=",
+        "owner": "oddlama",
+        "repo": "nix-topology",
+        "rev": "fe9ace7f40a63e3eb9b39a20a1032834e090d806",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oddlama",
+        "repo": "nix-topology",
         "type": "github"
       }
     },
@@ -1081,6 +1110,7 @@
         "nix-htop": "nix-htop",
         "nix-index-database": "nix-index-database",
         "nix-software-center": "nix-software-center",
+        "nix-topology": "nix-topology",
         "nix-virt": "nix-virt",
         "nixos-06cb-009a-fingerprint-sensor": "nixos-06cb-009a-fingerprint-sensor",
         "nixos-anywhere": "nixos-anywhere",
@@ -1280,11 +1310,11 @@
     },
     "unstable": {
       "locked": {
-        "lastModified": 1721743106,
-        "narHash": "sha256-adRZhFpBTnHiK3XIELA3IBaApz70HwCYfv7xNrHjebA=",
+        "lastModified": 1721924956,
+        "narHash": "sha256-Sb1jlyRO+N8jBXEX9Pg9Z1Qb8Bw9QyOgLDNMEpmjZ2M=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "dc14ed91132ee3a26255d01d8fd0c1f5bff27b2f",
+        "rev": "5ad6a14c6bf098e98800b091668718c336effc95",
         "type": "github"
       },
       "original": {
