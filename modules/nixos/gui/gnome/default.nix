@@ -14,6 +14,11 @@ in
       enable = mkEnableOption "enable gnome desktop environment";
 
       hidpi.enable = mkEnableOption "enable gnome desktop environment";
+
+      cursorSize = mkOption {
+        type = types.int;
+        default = 24;
+      };
     };
 
     config = mkIf cfg.enable {
@@ -39,11 +44,15 @@ in
         etc."X11/Xwrapper.config".text = ''
           allowed_users=anybody
         '';
-        variables = mkIf cfg.hidpi.enable {
-          # GDK_SCALE = "2";
-          # GDK_DPI_SCALE = "0.5";
-          # _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
-        };
+
+        # variables = mkIf cfg.hidpi.enable {
+        # GDK_SCALE = "2";
+        # GDK_DPI_SCALE = "0.5";
+        # _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+        # };
+
+        variables.XCURSOR_SIZE = builtins.toString cfg.cursorSize;
+        sessionVariables.XCURSOR_SIZE = builtins.toString cfg.cursorSize;
       };
 
       programs = {
