@@ -224,18 +224,6 @@ with lib.custom;
         #   rebootTime = "5m";
         # };
 
-        # user.services.auto-fix-vscode-server = {
-        #   enable = true;
-        #   wants = [
-        #     "multi-user.target"
-        #     "network.target"
-        #   ];
-        #   after = [
-        #     "multi-user.target"
-        #     "network.target"
-        #   ];
-        # };
-
         #   services = {
         #     "numlockx" = {
 
@@ -307,7 +295,7 @@ with lib.custom;
         #   enableNotifications = true;
         # };
 
-        # vscode-server.enable = true;
+        openvscode-server.enable = true;
 
         seatd.enable = true;
 
