@@ -70,7 +70,6 @@ in
           # nchat
           git-agecrypt
           projectable
-          # stig
           xplr
           lazycli
           f1viewer
