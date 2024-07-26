@@ -191,6 +191,23 @@ in
         menus.enable = true;
       };
 
+      # services.pipewire.extraConfig.pipewire-pulse."92-tcp" = {
+      #   context.modules = [
+      #     {
+      #       name = "module-native-protocol-tcp";
+      #       args = {};
+      #     }
+      #     {
+      #       name = "module-zeroconf-discover";
+      #       args = {};
+      #     }
+      #   ];
+      #   stream.properties = {
+      #     node.latency = "32/48000";
+      #     resample.quality = 1;
+      #   };
+      # };
+
       environment.systemPackages =
         (with pkgs; [
           themix-gui
