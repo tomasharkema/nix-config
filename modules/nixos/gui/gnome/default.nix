@@ -20,9 +20,7 @@ in
       sound.mediaKeys.enable = true;
       traits.developer.enable = mkDefault true;
 
-      environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-      services.displayManager.defaultSession = "gnome";
+      # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
       system.nixos.tags =
         [
@@ -37,10 +35,15 @@ in
       #   xwayland.enable = true;
       # };
 
-      environment.variables = mkIf cfg.hidpi.enable {
-        # GDK_SCALE = "2";
-        # GDK_DPI_SCALE = "0.5";
-        # _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+      environment = {
+        etc."X11/Xwrapper.config".text = ''
+          allowed_users=anybody
+        '';
+        variables = mkIf cfg.hidpi.enable {
+          # GDK_SCALE = "2";
+          # GDK_DPI_SCALE = "0.5";
+          # _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+        };
       };
 
       programs = {
@@ -81,10 +84,6 @@ in
         gpaste.enable = true;
       };
 
-      environment.etc."X11/Xwrapper.config".text = ''
-        allowed_users=anybody
-      '';
-
       security.ipa.ifpAllowedUids = ["gdm"];
 
       # environment.sessionVariables = {
@@ -93,6 +92,23 @@ in
       # };
 
       services = {
+        pipewire.extraConfig.pipewire-pulse."92-tcp" = {
+          context.modules = [
+            {
+              name = "module-native-protocol-tcp";
+              args = {};
+            }
+            {
+              name = "module-zeroconf-discover";
+              args = {};
+            }
+          ];
+          stream.properties = {
+            node.latency = "32/48000";
+            resample.quality = 1;
+          };
+        };
+        displayManager.defaultSession = "gnome";
         xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
 
         xserver = {
@@ -175,22 +191,6 @@ in
         menus.enable = true;
       };
 
-      services.pipewire.extraConfig.pipewire-pulse."92-tcp" = {
-        context.modules = [
-          {
-            name = "module-native-protocol-tcp";
-            args = {};
-          }
-          {
-            name = "module-zeroconf-discover";
-            args = {};
-          }
-        ];
-        stream.properties = {
-          node.latency = "32/48000";
-          resample.quality = 1;
-        };
-      };
       environment.systemPackages =
         (with pkgs; [
           themix-gui
