@@ -160,30 +160,30 @@ with lib; {
       wireplumber = {
         enable = true;
         extraConfig = {
-          "monitor.bluez.properties" = {
-            "bluez5.roles" = [
-              "a2dp_sink"
-              "a2dp_source"
-              "bap_sink"
-              "bap_source"
-              "hsp_hs"
-              "hsp_ag"
-              "hfp_hf"
-              "hfp_ag"
-            ];
-            "bluez5.codecs" = [
-              "sbc"
-              "sbc_xq"
-              "aac"
-            ];
-            "bluez5.enable-sbc-xq" = true;
-            "bluez5.hfphsp-backend" = "native";
-            "bluez5.auto-connect" = [
-              "hfp_hf"
-              "hsp_hs"
-              "a2dp_sink"
-            ];
-          };
+          # "monitor.bluez.properties" = {
+          #   "bluez5.roles" = [
+          #     "a2dp_sink"
+          #     "a2dp_source"
+          #     "bap_sink"
+          #     "bap_source"
+          #     "hsp_hs"
+          #     "hsp_ag"
+          #     "hfp_hf"
+          #     "hfp_ag"
+          #   ];
+          #   "bluez5.codecs" = [
+          #     "sbc"
+          #     "sbc_xq"
+          #     "aac"
+          #   ];
+          #   "bluez5.enable-sbc-xq" = true;
+          #   "bluez5.hfphsp-backend" = "native";
+          #   "bluez5.auto-connect" = [
+          #     "hfp_hf"
+          #     "hsp_hs"
+          #     "a2dp_sink"
+          #   ];
+          # };
         };
       };
       systemWide = true;

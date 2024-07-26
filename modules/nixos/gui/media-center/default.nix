@@ -66,22 +66,22 @@ in {
         pulse.enable = true;
         # If you want to use JACK applications, uncomment this
         # jack.enable = true;
-        extraConfig.pipewire-pulse."92-tcp" = {
-          context.modules = [
-            {
-              name = "module-native-protocol-tcp";
-              args = {};
-            }
-            {
-              name = "module-zeroconf-publish";
-              args = {};
-            }
-          ];
-          stream.properties = {
-            node.latency = "32/48000";
-            resample.quality = 1;
-          };
-        };
+        # extraConfig.pipewire-pulse."92-tcp" = {
+        #   context.modules = [
+        #     {
+        #       name = "module-native-protocol-tcp";
+        #       args = {};
+        #     }
+        #     {
+        #       name = "module-zeroconf-publish";
+        #       args = {};
+        #     }
+        #   ];
+        #   stream.properties = {
+        #     node.latency = "32/48000";
+        #     resample.quality = 1;
+        #   };
+        # };
       };
     };
 
