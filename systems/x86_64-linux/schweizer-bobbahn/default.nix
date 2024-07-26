@@ -87,7 +87,7 @@ with lib; {
       remote-builders.client.enable = true;
       # podman.enable = true;
       clipmenu.enable = mkForce false;
-      synergy.server = {enable = true;};
+      # synergy.server = {enable = true;};
       avahi = {
         enable = true;
         # allowInterfaces = [ "wlo1" ];

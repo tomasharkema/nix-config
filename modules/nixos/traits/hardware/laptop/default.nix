@@ -28,9 +28,9 @@ in {
     systemd.services.auto-cpufreq.path = [pkgs.getent];
 
     services = {
-      synergy.server = {
-        enable = true;
-      };
+      # synergy.server = {
+      #   enable = true;
+      # };
 
       thermald.enable = true;
 
