@@ -5,7 +5,7 @@
 }:
 with lib; {
   config = mkIf pkgs.stdenv.isLinux {
-    home.packages = with pkgs; [appindicator-sharp];
+    home.packages = with pkgs; [appindicator-sharp ddcui];
 
     dconf.settings ."org/gnome/shell".enabled-extensions = [
       "GPaste@gnome-shell-extensions.gnome.org"
@@ -26,6 +26,7 @@ with lib; {
           package =
             dash-to-panel;
         }
+        {package = reboottouefi;}
         # {
         #   package =
         #     executor;
@@ -131,7 +132,8 @@ with lib; {
         #   package =
         #     tophat;
         # }
-
+        {package = brightness-control-using-ddcutil;}
+        {package = control-monitor-brightness-and-volume-with-ddcutil;}
         {
           package =
             vitals;
@@ -140,7 +142,6 @@ with lib; {
           package =
             pip-on-top;
         }
-        # {package = systemd-manager;}
       ];
     };
   };
