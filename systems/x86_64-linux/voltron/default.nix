@@ -8,6 +8,9 @@
 with lib; {
   imports = with inputs; [
     ./hardware-configuration.nix
+
+    nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
+    nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
   ];
 
   config = {
@@ -37,20 +40,22 @@ with lib; {
         packages = with pkgs; [heimdall-gui libusb];
       };
 
-      fprintd = {
-        enable = true;
-        tod = {
-          enable = true;
-          driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
-            # calib-data-file = builtins.path {
-            #   path = config.age.secrets."calib-data".path;
-            #   name = "calib-data-file";
-            # };
-            #pkgs.writeText "calib" (builtins.readFile config.age.secrets."calib-data".path);
-            calib-data-file = ./calib-data.bin;
-          };
-        };
-      };
+      # fprintd = {
+      #   enable = true;
+      #   tod = {
+      #     enable = true;
+      #     driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
+      #       # calib-data-file = builtins.path {
+      #       #   path = config.age.secrets."calib-data".path;
+      #       #   name = "calib-data-file";
+      #       # };
+      #       #pkgs.writeText "calib" (builtins.readFile config.age.secrets."calib-data".path);
+      #       calib-data-file = ./calib-data.bin;
+      #     };
+      #   };
+      # };
+      open-fprintd.enable = true;
+      python-validity.enable = true;
     };
 
     home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
