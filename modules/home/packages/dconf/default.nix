@@ -25,6 +25,14 @@ with lib; {
         };
         "org/gnome/shell/extensions/vitals" = {
           "position-in-panel" = 0;
+          hot-sensors = [
+            "_processor_usage_"
+            "_memory_usage_"
+            "__temperature_avg__"
+            "__network-rx_max__"
+            "__network-tx_max__"
+            "_storage_free_"
+          ];
         };
 
         "org/gnome/desktop/wm/keybindings" = {
@@ -213,7 +221,7 @@ with lib; {
         # menu-separator-color='rgba(255,255,255,0.1)'
         # override-menu-theme=false
         # prefs-visible-page=0
-        # recently-installed-apps=['io.github.zefr0x.hashes.desktop', 'jetbrains-fleet.desktop', 'jetbrains-fleet-90197957-61d8-4533-a5f7-c295589d7b0e.desktop', 'jetbrains-goland-aa894a40-91d9-41a6-8f8a-a563c92db01f.desktop', 'qdirstat.desktop']
+        # recently-installed-apps=['io.github.zefr0x.hashes.desktop" "jetbrains-fleet.desktop" "jetbrains-fleet-90197957-61d8-4533-a5f7-c295589d7b0e.desktop" "jetbrains-goland-aa894a40-91d9-41a6-8f8a-a563c92db01f.desktop" "qdirstat.desktop']
         # search-entry-border-radius=(true, 25)
         # show-category-sub-menus=true
 
@@ -323,7 +331,7 @@ with lib; {
 # highlight-background-color='#F5E0DC'
 # highlight-colors-set=true
 # highlight-foreground-color='#1E1E2E'
-# palette=['#45475A', '#F38BA8', '#A6E3A1', '#F9E2AF', '#89B4FA', '#F5C2E7', '#94E2D5', '#BAC2DE', '#585B70', '#F38BA8', '#A6E3A1', '#F9E2AF', '#89B4FA', '#F5C2E7', '#94E2D5', '#A6ADC8']
+# palette=['#45475A" "#F38BA8" "#A6E3A1" "#F9E2AF" "#89B4FA" "#F5C2E7" "#94E2D5" "#BAC2DE" "#585B70" "#F38BA8" "#A6E3A1" "#F9E2AF" "#89B4FA" "#F5C2E7" "#94E2D5" "#A6ADC8']
 # use-system-font=false
 # use-theme-colors=false
 # visible-name='Default'

@@ -120,7 +120,7 @@ in {
         # transmission
         # waybar
         # caffeine-ng
-        ktailctl
+        unstable.ktailctl
         clutter
         effitask
         filezilla
@@ -146,19 +146,17 @@ in {
         qjournalctl
         rtfm
         sublime-merge
-        systemdgenie
-        tabby
-        transmission-remote-gtk
+        unstable.systemdgenie
+        unstable.transmission-remote-gtk
         unstable.trayscale
         unstable.tremotesf
         vsce
         unstable.vscode
-        unstable.vscodium
+        # unstable.vscodium
         vte-gtk4
         wezterm
         xdg-utils
         xdgmenumaker
-        xdiskusage
         xdiskusage
         xdotool
       ]
