@@ -27,10 +27,7 @@
           group = "tomas";
           path = "/home/tomas/.config/attic/netrc";
         };
-        attic-key = {
-          rekeyFile = ./attic-key.age;
-          mode = "666";
-        };
+
         tailscale = {
           rekeyFile = ./tailscale.age;
           mode = "644";
