@@ -197,10 +197,10 @@ with lib; {
     environment.etc."vgpu_unlock/profile_override.toml".text = ''
     '';
 
-    hardware.nvidia.vgpu = {
-      enable = true; # Enable NVIDIA KVM vGPU + GRID driver
-      unlock.enable = true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
-    };
+    # hardware.nvidia.vgpu = {
+    #   enable = true; # Enable NVIDIA KVM vGPU + GRID driver
+    #   unlock.enable = true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
+    # };
 
     boot = {
       recovery = {

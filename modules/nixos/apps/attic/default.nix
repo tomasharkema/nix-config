@@ -29,32 +29,34 @@ in {
   };
 
   config = mkIf cfg.enable {
-    systemd.user.services.attic-watch-store = {
+    systemd.services.attic-watch-store = {
       wantedBy = ["default.target"];
-      after = ["network-online.target"];
-      # Install.WantedBy = ["multi-user.target" "default.target"];
-      # environment.HOME = "/var/lib/attic-watch-store";
+      after = ["network-online.target" "nix-daemon.service"];
+
+      environment.HOME = "/var/lib/attic-watch-store";
+
       serviceConfig = {
-        # DynamicUser = true;
+        DynamicUser = true;
         MemoryHigh = "5%";
         MemoryMax = "10%";
         LoadCredential = "prod-auth-token:${config.age.secrets.attic-key.path}";
-        # StateDirectory = "attic-watch-store";
+        StateDirectory = "attic-watch-store";
       };
+
       path = [pkgs.attic-client];
       script = ''
         set -eux -o pipefail
         ATTIC_TOKEN=$(< $CREDENTIALS_DIRECTORY/prod-auth-token)
 
         attic login ${cfg.serverName} ${cfg.serverAddress} $ATTIC_TOKEN
-        attic use ${cfg.serverName}
+        # attic use ${cfg.serverName}
         exec attic watch-store ${cfg.serverName}:${cfg.storeName}
       '';
     };
 
-    # nix.settings = {
-    #   trusted-users = ["attic-watch-store"];
-    #   allowed-users = ["attic-watch-store"];
-    # };
+    nix.settings = {
+      trusted-users = ["attic-watch-store"];
+      allowed-users = ["attic-watch-store"];
+    };
   };
 }
