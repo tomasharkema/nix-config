@@ -18,8 +18,6 @@ with lib; {
       rekey = {
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIImcDgt9Pzve8g2auikBFQ3JkXB5UqoRfr7D22caGMgB root@voltron";
       };
-
-      secrets."calib-data".rekeyFile = ../../../modules/nixos/secrets/calib-data.age;
     };
 
     disks.btrfs = {
@@ -216,9 +214,11 @@ with lib; {
       extraModprobeConfig = ''
         options thinkpad_acpi fan_control=1
       '';
-
+      # extraModulePackages = [config.boot.kernelPackages.isgx];
+      kernelModules = ["isgx" "watchdog"];
       initrd.kernelModules = [
-        #  "watchdog"
+        # "watchdog"
+        # "isgx"
       ];
     };
   };
