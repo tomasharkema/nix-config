@@ -1,14 +1,19 @@
-{ config, osConfig, pkgs, lib, ... }:
+{
+  config,
+  osConfig,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-with lib.custom;
-let
+with lib.custom; let
   cfg = config.gui.apps.tilix;
 
   catppuchin = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "tilix";
-    rev = "3fd05e03419321f2f2a6aad6da733b28be1765ef";
-    hash = "sha256-SI7QxQ+WBHzeuXbTye+s8pi4tDVZOV4Aa33mRYO276k=";
+    rev = "07e53fce36e2162242c8b70f15996841df8f7ce2";
+    hash = "sha256-X8Ks33ELcedyvCA1espbyw4X1gxER6BB8PNxjE6mgk0=";
   };
 in {
   options.gui.apps.tilix = {
@@ -22,6 +27,6 @@ in {
       recursive = true;
     };
 
-    home.packages = with pkgs; [ tilix ];
+    home.packages = with pkgs; [unstable.tilix];
   };
 }

@@ -53,7 +53,8 @@ in {
         {package = firefox;}
         {package = gnome.geary;}
         {package = unstable.vscode;}
-        {package = unstable.kitty;}
+        {package = unstable.tilix;}
+        {package = config.programs.wezterm.package;}
         {package = unstable.telegram-desktop;}
         {package = osConfig.programs._1password-gui.package;}
         {package = unstable.notify-client;}
@@ -63,27 +64,32 @@ in {
         {id = "org.cockpit_project.CockpitClient.desktop";}
       ];
 
-    packagesToAdd = lists.concatMap ({
-      package ? null,
-      id ? null,
-    }:
-      if package != null
-      then [package]
-      else [])
-    favoriteApplications;
+    packagesToAdd =
+      lists.concatMap
+      ({
+        package ? null,
+        id ? null,
+      }:
+        if package != null
+        then [package]
+        else [])
+      favoriteApplications;
 
-    favoriteAppIds = lists.concatMap ({
-      package ? null,
-      id ? null,
-    }:
-      if package != null
-      then [(findDesktopFileBase package)]
-      else [id])
-    favoriteApplications;
+    favoriteAppIds =
+      lists.concatMap
+      ({
+        package ? null,
+        id ? null,
+      }:
+        if package != null
+        then [(findDesktopFileBase package)]
+        else [id])
+      favoriteApplications;
   in
     mkIf pkgs.stdenv.isLinux {
       home = {
-        file = builtins.listToAttrs (map (pkg: {
+        file = builtins.listToAttrs (map
+          (pkg: {
             name = ".config/autostart/${pkg.pname}.desktop";
             value =
               if pkg ? desktopItem
