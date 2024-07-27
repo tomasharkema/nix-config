@@ -500,9 +500,9 @@
                     ./secrets/age-yubikey-identity-usbc.pub
                     # "/etc/ssh/ssh_host_ed25519_key"
                   ];
-                  extraEncryptionPubkeys = [
-                    ./secrets/age-yubikey-identity-usba.pub
-                  ];
+                  # extraEncryptionPubkeys = [
+                  #   ./secrets/age-yubikey-identity-usba.pub
+                  # ];
 
                   storageMode = "local";
                   localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
@@ -566,9 +566,9 @@
                     ./secrets/age-yubikey-identity-usbc.pub
                   ];
 
-                  extraEncryptionPubkeys = [
-                    ./secrets/age-yubikey-identity-usba.pub
-                  ];
+                  # extraEncryptionPubkeys = [
+                  #   ./secrets/age-yubikey-identity-usba.pub
+                  # ];
 
                   storageMode = "local";
                   localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";

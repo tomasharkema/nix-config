@@ -10,8 +10,6 @@ with lib.custom; let
 in {
   options.apps.atop = {
     enable = mkEnableOption "atop";
-    service = mkBoolOpt true "atop service";
-    gpu = mkBoolOpt config.traits.hardware.nvidia.enable "atop gpu";
     httpd = mkEnableOption "atophttpd";
   };
 
@@ -20,9 +18,9 @@ in {
       atopRotateTimer.enable = true;
       enable = true;
       setuidWrapper.enable = true;
-      atopService.enable = cfg.service;
+      atopService.enable = true;
       atopacctService.enable = true;
-      atopgpu.enable = cfg.gpu;
+      atopgpu.enable = true;
       netatop.enable = true;
     };
 
