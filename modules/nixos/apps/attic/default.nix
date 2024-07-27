@@ -29,6 +29,11 @@ in {
   };
 
   config = mkIf cfg.enable {
+    age.secrets.attic-key = {
+      rekeyFile = ./attic-key.age;
+      #mode = "666";
+    };
+
     systemd.services.attic-watch-store = {
       wantedBy = ["default.target"];
       after = ["network-online.target" "nix-daemon.service"];
@@ -47,7 +52,7 @@ in {
       script = ''
         set -eux -o pipefail
         ATTIC_TOKEN=$(< $CREDENTIALS_DIRECTORY/prod-auth-token)
-
+        echo $ATTIC_TOKEN
         attic login ${cfg.serverName} ${cfg.serverAddress} $ATTIC_TOKEN
         # attic use ${cfg.serverName}
         exec attic watch-store ${cfg.serverName}:${cfg.storeName}
