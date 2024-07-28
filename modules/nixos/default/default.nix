@@ -58,7 +58,10 @@ with lib.custom;
       boot = {
         # bcache.enable = true;
         recovery.enable = mkDefault true;
-        initrd.systemd.emergencyAccess = "abcdefg";
+        initrd = {
+          systemd.emergencyAccess = "abcdefg";
+          includeDefaultModules = true;
+        };
 
         crashDump.enable = true;
 
