@@ -54,7 +54,7 @@ with lib; {
 
         # fh
         flake-checker
-        fup-repl
+        # fup-repl
         hydra-check
         hydra-cli
         manix

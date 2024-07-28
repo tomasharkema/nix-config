@@ -269,7 +269,7 @@ in {
       description = "Buildbot Continuous Integration Server.";
       after = ["network.target"];
       wantedBy = ["multi-user.target"];
-      path = cfg.packages ++ cfg.pythonPackages python.pkgs;
+      path = cfg.packages ++ cfg.pythonPackages python.pkgs ++ [pkgs.openssl];
       environment.PYTHONPATH = "${python.withPackages (self:
         cfg.pythonPackages self
         ++ [

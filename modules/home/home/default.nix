@@ -55,7 +55,7 @@ in
           wget2
           libnotify
 
-          fup-repl
+          # fup-repl
 
           udict
           # rtfm

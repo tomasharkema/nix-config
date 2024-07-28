@@ -1,7 +1,13 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 with lib;
-with lib.custom;
-let cfg = config.traits.hardware.tpm;
+with lib.custom; let
+  cfg = config.traits.hardware.tpm;
+  # https://nixos.wiki/wiki/TPM
 in {
   options.traits = {
     hardware.tpm = {
@@ -10,7 +16,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    system.nixos.tags = [ "tpm" ];
+    system.nixos.tags = ["tpm"];
 
     security.tpm2 = {
       enable = true;
@@ -18,11 +24,11 @@ in {
       pkcs11.enable = true;
 
       tctiEnvironment.enable = true;
-      # abrmd.enable = true;
+      abrmd.enable = true;
     };
 
-    users.users."tomas".extraGroups = [ "tss" ];
-    users.users."root".extraGroups = [ "tss" ];
+    users.users."tomas".extraGroups = ["tss"];
+    users.users."root".extraGroups = ["tss"];
 
     boot.initrd.systemd.enableTpm2 = true;
 
