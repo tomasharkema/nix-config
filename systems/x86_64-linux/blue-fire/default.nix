@@ -69,6 +69,10 @@ in {
       };
 
       buildbot-nix = {
+        worker = {
+          enable = true;
+          workerPasswordFile = pkgs.writeText "worker-password-file" "XXXXXXXXXXXXXXXXXXXX";
+        };
         master = {
           enable = true;
           domain = "buildbot.harkema.io";
@@ -78,11 +82,11 @@ in {
 
           workersFile = pkgs.writeText "workers.json" (builtins.toJSON
             [
-              # {
-              #   name = "eve";
-              #   pass = "XXXXXXXXXXXXXXXXXXXX";
-              #   cores = 16;
-              # }
+              {
+                name = "blue-fire";
+                pass = "XXXXXXXXXXXXXXXXXXXX";
+                cores = 8;
+              }
             ]); # FIXME fix to but in secure
 
           github = {
