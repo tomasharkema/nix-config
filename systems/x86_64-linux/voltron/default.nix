@@ -195,13 +195,11 @@ with lib; {
       login.fprintAuth = true;
     };
 
-    environment.etc."vgpu_unlock/profile_override.toml".text = ''
-    '';
-
-    # hardware.nvidia.vgpu = {
-    #   enable = true; # Enable NVIDIA KVM vGPU + GRID driver
-    #   unlock.enable = true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
-    # };
+    hardware.nvidia.vgpu = {
+      enable = true;
+      unlock.enable = true;
+      version = "v16.5";
+    };
 
     hardware.cpu.intel.sgx = {
       enableDcapCompat = true;
