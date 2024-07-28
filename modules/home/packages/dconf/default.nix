@@ -25,6 +25,7 @@ with lib; {
         };
         "org/gnome/shell/extensions/vitals" = {
           "position-in-panel" = 0;
+          show-gpu = true;
           hot-sensors = [
             "_processor_usage_"
             "_memory_usage_"
@@ -32,6 +33,7 @@ with lib; {
             "__network-rx_max__"
             "__network-tx_max__"
             "_storage_free_"
+            "_gpu#1_utilization_"
           ];
         };
 

@@ -56,8 +56,10 @@ in {
       pkgs.custom.libvirt-dbus
       # nemu
       qtemu
-
+      virt-top
       _86Box-with-roms
+      remotebox
+      virtio-win
 
       (pkgs.buildFHSEnv {
         name = "dosbox-x-glide";
@@ -128,6 +130,17 @@ in {
     boot.extraModprobeConfig = "options kvm_intel nested=1";
 
     virtualisation = {
+      virtualbox = {
+        host = {
+          enable = true;
+          enableExtensionPack = true;
+          # enableKvm = true;
+          enableWebService = true;
+          # addNetworkInterface = false;
+          # enableHardening = false;
+        };
+      };
+
       kvmgt.enable = true;
       # tpm.enable = true;
 
@@ -194,8 +207,8 @@ in {
     };
 
     users.users = {
-      "${config.user.name}".extraGroups = ["libvirtd" "qemu-libvirtd"];
-      "root".extraGroups = ["libvirtd" "qemu-libvirtd"];
+      "${config.user.name}".extraGroups = ["libvirtd" "qemu-libvirtd" "vboxusers"];
+      "root".extraGroups = ["libvirtd" "qemu-libvirtd" "vboxusers"];
     };
 
     networking = {
