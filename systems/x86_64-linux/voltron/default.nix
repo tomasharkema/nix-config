@@ -81,6 +81,9 @@ with lib; {
       glxinfo
       inxi
       pwvucontrol
+      sgx-ssl
+      sgx-sdk
+      sgx-psw
     ];
 
     # home-manager.users.tomas.dconf.settings."org/gnome/shell".enabled-extensions = ["Battery-Health-Charging@maniacx.github.com"];
@@ -200,6 +203,17 @@ with lib; {
     #   unlock.enable = true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
     # };
 
+    hardware.cpu.intel.sgx = {
+      enableDcapCompat = true;
+      provision = {
+        enable = true;
+      };
+    };
+
+    services.aesmd.enable = true;
+
+    users.users.tomas.extraGroups = ["sgx" "sgx_prv"];
+
     boot = {
       recovery = {
         enable = true;
@@ -216,10 +230,10 @@ with lib; {
       '';
       # extraModulePackages = [config.boot.kernelPackages.isgx];
       kernelModules = ["isgx" "watchdog"];
-      initrd.kernelModules = [
-        # "watchdog"
-        # "isgx"
-      ];
+      #initrd.kernelModules = [
+      #  "watchdog"
+      #  "isgx"
+      #];
     };
   };
 }
