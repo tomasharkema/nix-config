@@ -30,16 +30,19 @@ in {
         buildbot-github-app = {
           rekeyFile = ./buildbot-github-app.age;
           # owner = "buildbot";
-          mode = "777";
+          # mode = "777";
         };
         buildbot-github-oauth = {
           rekeyFile = ./buildbot-github-oauth.age;
-          owner = "buildbot";
-          mode = "777";
+          # owner = "buildbot";
+          # mode = "777";
         };
         buildbot-webhook = {
           rekeyFile = ./buildbot-webhook.age;
-          mode = "777";
+          # mode = "777";
+        };
+        github-token = {
+          rekeyFile = ./github-token.age;
         };
       };
       rekey = {
@@ -83,9 +86,12 @@ in {
             ]); # FIXME fix to but in secure
 
           github = {
-            authType.app = {
-              id = 949982;
-              secretKeyFile = config.age.secrets.buildbot-github-app.path;
+            # authType.app = {
+            #   id = 949982;
+            #   secretKeyFile = config.age.secrets.buildbot-github-app.path;
+            # };
+            authType.legacy = {
+              tokenFile = config.age.secrets.github-token.path;
             };
             oauthId = "Iv23ctLlUoYy2C1SFDZy";
             oauthSecretFile = config.age.secrets.buildbot-github-oauth.path;
