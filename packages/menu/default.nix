@@ -16,7 +16,7 @@ pkgs.writeShellApplication {
       dialog
       manix
       nix-search-cli
-      fup-repl
+      # fup-repl
     ]
     ++ (lib.optional pkgs.stdenv.isLinux nix-du);
 

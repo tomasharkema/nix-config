@@ -29,11 +29,17 @@ in {
       secrets = {
         buildbot-github-app = {
           rekeyFile = ./buildbot-github-app.age;
-          owner = "buildbot";
+          # owner = "buildbot";
+          mode = "777";
         };
         buildbot-github-oauth = {
           rekeyFile = ./buildbot-github-oauth.age;
           owner = "buildbot";
+          mode = "777";
+        };
+        buildbot-webhook = {
+          rekeyFile = ./buildbot-webhook.age;
+          mode = "777";
         };
       };
       rekey = {
@@ -49,25 +55,23 @@ in {
         #   c["protocols"] = {"pb": {"port": "tcp:9989:interface=\\:\\:"}}
         # '';
         # pythonPackages = ps: [
-        #   ps.bcrypt
-        #   ps.cryptography
-        #   ps.alembic
+        # ps.bcrypt
+        # ps.cryptography
+        # ps.alembic
         # ];
-      };
-      nginx.virtualHosts."buildbot.harkema.io" = {
+        # };
+        # nginx.virtualHosts."buildbot.harkema.io" = {
         # forceSSL = true;
         # useACMEHost = "harkema.io";
       };
-    };
 
-    services = {
       buildbot-nix = {
         master = {
           enable = true;
           domain = "buildbot.harkema.io";
           admins = ["tomasharkema"];
           outputsPath = "/var/www/buildbot/nix-outputs";
-          buildbotNixpkgs = pkgs.unstable; #inputs.unstable.legacyPackages."${pkgs.system}";
+          # buildbotNixpkgs = pkgs.unstable; #inputs.unstable.legacyPackages."${pkgs.system}";
 
           workersFile = pkgs.writeText "workers.json" (builtins.toJSON
             [
@@ -175,7 +179,7 @@ in {
       #   enableBot = true;
       # };
 
-      # tcsd.enable = true;
+      tcsd.enable = true;
       kmscon.enable = mkForce false;
 
       prometheus.exporters.ipmi.enable = true;

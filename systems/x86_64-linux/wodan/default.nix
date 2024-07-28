@@ -148,11 +148,11 @@ with lib; {
       btrbk.enable = true;
     };
 
-    # hardware.nvidia.vgpu = {
-    #   enable = true; # Enable NVIDIA KVM vGPU + GRID driver
-    #   unlock.enable = true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
-    #   version = "v17.1";
-    # };
+    hardware.nvidia.vgpu = {
+      enable = true;
+      unlock.enable = true;
+      version = "v17.1";
+    };
 
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];

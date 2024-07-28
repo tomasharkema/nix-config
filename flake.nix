@@ -512,11 +512,6 @@
                     rekeyFile = ./secrets/github.age;
                     mode = "666";
                   };
-                  buildbot-webhook = {
-                    rekeyFile = ./secrets/buildbot-webhook.age;
-                    generator.script = "base64";
-                    mode = "666";
-                  };
                 };
               };
 
