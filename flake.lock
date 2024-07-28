@@ -88,11 +88,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1722153371,
-        "narHash": "sha256-adPrnTWF+eFUbLbFJ0hWU9rRuNdLnNhy4zI+DCEAVsM=",
+        "lastModified": 1722182422,
+        "narHash": "sha256-NUG5CcCP0LiPilS8kFo3tSo67fYD/nsyK+ipFebHGKk=",
         "owner": "nix-community",
         "repo": "buildbot-nix",
-        "rev": "850fee93e9158c4c6a9ae8540c6a1075aa85e9c2",
+        "rev": "be21cda4410d02d0905f8c912b626b7325c97be8",
         "type": "github"
       },
       "original": {
@@ -874,11 +874,11 @@
     },
     "nixos-nvidia-vgpu": {
       "locked": {
-        "lastModified": 1721433324,
-        "narHash": "sha256-Q9Wm8HEya3CIwDk4oippwkNNqnqPSxFRY+jyKhQVLdA=",
+        "lastModified": 1722176430,
+        "narHash": "sha256-Y7rRCUncFns/eJvM2CWcuJZcytcK7oe4xIx9dPNDSjQ=",
         "owner": "tomasharkema",
         "repo": "nixos-nvidia-vgpu",
-        "rev": "ac653f75d314a66fce7bc32096a74b71546eee03",
+        "rev": "1ccf87a2ed45a4231634856fa842e98879a41c42",
         "type": "github"
       },
       "original": {
