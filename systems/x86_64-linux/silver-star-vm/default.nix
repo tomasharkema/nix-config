@@ -41,6 +41,7 @@ with lib; {
       # attic-server.enable = true;
       ipa.enable = false;
       mailrise.enable = true;
+      buildbot.enable = true;
     };
 
     services = {
