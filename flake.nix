@@ -598,7 +598,6 @@
         # };
       };
 
-      # checks =
       #   builtins.mapAttrs
       #   (system: deploy-lib:
       #     deploy-lib.deployChecks inputs.self.deploy)
@@ -683,9 +682,17 @@
       # formatter = inputs.nixpkgs.nixfmt;
       outputs-builder = channels: let
         pkgs = channels.nixpkgs;
+        system = pkgs.system;
         # cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
       in {
         formatter = channels.nixpkgs.alejandra;
+
+        checks = let
+          nixosMachines = lib.mapAttrs' (
+            name: config: lib.nameValuePair "nixos-${name}" config.config.system.build.toplevel
+          ) ((lib.filterAttrs (_: config: config.pkgs.system == system)) inputs.self.nixosConfigurations);
+        in
+          nixosMachines;
 
         # topology = import inputs.nix-topology {
         #   inherit pkgs;
