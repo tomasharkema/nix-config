@@ -41,9 +41,6 @@ in {
           rekeyFile = ./buildbot-webhook.age;
           # mode = "777";
         };
-        github-token = {
-          rekeyFile = ./github-token.age;
-        };
       };
       rekey = {
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVhJ1k25x/1A/zN96p48MGrPJxVboTe17rO9Mcb61qG root@blue-fire";
@@ -100,13 +97,13 @@ in {
 
           github = {
             topic = "buildbot-blue-fire";
-            # authType.app = {
-            #   id = 949982;
-            #   secretKeyFile = config.age.secrets.buildbot-github-app.path;
-            # };
-            authType.legacy = {
-              tokenFile = config.age.secrets.github-token.path;
+            authType.app = {
+              id = 949982;
+              secretKeyFile = config.age.secrets.buildbot-github-app.path;
             };
+            # authType.legacy = {
+            #   tokenFile = config.age.secrets.github-token.path;
+            # };
             oauthId = "Iv23ctLlUoYy2C1SFDZy";
             oauthSecretFile = config.age.secrets.buildbot-github-oauth.path;
             webhookSecretFile = config.age.secrets.buildbot-webhook.path;
