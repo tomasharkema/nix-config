@@ -679,6 +679,8 @@
         # lib.attrsets.filterAttrs (n: v: (builtins.hasAttr "enable" n) && n.enable) self.nixosConfigurations.pegasus.config.services;
       };
 
+      checks = inputs.self.images.installer.iso;
+
       # formatter = inputs.nixpkgs.nixfmt;
       outputs-builder = channels: let
         pkgs = channels.nixpkgs;
@@ -691,12 +693,8 @@
           nixosMachines = lib.mapAttrs' (
             name: config: lib.nameValuePair "nixos-${name}" config.config.system.build.toplevel
           ) ((lib.filterAttrs (_: config: config.pkgs.system == system)) inputs.self.nixosConfigurations);
-
-          imgs = lib.mapAttrs' (
-            name: config: lib.nameValuePair "img-${name}" config.config.system.build.toplevel
-          ) ((lib.filterAttrs (_: config: config.pkgs.system == system)) inputs.self.images.installer.iso);
         in
-          nixosMachines // imgs;
+          nixosMachines;
 
         # topology = import inputs.nix-topology {
         #   inherit pkgs;
