@@ -188,6 +188,7 @@ with lib; {
         # allowInterfaces = ["wlp59s0"];
         reflector = mkForce false;
       };
+      aesmd.enable = true;
     };
 
     security.pam.services = {
@@ -195,11 +196,11 @@ with lib; {
       login.fprintAuth = true;
     };
 
-    hardware.nvidia.vgpu = {
-      enable = true;
-      unlock.enable = true;
-      version = "v16.5";
-    };
+    # hardware.nvidia.vgpu = {
+    #   enable = true;
+    #   unlock.enable = true;
+    #   version = "v16.5";
+    # };
 
     hardware.cpu.intel.sgx = {
       enableDcapCompat = true;
@@ -207,8 +208,6 @@ with lib; {
         enable = true;
       };
     };
-
-    services.aesmd.enable = true;
 
     users.users.tomas.extraGroups = ["sgx" "sgx_prv"];
 
