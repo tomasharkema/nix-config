@@ -99,6 +99,7 @@ in {
             ]); # FIXME fix to but in secure
 
           github = {
+            topic = "buildbot-blue-fire";
             # authType.app = {
             #   id = 949982;
             #   secretKeyFile = config.age.secrets.buildbot-github-app.path;
