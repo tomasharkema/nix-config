@@ -88,7 +88,10 @@ with lib; {
     networking = {
       hostName = "silver-star-vm";
 
-      firewall.enable = true;
+      firewall = {
+        enable = true;
+        allowedTCPPorts = [config.services.buildbot-master.port config.apps.buildbot.workerPort];
+      };
       # wireless.enable = lib.mkDefault false;
       networkmanager.enable = mkForce false; # true;
 
