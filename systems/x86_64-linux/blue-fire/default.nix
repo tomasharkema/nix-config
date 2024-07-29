@@ -42,6 +42,12 @@ in {
           rekeyFile = ./buildbot-webhook.age;
           # mode = "777";
         };
+        buildbot-worker-password = {
+          rekeyFile = ./buildbot-worker-password.age;
+        };
+        buildbot-workers-json = {
+          rekeyFile = ./buildbot-workers-json.age;
+        };
       };
       rekey = {
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVhJ1k25x/1A/zN96p48MGrPJxVboTe17rO9Mcb61qG root@blue-fire";
@@ -56,7 +62,7 @@ in {
       buildbot-nix = {
         worker = {
           enable = true;
-          workerPasswordFile = pkgs.writeText "worker-password-file" "XXXXXXXXXXXXXXXXXXXX";
+          workerPasswordFile = config.age.secrets.buildbot-worker-password.path;
           masterUrl = ''tcp:host=blue-fire:port=${workerPort}'';
           buildbotNixpkgs = pkgs.unstable; #inputs.unstable.legacyPackages."${pkgs.system}";
         };
@@ -65,16 +71,9 @@ in {
           domain = "buildbot.harkema.io";
           admins = ["tomasharkema"];
           outputsPath = "/var/www/buildbot/nix-outputs";
-          # buildbotNixpkgs = pkgs.unstable; #inputs.unstable.legacyPackages."${pkgs.system}";
+          buildbotNixpkgs = pkgs.unstable;
 
-          workersFile = pkgs.writeText "workers.json" (builtins.toJSON
-            [
-              {
-                name = "blue-fire";
-                pass = "XXXXXXXXXXXXXXXXXXXX";
-                cores = 8;
-              }
-            ]); # FIXME fix to but in secure
+          workersFile = config.age.secrets.buildbot-workers-json.path;
 
           github = {
             topic = "buildbot-blue-fire";
