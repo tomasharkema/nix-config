@@ -68,10 +68,19 @@ in {
         # useACMEHost = "harkema.io";
       };
 
+      # nginx.virtualHosts."buildbot.harkema.io" = {
+      #   forceSSL = true;
+      #   enableACME = true;
+      # };
+      buildbot-master = {
+        buildbotUrl = mkForce "https://buildbot.harkema.io/";
+      };
       buildbot-nix = {
         worker = {
           enable = true;
           workerPasswordFile = pkgs.writeText "worker-password-file" "XXXXXXXXXXXXXXXXXXXX";
+          masterUrl = ''tcp:host=blue-fire:port=9989'';
+          buildbotNixpkgs = pkgs.unstable; #inputs.unstable.legacyPackages."${pkgs.system}";
         };
         master = {
           enable = true;
@@ -102,7 +111,6 @@ in {
             webhookSecretFile = config.age.secrets.buildbot-webhook.path;
           };
         };
-        worker.masterUrl = ''tcp:host=blue-fire:port=9989'';
       };
     };
 
