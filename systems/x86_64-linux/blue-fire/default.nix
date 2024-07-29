@@ -98,13 +98,13 @@ in {
           github = {
             topic = "buildbot-blue-fire";
             authType.app = {
-              id = 949982;
+              id = 955900;
               secretKeyFile = config.age.secrets.buildbot-github-app.path;
             };
             # authType.legacy = {
             #   tokenFile = config.age.secrets.github-token.path;
             # };
-            oauthId = "Iv23ctLlUoYy2C1SFDZy";
+            oauthId = "Iv23liipuBZrzJdgvCvc";
             oauthSecretFile = config.age.secrets.buildbot-github-oauth.path;
             webhookSecretFile = config.age.secrets.buildbot-webhook.path;
           };
