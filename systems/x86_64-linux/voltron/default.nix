@@ -139,7 +139,7 @@ with lib; {
       #   bridgeInterfaces = ["wlp59s0"];
     };
 
-    # virtualisation.waydroid.enable = true;
+    virtualisation.waydroid.enable = true;
 
     traits = {
       hardware = {
@@ -192,8 +192,36 @@ with lib; {
     };
 
     security.pam.services = {
-      xscreensaver.fprintAuth = true;
-      login.fprintAuth = true;
+      xscreensaver = {
+        fprintAuth = true;
+        text = ''
+
+          # Account management.
+          account sufficient ${pkgs.sssd}/lib/security/pam_sss.so # sss (order 10400)
+          account required pam_unix.so # unix (order 10900)
+
+          # Authentication management.
+          auth sufficient pam_unix.so likeauth try_first_pass # unix (order 11500)
+          auth sufficient ${inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients}/lib/security/pam_fprintd.so
+          auth sufficient ${pkgs.sssd}/lib/security/pam_sss.so use_first_pass # sss (order 11900)
+          auth required pam_deny.so # deny (order 12300)
+
+          # Password management.
+          password sufficient pam_unix.so nullok yescrypt # unix (order 10200)
+          password sufficient ${pkgs.sssd}/lib/security/pam_sss.so # sss (order 11000)
+
+          # Session management.
+          session required pam_env.so conffile=/etc/pam/environment readenv=0 # env (order 10100)
+          session required pam_unix.so # unix (order 10200)
+          session optional ${pkgs.sssd}/lib/security/pam_sss.so # sss (order 11700)
+          session required ${pkgs.linux-pam}/lib/security/pam_limits.so conf=/nix/store/41cmfs9dq5zx16q88qdb68qrgr7cjfwk-limits.conf # limits (order 12200)
+
+        '';
+      };
+
+      login = {
+        fprintAuth = true;
+      };
     };
 
     # hardware.nvidia.vgpu = {
