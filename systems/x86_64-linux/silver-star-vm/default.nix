@@ -90,7 +90,7 @@ with lib; {
 
       firewall = {
         enable = true;
-        allowedTCPPorts = [config.services.buildbot-master.port config.apps.buildbot.workerPort];
+        allowedTCPPorts = [(toInt config.services.buildbot-master.port) (toInt config.apps.buildbot.workerPort)];
       };
       # wireless.enable = lib.mkDefault false;
       networkmanager.enable = mkForce false; # true;
