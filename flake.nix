@@ -691,8 +691,12 @@
           nixosMachines = lib.mapAttrs' (
             name: config: lib.nameValuePair "nixos-${name}" config.config.system.build.toplevel
           ) ((lib.filterAttrs (_: config: config.pkgs.system == system)) inputs.self.nixosConfigurations);
+
+          imgs = lib.mapAttrs' (
+            name: config: lib.nameValuePair "img-${name}" config.config.system.build.toplevel
+          ) ((lib.filterAttrs (_: config: config.pkgs.system == system)) inputs.self.images.installer.iso);
         in
-          nixosMachines;
+          nixosMachines // imgs;
 
         # topology = import inputs.nix-topology {
         #   inherit pkgs;
