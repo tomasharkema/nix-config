@@ -4,14 +4,13 @@
   pkgs,
   ...
 }:
-with lib;
-with lib.custom; let
+with lib; let
   cfg = config.traits.hardware.tpm;
   # https://nixos.wiki/wiki/TPM
 in {
   options.traits = {
     hardware.tpm = {
-      enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
+      enable = mkEnableOption "SnowflakeOS GNOME configuration";
     };
   };
 
@@ -41,7 +40,7 @@ in {
       # tpm2-totp
       # tpm2-tss
       tpmmanager
-      # pkgs.custom.ssh-tpm-agent
+      ssh-tpm-agent
     ];
   };
 }

@@ -693,8 +693,11 @@
           nixosMachines = lib.mapAttrs' (
             name: config: lib.nameValuePair "nixos-${name}" config.config.system.build.toplevel
           ) ((lib.filterAttrs (_: config: config.pkgs.system == system)) inputs.self.nixosConfigurations);
+          packages = lib.mapAttrs' (n: lib.nameValuePair "package-${n}") (
+            inputs.self.packages."${system}"
+          );
         in
-          nixosMachines;
+          nixosMachines // packages;
 
         # topology = import inputs.nix-topology {
         #   inherit pkgs;
