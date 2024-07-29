@@ -9,6 +9,7 @@ with lib; let
   boot-into-bios = pkgs.writeShellScriptBin "boot-into-bios" ''
     sudo ${pkgs.ipmitool}/bin/ipmitool chassis bootparam set bootflag force_bios
   '';
+  workerPort = "9988";
 in {
   imports = with inputs; [
     ./hardware-configuration.nix
@@ -49,34 +50,14 @@ in {
 
     services = {
       buildbot-master = {
-        # extraConfig = ''
-        #   from buildbot.manhole import AuthorizedKeysManhole
-        #   c['manhole'] = AuthorizedKeysManhole("tcp:12456", "/etc/ssh/authorized_keys.d/joerg", "/var/lib/buildbot/master/ssh/")
-        #   c["protocols"] = {"pb": {"port": "tcp:9989:interface=\\:\\:"}}
-        # '';
-        # pythonPackages = ps: [
-        # ps.bcrypt
-        # ps.cryptography
-        # ps.alembic
-        # ];
-        # };
-        # nginx.virtualHosts."buildbot.harkema.io" = {
-        # forceSSL = true;
-        # useACMEHost = "harkema.io";
-      };
-
-      # nginx.virtualHosts."buildbot.harkema.io" = {
-      #   forceSSL = true;
-      #   enableACME = true;
-      # };
-      buildbot-master = {
         buildbotUrl = mkForce "https://buildbot.harkema.io/";
+        pbPort = "'tcp:${workerPort}:interface=0.0.0.0'";
       };
       buildbot-nix = {
         worker = {
           enable = true;
           workerPasswordFile = pkgs.writeText "worker-password-file" "XXXXXXXXXXXXXXXXXXXX";
-          masterUrl = ''tcp:host=blue-fire:port=9989'';
+          masterUrl = ''tcp:host=blue-fire:port=${workerPort}'';
           buildbotNixpkgs = pkgs.unstable; #inputs.unstable.legacyPackages."${pkgs.system}";
         };
         master = {
