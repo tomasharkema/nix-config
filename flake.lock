@@ -143,11 +143,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1722218501,
-        "narHash": "sha256-LksFrDE5QxcTYscDF5iVkysJZ2vyvQIO9PvSbf0OQis=",
+        "lastModified": 1722284031,
+        "narHash": "sha256-FYsLvA5Evs/7Z3nPt+EgdUYLCCbO9dZtXomRBhEJXTs=",
         "owner": "brndnmtthws",
         "repo": "conky",
-        "rev": "9afcfadebb06073fae509b73240a90fb0c49d882",
+        "rev": "7ec86cfbd8d80b0df29d0bb65b0ce49519b3a91c",
         "type": "github"
       },
       "original": {
@@ -524,11 +524,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1722082611,
-        "narHash": "sha256-V3l8hVgAjRr5aVWx7sTHTUFUz+wtlQvEzN7O4Y1qyc8=",
+        "lastModified": 1722286518,
+        "narHash": "sha256-Q/jADJiIpTORBdOMnp7hjwcqvUnEWG2ypGlls+CZa5g=",
         "owner": "nix-community",
         "repo": "lanzaboote",
-        "rev": "2250c381fcb652273c0eba5e093dcdb31beeb3f8",
+        "rev": "0bc91abf12a0544637f5a7fdf04f55a3287443cd",
         "type": "github"
       },
       "original": {
@@ -834,11 +834,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1722114937,
-        "narHash": "sha256-MOZ9woPwdpFJcHx3wic2Mlw9aztdKjMnFT3FaeLzJkM=",
+        "lastModified": 1722278305,
+        "narHash": "sha256-xLBAegsn9wbj+pQfbX07kykd5VBV3Ywk3IbObVAAlWA=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "e67b60fb1b2c3aad2202d95b91d4c218cf2a4fdd",
+        "rev": "eab049fe178c11395d65a858ba1b56461ba9652d",
         "type": "github"
       },
       "original": {
@@ -1064,11 +1064,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1721039874,
-        "narHash": "sha256-XANsG9GYHip8pxZpbqKf/YGv8tIa0xTh289Y+WNBNfw=",
+        "lastModified": 1722279390,
+        "narHash": "sha256-jHK7nPGOuj1dgSExcGsOrHpSyCmzbPvb5z/y4DlikHg=",
         "owner": "nix-community",
         "repo": "poetry2nix",
-        "rev": "d11c01e58587e5f21037ed6477465a7f26a32e27",
+        "rev": "0ed8a1fd7fcdb7f7e9e99dfa7d2b7e7ffb617ce4",
         "type": "github"
       },
       "original": {
@@ -1135,6 +1135,7 @@
         "snowfall-flake": "snowfall-flake",
         "snowfall-lib": "snowfall-lib",
         "systems": "systems_3",
+        "tailscalesd": "tailscalesd",
         "treefmt-nix": "treefmt-nix_2",
         "unstable": "unstable"
       }
@@ -1249,6 +1250,29 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tailscalesd": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1722297447,
+        "narHash": "sha256-HyKYrqy2pdFB0ze00XJ93zyY5mdps6FQ2a52E3iL4IQ=",
+        "owner": "tomasharkema",
+        "repo": "tailscalesd",
+        "rev": "6e81b695cfbc05f0d1b8d98b53548679b012affa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tomasharkema",
+        "repo": "tailscalesd",
         "type": "github"
       }
     },

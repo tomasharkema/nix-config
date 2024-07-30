@@ -112,8 +112,11 @@ in {
       tcsd.enable = true;
       kmscon.enable = mkForce false;
 
-      prometheus.exporters.ipmi.enable = true;
-
+      prometheus.exporters = {
+        ipmi = {
+          enable = true;
+        };
+      };
       # nfs = {
       #   server = {
       #     enable = true;
