@@ -25,11 +25,16 @@ in {
             "sshd.target"
           ];
           requires = ["ssh-tpm-agent.socket"];
+
+          description = "ssh-tpm-agent service";
+          # documentation = ''
+          #   man:ssh-agent(1) man:ssh-add(1) man:ssh(1)
+          # '';
+
           unitConfig = {
             ConditionEnvironment = "!SSH_AGENT_PID";
-            Description = "ssh-tpm-agent service";
-            Documentation = "man:ssh-agent(1) man:ssh-add(1) man:ssh(1)";
           };
+
           serviceConfig = {
             ExecStart = "${pkgs.ssh-tpm-agent}/bin/ssh-tpm-agent --key-dir /etc/ssh";
             PassEnvironment = "SSH_AGENT_PID";
@@ -40,8 +45,10 @@ in {
 
         ssh-tpm-genkeys = {
           enable = true;
+
+          description = "SSH TPM Key Generation";
+
           unitConfig = {
-            Description = "SSH TPM Key Generation";
             ConditionPathExists = [
               "|!/etc/ssh/ssh_tpm_host_ecdsa_key.tpm"
               "|!/etc/ssh/ssh_tpm_host_ecdsa_key.pub"
@@ -61,10 +68,11 @@ in {
       sockets = {
         ssh-tpm-agent = {
           enable = true;
-          unitConfig = {
-            Description = "SSH TPM agent socket";
-            Documentation = "man:ssh-agent(1) man:ssh-add(1) man:ssh(1)";
-          };
+
+          description = "SSH TPM agent socket";
+          # documentation = ''
+          #   man:ssh-agent(1) man:ssh-add(1) man:ssh(1)
+          # '';
 
           socketConfig = {
             ListenStream = "/var/tmp/ssh-tpm-agent.sock";
@@ -77,10 +85,14 @@ in {
       user = {
         services.ssh-tpm-agent = {
           enable = true;
+
+          description = "ssh-tpm-agent service";
+          # documentation = ''
+          #   man:ssh-agent(1) man:ssh-add(1) man:ssh(1)
+          # '';
+
           unitConfig = {
             ConditionEnvironment = "!SSH_AGENT_PID";
-            Description = "ssh-tpm-agent service";
-            Documentation = "man:ssh-agent(1) man:ssh-add(1) man:ssh(1)";
             Requires = "ssh-tpm-agent.socket";
           };
           serviceConfig = {
@@ -90,21 +102,21 @@ in {
             SuccessExitStatus = 2;
             Type = "simple";
           };
-          Install.Also = "ssh-agent.socket";
+          # Install.Also = "ssh-agent.socket";
         };
         sockets.ssh-tpm-agent = {
           enable = true;
 
           unitConfig = {
             Description = "SSH TPM agent socket";
-            Documentation = "man:ssh-agent(1) man:ssh-add(1) man:ssh(1)";
+            # Documentation = "man:ssh-agent(1) man:ssh-add(1) man:ssh(1)";
           };
           socketConfig = {
             ListenStream = "%t/ssh-tpm-agent.sock";
             SocketMode = 0600;
             Service = "ssh-tpm-agent.service";
           };
-          Install.WantedBy = "sockets.target";
+          # Install.WantedBy = "sockets.target";
         };
       };
     };
