@@ -218,12 +218,12 @@ with lib.custom;
       systemd = {
         enableEmergencyMode = mkDefault false;
 
-        # watchdog = {
-        #   device = "/dev/watchdog";
-        #   runtimeTime = "5m";
-        #   kexecTime = "5m";
-        #   rebootTime = "5m";
-        # };
+        watchdog = {
+          device = "/dev/watchdog";
+          runtimeTime = "5m";
+          kexecTime = "5m";
+          rebootTime = "5m";
+        };
 
         #   services = {
         #     "numlockx" = {
@@ -248,7 +248,7 @@ with lib.custom;
       };
 
       services = {
-        # watchdogd = {enable = true;};
+        watchdogd = {enable = true;};
 
         dbus = {
           enable = true;
