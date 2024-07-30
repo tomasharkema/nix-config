@@ -100,8 +100,8 @@ in {
           http_listen_port = 3031;
           grpc_listen_port = 0;
         };
-        positions = {filename = "/tmp/positions.yaml";};
-        clients = [{url = "http://100.122.146.5:3100/loki/api/v1/push";}];
+        positions = {filename = "/var/lib/promtail/positions.yaml";};
+        clients = [{url = "http://silver-star:3100/loki/api/v1/push";}];
         scrape_configs = [
           {
             job_name = "journal";
