@@ -61,8 +61,12 @@ with lib; {
       {package = fnlock-switch-thinkpad-compact-usb-keyboard;}
     ];
 
-    security.pam.services."gdm-fingerprint".enableGnomeKeyring = true;
+    security = {
+      pam.services."gdm-fingerprint".enableGnomeKeyring = true;
 
+      audit.enable = true;
+      auditd.enable = true;
+    };
     environment.systemPackages = with pkgs; [
       libusb
       tp-auto-kbbl
@@ -74,9 +78,8 @@ with lib; {
       tpacpi-bat
       gnupg
       custom.distrib-dl
-      custom.ancs4linux
       davinci-resolve
-      bolt
+
       # calibre
       glxinfo
       inxi
