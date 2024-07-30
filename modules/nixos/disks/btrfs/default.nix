@@ -151,36 +151,36 @@ in
           enable = true;
           fileSystems = ["/"];
         };
-        snapper = {
-          snapshotRootOnBoot = true;
-          snapshotInterval = "hourly";
-          cleanupInterval = "1d";
+        # snapper = {
+        #   snapshotRootOnBoot = true;
+        #   snapshotInterval = "hourly";
+        #   cleanupInterval = "1d";
 
-          configs = {
-            "home" = {
-              SUBVOLUME = "/home";
-              ALLOW_USERS = ["tomas" "root"];
-              TIMELINE_CREATE = true;
-              TIMELINE_CLEANUP = true;
-              TIMELINE_LIMIT_HOURLY = "5";
-              TIMELINE_LIMIT_DAILY = "7";
-              TIMELINE_LIMIT_WEEKLY = "2";
-              TIMELINE_LIMIT_MONTHLY = "1";
-              TIMELINE_LIMIT_YEARLY = "0";
-            };
-            "root" = {
-              SUBVOLUME = "/";
-              ALLOW_USERS = ["tomas" "root"];
-              TIMELINE_CREATE = true;
-              TIMELINE_CLEANUP = true;
-              TIMELINE_LIMIT_HOURLY = "5";
-              TIMELINE_LIMIT_DAILY = "7";
-              TIMELINE_LIMIT_WEEKLY = "2";
-              TIMELINE_LIMIT_MONTHLY = "1";
-              TIMELINE_LIMIT_YEARLY = "0";
-            };
-          };
-        };
+        #   configs = {
+        #     "home" = {
+        #       SUBVOLUME = "/home";
+        #       ALLOW_USERS = ["tomas" "root"];
+        #       TIMELINE_CREATE = true;
+        #       TIMELINE_CLEANUP = true;
+        #       TIMELINE_LIMIT_HOURLY = "5";
+        #       TIMELINE_LIMIT_DAILY = "7";
+        #       TIMELINE_LIMIT_WEEKLY = "2";
+        #       TIMELINE_LIMIT_MONTHLY = "1";
+        #       TIMELINE_LIMIT_YEARLY = "0";
+        #     };
+        #     "root" = {
+        #       SUBVOLUME = "/";
+        #       ALLOW_USERS = ["tomas" "root"];
+        #       TIMELINE_CREATE = true;
+        #       TIMELINE_CLEANUP = true;
+        #       TIMELINE_LIMIT_HOURLY = "5";
+        #       TIMELINE_LIMIT_DAILY = "7";
+        #       TIMELINE_LIMIT_WEEKLY = "2";
+        #       TIMELINE_LIMIT_MONTHLY = "1";
+        #       TIMELINE_LIMIT_YEARLY = "0";
+        #     };
+        #   };
+        # };
         # beesd = {
         #   filesystems = {
         #     root = {
@@ -200,7 +200,7 @@ in
         btrfs-snap
         btrfs-progs
         btrfs-heatmap
-        btrbk
+        # btrbk
         # timeshift
       ];
 
