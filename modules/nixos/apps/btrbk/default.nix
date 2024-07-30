@@ -7,10 +7,10 @@
 with lib; {
   options.disks.btrfs.btrbk = {enable = mkEnableOption "btrbk";};
 
-  config = mkIf (config.disks.btrfs.enable && config.disks.btrfs.btrbk.enable && false) {
+  config = mkIf (config.disks.btrfs.enable && config.disks.btrfs.btrbk.enable) {
     age.secrets.btrbk = {
-      rekeyFile = ../../secrets/btrbk.age;
-      mode = "600";
+      rekeyFile = ./btrbk.age;
+      # mode = "600";
       owner = "btrbk";
       group = "btrbk";
     };
@@ -22,11 +22,11 @@ with lib; {
         onCalendar = "hourly";
 
         settings = {
-          snapshot_preserve = "14d";
+          # snapshot_preserve = "2d";
           snapshot_preserve_min = "2d";
 
-          target_preserve_min = "no";
-          target_preserve = "20d 10w 1m";
+          # target_preserve_min = "no";
+          target_preserve = "20d";
 
           raw_target_compress = "zstd";
           raw_target_split = "100M";
