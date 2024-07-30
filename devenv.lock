@@ -10,11 +10,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1721402988,
+        "lastModified": 1722299223,
         "owner": "oddlama",
         "repo": "agenix-rekey",
-        "rev": "3f1c787e2092d9c13142ae7572cc1c52b68f1c4c",
-        "treeHash": "7f4553f95b85acf6fe96b6109c12f28fac551391",
+        "rev": "4107b53b152f4ddc504269ec17c4b7005869d762",
+        "treeHash": "6211cdd81ffcfdffdd96f23e1020e1367acf2fb4",
         "type": "github"
       },
       "original": {
