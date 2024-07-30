@@ -68,11 +68,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1721402988,
-        "narHash": "sha256-O5j5y5gpssVF5FNsSF7joTyrlW//LpwyLk6yBWgQ0VE=",
+        "lastModified": 1722299223,
+        "narHash": "sha256-+5HNJBXb9YXKSmi2TJsnftrgU/msF/4jBAMH9J1bc5c=",
         "owner": "oddlama",
         "repo": "agenix-rekey",
-        "rev": "3f1c787e2092d9c13142ae7572cc1c52b68f1c4c",
+        "rev": "4107b53b152f4ddc504269ec17c4b7005869d762",
         "type": "github"
       },
       "original": {
@@ -113,23 +113,6 @@
       "original": {
         "owner": "catppuccin",
         "repo": "nix",
-        "type": "github"
-      }
-    },
-    "checkmk": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1715668589,
-        "narHash": "sha256-rk+OZOvAFWTaV5TZrWjoDQdH9atb78m0dUZvAQLSE8E=",
-        "owner": "tribe29",
-        "repo": "checkmk",
-        "rev": "5ba483a2e011b281853e3d4789c7f77d5bd2915c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tribe29",
-        "ref": "v2.3.0p2",
-        "repo": "checkmk",
         "type": "github"
       }
     },
@@ -787,27 +770,6 @@
         "type": "github"
       }
     },
-    "nixos-checkmk": {
-      "inputs": {
-        "checkmk": "checkmk",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1716812986,
-        "narHash": "sha256-xe2snAE7rW733HfcO9ijO9f/NUtG5Raor8dVpNKyG0s=",
-        "owner": "tomasharkema",
-        "repo": "nixos-checkmk",
-        "rev": "7e12da544c6c930a1b224055f9684811a1938d1d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tomasharkema",
-        "repo": "nixos-checkmk",
-        "type": "github"
-      }
-    },
     "nixos-dash-docset": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -1064,11 +1026,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1722279390,
-        "narHash": "sha256-jHK7nPGOuj1dgSExcGsOrHpSyCmzbPvb5z/y4DlikHg=",
+        "lastModified": 1722300206,
+        "narHash": "sha256-lSF96eM7lJPYl2nd63t2zGWIvZEWSf1BOaP1Rf2q9mI=",
         "owner": "nix-community",
         "repo": "poetry2nix",
-        "rev": "0ed8a1fd7fcdb7f7e9e99dfa7d2b7e7ffb617ce4",
+        "rev": "1dcd9fdca06bf28bdd6eeab0a464f4bc5d643bca",
         "type": "github"
       },
       "original": {
@@ -1124,7 +1086,6 @@
         "nix-virt": "nix-virt",
         "nixos-06cb-009a-fingerprint-sensor": "nixos-06cb-009a-fingerprint-sensor",
         "nixos-anywhere": "nixos-anywhere",
-        "nixos-checkmk": "nixos-checkmk",
         "nixos-dash-docset": "nixos-dash-docset",
         "nixos-hardware": "nixos-hardware",
         "nixos-nvidia-vgpu": "nixos-nvidia-vgpu",

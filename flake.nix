@@ -226,11 +226,11 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    nixos-checkmk = {
-      url = "github:tomasharkema/nixos-checkmk";
+    # nixos-checkmk = {
+    #   url = "github:tomasharkema/nixos-checkmk";
 
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     poetry2nix = {
       url = "github:nix-community/poetry2nix";
@@ -433,7 +433,7 @@
         # nix-otel.overlays.default
         # peerix.overlay
         snowfall-flake.overlays."package/flake"
-        nixos-checkmk.overlays.default
+        # nixos-checkmk.overlays.default
         # nixos-service.overlays.default
         agenix-rekey.overlays.default
         nixvim.overlays.default
@@ -475,7 +475,7 @@
         nixos = with inputs; [
           # nix-topology.nixosModules.default
           # netkit.nixosModule
-          nixos-checkmk.nixosModules.check_mk_agent
+          # nixos-checkmk.nixosModules.check_mk_agent
 
           catppuccin.nixosModules.catppuccin
           buildbot-nix.nixosModules.buildbot-worker
