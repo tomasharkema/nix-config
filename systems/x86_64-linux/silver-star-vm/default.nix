@@ -14,6 +14,10 @@ with lib; {
 
     headless.enable = true;
 
+    zramSwap.enable = false;
+    swapDevices =
+      mkForce [
+      ];
     traits = {
       hardware = {
         tpm.enable = true;
@@ -89,7 +93,7 @@ with lib; {
       hostName = "silver-star-vm";
 
       firewall = {
-        enable = true;
+        enable = false;
         allowedTCPPorts = [config.services.buildbot-master.port (toInt config.apps.buildbot.workerPort)];
       };
       # wireless.enable = lib.mkDefault false;

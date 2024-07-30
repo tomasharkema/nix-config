@@ -35,7 +35,6 @@
       url = "github:numtide/devshell";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
       };
     };
 
@@ -329,6 +328,15 @@
 
     nix-htop = {
       url = "https://flakehub.com/f/tomasharkema/nix-htop/0.0.*.tar.gz";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
+
+    tailscalesd = {
+      url = "github:tomasharkema/tailscalesd";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";

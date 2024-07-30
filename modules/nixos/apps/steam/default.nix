@@ -93,8 +93,8 @@ in {
       driSupport = true;
       driSupport32Bit = true;
 
-      extraPackages = with pkgs; [mangohud];
-      extraPackages32 = with pkgs; [mangohud];
+      # extraPackages = with pkgs; [mangohud];
+      # extraPackages32 = with pkgs; [mangohud];
     };
   };
 }
