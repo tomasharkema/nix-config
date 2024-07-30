@@ -85,14 +85,7 @@ in {
           });
       };
     };
-
-    # config.services.prometheus.exporters.node.port
-    # config.services.prometheus.exporters.idrac
-    # config.services.prometheus.exporters.ping
-    # config.services.prometheus.exporters.nginx
-    # config.services.prometheus.exporters.systemd
-    # config.services.prometheus.exporters.assertions ??
-
+    # systemd.tmpfiles.rules = ["d /var/lib/promtail 0644 promtail promtail -"];
     services.promtail = {
       enable = true;
       configuration = {
@@ -100,7 +93,8 @@ in {
           http_listen_port = 3031;
           grpc_listen_port = 0;
         };
-        positions = {filename = "/var/lib/promtail/positions.yaml";};
+        # positions = {filename = "/var/lib/promtail/positions.yaml";};
+        positions = {filename = "/tmp/positions.yaml";};
         clients = [{url = "http://silver-star:3100/loki/api/v1/push";}];
         scrape_configs = [
           {
