@@ -17,6 +17,8 @@ in {
   config = mkIf cfg.enable {
     system.nixos.tags = ["tpm"];
 
+    services.ssh-tpm-agent.enable = mkDefault true;
+
     security.tpm2 = {
       enable = true;
 

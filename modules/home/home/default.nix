@@ -23,6 +23,7 @@
 
   aicommits = pkgs.writeShellScriptBin "aicommits" ''
     OPENAI_API_KEY="$(${pkgs._1password}/bin/op item get 2vzrjmprwi25zts7mzb4zmmad4 --field credential)"
+    aicommits config set OPENAI_KEY=$OPENAI_API_KEY
     exec ${pkgs.custom.aicommits}/bin/aicommits "$@"
   '';
 in
