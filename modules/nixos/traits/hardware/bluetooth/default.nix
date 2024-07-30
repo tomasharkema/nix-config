@@ -1,15 +1,24 @@
-{ pkgs, lib, config, ... }:
-with lib;
-let cfg = config.traits.hardware.bluetooth;
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.traits.hardware.bluetooth;
 in {
-  options.traits.hardware.bluetooth = { enable = mkEnableOption "ble"; };
+  options.traits.hardware.bluetooth = {
+    enable = mkEnableOption "ble";
+
+    music.enable = mkEnableOption "music";
+  };
 
   config = mkIf cfg.enable {
     hardware = {
       bluetooth = {
         enable = true;
         powerOnBoot = true;
-        settings = { General = { Enable = "Source,Sink,Media,Socket"; }; };
+        settings = mkIf cfg.music.enable {General = {Enable = "Source,Sink,Media,Socket";};};
       };
     };
 
@@ -18,6 +27,6 @@ in {
       dbus.enable = true;
       # dconf.enable = true;
     };
-    environment.systemPackages = with pkgs; [ bluetuith ];
+    environment.systemPackages = with pkgs; [bluetuith];
   };
 }
