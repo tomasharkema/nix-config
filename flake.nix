@@ -286,16 +286,16 @@
     #   url = "github:icebox-nix/netkit.nix";
     # };
 
-    nix-topology = {
-      url = "github:oddlama/nix-topology";
+    # nix-topology = {
+    #   url = "github:oddlama/nix-topology";
 
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-        devshell.follows = "devshell";
-        pre-commit-hooks.follows = "pre-commit-hooks-nix";
-      };
-    };
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #     devshell.follows = "devshell";
+    #     pre-commit-hooks.follows = "pre-commit-hooks-nix";
+    #   };
+    # };
 
     nixos-dash-docset = {
       url = "github:ptitfred/nixos-dash-docset";

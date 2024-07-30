@@ -5,7 +5,7 @@
   ...
 }:
 with lib; {
-  config = {
+  config = mkIf false {
     age.secrets.shellhub = {
       rekeyFile = ./shellhub.age;
       path = "/var/lib/shellhub-agent/private.key";
