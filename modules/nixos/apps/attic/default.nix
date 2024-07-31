@@ -52,6 +52,8 @@ in {
         DynamicUser = true;
         MemoryHigh = "5%";
         MemoryMax = "10%";
+        Nice = 10;
+
         LoadCredential = "prod-auth-token:${config.age.secrets.attic-key.path}";
         StateDirectory = "attic-watch-store";
       };
