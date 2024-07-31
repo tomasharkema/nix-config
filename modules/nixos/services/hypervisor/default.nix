@@ -129,15 +129,20 @@ in {
 
     boot.extraModprobeConfig = "options kvm_intel nested=1";
 
+    programs.ccache = {
+      enable = true;
+      packageNames = ["virtualbox"];
+    };
+
     virtualisation = {
       virtualbox = {
         host = {
           enable = true;
           enableExtensionPack = true;
           # enableKvm = true;
-          enableWebService = true;
-          # addNetworkInterface = false;
-          # enableHardening = false;
+          # enableWebService = true;
+          addNetworkInterface = true;
+          enableHardening = false;
         };
       };
 

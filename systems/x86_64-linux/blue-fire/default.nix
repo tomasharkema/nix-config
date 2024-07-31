@@ -131,6 +131,14 @@ in {
       buildbot.worker.enable = true;
     };
 
+    systemd.services = {
+      buildbot-worker.serviceConfig = {
+        MemoryHigh = "5%";
+        MemoryMax = "10%";
+        Nice = 10;
+      };
+    };
+
     # services = {
     # podman.enable = true;
     # freeipa.replica.enable = true;
