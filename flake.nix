@@ -151,9 +151,8 @@
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak";
 
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-    # impermanence.url = "github:nix-community/impermanence";
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
@@ -186,13 +185,14 @@
       };
     };
 
-    # peerix = {
-    #   url = "github:cid-chan/peerix";
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     flake-utils.follows = "flake-utils";
-    #   };
-    # };
+    peerix = {
+      # url = "github:cid-chan/peerix";
+      url = "github:tomasharkema/peerix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
 
     # stylix = {
     #   url = "github:danth/stylix/release-24.05";
@@ -243,8 +243,8 @@
     };
 
     # nbfc-linux = {
-    #   url = "github:nbfc-linux/nbfc-linux";
-    #   inputs.nixpkgs.follows = "nixpkgs";
+    # url = "github:nbfc-linux/nbfc-linux";
+    # inputs.nixpkgs.follows = "nixpkgs";
     # };
 
     _1password-shell-plugins = {
@@ -297,14 +297,14 @@
     #   };
     # };
 
-    nixos-dash-docset = {
-      url = "github:ptitfred/nixos-dash-docset";
+    # nixos-dash-docset = {
+    #   url = "github:ptitfred/nixos-dash-docset";
 
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #   };
+    # };
     # opentelemetry-nix = {
     #   url = "github:FriendsOfOpenTelemetry/opentelemetry-nix";
     #   inputs = {
@@ -431,7 +431,7 @@
 
       overlays = with inputs; [
         # nix-otel.overlays.default
-        # peerix.overlay
+        peerix.overlay
         snowfall-flake.overlays."package/flake"
         # nixos-checkmk.overlays.default
         # nixos-service.overlays.default
@@ -448,13 +448,6 @@
         _1password-shell-plugins.hmModules.default
         # agenix.homeManagerModules.default
       ];
-
-      # localSystem = "x86_64-linux";
-      # localSystem = "aarch64-darwin";
-      # crossSystem = {
-      # system = "aarch64-linux";
-      # config = "aarch64-unknown-linux-gnu";
-      # };
 
       systems.hosts = let
         cudaOff = {...}: {
@@ -480,7 +473,7 @@
           catppuccin.nixosModules.catppuccin
           buildbot-nix.nixosModules.buildbot-worker
           # attic.nixosModules.atticd
-          # peerix.nixosModules.peerix
+          peerix.nixosModules.peerix
 
           # impermanence.nixosModule
           disko.nixosModules.default
@@ -776,7 +769,6 @@
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-      "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       "tomas:hER/5A08v05jH8GnQUZRrh33+HDNbeiJj8z/8JY6ZvI="
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="

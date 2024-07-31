@@ -119,10 +119,6 @@
         "domainjoin" = {
           rekeyFile = ./domainjoin.age;
         };
-        "peerix-private" = {
-          rekeyFile = ./peerix.private.age;
-          mode = "644";
-        };
         netrc = {
           rekeyFile = ./netrc.age;
         };

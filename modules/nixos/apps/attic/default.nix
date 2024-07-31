@@ -34,12 +34,21 @@ in {
     };
 
     systemd.services.attic-watch-store = {
-      wantedBy = ["default.target"];
-      after = ["network-online.target" "nix-daemon.service"];
+      wants = ["network-online.target"];
+      after = ["network-online.target"];
+      wantedBy = ["multi-user.target"];
 
       environment.HOME = "/var/lib/attic-watch-store";
 
+      unitConfig = {
+        # allow to restart indefinitely
+        StartLimitIntervalSec = 0;
+      };
+
       serviceConfig = {
+        KillMode = "process";
+        Restart = "on-failure";
+        RestartSec = 1;
         DynamicUser = true;
         MemoryHigh = "5%";
         MemoryMax = "10%";
