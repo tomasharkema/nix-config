@@ -135,16 +135,16 @@ in {
     };
 
     virtualisation = {
-      virtualbox = {
-        host = {
-          enable = true;
-          enableExtensionPack = true;
-          # enableKvm = true;
-          # enableWebService = true;
-          addNetworkInterface = true;
-          enableHardening = false;
-        };
-      };
+      # virtualbox = {
+      #   host = {
+      #     enable = true;
+      #     enableExtensionPack = true;
+      #     # enableKvm = true;
+      #     # enableWebService = true;
+      #     addNetworkInterface = true;
+      #     enableHardening = false;
+      #   };
+      # };
 
       kvmgt.enable = true;
       # tpm.enable = true;
