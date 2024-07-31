@@ -47,7 +47,7 @@ with lib; {
       steam.enable = true;
       # usbip.enable = true;
       netdata.enable = true;
-      # unified-remote.enable = true;
+      unified-remote.enable = true;
       # cec.enable = true;
     };
 
@@ -72,6 +72,8 @@ with lib; {
         # nvidia.enable = true;
         remote-unlock.enable = false;
         bluetooth.enable = true;
+
+        disable-sleep.enable = true;
       };
     };
 
@@ -107,7 +109,7 @@ with lib; {
         enable = true;
         driSupport = true;
         driSupport32Bit = true;
-        extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau];
+        # extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau];
       };
     };
   };
