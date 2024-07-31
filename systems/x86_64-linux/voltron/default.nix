@@ -11,6 +11,11 @@ with lib; {
 
     nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
     nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
+
+    nixos-hardware.nixosModules.common-pc-laptop-acpi_call
+    nixos-hardware.nixosModules.common-cpu-intel
+    nixos-hardware.nixosModules.common-gpu-intel
+    nixos-hardware.nixosModules.common-gpu-intel-kaby-lake
   ];
 
   config = {
@@ -119,14 +124,14 @@ with lib; {
         # };
       };
       # fancontrol.enable = true;
-      opengl = {
-        extraPackages = with pkgs; [
-          vaapiIntel
-          libvdpau-va-gl
-          vaapiVdpau
-          intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-        ];
-      };
+      # opengl = {
+      #   extraPackages = with pkgs; [
+      #     vaapiIntel
+      #     libvdpau-va-gl
+      #     vaapiVdpau
+      #     intel-media-driver
+      #   ];
+      # };
     };
 
     apps = {
