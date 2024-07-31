@@ -104,10 +104,6 @@ with pkgs; let
     exec ${lib.getExe pkgs.buildPackages.nixos-rebuild} test --flake ".#$SERVER" --target-host "$SERVER" --use-remote-sudo --verbose --show-trace -L --use-substitutes
   '';
 
-  upload-local = writeShellScriptBin "upload-local" ''
-    nix copy -v --substitute-on-destination --to 'ssh://blue-fire?compression=zstd&secret-key=/run/agenix/peerix-private' /run/current-system
-  '';
-
   upload-to-installer = writeShellScriptBin "upload-to-installer" ''
     configuration="$1"
     host="$2"
@@ -181,7 +177,9 @@ in {
     # treefmt.enable = true;
     # statix.enable = true;
     # deadnix.enable = true;
+    gptcommit.enable = true;
     check-added-large-files.enable = true;
+    ripsecrets.enable = true;
 
     "by-name" = {
       enable = true;
@@ -289,7 +287,7 @@ in {
     update-pkgs
     upload-all
     upload-all-store
-    upload-local
+    # upload-local
     upload-to-installer
     write-script
     zsh

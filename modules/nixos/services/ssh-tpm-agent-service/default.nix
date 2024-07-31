@@ -9,9 +9,14 @@ with lib; let
 in {
   options.services.ssh-tpm-agent = {
     enable = mkEnableOption "ssh-tpm-agent";
+
+    package = mkOption {
+      default = pkgs.ssh-tpm-agent;
+    };
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = [cfg.package];
     systemd = {
       services = {
         ssh-tpm-agent = {
@@ -36,7 +41,7 @@ in {
           };
 
           serviceConfig = {
-            ExecStart = "${pkgs.ssh-tpm-agent}/bin/ssh-tpm-agent --key-dir /etc/ssh";
+            ExecStart = "${cfg.package}/bin/ssh-tpm-agent --key-dir /etc/ssh";
             PassEnvironment = "SSH_AGENT_PID";
             KillMode = "process";
             Restart = "always";
@@ -58,7 +63,7 @@ in {
           };
 
           serviceConfig = {
-            ExecStart = "${pkgs.ssh-tpm-agent}/bin/ssh-tpm-keygen -A";
+            ExecStart = "${cfg.package}/bin/ssh-tpm-keygen -A";
             Type = "oneshot";
             RemainAfterExit = "yes";
           };
@@ -97,7 +102,7 @@ in {
           };
           serviceConfig = {
             Environment = "SSH_AUTH_SOCK=%t/ssh-tpm-agent.sock";
-            ExecStart = "${pkgs.ssh-tpm-agent}/bin/ssh-tpm-agent";
+            ExecStart = "${cfg.package}/bin/ssh-tpm-agent";
             PassEnvironment = "SSH_AGENT_PID";
             SuccessExitStatus = 2;
             Type = "simple";

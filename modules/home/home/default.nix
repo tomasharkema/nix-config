@@ -20,12 +20,15 @@
   #     "https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/raw/main/backgrounds/blobs-l.svg";
   #   sha256 = "sha256-zVNMDAgfZvEwPHbhJ0/NBSNseNjIF+jxD3K2zcSj36U=";
   # };
-
-  aicommits = pkgs.writeShellScriptBin "aicommits" ''
-    OPENAI_API_KEY="$(${pkgs._1password}/bin/op item get 2vzrjmprwi25zts7mzb4zmmad4 --field credential)"
-    aicommits config set OPENAI_KEY=$OPENAI_API_KEY
-    exec ${pkgs.custom.aicommits}/bin/aicommits "$@"
-  '';
+  # aicommits = pkgs.writeShellScriptBin "aicommits" ''
+  #   OPENAI_API_KEY="$(${pkgs._1password}/bin/op item get 2vzrjmprwi25zts7mzb4zmmad4 --field credential)"
+  #   aicommits config set OPENAI_KEY=$OPENAI_API_KEY
+  #   exec ${pkgs.custom.aicommits}/bin/aicommits "$@"
+  # '';
+  # gptcommit-wrap = pkgs.writeShellScriptBin "gptcommit" ''
+  #   GPTCOMMIT__OPENAI__API_KEY="$(${pkgs._1password}/bin/op item get 2vzrjmprwi25zts7mzb4zmmad4 --field credential)"
+  #   exec ${lib.getExe pkgs.gptcommit}
+  # '';
 in
   with lib; {
     imports = [];
@@ -44,7 +47,6 @@ in
 
       home = {
         # file = osConfig.home.homeFiles;
-
         stateVersion = "24.05";
 
         # (import ./packages/common.nix {inherit pkgs inputs lib;})
@@ -57,6 +59,7 @@ in
           libnotify
 
           # fup-repl
+          # gptcommit-wrap
 
           udict
           # rtfm
@@ -74,7 +77,7 @@ in
           xplr
           lazycli
           f1viewer
-          aicommits
+          # aicommits
           openai
         ];
         sessionVariables =
