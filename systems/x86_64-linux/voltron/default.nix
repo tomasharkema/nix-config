@@ -62,10 +62,6 @@ with lib; {
       {package = fnlock-switch-thinkpad-compact-usb-keyboard;}
     ];
 
-    # security = {
-    #   pam.services."gdm-fingerprint".enableGnomeKeyring = true;
-    # };
-
     environment.systemPackages = with pkgs; [
       libusb
       tp-auto-kbbl
@@ -192,6 +188,10 @@ with lib; {
     };
 
     security.pam.services = {
+      "gdm-fingerprint" = {
+        enableGnomeKeyring = true;
+        fprintAuth = true;
+      };
       xscreensaver = {
         fprintAuth = true;
         #   text = ''
@@ -218,7 +218,9 @@ with lib; {
 
         #   '';
       };
-
+      sudo = {
+        fprintAuth = true;
+      };
       login = {
         fprintAuth = true;
         #   text = ''
@@ -251,21 +253,21 @@ with lib; {
         #   '';
       };
 
-      gdm-fingerprint.text = ''
-        auth       required                    pam_shells.so
-        auth       requisite                   pam_nologin.so
-        auth       requisite                   pam_faillock.so      preauth
-        auth       sufficient                  ${inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients}/lib/security/pam_fprintd.so
-        auth       required                    pam_env.so
-        auth       [success=ok default=1]      ${pkgs.gnome.gdm}/lib/security/pam_gdm.so
-        auth       optional                    ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so
+      # gdm-fingerprint.text = ''
+      #   auth       required                    pam_shells.so
+      #   auth       requisite                   pam_nologin.so
+      #   auth       requisite                   pam_faillock.so      preauth
+      #   auth       sufficient                  ${inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients}/lib/security/pam_fprintd.so
+      #   auth       required                    pam_env.so
+      #   auth       [success=ok default=1]      ${pkgs.gnome.gdm}/lib/security/pam_gdm.so
+      #   auth       optional                    ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so
 
-        account    include                     login
+      #   account    include                     login
 
-        password   required                    pam_deny.so
+      #   password   required                    pam_deny.so
 
-        session    include                     login
-      '';
+      #   session    include                     login
+      # '';
     };
 
     # hardware.nvidia.vgpu = {
