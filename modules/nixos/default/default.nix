@@ -418,7 +418,7 @@ with lib.custom;
       };
 
       security = {
-        sudo.package = pkgs.sudo.override {withSssd = true;};
+        # sudo.package = pkgs.sudo.override {withSssd = true;};
         audit.enable = true;
         auditd.enable = true;
       };

@@ -54,7 +54,7 @@ with lib; {
       # };
       open-fprintd.enable = true;
       python-validity.enable = true;
-      fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
+      # fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
     };
 
     home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
@@ -193,6 +193,7 @@ with lib; {
         fprintAuth = true;
       };
       xscreensaver = {
+        enableGnomeKeyring = true;
         fprintAuth = true;
         #   text = ''
 
@@ -219,9 +220,15 @@ with lib; {
         #   '';
       };
       sudo = {
+        enableGnomeKeyring = true;
+        fprintAuth = true;
+      };
+      auth = {
+        enableGnomeKeyring = true;
         fprintAuth = true;
       };
       login = {
+        enableGnomeKeyring = true;
         fprintAuth = true;
         #   text = ''
         #     # Account management.
