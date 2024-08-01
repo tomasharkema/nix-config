@@ -287,8 +287,12 @@ with lib; {
       extraModprobeConfig = ''
         options thinkpad_acpi fan_control=1
       '';
-      # extraModulePackages = [config.boot.kernelPackages.isgx];
-      kernelModules = ["isgx" "watchdog" "tpm_rng"];
+      extraModulePackages = [config.boot.kernelPackages.isgx];
+      kernelModules = [
+        "isgx"
+        "watchdog"
+        #"tpm_rng"
+      ];
       #initrd.kernelModules = [
       #  "watchdog"
       #  "isgx"

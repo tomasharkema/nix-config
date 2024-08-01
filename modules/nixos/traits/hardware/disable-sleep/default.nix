@@ -12,7 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    powerManagement.enable = false;
+    powerManagement.enable = mkForce false;
 
     systemd = {
       targets = {
