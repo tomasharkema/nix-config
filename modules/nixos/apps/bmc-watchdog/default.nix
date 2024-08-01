@@ -20,10 +20,9 @@ in {
         #   PID = "${pid}";
         #   PIDFILE = "${pid}";
         # };
-
+        # ${pkgs.ipmitool}/bin/ipmitool raw 0x06 0x24 0x04 0x01 0x00 0x00 0x55 0x00
         preStart = ''
-          ${pkgs.ipmitool}/bin/ipmitool raw 0x06 0x24 0x04 0x01 0x00 0x00 0x55 0x00
-          ${pkgs.freeipmi}/bin/bmc-watchdog --reset
+          ${pkgs.freeipmi}/bin/bmc-watchdog --clear
         '';
 
         script = ''
