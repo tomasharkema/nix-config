@@ -54,6 +54,7 @@ with lib; {
       # };
       open-fprintd.enable = true;
       python-validity.enable = true;
+      fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
     };
 
     home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
@@ -254,10 +255,10 @@ with lib; {
         auth       required                    pam_shells.so
         auth       requisite                   pam_nologin.so
         auth       requisite                   pam_faillock.so      preauth
-        auth       sufficient                  ${nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients}/lib/security/pam_fprintd.so
+        auth       sufficient                  ${inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients}/lib/security/pam_fprintd.so
         auth       required                    pam_env.so
         auth       [success=ok default=1]      ${pkgs.gnome.gdm}/lib/security/pam_gdm.so
-        auth       optional                    ${pkgs.gnome-keyring}/lib/security/pam_gnome_keyring.so
+        auth       optional                    ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so
 
         account    include                     login
 

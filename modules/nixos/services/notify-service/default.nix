@@ -41,8 +41,8 @@ in {
           ExecStart = "/bin/sh -c 'echo \"${sendmail} %i\" | ${pkgs.at}/bin/at -m -q n now'";
         };
         wantedBy = ["default.target"];
-        after = ["network-online.target"];
-        wants = ["network-online.target"];
+        # after = ["network-online.target"];
+        # wants = ["network-online.target"];
       };
     };
   };
