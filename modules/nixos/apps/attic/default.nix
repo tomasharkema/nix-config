@@ -34,8 +34,8 @@ in {
     };
 
     systemd.services.attic-watch-store = {
-      wants = ["network-online.target"];
-      after = ["network-online.target"];
+      # wants = ["network-online.target"];
+      # after = ["network-online.target"];
       wantedBy = ["multi-user.target"];
 
       environment.HOME = "/var/lib/attic-watch-store";
