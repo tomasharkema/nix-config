@@ -9,8 +9,8 @@ with lib; {
   imports = with inputs; [
     ./hardware-configuration.nix
 
-    # nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
-    # nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
+    nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
+    nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
 
     nixos-hardware.nixosModules.common-pc-laptop-acpi_call
     nixos-hardware.nixosModules.common-cpu-intel
@@ -43,17 +43,17 @@ with lib; {
         packages = with pkgs; [heimdall-gui libusb];
       };
 
-      fprintd = {
-        enable = true;
-        tod = {
-          enable = true;
-          driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
-            calib-data-file = ./calib-data.bin;
-          };
-        };
-      };
-      # open-fprintd.enable = true;
-      # python-validity.enable = true;
+      # fprintd = {
+      #   enable = true;
+      #   tod = {
+      #     enable = true;
+      #     driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
+      #       calib-data-file = ./calib-data.bin;
+      #     };
+      #   };
+      # };
+      open-fprintd.enable = true;
+      python-validity.enable = true;
     };
 
     home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
@@ -61,9 +61,9 @@ with lib; {
       {package = fnlock-switch-thinkpad-compact-usb-keyboard;}
     ];
 
-    security = {
-      pam.services."gdm-fingerprint".enableGnomeKeyring = true;
-    };
+    # security = {
+    #   pam.services."gdm-fingerprint".enableGnomeKeyring = true;
+    # };
 
     environment.systemPackages = with pkgs; [
       libusb
@@ -191,64 +191,79 @@ with lib; {
     };
 
     security.pam.services = {
-      xscreensaver = {
-        fprintAuth = true;
-        #     text = ''
+      # xscreensaver = {
+      #   # fprintAuth = true;
+      #   text = ''
 
-        #       # Account management.
-        #       account sufficient ${pkgs.sssd}/lib/security/pam_sss.so # sss (order 10400)
-        #       account required pam_unix.so # unix (order 10900)
+      #     # Account management.
+      #     account sufficient ${pkgs.sssd}/lib/security/pam_sss.so # sss (order 10400)
+      #     account required pam_unix.so # unix (order 10900)
 
-        #       # Authentication management.
-        #       auth sufficient pam_unix.so likeauth try_first_pass # unix (order 11500)
-        #       auth sufficient ${inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients}/lib/security/pam_fprintd.so
-        #       auth sufficient ${pkgs.sssd}/lib/security/pam_sss.so use_first_pass # sss (order 11900)
-        #       auth required pam_deny.so # deny (order 12300)
+      #     # Authentication management.
+      #     auth sufficient pam_unix.so likeauth try_first_pass # unix (order 11500)
+      #     auth sufficient ${inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients}/lib/security/pam_fprintd.so
+      #     auth sufficient ${pkgs.sssd}/lib/security/pam_sss.so use_first_pass # sss (order 11900)
+      #     auth required pam_deny.so # deny (order 12300)
 
-        #       # Password management.
-        #       password sufficient pam_unix.so nullok yescrypt # unix (order 10200)
-        #       password sufficient ${pkgs.sssd}/lib/security/pam_sss.so # sss (order 11000)
+      #     # Password management.
+      #     password sufficient pam_unix.so nullok yescrypt # unix (order 10200)
+      #     password sufficient ${pkgs.sssd}/lib/security/pam_sss.so # sss (order 11000)
 
-        #       # Session management.
-        #       session required pam_env.so conffile=/etc/pam/environment readenv=0 # env (order 10100)
-        #       session required pam_unix.so # unix (order 10200)
-        #       session optional ${pkgs.sssd}/lib/security/pam_sss.so # sss (order 11700)
-        #       session required ${pkgs.linux-pam}/lib/security/pam_limits.so conf=/nix/store/41cmfs9dq5zx16q88qdb68qrgr7cjfwk-limits.conf # limits (order 12200)
+      #     # Session management.
+      #     session required pam_env.so conffile=/etc/pam/environment readenv=0 # env (order 10100)
+      #     session required pam_unix.so # unix (order 10200)
+      #     session optional ${pkgs.sssd}/lib/security/pam_sss.so # sss (order 11700)
+      #     session required ${pkgs.linux-pam}/lib/security/pam_limits.so conf=/nix/store/41cmfs9dq5zx16q88qdb68qrgr7cjfwk-limits.conf # limits (order 12200)
 
-        #     '';
-      };
+      #   '';
+      # };
 
-      login = {
-        fprintAuth = true;
-        #     text = ''
-        #       # Account management.
-        #       account sufficient ${pkgs.sssd}/lib/security/pam_sss.so # sss (order 10400)
-        #       account required pam_unix.so # unix (order 10900)
+      # login = {
+      #   # fprintAuth = true;
+      #   text = ''
+      #     # Account management.
+      #     account sufficient ${pkgs.sssd}/lib/security/pam_sss.so # sss (order 10400)
+      #     account required pam_unix.so # unix (order 10900)
 
-        #       # Authentication management.
-        #       auth sufficient ${inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients}/lib/security/pam_fprintd.so # fprintd (order 11300)
-        #       auth optional pam_unix.so likeauth nullok # unix-early (order 11500)
-        #       auth optional ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so # gnome_keyring (order 12100)
-        #       auth sufficient pam_unix.so likeauth nullok try_first_pass # unix (order 12800)
-        #       auth sufficient ${pkgs.sssd}/lib/security/pam_sss.so use_first_pass # sss (order 13200)
-        #       auth required pam_deny.so # deny (order 13600)
+      #     # Authentication management.
+      #     auth sufficient ${inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients}/lib/security/pam_fprintd.so # fprintd (order 11300)
+      #     auth optional pam_unix.so likeauth nullok # unix-early (order 11500)
+      #     auth optional ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so # gnome_keyring (order 12100)
+      #     auth sufficient pam_unix.so likeauth nullok try_first_pass # unix (order 12800)
+      #     auth sufficient ${pkgs.sssd}/lib/security/pam_sss.so use_first_pass # sss (order 13200)
+      #     auth required pam_deny.so # deny (order 13600)
 
-        #       # Password management.
-        #       password sufficient pam_unix.so nullok yescrypt # unix (order 10200)
-        #       password sufficient ${pkgs.sssd}/lib/security/pam_sss.so # sss (order 11000)
-        #       password optional ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so use_authtok # gnome_keyring (order 11200)
+      #     # Password management.
+      #     password sufficient pam_unix.so nullok yescrypt # unix (order 10200)
+      #     password sufficient ${pkgs.sssd}/lib/security/pam_sss.so # sss (order 11000)
+      #     password optional ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so use_authtok # gnome_keyring (order 11200)
 
-        #       # Session management.
-        #       session required pam_env.so conffile=/etc/pam/environment readenv=0 # env (order 10100)
-        #       session required pam_unix.so # unix (order 10200)
-        #       session required pam_loginuid.so # loginuid (order 10300)
-        #       session required ${pkgs.linux-pam}/lib/security/pam_lastlog.so silent # lastlog (order 10700)
-        #       session optional ${pkgs.sssd}/lib/security/pam_sss.so # sss (order 11700)
-        #       session optional ${config.systemd.package}/lib/security/pam_systemd.so # systemd (order 12000)
-        #       #session required ${pkgs.linux-pam}/lib/security/pam_limits.so conf=/nix/store/41cmfs9dq5zx16q88qdb68qrgr7cjfwk-limits.conf # limits (order 12200)
-        #       session optional ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so auto_start # gnome_keyring (order 12600)
-        #     '';
-      };
+      #     # Session management.
+      #     session required pam_env.so conffile=/etc/pam/environment readenv=0 # env (order 10100)
+      #     session required pam_unix.so # unix (order 10200)
+      #     session required pam_loginuid.so # loginuid (order 10300)
+      #     session required ${pkgs.linux-pam}/lib/security/pam_lastlog.so silent # lastlog (order 10700)
+      #     session optional ${pkgs.sssd}/lib/security/pam_sss.so # sss (order 11700)
+      #     session optional ${config.systemd.package}/lib/security/pam_systemd.so # systemd (order 12000)
+      #     #session required ${pkgs.linux-pam}/lib/security/pam_limits.so conf=/nix/store/41cmfs9dq5zx16q88qdb68qrgr7cjfwk-limits.conf # limits (order 12200)
+      #     session optional ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so auto_start # gnome_keyring (order 12600)
+      #   '';
+      # };
+      gdm-fingerprint.text = mkIf config.services.fprintd.enable ''
+        auth       required                    pam_shells.so
+        auth       requisite                   pam_nologin.so
+        auth       requisite                   pam_faillock.so      preauth
+        auth       sufficient                  ${nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients}/lib/security/pam_fprintd.so
+        auth       required                    pam_env.so
+        auth       [success=ok default=1]      ${pkgs.gnome.gdm}/lib/security/pam_gdm.so
+        auth       optional                    ${pkgs.gnome-keyring}/lib/security/pam_gnome_keyring.so
+
+        account    include                     login
+
+        password   required                    pam_deny.so
+
+        session    include                     login
+      '';
     };
 
     # hardware.nvidia.vgpu = {
