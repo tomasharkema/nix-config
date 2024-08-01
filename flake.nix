@@ -322,8 +322,8 @@
     # };
 
     nixos-nvidia-vgpu = {
-      # url = "github:tomasharkema/nixos-nvidia-vgpu";
-      url = "/home/tomas/Developer/nixos-nvidia-vgpu";
+      url = "github:tomasharkema/nixos-nvidia-vgpu";
+      # url = "/home/tomas/Developer/nixos-nvidia-vgpu";
     };
 
     nix-htop = {
