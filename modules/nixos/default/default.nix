@@ -56,11 +56,10 @@ with lib.custom;
       # };
 
       boot = {
-        bcache.enable = true;
         recovery.enable = mkDefault true;
         initrd = {
           systemd.emergencyAccess = "abcdefg";
-          includeDefaultModules = true;
+          # includeDefaultModules = true;
         };
 
         crashDump.enable = true;
@@ -188,13 +187,6 @@ with lib.custom;
           # rmfuse
         ])
         ++ (optionals pkgs.stdenv.isx86_64 (with pkgs; [
-          plex-media-player
-          plexamp
-          pkgs.custom.ztui
-          # pkgs.wolfram-engine
-          libsmbios
-          dmidecode
-
           google-chrome
           netflix
 

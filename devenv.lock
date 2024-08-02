@@ -10,11 +10,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1722299223,
+        "lastModified": 1722597419,
         "owner": "oddlama",
         "repo": "agenix-rekey",
-        "rev": "4107b53b152f4ddc504269ec17c4b7005869d762",
-        "treeHash": "6211cdd81ffcfdffdd96f23e1020e1367acf2fb4",
+        "rev": "126b4a5133eb361cbf5bf90e44c71b6f830845ec",
+        "treeHash": "e557d5effc6a903e015ddde3bd6a0260f9a6b734",
         "type": "github"
       },
       "original": {
@@ -26,11 +26,11 @@
     "devenv": {
       "locked": {
         "dir": "src/modules",
-        "lastModified": 1722532464,
+        "lastModified": 1722605649,
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "2f71fdaf932804102a742a96ea1e8f4b1337bfb2",
-        "treeHash": "ef78ca04755f532198523a860d0e6f7a64478c1a",
+        "rev": "a07842582c030fdf2ccf07d3b1402b2a46908856",
+        "treeHash": "f765471bc26ec530baaa76aa3f29a2aad7fb2305",
         "type": "github"
       },
       "original": {
