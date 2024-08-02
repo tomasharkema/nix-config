@@ -231,7 +231,7 @@ in
                   };
                 };
 
-                encryptedSwap = mkIf cfg.swap {
+                swap = mkIf cfg.swap {
                   size = "16G";
                   content = {
                     type = "swap";
