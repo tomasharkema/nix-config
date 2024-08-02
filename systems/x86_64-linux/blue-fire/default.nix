@@ -76,6 +76,8 @@ in {
     };
 
     services = {
+      watchdogd = {enable = true;};
+
       das_watchdog.enable = mkForce false;
 
       remote-builders.server.enable = true;
@@ -131,11 +133,19 @@ in {
       buildbot.worker.enable = true;
     };
 
-    systemd.services = {
-      buildbot-worker.serviceConfig = {
-        MemoryHigh = "5%";
-        MemoryMax = "10%";
-        Nice = 10;
+    systemd = {
+      watchdog = {
+        device = "/dev/watchdog";
+        runtimeTime = "5m";
+        kexecTime = "5m";
+        rebootTime = "5m";
+      };
+      services = {
+        buildbot-worker.serviceConfig = {
+          MemoryHigh = "5%";
+          MemoryMax = "10%";
+          Nice = 10;
+        };
       };
     };
 
@@ -295,11 +305,15 @@ in {
     };
 
     boot = {
+      tmp = {
+        useTmpfs = true;
+      };
       kernelParams = [
         "intel_iommu=on"
         "iommu=pt"
         "console=tty0"
         "console=ttyS2,115200n8"
+        "mitigations=off"
       ];
       blacklistedKernelModules = lib.mkDefault ["nouveau"];
 

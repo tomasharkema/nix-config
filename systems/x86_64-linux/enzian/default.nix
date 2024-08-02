@@ -121,6 +121,9 @@ with lib; {
     };
 
     boot = {
+      tmp = {
+        useTmpfs = true;
+      };
       binfmt.emulatedSystems = ["aarch64-linux"];
 
       initrd = {
@@ -128,6 +131,7 @@ with lib; {
         kernelModules = ["kvm-intel" "uinput" "nvme"];
       };
       kernelModules = ["kvm-intel" "uinput" "nvme"];
+      kernelParams = ["nowatchdog" "mitigations=off"];
       extraModulePackages = [];
     };
 

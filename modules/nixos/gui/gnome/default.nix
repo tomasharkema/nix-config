@@ -227,6 +227,7 @@ in
           gnome-menus
         ])
         ++ (with pkgs; [
+          gnome-photos
           clutter
           clutter-gtk
           gjs

@@ -35,10 +35,10 @@ with lib; {
         #   package =
         #     executor;
         # }
-        {
-          package =
-            battery-health-charging;
-        }
+        # {
+        #   package =
+        #     battery-health-charging;
+        # }
         # {
         #   package =
         #     app-menu-icon-remove-symbolic;

@@ -20,6 +20,12 @@ in {
 
     # environment.systemPackages = [inputs.nbfc-linux.packages."${pkgs.system}".default];
 
+    home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; (
+      optional
+      (!config.traits.hardware.laptop.thinkpad.enable)
+      {package = battery-health-charging;}
+    );
+
     boot = {
       kernelModules = ["acpi_call"];
       extraModulePackages = with config.boot.kernelPackages; [acpi_call];

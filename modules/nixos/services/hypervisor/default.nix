@@ -49,7 +49,6 @@ in {
     # };
 
     environment.systemPackages = with pkgs; [
-      virt-manager
       kvmtool
       libvirt
       qemu_kvm
@@ -87,8 +86,6 @@ in {
         pkgs.custom.libvirt-dbus
       ];
     };
-
-    programs.virt-manager.enable = true;
 
     environment.etc = {
       # "sasl2/libvirt.conf" = {
