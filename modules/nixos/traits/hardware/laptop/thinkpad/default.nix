@@ -35,7 +35,7 @@ in {
 
     services = {
       # tp-auto-kbbl.enable = true;
-      thinkfan.enable = true;
+      # thinkfan.enable = true;
       # fprintd = {
       #   enable = true;
       #   tod = {
