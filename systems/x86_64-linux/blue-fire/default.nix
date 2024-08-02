@@ -76,6 +76,9 @@ in {
     };
 
     services = {
+      tmp = {
+        useTmpfs = true;
+      };
       watchdogd = {enable = true;};
 
       das_watchdog.enable = mkForce false;
