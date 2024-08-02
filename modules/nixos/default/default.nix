@@ -187,13 +187,6 @@ with lib.custom;
           # rmfuse
         ])
         ++ (optionals pkgs.stdenv.isx86_64 (with pkgs; [
-          plex-media-player
-          plexamp
-          pkgs.custom.ztui
-          # pkgs.wolfram-engine
-          libsmbios
-          dmidecode
-
           google-chrome
           netflix
 
