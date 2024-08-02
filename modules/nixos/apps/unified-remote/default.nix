@@ -1,14 +1,17 @@
 # pkgs.custom.unified-remote
-
-{ config, pkgs, lib, ... }:
-with lib;
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.apps.unified-remote;
 
   home = "/var/lib/urserver";
 
   settingType = with types;
-    (oneOf [ bool int float str (listOf settingType) (attrsOf settingType) ])
+    (oneOf [bool int float str (listOf settingType) (attrsOf settingType)])
     // {
       description = "JSON value";
     };
@@ -17,7 +20,6 @@ let
 
   configTarget = "${home}/.urserver/urserver.config";
 in {
-
   options.apps.unified-remote = {
     enable = mkEnableOption "unified-remote";
     package = mkOption {
@@ -45,20 +47,20 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.custom.unified-remote ];
+    environment.systemPackages = [pkgs.custom.unified-remote];
 
     systemd = {
-      tmpfiles.rules = [ "d ${home}/.urserver 0777 root root -" ];
+      tmpfiles.rules = ["d ${home}/.urserver 0777 root root -"];
       services."unified-remote" = {
-        wantedBy = [ "multi-user.target" ];
-        wants = [ "network-online.target" ];
-        after = [ "network-online.target" ];
+        wantedBy = ["multi-user.target"];
+        # wants = [ "network-online.target" ];
+        # after = [ "network-online.target" ];
         description = "unified-remote";
         # environment.SHELL = "/bin/sh";
 
-        path = [ cfg.package ];
+        path = [cfg.package];
 
-        environment = { HOME = home; };
+        environment = {HOME = home;};
 
         preStart = ''
           if [ ! -f "${configTarget}" ]; then

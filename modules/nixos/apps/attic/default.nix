@@ -23,7 +23,8 @@ in {
     };
 
     serverAddress = mkOption {
-      default = "http://192.168.0.100:6067/";
+      # default = "http://192.168.0.100:6067/";
+      default = "https://nix-cache.harke.ma/";
       type = types.str;
     };
   };
@@ -34,8 +35,8 @@ in {
     };
 
     systemd.services.attic-watch-store = {
-      wants = ["network-online.target"];
-      after = ["network-online.target"];
+      # wants = ["network-online.target"];
+      # after = ["network-online.target"];
       wantedBy = ["multi-user.target"];
 
       environment.HOME = "/var/lib/attic-watch-store";

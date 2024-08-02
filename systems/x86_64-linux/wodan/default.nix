@@ -148,20 +148,23 @@ with lib; {
       btrbk.enable = true;
     };
 
-    hardware.nvidia.vgpu = {
-      enable = true;
-      unlock.enable = true;
-      version = "v17.1";
-    };
+    #    hardware.nvidia.vgpu = {
+    #      enable = true;
+    #      unlock.enable = true;
+    #      version = "v17.1";
+    #    };
 
     boot = {
+      tmp = {
+        useTmpfs = true;
+      };
       binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = ["ntfs"];
-      kernelModules = ["i2c-dev" "watchdog" "ixgbe" "btusb" "apfs"];
+      kernelModules = ["i2c-dev" "ixgbe" "btusb" "apfs"];
 
       initrd = {
         systemd.emergencyAccess = "abcdefg";
-        kernelModules = ["watchdog" "ixgbe" "btusb"];
+        kernelModules = ["ixgbe" "btusb"];
       };
 
       # KMS will load the module, regardless of blacklisting

@@ -27,7 +27,7 @@ in {
 
     users.groups.ancs4linux.members = ["root" "tomas"];
 
-    services.packagekit.enable = true;
+    # services.packagekit.enable = true;
 
     systemd = {
       packages = [cfg.package pkgs.custom.bluetooth-autoconnect];
