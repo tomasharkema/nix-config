@@ -66,10 +66,10 @@ in {
     };
 
     boot = {
-      initrd.kernelModules = ["nvidia"];
+      kernelModules = ["nvidia"];
       kernelParams = [
         "nvidia-drm.modeset=1"
-        "nvidia_drm.fbdev=1"
+        "nvidia-drm.fbdev=1"
         # "apm=power_off"
         # "acpi=force"
       ];
