@@ -313,6 +313,7 @@ in {
         "iommu=pt"
         "console=tty0"
         "console=ttyS2,115200n8"
+        "mitigations=off"
       ];
       blacklistedKernelModules = lib.mkDefault ["nouveau"];
 
