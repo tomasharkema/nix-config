@@ -157,11 +157,11 @@ with lib; {
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = ["ntfs"];
-      kernelModules = ["i2c-dev" "watchdog" "ixgbe" "btusb" "apfs"];
+      kernelModules = ["i2c-dev" "ixgbe" "btusb" "apfs"];
 
       initrd = {
         systemd.emergencyAccess = "abcdefg";
-        kernelModules = ["watchdog" "ixgbe" "btusb"];
+        kernelModules = ["ixgbe" "btusb"];
       };
 
       # KMS will load the module, regardless of blacklisting

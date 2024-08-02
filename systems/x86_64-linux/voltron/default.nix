@@ -162,6 +162,9 @@ with lib; {
     # };
 
     boot = {
+      tmp = {
+        useTmpfs = true;
+      };
       recovery = {
         enable = true;
         install = true;
@@ -172,6 +175,9 @@ with lib; {
       binfmt.emulatedSystems = ["aarch64-linux"];
 
       modprobeConfig.enable = true;
+
+      # extraModprobeConfig = [];
+      kernelParams = ["nowatchdog" "mitigations=off"];
 
       # extraModulePackages = [config.boot.kernelPackages.isgx];
       kernelModules = [

@@ -15,13 +15,11 @@ with lib; {
         "org/gnome/mutter" = {
           edge-tiling = true;
           center-new-windows = true;
-          experimental-features =
-            if osConfig.traits.hardware.laptop.enable
-            then [
-              "scale-monitor-framebuffer"
-              "variable-refresh-rate"
-            ]
-            else mkEmptyArray (type.string);
+          experimental-features = [
+            "scale-monitor-framebuffer"
+            "variable-refresh-rate"
+            "rt-scheduler"
+          ];
         };
         "org/gnome/shell/extensions/vitals" = {
           "position-in-panel" = 0;
