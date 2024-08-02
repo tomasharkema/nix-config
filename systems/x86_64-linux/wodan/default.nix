@@ -155,6 +155,9 @@ with lib; {
     #    };
 
     boot = {
+      tmp = {
+        useTmpfs = true;
+      };
       binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = ["ntfs"];
       kernelModules = ["i2c-dev" "ixgbe" "btusb" "apfs"];
