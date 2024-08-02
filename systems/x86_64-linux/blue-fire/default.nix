@@ -76,9 +76,6 @@ in {
     };
 
     services = {
-      tmp = {
-        useTmpfs = true;
-      };
       watchdogd = {enable = true;};
 
       das_watchdog.enable = mkForce false;
@@ -308,6 +305,9 @@ in {
     };
 
     boot = {
+      tmp = {
+        useTmpfs = true;
+      };
       kernelParams = [
         "intel_iommu=on"
         "iommu=pt"
