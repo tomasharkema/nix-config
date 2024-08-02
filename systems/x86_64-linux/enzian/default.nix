@@ -131,6 +131,7 @@ with lib; {
         kernelModules = ["kvm-intel" "uinput" "nvme"];
       };
       kernelModules = ["kvm-intel" "uinput" "nvme"];
+      kernelParams = ["nowatchdog" "mitigations=off"];
       extraModulePackages = [];
     };
 
