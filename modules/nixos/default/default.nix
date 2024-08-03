@@ -344,17 +344,17 @@ with lib.custom;
                </service>
              </service-group>
           '';
-          rdp = ''
-            <?xml version="1.0" standalone='no'?>
-             <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
-             <service-group>
-               <name replace-wildcards="yes">%h</name>
-               <service>
-                 <type>_rdp._tcp</type>
-                 <port>${toString config.services.xrdp.port}</port>
-               </service>
-             </service-group>
-          '';
+          # rdp = ''
+          #   <?xml version="1.0" standalone='no'?>
+          #    <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+          #    <service-group>
+          #      <name replace-wildcards="yes">%h</name>
+          #      <service>
+          #        <type>_rdp._tcp</type>
+          #        <port>${toString config.services.xrdp.port}</port>
+          #      </service>
+          #    </service-group>
+          # '';
         };
 
         udev.enable = mkDefault true;

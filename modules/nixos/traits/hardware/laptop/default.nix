@@ -38,7 +38,7 @@ in {
 
       thermald.enable = true;
 
-      xrdp.enable = mkForce false;
+      # xrdp.enable = mkForce false;
 
       tlp.enable = true;
       power-profiles-daemon.enable = false;
