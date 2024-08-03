@@ -151,7 +151,7 @@ in
           enable = true;
           fileSystems = ["/"];
         };
-        snapper = mkIf false {
+        snapper = {
           snapshotRootOnBoot = true;
           snapshotInterval = "hourly";
           cleanupInterval = "1d";

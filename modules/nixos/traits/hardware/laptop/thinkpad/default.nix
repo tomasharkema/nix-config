@@ -74,51 +74,51 @@ in {
     '';
     security.pam.services = {
       "gdm-fingerprint" = {
-        enableGnomeKeyring = true;
+        # enableGnomeKeyring = true;
         fprintAuth = true;
       };
       xscreensaver = {
-        enableGnomeKeyring = true;
+        # enableGnomeKeyring = true;
         fprintAuth = true;
       };
       "runuser" = {
-        enableGnomeKeyring = true;
+        # enableGnomeKeyring = true;
         fprintAuth = true;
       };
       "runuser-l" = {
-        enableGnomeKeyring = true;
+        # enableGnomeKeyring = true;
         fprintAuth = true;
       };
       su = {
-        enableGnomeKeyring = true;
+        # enableGnomeKeyring = true;
         fprintAuth = true;
       };
       "polkit-1" = {
-        enableGnomeKeyring = true;
+        # enableGnomeKeyring = true;
         fprintAuth = true;
       };
       "systemd-user" = {
-        enableGnomeKeyring = true;
+        # enableGnomeKeyring = true;
         fprintAuth = true;
       };
       sudo = {
-        enableGnomeKeyring = true;
+        # enableGnomeKeyring = true;
         fprintAuth = true;
       };
       auth = {
-        enableGnomeKeyring = true;
+        # enableGnomeKeyring = true;
         fprintAuth = true;
       };
       login = {
-        enableGnomeKeyring = true;
+        # enableGnomeKeyring = true;
         fprintAuth = true;
       };
       vlock = {
-        enableGnomeKeyring = true;
+        # enableGnomeKeyring = true;
         fprintAuth = true;
       };
       xlock = {
-        enableGnomeKeyring = true;
+        # enableGnomeKeyring = true;
         fprintAuth = true;
       };
     };
