@@ -105,7 +105,7 @@ with lib; {
       auto-cpufreq.enable = mkForce false;
       monit.enable = mkForce false;
       # tor.enable = false;
-      xrdp.enable = mkForce false;
+      # xrdp.enable = mkForce false;
       fwupd.enable = mkForce false;
 
       # spice-autorandr.enable = true;

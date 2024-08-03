@@ -118,7 +118,7 @@ in
           };
         };
         displayManager.defaultSession = "gnome";
-        xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
+        # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
 
         xserver = {
           # dpi = mkIf cfg.hidpi.enable 200;

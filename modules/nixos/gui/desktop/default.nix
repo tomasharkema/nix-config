@@ -27,10 +27,10 @@ in {
         # xkbVariant = "";
       };
 
-      xrdp = mkIf cfg.rdp.enable {
-        enable = true;
-        # openFirewall = true;
-      };
+      # xrdp = mkIf cfg.rdp.enable {
+      #   enable = true;
+      #   # openFirewall = true;
+      # };
       # clipmenu.enable = true;
 
       systembus-notify.enable = true;
