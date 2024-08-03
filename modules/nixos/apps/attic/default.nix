@@ -23,8 +23,8 @@ in {
     };
 
     serverAddress = mkOption {
-      # default = "http://192.168.0.100:6067/";
-      default = "https://nix-cache.harke.ma/";
+      default = "http://silver-star:6067/";
+      # default = "https://nix-cache.harke.ma/";
       type = types.str;
     };
   };

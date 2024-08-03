@@ -95,13 +95,13 @@ with lib; {
     apps = {
       # android.enable = true;
       steam.enable = true;
-      # opensnitch.enable = true;
+      opensnitch.enable = true;
       # usbip.enable = true;
       # samsung.enable = true;
     };
 
     headless.hypervisor = {
-      # enable = true;
+      enable = true;
       #   bridgeInterfaces = ["wlp59s0"];
     };
 
@@ -144,10 +144,6 @@ with lib; {
         };
       };
 
-      # synergy.server = {
-      #   enable = true;
-      # };
-
       avahi = {
         enable = true;
         # allowInterfaces = ["wlp59s0"];
@@ -162,6 +158,7 @@ with lib; {
     # };
 
     boot = {
+      resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
       tmp = {
         useTmpfs = true;
       };

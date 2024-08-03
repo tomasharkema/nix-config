@@ -47,13 +47,13 @@ with lib.custom;
         enable = mkDefault true;
       };
 
-      # console = {
-      # earlySetup = true;
-      # font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
-      # packages = with pkgs; [terminus_font];
-      # keyMap = "us";
-      # useXkbConfig = true; # use xkb.options in tty.
-      # };
+      console = {
+        earlySetup = true;
+        font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
+        packages = with pkgs; [terminus_font];
+        keyMap = "us";
+        # useXkbConfig = true; # use xkb.options in tty.
+      };
 
       boot = {
         recovery.enable = mkDefault true;
@@ -240,20 +240,22 @@ with lib.custom;
           packages = with pkgs; [mpv];
         };
 
-        atd.enable = true;
+        # atd.enable = true;
 
-        kmscon = {
-          enable = mkDefault true;
-          hwRender = config.traits.hardware.nvidia.enable;
-          fonts = [
-            {
-              name = "JetBrainsMono Nerd Font Mono";
-              package = pkgs.nerdfonts;
-            }
-          ];
-        };
+        # kmscon = {
+        #   enable = mkDefault true;
+        #   hwRender = config.traits.hardware.nvidia.enable;
+        #   fonts = [
+        #     {
+        #       name = "JetBrainsMono Nerd Font Mono";
+        #       package = pkgs.nerdfonts;
+        #     }
+        #   ];
+        # };
 
-        preload.enable = true;
+        #TODO: fix
+        # preload.enable = true;
+        actkbd.enable = mkForce false;
 
         ananicy = {
           enable = true;
