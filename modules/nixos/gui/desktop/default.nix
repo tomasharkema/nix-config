@@ -169,8 +169,9 @@ in {
           plexamp
           telegram-desktop
           xpipe
+          pkgs.custom.ztui
         ]
-        ++ (with pkgs.custom; [zerotier-ui netbrowse ztui]));
+        ++ (with pkgs.custom; [zerotier-ui netbrowse]));
 
     programs = {
       ssh = {
