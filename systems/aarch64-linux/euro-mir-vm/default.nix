@@ -66,6 +66,7 @@ with lib; {
     apps = {
       flatpak.enable = true;
       # opensnitch.enable = true;
+      ancs4linux.enable = false;
     };
 
     boot = {
