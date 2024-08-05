@@ -12,13 +12,11 @@ with lib; {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILZP/NhYd8ZBJBXDEDwUgkxQHEBD3DT2KsAQA3bn1MSC root@silver-star-vm";
     };
 
-    headless.enable = true;
-
-    zramSwap.enable = false;
     swapDevices =
       mkForce [
       ];
     trait = {
+      server.enable = true;
       hardware = {
         tpm.enable = true;
         # secure-boot.enable = true;

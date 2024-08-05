@@ -9,6 +9,8 @@
 
   pnpm = channels.unstable.pnpm;
 
+  nixd = channels.unstable.nixd;
+
   conky = inputs.conky.packages."${prev.system}".default;
   # conky = channels.unstable.conky.overrideAttrs {
   #   x11Support = false;
