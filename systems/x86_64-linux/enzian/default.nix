@@ -65,6 +65,7 @@ with lib; {
     traits = {
       developer.enable = true;
       hardware = {
+        nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
         remote-unlock.enable = true;
