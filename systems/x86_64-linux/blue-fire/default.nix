@@ -34,6 +34,8 @@ in {
     };
 
     trait = {
+      server.enable = true;
+
       builder = {
         enable = true;
         # hydra.enable = true;
@@ -57,8 +59,6 @@ in {
     #   # Reset 5-minute watchdog timer every minute
     #   "* * * * * ${pkgs.ipmitool}/bin/ipmitool raw 0x30 0x97 1 5"
     # ];
-
-    headless.enable = true;
 
     apps = {
       # attic-server.enable = true;

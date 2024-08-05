@@ -16,8 +16,8 @@ update() {
 }
 
 clearcache() {
-  sudo nix-collect-garbage --delete-older-than '7d'
-  nix-collect-garbage --delete-older-than '7d'
+  echo "-- nh clean all --"
+  nh clean all
   echo "-- nix store optimise --"
   nix store optimise
 }

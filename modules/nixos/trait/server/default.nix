@@ -10,7 +10,9 @@ in {
   options.trait.server = {
     enable = mkEnableOption "server";
   };
+
   config = mkIf cfg.enable {
+    system.nixos.tags = ["server"];
     services = {
       hypervisor = {
         webservices.enable = true;

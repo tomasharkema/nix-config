@@ -32,6 +32,7 @@ with lib; {
     environment.systemPackages = with pkgs; [custom.elxflash];
 
     trait = {
+      server.enable = true;
       builder.enable = true;
       hardware = {
         # tpm.enable = true;

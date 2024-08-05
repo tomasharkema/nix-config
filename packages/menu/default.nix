@@ -8,6 +8,7 @@ pkgs.writeShellApplication {
 
   runtimeInputs = with pkgs;
     [
+      nh
       gum
       nixos-rebuild
       nix-output-monitor

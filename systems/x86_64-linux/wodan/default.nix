@@ -113,6 +113,7 @@ with lib; {
     apps.podman.enable = true;
 
     trait = {
+      server.enable = true;
       hardware = {
         nvme.enable = true;
         tpm.enable = true;
