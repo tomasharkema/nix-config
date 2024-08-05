@@ -60,15 +60,6 @@ in {
       remotebox
       virtio-win
 
-      (pkgs.buildFHSEnv {
-        name = "dosbox-x-glide";
-        targetPkgs = pkgs: (with pkgs; [
-          custom.openglide
-          dosbox-x
-          _86Box-with-roms
-        ]);
-        runScript = "dosbox-x";
-      })
       qemu-utils
       virtiofsd
     ];
@@ -146,10 +137,10 @@ in {
       kvmgt.enable = true;
       # tpm.enable = true;
 
-      libvirt = {
-        enable = true;
-        swtpm.enable = true;
-      };
+      # libvirt = {
+      #   enable = true;
+      #   swtpm.enable = true;
+      # };
 
       libvirtd = {
         qemu = {
