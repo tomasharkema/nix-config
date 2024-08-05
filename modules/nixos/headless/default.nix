@@ -1,9 +1,14 @@
-{ config, lib, ... }:
-with lib;
-with lib.custom;
-let cfg = config.headless;
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.headless;
 in {
-  options.headless = { enable = mkBoolOpt false "headless settings"; };
+  options.headless = {
+    enable = mkEnableOption "headless settings";
+  };
 
   config = lib.mkIf cfg.enable {
     # environment.variables = {

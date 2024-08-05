@@ -18,7 +18,7 @@ with lib; {
     swapDevices =
       mkForce [
       ];
-    traits = {
+    trait = {
       hardware = {
         tpm.enable = true;
         # secure-boot.enable = true;

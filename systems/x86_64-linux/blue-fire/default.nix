@@ -33,7 +33,7 @@ in {
       # btrbk.enable = true;
     };
 
-    traits = {
+    trait = {
       builder = {
         enable = true;
         # hydra.enable = true;
@@ -207,7 +207,7 @@ in {
       };
     };
 
-    headless.hypervisor = {
+    services.hypervisor = {
       enable = true;
       # bridgeInterfaces = [ "eno1" ];
     };

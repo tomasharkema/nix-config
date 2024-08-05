@@ -62,7 +62,7 @@ with lib; {
 
     resilio.enable = false;
 
-    traits = {
+    trait = {
       low-power.enable = true;
       ecrypt.enable = true;
       hardware = {

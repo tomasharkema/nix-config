@@ -42,7 +42,7 @@ with lib; let
             mountOptions = [];
           };
           "home" = {
-            mountOptions = ["noatime" "discard=async"]; #++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
+            mountOptions = ["noatime" "discard=async"]; #++ lib.optional (!config.trait.low-power.enable) "compress=zstd";
             mountpoint = "/home";
           };
           "resilio-sync" = mkIf (cfg.newSubvolumes && cfg.media == null) {
@@ -72,7 +72,7 @@ with lib; let
           "steam" = mkIf cfg.newSubvolumes {
             mountOptions =
               ["noatime" "discard=async"]
-              ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
+              ++ lib.optional (!config.trait.low-power.enable) "compress=zstd";
             mountpoint = "/mnt/steam";
           };
           "flatpak" = mkIf cfg.newSubvolumes {

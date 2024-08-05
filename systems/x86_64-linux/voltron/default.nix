@@ -101,12 +101,12 @@ with lib; {
       # samsung.enable = true;
     };
 
-    headless.hypervisor = {
+    services.hypervisor = {
       enable = true;
       #   bridgeInterfaces = ["wlp59s0"];
     };
 
-    traits = {
+    trait = {
       hardware = {
         nvme.enable = true;
         tpm.enable = true;
