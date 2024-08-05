@@ -96,6 +96,9 @@ with lib.custom;
 
       environment.systemPackages =
         (with pkgs; [
+          dosbox-x
+          _86Box-with-roms
+          smartmontools
           bash
           discordo
           nvchecker

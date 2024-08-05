@@ -1,361 +1,4 @@
 {
-  inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.05";
-    unstable.url = "nixpkgs/nixos-unstable";
-
-    home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    systems.url = "github:nix-systems/default";
-
-    darwin = {
-      url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    flake-compat = {
-      url = "github:edolstra/flake-compat";
-      flake = false;
-    };
-
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-      inputs = {
-        systems.follows = "systems";
-      };
-    };
-
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-    };
-
-    devshell = {
-      url = "github:numtide/devshell";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    pre-commit-hooks-nix = {url = "github:cachix/pre-commit-hooks.nix";};
-
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    crane = {
-      url = "github:ipetkov/crane";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    catppuccin = {
-      url = "github:catppuccin/nix";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixos-anywhere = {
-      url = "github:nix-community/nixos-anywhere";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        disko.follows = "disko";
-        flake-parts.follows = "flake-parts";
-        treefmt-nix.follows = "treefmt-nix";
-      };
-    };
-
-    nixvim = {
-      url = "github:nix-community/nixvim/nixos-24.05";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
-        nix-darwin.follows = "darwin";
-        flake-compat.follows = "flake-compat";
-        flake-parts.follows = "flake-parts";
-        devshell.follows = "devshell";
-        treefmt-nix.follows = "treefmt-nix";
-      };
-    };
-
-    agenix = {
-      url = "github:ryantm/agenix";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
-        darwin.follows = "darwin";
-        systems.follows = "systems";
-      };
-    };
-
-    agenix-rekey = {
-      url = "github:oddlama/agenix-rekey";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-        devshell.follows = "devshell";
-        pre-commit-hooks.follows = "pre-commit-hooks-nix";
-      };
-    };
-
-    nixos-hardware = {
-      url = "github:nixos/nixos-hardware";
-
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-gaming = {
-      url = "github:fufexan/nix-gaming";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
-
-    # cachix-deploy-flake = {
-    #   url = "github:cachix/cachix-deploy-flake";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    nix-software-center = {
-      url = "github:snowfallorg/nix-software-center";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        utils.follows = "flake-utils";
-      };
-    };
-
-    # nixos-conf-editor = {
-    #   url = "github:snowfallorg/nixos-conf-editor";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    nix-flatpak = {
-      url = "github:gmodena/nix-flatpak";
-
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        crane.follows = "crane";
-        flake-parts.follows = "flake-parts";
-        flake-compat.follows = "flake-compat";
-        # flake-utils.follows = "flake-utils";
-        pre-commit-hooks-nix.follows = "pre-commit-hooks-nix";
-      };
-    };
-
-    snowfall-lib = {
-      url = "github:snowfallorg/lib";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "flake-compat";
-      };
-    };
-
-    snowfall-flake = {
-      url = "github:snowfallorg/flake";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        snowfall-lib.follows = "snowfall-lib";
-      };
-    };
-
-    peerix = {
-      # url = "github:cid-chan/peerix";
-      url = "github:tomasharkema/peerix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
-
-    # stylix = {
-    #   url = "github:danth/stylix/release-24.05";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # nixos-search = {
-    #   url = "github:NixOS/nixos-search";
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     flake-utils.follows = "flake-utils";
-    #   };
-    # };
-
-    # command-center = {
-    #   url = "github:tomasharkema/command-center";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # filestash-nix = {
-    #   url = "github:matthewcroughan/filestash-nix";
-    #   inputs.nixpkgs.follows = "unstable";
-    # };
-
-    # zjstatus = {
-    #   url = "github:dj95/zjstatus";
-    # };
-
-    # tree-sitter-nix = {
-    #   url = "github:nix-community/tree-sitter-nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # nixos-checkmk = {
-    #   url = "github:tomasharkema/nixos-checkmk";
-
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    poetry2nix = {
-      url = "github:nix-community/poetry2nix";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-        treefmt-nix.follows = "treefmt-nix";
-      };
-    };
-
-    # nbfc-linux = {
-    # url = "github:nbfc-linux/nbfc-linux";
-    # inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    _1password-shell-plugins = {
-      url = "github:1Password/shell-plugins";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
-
-    # nixos-service = {
-    #   url = "github:tomasharkema/nixos-service";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    nix-virt = {
-      url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
-
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    conky = {
-      url = "github:brndnmtthws/conky";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
-
-    nixos-06cb-009a-fingerprint-sensor = {
-      url = "github:tomasharkema/nixos-06cb-009a-fingerprint-sensor";
-
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # netkit = {
-    #   url = "github:icebox-nix/netkit.nix";
-    # };
-
-    # nix-topology = {
-    #   url = "github:oddlama/nix-topology";
-
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     flake-utils.follows = "flake-utils";
-    #     devshell.follows = "devshell";
-    #     pre-commit-hooks.follows = "pre-commit-hooks-nix";
-    #   };
-    # };
-
-    # nixos-dash-docset = {
-    #   url = "github:ptitfred/nixos-dash-docset";
-
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     flake-utils.follows = "flake-utils";
-    #   };
-    # };
-    # opentelemetry-nix = {
-    #   url = "github:FriendsOfOpenTelemetry/opentelemetry-nix";
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     # flake-utils.follows = "flake-utils";
-    #   };
-    # };
-
-    # nix-otel = {
-    #   url = "github:tomasharkema/nix-otel";
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     flake-utils.follows = "flake-utils";
-    #   };
-    # };
-
-    nixos-nvidia-vgpu = {
-      url = "github:tomasharkema/nixos-nvidia-vgpu";
-      # url = "/home/tomas/Developer/nixos-nvidia-vgpu";
-    };
-
-    nix-htop = {
-      url = "https://flakehub.com/f/tomasharkema/nix-htop/0.0.*.tar.gz";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
-
-    tailscalesd = {
-      url = "github:tomasharkema/tailscalesd";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
-
-    buildbot-nix = {
-      url = "github:nix-community/buildbot-nix";
-      # url = "github:tomasharkema/buildbot-nix";
-      # url = "github:nix-community/buildbot-nix/hercules";
-      # url = "/home/tomas/Developer/buildbot-nix";
-      inputs = {
-        # nixpkgs.follows = "unstable";
-        #   treefmt-nix.follows = "treefmt-nix";
-      };
-    };
-  };
-
   outputs = inputs: let
     lib = inputs.snowfall-lib.mkLib {
       inherit inputs;
@@ -490,7 +133,7 @@
           nix-gaming.nixosModules.platformOptimizations
 
           # nixos-service.nixosModules.nixos-service
-          nix-virt.nixosModules.default
+          # nix-virt.nixosModules.default
           nixos-nvidia-vgpu.nixosModules.nvidia-vgpu
 
           ({config, ...}: {
@@ -795,5 +438,362 @@
     keep-derivations = true;
     accept-flake-config = true;
     # sandbox = false;
+  };
+
+  inputs = {
+    nixpkgs.url = "nixpkgs/nixos-24.05";
+    unstable.url = "nixpkgs/nixos-unstable";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    systems.url = "github:nix-systems/default";
+
+    darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
+
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs = {
+        systems.follows = "systems";
+      };
+    };
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+    };
+
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    pre-commit-hooks-nix = {url = "github:cachix/pre-commit-hooks.nix";};
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    crane = {
+      url = "github:ipetkov/crane";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-anywhere = {
+      url = "github:nix-community/nixos-anywhere";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        disko.follows = "disko";
+        flake-parts.follows = "flake-parts";
+        treefmt-nix.follows = "treefmt-nix";
+      };
+    };
+
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-24.05";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        nix-darwin.follows = "darwin";
+        flake-compat.follows = "flake-compat";
+        flake-parts.follows = "flake-parts";
+        devshell.follows = "devshell";
+        treefmt-nix.follows = "treefmt-nix";
+      };
+    };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        darwin.follows = "darwin";
+        systems.follows = "systems";
+      };
+    };
+
+    agenix-rekey = {
+      url = "github:oddlama/agenix-rekey";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+        devshell.follows = "devshell";
+        pre-commit-hooks.follows = "pre-commit-hooks-nix";
+      };
+    };
+
+    nixos-hardware = {
+      url = "github:nixos/nixos-hardware";
+
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
+
+    # cachix-deploy-flake = {
+    #   url = "github:cachix/cachix-deploy-flake";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    nix-software-center = {
+      url = "github:snowfallorg/nix-software-center";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        utils.follows = "flake-utils";
+      };
+    };
+
+    # nixos-conf-editor = {
+    #   url = "github:snowfallorg/nixos-conf-editor";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        crane.follows = "crane";
+        flake-parts.follows = "flake-parts";
+        flake-compat.follows = "flake-compat";
+        # flake-utils.follows = "flake-utils";
+        pre-commit-hooks-nix.follows = "pre-commit-hooks-nix";
+      };
+    };
+
+    snowfall-lib = {
+      url = "github:snowfallorg/lib";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "flake-compat";
+      };
+    };
+
+    snowfall-flake = {
+      url = "github:snowfallorg/flake";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        snowfall-lib.follows = "snowfall-lib";
+      };
+    };
+
+    peerix = {
+      # url = "github:cid-chan/peerix";
+      url = "github:tomasharkema/peerix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
+    # stylix = {
+    #   url = "github:danth/stylix/release-24.05";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    # nixos-search = {
+    #   url = "github:NixOS/nixos-search";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #   };
+    # };
+
+    # command-center = {
+    #   url = "github:tomasharkema/command-center";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    # filestash-nix = {
+    #   url = "github:matthewcroughan/filestash-nix";
+    #   inputs.nixpkgs.follows = "unstable";
+    # };
+
+    # zjstatus = {
+    #   url = "github:dj95/zjstatus";
+    # };
+
+    # tree-sitter-nix = {
+    #   url = "github:nix-community/tree-sitter-nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    # nixos-checkmk = {
+    #   url = "github:tomasharkema/nixos-checkmk";
+
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    poetry2nix = {
+      url = "github:nix-community/poetry2nix";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+        treefmt-nix.follows = "treefmt-nix";
+      };
+    };
+
+    # nbfc-linux = {
+    # url = "github:nbfc-linux/nbfc-linux";
+    # inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    _1password-shell-plugins = {
+      url = "github:1Password/shell-plugins";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
+    # nixos-service = {
+    #   url = "github:tomasharkema/nixos-service";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    # nix-virt = {
+    #   url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
+
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    conky = {
+      url = "github:brndnmtthws/conky";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
+    nixos-06cb-009a-fingerprint-sensor = {
+      url = "github:tomasharkema/nixos-06cb-009a-fingerprint-sensor";
+
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # netkit = {
+    #   url = "github:icebox-nix/netkit.nix";
+    # };
+
+    # nix-topology = {
+    #   url = "github:oddlama/nix-topology";
+
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #     devshell.follows = "devshell";
+    #     pre-commit-hooks.follows = "pre-commit-hooks-nix";
+    #   };
+    # };
+
+    # nixos-dash-docset = {
+    #   url = "github:ptitfred/nixos-dash-docset";
+
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #   };
+    # };
+    # opentelemetry-nix = {
+    #   url = "github:FriendsOfOpenTelemetry/opentelemetry-nix";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     # flake-utils.follows = "flake-utils";
+    #   };
+    # };
+
+    # nix-otel = {
+    #   url = "github:tomasharkema/nix-otel";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #   };
+    # };
+
+    nixos-nvidia-vgpu = {
+      url = "github:tomasharkema/nixos-nvidia-vgpu";
+      # url = "/home/tomas/Developer/nixos-nvidia-vgpu";
+    };
+
+    nix-htop = {
+      url = "https://flakehub.com/f/tomasharkema/nix-htop/0.0.*.tar.gz";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
+
+    tailscalesd = {
+      url = "github:tomasharkema/tailscalesd";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
+
+    buildbot-nix = {
+      url = "github:nix-community/buildbot-nix";
+      # url = "github:tomasharkema/buildbot-nix";
+      # url = "github:nix-community/buildbot-nix/hercules";
+      # url = "/home/tomas/Developer/buildbot-nix";
+      inputs = {
+        # nixpkgs.follows = "unstable";
+        #   treefmt-nix.follows = "treefmt-nix";
+      };
+    };
   };
 }
