@@ -332,7 +332,6 @@ in {
 
       initrd = {
         availableKernelModules = [
-          "nvme"
           "xhci_pci"
           "ahci"
           "usbhid"
@@ -342,7 +341,6 @@ in {
         kernelModules = [
           "kvm-intel"
           "uinput"
-          "nvme"
           #          "tpm_rng"
           "ipmi_ssif"
           # "acpi_ipmi"

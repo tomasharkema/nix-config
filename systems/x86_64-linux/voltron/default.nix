@@ -42,6 +42,7 @@ with lib; {
     };
 
     environment.systemPackages = with pkgs; [
+      nvramtool
       libusb
 
       gnupg
@@ -107,6 +108,7 @@ with lib; {
 
     traits = {
       hardware = {
+        nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
         laptop.enable = true;

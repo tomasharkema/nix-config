@@ -114,6 +114,7 @@ with lib; {
 
     traits = {
       hardware = {
+        nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
         nvidia.enable = true;
