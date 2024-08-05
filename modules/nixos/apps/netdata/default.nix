@@ -8,12 +8,29 @@ with lib;
 with lib.custom; let
   cfg = config.apps.netdata;
 in {
-  options.apps.netdata = {enable = mkBoolOpt true "netdata";};
+  options.apps.netdata = {
+    enable = mkEnableOption "netdata";
+  };
 
   config = mkIf cfg.enable {
     age.secrets.netdata = {
       rekeyFile = ../../secrets/netdata.age;
       mode = "644";
+    };
+
+    security.sudo = {
+      extraRules = [
+        # netdata ALL=(root) NOPASSWORD: nvme
+        {
+          commands = [
+            {
+              command = "${pkgs.nvme-cli}/bin/nvme";
+              options = ["NOPASSWD"];
+            }
+          ];
+          users = ["netdata" "tomas"];
+        }
+      ];
     };
 
     services.netdata = {
