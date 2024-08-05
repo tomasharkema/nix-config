@@ -253,8 +253,7 @@ with lib.custom;
         #   ];
         # };
 
-        #TODO: fix
-        # preload.enable = true;
+        preload.enable = true;
         actkbd.enable = mkForce false;
 
         ananicy = {
