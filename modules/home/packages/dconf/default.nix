@@ -151,12 +151,12 @@ with lib; {
               }
               {
                 element = "systemMenu";
-                visible = true;
+                visible = false;
                 position = "stackedBR";
               }
               {
                 "element" = "dateMenu";
-                visible = true;
+                visible = false;
                 position = "stackedBR";
               }
               {
