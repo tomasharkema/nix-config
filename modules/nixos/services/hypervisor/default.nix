@@ -128,7 +128,7 @@ in {
           enable = true;
           enableExtensionPack = true;
           # enableKvm = true;
-          # enableWebService = true;
+          enableWebService = true;
           addNetworkInterface = true;
           enableHardening = false;
         };
