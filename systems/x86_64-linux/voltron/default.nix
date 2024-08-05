@@ -106,7 +106,7 @@ with lib; {
       #   bridgeInterfaces = ["wlp59s0"];
     };
 
-    traits = {
+    trait = {
       hardware = {
         nvme.enable = true;
         tpm.enable = true;

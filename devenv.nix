@@ -174,9 +174,11 @@ in {
     shfmt.enable = true;
     nil.enable = true;
     stylua.enable = true;
+
     # treefmt.enable = true;
     # statix.enable = true;
     # deadnix.enable = true;
+
     gptcommit.enable = true;
     check-added-large-files.enable = true;
     ripsecrets.enable = true;
@@ -268,7 +270,7 @@ in {
     nix-prefetch-scripts
     nix-prefetch-scripts
     nix-tree
-    # nixd
+    nixd
     nixfmt-rfc-style
     nixos-generate
     nixpkgs-fmt

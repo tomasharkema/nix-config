@@ -33,7 +33,7 @@ in {
       # btrbk.enable = true;
     };
 
-    traits = {
+    trait = {
       builder = {
         enable = true;
         # hydra.enable = true;

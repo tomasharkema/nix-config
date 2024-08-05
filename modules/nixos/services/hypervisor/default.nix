@@ -6,13 +6,15 @@
 }:
 with lib;
 with lib.custom; let
-  cfg = config.headless.hypervisor;
+  cfg = config.services.hypervisor;
 
   libvirtKeytab = "/var/lib/libvirt/krb5.tab";
   qemuKeytab = "/etc/qemu/krb5.tab";
 in {
-  options.headless.hypervisor = {
+  options.services.hypervisor = {
     enable = mkEnableOption "hypervisor";
+
+    webservices.enable = mkEnableOption "webservices";
 
     bridgeInterfaces = mkOpt (types.listOf types.str) [] "bridgeInterfaces";
   };
@@ -128,7 +130,7 @@ in {
           enable = true;
           enableExtensionPack = true;
           # enableKvm = true;
-          enableWebService = true;
+          enableWebService = cfg.webservices.enable;
           addNetworkInterface = true;
           enableHardening = false;
         };
