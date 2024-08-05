@@ -80,7 +80,7 @@ with lib; {
         enable = false;
       };
     };
-    traits = {
+    trait = {
       developer.enable = false;
       hardware = {
         tpm.enable = false;

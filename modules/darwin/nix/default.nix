@@ -36,7 +36,7 @@ in {
       };
     };
 
-    traits.developer.enable = true;
+    trait.developer.enable = true;
 
     services.nix-daemon.enable = true;
 

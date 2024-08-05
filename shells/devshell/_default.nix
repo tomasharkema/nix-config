@@ -182,8 +182,8 @@ in
       hydra-cli
       mkiso
       netdiscover
-      # unstable.nil
-      unstable.nixd
+      nil
+      nixd
       nix-output-monitor
       nix-prefetch-scripts
       nixel

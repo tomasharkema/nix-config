@@ -23,7 +23,7 @@ in
 
     config = mkIf cfg.enable {
       sound.mediaKeys.enable = true;
-      traits.developer.enable = mkDefault true;
+      trait.developer.enable = mkDefault true;
 
       # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
@@ -70,13 +70,10 @@ in
           tomas.databases = [
             {
               settings."org/gnome/mutter" = {
-                experimental-features =
-                  if config.traits.hardware.laptop.enable
-                  then [
-                    "scale-monitor-framebuffer"
-                    "variable-refresh-rate"
-                  ]
-                  else lib.gvariant.mkEmptyArray (lib.gvariant.type.string);
+                experimental-features = [
+                  "scale-monitor-framebuffer"
+                  "variable-refresh-rate"
+                ];
                 edge-tiling = true;
               };
               settings."org/gnome/desktop/interface".scaling-factor =

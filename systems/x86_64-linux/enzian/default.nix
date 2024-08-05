@@ -62,7 +62,7 @@ with lib; {
 
     wifi.enable = true;
 
-    traits = {
+    trait = {
       developer.enable = true;
       hardware = {
         nvme.enable = true;

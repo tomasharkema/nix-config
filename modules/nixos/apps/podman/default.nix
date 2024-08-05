@@ -1,11 +1,16 @@
-{ lib, config, pkgs, ... }:
-with lib;
-let cfg = config.apps.podman;
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.apps.podman;
 in {
-  options.apps.podman = { enable = mkEnableOption "enable podman"; };
+  options.apps.podman = {enable = mkEnableOption "enable podman";};
 
   config = mkIf cfg.enable {
-    system.nixos.tags = [ "podman" ];
+    system.nixos.tags = ["podman"];
 
     environment.systemPackages = with pkgs; [
       podman-tui
@@ -17,8 +22,8 @@ in {
     networking = {
       firewall = {
         interfaces."podman+" = {
-          allowedUDPPorts = [ 53 ];
-          allowedTCPPorts = [ 53 ];
+          allowedUDPPorts = [53];
+          allowedTCPPorts = [53];
         };
       };
     };
@@ -36,7 +41,7 @@ in {
         dockerCompat = true;
         dockerSocket.enable = true;
 
-        enableNvidia = config.traits.hardware.nvidia.enable;
+        enableNvidia = config.trait.hardware.nvidia.enable;
 
         defaultNetwork.settings.dns_enabled = true;
         # networkSocket = {
