@@ -40,6 +40,23 @@ in {
 
       tlp.enable = true;
       power-profiles-daemon.enable = false;
+
+      acpid = {
+        enable = true;
+        logEvents = true;
+
+        acEventCommands = ''
+          case "$@" in
+            *00000001)
+              systemctl start beesd@root.service
+              ;;
+
+            *00000000)
+              systemctl stop beesd@root.service
+              ;;
+          esac
+        '';
+      };
     };
 
     systemd.targets = {
