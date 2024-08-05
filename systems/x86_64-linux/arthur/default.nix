@@ -31,7 +31,7 @@ with lib; {
 
     environment.systemPackages = with pkgs; [custom.elxflash];
 
-    traits = {
+    trait = {
       builder.enable = true;
       hardware = {
         # tpm.enable = true;
@@ -88,7 +88,7 @@ with lib; {
       wireless.enable = lib.mkForce false;
     };
 
-    headless.hypervisor = {
+    services.hypervisor = {
       enable = true;
       bridgeInterfaces = ["eno1"];
     };

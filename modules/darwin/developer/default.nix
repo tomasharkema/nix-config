@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.traits.developer;
+  cfg = config.trait.developer;
 in {
-  options.traits.developer = {enable = mkEnableOption "dev";};
+  options.trait.developer = {enable = mkEnableOption "dev";};
   config = mkIf cfg.enable {
     # system.nixos.tags = ["developer"];
 

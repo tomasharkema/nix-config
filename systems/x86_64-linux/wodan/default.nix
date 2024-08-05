@@ -96,7 +96,7 @@ with lib; {
       flatpak.enable = true;
     };
 
-    headless.hypervisor = {
+    services.hypervisor = {
       enable = true;
       bridgeInterfaces = ["enp2s0"];
     };
@@ -112,7 +112,7 @@ with lib; {
 
     apps.podman.enable = true;
 
-    traits = {
+    trait = {
       hardware = {
         nvme.enable = true;
         tpm.enable = true;
@@ -122,13 +122,13 @@ with lib; {
         monitor.enable = true;
         disable-sleep.enable = true;
 
-        nfs = {
-          # enable = true;
-          machines = {
-            # silver-star.enable = true;
-            # dione.enable = true;
-          };
-        };
+        # nfs = {
+        # enable = true;
+        # machines = {
+        # silver-star.enable = true;
+        # dione.enable = true;
+        # };
+        # };
       };
     };
 

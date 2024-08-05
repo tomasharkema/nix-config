@@ -62,7 +62,7 @@ with lib; {
 
     wifi.enable = true;
 
-    traits = {
+    trait = {
       developer.enable = true;
       hardware = {
         nvme.enable = true;
@@ -97,7 +97,7 @@ with lib; {
       };
     };
 
-    # headless.hypervisor = {
+    # services.hypervisor = {
     #   enable = true;
     #   bridgeInterfaces = ["enp4s0"];
     # };

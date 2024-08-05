@@ -78,7 +78,7 @@ with lib.custom;
 
         # kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
         kernelPackages =
-          if (pkgs.stdenv.isAarch64 || config.traits.hardware.vm.enable)
+          if (pkgs.stdenv.isAarch64 || config.trait.hardware.vm.enable)
           then mkDefault pkgs.linuxPackages_latest
           else mkDefault pkgs.linuxPackages_xanmod_stable;
 
@@ -102,8 +102,8 @@ with lib.custom;
           bash
           discordo
           nvchecker
-          # unstable.nil
-          unstable.nixd
+          nil
+          nixd
           googler
           castnow
           go-chromecast
@@ -238,6 +238,8 @@ with lib.custom;
       services = {
         irqbalance.enable = true;
 
+        rpcbind.enable = true;
+
         dbus = {
           enable = true;
           packages = with pkgs; [mpv];
@@ -247,7 +249,7 @@ with lib.custom;
 
         # kmscon = {
         #   enable = mkDefault true;
-        #   hwRender = config.traits.hardware.nvidia.enable;
+        #   hwRender = config.trait.hardware.nvidia.enable;
         #   fonts = [
         #     {
         #       name = "JetBrainsMono Nerd Font Mono";
