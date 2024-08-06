@@ -200,6 +200,7 @@ in
         btrfs-snap
         btrfs-progs
         btrfs-heatmap
+        btrfs-auto-snapshot
         # btrbk
         # timeshift
       ];

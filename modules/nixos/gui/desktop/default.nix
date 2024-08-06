@@ -106,6 +106,7 @@ in {
       (with pkgs; [nix-software-center])
       ++ (with pkgs.unstable;
         [
+          apache-directory-studio
           sqlitebrowser
           # notify-client
           # unstable.vscodium
