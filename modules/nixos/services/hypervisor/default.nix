@@ -145,6 +145,8 @@ in {
       # };
 
       libvirtd = {
+        enable = true;
+
         qemu = {
           # verbatimConfig = ''
           #   # Adapted from /var/lib/libvirt/qemu.conf

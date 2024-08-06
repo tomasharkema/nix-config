@@ -34,7 +34,10 @@ in {
     };
 
     trait = {
-      server.enable = true;
+      server = {
+        enable = true;
+        headless.enable = true;
+      };
 
       builder = {
         enable = true;
