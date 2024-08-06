@@ -96,90 +96,100 @@ with lib.custom;
 
       environment.systemPackages =
         (with pkgs; [
-          dosbox-x
+          fam
+          aide
+          ttmkfdir
+          silenthound
+          dirdiff
+          ldapdomaindump
+          treecat
+          parallel-disk-usage
+          chunkfs
+          ifuse
+          clex
+
           _86Box-with-roms
-          smartmontools
-          bash
-          discordo
-          nvchecker
-          nil
-          nixd
-          googler
-          castnow
-          go-chromecast
-          gnomecast
-          catt
-          # mkchromecast
-          fcast-receiver
-
-          tydra
-          ethtool
-          socat
-          gdu
-          wmctrl
-          swapview
-          # nix-switcher # : needs github auth
-          lorri
-
-          dfrs
-          duc
-          ssh-tools
-          mbuffer
-          # etcher
-          pamixer
-          pulsemixer
-          pamix
-          pavucontrol
-          ponymix
-          # ntfy
-          ntfy-sh
-          ntfs3g
-          # rtop
-          ipcalc
-          # fancy-motd
-          kexec-tools
           # dry
-          # pkgs.deepin.udisks2-qt5
+          # etcher
+          # fancy-motd
+          # mkchromecast
+          # nix-switcher # : needs github auth
+          # ntfy
+          # rtop
           # udisks2
-          sshfs
-          lshw
-          usbutils
-          ttop
-          git
-          wget
-          curl
-          sysz
-          iptraf-ng
-          unstable.netscanner
           bandwhich
+          bash
           bashmount
           bmon
+          castnow
+          catt
           compsize
           ctop
           curl
-          devtodo
+          curl
           devdash
-          wtf
+          devtodo
+          dfrs
+          discordo
+          dosbox-x
+          duc
+          ethtool
+          fcast-receiver
           fwupd
           fwupd-efi
+          gdu
+          git
+          gnomecast
+          go-chromecast
+          googler
           hw-probe
+          ipcalc
+          iptraf-ng
+          kexec-tools
           kmon
           lazydocker
+          libnotify
           lm_sensors
+          lorri
+          lshw
+          mbuffer
           ncdu
           nfs-utils
+          nil
+          nix-top
+          nixd
+          ntfs3g
+          ntfy-sh
+          nvchecker
           openldap
+          pamix
+          pamixer
+          pavucontrol
           pciutils
+          ponymix
+          pulsemixer
           pv
+          smartmontools
+          socat
+          ssh-tools
+          sshfs
           sshportal
+          swapview
           systemctl-tui
+          sysz
           tiptop
           tpm-tools
+          ttop
+          tydra
           udiskie
+          unstable.netscanner
+          usbutils
           usermount
           viddy
           wget
-          nix-top
+          wget
+          wmctrl
+          wtf
         ])
         ++ (with pkgs.custom; [
           menu
