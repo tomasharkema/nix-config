@@ -29,6 +29,10 @@ in {
       extraModulePackages = with config.boot.kernelPackages; [acpi_call];
     };
 
+    systemd.services."beesd@root".unitConfig.ConditionACPower = true;
+    systemd.services."nh-clean".unitConfig.ConditionACPower = true;
+    systemd.services."nix-optimise".unitConfig.ConditionACPower = true;
+
     services = {
       # synergy.server = {
       #   enable = true;
@@ -45,17 +49,17 @@ in {
         enable = true;
         logEvents = true;
 
-        acEventCommands = ''
-          case "$@" in
-            *00000001)
-              systemctl start beesd@root.service
-              ;;
+        # acEventCommands = ''
+        #   case "$@" in
+        #     *00000001)
+        #       systemctl start beesd@root.service
+        #       ;;
 
-            *00000000)
-              systemctl stop beesd@root.service
-              ;;
-          esac
-        '';
+        #     *00000000)
+        #       systemctl stop beesd@root.service
+        #       ;;
+        #   esac
+        # '';
       };
     };
 
