@@ -44,7 +44,7 @@ in {
         # hydra.enable = true;
       };
       hardware = {
-        # tpm.enable = true;
+        tpm.enable = true;
         secure-boot.enable = true;
         remote-unlock.enable = true;
         nvidia.enable = true;
