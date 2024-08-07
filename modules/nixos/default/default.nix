@@ -94,23 +94,10 @@ with lib.custom;
         };
       };
 
-      environment.etc = let
-        packages =
-          builtins.map (p: {
-            name = p.pname or p.name or "";
-            version = p.version or "";
-          })
-          config.environment.systemPackages;
-        filtered = builtins.filter (v: (v.name != "shadow" && v.name != "" && v.version != "")) packages;
-        uniqueItems = lib.lists.unique filtered;
-        formatted = builtins.toJSON uniqueItems;
-        jsonFile = pkgs.writeText "pkgs.json" formatted;
-
-        csvFile = pkgs.runCommand "pkgs.csv" {} "${pkgs.jq}/bin/jq -r '(first|keys), (.[]|[.[]]) | @csv' ${jsonFile} > $out";
-      in {
-        "current-system-packages.json".source = jsonFile;
-
-        "current-system-packages.csv".source = csvFile;
+      environment.etc = {
+        "current-system-packages".source = pkgs.custom.pkgs-index.override {
+          packages = config.environment.systemPackages;
+        };
       };
 
       # environment.etc."current-system-packages.csv".text = let
