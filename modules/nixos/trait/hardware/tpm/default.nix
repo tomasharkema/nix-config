@@ -31,16 +31,15 @@ in {
 
     boot.initrd.systemd.enableTpm2 = true;
 
-    environment.systemPackages = with pkgs; [
-      tpm-luks
-      tpm-tools
-      # tpm2-abrmd
-      # tpm2-pkcs11
-      tpm2-tools
-      # tpm2-totp
-      # tpm2-tss
-      tpmmanager
-      ssh-tpm-agent
-    ];
+    # environment.systemPackages = with pkgs; [
+    #   tpm-luks
+    #   tpm-tools
+    #   # tpm2-abrmd
+    #   # tpm2-pkcs11
+    #   tpm2-tools
+    #   # tpm2-totp
+    #   # tpm2-tss
+    #   tpmmanager
+    # ];
   };
 }

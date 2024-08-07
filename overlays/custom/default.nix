@@ -53,6 +53,8 @@
   cockpit-machines = self.packages."${prev.system}".cockpit-machines;
   authorized-keys = self.packages."${prev.system}".authorized-keys;
 
+  ssh-tpm-agent = self.packages."${prev.system}".ssh-tpm-agent;
+
   # steam = prev.steam.override {
   #   extraEnv = {
   #     # MANGOHUD = true;
