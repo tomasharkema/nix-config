@@ -198,7 +198,7 @@ in {
       hostId = "529fd7aa";
 
       firewall = {
-        enable = false;
+        enable = true;
         allowPing = true;
       };
 
