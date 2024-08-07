@@ -43,9 +43,11 @@
       );
 
     COMMIT;
+
     VACUUM;
     ANALYZE;
     PRAGMA optimize;
+    PRAGMA query_only;
   '';
 in
   runCommand "pkgs-index" {} ''
