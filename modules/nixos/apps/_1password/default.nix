@@ -24,9 +24,11 @@ in {
 
   config = mkIf cfg.enable {
     programs = {
-      ssh.extraConfig = mkIf config.gui.desktop.enable ''
+      ssh.extraConfig = ''
         IdentityAgent /home/tomas/.1password/agent.sock
         IdentityAgent /run/user/1000/ssh-tpm-agent.sock
+        PKCS11Provider /run/current-system/sw/lib/libtpm2_pkcs11.so
+        PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
       '';
 
       _1password = {
