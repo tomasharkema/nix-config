@@ -22,11 +22,22 @@ in {
       };
     };
 
+    home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
+      {package = airpod-battery-monitor;}
+    ];
+
     services = {
       # blueman.enable = true;
       dbus.enable = true;
       # dconf.enable = true;
     };
-    environment.systemPackages = with pkgs; [bluetuith];
+    environment.systemPackages = with pkgs; [
+      bluetuith
+      blueberry
+      bluetility
+      blueman
+      btlejack
+      ultrablue-server
+    ];
   };
 }
