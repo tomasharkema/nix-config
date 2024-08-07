@@ -259,6 +259,21 @@ with lib.custom;
       };
 
       services = {
+        usbguard = {
+          enable = true;
+          dbus.enable = true;
+          # ruleFile
+          # package
+          # restoreControllerDeviceState
+          # presentDevicePolicy
+          # presentControllerPolicy
+          # insertedDevicePolicy
+          # implicitPolicyTarget
+          # deviceRulesWithPort
+          IPCAllowedUsers = ["tomas" "root"];
+          IPCAllowedGroups = ["tomas" "root" "plugdev"];
+        };
+
         irqbalance.enable = true;
 
         rpcbind.enable = true;
