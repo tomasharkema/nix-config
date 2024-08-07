@@ -40,15 +40,15 @@ in {
       unitConfig = {
         ConditionACPower = true;
       };
-      wantedBy = ["acpower.target"];
-      partOf = ["acpower.target"];
+      # wantedBy = ["acpower.target"];
+      # partOf = ["acpower.target"];
     };
     systemd.services."nix-optimise" = {
       unitConfig = {
         ConditionACPower = true;
       };
-      wantedBy = ["acpower.target"];
-      partOf = ["acpower.target"];
+      # wantedBy = ["acpower.target"];
+      # partOf = ["acpower.target"];
     };
 
     boot.kernelParams = [
