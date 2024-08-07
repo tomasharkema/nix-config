@@ -79,6 +79,21 @@ in {
     };
 
     services = {
+      hound = {
+        enable = true;
+        config = builtins.toJSON {
+          max-concurrent-indexers = 2;
+          repos = {
+            nixpkgs = {
+              url = "https://www.github.com/NixOS/nixpkgs.git";
+              vcs-config = {
+                ref = "nixos-24.05";
+              };
+            };
+          };
+        };
+      };
+
       watchdogd = {enable = true;};
 
       das_watchdog.enable = mkForce false;
