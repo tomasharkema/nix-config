@@ -18,6 +18,7 @@ in {
     gui.fonts.enable = true;
 
     services = {
+      dbus.packages = [pkgs.unstable.usbguard-notifier];
       libinput.enable = true;
 
       xserver = {
@@ -106,6 +107,8 @@ in {
       (with pkgs; [nix-software-center])
       ++ (with pkgs.unstable;
         [
+          usbguard-notifier
+          usbview
           apache-directory-studio
           sqlitebrowser
           # notify-client
@@ -189,7 +192,7 @@ in {
       mtr.enable = true;
       dconf.enable = true;
     };
-
+    systemd.packages = [pkgs.unstable.usbguard-notifier];
     # Enable sound with pipewire.
     sound.enable = mkDefault true;
     hardware.pulseaudio.enable = false;

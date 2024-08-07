@@ -14,11 +14,12 @@ with lib; {
       settings = {
         "org/gnome/mutter" = {
           edge-tiling = true;
-          center-new-windows = true;
+          # center-new-windows = true;
+
           experimental-features = [
-            "scale-monitor-framebuffer"
-            "variable-refresh-rate"
-            "rt-scheduler"
+            # "scale-monitor-framebuffer"
+            # "variable-refresh-rate"
+            # "rt-scheduler"
           ];
         };
         "org/gnome/shell/extensions/vitals" = {
