@@ -16,6 +16,10 @@ in {
   };
 
   config = mkIf cfg.enable {
+    environment.sessionVariables = {
+      # SSH_AUTH_SOCK = "/run/user/1000/ssh-tpm-agent.sock";
+    };
+
     environment.systemPackages = [cfg.package];
     systemd = {
       services = {

@@ -26,6 +26,7 @@ in {
     programs = {
       ssh.extraConfig = mkIf config.gui.desktop.enable ''
         IdentityAgent /home/tomas/.1password/agent.sock
+        IdentityAgent /run/user/1000/ssh-tpm-agent.sock
       '';
 
       _1password = {
