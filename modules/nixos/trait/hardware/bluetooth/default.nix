@@ -34,7 +34,6 @@ in {
     environment.systemPackages = with pkgs; [
       bluetuith
       blueberry
-      bluetility
       blueman
       btlejack
       ultrablue-server
