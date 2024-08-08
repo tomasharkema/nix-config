@@ -47,7 +47,7 @@ with lib; {
 
       gnupg
       custom.distrib-dl
-      davinci-resolve
+      # davinci-resolve
 
       # calibre
       glxinfo
@@ -153,11 +153,11 @@ with lib; {
       };
     };
 
-    # hardware.nvidia.vgpu = {
-    #   enable = true;
-    #   unlock.enable = true;
-    #   version = "v16.5";
-    # };
+    hardware.nvidia.vgpu = {
+      enable = true;
+      unlock.enable = true;
+      version = "v17.1";
+    };
 
     boot = {
       resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";

@@ -20,7 +20,7 @@ with lib; {
     # btrfs balance -dconvert=raid0 -mconvert=raid1 /home
 
     environment.systemPackages = with pkgs; [
-      davinci-resolve
+      # davinci-resolve
       ntfs2btrfs
       glxinfo
       apfsprogs
