@@ -55,7 +55,7 @@ in {
           };
 
           serviceConfig = {
-            ExecStart = "${cfg.package}/bin/ssh-tpm-agent --key-dir /etc/ssh";
+            ExecStart = "${cfg.package}/bin/ssh-tpm-agent --key-dir /etc/ssh -A \"/home/tomas/.1password/agent.sock\"";
             PassEnvironment = "SSH_AGENT_PID";
             KillMode = "process";
             Restart = "always";
@@ -118,7 +118,7 @@ in {
           };
           serviceConfig = {
             Environment = "SSH_AUTH_SOCK=%t/ssh-tpm-agent.sock";
-            ExecStart = "${cfg.package}/bin/ssh-tpm-agent";
+            ExecStart = "${cfg.package}/bin/ssh-tpm-agent -A \"/home/tomas/.1password/agent.sock\"";
             PassEnvironment = "SSH_AGENT_PID";
             SuccessExitStatus = 2;
             Type = "simple";

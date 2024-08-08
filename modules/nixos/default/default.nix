@@ -205,6 +205,7 @@ with lib.custom;
           wtf
         ])
         ++ (with pkgs.custom; [
+          ssh-proxy-agent
           menu
           pvzstd
           ssm
