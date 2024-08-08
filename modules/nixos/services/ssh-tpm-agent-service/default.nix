@@ -126,7 +126,14 @@ in {
           };
           serviceConfig = {
             Environment = "SSH_AUTH_SOCK=%t/ssh-tpm-agent.sock";
-            ExecStart = "${cfg.package}/bin/ssh-tpm-agent -A \"/home/tomas/.1password/agent.sock\"";
+
+            ExecStart = let
+              proxy =
+                if config.programs._1password-gui.enable
+                then " \"/home/tomas/.1password/agent.sock\""
+                else "";
+            in "${cfg.package}/bin/ssh-tpm-agent -A${proxy}";
+
             PassEnvironment = "SSH_AGENT_PID";
             SuccessExitStatus = 2;
             Type = "simple";
