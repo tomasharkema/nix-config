@@ -15,7 +15,7 @@ stdenvNoCC.mkDerivation {
 
   installPhase = ''
     mkdir -p $out
-    mv packages/nixos-hosts/ $out
+    cp packages/nixos-hosts/ $out
     ls -la $out
   '';
 }
