@@ -51,6 +51,11 @@ in {
       "file:///mnt/servers"
     ];
 
+    services.gnome-keyring = {
+      components = ["secrets"];
+      enable = true;
+    };
+
     xdg = {
       userDirs = {
         enable = true;

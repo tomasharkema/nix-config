@@ -21,15 +21,15 @@ in {
               # "UseKeychain" = "yes";
             }
             else {
-              "PKCS11Provider" =
-                if
-                  (osConfig.trait.hardware.tpm.enable
-                    && osConfig.gui.enable)
-                then "/run/current-system/sw/lib/libtpm2_pkcs11.so"
-                else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
+              # "PKCS11Provider" =
+              #   if
+              #     (osConfig.trait.hardware.tpm.enable
+              #       && osConfig.gui.enable)
+              #   then "/run/current-system/sw/lib/libtpm2_pkcs11.so"
+              #   else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
 
-              "IdentityAgent" =
-                lib.mkIf osConfig.gui.enable "/home/tomas/.1password/agent.sock";
+              # "IdentityAgent" =
+              #   lib.mkIf osConfig.gui.enable "/home/tomas/.1password/agent.sock";
             };
         };
         silver-star = {

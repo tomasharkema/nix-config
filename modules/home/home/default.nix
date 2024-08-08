@@ -92,8 +92,7 @@ in
             # SPACESHIP_PROMPT_ADD_NEWLINE = "false";
           }
           else {
-            EDITOR = "nvim";
-            # SSH_AUTH_SOCK = "/home/tomas/.1password/agent.sock";
+            # EDITOR = "nvim";
           };
       };
 
