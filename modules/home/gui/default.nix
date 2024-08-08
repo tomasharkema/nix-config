@@ -76,8 +76,8 @@ in {
       telegram-desktop
       unstable.trayscale
       custom.zerotier-ui
-
-      # notify-client
+      custom.usbguard-gnome
+      notify-client
       gnome.geary
     ];
 

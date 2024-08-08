@@ -39,10 +39,10 @@ in
 
     propagatedBuildInputs = [
       glib
+      dbus-python
       gobject-introspection
       pygobject3
       prctl
-      dbus-python
       bluez
     ];
 

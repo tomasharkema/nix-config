@@ -153,11 +153,11 @@ with lib; {
       };
     };
 
-    hardware.nvidia.vgpu = {
-      enable = true;
-      unlock.enable = true;
-      version = "v17.1";
-    };
+    # hardware.nvidia.vgpu = {
+    #   enable = true;
+    #   unlock.enable = true;
+    #   version = "v17.1";
+    # };
 
     boot = {
       resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
