@@ -3,9 +3,8 @@
   pkgs,
   osConfig,
   ...
-}: let
-  inherit (pkgs) stdenvNoCC;
-in {
+}:
+with lib; {
   imports = [./match-blocks.nix];
   config = {
     programs.ssh = {
@@ -15,7 +14,7 @@ in {
         "*" = {
           forwardAgent = true;
           extraOptions =
-            if stdenvNoCC.isDarwin
+            if pkgs.stdenvNoCC.isDarwin
             then {
               "IdentityAgent" = "/Users/tomas/.1password/agent.sock";
               # "UseKeychain" = "yes";
@@ -28,8 +27,7 @@ in {
               #   then "/run/current-system/sw/lib/libtpm2_pkcs11.so"
               #   else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
 
-              "IdentityAgent" =
-                lib.mkIf osConfig.gui.enable "/home/tomas/.1password/agent.sock";
+              # "IdentityAgent" = mkIf osConfig.gui.enable "/home/tomas/.1password/agent.sock";
             };
         };
         silver-star = {
