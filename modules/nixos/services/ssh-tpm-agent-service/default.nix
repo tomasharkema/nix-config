@@ -16,11 +16,11 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.sessionVariables = {
-      SSH_AUTH_SOCK = "/run/user/1000/ssh-tpm-agent.sock";
-    };
+    # environment.sessionVariables = {
+    #   SSH_AUTH_SOCK = "/run/user/1000/ssh-tpm-agent.sock";
+    # };
 
-    home-manager.users.tomas.home.sessionVariables.SSH_AUTH_SOCK = "/run/user/1000/ssh-tpm-agent.sock";
+    # home-manager.users.tomas.home.sessionVariables.SSH_AUTH_SOCK = "/run/user/1000/ssh-tpm-agent.sock";
 
     programs.ssh.extraConfig = ''
       IdentityAgent /run/user/1000/ssh-tpm-agent.sock
