@@ -24,7 +24,7 @@ stdenv.mkDerivation rec {
     mkdir $out/bin
     mkdir $out/share
     cp $out/usr/bin/atophttpd $out/bin/atophttpd
-    cp $out/usr/share/man $out/share
+    cp -r $out/usr/share/man $out/share
     rm -rf $out/usr
   '';
 
