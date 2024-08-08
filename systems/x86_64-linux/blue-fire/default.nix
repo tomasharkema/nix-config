@@ -210,8 +210,9 @@ in {
           useDHCP = true;
           wakeOnLan.enable = true;
         };
+        "br0" = {useDHCP = true;};
         "bond0" = {
-          useDHCP = true;
+          # useDHCP = true;
           # wakeOnLan.enable = true;
         };
         #   "eno2" = {
@@ -293,6 +294,12 @@ in {
             TransmitHashPolicy = "layer3+4";
           };
         };
+        "20-br0" = {
+          netdevConfig = {
+            Kind = "bridge";
+            Name = "br0";
+          };
+        };
       };
       networks = {
         "20-eno1" = {
@@ -317,10 +324,19 @@ in {
         };
         "40-bond0" = {
           matchConfig.Name = "bond0";
+          networkConfig.Bridge = "br0";
+          linkConfig.RequiredForOnline = "enslaved";
+        };
+        "41-br0" = {
+          matchConfig.Name = "br0";
+          bridgeConfig = {};
           linkConfig = {
             RequiredForOnline = "carrier";
           };
-          networkConfig.LinkLocalAddressing = "no";
+          networkConfig = {
+            DHCP = "yes";
+            LinkLocalAddressing = "no";
+          };
         };
       };
     };
