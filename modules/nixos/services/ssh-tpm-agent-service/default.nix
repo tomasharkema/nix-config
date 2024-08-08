@@ -25,6 +25,14 @@ in {
     programs.ssh.extraConfig = ''
       IdentityAgent /run/user/1000/ssh-tpm-agent.sock
     '';
+    services.openssh.extraConfig = ''
+      # This enables TPM sealed host keys
+
+      HostKeyAgent /var/tmp/ssh-tpm-agent.sock
+
+      HostKey /etc/ssh/ssh_tpm_host_ecdsa_key.pub
+      HostKey /etc/ssh/ssh_tpm_host_rsa_key.pub
+    '';
 
     # PKCS11Provider /run/current-system/sw/lib/libtpm2_pkcs11.so
     # PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
