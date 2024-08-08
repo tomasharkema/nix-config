@@ -23,8 +23,8 @@ stdenv.mkDerivation rec {
   postInstall = ''
     mkdir $out/bin
     mkdir $out/share
-    mv $out/usr/bin/atophttpd $out/bin/atophttpd
-    mv $out/usr/share/man $out/share
+    cp $out/usr/bin/atophttpd $out/bin/atophttpd
+    cp $out/usr/share/man $out/share
     rm -rf $out/usr
   '';
 

@@ -42,6 +42,7 @@ in {
             "network.target"
             "sshd.target"
           ];
+          wantedBy = ["default.target"];
           requires = ["ssh-tpm-agent.socket"];
 
           description = "ssh-tpm-agent service";
@@ -65,7 +66,7 @@ in {
           enable = true;
 
           description = "SSH TPM Key Generation";
-
+          wantedBy = ["default.target"];
           unitConfig = {
             ConditionPathExists = [
               "|!/etc/ssh/ssh_tpm_host_ecdsa_key.tpm"
@@ -91,6 +92,7 @@ in {
           # documentation = ''
           #   man:ssh-agent(1) man:ssh-add(1) man:ssh(1)
           # '';
+          wantedBy = ["default.target"];
 
           socketConfig = {
             ListenStream = "/var/tmp/ssh-tpm-agent.sock";
@@ -109,6 +111,7 @@ in {
           #   man:ssh-agent(1) man:ssh-add(1) man:ssh(1)
           # '';
 
+          wantedBy = ["default.target"];
           unitConfig = {
             ConditionEnvironment = "!SSH_AGENT_PID";
             Requires = "ssh-tpm-agent.socket";
@@ -124,6 +127,8 @@ in {
         };
         sockets.ssh-tpm-agent = {
           enable = true;
+
+          wantedBy = ["sockets.target"];
 
           unitConfig = {
             Description = "SSH TPM agent socket";

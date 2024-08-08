@@ -16,6 +16,6 @@ buildGoModule rec {
   vendorHash = "sha256-21Vh5Zaja5rx9RVCTFQquNvMNvaUlUV6kfhkIvXwbVw=";
 
   postInstall = ''
-    mv $out/bin/cmd $out/bin/sshed
+    cp $out/bin/cmd $out/bin/sshed
   '';
 }
