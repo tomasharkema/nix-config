@@ -55,23 +55,24 @@ with python3Packages;
 
       cp src/org.gnome.usbguard.gschema.xml $out/share/glib-2.0/schemas/org.gnome.usbguard.gschema.xml
 
-      cp "usbguard applet.desktop" $out/share/applications/usbguard-applet.desktop
-      cp "usbguard.desktop" $out/share/applications/usbguard.desktop
+      cp "usbguard applet.desktop" $out/share/applications/org.gnome.usbguard.desktop
+      cp "usbguard.desktop" $out/share/applications/org.gnome.usbguard.window.desktop
 
-      cp -r src/. $out/lib/
+      cp -r src/. $out/bin/
       cp -r mo/. $out/mo/
-      ln -s $out/lib/usbguard_gnome_applet.py $out/bin/usbguard-gnome
 
-      wrapProgram $out/lib/usbguard_gnome_applet.py --set PYTHONPATH $PYTHONPATH
-      wrapProgram $out/lib/usbguard_gnome_window.py --set PYTHONPATH $PYTHONPATH
-      wrapProgram $out/bin/usbguard-gnome --set PYTHONPATH $PYTHONPATH
+      wrapProgram $out/bin/usbguard_gnome_applet.py --set PYTHONPATH $PYTHONPATH
+      wrapProgram $out/bin/usbguard_gnome_window.py --set PYTHONPATH $PYTHONPATH
 
-      substituteInPlace "$out/share/applications/usbguard-applet.desktop" \
-        --replace-fail "python /opt/usbguard-gnome/src" "$out/lib" \
-        --replace-fail "Icon=usbguard-icon" "Icon=$out/lib/usbguard-icon"
+      ln -s $out/bin/usbguard_gnome_window.py $out/bin/usbguard_gnome_window
+      ln -s $out/bin/usbguard_gnome_applet.py $out/bin/usbguard_gnome_applet
 
-      substituteInPlace "$out/share/applications/usbguard.desktop" \
-        --replace-fail "python /opt/usbguard-gnome/src" "$out/lib" \
-        --replace-fail "Icon=usbguard-icon" "Icon=$out/lib/usbguard-icon"
+      substituteInPlace "$out/share/applications/org.gnome.usbguard.desktop" \
+        --replace-fail "python /opt/usbguard-gnome/src" "$out/bin" \
+        --replace-fail "Icon=usbguard-icon" "Icon=$out/bin/usbguard-icon"
+
+      substituteInPlace "$out/share/applications/org.gnome.usbguard.window.desktop" \
+        --replace-fail "python /opt/usbguard-gnome/src" "$out/bin" \
+        --replace-fail "Icon=usbguard-icon" "Icon=$out/bin/usbguard-icon"
     '';
   }
