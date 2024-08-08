@@ -98,22 +98,23 @@ in
       # };
 
       services = {
-        pipewire.extraConfig.pipewire-pulse."92-tcp" = {
-          context.modules = [
-            {
-              name = "module-native-protocol-tcp";
-              args = {};
-            }
-            {
-              name = "module-zeroconf-discover";
-              args = {};
-            }
-          ];
-          stream.properties = {
-            node.latency = "32/48000";
-            resample.quality = 1;
-          };
-        };
+        # pipewire.extraConfig.pipewire-pulse."92-tcp" = {
+        #   context.modules = [
+        #     {
+        #       name = "module-native-protocol-tcp";
+        #       args = {};
+        #     }
+        #     {
+        #       name = "module-zeroconf-discover";
+        #       args = {};
+        #     }
+        #   ];
+        #   stream.properties = {
+        #     node.latency = "32/48000";
+        #     resample.quality = 1;
+        #   };
+        # };
+
         displayManager.defaultSession = "gnome";
         # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
 
@@ -126,6 +127,7 @@ in
             extraGSettingsOverridePackages = with pkgs; [
               gnome.mutter
               gnome.gpaste
+              pkgs.custom.usbguard-gnome
               # gnome-menus
             ];
 
