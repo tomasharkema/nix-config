@@ -16,11 +16,19 @@ with lib; {
           edge-tiling = true;
           # center-new-windows = true;
 
-          experimental-features = [
-            # "scale-monitor-framebuffer"
-            # "variable-refresh-rate"
-            # "rt-scheduler"
-          ];
+          # experimental-features = [
+          # "scale-monitor-framebuffer"
+          # "variable-refresh-rate"
+          # "rt-scheduler"
+          experimental-features =
+            if osConfig.trait.hardware.laptop.enable
+            then [
+              "scale-monitor-framebuffer"
+              "variable-refresh-rate"
+              "rt-scheduler"
+            ]
+            else ["rt-scheduler"];
+          # ];
         };
         "org/gnome/shell/extensions/vitals" = {
           "position-in-panel" = 0;

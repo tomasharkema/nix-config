@@ -128,8 +128,8 @@ in {
       #   enableBot = true;
       # };
 
-      tcsd.enable = true;
-      kmscon.enable = mkForce false;
+      # tcsd.enable = true;
+      kmscon.enable = true;
 
       prometheus.exporters = {
         ipmi = {
@@ -210,18 +210,22 @@ in {
           useDHCP = true;
           wakeOnLan.enable = true;
         };
-        "eno2" = {
+        "bond0" = {
           useDHCP = true;
-          wakeOnLan.enable = true;
+          # wakeOnLan.enable = true;
         };
-        "eno3" = {
-          useDHCP = true;
-          wakeOnLan.enable = true;
-        };
-        "eno4" = {
-          useDHCP = true;
-          wakeOnLan.enable = true;
-        };
+        #   "eno2" = {
+        #     useDHCP = true;
+        #     wakeOnLan.enable = true;
+        #   };
+        #   "eno3" = {
+        #     useDHCP = true;
+        #     wakeOnLan.enable = true;
+        #   };
+        #   "eno4" = {
+        #     useDHCP = true;
+        #     wakeOnLan.enable = true;
+        #   };
       };
     };
 
@@ -276,46 +280,50 @@ in {
       #   # };
     };
 
-    # systemd.network = {
-    #   enable = true;
-    #   netdevs = {
-    #     "10-bond0" = {
-    #       netdevConfig = {
-    #         Kind = "bond";
-    #         Name = "bond0";
-    #       };
-    #       bondConfig = {
-    #         Mode = "802.3ad";
-    #         TransmitHashPolicy = "layer3+4";
-    #       };
-    #     };
-    #   };
-    #   networks = {
-    #     "30-eno1" = {
-    #       matchConfig.Name = "eno1";
-    #       networkConfig.Bond = "bond0";
-    #     };
-    #     "30-eno2" = {
-    #       matchConfig.Name = "eno2";
-    #       networkConfig.Bond = "bond0";
-    #     };
-    #     "30-eno3" = {
-    #       matchConfig.Name = "eno3";
-    #       networkConfig.Bond = "bond0";
-    #     };
-    #     "30-eno4" = {
-    #       matchConfig.Name = "eno4";
-    #       networkConfig.Bond = "bond0";
-    #     };
-    #     "40-bond0" = {
-    #       matchConfig.Name = "bond0";
-    #       linkConfig = {
-    #         RequiredForOnline = "carrier";
-    #       };
-    #       networkConfig.LinkLocalAddressing = "no";
-    #     };
-    #   };
-    # };
+    systemd.network = {
+      enable = true;
+      netdevs = {
+        "10-bond0" = {
+          netdevConfig = {
+            Kind = "bond";
+            Name = "bond0";
+          };
+          bondConfig = {
+            Mode = "802.3ad";
+            TransmitHashPolicy = "layer3+4";
+          };
+        };
+      };
+      networks = {
+        "20-eno1" = {
+          matchConfig.Name = "eno1";
+        };
+
+        "30-enp6s0f0" = {
+          matchConfig.Name = "enp6s0f0";
+          networkConfig.Bond = "bond0";
+        };
+        "30-enp6s0f1" = {
+          matchConfig.Name = "enp6s0f1";
+          networkConfig.Bond = "bond0";
+        };
+        "30-enp6s0f2" = {
+          matchConfig.Name = "enp6s0f2";
+          networkConfig.Bond = "bond0";
+        };
+        "30-enp6s0f3" = {
+          matchConfig.Name = "enp6s0f3";
+          networkConfig.Bond = "bond0";
+        };
+        "40-bond0" = {
+          matchConfig.Name = "bond0";
+          linkConfig = {
+            RequiredForOnline = "carrier";
+          };
+          networkConfig.LinkLocalAddressing = "no";
+        };
+      };
+    };
 
     hardware.nvidia.vgpu = {
       enable = true; # Enable NVIDIA KVM vGPU + GRID driver

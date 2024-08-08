@@ -17,8 +17,17 @@ in {
 
   config = mkIf cfg.enable {
     environment.sessionVariables = {
-      # SSH_AUTH_SOCK = "/run/user/1000/ssh-tpm-agent.sock";
+      SSH_AUTH_SOCK = "/run/user/1000/ssh-tpm-agent.sock";
     };
+
+    home-manager.users.tomas.home.sessionVariables.SSH_AUTH_SOCK = "/run/user/1000/ssh-tpm-agent.sock";
+
+    programs.ssh.extraConfig = ''
+      IdentityAgent /run/user/1000/ssh-tpm-agent.sock
+    '';
+
+    # PKCS11Provider /run/current-system/sw/lib/libtpm2_pkcs11.so
+    # PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
 
     environment.systemPackages = [cfg.package];
     systemd = {
