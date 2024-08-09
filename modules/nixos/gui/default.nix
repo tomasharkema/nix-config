@@ -24,7 +24,7 @@ in {
     apps.flatpak.enable = mkDefault true;
 
     services = {
-      ddccontrol.enable = true;
+      # ddccontrol.enable = true;
       seatd.enable = true;
     };
     environment.systemPackages = with pkgs; [

@@ -14,8 +14,8 @@ in
       system.nixos.tags = ["monitor"];
 
       boot = {
-        kernelModules = ["i2c-dev" "ddcci_backlight"];
-        extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
+        # kernelModules = ["i2c-dev" "ddcci_backlight"];
+        # extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
       };
 
       users.groups = {"i2c" = {};};
@@ -23,7 +23,7 @@ in
       users.users.${config.user.name} = {extraGroups = ["i2c"];};
 
       environment.systemPackages = with pkgs; [
-        ddcutil
+        # ddcutil
         # xorg.xbacklight
         # gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil
         brightnessctl

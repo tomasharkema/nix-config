@@ -147,7 +147,7 @@ in
               gnome.gpaste
               gnome-menus
               # pkgs.custom.openglide
-              ddcutil
+              # ddcutil
             ];
           };
 
