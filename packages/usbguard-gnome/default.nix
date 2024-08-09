@@ -13,7 +13,7 @@ with python3Packages;
   buildPythonApplication rec {
     pname = "usbguard-gnome";
     version = "0.0.1";
-    format = "other";
+    # format = "other";
 
     src = fetchFromGitHub {
       owner = "6E006B";
@@ -42,37 +42,45 @@ with python3Packages;
       libnotify
     ];
 
+    preBuild = let
+      setup = pkgs.writeText "setup.py" ''
+        # setup.py
+        from distutils.core import setup
+
+        setup(
+            name='${pname}',
+            version='${version}',
+            entry_points={
+               'console_scripts': [
+                  'usbguard-gnome=usbguard_gnome_applet:main',
+                  'usbguard-gnome-window=usbguard_gnome_window:main',
+               ],
+            },
+
+        )
+      '';
+    in ''
+      cp ${setup} ./setup.py
+    '';
+
     postBuild = ''
       ${python.pythonOnBuildForHost.interpreter} -O -m compileall src
     '';
 
-    installPhase = ''
-      mkdir -p $out/bin
-      mkdir -p $out/lib
-      mkdir -p $out/mo
-      mkdir -p $out/share/glib-2.0/schemas
-      mkdir -p $out/share/applications
+    postInstall = ''
+      install -D src/org.gnome.usbguard.gschema.xml $out/share/glib-2.0/schemas/org.gnome.usbguard.gschema.xml
 
-      cp src/org.gnome.usbguard.gschema.xml $out/share/glib-2.0/schemas/org.gnome.usbguard.gschema.xml
+      install -D "usbguard applet.desktop" $out/share/applications/org.gnome.usbguard.desktop
+      install -D "usbguard.desktop" $out/share/applications/org.gnome.usbguard.window.desktop
 
-      cp "usbguard applet.desktop" $out/share/applications/org.gnome.usbguard.desktop
-      cp "usbguard.desktop" $out/share/applications/org.gnome.usbguard.window.desktop
+      install -D src/usbguard-icon.svg $out/share/icons/hicolor/scalable/apps/usbguard-icon.svg
 
-      cp -r src/. $out/bin/
       cp -r mo/. $out/mo/
 
-      wrapProgram $out/bin/usbguard_gnome_applet.py --set PYTHONPATH $PYTHONPATH
-      wrapProgram $out/bin/usbguard_gnome_window.py --set PYTHONPATH $PYTHONPATH
-
-      ln -s $out/bin/usbguard_gnome_window.py $out/bin/usbguard_gnome_window
-      ln -s $out/bin/usbguard_gnome_applet.py $out/bin/usbguard_gnome_applet
-
       substituteInPlace "$out/share/applications/org.gnome.usbguard.desktop" \
-        --replace-fail "python /opt/usbguard-gnome/src" "$out/bin" \
-        --replace-fail "Icon=usbguard-icon" "Icon=$out/bin/usbguard-icon"
+        --replace-fail "python /opt/usbguard-gnome/src" "$out/bin"
 
       substituteInPlace "$out/share/applications/org.gnome.usbguard.window.desktop" \
-        --replace-fail "python /opt/usbguard-gnome/src" "$out/bin" \
-        --replace-fail "Icon=usbguard-icon" "Icon=$out/bin/usbguard-icon"
+        --replace-fail "python /opt/usbguard-gnome/src" "$out/bin"
     '';
   }
