@@ -12,7 +12,7 @@
 with python3Packages;
   buildPythonApplication rec {
     pname = "usbguard-gnome";
-    version = "0.0.2";
+    version = "0.0.3";
 
     src = fetchFromGitHub {
       owner = "6E006B";
@@ -67,19 +67,22 @@ with python3Packages;
     '';
 
     postInstall = ''
-      install -D src/org.gnome.usbguard.gschema.xml $out/share/glib-2.0/schemas/org.gnome.usbguard.gschema.xml
+      install -Dm 644 src/org.gnome.usbguard.gschema.xml $out/share/glib-2.0/schemas/org.gnome.usbguard.gschema.xml
 
-      install -D "usbguard applet.desktop" $out/share/applications/org.gnome.usbguard.desktop
-      install -D "usbguard.desktop" $out/share/applications/org.gnome.usbguard.window.desktop
+      install -Dm 644 "usbguard applet.desktop" $out/share/applications/org.gnome.usbguard.desktop
+      install -Dm 644 "usbguard.desktop" $out/share/applications/org.gnome.usbguard.window.desktop
 
-      install -D src/usbguard-icon.svg $out/share/icons/hicolor/scalable/apps/usbguard-icon.svg
+      install -Dm 644 src/usbguard-icon.svg $out/share/icons/hicolor/scalable/apps/usbguard-icon.svg
 
       cp -r mo/. $out/mo/
 
       substituteInPlace "$out/share/applications/org.gnome.usbguard.desktop" \
-        --replace-fail "python /opt/usbguard-gnome/src" "$out/bin"
+        --replace-fail "python /opt/usbguard-gnome/src/usbguard_gnome_applet.py" "$out/bin/usbguard-gnome" \
+        --replace-fail "Version=1.0" "Version=${version}"
 
       substituteInPlace "$out/share/applications/org.gnome.usbguard.window.desktop" \
-        --replace-fail "python /opt/usbguard-gnome/src" "$out/bin"
+        --replace-fail "python /opt/usbguard-gnome/src/usbguard_gnome_window.py" "$out/bin/usbguard-gnome-window" \
+        --replace-fail "Version=1.0" "Version=${version}"
+
     '';
   }
