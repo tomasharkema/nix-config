@@ -7,7 +7,7 @@ with lib; {
   config = mkIf pkgs.stdenv.isLinux {
     home.packages = with pkgs; [
       appindicator-sharp
-      ddcui
+      # ddcui
     ];
 
     dconf.settings ."org/gnome/shell".enabled-extensions = [
