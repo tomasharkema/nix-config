@@ -9,17 +9,17 @@ with lib; {
   imports = with inputs; [
     ./hardware-configuration.nix
 
-    # nixos-hardware.nixosModules.common-cpu-intel
+    nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
-
     nixos-hardware.nixosModules.common-gpu-intel
+    nixos-hardware.nixosModules.common-pc-laptop-acpi_call
   ];
 
   config = {
     age.rekey = {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIa7OowjESNuouZx/QVFryBWjjEHphKDZDq4hOD4C5xS root@schweizer-bobbahn";
     };
-
+    powerManagement.enable = true;
     specialisation = {
       mediacenter.configuration = {
         gui = {
@@ -47,7 +47,7 @@ with lib; {
       steam.enable = true;
       # usbip.enable = true;
       netdata.enable = true;
-      # unified-remote.enable = true;
+      unified-remote.enable = true;
       # cec.enable = true;
     };
 
@@ -62,7 +62,7 @@ with lib; {
 
     resilio.enable = false;
 
-    traits = {
+    trait = {
       low-power.enable = true;
       ecrypt.enable = true;
       hardware = {
@@ -72,6 +72,8 @@ with lib; {
         # nvidia.enable = true;
         remote-unlock.enable = false;
         bluetooth.enable = true;
+
+        disable-sleep.enable = true;
       };
     };
 
@@ -107,7 +109,7 @@ with lib; {
         enable = true;
         driSupport = true;
         driSupport32Bit = true;
-        extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau];
+        # extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau];
       };
     };
   };

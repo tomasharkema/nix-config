@@ -10,7 +10,10 @@ with lib; let
   preferencesFile = "${./preferences.conf}";
   themeFile = "${./theme.conf}";
 in {
-  options.gui.icewm = {enable = mkEnableOption "icewm";};
+  options.gui.icewm = {
+    enable = mkEnableOption "icewm";
+  };
+
   config = mkIf cfg.enable {
     gui.fonts.enable = true;
 

@@ -5,26 +5,26 @@
   ...
 }:
 with lib; {
-  config = mkIf false {
+  config = {
     age.secrets = {
       "peerix-public" = {
-        rekeyFile = ../../../../secrets/peerix.public.age;
+        rekeyFile = ./peerix.public.age;
         mode = "644";
       };
 
       "peerix-private" = {
-        file = ../../../../secrets/peerix.private.age;
-        mode = "644";
+        rekeyFile = ./peerix.private.age;
+        # mode = "644";
+        owner = config.services.peerix.user;
+        group = config.services.peerix.group;
       };
     };
 
-    # services.peerix = {
-    #   enable = true;
-    #   user = "tomas";
-    #   group = "tomas";
-    #   publicKey = "peerix-tomas-1:OBFTUNI1LIezxoFStcRyCHKi2PHExoIcZA0Mfq/4uJA=";
-    #   privateKeyFile = config.age.secrets."peerix-private".path;
-    #   openFirewall = true;
-    # };
+    services.peerix = {
+      enable = true;
+      publicKey = "tomas-peerix-1:dhTsRgEPg+CLBM5VNj90mFJXRURZXM/vjGD/Cf6EwWI=";
+      privateKeyFile = config.age.secrets."peerix-private".path;
+      openFirewall = true;
+    };
   };
 }

@@ -9,8 +9,10 @@ with lib; {
   imports = with inputs; [
     ./hardware-configuration.nix
 
-    nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
-    nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
+    nixos-hardware.nixosModules.common-pc-laptop-acpi_call
+    nixos-hardware.nixosModules.common-cpu-intel
+    nixos-hardware.nixosModules.common-gpu-intel
+    nixos-hardware.nixosModules.common-gpu-intel-kaby-lake
   ];
 
   config = {
@@ -25,68 +27,33 @@ with lib; {
       main = "/dev/nvme0n1";
       encrypt = true;
       newSubvolumes = true;
-      btrbk.enable = true;
+      # btrbk.enable = true;
     };
 
     programs.gnupg.agent = {enable = true;};
 
     services = {
-      dbus.packages = with pkgs; [custom.ancs4linux];
+      # dbus.packages = with pkgs; [custom.ancs4linux];
 
       udev = {
         enable = true;
         packages = with pkgs; [heimdall-gui libusb];
       };
-
-      # fprintd = {
-      #   enable = true;
-      #   tod = {
-      #     enable = true;
-      #     driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
-      #       # calib-data-file = builtins.path {
-      #       #   path = config.age.secrets."calib-data".path;
-      #       #   name = "calib-data-file";
-      #       # };
-      #       #pkgs.writeText "calib" (builtins.readFile config.age.secrets."calib-data".path);
-      #       calib-data-file = ./calib-data.bin;
-      #     };
-      #   };
-      # };
-      open-fprintd.enable = true;
-      python-validity.enable = true;
     };
 
-    home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
-      {package = thinkpad-thermal;}
-      {package = fnlock-switch-thinkpad-compact-usb-keyboard;}
-    ];
-
-    security.pam.services."gdm-fingerprint".enableGnomeKeyring = true;
-
     environment.systemPackages = with pkgs; [
+      nvramtool
       libusb
-      tp-auto-kbbl
-      # modemmanager
-      # modem-manager-gui
-      # libmbim
-      # libqmi
-      thinkfan
-      tpacpi-bat
+
       gnupg
       custom.distrib-dl
-      custom.ancs4linux
-      davinci-resolve
-      bolt
+      # davinci-resolve
+
       # calibre
       glxinfo
       inxi
       pwvucontrol
-      sgx-ssl
-      sgx-sdk
-      sgx-psw
     ];
-
-    # home-manager.users.tomas.dconf.settings."org/gnome/shell".enabled-extensions = ["Battery-Health-Charging@maniacx.github.com"];
 
     gui = {
       enable = true;
@@ -116,36 +83,36 @@ with lib; {
         # };
       };
       # fancontrol.enable = true;
-      opengl = {
-        extraPackages = with pkgs; [
-          vaapiIntel
-          libvdpau-va-gl
-          vaapiVdpau
-          intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-        ];
-      };
+      # opengl = {
+      #   extraPackages = with pkgs; [
+      #     vaapiIntel
+      #     libvdpau-va-gl
+      #     vaapiVdpau
+      #     intel-media-driver
+      #   ];
+      # };
     };
 
     apps = {
       # android.enable = true;
       steam.enable = true;
-      # opensnitch.enable = true;
+      opensnitch.enable = true;
       # usbip.enable = true;
-      samsung.enable = true;
+      # samsung.enable = true;
     };
 
-    headless.hypervisor = {
+    services.hypervisor = {
       enable = true;
       #   bridgeInterfaces = ["wlp59s0"];
     };
 
-    # virtualisation.waydroid.enable = true;
-
-    traits = {
+    trait = {
       hardware = {
+        nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
         laptop.enable = true;
+        laptop.thinkpad.enable = true;
         nvidia.enable = true;
         # remote-unlock.enable = true;
         bluetooth.enable = true;
@@ -167,7 +134,7 @@ with lib; {
     apps.podman.enable = true;
 
     services = {
-      remote-builders.client.enable = true;
+      # remote-builders.client.enable = true;
       # usb-over-ethernet.enable = true;
       hardware.bolt.enable = true;
       beesd.filesystems = {
@@ -179,10 +146,6 @@ with lib; {
         };
       };
 
-      # synergy.server = {
-      #   enable = true;
-      # };
-
       avahi = {
         enable = true;
         # allowInterfaces = ["wlp59s0"];
@@ -190,31 +153,17 @@ with lib; {
       };
     };
 
-    security.pam.services = {
-      xscreensaver.fprintAuth = true;
-      login.fprintAuth = true;
-    };
-
-    environment.etc."vgpu_unlock/profile_override.toml".text = ''
-    '';
-
     # hardware.nvidia.vgpu = {
-    #   enable = true; # Enable NVIDIA KVM vGPU + GRID driver
-    #   unlock.enable = true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
+    #   enable = true;
+    #   unlock.enable = true;
+    #   version = "v17.1";
     # };
 
-    hardware.cpu.intel.sgx = {
-      enableDcapCompat = true;
-      provision = {
-        enable = true;
-      };
-    };
-
-    services.aesmd.enable = true;
-
-    users.users.tomas.extraGroups = ["sgx" "sgx_prv"];
-
     boot = {
+      resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
+      tmp = {
+        useTmpfs = true;
+      };
       recovery = {
         enable = true;
         install = true;
@@ -225,11 +174,16 @@ with lib; {
       binfmt.emulatedSystems = ["aarch64-linux"];
 
       modprobeConfig.enable = true;
-      extraModprobeConfig = ''
-        options thinkpad_acpi fan_control=1
-      '';
+
+      # extraModprobeConfig = [];
+      kernelParams = ["nowatchdog" "mitigations=off"];
+
       # extraModulePackages = [config.boot.kernelPackages.isgx];
-      kernelModules = ["isgx" "watchdog"];
+      kernelModules = [
+        # "isgx"
+        # "watchdog"
+        #"tpm_rng"
+      ];
       #initrd.kernelModules = [
       #  "watchdog"
       #  "isgx"

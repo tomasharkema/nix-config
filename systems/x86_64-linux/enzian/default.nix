@@ -62,9 +62,10 @@ with lib; {
 
     wifi.enable = true;
 
-    traits = {
+    trait = {
       developer.enable = true;
       hardware = {
+        nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
         remote-unlock.enable = true;
@@ -96,7 +97,7 @@ with lib; {
       };
     };
 
-    # headless.hypervisor = {
+    # services.hypervisor = {
     #   enable = true;
     #   bridgeInterfaces = ["enp4s0"];
     # };
@@ -121,6 +122,9 @@ with lib; {
     };
 
     boot = {
+      tmp = {
+        useTmpfs = true;
+      };
       binfmt.emulatedSystems = ["aarch64-linux"];
 
       initrd = {
@@ -128,6 +132,7 @@ with lib; {
         kernelModules = ["kvm-intel" "uinput" "nvme"];
       };
       kernelModules = ["kvm-intel" "uinput" "nvme"];
+      kernelParams = ["nowatchdog" "mitigations=off"];
       extraModulePackages = [];
     };
 

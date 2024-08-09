@@ -17,7 +17,7 @@ stdenv.mkDerivation rec {
     runHook preInstall
 
     mkdir -p $out/bin
-    mv maclaunch.sh $out/bin/maclaunch
+    cp maclaunch.sh $out/bin/maclaunch
     chmod +x $out/bin/maclaunch
 
     runHook postInstall

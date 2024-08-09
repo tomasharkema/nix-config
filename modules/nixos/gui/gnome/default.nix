@@ -23,7 +23,7 @@ in
 
     config = mkIf cfg.enable {
       sound.mediaKeys.enable = true;
-      traits.developer.enable = mkDefault true;
+      trait.developer.enable = mkDefault true;
 
       # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
@@ -70,13 +70,10 @@ in
           tomas.databases = [
             {
               settings."org/gnome/mutter" = {
-                experimental-features =
-                  if config.traits.hardware.laptop.enable
-                  then [
-                    "scale-monitor-framebuffer"
-                    "variable-refresh-rate"
-                  ]
-                  else lib.gvariant.mkEmptyArray (lib.gvariant.type.string);
+                experimental-features = [
+                  "scale-monitor-framebuffer"
+                  "variable-refresh-rate"
+                ];
                 edge-tiling = true;
               };
               settings."org/gnome/desktop/interface".scaling-factor =
@@ -101,24 +98,25 @@ in
       # };
 
       services = {
-        pipewire.extraConfig.pipewire-pulse."92-tcp" = {
-          context.modules = [
-            {
-              name = "module-native-protocol-tcp";
-              args = {};
-            }
-            {
-              name = "module-zeroconf-discover";
-              args = {};
-            }
-          ];
-          stream.properties = {
-            node.latency = "32/48000";
-            resample.quality = 1;
-          };
-        };
+        # pipewire.extraConfig.pipewire-pulse."92-tcp" = {
+        #   context.modules = [
+        #     {
+        #       name = "module-native-protocol-tcp";
+        #       args = {};
+        #     }
+        #     {
+        #       name = "module-zeroconf-discover";
+        #       args = {};
+        #     }
+        #   ];
+        #   stream.properties = {
+        #     node.latency = "32/48000";
+        #     resample.quality = 1;
+        #   };
+        # };
+
         displayManager.defaultSession = "gnome";
-        xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
+        # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
 
         xserver = {
           # dpi = mkIf cfg.hidpi.enable 200;
@@ -129,6 +127,7 @@ in
             extraGSettingsOverridePackages = with pkgs; [
               gnome.mutter
               gnome.gpaste
+              pkgs.custom.usbguard-gnome
               # gnome-menus
             ];
 
@@ -148,7 +147,7 @@ in
               gnome.gpaste
               gnome-menus
               # pkgs.custom.openglide
-              ddcutil
+              # ddcutil
             ];
           };
 
@@ -227,6 +226,7 @@ in
           gnome-menus
         ])
         ++ (with pkgs; [
+          gnome-photos
           clutter
           clutter-gtk
           gjs
@@ -238,7 +238,7 @@ in
           gnome.gnome-autoar
           gnome.gnome-clocks
           gnome.gnome-control-center
-          gnome.gnome-keyring
+
           gnome.gnome-nettool
           gnome.gnome-online-miners
           # gnome.gnome-packagekit

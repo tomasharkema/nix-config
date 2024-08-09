@@ -9,6 +9,7 @@ with lib; let
   boot-into-bios = pkgs.writeShellScriptBin "boot-into-bios" ''
     sudo ${pkgs.ipmitool}/bin/ipmitool chassis bootparam set bootflag force_bios
   '';
+  workerPort = "9988";
 in {
   imports = with inputs; [
     ./hardware-configuration.nix
@@ -16,79 +17,12 @@ in {
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
     # nixos-hardware.nixosModules.supermicro-x10sll-f
-    buildbot-nix.nixosModules.buildbot-master
-    buildbot-nix.nixosModules.buildbot-worker
-
-    ./buildbot-master.nix
   ];
-
-  disabledModules = ["services/continuous-integration/buildbot/master.nix"];
 
   config = {
     age = {
-      secrets = {
-        buildbot-github-app = {
-          rekeyFile = ./buildbot-github-app.age;
-          owner = "buildbot";
-        };
-        buildbot-github-oauth = {
-          rekeyFile = ./buildbot-github-oauth.age;
-          owner = "buildbot";
-        };
-      };
       rekey = {
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVhJ1k25x/1A/zN96p48MGrPJxVboTe17rO9Mcb61qG root@blue-fire";
-      };
-    };
-
-    services = {
-      buildbot-master = {
-        # extraConfig = ''
-        #   from buildbot.manhole import AuthorizedKeysManhole
-        #   c['manhole'] = AuthorizedKeysManhole("tcp:12456", "/etc/ssh/authorized_keys.d/joerg", "/var/lib/buildbot/master/ssh/")
-        #   c["protocols"] = {"pb": {"port": "tcp:9989:interface=\\:\\:"}}
-        # '';
-        # pythonPackages = ps: [
-        #   ps.bcrypt
-        #   ps.cryptography
-        #   ps.alembic
-        # ];
-      };
-      nginx.virtualHosts."buildbot.harkema.io" = {
-        # forceSSL = true;
-        # useACMEHost = "harkema.io";
-      };
-    };
-
-    services = {
-      buildbot-nix = {
-        master = {
-          enable = true;
-          domain = "buildbot.harkema.io";
-          admins = ["tomasharkema"];
-          outputsPath = "/var/www/buildbot/nix-outputs";
-          buildbotNixpkgs = pkgs.unstable; #inputs.unstable.legacyPackages."${pkgs.system}";
-
-          workersFile = pkgs.writeText "workers.json" (builtins.toJSON
-            [
-              # {
-              #   name = "eve";
-              #   pass = "XXXXXXXXXXXXXXXXXXXX";
-              #   cores = 16;
-              # }
-            ]); # FIXME fix to but in secure
-
-          github = {
-            authType.app = {
-              id = 949982;
-              secretKeyFile = config.age.secrets.buildbot-github-app.path;
-            };
-            oauthId = "Iv23ctLlUoYy2C1SFDZy";
-            oauthSecretFile = config.age.secrets.buildbot-github-oauth.path;
-            webhookSecretFile = config.age.secrets.buildbot-webhook.path;
-          };
-        };
-        worker.masterUrl = ''tcp:host=blue-fire:port=9989'';
       };
     };
 
@@ -96,16 +30,21 @@ in {
       enable = true;
       main = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K";
       media = "/dev/disk/by-id/ata-TOSHIBA_MK3263GSXN_5066P0YHT";
-      btrbk.enable = true;
+      # btrbk.enable = true;
     };
 
-    traits = {
+    trait = {
+      server = {
+        enable = true;
+        headless.enable = true;
+      };
+
       builder = {
         enable = true;
         # hydra.enable = true;
       };
       hardware = {
-        # tpm.enable = true;
+        tpm.enable = true;
         secure-boot.enable = true;
         remote-unlock.enable = true;
         nvidia.enable = true;
@@ -124,8 +63,6 @@ in {
     #   "* * * * * ${pkgs.ipmitool}/bin/ipmitool raw 0x30 0x97 1 5"
     # ];
 
-    headless.enable = true;
-
     apps = {
       # attic-server.enable = true;
       ntopng.enable = true;
@@ -142,6 +79,23 @@ in {
     };
 
     services = {
+      hound = {
+        enable = true;
+        config = builtins.toJSON {
+          max-concurrent-indexers = 2;
+          repos = {
+            nixpkgs = {
+              url = "https://www.github.com/NixOS/nixpkgs.git";
+              vcs-config = {
+                ref = "nixos-24.05";
+              };
+            };
+          };
+        };
+      };
+
+      watchdogd = {enable = true;};
+
       das_watchdog.enable = mkForce false;
 
       remote-builders.server.enable = true;
@@ -157,7 +111,6 @@ in {
           ];
         };
       };
-
       # icingaweb2 = {
       #   enable = true;
       #   virtualHost = "mon.blue-fire.harkema.intra";
@@ -176,10 +129,13 @@ in {
       # };
 
       # tcsd.enable = true;
-      kmscon.enable = mkForce false;
+      kmscon.enable = true;
 
-      prometheus.exporters.ipmi.enable = true;
-
+      prometheus.exporters = {
+        ipmi = {
+          enable = true;
+        };
+      };
       # nfs = {
       #   server = {
       #     enable = true;
@@ -190,7 +146,26 @@ in {
       # };
     };
 
-    apps.podman.enable = true;
+    apps = {
+      podman.enable = true;
+      buildbot.worker.enable = true;
+    };
+
+    systemd = {
+      watchdog = {
+        device = "/dev/watchdog";
+        runtimeTime = "5m";
+        kexecTime = "5m";
+        rebootTime = "5m";
+      };
+      services = {
+        buildbot-worker.serviceConfig = {
+          MemoryHigh = "5%";
+          MemoryMax = "10%";
+          Nice = 10;
+        };
+      };
+    };
 
     # services = {
     # podman.enable = true;
@@ -223,7 +198,7 @@ in {
       hostId = "529fd7aa";
 
       firewall = {
-        enable = false;
+        enable = true;
         allowPing = true;
       };
 
@@ -235,22 +210,27 @@ in {
           useDHCP = true;
           wakeOnLan.enable = true;
         };
-        "eno2" = {
-          useDHCP = true;
-          wakeOnLan.enable = true;
+        "br0" = {useDHCP = true;};
+        "bond0" = {
+          # useDHCP = true;
+          # wakeOnLan.enable = true;
         };
-        "eno3" = {
-          useDHCP = true;
-          wakeOnLan.enable = true;
-        };
-        "eno4" = {
-          useDHCP = true;
-          wakeOnLan.enable = true;
-        };
+        #   "eno2" = {
+        #     useDHCP = true;
+        #     wakeOnLan.enable = true;
+        #   };
+        #   "eno3" = {
+        #     useDHCP = true;
+        #     wakeOnLan.enable = true;
+        #   };
+        #   "eno4" = {
+        #     useDHCP = true;
+        #     wakeOnLan.enable = true;
+        #   };
       };
     };
 
-    headless.hypervisor = {
+    services.hypervisor = {
       enable = true;
       # bridgeInterfaces = [ "eno1" ];
     };
@@ -301,46 +281,65 @@ in {
       #   # };
     };
 
-    # systemd.network = {
-    #   enable = true;
-    #   netdevs = {
-    #     "10-bond0" = {
-    #       netdevConfig = {
-    #         Kind = "bond";
-    #         Name = "bond0";
-    #       };
-    #       bondConfig = {
-    #         Mode = "802.3ad";
-    #         TransmitHashPolicy = "layer3+4";
-    #       };
-    #     };
-    #   };
-    #   networks = {
-    #     "30-eno1" = {
-    #       matchConfig.Name = "eno1";
-    #       networkConfig.Bond = "bond0";
-    #     };
-    #     "30-eno2" = {
-    #       matchConfig.Name = "eno2";
-    #       networkConfig.Bond = "bond0";
-    #     };
-    #     "30-eno3" = {
-    #       matchConfig.Name = "eno3";
-    #       networkConfig.Bond = "bond0";
-    #     };
-    #     "30-eno4" = {
-    #       matchConfig.Name = "eno4";
-    #       networkConfig.Bond = "bond0";
-    #     };
-    #     "40-bond0" = {
-    #       matchConfig.Name = "bond0";
-    #       linkConfig = {
-    #         RequiredForOnline = "carrier";
-    #       };
-    #       networkConfig.LinkLocalAddressing = "no";
-    #     };
-    #   };
-    # };
+    systemd.network = {
+      enable = true;
+      netdevs = {
+        "10-bond0" = {
+          netdevConfig = {
+            Kind = "bond";
+            Name = "bond0";
+          };
+          bondConfig = {
+            Mode = "802.3ad";
+            TransmitHashPolicy = "layer3+4";
+          };
+        };
+        "20-br0" = {
+          netdevConfig = {
+            Kind = "bridge";
+            Name = "br0";
+          };
+        };
+      };
+      networks = {
+        "20-eno1" = {
+          matchConfig.Name = "eno1";
+        };
+
+        "30-enp6s0f0" = {
+          matchConfig.Name = "enp6s0f0";
+          networkConfig.Bond = "bond0";
+        };
+        "30-enp6s0f1" = {
+          matchConfig.Name = "enp6s0f1";
+          networkConfig.Bond = "bond0";
+        };
+        "30-enp6s0f2" = {
+          matchConfig.Name = "enp6s0f2";
+          networkConfig.Bond = "bond0";
+        };
+        "30-enp6s0f3" = {
+          matchConfig.Name = "enp6s0f3";
+          networkConfig.Bond = "bond0";
+        };
+        "40-bond0" = {
+          matchConfig.Name = "bond0";
+          networkConfig.Bridge = "br0";
+          linkConfig.RequiredForOnline = "enslaved";
+        };
+        "41-br0" = {
+          matchConfig.Name = "br0";
+          bridgeConfig = {};
+          linkConfig = {
+            RequiredForOnline = "carrier";
+          };
+          networkConfig = {
+            DHCP = "yes";
+            LinkLocalAddressing = "no";
+          };
+        };
+      };
+    };
 
     hardware.nvidia.vgpu = {
       enable = true; # Enable NVIDIA KVM vGPU + GRID driver
@@ -348,11 +347,15 @@ in {
     };
 
     boot = {
+      tmp = {
+        useTmpfs = true;
+      };
       kernelParams = [
         "intel_iommu=on"
         "iommu=pt"
         "console=tty0"
         "console=ttyS2,115200n8"
+        "mitigations=off"
       ];
       blacklistedKernelModules = lib.mkDefault ["nouveau"];
 
@@ -371,7 +374,6 @@ in {
 
       initrd = {
         availableKernelModules = [
-          "nvme"
           "xhci_pci"
           "ahci"
           "usbhid"
@@ -381,7 +383,6 @@ in {
         kernelModules = [
           "kvm-intel"
           "uinput"
-          "nvme"
           #          "tpm_rng"
           "ipmi_ssif"
           # "acpi_ipmi"

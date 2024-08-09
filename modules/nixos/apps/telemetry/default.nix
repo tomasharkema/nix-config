@@ -5,7 +5,7 @@
   ...
 }:
 with lib; {
-  config = {
+  config = mkIf false {
     systemd.services.opentelemetry-collector = {
       serviceConfig = {
         DynamicUser = mkForce null;

@@ -16,8 +16,8 @@ update() {
 }
 
 clearcache() {
-  sudo nix-collect-garbage --delete-older-than '7d'
-  nix-collect-garbage --delete-older-than '7d'
+  echo "-- nh clean all --"
+  nh clean all
   echo "-- nix store optimise --"
   nix store optimise
 }
@@ -38,7 +38,9 @@ search_docs() {
   nix-search "$INPUT"
 }
 
-CHOICE=$(gum choose "$RUN_REPL" "$RUN_UPDATER" "$ATTACH_SESSION" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$SEARCH_DOCS" "$CLEAR_CACHE" "$OPEN_SHELL" "$CLEAN_RAM" "$EXIT" --height 20)
+declare -a menu_items=("$RUN_REPL" "$RUN_UPDATER" "$ATTACH_SESSION" "$OPEN_BLUE_FIRE" "$OPEN_SSH" "$SEARCH_DOCS" "$CLEAR_CACHE" "$OPEN_SHELL" "$CLEAN_RAM" "$EXIT")
+
+CHOICE=$(gum choose "${menu_items[@]}" --height "${#menu_items[@]}")
 
 case $CHOICE in
 "$RUN_UPDATER")

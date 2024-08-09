@@ -58,6 +58,7 @@ in {
           #"org.gnome.meld"
           #"com.bitwarden.desktop"
           # "com.termius.Termius"
+          "com.gitbutler.gitbutler"
         ]
         ++ (
           optionals pkgs.stdenv.isx86_64

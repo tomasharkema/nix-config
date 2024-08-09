@@ -20,7 +20,7 @@ with lib; {
     # btrfs balance -dconvert=raid0 -mconvert=raid1 /home
 
     environment.systemPackages = with pkgs; [
-      davinci-resolve
+      # davinci-resolve
       ntfs2btrfs
       glxinfo
       apfsprogs
@@ -96,7 +96,7 @@ with lib; {
       flatpak.enable = true;
     };
 
-    headless.hypervisor = {
+    services.hypervisor = {
       enable = true;
       bridgeInterfaces = ["enp2s0"];
     };
@@ -112,8 +112,10 @@ with lib; {
 
     apps.podman.enable = true;
 
-    traits = {
+    trait = {
+      server.enable = true;
       hardware = {
+        nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
         nvidia.enable = true;
@@ -121,13 +123,13 @@ with lib; {
         monitor.enable = true;
         disable-sleep.enable = true;
 
-        nfs = {
-          # enable = true;
-          machines = {
-            # silver-star.enable = true;
-            # dione.enable = true;
-          };
-        };
+        # nfs = {
+        # enable = true;
+        # machines = {
+        # silver-star.enable = true;
+        # dione.enable = true;
+        # };
+        # };
       };
     };
 
@@ -145,23 +147,26 @@ with lib; {
 
       encrypt = true;
       newSubvolumes = true;
-      btrbk.enable = true;
+      # btrbk.enable = true;
     };
 
-    # hardware.nvidia.vgpu = {
-    #   enable = true; # Enable NVIDIA KVM vGPU + GRID driver
-    #   unlock.enable = true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
-    #   version = "v17.1";
-    # };
+    #    hardware.nvidia.vgpu = {
+    #      enable = true;
+    #      unlock.enable = true;
+    #      version = "v17.1";
+    #    };
 
     boot = {
+      tmp = {
+        useTmpfs = true;
+      };
       binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = ["ntfs"];
-      kernelModules = ["i2c-dev" "watchdog" "ixgbe" "btusb" "apfs"];
+      kernelModules = ["i2c-dev" "ixgbe" "btusb" "apfs"];
 
       initrd = {
         systemd.emergencyAccess = "abcdefg";
-        kernelModules = ["watchdog" "ixgbe" "btusb"];
+        kernelModules = ["ixgbe" "btusb"];
       };
 
       # KMS will load the module, regardless of blacklisting

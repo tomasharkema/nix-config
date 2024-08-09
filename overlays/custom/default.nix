@@ -3,7 +3,6 @@
   disko,
   self,
   inputs,
-  nix-htop,
   ...
 }: final: prev: rec {
   libcec = prev.libcec.override {withLibraspberrypi = true;};
@@ -15,6 +14,8 @@
   sssd = self.packages."${prev.system}".sssd.override {withSudo = true;};
 
   docset = inputs.nixos-dash-docset.packages."${prev.system}".docset;
+
+  tailscalesd = inputs.tailscalesd.packages."${prev.system}".tailscalesd;
 
   # inshellisense = channels.unstable.inshellisense;
   # # sssd = channels.unstable.sssd.override {
@@ -52,21 +53,23 @@
   cockpit-machines = self.packages."${prev.system}".cockpit-machines;
   authorized-keys = self.packages."${prev.system}".authorized-keys;
 
-  steam = prev.steam.override {
-    extraEnv = {
-      # MANGOHUD = true;
-      # OBS_VKCAPTURE = true;
-      # RADV_TEX_ANISO = 16;
-    };
-    extraPkgs = pkgs:
-      with pkgs; [
-        # mangohud
-        gamemode
-      ];
-    extraLibraries = p:
-      with p; [
-        atk
-        # mangohud
-      ];
-  };
+  ssh-tpm-agent = self.packages."${prev.system}".ssh-tpm-agent;
+
+  # steam = prev.steam.override {
+  #   extraEnv = {
+  #     # MANGOHUD = true;
+  #     # OBS_VKCAPTURE = true;
+  #     # RADV_TEX_ANISO = 16;
+  #   };
+  #   extraPkgs = pkgs:
+  #     with pkgs; [
+  #       # mangohud
+  #       gamemode
+  #     ];
+  #   extraLibraries = p:
+  #     with p; [
+  #       atk
+  #       # mangohud
+  #     ];
+  # };
 }

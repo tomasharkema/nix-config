@@ -23,21 +23,14 @@ in {
     ];
 
     environment.etc = {
-      # "krb5.conf".text = mkBefore ''
-      #   includedir /etc/krb5.conf.d/
-      # '';
-      # "krb5.conf.d/enable_passkey".text = ''
-      #   [plugins]
-      #     clpreauth = {
-      #       module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
-      #     }
-
-      #     kdcpreauth = {
-      #       module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
-      #     }
-
-      # '';
-      "krb5.conf".text = mkAfter ''
+      "krb5.conf".text = mkBefore ''
+        includedir /etc/krb5.conf.d/
+      '';
+      "krb5.conf.d/kcm_default_ccache".text = ''
+        [libdefaults]
+        default_ccache_name = KCM:
+      '';
+      "krb5.conf.d/enable_passkey".text = ''
         [plugins]
           clpreauth = {
             module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
@@ -51,26 +44,26 @@ in {
     };
 
     # FROM: https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/misc/sssd.nix
-    #    systemd.services.sssd-kcm = {
-    #      description = "SSSD Kerberos Cache Manager";
-    #      requires = ["sssd-kcm.socket"];
-    #      serviceConfig = {
-    #        ExecStartPre = "-${pkgs.sssd}/bin/sssd --genconf-section=kcm";
-    #        ExecStart = "${pkgs.sssd}/libexec/sssd/sssd_kcm --uid 0 --gid 0";
-    #      };
-    #      restartTriggers = [
-    # settingsFileUnsubstituted
-    #      ];
-    #    };
-    #   systemd.sockets.sssd-kcm = {
-    #     description = "SSSD Kerberos Cache Manager responder socket";
-    #     wantedBy = ["sockets.target"];
-    # Matches the default in MIT krb5 and Heimdal:
-    # https://github.com/krb5/krb5/blob/krb5-1.19.3-final/src/include/kcm.h#L43
-    #     listenStreams = ["/var/run/.heim_org.h5l.kcm-socket"];
-    #   };
+    systemd.services.sssd-kcm = {
+      description = "SSSD Kerberos Cache Manager";
+      requires = ["sssd-kcm.socket"];
+      serviceConfig = {
+        ExecStartPre = "-${pkgs.sssd}/bin/sssd --genconf-section=kcm";
+        ExecStart = "${pkgs.sssd}/libexec/sssd/sssd_kcm --uid 0 --gid 0";
+      };
+      # restartTriggers = [
+      #   settingsFileUnsubstituted
+      # ];
+    };
+    systemd.sockets.sssd-kcm = {
+      description = "SSSD Kerberos Cache Manager responder socket";
+      wantedBy = ["sockets.target"];
+      # Matches the default in MIT krb5 and Heimdal:
+      # https://github.com/krb5/krb5/blob/krb5-1.19.3-final/src/include/kcm.h#L43
+      listenStreams = ["/var/run/.heim_org.h5l.kcm-socket"];
+    };
 
-    #    security.krb5.settings.libdefaults.default_ccache_name = "KCM:";
+    security.krb5.settings.libdefaults.default_ccache_name = "KCM:";
 
     services = {
       sssd = {
@@ -143,7 +136,7 @@ in {
       };
 
       pam = {
-        # krb5.enable = true;
+        krb5.enable = true;
         services = {
           #   #config.installed {
           # login.sssdStrictAccess = mkDefault true;

@@ -8,6 +8,7 @@ pkgs.writeShellApplication {
 
   runtimeInputs = with pkgs;
     [
+      nh
       gum
       nixos-rebuild
       nix-output-monitor
@@ -16,7 +17,7 @@ pkgs.writeShellApplication {
       dialog
       manix
       nix-search-cli
-      fup-repl
+      # fup-repl
     ]
     ++ (lib.optional pkgs.stdenv.isLinux nix-du);
 

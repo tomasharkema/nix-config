@@ -23,8 +23,8 @@
         domain = "gitlab.gnome.org";
         owner = "vanvugt";
         repo = "mutter";
-        rev = "94f500589efe6b04aa478b3df8322eb81307d89f";
-        hash = "sha256-fkPjB/5DPBX06t7yj0Rb3UEuu5b9mu3aS+jhH18+lpI=";
+        rev = "29a72bfb0bdb060d91196c57dc1940e5049858ed";
+        hash = "sha256-C2VfW3ThPEZ37YkX7ejlyumLnWa9oij333d5c4yfZxc=";
       };
     });
   });

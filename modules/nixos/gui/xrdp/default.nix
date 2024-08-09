@@ -5,7 +5,7 @@
   ...
 }:
 with lib; {
-  config = mkIf config.gui.enable {
+  config = mkIf (config.gui.enable && false) {
     services.xrdp = {
       enable = true;
       audio.enable = true;
