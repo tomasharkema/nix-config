@@ -13,8 +13,8 @@ in {
   };
 
   imports = with inputs; [
-    nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
-    nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
+    # nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
+    # nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
   ];
 
   config = mkIf cfg.enable {
@@ -34,17 +34,17 @@ in {
     services = {
       # tp-auto-kbbl.enable = true;
       # thinkfan.enable = true;
-      # fprintd = {
-      #   enable = true;
-      #   tod = {
-      #     enable = true;
-      #     driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
-      #       calib-data-file = ./calib-data.bin;
-      #     };
-      #   };
-      # };
-      open-fprintd.enable = true;
-      python-validity.enable = true;
+      fprintd = {
+        enable = true;
+        tod = {
+          enable = true;
+          driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
+            calib-data-file = ./calib-data.bin;
+          };
+        };
+      };
+      # open-fprintd.enable = true;
+      # python-validity.enable = true;
       # fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
       # aesmd = {
       #   enable = true;
