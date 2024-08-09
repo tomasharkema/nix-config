@@ -52,10 +52,10 @@ with lib; {
           color-scheme = "prefer-dark";
           # cursor-theme = mkForce "Adwaita";
           # gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
-          document-font-name = "Inter Variable 11";
+          document-font-name = "Inter Display 11";
           font-antialiasing = "grayscale";
           monospace-font-name = "JetBrainsMono Nerd Font Mono 11";
-          # font-name = "Inter 11";
+          # font-name = "Inter Display 11";
           enable-hot-corners = false;
           # icon-theme = "Adwaita";
         };
@@ -244,7 +244,7 @@ with lib; {
         "org/gnome/desktop/wm/preferences" = {
           button-layout = "appmenu:minimize,maximize,close";
           # button-layout = "close,minimize,maximize:";
-          titlebar-font = "Inter Regular 11";
+          titlebar-font = "Inter Display Regular 11";
         };
         "org/gnome/nautilus/preferences" = {
           always-use-location-entry = true;

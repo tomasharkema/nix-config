@@ -12,8 +12,7 @@
 with python3Packages;
   buildPythonApplication rec {
     pname = "usbguard-gnome";
-    version = "0.0.1";
-    # format = "other";
+    version = "0.0.2";
 
     src = fetchFromGitHub {
       owner = "6E006B";
