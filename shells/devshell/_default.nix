@@ -97,10 +97,6 @@ with lib; let
     } test --flake ".#$SERVER" --target-host "$SERVER" --use-remote-sudo --verbose --show-trace -L --use-substitutes
   '';
 
-  upload-local = writeShellScriptBin "upload-local" ''
-    nix copy -v --substitute-on-destination --to 'ssh://blue-fire?compression=zstd&secret-key=/run/agenix/peerix-private' /run/current-system
-  '';
-
   upload-to-installer = writeShellScriptBin "upload-to-installer" ''
     configuration="$1"
     host="$2"
@@ -186,8 +182,8 @@ in
       hydra-cli
       mkiso
       netdiscover
-      # unstable.nil
-      unstable.nixd
+      nil
+      nixd
       nix-output-monitor
       nix-prefetch-scripts
       nixel
@@ -198,8 +194,7 @@ in
       ssh-to-age
       statix
       test-remote
-      upload-all
-      upload-local
+      # upload-local
       write-script
       zsh
       agenix # .packages.${system}.default

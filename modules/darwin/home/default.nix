@@ -23,6 +23,13 @@ with lib.custom; {
   #   };
   # };
   config = {
+    age.secrets = {
+      openai = {
+        rekeyFile = ../../nixos/home/openai.age;
+        owner = "tomas";
+      };
+    };
+
     environment = {
       variables.XDG_DATA_DIRS = ["/usr/local/share"];
       systemPackages = with pkgs; [virt-manager];

@@ -5,7 +5,10 @@
 }:
 with lib; {
   config = mkIf pkgs.stdenv.isLinux {
-    home.packages = with pkgs; [appindicator-sharp ddcui];
+    home.packages = with pkgs; [
+      appindicator-sharp
+      # ddcui
+    ];
 
     dconf.settings ."org/gnome/shell".enabled-extensions = [
       "GPaste@gnome-shell-extensions.gnome.org"
@@ -16,6 +19,7 @@ with lib; {
       enable = true;
 
       extensions = with pkgs.gnomeExtensions; [
+        {package = ping;}
         {package = media-controls;}
         {package = gsconnect;}
         {package = systemd-manager;}
@@ -31,10 +35,10 @@ with lib; {
         #   package =
         #     executor;
         # }
-        {
-          package =
-            battery-health-charging;
-        }
+        # {
+        #   package =
+        #     battery-health-charging;
+        # }
         # {
         #   package =
         #     app-menu-icon-remove-symbolic;

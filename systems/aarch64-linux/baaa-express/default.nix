@@ -30,20 +30,20 @@ with lib; {
         fsType = "ext4";
       };
     };
-    # traits.raspberry.enable = true;
+    # trait.raspberry.enable = true;
 
     environment.systemPackages = with pkgs; [
       libraspberrypi
       raspberrypi-eeprom
     ];
 
-    traits = {
+    trait = {
       low-power.enable = true;
       hardware = {
         bluetooth.enable = true;
       };
     };
-    # traits.slim.enable = true;
+    # trait.slim.enable = true;
 
     gui."media-center".enable = true;
 
@@ -69,17 +69,6 @@ with lib; {
           mopidy-podcast
           mopidy-musicbox-webclient
         ];
-        configuration = ''
-          [http]
-          enabled = true
-          hostname = 0.0.0.0
-
-          [spotify]
-          username = ***REMOVED***
-          password = ***REMOVED***
-          client_id = 7e67ff0f-3f01-4b2b-be49-263f2c9c8e43
-          client_secret = 1WFE4aj9W51FoWUwBerVoeF-aFvx54GsmbfUzBNh3O4=
-        '';
       };
     };
 

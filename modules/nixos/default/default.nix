@@ -47,20 +47,19 @@ with lib.custom;
         enable = mkDefault true;
       };
 
-      # console = {
-      # earlySetup = true;
-      # font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
-      # packages = with pkgs; [terminus_font];
-      # keyMap = "us";
-      # useXkbConfig = true; # use xkb.options in tty.
-      # };
+      console = {
+        earlySetup = true;
+        # font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
+        # packages = with pkgs; [terminus_font];
+        keyMap = "us";
+        # useXkbConfig = true; # use xkb.options in tty.
+      };
 
       boot = {
-        # bcache.enable = true;
         recovery.enable = mkDefault true;
         initrd = {
           systemd.emergencyAccess = "abcdefg";
-          includeDefaultModules = true;
+          # includeDefaultModules = true;
         };
 
         crashDump.enable = true;
@@ -79,7 +78,7 @@ with lib.custom;
 
         # kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
         kernelPackages =
-          if (pkgs.stdenv.isAarch64 || config.traits.hardware.vm.enable)
+          if (pkgs.stdenv.isAarch64 || config.trait.hardware.vm.enable)
           then mkDefault pkgs.linuxPackages_latest
           else mkDefault pkgs.linuxPackages_xanmod_stable;
 
@@ -95,91 +94,118 @@ with lib.custom;
         };
       };
 
+      environment.etc = {
+        "current-system-packages".source = pkgs.custom.pkgs-index.override {
+          packages = config.environment.systemPackages;
+        };
+      };
+
+      # environment.etc."current-system-packages.csv".text = let
+      #   packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
+      #   sortedUnique = builtins.sort builtins.lessThan (pkgs.lib.lists.unique packages);
+      #   formatted = builtins.concatStringsSep "\n" sortedUnique;
+      # in
+      #   formatted;
+
       environment.systemPackages =
         (with pkgs; [
-          bash
-          discordo
-          nvchecker
-          # unstable.nil
-          unstable.nixd
-          googler
-          castnow
-          go-chromecast
-          gnomecast
-          catt
-          # mkchromecast
-          fcast-receiver
+          fam
+          aide
+          ttmkfdir
+          silenthound
+          dirdiff
+          ldapdomaindump
+          treecat
+          parallel-disk-usage
+          chunkfs
+          ifuse
+          clex
 
-          tydra
-          ethtool
-          socat
-          gdu
-          wmctrl
-          swapview
-          # nix-switcher # : needs github auth
-          lorri
-
-          dfrs
-          duc
-          ssh-tools
-          mbuffer
-          # etcher
-          pamixer
-          pulsemixer
-          pamix
-          pavucontrol
-          ponymix
-          # ntfy
-          ntfy-sh
-          ntfs3g
-          # rtop
-          ipcalc
-          # fancy-motd
-          kexec-tools
+          _86Box-with-roms
           # dry
-          # pkgs.deepin.udisks2-qt5
+          # etcher
+          # fancy-motd
+          # mkchromecast
+          # nix-switcher # : needs github auth
+          # ntfy
+          # rtop
           # udisks2
-          sshfs
-          lshw
-          usbutils
-          ttop
-          git
-          wget
-          curl
-          sysz
-          iptraf-ng
-          unstable.netscanner
           bandwhich
+          bash
           bashmount
           bmon
+          castnow
+          catt
           compsize
           ctop
           curl
-          devtodo
+          curl
           devdash
-          wtf
+          devtodo
+          dfrs
+          discordo
+          dosbox-x
+          duc
+          ethtool
+          fcast-receiver
           fwupd
           fwupd-efi
+          gdu
+          git
+          gnomecast
+          go-chromecast
+          googler
           hw-probe
+          ipcalc
+          iptraf-ng
+          kexec-tools
           kmon
           lazydocker
+          libnotify
           lm_sensors
+          lorri
+          lshw
+          mbuffer
           ncdu
           nfs-utils
+          nil
+          nix-top
+          nixd
+          ntfs3g
+          ntfy-sh
+          nvchecker
           openldap
+          pamix
+          pamixer
+          pavucontrol
           pciutils
+          ponymix
+          pulsemixer
           pv
+          smartmontools
+          socat
+          ssh-tools
+          sshfs
           sshportal
+          swapview
           systemctl-tui
+          sysz
           tiptop
           tpm-tools
+          ttop
+          tydra
           udiskie
+          unstable.netscanner
+          usbutils
           usermount
           viddy
           wget
-          nix-top
+          wget
+          wmctrl
+          wtf
         ])
         ++ (with pkgs.custom; [
+          ssh-proxy-agent
           menu
           pvzstd
           ssm
@@ -188,13 +214,6 @@ with lib.custom;
           # rmfuse
         ])
         ++ (optionals pkgs.stdenv.isx86_64 (with pkgs; [
-          plex-media-player
-          plexamp
-          pkgs.custom.ztui
-          # pkgs.wolfram-engine
-          libsmbios
-          dmidecode
-
           google-chrome
           netflix
 
@@ -217,13 +236,6 @@ with lib.custom;
 
       systemd = {
         enableEmergencyMode = mkDefault false;
-
-        # watchdog = {
-        #   device = "/dev/watchdog";
-        #   runtimeTime = "5m";
-        #   kexecTime = "5m";
-        #   rebootTime = "5m";
-        # };
 
         #   services = {
         #     "numlockx" = {
@@ -248,27 +260,45 @@ with lib.custom;
       };
 
       services = {
-        # watchdogd = {enable = true;};
+        usbguard = {
+          enable = true;
+          dbus.enable = true;
+          # ruleFile
+          # package
+          # restoreControllerDeviceState
+          # presentDevicePolicy
+          # presentControllerPolicy
+          # insertedDevicePolicy
+          # implicitPolicyTarget
+          # deviceRulesWithPort
+          IPCAllowedUsers = ["tomas" "root"];
+          IPCAllowedGroups = ["tomas" "root" "plugdev"];
+        };
+
+        irqbalance.enable = true;
+
+        rpcbind.enable = true;
 
         dbus = {
           enable = true;
           packages = with pkgs; [mpv];
         };
 
-        atd.enable = true;
+        # atd.enable = true;
 
-        kmscon = {
-          enable = mkDefault true;
-          hwRender = config.traits.hardware.nvidia.enable;
-          fonts = [
-            {
-              name = "JetBrainsMono Nerd Font Mono";
-              package = pkgs.nerdfonts;
-            }
-          ];
-        };
+        # kmscon = {
+        #   enable = mkDefault true;
+        #   hwRender = config.trait.hardware.nvidia.enable;
+        #   fonts = [
+        #     {
+        #       name = "JetBrainsMono Nerd Font Mono";
+        #       package = pkgs.nerdfonts;
+        #     }
+        #   ];
+        # };
 
         preload.enable = true;
+        actkbd.enable = mkForce false;
 
         ananicy = {
           enable = true;
@@ -306,12 +336,12 @@ with lib.custom;
 
         das_watchdog.enable = true;
 
-        check_mk_agent = {
-          enable = true;
-          bind = "0.0.0.0";
-          openFirewall = true;
-          package = pkgs.check_mk_agent.override {enablePluginSmart = true;};
-        };
+        # check_mk_agent = {
+        #   enable = true;
+        #   bind = "0.0.0.0";
+        #   openFirewall = true;
+        #   package = pkgs.check_mk_agent.override {enablePluginSmart = true;};
+        # };
 
         openssh = {
           enable = true;
@@ -357,17 +387,17 @@ with lib.custom;
                </service>
              </service-group>
           '';
-          rdp = ''
-            <?xml version="1.0" standalone='no'?>
-             <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
-             <service-group>
-               <name replace-wildcards="yes">%h</name>
-               <service>
-                 <type>_rdp._tcp</type>
-                 <port>${toString config.services.xrdp.port}</port>
-               </service>
-             </service-group>
-          '';
+          # rdp = ''
+          #   <?xml version="1.0" standalone='no'?>
+          #    <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+          #    <service-group>
+          #      <name replace-wildcards="yes">%h</name>
+          #      <service>
+          #        <type>_rdp._tcp</type>
+          #        <port>${toString config.services.xrdp.port}</port>
+          #      </service>
+          #    </service-group>
+          # '';
         };
 
         udev.enable = mkDefault true;
@@ -417,7 +447,11 @@ with lib.custom;
         # };
       };
 
-      security.sudo.package = pkgs.sudo.override {withSssd = true;};
+      security = {
+        # sudo.package = pkgs.sudo.override {withSssd = true;};
+        audit.enable = true;
+        auditd.enable = true;
+      };
 
       programs = {
         fzf.fuzzyCompletion = true;

@@ -6,13 +6,15 @@
 }:
 with lib;
 with lib.custom; let
-  cfg = config.headless.hypervisor;
+  cfg = config.services.hypervisor;
 
   libvirtKeytab = "/var/lib/libvirt/krb5.tab";
   qemuKeytab = "/etc/qemu/krb5.tab";
 in {
-  options.headless.hypervisor = {
+  options.services.hypervisor = {
     enable = mkEnableOption "hypervisor";
+
+    webservices.enable = mkEnableOption "webservices";
 
     bridgeInterfaces = mkOpt (types.listOf types.str) [] "bridgeInterfaces";
   };
@@ -49,25 +51,17 @@ in {
     # };
 
     environment.systemPackages = with pkgs; [
-      virt-manager
       kvmtool
       libvirt
       qemu_kvm
       pkgs.custom.libvirt-dbus
       # nemu
       qtemu
-
+      virt-top
       _86Box-with-roms
+      remotebox
+      virtio-win
 
-      (pkgs.buildFHSEnv {
-        name = "dosbox-x-glide";
-        targetPkgs = pkgs: (with pkgs; [
-          custom.openglide
-          dosbox-x
-          _86Box-with-roms
-        ]);
-        runScript = "dosbox-x";
-      })
       qemu-utils
       virtiofsd
     ];
@@ -85,8 +79,6 @@ in {
         pkgs.custom.libvirt-dbus
       ];
     };
-
-    programs.virt-manager.enable = true;
 
     environment.etc = {
       # "sasl2/libvirt.conf" = {
@@ -127,17 +119,37 @@ in {
 
     boot.extraModprobeConfig = "options kvm_intel nested=1";
 
+    programs.ccache = {
+      enable = true;
+      # packageNames = ["virtualbox"];
+    };
+
     virtualisation = {
+      virtualbox = {
+        host = {
+          enable = true;
+          enableExtensionPack = true;
+          # enableKvm = true;
+          enableWebService = cfg.webservices.enable;
+          addNetworkInterface = true;
+          enableHardening = false;
+        };
+      };
+
       kvmgt.enable = true;
       # tpm.enable = true;
 
-      libvirt = {
-        enable = true;
-        swtpm.enable = true;
-      };
+      # libvirt = {
+      #   enable = true;
+      #   swtpm.enable = true;
+      # };
 
       libvirtd = {
+        enable = true;
+
         qemu = {
+          package = pkgs.qemu_kvm;
+          runAsRoot = true;
           # verbatimConfig = ''
           #   # Adapted from /var/lib/libvirt/qemu.conf
           #   # Note that AAVMF and OVMF are for Aarch64 and x86 respectively
@@ -194,8 +206,8 @@ in {
     };
 
     users.users = {
-      "${config.user.name}".extraGroups = ["libvirtd" "qemu-libvirtd"];
-      "root".extraGroups = ["libvirtd" "qemu-libvirtd"];
+      "${config.user.name}".extraGroups = ["libvirtd" "qemu-libvirtd" "vboxusers"];
+      "root".extraGroups = ["libvirtd" "qemu-libvirtd" "vboxusers"];
     };
 
     networking = {

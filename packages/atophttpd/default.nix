@@ -4,6 +4,7 @@
   pkgs,
   zlib,
   openssl,
+  nix-update-script,
 }:
 stdenv.mkDerivation rec {
   name = "atophttpd";
@@ -23,10 +24,13 @@ stdenv.mkDerivation rec {
   postInstall = ''
     mkdir $out/bin
     mkdir $out/share
-    mv $out/usr/bin/atophttpd $out/bin/atophttpd
-    mv $out/usr/share/man $out/share
+    cp $out/usr/bin/atophttpd $out/bin/atophttpd
+    cp -r $out/usr/share/man $out/share
     rm -rf $out/usr
   '';
 
   buildInputs = [git zlib openssl];
+  passthru = {
+    updateScript = nix-update-script {};
+  };
 }

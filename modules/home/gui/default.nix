@@ -51,6 +51,11 @@ in {
       "file:///mnt/servers"
     ];
 
+    services.gnome-keyring = {
+      components = ["secrets"];
+      enable = true;
+    };
+
     xdg = {
       userDirs = {
         enable = true;
@@ -71,8 +76,8 @@ in {
       telegram-desktop
       unstable.trayscale
       custom.zerotier-ui
-
-      # notify-client
+      custom.usbguard-gnome
+      notify-client
       gnome.geary
     ];
 

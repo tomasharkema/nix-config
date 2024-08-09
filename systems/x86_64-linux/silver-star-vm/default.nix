@@ -12,9 +12,11 @@ with lib; {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILZP/NhYd8ZBJBXDEDwUgkxQHEBD3DT2KsAQA3bn1MSC root@silver-star-vm";
     };
 
-    headless.enable = true;
-
-    traits = {
+    swapDevices =
+      mkForce [
+      ];
+    trait = {
+      server.enable = true;
       hardware = {
         tpm.enable = true;
         # secure-boot.enable = true;
@@ -41,6 +43,7 @@ with lib; {
       # attic-server.enable = true;
       ipa.enable = false;
       mailrise.enable = true;
+      buildbot.enable = true;
     };
 
     services = {
@@ -87,7 +90,10 @@ with lib; {
     networking = {
       hostName = "silver-star-vm";
 
-      firewall.enable = true;
+      firewall = {
+        enable = false;
+        allowedTCPPorts = [config.services.buildbot-master.port (toInt config.apps.buildbot.workerPort)];
+      };
       # wireless.enable = lib.mkDefault false;
       networkmanager.enable = mkForce false; # true;
 

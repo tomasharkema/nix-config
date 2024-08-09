@@ -42,7 +42,7 @@ with lib; let
             mountOptions = [];
           };
           "home" = {
-            mountOptions = ["noatime" "discard=async"]; #++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
+            mountOptions = ["noatime" "discard=async"]; #++ lib.optional (!config.trait.low-power.enable) "compress=zstd";
             mountpoint = "/home";
           };
           "resilio-sync" = mkIf (cfg.newSubvolumes && cfg.media == null) {
@@ -72,7 +72,7 @@ with lib; let
           "steam" = mkIf cfg.newSubvolumes {
             mountOptions =
               ["noatime" "discard=async"]
-              ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
+              ++ lib.optional (!config.trait.low-power.enable) "compress=zstd";
             mountpoint = "/mnt/steam";
           };
           "flatpak" = mkIf cfg.newSubvolumes {
@@ -181,14 +181,14 @@ in
             };
           };
         };
-        # beesd = {
-        #   filesystems = {
-        #     root = {
-        #       spec = "PARTLABEL=disk-main-root";
-        #       hashTableSizeMB = 2048;
-        #     };
-        #   };
-        # };
+        beesd = {
+          filesystems = {
+            root = {
+              spec = mkDefault "PARTLABEL=disk-main-root";
+              hashTableSizeMB = mkDefault 2048;
+            };
+          };
+        };
       };
 
       environment.systemPackages = with pkgs; [
@@ -200,7 +200,8 @@ in
         btrfs-snap
         btrfs-progs
         btrfs-heatmap
-        btrbk
+        btrfs-auto-snapshot
+        # btrbk
         # timeshift
       ];
 
@@ -231,7 +232,7 @@ in
                   };
                 };
 
-                encryptedSwap = mkIf cfg.swap {
+                swap = mkIf cfg.swap {
                   size = "16G";
                   content = {
                     type = "swap";

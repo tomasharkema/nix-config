@@ -14,17 +14,25 @@ with lib; {
       settings = {
         "org/gnome/mutter" = {
           edge-tiling = true;
-          center-new-windows = true;
+          # center-new-windows = true;
+
+          # experimental-features = [
+          # "scale-monitor-framebuffer"
+          # "variable-refresh-rate"
+          # "rt-scheduler"
           experimental-features =
-            if osConfig.traits.hardware.laptop.enable
+            if osConfig.trait.hardware.laptop.enable
             then [
               "scale-monitor-framebuffer"
               "variable-refresh-rate"
+              "rt-scheduler"
             ]
-            else mkEmptyArray (type.string);
+            else ["rt-scheduler"];
+          # ];
         };
         "org/gnome/shell/extensions/vitals" = {
           "position-in-panel" = 0;
+          show-gpu = true;
           hot-sensors = [
             "_processor_usage_"
             "_memory_usage_"
@@ -32,6 +40,7 @@ with lib; {
             "__network-rx_max__"
             "__network-tx_max__"
             "_storage_free_"
+            "_gpu#1_utilization_"
           ];
         };
 
@@ -43,10 +52,10 @@ with lib; {
           color-scheme = "prefer-dark";
           # cursor-theme = mkForce "Adwaita";
           # gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
-          document-font-name = "Inter Variable 11";
+          document-font-name = "Inter Display 11";
           font-antialiasing = "grayscale";
           monospace-font-name = "JetBrainsMono Nerd Font Mono 11";
-          # font-name = "Inter 11";
+          # font-name = "Inter Display 11";
           enable-hot-corners = false;
           # icon-theme = "Adwaita";
         };
@@ -151,12 +160,12 @@ with lib; {
               }
               {
                 element = "systemMenu";
-                visible = true;
+                visible = false;
                 position = "stackedBR";
               }
               {
                 "element" = "dateMenu";
-                visible = true;
+                visible = false;
                 position = "stackedBR";
               }
               {
@@ -235,7 +244,7 @@ with lib; {
         "org/gnome/desktop/wm/preferences" = {
           button-layout = "appmenu:minimize,maximize,close";
           # button-layout = "close,minimize,maximize:";
-          titlebar-font = "Inter Regular 11";
+          titlebar-font = "Inter Display Regular 11";
         };
         "org/gnome/nautilus/preferences" = {
           always-use-location-entry = true;

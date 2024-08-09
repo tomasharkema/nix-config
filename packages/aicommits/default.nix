@@ -18,6 +18,7 @@
   pnpm,
   nodejs,
   makeWrapper,
+  nix-update-script,
 }:
 stdenv.mkDerivation rec {
   pname = "aicommits";
@@ -59,4 +60,7 @@ stdenv.mkDerivation rec {
 
     runHook postInstall
   '';
+  passthru = {
+    updateScript = nix-update-script {};
+  };
 }

@@ -21,7 +21,6 @@ with pkgs; {
       # bup
       # shallow-backup
       # dry
-      # pkgs.deepin.udisks2-qt5
       # udisks2
       portal
       git
@@ -123,7 +122,7 @@ with pkgs; {
       speedtest-cli
       ssh-to-age
       starship
-      tlrc
+      tldr
       tmate
       tree
       unrar

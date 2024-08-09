@@ -5,22 +5,32 @@
   ...
 }:
 with lib; let
-  package = pkgs.custom.ancs4linux;
+  cfg = config.apps.ancs4linux;
 in {
-  config = {
-    environment.systemPackages = [package pkgs.custom.bluetooth-autoconnect];
+  options.apps.ancs4linux = {
+    enable = mkOption {
+      default = config.hardware.bluetooth.enable;
+      description = "ancs4linux";
+    };
+    package = mkOption {
+      default = pkgs.custom.ancs4linux;
+    };
+  };
+
+  config = mkIf cfg.enable {
+    environment.systemPackages = [cfg.package pkgs.custom.bluetooth-autoconnect];
 
     services.dbus = {
       enable = true;
-      packages = [package];
+      packages = [cfg.package];
     };
 
     users.groups.ancs4linux.members = ["root" "tomas"];
 
-    services.packagekit.enable = true;
+    # services.packagekit.enable = true;
 
     systemd = {
-      packages = [package pkgs.custom.bluetooth-autoconnect];
+      packages = [cfg.package pkgs.custom.bluetooth-autoconnect];
       services = {
         ancs4linux-advertising = {
           enable = true;
@@ -32,7 +42,7 @@ in {
           serviceConfig = {
             Type = "dbus";
             BusName = "ancs4linux.Advertising";
-            ExecStart = "${package}/bin/ancs4linux-advertising";
+            ExecStart = "${cfg.package}/bin/ancs4linux-advertising";
             Restart = "on-failure";
             RestartSec = "5s";
           };
@@ -47,7 +57,7 @@ in {
           serviceConfig = {
             Type = "dbus";
             BusName = "ancs4linux.Observer";
-            ExecStart = "${package}/bin/ancs4linux-observer";
+            ExecStart = "${cfg.package}/bin/ancs4linux-observer";
             Restart = "on-failure";
             RestartSec = "5s";
           };
@@ -62,7 +72,7 @@ in {
         };
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${package}/bin/ancs4linux-desktop-integration";
+          ExecStart = "${cfg.package}/bin/ancs4linux-desktop-integration";
           Restart = "on-failure";
           RestartSec = "5s";
         };

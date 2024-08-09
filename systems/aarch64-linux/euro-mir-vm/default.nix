@@ -66,6 +66,7 @@ with lib; {
     apps = {
       flatpak.enable = true;
       # opensnitch.enable = true;
+      ancs4linux.enable = false;
     };
 
     boot = {
@@ -79,7 +80,7 @@ with lib; {
         enable = false;
       };
     };
-    traits = {
+    trait = {
       developer.enable = false;
       hardware = {
         tpm.enable = false;
@@ -105,7 +106,7 @@ with lib; {
       auto-cpufreq.enable = mkForce false;
       monit.enable = mkForce false;
       # tor.enable = false;
-      xrdp.enable = mkForce false;
+      # xrdp.enable = mkForce false;
       fwupd.enable = mkForce false;
 
       # spice-autorandr.enable = true;

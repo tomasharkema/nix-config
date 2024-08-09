@@ -54,12 +54,12 @@ with lib; {
 
         # fh
         flake-checker
-        fup-repl
+        # fup-repl
         hydra-check
         hydra-cli
         manix
         nerd-font-patcher
-        # unstable.nil
+        nil
         nix-bisect
         nix-bundle
         nix-eval-jobs
@@ -75,7 +75,7 @@ with lib; {
         nix-update-source
         nix-visualize
 
-        unstable.nixd
+        nixd
         nixfmt-rfc-style
         nixos-option
         nixos-shell

@@ -18,6 +18,7 @@ in {
     gui.fonts.enable = true;
 
     services = {
+      dbus.packages = [pkgs.unstable.usbguard-notifier];
       libinput.enable = true;
 
       xserver = {
@@ -27,10 +28,10 @@ in {
         # xkbVariant = "";
       };
 
-      xrdp = mkIf cfg.rdp.enable {
-        enable = true;
-        # openFirewall = true;
-      };
+      # xrdp = mkIf cfg.rdp.enable {
+      #   enable = true;
+      #   # openFirewall = true;
+      # };
       # clipmenu.enable = true;
 
       systembus-notify.enable = true;
@@ -100,82 +101,81 @@ in {
       ];
     };
 
-    environment.systemPackages = with pkgs;
-      [
-        fractal
-        ventoy-full
-        unstable.zed-editor
-        spot
-        ulauncher
-        yelp
-        # firefox
-        # gnome.gnome-boxes
-        # keybase
-        # libmx
-        # mattermost-desktop
-        # nixos-conf-editor
-        # pcmanfm
-        # plymouth
-        # polkit
-        # transmission
-        # waybar
-        # caffeine-ng
-        unstable.ktailctl
-        clutter
-        effitask
-        filezilla
-        font-manager
-        gamehub
-        github-desktop
-        gotop
-        gparted
-        grsync
-        gtk-engine-murrine
-        libGL
-        libGLU
-        meteo
-        mission-center
-        nix-software-center
-        # notify-client
-        partition-manager
-        pavucontrol
-        pkgs.custom.netbrowse
-        powertop
-        pwvucontrol
-        qdirstat
-        qjournalctl
-        rtfm
-        sublime-merge
-        unstable.systemdgenie
-        unstable.transmission-remote-gtk
-        unstable.trayscale
-        unstable.tremotesf
-        vsce
-        unstable.vscode
-        # unstable.vscodium
-        vte-gtk4
-        wezterm
-        xdg-utils
-        xdgmenumaker
-        xdiskusage
-        xdotool
-      ]
-      ++ optionals pkgs.stdenv.isx86_64 [
-        devdocs-desktop
-        discord
-        # spotify
-        ipmiview
-        jetbrains-toolbox
-        gitkraken
-        unstable.xpipe
-        angryipscanner
-        telegram-desktop
-        # pkgs.custom.git-butler
-        unstable.bottles
+    programs.virt-manager.enable = true;
 
-        handbrake
-      ]
-      ++ (with pkgs.custom; [zerotier-ui]);
+    environment.systemPackages =
+      (with pkgs; [nix-software-center])
+      ++ (with pkgs.unstable;
+        [
+          usbguard-notifier
+          usbview
+          apache-directory-studio
+          sqlitebrowser
+          # notify-client
+          # unstable.vscodium
+          clutter
+          effitask
+          filezilla
+          font-manager
+          fractal
+          gamehub
+          github-desktop
+          gotop
+          gparted
+          grsync
+          gtk-engine-murrine
+          ktailctl
+          libGL
+          libGLU
+          meteo
+          mission-center
+          partition-manager
+          pavucontrol
+          powertop
+          pwvucontrol
+          qdirstat
+          qjournalctl
+          rtfm
+          spot
+          sublime-merge
+          systemdgenie
+          transmission-remote-gtk
+          trayscale
+          tremotesf
+          ulauncher
+          ventoy-full
+          vsce
+          vscode
+          vte-gtk4
+          wezterm
+          xdg-utils
+          xdgmenumaker
+          xdiskusage
+          xdotool
+          yelp
+          zed-editor
+        ]
+        ++ optionals pkgs.stdenv.isx86_64 [
+          # pkgs.custom.git-butler
+          # pkgs.wolfram-engine
+          # spotify
+          angryipscanner
+          bottles
+          devdocs-desktop
+          discord
+          dmidecode
+          gitkraken
+          handbrake
+          ipmiview
+          jetbrains-toolbox
+          libsmbios
+          plex-media-player
+          plexamp
+          telegram-desktop
+          xpipe
+          pkgs.custom.ztui
+        ]
+        ++ (with pkgs.custom; [zerotier-ui netbrowse usbguard-gnome]));
 
     programs = {
       ssh = {
@@ -192,7 +192,7 @@ in {
       mtr.enable = true;
       dconf.enable = true;
     };
-
+    systemd.packages = [pkgs.unstable.usbguard-notifier];
     # Enable sound with pipewire.
     sound.enable = mkDefault true;
     hardware.pulseaudio.enable = false;
