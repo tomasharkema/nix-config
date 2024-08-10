@@ -723,11 +723,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1723308058,
-        "narHash": "sha256-hJxR0gSDmtnaB58FwlGBBPOEym00hD1Nkyienwgo2QA=",
+        "lastModified": 1723310128,
+        "narHash": "sha256-IiH8jG6PpR4h9TxSGMYh+2/gQiJW9MwehFvheSb5rPc=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "6ed5521636c7b40b800a014f26f0eaaa210c2e30",
+        "rev": "c54cf53e022b0b3c1d3b8207aa0f9b194c24f0cf",
         "type": "github"
       },
       "original": {
@@ -763,11 +763,11 @@
     },
     "nixos-nvidia-vgpu": {
       "locked": {
-        "lastModified": 1723114676,
-        "narHash": "sha256-u/wHcpt3XlyA3OuuBXitUNLONJKniPYg8RDDZoTrIUk=",
+        "lastModified": 1723313872,
+        "narHash": "sha256-UV9617jyGSX4NIy8BS8ri2CE7YtMC6eyYtZUb1UceQQ=",
         "owner": "tomasharkema",
         "repo": "nixos-nvidia-vgpu",
-        "rev": "91ac103ff977d3ec465ecd4a01751d4ac7672577",
+        "rev": "9456d5f652dcc081fcf92b52a173a2c89e4658d5",
         "type": "github"
       },
       "original": {
