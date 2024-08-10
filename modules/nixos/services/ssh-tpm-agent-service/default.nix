@@ -131,9 +131,9 @@ in {
             ExecStart = let
               proxy =
                 if config.programs._1password-gui.enable
-                then " \"/home/tomas/.1password/agent.sock\""
+                then " -A /home/tomas/.1password/agent.sock"
                 else "";
-            in "${cfg.package}/bin/ssh-tpm-agent"; # -A${proxy}
+            in "${cfg.package}/bin/ssh-tpm-agent${proxy}";
 
             PassEnvironment = "SSH_AGENT_PID";
             SuccessExitStatus = 2;
