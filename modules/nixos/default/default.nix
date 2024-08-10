@@ -94,11 +94,11 @@ with lib.custom;
         };
       };
 
-      environment.etc = {
-        "current-system-packages".source = pkgs.custom.pkgs-index.override {
-          packages = config.environment.systemPackages;
-        };
-      };
+      # environment.etc = {
+      #   "current-system-packages".source = pkgs.custom.pkgs-index.override {
+      #     packages = config.environment.systemPackages;
+      #   };
+      # };
 
       # environment.etc."current-system-packages.csv".text = let
       #   packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
