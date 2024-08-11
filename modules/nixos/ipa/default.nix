@@ -44,23 +44,31 @@ in {
     };
 
     # FROM: https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/misc/sssd.nix
-    systemd.services.sssd-kcm = {
-      description = "SSSD Kerberos Cache Manager";
-      requires = ["sssd-kcm.socket"];
-      serviceConfig = {
-        ExecStartPre = "-${pkgs.sssd}/bin/sssd --genconf-section=kcm";
-        ExecStart = "${pkgs.sssd}/libexec/sssd/sssd_kcm --uid 0 --gid 0";
+    systemd = {
+      services.sssd-kcm = {
+        enable = true;
+        description = "SSSD Kerberos Cache Manager";
+
+        wantedBy = ["multi-user.target" "sssd.service"];
+        requires = ["sssd-kcm.socket"];
+
+        serviceConfig = {
+          ExecStartPre = "-${pkgs.sssd}/bin/sssd --genconf-section=kcm";
+          ExecStart = "${pkgs.sssd}/libexec/sssd/sssd_kcm --uid 0 --gid 0";
+        };
+        # restartTriggers = [
+        #   settingsFileUnsubstituted
+        # ];
       };
-      # restartTriggers = [
-      #   settingsFileUnsubstituted
-      # ];
-    };
-    systemd.sockets.sssd-kcm = {
-      description = "SSSD Kerberos Cache Manager responder socket";
-      wantedBy = ["sockets.target"];
-      # Matches the default in MIT krb5 and Heimdal:
-      # https://github.com/krb5/krb5/blob/krb5-1.19.3-final/src/include/kcm.h#L43
-      listenStreams = ["/var/run/.heim_org.h5l.kcm-socket"];
+
+      sockets.sssd-kcm = {
+        enable = true;
+        description = "SSSD Kerberos Cache Manager responder socket";
+        wantedBy = ["sockets.target"];
+        # Matches the default in MIT krb5 and Heimdal:
+        # https://github.com/krb5/krb5/blob/krb5-1.19.3-final/src/include/kcm.h#L43
+        listenStreams = ["/var/run/.heim_org.h5l.kcm-socket"];
+      };
     };
 
     security.krb5.settings.libdefaults.default_ccache_name = "KCM:";
@@ -109,11 +117,11 @@ in {
         domain = "harkema.io";
         realm = "HARKEMA.IO";
         basedn = "dc=harkema,dc=io";
-        certificate = pkgs.fetchurl {
-          url = "https://ipa.harkema.io/ipa/config/ca.crt";
-          sha256 = "sha256-s93HRgX4AwCnsY9sWX6SAYrUg9BrSEg8Us5QruOunf0=";
-        };
-        # certificate = "${./ca.crt}";
+        # certificate = pkgs.fetchurl {
+        #   url = "https://ipa.harkema.io/ipa/config/ca.crt";
+        #   sha256 = "sha256-s93HRgX4AwCnsY9sWX6SAYrUg9BrSEg8Us5QruOunf0=";
+        # };
+        certificate = "${./ca.crt}";
         dyndns.enable = false;
         ifpAllowedUids = [
           "root"
