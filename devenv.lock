@@ -26,11 +26,11 @@
     "devenv": {
       "locked": {
         "dir": "src/modules",
-        "lastModified": 1723238470,
+        "lastModified": 1723373470,
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "25e48e98c19e9424d517a144db0d31a89536bf94",
-        "treeHash": "22c7e7b282f50c54cea35da65fd2705f3cb54909",
+        "rev": "d915d239ab3c688a7e9d52c757f690dc6f335049",
+        "treeHash": "6f259e9a8b76e7c9325c5f4a3d63cc0baf8158dd",
         "type": "github"
       },
       "original": {
@@ -156,11 +156,11 @@
     },
     "nixlib": {
       "locked": {
-        "lastModified": 1722732880,
+        "lastModified": 1723337705,
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "rev": "8bebd4c74f368aacb047f0141db09ec6b339733c",
-        "treeHash": "5c9c2e520b891c16eca7871217945a775a149b20",
+        "rev": "ace7856d327b618d3777e31b1f224b3ab57ed71a",
+        "treeHash": "e6fa2f1bf7b0481b6319f403b7a2aa68bce2d865",
         "type": "github"
       },
       "original": {
@@ -208,11 +208,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1722987190,
+        "lastModified": 1723282977,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "21cc704b5e918c5fbf4f9fff22b4ac2681706d90",
-        "treeHash": "76c0bca330c9f7c8a68dffa1004146cf49975166",
+        "rev": "a781ff33ae258bbcfd4ed6e673860c3e923bf2cc",
+        "treeHash": "75cf71293251c603e56d6076098346b4128b2ec8",
         "type": "github"
       },
       "original": {
@@ -224,11 +224,11 @@
     },
     "nixpkgs-stable_2": {
       "locked": {
-        "lastModified": 1722987190,
+        "lastModified": 1723282977,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "21cc704b5e918c5fbf4f9fff22b4ac2681706d90",
-        "treeHash": "76c0bca330c9f7c8a68dffa1004146cf49975166",
+        "rev": "a781ff33ae258bbcfd4ed6e673860c3e923bf2cc",
+        "treeHash": "75cf71293251c603e56d6076098346b4128b2ec8",
         "type": "github"
       },
       "original": {
