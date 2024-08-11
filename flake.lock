@@ -763,11 +763,11 @@
     },
     "nixos-nvidia-vgpu": {
       "locked": {
-        "lastModified": 1723313872,
-        "narHash": "sha256-UV9617jyGSX4NIy8BS8ri2CE7YtMC6eyYtZUb1UceQQ=",
+        "lastModified": 1723386920,
+        "narHash": "sha256-IMG7FPXkBY9/Gmb8jDOl06ojra22UaY8p0ngWCcc9qI=",
         "owner": "tomasharkema",
         "repo": "nixos-nvidia-vgpu",
-        "rev": "9456d5f652dcc081fcf92b52a173a2c89e4658d5",
+        "rev": "4d00c84208dbb039f9fc692922a6cfe9a4edc072",
         "type": "github"
       },
       "original": {
