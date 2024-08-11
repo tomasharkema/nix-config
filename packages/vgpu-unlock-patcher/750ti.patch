@@ -1,0 +1,14 @@
+diff --git a/patch.sh b/patch.sh
+index 28935ce..2e5f648 100755
+--- a/patch.sh
++++ b/patch.sh
+@@ -732,6 +732,9 @@ if $DO_VGPU; then
+     vcfgclone ${TARGET}/vgpuConfig.xml 0x13BD 0x1160 0x13C0 0x0000	# GTX 980 -> Tesla M10
+     vcfgclone ${TARGET}/vgpuConfig.xml 0x13BD 0x1160 0x13D7 0x0000	# GTX 980M -> Tesla M10
+     vcfgclone ${TARGET}/vgpuConfig.xml 0x13BD 0x1160 0x139A 0x0000	# GTX 950M -> Tesla M10
++    
++    vcfgclone ${TARGET}/vgpuConfig.xml 0x13BD 0x1160 0x1380 0x0000 # GTX 750Ti -> Tesla M10
++    
+     $REMAP_P2V && {
+         vcfgclone ${TARGET}/vgpuConfig.xml 0x1B38 0x0 0x1BB3 0x0	# Tesla P4 -> Tesla P40
+     }
