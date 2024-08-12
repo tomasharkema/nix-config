@@ -109,6 +109,9 @@ in {
     #   "L /bin/bash - - - - /run/current-system/sw/bin/bash"
     #   "L /bin/zsh - - - - /run/current-system/sw/bin/zsh"
     # ];
+    system.activationScripts.host-mod-pubkey.text = ''
+      ipa host-mod "$HOSTNAME.harkema.io" --sshpubkey="$(cat /etc/ssh/ssh_host_ed25519_key.pub)" || echo "REGISTER PUBKEY"
+    '';
 
     security = {
       ipa = {
@@ -131,9 +134,7 @@ in {
       };
 
       # sudo.package = (pkgs.sudo.override { withSssd = true; });
-      system.activationScripts.host-mod-pubkey.text = ''
-        ipa host-mod "$HOSTNAME.harkema.io" --sshpubkey="$(cat /etc/ssh/ssh_host_ed25519_key.pub)" || echo "REGISTER PUBKEY"
-      '';
+
       polkit = {
         enable = true;
         extraConfig = ''

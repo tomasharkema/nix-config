@@ -18,7 +18,7 @@ with lib; {
   config = {
     age = {
       rekey = {
-        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIImcDgt9Pzve8g2auikBFQ3JkXB5UqoRfr7D22caGMgB root@voltron";
+        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHsy1IFC8nJp/gFmti2VMz5/pqnY8mZRazM960EhcC4O root@voltron";
       };
     };
 
