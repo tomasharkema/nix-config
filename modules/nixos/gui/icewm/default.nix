@@ -39,8 +39,8 @@ in {
 
       xrdp = {
         enable = true;
-        # defaultWindowManager = "${pkgs.icewm}/bin/icewm";
-        defaultWindowManager = "${pkgs.icewm}/bin/icewm-session";
+        defaultWindowManager = "${pkgs.icewm}/bin/icewm";
+        # defaultWindowManager = "${pkgs.icewm}/bin/icewm-session";
       };
     };
 

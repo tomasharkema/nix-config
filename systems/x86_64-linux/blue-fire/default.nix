@@ -206,10 +206,10 @@ in {
       networkmanager.enable = false;
 
       interfaces = {
-        "eno1" = {
-          useDHCP = true;
-          wakeOnLan.enable = true;
-        };
+        # "eno1" = {
+        #   useDHCP = true;
+        #   wakeOnLan.enable = true;
+        # };
         "br0" = {useDHCP = true;};
         "bond0" = {
           # useDHCP = true;
@@ -343,7 +343,8 @@ in {
 
     hardware.nvidia.vgpu = {
       enable = true; # Enable NVIDIA KVM vGPU + GRID driver
-      unlock.enable = true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
+      unlock.enable = true; #true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
+      version = "v16.5";
     };
 
     boot = {

@@ -109,18 +109,7 @@ with lib.custom;
 
       environment.systemPackages =
         (with pkgs; [
-          fam
-          aide
-          ttmkfdir
-          silenthound
-          dirdiff
-          ldapdomaindump
-          treecat
-          parallel-disk-usage
-          chunkfs
-          ifuse
-          clex
-
+          meld
           _86Box-with-roms
           # dry
           # etcher
@@ -130,12 +119,16 @@ with lib.custom;
           # ntfy
           # rtop
           # udisks2
+          aide
+          archivemount
           bandwhich
           bash
           bashmount
           bmon
           castnow
           catt
+          chunkfs
+          clex
           compsize
           ctop
           curl
@@ -143,10 +136,12 @@ with lib.custom;
           devdash
           devtodo
           dfrs
+          dirdiff
           discordo
           dosbox-x
           duc
           ethtool
+          fam
           fcast-receiver
           fwupd
           fwupd-efi
@@ -156,11 +151,13 @@ with lib.custom;
           go-chromecast
           googler
           hw-probe
+          ifuse
           ipcalc
           iptraf-ng
           kexec-tools
           kmon
           lazydocker
+          ldapdomaindump
           libnotify
           lm_sensors
           lorri
@@ -177,11 +174,13 @@ with lib.custom;
           openldap
           pamix
           pamixer
+          parallel-disk-usage
           pavucontrol
           pciutils
           ponymix
           pulsemixer
           pv
+          silenthound
           smartmontools
           socat
           ssh-tools
@@ -192,6 +191,8 @@ with lib.custom;
           sysz
           tiptop
           tpm-tools
+          treecat
+          ttmkfdir
           ttop
           tydra
           udiskie
@@ -387,17 +388,17 @@ with lib.custom;
                </service>
              </service-group>
           '';
-          # rdp = ''
-          #   <?xml version="1.0" standalone='no'?>
-          #    <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
-          #    <service-group>
-          #      <name replace-wildcards="yes">%h</name>
-          #      <service>
-          #        <type>_rdp._tcp</type>
-          #        <port>${toString config.services.xrdp.port}</port>
-          #      </service>
-          #    </service-group>
-          # '';
+          rdp = ''
+            <?xml version="1.0" standalone='no'?>
+             <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+             <service-group>
+               <name replace-wildcards="yes">%h</name>
+               <service>
+                 <type>_rdp._tcp</type>
+                 <port>${toString config.services.xrdp.port}</port>
+               </service>
+             </service-group>
+          '';
         };
 
         udev.enable = mkDefault true;
