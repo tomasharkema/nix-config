@@ -13,8 +13,8 @@ in {
   };
 
   imports = with inputs; [
-    # nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
-    # nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
+    nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
+    nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
   ];
 
   config = mkIf cfg.enable {
