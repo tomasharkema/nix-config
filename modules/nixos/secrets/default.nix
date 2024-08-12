@@ -116,9 +116,9 @@
           mode = "644";
         };
 
-        "domainjoin" = {
-          rekeyFile = ./domainjoin.age;
-        };
+        # "domainjoin" = {
+        #   rekeyFile = ./domainjoin.age;
+        # };
         netrc = {
           rekeyFile = ./netrc.age;
         };
