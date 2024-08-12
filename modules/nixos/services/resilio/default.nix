@@ -17,9 +17,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    # age.secrets."resilio-p" = {rekeyFile = ../secrets/resilio-p.age;};
-    # age.secrets."resilio-docs" = {rekeyFile = ../secrets/resilio-docs.age;};
-    # age.secrets."resilio-shared-public" = {rekeyFile = ../secrets/resilio-shared-public.age;};
     environment.systemPackages = with pkgs; [acl];
 
     systemd = {
@@ -33,6 +30,22 @@ in {
     };
 
     systemd.services.resilio.serviceConfig.Nice = 19;
+
+    age.secrets = {
+      "resilio-p" = {
+        rekeyFile = ./resilio-p.age;
+        mode = "644";
+      };
+
+      "resilio-docs" = {
+        rekeyFile = ./resilio-docs.age;
+        mode = "644";
+      };
+      "resilio-shared-public" = {
+        rekeyFile = ./resilio-shared-public.age;
+        mode = "644";
+      };
+    };
 
     services.resilio = {
       enable = true;

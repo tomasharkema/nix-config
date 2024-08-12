@@ -36,19 +36,6 @@
           rekeyFile = ./gh.age;
           mode = "644";
         };
-        "resilio-p" = {
-          rekeyFile = ./resilio-p.age;
-          mode = "644";
-        };
-
-        "resilio-docs" = {
-          rekeyFile = ./resilio-docs.age;
-          mode = "644";
-        };
-        "resilio-shared-public" = {
-          rekeyFile = ./resilio-shared-public.age;
-          mode = "644";
-        };
         "ntfy" = {
           rekeyFile = ./ntfy.age;
           mode = "644";
