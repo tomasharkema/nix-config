@@ -16,3 +16,4 @@
 (B) GPU Gamemode fixen +nixos
 (A) fix snapper/btrfs snapshots +nixos
 (B) fix exeptions for vm/aarch64
+(A) https://github.com/noahbliss/freeipa-sam
