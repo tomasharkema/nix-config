@@ -74,7 +74,7 @@
 
       overlays = with inputs; [
         # nix-otel.overlays.default
-        peerix.overlay
+        # peerix.overlay
         snowfall-flake.overlays."package/flake"
         # nixos-checkmk.overlays.default
         # nixos-service.overlays.default
@@ -116,7 +116,7 @@
           catppuccin.nixosModules.catppuccin
           buildbot-nix.nixosModules.buildbot-worker
           # attic.nixosModules.atticd
-          peerix.nixosModules.peerix
+          # peerix.nixosModules.peerix
 
           # impermanence.nixosModule
           disko.nixosModules.default
@@ -626,14 +626,14 @@
       };
     };
 
-    peerix = {
-      # url = "github:cid-chan/peerix";
-      url = "github:tomasharkema/peerix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
+    # peerix = {
+    #   # url = "github:cid-chan/peerix";
+    #   url = "github:tomasharkema/peerix";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-utils.follows = "flake-utils";
+    #   };
+    # };
 
     # stylix = {
     #   url = "github:danth/stylix/release-24.05";
