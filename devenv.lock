@@ -177,11 +177,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1723078345,
+        "lastModified": 1723444610,
         "owner": "nix-community",
         "repo": "nixos-generators",
-        "rev": "d6c5d29f58acc10ea82afff1de2b28f038f572bd",
-        "treeHash": "8299eb34e5b4f1fb7d8f500016296610d8c8fef4",
+        "rev": "a220fc3a6e144f12f0c3dc3e4d01d44c2e6b0b85",
+        "treeHash": "218803e9e864e761ca6b501e2fdfd6a2ef8969ec",
         "type": "github"
       },
       "original": {
