@@ -367,7 +367,7 @@ in {
         local_ipv4 = "192.168.0.18";
       };
     };
-
+    virtualisation.oci-containers.containers.fastapi-dls.environment.DLS_PORT = mkForce "4433";
     boot = {
       tmp = {
         useTmpfs = true;
