@@ -341,10 +341,25 @@ in {
       };
     };
 
+    # hardware.nvidia.vgpu = {
+    #   enable = true; # Enable NVIDIA KVM vGPU + GRID driver
+    #   unlock.enable = true; #true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
+    #   version = "v16.5";
+    # };
+
     hardware.nvidia.vgpu = {
-      enable = true; # Enable NVIDIA KVM vGPU + GRID driver
-      unlock.enable = true; #true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
-      version = "v16.5";
+      enable = true;
+      vgpu_driver_src.sha256 = "0fkw2cym28wqvgrzfrsccacf5cln43bgp3l9pij988ajnrzh6n5l";
+      pinKernel = true;
+      # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
+      # path is '/nix/store/2l7n0kg9yz1v2lkilh8154q35cghgj1y-NVIDIA-GRID-Linux-KVM-535.161.05-535.161.08-538.46.zip'
+      # 02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r
+
+      # useMyDriver.vgpu-driver-version = "535.161.05";
+
+      fastapi-dls = {
+        enable = true;
+      };
     };
 
     boot = {

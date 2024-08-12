@@ -746,16 +746,19 @@
       }
     },
     "nixos-nvidia-vgpu": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
       "locked": {
-        "lastModified": 1723478004,
-        "narHash": "sha256-klcnJG5wvWJfiAVa1EQMbAAHn2yn40yAWbt/KCz2pkw=",
-        "owner": "tomasharkema",
+        "lastModified": 1723143532,
+        "narHash": "sha256-PEjjPfshl9e2JcU9W8d0g6GjZzJ+KoD7AZIgbxyFlHI=",
+        "owner": "Yeshey",
         "repo": "nixos-nvidia-vgpu",
-        "rev": "e9f9f0f353ac4a9bc4c8f31e2cdb1320efc97d22",
+        "rev": "ef32b28a12853ae4333e6f8519c4bdc7997b467c",
         "type": "github"
       },
       "original": {
-        "owner": "tomasharkema",
+        "owner": "Yeshey",
         "repo": "nixos-nvidia-vgpu",
         "type": "github"
       }
@@ -837,6 +840,18 @@
     },
     "nixpkgs_3": {
       "locked": {
+        "lastModified": 1720031269,
+        "narHash": "sha256-rwz8NJZV+387rnWpTYcXaRNvzUSnnF9aHONoJIYmiUQ=",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/9f4128e00b0ae8ec65918efeba59db998750ead6.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/9f4128e00b0ae8ec65918efeba59db998750ead6.tar.gz"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
         "lastModified": 1723282977,
         "narHash": "sha256-oTK91aOlA/4IsjNAZGMEBz7Sq1zBS0Ltu4/nIQdYDOg=",
         "owner": "NixOS",
@@ -850,7 +865,7 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1719082008,
         "narHash": "sha256-jHJSUH619zBQ6WdC21fFAlDxHErKVDJ5fpN0Hgx4sjs=",
@@ -938,7 +953,7 @@
       "inputs": {
         "flake-compat": "flake-compat_3",
         "gitignore": "gitignore_2",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
@@ -981,7 +996,7 @@
         "nixos-anywhere": "nixos-anywhere",
         "nixos-hardware": "nixos-hardware",
         "nixos-nvidia-vgpu": "nixos-nvidia-vgpu",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "nixvim": "nixvim",
         "poetry2nix": "poetry2nix",
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",

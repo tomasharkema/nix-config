@@ -178,12 +178,23 @@ with lib; {
       # extraModprobeConfig = [];
       kernelParams = ["nowatchdog" "mitigations=off"];
 
-      # extraModulePackages = [config.boot.kernelPackages.isgx];
+      extraModulePackages = [
+        (config.boot.kernelPackages.isgx.overrideAttrs (prev: {
+          patches =
+            # prev.patches
+            # ++
+            [
+              ./157.patch
+            ];
+        }))
+      ];
       kernelModules = [
+        "i915"
         # "isgx"
         # "watchdog"
         #"tpm_rng"
       ];
+      extraModprobeConfig = "options i915 enable_guc=2";
       #initrd.kernelModules = [
       #  "watchdog"
       #  "isgx"
