@@ -34,17 +34,17 @@ in {
     services = {
       # tp-auto-kbbl.enable = true;
       # thinkfan.enable = true;
-      fprintd = {
-        enable = true;
-        tod = {
-          enable = true;
-          driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
-            calib-data-file = ./calib-data.bin;
-          };
-        };
-      };
-      # open-fprintd.enable = true;
-      # python-validity.enable = true;
+      # fprintd = {
+      #   enable = true;
+      #   tod = {
+      #     enable = true;
+      #     driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
+      #       calib-data-file = ./calib-data.bin;
+      #     };
+      #   };
+      # };
+      open-fprintd.enable = true;
+      python-validity.enable = true;
       # fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
       # aesmd = {
       #   enable = true;
@@ -95,6 +95,9 @@ in {
         # enableGnomeKeyring = true;
         fprintAuth = true;
       };
+      passwd = {
+        fprintAuth = true;
+      };
       "systemd-user" = {
         # enableGnomeKeyring = true;
         fprintAuth = true;
@@ -112,6 +115,10 @@ in {
         fprintAuth = true;
       };
       vlock = {
+        # enableGnomeKeyring = true;
+        fprintAuth = true;
+      };
+      "xscreenserver" = {
         # enableGnomeKeyring = true;
         fprintAuth = true;
       };

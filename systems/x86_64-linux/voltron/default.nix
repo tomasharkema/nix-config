@@ -101,11 +101,6 @@ with lib; {
       # samsung.enable = true;
     };
 
-    services.hypervisor = {
-      enable = true;
-      #   bridgeInterfaces = ["wlp59s0"];
-    };
-
     trait = {
       hardware = {
         nvme.enable = true;
@@ -134,6 +129,10 @@ with lib; {
     apps.podman.enable = true;
 
     services = {
+      hypervisor = {
+        enable = true;
+        #   bridgeInterfaces = ["wlp59s0"];
+      };
       # remote-builders.client.enable = true;
       # usb-over-ethernet.enable = true;
       hardware.bolt.enable = true;

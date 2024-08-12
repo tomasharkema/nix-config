@@ -351,7 +351,17 @@ in {
     #   enable = true; # Enable NVIDIA KVM vGPU + GRID driver
     #   unlock.enable = true; #true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
     #   version = "v16.5";
+
     # };
+
+    virtualisation.kvmgt = {
+      enable = true;
+      vgpus = {
+        "nvidia-208" = {
+          uuid = ["fec376a4-58ec-11ef-a7a0-df0f1acdc557"];
+        };
+      };
+    };
 
     hardware.nvidia.vgpu = {
       enable = true;
