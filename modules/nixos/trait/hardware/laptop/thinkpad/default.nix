@@ -119,6 +119,7 @@ in {
         # enableGnomeKeyring = true;
         fprintAuth = true;
       };
+      # passwd.enableGnomeKeyring = true;
     };
   };
 }

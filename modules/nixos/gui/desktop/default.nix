@@ -17,6 +17,8 @@ in {
   config = mkIf (cfg.enable) {
     gui.fonts.enable = true;
 
+    security.pam.services.passwd.enableGnomeKeyring = true;
+
     services = {
       dbus.packages = [pkgs.unstable.usbguard-notifier];
       libinput.enable = true;
