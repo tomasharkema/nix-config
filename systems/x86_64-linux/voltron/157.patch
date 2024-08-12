@@ -34,3 +34,16 @@ index ca52821..f280587 100644
  				sgx_xsave_size_tbl[i] = eax + ebx;
  		}
  	}
+diff --git a/sgx_main.c b/sgx_main.c
+index f280587..07fbb1d 100644
+--- a/sgx_main.c
++++ b/sgx_main.c
+@@ -141,7 +141,7 @@ static unsigned long sgx_get_unmapped_area(struct file *file,
+ 		return -EINVAL;
+ #endif
+ 
+-	addr = current->mm->get_unmapped_area(file, addr, 2 * len, pgoff,
++	addr = get_unmapped_area(file, addr, 2 * len, pgoff,
+ 					      flags);
+ 	if (IS_ERR_VALUE(addr))
+ 		return addr;

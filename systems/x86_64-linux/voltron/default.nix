@@ -178,16 +178,17 @@ with lib; {
       # extraModprobeConfig = [];
       kernelParams = ["nowatchdog" "mitigations=off"];
 
-      extraModulePackages = [
-        (config.boot.kernelPackages.isgx.overrideAttrs (prev: {
-          patches =
-            # prev.patches
-            # ++
-            [
-              ./157.patch
-            ];
-        }))
-      ];
+      # extraModulePackages = [
+      #   (config.boot.kernelPackages.isgx.overrideAttrs (prev: {
+      #     patches =
+      #       # prev.patches
+      #       # ++
+      #       [
+      #         ./157.patch
+      #       ];
+      #   }))
+      # ];
+
       kernelModules = [
         "i915"
         # "isgx"

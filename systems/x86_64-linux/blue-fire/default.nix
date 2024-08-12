@@ -361,9 +361,11 @@ in {
         "1380:0000" = "13BD:1160";
       };
 
-      # fastapi-dls = {
-      #   enable = true;
-      # };
+      fastapi-dls = {
+        enable = true;
+        docker-directory = "/var/lib/fastapi";
+        local_ipv4 = "192.168.0.18";
+      };
     };
 
     boot = {
