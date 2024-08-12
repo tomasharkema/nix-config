@@ -358,30 +358,34 @@ in {
       enable = true;
       vgpus = {
         "nvidia-208" = {
-          uuid = ["fec376a4-58ec-11ef-a7a0-df0f1acdc557"];
+          uuid = ["63134909-4040-4ee6-9854-dd0af08ba921"];
         };
       };
     };
 
-    hardware.nvidia.vgpu = {
-      enable = true;
-      vgpu_driver_src.sha256 = "0fkw2cym28wqvgrzfrsccacf5cln43bgp3l9pij988ajnrzh6n5l";
-      pinKernel = true;
-      # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
-      # path is '/nix/store/2l7n0kg9yz1v2lkilh8154q35cghgj1y-NVIDIA-GRID-Linux-KVM-535.161.05-535.161.08-538.46.zip'
-      # 02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r
+    hardware.nvidia = {
+      nvidiaPersistenced = true;
 
-      # useMyDriver.vgpu-driver-version = "535.161.05";
+      vgpu = {
+        enable = true;
+        vgpu_driver_src.sha256 = "0fkw2cym28wqvgrzfrsccacf5cln43bgp3l9pij988ajnrzh6n5l";
+        pinKernel = true;
+        # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
+        # path is '/nix/store/2l7n0kg9yz1v2lkilh8154q35cghgj1y-NVIDIA-GRID-Linux-KVM-535.161.05-535.161.08-538.46.zip'
+        # 02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r
 
-      copyVGPUProfiles = {
-        "1380:0000" = "13BD:1160";
+        # useMyDriver.vgpu-driver-version = "535.161.05";
+
+        copyVGPUProfiles = {
+          "1380:0000" = "13BD:1160";
+        };
+
+        # fastapi-dls = {
+        #   enable = true;
+        #   docker-directory = "/var/lib/fastapi";
+        #   local_ipv4 = "192.168.0.18";
+        # };
       };
-
-      # fastapi-dls = {
-      #   enable = true;
-      #   docker-directory = "/var/lib/fastapi";
-      #   local_ipv4 = "192.168.0.18";
-      # };
     };
 
     # virtualisation.oci-containers.containers.fastapi-dls.environment.DLS_PORT = mkForce "4433";
