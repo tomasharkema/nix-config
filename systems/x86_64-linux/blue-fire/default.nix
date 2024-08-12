@@ -357,9 +357,13 @@ in {
 
       # useMyDriver.vgpu-driver-version = "535.161.05";
 
-      fastapi-dls = {
-        enable = true;
+      copyVGPUProfiles = {
+        "1380:0000" = "13BD:1160";
       };
+
+      # fastapi-dls = {
+      #   enable = true;
+      # };
     };
 
     boot = {
