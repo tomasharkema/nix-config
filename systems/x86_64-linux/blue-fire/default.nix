@@ -401,6 +401,7 @@ in {
         "console=tty0"
         "console=ttyS2,115200n8"
         "mitigations=off"
+        "vfio-pci.ids=10de:1380"
       ];
       blacklistedKernelModules = lib.mkDefault ["nouveau"];
 
