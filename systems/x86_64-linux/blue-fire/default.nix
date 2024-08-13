@@ -357,6 +357,9 @@ in {
     };
 
     # virtualisation.oci-containers.containers.fastapi-dls.environment.DLS_PORT = mkForce "4433";
+    services.udev.extraRules = ''
+      SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
+    '';
 
     boot = {
       tmp = {
@@ -369,6 +372,8 @@ in {
         "console=ttyS2,115200n8"
         "mitigations=off"
         "vfio-pci.ids=10de:1380,10de:0fbc"
+        "pcie_acs_override=downstream,multifunction"
+        "pci=nomsi"
       ];
       blacklistedKernelModules = lib.mkDefault ["nouveau"];
 
@@ -425,6 +430,16 @@ in {
         "ipmi_devintf"
         "ipmi_msghandler"
         "ipmi_watchdog"
+
+        "vfio_pci"
+        "vfio"
+        "vfio_iommu_type1"
+        "vfio_virqfd"
+
+        "nvidia"
+        "nvidia_modeset"
+        "nvidia_uvm"
+        "nvidia_drm"
       ];
       # extraModulePackages = [pkgs.freeipmi];
       systemd.services."serial-getty@ttyS2".wantedBy = ["multi-user.target"];
