@@ -358,7 +358,7 @@ in {
       enable = true;
       device = "0000:01:00.0";
       vgpus = {
-        "nvidia-155" = {
+        "nvidia-240" = {
           uuid = ["3695e5d0-595b-11ef-955d-3fd15e87dbdc"];
         };
       };
