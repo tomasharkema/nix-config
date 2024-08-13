@@ -22,11 +22,6 @@ in {
       };
     };
 
-    virtualisation.virtualbox.host = {
-      headless = true;
-      enableWebService = true;
-    };
-
     apps.podman.enable = true;
 
     boot = {

@@ -121,21 +121,9 @@ in {
 
     programs.ccache = {
       enable = true;
-      # packageNames = ["virtualbox"];
     };
 
     virtualisation = {
-      virtualbox = {
-        host = {
-          enable = true;
-          enableExtensionPack = true;
-          # enableKvm = true;
-          enableWebService = cfg.webservices.enable;
-          addNetworkInterface = true;
-          enableHardening = false;
-        };
-      };
-
       kvmgt.enable = true;
       # tpm.enable = true;
 

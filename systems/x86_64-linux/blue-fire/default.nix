@@ -357,8 +357,8 @@ in {
     virtualisation.kvmgt = {
       enable = true;
       vgpus = {
-        "nvidia-208" = {
-          uuid = ["63134909-4040-4ee6-9854-dd0af08ba921"];
+        "nvidia-155" = {
+          uuid = ["3695e5d0-595b-11ef-955d-3fd15e87dbdc"];
         };
       };
     };
