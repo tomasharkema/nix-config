@@ -359,7 +359,7 @@ in {
       device = "0000:01:00.0";
       vgpus = {
         "nvidia-240" = {
-          uuid = ["3695e5d0-595b-11ef-955d-3fd15e87dbdc"];
+          uuid = ["3695e5d0-595b-11ef-955d-3fd15e87dbdc" "4a647280-5964-11ef-a89b-e74a00bd28fc"];
         };
       };
     };
