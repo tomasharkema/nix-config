@@ -203,7 +203,42 @@ in {
       };
 
       # useDHCP = false;
-      networkmanager.enable = false;
+      networkmanager.enable = true;
+
+      firewall.allowedTCPPorts = [2049];
+      bonds.bond0 = {
+        interfaces = ["enp6s0f0" "enp6s0f1" "enp6s0f2" "enp6s0f3"];
+        driverOptions = {
+          mode = "802.3ad";
+          miimon = "100";
+        };
+      };
+
+      bridges.br0 = {
+        interfaces = ["bond0"];
+      };
+
+      interfaces = {
+        "enp6s0f0" = {
+          # useDHCP = lib.mkDefault true;
+          wakeOnLan.enable = true;
+        };
+        "enp6s0f1" = {
+          # useDHCP = lib.mkDefault true;
+          wakeOnLan.enable = true;
+        };
+        "enp6s0f2" = {
+          # useDHCP = lib.mkDefault true;
+          wakeOnLan.enable = true;
+        };
+        "enp6s0f3" = {
+          # useDHCP = lib.mkDefault true;
+          wakeOnLan.enable = true;
+        };
+        "br0" = {
+          useDHCP = lib.mkDefault true;
+        };
+      };
 
       # interfaces = {
       # "eno1" = {
@@ -250,8 +285,6 @@ in {
       # icingaweb2
     ];
 
-    networking.firewall.allowedTCPPorts = [2049];
-
     # services.factorio.enable = true;
 
     fileSystems = {
@@ -279,42 +312,6 @@ in {
       #   #   device = "192.168.178.3:/volume1/homes";
       #   #   fsType = "nfs";
       #   # };
-    };
-
-    networking = {
-      bonds.bond0 = {
-        interfaces = ["enp6s0f0" "enp6s0f1" "enp6s0f2" "enp6s0f3"];
-        driverOptions = {
-          mode = "802.3ad";
-          miimon = "100";
-        };
-      };
-
-      bridges.br0 = {
-        interfaces = ["bond0"];
-      };
-
-      interfaces = {
-        "enp6s0f0" = {
-          # useDHCP = lib.mkDefault true;
-          wakeOnLan.enable = true;
-        };
-        "enp6s0f1" = {
-          # useDHCP = lib.mkDefault true;
-          wakeOnLan.enable = true;
-        };
-        "enp6s0f2" = {
-          # useDHCP = lib.mkDefault true;
-          wakeOnLan.enable = true;
-        };
-        "enp6s0f3" = {
-          # useDHCP = lib.mkDefault true;
-          wakeOnLan.enable = true;
-        };
-        "br0" = {
-          useDHCP = lib.mkDefault true;
-        };
-      };
     };
 
     # hardware.nvidia.vgpu = {
