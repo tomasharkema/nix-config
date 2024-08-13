@@ -239,30 +239,6 @@ in {
           useDHCP = lib.mkDefault true;
         };
       };
-
-      # interfaces = {
-      # "eno1" = {
-      #   useDHCP = true;
-      #   wakeOnLan.enable = true;
-      # };
-      # "br0" = {useDHCP = true;};
-      # "bond0" = {
-      # useDHCP = true;
-      # wakeOnLan.enable = true;
-      # };
-      #   "eno2" = {
-      #     useDHCP = true;
-      #     wakeOnLan.enable = true;
-      #   };
-      #   "eno3" = {
-      #     useDHCP = true;
-      #     wakeOnLan.enable = true;
-      #   };
-      #   "eno4" = {
-      #     useDHCP = true;
-      #     wakeOnLan.enable = true;
-      #   };
-      # };
     };
 
     services.hypervisor = {
@@ -285,48 +261,15 @@ in {
       # icingaweb2
     ];
 
-    # services.factorio.enable = true;
-
-    fileSystems = {
-      # "/export/media" = {
-      #   device = "/media";
-      #   options = ["bind"];
-      # };
-      #   "/mnt/unraid/domains" = {
-      #     device = "192.168.0.100:/mnt/user/domains";
-      #     fsType = "nfs";
-      #   };
-      #   "/mnt/unraid/appdata" = {
-      #     device = "192.168.0.100:/mnt/user/appdata";
-      #     fsType = "nfs";
-      #   };
-      #   "/mnt/unraid/appdata_ssd" = {
-      #     device = "192.168.0.100:/mnt/user/appdata_ssd";
-      #     fsType = "nfs";
-      #   };
-      #   "/mnt/unraid/appdata_disk" = {
-      #     device = "192.168.0.100:/mnt/user/appdata_disk";
-      #     fsType = "nfs";
-      #   };
-      #   # "/mnt/dione" = {
-      #   #   device = "192.168.178.3:/volume1/homes";
-      #   #   fsType = "nfs";
-      #   # };
-    };
-
-    # hardware.nvidia.vgpu = {
-    #   enable = true; # Enable NVIDIA KVM vGPU + GRID driver
-    #   unlock.enable = true; #true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
-    #   version = "v16.5";
-
-    # };
-
     virtualisation.kvmgt = {
       enable = true;
       device = "0000:01:00.0";
       vgpus = {
         "nvidia-240" = {
-          uuid = ["3695e5d0-595b-11ef-955d-3fd15e87dbdc" "4a647280-5964-11ef-a89b-e74a00bd28fc"];
+          uuid = [
+            "72d40baf-f771-46d1-b1fc-51cbf60a0628"
+            "6e05f742-7b7f-497a-9893-3f271750de52"
+          ];
         };
       };
     };
@@ -348,15 +291,21 @@ in {
           "1380:0000" = "13BD:1160";
         };
 
-        # fastapi-dls = {
-        #   enable = true;
-        #   docker-directory = "/var/lib/fastapi";
-        #   local_ipv4 = "192.168.0.18";
-        # };
+        fastapi-dls = {
+          enable = true;
+          docker-directory = "/var/lib/fastapi";
+          local_ipv4 = "192.168.0.48";
+          timezone = "Europe/Amsterdam";
+        };
       };
     };
 
-    # virtualisation.oci-containers.containers.fastapi-dls.environment.DLS_PORT = mkForce "4433";
+    virtualisation.oci-containers.containers.fastapi-dls = {
+      ports = mkForce ["7070:7070"];
+      environment.DLS_PORT = mkForce "7070";
+      # extraOptions = ["--network=bridge"];
+    };
+
     services.udev.extraRules = ''
       SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
     '';
@@ -371,11 +320,14 @@ in {
         "console=tty0"
         "console=ttyS2,115200n8"
         "mitigations=off"
-        # "vfio-pci.ids=10de:1380,10de:0fbc"
-        # "pcie_acs_override=downstream,multifunction"
+        #"vfio-pci.ids=10de:1380,10de:0fbc"
+        "pcie_acs_override=downstream,multifunction"
+        "vfio_iommu_type1.allow_unsafe_interrupts=1"
+        "kvm.ignore_msrs=1"
+        "blacklist=nouveau"
         # "pci=nomsi"
       ];
-      blacklistedKernelModules = lib.mkDefault ["nouveau"];
+      blacklistedKernelModules = ["nouveau"];
 
       binfmt.emulatedSystems = ["aarch64-linux"];
       recovery = {
@@ -407,10 +359,10 @@ in {
           "ipmi_si"
           "ipmi_devintf"
           "ipmi_msghandler"
-          # "vfio_pci"
-          # "vfio"
-          # "vfio_iommu_type1"
-          # "vfio_virqfd"
+          "vfio_pci"
+          "vfio"
+          "vfio_iommu_type1"
+          "vfio_virqfd"
 
           # "nvidia"
           # "nvidia_modeset"
@@ -431,10 +383,10 @@ in {
         "ipmi_msghandler"
         "ipmi_watchdog"
 
-        # "vfio_pci"
-        # "vfio"
-        # "vfio_iommu_type1"
-        # "vfio_virqfd"
+        "vfio_pci"
+        "vfio"
+        "vfio_iommu_type1"
+        "vfio_virqfd"
 
         # "nvidia"
         # "nvidia_modeset"
