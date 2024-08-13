@@ -84,7 +84,7 @@ with lib; {
         # };
       };
     };
-    hardware.nvidia.package = mkForce config.boot.kernelPackages.nvidiaPackages.stable;
+    # hardware.nvidia.package = mkForce config.boot.kernelPackages.nvidiaPackages.stable;
     # nixpkgs.system = "x86_64-linux";
 
     networking = {
