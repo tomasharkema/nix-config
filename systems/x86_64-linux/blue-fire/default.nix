@@ -281,68 +281,38 @@ in {
       #   # };
     };
 
-    systemd.network = {
-      enable = true;
-      netdevs = {
-        "10-bond0" = {
-          netdevConfig = {
-            Kind = "bond";
-            Name = "bond0";
-          };
-          bondConfig = {
-            Mode = "802.3ad";
-            TransmitHashPolicy = "layer3+4";
-          };
-        };
-        "20-br0" = {
-          netdevConfig = {
-            Kind = "bridge";
-            Name = "br0";
-          };
+    networking = {
+      bonds.bond0 = {
+        interfaces = ["enp6s0f0" "enp6s0f1" "enp6s0f2" "enp6s0f3"];
+        driverOptions = {
+          mode = "802.3ad";
+          miimon = "100";
         };
       };
-      networks = {
-        "20-eno1" = {
-          matchConfig.Name = "eno1";
-          linkConfig.RequiredForOnline = "no";
-        };
 
-        "30-enp6s0f0" = {
-          matchConfig.Name = "enp6s0f0";
-          networkConfig.Bond = "bond0";
-          linkConfig.RequiredForOnline = "no";
-        };
-        "30-enp6s0f1" = {
-          matchConfig.Name = "enp6s0f1";
-          networkConfig.Bond = "bond0";
-          linkConfig.RequiredForOnline = "no";
-        };
-        "30-enp6s0f2" = {
-          matchConfig.Name = "enp6s0f2";
-          networkConfig.Bond = "bond0";
-          linkConfig.RequiredForOnline = "no";
-        };
-        "30-enp6s0f3" = {
-          matchConfig.Name = "enp6s0f3";
-          networkConfig.Bond = "bond0";
-          linkConfig.RequiredForOnline = "no";
-        };
-        "40-bond0" = {
-          matchConfig.Name = "bond0";
-          networkConfig.Bridge = "br0";
-          linkConfig.RequiredForOnline = "enslaved";
-        };
+      bridges.br0 = {
+        interfaces = ["bond0"];
+      };
 
-        "41-br0" = {
-          matchConfig.Name = "br0";
-          bridgeConfig = {};
-          linkConfig = {
-            RequiredForOnline = "carrier";
-          };
-          networkConfig = {
-            DHCP = "yes";
-            LinkLocalAddressing = "no";
-          };
+      interfaces = {
+        "enp6s0f0" = {
+          # useDHCP = lib.mkDefault true;
+          wakeOnLan.enable = true;
+        };
+        "enp6s0f1" = {
+          # useDHCP = lib.mkDefault true;
+          wakeOnLan.enable = true;
+        };
+        "enp6s0f2" = {
+          # useDHCP = lib.mkDefault true;
+          wakeOnLan.enable = true;
+        };
+        "enp6s0f3" = {
+          # useDHCP = lib.mkDefault true;
+          wakeOnLan.enable = true;
+        };
+        "br0" = {
+          useDHCP = lib.mkDefault true;
         };
       };
     };
