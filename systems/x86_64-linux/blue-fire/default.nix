@@ -205,7 +205,7 @@ in {
       # useDHCP = false;
       networkmanager.enable = true;
 
-      firewall.allowedTCPPorts = [2049];
+      firewall.allowedTCPPorts = [2049 7070];
       bonds.bond0 = {
         interfaces = ["enp6s0f0" "enp6s0f1" "enp6s0f2" "enp6s0f3"];
         driverOptions = {
@@ -302,7 +302,7 @@ in {
         fastapi-dls = {
           enable = true;
           docker-directory = "/var/lib/fastapi";
-          local_ipv4 = "192.168.0.48";
+          # local_ipv4 = "192.168.0.48";
           timezone = "Europe/Amsterdam";
         };
       };
