@@ -266,20 +266,10 @@ in {
       enable = true;
       device = "0000:01:00.0";
       vgpus = {
-        "nvidia-38" = {
+        "nvidia-35" = {
           # for linux!
-          uuid = ["13df0e54-efd0-4997-8c1e-a01d22d50072"];
+          uuid = ["bf8669a2-c8b4-41b5-b77f-89b72484b518" "685f3e82-423c-46d3-b4b2-4ee2da634ae0"];
         };
-        "nvidia-37" = {
-          # for linux!
-          uuid = ["cf1f41c0-344c-41f5-8bee-20207d37b595"];
-        };
-        # "nvidia-240" = {
-        #   uuid = [
-        #     "72d40baf-f771-46d1-b1fc-51cbf60a0628"
-        #     "6e05f742-7b7f-497a-9893-3f271750de52"
-        #   ];
-        # };
       };
     };
 
