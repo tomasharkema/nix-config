@@ -310,8 +310,6 @@ in {
 
     virtualisation.oci-containers.containers.fastapi-dls = {
       ports = mkForce ["7070:443"];
-      environment.DLS_PORT = mkForce "7070";
-      # extraOptions = ["--network=bridge"];
     };
 
     services.udev.extraRules = ''
