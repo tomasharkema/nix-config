@@ -251,6 +251,7 @@ in {
       # ipmiview
       # ipmiutil
       # vagrant
+      virt-manager
       ipmitool
       boot-into-bios
       openipmi
