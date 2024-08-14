@@ -17,6 +17,7 @@ in {
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
     # nixos-hardware.nixosModules.supermicro-x10sll-f
+    nixos-nvidia-vgpu.nixosModules.nvidia-vgpu
   ];
 
   config = {
