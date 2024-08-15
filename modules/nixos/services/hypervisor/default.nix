@@ -137,7 +137,7 @@ in {
 
         qemu = {
           package = pkgs.qemu_kvm;
-          runAsRoot = true;
+          # runAsRoot = true;
           verbatimConfig = ''
             #   # Adapted from /var/lib/libvirt/qemu.conf
             #   # Note that AAVMF and OVMF are for Aarch64 and x86 respectively
