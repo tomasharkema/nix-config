@@ -768,8 +768,8 @@
     };
 
     nixos-nvidia-vgpu-newer = {
-      url = "github:Yeshey/nixos-nvidia-vgpu/550.90";
-      # url = "github:tomasharkema/nixos-nvidia-vgpu";
+      # url = "github:Yeshey/nixos-nvidia-vgpu/550.90";
+      url = "github:tomasharkema/nixos-nvidia-vgpu/550.90.05";
       # url = "/home/tomas/Developer/nixos-nvidia-vgpu";
     };
 

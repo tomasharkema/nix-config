@@ -769,16 +769,16 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1723143546,
-        "narHash": "sha256-5ut+N0COlk6T3SZj43zaBT3Fh6wQpV7+hjjhPpr+wg8=",
-        "owner": "Yeshey",
+        "lastModified": 1723687977,
+        "narHash": "sha256-gwxi9AibTY1vhM31SrrhV1f3NFxLhKNDMFshlDWmkYw=",
+        "owner": "tomasharkema",
         "repo": "nixos-nvidia-vgpu",
-        "rev": "6cd95977763d8961ef88eb0147b6397a3ff4811e",
+        "rev": "e86e8a2f6092fcea7f91912c1318d5ee241aeb3c",
         "type": "github"
       },
       "original": {
-        "owner": "Yeshey",
-        "ref": "550.90",
+        "owner": "tomasharkema",
+        "ref": "550.90.05",
         "repo": "nixos-nvidia-vgpu",
         "type": "github"
       }
