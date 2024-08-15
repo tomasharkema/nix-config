@@ -129,7 +129,8 @@ with lib; {
           # useMyDriver.vgpu-driver-version = "535.161.05";
 
           copyVGPUProfiles = {
-            # "1380:0000" = "13BD:1160";
+            # RTX2080     Quadro RTX 4000
+            "1E87:0000" = "1EB1:0000";
           };
         };
       };
