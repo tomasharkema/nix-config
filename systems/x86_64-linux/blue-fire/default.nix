@@ -211,7 +211,6 @@ in {
         interfaces = ["enp6s0f0" "enp6s0f1" "enp6s0f2" "enp6s0f3"];
         driverOptions = {
           mode = "802.3ad";
-          miimon = "100";
         };
       };
 
@@ -223,21 +222,28 @@ in {
         "enp6s0f0" = {
           # useDHCP = lib.mkDefault true;
           wakeOnLan.enable = true;
+          mtu = "9000";
         };
         "enp6s0f1" = {
           # useDHCP = lib.mkDefault true;
           wakeOnLan.enable = true;
+          mtu = "9000";
         };
         "enp6s0f2" = {
           # useDHCP = lib.mkDefault true;
           wakeOnLan.enable = true;
+          mtu = "9000";
         };
         "enp6s0f3" = {
           # useDHCP = lib.mkDefault true;
           wakeOnLan.enable = true;
+          mtu = "9000";
         };
         "br0" = {
           useDHCP = lib.mkDefault true;
+        };
+        "bond0" = {
+          mtu = "9000";
         };
       };
     };
@@ -274,28 +280,35 @@ in {
       };
     };
 
-    hardware.nvidia = {
-      # nvidiaPersistenced = true;
+    hardware = {
+      cpu.intel.updateMicrocode = true;
+      i2c.enable = true;
+      enableAllFirmware = true;
+      enableRedistributableFirmware = true;
 
-      vgpu = {
-        enable = true;
-        vgpu_driver_src.sha256 = "0fkw2cym28wqvgrzfrsccacf5cln43bgp3l9pij988ajnrzh6n5l";
-        pinKernel = true;
-        # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
-        # path is '/nix/store/2l7n0kg9yz1v2lkilh8154q35cghgj1y-NVIDIA-GRID-Linux-KVM-535.161.05-535.161.08-538.46.zip'
-        # 02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r
+      nvidia = {
+        # nvidiaPersistenced = true;
 
-        # useMyDriver.vgpu-driver-version = "535.161.05";
-
-        copyVGPUProfiles = {
-          "1380:0000" = "13BD:1160";
-        };
-
-        fastapi-dls = {
+        vgpu = {
           enable = true;
-          docker-directory = "/var/lib/fastapi";
-          # local_ipv4 = "192.168.0.48";
-          timezone = "Europe/Amsterdam";
+          vgpu_driver_src.sha256 = "0fkw2cym28wqvgrzfrsccacf5cln43bgp3l9pij988ajnrzh6n5l";
+          pinKernel = true;
+          # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
+          # path is '/nix/store/2l7n0kg9yz1v2lkilh8154q35cghgj1y-NVIDIA-GRID-Linux-KVM-535.161.05-535.161.08-538.46.zip'
+          # 02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r
+
+          # useMyDriver.vgpu-driver-version = "535.161.05";
+
+          copyVGPUProfiles = {
+            "1380:0000" = "13BD:1160";
+          };
+
+          fastapi-dls = {
+            enable = true;
+            docker-directory = "/var/lib/fastapi";
+            # local_ipv4 = "192.168.0.48";
+            timezone = "Europe/Amsterdam";
+          };
         };
       };
     };
