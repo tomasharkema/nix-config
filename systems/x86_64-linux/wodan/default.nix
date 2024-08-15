@@ -188,11 +188,27 @@ with lib; {
       };
       binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = ["ntfs"];
-      kernelModules = ["i2c-dev" "ixgbe" "btusb" "apfs"];
+      kernelModules = [
+        "i2c-dev"
+        "ixgbe"
+        "btusb"
+        "apfs"
+        "vfio_pci"
+        "vfio"
+        "vfio_iommu_type1"
+        "kvm-intel"
+      ];
 
       initrd = {
         systemd.emergencyAccess = "abcdefg";
-        kernelModules = ["ixgbe" "btusb"];
+        kernelModules = [
+          "ixgbe"
+          "btusb"
+          "vfio_pci"
+          "vfio"
+          "vfio_iommu_type1"
+          "kvm-intel"
+        ];
       };
 
       # KMS will load the module, regardless of blacklisting
