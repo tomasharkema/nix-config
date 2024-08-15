@@ -759,7 +759,6 @@
       },
       "original": {
         "owner": "Yeshey",
-        "ref": "535.129",
         "repo": "nixos-nvidia-vgpu",
         "type": "github"
       }

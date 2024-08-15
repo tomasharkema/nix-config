@@ -762,7 +762,7 @@
     # };
 
     nixos-nvidia-vgpu = {
-      url = "github:Yeshey/nixos-nvidia-vgpu/535.129";
+      url = "github:Yeshey/nixos-nvidia-vgpu";
       # url = "github:tomasharkema/nixos-nvidia-vgpu";
       # url = "/home/tomas/Developer/nixos-nvidia-vgpu";
     };
