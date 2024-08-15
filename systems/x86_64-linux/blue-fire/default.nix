@@ -275,7 +275,7 @@ in {
     };
 
     hardware.nvidia = {
-      nvidiaPersistenced = true;
+      # nvidiaPersistenced = true;
 
       vgpu = {
         enable = true;

@@ -112,7 +112,11 @@ with lib; {
       enableRedistributableFirmware = true;
 
       nvidia = {
-        nvidiaPersistenced = true;
+        nvidiaPersistenced = false;
+        # modesetting.enable = true;
+        # forceFullCompositionPipeline = true;
+        open = false;
+        nvidiaSettings = false;
 
         vgpu = {
           enable = true;
@@ -139,7 +143,7 @@ with lib; {
         nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
-        nvidia.enable = true;
+        # nvidia.enable = true;
         remote-unlock.enable = true;
         monitor.enable = true;
         disable-sleep.enable = true;
