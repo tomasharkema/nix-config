@@ -222,28 +222,28 @@ in {
         "enp6s0f0" = {
           # useDHCP = lib.mkDefault true;
           wakeOnLan.enable = true;
-          mtu = "9000";
+          mtu = 9000;
         };
         "enp6s0f1" = {
           # useDHCP = lib.mkDefault true;
           wakeOnLan.enable = true;
-          mtu = "9000";
+          mtu = 9000;
         };
         "enp6s0f2" = {
           # useDHCP = lib.mkDefault true;
           wakeOnLan.enable = true;
-          mtu = "9000";
+          mtu = 9000;
         };
         "enp6s0f3" = {
           # useDHCP = lib.mkDefault true;
           wakeOnLan.enable = true;
-          mtu = "9000";
+          mtu = 9000;
         };
         "br0" = {
           useDHCP = lib.mkDefault true;
         };
         "bond0" = {
-          mtu = "9000";
+          mtu = 9000;
         };
       };
     };
