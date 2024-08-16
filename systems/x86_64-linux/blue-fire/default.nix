@@ -295,12 +295,14 @@ in {
 
         vgpu = {
           enable = true;
-          vgpu_driver_src.sha256 = "0z9r6lyx35fqjwcc2d1l7ip6q9jq11xl352nh6v47ajvp2flxly9";
+          pinKernel = true;
+          #vgpu_driver_src.sha256 = "0z9r6lyx35fqjwcc2d1l7ip6q9jq11xl352nh6v47ajvp2flxly9";
           # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
           # path is '/nix/store/2l7n0kg9yz1v2lkilh8154q35cghgj1y-NVIDIA-GRID-Linux-KVM-535.161.05-535.161.08-538.46.zip'
           # 02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r
 
-          # useMyDriver.vgpu-driver-version = "535.161.05";
+          #          vgpu_driver_src.sha256 = "07ia2djhlr8jfv3rrgblpf1wmqjc0sk3z8j7fa2l4cipr84amjsg";
+          #          useMyDriver.vgpu-driver-version = "535.183.06";
 
           copyVGPUProfiles = {
             "1380:0000" = "13BD:1160";
