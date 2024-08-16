@@ -36,13 +36,14 @@ with lib; {
 
       udev = {
         enable = true;
-        packages = with pkgs; [heimdall-gui libusb];
+        packages = with pkgs; [heimdall-gui libusb sgx-psw];
       };
     };
 
     environment.systemPackages = with pkgs; [
       nvramtool
       libusb
+      sgx-psw
 
       gnupg
       custom.distrib-dl
@@ -149,6 +150,14 @@ with lib; {
         # allowInterfaces = ["wlp59s0"];
         reflector = mkForce false;
       };
+
+      # aesmd = {
+      # enable = true;
+      # settings = {
+      # defaultQuotingType = "ecdsa_256";
+      # whitelistUrl = "http://whitelist.trustedservices.intel.com/SGX/LCWL/Linux/sgx_white_list_cert.bin";
+      # };
+      # };
     };
 
     # hardware.nvidia.vgpu = {
@@ -157,11 +166,25 @@ with lib; {
     #   version = "v17.1";
     # };
 
+    # system.build.isgx = config.boot.kernelPackages.isgx.overrideAttrs (prev: {
+    #   patches =
+    #     (prev.patches or [])
+    #     ++ [
+    #       ./157.patch
+    #     ];
+    # });
+
+    users.users.tomas.extraGroups = ["sgx_prv"];
+
     boot = {
+      # kernelPackages = pkgs.linuxPackages_6_1;
+
       resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
+
       tmp = {
         useTmpfs = true;
       };
+
       recovery = {
         enable = true;
         install = true;
@@ -174,17 +197,13 @@ with lib; {
       modprobeConfig.enable = true;
 
       # extraModprobeConfig = [];
-      kernelParams = ["nowatchdog" "mitigations=off"];
+      kernelParams = [
+        "nowatchdog"
+        # "mitigations=off"
+      ];
 
       # extraModulePackages = [
-      #   (config.boot.kernelPackages.isgx.overrideAttrs (prev: {
-      #     patches =
-      #       # prev.patches
-      #       # ++
-      #       [
-      #         ./157.patch
-      #       ];
-      #   }))
+      #   config.system.build.isgx
       # ];
 
       kernelModules = [
@@ -194,10 +213,10 @@ with lib; {
         #"tpm_rng"
       ];
       extraModprobeConfig = "options i915 enable_guc=2";
-      #initrd.kernelModules = [
-      #  "watchdog"
-      #  "isgx"
-      #];
+      initrd.kernelModules = [
+        #  "watchdog"
+        # "isgx"
+      ];
     };
   };
 }

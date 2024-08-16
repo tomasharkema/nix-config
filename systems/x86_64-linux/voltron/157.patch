@@ -43,7 +43,7 @@ index f280587..07fbb1d 100644
  #endif
  
 -	addr = current->mm->get_unmapped_area(file, addr, 2 * len, pgoff,
-+	addr = get_unmapped_area(file, addr, 2 * len, pgoff,
++	addr = mm_get_unmapped_area(current->mm, file, addr, 2 * len, pgoff,
  					      flags);
  	if (IS_ERR_VALUE(addr))
  		return addr;
