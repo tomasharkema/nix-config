@@ -26,8 +26,8 @@ in {
       # libmbim
       # libqmi
       tpacpi-bat
-      # sgx-ssl
-      # sgx-sdk
+      sgx-ssl
+      sgx-sdk
       # sgx-psw
     ];
 
