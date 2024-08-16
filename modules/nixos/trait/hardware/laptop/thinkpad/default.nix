@@ -46,11 +46,11 @@ in {
       open-fprintd.enable = true;
       python-validity.enable = true;
       # fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
-      # aesmd = {
-      #   enable = true;
-      #   settings.defaultQuotingType = "ecdsa_256";
-      #   debug = true;
-      # };
+      aesmd = {
+        enable = true;
+        settings.defaultQuotingType = "ecdsa_256";
+        # debug = true;
+      };
     };
 
     home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
