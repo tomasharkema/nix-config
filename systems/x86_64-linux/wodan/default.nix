@@ -118,21 +118,21 @@ with lib; {
         open = false;
         nvidiaSettings = false;
 
-        vgpu = {
-          enable = true;
-          vgpu_driver_src.sha256 = "0z9r6lyx35fqjwcc2d1l7ip6q9jq11xl352nh6v47ajvp2flxly9";
-          # pinKernel = true;
-          # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
-          # path is '/nix/store/2l7n0kg9yz1v2lkilh8154q35cghgj1y-NVIDIA-GRID-Linux-KVM-535.161.05-535.161.08-538.46.zip'
-          # 02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r
+        # vgpu = {
+        #   enable = true;
+        #   vgpu_driver_src.sha256 = "0z9r6lyx35fqjwcc2d1l7ip6q9jq11xl352nh6v47ajvp2flxly9";
+        #   # pinKernel = true;
+        #   # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
+        #   # path is '/nix/store/2l7n0kg9yz1v2lkilh8154q35cghgj1y-NVIDIA-GRID-Linux-KVM-535.161.05-535.161.08-538.46.zip'
+        #   # 02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r
 
-          # useMyDriver.vgpu-driver-version = "535.161.05";
+        #   # useMyDriver.vgpu-driver-version = "535.161.05";
 
-          copyVGPUProfiles = {
-            # RTX2080     Quadro RTX 4000
-            "1E87:0000" = "1EB1:0000";
-          };
-        };
+        #   copyVGPUProfiles = {
+        #     # RTX2080     Quadro RTX 4000
+        #     "1E87:0000" = "1EB1:0000";
+        #   };
+        # };
       };
     };
 
