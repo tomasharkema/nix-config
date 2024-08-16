@@ -48,8 +48,10 @@ in {
       # fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
       aesmd = {
         enable = true;
-        settings.defaultQuotingType = "ecdsa_256";
-        # debug = true;
+        settings = {
+          defaultQuotingType = "ecdsa_256";
+          whitelistUrl = "http://whitelist.trustedservices.intel.com/SGX/LCWL/Linux/sgx_white_list_cert.bin";
+        };
       };
     };
 
