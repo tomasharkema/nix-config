@@ -419,12 +419,12 @@ in {
           '';
         in {
           TTYVTDisallocate = "no";
-          ExecStart = ["" "-${tmux}"];
-          StandardInput = "tty";
-          StandardOutput = "tty";
+          #ExecStart = ["" "-${tmux}"];
+          #StandardInput = "tty";
+          #StandardOutput = "tty";
         };
         wantedBy = ["multi-user.target"];
-        environment.TERM = "vt102";
+        #environment.TERM = "vt102";
       };
     };
 
