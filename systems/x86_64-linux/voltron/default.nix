@@ -40,9 +40,9 @@ with lib; {
         packages = with pkgs; [heimdall-gui libusb sgx-psw];
       };
 
-      fprintd.tod.driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
-        calib-data-file = ./calib-data.bin;
-      };
+      # fprintd.tod.driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
+      #   calib-data-file = ./calib-data.bin;
+      # };
     };
 
     environment.systemPackages = with pkgs; [
@@ -180,8 +180,7 @@ with lib; {
     });
 
     users = {
-      users.tomas.extraGroups = ["sgx_prv" "kbfs"];
-      groups = {kbfs = {};};
+      users.tomas.extraGroups = ["sgx_prv"];
     };
 
     boot = {

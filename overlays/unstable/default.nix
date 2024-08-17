@@ -12,12 +12,11 @@
 
   nixd = channels.unstable.nixd;
 
-  conky = inputs.conky.packages."${prev.system}".default;
-  # conky = channels.unstable.conky.overrideAttrs {
-  #   x11Support = false;
-  #   waylandSupport = true;
-  #   nvidiaSupport = true;
-  # };
+  conky = inputs.conky.packages."${prev.system}".default.overrideAttrs {
+    x11Support = false;
+    waylandSupport = true;
+    nvidiaSupport = true;
+  };
 
   # buildbot = channels.unstable.buildbot;
   # python3 = prev.python312;:q

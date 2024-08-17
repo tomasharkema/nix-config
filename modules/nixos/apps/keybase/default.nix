@@ -5,29 +5,51 @@
   inputs,
   ...
 }:
-with lib; {
+with lib; let
+  wrapperDir = config.security.wrapperDir;
+in {
   config = {
     security.wrappers.keybase-redirector = {
-      owner = "root";
+      owner = "tomas";
       group = "kbfs";
     };
+    systemd.user.services.kbfs.serviceConfig = {
+      path = mkForce [];
+      Environment = ["PATH=/run/wrappers/bin/:$PATH"];
+      EnvironmentFile = [
+        "-%t/keybase/keybase.kbfs.env"
 
-    systemd.user.services.kbfs = let
-      wrapperDir = config.security.wrapperDir;
-    in {
-      # EnvironmentFile=-%t/keybase/keybase.kbfs.env
+        "-%h/.config/keybase/keybase.autogen.env"
+        "-%h/.config/keybase/keybase.env"
+      ];
+      ExecStart = mkForce "${pkgs.kbfs}/bin/kbfsfuse -debug";
+      ExecStartPre = mkForce [
+        "-${wrapperDir}/fusermount -uz \"${config.services.kbfs.mountPoint}\""
+      ];
+      #   ExecStartPre = ["/bin/sh -c 'which fusermount'"];
+    };
+    # systemd.user.services.kbfs.path = mkForce [];
+    # systemd.user.services.kbfs = let
+    #   wrapperDir = config.security.wrapperDir;
+    # in {
+    #   serviceConfig = {
+    #     EnvironmentFile = [
+    #       "-%t/keybase/keybase.kbfs.env"
 
-      # EnvironmentFile=-%h/.config/keybase/keybase.autogen.env
-      # EnvironmentFile=-%h/.config/keybase/keybase.env
+    #       "-%h/.config/keybase/keybase.autogen.env"
+    #       "-%h/.config/keybase/keybase.env"
+    #     ];
+    #     ExecStartPre = mkForce [
+    #       "-${wrapperDir}/fusermount -uz \"$(${pkgs.keybase}/bin/keybase config get -d -b mountdir)\""
+    #     ];
+    #     ExecStart = mkForce "${pkgs.kbfs}/bin/kbfsfuse";
+    #     ExecStop = mkForce "${wrapperDir}/fusermount -uz \"$(${pkgs.keybase}/bin/keybase config get -d -b mountdir)\"";
+    #   };
+    # };
 
-      wantedBy = ["multi-user.target"];
-      serviceConfig = {
-        ExecStartPre = mkForce [
-          "-${wrapperDir}/fusermount -uz \"$(${pkgs.keybase}/bin/keybase config get -d -b mountdir)\""
-        ];
-        ExecStart = mkForce "${pkgs.kbfs}/bin/kbfsfuse \"$(${pkgs.keybase}/bin/keybase config get -d -b mountdir)\"";
-        ExecStop = mkForce "${wrapperDir}/fusermount -uz \"$(${pkgs.keybase}/bin/keybase config get -d -b mountdir)\"";
-      };
+    users = {
+      users.tomas.extraGroups = ["kbfs" "fuse"];
+      groups = {kbfs = {};};
     };
 
     services = {
@@ -38,11 +60,13 @@ with lib; {
       kbfs = {
         enable = true;
         enableRedirector = true;
+        mountPoint = "%t/keybase/kbfs";
       };
     };
     environment.systemPackages = with pkgs;
-      mkIf (config.gui.enable && pkgs.system == "x86_64-linux") [keybase-gui];
-
-    # environment.systemPackages = with pkgs; [keybase kbfs];
+      (
+        optional (config.gui.enable && pkgs.system == "x86_64-linux") keybase-gui
+      )
+      ++ [keybase kbfs];
   };
 }

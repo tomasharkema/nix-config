@@ -12,10 +12,22 @@ in {
     enable = mkEnableOption "laptop";
   };
 
-  # imports = with inputs; [
-  #   nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
-  #   nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
-  # ];
+  options = {
+    services.fprintd = {
+      enable = mkEnableOption "fprintd daemon and PAM module for fingerprint readers handling";
+      package = mkOption {
+        type = types.package;
+        # default = fprintdPkg;
+      };
+    };
+  };
+
+  imports = with inputs; [
+    nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
+    nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
+  ];
+
+  disabledModules = ["services/security/fprintd.nix"];
 
   config = mkIf cfg.enable {
     system.nixos.tags = ["thinkpad"];
@@ -31,18 +43,23 @@ in {
       # sgx-psw
     ];
 
+    systemd.services = {
+      open-fprintd-resume.enable = true;
+      open-fprintd-suspend.enable = true;
+    };
+
     services = {
       # tp-auto-kbbl.enable = true;
       # thinkfan.enable = true;
       fprintd = {
-        enable = true;
-        tod = {
-          enable = true;
-        };
+        enable = mkForce true;
+        #   tod = {
+        #     enable = true;
+        #   };
       };
-      # open-fprintd.enable = true;
-      # python-validity.enable = true;
-      # fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
+      open-fprintd.enable = true;
+      python-validity.enable = true;
+      fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
     };
 
     home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
@@ -118,7 +135,7 @@ in {
         # enableGnomeKeyring = true;
         fprintAuth = true;
       };
-      # passwd.enableGnomeKeyring = true;
+      passwd.enableGnomeKeyring = true;
     };
   };
 }

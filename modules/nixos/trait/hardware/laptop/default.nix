@@ -73,30 +73,27 @@ in {
 
     systemd = {
       services = {
-        open-fprintd-resume.enable = true;
-        open-fprintd-suspend.enable = true;
-
         "beesd@root" = {
           unitConfig = {
-            ConditionACPower = true;
+            # ConditionACPower = true;
           };
           wantedBy = ["acpower.target"];
           partOf = ["acpower.target"];
         };
-        "nh-clean" = {
-          unitConfig = {
-            ConditionACPower = true;
-          };
-          # wantedBy = ["acpower.target"];
-          # partOf = ["acpower.target"];
-        };
-        "nix-optimise" = {
-          unitConfig = {
-            ConditionACPower = true;
-          };
-          # wantedBy = ["acpower.target"];
-          # partOf = ["acpower.target"];
-        };
+        # "nh-clean" = {
+        #   unitConfig = {
+        #     ConditionACPower = true;
+        #   };
+        #   # wantedBy = ["acpower.target"];
+        #   # partOf = ["acpower.target"];
+        # };
+        # "nix-optimise" = {
+        #   unitConfig = {
+        #     ConditionACPower = true;
+        #   };
+        #   # wantedBy = ["acpower.target"];
+        #   # partOf = ["acpower.target"];
+        # };
       };
 
       targets = {

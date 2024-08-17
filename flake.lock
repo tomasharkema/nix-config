@@ -635,11 +635,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1723211985,
-        "narHash": "sha256-RLHk2mRLvYu5rGjhRankSJ61A9BLVJeSRhZdAL8bu50=",
+        "lastModified": 1723941282,
+        "narHash": "sha256-VVLKKfr94VSaXDhXuAwe0lWXvliIqLwiE1QyViCzhzk=",
         "owner": "tomasharkema",
         "repo": "nixos-06cb-009a-fingerprint-sensor",
-        "rev": "3928c7d4d15a629b132c85080223e693b6e0e85f",
+        "rev": "a608bd831c41c84fb8e603c74575700b3a9b319b",
         "type": "github"
       },
       "original": {

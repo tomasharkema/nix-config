@@ -63,8 +63,6 @@ in {
                 # };
               };
 
-              # target = "/mnt/servers/nfs/silver-star-backup/btrbk/${config.networking.hostName}";
-
               target = {
                 "raw ssh://silver-star/mnt/user0/backup/btrbk/${config.networking.hostName}" = {
                   ssh_user = "root";
