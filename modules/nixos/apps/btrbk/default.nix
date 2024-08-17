@@ -4,10 +4,24 @@
   config,
   ...
 }:
-with lib; {
+with lib; let
+  cfg = config.disks.btrfs.btrbk;
+in {
   options.disks.btrfs.btrbk = {enable = mkEnableOption "btrbk";};
 
-  config = mkIf (config.disks.btrfs.enable && config.disks.btrfs.btrbk.enable) {
+  config = mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = !(config.disks.btrfs.enable);
+        message = "For btrbk, btrfs need to be enabled.";
+      }
+
+      {
+        assertion = config.services.snapper.enable;
+        message = "For btrbk, snapper needs to be off";
+      }
+    ];
+
     age.secrets.btrbk = {
       rekeyFile = ./btrbk.age;
       # mode = "600";

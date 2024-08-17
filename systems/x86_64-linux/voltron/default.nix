@@ -26,7 +26,7 @@ with lib; {
       main = "/dev/nvme0n1";
       encrypt = true;
       newSubvolumes = true;
-      # btrbk.enable = true;
+      btrbk.enable = true;
     };
 
     programs.gnupg.agent = {enable = true;};
