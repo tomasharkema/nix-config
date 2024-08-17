@@ -26,7 +26,8 @@ with lib; {
       main = "/dev/nvme0n1";
       encrypt = true;
       newSubvolumes = true;
-      # btrbk.enable = true;
+      btrbk.enable = true;
+      snapper.enable = false;
     };
 
     programs.gnupg.agent = {enable = true;};
@@ -38,6 +39,10 @@ with lib; {
         enable = true;
         packages = with pkgs; [heimdall-gui libusb sgx-psw];
       };
+
+      fprintd.tod.driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
+        calib-data-file = ./calib-data.bin;
+      };
     };
 
     environment.systemPackages = with pkgs; [
@@ -48,7 +53,7 @@ with lib; {
       gnupg
       custom.distrib-dl
       # davinci-resolve
-
+      keybase-gui
       # calibre
       glxinfo
       inxi
@@ -128,7 +133,19 @@ with lib; {
 
     apps.podman.enable = true;
 
+    security.wrappers.keybase-redirector = {
+      owner = "root";
+      group = "kbfs";
+    };
+
     services = {
+      keybase = {enable = true;};
+
+      kbfs = {
+        enable = true;
+        enableRedirector = true;
+      };
+
       hypervisor = {
         enable = true;
         #   bridgeInterfaces = ["wlp59s0"];
@@ -174,7 +191,10 @@ with lib; {
         ];
     });
 
-    users.users.tomas.extraGroups = ["sgx_prv"];
+    users = {
+      users.tomas.extraGroups = ["sgx_prv" "kbfs"];
+      groups = {kbfs = {};};
+    };
 
     boot = {
       # kernelPackages = pkgs.linuxPackages_6_1;

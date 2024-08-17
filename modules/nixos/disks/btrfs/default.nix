@@ -4,7 +4,8 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+with lib.custom; let
   cfg = config.disks.btrfs;
 
   luksContent = root: name: {
@@ -109,6 +110,8 @@ in
 
         newSubvolumes = mkEnableOption "Enable BTRFS newSubvolumes";
 
+        snapper.enable = mkBoolOpt true "enable snapper";
+
         main = mkOption {
           type = types.str;
           description = "Dev for main partion.";
@@ -151,7 +154,7 @@ in
           enable = true;
           fileSystems = ["/"];
         };
-        snapper = {
+        snapper = mkIf cfg.snapper.enable {
           # snapshotRootOnBoot = true;
           snapshotInterval = "hourly";
           cleanupInterval = "1d";
