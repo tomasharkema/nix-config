@@ -273,9 +273,9 @@ in {
       enable = true;
       device = "0000:01:00.0";
       vgpus = {
-        "nvidia-35" = {
-          # for linux!
-          uuid = ["bf8669a2-c8b4-41b5-b77f-89b72484b518" "685f3e82-423c-46d3-b4b2-4ee2da634ae0"];
+        "nvidia-37" = {
+          # for windows!!
+          uuid = ["e1ab260f-44a2-4e07-9889-68a1caafb399"];
         };
       };
     };

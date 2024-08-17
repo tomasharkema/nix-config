@@ -99,8 +99,8 @@ in {
           sha256_64bit = "sha256-0cwgejoFsefl2M6jdWZC+CKc58CqOXDjSi4saVPNKY0=";
           sha256_aarch64 = lib.fakeSha256;
           openSha256 = lib.fakeSha256;
-          settingsSha256 = "";
-          persistencedSha256 = "";
+          settingsSha256 = "sha256-A3SzGAW4vR2uxT1Cv+Pn+Sbm9lLF5a/DGzlnPhxVvmE=";
+          persistencedSha256 = lib.fakeSha256;
         };
       };
 
