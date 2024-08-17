@@ -133,19 +133,7 @@ with lib; {
 
     apps.podman.enable = true;
 
-    security.wrappers.keybase-redirector = {
-      owner = "root";
-      group = "kbfs";
-    };
-
     services = {
-      keybase = {enable = true;};
-
-      kbfs = {
-        enable = true;
-        enableRedirector = true;
-      };
-
       hypervisor = {
         enable = true;
         #   bridgeInterfaces = ["wlp59s0"];
