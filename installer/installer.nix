@@ -28,7 +28,7 @@ in {
   config = {
     nix =
       {
-        package = pkgs.nixVersions.latest;
+        package = pkgs.nixVersions.nix_2_23;
       }
       // import ./config.nix;
     boot.supportedFilesystems = ["bcachefs"];
@@ -50,7 +50,7 @@ in {
             "plugdev"
             "dailout"
           ];
-          hashedPassword = "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
+          initialHashedPassword = "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
           uid = 1000;
           openssh.authorizedKeys.keyFiles = ["${keys}"];
         };

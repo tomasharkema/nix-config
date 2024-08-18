@@ -17,6 +17,7 @@ in {
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
     # nixos-hardware.nixosModules.supermicro-x10sll-f
+    nixos-nvidia-vgpu.nixosModules.nvidia-vgpu
   ];
 
   config = {
@@ -203,30 +204,47 @@ in {
       };
 
       # useDHCP = false;
-      networkmanager.enable = false;
+      networkmanager.enable = true;
+
+      firewall.allowedTCPPorts = [2049 7070];
+      bonds.bond0 = {
+        interfaces = ["enp6s0f0" "enp6s0f1" "enp6s0f2" "enp6s0f3"];
+        driverOptions = {
+          mode = "802.3ad";
+        };
+      };
+
+      bridges.br0 = {
+        interfaces = ["bond0"];
+      };
 
       interfaces = {
-        # "eno1" = {
-        #   useDHCP = true;
-        #   wakeOnLan.enable = true;
-        # };
-        "br0" = {useDHCP = true;};
-        "bond0" = {
-          # useDHCP = true;
-          # wakeOnLan.enable = true;
+        "enp6s0f0" = {
+          # useDHCP = lib.mkDefault true;
+          wakeOnLan.enable = true;
+          mtu = 9000;
         };
-        #   "eno2" = {
-        #     useDHCP = true;
-        #     wakeOnLan.enable = true;
-        #   };
-        #   "eno3" = {
-        #     useDHCP = true;
-        #     wakeOnLan.enable = true;
-        #   };
-        #   "eno4" = {
-        #     useDHCP = true;
-        #     wakeOnLan.enable = true;
-        #   };
+        "enp6s0f1" = {
+          # useDHCP = lib.mkDefault true;
+          wakeOnLan.enable = true;
+          mtu = 9000;
+        };
+        "enp6s0f2" = {
+          # useDHCP = lib.mkDefault true;
+          wakeOnLan.enable = true;
+          mtu = 9000;
+        };
+        "enp6s0f3" = {
+          # useDHCP = lib.mkDefault true;
+          wakeOnLan.enable = true;
+          mtu = 9000;
+        };
+        "br0" = {
+          useDHCP = lib.mkDefault true;
+        };
+        "bond0" = {
+          mtu = 9000;
+        };
       };
     };
 
@@ -240,6 +258,7 @@ in {
       # ipmiview
       # ipmiutil
       # vagrant
+      virt-manager
       ipmitool
       boot-into-bios
       openipmi
@@ -250,102 +269,62 @@ in {
       # icingaweb2
     ];
 
-    networking.firewall.allowedTCPPorts = [2049];
-
-    # services.factorio.enable = true;
-
-    fileSystems = {
-      # "/export/media" = {
-      #   device = "/media";
-      #   options = ["bind"];
-      # };
-      #   "/mnt/unraid/domains" = {
-      #     device = "192.168.0.100:/mnt/user/domains";
-      #     fsType = "nfs";
-      #   };
-      #   "/mnt/unraid/appdata" = {
-      #     device = "192.168.0.100:/mnt/user/appdata";
-      #     fsType = "nfs";
-      #   };
-      #   "/mnt/unraid/appdata_ssd" = {
-      #     device = "192.168.0.100:/mnt/user/appdata_ssd";
-      #     fsType = "nfs";
-      #   };
-      #   "/mnt/unraid/appdata_disk" = {
-      #     device = "192.168.0.100:/mnt/user/appdata_disk";
-      #     fsType = "nfs";
-      #   };
-      #   # "/mnt/dione" = {
-      #   #   device = "192.168.178.3:/volume1/homes";
-      #   #   fsType = "nfs";
-      #   # };
-    };
-
-    systemd.network = {
+    virtualisation.kvmgt = {
       enable = true;
-      netdevs = {
-        "10-bond0" = {
-          netdevConfig = {
-            Kind = "bond";
-            Name = "bond0";
-          };
-          bondConfig = {
-            Mode = "802.3ad";
-            TransmitHashPolicy = "layer3+4";
-          };
-        };
-        "20-br0" = {
-          netdevConfig = {
-            Kind = "bridge";
-            Name = "br0";
-          };
+      device = "0000:01:00.0";
+      vgpus = {
+        "nvidia-37" = {
+          # for windows!!
+          uuid = ["e1ab260f-44a2-4e07-9889-68a1caafb399"];
         };
       };
-      networks = {
-        "20-eno1" = {
-          matchConfig.Name = "eno1";
-        };
+    };
 
-        "30-enp6s0f0" = {
-          matchConfig.Name = "enp6s0f0";
-          networkConfig.Bond = "bond0";
-        };
-        "30-enp6s0f1" = {
-          matchConfig.Name = "enp6s0f1";
-          networkConfig.Bond = "bond0";
-        };
-        "30-enp6s0f2" = {
-          matchConfig.Name = "enp6s0f2";
-          networkConfig.Bond = "bond0";
-        };
-        "30-enp6s0f3" = {
-          matchConfig.Name = "enp6s0f3";
-          networkConfig.Bond = "bond0";
-        };
-        "40-bond0" = {
-          matchConfig.Name = "bond0";
-          networkConfig.Bridge = "br0";
-          linkConfig.RequiredForOnline = "enslaved";
-        };
-        "41-br0" = {
-          matchConfig.Name = "br0";
-          bridgeConfig = {};
-          linkConfig = {
-            RequiredForOnline = "carrier";
+    hardware = {
+      cpu.intel.updateMicrocode = true;
+      i2c.enable = true;
+      enableAllFirmware = true;
+      enableRedistributableFirmware = true;
+
+      nvidia = {
+        nvidiaPersistenced = false;
+        # modesetting.enable = true;
+        # forceFullCompositionPipeline = true;
+        open = false;
+        nvidiaSettings = false;
+
+        vgpu = {
+          enable = true;
+          pinKernel = true;
+          #vgpu_driver_src.sha256 = "0z9r6lyx35fqjwcc2d1l7ip6q9jq11xl352nh6v47ajvp2flxly9";
+          # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
+          # path is '/nix/store/2l7n0kg9yz1v2lkilh8154q35cghgj1y-NVIDIA-GRID-Linux-KVM-535.161.05-535.161.08-538.46.zip'
+          # 02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r
+
+          #          vgpu_driver_src.sha256 = "07ia2djhlr8jfv3rrgblpf1wmqjc0sk3z8j7fa2l4cipr84amjsg";
+          #          useMyDriver.vgpu-driver-version = "535.183.06";
+
+          copyVGPUProfiles = {
+            "1380:0000" = "13BD:1160";
           };
-          networkConfig = {
-            DHCP = "yes";
-            LinkLocalAddressing = "no";
+
+          fastapi-dls = {
+            enable = true;
+            docker-directory = "/var/lib/fastapi";
+            # local_ipv4 = "192.168.0.48";
+            timezone = "Europe/Amsterdam";
           };
         };
       };
     };
 
-    hardware.nvidia.vgpu = {
-      enable = true; # Enable NVIDIA KVM vGPU + GRID driver
-      unlock.enable = true; #true; # Unlock vGPU functionality on consumer cards using DualCoder/vgpu_unlock project.
-      version = "v16.5";
+    virtualisation.oci-containers.containers.fastapi-dls = {
+      ports = mkForce ["7070:443"];
     };
+
+    services.udev.extraRules = ''
+      SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
+    '';
 
     boot = {
       tmp = {
@@ -356,9 +335,15 @@ in {
         "iommu=pt"
         "console=tty0"
         "console=ttyS2,115200n8"
-        "mitigations=off"
+        # "mitigations=off"
+        #"vfio-pci.ids=10de:1380,10de:0fbc"
+        # "pcie_acs_override=downstream,multifunction"
+        # "vfio_iommu_type1.allow_unsafe_interrupts=1"
+        # "kvm.ignore_msrs=1"
+        "blacklist=nouveau"
+        # "pci=nomsi"
       ];
-      blacklistedKernelModules = lib.mkDefault ["nouveau"];
+      blacklistedKernelModules = ["nouveau"];
 
       binfmt.emulatedSystems = ["aarch64-linux"];
       recovery = {
@@ -390,6 +375,15 @@ in {
           "ipmi_si"
           "ipmi_devintf"
           "ipmi_msghandler"
+          "vfio_pci"
+          "vfio"
+          "vfio_iommu_type1"
+          # "vfio_virqfd"
+
+          # "nvidia"
+          # "nvidia_modeset"
+          # "nvidia_uvm"
+          # "nvidia_drm"
         ];
       };
       kernelModules = [
@@ -404,9 +398,34 @@ in {
         "ipmi_devintf"
         "ipmi_msghandler"
         "ipmi_watchdog"
+
+        "vfio_pci"
+        "vfio"
+        "vfio_iommu_type1"
+        # "vfio_virqfd"
+
+        # "nvidia"
+        # "nvidia_modeset"
+        # "nvidia_uvm"
+        # "nvidia_drm"
       ];
       # extraModulePackages = [pkgs.freeipmi];
-      systemd.services."serial-getty@ttyS2".wantedBy = ["multi-user.target"];
+      systemd.services."serial-getty@ttyS2" = {
+        overrideStrategy = "asDropin";
+        serviceConfig = let
+          tmux = pkgs.writeShellScript "tmux.sh" ''
+            ${pkgs.tmux}/bin/tmux kill-session -t start 2> /dev/null
+            ${pkgs.tmux}/bin/tmux new-session -s start
+          '';
+        in {
+          TTYVTDisallocate = "no";
+          #ExecStart = ["" "-${tmux}"];
+          #StandardInput = "tty";
+          #StandardOutput = "tty";
+        };
+        wantedBy = ["multi-user.target"];
+        #environment.TERM = "vt102";
+      };
     };
 
     # virtualisation = {

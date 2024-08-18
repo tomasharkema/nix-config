@@ -29,28 +29,6 @@ in {
       extraModulePackages = with config.boot.kernelPackages; [acpi_call];
     };
 
-    systemd.services."beesd@root" = {
-      unitConfig = {
-        ConditionACPower = true;
-      };
-      wantedBy = ["acpower.target"];
-      partOf = ["acpower.target"];
-    };
-    systemd.services."nh-clean" = {
-      unitConfig = {
-        ConditionACPower = true;
-      };
-      # wantedBy = ["acpower.target"];
-      # partOf = ["acpower.target"];
-    };
-    systemd.services."nix-optimise" = {
-      unitConfig = {
-        ConditionACPower = true;
-      };
-      # wantedBy = ["acpower.target"];
-      # partOf = ["acpower.target"];
-    };
-
     boot.kernelParams = [
       "ahci.mobile_lpm_policy=3"
       "rtc_cmos.use_acpi_alarm=1"
@@ -93,23 +71,50 @@ in {
       };
     };
 
-    systemd.targets = {
-      sleep.enable = true;
-      suspend.enable = true;
-      hibernate.enable = true;
-      hybrid-sleep.enable = true;
-      battery = {
-        enable = true;
-        unitConfig = {
-          DefaultDependencies = "no";
-          StopWhenUnneeded = "yes";
+    systemd = {
+      services = {
+        "beesd@root" = {
+          unitConfig = {
+            # ConditionACPower = true;
+          };
+          wantedBy = ["acpower.target"];
+          partOf = ["acpower.target"];
         };
+        # "nh-clean" = {
+        #   unitConfig = {
+        #     ConditionACPower = true;
+        #   };
+        #   # wantedBy = ["acpower.target"];
+        #   # partOf = ["acpower.target"];
+        # };
+        # "nix-optimise" = {
+        #   unitConfig = {
+        #     ConditionACPower = true;
+        #   };
+        #   # wantedBy = ["acpower.target"];
+        #   # partOf = ["acpower.target"];
+        # };
       };
-      acpower = {
-        enable = true;
-        unitConfig = {
-          DefaultDependencies = "no";
-          StopWhenUnneeded = "yes";
+
+      targets = {
+        sleep.enable = true;
+        suspend.enable = true;
+        hibernate.enable = true;
+        hybrid-sleep.enable = true;
+
+        battery = {
+          enable = true;
+          unitConfig = {
+            DefaultDependencies = "no";
+            StopWhenUnneeded = "yes";
+          };
+        };
+        acpower = {
+          enable = true;
+          unitConfig = {
+            DefaultDependencies = "no";
+            StopWhenUnneeded = "yes";
+          };
         };
       };
     };

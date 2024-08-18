@@ -12,10 +12,22 @@ in {
     enable = mkEnableOption "laptop";
   };
 
+  options = {
+    services.fprintd = {
+      enable = mkEnableOption "fprintd daemon and PAM module for fingerprint readers handling";
+      package = mkOption {
+        type = types.package;
+        # default = fprintdPkg;
+      };
+    };
+  };
+
   imports = with inputs; [
-    # nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
-    # nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
+    nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
+    nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
   ];
+
+  disabledModules = ["services/security/fprintd.nix"];
 
   config = mkIf cfg.enable {
     system.nixos.tags = ["thinkpad"];
@@ -26,31 +38,28 @@ in {
       # libmbim
       # libqmi
       tpacpi-bat
-      # sgx-ssl
-      # sgx-sdk
+      sgx-ssl
+      sgx-sdk
       # sgx-psw
     ];
+
+    systemd.services = {
+      open-fprintd-resume.enable = true;
+      open-fprintd-suspend.enable = true;
+    };
 
     services = {
       # tp-auto-kbbl.enable = true;
       # thinkfan.enable = true;
       fprintd = {
-        enable = true;
-        tod = {
-          enable = true;
-          driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
-            calib-data-file = ./calib-data.bin;
-          };
-        };
+        enable = mkForce true;
+        #   tod = {
+        #     enable = true;
+        #   };
       };
-      # open-fprintd.enable = true;
-      # python-validity.enable = true;
-      # fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
-      # aesmd = {
-      #   enable = true;
-      #   settings.defaultQuotingType = "ecdsa_256";
-      #   debug = true;
-      # };
+      open-fprintd.enable = true;
+      python-validity.enable = true;
+      fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
     };
 
     home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
@@ -95,6 +104,9 @@ in {
         # enableGnomeKeyring = true;
         fprintAuth = true;
       };
+      passwd = {
+        fprintAuth = true;
+      };
       "systemd-user" = {
         # enableGnomeKeyring = true;
         fprintAuth = true;
@@ -115,11 +127,15 @@ in {
         # enableGnomeKeyring = true;
         fprintAuth = true;
       };
+      "xscreenserver" = {
+        # enableGnomeKeyring = true;
+        fprintAuth = true;
+      };
       xlock = {
         # enableGnomeKeyring = true;
         fprintAuth = true;
       };
-      # passwd.enableGnomeKeyring = true;
+      passwd.enableGnomeKeyring = true;
     };
   };
 }

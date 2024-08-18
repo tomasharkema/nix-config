@@ -3,6 +3,7 @@
   lib,
   inputs,
   pkgs,
+  config,
   format,
   ...
 }:
@@ -83,7 +84,7 @@ with lib; {
         # };
       };
     };
-
+    # hardware.nvidia.package = mkForce config.boot.kernelPackages.nvidiaPackages.stable;
     # nixpkgs.system = "x86_64-linux";
 
     networking = {
@@ -132,7 +133,10 @@ with lib; {
         kernelModules = ["kvm-intel" "uinput" "nvme"];
       };
       kernelModules = ["kvm-intel" "uinput" "nvme"];
-      kernelParams = ["nowatchdog" "mitigations=off"];
+      kernelParams = [
+        "nowatchdog"
+        #"mitigations=off"
+      ];
       extraModulePackages = [];
     };
 

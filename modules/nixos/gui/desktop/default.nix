@@ -149,7 +149,7 @@ in {
           vsce
           vscode
           vte-gtk4
-          wezterm
+
           xdg-utils
           xdgmenumaker
           xdiskusage
