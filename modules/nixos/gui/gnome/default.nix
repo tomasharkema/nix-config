@@ -56,7 +56,7 @@ in
       };
 
       systemd.tmpfiles.rules = [
-        "L+ /run/gdm/.config/fontconfig/fonts.conf - - - - ${pkgs.writeText "fonts.xml" ''
+        "L+ /run/gdm/.config/fontconfig/fonts.conf - - - - ${pkgs.writeText "fonts.conf" ''
           <?xml version="1.0"?>
           <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
           <fontconfig>
