@@ -55,35 +55,41 @@ in
         sessionVariables.XCURSOR_SIZE = builtins.toString cfg.cursorSize;
       };
 
-      systemd.tmpfiles.rules = [
-        "L+ /run/gdm/.config/fontconfig/fonts.conf - - - - ${pkgs.writeText "fonts.conf" ''
-          <?xml version="1.0"?>
-          <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-          <fontconfig>
-          	<match>
-          		<test name="prgname" compare="eq" qual="any">
-          			<string>Inter</string>
-          		</test>
-          		<test qual="any" name="family">
-                      <string>Ubuntu</string>
-                  </test>
-                  <edit name="family" binding="same">
-                      <string>Cantarell</string>
-                  </edit>
-          	</match>
-          </fontconfig>
-        ''}"
-      ];
+      # systemd.tmpfiles.rules = [
+      #   "L+ /run/gdm/.config/fontconfig/fonts.conf - - - - ${pkgs.writeText "fonts.conf" ''
+      #     <?xml version="1.0"?>
+      #     <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+      #     <fontconfig>
+      #     	<match>
+      #     		<test name="prgname" compare="eq" qual="any">
+      #     			<string>Inter</string>
+      #     		</test>
+      #     		<test qual="any" name="family">
+      #                 <string>Ubuntu</string>
+      #             </test>
+      #             <edit name="family" binding="same">
+      #                 <string>Cantarell</string>
+      #             </edit>
+      #     	</match>
+      #     </fontconfig>
+      #   ''}"
+      # ];
 
       programs = {
         xwayland.enable = true;
 
         dconf.profiles = {
           gdm = {
-            databases = optional cfg.hidpi.enable {
-              settings."org/gnome/desktop/interface".scaling-factor =
-                lib.gvariant.mkUint32 2;
-            };
+            databases =
+              (optional cfg.hidpi.enable {
+                settings."org/gnome/desktop/interface".scaling-factor =
+                  lib.gvariant.mkUint32 2;
+              })
+              ++ [
+                {
+                  settings."org/gnome/desktop/interface".font-name = "Inter Display 11";
+                }
+              ];
           };
           tomas.databases = [
             {
