@@ -173,7 +173,8 @@ with lib; {
 
       encrypt = true;
       newSubvolumes = true;
-      # btrbk.enable = true;
+      btrbk.enable = true;
+      snapper.enable = false;
     };
 
     boot = {
