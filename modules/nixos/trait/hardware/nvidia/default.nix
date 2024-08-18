@@ -64,13 +64,22 @@ in {
     };
 
     boot = {
-      kernelModules = ["nvidia"];
+      kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
       kernelParams = [
         "nvidia-drm.modeset=1"
         "nvidia-drm.fbdev=1"
         # "apm=power_off"
         # "acpi=force"
       ];
+      initrd = {
+        kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
+        # kernelParams = [
+        #   "nvidia-drm.modeset=1"
+        #   "nvidia-drm.fbdev=1"
+        #   # "apm=power_off"
+        #   # "acpi=force"
+        # ];
+      };
     };
 
     # TODO: fix!
@@ -81,7 +90,7 @@ in {
     hardware = {
       nvidia = mkDefault {
         modesetting.enable = true;
-        forceFullCompositionPipeline = true;
+        # forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = false;
 

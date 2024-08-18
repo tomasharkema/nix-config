@@ -42,28 +42,9 @@ in {
       };
     };
 
-    systemd.services."plymouth-boot-messages" = {
-      path = with pkgs; [
-        systemd
-        plymouth
-      ];
+    systemd.services = let
+      script = pkgs.writeScript "plymouth-messages" ''
 
-      wantedBy = ["sysinit.target"];
-
-      after = ["plymouth-start.service"];
-      requires = ["plymouth-start.service"];
-
-      unitConfig = {
-        Description = "Display boot messages on the plymouth screen";
-        DefaultDependencies = "no";
-      };
-
-      serviceConfig = {
-        Type = "simple";
-        RemainAfterExit = "yes";
-      };
-
-      script = ''
         journalctl --quiet -f -n0 --system -t systemd -o cat | while read -r line; do
         	plymouth display-message --text="$line"
           if [ $? -ne 0 ]; then
@@ -71,9 +52,55 @@ in {
         	fi
         done
         echo "Plymouth died, exiting..."
-      '';
-    };
 
+      '';
+    in {
+      "plymouth-boot-messages" = {
+        path = with pkgs; [
+          systemd
+          plymouth
+        ];
+
+        wantedBy = ["sysinit.target"];
+
+        after = ["plymouth-start.service"];
+        requires = ["plymouth-start.service"];
+
+        unitConfig = {
+          Description = "Display boot messages on the plymouth screen";
+          DefaultDependencies = "no";
+        };
+
+        serviceConfig = {
+          Type = "simple";
+          RemainAfterExit = "yes";
+        };
+
+        script = "${script}";
+      };
+      "plymouth-poweroff-messages" = {
+        path = with pkgs; [
+          systemd
+          plymouth
+        ];
+
+        wantedBy = ["poweroff.target" "halt.target" "shutdown.target"];
+        after = ["plymouth-poweroff.service"];
+        before = ["poweroff.target" "halt.target" "shutdown.target"];
+        requires = ["plymouth-poweroff.service"];
+
+        unitConfig = {
+          Description = "Display boot messages on the plymouth screen";
+          DefaultDependencies = "no";
+        };
+
+        serviceConfig = {
+          Type = "simple";
+        };
+
+        script = "${script}";
+      };
+    };
     # # /etc/systemd/system/plymouth-boot-messages.service
     # # Run "systemctl enable plymouth-boot-messages.service" after creating the file
 

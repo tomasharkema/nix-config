@@ -114,7 +114,7 @@ with lib; {
       nvidia = {
         nvidiaPersistenced = false;
         modesetting.enable = true;
-        forceFullCompositionPipeline = true;
+        # forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = false;
 

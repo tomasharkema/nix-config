@@ -73,7 +73,7 @@ with lib; {
 
     hardware = {
       nvidia = {
-        forceFullCompositionPipeline = true;
+        # forceFullCompositionPipeline = true;
 
         prime = {
           sync.enable = true;
