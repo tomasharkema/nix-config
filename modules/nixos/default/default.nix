@@ -311,7 +311,7 @@ with lib.custom;
 
         throttled.enable = pkgs.stdenv.isx86_64;
 
-        cron.enable = true;
+        # cron.enable = true;
 
         zram-generator = {
           enable = true;
@@ -489,7 +489,7 @@ with lib.custom;
             # };
             service_status = {
               Accounts = "accounts-daemon";
-              Cron = "cron";
+              Attic-watch-store = "attic-watch-store";
             };
             filesystems = {
               root = "/";
