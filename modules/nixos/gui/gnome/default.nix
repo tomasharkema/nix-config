@@ -55,17 +55,35 @@ in
         sessionVariables.XCURSOR_SIZE = builtins.toString cfg.cursorSize;
       };
 
+      systemd.tmpfiles.rules = [
+        "L+ /run/gdm/.config/fontconfig/fonts.conf - - - - ${pkgs.writeText "fonts.xml" ''
+          <?xml version="1.0"?>
+          <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+          <fontconfig>
+          	<match>
+          		<test name="prgname" compare="eq" qual="any">
+          			<string>Inter</string>
+          		</test>
+          		<test qual="any" name="family">
+                      <string>Ubuntu</string>
+                  </test>
+                  <edit name="family" binding="same">
+                      <string>Cantarell</string>
+                  </edit>
+          	</match>
+          </fontconfig>
+        ''}"
+      ];
+
       programs = {
         xwayland.enable = true;
 
         dconf.profiles = {
-          gdm = mkIf cfg.hidpi.enable {
-            databases = [
-              {
-                settings."org/gnome/desktop/interface".scaling-factor =
-                  lib.gvariant.mkUint32 2;
-              }
-            ];
+          gdm = {
+            databases = optional cfg.hidpi.enable {
+              settings."org/gnome/desktop/interface".scaling-factor =
+                lib.gvariant.mkUint32 2;
+            };
           };
           tomas.databases = [
             {

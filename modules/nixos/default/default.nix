@@ -107,124 +107,128 @@ with lib.custom;
       # in
       #   formatted;
 
-      environment.systemPackages =
-        (with pkgs; [
-          meld
-          _86Box-with-roms
-          # dry
-          # etcher
-          # fancy-motd
-          # mkchromecast
-          # nix-switcher # : needs github auth
-          # ntfy
-          # rtop
-          # udisks2
-          aide
-          archivemount
-          bandwhich
-          bash
-          bashmount
-          bmon
-          castnow
-          catt
-          chunkfs
-          clex
-          compsize
-          ctop
-          curl
-          curl
-          devdash
-          devtodo
-          dfrs
-          dirdiff
-          discordo
-          dosbox-x
-          duc
-          ethtool
-          fam
-          fcast-receiver
-          fwupd
-          fwupd-efi
-          gdu
-          git
-          gnomecast
-          go-chromecast
-          googler
-          hw-probe
-          ifuse
-          ipcalc
-          iptraf-ng
-          kexec-tools
-          kmon
-          lazydocker
-          ldapdomaindump
-          libnotify
-          lm_sensors
-          lorri
-          lshw
-          mbuffer
-          ncdu
-          nfs-utils
-          nil
-          nix-top
-          nixd
-          ntfs3g
-          ntfy-sh
-          nvchecker
-          openldap
-          pamix
-          pamixer
-          parallel-disk-usage
-          pavucontrol
-          pciutils
-          ponymix
-          pulsemixer
-          pv
-          silenthound
-          smartmontools
-          socat
-          ssh-tools
-          sshfs
-          sshportal
-          swapview
-          systemctl-tui
-          sysz
-          tiptop
-          tpm-tools
-          treecat
-          ttmkfdir
-          ttop
-          tydra
-          udiskie
-          unstable.netscanner
-          usbutils
-          usermount
-          viddy
-          wget
-          wget
-          wmctrl
-          wtf
-        ])
-        ++ (with pkgs.custom; [
-          ssh-proxy-agent
-          menu
-          pvzstd
-          ssm
-          tailscale-tui
-          sshed
-          # rmfuse
-        ])
-        ++ (optionals pkgs.stdenv.isx86_64 (with pkgs; [
-          google-chrome
-          netflix
+      environment = {
+        sessionVariables.MOZ_ENABLE_WAYLAND = "0";
 
-          cmospwd
-          uefisettings
-          libsmbios
-          uefi-firmware-parser
-          dmidecode
-          refind
-        ]));
+        systemPackages =
+          (with pkgs; [
+            meld
+            _86Box-with-roms
+            # dry
+            # etcher
+            # fancy-motd
+            # mkchromecast
+            # nix-switcher # : needs github auth
+            # ntfy
+            # rtop
+            # udisks2
+            aide
+            archivemount
+            bandwhich
+            bash
+            bashmount
+            bmon
+            castnow
+            catt
+            chunkfs
+            clex
+            compsize
+            ctop
+            curl
+            curl
+            devdash
+            devtodo
+            dfrs
+            dirdiff
+            discordo
+            dosbox-x
+            duc
+            ethtool
+            fam
+            fcast-receiver
+            fwupd
+            fwupd-efi
+            gdu
+            git
+            gnomecast
+            go-chromecast
+            googler
+            hw-probe
+            ifuse
+            ipcalc
+            iptraf-ng
+            kexec-tools
+            kmon
+            lazydocker
+            ldapdomaindump
+            libnotify
+            lm_sensors
+            lorri
+            lshw
+            mbuffer
+            ncdu
+            nfs-utils
+            nil
+            nix-top
+            nixd
+            ntfs3g
+            ntfy-sh
+            nvchecker
+            openldap
+            pamix
+            pamixer
+            parallel-disk-usage
+            pavucontrol
+            pciutils
+            ponymix
+            pulsemixer
+            pv
+            silenthound
+            smartmontools
+            socat
+            ssh-tools
+            sshfs
+            sshportal
+            swapview
+            systemctl-tui
+            sysz
+            tiptop
+            tpm-tools
+            treecat
+            ttmkfdir
+            ttop
+            tydra
+            udiskie
+            unstable.netscanner
+            usbutils
+            usermount
+            viddy
+            wget
+            wget
+            wmctrl
+            wtf
+          ])
+          ++ (with pkgs.custom; [
+            ssh-proxy-agent
+            menu
+            pvzstd
+            ssm
+            tailscale-tui
+            sshed
+            # rmfuse
+          ])
+          ++ (optionals pkgs.stdenv.isx86_64 (with pkgs; [
+            google-chrome
+            netflix
+
+            cmospwd
+            uefisettings
+            libsmbios
+            uefi-firmware-parser
+            dmidecode
+            refind
+          ]));
+      };
       # services.ntfy-sh.enable = true;
 
       apps = {
