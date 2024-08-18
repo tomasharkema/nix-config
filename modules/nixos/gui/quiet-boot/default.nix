@@ -23,6 +23,8 @@ in {
         # themePackages = [
         #   pkgs.custom.plymouth-progress
         # ];
+
+        font = "${pkgs.inter}/share/fonts/truetype/Inter.ttc";
       };
       loader.timeout = mkDefault 0;
       kernelParams = [
@@ -39,5 +41,56 @@ in {
         verbose = mkDefault false;
       };
     };
+
+    systemd.services."plymouth-boot-messages" = {
+      path = with pkgs; [
+        systemd
+        plymouth
+      ];
+
+      wantedBy = ["sysinit.target"];
+
+      after = ["plymouth-start.service"];
+      requires = ["plymouth-start.service"];
+
+      unitConfig = {
+        Description = "Display boot messages on the plymouth screen";
+        DefaultDependencies = "no";
+      };
+
+      serviceConfig = {
+        Type = "simple";
+        RemainAfterExit = "yes";
+      };
+
+      script = ''
+        journalctl --quiet -f -n0 --system -t systemd -o cat | while read -r line; do
+        	plymouth display-message --text="$line"
+          if [ $? -ne 0 ]; then
+        		break
+        	fi
+        done
+        echo "Plymouth died, exiting..."
+      '';
+    };
+
+    # # /etc/systemd/system/plymouth-boot-messages.service
+    # # Run "systemctl enable plymouth-boot-messages.service" after creating the file
+
+    # [Unit]
+    # Description=Display boot messages on the plymouth screen
+    # DefaultDependencies=no
+
+    # # You may want these if your plymouth is not started by initramfs, but I want the script to take effect as soon as possible...
+    # #After=plymouth-start.service
+    # #Requires=plymouth-start.service
+
+    # [Service]
+    # Type=simple
+    # ExecStart=/usr/local/bin/journalctl_to_plymouth.sh
+    # RemainAfterExit=yes
+
+    # [Install]
+    # WantedBy=sysinit.target
   };
 }
