@@ -113,8 +113,8 @@ with lib; {
 
       nvidia = {
         nvidiaPersistenced = false;
-        # modesetting.enable = true;
-        # forceFullCompositionPipeline = true;
+        modesetting.enable = true;
+        forceFullCompositionPipeline = true;
         open = false;
         nvidiaSettings = false;
 
@@ -144,7 +144,7 @@ with lib; {
         nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
-        # nvidia.enable = true;
+        nvidia.enable = true;
         remote-unlock.enable = true;
         monitor.enable = true;
         disable-sleep.enable = true;
@@ -175,12 +175,6 @@ with lib; {
       newSubvolumes = true;
       # btrbk.enable = true;
     };
-
-    #    hardware.nvidia.vgpu = {
-    #      enable = true;
-    #      unlock.enable = true;
-    #      version = "v17.1";
-    #    };
 
     boot = {
       tmp = {
