@@ -121,21 +121,9 @@ in {
 
     programs.ccache = {
       enable = true;
-      # packageNames = ["virtualbox"];
     };
 
     virtualisation = {
-      virtualbox = {
-        host = {
-          enable = true;
-          enableExtensionPack = true;
-          # enableKvm = true;
-          enableWebService = cfg.webservices.enable;
-          addNetworkInterface = true;
-          enableHardening = false;
-        };
-      };
-
       kvmgt.enable = true;
       # tpm.enable = true;
 
@@ -149,12 +137,12 @@ in {
 
         qemu = {
           package = pkgs.qemu_kvm;
-          runAsRoot = true;
-          # verbatimConfig = ''
-          #   # Adapted from /var/lib/libvirt/qemu.conf
-          #   # Note that AAVMF and OVMF are for Aarch64 and x86 respectively
-          #   nvram = [ "/run/libvirt/nix-ovmf/AAVMF_CODE.fd:/run/libvirt/nix-ovmf/AAVMF_VARS.fd", "/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd" ]
-          # '';
+          # runAsRoot = true;
+          verbatimConfig = ''
+            #   # Adapted from /var/lib/libvirt/qemu.conf
+            #   # Note that AAVMF and OVMF are for Aarch64 and x86 respectively
+              nvram = [ "/run/libvirt/nix-ovmf/AAVMF_CODE.fd:/run/libvirt/nix-ovmf/AAVMF_VARS.fd", "/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd" ]
+          '';
           swtpm.enable = true;
 
           ovmf = {

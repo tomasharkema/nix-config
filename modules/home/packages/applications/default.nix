@@ -54,7 +54,7 @@ in {
         {package = gnome.geary;}
         {package = unstable.vscode;}
         {package = unstable.tilix;}
-        {package = config.programs.wezterm.package;}
+        # {package = config.programs.wezterm.package;}
         {package = unstable.telegram-desktop;}
         {package = osConfig.programs._1password-gui.package;}
         {package = unstable.notify-client;}

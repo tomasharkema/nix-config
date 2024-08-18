@@ -8,7 +8,6 @@
 with lib; {
   imports = with inputs; [
     ./hardware-configuration.nix
-
     nixos-hardware.nixosModules.common-pc-laptop-acpi_call
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-gpu-intel
@@ -27,7 +26,8 @@ with lib; {
       main = "/dev/nvme0n1";
       encrypt = true;
       newSubvolumes = true;
-      # btrbk.enable = true;
+      btrbk.enable = true;
+      snapper.enable = false;
     };
 
     programs.gnupg.agent = {enable = true;};
@@ -37,18 +37,23 @@ with lib; {
 
       udev = {
         enable = true;
-        packages = with pkgs; [heimdall-gui libusb];
+        packages = with pkgs; [heimdall-gui libusb sgx-psw];
       };
+
+      # fprintd.tod.driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
+      #   calib-data-file = ./calib-data.bin;
+      # };
     };
 
     environment.systemPackages = with pkgs; [
       nvramtool
       libusb
+      sgx-psw
 
       gnupg
       custom.distrib-dl
       # davinci-resolve
-
+      keybase-gui
       # calibre
       glxinfo
       inxi
@@ -101,11 +106,6 @@ with lib; {
       # samsung.enable = true;
     };
 
-    services.hypervisor = {
-      enable = true;
-      #   bridgeInterfaces = ["wlp59s0"];
-    };
-
     trait = {
       hardware = {
         nvme.enable = true;
@@ -134,6 +134,10 @@ with lib; {
     apps.podman.enable = true;
 
     services = {
+      hypervisor = {
+        enable = true;
+        #   bridgeInterfaces = ["wlp59s0"];
+      };
       # remote-builders.client.enable = true;
       # usb-over-ethernet.enable = true;
       hardware.bolt.enable = true;
@@ -151,6 +155,14 @@ with lib; {
         # allowInterfaces = ["wlp59s0"];
         reflector = mkForce false;
       };
+
+      # aesmd = {
+      # enable = true;
+      # settings = {
+      # defaultQuotingType = "ecdsa_256";
+      # whitelistUrl = "http://whitelist.trustedservices.intel.com/SGX/LCWL/Linux/sgx_white_list_cert.bin";
+      # };
+      # };
     };
 
     # hardware.nvidia.vgpu = {
@@ -159,11 +171,27 @@ with lib; {
     #   version = "v17.1";
     # };
 
+    system.build.isgx = config.boot.kernelPackages.isgx.overrideAttrs (prev: {
+      patches =
+        (prev.patches or [])
+        ++ [
+          ./157.patch
+        ];
+    });
+
+    users = {
+      users.tomas.extraGroups = ["sgx_prv"];
+    };
+
     boot = {
+      # kernelPackages = pkgs.linuxPackages_6_1;
+
       resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
+
       tmp = {
         useTmpfs = true;
       };
+
       recovery = {
         enable = true;
         install = true;
@@ -176,18 +204,26 @@ with lib; {
       modprobeConfig.enable = true;
 
       # extraModprobeConfig = [];
-      kernelParams = ["nowatchdog" "mitigations=off"];
+      kernelParams = [
+        "nowatchdog"
+        # "mitigations=off"
+      ];
 
-      # extraModulePackages = [config.boot.kernelPackages.isgx];
+      extraModulePackages = [
+        config.system.build.isgx
+      ];
+
       kernelModules = [
-        # "isgx"
+        "i915"
+        "isgx"
         # "watchdog"
         #"tpm_rng"
       ];
-      #initrd.kernelModules = [
-      #  "watchdog"
-      #  "isgx"
-      #];
+      extraModprobeConfig = "options i915 enable_guc=2";
+      initrd.kernelModules = [
+        #  "watchdog"
+        # "isgx"
+      ];
     };
   };
 }

@@ -4,10 +4,25 @@
   config,
   ...
 }:
-with lib; {
+with lib; let
+  btrfsCfg = config.disks.btrfs;
+  cfg = btrfsCfg.btrbk;
+in {
   options.disks.btrfs.btrbk = {enable = mkEnableOption "btrbk";};
 
-  config = mkIf (config.disks.btrfs.enable && config.disks.btrfs.btrbk.enable) {
+  config = mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = btrfsCfg.enable;
+        message = "For btrbk, btrfs need to be enabled.";
+      }
+
+      {
+        assertion = !(btrfsCfg.snapper.enable);
+        message = "For btrbk, snapper needs to be off";
+      }
+    ];
+
     age.secrets.btrbk = {
       rekeyFile = ./btrbk.age;
       # mode = "600";
@@ -47,8 +62,6 @@ with lib; {
                 #   snapshot_name = "${config.networking.hostName}-rootfs";
                 # };
               };
-
-              # target = "/mnt/servers/nfs/silver-star-backup/btrbk/${config.networking.hostName}";
 
               target = {
                 "raw ssh://silver-star/mnt/user0/backup/btrbk/${config.networking.hostName}" = {

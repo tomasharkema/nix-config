@@ -6,10 +6,12 @@
   ...
 }:
 with lib; {
-  imports = [
+  imports = with inputs; [
     ./hardware-configuration.nix
-    inputs.nixos-hardware.nixosModules.common-gpu-intel
-    inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
+    nixos-hardware.nixosModules.common-gpu-intel
+    nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
+
+    nixos-nvidia-vgpu-newer.nixosModules.nvidia-vgpu
   ];
 
   config = {
@@ -108,6 +110,30 @@ with lib; {
       i2c.enable = true;
       enableAllFirmware = true;
       enableRedistributableFirmware = true;
+
+      nvidia = {
+        nvidiaPersistenced = false;
+        # modesetting.enable = true;
+        # forceFullCompositionPipeline = true;
+        open = false;
+        nvidiaSettings = false;
+
+        # vgpu = {
+        #   enable = true;
+        #   vgpu_driver_src.sha256 = "0z9r6lyx35fqjwcc2d1l7ip6q9jq11xl352nh6v47ajvp2flxly9";
+        #   # pinKernel = true;
+        #   # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
+        #   # path is '/nix/store/2l7n0kg9yz1v2lkilh8154q35cghgj1y-NVIDIA-GRID-Linux-KVM-535.161.05-535.161.08-538.46.zip'
+        #   # 02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r
+
+        #   # useMyDriver.vgpu-driver-version = "535.161.05";
+
+        #   copyVGPUProfiles = {
+        #     # RTX2080     Quadro RTX 4000
+        #     "1E87:0000" = "1EB1:0000";
+        #   };
+        # };
+      };
     };
 
     apps.podman.enable = true;
@@ -118,7 +144,7 @@ with lib; {
         nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
-        nvidia.enable = true;
+        # nvidia.enable = true;
         remote-unlock.enable = true;
         monitor.enable = true;
         disable-sleep.enable = true;
@@ -162,11 +188,27 @@ with lib; {
       };
       binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = ["ntfs"];
-      kernelModules = ["i2c-dev" "ixgbe" "btusb" "apfs"];
+      kernelModules = [
+        "i2c-dev"
+        "ixgbe"
+        "btusb"
+        "apfs"
+        "vfio_pci"
+        "vfio"
+        "vfio_iommu_type1"
+        "kvm-intel"
+      ];
 
       initrd = {
         systemd.emergencyAccess = "abcdefg";
-        kernelModules = ["ixgbe" "btusb"];
+        kernelModules = [
+          "ixgbe"
+          "btusb"
+          "vfio_pci"
+          "vfio"
+          "vfio_iommu_type1"
+          "kvm-intel"
+        ];
       };
 
       # KMS will load the module, regardless of blacklisting
