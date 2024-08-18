@@ -143,7 +143,7 @@ with lib; {
     hardware = {
       cpu.intel.updateMicrocode = true;
       bluetooth.enable = true;
-      nvidia.package = mkForce config.boot.kernelPackages.nvidiaPackages.stable;
+      # nvidia.package = mkForce config.boot.kernelPackages.nvidiaPackages.stable;
     };
 
     services = {
