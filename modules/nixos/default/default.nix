@@ -287,16 +287,16 @@ with lib.custom;
 
         # atd.enable = true;
 
-        # kmscon = {
-        #   enable = mkDefault true;
-        #   hwRender = config.trait.hardware.nvidia.enable;
-        #   fonts = [
-        #     {
-        #       name = "JetBrainsMono Nerd Font Mono";
-        #       package = pkgs.nerdfonts;
-        #     }
-        #   ];
-        # };
+        kmscon = {
+          enable = mkDefault true;
+          hwRender = true;
+          fonts = [
+            {
+              name = "JetBrainsMono Nerd Font Mono";
+              package = pkgs.nerdfonts;
+            }
+          ];
+        };
 
         preload.enable = true;
         actkbd.enable = mkForce false;

@@ -13,7 +13,7 @@
   nixd = channels.unstable.nixd;
 
   conky = inputs.conky.packages."${prev.system}".default.overrideAttrs {
-    x11Support = false;
+    x11Support = true;
     waylandSupport = true;
     nvidiaSupport = true;
   };
