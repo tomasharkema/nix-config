@@ -104,27 +104,10 @@ with lib.custom; {
     programs.ccache = {
       enable = true;
       packageNames = [
-        "linuxPackages_cachyos.kernel"
-        "linuxPackages_xanmod_stable.kernel"
-        "linuxPackages_latest.kernel"
         "ffmpeg"
         "ffmpeg-full"
       ];
     };
-
-    nixpkgs.overlays = [
-      (self: super: {
-        linuxPackages_latest.kernel = builtins.trace "KERNEL CCACHE LATEST" super.linuxPackages_latest.kernel.override {
-          stdenv = builtins.trace "KERNEL CCACHE LATEST STDENV" self.ccacheStdenv;
-        };
-        linuxPackages_cachyos.kernel = builtins.trace "KERNEL CCACHE CACHOS" super.linuxPackages_cachyos.kernel.override {
-          stdenv = builtins.trace "KERNEL CCACHE CACHOS STDENV" self.ccacheStdenv;
-        };
-        linuxPackages_xanmod_stable.kernel = builtins.trace "KERNEL CCACHE XANMOD" super.linuxPackages_xanmod_stable.kernel.override {
-          stdenv = builtins.trace "KERNEL CCACHE XANMOD STDENV" self.ccacheStdenv;
-        };
-      })
-    ];
 
     nix.settings = {
       extra-sandbox-paths = [config.programs.ccache.cacheDir];
