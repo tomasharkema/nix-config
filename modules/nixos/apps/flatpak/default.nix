@@ -41,7 +41,7 @@ in {
 
       packages =
         [
-          #"com.getpostman.Postman"
+          "com.getpostman.Postman"
           "com.github.tchx84.Flatseal"
           # "com.logseq.Logseq"
           # "com.mattjakeman.ExtensionManager"

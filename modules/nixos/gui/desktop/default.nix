@@ -181,7 +181,12 @@ in {
           xpipe
           pkgs.custom.ztui
         ]
-        ++ (with pkgs.custom; [zerotier-ui netbrowse usbguard-gnome]));
+        ++ (with pkgs.custom; [
+          zerotier-ui
+
+          #netbrowse
+          usbguard-gnome
+        ]));
 
     programs = {
       ssh = {

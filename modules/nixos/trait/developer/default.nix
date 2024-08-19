@@ -27,7 +27,7 @@ in {
         hydra-check
         hydra-cli
         autoflake
-        fh
+        # fh
         hydra-cli
         manix
         nix-search-cli

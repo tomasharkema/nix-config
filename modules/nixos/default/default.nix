@@ -134,7 +134,7 @@ with lib.custom;
             catt
             chunkfs
             clex
-            compsize
+            # compsize
             ctop
             curl
             devdash

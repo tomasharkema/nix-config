@@ -69,7 +69,7 @@ in {
         {package = geary;}
         {package = vscode;}
         {package = tilix;}
-        # {package = config.programs.wezterm.package;}
+        {package = config.programs.wezterm.package;}
         {package = telegram-desktop;}
         {package = osConfig.programs._1password-gui.package;}
         {package = notify-client;}

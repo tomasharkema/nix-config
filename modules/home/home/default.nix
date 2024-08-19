@@ -54,7 +54,7 @@ in
         packages = with pkgs; [
           picotool
           newman
-          postman
+          # postman
           atac
           httpie-desktop
           nix-htop
@@ -100,7 +100,7 @@ in
       fonts.fontconfig.enable = true;
 
       programs = {
-        freetube.enable = true;
+        # freetube.enable = true;
 
         home-manager.enable = true;
 
