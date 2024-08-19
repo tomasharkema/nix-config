@@ -80,6 +80,7 @@
         # nixos-service.overlays.default
         agenix-rekey.overlays.default
         nixvim.overlays.default
+        chaotic.overlays.default
         # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
       ];
