@@ -30,6 +30,8 @@ in {
       # };
     };
 
+    apps.firefox.enable = true;
+
     services = {
       xserver = {
         enable = true;
@@ -52,7 +54,7 @@ in {
     };
 
     environment = {
-      systemPackages = with pkgs; [icewm unstable.firefox];
+      systemPackages = with pkgs; [icewm];
       etc = {
         # "icevm-theme" = {
         #   enable = true;

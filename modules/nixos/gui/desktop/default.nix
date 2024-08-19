@@ -187,14 +187,6 @@ in {
       ssh = {
         # startAgent = true;
       };
-
-      firefox = {
-        enable = true;
-        package = pkgs.unstable.firefox;
-
-        # nativeMessagingHosts.packages = with pkgs; [gnome-browser-connector];
-        # nativeMessagingHosts.gsconnect = true;
-      };
       mtr.enable = true;
       dconf.enable = true;
     };

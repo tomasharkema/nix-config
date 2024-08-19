@@ -57,6 +57,15 @@ in {
       enable = true;
     };
 
+    autostart.programs = with pkgs; [
+      telegram-desktop
+      unstable.trayscale
+      custom.zerotier-ui
+      custom.usbguard-gnome
+      notify-client
+      gnome.geary
+    ];
+
     xdg = {
       userDirs = {
         enable = true;
