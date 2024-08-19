@@ -14,6 +14,8 @@
     nvidiaSupport = true;
   };
 
+  cachix = prev.cachix.overrideAttrs {meta.mainProgram = "cachix";};
+
   # buildbot = channels.unstable.buildbot;
   # python3 = prev.python312;:q
   # python3Packages = prev.python312Packages;

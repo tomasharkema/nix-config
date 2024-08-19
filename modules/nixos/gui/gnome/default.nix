@@ -263,17 +263,17 @@ in
           gnome.gnome-clocks
           gnome.gnome-control-center
 
-          gnome-nettool
-          gnome-online-miners
+          gnome.gnome-nettool
+          gnome.gnome-online-miners
           # gnome-packagekit
-          gnome-power-manager
-          gnome-session
-          gnome-session-ctl
-          gnome-settings-daemon
-          gnome-shell-extensions
-          gnome-themes-extra
-          gnome-tweaks
-          gnome-user-share
+          gnome.gnome-power-manager
+          gnome.gnome-session
+          gnome.gnome-session-ctl
+          gnome.gnome-settings-daemon
+          gnome.gnome-shell-extensions
+          gnome.gnome-themes-extra
+          gnome.gnome-tweaks
+          gnome.gnome-user-share
           libgnome-keyring
           # seahorse
           zenity
