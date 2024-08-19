@@ -20,7 +20,7 @@ in {
         path = ["/run/wrappers/bin"];
         serviceConfig = {
           path = ["/run/wrappers/bin"];
-          ExecStartPre = ["-${pkgs.keybase}/bin/keybase keybase config set mountdir \"${config.service.kbfs.mountPoint}\""];
+          ExecStartPre = ["-${pkgs.keybase}/bin/keybase keybase config set mountdir \"${config.services.kbfs.mountPoint}\""];
         };
 
         #     wants = ["keybase.service" "keybase-redirector.service"];
