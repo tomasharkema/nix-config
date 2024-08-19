@@ -58,6 +58,7 @@ with lib; {
           # font-name = "Inter Display 11";
           enable-hot-corners = false;
           # icon-theme = "Adwaita";
+          text-scaling-factor = 1.2;
         };
 
         "org/gnome/shell/extensions/user-theme" = {

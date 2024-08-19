@@ -38,21 +38,21 @@
         nvidia.acceptLicense = true;
         cudaSupport = true;
         # allowAliases = false;
-        config.allowAliases = false;
+        # config.allowAliases = false;
 
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
         # buildPlatform.system = "x86_64-linux";
         # permittedInsecurePackages = [ "openssl-1.1.1w" ];
-        permittedInsecurePackages = [
-          "python3.11-youtube-dl-2021.12.17"
-        ];
+        # permittedInsecurePackages = [
+        #   "python3.11-youtube-dl-2021.12.17"
+        # ];
         config = {
           # For example, enable smartcard support in Firefox.
           firefox.smartcardSupport = true;
-          permittedInsecurePackages = [
-            "python3.11-youtube-dl-2021.12.17"
-          ];
+          # permittedInsecurePackages = [
+          #   "python3.11-youtube-dl-2021.12.17"
+          # ];
         };
       };
 
@@ -176,7 +176,6 @@
               nix = {
                 registry.nixpkgs.flake = inputs.nixpkgs;
                 registry.home-manager.flake = inputs.home-manager;
-                registry.unstable.flake = inputs.unstable;
                 registry.darwin.flake = inputs.darwin;
               };
             };
@@ -444,12 +443,10 @@
   };
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.05";
-    unstable.url = "nixpkgs/nixos-unstable";
-    # nixpkgs-unstable.url = "nixpkgs/nixpks-unstable";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -524,7 +521,7 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-24.05";
+      url = "github:nix-community/nixvim";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -772,12 +769,6 @@
       # url = "/home/tomas/Developer/nixos-nvidia-vgpu";
     };
 
-    nixos-nvidia-vgpu-newer = {
-      # url = "github:Yeshey/nixos-nvidia-vgpu/550.90";
-      url = "github:tomasharkema/nixos-nvidia-vgpu/550.90.05";
-      # url = "/home/tomas/Developer/nixos-nvidia-vgpu";
-    };
-
     nix-htop = {
       url = "https://flakehub.com/f/tomasharkema/nix-htop/0.0.*.tar.gz";
 
@@ -807,6 +798,11 @@
       };
     };
 
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
   };
 }

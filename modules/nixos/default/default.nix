@@ -16,11 +16,11 @@ with lib.custom;
   {
     imports = ["${inputs.nixos-hardware}/common/gpu/24.05-compat.nix"];
     config = {
-      assertions = [
-        (assertPackage pkgs "_389-ds-base")
-        (assertPackage pkgs "freeipa")
-        (assertPackage pkgs "sssd")
-      ];
+      # assertions = [
+      #   (assertPackage pkgs "_389-ds-base")
+      #   (assertPackage pkgs "freeipa")
+      #   (assertPackage pkgs "sssd")
+      # ];
 
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";
@@ -200,7 +200,7 @@ with lib.custom;
             ttop
             tydra
             udiskie
-            unstable.netscanner
+            netscanner
             usbutils
             usermount
             viddy
@@ -472,49 +472,49 @@ with lib.custom;
 
         flashrom.enable = true;
 
-        rust-motd = {
-          enable = true;
-          settings = {
-            global = {
-              progress_full_character = "=";
-              progress_empty_character = "=";
-              progress_prefix = "[";
-              progress_suffix = "]";
-              time_format = "%Y-%m-%d %H:%M:%S";
-            };
-            banner = {
-              color = "red";
-              command = "hostname | ${pkgs.figlet}/bin/figlet -f slant";
-            };
-            uptime = {
-              prefix = "Up";
-            };
-            # weather = {
-            #   url = "https://wttr.in/Amsterdam";
-            # };
-            service_status = {
-              Accounts = "accounts-daemon";
-              Attic-watch-store = "attic-watch-store";
-            };
-            filesystems = {
-              root = "/";
-            };
-            memory = {
-              swap_pos = "beside"; # or "below" or "none"
-            };
-            last_login = {
-              tomas = 2;
-            };
-            last_run = {};
-          };
-        };
+        # rust-motd = {
+        #   enable = true;
+        #   settings = {
+        #     global = {
+        #       progress_full_character = "=";
+        #       progress_empty_character = "=";
+        #       progress_prefix = "[";
+        #       progress_suffix = "]";
+        #       time_format = "%Y-%m-%d %H:%M:%S";
+        #     };
+        #     banner = {
+        #       color = "red";
+        #       command = "hostname | ${pkgs.figlet}/bin/figlet -f slant";
+        #     };
+        #     uptime = {
+        #       prefix = "Up";
+        #     };
+        #     # weather = {
+        #     #   url = "https://wttr.in/Amsterdam";
+        #     # };
+        #     service_status = {
+        #       Accounts = "accounts-daemon";
+        #       Attic-watch-store = "attic-watch-store";
+        #     };
+        #     filesystems = {
+        #       root = "/";
+        #     };
+        #     memory = {
+        #       swap_pos = "beside"; # or "below" or "none"
+        #     };
+        #     last_login = {
+        #       tomas = 2;
+        #     };
+        #     last_run = {};
+        #   };
+        # };
         # git = {
         #   enable = true;
         #   lfs.enable = true;
         # };
         htop = {
           enable = true;
-          package = pkgs.unstable.htop;
+          package = pkgs.htop;
           settings = {
             show_program_path = false;
             hide_kernel_threads = true;

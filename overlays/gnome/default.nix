@@ -12,8 +12,8 @@
   #     };
   #   });
   # });
-  # dconf = channels.unstable.dconf;
-  # flatpak = channels.unstable.flatpak;
+  # dconf = prev.dconf;
+  # flatpak = prev.flatpak;
 
   # GNOME 46: triple-buffering-v4-46
 
@@ -29,8 +29,8 @@
     });
   });
 
-  mpv = channels.unstable.mpv.override {
-    # scripts = with channels.unstable.mpvScripts; [
+  mpv = prev.mpv.override {
+    # scripts = with prev.mpvScripts; [
     #   mpris
     #   youtube-upnext
     #   simple-mpv-webui
@@ -40,9 +40,9 @@
     # ];
     youtubeSupport = true;
   };
-  mpvScripts = channels.unstable.mpvScripts;
+  mpvScripts = prev.mpvScripts;
 
-  mpv-unwrapped = channels.unstable.mpv-unwrapped.override {ffmpeg = channels.unstable.ffmpeg-full;};
+  # mpv-unwrapped = prev.mpv-unwrapped.override {ffmpeg = prev.ffmpeg-full;};
 
   spotifyd = prev.spotifyd.override {withMpris = true;};
 

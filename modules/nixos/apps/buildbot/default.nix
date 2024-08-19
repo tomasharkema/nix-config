@@ -54,7 +54,7 @@ in {
           domain = "buildbot.harkema.io";
           admins = ["tomasharkema"];
           outputsPath = "/var/www/buildbot/nix-outputs";
-          buildbotNixpkgs = pkgs.unstable;
+          buildbotNixpkgs = pkgs;
 
           workersFile = config.age.secrets.buildbot-workers-json.path;
 

@@ -64,17 +64,17 @@ in {
   config = let
     favoriteApplications = with pkgs;
       [
-        {package = gnome.nautilus;}
+        {package = nautilus;}
         {package = osConfig.programs.firefox.package;}
-        {package = unstable.geary;}
-        {package = unstable.vscode;}
-        {package = unstable.tilix;}
+        {package = geary;}
+        {package = vscode;}
+        {package = tilix;}
         # {package = config.programs.wezterm.package;}
-        {package = unstable.telegram-desktop;}
+        {package = telegram-desktop;}
         {package = osConfig.programs._1password-gui.package;}
-        {package = unstable.notify-client;}
+        {package = notify-client;}
       ]
-      ++ (optional pkgs.stdenv.isx86_64 {package = unstable.termius;})
+      ++ (optional pkgs.stdenv.isx86_64 {package = termius;})
       ++ [
         {id = "org.cockpit_project.CockpitClient.desktop";}
       ];
@@ -133,7 +133,7 @@ in {
               };
           })
           config.autostart.programs);
-        packages = packagesToAdd ++ (with pkgs; [gnome.vinagre gnome.devhelp]);
+        packages = packagesToAdd ++ (with pkgs; [gnome.vinagre devhelp]);
         # favoriteAppIds = favoriteAppIds;
       };
 

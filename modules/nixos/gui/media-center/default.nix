@@ -43,10 +43,10 @@ in {
 
     programs.dconf.enable = true;
 
-    sound = {
-      enable = false;
-      mediaKeys.enable = true;
-    };
+    # sound = {
+    #   enable = false;
+    #   mediaKeys.enable = true;
+    # };
 
     security.rtkit.enable = true;
 

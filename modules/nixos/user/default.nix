@@ -101,7 +101,20 @@ with lib.custom; {
     #   builders-use-substitutes = true
     # '';
 
+    programs.ccache = {
+      enable = true;
+      packageNames = [
+        "linuxPackages_cachyos.kernel"
+        "linuxPackages_xanmod_stable.kernel"
+        "linuxPackages_latest.kernel"
+        "ffmpeg"
+        "ffmpeg-full"
+      ];
+    };
+
     nix.settings = {
+      extra-sandbox-paths = [config.programs.ccache.cacheDir];
+
       use-cgroups = true;
       extra-experimental-features = "nix-command flakes cgroups";
 

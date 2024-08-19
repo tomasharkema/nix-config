@@ -12,7 +12,7 @@ in {
   config = mkIf cfg.enable {
     programs.firefox = {
       enable = true;
-      package = pkgs.unstable.firefox;
+      package = pkgs.firefox;
 
       nativeMessagingHosts = {
         fxCast = true;

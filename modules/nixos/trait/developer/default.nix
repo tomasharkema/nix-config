@@ -21,7 +21,7 @@ in {
         # agenix
         deadnix
         deploy-rs
-        unstable.devenv
+        devenv
 
         flake-checker
         hydra-check

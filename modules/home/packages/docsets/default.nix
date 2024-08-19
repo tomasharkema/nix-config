@@ -23,7 +23,7 @@ with lib; let
 in {
   config = mkIf pkgs.stdenv.isLinux {
     home = {
-      packages = with pkgs; [unstable.zeal];
+      packages = with pkgs; [zeal];
       file = {
         # "${docsRoot}/nixos-${pkgs.docset.version}.docset".source = "${pkgs.docset}/share/nixos-${pkgs.docset.version}.docset";
         # TODO: generate with doc2dash

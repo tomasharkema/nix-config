@@ -14,13 +14,13 @@
   nixos-anywhere = nixos-anywhere.packages."${prev.system}".nixos-anywhere;
   # nixos-conf-editor = nixos-conf-editor.packages."${prev.system}".nixos-conf-editor;
   nix-software-center = nix-software-center.packages."${prev.system}".nix-software-center;
-  # nixUnstable = channels.unstable.nixVersions.latest;
-  # nix = channels.unstable.nixVersions.latest;
+  # nixUnstable = prev.nixVersions.latest;
+  # nix = prev.nixVersions.latest;
   # manix = manix.packages."${prev.system}".manix;
 
   # zjstatus = zjstatus.packages."${prev.system}".default;
 
-  nerdfonts = channels.unstable.nerdfonts;
+  nerdfonts = prev.nerdfonts;
   # .nerdfonts.override {
   #   fonts = [
   #     "JetBrainsMono"

@@ -20,7 +20,7 @@ in {
     security.pam.services.passwd.enableGnomeKeyring = true;
 
     services = {
-      dbus.packages = [pkgs.unstable.usbguard-notifier];
+      dbus.packages = [pkgs.usbguard-notifier];
       libinput.enable = true;
 
       xserver = {
@@ -79,8 +79,8 @@ in {
 
     chaotic = {
       mesa-git.enable = true;
-      hdr.enable = true;
-      scx.enable = true;
+      # hdr.enable = true;
+      # scx.enable = true;
     };
 
     hardware.graphics = {
@@ -119,7 +119,7 @@ in {
 
     environment.systemPackages =
       (with pkgs; [nix-software-center])
-      ++ (with pkgs.unstable;
+      ++ (with pkgs;
         [
           usbguard-notifier
           usbview
@@ -164,7 +164,7 @@ in {
           xdiskusage
           xdotool
           yelp
-          zed-editor
+          # zed-editor
         ]
         ++ optionals pkgs.stdenv.isx86_64 [
           # pkgs.custom.git-butler
@@ -190,9 +190,9 @@ in {
       mtr.enable = true;
       dconf.enable = true;
     };
-    systemd.packages = [pkgs.unstable.usbguard-notifier];
+    systemd.packages = [pkgs.usbguard-notifier];
     # Enable sound with pipewire.
-    sound.enable = mkDefault true;
+    # sound.enable = mkDefault true;
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
   };

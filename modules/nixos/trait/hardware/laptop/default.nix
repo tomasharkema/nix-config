@@ -75,8 +75,9 @@ in {
       services = {
         "beesd@root" = {
           unitConfig = {
-            # ConditionACPower = true;
+            ConditionACPower = true;
           };
+
           wantedBy = ["acpower.target"];
           partOf = ["acpower.target"];
         };
@@ -108,6 +109,9 @@ in {
             DefaultDependencies = "no";
             StopWhenUnneeded = "yes";
           };
+          # preStart = ''
+          #   ${pkgs.coreutils}/bin/sleep 5
+          # '';
         };
         acpower = {
           enable = true;
@@ -115,6 +119,9 @@ in {
             DefaultDependencies = "no";
             StopWhenUnneeded = "yes";
           };
+          # preStart = ''
+          #   ${pkgs.coreutils}/bin/sleep 5
+          # '';
         };
       };
     };

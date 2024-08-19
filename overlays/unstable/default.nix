@@ -6,11 +6,7 @@
   inputs,
   ...
 }: final: prev: rec {
-  unstable = channels.unstable;
-
-  pnpm = channels.unstable.pnpm;
-
-  nixd = channels.unstable.nixd;
+  # unstable = channels.unstable;
 
   conky = inputs.conky.packages."${prev.system}".default.overrideAttrs {
     x11Support = true;

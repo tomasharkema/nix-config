@@ -10,7 +10,7 @@ with lib; {
     programs.atuin = {
       enable = true;
       enableZshIntegration = true;
-      package = pkgs.unstable.atuin;
+      package = pkgs.atuin;
       settings = {
         key_path = osConfig.age.secrets.atuin.path;
         sync_address = "https://atuin.harke.ma";

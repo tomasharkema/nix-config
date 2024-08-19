@@ -58,15 +58,15 @@ in {
     };
 
     autostart.programs = [
-      {package = pkgs.unstable.telegram-desktop;}
-      # {package = pkgs.unstable.trayscale;}
-      # {package = pkgs.unstable.zerotier-ui;}
+      {package = pkgs.telegram-desktop;}
+      # {package = pkgs.trayscale;}
+      # {package = pkgs.zerotier-ui;}
       #   {
       #     desktopName = "org.gnome.usbguard.desktop";
       #     path = "${pkgs.custom.usbguard-gnome}/share/applications/org.gnome.usbguard.desktop";
       #   }
-      # {package = pkgs.unstable.notify-client;}
-      # {package = pkgs.unstable.geary;}
+      # {package = pkgs.notify-client;}
+      # {package = pkgs.geary;}
     ];
 
     xdg = {
@@ -86,7 +86,7 @@ in {
     };
 
     home = {
-      packages = with pkgs.unstable;
+      packages = with pkgs;
       with pkgs.custom; [
         trayscale
         zerotier-ui

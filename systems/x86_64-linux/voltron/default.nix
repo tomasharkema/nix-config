@@ -94,7 +94,7 @@ with lib; {
           libvdpau-va-gl
           vaapiVdpau
           intel-media-driver
-          unstable.vpl-gpu-rt
+          vpl-gpu-rt
         ];
       };
     };
@@ -185,12 +185,12 @@ with lib; {
     };
 
     boot = {
-      # kernelPackages = pkgs.linuxPackages_6_1;
+      kernelPackages = pkgs.linuxPackages_xanmod_stable;
 
       resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
       tmp = {
-        useTmpfs = true;
+        useTmpfs = false;
       };
 
       recovery = {

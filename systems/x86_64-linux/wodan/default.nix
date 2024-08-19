@@ -11,7 +11,7 @@ with lib; {
     nixos-hardware.nixosModules.common-gpu-intel
     nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
 
-    nixos-nvidia-vgpu-newer.nixosModules.nvidia-vgpu
+    # nixos-nvidia-vgpu-newer.nixosModules.nvidia-vgpu
   ];
 
   config = {

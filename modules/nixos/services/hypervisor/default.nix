@@ -119,9 +119,9 @@ in {
 
     boot.extraModprobeConfig = "options kvm_intel nested=1";
 
-    programs.ccache = {
-      enable = true;
-    };
+    # programs.ccache = {
+    #   enable = true;
+    # };
 
     virtualisation = {
       kvmgt.enable = true;

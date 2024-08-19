@@ -22,7 +22,7 @@ in
     };
 
     config = mkIf cfg.enable {
-      sound.mediaKeys.enable = true;
+      # sound.mediaKeys.enable = true;
       trait.developer.enable = mkDefault true;
 
       # environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -150,7 +150,7 @@ in
 
             extraGSettingsOverridePackages = with pkgs; [
               gnome.mutter
-              gnome.gpaste
+              gpaste
               pkgs.custom.usbguard-gnome
               # gnome-menus
             ];
@@ -168,7 +168,7 @@ in
               clutter
               clutter-gtk
               gjs
-              gnome.gpaste
+              gpaste
               gnome-menus
               # pkgs.custom.openglide
               # ddcutil
@@ -254,29 +254,29 @@ in
           clutter
           clutter-gtk
           gjs
-          gnome.adwaita-icon-theme
+          adwaita-icon-theme
           gnome-firmware
           gnome-menus
-          gnome.dconf-editor
+          dconf-editor
           gnome.gnome-applets
-          gnome.gnome-autoar
+          gnome-autoar
           gnome.gnome-clocks
           gnome.gnome-control-center
 
-          gnome.gnome-nettool
-          gnome.gnome-online-miners
-          # gnome.gnome-packagekit
-          gnome.gnome-power-manager
-          gnome.gnome-session
-          gnome.gnome-session-ctl
-          gnome.gnome-settings-daemon
-          gnome.gnome-shell-extensions
-          gnome.gnome-themes-extra
-          gnome.gnome-tweaks
-          gnome.gnome-user-share
-          gnome.libgnome-keyring
-          # gnome.seahorse
-          gnome.zenity
+          gnome-nettool
+          gnome-online-miners
+          # gnome-packagekit
+          gnome-power-manager
+          gnome-session
+          gnome-session-ctl
+          gnome-settings-daemon
+          gnome-shell-extensions
+          gnome-themes-extra
+          gnome-tweaks
+          gnome-user-share
+          libgnome-keyring
+          # seahorse
+          zenity
         ]);
 
       # services.synergy.client = {

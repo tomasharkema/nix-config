@@ -91,7 +91,7 @@ in {
       nvidia = mkDefault {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
-        open = false;
+        # open = mkForce false;
         nvidiaSettings = false;
 
         # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {

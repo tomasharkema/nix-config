@@ -57,17 +57,7 @@ with lib.custom; {
           clean.enable = true;
           clean.extraArgs = "--keep-since 4d --keep 3";
           flake = "/home/tomas/Developer/nix-config";
-          package = pkgs.unstable.nh;
-        };
-
-        ccache = {
-          enable = true;
-          packageNames = [
-            "linuxPackages_xanmod_stable"
-            "linuxPackages_latest"
-            # "ffmpeg"
-            #   "ffmpeg-full"
-          ];
+          package = pkgs.nh;
         };
 
         # bash.undistractMe.enable = true;

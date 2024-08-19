@@ -122,7 +122,7 @@ in
 
         htop = {
           enable = true;
-          package = pkgs.unstable.htop;
+          package = pkgs.htop;
           settings = {
             show_program_path = false;
             hide_kernel_threads = true;
