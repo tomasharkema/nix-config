@@ -405,22 +405,22 @@ in {
         # "nvidia_drm"
       ];
       # extraModulePackages = [pkgs.freeipmi];
-      # systemd.services."serial-getty@ttyS2" = {
-      #   overrideStrategy = "asDropin";
-      #   serviceConfig = let
-      #     tmux = pkgs.writeShellScript "tmux.sh" ''
-      #       ${pkgs.tmux}/bin/tmux kill-session -t start 2> /dev/null
-      #       ${pkgs.tmux}/bin/tmux new-session -s start
-      #     '';
-      #   in {
-      #     TTYVTDisallocate = "no";
-      #     #ExecStart = ["" "-${tmux}"];
-      #     #StandardInput = "tty";
-      #     #StandardOutput = "tty";
-      #   };
-      #   wantedBy = ["multi-user.target"];
-      #   #environment.TERM = "vt102";
-      # };
+      systemd.services."serial-getty@ttyS2" = {
+        #   overrideStrategy = "asDropin";
+        #   serviceConfig = let
+        #     tmux = pkgs.writeShellScript "tmux.sh" ''
+        #       ${pkgs.tmux}/bin/tmux kill-session -t start 2> /dev/null
+        #       ${pkgs.tmux}/bin/tmux new-session -s start
+        #     '';
+        #   in {
+        #     TTYVTDisallocate = "no";
+        #     #ExecStart = ["" "-${tmux}"];
+        #     #StandardInput = "tty";
+        #     #StandardOutput = "tty";
+        #   };
+        wantedBy = ["multi-user.target"];
+        #   #environment.TERM = "vt102";
+      };
     };
 
     # virtualisation = {
