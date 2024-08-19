@@ -10,12 +10,13 @@ with lib; let
 in {
   config = {
     security.wrappers.keybase-redirector = {
-      owner = "tomas";
+      owner = "root";
       group = "kbfs";
+      setuid = true;
     };
     systemd.user.services.kbfs.serviceConfig = {
-      path = mkForce [];
-      Environment = ["PATH=/run/wrappers/bin/:$PATH"];
+      path = ["/run/wrappers/bin"];
+      Environment = ["PATH=/run/wrappers/bin:$PATH"];
       EnvironmentFile = [
         "-%t/keybase/keybase.kbfs.env"
 
@@ -26,6 +27,8 @@ in {
       ExecStartPre = mkForce [
         "-${wrapperDir}/fusermount -uz \"${config.services.kbfs.mountPoint}\""
       ];
+      DeviceAllow = ["/dev/fuse"];
+      CapabilityBoundingSet = ["CAP_SYS_ADMIN"];
       #   ExecStartPre = ["/bin/sh -c 'which fusermount'"];
     };
     # systemd.user.services.kbfs.path = mkForce [];
