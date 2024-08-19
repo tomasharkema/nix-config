@@ -272,8 +272,8 @@ in
           gnome.gnome-settings-daemon
           gnome.gnome-shell-extensions
           gnome-themes-extra
-          gnome.gnome-tweaks
-          gnome.gnome-user-share
+          gnome-tweaks
+          gnome-user-share
           libgnome-keyring
           # seahorse
           zenity
