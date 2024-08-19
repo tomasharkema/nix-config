@@ -83,9 +83,14 @@ in {
     };
 
     programs = {
-      evolution.enable = false;
-      geary.enable = true;
+      evolution.enable = true;
+      # geary = {
+      #   enable = true;
+      # };
     };
+
+    services.gnome.gnome-keyring.enable = true;
+    services.gnome.gnome-online-accounts.enable = true;
 
     networking.firewall = {
       allowedTCPPorts = [
@@ -173,7 +178,6 @@ in {
           libsmbios
           plex-media-player
           plexamp
-          telegram-desktop
           xpipe
           pkgs.custom.ztui
         ]

@@ -72,16 +72,14 @@ in {
       };
     };
 
-    autostart.programs = with pkgs; [
-      telegram-desktop
-      unstable.trayscale
-      custom.zerotier-ui
-      custom.usbguard-gnome
-      notify-client
-      gnome.geary
-    ];
-
     home = {
+      packages = with pkgs.unstable;
+      with pkgs.custom; [
+        trayscale
+        zerotier-ui
+        usbguard-gnome
+      ];
+
       activation = {
         # userSymlinks-fonts = mkIf (stdenv.isLinux && osConfig.gui.enable) ''
         #   ln -sfn /run/current-system/sw/share/X11/fonts ~/.local/share/fonts

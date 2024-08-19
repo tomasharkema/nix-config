@@ -21,6 +21,6 @@ in
         plugins = with pkgs; [gh cachix openai hcloud awscli2];
       };
 
-      autostart.programs = with pkgs; mkIf pkgs.stdenv.isLinux [osConfig.programs._1password-gui.package];
+      home.packages = mkIf pkgs.stdenv.isLinux [osConfig.programs._1password-gui.package];
     };
   }
