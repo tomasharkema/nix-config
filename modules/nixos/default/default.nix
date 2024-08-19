@@ -225,7 +225,7 @@ with lib.custom;
             cmospwd
             uefisettings
             libsmbios
-            uefi-firmware-parser
+
             dmidecode
             refind
           ]));
