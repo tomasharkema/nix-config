@@ -271,7 +271,7 @@ in
           gnome.gnome-session-ctl
           gnome.gnome-settings-daemon
           gnome.gnome-shell-extensions
-          gnome.gnome-themes-extra
+          gnome-themes-extra
           gnome.gnome-tweaks
           gnome.gnome-user-share
           libgnome-keyring
