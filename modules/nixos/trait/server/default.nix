@@ -26,7 +26,7 @@ in {
 
     boot = {
       tmp = {
-        useTmpfs = false;
+        useTmpfs = true;
       };
     };
   };
