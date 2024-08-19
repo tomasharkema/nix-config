@@ -11,25 +11,26 @@ in {
   config = {
     security.wrappers.keybase-redirector = {
       owner = "root";
-      group = "kbfs";
+      group = "root";
       setuid = true;
     };
     systemd.user.services.kbfs.serviceConfig = {
-      path = ["/run/wrappers/bin"];
-      Environment = ["PATH=/run/wrappers/bin:$PATH"];
+      RuntimeDirectory = "%t/keybase";
+      #   path = ["/run/wrappers/bin"];
+      #   Environment = ["PATH=/run/wrappers/bin:$PATH"];
       EnvironmentFile = [
         "-%t/keybase/keybase.kbfs.env"
 
         "-%h/.config/keybase/keybase.autogen.env"
         "-%h/.config/keybase/keybase.env"
       ];
-      ExecStart = mkForce "${pkgs.kbfs}/bin/kbfsfuse -debug";
+      ExecStart = mkForce "${pkgs.kbfs}/bin/kbfsfuse";
       ExecStartPre = mkForce [
-        "-${wrapperDir}/fusermount -uz \"${config.services.kbfs.mountPoint}\""
+        # "-${wrapperDir}/fusermount -uz \"${config.services.kbfs.mountPoint}\""
       ];
-      DeviceAllow = ["/dev/fuse"];
-      CapabilityBoundingSet = ["CAP_SYS_ADMIN"];
-      #   ExecStartPre = ["/bin/sh -c 'which fusermount'"];
+      #   DeviceAllow = ["/dev/fuse"];
+      #   CapabilityBoundingSet = ["CAP_SYS_ADMIN"];
+      #   #   ExecStartPre = ["/bin/sh -c 'which fusermount'"];
     };
     # systemd.user.services.kbfs.path = mkForce [];
     # systemd.user.services.kbfs = let
@@ -66,10 +67,9 @@ in {
         mountPoint = "%t/keybase/kbfs";
       };
     };
-    environment.systemPackages = with pkgs;
-      (
-        optional (config.gui.enable && pkgs.system == "x86_64-linux") keybase-gui
-      )
-      ++ [keybase kbfs];
+    environment.systemPackages = with pkgs; (
+      optional (config.gui.enable && pkgs.system == "x86_64-linux") keybase-gui
+    );
+    # ++ [keybase kbfs];
   };
 }
