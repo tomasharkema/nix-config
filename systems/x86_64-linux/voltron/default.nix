@@ -185,8 +185,6 @@ with lib; {
     };
 
     boot = {
-      kernelPackages = pkgs.linuxPackages_xanmod_stable;
-
       resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
       tmp = {

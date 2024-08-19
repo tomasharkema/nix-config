@@ -79,6 +79,7 @@ with lib.custom;
 
         # kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
         kernelPackages = let
+          super = pkgs;
           linuxPackages_latest_kernel_cached = builtins.trace "KERNEL CCACHE LATEST" super.linuxPackages_latest.kernel.overrideAttrs {
             stdenv = builtins.trace "KERNEL CCACHE LATEST STDENV" self.ccacheStdenv;
           };
