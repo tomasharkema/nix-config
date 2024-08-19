@@ -77,9 +77,16 @@ in {
     #   ];
     # };
 
-    hardware.opengl = {
+    chaotic = {
+      mesa-git.enable = true;
+      hdr.enable = true;
+      scx.enable = true;
+    };
+
+    hardware.graphics = {
       enable = true;
-      extraPackages = [pkgs.mesa.drivers];
+
+      enable32Bit = true;
     };
 
     programs = {
@@ -116,7 +123,6 @@ in {
         [
           usbguard-notifier
           usbview
-          apache-directory-studio
           sqlitebrowser
           # notify-client
           # unstable.vscodium
@@ -126,7 +132,6 @@ in {
           font-manager
           fractal
           gamehub
-          github-desktop
           gotop
           gparted
           grsync
@@ -145,7 +150,6 @@ in {
           rtfm
           spot
           sublime-merge
-          systemdgenie
           transmission-remote-gtk
           trayscale
           tremotesf
@@ -169,12 +173,8 @@ in {
           angryipscanner
           bottles
           devdocs-desktop
-          discord
           dmidecode
-          gitkraken
-          handbrake
           ipmiview
-          jetbrains-toolbox
           libsmbios
           plex-media-player
           plexamp

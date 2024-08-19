@@ -105,11 +105,15 @@ with lib; {
     zramSwap = {enable = true;};
 
     hardware = {
-      opengl = {
+      graphics = {
         enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
-        # extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau];
+        enable32Bit = true;
+        extraPackages = with pkgs; [
+          vaapiIntel
+          libvdpau-va-gl
+          vaapiVdpau
+          custom.vpl-gpu-rt
+        ];
       };
     };
   };

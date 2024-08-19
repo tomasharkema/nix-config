@@ -15,6 +15,8 @@ in {
       package = pkgs.unstable.firefox;
 
       nativeMessagingHosts = {
+        fxCast = true;
+        ff2mpv = true;
         gsconnect = true;
         packages = with pkgs; [gnome-browser-connector];
       };

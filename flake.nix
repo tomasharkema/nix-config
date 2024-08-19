@@ -32,7 +32,7 @@
         allowUnfreePredicate = _: true;
         allowUnfree = true;
 
-        firefox.enableGnomeExtensions = true;
+        # firefox.enableGnomeExtensions = true;
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;
         nvidia.acceptLicense = true;
@@ -109,6 +109,7 @@
 
       systems.modules = {
         nixos = with inputs; [
+          chaotic.nixosModules.default
           # nix-topology.nixosModules.default
           # netkit.nixosModule
           # nixos-checkmk.nixosModules.check_mk_agent
@@ -802,5 +803,7 @@
         #   treefmt-nix.follows = "treefmt-nix";
       };
     };
+
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
   };
 }

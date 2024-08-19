@@ -117,10 +117,11 @@ in {
     };
 
     hardware = {
-      opengl = {
+      graphics = {
         enable = true;
         extraPackages = with pkgs; [libva vaapiVdpau libvdpau-va-gl];
-        driSupport = true;
+
+        enable32Bit = true;
       };
     };
 

@@ -88,14 +88,15 @@ with lib; {
         # };
       };
       # fancontrol.enable = true;
-      # opengl = {
-      #   extraPackages = with pkgs; [
-      #     vaapiIntel
-      #     libvdpau-va-gl
-      #     vaapiVdpau
-      #     intel-media-driver
-      #   ];
-      # };
+      graphics = {
+        extraPackages = with pkgs; [
+          vaapiIntel
+          libvdpau-va-gl
+          vaapiVdpau
+          intel-media-driver
+          unstable.vpl-gpu-rt
+        ];
+      };
     };
 
     apps = {

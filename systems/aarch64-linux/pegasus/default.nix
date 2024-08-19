@@ -119,10 +119,9 @@ with lib; {
 
       bluetooth.package = pkgs.bluez;
 
-      opengl = {
+      graphics = {
         enable = true;
         extraPackages = with pkgs; [vaapiVdpau libvdpau-va-gl];
-        driSupport = true;
       };
 
       raspberry-pi."4" = {

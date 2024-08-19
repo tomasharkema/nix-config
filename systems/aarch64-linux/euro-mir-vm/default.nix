@@ -91,10 +91,8 @@ with lib; {
     };
     resilio.enable = false;
 
-    hardware.opengl = {
+    hardware.graphics = {
       enable = true;
-      driSupport = true;
-      #   # driSupport32Bit = true;
     };
 
     zramSwap.enable = false;

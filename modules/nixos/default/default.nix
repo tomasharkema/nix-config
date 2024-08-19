@@ -14,6 +14,7 @@ with lib.custom;
 #     });
 # in
   {
+    imports = ["${inputs.nixos-hardware}/common/gpu/24.05-compat.nix"];
     config = {
       assertions = [
         (assertPackage pkgs "_389-ds-base")
@@ -80,7 +81,7 @@ with lib.custom;
         kernelPackages =
           if (pkgs.stdenv.isAarch64 || config.trait.hardware.vm.enable)
           then mkDefault pkgs.linuxPackages_latest
-          else mkDefault pkgs.linuxPackages_xanmod_stable;
+          else mkDefault pkgs.linuxPackages_cachyos;
 
         kernelModules = ["wireguard"];
 
@@ -122,6 +123,7 @@ with lib.custom;
             # ntfy
             # rtop
             # udisks2
+            git
             aide
             archivemount
             bandwhich
@@ -134,7 +136,6 @@ with lib.custom;
             clex
             compsize
             ctop
-            curl
             curl
             devdash
             devtodo

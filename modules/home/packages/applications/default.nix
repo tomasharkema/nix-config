@@ -42,7 +42,22 @@ with lib.custom; let
 in {
   options = {
     autostart = {
-      programs = mkOpt (types.listOf types.package) [] "Autostart programs";
+      programs = mkOpt (types.listOf (types.submodule {
+        options = {
+          package = mkOption {
+            type = types.nullOr types.package;
+            default = null;
+          };
+          path = mkOption {
+            type = types.nullOr types.path;
+            default = null;
+          };
+          desktopName = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+          };
+        };
+      })) [] "Autostart programs";
     };
     # home.favoriteAppIds = mkOption {};
   };
@@ -89,20 +104,32 @@ in {
     mkIf pkgs.stdenv.isLinux {
       home = {
         file = builtins.listToAttrs (map
-          (pkg: {
-            name = ".config/autostart/${pkg.pname}.desktop";
+          (pkg: let
+            pkgName =
+              if (pkg ? package && (pkg.package != null))
+              then "${pkg.package.pname}.desktop"
+              else pkg.desktopName;
+          in {
+            name = ".config/autostart/${pkgName}";
             value =
-              if pkg ? desktopItem
-              then {
-                # Application has a desktopItem entry.
-                # Assume that it was made with makeDesktopEntry, which exposes a
-                # text attribute with the contents of the .desktop file
-                text = pkg.desktopItem.text;
-              }
+              if (pkg ? package && (pkg.package != null))
+              then let
+                package = pkg.package;
+              in
+                if package ? desktopItem
+                then {
+                  # Application has a desktopItem entry.
+                  # Assume that it was made with makeDesktopEntry, which exposes a
+                  # text attribute with the contents of the .desktop file
+                  text = package.desktopItem.text;
+                }
+                else {
+                  # Application does *not* have a desktopItem entry. Try to find a
+                  # matching .desktop name in /share/apaplications
+                  source = config.lib.file.mkOutOfStoreSymlink (findDesktopFile package);
+                }
               else {
-                # Application does *not* have a desktopItem entry. Try to find a
-                # matching .desktop name in /share/apaplications
-                source = config.lib.file.mkOutOfStoreSymlink (findDesktopFile pkg);
+                source = "${pkg.path}";
               };
           })
           config.autostart.programs);
