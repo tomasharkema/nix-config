@@ -49,6 +49,7 @@ in {
       "file:///mnt/steam"
       "file:///mnt/resilio-sync"
       "file:///mnt/servers"
+      "file:///run/user/1000/kbfs"
     ];
 
     services.gnome-keyring = {

@@ -19,7 +19,7 @@ in {
       kbfs = {
         path = ["/run/wrappers"];
         serviceConfig = {
-          ExecStartPre = ["-${pkgs.keybase}/bin/keybase keybase config set mountdir \"${config.services.kbfs.mountPoint}\""];
+          # ExecStartPre = ["-${pkgs.keybase}/bin/keybase keybase config set mountdir \"${config.services.kbfs.mountPoint}\""];
 
           #     wants = ["keybase.service" "keybase-redirector.service"];
           #     serviceConfig = {
@@ -32,9 +32,9 @@ in {
             "-%h/.config/keybase/keybase.env"
           ];
           ExecStart = mkForce "${pkgs.kbfs}/bin/kbfsfuse -label Keybase /run/user/1000/kbfs";
-          #       ExecStartPre = mkForce [
-          #         # "-${wrapperDir}/fusermount -uz \"${config.services.kbfs.mountPoint}\""
-          #       ];
+          ExecStartPre = mkForce [
+            # "-${wrapperDir}/fusermount -uz \"${config.services.kbfs.mountPoint}\""
+          ];
           PrivateTmp = mkForce false;
           #       #   DeviceAllow = ["/dev/fuse"];
           #       #   CapabilityBoundingSet = ["CAP_SYS_ADMIN"];
@@ -48,15 +48,15 @@ in {
         #     unitConfig.ConditionUser = "!@system";
 
         serviceConfig = {
-          #       EnvironmentFile = [
-          #         "-%E/keybase/keybase.autogen.env"
-          #         "-%E/keybase/keybase.env"
-          #       ];
+          EnvironmentFile = [
+            "-%E/keybase/keybase.autogen.env"
+            "-%E/keybase/keybase.env"
+          ];
           #       # Note: The /keybase mount point is not currently configurable upstream.
           #       ExecStart = "${wrapperDir}/keybase-redirector /keybase";
           #       Restart = "on-failure";
           #       # PrivateTmp = true;
-          PrivateTmp = false;
+          PrivateTmp = mkForce false;
         };
 
         #     wantedBy = ["default.target"];
