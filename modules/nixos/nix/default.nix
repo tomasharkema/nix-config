@@ -77,8 +77,6 @@ with lib.custom; {
 
         channel.enable = true;
 
-        sandboxPaths = [config.programs.ccache.cacheDir];
-
         extraOptions = ''
           min-free = ${toString (100 * 1024 * 1024)}
           max-free = ${toString (1024 * 1024 * 1024)}
@@ -88,6 +86,8 @@ with lib.custom; {
 
         settings = {
           extra-platforms = ["aarch64-linux" "i686-linux"];
+
+          extra-sandbox-paths = [config.programs.ccache.cacheDir];
 
           use-cgroups = true;
           extra-experimental-features = "nix-command flakes cgroups";

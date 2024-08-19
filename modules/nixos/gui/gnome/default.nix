@@ -240,44 +240,39 @@ in
       #   };
       # };
 
-      environment.systemPackages =
-        (with pkgs; [
-          themix-gui
-          wike
-          gtop
-          libgtop
-          gnome-extension-manager
-          gnome-menus
-        ])
-        ++ (with pkgs; [
-          gnome-photos
-          clutter
-          clutter-gtk
-          gjs
-          adwaita-icon-theme
-          gnome-firmware
-          gnome-menus
-          dconf-editor
-          gnome.gnome-applets
-          gnome-autoar
-          gnome.gnome-clocks
-          gnome.gnome-control-center
-
-          gnome.gnome-nettool
-          gnome.gnome-online-miners
-          # gnome-packagekit
-          gnome.gnome-power-manager
-          gnome.gnome-session
-          gnome.gnome-session-ctl
-          gnome.gnome-settings-daemon
-          gnome.gnome-shell-extensions
-          gnome-themes-extra
-          gnome-tweaks
-          gnome-user-share
-          libgnome-keyring
-          # seahorse
-          zenity
-        ]);
+      environment.systemPackages = with pkgs; [
+        # gnome-packagekit
+        # seahorse
+        adwaita-icon-theme
+        clutter
+        clutter-gtk
+        dconf-editor
+        gjs
+        gnome-autoar
+        gnome-extension-manager
+        gnome-firmware
+        gnome-menus
+        gnome-photos
+        gnome-themes-extra
+        gnome-tweaks
+        gnome-user-share
+        gnome.gnome-applets
+        gnome.gnome-clocks
+        gnome.gnome-control-center
+        gnome.gnome-nettool
+        gnome.gnome-online-miners
+        gnome.gnome-power-manager
+        gnome.gnome-session
+        gnome.gnome-session-ctl
+        gnome.gnome-settings-daemon
+        gnome.gnome-shell-extensions
+        gtop
+        libgnome-keyring
+        libgtop
+        themix-gui
+        wike
+        zenity
+      ];
 
       # services.synergy.client = {
       #   enable = true;
