@@ -105,7 +105,26 @@ with lib.custom;
           };
         };
       };
+      programs.ccache = {
+        enable = true;
+        packageNames = [
+          # "sssd"
+          "zerotierone"
+          "ffmpeg"
+          "ffmpeg-full"
+          "linux"
+          "linuxPackages_cachyos"
+          "linuxPackages_latest"
+          "linuxPackages_xanmod_stable"
+          "linux_cachyos-rs"
+          "linux_cachyos"
+          "linux_xanmod_stable"
+        ];
+      };
 
+      nix.settings = {
+        extra-sandbox-paths = [config.programs.ccache.cacheDir];
+      };
       # environment.etc = {
       #   "current-system-packages".source = pkgs.custom.pkgs-index.override {
       #     packages = config.environment.systemPackages;
