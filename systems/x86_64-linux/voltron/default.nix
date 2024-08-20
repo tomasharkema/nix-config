@@ -135,7 +135,7 @@ with lib; {
     apps.podman.enable = true;
 
     services = {
-      journald.storag = "volatile";
+      journald.storage = "volatile";
 
       hypervisor = {
         enable = true;
