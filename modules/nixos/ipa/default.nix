@@ -120,11 +120,11 @@ in {
         domain = "harkema.io";
         realm = "HARKEMA.IO";
         basedn = "dc=harkema,dc=io";
-        # certificate = pkgs.fetchurl {
-        #   url = "https://ipa.harkema.io/ipa/config/ca.crt";
-        #   sha256 = "sha256-s93HRgX4AwCnsY9sWX6SAYrUg9BrSEg8Us5QruOunf0=";
-        # };
-        certificate = "${./ca.crt}";
+        certificate = pkgs.fetchurl {
+          url = "https://ipa.harkema.io/ipa/config/ca.crt";
+          sha256 = ""; # "sha256-s93HRgX4AwCnsY9sWX6SAYrUg9BrSEg8Us5QruOunf0=";
+        };
+        # certificate = "${./ca.crt}";
         dyndns.enable = false;
         ifpAllowedUids = [
           "root"
