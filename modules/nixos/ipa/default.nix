@@ -122,7 +122,7 @@ in {
         basedn = "dc=harkema,dc=io";
         certificate = pkgs.fetchurl {
           url = "https://ipa.harkema.io/ipa/config/ca.crt";
-          sha256 = ""; # "sha256-s93HRgX4AwCnsY9sWX6SAYrUg9BrSEg8Us5QruOunf0=";
+          sha256 = "sha256-aLyxdCLwDg7mPjM9hzwuT4IHy+3QW6QXsQiHDZbVFnU=";
         };
         # certificate = "${./ca.crt}";
         dyndns.enable = false;
