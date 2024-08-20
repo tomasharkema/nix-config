@@ -80,7 +80,6 @@ in {
     chaotic = {
       mesa-git.enable = true;
       # hdr.enable = true;
-      # scx.enable = true;
     };
 
     hardware.graphics = {

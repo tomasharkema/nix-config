@@ -15,10 +15,17 @@ in {
 
   config = mkIf cfg.enable {
     system.nixos.tags = ["server"];
+
     services = {
       hypervisor = {
         enable = true;
         webservices.enable = true;
+      };
+    };
+
+    hardware = {
+      nvidia = {
+        nvidiaPersistenced = true;
       };
     };
 

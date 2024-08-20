@@ -49,6 +49,8 @@ with lib; {
     services = {
       # netbox-service.enable = true;
 
+      journald.remote.enable = true;
+
       kmscon = {enable = false;};
 
       healthchecks = {

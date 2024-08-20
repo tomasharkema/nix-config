@@ -81,7 +81,12 @@ with lib.custom;
         in
           if (pkgs.stdenv.isAarch64 || config.trait.hardware.vm.enable)
           then (pkgs.linuxPackagesFor pkgs.linux_latest)
-          else pkgs.linuxPackages_cachyos; # (pkgs.linuxPackagesFor pkgs.linux_cachyos);
+          else
+            (
+              if config.trait.server.enable
+              then pkgs.linuxPackages_cachyos-server
+              else pkgs.linuxPackages_cachyos
+            ); # (pkgs.linuxPackagesFor pkgs.linux_cachyos);
 
         kernelModules = ["wireguard"];
 
@@ -94,6 +99,11 @@ with lib.custom;
           };
         };
       };
+
+      chaotic = {
+        scx.enable = true;
+      };
+
       programs.ccache = {
         enable = true;
         packageNames = [

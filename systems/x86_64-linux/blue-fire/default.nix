@@ -69,6 +69,8 @@ in {
         httpd = true;
       };
       "bmc-watchdog".enable = true;
+      podman.enable = true;
+      buildbot.worker.enable = true;
     };
 
     gui = {
@@ -77,6 +79,10 @@ in {
     };
 
     services = {
+      journald = {
+        gateway.enable = true;
+      };
+
       hound = {
         enable = true;
         config = builtins.toJSON {
@@ -142,11 +148,6 @@ in {
       #     '';
       #   };
       # };
-    };
-
-    apps = {
-      podman.enable = true;
-      buildbot.worker.enable = true;
     };
 
     systemd = {
@@ -284,7 +285,6 @@ in {
       enableRedistributableFirmware = true;
 
       nvidia = {
-        nvidiaPersistenced = false;
         # modesetting.enable = true;
         # forceFullCompositionPipeline = true;
         open = false;

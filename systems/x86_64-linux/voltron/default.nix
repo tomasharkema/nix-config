@@ -135,6 +135,8 @@ with lib; {
     apps.podman.enable = true;
 
     services = {
+      journald.storag = "volatile";
+
       hypervisor = {
         enable = true;
         #   bridgeInterfaces = ["wlp59s0"];
