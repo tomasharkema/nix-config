@@ -172,35 +172,35 @@ with lib; {
     #   version = "v17.1";
     # };
 
-    system.build.isgx = config.boot.kernelPackages.isgx.overrideAttrs (prev: {
-      patches =
-        (prev.patches or [])
-        ++ [
-          ./157.patch
-        ];
-    });
+    # system.build.isgx = config.boot.kernelPackages.isgx.overrideAttrs (prev: {
+    #   patches =
+    #     (prev.patches or [])
+    #     ++ [
+    #       ./157.patch
+    #     ];
+    # });
 
     users = {
       users.tomas.extraGroups = ["sgx_prv"];
     };
 
     boot = {
-      resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
+      # resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
       tmp = {
         useTmpfs = false;
       };
 
-      recovery = {
-        enable = true;
-        install = true;
-        sign = true;
-        netboot.enable = true;
-      };
+      # recovery = {
+      #   enable = true;
+      #   install = true;
+      #   sign = true;
+      #   netboot.enable = true;
+      # };
 
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      # binfmt.emulatedSystems = ["aarch64-linux"];
 
-      modprobeConfig.enable = true;
+      # modprobeConfig.enable = true;
 
       # extraModprobeConfig = [];
       kernelParams = [
@@ -208,9 +208,9 @@ with lib; {
         # "mitigations=off"
       ];
 
-      extraModulePackages = [
-        config.system.build.isgx
-      ];
+      # extraModulePackages = [
+      #   config.system.build.isgx
+      # ];
 
       kernelModules = [
         "i915"

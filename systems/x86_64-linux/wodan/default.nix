@@ -94,7 +94,10 @@ with lib; {
     };
 
     apps = {
-      steam.enable = true;
+      steam = {
+        enable = true;
+        sunshine = true;
+      };
       flatpak.enable = true;
     };
 
