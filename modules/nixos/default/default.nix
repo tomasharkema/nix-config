@@ -79,20 +79,26 @@ with lib.custom;
 
         # kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
         kernelPackages = let
-          super = pkgs;
-          linuxPackages_latest_kernel_cached = builtins.trace "KERNEL CCACHE LATEST" super.linuxPackages_latest.kernel.overrideAttrs {
-            stdenv = builtins.trace "KERNEL CCACHE LATEST STDENV" self.ccacheStdenv;
-          };
-          linuxPackages_cachyos_kernel_cached = builtins.trace "KERNEL CCACHE CACHOS" super.linuxPackages_cachyos.kernel.overrideAttrs {
-            stdenv = builtins.trace "KERNEL CCACHE CACHOS STDENV" self.ccacheStdenv;
-          };
-          linuxPackages_xanmod_stable_kernel_cached = builtins.trace "KERNEL CCACHE XANMOD" super.linuxPackages_xanmod_stable.kernel.overrideAttrs {
-            stdenv = builtins.trace "KERNEL CCACHE XANMOD STDENV" self.ccacheStdenv;
-          };
+          # super = pkgs;
+          # linuxPackages_latest_kernel_cached = builtins.trace "KERNEL CCACHE LATEST" super.linuxPackages_latest.kernel.overrideAttrs {
+          #   stdenv = builtins.trace "KERNEL CCACHE LATEST STDENV" self.ccacheStdenv;
+          # };
+          # linuxPackages_cachyos_kernel_cached = builtins.trace "KERNEL CCACHE CACHOS" super.linuxPackages_cachyos.kernel.overrideAttrs {
+          #   stdenv = builtins.trace "KERNEL CCACHE CACHOS STDENV" self.ccacheStdenv;
+          # };
+          # linuxPackages_xanmod_stable_kernel_cached = builtins.trace "KERNEL CCACHE XANMOD" super.linuxPackages_xanmod_stable.kernel.overrideAttrs {
+          #   stdenv = builtins.trace "KERNEL CCACHE XANMOD STDENV" self.ccacheStdenv;
+          # };
         in
           if (pkgs.stdenv.isAarch64 || config.trait.hardware.vm.enable)
-          then mkDefault (pkgs.linuxPackagesFor linuxPackages_latest_kernel_cached) # pkgs.linuxPackages_latest
-          else mkDefault (pkgs.linuxPackagesFor linuxPackages_cachyos_kernel_cached); # pkgs.linuxPackages_cachyos;
+          then
+            mkDefault
+            #(pkgs.linuxPackagesFor linuxPackages_latest_kernel_cached)
+            pkgs.linuxPackages_latest
+          else
+            mkDefault
+            #(pkgs.linuxPackagesFor linuxPackages_cachyos_kernel_cached);
+            pkgs.linuxPackages_cachyos;
 
         kernelModules = ["wireguard"];
 
@@ -109,7 +115,7 @@ with lib.custom;
         enable = true;
         packageNames = [
           # "sssd"
-          "zerotierone"
+          # "zerotierone"
           "ffmpeg"
           "ffmpeg-full"
           "linux"

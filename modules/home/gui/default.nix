@@ -89,7 +89,7 @@ in {
       packages = with pkgs;
       with pkgs.custom; [
         trayscale
-        zerotier-ui
+        # zerotier-ui
         usbguard-gnome
       ];
 

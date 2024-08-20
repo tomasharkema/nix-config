@@ -77,7 +77,7 @@ in {
             ntp
             rsyslog
             tor
-            zerotierone
+            # zerotierone
             libcxx
             glibc
             ntfy-sh
