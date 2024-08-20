@@ -16,7 +16,7 @@ in {
       podman-tui
       dive
       docker-compose
-      pods
+      # pods
     ];
 
     networking = {
