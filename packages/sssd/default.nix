@@ -4,6 +4,7 @@
   fetchFromGitHub,
   autoreconfHook,
   makeWrapper,
+  python3Packages,
   glibc,
   adcli,
   augeas,
@@ -123,6 +124,7 @@ in
     #   libtool:   error: error: relink '_py3sss.la' with the above command before installing i
     enableParallelInstalling = false;
     nativeBuildInputs = [autoreconfHook makeWrapper pkg-config doxygen];
+    propagatedBuildInputs = with python3Packages; [distutils-extra distlib];
     buildInputs = [
       augeas
       dnsutils
