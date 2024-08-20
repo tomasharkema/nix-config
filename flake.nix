@@ -1,6 +1,22 @@
 {
   outputs = inputs: let
-    lib = inputs.snowfall-lib.mkLib {
+    # lib = inputs.snowfall-lib.mkLib {
+    #   inherit inputs;
+    #   imports = [
+    #     inputs.agenix-rekey.flakeModule
+    #   ];
+    #   src = ./.;
+    #   snowfall = {
+    #     meta = {
+    #       name = "dotfiles";
+    #       title = "dotfiles";
+    #     };
+    #     namespace = "custom";
+    #   };
+    # };
+  in
+    # lib
+    inputs.snowfall-lib.mkFlake {
       inherit inputs;
 
       imports = [
@@ -8,25 +24,6 @@
       ];
 
       src = ./.;
-
-      snowfall = {
-        meta = {
-          name = "dotfiles";
-          title = "dotfiles";
-        };
-
-        namespace = "custom";
-      };
-    };
-  in
-    lib.mkFlake {
-      inherit inputs;
-
-      imports = [
-        inputs.agenix-rekey.flakeModule
-      ];
-
-      # src = ./.;
 
       channels-config = {
         allowUnfreePredicate = _: true;
@@ -37,8 +34,8 @@
         # allowBroken = true;
         nvidia.acceptLicense = true;
         cudaSupport = true;
-        # allowAliases = false;
-        # config.allowAliases = false;
+        allowAliases = true;
+        config.allowAliases = true;
 
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
@@ -137,7 +134,11 @@
           # nixos-service.nixosModules.nixos-service
           # nix-virt.nixosModules.default
 
-          ({config, ...}: {
+          ({
+            config,
+            lib,
+            ...
+          }: {
             config = {
               age = {
                 rekey = {
@@ -253,12 +254,15 @@
 
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};
 
-      agenix-rekey = inputs.agenix-rekey.configure {
-        userFlake = inputs.self;
-        nodes = lib.attrsets.filterAttrs (n: v: (!(lib.strings.hasPrefix "installer" n))) (inputs.self.nixosConfigurations // inputs.self.darwinConfigurations);
-        # Example for colmena:
-        # inherit ((colmena.lib.makeHive self.colmena).introspect (x: x)) nodes;
-      };
+      agenix-rekey = let
+        lib = inputs.self.lib;
+      in
+        inputs.agenix-rekey.configure {
+          userFlake = inputs.self;
+          nodes = lib.attrsets.filterAttrs (n: v: (!(lib.strings.hasPrefix "installer" n))) (inputs.self.nixosConfigurations // inputs.self.darwinConfigurations);
+          # Example for colmena:
+          # inherit ((colmena.lib.makeHive self.colmena).introspect (x: x)) nodes;
+        };
 
       machines = with inputs; let
         names = builtins.attrNames self.nixosConfigurations;
@@ -333,15 +337,15 @@
       in {
         formatter = channels.nixpkgs.alejandra;
 
-        checks = let
-          nixosMachines = lib.mapAttrs' (
-            name: config: lib.nameValuePair "nixos-${name}" config.config.system.build.toplevel
-          ) ((lib.filterAttrs (_: config: config.pkgs.system == system)) inputs.self.nixosConfigurations);
-          packages = lib.mapAttrs' (n: lib.nameValuePair "package-${n}") (
-            inputs.self.packages."${system}"
-          );
-        in
-          nixosMachines // packages;
+        # checks = let
+        #   nixosMachines = lib.mapAttrs' (
+        #     name: config: lib.nameValuePair "nixos-${name}" config.config.system.build.toplevel
+        #   ) ((lib.filterAttrs (_: config: config.pkgs.system == system)) inputs.self.nixosConfigurations);
+        #   packages = lib.mapAttrs' (n: lib.nameValuePair "package-${n}") (
+        #     inputs.self.packages."${system}"
+        #   );
+        # in
+        #   nixosMachines // packages;
 
         # topology = import inputs.nix-topology {
         #   inherit pkgs;
@@ -385,24 +389,42 @@
     };
 
   nixConfig = {
-    use-cgroups = true;
-    extra-experimental-features = "nix-command flakes cgroups";
+    # use-cgroups = true;
+    extra-experimental-features = "nix-command flakes"; # cgroups";
 
-    distributedBuilds = true;
-    builders-use-substitutes = true;
+    # distributedBuilds = true;
+    # builders-use-substitutes = true;
+
     trusted-users = [
       "root"
       "tomas"
     ];
 
-    allow-unsafe-native-code-during-evaluation = true;
+    # allow-unsafe-native-code-during-evaluation = true;
 
     # netrc-file = "/etc/nix/netrc";
 
-    # trustedBinaryCaches = ["https://cache.nixos.org"];
-    # binaryCaches = ["https://cache.nixos.org"];
+    trustedBinaryCaches = [
+      "https://cache.nixos.org"
+      "https://nyx.chaotic.cx/"
+      "https://nix-gaming.cachix.org"
+      "https://nix-community.cachix.org"
+      "https://nix-cache.harke.ma/tomas/"
+      "https://devenv.cachix.org"
+      "https://cuda-maintainers.cachix.org"
+    ];
+    binaryCaches = [
+      "https://cache.nixos.org"
+      "https://nyx.chaotic.cx/"
+      "https://nix-gaming.cachix.org"
+      "https://nix-community.cachix.org"
+      "https://nix-cache.harke.ma/tomas/"
+      "https://devenv.cachix.org"
+      "https://cuda-maintainers.cachix.org"
+    ];
 
     extra-substituters = [
+      "https://cache.nixos.org"
       "https://nyx.chaotic.cx/"
       "https://nix-gaming.cachix.org"
       "https://nix-community.cachix.org"
@@ -420,22 +442,22 @@
       "tomas:hER/5A08v05jH8GnQUZRrh33+HDNbeiJj8z/8JY6ZvI="
     ];
 
-    allowed-uris = [
-      "https://"
-      "git+https://"
-      "github:NixOS/"
-      "github:nixos/"
-      "github:hercules-ci/"
-      "github:numtide/"
-      "github:cachix/"
-      "github:nix-community/"
-      "github:snowfallorg/"
-      "github:edolstra/"
-      "github:tomasharkema/"
-      "github:snowfallorg/"
-    ];
+    # allowed-uris = [
+    #   "https://"
+    #   "git+https://"
+    #   "github:NixOS/"
+    #   "github:nixos/"
+    #   "github:hercules-ci/"
+    #   "github:numtide/"
+    #   "github:cachix/"
+    #   "github:nix-community/"
+    #   "github:snowfallorg/"
+    #   "github:edolstra/"
+    #   "github:tomasharkema/"
+    #   "github:snowfallorg/"
+    # ];
 
-    allow-import-from-derivation = true;
+    # allow-import-from-derivation = true;
     keep-outputs = true;
     keep-derivations = true;
     accept-flake-config = true;
