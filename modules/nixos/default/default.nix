@@ -80,8 +80,8 @@ with lib.custom;
         kernelPackages = let
         in
           if (pkgs.stdenv.isAarch64 || config.trait.hardware.vm.enable)
-          then mkDefault (pkgs.linuxPackagesFor pkgs.linux_latest)
-          else mkDefault (pkgs.linuxPackagesFor pkgs.linux_cachyos);
+          then (pkgs.linuxPackagesFor pkgs.linux_latest)
+          else pkgs.linuxPackages_cachyos; # (pkgs.linuxPackagesFor pkgs.linux_cachyos);
 
         kernelModules = ["wireguard"];
 
