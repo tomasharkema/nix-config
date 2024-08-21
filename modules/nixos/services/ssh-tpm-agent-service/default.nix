@@ -126,6 +126,8 @@ in {
             Requires = "ssh-tpm-agent.socket";
           };
           serviceConfig = {
+            Restart = "on-failure";
+            RestartSec = 5;
             Environment = "SSH_AUTH_SOCK=%t/ssh-tpm-agent.sock";
 
             ExecStart = let
