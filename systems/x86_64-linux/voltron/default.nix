@@ -71,6 +71,10 @@ with lib; {
     };
 
     hardware = {
+      # bumblebee = {
+      #   enable = true;
+      #   connectDisplay = true;
+      # };
       nvidia = {
         forceFullCompositionPipeline = true;
 
@@ -81,10 +85,11 @@ with lib; {
           intelBusId = "PCI:0:2:0";
           nvidiaBusId = "PCI:02:0:0";
         };
-        # powerManagement = {
-        #   enable = true;
-        #   finegrained = true;
-        # };
+        powerManagement = {
+          # enable = true;
+          # finegrained = true;
+        };
+        # dynamicBoost.enable = true;
       };
       # fancontrol.enable = true;
       graphics = {
@@ -113,7 +118,10 @@ with lib; {
         secure-boot.enable = true;
         laptop.enable = true;
         laptop.thinkpad.enable = true;
-        nvidia.enable = true;
+        nvidia = {
+          enable = true;
+          beta = true;
+        };
         # remote-unlock.enable = true;
         bluetooth.enable = true;
         monitor.enable = true;
@@ -205,7 +213,7 @@ with lib; {
 
       kernelModules = [
         "i915"
-        "isgx"
+        # "isgx"
         # "watchdog"
         #"tpm_rng"
       ];

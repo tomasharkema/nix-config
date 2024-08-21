@@ -17,6 +17,11 @@ with lib.custom; let
 in {
   options.trait.hardware.nvidia = {
     enable = mkEnableOption "nvidia";
+
+    beta = mkOption {
+      default = true;
+      type = types.bool;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -64,10 +69,10 @@ in {
     };
 
     boot = {
-      kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
+      # kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
       kernelParams = [
-        "nvidia-drm.modeset=1"
-        "nvidia-drm.fbdev=1"
+        # "nvidia-drm.modeset=1"
+        # "nvidia-drm.fbdev=1"
         # "apm=power_off"
         # "acpi=force"
       ];
@@ -88,29 +93,16 @@ in {
     # ];
 
     hardware = {
-      nvidia = mkDefault {
+      nvidia = {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
-        # open = mkForce false;
+        open = mkForce false;
         nvidiaSettings = false;
 
-        # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-        #   version = "560.28.03";
-        #   sha256_64bit = "";
-        #   sha256_aarch64 = lib.fakeSha256;
-        #   openSha256 = lib.fakeSha256;
-        #   settingsSha256 = "";
-        #   persistencedSha256 = lib.fakeSha256;
-        # };
-
-        package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-          version = "560.31.02";
-          sha256_64bit = "sha256-0cwgejoFsefl2M6jdWZC+CKc58CqOXDjSi4saVPNKY0=";
-          sha256_aarch64 = "";
-          openSha256 = "sha256-X5UzbIkILvo0QZlsTl9PisosgPj/XRmuuMH+cDohdZQ=";
-          settingsSha256 = "sha256-A3SzGAW4vR2uxT1Cv+Pn+Sbm9lLF5a/DGzlnPhxVvmE=";
-          persistencedSha256 = "sha256-BDtdpH5f9/PutG3Pv9G4ekqHafPm3xgDYdTcQumyMtg=";
-        };
+        package =
+          if cfg.beta
+          then config.boot.kernelPackages.nvidiaPackages.beta
+          else config.boot.kernelPackages.nvidiaPackages.stable;
       };
 
       graphics = {
