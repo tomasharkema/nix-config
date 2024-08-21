@@ -1,5 +1,8 @@
-{ pkgs, lib, ... }:
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   tmux-super-fingers = pkgs.tmuxPlugins.mkTmuxPlugin {
     pluginName = "tmux-super-fingers";
     version = "unstable-2023-01-06";
@@ -33,194 +36,194 @@ let
     };
   };
   monocle = pkgs.fetchurl {
-    url =
-      "https://github.com/imsnif/monocle/releases/latest/download/monocle.wasm";
+    url = "https://github.com/imsnif/monocle/releases/latest/download/monocle.wasm";
     sha256 = "194ylwz31q1nr8zyxp3yq9pjavmbgsxw1ppv8lpbfxhl24wbj51k";
   };
   multitask = pkgs.fetchurl {
-    url =
-      "https://github.com/imsnif/multitask/releases/download/0.38.2v2/multitask.wasm";
+    url = "https://github.com/imsnif/multitask/releases/download/0.38.2v2/multitask.wasm";
     sha256 = "1zms3mgfjdrq97rar5g7b73gfdc8xgx7jpafynqklaczj823sqxs";
   };
-in with lib; {
-  config = mkIf true {
-    home.packages = with pkgs; [ lsof brotab ];
+in
+  with lib; {
+    config = mkIf true {
+      home.packages = with pkgs; [lsof brotab];
 
-    programs.zellij = {
-      enable = true;
-      # enableZshIntegration = true;
-      settings = {
-        theme = "catppuccin-mocha";
-        # keybinds = {
-        #   normal = {
-        #     "bind \"Alt m\"" = {
-        #       LaunchPlugin = {
-        #         _args = [ "file:${monocle}" ];
-        #         in_place = true;
-        #         kiosk = true;
-        #       };
-        #       SwitchToMode = "Normal";
-        #     };
+      programs.zellij = {
+        enable = true;
+        # enableZshIntegration = true;
+        settings = {
+          theme = "catppuccin-mocha";
+          copy_command = "wl-copy";
+          # keybinds = {
+          #   normal = {
+          #     "bind \"Alt m\"" = {
+          #       LaunchPlugin = {
+          #         _args = [ "file:${monocle}" ];
+          #         in_place = true;
+          #         kiosk = true;
+          #       };
+          #       SwitchToMode = "Normal";
+          #     };
 
-        #     "bind \"Alt x\"" = {
-        #       LaunchPlugin = {
-        #         _args = [ "file:${multitask}" ];
-        #         configuration = "shell=$SHELL,cwd=`pwd`";
-        #       };
-        #       SwitchToMode = "Normal";
-        #     };
-        #   };
-        # };
+          #     "bind \"Alt x\"" = {
+          #       LaunchPlugin = {
+          #         _args = [ "file:${multitask}" ];
+          #         configuration = "shell=$SHELL,cwd=`pwd`";
+          #       };
+          #       SwitchToMode = "Normal";
+          #     };
+          #   };
+          # };
+        };
+      };
+
+      # home.file = {
+      #   ".config/zellij/layouts/default.kdl".text = ''
+      #     layout {
+      #       default_tab_template {
+      #         children
+      #         pane size=1 borderless=true {
+      #           plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
+      #             format_left   "{mode} #[fg=#89B4FA,bold]{session}"
+      #             format_center "{tabs}"
+      #             format_right  "{command_git_branch} {datetime}"
+      #             format_space  ""
+
+      #             border_enabled  "false"
+      #             border_char     "─"
+      #             border_format   "#[fg=#6C7086]{cha`r}"
+      #             border_position "top"
+
+      #             hide_frame_for_single_pane "true"
+
+      #             mode_normal  "#[bg=blue] "
+      #             mode_tmux    "#[bg=#ffc387] "
+
+      #             tab_normal   "#[fg=#6C7086] {name} "
+      #             tab_active   "#[fg=#9399B2,bold,italic] {name} "
+
+      #             command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
+      #             command_git_branch_format      "#[fg=blue] {stdout} "
+      #             command_git_branch_interval    "10"
+      #             command_git_branch_rendermode  "static"
+
+      #             datetime        "#[fg=#6C7086,bold] {format} "
+      #             datetime_format "%A, %d %b %Y %H:%M"
+      #             datetime_timezone "Europe/Berlin"
+      #           }
+      #         }
+      #       }
+      #     }
+
+      #   '';
+      # };
+
+      programs.tmux = mkIf false {
+        enable = true;
+        clock24 = true;
+        # shell = "${lib.getExe pkgs.zsh}";
+        # terminal = "tmux-256color";
+        # historyLimit = 200000;
+        mouse = true;
+
+        tmuxinator.enable = true;
+        tmuxp.enable = true;
+
+        plugins = with pkgs; [
+          tmuxPlugins.better-mouse-mode
+          {
+            plugin = tmuxPlugins.catppuccin;
+            extraConfig = ''
+              set -g @catppuccin_flavor 'mocha'
+
+              set -g @catppuccin_window_left_separator ""
+              set -g @catppuccin_window_right_separator " "
+              set -g @catppuccin_window_middle_separator " █"
+              set -g @catppuccin_window_number_position "right"
+
+              set -g @catppuccin_window_default_fill "number"
+              set -g @catppuccin_window_default_text "#W"
+
+              set -g @catppuccin_window_current_fill "number"
+              set -g @catppuccin_window_current_text "#W"
+
+              set -g @catppuccin_status_modules_right "application session user host date_time"
+
+              set -g @catppuccin_status_left_separator  " "
+              set -g @catppuccin_status_right_separator ""
+              set -g @catppuccin_status_right_separator_inverse "no"
+              set -g @catppuccin_status_fill "icon"
+              set -g @catppuccin_status_connect_separator "no"
+
+              set -g @catppuccin_directory_text "#{pane_current_path}"
+              set -g @catppuccin_window_tabs_enabled on
+              set -g @catppuccin_date_time "%H:%M"
+            '';
+          }
+
+          # tmux-nvim
+
+          tmuxPlugins.tmux-thumbs
+          {
+            plugin = t-smart-manager;
+            extraConfig = ''
+              set -g @t-fzf-prompt '  '
+              set -g @t-bind "T"
+            '';
+          }
+          {
+            plugin = tmux-super-fingers;
+            extraConfig = "set -g @super-fingers-key f";
+          }
+          tmuxPlugins.sensible
+          {
+            plugin = tmuxPlugins.resurrect;
+            extraConfig = ''
+              set -g @resurrect-strategy-vim 'session'
+              set -g @resurrect-strategy-nvim 'session'
+              set -g @resurrect-capture-pane-contents 'on'
+            '';
+          }
+          {
+            plugin = tmuxPlugins.continuum;
+            extraConfig = ''
+              set -g @continuum-restore 'on'
+              set -g @continuum-boot 'on'
+              set -g @continuum-save-interval '10'
+            '';
+          }
+          tmuxPlugins.yank
+          # tmuxPlugins.battery
+          # {
+          #   plugin = tmuxPlugins.battery;
+          #   extraConfig = ''
+          #     set -g @catppuccin_status_modules_right "battery"
+          #   '';
+          #   # extraConfig = ''
+          #   # set -g @catppuccin_status_modules_right '#{battery_status_bg} Batt: #{battery_icon} #{battery_percentage} #{battery_remain} | %a %h-%d %H:%M'
+          #   # '';
+          # }
+          tmuxPlugins.sidebar
+          tmuxPlugins.fpp
+          # {
+          #   plugin =
+          #     tmuxPlugins.fpp;
+          #   extraConfig = ''
+          #     set -g @plugin 'tmux-plugins/tmux-fpp'
+          #   '';
+          # }
+          # tmuxPlugins.sysstat
+          # {
+          #   plugin = tmuxPlugins.sysstat;
+          #   # extraConfig = ''
+          #   # set -g @catppuccin_status_modules_right '#{sysstat_cpu} | #{sysstat_mem} | #{sysstat_swap} | #{sysstat_loadavg}'
+          #   # '';
+          # }
+        ];
+        # extraConfig = ''
+        #   set -g status-right-length 80
+        #   set -g status-right '#(exec tmux ls| cut -d " " -f 1-3 |tr "\\n" "," )'
+        # '';
       };
     };
-
-    # home.file = {
-    #   ".config/zellij/layouts/default.kdl".text = ''
-    #     layout {
-    #       default_tab_template {
-    #         children
-    #         pane size=1 borderless=true {
-    #           plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
-    #             format_left   "{mode} #[fg=#89B4FA,bold]{session}"
-    #             format_center "{tabs}"
-    #             format_right  "{command_git_branch} {datetime}"
-    #             format_space  ""
-
-    #             border_enabled  "false"
-    #             border_char     "─"
-    #             border_format   "#[fg=#6C7086]{cha`r}"
-    #             border_position "top"
-
-    #             hide_frame_for_single_pane "true"
-
-    #             mode_normal  "#[bg=blue] "
-    #             mode_tmux    "#[bg=#ffc387] "
-
-    #             tab_normal   "#[fg=#6C7086] {name} "
-    #             tab_active   "#[fg=#9399B2,bold,italic] {name} "
-
-    #             command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
-    #             command_git_branch_format      "#[fg=blue] {stdout} "
-    #             command_git_branch_interval    "10"
-    #             command_git_branch_rendermode  "static"
-
-    #             datetime        "#[fg=#6C7086,bold] {format} "
-    #             datetime_format "%A, %d %b %Y %H:%M"
-    #             datetime_timezone "Europe/Berlin"
-    #           }
-    #         }
-    #       }
-    #     }
-
-    #   '';
-    # };
-
-    programs.tmux = mkIf false {
-      enable = true;
-      clock24 = true;
-      # shell = "${lib.getExe pkgs.zsh}";
-      # terminal = "tmux-256color";
-      # historyLimit = 200000;
-      mouse = true;
-
-      tmuxinator.enable = true;
-      tmuxp.enable = true;
-
-      plugins = with pkgs; [
-        tmuxPlugins.better-mouse-mode
-        {
-          plugin = tmuxPlugins.catppuccin;
-          extraConfig = ''
-            set -g @catppuccin_flavor 'mocha'
-
-            set -g @catppuccin_window_left_separator ""
-            set -g @catppuccin_window_right_separator " "
-            set -g @catppuccin_window_middle_separator " █"
-            set -g @catppuccin_window_number_position "right"
-
-            set -g @catppuccin_window_default_fill "number"
-            set -g @catppuccin_window_default_text "#W"
-
-            set -g @catppuccin_window_current_fill "number"
-            set -g @catppuccin_window_current_text "#W"
-
-            set -g @catppuccin_status_modules_right "application session user host date_time"
-
-            set -g @catppuccin_status_left_separator  " "
-            set -g @catppuccin_status_right_separator ""
-            set -g @catppuccin_status_right_separator_inverse "no"
-            set -g @catppuccin_status_fill "icon"
-            set -g @catppuccin_status_connect_separator "no"
-
-            set -g @catppuccin_directory_text "#{pane_current_path}"
-            set -g @catppuccin_window_tabs_enabled on
-            set -g @catppuccin_date_time "%H:%M"
-          '';
-        }
-
-        # tmux-nvim
-
-        tmuxPlugins.tmux-thumbs
-        {
-          plugin = t-smart-manager;
-          extraConfig = ''
-            set -g @t-fzf-prompt '  '
-            set -g @t-bind "T"
-          '';
-        }
-        {
-          plugin = tmux-super-fingers;
-          extraConfig = "set -g @super-fingers-key f";
-        }
-        tmuxPlugins.sensible
-        {
-          plugin = tmuxPlugins.resurrect;
-          extraConfig = ''
-            set -g @resurrect-strategy-vim 'session'
-            set -g @resurrect-strategy-nvim 'session'
-            set -g @resurrect-capture-pane-contents 'on'
-          '';
-        }
-        {
-          plugin = tmuxPlugins.continuum;
-          extraConfig = ''
-            set -g @continuum-restore 'on'
-            set -g @continuum-boot 'on'
-            set -g @continuum-save-interval '10'
-          '';
-        }
-        tmuxPlugins.yank
-        # tmuxPlugins.battery
-        # {
-        #   plugin = tmuxPlugins.battery;
-        #   extraConfig = ''
-        #     set -g @catppuccin_status_modules_right "battery"
-        #   '';
-        #   # extraConfig = ''
-        #   # set -g @catppuccin_status_modules_right '#{battery_status_bg} Batt: #{battery_icon} #{battery_percentage} #{battery_remain} | %a %h-%d %H:%M'
-        #   # '';
-        # }
-        tmuxPlugins.sidebar
-        tmuxPlugins.fpp
-        # {
-        #   plugin =
-        #     tmuxPlugins.fpp;
-        #   extraConfig = ''
-        #     set -g @plugin 'tmux-plugins/tmux-fpp'
-        #   '';
-        # }
-        # tmuxPlugins.sysstat
-        # {
-        #   plugin = tmuxPlugins.sysstat;
-        #   # extraConfig = ''
-        #   # set -g @catppuccin_status_modules_right '#{sysstat_cpu} | #{sysstat_mem} | #{sysstat_swap} | #{sysstat_loadavg}'
-        #   # '';
-        # }
-      ];
-      # extraConfig = ''
-      #   set -g status-right-length 80
-      #   set -g status-right '#(exec tmux ls| cut -d " " -f 1-3 |tr "\\n" "," )'
-      # '';
-    };
-  };
-}
+  }

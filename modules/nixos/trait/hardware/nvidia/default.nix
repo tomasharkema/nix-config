@@ -72,7 +72,7 @@ in {
         # "acpi=force"
       ];
       initrd = {
-        kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
+        #kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
         # kernelParams = [
         #   "nvidia-drm.modeset=1"
         #   "nvidia-drm.fbdev=1"
@@ -109,7 +109,7 @@ in {
           sha256_aarch64 = "";
           openSha256 = "sha256-X5UzbIkILvo0QZlsTl9PisosgPj/XRmuuMH+cDohdZQ=";
           settingsSha256 = "sha256-A3SzGAW4vR2uxT1Cv+Pn+Sbm9lLF5a/DGzlnPhxVvmE=";
-          persistencedSha256 = "";
+          persistencedSha256 = "sha256-BDtdpH5f9/PutG3Pv9G4ekqHafPm3xgDYdTcQumyMtg=";
         };
       };
 
