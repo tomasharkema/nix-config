@@ -24,7 +24,7 @@ in {
         #   pkgs.custom.plymouth-progress
         # ];
 
-        font = "${pkgs.inter}/share/fonts/truetype/Inter.ttc";
+        # font = "${pkgs.inter}/share/fonts/truetype/Inter.ttc";
       };
       loader.timeout = mkDefault 0;
       kernelParams = [
