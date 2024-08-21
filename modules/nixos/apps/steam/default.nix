@@ -67,6 +67,7 @@ in {
       adwsteamgtk
       steam-tui
       # mangohud
+      extest
     ];
 
     services.udev.extraRules = mkIf cfg.sunshine ''
@@ -82,8 +83,9 @@ in {
 
     systemd.user.services.sunshine = mkIf cfg.sunshine {
       description = "sunshine";
-      wantedBy = ["graphical-session.target" "default.target"];
-      environment.WAYLAND_DISPLAY = "wayland-0";
+      wantedBy = ["graphical-session.target"];
+      # environment.WAYLAND_DISPLAY = "wayland-0";
+      path = [pkgs.extest];
       serviceConfig = {
         ExecStart = "${config.security.wrapperDir}/sunshine";
       };

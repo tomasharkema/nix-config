@@ -68,10 +68,10 @@ in {
         # reflector = true;
       };
 
-      # zerotierone = {
-      #   enable = true;
-      #   joinNetworks = ["af78bf9436bca877"];
-      # };
+      zerotierone = {
+        enable = true;
+        joinNetworks = ["af78bf9436bca877"];
+      };
     };
 
     systemd.services.tailscalesd = {
