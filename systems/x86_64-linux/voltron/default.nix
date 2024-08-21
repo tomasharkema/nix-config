@@ -37,7 +37,7 @@ with lib; {
 
       udev = {
         enable = true;
-        packages = with pkgs; [heimdall-gui libusb sgx-psw];
+        packages = with pkgs; [heimdall-gui libusb];
       };
 
       # fprintd.tod.driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
@@ -48,7 +48,6 @@ with lib; {
     environment.systemPackages = with pkgs; [
       nvramtool
       libusb
-      sgx-psw
 
       gnupg
       custom.distrib-dl
@@ -102,7 +101,7 @@ with lib; {
     apps = {
       # android.enable = true;
       steam.enable = true;
-      opensnitch.enable = true;
+      # opensnitch.enable = true;
       # usbip.enable = true;
       # samsung.enable = true;
     };
@@ -128,7 +127,7 @@ with lib; {
       firewall = {
         enable = true;
 
-        trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
+        # trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
       };
     };
 
@@ -168,12 +167,6 @@ with lib; {
       # };
     };
 
-    # hardware.nvidia.vgpu = {
-    #   enable = true;
-    #   unlock.enable = true;
-    #   version = "v17.1";
-    # };
-
     # system.build.isgx = config.boot.kernelPackages.isgx.overrideAttrs (prev: {
     #   patches =
     #     (prev.patches or [])
@@ -181,10 +174,6 @@ with lib; {
     #       ./157.patch
     #     ];
     # });
-
-    users = {
-      users.tomas.extraGroups = ["sgx_prv"];
-    };
 
     boot = {
       # resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";

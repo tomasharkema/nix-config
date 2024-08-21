@@ -63,7 +63,7 @@ with lib.custom;
           # includeDefaultModules = true;
         };
 
-        crashDump.enable = true;
+        # crashDump.enable = true;
 
         hardwareScan = true;
 
