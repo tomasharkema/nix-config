@@ -115,7 +115,6 @@ with lib; {
       enableRedistributableFirmware = true;
 
       nvidia = {
-        nvidiaPersistenced = false;
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
         open = false;
