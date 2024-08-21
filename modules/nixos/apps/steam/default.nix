@@ -71,6 +71,7 @@ in {
 
     services.udev.extraRules = mkIf cfg.sunshine ''
       KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
+      KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
     '';
     security.wrappers.sunshine = mkIf cfg.sunshine {
       owner = "root";
@@ -81,7 +82,8 @@ in {
 
     systemd.user.services.sunshine = mkIf cfg.sunshine {
       description = "sunshine";
-      wantedBy = ["graphical-session.target"];
+      wantedBy = ["graphical-session.target" "default.target"];
+      environment.WAYLAND_DISPLAY = "wayland-0";
       serviceConfig = {
         ExecStart = "${config.security.wrapperDir}/sunshine";
       };
