@@ -110,9 +110,9 @@ with lib; {
 
     hardware = {
       firmware = let
-        rawFile = pkgs.fetchUrl {
+        rawFile = pkgs.fetchurl {
           url = "https://git.linuxtv.org/edid-decode.git/plain/data/samsung-q800t-hdmi2.1";
-          hash = "0r3v1mzpkalgdhnnjfq8vbg4ian3pwziv0klb80zw89w1msfm9nh";
+          sha256 = "0r3v1mzpkalgdhnnjfq8vbg4ian3pwziv0klb80zw89w1msfm9nh";
         };
       in [
         (pkgs.runCommandNoCC "samsung-q800t-hdmi2.1" {} ''
