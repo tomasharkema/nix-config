@@ -73,7 +73,7 @@ with lib; {
 
     hardware = {
       nvidia = {
-        # forceFullCompositionPipeline = true;
+        forceFullCompositionPipeline = true;
 
         prime = {
           sync.enable = true;
@@ -190,19 +190,19 @@ with lib; {
       # resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
       tmp = {
-        useTmpfs = false;
+        useTmpfs = true;
       };
 
-      # recovery = {
-      #   enable = true;
-      #   install = true;
-      #   sign = true;
-      #   netboot.enable = true;
-      # };
+      recovery = {
+        enable = true;
+        install = true;
+        sign = true;
+        netboot.enable = true;
+      };
 
       # binfmt.emulatedSystems = ["aarch64-linux"];
 
-      # modprobeConfig.enable = true;
+      modprobeConfig.enable = true;
 
       # extraModprobeConfig = [];
       kernelParams = [

@@ -78,7 +78,7 @@ in {
     # };
 
     chaotic = {
-      mesa-git.enable = true;
+      # mesa-git.enable = true;
       # hdr.enable = true;
     };
 

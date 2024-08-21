@@ -74,7 +74,7 @@ with lib.custom;
 
         tmp = {
           useTmpfs = mkDefault false;
-          cleanOnBoot = mkDefault false;
+          cleanOnBoot = true;
         };
 
         kernelPackages = let
