@@ -99,11 +99,6 @@ with lib.custom;
           };
         };
       };
-
-      chaotic = {
-        scx.enable = true;
-      };
-
       programs.ccache = {
         enable = true;
         packageNames = [
