@@ -16,11 +16,16 @@ with lib.custom;
   {
     imports = ["${inputs.nixos-hardware}/common/gpu/24.05-compat.nix"];
     config = {
-      # assertions = [
-      #   (assertPackage pkgs "_389-ds-base")
-      #   (assertPackage pkgs "freeipa")
-      #   (assertPackage pkgs "sssd")
-      # ];
+      assertions = [
+        {
+          assertion = (builtins.length config.boot.kernelPatches) == 0;
+          message = "Kernelpatches require recompilation :(";
+        }
+
+        #   (assertPackage pkgs "_389-ds-base")
+        #   (assertPackage pkgs "freeipa")
+        #   (assertPackage pkgs "sssd")
+      ];
 
       # Set your time zone.
       time.timeZone = "Europe/Amsterdam";

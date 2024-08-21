@@ -387,8 +387,8 @@
     };
 
   nixConfig = {
-    # use-cgroups = true;
-    extra-experimental-features = "nix-command flakes"; # cgroups";
+    use-cgroups = true;
+    extra-experimental-features = "nix-command flakes cgroups";
 
     # distributedBuilds = true;
     # builders-use-substitutes = true;
