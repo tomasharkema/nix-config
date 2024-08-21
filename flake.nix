@@ -126,8 +126,8 @@
           agenix.nixosModules.default
           agenix-rekey.nixosModules.default
 
-          # nix-gaming.nixosModules.pipewireLowLatency
-          # nix-gaming.nixosModules.platformOptimizations
+          nix-gaming.nixosModules.pipewireLowLatency
+          nix-gaming.nixosModules.platformOptimizations
 
           # nixos-service.nixosModules.nixos-service
           # nix-virt.nixosModules.default
@@ -582,14 +582,14 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nix-gaming = {
-    #   url = "github:fufexan/nix-gaming";
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
 
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     flake-parts.follows = "flake-parts";
-    #   };
-    # };
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
 
     # cachix-deploy-flake = {
     #   url = "github:cachix/cachix-deploy-flake";

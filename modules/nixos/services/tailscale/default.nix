@@ -69,7 +69,7 @@ in {
       };
 
       zerotierone = {
-        enable = true;
+        # enable = true;
         joinNetworks = ["af78bf9436bca877"];
       };
     };

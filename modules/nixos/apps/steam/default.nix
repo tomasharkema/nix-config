@@ -38,7 +38,7 @@ in {
         remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = true;
         gamescopeSession.enable = true;
-        # platformOptimizations.enable = true;
+        platformOptimizations.enable = true;
       };
       gamescope = {
         enable = true;
