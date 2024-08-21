@@ -109,6 +109,18 @@ with lib; {
     # console.earlySetup = true;
 
     hardware = {
+      firmware = let
+        rawFile = pkgs.fetchUrl {
+          url = "https://git.linuxtv.org/edid-decode.git/plain/data/samsung-q800t-hdmi2.1";
+          hash = "0r3v1mzpkalgdhnnjfq8vbg4ian3pwziv0klb80zw89w1msfm9nh";
+        };
+      in [
+        (pkgs.runCommandNoCC "samsung-q800t-hdmi2.1" {} ''
+          mkdir -p $out/lib/firmware/edid/
+          cp "${rawFile}" $out/lib/firmware/edid/samsung-q800t-hdmi2.1
+        '')
+      ];
+
       cpu.intel.updateMicrocode = true;
       i2c.enable = true;
       enableAllFirmware = true;
@@ -212,6 +224,9 @@ with lib; {
       kernelParams = [
         "intel_iommu=on"
         "iommu=pt"
+
+        "drm.edid_firmware=HDMI-A-1:edid/samsung-q800t-hdmi2.1"
+        "video=HDMI-A-1:e"
       ];
       blacklistedKernelModules = lib.mkDefault ["nouveau"];
       #extraModprobeConfig = ''
