@@ -87,7 +87,7 @@ in
               })
               ++ [
                 {
-                  settings."org/gnome/desktop/interface".font-name = "Inter Display 11";
+                  settings."org/gnome/desktop/interface".font-name = "Inter Display 12";
                 }
               ];
           };

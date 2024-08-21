@@ -101,8 +101,8 @@ in {
 
         package =
           if cfg.beta
-          then config.boot.kernelPackages.nvidiaPackages.beta
-          else config.boot.kernelPackages.nvidiaPackages.stable;
+          then mkDefault config.boot.kernelPackages.nvidiaPackages.beta
+          else mkDefault config.boot.kernelPackages.nvidiaPackages.stable;
       };
 
       graphics = {

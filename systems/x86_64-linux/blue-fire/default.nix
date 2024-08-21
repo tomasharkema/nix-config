@@ -50,7 +50,7 @@ in {
         tpm.enable = true;
         secure-boot.enable = true;
         remote-unlock.enable = true;
-        nvidia.enable = true;
+        # nvidia.enable = true;
 
         # nfs = {
         #   enable = true;

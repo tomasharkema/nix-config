@@ -52,13 +52,13 @@ with lib; {
           color-scheme = "prefer-dark";
           # cursor-theme = mkForce "Adwaita";
           # gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
-          document-font-name = "Inter Display 11";
+          document-font-name = "Inter Display 12";
           font-antialiasing = "grayscale";
-          monospace-font-name = "JetBrainsMono Nerd Font Mono 11";
+          monospace-font-name = "JetBrainsMono Nerd Font Mono 12";
           # font-name = "Inter Display 11";
           enable-hot-corners = false;
           # icon-theme = "Adwaita";
-          text-scaling-factor = 1.15;
+          text-scaling-factor = 1;
 
           clock-show-seconds = true;
         };

@@ -184,7 +184,7 @@ with lib; {
     # });
 
     boot = {
-      # resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
+      resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
       tmp = {
         useTmpfs = true;
@@ -204,7 +204,7 @@ with lib; {
       # extraModprobeConfig = [];
       kernelParams = [
         "nowatchdog"
-        # "mitigations=off"
+        "mitigations=off"
       ];
 
       # extraModulePackages = [
@@ -213,7 +213,7 @@ with lib; {
 
       kernelModules = [
         "i915"
-        # "isgx"
+        "isgx"
         # "watchdog"
         #"tpm_rng"
       ];
