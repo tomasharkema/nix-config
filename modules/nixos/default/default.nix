@@ -78,7 +78,7 @@ with lib.custom;
         };
 
         tmp = {
-          useTmpfs = mkDefault false;
+          useTmpfs = true;
           cleanOnBoot = true;
         };
 

@@ -74,7 +74,7 @@ with lib; {
 
       tmp = {
         useTmpfs = false;
-        cleanOnBoot = false;
+        cleanOnBoot = true;
       };
       recovery = {
         enable = false;
