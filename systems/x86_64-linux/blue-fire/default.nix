@@ -133,7 +133,7 @@ in {
       # };
 
       # tcsd.enable = true;
-      kmscon.enable = true;
+      kmscon.enable = mkForce false;
 
       prometheus.exporters = {
         ipmi = {

@@ -75,6 +75,7 @@ with lib; {
     #   fsType = "nfs";
     # };
     services = {
+      kmscon.enable = mkForce false;
       hardware = {
         openrgb.enable = true;
         bolt.enable = true;
