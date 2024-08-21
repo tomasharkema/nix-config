@@ -18,8 +18,6 @@ inputs.nixpkgs.lib.nixosSystem {
         ...
       }: {
         config = {
-          boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
-
           networking.wireless.enable = true;
         };
       }
