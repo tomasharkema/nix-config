@@ -194,13 +194,13 @@ with lib; {
       SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
     '';
 
-    chaotic = {
-      scx.enable = mkForce false;
-    };
+    # chaotic = {
+    #   scx.enable = mkForce false;
+    # };
 
     boot = {
       resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
-      kernelPackages = mkForce pkgs.linuxPackages_xanmod_latest;
+
       tmp = {
         useTmpfs = true;
       };

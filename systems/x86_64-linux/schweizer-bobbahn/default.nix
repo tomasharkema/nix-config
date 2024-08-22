@@ -19,18 +19,8 @@ with lib; {
     age.rekey = {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIa7OowjESNuouZx/QVFryBWjjEHphKDZDq4hOD4C5xS root@schweizer-bobbahn";
     };
+
     powerManagement.enable = true;
-    specialisation = {
-      mediacenter.configuration = {
-        gui = {
-          gnome.enable = false;
-          media-center.enable = true;
-        };
-        apps = {
-          cec.enable = true;
-        };
-      };
-    };
 
     environment.systemPackages = with pkgs; [intel-gpu-tools];
 

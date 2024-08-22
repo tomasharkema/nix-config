@@ -77,7 +77,7 @@
         # nixos-service.overlays.default
         agenix-rekey.overlays.default
         nixvim.overlays.default
-        chaotic.overlays.default
+        # chaotic.overlays.default
         # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
       ];
@@ -107,7 +107,7 @@
 
       systems.modules = {
         nixos = with inputs; [
-          chaotic.nixosModules.default
+          # chaotic.nixosModules.default
           # nix-topology.nixosModules.default
           # netkit.nixosModule
           # nixos-checkmk.nixosModules.check_mk_agent
@@ -816,11 +816,11 @@
       };
     };
 
-    chaotic = {
-      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
+    # chaotic = {
+    #   url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #   };
+    # };
   };
 }

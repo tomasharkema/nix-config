@@ -22,9 +22,11 @@ in {
         webservices.enable = true;
       };
     };
-    chaotic = {
-      scx.enable = mkForce false;
-    };
+
+    # chaotic = {
+    #   scx.enable = mkForce false;
+    # };
+
     hardware = {
       nvidia = {
         nvidiaPersistenced = true;

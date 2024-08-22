@@ -86,12 +86,12 @@ with lib.custom;
         in
           if (pkgs.stdenv.isAarch64 || config.trait.hardware.vm.enable)
           then mkDefault pkgs.linuxPackages_latest
-          else
-            (
-              if config.trait.server.enable
-              then mkDefault pkgs.linuxPackages_cachyos-server
-              else mkDefault pkgs.linuxPackages_cachyos
-            ); # (pkgs.linuxPackagesFor pkgs.linux_cachyos);
+          else (mkDefault pkgs.linuxPackages_xanmod_latest);
+        # (
+        #   if config.trait.server.enable
+        #   then mkDefault pkgs.linuxPackages_cachyos-server
+        #   else mkDefault pkgs.linuxPackages_cachyos
+        # ); # (pkgs.linuxPackagesFor pkgs.linux_cachyos);
 
         kernelModules = ["wireguard"];
 

@@ -12,6 +12,7 @@ with lib; {
     # (modulesPath + "/installer/scan/not-detected.nix")
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
+    nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
     # ./samba.nix
   ];
 
@@ -23,7 +24,7 @@ with lib; {
     apps = {
       ntopng.enable = true;
       steam.enable = true;
-      usbip.enable = true;
+      # usbip.enable = true;
       home-assistant.enable = true;
     };
 
@@ -32,11 +33,23 @@ with lib; {
       keep-derivations = mkForce false;
     };
 
+    specialisation = {
+      mediacenter.configuration = {
+        gui = {
+          gnome.enable = false;
+          media-center.enable = true;
+        };
+        apps = {
+          cec.enable = true;
+        };
+      };
+    };
+
     gui = {
       enable = true;
       desktop = {
         enable = true;
-        rdp.enable = true;
+        rdp.enable = false;
       };
       quiet-boot.enable = true;
       gamemode.enable = true;
@@ -62,7 +75,6 @@ with lib; {
     wifi.enable = true;
 
     trait = {
-      developer.enable = true;
       hardware = {
         nvme.enable = true;
         tpm.enable = true;
@@ -101,7 +113,6 @@ with lib; {
       tmp = {
         useTmpfs = true;
       };
-      binfmt.emulatedSystems = ["aarch64-linux"];
 
       initrd = {
         availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
@@ -122,7 +133,7 @@ with lib; {
     };
 
     services = {
-      remote-builders.client.enable = true;
+      # remote-builders.client.enable = true;
       blueman.enable = true;
     };
   };
