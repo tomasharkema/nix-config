@@ -69,7 +69,7 @@ with lib; {
         nix-prefetch-git
         nix-prefetch-scripts
         nix-query-tree-viewer
-        nix-simple-deploy
+        # nix-simple-deploy
         nix-tree
         nix-update
         nix-update-source
