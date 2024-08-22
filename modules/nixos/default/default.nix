@@ -138,7 +138,7 @@ with lib.custom;
       #   formatted;
 
       environment = {
-        sessionVariables.MOZ_ENABLE_WAYLAND = "0";
+        # sessionVariables.MOZ_ENABLE_WAYLAND = "0";
 
         systemPackages =
           (with pkgs; [
