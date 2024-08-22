@@ -97,7 +97,7 @@ in {
         modesetting.enable = true;
         forceFullCompositionPipeline = true;
         open = true;
-        nvidiaSettings = true;
+        nvidiaSettings = false;
 
         package =
           if cfg.beta
