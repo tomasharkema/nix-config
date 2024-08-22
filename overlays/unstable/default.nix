@@ -20,18 +20,20 @@
   # python3 = prev.python312;:q
   # python3Packages = prev.python312Packages;
 
-  # wezterm = channels.unstable.wezterm.overrideAttrs (drv: {
-  #   cargoLock = {
-  #     lockFile = ./Cargo.lock;
-  #     allowBuiltinFetchGit = true;
-  #     outputHashes = {
-  #       # "xcb-imdkit-0.3.0" = "sha256-fTpJ6uNhjmCWv7dZqVgYuS2Uic36XNYTbqlaly5QBjI=";
-  #     };
-  #   };
-  #   cargoDeps = drv.cargoDeps.overrideAttrs (lib.const {
-  #     name = "${drv.pname}-${drv.version}-vendor";
-  #     src = drv.src;
-  #     outputHash = lib.fakeHash;
-  #   });
-  # });
+  zerotierone = prev.zerotierone.overrideAttrs (drv: {
+    postPatch = ''
+      cp ${./Cargo.lock} Cargo.lock
+        cp ./Cargo.lock ./rustybits/Cargo.lock
+        echo ./Cargo.lock
+        echo ./rustybits/Cargo.lock
+    '';
+
+    cargoDeps = prev.rustPlatform.importCargoLock {
+      lockFile = ./Cargo.lock;
+      outputHashes = {
+        "jwt-0.16.0" = "sha256-P5aJnNlcLe9sBtXZzfqHdRvxNfm6DPBcfcKOVeLZxcM=";
+        "rustfsm-0.1.0" = "sha256-q7J9QgN67iuoNhQC8SDVzUkjCNRXGiNCkE8OsQc5+oI=";
+      };
+    };
+  });
 }

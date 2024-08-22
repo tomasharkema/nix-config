@@ -95,9 +95,9 @@ in {
     hardware = {
       nvidia = {
         modesetting.enable = true;
-        # forceFullCompositionPipeline = true;
-        open = mkForce false;
-        nvidiaSettings = false;
+        forceFullCompositionPipeline = true;
+        open = true;
+        nvidiaSettings = true;
 
         package =
           if cfg.beta

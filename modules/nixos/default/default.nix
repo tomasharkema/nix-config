@@ -108,7 +108,7 @@ with lib.custom;
         enable = true;
         packageNames = [
           # "sssd"
-          # "zerotierone"
+          "zerotierone"
           "ffmpeg"
           "ffmpeg-full"
           # "linux"
