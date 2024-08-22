@@ -34,7 +34,7 @@ with lib; {
 
     services = {
       # dbus.packages = with pkgs; [custom.ancs4linux];
-      kmscon = {enable = mkForce false;};
+      # kmscon = {enable = mkForce false;};
       udev = {
         enable = true;
         packages = with pkgs; [heimdall-gui libusb];
@@ -52,7 +52,7 @@ with lib; {
       ccid
       gnupg
       custom.distrib-dl
-      # davinci-resolve
+      davinci-resolve
       keybase-gui
       # calibre
       glxinfo
@@ -92,9 +92,10 @@ with lib; {
           enable = true;
           # finegrained = true;
         };
-        dynamicBoost.enable = true;
       };
+
       # fancontrol.enable = true;
+
       graphics = {
         extraPackages = with pkgs; [
           vaapiIntel

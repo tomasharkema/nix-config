@@ -65,7 +65,7 @@ in {
       #     desktopName = "org.gnome.usbguard.desktop";
       #     path = "${pkgs.custom.usbguard-gnome}/share/applications/org.gnome.usbguard.desktop";
       #   }
-      {package = pkgs.notify-client;}
+      # {package = pkgs.notify-client;}
       {package = pkgs.geary;}
       {package = pkgs._1password-gui;}
     ];
