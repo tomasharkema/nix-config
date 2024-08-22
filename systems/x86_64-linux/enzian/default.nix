@@ -81,7 +81,10 @@ with lib; {
         secure-boot.enable = true;
         remote-unlock.enable = true;
         monitor.enable = true;
-        nvidia.enable = true;
+        nvidia = {
+          enable = true;
+          beta = true;
+        };
         disable-sleep.enable = true;
       };
     };
