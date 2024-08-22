@@ -102,7 +102,7 @@ with lib; {
           vaapiIntel
           libvdpau-va-gl
           vaapiVdpau
-          custom.vpl-gpu-rt
+          vpl-gpu-rt
         ];
       };
     };
