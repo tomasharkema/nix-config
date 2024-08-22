@@ -48,7 +48,7 @@ with lib; {
     environment.systemPackages = with pkgs; [
       nvramtool
       libusb
-
+      ccid
       gnupg
       custom.distrib-dl
       # davinci-resolve
@@ -57,6 +57,7 @@ with lib; {
       glxinfo
       inxi
       pwvucontrol
+      mdevctl
     ];
 
     gui = {
@@ -85,8 +86,9 @@ with lib; {
           intelBusId = "PCI:0:2:0";
           nvidiaBusId = "PCI:02:0:0";
         };
+
         powerManagement = {
-          # enable = true;
+          enable = true;
           # finegrained = true;
         };
         # dynamicBoost.enable = true;
@@ -121,6 +123,7 @@ with lib; {
         nvidia = {
           enable = true;
           beta = true;
+          open = false;
         };
         # remote-unlock.enable = true;
         bluetooth.enable = true;
@@ -175,17 +178,27 @@ with lib; {
       # };
     };
 
-    # system.build.isgx = config.boot.kernelPackages.isgx.overrideAttrs (prev: {
-    #   patches =
-    #     (prev.patches or [])
-    #     ++ [
-    #       ./157.patch
-    #     ];
-    # });
+    virtualisation.kvmgt = {
+      enable = true;
+      device = "0000:00:02.0";
+      vgpus = {
+        "i915-GVTg_V5_4" = {
+          uuid = ["e2ab260f-44a2-4e07-9889-68a1caafb399"];
+        };
+      };
+    };
+
+    services.udev.extraRules = ''
+      SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
+    '';
+
+    chaotic = {
+      scx.enable = mkForce false;
+    };
 
     boot = {
       resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
-
+      kernelPackages = mkForce pkgs.linuxPackages_xanmod_latest;
       tmp = {
         useTmpfs = true;
       };
@@ -205,6 +218,10 @@ with lib; {
       kernelParams = [
         "nowatchdog"
         "mitigations=off"
+
+        "intel_iommu=on"
+        "iommu=pt"
+        "blacklist=nouveau"
       ];
 
       # extraModulePackages = [
@@ -214,13 +231,22 @@ with lib; {
       kernelModules = [
         "i915"
         "isgx"
+        "vfio_pci"
+        "vfio"
+        "vfio_iommu_type1"
+        "kvm-intel"
         # "watchdog"
         #"tpm_rng"
       ];
       extraModprobeConfig = "options i915 enable_guc=2";
       initrd.kernelModules = [
+        "i915"
         #  "watchdog"
-        # "isgx"
+        "isgx"
+        "vfio_pci"
+        "vfio"
+        "vfio_iommu_type1"
+        "kvm-intel"
       ];
     };
   };

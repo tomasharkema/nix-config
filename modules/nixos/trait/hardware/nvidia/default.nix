@@ -22,6 +22,10 @@ in {
       default = true;
       type = types.bool;
     };
+    open = mkOption {
+      default = true;
+      type = types.bool;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -96,7 +100,7 @@ in {
       nvidia = {
         modesetting.enable = true;
         forceFullCompositionPipeline = true;
-        open = true;
+        open = mkForce cfg.open;
         nvidiaSettings = false;
 
         package =

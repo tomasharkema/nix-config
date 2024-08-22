@@ -287,7 +287,6 @@ in {
       nvidia = {
         # modesetting.enable = true;
         # forceFullCompositionPipeline = true;
-        open = false;
         nvidiaSettings = false;
 
         vgpu = {
