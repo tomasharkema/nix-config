@@ -43,6 +43,7 @@ with lib; {
       # fprintd.tod.driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
       #   calib-data-file = ./calib-data.bin;
       # };
+      switcherooControl.enable = true;
     };
 
     environment.systemPackages = with pkgs; [
@@ -91,7 +92,7 @@ with lib; {
           enable = true;
           # finegrained = true;
         };
-        # dynamicBoost.enable = true;
+        dynamicBoost.enable = true;
       };
       # fancontrol.enable = true;
       graphics = {
@@ -230,7 +231,7 @@ with lib; {
 
       kernelModules = [
         "i915"
-        "isgx"
+        # "isgx"
         "vfio_pci"
         "vfio"
         "vfio_iommu_type1"
@@ -242,7 +243,7 @@ with lib; {
       initrd.kernelModules = [
         "i915"
         #  "watchdog"
-        "isgx"
+        # "isgx"
         "vfio_pci"
         "vfio"
         "vfio_iommu_type1"
