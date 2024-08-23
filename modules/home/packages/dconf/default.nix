@@ -292,6 +292,11 @@ with lib; {
         #   view-type = "list";
         # };
 
+        "org/virt-manager/virt-manager/connections" = {
+          autoconnect = ["qemu:///system"];
+          uris = ["qemu+ssh://tomas@wodan/system" "qemu+ssh://tomas@blue-fire/system" "qemu+ssh://root@silver-star/system" "qemu:///system"];
+        };
+
         "com/gexperts/Tilix" = {
           quake-specific-monitor = 0;
           tab-position = "top";

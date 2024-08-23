@@ -63,7 +63,7 @@ in {
     #   MUTTER_DEBUG_KMS_THREAD_TYPE = "user";
     # };
 
-    virtualisation.podman.enableNvidia = true;
+    virtualisation.containers.cdi.dynamic.nvidia.enable = true;
 
     services = {
       xserver.videoDrivers = ["nvidia"];

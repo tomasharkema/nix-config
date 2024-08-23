@@ -22,7 +22,12 @@ with lib; {
 
     powerManagement.enable = true;
 
-    environment.systemPackages = with pkgs; [intel-gpu-tools];
+    environment = {
+      sessionVariables = {
+        LIBVA_DRIVER_NAME = "i965";
+      };
+      systemPackages = with pkgs; [intel-gpu-tools];
+    };
 
     gui = {
       enable = true;
@@ -94,12 +99,18 @@ with lib; {
 
     zramSwap = {enable = true;};
 
+    boot = {
+      kernelModules = [
+        "i915"
+      ];
+    };
+
     hardware = {
       graphics = {
         enable = true;
         enable32Bit = true;
         extraPackages = with pkgs; [
-          vaapiIntel
+          intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
           libvdpau-va-gl
           vaapiVdpau
           vpl-gpu-rt

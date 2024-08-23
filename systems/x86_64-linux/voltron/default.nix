@@ -51,21 +51,27 @@ with lib; {
       switcherooControl.enable = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      nvramtool
-      libusb
-      ccid
-      gnupg
-      custom.distrib-dl
-      # davinci-resolve
-      keybase-gui
-      # calibre
-      glxinfo
-      inxi
-      pwvucontrol
-      mdevctl
-    ];
+    environment = {
+      sessionVariables = {
+        LIBVA_DRIVER_NAME = "i965";
+      };
 
+      systemPackages = with pkgs; [
+        intel-gpu-tools
+        nvramtool
+        libusb
+        ccid
+        gnupg
+        custom.distrib-dl
+        # davinci-resolve
+        keybase-gui
+        # calibre
+        glxinfo
+        inxi
+        pwvucontrol
+        mdevctl
+      ];
+    };
     gui = {
       enable = true;
       desktop = {enable = true;};
@@ -82,8 +88,19 @@ with lib; {
       #   enable = true;
       #   connectDisplay = true;
       # };
+
+      graphics = {
+        enable = true;
+        extraPackages = with pkgs; [
+          intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+          libvdpau-va-gl
+          vaapiVdpau
+          vpl-gpu-rt
+        ];
+      };
+
       nvidia = {
-        forceFullCompositionPipeline = true;
+        forceFullCompositionPipeline = mkForce false;
 
         prime = {
           sync.enable = true;
@@ -100,16 +117,6 @@ with lib; {
       };
 
       # fancontrol.enable = true;
-
-      graphics = {
-        extraPackages = with pkgs; [
-          vaapiIntel
-          libvdpau-va-gl
-          vaapiVdpau
-          intel-media-driver
-          vpl-gpu-rt
-        ];
-      };
     };
 
     apps = {
