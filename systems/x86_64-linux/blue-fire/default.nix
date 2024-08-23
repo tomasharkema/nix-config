@@ -50,8 +50,11 @@ in {
         tpm.enable = true;
         secure-boot.enable = true;
         remote-unlock.enable = true;
-        nvidia.enable = true;
-
+        nvidia = {
+          enable = true;
+          beta = false;
+          open = false;
+        };
         # nfs = {
         #   enable = true;
         #   machines = {
@@ -285,7 +288,7 @@ in {
       enableRedistributableFirmware = true;
 
       nvidia = {
-        # modesetting.enable = true;
+        modesetting.enable = true;
         # forceFullCompositionPipeline = true;
         nvidiaSettings = false;
 

@@ -83,7 +83,7 @@ with lib; {
         monitor.enable = true;
         nvidia = {
           enable = true;
-          beta = true;
+          beta = false;
         };
         disable-sleep.enable = true;
       };

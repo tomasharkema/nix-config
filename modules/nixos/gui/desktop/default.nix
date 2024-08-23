@@ -181,7 +181,15 @@ in {
           dmidecode
           ipmiview
           libsmbios
-          plex-media-player
+
+          # (plex-media-player.overrideAttrs (prev: {
+          #   runtimeDependencies =
+          #     prev.runtimeDependencies
+          #     ++ [
+          #       config.boot.linuxPackages.nvidia_x11
+          #     ];
+          # }))
+
           plexamp
           xpipe
           pkgs.custom.ztui

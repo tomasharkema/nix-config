@@ -65,7 +65,7 @@ in {
           [
             # "com.discordapp.Discord"
             "com.spotify.Client"
-            # "tv.plex.PlexDesktop"
+            "tv.plex.PlexDesktop"
             "com.github.d4nj1.tlpui"
           ]
         );
