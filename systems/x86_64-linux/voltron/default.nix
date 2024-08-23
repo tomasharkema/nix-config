@@ -37,7 +37,12 @@ with lib; {
       # kmscon = {enable = mkForce false;};
       udev = {
         enable = true;
-        packages = with pkgs; [heimdall-gui libusb];
+        packages = with pkgs; [
+          heimdall-gui
+          libusb
+
+          # ccid
+        ];
       };
 
       # fprintd.tod.driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
