@@ -56,7 +56,7 @@ in
           newman
           # postman
           atac
-          httpie-desktop
+          # httpie-desktop
           nix-htop
           augeas
           custom.bieye

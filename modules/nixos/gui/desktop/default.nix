@@ -192,7 +192,7 @@ in {
 
           plexamp
           xpipe
-          pkgs.custom.ztui
+          # pkgs.custom.ztui
         ]
         ++ (with pkgs.custom; [
           zerotier-ui

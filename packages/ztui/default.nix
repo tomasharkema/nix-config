@@ -7,6 +7,7 @@
   lib,
   stdenv,
   darwin,
+  nix-update-script,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "ztui";
@@ -31,5 +32,9 @@ rustPlatform.buildRustPackage rec {
     homepage = "https://github.com/tomasharkema/nix-config";
     license = licenses.mit;
     maintainers = ["tomasharkema" "tomas@harkema.io"];
+  };
+
+  passthru = {
+    updateScript = nix-update-script {};
   };
 }

@@ -185,7 +185,11 @@
           agenix.darwinModules.default
           agenix-rekey.nixosModules.default
 
-          ({config, ...}: {
+          ({
+            config,
+            lib,
+            ...
+          }: {
             config = {
               # system.nixos.tags = ["snowfall"];
               system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
