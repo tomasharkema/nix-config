@@ -23,9 +23,7 @@
   zerotierone = prev.zerotierone.overrideAttrs (drv: {
     postPatch = ''
       cp ${./Cargo.lock} Cargo.lock
-        cp ./Cargo.lock ./rustybits/Cargo.lock
-        echo ./Cargo.lock
-        echo ./rustybits/Cargo.lock
+      cp ./Cargo.lock ./rustybits/Cargo.lock
     '';
 
     cargoDeps = prev.rustPlatform.importCargoLock {

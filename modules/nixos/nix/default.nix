@@ -89,8 +89,8 @@ with lib.custom; {
 
           extra-sandbox-paths = [config.programs.ccache.cacheDir];
 
-          use-cgroups = true;
-          extra-experimental-features = "nix-command flakes cgroups";
+          # use-cgroups = true;
+          extra-experimental-features = "nix-command flakes"; # cgroups";
 
           http-connections = 50;
           warn-dirty = false;

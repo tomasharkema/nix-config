@@ -1,6 +1,6 @@
 {
   rustPlatform,
-  fetchCrate,
+  fetchFromGitHub,
   pkg-config,
   openssl,
   rustfmt,
@@ -13,12 +13,26 @@ rustPlatform.buildRustPackage rec {
   pname = "ztui";
   version = "0.1.7";
 
-  src = fetchCrate {
-    inherit pname version;
-    hash = "sha256-yGfntSfkQ9bm/jcpXREeEhx+2BsukiLHygSlvuwcy3s=";
+  src = fetchFromGitHub {
+    owner = "erikh";
+    repo = "ztui";
+    rev = "v${version}";
+    hash = "sha256-ZbfV0AGeLgYS4S55YVBPdYFahi1sAeDrcKmiGaHAeC4=";
   };
 
-  cargoHash = "sha256-OL/NEw8mUQJDO2ADNprHCHBwxBRBIWqCgixldYQA3zk=";
+  cargoHash = "sha256-TJchVYBdrah/ExQfMHsMHbnlDviPbZYnY3WDryU5GS8=";
+
+  postPatch = ''
+    cp ${./Cargo.lock} Cargo.lock
+  '';
+
+  cargoDeps = rustPlatform.importCargoLock {
+    lockFile = ./Cargo.lock;
+    outputHashes = {
+      "jwt-0.16.0" = "sha256-P5aJnNlcLe9sBtXZzfqHdRvxNfm6DPBcfcKOVeLZxcM=";
+      "rustfsm-0.1.0" = "sha256-q7J9QgN67iuoNhQC8SDVzUkjCNRXGiNCkE8OsQc5+oI=";
+    };
+  };
 
   nativeBuildInputs = [pkg-config];
   buildInputs = [openssl rustfmt] ++ (lib.optional stdenv.isDarwin darwin.Security);
@@ -27,11 +41,8 @@ rustPlatform.buildRustPackage rec {
   OPENSSL_NO_VENDOR = 1;
   RUSTC_BOOTSTRAP = 1;
 
-  meta = with lib; {
-    description = "tomas";
-    homepage = "https://github.com/tomasharkema/nix-config";
-    license = licenses.mit;
-    maintainers = ["tomasharkema" "tomas@harkema.io"];
+  meta = {
+    homepage = "https://github.com/erikh/ztui";
   };
 
   passthru = {
