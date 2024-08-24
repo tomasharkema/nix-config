@@ -53,7 +53,7 @@ in
         # enableZshIntegration = true;
         settings = {
           theme = "catppuccin-mocha";
-          copy_command = "wl-copy";
+          # copy_command = "wl-copy";
           # keybinds = {
           #   normal = {
           #     "bind \"Alt m\"" = {
