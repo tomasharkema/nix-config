@@ -822,7 +822,7 @@
     };
 
     nixos-recovery = {
-      url = "https://flakehub.com/f/tomasharkema/nixos-recovery/0.0.4.tar.gz";
+      url = "https://flakehub.com/f/tomasharkema/nixos-recovery/0.0.*.tar.gz";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
