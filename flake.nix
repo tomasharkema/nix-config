@@ -70,6 +70,7 @@
       };
 
       overlays = with inputs; [
+        nixos-recovery.overlays.recovery
         # nix-otel.overlays.default
         # peerix.overlay
         snowfall-flake.overlays."package/flake"
@@ -111,7 +112,7 @@
           # nix-topology.nixosModules.default
           # netkit.nixosModule
           # nixos-checkmk.nixosModules.check_mk_agent
-
+          nixos-recovery.nixosModules.recovery
           catppuccin.nixosModules.catppuccin
           # peerix.nixosModules.peerix
 
@@ -826,5 +827,13 @@
     #     nixpkgs.follows = "nixpkgs";
     #   };
     # };
+
+    nixos-recovery = {
+      url = "https://flakehub.com/f/tomasharkema/nixos-recovery/0.0.*.tar.gz";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
   };
 }

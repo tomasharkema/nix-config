@@ -87,6 +87,8 @@ with lib; {
         '';
       };
 
+      environment.systemPackages = [pkgs.recoveryctl];
+
       system.activationScripts = mkIf cfg.install {
         recovery.text = let
           recov = pkgs.writeShellScript "recovery.sh" ''

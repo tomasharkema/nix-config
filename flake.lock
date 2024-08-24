@@ -399,11 +399,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1724227338,
-        "narHash": "sha256-TuSaYdhOxeaaE9885mFO1lZHHax33GD5A9dczJrGUjw=",
+        "lastModified": 1724440431,
+        "narHash": "sha256-9etXEOUtzeMgqg1u0wp+EdwG7RpmrAZ2yX516bMj2aE=",
         "owner": "cachix",
         "repo": "git-hooks.nix",
-        "rev": "6cedaa7c1b4f82a266e5d30f212273e60d62cb0d",
+        "rev": "c8a54057aae480c56e28ef3e14e4960628ac495b",
         "type": "github"
       },
       "original": {
@@ -767,6 +767,28 @@
         "type": "github"
       }
     },
+    "nixos-recovery": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1724518326,
+        "narHash": "sha256-r4+waBg57nkL7U4RwL9kLqlQBRJJ/qOk62Qw312Jrf4=",
+        "rev": "6cc5ec77f9c78730716a3a3ff77d29853e76222b",
+        "revCount": 6,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/tomasharkema/nixos-recovery/0.0.1/0191854f-6875-7e33-9c48-57ec4fca1c8a/source.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://flakehub.com/f/tomasharkema/nixos-recovery/0.0.%2A.tar.gz"
+      }
+    },
     "nixos-stable": {
       "locked": {
         "lastModified": 1717696253,
@@ -912,11 +934,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1724477034,
-        "narHash": "sha256-fqquiKbI8iX23JRs/nRmSToRh2PE8P/mO4kK7zfhd5s=",
+        "lastModified": 1724528976,
+        "narHash": "sha256-5W13nD/5ySIsxSvDqXHlj4bg2F3tNcYGKCGudWzpNzw=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "b10ccc5250c17d3f48e6226ed56d8641eb4f3c6f",
+        "rev": "8234ee85eaa2c8b7f2c74f5b4cdf02c4965b07fc",
         "type": "github"
       },
       "original": {
@@ -1022,6 +1044,7 @@
         "nixos-anywhere": "nixos-anywhere",
         "nixos-hardware": "nixos-hardware",
         "nixos-nvidia-vgpu": "nixos-nvidia-vgpu",
+        "nixos-recovery": "nixos-recovery",
         "nixpkgs": "nixpkgs_4",
         "nixvim": "nixvim",
         "poetry2nix": "poetry2nix",
