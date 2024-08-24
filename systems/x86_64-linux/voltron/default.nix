@@ -230,8 +230,8 @@ with lib; {
 
       # extraModprobeConfig = [];
       kernelParams = [
-        "nowatchdog"
-        "mitigations=off"
+        # "nowatchdog"
+        # "mitigations=off"
 
         "intel_iommu=on"
         "iommu=pt"
