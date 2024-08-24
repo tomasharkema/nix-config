@@ -100,7 +100,7 @@ with lib; {
       };
 
       nvidia = {
-        forceFullCompositionPipeline = mkForce false;
+        forceFullCompositionPipeline = true;
 
         prime = {
           sync.enable = true;
@@ -111,7 +111,7 @@ with lib; {
         };
 
         powerManagement = {
-          enable = true;
+          enable = false;
           # finegrained = true;
         };
       };
