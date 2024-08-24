@@ -78,7 +78,7 @@
         # nixos-service.overlays.default
         agenix-rekey.overlays.default
         nixvim.overlays.default
-        # chaotic.overlays.default
+        chaotic.overlays.default
         # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
       ];
@@ -108,7 +108,7 @@
 
       systems.modules = {
         nixos = with inputs; [
-          # chaotic.nixosModules.default
+          chaotic.nixosModules.default
           # nix-topology.nixosModules.default
           # netkit.nixosModule
           # nixos-checkmk.nixosModules.check_mk_agent
@@ -821,19 +821,14 @@
       };
     };
 
-    # chaotic = {
-    #   url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #   };
-    # };
-
     nixos-recovery = {
-      url = "https://flakehub.com/f/tomasharkema/nixos-recovery/0.0.*.tar.gz";
+      url = "https://flakehub.com/f/tomasharkema/nixos-recovery/0.0.4.tar.gz";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
       };
     };
+
+    chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
   };
 }

@@ -191,16 +191,16 @@ with lib;
             enable = true;
           };
           cmp-zsh.enable = true;
-          conform-nvim = {
-            enable = true;
-            formatOnSave = {
-              timeoutMs = 1000;
-            };
-            formattersByFt = {
-              lua = ["stylua"];
-              nix = ["alejandra"];
-            };
-          };
+          # conform-nvim = {
+          #   enable = true;
+          #   format_on_save = {
+          #     timeoutMs = 1000;
+          #   };
+          #   formattersByFt = {
+          #     lua = ["stylua"];
+          #     nix = ["alejandra"];
+          #   };
+          # };
         };
 
         extraPlugins = with pkgs.vimPlugins; [

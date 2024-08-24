@@ -69,9 +69,9 @@ with lib; {
         glxinfo
         inxi
         pwvucontrol
-        mdevctl
       ];
     };
+
     gui = {
       enable = true;
       desktop = {enable = true;};
@@ -84,11 +84,6 @@ with lib; {
     };
 
     hardware = {
-      # bumblebee = {
-      #   enable = true;
-      #   connectDisplay = true;
-      # };
-
       graphics = {
         enable = true;
         extraPackages = with pkgs; [
@@ -192,26 +187,24 @@ with lib; {
       # };
     };
 
-    virtualisation.kvmgt = {
-      enable = true;
-      device = "0000:00:02.0";
-      vgpus = {
-        "i915-GVTg_V5_4" = {
-          uuid = ["e2ab260f-44a2-4e07-9889-68a1caafb399"];
-        };
-      };
-    };
-
-    services.udev.extraRules = ''
-      SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
-    '';
-
-    # chaotic = {
-    #   scx.enable = mkForce false;
+    # virtualisation.kvmgt = {
+    #   enable = true;
+    #   device = "0000:00:02.0";
+    #   vgpus = {
+    #     "i915-GVTg_V5_4" = {
+    #       uuid = ["e2ab260f-44a2-4e07-9889-68a1caafb399"];
+    #     };
+    #   };
     # };
 
+    boot.kernelPackages = mkForce pkgs.linuxPackages_cachyos;
+
+    chaotic = {
+      scx.enable = true; # by default uses scx_rustland scheduler
+    };
+
     boot = {
-      resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
+      # resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
       tmp = {
         useTmpfs = true;
