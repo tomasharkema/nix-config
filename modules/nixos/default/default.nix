@@ -248,9 +248,6 @@ with lib.custom;
             # rmfuse
           ])
           ++ (optionals pkgs.stdenv.isx86_64 (with pkgs; [
-            google-chrome
-            netflix
-
             cmospwd
             uefisettings
             libsmbios

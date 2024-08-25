@@ -65,6 +65,7 @@ in {
     favoriteApplications = with pkgs;
       [
         {package = nautilus;}
+        {package = google-chrome;}
         {package = osConfig.programs.firefox.package;}
         {package = geary;}
         {package = vscode;}

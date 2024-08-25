@@ -172,6 +172,7 @@ in {
           # zed-editor
         ]
         ++ optionals pkgs.stdenv.isx86_64 [
+          blackbox-terminal
           # pkgs.custom.git-butler
           # pkgs.wolfram-engine
           # spotify
@@ -189,6 +190,7 @@ in {
           #       config.boot.linuxPackages.nvidia_x11
           #     ];
           # }))
+          netflix
 
           plexamp
           xpipe
@@ -207,6 +209,8 @@ in {
       };
       mtr.enable = true;
       dconf.enable = true;
+
+      chromium = {enable = true;};
     };
     systemd.packages = [pkgs.usbguard-notifier];
     # Enable sound with pipewire.
