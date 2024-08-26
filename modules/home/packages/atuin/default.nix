@@ -5,7 +5,9 @@
   osConfig,
   ...
 }:
-with lib; {
+with lib; let
+  socket_path = "/run/user/1000/atuin.sock";
+in {
   config = {
     programs.atuin = {
       enable = true;
@@ -21,9 +23,9 @@ with lib; {
         secrets_filter = true;
         common_subcommands = ["cargo" "go" "git" "npm" "yarn" "pnpm" "kubectl" "nix" "nom" "nh"];
         daemon = {
-          # enabled = true;
-          # systemd_socket = pkgs.stdenv.isLinux;
-          # socket_path = "/run/user/1000/atuin.sock";
+          enabled = true;
+          systemd_socket = pkgs.stdenv.isLinux;
+          socket_path = socket_path;
         };
       };
     };
@@ -40,26 +42,28 @@ with lib; {
     #   };
     # };
 
-    # systemd.user = {
-    #   services."atuin" = {
-    #     Unit = {Description = "atuin";};
+    systemd.user = {
+      services."atuin" = {
+        Unit = {Description = "atuin";};
 
-    #     Install.WantedBy = ["multi-user.target" "default.target"];
+        Install.WantedBy = ["default.target"];
 
-    #     Service = {
-    #       ExecStart = "exec ${getExe config.programs.atuin.package} daemon";
-    #       Restart = "on-failure";
-    #       RestartSec = "5s";
-    #     };
-    #   };
-    # sockets."atuin" = {
-    #   Unit = {Description = "atuin";};
-    #   Socket = {
-    #     ListenStream = "%t/atuin.sock";
-    #     RuntimeDirectory = "atuin";
-    #   };
-    #   Install.WantedBy = ["sockets.target"];
-    # };
-    # };
+        Service = {
+          ExecStart = ''
+            exec ${getExe config.programs.atuin.package} daemon
+          '';
+          Restart = "on-failure";
+          RestartSec = "5s";
+        };
+      };
+      sockets."atuin" = {
+        Unit = {Description = "atuin";};
+        Socket = {
+          ListenStream = socket_path;
+          RuntimeDirectory = "atuin";
+        };
+        Install.WantedBy = ["sockets.target"];
+      };
+    };
   };
 }
