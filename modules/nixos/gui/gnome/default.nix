@@ -259,15 +259,15 @@ in
         gnome-tweaks
         gnome-user-share
         gnome.gnome-applets
-        gnome.gnome-clocks
+        gnome-clocks
         gnome.gnome-control-center
-        gnome.gnome-nettool
-        gnome.gnome-online-miners
-        gnome.gnome-power-manager
+        gnome-nettool
+        # gnome-online-miners
+        gnome-power-manager
         gnome.gnome-session
         gnome.gnome-session-ctl
         gnome.gnome-settings-daemon
-        gnome.gnome-shell-extensions
+        gnome-shell-extensions
         gtop
         libgnome-keyring
         libgtop
