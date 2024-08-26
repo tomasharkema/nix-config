@@ -5,14 +5,11 @@
   osConfig,
   ...
 }:
-with lib; let
-  socket_path = "/run/user/1000/atuin.sock";
-in {
+with lib; {
   config = {
     programs.atuin = {
       enable = true;
       enableZshIntegration = true;
-      package = pkgs.atuin;
       settings = {
         key_path = osConfig.age.secrets.atuin.path;
         sync_address = "https://atuin.harke.ma";
@@ -25,7 +22,7 @@ in {
         daemon = {
           enabled = true;
           systemd_socket = pkgs.stdenv.isLinux;
-          socket_path = socket_path;
+          socket_path = "/run/user/1000/atuin.sock";
         };
       };
     };
@@ -44,23 +41,24 @@ in {
 
     systemd.user = {
       services."atuin" = {
-        Unit = {Description = "atuin";};
+        Unit = {
+          Description = "atuin";
+          Requires = ["atuin.socket"];
+        };
 
         Install.WantedBy = ["default.target"];
 
         Service = {
-          ExecStart = ''
-            exec ${getExe config.programs.atuin.package} daemon
-          '';
+          ExecStart = "${getExe config.programs.atuin.package} daemon";
           Restart = "on-failure";
           RestartSec = "5s";
         };
       };
+
       sockets."atuin" = {
         Unit = {Description = "atuin";};
         Socket = {
-          ListenStream = socket_path;
-          RuntimeDirectory = "atuin";
+          ListenStream = "%t/atuin.sock";
         };
         Install.WantedBy = ["sockets.target"];
       };
