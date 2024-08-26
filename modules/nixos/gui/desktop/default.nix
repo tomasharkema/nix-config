@@ -169,10 +169,9 @@ in {
           xdiskusage
           xdotool
           yelp
-          # zed-editor
+          zed-editor
         ]
         ++ optionals pkgs.stdenv.isx86_64 [
-          blackbox-terminal
           # pkgs.custom.git-butler
           # pkgs.wolfram-engine
           # spotify
@@ -194,10 +193,10 @@ in {
 
           plexamp
           xpipe
-          # pkgs.custom.ztui
         ]
         ++ (with pkgs.custom; [
           zerotier-ui
+          ztui
 
           #netbrowse
           usbguard-gnome
