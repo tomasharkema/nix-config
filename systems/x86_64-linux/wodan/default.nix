@@ -131,7 +131,6 @@ with lib; {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
         # open = false;
-        nvidiaSettings = false;
 
         # vgpu = {
         #   enable = true;
