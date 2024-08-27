@@ -17,30 +17,59 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      ldapvi
-      ldapmonitor
-    ];
+    environment = {
+      systemPackages = with pkgs; [
+        ldapvi
+        ldapmonitor
+        pkcs11-helper
 
-    environment.etc = {
-      "krb5.conf".text = mkBefore ''
-        includedir /etc/krb5.conf.d/
-      '';
-      "krb5.conf.d/kcm_default_ccache".text = ''
-        [libdefaults]
-        default_ccache_name = KCM:
-      '';
-      "krb5.conf.d/enable_passkey".text = ''
-        [plugins]
-          clpreauth = {
-            module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
-          }
+        (pkgs.writeShellScriptBin "setup-browser-eid" ''
+          NSSDB="''${HOME}/.pki/nssdb"
+          mkdir -p ''${NSSDB}
 
-          kdcpreauth = {
-            module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
-          }
+          ${pkgs.nssTools}/bin/modutil -force -dbdir sql:$NSSDB -add p11-kit-proxy \
+            -libfile ${pkgs.p11-kit}/lib/p11-kit-proxy.so
+        '')
+      ];
 
-      '';
+      etc = {
+        "pkcs11/modules/opensc-pkcs11".text = ''
+          module: ${pkgs.opensc}/lib/opensc-pkcs11.so
+        '';
+
+        "krb5.conf".text = mkBefore ''
+          includedir /etc/krb5.conf.d/
+        '';
+
+        "krb5.conf.d/kcm_default_ccache".text = ''
+          [libdefaults]
+          default_ccache_name = KCM:
+        '';
+
+        "krb5.conf.d/enable_passkey".text = ''
+          [plugins]
+            clpreauth = {
+              module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
+            }
+
+            kdcpreauth = {
+              module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
+            }
+
+        '';
+
+        # "chromium/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
+        # "opt/chrome/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
+
+        "opt/chrome/policies/managed/harkema.json".text = ''
+          { "AuthServerWhitelist": "*.harkema.io" }
+        '';
+      };
+    };
+
+    programs.firefox = {
+      nativeMessagingHosts.euwebid = true;
+      policies.SecurityDevices.p11-kit-proxy = "${pkgs.p11-kit}/lib/p11-kit-proxy.so";
     };
 
     # FROM: https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/misc/sssd.nix
@@ -71,7 +100,12 @@ in {
       };
     };
 
-    security.krb5.settings.libdefaults.default_ccache_name = "KCM:";
+    security = {
+      sudo.package = pkgs.sudo.override {withSssd = true;};
+      krb5.settings.libdefaults.default_ccache_name = "KCM:";
+
+      pki.certificateFiles = [config.security.ipa.certificate];
+    };
 
     services = {
       sssd = {
@@ -87,17 +121,15 @@ in {
         config = mkAfter ''
           [pam]
           pam_passkey_auth = True
+          pam_cert_auth = True
           passkey_debug_libfido2 = True
           passkey_child_timeout = 60
-
 
           [domain/shadowutils]
           id_provider = proxy
           proxy_lib_name = files
           auth_provider = none
           local_auth_policy = match
-
-
         '';
 
         # [sssd]
