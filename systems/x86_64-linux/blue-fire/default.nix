@@ -162,8 +162,8 @@ in {
       };
       services = {
         buildbot-worker.serviceConfig = {
-          MemoryHigh = "5%";
-          MemoryMax = "10%";
+          MemoryHigh = "30%";
+          MemoryMax = "35%";
           Nice = 10;
         };
       };
