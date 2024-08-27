@@ -290,7 +290,6 @@ in {
       nvidia = {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
-        nvidiaSettings = false;
 
         vgpu = {
           enable = true;
