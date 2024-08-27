@@ -159,7 +159,10 @@ with lib; {
         nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
-        nvidia.enable = true;
+        nvidia = {
+          enable = true;
+          open = true;
+        };
         remote-unlock.enable = true;
         monitor.enable = true;
         disable-sleep.enable = true;

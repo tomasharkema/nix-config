@@ -23,7 +23,7 @@ in {
       type = types.bool;
     };
     open = mkOption {
-      default = true;
+      default = false;
       type = types.bool;
     };
   };
@@ -99,14 +99,11 @@ in {
     hardware = {
       nvidia = {
         modesetting.enable = true;
-        forceFullCompositionPipeline = true;
+        # forceFullCompositionPipeline = true;
         open = mkForce cfg.open;
-        nvidiaSettings = false;
+        nvidiaSettings = true;
 
-        package =
-          if cfg.beta
-          then mkDefault config.boot.kernelPackages.nvidiaPackages.beta
-          else mkDefault config.boot.kernelPackages.nvidiaPackages.stable;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
       };
 
       graphics = {

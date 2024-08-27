@@ -131,8 +131,6 @@ with lib; {
         laptop.thinkpad.enable = true;
         nvidia = {
           enable = true;
-          beta = true;
-          open = false;
         };
         # remote-unlock.enable = true;
         bluetooth.enable = true;

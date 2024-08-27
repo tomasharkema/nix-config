@@ -20,20 +20,19 @@
 
   # zjstatus = zjstatus.packages."${prev.system}".default;
 
-  nerdfonts = prev.nerdfonts;
-  # .nerdfonts.override {
-  #   fonts = [
-  #     "JetBrainsMono"
-  #     "FiraCode"
-  #     "FiraMono"
-  #     "Terminus"
-  #     "ComicShannsMono"
-  #     "BigBlueTerminal"
+  nerdfonts = prev.nerdfonts.override {
+    fonts = [
+      "JetBrainsMono"
+      "FiraCode"
+      "FiraMono"
+      "Terminus"
+      "ComicShannsMono"
+      "BigBlueTerminal"
 
-  #     "OpenDyslexic"
-  #     "Noto"
-  #   ];
-  # };
+      "OpenDyslexic"
+      "Noto"
+    ];
+  };
 
   # attic-client = prev.attic-client.override {
   # nix = prev.nixVersions.nix_2_18;
