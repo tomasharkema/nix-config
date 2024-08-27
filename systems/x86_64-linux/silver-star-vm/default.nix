@@ -36,7 +36,7 @@ with lib; {
       main = "/dev/disk/by-id/virtio-vdisk1";
     };
 
-    resilio.enable = mkForce false;
+    apps.resilio.enable = mkForce false;
     # apps.tor.relay.enable = true;
 
     apps = {

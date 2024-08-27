@@ -63,8 +63,6 @@ in {
     #   MUTTER_DEBUG_KMS_THREAD_TYPE = "user";
     # };
 
-    virtualisation.containers.cdi.dynamic.nvidia.enable = true;
-
     services = {
       xserver.videoDrivers = ["nvidia"];
       netdata.configDir."python.d.conf" = pkgs.writeText "python.d.conf" ''
@@ -91,12 +89,9 @@ in {
       };
     };
 
-    # TODO: fix!
-    # assertions = [
-    #   (compareVersion pkgs config.boot.kernelPackages.nvidiaPackages.latest.version config.hardware.nvidia.package.version)
-    # ];
-
     hardware = {
+      nvidia-container-toolkit.enable = true;
+
       nvidia = {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;

@@ -89,7 +89,7 @@ with lib; {
         remote-unlock.enable = false;
       };
     };
-    resilio.enable = false;
+    apps.resilio.enable = false;
 
     hardware.graphics = {
       enable = true;

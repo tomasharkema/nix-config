@@ -1,21 +1,5 @@
 {
-  outputs = inputs: let
-    # lib = inputs.snowfall-lib.mkLib {
-    #   inherit inputs;
-    #   imports = [
-    #     inputs.agenix-rekey.flakeModule
-    #   ];
-    #   src = ./.;
-    #   snowfall = {
-    #     meta = {
-    #       name = "dotfiles";
-    #       title = "dotfiles";
-    #     };
-    #     namespace = "custom";
-    #   };
-    # };
-  in
-    # lib
+  outputs = inputs:
     inputs.snowfall-lib.mkFlake {
       inherit inputs;
 
@@ -43,12 +27,14 @@
         # permittedInsecurePackages = [ "openssl-1.1.1w" ];
         permittedInsecurePackages = [
           "python3.12-youtube-dl-2021.12.17"
+          # "python-2.7.18.8"
         ];
         config = {
           # For example, enable smartcard support in Firefox.
           firefox.smartcardSupport = true;
           permittedInsecurePackages = [
             "python3.12-youtube-dl-2021.12.17"
+            # "python-2.7.18.8"
           ];
         };
       };
@@ -84,7 +70,7 @@
       ];
 
       homes.modules = with inputs; [
-        #     catppuccin.homeManagerModules.catppuccin
+        # catppuccin.homeManagerModules.catppuccin
         nixvim.homeManagerModules.nixvim
         nix-index-database.hmModules.nix-index
         _1password-shell-plugins.hmModules.default
@@ -132,54 +118,7 @@
 
           # nixos-service.nixosModules.nixos-service
           # nix-virt.nixosModules.default
-
-          ({
-            config,
-            lib,
-            ...
-          }: {
-            config = {
-              age = {
-                rekey = {
-                  masterIdentities = [
-                    ./secrets/age-yubikey-identity-usbc.pub
-                    # "/etc/ssh/ssh_host_ed25519_key"
-                  ];
-                  # extraEncryptionPubkeys = [
-                  #   ./secrets/age-yubikey-identity-usba.pub
-                  # ];
-
-                  storageMode = "local";
-                  localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
-                };
-                secrets = {
-                  nix-access-tokens-github = {
-                    rekeyFile = ./secrets/github.age;
-                    mode = "666";
-                  };
-                };
-              };
-
-              nix.extraOptions = ''
-                !include ${config.age.secrets.nix-access-tokens-github.path}
-              '';
-
-              system = {
-                stateVersion = "24.05";
-                nixos.tags = [
-                  "snowfall"
-                  (self.shortRev or "dirty")
-                ];
-                configurationRevision = lib.mkForce (self.shortRev or "dirty");
-              };
-
-              nix = {
-                registry.nixpkgs.flake = inputs.nixpkgs;
-                registry.home-manager.flake = inputs.home-manager;
-                registry.darwin.flake = inputs.darwin;
-              };
-            };
-          })
+          ./defaultNixosAge.nix
         ];
 
         darwin = with inputs; [
@@ -258,7 +197,7 @@
       hydraJobs = import ./hydraJobs.nix {inherit inputs;};
 
       agenix-rekey = let
-        lib = inputs.self.lib;
+        lib = inputs.nixpkgs.lib;
       in
         inputs.agenix-rekey.configure {
           userFlake = inputs.self;

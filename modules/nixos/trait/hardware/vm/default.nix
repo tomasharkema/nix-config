@@ -35,7 +35,7 @@ in {
       enableRedistributableFirmware = false;
       enableAllFirmware = false;
     };
-    resilio.enable = false;
+    apps.resilio.enable = false;
 
     boot = {
       # availableKernelModules = ["virtio_net" "virtio_pci" "virtio_mmio" "virtio_blk" "virtio_scsi" "9p" "9pnet_virtio"];

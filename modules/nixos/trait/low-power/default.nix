@@ -12,6 +12,6 @@ in {
   };
   config = mkIf cfg.enable {
     trait.builder.enable = mkForce false;
-    resilio.enable = mkForce false;
+    apps.resilio.enable = mkForce false;
   };
 }

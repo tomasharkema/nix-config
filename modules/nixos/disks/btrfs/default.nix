@@ -43,31 +43,31 @@ with lib.custom; let
             mountOptions = [];
           };
           "home" = {
-            mountOptions = ["noatime" "discard=async"]; #++ lib.optional (!config.trait.low-power.enable) "compress=zstd";
+            mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.trait.low-power.enable) "compress=zstd";
             mountpoint = "/home";
           };
           "resilio-sync" = mkIf (cfg.newSubvolumes && cfg.media == null) {
-            mountOptions = ["noatime" "compress=zstd" "discard=async"];
+            mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.trait.low-power.enable) "compress=zstd";
             mountpoint = "/mnt/resilio-sync";
           };
           "resilio-sync-lib" = mkIf cfg.newSubvolumes {
-            mountOptions = ["noatime" "compress=zstd" "discard=async"];
+            mountOptions = ["noatime" "discard=async"];
             mountpoint = "/var/lib/resilio-sync";
           };
           "nix" = mkIf cfg.newSubvolumes {
-            mountOptions = ["noatime" "discard=async"];
+            mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.trait.low-power.enable) "compress=zstd";
             mountpoint = "/nix";
           };
           "containers" = mkIf cfg.newSubvolumes {
-            mountOptions = ["noatime" "discard=async"];
+            mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.trait.low-power.enable) "compress=zstd";
             mountpoint = "/var/lib/containers";
           };
           "snapshots" = mkIf cfg.newSubvolumes {
-            mountOptions = ["noatime" "nodatacow" "compress=zstd" "nodatasum" "discard=async"];
+            mountOptions = ["noatime" "compress=zstd" "discard=async"];
             mountpoint = "/.snapshots";
           };
           "home-snapshots" = mkIf cfg.newSubvolumes {
-            mountOptions = ["noatime" "nodatacow" "nodatasum" "compress=zstd" "discard=async"];
+            mountOptions = ["noatime" "compress=zstd" "discard=async"];
             mountpoint = "/home/.snapshots";
           };
           "steam" = mkIf cfg.newSubvolumes {
@@ -77,7 +77,7 @@ with lib.custom; let
             mountpoint = "/mnt/steam";
           };
           "flatpak" = mkIf cfg.newSubvolumes {
-            mountOptions = ["noatime" "discard=async"];
+            mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.trait.low-power.enable) "compress=zstd";
             mountpoint = "/var/lib/flatpak";
           };
           "log" = mkIf cfg.newSubvolumes {

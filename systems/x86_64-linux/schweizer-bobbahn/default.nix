@@ -55,7 +55,7 @@ with lib; {
     #   ipa = { ifpAllowedUids = mkForce [ "root" "tomas" "media" ]; };
     # };
 
-    resilio.enable = false;
+    apps.resilio.enable = false;
 
     trait = {
       low-power.enable = true;

@@ -44,58 +44,64 @@ with lib.custom; {
       sudo.wheelNeedsPassword = false;
     };
 
-    environment.systemPackages = with pkgs; [];
-
-    programs.zsh = {enable = true;};
-
-    users.mutableUsers = mkDefault false;
-    programs.fuse.userAllowOther = true;
-    users.users.${config.user.name} = {
-      shell = pkgs.zsh;
-      isNormalUser = true;
-      description = "tomas";
-      group = "${config.user.name}";
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-        "rslsync"
-        "users"
-        "fuse"
-        "disk"
-        "plugdev"
-        "dailout"
-        "audio"
-        "video"
-        "input"
-        "seat"
-      ];
-      initialHashedPassword = "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
-
-      openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
-      linger = true;
-      uid = 1000;
+    programs = {
+      fuse.userAllowOther = true;
+      zsh = {enable = true;};
     };
 
-    users.groups.${config.user.name} = {
-      name = "${config.user.name}";
-      members = ["${config.user.name}"];
-    };
+    users = {
+      mutableUsers = mkDefault false;
 
-    users.groups = {
-      agent = {};
-      rslsync = lib.mkIf config.resilio.enable {};
-    };
-    users.users.agent = {
-      isSystemUser = true;
-      group = "agent";
-      extraGroups = lib.mkIf config.resilio.enable ["rslsync"];
-      openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
-      uid = 1099;
-    };
+      users = {
+        agent = {
+          isSystemUser = true;
+          group = "agent";
+          extraGroups = mkIf config.apps.resilio.enable ["rslsync"];
+          openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+          uid = 1099;
+        };
 
-    users.users.root = {
-      shell = pkgs.zsh;
-      openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+        root = {
+          shell = pkgs.zsh;
+          openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+        };
+
+        "${config.user.name}" = {
+          shell = pkgs.zsh;
+          isNormalUser = true;
+          description = "tomas";
+          group = "${config.user.name}";
+          extraGroups = [
+            "networkmanager"
+            "wheel"
+            "rslsync"
+            "users"
+            "fuse"
+            "disk"
+            "plugdev"
+            "dailout"
+            "audio"
+            "video"
+            "input"
+            "seat"
+          ];
+          initialHashedPassword = "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
+
+          openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+          linger = true;
+          uid = 1000;
+        };
+      };
+
+      groups = {
+        "${config.user.name}" = {
+          name = "${config.user.name}";
+          members = ["${config.user.name}"];
+          gid = 1000;
+        };
+        agent = {};
+        rslsync = mkIf config.apps.resilio.enable {};
+      };
     };
 
     # optional, useful when the builder has a faster internet connection than yours

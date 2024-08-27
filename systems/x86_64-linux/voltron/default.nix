@@ -32,25 +32,6 @@ with lib; {
 
     programs.gnupg.agent = {enable = true;};
 
-    services = {
-      # dbus.packages = with pkgs; [custom.ancs4linux];
-      # kmscon = {enable = mkForce false;};
-      udev = {
-        enable = true;
-        packages = with pkgs; [
-          heimdall-gui
-          libusb
-
-          # ccid
-        ];
-      };
-
-      # fprintd.tod.driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
-      #   calib-data-file = ./calib-data.bin;
-      # };
-      switcherooControl.enable = true;
-    };
-
     environment = {
       sessionVariables = {
         # LIBVA_DRIVER_NAME = "i965";
@@ -120,6 +101,11 @@ with lib; {
       # opensnitch.enable = true;
       # usbip.enable = true;
       # samsung.enable = true;
+      podman.enable = true;
+      resilio = {
+        enable = true;
+        enableEnc = true;
+      };
     };
 
     trait = {
@@ -149,9 +135,23 @@ with lib; {
       };
     };
 
-    apps.podman.enable = true;
-
     services = {
+      # dbus.packages = with pkgs; [custom.ancs4linux];
+      # kmscon = {enable = mkForce false;};
+      udev = {
+        enable = true;
+        packages = with pkgs; [
+          heimdall-gui
+          libusb
+
+          # ccid
+        ];
+      };
+
+      # fprintd.tod.driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
+      #   calib-data-file = ./calib-data.bin;
+      # };
+      switcherooControl.enable = true;
       journald.storage = "volatile";
 
       hypervisor = {
