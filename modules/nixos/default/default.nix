@@ -108,7 +108,10 @@ with lib.custom;
       programs.ccache = {
         enable = true;
         packageNames = [
+          "sudo"
+          "freeipa"
           "sssd"
+
           "ffmpeg"
           "ffmpeg-full"
 

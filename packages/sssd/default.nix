@@ -101,11 +101,6 @@ in
       "-I${libxml2.dev}/include/libxml2"
     ];
 
-    # --libdir=$out/lib
-    # --enable-nsslibdir=$out/lib
-    #  --with-krb5-rcache-dir=/var/cache/krb5rcache
-    # --datadir=$out/share
-
     preConfigure =
       ''
         echo "PYTHONPATH: $PYTHONPATH"
@@ -117,9 +112,11 @@ in
           --prefix=$out
           --sysconfdir=/etc
           --localstatedir=/var
-
+          --datadir=$out/share
           --libexecdir=$out/libexec
           --enable-pammoddir=$out/lib/security
+          --enable-nsslibdir=$out/lib
+          --libdir=$out/lib
           --with-os=fedora
           --with-pid-path=/run
           --with-python3-bindings
@@ -156,7 +153,7 @@ in
       py
       # distutils-extra
       # distlib
-      # setuptools
+      setuptools
     ];
 
     buildInputs = [
