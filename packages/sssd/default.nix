@@ -82,15 +82,14 @@ in
       sha256 = "sha256-wr6qFgM5XN3aizYVquj0xF+mVRgrkLWWhA3/gQOK8hQ=";
     };
 
-    patches = [
-      ./zip-patch.patch
-      #   # Fix the build with Samba 4.20
-      #   (fetchpatch {
-      #     url =
-      #       "https://github.com/SSSD/sssd/commit/1bf51929a48b84d62ac54f2a42f17e7fbffe1612.patch";
-      #     hash = "sha256-VLx04APEipp860iOJNIwTGywxZ7rIDdyh3te6m7Ymlo=";
-      #   })
-    ];
+    # patches = [
+    #   # Fix the build with Samba 4.20
+    #   (fetchpatch {
+    #     url =
+    #       "https://github.com/SSSD/sssd/commit/1bf51929a48b84d62ac54f2a42f17e7fbffe1612.patch";
+    #     hash = "sha256-VLx04APEipp860iOJNIwTGywxZ7rIDdyh3te6m7Ymlo=";
+    #   })
+    # ];
 
     postPatch = ''
       patchShebangs ./sbus_generate.sh.in
@@ -102,24 +101,11 @@ in
       "-I${libxml2.dev}/include/libxml2"
     ];
 
-    # echo "PYTHONPATH: $PYTHONPATH"
-    # echo "PYTHON: $PYTHON"
-
-    #
-    # export PYTHONPATH=${py.sitePackages}
-    # export PATH=$PATH:${openldap}/libexec
-    # export PYTHON=${py.interpreter}
-
-    # echo "PYTHONPATH: $PYTHONPATH"
-    # echo "PYTHON: $PYTHON"
-
-    # substituteInPlace setup.cfg \
-    #   --replace-fail "[flake8]" "[options]\nzip_safe=False\n\n[flake8]"
-
     # --libdir=$out/lib
     # --enable-nsslibdir=$out/lib
     #  --with-krb5-rcache-dir=/var/cache/krb5rcache
     # --datadir=$out/share
+
     preConfigure =
       ''
         echo "PYTHONPATH: $PYTHONPATH"
