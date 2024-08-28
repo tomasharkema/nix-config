@@ -55,7 +55,7 @@ in {
           admins = ["tomasharkema"];
           outputsPath = "/var/www/buildbot/nix-outputs";
           buildbotNixpkgs = pkgs;
-
+evalWorkerCount=2;
           workersFile = config.age.secrets.buildbot-workers-json.path;
 
           github = {
