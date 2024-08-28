@@ -105,24 +105,6 @@ with lib.custom;
         };
       };
 
-      programs.ccache = {
-        enable = true;
-        packageNames = [
-          "sudo"
-          "freeipa"
-          "sssd"
-
-          "ffmpeg"
-          "ffmpeg-full"
-
-          "zerotierone"
-          "ztui"
-        ];
-      };
-
-      nix.settings = {
-        extra-sandbox-paths = [config.programs.ccache.cacheDir];
-      };
       # environment.etc = {
       #   "current-system-packages".source = pkgs.custom.pkgs-index.override {
       #     packages = config.environment.systemPackages;

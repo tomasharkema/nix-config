@@ -195,6 +195,24 @@ with lib; {
     #   };
     # };
 
+    programs.ccache = {
+      enable = true;
+      packageNames = [
+        "freeipa"
+        "sssd"
+
+        "ffmpeg"
+        "ffmpeg-full"
+
+        "zerotierone"
+        "ztui"
+      ];
+    };
+
+    nix.settings = {
+      extra-sandbox-paths = [config.programs.ccache.cacheDir];
+    };
+
     boot.kernelPackages = mkForce pkgs.linuxPackages_cachyos;
 
     chaotic = {
