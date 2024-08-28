@@ -9,34 +9,13 @@
 
   nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
-  # _389-ds-base = self.packages."${prev.system}"._389-ds-base;
-  # freeipa = self.packages."${prev.system}".freeipa;
-  # sssd = self.packages."${prev.system}".sssd.override {withSudo = true;};
+  _389-ds-base = self.packages."${prev.system}"._389-ds-base;
+  freeipa = self.packages."${prev.system}".freeipa;
+  sssd = self.packages."${prev.system}".sssd.override {withSudo = true;};
 
   docset = inputs.nixos-dash-docset.packages."${prev.system}".docset;
 
   tailscalesd = inputs.tailscalesd.packages."${prev.system}".tailscalesd;
-
-  # inshellisense = channels.unstable.inshellisense;
-  # # sssd = channels.unstable.sssd.override {
-  # #   ldb = ldb;
-  # #   withSudo = true;
-  # # };
-  # sssd = self.packages."${prev.system}".sssd.override {
-  #   ldb = ldb;
-  #   withSudo = true;
-  # };
-
-  # # freeipa = channels.unstable.freeipa.override {
-  # #   # ldb = ldbUnstable;
-  # #   sssd = sssd;
-  # #   _389-ds-base = _389-ds-base;
-  # # };
-  # freeipa = self.packages."${prev.system}".freeipa.override {
-  #   # ldb = ldbUnstable;
-  #   sssd = sssd;
-  #   _389-ds-base = _389-ds-base;
-  # };
 
   # dosbox-x = prev.dosbox-x.overrideAttrs ({postInstall ? "", ...}: {
   #   postInstall =

@@ -8,6 +8,11 @@
 with lib;
 with lib.custom; let
   cfg = config.apps.ipa;
+
+  chromePolicy = pkgs.writers.writeJSON "harkema.json" {
+    AuthServerWhitelist = "*.harkema.io";
+    AuthServerAllowlist = "*.harkema.io";
+  };
 in {
   options = {
     apps.ipa = {
@@ -17,11 +22,26 @@ in {
   };
 
   config = mkIf cfg.enable {
+    assertions = [
+      {
+        message = "sssd_krb5_passkey_plugin";
+        assertion = builtins.pathExists "${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so";
+      }
+      {
+        message = "sssd_kcm";
+        assertion = builtins.pathExists "${pkgs.sssd}/libexec/sssd/sssd_kcm";
+      }
+      {
+        message = "p11-kit-proxy";
+        assertion = builtins.pathExists "${pkgs.p11-kit}/lib/p11-kit-proxy.so";
+      }
+    ];
+
     environment = {
       systemPackages = with pkgs; [
         ldapvi
         ldapmonitor
-        pkcs11-helper
+        pkcs11helper
 
         (pkgs.writeShellScriptBin "setup-browser-eid" ''
           NSSDB="''${HOME}/.pki/nssdb"
@@ -48,22 +68,20 @@ in {
 
         "krb5.conf.d/enable_passkey".text = ''
           [plugins]
-            clpreauth = {
-              module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
-            }
+          clpreauth = {
+            module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
+          }
 
-            kdcpreauth = {
-              module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
-            }
-
+          kdcpreauth = {
+            module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
+          }
         '';
 
         # "chromium/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
         # "opt/chrome/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
 
-        "opt/chrome/policies/managed/harkema.json".text = ''
-          { "AuthServerWhitelist": "*.harkema.io" }
-        '';
+        "chromium/policies/managed/harkema.json".text = chromePolicy;
+        "opt/chrome/policies/managed/harkema.json".text = chromePolicy;
       };
     };
 
