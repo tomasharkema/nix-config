@@ -73,8 +73,8 @@ with lib.custom;
         hardwareScan = true;
 
         kernel.sysctl = {
-          "net.ipv4.ip_forward" = 1;
-          "kernel.sysrq" = 1;
+          "net.ipv4.ip_forward" = mkForce 1;
+          # "kernel.sysrq" = 1;
         };
 
         tmp = {
@@ -122,7 +122,8 @@ with lib.custom;
         # sessionVariables.MOZ_ENABLE_WAYLAND = "0";
 
         systemPackages =
-          (with pkgs; [config.nur.repos.mloeper.usbguard-applet-qt
+          (with pkgs; [
+            config.nur.repos.mloeper.usbguard-applet-qt
             meld
             _86Box-with-roms
             # dry
@@ -362,7 +363,7 @@ with lib.custom;
           settings = {
             PasswordAuthentication = false;
             KbdInteractiveAuthentication = true;
-            PermitRootLogin = "yes";
+            # PermitRootLogin = "yes";
             AcceptEnv = "*";
             X11Forwarding = true;
           };

@@ -42,7 +42,7 @@ with lib.custom; let
             mountpoint = "/";
             mountOptions = [];
           };
-          "home" = {
+          "home" = mkForce {
             mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.trait.low-power.enable) "compress=zstd";
             mountpoint = "/home";
           };
@@ -289,7 +289,7 @@ in
           };
         };
       };
-
+      fileSystems."/home".device = mkForce "/dev/mapper/crypted";
       systemd.tmpfiles.rules = mkIf (cfg.media != null) [
         "d /mnt/media/resilio-sync 0777 rslsync rslsync -"
         "L+ /mnt/resilio-sync - - - - /mnt/media/resilio-sync"

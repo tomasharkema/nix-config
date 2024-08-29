@@ -750,6 +750,22 @@
         "type": "github"
       }
     },
+    "nix-mineral": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1722804891,
+        "narHash": "sha256-CGQMSLlqO6D5yDXYNZTfDqv2RqifC4WTP9RxiRBaCX0=",
+        "owner": "cynicsketch",
+        "repo": "nix-mineral",
+        "rev": "477ef3395dc6fd69237d717edcc6f4274364b745",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cynicsketch",
+        "repo": "nix-mineral",
+        "type": "github"
+      }
+    },
     "nix-software-center": {
       "inputs": {
         "nixos-appstream-data": "nixos-appstream-data",
@@ -1211,6 +1227,7 @@
         "nix-gaming": "nix-gaming",
         "nix-htop": "nix-htop",
         "nix-index-database": "nix-index-database",
+        "nix-mineral": "nix-mineral",
         "nix-software-center": "nix-software-center",
         "nixos-06cb-009a-fingerprint-sensor": "nixos-06cb-009a-fingerprint-sensor",
         "nixos-anywhere": "nixos-anywhere",

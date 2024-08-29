@@ -8,6 +8,34 @@ with lib; {
   options.gui.fonts = {enable = mkEnableOption "gui.fonts";};
 
   config = mkIf config.gui.fonts.enable {
+    system.fsPackages = [pkgs.bindfs];
+    fileSystems = let
+      mkRoSymBind = path: {
+        device = path;
+        fsType = "fuse.bindfs";
+        options = ["ro" "resolve-symlinks" "x-gvfs-hide"];
+      };
+      aggregatedIcons = pkgs.buildEnv {
+        name = "system-icons";
+        paths = with pkgs; [
+          #libsForQt5.breeze-qt5  # for plasma
+          gnome-themes-extra
+          nixos-icons
+
+          config.home-manager.users.tomas.gtk.iconTheme.package
+        ];
+        pathsToLink = ["/share/icons"];
+      };
+      aggregatedFonts = pkgs.buildEnv {
+        name = "system-fonts";
+        paths = config.fonts.packages;
+        pathsToLink = ["/share/fonts"];
+      };
+    in {
+      "/usr/share/icons" = mkRoSymBind "${aggregatedIcons}/share/icons";
+      "/usr/local/share/fonts" = mkRoSymBind "${aggregatedFonts}/share/fonts";
+    };
+
     fonts = {
       enableDefaultPackages = true;
       fontDir.enable = true;
