@@ -45,8 +45,13 @@ in {
         mode = "666";
       };
 
-      systemd.user.services."ntfy-client" = {
-        path = with pkgs; [ntfy-sh libnotify envsubst];
+      systemd.user.services."ntfy-subscribe-notfication" = {
+        path = with pkgs; [
+          ntfy-sh
+          libnotify
+          envsubst
+          bash
+        ];
         serviceConfig = {
           PrivateTmp = true;
           EnvironmentFile = mkIf (subscribeCfg.environmentFile != null) subscribeCfg.environmentFile;
@@ -72,7 +77,7 @@ in {
 
         # ${pkgs.ntfy-sh}/bin/
         script = ''
-          ntfy subscribe --config="/tmp/ntfy-client.yml" --from-config
+          ntfy subscribe --config="/tmp/ntfy-client.yml" --from-config --debug
         '';
 
         description = "ntfy client";
