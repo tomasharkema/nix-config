@@ -21,6 +21,6 @@ stdenvNoCC.mkDerivation {
   # '';
 
   installPhase = ''
-    install -D -m 666 *.otf -t $out/share/fonts/otf
+    install -Dm444 *.otf -t $out/share/fonts/otf
   '';
 }

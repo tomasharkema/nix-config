@@ -20,6 +20,6 @@ stdenvNoCC.mkDerivation {
   # '';
 
   installPhase = ''
-    install -D -m 666 *.ttf -t $out/share/fonts/ttf
+    install -Dm444 *.ttf -t $out/share/fonts/ttf
   '';
 }

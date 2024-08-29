@@ -196,13 +196,19 @@ with lib; {
     # };
 
     programs = {
-      captive-browser.enable = true;
+      captive-browser = {
+        enable = true;
+        interface = "wlp4s0";
+      };
 
       ccache = {
         enable = true;
         packageNames = [
           "freeipa"
           "sssd"
+
+          "chromium"
+          "chromium-unwrapped"
 
           "ffmpeg"
           "ffmpeg-full"

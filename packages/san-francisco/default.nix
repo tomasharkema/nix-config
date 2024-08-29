@@ -66,8 +66,8 @@ stdenvNoCC.mkDerivation rec {
     xar -xf "SF Pro Fonts.pkg"
     cat SFProFonts.pkg/Payload | gunzip -dc | cpio -i
 
-    install -D -m 666 Library/Fonts/*.otf -t $out/share/fonts/otf
-    install -D -m 666 Library/Fonts/*.ttf -t $out/share/fonts/ttf
+    install -Dm444 Library/Fonts/*.otf -t $out/share/fonts/otf
+    install -Dm444 Library/Fonts/*.ttf -t $out/share/fonts/ttf
 
   '';
 }

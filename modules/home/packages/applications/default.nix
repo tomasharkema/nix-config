@@ -20,7 +20,7 @@ with lib.custom; let
 
     echo "find desktop in $FILEPATH"
 
-    PATH_MATCHES="$(find "$FILEPATH" -name '*.desktop')"
+    PATH_MATCHES="$(find -L "$FILEPATH" -name '*.desktop')"
 
     for f in $PATH_MATCHES;
     do
@@ -65,7 +65,8 @@ in {
     favoriteApplications = with pkgs;
       [
         {package = nautilus;}
-        {package = google-chrome;}
+        # {package = google-chrome;}
+        {package = chromium;}
         {package = osConfig.programs.firefox.package;}
         {package = geary;}
         {package = vscode;}

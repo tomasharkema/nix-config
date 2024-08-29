@@ -55,7 +55,8 @@
         };
       };
 
-      overlays = with inputs; [nur.overlay
+      overlays = with inputs; [
+        nur.overlay
         nixos-recovery.overlays.recovery
         # nix-otel.overlays.default
         # peerix.overlay
@@ -94,7 +95,8 @@
 
       systems.modules = {
         nixos = with inputs; [
-nur.nixosModules.nur
+          "${nix-mineral}/nix-mineral.nix"
+          nur.nixosModules.nur
           chaotic.nixosModules.default
           # nix-topology.nixosModules.default
           # netkit.nixosModule
@@ -750,7 +752,7 @@ nur.nixosModules.nur
       };
     };
 
-nur.url="github:nix-community/NUR";
+    nur.url = "github:nix-community/NUR";
 
     buildbot-nix = {
       url = "github:nix-community/buildbot-nix";
@@ -772,5 +774,10 @@ nur.url="github:nix-community/NUR";
     };
 
     chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
+
+    nix-mineral = {
+      url = "github:cynicsketch/nix-mineral";
+      flake = false;
+    };
   };
 }
