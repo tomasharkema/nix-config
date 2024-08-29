@@ -195,18 +195,22 @@ with lib; {
     #   };
     # };
 
-    programs.ccache = {
-      enable = true;
-      packageNames = [
-        "freeipa"
-        "sssd"
+    programs = {
+      captive-browser.enable = true;
 
-        "ffmpeg"
-        "ffmpeg-full"
+      ccache = {
+        enable = true;
+        packageNames = [
+          "freeipa"
+          "sssd"
 
-        "zerotierone"
-        "ztui"
-      ];
+          "ffmpeg"
+          "ffmpeg-full"
+
+          "zerotierone"
+          "ztui"
+        ];
+      };
     };
 
     nix.settings = {
