@@ -94,7 +94,7 @@
 
       systems.modules = {
         nixos = with inputs; [
-nur.nixosModukes.nur
+nur.nixosModules.nur
           chaotic.nixosModules.default
           # nix-topology.nixosModules.default
           # netkit.nixosModule
