@@ -26,10 +26,10 @@ in {
   };
 
   config = {
-    services.atd = {
-      enable = true;
-      allowEveryone = true;
-    };
+    # services.atd = {
+    #   enable = true;
+    #   allowEveryone = true;
+    # };
 
     systemd.services = {
       "${notifyServiceName}@" = {
@@ -38,7 +38,7 @@ in {
 
         serviceConfig = {
           Type = "oneshot";
-          ExecStart = "/bin/sh -c 'echo \"${sendmail} %i\" | ${pkgs.at}/bin/at -m -q n now'";
+          ExecStart = "${sendmail} %i";
         };
         wantedBy = ["default.target"];
         # after = ["network-online.target"];
