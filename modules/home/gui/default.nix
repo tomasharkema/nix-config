@@ -146,13 +146,13 @@ in {
         #   source = config.lib.file.mkOutOfStoreSymlink "${pkgs.custom.nixpkgs-docset}/nixpkgs.docset";
         #   recursive = true;
         # };
-        ".local/share/flatpak/overrides/global" = {
-          text = ''
-            [Context]
-            filesystems=/run/current-system/sw/share/X11/fonts:ro;/nix/store:ro;/home/tomas/.local/share/fonts:ro;
-          '';
-          # /home/tomas/.config/gtk-4.0:ro;/home/tomas/.config/gtk-3.0:ro;
-        };
+        # ".local/share/flatpak/overrides/global" = {
+        #   text = ''
+        #     [Context]
+        #     filesystems=/run/current-system/sw/share/X11/fonts:ro;/nix/store:ro;/home/tomas/.local/share/fonts:ro;
+        #   '';
+        # /home/tomas/.config/gtk-4.0:ro;/home/tomas/.config/gtk-3.0:ro;
+        # };
         # ".local/share/Zeal/Zeal/docsets/nixos.docset" = {
         # source = "${pkgs.docset}/share/docset-24.05.docset";
         # };

@@ -25,11 +25,13 @@ with lib; {
           config.home-manager.users.tomas.gtk.iconTheme.package
         ];
         pathsToLink = ["/share/icons"];
+        ignoreCollisions = true;
       };
       aggregatedFonts = pkgs.buildEnv {
         name = "system-fonts";
         paths = config.fonts.packages;
         pathsToLink = ["/share/fonts"];
+        ignoreCollisions = true;
       };
     in {
       "/usr/share/icons" = mkRoSymBind "${aggregatedIcons}/share/icons";
