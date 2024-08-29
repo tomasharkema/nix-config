@@ -122,7 +122,7 @@ with lib.custom;
         # sessionVariables.MOZ_ENABLE_WAYLAND = "0";
 
         systemPackages =
-          (with pkgs; [
+          (with pkgs; [config.nur.repos.mloeper.usbguard-applet-qt
             meld
             _86Box-with-roms
             # dry
