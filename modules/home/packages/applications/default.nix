@@ -73,7 +73,6 @@ in {
         {package = config.programs.wezterm.package;}
         {package = telegram-desktop;}
         {package = osConfig.programs._1password-gui.package;}
-        {package = notify-client;}
       ]
       ++ (optional pkgs.stdenv.isx86_64 {package = termius;})
       ++ [

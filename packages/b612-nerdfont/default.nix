@@ -1,15 +1,14 @@
 {
   nerd-font-patcher,
-  stdenv,
+  stdenvNoCC,
   b612,
-  tree,
 }: let
   font = b612;
 in
-  stdenv.mkDerivation {
+  stdenvNoCC.mkDerivation {
     name = "${font.name}-nerd-font-patched";
     src = font;
-    nativeBuildInputs = [nerd-font-patcher tree];
+    nativeBuildInputs = [nerd-font-patcher];
     buildPhase = ''
       tree
 
@@ -19,8 +18,6 @@ in
     '';
 
     installPhase = ''
-      ls -la
-      tree
       cp -a . $out
     '';
   }

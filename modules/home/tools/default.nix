@@ -91,7 +91,7 @@ with pkgs; {
       git-lfs
       gping
 
-      # httpie
+      httpie
       iftop
       ipmitool
       just

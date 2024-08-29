@@ -4,13 +4,14 @@
   ...
 }:
 stdenvNoCC.mkDerivation {
-  pname = "neue-haas-grotesk";
-  version = "1.001";
+  pname = "din";
+  version = "1";
 
   src = fetchzip {
-    url = "https://font.download/dl/font/neue-haas-grotesk-display-pro.zip";
+    url = "https://www.fontsquirrel.com/fonts/download/d-din";
     stripRoot = false;
-    sha256 = "sha256-13+0MkX2UZa+gHqMqlPLyFMN9wX71EKutFUIqOx4HXA=";
+    sha256 = "sha256-W1/7hA/LFF3KI7CU6pFGcywkMmdGzjeAqK0eKC/O/QQ=";
+    extension = "zip";
   };
 
   # buildPhase = ''
@@ -20,6 +21,6 @@ stdenvNoCC.mkDerivation {
   # '';
 
   installPhase = ''
-    install -D -m 666 *.ttf -t $out/share/fonts/ttf
+    install -D -m 666 *.otf -t $out/share/fonts/otf
   '';
 }

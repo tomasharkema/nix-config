@@ -69,6 +69,8 @@
     fonts = {
       # fontDir.enable = true;
       packages = with pkgs; [
+        custom.din
+        custom.futura
         google-fonts
         noto-fonts
         noto-fonts-extra

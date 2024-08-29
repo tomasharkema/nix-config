@@ -30,6 +30,8 @@ with lib; {
 
       packages = with pkgs;
       with pkgs.custom; [
+        din
+        futura
         fast-font
         # exult
         b612

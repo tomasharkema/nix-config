@@ -154,7 +154,7 @@ in
 
         tmux = {enable = true;};
 
-        # alacritty.enable = osConfig.gui.enable;
+        alacritty.enable = osConfig.gui.enable;
 
         # bat = {
         #   enable = true;
