@@ -55,7 +55,7 @@
         };
       };
 
-      overlays = with inputs; [
+      overlays = with inputs; [nur.overlay
         nixos-recovery.overlays.recovery
         # nix-otel.overlays.default
         # peerix.overlay
@@ -94,6 +94,7 @@
 
       systems.modules = {
         nixos = with inputs; [
+nur.nixosModukes.nur
           chaotic.nixosModules.default
           # nix-topology.nixosModules.default
           # netkit.nixosModule
@@ -748,6 +749,8 @@
         flake-parts.follows = "flake-parts";
       };
     };
+
+nur.url="github:nix-community/NUR";
 
     buildbot-nix = {
       url = "github:nix-community/buildbot-nix";
