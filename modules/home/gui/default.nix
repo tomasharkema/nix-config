@@ -92,6 +92,7 @@ in {
         trayscale
         zerotier-ui
         usbguard-gnome
+        notify-client
       ];
 
       activation = {

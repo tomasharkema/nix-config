@@ -5,17 +5,6 @@
   ...
 }:
 with lib; let
-  sendmail = pkgs.writeScript "sendmail" ''
-    #!/bin/sh
-    ${pkgs.system-sendmail}/bin/sendmail -t <<ERRMAIL
-    To: systemd@mailrise.xyz
-    From: tomas@harkema.io
-    Subject: $HOSTNAME Status of service $1
-    Content-Transfer-Encoding: 8bit
-    Content-Type: text/plain; charset=UTF-8
-    $(systemctl status --full "$1")
-    ERRMAIL
-  '';
   notifyServiceName = "notify-service";
 in {
   options.systemd.services = mkOption {
@@ -38,11 +27,12 @@ in {
 
         serviceConfig = {
           Type = "oneshot";
-          ExecStart = "${sendmail} %i";
+          EnvironmentFile = config.age.secrets."notify-sub".path;
+          ExecStart = "/bin/sh -c '${pkgs.ntfy-sh}/bin/ntfy publish --title \"$HOSTNAME Status of %i\" \"$NIXOS_TOPIC_NAME\" \"$(systemctl status --full %i)\"'";
         };
         wantedBy = ["default.target"];
-        # after = ["network-online.target"];
-        # wants = ["network-online.target"];
+        after = ["network-online.target"];
+        wants = ["network-online.target"];
       };
     };
   };
