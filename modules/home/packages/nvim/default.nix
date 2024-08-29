@@ -155,9 +155,9 @@ with lib;
           barbar = {
             enable = true;
           };
-          gitgutter = {
-            enable = true;
-          };
+          # gitgutter = {
+          #   enable = true;
+          # };
           surround = {
             enable = true;
           };

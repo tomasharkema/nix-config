@@ -21,6 +21,7 @@ with lib; {
           #libsForQt5.breeze-qt5  # for plasma
           gnome-themes-extra
           nixos-icons
+          adwaita-icon-theme
 
           config.home-manager.users.tomas.gtk.iconTheme.package
         ];
