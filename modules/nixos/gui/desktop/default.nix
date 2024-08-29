@@ -181,7 +181,7 @@ in {
           dmidecode
           ipmiview
           libsmbios
-
+config.nur.repos.mloeper.usbguard-applet-qt
           # (plex-media-player.overrideAttrs (prev: {
           #   runtimeDependencies =
           #     prev.runtimeDependencies
