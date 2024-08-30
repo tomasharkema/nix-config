@@ -81,35 +81,35 @@ in {
           wantedBy = ["acpower.target"];
           partOf = ["acpower.target"];
         };
-        "btrbk-${config.networking.hostName}-btrbk" = {
-          unitConfig = {
-            ConditionACPower = true;
-          };
+        # "btrbk-${config.networking.hostName}-btrbk" = {
+        #   unitConfig = {
+        #     ConditionACPower = true;
+        #   };
 
-          wantedBy = ["acpower.target"];
-          partOf = ["acpower.target"];
-        };
-        "nh-clean" = {
-          unitConfig = {
-            ConditionACPower = true;
-          };
-          wantedBy = ["acpower.target"];
-          partOf = ["acpower.target"];
-        };
-        "nix-optimise" = {
-          unitConfig = {
-            ConditionACPower = true;
-          };
-          wantedBy = ["acpower.target"];
-          partOf = ["acpower.target"];
-        };
-        "nix-gc" = {
-          unitConfig = {
-            ConditionACPower = true;
-          };
-          wantedBy = ["acpower.target"];
-          partOf = ["acpower.target"];
-        };
+        #   wantedBy = ["acpower.target"];
+        #   partOf = ["acpower.target"];
+        # };
+        # "nh-clean" = {
+        #   unitConfig = {
+        #     ConditionACPower = true;
+        #   };
+        #   wantedBy = ["acpower.target"];
+        #   partOf = ["acpower.target"];
+        # };
+        # "nix-optimise" = {
+        #   unitConfig = {
+        #     ConditionACPower = true;
+        #   };
+        #   wantedBy = ["acpower.target"];
+        #   partOf = ["acpower.target"];
+        # };
+        # "nix-gc" = {
+        #   unitConfig = {
+        #     ConditionACPower = true;
+        #   };
+        #   wantedBy = ["acpower.target"];
+        #   partOf = ["acpower.target"];
+        # };
       };
 
       targets = {

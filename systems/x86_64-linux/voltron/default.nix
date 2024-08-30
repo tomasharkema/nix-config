@@ -178,13 +178,13 @@ with lib; {
         reflector = mkForce false;
       };
 
-      # aesmd = {
-      # enable = true;
-      # settings = {
-      # defaultQuotingType = "ecdsa_256";
-      # whitelistUrl = "http://whitelist.trustedservices.intel.com/SGX/LCWL/Linux/sgx_white_list_cert.bin";
-      # };
-      # };
+      aesmd = {
+        enable = true;
+        settings = {
+          defaultQuotingType = "ecdsa_256";
+          whitelistUrl = "http://whitelist.trustedservices.intel.com/SGX/LCWL/Linux/sgx_white_list_cert.bin";
+        };
+      };
     };
 
     # virtualisation.kvmgt = {
@@ -198,10 +198,10 @@ with lib; {
     # };
 
     programs = {
-      # captive-browser = {
-      #   enable = true;
-      #   interface = "wlp4s0";
-      # };
+      captive-browser = {
+        enable = true;
+        interface = "wlp4s0";
+      };
 
       ccache = {
         enable = true;
