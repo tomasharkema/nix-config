@@ -340,11 +340,6 @@ with lib.custom;
         #   enableNotifications = true;
         # };
 
-        openvscode-server = {
-          enable = true;
-          socketPath = "/run/openvscode/socket";
-          connectionTokenFile = "/var/lib/openvscode/token";
-        };
         seatd.enable = true;
 
         # udisks2 = {

@@ -21,6 +21,11 @@ in {
         enable = true;
         webservices.enable = true;
       };
+      openvscode-server = {
+        enable = true;
+        socketPath = "/run/openvscode/socket";
+        connectionTokenFile = "/var/lib/openvscode/token";
+      };
     };
 
     # chaotic = {
