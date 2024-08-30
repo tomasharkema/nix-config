@@ -42,6 +42,7 @@ in {
         ldapvi
         ldapmonitor
         pkcs11helper
+        realmd
 
         (pkgs.writeShellScriptBin "setup-browser-eid" ''
           NSSDB="''${HOME}/.pki/nssdb"
@@ -126,6 +127,10 @@ in {
     };
 
     services = {
+      dbus = {
+        enable = true;
+        packages = [pkgs.realmd];
+      };
       sssd = {
         enable = true;
         # kcm = true;
