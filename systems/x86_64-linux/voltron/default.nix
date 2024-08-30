@@ -38,6 +38,7 @@ with lib; {
       };
 
       systemPackages = with pkgs; [
+        libimobiledevice
         intel-gpu-tools
         nvramtool
         libusb
@@ -136,6 +137,7 @@ with lib; {
     };
 
     services = {
+      usbmuxd.enable = true;
       # dbus.packages = with pkgs; [custom.ancs4linux];
       # kmscon = {enable = mkForce false;};
       udev = {
