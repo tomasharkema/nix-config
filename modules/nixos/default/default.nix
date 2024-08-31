@@ -15,6 +15,7 @@ with lib.custom;
 # in
   {
     imports = ["${inputs.nixos-hardware}/common/gpu/24.05-compat.nix"];
+
     config = {
       assertions = [
         {
@@ -63,7 +64,7 @@ with lib.custom;
       boot = {
         recovery.enable = mkDefault true;
         initrd = {
-          systemd.emergencyAccess = "abcdefg";
+          # systemd.emergencyAccess = "abcdefg";
           # includeDefaultModules = true;
         };
 
@@ -74,6 +75,7 @@ with lib.custom;
         kernel.sysctl = {
           "net.ipv4.ip_forward" = mkForce 1;
           # "kernel.sysrq" = 1;
+          "kernel.unprivileged_userns_clone" = mkForce 1;
         };
 
         tmp = {
@@ -125,9 +127,11 @@ with lib.custom;
             config.nur.repos.mloeper.usbguard-applet-qt
             meld
             _86Box-with-roms
+            distrobox
+            distrobox-tui
             # dry
             # etcher
-            # fancy-motd
+            fancy-motd
             # mkchromecast
             # nix-switcher # : needs github auth
             # ntfy
@@ -476,46 +480,46 @@ with lib.custom;
 
         flashrom.enable = true;
 
-        # rust-motd = {
-        #   enable = true;
-        #   settings = {
-        #     global = {
-        #       progress_full_character = "=";
-        #       progress_empty_character = "=";
-        #       progress_prefix = "[";
-        #       progress_suffix = "]";
-        #       time_format = "%Y-%m-%d %H:%M:%S";
-        #     };
-        #     banner = {
-        #       color = "red";
-        #       command = "hostname | ${pkgs.figlet}/bin/figlet -f slant";
-        #     };
-        #     uptime = {
-        #       prefix = "Up";
-        #     };
-        #     # weather = {
-        #     #   url = "https://wttr.in/Amsterdam";
-        #     # };
-        #     service_status = {
-        #       Accounts = "accounts-daemon";
-        #       Attic-watch-store = "attic-watch-store";
-        #     };
-        #     filesystems = {
-        #       root = "/";
-        #     };
-        #     memory = {
-        #       swap_pos = "beside"; # or "below" or "none"
-        #     };
-        #     last_login = {
-        #       tomas = 2;
-        #     };
-        #     last_run = {};
-        #   };
-        # };
-        # git = {
-        #   enable = true;
-        #   lfs.enable = true;
-        # };
+        rust-motd = {
+          # enable = true;
+          settings = {
+            global = {
+              progress_full_character = "=";
+              progress_empty_character = "=";
+              progress_prefix = "[";
+              progress_suffix = "]";
+              time_format = "%Y-%m-%d %H:%M:%S";
+            };
+            banner = {
+              color = "red";
+              command = "hostname | ${pkgs.figlet}/bin/figlet -f slant";
+            };
+            uptime = {
+              prefix = "Up";
+            };
+            # weather = {
+            #   url = "https://wttr.in/Amsterdam";
+            # };
+            service_status = {
+              Accounts = "accounts-daemon";
+              Attic-watch-store = "attic-watch-store";
+            };
+            filesystems = {
+              root = "/";
+            };
+            memory = {
+              swap_pos = "beside"; # or "below" or "none"
+            };
+            last_login = {
+              tomas = 2;
+            };
+            last_run = {};
+          };
+        };
+        git = {
+          enable = true;
+          lfs.enable = true;
+        };
         htop = {
           enable = true;
           package = pkgs.htop;

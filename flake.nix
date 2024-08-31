@@ -95,7 +95,6 @@
 
       systems.modules = {
         nixos = with inputs; [
-          # "${nix-mineral}/nix-mineral.nix"
           nur.nixosModules.nur
           chaotic.nixosModules.default
           # nix-topology.nixosModules.default
@@ -134,6 +133,8 @@
             ...
           }: {
             config = {
+              nm-overrides.desktop.home-exec.enable = false;
+
               # system.nixos.tags = ["snowfall"];
               system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
 

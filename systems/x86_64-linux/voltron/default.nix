@@ -232,7 +232,7 @@ with lib; {
     };
 
     boot = {
-      # resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
+      resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
       tmp = {
         useTmpfs = true;
@@ -245,7 +245,7 @@ with lib; {
         netboot.enable = true;
       };
 
-      # binfmt.emulatedSystems = ["aarch64-linux"];
+      binfmt.emulatedSystems = ["aarch64-linux"];
 
       modprobeConfig.enable = true;
 
