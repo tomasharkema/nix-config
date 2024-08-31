@@ -87,7 +87,7 @@ in {
       };
 
       hound = {
-        enable = true;
+        # enable = true;
         config = builtins.toJSON {
           max-concurrent-indexers = 2;
           repos = {
@@ -294,7 +294,7 @@ in {
 
         vgpu = {
           enable = true;
-
+          pinKernel = true;
           copyVGPUProfiles = {
             "1380:0000" = "13BD:1160";
           };
