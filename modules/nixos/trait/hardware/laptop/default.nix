@@ -19,9 +19,9 @@ in {
     # environment.systemPackages = [inputs.nbfc-linux.packages."${pkgs.system}".default];
 
     home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; (
-      optional
+      (optional
       (!config.trait.hardware.laptop.thinkpad.enable)
-      {package = battery-health-charging;}
+      {package = battery-health-charging;})
     );
 
     boot = {

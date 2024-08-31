@@ -23,7 +23,7 @@ with lib; {
         {package = media-controls;}
         {package = gsconnect;}
         {package = systemd-manager;}
-
+        {package = move-clock;}
         {package = home-assistant-extension;}
         {package = caffeine;}
         {
@@ -37,24 +37,12 @@ with lib; {
         # }
         # {
         #   package =
-        #     battery-health-charging;
-        # }
-        # {
-        #   package =
         #     app-menu-icon-remove-symbolic;
-        # }
-        # {
-        #   package =
-        #     pinguxnetlabel;
         # }
         {
           package =
             window-is-ready-remover;
         }
-        # {
-        #   package =
-        #     wayland-or-x11;
-        # }
         {
           package =
             appindicator;
@@ -79,7 +67,6 @@ with lib; {
           package =
             extension-list;
         }
-        {package = gpu-profile-selector;}
         {
           package =
             hue-lights;
@@ -96,10 +83,6 @@ with lib; {
           package =
             kerberos-login;
         }
-        # {
-        #   package =
-        #     logo-menu;
-        # }
         {
           package =
             no-overview;
@@ -116,10 +99,10 @@ with lib; {
           package =
             removable-drive-menu;
         }
-        # {
-        #   package =
-        #     search-light;
-        # }
+        {
+          package =
+            search-light;
+        }
         # {
         #   package =
         #     server-status-indicator;
@@ -128,10 +111,10 @@ with lib; {
           package =
             tailscale-qs;
         }
-        # {
-        #   package =
-        #     todotxt;
-        # }
+        {
+          package =
+            todotxt;
+        }
         # {
         #   package =
         #     tophat;
