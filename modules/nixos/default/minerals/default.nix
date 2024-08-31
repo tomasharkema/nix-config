@@ -33,7 +33,5 @@ in {
     ];
     # build systemd with SELinux support so it loads policy at boot and supports file labelling
     systemd.package = pkgs.systemd.override {withSelinux = true;};
-
-    boot.sys
   };
 }
