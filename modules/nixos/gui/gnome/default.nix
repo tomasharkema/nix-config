@@ -25,7 +25,7 @@ in
       # sound.mediaKeys.enable = true;
       trait.developer.enable = mkDefault true;
 
-      # environment.sessionVariables.NIXOS_OZONE_WL = "1";
+       environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
       system.nixos.tags =
         [
