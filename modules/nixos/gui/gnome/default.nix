@@ -25,8 +25,6 @@ in
       # sound.mediaKeys.enable = true;
       trait.developer.enable = mkDefault true;
 
-       environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
       system.nixos.tags =
         [
           "gnome"
@@ -41,7 +39,7 @@ in
       # };
 
       environment = {
-        etc."X11/Xwrapper.config".text = ''
+      etc."X11/Xwrapper.config".text = ''
           allowed_users=anybody
         '';
 
@@ -52,7 +50,10 @@ in
         # };
 
         variables.XCURSOR_SIZE = builtins.toString cfg.cursorSize;
-        sessionVariables.XCURSOR_SIZE = builtins.toString cfg.cursorSize;
+        sessionVariables={
+          XCURSOR_SIZE = builtins.toString cfg.cursorSize;
+          NIXOS_OZONE_WL = "1";
+        };
       };
 
       # systemd.tmpfiles.rules = [
