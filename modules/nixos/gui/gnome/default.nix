@@ -97,6 +97,8 @@ in
                 experimental-features = [
                   "scale-monitor-framebuffer"
                   "variable-refresh-rate"
+                  "rt-scheduler"
+                  "xwayland-native-scaling"
                   "kms-modifiers"
                   "autoclose-xwayland"
                 ];
@@ -159,7 +161,7 @@ in
 
             extraGSettingsOverrides = ''
               [org.gnome.mutter]
-              experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland', 'variable-refresh-rate']
+              experimental-features=['scale-monitor-framebuffer','variable-refresh-rate','rt-scheduler','xwayland-native-scaling','kms-modifiers','autoclose-xwayland']
               edge-tiling=true
             '';
 

@@ -91,7 +91,7 @@ in {
       with pkgs.custom; [
         trayscale
         zerotier-ui
-        usbguard-gnome
+        # usbguard-gnome
         notify-client
       ];
 

@@ -43,10 +43,10 @@ with lib; {
           package =
             window-is-ready-remover;
         }
-        {
-          package =
-            appindicator;
-        }
+        # {
+        #   package =
+        #     appindicator;
+        # }
         # {
         #   package =
         #     settingscenter;
