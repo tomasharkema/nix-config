@@ -38,6 +38,7 @@ with lib; {
       };
 
       systemPackages = with pkgs; [
+        libimobiledevice
         intel-gpu-tools
         nvramtool
         libusb
@@ -136,6 +137,7 @@ with lib; {
     };
 
     services = {
+      usbmuxd.enable = true;
       # dbus.packages = with pkgs; [custom.ancs4linux];
       # kmscon = {enable = mkForce false;};
       udev = {
@@ -176,13 +178,13 @@ with lib; {
         reflector = mkForce false;
       };
 
-      # aesmd = {
-      # enable = true;
-      # settings = {
-      # defaultQuotingType = "ecdsa_256";
-      # whitelistUrl = "http://whitelist.trustedservices.intel.com/SGX/LCWL/Linux/sgx_white_list_cert.bin";
-      # };
-      # };
+      aesmd = {
+        enable = true;
+        settings = {
+          defaultQuotingType = "ecdsa_256";
+          whitelistUrl = "http://whitelist.trustedservices.intel.com/SGX/LCWL/Linux/sgx_white_list_cert.bin";
+        };
+      };
     };
 
     # virtualisation.kvmgt = {

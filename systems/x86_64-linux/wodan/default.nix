@@ -43,7 +43,7 @@ with lib; {
 
       hostName = "wodan";
 
-      firewall = {enable = false;};
+      firewall = {enable = true;};
       useDHCP = mkDefault false;
 
       interfaces = {

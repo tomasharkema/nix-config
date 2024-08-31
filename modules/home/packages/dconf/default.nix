@@ -20,15 +20,18 @@ with lib; {
           # "scale-monitor-framebuffer"
           # "variable-refresh-rate"
           # "rt-scheduler"
-          experimental-features =
-            if osConfig.trait.hardware.laptop.enable
-            then [
-              "scale-monitor-framebuffer"
-              "variable-refresh-rate"
-              "rt-scheduler"
-            ]
-            else ["rt-scheduler"];
-          # ];
+          experimental-features = [
+            # if osConfig.trait.hardware.laptop.enable
+            # then [
+            "scale-monitor-framebuffer"
+            "variable-refresh-rate"
+            "rt-scheduler"
+            "xwayland-native-scaling"
+            "kms-modifiers"
+            "autoclose-xwayland"
+            # ]
+            # else ["rt-scheduler"];
+          ];
         };
         "org/gnome/shell/extensions/vitals" = {
           "position-in-panel" = 0;

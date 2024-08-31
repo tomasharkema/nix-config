@@ -55,10 +55,9 @@ with lib.custom;
 
       console = {
         earlySetup = true;
-        # font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
-        # packages = with pkgs; [terminus_font];
+        font = "ter-v32n";
+        packages = with pkgs; [terminus_font];
         keyMap = "us";
-        # useXkbConfig = true; # use xkb.options in tty.
       };
 
       boot = {
@@ -339,8 +338,6 @@ with lib.custom;
         #   enable = true;
         #   enableNotifications = true;
         # };
-
-        openvscode-server.enable = true;
 
         seatd.enable = true;
 

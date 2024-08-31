@@ -42,6 +42,7 @@ in {
         ldapvi
         ldapmonitor
         pkcs11helper
+        realmd
 
         (pkgs.writeShellScriptBin "setup-browser-eid" ''
           NSSDB="''${HOME}/.pki/nssdb"
@@ -126,6 +127,10 @@ in {
     };
 
     services = {
+      dbus = {
+        enable = true;
+        packages = [pkgs.realmd];
+      };
       sssd = {
         enable = true;
         # kcm = true;
@@ -154,6 +159,8 @@ in {
         # debug_level 0x1310
       };
     };
+
+    systemd.packages = [pkgs.realmd];
 
     # systemd.tmpfiles.rules = [
     #   "L /bin/bash - - - - /run/current-system/sw/bin/bash"

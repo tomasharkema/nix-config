@@ -43,9 +43,9 @@ in {
       # gwe
     ];
 
-    home-manager.users.tomas.programs.gnome-shell.extensions = [
-      {package = pkgs.gnomeExtensions.prime-helper;}
-    ];
+    # home-manager.users.tomas.programs.gnome-shell.extensions = [
+    #   {package = pkgs.gnomeExtensions.prime-helper;}
+    # ];
 
     # services.supergfxd.enable = true;
     # systemd.services.supergfxd.path = [pkgs.pciutils];

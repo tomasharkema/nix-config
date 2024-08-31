@@ -95,7 +95,7 @@
 
       systems.modules = {
         nixos = with inputs; [
-          "${nix-mineral}/nix-mineral.nix"
+          # "${nix-mineral}/nix-mineral.nix"
           nur.nixosModules.nur
           chaotic.nixosModules.default
           # nix-topology.nixosModules.default
