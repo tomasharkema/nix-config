@@ -36,6 +36,13 @@
 
   intel-vaapi-driver = prev.intel-vaapi-driver.override {enableHybridCodec = true;};
 
+  # build systemd with SELinux support so it loads policy at boot and supports file labelling
+  systemd = prev.systemd.override {
+    withSelinux = true;
+    # withHomed = true;
+    withFido2 = true;
+  };
+
   # steam = prev.steam.override {
   #   extraEnv = {
   #     # MANGOHUD = true;

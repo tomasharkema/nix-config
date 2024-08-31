@@ -45,6 +45,11 @@ with lib; {
       };
     };
 
+    services = {
+      homed.enable = true;
+      userdbd.enable = true;
+    };
+
     qt = {
       enable = true;
       platformTheme = "gnome";

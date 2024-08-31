@@ -74,8 +74,6 @@ with lib.custom;
 
         kernel.sysctl = {
           "net.ipv4.ip_forward" = mkForce 1;
-          # "kernel.sysrq" = 1;
-          "kernel.unprivileged_userns_clone" = mkForce 1;
         };
 
         tmp = {
