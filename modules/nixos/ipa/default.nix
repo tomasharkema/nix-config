@@ -160,6 +160,8 @@ in {
       };
     };
 
+    systemd.packages = [pkgs.realmd];
+
     # systemd.tmpfiles.rules = [
     #   "L /bin/bash - - - - /run/current-system/sw/bin/bash"
     #   "L /bin/zsh - - - - /run/current-system/sw/bin/zsh"
