@@ -9,26 +9,60 @@ config.color_scheme = "Catppuccin Mocha"
 -- config.font = wezterm.font_with_fallback {
 --   {family="JetBrainsMono Nerd Font Mono", weight="Light"},
 -- }
-config.font = wezterm.font_with_fallback({ -- <built-in>, BuiltIn
-  "JetBrainsMono Nerd Font Mono",
+-- config.font = wezterm.font_with_fallback({ -- <built-in>, BuiltIn
+--   "JetBrainsMono Nerd Font Mono",
 
-  -- /nix/store/664gs7n95z32zpg9mxngrs7r9p85sm5p-noto-fonts-emoji-2.038/share/fonts/noto/NotoColorEmoji.ttf, FontConfig
-  -- Assumed to have Emoji Presentation
-  -- Pixel sizes: [128]
-  "Noto Color Emoji", -- <built-in>, BuiltIn
-  "Symbols Nerd Font Mono",
-})
+--   -- /nix/store/664gs7n95z32zpg9mxngrs7r9p85sm5p-noto-fonts-emoji-2.038/share/fonts/noto/NotoColorEmoji.ttf, FontConfig
+--   -- Assumed to have Emoji Presentation
+--   -- Pixel sizes: [128]
+--   "Noto Color Emoji", -- <built-in>, BuiltIn
+--   "Symbols Nerd Font Mono",
+-- })
+
+
+config.font = wezterm.font 'JetBrains Mono'
+
 -- config.window_background_opacity = 0.8
 config.automatically_reload_config = true
 -- config.macos_window_background_blur = 20
 
-config.keys = { {
+config.enable_scroll_bar = true
+
+config.background = {
+  -- This is the deepest/back-most layer. It will be rendered first
+  {
+    source = 
+{Color="black"},
+},
+}
+
+
+config.keys = {
+   {
   key = "l",
   mods = "ALT",
   action = wezterm.action.ShowLauncher,
-} }
+},
 
--- config.enable_wayland = true
+-- {
+--   -- You can change the key binding to whatever you want:
+--   key = "g",
+--   mods = "LEADER",
+--   action = require("@wezPerProjectWorkspace@").action.ProjectWorkspaceSelect({
+--       base_dirs = {
+--           {
+--               path = wezterm.home_dir .. "/Developer",
+--               min_depth = 3,
+--               max_depth = 3,
+--           },
+--       },
+--       rooters = { ".git" },
+--       shorten_paths = true,
+--   }),
+-- },
+}
+
+config.enable_wayland = true
 
 config.launch_menu = {
   {
@@ -40,18 +74,25 @@ config.launch_menu = {
   { args = { "atop" } },
 }
 
-wezterm.on("update-right-status", function(window, pane)
-  -- "Wed Mar 3 08:14:13"
-  local date = wezterm.strftime("%a %b %-d %H:%M:%S ")
+-- wezterm.on("update-right-status", function(window, pane)
 
-  local bat = ""
-  -- for _, b in ipairs(wezterm.battery_info()) do
-  --   bat = "🔋 " .. string.format("%.0f%%", b.state_of_charge * 100)
-  -- end
+--   local date = wezterm.strftime("%a %b %-d %H:%M:%S ")
 
-  window:set_right_status(wezterm.format({
-    { Text = bat .. "   " .. date },
-  }))
-end)
+--   local bat = ""
+--   -- for _, b in ipairs(wezterm.battery_info()) do
+--   --   bat = "🔋 " .. string.format("%.0f%%", b.state_of_charge * 100)
+--   -- end
+
+--   window:set_right_status(wezterm.format({
+--     { Text = bat .. "   " .. date },
+--   }))
+-- end)
+
+wezterm.plugin
+  .require('@weztermStatus@')
+  .apply_to_config(config, { cells = { date = {
+    format = ' %H:%M:%S ',
+  } } })
+
 
 return config

@@ -173,6 +173,8 @@ in {
           zed-editor
         ]
         ++ optionals pkgs.stdenv.isx86_64 [
+          gnome_mplayer
+          gmtk
           # pkgs.custom.git-butler
           # pkgs.wolfram-engine
           # spotify
