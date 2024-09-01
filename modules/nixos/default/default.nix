@@ -72,9 +72,9 @@ with lib.custom;
 
         hardwareScan = true;
 
-        kernel.sysctl = {
-          "net.ipv4.ip_forward" = mkForce 1;
-        };
+        # kernel.sysctl = {
+        #   "net.ipv4.ip_forward" = mkForce 1;
+        # };
 
         tmp = {
           useTmpfs = true;

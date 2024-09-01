@@ -184,14 +184,14 @@ in
             };
           };
         };
-        beesd = {
-          filesystems = {
-            root = {
-              spec = mkDefault "PARTLABEL=disk-main-root";
-              hashTableSizeMB = mkDefault 2048;
-            };
-          };
-        };
+        # beesd = {
+        #   filesystems = {
+        #     root = {
+        #       spec = mkDefault "PARTLABEL=disk-main-root";
+        #       hashTableSizeMB = mkDefault 2048;
+        #     };
+        #   };
+        # };
       };
 
       environment.systemPackages = with pkgs; [

@@ -163,27 +163,19 @@ with lib; {
       # remote-builders.client.enable = true;
       # usb-over-ethernet.enable = true;
       hardware.bolt.enable = true;
-      beesd.filesystems = {
-        root = {
-          spec = "UUID=22a02900-5321-481c-af47-ff8700570cc6";
-          hashTableSizeMB = 4096;
-          verbosity = "crit";
-          extraOptions = ["--loadavg-target" "2.0"];
-        };
-      };
+      # beesd.filesystems = {
+      #   root = {
+      #     spec = "UUID=22a02900-5321-481c-af47-ff8700570cc6";
+      #     hashTableSizeMB = 4096;
+      #     verbosity = "crit";
+      #     extraOptions = ["--loadavg-target" "2.0"];
+      #   };
+      # };
 
       avahi = {
         enable = true;
         # allowInterfaces = ["wlp59s0"];
         reflector = mkForce false;
-      };
-
-      aesmd = {
-        enable = true;
-        settings = {
-          defaultQuotingType = "ecdsa_256";
-          whitelistUrl = "http://whitelist.trustedservices.intel.com/SGX/LCWL/Linux/sgx_white_list_cert.bin";
-        };
       };
     };
 
