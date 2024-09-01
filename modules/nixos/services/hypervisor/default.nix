@@ -59,7 +59,7 @@ in {
       qtemu
       virt-top
       _86Box-with-roms
-      remotebox
+      # remotebox
       virtio-win
 
       qemu-utils

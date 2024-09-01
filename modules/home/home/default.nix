@@ -79,7 +79,7 @@ in
           # nchat
           git-agecrypt
           projectable
-          xplr
+          # xplr
           lazycli
           f1viewer
           # aicommits

@@ -1,0 +1,13 @@
+diff --git a/nix-mineral.nix b/nix-mineral.nix
+index 735911a..f26c11f 100755
+--- a/nix-mineral.nix
++++ b/nix-mineral.nix
+@@ -430,7 +412,7 @@ in
+   fileSystems = {
+     # noexec on /home can be very inconvenient for desktops. See overrides.
+     "/home" = {
+-      device = "/home";
++      # device = "/home";
+       options = [
+         "bind"
+         "nosuid"

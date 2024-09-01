@@ -129,6 +129,7 @@ in {
           usbguard-notifier
           usbview
           sqlitebrowser
+          boxbuddy
           # notify-client
           # unstable.vscodium
           clutter
