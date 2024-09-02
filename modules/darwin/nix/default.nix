@@ -39,7 +39,7 @@ in {
     trait.developer.enable = true;
 
     services.nix-daemon.enable = true;
-
+    programs.direnv.enable = true;
     # age.secrets."op" = {
     #   rekeyFile = ../../../secrets/op.age;
     #   mode = "744";
@@ -51,7 +51,7 @@ in {
     nix = let
       users = ["root" "${config.user.name}"];
     in {
-      package = pkgs.nixVersions.latest;
+      package = pkgs.nixVersions.nix_2_23;
 
       nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 

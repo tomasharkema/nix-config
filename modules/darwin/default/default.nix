@@ -56,7 +56,7 @@
         nscan
         # openglide
       ])
-      ++ (with pkgs; [dosbox-x nixd]);
+      ++ (with pkgs; [dosbox-x nixd direnv devenv agenix-rekey]);
     # environment.pathsToLink = ["/lib"];
     system.stateVersion = 4;
 

@@ -133,6 +133,7 @@
             ...
           }: {
             config = {
+              # nix.settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${config.users.users.tomas.uid}"];
               # nm-overrides.desktop.home-exec.enable = false;
 
               # system.nixos.tags = ["snowfall"];
