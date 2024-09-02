@@ -133,7 +133,8 @@
             ...
           }: {
             config = {
-              nm-overrides.desktop.home-exec.enable = false;
+              nix.settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${config.users.users.tomas.uid}"];
+              # nm-overrides.desktop.home-exec.enable = false;
 
               # system.nixos.tags = ["snowfall"];
               system.configurationRevision = lib.mkForce (self.shortRev or "dirty");

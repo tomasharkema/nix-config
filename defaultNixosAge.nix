@@ -42,6 +42,7 @@ in {
     };
 
     nix = {
+      settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${config.users.users.tomas.uid}"];
       registry.nixpkgs.flake = inputs.nixpkgs;
       registry.home-manager.flake = inputs.home-manager;
       registry.darwin.flake = inputs.darwin;
