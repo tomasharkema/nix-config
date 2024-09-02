@@ -10,7 +10,7 @@ with lib; {
   config = let
     onePasswordSocket =
       if pkgs.stdenvNoCC.isDarwin
-      then "/Users/tomas/.1password/agent.sock"
+      then "/Users/${osConfig.user.name}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
       else "/home/tomas/.1password/agent.sock";
   in {
     programs.ssh = {

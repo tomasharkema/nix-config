@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   config = {
     assertions = [
       {
@@ -25,7 +29,7 @@
           #   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJRn81Pxfg4ttTocQnTUWirpC1QVeJ5bfPC63ET9fNVa root@blue-fire"
           # ];
         };
-        tomas = {
+        "${config.user.name}" = {
           password = lib.mkDefault "tomas";
           isNormalUser = true;
           # openssh.authorizedKeys.keys = [
@@ -36,9 +40,9 @@
           extraGroups = ["video" "audio"];
         };
       };
-      groups.tomas = {
-        name = "tomas";
-        members = ["tomas"];
+      groups."${config.user.name}" = {
+        name = "${config.user.name}";
+        members = ["${config.user.name}"];
       };
     };
   };

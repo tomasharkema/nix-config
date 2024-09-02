@@ -1,5 +1,7 @@
 {pkgs, ...}: {
   config = {
+    user.name = "tomas.harkema";
+    # snowfall.user.name = "tomas.harkema";
     age = {
       #identityPaths = ["/Users/tomas/.ssh/id_ed25519"];
       rekey = {

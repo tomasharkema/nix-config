@@ -89,7 +89,7 @@ in
           if pkgs.stdenv.hostPlatform.isDarwin
           then {
             EDITOR = "subl";
-            SSH_AUTH_SOCK = "/Users/tomas/.1password/agent.sock";
+            SSH_AUTH_SOCK = "/Users/${osConfig.user.name}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
             # SPACESHIP_PROMPT_ADD_NEWLINE = "false";
           }
           else {

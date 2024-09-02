@@ -26,22 +26,22 @@
       secrets = {
         atuin = {
           rekeyFile = ../../nixos/secrets/atuin.age;
-          owner = "tomas";
-          # group = "tomas";
+          owner = "${config.user.name}";
+          # group = "${config.user.name}";
           # mode = "644";
           # symlink = false;
         };
         # spotify-tui = {
         # file = ../../../secrets/spotify-tui.age;
-        # owner = "tomas";
-        # group = "tomas";
+        # owner = "${config.user.name}";
+        # group = "${config.user.name}";
         # mode = "644";
         # symlink = false;
         # };
         notify = {
           rekeyFile = ../../nixos/secrets/notify.age;
-          owner = "tomas";
-          # group = "tomas";
+          owner = "${config.user.name}";
+          # group = "${config.user.name}";
           # mode = "644";
           # symlink = false;
         };
@@ -66,8 +66,8 @@
       # };
       nix-daemon.enable = true;
     };
+
     fonts = {
-      # fontDir.enable = true;
       packages = with pkgs; [
         custom.din
         custom.futura

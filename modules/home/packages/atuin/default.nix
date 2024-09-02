@@ -11,7 +11,7 @@ with lib; {
       enable = true;
       enableZshIntegration = true;
       settings = {
-        key_path = osConfig.age.secrets.atuin.path;
+        # key_path = osConfig.age.secrets.atuin.path;
         sync_address = "https://atuin.harke.ma";
         auto_sync = true;
         sync_frequency = "10m";
@@ -19,9 +19,9 @@ with lib; {
         style = "compact";
         secrets_filter = true;
         common_subcommands = ["cargo" "go" "git" "npm" "yarn" "pnpm" "kubectl" "nix" "nom" "nh"];
-        daemon = {
+        daemon = mkIf pkgs.stdenv.isLinux {
           enabled = true;
-          systemd_socket = pkgs.stdenv.isLinux;
+          systemd_socket = true;
           socket_path = "/run/user/1000/atuin.sock";
         };
       };

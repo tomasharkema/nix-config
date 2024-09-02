@@ -26,7 +26,7 @@ with lib.custom; {
     age.secrets = {
       openai = {
         rekeyFile = ../../nixos/home/openai.age;
-        owner = "tomas";
+        owner = "${config.user.name}";
       };
     };
 
@@ -35,7 +35,7 @@ with lib.custom; {
       systemPackages = with pkgs; [virt-manager];
     };
 
-    snowfallorg.users."tomas" = {
+    snowfallorg.users."${config.user.name}" = {
       create = true;
       # admin = true;
 
@@ -59,7 +59,7 @@ with lib.custom; {
       useGlobalPkgs = true;
       backupFileExtension = "bak";
 
-      users.tomas = {
+      users."${config.user.name}" = {
         home.stateVersion = mkDefault "24.05";
         xdg.enable = true;
         programs.home-manager.enable = true;
