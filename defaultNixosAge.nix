@@ -11,7 +11,7 @@ in {
       rekey = {
         masterIdentities = [
           ./secrets/age-yubikey-identity-usbc.pub
-          # "/etc/ssh/ssh_host_ed25519_key"
+          "/home/tomas/.ssh/id_ed25519"
         ];
         # extraEncryptionPubkeys = [
         #   ./secrets/age-yubikey-identity-usba.pub
@@ -42,7 +42,7 @@ in {
     };
 
     nix = {
-      settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${config.users.users.tomas.uid}"];
+      # settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${config.users.users.tomas.uid}"];
       registry.nixpkgs.flake = inputs.nixpkgs;
       registry.home-manager.flake = inputs.home-manager;
       registry.darwin.flake = inputs.darwin;

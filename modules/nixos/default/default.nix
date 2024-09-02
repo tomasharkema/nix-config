@@ -123,6 +123,7 @@ with lib.custom;
         systemPackages =
           (with pkgs; [
             config.nur.repos.mloeper.usbguard-applet-qt
+            agenix-rekey
             meld
             _86Box-with-roms
             distrobox
