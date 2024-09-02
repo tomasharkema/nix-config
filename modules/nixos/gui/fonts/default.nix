@@ -7,6 +7,9 @@
 with lib; {
   options.gui.fonts = {enable = mkEnableOption "gui.fonts";};
 
+  imports = [./fontconf.nix];
+  disabledModules = ["config/fonts/fontconfig.nix"];
+
   config = mkIf config.gui.fonts.enable {
     # system.fsPackages = [pkgs.bindfs];
     # fileSystems = let
@@ -43,6 +46,7 @@ with lib; {
       enableDefaultPackages = true;
       fontDir.enable = true;
       fontconfig = {
+        enable = true;
         antialias = true;
         cache32Bit = true;
         allowBitmaps = true;

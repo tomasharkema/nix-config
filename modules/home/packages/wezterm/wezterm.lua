@@ -32,7 +32,8 @@ config.background = {
   -- This is the deepest/back-most layer. It will be rendered first
   {
     source = 
-{Color="black"},
+{Color="black" },
+width = "100%",
 },
 }
 

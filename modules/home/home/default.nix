@@ -97,7 +97,7 @@ in
           };
       };
 
-      fonts.fontconfig.enable = true;
+      # fonts.fontconfig.enable = true;
 
       programs = {
         # freetube.enable = true;
