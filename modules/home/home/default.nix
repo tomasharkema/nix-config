@@ -10,6 +10,12 @@
     url = "https://iterm2.com/shell_integration/zsh";
     sha256 = "sha256-Cq8winA/tcnnVblDTW2n1k/olN3DONEfXrzYNkufZvY=";
   };
+  itermCatppuccin = pkgs.fetchFromGitHub {
+    owner = "catppuccin";
+    repo = "iterm";
+    rev = "6b5765b3d701fb21e6c250fcd0d90bc65e50d031";
+    hash = "sha256-gB3ItHv2y8zE/xlBmkVvw33WIAVLMYiLsU2jpmT23DY=";
+  };
   # bg = pkgs.fetchurl {
   #   url =
   #     "https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/raw/main/backgrounds/blobs-d.svg";
@@ -46,6 +52,7 @@ in
       };
 
       home = {
+        file."itermCatppuccin".source = itermCatppuccin;
         # file = osConfig.home.homeFiles;
         stateVersion = "24.05";
 
@@ -85,11 +92,17 @@ in
           # aicommits
           openai
         ];
+
+        activation."agent-1password" = inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
+          mkdir -p "/Users/${osConfig.user.name}/.1password" || true
+          ln -s "/Users/${osConfig.user.name}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" "/Users/${osConfig.user.name}/.1password/agent.sock"
+        '';
+
         sessionVariables =
           if pkgs.stdenv.hostPlatform.isDarwin
           then {
             EDITOR = "subl";
-            SSH_AUTH_SOCK = "/Users/${osConfig.user.name}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
+            SSH_AUTH_SOCK = "/Users/${osConfig.user.name}/.1password/agent.sock";
             # SPACESHIP_PROMPT_ADD_NEWLINE = "false";
           }
           else {
