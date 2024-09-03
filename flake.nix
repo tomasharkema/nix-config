@@ -27,12 +27,15 @@
         # permittedInsecurePackages = [ "openssl-1.1.1w" ];
         permittedInsecurePackages = [
           "python3.12-youtube-dl-2021.12.17"
+          "openssl-1.1.1w"
+
           # "python-2.7.18.8"
         ];
         config = {
           # For example, enable smartcard support in Firefox.
           firefox.smartcardSupport = true;
           permittedInsecurePackages = [
+            "openssl-1.1.1w"
             "python3.12-youtube-dl-2021.12.17"
             # "python-2.7.18.8"
           ];
@@ -339,8 +342,8 @@
     use-cgroups = true;
     extra-experimental-features = "nix-command flakes cgroups";
 
-    # distributedBuilds = true;
-    # builders-use-substitutes = true;
+    distributedBuilds = true;
+    builders-use-substitutes = true;
 
     trusted-users = [
       "root"

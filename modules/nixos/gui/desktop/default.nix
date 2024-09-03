@@ -156,6 +156,7 @@ in {
           rtfm
           spot
           sublime-merge
+          sublime4
           transmission-remote-gtk
           trayscale
           tremotesf

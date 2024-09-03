@@ -50,7 +50,7 @@ with lib; {
         deadnix
         deploy-rs
 
-        # devenv
+        devenv
 
         # fh
         flake-checker
