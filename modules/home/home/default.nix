@@ -93,10 +93,10 @@ in
           openai
         ];
 
-        activation."agent-1password" = inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
+        activation."agent-1password" = mkIf (inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
           mkdir -p "/Users/${osConfig.user.name}/.1password" || true
           ln -s "/Users/${osConfig.user.name}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" "/Users/${osConfig.user.name}/.1password/agent.sock"
-        '';
+        '');
 
         sessionVariables =
           if pkgs.stdenv.hostPlatform.isDarwin
