@@ -33,6 +33,7 @@ in {
         "swiftformat"
       ];
       casks = [
+        "chatgpt"
         "secretive"
         "swiftbar"
         "wezterm"

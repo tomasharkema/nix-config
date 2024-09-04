@@ -1,6 +1,7 @@
 {
   buildNpmPackage,
   fetchFromGitHub,
+  nix-update-script,
   # libptytty,
   darwin,
   lib,
@@ -22,23 +23,23 @@
 }:
 buildNpmPackage rec {
   pname = "inshellisense";
-  version = "0.0.1-rc.15";
+  version = "0.0.1-rc.16";
 
   src = fetchFromGitHub {
     owner = "microsoft";
     repo = pname;
-    rev = "3479c5a"; # "${version}";
-    hash = "sha256-lLSTncrKQUWUmqtd+cldWZ+NCnkvi4hgVTPzdtiJfI8=";
+    rev = "${version}";
+    hash = "sha256-jqLYN251ZvLOjYsSQJmvQ1TupO4jz3Q23aDpKX+Puvs=";
   };
 
-  # passthru.updateScript = gitUpdater {
-  #   url = "https://github.com/microsoft/inshellisense.git";
-  #   rev-prefix = "grpc-tools@";
-  # };
+  passthru = {
+    updateScript = nix-update-script {};
+  };
 
-  npmDepsHash = "sha256-Rbo5TGEgvtUpu4BItsS8mX5ZY+jg56Su9ZafvC7Dozc=";
+  npmDepsHash = "sha256-rGUyA0RLnNZ6ocmHPXfBLJ6ZmeeTN9w+TJTtfTQQ24M=";
 
   postInstall = ''
+    mkdir -p $out/share
     cp -r shell $out/share
   '';
   # Needed for dependency `@homebridge/node-pty-prebuilt-multiarch`

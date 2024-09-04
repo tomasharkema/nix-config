@@ -47,8 +47,8 @@ in
       };
 
       programs.inshellisense = {
-        # enable = true;
-        # enableZshIntegration = true;
+        enable = true;
+        enableZshIntegration = true;
       };
 
       home = {
