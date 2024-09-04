@@ -17,9 +17,9 @@ with lib;
     config = {
       home.packages = with pkgs; [
         figlet
-        nodejs
+        # nodejs
         ripgrep
-        csharp-ls
+        # csharp-ls
       ];
 
       programs.neovim = {
@@ -46,26 +46,26 @@ with lib;
         colorschemes.catppuccin.enable = true;
 
         plugins = {
-          # lsp-format.enable = true;
-          # lsp-status.enable = true;
-          # lsp = {
-          #   enable = true;
-          #   servers = {
-          #     nixd = {enable = true;};
-          #     eslint = {enable = true;};
-          #     html = {enable = true;};
-          #     # lua-ls = {enable = true;};
-          #     # nil-ls = {enable = true;};
-          #     marksman = {enable = true;};
-          #     pyright = {enable = true;};
-          #     gopls = {enable = true;};
-          #     terraformls = {enable = true;};
-          #     tsserver = {enable = false;};
-          #     yamlls = {
-          #       enable = true;
-          #     };
-          #   };
-          # };
+          lsp-format.enable = true;
+          lsp-status.enable = true;
+          lsp = {
+            enable = true;
+            servers = {
+              nixd = {enable = true;};
+              eslint = {enable = true;};
+              html = {enable = true;};
+              # lua-ls = {enable = true;};
+              # nil-ls = {enable = true;};
+              marksman = {enable = true;};
+              pyright = {enable = true;};
+              gopls = {enable = true;};
+              terraformls = {enable = true;};
+              # tsserver = {enable = false;};
+              yamlls = {
+                enable = true;
+              };
+            };
+          };
           # none-ls = {
           #   enable = true;
           #   enableLspFormat = true;
@@ -142,22 +142,22 @@ with lib;
               ];
             };
           };
-          # startify = {
-          #   enable = true;
-          #   customHeader = ''
-          #     startify#pad(split(system('figlet -f larry3d neovim'), '
-          #     '))'';
-          # };
-          # indent-blankline = {
-          #   enable = true;
-          #   filetypeExclude = ["startify"];
-          # };
+          startify = {
+            enable = true;
+            #   customHeader = ''
+            #     startify#pad(split(system('figlet -f larry3d neovim'), '
+            #     '))'';
+          };
+          indent-blankline = {
+            enable = true;
+            #   filetypeExclude = ["startify"];
+          };
           barbar = {
             enable = true;
           };
-          # gitgutter = {
-          #   enable = true;
-          # };
+          gitgutter = {
+            enable = true;
+          };
           surround = {
             enable = true;
           };
@@ -191,25 +191,25 @@ with lib;
             enable = true;
           };
           cmp-zsh.enable = true;
-          # conform-nvim = {
-          #   enable = true;
-          #   format_on_save = {
-          #     timeoutMs = 1000;
-          #   };
-          #   formattersByFt = {
-          #     lua = ["stylua"];
-          #     nix = ["alejandra"];
-          #   };
-          # };
+          conform-nvim = {
+            enable = true;
+            #   format_on_save = {
+            #     timeoutMs = 1000;
+            #   };
+            #   formattersByFt = {
+            #     lua = ["stylua"];
+            #     nix = ["alejandra"];
+            #   };
+          };
         };
 
         extraPlugins = with pkgs.vimPlugins; [
           # ansible-vim
           vim-nix
-          coc-nvim
+          # coc-nvim
           # suda-vim
-          vim-csharp
-          csharpls-extended-lsp-nvim
+          # vim-csharp
+          # csharpls-extended-lsp-nvim
         ];
 
         options = {

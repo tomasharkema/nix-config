@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  eslint.autoFixOnSave = true;
+  # eslint.autoFixOnSave = true;
   coc.preferences.colorSupport = false;
   prettier.disableSuccessMessage = true;
 
