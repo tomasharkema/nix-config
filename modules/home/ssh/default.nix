@@ -21,7 +21,7 @@ with lib; {
           hostname = "ipa.harkema.io";
           user = "root";
           extraOptions = {
-            "IdentityAgent" = onePasswordSocket;
+            "IdentityAgent" = "/Users/tomas/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
           };
         };
         "*" = {
@@ -29,7 +29,8 @@ with lib; {
           extraOptions =
             if pkgs.stdenvNoCC.isDarwin
             then {
-              "IdentityAgent" = onePasswordSocket;
+              "IdentityAgent" = "/Users/tomas/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+              # "IdentityAgent" = onePasswordSocket;
               # "UseKeychain" = "yes";
             }
             else {

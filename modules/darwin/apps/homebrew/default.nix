@@ -7,11 +7,12 @@
 with lib; let
   cfg = config.apps.homebrew;
 in {
-  options.apps.homebrew = {enable = mkEnableOption "homebrew";};
+  options.apps.homebrew = {enable = mkEnableOption "homebrew" // {default = true;};};
 
   config = mkIf cfg.enable {
     homebrew = {
       enable = true;
+      autoUpdate = true;
 
       masApps = {
         "termius" = 1176074088;
@@ -22,26 +23,27 @@ in {
         "Developer" = 640199958;
         "Telegram" = 747648890;
       };
-
-      casks = [
+      brews = [
         "cocoapods"
         "xcodes"
         "xcbeautify"
-        "xcpretty"
-        "swiftbar"
+        # "xcpretty"
         "swiftlint"
         "swiftformat"
-        "mas"
-        "spotifyd"
+      ];
+      casks = [
         "secretive"
+        "swiftbar"
+
+        # "spotifyd"
         # "1password"
-        "cleanshot"
-        "discord"
-        "google-chrome"
-        "hammerspoon"
-        "imageoptim"
+        # "cleanshot"
+        # "discord"
+        # "google-chrome"
+        # "hammerspoon"
+        # "imageoptim"
         "istat-menus"
-        "monodraw"
+        # "monodraw"
         # "raycast"
         "rectangle"
         "screenflow"
