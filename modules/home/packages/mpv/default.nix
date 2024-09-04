@@ -6,7 +6,7 @@
   ...
 }:
 with lib; {
-  config = mkIf (pkgs.stdenv.isLinux && false) {
+  config = mkIf (pkgs.stdenv.isLinux) {
     services = {
       plex-mpv-shim.enable = true;
       mpd-mpris.enable = true;
@@ -32,7 +32,7 @@ with lib; {
         youtube-upnext
         simple-mpv-webui
         mpv-playlistmanager
-        # mpv-notify-send
+        mpv-notify-send
         mpv-cheatsheet
         uosc
         memo
@@ -47,7 +47,7 @@ with lib; {
 
     home = {
       packages = with pkgs; [
-        # play-with-mpv
+        play-with-mpv
         open-in-mpv
         mpvc
       ];
