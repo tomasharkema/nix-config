@@ -13,8 +13,7 @@ with lib; {
       xcpretty
       swiftbar
       swiftlint
-      swiftformat
-      xcbeautify
+      # swiftformat
     ];
   };
 }
