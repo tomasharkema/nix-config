@@ -60,7 +60,7 @@ with lib.custom; {
           package = pkgs.nh;
         };
 
-        # bash.undistractMe.enable = true;
+        bash.undistractMe.enable = true;
       };
 
       nix = let

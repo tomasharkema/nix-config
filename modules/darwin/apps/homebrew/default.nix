@@ -22,6 +22,7 @@ in {
         "slack" = 803453959;
         "Developer" = 640199958;
         "Telegram" = 747648890;
+        "automute" = 1118136179;
       };
       brews = [
         "cocoapods"
@@ -34,7 +35,7 @@ in {
       casks = [
         "secretive"
         "swiftbar"
-
+        "wezterm"
         # "spotifyd"
         # "1password"
         # "cleanshot"
