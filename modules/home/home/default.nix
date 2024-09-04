@@ -102,8 +102,9 @@ in
           if pkgs.stdenv.hostPlatform.isDarwin
           then {
             EDITOR = "subl";
-            SSH_AUTH_SOCK = "/Users/${osConfig.user.name}/.1password/agent.sock";
-            # SPACESHIP_PROMPT_ADD_NEWLINE = "false";
+            # SSH_AUTH_SOCK = "/Users/${osConfig.user.name}/.1password/agent.sock";
+            SSH_AUTH_SOCK = "/Users/${osConfig.user.name}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+            SPACESHIP_PROMPT_ADD_NEWLINE = "false";
           }
           else {
             # EDITOR = "nvim";

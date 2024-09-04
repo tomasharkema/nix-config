@@ -23,16 +23,19 @@ in {
         "Developer" = 640199958;
         "Telegram" = 747648890;
       };
-      brews = ["cocoapods" "xcodes"];
-      casks = [
+      brews = [
+        "cocoapods"
+        "xcodes"
+        "secretive"
         "xcbeautify"
         "xcpretty"
-        "swiftbar"
         "swiftlint"
         "swiftformat"
+      ];
+      casks = [
+        "swiftbar"
         "mas"
         "spotifyd"
-        "secretive"
         # "1password"
         "cleanshot"
         "discord"
