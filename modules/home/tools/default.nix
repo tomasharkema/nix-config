@@ -78,7 +78,7 @@ with pkgs; {
       curl
       curlie
       delta
-      # direnv
+      direnv
       dnsutils
       dogdns
       du-dust

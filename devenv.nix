@@ -252,7 +252,7 @@ in {
     deploy-all
     deploy-machine
     deployment
-    # direnv
+    direnv
     dp
     git
     gnupg
