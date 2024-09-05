@@ -116,24 +116,17 @@ in {
 
     environment.systemPackages = with pkgs;
       [
-        nix-software-center
-        gnomecast
+        boxbuddy
+        clutter
         discordo
         dosbox-x
-        go-chromecast
-
-        usbguard-notifier
-        usbview
-        sqlitebrowser
-        boxbuddy
-        # notify-client
-        # unstable.vscodium
-        clutter
         effitask
         filezilla
         font-manager
         fractal
         gamehub
+        gnomecast
+        go-chromecast
         gotop
         gparted
         grsync
@@ -143,6 +136,7 @@ in {
         libGLU
         meteo
         mission-center
+        nix-software-center
         partition-manager
         pavucontrol
         powertop
@@ -151,17 +145,19 @@ in {
         qjournalctl
         rtfm
         spot
+        sqlitebrowser
         sublime-merge
         sublime4
         transmission-remote-gtk
         trayscale
         tremotesf
         ulauncher
+        usbguard-notifier
+        usbview
         ventoy-full
         vsce
         vscode
         vte-gtk4
-
         xdg-utils
         xdgmenumaker
         xdiskusage

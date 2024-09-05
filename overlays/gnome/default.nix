@@ -38,19 +38,24 @@
   });
 
   mpv = prev.mpv.override {
-    # scripts = with prev.mpvScripts; [
-    #   mpris
-    #   youtube-upnext
-    #   simple-mpv-webui
-    #   mpv-playlistmanager
-    #   mpv-cheatsheet
-    #   # mpv-notify-send
-    # ];
+    scripts = with prev.mpvScripts; [
+      mpris
+      youtube-upnext
+      simple-mpv-webui
+      mpv-playlistmanager
+      mpv-cheatsheet
+      mpv-notify-send
+      mpris
+      youtube-upnext
+      simple-mpv-webui
+      mpv-playlistmanager
+      mpv-notify-send
+      mpv-cheatsheet
+      uosc
+      memo
+    ];
     youtubeSupport = true;
   };
-  mpvScripts = prev.mpvScripts;
-
-  # mpv-unwrapped = prev.mpv-unwrapped.override {ffmpeg = prev.ffmpeg-full;};
 
   spotifyd = prev.spotifyd.override {withMpris = true;};
 

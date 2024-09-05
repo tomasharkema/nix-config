@@ -63,7 +63,10 @@ with lib.custom; {
 
         root = {
           shell = pkgs.zsh;
-          openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+          openssh = {
+            authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+            authorizedPrincipals = ["admin@HARKEMA.IO" "tomas@HARKEMA.IO"];
+          };
         };
 
         "${config.user.name}" = {
@@ -87,7 +90,10 @@ with lib.custom; {
           ];
           initialHashedPassword = "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
 
-          openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+          openssh = {
+            authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+            authorizedPrincipals = ["admin@HARKEMA.IO" "tomas@HARKEMA.IO"];
+          };
           linger = true;
           uid = 1000;
         };
