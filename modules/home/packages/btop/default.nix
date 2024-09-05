@@ -6,7 +6,7 @@
   config = {
     programs.btop = {
       enable = true;
-      package = pkgs.unstable.btop;
+      package = pkgs.btop;
       settings = {proc_per_core = true;};
     };
 

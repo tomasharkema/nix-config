@@ -12,8 +12,8 @@
   #     };
   #   });
   # });
-  # dconf = channels.unstable.dconf;
-  # flatpak = channels.unstable.flatpak;
+  # dconf = prev.dconf;
+  # flatpak = prev.flatpak;
 
   # GNOME 46: triple-buffering-v4-46
 
@@ -26,11 +26,17 @@
         rev = "triple-buffering-v4-46";
         hash = "sha256-C2VfW3ThPEZ37YkX7ejlyumLnWa9oij333d5c4yfZxc=";
       };
+      patches = [
+        (prev.fetchpatch {
+          url = "https://aur.archlinux.org/cgit/aur.git/plain/xwayland-scaling.patch?h=mutter-xwayland-scaling";
+          sha256 = "sha256-deoWaseI+CnH0aHUWm6YFoD+PRVsFg3zn3wVy4kIiUE=";
+        })
+      ];
     });
   });
 
-  mpv = channels.unstable.mpv.override {
-    # scripts = with channels.unstable.mpvScripts; [
+  mpv = prev.mpv.override {
+    # scripts = with prev.mpvScripts; [
     #   mpris
     #   youtube-upnext
     #   simple-mpv-webui
@@ -40,9 +46,9 @@
     # ];
     youtubeSupport = true;
   };
-  mpvScripts = channels.unstable.mpvScripts;
+  mpvScripts = prev.mpvScripts;
 
-  mpv-unwrapped = channels.unstable.mpv-unwrapped.override {ffmpeg = channels.unstable.ffmpeg-full;};
+  # mpv-unwrapped = prev.mpv-unwrapped.override {ffmpeg = prev.ffmpeg-full;};
 
   spotifyd = prev.spotifyd.override {withMpris = true;};
 

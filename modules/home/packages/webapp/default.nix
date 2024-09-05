@@ -29,9 +29,13 @@
 #     };
 # }
 # https://my.zerotier.com/network/***REMOVED***
-{ config, pkgs, lib, ... }:
-with lib;
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   nixosWebapp = {
     name = "nixos-search";
     desktopName = "NixOS Search";
@@ -44,8 +48,7 @@ let
     #   url = "https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png";
     #   hash = "sha256-va3j/EsdUVRvekWFPAb3O3Os7wOtz1xZhzKvZAvbJXM=";
     # };
-    icon =
-      "${pkgs.nixos-icons}/icons/hicolor/1024x1024/app/nix-snowflake-white.png";
+    icon = "${pkgs.nixos-icons}/icons/hicolor/1024x1024/app/nix-snowflake-white.png";
   };
 in {
   options.apps.gui.webapp = {
@@ -53,15 +56,15 @@ in {
       type = with types;
         listOf (submodule {
           options = {
-            name = mkOption { type = str; };
-            desktopName = mkOption { type = str; };
-            url = mkOption { type = str; };
-            icon = mkOption { type = path; };
+            name = mkOption {type = str;};
+            desktopName = mkOption {type = str;};
+            url = mkOption {type = str;};
+            icon = mkOption {type = path;};
           };
         });
 
       description = "webapps";
-      default = [ nixosWebapp ];
+      default = [nixosWebapp];
     };
   };
 
@@ -91,13 +94,19 @@ in {
   # };
 
   config = let
-    folders = lib.lists.forEach config.apps.gui.webapp.apps
-      ({ name, url, desktopName, icon, }@attr:
-        (rec {
-          hash = builtins.hashString "md5" "${name}_${url}";
-          webName = "org.gnome.Epiphany.WebApp_${hash}";
-          path = "/home/tomas/.local/share/${webName}";
-        } // attr));
+    folders =
+      lib.lists.forEach config.apps.gui.webapp.apps
+      ({
+          name,
+          url,
+          desktopName,
+          icon,
+        } @ attr: (rec {
+            hash = builtins.hashString "md5" "${name}_${url}";
+            webName = "org.gnome.Epiphany.WebApp_${hash}";
+            path = "/home/tomas/.local/share/${webName}";
+          }
+          // attr));
     # apps = lib.lists.forEach folders ({
     #   name,
     #   hash,
@@ -117,36 +126,44 @@ in {
     #     mimeTypes = ["x-scheme-handler/org-protocol"];
     #     icon = icon;
     #   });
-  in mkIf pkgs.stdenv.isLinux {
-    systemd.user.tmpfiles.rules =
-      lib.lists.forEach folders ({ path, ... }: "d ${path} 0777 tomas tomas -");
-    # environment.systemPackages = apps;
-    # home.file = builtins.listToAttrs (lib.lists.forEach apps (attr: {
-    #   name = attr.name;
-    #   value = {
-    #     source = attr;
-    #   };
-    # }));
+  in
+    mkIf pkgs.stdenv.isLinux {
+      systemd.user.tmpfiles.rules =
+        lib.lists.forEach folders ({path, ...}: "d ${path} 0777 tomas tomas -");
+      # environment.systemPackages = apps;
+      # home.file = builtins.listToAttrs (lib.lists.forEach apps (attr: {
+      #   name = attr.name;
+      #   value = {
+      #     source = attr;
+      #   };
+      # }));
 
-    # systemd.user.tmpfiles.rules = [
-    # "d "
-    # ];
+      # systemd.user.tmpfiles.rules = [
+      # "d "
+      # ];
 
-    xdg.desktopEntries = builtins.listToAttrs (lib.lists.forEach folders
-      ({ name, hash, desktopName, path, url, icon, webName, }: {
-        name = "${name}_${hash}";
-        value = {
-          # name = "${name}_${hash}";
-          # desktopName = desktopName;
-          name = desktopName;
-          exec =
-            "${pkgs.gnome.epiphany}/bin/epiphany --application-mode --profile=${path} ${url}";
-          startupNotify = true;
-          terminal = false;
-          # startupWMClass = webName;
-          # mimeType = ["x-scheme-handler/org-protocol"];
-          icon = icon;
-        };
-      }));
-  };
+      xdg.desktopEntries = builtins.listToAttrs (lib.lists.forEach folders
+        ({
+          name,
+          hash,
+          desktopName,
+          path,
+          url,
+          icon,
+          webName,
+        }: {
+          name = "${name}_${hash}";
+          value = {
+            # name = "${name}_${hash}";
+            # desktopName = desktopName;
+            name = desktopName;
+            exec = "${pkgs.epiphany}/bin/epiphany --application-mode --profile=${path} ${url}";
+            startupNotify = true;
+            terminal = false;
+            # startupWMClass = webName;
+            # mimeType = ["x-scheme-handler/org-protocol"];
+            icon = icon;
+          };
+        }));
+    };
 }

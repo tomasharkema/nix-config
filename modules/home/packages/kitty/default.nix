@@ -9,7 +9,7 @@
     programs = {
       kitty = {
         enable = true;
-        package = pkgs.unstable.kitty;
+        package = pkgs.kitty;
         theme = "Catppuccin-Mocha";
 
         font = {name = "JetBrainsMono Nerd Font Mono";};

@@ -14,6 +14,8 @@ in {
   imports = with inputs; [
     ./hardware-configuration.nix
 
+    buildbot-nix.nixosModules.buildbot-worker
+
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
     # nixos-hardware.nixosModules.supermicro-x10sll-f
@@ -48,8 +50,11 @@ in {
         tpm.enable = true;
         secure-boot.enable = true;
         remote-unlock.enable = true;
-        nvidia.enable = true;
-
+        nvidia = {
+          enable = false;
+          beta = false;
+          open = false;
+        };
         # nfs = {
         #   enable = true;
         #   machines = {
@@ -67,6 +72,8 @@ in {
         httpd = true;
       };
       "bmc-watchdog".enable = true;
+      podman.enable = true;
+      buildbot.worker.enable = true;
     };
 
     gui = {
@@ -75,8 +82,12 @@ in {
     };
 
     services = {
+      journald = {
+        gateway.enable = true;
+      };
+
       hound = {
-        enable = true;
+        # enable = true;
         config = builtins.toJSON {
           max-concurrent-indexers = 2;
           repos = {
@@ -125,7 +136,7 @@ in {
       # };
 
       # tcsd.enable = true;
-      kmscon.enable = true;
+      kmscon.enable = mkForce false;
 
       prometheus.exporters = {
         ipmi = {
@@ -142,11 +153,6 @@ in {
       # };
     };
 
-    apps = {
-      podman.enable = true;
-      buildbot.worker.enable = true;
-    };
-
     systemd = {
       watchdog = {
         device = "/dev/watchdog";
@@ -156,8 +162,8 @@ in {
       };
       services = {
         buildbot-worker.serviceConfig = {
-          MemoryHigh = "5%";
-          MemoryMax = "10%";
+          MemoryHigh = "30%";
+          MemoryMax = "35%";
           Nice = 10;
         };
       };
@@ -282,23 +288,13 @@ in {
       enableRedistributableFirmware = true;
 
       nvidia = {
-        nvidiaPersistenced = false;
-        # modesetting.enable = true;
+        modesetting.enable = true;
         # forceFullCompositionPipeline = true;
-        open = false;
-        nvidiaSettings = false;
+        nvidiaSettings = mkForce false;
 
         vgpu = {
           enable = true;
           pinKernel = true;
-          #vgpu_driver_src.sha256 = "0z9r6lyx35fqjwcc2d1l7ip6q9jq11xl352nh6v47ajvp2flxly9";
-          # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
-          # path is '/nix/store/2l7n0kg9yz1v2lkilh8154q35cghgj1y-NVIDIA-GRID-Linux-KVM-535.161.05-535.161.08-538.46.zip'
-          # 02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r
-
-          #          vgpu_driver_src.sha256 = "07ia2djhlr8jfv3rrgblpf1wmqjc0sk3z8j7fa2l4cipr84amjsg";
-          #          useMyDriver.vgpu-driver-version = "535.183.06";
-
           copyVGPUProfiles = {
             "1380:0000" = "13BD:1160";
           };

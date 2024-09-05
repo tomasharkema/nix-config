@@ -1,30 +1,57 @@
-{ config, lib, pkgs, ... }:
-with lib;
-with lib.custom;
-let cfg = config.apps.homebrew;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.apps.homebrew;
 in {
-  options.apps.homebrew = { enable = mkBoolOpt false "homebrew"; };
+  options.apps.homebrew = {enable = mkEnableOption "homebrew" // {default = true;};};
 
   config = mkIf cfg.enable {
     homebrew = {
       enable = true;
+      autoUpdate = true;
+
+      masApps = {
+        "termius" = 1176074088;
+        "UTM" = 1538878817;
+        "Tailscale" = 1475387142;
+        "RDP" = 1295203466;
+        "slack" = 803453959;
+        "Developer" = 640199958;
+        "Telegram" = 747648890;
+        "automute" = 1118136179;
+      };
+      brews = [
+        "cocoapods"
+        "xcodes"
+        "xcbeautify"
+        # "xcpretty"
+        "swiftlint"
+        "swiftformat"
+      ];
       casks = [
-        # "spotifyd"
+        "chatgpt"
         "secretive"
-        "1password"
-        "cleanshot"
-        "discord"
+        "swiftbar"
+        "wezterm"
+        # "spotifyd"
+        # "1password"
+        # "cleanshot"
+        # "discord"
         # "google-chrome"
-        "hammerspoon"
-        "imageoptim"
+        # "hammerspoon"
+        # "imageoptim"
         "istat-menus"
-        "monodraw"
+        # "monodraw"
         # "raycast"
         "rectangle"
         "screenflow"
-        # "slack"
+        "slack"
         "spotify"
-        "kobo"
+        # "kobo"
         "gitbutler"
       ];
     };

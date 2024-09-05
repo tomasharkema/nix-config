@@ -8,6 +8,11 @@
 with lib;
 with lib.custom; let
   cfg = config.apps.ipa;
+
+  chromePolicy = pkgs.writers.writeJSON "harkema.json" {
+    AuthServerWhitelist = "*.harkema.io";
+    AuthServerAllowlist = "*.harkema.io";
+  };
 in {
   options = {
     apps.ipa = {
@@ -17,21 +22,53 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      ldapvi
-      ldapmonitor
+    assertions = [
+      {
+        message = "sssd_krb5_passkey_plugin";
+        assertion = builtins.pathExists "${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so";
+      }
+      {
+        message = "sssd_kcm";
+        assertion = builtins.pathExists "${pkgs.sssd}/libexec/sssd/sssd_kcm";
+      }
+      {
+        message = "p11-kit-proxy";
+        assertion = builtins.pathExists "${pkgs.p11-kit}/lib/p11-kit-proxy.so";
+      }
     ];
 
-    environment.etc = {
-      "krb5.conf".text = mkBefore ''
-        includedir /etc/krb5.conf.d/
-      '';
-      "krb5.conf.d/kcm_default_ccache".text = ''
-        [libdefaults]
-        default_ccache_name = KCM:
-      '';
-      "krb5.conf.d/enable_passkey".text = ''
-        [plugins]
+    environment = {
+      systemPackages = with pkgs; [
+        ldapvi
+        ldapmonitor
+        pkcs11helper
+        realmd
+
+        (pkgs.writeShellScriptBin "setup-browser-eid" ''
+          NSSDB="''${HOME}/.pki/nssdb"
+          mkdir -p ''${NSSDB}
+
+          ${pkgs.nssTools}/bin/modutil -force -dbdir sql:$NSSDB -add p11-kit-proxy \
+            -libfile ${pkgs.p11-kit}/lib/p11-kit-proxy.so
+        '')
+      ];
+
+      etc = {
+        "pkcs11/modules/opensc-pkcs11".text = ''
+          module: ${pkgs.opensc}/lib/opensc-pkcs11.so
+        '';
+
+        "krb5.conf".text = mkBefore ''
+          includedir /etc/krb5.conf.d/
+        '';
+
+        "krb5.conf.d/kcm_default_ccache".text = ''
+          [libdefaults]
+          default_ccache_name = KCM:
+        '';
+
+        "krb5.conf.d/enable_passkey".text = ''
+          [plugins]
           clpreauth = {
             module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
           }
@@ -39,8 +76,19 @@ in {
           kdcpreauth = {
             module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
           }
+        '';
 
-      '';
+        # "chromium/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
+        # "opt/chrome/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
+
+        "chromium/policies/managed/harkema.json".source = chromePolicy;
+        "opt/chrome/policies/managed/harkema.json".source = chromePolicy;
+      };
+    };
+
+    programs.firefox = {
+      nativeMessagingHosts.euwebid = true;
+      policies.SecurityDevices.p11-kit-proxy = "${pkgs.p11-kit}/lib/p11-kit-proxy.so";
     };
 
     # FROM: https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/misc/sssd.nix
@@ -71,9 +119,18 @@ in {
       };
     };
 
-    security.krb5.settings.libdefaults.default_ccache_name = "KCM:";
+    security = {
+      sudo.package = pkgs.sudo.override {withSssd = true;};
+      krb5.settings.libdefaults.default_ccache_name = "KCM:";
+
+      pki.certificateFiles = [config.security.ipa.certificate];
+    };
 
     services = {
+      dbus = {
+        enable = true;
+        packages = [pkgs.realmd];
+      };
       sssd = {
         enable = true;
         # kcm = true;
@@ -87,17 +144,15 @@ in {
         config = mkAfter ''
           [pam]
           pam_passkey_auth = True
+          pam_cert_auth = True
           passkey_debug_libfido2 = True
           passkey_child_timeout = 60
-
 
           [domain/shadowutils]
           id_provider = proxy
           proxy_lib_name = files
           auth_provider = none
           local_auth_policy = match
-
-
         '';
 
         # [sssd]
@@ -105,13 +160,16 @@ in {
       };
     };
 
+    systemd.packages = [pkgs.realmd];
+
     # systemd.tmpfiles.rules = [
     #   "L /bin/bash - - - - /run/current-system/sw/bin/bash"
     #   "L /bin/zsh - - - - /run/current-system/sw/bin/zsh"
     # ];
-    system.activationScripts.host-mod-pubkey.text = ''
-      ipa host-mod "$HOSTNAME.harkema.io" --sshpubkey="$(cat /etc/ssh/ssh_host_ed25519_key.pub)" || echo "REGISTER PUBKEY"
-    '';
+
+    # system.activationScripts.host-mod-pubkey.text = ''
+    #   ipa host-mod "$HOSTNAME.harkema.io" --sshpubkey="$(cat /etc/ssh/ssh_host_ed25519_key.pub)" || echo "REGISTER PUBKEY"
+    # '';
 
     security = {
       ipa = {
@@ -120,11 +178,11 @@ in {
         domain = "harkema.io";
         realm = "HARKEMA.IO";
         basedn = "dc=harkema,dc=io";
-        # certificate = pkgs.fetchurl {
-        #   url = "https://ipa.harkema.io/ipa/config/ca.crt";
-        #   sha256 = "sha256-s93HRgX4AwCnsY9sWX6SAYrUg9BrSEg8Us5QruOunf0=";
-        # };
-        certificate = "${./ca.crt}";
+        certificate = pkgs.fetchurl {
+          url = "https://ipa.harkema.io/ipa/config/ca.crt";
+          sha256 = "sha256-aLyxdCLwDg7mPjM9hzwuT4IHy+3QW6QXsQiHDZbVFnU=";
+        };
+        # certificate = "${./ca.crt}";
         dyndns.enable = false;
         ifpAllowedUids = [
           "root"

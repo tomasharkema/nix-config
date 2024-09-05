@@ -22,10 +22,8 @@ in
     };
 
     config = mkIf cfg.enable {
-      sound.mediaKeys.enable = true;
+      # sound.mediaKeys.enable = true;
       trait.developer.enable = mkDefault true;
-
-      # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
       system.nixos.tags =
         [
@@ -41,7 +39,7 @@ in
       # };
 
       environment = {
-        etc."X11/Xwrapper.config".text = ''
+      etc."X11/Xwrapper.config".text = ''
           allowed_users=anybody
         '';
 
@@ -52,7 +50,10 @@ in
         # };
 
         variables.XCURSOR_SIZE = builtins.toString cfg.cursorSize;
-        sessionVariables.XCURSOR_SIZE = builtins.toString cfg.cursorSize;
+        sessionVariables={
+          XCURSOR_SIZE = builtins.toString cfg.cursorSize;
+          NIXOS_OZONE_WL = "1";
+        };
       };
 
       # systemd.tmpfiles.rules = [
@@ -87,7 +88,7 @@ in
               })
               ++ [
                 {
-                  settings."org/gnome/desktop/interface".font-name = "Inter Display 11";
+                  settings."org/gnome/desktop/interface".font-name = "Inter Display 12";
                 }
               ];
           };
@@ -97,6 +98,10 @@ in
                 experimental-features = [
                   "scale-monitor-framebuffer"
                   "variable-refresh-rate"
+                  "rt-scheduler"
+                  "xwayland-native-scaling"
+                  "kms-modifiers"
+                  "autoclose-xwayland"
                 ];
                 edge-tiling = true;
               };
@@ -150,14 +155,14 @@ in
 
             extraGSettingsOverridePackages = with pkgs; [
               gnome.mutter
-              gnome.gpaste
+              gpaste
               pkgs.custom.usbguard-gnome
               # gnome-menus
             ];
-
+            # 'xwayland-native-scaling',
             extraGSettingsOverrides = ''
               [org.gnome.mutter]
-              experimental-features=['scale-monitor-framebuffer', 'variable-refresh-rate']
+              experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland', 'variable-refresh-rate','xwayland-native-scaling']
               edge-tiling=true
             '';
 
@@ -168,7 +173,7 @@ in
               clutter
               clutter-gtk
               gjs
-              gnome.gpaste
+              gpaste
               gnome-menus
               # pkgs.custom.openglide
               # ddcutil
@@ -240,44 +245,39 @@ in
       #   };
       # };
 
-      environment.systemPackages =
-        (with pkgs; [
-          themix-gui
-          wike
-          gtop
-          libgtop
-          gnome-extension-manager
-          gnome-menus
-        ])
-        ++ (with pkgs; [
-          gnome-photos
-          clutter
-          clutter-gtk
-          gjs
-          gnome.adwaita-icon-theme
-          gnome-firmware
-          gnome-menus
-          gnome.dconf-editor
-          gnome.gnome-applets
-          gnome.gnome-autoar
-          gnome.gnome-clocks
-          gnome.gnome-control-center
-
-          gnome.gnome-nettool
-          gnome.gnome-online-miners
-          # gnome.gnome-packagekit
-          gnome.gnome-power-manager
-          gnome.gnome-session
-          gnome.gnome-session-ctl
-          gnome.gnome-settings-daemon
-          gnome.gnome-shell-extensions
-          gnome.gnome-themes-extra
-          gnome.gnome-tweaks
-          gnome.gnome-user-share
-          gnome.libgnome-keyring
-          # gnome.seahorse
-          gnome.zenity
-        ]);
+      environment.systemPackages = with pkgs; [
+        # gnome-packagekit
+        # seahorse
+        adwaita-icon-theme
+        clutter
+        clutter-gtk
+        dconf-editor
+        gjs
+        gnome-autoar
+        gnome-extension-manager
+        gnome-firmware
+        gnome-menus
+        gnome-photos
+        gnome-themes-extra
+        gnome-tweaks
+        gnome-user-share
+        gnome.gnome-applets
+        gnome-clocks
+        gnome.gnome-control-center
+        gnome-nettool
+        # gnome-online-miners
+        gnome-power-manager
+        gnome.gnome-session
+        gnome.gnome-session-ctl
+        gnome.gnome-settings-daemon
+        gnome-shell-extensions
+        gtop
+        libgnome-keyring
+        libgtop
+        themix-gui
+        wike
+        zenity
+      ];
 
       # services.synergy.client = {
       #   enable = true;

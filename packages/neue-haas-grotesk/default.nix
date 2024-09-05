@@ -1,11 +1,9 @@
 {
-  lib,
-  stdenv,
+  stdenvNoCC,
   fetchzip,
-  pkgs,
   ...
 }:
-stdenv.mkDerivation rec {
+stdenvNoCC.mkDerivation {
   pname = "neue-haas-grotesk";
   version = "1.001";
 
@@ -22,6 +20,6 @@ stdenv.mkDerivation rec {
   # '';
 
   installPhase = ''
-    install -D -m 444 * -t $out/share/fonts/ttf
+    install -Dm444 *.ttf -t $out/share/fonts/ttf
   '';
 }

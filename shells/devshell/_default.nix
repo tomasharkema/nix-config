@@ -169,7 +169,7 @@ in
       deploy-machine
       pkgs.deploy-rs
       deployment
-      direnv
+      # direnv
       flake-checker
       autoflake
       fh

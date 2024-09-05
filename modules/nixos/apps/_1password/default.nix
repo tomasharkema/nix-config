@@ -30,13 +30,13 @@ in {
 
       _1password = {
         enable = true;
-        package = pkgs.unstable._1password;
+        package = pkgs._1password;
       };
 
       _1password-gui = mkIf config.gui.desktop.enable {
         enable = true;
         polkitPolicyOwners = ["tomas" "root"];
-        package = pkgs.unstable._1password-gui;
+        package = pkgs._1password-gui;
       };
     };
   };

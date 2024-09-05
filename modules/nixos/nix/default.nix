@@ -57,20 +57,10 @@ with lib.custom; {
           clean.enable = true;
           clean.extraArgs = "--keep-since 4d --keep 3";
           flake = "/home/tomas/Developer/nix-config";
-          package = pkgs.unstable.nh;
+          package = pkgs.nh;
         };
 
-        ccache = {
-          enable = true;
-          packageNames = [
-            "linuxPackages_xanmod_stable"
-            "linuxPackages_latest"
-            # "ffmpeg"
-            #   "ffmpeg-full"
-          ];
-        };
-
-        # bash.undistractMe.enable = true;
+        bash.undistractMe.enable = true;
       };
 
       nix = let
@@ -87,8 +77,6 @@ with lib.custom; {
 
         channel.enable = true;
 
-        sandboxPaths = [config.programs.ccache.cacheDir];
-
         extraOptions = ''
           min-free = ${toString (100 * 1024 * 1024)}
           max-free = ${toString (1024 * 1024 * 1024)}
@@ -98,6 +86,8 @@ with lib.custom; {
 
         settings = {
           extra-platforms = ["aarch64-linux" "i686-linux"];
+
+          extra-sandbox-paths = [config.programs.ccache.cacheDir];
 
           use-cgroups = true;
           extra-experimental-features = "nix-command flakes cgroups";

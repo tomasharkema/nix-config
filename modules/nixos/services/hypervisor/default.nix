@@ -59,7 +59,7 @@ in {
       qtemu
       virt-top
       _86Box-with-roms
-      remotebox
+      # remotebox
       virtio-win
 
       qemu-utils
@@ -119,9 +119,9 @@ in {
 
     boot.extraModprobeConfig = "options kvm_intel nested=1";
 
-    programs.ccache = {
-      enable = true;
-    };
+    # programs.ccache = {
+    #   enable = true;
+    # };
 
     virtualisation = {
       kvmgt.enable = true;

@@ -26,22 +26,22 @@
       secrets = {
         atuin = {
           rekeyFile = ../../nixos/secrets/atuin.age;
-          owner = "tomas";
-          # group = "tomas";
+          owner = "${config.user.name}";
+          # group = "${config.user.name}";
           # mode = "644";
           # symlink = false;
         };
         # spotify-tui = {
         # file = ../../../secrets/spotify-tui.age;
-        # owner = "tomas";
-        # group = "tomas";
+        # owner = "${config.user.name}";
+        # group = "${config.user.name}";
         # mode = "644";
         # symlink = false;
         # };
         notify = {
           rekeyFile = ../../nixos/secrets/notify.age;
-          owner = "tomas";
-          # group = "tomas";
+          owner = "${config.user.name}";
+          # group = "${config.user.name}";
           # mode = "644";
           # symlink = false;
         };
@@ -56,7 +56,7 @@
         nscan
         # openglide
       ])
-      ++ (with pkgs; [dosbox-x nixd]);
+      ++ (with pkgs; [dosbox-x nixd direnv devenv agenix-rekey nh]);
     # environment.pathsToLink = ["/lib"];
     system.stateVersion = 4;
 
@@ -66,9 +66,11 @@
       # };
       nix-daemon.enable = true;
     };
+
     fonts = {
-      # fontDir.enable = true;
       packages = with pkgs; [
+        custom.din
+        custom.futura
         google-fonts
         noto-fonts
         noto-fonts-extra

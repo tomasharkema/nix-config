@@ -8,7 +8,7 @@
     services.cockpit = {
       enable = true;
       port = 9090;
-      package = pkgs.unstable.cockpit;
+      package = pkgs.cockpit;
       settings = {
         WebService =
           if config.services.nginx.enable

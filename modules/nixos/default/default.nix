@@ -14,11 +14,18 @@ with lib.custom;
 #     });
 # in
   {
+    imports = ["${inputs.nixos-hardware}/common/gpu/24.05-compat.nix"];
+
     config = {
       assertions = [
-        (assertPackage pkgs "_389-ds-base")
-        (assertPackage pkgs "freeipa")
-        (assertPackage pkgs "sssd")
+        {
+          assertion = (builtins.length config.boot.kernelPatches) == 0;
+          message = "Kernelpatches require recompilation :(";
+        }
+
+        #   (assertPackage pkgs "_389-ds-base")
+        #   (assertPackage pkgs "freeipa")
+        #   (assertPackage pkgs "sssd")
       ];
 
       # Set your time zone.
@@ -49,38 +56,41 @@ with lib.custom;
 
       console = {
         earlySetup = true;
-        # font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
-        # packages = with pkgs; [terminus_font];
+        font = "ter-v32n";
+        packages = with pkgs; [terminus_font];
         keyMap = "us";
-        # useXkbConfig = true; # use xkb.options in tty.
       };
 
       boot = {
         recovery.enable = mkDefault true;
         initrd = {
-          systemd.emergencyAccess = "abcdefg";
+          # systemd.emergencyAccess = "abcdefg";
           # includeDefaultModules = true;
         };
 
-        crashDump.enable = true;
+        # crashDump.enable = true;
 
         hardwareScan = true;
 
-        kernel.sysctl = {
-          "net.ipv4.ip_forward" = 1;
-          "kernel.sysrq" = 1;
-        };
+        # kernel.sysctl = {
+        #   "net.ipv4.ip_forward" = mkForce 1;
+        # };
 
         tmp = {
-          useTmpfs = mkDefault false;
-          cleanOnBoot = mkDefault false;
+          useTmpfs = true;
+          cleanOnBoot = true;
         };
 
-        # kernelPackages = lib.mkDefault pkgs.linuxPackages_6_7;
-        kernelPackages =
+        kernelPackages = let
+        in
           if (pkgs.stdenv.isAarch64 || config.trait.hardware.vm.enable)
           then mkDefault pkgs.linuxPackages_latest
-          else mkDefault pkgs.linuxPackages_xanmod_stable;
+          else (mkDefault pkgs.linuxPackages_xanmod_latest);
+        # (
+        #   if config.trait.server.enable
+        #   then mkDefault pkgs.linuxPackages_cachyos-server
+        #   else mkDefault pkgs.linuxPackages_cachyos
+        # ); # (pkgs.linuxPackagesFor pkgs.linux_cachyos);
 
         kernelModules = ["wireguard"];
 
@@ -108,20 +118,25 @@ with lib.custom;
       #   formatted;
 
       environment = {
-        sessionVariables.MOZ_ENABLE_WAYLAND = "0";
+        # sessionVariables.MOZ_ENABLE_WAYLAND = "0";
 
         systemPackages =
           (with pkgs; [
+            config.nur.repos.mloeper.usbguard-applet-qt
+            agenix-rekey
             meld
             _86Box-with-roms
+            distrobox
+            distrobox-tui
             # dry
             # etcher
-            # fancy-motd
+            fancy-motd
             # mkchromecast
             # nix-switcher # : needs github auth
             # ntfy
             # rtop
             # udisks2
+            git
             aide
             archivemount
             bandwhich
@@ -132,9 +147,8 @@ with lib.custom;
             catt
             chunkfs
             clex
-            compsize
+            # compsize
             ctop
-            curl
             curl
             devdash
             devtodo
@@ -199,7 +213,7 @@ with lib.custom;
             ttop
             tydra
             udiskie
-            unstable.netscanner
+            netscanner
             usbutils
             usermount
             viddy
@@ -218,13 +232,10 @@ with lib.custom;
             # rmfuse
           ])
           ++ (optionals pkgs.stdenv.isx86_64 (with pkgs; [
-            google-chrome
-            netflix
-
             cmospwd
             uefisettings
             libsmbios
-            uefi-firmware-parser
+
             dmidecode
             refind
           ]));
@@ -331,8 +342,6 @@ with lib.custom;
         #   enableNotifications = true;
         # };
 
-        openvscode-server.enable = true;
-
         seatd.enable = true;
 
         # udisks2 = {
@@ -354,7 +363,7 @@ with lib.custom;
           settings = {
             PasswordAuthentication = false;
             KbdInteractiveAuthentication = true;
-            PermitRootLogin = "yes";
+            # PermitRootLogin = "yes";
             AcceptEnv = "*";
             X11Forwarding = true;
           };
@@ -453,7 +462,6 @@ with lib.custom;
       };
 
       security = {
-        # sudo.package = pkgs.sudo.override {withSssd = true;};
         audit.enable = true;
         auditd.enable = true;
       };
@@ -472,7 +480,7 @@ with lib.custom;
         flashrom.enable = true;
 
         rust-motd = {
-          enable = true;
+          # enable = true;
           settings = {
             global = {
               progress_full_character = "=";
@@ -507,13 +515,13 @@ with lib.custom;
             last_run = {};
           };
         };
-        # git = {
-        #   enable = true;
-        #   lfs.enable = true;
-        # };
+        git = {
+          enable = true;
+          lfs.enable = true;
+        };
         htop = {
           enable = true;
-          package = pkgs.unstable.htop;
+          package = pkgs.htop;
           settings = {
             show_program_path = false;
             hide_kernel_threads = true;

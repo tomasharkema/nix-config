@@ -17,9 +17,9 @@ with lib;
     config = {
       home.packages = with pkgs; [
         figlet
-        nodejs
+        # nodejs
         ripgrep
-        csharp-ls
+        # csharp-ls
       ];
 
       programs.neovim = {
@@ -54,13 +54,13 @@ with lib;
               nixd = {enable = true;};
               eslint = {enable = true;};
               html = {enable = true;};
-              lua-ls = {enable = true;};
-              nil-ls = {enable = true;};
+              # lua-ls = {enable = true;};
+              # nil-ls = {enable = true;};
               marksman = {enable = true;};
               pyright = {enable = true;};
               gopls = {enable = true;};
               terraformls = {enable = true;};
-              tsserver = {enable = false;};
+              # tsserver = {enable = false;};
               yamlls = {
                 enable = true;
               };
@@ -142,16 +142,16 @@ with lib;
               ];
             };
           };
-          # startify = {
-          #   enable = true;
-          #   customHeader = ''
-          #     startify#pad(split(system('figlet -f larry3d neovim'), '
-          #     '))'';
-          # };
-          # indent-blankline = {
-          #   enable = true;
-          #   filetypeExclude = ["startify"];
-          # };
+          startify = {
+            enable = true;
+            #   customHeader = ''
+            #     startify#pad(split(system('figlet -f larry3d neovim'), '
+            #     '))'';
+          };
+          indent-blankline = {
+            enable = true;
+            #   filetypeExclude = ["startify"];
+          };
           barbar = {
             enable = true;
           };
@@ -193,23 +193,23 @@ with lib;
           cmp-zsh.enable = true;
           conform-nvim = {
             enable = true;
-            formatOnSave = {
-              timeoutMs = 1000;
-            };
-            formattersByFt = {
-              lua = ["stylua"];
-              nix = ["alejandra"];
-            };
+            #   format_on_save = {
+            #     timeoutMs = 1000;
+            #   };
+            #   formattersByFt = {
+            #     lua = ["stylua"];
+            #     nix = ["alejandra"];
+            #   };
           };
         };
 
         extraPlugins = with pkgs.vimPlugins; [
           # ansible-vim
           vim-nix
-          coc-nvim
+          # coc-nvim
           # suda-vim
-          vim-csharp
-          csharpls-extended-lsp-nvim
+          # vim-csharp
+          # csharpls-extended-lsp-nvim
         ];
 
         options = {

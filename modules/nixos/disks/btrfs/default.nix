@@ -42,32 +42,32 @@ with lib.custom; let
             mountpoint = "/";
             mountOptions = [];
           };
-          "home" = {
-            mountOptions = ["noatime" "discard=async"]; #++ lib.optional (!config.trait.low-power.enable) "compress=zstd";
+          "home" = mkForce {
+            mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.trait.low-power.enable) "compress=zstd";
             mountpoint = "/home";
           };
           "resilio-sync" = mkIf (cfg.newSubvolumes && cfg.media == null) {
-            mountOptions = ["noatime" "compress=zstd" "discard=async"];
+            mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.trait.low-power.enable) "compress=zstd";
             mountpoint = "/mnt/resilio-sync";
           };
           "resilio-sync-lib" = mkIf cfg.newSubvolumes {
-            mountOptions = ["noatime" "compress=zstd" "discard=async"];
+            mountOptions = ["noatime" "discard=async"];
             mountpoint = "/var/lib/resilio-sync";
           };
           "nix" = mkIf cfg.newSubvolumes {
-            mountOptions = ["noatime" "discard=async"];
+            mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.trait.low-power.enable) "compress=zstd";
             mountpoint = "/nix";
           };
           "containers" = mkIf cfg.newSubvolumes {
-            mountOptions = ["noatime" "discard=async"];
+            mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.trait.low-power.enable) "compress=zstd";
             mountpoint = "/var/lib/containers";
           };
           "snapshots" = mkIf cfg.newSubvolumes {
-            mountOptions = ["noatime" "nodatacow" "compress=zstd" "nodatasum" "discard=async"];
+            mountOptions = ["noatime" "compress=zstd" "discard=async"];
             mountpoint = "/.snapshots";
           };
           "home-snapshots" = mkIf cfg.newSubvolumes {
-            mountOptions = ["noatime" "nodatacow" "nodatasum" "compress=zstd" "discard=async"];
+            mountOptions = ["noatime" "compress=zstd" "discard=async"];
             mountpoint = "/home/.snapshots";
           };
           "steam" = mkIf cfg.newSubvolumes {
@@ -77,7 +77,7 @@ with lib.custom; let
             mountpoint = "/mnt/steam";
           };
           "flatpak" = mkIf cfg.newSubvolumes {
-            mountOptions = ["noatime" "discard=async"];
+            mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.trait.low-power.enable) "compress=zstd";
             mountpoint = "/var/lib/flatpak";
           };
           "log" = mkIf cfg.newSubvolumes {
@@ -165,33 +165,33 @@ in
               ALLOW_USERS = ["tomas" "root"];
               TIMELINE_CREATE = true;
               TIMELINE_CLEANUP = true;
-              TIMELINE_LIMIT_HOURLY = "5";
-              TIMELINE_LIMIT_DAILY = "7";
-              TIMELINE_LIMIT_WEEKLY = "2";
-              TIMELINE_LIMIT_MONTHLY = "1";
-              TIMELINE_LIMIT_YEARLY = "0";
+              TIMELINE_LIMIT_HOURLY = 5;
+              TIMELINE_LIMIT_DAILY = 7;
+              TIMELINE_LIMIT_WEEKLY = 2;
+              TIMELINE_LIMIT_MONTHLY = 1;
+              TIMELINE_LIMIT_YEARLY = 0;
             };
             "root" = {
               SUBVOLUME = "/";
               ALLOW_USERS = ["tomas" "root"];
               TIMELINE_CREATE = true;
               TIMELINE_CLEANUP = true;
-              TIMELINE_LIMIT_HOURLY = "5";
-              TIMELINE_LIMIT_DAILY = "7";
-              TIMELINE_LIMIT_WEEKLY = "2";
-              TIMELINE_LIMIT_MONTHLY = "1";
-              TIMELINE_LIMIT_YEARLY = "0";
+              TIMELINE_LIMIT_HOURLY = 5;
+              TIMELINE_LIMIT_DAILY = 7;
+              TIMELINE_LIMIT_WEEKLY = 2;
+              TIMELINE_LIMIT_MONTHLY = 1;
+              TIMELINE_LIMIT_YEARLY = 0;
             };
           };
         };
-        beesd = {
-          filesystems = {
-            root = {
-              spec = mkDefault "PARTLABEL=disk-main-root";
-              hashTableSizeMB = mkDefault 2048;
-            };
-          };
-        };
+        # beesd = {
+        #   filesystems = {
+        #     root = {
+        #       spec = mkDefault "PARTLABEL=disk-main-root";
+        #       hashTableSizeMB = mkDefault 2048;
+        #     };
+        #   };
+        # };
       };
 
       environment.systemPackages = with pkgs; [
@@ -289,7 +289,7 @@ in
           };
         };
       };
-
+      # finh-leSystems."/home".device = mkForce "/dev/mapper/crypted";
       systemd.tmpfiles.rules = mkIf (cfg.media != null) [
         "d /mnt/media/resilio-sync 0777 rslsync rslsync -"
         "L+ /mnt/resilio-sync - - - - /mnt/media/resilio-sync"

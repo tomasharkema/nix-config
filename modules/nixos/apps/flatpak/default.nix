@@ -41,7 +41,7 @@ in {
 
       packages =
         [
-          #"com.getpostman.Postman"
+          "com.getpostman.Postman"
           "com.github.tchx84.Flatseal"
           # "com.logseq.Logseq"
           # "com.mattjakeman.ExtensionManager"
@@ -65,7 +65,7 @@ in {
           [
             # "com.discordapp.Discord"
             "com.spotify.Client"
-            # "tv.plex.PlexDesktop"
+            "tv.plex.PlexDesktop"
             "com.github.d4nj1.tlpui"
           ]
         );

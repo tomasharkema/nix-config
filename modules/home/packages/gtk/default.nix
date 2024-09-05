@@ -18,12 +18,9 @@ with lib; let
   enable = pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable;
 in {
   config = mkIf enable {
-    # xsession.pointerCursor = mkIf pkgs.stdenv.isLinux {
-    #   name = "macOS-Monterey";
-    #   package = pkgs.apple-cursor;
-    #   size = cursorSize;
-    # };
-
+    dconf.settings."org/gnome/desktop/interface" = {
+      cursor-size = 24;
+    };
     gtk = {
       enable = true;
 
@@ -58,6 +55,7 @@ in {
         package = mkForce pkgs.apple-cursor;
         x11.enable = true;
         gtk.enable = true;
+        size = cursorSize;
       };
       # packages = with pkgs; [
       #   flat-remix-gtk

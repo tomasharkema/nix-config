@@ -29,9 +29,9 @@ in {
         "attic-config.toml" = {
           rekeyFile = ../../nixos/secrets/attic-config.toml.age;
           # mode = "777";
-          owner = "tomas";
+          owner = "${config.user.name}";
           # group = "tomas";
-          path = "/Users/tomas/.config/attic/config.toml";
+          path = "/Users/${config.user.name}/.config/attic/config.toml";
         };
       };
     };
@@ -39,7 +39,7 @@ in {
     trait.developer.enable = true;
 
     services.nix-daemon.enable = true;
-
+    programs.direnv.enable = true;
     # age.secrets."op" = {
     #   rekeyFile = ../../../secrets/op.age;
     #   mode = "744";
@@ -49,31 +49,31 @@ in {
     # };
 
     nix = let
-      users = ["root" "tomas"];
+      users = ["root" "${config.user.name}"];
     in {
-      package = pkgs.nixVersions.latest;
+      package = pkgs.nixVersions.nix_2_23;
 
       nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
-      linux-builder = {
-        enable = true;
-        ephemeral = true;
-        maxJobs = 4;
-        systems = [
-          "x86_64-linux"
-          "aarch64-linux"
-        ];
-        config = {
-          virtualisation = {
-            #     # rosetta.enable = true;
-            darwin-builder = {
-              diskSize = 40 * 1024;
-              memorySize = 6 * 1024;
-            };
-            cores = 4;
-          };
-        };
-      };
+      # linux-builder = {
+      #   enable = true;
+      #   ephemeral = true;
+      #   maxJobs = 4;
+      #   systems = [
+      #     "x86_64-linux"
+      #     "aarch64-linux"
+      #   ];
+      #   config = {
+      #     virtualisation = {
+      #       #     # rosetta.enable = true;
+      #       darwin-builder = {
+      #         diskSize = 40 * 1024;
+      #         memorySize = 6 * 1024;
+      #       };
+      #       cores = 4;
+      #     };
+      #   };
+      # };
 
       settings = {
         http-connections = 50;
@@ -107,7 +107,7 @@ in {
         automatic = true;
         interval = {Day = 1;};
         options = "--delete-older-than 14d";
-        user = "tomas";
+        user = "${config.user.name}";
       };
 
       # flake-utils-plus

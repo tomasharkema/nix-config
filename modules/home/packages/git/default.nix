@@ -54,7 +54,7 @@ with lib; {
               "${osConfig.programs._1password-gui.package}/bin/op-ssh-sign";
           };
 
-          user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";
+          user.signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";
         };
       };
     };

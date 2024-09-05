@@ -20,15 +20,18 @@ with lib; {
           # "scale-monitor-framebuffer"
           # "variable-refresh-rate"
           # "rt-scheduler"
-          experimental-features =
-            if osConfig.trait.hardware.laptop.enable
-            then [
-              "scale-monitor-framebuffer"
-              "variable-refresh-rate"
-              "rt-scheduler"
-            ]
-            else ["rt-scheduler"];
-          # ];
+          experimental-features = [
+            # if osConfig.trait.hardware.laptop.enable
+            # then [
+            "scale-monitor-framebuffer"
+            "variable-refresh-rate"
+            "rt-scheduler"
+            "xwayland-native-scaling"
+            "kms-modifiers"
+            "autoclose-xwayland"
+            # ]
+            # else ["rt-scheduler"];
+          ];
         };
         "org/gnome/shell/extensions/vitals" = {
           "position-in-panel" = 0;
@@ -51,13 +54,17 @@ with lib; {
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
           # cursor-theme = mkForce "Adwaita";
+
           # gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
-          document-font-name = "Inter Display 11";
+          document-font-name = "Inter Display 12";
           font-antialiasing = "grayscale";
-          monospace-font-name = "JetBrainsMono Nerd Font Mono 11";
+          monospace-font-name = "JetBrainsMono Nerd Font Mono 12";
           # font-name = "Inter Display 11";
           enable-hot-corners = false;
           # icon-theme = "Adwaita";
+          text-scaling-factor = 1;
+
+          clock-show-seconds = true;
         };
 
         "org/gnome/shell/extensions/user-theme" = {
@@ -288,6 +295,11 @@ with lib; {
         #   type-format = "category";
         #   view-type = "list";
         # };
+
+        "org/virt-manager/virt-manager/connections" = {
+          autoconnect = ["qemu:///system"];
+          uris = ["qemu+ssh://tomas@wodan/system" "qemu+ssh://tomas@blue-fire/system" "qemu+ssh://root@silver-star/system" "qemu:///system"];
+        };
 
         "com/gexperts/Tilix" = {
           quake-specific-monitor = 0;

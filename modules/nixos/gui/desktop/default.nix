@@ -20,7 +20,7 @@ in {
     security.pam.services.passwd.enableGnomeKeyring = true;
 
     services = {
-      dbus.packages = [pkgs.unstable.usbguard-notifier];
+      dbus.packages = [pkgs.usbguard-notifier];
       libinput.enable = true;
 
       xserver = {
@@ -43,6 +43,11 @@ in {
         alsa.support32Bit = true;
         pulse.enable = true;
         jack.enable = true;
+
+        lowLatency = {
+          # enable this module
+          enable = true;
+        };
       };
       gvfs.enable = true;
     };
@@ -77,9 +82,16 @@ in {
     #   ];
     # };
 
-    hardware.opengl = {
+    # chaotic = {
+    # scx.enable = true;
+    # mesa-git.enable = true;
+    # hdr.enable = true;
+    # };
+
+    hardware.graphics = {
       enable = true;
-      extraPackages = [pkgs.mesa.drivers];
+
+      enable32Bit = true;
     };
 
     programs = {
@@ -112,12 +124,12 @@ in {
 
     environment.systemPackages =
       (with pkgs; [nix-software-center])
-      ++ (with pkgs.unstable;
+      ++ (with pkgs;
         [
           usbguard-notifier
           usbview
-          apache-directory-studio
           sqlitebrowser
+          boxbuddy
           # notify-client
           # unstable.vscodium
           clutter
@@ -126,7 +138,6 @@ in {
           font-manager
           fractal
           gamehub
-          github-desktop
           gotop
           gparted
           grsync
@@ -145,7 +156,7 @@ in {
           rtfm
           spot
           sublime-merge
-          systemdgenie
+          sublime4
           transmission-remote-gtk
           trayscale
           tremotesf
@@ -163,44 +174,50 @@ in {
           zed-editor
         ]
         ++ optionals pkgs.stdenv.isx86_64 [
+          gnome_mplayer
+          gmtk
           # pkgs.custom.git-butler
           # pkgs.wolfram-engine
           # spotify
           angryipscanner
           bottles
           devdocs-desktop
-          discord
           dmidecode
-          gitkraken
-          handbrake
           ipmiview
-          jetbrains-toolbox
           libsmbios
-          plex-media-player
+          config.nur.repos.mloeper.usbguard-applet-qt
+          # (plex-media-player.overrideAttrs (prev: {
+          #   runtimeDependencies =
+          #     prev.runtimeDependencies
+          #     ++ [
+          #       config.boot.linuxPackages.nvidia_x11
+          #     ];
+          # }))
+          netflix
+
           plexamp
           xpipe
-          pkgs.custom.ztui
         ]
-        ++ (with pkgs.custom; [zerotier-ui netbrowse usbguard-gnome]));
+        ++ (with pkgs.custom; [
+          zerotier-ui
+          # ztui
+
+          #netbrowse
+          # usbguard-gnome
+        ]));
 
     programs = {
       ssh = {
         # startAgent = true;
       };
-
-      firefox = {
-        enable = true;
-        package = pkgs.unstable.firefox;
-
-        # nativeMessagingHosts.packages = with pkgs; [gnome-browser-connector];
-        # nativeMessagingHosts.gsconnect = true;
-      };
       mtr.enable = true;
       dconf.enable = true;
+
+      chromium = {enable = true;};
     };
-    systemd.packages = [pkgs.unstable.usbguard-notifier];
+    systemd.packages = [pkgs.usbguard-notifier];
     # Enable sound with pipewire.
-    sound.enable = mkDefault true;
+    # sound.enable = mkDefault true;
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
   };

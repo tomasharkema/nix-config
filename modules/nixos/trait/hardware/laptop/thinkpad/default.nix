@@ -121,7 +121,7 @@ in {
       };
       login = {
         # enableGnomeKeyring = true;
-        fprintAuth = true;
+        # fprintAuth = true;
       };
       vlock = {
         # enableGnomeKeyring = true;

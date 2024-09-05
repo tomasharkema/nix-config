@@ -17,6 +17,15 @@ with lib.custom; let
 in {
   options.trait.hardware.nvidia = {
     enable = mkEnableOption "nvidia";
+
+    beta = mkOption {
+      default = true;
+      type = types.bool;
+    };
+    open = mkOption {
+      default = false;
+      type = types.bool;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -34,9 +43,9 @@ in {
       # gwe
     ];
 
-    home-manager.users.tomas.programs.gnome-shell.extensions = [
-      {package = pkgs.gnomeExtensions.prime-helper;}
-    ];
+    # home-manager.users.tomas.programs.gnome-shell.extensions = [
+    #   {package = pkgs.gnomeExtensions.prime-helper;}
+    # ];
 
     # services.supergfxd.enable = true;
     # systemd.services.supergfxd.path = [pkgs.pciutils];
@@ -54,8 +63,6 @@ in {
     #   MUTTER_DEBUG_KMS_THREAD_TYPE = "user";
     # };
 
-    virtualisation.podman.enableNvidia = true;
-
     services = {
       xserver.videoDrivers = ["nvidia"];
       netdata.configDir."python.d.conf" = pkgs.writeText "python.d.conf" ''
@@ -64,15 +71,15 @@ in {
     };
 
     boot = {
-      kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
+      # kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
       kernelParams = [
-        "nvidia-drm.modeset=1"
-        "nvidia-drm.fbdev=1"
+        # "nvidia-drm.modeset=1"
+        # "nvidia-drm.fbdev=1"
         # "apm=power_off"
         # "acpi=force"
       ];
       initrd = {
-        kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
+        #kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
         # kernelParams = [
         #   "nvidia-drm.modeset=1"
         #   "nvidia-drm.fbdev=1"
@@ -82,48 +89,27 @@ in {
       };
     };
 
-    # TODO: fix!
-    # assertions = [
-    #   (compareVersion pkgs config.boot.kernelPackages.nvidiaPackages.latest.version config.hardware.nvidia.package.version)
-    # ];
-
     hardware = {
-      nvidia = mkDefault {
+      nvidia-container-toolkit.enable = true;
+
+      nvidia = {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
-        open = false;
-        nvidiaSettings = false;
+        open = mkForce cfg.open;
+        nvidiaSettings = true;
 
-        # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-        #   version = "560.28.03";
-        #   sha256_64bit = "";
-        #   sha256_aarch64 = lib.fakeSha256;
-        #   openSha256 = lib.fakeSha256;
-        #   settingsSha256 = "";
-        #   persistencedSha256 = lib.fakeSha256;
-        # };
-
-        package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-          version = "560.31.02";
-          sha256_64bit = "sha256-0cwgejoFsefl2M6jdWZC+CKc58CqOXDjSi4saVPNKY0=";
-          sha256_aarch64 = lib.fakeSha256;
-          openSha256 = lib.fakeSha256;
-          settingsSha256 = "sha256-A3SzGAW4vR2uxT1Cv+Pn+Sbm9lLF5a/DGzlnPhxVvmE=";
-          persistencedSha256 = lib.fakeSha256;
-        };
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
       };
 
-      opengl = {
+      graphics = {
         enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
+
+        enable32Bit = true;
 
         extraPackages = with pkgs; [
-          (pkgs.mesa.drivers)
           nvidia-vaapi-driver
           libvdpau-va-gl
           vaapiVdpau
-          (config.hardware.nvidia.package)
         ];
       };
     };

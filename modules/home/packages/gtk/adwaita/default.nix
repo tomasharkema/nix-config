@@ -14,7 +14,7 @@ with lib; {
       enable = true;
       theme = {
         name = "Adwaita-dark";
-        package = pkgs.gnome.gnome-themes-extra;
+        package = pkgs.gnome-themes-extra;
       };
     };
   };

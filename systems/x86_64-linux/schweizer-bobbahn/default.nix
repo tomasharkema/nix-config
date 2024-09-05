@@ -19,20 +19,15 @@ with lib; {
     age.rekey = {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIa7OowjESNuouZx/QVFryBWjjEHphKDZDq4hOD4C5xS root@schweizer-bobbahn";
     };
-    powerManagement.enable = true;
-    specialisation = {
-      mediacenter.configuration = {
-        gui = {
-          gnome.enable = false;
-          media-center.enable = true;
-        };
-        apps = {
-          cec.enable = true;
-        };
-      };
-    };
 
-    environment.systemPackages = with pkgs; [intel-gpu-tools];
+    powerManagement.enable = true;
+
+    environment = {
+      sessionVariables = {
+        LIBVA_DRIVER_NAME = "i965";
+      };
+      systemPackages = with pkgs; [intel-gpu-tools];
+    };
 
     gui = {
       enable = true;
@@ -60,7 +55,7 @@ with lib; {
     #   ipa = { ifpAllowedUids = mkForce [ "root" "tomas" "media" ]; };
     # };
 
-    resilio.enable = false;
+    apps.resilio.enable = false;
 
     trait = {
       low-power.enable = true;
@@ -104,12 +99,22 @@ with lib; {
 
     zramSwap = {enable = true;};
 
+    boot = {
+      kernelModules = [
+        "i915"
+      ];
+    };
+
     hardware = {
-      opengl = {
+      graphics = {
         enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
-        # extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau];
+        enable32Bit = true;
+        extraPackages = with pkgs; [
+          intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+          libvdpau-va-gl
+          vaapiVdpau
+          vpl-gpu-rt
+        ];
       };
     };
   };

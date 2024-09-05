@@ -20,7 +20,7 @@ with lib.custom; let
 
     echo "find desktop in $FILEPATH"
 
-    PATH_MATCHES="$(find "$FILEPATH" -name '*.desktop')"
+    PATH_MATCHES="$(find -L "$FILEPATH" -name '*.desktop')"
 
     for f in $PATH_MATCHES;
     do
@@ -41,22 +41,41 @@ with lib.custom; let
   findDesktopFileBase = ps: builtins.baseNameOf (findDesktopFile ps);
 in {
   options = {
+    autostart = {
+      programs = mkOpt (types.listOf (types.submodule {
+        options = {
+          package = mkOption {
+            type = types.nullOr types.package;
+            default = null;
+          };
+          path = mkOption {
+            type = types.nullOr types.path;
+            default = null;
+          };
+          desktopName = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+          };
+        };
+      })) [] "Autostart programs";
+    };
     # home.favoriteAppIds = mkOption {};
   };
   config = let
     favoriteApplications = with pkgs;
       [
-        {package = gnome.nautilus;}
+        {package = nautilus;}
+        # {package = google-chrome;}
+        {package = chromium;}
         {package = osConfig.programs.firefox.package;}
-        {package = unstable.geary;}
-        {package = unstable.vscode;}
-        {package = unstable.tilix;}
-        # {package = config.programs.wezterm.package;}
-        {package = unstable.telegram-desktop;}
+        {package = geary;}
+        {package = vscode;}
+        {package = tilix;}
+        {package = config.programs.wezterm.package;}
+        {package = telegram-desktop;}
         {package = osConfig.programs._1password-gui.package;}
-        {package = unstable.notify-client;}
       ]
-      ++ (optional pkgs.stdenv.isx86_64 {package = unstable.termius;})
+      ++ (optional pkgs.stdenv.isx86_64 {package = termius;})
       ++ [
         {id = "org.cockpit_project.CockpitClient.desktop";}
       ];
@@ -85,7 +104,37 @@ in {
   in
     mkIf pkgs.stdenv.isLinux {
       home = {
-        packages = packagesToAdd ++ (with pkgs; [gnome.vinagre gnome.devhelp]);
+        file = builtins.listToAttrs (map
+          (pkg: let
+            pkgName =
+              if (pkg ? package && (pkg.package != null))
+              then "${pkg.package.pname}.desktop"
+              else pkg.desktopName;
+          in {
+            name = ".config/autostart/${pkgName}";
+            value =
+              if (pkg ? package && (pkg.package != null))
+              then let
+                package = pkg.package;
+              in
+                if package ? desktopItem
+                then {
+                  # Application has a desktopItem entry.
+                  # Assume that it was made with makeDesktopEntry, which exposes a
+                  # text attribute with the contents of the .desktop file
+                  text = package.desktopItem.text;
+                }
+                else {
+                  # Application does *not* have a desktopItem entry. Try to find a
+                  # matching .desktop name in /share/apaplications
+                  source = config.lib.file.mkOutOfStoreSymlink (findDesktopFile package);
+                }
+              else {
+                source = "${pkg.path}";
+              };
+          })
+          config.autostart.programs);
+        packages = packagesToAdd ++ (with pkgs; [vinagre devhelp]);
         # favoriteAppIds = favoriteAppIds;
       };
 

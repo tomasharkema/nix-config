@@ -10,6 +10,12 @@
     url = "https://iterm2.com/shell_integration/zsh";
     sha256 = "sha256-Cq8winA/tcnnVblDTW2n1k/olN3DONEfXrzYNkufZvY=";
   };
+  itermCatppuccin = pkgs.fetchFromGitHub {
+    owner = "catppuccin";
+    repo = "iterm";
+    rev = "6b5765b3d701fb21e6c250fcd0d90bc65e50d031";
+    hash = "sha256-gB3ItHv2y8zE/xlBmkVvw33WIAVLMYiLsU2jpmT23DY=";
+  };
   # bg = pkgs.fetchurl {
   #   url =
   #     "https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/raw/main/backgrounds/blobs-d.svg";
@@ -41,11 +47,12 @@ in
       };
 
       programs.inshellisense = {
-        # enable = true;
-        # enableZshIntegration = true;
+        enable = true;
+        enableZshIntegration = true;
       };
 
       home = {
+        file."itermCatppuccin".source = itermCatppuccin;
         # file = osConfig.home.homeFiles;
         stateVersion = "24.05";
 
@@ -54,16 +61,16 @@ in
         packages = with pkgs; [
           picotool
           newman
-          postman
+          # postman
           atac
-          httpie-desktop
+          # httpie-desktop
           nix-htop
           augeas
           custom.bieye
           wget2
           libnotify
 
-          # fup-repl
+          fup-repl
           # gptcommit-wrap
 
           udict
@@ -79,28 +86,35 @@ in
           # nchat
           git-agecrypt
           projectable
-          xplr
+          # xplr
           lazycli
           f1viewer
           # aicommits
           openai
         ];
+
+        activation."agent-1password" = mkIf pkgs.stdenv.hostPlatform.isDarwin (inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
+          mkdir -p "/Users/${osConfig.user.name}/.1password" || true
+          ln -sfn "/Users/${osConfig.user.name}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" "/Users/${osConfig.user.name}/.1password/agent.sock"
+        '');
+
         sessionVariables =
           if pkgs.stdenv.hostPlatform.isDarwin
           then {
             EDITOR = "subl";
-            SSH_AUTH_SOCK = "/Users/tomas/.1password/agent.sock";
-            # SPACESHIP_PROMPT_ADD_NEWLINE = "false";
+            # SSH_AUTH_SOCK = "/Users/${osConfig.user.name}/.1password/agent.sock";
+            SSH_AUTH_SOCK = "/Users/${osConfig.user.name}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+            SPACESHIP_PROMPT_ADD_NEWLINE = "false";
           }
           else {
             # EDITOR = "nvim";
           };
       };
 
-      fonts.fontconfig.enable = true;
+      # fonts.fontconfig.enable = true;
 
       programs = {
-        freetube.enable = true;
+        # freetube.enable = true;
 
         home-manager.enable = true;
 
@@ -122,7 +136,7 @@ in
 
         htop = {
           enable = true;
-          package = pkgs.unstable.htop;
+          package = pkgs.htop;
           settings = {
             show_program_path = false;
             hide_kernel_threads = true;
@@ -154,7 +168,7 @@ in
 
         tmux = {enable = true;};
 
-        # alacritty.enable = osConfig.gui.enable;
+        alacritty.enable = osConfig.gui.enable;
 
         # bat = {
         #   enable = true;

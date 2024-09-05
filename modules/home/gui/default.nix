@@ -57,6 +57,19 @@ in {
       enable = true;
     };
 
+    autostart.programs = [
+      {package = pkgs.telegram-desktop;}
+      {package = pkgs.trayscale;}
+      # {package = pkgs.zerotier-ui;}
+      #   {
+      #     desktopName = "org.gnome.usbguard.desktop";
+      #     path = "${pkgs.custom.usbguard-gnome}/share/applications/org.gnome.usbguard.desktop";
+      #   }
+      # {package = pkgs.notify-client;}
+      {package = pkgs.geary;}
+      {package = pkgs._1password-gui;}
+    ];
+
     xdg = {
       userDirs = {
         enable = true;
@@ -74,17 +87,18 @@ in {
     };
 
     home = {
-      packages = with pkgs.unstable;
+      packages = with pkgs;
       with pkgs.custom; [
         trayscale
         zerotier-ui
-        usbguard-gnome
+        # usbguard-gnome
+        notify-client
       ];
 
       activation = {
-        # userSymlinks-fonts = mkIf (stdenv.isLinux && osConfig.gui.enable) ''
-        #   ln -sfn /run/current-system/sw/share/X11/fonts ~/.local/share/fonts
-        # '';
+        userSymlinks-fonts = mkIf (stdenv.isLinux && osConfig.gui.enable) ''
+          ln -sfn /run/current-system/sw/share/X11/fonts ~/.local/share/fonts
+        '';
 
         # userSymlinks-cachix = ''
         #   if [ ! -d "$HOME/.config/cachix" ]; then
@@ -137,8 +151,9 @@ in {
             [Context]
             filesystems=/run/current-system/sw/share/X11/fonts:ro;/nix/store:ro;/home/tomas/.local/share/fonts:ro;
           '';
-          # /home/tomas/.config/gtk-4.0:ro;/home/tomas/.config/gtk-3.0:ro;
         };
+        # /home/tomas/.config/gtk-4.0:ro;/home/tomas/.config/gtk-3.0:ro;
+        # };
         # ".local/share/Zeal/Zeal/docsets/nixos.docset" = {
         # source = "${pkgs.docset}/share/docset-24.05.docset";
         # };

@@ -41,7 +41,7 @@ in {
 
       tailscale = {
         enable = true;
-        package = pkgs.unstable.tailscale;
+        package = pkgs.tailscale;
         authKeyFile = config.age.secrets.tailscale.path;
         useRoutingFeatures = "both";
         extraUpFlags = [
@@ -69,7 +69,7 @@ in {
       };
 
       zerotierone = {
-        enable = true;
+        # enable = true;
         joinNetworks = ["***REMOVED***"];
       };
     };

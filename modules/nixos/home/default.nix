@@ -26,11 +26,11 @@ with lib; {
     age.secrets = {
       openai = {
         rekeyFile = ./openai.age;
-        owner = "tomas";
+        owner = "${config.user.name}";
       };
     };
 
-    snowfallorg.user.${config.user.name}.home.config = {
+    snowfallorg.user."${config.user.name}".home.config = {
       home.stateVersion = mkDefault "24.05";
       xdg.enable = true;
     };
@@ -39,10 +39,15 @@ with lib; {
       useUserPackages = true;
       useGlobalPkgs = true;
       backupFileExtension = "bak";
-      users.${config.user.name} = {
+      users."${config.user.name}" = {
         home.stateVersion = mkDefault "24.05";
         xdg.enable = true;
       };
+    };
+
+    services = {
+      homed.enable = true;
+      userdbd.enable = true;
     };
 
     qt = {

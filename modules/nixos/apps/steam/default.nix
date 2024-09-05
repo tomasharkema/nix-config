@@ -22,6 +22,8 @@ in {
 
   options.apps.steam = {
     enable = mkEnableOption "steam";
+
+    sunshine = mkEnableOption "sunshine";
   };
 
   config = mkIf cfg.enable {
@@ -65,33 +67,36 @@ in {
       adwsteamgtk
       steam-tui
       # mangohud
+      extest
     ];
 
-    # services.udev.extraRules = ''
-    #   Sunshine
-    #   KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
-    # '';
-    # security.wrappers.sunshine = {
-    #   owner = "root";
-    #   group = "root";
-    #   capabilities = "cap_sys_admin+p";
-    #   source = "${pkgs.sunshine}/bin/sunshine";
-    # };
+    services.udev.extraRules = mkIf cfg.sunshine ''
+      KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
+      KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
+    '';
+    security.wrappers.sunshine = mkIf cfg.sunshine {
+      owner = "root";
+      group = "root";
+      capabilities = "cap_sys_admin+p";
+      source = "${pkgs.sunshine}/bin/sunshine";
+    };
 
-    # systemd.user.services.sunshine = {
-    #   description = "sunshine";
-    #   wantedBy = ["graphical-session.target"];
-    #   serviceConfig = {
-    #     ExecStart = "${config.security.wrapperDir}/sunshine";
-    #   };
-    # };
+    systemd.user.services.sunshine = mkIf cfg.sunshine {
+      description = "sunshine";
+      wantedBy = ["graphical-session.target"];
+      # environment.WAYLAND_DISPLAY = "wayland-0";
+      path = [pkgs.extest];
+      serviceConfig = {
+        ExecStart = "${config.security.wrapperDir}/sunshine";
+      };
+    };
 
     # services.avahi.publish.userServices = true;
     # Enable OpenGL
-    hardware.opengl = {
+    hardware.graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+
+      enable32Bit = true;
 
       # extraPackages = with pkgs; [mangohud];
       # extraPackages32 = with pkgs; [mangohud];

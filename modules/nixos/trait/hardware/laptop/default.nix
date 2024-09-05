@@ -18,15 +18,13 @@ in {
 
     # environment.systemPackages = [inputs.nbfc-linux.packages."${pkgs.system}".default];
 
-    home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; (
-      optional
+    home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; (optional
       (!config.trait.hardware.laptop.thinkpad.enable)
-      {package = battery-health-charging;}
-    );
+      {package = battery-health-charging;});
 
     boot = {
       kernelModules = ["acpi_call"];
-      extraModulePackages = with config.boot.kernelPackages; [acpi_call];
+      # extraModulePackages = with config.boot.kernelPackages; [acpi_call];
     };
 
     boot.kernelParams = [
@@ -38,13 +36,6 @@ in {
       # synergy.server = {
       #   enable = true;
       # };
-
-      udev.extraRules = ''
-        SUBSYSTEM=="power_supply", KERNEL=="AC", ATTR{online}=="0", RUN+="${pkgs.systemd}/bin/systemctl start battery.target"
-        SUBSYSTEM=="power_supply", KERNEL=="AC", ATTR{online}=="1", RUN+="${pkgs.systemd}/bin/systemctl stop battery.target"
-        SUBSYSTEM=="power_supply", KERNEL=="AC", ATTR{online}=="1", RUN+="${pkgs.systemd}/bin/systemctl start acpower.target"
-        SUBSYSTEM=="power_supply", KERNEL=="AC", ATTR{online}=="0", RUN+="${pkgs.systemd}/bin/systemctl stop acpower.target"
-      '';
 
       thermald.enable = true;
 
@@ -68,54 +59,6 @@ in {
         #       ;;
         #   esac
         # '';
-      };
-    };
-
-    systemd = {
-      services = {
-        "beesd@root" = {
-          unitConfig = {
-            # ConditionACPower = true;
-          };
-          wantedBy = ["acpower.target"];
-          partOf = ["acpower.target"];
-        };
-        # "nh-clean" = {
-        #   unitConfig = {
-        #     ConditionACPower = true;
-        #   };
-        #   # wantedBy = ["acpower.target"];
-        #   # partOf = ["acpower.target"];
-        # };
-        # "nix-optimise" = {
-        #   unitConfig = {
-        #     ConditionACPower = true;
-        #   };
-        #   # wantedBy = ["acpower.target"];
-        #   # partOf = ["acpower.target"];
-        # };
-      };
-
-      targets = {
-        sleep.enable = true;
-        suspend.enable = true;
-        hibernate.enable = true;
-        hybrid-sleep.enable = true;
-
-        battery = {
-          enable = true;
-          unitConfig = {
-            DefaultDependencies = "no";
-            StopWhenUnneeded = "yes";
-          };
-        };
-        acpower = {
-          enable = true;
-          unitConfig = {
-            DefaultDependencies = "no";
-            StopWhenUnneeded = "yes";
-          };
-        };
       };
     };
   };

@@ -12,14 +12,14 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      config.boot.kernelPackages.usbip
-      custom.usbip-gui
-    ];
-    boot.kernelModules = [
-      "vhci-hcd"
-      "usbip_host"
-      "usbip_core"
-    ];
+    # environment.systemPackages = with pkgs; [
+    #   config.boot.kernelPackages.usbip
+    #   custom.usbip-gui
+    # ];
+    # boot.kernelModules = [
+    #   "vhci-hcd"
+    #   "usbip_host"
+    #   "usbip_core"
+    # ];
   };
 }

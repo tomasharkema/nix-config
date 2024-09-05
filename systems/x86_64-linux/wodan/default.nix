@@ -11,7 +11,7 @@ with lib; {
     nixos-hardware.nixosModules.common-gpu-intel
     nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
 
-    nixos-nvidia-vgpu-newer.nixosModules.nvidia-vgpu
+    # nixos-nvidia-vgpu-newer.nixosModules.nvidia-vgpu
   ];
 
   config = {
@@ -43,7 +43,7 @@ with lib; {
 
       hostName = "wodan";
 
-      firewall = {enable = false;};
+      firewall = {enable = true;};
       useDHCP = mkDefault false;
 
       interfaces = {
@@ -75,6 +75,7 @@ with lib; {
     #   fsType = "nfs";
     # };
     services = {
+      kmscon.enable = mkForce false;
       hardware = {
         openrgb.enable = true;
         bolt.enable = true;
@@ -94,7 +95,10 @@ with lib; {
     };
 
     apps = {
-      steam.enable = true;
+      steam = {
+        enable = true;
+        sunshine = true;
+      };
       flatpak.enable = true;
     };
 
@@ -106,17 +110,27 @@ with lib; {
     # console.earlySetup = true;
 
     hardware = {
+      firmware = let
+        rawFile = pkgs.fetchurl {
+          url = "https://git.linuxtv.org/edid-decode.git/plain/data/samsung-q800t-hdmi2.1";
+          sha256 = "0r3v1mzpkalgdhnnjfq8vbg4ian3pwziv0klb80zw89w1msfm9nh";
+        };
+      in [
+        (pkgs.runCommandNoCC "samsung-q800t-hdmi2.1" {} ''
+          mkdir -p $out/lib/firmware/edid/
+          cp "${rawFile}" $out/lib/firmware/edid/samsung-q800t-hdmi2.1
+        '')
+      ];
+
       cpu.intel.updateMicrocode = true;
       i2c.enable = true;
       enableAllFirmware = true;
       enableRedistributableFirmware = true;
 
       nvidia = {
-        nvidiaPersistenced = false;
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
-        open = false;
-        nvidiaSettings = false;
+        # open = false;
 
         # vgpu = {
         #   enable = true;
@@ -144,7 +158,10 @@ with lib; {
         nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
-        nvidia.enable = true;
+        nvidia = {
+          enable = true;
+          open = true;
+        };
         remote-unlock.enable = true;
         monitor.enable = true;
         disable-sleep.enable = true;
@@ -210,6 +227,9 @@ with lib; {
       kernelParams = [
         "intel_iommu=on"
         "iommu=pt"
+
+        "drm.edid_firmware=HDMI-A-1:edid/samsung-q800t-hdmi2.1"
+        "video=HDMI-A-1:e"
       ];
       blacklistedKernelModules = lib.mkDefault ["nouveau"];
       #extraModprobeConfig = ''

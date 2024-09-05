@@ -4,6 +4,7 @@
   fetchFromGitHub,
   autoreconfHook,
   makeWrapper,
+  python3Packages,
   glibc,
   adcli,
   augeas,
@@ -57,8 +58,18 @@
   nixosTests,
   withSudo ? false,
   fetchpatch,
+  gdm,
+  ensureNewerSourcesForZipFilesHook,
 }: let
   docbookFiles = "${docbook_xsl}/share/xml/docbook-xsl/catalog.xml:${docbook_xml_dtd_45}/xml/dtd/docbook/catalog.xml";
+
+  py = python3.pythonOnBuildForHost.withPackages (ps:
+    with ps; [
+      setuptools
+      python-ldap
+      # distutils-extra
+      # distlib
+    ]);
 in
   stdenv.mkDerivation (finalAttrs: {
     pname = "sssd";
@@ -92,16 +103,20 @@ in
 
     preConfigure =
       ''
+        echo "PYTHONPATH: $PYTHONPATH"
+        echo "PYTHON: $PYTHON"
+
         export SGML_CATALOG_FILES="${docbookFiles}"
-        export PYTHONPATH=$(find ${python3.pkgs.python-ldap} -type d -name site-packages)
-        export PATH=$PATH:${openldap}/libexec
 
         configureFlagsArray=(
           --prefix=$out
           --sysconfdir=/etc
           --localstatedir=/var
+          --datadir=$out/share
           --libexecdir=$out/libexec
           --enable-pammoddir=$out/lib/security
+          --enable-nsslibdir=$out/lib
+          --libdir=$out/lib
           --with-os=fedora
           --with-pid-path=/run
           --with-python3-bindings
@@ -118,12 +133,32 @@ in
         configureFlagsArray+=("--with-sudo")
       '';
 
-    enableParallelBuilding = true;
+    # enableParallelBuilding = true;
     # Disable parallel install due to missing depends:
     #   libtool:   error: error: relink '_py3sss.la' with the above command before installing i
     enableParallelInstalling = false;
-    nativeBuildInputs = [autoreconfHook makeWrapper pkg-config doxygen];
+
+    nativeBuildInputs = [
+      ensureNewerSourcesForZipFilesHook
+      py
+      python3Packages.wrapPython
+      autoreconfHook
+      makeWrapper
+      pkg-config
+      doxygen
+      python3Packages.setuptools
+    ];
+
+    propagatedBuildInputs = with python3Packages; [
+      py
+      # distutils-extra
+      # distlib
+      setuptools
+    ];
+
     buildInputs = [
+      py
+      gdm
       augeas
       dnsutils
       c-ares
@@ -136,7 +171,7 @@ in
       samba
       nfs-utils
       p11-kit
-      python3
+      # python3
       popt
       talloc
       tdb
@@ -154,7 +189,6 @@ in
       libxslt
       libxml2
       libuuid
-      python3.pkgs.python-ldap
       systemd
       nspr
       check
@@ -169,7 +203,9 @@ in
       jose
     ];
 
-    makeFlags = ["SGML_CATALOG_FILES=${docbookFiles}"];
+    makeFlags = [
+      "SGML_CATALOG_FILES=${docbookFiles}"
+    ];
 
     installFlags = [
       "sysconfdir=$(out)/etc"

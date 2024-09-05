@@ -60,6 +60,7 @@ stdenv.mkDerivation rec {
 
     runHook postInstall
   '';
+
   passthru = {
     updateScript = nix-update-script {};
   };

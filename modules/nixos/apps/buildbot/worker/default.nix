@@ -18,7 +18,7 @@ in {
       enable = true;
       workerPasswordFile = config.age.secrets.buildbot-worker-password.path;
       masterUrl = "tcp:host=silver-star-vm:port=${config.apps.buildbot.workerPort}";
-      buildbotNixpkgs = pkgs.unstable; #inputs.unstable.legacyPackages."${pkgs.system}";
+      buildbotNixpkgs = pkgs; #inputs.unstable.legacyPackages."${pkgs.system}";
     };
   };
 }

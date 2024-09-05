@@ -5,18 +5,11 @@
   ...
 }:
 with lib; let
-  sendmail = pkgs.writeScript "sendmail" ''
-    #!/bin/sh
-    ${pkgs.system-sendmail}/bin/sendmail -t <<ERRMAIL
-    To: systemd@mailrise.xyz
-    From: tomas@harkema.io
-    Subject: $HOSTNAME Status of service $1
-    Content-Transfer-Encoding: 8bit
-    Content-Type: text/plain; charset=UTF-8
-    $(systemctl status --full "$1")
-    ERRMAIL
-  '';
   notifyServiceName = "notify-service";
+
+  ntfyScript = pkgs.writeShellScript "ntfy-script" ''
+    ${pkgs.ntfy-sh}/bin/ntfy publish --title "$HOSTNAME Status of $1" "$NIXOS_TOPIC_NAME" "$(systemctl status --full $1)"
+  '';
 in {
   options.systemd.services = mkOption {
     type = with types;
@@ -26,23 +19,24 @@ in {
   };
 
   config = {
-    services.atd = {
-      enable = true;
-      allowEveryone = true;
-    };
+    # services.atd = {
+    #   enable = true;
+    #   allowEveryone = true;
+    # };
 
     systemd.services = {
       "${notifyServiceName}@" = {
         description = "Send onFailure Notification";
         onFailure = mkForce [];
-
+        path = [pkgs.bash];
         serviceConfig = {
           Type = "oneshot";
-          ExecStart = "/bin/sh -c 'echo \"${sendmail} %i\" | ${pkgs.at}/bin/at -m -q n now'";
+          EnvironmentFile = config.age.secrets."notify-sub".path;
+          ExecStart = "${ntfyScript} %i";
         };
         wantedBy = ["default.target"];
-        # after = ["network-online.target"];
-        # wants = ["network-online.target"];
+        after = ["network-online.target"];
+        wants = ["network-online.target"];
       };
     };
   };

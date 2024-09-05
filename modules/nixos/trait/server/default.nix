@@ -15,10 +15,26 @@ in {
 
   config = mkIf cfg.enable {
     system.nixos.tags = ["server"];
+
     services = {
       hypervisor = {
         enable = true;
         webservices.enable = true;
+      };
+      openvscode-server = {
+        enable = true;
+        socketPath = "/run/openvscode/socket";
+        connectionTokenFile = "/var/lib/openvscode/token";
+      };
+    };
+
+    # chaotic = {
+    #   scx.enable = mkForce false;
+    # };
+
+    hardware = {
+      nvidia = {
+        nvidiaPersistenced = false;
       };
     };
 

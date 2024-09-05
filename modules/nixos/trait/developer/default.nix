@@ -21,13 +21,13 @@ in {
         # agenix
         deadnix
         deploy-rs
-        unstable.devenv
+        devenv
 
         flake-checker
         hydra-check
         hydra-cli
         autoflake
-        fh
+        # fh
         hydra-cli
         manix
         nix-search-cli

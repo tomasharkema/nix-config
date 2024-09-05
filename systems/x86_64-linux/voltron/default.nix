@@ -32,33 +32,27 @@ with lib; {
 
     programs.gnupg.agent = {enable = true;};
 
-    services = {
-      # dbus.packages = with pkgs; [custom.ancs4linux];
-
-      udev = {
-        enable = true;
-        packages = with pkgs; [heimdall-gui libusb sgx-psw];
+    environment = {
+      sessionVariables = {
+        # LIBVA_DRIVER_NAME = "i965";
       };
 
-      # fprintd.tod.driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
-      #   calib-data-file = ./calib-data.bin;
-      # };
+      systemPackages = with pkgs; [
+        libimobiledevice
+        intel-gpu-tools
+        nvramtool
+        libusb
+        ccid
+        gnupg
+        custom.distrib-dl
+        # davinci-resolve
+        keybase-gui
+        # calibre
+        glxinfo
+        inxi
+        pwvucontrol
+      ];
     };
-
-    environment.systemPackages = with pkgs; [
-      nvramtool
-      libusb
-      sgx-psw
-
-      gnupg
-      custom.distrib-dl
-      # davinci-resolve
-      keybase-gui
-      # calibre
-      glxinfo
-      inxi
-      pwvucontrol
-    ];
 
     gui = {
       enable = true;
@@ -72,8 +66,18 @@ with lib; {
     };
 
     hardware = {
+      graphics = {
+        enable = true;
+        extraPackages = with pkgs; [
+          intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+          libvdpau-va-gl
+          vaapiVdpau
+          vpl-gpu-rt
+        ];
+      };
+
       nvidia = {
-        # forceFullCompositionPipeline = true;
+        forceFullCompositionPipeline = true;
 
         prime = {
           sync.enable = true;
@@ -82,28 +86,27 @@ with lib; {
           intelBusId = "PCI:0:2:0";
           nvidiaBusId = "PCI:02:0:0";
         };
-        # powerManagement = {
-        #   enable = true;
-        #   finegrained = true;
-        # };
+
+        powerManagement = {
+          enable = false;
+          # finegrained = true;
+        };
       };
+
       # fancontrol.enable = true;
-      # opengl = {
-      #   extraPackages = with pkgs; [
-      #     vaapiIntel
-      #     libvdpau-va-gl
-      #     vaapiVdpau
-      #     intel-media-driver
-      #   ];
-      # };
     };
 
     apps = {
       # android.enable = true;
       steam.enable = true;
-      opensnitch.enable = true;
+      # opensnitch.enable = true;
       # usbip.enable = true;
       # samsung.enable = true;
+      podman.enable = true;
+      resilio = {
+        enable = true;
+        enableEnc = true;
+      };
     };
 
     trait = {
@@ -113,7 +116,9 @@ with lib; {
         secure-boot.enable = true;
         laptop.enable = true;
         laptop.thinkpad.enable = true;
-        nvidia.enable = true;
+        nvidia = {
+          enable = true;
+        };
         # remote-unlock.enable = true;
         bluetooth.enable = true;
         monitor.enable = true;
@@ -127,13 +132,30 @@ with lib; {
       firewall = {
         enable = true;
 
-        trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
+        # trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
       };
     };
 
-    apps.podman.enable = true;
-
     services = {
+      usbmuxd.enable = true;
+      # dbus.packages = with pkgs; [custom.ancs4linux];
+      # kmscon = {enable = mkForce false;};
+      udev = {
+        enable = true;
+        packages = with pkgs; [
+          heimdall-gui
+          libusb
+
+          # ccid
+        ];
+      };
+
+      # fprintd.tod.driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
+      #   calib-data-file = ./calib-data.bin;
+      # };
+      switcherooControl.enable = true;
+      journald.storage = "volatile";
+
       hypervisor = {
         enable = true;
         #   bridgeInterfaces = ["wlp59s0"];
@@ -141,51 +163,67 @@ with lib; {
       # remote-builders.client.enable = true;
       # usb-over-ethernet.enable = true;
       hardware.bolt.enable = true;
-      beesd.filesystems = {
-        root = {
-          spec = "UUID=22a02900-5321-481c-af47-ff8700570cc6";
-          hashTableSizeMB = 4096;
-          verbosity = "crit";
-          extraOptions = ["--loadavg-target" "2.0"];
-        };
-      };
+      # beesd.filesystems = {
+      #   root = {
+      #     spec = "UUID=22a02900-5321-481c-af47-ff8700570cc6";
+      #     hashTableSizeMB = 4096;
+      #     verbosity = "crit";
+      #     extraOptions = ["--loadavg-target" "2.0"];
+      #   };
+      # };
 
       avahi = {
         enable = true;
         # allowInterfaces = ["wlp59s0"];
         reflector = mkForce false;
       };
-
-      # aesmd = {
-      # enable = true;
-      # settings = {
-      # defaultQuotingType = "ecdsa_256";
-      # whitelistUrl = "http://whitelist.trustedservices.intel.com/SGX/LCWL/Linux/sgx_white_list_cert.bin";
-      # };
-      # };
     };
 
-    # hardware.nvidia.vgpu = {
+    # virtualisation.kvmgt = {
     #   enable = true;
-    #   unlock.enable = true;
-    #   version = "v17.1";
+    #   device = "0000:00:02.0";
+    #   vgpus = {
+    #     "i915-GVTg_V5_4" = {
+    #       uuid = ["e2ab260f-44a2-4e07-9889-68a1caafb399"];
+    #     };
+    #   };
     # };
 
-    system.build.isgx = config.boot.kernelPackages.isgx.overrideAttrs (prev: {
-      patches =
-        (prev.patches or [])
-        ++ [
-          ./157.patch
-        ];
-    });
+    programs = {
+      # captive-browser = {
+      #   enable = true;
+      #   interface = "wlp4s0";
+      # };
 
-    users = {
-      users.tomas.extraGroups = ["sgx_prv"];
+      ccache = {
+        enable = true;
+        packageNames = [
+          "freeipa"
+          "sssd"
+
+          "chromium"
+          "chromium-unwrapped"
+
+          "ffmpeg"
+          "ffmpeg-full"
+
+          "zerotierone"
+          "ztui"
+        ];
+      };
+    };
+
+    nix.settings = {
+      extra-sandbox-paths = [config.programs.ccache.cacheDir];
+    };
+
+    boot.kernelPackages = mkForce pkgs.linuxPackages_cachyos;
+
+    chaotic = {
+      scx.enable = true; # by default uses scx_rustland scheduler
     };
 
     boot = {
-      # kernelPackages = pkgs.linuxPackages_6_1;
-
       resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
       tmp = {
@@ -205,24 +243,37 @@ with lib; {
 
       # extraModprobeConfig = [];
       kernelParams = [
-        "nowatchdog"
+        # "nowatchdog"
         # "mitigations=off"
+
+        "intel_iommu=on"
+        "iommu=pt"
+        "blacklist=nouveau"
       ];
 
-      extraModulePackages = [
-        config.system.build.isgx
-      ];
+      # extraModulePackages = [
+      #   config.system.build.isgx
+      # ];
 
       kernelModules = [
         "i915"
-        "isgx"
+        # "isgx"
+        "vfio_pci"
+        "vfio"
+        "vfio_iommu_type1"
+        "kvm-intel"
         # "watchdog"
         #"tpm_rng"
       ];
       extraModprobeConfig = "options i915 enable_guc=2";
       initrd.kernelModules = [
+        "i915"
         #  "watchdog"
         # "isgx"
+        "vfio_pci"
+        "vfio"
+        "vfio_iommu_type1"
+        "kvm-intel"
       ];
     };
   };

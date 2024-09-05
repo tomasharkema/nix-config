@@ -10,13 +10,20 @@ with lib; {
   config = let
     onePasswordSocket =
       if pkgs.stdenvNoCC.isDarwin
-      then "/Users/tomas/.1password/agent.sock"
+      then "/Users/${osConfig.user.name}/.1password/agent.sock"
       else "/home/tomas/.1password/agent.sock";
   in {
     programs.ssh = {
       enable = true;
       forwardAgent = true;
       matchBlocks = {
+        "ssh.dev.azure.com" = {
+          hostname = "ssh.dev.azure.com";
+          extraOptions = {
+            IdentityAgent = onePasswordSocket;
+          };
+        };
+
         "ipa.harkema.io" = {
           hostname = "ipa.harkema.io";
           user = "root";
@@ -29,7 +36,8 @@ with lib; {
           extraOptions =
             if pkgs.stdenvNoCC.isDarwin
             then {
-              "IdentityAgent" = onePasswordSocket;
+              "IdentityAgent" = "/Users/tomas/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+              # "IdentityAgent" = onePasswordSocket;
               # "UseKeychain" = "yes";
             }
             else {

@@ -24,7 +24,7 @@ in {
         #   pkgs.custom.plymouth-progress
         # ];
 
-        font = "${pkgs.inter}/share/fonts/truetype/Inter.ttc";
+        # font = "${pkgs.inter}/share/fonts/truetype/Inter.ttc";
       };
       loader.timeout = mkDefault 0;
       kernelParams = [
@@ -44,7 +44,7 @@ in {
 
     systemd.services = let
       script = pkgs.writeScript "plymouth-messages" ''
-
+        sleep 1
         journalctl --quiet -f -n0 --system -t systemd -o cat | while read -r line; do
         	plymouth display-message --text="$line"
           if [ $? -ne 0 ]; then

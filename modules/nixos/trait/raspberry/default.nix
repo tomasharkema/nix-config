@@ -81,7 +81,7 @@ in {
       bluez
     ];
 
-    resilio.enable = false;
+    apps.resilio.enable = false;
 
     # system.stateVersion = "24.05";
 

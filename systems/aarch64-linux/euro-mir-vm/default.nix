@@ -74,7 +74,7 @@ with lib; {
 
       tmp = {
         useTmpfs = false;
-        cleanOnBoot = false;
+        cleanOnBoot = true;
       };
       recovery = {
         enable = false;
@@ -89,12 +89,10 @@ with lib; {
         remote-unlock.enable = false;
       };
     };
-    resilio.enable = false;
+    apps.resilio.enable = false;
 
-    hardware.opengl = {
+    hardware.graphics = {
       enable = true;
-      driSupport = true;
-      #   # driSupport32Bit = true;
     };
 
     zramSwap.enable = false;

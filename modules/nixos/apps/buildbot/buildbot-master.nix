@@ -10,7 +10,7 @@ with lib; let
   cfg = config.services.buildbot-master;
   opt = options.services.buildbot-master;
 
-  package = pkgs.unstable.python312.pkgs.toPythonModule cfg.package;
+  package = pkgs.python312.pkgs.toPythonModule cfg.package;
   python = package.pythonModule;
 
   escapeStr = escape ["'"];
