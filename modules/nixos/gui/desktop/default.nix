@@ -114,89 +114,93 @@ in {
 
     programs.virt-manager.enable = true;
 
-    environment.systemPackages =
-      (with pkgs; [nix-software-center])
-      ++ (with pkgs;
-        [
-          usbguard-notifier
-          usbview
-          sqlitebrowser
-          boxbuddy
-          # notify-client
-          # unstable.vscodium
-          clutter
-          effitask
-          filezilla
-          font-manager
-          fractal
-          gamehub
-          gotop
-          gparted
-          grsync
-          gtk-engine-murrine
-          ktailctl
-          libGL
-          libGLU
-          meteo
-          mission-center
-          partition-manager
-          pavucontrol
-          powertop
-          pwvucontrol
-          qdirstat
-          qjournalctl
-          rtfm
-          spot
-          sublime-merge
-          sublime4
-          transmission-remote-gtk
-          trayscale
-          tremotesf
-          ulauncher
-          ventoy-full
-          vsce
-          vscode
-          vte-gtk4
+    environment.systemPackages = with pkgs;
+      [
+        nix-software-center
+        gnomecast
+        discordo
+        dosbox-x
+        go-chromecast
 
-          xdg-utils
-          xdgmenumaker
-          xdiskusage
-          xdotool
-          yelp
-          zed-editor
-        ]
-        ++ optionals pkgs.stdenv.isx86_64 [
-          gnome_mplayer
-          gmtk
-          # pkgs.custom.git-butler
-          # pkgs.wolfram-engine
-          # spotify
-          angryipscanner
-          bottles
-          devdocs-desktop
-          dmidecode
-          ipmiview
-          libsmbios
-          config.nur.repos.mloeper.usbguard-applet-qt
-          # (plex-media-player.overrideAttrs (prev: {
-          #   runtimeDependencies =
-          #     prev.runtimeDependencies
-          #     ++ [
-          #       config.boot.linuxPackages.nvidia_x11
-          #     ];
-          # }))
-          netflix
+        usbguard-notifier
+        usbview
+        sqlitebrowser
+        boxbuddy
+        # notify-client
+        # unstable.vscodium
+        clutter
+        effitask
+        filezilla
+        font-manager
+        fractal
+        gamehub
+        gotop
+        gparted
+        grsync
+        gtk-engine-murrine
+        ktailctl
+        libGL
+        libGLU
+        meteo
+        mission-center
+        partition-manager
+        pavucontrol
+        powertop
+        pwvucontrol
+        qdirstat
+        qjournalctl
+        rtfm
+        spot
+        sublime-merge
+        sublime4
+        transmission-remote-gtk
+        trayscale
+        tremotesf
+        ulauncher
+        ventoy-full
+        vsce
+        vscode
+        vte-gtk4
 
-          plexamp
-          xpipe
-        ]
-        ++ (with pkgs.custom; [
-          zerotier-ui
-          # ztui
+        xdg-utils
+        xdgmenumaker
+        xdiskusage
+        xdotool
+        yelp
+        zed-editor
+      ]
+      ++ optionals pkgs.stdenv.isx86_64 [
+        gnome_mplayer
+        gmtk
+        # pkgs.custom.git-butler
+        # pkgs.wolfram-engine
+        # spotify
+        angryipscanner
+        bottles
+        devdocs-desktop
+        dmidecode
+        ipmiview
+        libsmbios
+        config.nur.repos.mloeper.usbguard-applet-qt
+        # (plex-media-player.overrideAttrs (prev: {
+        #   runtimeDependencies =
+        #     prev.runtimeDependencies
+        #     ++ [
+        #       config.boot.linuxPackages.nvidia_x11
+        #     ];
+        # }))
+        netflix
 
-          #netbrowse
-          # usbguard-gnome
-        ]));
+        plexamp
+        xpipe
+      ]
+      ++ (with pkgs.custom; [
+        zerotier-ui
+        # ztui
+
+        #netbrowse
+        # usbguard-gnome
+      ]);
 
     programs = {
       ssh = {

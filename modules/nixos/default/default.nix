@@ -154,8 +154,7 @@ with lib.custom;
             devtodo
             dfrs
             dirdiff
-            discordo
-            dosbox-x
+
             duc
             ethtool
             # fam # unmaintained
@@ -164,9 +163,6 @@ with lib.custom;
             fwupd-efi
             gdu
             git
-            gnomecast
-
-            go-chromecast
             googler
             hw-probe
             ifuse
