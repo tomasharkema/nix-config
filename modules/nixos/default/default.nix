@@ -158,13 +158,14 @@ with lib.custom;
             dosbox-x
             duc
             ethtool
-            fam
+            # fam # unmaintained
             fcast-receiver
             fwupd
             fwupd-efi
             gdu
             git
             gnomecast
+
             go-chromecast
             googler
             hw-probe

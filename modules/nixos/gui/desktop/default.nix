@@ -21,14 +21,6 @@ in {
 
     services = {
       dbus.packages = [pkgs.usbguard-notifier];
-      libinput.enable = true;
-
-      xserver = {
-        enable = true;
-
-        layout = "us";
-        # xkbVariant = "";
-      };
 
       # xrdp = mkIf cfg.rdp.enable {
       #   enable = true;

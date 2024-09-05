@@ -17,22 +17,24 @@
 
   # GNOME 46: triple-buffering-v4-46
 
-  gnome = prev.gnome.overrideScope (gnomeFinal: gnomePrev: {
-    mutter = gnomePrev.mutter.overrideAttrs (old: {
-      src = prev.fetchFromGitLab {
-        domain = "gitlab.gnome.org";
-        owner = "vanvugt";
-        repo = "mutter";
-        rev = "triple-buffering-v4-46";
-        hash = "sha256-C2VfW3ThPEZ37YkX7ejlyumLnWa9oij333d5c4yfZxc=";
-      };
-      patches = [
-        (prev.fetchpatch {
-          url = "https://aur.archlinux.org/cgit/aur.git/plain/xwayland-scaling.patch?h=mutter-xwayland-scaling";
-          sha256 = "sha256-deoWaseI+CnH0aHUWm6YFoD+PRVsFg3zn3wVy4kIiUE=";
-        })
-      ];
-    });
+  # gnome = prev.gnome.overrideScope (gnomeFinal: gnomePrev: {
+
+  # });
+
+  mutter = prev.mutter.overrideAttrs (old: {
+    src = prev.fetchFromGitLab {
+      domain = "gitlab.gnome.org";
+      owner = "vanvugt";
+      repo = "mutter";
+      rev = "triple-buffering-v4-46";
+      hash = "sha256-C2VfW3ThPEZ37YkX7ejlyumLnWa9oij333d5c4yfZxc=";
+    };
+    patches = [
+      (prev.fetchpatch {
+        url = "https://aur.archlinux.org/cgit/aur.git/plain/xwayland-scaling.patch?h=mutter-xwayland-scaling";
+        sha256 = "sha256-deoWaseI+CnH0aHUWm6YFoD+PRVsFg3zn3wVy4kIiUE=";
+      })
+    ];
   });
 
   mpv = prev.mpv.override {
