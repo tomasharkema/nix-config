@@ -3,8 +3,7 @@
   pkgs,
   osConfig,
   ...
-}:
-with lib; {
+}: {
   imports = [./match-blocks.nix];
 
   config = let

@@ -1,11 +1,14 @@
-{ config, pkgs, lib, ... }:
-with lib;
-with lib.custom;
-let cfg = config.apps.home-assistant;
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.apps.home-assistant;
 in {
-  options.apps.home-assistant = { enable = mkBoolOpt false "home-assistant"; };
+  options.apps.home-assistant = {enable = lib.mkEnableOption "home-assistant";};
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     apps.podman.enable = true;
 
     virtualisation = {
@@ -14,9 +17,8 @@ in {
           image = "ghcr.io/home-assistant/home-assistant:stable";
 
           autoStart = true;
-          extraOptions = [ "--privileged" "--network=host" ];
-          volumes =
-            [ "/run/dbus:/run/dbus:ro" "/var/lib/home-assistant:/config:Z" ];
+          extraOptions = ["--privileged" "--network=host"];
+          volumes = ["/run/dbus:/run/dbus:ro" "/var/lib/home-assistant:/config:Z"];
         };
       };
     };

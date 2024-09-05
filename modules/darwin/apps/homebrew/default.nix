@@ -3,13 +3,12 @@
   lib,
   pkgs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.apps.homebrew;
 in {
-  options.apps.homebrew = {enable = mkEnableOption "homebrew" // {default = true;};};
+  options.apps.homebrew = {enable = lib.mkEnableOption "homebrew" // {default = true;};};
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     homebrew = {
       enable = true;
       autoUpdate = true;

@@ -3,23 +3,22 @@
   lib,
   config,
   ...
-}:
-with lib; let
+}: let
   cfg = config.trait.hardware.disable-sleep;
 in {
   options.trait.hardware.disable-sleep = {
-    enable = mkEnableOption "disable sleep";
+    enable = lib.mkEnableOption "disable sleep";
   };
 
-  config = mkIf cfg.enable {
-    powerManagement.enable = mkForce false;
+  config = lib.mkIf cfg.enable {
+    powerManagement.enable = lib.mkForce false;
 
     systemd = {
       targets = {
-        sleep.enable = mkForce false;
-        suspend.enable = mkForce false;
-        hibernate.enable = mkForce false;
-        hybrid-sleep.enable = mkForce false;
+        sleep.enable = lib.mkForce false;
+        suspend.enable = lib.mkForce false;
+        hibernate.enable = lib.mkForce false;
+        hybrid-sleep.enable = lib.mkForce false;
       };
       sleep.extraConfig = ''
         AllowSuspend=no

@@ -1,16 +1,20 @@
-{ config, pkgs, lib, ... }:
-with lib; {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   options.apps.monit = {
-    port = mkOption {
-      type = types.str;
+    port = lib.mkOption {
+      type = lib.types.str;
       default = "2812";
     };
   };
 
-  config = mkIf false {
+  config = lib.mkIf false {
     services.monit = {
       enable = true;
-      config = mkBefore ''
+      config = lib.mkBefore ''
         set daemon  30
         set logfile syslog
 

@@ -4,8 +4,7 @@
   lib,
   inputs,
   ...
-}:
-with lib; {
+}: {
   imports = [inputs.catppuccin.homeManagerModules.catppuccin];
 
   config = {
@@ -16,9 +15,9 @@ with lib; {
       accent = "blue";
     };
 
-    home.pointerCursor = mkIf pkgs.stdenv.isDarwin (mkForce null);
+    home.pointerCursor = lib.mkIf pkgs.stdenv.isDarwin (lib.mkForce null);
 
-    gtk = mkIf config.gtk.enable {
+    gtk = lib.mkIf config.gtk.enable {
       catppuccin = {
         enable = true;
         flavor = "mocha";

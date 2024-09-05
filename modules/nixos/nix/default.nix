@@ -5,9 +5,7 @@
   lib,
   inputs,
   ...
-}:
-with lib;
-with lib.custom; {
+}: {
   imports = [
     #   "${inputs.unstable}/nixos/modules/programs/nh.nix"
     ../../../nix-pkgs.nix
@@ -69,7 +67,7 @@ with lib.custom; {
             "root"
             config.user.name
           ]
-          ++ optional config.services.hydra.enable "hydra";
+          ++ lib.optional config.services.hydra.enable "hydra";
       in {
         package = pkgs.nixVersions.nix_2_23;
 

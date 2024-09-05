@@ -1,5 +1,9 @@
-{ pkgs, config, lib, ... }:
-with lib; {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   config = {
     # services.ttyd = {
     #   enable = true;

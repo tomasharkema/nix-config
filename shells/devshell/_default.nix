@@ -6,8 +6,7 @@
   mkShell,
   ...
 }:
-with pkgs;
-with lib; let
+with pkgs; let
   write-script = writeShellScriptBin "write-script" ''
     set -x
     echo "pv $1 $2"

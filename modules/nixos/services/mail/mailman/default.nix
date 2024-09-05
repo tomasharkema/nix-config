@@ -3,8 +3,7 @@
   config,
   pkgs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.services.roundcube;
   fpm = config.services.phpfpm.pools.roundcube;
   localDB = cfg.database.host == "localhost";
@@ -18,8 +17,8 @@ in {
   disabledModules = ["services/mail/roundcube.nix"];
 
   options.services.roundcube = {
-    enable = mkOption {
-      type = types.bool;
+    enable = lib.mkOption {
+      type = lib.types.bool;
       default = false;
       description = lib.mdDoc ''
         Whether to enable roundcube.
@@ -30,18 +29,18 @@ in {
       '';
     };
 
-    hostName = mkOption {
-      type = types.str;
+    hostName = lib.mkOption {
+      type = lib.types.str;
       example = "webmail.example.com";
       description = lib.mdDoc "Hostname to use for the nginx vhost";
     };
 
-    package = mkOption {
-      type = types.package;
+    package = lib.mkOption {
+      type = lib.types.package;
       default = pkgs.roundcube;
-      defaultText = literalExpression "pkgs.roundcube";
+      defaultText = lib.literalExpression "pkgs.roundcube";
 
-      example = literalExpression ''
+      example = lib.literalExpression ''
         roundcube.withPlugins (plugins: [ plugins.persistent_login ])
       '';
 
@@ -52,16 +51,16 @@ in {
     };
 
     database = {
-      username = mkOption {
-        type = types.str;
+      username = lib.mkOption {
+        type = lib.types.str;
         default = "roundcube";
         description = lib.mdDoc ''
           Username for the postgresql connection.
           If `database.host` is set to `localhost`, a unix user and group of the same name will be created as well.
         '';
       };
-      host = mkOption {
-        type = types.str;
+      host = lib.mkOption {
+        type = lib.types.str;
         default = "localhost";
         description = lib.mdDoc ''
           Host of the postgresql server. If this is not set to
@@ -70,15 +69,15 @@ in {
           permissions.
         '';
       };
-      password = mkOption {
-        type = types.str;
+      password = lib.mkOption {
+        type = lib.types.str;
         description =
           lib.mdDoc
           "Password for the postgresql connection. Do not use: the password will be stored world readable in the store; use `passwordFile` instead.";
         default = "";
       };
-      passwordFile = mkOption {
-        type = types.str;
+      passwordFile = lib.mkOption {
+        type = lib.types.str;
         description = lib.mdDoc ''
           Password file for the postgresql connection.
           Must be formatted according to PostgreSQL .pgpass standard (see https://www.postgresql.org/docs/current/libpq-pgpass.html)
@@ -86,32 +85,32 @@ in {
           Ignored if `database.host` is set to `localhost`, as peer authentication will be used.
         '';
       };
-      dbname = mkOption {
-        type = types.str;
+      dbname = lib.mkOption {
+        type = lib.types.str;
         default = "roundcube";
         description = lib.mdDoc "Name of the postgresql database";
       };
     };
 
-    plugins = mkOption {
-      type = types.listOf types.str;
+    plugins = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
       default = [];
       description = lib.mdDoc ''
         List of roundcube plugins to enable. Currently, only those directly shipped with Roundcube are supported.
       '';
     };
 
-    dicts = mkOption {
-      type = types.listOf types.package;
+    dicts = lib.mkOption {
+      type = lib.types.listOf lib.types.package;
       default = [];
-      example = literalExpression "with pkgs.aspellDicts; [ en fr de ]";
+      example = lib.literalExpression "with pkgs.aspellDicts; [ en fr de ]";
       description = lib.mdDoc ''
         List of aspell dictionaries for spell checking. If empty, spell checking is disabled.
       '';
     };
 
-    maxAttachmentSize = mkOption {
-      type = types.int;
+    maxAttachmentSize = lib.mkOption {
+      type = lib.types.int;
       default = 18;
       description = lib.mdDoc ''
         The maximum attachment size in MB.
@@ -122,18 +121,18 @@ in {
       apply = configuredMaxAttachmentSize: "${toString (configuredMaxAttachmentSize * 1.3)}M";
     };
 
-    extraConfig = mkOption {
-      type = types.lines;
+    extraConfig = lib.mkOption {
+      type = lib.types.lines;
       default = "";
       description =
         lib.mdDoc "Extra configuration for roundcube webmail instance";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     # backward compatibility: if password is set but not passwordFile, make one.
     services.roundcube.database.passwordFile =
-      mkIf (!localDB && cfg.database.password != "") (mkDefault
+      lib.mkIf (!localDB && cfg.database.password != "") (lib.mkDefault
         "${pkgs.writeText "roundcube-password" cfg.database.password}");
     warnings =
       lib.optional (!localDB && cfg.database.password != "")
@@ -161,7 +160,7 @@ in {
       $config['log_driver'] = 'syslog';
       $config['max_message_size'] =  '${cfg.maxAttachmentSize}';
       $config['plugins'] = [${
-        concatMapStringsSep "," (p: "'${p}'") cfg.plugins
+        lib.concatMapStringsSep "," (p: "'${p}'") cfg.plugins
       }];
       $config['des_key'] = file_get_contents('/var/lib/roundcube/des_key');
       $config['mime_types'] = '${pkgs.nginx}/conf/mime.types';
@@ -188,8 +187,8 @@ in {
       enable = true;
       virtualHosts = {
         ${cfg.hostName} = {
-          forceSSL = mkDefault true;
-          enableACME = mkDefault true;
+          forceSSL = lib.mkDefault true;
+          enableACME = lib.mkDefault true;
           locations."/" = {
             root = cfg.package;
             index = "index.php";
@@ -220,7 +219,7 @@ in {
       }
     ];
 
-    services.postgresql = mkIf localDB {
+    services.postgresql = lib.mkIf localDB {
       enable = true;
       ensureDatabases = [cfg.database.dbname];
       ensureUsers = [
@@ -231,12 +230,12 @@ in {
       ];
     };
 
-    users.users.${user} = mkIf localDB {
+    users.users.${user} = lib.mkIf localDB {
       group = user;
       isSystemUser = true;
       createHome = false;
     };
-    users.groups.${user} = mkIf localDB {};
+    users.groups.${user} = lib.mkIf localDB {};
 
     services.phpfpm.pools.roundcube = {
       user =
@@ -249,7 +248,7 @@ in {
         post_max_size = ${cfg.maxAttachmentSize}
         upload_max_filesize = ${cfg.maxAttachmentSize}
       '';
-      settings = mapAttrs (name: mkDefault) {
+      settings = lib.mapAttrs (name: lib.mkDefault) {
         "listen.owner" = "nginx";
         "listen.group" = "nginx";
         "listen.mode" = "0660";
@@ -269,8 +268,8 @@ in {
     # Restart on config changes.
     systemd.services.phpfpm-roundcube.restartTriggers = [config.environment.etc."roundcube/config.inc.php".source];
 
-    systemd.services.roundcube-setup = mkMerge [
-      (mkIf (cfg.database.host == "localhost") {
+    systemd.services.roundcube-setup = lib.mkMerge [
+      (lib.mkIf (cfg.database.host == "localhost") {
         requires = ["postgresql.service"];
         after = ["postgresql.service"];
         path = [config.services.postgresql.package];

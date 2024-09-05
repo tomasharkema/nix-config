@@ -3,11 +3,10 @@
   pkgs,
   lib,
   ...
-}:
-with lib; let
+}: let
   cfg = config.gui.desktop;
 in {
-  config = mkIf (cfg.enable) {
+  config = lib.mkIf (cfg.enable) {
     services = {
       libinput.enable = true;
 

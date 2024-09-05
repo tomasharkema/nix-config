@@ -4,15 +4,25 @@
   lib,
   inputs,
   ...
-}:
-with lib;
-with lib.custom; {
-  options.user = with types; {
-    name = mkOpt str "tomas" "The name to use for the user account.";
+}: {
+  options.user = {
+    name = lib.mkOption {
+      type = lib.types.str;
+      default = "tomas";
+      description = "The name to use for the user account.";
+    };
 
     # keys = mkOpt (listOf str) keys "auth keys";
-    fullName = mkOpt str "Tomas Harkema" "The full name of the user.";
-    email = mkOpt str "tomas@harkema.io" "The email of the user.";
+    fullName = lib.mkOption {
+      type = lib.types.str;
+      default = "Tomas Harkema";
+      description = "The full name of the user.";
+    };
+    email = lib.mkOption {
+      type = lib.types.str;
+      default = "tomas@harkema.io";
+      description = "The email of the user.";
+    };
     #   initialPassword =
     #     mkOpt str "password"
     #     "The initial password to use when the user is first created.";
@@ -50,13 +60,13 @@ with lib.custom; {
     };
 
     users = {
-      mutableUsers = mkDefault false;
+      mutableUsers = lib.mkDefault false;
 
       users = {
         agent = {
           isSystemUser = true;
           group = "agent";
-          extraGroups = mkIf config.apps.resilio.enable ["rslsync"];
+          extraGroups = lib.mkIf config.apps.resilio.enable ["rslsync"];
           openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
           uid = 1099;
         };
@@ -106,7 +116,7 @@ with lib.custom; {
           gid = 1000;
         };
         agent = {};
-        rslsync = mkIf config.apps.resilio.enable {};
+        rslsync = lib.mkIf config.apps.resilio.enable {};
       };
     };
 

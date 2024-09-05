@@ -5,7 +5,6 @@
   inputs,
   ...
 }:
-with lib;
 with pkgs; let
   nixos-generate = inputs.nixos-generators.packages."${pkgs.system}".nixos-generate;
 
@@ -148,17 +147,17 @@ with pkgs; let
   build-host-pkgs = writeShellScriptBin "build-host-pkgs" ''
     PACKAGE="$1"
     echo "Build $PACKAGE"
-    exec nom build ".#nixosConfigurations.$HOSTNAME.pkgs.$PACKAGE" --out-link ./out/$PACKAGE --verbose --show-trace -L
+    exec nom build ".#nixosConfigurations.$HOSTNAME.pkgs.$PACKAGE" --out-link ./out/$PACKAGE
   '';
   nixos-system = writeShellScriptBin "nixos-system" ''
     HOST="$1"
     echo "Build $HOST"
-    exec nom build ".#nixosConfigurations.$HOST.config.system.build.toplevel" --out-link ./out/$HOST --verbose --show-trace -L
+    exec nom build ".#nixosConfigurations.$HOST.config.system.build.toplevel" --out-link ./out/$HOST
   '';
   darwin-system = writeShellScriptBin "darwin-system" ''
     HOST="$1"
     echo "Build $HOST"
-    exec nom build ".#darwinConfigurations.$HOST.config.system.build.toplevel" --out-link ./out/$HOST --verbose --show-trace -L
+    exec nom build ".#darwinConfigurations.$HOST.config.system.build.toplevel" --out-link ./out/$HOST
   '';
 in {
   # starship.enable = true;

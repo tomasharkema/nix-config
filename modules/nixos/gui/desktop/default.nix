@@ -4,17 +4,16 @@
   config,
   inputs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.gui.desktop;
 in {
   options.gui.desktop = {
-    enable = mkEnableOption "hallo";
+    enable = lib.mkEnableOption "hallo";
 
-    rdp = {enable = mkEnableOption "hallo";};
+    rdp = {enable = lib.mkEnableOption "hallo";};
   };
 
-  config = mkIf (cfg.enable) {
+  config = lib.mkIf (cfg.enable) {
     gui.fonts.enable = true;
 
     security.pam.services.passwd.enableGnomeKeyring = true;
@@ -44,7 +43,7 @@ in {
       gvfs.enable = true;
     };
 
-    security.polkit = mkIf cfg.rdp.enable {
+    security.polkit = lib.mkIf cfg.rdp.enable {
       enable = true;
       extraConfig = ''
         polkit.addRule(function(action, subject) {
@@ -165,7 +164,8 @@ in {
         yelp
         zed-editor
       ]
-      ++ optionals pkgs.stdenv.isx86_64 [
+      ++ lib.optionals pkgs.stdenv.isx86_64 [
+        custom.nautilus-dropbox
         gnome_mplayer
         gmtk
         # pkgs.custom.git-butler
@@ -178,6 +178,7 @@ in {
         ipmiview
         libsmbios
         config.nur.repos.mloeper.usbguard-applet-qt
+        plex-media-player
         # (plex-media-player.overrideAttrs (prev: {
         #   runtimeDependencies =
         #     prev.runtimeDependencies

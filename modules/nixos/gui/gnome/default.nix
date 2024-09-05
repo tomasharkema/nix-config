@@ -4,32 +4,31 @@
   config,
   inputs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.gui.gnome;
 in
   # pkgsUnstable = inputs.unstable.legacyPackages."${pkgs.system}";
   {
     options.gui.gnome = {
-      enable = mkEnableOption "enable gnome desktop environment";
+      enable = lib.mkEnableOption "enable gnome desktop environment";
 
-      hidpi.enable = mkEnableOption "enable gnome desktop environment";
+      hidpi.enable = lib.mkEnableOption "enable gnome desktop environment";
 
-      cursorSize = mkOption {
-        type = types.int;
+      cursorSize = lib.mkOption {
+        type = lib.types.int;
         default = 24;
       };
     };
 
-    config = mkIf cfg.enable {
+    config = lib.mkIf cfg.enable {
       # sound.mediaKeys.enable = true;
-      trait.developer.enable = mkDefault true;
+      trait.developer.enable = lib.mkDefault true;
 
       system.nixos.tags =
         [
           "gnome"
         ]
-        ++ (optional cfg.hidpi.enable "hidpi");
+        ++ (lib.optional cfg.hidpi.enable "hidpi");
 
       # programs.hyprland = {
       #   # Install the packages from nixpkgs
@@ -39,7 +38,7 @@ in
       # };
 
       environment = {
-      etc."X11/Xwrapper.config".text = ''
+        etc."X11/Xwrapper.config".text = ''
           allowed_users=anybody
         '';
 
@@ -50,7 +49,7 @@ in
         # };
 
         variables.XCURSOR_SIZE = builtins.toString cfg.cursorSize;
-        sessionVariables={
+        sessionVariables = {
           XCURSOR_SIZE = builtins.toString cfg.cursorSize;
           NIXOS_OZONE_WL = "1";
         };
@@ -82,7 +81,7 @@ in
         dconf.profiles = {
           gdm = {
             databases =
-              (optional cfg.hidpi.enable {
+              (lib.optional cfg.hidpi.enable {
                 settings."org/gnome/desktop/interface".scaling-factor =
                   lib.gvariant.mkUint32 2;
               })
@@ -261,15 +260,15 @@ in
         gnome-themes-extra
         gnome-tweaks
         gnome-user-share
-        gnome.gnome-applets
+        gnome-applets
         gnome-clocks
-        gnome.gnome-control-center
+        gnome-control-center
         gnome-nettool
         # gnome-online-miners
         gnome-power-manager
-        gnome.gnome-session
-        gnome.gnome-session-ctl
-        gnome.gnome-settings-daemon
+        gnome-session
+        gnome-session-ctl
+        gnome-settings-daemon
         gnome-shell-extensions
         gtop
         libgnome-keyring

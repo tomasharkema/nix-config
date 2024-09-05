@@ -3,8 +3,7 @@
   inputs,
   pkgs,
   ...
-}:
-with lib; {
+}: {
   imports = with inputs; [
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd

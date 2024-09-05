@@ -3,8 +3,7 @@
   pkgs,
   config,
   ...
-}:
-with lib; {
+}: {
   imports = [./hardware-configuration.nix];
 
   config = {
@@ -13,7 +12,7 @@ with lib; {
     };
 
     swapDevices =
-      mkForce [
+      lib.mkForce [
       ];
     trait = {
       server.enable = true;
@@ -36,7 +35,7 @@ with lib; {
       main = "/dev/disk/by-id/virtio-vdisk1";
     };
 
-    apps.resilio.enable = mkForce false;
+    apps.resilio.enable = lib.mkForce false;
     # apps.tor.relay.enable = true;
 
     apps = {
@@ -73,16 +72,16 @@ with lib; {
         };
       };
 
-      earlyoom = {enable = mkForce false;};
+      earlyoom = {enable = lib.mkForce false;};
 
       tailscale = {
         extraUpFlags =
-          mkForce ["--advertise-tags=tag:nixos" "--operator=tomas"];
+          lib.mkForce ["--advertise-tags=tag:nixos" "--operator=tomas"];
       };
 
       freeipa.enable = true;
 
-      resilio.enable = mkForce false;
+      resilio.enable = lib.mkForce false;
 
       ha.initialMaster = true;
 
@@ -94,10 +93,10 @@ with lib; {
 
       firewall = {
         enable = false;
-        allowedTCPPorts = [config.services.buildbot-master.port (toInt config.apps.buildbot.workerPort)];
+        allowedTCPPorts = [config.services.buildbot-master.port (lib.toInt config.apps.buildbot.workerPort)];
       };
       # wireless.enable = lib.mkDefault false;
-      networkmanager.enable = mkForce false; # true;
+      networkmanager.enable = lib.mkForce false; # true;
 
       useDHCP = false;
       interfaces."enp3s0".useDHCP = true;

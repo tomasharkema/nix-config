@@ -3,23 +3,22 @@
   pkgs,
   lib,
   ...
-}:
-with lib; let
+}: let
   cfg = config.programs.commands;
 
   jsonFormat = pkgs.formats.json {};
 in {
   options.programs.commands = {
-    enable = mkEnableOption "commands";
+    enable = lib.mkEnableOption "commands";
 
-    commands = mkOption {
+    commands = lib.mkOption {
       type = jsonFormat.type;
       default = [];
       description = "commands";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     dconf = {
       settings = {
         "org/gnome/shell" = {

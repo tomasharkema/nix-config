@@ -1,24 +1,28 @@
-{ pkgs, lib, ... }:
-with lib; {
-  config = mkIf (pkgs.stdenv.isx86_64 && false) {
-    environment.systemPackages = with pkgs;
-      [
-        # dropbox - we don't need this in the environment. systemd unit pulls it in
-        dropbox-cli
-      ];
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  config = lib.mkIf (pkgs.stdenv.isx86_64 && false) {
+    environment.systemPackages = with pkgs; [
+      # dropbox - we don't need this in the environment. systemd unit pulls it in
+      dropbox-cli
+    ];
 
     networking.firewall = {
-      allowedTCPPorts = [ 17500 ];
-      allowedUDPPorts = [ 17500 ];
+      allowedTCPPorts = [17500];
+      allowedUDPPorts = [17500];
     };
 
     systemd.user.services.dropbox = {
       description = "Dropbox";
-      wantedBy = [ "graphical-session.target" ];
+      wantedBy = ["graphical-session.target"];
       environment = {
-        QT_PLUGIN_PATH = "/run/current-system/sw/"
+        QT_PLUGIN_PATH =
+          "/run/current-system/sw/"
           + pkgs.qt5.qtbase.qtPluginPrefix;
-        QML2_IMPORT_PATH = "/run/current-system/sw/"
+        QML2_IMPORT_PATH =
+          "/run/current-system/sw/"
           + pkgs.qt5.qtbase.qtQmlPrefix;
       };
       serviceConfig = {

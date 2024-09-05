@@ -5,15 +5,14 @@
   inputs,
   pkgs,
   ...
-}:
-with lib; {
+}: {
   options.home = {
-    homeFiles = mkOption {
+    homeFiles = lib.mkOption {
       description = "Attribute set of files to link into the user home.";
       default = {};
-      type = types.attrsOf (types.submodule {
+      type = lib.types.attrsOf (lib.types.submodule {
         options = {
-          source = mkOption {type = types.path;};
+          source = lib.mkOption {type = lib.types.path;};
           # target = mkOption {
           #   type = types.str;
           # };
@@ -31,7 +30,7 @@ with lib; {
     };
 
     snowfallorg.user."${config.user.name}".home.config = {
-      home.stateVersion = mkDefault "24.05";
+      home.stateVersion = lib.mkDefault "24.11";
       xdg.enable = true;
     };
 
@@ -40,7 +39,7 @@ with lib; {
       useGlobalPkgs = true;
       backupFileExtension = "bak";
       users."${config.user.name}" = {
-        home.stateVersion = mkDefault "24.05";
+        home.stateVersion = lib.mkDefault "24.11";
         xdg.enable = true;
       };
     };

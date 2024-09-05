@@ -2,9 +2,8 @@
   pkgs,
   lib,
   ...
-}:
-with lib; {
-  config = mkIf pkgs.stdenv.isLinux {
+}: {
+  config = lib.mkIf pkgs.stdenv.isLinux {
     home.packages = with pkgs; [
       appindicator-sharp
       # ddcui

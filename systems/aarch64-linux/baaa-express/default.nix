@@ -3,8 +3,7 @@
   inputs,
   lib,
   ...
-}:
-with lib; {
+}: {
   # imports = with inputs; [
   # nixos-hardware.nixosModules.raspberry-pi-4
   # ];
@@ -72,7 +71,7 @@ with lib; {
       };
     };
 
-    # system.stateVersion = "24.05";
+    # system.stateVersion = "24.11";
 
     # fileSystems."/".fsType = lib.mkForce "tmpfs";
     # fileSystems."/".device = lib.mkForce "none";
@@ -87,17 +86,17 @@ with lib; {
     ];
 
     services = {
-      cage.program = mkForce "${pkgs.kodi-wayland}/bin/kodi-standalone";
+      cage.program = lib.mkForce "${pkgs.kodi-wayland}/bin/kodi-standalone";
     };
 
     programs.atop = {
-      enable = mkForce false;
+      enable = lib.mkForce false;
       netatop.enable = false;
     };
 
     nix.settings = {
-      keep-outputs = mkForce false;
-      keep-derivations = mkForce false;
+      keep-outputs = lib.mkForce false;
+      keep-derivations = lib.mkForce false;
     };
 
     boot = {
@@ -113,7 +112,7 @@ with lib; {
         # "dwc2"
         # "g_serial"
       ];
-      # initrd.availableKernelModules = mkForce [
+      # initrd.availableKernelModules = lib.mkForce [
       #   "ext2"
       #   "ext4"
       #   "sd_mod"
@@ -135,7 +134,7 @@ with lib; {
 
       # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
 
-      kernelParams = mkForce [
+      kernelParams = lib.mkForce [
         # "console=ttyS0,115200n8"
         "console=ttyS1,115200n8"
         # "console=tty0"

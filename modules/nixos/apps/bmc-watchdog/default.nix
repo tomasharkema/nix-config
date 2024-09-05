@@ -3,14 +3,13 @@
   lib,
   config,
   ...
-}:
-with lib; let
+}: let
   cfg = config.apps."bmc-watchdog";
   pid = "/run/bmc-watchdog.pid";
 in {
-  options.apps."bmc-watchdog" = {enable = mkEnableOption "bmc watchdog";};
+  options.apps."bmc-watchdog" = {enable = lib.mkEnableOption "bmc watchdog";};
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     systemd.services = {
       "bmc-watchdog" = {
         enable = true;

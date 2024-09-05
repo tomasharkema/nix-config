@@ -4,13 +4,11 @@
   pkgs,
   inputs,
   ...
-}:
-with lib;
-with lib.custom; let
+}: let
   cfg = config.apps._1password;
   # unstable = inputs.unstable.legacyPackages."${pkgs.system}";
 in {
-  options.apps._1password = {enable = mkBoolOpt true "1Password";};
+  options.apps._1password = {enable = lib.mkEnableOption "1Password" // {default = true;};};
 
   # disabledModules = [
   #   "programs/_1password.nix"
@@ -22,9 +20,9 @@ in {
   #   "${inputs.unstable}/nixos/modules/programs/_1password-gui.nix"
   # ];
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs = {
-      ssh.extraConfig = mkIf config.gui.desktop.enable ''
+      ssh.extraConfig = lib.mkIf config.gui.desktop.enable ''
         IdentityAgent /home/tomas/.1password/agent.sock
       '';
 
@@ -33,7 +31,7 @@ in {
         package = pkgs._1password;
       };
 
-      _1password-gui = mkIf config.gui.desktop.enable {
+      _1password-gui = lib.mkIf config.gui.desktop.enable {
         enable = true;
         polkitPolicyOwners = ["tomas" "root"];
         package = pkgs._1password-gui;

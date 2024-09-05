@@ -4,8 +4,7 @@
   config,
   inputs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.apps.steam;
 in {
   # disabledModules = [
@@ -21,12 +20,12 @@ in {
   # ];
 
   options.apps.steam = {
-    enable = mkEnableOption "steam";
+    enable = lib.mkEnableOption "steam";
 
-    sunshine = mkEnableOption "sunshine";
+    sunshine = lib.mkEnableOption "sunshine";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     system.nixos.tags = ["steam"];
     boot.kernelModules = ["uinput"];
     users.groups.input.members = ["tomas"];
@@ -70,18 +69,18 @@ in {
       extest
     ];
 
-    services.udev.extraRules = mkIf cfg.sunshine ''
+    services.udev.extraRules = lib.mkIf cfg.sunshine ''
       KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
       KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
     '';
-    security.wrappers.sunshine = mkIf cfg.sunshine {
+    security.wrappers.sunshine = lib.mkIf cfg.sunshine {
       owner = "root";
       group = "root";
       capabilities = "cap_sys_admin+p";
       source = "${pkgs.sunshine}/bin/sunshine";
     };
 
-    systemd.user.services.sunshine = mkIf cfg.sunshine {
+    systemd.user.services.sunshine = lib.mkIf cfg.sunshine {
       description = "sunshine";
       wantedBy = ["graphical-session.target"];
       # environment.WAYLAND_DISPLAY = "wayland-0";

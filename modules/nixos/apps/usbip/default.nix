@@ -3,15 +3,14 @@
   pkgs,
   lib,
   ...
-}:
-with lib; let
+}: let
   cfg = config.apps.usbip;
 in {
   options.apps.usbip = {
-    enable = mkEnableOption "usbip";
+    enable = lib.mkEnableOption "usbip";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     # environment.systemPackages = with pkgs; [
     #   config.boot.kernelPackages.usbip
     #   custom.usbip-gui

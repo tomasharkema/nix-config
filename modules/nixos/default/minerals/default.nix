@@ -4,8 +4,7 @@
   lib,
   config,
   ...
-}:
-with lib; let
+}: let
   mineral = pkgs.applyPatches {
     name = "mineral-patched";
     src = inputs.nix-mineral;
@@ -18,7 +17,7 @@ with lib; let
   };
 in {
   imports = [
-    # "${mineral.out}/nix-mineral.nix"
+    "${mineral.out}/nix-mineral.nix"
   ];
   config = {
     system.build.mineral-patched = mineral;
@@ -33,9 +32,9 @@ in {
       # selinux-sandbox
     ];
     boot.kernel.sysctl = {
-      "net.ipv4.ip_forward" = mkForce 1;
-      "kernel.sysrq" = 1;
-      "kernel.unprivileged_userns_clone" = mkForce 1;
+      "net.ipv4.ip_forward" = lib.mkForce 1;
+      # "kernel.sysrq" = lib.mkForce 1;
+      "kernel.unprivileged_userns_clone" = lib.mkForce 1;
     };
     # build systemd with SELinux support so it loads policy at boot and supports file labelling
     systemd.package = pkgs.systemd.override {

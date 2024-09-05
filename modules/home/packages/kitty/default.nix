@@ -3,9 +3,10 @@
   config,
   osConfig,
   pkgs,
+  lib,
   ...
 }: {
-  config = {
+  config = lib.mkIf (osConfig.gui.enable) {
     programs = {
       kitty = {
         enable = true;

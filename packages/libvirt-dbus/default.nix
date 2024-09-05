@@ -37,11 +37,11 @@ stdenv.mkDerivation rec {
     libvirt-glib
   ];
 
-  meta = with lib; {
+  meta = {
     description = "DBus protocol binding for libvirt native C API";
-    license = licenses.lgpl2Plus;
+    license = lib.licenses.lgpl2Plus;
     homepage = src.meta.homepage;
-    platforms = platforms.linux;
-    maintainers = with maintainers; [];
+    platforms = lib.platforms.linux;
+    maintainers = with lib.maintainers; [];
   };
 }

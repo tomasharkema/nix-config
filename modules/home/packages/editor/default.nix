@@ -3,18 +3,17 @@
   lib,
   config,
   ...
-}:
-with lib; {
+}: {
   options.editor = {
-    enable = mkEnableOption "editor";
+    enable = lib.mkEnableOption "editor";
 
-    modifications = mkOption {
+    modifications = lib.mkOption {
       default = [];
-      type = types.listOf (types.submodule {
+      type = lib.types.listOf (lib.types.submodule {
         options = {
-          modifications = mkOption {type = types.lines;};
-          path = mkOption {type = types.path;};
-          type = mkOption {type = types.str;};
+          modifications = lib.mkOption {type = lib.types.lines;};
+          path = lib.mkOption {type = lib.types.path;};
+          type = lib.mkOption {type = lib.types.str;};
         };
       });
     };

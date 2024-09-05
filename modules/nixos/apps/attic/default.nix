@@ -4,32 +4,30 @@
   pkgs,
   config,
   ...
-}:
-with lib;
-with pkgs; let
+}: let
   cfg = config.apps.attic;
 in {
   options.apps.attic = {
-    enable = mkEnableOption "enable attic conf";
+    enable = lib.mkEnableOption "enable attic conf";
 
-    serverName = mkOption {
+    serverName = lib.mkOption {
       default = "backup";
-      type = types.str;
+      type = lib.types.str;
     };
 
-    storeName = mkOption {
+    storeName = lib.mkOption {
       default = "tomas";
-      type = types.str;
+      type = lib.types.str;
     };
 
-    serverAddress = mkOption {
+    serverAddress = lib.mkOption {
       default = "http://silver-star:6067/";
       # default = "https://nix-cache.harke.ma/";
-      type = types.str;
+      type = lib.types.str;
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     age.secrets.attic-key = {
       rekeyFile = ./attic-key.age;
     };

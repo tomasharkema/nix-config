@@ -1,9 +1,13 @@
-{ lib, pkgs, config, ... }:
-with lib;
-let cfg = config.apps.ntopng;
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
+  cfg = config.apps.ntopng;
 in {
-  options.apps.ntopng = { enable = mkEnableOption "ntopng"; };
-  config = mkIf (cfg.enable && false) {
+  options.apps.ntopng = {enable = lib.mkEnableOption "ntopng";};
+  config = lib.mkIf (cfg.enable && false) {
     services = {
       ntopng = {
         enable = true;
@@ -15,8 +19,7 @@ in {
     };
     proxy-services.services = {
       "/ntopng" = {
-        proxyPass =
-          "http://localhost:${toString config.services.ntopng.httpPort}/";
+        proxyPass = "http://localhost:${toString config.services.ntopng.httpPort}/";
         extraConfig = ''
           rewrite /ntopng(.*) $1 break;
         '';

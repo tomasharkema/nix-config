@@ -3,16 +3,15 @@
   pkgs,
   lib,
   ...
-}:
-with lib; let
+}: let
   notifyServiceName = "notify-service";
 
   ntfyScript = pkgs.writeShellScript "ntfy-script" ''
     ${pkgs.ntfy-sh}/bin/ntfy publish --title "$HOSTNAME Status of $1" "$NIXOS_TOPIC_NAME" "$(systemctl status --full $1)"
   '';
 in {
-  options.systemd.services = mkOption {
-    type = with types;
+  options.systemd.services = lib.mkOption {
+    type = with lib.types;
       attrsOf (submodule {
         config.onFailure = ["${notifyServiceName}@%n.service"];
       });
@@ -27,7 +26,7 @@ in {
     systemd.services = {
       "${notifyServiceName}@" = {
         description = "Send onFailure Notification";
-        onFailure = mkForce [];
+        onFailure = lib.mkForce [];
         path = [pkgs.bash];
         serviceConfig = {
           Type = "oneshot";

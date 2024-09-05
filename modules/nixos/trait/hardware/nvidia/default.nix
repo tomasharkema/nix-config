@@ -3,9 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-with lib;
-with lib.custom; let
+}: let
   cfg = config.trait.hardware.nvidia;
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -16,19 +14,19 @@ with lib.custom; let
   '';
 in {
   options.trait.hardware.nvidia = {
-    enable = mkEnableOption "nvidia";
+    enable = lib.mkEnableOption "nvidia";
 
-    beta = mkOption {
+    beta = lib.mkOption {
       default = true;
-      type = types.bool;
+      type = lib.types.bool;
     };
-    open = mkOption {
+    open = lib.mkOption {
       default = false;
-      type = types.bool;
+      type = lib.types.bool;
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     # nixpkgs.config = {
     #   nvidia.acceptLicense = true;
     #   cudaSupport = true;
@@ -95,7 +93,7 @@ in {
       nvidia = {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
-        open = mkForce cfg.open;
+        open = lib.mkForce cfg.open;
         nvidiaSettings = true;
 
         package = config.boot.kernelPackages.nvidiaPackages.stable;

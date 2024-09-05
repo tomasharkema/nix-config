@@ -3,21 +3,20 @@
   pkgs,
   lib,
   ...
-}:
-with lib; let
+}: let
   cfg = config.programs.inshellisense;
 in {
   options.programs.inshellisense = {
-    enable = mkEnableOption "inshellisense" // {default = true;};
-    enableZshIntegration = mkEnableOption "inshellisense zsh integration" // {default = true;};
+    enable = lib.mkEnableOption "inshellisense" // {default = true;};
+    enableZshIntegration = lib.mkEnableOption "inshellisense zsh integration" // {default = true;};
 
-    package = mkOption {
+    package = lib.mkOption {
       default = pkgs.custom.inshellisense;
-      type = with types; package;
+      type = lib.types.package;
     };
   };
 
-  config = mkIf (cfg.enable) {
+  config = lib.mkIf (cfg.enable) {
     home.packages = [cfg.package];
 
     assertions = builtins.map (n: {
@@ -25,7 +24,7 @@ in {
       assertion = builtins.pathExists n;
     }) ["${cfg.package}/share/shell/shellIntegration-rc.zsh" "${cfg.package}/share/shell/shellIntegration-profile.zsh"];
 
-    programs.zsh = mkIf cfg.enableZshIntegration {
+    programs.zsh = lib.mkIf cfg.enableZshIntegration {
       initExtra = ''
         . "${cfg.package}/share/shell/shellIntegration-rc.zsh"
       '';

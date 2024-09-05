@@ -4,13 +4,11 @@
   lib,
   inputs,
   ...
-}:
-with lib;
-with lib.custom; let
+}: let
   cfg = config.trait.builder;
 in {
   options.trait = {
-    builder = {enable = mkEnableOption "SnowflakeOS GNOME configuration";};
+    builder = {enable = lib.mkEnableOption "SnowflakeOS GNOME configuration";};
   };
 
   config =
@@ -22,7 +20,7 @@ in {
     #     ephemeral = true;
     #   };
     # in
-    mkIf cfg.enable {
+    lib.mkIf cfg.enable {
       # age.secrets.ght = {
       #   rekeyFile = "${../../secrets/ght.age}";
       #   mode = "0664";

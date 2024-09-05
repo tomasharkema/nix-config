@@ -4,13 +4,12 @@
   pkgs,
   inputs,
   ...
-}:
-with lib; let
+}: let
   machines = inputs.self.machines.excludingSelf osConfig;
 in {
   config = {
     programs.ssh = {
-      matchBlocks = mkMerge [
+      matchBlocks = lib.mkMerge [
         (builtins.listToAttrs (
           map (machine: {
             name = "${machine}";

@@ -4,19 +4,18 @@
   pkgs,
   inputs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.trait.hardware.laptop.thinkpad;
 in {
   options.trait.hardware.laptop.thinkpad = {
-    enable = mkEnableOption "laptop";
+    enable = lib.mkEnableOption "laptop";
   };
 
   options = {
     services.fprintd = {
-      enable = mkEnableOption "fprintd daemon and PAM module for fingerprint readers handling";
-      package = mkOption {
-        type = types.package;
+      enable = lib.mkEnableOption "fprintd daemon and PAM module for fingerprint readers handling";
+      package = lib.mkOption {
+        type = lib.types.package;
         # default = fprintdPkg;
       };
     };
@@ -29,7 +28,7 @@ in {
 
   disabledModules = ["services/security/fprintd.nix"];
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     system.nixos.tags = ["thinkpad"];
 
     environment.systemPackages = with pkgs; [
@@ -52,7 +51,7 @@ in {
       # tp-auto-kbbl.enable = true;
       # thinkfan.enable = true;
       fprintd = {
-        enable = mkForce true;
+        enable = lib.mkForce true;
         #   tod = {
         #     enable = true;
         #   };

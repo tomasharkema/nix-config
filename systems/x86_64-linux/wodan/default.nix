@@ -4,8 +4,7 @@
   inputs,
   config,
   ...
-}:
-with lib; {
+}: {
   imports = with inputs; [
     ./hardware-configuration.nix
     nixos-hardware.nixosModules.common-gpu-intel
@@ -44,7 +43,7 @@ with lib; {
       hostName = "wodan";
 
       firewall = {enable = true;};
-      useDHCP = mkDefault false;
+      useDHCP = lib.mkDefault false;
 
       interfaces = {
         "enp2s0" = {
@@ -75,7 +74,7 @@ with lib; {
     #   fsType = "nfs";
     # };
     services = {
-      kmscon.enable = mkForce false;
+      kmscon.enable = lib.mkForce false;
       hardware = {
         openrgb.enable = true;
         bolt.enable = true;

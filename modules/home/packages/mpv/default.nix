@@ -4,9 +4,8 @@
   lib,
   osConfig,
   ...
-}:
-with lib; {
-  config = mkIf (pkgs.stdenv.isLinux) {
+}: {
+  config = lib.mkIf (pkgs.stdenv.isLinux) {
     services = {
       plex-mpv-shim.enable = true;
       mpd-mpris.enable = true;

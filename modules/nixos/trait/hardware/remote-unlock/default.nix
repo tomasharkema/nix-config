@@ -3,9 +3,7 @@
   pkgs,
   config,
   ...
-}:
-with lib;
-with lib.custom; let
+}: let
   cfg = config.trait.hardware.remote-unlock;
 
   mkKeysScript = let
@@ -45,10 +43,10 @@ with lib.custom; let
   '';
 in {
   options.trait.hardware.remote-unlock = {
-    enable = mkEnableOption "Remote unlocking";
+    enable = lib.mkEnableOption "Remote unlocking";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     system.activationScripts.remote-unlock-keys.text = mkKeysScript;
     # environment.systemPackages = with pkgs; [dracut];
 

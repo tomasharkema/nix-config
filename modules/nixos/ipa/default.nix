@@ -4,9 +4,7 @@
   lib,
   inputs,
   ...
-}:
-with lib;
-with lib.custom; let
+}: let
   cfg = config.apps.ipa;
 
   chromePolicy = pkgs.writers.writeJSON "harkema.json" {
@@ -16,12 +14,12 @@ with lib.custom; let
 in {
   options = {
     apps.ipa = {
-      enable = mkEnableOption "enable ipa";
+      enable = lib.mkEnableOption "enable ipa";
     };
     # services.intune.enable = mkEnableOption "intune";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     assertions = [
       {
         message = "sssd_krb5_passkey_plugin";
@@ -58,7 +56,7 @@ in {
           module: ${pkgs.opensc}/lib/opensc-pkcs11.so
         '';
 
-        "krb5.conf".text = mkBefore ''
+        "krb5.conf".text = lib.mkBefore ''
           includedir /etc/krb5.conf.d/
         '';
 
@@ -141,7 +139,7 @@ in {
         #   #   [prompting/passkey]
         #   #   interactive_prompt = "Insert your Passkey device, then press ENTER."
 
-        config = mkAfter ''
+        config = lib.mkAfter ''
           [pam]
           pam_passkey_auth = True
           pam_cert_auth = True

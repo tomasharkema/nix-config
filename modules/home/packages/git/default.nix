@@ -3,8 +3,7 @@
   lib,
   osConfig,
   ...
-}:
-with lib; {
+}: {
   config = {
     # gh = "op plugin run -- gh";
     programs = {
@@ -13,6 +12,7 @@ with lib; {
         extensions = with pkgs; [
           gh-dash
           # gh-token
+          gh-notify
         ];
         gitCredentialHelper.enable = true;
 
@@ -30,10 +30,8 @@ with lib; {
 
       git = {
         enable = true;
-        userName = "Tomas Harkema";
+        userName = "tomasharkema";
         userEmail = "tomas@harkema.io";
-
-        # prompt.enable = true;
 
         lfs.enable = true;
 
@@ -49,7 +47,7 @@ with lib; {
           gpg = {
             format = "ssh";
             ssh.program =
-              mkIf
+              lib.mkIf
               (pkgs.stdenv.isLinux && osConfig.programs._1password-gui.enable)
               "${osConfig.programs._1password-gui.package}/bin/op-ssh-sign";
           };

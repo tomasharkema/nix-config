@@ -5,10 +5,8 @@
   pkgs,
   osConfig,
   ...
-}:
-with inputs.home-manager.lib.hm.gvariant;
-with lib;
-with lib.custom; let
+}: let
+  hmd = inputs.home-manager.lib.hm.gvariant;
   # readIniValue = path: key:
   #   builtins.readFile (pkgs.runCommand "ini-read-${builtins.hashString "sha256" path}-${key}" ''
   #     ${pkgs.initool}/bin/initool get ${path} ${key}
@@ -42,24 +40,28 @@ with lib.custom; let
 in {
   options = {
     autostart = {
-      programs = mkOpt (types.listOf (types.submodule {
-        options = {
-          package = mkOption {
-            type = types.nullOr types.package;
-            default = null;
+      programs = lib.mkOption {
+        type = lib.types.listOf (lib.types.submodule {
+          options = {
+            package = lib.mkOption {
+              type = lib.types.nullOr lib.types.package;
+              default = null;
+            };
+            path = lib.mkOption {
+              type = lib.types.nullOr lib.types.path;
+              default = null;
+            };
+            desktopName = lib.mkOption {
+              type = lib.types.nullOr lib.types.str;
+              default = null;
+            };
           };
-          path = mkOption {
-            type = types.nullOr types.path;
-            default = null;
-          };
-          desktopName = mkOption {
-            type = types.nullOr types.str;
-            default = null;
-          };
-        };
-      })) [] "Autostart programs";
+        });
+        default = [];
+        description = "Autostart programs";
+      };
     };
-    # home.favoriteAppIds = mkOption {};
+    # home.favoriteAppIds = lib.mkOption {};
   };
   config = let
     favoriteApplications = with pkgs;
@@ -75,13 +77,13 @@ in {
         {package = telegram-desktop;}
         {package = osConfig.programs._1password-gui.package;}
       ]
-      ++ (optional pkgs.stdenv.isx86_64 {package = termius;})
+      ++ (lib.optional pkgs.stdenv.isx86_64 {package = termius;})
       ++ [
         {id = "org.cockpit_project.CockpitClient.desktop";}
       ];
 
     packagesToAdd =
-      lists.concatMap
+      lib.lists.concatMap
       ({
         package ? null,
         id ? null,
@@ -92,7 +94,7 @@ in {
       favoriteApplications;
 
     favoriteAppIds =
-      lists.concatMap
+      lib.lists.concatMap
       ({
         package ? null,
         id ? null,
@@ -102,7 +104,7 @@ in {
         else [id])
       favoriteApplications;
   in
-    mkIf pkgs.stdenv.isLinux {
+    lib.mkIf pkgs.stdenv.isLinux {
       home = {
         file = builtins.listToAttrs (map
           (pkg: let

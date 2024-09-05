@@ -3,16 +3,14 @@
   config,
   pkgs,
   ...
-}:
-with lib;
-with lib.custom; let
+}: let
   cfg = config.trait.hardware.secure-boot;
 in {
   options.trait.hardware.secure-boot = {
-    enable = mkEnableOption "secure-boot lanzaboote";
+    enable = lib.mkEnableOption "secure-boot lanzaboote";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [sbctl exfatprogs];
     boot = {
       lanzaboote = {

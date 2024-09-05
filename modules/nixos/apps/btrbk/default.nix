@@ -3,14 +3,13 @@
   lib,
   config,
   ...
-}:
-with lib; let
+}: let
   btrfsCfg = config.disks.btrfs;
   cfg = btrfsCfg.btrbk;
 in {
-  options.disks.btrfs.btrbk = {enable = mkEnableOption "btrbk";};
+  options.disks.btrfs.btrbk = {enable = lib.mkEnableOption "btrbk";};
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     assertions = [
       {
         assertion = btrfsCfg.enable;

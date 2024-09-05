@@ -4,8 +4,7 @@
   osConfig,
   lib,
   ...
-}:
-with lib; let
+}: let
   rootFeed = "";
 
   feeds = [
@@ -21,7 +20,7 @@ with lib; let
   #   ${pkgs.custom.doc2dash}/bin/doc2dash ${gtk4'.devdoc}/share/doc/gtk4
   # '';
 in {
-  config = mkIf pkgs.stdenv.isLinux {
+  config = lib.mkIf pkgs.stdenv.isLinux {
     home = {
       packages = with pkgs; [zeal];
       file = {

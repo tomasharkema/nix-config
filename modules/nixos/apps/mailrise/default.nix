@@ -1,11 +1,15 @@
-{ lib, pkgs, config, ... }:
-with lib;
-let cfg = config.apps.mailrise;
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
+  cfg = config.apps.mailrise;
 in {
-  options.apps.mailrise = { enable = mkEnableOption "mailrise"; };
+  options.apps.mailrise = {enable = lib.mkEnableOption "mailrise";};
 
   config = {
-    services.mailrise = mkIf cfg.enable {
+    services.mailrise = lib.mkIf cfg.enable {
       enable = true;
 
       settings = {
@@ -17,7 +21,7 @@ in {
             ];
           };
           "systemd" = {
-            urls = [ "tgram://TGRAM_SECRET/TGRAM_CHAT_ID/?image=Yes" ];
+            urls = ["tgram://TGRAM_SECRET/TGRAM_CHAT_ID/?image=Yes"];
           };
         };
         smtp = {
@@ -25,12 +29,9 @@ in {
         };
       };
       secrets = {
-        TGRAM_CHAT_ID =
-          "<(${pkgs.coreutils}/bin/cat ${config.age.secrets.notify.path} | ${pkgs.yq}/bin/yq '.telegram[0].telegram_chat_id' -r)";
-        TGRAM_SECRET =
-          "<(${pkgs.coreutils}/bin/cat ${config.age.secrets.notify.path} | ${pkgs.yq}/bin/yq '.telegram[0].telegram_api_key' -r)";
-        NTFY_TOPIC =
-          "<(${pkgs.coreutils}/bin/cat ${config.age.secrets.ntfy.path})";
+        TGRAM_CHAT_ID = "<(${pkgs.coreutils}/bin/cat ${config.age.secrets.notify.path} | ${pkgs.yq}/bin/yq '.telegram[0].telegram_chat_id' -r)";
+        TGRAM_SECRET = "<(${pkgs.coreutils}/bin/cat ${config.age.secrets.notify.path} | ${pkgs.yq}/bin/yq '.telegram[0].telegram_api_key' -r)";
+        NTFY_TOPIC = "<(${pkgs.coreutils}/bin/cat ${config.age.secrets.ntfy.path})";
       };
     };
   };

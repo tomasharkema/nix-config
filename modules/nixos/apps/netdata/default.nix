@@ -3,16 +3,14 @@
   pkgs,
   lib,
   ...
-}:
-with lib;
-with lib.custom; let
+}: let
   cfg = config.apps.netdata;
 in {
   options.apps.netdata = {
-    enable = mkEnableOption "netdata";
+    enable = lib.mkEnableOption "netdata";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     age.secrets.netdata = {
       rekeyFile = ../../secrets/netdata.age;
       mode = "644";

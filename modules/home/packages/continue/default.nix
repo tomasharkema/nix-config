@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-with lib; {
+}: {
   config = {
     home.file = {
       ".continue/config.json" = {

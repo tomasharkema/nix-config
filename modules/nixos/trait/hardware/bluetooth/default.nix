@@ -3,22 +3,21 @@
   lib,
   config,
   ...
-}:
-with lib; let
+}: let
   cfg = config.trait.hardware.bluetooth;
 in {
   options.trait.hardware.bluetooth = {
-    enable = mkEnableOption "ble";
+    enable = lib.mkEnableOption "ble";
 
-    music.enable = mkEnableOption "music";
+    music.enable = lib.mkEnableOption "music";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     hardware = {
       bluetooth = {
         enable = true;
         powerOnBoot = true;
-        settings = mkIf cfg.music.enable {General = {Enable = "Source,Sink,Media,Socket";};};
+        settings = lib.mkIf cfg.music.enable {General = {Enable = "Source,Sink,Media,Socket";};};
       };
     };
 

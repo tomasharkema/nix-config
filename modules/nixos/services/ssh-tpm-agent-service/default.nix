@@ -3,19 +3,18 @@
   pkgs,
   lib,
   ...
-}:
-with lib; let
+}: let
   cfg = config.services.ssh-tpm-agent;
 in {
   options.services.ssh-tpm-agent = {
-    enable = mkEnableOption "ssh-tpm-agent";
+    enable = lib.mkEnableOption "ssh-tpm-agent";
 
-    package = mkOption {
+    package = lib.mkOption {
       default = pkgs.ssh-tpm-agent;
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     # environment.sessionVariables = {
     #   SSH_AUTH_SOCK = "/run/user/1000/ssh-tpm-agent.sock";
     # };

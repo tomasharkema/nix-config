@@ -4,13 +4,12 @@
   lib,
   inputs,
   ...
-}:
-with lib; let
+}: let
   machines = inputs.self.machines.excludingSelf osConfig;
 
-  writeINI = p: generators.toINI {} p;
+  writeINI = p: lib.generators.toINI {} p;
 in {
-  config = mkIf pkgs.stdenv.isLinux {
+  config = lib.mkIf pkgs.stdenv.isLinux {
     services.remmina = {
       enable = true;
       # systemdService.enable = true;

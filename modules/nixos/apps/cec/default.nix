@@ -1,24 +1,27 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let cfg = config.apps.cec;
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.apps.cec;
 in {
   options.apps.cec = {
-    enable = mkEnableOption "cec";
-    raspberry = mkEnableOption "raspberry";
+    enable = lib.mkEnableOption "cec";
+    raspberry = lib.mkEnableOption "raspberry";
   };
 
-  config = mkIf cfg.enable {
-
+  config = lib.mkIf cfg.enable {
     nixpkgs.overlays = [
       (self: super: {
-        libcec = super.libcec.override { withLibraspberrypi = cfg.raspberry; };
+        libcec = super.libcec.override {withLibraspberrypi = cfg.raspberry;};
       })
     ];
 
     # install libcec, which includes cec-client (requires root or "video" group, see udev rule below)
     # scan for devices: `echo 'scan' | cec-client -s -d 1`
     # set pi as active source: `echo 'as' | cec-client -s -d 1`
-    environment.systemPackages = with pkgs; [ libcec ];
+    environment.systemPackages = with pkgs; [libcec];
 
     services.udev.extraRules = ''
       # allow access to raspi cec device for video group (and optionally register it as a systemd device, used below)
@@ -30,9 +33,9 @@ in {
     # set pi as active source: `echo 'as' > /run/cec.fifo`
     systemd = {
       sockets."cec-client" = {
-        after = [ "dev-vchiq.device" ];
-        bindsTo = [ "dev-vchiq.device" ];
-        wantedBy = [ "sockets.target" ];
+        after = ["dev-vchiq.device"];
+        bindsTo = ["dev-vchiq.device"];
+        wantedBy = ["sockets.target"];
         socketConfig = {
           ListenFIFO = "/run/cec.fifo";
           SocketGroup = "video";
@@ -40,9 +43,9 @@ in {
         };
       };
       services."cec-client" = {
-        after = [ "dev-vchiq.device" ];
-        bindsTo = [ "dev-vchiq.device" ];
-        wantedBy = [ "multi-user.target" ];
+        after = ["dev-vchiq.device"];
+        bindsTo = ["dev-vchiq.device"];
+        wantedBy = ["multi-user.target"];
         serviceConfig = {
           ExecStart = "${pkgs.libcec}/bin/cec-client -d 1";
           ExecStop = ''/bin/sh -c "echo q > /run/cec.fifo"'';

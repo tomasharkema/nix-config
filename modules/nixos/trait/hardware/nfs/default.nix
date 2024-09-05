@@ -2,21 +2,20 @@
   lib,
   config,
   ...
-}:
-with lib; let
-  # cfg = config.trait.hardware.nfs;
+}: let
+  cfg = config.trait.hardware.nfs;
 in {
-  # options.trait.hardware.nfs = {
-  #   enable = mkEnableOption "nfs";
+  options.trait.hardware.nfs = {
+    enable = lib.mkEnableOption "nfs";
 
-  #   machines = {
-  #     silver-star.enable = mkEnableOption "nfs silver-star";
-  #     dione.enable = mkEnableOption "nfs dione";
-  #   };
-  # };
+    #   machines = {
+    #     silver-star.enable = mkEnableOption "nfs silver-star";
+    #     dione.enable = mkEnableOption "nfs dione";
+    #   };
+  };
 
   # autofs!
-  config = mkIf false {
+  config = lib.mkIf false {
     # cfg.enable {
     assertions = [];
 
@@ -24,7 +23,7 @@ in {
 
     systemd = let
       mounts =
-        (optionals cfg.machines.silver-star.enable [
+        (lib.optionals cfg.machines.silver-star.enable [
           {
             what = "192.168.0.100:/mnt/user/domains";
             where = "/mnt/unraid/domains";
@@ -50,20 +49,20 @@ in {
             where = "/mnt/unraid/downloads";
           }
         ])
-        ++ (optionals cfg.machines.dione.enable [
+        ++ (lib.optionals cfg.machines.dione.enable [
           {
             what = "192.168.178.3:/volume1/homes";
             where = "/mnt/dione";
           }
         ]);
     in {
-      mounts = lists.forEach mounts (mnt:
+      mounts = lib.lists.forEach mounts (mnt:
         mnt
         // {
           type = "nfs";
           mountConfig = {Options = "noatime";};
         });
-      automounts = lists.forEach mounts (mnt: {
+      automounts = lib.lists.forEach mounts (mnt: {
         wantedBy = ["multi-user.target"];
         automountConfig = {TimeoutIdleSec = "600";};
         where = mnt.where;

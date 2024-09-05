@@ -4,8 +4,7 @@
   lib,
   osConfig,
   ...
-}:
-with lib; let
+}: let
   package = pkgs.gptcommit;
 in {
   config = {

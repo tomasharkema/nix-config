@@ -6,10 +6,10 @@
   pkgs,
   osConfig,
   ...
-}:
-with inputs.home-manager.lib.hm.gvariant;
-with lib; {
-  config = mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
+}: let
+  gvariant = inputs.home-manager.lib.hm.gvariant;
+in {
+  config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
     dconf = {
       settings = {
         "org/gnome/mutter" = {
@@ -68,7 +68,7 @@ with lib; {
         };
 
         "org/gnome/shell/extensions/user-theme" = {
-          name = mkDefault "Catppuccin-Mocha-Compact-Blue-Dark";
+          name = lib.mkDefault "Catppuccin-Mocha-Compact-Blue-Dark";
         };
 
         # "org/gnome/shell/extensions/TodoTxt" = {

@@ -4,30 +4,28 @@
   lib,
   modulesPath,
   ...
-}:
-with lib;
-with lib.custom; let
+}: let
   cfg = config.trait.hardware.vm;
 in {
   options.trait.hardware.vm = {
-    enable = mkEnableOption "hardware vm";
+    enable = lib.mkEnableOption "hardware vm";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     # .slim.enable = true;
 
     services = {
       # xserver.videoDrivers = [ "qxl" ];
       qemuGuest.enable = true;
       spice-vdagentd.enable = true;
-      spice-autorandr.enable = mkIf pkgs.stdenv.isx86_64 true;
+      spice-autorandr.enable = lib.mkIf pkgs.stdenv.isx86_64 true;
       spice-webdavd.enable = true;
-      throttled.enable = mkForce false;
+      throttled.enable = lib.mkForce false;
     };
 
     nix.settings = {
-      keep-outputs = mkForce false;
-      keep-derivations = mkForce false;
+      keep-outputs = lib.mkForce false;
+      keep-derivations = lib.mkForce false;
     };
 
     hardware = {

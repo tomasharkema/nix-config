@@ -1,31 +1,38 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   cfg = config.apps.sunshine;
   configFile = pkgs.writeTextDir "config/sunshine.conf" ''
     origin_web_ui_allowed=wan
   '';
 in {
-  options.apps.sunshine = { enable = mkEnableOption "sunshine"; };
-  config = mkIf (cfg.enable && false) {
+  options.apps.sunshine = {enable = lib.mkEnableOption "sunshine";};
+  config = lib.mkIf (cfg.enable && false) {
     # Sunshine user, service and config
     users.users.sunshine = {
       isNormalUser = true;
       linger = true;
       home = "/home/sunshine";
       description = "Sunshine Server";
-      extraGroups = [ "wheel" "networkmanager" "input" "video" "sound" ];
+      extraGroups = ["wheel" "networkmanager" "input" "video" "sound"];
 
-      openssh.authorizedKeys.keyFiles = [ pkgs.custom.authorized-keys ];
+      openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
     };
 
-    security.sudo.extraRules = [{
-      users = [ "sunshine" ];
-      commands = [{
-        command = "ALL";
-        options = [ "NOPASSWD" ];
-      }];
-    }];
+    security.sudo.extraRules = [
+      {
+        users = ["sunshine"];
+        commands = [
+          {
+            command = "ALL";
+            options = ["NOPASSWD"];
+          }
+        ];
+      }
+    ];
 
     security.wrappers.sunshine = {
       owner = "root";
@@ -38,16 +45,15 @@ in {
     systemd.user.services.sunshine = {
       enable = true;
       description = "Sunshine server";
-      wantedBy = [ "graphical-session.target" ];
+      wantedBy = ["graphical-session.target"];
       startLimitIntervalSec = 500;
       startLimitBurst = 5;
-      partOf = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
+      partOf = ["graphical-session.target"];
+      wants = ["graphical-session.target"];
+      after = ["graphical-session.target"];
 
       serviceConfig = {
-        ExecStart =
-          "${config.security.wrapperDir}/sunshine ${configFile}/config/sunshine.conf";
+        ExecStart = "${config.security.wrapperDir}/sunshine ${configFile}/config/sunshine.conf";
         Restart = "on-failure";
         RestartSec = "5s";
       };
@@ -83,7 +89,7 @@ in {
     # };
 
     # Required to simulate input
-    boot.kernelModules = [ "uinput" ];
+    boot.kernelModules = ["uinput"];
 
     # Maybe not necessary ? udev rules are ignored with ssh ?
     services.udev.extraRules = ''

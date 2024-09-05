@@ -6,8 +6,7 @@
   config,
   format,
   ...
-}:
-with lib; {
+}: {
   imports = with inputs; [
     # (modulesPath + "/installer/scan/not-detected.nix")
     nixos-hardware.nixosModules.common-cpu-intel
@@ -29,8 +28,8 @@ with lib; {
     };
 
     nix.settings = {
-      keep-outputs = mkForce false;
-      keep-derivations = mkForce false;
+      keep-outputs = lib.mkForce false;
+      keep-derivations = lib.mkForce false;
     };
 
     specialisation = {

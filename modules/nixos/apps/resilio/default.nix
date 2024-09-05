@@ -3,8 +3,7 @@
   pkgs,
   config,
   ...
-}:
-with lib; let
+}: let
   cfg = config.apps.resilio;
   known_host = "100.120.66.165:52380";
 
@@ -16,13 +15,13 @@ with lib; let
   '';
 in {
   options.apps.resilio = {
-    enable = (mkEnableOption "Enable preconfigured resilio service") // {default = true;};
+    enable = (lib.mkEnableOption "Enable preconfigured resilio service") // {default = true;};
     # root = mkOpt types.str "/mnt/resilio-sync" "root";
 
-    enableEnc = mkEnableOption "Enable enc";
+    enableEnc = lib.mkEnableOption "Enable enc";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [acl];
 
     systemd = {
@@ -38,12 +37,12 @@ in {
     systemd.services.resilio.serviceConfig.Nice = 14;
 
     age.secrets = {
-      "resilio-p" = mkIf (!cfg.enableEnc) {
+      "resilio-p" = lib.mkIf (!cfg.enableEnc) {
         rekeyFile = ./resilio-p.age;
         mode = "644";
       };
 
-      "resilio-p-enc" = mkIf cfg.enableEnc {
+      "resilio-p-enc" = lib.mkIf cfg.enableEnc {
         rekeyFile = ./resilio-p-enc.age;
         mode = "644";
       };
@@ -84,7 +83,7 @@ in {
             knownHosts = [known_host];
           }
         ]
-        ++ (optional cfg.enableEnc {
+        ++ (lib.optional cfg.enableEnc {
           directory = "${root}/P-dir-enc";
           searchLAN = true;
           secretFile = config.age.secrets."resilio-p-enc".path;
@@ -94,7 +93,7 @@ in {
           useTracker = true;
           knownHosts = [known_host];
         })
-        ++ (optional (!cfg.enableEnc) {
+        ++ (lib.optional (!cfg.enableEnc) {
           directory = "${root}/P-dir";
           searchLAN = true;
           secretFile = config.age.secrets."resilio-p".path;

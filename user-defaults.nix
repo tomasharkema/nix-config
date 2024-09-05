@@ -13,7 +13,7 @@
       }
     ];
     time.timeZone = "Europe/Amsterdam";
-    system.stateVersion = "24.05";
+    system.stateVersion = "24.11";
     security.sudo.wheelNeedsPassword = false;
     nixpkgs.config.allowUnfree = true;
 

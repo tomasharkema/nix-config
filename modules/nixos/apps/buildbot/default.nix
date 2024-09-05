@@ -4,8 +4,7 @@
   config,
   pkgs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.apps.buildbot;
 in {
   imports = with inputs; [
@@ -18,12 +17,12 @@ in {
   disabledModules = ["services/continuous-integration/buildbot/master.nix"];
 
   options.apps.buildbot = {
-    enable = mkEnableOption "buildbot";
+    enable = lib.mkEnableOption "buildbot";
 
-    workerPort = mkOption {default = "9988";};
+    workerPort = lib.mkOption {default = "9988";};
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     age.secrets = {
       buildbot-github-app = {
         rekeyFile = ./buildbot-github-app.age;
@@ -45,7 +44,7 @@ in {
     };
     services = {
       buildbot-master = {
-        buildbotUrl = mkForce "https://buildbot.harkema.io/";
+        buildbotUrl = lib.mkForce "https://buildbot.harkema.io/";
         pbPort = "'tcp:${cfg.workerPort}:interface=0.0.0.0'";
       };
       buildbot-nix = {
@@ -55,7 +54,7 @@ in {
           admins = ["tomasharkema"];
           outputsPath = "/var/www/buildbot/nix-outputs";
           buildbotNixpkgs = pkgs;
-evalWorkerCount=2;
+          evalWorkerCount = 2;
           workersFile = config.age.secrets.buildbot-workers-json.path;
 
           github = {

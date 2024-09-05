@@ -4,8 +4,7 @@
   pkgs,
   inputs,
   ...
-}:
-with lib; let
+}: let
   wrapperDir = config.security.wrapperDir;
 in {
   config = {
@@ -31,11 +30,11 @@ in {
             "-%h/.config/keybase/keybase.autogen.env"
             "-%h/.config/keybase/keybase.env"
           ];
-          ExecStart = mkForce "${pkgs.kbfs}/bin/kbfsfuse -label Keybase /run/user/1000/kbfs";
-          ExecStartPre = mkForce [
+          ExecStart = lib.mkForce "${pkgs.kbfs}/bin/kbfsfuse -label Keybase /run/user/1000/kbfs";
+          ExecStartPre = lib.mkForce [
             # "-${wrapperDir}/fusermount -uz \"${config.services.kbfs.mountPoint}\""
           ];
-          PrivateTmp = mkForce false;
+          PrivateTmp = lib.mkForce false;
           #       #   DeviceAllow = ["/dev/fuse"];
           #       #   CapabilityBoundingSet = ["CAP_SYS_ADMIN"];
         };
@@ -56,14 +55,14 @@ in {
           #       ExecStart = "${wrapperDir}/keybase-redirector /keybase";
           #       Restart = "on-failure";
           #       # PrivateTmp = true;
-          PrivateTmp = mkForce false;
+          PrivateTmp = lib.mkForce false;
         };
 
         #     wantedBy = ["default.target"];
         #   };
       };
     };
-    # systemd.user.services.kbfs.path = mkForce [];
+    # systemd.user.services.kbfs.path = lib.mkForce [];
     # systemd.user.services.kbfs = let
     #   wrapperDir = config.security.wrapperDir;
     # in {
@@ -74,11 +73,11 @@ in {
     #       "-%h/.config/keybase/keybase.autogen.env"
     #       "-%h/.config/keybase/keybase.env"
     #     ];
-    #     ExecStartPre = mkForce [
+    #     ExecStartPre = lib.mkForce [
     #       "-${wrapperDir}/fusermount -uz \"$(${pkgs.keybase}/bin/keybase config get -d -b mountdir)\""
     #     ];
-    #     ExecStart = mkForce "${pkgs.kbfs}/bin/kbfsfuse";
-    #     ExecStop = mkForce "${wrapperDir}/fusermount -uz \"$(${pkgs.keybase}/bin/keybase config get -d -b mountdir)\"";
+    #     ExecStart = lib.mkForce "${pkgs.kbfs}/bin/kbfsfuse";
+    #     ExecStop = lib.mkForce "${wrapperDir}/fusermount -uz \"$(${pkgs.keybase}/bin/keybase config get -d -b mountdir)\"";
     #   };
     # };
 
@@ -103,7 +102,7 @@ in {
       };
     };
     environment.systemPackages = with pkgs; (
-      optional (config.gui.enable && pkgs.system == "x86_64-linux") keybase-gui
+      lib.optional (config.gui.enable && pkgs.system == "x86_64-linux") keybase-gui
     );
     # ++ [keybase kbfs];
   };

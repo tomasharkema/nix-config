@@ -24,7 +24,7 @@ pkgs.stdenvNoCC.mkDerivation rec {
     runHook postInstall
   '';
 
-  meta = with lib; {
+  meta = {
     description = "LaunchControl";
     longDescription = ''
       LaunchControl
@@ -33,7 +33,7 @@ pkgs.stdenvNoCC.mkDerivation rec {
     # changelog = "https://support.airbuddy.app/articles/airbuddy-2-changelog";
     # license = with licenses; [
     # ];
-    sourceProvenance = with sourceTypes; [binaryNativeCode];
+    sourceProvenance = with lib.sourceTypes; [binaryNativeCode];
 
     maintainers = ["tomasharkema" "tomas@harkema.io"];
     platforms = ["aarch64-darwin" "x86_64-darwin"];

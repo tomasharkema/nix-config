@@ -4,13 +4,11 @@
   modulesPath,
   lib,
   ...
-}:
-with lib;
-with lib.custom; let
+}: let
   cfg = config.tailscale;
 in {
   options.tailscale = {
-    enable = mkBoolOpt true "SnowflakeOS GNOME configuration";
+    enable = lib.mkEnableOption "SnowflakeOS GNOME configuration" // {default = true;};
   };
 
   # age.secrets.tailscale = {
@@ -20,7 +18,7 @@ in {
   #   group = "tomas";
   # };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     networking = {
       useDHCP = false;
 
@@ -69,7 +67,7 @@ in {
       };
 
       zerotierone = {
-        # enable = true;
+        enable = true;
         joinNetworks = ["***REMOVED***"];
       };
     };
@@ -86,7 +84,7 @@ in {
         Restart = "on-failure";
         RestartSec = 5;
       };
-      script = "${getExe pkgs.tailscalesd} --localapi";
+      script = "${lib.getExe pkgs.tailscalesd} --localapi";
       wantedBy = ["multi-user.target"];
       after = ["tailscale.service"];
       wants = ["tailscale.service"];

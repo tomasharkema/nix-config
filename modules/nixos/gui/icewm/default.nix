@@ -3,18 +3,17 @@
   pkgs,
   lib,
   ...
-}:
-with lib; let
+}: let
   cfg = config.gui.icewm;
 
   preferencesFile = "${./preferences.conf}";
   themeFile = "${./theme.conf}";
 in {
   options.gui.icewm = {
-    enable = mkEnableOption "icewm";
+    enable = lib.mkEnableOption "icewm";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     gui.fonts.enable = true;
 
     home.homeFiles = {
@@ -36,7 +35,7 @@ in {
       xserver = {
         enable = true;
         windowManager.icewm.enable = true;
-        displayManager.defaultSession = mkDefault "none+icewm";
+        displayManager.defaultSession = lib.mkDefault "none+icewm";
       };
 
       xrdp = {

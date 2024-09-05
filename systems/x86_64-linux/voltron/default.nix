@@ -4,8 +4,7 @@
   config,
   lib,
   ...
-}:
-with lib; {
+}: {
   imports = with inputs; [
     ./hardware-configuration.nix
     nixos-hardware.nixosModules.common-pc-laptop-acpi_call
@@ -97,9 +96,8 @@ with lib; {
     };
 
     apps = {
-      # android.enable = true;
       steam.enable = true;
-      # opensnitch.enable = true;
+      opensnitch.enable = true;
       # usbip.enable = true;
       # samsung.enable = true;
       podman.enable = true;
@@ -175,7 +173,7 @@ with lib; {
       avahi = {
         enable = true;
         # allowInterfaces = ["wlp59s0"];
-        reflector = mkForce false;
+        reflector = lib.mkForce false;
       };
     };
 
@@ -217,7 +215,7 @@ with lib; {
       extra-sandbox-paths = [config.programs.ccache.cacheDir];
     };
 
-    boot.kernelPackages = mkForce pkgs.linuxPackages_cachyos;
+    boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
 
     chaotic = {
       scx.enable = true; # by default uses scx_rustland scheduler

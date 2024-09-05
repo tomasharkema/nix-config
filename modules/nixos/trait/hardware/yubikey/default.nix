@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-with lib; {
+}: {
   config = {
     security.pam = {
       # yubico = {

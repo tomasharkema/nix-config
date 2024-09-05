@@ -5,9 +5,7 @@
   lib,
   inputs,
   ...
-}:
-with lib;
-with lib.custom; {
+}: {
   # options.home = {
   #   homeFiles = mkOption {
   #     description = "Attribute set of files to link into the user home.";
@@ -42,7 +40,7 @@ with lib.custom; {
       home = {
         enable = true;
         config = {
-          home.stateVersion = mkDefault "24.05";
+          home.stateVersion = lib.mkDefault "24.11";
           xdg.enable = true;
           # home.sessionVariables = {
           #   HYDRA_HOST =
@@ -60,7 +58,7 @@ with lib.custom; {
       backupFileExtension = "bak";
 
       users."${config.user.name}" = {
-        home.stateVersion = mkDefault "24.05";
+        home.stateVersion = lib.mkDefault "24.11";
         xdg.enable = true;
         programs.home-manager.enable = true;
         # home.sessionVariables = {

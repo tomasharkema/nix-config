@@ -4,9 +4,7 @@
   pkgs,
   lib,
   ...
-}:
-with lib;
-with lib.custom; let
+}: let
   cfg = config.gui.apps.tilix;
 
   catppuchin = pkgs.fetchFromGitHub {
@@ -18,10 +16,10 @@ with lib.custom; let
 in {
   options.gui.apps.tilix = {
     # gui.apps.tilix.enable = mkDefault true;
-    enable = mkOpt types.bool true "hallo";
+    enable = lib.mkEnableOption "hallo";
   };
 
-  config = mkIf (cfg.enable && pkgs.stdenvNoCC.isLinux && osConfig.gui.enable) {
+  config = lib.mkIf (cfg.enable && pkgs.stdenvNoCC.isLinux && osConfig.gui.enable) {
     xdg.configFile."tilix/schemes" = {
       source = "${catppuchin}/src";
       recursive = true;
