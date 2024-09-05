@@ -31,7 +31,7 @@ in
       owner = "dropbox";
       repo = "nautilus-dropbox";
       rev = "v${version}";
-      hash = "sha256-9wQznMsj8IL0JHBF96yVgI6r25jW8unr/UJeSGv1DBw=";
+      hash = "sha256-682X/p335cSxURqbQpb9YsOtDWLFzvWWZaJl/+8Wnxc=";
     };
 
     preConfigure = ''

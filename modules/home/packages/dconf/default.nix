@@ -6,9 +6,8 @@
   pkgs,
   osConfig,
   ...
-}: let
-  gvariant = inputs.home-manager.lib.hm.gvariant;
-in {
+}:
+with inputs.home-manager.lib.hm.gvariant; {
   config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
     dconf = {
       settings = {
