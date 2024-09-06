@@ -4,28 +4,26 @@
   pkgs,
   ...
 }: let
-  inherit (lib) types;
-  inherit (lib.custom) mkOpt;
-
   cfg = config.user;
 in {
-  options.user = with types; {
-    name = mkOpt str "tomas" "The name to use for the user account.";
+  options.user = {
+    name = lib.mkOption {
+      type = lib.types.str;
+      default = "tomas";
+      description = "The name to use for the user account.";
+    };
 
     # keys = mkOpt (listOf str) keys "auth keys";
-    fullName = mkOpt str "Tomas Harkema" "The full name of the user.";
-    email = mkOpt str "tomas@harkema.io" "The email of the user.";
-    #   initialPassword =
-    #     mkOpt str "password"
-    #     "The initial password to use when the user is first created.";
-    #   icon =
-    #     mkOpt (nullOr package) defaultIcon
-    #     "The profile picture to use for the user.";
-    #   prompt-init = mkBoolOpt true "Whether or not to show an initial message when opening a new shell.";
-    #   extraGroups = mkOpt (listOf str) [] "Groups for the user to be assigned.";
-    #   extraOptions =
-    #     mkOpt attrs {}
-    #     (mdDoc "Extra options passed to `users.users.<name>`.");
+    fullName = lib.mkOption {
+      type = lib.types.str;
+      default = "Tomas Harkema";
+      description = "The full name of the user.";
+    };
+    email = lib.mkOption {
+      type = lib.types.str;
+      default = "tomas@harkema.io";
+      description = "The email of the user.";
+    };
   };
 
   config = {

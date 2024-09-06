@@ -16,11 +16,11 @@
     patches = [./nm.patch];
   };
 in {
-  imports = [
-    "${mineral.out}/nix-mineral.nix"
-  ];
+  # imports = [
+  #   "${mineral.out}/nix-mineral.nix"
+  # ];
   config = {
-    system.build.mineral-patched = mineral;
+    # system.build.mineral-patched = mineral;
     # boot.kernelParams = ["security=selinux"];
     # policycoreutils is for load_policy, fixfiles, setfiles, setsebool, semodile, and sestatus.
     environment.systemPackages = with pkgs; [
