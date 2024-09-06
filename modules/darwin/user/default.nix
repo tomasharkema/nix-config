@@ -56,7 +56,7 @@ in {
       ])
       ++ (with pkgs.custom; [
         launchcontrol
-        ztui
+        # ztui
         maclaunch
         tailscale-tui
       ])
