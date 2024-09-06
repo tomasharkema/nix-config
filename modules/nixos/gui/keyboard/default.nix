@@ -12,7 +12,7 @@ in {
 
       keyd = {
         enable = true;
-        keyboards.default.extraConfig = ''
+        keyboards.mac.extraConfig = ''
           [main]
 
           # Swap Ctrl and Command keys
