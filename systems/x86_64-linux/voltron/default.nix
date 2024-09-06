@@ -193,27 +193,27 @@
       #   interface = "wlp4s0";
       # };
 
-      ccache = {
-        enable = true;
-        packageNames = [
-          "freeipa"
-          "sssd"
+      # ccache = {
+      #   enable = true;
+      #   packageNames = [
+      #     "freeipa"
+      #     "sssd"
 
-          "chromium"
-          "chromium-unwrapped"
+      #     "chromium"
+      #     "chromium-unwrapped"
 
-          "ffmpeg"
-          "ffmpeg-full"
+      #     "ffmpeg"
+      #     "ffmpeg-full"
 
-          "zerotierone"
-          "ztui"
-        ];
-      };
+      #     "zerotierone"
+      #     "ztui"
+      #   ];
+      # };
     };
 
-    nix.settings = {
-      extra-sandbox-paths = [config.programs.ccache.cacheDir];
-    };
+    # nix.settings = {
+    #   extra-sandbox-paths = [config.programs.ccache.cacheDir];
+    # };
 
     boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
 

@@ -85,7 +85,7 @@
         settings = {
           extra-platforms = ["aarch64-linux" "i686-linux"];
 
-          extra-sandbox-paths = [config.programs.ccache.cacheDir];
+          # extra-sandbox-paths = [config.programs.ccache.cacheDir];
 
           use-cgroups = true;
           extra-experimental-features = "nix-command flakes cgroups";
