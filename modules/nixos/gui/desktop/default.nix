@@ -195,7 +195,7 @@ in {
         zerotier-ui
         # ztui
 
-        #netbrowse
+        netbrowse
         # usbguard-gnome
       ]);
 
