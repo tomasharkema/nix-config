@@ -51,29 +51,9 @@ in
         variables.XCURSOR_SIZE = builtins.toString cfg.cursorSize;
         sessionVariables = {
           XCURSOR_SIZE = builtins.toString cfg.cursorSize;
-          NIXOS_OZONE_WL = "1";
+          # NIXOS_OZONE_WL = "1";
         };
       };
-
-      # systemd.tmpfiles.rules = [
-      #   "L+ /run/gdm/.config/fontconfig/fonts.conf - - - - ${pkgs.writeText "fonts.conf" ''
-      #     <?xml version="1.0"?>
-      #     <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-      #     <fontconfig>
-      #     	<match>
-      #     		<test name="prgname" compare="eq" qual="any">
-      #     			<string>Inter</string>
-      #     		</test>
-      #     		<test qual="any" name="family">
-      #                 <string>Ubuntu</string>
-      #             </test>
-      #             <edit name="family" binding="same">
-      #                 <string>Cantarell</string>
-      #             </edit>
-      #     	</match>
-      #     </fontconfig>
-      #   ''}"
-      # ];
 
       programs = {
         xwayland.enable = true;

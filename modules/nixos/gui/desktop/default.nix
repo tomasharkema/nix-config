@@ -115,6 +115,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        vlc
         boxbuddy
         clutter
         discordo
@@ -165,7 +166,6 @@ in {
         zed-editor
       ]
       ++ lib.optionals pkgs.stdenv.isx86_64 [
-        custom.nautilus-dropbox
         gnome_mplayer
         gmtk
         # pkgs.custom.git-butler
