@@ -53,7 +53,7 @@ with inputs.home-manager.lib.hm.gvariant; {
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
           # cursor-theme = mkForce "Adwaita";
-
+          cursor-theme = "macOS";
           # gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
           document-font-name = "Inter Display 12";
           font-antialiasing = "grayscale";
@@ -70,10 +70,10 @@ with inputs.home-manager.lib.hm.gvariant; {
           name = lib.mkDefault "Catppuccin-Mocha-Compact-Blue-Dark";
         };
 
-        # "org/gnome/shell/extensions/TodoTxt" = {
-        #   donetxt-location = "/home/tomas/resilio-sync/shared-documents/done.txt";
-        #   todotxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt";
-        # };
+        "org/gnome/shell/extensions/TodoTxt" = {
+          donetxt-location = "/home/tomas/resilio-sync/shared-documents/done.txt";
+          todotxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt";
+        };
 
         "org/gnome/gnome-session" = {
           "auto-save-session" = true;

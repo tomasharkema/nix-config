@@ -19,6 +19,7 @@ in {
   config = lib.mkIf enable {
     dconf.settings."org/gnome/desktop/interface" = {
       cursor-size = 24;
+      cursor-theme = "macOS";
     };
     gtk = {
       enable = true;
@@ -50,7 +51,7 @@ in {
 
     home = lib.mkIf pkgs.stdenv.isLinux {
       pointerCursor = {
-        name = lib.mkForce "macOS-Monterey";
+        name = lib.mkForce "macOS";
         package = lib.mkForce pkgs.apple-cursor;
         x11.enable = true;
         gtk.enable = true;
