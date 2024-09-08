@@ -17,7 +17,7 @@
 
   config = {
     age.rekey = {
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFWBSBsCepulXWmLkxCirZ0yv0BXXSHB3/iq2NFkHBxs root@enzian";
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKZ68XxpD6TUAyuYa5sl6vPUnSrmTQqD015L05n+B+jY root@enzian";
     };
 
     apps = {
