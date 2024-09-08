@@ -10,11 +10,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1722597419,
+        "lastModified": 1725722682,
         "owner": "oddlama",
         "repo": "agenix-rekey",
-        "rev": "126b4a5133eb361cbf5bf90e44c71b6f830845ec",
-        "treeHash": "e557d5effc6a903e015ddde3bd6a0260f9a6b734",
+        "rev": "10ea05a0077aefe03b443fdb63b58ab78d0440f3",
+        "treeHash": "121301b33dde431faa9afc4c01bb590a70087747",
         "type": "github"
       },
       "original": {
@@ -156,11 +156,11 @@
     },
     "nixlib": {
       "locked": {
-        "lastModified": 1725152544,
+        "lastModified": 1725757153,
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "rev": "7f0b9e4fbd91826cb9ce6babbc11c87903191051",
-        "treeHash": "e4a26c498523ce11da25876ba964236a8f892c2d",
+        "rev": "68584f89dd0eb16fea5d80ae127f3f681f6a5df7",
+        "treeHash": "4b2addfc51346dbfafc60f49e97d3ce5cfed2406",
         "type": "github"
       },
       "original": {
