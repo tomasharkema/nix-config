@@ -79,18 +79,18 @@
         # agenix.homeManagerModules.default
       ];
 
-      systems.hosts = let
-        cudaOff = {...}: {
-          nixpkgs = {
-            config = {
-              cudaSupport = false;
-            };
-          };
-        };
-      in {
-        euro-mir-vm.modules = [cudaOff];
-        pegasus.modules = [cudaOff];
-      };
+      # systems.hosts = let
+      #   cudaOff = {...}: {
+      #     nixpkgs = {
+      #       config = {
+      #         cudaSupport = false;
+      #       };
+      #     };
+      #   };
+      # in {
+      #   euro-mir-vm.modules = [cudaOff];
+      #   pegasus.modules = [cudaOff];
+      # };
 
       systems.modules = {
         nixos = with inputs; [
