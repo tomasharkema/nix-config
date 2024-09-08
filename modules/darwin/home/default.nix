@@ -6,20 +6,21 @@
   inputs,
   ...
 }: {
-  # options.home = {
-  #   homeFiles = mkOption {
-  #     description = "Attribute set of files to link into the user home.";
-  #     default = {};
-  #     type = types.attrsOf (types.submodule {
-  #       options = {
-  #         source = mkOption {type = types.path;};
-  #         # target = mkOption {
-  #         #   type = types.str;
-  #         # };
-  #       };
-  #     });
-  #   };
-  # };
+  options.home = {
+    homeFiles = lib.mkOption {
+      description = "Attribute set of files to link into the user home.";
+      default = {};
+      type = lib.types.attrsOf (lib.types.submodule {
+        options = {
+          source = lib.mkOption {type = lib.types.path;};
+          # target = mkOption {
+          #   type = types.str;
+          # };
+        };
+      });
+    };
+  };
+
   config = {
     age.secrets = {
       openai = {
@@ -29,8 +30,8 @@
     };
 
     environment = {
-      variables.XDG_DATA_DIRS = ["/usr/local/share"];
-      systemPackages = with pkgs; [virt-manager];
+      # variables.XDG_DATA_DIRS = ["/usr/local/share"];
+      # systemPackages = with pkgs; [virt-manager];
     };
 
     snowfallorg.users."${config.user.name}" = {
