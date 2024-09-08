@@ -83,12 +83,12 @@
       in
         if (pkgs.stdenv.isAarch64 || config.trait.hardware.vm.enable)
         then lib.mkDefault pkgs.linuxPackages_latest
-        else (lib.mkDefault pkgs.linuxPackages_xanmod_latest);
-      # (
-      #   if config.trait.server.enable
-      #   then lib.mkDefault pkgs.linuxPackages_cachyos-server
-      #   else lib.mkDefault pkgs.linuxPackages_cachyos
-      # ); # (pkgs.linuxPackagesFor pkgs.linux_cachyos);
+        else
+          (
+            if config.trait.server.enable
+            then lib.mkDefault pkgs.linuxPackages_cachyos-server
+            else lib.mkDefault pkgs.linuxPackages_cachyos
+          ); # (pkgs.linuxPackagesFor pkgs.linux_cachyos);
 
       kernelModules = ["wireguard"];
 
@@ -100,6 +100,10 @@
           configurationLimit = 20;
         };
       };
+    };
+
+    chaotic = {
+      scx.enable = !(config.trait.server.enable); # by default uses scx_rustland scheduler
     };
 
     # environment.etc = {

@@ -91,10 +91,10 @@
     networking = {
       hostName = "enzian";
       hostId = "529fd7fa";
-      firewall = {enable = false;};
+      firewall = {enable = true;};
       # useDHCP = lib.mkDefault false;
       interfaces."enp4s0" = {
-        # useDHCP = lib.mkDefault true;
+        useDHCP = lib.mkDefault true;
         wakeOnLan.enable = true;
       };
     };
@@ -126,6 +126,12 @@
         #"mitigations=off"
       ];
       extraModulePackages = [];
+      recovery = {
+        enable = true;
+        install = true;
+        sign = true;
+        netboot.enable = true;
+      };
     };
 
     hardware = {

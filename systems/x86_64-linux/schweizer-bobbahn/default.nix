@@ -38,7 +38,7 @@
     # apps.spotifyd.enable = true;
 
     apps = {
-      steam.enable = true;
+      steam.enable = false; # true;
       # usbip.enable = true;
       netdata.enable = true;
       unified-remote.enable = true;
@@ -91,17 +91,22 @@
       };
     };
 
-    # boot.recovery = {
-    #   enable = false;
-    #   install = false;
-    # };
-
     zramSwap = {enable = true;};
 
     boot = {
       kernelModules = [
         "i915"
       ];
+      tmp = {
+        useTmpfs = true;
+      };
+
+      recovery = {
+        enable = true;
+        install = true;
+        sign = true;
+        netboot.enable = true;
+      };
     };
 
     hardware = {
