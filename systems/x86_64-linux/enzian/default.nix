@@ -56,7 +56,7 @@
 
     services.beesd.filesystems = {
       root = {
-        spec = "UUID=4fb99410-225f-4c6a-a647-2cae35f879f0";
+        spec = "UUID=b4d344ce-bf39-473d-bc97-7b12ef0f97a1";
         hashTableSizeMB = 2048;
         verbosity = "crit";
         extraOptions = ["--loadavg-target" "2.0"];
