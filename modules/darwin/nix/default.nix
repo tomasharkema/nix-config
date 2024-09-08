@@ -49,7 +49,7 @@ in {
     nix = let
       users = ["root" "${config.user.name}"];
     in {
-      package = pkgs.nixVersions.nix_2_24;
+      package = pkgs.nixVersions.nix_2_23;
 
       nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 

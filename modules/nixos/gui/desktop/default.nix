@@ -157,7 +157,6 @@ in {
         trayscale
         tremotesf
         ulauncher
-        usbguard-notifier
         usbview
         ventoy-full
         vsce
@@ -182,7 +181,6 @@ in {
         dmidecode
         ipmiview
         libsmbios
-        config.nur.repos.mloeper.usbguard-applet-qt
         plex-media-player
         # (plex-media-player.overrideAttrs (prev: {
         #   runtimeDependencies =
