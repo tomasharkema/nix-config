@@ -84,7 +84,9 @@
     "buildbot-nix": {
       "inputs": {
         "flake-parts": "flake-parts",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
@@ -123,7 +125,9 @@
         "flake-schemas": "flake-schemas",
         "home-manager": "home-manager",
         "jovian": "jovian",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
         "systems": "systems",
         "yafas": "yafas"
       },
@@ -787,7 +791,7 @@
     },
     "nixos-06cb-009a-fingerprint-sensor": {
       "inputs": {
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
         "lastModified": 1723941282,
@@ -902,7 +906,9 @@
     },
     "nixos-nvidia-vgpu": {
       "inputs": {
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1723143532,
@@ -958,18 +964,17 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1725708790,
-        "narHash": "sha256-Lf8ym/nChNqdkGr8O/omJzssycjgJHnjNwdv41qMkPs=",
-        "owner": "Nixos",
+        "lastModified": 1720535198,
+        "narHash": "sha256-zwVvxrdIzralnSbcpghA92tWu2DV2lwv89xZc8MTrbg=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "bf2c184d5b1a4bf428c46296f248ab34b73131de",
+        "rev": "205fd4226592cc83fd4c0885a3e4c9c400efabb5",
         "type": "github"
       },
       "original": {
-        "owner": "Nixos",
-        "ref": "nixos-unstable-small",
-        "repo": "nixpkgs",
-        "type": "github"
+        "id": "nixpkgs",
+        "ref": "nixos-23.11",
+        "type": "indirect"
       }
     },
     "nixpkgs-lib": {
@@ -1010,55 +1015,12 @@
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
+        "id": "nixpkgs",
         "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "type": "indirect"
       }
     },
     "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1720535198,
-        "narHash": "sha256-zwVvxrdIzralnSbcpghA92tWu2DV2lwv89xZc8MTrbg=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "205fd4226592cc83fd4c0885a3e4c9c400efabb5",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "ref": "nixos-23.11",
-        "type": "indirect"
-      }
-    },
-    "nixpkgs_4": {
-      "locked": {
-        "lastModified": 1720031269,
-        "narHash": "sha256-rwz8NJZV+387rnWpTYcXaRNvzUSnnF9aHONoJIYmiUQ=",
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/9f4128e00b0ae8ec65918efeba59db998750ead6.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/9f4128e00b0ae8ec65918efeba59db998750ead6.tar.gz"
-      }
-    },
-    "nixpkgs_5": {
-      "locked": {
-        "lastModified": 1725634671,
-        "narHash": "sha256-v3rIhsJBOMLR8e/RNWxr828tB+WywYIoajrZKFM+0Gg=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "574d1eac1c200690e27b8eb4e24887f8df7ac27c",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "ref": "nixos-unstable",
-        "type": "indirect"
-      }
-    },
-    "nixpkgs_6": {
       "locked": {
         "lastModified": 1719082008,
         "narHash": "sha256-jHJSUH619zBQ6WdC21fFAlDxHErKVDJ5fpN0Hgx4sjs=",
@@ -1183,7 +1145,7 @@
       "inputs": {
         "flake-compat": "flake-compat_2",
         "gitignore": "gitignore_2",
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
@@ -1229,7 +1191,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-nvidia-vgpu": "nixos-nvidia-vgpu",
         "nixos-recovery": "nixos-recovery",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",
         "nur": "nur",
         "poetry2nix": "poetry2nix",
@@ -1238,7 +1200,8 @@
         "snowfall-lib": "snowfall-lib",
         "systems": "systems_5",
         "tailscalesd": "tailscalesd",
-        "treefmt-nix": "treefmt-nix_2"
+        "treefmt-nix": "treefmt-nix_2",
+        "tsui": "tsui"
       }
     },
     "rust-analyzer-src": {
@@ -1462,6 +1425,26 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "tsui": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1725553663,
+        "narHash": "sha256-PzDC8+42zmnB3XnRISk35jj9SueimZ4kywHlVRmDaWs=",
+        "owner": "neuralinkcorp",
+        "repo": "tsui",
+        "rev": "66ff849f9d5fbce4cc26b7365fcd0946ec4dab70",
+        "type": "github"
+      },
+      "original": {
+        "owner": "neuralinkcorp",
+        "repo": "tsui",
         "type": "github"
       }
     },

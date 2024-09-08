@@ -120,10 +120,9 @@
 
       systemPackages =
         (with pkgs; [
+          tsui
           config.nur.repos.mloeper.usbguard-applet-qt
           agenix-rekey
-          meld
-          _86Box-with-roms
           distrobox
           distrobox-tui
           # dry
@@ -226,14 +225,16 @@
           sshed
           # rmfuse
         ])
-        ++ (lib.optionals pkgs.stdenv.isx86_64 (with pkgs; [
-          cmospwd
-          uefisettings
-          libsmbios
+        ++ (lib.optionals pkgs.stdenv.isx86_64 (
+          with pkgs; [
+            cmospwd
+            uefisettings
+            libsmbios
 
-          dmidecode
-          refind
-        ]));
+            dmidecode
+            refind
+          ]
+        ));
     };
     # services.ntfy-sh.enable = true;
 
@@ -282,8 +283,15 @@
         # insertedDevicePolicy
         # implicitPolicyTarget
         # deviceRulesWithPort
-        IPCAllowedUsers = ["tomas" "root"];
-        IPCAllowedGroups = ["tomas" "root" "plugdev"];
+        IPCAllowedUsers = [
+          "tomas"
+          "root"
+        ];
+        IPCAllowedGroups = [
+          "tomas"
+          "root"
+          "plugdev"
+        ];
       };
 
       irqbalance.enable = true;

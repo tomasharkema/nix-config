@@ -3,9 +3,7 @@
     inputs.snowfall-lib.mkFlake {
       inherit inputs;
 
-      imports = [
-        inputs.agenix-rekey.flakeModule
-      ];
+      imports = [inputs.agenix-rekey.flakeModule];
 
       src = ./.;
 
@@ -84,16 +82,14 @@
       systems.hosts = let
         cudaOff = {...}: {
           nixpkgs = {
-            config = {cudaSupport = false;};
+            config = {
+              cudaSupport = false;
+            };
           };
         };
       in {
-        euro-mir-vm.modules = [
-          cudaOff
-        ];
-        pegasus.modules = [
-          cudaOff
-        ];
+        euro-mir-vm.modules = [cudaOff];
+        pegasus.modules = [cudaOff];
       };
 
       systems.modules = {
@@ -130,42 +126,42 @@
           agenix.darwinModules.default
           agenix-rekey.nixosModules.default
 
-          ({
-            config,
-            lib,
-            ...
-          }: {
-            config = {
-              # nix.settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${config.users.users.tomas.uid}"];
-              # nm-overrides.desktop.home-exec.enable = false;
+          (
+            {
+              config,
+              lib,
+              ...
+            }: {
+              config = {
+                # nix.settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${config.users.users.tomas.uid}"];
+                # nm-overrides.desktop.home-exec.enable = false;
 
-              # system.nixos.tags = ["snowfall"];
-              system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
+                # system.nixos.tags = ["snowfall"];
+                system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
 
-              nix.extraOptions = ''
-                !include ${config.age.secrets.nix-access-tokens-github.path}
-              '';
+                nix.extraOptions = ''
+                  !include ${config.age.secrets.nix-access-tokens-github.path}
+                '';
 
-              age = {
-                secrets = {
-                  nix-access-tokens-github.rekeyFile = ./secrets/github.age;
-                };
+                age = {
+                  secrets = {
+                    nix-access-tokens-github.rekeyFile = ./secrets/github.age;
+                  };
 
-                rekey = {
-                  masterIdentities = [
-                    ./secrets/age-yubikey-identity-usbc.pub
-                  ];
+                  rekey = {
+                    masterIdentities = [./secrets/age-yubikey-identity-usbc.pub];
 
-                  # extraEncryptionPubkeys = [
-                  #   ./secrets/age-yubikey-identity-usba.pub
-                  # ];
+                    # extraEncryptionPubkeys = [
+                    #   ./secrets/age-yubikey-identity-usba.pub
+                    # ];
 
-                  storageMode = "local";
-                  localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+                    storageMode = "local";
+                    localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+                  };
                 };
               };
-            };
-          })
+            }
+          )
         ];
       };
 
@@ -209,7 +205,9 @@
       in
         inputs.agenix-rekey.configure {
           userFlake = inputs.self;
-          nodes = lib.attrsets.filterAttrs (n: v: (!(lib.strings.hasPrefix "installer" n))) (inputs.self.nixosConfigurations // inputs.self.darwinConfigurations);
+          nodes = lib.attrsets.filterAttrs (n: v: (!(lib.strings.hasPrefix "installer" n))) (
+            inputs.self.nixosConfigurations // inputs.self.darwinConfigurations
+          );
           # Example for colmena:
           # inherit ((colmena.lib.makeHive self.colmena).introspect (x: x)) nodes;
         };
@@ -218,8 +216,7 @@
         names = builtins.attrNames self.nixosConfigurations;
       in rec {
         all =
-          builtins.filter
-          (
+          builtins.filter (
             name: let
               cfg = self.nixosConfigurations."${name}".config;
             in
@@ -238,7 +235,9 @@
             "x86_64-linux" = self.installer."x86_64-linux".iso.config.system.build.isoImage;
             "aarch64-linux" = self.installer."aarch64-linux".iso.config.system.build.isoImage;
           };
-          img = {"aarch64-linux" = self.installer."aarch64-linux".img.config.system.build.sdImage;};
+          img = {
+            "aarch64-linux" = self.installer."aarch64-linux".img.config.system.build.sdImage;
+          };
         };
 
         ovmfx86 =
@@ -283,59 +282,60 @@
       outputs-builder = channels: let
         pkgs = channels.nixpkgs;
         system = pkgs.system;
+      in
         # cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
-      in {
-        formatter = channels.nixpkgs.alejandra;
+        {
+          formatter = channels.nixpkgs.alejandra;
 
-        # checks = let
-        #   nixosMachines = lib.mapAttrs' (
-        #     name: config: lib.nameValuePair "nixos-${name}" config.config.system.build.toplevel
-        #   ) ((lib.filterAttrs (_: config: config.pkgs.system == system)) inputs.self.nixosConfigurations);
-        #   packages = lib.mapAttrs' (n: lib.nameValuePair "package-${n}") (
-        #     inputs.self.packages."${system}"
-        #   );
-        # in
-        #   nixosMachines // packages;
+          # checks = let
+          #   nixosMachines = lib.mapAttrs' (
+          #     name: config: lib.nameValuePair "nixos-${name}" config.config.system.build.toplevel
+          #   ) ((lib.filterAttrs (_: config: config.pkgs.system == system)) inputs.self.nixosConfigurations);
+          #   packages = lib.mapAttrs' (n: lib.nameValuePair "package-${n}") (
+          #     inputs.self.packages."${system}"
+          #   );
+          # in
+          #   nixosMachines // packages;
 
-        # topology = import inputs.nix-topology {
-        #   inherit pkgs;
-        #   modules = [
-        #     # Your own file to define global topology. Works in principle like a nixos module but uses different options.
-        #     # ./topology.nix
-        #     # Inline module to inform topology of your existing NixOS hosts.
-        #     {nixosConfigurations = inputs.self.nixosConfigurations;}
-        #   ];
-        # };
+          # topology = import inputs.nix-topology {
+          #   inherit pkgs;
+          #   modules = [
+          #     # Your own file to define global topology. Works in principle like a nixos module but uses different options.
+          #     # ./topology.nix
+          #     # Inline module to inform topology of your existing NixOS hosts.
+          #     {nixosConfigurations = inputs.self.nixosConfigurations;}
+          #   ];
+          # };
 
-        installer = import ./installer {
-          inherit channels;
-          inherit inputs;
+          installer = import ./installer {
+            inherit channels;
+            inherit inputs;
+          };
+
+          # checks = with inputs; {
+          # nixpkgs-lint =
+          # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
+
+          # lint = self.packages.${channels.nixpkgs.system}.run-checks;
+          # };
+
+          # packages = {
+          #   nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
+          #   nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
+          # };
+          # defaultPackage = cachix-deploy-lib.spec {
+          #   agents = {
+          #     blue-fire = inputs.self.nixosConfigurations.blue-fire.config.system.build.toplevel;
+          #     blue-fire-slim = inputs.self.nixosConfigurations.blue-fire-slim.config.system.build.toplevel;
+          #     enzian = inputs.self.nixosConfigurations.enzian.config.system.build.toplevel;
+          #     euro-mir-2 = inputs.self.nixosConfigurations.euro-mir-2.config.system.build.toplevel;
+          #     pegasus = inputs.self.nixosConfigurations.pegasus.config.system.build.toplevel;
+          #     baaa-express = inputs.self.nixosConfigurations.baaa-express.config.system.build.toplevel;
+          #     darwin-builder = inputs.self.nixosConfigurations.darwin-builder.config.system.build.toplevel;
+          #     euro-mir-vm = inputs.self.nixosConfigurations.euro-mir-vm.config.system.build.toplevel;
+          #   };
+          # };
         };
-
-        # checks = with inputs; {
-        # nixpkgs-lint =
-        # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
-
-        # lint = self.packages.${channels.nixpkgs.system}.run-checks;
-        # };
-
-        # packages = {
-        #   nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
-        #   nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
-        # };
-        # defaultPackage = cachix-deploy-lib.spec {
-        #   agents = {
-        #     blue-fire = inputs.self.nixosConfigurations.blue-fire.config.system.build.toplevel;
-        #     blue-fire-slim = inputs.self.nixosConfigurations.blue-fire-slim.config.system.build.toplevel;
-        #     enzian = inputs.self.nixosConfigurations.enzian.config.system.build.toplevel;
-        #     euro-mir-2 = inputs.self.nixosConfigurations.euro-mir-2.config.system.build.toplevel;
-        #     pegasus = inputs.self.nixosConfigurations.pegasus.config.system.build.toplevel;
-        #     baaa-express = inputs.self.nixosConfigurations.baaa-express.config.system.build.toplevel;
-        #     darwin-builder = inputs.self.nixosConfigurations.darwin-builder.config.system.build.toplevel;
-        #     euro-mir-vm = inputs.self.nixosConfigurations.euro-mir-vm.config.system.build.toplevel;
-        #   };
-        # };
-      };
     };
 
   nixConfig = {
@@ -452,7 +452,9 @@
       };
     };
 
-    pre-commit-hooks-nix = {url = "github:cachix/pre-commit-hooks.nix";};
+    pre-commit-hooks-nix = {
+      url = "github:cachix/pre-commit-hooks.nix";
+    };
 
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
@@ -737,6 +739,7 @@
       url = "github:Yeshey/nixos-nvidia-vgpu";
       # url = "github:tomasharkema/nixos-nvidia-vgpu";
       # url = "/home/tomas/Developer/nixos-nvidia-vgpu";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-htop = {
@@ -765,7 +768,7 @@
       # url = "github:nix-community/buildbot-nix/hercules";
       # url = "/home/tomas/Developer/buildbot-nix";
       inputs = {
-        # nixpkgs.follows = "unstable";
+        nixpkgs.follows = "nixpkgs";
         #   treefmt-nix.follows = "treefmt-nix";
       };
     };
@@ -778,11 +781,21 @@
       };
     };
 
-    chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
+    chaotic = {
+      url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-mineral = {
       url = "github:cynicsketch/nix-mineral";
       flake = false;
+    };
+
+    tsui = {
+      url = "github:neuralinkcorp/tsui";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
     };
   };
 }

@@ -51,8 +51,8 @@ in {
     };
 
     home = {
-      file."itermCatppuccin".source = itermCatppuccin;
-      # file = osConfig.home.homeFiles;
+      file = {"itermCatppuccin".source = itermCatppuccin;} // osConfig.home.homeFiles;
+
       stateVersion = "24.11";
 
       # (import ./packages/common.nix {inherit pkgs inputs lib;})

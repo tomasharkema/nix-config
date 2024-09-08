@@ -46,6 +46,7 @@
 
     home = {
       packages = with pkgs; [
+        celluloid
         play-with-mpv
         open-in-mpv
         mpvc

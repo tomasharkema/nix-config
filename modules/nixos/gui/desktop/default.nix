@@ -10,7 +10,9 @@ in {
   options.gui.desktop = {
     enable = lib.mkEnableOption "hallo";
 
-    rdp = {enable = lib.mkEnableOption "hallo";};
+    rdp = {
+      enable = lib.mkEnableOption "hallo";
+    };
   };
 
   config = lib.mkIf (cfg.enable) {
@@ -115,6 +117,9 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        meld
+        _86Box-with-roms
+
         vlc
         boxbuddy
         clutter
@@ -206,7 +211,9 @@ in {
       mtr.enable = true;
       dconf.enable = true;
 
-      chromium = {enable = true;};
+      chromium = {
+        enable = true;
+      };
     };
     systemd.packages = [pkgs.usbguard-notifier];
     # Enable sound with pipewire.
