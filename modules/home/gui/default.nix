@@ -61,11 +61,11 @@ in {
       {package = pkgs.telegram-desktop;}
       {package = pkgs.trayscale;}
       # {package = pkgs.zerotier-ui;}
-      #   {
-      #     desktopName = "org.gnome.usbguard.desktop";
-      #     path = "${pkgs.custom.usbguard-gnome}/share/applications/org.gnome.usbguard.desktop";
-      #   }
-      {package = osConfig.nur.repos.mloeper.usbguard-applet-qt;}
+      {
+        desktopName = "org.gnome.usbguard.desktop";
+        path = "${pkgs.custom.usbguard-gnome}/share/applications/org.gnome.usbguard.desktop";
+      }
+      # {package = osConfig.nur.repos.mloeper.usbguard-applet-qt;}
       # {package = pkgs.notify-client;}
       {package = pkgs.geary;}
       {package = pkgs._1password-gui;}
@@ -91,7 +91,6 @@ in {
       packages = with pkgs; [
         trayscale
         custom.zerotier-ui
-        # usbguard-gnome
         notify-client
       ];
 

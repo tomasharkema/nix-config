@@ -348,9 +348,8 @@
         settings = {
           PasswordAuthentication = false;
           KbdInteractiveAuthentication = true;
-          # PermitRootLogin = "yes";
-          AcceptEnv = "*";
-          X11Forwarding = true;
+          PermitRootLogin = "no"; # "yes";
+          # AcceptEnv = "*";
         };
       };
 
@@ -516,17 +515,22 @@
 
       ssh = {
         # startAgent = true;
-        forwardX11 = true;
+        # forwardX11 = true;
         extraConfig = ''
           ForwardAgent yes
         '';
       };
       mosh.enable = true;
       nix-ld.enable = true;
-      zsh.enable = true;
+      zsh = {
+        enable = true;
+        vteIntegration = true;
+      };
       mtr.enable = true;
       command-not-found.enable = false;
     };
+
+    environment.enableAllTerminfo = true;
 
     hardware = {
       enableAllFirmware = lib.mkDefault true;

@@ -6,9 +6,6 @@
 }: {
   options.gui.fonts = {enable = lib.mkEnableOption "gui.fonts";};
 
-  imports = [./fontconf.nix];
-  disabledModules = ["config/fonts/fontconfig.nix"];
-
   config = lib.mkIf config.gui.fonts.enable {
     systemd = {
       tmpfiles.rules = [
@@ -56,13 +53,12 @@
       fontconfig = {
         enable = true;
         antialias = true;
-        cache32Bit = true;
+        # cache32Bit = true;
         allowBitmaps = true;
-
+        useEmbeddedBitmaps = true;
         defaultFonts = {
           monospace = ["JetBrainsMono Nerd Font Mono"];
           serif = ["Inter"];
-
           sansSerif = ["Inter"];
         };
         # hinting = {
