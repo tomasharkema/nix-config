@@ -43,6 +43,7 @@
 in {
   config = lib.mkIf (stdenv.isLinux && osConfig.gui.enable) {
     gtk.gtk3.bookmarks = [
+      "file:///home/tomas/Dropbox"
       "file:///home/tomas/Developer"
       "file:///home/tomas/Developer/nix-config"
       "file:///mnt/steam"
@@ -64,6 +65,7 @@ in {
       #     desktopName = "org.gnome.usbguard.desktop";
       #     path = "${pkgs.custom.usbguard-gnome}/share/applications/org.gnome.usbguard.desktop";
       #   }
+      {package = osConfig.nur.repos.mloeper.usbguard-applet-qt;}
       # {package = pkgs.notify-client;}
       {package = pkgs.geary;}
       {package = pkgs._1password-gui;}

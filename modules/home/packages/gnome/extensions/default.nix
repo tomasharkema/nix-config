@@ -22,13 +22,10 @@
         {package = media-controls;}
         {package = gsconnect;}
         {package = systemd-manager;}
-        {package = move-clock;}
+        # {package = move-clock;}
         {package = home-assistant-extension;}
         {package = caffeine;}
-        {
-          package =
-            dash-to-panel;
-        }
+        {package = dash-to-panel;}
         {package = reboottouefi;}
         # {
         #   package =
@@ -38,10 +35,7 @@
         #   package =
         #     app-menu-icon-remove-symbolic;
         # }
-        {
-          package =
-            window-is-ready-remover;
-        }
+        {package = window-is-ready-remover;}
         # {
         #   package =
         #     appindicator;
@@ -110,10 +104,10 @@
           package =
             tailscale-qs;
         }
-        {
-          package =
-            todotxt;
-        }
+        # {
+        #   package =
+        #     todotxt;
+        # }
         # {
         #   package =
         #     tophat;
