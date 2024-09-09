@@ -4,18 +4,16 @@
   lib,
   inputs,
   ...
-}:
-with lib;
-with lib.custom; let
+}: let
   cfg = config.trait.builder.hydra;
 in {
   options.trait = {
     builder.hydra = {
-      enable = mkBoolOpt false "SnowflakeOS GNOME configuration";
+      enable = lib.mkEnableOption "SnowflakeOS GNOME configuration";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     networking.extraHosts = ''
       127.0.0.1 localhost-aarch64
     '';

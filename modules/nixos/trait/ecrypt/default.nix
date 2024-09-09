@@ -3,13 +3,12 @@
   lib,
   config,
   ...
-}:
-with lib; let
+}: let
   cfg = config.trait.ecrypt;
 in {
-  options.trait.ecrypt.enable = mkEnableOption "ecryptfs";
+  options.trait.ecrypt.enable = lib.mkEnableOption "ecryptfs";
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     security.pam.enableEcryptfs = true;
 
     boot.kernelModules = ["ecryptfs"];

@@ -4,13 +4,12 @@
   pkgs,
   lib,
   ...
-}:
-with lib; let
+}: let
   cfg = config.apps.unified-remote;
 
   home = "/var/lib/urserver";
 
-  settingType = with types;
+  settingType = with lib.types;
     (oneOf [bool int float str (listOf settingType) (attrsOf settingType)])
     // {
       description = "JSON value";
@@ -21,17 +20,17 @@ with lib; let
   configTarget = "${home}/.urserver/urserver.config";
 in {
   options.apps.unified-remote = {
-    enable = mkEnableOption "unified-remote";
-    package = mkOption {
+    enable = lib.mkEnableOption "unified-remote";
+    package = lib.mkOption {
       type = lib.types.package;
       default = pkgs.custom.unified-remote;
     };
-    pid = mkOption {
+    pid = lib.mkOption {
       type = lib.types.str;
       default = "/run/urserver.pid";
     };
-    settings = mkOption {
-      type = types.attrsOf settingType;
+    settings = lib.mkOption {
+      type = lib.types.attrsOf settingType;
       default = {
         "manager" = {
           "enable" = true;
@@ -46,7 +45,7 @@ in {
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = [pkgs.custom.unified-remote];
 
     systemd = {

@@ -4,31 +4,24 @@
   config,
   inputs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.gui.desktop;
 in {
   options.gui.desktop = {
-    enable = mkEnableOption "hallo";
+    enable = lib.mkEnableOption "hallo";
 
-    rdp = {enable = mkEnableOption "hallo";};
+    rdp = {
+      enable = lib.mkEnableOption "hallo";
+    };
   };
 
-  config = mkIf (cfg.enable) {
+  config = lib.mkIf (cfg.enable) {
     gui.fonts.enable = true;
 
     security.pam.services.passwd.enableGnomeKeyring = true;
 
     services = {
       dbus.packages = [pkgs.usbguard-notifier];
-      libinput.enable = true;
-
-      xserver = {
-        enable = true;
-
-        layout = "us";
-        # xkbVariant = "";
-      };
 
       # xrdp = mkIf cfg.rdp.enable {
       #   enable = true;
@@ -52,7 +45,7 @@ in {
       gvfs.enable = true;
     };
 
-    security.polkit = mkIf cfg.rdp.enable {
+    security.polkit = lib.mkIf cfg.rdp.enable {
       enable = true;
       extraConfig = ''
         polkit.addRule(function(action, subject) {
@@ -122,89 +115,92 @@ in {
 
     programs.virt-manager.enable = true;
 
-    environment.systemPackages =
-      (with pkgs; [nix-software-center])
-      ++ (with pkgs;
-        [
-          usbguard-notifier
-          usbview
-          sqlitebrowser
-          boxbuddy
-          # notify-client
-          # unstable.vscodium
-          clutter
-          effitask
-          filezilla
-          font-manager
-          fractal
-          gamehub
-          gotop
-          gparted
-          grsync
-          gtk-engine-murrine
-          ktailctl
-          libGL
-          libGLU
-          meteo
-          mission-center
-          partition-manager
-          pavucontrol
-          powertop
-          pwvucontrol
-          qdirstat
-          qjournalctl
-          rtfm
-          spot
-          sublime-merge
-          sublime4
-          transmission-remote-gtk
-          trayscale
-          tremotesf
-          ulauncher
-          ventoy-full
-          vsce
-          vscode
-          vte-gtk4
+    environment.systemPackages = with pkgs;
+      [
+        meld
+        _86Box-with-roms
 
-          xdg-utils
-          xdgmenumaker
-          xdiskusage
-          xdotool
-          yelp
-          zed-editor
-        ]
-        ++ optionals pkgs.stdenv.isx86_64 [
-          gnome_mplayer
-          gmtk
-          # pkgs.custom.git-butler
-          # pkgs.wolfram-engine
-          # spotify
-          angryipscanner
-          bottles
-          devdocs-desktop
-          dmidecode
-          ipmiview
-          libsmbios
-          config.nur.repos.mloeper.usbguard-applet-qt
-          # (plex-media-player.overrideAttrs (prev: {
-          #   runtimeDependencies =
-          #     prev.runtimeDependencies
-          #     ++ [
-          #       config.boot.linuxPackages.nvidia_x11
-          #     ];
-          # }))
-          netflix
+        vlc
+        boxbuddy
+        clutter
+        discordo
+        dosbox-x
+        effitask
+        filezilla
+        font-manager
+        fractal
+        gamehub
+        gnomecast
+        go-chromecast
+        gotop
+        gparted
+        grsync
+        gtk-engine-murrine
+        ktailctl
+        libGL
+        libGLU
+        meteo
+        mission-center
+        nix-software-center
+        partition-manager
+        pavucontrol
+        powertop
+        pwvucontrol
+        qdirstat
+        qjournalctl
+        rtfm
+        spot
+        sqlitebrowser
+        sublime-merge
+        sublime4
+        transmission-remote-gtk
+        trayscale
+        tremotesf
+        ulauncher
+        usbview
+        ventoy-full
+        vsce
+        vscode
+        vte-gtk4
+        xdg-utils
+        xdgmenumaker
+        xdiskusage
+        xdotool
+        yelp
+        zed-editor
+      ]
+      ++ lib.optionals pkgs.stdenv.isx86_64 [
+        gnome_mplayer
+        gmtk
+        # pkgs.custom.git-butler
+        # pkgs.wolfram-engine
+        # spotify
+        angryipscanner
+        bottles
+        devdocs-desktop
+        dmidecode
+        ipmiview
+        libsmbios
+        plex-media-player
+        # (plex-media-player.overrideAttrs (prev: {
+        #   runtimeDependencies =
+        #     prev.runtimeDependencies
+        #     ++ [
+        #       config.boot.linuxPackages.nvidia_x11
+        #     ];
+        # }))
+        netflix
 
-          plexamp
-          xpipe
-        ]
-        ++ (with pkgs.custom; [
-          zerotier-ui
-          # ztui
+        plexamp
+        xpipe
+      ]
+      ++ (with pkgs.custom; [
+        zerotier-ui
+        # ztui
 
-          #netbrowse
-          # usbguard-gnome
-        ]));
+        netbrowse
+        # usbguard-gnome
+      ]);
 
     programs = {
       ssh = {
@@ -213,7 +209,9 @@ in {
       mtr.enable = true;
       dconf.enable = true;
 
-      chromium = {enable = true;};
+      chromium = {
+        enable = true;
+      };
     };
     systemd.packages = [pkgs.usbguard-notifier];
     # Enable sound with pipewire.

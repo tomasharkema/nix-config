@@ -2,9 +2,8 @@
   pkgs,
   lib,
   ...
-}:
-with lib; {
-  config = mkIf pkgs.stdenv.isLinux {
+}: {
+  config = lib.mkIf pkgs.stdenv.isLinux {
     home.packages = with pkgs; [
       appindicator-sharp
       # ddcui
@@ -23,13 +22,10 @@ with lib; {
         {package = media-controls;}
         {package = gsconnect;}
         {package = systemd-manager;}
-        {package = move-clock;}
+        # {package = move-clock;}
         {package = home-assistant-extension;}
         {package = caffeine;}
-        {
-          package =
-            dash-to-panel;
-        }
+        {package = dash-to-panel;}
         {package = reboottouefi;}
         # {
         #   package =
@@ -39,10 +35,7 @@ with lib; {
         #   package =
         #     app-menu-icon-remove-symbolic;
         # }
-        {
-          package =
-            window-is-ready-remover;
-        }
+        {package = window-is-ready-remover;}
         # {
         #   package =
         #     appindicator;
@@ -111,10 +104,10 @@ with lib; {
           package =
             tailscale-qs;
         }
-        {
-          package =
-            todotxt;
-        }
+        # {
+        #   package =
+        #     todotxt;
+        # }
         # {
         #   package =
         #     tophat;

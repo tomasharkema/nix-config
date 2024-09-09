@@ -5,8 +5,7 @@
   osConfig,
   inputs,
   ...
-}:
-with lib; let
+}: let
   catppuccin_name = "Catppuccin-Mocha-Compact-Blue-Dark";
   # catppuccin = pkgs.catppuccin-gtk.override {
   #   accents = ["blue"];
@@ -17,9 +16,10 @@ with lib; let
   cursorSize = 24;
   enable = pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable;
 in {
-  config = mkIf enable {
+  config = lib.mkIf enable {
     dconf.settings."org/gnome/desktop/interface" = {
       cursor-size = 24;
+      cursor-theme = "macOS";
     };
     gtk = {
       enable = true;
@@ -49,10 +49,10 @@ in {
       # };
     };
 
-    home = mkIf pkgs.stdenv.isLinux {
+    home = lib.mkIf pkgs.stdenv.isLinux {
       pointerCursor = {
-        name = mkForce "macOS-Monterey";
-        package = mkForce pkgs.apple-cursor;
+        name = lib.mkForce "macOS";
+        package = lib.mkForce pkgs.apple-cursor;
         x11.enable = true;
         gtk.enable = true;
         size = cursorSize;

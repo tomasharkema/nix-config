@@ -187,7 +187,7 @@ in
       rm -rf $out/etc/ipa $out/var/lib/ipa-client/sysrestore
     '';
 
-    meta = with lib; {
+    meta = {
       description = "Identity, Policy and Audit system";
       longDescription = ''
         IPA is an integrated solution to provide centrally managed Identity (users,
@@ -197,9 +197,9 @@ in
         and integration with Active Directory based infrastructures (Trusts).
       '';
       homepage = "https://www.freeipa.org/";
-      license = licenses.gpl3Plus;
-      maintainers = [maintainers.s1341];
-      platforms = platforms.linux;
+      license = lib.licenses.gpl3Plus;
+      maintainers = [lib.maintainers.s1341];
+      platforms = lib.platforms.linux;
       mainProgram = "ipa";
     };
   }

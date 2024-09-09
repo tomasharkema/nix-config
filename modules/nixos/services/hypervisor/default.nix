@@ -3,23 +3,25 @@
   pkgs,
   lib,
   ...
-}:
-with lib;
-with lib.custom; let
+}: let
   cfg = config.services.hypervisor;
 
   libvirtKeytab = "/var/lib/libvirt/krb5.tab";
   qemuKeytab = "/etc/qemu/krb5.tab";
 in {
   options.services.hypervisor = {
-    enable = mkEnableOption "hypervisor";
+    enable = lib.mkEnableOption "hypervisor";
 
-    webservices.enable = mkEnableOption "webservices";
+    webservices.enable = lib.mkEnableOption "webservices";
 
-    bridgeInterfaces = mkOpt (types.listOf types.str) [] "bridgeInterfaces";
+    bridgeInterfaces = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [];
+      description = "bridgeInterfaces";
+    };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     system = {
       nixos.tags = ["hypervisor"];
 

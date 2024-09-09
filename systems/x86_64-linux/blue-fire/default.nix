@@ -4,8 +4,7 @@
   inputs,
   config,
   ...
-}:
-with lib; let
+}: let
   boot-into-bios = pkgs.writeShellScriptBin "boot-into-bios" ''
     sudo ${pkgs.ipmitool}/bin/ipmitool chassis bootparam set bootflag force_bios
   '';
@@ -103,7 +102,7 @@ in {
 
       watchdogd = {enable = true;};
 
-      das_watchdog.enable = mkForce false;
+      das_watchdog.enable = lib.mkForce false;
 
       remote-builders.server.enable = true;
 
@@ -136,7 +135,7 @@ in {
       # };
 
       # tcsd.enable = true;
-      kmscon.enable = mkForce false;
+      kmscon.enable = lib.mkForce false;
 
       prometheus.exporters = {
         ipmi = {
@@ -290,7 +289,7 @@ in {
       nvidia = {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
-        nvidiaSettings = mkForce false;
+        nvidiaSettings = lib.mkForce false;
 
         vgpu = {
           enable = true;
@@ -310,7 +309,7 @@ in {
     };
 
     virtualisation.oci-containers.containers.fastapi-dls = {
-      ports = mkForce ["7070:443"];
+      ports = lib.mkForce ["7070:443"];
     };
 
     services.udev.extraRules = ''

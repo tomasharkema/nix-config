@@ -5,10 +5,9 @@
   pkgs,
   osConfig,
   ...
-}:
-with lib; let
+}: let
   conkyConfig = builtins.readFile ./conky.lua;
-  linux = optional (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
+  linux = lib.optional (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
     services.conky = {
       enable = true;
       extraConfig = conkyConfig;
@@ -17,7 +16,7 @@ with lib; let
     systemd.user.services.conky.Install.WantedBy = ["default.target"];
   };
 
-  darwin = optional (pkgs.stdenv.isDarwin && false) {
+  darwin = lib.optional (pkgs.stdenv.isDarwin && false) {
     home.packages = [pkgs.conky];
 
     launchd.agents."conky" = {
@@ -29,5 +28,5 @@ with lib; let
     };
   };
 in {
-  config = mkMerge (linux ++ darwin);
+  config = lib.mkMerge (linux ++ darwin);
 }

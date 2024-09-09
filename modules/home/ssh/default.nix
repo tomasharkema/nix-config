@@ -4,8 +4,7 @@
   osConfig,
   config,
   ...
-}:
-with lib; {
+}: {
   imports = [./match-blocks.nix];
 
   config = let

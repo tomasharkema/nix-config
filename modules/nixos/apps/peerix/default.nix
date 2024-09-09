@@ -3,8 +3,7 @@
   config,
   lib,
   ...
-}:
-with lib; {
+}: {
   # config = {
   #   age.secrets = {
   #     "peerix-public" = {

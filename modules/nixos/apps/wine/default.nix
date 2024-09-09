@@ -1,7 +1,12 @@
-{ pkgs, config, lib, ... }:
-let cfg = config.apps.wine;
-in with lib; {
-  options.apps.wine = { enable = mkEnableOption "steam"; };
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.apps.wine;
+in {
+  options.apps.wine = {enable = lib.mkEnableOption "steam";};
 
   config = lib.mkIf (cfg.enable && pkgs.stdenv.hostPlatform.isx86_64) {
     environment.systemPackages = with pkgs; [

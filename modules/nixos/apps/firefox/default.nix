@@ -3,13 +3,12 @@
   pkgs,
   lib,
   ...
-}:
-with lib; let
+}: let
   cfg = config.apps.firefox;
 in {
-  options.apps.firefox.enable = mkEnableOption "firefox";
+  options.apps.firefox.enable = lib.mkEnableOption "firefox";
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.firefox = {
       enable = true;
       package = pkgs.firefox;

@@ -6,8 +6,7 @@
   config,
   format,
   ...
-}:
-with lib; {
+}: {
   imports = with inputs; [
     # (modulesPath + "/installer/scan/not-detected.nix")
     nixos-hardware.nixosModules.common-cpu-intel
@@ -18,7 +17,7 @@ with lib; {
 
   config = {
     age.rekey = {
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFWBSBsCepulXWmLkxCirZ0yv0BXXSHB3/iq2NFkHBxs root@enzian";
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKZ68XxpD6TUAyuYa5sl6vPUnSrmTQqD015L05n+B+jY root@enzian";
     };
 
     apps = {
@@ -29,21 +28,21 @@ with lib; {
     };
 
     nix.settings = {
-      keep-outputs = mkForce false;
-      keep-derivations = mkForce false;
+      keep-outputs = lib.mkForce false;
+      keep-derivations = lib.mkForce false;
     };
 
-    specialisation = {
-      mediacenter.configuration = {
-        gui = {
-          gnome.enable = false;
-          media-center.enable = true;
-        };
-        apps = {
-          cec.enable = true;
-        };
-      };
-    };
+    # specialisation = {
+    #   mediacenter.configuration = {
+    #     gui = {
+    #       gnome.enable = false;
+    #       media-center.enable = true;
+    #     };
+    #     apps = {
+    #       cec.enable = true;
+    #     };
+    #   };
+    # };
 
     gui = {
       enable = true;
@@ -57,7 +56,7 @@ with lib; {
 
     services.beesd.filesystems = {
       root = {
-        spec = "UUID=4fb99410-225f-4c6a-a647-2cae35f879f0";
+        spec = "UUID=b4d344ce-bf39-473d-bc97-7b12ef0f97a1";
         hashTableSizeMB = 2048;
         verbosity = "crit";
         extraOptions = ["--loadavg-target" "2.0"];
@@ -92,10 +91,10 @@ with lib; {
     networking = {
       hostName = "enzian";
       hostId = "529fd7fa";
-      firewall = {enable = false;};
+      firewall = {enable = true;};
       # useDHCP = lib.mkDefault false;
       interfaces."enp4s0" = {
-        # useDHCP = lib.mkDefault true;
+        useDHCP = lib.mkDefault true;
         wakeOnLan.enable = true;
       };
     };
@@ -127,6 +126,12 @@ with lib; {
         #"mitigations=off"
       ];
       extraModulePackages = [];
+      recovery = {
+        enable = true;
+        install = true;
+        sign = true;
+        netboot.enable = true;
+      };
     };
 
     hardware = {

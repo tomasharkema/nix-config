@@ -3,15 +3,14 @@
   lib,
   config,
   ...
-}:
-with lib; {
-  config = mkIf false {
+}: {
+  config = lib.mkIf false {
     systemd.services.opentelemetry-collector = {
       serviceConfig = {
-        DynamicUser = mkForce null;
-        ProtectSystem = mkForce null;
-        DevicePolicy = mkForce null;
-        NoNewPrivileges = mkForce null;
+        DynamicUser = lib.mkForce null;
+        ProtectSystem = lib.mkForce null;
+        DevicePolicy = lib.mkForce null;
+        NoNewPrivileges = lib.mkForce null;
       };
     };
 

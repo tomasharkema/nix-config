@@ -5,8 +5,7 @@
   config,
   osConfig,
   ...
-}:
-with lib; {
+}: {
   config = let
     key_path = "${config.home.homeDirectory}/.atuin/key";
   in {
@@ -29,7 +28,7 @@ with lib; {
         style = "compact";
         secrets_filter = true;
         common_subcommands = ["cargo" "go" "git" "npm" "yarn" "pnpm" "kubectl" "nix" "nom" "nh"];
-        daemon = mkIf pkgs.stdenv.isLinux {
+        daemon = lib.mkIf pkgs.stdenv.isLinux {
           enabled = true;
           systemd_socket = true;
           socket_path = "/run/user/1000/atuin.sock";
@@ -59,7 +58,7 @@ with lib; {
         Install.WantedBy = ["default.target"];
 
         Service = {
-          ExecStart = "${getExe config.programs.atuin.package} daemon";
+          ExecStart = "${lib.getExe config.programs.atuin.package} daemon";
           Restart = "on-failure";
           RestartSec = "5s";
         };

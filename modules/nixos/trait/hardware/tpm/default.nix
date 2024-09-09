@@ -3,19 +3,18 @@
   config,
   pkgs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.trait.hardware.tpm;
   # https://nixos.wiki/wiki/TPM
 in {
   options.trait.hardware.tpm = {
-    enable = mkEnableOption "SnowflakeOS GNOME configuration";
+    enable = lib.mkEnableOption "SnowflakeOS GNOME configuration";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     system.nixos.tags = ["tpm"];
 
-    services.ssh-tpm-agent.enable = mkDefault true;
+    services.ssh-tpm-agent.enable = lib.mkDefault true;
 
     security.tpm2 = {
       enable = true;

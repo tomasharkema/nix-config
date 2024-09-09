@@ -1,12 +1,15 @@
-{ pkgs, config, lib, ... }:
-with pkgs;
-with lib;
-with lib.custom;
-let cfg = config.services.command-center;
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with pkgs; let
+  cfg = config.services.command-center;
 in {
   options.services.command-center = {
-    enable = mkBoolOpt true "";
-    enableBot = mkBoolOpt false "";
+    enable = lib.mkEnableOption "command-center" // {default = true;};
+    enableBot = lib.mkEnableOption "command-center-bot";
   };
 
   # config = let
@@ -49,7 +52,7 @@ in {
   #     config = { config, pkgs, ... }: {
   #       systemd.services = { };
 
-  #       system.stateVersion = "24.05";
+  #       system.stateVersion = "24.11";
 
   #       networking = {
   #         firewall = {

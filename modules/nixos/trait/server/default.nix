@@ -3,17 +3,16 @@
   pkgs,
   lib,
   ...
-}:
-with lib; let
+}: let
   cfg = config.trait.server;
 in {
   options.trait.server = {
-    enable = mkEnableOption "server";
+    enable = lib.mkEnableOption "server";
 
-    headless.enable = mkEnableOption "server headless";
+    headless.enable = lib.mkEnableOption "server headless";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     system.nixos.tags = ["server"];
 
     services = {

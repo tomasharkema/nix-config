@@ -3,14 +3,13 @@
   pkgs,
   lib,
   ...
-}:
-with lib; let
+}: let
   cfg = config.apps.samsung;
 in {
   options.apps.samsung = {
-    enable = mkEnableOption "samsung";
+    enable = lib.mkEnableOption "samsung";
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.udev = {
       enable = true;
       packages = with pkgs; [heimdall-gui libusb];

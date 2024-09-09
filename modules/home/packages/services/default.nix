@@ -1,6 +1,9 @@
-{ pkgs, lib, ... }:
-with lib; {
-  config = mkIf (pkgs.stdenv.isLinux && false) {
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  config = lib.mkIf (pkgs.stdenv.isLinux) {
     services = {
       pbgopy.enable = true;
       unclutter.enable = true;

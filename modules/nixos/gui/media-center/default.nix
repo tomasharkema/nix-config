@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}:
-with lib; let
+}: let
   cfg = config.gui."media-center";
 
   kodi = pkgs.kodi-wayland.withPackages (pkgs:
@@ -35,11 +34,11 @@ with lib; let
       iagl
     ]);
 in {
-  options.gui."media-center" = {enable = mkEnableOption "gui.media-center";};
+  options.gui."media-center" = {enable = lib.mkEnableOption "gui.media-center";};
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     system.nixos.tags = ["media-center"];
-    #    xdg.portal.enable = mkForce false;
+    #    xdg.portal.enable = lib.mkForce false;
 
     programs.dconf.enable = true;
 
@@ -57,7 +56,7 @@ in {
         enable = true;
       };
 
-      kmscon = {enable = mkForce false;};
+      kmscon = {enable = lib.mkForce false;};
 
       pipewire = {
         enable = true;
@@ -85,11 +84,11 @@ in {
       };
     };
 
-    apps.flatpak.enable = mkForce false;
+    apps.flatpak.enable = lib.mkForce false;
 
     gui = {
-      gnome.enable = mkForce false;
-      quiet-boot.enable = mkForce false;
+      gnome.enable = lib.mkForce false;
+      quiet-boot.enable = lib.mkForce false;
     };
 
     systemd = {
@@ -99,10 +98,10 @@ in {
       ];
 
       targets = {
-        sleep.enable = mkForce false;
-        suspend.enable = mkForce false;
-        hibernate.enable = mkForce false;
-        hybrid-sleep.enable = mkForce false;
+        sleep.enable = lib.mkForce false;
+        suspend.enable = lib.mkForce false;
+        hibernate.enable = lib.mkForce false;
+        hybrid-sleep.enable = lib.mkForce false;
       };
     };
 
@@ -148,13 +147,13 @@ in {
 
     # home-manager = {
     #   users.media = {
-    #     home.stateVersion = mkDefault "24.05";
+    #     home.stateVersion = mkDefault "24.11";
     #     xdg.enable = true;
     #   };
     # };
 
     networking.firewall = {
-      enable = mkForce false;
+      enable = lib.mkForce false;
     };
   };
 }

@@ -3,16 +3,14 @@
   pkgs,
   lib,
   ...
-}:
-with lib;
-with lib.custom; let
+}: let
   cfg = config.trait.raspberry;
 in {
   options.trait.raspberry = {
-    enable = mkEnableOption "SnowflakeOS GNOME configuration";
+    enable = lib.mkEnableOption "SnowflakeOS GNOME configuration";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     virtualisation.vmVariant = {
       virtualisation = {
         cores = 4;
@@ -50,8 +48,8 @@ in {
     # NixOS wants to enable GRUB by default
     boot.loader = {
       grub.enable = false;
-      systemd-boot.enable = mkForce false;
-      generic-extlinux-compatible.enable = mkDefault true;
+      systemd-boot.enable = lib.mkForce false;
+      generic-extlinux-compatible.enable = lib.mkDefault true;
     };
 
     # sdImage.compressImage = false;
@@ -69,7 +67,7 @@ in {
     #   };
 
     #   promtail = {
-    #     enable = mkForce false;
+    #     enable = lib.mkForce false;
     #   };
     #   blueman.enable = true;
     # };
@@ -83,11 +81,11 @@ in {
 
     apps.resilio.enable = false;
 
-    # system.stateVersion = "24.05";
+    # system.stateVersion = "24.11";
 
     nix.settings = {
-      keep-outputs = mkForce false;
-      keep-derivations = mkForce false;
+      keep-outputs = lib.mkForce false;
+      keep-derivations = lib.mkForce false;
     };
 
     hardware = {

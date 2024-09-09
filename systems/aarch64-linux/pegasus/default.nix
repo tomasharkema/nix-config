@@ -3,8 +3,7 @@
   inputs,
   lib,
   ...
-}:
-with lib; {
+}: {
   imports = with inputs; [
     nixos-hardware.nixosModules.raspberry-pi-4
     # "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
@@ -102,8 +101,8 @@ with lib; {
     ];
 
     nix.settings = {
-      keep-outputs = mkForce false;
-      keep-derivations = mkForce false;
+      keep-outputs = lib.mkForce false;
+      keep-derivations = lib.mkForce false;
     };
 
     boot = {

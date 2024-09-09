@@ -3,17 +3,16 @@
   config,
   pkgs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.services.freeipa.replica;
   hostHostName = config.networking.hostName;
   hostConfig = config;
 in {
   options.services.freeipa.replica = {
-    enable = mkEnableOption "freeipa replica";
+    enable = lib.mkEnableOption "freeipa replica";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     system.nixos.tags = ["freeipa-replica"];
 
     # networking.nat = {
@@ -40,7 +39,7 @@ in {
     #   }: {
     #     environment.systemPackages = with pkgs; [freeipa];
 
-    #     system.stateVersion = "24.05";
+    #     system.stateVersion = "24.11";
 
     #     networking = {
     #       hostName = "${hostHostName}-replica";
@@ -78,7 +77,7 @@ in {
 
     virtualisation = {
       podman = {
-        defaultNetwork.settings = mkForce {
+        defaultNetwork.settings = lib.mkForce {
           subnets = [
             {
               gateway = "10.89.0.1";

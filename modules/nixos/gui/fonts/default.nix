@@ -3,14 +3,22 @@
   config,
   lib,
   ...
-}:
-with lib; {
-  options.gui.fonts = {enable = mkEnableOption "gui.fonts";};
+}: {
+  options.gui.fonts = {enable = lib.mkEnableOption "gui.fonts";};
 
   imports = [./fontconf.nix];
   disabledModules = ["config/fonts/fontconfig.nix"];
 
-  config = mkIf config.gui.fonts.enable {
+  config = lib.mkIf config.gui.fonts.enable {
+    systemd = {
+      tmpfiles.rules = [
+        "L+ /usr/local/share/fonts - - - - /run/current-system/sw/share/X11/fonts"
+      ];
+      user.tmpfiles.users.tomas.rules = [
+        "L+ /home/tomas/.local/share/fonts - - - - /run/current-system/sw/share/X11/fonts"
+      ];
+    };
+
     # system.fsPackages = [pkgs.bindfs];
     # fileSystems = let
     #   mkRoSymBind = path: {
@@ -63,14 +71,13 @@ with lib; {
         # };
       };
 
-      packages = with pkgs;
-      with pkgs.custom; [
-        din
-        futura
-        fast-font
+      packages = with pkgs; [
+        custom.din
+        custom.futura
+        custom.fast-font
         # exult
         b612
-        b612-nerdfont
+        custom.b612-nerdfont
         bakoma_ttf
         cm_unicode
         dina-font
@@ -82,7 +89,7 @@ with lib; {
         lmmath
         mplus-outline-fonts.githubRelease
         nerdfonts
-        neue-haas-grotesk
+        custom.neue-haas-grotesk
         noto-fonts
         noto-fonts-cjk
         noto-fonts-emoji
@@ -91,7 +98,7 @@ with lib; {
         open-sans
         proggyfonts
         roboto-mono
-        san-francisco
+        custom.san-francisco
         ubuntu_font_family
         vegur
       ];

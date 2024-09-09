@@ -3,14 +3,13 @@
   lib,
   pkgs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.apps.buildbot.worker;
 in {
   options.apps.buildbot.worker = {
-    enable = mkEnableOption "buildbot worker";
+    enable = lib.mkEnableOption "buildbot worker";
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     age.secrets.buildbot-worker-password = {
       rekeyFile = ./buildbot-worker-password.age;
     };

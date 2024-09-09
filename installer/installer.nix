@@ -4,16 +4,15 @@
   inputs,
   config,
   ...
-}:
-with lib; let
+}: let
   disko = inputs.disko.packages."${pkgs.system}".disko;
   keys = pkgs.callPackage ../packages/authorized-keys {};
   inputValues = builtins.attrValues inputs; # .out
   drvs = builtins.map (v: v.outPath) inputValues;
 
   wifi-connect = pkgs.writeShellScriptBin "wifi-connect" ''
-    SSID="$(${getExe pkgs.gum} input --placeholder SSID)"
-    PASS="$(${getExe pkgs.gum} input --password --placeholder PASS)"
+    SSID="$(${lib.getExe pkgs.gum} input --placeholder SSID)"
+    PASS="$(${lib.getExe pkgs.gum} input --password --placeholder PASS)"
 
     sudo systemctl enable --now wpa_supplicant
 
@@ -31,7 +30,7 @@ in {
         package = pkgs.nixVersions.nix_2_23;
       }
       // import ./config.nix;
-    boot.supportedFilesystems = ["bcachefs"];
+    # boot.supportedFilesystems = ["bcachefs"];
     users = {
       users = {
         nixos = {uid = 2000;};

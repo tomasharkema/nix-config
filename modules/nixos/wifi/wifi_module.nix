@@ -1,9 +1,15 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.wifi;
 
-  getFileName = stringAsChars (x: if x == " " then "-" else x);
+  getFileName = lib.stringAsChars (x:
+    if x == " "
+    then "-"
+    else x);
 
   createWifi = ssid: opt: {
     name = ''
@@ -20,20 +26,20 @@ let
         ssid=${ssid}
 
         [wifi-security]
-        ${optionalString (opt.psk != null) ''
+        ${lib.optionalString (opt.psk != null) ''
           key-mgmt=wpa-psk
           psk=${opt.psk}''}
       '';
     };
   };
 
-  keyFiles = mapAttrs' createWifi config.networking.wireless.networks;
+  keyFiles = lib.mapAttrs' createWifi config.networking.wireless.networks;
 in {
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     environment.etc = keyFiles;
 
     systemd.services.NetworkManager-predefined-connections = {
-      restartTriggers = mapAttrsToList (name: value: value.source) keyFiles;
+      restartTriggers = lib.mapAttrsToList (name: value: value.source) keyFiles;
       serviceConfig = {
         Type = "oneshot";
         RemainAfterExit = true;
@@ -41,7 +47,7 @@ in {
         ExecReload = "${pkgs.networkmanager}/bin/nmcli connection reload";
       };
       reloadIfChanged = true;
-      wantedBy = [ "multi-user.target" ];
+      wantedBy = ["multi-user.target"];
     };
   };
 }

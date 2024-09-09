@@ -4,8 +4,7 @@
   osConfig,
   config,
   ...
-}:
-with lib; let
+}: let
   inherit (pkgs) stdenv;
 
   bgGenerate = name: srcc:
@@ -42,8 +41,9 @@ with lib; let
   bgPng = bgGenerate "bg" bg;
   bgLightPng = bgGenerate "bgLight" bgLight;
 in {
-  config = mkIf (stdenv.isLinux && osConfig.gui.enable) {
+  config = lib.mkIf (stdenv.isLinux && osConfig.gui.enable) {
     gtk.gtk3.bookmarks = [
+      "file:///home/tomas/Dropbox"
       "file:///home/tomas/Developer"
       "file:///home/tomas/Developer/nix-config"
       "file:///mnt/steam"
@@ -65,6 +65,7 @@ in {
       #     desktopName = "org.gnome.usbguard.desktop";
       #     path = "${pkgs.custom.usbguard-gnome}/share/applications/org.gnome.usbguard.desktop";
       #   }
+      {package = osConfig.nur.repos.mloeper.usbguard-applet-qt;}
       # {package = pkgs.notify-client;}
       {package = pkgs.geary;}
       {package = pkgs._1password-gui;}
@@ -87,16 +88,15 @@ in {
     };
 
     home = {
-      packages = with pkgs;
-      with pkgs.custom; [
+      packages = with pkgs; [
         trayscale
-        zerotier-ui
+        custom.zerotier-ui
         # usbguard-gnome
         notify-client
       ];
 
       activation = {
-        userSymlinks-fonts = mkIf (stdenv.isLinux && osConfig.gui.enable) ''
+        userSymlinks-fonts = lib.mkIf (stdenv.isLinux && osConfig.gui.enable) ''
           ln -sfn /run/current-system/sw/share/X11/fonts ~/.local/share/fonts
         '';
 
@@ -122,8 +122,8 @@ in {
             sha256 = "sha256:1g4mrz2d8h13rp8z2b9cn1wdr4la5zzrfkqgblayb56zg7706ga6";
           };
         };
-        ".background-image.svg" = mkIf isSvg {source = "${bg}";};
-        ".background-image.jpg" = mkIf (!isSvg) {source = "${bg}";};
+        ".background-image.svg" = lib.mkIf isSvg {source = "${bg}";};
+        ".background-image.jpg" = lib.mkIf (!isSvg) {source = "${bg}";};
         ".background-image".source = "${bg}";
         ".background-image.png".source = "${bgPng}";
         ".background-image-light.png".source = "${bgLightPng}";

@@ -24,11 +24,11 @@ buildNpmPackage rec {
 
   propagatedBuildInputs = [libcec ffmpeg];
 
-  meta = with lib; {
+  meta = {
     description = "playercast";
     # license = licenses.lgpl21;
     # homepage = "https://github.com/cockpit-project/cockpit-machines";
-    platforms = platforms.linux;
-    maintainers = with maintainers; [];
+    platforms = lib.platforms.linux;
+    maintainers = with lib.maintainers; [];
   };
 }

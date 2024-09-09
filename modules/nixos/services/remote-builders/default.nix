@@ -3,17 +3,16 @@
   pkgs,
   lib,
   ...
-}:
-with lib; let
+}: let
   cfg = config.services.remote-builders;
 in {
   options.services.remote-builders = {
-    server.enable = mkEnableOption "remote-builders";
-    client.enable = mkEnableOption "remote-builders";
+    server.enable = lib.mkEnableOption "remote-builders";
+    client.enable = lib.mkEnableOption "remote-builders";
   };
 
   config = {
-    users.users.builder = mkIf cfg.server.enable {
+    users.users.builder = lib.mkIf cfg.server.enable {
       isSystemUser = true;
       group = "agent";
       # extraGroups = ["rslsync"];
@@ -21,9 +20,9 @@ in {
       openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
     };
 
-    nix.settings.trusted-users = mkIf cfg.server.enable ["builder"];
+    nix.settings.trusted-users = lib.mkIf cfg.server.enable ["builder"];
 
-    nix.buildMachines = mkIf cfg.client.enable [
+    nix.buildMachines = lib.mkIf cfg.client.enable [
       {
         hostName = "builder@blue-fire";
         systems = ["aarch64-linux" "x86_64-linux"];

@@ -10,11 +10,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1722597419,
+        "lastModified": 1725722682,
         "owner": "oddlama",
         "repo": "agenix-rekey",
-        "rev": "126b4a5133eb361cbf5bf90e44c71b6f830845ec",
-        "treeHash": "e557d5effc6a903e015ddde3bd6a0260f9a6b734",
+        "rev": "10ea05a0077aefe03b443fdb63b58ab78d0440f3",
+        "treeHash": "121301b33dde431faa9afc4c01bb590a70087747",
         "type": "github"
       },
       "original": {
@@ -26,11 +26,11 @@
     "devenv": {
       "locked": {
         "dir": "src/modules",
-        "lastModified": 1725464985,
+        "lastModified": 1725637114,
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "325588271687d275632958b4c988ef7a05772f65",
-        "treeHash": "a85a79c0941bff354a040b6d17fe1f542a661ed1",
+        "rev": "c31e347a96dbb7718a0279afa993752a7dfc6a39",
+        "treeHash": "e0dfcbbfb0974603336900406b364bd4d1308fa4",
         "type": "github"
       },
       "original": {
@@ -156,11 +156,11 @@
     },
     "nixlib": {
       "locked": {
-        "lastModified": 1725152544,
+        "lastModified": 1725757153,
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "rev": "7f0b9e4fbd91826cb9ce6babbc11c87903191051",
-        "treeHash": "e4a26c498523ce11da25876ba964236a8f892c2d",
+        "rev": "68584f89dd0eb16fea5d80ae127f3f681f6a5df7",
+        "treeHash": "4b2addfc51346dbfafc60f49e97d3ce5cfed2406",
         "type": "github"
       },
       "original": {
@@ -177,11 +177,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1725298144,
+        "lastModified": 1725843519,
         "owner": "nix-community",
         "repo": "nixos-generators",
-        "rev": "8e337ce40421c4f33e7535aeb988d8e30fe067eb",
-        "treeHash": "e22c416f53074e4ee367c1e0ef7759af317b0e4d",
+        "rev": "214efbd73241d72a8f48b8b9a73bb54895cd51a7",
+        "treeHash": "b40351cb3255bb8a7ec7afa123b8d3da53e79fb7",
         "type": "github"
       },
       "original": {
@@ -208,11 +208,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1725001927,
+        "lastModified": 1725693463,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6e99f2a27d600612004fbd2c3282d614bfee6421",
-        "treeHash": "1e85443cc9f0ba302df2cf61cacb8014943e2d19",
+        "rev": "68e7dce0a6532e876980764167ad158174402c6f",
+        "treeHash": "ee872ee4d2426a6c3e1e4b3fa844550ce1b52b29",
         "type": "github"
       },
       "original": {
@@ -224,11 +224,11 @@
     },
     "nixpkgs-stable_2": {
       "locked": {
-        "lastModified": 1725001927,
+        "lastModified": 1725693463,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6e99f2a27d600612004fbd2c3282d614bfee6421",
-        "treeHash": "1e85443cc9f0ba302df2cf61cacb8014943e2d19",
+        "rev": "68e7dce0a6532e876980764167ad158174402c6f",
+        "treeHash": "ee872ee4d2426a6c3e1e4b3fa844550ce1b52b29",
         "type": "github"
       },
       "original": {
@@ -249,11 +249,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1724857454,
+        "lastModified": 1725513492,
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
-        "rev": "4509ca64f1084e73bc7a721b20c669a8d4c5ebe6",
-        "treeHash": "ced5a8df7c554ce10bf26223c002f41b31aff034",
+        "rev": "7570de7b9b504cfe92025dd1be797bf546f66528",
+        "treeHash": "4b46d77870afecd8f642541cb4f4927326343b59",
         "type": "github"
       },
       "original": {
@@ -272,11 +272,11 @@
         "nixpkgs-stable": "nixpkgs-stable_2"
       },
       "locked": {
-        "lastModified": 1724857454,
+        "lastModified": 1725513492,
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
-        "rev": "4509ca64f1084e73bc7a721b20c669a8d4c5ebe6",
-        "treeHash": "ced5a8df7c554ce10bf26223c002f41b31aff034",
+        "rev": "7570de7b9b504cfe92025dd1be797bf546f66528",
+        "treeHash": "4b46d77870afecd8f642541cb4f4927326343b59",
         "type": "github"
       },
       "original": {

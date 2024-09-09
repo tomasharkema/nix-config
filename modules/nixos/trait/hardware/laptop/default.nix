@@ -4,23 +4,23 @@
   inputs,
   pkgs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.trait.hardware.laptop;
 in {
   options.trait.hardware.laptop = {
-    enable = mkEnableOption "laptop";
+    enable = lib.mkEnableOption "laptop";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     system.nixos.tags = ["laptop"];
     powerManagement.enable = true;
 
     # environment.systemPackages = [inputs.nbfc-linux.packages."${pkgs.system}".default];
 
-    home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; (optional
+    home-manager.users.tomas.programs.gnome-shell.extensions =
+      lib.optional
       (!config.trait.hardware.laptop.thinkpad.enable)
-      {package = battery-health-charging;});
+      {package = pkgs.gnomeExtensions.battery-health-charging;};
 
     boot = {
       kernelModules = ["acpi_call"];

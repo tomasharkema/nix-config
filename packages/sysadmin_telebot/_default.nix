@@ -40,7 +40,7 @@ with python310Packages; let
       telegram
     ];
     doCheck = false;
-    # meta = with lib; {
+    # meta =  {
     #   homepage = "https://github.com/mkdocstrings/autorefs";
     #   description = "Automatically link across pages in MkDocs.";
     #   license = licenses.isc;

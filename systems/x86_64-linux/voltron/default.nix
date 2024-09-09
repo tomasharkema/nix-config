@@ -4,8 +4,7 @@
   config,
   lib,
   ...
-}:
-with lib; {
+}: {
   imports = with inputs; [
     ./hardware-configuration.nix
     nixos-hardware.nixosModules.common-pc-laptop-acpi_call
@@ -97,7 +96,6 @@ with lib; {
     };
 
     apps = {
-      # android.enable = true;
       steam.enable = true;
       # opensnitch.enable = true;
       # usbip.enable = true;
@@ -175,7 +173,7 @@ with lib; {
       avahi = {
         enable = true;
         # allowInterfaces = ["wlp59s0"];
-        reflector = mkForce false;
+        reflector = lib.mkForce false;
       };
     };
 
@@ -195,29 +193,29 @@ with lib; {
       #   interface = "wlp4s0";
       # };
 
-      ccache = {
-        enable = true;
-        packageNames = [
-          "freeipa"
-          "sssd"
+      # ccache = {
+      #   enable = true;
+      #   packageNames = [
+      #     "freeipa"
+      #     "sssd"
 
-          "chromium"
-          "chromium-unwrapped"
+      #     "chromium"
+      #     "chromium-unwrapped"
 
-          "ffmpeg"
-          "ffmpeg-full"
+      #     "ffmpeg"
+      #     "ffmpeg-full"
 
-          "zerotierone"
-          "ztui"
-        ];
-      };
+      #     "zerotierone"
+      #     "ztui"
+      #   ];
+      # };
     };
 
-    nix.settings = {
-      extra-sandbox-paths = [config.programs.ccache.cacheDir];
-    };
+    # nix.settings = {
+    #   extra-sandbox-paths = [config.programs.ccache.cacheDir];
+    # };
 
-    boot.kernelPackages = mkForce pkgs.linuxPackages_cachyos;
+    boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
 
     chaotic = {
       scx.enable = true; # by default uses scx_rustland scheduler

@@ -3,8 +3,7 @@
   inputs,
   lib,
   ...
-}:
-with lib; {
+}: {
   imports = with inputs; [
     "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
     ./hardware-configuration.nix
@@ -17,7 +16,7 @@ with lib; {
 
     # nixpkgs.crossSystem.system = "aarch64-linux";
     networking = {
-      wireless.enable = mkForce false;
+      wireless.enable = lib.mkForce false;
       hostName = "euro-mir-vm";
     };
 
@@ -70,7 +69,7 @@ with lib; {
     };
 
     boot = {
-      growPartition = mkDefault false;
+      growPartition = lib.mkDefault false;
 
       tmp = {
         useTmpfs = false;
@@ -100,12 +99,12 @@ with lib; {
     services = {
       remote-builders.client.enable = true;
       #      kmscon.enable = false;
-      upower.enable = mkForce false;
-      auto-cpufreq.enable = mkForce false;
-      monit.enable = mkForce false;
+      upower.enable = lib.mkForce false;
+      auto-cpufreq.enable = lib.mkForce false;
+      monit.enable = lib.mkForce false;
       # tor.enable = false;
-      # xrdp.enable = mkForce false;
-      fwupd.enable = mkForce false;
+      # xrdp.enable = lib.mkForce false;
+      fwupd.enable = lib.mkForce false;
 
       # spice-autorandr.enable = true;
       spice-vdagentd.enable = true;

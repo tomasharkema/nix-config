@@ -3,14 +3,13 @@
   lib,
   config,
   ...
-}:
-with lib; {
+}: {
   config = {
-    environment.systemPackages = with pkgs;
-      (optionals pkgs.stdenv.isx86_64 [
+    environment.systemPackages =
+      (lib.optionals pkgs.stdenv.isx86_64 [
         # nix-doc
       ])
-      ++ [
+      ++ (with pkgs; [
         #   # # snowfallorg.flake
         #   # nix-init
         #   # nixci
@@ -52,9 +51,9 @@ with lib; {
 
         devenv
 
-        # fh
+        fh
         flake-checker
-        # fup-repl
+        fup-repl
         hydra-check
         hydra-cli
         manix
@@ -83,6 +82,6 @@ with lib; {
         nixpkgs-lint
         nurl
         statix
-      ];
+      ]);
   };
 }

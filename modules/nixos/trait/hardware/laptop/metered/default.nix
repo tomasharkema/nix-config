@@ -3,11 +3,10 @@
   lib,
   config,
   ...
-}:
-with lib; let
+}: let
   cfg = config.trait.hardware.laptop;
 in {
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     systemd = {
       services = {
         # "unmetered-connection" = {

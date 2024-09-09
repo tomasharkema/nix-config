@@ -3,13 +3,12 @@
   config,
   pkgs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.apps.podman;
 in {
-  options.apps.podman = {enable = mkEnableOption "enable podman";};
+  options.apps.podman = {enable = lib.mkEnableOption "enable podman";};
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     system.nixos.tags = ["podman"];
 
     environment.systemPackages = with pkgs; [

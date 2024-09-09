@@ -1,6 +1,11 @@
-{ config, pkgs, lib, ... }:
-with lib; {
-  config = mkIf
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  config =
+    lib.mkIf
     (config.services.monit.enable && config.services.postfix.enable && false) {
       services.monit = {
         config = ''

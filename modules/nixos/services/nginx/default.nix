@@ -1,43 +1,45 @@
-{ config, lib, pkgs, ... }:
-with lib;
-with lib.custom;
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.proxy-services;
 
   certPath = "${cfg.crt.crt}";
   keyPath = "${cfg.crt.key}";
 in {
   options.proxy-services = {
-    enable = mkEnableOption "enable nginx";
+    enable = lib.mkEnableOption "enable nginx";
 
-    vhost = mkOption {
-      type = types.str;
+    vhost = lib.mkOption {
+      type = lib.types.str;
       default = "${config.networking.hostName}.ling-lizard.ts.net";
       description = "vhost";
     };
 
-    services = mkOption {
-      type = types.attrs;
-      default = { };
+    services = lib.mkOption {
+      type = lib.types.attrs;
+      default = {};
       description = "services";
     };
 
     crt = {
-      key = mkOption {
-        type = types.str;
+      key = lib.mkOption {
+        type = lib.types.str;
         default = "/etc/ssl/private/tailscale.key";
         description = "vhost";
       };
 
-      crt = mkOption {
-        type = types.str;
+      crt = lib.mkOption {
+        type = lib.types.str;
         default = "/etc/ssl/certs/tailscale.crt";
         description = "vhost";
       };
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.nginx = {
       enable = true;
       recommendedProxySettings = true;
@@ -55,25 +57,27 @@ in {
         sslCertificate = "${certPath}";
         sslCertificateKey = "${keyPath}";
 
-        locations = {
-          # "/webhook" = {
-          #   return = "302 /webhook/";
-          # };
-          #     "/webhook" = {
-          #       proxyPass = "http://localhost:${builtins.toString config.services.webhook.port}";
-          #       extraConfig = ''
-          #         rewrite /webhook(.*) $1 break;
-          #       '';
-          #     };
-        } // config.proxy-services.services;
+        locations =
+          {
+            # "/webhook" = {
+            #   return = "302 /webhook/";
+            # };
+            #     "/webhook" = {
+            #       proxyPass = "http://localhost:${builtins.toString config.services.webhook.port}";
+            #       extraConfig = ''
+            #         rewrite /webhook(.*) $1 break;
+            #       '';
+            #     };
+          }
+          // config.proxy-services.services;
       };
     };
 
     users.groups = {
-      "ssl-cert" = { members = [ "root" "tomas" "nginx" "tailscale" ]; };
+      "ssl-cert" = {members = ["root" "tomas" "nginx" "tailscale"];};
     };
 
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [80 443];
 
     systemd = {
       #tmpfiles.rules = [
@@ -124,9 +128,8 @@ in {
         # chown root:ssl-cert -R "${cfg.dir}"
         # chmod 660 -R "${cfg.dir}"
 
-        wantedBy =
-          [ "multi-user.target" "tailscaled.service" "network.target" ];
-        after = [ "multi-user.target" "tailscaled.service" "network.target" ];
+        wantedBy = ["multi-user.target" "tailscaled.service" "network.target"];
+        after = ["multi-user.target" "tailscaled.service" "network.target"];
         # wants = ["tailscaled.service"];
       };
 

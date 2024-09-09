@@ -6,9 +6,7 @@
   lib,
   system,
   ...
-}:
-with lib;
-with lib.custom; let
+}: let
   cfg = config.custom.nix;
 in {
   imports = [
@@ -17,9 +15,9 @@ in {
 
   options = {
     gui = {
-      enable = mkEnableOption "Whether or not to manage nix configuration.";
+      enable = lib.mkEnableOption "Whether or not to manage nix configuration.";
       gnome.enable =
-        mkEnableOption "Whether or not to manage nix configuration.";
+        lib.mkEnableOption "Whether or not to manage nix configuration.";
     };
   };
 

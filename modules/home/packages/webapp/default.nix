@@ -34,8 +34,7 @@
   pkgs,
   lib,
   ...
-}:
-with lib; let
+}: let
   nixosWebapp = {
     name = "nixos-search";
     desktopName = "NixOS Search";
@@ -52,16 +51,15 @@ with lib; let
   };
 in {
   options.apps.gui.webapp = {
-    apps = mkOption {
-      type = with types;
-        listOf (submodule {
-          options = {
-            name = mkOption {type = str;};
-            desktopName = mkOption {type = str;};
-            url = mkOption {type = str;};
-            icon = mkOption {type = path;};
-          };
-        });
+    apps = lib.mkOption {
+      type = lib.types.listOf (lib.types.submodule {
+        options = {
+          name = lib.mkOption {type = lib.types.str;};
+          desktopName = lib.mkOption {type = lib.types.str;};
+          url = lib.mkOption {type = lib.types.str;};
+          icon = lib.mkOption {type = lib.types.path;};
+        };
+      });
 
       description = "webapps";
       default = [nixosWebapp];
@@ -127,7 +125,7 @@ in {
     #     icon = icon;
     #   });
   in
-    mkIf pkgs.stdenv.isLinux {
+    lib.mkIf pkgs.stdenv.isLinux {
       systemd.user.tmpfiles.rules =
         lib.lists.forEach folders ({path, ...}: "d ${path} 0777 tomas tomas -");
       # environment.systemPackages = apps;

@@ -4,17 +4,15 @@
   pkgs,
   inputs,
   ...
-}:
-with lib;
-with lib.custom; let
+}: let
   cfg = config.apps.flatpak;
   enable = cfg.enable && config.gui.enable;
 in {
   imports = with inputs; [nix-flatpak.nixosModules.nix-flatpak];
 
-  options.apps.flatpak = {enable = mkBoolOpt false "flatpak";};
+  options.apps.flatpak = {enable = lib.mkEnableOption "flatpak";};
 
-  config = mkIf enable {
+  config = lib.mkIf enable {
     xdg.portal = {
       enable = true;
       config.common.default = "gnome";
@@ -61,7 +59,7 @@ in {
           "com.gitbutler.gitbutler"
         ]
         ++ (
-          optionals pkgs.stdenv.isx86_64
+          lib.optionals pkgs.stdenv.isx86_64
           [
             # "com.discordapp.Discord"
             "com.spotify.Client"

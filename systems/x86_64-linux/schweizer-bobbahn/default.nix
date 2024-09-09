@@ -4,8 +4,7 @@
   config,
   lib,
   ...
-}:
-with lib; {
+}: {
   imports = with inputs; [
     ./hardware-configuration.nix
 
@@ -32,21 +31,21 @@ with lib; {
     gui = {
       enable = true;
       desktop.enable = true;
-      gnome.enable = mkDefault true;
+      gnome.enable = lib.mkDefault true;
       quiet-boot.enable = true;
     };
 
     # apps.spotifyd.enable = true;
 
     apps = {
-      steam.enable = true;
+      steam.enable = false; # true;
       # usbip.enable = true;
       netdata.enable = true;
       unified-remote.enable = true;
       # cec.enable = true;
     };
 
-    disks.bcachefs = {
+    disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01";
     };
@@ -83,19 +82,14 @@ with lib; {
     services = {
       remote-builders.client.enable = true;
       # podman.enable = true;
-      clipmenu.enable = mkForce false;
+      clipmenu.enable = lib.mkForce false;
       # synergy.server = {enable = true;};
       avahi = {
         enable = true;
         # allowInterfaces = [ "wlo1" ];
-        reflector = mkForce false;
+        reflector = lib.mkForce false;
       };
     };
-
-    # boot.recovery = {
-    #   enable = false;
-    #   install = false;
-    # };
 
     zramSwap = {enable = true;};
 
@@ -103,6 +97,16 @@ with lib; {
       kernelModules = [
         "i915"
       ];
+      tmp = {
+        useTmpfs = true;
+      };
+
+      recovery = {
+        enable = true;
+        install = true;
+        sign = true;
+        netboot.enable = true;
+      };
     };
 
     hardware = {

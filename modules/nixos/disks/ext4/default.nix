@@ -34,79 +34,78 @@
       };
     };
   };
-in
-  with lib; {
-    options = {
-      disks."ext4" = {
-        enable = mkEnableOption "Enable EXT4";
-        main = mkOption {
-          type = types.str;
-          description = "Dev for main partion.";
-        };
-        encrypt = mkEnableOption "encrypted";
-        swapSize = mkOption {
-          type = types.str;
-          default = "2G";
-          description = "swapSize";
-        };
+in {
+  options = {
+    disks."ext4" = {
+      enable = lib.mkEnableOption "Enable EXT4";
+      main = lib.mkOption {
+        type = lib.types.str;
+        description = "Dev for main partion.";
+      };
+      encrypt = lib.mkEnableOption "encrypted";
+      swapSize = lib.mkOption {
+        type = lib.types.str;
+        default = "2G";
+        description = "swapSize";
       };
     };
+  };
 
-    config = mkIf cfg.enable {
-      # boot = {
-      #   # growPartition = true;
-      #   supportedFilesystems = [
-      #     "btrfs"
-      #   ];
-      # };
+  config = lib.mkIf cfg.enable {
+    # boot = {
+    #   # growPartition = true;
+    #   supportedFilesystems = [
+    #     "btrfs"
+    #   ];
+    # };
 
-      environment.systemPackages = with pkgs; [
-        # snapper
-        # snapper-gui
-        tpm-luks
-        # btrfs-assistant
-      ];
+    environment.systemPackages = with pkgs; [
+      # snapper
+      # snapper-gui
+      tpm-luks
+      # btrfs-assistant
+    ];
 
-      # fileSystems."/".neededForBoot = true;
-      # fileSystems."/boot".neededForBoot = true;
+    # fileSystems."/".neededForBoot = true;
+    # fileSystems."/boot".neededForBoot = true;
 
-      disko.devices = {
-        disk = {
-          main = {
-            type = "disk";
-            device = cfg.main;
-            content = {
-              type = "gpt";
-              partitions = {
-                boot = {
-                  size = "1M";
-                  type = "EF02"; # for grub MBR
-                };
-                ESP = {
-                  size = "1G";
-                  type = "EF00";
-                  content = {
-                    type = "filesystem";
-                    format = "vfat";
-                    mountpoint = "/boot";
-                  };
-                };
-                swap = {
-                  size = cfg.swapSize;
-                  content = {
-                    type = "swap";
-                    randomEncryption = true;
-                  };
-                };
-
-                root = mkIf (!cfg.encrypt) (innerContent.root);
-                luks =
-                  mkIf cfg.encrypt
-                  ((luksContent (innerContent.root.content)).luks);
+    disko.devices = {
+      disk = {
+        main = {
+          type = "disk";
+          device = cfg.main;
+          content = {
+            type = "gpt";
+            partitions = {
+              boot = {
+                size = "1M";
+                type = "EF02"; # for grub MBR
               };
+              ESP = {
+                size = "1G";
+                type = "EF00";
+                content = {
+                  type = "filesystem";
+                  format = "vfat";
+                  mountpoint = "/boot";
+                };
+              };
+              swap = {
+                size = cfg.swapSize;
+                content = {
+                  type = "swap";
+                  randomEncryption = true;
+                };
+              };
+
+              root = lib.mkIf (!cfg.encrypt) (innerContent.root);
+              luks =
+                lib.mkIf cfg.encrypt
+                ((luksContent (innerContent.root.content)).luks);
             };
           };
         };
       };
     };
-  }
+  };
+}

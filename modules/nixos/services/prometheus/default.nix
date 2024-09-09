@@ -3,15 +3,13 @@
   pkgs,
   lib,
   ...
-}:
-with lib;
-with lib.custom; let
+}: let
   cfg = config.prometheus;
   format = pkgs.formats.yaml {};
 in {
-  options.prometheus = {enable = mkBoolOpt true "prometheus";};
+  options.prometheus = {enable = lib.mkEnableOption "prometheus" // {default = true;};};
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     system.nixos.tags = ["prometheus"];
 
     system.activationScripts.node-exporter-system-version = ''
@@ -49,34 +47,34 @@ in {
 
       netdata.configDir."go.d/prometheus.conf" = format.generate "prometheus.conf" {
         jobs =
-          (optional config.services.prometheus.exporters.node.enable {
+          (lib.optional config.services.prometheus.exporters.node.enable {
             name = "node";
             url = "http://127.0.0.1:${
               builtins.toString config.services.prometheus.exporters.node.port
             }/metrics";
           })
-          ++ (optional config.services.prometheus.exporters.process.enable {
+          ++ (lib.optional config.services.prometheus.exporters.process.enable {
             name = "process";
             url = "http://127.0.0.1:${
               builtins.toString
               config.services.prometheus.exporters.process.port
             }/metrics";
           })
-          ++ (optional config.services.prometheus.exporters.ipmi.enable {
+          ++ (lib.optional config.services.prometheus.exporters.ipmi.enable {
             name = "ipmi";
             url = "http://127.0.0.1:${
               builtins.toString
               config.services.prometheus.exporters.ipmi.port
             }/metrics";
           })
-          ++ (optional config.services.prometheus.exporters.nginx.enable {
+          ++ (lib.optional config.services.prometheus.exporters.nginx.enable {
             name = "nginx";
             url = "http://127.0.0.1:${
               builtins.toString
               config.services.prometheus.exporters.nginx.port
             }/metrics";
           })
-          ++ (optional config.services.prometheus.exporters.systemd.enable {
+          ++ (lib.optional config.services.prometheus.exporters.systemd.enable {
             name = "systemd";
             url = "http://127.0.0.1:${
               builtins.toString

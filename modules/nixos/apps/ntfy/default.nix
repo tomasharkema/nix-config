@@ -3,17 +3,16 @@
   lib,
   pkgs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.apps.ntfy;
   subscribeCfg = cfg.subscribe;
 in {
   options.apps.ntfy = {
     subscribe = {
-      enable = (mkEnableOption "enable ntfy subscribe") // {default = true;};
+      enable = (lib.mkEnableOption "enable ntfy subscribe") // {default = true;};
 
-      subscriptions = mkOption {
-        type = types.listOf types.str;
+      subscriptions = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
         default = [
           "tomasharkema-nixos"
           "$NIXOS_TOPIC_NAME"
@@ -21,8 +20,8 @@ in {
         ];
       };
 
-      environmentFile = mkOption {
-        type = types.nullOr types.path;
+      environmentFile = lib.mkOption {
+        type = lib.types.nullOr lib.types.path;
         default = config.age.secrets."notify-sub".path;
       };
     };
@@ -39,7 +38,7 @@ in {
         subscribeCfg.subscriptions;
     };
   in
-    mkIf subscribeCfg.enable {
+    lib.mkIf subscribeCfg.enable {
       age.secrets."notify-sub" = {
         rekeyFile = ./notify-sub.age;
         mode = "666";
@@ -54,7 +53,7 @@ in {
         ];
         serviceConfig = {
           PrivateTmp = true;
-          EnvironmentFile = mkIf (subscribeCfg.environmentFile != null) subscribeCfg.environmentFile;
+          EnvironmentFile = lib.mkIf (subscribeCfg.environmentFile != null) subscribeCfg.environmentFile;
           # EnvironmentFile = ["$CREDENTIALS_DIRECTORY/envsec"];
           # LoadCredential =
           #   mkIf (subscribeCfg.environmentFile != null)

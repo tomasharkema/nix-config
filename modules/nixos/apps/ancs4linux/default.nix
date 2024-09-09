@@ -3,21 +3,20 @@
   config,
   lib,
   ...
-}:
-with lib; let
+}: let
   cfg = config.apps.ancs4linux;
 in {
   options.apps.ancs4linux = {
-    enable = mkOption {
+    enable = lib.mkOption {
       default = config.hardware.bluetooth.enable;
       description = "ancs4linux";
     };
-    package = mkOption {
+    package = lib.mkOption {
       default = pkgs.custom.ancs4linux;
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = [cfg.package pkgs.custom.bluetooth-autoconnect];
 
     services.dbus = {

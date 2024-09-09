@@ -246,12 +246,12 @@ in
       updateScript = nix-update-script {};
     };
 
-    meta = with lib; {
+    meta = {
       description = "System Security Services Daemon";
       homepage = "https://sssd.io/";
       changelog = "https://sssd.io/release-notes/sssd-${finalAttrs.version}.html";
-      license = licenses.gpl3Plus;
-      platforms = platforms.linux;
-      maintainers = with maintainers; [illustris];
+      license = lib.licenses.gpl3Plus;
+      platforms = lib.platforms.linux;
+      maintainers = with lib.maintainers; [illustris];
     };
   })

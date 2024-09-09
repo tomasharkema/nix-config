@@ -3,13 +3,12 @@
   pkgs,
   config,
   ...
-}:
-with lib; let
+}: let
   cfg = config.apps.spotifyd;
 in {
-  options.apps.spotifyd = {enable = mkEnableOption "spotifyd";};
+  options.apps.spotifyd = {enable = lib.mkEnableOption "spotifyd";};
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     users.users = {
       "tomas".extraGroups = ["audio"];
       "root".extraGroups = ["audio"];

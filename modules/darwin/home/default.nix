@@ -5,23 +5,22 @@
   lib,
   inputs,
   ...
-}:
-with lib;
-with lib.custom; {
-  # options.home = {
-  #   homeFiles = mkOption {
-  #     description = "Attribute set of files to link into the user home.";
-  #     default = {};
-  #     type = types.attrsOf (types.submodule {
-  #       options = {
-  #         source = mkOption {type = types.path;};
-  #         # target = mkOption {
-  #         #   type = types.str;
-  #         # };
-  #       };
-  #     });
-  #   };
-  # };
+}: {
+  options.home = {
+    homeFiles = lib.mkOption {
+      description = "Attribute set of files to link into the user home.";
+      default = {};
+      type = lib.types.attrsOf (lib.types.submodule {
+        options = {
+          source = lib.mkOption {type = lib.types.path;};
+          # target = mkOption {
+          #   type = types.str;
+          # };
+        };
+      });
+    };
+  };
+
   config = {
     age.secrets = {
       openai = {
@@ -31,8 +30,8 @@ with lib.custom; {
     };
 
     environment = {
-      variables.XDG_DATA_DIRS = ["/usr/local/share"];
-      systemPackages = with pkgs; [virt-manager];
+      # variables.XDG_DATA_DIRS = ["/usr/local/share"];
+      # systemPackages = with pkgs; [virt-manager];
     };
 
     snowfallorg.users."${config.user.name}" = {
@@ -42,7 +41,7 @@ with lib.custom; {
       home = {
         enable = true;
         config = {
-          home.stateVersion = mkDefault "24.05";
+          home.stateVersion = lib.mkDefault "24.11";
           xdg.enable = true;
           # home.sessionVariables = {
           #   HYDRA_HOST =
@@ -60,7 +59,7 @@ with lib.custom; {
       backupFileExtension = "bak";
 
       users."${config.user.name}" = {
-        home.stateVersion = mkDefault "24.05";
+        home.stateVersion = lib.mkDefault "24.11";
         xdg.enable = true;
         programs.home-manager.enable = true;
         # home.sessionVariables = {

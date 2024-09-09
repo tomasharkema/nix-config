@@ -1,7 +1,12 @@
-{ lib, pkgs, inputs, config, ... }:
-with lib; {
+{
+  lib,
+  pkgs,
+  inputs,
+  config,
+  ...
+}: {
   # stylix.nixosModules.stylix
-  config = mkIf false {
+  config = lib.mkIf false {
     # lib.mkIf (config.gui.enable) {
     # system.nixos.tags = ["stylix"];
 

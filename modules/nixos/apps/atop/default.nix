@@ -3,27 +3,25 @@
   lib,
   config,
   ...
-}:
-with lib;
-with lib.custom; let
+}: let
   cfg = config.apps.atop;
 in {
   options.apps.atop = {
-    enable = mkEnableOption "atop";
-    httpd = mkEnableOption "atophttpd";
+    enable = lib.mkEnableOption "atop";
+    httpd = lib.mkEnableOption "atophttpd";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.atop = {
       # atopRotateTimer.enable = true;
-      enable = true;
+      # enable = true;
       setuidWrapper.enable = true;
       # atopService.enable = true;
       # atopacctService.enable = true;
       # atopgpu.enable = true;
       # netatop.enable = true;
     };
-
+    environment.systemPackages = [pkgs.atop];
     # systemd.services.atophttpd = mkIf cfg.httpd {
     #   enable = true;
     #   description = "atophttpd";

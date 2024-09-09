@@ -4,24 +4,23 @@
   inputs,
   pkgs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.gui;
 in {
   # imports = [
   #   "${inputs.unstable}/nixos/modules/services/desktops/seatd.nix"
   # ];
 
-  options.gui = {enable = mkEnableOption "gui.defaults";};
+  options.gui = {enable = lib.mkEnableOption "gui.defaults";};
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     gui = {
-      gamemode.enable = mkDefault false;
-      quiet-boot.enable = mkDefault true;
-      desktop.enable = mkDefault true;
-      gnome.enable = mkDefault true;
+      gamemode.enable = lib.mkDefault false;
+      quiet-boot.enable = lib.mkDefault true;
+      desktop.enable = lib.mkDefault true;
+      gnome.enable = lib.mkDefault true;
     };
-    apps.flatpak.enable = mkDefault true;
+    apps.flatpak.enable = lib.mkDefault true;
 
     services = {
       # ddccontrol.enable = true;

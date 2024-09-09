@@ -3,13 +3,12 @@
   pkgs,
   config,
   ...
-}:
-with lib; let
+}: let
   cfg = config.gui.quiet-boot;
 in {
-  options.gui.quiet-boot = {enable = mkEnableOption "quiet-boot enabled";};
+  options.gui.quiet-boot = {enable = lib.mkEnableOption "quiet-boot enabled";};
 
-  config = mkIf (cfg.enable) {
+  config = lib.mkIf (cfg.enable) {
     console = {
       earlySetup = true;
     };
@@ -24,9 +23,9 @@ in {
         #   pkgs.custom.plymouth-progress
         # ];
 
-        # font = "${pkgs.inter}/share/fonts/truetype/Inter.ttc";
+        font = "${pkgs.inter}/share/fonts/truetype/InterVariable.ttf";
       };
-      loader.timeout = mkDefault 0;
+      loader.timeout = lib.mkDefault 0;
       kernelParams = [
         "quiet"
         "loglevel=3"
@@ -35,10 +34,10 @@ in {
         "rd.udev.log_level=3"
         "vt.global_cursor_default=0"
       ];
-      consoleLogLevel = mkDefault 0;
+      consoleLogLevel = lib.mkDefault 0;
       initrd = {
-        systemd.enable = mkDefault true;
-        verbose = mkDefault false;
+        systemd.enable = lib.mkDefault true;
+        verbose = lib.mkDefault false;
       };
     };
 

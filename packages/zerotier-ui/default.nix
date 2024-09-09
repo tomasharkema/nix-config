@@ -69,10 +69,10 @@ in
       runHook postInstall
     '';
 
-    meta = with lib; {
+    meta = {
       description = "tomas";
       homepage = "https://github.com/tomasharkema/nix-config";
-      license = licenses.mit;
+      license = lib.licenses.mit;
       maintainers = ["tomasharkema" "tomas@harkema.io"];
     };
     passthru = {
@@ -148,7 +148,7 @@ in
 #     webkitgtk
 #     libui
 #   ];
-#   meta = with lib; {
+#   meta =  {
 #     description = "tomas";
 #     homepage = "https://github.com/tomasharkema/nix-config";
 #     license = licenses.mit;

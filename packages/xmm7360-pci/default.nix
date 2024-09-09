@@ -34,10 +34,10 @@ stdenv.mkDerivation rec {
     cp rpc/* $out/bin/
   '';
 
-  meta = with lib; {
+  meta = {
     description = "PCI driver for Fibocom L850-GL modem based on Intel XMM7360 modem";
     homepage = "https://github.com/xmm7360/xmm7360-pci/";
-    license = licenses.free;
+    license = lib.licenses.free;
     platforms = ["x86_64-linux"];
   };
 }

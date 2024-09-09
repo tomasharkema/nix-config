@@ -27,11 +27,11 @@ stdenv.mkDerivation rec {
 
   dontBuild = true;
 
-  meta = with lib; {
+  meta = {
     description = "Cockpit UI for tailscale containers";
-    license = licenses.lgpl21;
+    license = lib.licenses.lgpl21;
     homepage = "https://github.com/spotsnel/cockpit-tailscale";
-    platforms = platforms.linux;
-    maintainers = with maintainers; [];
+    platforms = lib.platforms.linux;
+    maintainers = with lib.maintainers; [];
   };
 }

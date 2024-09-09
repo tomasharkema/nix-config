@@ -3,13 +3,12 @@
   config,
   pkgs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.gui.gamemode;
 in {
-  options.gui.gamemode = {enable = mkEnableOption "gamemode";};
+  options.gui.gamemode = {enable = lib.mkEnableOption "gamemode";};
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     # environment.systemPackages = with pkgs; [
     #   gnomeExtensions.gamemode-indicator-in-system-settings
     # ];

@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-with lib; {
+}: {
   # options.trait.slim = {
   #   enable = mkEnableOption "slim";
   # };

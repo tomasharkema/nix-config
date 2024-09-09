@@ -3,9 +3,8 @@
   config,
   lib,
   ...
-}:
-with lib; {
-  config = mkIf false {
+}: {
+  config = lib.mkIf false {
     age.secrets.shellhub = {
       rekeyFile = ./shellhub.age;
       path = "/var/lib/shellhub-agent/private.key";

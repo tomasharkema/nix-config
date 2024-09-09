@@ -7,9 +7,8 @@
   osConfig,
   ...
 }:
-with inputs.home-manager.lib.hm.gvariant;
-with lib; {
-  config = mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
+with inputs.home-manager.lib.hm.gvariant; {
+  config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
     dconf = {
       settings = {
         "org/gnome/mutter" = {
@@ -54,7 +53,7 @@ with lib; {
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
           # cursor-theme = mkForce "Adwaita";
-
+          cursor-theme = "macOS";
           # gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
           document-font-name = "Inter Display 12";
           font-antialiasing = "grayscale";
@@ -68,13 +67,13 @@ with lib; {
         };
 
         "org/gnome/shell/extensions/user-theme" = {
-          name = mkDefault "Catppuccin-Mocha-Compact-Blue-Dark";
+          name = lib.mkDefault "Catppuccin-Mocha-Compact-Blue-Dark";
         };
 
-        # "org/gnome/shell/extensions/TodoTxt" = {
-        #   donetxt-location = "/home/tomas/resilio-sync/shared-documents/done.txt";
-        #   todotxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt";
-        # };
+        "org/gnome/shell/extensions/TodoTxt" = {
+          donetxt-location = "/home/tomas/resilio-sync/shared-documents/done.txt";
+          todotxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt";
+        };
 
         "org/gnome/gnome-session" = {
           "auto-save-session" = true;
