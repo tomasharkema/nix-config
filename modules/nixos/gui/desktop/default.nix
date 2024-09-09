@@ -21,8 +21,13 @@ in {
     security.pam.services.passwd.enableGnomeKeyring = true;
 
     services = {
-      dbus.packages = [pkgs.usbguard-notifier];
-
+      dbus = {
+        enable = true;
+        packages = with pkgs; [
+          tilix
+          usbguard-notifier
+        ];
+      };
       # xrdp = mkIf cfg.rdp.enable {
       #   enable = true;
       #   # openFirewall = true;

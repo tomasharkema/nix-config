@@ -193,14 +193,19 @@ in
       };
 
       xdg = {
-        autostart = {
-          enable = true;
-        };
-        portal.wlr.enable = true;
+        autostart.enable = true;
+        # portal.wlr.enable = true;
         terminal-exec = {
           enable = true;
           settings = {
-            default = ["kitty.desktop"];
+            GNOME = [
+              "com.gexperts.Tilix.desktop"
+              "kitty.desktop"
+            ];
+            default = [
+              "com.gexperts.Tilix.desktop"
+              "kitty.desktop"
+            ];
           };
         };
         icons.enable = true;

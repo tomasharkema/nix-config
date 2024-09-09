@@ -4,16 +4,7 @@
   lib,
   inputs,
   ...
-}:
-# let
-#   theme = inputs.themes.custom (inputs.themes.catppuccin-mocha
-#     // {
-#       base00 = "000000";
-#     });
-# in
-{
-  imports = ["${inputs.nixos-hardware}/common/gpu/24.05-compat.nix"];
-
+}: {
   config = {
     assertions = [
       {
@@ -63,7 +54,7 @@
       recovery.enable = lib.mkDefault true;
       initrd = {
         # systemd.emergencyAccess = "abcdefg";
-        # includeDefaultModules = true;
+        includeDefaultModules = true;
       };
 
       # crashDump.enable = true;
@@ -121,22 +112,20 @@
 
     environment = {
       # sessionVariables.MOZ_ENABLE_WAYLAND = "0";
-
+      enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
           tsui
-          config.nur.repos.mloeper.usbguard-applet-qt
           agenix-rekey
           distrobox
           distrobox-tui
           # dry
           # etcher
-          fancy-motd
+          # fancy-motd
           # mkchromecast
           # nix-switcher # : needs github auth
           # ntfy
           # rtop
-          # udisks2
           git
           aide
           archivemount
@@ -240,7 +229,6 @@
           ]
         ));
     };
-    # services.ntfy-sh.enable = true;
 
     apps = {
       attic.enable = lib.mkDefault true;
@@ -252,27 +240,6 @@
 
     systemd = {
       enableEmergencyMode = lib.mkDefault false;
-
-      #   services = {
-      #     "numlockx" = {
-
-      #       wants = [
-      #         "multi-user.target"
-      #         "network.target"
-      #       ];
-      #       after = [
-      #         "multi-user.target"
-      #         "network.target"
-      #       ];
-
-      #       script = ''
-      #         ${pkgs.numlockx}/bin/numlockx on
-      #       '';
-      #       serviceConfig = {
-      #         Type = "oneshot";
-      #       };
-      #     };
-      #   };
     };
 
     services = {
@@ -409,40 +376,6 @@
           "3.nl.pool.ntp.org"
         ];
       };
-
-      # rsyslogd = {
-      #   enable = true;
-
-      #   extraConfig = ''
-      #     *.*    @@nix.harke.ma:5140;RSYSLOG_SyslogProtocol23Format
-      #   '';
-      # };
-
-      # fluentd = {
-      #   enable = true;
-
-      #   config = ''
-      #     # Match all patterns
-      #     <match **>
-      #       @type http
-
-      #       endpoint https://oneuptime.com/fluentd/logs
-      #       open_timeout 2
-
-      #       headers {"x-oneuptime-service-token":"96c7bca0-d290-11ee-9b6a-55a2f9409bca"}
-
-      #       content_type application/json
-      #       json_array true
-
-      #       <format>
-      #         @type json
-      #       </format>
-      #       <buffer>
-      #         flush_interval 10s
-      #       </buffer>
-      #     </match>
-      #   '';
-      # };
     };
 
     security = {
@@ -463,42 +396,6 @@
 
       flashrom.enable = true;
 
-      rust-motd = {
-        # enable = true;
-        settings = {
-          global = {
-            progress_full_character = "=";
-            progress_empty_character = "=";
-            progress_prefix = "[";
-            progress_suffix = "]";
-            time_format = "%Y-%m-%d %H:%M:%S";
-          };
-          banner = {
-            color = "red";
-            command = "hostname | ${pkgs.figlet}/bin/figlet -f slant";
-          };
-          uptime = {
-            prefix = "Up";
-          };
-          # weather = {
-          #   url = "https://wttr.in/Amsterdam";
-          # };
-          service_status = {
-            Accounts = "accounts-daemon";
-            Attic-watch-store = "attic-watch-store";
-          };
-          filesystems = {
-            root = "/";
-          };
-          memory = {
-            swap_pos = "beside"; # or "below" or "none"
-          };
-          last_login = {
-            tomas = 2;
-          };
-          last_run = {};
-        };
-      };
       git = {
         enable = true;
         lfs.enable = true;
@@ -520,7 +417,7 @@
           ForwardAgent yes
         '';
       };
-      mosh.enable = true;
+      # mosh.enable = true;
       nix-ld.enable = true;
       zsh = {
         enable = true;
@@ -529,8 +426,6 @@
       mtr.enable = true;
       command-not-found.enable = false;
     };
-
-    environment.enableAllTerminfo = true;
 
     hardware = {
       enableAllFirmware = lib.mkDefault true;
