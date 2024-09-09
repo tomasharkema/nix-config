@@ -13,6 +13,7 @@ in {
     homebrew = {
       enable = true;
       autoUpdate = true;
+      onActivation.upgrade = true;
 
       masApps = {
         "termius" = 1176074088;
@@ -24,6 +25,7 @@ in {
         "Telegram" = 747648890;
         "automute" = 1118136179;
       };
+
       brews = [
         "cocoapods"
         "xcodes"
@@ -32,6 +34,7 @@ in {
         "swiftlint"
         "swiftformat"
       ];
+
       casks = [
         "chatgpt"
         "secretive"
@@ -49,7 +52,7 @@ in {
         # "raycast"
         "rectangle"
         "screenflow"
-        "slack"
+        # "slack"
         "spotify"
         # "kobo"
         "gitbutler"

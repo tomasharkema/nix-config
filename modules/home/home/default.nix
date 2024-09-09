@@ -94,16 +94,16 @@ in
         ];
 
         activation."agent-1password" = mkIf pkgs.stdenv.hostPlatform.isDarwin (inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
-          mkdir -p "/Users/${osConfig.user.name}/.1password" || true
-          ln -sfn "/Users/${osConfig.user.name}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" "/Users/${osConfig.user.name}/.1password/agent.sock"
+          mkdir -p "${config.home.homeDirectory}/.1password" || true
+          ln -sfn "${config.home.homeDirectory}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" "${config.home.homeDirectory}/.1password/agent.sock"
         '');
 
         sessionVariables =
           if pkgs.stdenv.hostPlatform.isDarwin
           then {
             EDITOR = "subl";
-            # SSH_AUTH_SOCK = "/Users/${osConfig.user.name}/.1password/agent.sock";
-            SSH_AUTH_SOCK = "/Users/${osConfig.user.name}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+            SSH_AUTH_SOCK = "${config.home.homeDirectory}/.1password/agent.sock";
+            # SSH_AUTH_SOCK = "${config.home.homeDirectory}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
             SPACESHIP_PROMPT_ADD_NEWLINE = "false";
           }
           else {
@@ -241,16 +241,16 @@ in
                 sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
               };
             }
-            {
-              name = "zsh-notify";
-              file = "notify.plugin.zsh";
-              src = pkgs.fetchFromGitHub {
-                owner = "marzocchi";
-                repo = "zsh-notify";
-                rev = "9c1dac81a48ec85d742ebf236172b4d92aab2f3f";
-                hash = "sha256-ovmnl+V1B7J/yav0ep4qVqlZOD3Ex8sfrkC92dXPLFI=";
-              };
-            }
+            # {
+            #   name = "zsh-notify";
+            #   file = "notify.plugin.zsh";
+            #   src = pkgs.fetchFromGitHub {
+            #     owner =ihi";
+            #     repo = "zsh-notify";
+            #     rev = "9c1dac81a48ec85d742ebf236172b4d92aab2f3f";
+            #     hash = "sha256-ovmnl+V1B7J/yav0ep4qVqlZOD3Ex8sfrkC92dXPLFI=";
+            #   };
+            # }
           ];
 
           # initExtraFirst = ''

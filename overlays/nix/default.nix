@@ -28,7 +28,8 @@
       "Terminus"
       "ComicShannsMono"
       "BigBlueTerminal"
-
+      "NerdFontsSymbolsOnly"
+      "Iosevka"
       "OpenDyslexic"
       "Noto"
     ];

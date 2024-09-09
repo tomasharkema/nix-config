@@ -2,6 +2,7 @@
   lib,
   pkgs,
   osConfig,
+  config,
   ...
 }:
 with lib; {
@@ -10,8 +11,8 @@ with lib; {
   config = let
     onePasswordSocket =
       if pkgs.stdenvNoCC.isDarwin
-      then "/Users/${osConfig.user.name}/.1password/agent.sock"
-      else "/home/tomas/.1password/agent.sock";
+      then "${config.home.homeDirectory}/.1password/agent.sock"
+      else "${config.home.homeDirectory}/.1password/agent.sock";
   in {
     programs.ssh = {
       enable = true;
@@ -36,8 +37,8 @@ with lib; {
           extraOptions =
             if pkgs.stdenvNoCC.isDarwin
             then {
-              "IdentityAgent" = "/Users/tomas/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
-              # "IdentityAgent" = onePasswordSocket;
+              # "IdentityAgent" = "${config.home.homeDirectory}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+              "IdentityAgent" = onePasswordSocket;
               # "UseKeychain" = "yes";
             }
             else {
