@@ -146,7 +146,7 @@ in
             '';
 
             sessionPath = with pkgs; [
-              gnome.mutter
+              mutter
               gtop
               libgtop
               clutter

@@ -70,15 +70,13 @@ in {
       '';
     };
 
-    # environment.sessionVariables = {
-    #   LD_LIBRARY_PATH = [
-    #     # "$LD_LIBRARY_PATH"
-    #     "/run/current-system/sw/lib"
-    #     "/run/opengl-driver/lib"
-    #     "/run/opengl-driver-32/lib"
-    #     "${pkgs.custom.openglide}/lib"
-    #   ];
-    # };
+    environment.sessionVariables = {
+      LD_LIBRARY_PATH = [
+        "/run/current-system/sw/lib"
+        "/run/opengl-driver/lib"
+        "/run/opengl-driver-32/lib"
+      ];
+    };
 
     # chaotic = {
     # scx.enable = true;
@@ -88,8 +86,8 @@ in {
 
     hardware.graphics = {
       enable = true;
-
       enable32Bit = true;
+      extraPackages = with pkgs; [mesa mesa.drivers];
     };
 
     programs = {
@@ -99,8 +97,10 @@ in {
       # };
     };
 
-    services.gnome.gnome-keyring.enable = true;
-    services.gnome.gnome-online-accounts.enable = true;
+    services.gnome = {
+      gnome-keyring.enable = true;
+      gnome-online-accounts.enable = true;
+    };
 
     networking.firewall = {
       allowedTCPPorts = [
