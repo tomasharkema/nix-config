@@ -179,7 +179,7 @@ in {
         zed-editor
       ]
       ++ lib.optionals pkgs.stdenv.isx86_64 [
-        handbrake
+        # handbrake
         gnome_mplayer
         gmtk
         # pkgs.custom.git-butler
