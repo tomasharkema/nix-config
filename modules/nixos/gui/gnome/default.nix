@@ -51,7 +51,7 @@ in
         variables.XCURSOR_SIZE = builtins.toString cfg.cursorSize;
         sessionVariables = {
           XCURSOR_SIZE = builtins.toString cfg.cursorSize;
-          NIXOS_OZONE_WL = "1";
+          # NIXOS_OZONE_WL = "1";
         };
       };
 
