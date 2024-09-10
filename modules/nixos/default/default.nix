@@ -94,7 +94,10 @@
     };
 
     chaotic = {
-      scx.enable = !(config.trait.server.enable); # by default uses scx_rustland scheduler
+      scx = {
+        enable = !(config.trait.server.enable);
+        scheduler = "scx_bpfland";
+      };
     };
 
     # environment.etc = {
@@ -265,7 +268,8 @@
         ];
       };
 
-      # preload.enable = true;
+      preload.enable = true;
+
       actkbd.enable = lib.mkForce false;
 
       ananicy = {
