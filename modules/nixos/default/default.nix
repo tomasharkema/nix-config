@@ -246,6 +246,7 @@
     };
 
     services = {
+      sysstat.enable = true;
       irqbalance.enable = true;
 
       rpcbind.enable = true;

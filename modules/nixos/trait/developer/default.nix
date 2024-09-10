@@ -15,7 +15,7 @@ in {
       [
         # # snowfallorg.flake
         # cachix
-        # nix-init
+        nix-init
         # nixci
         # agenix
         deadnix

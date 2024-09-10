@@ -231,7 +231,7 @@ in {
     flake-checker
     hydra-cli
     autoflake
-    # nix-init
+    nix-init
     # nix-serve
     # nixci
     # nixos-shell

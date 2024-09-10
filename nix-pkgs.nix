@@ -29,7 +29,7 @@
         # nix-delegate
         # nix-fast-build
         # nix-fast-build
-        # nix-init
+        nix-init
         # nix-janitor
         # nix-janitor
         # nix-plugins

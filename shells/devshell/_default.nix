@@ -206,7 +206,7 @@ in
 
       manix
       nix-eval-jobs
-      # nix-init
+      nix-init
       nix-output-monitor
       nix-prefetch-scripts
       # nix-serve
