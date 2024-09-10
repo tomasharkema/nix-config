@@ -6,7 +6,9 @@
 }: let
   cfg = config.apps.spotifyd;
 in {
-  options.apps.spotifyd = {enable = lib.mkEnableOption "spotifyd";};
+  options.apps.spotifyd = {
+    enable = lib.mkEnableOption "spotifyd";
+  };
 
   config = lib.mkIf cfg.enable {
     users.users = {
@@ -17,7 +19,10 @@ in {
     services = {
       dbus = {
         enable = true;
-        packages = [pkgs.shairport-sync pkgs.spotifyd];
+        packages = [
+          pkgs.shairport-sync
+          pkgs.spotifyd
+        ];
       };
 
       shairport-sync = {
@@ -43,18 +48,11 @@ in {
             device_name = "${config.networking.hostName} SpotifyD";
             # use_keyring = true;
             dbus_type = "system";
+            zeroconf_port = 1234;
           };
         };
-        #   username_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field username"
-        #   password_cmd = "${lib.getExe pkgs._1password} item get bnzrqxggvfbfhgln4uceawfbbq --field password"
       };
     };
-    #   # systemd.services.spotifyd = {
-    #   # environment = {
-    #   #   OP_CONNECT_HOST = "http://silver-star.ling-lizard.ts.net:7080";
-    #   #   OP_CONNECT_TOKEN = "${config.age.secrets.op.path}";
-    #   # };
-    #   # };
 
     systemd.services = {
       "nqptp" = {
@@ -69,8 +67,14 @@ in {
     };
 
     networking.firewall = {
-      allowedUDPPorts = [33677];
-      allowedTCPPorts = [33677];
+      allowedUDPPorts = [
+        33677
+        1234
+      ];
+      allowedTCPPorts = [
+        33677
+        1234
+      ];
     };
     # };
   };

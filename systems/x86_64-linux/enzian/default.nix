@@ -59,7 +59,10 @@
         spec = "UUID=b4d344ce-bf39-473d-bc97-7b12ef0f97a1";
         hashTableSizeMB = 2048;
         verbosity = "crit";
-        extraOptions = ["--loadavg-target" "2.0"];
+        extraOptions = [
+          "--loadavg-target"
+          "2.0"
+        ];
       };
     };
 
@@ -91,7 +94,9 @@
     networking = {
       hostName = "enzian";
       hostId = "529fd7fa";
-      firewall = {enable = true;};
+      firewall = {
+        enable = true;
+      };
       # useDHCP = lib.mkDefault false;
       interfaces."enp4s0" = {
         useDHCP = lib.mkDefault true;
@@ -117,10 +122,24 @@
       };
 
       initrd = {
-        availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-        kernelModules = ["kvm-intel" "uinput" "nvme"];
+        availableKernelModules = [
+          "xhci_pci"
+          "ahci"
+          "usbhid"
+          "usb_storage"
+          "sd_mod"
+        ];
+        kernelModules = [
+          "kvm-intel"
+          "uinput"
+          "nvme"
+        ];
       };
-      kernelModules = ["kvm-intel" "uinput" "nvme"];
+      kernelModules = [
+        "kvm-intel"
+        "uinput"
+        "nvme"
+      ];
       kernelParams = [
         "nowatchdog"
         #"mitigations=off"
@@ -133,7 +152,7 @@
         netboot.enable = true;
       };
     };
-
+    apps.spotifyd.enable = true;
     hardware = {
       cpu.intel.updateMicrocode = true;
       bluetooth.enable = true;
