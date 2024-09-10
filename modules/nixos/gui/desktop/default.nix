@@ -179,6 +179,8 @@ in {
         zed-editor
       ]
       ++ lib.optionals pkgs.stdenv.isx86_64 [
+        gdm-settings
+        custom.qlogexplorer
         # handbrake
         gnome_mplayer
         gmtk

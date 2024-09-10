@@ -118,6 +118,12 @@
       enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          tailspin
+          colorized-logs
+          glog
+          glogg
+          socklog
+          watchlog
           tsui
           agenix-rekey
           distrobox
