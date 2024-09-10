@@ -163,7 +163,7 @@ in {
   # starship.enable = true;
 
   languages.nix = {
-    # enable = true;
+    enable = true;
     lsp.package = nixd;
   };
 

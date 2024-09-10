@@ -1,8 +1,25 @@
 {
   "nix.enableLanguageServer": true,
-  "nix.serverPath": "/run/current-system/sw/bin/nixd",
+  "nix.serverPath": "nixd",
   "nix.formatterPath": "alejandra",
-  // "nixEnvSelector.nixFile": "${workspaceFolder}/shell.nix",
+  "nix.serverSettings": {
+    // settings for 'nixd' LSP
+    "nixd": {
+        "formatting": {
+            // This is the default if ommited.
+            "command": [ "alejandra" ]
+        },
+        "options": {
+            // By default, this entriy will be read from `import <nixpkgs> { }`
+            // You can write arbitary nix expression here, to produce valid "options" declaration result.
+            // Tip: for flake-based configuration, utilize `builtins.getFlake`
+            "nixos": {
+                "expr": "(builtins.getFlake \"~/Developer/nix-config\").nixosConfigurations.voltron.options"
+            },
+        }
+    }
+},
+  
   "[nix]": {
     "editor.defaultFormatter": "kamadorueda.alejandra",
     "editor.formatOnPaste": false,
