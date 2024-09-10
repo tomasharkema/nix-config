@@ -26,6 +26,7 @@
   #     '';
   #   # https://www.vogons.org/download/file.php?id=102360
   # });
+  # ffmpeg = prev.ffmpeg.override {ffmpegVariant = "full";};
 
   cockpit-podman = self.packages."${prev.system}".cockpit-podman;
   cockpit-tailscale = self.packages."${prev.system}".cockpit-tailscale;
@@ -35,7 +36,7 @@
 
   ssh-tpm-agent = self.packages."${prev.system}".ssh-tpm-agent;
 
-  intel-vaapi-driver = prev.intel-vaapi-driver.override {enableHybridCodec = true;};
+  # intel-vaapi-driver = prev.intel-vaapi-driver.override {enableHybridCodec = true;};
 
   # steam = prev.steam.override {
   #   extraEnv = {

@@ -87,7 +87,11 @@ in {
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = with pkgs; [mesa mesa.drivers];
+      extraPackages = with pkgs; [
+        mesa
+        mesa.drivers
+        intel-compute-runtime
+      ];
     };
 
     programs = {
