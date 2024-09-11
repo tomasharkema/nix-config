@@ -177,6 +177,7 @@ in {
         xdotool
         yelp
         zed-editor
+        ytdlp-gui
       ]
       ++ lib.optionals pkgs.stdenv.isx86_64 [
         gdm-settings

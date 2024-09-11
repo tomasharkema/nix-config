@@ -18,6 +18,8 @@
   tailscalesd = inputs.tailscalesd.packages."${prev.system}".tailscalesd;
   tsui = inputs.tsui.packages."${prev.system}".tsui;
 
+  piratebay = inputs.piratebay.packages."${prev.system}".default;
+
   # dosbox-x = prev.dosbox-x.overrideAttrs ({postInstall ? "", ...}: {
   #   postInstall =
   #     postInstall
