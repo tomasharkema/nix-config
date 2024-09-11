@@ -18,6 +18,7 @@
       enable = true;
 
       extensions = with pkgs.gnomeExtensions; [
+        {package = gravatar;}
         {package = ping;}
         {package = media-controls;}
         {package = gsconnect;}

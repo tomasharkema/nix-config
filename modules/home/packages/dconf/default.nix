@@ -49,7 +49,9 @@ with inputs.home-manager.lib.hm.gvariant; {
         "org/gnome/desktop/wm/keybindings" = {
           close = "<Super>q";
         };
-
+        "org/gnome/shell/extensions/gravatar" = {
+          email = "tomas@harkema.io";
+        };
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
           # cursor-theme = mkForce "Adwaita";

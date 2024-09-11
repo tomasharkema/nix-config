@@ -115,12 +115,12 @@ in {
       };
 
       file = {
-        ".face" = {
-          source = pkgs.fetchurl {
-            url = "https://avatars.githubusercontent.com/u/4534203?t=1";
-            sha256 = "sha256:1g4mrz2d8h13rp8z2b9cn1wdr4la5zzrfkqgblayb56zg7706ga6";
-          };
-        };
+        # ".face" = {
+        #   source = pkgs.fetchurl {
+        #     url = "https://avatars.githubusercontent.com/u/4534203?t=1";
+        #     sha256 = "sha256:1g4mrz2d8h13rp8z2b9cn1wdr4la5zzrfkqgblayb56zg7706ga6";
+        #   };
+        # };
         ".background-image.svg" = lib.mkIf isSvg {source = "${bg}";};
         ".background-image.jpg" = lib.mkIf (!isSvg) {source = "${bg}";};
         ".background-image".source = "${bg}";
