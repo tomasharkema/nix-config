@@ -133,7 +133,7 @@ in {
         boxbuddy
         clutter
         discordo
-        dosbox-x
+        # dosbox-x
         effitask
         filezilla
         font-manager

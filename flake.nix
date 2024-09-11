@@ -135,15 +135,18 @@
               ...
             }: {
               config = {
-                # nix.settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${config.users.users.tomas.uid}"];
                 # nm-overrides.desktop.home-exec.enable = false;
 
                 # system.nixos.tags = ["snowfall"];
                 system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
 
-                nix.extraOptions = ''
-                  !include ${config.age.secrets.nix-access-tokens-github.path}
-                '';
+                nix = {
+                  extraOptions = ''
+                    !include ${config.age.secrets.nix-access-tokens-github.path}
+                  '';
+
+                  settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${builtins.toString config.users.users.tomas.uid}"];
+                };
 
                 age = {
                   secrets = {

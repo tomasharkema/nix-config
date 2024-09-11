@@ -27,12 +27,12 @@ in {
   };
 
   config = {
-    # users.users.${cfg.name} = {
-    #   # NOTE: Setting the uid here is required for another
-    #   # module to evaluate successfully since it reads
-    #   # `users.users.${config.user.name}.uid`.
-    #   uid = "1000";
-    # };
+    users.users.${cfg.name} = {
+      #   # NOTE: Setting the uid here is required for another
+      #   # module to evaluate successfully since it reads
+      #   # `users.users.${config.user.name}.uid`.
+      uid = 501;
+    };
 
     programs.zsh = {
       enable = true;
@@ -41,7 +41,7 @@ in {
     environment.systemPackages =
       (with pkgs; [
         # atuin
-        terminal-notifier
+        # terminal-notifier
 
         sysz
         # iptraf-ng
@@ -55,7 +55,7 @@ in {
         devdash
       ])
       ++ (with pkgs.custom; [
-        launchcontrol
+        # launchcontrol
         # ztui
         maclaunch
         tailscale-tui

@@ -59,10 +59,10 @@
       backupFileExtension = "bak";
 
       users."${config.user.name}" = {
+        imports = [inputs.mac-app-util.homeManagerModules.default];
         home.stateVersion = lib.mkDefault "24.11";
         xdg.enable = true;
         programs.home-manager.enable = true;
-        imports = [inputs.mac-app-util.homeManagerModules.default];
         # home.sessionVariables = {
         #   HYDRA_HOST =
         #     "http://blue-fire.ling-lizard.ts.net:3000/"; # "https://hydra.harkema.io";
