@@ -70,7 +70,7 @@ with pkgs; {
       bash
       bat
       bottom
-
+      piratebay
       bunyan-rs
       cheat
       coreutils

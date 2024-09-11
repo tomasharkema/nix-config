@@ -57,6 +57,7 @@
       };
 
       overlays = with inputs; [
+        ytdlp-gui.overlay
         nur.overlay
         nixos-recovery.overlays.recovery
         # nix-otel.overlays.default
@@ -808,5 +809,8 @@
       #   nixpkgs.follows = "nixpkgs";
       # };
     };
+
+    ytdlp-gui.url = "https://flakehub.com/f/BKSalman/ytdlp-gui/*.tar.gz";
+    piratebay.url = "https://flakehub.com/f/tsirysndr/piratebay/*.tar.gz";
   };
 }
