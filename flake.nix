@@ -278,6 +278,7 @@
       };
 
       checks = inputs.self.images.installer.iso;
+      inherit (inputs.flake-schemas) schemas;
 
       # formatter = inputs.nixpkgs.nixfmt;
       outputs-builder = channels: let
@@ -416,6 +417,8 @@
   };
 
   inputs = {
+    flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/*.tar.gz";
+
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
     home-manager = {
@@ -798,11 +801,12 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+
     mac-app-util = {
       url = "github:hraban/mac-app-util";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
+      # inputs = {
+      #   nixpkgs.follows = "nixpkgs";
+      # };
     };
   };
 }
