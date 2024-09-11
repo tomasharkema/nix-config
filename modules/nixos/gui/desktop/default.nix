@@ -71,11 +71,11 @@ in {
     };
 
     environment.sessionVariables = {
-      LD_LIBRARY_PATH = [
-        "/run/current-system/sw/lib"
-        "/run/opengl-driver/lib"
-        "/run/opengl-driver-32/lib"
-      ];
+      # LD_LIBRARY_PATH = [
+      #   "/run/current-system/sw/lib"
+      #   "/run/opengl-driver/lib"
+      #   "/run/opengl-driver-32/lib"
+      # ];
     };
 
     # chaotic = {

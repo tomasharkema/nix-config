@@ -4,7 +4,7 @@
 }:
 stdenvNoCC.mkDerivation {
   pname = "futura";
-  version = "1";
+  version = "2";
 
   srcs = [
     (fetchzip {
@@ -26,6 +26,13 @@ stdenvNoCC.mkDerivation {
       name = "source-futura-cdnfonts";
       extension = "zip";
     })
+    (fetchzip {
+      url = "https://media.fontsgeek.com/download/zip/f/u/futura-nd_l1umO.zip";
+      sha256 = "sha256-ekCiliuJoRdVRDDPs79wC7k77jBugdVNa7D2fl5p3CQ=";
+      stripRoot = false;
+      name = "source-futura-nd";
+      extension = "zip";
+    })
   ];
 
   sourceRoot = ".";
@@ -34,5 +41,8 @@ stdenvNoCC.mkDerivation {
     install -Dm444 source-futura/*.ttf -t $out/share/fonts/ttf
     install -Dm444 source-futura-pt/*.ttf -t $out/share/fonts/ttf
     install -Dm444 source-futura-cdnfonts/*.otf -t $out/share/fonts/otf
+
+    install -Dm444 "source-futura-nd/Futura ND/Futura ND Medium/Futura ND Medium.ttf" -t $out/share/fonts/ttf
+    install -Dm444 "source-futura-nd/Futura ND/Futura ND Medium Oblique/Futura ND Medium Oblique.ttf" -t $out/share/fonts/ttf
   '';
 }
