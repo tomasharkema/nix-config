@@ -94,7 +94,10 @@
     };
 
     chaotic = {
-      scx.enable = !(config.trait.server.enable); # by default uses scx_rustland scheduler
+      scx = {
+        enable = !(config.trait.server.enable);
+        scheduler = "scx_bpfland";
+      };
     };
 
     # environment.etc = {
@@ -115,6 +118,12 @@
       enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          tailspin
+          colorized-logs
+          glog
+          glogg
+          socklog
+          watchlog
           tsui
           agenix-rekey
           distrobox
@@ -243,6 +252,7 @@
     };
 
     services = {
+      sysstat.enable = true;
       irqbalance.enable = true;
 
       rpcbind.enable = true;
@@ -266,6 +276,7 @@
       };
 
       preload.enable = true;
+
       actkbd.enable = lib.mkForce false;
 
       ananicy = {

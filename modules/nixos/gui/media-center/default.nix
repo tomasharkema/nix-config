@@ -107,12 +107,12 @@ in {
 
     programs.nix-ld = {
       enable = true;
-      libraries = [
-        pkgs.stdenv.cc.cc
-        pkgs.openssl
-        pkgs.glib
-        # ...
-      ];
+      # libraries = [
+      #   pkgs.stdenv.cc.cc
+      #   pkgs.openssl
+      #   pkgs.glib
+      #   # ...
+      # ];
     };
 
     hardware = {
