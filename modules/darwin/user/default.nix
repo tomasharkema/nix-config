@@ -34,6 +34,8 @@ in {
       uid = 501;
     };
 
+    security.pam.enableSudoTouchIdAuth = true;
+
     programs.zsh = {
       enable = true;
     };
@@ -41,7 +43,7 @@ in {
     environment.systemPackages =
       (with pkgs; [
         # atuin
-        # terminal-notifier
+        terminal-notifier
 
         sysz
         # iptraf-ng
@@ -55,12 +57,11 @@ in {
         devdash
       ])
       ++ (with pkgs.custom; [
-        # launchcontrol
+        launchcontrol
         # ztui
         maclaunch
         tailscale-tui
       ])
       ++ (with pkgs.darwin; [lsusb]);
-    security.pam.enableSudoTouchIdAuth = true;
   };
 }
