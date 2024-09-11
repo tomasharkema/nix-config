@@ -46,10 +46,12 @@
 
           gpg = {
             format = "ssh";
-            ssh.program =
-              lib.mkIf
-              (pkgs.stdenv.isLinux && osConfig.programs._1password-gui.enable)
-              "${osConfig.programs._1password-gui.package}/bin/op-ssh-sign";
+
+            # not needed if SSH_AUTH_SOCK is set...
+            # ssh.program =
+            #   lib.mkIf
+            #   (pkgs.stdenv.isLinux && osConfig.programs._1password-gui.enable)
+            #   "${osConfig.programs._1password-gui.package}/bin/op-ssh-sign";
           };
 
           user.signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";

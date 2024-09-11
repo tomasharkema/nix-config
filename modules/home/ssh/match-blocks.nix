@@ -18,7 +18,7 @@ in {
               user = "tomas";
               forwardAgent = true;
               extraOptions = {
-                RequestTTY = "yes";
+                # RequestTTY = "yes";
                 # RemoteCommand = "zellij attach -c \"ssh-\$\{\%n\}\"";
                 # RemoteCommand = "tmux new -A -s \$\{\%n\}";
               };
@@ -35,7 +35,7 @@ in {
               user = "tomas";
               forwardAgent = true;
               extraOptions = {
-                RequestTTY = "yes";
+                # RequestTTY = "yes";
                 RemoteCommand = ''
                   zellij attach -c "ssh-''${%n}"
                 '';
