@@ -9,7 +9,7 @@
     # snowfall.user.name = "tomas.harkema";
     age = {
       rekey = {
-        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPBK6viwYczPwUY1ZseGDtR1Ptr7z7pGytMKO2dbKvXe tomas.harkema@Tomas-Harkema-CV404C72JJ";
+        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDWE65BK6InX1NGal2iHWI2lCEmh01gQBQpAP2ol+jJD root@Tomas-Harkema-CV404C72JJ";
       };
     };
 

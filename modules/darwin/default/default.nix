@@ -23,6 +23,9 @@
 
   config = {
     age = {
+      rekey = {
+        agePlugins = lib.mkForce [pkgs.age-plugin-yubikey];
+      };
       secrets = {
         atuin = {
           rekeyFile = ../../nixos/secrets/atuin.age;

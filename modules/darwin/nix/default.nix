@@ -46,10 +46,12 @@ in {
     #   # group = "tomas";
     # };
 
+    environment.systemPackages = with pkgs; [age-plugin-yubikey];
+
     nix = let
       users = ["root" "${config.user.name}"];
     in {
-      package = pkgs.nixVersions.nix_2_23;
+      package = pkgs.nixVersions.latest;
 
       nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 

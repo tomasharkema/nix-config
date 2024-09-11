@@ -69,7 +69,7 @@
           ]
           ++ lib.optional config.services.hydra.enable "hydra";
       in {
-        package = pkgs.nixVersions.nix_2_23;
+        package = pkgs.nixVersions.latest;
 
         nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 

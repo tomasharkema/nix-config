@@ -263,7 +263,7 @@ in {
     mkiso
     netdiscover
     # nil
-    nix-eval-jobs
+    # nix-eval-jobs
     nix-output-monitor
     nix-output-monitor
     nix-prefetch-scripts

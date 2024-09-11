@@ -61,7 +61,7 @@
         nil
         nix-bisect
         nix-bundle
-        nix-eval-jobs
+        # nix-eval-jobs
         nix-inspect
         nix-output-monitor
         nix-pin

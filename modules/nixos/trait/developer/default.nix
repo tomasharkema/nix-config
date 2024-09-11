@@ -33,7 +33,7 @@ in {
 
         nil
         nixd
-        nix-eval-jobs
+        # nix-eval-jobs
         # nix-fast-build
         nix-output-monitor
         nix-prefetch-git

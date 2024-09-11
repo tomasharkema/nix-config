@@ -125,6 +125,7 @@
         darwin = with inputs; [
           agenix.darwinModules.default
           agenix-rekey.nixosModules.default
+          mac-app-util.darwinModules.default
 
           (
             {
@@ -793,6 +794,12 @@
 
     tsui = {
       url = "github:neuralinkcorp/tsui";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };

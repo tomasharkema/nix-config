@@ -205,7 +205,7 @@ in
       test-installer
 
       manix
-      nix-eval-jobs
+      # nix-eval-jobs
       nix-init
       nix-output-monitor
       nix-prefetch-scripts
