@@ -29,7 +29,9 @@
       snapper.enable = false;
     };
 
-    programs.gnupg.agent = {enable = true;};
+    programs.gnupg.agent = {
+      enable = true;
+    };
 
     environment = {
       sessionVariables = {
@@ -55,7 +57,9 @@
 
     gui = {
       enable = true;
-      desktop = {enable = true;};
+      desktop = {
+        enable = true;
+      };
       gnome = {
         enable = true;
         # hidpi.enable = true;
@@ -117,6 +121,7 @@
         nvidia = {
           enable = true;
         };
+        sgx.enable = true;
         # remote-unlock.enable = true;
         bluetooth.enable = true;
         monitor.enable = true;
@@ -152,7 +157,7 @@
       #   calib-data-file = ./calib-data.bin;
       # };
       switcherooControl.enable = true;
-      journald.storage = "volatile";
+      # journald.storage = "volatile";
 
       hypervisor = {
         enable = true;

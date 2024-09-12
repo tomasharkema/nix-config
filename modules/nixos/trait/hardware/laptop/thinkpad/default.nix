@@ -37,8 +37,7 @@ in {
       # libmbim
       # libqmi
       tpacpi-bat
-      sgx-ssl
-      sgx-sdk
+
       # sgx-psw
     ];
 
@@ -63,21 +62,16 @@ in {
 
     home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
       {package = thinkpad-thermal;}
-      {package = fnlock-switch-thinkpad-compact-usb-keyboard;}
+      # {package = fnlock-switch-thinkpad-compact-usb-keyboard;}
       {package = thinkpad-battery-threshold;}
     ];
 
-    hardware.cpu.intel.sgx = {
-      enableDcapCompat = true;
-      provision = {
-        enable = true;
-      };
+    boot = {
+      extraModprobeConfig = ''
+        options thinkpad_acpi fan_control=1
+      '';
     };
 
-    users.users.tomas.extraGroups = ["sgx" "sgx_prv"];
-    boot.extraModprobeConfig = ''
-      options thinkpad_acpi fan_control=1
-    '';
     security.pam.services = {
       "gdm-fingerprint" = {
         # enableGnomeKeyring = true;
