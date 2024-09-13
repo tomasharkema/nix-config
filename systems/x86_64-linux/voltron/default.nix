@@ -220,14 +220,15 @@
     #   extra-sandbox-paths = [config.programs.ccache.cacheDir];
     # };
 
-    boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
-
     chaotic = {
       scx.enable = pkgs.stdenvNoCC.isx86_64; # by default uses scx_rustland scheduler
     };
 
     boot = {
+      kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
       resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
+
+      extraModulePackages = [inputs.netkit.packages."${pkgs.system}".xmm7360-pci];
 
       tmp = {
         useTmpfs = true;
@@ -242,17 +243,16 @@
 
       binfmt.emulatedSystems = ["aarch64-linux"];
 
-      modprobeConfig.enable = true;
+      # modprobeConfig.enable = true;
 
-      # extraModprobeConfig = [];
-      kernelParams = [
-        # "nowatchdog"
-        # "mitigations=off"
+      # kernelParams = [
+      #   # "nowatchdog"
+      #   # "mitigations=off"
 
-        "intel_iommu=on"
-        "iommu=pt"
-        "blacklist=nouveau"
-      ];
+      #   "intel_iommu=on"
+      #   "iommu=pt"
+      #   "blacklist=nouveau"
+      # ];
 
       # extraModulePackages = [
       #   config.system.build.isgx
@@ -260,22 +260,26 @@
 
       kernelModules = [
         "i915"
+        "spi"
+        "sgx"
         # "isgx"
-        "vfio_pci"
-        "vfio"
-        "vfio_iommu_type1"
+        # "vfio_pci"
+        # "vfio"
+        # "vfio_iommu_type1"
         "kvm-intel"
         # "watchdog"
         #"tpm_rng"
       ];
-      extraModprobeConfig = "options i915 enable_guc=2";
+      # extraModprobeConfig = "options i915 enable_guc=2";
       initrd.kernelModules = [
+        # "spi"
+        # "sgx"
         "i915"
         #  "watchdog"
         # "isgx"
-        "vfio_pci"
-        "vfio"
-        "vfio_iommu_type1"
+        # "vfio_pci"
+        # "vfio"
+        # "vfio_iommu_type1"
         "kvm-intel"
       ];
     };

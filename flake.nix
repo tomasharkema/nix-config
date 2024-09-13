@@ -704,9 +704,9 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # netkit = {
-    #   url = "github:icebox-nix/netkit.nix";
-    # };
+    netkit = {
+      url = "github:icebox-nix/netkit.nix";
+    };
 
     # nix-topology = {
     #   url = "github:oddlama/nix-topology";
