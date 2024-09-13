@@ -16,8 +16,8 @@
 conky.config = {
   alignment = "bottom_right",
   -- font = 'JetBrainsMono Nerd Font Mono:size=8',
-  -- font = "B612Mono Nerd Font:size=12",
-  font = "Futura Std:size=12",
+  font = "B612Mono Nerd Font:size=12",
+  -- font = "Futura Std:size=12",
   background = false,
   border_width = 1,
   cpu_avg_samples = 2,
