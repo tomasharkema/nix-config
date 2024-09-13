@@ -19,7 +19,7 @@
   samba,
   nfs-utils,
   doxygen,
-  python3,
+  python311,
   pam,
   popt,
   talloc,
@@ -63,7 +63,7 @@
 }: let
   docbookFiles = "${docbook_xsl}/share/xml/docbook-xsl/catalog.xml:${docbook_xml_dtd_45}/xml/dtd/docbook/catalog.xml";
 
-  py = python3.pythonOnBuildForHost.withPackages (ps:
+  py = python311.pythonOnBuildForHost.withPackages (ps:
     with ps; [
       setuptools
       python-ldap
