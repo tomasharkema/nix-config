@@ -223,7 +223,7 @@
     boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
 
     chaotic = {
-      scx.enable = true; # by default uses scx_rustland scheduler
+      scx.enable = pkgs.stdenvNoCC.isx86_64; # by default uses scx_rustland scheduler
     };
 
     boot = {

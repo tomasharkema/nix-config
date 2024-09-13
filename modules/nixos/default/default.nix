@@ -95,7 +95,7 @@
 
     chaotic = {
       scx = {
-        enable = !(config.trait.server.enable);
+        enable = !(config.trait.server.enable) && pkgs.stdenvNoCC.isx86_64;
         scheduler = "scx_bpfland";
       };
     };
