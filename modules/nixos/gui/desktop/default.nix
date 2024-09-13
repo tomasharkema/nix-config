@@ -132,7 +132,7 @@ in {
         vlc
         boxbuddy
         clutter
-        discordo
+
         # dosbox-x
         effitask
         filezilla
@@ -180,30 +180,30 @@ in {
         ytdlp-gui
       ]
       ++ lib.optionals pkgs.stdenv.isx86_64 [
-        gdm-settings
-        custom.qlogexplorer
+        #       config.boot.linuxPackages.nvidia_x11
+        #     ];
+        #     ++ [
+        #     prev.runtimeDependencies
+        #   runtimeDependencies =
+        # (plex-media-player.overrideAttrs (prev: {
+        # }))
         # handbrake
-        gnome_mplayer
-        gmtk
         # pkgs.custom.git-butler
         # pkgs.wolfram-engine
         # spotify
         angryipscanner
         bottles
+        custom.qlogexplorer
         devdocs-desktop
+        discordo
         dmidecode
+        gdm-settings
+        gmtk
+        gnome_mplayer
         ipmiview
         libsmbios
-        plex-media-player
-        # (plex-media-player.overrideAttrs (prev: {
-        #   runtimeDependencies =
-        #     prev.runtimeDependencies
-        #     ++ [
-        #       config.boot.linuxPackages.nvidia_x11
-        #     ];
-        # }))
         netflix
-
+        plex-media-player
         plexamp
         xpipe
       ]
