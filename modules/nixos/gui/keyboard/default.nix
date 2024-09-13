@@ -34,7 +34,7 @@ in {
       };
 
       keyd = {
-        enable = true;
+        # enable = true;
 
         keyboards = {
           # default = {

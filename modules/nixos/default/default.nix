@@ -426,6 +426,8 @@
         # forwardX11 = true;
         extraConfig = ''
           ForwardAgent yes
+          ProxyCommand ${pkgs.sssd}/bin/sss_ssh_knownhostsproxy -p %p %h
+          GlobalKnownHostsFile /var/lib/sss/pubconf/known_hosts
         '';
       };
       # mosh.enable = true;
