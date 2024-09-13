@@ -32,18 +32,23 @@ in {
     system.nixos.tags = ["thinkpad"];
 
     environment.systemPackages = with pkgs; [
-      # modemmanager
-      # modem-manager-gui
-      # libmbim
-      # libqmi
+      modemmanager
+      modem-manager-gui
+      libmbim
+      libqmi
       tpacpi-bat
 
       # sgx-psw
     ];
 
-    systemd.services = {
-      open-fprintd-resume.enable = true;
-      open-fprintd-suspend.enable = true;
+    systemd = {
+      packages = [
+        pkgs.modemmanager
+      ];
+      services = {
+        open-fprintd-resume.enable = true;
+        open-fprintd-suspend.enable = true;
+      };
     };
 
     services = {
@@ -58,6 +63,9 @@ in {
       open-fprintd.enable = true;
       python-validity.enable = true;
       fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
+
+      udev.packages = [pkgs.modemmanager];
+      dbus.packages = [pkgs.modemmanager];
     };
 
     home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
