@@ -71,7 +71,7 @@
       growPartition = lib.mkDefault false;
 
       tmp = {
-        useTmpfs = false;
+        useTmpfs = lib.mkForce false;
         cleanOnBoot = true;
       };
       recovery = {

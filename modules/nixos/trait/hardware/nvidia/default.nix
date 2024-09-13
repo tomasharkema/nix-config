@@ -97,7 +97,7 @@ in {
       graphics = {
         enable = true;
 
-        enable32Bit = true;
+        enable32Bit = pkgs.stdenvNoCC.isx86_64;
 
         extraPackages = with pkgs; [
           nvidia-vaapi-driver
