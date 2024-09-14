@@ -11,8 +11,6 @@
     # (modulesPath + "/installer/scan/not-detected.nix")
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
-    # nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
-    # ./samba.nix
   ];
 
   config = {
@@ -24,12 +22,20 @@
       ntopng.enable = true;
       steam.enable = true;
       # usbip.enable = true;
-      home-assistant.enable = true;
+      # home-assistant.enable = true;
+      spotifyd.enable = true;
     };
 
-    nix.settings = {
-      keep-outputs = lib.mkForce false;
-      keep-derivations = lib.mkForce false;
+    hardware = {
+      cpu.intel.updateMicrocode = true;
+      bluetooth.enable = true;
+      # nvidia.package = mkForce config.boot.kernelPackages.nvidiaPackages.stable;
+    };
+
+    services = {
+      throttled.enable = lib.mkIf false;
+      # remote-builders.client.enable = true;
+      blueman.enable = true;
     };
 
     specialisation = {
@@ -48,10 +54,10 @@
       enable = true;
       desktop = {
         enable = true;
-        rdp.enable = false;
+        rdp.enable = true;
       };
       quiet-boot.enable = true;
-      gamemode.enable = true;
+      # gamemode.enable = true;
     };
 
     services.beesd.filesystems = {
@@ -82,10 +88,6 @@
         secure-boot.enable = true;
         remote-unlock.enable = true;
         monitor.enable = true;
-        nvidia = {
-          enable = true;
-          beta = false;
-        };
         disable-sleep.enable = true;
       };
     };
@@ -128,12 +130,14 @@
           "sd_mod"
         ];
         kernelModules = [
+          "i915"
           "kvm-intel"
           "uinput"
           "nvme"
         ];
       };
       kernelModules = [
+        "i915"
         "kvm-intel"
         "uinput"
         "nvme"
@@ -145,17 +149,6 @@
         sign = true;
         netboot.enable = true;
       };
-    };
-    apps.spotifyd.enable = true;
-    hardware = {
-      cpu.intel.updateMicrocode = true;
-      bluetooth.enable = true;
-      # nvidia.package = mkForce config.boot.kernelPackages.nvidiaPackages.stable;
-    };
-
-    services = {
-      # remote-builders.client.enable = true;
-      blueman.enable = true;
     };
   };
 }
