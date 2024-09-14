@@ -9,15 +9,15 @@
 }: {
   imports = with inputs; [
     # (modulesPath + "/installer/scan/not-detected.nix")
-    # nixos-hardware.nixosModules.common-cpu-intel
-    # nixos-hardware.nixosModules.common-pc-ssd
+    nixos-hardware.nixosModules.common-cpu-intel
+    nixos-hardware.nixosModules.common-pc-ssd
     # nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
     # ./samba.nix
   ];
 
   config = {
     age.rekey = {
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKZ68XxpD6TUAyuYa5sl6vPUnSrmTQqD015L05n+B+jY root@enzian";
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIseppvkEAzMD/B2xLqijr4UhTig0bZfqnXS6NcaAHxR root@nixos";
     };
 
     apps = {
