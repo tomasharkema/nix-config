@@ -145,7 +145,7 @@
                     !include ${config.age.secrets.nix-access-tokens-github.path}
                   '';
 
-                  settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${builtins.toString config.users.users."${config.user.name}".uid}"];
+                  # settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${builtins.toString config.users.users."${config.user.name}".uid}"];
                 };
 
                 age = {
