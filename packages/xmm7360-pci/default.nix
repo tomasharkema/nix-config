@@ -5,10 +5,11 @@
   fetchFromGitHub,
   kernel ? pkgs.linuxPackages_latest.kernel,
   python3,
+  fetchpatch,
 }:
 stdenv.mkDerivation rec {
   pname = "xmm7360-pci";
-  version = "2020-08-02";
+  version = "2024-02-24-${kernel.version}";
 
   src = fetchFromGitHub {
     owner = "xmm7360";
@@ -18,7 +19,12 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = kernel.moduleBuildDependencies;
-
+  patches = [
+    (fetchpatch {
+      url = "https://patch-diff.githubusercontent.com/raw/xmm7360/xmm7360-pci/pull/220.patch";
+      sha256 = "sha256-zIx9tkPo9LFgaOVSyEQBNIgVY2QwdYpM/tw6/ifiy1A=";
+    })
+  ];
   prePatch = ''
     substituteInPlace rpc/open_xdatachannel.py --replace "#!/usr/bin/env python3"  "#!${
       (python3.withPackages

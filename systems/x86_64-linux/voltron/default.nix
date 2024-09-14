@@ -228,7 +228,12 @@
       kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
       resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
-      extraModulePackages = [inputs.netkit.packages."${pkgs.system}".xmm7360-pci];
+      extraModulePackages = [
+        (pkgs.custom.xmm7360-pci.override
+          {
+            kernel = config.boot.kernelPackages.kernel;
+          })
+      ];
 
       tmp = {
         useTmpfs = true;
