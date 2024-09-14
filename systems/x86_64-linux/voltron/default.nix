@@ -4,7 +4,11 @@
   config,
   lib,
   ...
-}: {
+}: let
+  xmm7360 = pkgs.custom.xmm7360-pci.override {
+    kernel = config.boot.kernelPackages.kernel;
+  };
+in {
   imports = with inputs; [
     ./hardware-configuration.nix
     nixos-hardware.nixosModules.common-pc-laptop-acpi_call
@@ -39,6 +43,7 @@
       };
 
       systemPackages = with pkgs; [
+        xmm7360
         libimobiledevice
         intel-gpu-tools
         nvramtool
@@ -229,10 +234,7 @@
       resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
       extraModulePackages = [
-        (pkgs.custom.xmm7360-pci.override
-          {
-            kernel = config.boot.kernelPackages.kernel;
-          })
+        xmm7360
       ];
 
       tmp = {
@@ -250,20 +252,22 @@
 
       # modprobeConfig.enable = true;
 
-      # kernelParams = [
-      #   # "nowatchdog"
-      #   # "mitigations=off"
+      kernelParams = [
+        #   # "nowatchdog"
+        #   # "mitigations=off"
 
-      #   "intel_iommu=on"
-      #   "iommu=pt"
-      #   "blacklist=nouveau"
-      # ];
+        #   "intel_iommu=on"
+        #   "iommu=pt"
+        "blacklist=iosm"
+        "blacklist=nouveau"
+      ];
 
       # extraModulePackages = [
       #   config.system.build.isgx
       # ];
 
       kernelModules = [
+        "xmm7360"
         "i915"
         "spi"
         "sgx"
