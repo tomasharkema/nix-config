@@ -80,6 +80,7 @@
     fonts = {
       packages = with pkgs; [
         custom.din
+        custom.computer-modern
         custom.futura
         google-fonts
         noto-fonts

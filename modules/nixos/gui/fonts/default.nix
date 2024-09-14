@@ -69,6 +69,7 @@
 
       packages = with pkgs; [
         custom.din
+        custom.computer-modern
         custom.futura
         custom.fast-font
         # exult
