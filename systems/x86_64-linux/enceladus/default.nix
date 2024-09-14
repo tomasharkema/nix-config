@@ -33,7 +33,7 @@
     };
 
     services = {
-      throttled.enable = lib.mkIf false;
+      throttled.enable = lib.mkForce false;
       # remote-builders.client.enable = true;
       blueman.enable = true;
     };
