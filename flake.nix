@@ -342,8 +342,7 @@
           #   };
           # };
         };
-    }
-    // inputs;
+    };
 
   nixConfig = {
     use-cgroups = true;
