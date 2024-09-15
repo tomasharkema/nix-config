@@ -65,4 +65,8 @@
   spotifyd = prev.spotifyd.override {withMpris = true;};
 
   shairport-sync = prev.shairport-sync.override {enableAirplay2 = true;};
+
+  libgda = prev.libgda.overrideAttrs (old: {
+    env.NIX_CFLAGS_COMPILE = "";
+  });
 }

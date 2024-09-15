@@ -88,16 +88,16 @@ in {
         forceFullCompositionPipeline = true;
 
         prime = {
-          sync.enable = true;
-          offload.enable = false;
-          offload.enableOffloadCmd = false;
+          # sync.enable = true;
+          offload.enable = true;
+          offload.enableOffloadCmd = true;
           intelBusId = "PCI:0:2:0";
           nvidiaBusId = "PCI:02:0:0";
         };
 
         powerManagement = {
-          enable = false;
-          # finegrained = true;
+          enable = true;
+          finegrained = true;
         };
       };
 
@@ -106,7 +106,7 @@ in {
 
     apps = {
       steam.enable = true;
-      # opensnitch.enable = true;
+      opensnitch.enable = true;
       # usbip.enable = true;
       # samsung.enable = true;
       podman.enable = true;
@@ -146,8 +146,7 @@ in {
 
     services = {
       usbmuxd.enable = true;
-      # dbus.packages = with pkgs; [custom.ancs4linux];
-      # kmscon = {enable = mkForce false;};
+
       udev = {
         enable = true;
         packages = with pkgs; [
@@ -166,10 +165,8 @@ in {
 
       hypervisor = {
         enable = true;
-        #   bridgeInterfaces = ["wlp59s0"];
       };
-      # remote-builders.client.enable = true;
-      # usb-over-ethernet.enable = true;
+
       hardware.bolt.enable = true;
       # beesd.filesystems = {
       #   root = {
@@ -182,7 +179,6 @@ in {
 
       avahi = {
         enable = true;
-        # allowInterfaces = ["wlp59s0"];
         reflector = lib.mkForce false;
       };
     };
@@ -198,26 +194,9 @@ in {
     # };
 
     programs = {
-      # captive-browser = {
-      #   enable = true;
-      #   interface = "wlp4s0";
-      # };
-
-      ccache = {
+      captive-browser = {
         enable = true;
-        packageNames = [
-          #     "freeipa"
-          #     "sssd"
-
-          #     "chromium"
-          #     "chromium-unwrapped"
-
-          #     "ffmpeg"
-          "ffmpeg-full"
-
-          #     "zerotierone"
-          #     "ztui"
-        ];
+        interface = "wlp4s0";
       };
     };
 
@@ -233,9 +212,9 @@ in {
       kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
       resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
-      extraModulePackages = [
-        xmm7360
-      ];
+      # extraModulePackages = [
+      #   xmm7360
+      # ];
 
       tmp = {
         useTmpfs = true;
@@ -258,7 +237,7 @@ in {
 
         #   "intel_iommu=on"
         #   "iommu=pt"
-        "blacklist=iosm"
+        # "blacklist=iosm"
         "blacklist=nouveau"
       ];
 
@@ -267,7 +246,7 @@ in {
       # ];
 
       kernelModules = [
-        "xmm7360"
+        # "xmm7360"
         "i915"
         "spi"
         "sgx"

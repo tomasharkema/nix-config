@@ -10,10 +10,10 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1725722682,
+        "lastModified": 1726360516,
         "owner": "oddlama",
         "repo": "agenix-rekey",
-        "rev": "10ea05a0077aefe03b443fdb63b58ab78d0440f3",
+        "rev": "524425f44b1f9717bfabf483ec9c990c3712e6df",
         "type": "github"
       },
       "original": {
@@ -148,10 +148,10 @@
     },
     "nixlib": {
       "locked": {
-        "lastModified": 1725757153,
+        "lastModified": 1726362065,
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "rev": "68584f89dd0eb16fea5d80ae127f3f681f6a5df7",
+        "rev": "9db4db09d82e4b2207bfa7f1e747a4f49d214555",
         "type": "github"
       },
       "original": {
@@ -197,10 +197,10 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1726062281,
+        "lastModified": 1726320982,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e65aa8301ba4f0ab8cb98f944c14aa9da07394f8",
+        "rev": "8f7492cce28977fbf8bd12c72af08b1f6c7c3e49",
         "type": "github"
       },
       "original": {
@@ -212,10 +212,10 @@
     },
     "nixpkgs-stable_2": {
       "locked": {
-        "lastModified": 1726062281,
+        "lastModified": 1726320982,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e65aa8301ba4f0ab8cb98f944c14aa9da07394f8",
+        "rev": "8f7492cce28977fbf8bd12c72af08b1f6c7c3e49",
         "type": "github"
       },
       "original": {

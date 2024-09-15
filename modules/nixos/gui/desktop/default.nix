@@ -24,7 +24,7 @@ in {
       dbus = {
         enable = true;
         packages = with pkgs; [
-          tilix
+          # tilix
           usbguard-notifier
         ];
       };
