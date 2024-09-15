@@ -18,6 +18,10 @@
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIseppvkEAzMD/B2xLqijr4UhTig0bZfqnXS6NcaAHxR root@nixos";
     };
 
+    environment.systemPackages = [
+      (pkgs.custom.amifldrv.override {kernel = config.boot.kernelPackages.kernel;})
+    ];
+
     apps = {
       ntopng.enable = true;
       steam.enable = true;
@@ -62,7 +66,7 @@
 
     services.beesd.filesystems = {
       root = {
-        spec = "UUID=b4d344ce-bf39-473d-bc97-7b12ef0f97a1";
+        spec = "UUID=7227b9fb-8619-403a-8944-4cc3f615ad6f";
         hashTableSizeMB = 2048;
         verbosity = "crit";
         extraOptions = [

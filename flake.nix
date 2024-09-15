@@ -121,6 +121,13 @@
           # nixos-service.nixosModules.nixos-service
           # nix-virt.nixosModules.default
           ./defaultNixosAge.nix
+          (
+            {...}: {
+              system.extraSystemBuilderCmds = ''
+                ln -s ${inputs.self} $out/flake
+              '';
+            }
+          )
         ];
 
         darwin = with inputs; [
