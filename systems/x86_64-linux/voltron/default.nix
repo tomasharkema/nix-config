@@ -106,7 +106,7 @@ in {
 
     apps = {
       steam.enable = true;
-      opensnitch.enable = true;
+      # opensnitch.enable = true;
       # usbip.enable = true;
       # samsung.enable = true;
       podman.enable = true;
@@ -125,6 +125,7 @@ in {
         laptop.thinkpad.enable = true;
         nvidia = {
           enable = true;
+          open = false;
         };
         sgx.enable = true;
         # remote-unlock.enable = true;
@@ -168,14 +169,14 @@ in {
       };
 
       hardware.bolt.enable = true;
-      # beesd.filesystems = {
-      #   root = {
-      #     spec = "UUID=22a02900-5321-481c-af47-ff8700570cc6";
-      #     hashTableSizeMB = 4096;
-      #     verbosity = "crit";
-      #     extraOptions = ["--loadavg-target" "2.0"];
-      #   };
-      # };
+      beesd.filesystems = {
+        root = {
+          spec = "UUID=22a02900-5321-481c-af47-ff8700570cc6";
+          hashTableSizeMB = 4096;
+          verbosity = "crit";
+          extraOptions = ["--loadavg-target" "2.0"];
+        };
+      };
 
       avahi = {
         enable = true;
@@ -212,9 +213,9 @@ in {
       kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
       resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
-      # extraModulePackages = [
-      #   xmm7360
-      # ];
+      extraModulePackages = [
+        xmm7360
+      ];
 
       tmp = {
         useTmpfs = true;
@@ -229,7 +230,7 @@ in {
 
       binfmt.emulatedSystems = ["aarch64-linux"];
 
-      # modprobeConfig.enable = true;
+      modprobeConfig.enable = true;
 
       kernelParams = [
         #   # "nowatchdog"
@@ -246,7 +247,7 @@ in {
       # ];
 
       kernelModules = [
-        # "xmm7360"
+        "xmm7360"
         "i915"
         "spi"
         "sgx"

@@ -5,13 +5,13 @@
   ...
 }: let
   cfg = config.trait.hardware.nvidia;
-  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __NV_PRIME_RENDER_OFFLOAD=1
-    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __VK_LAYER_NV_optimus=NVIDIA_only
-    exec "$@"
-  '';
+  # nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+  #   export __NV_PRIME_RENDER_OFFLOAD=1
+  #   export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+  #   export __GLX_VENDOR_LIBRARY_NAME=nvidia
+  #   export __VK_LAYER_NV_optimus=NVIDIA_only
+  #   exec "$@"
+  # '';
 in {
   options.trait.hardware.nvidia = {
     enable = lib.mkEnableOption "nvidia";
@@ -36,7 +36,7 @@ in {
       libva-utils
       (nvtopPackages.full)
       zenith-nvidia
-      nvidia-offload
+      # nvidia-offload
       nvfancontrol
       nvitop
       # gwe
@@ -83,11 +83,11 @@ in {
     };
 
     hardware = {
-      nvidia-container-toolkit.enable = true;
+      # nvidia-container-toolkit.enable = true;
 
       nvidia = {
         modesetting.enable = true;
-        # forceFullCompositionPipeline = true;
+        forceFullCompositionPipeline = true;
         open = lib.mkForce cfg.open;
         nvidiaSettings = true;
 
@@ -97,7 +97,7 @@ in {
       graphics = {
         enable = true;
 
-        enable32Bit = pkgs.stdenvNoCC.isx86_64;
+        # enable32Bit = pkgs.stdenvNoCC.isx86_64;
 
         extraPackages = with pkgs; [
           nvidia-vaapi-driver
