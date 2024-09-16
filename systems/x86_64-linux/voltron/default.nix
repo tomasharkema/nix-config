@@ -213,9 +213,9 @@ in {
       kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
       resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
-      extraModulePackages = [
-        xmm7360
-      ];
+      # extraModulePackages = [
+      #   xmm7360
+      # ];
 
       tmp = {
         useTmpfs = true;
@@ -247,7 +247,7 @@ in {
       # ];
 
       kernelModules = [
-        "xmm7360"
+        # "xmm7360"
         "i915"
         "spi"
         "sgx"
