@@ -71,7 +71,7 @@
       in {
         package = pkgs.nixVersions.latest;
 
-        nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+        # nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
         channel.enable = true;
 
@@ -120,8 +120,8 @@
         };
 
         # flake-utils-plus
-        generateRegistryFromInputs = true;
-        generateNixPathFromInputs = true;
+        # generateRegistryFromInputs = true;
+        # generateNixPathFromInputs = true;
         linkInputs = true;
       };
     };

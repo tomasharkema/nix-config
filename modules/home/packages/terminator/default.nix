@@ -5,7 +5,7 @@
   ...
 }: {
   config = {
-    programs.terminator = {
+    programs.terminator = lib.mkIf pkgs.stdenvNoCC.isLinux {
       enable = true;
     };
   };

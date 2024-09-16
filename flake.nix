@@ -146,7 +146,8 @@
 
                 # system.nixos.tags = ["snowfall"];
                 system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
-
+                # nixpkgs.flake.setFlakeRegistry = false;
+                # nixpkgs.flake.setNixPath = false;
                 nix = {
                   extraOptions = ''
                     !include ${config.age.secrets.nix-access-tokens-github.path}
