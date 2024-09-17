@@ -71,7 +71,7 @@
       in {
         package = pkgs.nixVersions.latest;
 
-        # nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+        nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
         channel.enable = true;
 

@@ -5,7 +5,10 @@
 
       imports = [inputs.agenix-rekey.flakeModule];
 
-      src = ./.;
+      src = builtins.path {
+        path = ./.;
+        name = "snowfall-flake-source";
+      };
 
       channels-config = {
         allowUnfreePredicate = _: true;
@@ -15,7 +18,7 @@
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;
         nvidia.acceptLicense = true;
-        # cudaSupport = true;
+        cudaSupport = true;
         allowAliases = true;
         config.allowAliases = true;
 
