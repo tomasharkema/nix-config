@@ -238,16 +238,15 @@ in {
 
         #   "intel_iommu=on"
         #   "iommu=pt"
-        # "blacklist=iosm"
-        "blacklist=nouveau"
       ];
-
+      blacklistedKernelModules = ["nouveau" "iosm"];
       # extraModulePackages = [
       #   config.system.build.isgx
       # ];
 
       kernelModules = [
-        # "xmm7360"
+        "xmm7360"
+        # "iosm"
         "i915"
         "spi"
         "sgx"

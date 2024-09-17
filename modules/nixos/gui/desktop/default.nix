@@ -203,7 +203,10 @@ in {
         ipmiview
         libsmbios
         netflix
-        plex-media-player
+        (plex-media-player.overrideAttrs (old: {
+          cudaSupport = true;
+          stdenv = pkgs.cudaPackages.backendStdenv;
+        }))
         plexamp
         xpipe
       ]
@@ -212,7 +215,7 @@ in {
         ztui
 
         netbrowse
-        # usbguard-gnome
+        usbguard-gnome
       ]);
 
     programs = {

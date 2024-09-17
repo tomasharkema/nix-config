@@ -69,7 +69,7 @@ in {
         {package = nautilus;}
         # {package = google-chrome;}
         {package = chromium;}
-        {package = osConfig.programs.firefox.package;}
+        # {package = osConfig.programs.firefox.package;}
         {package = geary;}
         {package = vscode;}
         {package = tilix;}
