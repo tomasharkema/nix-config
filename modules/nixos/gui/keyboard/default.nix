@@ -15,13 +15,13 @@ in {
     # };
     environment.systemPackages = with pkgs; [keyd];
 
-    home-manager.users.tomas.dconf = {
-      settings = {
-        "org/gnome/mutter" = {
-          overlay-key = "";
-        };
-      };
-    };
+    # home-manager.users.tomas.dconf = {
+    #   settings = {
+    #     "org/gnome/mutter" = {
+    #       overlay-key = "";
+    #     };
+    #   };
+    # };
 
     services = {
       libinput.enable = true;

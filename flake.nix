@@ -19,6 +19,7 @@
         # allowBroken = true;
         nvidia.acceptLicense = true;
         cudaSupport = true;
+
         allowAliases = true;
         config.allowAliases = true;
 

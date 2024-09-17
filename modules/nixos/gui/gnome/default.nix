@@ -51,7 +51,7 @@ in
         variables.XCURSOR_SIZE = builtins.toString cfg.cursorSize;
         sessionVariables = {
           XCURSOR_SIZE = builtins.toString cfg.cursorSize;
-          # NIXOS_OZONE_WL = "1";
+          NIXOS_OZONE_WL = "1";
         };
       };
 
@@ -73,17 +73,17 @@ in
           };
           tomas.databases = [
             {
-              settings."org/gnome/mutter" = {
-                experimental-features = [
-                  "scale-monitor-framebuffer"
-                  "variable-refresh-rate"
-                  "rt-scheduler"
-                  "xwayland-native-scaling"
-                  "kms-modifiers"
-                  "autoclose-xwayland"
-                ];
-                edge-tiling = true;
-              };
+              # settings."org/gnome/mutter" = {
+              #   experimental-features = [
+              #     "scale-monitor-framebuffer"
+              #     "variable-refresh-rate"
+              #     "rt-scheduler"
+              #     "xwayland-native-scaling"
+              #     "kms-modifiers"
+              #     "autoclose-xwayland"
+              #   ];
+              #   edge-tiling = true;
+              # };
               settings."org/gnome/desktop/interface".scaling-factor =
                 lib.gvariant.mkUint32 2;
             }
@@ -139,11 +139,11 @@ in
               # gnome-menus
             ];
             # 'xwayland-native-scaling',
-            extraGSettingsOverrides = ''
-              [org.gnome.mutter]
-              experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland', 'variable-refresh-rate','xwayland-native-scaling']
-              edge-tiling=true
-            '';
+            # extraGSettingsOverrides = ''
+            #   [org.gnome.mutter]
+            #   experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland', 'variable-refresh-rate','xwayland-native-scaling']
+            #   edge-tiling=true
+            # '';
 
             sessionPath = with pkgs; [
               mutter
