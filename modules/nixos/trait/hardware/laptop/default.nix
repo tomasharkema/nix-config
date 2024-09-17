@@ -15,7 +15,7 @@ in {
     system.nixos.tags = ["laptop"];
     powerManagement.enable = true;
 
-    # environment.systemPackages = [inputs.nbfc-linux.packages."${pkgs.system}".default];
+    environment.systemPackages = [pkgs.custom.tlpui];
 
     home-manager.users.tomas.programs.gnome-shell.extensions =
       lib.optional

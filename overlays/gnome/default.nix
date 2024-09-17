@@ -21,18 +21,29 @@
 
   # });
 
-  mutter = prev.mutter.overrideAttrs (old: {
-    # src = prev.fetchFromGitLab {
-    #   domain = "gitlab.gnome.org";
-    #   owner = "vanvugt";
-    #   repo = "mutter";
-    #   rev = "triple-buffering-v4-46";
-    #   hash = "sha256-C2VfW3ThPEZ37YkX7ejlyumLnWa9oij333d5c4yfZxc=";
+  mutter = prev.mutter.overrideAttrs (old: rec {
+    # version = "47.0";
+    # src = prev.fetchurl {
+    #   url = "mirror://gnome/sources/mutter/${prev.lib.versions.major version}/mutter-${version}.tar.xz";
+    #   hash = "sha256-LQ6pAVCsbNAhnQB42wXW4VFNauIb+fP3QNT7A5EpAWs=";
     # };
+
+    #   # src = prev.fetchFromGitLab {
+    #   #   domain = "gitlab.gnome.org";
+    #   #   owner = "vanvugt";
+    #   #   repo = "mutter";
+    #   #   rev = "triple-buffering-v4-46";
+    #   #   hash = "sha256-C2VfW3ThPEZ37YkX7ejlyumLnWa9oij333d5c4yfZxc=";
+    #   # };
     patches = [
       # (prev.fetchpatch {
       #   url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441.patch";
       #   sha256 = "sha256-2dHBiYw7i2MADYEmEx9TqvQn9exKKKnWYzsQhmrjloo=";
+      # })
+
+      # (prev.fetchpatch {
+      #   url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3567.patch";
+      #   sha256 = "sha256-S+uH4rJiVSyU2G+cudeh6bp2hWs1GMPE/9gaAKAWs1Q=";
       # })
       ./triple-buffer.patch
       (prev.fetchpatch {

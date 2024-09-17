@@ -195,7 +195,7 @@ in {
         bottles
         custom.qlogexplorer
         devdocs-desktop
-        discordo
+        # discordo
         dmidecode
         gdm-settings
         # gmtk

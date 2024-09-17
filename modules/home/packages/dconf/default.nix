@@ -27,7 +27,7 @@ with inputs.home-manager.lib.hm.gvariant; {
             "rt-scheduler"
             "xwayland-native-scaling"
             "kms-modifiers"
-            "autoclose-xwayland"
+            # "autoclose-xwayland"
             # ]
             # else ["rt-scheduler"];
           ];
