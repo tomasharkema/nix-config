@@ -198,8 +198,8 @@ in {
         discordo
         dmidecode
         gdm-settings
-        gmtk
-        gnome_mplayer
+        # gmtk
+        # gnome_mplayer
         ipmiview
         libsmbios
         netflix

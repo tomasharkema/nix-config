@@ -136,7 +136,7 @@ in {
               };
           })
           config.autostart.programs);
-        packages = packagesToAdd ++ (with pkgs; [vinagre devhelp]);
+        packages = packagesToAdd ++ (with pkgs; [devhelp]);
         # favoriteAppIds = favoriteAppIds;
       };
 
