@@ -10,10 +10,10 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1726360516,
+        "lastModified": 1726670740,
         "owner": "oddlama",
         "repo": "agenix-rekey",
-        "rev": "524425f44b1f9717bfabf483ec9c990c3712e6df",
+        "rev": "565374f5dd2e0919698fdceaae927305dcf32b87",
         "type": "github"
       },
       "original": {
@@ -25,10 +25,10 @@
     "devenv": {
       "locked": {
         "dir": "src/modules",
-        "lastModified": 1726589902,
+        "lastModified": 1726682244,
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "08dd75cca1ad85622d114fff6988e1255ba26dd2",
+        "rev": "bfc6481188a3e7ddda2e745292b737c03949a1ab",
         "type": "github"
       },
       "original": {
@@ -168,10 +168,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1726494069,
+        "lastModified": 1726707592,
         "owner": "nix-community",
         "repo": "nixos-generators",
-        "rev": "934dff070150ec3f67aea4f1dbe6ad303870669f",
+        "rev": "0ac657a7486103867cb4d7dcb660cc73c8c37651",
         "type": "github"
       },
       "original": {

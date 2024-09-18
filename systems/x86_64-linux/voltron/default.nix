@@ -5,6 +5,23 @@
   lib,
   ...
 }: let
+  settingsFile = pkgs.writeText "xmm7360.ini" ''
+    # driver config
+    apn="multimedia.lebara.nl"
+
+    #ip-fetch-timeout=1
+    #nodefaultroute=True
+    metric=1000
+
+    # uncomment to not add DNS values to /etc/resolv.conf
+    #noresolv=True
+
+    # used to activate NetworkManager integration
+    dbus=True
+
+    # Setup script config
+    BIN_DIR=/run/current-system/sw/bin
+  '';
   xmm7360 = pkgs.custom.xmm7360-pci.override {
     kernel = config.boot.kernelPackages.kernel;
   };
@@ -38,11 +55,15 @@ in {
     };
 
     environment = {
+      etc = {
+        "xmm7360".source = settingsFile;
+      };
       sessionVariables = {
         # LIBVA_DRIVER_NAME = "i965";
       };
 
       systemPackages = with pkgs; [
+        custom.xmmctl
         xmm7360
         libimobiledevice
         intel-gpu-tools
@@ -88,17 +109,17 @@ in {
         forceFullCompositionPipeline = true;
 
         prime = {
-          # sync.enable = true;
-          offload.enable = true;
-          offload.enableOffloadCmd = true;
+          sync.enable = true;
+          # offload.enable = true;
+          # offload.enableOffloadCmd = true;
           intelBusId = "PCI:0:2:0";
           nvidiaBusId = "PCI:02:0:0";
         };
 
-        powerManagement = {
-          enable = true;
-          finegrained = true;
-        };
+        # powerManagement = {
+        # enable = true;
+        # finegrained = true;
+        # };
       };
 
       # fancontrol.enable = true;
@@ -109,7 +130,7 @@ in {
       # opensnitch.enable = true;
       # usbip.enable = true;
       # samsung.enable = true;
-      podman.enable = true;
+      # podman.enable = true;
       resilio = {
         enable = true;
         enableEnc = true;
@@ -165,7 +186,7 @@ in {
       # journald.storage = "volatile";
 
       hypervisor = {
-        enable = true;
+        # enable = true;
       };
 
       hardware.bolt.enable = true;
@@ -214,7 +235,7 @@ in {
       resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
       extraModulePackages = [
-        # xmm7360
+        xmm7360
       ];
 
       tmp = {
@@ -244,7 +265,7 @@ in {
       ];
       blacklistedKernelModules = [
         "nouveau"
-        # "iosm"
+        "iosm"
       ];
       # extraModulePackages = [
       #   config.system.build.isgx
@@ -252,7 +273,7 @@ in {
 
       kernelModules = [
         "pstore"
-        # "xmm7360"
+        "xmm7360"
         "iosm"
         "i915"
         "spi"
@@ -261,13 +282,13 @@ in {
         # "vfio_pci"
         # "vfio"
         # "vfio_iommu_type1"
-        "kvm-intel"
+        # "kvm-intel"
         # "watchdog"
         #"tpm_rng"
       ];
       # extraModprobeConfig = "options i915 enable_guc=2";
       initrd.kernelModules = [
-        # "xmm7360"
+        "xmm7360"
         "pstore"
         # "spi"
         # "sgx"
@@ -277,7 +298,7 @@ in {
         # "vfio_pci"
         # "vfio"
         # "vfio_iommu_type1"
-        "kvm-intel"
+        # "kvm-intel"
       ];
     };
   };

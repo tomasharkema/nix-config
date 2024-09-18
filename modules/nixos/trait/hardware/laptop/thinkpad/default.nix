@@ -32,8 +32,8 @@ in {
     system.nixos.tags = ["thinkpad"];
 
     environment.systemPackages = with pkgs; [
-      modemmanager
-      modem-manager-gui
+      # modemmanager
+      # modem-manager-gui
       libmbim
       libqmi
       tpacpi-bat
@@ -43,7 +43,7 @@ in {
 
     systemd = {
       packages = [
-        pkgs.modemmanager
+        # pkgs.modemmanager
         # pkgs.custom.lenovo-wwan-unlock
       ];
       services = {
@@ -65,32 +65,9 @@ in {
       python-validity.enable = true;
       fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
 
-      udev.packages = [pkgs.modemmanager];
-      dbus.packages = [pkgs.modemmanager];
+      # udev.packages = [pkgs.modemmanager];
+      # dbus.packages = [pkgs.modemmanager];
     };
-
-    # networking.networkmanager.fccUnlockScripts = [
-    #   {
-    #     id = "14c3:4d75";
-    #     path = "${pkgs.custom.lenovo-wwan-unlock}/share/ModemManager/14c3:4d75";
-    #   }
-    #   {
-    #     id = "1eac:1007";
-    #     path = "${pkgs.custom.lenovo-wwan-unlock}/share/ModemManager/1eac:1007";
-    #   }
-    #   {
-    #     id = "1eac:100d";
-    #     path = "${pkgs.custom.lenovo-wwan-unlock}/share/ModemManager/1eac:100d";
-    #   }
-    #   {
-    #     id = "2c7c:6008";
-    #     path = "${pkgs.custom.lenovo-wwan-unlock}/share/ModemManager/2c7c:6008";
-    #   }
-    #   {
-    #     id = "8086:7560";
-    #     path = "${pkgs.custom.lenovo-wwan-unlock}/share/ModemManager/8086:7560";
-    #   }
-    # ];
 
     home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
       {package = thinkpad-thermal;}
