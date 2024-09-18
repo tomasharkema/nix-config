@@ -87,11 +87,12 @@ in {
     hardware.graphics = {
       enable = true;
       enable32Bit = pkgs.stdenvNoCC.isx86_64;
-      extraPackages = with pkgs; [
-        mesa
-        mesa.drivers
-        intel-compute-runtime
-      ];
+      extraPackages = with pkgs;
+        [
+          mesa
+          mesa.drivers
+        ]
+        ++ lib.optional pkgs.stdenvNoCC.isx86_64 intel-compute-runtime;
     };
 
     programs = {
