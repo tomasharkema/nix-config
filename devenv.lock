@@ -14,6 +14,7 @@
         "owner": "oddlama",
         "repo": "agenix-rekey",
         "rev": "524425f44b1f9717bfabf483ec9c990c3712e6df",
+        "treeHash": "1ed84af0c53f8b7bd91508e5a16971e15975c6e2",
         "type": "github"
       },
       "original": {
@@ -25,10 +26,11 @@
     "devenv": {
       "locked": {
         "dir": "src/modules",
-        "lastModified": 1726417371,
+        "lastModified": 1726589902,
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "1f55f89ca32d617b7a7c18422e3c364cb003df3d",
+        "rev": "08dd75cca1ad85622d114fff6988e1255ba26dd2",
+        "treeHash": "d59b9379a50ce3221f63c43dd1f98553db1f3728",
         "type": "github"
       },
       "original": {
@@ -50,6 +52,7 @@
         "owner": "numtide",
         "repo": "devshell",
         "rev": "67cce7359e4cd3c45296fb4aaf6a19e2a9c757ae",
+        "treeHash": "b83cddf350ef8c20fff86e56f3c2d7f7f700399e",
         "type": "github"
       },
       "original": {
@@ -65,6 +68,7 @@
         "owner": "edolstra",
         "repo": "flake-compat",
         "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
+        "treeHash": "2addb7b71a20a25ea74feeaf5c2f6a6b30898ecb",
         "type": "github"
       },
       "original": {
@@ -80,6 +84,7 @@
         "owner": "edolstra",
         "repo": "flake-compat",
         "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
+        "treeHash": "2addb7b71a20a25ea74feeaf5c2f6a6b30898ecb",
         "type": "github"
       },
       "original": {
@@ -97,6 +102,7 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "rev": "c1dfcf08411b08f6b8615f7d8971a2bfa81d5e8a",
+        "treeHash": "0cbff24102dddab81e4c2940d7b356205c955fc6",
         "type": "github"
       },
       "original": {
@@ -118,6 +124,7 @@
         "owner": "hercules-ci",
         "repo": "gitignore.nix",
         "rev": "637db329424fd7e46cf4185293b9cc8c88c95394",
+        "treeHash": "ca14199cabdfe1a06a7b1654c76ed49100a689f9",
         "type": "github"
       },
       "original": {
@@ -138,6 +145,7 @@
         "owner": "hercules-ci",
         "repo": "gitignore.nix",
         "rev": "637db329424fd7e46cf4185293b9cc8c88c95394",
+        "treeHash": "ca14199cabdfe1a06a7b1654c76ed49100a689f9",
         "type": "github"
       },
       "original": {
@@ -152,6 +160,7 @@
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
         "rev": "9db4db09d82e4b2207bfa7f1e747a4f49d214555",
+        "treeHash": "a0f1ee1b9e1f8c4d8b5b8e7efa5ee60d11a91aba",
         "type": "github"
       },
       "original": {
@@ -172,6 +181,7 @@
         "owner": "nix-community",
         "repo": "nixos-generators",
         "rev": "934dff070150ec3f67aea4f1dbe6ad303870669f",
+        "treeHash": "0888aa66afe0ccc8b91f32d18d5d122417a65d0a",
         "type": "github"
       },
       "original": {
@@ -186,6 +196,7 @@
         "owner": "cachix",
         "repo": "devenv-nixpkgs",
         "rev": "4267e705586473d3e5c8d50299e71503f16a6fb6",
+        "treeHash": "6d9f1f7ca0faf1bc2eeb397c78a49623260d3412",
         "type": "github"
       },
       "original": {
@@ -201,6 +212,7 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "086b448a5d54fd117f4dc2dee55c9f0ff461bdc1",
+        "treeHash": "0484595757634aa3d99beca878bc480d9b2eed67",
         "type": "github"
       },
       "original": {
@@ -216,6 +228,7 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "086b448a5d54fd117f4dc2dee55c9f0ff461bdc1",
+        "treeHash": "0484595757634aa3d99beca878bc480d9b2eed67",
         "type": "github"
       },
       "original": {
@@ -240,6 +253,7 @@
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
         "rev": "7570de7b9b504cfe92025dd1be797bf546f66528",
+        "treeHash": "4b46d77870afecd8f642541cb4f4927326343b59",
         "type": "github"
       },
       "original": {
@@ -262,6 +276,7 @@
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
         "rev": "7570de7b9b504cfe92025dd1be797bf546f66528",
+        "treeHash": "4b46d77870afecd8f642541cb4f4927326343b59",
         "type": "github"
       },
       "original": {
@@ -285,6 +300,7 @@
         "owner": "nix-systems",
         "repo": "default",
         "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "treeHash": "cce81f2a0f0743b2eb61bc2eb6c7adbe2f2c6beb",
         "type": "github"
       },
       "original": {
