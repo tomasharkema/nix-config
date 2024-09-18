@@ -127,7 +127,6 @@ in {
     environment.systemPackages = with pkgs;
       [
         meld
-        _86Box-with-roms
 
         vlc
         boxbuddy
@@ -180,6 +179,7 @@ in {
         ytdlp-gui
       ]
       ++ lib.optionals pkgs.stdenv.isx86_64 [
+        _86Box-with-roms
         #       config.boot.linuxPackages.nvidia_x11
         #     ];
         #     ++ [
