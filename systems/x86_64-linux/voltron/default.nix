@@ -194,12 +194,12 @@ in {
     #   };
     # };
 
-    programs = {
-      captive-browser = {
-        enable = true;
-        interface = "wlp4s0";
-      };
-    };
+    # programs = {
+    #   captive-browser = {
+    #     enable = true;
+    #     interface = "wlp4s0";
+    #   };
+    # };
 
     # nix.settings = {
     #   extra-sandbox-paths = [config.programs.ccache.cacheDir];
@@ -214,7 +214,7 @@ in {
       resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
       extraModulePackages = [
-        xmm7360
+        # xmm7360
       ];
 
       tmp = {
@@ -228,25 +228,32 @@ in {
         netboot.enable = true;
       };
 
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      # binfmt.emulatedSystems = ["aarch64-linux"];
 
-      modprobeConfig.enable = true;
+      # modprobeConfig.enable = true;
 
       kernelParams = [
+        "pstore.backend=efi"
+        "efi_pstore.pstore_disable=0"
+
         #   # "nowatchdog"
         #   # "mitigations=off"
 
         #   "intel_iommu=on"
         #   "iommu=pt"
       ];
-      blacklistedKernelModules = ["nouveau" "iosm"];
+      blacklistedKernelModules = [
+        "nouveau"
+        # "iosm"
+      ];
       # extraModulePackages = [
       #   config.system.build.isgx
       # ];
 
       kernelModules = [
-        "xmm7360"
-        # "iosm"
+        "pstore"
+        # "xmm7360"
+        "iosm"
         "i915"
         "spi"
         "sgx"
@@ -260,6 +267,8 @@ in {
       ];
       # extraModprobeConfig = "options i915 enable_guc=2";
       initrd.kernelModules = [
+        # "xmm7360"
+        "pstore"
         # "spi"
         # "sgx"
         "i915"

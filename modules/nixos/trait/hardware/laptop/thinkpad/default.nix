@@ -37,14 +37,14 @@ in {
       libmbim
       libqmi
       tpacpi-bat
-      custom.lenovo-wwan-unlock
+      # custom.lenovo-wwan-unlock
       # sgx-psw
     ];
 
     systemd = {
       packages = [
         pkgs.modemmanager
-        pkgs.custom.lenovo-wwan-unlock
+        # pkgs.custom.lenovo-wwan-unlock
       ];
       services = {
         open-fprintd-resume.enable = true;
@@ -65,8 +65,8 @@ in {
       python-validity.enable = true;
       fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
 
-      # udev.packages = [pkgs.modemmanager];
-      # dbus.packages = [pkgs.modemmanager];
+      udev.packages = [pkgs.modemmanager];
+      dbus.packages = [pkgs.modemmanager];
     };
 
     # networking.networkmanager.fccUnlockScripts = [

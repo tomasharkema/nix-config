@@ -40,6 +40,25 @@
 
   intel-vaapi-driver = prev.intel-vaapi-driver.override {enableHybridCodec = true;};
 
+  # modemmanager = prev.modemmanager.overrideAttrs (oldAttrs: {
+  # src = prev.fetchFromGitLab {
+  #   # https://gitlab.freedesktop.org/tuxor1337/ModemManager/-/tree/port-xmm7360
+  #   domain = "gitlab.freedesktop.org";
+  #   owner = "tuxor1337";
+  #   repo = "ModemManager";
+  #   rev = "port-xmm7360";
+  #   sha256 = "sha256-eUamC9Bi9HpukWXVLol6O3QoNFa5mIMNOake2IDSEFU=";
+  # };
+  # patches =
+  #   oldAttrs.patches
+  #   ++ [
+  #     (prev.fetchpatch {
+  #       url = "https://gitlab.freedesktop.org/mobile-broadband/ModemManager/-/merge_requests/1200.patch";
+  #       hash = "sha256-7z3YMNbrU1E55FgmOaTFbsK2qXCBnbRkDrS+Yogxgow=";
+  #     })
+  #   ];
+  # });
+
   # steam = prev.steam.override {
   #   extraEnv = {
   #     # MANGOHUD = true;
