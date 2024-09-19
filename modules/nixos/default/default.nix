@@ -153,7 +153,7 @@
           devtodo
           dfrs
           dirdiff
-
+          oterm
           duc
           ethtool
           # fam # unmaintained
