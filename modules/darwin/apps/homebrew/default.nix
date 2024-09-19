@@ -23,6 +23,7 @@ in {
         "Developer" = 640199958;
         "Telegram" = 747648890;
         "automute" = 1118136179;
+        "remarkable" = 1276493162;
       };
 
       brews = [
