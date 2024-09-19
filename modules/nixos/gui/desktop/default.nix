@@ -180,6 +180,7 @@ in {
         ytdlp-gui
       ]
       ++ lib.optionals pkgs.stdenv.isx86_64 [
+        gpt4all-cuda
         _86Box-with-roms
         #       config.boot.linuxPackages.nvidia_x11
         #     ];
