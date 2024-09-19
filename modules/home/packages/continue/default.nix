@@ -10,20 +10,17 @@
         source = pkgs.writers.writeJSON "config.json" {
           "models" = [
             {
-              "title" = "GPT-4o (trial)";
-              "provider" = "free-trial";
-              "model" = "gpt-4o";
-            }
-            {
-              "title" = "Codestral";
-              "provider" = "mistral";
-              "model" = "codestral-latest";
+              title = "Codestral";
+              provider = "ollama";
+              model = "codestral";
+              apiBase = "http://titan:11434";
             }
           ];
           "tabAutocompleteModel" = {
-            "title" = "Codestral (trial)";
-            "provider" = "free-trial";
-            "model" = "AUTODETECT";
+            title = "Codestral";
+            provider = "ollama";
+            model = "codestral";
+            apiBase = "http://titan:11434";
           };
           "slashCommands" = [
             {
