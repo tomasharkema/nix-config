@@ -254,7 +254,7 @@
     services = {
       sysstat.enable = true;
       irqbalance.enable = true;
-
+      aria2.enable = true;
       rpcbind.enable = true;
 
       dbus = {
