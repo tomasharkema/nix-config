@@ -50,9 +50,11 @@ in {
       enableZshIntegration = true;
     };
 
-    xdg.systemDirs.data = [
-      "/run/opengl-driver/share"
-    ];
+    xdg = lib.mkIf pkgs.stdenv.isLinux {
+      systemDirs.data = [
+        "/run/opengl-driver/share"
+      ];
+    };
 
     home = {
       file = {"itermCatppuccin".source = itermCatppuccin;} // osConfig.home.homeFiles;

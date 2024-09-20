@@ -84,7 +84,10 @@ in {
       journald = {
         gateway.enable = true;
       };
-
+      ollama = {
+        enable = true;
+        host = "0.0.0.0";
+      };
       hound = {
         # enable = true;
         config = builtins.toJSON {
