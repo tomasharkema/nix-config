@@ -91,6 +91,15 @@
           extraOptions = ["--loadavg-target" "2.0"];
         };
       };
+      ollama = {
+        enable = true;
+        host = "0.0.0.0";
+        acceleration = "cuda";
+      };
+      open-webui = {
+        enable = true;
+        host = "0.0.0.0";
+      };
     };
 
     apps = {
