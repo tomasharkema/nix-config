@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  config = lib.mkIf (pkgs.stdenv.isLinux) {
+  config = lib.mkIf (pkgs.stdenv.isLinux && false) {
     services = {
       pbgopy.enable = true;
       unclutter.enable = true;
