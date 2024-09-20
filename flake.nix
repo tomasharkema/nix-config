@@ -61,6 +61,7 @@
       };
 
       overlays = with inputs; [
+        nvidia-patch.overlays.default
         ytdlp-gui.overlay
         nur.overlay
         nixos-recovery.overlays.recovery
@@ -823,6 +824,11 @@
       # inputs = {
       #   nixpkgs.follows = "nixpkgs";
       # };
+    };
+
+    nvidia-patch = {
+      url = "github:icewind1991/nvidia-patch-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     ytdlp-gui.url = "https://flakehub.com/f/BKSalman/ytdlp-gui/*.tar.gz";

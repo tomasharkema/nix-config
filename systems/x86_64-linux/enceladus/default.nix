@@ -18,9 +18,7 @@
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIseppvkEAzMD/B2xLqijr4UhTig0bZfqnXS6NcaAHxR root@nixos";
     };
 
-    environment.systemPackages = [
-      (pkgs.custom.amifldrv.override {kernel = config.boot.kernelPackages.kernel;})
-    ];
+    environment.systemPackages = with pkgs; [inteltool];
 
     apps = {
       ntopng.enable = true;
@@ -40,6 +38,18 @@
       throttled.enable = lib.mkForce false;
       # remote-builders.client.enable = true;
       blueman.enable = true;
+
+      beesd.filesystems = {
+        root = {
+          spec = "UUID=7227b9fb-8619-403a-8944-4cc3f615ad6f";
+          hashTableSizeMB = 2048;
+          verbosity = "crit";
+          extraOptions = [
+            "--loadavg-target"
+            "2.0"
+          ];
+        };
+      };
     };
 
     specialisation = {
@@ -64,18 +74,6 @@
       # gamemode.enable = true;
     };
 
-    services.beesd.filesystems = {
-      root = {
-        spec = "UUID=7227b9fb-8619-403a-8944-4cc3f615ad6f";
-        hashTableSizeMB = 2048;
-        verbosity = "crit";
-        extraOptions = [
-          "--loadavg-target"
-          "2.0"
-        ];
-      };
-    };
-
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/nvme-512GB_SSD_CN348BH0814055";
@@ -87,6 +85,7 @@
 
     trait = {
       hardware = {
+        intel.enable = true;
         nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
@@ -107,18 +106,6 @@
       #   wakeOnLan.enable = true;
       # };
     };
-
-    # services = {
-    #   pufferpanel = {
-    #     enable = true;
-    #     extraPackages = with pkgs; [bash curl gawk gnutar gzip];
-    #     package = pkgs.buildFHSEnv {
-    #       name = "pufferpanel-fhs";
-    #       runScript = lib.getExe pkgs.pufferpanel;
-    #       targetPkgs = pkgs': with pkgs'; [icu openssl zlib factorio-headless];
-    #     };
-    #   };
-    # };
 
     boot = {
       tmp = {
@@ -141,12 +128,15 @@
         ];
       };
       kernelModules = [
+        "amifldrv"
         "i915"
         "kvm-intel"
         "uinput"
         "nvme"
       ];
-      extraModulePackages = [];
+      extraModulePackages = [
+        (pkgs.custom.amifldrv.override {kernel = config.boot.kernelPackages.kernel;})
+      ];
       recovery = {
         enable = true;
         install = true;

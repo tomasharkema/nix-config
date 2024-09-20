@@ -95,16 +95,6 @@ in {
     };
 
     hardware = {
-      graphics = {
-        enable = true;
-        extraPackages = with pkgs; [
-          intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-          libvdpau-va-gl
-          vaapiVdpau
-          vpl-gpu-rt
-        ];
-      };
-
       nvidia = {
         forceFullCompositionPipeline = true;
 
@@ -144,6 +134,7 @@ in {
         secure-boot.enable = true;
         laptop.enable = true;
         laptop.thinkpad.enable = true;
+        intel.enable = true;
         nvidia = {
           enable = true;
           open = false;

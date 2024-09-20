@@ -115,14 +115,18 @@ in {
       # ];
     };
 
-    hardware = {
-      graphics = {
-        enable = true;
-        extraPackages = with pkgs; [libva vaapiVdpau libvdpau-va-gl];
+    # hardware = {
+    #   graphics = {
+    #     enable = true;
+    #     extraPackages = with pkgs; [
+    #       libva
+    #       vaapiVdpau
+    #       #  libvdpau-va-gl
+    #        ];
 
-        enable32Bit = true;
-      };
-    };
+    #     enable32Bit = true;
+    #   };
+    # };
 
     environment.systemPackages = with pkgs; [
       celluloid

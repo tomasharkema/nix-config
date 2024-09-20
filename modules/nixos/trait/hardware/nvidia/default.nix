@@ -40,6 +40,7 @@ in {
       nvfancontrol
       nvitop
       # gwe
+      egl-wayland
     ];
 
     # home-manager.users.tomas.programs.gnome-shell.extensions = [
@@ -91,18 +92,19 @@ in {
         open = lib.mkForce cfg.open;
         nvidiaSettings = true;
 
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        package = pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.stable);
       };
 
       graphics = {
         enable = true;
 
-        # enable32Bit = pkgs.stdenvNoCC.isx86_64;
+        enable32Bit = pkgs.stdenvNoCC.isx86_64;
 
         extraPackages = with pkgs; [
           nvidia-vaapi-driver
-          libvdpau-va-gl
+          # libvdpau-va-gl
           vaapiVdpau
+          egl-wayland
         ];
       };
     };

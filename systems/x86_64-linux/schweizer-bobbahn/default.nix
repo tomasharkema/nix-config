@@ -60,6 +60,7 @@
       low-power.enable = true;
       ecrypt.enable = true;
       hardware = {
+        intel.enable = true;
         # tpm.enable = true;
         secure-boot.enable = true;
         laptop.enable = true;
@@ -109,17 +110,17 @@
       };
     };
 
-    hardware = {
-      graphics = {
-        enable = true;
-        enable32Bit = true;
-        extraPackages = with pkgs; [
-          intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-          libvdpau-va-gl
-          vaapiVdpau
-          vpl-gpu-rt
-        ];
-      };
-    };
+    # hardware = {
+    #   graphics = {
+    #     enable = true;
+    #     enable32Bit = true;
+    #     extraPackages = with pkgs; [
+    #       intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+    #       # libvdpau-va-gl
+    #       vaapiVdpau
+    #       # vpl-gpu-rt
+    #     ];
+    #   };
+    # };
   };
 }

@@ -50,6 +50,10 @@ in {
       enableZshIntegration = true;
     };
 
+    xdg.systemDirs.data = [
+      "/run/opengl-driver/share"
+    ];
+
     home = {
       file = {"itermCatppuccin".source = itermCatppuccin;} // osConfig.home.homeFiles;
 
