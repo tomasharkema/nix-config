@@ -160,6 +160,11 @@ in {
     services = {
       usbmuxd.enable = true;
 
+      ollama = {
+        enable = true;
+        acceleration = "cuda";
+      };
+
       udev = {
         enable = true;
         packages = with pkgs; [
