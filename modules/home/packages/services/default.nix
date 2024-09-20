@@ -9,21 +9,21 @@
       unclutter.enable = true;
       systembus-notify.enable = true;
       status-notifier-watcher.enable = true;
-      poweralertd.enable = true;
+      # poweralertd.enable = true;
       pueue.enable = true;
-      polybar = {
-        enable = true;
-        script = "polybar bar &";
-        extraConfig = ''
-          [module/date]
-          type = internal/date
-          interval = 5
-          date = "%d.%m.%y"
-          time = %H:%M
-          format-prefix-foreground = \''${colors.foreground-alt}
-          label = %time%  %date%
-        '';
-      };
+      # polybar = {
+      #   enable = true;
+      #   script = "polybar bar &";
+      #   extraConfig = ''
+      #     [module/date]
+      #     type = internal/date
+      #     interval = 5
+      #     date = "%d.%m.%y"
+      #     time = %H:%M
+      #     format-prefix-foreground = \''${colors.foreground-alt}
+      #     label = %time%  %date%
+      #   '';
+      # };
       playerctld.enable = true;
       notify-osd.enable = true;
       mpd = {
