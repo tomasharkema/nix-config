@@ -104,7 +104,7 @@ in {
         else [id])
       favoriteApplications;
   in
-    lib.mkIf pkgs.stdenv.isLinux {
+    lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
       home = {
         file = builtins.listToAttrs (map
           (pkg: let
