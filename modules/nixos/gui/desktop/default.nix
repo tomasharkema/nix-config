@@ -231,10 +231,24 @@ in {
         enable = true;
       };
     };
-    systemd.packages = [pkgs.usbguard-notifier];
+    systemd.packages = [
+      pkgs.usbguard-notifier
+      pkgs.widevine-cdm
+
+      config.system.build.chromium
+    ];
     # Enable sound with pipewire.
     # sound.enable = mkDefault true;
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
+
+    system.build.chromium = pkgs.chromium.override {
+      enableWideVine = true;
+      commandLineArgs = [
+        "--enable-features=VaapiVideoDecodeLinuxGL"
+        "--ignore-gpu-blocklist"
+        "--enable-zero-copy"
+      ];
+    };
   };
 }

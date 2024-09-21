@@ -63,7 +63,6 @@
       overlays = with inputs; [
         nvidia-patch.overlays.default
         ytdlp-gui.overlay
-        nur.overlay
         nixos-recovery.overlays.recovery
         # nix-otel.overlays.default
         # peerix.overlay
@@ -100,7 +99,6 @@
 
       systems.modules = {
         nixos = with inputs; [
-          nur.nixosModules.nur
           chaotic.nixosModules.default
           # nix-topology.nixosModules.default
           # netkit.nixosModule
@@ -114,7 +112,7 @@
 
           lanzaboote.nixosModules.lanzaboote
           # lanzaboote.nixosModules.uki
-          # vscode-server.nixosModules.default
+          vscode-server.nixosModules.default
 
           # home-manager.nixosModules.home-manager
           agenix.nixosModules.default
@@ -781,8 +779,6 @@
       };
     };
 
-    nur.url = "github:nix-community/NUR";
-
     buildbot-nix = {
       url = "github:nix-community/buildbot-nix";
       # url = "github:tomasharkema/buildbot-nix";
@@ -831,7 +827,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ytdlp-gui.url = "https://flakehub.com/f/BKSalman/ytdlp-gui/*.tar.gz";
-    piratebay.url = "https://flakehub.com/f/tsirysndr/piratebay/*.tar.gz";
+    ytdlp-gui = {
+      url = "https://flakehub.com/f/BKSalman/ytdlp-gui/*.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    piratebay = {
+      url = "https://flakehub.com/f/tsirysndr/piratebay/*.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    vscode-server = {
+      url = "github:nix-community/nixos-vscode-server";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

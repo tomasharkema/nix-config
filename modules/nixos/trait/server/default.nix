@@ -20,10 +20,10 @@ in {
         enable = true;
         webservices.enable = true;
       };
-      openvscode-server = {
+      vscode-server = {
         enable = true;
-        socketPath = "/run/openvscode/socket";
-        connectionTokenFile = "/var/lib/openvscode/token";
+        # socketPath = "/run/openvscode/socket";
+        # connectionTokenFile = "/var/lib/openvscode/token";
       };
     };
 
