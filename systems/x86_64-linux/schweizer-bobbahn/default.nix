@@ -22,9 +22,6 @@
     powerManagement.enable = true;
 
     environment = {
-      sessionVariables = {
-        LIBVA_DRIVER_NAME = "i965";
-      };
       systemPackages = with pkgs; [intel-gpu-tools];
     };
 

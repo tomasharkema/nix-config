@@ -84,7 +84,7 @@ in {
     };
 
     hardware = {
-      # nvidia-container-toolkit.enable = true;
+      nvidia-container-toolkit.enable = true;
 
       nvidia = {
         modesetting.enable = true;

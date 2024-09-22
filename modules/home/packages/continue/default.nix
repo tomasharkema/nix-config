@@ -13,14 +13,14 @@
               title = "Codestral";
               provider = "ollama";
               model = "codestral";
-              apiBase = "http://wodan:11434";
+              apiBase = "http://blue-fire:11434";
             }
           ];
           "tabAutocompleteModel" = {
             title = "Codestral";
             provider = "ollama";
             model = "codestral";
-            apiBase = "http://wodan:11434";
+            apiBase = "http://blue-fire:11434";
           };
           # "slashCommands" = [
           #   {

@@ -8,7 +8,9 @@
   config = lib.mkIf (pkgs.stdenv.isLinux) {
     services = {
       # plex-mpv-shim.enable = true;
-      mpd-mpris.enable = true;
+      # mpd-mpris.enable = true;
+
+      playerctld.enable = true;
     };
 
     programs.mpv = {
@@ -24,6 +26,9 @@
         hwdec = "auto-safe";
         vo = "gpu";
         gpu-context = "wayland";
+        input-ipc-server = "mpvpipe";
+        hwdec-codecs = "all";
+        hr-seek-framedrop = "no";
       };
 
       scripts = with pkgs.mpvScripts; [

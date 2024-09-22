@@ -11,6 +11,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    environment. sessionVariables = {
+      LIBVA_DRIVER_NAME = "iHD";
+    };
+
     hardware = {
       intel-gpu-tools.enable = true;
 
