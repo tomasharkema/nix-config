@@ -88,7 +88,7 @@ in {
 
       nvidia = {
         modesetting.enable = true;
-        forceFullCompositionPipeline = true;
+        # forceFullCompositionPipeline = true;
         open = lib.mkForce cfg.open;
         nvidiaSettings = true;
 

@@ -148,10 +148,10 @@
     },
     "nixlib": {
       "locked": {
-        "lastModified": 1726362065,
+        "lastModified": 1726966855,
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "rev": "9db4db09d82e4b2207bfa7f1e747a4f49d214555",
+        "rev": "575704ff85d3a41dc5bfef7b55380cbc7b87f3c2",
         "type": "github"
       },
       "original": {
@@ -197,10 +197,10 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1726688310,
+        "lastModified": 1726838390,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "dbebdd67a6006bb145d98c8debf9140ac7e651d0",
+        "rev": "944b2aea7f0a2d7c79f72468106bc5510cbf5101",
         "type": "github"
       },
       "original": {
@@ -212,10 +212,10 @@
     },
     "nixpkgs-stable_2": {
       "locked": {
-        "lastModified": 1726688310,
+        "lastModified": 1726838390,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "dbebdd67a6006bb145d98c8debf9140ac7e651d0",
+        "rev": "944b2aea7f0a2d7c79f72468106bc5510cbf5101",
         "type": "github"
       },
       "original": {

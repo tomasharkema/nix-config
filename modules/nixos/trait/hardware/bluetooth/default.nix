@@ -17,7 +17,9 @@ in {
       bluetooth = {
         enable = true;
         powerOnBoot = true;
-        settings = lib.mkIf cfg.music.enable {General = {Enable = "Source,Sink,Media,Socket";};};
+        package = pkgs.bluez;
+        settings = {General = {MultiProfile = "multiple";};};
+        # settings = lib.mkIf cfg.music.enable {General = {Enable = "Source,Sink,Media,Socket";};};
       };
     };
 
