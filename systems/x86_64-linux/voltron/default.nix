@@ -120,7 +120,7 @@ in {
 
     apps = {
       steam.enable = true;
-      opensnitch.enable = true;
+      # opensnitch.enable = true;
       # usbip.enable = true;
       # samsung.enable = true;
       podman.enable = true;
