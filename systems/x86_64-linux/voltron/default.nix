@@ -95,7 +95,7 @@ in {
       quiet-boot.enable = true;
     };
 
-    chaotic.mesa-git.enable = true;
+    # chaotic.mesa-git.enable = true;
 
     hardware = {
       nvidia = {

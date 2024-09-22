@@ -842,6 +842,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    wezterm.url = "github:wez/wezterm?dir=nix";
+    wezterm = {
+      url = "github:wez/wezterm?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

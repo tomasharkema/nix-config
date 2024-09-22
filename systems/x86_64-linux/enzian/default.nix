@@ -74,7 +74,7 @@
       newSubvolumes = true;
     };
 
-    wifi.enable = true;
+    # wifi.enable = true;
 
     trait = {
       hardware = {
