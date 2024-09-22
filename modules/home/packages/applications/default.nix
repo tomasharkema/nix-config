@@ -12,7 +12,7 @@
   #     ${pkgs.initool}/bin/initool get ${path} ${key}
   #   '');
   #   idForApplication = ps: (readIniValue "${ps}/share/applications/${ps.pname}.desktop" "");
-  findDesktopFile = ps: (builtins.readFile (pkgs.runCommand "calculate-desktop-${ps.pname}" {} ''
+  findDesktopFile = ps: (builtins.readFile (pkgs.runCommand "calculate-desktop-${ps.name}" {} ''
 
     FILEPATH="${ps}"
 

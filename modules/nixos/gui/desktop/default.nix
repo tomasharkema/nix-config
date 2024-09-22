@@ -176,7 +176,7 @@ in {
         xdiskusage
         xdotool
         yelp
-        zed-editor
+        # zed-editor
         ytdlp-gui
       ]
       ++ lib.optionals pkgs.stdenv.isx86_64 [

@@ -63,6 +63,7 @@ in {
       };
 
       systemPackages = with pkgs; [
+        custom.swift
         custom.xmmctl
         xmm7360
         libimobiledevice
@@ -93,6 +94,8 @@ in {
       gamemode.enable = true;
       quiet-boot.enable = true;
     };
+
+    chaotic.mesa-git.enable = true;
 
     hardware = {
       nvidia = {
@@ -159,6 +162,7 @@ in {
 
     services = {
       usbmuxd.enable = true;
+      # power-profiles-daemon.enable = lib.mkForce true;
 
       ollama = {
         enable = true;

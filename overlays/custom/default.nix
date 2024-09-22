@@ -20,6 +20,8 @@
 
   piratebay = inputs.piratebay.packages."${prev.system}".default;
 
+  wezterm = inputs.wezterm.packages."${prev.system}".default;
+
   # dosbox-x = prev.dosbox-x.overrideAttrs ({postInstall ? "", ...}: {
   #   postInstall =
   #     postInstall
