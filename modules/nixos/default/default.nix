@@ -57,13 +57,13 @@
         includeDefaultModules = true;
       };
 
-      # crashDump.enable = true;
-
       hardwareScan = true;
 
-      # kernel.sysctl = {
-      #   "net.ipv4.ip_forward" = mkForce 1;
-      # };
+      kernelParams = ["preempt=full"];
+
+      kernel.sysctl = {
+        "net.ipv4.ip_forward" = 1;
+      };
 
       tmp = {
         useTmpfs = true;
@@ -253,7 +253,7 @@
 
     services = {
       sysstat.enable = true;
-      irqbalance.enable = true;
+      # irqbalance.enable = true;
       # aria2.enable = true;
       rpcbind.enable = true;
 

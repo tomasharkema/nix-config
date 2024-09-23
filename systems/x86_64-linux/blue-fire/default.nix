@@ -81,29 +81,6 @@ in {
     };
 
     services = {
-      journald = {
-        gateway.enable = true;
-      };
-      ollama = {
-        enable = true;
-        acceleration = "cuda";
-        host = "0.0.0.0";
-      };
-      hound = {
-        # enable = true;
-        config = builtins.toJSON {
-          max-concurrent-indexers = 2;
-          repos = {
-            nixpkgs = {
-              url = "https://www.github.com/NixOS/nixpkgs.git";
-              vcs-config = {
-                ref = "nixos-24.05";
-              };
-            };
-          };
-        };
-      };
-
       watchdogd = {enable = true;};
 
       das_watchdog.enable = lib.mkForce false;
