@@ -1,8 +1,9 @@
 # https://download.swift.org/swift-6.0-release/fedora39/swift-6.0-RELEASE/swift-6.0-RELEASE-fedora39.tar.gz
 {
+  lib,
   stdenv,
   autoPatchelfHook,
-  # dpkg,
+  dpkg,
   makeWrapper,
   zlib,
   ncurses,
@@ -12,7 +13,12 @@
   libuuid,
   python3,
   sqlite,
+  # libedit,
+  clang,
+  glibc,
+  libbsd,
   libedit,
+  # cctools,
   # webkitgtk,
   # gitUpdater,
 }:
@@ -33,20 +39,27 @@ stdenv.mkDerivation rec {
   buildInputs = [
     zlib
     ncurses
+    clang
     libgcc
-    stdenv.cc.cc.lib
+    glibc
+    # stdenv.cc.cc.lib
     curl
     libxml2
     libuuid
     python3
     sqlite
     libedit
+    # cctools
   ];
 
   installPhase = ''
-    ls -la
-    # sleep 1000
-
     cp -r usr $out
   '';
+
+  # postFixup = ''
+  #   wrapProgram $out/bin/swift-frontend \
+  #       --prefix PATH : ${lib.makeBinPath runtimeDeps}
+  #   wrapProgram $out/bin/swift-driver \
+  #       --prefix PATH : ${lib.makeBinPath runtimeDeps}
+  # '';
 }
