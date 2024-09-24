@@ -27,7 +27,7 @@ stdenvNoCC.mkDerivation {
       extension = "zip";
     })
     (fetchzip {
-      url = "https://media.fontsgeek.com/download/zip/f/u/futura-nd_l1umO.zip";
+      url = "https://drive.google.com/uc?id=1KNpKSzMyouPqaKOPRV5efYY03F6DMYNg&export=download";
       sha256 = "sha256-ekCiliuJoRdVRDDPs79wC7k77jBugdVNa7D2fl5p3CQ=";
       stripRoot = false;
       name = "source-futura-nd";
