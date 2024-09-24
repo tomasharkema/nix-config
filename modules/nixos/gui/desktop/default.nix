@@ -231,19 +231,19 @@ in {
         enable = true;
       };
     };
-    systemd.packages = [
-      pkgs.usbguard-notifier
-      pkgs.widevine-cdm
-
-      config.system.build.chromium
-    ];
+    systemd.packages =
+      [
+        pkgs.usbguard-notifier
+        config.system.build.chromium
+      ]
+      ++ (lib.optional pkgs.stdenv.isx86_64 pkgs.widevine-cdm);
     # Enable sound with pipewire.
     # sound.enable = mkDefault true;
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
 
     system.build.chromium = pkgs.chromium.override {
-      enableWideVine = true;
+      enableWideVine = pkgs.stdenv.isx86_64;
       commandLineArgs = [
         "--enable-features=VaapiVideoDecodeLinuxGL"
         "--ignore-gpu-blocklist"
