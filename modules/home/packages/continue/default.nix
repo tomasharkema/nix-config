@@ -6,20 +6,20 @@
 }: {
   config = {
     home.file = {
-      ".continue/config-default.json" = {
+      ".continue/config.json" = {
         source = pkgs.writers.writeJSON "config.json" {
           "models" = [
             {
-              title = "Codestral";
+              title = "llama3";
               provider = "ollama";
-              model = "codestral";
+              model = "llama3.1:8b";
               apiBase = "http://wodan:11434";
             }
           ];
           "tabAutocompleteModel" = {
-            title = "Codestral";
+            title = "starcoder";
             provider = "ollama";
-            model = "codestral";
+            model = "starcoder2:3b";
             apiBase = "http://wodan:11434";
           };
           # "slashCommands" = [

@@ -5,18 +5,25 @@
   osConfig,
   ...
 }: let
-  package = pkgs.gptcommit;
+  package = pkgs.gptcommit.overrideAttrs (final: {
+    patches =
+      final.patches
+      ++ [
+        ./time-gptcommit.patch
+      ];
+    cargoHash = "sha256-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX=";
+  });
 in {
-  config = {
+  config = lib.mkIf false {
     home = {
-      # packages = [package];
-
-      # activation = {
-      #   gptcommit = ''
-      #     ${package}/bin/gptcommit config set openai.api_key "$(cat ${osConfig.age.secrets.openai.path})"
-      #     ${package}/bin/gptcommit config set allow-amend true
-      #   '';
-      # };
+      packages = [package];
+      #  ${package}/bin/gptcommit config set openai.api_key "$(cat ${osConfig.age.secrets.openai.path})"
+      activation = {
+        gptcommit = ''
+          ${package}/bin/gptcommit config set openai.api_base "http://wodan:11434"
+          ${package}/bin/gptcommit config set allow-amend true
+        '';
+      };
     };
   };
 }
