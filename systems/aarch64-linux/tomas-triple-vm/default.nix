@@ -11,7 +11,7 @@
 
   config = {
     age.rekey = {
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJvvDPvcdtTqOqKdAc5ixilJjQYGJFamhVLN6cjn67wz root@euro-mir-vm";
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK49ZNy1uOQl0lD4kfB9D1byLlTTjbF41kYq5AfKue3W root@tomas-triple-vm";
     };
 
     # nixpkgs.crossSystem.system = "aarch64-linux";
