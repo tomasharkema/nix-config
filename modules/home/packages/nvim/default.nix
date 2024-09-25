@@ -266,6 +266,7 @@
           command = "set nocul";
         }
       ];
+
       highlight = {
         BufferCurrent = {
           fg = "#eceff4";

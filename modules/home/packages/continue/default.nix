@@ -6,7 +6,7 @@
 }: {
   config = {
     home.file = {
-      ".continue/config.json" = {
+      ".continue/config-default.json" = {
         source = pkgs.writers.writeJSON "config.json" {
           "models" = [
             {
