@@ -76,7 +76,7 @@
           user = "root";
           forwardAgent = true;
           extraOptions = {
-            RequestTTY = "yes";
+            # RequestTTY = "yes";
             # RemoteCommand = "tmux new -A -s \$\{\%n\}";
           };
         };

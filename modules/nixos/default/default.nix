@@ -326,7 +326,7 @@
         settings = {
           PasswordAuthentication = false;
           KbdInteractiveAuthentication = true;
-          PermitRootLogin = "no"; # "yes";
+          PermitRootLogin = "no";
           # AcceptEnv = "*";
         };
       };
