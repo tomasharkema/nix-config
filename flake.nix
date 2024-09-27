@@ -136,7 +136,7 @@
         darwin = with inputs; [
           agenix.darwinModules.default
           agenix-rekey.nixosModules.default
-          mac-app-util.darwinModules.default
+          # mac-app-util.darwinModules.default
 
           (
             {
