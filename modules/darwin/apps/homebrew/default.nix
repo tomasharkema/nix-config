@@ -9,6 +9,12 @@ in {
   options.apps.homebrew = {enable = lib.mkEnableOption "homebrew" // {default = true;};};
 
   config = lib.mkIf cfg.enable {
+    home-manager.users.tomas.programs.zsh = {
+      initExtra = ''
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+      '';
+    };
+
     homebrew = {
       enable = true;
       autoUpdate = true;
