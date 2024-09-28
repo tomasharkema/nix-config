@@ -8,7 +8,7 @@
   cfg = config.tailscale;
 in {
   options.tailscale = {
-    enable = lib.mkEnableOption "SnowflakeOS GNOME configuration" // {default = true;};
+    enable = lib.mkEnableOption "tailscale" // {default = true;};
   };
 
   # age.secrets.tailscale = {
@@ -19,6 +19,10 @@ in {
   # };
 
   config = lib.mkIf cfg.enable {
+    age.secrets.zerotier = {
+      rekeyFile = ./zerotier.age;
+    };
+
     networking = {
       useDHCP = false;
 
@@ -72,26 +76,46 @@ in {
       };
     };
 
-    systemd.services.tailscalesd = {
-      enable = true;
-      description = "tailscale-prometheus-sd";
-      unitConfig = {
-        Type = "simple";
-        StartLimitIntervalSec = 500;
-        StartLimitBurst = 5;
+    systemd.services = {
+      zerotier-networks = {
+        enable = true;
+        description = "zerotier-networks";
+        path = [config.services.zerotierone.package pkgs.jq];
+
+        wantedBy = ["zerotierone.service"];
+
+        script = ''
+          zerotier-cli join "$(cat $CREDENTIALS_DIRECTORY/zerotier-network | jq -r)"
+        '';
+
+        serviceConfig = {
+          LoadCredential = "zerotier-network:${config.age.secrets.zerotier.path}";
+          Type = "oneshot";
+          RemainAfterExit = true;
+        };
       };
-      serviceConfig = {
-        Restart = "on-failure";
-        RestartSec = 5;
+
+      tailscalesd = {
+        enable = true;
+        description = "tailscale-prometheus-sd";
+        unitConfig = {
+          Type = "simple";
+          StartLimitIntervalSec = 500;
+          StartLimitBurst = 5;
+        };
+        serviceConfig = {
+          Restart = "on-failure";
+          RestartSec = 5;
+        };
+        script = "${lib.getExe pkgs.tailscalesd} --localapi";
+        wantedBy = ["multi-user.target"];
+        after = ["tailscale.service"];
+        wants = ["tailscale.service"];
+        # path = [pkgs.tailscale pkgs.custom.tailscalesd];
+        # environment = {
+        #   ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH = "go1.21";
+        # };
       };
-      script = "${lib.getExe pkgs.tailscalesd} --localapi";
-      wantedBy = ["multi-user.target"];
-      after = ["tailscale.service"];
-      wants = ["tailscale.service"];
-      # path = [pkgs.tailscale pkgs.custom.tailscalesd];
-      # environment = {
-      #   ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH = "go1.21";
-      # };
     };
   };
 }
