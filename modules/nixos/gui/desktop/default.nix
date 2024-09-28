@@ -214,8 +214,6 @@ in {
       ]
       ++ (with pkgs.custom; [
         zerotier-ui
-        # ztui
-
         netbrowse
         usbguard-gnome
       ]);

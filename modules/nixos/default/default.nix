@@ -128,6 +128,8 @@
           agenix-rekey
           distrobox
           distrobox-tui
+          ztui
+
           # dry
           # etcher
           # fancy-motd

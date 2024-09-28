@@ -85,7 +85,12 @@ in {
         wantedBy = ["zerotierone.service"];
 
         script = ''
-          zerotier-cli join "$(cat $CREDENTIALS_DIRECTORY/zerotier-network | jq -r)"
+          if [ -f "$CREDENTIALS_DIRECTORY/zerotier-network" ]; then
+            zerotier-cli join "$(cat $CREDENTIALS_DIRECTORY/zerotier-network | jq -r)"
+          else
+            echo "No zerotier network configured."
+            exit 1
+          fi
         '';
 
         serviceConfig = {
