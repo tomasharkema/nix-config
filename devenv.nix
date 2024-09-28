@@ -51,7 +51,11 @@ with pkgs; let
       attic push tomas "$f"
     done
   '';
-
+  nix-update-all = writeShellScriptBin "nix-update-all" ''
+    update_path="${inputs.nixpkgs}/maintainers/scripts/update.nix"
+    echo $update_path
+    exec nix-shell "$update_path"
+  '';
   update-pkgs = writeShellScriptBin "update-pkgs" ''
     set -x
     nixPath="$(nix eval -f . inputs.nixpkgs.outPath --json | jq -r)"
@@ -222,6 +226,7 @@ in {
     nixos-system
     darwin-system
     build-host-pkgs
+    nix-update-all
     # # snowfallorg.flake
     # agenix
     # cachix
