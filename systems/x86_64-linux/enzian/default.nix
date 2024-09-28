@@ -24,7 +24,7 @@
       ntopng.enable = true;
       steam.enable = true;
       # usbip.enable = true;
-      home-assistant.enable = true;
+      # home-assistant.enable = true;
     };
 
     nix.settings = {

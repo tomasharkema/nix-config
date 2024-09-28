@@ -128,7 +128,7 @@
           agenix-rekey
           distrobox
           distrobox-tui
-          ztui
+          custom.ztui
 
           # dry
           # etcher

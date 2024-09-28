@@ -23,11 +23,14 @@
         {package = media-controls;}
         {package = gsconnect;}
         {package = systemd-manager;}
-        # {package = move-clock;}
+        {package = move-clock;}
         {package = home-assistant-extension;}
         {package = caffeine;}
         {package = dash-to-panel;}
         {package = reboottouefi;}
+        {package = status-area-horizontal-spacing;}
+        {package = window-is-ready-remover;}
+        {package = ddterm;}
         # {
         #   package =
         #     executor;
@@ -36,7 +39,7 @@
         #   package =
         #     app-menu-icon-remove-symbolic;
         # }
-        {package = window-is-ready-remover;}
+
         # {
         #   package =
         #     appindicator;
