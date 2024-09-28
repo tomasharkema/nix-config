@@ -66,8 +66,8 @@
       };
 
       tmp = {
-        useTmpfs = true;
-        cleanOnBoot = true;
+        useTmpfs = lib.mkDefault true;
+        cleanOnBoot = lib.mkDefault true;
       };
 
       kernelPackages = let

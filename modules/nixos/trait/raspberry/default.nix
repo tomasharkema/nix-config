@@ -41,16 +41,14 @@ in {
         useTmpfs = false;
         cleanOnBoot = false;
       };
+      loader = {
+        grub.enable = false;
+        systemd-boot.enable = lib.mkForce false;
+        generic-extlinux-compatible.enable = lib.mkDefault true;
+      };
     };
 
     services.fwupd.enable = true;
-
-    # NixOS wants to enable GRUB by default
-    boot.loader = {
-      grub.enable = false;
-      systemd-boot.enable = lib.mkForce false;
-      generic-extlinux-compatible.enable = lib.mkDefault true;
-    };
 
     # sdImage.compressImage = false;
 
