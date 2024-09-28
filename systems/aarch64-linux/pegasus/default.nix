@@ -21,7 +21,7 @@
         KERNEL=="vchiq", GROUP="video", MODE="0660", TAG+="systemd", ENV{SYSTEMD_ALIAS}="/dev/vchiq"
       '';
 
-      remote-builders.client.enable = true;
+      # remote-builders.client.enable = true;
     };
     # optional: attach a persisted cec-client to `/run/cec.fifo`, to avoid the CEC ~1s startup delay per command
     # scan for devices: `echo 'scan' > /run/cec.fifo ; journalctl -u cec-client.service`
@@ -54,7 +54,7 @@
 
     networking = {
       hostName = "pegasus";
-      firewall.enable = false;
+      firewall.enable = true;
       networkmanager.enable = true;
     };
 
@@ -66,7 +66,7 @@
       };
     };
 
-    zramSwap = {enable = false;};
+    zramSwap = {enable = true;};
     swapDevices = [
       {
         device = "/swapfile";
@@ -115,8 +115,6 @@
     hardware = {
       enableRedistributableFirmware = true;
       i2c.enable = true;
-
-      bluetooth.package = pkgs.bluez;
 
       graphics = {
         enable = true;
