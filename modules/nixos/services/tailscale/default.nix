@@ -68,7 +68,7 @@ in {
 
       zerotierone = {
         enable = true;
-        joinNetworks = ["***REMOVED***"];
+        joinNetworks = [];
       };
     };
 

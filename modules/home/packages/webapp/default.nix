@@ -28,7 +28,7 @@
 #       icon = icon;
 #     };
 # }
-# https://my.zerotier.com/network/***REMOVED***
+# https://my.zerotier.com/network/af78bf9436bca877
 {
   config,
   pkgs,
