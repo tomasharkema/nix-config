@@ -63,10 +63,17 @@ in {
               };
 
               target = {
-                "raw ssh://silver-star/mnt/user0/backup/btrbk/${config.networking.hostName}" = {
-                  ssh_user = "root";
+                # raw send-receive
+                "send-receive ssh://dione.local:222/volume1/homes/tomas/backup/btrbk/${config.networking.hostName}" = {
+                  ssh_user = "tomas";
                 };
               };
+
+              # target = {
+              #   "raw ssh://silver-star/mnt/user0/backup/btrbk/${config.networking.hostName}" = {
+              #     ssh_user = "root";
+              #   };
+              # };
             };
           };
         };
