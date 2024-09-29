@@ -118,6 +118,8 @@ in {
       # fancontrol.enable = true;
     };
 
+    virtualisation.waydroid.enable = true;
+
     apps = {
       steam.enable = true;
       # opensnitch.enable = true;
@@ -249,7 +251,7 @@ in {
         netboot.enable = true;
       };
 
-      # binfmt.emulatedSystems = ["aarch64-linux"];
+      binfmt.emulatedSystems = ["aarch64-linux"];
 
       # modprobeConfig.enable = true;
 
