@@ -89,7 +89,6 @@ in {
 
     home = {
       packages = with pkgs; [
-        synology-drive-client
         trayscale
         custom.zerotier-ui
         notify-client
