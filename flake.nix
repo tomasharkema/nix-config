@@ -216,7 +216,7 @@
 
       githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {
         checks = inputs.self.packages;
-        githubPlatforms = {
+        platforms = {
           "x86_64-linux" = "x86_64-linux";
           "aarch64-linux" = "aarch64-linux";
 
