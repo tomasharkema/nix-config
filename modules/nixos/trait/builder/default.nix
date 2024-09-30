@@ -34,14 +34,16 @@ in {
 
       services.github-runners = {
         "${config.networking.hostName}-runner-1" = github-default;
-        # "${config.networking.hostName}-runner-2" = github-default;
+        "${config.networking.hostName}-runner-2" = github-default;
       };
 
-      users.users.${user} = {
-        inherit group;
-        isSystemUser = true;
+      users = {
+        users.${user} = {
+          inherit group;
+          isSystemUser = true;
+        };
+        groups.${group} = {};
       };
-      users.groups.${group} = {};
       nix.settings.trusted-users = [
         user
       ];
