@@ -54,8 +54,6 @@
         fh
         flake-checker
         fup-repl
-        hydra-check
-        hydra-cli
         manix
         nerd-font-patcher
         nil

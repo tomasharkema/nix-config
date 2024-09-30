@@ -13,8 +13,6 @@ in {
   imports = with inputs; [
     ./hardware-configuration.nix
 
-    buildbot-nix.nixosModules.buildbot-worker
-
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
     # nixos-hardware.nixosModules.supermicro-x10sll-f
@@ -41,10 +39,8 @@ in {
         headless.enable = true;
       };
 
-      builder = {
-        enable = true;
-        # hydra.enable = true;
-      };
+      builder.enable = true;
+
       hardware = {
         tpm.enable = true;
         secure-boot.enable = true;
@@ -72,7 +68,6 @@ in {
       };
       "bmc-watchdog".enable = true;
       podman.enable = true;
-      buildbot.worker.enable = true;
     };
 
     gui = {

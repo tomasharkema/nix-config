@@ -214,7 +214,7 @@
       #   inherit inputs;
       # };
 
-      hydraJobs = import ./hydraJobs.nix {inherit inputs;};
+      githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {checks = inputs.self.packages;};
 
       agenix-rekey = let
         lib = inputs.nixpkgs.lib;
@@ -833,6 +833,11 @@
 
     wezterm = {
       url = "github:wez/wezterm?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-github-actions = {
+      url = "github:nix-community/nix-github-actions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
