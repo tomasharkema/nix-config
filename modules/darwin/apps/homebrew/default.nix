@@ -9,7 +9,7 @@ in {
   options.apps.homebrew = {enable = lib.mkEnableOption "homebrew" // {default = true;};};
 
   config = lib.mkIf cfg.enable {
-    home-manager.users.tomas.programs.zsh = {
+    home-manager.users."${config.user.name}".programs.zsh = {
       initExtra = ''
         eval "$(/opt/homebrew/bin/brew shellenv)"
       '';
@@ -46,6 +46,7 @@ in {
         "secretive"
         "swiftbar"
         "wezterm"
+        "windows-app"
         # "spotifyd"
         # "1password"
         # "cleanshot"
