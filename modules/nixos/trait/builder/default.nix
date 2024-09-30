@@ -21,7 +21,12 @@ in {
       url = "https://github.com/tomasharkema/nix-config";
       ephemeral = true;
       replace = true;
-      extraLabels = ["nixos" pkgs.stdenv.hostPlatform.system];
+      extraLabels =
+        [
+          "nixos"
+          pkgs.stdenv.hostPlatform.system
+        ]
+        ++ config.boot.binfmt.emulatedSystems;
       extraPackages = with pkgs; [cachix];
     };
   in
