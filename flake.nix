@@ -214,7 +214,16 @@
       #   inherit inputs;
       # };
 
-      githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {checks = inputs.self.packages;};
+      githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {
+        checks = inputs.self.packages;
+        githubPlatforms = {
+          "x86_64-linux" = "x86_64-linux";
+          "aarch64-linux" = "aarch64-linux";
+
+          "x86_64-darwin" = "x86_64-darwin";
+          "aarch64-darwin" = "aarch64-darwin";
+        };
+      };
 
       agenix-rekey = let
         lib = inputs.nixpkgs.lib;
