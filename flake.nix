@@ -779,17 +779,6 @@
       };
     };
 
-    buildbot-nix = {
-      url = "github:nix-community/buildbot-nix";
-      # url = "github:tomasharkema/buildbot-nix";
-      # url = "github:nix-community/buildbot-nix/hercules";
-      # url = "/home/tomas/Developer/buildbot-nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        #   treefmt-nix.follows = "treefmt-nix";
-      };
-    };
-
     nixos-recovery = {
       url = "https://flakehub.com/f/tomasharkema/nixos-recovery/0.0.*.tar.gz";
       inputs = {
