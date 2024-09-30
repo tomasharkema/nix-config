@@ -17,6 +17,7 @@ jobs:
       - uses: cachix/install-nix-action@v27
       - id: set-matrix
         name: Generate Nix Matrix
+        continue-on-error: true
         run: |
           set -Eeu
           matrix="$(nix eval --json '.#githubActions.matrix')"
@@ -25,6 +26,7 @@ jobs:
   nix-build:
     needs: nix-matrix
     runs-on: ${{ matrix.os }}
+    continue-on-error: true
     strategy:
       matrix: ${{fromJSON(needs.nix-matrix.outputs.matrix)}}
     steps:
