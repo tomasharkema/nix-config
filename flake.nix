@@ -215,7 +215,7 @@
       # };
 
       githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {
-        checks = inputs.nixpkgs.lib.getAttrs ["x86_64-linux"] inputs.self.packages;
+        checks = inputs.nixpkgs.lib.getAttrs ["x86_64-linux" "aarch64-linux"] inputs.self.packages;
         platforms = {
           "x86_64-linux" = "x86_64-linux";
           "aarch64-linux" = "aarch64-linux";
