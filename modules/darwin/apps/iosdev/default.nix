@@ -6,12 +6,12 @@
 }: {
   config = {
     environment.systemPackages = with pkgs; [
-      # cocoapods
+      cocoapods
       # xcodes
-      # xcbeautify
-      # xcpretty
+      xcbeautify
+      xcpretty
       # swiftbar
-      # swiftlint
+      swiftlint
       # swiftformat
     ];
   };
