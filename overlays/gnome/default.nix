@@ -56,13 +56,13 @@
   mpv = prev.mpv.override {
     scripts = with prev.mpvScripts; [
       mpris
-      youtube-upnext
+      # youtube-upnext
       simple-mpv-webui
       mpv-playlistmanager
       mpv-cheatsheet
       mpv-notify-send
       mpris
-      youtube-upnext
+      # youtube-upnext
       simple-mpv-webui
       mpv-playlistmanager
       mpv-notify-send
@@ -70,7 +70,7 @@
       uosc
       memo
     ];
-    youtubeSupport = true;
+    # youtubeSupport = true;
   };
 
   spotifyd = prev.spotifyd.override {withMpris = true;};

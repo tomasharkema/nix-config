@@ -340,7 +340,7 @@
 
       fwupd.enable = lib.mkDefault true;
 
-      avahi.extraServiceFiles = {
+      avahi.extraServiceFiles = lib.mkIf false {
         ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
         sftp-ssh = "${pkgs.avahi}/etc/avahi/services/sftp-ssh.service";
         vnc = ''

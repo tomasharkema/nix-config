@@ -33,7 +33,7 @@
 
       scripts = with pkgs.mpvScripts; [
         mpris
-        youtube-upnext
+        # youtube-upnext
         simple-mpv-webui
         mpv-playlistmanager
         mpv-notify-send
@@ -52,7 +52,7 @@
     home = {
       packages = with pkgs; [
         celluloid
-        play-with-mpv
+        # play-with-mpv
         open-in-mpv
         mpvc
       ];
