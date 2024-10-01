@@ -21,7 +21,6 @@ in {
       onActivation.upgrade = true;
 
       masApps = {
-        "termius" = 1176074088;
         "UTM" = 1538878817;
         "Tailscale" = 1475387142;
         "RDP" = 1295203466;

@@ -77,7 +77,6 @@ in {
         {package = telegram-desktop;}
         {package = osConfig.programs._1password-gui.package;}
       ]
-      ++ (lib.optional pkgs.stdenv.isx86_64 {package = termius;})
       ++ [
         {id = "org.cockpit_project.CockpitClient.desktop";}
       ];

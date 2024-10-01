@@ -74,6 +74,7 @@
         chaotic.overlays.default
         # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
+        devenv.overlays.default
       ];
 
       homes.modules = with inputs; [
@@ -463,6 +464,8 @@
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };
+
+    devenv.url = "github:cachix/devenv";
 
     devshell = {
       url = "github:numtide/devshell";
