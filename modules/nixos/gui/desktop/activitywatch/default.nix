@@ -11,5 +11,13 @@
       aw-qt
       aw-watcher-afk
     ];
+
+    systemd.user.services.activitywatch = {
+      path = [pkgs.activitywatch];
+      script = "exec aw-qt";
+      description = "activitywatch tray-icon";
+      restartTriggers = ["on-failure"];
+      wantedBy = ["graphical-session.target"];
+    };
   };
 }
