@@ -2,7 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  luacheck,
+  # luacheck,
 }:
 stdenv.mkDerivation rec {
   pname = "xcodebuild-nvim";
@@ -15,7 +15,7 @@ stdenv.mkDerivation rec {
     hash = "sha256-LPf9MSdl7+4WVMH3t6slokO0xZ2Q8OBoJIlvvjj2QOU=";
   };
 
-  buildInputs = [luacheck];
+  # buildInputs = [luacheck];
 
   meta = with lib; {
     description = "Neovim plugin to Build, Debug, and Test applications created for Apple devices (iOS, macOS, watchOS, etc";
