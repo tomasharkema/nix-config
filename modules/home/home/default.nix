@@ -246,16 +246,16 @@ in {
               sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
             };
           }
-          # {
-          #   name = "zsh-notify";
-          #   file = "notify.plugin.zsh";
-          #   src = pkgs.fetchFromGitHub {
-          #     owner = "marzocchi";
-          #     repo = "zsh-notify";
-          #     rev = "9c1dac81a48ec85d742ebf236172b4d92aab2f3f";
-          #     hash = "sha256-ovmnl+V1B7J/yav0ep4qVqlZOD3Ex8sfrkC92dXPLFI=";
-          #   };
-          # }
+          {
+            name = "zsh-notify";
+            file = "notify.plugin.zsh";
+            src = pkgs.fetchFromGitHub {
+              owner = "marzocchi";
+              repo = "zsh-notify";
+              rev = "9c1dac81a48ec85d742ebf236172b4d92aab2f3f";
+              hash = "sha256-ovmnl+V1B7J/yav0ep4qVqlZOD3Ex8sfrkC92dXPLFI=";
+            };
+          }
         ];
 
         # initExtraFirst = ''

@@ -5,7 +5,7 @@
   ...
 }: {
   config = {
-    programs.firefox = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
+    programs.firefox = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && false) {
       enable = true;
       enableGnomeExtensions = true;
       package = osConfig.programs.firefox.package;

@@ -79,6 +79,15 @@ in {
           XDG_DEV_DIR = "${config.home.homeDirectory}/Developer";
         };
       };
+      desktopEntries = {
+        avahi-discover = {
+          name = "Avahi Discover";
+          genericName = "Avahi Discover";
+          exec = "${osConfig.services.avahi.package}/bin/avahi-discover-standalone";
+          terminal = false;
+          categories = ["Application" "Network" "WebBrowser"];
+        };
+      };
     };
     dconf.settings = {
       "org/gnome/desktop/background" = {

@@ -55,15 +55,14 @@ in {
           #"org.freefilesync.FreeFileSync"
           #"org.gnome.meld"
           #"com.bitwarden.desktop"
-          # "com.termius.Termius"
-          "com.gitbutler.gitbutler"
         ]
         ++ (
           lib.optionals pkgs.stdenv.isx86_64
           [
-            # "com.discordapp.Discord"
+            "com.discordapp.Discord"
             "com.spotify.Client"
             "tv.plex.PlexDesktop"
+            "com.gitbutler.gitbutler"
           ]
         );
 

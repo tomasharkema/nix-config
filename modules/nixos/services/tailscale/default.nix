@@ -39,7 +39,7 @@ in {
     };
 
     services = {
-      resolved.enable = true;
+      # resolved.enable = true;
 
       tailscale = {
         enable = true;
@@ -80,13 +80,19 @@ in {
       zerotier-networks = {
         enable = true;
         description = "zerotier-networks";
-        path = [config.services.zerotierone.package pkgs.jq];
+        path = [
+          config.services.zerotierone.package
+          pkgs.jq
+        ];
 
         wantedBy = ["zerotierone.service"];
 
         script = ''
+          rm -rf /var/lib/zerotier-one/networks.d/*
+
           if [ -f "$CREDENTIALS_DIRECTORY/zerotier-network" ]; then
-            zerotier-cli join "$(cat $CREDENTIALS_DIRECTORY/zerotier-network | jq -r)"
+            network="$(cat $CREDENTIALS_DIRECTORY/zerotier-network | jq -r)"
+            touch "/var/lib/zerotier-one/networks.d/$network.conf"
           else
             echo "No zerotier network configured."
             exit 1

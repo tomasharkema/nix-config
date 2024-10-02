@@ -161,7 +161,7 @@ in {
         spot
         sqlitebrowser
         sublime-merge
-        sublime4
+        # sublime4
         transmission-remote-gtk
         trayscale
         tremotesf

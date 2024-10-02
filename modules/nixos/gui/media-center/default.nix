@@ -19,7 +19,7 @@
       inputstream-rtmp
       # vfs-libarchive
       # vfs-rar
-      youtube
+      # youtube
       netflix
       sendtokodi
       websocket
