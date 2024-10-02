@@ -8,10 +8,10 @@
   cfg = config.gui.desktop;
 in {
   options.gui.desktop = {
-    enable = lib.mkEnableOption "hallo";
+    enable = lib.mkEnableOption "desktop";
 
     rdp = {
-      enable = lib.mkEnableOption "hallo";
+      enable = lib.mkEnableOption "desktop rdp";
     };
   };
 
@@ -24,6 +24,7 @@ in {
       dbus = {
         enable = true;
         packages = with pkgs; [
+          custom.anydesk
           # tilix
           usbguard-notifier
         ];
@@ -249,6 +250,7 @@ in {
       };
       packages =
         [
+          pkgs.custom.anydesk
           pkgs.usbguard-notifier
           config.system.build.chromium
         ]
