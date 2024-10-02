@@ -128,7 +128,7 @@ in {
     environment.systemPackages = with pkgs;
       [
         meld
-
+        anydesk
         vlc
         boxbuddy
         clutter
@@ -230,12 +230,31 @@ in {
         enable = true;
       };
     };
-    systemd.packages =
-      [
-        pkgs.usbguard-notifier
-        config.system.build.chromium
-      ]
-      ++ (lib.optional pkgs.stdenv.isx86_64 pkgs.widevine-cdm);
+    systemd = {
+      services = {
+        # sudo -u gnome-remote-desktop winpr-makecert \
+        #     -silent -rdp -path ~gnome-remote-desktop rdp-tls
+        # sudo grdctl --system rdp enable
+        # sudo grdctl --system rdp set-credentials "${RDP_USER}" "${RDP_PASS}"
+        # sudo grdctl --system rdp set-tls-key ~gnome-remote-desktop/rdp-tls.key
+        # sudo grdctl --system rdp set-tls-cert ~gnome-remote-desktop/rdp-tls.crt
+
+        "gnome-remote-desktop" = {
+          enable = true;
+          wantedBy = [
+            "graphical-session.target"
+            "graphical.target"
+          ];
+        };
+      };
+      packages =
+        [
+          pkgs.usbguard-notifier
+          config.system.build.chromium
+        ]
+        ++ (lib.optional pkgs.stdenv.isx86_64 pkgs.widevine-cdm);
+    };
+
     # Enable sound with pipewire.
     # sound.enable = mkDefault true;
     hardware.pulseaudio.enable = false;
