@@ -14,7 +14,7 @@
         allowUnfreePredicate = _: true;
         allowUnfree = true;
 
-        # firefox.enableGnomeExtensions = true;
+        firefox.enableGnomeExtensions = true;
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;
         nvidia.acceptLicense = true;
@@ -28,8 +28,8 @@
         # buildPlatform.system = "x86_64-linux";
         # permittedInsecurePackages = [ "openssl-1.1.1w" ];
         permittedInsecurePackages = [
-          "python3.12-youtube-dl-2021.12.17"
-          "openssl-1.1.1w"
+          # "python3.12-youtube-dl-2021.12.17"
+          # "openssl-1.1.1w"
 
           # "python-2.7.18.8"
         ];
@@ -37,8 +37,8 @@
           # For example, enable smartcard support in Firefox.
           firefox.smartcardSupport = true;
           permittedInsecurePackages = [
-            "openssl-1.1.1w"
-            "python3.12-youtube-dl-2021.12.17"
+            # "openssl-1.1.1w"
+            # "python3.12-youtube-dl-2021.12.17"
             # "python-2.7.18.8"
           ];
         };
@@ -74,6 +74,7 @@
         chaotic.overlays.default
         # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
+        devenv.overlays.default
       ];
 
       homes.modules = with inputs; [
@@ -472,6 +473,8 @@
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };
+
+    devenv.url = "github:cachix/devenv";
 
     devshell = {
       url = "github:numtide/devshell";

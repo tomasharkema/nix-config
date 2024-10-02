@@ -68,8 +68,8 @@ in {
       [
         {package = nautilus;}
         # {package = google-chrome;}
-        {package = osConfig.system.build.chromium;}
-        # {package = osConfig.programs.firefox.package;}
+        # {package = osConfig.system.build.chromium;}
+        {package = osConfig.programs.firefox.package;}
         {package = geary;}
         {package = vscode;}
         {package = tilix;}
@@ -77,7 +77,6 @@ in {
         {package = telegram-desktop;}
         {package = osConfig.programs._1password-gui.package;}
       ]
-      ++ (lib.optional pkgs.stdenv.isx86_64 {package = termius;})
       ++ [
         {id = "org.cockpit_project.CockpitClient.desktop";}
       ];

@@ -49,6 +49,7 @@ in {
 
           ssh_identity = "${config.age.secrets.btrbk.path}";
           stream_buffer = "100M";
+          backend_remote = "btrfs-progs-sudo";
 
           volume = {
             "/partition-root" = {
@@ -64,7 +65,7 @@ in {
 
               target = {
                 # raw send-receive
-                "send-receive ssh://dione.local:222/volume1/homes/tomas/backup/btrbk/${config.networking.hostName}" = {
+                "raw ssh://dione.local:222/volume1/homes/tomas/backup/btrbk/${config.networking.hostName}" = {
                   ssh_user = "tomas";
                 };
               };

@@ -115,7 +115,7 @@
 
     environment = {
       # sessionVariables.MOZ_ENABLE_WAYLAND = "0";
-      enableAllTerminfo = true;
+      # enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
           tailspin
@@ -340,42 +340,64 @@
 
       fwupd.enable = lib.mkDefault true;
 
-      avahi.extraServiceFiles = {
-        ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
-        sftp-ssh = "${pkgs.avahi}/etc/avahi/services/sftp-ssh.service";
-        vnc = ''
-          <?xml version="1.0" standalone='no'?>
-          <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
-          <service-group>
-            <name replace-wildcards="yes">%h</name>
-            <service>
-              <type>_rfb._tcp</type>
-              <port>5900</port>
-            </service>
-          </service-group>
-        '';
-        smb = ''
-          <?xml version="1.0" standalone='no'?>
-           <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
-           <service-group>
-             <name replace-wildcards="yes">%h</name>
-             <service>
-               <type>_smb._tcp</type>
-               <port>445</port>
-             </service>
-           </service-group>
-        '';
-        rdp = ''
-          <?xml version="1.0" standalone='no'?>
-           <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
-           <service-group>
-             <name replace-wildcards="yes">%h</name>
-             <service>
-               <type>_rdp._tcp</type>
-               <port>${toString config.services.xrdp.port}</port>
-             </service>
-           </service-group>
-        '';
+      avahi = {
+        enable = true;
+        package = pkgs.avahi.override (old: {
+          gtk3Support = true;
+          # qt5Support = true;
+          # withPython = true;
+        });
+
+        extraServiceFiles = {
+          ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
+          sftp-ssh = "${pkgs.avahi}/etc/avahi/services/sftp-ssh.service";
+          nfs = ''
+            <?xml version="1.0" standalone='no'?>
+            <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+            <service-group>
+              <name replace-wildcards="yes">home %h</name>
+              <service>
+                <type>_nfs._tcp</type>
+                <port>2049</port>
+                <txt-record>path=/home/tomas</txt-record>
+              </service>
+            </service-group>
+          '';
+
+          # vnc = ''
+          #   <?xml version="1.0" standalone='no'?>
+          #   <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+          #   <service-group>
+          #     <name replace-wildcards="yes">%h</name>
+          #     <service>
+          #       <type>_rfb._tcp</type>
+          #       <port>5900</port>
+          #     </service>
+          #   </service-group>
+          # '';
+          # smb = ''
+          #   <?xml version="1.0" standalone='no'?>
+          #    <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+          #    <service-group>
+          #      <name replace-wildcards="yes">%h</name>
+          #      <service>
+          #        <type>_smb._tcp</type>
+          #        <port>445</port>
+          #      </service>
+          #    </service-group>
+          # '';
+          # rdp = ''
+          #   <?xml version="1.0" standalone='no'?>
+          #    <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+          #    <service-group>
+          #      <name replace-wildcards="yes">%h</name>
+          #      <service>
+          #        <type>_rdp._tcp</type>
+          #        <port>${toString config.services.xrdp.port}</port>
+          #      </service>
+          #    </service-group>
+          # '';
+        };
       };
 
       udev.enable = lib.mkDefault true;
