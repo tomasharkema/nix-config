@@ -71,7 +71,7 @@ in {
         };
 
         ssh-tpm-genkeys = {
-          enable = false;
+          enable = true;
 
           description = "SSH TPM Key Generation";
           wantedBy = ["default.target"];
