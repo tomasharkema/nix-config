@@ -46,6 +46,8 @@ in {
         "swiftbar"
         "wezterm"
         "windows-app"
+        "colima"
+        "docker"
         # "spotifyd"
         # "1password"
         # "cleanshot"
