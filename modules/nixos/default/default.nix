@@ -262,7 +262,7 @@
 
       dbus = {
         enable = true;
-        packages = with pkgs; [mpv];
+        # packages = with pkgs; [mpv];
       };
 
       # atd.enable = true;

@@ -85,7 +85,7 @@ in {
     };
     # systemd.tmpfiles.rules = ["d /var/lib/promtail 0644 promtail promtail -"];
     services.promtail = {
-      enable = true;
+      # enable = true;
       configuration = {
         server = {
           http_listen_port = 3031;
