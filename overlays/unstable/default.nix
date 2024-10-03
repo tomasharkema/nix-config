@@ -5,20 +5,19 @@
   lib,
   inputs,
   ...
-}: final: prev: rec {
+}: (final: prev: let
+  # ch = inputs.conky.packages."${prev.system}".default;
+  ch = prev.conky;
+in rec {
   # unstable = channels.unstable;
 
-  conky = inputs.conky.packages."${prev.system}".default.overrideAttrs {
+  conky = ch.override {
     x11Support = true;
     waylandSupport = true;
     nvidiaSupport = true;
   };
 
   cachix = prev.cachix.overrideAttrs {meta.mainProgram = "cachix";};
-
-  # buildbot = channels.unstable.buildbot;
-  # python3 = prev.python312;:q
-  # python3Packages = prev.python312Packages;
 
   # zerotierone = prev.zerotierone.overrideAttrs (drv: {
   #   postPatch = ''
@@ -34,4 +33,4 @@
   #     };
   #   };
   # });
-}
+})

@@ -86,6 +86,7 @@ in {
           exec = "${osConfig.services.avahi.package}/bin/avahi-discover-standalone";
           terminal = false;
           categories = ["Application" "Network" "WebBrowser"];
+          icon = "network-wired";
         };
       };
     };
