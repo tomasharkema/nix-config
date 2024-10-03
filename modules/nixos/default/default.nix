@@ -118,6 +118,7 @@
       # enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          devcontainer
           tailspin
           colorized-logs
           glog

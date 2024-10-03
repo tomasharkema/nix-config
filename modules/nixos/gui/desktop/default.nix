@@ -128,6 +128,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        pods
         meld
         anydesk
         vlc
