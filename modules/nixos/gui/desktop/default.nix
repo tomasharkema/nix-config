@@ -24,8 +24,8 @@ in {
       dbus = {
         enable = true;
         packages = with pkgs; [
-          custom.anydesk
-          # tilix
+          # custom.anydesk
+          tilix
           usbguard-notifier
         ];
       };
@@ -128,9 +128,10 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        jetbrains-toolbox
         pods
         meld
-        anydesk
+        # custom.anydesk
         vlc
         boxbuddy
         clutter
@@ -248,10 +249,17 @@ in {
             "graphical.target"
           ];
         };
+        # "anydesk" = {
+        #   enable = true;
+        #   wantedBy = [
+        #     "graphical-session.target"
+        #     "graphical.target"
+        #   ];
+        # };
       };
       packages =
         [
-          pkgs.custom.anydesk
+          # pkgs.custom.anydesk
           pkgs.usbguard-notifier
           config.system.build.chromium
         ]
