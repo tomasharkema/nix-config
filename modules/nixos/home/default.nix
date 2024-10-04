@@ -29,7 +29,7 @@
       };
     };
 
-    snowfallorg.user."${config.user.name}".home.config = {
+    snowfallorg.users."${config.user.name}".home.config = {
       home.stateVersion = lib.mkDefault "24.11";
       xdg.enable = true;
     };
