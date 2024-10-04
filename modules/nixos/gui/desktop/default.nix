@@ -135,7 +135,7 @@ in {
         vlc
         boxbuddy
         clutter
-
+        custom.remy
         # dosbox-x
         effitask
         filezilla
