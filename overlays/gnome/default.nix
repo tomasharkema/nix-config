@@ -53,25 +53,25 @@
     ];
   });
 
-  mpv = prev.mpv.override {
-    scripts = with prev.mpvScripts; [
-      mpris
-      # youtube-upnext
-      simple-mpv-webui
-      mpv-playlistmanager
-      mpv-cheatsheet
-      mpv-notify-send
-      mpris
-      # youtube-upnext
-      simple-mpv-webui
-      mpv-playlistmanager
-      mpv-notify-send
-      mpv-cheatsheet
-      uosc
-      memo
-    ];
-    # youtubeSupport = true;
-  };
+  # mpv = prev.mpv.override {
+  #   scripts = with prev.mpvScripts; [
+  #     mpris
+  #     # youtube-upnext
+  #     simple-mpv-webui
+  #     mpv-playlistmanager
+  #     mpv-cheatsheet
+  #     mpv-notify-send
+  #     mpris
+  #     # youtube-upnext
+  #     simple-mpv-webui
+  #     mpv-playlistmanager
+  #     mpv-notify-send
+  #     mpv-cheatsheet
+  #     uosc
+  #     memo
+  #   ];
+  #   # youtubeSupport = true;
+  # };
 
   spotifyd = prev.spotifyd.override {withMpris = true;};
 

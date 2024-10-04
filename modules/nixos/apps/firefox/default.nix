@@ -15,7 +15,7 @@ in {
 
       nativeMessagingHosts = {
         fxCast = true;
-        ff2mpv = true;
+        # ff2mpv = true;
         gsconnect = true;
         packages = with pkgs; [gnome-browser-connector];
       };

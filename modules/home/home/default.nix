@@ -64,6 +64,7 @@ in {
       # (import ./packages/common.nix {inherit pkgs inputs lib;})
       # ++
       packages = with pkgs; [
+        devcontainer
         # picotool
         newman
         # postman
