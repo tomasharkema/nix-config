@@ -45,7 +45,7 @@
     };
 
     services = {
-      homed.enable = true;
+      # homed.enable = true;
       userdbd.enable = true;
     };
 

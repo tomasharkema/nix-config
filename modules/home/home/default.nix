@@ -64,6 +64,19 @@ in {
       # (import ./packages/common.nix {inherit pkgs inputs lib;})
       # ++
       packages = with pkgs; [
+        zsh-you-should-use
+        zsh-z
+        zsh-bd
+        zsh-defer
+        zsh-edit
+        zsh-abbr
+        zsh-forgit
+        zsh-wd
+        zsh-nix-shell
+        zsh-command-time
+        zsh-navigation-tools
+        nix-zsh-completions
+
         devcontainer
         # picotool
         newman
@@ -104,7 +117,7 @@ in {
         ln -sfn "/Users/${osConfig.user.name}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" "/Users/${osConfig.user.name}/.1password/agent.sock"
       '');
 
-      sessionVariables =
+      sessionVariables = (
         if pkgs.stdenv.hostPlatform.isDarwin
         then {
           EDITOR = "subl";
@@ -114,7 +127,8 @@ in {
         }
         else {
           # EDITOR = "nvim";
-        };
+        }
+      );
     };
 
     # fonts.fontconfig.enable = true;
@@ -206,7 +220,7 @@ in {
           # add_newline = false;
         };
       };
-
+      zoxide.enable = true;
       zsh = {
         enable = true;
         enableAutosuggestions = true;
@@ -237,26 +251,26 @@ in {
         '';
 
         plugins = [
-          {
-            name = "zsh-nix-shell";
-            file = "nix-shell.plugin.zsh";
-            src = pkgs.fetchFromGitHub {
-              owner = "chisui";
-              repo = "zsh-nix-shell";
-              rev = "v0.4.0";
-              sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
-            };
-          }
-          {
-            name = "zsh-notify";
-            file = "notify.plugin.zsh";
-            src = pkgs.fetchFromGitHub {
-              owner = "marzocchi";
-              repo = "zsh-notify";
-              rev = "9c1dac81a48ec85d742ebf236172b4d92aab2f3f";
-              hash = "sha256-ovmnl+V1B7J/yav0ep4qVqlZOD3Ex8sfrkC92dXPLFI=";
-            };
-          }
+          # {
+          #   name = "zsh-nix-shell";
+          #   file = "nix-shell.plugin.zsh";
+          #   src = pkgs.fetchFromGitHub {
+          #     owner = "chisui";
+          #     repo = "zsh-nix-shell";
+          #     rev = "v0.4.0";
+          #     sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
+          #   };
+          # }
+          # {
+          #   name = "zsh-notify";
+          #   file = "notify.plugin.zsh";
+          #   src = pkgs.fetchFromGitHub {
+          #     owner = "marzocchi";
+          #     repo = "zsh-notify";
+          #     rev = "9c1dac81a48ec85d742ebf236172b4d92aab2f3f";
+          #     hash = "sha256-ovmnl+V1B7J/yav0ep4qVqlZOD3Ex8sfrkC92dXPLFI=";
+          #   };
+          # }
         ];
 
         # initExtraFirst = ''
@@ -310,46 +324,46 @@ in {
           # '';
         };
 
-        prezto = {
-          enable = false;
+        # prezto = {
+        #   enable = false;
 
-          pmodules = [
-            "osx"
-            "homebrew"
-            "environment"
-            "terminal"
-            "git"
-            "editor"
-            "tmux"
-            "fasd"
-            "history"
-            "history-substring-search"
-            "directory"
-            "spectrum"
-            "utility"
-            #"completion"
-            #"autosuggestions"
-            # "prompt"
-            "rsync"
-            "archive"
-            "docker"
-            #"syntax-highlighting"
-          ];
+        #   pmodules = [
+        #     "osx"
+        #     "homebrew"
+        #     "environment"
+        #     "terminal"
+        #     "git"
+        #     "editor"
+        #     "tmux"
+        #     "fasd"
+        #     "history"
+        #     "history-substring-search"
+        #     "directory"
+        #     "spectrum"
+        #     "utility"
+        #     #"completion"
+        #     #"autosuggestions"
+        #     # "prompt"
+        #     "rsync"
+        #     "archive"
+        #     "docker"
+        #     #"syntax-highlighting"
+        #   ];
 
-          caseSensitive = false;
-          editor.dotExpansion = true;
-          terminal.autoTitle = true;
+        #   caseSensitive = false;
+        #   editor.dotExpansion = true;
+        #   terminal.autoTitle = true;
 
-          tmux = {
-            # autoStartRemote = true;
-            itermIntegration = true;
-            # autoStartLocal = true;
-          };
+        #   tmux = {
+        #     # autoStartRemote = true;
+        #     itermIntegration = true;
+        #     # autoStartLocal = true;
+        #   };
 
-          prompt.pwdLength = "short";
-          utility.safeOps = true;
-          prompt.theme = null;
-        };
+        #   prompt.pwdLength = "short";
+        #   utility.safeOps = true;
+        #   prompt.theme = null;
+        # };
 
         # zplug = {
         #   enable = true;
@@ -379,33 +393,95 @@ in {
 
         oh-my-zsh = {
           enable = true;
-          plugins = [
-            "1password"
-            "autojump"
-            "aws"
-            "colorize"
-            "docker"
-            "encode64"
-            "fzf"
-            "git-extras"
-            "git"
-            "gitignore"
-            "macos"
-            "man"
-            "mix"
-            "nmap"
-            "sudo"
-            "systemd"
-            "thefuck"
-            "tig"
-            "tmux"
-            "vi-mode"
-            "yarn"
-            "zsh-navigation-tools"
-            "wd"
-            "tmux"
-            # "iterm-tab-color"
-          ];
+          extraConfig = ''
+            ZSH_WEB_SEARCH_ENGINES=(nix-package "https://search.nixos.org/packages?query=" nix-option "https://search.nixos.org/options?query=")
+            COMPLETION_WAITING_DOTS=true
+            HYPHEN_INSENSITIVE=true
+          '';
+          plugins =
+            [
+              "you-should-use"
+              "1password"
+              "autojump"
+              "aws"
+              "battery"
+              "bgnotify"
+              "colorize"
+              "common-aliases"
+              "copybuffer"
+              "copyfile"
+              "copypath"
+              "cp"
+              "direnv"
+              "dirhistory"
+              "dirpersist"
+              "dotnet"
+              "emoji"
+              "encode64"
+              "extract"
+              "fastfile"
+              "fig"
+              "fzf"
+              "gh"
+              "git-auto-fetch"
+              "git-extras"
+              "git-prompt"
+              "git"
+              "github"
+              "gitignore"
+              "golang"
+              "history-substring-search"
+              "history"
+              "iterm2"
+              "jira"
+              "jsontools"
+              "kitty"
+              "man"
+              "mix"
+              "nmap"
+              "perms"
+              "safe-paste"
+              "screen"
+              "shrink-path"
+              "ssh"
+              "sublime-merge"
+              "sublime"
+              "sudo"
+              "swiftpm"
+              "systemadmin"
+              "tailscale"
+              "thefuck"
+              "tig"
+              "tmux"
+              "torrent"
+              "transfer"
+              "universalarchive"
+              "urltools"
+              "vi-mode"
+              "vscode"
+              "wakeonlan"
+              "wd"
+              "wd"
+              "web-search"
+              "yarn"
+              "z"
+              "zoxide"
+              "zsh-interactive-cd"
+              "zsh-navigation-tools"
+              # "docker"
+              # "iterm-tab-color"
+            ]
+            ++ (lib.optionals pkgs.stdenv.isDarwin [
+              "brew"
+              "dash"
+              "macos"
+              "pod"
+              "xcode"
+            ])
+            ++ (lib.optionals pkgs.stdenv.isLinux [
+              "systemd"
+              "firewalld"
+            ]);
           #   # theme = "powerlevel10k/powerlevel10k";
         };
       };
