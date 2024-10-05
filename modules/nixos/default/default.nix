@@ -217,6 +217,7 @@
           usermount
           viddy
           wget
+          hueadm
           wget
           wmctrl
           wtf
