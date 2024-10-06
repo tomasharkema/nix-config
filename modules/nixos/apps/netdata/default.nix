@@ -10,7 +10,7 @@ in {
     enable = lib.mkEnableOption "netdata";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     age.secrets.netdata = {
       rekeyFile = ../../secrets/netdata.age;
       mode = "644";
@@ -26,7 +26,10 @@ in {
               options = ["NOPASSWD"];
             }
           ];
-          users = ["netdata" "tomas"];
+          users = [
+            "netdata"
+            "tomas"
+          ];
         }
       ];
     };
