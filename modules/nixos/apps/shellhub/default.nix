@@ -3,8 +3,12 @@
   config,
   lib,
   ...
-}: {
-  config = lib.mkIf false {
+}: let
+  privateKeyPub =
+    pkgs.writeText "private.key.pub" ''
+      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILCswh/1hPkXtoqsdkYvqf2KYm3WcMvflpc7F1jQPpo2 tomas@voltron'';
+in {
+  config = {
     age.secrets.shellhub = {
       rekeyFile = ./shellhub.age;
       path = "/var/lib/shellhub-agent/private.key";
@@ -18,7 +22,7 @@
     };
 
     systemd.tmpfiles.rules = [
-      "L+  /var/lib/shellhub-agent/private.key.pub  -  -  -  -  ${pkgs.writeText "private.key.pub" "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILCswh/1hPkXtoqsdkYvqf2KYm3WcMvflpc7F1jQPpo2 tomas@voltron"}"
+      "L+  /var/lib/shellhub-agent/private.key.pub  -  -  -  -  ${privateKeyPub}"
     ];
   };
 }
