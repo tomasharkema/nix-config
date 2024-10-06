@@ -11,7 +11,7 @@ in {
   config = {
     age.secrets.shellhub = {
       rekeyFile = ./shellhub.age;
-      path = "/var/lib/shellhub-agent/private.key";
+      path = "/var/lib/shellhub-agent/private.pem";
     };
 
     services.shellhub-agent = {
@@ -22,7 +22,7 @@ in {
     };
 
     systemd.tmpfiles.rules = [
-      "L+  /var/lib/shellhub-agent/private.key.pub  -  -  -  -  ${privateKeyPub}"
+      "L+  /var/lib/shellhub-agent/private.pem.pub  -  -  -  -  ${privateKeyPub}"
     ];
   };
 }
