@@ -128,7 +128,6 @@ in {
 
     environment.systemPackages = with pkgs;
       [
-        jetbrains-toolbox
         pods
         meld
         # custom.anydesk
@@ -182,6 +181,7 @@ in {
         ytdlp-gui
       ]
       ++ lib.optionals pkgs.stdenv.isx86_64 [
+        jetbrains-toolbox
         synology-drive-client
         # gpt4all-cuda
         _86Box-with-roms
