@@ -207,7 +207,6 @@ in {
         # gnome_mplayer
         ipmiview
         libsmbios
-        netflix
         (plex-media-player.overrideAttrs (old: {
           cudaSupport = true;
           stdenv = pkgs.cudaPackages.backendStdenv;

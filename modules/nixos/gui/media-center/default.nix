@@ -20,13 +20,12 @@
       # vfs-libarchive
       # vfs-rar
       # youtube
-      netflix
-      sendtokodi
+      # sendtokodi
       websocket
       # urllib3
       certifi
       keymap
-      trakt
+      # trakt
       future
       urllib3
       # pvr-hts

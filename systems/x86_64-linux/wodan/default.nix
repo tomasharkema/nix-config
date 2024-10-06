@@ -220,7 +220,6 @@
       ];
 
       initrd = {
-        systemd.emergencyAccess = "abcdefg";
         kernelModules = [
           "ixgbe"
           "btusb"
