@@ -16,7 +16,7 @@
       #   (assertPackage pkgs "freeipa")
       #   (assertPackage pkgs "sssd")
     ];
-
+    environment.pathsToLink = ["/share/zsh"];
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
 
@@ -326,11 +326,14 @@
 
       openssh = {
         enable = true;
+        passwordAuthentication = false;
 
         settings = {
           PasswordAuthentication = false;
-          KbdInteractiveAuthentication = true;
           PermitRootLogin = "no";
+
+          # PasswordAuthentication = false;
+          # KbdInteractiveAuthentication = true;
           # AcceptEnv = "*";
         };
       };
@@ -454,7 +457,7 @@
           ForwardAgent yes
         '';
       };
-      # mosh.enable = true;
+      mosh.enable = true;
       nix-ld.enable = true;
       zsh = {
         enable = true;
