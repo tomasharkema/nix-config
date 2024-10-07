@@ -14,6 +14,8 @@ in
     '';
 
     installPhase = ''
+      runHook preInstall
       cp -a . $out
+      runHook postInstall
     '';
   }

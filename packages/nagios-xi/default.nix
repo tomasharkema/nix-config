@@ -21,7 +21,7 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [autoPatchelfHook rpm cpio];
 
   installPhase = ''
-    ls -la
+    runHook preInstall
     mkdir -p $out/bin
 
     rpm2cpio nagiosxi-${version}.el9.x86_64.rpm  | cpio -idmv
