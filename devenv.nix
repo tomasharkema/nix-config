@@ -234,7 +234,6 @@ in {
     # cachix-reploy-pin
     # cntr
     flake-checker
-    hydra-cli
     autoflake
     nix-init
     # nix-serve
@@ -261,9 +260,6 @@ in {
     git
     gnupg
     gum
-    hydra-check
-    hydra-cli
-    hydra-cli
     manix
     mkiso
     netdiscover

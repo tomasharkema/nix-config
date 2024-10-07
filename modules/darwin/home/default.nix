@@ -43,10 +43,6 @@
         config = {
           home.stateVersion = lib.mkDefault "24.11";
           xdg.enable = true;
-          # home.sessionVariables = {
-          #   HYDRA_HOST =
-          #     "http://blue-fire.ling-lizard.ts.net:3000/"; # "https://hydra.harkema.io";
-          # };
 
           programs.home-manager.enable = true;
         };
@@ -63,10 +59,6 @@
         home.stateVersion = lib.mkDefault "24.11";
         xdg.enable = true;
         programs.home-manager.enable = true;
-        # home.sessionVariables = {
-        #   HYDRA_HOST =
-        #     "http://blue-fire.ling-lizard.ts.net:3000/"; # "https://hydra.harkema.io";
-        # };
       };
     };
   };

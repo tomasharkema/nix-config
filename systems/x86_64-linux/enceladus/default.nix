@@ -84,6 +84,8 @@
     # wifi.enable = true;
 
     trait = {
+      builder.enable = true;
+
       hardware = {
         intel.enable = true;
         nvme.enable = true;

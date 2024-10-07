@@ -16,6 +16,7 @@
       ];
     trait = {
       server.enable = true;
+      builder.enable = true;
       hardware = {
         tpm.enable = true;
         # secure-boot.enable = true;
@@ -35,20 +36,19 @@
       main = "/dev/disk/by-id/virtio-vdisk1";
     };
 
-    apps.resilio.enable = lib.mkForce false;
     # apps.tor.relay.enable = true;
 
     apps = {
       # attic-server.enable = true;
       ipa.enable = false;
       mailrise.enable = true;
-      buildbot.enable = true;
+      resilio.enable = lib.mkForce false;
     };
 
     services = {
       # netbox-service.enable = true;
 
-      journald.remote.enable = true;
+      # journald.remote.enable = true;
 
       kmscon = {enable = false;};
 

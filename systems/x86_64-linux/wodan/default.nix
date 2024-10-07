@@ -37,12 +37,16 @@
     systemd.enableEmergencyMode = true;
 
     networking = {
-      hosts = {"192.168.0.100" = ["nix-cache.harke.ma"];};
+      hosts = {
+        "192.168.0.100" = ["nix-cache.harke.ma"];
+      };
       networkmanager.enable = true;
 
       hostName = "wodan";
 
-      firewall = {enable = true;};
+      firewall = {
+        enable = true;
+      };
       useDHCP = lib.mkDefault false;
 
       interfaces = {
@@ -88,7 +92,10 @@
           spec = "UUID=f3558990-77b0-4113-b45c-3d2da3f46c14";
           hashTableSizeMB = 4096;
           verbosity = "crit";
-          extraOptions = ["--loadavg-target" "2.0"];
+          extraOptions = [
+            "--loadavg-target"
+            "2.0"
+          ];
         };
       };
       ollama = {
@@ -162,6 +169,7 @@
 
     trait = {
       server.enable = true;
+      builder.enable = true;
       hardware = {
         nvme.enable = true;
         tpm.enable = true;

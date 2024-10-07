@@ -215,7 +215,16 @@
       #   inherit inputs;
       # };
 
-      hydraJobs = import ./hydraJobs.nix {inherit inputs;};
+      githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {
+        checks = inputs.nixpkgs.lib.getAttrs ["x86_64-linux" "aarch64-linux"] inputs.self.packages;
+        platforms = {
+          "x86_64-linux" = "x86_64-linux";
+          "aarch64-linux" = "aarch64-linux";
+
+          # "x86_64-darwin" = "x86_64-darwin";
+          # "aarch64-darwin" = "aarch64-darwin";
+        };
+      };
 
       agenix-rekey = let
         lib = inputs.nixpkgs.lib;
@@ -782,17 +791,6 @@
       };
     };
 
-    buildbot-nix = {
-      url = "github:nix-community/buildbot-nix";
-      # url = "github:tomasharkema/buildbot-nix";
-      # url = "github:nix-community/buildbot-nix/hercules";
-      # url = "/home/tomas/Developer/buildbot-nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        #   treefmt-nix.follows = "treefmt-nix";
-      };
-    };
-
     nixos-recovery = {
       url = "https://flakehub.com/f/tomasharkema/nixos-recovery/0.0.*.tar.gz";
       inputs = {
@@ -847,6 +845,11 @@
 
     wezterm = {
       url = "github:wez/wezterm?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-github-actions = {
+      url = "github:nix-community/nix-github-actions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
