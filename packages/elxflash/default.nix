@@ -37,6 +37,7 @@ stdenv.mkDerivation {
   ];
 
   installPhase = ''
+    runHook preInstall
 
     rpm2cpio x86_64/rhel-7/elxflashOffline-10.0.878.0-1.x86_64.rpm | cpio -idmv
 
@@ -46,5 +47,7 @@ stdenv.mkDerivation {
     cp -vr ./usr/sbin/linlpcfg/* $out/bin
     # cp -r ./usr/sbin/linlpcfg/firmware $out/share/
     # cp ./usr/sbin/linlpcfg/fwmatrix.txt $out/share/fwmatrix.txt
+
+    runHook postInstall
   '';
 }

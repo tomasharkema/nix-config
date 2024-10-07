@@ -15,7 +15,11 @@ stdenvNoCC.mkDerivation rec {
   dontUnpack = true;
 
   installPhase = ''
+    runHook preInstall
+
     cp ${src} $out
+
+    runHook postInstall
   '';
 
   passthru.keys = lib.splitString "\n" (builtins.readFile src);

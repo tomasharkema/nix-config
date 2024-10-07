@@ -22,11 +22,14 @@ stdenv.mkDerivation rec {
   makeFlags = ["KERNEL=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"];
 
   installPhase = ''
+    runHook preInstall
     mkdir -p $out/bin/
     install -D amifldrv_mod.ko $out/lib/modules/${kernel.modDirVersion}/misc/amifldrv_mod.ko
 
     ln -s $out/lib/modules/${kernel.modDirVersion}/misc/amifldrv_mod.ko $out/lib/modules/${kernel.modDirVersion}/misc/amifldrv_mod
     ln -s $out/lib/modules/${kernel.modDirVersion}/misc/amifldrv_mod.ko $out/lib/modules/${kernel.modDirVersion}/misc/amifldrv_mod.o
+
+    runHook postInstall
   '';
 
   meta = with lib; {

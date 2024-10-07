@@ -128,7 +128,6 @@ in {
 
     environment.systemPackages = with pkgs;
       [
-        jetbrains-toolbox
         pods
         meld
         # custom.anydesk
@@ -182,6 +181,8 @@ in {
         ytdlp-gui
       ]
       ++ lib.optionals pkgs.stdenv.isx86_64 [
+        custom.tabby
+        jetbrains-toolbox
         synology-drive-client
         # gpt4all-cuda
         _86Box-with-roms
@@ -207,7 +208,6 @@ in {
         # gnome_mplayer
         ipmiview
         libsmbios
-        netflix
         (plex-media-player.overrideAttrs (old: {
           cudaSupport = true;
           stdenv = pkgs.cudaPackages.backendStdenv;

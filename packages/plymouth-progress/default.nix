@@ -32,9 +32,12 @@ in
 
       sh build.sh
     '';
-
     installPhase = ''
+      runHook preInstall
+
       mkdir -p $out/share/plymouth/themes
       cp -vr build/. $out/share/plymouth/themes
+
+      runHook postInstall
     '';
   }

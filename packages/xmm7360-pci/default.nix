@@ -36,12 +36,16 @@ stdenv.mkDerivation rec {
   makeFlags = ["KDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"];
 
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out/bin/
     install -D xmm7360.ko $out/lib/modules/${kernel.modDirVersion}/misc/xmm7360.ko
     cp rpc/* $out/bin/
 
     cp scripts/lte.sh $out/bin/lte
     chmod +x $out/bin/lte
+
+    runHook postInstall
   '';
 
   meta = {

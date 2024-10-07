@@ -54,6 +54,7 @@ stdenvNoCC.mkDerivation rec {
   sourceRoot = ".";
 
   installPhase = ''
+    runHook preInstall
 
     xar -xf "SF Mono Fonts.pkg"
     cat SFMonoFonts.pkg/Payload | gunzip -dc | cpio -i
@@ -69,5 +70,6 @@ stdenvNoCC.mkDerivation rec {
     install -Dm444 Library/Fonts/*.otf -t $out/share/fonts/otf
     install -Dm444 Library/Fonts/*.ttf -t $out/share/fonts/ttf
 
+    runHook postInstall
   '';
 }

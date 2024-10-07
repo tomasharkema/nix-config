@@ -14,6 +14,7 @@ stdenvNoCC.mkDerivation {
   };
 
   installPhase = ''
+    runHook preInstall
     mkdir -p $out
     cp packages/nixos-hosts/ $out
     ls -la $out
