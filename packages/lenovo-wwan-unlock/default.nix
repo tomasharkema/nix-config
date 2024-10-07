@@ -39,6 +39,8 @@ stdenv.mkDerivation rec {
   ];
 
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out/{bin,lib}
     install -Dm755 *.so $out/lib/
 
@@ -55,6 +57,8 @@ stdenv.mkDerivation rec {
 
     substituteInPlace $out/lib/systemd/system/lenovo-cfgservice.service \
       --replace-fail "/opt/fcc_lenovo" "$out/bin"
+
+    runHook postInstall
   '';
 
   meta = with lib; {

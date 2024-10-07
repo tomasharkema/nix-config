@@ -21,6 +21,9 @@ stdenvNoCC.mkDerivation {
   # '';
 
   installPhase = ''
+    runHook preInstall
+
     install -Dm444 *.otf -t $out/share/fonts/otf
+    runHook postInstall
   '';
 }

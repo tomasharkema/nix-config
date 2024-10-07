@@ -49,10 +49,13 @@ in
     nativeBuildInputs = [glib gobject-introspection dbus-python pygobject3 wrapGAppsHook];
 
     installPhase = ''
+      runHook preInstall
       install -Dm755 $src/bluetooth-autoconnect $out/bin/bluetooth-autoconnect
       install -Dm644 $src/bluetooth-autoconnect.service $out/etc/systemd/system/bluetooth-autoconnect.service
 
       substituteInPlace "$out/etc/systemd/system/bluetooth-autoconnect.service" \
         --replace-fail "/usr/bin" "$out/bin"
+
+      runHook postInstall
     '';
   }

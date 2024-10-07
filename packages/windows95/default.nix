@@ -52,6 +52,10 @@ stdenv.mkDerivation rec {
     xorg.libXrandr
   ];
   installPhase = ''
+    runHook preInstall
+
     cp -vr . $out
+
+    runHook postInstall
   '';
 }

@@ -219,6 +219,7 @@
               "thefuck"
               "tig"
               "tmux"
+              "tldr"
               "torrent"
               "transfer"
               "universalarchive"

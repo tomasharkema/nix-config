@@ -1,6 +1,7 @@
 {
   stdenv,
   lib,
+  pkgs,
   fetchurl,
   pkg-config,
   autoconf,
@@ -26,7 +27,6 @@
   libverto,
   libpwquality,
   systemd,
-  python311,
   bind,
   sssd,
   jre,
@@ -37,7 +37,8 @@
   git,
 }: let
   pathsPy = ./paths.py;
-  python3 = python311.withPackages (ps:
+
+  python3 = pkgs.python3.withPackages (ps:
     with ps; [
       setuptools
       distlib

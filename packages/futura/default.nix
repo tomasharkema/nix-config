@@ -38,11 +38,15 @@ stdenvNoCC.mkDerivation {
   sourceRoot = ".";
 
   installPhase = ''
+    runHook preInstall
+
     install -Dm444 source-futura/*.ttf -t $out/share/fonts/ttf
     install -Dm444 source-futura-pt/*.ttf -t $out/share/fonts/ttf
     install -Dm444 source-futura-cdnfonts/*.otf -t $out/share/fonts/otf
 
     install -Dm444 "source-futura-nd/Futura ND/Futura ND Medium/Futura ND Medium.ttf" -t $out/share/fonts/ttf
     install -Dm444 "source-futura-nd/Futura ND/Futura ND Medium Oblique/Futura ND Medium Oblique.ttf" -t $out/share/fonts/ttf
+
+    runHook postInstall
   '';
 }

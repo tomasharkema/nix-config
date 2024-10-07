@@ -1,8 +1,13 @@
-{ lib, python3, fetchFromGitHub, stdenv, makeWrapper, linuxPackages
-, writeShellScriptBin, }:
-let
+{
+  lib,
+  python3,
+  fetchFromGitHub,
+  stdenv,
+  makeWrapper,
+  linuxPackages,
+  writeShellScriptBin,
+}: let
   usbip-gui-bin = stdenv.mkDerivation {
-
     pname = "usbip-gui-bin";
     version = "0.0.1";
 
@@ -17,23 +22,28 @@ let
 
     propagatedBuildInputs = [
       (python3.withPackages
-        (pythonPackages: with pythonPackages; [ tkinter uritools ]))
+        (pythonPackages: with pythonPackages; [tkinter uritools]))
       linuxPackages.usbip
     ];
 
-    nativeBuildInputs = [ makeWrapper ];
+    nativeBuildInputs = [makeWrapper];
 
     installPhase = ''
+      runHook preInstall
+
       echo "#!/usr/bin/env python3" > /tmp/gui.py
       cat gui.py >> /tmp/gui.py
 
       mkdir -p $out/bin
       install -Dm755 /tmp/gui.py $out/bin/usbip-gui-bin
       wrapProgram $out/bin/usbip-gui-bin
+
+      runHook postInstall
     '';
 
     meta.mainProgram = "usbip-gui-bin";
   };
-in writeShellScriptBin "usbip-gui" ''
-  pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY ${lib.getExe usbip-gui-bin}
-''
+in
+  writeShellScriptBin "usbip-gui" ''
+    pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY ${lib.getExe usbip-gui-bin}
+  ''
