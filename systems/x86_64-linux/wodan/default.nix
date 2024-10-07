@@ -198,8 +198,8 @@
 
       encrypt = true;
       newSubvolumes = true;
-      btrbk.enable = true;
-      snapper.enable = false;
+      # btrbk.enable = true;
+      snapper.enable = true; # false;
     };
 
     boot = {
@@ -220,7 +220,6 @@
       ];
 
       initrd = {
-        systemd.emergencyAccess = "abcdefg";
         kernelModules = [
           "ixgbe"
           "btusb"

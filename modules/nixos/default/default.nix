@@ -4,7 +4,8 @@
   lib,
   inputs,
   ...
-}: {
+}: let
+in {
   config = {
     assertions = [
       {
@@ -16,7 +17,7 @@
       #   (assertPackage pkgs "freeipa")
       #   (assertPackage pkgs "sssd")
     ];
-
+    environment.pathsToLink = ["/share/zsh"];
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
 
@@ -36,6 +37,12 @@
         LC_TIME = "nl_NL.UTF-8";
       };
     };
+
+    system.activationScripts.tailscale-udp-optim = ''
+      NETDEV=$(${pkgs.iproute2}/bin/ip -o route get 8.8.8.8 | cut -f 5 -d " ")
+      ${pkgs.iproute2}/bin/ip addr show dev $NETDEV
+      ${lib.getExe pkgs.ethtool} -K $NETDEV rx-udp-gro-forwarding on rx-gro-list off
+    '';
 
     virtualisation.spiceUSBRedirection.enable = true;
 
@@ -217,6 +224,7 @@
           usermount
           viddy
           wget
+          hueadm
           wget
           wmctrl
           wtf
@@ -325,11 +333,14 @@
 
       openssh = {
         enable = true;
+        passwordAuthentication = false;
 
         settings = {
           PasswordAuthentication = false;
-          KbdInteractiveAuthentication = true;
           PermitRootLogin = "no";
+
+          # PasswordAuthentication = false;
+          # KbdInteractiveAuthentication = true;
           # AcceptEnv = "*";
         };
       };
@@ -424,10 +435,6 @@
 
       dconf.enable = true;
 
-      appimage = {
-        enable = true;
-        binfmt = true;
-      };
       # darling.enable = pkgs.stdenv.isx86_64;
 
       flashrom.enable = true;
@@ -453,7 +460,7 @@
           ForwardAgent yes
         '';
       };
-      # mosh.enable = true;
+      mosh.enable = true;
       nix-ld.enable = true;
       zsh = {
         enable = true;

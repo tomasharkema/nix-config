@@ -24,8 +24,8 @@ in {
       dbus = {
         enable = true;
         packages = with pkgs; [
-          custom.anydesk
-          # tilix
+          # custom.anydesk
+          tilix
           usbguard-notifier
         ];
       };
@@ -130,11 +130,10 @@ in {
       [
         pods
         meld
-        anydesk
+        # custom.anydesk
         vlc
         boxbuddy
         clutter
-
         # dosbox-x
         effitask
         filezilla
@@ -182,6 +181,8 @@ in {
         ytdlp-gui
       ]
       ++ lib.optionals pkgs.stdenv.isx86_64 [
+        custom.tabby
+        jetbrains-toolbox
         synology-drive-client
         # gpt4all-cuda
         _86Box-with-roms
@@ -207,7 +208,6 @@ in {
         # gnome_mplayer
         ipmiview
         libsmbios
-        netflix
         (plex-media-player.overrideAttrs (old: {
           cudaSupport = true;
           stdenv = pkgs.cudaPackages.backendStdenv;
@@ -248,10 +248,17 @@ in {
             "graphical.target"
           ];
         };
+        # "anydesk" = {
+        #   enable = true;
+        #   wantedBy = [
+        #     "graphical-session.target"
+        #     "graphical.target"
+        #   ];
+        # };
       };
       packages =
         [
-          pkgs.custom.anydesk
+          # pkgs.custom.anydesk
           pkgs.usbguard-notifier
           config.system.build.chromium
         ]

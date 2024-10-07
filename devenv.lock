@@ -156,7 +156,7 @@
     },
     "nixlib": {
       "locked": {
-        "lastModified": 1727571693,
+        "lastModified": 1728176478,
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
         "rev": "bb58a3bf239e03fca9d51062e2fe028a4ea5a3d1",
@@ -177,7 +177,7 @@
         ]
       },
       "locked": {
-        "lastModified": 1727917377,
+        "lastModified": 1728263080,
         "owner": "nix-community",
         "repo": "nixos-generators",
         "rev": "9ae128172f823956e54947fe471bc6dfa670ecb4",
@@ -208,7 +208,7 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1727907660,
+        "lastModified": 1728193676,
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "5966581aa04be7eff830b9e1457d56dc70a0b798",
@@ -224,7 +224,7 @@
     },
     "nixpkgs-stable_2": {
       "locked": {
-        "lastModified": 1727907660,
+        "lastModified": 1728193676,
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "5966581aa04be7eff830b9e1457d56dc70a0b798",
@@ -249,7 +249,7 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1727854478,
+        "lastModified": 1728092656,
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
         "rev": "5f58871c9657b5fc0a7f65670fe2ba99c26c1d79",
@@ -272,7 +272,7 @@
         "nixpkgs-stable": "nixpkgs-stable_2"
       },
       "locked": {
-        "lastModified": 1727854478,
+        "lastModified": 1728092656,
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
         "rev": "5f58871c9657b5fc0a7f65670fe2ba99c26c1d79",

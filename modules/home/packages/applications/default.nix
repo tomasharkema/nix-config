@@ -74,6 +74,7 @@ in {
         {package = vscode;}
         {package = tilix;}
         {package = config.programs.wezterm.package;}
+        {package = termius;}
         {package = telegram-desktop;}
         {package = osConfig.programs._1password-gui.package;}
       ]
