@@ -67,7 +67,13 @@
         agenix-rekey
         nh
       ]);
-    # environment.pathsToLink = ["/lib"];
+
+    environment.pathsToLink = [
+      "/lib"
+      "/share/zsh"
+      "/share/fonts"
+    ];
+
     system.stateVersion = 4;
 
     services = {

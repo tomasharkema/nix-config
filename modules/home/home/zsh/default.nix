@@ -5,6 +5,17 @@
   ...
 }: {
   config = {
+    assertions =
+      builtins.map (n: let
+        p = "${n.src}/${n.file}";
+      in {
+        message = "${n.name} doesnt exist (${p})";
+        assertion = builtins.pathExists p;
+      })
+      config.programs.zsh.plugins;
+
+    home.packages = builtins.map (n: n.src) config.programs.zsh.plugins;
+
     programs = {
       zoxide.enable = true;
       zsh = {
@@ -16,15 +27,24 @@
 
         autocd = true;
 
-        history.extended = true;
-        history.expireDuplicatesFirst = true;
+        history = {
+          extended = true;
+          expireDuplicatesFirst = true;
+        };
+
         historySubstringSearch = {
           enable = true;
           # searchUpKey = "^[OA";
           # searchDownKey = "^[OB";
         };
 
-        dirHashes = {};
+        dirHashes = {
+          docs = "$HOME/Documents";
+          vids = "$HOME/Videos";
+          dl = "$HOME/Downloads";
+          dev = "$HOME/Developer";
+          nix-conf = "$HOME/Developer/nix-config";
+        };
 
         #nixos-menu () {
         #  ${lib.getExe pkgs.custom.menu}
@@ -91,54 +111,70 @@
 
         plugins = with pkgs; [
           rec {
-            name = src.pname;
+            name = "you-should-use";
+            file = "share/zsh/plugins/you-should-use/you-should-use.plugin.zsh";
             src = zsh-you-should-use;
           }
           rec {
             name = src.pname;
+            file = "share/zsh-z/zsh-z.plugin.zsh";
             src = zsh-z;
           }
           rec {
             name = src.pname;
+            file = "share/zsh-bd/bd.plugin.zsh";
             src = zsh-bd;
           }
           rec {
             name = src.pname;
+            file = "share/zsh-defer/zsh-defer.plugin.zsh";
             src = zsh-defer;
           }
           rec {
             name = src.pname;
+            file = "share/zsh/zsh-edit/zsh-edit.plugin.zsh";
             src = zsh-edit;
           }
           rec {
             name = src.pname;
+            file = "share/zsh/zsh-abbr/abbr.plugin.zsh";
             src = zsh-abbr;
           }
           rec {
             name = src.pname;
+            file = "share/zsh/zsh-forgit/forgit.plugin.zsh";
             src = zsh-forgit;
           }
           rec {
             name = src.pname;
+            file = "share/wd/wd.plugin.zsh";
             src = zsh-wd;
           }
           rec {
             name = src.pname;
+            file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
             src = zsh-nix-shell;
           }
           rec {
             name = src.pname;
+            file = "share/zsh/plugins/command-time/command-time.plugin.zsh";
             src = zsh-command-time;
           }
           rec {
             name = src.pname;
-            src = zsh-navigation-tools;
-          }
-          rec {
-            name = src.pname;
+            file = "share/zsh/plugins/nix/nix.plugin.zsh";
             src = nix-zsh-completions;
           }
-
+          {
+            name = "enhancd";
+            file = "init.sh";
+            src = pkgs.fetchFromGitHub {
+              owner = "b4b4r07";
+              repo = "enhancd";
+              rev = "v2.2.1";
+              sha256 = "0iqa9j09fwm6nj5rpip87x3hnvbbz9w9ajgm6wkrd5fls8fn8i5g";
+            };
+          }
           {
             name = "zsh-async";
             file = "async.zsh";

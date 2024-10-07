@@ -17,7 +17,15 @@ in {
       #   (assertPackage pkgs "freeipa")
       #   (assertPackage pkgs "sssd")
     ];
-    environment.pathsToLink = ["/share/zsh"];
+
+    environment.pathsToLink = [
+      "/share/zsh"
+      "/share/xdg-desktop-portal"
+      "/share/applications"
+      "/share/fonts"
+      "/share/icons"
+    ];
+
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
 
