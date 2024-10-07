@@ -14,7 +14,7 @@
       })
       config.programs.zsh.plugins;
 
-    home.packages = builtins.map (n: n.src) config.programs.zsh.plugins;
+    # home.packages = builtins.map (n: n.src) config.programs.zsh.plugins;
 
     programs = {
       zoxide.enable = true;
