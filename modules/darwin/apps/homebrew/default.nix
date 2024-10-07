@@ -42,6 +42,7 @@ in {
       ];
 
       casks = [
+        "jetbrains-toolbox"
         "chatgpt"
         "secretive"
         "swiftbar"
