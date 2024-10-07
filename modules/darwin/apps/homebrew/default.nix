@@ -29,6 +29,7 @@ in {
         "Telegram" = 747648890;
         "automute" = 1118136179;
         "remarkable" = 1276493162;
+        "InYourFace" = 1476964367;
       };
 
       brews = [
