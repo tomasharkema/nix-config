@@ -39,6 +39,8 @@ in {
         # "xcpretty"
         "swiftlint"
         "swiftformat"
+        "colima"
+        "gradle"
       ];
 
       casks = [
@@ -48,7 +50,7 @@ in {
         "swiftbar"
         "wezterm"
         "windows-app"
-        "colima"
+
         "docker"
         # "spotifyd"
         # "1password"

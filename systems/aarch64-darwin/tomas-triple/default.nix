@@ -19,14 +19,18 @@
       # programs.ssh.matchBlocks."*".extraOptions."IdentityAgent" = lib.mkForce "/Users/${config.user.name}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
       # home.sessionVariables.SSH_AUTH_SOCK = lib.mkForce "/Users/${config.user.name}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
 
-      programs.ssh.extraIdentityAgent = "${hm.home.homeDirectory}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+      home.sessionVariables.JAVA_HOME = "$(/usr/libexec/java_home -v 17)";
 
-      programs.git.extraConfig = {
-        user.signingKey = lib.mkForce "/Users/tomas.harkema/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/PublicKeys/6cee278709036d893e6a31d818357828.pub";
-        gpg = {
-          format = "ssh";
-          # not needed if SSH_AUTH_SOCK is set...
-          # ssh.program = "";
+      programs = {
+        ssh.extraIdentityAgent = "${hm.home.homeDirectory}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+
+        git.extraConfig = {
+          user.signingKey = lib.mkForce "/Users/tomas.harkema/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/PublicKeys/6cee278709036d893e6a31d818357828.pub";
+          gpg = {
+            format = "ssh";
+            # not needed if SSH_AUTH_SOCK is set...
+            # ssh.program = "";
+          };
         };
       };
     };
