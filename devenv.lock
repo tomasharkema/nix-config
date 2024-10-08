@@ -14,6 +14,7 @@
         "owner": "oddlama",
         "repo": "agenix-rekey",
         "rev": "62da71e7eadf6b9b52e831d2e516937c30a5f712",
+        "treeHash": "cd70ee44ff26f71ce17be0d40047977adbf629e9",
         "type": "github"
       },
       "original": {
@@ -29,6 +30,7 @@
         "owner": "cachix",
         "repo": "devenv",
         "rev": "96918383d250cacc60962af0fb9b45ac10d28f00",
+        "treeHash": "d7e67fdc245e1d6ed8d4b860bff58be7e190849e",
         "type": "github"
       },
       "original": {
@@ -50,6 +52,7 @@
         "owner": "numtide",
         "repo": "devshell",
         "rev": "dd6b80932022cea34a019e2bb32f6fa9e494dfef",
+        "treeHash": "6a0cca7121525ce052756e4238abca7c0f827256",
         "type": "github"
       },
       "original": {
@@ -65,6 +68,7 @@
         "owner": "edolstra",
         "repo": "flake-compat",
         "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
+        "treeHash": "2addb7b71a20a25ea74feeaf5c2f6a6b30898ecb",
         "type": "github"
       },
       "original": {
@@ -80,6 +84,7 @@
         "owner": "edolstra",
         "repo": "flake-compat",
         "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
+        "treeHash": "2addb7b71a20a25ea74feeaf5c2f6a6b30898ecb",
         "type": "github"
       },
       "original": {
@@ -97,6 +102,7 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "rev": "c1dfcf08411b08f6b8615f7d8971a2bfa81d5e8a",
+        "treeHash": "0cbff24102dddab81e4c2940d7b356205c955fc6",
         "type": "github"
       },
       "original": {
@@ -118,6 +124,7 @@
         "owner": "hercules-ci",
         "repo": "gitignore.nix",
         "rev": "637db329424fd7e46cf4185293b9cc8c88c95394",
+        "treeHash": "ca14199cabdfe1a06a7b1654c76ed49100a689f9",
         "type": "github"
       },
       "original": {
@@ -138,6 +145,7 @@
         "owner": "hercules-ci",
         "repo": "gitignore.nix",
         "rev": "637db329424fd7e46cf4185293b9cc8c88c95394",
+        "treeHash": "ca14199cabdfe1a06a7b1654c76ed49100a689f9",
         "type": "github"
       },
       "original": {
@@ -152,6 +160,7 @@
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
         "rev": "b61309c3c1b6013d36299bc8285612865b3b9e4c",
+        "treeHash": "b8e7d35023335967d8f19036ac6df7e337be9549",
         "type": "github"
       },
       "original": {
@@ -172,6 +181,7 @@
         "owner": "nix-community",
         "repo": "nixos-generators",
         "rev": "71f9c8bcc87f15dba12515e94e40de243b5db103",
+        "treeHash": "c860cf579807270fb728e09c5567af8693b44fa6",
         "type": "github"
       },
       "original": {
@@ -186,6 +196,7 @@
         "owner": "cachix",
         "repo": "devenv-nixpkgs",
         "rev": "4267e705586473d3e5c8d50299e71503f16a6fb6",
+        "treeHash": "6d9f1f7ca0faf1bc2eeb397c78a49623260d3412",
         "type": "github"
       },
       "original": {
@@ -201,6 +212,7 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "ecbc1ca8ffd6aea8372ad16be9ebbb39889e55b6",
+        "treeHash": "f0b5ae7d234fd6c2d86f5603b4522f2ba74eda5b",
         "type": "github"
       },
       "original": {
@@ -216,6 +228,7 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "ecbc1ca8ffd6aea8372ad16be9ebbb39889e55b6",
+        "treeHash": "f0b5ae7d234fd6c2d86f5603b4522f2ba74eda5b",
         "type": "github"
       },
       "original": {
@@ -240,6 +253,7 @@
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
         "rev": "1211305a5b237771e13fcca0c51e60ad47326a9a",
+        "treeHash": "f01c67e52586c24ccc56af4366cd766ab3d3fca1",
         "type": "github"
       },
       "original": {
@@ -262,6 +276,7 @@
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
         "rev": "1211305a5b237771e13fcca0c51e60ad47326a9a",
+        "treeHash": "f01c67e52586c24ccc56af4366cd766ab3d3fca1",
         "type": "github"
       },
       "original": {
@@ -285,6 +300,7 @@
         "owner": "nix-systems",
         "repo": "default",
         "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "treeHash": "cce81f2a0f0743b2eb61bc2eb6c7adbe2f2c6beb",
         "type": "github"
       },
       "original": {
