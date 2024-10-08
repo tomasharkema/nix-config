@@ -19,7 +19,10 @@
       # programs.ssh.matchBlocks."*".extraOptions."IdentityAgent" = lib.mkForce "/Users/${config.user.name}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
       # home.sessionVariables.SSH_AUTH_SOCK = lib.mkForce "/Users/${config.user.name}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
 
-      home.sessionVariables.JAVA_HOME = "$(/usr/libexec/java_home -v 17)";
+      home.sessionVariables = {
+        JAVA_HOME = "$(/usr/libexec/java_home -v 21)";
+        ANDROID_HOME = "/Users/tomas.harkema/Library/Android/sdk";
+      };
 
       programs = {
         ssh.extraIdentityAgent = "${hm.home.homeDirectory}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";

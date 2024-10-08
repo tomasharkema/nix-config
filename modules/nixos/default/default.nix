@@ -153,6 +153,7 @@ in {
           # nix-switcher # : needs github auth
           # ntfy
           # rtop
+          onionshare
           git
           aide
           archivemount

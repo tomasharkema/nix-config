@@ -128,6 +128,8 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        onioncircuits
+        onionshare-gui
         pods
         meld
         # custom.anydesk
