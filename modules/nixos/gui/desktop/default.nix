@@ -103,6 +103,8 @@ in {
       # };
     };
 
+    xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+
     services.gnome = {
       gnome-keyring.enable = true;
       gnome-online-accounts.enable = true;
@@ -170,7 +172,6 @@ in {
         usbview
         ventoy-full
         vsce
-        vscode
         vte-gtk4
         xdg-utils
         xdgmenumaker

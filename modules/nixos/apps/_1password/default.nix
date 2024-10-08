@@ -10,16 +10,6 @@
 in {
   options.apps._1password = {enable = lib.mkEnableOption "1Password" // {default = true;};};
 
-  # disabledModules = [
-  #   "programs/_1password.nix"
-  #   "programs/_1password-gui.nix"
-  # ];
-
-  # imports = [
-  #   "${inputs.unstable}/nixos/modules/programs/_1password.nix"
-  #   "${inputs.unstable}/nixos/modules/programs/_1password-gui.nix"
-  # ];
-
   config = lib.mkIf cfg.enable {
     programs = {
       ssh.extraConfig = lib.mkIf config.gui.desktop.enable ''

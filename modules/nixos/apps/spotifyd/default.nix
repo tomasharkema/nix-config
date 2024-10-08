@@ -46,7 +46,7 @@ in {
             bitrate = 320;
             mpris = true;
             device_name = "${config.networking.hostName} SpotifyD";
-            # use_keyring = true;
+            use_keyring = true;
             dbus_type = "system";
             zeroconf_port = 1234;
           };

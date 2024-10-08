@@ -68,7 +68,7 @@ in {
       # {package = osConfig.nur.repos.mloeper.usbguard-applet-qt;}
       # {package = pkgs.notify-client;}
       {package = pkgs.geary;}
-      {package = pkgs._1password-gui;}
+      {package = osConfig.programs._1password-gui.package;}
     ];
 
     xdg = {

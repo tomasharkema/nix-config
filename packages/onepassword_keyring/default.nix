@@ -1,11 +1,13 @@
 {
   python3Packages,
   fetchFromGitHub,
+  _1password,
 }:
 with python3Packages;
   buildPythonApplication rec {
     pname = "onepassword_keyring";
-    version = "0.0.1";
+    version = "unstable-2023-12-20";
+    pyproject = true;
 
     src = fetchFromGitHub {
       owner = "falling-springs";
@@ -14,19 +16,23 @@ with python3Packages;
       hash = "sha256-Yu8TLg4Y6gRj59E7YWMxN20LSxROGsWiOqRUkDlnQ/I=";
     };
 
-    doCheck = false;
-
-    build-system = [
-      setuptools
-      setuptools-scm
+    nativeBuildInputs = [
+      python3Packages.setuptools
+      python3Packages.wheel
     ];
 
     propagatedBuildInputs = [
       keyring
+      _1password
     ];
 
-    nativeBuildInputs = [
-      poetry-core
-      # wheel
-    ];
+    pythonImportsCheck = ["onepassword_keyring"];
+
+    meta = with lib; {
+      description = "Implementation of 1Password as keyring backend";
+      homepage = "https://github.com/falling-springs/onepassword-keyring";
+      license = licenses.mit;
+      maintainers = with maintainers; [];
+      mainProgram = "onepassword_keyring";
+    };
   }

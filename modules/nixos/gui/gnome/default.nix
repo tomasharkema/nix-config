@@ -53,6 +53,7 @@ in
           XCURSOR_SIZE = builtins.toString cfg.cursorSize;
           # NIXOS_OZONE_WL = "1";
         };
+        variables.NIXOS_OZONE_WL = "1";
       };
 
       programs = {
