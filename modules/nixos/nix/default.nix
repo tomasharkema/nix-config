@@ -62,12 +62,10 @@
       };
 
       nix = let
-        users =
-          [
-            "root"
-            config.user.name
-          ]
-          ++ lib.optional config.services.hydra.enable "hydra";
+        users = [
+          "root"
+          config.user.name
+        ];
       in {
         package = pkgs.nixVersions.nix_2_23; # .latest;
 

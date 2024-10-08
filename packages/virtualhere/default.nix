@@ -35,6 +35,7 @@ in
 
     installPhase = ''
       runHook preInstall
+
       mkdir -p $out/bin
       cp $src $out/bin/vhuit64
       chmod +x $out/bin/vhuit64

@@ -20,9 +20,13 @@ stdenv.mkDerivation rec {
   # makeFlags = ["DESTDIR=$(out)" "PREFIX="];
 
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out/share/cockpit/tailscale
     cp -r . $out/share/cockpit/tailscale
     ls -la $out/share/cockpit/tailscale
+
+    runHook postInstall
   '';
 
   dontBuild = true;

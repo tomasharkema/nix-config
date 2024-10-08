@@ -19,8 +19,11 @@ stdenvNoCC.mkDerivation {
   #     python font-patcher $f --complete --no-progressbars --outputdir $out/share/fonts/opentype
   #   done
   # '';
-
   installPhase = ''
+    runHook preInstall
+
     install -Dm444 *.ttf -t $out/share/fonts/tf
+
+    runHook postInstall
   '';
 }

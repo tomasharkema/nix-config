@@ -24,6 +24,10 @@ stdenv.mkDerivation rec {
   # '';
 
   installPhase = ''
+    runHook preInstall
+
     install -D -m 444 *.ttf -t $out/share/fonts/ttf
+
+    runHook postInstall
   '';
 }

@@ -21,7 +21,11 @@ stdenv.mkDerivation rec {
   buildInputs = [openssl];
 
   installPhase = ''
+    runHook preInstall
+
     install -Dm755 xmmctl $out/bin/xmmctl
+
+    runHook postInstall
   '';
 
   meta = with lib; {

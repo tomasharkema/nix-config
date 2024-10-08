@@ -41,6 +41,8 @@ in {
         "swiftformat"
         "colima"
         "gradle"
+        "terminal-notifier"
+        "colima"
       ];
 
       casks = [

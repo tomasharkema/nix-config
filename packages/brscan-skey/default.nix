@@ -20,6 +20,8 @@ stdenv.mkDerivation {
   buildInputs = [brscan5 sane-backends];
 
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out/{bin,lib}
 
     cp -r opt/brother/scanner/brscan-skey/* $out/lib/
@@ -38,5 +40,7 @@ stdenv.mkDerivation {
     #   --replace-fail "/opt/brother/scanner/brscan-skey" "$out/lib"
     # substituteInPlace "$out/lib/scantoimage.config" \
     #   --replace-fail "/opt/brother/scanner/brscan-skey" "$out/lib"
+
+    runHook postInstall
   '';
 }

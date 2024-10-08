@@ -1,4 +1,12 @@
-{ lib, fetchFromGitHub, stdenvNoCC, makeWrapper, gnupg, wget2, coreutils, }:
+{
+  lib,
+  fetchFromGitHub,
+  stdenvNoCC,
+  makeWrapper,
+  gnupg,
+  wget2,
+  coreutils,
+}:
 stdenvNoCC.mkDerivation rec {
   pname = "distrib-dl";
   version = "1.14.24";
@@ -10,11 +18,11 @@ stdenvNoCC.mkDerivation rec {
     sha256 = "sha256-M6GHUhArLfYgkoQZWpzzte1muR+xLgtptaW0pUI6DWw=";
   };
 
-  nativeBuildInputs = [ makeWrapper ];
+  nativeBuildInputs = [makeWrapper];
 
-  buildInputs = [ gnupg wget2 coreutils ];
-
+  buildInputs = [gnupg wget2 coreutils];
   installPhase = ''
+    runHook preInstall
     install -Dm 755 distrib-dl $out/bin/distrib-dl
 
     patchShebangs $out/bin/distrib-dl
@@ -25,7 +33,9 @@ stdenvNoCC.mkDerivation rec {
 
 
     wrapProgram $out/bin/distrib-dl --set PATH ${
-      lib.makeBinPath [ gnupg wget2 coreutils ]
+      lib.makeBinPath [gnupg wget2 coreutils]
     }
+
+    runHook postInstall
   '';
 }

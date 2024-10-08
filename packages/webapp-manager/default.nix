@@ -20,6 +20,8 @@ stdenv.mkDerivation rec {
   ];
 
   installPhase = ''
+    runHook preInstall
+
     mkdir $out
     cp -r ./etc $out
     cp -r ./usr $out
@@ -27,5 +29,7 @@ stdenv.mkDerivation rec {
     ln -s $out/usr/bin $out/bin
 
     ls -la $out
+
+    runHook postInstall
   '';
 }

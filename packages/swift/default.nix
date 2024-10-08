@@ -24,16 +24,17 @@
 }:
 stdenv.mkDerivation rec {
   pname = "swift";
-  version = "6.0";
+  version = "6.0.1";
 
   src = fetchTarball {
     url = "https://download.swift.org/swift-${version}-release/fedora39/swift-${version}-RELEASE/swift-${version}-RELEASE-fedora39.tar.gz";
-    sha256 = "sha256:0dhf8f9p4z8wh65rqnad2qv69821mm98jh7y28279dxfdrk8dwb9";
+    sha256 = "sha256:1f01jcmdrq3mgy7g5wvc9y8fpr5ksby2p16d0kbm2sm541mimw5n";
   };
 
   nativeBuildInputs = [
     autoPatchelfHook
     makeWrapper
+    dpkg
   ];
 
   buildInputs = [
@@ -53,7 +54,11 @@ stdenv.mkDerivation rec {
   ];
 
   installPhase = ''
+    runHook preInstall
+
     cp -r usr $out
+
+    runHook postInstall
   '';
 
   # postFixup = ''

@@ -34,6 +34,10 @@ stdenv.mkDerivation rec {
   ];
 
   installPhase = ''
+    runHook preInstall
+
     install -Dm 755 focalboard-app $out/bin/focalboard
+
+    runHook postInstall
   '';
 }
