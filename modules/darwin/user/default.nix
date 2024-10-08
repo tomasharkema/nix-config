@@ -43,7 +43,6 @@ in {
     environment.systemPackages =
       (with pkgs; [
         # atuin
-        terminal-notifier
 
         sysz
         # iptraf-ng

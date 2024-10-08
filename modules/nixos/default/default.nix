@@ -224,7 +224,7 @@ in {
           tpm-tools
           treecat
           ttmkfdir
-          ttop
+          # ttop
           tydra
           udiskie
           netscanner
