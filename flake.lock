@@ -328,11 +328,11 @@
         "pre-commit-hooks": "pre-commit-hooks_2"
       },
       "locked": {
-        "lastModified": 1728385239,
-        "narHash": "sha256-/rKMkOPNIjfrQDQ+XlGGLH0iLT/wYtdQrBY4rH49IzM=",
+        "lastModified": 1728452860,
+        "narHash": "sha256-YtknslVeAXyK3zq6AoazydZrC8tisiZzvHsvZJAqMRk=",
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "f16bfde40bb9df8f9fd88bd3a5036a4a99c09bb1",
+        "rev": "e7a0bc559f5a66aaa42f5028db6162c4dd4587eb",
         "type": "github"
       },
       "original": {
@@ -1296,11 +1296,11 @@
     },
     "nix-flatpak": {
       "locked": {
-        "lastModified": 1721549352,
-        "narHash": "sha256-nlXJa8RSOX0kykrIYW33ukoHYq+FOSNztHLLgqKwOp8=",
+        "lastModified": 1728416205,
+        "narHash": "sha256-t30gsrwiBc2oBsd89DwdsVZuEbMT5ed81PYY57CIOJE=",
         "owner": "gmodena",
         "repo": "nix-flatpak",
-        "rev": "dbce39ea8664820ba9037caaf1e2fad365ed6b4b",
+        "rev": "d65dbf59900de4beaaaba8b42a15994f8433c1bc",
         "type": "github"
       },
       "original": {
@@ -1320,11 +1320,11 @@
         "umu": "umu"
       },
       "locked": {
-        "lastModified": 1728413208,
-        "narHash": "sha256-KWFIvKe7232FuNJK7f6Cav/U1IsNmLduNKlZ6NVVg6g=",
+        "lastModified": 1728437935,
+        "narHash": "sha256-bQCDaDc4AlYA54ZCR624NM/7UWK4c64In0+S2p4+aO8=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "d5e4fb86dcd33e54a6d204250003134413202076",
+        "rev": "d7dccee59b7c181872719bbfe69ba86e8c0585cc",
         "type": "github"
       },
       "original": {
