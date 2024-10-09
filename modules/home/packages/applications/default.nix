@@ -71,7 +71,7 @@ in {
         # {package = osConfig.system.build.chromium;}
         {package = osConfig.programs.firefox.package;}
         {package = geary;}
-        {package = vscode;}
+        {package = config.programs.vscode.package;}
         {package = tilix;}
         {package = config.programs.wezterm.package;}
         {package = termius;}

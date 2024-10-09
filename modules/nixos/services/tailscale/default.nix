@@ -55,6 +55,9 @@ in {
         openFirewall = true;
       };
 
+      tailscaleAuth.enable = true;
+      nginx.tailscaleAuth.enable = true;
+
       avahi = {
         enable = true;
         # allowInterfaces = [ "zthnhagpcb" "tailscale0" ];

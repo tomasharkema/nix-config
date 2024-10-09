@@ -137,9 +137,10 @@ in {
         nix-direnv.enable = true;
       };
 
-      # vscode = {
-      #   enable = true;
-      # };
+      vscode = {
+        enable = true;
+        package = pkgs.vscode.fhs;
+      };
 
       htop = {
         enable = true;
