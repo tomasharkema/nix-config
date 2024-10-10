@@ -4,8 +4,7 @@
   lib,
   inputs,
   ...
-}: let
-in {
+}: {
   config = {
     assertions = [
       {
@@ -85,8 +84,7 @@ in {
         cleanOnBoot = lib.mkDefault true;
       };
 
-      kernelPackages = let
-      in
+      kernelPackages =
         if (pkgs.stdenv.isAarch64 || config.trait.hardware.vm.enable)
         then lib.mkDefault pkgs.linuxPackages_latest
         else
@@ -275,6 +273,11 @@ in {
       # irqbalance.enable = true;
       # aria2.enable = true;
       rpcbind.enable = true;
+
+      acpid = {
+        enable = true;
+        logEvents = true;
+      };
 
       dbus = {
         enable = true;
