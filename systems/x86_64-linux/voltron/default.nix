@@ -11,7 +11,7 @@
 
     #ip-fetch-timeout=1
     #nodefaultroute=True
-    metric=1000
+    #metric=1000
 
     # uncomment to not add DNS values to /etc/resolv.conf
     #noresolv=True
