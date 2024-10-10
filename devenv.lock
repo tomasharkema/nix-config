@@ -30,7 +30,6 @@
         "owner": "cachix",
         "repo": "devenv",
         "rev": "e7a0bc559f5a66aaa42f5028db6162c4dd4587eb",
-        "treeHash": "185f2496a912791797a3f07344c418c6e24f71cb",
         "type": "github"
       },
       "original": {
@@ -177,11 +176,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1728308313,
+        "lastModified": 1728522165,
         "owner": "nix-community",
         "repo": "nixos-generators",
-        "rev": "71f9c8bcc87f15dba12515e94e40de243b5db103",
-        "treeHash": "c860cf579807270fb728e09c5567af8693b44fa6",
+        "rev": "40c8d30c490414910fc63626ad1b67af7db40cd3",
         "type": "github"
       },
       "original": {
@@ -212,7 +210,6 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "1bfbbbe5bbf888d675397c66bfdb275d0b99361c",
-        "treeHash": "bce1b780ecae81917ececfb681adc6504763abab",
         "type": "github"
       },
       "original": {
@@ -228,7 +225,6 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "1bfbbbe5bbf888d675397c66bfdb275d0b99361c",
-        "treeHash": "bce1b780ecae81917ececfb681adc6504763abab",
         "type": "github"
       },
       "original": {

@@ -64,6 +64,7 @@ in {
       # (import ./packages/common.nix {inherit pkgs inputs lib;})
       # ++
       packages = with pkgs; [
+        valgrind
         devcontainer
         # picotool
         newman
@@ -118,7 +119,7 @@ in {
       );
     };
 
-    # fonts.fontconfig.enable = true;
+    fonts.fontconfig.enable = true;
 
     programs = {
       # freetube.enable = true;

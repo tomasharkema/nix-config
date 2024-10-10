@@ -15,6 +15,9 @@
       config.programs.zsh.plugins;
 
     # home.packages = builtins.map (n: n.src) config.programs.zsh.plugins;
+    # home.packages = with pkgs; [
+    # jupyter
+    # ];
 
     programs = {
       zoxide.enable = true;
@@ -202,7 +205,7 @@
           '';
           plugins =
             [
-              "you-should-use"
+              # "you-should-use"
               "1password"
               "autojump"
               "aws"
@@ -214,7 +217,7 @@
               "copyfile"
               "copypath"
               "cp"
-              "direnv"
+              # "direnv"
               "dirhistory"
               "dirpersist"
               "dotnet"
