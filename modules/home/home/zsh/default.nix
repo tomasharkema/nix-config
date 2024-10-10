@@ -217,7 +217,7 @@
               "copyfile"
               "copypath"
               "cp"
-              "direnv"
+              # "direnv"
               "dirhistory"
               "dirpersist"
               "dotnet"
