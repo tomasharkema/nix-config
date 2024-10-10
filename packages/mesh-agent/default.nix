@@ -1,10 +1,13 @@
 {
   lib,
   stdenv,
+  ccacheStdenv,
   fetchFromGitHub,
   libjpeg,
   pkg-config,
+  xorg,
 }:
+# ccacheStdenv
 stdenv.mkDerivation rec {
   pname = "mesh-agent";
   version = "1.1.0";
@@ -21,20 +24,31 @@ stdenv.mkDerivation rec {
     pkg-config
   ];
 
-  MESH_AGENTID = "6";
+  buildInputs = [
+    xorg.libX11.dev
+    xorg.xorgproto
+    xorg.libXtst
+    xorg.xinput
+    xorg.libXi
+  ];
+
+  # MESH_AGENTID = "6";
   ARCHID = "6";
 
   buildPhase = ''
-    make linux ARCHID=6
+    # set -x
+
+    runHook preBuild
+
+    make linux #ARCHID=6						# Linux x86 64 bit
+
+    runHook postBuild
   '';
 
-  # buildPhase = ''
-  #   # runHook preBuild
-  #   sleep 1000
-  #   make linux ARCHID=6						# Linux x86 64 bit
-
-  #   # runHook postBuild
-  # '';
+  installPhase = ''
+    mkdir -p $out/bin
+    cp meshagent_x86-64 $out/bin/mesh-agent
+  '';
 
   meta = with lib; {
     description = "MeshAgent used along with MeshCentral to remotely manage computers. Many variations of the background management agent are included as binaries in the MeshCentral project";

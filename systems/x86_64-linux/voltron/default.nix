@@ -224,10 +224,6 @@ in {
     #   };
     # };
 
-    # nix.settings = {
-    #   extra-sandbox-paths = [config.programs.ccache.cacheDir];
-    # };
-
     chaotic = {
       scx.enable = pkgs.stdenvNoCC.isx86_64; # by default uses scx_rustland scheduler
     };

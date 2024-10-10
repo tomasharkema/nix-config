@@ -479,6 +479,15 @@
       };
       mtr.enable = true;
       command-not-found.enable = false;
+
+      ccache = {
+        enable = true;
+        packageNames = ["mutter"];
+      };
+    };
+
+    nix.settings = {
+      extra-sandbox-paths = [config.programs.ccache.cacheDir];
     };
 
     hardware = {
