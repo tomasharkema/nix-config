@@ -73,6 +73,10 @@ in {
     gui = {
       icewm.enable = true;
       # desktop.enable = true;
+      rdp = {
+        enable = true;
+        legacy = true;
+      };
     };
 
     services = {
