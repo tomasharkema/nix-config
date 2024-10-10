@@ -167,8 +167,8 @@ in {
   # starship.enable = true;
 
   languages.nix = {
-    # enable = true;
-    lsp.package = nixd;
+    enable = true;
+    lsp.package = nil;
   };
 
   pre-commit.hooks = {
@@ -227,6 +227,7 @@ in {
     darwin-system
     build-host-pkgs
     nix-update-all
+
     # # snowfallorg.flake
     # agenix
     # cachix

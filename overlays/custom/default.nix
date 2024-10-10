@@ -22,6 +22,8 @@
 
   wezterm = inputs.wezterm.packages."${prev.system}".default;
 
+  nixd = inputs.nixd.packages."${prev.system}".default;
+
   # dosbox-x = prev.dosbox-x.overrideAttrs ({postInstall ? "", ...}: {
   #   postInstall =
   #     postInstall

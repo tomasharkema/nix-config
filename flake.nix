@@ -21,6 +21,7 @@
         cudaSupport = true;
 
         allowAliases = true;
+
         config.allowAliases = true;
 
         # config.allowUnsupportedSystem = true;
@@ -29,7 +30,7 @@
         # permittedInsecurePackages = [ "openssl-1.1.1w" ];
         permittedInsecurePackages = [
           # "python3.12-youtube-dl-2021.12.17"
-          # "openssl-1.1.1w"
+          "openssl-1.1.1w"
 
           # "python-2.7.18.8"
         ];
@@ -37,7 +38,7 @@
           # For example, enable smartcard support in Firefox.
           firefox.smartcardSupport = true;
           permittedInsecurePackages = [
-            # "openssl-1.1.1w"
+            "openssl-1.1.1w"
             # "python3.12-youtube-dl-2021.12.17"
             # "python-2.7.18.8"
           ];
@@ -216,10 +217,15 @@
       # };
 
       githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {
-        checks = inputs.nixpkgs.lib.getAttrs ["x86_64-linux" "aarch64-linux"] inputs.self.packages;
+        checks =
+          inputs.nixpkgs.lib.getAttrs [
+            "x86_64-linux"
+            # "aarch64-linux"
+          ]
+          inputs.self.packages;
         platforms = {
           "x86_64-linux" = "x86_64-linux";
-          "aarch64-linux" = "aarch64-linux";
+          # "aarch64-linux" = "aarch64-linux";
 
           # "x86_64-darwin" = "x86_64-darwin";
           # "aarch64-darwin" = "aarch64-darwin";
@@ -466,15 +472,20 @@
     flake-utils = {
       url = "github:numtide/flake-utils";
       inputs = {
+        nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
       };
     };
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    devenv.url = "github:cachix/devenv";
+    devenv = {
+      url = "github:cachix/devenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     devshell = {
       url = "github:numtide/devshell";
@@ -485,6 +496,8 @@
 
     pre-commit-hooks-nix = {
       url = "github:cachix/pre-commit-hooks.nix";
+
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     treefmt-nix = {
@@ -496,12 +509,12 @@
 
     crane = {
       url = "github:ipetkov/crane";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     catppuccin = {
       url = "github:catppuccin/nix";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-index-database = {
@@ -526,17 +539,17 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-24.05";
+      url = "github:nix-community/nixvim"; #/nixos-24.05";
 
-      # inputs = {
-      #   nixpkgs.follows = "nixpkgs";
-      #   home-manager.follows = "home-manager";
-      #   nix-darwin.follows = "darwin";
-      #   flake-compat.follows = "flake-compat";
-      #   flake-parts.follows = "flake-parts";
-      #   devshell.follows = "devshell";
-      #   treefmt-nix.follows = "treefmt-nix";
-      # };
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        nix-darwin.follows = "darwin";
+        flake-compat.follows = "flake-compat";
+        flake-parts.follows = "flake-parts";
+        devshell.follows = "devshell";
+        treefmt-nix.follows = "treefmt-nix";
+      };
     };
 
     agenix = {
@@ -564,7 +577,7 @@
     nixos-hardware = {
       url = "github:nixos/nixos-hardware";
 
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-gaming = {
@@ -597,6 +610,8 @@
 
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak";
+
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lanzaboote = {
@@ -724,7 +739,7 @@
     nixos-06cb-009a-fingerprint-sensor = {
       url = "github:tomasharkema/nixos-06cb-009a-fingerprint-sensor";
 
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # netkit = {
@@ -804,10 +819,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-mineral = {
-      url = "github:cynicsketch/nix-mineral";
-      flake = false;
-    };
+    # nix-mineral = {
+    #   url = "github:cynicsketch/nix-mineral";
+    #   flake = false;
+    # };
 
     tsui = {
       url = "github:neuralinkcorp/tsui";
@@ -818,9 +833,9 @@
 
     mac-app-util = {
       url = "github:hraban/mac-app-util";
-      # inputs = {
-      #   nixpkgs.follows = "nixpkgs";
-      # };
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
     };
 
     nvidia-patch = {
@@ -850,6 +865,11 @@
 
     nix-github-actions = {
       url = "github:nix-community/nix-github-actions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixd = {
+      url = "github:nix-community/nixd/release/2.x";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

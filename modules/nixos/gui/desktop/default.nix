@@ -103,7 +103,9 @@ in {
       # };
     };
 
-    xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    xdg.portal.extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
 
     services.gnome = {
       gnome-keyring.enable = true;
@@ -164,7 +166,7 @@ in {
         spot
         sqlitebrowser
         sublime-merge
-        # sublime4
+        sublime4
         transmission-remote-gtk
         trayscale
         tremotesf

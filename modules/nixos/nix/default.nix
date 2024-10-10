@@ -18,7 +18,9 @@
     #   });
     # in
     {
-      # systemd.packages = with pkgs; [nix-web];
+      systemd.packages = with pkgs; [
+        nix-web
+      ];
 
       # systemd.sockets.nix-supervisor = {
       #   socketConfig.ListenStream = [
@@ -31,9 +33,10 @@
       documentation = {
         man = {
           enable = true;
-          # mandoc.enable = true;
+          #          mandoc.enable = true;
           man-db.enable = true;
-          generateCaches = true;
+          generateCaches =
+            true;
         };
         dev.enable = true;
         doc.enable = true;
@@ -67,9 +70,13 @@
           config.user.name
         ];
       in {
-        package = pkgs.nixVersions.nix_2_23; # .latest;
+        package = pkgs.nixVersions.latest; # .latest;
 
-        nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+        nixPath = [
+          "nixpkgs=${inputs.nixpkgs}"
+          "darwin=${inputs.darwin}"
+          "home-manager=${inputs.home-manager}"
+        ];
 
         channel.enable = true;
 

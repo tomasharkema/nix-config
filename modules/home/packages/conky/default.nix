@@ -13,7 +13,7 @@
       extraConfig = conkyConfig;
     };
 
-    systemd.user.services.conky.Install.WantedBy = ["default.target"];
+    systemd.user.services.conky.Install.WantedBy = ["graphical-session.target"];
   };
 
   darwin = lib.optional (pkgs.stdenv.isDarwin && false) {
