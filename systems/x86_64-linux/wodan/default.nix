@@ -167,7 +167,7 @@
 
     apps.podman.enable = true;
 
-    trait = {
+    traits = {
       server.enable = true;
       builder.enable = true;
       hardware = {

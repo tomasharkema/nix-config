@@ -40,7 +40,7 @@ in {
         dockerCompat = true;
         dockerSocket.enable = true;
 
-        enableNvidia = config.trait.hardware.nvidia.enable;
+        enableNvidia = config.traits.hardware.nvidia.enable;
 
         defaultNetwork.settings.dns_enabled = true;
         # networkSocket = {

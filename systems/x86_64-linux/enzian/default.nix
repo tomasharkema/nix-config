@@ -76,7 +76,7 @@
 
     # wifi.enable = true;
 
-    trait = {
+    traits = {
       hardware = {
         nvme.enable = true;
         tpm.enable = true;

@@ -20,7 +20,7 @@ with inputs.home-manager.lib.hm.gvariant; {
           # "variable-refresh-rate"
           # "rt-scheduler"
           experimental-features = [
-            # if osConfig.trait.hardware.laptop.enable
+            # if osConfig.traits.hardware.laptop.enable
             # then [
             "scale-monitor-framebuffer"
             "variable-refresh-rate"

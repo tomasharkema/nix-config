@@ -14,7 +14,7 @@
     swapDevices =
       lib.mkForce [
       ];
-    trait = {
+    traits = {
       server.enable = true;
       builder.enable = true;
       hardware = {

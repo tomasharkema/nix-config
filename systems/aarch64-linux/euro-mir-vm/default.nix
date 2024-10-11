@@ -79,7 +79,7 @@
         enable = false;
       };
     };
-    trait = {
+    traits = {
       developer.enable = false;
       hardware = {
         tpm.enable = false;

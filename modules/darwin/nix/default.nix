@@ -34,7 +34,7 @@ in {
       };
     };
 
-    trait.developer.enable = true;
+    traits.developer.enable = true;
 
     services.nix-daemon.enable = true;
     programs.direnv.enable = true;

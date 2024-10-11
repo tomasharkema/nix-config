@@ -33,7 +33,7 @@ in {
       # btrbk.enable = true;
     };
 
-    trait = {
+    traits = {
       server = {
         enable = true;
         headless.enable = true;
