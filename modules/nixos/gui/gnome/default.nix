@@ -252,10 +252,10 @@ in
         gnome-nettool
         # gnome-online-miners
         gnome-power-manager
-        gnome-session
-        gnome-session-ctl
-        gnome-settings-daemon
-        gnome-shell-extensions
+        # gnome-session
+        # gnome-session-ctl
+        # gnome-settings-daemon
+        # gnome-shell-extensions
         gtop
         libgnome-keyring
         libgtop
