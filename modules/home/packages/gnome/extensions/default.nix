@@ -9,7 +9,7 @@
       # ddcui
     ];
 
-    dconf.settings ."org/gnome/shell".enabled-extensions = [
+    dconf.settings."org/gnome/shell".enabled-extensions = [
       "GPaste@gnome-shell-extensions.gnome.org"
       "drive-menu@gnome-shell-extensions.gcampax.github.com"
     ];
@@ -48,26 +48,11 @@
         #   package =
         #     settingscenter;
         # }
-        {
-          package =
-            app-hider;
-        }
-        {
-          package =
-            arc-menu;
-        }
-        {
-          package =
-            blur-my-shell;
-        }
-        {
-          package =
-            extension-list;
-        }
-        {
-          package =
-            hue-lights;
-        }
+        {package = app-hider;}
+        {package = arc-menu;}
+        {package = blur-my-shell;}
+        {package = extension-list;}
+        {package = hue-lights;}
         # {
         #   package =
         #     ip-finder;
@@ -76,38 +61,20 @@
         #   package =
         #     just-perfection;
         # }
-        {
-          package =
-            kerberos-login;
-        }
-        {
-          package =
-            no-overview;
-        }
-        {
-          package =
-            remmina-search-provider;
-        }
+        {package = kerberos-login;}
+        {package = no-overview;}
+        {package = remmina-search-provider;}
         {package = ssh-search-provider-reborn;}
-        #{package = another-window-session-manager;}
+        {package = another-window-session-manager;}
         {package = search-light;}
         # {package = tweaks-in-system-menu;}
-        {
-          package =
-            removable-drive-menu;
-        }
-        {
-          package =
-            search-light;
-        }
+        {package = removable-drive-menu;}
+        {package = search-light;}
         # {
         #   package =
         #     server-status-indicator;
         # }
-        {
-          package =
-            tailscale-qs;
-        }
+        {package = tailscale-qs;}
         # {
         #   package =
         #     todotxt;
@@ -118,14 +85,8 @@
         # }
         {package = brightness-control-using-ddcutil;}
         {package = control-monitor-brightness-and-volume-with-ddcutil;}
-        {
-          package =
-            vitals;
-        }
-        {
-          package =
-            pip-on-top;
-        }
+        {package = vitals;}
+        {package = pip-on-top;}
       ];
     };
   };
