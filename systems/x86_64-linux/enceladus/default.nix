@@ -83,7 +83,7 @@
 
     # wifi.enable = true;
 
-    trait = {
+    traits = {
       builder.enable = true;
 
       hardware = {

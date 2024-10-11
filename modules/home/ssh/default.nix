@@ -63,7 +63,7 @@
         #     else {
         #       # "PKCS11Provider" =
         #       #   if
-        #       #     (osConfig.trait.hardware.tpm.enable
+        #       #     (osConfig.traits.hardware.tpm.enable
         #       #       && osConfig.gui.enable)
         #       #   then "/run/current-system/sw/lib/libtpm2_pkcs11.so"
         #       #   else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";

@@ -30,7 +30,7 @@
 
     environment.systemPackages = with pkgs; [custom.elxflash];
 
-    trait = {
+    traits = {
       server.enable = true;
       builder.enable = true;
       hardware = {

@@ -22,7 +22,7 @@ in
 
     config = lib.mkIf cfg.enable {
       # sound.mediaKeys.enable = true;
-      trait.developer.enable = lib.mkDefault true;
+      traits.developer.enable = lib.mkDefault true;
 
       system.nixos.tags =
         [

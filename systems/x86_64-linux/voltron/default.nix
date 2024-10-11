@@ -132,7 +132,7 @@ in {
       };
     };
 
-    trait = {
+    traits = {
       hardware = {
         nvme.enable = true;
         tpm.enable = true;

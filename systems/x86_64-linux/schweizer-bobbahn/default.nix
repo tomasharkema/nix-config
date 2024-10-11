@@ -53,7 +53,7 @@
 
     apps.resilio.enable = false;
 
-    trait = {
+    traits = {
       low-power.enable = true;
       ecrypt.enable = true;
       hardware = {
