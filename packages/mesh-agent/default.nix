@@ -59,3 +59,5 @@ stdenv.mkDerivation rec {
     platforms = platforms.all;
   };
 }
+# (wget "https://meshcentral.harkema.io/meshagents?script=1" -O ./meshinstall.sh || wget "https://meshcentral.harkema.io/meshagents?script=1" --no-proxy -O ./meshinstall.sh) && chmod 755 ./meshinstall.sh && sudo -E ./meshinstall.sh https://meshcentral.harkema.io '13OZYE2g4Zm1qm3bkwUR43GX2Vghz2ylcfy3WVglwnrv3fwgwhXfVc@eCGNljHLL' || ./meshinstall.sh https://meshcentral.harkema.io '13OZYE2g4Zm1qm3bkwUR43GX2Vghz2ylcfy3WVglwnrv3fwgwhXfVc@eCGNljHLL'
+
