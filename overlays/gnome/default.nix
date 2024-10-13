@@ -45,7 +45,7 @@
       #   url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3567.patch";
       #   sha256 = "sha256-S+uH4rJiVSyU2G+cudeh6bp2hWs1GMPE/9gaAKAWs1Q=";
       # })
-      ./triple-buffer.patch
+      # ./triple-buffer.patch
       (prev.fetchpatch {
         url = "https://aur.archlinux.org/cgit/aur.git/plain/xwayland-scaling.patch?h=mutter-xwayland-scaling";
         sha256 = "sha256-deoWaseI+CnH0aHUWm6YFoD+PRVsFg3zn3wVy4kIiUE=";

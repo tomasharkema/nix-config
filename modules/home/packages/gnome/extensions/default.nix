@@ -23,7 +23,7 @@
         {package = media-controls;}
         {package = gsconnect;}
         {package = systemd-manager;}
-        {package = move-clock;}
+        # {package = move-clock;}
         {package = home-assistant-extension;}
         {package = caffeine;}
         {package = dash-to-panel;}
