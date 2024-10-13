@@ -25,9 +25,9 @@ in {
         serviceConfig = {
           WorkingDirectory = "/usr/local/mesh_services/meshagent/";
           ExecStart = "${pkgs.custom.mesh-agent}/bin/mesh-agent --installedByUser=0";
-          StandardOutput = "null";
+          # StandardOutput = "null";
           Restart = "on-failure";
-          RestartSec = "3";
+          RestartSec = "5";
         };
 
         wantedBy = ["multi-user.target"];
