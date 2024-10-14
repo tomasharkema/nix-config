@@ -29,20 +29,20 @@
         fsType = "ext4";
       };
     };
-    # trait.raspberry.enable = true;
+    # traits.raspberry.enable = true;
 
     environment.systemPackages = with pkgs; [
       libraspberrypi
       raspberrypi-eeprom
     ];
 
-    trait = {
+    traits = {
       low-power.enable = true;
       hardware = {
         bluetooth.enable = true;
       };
     };
-    # trait.slim.enable = true;
+    # traits.slim.enable = true;
 
     gui."media-center".enable = true;
 

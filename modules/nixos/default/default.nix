@@ -87,11 +87,11 @@ in {
 
       kernelPackages = let
       in
-        if (pkgs.stdenv.isAarch64 || config.trait.hardware.vm.enable)
+        if (pkgs.stdenv.isAarch64 || config.traits.hardware.vm.enable)
         then lib.mkDefault pkgs.linuxPackages_latest
         else
           (
-            if config.trait.server.enable
+            if config.traits.server.enable
             then lib.mkDefault pkgs.linuxPackages_cachyos-server
             else lib.mkDefault pkgs.linuxPackages_cachyos
           ); # (pkgs.linuxPackagesFor pkgs.linux_cachyos);
@@ -110,7 +110,7 @@ in {
 
     chaotic = {
       scx = {
-        enable = !(config.trait.server.enable) && pkgs.stdenvNoCC.isx86_64;
+        enable = !(config.traits.server.enable) && pkgs.stdenvNoCC.isx86_64;
         scheduler = "scx_bpfland";
       };
     };
@@ -272,7 +272,7 @@ in {
     };
 
     services = {
-      sysstat.enable = true;
+      sysstat.enable = lib.mkDefault true;
       irqbalance.enable = true;
       # aria2.enable = true;
       rpcbind.enable = true;
