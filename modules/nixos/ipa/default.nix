@@ -160,10 +160,11 @@ in {
 
     systemd.packages = [pkgs.realmd];
 
-    # systemd.tmpfiles.rules = [
-    #   "L /bin/bash - - - - /run/current-system/sw/bin/bash"
-    #   "L /bin/zsh - - - - /run/current-system/sw/bin/zsh"
-    # ];
+    systemd.tmpfiles.settings."10-zsh" = {
+      "/bin/zsh"."L+" = {
+        argument = "${pkgs.zsh}/bin/zsh";
+      };
+    };
 
     # system.activationScripts.host-mod-pubkey.text = ''
     #   ipa host-mod "$HOSTNAME.harkema.io" --sshpubkey="$(cat /etc/ssh/ssh_host_ed25519_key.pub)" || echo "REGISTER PUBKEY"

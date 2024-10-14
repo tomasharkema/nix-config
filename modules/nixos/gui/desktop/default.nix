@@ -180,6 +180,7 @@ in {
         xdiskusage
         xdotool
         yelp
+        f1viewer
         # zed-editor
         ytdlp-gui
       ]

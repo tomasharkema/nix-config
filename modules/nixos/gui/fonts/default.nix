@@ -8,12 +8,16 @@
 
   config = lib.mkIf config.gui.fonts.enable {
     systemd = {
-      tmpfiles.rules = [
-        "L+ /usr/local/share/fonts - - - - /run/current-system/sw/share/X11/fonts"
-      ];
-      user.tmpfiles.users.tomas.rules = [
-        "L+ /home/tomas/.local/share/fonts - - - - /run/current-system/sw/share/X11/fonts"
-      ];
+      tmpfiles.settings."10-fonts" = {
+        "/usr/local/share/fonts"."L+" = {
+          argument = "/run/current-system/sw/share/X11/fonts";
+        };
+      };
+      user.tmpfiles.users.tomas.settings."10-fonts" = {
+        "/home/tomas/.local/share/fonts"."L+" = {
+          argument = "/run/current-system/sw/share/X11/fonts";
+        };
+      };
     };
 
     # system.fsPackages = [pkgs.bindfs];

@@ -9,7 +9,7 @@
 in {
   options.prometheus = {enable = lib.mkEnableOption "prometheus" // {default = true;};};
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     system.nixos.tags = ["prometheus"];
 
     system.activationScripts.node-exporter-system-version = ''
@@ -83,7 +83,7 @@ in {
           });
       };
     };
-    # systemd.tmpfiles.rules = ["d /var/lib/promtail 0644 promtail promtail -"];
+
     services.promtail = {
       # enable = true;
       configuration = {

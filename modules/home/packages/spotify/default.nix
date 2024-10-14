@@ -1,4 +1,10 @@
-{ config, osConfig, pkgs, lib, ... }: {
+{
+  config,
+  osConfig,
+  pkgs,
+  lib,
+  ...
+}: {
   config = {
     # config = lib.mkIf cfg.enable {
     #   environment.systemPackages = with pkgs; [
@@ -38,11 +44,9 @@
         #   ln -sfn "${osConfig.age.secrets.spotify-tui.path}" "$HOME/.config/spotify-tui/client.yml" || true
         # '';
       };
-      packages = with pkgs;
-        [
-          ncspot
-          # spotify-tui
-        ];
+      packages = with pkgs; [
+        ncspot
+      ];
     };
   };
 }
