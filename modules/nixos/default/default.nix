@@ -4,8 +4,7 @@
   lib,
   inputs,
   ...
-}: let
-in {
+}: {
   config = {
     assertions = [
       {
@@ -276,6 +275,11 @@ in {
       # aria2.enable = true;
       rpcbind.enable = true;
 
+      acpid = {
+        enable = true;
+        logEvents = true;
+      };
+
       dbus = {
         enable = true;
         # packages = with pkgs; [mpv];
@@ -476,6 +480,15 @@ in {
       };
       mtr.enable = true;
       command-not-found.enable = false;
+
+      ccache = {
+        enable = true;
+        packageNames = ["mutter"];
+      };
+    };
+
+    nix.settings = {
+      extra-sandbox-paths = [config.programs.ccache.cacheDir];
     };
 
     hardware = {
