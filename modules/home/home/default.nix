@@ -63,42 +63,45 @@ in {
 
       # (import ./packages/common.nix {inherit pkgs inputs lib;})
       # ++
-      packages = with pkgs; [
-        valgrind
-        devcontainer
-        # picotool
-        newman
-        # postman
-        atac
-        # httpie-desktop
-        nix-htop
-        augeas
-        custom.bieye
-        wget2
-        libnotify
+      packages = with pkgs;
+        [
+          devcontainer
+          # picotool
+          newman
+          # postman
+          atac
+          # httpie-desktop
+          nix-htop
+          augeas
+          custom.bieye
+          wget2
+          libnotify
 
-        fup-repl
-        # gptcommit-wrap
+          fup-repl
+          # gptcommit-wrap
 
-        udict
-        # rtfm
-        jq
-        # fig
-        # kitty-img
-        # todoman
-        # dooit
-        ttdl
-        topydo
-        jqp
-        # nchat
-        git-agecrypt
-        projectable
-        # xplr
-        lazycli
-        f1viewer
-        # aicommits
-        openai
-      ];
+          udict
+          # rtfm
+          jq
+          # fig
+          # kitty-img
+          # todoman
+          # dooit
+          ttdl
+          topydo
+          jqp
+          # nchat
+          git-agecrypt
+          projectable
+          # xplr
+          lazycli
+          f1viewer
+          # aicommits
+          openai
+        ]
+        ++ (lib.optionals pkgs.stdenv.isx86_64 [
+          valgrind
+        ]);
 
       activation."agent-1password" = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin (inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
         mkdir -p "/Users/${osConfig.user.name}/.1password" || true
