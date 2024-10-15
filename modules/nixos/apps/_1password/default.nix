@@ -27,5 +27,9 @@ in {
         package = pkgs._1password-gui;
       };
     };
+
+    environment.sessionVariables = lib.mkIf config.gui.desktop.enable {
+      OP_BIOMETRIC_UNLOCK_ENABLED = "true";
+    };
   };
 }
