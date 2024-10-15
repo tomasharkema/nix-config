@@ -46,12 +46,18 @@
         };
       };
 
-      environment.variables = {
-        # NIX_DAEMON_SOCKET_PATH = "/run/nix-supervisor.sock";
-        # OTEL_EXPORTER_OTLP_ENDPOINT = "http://silver-star:5080/api/default/traces";
-        # OTEL_EXPORTER_OTLP_HEADERS = "Authorization=\"Basic dG9tYXNAaGFya2VtYS5pbzpQdXIxN0RCb21CZVd4U0xV\"";
-      };
+      environment = {
+        systemPackages = [
+          pkgs.man-pages
+          pkgs.man-pages-posix
+        ];
 
+        variables = {
+          # NIX_DAEMON_SOCKET_PATH = "/run/nix-supervisor.sock";
+          # OTEL_EXPORTER_OTLP_ENDPOINT = "http://silver-star:5080/api/default/traces";
+          # OTEL_EXPORTER_OTLP_HEADERS = "Authorization=\"Basic dG9tYXNAaGFya2VtYS5pbzpQdXIxN0RCb21CZVd4U0xV\"";
+        };
+      };
       programs = {
         nh = {
           enable = true;

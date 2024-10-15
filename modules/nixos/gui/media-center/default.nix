@@ -91,10 +91,11 @@ in {
     };
 
     systemd = {
-      user.tmpfiles.users.media.rules = [
-        #   "d /home/media/.kodi/cdm 0777 media users -"
-        "L+ /home/media/.kodi/cdm/libwidevinecdm.so - - - - ${pkgs.custom.widevine}/lib/libwidevinecdm.so"
-      ];
+      user.tmpfiles.users.media.settings."10-media" = {
+        "/home/media/.kodi/cdm/libwidevinecdm.so"."L+" = {
+          argument = "${pkgs.custom.widevine}/lib/libwidevinecdm.so";
+        };
+      };
 
       targets = {
         sleep.enable = lib.mkForce false;

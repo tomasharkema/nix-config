@@ -95,7 +95,7 @@ in {
           projectable
           # xplr
           lazycli
-          f1viewer
+          # f1viewer
           # aicommits
           openai
         ]
@@ -141,7 +141,7 @@ in {
         nix-direnv.enable = true;
       };
 
-      vscode = {
+      vscode = lib.mkIf pkgs.stdenv.isLinux {
         enable = true;
         package = pkgs.vscode.fhs;
       };

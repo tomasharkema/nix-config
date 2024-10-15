@@ -22,6 +22,11 @@ in {
       (!config.traits.hardware.laptop.thinkpad.enable)
       {package = pkgs.gnomeExtensions.battery-health-charging;};
 
+    gui.rdp = {
+      enable = false;
+      legacy = false;
+    };
+
     boot = {
       kernelModules = ["acpi_call"];
       # extraModulePackages = with config.boot.kernelPackages; [acpi_call];

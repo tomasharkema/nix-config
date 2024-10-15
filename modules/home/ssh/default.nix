@@ -25,8 +25,8 @@
     programs.ssh = {
       enable = true;
       forwardAgent = true;
-      controlMaster = "auto";
-      controlPersist = "10m";
+      # controlMaster = "auto";
+      # controlPersist = "10m";
       # addKeysToAgent = true;
       hashKnownHosts = true;
 

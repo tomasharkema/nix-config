@@ -182,6 +182,7 @@ in {
         xdiskusage
         xdotool
         yelp
+        f1viewer
         # zed-editor
         ytdlp-gui
       ]
@@ -239,20 +240,6 @@ in {
     };
     systemd = {
       services = {
-        # sudo -u gnome-remote-desktop winpr-makecert \
-        #     -silent -rdp -path ~gnome-remote-desktop rdp-tls
-        # sudo grdctl --system rdp enable
-        # sudo grdctl --system rdp set-credentials "${RDP_USER}" "${RDP_PASS}"
-        # sudo grdctl --system rdp set-tls-key ~gnome-remote-desktop/rdp-tls.key
-        # sudo grdctl --system rdp set-tls-cert ~gnome-remote-desktop/rdp-tls.crt
-
-        "gnome-remote-desktop" = {
-          enable = true;
-          wantedBy = [
-            "graphical-session.target"
-            "graphical.target"
-          ];
-        };
         # "anydesk" = {
         #   enable = true;
         #   wantedBy = [

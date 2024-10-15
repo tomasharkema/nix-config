@@ -105,10 +105,6 @@ in {
       ];
 
       activation = {
-        userSymlinks-fonts = lib.mkIf (stdenv.isLinux && osConfig.gui.enable) ''
-          ln -sfn /run/current-system/sw/share/X11/fonts ~/.local/share/fonts
-        '';
-
         # userSymlinks-cachix = ''
         #   if [ ! -d "$HOME/.config/cachix" ]; then
         #     mkdir $HOME/.config/cachix
