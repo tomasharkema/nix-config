@@ -132,6 +132,7 @@
       # enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          nix-btm
           update-nix-fetchgit
           updatecli
           devcontainer

@@ -93,7 +93,7 @@ in {
             "${pkgs.tor}/bin/tor"
             "${pkgs.rsyslog}/sbin/rsyslogd"
             "${pkgs.coreutils}/bin/mkdir"
-            "${pkgs.ntfy-sh}/bin/ntfy"
+            # "${pkgs.ntfy-sh}/bin/ntfy"
             "${pkgs.curl}/bin/curl"
             "${pkgs.musl}/lib/libc.so"
           ];
