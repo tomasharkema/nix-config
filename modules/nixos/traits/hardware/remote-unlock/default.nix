@@ -78,14 +78,14 @@ in {
             # zerotierone
             libcxx
             glibc
-            ntfy-sh
+            # ntfy-sh
           ];
 
           extraBin = {
             tor = "${pkgs.tor}/bin/tor";
             rsyslogd = "${pkgs.rsyslog}/sbin/rsyslogd";
             mkdir = "${pkgs.coreutils}/bin/mkdir";
-            ntfy = "${pkgs.ntfy-sh}/bin/ntfy";
+            # ntfy = "${pkgs.ntfy-sh}/bin/ntfy";
             curl = "${pkgs.curl}/bin/curl";
             libc = "${pkgs.musl}/lib/libc.so";
           };

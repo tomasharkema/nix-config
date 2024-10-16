@@ -34,6 +34,11 @@ in {
 
       containers.enable = true;
 
+      docker.rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
+
       podman = {
         enable = true;
 

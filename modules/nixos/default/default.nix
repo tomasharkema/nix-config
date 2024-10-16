@@ -132,6 +132,8 @@
       # enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          update-nix-fetchgit
+          updatecli
           devcontainer
           tailspin
           colorized-logs
@@ -348,7 +350,6 @@
       openssh = {
         enable = true;
         passwordAuthentication = false;
-
         settings = {
           PasswordAuthentication = false;
           PermitRootLogin = "no";
@@ -472,6 +473,12 @@
         # forwardX11 = true;
         extraConfig = ''
           ForwardAgent yes
+
+          Host silver-star-builder
+            HostName silver-star
+            Port 2222
+            User foo
+            StrictHostKeyChecking=accept-new
         '';
       };
       mosh.enable = true;

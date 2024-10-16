@@ -51,15 +51,41 @@
   #   #   mutter = gnomePrev.mutter.overrideAttrs (old: {
   # });
 
-  pythonPackagesExtensions =
-    prev.pythonPackagesExtensions
-    ++ [
-      (pyfinal: pyprev: {
-        pymdown-extensions = pyprev.pymdown-extensions.overrideAttrs (old: {
-          dontCheck = true;
-        });
-      })
+  # pythonPackagesExtensions =
+  #   prev.pythonPackagesExtensions
+  #   ++ [
+  #     (pyfinal: pyprev: {
+  #       pymdown-extensions = pyprev.pymdown-extensions.overrideAttrs (old: {
+  #         # doCheck = false;
+  #         # doInstallCheck = false;
+  #         # dontCheck = true;
+  #         # checkPhase = '''';
+  #         # nativeCheckInputs = [];
+  #         installCheckPhase = "";
+  #       });
+  #     })
+  #   ];
+
+  ntfy-sh = prev.ntfy-sh.overrideAttrs (old: {
+    buildPhase = ''
+      #   #   runHook preBuild
+          make cli-client
+      #   #   runHook postBuild
+    '';
+
+    # tags = ["noserver"];
+
+    nativeBuildInputs = with prev; [
+      git
+      debianutils
+      go
+      # mkdocs
+      # python3
+      # go
+      # python3Packages.mkdocs-material
+      # python3Packages.mkdocs-minify-plugin
     ];
+  });
 
   # modemmanager = prev.modemmanager.overrideAttrs (oldAttrs: {
   # src = prev.fetchFromGitLab {
