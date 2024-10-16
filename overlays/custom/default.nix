@@ -44,6 +44,23 @@
 
   intel-vaapi-driver = prev.intel-vaapi-driver.override {enableHybridCodec = true;};
 
+  # python312Packages = prev.python312Packages.overrideScope' (pyFinal: pyPrev: {
+  #   pymdown-extensions = pyPrev.pymdown-extensions.overrideAttrs (old: {
+  #     dontCheck = true;
+  #   });
+  #   #   mutter = gnomePrev.mutter.overrideAttrs (old: {
+  # });
+
+  pythonPackagesExtensions =
+    prev.pythonPackagesExtensions
+    ++ [
+      (pyfinal: pyprev: {
+        pymdown-extensions = pyprev.pymdown-extensions.overrideAttrs (old: {
+          dontCheck = true;
+        });
+      })
+    ];
+
   # modemmanager = prev.modemmanager.overrideAttrs (oldAttrs: {
   # src = prev.fetchFromGitLab {
   #   # https://gitlab.freedesktop.org/tuxor1337/ModemManager/-/tree/port-xmm7360
