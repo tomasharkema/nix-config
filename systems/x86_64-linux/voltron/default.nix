@@ -249,17 +249,18 @@ in {
 
       binfmt.emulatedSystems = ["aarch64-linux"];
 
-      # modprobeConfig.enable = true;
+      modprobeConfig.enable = true;
 
       kernelParams = [
         "pstore.backend=efi"
         "efi_pstore.pstore_disable=0"
         "mem_sleep_default=deep"
+        "iomem=relaxed"
         #   # "nowatchdog"
         #   # "mitigations=off"
 
-        #   "intel_iommu=on"
-        #   "iommu=pt"
+        "intel_iommu=on"
+        "iommu=pt"
       ];
       blacklistedKernelModules = [
         "nouveau"
@@ -277,12 +278,11 @@ in {
         "spi"
         "sgx"
         # "isgx"
-        # "vfio_pci"
-        # "vfio"
-        # "vfio_iommu_type1"
-        # "kvm-intel"
+        "vfio_pci"
+        "vfio"
+        "vfio_iommu_type1"
+        "kvm-intel"
         # "watchdog"
-        #"tpm_rng"
       ];
       # extraModprobeConfig = "options i915 enable_guc=2";
       initrd.kernelModules = [

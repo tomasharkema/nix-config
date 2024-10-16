@@ -17,7 +17,7 @@ in {
     services = {
       ssh-tpm-agent.enable = lib.mkDefault true;
 
-      tcsd.enable = true;
+      jitterentropy-rngd.enable = true;
     };
 
     security.tpm2 = {
@@ -34,17 +34,25 @@ in {
       "root".extraGroups = ["tss"];
     };
 
-    boot.initrd.systemd.enableTpm2 = true;
+    boot = {
+      initrd = {
+        systemd.enableTpm2 = true;
+        # kernelModules = ["tpm_rng"];
+      };
 
-    # environment.systemPackages = with pkgs; [
-    #   tpm-luks
-    #   tpm-tools
-    #   # tpm2-abrmd
-    #   # tpm2-pkcs11
-    #   tpm2-tools
-    #   # tpm2-totp
-    #   # tpm2-tss
-    #   tpmmanager
-    # ];
+      kernelModules = ["tpm_rng"];
+    };
+
+    environment.systemPackages = with pkgs; [
+      rng-tools
+      #   tpm-luks
+      # tpm-tools
+      #   # tpm2-abrmd
+      # tpm2-pkcs11
+      tpm2-tools
+      #   # tpm2-totp
+      #   # tpm2-tss
+      tpmmanager
+    ];
   };
 }
