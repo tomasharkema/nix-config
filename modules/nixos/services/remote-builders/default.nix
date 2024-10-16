@@ -32,6 +32,14 @@ in {
         protocol = "ssh-ng";
       }
       {
+        hostName = "builder@enceladus";
+        systems = ["aarch64-linux" "x86_64-linux"];
+        maxJobs = 4;
+        supportedFeatures = ["kvm" "benchmark" "big-parallel"];
+        speedFactor = 50;
+        protocol = "ssh-ng";
+      }
+      {
         hostName = "builder@wodan";
         systems = ["aarch64-linux" "x86_64-linux"];
         maxJobs = 4;

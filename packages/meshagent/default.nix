@@ -70,6 +70,8 @@ in
       cp meshagent_x86-64 $out/bin/meshagent
     '';
 
+    doCheck = true;
+
     checkPhase = ''
       $out/bin/meshagent --selfTest=1
     '';

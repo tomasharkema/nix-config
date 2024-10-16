@@ -245,10 +245,6 @@ in
       rm -rf "$out"/rc.d
       rm -f "$out"/modules/ldb/memberof.la
       find "$out" -depth -type d -exec rmdir --ignore-fail-on-non-empty {} \;
-
-      file $out/lib/sssd/modules/sssd_krb5_passkey_plugin.so
-      file $out/libexec/sssd/sssd_kcm
-      file $out/lib/p11-kit-proxy.so
     '';
     postFixup = ''
       for f in $out/bin/sss{ctl,_cache,_debuglevel,_override,_seed} $(find $out/libexec/ -type f -executable); do
@@ -258,6 +254,7 @@ in
       wrapPythonProgramsIn "$out/libexec/sssd/sss_analyze" "${py}"
     '';
 
+    doCheck = true;
     checkPhase = ''
       file $out/lib/sssd/modules/sssd_krb5_passkey_plugin.so
       file $out/libexec/sssd/sssd_kcm

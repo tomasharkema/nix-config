@@ -146,8 +146,8 @@ in {
         font-manager
         fractal
         gamehub
-        gnomecast
-        go-chromecast
+        # gnomecast
+        # go-chromecast
         gotop
         gparted
         grsync
