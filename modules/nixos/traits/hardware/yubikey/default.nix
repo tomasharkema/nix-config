@@ -33,6 +33,26 @@
       ssh.extraConfig = ''
         PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
       '';
+
+      # gnupg.agent = {
+      #   enable = true;
+      #   enableBrowserSocket = true;
+      # };
+    };
+
+    home-manager.users.tomas = {
+      services.gpg-agent = {
+        enable = true;
+        enableZshIntegration = true;
+      };
+      programs.gpg = {
+        enable = true;
+        scdaemonSettings = {
+          reader-port = "Yubico Yubi";
+
+          disable-ccid = true;
+        };
+      };
     };
 
     services = {
@@ -40,7 +60,7 @@
       yubikey-agent.enable = true;
       udev.packages = with pkgs; [
         libfido2
-        # opensc
+        opensc
         yubioath-flutter
         yubikey-agent
         yubikey-manager
@@ -51,7 +71,7 @@
       ];
       dbus.packages = with pkgs; [
         libfido2
-        # opensc
+        opensc
         yubioath-flutter
         yubikey-agent
         yubikey-manager

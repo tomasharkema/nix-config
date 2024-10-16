@@ -1,7 +1,7 @@
 {
   lib,
   stdenv,
-  ccacheStdenv,
+  # ccacheStdenv,
   fetchFromGitHub,
   libjpeg,
   pkg-config,

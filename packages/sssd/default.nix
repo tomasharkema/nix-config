@@ -60,9 +60,12 @@
   fetchpatch,
   gdm,
   ensureNewerSourcesForZipFilesHook,
+  libcap,
+  openssh,
+  softhsm,
+  gnutls,
 }: let
   docbookFiles = "${docbook_xsl}/share/xml/docbook-xsl/catalog.xml:${docbook_xml_dtd_45}/xml/dtd/docbook/catalog.xml";
-
   py = python311.pythonOnBuildForHost.withPackages (ps:
     with ps; [
       setuptools
@@ -73,13 +76,13 @@
 in
   stdenv.mkDerivation (finalAttrs: {
     pname = "sssd";
-    version = "2.9.5";
+    version = "2.10.0";
 
     src = fetchFromGitHub {
       owner = "SSSD";
       repo = "sssd";
       rev = "refs/tags/${finalAttrs.version}";
-      sha256 = "sha256-wr6qFgM5XN3aizYVquj0xF+mVRgrkLWWhA3/gQOK8hQ=";
+      sha256 = "sha256-DQDynDYsbGXq3qy7hfiASp5kzFrykzhWFQaId8WCxVw=";
     };
 
     # patches = [
@@ -103,10 +106,10 @@ in
 
     preConfigure =
       ''
-        echo "PYTHONPATH: $PYTHONPATH"
-        echo "PYTHON: $PYTHON"
-
         export SGML_CATALOG_FILES="${docbookFiles}"
+
+        export PYTHONPATH=$(find ${py} -type d -name site-packages)
+        export PATH=$PATH:${openldap}/libexec:${openssh}/bin:${softhsm}/bin:${gnutls}/bin
 
         configureFlagsArray=(
           --prefix=$out
@@ -124,6 +127,7 @@ in
           --without-selinux
           --without-semanage
           --with-passkey
+          --with-initscript=systemd
           --with-xml-catalog-path=''${SGML_CATALOG_FILES%%:*}
           --with-ldb-lib-dir=$out/modules/ldb
           --with-nscd=${glibc.bin}/sbin/nscd
@@ -146,17 +150,29 @@ in
       makeWrapper
       pkg-config
       doxygen
-      python3Packages.setuptools
+      # python3Packages.setuptools
     ];
 
     propagatedBuildInputs = with python3Packages; [
       py
-      # distutils-extra
-      # distlib
+      #   # distutils-extra
+      #   # distlib
       setuptools
     ];
 
+    # sssd> checking for ssh-keygen... no
+    # sssd> configure: Could not find ssh-keygen
+    # sssd> configure: Could not find softhsm2 PKCS11 module
+    # sssd> checking for softhsm2-util... no
+    # sssd> configure: Could not find softhsm2-util
+    # sssd> checking for p11tool... no
+    # sssd> configure: Could not find p11tool
+
     buildInputs = [
+      gnutls
+      openssh
+      softhsm
+      libcap
       py
       gdm
       augeas
@@ -201,6 +217,7 @@ in
       http-parser
       jansson
       jose
+      # python311.pkgs.python-ldap
     ];
 
     makeFlags = [
@@ -228,11 +245,23 @@ in
       rm -rf "$out"/rc.d
       rm -f "$out"/modules/ldb/memberof.la
       find "$out" -depth -type d -exec rmdir --ignore-fail-on-non-empty {} \;
+
+      file $out/lib/sssd/modules/sssd_krb5_passkey_plugin.so
+      file $out/libexec/sssd/sssd_kcm
+      file $out/lib/p11-kit-proxy.so
     '';
     postFixup = ''
       for f in $out/bin/sss{ctl,_cache,_debuglevel,_override,_seed} $(find $out/libexec/ -type f -executable); do
         wrapProgram $f --prefix LDB_MODULES_PATH : $out/modules/ldb
       done
+
+      wrapPythonProgramsIn "$out/libexec/sssd/sss_analyze" "${py}"
+    '';
+
+    checkPhase = ''
+      file $out/lib/sssd/modules/sssd_krb5_passkey_plugin.so
+      file $out/libexec/sssd/sssd_kcm
+      file $out/lib/p11-kit-proxy.so
     '';
 
     passthru = {

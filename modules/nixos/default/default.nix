@@ -248,6 +248,7 @@
         ])
         ++ (lib.optionals pkgs.stdenv.isx86_64 (
           with pkgs; [
+            gnutls
             cmospwd
             uefisettings
             libsmbios
@@ -484,7 +485,13 @@
 
       ccache = {
         enable = true;
-        packageNames = ["mutter"];
+        packageNames = [
+          "sssd"
+          "freeipa"
+          "mutter"
+          "gnome-shell"
+          "gnome-session"
+        ];
       };
     };
 

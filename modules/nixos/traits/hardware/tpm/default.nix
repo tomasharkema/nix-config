@@ -14,7 +14,11 @@ in {
   config = lib.mkIf cfg.enable {
     system.nixos.tags = ["tpm"];
 
-    services.ssh-tpm-agent.enable = lib.mkDefault true;
+    services = {
+      ssh-tpm-agent.enable = lib.mkDefault true;
+
+      tcsd.enable = true;
+    };
 
     security.tpm2 = {
       enable = true;
@@ -25,8 +29,10 @@ in {
       abrmd.enable = true;
     };
 
-    users.users."tomas".extraGroups = ["tss"];
-    users.users."root".extraGroups = ["tss"];
+    users.users = {
+      "tomas".extraGroups = ["tss"];
+      "root".extraGroups = ["tss"];
+    };
 
     boot.initrd.systemd.enableTpm2 = true;
 

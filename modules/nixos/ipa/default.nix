@@ -20,21 +20,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        message = "sssd_krb5_passkey_plugin";
-        assertion = builtins.pathExists "${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so";
-      }
-      {
-        message = "sssd_kcm";
-        assertion = builtins.pathExists "${pkgs.sssd}/libexec/sssd/sssd_kcm";
-      }
-      {
-        message = "p11-kit-proxy";
-        assertion = builtins.pathExists "${pkgs.p11-kit}/lib/p11-kit-proxy.so";
-      }
-    ];
-
     environment = {
       systemPackages = with pkgs; [
         ldapvi
@@ -91,30 +76,35 @@ in {
 
     # FROM: https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/misc/sssd.nix
     systemd = {
-      services.sssd-kcm = {
-        enable = true;
-        description = "SSSD Kerberos Cache Manager";
+      packages = [pkgs.realmd];
 
-        wantedBy = ["multi-user.target" "sssd.service"];
-        requires = ["sssd-kcm.socket"];
+      services = {
+        sssd.before = ["nfs-idmapd.service" "rpc-gssd.service" "rpc-svcgssd.service"];
 
-        serviceConfig = {
-          ExecStartPre = "-${pkgs.sssd}/bin/sssd --genconf-section=kcm";
-          ExecStart = "${pkgs.sssd}/libexec/sssd/sssd_kcm --uid 0 --gid 0";
+        sssd-kcm = {
+          # enable = true;
+          # description = "SSSD Kerberos Cache Manager";
+
+          # wantedBy = ["multi-user.target" "sssd.service"];
+          # requires = ["sssd-kcm.socket"];
+
+          serviceConfig = {
+            # ExecStartPre = "-${pkgs.sssd}/bin/sssd --genconf-section=kcm";
+            ExecStart = lib.mkForce "${pkgs.sssd}/libexec/sssd/sssd_kcm";
+          };
+          # restartTriggers = [
+          #   settingsFileUnsubstituted
+          # ];
         };
-        # restartTriggers = [
-        #   settingsFileUnsubstituted
-        # ];
       };
-
-      sockets.sssd-kcm = {
-        enable = true;
-        description = "SSSD Kerberos Cache Manager responder socket";
-        wantedBy = ["sockets.target"];
-        # Matches the default in MIT krb5 and Heimdal:
-        # https://github.com/krb5/krb5/blob/krb5-1.19.3-final/src/include/kcm.h#L43
-        listenStreams = ["/var/run/.heim_org.h5l.kcm-socket"];
-      };
+      # sockets.sssd-kcm = {
+      #   enable = true;
+      #   description = "SSSD Kerberos Cache Manager responder socket";
+      #   wantedBy = ["sockets.target"];
+      #   # Matches the default in MIT krb5 and Heimdal:
+      #   # https://github.com/krb5/krb5/blob/krb5-1.19.3-final/src/include/kcm.h#L43
+      #   listenStreams = ["/var/run/.heim_org.h5l.kcm-socket"];
+      # };
     };
 
     security = {
@@ -124,20 +114,31 @@ in {
       pki.certificateFiles = [config.security.ipa.certificate];
     };
 
+    environment.etc."nsswitch.conf".text = ''
+      sudoers:   ${lib.concatStringsSep " " ["sss"]}
+      netgroup:  ${lib.concatStringsSep " " ["sss"]}
+    '';
+
     services = {
       dbus = {
         enable = true;
         packages = [pkgs.realmd];
       };
+
+      nscd = {
+        enableNsncd = true;
+        config = ''
+          enable-cache hosts yes
+          enable-cache passwd no
+          enable-cache group no
+          enable-cache netgroup no
+        '';
+      };
+
       sssd = {
         enable = true;
-        # kcm = true;
+        kcm = true;
         sshAuthorizedKeysIntegration = true;
-
-        #   #   pam_cert_auth = True
-
-        #   #   [prompting/passkey]
-        #   #   interactive_prompt = "Insert your Passkey device, then press ENTER."
 
         config = lib.mkAfter ''
           [pam]
@@ -151,14 +152,15 @@ in {
           proxy_lib_name = files
           auth_provider = none
           local_auth_policy = match
+
+          [prompting/passkey]
+          interactive_prompt = "Insert your Passkey device, then press ENTER."
         '';
 
         # [sssd]
         # debug_level 0x1310
       };
     };
-
-    systemd.packages = [pkgs.realmd];
 
     systemd.tmpfiles.settings."10-zsh" = {
       "/bin/zsh"."L+" = {
@@ -169,6 +171,8 @@ in {
     # system.activationScripts.host-mod-pubkey.text = ''
     #   ipa host-mod "$HOSTNAME.harkema.io" --sshpubkey="$(cat /etc/ssh/ssh_host_ed25519_key.pub)" || echo "REGISTER PUBKEY"
     # '';
+
+    system.nssDatabases.sudoers = ["sss"];
 
     security = {
       ipa = {

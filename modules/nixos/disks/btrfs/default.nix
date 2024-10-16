@@ -144,6 +144,7 @@ in {
       # growPartition = true;
       supportedFilesystems = ["btrfs"];
       initrd.availableKernelModules = ["aesni_intel" "cryptd"];
+      kernelModules = ["sha256"];
     };
 
     services = {
@@ -205,8 +206,6 @@ in {
       # timeshift
     ];
 
-    boot.kernelModules = ["sha256"];
-
     # fileSystems."/".neededForBoot = true;
     # fileSystems."/boot".neededForBoot = true;
 
@@ -236,7 +235,9 @@ in {
                 size = "16G";
                 content = {
                   type = "swap";
+                  # label = "swap";
                   randomEncryption = true;
+                  resumeDevice = true;
                 };
               };
               root = lib.mkIf (!cfg.encrypt) innerContent.root;

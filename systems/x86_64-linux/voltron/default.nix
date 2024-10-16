@@ -230,7 +230,7 @@ in {
 
     boot = {
       kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
-      resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
+      # resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
       extraModulePackages = [
         xmm7360
@@ -254,7 +254,7 @@ in {
       kernelParams = [
         "pstore.backend=efi"
         "efi_pstore.pstore_disable=0"
-
+        "mem_sleep_default=deep"
         #   # "nowatchdog"
         #   # "mitigations=off"
 
