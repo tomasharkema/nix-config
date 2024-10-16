@@ -236,7 +236,7 @@ in {
                 content = {
                   type = "swap";
                   # label = "swap";
-                  randomEncryption = true;
+                  # randomEncryption = true;
                   resumeDevice = true;
                 };
               };
