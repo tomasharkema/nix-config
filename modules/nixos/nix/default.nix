@@ -54,7 +54,7 @@
 
         variables = {
           # NIX_DAEMON_SOCKET_PATH = "/run/nix-supervisor.sock";
-          # OTEL_EXPORTER_OTLP_ENDPOINT = "http://silver-star:5080/api/default/traces";
+          OTEL_EXPORTER_OTLP_ENDPOINT = "http://silver-star:4317";
           # OTEL_EXPORTER_OTLP_HEADERS = "Authorization=\"Basic dG9tYXNAaGFya2VtYS5pbzpQdXIxN0RCb21CZVd4U0xV\"";
         };
       };
@@ -89,8 +89,8 @@
         extraOptions = ''
           min-free = ${toString (100 * 1024 * 1024)}
           max-free = ${toString (1024 * 1024 * 1024)}
-        ''; # plugin-files = ${nix-otel}/lib
-
+          plugin-files = ${pkgs.nix-otel}/lib
+        '';
         optimise.automatic = true;
 
         settings = {

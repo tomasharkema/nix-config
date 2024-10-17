@@ -133,15 +133,9 @@
               config,
               ...
             }: {
-              system.extraSystemBuilderCmds = ''
-                ln -s ${inputs.self} $out/flake
+              nix.extraOptions = ''
+                !include ${config.age.secrets.nix-access-tokens-github.path}
               '';
-              nix = {
-                extraOptions = ''
-                  !include ${config.age.secrets.nix-access-tokens-github.path}
-                  plugin-files = ${pkgs.nix-otel}/lib/
-                '';
-              };
             }
           )
         ];
@@ -169,7 +163,6 @@
                 nix = {
                   extraOptions = ''
                     !include ${config.age.secrets.nix-access-tokens-github.path}
-                    plugin-files = ${pkgs.nix-otel}/lib
                   '';
 
                   # settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${builtins.toString config.users.users."${config.user.name}".uid}"];

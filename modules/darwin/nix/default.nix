@@ -46,7 +46,10 @@ in {
     #   # group = "tomas";
     # };
 
-    environment.systemPackages = with pkgs; [age-plugin-yubikey];
+    environment = {
+      systemPackages = with pkgs; [age-plugin-yubikey];
+      variables.OTEL_EXPORTER_OTLP_ENDPOINT = "http://silver-star:4317";
+    };
 
     nix = let
       users = ["root" "${config.user.name}"];
@@ -79,6 +82,10 @@ in {
         http-connections = 50;
         warn-dirty = false;
         log-lines = 50;
+
+        extraOptions = ''
+          plugin-files = ${pkgs.nix-otel}/lib
+        '';
 
         # Large builds apparently fail due to an issue with darwin:
         # https://github.com/NixOS/nix/issues/4119
