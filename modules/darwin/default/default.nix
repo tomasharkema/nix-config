@@ -56,16 +56,18 @@
     environment.systemPackages =
       (with pkgs.custom; [
         menu
-        nscan
+        # nscan
         # openglide
       ])
       ++ (with pkgs; [
+        lrzsz
         # dosbox-x
         nixd
         direnv
         devenv
         agenix-rekey
         nh
+        nil
       ]);
 
     environment.pathsToLink = [

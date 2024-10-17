@@ -53,7 +53,7 @@ in {
         ctop
 
         # devtodo
-        devdash
+        # devdash
       ])
       ++ (with pkgs.custom; [
         launchcontrol

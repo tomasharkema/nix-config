@@ -132,6 +132,7 @@
       # enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          lrzsz
           nix-btm
           update-nix-fetchgit
           updatecli

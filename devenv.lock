@@ -10,10 +10,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1728927706,
+        "lastModified": 1729172588,
         "owner": "oddlama",
         "repo": "agenix-rekey",
-        "rev": "fb10b6f54375a0fd40fd0b11e274b03906d4a598",
+        "rev": "0488a23f882df0de8107e46da88177bd038ab4d2",
+        "treeHash": "9966e766223bf6584f8a75a50d6ee7b32748ea3f",
         "type": "github"
       },
       "original": {
@@ -25,10 +26,11 @@
     "devenv": {
       "locked": {
         "dir": "src/modules",
-        "lastModified": 1729087493,
+        "lastModified": 1729179079,
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "d612b77ff73912cd82e58256ab5e84d5904abef7",
+        "rev": "11c71a53661aff81b0f93d2958500d8c9ab71866",
+        "treeHash": "9a7001756aa8ff1b42bd1e9bd8edf5dd24aea57a",
         "type": "github"
       },
       "original": {
@@ -50,6 +52,7 @@
         "owner": "numtide",
         "repo": "devshell",
         "rev": "dd6b80932022cea34a019e2bb32f6fa9e494dfef",
+        "treeHash": "6a0cca7121525ce052756e4238abca7c0f827256",
         "type": "github"
       },
       "original": {
@@ -65,6 +68,7 @@
         "owner": "edolstra",
         "repo": "flake-compat",
         "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
+        "treeHash": "2addb7b71a20a25ea74feeaf5c2f6a6b30898ecb",
         "type": "github"
       },
       "original": {
@@ -80,6 +84,7 @@
         "owner": "edolstra",
         "repo": "flake-compat",
         "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
+        "treeHash": "2addb7b71a20a25ea74feeaf5c2f6a6b30898ecb",
         "type": "github"
       },
       "original": {
@@ -97,6 +102,7 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "rev": "c1dfcf08411b08f6b8615f7d8971a2bfa81d5e8a",
+        "treeHash": "0cbff24102dddab81e4c2940d7b356205c955fc6",
         "type": "github"
       },
       "original": {
@@ -118,6 +124,7 @@
         "owner": "hercules-ci",
         "repo": "gitignore.nix",
         "rev": "637db329424fd7e46cf4185293b9cc8c88c95394",
+        "treeHash": "ca14199cabdfe1a06a7b1654c76ed49100a689f9",
         "type": "github"
       },
       "original": {
@@ -138,6 +145,7 @@
         "owner": "hercules-ci",
         "repo": "gitignore.nix",
         "rev": "637db329424fd7e46cf4185293b9cc8c88c95394",
+        "treeHash": "ca14199cabdfe1a06a7b1654c76ed49100a689f9",
         "type": "github"
       },
       "original": {
@@ -152,6 +160,7 @@
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
         "rev": "16340f605f4e8e5cf07fd74dcbe692eee2d4f51b",
+        "treeHash": "1935d23086ebf557ae7a2e91c0200af1b849f8ff",
         "type": "github"
       },
       "original": {
@@ -168,10 +177,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1728867876,
+        "lastModified": 1729127034,
         "owner": "nix-community",
         "repo": "nixos-generators",
-        "rev": "fdf142111597f6c6283cf5ffe092b6293a3911d0",
+        "rev": "dd28a0806e7124fe392c33c9ccaa12f21970401f",
+        "treeHash": "f57bbfcc3d57d9923bb9e9bce71c083151855836",
         "type": "github"
       },
       "original": {
@@ -186,6 +196,7 @@
         "owner": "cachix",
         "repo": "devenv-nixpkgs",
         "rev": "4267e705586473d3e5c8d50299e71503f16a6fb6",
+        "treeHash": "6d9f1f7ca0faf1bc2eeb397c78a49623260d3412",
         "type": "github"
       },
       "original": {
@@ -201,6 +212,7 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "c0b1da36f7c34a7146501f684e9ebdf15d2bebf8",
+        "treeHash": "21d89ace8ba7d698ee63b2ba93d83c0a7f9893ee",
         "type": "github"
       },
       "original": {
@@ -216,6 +228,7 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "c0b1da36f7c34a7146501f684e9ebdf15d2bebf8",
+        "treeHash": "21d89ace8ba7d698ee63b2ba93d83c0a7f9893ee",
         "type": "github"
       },
       "original": {
@@ -240,6 +253,7 @@
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
         "rev": "3c3e88f0f544d6bb54329832616af7eb971b6be6",
+        "treeHash": "fcd9fedafcdf4143e0234378437eed0556df9c51",
         "type": "github"
       },
       "original": {
@@ -262,6 +276,7 @@
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
         "rev": "3c3e88f0f544d6bb54329832616af7eb971b6be6",
+        "treeHash": "fcd9fedafcdf4143e0234378437eed0556df9c51",
         "type": "github"
       },
       "original": {
@@ -285,6 +300,7 @@
         "owner": "nix-systems",
         "repo": "default",
         "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "treeHash": "cce81f2a0f0743b2eb61bc2eb6c7adbe2f2c6beb",
         "type": "github"
       },
       "original": {

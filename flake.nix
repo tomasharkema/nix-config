@@ -62,6 +62,7 @@
       };
 
       overlays = with inputs; [
+        otel.overlays.default
         nvidia-patch.overlays.default
         ytdlp-gui.overlay
         nixos-recovery.overlays.recovery
@@ -127,10 +128,20 @@
           # nix-virt.nixosModules.default
           ./defaultNixosAge.nix
           (
-            {...}: {
+            {
+              pkgs,
+              config,
+              ...
+            }: {
               system.extraSystemBuilderCmds = ''
                 ln -s ${inputs.self} $out/flake
               '';
+              nix = {
+                extraOptions = ''
+                  !include ${config.age.secrets.nix-access-tokens-github.path}
+                  plugin-files = ${pkgs.nix-otel}/lib/
+                '';
+              };
             }
           )
         ];
@@ -144,6 +155,7 @@
             {
               config,
               lib,
+              pkgs,
               ...
             }: {
               config = {
@@ -153,9 +165,11 @@
                 system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
                 # nixpkgs.flake.setFlakeRegistry = false;
                 # nixpkgs.flake.setNixPath = false;
+
                 nix = {
                   extraOptions = ''
                     !include ${config.age.secrets.nix-access-tokens-github.path}
+                    plugin-files = ${pkgs.nix-otel}/lib
                   '';
 
                   # settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${builtins.toString config.users.users."${config.user.name}".uid}"];
@@ -870,6 +884,11 @@
 
     nixd = {
       url = "github:nix-community/nixd/release/2.x";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    otel = {
+      url = "github:tomasharkema/nix-otel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

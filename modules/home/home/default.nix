@@ -65,6 +65,7 @@ in {
       # ++
       packages = with pkgs;
         [
+          lrzsz
           devcontainer
           # picotool
           newman

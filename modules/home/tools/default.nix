@@ -35,7 +35,7 @@ with pkgs; {
       ctop
       curl
       # devtodo
-      devdash
+      # devdash
       wtf
       # fwupd
       # fwupd-efi

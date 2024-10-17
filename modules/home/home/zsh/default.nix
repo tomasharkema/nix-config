@@ -181,17 +181,19 @@
           {
             name = "zsh-async";
             file = "async.zsh";
-            src = builtins.fetchGit {
+            src = pkgs.fetchgit {
               url = "https://github.com/mafredri/zsh-async";
               rev = "bbbc92bd01592513a6b7739a45b7911af18acaef";
+              hash = "sha256-mpXT3Hoz0ptVOgFMBCuJa0EPkqP4wZLvr81+1uHDlCc=";
             };
           }
           {
             name = "zsh-colored-man-pages";
             file = "colored-man-pages.plugin.zsh";
-            src = builtins.fetchGit {
+            src = pkgs.fetchgit {
               url = "https://github.com/ael-code/zsh-colored-man-pages";
               rev = "57bdda68e52a09075352b18fa3ca21abd31df4cb";
+              hash = "sha256-087bNmB5gDUKoSriHIjXOVZiUG5+Dy9qv3D69E8GBhs=";
             };
           }
         ];

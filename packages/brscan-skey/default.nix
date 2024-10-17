@@ -6,12 +6,13 @@
   autoPatchelfHook,
   brscan5,
   sane-backends,
+  fetchurl,
 }:
 stdenv.mkDerivation {
   pname = "brscan-skey";
   version = "0.3.2-0";
 
-  src = builtins.fetchurl {
+  src = fetchurl {
     url = "https://download.brother.com/welcome/dlf006652/brscan-skey-0.3.2-0.amd64.deb";
     sha256 = "00vcj5q2k2lw466r1xlzq2741s0i9af7g9q6057w8qy46b0l2k9x";
   };
