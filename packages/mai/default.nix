@@ -2,7 +2,7 @@
   lib,
   python3,
   fetchFromGitHub,
-  xcparse,
+  #  xcparse,
 }:
 python3.pkgs.buildPythonApplication rec {
   pname = "mai";
@@ -21,7 +21,7 @@ python3.pkgs.buildPythonApplication rec {
     python3.pkgs.wheel
   ];
 
-  buildInputs = [xcparse];
+  #  buildInputs = [ xcparse ];
 
   pythonImportsCheck = ["mai"];
 
