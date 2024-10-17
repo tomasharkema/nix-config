@@ -103,7 +103,7 @@ with pkgs; {
 
       mcfly
       morph
-      mosh
+      # mosh
       # guardian-agent
       mtr
       multitail

@@ -482,7 +482,7 @@
             StrictHostKeyChecking=accept-new
         '';
       };
-      mosh.enable = true;
+      # mosh.enable = true;
       nix-ld.enable = true;
       zsh = {
         enable = true;
