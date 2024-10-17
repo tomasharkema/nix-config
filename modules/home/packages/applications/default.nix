@@ -74,7 +74,9 @@ in {
         {package = config.programs.vscode.package;}
         {package = tilix;}
         {package = config.programs.wezterm.package;}
-        {package = termius;}
+      ]
+      ++ (lib.optional pkgs.stdenv.isx86_64 {package = termius;})
+      ++ [
         {package = telegram-desktop;}
         {package = osConfig.programs._1password-gui.package;}
       ]
