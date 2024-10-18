@@ -77,7 +77,7 @@ in {
           custom.bieye
           wget2
           libnotify
-
+          trippy
           fup-repl
           # gptcommit-wrap
 

@@ -132,6 +132,7 @@
       # enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          strace
           lrzsz
           nix-btm
           update-nix-fetchgit
@@ -148,7 +149,7 @@
           distrobox
           distrobox-tui
           custom.ztui
-
+          s-tui
           # dry
           # etcher
           # fancy-motd
