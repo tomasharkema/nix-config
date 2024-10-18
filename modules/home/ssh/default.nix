@@ -7,20 +7,16 @@
 }: {
   imports = [./match-blocks.nix];
 
-  options.programs.ssh = {
-    extraIdentityAgent = lib.mkOption {
-      type = lib.types.str;
-      description = ''
-        Path to the ssh-agent socket.
-      '';
-    };
-  };
-
   config = let
     onePasswordSocket =
       if pkgs.stdenvNoCC.isDarwin
       then "${config.home.homeDirectory}/.1password/agent.sock"
-      else "${config.home.homeDirectory}/.1password/agent.sock";
+      else
+        (
+          if osConfig.apps._1password.gui.enable
+          then "${config.home.homeDirectory}/.1password/agent.sock"
+          else "/run/user/1000/ssh-tpm-agent.sock"
+        );
   in {
     programs.ssh = {
       enable = true;
@@ -30,10 +26,9 @@
       # addKeysToAgent = true;
       hashKnownHosts = true;
 
-      extraIdentityAgent = lib.mkDefault onePasswordSocket;
-
       extraConfig = ''
-        IdentityAgent ${config.programs.ssh.extraIdentityAgent}
+        Match host * exec "test -z $SSH_TTY"
+          IdentityAgent ${onePasswordSocket}
       '';
 
       matchBlocks = {

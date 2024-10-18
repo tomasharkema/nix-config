@@ -14,5 +14,5 @@ stdenv.mkDerivation rec {
     hash = "sha256-OcIYDUlPO4nBJ+culdNKS7b/zzNYpgVNU9agONoJRqE=";
   };
 
-  sourceRoot = "${src}/HelloEnclave/";
+  sourceRoot = "${src.name}/HelloEnclave/";
 }
