@@ -26,7 +26,7 @@ in {
 
     services = {
       usbguard = {
-        enable = true;
+        enable = lib.mkDefault true;
         dbus.enable = true;
         # ruleFile
         # package

@@ -322,7 +322,7 @@
       # cron.enable = true;
 
       zram-generator = {
-        enable = true;
+        enable = lib.mkDefault true;
         settings = {
           zram0 = {
             # zram-size = "ram / 2";
