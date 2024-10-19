@@ -6,24 +6,41 @@
 }: {
   config = {
     # gh = "op plugin run -- gh";
+
+    home.packages = [];
+
     programs = {
       gh = {
         enable = true;
-        extensions = with pkgs; [
+        extensions = with pkgs;
+        with pkgs.custom; [
+          gh-b
+          gh-bump
+          gh-changelog
           gh-dash
-          # gh-token
+          gh-milestone
           gh-notify
+          gh-poi
+          gh-prx
+          # gh-tidy
+          # gh-todo
+          gh-token
+          gh-worktree
         ];
         gitCredentialHelper.enable = true;
 
         settings = {
           git_protocol = "https";
-          # prompt = "enabled";
+          prompt = "enabled";
         };
       };
 
-      lazygit.enable = true;
-
+      lazygit = {
+        enable = true;
+        settings = {
+          gui.scrollHeight = 2;
+        };
+      };
       gh-dash.enable = true;
 
       gitui.enable = true;
@@ -43,6 +60,8 @@
 
           commit.gpgsign = true;
           init.defaultBranch = "main";
+
+          credential.helper = ["${pkgs.custom.git-credential-1password}/bin/git-credential-1password"];
 
           gpg = {
             format = "ssh";
