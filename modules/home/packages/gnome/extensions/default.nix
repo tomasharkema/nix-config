@@ -20,7 +20,7 @@
       extensions = with pkgs.gnomeExtensions; [
         {package = gravatar;}
         {package = ping;}
-        {package = media-controls;}
+        # {package = media-controls;}
         {package = gsconnect;}
         {package = systemd-manager;}
         # {package = move-clock;}

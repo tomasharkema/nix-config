@@ -26,12 +26,14 @@
       # addKeysToAgent = true;
       hashKnownHosts = true;
 
-      extraConfig = ''
-        Match host * exec "test -z $SSH_TTY"
-          IdentityAgent ${onePasswordSocket}
-      '';
-
       matchBlocks = {
+        "*" = {
+          match = "host * exec \"test -z $SSH_TTY\"";
+          extraOptions = {
+            IdentityAgent = onePasswordSocket;
+          };
+        };
+
         "ssh.dev.azure.com" = {
           hostname = "ssh.dev.azure.com";
           extraOptions = {

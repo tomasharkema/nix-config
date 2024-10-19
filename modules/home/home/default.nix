@@ -144,7 +144,7 @@ in {
 
       vscode = lib.mkIf pkgs.stdenv.isLinux {
         enable = true;
-        package = pkgs.vscode.fhs;
+        package = pkgs.vscode; # .fhs;
       };
 
       htop = {
