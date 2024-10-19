@@ -244,7 +244,6 @@ in {
         #   enable = true;
         #   wantedBy = [
         #     "graphical-session.target"
-        #     "graphical.target"
         #   ];
         # };
       };

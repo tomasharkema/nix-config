@@ -24,8 +24,7 @@ in {
       "gnome-remote-desktop" = lib.mkIf (!cfg.legacy) {
         enable = true;
         wantedBy = [
-          # "graphical-session.target"
-          "graphical.target"
+          "graphical-session.target"
         ];
       };
 
