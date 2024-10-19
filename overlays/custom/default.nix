@@ -66,26 +66,26 @@
   #     })
   #   ];
 
-  ntfy-sh = prev.ntfy-sh.overrideAttrs (old: {
-    buildPhase = ''
-      #   #   runHook preBuild
-          make cli-client
-      #   #   runHook postBuild
-    '';
+  # ntfy-sh = prev.ntfy-sh.overrideAttrs (old: {
+  #   buildPhase = ''
+  #     #   #   runHook preBuild
+  #         make cli-client
+  #     #   #   runHook postBuild
+  #   '';
 
-    # tags = ["noserver"];
+  #   # tags = ["noserver"];
 
-    nativeBuildInputs = with prev; [
-      git
-      debianutils
-      go
-      # mkdocs
-      # python3
-      # go
-      # python3Packages.mkdocs-material
-      # python3Packages.mkdocs-minify-plugin
-    ];
-  });
+  #   nativeBuildInputs = with prev; [
+  #     git
+  #     debianutils
+  #     go
+  #     # mkdocs
+  #     # python3
+  #     # go
+  #     # python3Packages.mkdocs-material
+  #     # python3Packages.mkdocs-minify-plugin
+  #   ];
+  # });
 
   # modemmanager = prev.modemmanager.overrideAttrs (oldAttrs: {
   # src = prev.fetchFromGitLab {
