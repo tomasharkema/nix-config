@@ -233,10 +233,10 @@ in {
 
               swap = lib.mkIf cfg.swap {
                 size = "16G";
+                # label = "swap";
                 content = {
                   type = "swap";
-                  # label = "swap";
-                  # randomEncryption = true;
+                  randomEncryption = true;
                   resumeDevice = true;
                 };
               };
