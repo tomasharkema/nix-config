@@ -78,14 +78,14 @@ in {
       #   };
       # };
 
+      extraOptions = ''
+        plugin-files = ${pkgs.nix-otel}/lib
+      '';
+
       settings = {
         http-connections = 50;
         warn-dirty = false;
         log-lines = 50;
-
-        extraOptions = ''
-          plugin-files = ${pkgs.nix-otel}/lib
-        '';
 
         # Large builds apparently fail due to an issue with darwin:
         # https://github.com/NixOS/nix/issues/4119
