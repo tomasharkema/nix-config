@@ -13,6 +13,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     # .slim.enable = true;
+    zramSwap.enable = false;
 
     services = {
       # xserver.videoDrivers = [ "qxl" ];
@@ -21,6 +22,9 @@ in {
       spice-autorandr.enable = lib.mkIf pkgs.stdenv.isx86_64 true;
       spice-webdavd.enable = true;
       throttled.enable = lib.mkForce false;
+      fwupd.enable = false;
+      zram-generator.enable = false;
+      usbguard.enable = false;
     };
 
     nix.settings = {
