@@ -11,29 +11,29 @@ in {
     enable = lib.mkEnableOption "laptop";
   };
 
-  options = {
-    services.fprintd = {
-      enable = lib.mkEnableOption "fprintd daemon and PAM module for fingerprint readers handling";
-      package = lib.mkOption {
-        type = lib.types.package;
-        # default = fprintdPkg;
-      };
-    };
-  };
+  # options = {
+  #   services.fprintd = {
+  #     enable = lib.mkEnableOption "fprintd daemon and PAM module for fingerprint readers handling";
+  #     package = lib.mkOption {
+  #       type = lib.types.package;
+  #       # default = fprintdPkg;
+  #     };
+  #   };
+  # };
 
-  imports = with inputs; [
-    nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
-    nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
-  ];
+  # imports = with inputs; [
+  #   nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
+  #   nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
+  # ];
 
-  disabledModules = ["services/security/fprintd.nix"];
+  # disabledModules = ["services/security/fprintd.nix"];
 
   config = lib.mkIf cfg.enable {
     system.nixos.tags = ["thinkpad"];
 
     environment.systemPackages = with pkgs; [
-      # modemmanager
-      # modem-manager-gui
+      modemmanager
+      modem-manager-gui
       libmbim
       libqmi
       tpacpi-bat
@@ -43,13 +43,13 @@ in {
 
     systemd = {
       packages = [
-        # pkgs.modemmanager
+        pkgs.modemmanager
         # pkgs.custom.lenovo-wwan-unlock
       ];
-      services = {
-        open-fprintd-resume.enable = true;
-        open-fprintd-suspend.enable = true;
-      };
+      # services = {
+      #   open-fprintd-resume.enable = true;
+      #   open-fprintd-suspend.enable = true;
+      # };
     };
 
     services = {
@@ -61,9 +61,9 @@ in {
         #     enable = true;
         #   };
       };
-      open-fprintd.enable = true;
-      python-validity.enable = true;
-      fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
+      # open-fprintd.enable = true;
+      # python-validity.enable = true;
+      # fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
 
       # udev.packages = [pkgs.modemmanager];
       # dbus.packages = [pkgs.modemmanager];

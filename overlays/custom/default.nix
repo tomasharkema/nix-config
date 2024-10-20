@@ -44,6 +44,15 @@
 
   intel-vaapi-driver = prev.intel-vaapi-driver.override {enableHybridCodec = true;};
 
+  tlp = prev.tlp.overrideAttrs (old: {
+    postInstall =
+      old.postInstall
+      + ''
+        ln -s $out/usr/lib $out/lib
+        ln -s $out/usr/share $out/share
+      '';
+  });
+
   # python312Packages = prev.python312Packages.overrideScope' (pyFinal: pyPrev: {
   #   pymdown-extensions = pyPrev.pymdown-extensions.overrideAttrs (old: {
   #     dontCheck = true;

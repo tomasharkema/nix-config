@@ -50,9 +50,9 @@ in {
       snapper.enable = true; # false;
     };
 
-    programs.gnupg.agent = {
-      enable = true;
-    };
+    # programs.gnupg.agent = {
+    #   enable = true;
+    # };
 
     environment = {
       etc = {

@@ -8,7 +8,7 @@
     usbguard --generate-rules --output-file "${config.services.usbguard.ruleFile}"
   '';
 in {
-  config = {
+  config = lib.mkIf false {
     environment.systemPackages = with pkgs; [
       usbguard-notifier
       # config.nur.repos.mloeper.usbguard-applet-qt

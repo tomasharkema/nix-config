@@ -47,20 +47,30 @@
       };
       programs.gpg = {
         enable = true;
-        scdaemonSettings = {
-          reader-port = "Yubico Yubi";
+        # scdaemonSettings = {
+        #   reader-port = "Yubico Yubi";
 
-          disable-ccid = true;
-        };
+        #   disable-ccid = true;
+        # };
       };
     };
 
+    security.polkit.extraConfig = ''
+      polkit.addRule(function(action, subject) {
+        if (subject.isInGroup("ykusers")) {
+          return polkit.Result.YES;
+        }
+      })
+    '';
+
     services = {
       pcscd.enable = true;
+
       yubikey-agent.enable = true;
+
       udev.packages = with pkgs; [
         libfido2
-        opensc
+
         yubioath-flutter
         yubikey-agent
         yubikey-manager
@@ -93,7 +103,6 @@
       p11-kit
       age-plugin-yubikey
       libfido2
-      # pcsctools
       yubico-piv-tool
       yubioath-flutter
       yubikey-agent

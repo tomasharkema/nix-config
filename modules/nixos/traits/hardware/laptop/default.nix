@@ -37,6 +37,8 @@ in {
       "rtc_cmos.use_acpi_alarm=1"
     ];
 
+    # systemd.packages = [pkgs.tlp];
+
     services = {
       # synergy.server = {
       #   enable = true;
