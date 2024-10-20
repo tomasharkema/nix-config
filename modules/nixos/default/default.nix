@@ -498,9 +498,9 @@
         packageNames = [
           "sssd"
           "freeipa"
-          "mutter"
-          "gnome-shell"
-          "gnome-session"
+          # "mutter"
+          # "gnome-shell"
+          # "gnome-session"
         ];
       };
     };

@@ -27,7 +27,7 @@ in {
   config = {
     nix =
       {
-        package = pkgs.nixVersions.latest; # .latest;
+        package = pkgs.nixVersions.nix_2_23; # .latest;
       }
       // import ./config.nix;
     # boot.supportedFilesystems = ["bcachefs"];

@@ -27,7 +27,11 @@ in {
         hostName = "builder@blue-fire";
         systems = ["aarch64-linux" "x86_64-linux"];
         maxJobs = 4;
-        supportedFeatures = ["kvm" "benchmark" "big-parallel"];
+        supportedFeatures = [
+          "kvm"
+          "benchmark"
+          # "big-parallel"
+        ];
         speedFactor = 70;
         protocol = "ssh-ng";
       }
@@ -35,7 +39,11 @@ in {
         hostName = "builder@enceladus";
         systems = ["aarch64-linux" "x86_64-linux"];
         maxJobs = 4;
-        supportedFeatures = ["kvm" "benchmark" "big-parallel"];
+        supportedFeatures = [
+          "kvm"
+          "benchmark"
+          # "big-parallel"
+        ];
         speedFactor = 50;
         protocol = "ssh-ng";
       }
@@ -43,7 +51,11 @@ in {
         hostName = "builder@wodan";
         systems = ["aarch64-linux" "x86_64-linux"];
         maxJobs = 4;
-        supportedFeatures = ["kvm" "benchmark" "big-parallel"];
+        supportedFeatures = [
+          "kvm"
+          "benchmark"
+          #  "big-parallel"
+        ];
         speedFactor = 100;
         protocol = "ssh-ng";
       }

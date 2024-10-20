@@ -62,7 +62,7 @@
       };
 
       overlays = with inputs; [
-        otel.overlays.default
+        # otel.overlays.default
         nvidia-patch.overlays.default
         ytdlp-gui.overlay
         nixos-recovery.overlays.recovery
@@ -379,14 +379,15 @@
     };
 
   nixConfig = {
-    use-cgroups = true;
-    extra-experimental-features = "nix-command flakes cgroups ca-derivations recursive-nix";
+    # use-cgroups = true;
+    extra-experimental-features = "nix-command flakes ca-derivations recursive-nix"; # cgroups
 
     distributedBuilds = true;
     builders-use-substitutes = true;
 
     trusted-users = [
       "root"
+      "tomas"
       # "${config.user.name}"
     ];
 
@@ -684,10 +685,6 @@
     #   inputs.nixpkgs.follows = "unstable";
     # };
 
-    # zjstatus = {
-    #   url = "github:dj95/zjstatus";
-    # };
-
     # tree-sitter-nix = {
     #   url = "github:nix-community/tree-sitter-nix";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -880,10 +877,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    otel = {
-      url = "github:tomasharkema/nix-otel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # otel = {
+    #   url = "github:tomasharkema/nix-otel";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     fenix = {
       url = "github:nix-community/fenix";

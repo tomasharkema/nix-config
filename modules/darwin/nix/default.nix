@@ -48,7 +48,7 @@ in {
 
     environment = {
       systemPackages = with pkgs; [age-plugin-yubikey];
-      variables.OTEL_EXPORTER_OTLP_ENDPOINT = "http://silver-star:4317";
+      # variables.OTEL_EXPORTER_OTLP_ENDPOINT = "http://silver-star:4317";
     };
 
     nix = let
@@ -78,9 +78,9 @@ in {
       #   };
       # };
 
-      extraOptions = ''
-        plugin-files = ${pkgs.nix-otel}/lib
-      '';
+      # extraOptions = ''
+      #   plugin-files = ${pkgs.nix-otel}/lib
+      # '';
 
       settings = {
         http-connections = 50;

@@ -7,10 +7,15 @@
   cfg = config.apps.netdata;
 in {
   options.apps.netdata = {
-    enable = lib.mkEnableOption "netdata" // {default = true;};
+    enable =
+      lib.mkEnableOption "netdata"
+      // {
+        default = true;
+      };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf false {
+    # cfg.enable {
     age.secrets.netdata = {
       rekeyFile = ../../secrets/netdata.age;
       mode = "644";

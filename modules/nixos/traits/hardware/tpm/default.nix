@@ -17,7 +17,7 @@ in {
     services = {
       ssh-tpm-agent.enable = lib.mkDefault true;
 
-      jitterentropy-rngd.enable = true;
+      # jitterentropy-rngd.enable = true;
     };
 
     security.tpm2 = {

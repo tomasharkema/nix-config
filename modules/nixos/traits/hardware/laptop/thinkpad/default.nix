@@ -57,9 +57,18 @@ in {
       # thinkfan.enable = true;
       fprintd = {
         enable = lib.mkForce true;
-        #   tod = {
-        #     enable = true;
-        #   };
+        tod = {
+          enable = true;
+          # driver = pkgs.libfprint-2-tod1-vfs0090;
+          driver =
+            (inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch
+              {
+                calib-data-file = ./calib-data.bin;
+              })
+            .overrideAttrs (old: {
+              stdenv = old.keepDebugInfo old.stdenv;
+            });
+        };
       };
       # open-fprintd.enable = true;
       # python-validity.enable = true;

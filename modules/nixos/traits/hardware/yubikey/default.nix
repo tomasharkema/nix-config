@@ -26,13 +26,13 @@
       };
     };
 
-    hardware.gpgSmartcards.enable = true;
+    # hardware.gpgSmartcards.enable = true;
 
     programs = {
-      yubikey-touch-detector.enable = true;
-      ssh.extraConfig = ''
-        PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
-      '';
+      # yubikey-touch-detector.enable = true;
+      # ssh.extraConfig = ''
+      #   PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
+      # '';
 
       # gnupg.agent = {
       #   enable = true;
@@ -41,55 +41,46 @@
     };
 
     home-manager.users.tomas = {
-      services.gpg-agent = {
-        enable = true;
-        enableZshIntegration = true;
-      };
-      programs.gpg = {
-        enable = true;
-        # scdaemonSettings = {
-        #   reader-port = "Yubico Yubi";
+      # services.gpg-agent = {
+      #   enable = true;
+      #   enableZshIntegration = true;
+      # };
 
-        #   disable-ccid = true;
-        # };
+      # programs.gpg.scdaemonSettings = {
+      #   disable-ccid = true;
+      # };
+
+      programs.gpg = {
+        # enable = true;
+        scdaemonSettings = {
+          #   reader-port = "Yubico Yubi";
+
+          disable-ccid = true;
+        };
       };
     };
 
-    security.polkit.extraConfig = ''
-      polkit.addRule(function(action, subject) {
-        if (subject.isInGroup("ykusers")) {
-          return polkit.Result.YES;
-        }
-      })
-    '';
+    # security.polkit.extraConfig = ''
+    #   polkit.addRule(function(action, subject) {
+    #     if (subject.isInGroup("ykusers")) {
+    #       return polkit.Result.YES;
+    #     }
+    #   })
+    # '';
 
     services = {
-      pcscd.enable = true;
+      pcscd = {
+        enable = true;
+        plugins = [pkgs.yubikey-personalization];
+      };
+      # yubikey-agent.enable = true;
 
-      yubikey-agent.enable = true;
-
-      udev.packages = with pkgs; [
-        libfido2
-
-        yubioath-flutter
-        yubikey-agent
-        yubikey-manager
-        yubikey-manager-qt
-        yubikey-personalization
-        yubikey-personalization-gui
-        yubico-piv-tool
-      ];
-      dbus.packages = with pkgs; [
-        libfido2
-        opensc
-        yubioath-flutter
-        yubikey-agent
-        yubikey-manager
-        yubikey-manager-qt
-        yubikey-personalization
-        yubikey-personalization-gui
-        yubico-piv-tool
-      ];
+      udev = {
+        packages = [pkgs.yubikey-personalization];
+        extraRules = ''
+          KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="plugdev"
+        '';
+      };
     };
 
     boot.initrd = {
@@ -100,16 +91,16 @@
     users.groups = {"plugdev" = {};};
 
     environment.systemPackages = with pkgs; [
-      p11-kit
+      # p11-kit
       age-plugin-yubikey
-      libfido2
-      yubico-piv-tool
-      yubioath-flutter
-      yubikey-agent
-      yubikey-manager
-      yubikey-manager-qt
-      yubikey-personalization
-      yubikey-personalization-gui
+      # libfido2
+      # yubico-piv-tool
+      # yubioath-flutter
+      # yubikey-agent
+      # yubikey-manager
+      # yubikey-manager-qt
+      # yubikey-personalization
+      # yubikey-personalization-gui
       # opensc
     ];
   };

@@ -54,7 +54,7 @@
 
         variables = {
           # NIX_DAEMON_SOCKET_PATH = "/run/nix-supervisor.sock";
-          OTEL_EXPORTER_OTLP_ENDPOINT = "http://silver-star:4317";
+          # OTEL_EXPORTER_OTLP_ENDPOINT = "http://silver-star:4317";
           # OTEL_EXPORTER_OTLP_HEADERS = "Authorization=\"Basic dG9tYXNAaGFya2VtYS5pbzpQdXIxN0RCb21CZVd4U0xV\"";
         };
       };
@@ -70,36 +70,51 @@
         bash.undistractMe.enable = true;
       };
 
+      systemd = {
+        # Create a separate slice for nix-daemon that is
+        #memory-managed by the userspace systemd-oomd killer
+        slices."nix-daemon".sliceConfig = {
+          ManagedOOMMemoryPressure = "kill";
+          ManagedOOMMemoryPressureLimit = "50%";
+        };
+        services."nix-daemon".serviceConfig.Slice = "nix-daemon.slice";
+
+        # If a kernel-level OOM event does occur anyway,
+        #strongly prefer killing nix-daemon child processes
+        services."nix-daemon".serviceConfig.OOMScoreAdjust = 1000;
+      };
+
       nix = let
         users = [
           "root"
           config.user.name
         ];
       in {
-        package = pkgs.nixVersions.latest; # .latest;
+        package = pkgs.nixVersions.nix_2_23; # .latest;
 
-        nixPath = [
-          "nixpkgs=${inputs.nixpkgs}"
-          "darwin=${inputs.darwin}"
-          "home-manager=${inputs.home-manager}"
-        ];
+        # nixPath = [
+        #   "nixpkgs=${inputs.nixpkgs}"
+        #   "darwin=${inputs.darwin}"
+        #   "home-manager=${inputs.home-manager}"
+        # ];
 
         channel.enable = true;
 
         extraOptions = ''
           min-free = ${toString (100 * 1024 * 1024)}
           max-free = ${toString (1024 * 1024 * 1024)}
-          plugin-files = ${pkgs.nix-otel}/lib
         '';
+        # plugin-files = ${pkgs.nix-otel}/lib
         optimise.automatic = true;
 
         settings = {
           extra-platforms = ["aarch64-linux" "i686-linux"];
 
-          # extra-sandbox-paths = [config.programs.ccache.cacheDir];
+          extra-sandbox-paths = [config.programs.ccache.cacheDir];
 
-          use-cgroups = true;
-          extra-experimental-features = "nix-command flakes cgroups ca-derivations recursive-nix";
+          # use-cgroups = true;
+
+          extra-experimental-features = "nix-command flakes ca-derivations recursive-nix"; # cgroups
           http-connections = 50;
           warn-dirty = false;
           log-lines = 50;

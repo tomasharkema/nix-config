@@ -131,8 +131,8 @@
     # '';
 
     nix.settings = {
-      use-cgroups = true;
-      extra-experimental-features = "nix-command flakes cgroups ca-derivations recursive-nix";
+      # use-cgroups = true;
+      extra-experimental-features = "nix-command flakes ca-derivations recursive-nix"; # cgroups
       trusted-users = ["root" "tomas" "builder"];
       # trustedBinaryCaches = ["https://cache.nixos.org"];
       # binaryCaches = ["https://cache.nixos.org"];

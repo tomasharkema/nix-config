@@ -109,7 +109,7 @@ in {
     #   };
     # };
 
-    boot.kernelParams = ["systemd.unified_cgroup_hierarchy=1"];
+    # boot.kernelParams = ["systemd.unified_cgroup_hierarchy=1"];
     # security.ipa = {
     #   enable = lib.mkForce false;
     # };

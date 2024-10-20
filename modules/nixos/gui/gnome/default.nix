@@ -139,10 +139,11 @@ in
               pkgs.custom.usbguard-gnome
               # gnome-menus
             ];
+            # , 'variable-refresh-rate','xwayland-native-scaling'
             # 'xwayland-native-scaling',
             extraGSettingsOverrides = ''
               [org.gnome.mutter]
-              experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland', 'variable-refresh-rate','xwayland-native-scaling']
+              experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland']
               edge-tiling=true
             '';
 
