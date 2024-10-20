@@ -60,6 +60,7 @@
         # openglide
       ])
       ++ (with pkgs; [
+        yubico-piv-tool
         lrzsz
         # dosbox-x
         nixd
