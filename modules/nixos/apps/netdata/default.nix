@@ -7,7 +7,7 @@
   cfg = config.apps.netdata;
 in {
   options.apps.netdata = {
-    enable = lib.mkEnableOption "netdata";
+    enable = lib.mkEnableOption "netdata" // {default = true;};
   };
 
   config = lib.mkIf cfg.enable {
