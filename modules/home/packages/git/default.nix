@@ -7,7 +7,7 @@
   config = {
     # gh = "op plugin run -- gh";
 
-    home.packages = [];
+    home.packages = [pkgs.custom.git-credential-1password];
 
     programs = {
       gh = {

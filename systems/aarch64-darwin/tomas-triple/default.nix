@@ -25,7 +25,7 @@
       };
 
       programs = {
-        ssh.extraIdentityAgent = "${hm.home.homeDirectory}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+        # ssh.extraIdentityAgent = "${hm.home.homeDirectory}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
 
         git.extraConfig = {
           user.signingKey = lib.mkForce "/Users/tomas.harkema/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/PublicKeys/6cee278709036d893e6a31d818357828.pub";
