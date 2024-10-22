@@ -22,15 +22,14 @@
         command = [ "${pkgs.custom.mackerel-check-plugins}/bin/check-procs", "-p", "sssd" ]
 
         [plugin.metadata.nixos]
-        command = "cat /etc/nixos.json";
+        command = "cat /etc/nixos.json"
       '';
     };
 
     services.mackerel-agent = {
       enable = true;
       apiKeyFile = config.age.secrets.mak.path;
-      settings = {
-      };
+      settings = {};
     };
   };
 }
