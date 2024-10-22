@@ -71,7 +71,6 @@ in {
           newman
           # postman
           atac
-          httpie-desktop
           nix-htop
           augeas
           custom.bieye
@@ -101,6 +100,7 @@ in {
           openai
         ]
         ++ (lib.optionals pkgs.stdenv.isx86_64 [
+          httpie-desktop
           valgrind
         ]);
 
