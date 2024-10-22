@@ -11,7 +11,7 @@
 
     environment.etc = {
       "nixos.json".source = config.system.build.releaseJson;
-      "mackarel-agent/conf.d/plugins.conf".text = ''
+      "mackerel-agent/conf.d/plugins.conf".text = ''
         [plugin.metrics.nvidia-smi]
         command = "${pkgs.custom.mackerel-plugin-nvidia-smi}/bin/mackerel-plugin-nvidia-smi"
 
