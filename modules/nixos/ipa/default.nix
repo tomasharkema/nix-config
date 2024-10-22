@@ -40,6 +40,9 @@ in {
         "pkcs11/modules/opensc-pkcs11".text = ''
           module: ${pkgs.opensc}/lib/opensc-pkcs11.so
         '';
+        "pkcs11/modules/libykcs11".text = ''
+          module: ${pkgs.yubico-piv-tool}/lib/libykcs11.so
+        '';
 
         "krb5.conf".text = lib.mkBefore ''
           includedir /etc/krb5.conf.d/
@@ -146,15 +149,34 @@ in {
           pam_cert_auth = True
           passkey_debug_libfido2 = True
           passkey_child_timeout = 60
+          debug_level = 6
 
-          [domain/shadowutils]
-          id_provider = proxy
-          proxy_lib_name = files
-          auth_provider = none
-          local_auth_policy = match
+          # [domain/shadowutils]
+          # id_provider = proxy
+          # proxy_lib_name = files
+          # auth_provider = none
+          # local_auth_policy = match
 
           [prompting/passkey]
           interactive_prompt = "Insert your Passkey device, then press ENTER."
+
+          [sssd]
+          debug_level = 6
+
+          [nss]
+          debug_level = 6
+
+          [sudo]
+          debug_level = 6
+
+          [ssh]
+          debug_level = 6
+
+          [pac]
+          debug_level = 6
+
+          [ifp]
+          debug_level = 6
         '';
 
         # [sssd]
