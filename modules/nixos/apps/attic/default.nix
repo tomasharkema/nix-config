@@ -33,8 +33,8 @@ in {
     };
 
     systemd.services.attic-watch-store = {
-      # wants = ["network-online.target"];
-      # after = ["network-online.target"];
+      after = ["tailscaled.service" "network-online.target"];
+      wants = ["tailscaled.service" "network-online.target"];
       wantedBy = ["multi-user.target"];
 
       environment.HOME = "/var/lib/attic-watch-store";
@@ -47,7 +47,7 @@ in {
       serviceConfig = {
         KillMode = "process";
         Restart = "on-failure";
-        RestartSec = 1;
+        RestartSec = 5;
         DynamicUser = true;
         MemoryHigh = "5%";
         MemoryMax = "10%";

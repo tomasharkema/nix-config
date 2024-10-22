@@ -123,8 +123,8 @@ in {
         };
         script = "${lib.getExe pkgs.tailscalesd} --localapi";
         wantedBy = ["multi-user.target"];
-        after = ["tailscale.service"];
-        wants = ["tailscale.service"];
+        after = ["tailscaled.service"];
+        wants = ["tailscaled.service"];
         # path = [pkgs.tailscale pkgs.custom.tailscalesd];
         # environment = {
         #   ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH = "go1.21";
