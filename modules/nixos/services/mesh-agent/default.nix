@@ -11,7 +11,8 @@ in {
     enable = (lib.mkEnableOption "meshagent") // {default = true;};
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf false {
+    # cfg.enable {
     age.secrets = {
       meshagent = {
         rekeyFile = ./msh.age;

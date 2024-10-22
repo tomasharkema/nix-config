@@ -87,7 +87,7 @@
       builder.enable = true;
 
       hardware = {
-        intel.enable = true;
+        #        intel.enable = true;
         nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
