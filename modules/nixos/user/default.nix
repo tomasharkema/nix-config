@@ -51,7 +51,7 @@
         #   login.googleAuthenticator.enable = true;
         # };
       };
-      sudo.wheelNeedsPassword = false;
+      # sudo.wheelNeedsPassword = false;
     };
 
     programs = {
