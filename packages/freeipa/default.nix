@@ -6,12 +6,13 @@
   pkg-config,
   autoconf,
   automake,
-  kerberos,
+  krb5,
   openldap,
   popt,
   cyrus_sasl,
   curl,
   xmlrpc_c,
+  autoreconfHook,
   ding-libs,
   p11-kit,
   gettext,
@@ -70,14 +71,15 @@
 in
   stdenv.mkDerivation rec {
     pname = "freeipa";
-    version = "4.12.1";
+    version = "4.12.2";
 
     src = fetchurl {
       url = "https://releases.pagure.org/freeipa/freeipa-${version}.tar.gz";
-      sha256 = "sha256-SPZ+QgssDKG1Hz1oqtVdg864qtcvncuOlzTWjN4+loM=";
+      sha256 = "sha256-3Ij1QE52E+tlMNcRQu9DqfiQGdWc3G7CW3eEEyWMMX8=";
     };
 
     nativeBuildInputs = [
+      autoreconfHook
       python3
       python3.pkgs.wrapPython
       python3.pkgs.setuptools
@@ -95,7 +97,7 @@ in
 
     buildInputs =
       [
-        kerberos
+        krb5
         openldap
         openldap.dev
         popt
@@ -139,7 +141,7 @@ in
         --subst-var out \
         --subst-var-by bind ${bind.dnsutils} \
         --subst-var-by curl ${curl} \
-        --subst-var-by kerberos ${kerberos} \
+        --subst-var-by krb5 ${krb5} \
         --subst-var-by sssd ${sssd}
     '';
 

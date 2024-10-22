@@ -12,7 +12,10 @@ in {
   config = lib.mkIf cfg.enable {
     services.udev = {
       enable = true;
-      packages = with pkgs; [heimdall-gui libusb];
+      packages = with pkgs; [
+        heimdall-gui
+        #  libusb
+      ];
       extraRules = ''
         SUBSYSTEM=="usb", ATTR{idVendor}=="04e8", ATTR{idProduct}=="685d", MODE="0666"
       '';

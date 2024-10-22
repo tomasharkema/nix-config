@@ -95,7 +95,7 @@
         noto-fonts
         noto-fonts-extra
         noto-fonts-emoji
-        noto-fonts-cjk
+        noto-fonts-cjk-sans
         nerdfonts
         terminus-nerdfont
         ubuntu_font_family

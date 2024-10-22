@@ -69,7 +69,7 @@ in {
         libimobiledevice
         intel-gpu-tools
         nvramtool
-        libusb
+        # libusb
         ccid
         gnupg
         custom.distrib-dl
@@ -176,7 +176,7 @@ in {
         enable = true;
         packages = with pkgs; [
           heimdall-gui
-          libusb
+          # libusb
 
           # ccid
         ];
