@@ -151,6 +151,7 @@ in {
           passkey_child_timeout = 60
           debug_level = 6
 
+
           # [domain/shadowutils]
           # id_provider = proxy
           # proxy_lib_name = files
@@ -205,7 +206,7 @@ in {
         basedn = "dc=harkema,dc=io";
         certificate = pkgs.fetchurl {
           url = "https://ipa.harkema.io/ipa/config/ca.crt";
-          sha256 = "sha256-aLyxdCLwDg7mPjM9hzwuT4IHy+3QW6QXsQiHDZbVFnU=";
+          sha256 = "0x8nsnb0v1q8n4bs8nyhxp5hg0jg5qy8fg9k7vk0w3ph49sb3g38";
         };
         # certificate = "${./ca.crt}";
         dyndns.enable = false;
