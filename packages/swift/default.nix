@@ -68,7 +68,7 @@
         export LD_LIBRARY_PATH="/usr/lib64/:/usr/lib/:$LD_LIBRARY_PATH"
       '';
 
-      # runScript = "${swift-der}/bin/swift";P
+      # runScript = "${swift-der}/bin/swift";
     };
 
   srcLoc =
