@@ -10,7 +10,7 @@
     };
 
     environment = {
-      systemPackages = with pkgs; [custom.mka];
+      systemPackages = with pkgs; [custom.mkr];
 
       etc = {
         "nixos.json".source = config.system.build.releaseJson;
