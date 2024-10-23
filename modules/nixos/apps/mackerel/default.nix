@@ -15,10 +15,12 @@
       etc = {
         "nixos.json".source = config.system.build.releaseJson;
 
-        "mackerel-agent/conf.d/plugin-nvidia.conf".text = lib.mkIf config.traits.hardware.nvidia.enable ''
-          [plugin.checks.nvidia-smi]
-          command = "${config.system.build.mackerel-plugin-nvidia-smi}/bin/mackerel-plugin-nvidia-smi"
-        '';
+        "mackerel-agent/conf.d/plugin-nvidia.conf" = lib.mkIf config.traits.hardware.nvidia.enable {
+          text = ''
+            [plugin.checks.nvidia-smi]
+            command = "${config.system.build.mackerel-plugin-nvidia-smi}/bin/mackerel-plugin-nvidia-smi"
+          '';
+        };
 
         "mackerel-agent/conf.d/plugins.conf".text = ''
 
