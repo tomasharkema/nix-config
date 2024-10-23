@@ -93,6 +93,7 @@ with pkgs; {
 
       httpie
       iftop
+      ftop
       ipmitool
       just
       # keybase

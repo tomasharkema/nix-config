@@ -2,6 +2,8 @@
   lib,
   buildGoModule,
   fetchFromGitHub,
+  nvidia ? null,
+  makeWrapper,
 }:
 buildGoModule rec {
   pname = "mackerel-plugin-nvidia-smi";
@@ -14,9 +16,17 @@ buildGoModule rec {
     hash = "sha256-P7r4gmEG0g/ynoYTXHQhvgA69c0REf1KKbkJ1h//SDI=";
   };
 
+  nativeBuildPackages = [makeWrapper];
+
+  buildPackages = [nvidia];
+
   vendorHash = "sha256-7+l/hKi0ynWgB56blXGSDI29hOrg8XilBbcW1bnFuAg=";
 
   ldflags = ["-s" "-w"];
+
+  postInstall = ''
+    wrapProgram $out/bin/mackerel-plugin-nvidia-smi --prefix PATH : ${lib.makeBinPath [nvidia]}
+  '';
 
   meta = with lib; {
     description = "";
