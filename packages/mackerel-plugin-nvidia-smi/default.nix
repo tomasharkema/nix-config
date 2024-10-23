@@ -16,9 +16,9 @@ buildGoModule rec {
     hash = "sha256-P7r4gmEG0g/ynoYTXHQhvgA69c0REf1KKbkJ1h//SDI=";
   };
 
-  nativeBuildPackages = [makeWrapper];
+  nativeBuildInputs = [makeWrapper];
 
-  buildPackages = [nvidia];
+  buildInputs = [nvidia];
 
   vendorHash = "sha256-7+l/hKi0ynWgB56blXGSDI29hOrg8XilBbcW1bnFuAg=";
 
