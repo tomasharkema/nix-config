@@ -3,6 +3,7 @@
   buildGoModule,
   fetchFromGitHub,
   procps,
+  makeWrapper,
 }:
 buildGoModule rec {
   pname = "mackerel-check-plugins";
@@ -19,9 +20,21 @@ buildGoModule rec {
 
   vendorHash = "sha256-MzftScGmix89tFgA7usYZ4nXyf4htYhj0h+VMQUyOCc=";
 
-  ldflags = ["-s" "-w"];
+  ldflags = [
+    "-s"
+    "-w"
+  ];
+
+  nativeBuildInputs = [
+    makeWrapper
+  ];
 
   buildInputs = [procps];
+
+  # find "$out/bin" -type f -exec wrapProgram {} --prefix PATH : ${lib.makeBinPath [ procps ]} \;
+  postInstall = ''
+    wrapProgram $out/bin/check-procs --prefix PATH : ${lib.makeBinPath [procps]}
+  '';
 
   meta = with lib; {
     description = "Check Plugins for monitoring written in golang";
