@@ -203,7 +203,7 @@ in {
         # pkgs.custom.git-butler
         # pkgs.wolfram-engine
         # spotify
-        angryipscanner
+        # angryipscanner
         bottles
         custom.qlogexplorer
         devdocs-desktop
