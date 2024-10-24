@@ -27,7 +27,7 @@ in {
       steam.enable = true;
       # usbip.enable = true;
       home-assistant.enable = true;
-      spotifyd.enable = true;
+      # spotifyd.enable = true;
     };
 
     hardware = {
@@ -89,7 +89,7 @@ in {
       builder.enable = true;
 
       hardware = {
-        #        intel.enable = true;
+        intel.enable = true;
         nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
