@@ -27,10 +27,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.config = {
-      nvidia.acceptLicense = true;
-      cudaSupport = true;
-    };
+    # nixpkgs.config = {
+    #   nvidia.acceptLicense = true;
+    #   cudaSupport = true;
+    # };
 
     environment.systemPackages = with pkgs; [
       libva-utils

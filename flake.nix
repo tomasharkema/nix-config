@@ -18,11 +18,11 @@
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;
         nvidia.acceptLicense = true;
-        cudaSupport = true;
+        # cudaSupport = true;
 
-        allowAliases = true;
+        # allowAliases = true;
 
-        config.allowAliases = true;
+        # config.allowAliases = true;
 
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
@@ -547,7 +547,7 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim"; #/nixos-24.05";
+      url = "github:nix-community/nixvim"; # /nixos-24.05";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";

@@ -28,6 +28,8 @@
         enableVteIntegration = true;
         enableSyntaxHighlighting = true;
 
+        dotDir = ".config/zsh";
+
         autocd = true;
 
         history = {

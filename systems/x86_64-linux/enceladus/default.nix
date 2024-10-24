@@ -6,7 +6,9 @@
   config,
   format,
   ...
-}: {
+}: let
+  self = inputs.self;
+in {
   imports = with inputs; [
     # (modulesPath + "/installer/scan/not-detected.nix")
     nixos-hardware.nixosModules.common-cpu-intel
@@ -48,6 +50,21 @@
             "--loadavg-target"
             "2.0"
           ];
+        };
+      };
+
+      homepage-dashboard = {
+        enable = true;
+
+        services = {
+          nixos =
+            builtins.listToAttrs (map (machine: {
+              name = "${machine}";
+              value = {
+                href = "https://${machine}.ling-lizard.ts.net";
+              };
+            }))
+            self.machines.all;
         };
       };
     };

@@ -24,6 +24,8 @@
 
   nixd = inputs.nixd.packages."${prev.system}".default;
 
+  utillinux = prev.util-linux;
+
   # dosbox-x = prev.dosbox-x.overrideAttrs ({postInstall ? "", ...}: {
   #   postInstall =
   #     postInstall

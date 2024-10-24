@@ -215,7 +215,7 @@ in {
         ipmiview
         libsmbios
         (plex-media-player.overrideAttrs (old: {
-          cudaSupport = true;
+          # cudaSupport = true;
           stdenv = pkgs.cudaPackages.backendStdenv;
         }))
         plexamp
