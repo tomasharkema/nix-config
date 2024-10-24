@@ -52,21 +52,6 @@ in {
           ];
         };
       };
-
-      homepage-dashboard = {
-        enable = true;
-
-        services = {
-          nixos =
-            builtins.listToAttrs (map (machine: {
-              name = "${machine}";
-              value = {
-                href = "https://${machine}.ling-lizard.ts.net";
-              };
-            }))
-            self.machines.all;
-        };
-      };
     };
 
     # specialisation = {
