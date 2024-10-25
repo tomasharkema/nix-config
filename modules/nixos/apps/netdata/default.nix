@@ -14,8 +14,7 @@ in {
       };
   };
 
-  config = lib.mkIf false {
-    # cfg.enable {
+  config = lib.mkIf cfg.enable {
     age.secrets.netdata = {
       rekeyFile = ../../secrets/netdata.age;
       mode = "644";
