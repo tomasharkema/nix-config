@@ -53,13 +53,14 @@
         };
       };
       osquery.enable = true;
+      grafana-agent = {enable = true;};
     };
 
     systemd.services.mackerel-agent = {
       restartTriggers = [
         config.environment.etc."nixos.json".source
         config.environment.etc."mackerel-agent/conf.d/plugins.conf".source
-        config.environment.etc."mackerel-agent/conf.d/plugin-nvidia.conf".source
+        "/etc/mackerel-agent/conf.d"
       ];
     };
   };
