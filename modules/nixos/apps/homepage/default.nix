@@ -18,18 +18,22 @@ in {
       };
     };
 
-    services.homepage-dashboard = {
+    services.homepage-dashboard = let
+      tsUrl = machine: "https://${machine}.ling-lizard.ts.net";
+    in {
       enable = true;
+
+      settings = {
+        base = "https://${tsUrl config.networking.hostName}.ling-lizard.ts.net/home/";
+      };
 
       services = [
         {
           nixos =
-            map (machine: let
-              tsUrl = "https://${machine}.ling-lizard.ts.net";
-            in {
+            map (machine: {
               "${machine}" = {
-                href = tsUrl;
-                siteMonitor = tsUrl;
+                href = tsUrl machine;
+                siteMonitor = tsUrl machine;
               };
             })
             self.machines.all;

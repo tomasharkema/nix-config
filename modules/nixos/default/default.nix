@@ -447,6 +447,7 @@
     security = {
       audit.enable = true;
       auditd.enable = true;
+      pam.sshAgentAuth.enable = true;
     };
 
     programs = {
@@ -478,11 +479,6 @@
         extraConfig = ''
           ForwardAgent yes
 
-          Host silver-star-builder
-            HostName silver-star
-            Port 2222
-            User foo
-            StrictHostKeyChecking=accept-new
         '';
       };
       # mosh.enable = true;
