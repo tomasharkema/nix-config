@@ -5,10 +5,6 @@
   ...
 }: {
   config = {
-    system = {
-      build.releaseJson = pkgs.writers.writeJSON "nixos.json" config.system.nixos;
-    };
-
     environment = {
       systemPackages = with pkgs; [custom.mkr];
 
@@ -39,8 +35,11 @@
       };
     };
 
-    system.build.mackerel-plugin-nvidia-smi = pkgs.custom.mackerel-plugin-nvidia-smi.override {
-      nvidia = config.hardware.nvidia.package;
+    system.build = {
+      releaseJson = pkgs.writers.writeJSON "nixos.json" config.system.nixos;
+      mackerel-plugin-nvidia-smi = pkgs.custom.mackerel-plugin-nvidia-smi.override {
+        nvidia = config.hardware.nvidia.package;
+      };
     };
 
     services = {
@@ -54,6 +53,14 @@
         };
       };
       osquery.enable = true;
+    };
+
+    systemd.services.mackerel-agent = {
+      restartTriggers = [
+        config.environment.etc."nixos.json".source
+        config.environment.etc."mackerel-agent/conf.d/plugins.conf".source
+        config.environment.etc."mackerel-agent/conf.d/plugin-nvidia.conf".source
+      ];
     };
   };
 }
