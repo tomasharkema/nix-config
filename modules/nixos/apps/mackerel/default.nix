@@ -30,6 +30,9 @@
           [plugin.checks.check_tailscaled]
           command = [ "${pkgs.custom.mackerel-check-plugins}/bin/check-procs", "-p", "tailscaled" ]
 
+          [plugin.checks.check_systemd]
+          command = "${pkgs.custom.mackerel-check-systemd}/bin/systemd-status"
+
           [plugin.metadata.nixos]
           command = "cat /etc/nixos.json"
         '';

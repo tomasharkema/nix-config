@@ -120,7 +120,7 @@ with pkgs; {
       python3
       screen
       silver-searcher
-      speedtest-cli
+
       ssh-to-age
       starship
       tldr
