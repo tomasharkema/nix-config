@@ -53,7 +53,7 @@
 
         fh
         flake-checker
-        fup-repl
+        # fup-repl
         manix
         nerd-font-patcher
         nil
