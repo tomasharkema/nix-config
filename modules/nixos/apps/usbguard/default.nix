@@ -5,10 +5,14 @@
   ...
 }: let
   usbguard-generate-rules = pkgs.writeShellScriptBin "usbguard-generate-rules" ''
-    usbguard --generate-rules --output-file "${config.services.usbguard.ruleFile}"
+    sudo ${lib.getExe config.services.usbguard.package} generate-policy | sudo tee "${config.services.usbguard.ruleFile}"
   '';
 in {
-  config = lib.mkIf false {
+  options.apps.usbguard = {
+    enable = lib.mkEnableOption "usbguard" // {default = true;};
+  };
+
+  config = {
     environment.systemPackages = with pkgs; [
       usbguard-notifier
       # config.nur.repos.mloeper.usbguard-applet-qt

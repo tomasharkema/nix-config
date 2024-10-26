@@ -11,7 +11,7 @@
       #   debug = true;
       # };
 
-      # p11.enable = true;
+      p11.enable = true;
 
       services = {
         # login.u2fAuth = true;
@@ -29,7 +29,7 @@
     # hardware.gpgSmartcards.enable = true;
 
     programs = {
-      # yubikey-touch-detector.enable = true;
+      yubikey-touch-detector.enable = true;
       # ssh.extraConfig = ''
       #   PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
       # '';
@@ -50,14 +50,14 @@
       #   disable-ccid = true;
       # };
 
-      programs.gpg = {
-        # enable = true;
-        scdaemonSettings = {
-          #   reader-port = "Yubico Yubi";
+      # programs.gpg = {
+      # enable = true;
+      # scdaemonSettings = {
+      #   reader-port = "Yubico Yubi";
 
-          disable-ccid = true;
-        };
-      };
+      # disable-ccid = true;
+      # };
+      # };
     };
 
     # security.polkit.extraConfig = ''
@@ -73,7 +73,7 @@
         enable = true;
         plugins = [pkgs.yubikey-personalization];
       };
-      # yubikey-agent.enable = true;
+      yubikey-agent.enable = true;
 
       udev = {
         packages = [pkgs.yubikey-personalization];
@@ -91,16 +91,16 @@
     users.groups = {"plugdev" = {};};
 
     environment.systemPackages = with pkgs; [
-      # p11-kit
+      p11-kit
       age-plugin-yubikey
-      # libfido2
-      # yubico-piv-tool
-      # yubioath-flutter
+      libfido2
+      yubico-piv-tool
+      yubioath-flutter
       # yubikey-agent
-      # yubikey-manager
-      # yubikey-manager-qt
-      # yubikey-personalization
-      # yubikey-personalization-gui
+      yubikey-manager
+      yubikey-manager-qt
+      yubikey-personalization
+      yubikey-personalization-gui
       # opensc
     ];
   };

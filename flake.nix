@@ -62,11 +62,10 @@
       };
 
       overlays = with inputs; [
-        # otel.overlays.default
+        otel.overlays.default
         nvidia-patch.overlays.default
         ytdlp-gui.overlay
         nixos-recovery.overlays.recovery
-        # nix-otel.overlays.default
         # peerix.overlay
         snowfall-flake.overlays."package/flake"
         # nixos-checkmk.overlays.default
@@ -777,14 +776,6 @@
     #   };
     # };
 
-    # nix-otel = {
-    #   url = "github:tomasharkema/nix-otel";
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     flake-utils.follows = "flake-utils";
-    #   };
-    # };
-
     nixos-nvidia-vgpu = {
       url = "github:Yeshey/nixos-nvidia-vgpu";
       # url = "github:tomasharkema/nixos-nvidia-vgpu";
@@ -877,10 +868,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # otel = {
-    #   url = "github:tomasharkema/nix-otel";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    otel = {
+      url = "github:tomasharkema/nix-otel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     fenix = {
       url = "github:nix-community/fenix";

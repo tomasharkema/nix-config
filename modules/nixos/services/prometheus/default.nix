@@ -12,7 +12,7 @@ in {
   config = lib.mkIf cfg.enable {
     system.nixos.tags = ["prometheus"];
 
-    age.secrets."promtail".rekeyFile = ./promtail.age;
+    # age.secrets."promtail".rekeyFile = ./promtail.age;
 
     system.activationScripts.node-exporter-system-version = ''
       mkdir -pm 0775 /var/lib/prometheus-node-exporter-text-files
@@ -84,50 +84,76 @@ in {
             }/metrics";
           });
       };
-    };
 
-    services.promtail = {
-      enable = true;
-      extraFlags = ["--config.expand-env=true"];
-      configuration = {
-        server = {
-          http_listen_port = 0;
-          grpc_listen_port = 0;
+      vmagent = {
+        enable = true;
+
+        remoteWrite.url = "http://silver-star:8428/api/v1/write";
+        prometheusConfig = {
+          scrape_configs = [
+            {
+              job_name = "systemd";
+              static_configs = [
+                {
+                  targets = ["127.0.0.1:${builtins.toString config.services.prometheus.exporters.systemd.port}"];
+                }
+              ];
+            }
+            {
+              job_name = "node";
+              static_configs = [
+                {
+                  targets = ["127.0.0.1:${builtins.toString config.services.prometheus.exporters.node.port}"];
+                }
+              ];
+            }
+          ];
         };
-        positions = {filename = "/var/lib/promtail/positions.yaml";};
-        # positions = {filename = "/tmp/positions.yaml";};
-        clients = [
-          {url = "http://silver-star:3100/loki/api/v1/push";}
-
-          {
-            url = "https://logs-prod-012.grafana.net/loki/api/v1/push";
-
-            basic_auth = {
-              username = "1033315";
-              password_file = "";
-            };
-          }
-        ];
-        scrape_configs = [
-          {
-            job_name = "journal";
-            journal = {
-              max_age = "12h";
-              labels = {
-                job = "systemd-journal";
-                host = config.networking.hostName;
-              };
-            };
-            relabel_configs = [
-              {
-                source_labels = ["__journal__systemd_unit"];
-                target_label = "unit";
-              }
-            ];
-          }
-        ];
       };
-      # extraFlags
+
+      promtail = {
+        enable = true;
+        extraFlags = ["--config.expand-env=true"];
+        configuration = {
+          server = {
+            http_listen_port = 0;
+            grpc_listen_port = 0;
+          };
+          positions = {filename = "/var/lib/promtail/positions.yaml";};
+          # positions = {filename = "/tmp/positions.yaml";};
+          clients = [
+            {url = "http://silver-star:3100/loki/api/v1/push";}
+
+            {
+              url = "https://logs-prod-012.grafana.net/loki/api/v1/push";
+
+              basic_auth = {
+                username = "1033315";
+                password_file = "";
+              };
+            }
+          ];
+          scrape_configs = [
+            {
+              job_name = "journal";
+              journal = {
+                max_age = "12h";
+                labels = {
+                  job = "systemd-journal";
+                  host = config.networking.hostName;
+                };
+              };
+              relabel_configs = [
+                {
+                  source_labels = ["__journal__systemd_unit"];
+                  target_label = "unit";
+                }
+              ];
+            }
+          ];
+        };
+        # extraFlags
+      };
     };
   };
 }
