@@ -36,7 +36,7 @@
         ];
         config = {
           # For example, enable smartcard support in Firefox.
-          firefox.smartcardSupport = true;
+          # firefox.smartcardSupport = true;
           permittedInsecurePackages = [
             "openssl-1.1.1w"
             # "python3.12-youtube-dl-2021.12.17"

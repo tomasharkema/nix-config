@@ -86,7 +86,7 @@ in {
       };
 
       vmagent = {
-        enable = true;
+        # enable = true;
 
         remoteWrite.url = "http://silver-star:8428/api/v1/write";
         prometheusConfig = {
@@ -112,7 +112,7 @@ in {
       };
 
       promtail = {
-        enable = true;
+        # enable = true;
         extraFlags = ["--config.expand-env=true"];
         configuration = {
           server = {
@@ -122,7 +122,7 @@ in {
           positions = {filename = "/var/lib/promtail/positions.yaml";};
           # positions = {filename = "/tmp/positions.yaml";};
           clients = [
-            {url = "http://silver-star:3100/loki/api/v1/push";}
+            # {url = "http://silver-star:3100/loki/api/v1/push";}
 
             {
               url = "https://logs-prod-012.grafana.net/loki/api/v1/push";

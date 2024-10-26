@@ -26,7 +26,7 @@
       };
     };
 
-    # hardware.gpgSmartcards.enable = true;
+    hardware.gpgSmartcards.enable = true;
 
     programs = {
       yubikey-touch-detector.enable = true;
@@ -69,17 +69,17 @@
     # '';
 
     services = {
-      pcscd = {
-        enable = true;
-        plugins = [pkgs.yubikey-personalization];
-      };
+      # pcscd = {
+      #   enable = true;
+      #   plugins = [pkgs.yubikey-personalization];
+      # };
       yubikey-agent.enable = true;
 
       udev = {
         packages = [pkgs.yubikey-personalization];
-        extraRules = ''
-          KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="plugdev"
-        '';
+        # extraRules = ''
+        #   KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="plugdev"
+        # '';
       };
     };
 
@@ -92,6 +92,7 @@
 
     environment.systemPackages = with pkgs; [
       p11-kit
+      # pcsc-tools
       age-plugin-yubikey
       libfido2
       yubico-piv-tool

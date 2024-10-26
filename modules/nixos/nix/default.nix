@@ -53,7 +53,10 @@
         ];
 
         variables = {
-          OTEL_EXPORTER_OTLP_ENDPOINT = "http://localhost:8428/opentelemetry/v1/metrics";
+          # OTEL_EXPORTER_OTLP_ENDPOINT = "http://localhost:8429/opentelemetry/v1/";
+          # OTEL_EXPORTER_OTLP_LOGS_PROTOCOL = "http/proto";
+          # OTEL_EXPORTER_OTLP_TRACES_PROTOCOL = "http/proto";
+          # OTEL_EXPORTER_OTLP_METRICS_PROTOCOL = "http/proto";
         };
       };
       programs = {
@@ -101,8 +104,9 @@
         extraOptions = ''
           min-free = ${toString (100 * 1024 * 1024)}
           max-free = ${toString (1024 * 1024 * 1024)}
-          plugin-files = ${pkgs.nix-otel}/lib
+
         '';
+        #  plugin-files = ${pkgs.nix-otel}/lib
         optimise.automatic = true;
 
         settings = {
