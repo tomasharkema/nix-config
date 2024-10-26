@@ -9,8 +9,10 @@
 in {
   options.prometheus = {enable = lib.mkEnableOption "prometheus" // {default = true;};};
 
-  config = lib.mkIf (cfg.enable && false) {
+  config = lib.mkIf cfg.enable {
     system.nixos.tags = ["prometheus"];
+
+    age.secrets."promtail".rekeyFile = ./promtail.age;
 
     system.activationScripts.node-exporter-system-version = ''
       mkdir -pm 0775 /var/lib/prometheus-node-exporter-text-files
@@ -85,15 +87,27 @@ in {
     };
 
     services.promtail = {
-      # enable = true;
+      enable = true;
+      extraFlags = ["--config.expand-env=true"];
       configuration = {
         server = {
-          http_listen_port = 3031;
+          http_listen_port = 0;
           grpc_listen_port = 0;
         };
-        # positions = {filename = "/var/lib/promtail/positions.yaml";};
-        positions = {filename = "/tmp/positions.yaml";};
-        clients = [{url = "http://silver-star:3100/loki/api/v1/push";}];
+        positions = {filename = "/var/lib/promtail/positions.yaml";};
+        # positions = {filename = "/tmp/positions.yaml";};
+        clients = [
+          {url = "http://silver-star:3100/loki/api/v1/push";}
+
+          {
+            url = "https://logs-prod-012.grafana.net/loki/api/v1/push";
+
+            basic_auth = {
+              username = "1033315";
+              password_file = "";
+            };
+          }
+        ];
         scrape_configs = [
           {
             job_name = "journal";

@@ -77,7 +77,7 @@ in {
           wget2
           libnotify
           trippy
-          fup-repl
+          # fup-repl
           # gptcommit-wrap
 
           udict
