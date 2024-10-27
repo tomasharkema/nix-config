@@ -6,24 +6,24 @@
 }: let
   cfg = config.apps.wine;
 in {
-  options.apps.wine = {enable = lib.mkEnableOption "steam";};
+  # options.apps.wine = {enable = lib.mkEnableOption "steam";};
 
-  config = lib.mkIf (cfg.enable && pkgs.stdenv.hostPlatform.isx86_64) {
-    environment.systemPackages = with pkgs; [
-      #   # ...
+  # config = lib.mkIf (cfg.enable && pkgs.stdenv.hostPlatform.isx86_64) {
+  #   environment.systemPackages = with pkgs; [
+  #     #   # ...
 
-      #   # support both 32- and 64-bit applications
-      wineWowPackages.stable
+  #     #   # support both 32- and 64-bit applications
+  #     wineWowPackages.stable
 
-      #   # support 32-bit only
-      wine
+  #     #   # support 32-bit only
+  #     wine
 
-      #   # winetricks (all versions)
-      winetricks
+  #     #   # winetricks (all versions)
+  #     winetricks
 
-      #   # native wayland support (unstable)
-      #   wineWowPackages.waylandFull
-      # bottles
-    ];
-  };
+  #     #   # native wayland support (unstable)
+  #     #   wineWowPackages.waylandFull
+  #     # bottles
+  #   ];
+  # };
 }
