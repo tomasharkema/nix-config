@@ -7,10 +7,10 @@
 }: let
   settingsFile = pkgs.writeText "xmm7360.ini" ''
     # driver config
-    apn="multimedia.lebara.nl"
+    apn=multimedia.lebara.nl
 
     #ip-fetch-timeout=1
-    #nodefaultroute=True
+    nodefaultroute=True
     #metric=1000
 
     # uncomment to not add DNS values to /etc/resolv.conf
@@ -37,7 +37,7 @@ in {
   config = {
     age = {
       rekey = {
-        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBcv8BF1VhNMVJV/ORMWFpdBTtGIR+LidfFepQ4nIbwo root@voltron";
+        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMESuHxB6/b4HP0S/Ad76XIR5s473hvPXFN8uzjhFZBp root@voltron";
       };
     };
 
@@ -73,7 +73,7 @@ in {
         ccid
         gnupg
         custom.distrib-dl
-        # davinci-resolve
+         davinci-resolve
         keybase-gui
         # calibre
         glxinfo
