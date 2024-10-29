@@ -73,7 +73,7 @@
 
       systemd = {
         # Create a separate slice for nix-daemon that is
-        #memory-managed by the userspace systemd-oomd killer
+        # memory-managed by the userspace systemd-oomd killer
         slices."nix-daemon".sliceConfig = {
           ManagedOOMMemoryPressure = "kill";
           ManagedOOMMemoryPressureLimit = "50%";
@@ -116,7 +116,7 @@
 
           # use-cgroups = true;
 
-          extra-experimental-features = "nix-command flakes ca-derivations recursive-nix"; # cgroups
+          extra-experimental-features = "nix-command flakes ca-derivations recursive-nix cgroups";
           http-connections = 50;
           warn-dirty = false;
           log-lines = 50;

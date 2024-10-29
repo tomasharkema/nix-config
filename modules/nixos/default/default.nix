@@ -50,12 +50,6 @@
       #   enable = false;
       #   enableNg = true;
       # };
-
-      activationScripts.tailscale-udp-optim = ''
-        NETDEV=$(${pkgs.iproute2}/bin/ip -o route get 8.8.8.8 | cut -f 5 -d " ")
-        ${pkgs.iproute2}/bin/ip addr show dev $NETDEV
-        ${lib.getExe pkgs.ethtool} -K $NETDEV rx-udp-gro-forwarding on rx-gro-list off
-      '';
     };
     virtualisation.spiceUSBRedirection.enable = true;
 
