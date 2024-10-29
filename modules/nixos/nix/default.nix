@@ -114,8 +114,7 @@
 
           extra-sandbox-paths = [config.programs.ccache.cacheDir];
 
-          # use-cgroups = true;
-
+          use-cgroups = true;
           extra-experimental-features = "nix-command flakes ca-derivations recursive-nix cgroups";
           http-connections = 50;
           warn-dirty = false;

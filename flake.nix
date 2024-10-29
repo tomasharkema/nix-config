@@ -378,8 +378,8 @@
     };
 
   nixConfig = {
-    # use-cgroups = true;
-    extra-experimental-features = "nix-command flakes ca-derivations recursive-nix"; # cgroups
+    use-cgroups = true;
+    extra-experimental-features = "nix-command flakes ca-derivations recursive-nix cgroups";
 
     distributedBuilds = true;
     builders-use-substitutes = true;

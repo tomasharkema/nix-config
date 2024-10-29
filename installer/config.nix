@@ -1,8 +1,8 @@
 {
   distributedBuilds = true;
   settings = {
-    # use-cgroups = true;
-    extra-experimental-features = "nix-command flakes ca-derivations recursive-nix"; # cgroups
+    use-cgroups = true;
+    extra-experimental-features = "nix-command flakes ca-derivations recursive-nix cgroups";
 
     builders-use-substitutes = true;
     trusted-users = ["root" "tomas"];
