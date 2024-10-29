@@ -8,22 +8,22 @@
 }: {
   config = lib.mkIf (osConfig.gui.enable) {
     programs = {
-      # kitty = {
-      #   enable = true;
-      #   package = pkgs.kitty;
-      #   theme = "Catppuccin-Mocha";
+      kitty = {
+        enable = true;
+        package = pkgs.kitty;
+        theme = "Catppuccin-Mocha";
 
-      #   font = {name = "JetBrainsMono Nerd Font Mono";};
+        font = {name = "JetBrainsMono Nerd Font Mono";};
 
-      #   settings = {
-      #     # font_family = "JetBrainsMono Nerd Font Mono Regular";
-      #     font_size = "13.0";
-      #     background = "#000000";
-      #     #osConfig.variables.theme.withHashtag.base00; #"#000000";
-      #   };
+        settings = {
+          # font_family = "JetBrainsMono Nerd Font Mono Regular";
+          font_size = "13.0";
+          background = "#000000";
+          #osConfig.variables.theme.withHashtag.base00; #"#000000";
+        };
 
-      #   shellIntegration = {enableZshIntegration = true;};
-      # };
+        shellIntegration = {enableZshIntegration = true;};
+      };
     };
   };
 }

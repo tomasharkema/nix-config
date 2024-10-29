@@ -52,8 +52,8 @@
           roles = ["nixos:server"];
         };
       };
-      osquery.enable = true;
-      grafana-agent = {enable = true;};
+      # osquery.enable = true;
+      # grafana-agent = {enable = true;};
     };
 
     systemd.services.mackerel-agent = {
