@@ -17,14 +17,6 @@
       #   (assertPackage pkgs "sssd")
     ];
 
-    environment.pathsToLink = [
-      "/share/zsh"
-      "/share/xdg-desktop-portal"
-      "/share/applications"
-      "/share/fonts"
-      "/share/icons"
-    ];
-
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
 
@@ -129,6 +121,18 @@
     #   formatted;
 
     environment = {
+      # memoryAllocator = {
+      #   provider = "graphene-hardened";
+      # };
+
+      pathsToLink = [
+        "/share/zsh"
+        "/share/xdg-desktop-portal"
+        "/share/applications"
+        "/share/fonts"
+        "/share/icons"
+      ];
+
       # sessionVariables.MOZ_ENABLE_WAYLAND = "0";
       enableAllTerminfo = true;
       systemPackages =
@@ -429,14 +433,19 @@
 
       udev.enable = lib.mkDefault true;
 
-      ntp = {
+      chrony = {
         enable = true;
-        servers = [
-          "0.nl.pool.ntp.org"
-          "1.nl.pool.ntp.org"
-          "2.nl.pool.ntp.org"
-          "3.nl.pool.ntp.org"
-        ];
+        enableNTS = true;
+      };
+      ntp = {
+        enable = lib.mkForce false;
+        #   enable = true;
+        #   servers = [
+        #     "0.nl.pool.ntp.org"
+        #     "1.nl.pool.ntp.org"
+        #     "2.nl.pool.ntp.org"
+        #     "3.nl.pool.ntp.org"
+        #   ];
       };
     };
 
@@ -491,9 +500,9 @@
         packageNames = [
           "sssd"
           "freeipa"
-          # "mutter"
-          # "gnome-shell"
-          # "gnome-session"
+          "mutter"
+          "gnome-shell"
+          "gnome-session"
         ];
       };
     };
@@ -527,6 +536,7 @@
       };
 
       networkmanager.enable = lib.mkDefault true;
+      timeServers = ["time.cloudflare.com"];
     };
 
     # powerManagement.powertop.enable = lib.mkDefault true;
