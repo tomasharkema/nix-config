@@ -25,6 +25,7 @@ in {
     services = {
       # ddccontrol.enable = true;
       seatd.enable = true;
+      printing.enable = true;
     };
     environment.systemPackages = with pkgs; [
     ];
