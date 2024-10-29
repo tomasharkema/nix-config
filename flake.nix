@@ -18,7 +18,7 @@
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;
         nvidia.acceptLicense = true;
-        # cudaSupport = true;
+        cudaSupport = true;
 
         # allowAliases = true;
 
@@ -35,6 +35,7 @@
           # "python-2.7.18.8"
         ];
         config = {
+          cudaSupport = true;
           # For example, enable smartcard support in Firefox.
           # firefox.smartcardSupport = true;
           permittedInsecurePackages = [

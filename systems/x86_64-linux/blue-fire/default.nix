@@ -16,7 +16,7 @@ in {
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
     # nixos-hardware.nixosModules.supermicro-x10sll-f
-    nixos-nvidia-vgpu.nixosModules.nvidia-vgpu
+    #    nixos-nvidia-vgpu.nixosModules.nvidia-vgpu
   ];
 
   config = {
@@ -46,7 +46,7 @@ in {
         secure-boot.enable = true;
         remote-unlock.enable = true;
         nvidia = {
-          enable = false;
+          enable = true;
           beta = false;
           open = false;
         };
@@ -80,7 +80,9 @@ in {
     };
 
     services = {
-      watchdogd = {enable = true;};
+      watchdogd = {
+        enable = true;
+      };
 
       das_watchdog.enable = lib.mkForce false;
 
@@ -186,9 +188,17 @@ in {
       # useDHCP = false;
       networkmanager.enable = true;
 
-      firewall.allowedTCPPorts = [2049 7070];
+      firewall.allowedTCPPorts = [
+        2049
+        7070
+      ];
       bonds.bond0 = {
-        interfaces = ["enp6s0f0" "enp6s0f1" "enp6s0f2" "enp6s0f3"];
+        interfaces = [
+          "enp6s0f0"
+          "enp6s0f1"
+          "enp6s0f2"
+          "enp6s0f3"
+        ];
         driverOptions = {
           mode = "802.3ad";
         };
@@ -249,16 +259,16 @@ in {
       # icingaweb2
     ];
 
-    virtualisation.kvmgt = {
-      enable = true;
-      device = "0000:01:00.0";
-      vgpus = {
-        "nvidia-37" = {
-          # for windows!!
-          uuid = ["e1ab260f-44a2-4e07-9889-68a1caafb399"];
-        };
-      };
-    };
+    # virtualisation.kvmgt = {
+    # enable = true;
+    # device = "0000:01:00.0";
+    # vgpus = {
+    #   "nvidia-37" = {
+    #    # for windows!!
+    #    uuid = ["e1ab260f-44a2-4e07-9889-68a1caafb399"];
+    # };
+    #  };
+    # };
 
     hardware = {
       cpu.intel.updateMicrocode = true;
@@ -271,30 +281,30 @@ in {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
 
-        vgpu = {
-          enable = true;
-          pinKernel = true;
-          copyVGPUProfiles = {
-            "1380:0000" = "13BD:1160";
-          };
+        #vgpu = {
+        # enable = true;
+        # pinKernel = true;
+        # copyVGPUProfiles = {
+        #   "1380:0000" = "13BD:1160";
+        # };
 
-          fastapi-dls = {
-            enable = true;
-            docker-directory = "/var/lib/fastapi";
-            # local_ipv4 = "192.168.0.48";
-            timezone = "Europe/Amsterdam";
-          };
-        };
+        #fastapi-dls = {
+        #    enable = true;
+        #     docker-directory = "/var/lib/fastapi";
+        #      # local_ipv4 = "192.168.0.48";
+        #  timezone = "Europe/Amsterdam";
+        # };
+        #};
       };
     };
 
-    virtualisation.oci-containers.containers.fastapi-dls = {
-      ports = lib.mkForce ["7070:443"];
-    };
+    # virtualisation.oci-containers.containers.fastapi-dls = {
+    #   ports = lib.mkForce [ "7070:443" ];
+    # };
 
-    services.udev.extraRules = ''
-      SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
-    '';
+    # services.udev.extraRules = ''
+    #   SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
+    # '';
 
     boot = {
       tmp = {
@@ -317,8 +327,8 @@ in {
 
       binfmt.emulatedSystems = ["aarch64-linux"];
       recovery = {
-        sign = false;
-        install = false;
+        sign = true;
+        install = true;
       };
       loader = {
         systemd-boot = {
