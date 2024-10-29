@@ -77,6 +77,7 @@
 
       kernel.sysctl = {
         "net.ipv4.ip_forward" = 1;
+        "vm.overcommit_memory" = 1;
       };
 
       tmp = {
