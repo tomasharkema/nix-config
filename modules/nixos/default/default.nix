@@ -286,6 +286,7 @@
       irqbalance.enable = true;
       # aria2.enable = true;
       rpcbind.enable = true;
+      cachefilesd.enable = true;
 
       acpid = {
         enable = true;
