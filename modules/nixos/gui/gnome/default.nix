@@ -74,17 +74,17 @@ in
           };
           tomas.databases = [
             {
-              # settings."org/gnome/mutter" = {
-              #   experimental-features = [
-              #     "scale-monitor-framebuffer"
-              #     "variable-refresh-rate"
-              #     "rt-scheduler"
-              #     "xwayland-native-scaling"
-              #     "kms-modifiers"
-              #     "autoclose-xwayland"
-              #   ];
-              #   edge-tiling = true;
-              # };
+              settings."org/gnome/mutter" = {
+                experimental-features = [
+                  "scale-monitor-framebuffer"
+                  "variable-refresh-rate"
+                  "rt-scheduler"
+                  "xwayland-native-scaling"
+                  "kms-modifiers"
+                  "autoclose-xwayland"
+                ];
+                edge-tiling = true;
+              };
               settings."org/gnome/desktop/interface".scaling-factor =
                 lib.gvariant.mkUint32 2;
             }
@@ -159,7 +159,7 @@ in
             # 'xwayland-native-scaling',
             extraGSettingsOverrides = ''
               [org.gnome.mutter]
-              experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland']
+              experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland', 'variable-refresh-rate', 'xwayland-native-scaling']
               edge-tiling=true
             '';
 

@@ -25,7 +25,7 @@ with inputs.home-manager.lib.hm.gvariant; {
             "scale-monitor-framebuffer"
             "variable-refresh-rate"
             "rt-scheduler"
-            # "xwayland-native-scaling"
+            "xwayland-native-scaling"
             "kms-modifiers"
             "autoclose-xwayland"
             # ]
