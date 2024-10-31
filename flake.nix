@@ -103,6 +103,7 @@
       systems.modules = {
         nixos = with inputs; [
           chaotic.nixosModules.default
+          nixos-facter-modules.nixosModules.facter
           # nix-topology.nixosModules.default
           # netkit.nixosModule
           # nixos-checkmk.nixosModules.check_mk_agent
@@ -471,6 +472,8 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
 
     flake-compat = {
       url = "github:edolstra/flake-compat";

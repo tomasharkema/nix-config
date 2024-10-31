@@ -43,26 +43,6 @@ in {
       egl-wayland
     ];
 
-    # home-manager.users.tomas.programs.gnome-shell.extensions = [
-    #   {package = pkgs.gnomeExtensions.prime-helper;}
-    # ];
-
-    # services.supergfxd.enable = true;
-    # systemd.services.supergfxd.path = [pkgs.pciutils];
-
-    # environment.sessionVariables = {
-    #   VK_DRIVER_FILES =
-    #     "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
-
-    #   MUTTER_DEBUG_KMS_THREAD_TYPE = "user";
-    # };
-
-    # environment.variables = {
-    #   VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
-
-    #   MUTTER_DEBUG_KMS_THREAD_TYPE = "user";
-    # };
-
     services = {
       xserver.videoDrivers = ["nvidia"];
       netdata.configDir."python.d.conf" = pkgs.writeText "python.d.conf" ''

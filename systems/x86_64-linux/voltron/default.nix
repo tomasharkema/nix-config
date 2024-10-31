@@ -27,11 +27,11 @@
   };
 in {
   imports = with inputs; [
-    ./hardware-configuration.nix
-    nixos-hardware.nixosModules.common-pc-laptop-acpi_call
-    nixos-hardware.nixosModules.common-cpu-intel
-    nixos-hardware.nixosModules.common-gpu-intel
-    nixos-hardware.nixosModules.common-gpu-intel-kaby-lake
+    # ./hardware-configuration.nix
+    # nixos-hardware.nixosModules.common-pc-laptop-acpi_call
+    # nixos-hardware.nixosModules.common-cpu-intel
+    # nixos-hardware.nixosModules.common-gpu-intel
+    # nixos-hardware.nixosModules.common-gpu-intel-kaby-lake
   ];
 
   config = {
@@ -40,6 +40,8 @@ in {
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMESuHxB6/b4HP0S/Ad76XIR5s473hvPXFN8uzjhFZBp root@voltron";
       };
     };
+
+    facter.reportPath = ./facter.json;
 
     disks.btrfs = {
       enable = true;
@@ -195,7 +197,7 @@ in {
       hardware.bolt.enable = true;
       beesd.filesystems = {
         root = {
-          spec = "UUID=22a02900-5321-481c-af47-ff8700570cc6";
+          spec = "UUID=89101fa6-b1b1-4922-9ff7-d2d47cba14bd";
           hashTableSizeMB = 4096;
           verbosity = "crit";
           extraOptions = ["--loadavg-target" "2.0"];
