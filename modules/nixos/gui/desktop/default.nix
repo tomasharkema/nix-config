@@ -144,7 +144,8 @@ in {
         effitask
         filezilla
         font-manager
-        fractal
+        # fractal
+
         gamehub
         # gnomecast
         # go-chromecast

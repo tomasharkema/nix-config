@@ -7,8 +7,8 @@
   cfg = config.services.remote-builders;
 in {
   options.services.remote-builders = {
-    server.enable = lib.mkEnableOption "remote-builders";
-    client.enable = lib.mkEnableOption "remote-builders";
+    server.enable = lib.mkEnableOption "remote-builders server";
+    client.enable = lib.mkEnableOption "remote-builders client";
   };
 
   config = {
@@ -20,45 +20,52 @@ in {
       openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
     };
 
-    nix.settings.trusted-users = lib.mkIf cfg.server.enable ["builder"];
+    nix = {
+      settings.trusted-users = lib.mkIf cfg.server.enable ["builder"];
 
-    nix.buildMachines = lib.mkIf cfg.client.enable [
-      {
-        hostName = "builder@blue-fire";
-        systems = ["aarch64-linux" "x86_64-linux"];
-        maxJobs = 4;
-        supportedFeatures = [
-          "kvm"
-          "benchmark"
-          # "big-parallel"
-        ];
-        speedFactor = 70;
-        protocol = "ssh-ng";
-      }
-      {
-        hostName = "builder@enceladus";
-        systems = ["aarch64-linux" "x86_64-linux"];
-        maxJobs = 4;
-        supportedFeatures = [
-          "kvm"
-          "benchmark"
-          # "big-parallel"
-        ];
-        speedFactor = 50;
-        protocol = "ssh-ng";
-      }
-      {
-        hostName = "builder@wodan";
-        systems = ["aarch64-linux" "x86_64-linux"];
-        maxJobs = 4;
-        supportedFeatures = [
-          "kvm"
-          "benchmark"
-          #  "big-parallel"
-        ];
-        speedFactor = 100;
-        protocol = "ssh-ng";
-      }
-    ];
+      distributedBuilds = cfg.client.enable;
+      extraOptions = ''
+        builders-use-substitutes = true
+      '';
+
+      buildMachines = lib.mkIf cfg.client.enable [
+        {
+          hostName = "builder@blue-fire";
+          systems = ["aarch64-linux" "x86_64-linux"];
+          maxJobs = 4;
+          supportedFeatures = [
+            "kvm"
+            "benchmark"
+            "big-parallel"
+          ];
+          speedFactor = 70;
+          protocol = "ssh-ng";
+        }
+        {
+          hostName = "builder@enceladus";
+          systems = ["aarch64-linux" "x86_64-linux"];
+          maxJobs = 4;
+          supportedFeatures = [
+            "kvm"
+            "benchmark"
+            "big-parallel"
+          ];
+          speedFactor = 50;
+          protocol = "ssh-ng";
+        }
+        {
+          hostName = "builder@wodan";
+          systems = ["aarch64-linux" "x86_64-linux"];
+          maxJobs = 4;
+          supportedFeatures = [
+            "kvm"
+            "benchmark"
+            "big-parallel"
+          ];
+          speedFactor = 100;
+          protocol = "ssh-ng";
+        }
+      ];
+    };
   };
 }

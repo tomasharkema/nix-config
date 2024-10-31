@@ -10,7 +10,7 @@ in {
     enable = lib.mkEnableOption "ecryptfs";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     security.pam.enableEcryptfs = true;
 
     boot.kernelModules = ["ecryptfs"];

@@ -11,7 +11,7 @@
       #   debug = true;
       # };
 
-      p11.enable = true;
+      # p11.enable = true;
 
       services = {
         # login.u2fAuth = true;

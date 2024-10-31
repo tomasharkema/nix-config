@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  config = {
+  config = lib.mkIf false {
     environment.systemPackages = with pkgs; [
       veracrypt
       ecryptfs

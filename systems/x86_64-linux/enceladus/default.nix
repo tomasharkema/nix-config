@@ -38,7 +38,7 @@ in {
 
     services = {
       throttled.enable = lib.mkForce false;
-      # remote-builders.client.enable = true;
+      remote-builders.server.enable = true;
       blueman.enable = true;
 
       beesd.filesystems = {

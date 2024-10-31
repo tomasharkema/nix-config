@@ -19,7 +19,7 @@ in {
     # services.intune.enable = mkEnableOption "intune";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     environment = {
       systemPackages = with pkgs; [
         ldapvi
