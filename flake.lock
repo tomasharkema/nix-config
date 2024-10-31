@@ -1341,28 +1341,6 @@
         "type": "github"
       }
     },
-    "nix-htop": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1722040483,
-        "narHash": "sha256-XBhx5fGE+NjGmhnxXcMPHPcOL/c7qv7nvAOfQyjpPvg=",
-        "rev": "59a7b1c155107f5767e32b0deef8dbf27579ad09",
-        "revCount": 18,
-        "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/tomasharkema/nix-htop/0.0.2/0190f667-32fd-7f75-93c2-c5acb791ecf2/source.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://flakehub.com/f/tomasharkema/nix-htop/0.0.%2A.tar.gz"
-      }
-    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -1612,15 +1590,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1723143532,
-        "narHash": "sha256-PEjjPfshl9e2JcU9W8d0g6GjZzJ+KoD7AZIgbxyFlHI=",
+        "lastModified": 1723143546,
+        "narHash": "sha256-5ut+N0COlk6T3SZj43zaBT3Fh6wQpV7+hjjhPpr+wg8=",
         "owner": "Yeshey",
         "repo": "nixos-nvidia-vgpu",
-        "rev": "ef32b28a12853ae4333e6f8519c4bdc7997b467c",
+        "rev": "6cd95977763d8961ef88eb0147b6397a3ff4811e",
         "type": "github"
       },
       "original": {
         "owner": "Yeshey",
+        "ref": "550.90",
         "repo": "nixos-nvidia-vgpu",
         "type": "github"
       }
@@ -2160,7 +2139,6 @@
         "nix-flatpak": "nix-flatpak",
         "nix-gaming": "nix-gaming",
         "nix-github-actions": "nix-github-actions_3",
-        "nix-htop": "nix-htop",
         "nix-index-database": "nix-index-database",
         "nix-software-center": "nix-software-center",
         "nixd": "nixd",

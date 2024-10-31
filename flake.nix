@@ -778,20 +778,20 @@
     # };
 
     nixos-nvidia-vgpu = {
-      url = "github:Yeshey/nixos-nvidia-vgpu";
+      url = "github:Yeshey/nixos-nvidia-vgpu/550.90";
       # url = "github:tomasharkema/nixos-nvidia-vgpu";
       # url = "/home/tomas/Developer/nixos-nvidia-vgpu";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-htop = {
-      url = "https://flakehub.com/f/tomasharkema/nix-htop/0.0.*.tar.gz";
+    # nix-htop = {
+    #   url = "https://flakehub.com/f/tomasharkema/nix-htop/0.0.*.tar.gz";
 
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-parts.follows = "flake-parts";
+    #   };
+    # };
 
     tailscalesd = {
       url = "github:tomasharkema/tailscalesd";

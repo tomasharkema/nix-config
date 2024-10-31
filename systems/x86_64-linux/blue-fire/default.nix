@@ -16,7 +16,7 @@ in {
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
     # nixos-hardware.nixosModules.supermicro-x10sll-f
-    #    nixos-nvidia-vgpu.nixosModules.nvidia-vgpu
+    nixos-nvidia-vgpu.nixosModules.nvidia-vgpu
   ];
 
   config = {
@@ -46,9 +46,9 @@ in {
         secure-boot.enable = true;
         remote-unlock.enable = true;
         nvidia = {
-          enable = true;
-          beta = false;
-          open = false;
+          # enable = true;
+          # beta = false;
+          # open = false;
         };
         # nfs = {
         #   enable = true;
@@ -140,13 +140,6 @@ in {
         runtimeTime = "5m";
         kexecTime = "5m";
         rebootTime = "5m";
-      };
-      services = {
-        buildbot-worker.serviceConfig = {
-          MemoryHigh = "30%";
-          MemoryMax = "35%";
-          Nice = 10;
-        };
       };
     };
 
@@ -281,20 +274,20 @@ in {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
 
-        #vgpu = {
-        # enable = true;
-        # pinKernel = true;
-        # copyVGPUProfiles = {
-        #   "1380:0000" = "13BD:1160";
-        # };
+        vgpu = {
+          enable = true;
+          # pinKernel = true;
+          copyVGPUProfiles = {
+            "1380:0000" = "13BD:1160";
+          };
 
-        #fastapi-dls = {
-        #    enable = true;
-        #     docker-directory = "/var/lib/fastapi";
-        #      # local_ipv4 = "192.168.0.48";
-        #  timezone = "Europe/Amsterdam";
-        # };
-        #};
+          #fastapi-dls = {
+          #    enable = true;
+          #     docker-directory = "/var/lib/fastapi";
+          #      # local_ipv4 = "192.168.0.48";
+          #  timezone = "Europe/Amsterdam";
+          # };
+        };
       };
     };
 
@@ -407,21 +400,5 @@ in {
         #   #environment.TERM = "vt102";
       };
     };
-
-    # virtualisation = {
-    # oci-containers.containers = {
-    # social-dl = {
-    #   image = "docker.io/tomasharkema7/social-dl";
-    #   autoStart = true;
-    #   # ports = ["80:80" "443:443" "389:389" "636:636" "88:88" "464:464" "88:88/udp" "464:464/udp"];
-    #   # hostname = "ipa.harkema.io";
-    #   # extraOptions = ["--sysctl" "net.ipv6.conf.all.disable_ipv6=0"];
-    #   # cmd = ["ipa-server-install" "-U" "-r" "HARKEMA.IO"];
-    #   # volumes = [
-    #   #   "/var/lib/freeipa:/data:Z"
-    #   # ];
-    # };
-    # };
-    # };
   };
 }

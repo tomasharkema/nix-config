@@ -7,7 +7,7 @@
 }: final: prev: rec {
   libcec = prev.libcec.override {withLibraspberrypi = true;};
 
-  nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
+  # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
   _389-ds-base = self.packages."${prev.system}"._389-ds-base;
   freeipa = self.packages."${prev.system}".freeipa;

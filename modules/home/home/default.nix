@@ -71,7 +71,7 @@ in {
           newman
           # postman
           atac
-          nix-htop
+          # nix-htop
           augeas
           custom.bieye
           wget2
