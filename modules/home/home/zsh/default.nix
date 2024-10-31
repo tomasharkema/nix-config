@@ -140,11 +140,11 @@
             file = "share/zsh/zsh-edit/zsh-edit.plugin.zsh";
             src = zsh-edit;
           }
-          rec {
-            name = src.pname;
-            file = "share/zsh/zsh-abbr/abbr.plugin.zsh";
-            src = zsh-abbr;
-          }
+          # rec {
+          #   name = src.pname;
+          #   file = "share/zsh/zsh-abbr/abbr.plugin.zsh";
+          #   src = zsh-abbr;
+          # }
           rec {
             name = src.pname;
             file = "share/zsh/zsh-forgit/forgit.plugin.zsh";
