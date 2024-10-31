@@ -276,7 +276,7 @@ in {
 
         vgpu = {
           enable = true;
-          # pinKernel = true;
+          pinKernel = true;
           copyVGPUProfiles = {
             "1380:0000" = "13BD:1160";
           };
