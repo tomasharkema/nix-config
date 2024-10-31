@@ -7,7 +7,7 @@
 }: final: prev: rec {
   libcec = prev.libcec.override {withLibraspberrypi = true;};
 
-  nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
+  # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
   _389-ds-base = self.packages."${prev.system}"._389-ds-base;
   freeipa = self.packages."${prev.system}".freeipa;
@@ -15,7 +15,6 @@
 
   docset = inputs.nixos-dash-docset.packages."${prev.system}".docset;
 
-  tailscalesd = inputs.tailscalesd.packages."${prev.system}".tailscalesd;
   tsui = inputs.tsui.packages."${prev.system}".tsui;
 
   piratebay = inputs.piratebay.packages."${prev.system}".default;

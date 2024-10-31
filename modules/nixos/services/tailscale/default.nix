@@ -108,28 +108,6 @@ in {
           RemainAfterExit = true;
         };
       };
-
-      tailscalesd = {
-        enable = true;
-        description = "tailscale-prometheus-sd";
-        unitConfig = {
-          Type = "simple";
-          StartLimitIntervalSec = 500;
-          StartLimitBurst = 5;
-        };
-        serviceConfig = {
-          Restart = "on-failure";
-          RestartSec = 5;
-        };
-        script = "${lib.getExe pkgs.tailscalesd} --localapi";
-        wantedBy = ["multi-user.target"];
-        after = ["tailscaled.service"];
-        wants = ["tailscaled.service"];
-        # path = [pkgs.tailscale pkgs.custom.tailscalesd];
-        # environment = {
-        #   ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH = "go1.21";
-        # };
-      };
     };
   };
 }

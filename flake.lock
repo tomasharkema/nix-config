@@ -1341,28 +1341,6 @@
         "type": "github"
       }
     },
-    "nix-htop": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1722040483,
-        "narHash": "sha256-XBhx5fGE+NjGmhnxXcMPHPcOL/c7qv7nvAOfQyjpPvg=",
-        "rev": "59a7b1c155107f5767e32b0deef8dbf27579ad09",
-        "revCount": 18,
-        "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/tomasharkema/nix-htop/0.0.2/0190f667-32fd-7f75-93c2-c5acb791ecf2/source.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://flakehub.com/f/tomasharkema/nix-htop/0.0.%2A.tar.gz"
-      }
-    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -2175,7 +2153,6 @@
         "nix-flatpak": "nix-flatpak",
         "nix-gaming": "nix-gaming",
         "nix-github-actions": "nix-github-actions_3",
-        "nix-htop": "nix-htop",
         "nix-index-database": "nix-index-database",
         "nix-software-center": "nix-software-center",
         "nixd": "nixd",
@@ -2195,7 +2172,6 @@
         "snowfall-flake": "snowfall-flake",
         "snowfall-lib": "snowfall-lib",
         "systems": "systems_10",
-        "tailscalesd": "tailscalesd",
         "treefmt-nix": "treefmt-nix_2",
         "tsui": "tsui",
         "vscode-server": "vscode-server",
@@ -2509,29 +2485,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "tailscalesd": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1722297447,
-        "narHash": "sha256-HyKYrqy2pdFB0ze00XJ93zyY5mdps6FQ2a52E3iL4IQ=",
-        "owner": "tomasharkema",
-        "repo": "tailscalesd",
-        "rev": "6e81b695cfbc05f0d1b8d98b53548679b012affa",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tomasharkema",
-        "repo": "tailscalesd",
         "type": "github"
       }
     },
