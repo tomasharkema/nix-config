@@ -480,14 +480,12 @@
     flake-utils = {
       url = "github:numtide/flake-utils";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
       };
     };
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     devenv = {
@@ -517,12 +515,10 @@
 
     crane = {
       url = "github:ipetkov/crane";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     catppuccin = {
       url = "github:catppuccin/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-index-database = {
@@ -618,8 +614,6 @@
 
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak";
-
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lanzaboote = {
@@ -792,15 +786,6 @@
     #     flake-parts.follows = "flake-parts";
     #   };
     # };
-
-    tailscalesd = {
-      url = "github:tomasharkema/tailscalesd";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
 
     nixos-recovery = {
       url = "https://flakehub.com/f/tomasharkema/nixos-recovery/0.0.*.tar.gz";

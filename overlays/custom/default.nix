@@ -15,7 +15,6 @@
 
   docset = inputs.nixos-dash-docset.packages."${prev.system}".docset;
 
-  tailscalesd = inputs.tailscalesd.packages."${prev.system}".tailscalesd;
   tsui = inputs.tsui.packages."${prev.system}".tsui;
 
   piratebay = inputs.piratebay.packages."${prev.system}".default;

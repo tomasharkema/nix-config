@@ -2157,7 +2157,6 @@
         "snowfall-flake": "snowfall-flake",
         "snowfall-lib": "snowfall-lib",
         "systems": "systems_10",
-        "tailscalesd": "tailscalesd",
         "treefmt-nix": "treefmt-nix_2",
         "tsui": "tsui",
         "vscode-server": "vscode-server",
@@ -2471,29 +2470,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "tailscalesd": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1722297447,
-        "narHash": "sha256-HyKYrqy2pdFB0ze00XJ93zyY5mdps6FQ2a52E3iL4IQ=",
-        "owner": "tomasharkema",
-        "repo": "tailscalesd",
-        "rev": "6e81b695cfbc05f0d1b8d98b53548679b012affa",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tomasharkema",
-        "repo": "tailscalesd",
         "type": "github"
       }
     },
