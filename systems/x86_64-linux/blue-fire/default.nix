@@ -231,9 +231,13 @@ in {
       };
     };
 
-    services.hypervisor = {
-      enable = true;
-      # bridgeInterfaces = [ "eno1" ];
+    services = {
+      hypervisor = {
+        # enable = true;
+        # bridgeInterfaces = [ "eno1" ];
+      };
+
+      xserver.videoDrivers = ["nvidia"];
     };
 
     environment.systemPackages = with pkgs; [
@@ -268,6 +272,8 @@ in {
       i2c.enable = true;
       enableAllFirmware = true;
       enableRedistributableFirmware = true;
+
+      nvidia-container-toolkit.enable = true;
 
       nvidia = {
         modesetting.enable = true;

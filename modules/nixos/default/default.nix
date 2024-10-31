@@ -38,11 +38,12 @@
     };
 
     system = {
-      # switch = {
-      #   enable = false;
-      #   enableNg = true;
-      # };
+      switch = {
+        enable = false;
+        enableNg = true;
+      };
     };
+
     virtualisation.spiceUSBRedirection.enable = true;
 
     zramSwap = {
