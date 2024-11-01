@@ -39,7 +39,7 @@
       # usbip.enable = true;
       netdata.enable = true;
       unified-remote.enable = true;
-      # cec.enable = true;
+      cec.enable = true;
     };
 
     disks.btrfs = {
@@ -57,11 +57,10 @@
       low-power.enable = true;
       ecrypt.enable = true;
       hardware = {
-        intel.enable = true;
+        # intel.enable = true;
         # tpm.enable = true;
         secure-boot.enable = true;
         laptop.enable = true;
-        # nvidia.enable = true;
         remote-unlock.enable = false;
         bluetooth.enable = true;
 
@@ -89,12 +88,12 @@
       };
     };
 
-    zramSwap = {enable = true;};
+    zramSwap = {
+      enable = true;
+    };
 
     boot = {
-      kernelModules = [
-        "i915"
-      ];
+      kernelModules = ["i915"];
       tmp = {
         useTmpfs = true;
       };
