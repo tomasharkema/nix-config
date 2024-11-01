@@ -5,135 +5,137 @@
 }:
 with pkgs; {
   config = {
-    home.packages = with pkgs; [
-      ssh-tools
-      tg
-      wiki-tui
-      tran
-      lazycli
-      trash-cli
-      gtrash
-      rmtrash
-      grex
-      dasht
-      ipcalc
-      sshs
-      # bup
-      # shallow-backup
-      # dry
-      # udisks2
-      portal
-      git
-      wget
-      curl
-      sysz
-      # netscanner
-      bandwhich
-      bashmount
-      bmon
-      # compsize
-      ctop
-      curl
-      # devtodo
-      # devdash
-      wtf
-      # fwupd
-      # fwupd-efi
-      # hw-probe
-      # kmon
-      lazydocker
-      # lm_sensors
-      # ncdu
-      # nfs-utils
+    home.packages = with pkgs; ((lib.optionals pkgs.stdenv.isLinux [
+        ftop
+      ])
+      ++ [
+        ssh-tools
+        tg
+        wiki-tui
+        tran
+        lazycli
+        trash-cli
+        gtrash
+        rmtrash
+        grex
+        dasht
+        ipcalc
+        sshs
+        # bup
+        # shallow-backup
+        # dry
+        # udisks2
+        portal
+        git
+        wget
+        curl
+        sysz
+        # netscanner
+        bandwhich
+        bashmount
+        bmon
+        # compsize
+        ctop
+        curl
+        # devtodo
+        # devdash
+        wtf
+        # fwupd
+        # fwupd-efi
+        # hw-probe
+        # kmon
+        lazydocker
+        # lm_sensors
+        # ncdu
+        # nfs-utils
 
-      openldap
-      # pciutils
-      pv
-      sshportal
-      systemctl-tui
-      # tiptop
-      # tpm-tools
-      # udiskie
-      tremc
-      # usermount
-      viddy
-      wget
-      nix-top
-      # nixos-anywhere
-      lnav
-      # mattermost-desktop
-      # tg
-      # _1password
-      # thefuck
-      antidote
-      # autojump
-      bash
-      bat
-      bottom
-      piratebay
-      bunyan-rs
-      cheat
-      coreutils
-      ctop
-      curl
-      curlie
-      delta
-      direnv
-      dnsutils
-      dogdns
-      du-dust
-      eza
-      fd
-      fpp
-      fx
+        openldap
+        # pciutils
+        pv
+        sshportal
+        systemctl-tui
+        # tiptop
+        # tpm-tools
+        # udiskie
+        tremc
+        # usermount
+        viddy
+        wget
+        nix-top
+        # nixos-anywhere
+        lnav
+        # mattermost-desktop
+        # tg
+        # _1password
+        # thefuck
+        antidote
+        # autojump
+        bash
+        bat
+        bottom
+        piratebay
+        bunyan-rs
+        cheat
+        coreutils
+        ctop
+        curl
+        curlie
+        delta
+        direnv
+        dnsutils
+        dogdns
+        du-dust
+        eza
+        fd
+        fpp
+        fx
 
-      git
-      git-lfs
-      gping
+        git
+        git-lfs
+        gping
 
-      httpie
-      iftop
-      ftop
-      ipmitool
-      just
-      # keybase
-      ldns
-      lolcat
-      lsd
-      manix
+        httpie
+        iftop
+        ipmitool
+        just
+        # keybase
+        ldns
+        lolcat
+        lsd
+        manix
 
-      mcfly
-      morph
-      # mosh
-      # guardian-agent
-      mtr
-      multitail
-      navi
-      # ncdu
-      neofetch
-      netdiscover
-      nnn
-      nodejs
-      patchelf
-      procs
-      pv
-      python3
-      screen
-      silver-searcher
+        mcfly
+        morph
+        # mosh
+        # guardian-agent
+        mtr
+        multitail
+        navi
+        # ncdu
+        neofetch
+        netdiscover
+        nnn
+        nodejs
+        patchelf
+        procs
+        pv
+        python3
+        screen
+        silver-searcher
 
-      ssh-to-age
-      starship
-      tldr
-      tmate
-      tree
-      unrar
-      unzip
-      wget
-      xz
-      yq
-      zip
-      zsh
-    ];
+        ssh-to-age
+        starship
+        tldr
+        tmate
+        tree
+        unrar
+        unzip
+        wget
+        xz
+        yq
+        zip
+        zsh
+      ]);
   };
   # home.packages = with pkgs; [
   #   # moonlight
