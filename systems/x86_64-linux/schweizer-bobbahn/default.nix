@@ -16,7 +16,7 @@
 
   config = {
     age.rekey = {
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIa7OowjESNuouZx/QVFryBWjjEHphKDZDq4hOD4C5xS root@schweizer-bobbahn";
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBy+j4vcQjf48YKMWep+PgKOq0HxeUdxYoZfIVSJi/pG root@schweizer-bobbahn";
     };
 
     powerManagement.enable = true;
