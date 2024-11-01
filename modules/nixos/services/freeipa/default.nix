@@ -8,7 +8,7 @@
 in {
   options.services.freeipa = {enable = lib.mkEnableOption "freeipa";};
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf false {
     apps = {
       ipa.enable = false;
 

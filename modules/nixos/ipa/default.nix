@@ -4,14 +4,16 @@
   lib,
   inputs,
   ...
-}: let
+}:
+let
   cfg = config.apps.ipa;
 
   chromePolicy = pkgs.writers.writeJSON "harkema.json" {
     AuthServerWhitelist = "*.harkema.io";
     AuthServerAllowlist = "*.harkema.io";
   };
-in {
+in
+{
   options = {
     apps.ipa = {
       enable = lib.mkEnableOption "enable ipa";
@@ -19,7 +21,7 @@ in {
     # services.intune.enable = mkEnableOption "intune";
   };
 
-  config = lib.mkIf (cfg.enable) {
+  config = lib.mkIf (cfg.enable && false) {
     environment = {
       systemPackages = with pkgs; [
         ldapvi
@@ -79,10 +81,14 @@ in {
 
     # FROM: https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/misc/sssd.nix
     systemd = {
-      packages = [pkgs.realmd];
+      packages = [ pkgs.realmd ];
 
       services = {
-        sssd.before = ["nfs-idmapd.service" "rpc-gssd.service" "rpc-svcgssd.service"];
+        sssd.before = [
+          "nfs-idmapd.service"
+          "rpc-gssd.service"
+          "rpc-svcgssd.service"
+        ];
 
         sssd-kcm = {
           # enable = true;
@@ -111,21 +117,21 @@ in {
     };
 
     security = {
-      sudo.package = pkgs.sudo.override {withSssd = true;};
+      sudo.package = pkgs.sudo.override { withSssd = true; };
       krb5.settings.libdefaults.default_ccache_name = "KCM:";
 
-      pki.certificateFiles = [config.security.ipa.certificate];
+      pki.certificateFiles = [ config.security.ipa.certificate ];
     };
 
     environment.etc."nsswitch.conf".text = ''
-      sudoers:   ${lib.concatStringsSep " " ["sss"]}
-      netgroup:  ${lib.concatStringsSep " " ["sss"]}
+      sudoers:   ${lib.concatStringsSep " " [ "sss" ]}
+      netgroup:  ${lib.concatStringsSep " " [ "sss" ]}
     '';
 
     services = {
       dbus = {
         enable = true;
-        packages = [pkgs.realmd];
+        packages = [ pkgs.realmd ];
       };
 
       nscd = {
@@ -195,7 +201,7 @@ in {
     #   ipa host-mod "$HOSTNAME.harkema.io" --sshpubkey="$(cat /etc/ssh/ssh_host_ed25519_key.pub)" || echo "REGISTER PUBKEY"
     # '';
 
-    system.nssDatabases.sudoers = ["sss"];
+    system.nssDatabases.sudoers = [ "sss" ];
 
     security = {
       ipa = {
