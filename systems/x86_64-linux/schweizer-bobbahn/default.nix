@@ -6,12 +6,12 @@
   ...
 }: {
   imports = with inputs; [
-    ./hardware-configuration.nix
+    # ./hardware-configuration.nix
 
-    nixos-hardware.nixosModules.common-cpu-intel
-    nixos-hardware.nixosModules.common-pc-ssd
-    nixos-hardware.nixosModules.common-gpu-intel
-    nixos-hardware.nixosModules.common-pc-laptop-acpi_call
+    # nixos-hardware.nixosModules.common-cpu-intel
+    # nixos-hardware.nixosModules.common-pc-ssd
+    # nixos-hardware.nixosModules.common-gpu-intel
+    # nixos-hardware.nixosModules.common-pc-laptop-acpi_call
   ];
 
   config = {
@@ -33,13 +33,14 @@
     };
 
     # apps.spotifyd.enable = true;
+    facter.reportPath = ./facter.json;
 
     apps = {
       steam.enable = false; # true;
       # usbip.enable = true;
       netdata.enable = true;
       unified-remote.enable = true;
-      cec.enable = true;
+      # cec.enable = true;
     };
 
     disks.btrfs = {
