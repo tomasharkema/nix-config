@@ -14,7 +14,7 @@ in {
   };
 
   config = {
-    age.secrets."builder-key" = {
+    age.secrets."builder-key" = lib.mkIf cfg.client.enable {
       rekeyFile = ./builder.key.age;
       generator.script = "ssh-ed25519";
     };
@@ -26,7 +26,11 @@ in {
         group = "${user}";
         # extraGroups = ["rslsync"];
         uid = 1098;
-        openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys config.age.secrets."builder-key".path];
+        openssh.authorizedKeys.keyFiles = [
+          pkgs.custom.authorized-keys
+
+          ./builder.key.pub
+        ];
       };
       groups."${user}" = {};
     };
@@ -41,7 +45,9 @@ in {
 
       buildMachines = lib.mkIf cfg.client.enable [
         {
-          hostName = "builder@blue-fire";
+          sshUser = "builder";
+          sshKey = config.age.secrets."builder-key".path;
+          hostName = "blue-fire";
           systems = ["aarch64-linux" "x86_64-linux"];
           maxJobs = 4;
           supportedFeatures = [
@@ -53,7 +59,9 @@ in {
           protocol = "ssh-ng";
         }
         {
-          hostName = "builder@enceladus";
+          sshUser = "builder";
+          sshKey = config.age.secrets."builder-key".path;
+          hostName = "enceladus";
           systems = ["aarch64-linux" "x86_64-linux"];
           maxJobs = 4;
           supportedFeatures = [
@@ -65,7 +73,9 @@ in {
           protocol = "ssh-ng";
         }
         {
-          hostName = "builder@wodan";
+          sshUser = "builder";
+          sshKey = config.age.secrets."builder-key".path;
+          hostName = "wodan";
           systems = ["aarch64-linux" "x86_64-linux"];
           maxJobs = 4;
           supportedFeatures = [
