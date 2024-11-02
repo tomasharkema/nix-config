@@ -37,6 +37,7 @@ in {
     };
 
     services = {
+      local-store.enable = true;
       throttled.enable = lib.mkForce false;
       remote-builders.server.enable = true;
       blueman.enable = true;
