@@ -22,7 +22,7 @@ in {
     users = lib.mkIf cfg.server.enable {
       users."${user}" = {
         isNormalUser = true;
-        createHome = false;
+        createHome = true;
         group = "${user}";
         # extraGroups = ["rslsync"];
         uid = 1098;
@@ -48,7 +48,10 @@ in {
           sshUser = "builder";
           sshKey = config.age.secrets."builder-key".path;
           hostName = "blue-fire";
-          systems = ["aarch64-linux" "x86_64-linux"];
+          systems = [
+            "aarch64-linux"
+            "x86_64-linux"
+          ];
           maxJobs = 4;
           supportedFeatures = [
             "kvm"
@@ -62,7 +65,10 @@ in {
           sshUser = "builder";
           sshKey = config.age.secrets."builder-key".path;
           hostName = "enceladus";
-          systems = ["aarch64-linux" "x86_64-linux"];
+          systems = [
+            "aarch64-linux"
+            "x86_64-linux"
+          ];
           maxJobs = 4;
           supportedFeatures = [
             "kvm"
@@ -76,7 +82,10 @@ in {
           sshUser = "builder";
           sshKey = config.age.secrets."builder-key".path;
           hostName = "wodan";
-          systems = ["aarch64-linux" "x86_64-linux"];
+          systems = [
+            "aarch64-linux"
+            "x86_64-linux"
+          ];
           maxJobs = 4;
           supportedFeatures = [
             "kvm"
