@@ -12,13 +12,16 @@ in {
   };
 
   config = {
-    users.users.builder = lib.mkIf cfg.server.enable {
-      isNormalUser = true;
-      createHome = false;
-      group = "builder";
-      # extraGroups = ["rslsync"];
-      uid = 1098;
-      openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+    users = {
+      users.builder = lib.mkIf cfg.server.enable {
+        isNormalUser = true;
+        createHome = false;
+        group = "builder";
+        # extraGroups = ["rslsync"];
+        uid = 1098;
+        openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+      };
+      groups.builder = {};
     };
 
     nix = {
