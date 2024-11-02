@@ -5,6 +5,8 @@
   ...
 }: let
   cfg = config.services.remote-builders;
+
+  user = "builder";
 in {
   options.services.remote-builders = {
     server.enable = lib.mkEnableOption "remote-builders server";
@@ -12,20 +14,25 @@ in {
   };
 
   config = {
-    users = {
-      users.builder = lib.mkIf cfg.server.enable {
+    age.secrets."builder-key" = {
+      rekeyFile = ./builder.key.age;
+      generator.script = "ssh-ed25519";
+    };
+
+    users = lib.mkIf cfg.server.enable {
+      users."${user}" = {
         isNormalUser = true;
         createHome = false;
-        group = "builder";
+        group = "${user}";
         # extraGroups = ["rslsync"];
         uid = 1098;
-        openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
+        openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys config.age.secrets."builder-key".path];
       };
-      groups.builder = {};
+      groups."${user}" = {};
     };
 
     nix = {
-      settings.trusted-users = lib.mkIf cfg.server.enable ["builder"];
+      settings.trusted-users = lib.mkIf cfg.server.enable ["${user}"];
 
       distributedBuilds = cfg.client.enable;
       extraOptions = ''
