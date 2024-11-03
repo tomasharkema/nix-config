@@ -145,7 +145,7 @@
           update-nix-fetchgit
           updatecli
           devcontainer
-          tailspin
+          # tailspin
           colorized-logs
           glog
           glogg
@@ -183,7 +183,7 @@
           devtodo
           dfrs
           dirdiff
-          oterm
+          # oterm
           duc
           ethtool
           # fam # unmaintained
@@ -502,9 +502,9 @@
         packageNames = [
           "sssd"
           "freeipa"
-          "mutter"
-          "gnome-shell"
-          "gnome-session"
+          # "mutter"
+          # "gnome-shell"
+          # "gnome-session"
         ];
       };
     };

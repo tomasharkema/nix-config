@@ -240,11 +240,11 @@
     },
     "crane": {
       "locked": {
-        "lastModified": 1730504891,
-        "narHash": "sha256-Fvieht4pai+Wey7terllZAKOj0YsaDP0e88NYs3K/Lo=",
+        "lastModified": 1730652660,
+        "narHash": "sha256-+XVYfmVXAiYA0FZT7ijHf555dxCe+AoAT5A6RU+6vSo=",
         "owner": "ipetkov",
         "repo": "crane",
-        "rev": "8658adcdad49b8f2c6cbf0cc3cb4b4db988f7638",
+        "rev": "a4ca93905455c07cb7e3aca95d4faf7601cba458",
         "type": "github"
       },
       "original": {
@@ -1618,6 +1618,27 @@
         "type": "github"
       }
     },
+    "nixos-nvidia-vgpu-550": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1723143546,
+        "narHash": "sha256-5ut+N0COlk6T3SZj43zaBT3Fh6wQpV7+hjjhPpr+wg8=",
+        "owner": "Yeshey",
+        "repo": "nixos-nvidia-vgpu",
+        "rev": "6cd95977763d8961ef88eb0147b6397a3ff4811e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Yeshey",
+        "ref": "550.90",
+        "repo": "nixos-nvidia-vgpu",
+        "type": "github"
+      }
+    },
     "nixos-recovery": {
       "inputs": {
         "flake-parts": [
@@ -2161,6 +2182,7 @@
         "nixos-facter-modules": "nixos-facter-modules",
         "nixos-hardware": "nixos-hardware",
         "nixos-nvidia-vgpu": "nixos-nvidia-vgpu",
+        "nixos-nvidia-vgpu-550": "nixos-nvidia-vgpu-550",
         "nixos-recovery": "nixos-recovery",
         "nixpkgs": "nixpkgs_4",
         "nixvim": "nixvim",
