@@ -128,15 +128,15 @@ in {
         packages = [pkgs.realmd];
       };
 
-      nscd = {
-        enableNsncd = true;
-        config = ''
-          enable-cache hosts yes
-          enable-cache passwd no
-          enable-cache group no
-          enable-cache netgroup no
-        '';
-      };
+      # nscd = {
+      #   enableNsncd = true;
+      #   config = ''
+      #     enable-cache hosts yes
+      #     enable-cache passwd no
+      #     enable-cache group no
+      #     enable-cache netgroup no
+      #   '';
+      # };
 
       sssd = {
         enable = true;

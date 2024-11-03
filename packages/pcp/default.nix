@@ -9,6 +9,8 @@
   libtool,
   gettext,
   python3,
+  autoconf,
+  automake,
 }:
 stdenv.mkDerivation rec {
   pname = "pcp";
@@ -25,9 +27,8 @@ stdenv.mkDerivation rec {
     pkg-config
     bintools
     # autoreconfHook
-    libtool
-    gettext
-    python3
+    autoconf
+    automake
   ];
 
   buildInputs = [

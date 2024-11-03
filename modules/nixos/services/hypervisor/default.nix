@@ -82,6 +82,8 @@ in {
       ];
     };
 
+    systemd.packages = [pkgs.custom.libvirt-dbus];
+
     environment.etc = {
       # "sasl2/libvirt.conf" = {
       #   text = ''

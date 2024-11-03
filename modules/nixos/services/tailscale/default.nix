@@ -67,7 +67,7 @@ in {
         publish.addresses = true;
         publish.domain = true;
         publish.hinfo = true;
-        nssmdns = true;
+        nssmdns4 = true;
         publish.workstation = true;
         openFirewall = true;
         # reflector = true;
