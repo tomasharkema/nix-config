@@ -138,6 +138,10 @@
       enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          tcptrack
+          netproc
+          netop
+          nethogs
           wavemon
           strace
           lrzsz

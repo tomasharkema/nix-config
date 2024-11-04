@@ -30,6 +30,21 @@ in {
       # spotifyd.enable = true;
     };
 
+    virtualisation = {
+      oci-containers.containers = {
+        netbootxyz = {
+          image = "ghcr.io/linuxserver/netbootxyz";
+
+          autoStart = true;
+          extraOptions = ["--network=host"];
+          volumes = [
+            "/var/lib/netboot/config:/config"
+            "/var/lib/netboot/assets:/assets"
+          ];
+        };
+      };
+    };
+
     hardware = {
       cpu.intel.updateMicrocode = true;
       bluetooth.enable = true;
