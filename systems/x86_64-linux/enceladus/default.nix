@@ -36,7 +36,7 @@ in {
           image = "ghcr.io/linuxserver/netbootxyz";
 
           autoStart = true;
-          extraOptions = ["--network=host"];
+
           volumes = [
             "/var/lib/netboot/config:/config"
             "/var/lib/netboot/assets:/assets"
