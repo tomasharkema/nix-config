@@ -22,6 +22,14 @@ in {
       netatop.enable = true;
     };
     environment.systemPackages = [pkgs.atop];
+
+    boot = {
+      extraModulePackages = [
+        config.boot.kernelPackages.netatop
+      ];
+      kernelModules = ["netatop"];
+    };
+
     # systemd.services.atophttpd = mkIf cfg.httpd {
     #   enable = true;
     #   description = "atophttpd";
