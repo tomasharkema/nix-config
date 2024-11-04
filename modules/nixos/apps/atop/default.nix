@@ -13,13 +13,13 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.atop = {
-      # atopRotateTimer.enable = true;
-      # enable = true;
+      atopRotateTimer.enable = true;
+      enable = true;
       setuidWrapper.enable = true;
-      # atopService.enable = true;
-      # atopacctService.enable = true;
-      # atopgpu.enable = true;
-      # netatop.enable = true;
+      atopService.enable = true;
+      atopacctService.enable = true;
+      atopgpu.enable = true;
+      netatop.enable = true;
     };
     environment.systemPackages = [pkgs.atop];
     # systemd.services.atophttpd = mkIf cfg.httpd {
