@@ -149,7 +149,7 @@
           enable = true;
           copyVGPUProfiles = {
             # RTX2080     Quadro RTX 4000
-            "1E87:0000" = "1EB1:0000";
+            # "1E87:0000" = "1EB1:0000";
           };
         };
       };
@@ -206,6 +206,7 @@
       };
       binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = ["ntfs"];
+
       kernelModules = [
         "i2c-dev"
         "ixgbe"
@@ -233,8 +234,8 @@
         "intel_iommu=on"
         "iommu=pt"
 
-        "drm.edid_firmware=HDMI-A-1:edid/samsung-q800t-hdmi2.1"
-        "video=HDMI-A-1:e"
+        # "drm.edid_firmware=HDMI-A-1:edid/samsung-q800t-hdmi2.1"
+        # "video=HDMI-A-1:e"
       ];
       blacklistedKernelModules = lib.mkDefault ["nouveau"];
       #extraModprobeConfig = ''
