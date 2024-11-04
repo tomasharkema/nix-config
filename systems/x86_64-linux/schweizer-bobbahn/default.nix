@@ -21,9 +21,9 @@
 
     powerManagement.enable = true;
 
-    environment = {
-      systemPackages = with pkgs; [intel-gpu-tools];
-    };
+    #    environment = {
+    #      systemPackages = with pkgs; [intel-gpu-tools];
+    #    };
 
     gui = {
       enable = true;
