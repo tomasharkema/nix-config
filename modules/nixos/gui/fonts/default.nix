@@ -97,7 +97,7 @@
         open-sans
         proggyfonts
         roboto-mono
-        custom.san-francisco
+        # custom.san-francisco
         ubuntu_font_family
         vegur
       ];

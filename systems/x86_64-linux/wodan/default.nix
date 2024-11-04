@@ -9,19 +9,17 @@
     ./hardware-configuration.nix
     nixos-hardware.nixosModules.common-gpu-intel
     nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
-
-    # nixos-nvidia-vgpu-newer.nixosModules.nvidia-vgpu
+    nixos-nvidia-vgpu-550.nixosModules.nvidia-vgpu
   ];
 
   config = {
     age.rekey = {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII8iCdfina2waZYTj0toLyknDT3eJmMtPsVN3iFgnGUR root@wodan";
     };
-
     # btrfs balance -dconvert=raid0 -mconvert=raid1 /home
 
     environment.systemPackages = with pkgs; [
-      # davinci-resolve
+      davinci-resolve
       ntfs2btrfs
       glxinfo
       apfsprogs
@@ -147,21 +145,13 @@
         # forceFullCompositionPipeline = true;
         # open = false;
 
-        # vgpu = {
-        #   enable = true;
-        #   vgpu_driver_src.sha256 = "0z9r6lyx35fqjwcc2d1l7ip6q9jq11xl352nh6v47ajvp2flxly9";
-        #   # pinKernel = true;
-        #   # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
-        #   # path is '/nix/store/2l7n0kg9yz1v2lkilh8154q35cghgj1y-NVIDIA-GRID-Linux-KVM-535.161.05-535.161.08-538.46.zip'
-        #   # 02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r
-
-        #   # useMyDriver.vgpu-driver-version = "535.161.05";
-
-        #   copyVGPUProfiles = {
-        #     # RTX2080     Quadro RTX 4000
-        #     "1E87:0000" = "1EB1:0000";
-        #   };
-        # };
+        vgpu = {
+          enable = true;
+          copyVGPUProfiles = {
+            # RTX2080     Quadro RTX 4000
+            # "1E87:0000" = "1EB1:0000";
+          };
+        };
       };
     };
 
@@ -174,10 +164,10 @@
         nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
-        nvidia = {
-          enable = true;
-          open = true;
-        };
+        # nvidia = {
+        #   enable = true;
+        #   open = true;
+        # };
         remote-unlock.enable = true;
         monitor.enable = true;
         disable-sleep.enable = true;
@@ -216,6 +206,7 @@
       };
       binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = ["ntfs"];
+
       kernelModules = [
         "i2c-dev"
         "ixgbe"
@@ -243,8 +234,8 @@
         "intel_iommu=on"
         "iommu=pt"
 
-        "drm.edid_firmware=HDMI-A-1:edid/samsung-q800t-hdmi2.1"
-        "video=HDMI-A-1:e"
+        # "drm.edid_firmware=HDMI-A-1:edid/samsung-q800t-hdmi2.1"
+        # "video=HDMI-A-1:e"
       ];
       blacklistedKernelModules = lib.mkDefault ["nouveau"];
       #extraModprobeConfig = ''

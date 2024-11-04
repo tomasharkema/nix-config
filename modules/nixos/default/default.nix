@@ -105,6 +105,7 @@
       scx = {
         enable = !(config.traits.server.enable) && pkgs.stdenvNoCC.isx86_64;
         scheduler = "scx_bpfland";
+        package = pkgs.scx.full;
       };
     };
 
@@ -138,6 +139,10 @@
       enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          tcptrack
+          netproc
+          netop
+          nethogs
           wavemon
           strace
           lrzsz
@@ -145,7 +150,7 @@
           update-nix-fetchgit
           updatecli
           devcontainer
-          tailspin
+          # tailspin
           colorized-logs
           glog
           glogg
@@ -183,7 +188,8 @@
           devtodo
           dfrs
           dirdiff
-          oterm
+          # oterm
+          ssh-import-id
           duc
           ethtool
           # fam # unmaintained
@@ -502,9 +508,9 @@
         packageNames = [
           "sssd"
           "freeipa"
-          "mutter"
-          "gnome-shell"
-          "gnome-session"
+          # "mutter"
+          # "gnome-shell"
+          # "gnome-session"
         ];
       };
     };
