@@ -7,7 +7,6 @@
 }: {
   imports = with inputs; [
     nixos-hardware.nixosModules.microsoft-surface-pro-intel
-
     nixos-hardware.nixosModules.microsoft-surface-common
   ];
 
@@ -26,6 +25,10 @@
       # btrbk.enable = true;
       snapper.enable = true; # false;
     };
+
+    # microsoft-surface = {
+    #   surface-control.enable = true;
+    # };
 
     gui = {
       enable = true;
@@ -60,11 +63,11 @@
     };
 
     chaotic = {
-      scx.enable = pkgs.stdenvNoCC.isx86_64; # by default uses scx_rustland scheduler
+      scx.enable = lib.mkForce false; # pkgs.stdenvNoCC.isx86_64; # by default uses scx_rustland scheduler
     };
 
     boot = {
-      kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
+      # kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
       recovery = {
         enable = true;
         install = true;
