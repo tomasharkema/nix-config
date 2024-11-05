@@ -66,7 +66,6 @@ in {
       git
       curl
       wget
-      atop
       btop
       htop
       (inputs.self.packages."${pkgs.system}".installer-script.override {

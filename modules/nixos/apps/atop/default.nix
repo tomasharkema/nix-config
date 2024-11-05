@@ -24,9 +24,9 @@ in {
     environment.systemPackages = [pkgs.atop];
 
     boot = {
-      # extraModulePackages = [
-      #   config.boot.kernelPackages.netatop
-      # ];
+      extraModulePackages = [
+        config.boot.kernelPackages.netatop
+      ];
       # kernelModules = ["netatop"];
     };
 
