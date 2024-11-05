@@ -50,11 +50,11 @@
         enable = true;
         # hidpi.enable = true;
       };
-      gamemode.enable = true;
+      # gamemode.enable = true;
       quiet-boot.enable = true;
     };
 
-    virtualisation.waydroid.enable = true;
+    # virtualisation.waydroid.enable = true;
 
     traits = {
       hardware = {
