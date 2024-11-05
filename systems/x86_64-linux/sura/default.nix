@@ -26,6 +26,11 @@
       snapper.enable = true; # false;
     };
 
+    services = {
+      usbguard.enable = lib.mkForce false;
+      tlp.enable = lib.mkForce false;
+    };
+
     # microsoft-surface = {
     #   surface-control.enable = true;
     # };
