@@ -19,15 +19,15 @@ in {
       atopService.enable = true;
       atopacctService.enable = true;
       atopgpu.enable = true;
-      netatop.enable = true;
+      # netatop.enable = true;
     };
     environment.systemPackages = [pkgs.atop];
 
     boot = {
-      extraModulePackages = [
-        config.boot.kernelPackages.netatop
-      ];
-      kernelModules = ["netatop"];
+      # extraModulePackages = [
+      #   config.boot.kernelPackages.netatop
+      # ];
+      # kernelModules = ["netatop"];
     };
 
     # systemd.services.atophttpd = mkIf cfg.httpd {
