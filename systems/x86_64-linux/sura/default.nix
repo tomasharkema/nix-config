@@ -27,6 +27,9 @@
     };
 
     services = {
+      remote-builders.client.enable = true;
+      usbmuxd.enable = true;
+
       usbguard.enable = lib.mkForce false;
       tlp.enable = lib.mkForce false;
     };
