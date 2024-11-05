@@ -29,10 +29,13 @@
     services = {
       remote-builders.client.enable = true;
       usbmuxd.enable = true;
+      resilio.enable = lib.mkForce false;
 
       usbguard.enable = lib.mkForce false;
       tlp.enable = lib.mkForce false;
     };
+
+    apps.attic.enable = lib.mkForce false;
 
     # microsoft-surface = {
     #   surface-control.enable = true;
