@@ -47,7 +47,7 @@
         tpm.enable = true;
         secure-boot.enable = true;
         laptop.enable = true;
-        intel.enable = true;
+        # intel.enable = true;
         bluetooth.enable = true;
       };
     };
