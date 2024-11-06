@@ -61,11 +61,11 @@
             mountpoint = "/var/lib/containers";
           };
           "snapshots" = lib.mkIf cfg.newSubvolumes {
-            mountOptions = ["noatime" "compress=zstd" "discard=async"];
+            mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/.snapshots";
           };
           "home-snapshots" = lib.mkIf cfg.newSubvolumes {
-            mountOptions = ["noatime" "compress=zstd" "discard=async"];
+            mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/home/.snapshots";
           };
           "steam" = lib.mkIf cfg.newSubvolumes {
@@ -79,7 +79,7 @@
             mountpoint = "/var/lib/flatpak";
           };
           "log" = lib.mkIf cfg.newSubvolumes {
-            mountOptions = ["noatime" "compress=zstd" "discard=async"];
+            mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/var/log";
           };
         };

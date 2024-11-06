@@ -13,7 +13,7 @@
   config = {
     age = {
       rekey = {
-        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDLsnjNNjXwDxzsb0i/cExiPKnv75IvPEIMbuBAWFPQV root@sura";
+        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINd5H6IZiTv8r7FCxgM+GoOzjFLYnax54PPI+vGNpOos root@sura";
       };
     };
 
@@ -37,6 +37,12 @@
 
     apps.attic.enable = lib.mkForce false;
 
+    home-manager.users.tomas.dconf.settings = {
+      "org/gnome/shell" = {
+        disable-user-extensions = true;
+      };
+    };
+
     # microsoft-surface = {
     #   surface-control.enable = true;
     # };
@@ -57,6 +63,7 @@
     # virtualisation.waydroid.enable = true;
 
     traits = {
+      low-power.enable = true;
       hardware = {
         tpm.enable = true;
         secure-boot.enable = true;
