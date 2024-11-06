@@ -91,7 +91,7 @@
           config.user.name
         ];
       in {
-        package = pkgs.nixVersions.latest;
+        # package = pkgs.nixVersions.latest;
 
         # nixPath = [
         #   "nixpkgs=${inputs.nixpkgs}"
