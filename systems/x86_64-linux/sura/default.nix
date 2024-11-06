@@ -33,6 +33,7 @@
 
       usbguard.enable = lib.mkForce false;
       tlp.enable = lib.mkForce false;
+      netdata.enable = lib.mkForce false;
     };
 
     apps.attic.enable = lib.mkForce false;
@@ -65,7 +66,7 @@
     traits = {
       low-power.enable = true;
       hardware = {
-        tpm.enable = true;
+        # tpm.enable = true;
         secure-boot.enable = true;
         laptop.enable = true;
         # intel.enable = true;
