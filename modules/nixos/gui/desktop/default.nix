@@ -27,6 +27,7 @@ in {
           # custom.anydesk
           tilix
           usbguard-notifier
+          ptyxis
         ];
       };
       # xrdp = mkIf cfg.rdp.enable {
@@ -134,6 +135,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        ptyxis
         onioncircuits
         onionshare-gui
         pods
@@ -255,6 +257,7 @@ in {
           # pkgs.custom.anydesk
           pkgs.usbguard-notifier
           config.system.build.chromium
+          pkgs.ptyxis
         ]
         ++ (lib.optional pkgs.stdenv.isx86_64 pkgs.widevine-cdm);
     };

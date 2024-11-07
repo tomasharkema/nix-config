@@ -6,34 +6,38 @@
 }: let
   cfg = config.gui."media-center";
 
-  kodi = pkgs.kodi-wayland.withPackages (pkgs:
-    with pkgs; [
-      kodi
-      inputstreamhelper
-      inputstream-adaptive
-      inputstream-ffmpegdirect
-      inputstream-rtmp
-      inputstreamhelper
-      inputstream-adaptive
-      inputstream-ffmpegdirect
-      inputstream-rtmp
-      # vfs-libarchive
-      # vfs-rar
-      # youtube
-      # sendtokodi
-      websocket
-      # urllib3
-      certifi
-      keymap
-      # trakt
-      future
-      urllib3
-      # pvr-hts
-      signals
-      iagl
-    ]);
+  kodi = pkgs.kodi-wayland.withPackages (
+    pkgs:
+      with pkgs; [
+        kodi
+        inputstreamhelper
+        inputstream-adaptive
+        inputstream-ffmpegdirect
+        inputstream-rtmp
+        inputstreamhelper
+        inputstream-adaptive
+        inputstream-ffmpegdirect
+        inputstream-rtmp
+        # vfs-libarchive
+        # vfs-rar
+        # youtube
+        # sendtokodi
+        websocket
+        # urllib3
+        certifi
+        keymap
+        # trakt
+        future
+        urllib3
+        # pvr-hts
+        signals
+        iagl
+      ]
+  );
 in {
-  options.gui."media-center" = {enable = lib.mkEnableOption "gui.media-center";};
+  options.gui."media-center" = {
+    enable = lib.mkEnableOption "gui.media-center";
+  };
 
   config = lib.mkIf cfg.enable {
     system.nixos.tags = ["media-center"];
@@ -55,7 +59,9 @@ in {
         enable = true;
       };
 
-      kmscon = {enable = lib.mkForce false;};
+      kmscon = {
+        enable = lib.mkForce false;
+      };
 
       pipewire = {
         enable = true;
@@ -129,7 +135,7 @@ in {
     environment.systemPackages = with pkgs; [
       celluloid
       pwvucontrol
-      kodi-cli
+      # kodi-cli
       libcec_platform
       libcec
 
@@ -138,13 +144,20 @@ in {
 
     boot = {
       kernelParams = ["quiet"];
-      plymouth = {enable = true;};
+      plymouth = {
+        enable = true;
+      };
     };
 
     users.users.media = {
       isNormalUser = true;
       uid = 1100;
-      extraGroups = ["data" "video" "audio" "input"];
+      extraGroups = [
+        "data"
+        "video"
+        "audio"
+        "input"
+      ];
     };
 
     # home-manager = {

@@ -36,10 +36,16 @@ in {
           image = "ghcr.io/linuxserver/netbootxyz";
 
           autoStart = true;
-          extraOptions = ["--network=host"];
+
           volumes = [
             "/var/lib/netboot/config:/config"
             "/var/lib/netboot/assets:/assets"
+          ];
+
+          ports = [
+            "3000:3000"
+            "69:69/udp"
+            "8083:80"
           ];
         };
       };

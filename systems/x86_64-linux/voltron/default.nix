@@ -22,9 +22,7 @@
     # Setup script config
     BIN_DIR=/run/current-system/sw/bin
   '';
-  xmm7360 = pkgs.custom.xmm7360-pci.override {
-    kernel = config.boot.kernelPackages.kernel;
-  };
+  xmm7360 = pkgs.custom.xmm7360-pci.override {kernel = config.boot.kernelPackages.kernel;};
 in {
   imports = with inputs; [
     # ./hardware-configuration.nix
@@ -75,7 +73,7 @@ in {
         ccid
         gnupg
         custom.distrib-dl
-        davinci-resolve
+        # davinci-resolve
         keybase-gui
         # calibre
         glxinfo
@@ -200,7 +198,10 @@ in {
           spec = "UUID=89101fa6-b1b1-4922-9ff7-d2d47cba14bd";
           hashTableSizeMB = 1024;
           verbosity = "crit";
-          extraOptions = ["--loadavg-target" "2.0"];
+          extraOptions = [
+            "--loadavg-target"
+            "2.0"
+          ];
         };
       };
 
@@ -235,9 +236,7 @@ in {
       kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
       # resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
-      extraModulePackages = [
-        xmm7360
-      ];
+      extraModulePackages = [xmm7360];
 
       tmp = {
         useTmpfs = true;

@@ -26,10 +26,11 @@
 in {
   config = {
     nix =
-      {
-        package = pkgs.nixVersions.nix_2_23; # .latest;
-      }
-      // import ./config.nix;
+      # {
+      #   package = pkgs.nixVersions.nix_2_23; # .latest;
+      # }
+      # //
+      import ./config.nix;
     # boot.supportedFilesystems = ["bcachefs"];
     users = {
       users = {
@@ -66,7 +67,6 @@ in {
       git
       curl
       wget
-      atop
       btop
       htop
       (inputs.self.packages."${pkgs.system}".installer-script.override {

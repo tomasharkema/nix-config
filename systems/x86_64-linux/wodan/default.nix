@@ -123,17 +123,17 @@
     # console.earlySetup = true;
 
     hardware = {
-      firmware = let
-        rawFile = pkgs.fetchurl {
-          url = "https://git.linuxtv.org/edid-decode.git/plain/data/samsung-q800t-hdmi2.1";
-          sha256 = "0r3v1mzpkalgdhnnjfq8vbg4ian3pwziv0klb80zw89w1msfm9nh";
-        };
-      in [
-        (pkgs.runCommandNoCC "samsung-q800t-hdmi2.1" {} ''
-          mkdir -p $out/lib/firmware/edid/
-          cp "${rawFile}" $out/lib/firmware/edid/samsung-q800t-hdmi2.1
-        '')
-      ];
+      # firmware = let
+      #   rawFile = pkgs.fetchurl {
+      #     url = "https://git.linuxtv.org/edid-decode.git/plain/data/samsung-q800t-hdmi2.1";
+      #     sha256 = "0r3v1mzpkalgdhnnjfq8vbg4ian3pwziv0klb80zw89w1msfm9nh";
+      #   };
+      # in [
+      #   (pkgs.runCommandNoCC "samsung-q800t-hdmi2.1" {} ''
+      #     mkdir -p $out/lib/firmware/edid/
+      #     cp "${rawFile}" $out/lib/firmware/edid/samsung-q800t-hdmi2.1
+      #   '')
+      # ];
 
       cpu.intel.updateMicrocode = true;
       i2c.enable = true;
@@ -147,9 +147,10 @@
 
         vgpu = {
           enable = true;
+          pinKernel = true;
           copyVGPUProfiles = {
             # RTX2080     Quadro RTX 4000
-            # "1E87:0000" = "1EB1:0000";
+            "1E87:0000" = "1EB1:0000";
           };
         };
       };
