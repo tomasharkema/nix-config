@@ -11,6 +11,17 @@
   python3,
   autoconf,
   automake,
+  nettools,
+  clang,
+  binutils,
+  gnused,
+  coreutils,
+  libsForQt5,
+  bzip2,
+  gzip,
+  gnutar,
+  libsystemtap,
+  arocc,
 }:
 stdenv.mkDerivation rec {
   pname = "pcp";
@@ -25,17 +36,46 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [
     pkg-config
-    bintools
+    # bintools
     # autoreconfHook
-    autoconf
-    automake
+    # autoconf
+    gettext
+    # automake
+    libtool
+    libsForQt5.full
+    arocc
   ];
 
   buildInputs = [
+    clang
     which
-    bintools
     libtool
+    arocc
+    libsForQt5.full
+    libsystemtap
+    # bintools
+    # libtool
+    # autoreconfHook
     gettext
+    nettools
+  ];
+
+  # bintools = binutils.bintools;
+
+  configureFlags = [
+    "--prefix=/usr"
+    "--libexecdir=/usr/lib"
+    "--sysconfdir=/etc"
+    "--localstatedir=/var"
+    "--with-rcdir=/etc/init.d"
+    "--with-sysconfigdir=/etc/default"
+    "--with-zip=${gzip}/bin/gzip"
+    "--with-tar=${gnutar}/bin/tar"
+    "SED=${gnused}/bin/sed"
+    "ECHO=${coreutils}/bin/echo"
+    "QMAKE=${libsForQt5.full}/bin/qmake"
+    "MAKEDEPEND=/bin/true"
+    "BZIP2=${bzip2}/bin/bzip2"
   ];
 
   meta = with lib; {
