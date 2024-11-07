@@ -88,7 +88,7 @@
       beesd.filesystems = {
         root = {
           spec = "UUID=f3558990-77b0-4113-b45c-3d2da3f46c14";
-          hashTableSizeMB = 4096;
+          hashTableSizeMB = 1024;
           verbosity = "crit";
           extraOptions = [
             "--loadavg-target"

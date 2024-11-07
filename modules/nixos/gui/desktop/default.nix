@@ -103,6 +103,8 @@ in {
       # };
     };
 
+    boot.extraModulePackages = [config.boot.kernelPackages.akvcam];
+
     xdg.portal.extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];

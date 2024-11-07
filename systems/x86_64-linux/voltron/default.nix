@@ -198,7 +198,7 @@ in {
       beesd.filesystems = {
         root = {
           spec = "UUID=89101fa6-b1b1-4922-9ff7-d2d47cba14bd";
-          hashTableSizeMB = 4096;
+          hashTableSizeMB = 1024;
           verbosity = "crit";
           extraOptions = ["--loadavg-target" "2.0"];
         };

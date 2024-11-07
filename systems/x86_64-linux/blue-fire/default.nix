@@ -346,7 +346,9 @@ in {
           # "sd_mod"
         ];
         kernelModules = [
+          # "pci-me"
           "kvm-intel"
+
           "uinput"
           #          "tpm_rng"
           "ipmi_ssif"
@@ -366,6 +368,7 @@ in {
         ];
       };
       kernelModules = [
+        "pci-me"
         "coretemp"
         "kvm-intel"
         "uinput"
@@ -388,7 +391,9 @@ in {
         # "nvidia_uvm"
         # "nvidia_drm"
       ];
-      # extraModulePackages = [pkgs.freeipmi];
+
+      extraModulePackages = [config.boot.kernelPackages.sysdig];
+
       systemd.services."serial-getty@ttyS2" = {
         #   overrideStrategy = "asDropin";
         #   serviceConfig = let
