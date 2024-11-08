@@ -720,11 +720,14 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    # nix-virt = {
-    #   url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
+    nix-virt = {
+      url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
 
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-ovmf.follows = "nixpkgs";
+      };
+    };
 
     conky = {
       url = "github:brndnmtthws/conky";
@@ -741,20 +744,20 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # netkit = {
-    #   url = "github:icebox-nix/netkit.nix";
-    # };
+    netkit = {
+      url = "github:icebox-nix/netkit.nix";
+    };
 
-    # nix-topology = {
-    #   url = "github:oddlama/nix-topology";
+    nix-topology = {
+      url = "github:oddlama/nix-topology";
 
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     flake-utils.follows = "flake-utils";
-    #     devshell.follows = "devshell";
-    #     pre-commit-hooks.follows = "pre-commit-hooks-nix";
-    #   };
-    # };
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+        devshell.follows = "devshell";
+        pre-commit-hooks.follows = "pre-commit-hooks-nix";
+      };
+    };
 
     # nixos-dash-docset = {
     #   url = "github:ptitfred/nixos-dash-docset";
@@ -805,7 +808,10 @@
 
     chaotic = {
       url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
     };
 
     # nix-mineral = {
