@@ -139,6 +139,7 @@
       enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          ssh-import-id
           tcptrack
           netproc
           netop

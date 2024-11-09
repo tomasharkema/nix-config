@@ -87,7 +87,7 @@
             ipmitool -I lanplus -H 192.168.0.45 -U root -P "$(op item get abrgfwmlbnc2zghpugawqoagjq --field password)"'';
 
           blue-fire-ipmi = ''
-            ipmitool -I lanplus -H 192.168.0.46 -U ADMIN -P "$(op item get ydq2vns3nc4hj43n4avtryckpa --field password)"'';
+            ipmitool -I lanplus -H 192.168.0.46 -U ADMIN -P "$(op item get ydq2vns3nc4hj43n4avtryckpa --field password --reveal )"'';
 
           docker-login = "op item get raeclwvdys3epkmc5zthv4pdha --format=json --vault=qtvfhvfotoqynomh2wd3yzoofe | jq '.fields[1].value' -r | docker login ghcr.io --username tomasharkema --password-stdin";
 
