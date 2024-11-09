@@ -284,32 +284,32 @@ in {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
 
-        # vgpu = {
-        #   enable = true;
-        #   # pinKernel = true;
+        vgpu = {
+          enable = true;
+          #   # pinKernel = true;
 
-        #   useMyDriver = {
-        #     enable = false;
-        #     vgpu-driver-version = "535.183.04";
-        #     driver-version = "535.183.01";
-        #     wdys-driver-version = "538.67";
-        #   };
+          #   useMyDriver = {
+          #     enable = false;
+          #     vgpu-driver-version = "535.183.04";
+          #     driver-version = "535.183.01";
+          #     wdys-driver-version = "538.67";
+          #   };
 
-        #   vgpu_driver_src.sha256 = "sha256-pDgA908pNHrkWGbYv5WRkvmkm6rHhsBu4x4mSP1i8pM=";
+          #   vgpu_driver_src.sha256 = "sha256-pDgA908pNHrkWGbYv5WRkvmkm6rHhsBu4x4mSP1i8pM=";
 
-        #   driver_src.sha256 = "sha256-9nB6+92pQH48vC5RKOYLy82/AvrimVjHL6+11AXouIM=";
+          #   driver_src.sha256 = "sha256-9nB6+92pQH48vC5RKOYLy82/AvrimVjHL6+11AXouIM=";
 
-        #   copyVGPUProfiles = {
-        #     "1380:0000" = "13BD:1160";
-        #   };
+          copyVGPUProfiles = {
+            "1380:0000" = "13BD:1160";
+          };
 
-        #   fastapi-dls = {
-        #     enable = true;
-        #     docker-directory = "/var/lib/fastapi";
-        #     local_ipv4 = "192.168.0.101";
-        #     timezone = "Europe/Amsterdam";
-        #   };
-        # };
+          #   fastapi-dls = {
+          #     enable = true;
+          #     docker-directory = "/var/lib/fastapi";
+          #     local_ipv4 = "192.168.0.101";
+          #     timezone = "Europe/Amsterdam";
+          #   };
+        };
       };
     };
 
