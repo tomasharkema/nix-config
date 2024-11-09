@@ -148,23 +148,23 @@ in {
     # freeipa.replica.enable = true;
     # };
 
-    nix.settings.allowed-uris = [
-      "https://"
-      "git+https://"
-      "github:"
-      "github:NixOS/"
-      "github:nixos/"
-      "github:hercules-ci/"
-      "github:numtide/"
-      "github:cachix/"
-      "github:nix-community/"
-      "github:snowfallorg/"
-      "github:edolstra/"
-      "github:tomasharkema/"
-      "github:snowfallorg/"
-      "github:gytis-ivaskevicius/"
-      "github:ryantm/"
-    ];
+    # nix.settings.allowed-uris = [
+    #   "https://"
+    #   "git+https://"
+    #   "github:"
+    #   "github:NixOS/"
+    #   "github:nixos/"
+    #   "github:hercules-ci/"
+    #   "github:numtide/"
+    #   "github:cachix/"
+    #   "github:nix-community/"
+    #   "github:snowfallorg/"
+    #   "github:edolstra/"
+    #   "github:tomasharkema/"
+    #   "github:snowfallorg/"
+    #   "github:gytis-ivaskevicius/"
+    #   "github:ryantm/"
+    # ];
 
     networking = {
       hosts = {
@@ -233,7 +233,7 @@ in {
 
     services = {
       hypervisor = {
-        # enable = true;
+        enable = true;
         # bridgeInterfaces = [ "eno1" ];
       };
 
@@ -267,9 +267,13 @@ in {
     #  };
     # };
 
+    virtualisation.oci-containers.containers.fastapi-dls = {
+      ports = lib.mkForce ["4434:443"];
+    };
+
     hardware = {
       cpu.intel.updateMicrocode = true;
-      i2c.enable = true;
+
       enableAllFirmware = true;
       enableRedistributableFirmware = true;
 
@@ -280,20 +284,32 @@ in {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
 
-        vgpu = {
-          enable = true;
-          pinKernel = true;
-          copyVGPUProfiles = {
-            "1380:0000" = "13BD:1160";
-          };
+        # vgpu = {
+        #   enable = true;
+        #   # pinKernel = true;
 
-          #fastapi-dls = {
-          #    enable = true;
-          #     docker-directory = "/var/lib/fastapi";
-          #      # local_ipv4 = "192.168.0.48";
-          #  timezone = "Europe/Amsterdam";
-          # };
-        };
+        #   useMyDriver = {
+        #     enable = false;
+        #     vgpu-driver-version = "535.183.04";
+        #     driver-version = "535.183.01";
+        #     wdys-driver-version = "538.67";
+        #   };
+
+        #   vgpu_driver_src.sha256 = "sha256-pDgA908pNHrkWGbYv5WRkvmkm6rHhsBu4x4mSP1i8pM=";
+
+        #   driver_src.sha256 = "sha256-9nB6+92pQH48vC5RKOYLy82/AvrimVjHL6+11AXouIM=";
+
+        #   copyVGPUProfiles = {
+        #     "1380:0000" = "13BD:1160";
+        #   };
+
+        #   fastapi-dls = {
+        #     enable = true;
+        #     docker-directory = "/var/lib/fastapi";
+        #     local_ipv4 = "192.168.0.101";
+        #     timezone = "Europe/Amsterdam";
+        #   };
+        # };
       };
     };
 
