@@ -91,7 +91,7 @@
 
       kernelModules = ["wireguard"];
 
-      supportedFilesystems = ["ntfs"];
+      supportedFilesystems = ["ntfs" "apfs"];
 
       loader = {
         systemd-boot = {
