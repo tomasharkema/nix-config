@@ -1130,11 +1130,11 @@
         "umu": "umu"
       },
       "locked": {
-        "lastModified": 1730770711,
-        "narHash": "sha256-UHm56cW/04efHY4NgboGFOXliGQCqRRY+l1HM7c8/Ms=",
+        "lastModified": 1731202990,
+        "narHash": "sha256-Ac3ff4w9+xePGX6TF90zEVyhdHJkhg58pUafvoAjVEY=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "0c25376479d11073346ed22de8571805543ede71",
+        "rev": "faf26ec552997488d75a0fdb07783c0c2edd3d5f",
         "type": "github"
       },
       "original": {
@@ -1463,15 +1463,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1723143532,
-        "narHash": "sha256-PEjjPfshl9e2JcU9W8d0g6GjZzJ+KoD7AZIgbxyFlHI=",
-        "owner": "Yeshey",
+        "lastModified": 1731204789,
+        "narHash": "sha256-8j5I5yrXISNjrQt5BXQ+Ntq1caYTAI+M79xyC6PDQjg=",
+        "owner": "tomasharkema",
         "repo": "nixos-nvidia-vgpu",
-        "rev": "ef32b28a12853ae4333e6f8519c4bdc7997b467c",
+        "rev": "94e13f3bd367535af8baa6fb8b073209ae20c8cc",
         "type": "github"
       },
       "original": {
-        "owner": "Yeshey",
+        "owner": "tomasharkema",
+        "ref": "535.161",
         "repo": "nixos-nvidia-vgpu",
         "type": "github"
       }
@@ -1818,11 +1819,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731116004,
-        "narHash": "sha256-GuMm8WlTL1HQXSfpaPxUzsyVbmkoxWW4pJG4W6VEuDw=",
+        "lastModified": 1731172420,
+        "narHash": "sha256-DpFLNJIu7fcbaSEQIf/x5j6YJqUjhXdq/pTGFqYNVZI=",
         "owner": "nix-community",
         "repo": "poetry2nix",
-        "rev": "be34b419c975998861fa9727fa079d51406a6438",
+        "rev": "5a0a462cc6d346198582a245ea8eddb4e115e631",
         "type": "github"
       },
       "original": {
@@ -2272,11 +2273,11 @@
       },
       "locked": {
         "dir": "packaging/nix",
-        "lastModified": 1730559589,
-        "narHash": "sha256-o4NT2Kt7yEA63j38Ic5mrh2U/iQjs3YSNvIbCccIYP0=",
+        "lastModified": 1730836236,
+        "narHash": "sha256-8jrg1DQrgYVaO4hpPRxRTAVluo8cE1Lcuvyv2EXuXpA=",
         "ref": "refs/heads/main",
-        "rev": "70645c290dfc6ed10282bf4d2ae38c0bf7b1a3fb",
-        "revCount": 830,
+        "rev": "90352466d502c40e147cfd11a428dde6c2899ab3",
+        "revCount": 833,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging/nix"

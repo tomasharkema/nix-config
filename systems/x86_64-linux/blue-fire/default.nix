@@ -267,9 +267,9 @@ in {
     #  };
     # };
 
-    virtualisation.oci-containers.containers.fastapi-dls = {
-      ports = lib.mkForce ["4434:443"];
-    };
+    #virtualisation.oci-containers.containers.fastapi-dls = {
+    #  ports = lib.mkForce ["4434:443"];
+    #};
 
     hardware = {
       cpu.intel.updateMicrocode = true;
@@ -286,18 +286,9 @@ in {
 
         vgpu = {
           enable = true;
-          #   # pinKernel = true;
+          # pinKernel = true;
 
-          #   useMyDriver = {
-          #     enable = false;
-          #     vgpu-driver-version = "535.183.04";
-          #     driver-version = "535.183.01";
-          #     wdys-driver-version = "538.67";
-          #   };
-
-          #   vgpu_driver_src.sha256 = "sha256-pDgA908pNHrkWGbYv5WRkvmkm6rHhsBu4x4mSP1i8pM=";
-
-          #   driver_src.sha256 = "sha256-9nB6+92pQH48vC5RKOYLy82/AvrimVjHL6+11AXouIM=";
+          vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
 
           copyVGPUProfiles = {
             "1380:0000" = "13BD:1160";
