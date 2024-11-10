@@ -91,7 +91,7 @@
 
       kernelModules = ["wireguard"];
 
-      supportedFilesystems = ["ntfs"];
+      supportedFilesystems = ["ntfs" "apfs" "nfs"];
 
       loader = {
         systemd-boot = {
@@ -139,6 +139,7 @@
       enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          ssh-import-id
           tcptrack
           netproc
           netop

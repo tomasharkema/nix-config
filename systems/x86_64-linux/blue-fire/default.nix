@@ -148,23 +148,23 @@ in {
     # freeipa.replica.enable = true;
     # };
 
-    nix.settings.allowed-uris = [
-      "https://"
-      "git+https://"
-      "github:"
-      "github:NixOS/"
-      "github:nixos/"
-      "github:hercules-ci/"
-      "github:numtide/"
-      "github:cachix/"
-      "github:nix-community/"
-      "github:snowfallorg/"
-      "github:edolstra/"
-      "github:tomasharkema/"
-      "github:snowfallorg/"
-      "github:gytis-ivaskevicius/"
-      "github:ryantm/"
-    ];
+    # nix.settings.allowed-uris = [
+    #   "https://"
+    #   "git+https://"
+    #   "github:"
+    #   "github:NixOS/"
+    #   "github:nixos/"
+    #   "github:hercules-ci/"
+    #   "github:numtide/"
+    #   "github:cachix/"
+    #   "github:nix-community/"
+    #   "github:snowfallorg/"
+    #   "github:edolstra/"
+    #   "github:tomasharkema/"
+    #   "github:snowfallorg/"
+    #   "github:gytis-ivaskevicius/"
+    #   "github:ryantm/"
+    # ];
 
     networking = {
       hosts = {
@@ -233,7 +233,7 @@ in {
 
     services = {
       hypervisor = {
-        # enable = true;
+        enable = true;
         # bridgeInterfaces = [ "eno1" ];
       };
 
@@ -256,20 +256,22 @@ in {
       # icingaweb2
     ];
 
-    # virtualisation.kvmgt = {
-    # enable = true;
-    # device = "0000:01:00.0";
-    # vgpus = {
-    #   "nvidia-37" = {
-    #    # for windows!!
-    #    uuid = ["e1ab260f-44a2-4e07-9889-68a1caafb399"];
-    # };
-    #  };
-    # };
+    virtualisation.kvmgt = {
+      enable = true;
+      device = "0000:01:00.0";
+      vgpus = {
+        "nvidia-36" = {
+          uuid = [
+            "e1ab260f-44a2-4e07-9889-68a1caafb399"
+            "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
+          ];
+        };
+      };
+    };
 
     hardware = {
       cpu.intel.updateMicrocode = true;
-      i2c.enable = true;
+
       enableAllFirmware = true;
       enableRedistributableFirmware = true;
 
@@ -283,23 +285,26 @@ in {
         vgpu = {
           enable = true;
           pinKernel = true;
+
+          # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
+
           copyVGPUProfiles = {
             "1380:0000" = "13BD:1160";
           };
 
-          #fastapi-dls = {
-          #    enable = true;
-          #     docker-directory = "/var/lib/fastapi";
-          #      # local_ipv4 = "192.168.0.48";
-          #  timezone = "Europe/Amsterdam";
-          # };
+          fastapi-dls = {
+            enable = true;
+            docker-directory = "/var/lib/fastapi";
+            local_ipv4 = "192.168.0.101";
+            timezone = "Europe/Amsterdam";
+          };
         };
       };
     };
 
-    # virtualisation.oci-containers.containers.fastapi-dls = {
-    #   ports = lib.mkForce [ "7070:443" ];
-    # };
+    virtualisation.oci-containers.containers.fastapi-dls = {
+      ports = lib.mkForce ["7070:443"];
+    };
 
     # services.udev.extraRules = ''
     #   SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"

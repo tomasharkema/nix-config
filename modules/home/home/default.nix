@@ -203,8 +203,8 @@ in {
           hostname.disabled = false;
 
           sudo.disabled = false;
-          shell.disabled = false;
-          os.disabled = false;
+          # shell.disabled = false;
+          # os.disabled = false;
 
           # cmd_duration.min_time = 1000;
           # command_timeout = 1000;

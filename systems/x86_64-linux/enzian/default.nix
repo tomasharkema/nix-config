@@ -85,7 +85,7 @@
         monitor.enable = true;
         nvidia = {
           enable = true;
-          beta = false;
+          open = false;
         };
         disable-sleep.enable = true;
       };
