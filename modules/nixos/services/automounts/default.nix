@@ -20,7 +20,7 @@ in {
   config = lib.mkIf cfg.enable {
     services.autofs = {
       enable = true;
-
+      debug = true;
       autoMaster = let
         sshFsLines =
           map (machine: "${machine}  -fstype=fuse,port=22,idmap=user,rw,allow_other,noatime :sshfs\\#tomas@${machine}\\:/")
