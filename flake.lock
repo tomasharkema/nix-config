@@ -1463,11 +1463,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731204789,
-        "narHash": "sha256-8j5I5yrXISNjrQt5BXQ+Ntq1caYTAI+M79xyC6PDQjg=",
+        "lastModified": 1731206960,
+        "narHash": "sha256-kCbayCEYXFoEj8Ueo/hvVZGR3RwRlfCCaH7D+aRKZU8=",
         "owner": "tomasharkema",
         "repo": "nixos-nvidia-vgpu",
-        "rev": "94e13f3bd367535af8baa6fb8b073209ae20c8cc",
+        "rev": "64f731113c385659bc2f25d36e7cbd65e4a9bc98",
         "type": "github"
       },
       "original": {
@@ -1819,11 +1819,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731172420,
-        "narHash": "sha256-DpFLNJIu7fcbaSEQIf/x5j6YJqUjhXdq/pTGFqYNVZI=",
+        "lastModified": 1731205797,
+        "narHash": "sha256-F7N1mxH1VrkVNHR3JGNMRvp9+98KYO4b832KS8Gl2xI=",
         "owner": "nix-community",
         "repo": "poetry2nix",
-        "rev": "5a0a462cc6d346198582a245ea8eddb4e115e631",
+        "rev": "f554d27c1544d9c56e5f1f8e2b8aff399803674e",
         "type": "github"
       },
       "original": {

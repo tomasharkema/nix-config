@@ -267,10 +267,6 @@ in {
     #  };
     # };
 
-    #virtualisation.oci-containers.containers.fastapi-dls = {
-    #  ports = lib.mkForce ["4434:443"];
-    #};
-
     hardware = {
       cpu.intel.updateMicrocode = true;
 
@@ -286,7 +282,7 @@ in {
 
         vgpu = {
           enable = true;
-          # pinKernel = true;
+          pinKernel = true;
 
           vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
 
@@ -294,12 +290,12 @@ in {
             "1380:0000" = "13BD:1160";
           };
 
-          #   fastapi-dls = {
-          #     enable = true;
-          #     docker-directory = "/var/lib/fastapi";
-          #     local_ipv4 = "192.168.0.101";
-          #     timezone = "Europe/Amsterdam";
-          #   };
+          fastapi-dls = {
+            enable = true;
+            docker-directory = "/var/lib/fastapi";
+            local_ipv4 = "192.168.0.101";
+            timezone = "Europe/Amsterdam";
+          };
         };
       };
     };
