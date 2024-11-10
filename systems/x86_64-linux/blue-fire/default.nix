@@ -256,16 +256,18 @@ in {
       # icingaweb2
     ];
 
-    # virtualisation.kvmgt = {
-    # enable = true;
-    # device = "0000:01:00.0";
-    # vgpus = {
-    #   "nvidia-37" = {
-    #    # for windows!!
-    #    uuid = ["e1ab260f-44a2-4e07-9889-68a1caafb399"];
-    # };
-    #  };
-    # };
+    virtualisation.kvmgt = {
+      enable = true;
+      device = "0000:01:00.0";
+      vgpus = {
+        "nvidia-36" = {
+          uuid = [
+            "e1ab260f-44a2-4e07-9889-68a1caafb399"
+            "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
+          ];
+        };
+      };
+    };
 
     hardware = {
       cpu.intel.updateMicrocode = true;
@@ -284,7 +286,7 @@ in {
           enable = true;
           pinKernel = true;
 
-          vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
+          # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
 
           copyVGPUProfiles = {
             "1380:0000" = "13BD:1160";
@@ -300,9 +302,9 @@ in {
       };
     };
 
-    # virtualisation.oci-containers.containers.fastapi-dls = {
-    #   ports = lib.mkForce [ "7070:443" ];
-    # };
+    virtualisation.oci-containers.containers.fastapi-dls = {
+      ports = lib.mkForce ["7070:443"];
+    };
 
     # services.udev.extraRules = ''
     #   SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
