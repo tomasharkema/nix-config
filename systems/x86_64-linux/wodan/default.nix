@@ -147,7 +147,7 @@
 
         vgpu = {
           enable = true;
-          pinKernel = true;
+          # pinKernel = true;
           copyVGPUProfiles = {
             # RTX2080     Quadro RTX 4000
             "1E87:0000" = "1EB1:0000";
