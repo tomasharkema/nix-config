@@ -1,0 +1,50 @@
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  autoreconfHook,
+  pkg-config,
+  gperf,
+  python3,
+  glib,
+  json_c,
+  elfutils,
+}:
+stdenv.mkDerivation rec {
+  pname = "satyr";
+  version = "0.43";
+
+  src = fetchFromGitHub {
+    owner = "abrt";
+    repo = "satyr";
+    rev = version;
+    hash = "sha256-MzXxhl0GncDejS4A2Uzz00llSA7V/udkFd20WUg71gU=";
+  };
+
+  nativeBuildInputs = [
+    autoreconfHook
+    pkg-config
+  ];
+
+  buildInputs = [
+    gperf
+    python3
+    glib
+    json_c
+    elfutils
+  ];
+
+  postPatch = ''
+    sh gen-version
+  '';
+
+  meta = with lib; {
+    description = "Automatic problem management with anonymous reports";
+    homepage = "https://github.com/abrt/satyr";
+    changelog = "https://github.com/abrt/satyr/blob/${src.rev}/NEWS";
+    license = licenses.gpl2Only;
+    maintainers = with maintainers; [];
+    mainProgram = "satyr";
+    platforms = platforms.all;
+  };
+}

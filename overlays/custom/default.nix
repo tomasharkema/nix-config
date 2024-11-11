@@ -4,7 +4,7 @@
   self,
   inputs,
   ...
-}: final: prev: rec {
+}: final: prev: {
   libcec = prev.libcec.override {withLibraspberrypi = true;};
 
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
@@ -53,6 +53,9 @@
         ln -s $out/usr/share $out/share
       '';
   });
+
+  satyr = self.packages."${prev.system}".satyr;
+  libreport = self.packages."${prev.system}".libreport;
 
   # python312Packages = prev.python312Packages.overrideScope' (pyFinal: pyPrev: {
   #   pymdown-extensions = pyPrev.pymdown-extensions.overrideAttrs (old: {
