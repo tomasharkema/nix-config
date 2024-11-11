@@ -284,7 +284,7 @@ in {
 
         vgpu = {
           enable = true;
-          pinKernel = true;
+          # pinKernel = true;
 
           # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
 
@@ -314,6 +314,7 @@ in {
       tmp = {
         useTmpfs = true;
       };
+      kernelPackages = pkgs.linuxPackages_6_6;
       kernelParams = [
         "intel_iommu=on"
         "iommu=pt"
@@ -364,7 +365,7 @@ in {
           "vfio_pci"
           "vfio"
           "vfio_iommu_type1"
-          "vfio_virqfd"
+          # "vfio_virqfd"
 
           # "nvidia"
           # "nvidia_modeset"
