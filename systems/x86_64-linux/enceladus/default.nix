@@ -60,7 +60,7 @@ in {
     services = {
       local-store.enable = true;
       throttled.enable = lib.mkForce false;
-      remote-builders.server.enable = true;
+      # remote-builders.server.enable = true;
       blueman.enable = true;
 
       beesd.filesystems = {
@@ -126,17 +126,20 @@ in {
       firewall = {
         enable = true;
       };
+      enableIPv6 = false;
       # useDHCP = lib.mkDefault false;
-      # interfaces."enp4s0" = {
-      #   useDHCP = lib.mkDefault true;
-      #   wakeOnLan.enable = true;
-      # };
+      interfaces."enp1s0" = {
+        useDHCP = lib.mkDefault true;
+        wakeOnLan.enable = true;
+      };
     };
 
     boot = {
       tmp = {
         useTmpfs = true;
       };
+
+      kernel.sysctl."net.ipv6.conf.enp1s0.disable_ipv6" = true;
 
       initrd = {
         availableKernelModules = [
