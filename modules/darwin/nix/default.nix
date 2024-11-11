@@ -61,25 +61,25 @@ in {
 
       # nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
-      # linux-builder = {
-      #   enable = true;
-      #   ephemeral = true;
-      #   maxJobs = 4;
-      #   systems = [
-      #     "x86_64-linux"
-      #     "aarch64-linux"
-      #   ];
-      #   config = {
-      #     virtualisation = {
-      #       #     # rosetta.enable = true;
-      #       darwin-builder = {
-      #         diskSize = 40 * 1024;
-      #         memorySize = 6 * 1024;
-      #       };
-      #       cores = 4;
-      #     };
-      #   };
-      # };
+      linux-builder = {
+        enable = true;
+        ephemeral = true;
+        maxJobs = 4;
+        systems = [
+          "x86_64-linux"
+          "aarch64-linux"
+        ];
+        config = {
+          virtualisation = {
+            #     # rosetta.enable = true;
+            darwin-builder = {
+              diskSize = 40 * 1024;
+              memorySize = 6 * 1024;
+            };
+            cores = 4;
+          };
+        };
+      };
 
       # extraOptions = ''
       #   plugin-files = ${pkgs.nix-otel}/lib
