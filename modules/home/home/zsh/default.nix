@@ -125,11 +125,11 @@
             file = "share/zsh-z/zsh-z.plugin.zsh";
             src = zsh-z;
           }
-          rec {
-            name = src.pname;
-            file = "share/zsh-bd/bd.plugin.zsh";
-            src = zsh-bd;
-          }
+          # rec {
+          #   name = src.pname;
+          #   file = "share/zsh-bd/bd.plugin.zsh";
+          #   src = zsh-bd;
+          # }
           rec {
             name = src.pname;
             file = "share/zsh-defer/zsh-defer.plugin.zsh";
@@ -150,11 +150,11 @@
             file = "share/zsh/zsh-forgit/forgit.plugin.zsh";
             src = zsh-forgit;
           }
-          rec {
-            name = src.pname;
-            file = "share/wd/wd.plugin.zsh";
-            src = zsh-wd;
-          }
+          # rec {
+          #   name = src.pname;
+          #   file = "share/wd/wd.plugin.zsh";
+          #   src = zsh-wd;
+          # }
           rec {
             name = src.pname;
             file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
@@ -170,16 +170,16 @@
             file = "share/zsh/plugins/nix/nix.plugin.zsh";
             src = nix-zsh-completions;
           }
-          {
-            name = "enhancd";
-            file = "init.sh";
-            src = pkgs.fetchFromGitHub {
-              owner = "b4b4r07";
-              repo = "enhancd";
-              rev = "v2.2.1";
-              sha256 = "0iqa9j09fwm6nj5rpip87x3hnvbbz9w9ajgm6wkrd5fls8fn8i5g";
-            };
-          }
+          # {
+          #   name = "enhancd";
+          #   file = "init.sh";
+          #   src = pkgs.fetchFromGitHub {
+          #     owner = "b4b4r07";
+          #     repo = "enhancd";
+          #     rev = "v2.2.1";
+          #     sha256 = "0iqa9j09fwm6nj5rpip87x3hnvbbz9w9ajgm6wkrd5fls8fn8i5g";
+          #   };
+          # }
           {
             name = "zsh-async";
             file = "async.zsh";
