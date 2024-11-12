@@ -64,6 +64,7 @@ in
     ];
 
     # patches = [./dbus.patch];
+    # makeFlags = "DESTDIR=${placeholder "out"}";
 
     configureFlags = [
       "PYTEST=${python3.pkgs.pytest}/bin/pytest"
@@ -74,10 +75,10 @@ in
       #"VAR_RUN=${placeholder "out"}/var/run"
       #"CONF_DIR=${placeholder "out"}/etc"
       # "-Dsysconfdir_install=${placeholder "out"}/etc"
-      # "PYTHON_SPHINX=${sphinx}/bin/sphinx"
-      # "--sysconfdir=/etc"
-      # "--localstatedir=/var"
-      # "--sharedstatedir=/var/lib"
+      "PYTHON_SPHINX=${sphinx}/bin/sphinx"
+      "--sysconfdir=/etc"
+      "--localstatedir=/var"
+      "--sharedstatedir=/var/lib"
       # "--prefix=${placeholder "out"}"
       # "--libdir=${placeholder "out"}/lib"
       # "--libexecdir=${placeholder "out"}/libexec"
@@ -93,9 +94,9 @@ in
       "--without-selinux"
       #"--with-autostartdir=${placeholder "out"}/etc/xdg/autostart"
     ];
-
     installFlags = [
       "DESTDIR=${placeholder "out"}"
+      "PREFIX=${placeholder "out"}"
       #"PLUGINS_CONF_DIR=${placeholder "out"}/etc/abrt"
       #"LIBREPORT_PLUGINS_CONF_DIR=${placeholder "out"}/etc/libreport"
       #"CONF_DIR=${placeholder "out"}/etc"
@@ -149,16 +150,16 @@ in
       sh gen-version
     '';
 
-    preInstall = ''
-      pwd
-      ls -la
-      #sleep 1000
-      # set -x
+    postInstall = ''
+      cp -rv "$out$out/." "$out/"
+      rm -rv "$out/nix"
+
+      for i in "$out/lib/systemd/system"/*; do
+        substituteInPlace $i --replace-fail "/usr" "$out"
+      done
+
+      file $out/bin/abrtd
     '';
-    # postConfigure = ''
-    #   pwd
-    #   sleep 1000
-    # '';
 
     meta = with lib; {
       description = "Automatic bug detection and reporting tool";

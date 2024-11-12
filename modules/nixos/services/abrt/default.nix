@@ -31,11 +31,24 @@ in {
       # packages = [pkgs.abrt];
 
       services = {
+        abrt-dump-journal-core = {
+          description = "ABRT coredumpctl message creator";
+          after = ["abrtd.service"];
+          requisite = ["abrtd.service"];
+        };
+
+        # [Service]
+        # Type=simple
+        # ExecStart=/usr/bin/abrt-dump-journal-core -D -T -f -e
+
+        # [Install]
+        # WantedBy=multi-user.target
+
         abrtd = {
           wantedBy = ["multi-user.target"];
           serviceConfig = {
             ExecStartPre = "${pkgs.bash}/bin/bash -c \"${pkgs.procps}/bin/pkill ${pkgs.abrt}/bin/abrt-dbus || :\"";
-            ExecStart = "${pkgs.abrt}/sbin/abrtd -d -s";
+            ExecStart = "${pkgs.abrt}/bin/abrtd -d -s";
 
             Type = "dbus";
             BusName = "org.freedesktop.problems.daemon";
