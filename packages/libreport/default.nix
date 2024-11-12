@@ -41,7 +41,11 @@ stdenv.mkDerivation rec {
 
   env.NIX_CFLAGS_COMPILE = "-I${libxml2.dev}/include/libxml2";
 
-  configuraFlags = ["LIBXML=${libxml2.dev}/include/libxml2/libxml"];
+  configuraFlags = [
+    "LIBXML=${libxml2.dev}/include/libxml2/libxml"
+
+    "--sysconfdir=${placeholder "out"}/etc"
+  ];
 
   nativeBuildInputs = [
     autoreconfHook

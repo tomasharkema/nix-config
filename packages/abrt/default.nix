@@ -31,12 +31,13 @@
   libxslt,
   docbook_xsl,
   docbook_xml_dtd_45,
+  gobject-introspection,
 }: let
   sphinxFixed = sphinx.overrideAttrs ({postInstall ? "", ...}: {
     postInstall =
       postInstall
       + ''
-        ln -s bin/sphinx-build-3 bin/sphinx-build
+        ln -s $out/bin/sphinx-build $out/bin/sphinx-build-3
       '';
   });
 in
@@ -51,6 +52,15 @@ in
       hash = "sha256-F8KO7/wdmrkvZTuVO9UKd99fSXduthIeigl3ShTYaqI=";
     };
 
+    env.NIX_CFLAGS_COMPILE = "-I${glib.dev}/include/gio-unix-2.0";
+
+    configureFlags = [
+      "--sysconfdir=${placeholder "out"}/etc"
+      # "-Dsysconfdir_install=${placeholder "out"}/etc"
+      # "PYTHON_SPHINX=${sphinx}/bin/sphinx"
+      "PYTEST=${python3.pkgs.pytest}/bin/pytest"
+    ];
+
     nativeBuildInputs = [
       autoreconfHook
       pkg-config
@@ -64,6 +74,7 @@ in
     ];
 
     buildInputs = [
+      gobject-introspection
       libnotify
       polkit
       rpm
@@ -88,11 +99,6 @@ in
       systemd
       libxml2
       libreport
-    ];
-
-    configureFlags = [
-      # "PYTHON_SPHINX=${sphinx}/bin/sphinx"
-      "PYTEST=${python3.pkgs.pytest}/bin/pytest"
     ];
 
     postPatch = ''
