@@ -27,6 +27,7 @@
   libxslt,
   docbook_xsl,
   docbook_xml_dtd_45,
+  dbus,
 }:
 stdenv.mkDerivation rec {
   pname = "libreport";
@@ -38,13 +39,24 @@ stdenv.mkDerivation rec {
     rev = version;
     hash = "sha256-XGsdEVODKC81ejMHaETdt1Vt7x4PQfxhfabKuEuHONA=";
   };
+  enableParallelBuilding = true;
 
   env.NIX_CFLAGS_COMPILE = "-I${libxml2.dev}/include/libxml2";
 
   configuraFlags = [
     "LIBXML=${libxml2.dev}/include/libxml2/libxml"
-
     "--sysconfdir=${placeholder "out"}/etc"
+    "--localstatedir=${placeholder "out"}/var"
+    "--sharedstatedir=/var/lib"
+    "--prefix=${placeholder "out"}"
+    "--libdir=${placeholder "out"}/lib"
+    "--libexecdir=${placeholder "out"}/libexec"
+    "--bindir=${placeholder "out"}/bin"
+    "--sbindir=${placeholder "out"}/sbin"
+    "--includedir=${placeholder "out"}/include"
+    "--mandir=${placeholder "out"}/share/man"
+    "--infodir=${placeholder "out"}/share/info"
+    "--localedir=${placeholder "out"}/share/locale"
   ];
 
   nativeBuildInputs = [
@@ -69,7 +81,7 @@ stdenv.mkDerivation rec {
     curl
     satyr
     elfutils
-
+    dbus
     json_c
     augeas
     libarchive

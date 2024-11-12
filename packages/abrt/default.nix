@@ -32,14 +32,19 @@
   docbook_xsl,
   docbook_xml_dtd_45,
   gobject-introspection,
+  dbus,
+  util-linux,
+  doxygen,
 }: let
-  sphinxFixed = sphinx.overrideAttrs ({postInstall ? "", ...}: {
-    postInstall =
-      postInstall
-      + ''
-        ln -s $out/bin/sphinx-build $out/bin/sphinx-build-3
-      '';
-  });
+  sphinxFixed = sphinx.overrideAttrs (
+    {postInstall ? "", ...}: {
+      postInstall =
+        postInstall
+        + ''
+          ln -s $out/bin/sphinx-build $out/bin/sphinx-build-3
+        '';
+    }
+  );
 in
   stdenv.mkDerivation rec {
     pname = "abrt";
@@ -52,25 +57,61 @@ in
       hash = "sha256-F8KO7/wdmrkvZTuVO9UKd99fSXduthIeigl3ShTYaqI=";
     };
 
-    env.NIX_CFLAGS_COMPILE = "-I${glib.dev}/include/gio-unix-2.0";
+    enableParallelBuilding = true;
+
+    env.NIX_CFLAGS_COMPILE = toString [
+      "-I${glib.dev}/include/gio-unix-2.0"
+    ];
+
+    patches = [./dbus.patch];
 
     configureFlags = [
-      "--sysconfdir=${placeholder "out"}/etc"
+      "PYTEST=${python3.pkgs.pytest}/bin/pytest"
+      "FINDMNT=${util-linux}/bin/findmnt"
+      "PLUGINS_CONF_DIR=${placeholder "out"}/etc/abrt"
+      "LIBREPORT_PLUGINS_CONF_DIR=${placeholder "out"}/etc/libreport"
+      "EVENTS_CONF_DIR=${placeholder "out"}/etc/libreport/events.d"
+      "VAR_RUN=${placeholder "out"}/var/run"
+      "CONF_DIR=${placeholder "out"}/etc"
       # "-Dsysconfdir_install=${placeholder "out"}/etc"
       # "PYTHON_SPHINX=${sphinx}/bin/sphinx"
-      "PYTEST=${python3.pkgs.pytest}/bin/pytest"
+      "--sysconfdir=/etc"
+      "--localstatedir=/var"
+      "--sharedstatedir=/var/lib"
+      "--prefix=${placeholder "out"}"
+      "--libdir=${placeholder "out"}/lib"
+      "--libexecdir=${placeholder "out"}/libexec"
+      "--bindir=${placeholder "out"}/bin"
+      "--sbindir=${placeholder "out"}/sbin"
+      "--includedir=${placeholder "out"}/include"
+      "--mandir=${placeholder "out"}/share/man"
+      "--infodir=${placeholder "out"}/share/info"
+      "--localedir=${placeholder "out"}/share/locale"
+      "--with-dbusabrtconfdir=${placeholder "out"}/share/dbus-1/system.d"
+      "--with-dbusinterfacedir=${placeholder "out"}/share/dbus-1/interfaces"
+      "--with-augeaslenslibdir=${augeas}/share/augeas/lenses"
+      "--without-selinux"
+      "--with-autostartdir=${placeholder "out"}/etc/xdg/autostart"
+    ];
+
+    installFlags = [
+      "PLUGINS_CONF_DIR=${placeholder "out"}/etc/abrt"
+      "LIBREPORT_PLUGINS_CONF_DIR=${placeholder "out"}/etc/libreport"
+      "CONF_DIR=${placeholder "out"}/etc"
+      "VAR_RUN=${placeholder "out"}/var/run"
+      "EVENTS_CONF_DIR=${placeholder "out"}/etc/libreport/events.d"
+      # "dbusabrtconfdir=${placeholder "out"}/share/dbus-1/system.d"
     ];
 
     nativeBuildInputs = [
       autoreconfHook
       pkg-config
       copyPkgconfigItems
-      autoconf
-      automake
       libxslt
       docbook_xsl
       docbook_xml_dtd_45
       intltool
+      doxygen
     ];
 
     buildInputs = [
@@ -82,7 +123,7 @@ in
       xmlrpc_c
       libsoup_3
       gettext
-
+      dbus
       satyr
       json_c
       curl
@@ -91,6 +132,8 @@ in
       # py.pkgs.sphinx
       python3
       python3.pkgs.pytest
+      python3.pkgs.dbus-python
+
       asciidoc
       xmlto
       sphinxFixed
@@ -104,6 +147,17 @@ in
     postPatch = ''
       sh gen-version
     '';
+
+    preInstall = ''
+      pwd
+      ls -la
+      #sleep 1000
+      # set -x
+    '';
+    # postConfigure = ''
+    #   pwd
+    #   sleep 1000
+    # '';
 
     meta = with lib; {
       description = "Automatic bug detection and reporting tool";

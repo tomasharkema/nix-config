@@ -26,6 +26,8 @@ stdenv.mkDerivation rec {
     hash = "sha256-MzXxhl0GncDejS4A2Uzz00llSA7V/udkFd20WUg71gU=";
   };
 
+  enableParallelBuilding = true;
+
   outputs = ["out" "lib" "dev"];
 
   nativeBuildInputs = [
@@ -49,6 +51,10 @@ stdenv.mkDerivation rec {
   postPatch = ''
     sh gen-version
   '';
+
+  configureFlags = [
+    "--without-selinux"
+  ];
 
   meta = with lib; {
     description = "Automatic problem management with anonymous reports";

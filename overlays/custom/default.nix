@@ -54,8 +54,15 @@
       '';
   });
 
-  satyr = self.packages."${prev.system}".satyr;
-  libreport = self.packages."${prev.system}".libreport;
+  satyr = self.packages."${prev.system}".satyr.override {
+    # stdenv = prev.ccacheStdenv;
+  };
+  libreport = self.packages."${prev.system}".libreport.override {
+    # stdenv = prev.ccacheStdenv;
+  };
+  abrt = self.packages."${prev.system}".abrt.override {
+    # stdenv = prev.ccacheStdenv;
+  };
 
   # python312Packages = prev.python312Packages.overrideScope' (pyFinal: pyPrev: {
   #   pymdown-extensions = pyPrev.pymdown-extensions.overrideAttrs (old: {
