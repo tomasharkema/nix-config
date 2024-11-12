@@ -9,6 +9,11 @@
   glib,
   json_c,
   elfutils,
+  rpm,
+  copyPkgconfigItems,
+  libxml2,
+  autoconf,
+  automake,
 }:
 stdenv.mkDerivation rec {
   pname = "satyr";
@@ -21,9 +26,14 @@ stdenv.mkDerivation rec {
     hash = "sha256-MzXxhl0GncDejS4A2Uzz00llSA7V/udkFd20WUg71gU=";
   };
 
+  outputs = ["out" "lib" "dev"];
+
   nativeBuildInputs = [
     autoreconfHook
     pkg-config
+    copyPkgconfigItems
+    autoconf
+    automake
   ];
 
   buildInputs = [
@@ -32,6 +42,8 @@ stdenv.mkDerivation rec {
     glib
     json_c
     elfutils
+    rpm
+    libxml2
   ];
 
   postPatch = ''

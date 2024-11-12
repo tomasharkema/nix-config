@@ -14,6 +14,19 @@
   curl,
   satyr,
   elfutils,
+  json_c,
+  augeas,
+  libarchive,
+  newt,
+  gtk3,
+  copyPkgconfigItems,
+  valgrind,
+  mt-st,
+  autoconf,
+  automake,
+  libxslt,
+  docbook_xsl,
+  docbook_xml_dtd_45,
 }:
 stdenv.mkDerivation rec {
   pname = "libreport";
@@ -26,13 +39,23 @@ stdenv.mkDerivation rec {
     hash = "sha256-XGsdEVODKC81ejMHaETdt1Vt7x4PQfxhfabKuEuHONA=";
   };
 
+  env.NIX_CFLAGS_COMPILE = "-I${libxml2.dev}/include/libxml2";
+
+  configuraFlags = ["LIBXML=${libxml2.dev}/include/libxml2/libxml"];
+
   nativeBuildInputs = [
     autoreconfHook
     pkg-config
+    copyPkgconfigItems
+    autoconf
+    automake
+    libxslt
+    docbook_xsl
+    docbook_xml_dtd_45
+    intltool
   ];
 
   buildInputs = [
-    intltool
     asciidoc
     xmlrpc_c
     xmlto
@@ -42,6 +65,14 @@ stdenv.mkDerivation rec {
     curl
     satyr
     elfutils
+
+    json_c
+    augeas
+    libarchive
+    newt
+    gtk3
+    valgrind
+    mt-st
   ];
 
   postPatch = ''
