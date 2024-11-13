@@ -12,6 +12,7 @@
     };
 
     swapDevices = lib.mkForce [];
+
     traits = {
       server.enable = true;
       builder.enable = true;
@@ -35,6 +36,25 @@
     };
 
     # apps.tor.relay.enable = true;
+
+    virtualisation = {
+      oci-containers.containers = {
+        mackerel-to-grafana-oncall-docker' = {
+          imageFile = pkgs.custom.mackerel-to-grafana-oncall-docker;
+
+          autoStart = true;
+
+          # volumes = [
+          #   "/var/lib/netboot/config:/config"
+          #   "/var/lib/netboot/assets:/assets"
+          # ];
+
+          ports = [
+            "8000:8000"
+          ];
+        };
+      };
+    };
 
     apps = {
       # attic-server.enable = true;
