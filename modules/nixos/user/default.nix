@@ -102,6 +102,7 @@
             "podman"
             "docker"
             "onepassword"
+            "abrt"
           ];
           initialHashedPassword = "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
 

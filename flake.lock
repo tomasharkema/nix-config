@@ -219,7 +219,7 @@
     },
     "crane_2": {
       "inputs": {
-        "flake-compat": "flake-compat_4",
+        "flake-compat": "flake-compat_5",
         "flake-utils": "flake-utils_6",
         "nixpkgs": [
           "piratebay",
@@ -443,6 +443,22 @@
     "flake-compat_4": {
       "flake": false,
       "locked": {
+        "lastModified": 1696426674,
+        "narHash": "sha256-kvjfFW7WAETZlt09AgDn1MrtKzP7t90Vf7vypd3OL1U=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-compat_5": {
+      "flake": false,
+      "locked": {
         "lastModified": 1673956053,
         "narHash": "sha256-4gtG9iQuiKITOjNQQeQIpoIB6b16fm+504Ch3sNKLd8=",
         "owner": "edolstra",
@@ -456,7 +472,7 @@
         "type": "github"
       }
     },
-    "flake-compat_5": {
+    "flake-compat_6": {
       "flake": false,
       "locked": {
         "lastModified": 1696426674,
@@ -472,7 +488,7 @@
         "type": "github"
       }
     },
-    "flake-compat_6": {
+    "flake-compat_7": {
       "flake": false,
       "locked": {
         "lastModified": 1696426674,
@@ -530,6 +546,27 @@
       }
     },
     "flake-parts_3": {
+      "inputs": {
+        "nixpkgs-lib": [
+          "nix-snapshotter",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1704152458,
+        "narHash": "sha256-DS+dGw7SKygIWf9w4eNBUZsK+4Ug27NwEWmn2tnbycg=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "88a2cd8166694ba0b6cb374700799cec53aef527",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_4": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib_2"
       },
@@ -910,6 +947,27 @@
         "type": "github"
       }
     },
+    "globset": {
+      "inputs": {
+        "nixpkgs-lib": [
+          "nix-snapshotter",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1729844927,
+        "narHash": "sha256-nBkQx23jgpGPk3aU2KcqJCoYvzjsKEjWBePmc2z8N3k=",
+        "owner": "pdtpartners",
+        "repo": "globset",
+        "rev": "eb9d9e64b7ab0a64c34ba4a5a990b66506401c35",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pdtpartners",
+        "repo": "globset",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -1227,6 +1285,29 @@
         "type": "github"
       }
     },
+    "nix-snapshotter": {
+      "inputs": {
+        "flake-compat": "flake-compat_4",
+        "flake-parts": "flake-parts_3",
+        "globset": "globset",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1730022297,
+        "narHash": "sha256-eVMEONp3yqu0gy0RtOSEpOAueXuQsGQVqac3qCJixMU=",
+        "owner": "pdtpartners",
+        "repo": "nix-snapshotter",
+        "rev": "c738f1a16a8612dfc474a4424bacff7e89369ca3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pdtpartners",
+        "repo": "nix-snapshotter",
+        "type": "github"
+      }
+    },
     "nix-software-center": {
       "inputs": {
         "nixos-appstream-data": "nixos-appstream-data",
@@ -1304,7 +1385,7 @@
     },
     "nixd": {
       "inputs": {
-        "flake-parts": "flake-parts_3",
+        "flake-parts": "flake-parts_4",
         "flake-root": "flake-root",
         "nixpkgs": [
           "nixpkgs"
@@ -1834,7 +1915,7 @@
     },
     "pre-commit-hooks-nix": {
       "inputs": {
-        "flake-compat": "flake-compat_5",
+        "flake-compat": "flake-compat_6",
         "gitignore": "gitignore_3",
         "nixpkgs": [
           "nixpkgs"
@@ -1881,6 +1962,7 @@
         "nix-gaming": "nix-gaming",
         "nix-github-actions": "nix-github-actions_2",
         "nix-index-database": "nix-index-database",
+        "nix-snapshotter": "nix-snapshotter",
         "nix-software-center": "nix-software-center",
         "nix-topology": "nix-topology",
         "nix-virt": "nix-virt",
@@ -1993,7 +2075,7 @@
     },
     "snowfall-flake": {
       "inputs": {
-        "flake-compat": "flake-compat_6",
+        "flake-compat": "flake-compat_7",
         "nixpkgs": [
           "nixpkgs"
         ],

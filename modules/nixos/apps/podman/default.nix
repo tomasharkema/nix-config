@@ -15,6 +15,7 @@ in {
       podman-tui
       dive
       docker-compose
+      nerdctl
       # pods
     ];
 
@@ -27,12 +28,21 @@ in {
       };
     };
 
+    services.nix-snapshotter = {
+      enable = true;
+    };
+
     # services.resolved.enable = true;
 
     virtualisation = {
       oci-containers.backend = "podman";
 
       containers.enable = true;
+
+      containerd = {
+        enable = true;
+        nixSnapshotterIntegration = true;
+      };
 
       docker.rootless = {
         enable = true;

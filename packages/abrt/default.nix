@@ -18,8 +18,6 @@
   json_c,
   satyr,
   copyPkgconfigItems,
-  autoconf,
-  automake,
   libsoup_3,
   augeas,
   curl,
@@ -34,6 +32,7 @@
   gobject-introspection,
   dbus,
   util-linux,
+  makeWrapper,
   doxygen,
 }: let
   sphinxFixed = sphinx.overrideAttrs (
@@ -45,6 +44,12 @@
         '';
     }
   );
+  python = python3.withPackages (ps:
+    with ps; [
+      dbus-python
+      argcomplete
+      libreport
+    ]);
 in
   stdenv.mkDerivation rec {
     pname = "abrt";
@@ -66,6 +71,14 @@ in
     # patches = [./dbus.patch];
     # makeFlags = "DESTDIR=${placeholder "out"}";
 
+    preConfigure = ''
+        export PYTHONPATH=$(find ${python} -type d -name site-packages)
+
+      #   echo $PYTHONPATH
+      #   sleep 1000
+
+    '';
+
     configureFlags = [
       "PYTEST=${python3.pkgs.pytest}/bin/pytest"
       "FINDMNT=${util-linux}/bin/findmnt"
@@ -76,6 +89,7 @@ in
       #"CONF_DIR=${placeholder "out"}/etc"
       # "-Dsysconfdir_install=${placeholder "out"}/etc"
       "PYTHON_SPHINX=${sphinx}/bin/sphinx"
+      "--prefix=${placeholder "out"}"
       "--sysconfdir=/etc"
       "--localstatedir=/var"
       "--sharedstatedir=/var/lib"
@@ -106,6 +120,7 @@ in
     ];
 
     nativeBuildInputs = [
+      makeWrapper
       autoreconfHook
       pkg-config
       copyPkgconfigItems
@@ -114,6 +129,7 @@ in
       docbook_xml_dtd_45
       intltool
       doxygen
+      python3.pkgs.wrapPython
     ];
 
     buildInputs = [
@@ -130,11 +146,11 @@ in
       json_c
       curl
       augeas
+      dbus
       # py
       # py.pkgs.sphinx
-      python3
+      python
       python3.pkgs.pytest
-      python3.pkgs.dbus-python
 
       asciidoc
       xmlto
@@ -153,13 +169,22 @@ in
     postInstall = ''
       cp -rv "$out$out/." "$out/"
       rm -rv "$out/nix"
+    '';
 
-      for i in "$out/lib/systemd/system"/*; do
-        substituteInPlace $i --replace-fail "/usr" "$out"
+    postFixup = ''
+      for f in "$out/lib/systemd/system"/*; do
+        substituteInPlace $f --replace-fail "/usr" "$out"
       done
 
+      wrapPythonProgramsIn $out/bin "$out ${libreport} ${python}"
+    '';
+
+    postCheck = ''
+      file $out/bin/abrt
       file $out/bin/abrtd
     '';
+
+    passthru = {pythonModule = python;};
 
     meta = with lib; {
       description = "Automatic bug detection and reporting tool";

@@ -63,6 +63,7 @@
       };
 
       overlays = with inputs; [
+        nix-snapshotter.overlays.default
         otel.overlays.default
         nvidia-patch.overlays.default
         ytdlp-gui.overlay
@@ -102,6 +103,7 @@
 
       systems.modules = {
         nixos = with inputs; [
+          nix-snapshotter.nixosModules.default
           chaotic.nixosModules.default
           nixos-facter-modules.nixosModules.facter
           # nix-topology.nixosModules.default
@@ -875,6 +877,10 @@
 
     fenix = {
       url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-snapshotter = {
+      url = "github:pdtpartners/nix-snapshotter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

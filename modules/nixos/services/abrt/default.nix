@@ -14,41 +14,63 @@ in {
   config = lib.mkIf cfg.enable {
     users = {
       groups.abrt = {};
+      users.abrt = {
+        isSystemUser = true;
+        group = "abrt";
+      };
     };
 
     environment = {
-      systemPackages = [package];
-      etc."abrt/abrt.conf".text = ''
-        #Type Path                  Mode UID  GID
-        d     /var/tmp/abrt         0755 abrt abrt
-        x     /var/tmp/abrt/*
+      systemPackages = [package pkgs.augeas];
+      etc = {
+        "abrt/abrt.conf".text = ''
+          WatchCrashdumpArchiveDir = /var/spool/abrt-upload
+          DumpLocation = /var/spool/abrt
+          ProcessUnpackaged = yes
+        '';
+        "abrt/plugins/oops.conf".text = '''';
+        "abrt/plugins/CCpp.conf".text = '''';
+        "abrt/plugins/xorg.conf".text = '''';
+        "abrt/plugins/vmcore.conf".text = '''';
+        "abrt/abrt-action-save-package-data.conf".text = '''';
+        "abrt/gpg_keys.conf".text = '''';
+        "libreport/plugins/mailx.conf".text = ''
 
-        d     /run/abrt             0755 root root
-        r!    /run/abrt/abrt.pid
-        r!    /run/abrt/abrt.socket
-
-        d     /var/cache/abrt-di    0775 abrt abrt
-      '';
+        '';
+        "profile.d/abrt-console-notification.sh".source = "${package}/etc/profile.d/abrt-console-notification.sh";
+        "libreport/events.d/abrt_dbus_event.conf".source = "${package}/etc/libreport/events.d/abrt_dbus_event.conf";
+        "libreport/events.d/bodhi_event.conf".source = "${package}/etc/libreport/events.d/bodhi_event.conf";
+        "libreport/events.d/gconf_event.conf".source = "${package}/etc/libreport/events.d/gconf_event.conf";
+        "libreport/events.d/machine-id_event.conf".source = "${package}/etc/libreport/events.d/machine-id_event.conf";
+        "libreport/events.d/smart_event.conf".source = "${package}/etc/libreport/events.d/smart_event.conf";
+        "libreport/events.d/vmcore_event.conf".source = "${package}/etc/libreport/events.d/vmcore_event.conf";
+        "libreport/events.d/abrt_event.conf".source = "${package}/etc/libreport/events.d/abrt_event.conf";
+        "libreport/events.d/ccpp_event.conf".source = "${package}/etc/libreport/events.d/ccpp_event.conf";
+        "libreport/events.d/koops_event.conf".source = "${package}/etc/libreport/events.d/koops_event.conf";
+        "libreport/events.d/python3_event.conf".source = "${package}/etc/libreport/events.d/python3_event.conf";
+        "libreport/events.d/vimrc_event.conf".source = "${package}/etc/libreport/events.d/vimrc_event.conf";
+        "libreport/events.d/xorg_event.conf".source = "${package}/etc/libreport/events.d/xorg_event.conf";
+      };
     };
     systemd = {
       # packages = [pkgs.abrt];
 
-      tmpfiles.settings."10-meshagent" = {
+      tmpfiles.settings."10-abrt" = {
         "/var/lib/abrt".d = {
           user = "abrt";
           group = "abrt";
           mode = "0755";
         };
-        "/etc/abrt/plugins/oops.conf".L = {
-          argument = "${package}/etc/abrt/plugins/oops.conf";
-        };
-        "/etc/abrt/plugins/CCpp.conf".L = {
-          argument = "${package}/etc/abrt/plugins/CCpp.conf";
+        "/var/spool/abrt-upload".d = {
+          user = "abrt";
+          group = "abrt";
+          mode = "0755";
         };
       };
 
       services = {
         abrt-dump-journal-core = {
+          path = [package];
           description = "ABRT coredumpctl message creator";
           after = ["abrtd.service"];
           requisite = ["abrtd.service"];
@@ -62,6 +84,7 @@ in {
         };
 
         abrt-dump-journal-oop = {
+          path = [package];
           description = "ABRT kernel log watcher";
           after = ["abrtd.service"];
           requisite = ["abrtd.service"];
@@ -72,6 +95,7 @@ in {
         };
 
         abrt-pstoreoops = {
+          path = [package];
           description = "ABRT kernel oops pstore collector";
           after = ["abrtd.service"];
           requisite = ["abrtd.service"];
@@ -89,6 +113,7 @@ in {
         };
 
         abrt-upload-watch = {
+          path = [package];
           description = "ABRT upload watcher";
           after = ["abrtd.service"];
           requisite = ["abrtd.service"];
@@ -99,6 +124,7 @@ in {
         };
 
         abrt-vmcore = {
+          path = [package];
           description = "ABRT kernel panic detection";
           after = ["abrtd.service"];
           requisite = ["abrtd.service"];
@@ -115,7 +141,8 @@ in {
           };
         };
 
-        abrt-xorg = {
+        abrt-xorg = lib.mkIf config.gui.desktop.enable {
+          path = [package];
           description = "ABRT Xorg log watcher";
           after = ["abrtd.service"];
           requisite = ["abrtd.service"];
@@ -126,6 +153,7 @@ in {
         };
 
         abrtd = {
+          path = [package];
           wantedBy = ["multi-user.target"];
           serviceConfig = {
             ExecStartPre = "${pkgs.bash}/bin/bash -c \"${pkgs.procps}/bin/pkill ${package}/bin/abrt-dbus || :\"";
