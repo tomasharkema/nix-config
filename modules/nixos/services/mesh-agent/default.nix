@@ -23,7 +23,7 @@ in {
     };
 
     systemd = {
-      tmpfiles.settings."10-meshagent" = {
+      tmpfiles.settings."9-meshagent" = {
         "${folder}".d = {
           group = "root";
           mode = "0755";
