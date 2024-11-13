@@ -103,7 +103,7 @@
         ];
       };
 
-      freeipa.enable = true;
+      # freeipa.enable = true;
 
       resilio.enable = lib.mkForce false;
 
