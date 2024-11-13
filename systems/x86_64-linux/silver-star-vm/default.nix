@@ -8,32 +8,30 @@
 
   config = {
     age.rekey = {
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILZP/NhYd8ZBJBXDEDwUgkxQHEBD3DT2KsAQA3bn1MSC root@silver-star-vm";
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPmfcfVeCBPcxmRRDtfSJcnAEZR5puw+h9eLN8M/jKOn root@silver-star-vm";
     };
 
-    swapDevices =
-      lib.mkForce [
-      ];
+    swapDevices = lib.mkForce [];
     traits = {
       server.enable = true;
       builder.enable = true;
       hardware = {
         tpm.enable = true;
-        # secure-boot.enable = true;
+        secure-boot.enable = true;
         vm.enable = true;
       };
     };
 
     boot = {
       loader = {
-        systemd-boot.enable = true;
+        # systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
       };
     };
 
     disks.ext4 = {
       enable = true;
-      main = "/dev/disk/by-id/virtio-vdisk1";
+      main = "/dev/vda";
     };
 
     # apps.tor.relay.enable = true;
@@ -50,7 +48,9 @@
 
       # journald.remote.enable = true;
 
-      kmscon = {enable = false;};
+      kmscon = {
+        enable = false;
+      };
 
       healthchecks = {
         # enable = true;
@@ -72,11 +72,15 @@
         };
       };
 
-      earlyoom = {enable = lib.mkForce false;};
+      earlyoom = {
+        enable = lib.mkForce false;
+      };
 
       tailscale = {
-        extraUpFlags =
-          lib.mkForce ["--advertise-tags=tag:nixos" "--operator=tomas"];
+        extraUpFlags = lib.mkForce [
+          "--advertise-tags=tag:nixos"
+          "--operator=tomas"
+        ];
       };
 
       freeipa.enable = true;
@@ -85,7 +89,9 @@
 
       ha.initialMaster = true;
 
-      command-center = {enableBot = true;};
+      command-center = {
+        enableBot = true;
+      };
     };
 
     networking = {
@@ -93,7 +99,10 @@
 
       firewall = {
         enable = false;
-        allowedTCPPorts = [config.services.buildbot-master.port (lib.toInt config.apps.buildbot.workerPort)];
+        allowedTCPPorts = [
+          config.services.buildbot-master.port
+          (lib.toInt config.apps.buildbot.workerPort)
+        ];
       };
       # wireless.enable = lib.mkDefault false;
       networkmanager.enable = lib.mkForce false; # true;
