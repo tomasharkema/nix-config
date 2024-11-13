@@ -24,6 +24,25 @@
 
     time.timeZone = "Europe/Amsterdam";
 
+    virtualisation = {
+      oci-containers.containers = {
+        mackerel-to-grafana-oncall-docker' = {
+          imageFile = pkgs.custom.mackerel-to-grafana-oncall-docker;
+
+          autoStart = true;
+
+          # volumes = [
+          #   "/var/lib/netboot/config:/config"
+          #   "/var/lib/netboot/assets:/assets"
+          # ];
+
+          ports = [
+            "8000:8000"
+          ];
+        };
+      };
+    };
+
     disks.ext4 = {
       enable = true;
       main = "/dev/vda";
@@ -66,6 +85,7 @@
       flatpak.enable = true;
       # opensnitch.enable = true;
       ancs4linux.enable = false;
+      podman.enable = true;
     };
 
     boot = {
