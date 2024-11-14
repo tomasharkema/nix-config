@@ -39,7 +39,8 @@
 
     virtualisation = {
       oci-containers.containers = {
-        mackerel-to-grafana-oncall-docker' = {
+        mackerelGrafana = {
+          image = "mackerel-to-grafana-oncall:latest";
           imageFile = pkgs.custom.mackerel-to-grafana-oncall-docker;
 
           autoStart = true;
@@ -48,6 +49,10 @@
           #   "/var/lib/netboot/config:/config"
           #   "/var/lib/netboot/assets:/assets"
           # ];
+
+          cmd = [
+            "-grafana-oncall-url"
+          ];
 
           ports = [
             "8000:8000"
