@@ -109,7 +109,7 @@ with pkgs; {
         # mosh
         # guardian-agent
         mtr
-        multitail
+        # multitail
         navi
         # ncdu
         neofetch
