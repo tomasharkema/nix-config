@@ -9,22 +9,30 @@
 in {
   options.services.abrt = {
     enable = lib.mkEnableOption "abrt";
+
+    servre.enable = lib.mkEnableOption "abrt server";
   };
 
   config = lib.mkIf cfg.enable {
     users = {
       groups.abrt = {};
-      users.abrt = {
-        isSystemUser = true;
-        group = "abrt";
+      users = {
+        abrt = {
+          isSystemUser = true;
+          group = "abrt";
+        };
+        abrt-upload = lib.mkIf cfg.server.enable {
+          isSystemUser = true;
+          group = "abrt";
+        };
       };
     };
 
     environment = {
-      systemPackages = [package pkgs.augeas];
+      systemPackages = [package pkgs.augeas pkgs.libreport];
       etc = {
         "abrt/abrt.conf".text = ''
-          WatchCrashdumpArchiveDir = /var/spool/abrt-upload
+          ${lib.optionalString cfg.server.enable "WatchCrashdumpArchiveDir = /var/spool/abrt-upload"}
           DumpLocation = /var/spool/abrt
           ProcessUnpackaged = yes
         '';
@@ -70,7 +78,7 @@ in {
 
       services = {
         abrt-dump-journal-core = {
-          path = [package];
+          path = [package pkgs.libreport];
           description = "ABRT coredumpctl message creator";
           after = ["abrtd.service"];
           requisite = ["abrtd.service"];
@@ -84,7 +92,7 @@ in {
         };
 
         abrt-dump-journal-oop = {
-          path = [package];
+          path = [package pkgs.libreport];
           description = "ABRT kernel log watcher";
           after = ["abrtd.service"];
           requisite = ["abrtd.service"];
@@ -95,7 +103,7 @@ in {
         };
 
         abrt-pstoreoops = {
-          path = [package];
+          path = [package pkgs.libreport];
           description = "ABRT kernel oops pstore collector";
           after = ["abrtd.service"];
           requisite = ["abrtd.service"];
@@ -112,8 +120,8 @@ in {
           };
         };
 
-        abrt-upload-watch = {
-          path = [package];
+        abrt-upload-watch = lib.mkIf cfg.server.enable {
+          path = [package pkgs.libreport];
           description = "ABRT upload watcher";
           after = ["abrtd.service"];
           requisite = ["abrtd.service"];
@@ -124,7 +132,7 @@ in {
         };
 
         abrt-vmcore = {
-          path = [package];
+          path = [package pkgs.libreport];
           description = "ABRT kernel panic detection";
           after = ["abrtd.service"];
           requisite = ["abrtd.service"];
@@ -142,7 +150,7 @@ in {
         };
 
         abrt-xorg = lib.mkIf config.gui.desktop.enable {
-          path = [package];
+          path = [package pkgs.libreport];
           description = "ABRT Xorg log watcher";
           after = ["abrtd.service"];
           requisite = ["abrtd.service"];
@@ -153,7 +161,7 @@ in {
         };
 
         abrtd = {
-          path = [package];
+          path = [package pkgs.libreport];
           wantedBy = ["multi-user.target"];
           serviceConfig = {
             ExecStartPre = "${pkgs.bash}/bin/bash -c \"${pkgs.procps}/bin/pkill ${package}/bin/abrt-dbus || :\"";
