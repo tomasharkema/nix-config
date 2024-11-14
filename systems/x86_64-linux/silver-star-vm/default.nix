@@ -8,35 +8,58 @@
 
   config = {
     age.rekey = {
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILZP/NhYd8ZBJBXDEDwUgkxQHEBD3DT2KsAQA3bn1MSC root@silver-star-vm";
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPmfcfVeCBPcxmRRDtfSJcnAEZR5puw+h9eLN8M/jKOn root@silver-star-vm";
     };
 
-    swapDevices =
-      lib.mkForce [
-      ];
+    swapDevices = lib.mkForce [];
+
     traits = {
       server.enable = true;
       builder.enable = true;
       hardware = {
         tpm.enable = true;
-        # secure-boot.enable = true;
+        secure-boot.enable = true;
         vm.enable = true;
       };
     };
 
     boot = {
       loader = {
-        systemd-boot.enable = true;
+        # systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
       };
     };
 
     disks.ext4 = {
       enable = true;
-      main = "/dev/disk/by-id/virtio-vdisk1";
+      main = "/dev/vda";
     };
 
     # apps.tor.relay.enable = true;
+
+    virtualisation = {
+      oci-containers.containers = {
+        mackerelGrafana = {
+          image = "mackerel-to-grafana-oncall:latest";
+          imageFile = pkgs.custom.mackerel-to-grafana-oncall-docker;
+
+          autoStart = true;
+
+          # volumes = [
+          #   "/var/lib/netboot/config:/config"
+          #   "/var/lib/netboot/assets:/assets"
+          # ];
+
+          cmd = [
+            "-grafana-oncall-url"
+          ];
+
+          ports = [
+            "8000:8000"
+          ];
+        };
+      };
+    };
 
     apps = {
       # attic-server.enable = true;
@@ -50,7 +73,9 @@
 
       # journald.remote.enable = true;
 
-      kmscon = {enable = false;};
+      kmscon = {
+        enable = false;
+      };
 
       healthchecks = {
         # enable = true;
@@ -72,20 +97,26 @@
         };
       };
 
-      earlyoom = {enable = lib.mkForce false;};
-
-      tailscale = {
-        extraUpFlags =
-          lib.mkForce ["--advertise-tags=tag:nixos" "--operator=tomas"];
+      earlyoom = {
+        enable = lib.mkForce false;
       };
 
-      freeipa.enable = true;
+      tailscale = {
+        extraUpFlags = lib.mkForce [
+          "--advertise-tags=tag:nixos"
+          "--operator=tomas"
+        ];
+      };
+
+      # freeipa.enable = true;
 
       resilio.enable = lib.mkForce false;
 
       ha.initialMaster = true;
 
-      command-center = {enableBot = true;};
+      command-center = {
+        enableBot = true;
+      };
     };
 
     networking = {
@@ -93,7 +124,10 @@
 
       firewall = {
         enable = false;
-        allowedTCPPorts = [config.services.buildbot-master.port (lib.toInt config.apps.buildbot.workerPort)];
+        allowedTCPPorts = [
+          config.services.buildbot-master.port
+          (lib.toInt config.apps.buildbot.workerPort)
+        ];
       };
       # wireless.enable = lib.mkDefault false;
       networkmanager.enable = lib.mkForce false; # true;
