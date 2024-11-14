@@ -546,6 +546,8 @@
 
       networkmanager.enable = lib.mkDefault true;
       timeServers = ["time.cloudflare.com"];
+
+      useNetworkd = lib.mkIf config.networking.networkmanager.enable false;
     };
 
     # powerManagement.powertop.enable = lib.mkDefault true;
