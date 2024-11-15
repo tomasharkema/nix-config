@@ -503,21 +503,6 @@
       };
       mtr.enable = true;
       command-not-found.enable = false;
-
-      ccache = {
-        enable = true;
-        packageNames = [
-          "sssd"
-          "freeipa"
-          # "mutter"
-          # "gnome-shell"
-          # "gnome-session"
-        ];
-      };
-    };
-
-    nix.settings = {
-      extra-sandbox-paths = [config.programs.ccache.cacheDir];
     };
 
     hardware = {

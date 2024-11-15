@@ -72,14 +72,16 @@ in {
       '';
     };
 
-    environment.sessionVariables = {
-      # LD_LIBRARY_PATH = [
-      #   "/run/current-system/sw/lib"
-      #   "/run/opengl-driver/lib"
-      #   "/run/opengl-driver-32/lib"
-      # ];
+    environment = {
+      etc."xdg/autostart/geary-autostart.desktop".source = "${pkgs.geary}/share/applications/geary-autostart.desktop";
+      sessionVariables = {
+        # LD_LIBRARY_PATH = [
+        #   "/run/current-system/sw/lib"
+        #   "/run/opengl-driver/lib"
+        #   "/run/opengl-driver-32/lib"
+        # ];
+      };
     };
-
     # chaotic = {
     # scx.enable = true;
     # mesa-git.enable = true;
@@ -98,10 +100,8 @@ in {
     # };
 
     programs = {
-      evolution.enable = true;
-      # geary = {
-      #   enable = true;
-      # };
+      evolution.enable = false;
+      geary.enable = true;
     };
 
     boot.extraModulePackages = [config.boot.kernelPackages.akvcam];

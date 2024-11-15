@@ -40,6 +40,7 @@ stdenv.mkDerivation rec {
     rev = version;
     hash = "sha256-XGsdEVODKC81ejMHaETdt1Vt7x4PQfxhfabKuEuHONA=";
   };
+
   enableParallelBuilding = true;
 
   env.NIX_CFLAGS_COMPILE = "-I${libxml2.dev}/include/libxml2";

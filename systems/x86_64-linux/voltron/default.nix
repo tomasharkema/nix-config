@@ -261,7 +261,7 @@ in {
         "iomem=relaxed"
         #   # "nowatchdog"
         #   # "mitigations=off"
-
+        "i915.enable_gvt=1"
         "intel_iommu=on"
         "iommu=pt"
       ];

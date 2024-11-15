@@ -49,6 +49,8 @@ in {
     #   };
     # };
 
+    programs.mdevctl.enable = true;
+
     environment.systemPackages = with pkgs; [
       kvmtool
       libvirt
@@ -60,7 +62,7 @@ in {
       _86Box-with-roms
       # remotebox
       virtio-win
-      mdevctl
+
       qemu-utils
       virtiofsd
     ];
@@ -118,7 +120,15 @@ in {
     # '';
     # };
 
-    boot.extraModprobeConfig = "options kvm_intel nested=1";
+    boot = {
+      kernelParams = [
+        "kvm_intel.nested=1"
+      ];
+      kernelModules = [
+        "mdev"
+        "kvmgt"
+      ];
+    };
 
     # programs.ccache = {
     #   enable = true;

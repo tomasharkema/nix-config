@@ -73,11 +73,7 @@ in
     # makeFlags = "DESTDIR=${placeholder "out"}";
 
     preConfigure = ''
-        export PYTHONPATH=$(find ${python} -type d -name site-packages)
-
-      #   echo $PYTHONPATH
-      #   sleep 1000
-
+      export PYTHONPATH=$(find ${python} -type d -name site-packages)
     '';
 
     configureFlags = [
@@ -109,6 +105,7 @@ in
       "--without-selinux"
       #"--with-autostartdir=${placeholder "out"}/etc/xdg/autostart"
     ];
+
     installFlags = [
       "DESTDIR=${placeholder "out"}"
       "PREFIX=${placeholder "out"}"
@@ -171,7 +168,6 @@ in
     postInstall = ''
       cp -rv "$out$out/." "$out/"
       rm -rv "$out/nix"
-
     '';
 
     postFixup = ''
@@ -179,7 +175,9 @@ in
         substituteInPlace $f --replace-fail "/usr" "$out"
       done
 
-      wrapPythonProgramsIn $out/bin "$out ${libreport} ${python}"
+      cp -r ${libreport}/etc/. $out/etc/
+
+      wrapPythonProgramsIn "$out/bin" "$out ${libreport} ${python}"
 
       substituteInPlace "$out/etc/xdg/autostart/org.freedesktop.problems.applet.desktop" \
         --replace-fail "Exec=abrt-applet" "Exec=$out/bin/abrt-applet"
