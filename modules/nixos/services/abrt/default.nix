@@ -97,10 +97,8 @@ in {
             EVENT=notify ${pkgs.ntfy-sh}/bin/ntfy publish --title "$HOSTNAME Crash $(cat executable)" "$(cat ${config.age.secrets.ntfy.path})" "$(cat executable)"
           '';
         };
-        "libreport/report_event.conf" = {
-          mode = "0600";
-          source = "${package}/libreport/report_event.conf";
-        };
+        "libreport/report_event.conf".source = "${package}/libreport/report_event.conf";
+
         "profile.d/abrt-console-notification.sh".source = "${package}/etc/profile.d/abrt-console-notification.sh";
         "libreport/events.d/abrt_dbus_event.conf".source = "${package}/etc/libreport/events.d/abrt_dbus_event.conf";
         "libreport/events.d/bodhi_event.conf".source = "${package}/etc/libreport/events.d/bodhi_event.conf";
