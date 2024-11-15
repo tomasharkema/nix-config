@@ -55,7 +55,13 @@ in {
         AUGEAS_LENS_LIB = "${package}/share/augeas/lenses:/run/current-system/sw/share/augeas/lenses:/run/current-system/sw/share/augeas/lenses/dist";
       };
 
-      systemPackages = [package pkgs.augeas pkgs.libreport];
+      systemPackages = [
+        package
+        pkgs.augeas
+        pkgs.libreport
+        pkgs.custom.will-crash
+      ];
+
       etc = {
         "abrt/abrt.conf" = {
           mode = "0600";
