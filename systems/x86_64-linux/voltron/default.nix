@@ -257,11 +257,12 @@ in {
       kernelParams = [
         "pstore.backend=efi"
         "efi_pstore.pstore_disable=0"
-        "mem_sleep_default=deep"
+        # "mem_sleep_default=deep"
         "iomem=relaxed"
         #   # "nowatchdog"
         #   # "mitigations=off"
         "i915.enable_gvt=1"
+        "i915.enable_guc=0"
         "intel_iommu=on"
         "iommu=pt"
       ];
