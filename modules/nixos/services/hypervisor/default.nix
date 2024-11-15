@@ -5,9 +5,6 @@
   ...
 }: let
   cfg = config.services.hypervisor;
-
-  libvirtKeytab = "/var/lib/libvirt/krb5.tab";
-  qemuKeytab = "/etc/qemu/krb5.tab";
 in {
   options.services.hypervisor = {
     enable = lib.mkEnableOption "hypervisor";
@@ -63,7 +60,7 @@ in {
       _86Box-with-roms
       # remotebox
       virtio-win
-
+      mdevctl
       qemu-utils
       virtiofsd
     ];

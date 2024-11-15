@@ -73,6 +73,11 @@
 
       # journald.remote.enable = true;
 
+      abrt = {
+        enable = true;
+        server.enable = true;
+      };
+
       kmscon = {
         enable = false;
       };

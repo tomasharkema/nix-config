@@ -34,6 +34,7 @@
   util-linux,
   makeWrapper,
   doxygen,
+  autoPatchelfHook,
 }: let
   sphinxFixed = sphinx.overrideAttrs (
     {postInstall ? "", ...}: {
@@ -120,6 +121,7 @@ in
     ];
 
     nativeBuildInputs = [
+      autoPatchelfHook
       makeWrapper
       autoreconfHook
       pkg-config
@@ -169,6 +171,7 @@ in
     postInstall = ''
       cp -rv "$out$out/." "$out/"
       rm -rv "$out/nix"
+
     '';
 
     postFixup = ''
@@ -177,6 +180,15 @@ in
       done
 
       wrapPythonProgramsIn $out/bin "$out ${libreport} ${python}"
+
+      substituteInPlace "$out/etc/xdg/autostart/org.freedesktop.problems.applet.desktop" \
+        --replace-fail "Exec=abrt-applet" "Exec=$out/bin/abrt-applet"
+
+      substituteInPlace $out/share/dbus-1/system-services/org.freedesktop.problems.service \
+        --replace-fail "/usr" "$out"
+
+      # substituteInPlace $out/share/dbus-1/services/org.freedesktop.problems.applet.service \
+      #   --replace-fail "/usr" "$out"
     '';
 
     postCheck = ''

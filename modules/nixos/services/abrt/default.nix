@@ -8,43 +8,96 @@
   package = pkgs.abrt;
 in {
   options.services.abrt = {
-    enable = lib.mkEnableOption "abrt";
+    enable = (lib.mkEnableOption "abrt") // {default = true;};
 
-    servre.enable = lib.mkEnableOption "abrt server";
+    server.enable = lib.mkEnableOption "abrt server";
+    client.enable =
+      (lib.mkEnableOption "abrt client")
+      // {
+        default = !(cfg.server.enable);
+      };
   };
 
   config = lib.mkIf cfg.enable {
+    age.secrets."abrt-key" = {
+      rekeyFile = ./abrt-key.age;
+      # generator.script = "ssh-ed25519";
+    };
+
     users = {
-      groups.abrt = {};
+      groups = {
+        abrt = {};
+        abrt-upload = {};
+      };
+
       users = {
         abrt = {
           isSystemUser = true;
           group = "abrt";
         };
         abrt-upload = lib.mkIf cfg.server.enable {
-          isSystemUser = true;
-          group = "abrt";
+          # isSystemUser = true;
+          isNormalUser = true;
+          group = "abrt-upload";
+          extraGroups = ["abrt"];
+          openssh.authorizedKeys.keys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICSjyt7NDFLredZCrd4q6A8KUILIqf7eFMXIPvRzYtxI tomas@voltron"
+          ];
         };
       };
     };
 
     environment = {
+      variables = {
+        AUGEAS_LENS_LIB = "${package}/share/augeas/lenses:/run/current-system/sw/share/augeas/lenses:/run/current-system/sw/share/augeas/lenses/dist";
+      };
+      sessionVariables = {
+        AUGEAS_LENS_LIB = "${package}/share/augeas/lenses:/run/current-system/sw/share/augeas/lenses:/run/current-system/sw/share/augeas/lenses/dist";
+      };
+
       systemPackages = [package pkgs.augeas pkgs.libreport];
       etc = {
-        "abrt/abrt.conf".text = ''
-          ${lib.optionalString cfg.server.enable "WatchCrashdumpArchiveDir = /var/spool/abrt-upload"}
-          DumpLocation = /var/spool/abrt
-          ProcessUnpackaged = yes
-        '';
+        "abrt/abrt.conf" = {
+          mode = "0600";
+          text = ''
+            ${lib.optionalString cfg.server.enable "WatchCrashdumpArchiveDir = /var/spool/abrt-upload"}
+            DumpLocation = /var/spool/abrt
+            ProcessUnpackaged = yes
+            AutoreportingEnabled = yes
+            OpenGPGCheck = no
+          '';
+        };
         "abrt/plugins/oops.conf".text = '''';
         "abrt/plugins/CCpp.conf".text = '''';
         "abrt/plugins/xorg.conf".text = '''';
         "abrt/plugins/vmcore.conf".text = '''';
         "abrt/abrt-action-save-package-data.conf".text = '''';
         "abrt/gpg_keys.conf".text = '''';
+        "libreport/libreport.conf".text = "";
         "libreport/plugins/mailx.conf".text = ''
 
         '';
+        "libreport/plugins/upload.conf" = {
+          mode = "0600";
+          text = ''
+            URL = scp://root@silver-star-vm/var/spool/abrt-upload/
+            SSHPrivateKey = ${config.age.secrets."abrt-key".path}
+          '';
+        };
+        "libreport/events.d/uploader_event.conf" = {
+          mode = "0600";
+          text = ''
+            EVENT=notify reporter-upload
+          '';
+        };
+        "libreport/events.d/ntfy.conf" = {
+          mode = "0600";
+
+          text = ''
+            EVENT=notify ${pkgs.ntfy-sh}/bin/ntfy publish --title "$HOSTNAME Crash $(cat executable)" "$(cat ${config.age.secrets.ntfy.path})" "$(cat executable)"
+          '';
+        };
+        "libreport/report_event.conf".source = "${package}/libreport/report_event.conf";
         "profile.d/abrt-console-notification.sh".source = "${package}/etc/profile.d/abrt-console-notification.sh";
         "libreport/events.d/abrt_dbus_event.conf".source = "${package}/etc/libreport/events.d/abrt_dbus_event.conf";
         "libreport/events.d/bodhi_event.conf".source = "${package}/etc/libreport/events.d/bodhi_event.conf";
@@ -60,21 +113,28 @@ in {
         "libreport/events.d/xorg_event.conf".source = "${package}/etc/libreport/events.d/xorg_event.conf";
       };
     };
-    systemd = {
-      # packages = [pkgs.abrt];
 
-      tmpfiles.settings."10-abrt" = {
-        "/var/lib/abrt".d = {
-          user = "abrt";
-          group = "abrt";
-          mode = "0755";
-        };
-        "/var/spool/abrt-upload".d = {
-          user = "abrt";
-          group = "abrt";
-          mode = "0755";
-        };
-      };
+    system.activationScripts."system-release" = ''
+      echo $(uname -mrs) > /etc/system-release
+    '';
+
+    systemd = {
+      packages = [pkgs.abrt];
+
+      tmpfiles.packages = [pkgs.abrt];
+
+      # tmpfiles.settings."10-abrt" = {
+      #   "/var/lib/abrt".d = {
+      #     user = "abrt";
+      #     group = "abrt";
+      #     mode = "0755";
+      #   };
+      #   "/var/spool/abrt-upload".d = {
+      #     user = "abrt";
+      #     group = "abrt";
+      #     mode = "0755";
+      #   };
+      # };
 
       services = {
         abrt-dump-journal-core = {

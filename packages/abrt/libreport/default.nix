@@ -28,6 +28,7 @@
   docbook_xsl,
   docbook_xml_dtd_45,
   dbus,
+  autoPatchelfHook,
 }:
 stdenv.mkDerivation rec {
   pname = "libreport";
@@ -43,12 +44,12 @@ stdenv.mkDerivation rec {
 
   env.NIX_CFLAGS_COMPILE = "-I${libxml2.dev}/include/libxml2";
 
-  configuraFlags = [
+  configureFlags = [
     "LIBXML=${libxml2.dev}/include/libxml2/libxml"
-    "--sysconfdir=${placeholder "out"}/etc"
-    "--localstatedir=${placeholder "out"}/var"
-    "--sharedstatedir=/var/lib"
     "--prefix=${placeholder "out"}"
+    "--sysconfdir=/etc"
+    "--localstatedir=/var"
+    "--sharedstatedir=/var/lib"
     "--libdir=${placeholder "out"}/lib"
     "--libexecdir=${placeholder "out"}/libexec"
     "--bindir=${placeholder "out"}/bin"
@@ -57,6 +58,11 @@ stdenv.mkDerivation rec {
     "--mandir=${placeholder "out"}/share/man"
     "--infodir=${placeholder "out"}/share/info"
     "--localedir=${placeholder "out"}/share/locale"
+  ];
+
+  installFlags = [
+    "DESTDIR=${placeholder "out"}"
+    "PREFIX=${placeholder "out"}"
   ];
 
   nativeBuildInputs = [
@@ -69,6 +75,7 @@ stdenv.mkDerivation rec {
     docbook_xsl
     docbook_xml_dtd_45
     intltool
+    autoPatchelfHook
   ];
 
   buildInputs = [
@@ -93,6 +100,16 @@ stdenv.mkDerivation rec {
 
   postPatch = ''
     sh gen-version
+  '';
+
+  postInstall = ''
+    cp -rv "$out$out/." "$out/"
+    rm -rv "$out/nix"
+  '';
+
+  postCheck = ''
+    file $out/bin/reporter-upload
+    file $out/bin/reporter-print
   '';
 
   meta = with lib; {
