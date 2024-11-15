@@ -42,7 +42,7 @@
         info.enable = true;
         nixos = {
           enable = true;
-          includeAllModules = true;
+          # includeAllModules = true;
         };
       };
 
