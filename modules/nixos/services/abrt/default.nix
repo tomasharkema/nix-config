@@ -26,14 +26,17 @@ in {
 
     users = {
       groups = {
-        abrt = {};
+        abrt = {gid = 173;};
         abrt-upload = {};
       };
 
       users = {
         abrt = {
+          uid = 173;
           isSystemUser = true;
           group = "abrt";
+          extraGroups = ["systemd-journal"];
+          home = "/etc/abrt";
         };
         abrt-upload = lib.mkIf cfg.server.enable {
           # isSystemUser = true;
@@ -67,10 +70,12 @@ in {
           mode = "0600";
           text = ''
             ${lib.optionalString cfg.server.enable "WatchCrashdumpArchiveDir = /var/spool/abrt-upload"}
+            ${lib.optionalString config.gui.desktop.enable "ShortenedReporting = yes"}
             DumpLocation = /var/spool/abrt
             ProcessUnpackaged = yes
             AutoreportingEnabled = yes
             OpenGPGCheck = no
+            DebugLevel = 100
           '';
         };
         "abrt/plugins/oops.conf".text = '''';
@@ -103,7 +108,7 @@ in {
             EVENT=notify ${pkgs.ntfy-sh}/bin/ntfy publish --title "$HOSTNAME Crash $(cat executable)" "$(cat ${config.age.secrets.ntfy.path})" "$(cat executable)"
           '';
         };
-        "libreport/report_event.conf".source = "${package}/libreport/report_event.conf";
+        "libreport/report_event.conf".source = "${package}/etc/libreport/report_event.conf";
 
         "profile.d/abrt-console-notification.sh".source = "${package}/etc/profile.d/abrt-console-notification.sh";
         "libreport/events.d/abrt_dbus_event.conf".source = "${package}/etc/libreport/events.d/abrt_dbus_event.conf";
@@ -232,7 +237,7 @@ in {
           wantedBy = ["multi-user.target"];
           description = "abrtd";
           serviceConfig = {
-            ExecStartPre = "${pkgs.bash}/bin/bash -c \"${pkgs.procps}/bin/pkill ${package}/bin/abrt-dbus || :\"";
+            ExecStartPre = "${pkgs.bash}/bin/bash -c \"${pkgs.procps}/bin/pkill abrt-dbus || :\"";
             ExecStart = "${package}/bin/abrtd -d -s";
 
             Type = "dbus";

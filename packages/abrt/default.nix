@@ -35,6 +35,7 @@
   makeWrapper,
   doxygen,
   autoPatchelfHook,
+  wrapGAppsHook,
 }: let
   sphinxFixed = sphinx.overrideAttrs (
     {postInstall ? "", ...}: {
@@ -86,7 +87,7 @@ in
       #"CONF_DIR=${placeholder "out"}/etc"
       # "-Dsysconfdir_install=${placeholder "out"}/etc"
       "PYTHON_SPHINX=${sphinx}/bin/sphinx"
-      "--prefix=${placeholder "out"}"
+      # "--prefix=${placeholder "out"}"
       "--sysconfdir=/etc"
       "--localstatedir=/var"
       "--sharedstatedir=/var/lib"
@@ -108,7 +109,7 @@ in
 
     installFlags = [
       "DESTDIR=${placeholder "out"}"
-      "PREFIX=${placeholder "out"}"
+      # "PREFIX=${placeholder "out"}"
       #"PLUGINS_CONF_DIR=${placeholder "out"}/etc/abrt"
       #"LIBREPORT_PLUGINS_CONF_DIR=${placeholder "out"}/etc/libreport"
       #"CONF_DIR=${placeholder "out"}/etc"
@@ -129,6 +130,7 @@ in
       intltool
       doxygen
       python3.pkgs.wrapPython
+      wrapGAppsHook
     ];
 
     buildInputs = [
@@ -168,6 +170,8 @@ in
     postInstall = ''
       cp -rv "$out$out/." "$out/"
       rm -rv "$out/nix"
+
+      echo 'ProcessUnpackaged = yes\nAutoreportingEnabled = yes\nOpenGPGCheck = no' >> $out/etc/abrt/abrt.conf
     '';
 
     postFixup = ''
