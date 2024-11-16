@@ -4,7 +4,7 @@
   config,
   ...
 }: {
-  config = {
+  config = lib.mkIf false {
     programs.wezterm = {
       enable = true;
       enableZshIntegration = true;

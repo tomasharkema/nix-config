@@ -171,8 +171,6 @@ in
     postInstall = ''
       cp -rv "$out$out/." "$out/"
       rm -rv "$out/nix"
-
-      echo 'ProcessUnpackaged = yes\nAutoreportingEnabled = yes\nOpenGPGCheck = no' >> $out/etc/abrt/abrt.conf
     '';
 
     postFixup = ''
@@ -180,23 +178,23 @@ in
         substituteInPlace $f --replace-fail "/usr" "$out"
       done
 
-      cp -r ${libreport}/etc/. $out/etc/
+      cp -r "${libreport}/etc/." "$out/etc/"
 
       wrapPythonProgramsIn "$out/bin" "$out ${libreport} ${python}"
 
       substituteInPlace "$out/etc/xdg/autostart/org.freedesktop.problems.applet.desktop" \
         --replace-fail "Exec=abrt-applet" "Exec=$out/bin/abrt-applet"
 
-      substituteInPlace $out/share/dbus-1/system-services/org.freedesktop.problems.service \
+      substituteInPlace "$out/share/dbus-1/system-services/org.freedesktop.problems.service" \
         --replace-fail "/usr" "$out"
 
-      # substituteInPlace $out/share/dbus-1/services/org.freedesktop.problems.applet.service \
+      # substituteInPlace "$out/share/dbus-1/services/org.freedesktop.problems.applet.service" \
       #   --replace-fail "/usr" "$out"
     '';
 
     postCheck = ''
-      file $out/bin/abrt
-      file $out/bin/abrtd
+      file "$out/bin/abrt"
+      file "$out/bin/abrtd"
     '';
 
     passthru = {pythonModule = python;};
