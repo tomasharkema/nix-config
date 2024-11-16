@@ -51,6 +51,7 @@
       dbus-python
       argcomplete
       libreport
+      pygobject3
     ]);
 in
   stdenv.mkDerivation rec {

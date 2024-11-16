@@ -21,7 +21,7 @@ in {
   config = lib.mkIf cfg.enable {
     age.secrets."abrt-key" = {
       rekeyFile = ./abrt-key.age;
-      # generator.script = "ssh-ed25519";
+      generator.script = "ssh-ed25519";
     };
 
     users = {
@@ -237,8 +237,15 @@ in {
           wantedBy = ["multi-user.target"];
           description = "abrtd";
           serviceConfig = {
-            ExecStartPre = "${pkgs.bash}/bin/bash -c \"${pkgs.procps}/bin/pkill abrt-dbus || :\"";
-            ExecStart = "${package}/bin/abrtd -d -s";
+            ExecStartPre = [
+              "-${pkgs.coreutils}/bin/mkdir -p /var/lib/abrt"
+              "-${pkgs.coreutils}/bin/mkdir -p /var/run/abrt"
+              "-${pkgs.coreutils}/bin/mkdir -p /var/cache/abrt-di"
+              "-${pkgs.coreutils}/bin/mkdir -p /var/spool/abrt-upload"
+
+              "${pkgs.bash}/bin/bash -c \"${pkgs.procps}/bin/pkill abrt-dbus || :\""
+            ];
+            ExecStart = "${package}/bin/abrtd -d -s -vvv";
 
             Type = "dbus";
             BusName = "org.freedesktop.problems.daemon";
