@@ -156,6 +156,8 @@ in {
           '';
           swtpm.enable = true;
 
+          vhostUserPackages = [pkgs.virtiofsd];
+
           ovmf = {
             enable = true;
             packages = [

@@ -265,7 +265,7 @@ in {
       # modprobeConfig.enable = true;
 
       kernelParams = [
-        "pstore.backend=erst"
+        "pstore.backend=nvram"
         "iwlwifi.11n_disable=1"
         "iwlwifi.swcrypto=1"
         # "efi_pstore.pstore_disable=0"
