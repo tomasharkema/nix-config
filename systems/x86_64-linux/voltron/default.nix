@@ -209,15 +209,15 @@ in {
       };
     };
 
-    # virtualisation.kvmgt = {
-    #   enable = true;
-    #   device = "0000:00:02.0";
-    #   vgpus = {
-    #     "i915-GVTg_V5_4" = {
-    #       uuid = ["e2ab260f-44a2-4e07-9889-68a1caafb399"];
-    #     };
-    #   };
-    # };
+    virtualisation.kvmgt = {
+      enable = true;
+      device = "0000:00:02.0";
+      vgpus = {
+        "i915-GVTg_V5_8" = {
+          uuid = ["e2ab260f-44a2-4e07-9889-68a1caafb399"];
+        };
+      };
+    };
 
     # programs = {
     #   captive-browser = {
