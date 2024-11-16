@@ -58,9 +58,6 @@ in {
       etc = {
         "xmm7360".source = settingsFile;
       };
-      sessionVariables = {
-        # LIBVA_DRIVER_NAME = "i965";
-      };
 
       systemPackages = with pkgs; [
         custom.swift
@@ -233,11 +230,24 @@ in {
       scx.enable = pkgs.stdenvNoCC.isx86_64; # by default uses scx_rustland scheduler
     };
 
+    system.build.isgx = config.boot.kernelPackages.isgx.overrideAttrs (old: {
+      patches = [
+        (pkgs.fetchpatch {
+          url = "https://github.com/intel/linux-sgx-driver/commit/2f69bc44869a23691001148bce16d26f77ba030a.patch";
+          sha256 = "sha256-h3aoV6RSgs1QRbb2+UGz0PRBPZRfzl2j/b2dcSGnR9E=";
+        })
+      ];
+    });
+
     boot = {
       kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
       # resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
-      extraModulePackages = [xmm7360];
+      extraModulePackages = [
+        xmm7360
+
+        # config.system.build.isgx
+      ];
 
       tmp = {
         useTmpfs = true;
@@ -252,11 +262,13 @@ in {
 
       binfmt.emulatedSystems = ["aarch64-linux"];
 
-      modprobeConfig.enable = true;
+      # modprobeConfig.enable = true;
 
       kernelParams = [
-        "pstore.backend=efi"
-        "efi_pstore.pstore_disable=0"
+        "pstore.backend=erst"
+        "iwlwifi.11n_disable=1"
+        "iwlwifi.swcrypto=1"
+        # "efi_pstore.pstore_disable=0"
         # "mem_sleep_default=deep"
         "iomem=relaxed"
         #   # "nowatchdog"
@@ -270,9 +282,6 @@ in {
         "nouveau"
         "iosm"
       ];
-      # extraModulePackages = [
-      #   config.system.build.isgx
-      # ];
 
       kernelModules = [
         "pstore"
@@ -280,7 +289,7 @@ in {
         "iosm"
         "i915"
         "spi"
-        "sgx"
+        # "sgx"
         # "isgx"
         "vfio_pci"
         "vfio"
