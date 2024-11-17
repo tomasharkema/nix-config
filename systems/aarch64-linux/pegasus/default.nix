@@ -106,8 +106,7 @@
     };
 
     boot = {
-      # kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
-      kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+      kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
     };
 
     proxy-services = {enable = false;};
