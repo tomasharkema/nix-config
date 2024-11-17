@@ -76,7 +76,7 @@
     #   fsType = "nfs";
     # };
     services = {
-      kmscon.enable = lib.mkForce false;
+      # kmscon.enable = lib.mkForce false;
       hardware = {
         openrgb.enable = true;
         bolt.enable = true;
@@ -169,6 +169,7 @@
         #   enable = true;
         #   open = true;
         # };
+        sgx.enable = true;
         remote-unlock.enable = true;
         monitor.enable = true;
         disable-sleep.enable = true;
@@ -234,7 +235,7 @@
       kernelParams = [
         "intel_iommu=on"
         "iommu=pt"
-
+        "iomem=relaxed"
         # "drm.edid_firmware=HDMI-A-1:edid/samsung-q800t-hdmi2.1"
         # "video=HDMI-A-1:e"
       ];

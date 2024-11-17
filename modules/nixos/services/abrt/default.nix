@@ -82,7 +82,10 @@ in {
         "abrt/plugins/CCpp.conf".text = '''';
         "abrt/plugins/xorg.conf".text = '''';
         "abrt/plugins/vmcore.conf".text = '''';
-        "abrt/abrt-action-save-package-data.conf".text = '''';
+        "abrt/abrt-action-save-package-data.conf".text = ''
+          OpenGPGCheck = no
+          ProcessUnpackaged = yes
+        '';
         "abrt/gpg_keys.conf".text = '''';
         "libreport/libreport.conf".text = "";
         "libreport/plugins/mailx.conf".text = ''
