@@ -161,7 +161,7 @@ in {
         libGL
         libGLU
         meteo
-        mission-center
+        # mission-center
         nix-software-center
         partition-manager
         pavucontrol
