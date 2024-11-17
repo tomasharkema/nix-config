@@ -88,17 +88,16 @@ in {
         "libreport/plugins/mailx.conf".text = ''
 
         '';
-        "libreport/plugins/upload.conf" = {
+        "libreport/plugins/ureport.conf" = {
           mode = "0600";
           text = ''
-            URL = scp://root@silver-star-vm/var/spool/abrt-upload/
-            SSHPrivateKey = ${config.age.secrets."abrt-key".path}
+            URL = https://faf.harkema.io/faf
           '';
         };
-        "libreport/events.d/uploader_event.conf" = {
+        "libreport/events.d/ureport.conf" = {
           mode = "0600";
           text = ''
-            EVENT=notify reporter-upload
+            EVENT=report_uReport reporter-ureport
           '';
         };
         "libreport/events.d/ntfy.conf" = {
