@@ -137,7 +137,7 @@ in {
       [
         ptyxis
         onioncircuits
-        onionshare-gui
+        # onionshare-gui
         pods
         meld
         # custom.anydesk
@@ -161,7 +161,7 @@ in {
         libGL
         libGLU
         meteo
-        mission-center
+        # mission-center
         nix-software-center
         partition-manager
         pavucontrol
