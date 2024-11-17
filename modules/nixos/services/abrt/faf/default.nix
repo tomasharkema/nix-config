@@ -10,7 +10,7 @@
   folder = "/var/lib/faf";
   db-folder = "${folder}/db";
 in {
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     apps.podman.enable = true;
 
     systemd.tmpfiles.rules = [
