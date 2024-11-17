@@ -328,6 +328,20 @@
         enable = true;
         package = pkgs.ananicy-cpp;
         rulesProvider = pkgs.ananicy-rules-cachyos;
+        extraRule = [
+          {
+            name = "nom";
+            type = "compiler";
+          }
+          {
+            name = "nix";
+            type = "compiler";
+          }
+          {
+            name = "nix-daemon";
+            type = "compiler";
+          }
+        ];
       };
 
       fstrim.enable = true;
