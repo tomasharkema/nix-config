@@ -170,7 +170,7 @@
           # nix-switcher # : needs github auth
           # ntfy
           # rtop
-          onionshare
+          # onionshare
           git
           aide
           archivemount

@@ -137,7 +137,7 @@ in {
       [
         ptyxis
         onioncircuits
-        onionshare-gui
+        # onionshare-gui
         pods
         meld
         # custom.anydesk
