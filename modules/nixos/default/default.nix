@@ -37,12 +37,12 @@
       };
     };
 
-    system = {
-      switch = {
-        enable = false;
-        enableNg = true;
-      };
-    };
+    #    system = {
+    #      switch = {
+    #        enable = false;
+    #        enableNg = true;
+    #      };
+    #    };
 
     virtualisation.spiceUSBRedirection.enable = true;
 
@@ -91,7 +91,11 @@
 
       kernelModules = ["wireguard"];
 
-      supportedFilesystems = ["ntfs" "apfs" "nfs"];
+      supportedFilesystems = [
+        "ntfs"
+        "apfs"
+        "nfs"
+      ];
 
       loader = {
         systemd-boot = {
