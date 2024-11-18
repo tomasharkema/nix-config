@@ -132,6 +132,8 @@
       optimise.automatic = true;
 
       settings = {
+        trusted-public-keys = [pubKey];
+
         extra-platforms = ["aarch64-linux" "i686-linux"];
 
         extra-sandbox-paths = [config.programs.ccache.cacheDir];
