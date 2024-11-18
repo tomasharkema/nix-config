@@ -326,7 +326,7 @@ in {
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
         # "kvm.ignore_msrs=1"
         "blacklist=nouveau"
-        "iomem=relaxed"
+        # "iomem=relaxed"
         # "pci=nomsi"
       ];
       blacklistedKernelModules = ["nouveau"];
