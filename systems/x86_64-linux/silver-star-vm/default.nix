@@ -37,29 +37,29 @@
 
     # apps.tor.relay.enable = true;
 
-    virtualisation = {
-      oci-containers.containers = {
-        mackerelGrafana = {
-          image = "mackerel-to-grafana-oncall:latest";
-          imageFile = pkgs.custom.mackerel-to-grafana-oncall-docker;
+    # virtualisation = {
+    #   oci-containers.containers = {
+    #     mackerelGrafana = {
+    #       image = "mackerel-to-grafana-oncall:latest";
+    #       imageFile = pkgs.custom.mackerel-to-grafana-oncall-docker;
 
-          autoStart = true;
+    #       autoStart = true;
 
-          # volumes = [
-          #   "/var/lib/netboot/config:/config"
-          #   "/var/lib/netboot/assets:/assets"
-          # ];
+    #       # volumes = [
+    #       #   "/var/lib/netboot/config:/config"
+    #       #   "/var/lib/netboot/assets:/assets"
+    #       # ];
 
-          cmd = [
-            "-grafana-oncall-url"
-          ];
+    #       cmd = [
+    #         "-grafana-oncall-url"
+    #       ];
 
-          ports = [
-            "8000:8000"
-          ];
-        };
-      };
-    };
+    #       ports = [
+    #         "8000:8000"
+    #       ];
+    #     };
+    #   };
+    # };
 
     apps = {
       # attic-server.enable = true;
