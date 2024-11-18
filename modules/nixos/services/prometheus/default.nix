@@ -6,8 +6,6 @@
 }: let
   cfg = config.prometheus;
   format = pkgs.formats.yaml {};
-
-  journalPort = "9523";
 in {
   options.prometheus = {enable = lib.mkEnableOption "prometheus" // {default = true;};};
 
@@ -15,7 +13,6 @@ in {
     system.nixos.tags = ["prometheus"];
 
     # age.secrets."promtail".rekeyFile = ./promtail.age;
-
     system.activationScripts.node-exporter-system-version = ''
       mkdir -pm 0775 /var/lib/prometheus-node-exporter-text-files
       (
@@ -27,35 +24,6 @@ in {
         mv system-version.prom.next system-version.prom
       )
     '';
-
-    systemd.services = {
-      "journald-exporter" = {
-        description = "journald-exporter";
-
-        after = ["network.target"];
-
-        # AssertPathIsDirectory=/etc/journald-exporter/keys
-
-        wantedBy = ["default.target"];
-
-        serviceConfig = {
-          Type = "notify";
-          ExecStart = "${pkgs.custom.journald-exporter}/bin/journald-exporter --port ${journalPort}";
-          WatchdogSec = "5m";
-          Restart = "always";
-          NoNewPrivileges = "true";
-          ProtectSystem = "strict";
-          ProtectClock = "true";
-          ProtectKernelTunables = "true";
-          ProtectKernelModules = "true";
-          ProtectKernelLogs = "true";
-          ProtectControlGroups = "true";
-          MemoryDenyWriteExecute = "true";
-          SyslogLevel = "warning";
-          SyslogLevelPrefix = "false";
-        };
-      };
-    };
 
     services = {
       prometheus = {
@@ -80,7 +48,13 @@ in {
 
       netdata.configDir."go.d/prometheus.conf" = format.generate "prometheus.conf" {
         jobs =
-          (lib.optional config.services.prometheus.exporters.node.enable {
+          [
+            {
+              name = "journald-exporter";
+              url = "http://127.0.0.1:${builtins.toString config.prometheus.journald-exporter.port}/metrics";
+            }
+          ]
+          ++ (lib.optional config.services.prometheus.exporters.node.enable {
             name = "node";
             url = "http://127.0.0.1:${
               builtins.toString config.services.prometheus.exporters.node.port

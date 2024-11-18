@@ -153,7 +153,7 @@ in {
         filezilla
         font-manager
         # fractal
-
+        doublecmd
         gamehub
         # gnomecast
         # go-chromecast
