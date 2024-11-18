@@ -35,14 +35,14 @@
           enable = true;
           #          mandoc.enable = true;
           man-db.enable = true;
-          generateCaches =
-            true;
+          # generateCaches = true;
         };
         dev.enable = true;
         doc.enable = true;
         info.enable = true;
         nixos = {
           enable = true;
+          # includeAllModules = true;
         };
       };
 
@@ -69,6 +69,22 @@
         };
 
         bash.undistractMe.enable = true;
+
+        ccache = {
+          enable = true;
+          packageNames = [
+            "sssd"
+            "freeipa"
+            # "mutter"
+            # "gnome-shell"
+            # "gnome-session"\
+            "satyr"
+            "libreport"
+            "abrt"
+            "gnome-abrt"
+            "will-crash"
+          ];
+        };
       };
 
       systemd = {
@@ -104,7 +120,6 @@
         extraOptions = ''
           min-free = ${toString (100 * 1024 * 1024)}
           max-free = ${toString (1024 * 1024 * 1024)}
-
         '';
         #  plugin-files = ${pkgs.nix-otel}/lib
         optimise.automatic = true;

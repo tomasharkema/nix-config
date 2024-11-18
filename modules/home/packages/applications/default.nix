@@ -73,7 +73,9 @@ in {
         {package = geary;}
         {package = config.programs.vscode.package;}
         {package = tilix;}
-        {package = config.programs.wezterm.package;}
+        {package = ptyxis;}
+        # {package = config.programs.wezterm.package;}
+        {package = config.programs.kitty.package;}
       ]
       ++ (lib.optional pkgs.stdenv.isx86_64 {package = termius;})
       ++ [

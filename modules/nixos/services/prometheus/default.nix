@@ -6,6 +6,8 @@
 }: let
   cfg = config.prometheus;
   format = pkgs.formats.yaml {};
+
+  journalPort = "9523";
 in {
   options.prometheus = {enable = lib.mkEnableOption "prometheus" // {default = true;};};
 
@@ -25,6 +27,35 @@ in {
         mv system-version.prom.next system-version.prom
       )
     '';
+
+    systemd.services = {
+      "journald-exporter" = {
+        description = "journald-exporter";
+
+        after = ["network.target"];
+
+        # AssertPathIsDirectory=/etc/journald-exporter/keys
+
+        wantedBy = ["default.target"];
+
+        serviceConfig = {
+          Type = "notify";
+          ExecStart = "${pkgs.custom.journald-exporter}/bin/journald-exporter --port ${journalPort}";
+          WatchdogSec = "5m";
+          Restart = "always";
+          NoNewPrivileges = "true";
+          ProtectSystem = "strict";
+          ProtectClock = "true";
+          ProtectKernelTunables = "true";
+          ProtectKernelModules = "true";
+          ProtectKernelLogs = "true";
+          ProtectControlGroups = "true";
+          MemoryDenyWriteExecute = "true";
+          SyslogLevel = "warning";
+          SyslogLevelPrefix = "false";
+        };
+      };
+    };
 
     services = {
       prometheus = {
@@ -85,7 +116,7 @@ in {
           });
       };
 
-      vmagent = {
+      vmagent = lib.mkIf false {
         # enable = true;
 
         remoteWrite.url = "http://silver-star:8428/api/v1/write";
@@ -111,7 +142,7 @@ in {
         };
       };
 
-      promtail = {
+      promtail = lib.mkIf false {
         # enable = true;
         extraFlags = ["--config.expand-env=true"];
         configuration = {

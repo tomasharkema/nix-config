@@ -63,6 +63,7 @@
       };
 
       overlays = with inputs; [
+        nix-snapshotter.overlays.default
         otel.overlays.default
         nvidia-patch.overlays.default
         ytdlp-gui.overlay
@@ -102,6 +103,7 @@
 
       systems.modules = {
         nixos = with inputs; [
+          nix-snapshotter.nixosModules.default
           chaotic.nixosModules.default
           nixos-facter-modules.nixosModules.facter
           # nix-topology.nixosModules.default
@@ -480,16 +482,13 @@
       flake = false;
     };
 
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-      inputs = {
-        systems.follows = "systems";
-      };
-    };
+    # flake-utils = {
+    #   url = "github:numtide/flake-utils";
+    # };
 
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-    };
+    # flake-parts = {
+    #   url = "github:hercules-ci/flake-parts";
+    # };
 
     devenv = {
       url = "github:cachix/devenv";
@@ -516,9 +515,9 @@
       };
     };
 
-    crane = {
-      url = "github:ipetkov/crane";
-    };
+    # crane = {
+    #   url = "github:ipetkov/crane";
+    # };
 
     catppuccin = {
       url = "github:catppuccin/nix";
@@ -540,8 +539,8 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         disko.follows = "disko";
-        flake-parts.follows = "flake-parts";
-        treefmt-nix.follows = "treefmt-nix";
+        # flake-parts.follows = "flake-parts";
+        # treefmt-nix.follows = "treefmt-nix";
       };
     };
 
@@ -552,10 +551,10 @@
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
         nix-darwin.follows = "darwin";
-        flake-compat.follows = "flake-compat";
-        flake-parts.follows = "flake-parts";
-        devshell.follows = "devshell";
-        treefmt-nix.follows = "treefmt-nix";
+        # flake-compat.follows = "flake-compat";
+        # flake-parts.follows = "flake-parts";
+        # devshell.follows = "devshell";
+        # treefmt-nix.follows = "treefmt-nix";
       };
     };
 
@@ -575,9 +574,9 @@
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-        devshell.follows = "devshell";
-        pre-commit-hooks.follows = "pre-commit-hooks-nix";
+        # flake-utils.follows = "flake-utils";
+        # devshell.follows = "devshell";
+        # pre-commit-hooks.follows = "pre-commit-hooks-nix";
       };
     };
 
@@ -590,7 +589,7 @@
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
+        # flake-parts.follows = "flake-parts";
       };
     };
 
@@ -604,7 +603,7 @@
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        utils.follows = "flake-utils";
+        # utils.follows = "flake-utils";
       };
     };
 
@@ -622,11 +621,11 @@
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        crane.follows = "crane";
-        flake-parts.follows = "flake-parts";
-        flake-compat.follows = "flake-compat";
+        # crane.follows = "crane";
+        # flake-parts.follows = "flake-parts";
+        # flake-compat.follows = "flake-compat";
         # flake-utils.follows = "flake-utils";
-        pre-commit-hooks-nix.follows = "pre-commit-hooks-nix";
+        # pre-commit-hooks-nix.follows = "pre-commit-hooks-nix";
       };
     };
 
@@ -635,7 +634,7 @@
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "flake-compat";
+        # flake-compat.follows = "flake-compat";
       };
     };
 
@@ -696,8 +695,8 @@
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-        treefmt-nix.follows = "treefmt-nix";
+        # flake-utils.follows = "flake-utils";
+        # treefmt-nix.follows = "treefmt-nix";
       };
     };
 
@@ -711,7 +710,7 @@
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
+        # flake-utils.follows = "flake-utils";
       };
     };
 
@@ -734,7 +733,7 @@
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
+        # flake-utils.follows = "flake-utils";
       };
     };
 
@@ -753,9 +752,9 @@
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-        devshell.follows = "devshell";
-        pre-commit-hooks.follows = "pre-commit-hooks-nix";
+        # flake-utils.follows = "flake-utils";
+        # devshell.follows = "devshell";
+        # pre-commit-hooks.follows = "pre-commit-hooks-nix";
       };
     };
 
@@ -789,6 +788,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nvidia-vgpu-nixos = {
+      url = "github:mrzenc/nvidia-vgpu-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # nix-htop = {
     #   url = "https://flakehub.com/f/tomasharkema/nix-htop/0.0.*.tar.gz";
 
@@ -802,7 +806,7 @@
       url = "https://flakehub.com/f/tomasharkema/nixos-recovery/0.0.*.tar.gz";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
+        # flake-parts.follows = "flake-parts";
       };
     };
 
@@ -873,8 +877,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    fenix = {
-      url = "github:nix-community/fenix";
+    nix-snapshotter = {
+      url = "github:pdtpartners/nix-snapshotter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

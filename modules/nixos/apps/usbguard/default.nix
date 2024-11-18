@@ -34,7 +34,7 @@ in {
         dbus.enable = true;
         # ruleFile
         # package
-        # restoreControllerDeviceState
+        restoreControllerDeviceState = true;
         # presentDevicePolicy
         # presentControllerPolicy
         # insertedDevicePolicy

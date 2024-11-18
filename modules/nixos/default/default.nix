@@ -37,12 +37,12 @@
       };
     };
 
-    system = {
-      switch = {
-        enable = false;
-        enableNg = true;
-      };
-    };
+    #    system = {
+    #      switch = {
+    #        enable = false;
+    #        enableNg = true;
+    #      };
+    #    };
 
     virtualisation.spiceUSBRedirection.enable = true;
 
@@ -91,7 +91,11 @@
 
       kernelModules = ["wireguard"];
 
-      supportedFilesystems = ["ntfs" "apfs" "nfs"];
+      supportedFilesystems = [
+        "ntfs"
+        "apfs"
+        "nfs"
+      ];
 
       loader = {
         systemd-boot = {
@@ -170,7 +174,7 @@
           # nix-switcher # : needs github auth
           # ntfy
           # rtop
-          onionshare
+          # onionshare
           git
           aide
           archivemount
@@ -328,6 +332,20 @@
         enable = true;
         package = pkgs.ananicy-cpp;
         rulesProvider = pkgs.ananicy-rules-cachyos;
+        extraRules = [
+          {
+            name = "nom";
+            type = "compiler";
+          }
+          {
+            name = "nix";
+            type = "compiler";
+          }
+          {
+            name = "nix-daemon";
+            type = "compiler";
+          }
+        ];
       };
 
       fstrim.enable = true;
@@ -503,21 +521,6 @@
       };
       mtr.enable = true;
       command-not-found.enable = false;
-
-      ccache = {
-        enable = true;
-        packageNames = [
-          "sssd"
-          "freeipa"
-          # "mutter"
-          # "gnome-shell"
-          # "gnome-session"
-        ];
-      };
-    };
-
-    nix.settings = {
-      extra-sandbox-paths = [config.programs.ccache.cacheDir];
     };
 
     hardware = {

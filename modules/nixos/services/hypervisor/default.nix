@@ -5,9 +5,6 @@
   ...
 }: let
   cfg = config.services.hypervisor;
-
-  libvirtKeytab = "/var/lib/libvirt/krb5.tab";
-  qemuKeytab = "/etc/qemu/krb5.tab";
 in {
   options.services.hypervisor = {
     enable = lib.mkEnableOption "hypervisor";
@@ -51,6 +48,8 @@ in {
     #     user = "tomas";
     #   };
     # };
+
+    programs.mdevctl.enable = true;
 
     environment.systemPackages = with pkgs; [
       kvmtool
@@ -121,7 +120,15 @@ in {
     # '';
     # };
 
-    boot.extraModprobeConfig = "options kvm_intel nested=1";
+    boot = {
+      kernelParams = [
+        "kvm_intel.nested=1"
+      ];
+      kernelModules = [
+        "mdev"
+        "kvmgt"
+      ];
+    };
 
     # programs.ccache = {
     #   enable = true;
@@ -148,6 +155,8 @@ in {
               nvram = [ "/run/libvirt/nix-ovmf/AAVMF_CODE.fd:/run/libvirt/nix-ovmf/AAVMF_VARS.fd", "/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd" ]
           '';
           swtpm.enable = true;
+
+          vhostUserPackages = [pkgs.virtiofsd];
 
           ovmf = {
             enable = true;

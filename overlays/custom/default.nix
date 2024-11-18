@@ -4,7 +4,7 @@
   self,
   inputs,
   ...
-}: final: prev: rec {
+}: final: prev: {
   libcec = prev.libcec.override {withLibraspberrypi = true;};
 
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;

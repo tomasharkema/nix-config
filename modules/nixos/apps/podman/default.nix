@@ -15,8 +15,29 @@ in {
       podman-tui
       dive
       docker-compose
+      nerdctl
       # pods
     ];
+
+    systemd.services = {
+      "docker-compose@" = {
+        wantedBy = ["multi-user.target"];
+
+        description = "%i service with docker compose";
+        partOf = ["podman.service"];
+        after = ["podman.service"];
+        unitConfig = {
+          ConditionPathExists = ["/etc/docker/compose/%i"];
+        };
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+          WorkingDirectory = "/etc/docker/compose/%i";
+          ExecStart = "${pkgs.docker-compose}/bin/docker-compose up -d --remove-orphans";
+          ExecStop = "${pkgs.docker-compose}/bin/docker-compose down";
+        };
+      };
+    };
 
     networking = {
       firewall = {
@@ -27,12 +48,21 @@ in {
       };
     };
 
+    services.nix-snapshotter = {
+      enable = true;
+    };
+
     # services.resolved.enable = true;
 
     virtualisation = {
       oci-containers.backend = "podman";
 
       containers.enable = true;
+
+      containerd = {
+        enable = true;
+        nixSnapshotterIntegration = true;
+      };
 
       docker.rootless = {
         enable = true;

@@ -237,7 +237,7 @@ in {
                 content = {
                   type = "swap";
                   randomEncryption = true;
-                  resumeDevice = true;
+                  # resumeDevice = true;
                 };
               };
               root = lib.mkIf (!cfg.encrypt) innerContent.root;

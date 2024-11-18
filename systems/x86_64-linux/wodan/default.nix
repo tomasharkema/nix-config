@@ -76,7 +76,7 @@
     #   fsType = "nfs";
     # };
     services = {
-      kmscon.enable = lib.mkForce false;
+      # kmscon.enable = lib.mkForce false;
       hardware = {
         openrgb.enable = true;
         bolt.enable = true;
@@ -150,7 +150,7 @@
           # pinKernel = true;
           copyVGPUProfiles = {
             # RTX2080     Quadro RTX 4000
-            "1e87:0000" = "1EB1:0000";
+            "1E87:0000" = "1E30:12BA";
           };
         };
       };
@@ -169,6 +169,7 @@
         #   enable = true;
         #   open = true;
         # };
+        sgx.enable = true;
         remote-unlock.enable = true;
         monitor.enable = true;
         disable-sleep.enable = true;
@@ -226,6 +227,7 @@
           "vfio_pci"
           "vfio"
           "vfio_iommu_type1"
+
           "kvm-intel"
         ];
       };
@@ -234,7 +236,7 @@
       kernelParams = [
         "intel_iommu=on"
         "iommu=pt"
-
+        "iomem=relaxed"
         # "drm.edid_firmware=HDMI-A-1:edid/samsung-q800t-hdmi2.1"
         # "video=HDMI-A-1:e"
       ];
