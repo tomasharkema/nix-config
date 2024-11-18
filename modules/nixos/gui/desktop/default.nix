@@ -21,6 +21,10 @@ in {
     security.pam.services.passwd.enableGnomeKeyring = true;
 
     services = {
+      gpsd = {
+        enable = true;
+      };
+
       dbus = {
         enable = true;
         packages = with pkgs; [
