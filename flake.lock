@@ -2172,6 +2172,26 @@
         "type": "github"
       }
     },
+    "nvidia-vgpu-nixos": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1731772703,
+        "narHash": "sha256-P9j16Q0CjbQr6V4LsdNcOGLswba2+V3tkBGjjBJua1I=",
+        "owner": "mrzenc",
+        "repo": "nvidia-vgpu-nixos",
+        "rev": "dbd49f2c70433ec0d03b52dc98434722197c6997",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mrzenc",
+        "repo": "nvidia-vgpu-nixos",
+        "type": "github"
+      }
+    },
     "otel": {
       "inputs": {
         "flake-utils": "flake-utils_8",
@@ -2382,6 +2402,7 @@
         "nixpkgs": "nixpkgs_5",
         "nixvim": "nixvim",
         "nvidia-patch": "nvidia-patch",
+        "nvidia-vgpu-nixos": "nvidia-vgpu-nixos",
         "otel": "otel",
         "piratebay": "piratebay",
         "poetry2nix": "poetry2nix",

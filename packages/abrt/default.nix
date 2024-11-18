@@ -178,8 +178,6 @@ in
         substituteInPlace $f --replace-fail "/usr" "$out"
       done
 
-      cp -r "${libreport}/etc/." "$out/etc/"
-
       wrapPythonProgramsIn "$out/bin" "$out ${libreport} ${python}"
 
       substituteInPlace "$out/etc/xdg/autostart/org.freedesktop.problems.applet.desktop" \
