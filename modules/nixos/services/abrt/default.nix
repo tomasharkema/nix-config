@@ -156,7 +156,7 @@ in {
           mode = "644";
         };
 
-        "etc/libreport/events.d/koops_event.conf" = {
+        "libreport/events.d/koops_event.conf" = {
           source = pkgs.substitute {
             src = "${package}/etc/libreport/events.d/koops_event.conf";
             substitutions = [
