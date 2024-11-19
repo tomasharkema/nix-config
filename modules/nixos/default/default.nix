@@ -143,6 +143,7 @@
       enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          minio-client
           ssh-import-id
           tcptrack
           netproc
