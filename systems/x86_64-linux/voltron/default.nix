@@ -4,26 +4,7 @@
   config,
   lib,
   ...
-}: let
-  settingsFile = pkgs.writeText "xmm7360.ini" ''
-    # driver config
-    apn=multimedia.lebara.nl
-
-    #ip-fetch-timeout=1
-    nodefaultroute=True
-    #metric=1000
-
-    # uncomment to not add DNS values to /etc/resolv.conf
-    #noresolv=True
-
-    # used to activate NetworkManager integration
-    dbus=True
-
-    # Setup script config
-    BIN_DIR=/run/current-system/sw/bin
-  '';
-  xmm7360 = pkgs.custom.xmm7360-pci.override {kernel = config.boot.kernelPackages.kernel;};
-in {
+}: {
   imports = with inputs; [
     # ./hardware-configuration.nix
     # nixos-hardware.nixosModules.common-pc-laptop-acpi_call
@@ -55,14 +36,9 @@ in {
     # };
 
     environment = {
-      etc = {
-        "xmm7360".source = settingsFile;
-      };
-
       systemPackages = with pkgs; [
         custom.swift
-        custom.xmmctl
-        xmm7360
+
         libimobiledevice
         intel-gpu-tools
         nvramtool
@@ -245,8 +221,6 @@ in {
       # resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
       extraModulePackages = [
-        xmm7360
-
         # config.system.build.isgx
       ];
 
@@ -281,13 +255,10 @@ in {
       ];
       blacklistedKernelModules = [
         "nouveau"
-        "iosm"
       ];
 
       kernelModules = [
         "pstore"
-        "xmm7360"
-        "iosm"
         "i915"
         "spi"
         # "sgx"
@@ -301,7 +272,6 @@ in {
       ];
       # extraModprobeConfig = "options i915 enable_guc=2";
       initrd.kernelModules = [
-        "xmm7360"
         "pstore"
         # "spi"
         # "sgx"

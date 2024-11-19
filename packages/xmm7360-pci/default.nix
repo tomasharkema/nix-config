@@ -24,6 +24,14 @@ stdenv.mkDerivation rec {
       url = "https://patch-diff.githubusercontent.com/raw/xmm7360/xmm7360-pci/pull/220.patch";
       sha256 = "sha256-zIx9tkPo9LFgaOVSyEQBNIgVY2QwdYpM/tw6/ifiy1A=";
     })
+    (fetchpatch {
+      url = "https://raw.githubusercontent.com/chaotic-aur/pkgbuild-xmm7360-pci-git/refs/heads/master/nodbus-exit-code.patch";
+      sha256 = "sha256-aOUaPskcHjZzjfy/es33va+GJqwLDH7NRdsh0rpp+Do=";
+    })
+    (fetchpatch {
+      url = "https://raw.githubusercontent.com/chaotic-aur/pkgbuild-xmm7360-pci-git/refs/heads/master/dns-priority.patch";
+      sha256 = "sha256-/oSuUn6INq0uo2wmVieRo5CWgjTLYO51mqinBEbcanA=";
+    })
   ];
 
   prePatch = let
