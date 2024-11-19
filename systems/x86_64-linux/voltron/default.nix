@@ -76,6 +76,7 @@ in {
         glxinfo
         inxi
         pwvucontrol
+        usbtop
       ];
     };
 
@@ -296,6 +297,7 @@ in {
         "vfio_iommu_type1"
         "kvm-intel"
         # "watchdog"
+        "usbmon"
       ];
       # extraModprobeConfig = "options i915 enable_guc=2";
       initrd.kernelModules = [

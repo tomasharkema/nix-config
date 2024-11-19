@@ -204,6 +204,7 @@ in {
       btrfs-auto-snapshot
       # btrbk
       # timeshift
+      custom.dupremove
     ];
 
     # fileSystems."/".neededForBoot = true;

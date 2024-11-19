@@ -234,6 +234,7 @@ in {
         zerotier-ui
         netbrowse
         usbguard-gnome
+        sysd-manager
       ]);
 
     programs = {
@@ -248,17 +249,8 @@ in {
       };
     };
     systemd = {
-      services = {
-        # "anydesk" = {
-        #   enable = true;
-        #   wantedBy = [
-        #     "graphical-session.target"
-        #   ];
-        # };
-      };
       packages =
         [
-          # pkgs.custom.anydesk
           pkgs.usbguard-notifier
           config.system.build.chromium
           pkgs.ptyxis
