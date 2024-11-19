@@ -11,6 +11,7 @@ with inputs.home-manager.lib.hm.gvariant; {
   config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
     dconf = {
       settings = {
+        "org/gnome/desktop/privacy" = {usb-protection = false;};
         "org/gnome/mutter" = {
           edge-tiling = true;
           # center-new-windows = true;
