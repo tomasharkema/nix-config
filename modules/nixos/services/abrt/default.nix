@@ -133,11 +133,14 @@ in {
             EVENT=report_uReport reporter-ureport
           '';
         };
-        "libreport/events.d/ntfy.conf" = {
+        "libreport/events.d/ntfy.conf" = let
+          ntfy = "${pkgs.ntfy-sh}/bin/ntfy";
+          cat = "${pkgs.coreutils}/bin/cat";
+        in {
           mode = "644";
 
           text = ''
-            EVENT=notify ${pkgs.ntfy-sh}/bin/ntfy publish --title "$HOSTNAME Crash $(cat executable)" "$(cat ${config.age.secrets.ntfy.path})" "$(cat executable)"
+            EVENT=notify ${ntfy} publish --title "$HOSTNAME Crash $(${cat} executable)" "$(cat ${config.age.secrets.ntfy.path})" "$(${cat} executable)"
           '';
         };
 
