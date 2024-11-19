@@ -13,7 +13,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     users = {
       users = {
         journald-exporter = {
@@ -23,6 +23,16 @@ in {
       };
       groups.journald-exporter = {};
     };
+
+    #   netdata.configDir."go.d/prometheus.conf" = format.generate "prometheus.conf" {
+    # jobs =
+    #   [
+    #     {
+    #       name = "journald-exporter";
+    #       url = "http://127.0.0.1:${builtins.toString config.prometheus.journald-exporter.port}/metrics";
+    #     }
+    #   ];
+    #   };
 
     systemd = {
       tmpfiles.settings."80-journald-exporter" = {

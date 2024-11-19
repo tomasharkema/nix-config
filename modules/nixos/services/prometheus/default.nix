@@ -48,12 +48,7 @@ in {
 
       netdata.configDir."go.d/prometheus.conf" = format.generate "prometheus.conf" {
         jobs =
-          [
-            {
-              name = "journald-exporter";
-              url = "http://127.0.0.1:${builtins.toString config.prometheus.journald-exporter.port}/metrics";
-            }
-          ]
+          []
           ++ (lib.optional config.services.prometheus.exporters.node.enable {
             name = "node";
             url = "http://127.0.0.1:${
