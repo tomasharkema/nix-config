@@ -398,8 +398,6 @@ in {
         # "nvidia_drm"
       ];
 
-      extraModulePackages = [config.boot.kernelPackages.sysdig];
-
       systemd.services."serial-getty@ttyS2" = {
         #   overrideStrategy = "asDropin";
         #   serviceConfig = let

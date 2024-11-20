@@ -44,22 +44,22 @@ in {
 
     nix = {
       # settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${builtins.toString config.users.users.tomas.uid}"];
-      registry = {
-        nixpkgs.flake = inputs.nixpkgs;
-        home-manager.flake = inputs.home-manager;
-        darwin.flake = inputs.darwin;
-        tomas = {
-          from = {
-            type = "indirect";
-            id = "tomas";
-          };
-          to = {
-            type = "github";
-            owner = "tomasharkema";
-            repo = "nix-config";
-          };
-        };
-      };
+      #   registry = {
+      #     nixpkgs.flake = inputs.nixpkgs;
+      #     home-manager.flake = inputs.home-manager;
+      #     darwin.flake = inputs.darwin;
+      #     tomas = {
+      #       from = {
+      #         type = "indirect";
+      #         id = "tomas";
+      #       };
+      #       to = {
+      #         type = "github";
+      #         owner = "tomasharkema";
+      #         repo = "nix-config";
+      #       };
+      #     };
+      #   };
     };
   };
 }

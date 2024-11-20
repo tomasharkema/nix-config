@@ -3,19 +3,21 @@
   stdenv,
   fetchzip,
   gettext,
-  sources,
 }:
 stdenv.mkDerivation rec {
   pname = "cockpit-tailscale";
-  version = sources.cockpit-tailscale.version;
+  version = "0.0.6";
 
-  src = sources.cockpit-tailscale;
+  src = fetchzip {
+    sha256 = "18h5vwnvqmsrcd0d569fpgngmxrr4pzm1ymvrbl48m06vxv1j98i";
+    url = "https://github.com/spotsnel/cockpit-tailscale/releases/download/v${version}/cockpit-tailscale-v${version}.tar.gz";
+  };
 
   nativeBuildInputs = [
     gettext
   ];
 
-  # makeFlags = ["DESTDIR=$(out)" "PREFIX="];
+  makeFlags = ["DESTDIR=$(out)" "PREFIX="];
 
   installPhase = ''
     runHook preInstall

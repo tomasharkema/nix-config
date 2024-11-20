@@ -26,7 +26,6 @@
       cockpit-podman
       cockpit-tailscale
       cockpit-machines
-      cockpit-ostree
       cockpit-sensors
       cockpit-files
       # packagekit

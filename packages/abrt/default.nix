@@ -36,7 +36,6 @@
   doxygen,
   autoPatchelfHook,
   wrapGAppsHook,
-  sources,
 }: let
   sphinxFixed = sphinx.overrideAttrs (
     {postInstall ? "", ...}: {
@@ -59,14 +58,12 @@ in
     pname = "abrt";
     version = "2.17.6";
 
-    src = sources.abrt;
-
-    # src = fetchFromGitHub {
-    #   owner = "abrt";
-    #   repo = "abrt";
-    #   rev = version;
-    #   hash = "sha256-F8KO7/wdmrkvZTuVO9UKd99fSXduthIeigl3ShTYaqI=";
-    # };
+    src = fetchFromGitHub {
+      owner = "abrt";
+      repo = "abrt";
+      rev = version;
+      hash = "sha256-F8KO7/wdmrkvZTuVO9UKd99fSXduthIeigl3ShTYaqI=";
+    };
 
     enableParallelBuilding = true;
 
