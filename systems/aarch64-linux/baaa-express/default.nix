@@ -62,7 +62,7 @@
         extensionPackages = with pkgs; [
           mopidy-spotify
           mopidy-mpd
-          # mopidy-mpris
+          mopidy-mpris
           mopidy-notify
           mopidy-mopify
           mopidy-podcast

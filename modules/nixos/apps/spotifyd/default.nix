@@ -5,6 +5,20 @@
   ...
 }: let
   cfg = config.apps.spotifyd;
+
+  dbusconf = pkgs.writeText "spotifyd.conf" ''
+    <allow own_prefix="org.mpris.MediaPlayer2.spotifyd"/>
+    <allow send_destination_prefix="org.mpris.MediaPlayer2.spotifyd"/>
+  '';
+
+  sp = pkgs.spotifyd.overrideAttrs ({postInstall ? "", ...}: {
+    postInstall =
+      postInstall
+      + ''
+        mkdir -p $out/etc/dbus-1/system.d
+        cp ${dbusconf} $out/etc/dbus-1/system.d/spotifyd.conf
+      '';
+  });
 in {
   options.apps.spotifyd = {
     enable = lib.mkEnableOption "spotifyd";
@@ -21,7 +35,7 @@ in {
         enable = true;
         packages = [
           pkgs.shairport-sync
-          # pkgs.spotifyd
+          sp
         ];
       };
 
@@ -39,15 +53,16 @@ in {
 
       spotifyd = {
         enable = true;
+        # package = sp;
         # use_mpris = false
         settings = {
           global = {
             backend = "pulseaudio";
             bitrate = 320;
-            mpris = false;
+            mpris = true;
             device_name = "${config.networking.hostName} SpotifyD";
             use_keyring = true;
-            # dbus_type = "system";
+            dbus_type = "system";
             zeroconf_port = 1234;
           };
         };
