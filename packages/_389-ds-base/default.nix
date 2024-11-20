@@ -38,13 +38,13 @@
 }:
 stdenv.mkDerivation rec {
   pname = "389-ds-base";
-  version = "3.1.0";
+  version = "3.1.1";
 
   src = fetchFromGitHub {
     owner = "389ds";
     repo = pname;
     rev = "${pname}-${version}";
-    hash = "sha256-/z4lLhZ4g0FggSED0L0/wOE+4siK21ES2Mg5zzkgcc0=";
+    hash = "sha256-r/dualwnV8h1U4eyqMdCZAvqb7lSius66thaLMxxRD4=";
   };
 
   cargoDeps = rustPlatform.fetchCargoTarball {

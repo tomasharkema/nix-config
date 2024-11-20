@@ -9,15 +9,15 @@ stdenv.mkDerivation rec {
   version = "0.0.6";
 
   src = fetchzip {
+    sha256 = "18h5vwnvqmsrcd0d569fpgngmxrr4pzm1ymvrbl48m06vxv1j98i";
     url = "https://github.com/spotsnel/cockpit-tailscale/releases/download/v${version}/cockpit-tailscale-v${version}.tar.gz";
-    sha256 = "sha256-ESUZdt8GVEToyrv6UP8lOff67LsumdJAY1lXvC3fBaI=";
   };
 
   nativeBuildInputs = [
     gettext
   ];
 
-  # makeFlags = ["DESTDIR=$(out)" "PREFIX="];
+  makeFlags = ["DESTDIR=$(out)" "PREFIX="];
 
   installPhase = ''
     runHook preInstall

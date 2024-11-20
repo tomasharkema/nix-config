@@ -2,6 +2,7 @@
   stdenv,
   lib,
   pkgs,
+  fetchFromGitHub,
   fetchurl,
   pkg-config,
   autoconf,
@@ -73,9 +74,11 @@ in
     pname = "freeipa";
     version = "4.12.2";
 
-    src = fetchurl {
-      url = "https://releases.pagure.org/freeipa/freeipa-${version}.tar.gz";
-      sha256 = "sha256-3Ij1QE52E+tlMNcRQu9DqfiQGdWc3G7CW3eEEyWMMX8=";
+    src = fetchFromGitHub {
+      owner = "freeipa";
+      repo = "freeipa";
+      rev = "release-${builtins.replaceStrings ["."] ["-"] version}";
+      hash = "sha256-Jfo6nbLzWWpZmKolB2n1b6FT4jCwiTyXvIBR2UJMjCI=";
     };
 
     nativeBuildInputs = [

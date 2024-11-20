@@ -9,7 +9,7 @@
 
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
-  _389-ds-base = self.packages."${prev.system}"._389-ds-base;
+  # _389-ds-base = self.packages."${prev.system}"._389-ds-base;
   freeipa = self.packages."${prev.system}".freeipa;
   sssd = self.packages."${prev.system}".sssd.override {withSudo = true;};
 
@@ -37,7 +37,6 @@
 
   cockpit-podman = self.packages."${prev.system}".cockpit-podman;
   cockpit-tailscale = self.packages."${prev.system}".cockpit-tailscale;
-  cockpit-ostree = self.packages."${prev.system}".cockpit-ostree;
   cockpit-machines = self.packages."${prev.system}".cockpit-machines;
   authorized-keys = self.packages."${prev.system}".authorized-keys;
 
@@ -45,14 +44,14 @@
 
   intel-vaapi-driver = prev.intel-vaapi-driver.override {enableHybridCodec = true;};
 
-  tlp = prev.tlp.overrideAttrs (old: {
-    postInstall =
-      old.postInstall
-      + ''
-        ln -s $out/usr/lib $out/lib
-        ln -s $out/usr/share $out/share
-      '';
-  });
+  # tlp = prev.tlp.overrideAttrs (old: {
+  #   postInstall =
+  #     old.postInstall
+  #     + ''
+  #       ln -s $out/usr/lib $out/lib
+  #       ln -s $out/usr/share $out/share
+  #     '';
+  # });
 
   # python312Packages = prev.python312Packages.overrideScope' (pyFinal: pyPrev: {
   #   pymdown-extensions = pyPrev.pymdown-extensions.overrideAttrs (old: {

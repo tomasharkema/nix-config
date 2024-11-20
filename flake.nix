@@ -300,6 +300,16 @@
 
         linuxKernel_arm = self.nixosConfigurations.euro-mir-vm.config.boot.kernelPackages.kernel;
 
+        all = (inputs.nixpkgs {}).mkShell {
+          buildInputs = [
+            self.nixosConfigurations.wodan.config.system.build.toplevel
+            self.nixosConfigurations.blue-fire.config.system.build.toplevel
+            self.nixosConfigurations.enceladus.config.system.build.toplevel
+            self.nixosConfigurations.voltron.config.system.build.toplevel
+            self.nixosConfigurations.enzian.config.system.build.toplevel
+          ];
+        };
+
         # services = let
         #   config = "pegasus";
         #   tryHasAttr = path: value: attr:
