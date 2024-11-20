@@ -29,17 +29,13 @@
   docbook_xml_dtd_45,
   dbus,
   autoPatchelfHook,
+  sources,
 }:
 stdenv.mkDerivation rec {
   pname = "libreport";
   version = "2.17.15";
 
-  src = fetchFromGitHub {
-    owner = "abrt";
-    repo = "libreport";
-    rev = version;
-    hash = "sha256-XGsdEVODKC81ejMHaETdt1Vt7x4PQfxhfabKuEuHONA=";
-  };
+  src = sources.libreport;
 
   enableParallelBuilding = true;
 

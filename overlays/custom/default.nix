@@ -7,6 +7,8 @@
 }: final: prev: {
   libcec = prev.libcec.override {withLibraspberrypi = true;};
 
+  sources = import ../../nix/sources.nix;
+
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
   _389-ds-base = self.packages."${prev.system}"._389-ds-base;

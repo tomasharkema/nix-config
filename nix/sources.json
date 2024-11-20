@@ -1,0 +1,66 @@
+{
+    "abrt": {
+        "branch": "master",
+        "description": "Automatic bug detection and reporting tool",
+        "homepage": null,
+        "owner": "abrt",
+        "repo": "abrt",
+        "rev": "baa2487bcdc30b047d4ac3c2a965d0cb81429b3b",
+        "sha256": "1zac1hb0rmki66dvmx8pbl87p91z7xy1sxji647vb1vdxca6l4li",
+        "type": "tarball",
+        "url": "https://github.com/abrt/abrt/archive/baa2487bcdc30b047d4ac3c2a965d0cb81429b3b.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "cockpit-files": {
+        "sha256": "0mzx468dx8ss408pf1c7f5171ki7snsa0dfs9m7rm6dchk59rm9a",
+        "type": "tarball",
+        "url": "https://github.com/cockpit-project/cockpit-files/releases/download/12/cockpit-files-12.tar.xz",
+        "url_template": "https://github.com/cockpit-project/cockpit-files/releases/download/<version>/cockpit-files-<version>.tar.xz",
+        "version": "12"
+    },
+    "cockpit-machines": {
+        "sha256": "1xd3705q2h6vy2sx1wamm4myld484klfzy4rgf81a55kcvy92g8a",
+        "type": "tarball",
+        "url": "https://github.com/cockpit-project/cockpit-machines/releases/download/324/cockpit-machines-324.tar.xz",
+        "url_template": "https://github.com/cockpit-project/cockpit-machines/releases/download/<version>/cockpit-machines-<version>.tar.xz",
+        "version": "324"
+    },
+    "cockpit-podman": {
+        "sha256": "140sjw0pmzxs2hm33hrrragyhqq5gfp7n5ypma4bm6mnnnx0dydd",
+        "type": "tarball",
+        "url": "https://github.com/cockpit-project/cockpit-podman/releases/download/99/cockpit-podman-99.tar.xz",
+        "url_template": "https://github.com/cockpit-project/cockpit-podman/releases/download/<version>/cockpit-podman-<version>.tar.xz",
+        "version": "99"
+    },
+    "cockpit-tailscale": {
+        "sha256": "18h5vwnvqmsrcd0d569fpgngmxrr4pzm1ymvrbl48m06vxv1j98i",
+        "type": "tarball",
+        "url": "https://github.com/spotsnel/cockpit-tailscale/releases/download/v0.0.6/cockpit-tailscale-v0.0.6.tar.gz",
+        "url_template": "https://github.com/spotsnel/cockpit-tailscale/releases/download/v<version>/cockpit-tailscale-v<version>.tar.gz",
+        "version": "0.0.6"
+    },
+    "libreport": {
+        "branch": "master",
+        "description": "Generic library for reporting various problems",
+        "homepage": null,
+        "owner": "abrt",
+        "repo": "libreport",
+        "rev": "9e78fc0922919f3021b2e2709b1201149964fbcf",
+        "sha256": "0fb5j0ghk2s3r8g8x7wk110jwwwl2gqcm9z3dyp5s9dk0a4f33sb",
+        "type": "tarball",
+        "url": "https://github.com/abrt/libreport/archive/9e78fc0922919f3021b2e2709b1201149964fbcf.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs": {
+        "branch": "nixos-unstable",
+        "description": "Nix Packages collection",
+        "homepage": null,
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "5e4fbfb6b3de1aa2872b76d49fafc942626e2add",
+        "sha256": "127dk2l5fr0922an96rmlzg32vh6pxh7r6qyvkhwf20jdzg9k61r",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/5e4fbfb6b3de1aa2872b76d49fafc942626e2add.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}

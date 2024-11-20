@@ -3,15 +3,13 @@
   stdenv,
   fetchzip,
   gettext,
+  sources,
 }:
 stdenv.mkDerivation rec {
   pname = "cockpit-tailscale";
-  version = "0.0.6";
+  version = sources.cockpit-tailscale.version;
 
-  src = fetchzip {
-    url = "https://github.com/spotsnel/cockpit-tailscale/releases/download/v${version}/cockpit-tailscale-v${version}.tar.gz";
-    sha256 = "sha256-ESUZdt8GVEToyrv6UP8lOff67LsumdJAY1lXvC3fBaI=";
-  };
+  src = sources.cockpit-tailscale;
 
   nativeBuildInputs = [
     gettext

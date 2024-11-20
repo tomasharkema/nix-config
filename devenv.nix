@@ -227,7 +227,7 @@ in {
     darwin-system
     build-host-pkgs
     nix-update-all
-
+    niv
     # # snowfallorg.flake
     # agenix
     # cachix

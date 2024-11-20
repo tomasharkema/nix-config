@@ -318,14 +318,13 @@ in {
       kernelParams = [
         "intel_iommu=on"
         "iommu=pt"
-        "console=tty0"
+        "console=tty1"
         "console=ttyS2,115200n8"
-        # "mitigations=off"
+        "mitigations=off"
         #"vfio-pci.ids=10de:1380,10de:0fbc"
         # "pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
         # "kvm.ignore_msrs=1"
-        "blacklist=nouveau"
         # "iomem=relaxed"
         # "pci=nomsi"
       ];
