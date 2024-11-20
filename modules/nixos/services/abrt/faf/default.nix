@@ -10,12 +10,10 @@
   folder = "/var/lib/faf";
   db-folder = "${folder}/db";
 in {
-  config = lib.mkIf (cfg.enable && false) {
+  config = lib.mkIf cfg.enable {
     apps.podman.enable = true;
 
-    systemd.tmpfiles.rules = [
-      "d ${db-folder} 0600 root root -"
-    ];
+    systemd.tmpfiles.rules = ["d ${db-folder} 0600 root root -"];
 
     virtualisation = {
       oci-containers.containers = {
@@ -36,11 +34,13 @@ in {
 
         faf = {
           image = "quay.io/abrt/faf";
-          ports = ["5432:5432" "6379:6379" "8080:8080"];
-          autoStart = true;
-          extraOptions = [
-            "--network=faf"
+          ports = [
+            "5432:5432"
+            "6379:6379"
+            "8080:8080"
           ];
+          autoStart = true;
+          extraOptions = ["--network=faf"];
           environment = {
             PGHOST = "faf-db";
             PGUSER = "faf";

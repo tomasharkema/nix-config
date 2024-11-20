@@ -16,7 +16,7 @@ python3Packages.buildPythonApplication rec {
     hash = "sha256-QgeGDQeSsfvopgBgQQsWrx036SX1FhE67LI8M8rJM/Q=";
   };
 
-  doCheck = false;
+  # doCheck = false;
 
   propagatedBuildInputs = with python3Packages; [
     setuptools

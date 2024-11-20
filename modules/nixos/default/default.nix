@@ -143,6 +143,7 @@
       enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          jupyter-all
           minio-client
           ssh-import-id
           tcptrack

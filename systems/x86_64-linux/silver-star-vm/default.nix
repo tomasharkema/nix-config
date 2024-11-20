@@ -7,8 +7,15 @@
   imports = [./hardware-configuration.nix];
 
   config = {
-    age.rekey = {
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPmfcfVeCBPcxmRRDtfSJcnAEZR5puw+h9eLN8M/jKOn root@silver-star-vm";
+    age = {
+      rekey = {
+        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPmfcfVeCBPcxmRRDtfSJcnAEZR5puw+h9eLN8M/jKOn root@silver-star-vm";
+      };
+      secrets = {
+        "healthchecks" = {
+          rekeyFile = ./healthchecks.age;
+        };
+      };
     };
 
     swapDevices = lib.mkForce [];
@@ -88,7 +95,7 @@
       };
 
       healthchecks = {
-        # enable = true;
+        enable = true;
         listenAddress = "0.0.0.0";
 
         # notificationSender = "tomas+hydra@harkema.io";
@@ -96,7 +103,7 @@
         # smtpHost = "smtp-relay.gmail.com";
 
         settings = {
-          SECRET_KEY_FILE = "/etc/healthchecks.key";
+          SECRET_KEY_FILE = config.age.secrets.healthchecks.path;
 
           EMAIL_HOST = "silver-star-vm.ling-lizard.ts.net";
           EMAIL_PORT = "8025";
@@ -112,21 +119,12 @@
       };
 
       tailscale = {
-        extraUpFlags = lib.mkForce [
-          "--advertise-tags=tag:nixos"
-          "--operator=tomas"
-        ];
+        extraUpFlags = lib.mkForce ["--operator=tomas"];
       };
 
       # freeipa.enable = true;
 
       resilio.enable = lib.mkForce false;
-
-      ha.initialMaster = true;
-
-      command-center = {
-        enableBot = true;
-      };
     };
 
     networking = {
@@ -134,10 +132,6 @@
 
       firewall = {
         enable = false;
-        allowedTCPPorts = [
-          config.services.buildbot-master.port
-          (lib.toInt config.apps.buildbot.workerPort)
-        ];
       };
       # wireless.enable = lib.mkDefault false;
       networkmanager.enable = lib.mkForce false; # true;
@@ -145,11 +139,5 @@
       useDHCP = false;
       interfaces."enp3s0".useDHCP = true;
     };
-
-    # sudo mount --types virtiofs appdata_ssd /mnt/shared/
-    # fileSystems."/mnt/shared" = {
-    #   fsType = "virtiofs";
-    #   device = "appdata_ssd";
-    # };
   };
 }
