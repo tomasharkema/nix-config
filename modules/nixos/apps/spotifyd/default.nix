@@ -21,7 +21,7 @@ in {
         enable = true;
         packages = [
           pkgs.shairport-sync
-          pkgs.spotifyd
+          # pkgs.spotifyd
         ];
       };
 
@@ -44,10 +44,10 @@ in {
           global = {
             backend = "pulseaudio";
             bitrate = 320;
-            mpris = true;
+            mpris = false;
             device_name = "${config.networking.hostName} SpotifyD";
             use_keyring = true;
-            dbus_type = "system";
+            # dbus_type = "system";
             zeroconf_port = 1234;
           };
         };
