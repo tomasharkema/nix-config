@@ -31,35 +31,37 @@ in {
       };
 
       systemPackages = with pkgs; [
-        custom.xmmctl
-        xmm7360
+        # custom.xmmctl
+        # xmm7360
+        custom.xmm2usb
       ];
     };
 
     boot = {
-      extraModulePackages = [
-        xmm7360
-      ];
-      kernelModules = [
-        "xmm7360"
-      ];
-      blacklistedKernelModules = [
-        "iosm"
-      ];
+      kernelModules = ["acpi_call"];
+      # extraModulePackages = [
+      #   xmm7360
+      # ];
+      # kernelModules = [
+      #   "xmm7360"
+      # ];
+      # blacklistedKernelModules = [
+      #   "iosm"
+      # ];
     };
 
-    systemd.services.xmm7360 = {
-      description = "XMM7360 Modem Init";
-      after = ["NetworkManager.service"];
-      requires = ["multi-user.target" "systemd-user-sessions.service" "dev-ttyXMM2.device"];
-      wantedBy = ["graphical.target"];
+    # systemd.services.xmm7360 = {
+    #   description = "XMM7360 Modem Init";
+    #   after = ["NetworkManager.service"];
+    #   requires = ["multi-user.target" "systemd-user-sessions.service" "dev-ttyXMM2.device"];
+    #   wantedBy = ["graphical.target"];
 
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "${xmm7360}/bin/open_xdatachannel.py -c /etc/xmm7360";
-        RemainAfterExit = "yes";
-        TimeoutSec = "60";
-      };
-    };
+    #   serviceConfig = {
+    #     Type = "oneshot";
+    #     ExecStart = "${xmm7360}/bin/open_xdatachannel.py -c /etc/xmm7360";
+    #     RemainAfterExit = "yes";
+    #     TimeoutSec = "60";
+    #   };
+    # };
   };
 }
