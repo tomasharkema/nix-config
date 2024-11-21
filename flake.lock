@@ -335,11 +335,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1732109232,
-        "narHash": "sha256-iYh6h8yueU8IyOfNclbiBG2+fBFcjjUfXm90ZBzk0c0=",
+        "lastModified": 1732221404,
+        "narHash": "sha256-fWTyjgGt+BHmkeJ5IxOR4zGF4/uc+ceWmhBjOBSVkgQ=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "a0c384e0a3b8bcaed30a6bcf3783f8a7c8b35be4",
+        "rev": "97c0c4d7072f19b598ed332e9f7f8ad562c6885b",
         "type": "github"
       },
       "original": {
@@ -1958,11 +1958,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731772703,
-        "narHash": "sha256-P9j16Q0CjbQr6V4LsdNcOGLswba2+V3tkBGjjBJua1I=",
+        "lastModified": 1732214034,
+        "narHash": "sha256-jRAUq82X5zL33QQk493o5NqbtfT2WpZfYi9ZWvdBBeA=",
         "owner": "mrzenc",
         "repo": "nvidia-vgpu-nixos",
-        "rev": "dbd49f2c70433ec0d03b52dc98434722197c6997",
+        "rev": "7d393ee60cad594d70786968a55212c6c31d03c2",
         "type": "github"
       },
       "original": {
