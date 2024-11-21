@@ -5,7 +5,6 @@
   config,
   ...
 }: let
-  disko = inputs.disko.packages."${pkgs.system}".disko;
   keys = pkgs.callPackage ../packages/authorized-keys {};
   inputValues = builtins.attrValues inputs; # .out
   drvs = builtins.map (v: v.outPath) inputValues;
@@ -64,6 +63,7 @@ in {
     services = {tailscale.enable = true;};
 
     environment.systemPackages = with pkgs; [
+      nixos-install-tools
       git
       curl
       wget
