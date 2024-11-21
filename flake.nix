@@ -63,7 +63,7 @@
       };
 
       overlays = with inputs; [
-        nix-snapshotter.overlays.default
+        # nix-snapshotter.overlays.default
         otel.overlays.default
         nvidia-patch.overlays.default
         ytdlp-gui.overlay
@@ -77,7 +77,7 @@
         chaotic.overlays.default
         # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
-        devenv.overlays.default
+        # devenv.overlays.default
       ];
 
       homes.modules = with inputs; [
@@ -103,7 +103,7 @@
 
       systems.modules = {
         nixos = with inputs; [
-          nix-snapshotter.nixosModules.default
+          # nix-snapshotter.nixosModules.default
           chaotic.nixosModules.default
           nixos-facter-modules.nixosModules.facter
           # nix-topology.nixosModules.default
@@ -500,10 +500,10 @@
     #   url = "github:hercules-ci/flake-parts";
     # };
 
-    devenv = {
-      url = "github:cachix/devenv";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # devenv = {
+    #   url = "github:cachix/devenv";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     devshell = {
       url = "github:numtide/devshell";

@@ -48,9 +48,9 @@ in {
       };
     };
 
-    services.nix-snapshotter = {
-      enable = true;
-    };
+    # services.nix-snapshotter = {
+    #   enable = true;
+    # };
 
     # services.resolved.enable = true;
 
@@ -59,10 +59,10 @@ in {
 
       containers.enable = true;
 
-      containerd = {
-        enable = true;
-        nixSnapshotterIntegration = true;
-      };
+      # containerd = {
+      #   enable = true;
+      #   nixSnapshotterIntegration = true;
+      # };
 
       docker.rootless = {
         enable = true;

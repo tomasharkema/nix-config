@@ -7,7 +7,7 @@
 }: let
   self = inputs.self;
 in {
-  config = {
+  config = lib.mkIf false {
     proxy-services.services = {
       "/home" = {
         proxyPass = "http://localhost:${builtins.toString config.services.homepage-dashboard.listenPort}";
