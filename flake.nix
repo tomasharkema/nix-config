@@ -64,7 +64,7 @@
 
       overlays = with inputs; [
         # nix-snapshotter.overlays.default
-        otel.overlays.default
+        # otel.overlays.default
         nvidia-patch.overlays.default
         ytdlp-gui.overlay
         nixos-recovery.overlays.recovery
@@ -729,23 +729,23 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    nix-virt = {
-      url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
+    # nix-virt = {
+    #   url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
 
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        nixpkgs-ovmf.follows = "nixpkgs";
-      };
-    };
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     nixpkgs-ovmf.follows = "nixpkgs";
+    #   };
+    # };
 
-    conky = {
-      url = "github:brndnmtthws/conky";
+    # conky = {
+    #   url = "github:brndnmtthws/conky";
 
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        # flake-utils.follows = "flake-utils";
-      };
-    };
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     # flake-utils.follows = "flake-utils";
+    #   };
+    # };
 
     nixos-06cb-009a-fingerprint-sensor = {
       url = "github:tomasharkema/nixos-06cb-009a-fingerprint-sensor";
@@ -753,20 +753,20 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    netkit = {
-      url = "github:icebox-nix/netkit.nix";
-    };
+    # netkit = {
+    #   url = "github:icebox-nix/netkit.nix";
+    # };
 
-    nix-topology = {
-      url = "github:oddlama/nix-topology";
+    # nix-topology = {
+    #   url = "github:oddlama/nix-topology";
 
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        # flake-utils.follows = "flake-utils";
-        # devshell.follows = "devshell";
-        # pre-commit-hooks.follows = "pre-commit-hooks-nix";
-      };
-    };
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     # flake-utils.follows = "flake-utils";
+    #     # devshell.follows = "devshell";
+    #     # pre-commit-hooks.follows = "pre-commit-hooks-nix";
+    #   };
+    # };
 
     # nixos-dash-docset = {
     #   url = "github:ptitfred/nixos-dash-docset";
@@ -798,10 +798,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nvidia-vgpu-nixos = {
-      url = "github:mrzenc/nvidia-vgpu-nixos";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nvidia-vgpu-nixos = {
+    #   url = "github:mrzenc/nvidia-vgpu-nixos";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # nix-htop = {
     #   url = "https://flakehub.com/f/tomasharkema/nix-htop/0.0.*.tar.gz";
@@ -813,7 +813,8 @@
     # };
 
     nixos-recovery = {
-      url = "https://flakehub.com/f/tomasharkema/nixos-recovery/0.0.*.tar.gz";
+      # url = "https://flakehub.com/f/tomasharkema/nixos-recovery/0.0.*.tar.gz";
+      url = "github:tomasharkema/nixos-recovery";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         # flake-parts.follows = "flake-parts";
@@ -882,14 +883,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    otel = {
-      url = "github:tomasharkema/nix-otel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # otel = {
+    #   url = "github:tomasharkema/nix-otel";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
-    nix-snapshotter = {
-      url = "github:pdtpartners/nix-snapshotter";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nix-snapshotter = {
+    #   url = "github:pdtpartners/nix-snapshotter";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 }

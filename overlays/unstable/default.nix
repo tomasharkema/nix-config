@@ -11,11 +11,13 @@
 in rec {
   # unstable = channels.unstable;
 
-  conky = ch.override {
-    x11Support = true;
-    waylandSupport = true;
-    nvidiaSupport = true;
-  };
+  # conky = ch.override {
+  #   x11Support = true;
+  #   waylandSupport = true;
+  #   nvidiaSupport = true;
+  # };
+
+  usbguard = prev.usbguard.overrideAttrs {meta.mainProgram = "usbguard";};
 
   cachix = prev.cachix.overrideAttrs {meta.mainProgram = "cachix";};
 
