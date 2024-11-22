@@ -10,7 +10,7 @@ in {
     enable = lib.mkEnableOption "sgx";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     hardware.cpu.intel.sgx = {
       enableDcapCompat = true;
       provision = {

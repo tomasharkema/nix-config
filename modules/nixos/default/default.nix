@@ -52,15 +52,24 @@
 
     console = {
       earlySetup = true;
-      font = "ter-v32n";
-      packages = with pkgs; [terminus_font];
+      # font = "ter-v32n";
+      # packages = with pkgs; [terminus_font];
       keyMap = "us";
     };
 
     boot = {
-      recovery.enable = lib.mkDefault true;
+      recovery = {
+        enable = lib.mkDefault true;
+        extraConfigurations = [
+          #   ({...}: {
+          #     imports = [
+          ../../../installer/installer.nix
+          #     ];
+          #   })
+        ];
+      };
       initrd = {
-        # systemd.emergencyAccess = "abcdefg";
+        systemd.emergencyAccess = "abcdefg";
         includeDefaultModules = true;
       };
 
@@ -70,7 +79,7 @@
 
       kernel.sysctl = {
         "net.ipv4.ip_forward" = 1;
-        "vm.overcommit_memory" = 1;
+        # "vm.overcommit_memory" = 1;
       };
 
       tmp = {
@@ -78,8 +87,7 @@
         cleanOnBoot = lib.mkDefault true;
       };
 
-      kernelPackages = let
-      in
+      kernelPackages =
         if (pkgs.stdenv.isAarch64 || config.traits.hardware.vm.enable)
         then lib.mkDefault pkgs.linuxPackages_latest
         else
