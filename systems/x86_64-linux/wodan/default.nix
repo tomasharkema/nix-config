@@ -143,7 +143,7 @@
       nvidia = {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
-        # open = false;
+        open = true;
 
         vgpu = {
           enable = true;
@@ -208,6 +208,8 @@
       };
       binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = ["ntfs"];
+
+      kernelPackages = pkgs.linuxPackages_6_6;
 
       kernelModules = [
         "i2c-dev"
