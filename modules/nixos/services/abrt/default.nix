@@ -52,6 +52,16 @@ in {
         };
       };
     };
+    # https://askubuntu.com/q/1449867
+    boot = {
+      kernelParams = [
+        "efi_pstore.pstore_disable=0"
+      ];
+      kernelModules = [
+        "efi_pstore"
+        "ramoops"
+      ];
+    };
 
     environment = {
       variables = {
@@ -207,8 +217,14 @@ in {
     systemd = {
       # packages = [pkgs.abrt];
 
-      tmpfiles.packages = [pkgs.abrt];
+      tmpfiles = {
+        packages = [pkgs.abrt];
 
+        settings."99-pstore" = {
+          "/sys/module/printk/parameters/always_kmsg_dump".w.argument = "Y";
+          "/sys/module/kernel/parameters/crash_kexec_post_notifiers".w.argument = "Y";
+        };
+      };
       # tmpfiles.settings."10-abrt" = {
       #   "/var/lib/abrt".d = {
       #     user = "abrt";

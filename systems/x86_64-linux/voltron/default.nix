@@ -240,12 +240,9 @@
       # modprobeConfig.enable = true;
 
       kernelParams = [
-        "pstore.backend=nvram"
         "iwlwifi.11n_disable=1"
         "iwlwifi.swcrypto=1"
-        # "efi_pstore.pstore_disable=0"
         # "mem_sleep_default=deep"
-        "iomem=relaxed"
         #   # "nowatchdog"
         #   # "mitigations=off"
         "i915.enable_gvt=1"

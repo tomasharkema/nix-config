@@ -33,6 +33,7 @@ in {
         "udev.log_level=3"
         "rd.udev.log_level=3"
         "vt.global_cursor_default=0"
+        "vga=current"
       ];
       consoleLogLevel = lib.mkDefault 0;
       initrd = {

@@ -194,7 +194,7 @@ in {
 
         network = {
           enable = true;
-          # flushBeforeStage2 = true;
+          flushBeforeStage2 = true;
 
           # udhcpc.enable = true;
           ssh = {

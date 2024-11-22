@@ -238,7 +238,7 @@
       kernelParams = [
         "intel_iommu=on"
         "iommu=pt"
-        "iomem=relaxed"
+        # "iomem=relaxed"
         # "drm.edid_firmware=HDMI-A-1:edid/samsung-q800t-hdmi2.1"
         # "video=HDMI-A-1:e"
       ];
