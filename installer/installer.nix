@@ -69,7 +69,7 @@ in {
       wget
       btop
       htop
-      nix-helpers
+      inputs.self.packages."${pkgs.system}".nix-helpers
       (inputs.self.packages."${pkgs.system}".installer-script.override {
         configurations = builtins.trace "installer-configurations" inputs.self.nixosConfigurations;
       })
