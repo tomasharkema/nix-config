@@ -10,13 +10,27 @@ in {
     server.enable = lib.mkEnableOption "zabbix server";
   };
 
-  config = lib.mkIf cfgServer.enable {
-    containers.zabbix = {
+  config = {
+    # networking = {
+    #   useNetworkd = true;
+    #   networkmanager.enable = lib.mkForce false;
+    # };
+
+    services.zabbixAgent = {
+      enable = true;
+      server = "silver-star";
+      settings = {
+        ServerActive = "silver-star";
+      };
+    };
+    containers.zabbix = lib.mkIf false {
+      enableTun = true;
       autoStart = true;
+      # hostBridge = "br0";
 
       privateNetwork = true;
       hostBridge = "br0"; # Specify the bridge name
-      localAddress = "192.168.110.5/24";
+      localAddress = "192.168.0.102/24";
 
       config = {
         config,
@@ -29,7 +43,11 @@ in {
             enable = true;
           };
 
-          tailscale = {enable = true;};
+          zabbixWeb = {
+            enable = true;
+          };
+
+          # tailscale = {enable = true;};
         };
 
         networking = {
