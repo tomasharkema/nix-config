@@ -34,6 +34,8 @@ in {
         custom.xmmctl
         xmm7360
         custom.xmm2usb
+        libsForQt5.modemmanager-qt
+        # chatty
       ];
     };
 

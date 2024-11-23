@@ -11,28 +11,36 @@ stdenv.mkDerivation rec {
   pname = "xmm7360-pci";
   version = "2024-02-24-${kernel.version}";
 
+  # src = fetchFromGitHub {
+  #   owner = "xmm7360";
+  #   repo = "xmm7360-pci";
+  #   rev = "a8ff2c6ceee84cbe74df8a78cfaa5a016d362ed4";
+  #   sha256 = "sha256-wwm9ELALiJrC54azyJ95Rm3pcGLYzhxEe9mcCUvSVKk=";
+  # };
+
   src = fetchFromGitHub {
-    owner = "xmm7360";
-    repo = "xmm7360-pci";
-    rev = "a8ff2c6ceee84cbe74df8a78cfaa5a016d362ed4";
-    sha256 = "sha256-wwm9ELALiJrC54azyJ95Rm3pcGLYzhxEe9mcCUvSVKk=";
+    owner = "SimPilotAdamT";
+    repo = "xmm7360-pci-SPAT";
+    rev = "db2bba584230bb2f586ad97bbbdb372985626ce9";
+    hash = "sha256-cRhxOk/KbV++TVzWN8feGco8YJlFT4z8J+DdMs26Gsw=";
   };
 
   nativeBuildInputs = kernel.moduleBuildDependencies;
-  patches = [
-    (fetchpatch {
-      url = "https://patch-diff.githubusercontent.com/raw/xmm7360/xmm7360-pci/pull/220.patch";
-      sha256 = "sha256-zIx9tkPo9LFgaOVSyEQBNIgVY2QwdYpM/tw6/ifiy1A=";
-    })
-    (fetchpatch {
-      url = "https://raw.githubusercontent.com/chaotic-aur/pkgbuild-xmm7360-pci-git/refs/heads/master/nodbus-exit-code.patch";
-      sha256 = "sha256-aOUaPskcHjZzjfy/es33va+GJqwLDH7NRdsh0rpp+Do=";
-    })
-    (fetchpatch {
-      url = "https://raw.githubusercontent.com/chaotic-aur/pkgbuild-xmm7360-pci-git/refs/heads/master/dns-priority.patch";
-      sha256 = "sha256-/oSuUn6INq0uo2wmVieRo5CWgjTLYO51mqinBEbcanA=";
-    })
-  ];
+
+  # patches = [
+  #   (fetchpatch {
+  #     url = "https://patch-diff.githubusercontent.com/raw/xmm7360/xmm7360-pci/pull/220.patch";
+  #     sha256 = "sha256-zIx9tkPo9LFgaOVSyEQBNIgVY2QwdYpM/tw6/ifiy1A=";
+  #   })
+  #   (fetchpatch {
+  #     url = "https://raw.githubusercontent.com/chaotic-aur/pkgbuild-xmm7360-pci-git/refs/heads/master/nodbus-exit-code.patch";
+  #     sha256 = "sha256-aOUaPskcHjZzjfy/es33va+GJqwLDH7NRdsh0rpp+Do=";
+  #   })
+  #   (fetchpatch {
+  #     url = "https://raw.githubusercontent.com/chaotic-aur/pkgbuild-xmm7360-pci-git/refs/heads/master/dns-priority.patch";
+  #     sha256 = "sha256-/oSuUn6INq0uo2wmVieRo5CWgjTLYO51mqinBEbcanA=";
+  #   })
+  # ];
 
   prePatch = let
     py = python3.withPackages (ps: [ps.ConfigArgParse ps.pyroute2 ps.dbus-python]);
