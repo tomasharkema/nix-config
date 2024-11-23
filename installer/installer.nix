@@ -69,8 +69,9 @@ in {
       wget
       btop
       htop
+      nix-helpers
       (inputs.self.packages."${pkgs.system}".installer-script.override {
-        configurations = inputs.self.nixosConfigurations;
+        configurations = builtins.trace "installer-configurations" inputs.self.nixosConfigurations;
       })
       disko
       tailscale

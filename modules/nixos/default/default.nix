@@ -151,7 +151,9 @@
       enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
-          jupyter-all
+          jupyter
+
+          pkgs.custom.nix-helpers
           minio-client
           ssh-import-id
           tcptrack

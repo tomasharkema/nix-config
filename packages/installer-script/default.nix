@@ -1,54 +1,83 @@
-{ inputs, lib, jq, gum, system, writeShellApplication, writeShellScriptBin
-, tailscale, krb5, configurations ? {
-  "foo" = {
-    config = {
-      disko = { };
-      system.build.diskoScript = "SCRIPT";
+{
+  inputs,
+  lib,
+  jq,
+  gum,
+  system,
+  writeShellApplication,
+  writeShellScriptBin,
+  tailscale,
+  krb5,
+  configurations ? {
+    "foo" = {
+      config = {
+        disko = {};
+        system.build.diskoScript = "SCRIPT";
+      };
     };
-  };
-  bar = {
-    _module.specialArgs.system = system;
-    config = {
-      disko = { };
-      system.build.diskoScript = writeShellScriptBin "derp" ''
-        derp
-      '';
+    bar = {
+      _module.specialArgs.system = system;
+      config = {
+        disko = {};
+        system.build.diskoScript = writeShellScriptBin "derp" ''
+          derp
+        '';
+      };
     };
-  };
-  skip = { config.system.build = { }; };
+    skip = {config.system.build = {};};
 
-  skip-installer = { config.system.build = { }; };
+    skip-installer = {config.system.build = {};};
 
-  weird-installer = {
-    config = {
-      disko = { };
-      system.build.diskoScript = "SCRIPT";
+    weird-installer = {
+      config = {
+        disko = {};
+        system.build.diskoScript = "SCRIPT";
+      };
     };
-  };
-}, writeText, stdenv, }:
-let
+  },
+  writeText,
+  stdenv,
+}: let
   # disko =
   #   if stdenv.isLinux
   #   then inputs.disko.packages."${system}".disko
   #   else "true";
   # originalConfigurations = lib.attrsets.filterAttrs (name: v: !(lib.strings.hasInfix "installer" name)) configurations;
-  diskoScripts = lib.attrsets.concatMapAttrs (name: value:
-    if ((!(lib.strings.hasInfix "installer" name))
-      && ((builtins.hasAttr "_module" value) && value._module.specialArgs.system
-        == system)
-      && (builtins.hasAttr "diskoScript" value.config.system.build)) then {
-        "${name}" = value.config.system.build.diskoScript;
-      } else
-      { }) configurations;
+  diskoScripts =
+    lib.attrsets.concatMapAttrs (
+      name: value:
+      # builtins.trace "diskoScripts installer-configuration ${name}"
+      # (
+        if
+          ((!(lib.strings.hasInfix "installer" name))
+            && ((builtins.hasAttr "_module" value)
+              && value._module.specialArgs.system
+              == system)
+            && (builtins.hasAttr "diskoScript" value.config.system.build))
+        then {
+          "${name}" = builtins.trace "disko script ${name}" value.config.system.build.diskoScript;
+        }
+        else {}
+    )
+    configurations; # );
 
-  diskoMountScripts = lib.attrsets.concatMapAttrs (name: value:
-    if ((!(lib.strings.hasInfix "installer" name))
-      && ((builtins.hasAttr "_module" value) && value._module.specialArgs.system
-        == system)
-      && (builtins.hasAttr "diskoScript" value.config.system.build)) then {
-        "${name}" = value.config.system.build.mountScript;
-      } else
-      { }) configurations;
+  diskoMountScripts =
+    lib.attrsets.concatMapAttrs (
+      name: value:
+      # builtins.trace "diskoMountScripts installer-configuration ${name}"
+      # (
+        if
+          ((!(lib.strings.hasInfix "installer" name))
+            && ((builtins.hasAttr "_module" value)
+              && value._module.specialArgs.system
+              == system)
+            && (builtins.hasAttr "diskoScript" value.config.system.build))
+        then {
+          "${name}" = builtins.trace "mount script ${name}" value.config.system.build.mountScript;
+        }
+        else {}
+    )
+    configurations; # );
 
   diskoScriptsJsonString = builtins.toJSON diskoScripts;
   diskoMountScriptsJsonString = builtins.toJSON diskoMountScripts;
@@ -68,51 +97,52 @@ let
     #builtins.trace configurationNamesString
     writeText "hosts.txt" configurationNamesString;
   # builtins.trace (builtins.toJSON "${hosts} ${diskoScriptsJson}")
-in writeShellApplication {
-  name = "installer-script";
+in
+  writeShellApplication {
+    name = "installer-script";
 
-  runtimeInputs = [
-    krb5
-    gum
-    # tailscale
-    jq
-  ];
+    runtimeInputs = [
+      krb5
+      gum
+      # tailscale
+      jq
+    ];
 
-  text = ''
-    set -e
+    text = ''
+      set -e
 
-    function tailscaleStatus () {
-      TAILSCALE_STATUS="$(tailscale status --json | jq -r '.BackendState')"
-      case "$TAILSCALE_STATUS" in
-        "Running")
-          return 0
-          ;;
+      function tailscaleStatus () {
+        TAILSCALE_STATUS="$(tailscale status --json | jq -r '.BackendState')"
+        case "$TAILSCALE_STATUS" in
+          "Running")
+            return 0
+            ;;
 
-        *)
-          return 1
-          ;;
-      esac
-    }
+          *)
+            return 1
+            ;;
+        esac
+      }
 
-    # tailscaleStatus || {
-    #   echo "Login with Tailscale..."
+      # tailscaleStatus || {
+      #   echo "Login with Tailscale..."
 
-    #   tailscale up --qr --accept-dns --accept-routes
-    # }
+      #   tailscale up --qr --accept-dns --accept-routes
+      # }
 
-    HOSTNAME_INST="$(gum choose --header Hostname < ${hosts})"
+      HOSTNAME_INST="$(gum choose --header Hostname < ${hosts})"
 
-    echo "Installing $HOSTNAME_INST..."
+      echo "Installing $HOSTNAME_INST..."
 
-    DISKO_COMMAND="$(jq -r ".\"$HOSTNAME_INST\"" < ${diskoScriptsJson})"
-    DISKO_MOUNT_COMMAND="$(jq -r ".\"$HOSTNAME_INST\"" < ${diskoMountScriptsJson})"
+      DISKO_COMMAND="$(jq -r ".\"$HOSTNAME_INST\"" < ${diskoScriptsJson})"
+      DISKO_MOUNT_COMMAND="$(jq -r ".\"$HOSTNAME_INST\"" < ${diskoMountScriptsJson})"
 
-    # shellcheck disable=SC1090
-    "$DISKO_MOUNT_COMMAND" || {
       # shellcheck disable=SC1090
-      gum confirm "Format disk?" && "$DISKO_COMMAND"
-    }
+      "$DISKO_MOUNT_COMMAND" || {
+        # shellcheck disable=SC1090
+        gum confirm "Format disk?" && "$DISKO_COMMAND"
+      }
 
-    gum confirm "Ready to install?" && nixos-install --flake "github:tomasharkema/nix-config#$HOSTNAME_INST" --verbose
-  '';
-}
+      gum confirm "Ready to install?" && nixos-install --flake "github:tomasharkema/nix-config#$HOSTNAME_INST" --verbose
+    '';
+  }
