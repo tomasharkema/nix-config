@@ -247,6 +247,10 @@ in {
       chromium = {
         enable = true;
       };
+      appimage = {
+        enable = true;
+        binfmt = true;
+      };
     };
     systemd = {
       packages =

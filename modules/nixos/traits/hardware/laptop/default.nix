@@ -15,7 +15,7 @@ in {
     system.nixos.tags = ["laptop"];
     powerManagement.enable = true;
 
-    environment.systemPackages = [pkgs.custom.tlpui];
+    # environment.systemPackages = [pkgs.custom.tlpui];
 
     home-manager.users.tomas.programs.gnome-shell.extensions =
       lib.optional
@@ -49,8 +49,8 @@ in {
 
       # xrdp.enable = mkForce false;
 
-      tlp.enable = true;
-      power-profiles-daemon.enable = false;
+      # tlp.enable = true;
+      power-profiles-daemon.enable = true;
 
       acpid = {
         enable = true;
