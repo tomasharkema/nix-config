@@ -44,14 +44,6 @@
 
   intel-vaapi-driver = prev.intel-vaapi-driver.override {enableHybridCodec = true;};
 
-  modemmanager = prev.modemmanager.overrideAttrs (old: {
-    patches =
-      old.patches
-      ++ [
-        ../../mm-xmm.patch
-      ];
-  });
-
   # tlp = prev.tlp.overrideAttrs (old: {
   #   postInstall =
   #     old.postInstall

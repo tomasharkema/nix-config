@@ -1,3 +1,55 @@
+diff --git a/meson.build b/meson.build
+index 4cbe0a6b..5ee93a09 100644
+--- a/meson.build
++++ b/meson.build
+@@ -312,6 +312,7 @@ plugins_shared_reqs = {
+   'sierra': true,
+   'telit': true,
+   'xmm': true,
++  'xmm7360': true,
+   'quectel': true,
+ }
+ 
+@@ -331,7 +332,7 @@ plugins_options_reqs = {
+   'cinterion': {'available': true, 'shared': []},
+   'dell': {'available': true, 'shared': dell_shared_reqs},
+   'dlink': {'available': true, 'shared': []},
+-  'fibocom': {'available': true, 'shared': ['xmm', 'fibocom']},
++  'fibocom': {'available': true, 'shared': ['xmm', 'xmm7360', 'fibocom']},
+   'foxconn': {'available': enable_mbim, 'shared': ['foxconn']},
+   'generic': {'available': true, 'shared': []},
+   'gosuncn': {'available': true, 'shared': []},
+diff --git a/src/plugins/meson.build b/src/plugins/meson.build
+index b21b5e36..401246a4 100644
+--- a/src/plugins/meson.build
++++ b/src/plugins/meson.build
+@@ -258,6 +258,26 @@ if plugins_shared['telit']
+   }}
+ endif
+ 
++# common xmm support
++if plugins_shared['xmm7360']
++  xmm_inc = include_directories('xmm7360')
++
++  common_c_args = '-DMM_MODULE_NAME="shared-xmm7360"'
++
++  sources = files(
++	'xmm7360/mm-plugin-xmm7360.c',
++	'xmm7360/mm-broadband-modem-xmm7360.c',
++	'xmm7360/mm-bearer-xmm7360.c',
++	'xmm7360/mm-xmm7360-rpc.c',
++  )
++
++  plugins += {'shared-xmm7360': {
++    'plugin': true,
++    # 'helper': {'sources': files('xmm/mm-modem-helpers-xmm.c'), 'include_directories': plugins_incs, 'c_args': common_c_args},
++    'module': {'sources': sources, 'include_directories': plugins_incs, 'c_args': common_c_args},
++  }}
++endif
++
+ # common xmm support
+ if plugins_shared['xmm']
+   xmm_inc = include_directories('xmm')
 diff --git a/src/plugins/xmm7360/README.md b/src/plugins/xmm7360/README.md
 new file mode 100644
 index 00000000..1a8ea425

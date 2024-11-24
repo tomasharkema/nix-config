@@ -32,46 +32,11 @@ in {
     system.nixos.tags = ["thinkpad"];
 
     environment.systemPackages = with pkgs; [
-      modemmanager
-      modem-manager-gui
-      libmbim
       libqmi
       tpacpi-bat
       # custom.lenovo-wwan-unlock
       # sgx-psw
     ];
-
-    systemd = {
-      packages = [
-        pkgs.modemmanager
-        # pkgs.custom.lenovo-wwan-unlock
-      ];
-      # services = {
-      #   open-fprintd-resume.enable = true;
-      #   open-fprintd-suspend.enable = true;
-      # };
-
-      services = {
-        print-restart = {
-          after = [
-            "hibernate.target"
-            "hybrid-sleep.target"
-            "suspend.target"
-            "suspend-then-hibernate.target"
-          ];
-          wantedBy = [
-            "hibernate.target"
-            "hybrid-sleep.target"
-            "suspend.target"
-            "suspend-then-hibernate.target"
-          ];
-          serviceConfig = {
-            Type = "simple";
-            ExecStart = "${pkgs.systemd}/bin/systemctl --no-block restart python3-validity.service open-fprintd.service";
-          };
-        };
-      };
-    };
 
     # systemd.services.fprintd.environment = {
     #   G_MESSAGES_DEBUG = "all";
@@ -109,9 +74,6 @@ in {
       #   SUBSYSTEM=="usb", ATTRS{idVendor}=="06cb", ATTRS{idProduct}=="009a", ATTRS{dev}=="*", TEST=="power/control", ATTR{power/control}="auto", MODE="0660", GROUP="plugdev"
       #   SUBSYSTEM=="usb", ATTRS{idVendor}=="06cb", ATTRS{idProduct}=="009a", ENV{LIBFPRINT_DRIVER}="vfs009"
       # '';
-
-      udev.packages = [pkgs.modemmanager];
-      dbus.packages = [pkgs.modemmanager];
     };
 
     home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
