@@ -44,6 +44,18 @@
 
   intel-vaapi-driver = prev.intel-vaapi-driver.override {enableHybridCodec = true;};
 
+  mission-center = prev.mission-center.overrideAttrs ({postPatch, ...}: {
+    postPatch =
+      prev.lib.replaceStrings [
+        "substituteInPlace $cargoDepsCopy/gl_loader-*/src/glad.c"
+        "--replace-fail \"libGL.so.1"
+      ] [
+        "# substituteInPlace $cargoDepsCopy/gl_loader-*/src/glad.c"
+        "# --replace-fail \"libGL.so.1"
+      ]
+      postPatch;
+  });
+
   # tlp = prev.tlp.overrideAttrs (old: {
   #   postInstall =
   #     old.postInstall

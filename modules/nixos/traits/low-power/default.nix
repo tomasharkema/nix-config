@@ -12,5 +12,10 @@ in {
   config = lib.mkIf cfg.enable {
     traits.builder.enable = lib.mkForce false;
     apps.resilio.enable = lib.mkForce false;
+
+    nix.settings = {
+      keep-outputs = lib.mkForce false;
+      keep-derivations = lib.mkForce false;
+    };
   };
 }

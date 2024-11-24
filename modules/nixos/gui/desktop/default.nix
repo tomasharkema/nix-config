@@ -141,9 +141,10 @@ in {
       [
         ptyxis
         onioncircuits
-        # onionshare-gui
+        onionshare-gui
         pods
         meld
+        pika-backup
         # custom.anydesk
         vlc
         boxbuddy
@@ -165,7 +166,7 @@ in {
         libGL
         libGLU
         meteo
-        # mission-center
+        mission-center
         nix-software-center
         partition-manager
         pavucontrol

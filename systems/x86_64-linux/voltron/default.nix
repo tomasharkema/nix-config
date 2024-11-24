@@ -138,7 +138,7 @@
 
     services = {
       abrt.enable = true;
-      remote-builders.client.enable = true;
+      # remote-builders.client.enable = true;
       usbmuxd.enable = true;
       # power-profiles-daemon.enable = lib.mkForce true;
 
@@ -207,22 +207,9 @@
       scx.enable = pkgs.stdenvNoCC.isx86_64; # by default uses scx_rustland scheduler
     };
 
-    system.build.isgx = config.boot.kernelPackages.isgx.overrideAttrs (old: {
-      patches = [
-        (pkgs.fetchpatch {
-          url = "https://github.com/intel/linux-sgx-driver/commit/2f69bc44869a23691001148bce16d26f77ba030a.patch";
-          sha256 = "sha256-h3aoV6RSgs1QRbb2+UGz0PRBPZRfzl2j/b2dcSGnR9E=";
-        })
-      ];
-    });
-
     boot = {
       kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
       # resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
-
-      extraModulePackages = [
-        # config.system.build.isgx
-      ];
 
       tmp = {
         useTmpfs = true;
