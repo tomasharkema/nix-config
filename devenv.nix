@@ -6,10 +6,8 @@
   ...
 }:
 with pkgs; let
-  nixos-generate = inputs.nixos-generators.packages."${pkgs.system}".nixos-generate;
-
-  agenix-rekey = inputs.agenix-rekey.packages."${pkgs.system}".agenix-rekey;
-
+  # nixos-generate = inputs.nixos-generators.packages."${pkgs.system}".nixos-generate;
+  # agenix-rekey = inputs.agenix-rekey.packages."${pkgs.system}".agenix-rekey;
   _mbufferSend = writeShellScriptBin "_mbufferSend" ''
     mbuffer -I pegasus:8000 -m 1G | zstd -e - -19 | > pegasus-bak-2.tar.zst
     ssh media@pegasus.local "tar chf - /home/media | mbuffer -m 100M -O euro-mir-2:8000"
@@ -221,7 +219,7 @@ in {
 
   packages = with pkgs; [
     actionlint
-    agenix-rekey
+
     #pkgs.nixVersions.latest
     nixos-system
     darwin-system
@@ -273,7 +271,6 @@ in {
     nix-tree
     nixd
     nixfmt-rfc-style
-    nixos-generate
     nixpkgs-fmt
     nixpkgs-lint
     nurl

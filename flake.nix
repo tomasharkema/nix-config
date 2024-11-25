@@ -899,5 +899,9 @@
       url = "github:nlewo/comin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur-xddxdd = {
+      url = "github:xddxdd/nur-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
