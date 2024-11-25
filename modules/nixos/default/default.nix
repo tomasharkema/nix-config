@@ -152,7 +152,7 @@
       systemPackages =
         (with pkgs; [
           jupyter
-
+          caffeine-ng
           pkgs.custom.nix-helpers
           minio-client
           ssh-import-id

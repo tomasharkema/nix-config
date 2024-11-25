@@ -179,8 +179,6 @@ in {
         enableZshIntegration = true;
       };
 
-      tmux = {enable = true;};
-
       alacritty.enable = osConfig.gui.enable;
 
       # bat = {

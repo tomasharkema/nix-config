@@ -103,6 +103,7 @@
 
       systems.modules = {
         nixos = with inputs; [
+          comin.nixosModules.comin
           # nix-snapshotter.nixosModules.default
           chaotic.nixosModules.default
           nixos-facter-modules.nixosModules.facter
@@ -893,5 +894,10 @@
     #   url = "github:pdtpartners/nix-snapshotter";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+
+    comin = {
+      url = "github:nlewo/comin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

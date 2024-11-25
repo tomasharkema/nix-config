@@ -44,7 +44,7 @@
     sha256 = "1zms3mgfjdrq97rar5g7b73gfdc8xgx7jpafynqklaczj823sqxs";
   };
 in {
-  config = lib.mkIf true {
+  config = {
     home.packages = with pkgs; [lsof brotab];
 
     programs.zellij = {
@@ -57,13 +57,14 @@ in {
       };
     };
 
-    programs.tmux = lib.mkIf false {
+    programs.tmux = {
       enable = true;
       clock24 = true;
       # shell = "${lib.getExe pkgs.zsh}";
-      # terminal = "tmux-256color";
+      terminal = "tmux-256color";
       # historyLimit = 200000;
       mouse = true;
+      aggressiveResize = true;
 
       tmuxinator.enable = true;
       tmuxp.enable = true;
