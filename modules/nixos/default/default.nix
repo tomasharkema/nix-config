@@ -177,7 +177,7 @@
           agenix-rekey
           distrobox
           distrobox-tui
-          custom.ztui
+
           s-tui
           # dry
           # etcher
@@ -287,7 +287,7 @@
             cmospwd
             uefisettings
             libsmbios
-
+            custom.ztui
             dmidecode
             refind
           ]
