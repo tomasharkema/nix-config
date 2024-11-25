@@ -33,6 +33,8 @@ in {
     # };
 
     environment.systemPackages = with pkgs; [
+      # nvflash
+      # nvidia-capture-sdk
       libva-utils
       (nvtopPackages.full)
       zenith-nvidia

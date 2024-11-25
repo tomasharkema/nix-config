@@ -177,8 +177,6 @@ in
       gnupg
       gum
       tydra
-      hydra-check
-      hydra-cli
       mkiso
       netdiscover
       nil
@@ -198,12 +196,9 @@ in
       zsh
       agenix # .packages.${system}.default
       nixfmt-rfc-style
-
       # cachix
       deadnix
-      hydra-cli
       test-installer
-
       manix
       # nix-eval-jobs
       nix-init

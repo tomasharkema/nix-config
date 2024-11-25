@@ -22,13 +22,9 @@ in {
         deadnix
         deploy-rs
         devenv
-
         flake-checker
-        hydra-check
-        hydra-cli
         autoflake
         # fh
-        hydra-cli
         manix
         nix-search-cli
 

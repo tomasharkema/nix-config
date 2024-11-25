@@ -209,6 +209,7 @@
           ssh-import-id
           duc
           ethtool
+          htmlq
           # fam # unmaintained
           fcast-receiver
           fwupd
