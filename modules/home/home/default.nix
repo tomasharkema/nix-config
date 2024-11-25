@@ -45,10 +45,10 @@ in {
       enableNotifications = true;
     };
 
-    programs.inshellisense = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+    # programs.inshellisense =  {
+    #   enable = true;
+    #   enableZshIntegration = true;
+    # };
 
     xdg = lib.mkIf pkgs.stdenv.isLinux {
       systemDirs.data = [

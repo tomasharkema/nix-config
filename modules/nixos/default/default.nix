@@ -37,12 +37,12 @@
       };
     };
 
-    # system = {
-    #   switch = {
-    #     enable = false;
-    #     enableNg = true;
-    #   };
-    # };
+    system = {
+      switch = {
+        enable = false;
+        enableNg = true;
+      };
+    };
 
     virtualisation.spiceUSBRedirection.enable = true;
 
@@ -75,7 +75,10 @@
 
       hardwareScan = true;
 
-      kernelParams = ["preempt=full"];
+      kernelParams = [
+        "preempt=full"
+        "mitigations=off"
+      ];
 
       kernel.sysctl = {
         "net.ipv4.ip_forward" = 1;
@@ -358,6 +361,10 @@
             name = "nix-daemon";
             type = "compiler";
           }
+          {
+            name = "nh";
+            type = "compiler";
+          }
         ];
       };
 
@@ -388,13 +395,6 @@
       # };
 
       das_watchdog.enable = true;
-
-      # check_mk_agent = {
-      #   enable = true;
-      #   bind = "0.0.0.0";
-      #   openFirewall = true;
-      #   package = pkgs.check_mk_agent.override {enablePluginSmart = true;};
-      # };
 
       openssh = {
         enable = true;
@@ -486,6 +486,17 @@
         #     "2.nl.pool.ntp.org"
         #     "3.nl.pool.ntp.org"
         #   ];
+      };
+
+      comin = {
+        enable = true;
+        remotes = [
+          {
+            name = "origin";
+            url = "https://gitlab.com/tomasharkema/nix-config.git";
+            branches.main.name = "main";
+          }
+        ];
       };
     };
 
