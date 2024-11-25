@@ -227,6 +227,8 @@
       # modprobeConfig.enable = true;
 
       kernelParams = [
+        "iommu.passthrough=1"
+
         "iwlwifi.11n_disable=1"
         "iwlwifi.swcrypto=1"
         # "mem_sleep_default=deep"
