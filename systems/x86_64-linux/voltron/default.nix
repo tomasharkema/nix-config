@@ -72,6 +72,7 @@
     # chaotic.mesa-git.enable = true;
 
     hardware = {
+      mcelog.enable = true;
       nvidia = {
         # forceFullCompositionPipeline = true;
 

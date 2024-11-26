@@ -217,6 +217,7 @@
           fcast-receiver
           fwupd
           fwupd-efi
+          systeroid
           gdu
           git
           googler

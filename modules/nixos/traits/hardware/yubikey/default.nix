@@ -73,7 +73,7 @@
       #   enable = true;
       #   plugins = [pkgs.yubikey-personalization];
       # };
-      yubikey-agent.enable = config.gui.enable;
+      # yubikey-agent.enable = config.gui.enable;
 
       udev = {
         packages = [pkgs.yubikey-personalization];

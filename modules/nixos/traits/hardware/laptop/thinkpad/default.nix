@@ -41,6 +41,8 @@ in {
       # sgx-psw
     ];
 
+    hardware.trackpoint.enable = true;
+
     systemd = {
       packages = [
         pkgs.modemmanager

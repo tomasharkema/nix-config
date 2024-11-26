@@ -134,6 +134,8 @@ in {
     #   enable = true;
     # };
 
+    hardware.ksm.enable = true;
+
     virtualisation = {
       kvmgt.enable = true;
       # tpm.enable = true;
