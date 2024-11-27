@@ -13,14 +13,14 @@
 
       settings = {
         theme = "catppuccin-mocha";
-        load_plugins = {
+        # load_plugins = {
           # "${pkgs.zjstatus}/bin/zjframes.wasm" = {
           #   hide_frame_for_single_pane = "true";
           #   hide_frame_except_for_search = "true";
           #   hide_frame_except_for_fullscreen = "true";
           # };
-          "https://github.com/cristiand391/zj-status-bar/releases/download/0.3.0/zj-status-bar.wasm" = {};
-        };
+          # "https://github.com/cristiand391/zj-status-bar/releases/download/0.3.0/zj-status-bar.wasm" = {};
+        # };
       };
     };
 
@@ -37,14 +37,14 @@
       #   }
       # '';
       # file:${pkgs.custom.zj-status-bar}/bin/zj-status-bar.wasm
-      ".config/zellij/layouts/default.kdl".text = ''
-        layout {
-          pane size=1 {
-            plugin location="https://github.com/cristiand391/zj-status-bar/releases/download/0.3.0/zj-status-bar.wasm"
-          }
-          pane
-        }
-      '';
+      # ".config/zellij/layouts/default.kdl".text = ''
+      #  layout {
+      #    pane size=1 {
+      #      plugin location="https://github.com/cristiand391/zj-status-bar/releases/download/0.3.0/zj-status-bar.wasm"
+      #    }
+      #    pane
+      #  }
+     # '';
 
       #${pkgs.zjstatus}/bin/zjstatus.wasm
       # ".config/zellij/layouts/default.kdl".text = ''
