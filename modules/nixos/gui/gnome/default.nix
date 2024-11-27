@@ -154,9 +154,9 @@ in
             #   gpaste
             #   pkgs.custom.usbguard-gnome
             #   # gnome-menus
+            #   libusb1
             # ];
-            # , 'variable-refresh-rate','xwayland-native-scaling'
-            # 'xwayland-native-scaling',
+
             # extraGSettingsOverrides = ''
             #   [org.gnome.mutter]
             #   experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland', 'variable-refresh-rate', 'xwayland-native-scaling']
@@ -171,6 +171,7 @@ in
               clutter-gtk
               gjs
               gpaste
+              libusb1
               gnome-menus
               # pkgs.custom.openglide
               # ddcutil
@@ -188,7 +189,7 @@ in
         libinput.enable = true;
         gnome = {
           # chrome-gnome-shell.enable = true;
-          gnome-browser-connector.enable = true;
+          # gnome-browser-connector.enable = true;
           gnome-online-accounts.enable = true;
           glib-networking.enable = true;
 

@@ -20,6 +20,9 @@ with inputs.home-manager.lib.hm.gvariant; {
           # "scale-monitor-framebuffer"
           # "variable-refresh-rate"
           # "rt-scheduler"
+          #   [org.gnome.mutter]
+          #   experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland', 'variable-refresh-rate', 'xwayland-native-scaling']
+
           experimental-features = [
             # if osConfig.traits.hardware.laptop.enable
             # then [
