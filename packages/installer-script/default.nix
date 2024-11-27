@@ -55,7 +55,9 @@
               == system)
             && (builtins.hasAttr "diskoScript" value.config.system.build))
         then {
-          "${name}" = builtins.trace "disko script ${name}" value.config.system.build.diskoScript;
+          "${name}" =
+            # builtins.trace "disko script ${name}"
+            value.config.system.build.diskoScript;
         }
         else {}
     )
@@ -73,7 +75,9 @@
               == system)
             && (builtins.hasAttr "diskoScript" value.config.system.build))
         then {
-          "${name}" = builtins.trace "mount script ${name}" value.config.system.build.mountScript;
+          "${name}" =
+            # builtins.trace "mount script ${name}"
+            value.config.system.build.mountScript;
         }
         else {}
     )

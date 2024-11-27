@@ -22,7 +22,7 @@ in {
 
       _1password = {
         enable = true;
-        package = pkgs._1password;
+        # package = pkgs._1password;
       };
 
       _1password-gui = lib.mkIf cfg.gui.enable {

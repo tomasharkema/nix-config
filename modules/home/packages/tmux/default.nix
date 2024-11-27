@@ -47,16 +47,6 @@ in {
   config = {
     home.packages = with pkgs; [lsof brotab];
 
-    programs.zellij = {
-      enable = true;
-
-      # enableZshIntegration = true;
-
-      settings = {
-        theme = "catppuccin-mocha";
-      };
-    };
-
     programs.tmux = {
       enable = true;
       clock24 = true;

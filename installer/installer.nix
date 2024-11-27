@@ -66,12 +66,14 @@ in {
       nixos-install-tools
       git
       curl
-      wget
+      wget2
       btop
       htop
       inputs.self.packages."${pkgs.system}".nix-helpers
       (inputs.self.packages."${pkgs.system}".installer-script.override {
-        configurations = builtins.trace "installer-configurations" inputs.self.nixosConfigurations;
+        configurations =
+          #builtins.trace "installer-configurations"
+          inputs.self.nixosConfigurations;
       })
       disko
       tailscale

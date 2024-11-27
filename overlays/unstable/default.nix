@@ -5,17 +5,14 @@
   lib,
   inputs,
   ...
-}: (final: prev: let
-  # ch = inputs.conky.packages."${prev.system}".default;
-  ch = prev.conky;
-in rec {
+}: (final: prev: rec {
   # unstable = channels.unstable;
 
-  # conky = ch.override {
-  #   x11Support = true;
-  #   waylandSupport = true;
-  #   nvidiaSupport = true;
-  # };
+  conky = prev.conky.override {
+    x11Support = true;
+    waylandSupport = true;
+    nvidiaSupport = true;
+  };
 
   usbguard = prev.usbguard.overrideAttrs {meta.mainProgram = "usbguard";};
 

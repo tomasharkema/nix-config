@@ -35,6 +35,8 @@
     #   enable = true;
     # };
 
+    systemd.services.usbmuxd.path = [pkgs.libusb1];
+
     environment = {
       systemPackages = with pkgs; [
         custom.swift
@@ -42,7 +44,7 @@
         libimobiledevice
         intel-gpu-tools
         nvramtool
-        # libusb
+        libusb1
         ccid
         gnupg
         custom.distrib-dl
@@ -152,7 +154,7 @@
         enable = true;
         packages = with pkgs; [
           heimdall-gui
-          # libusb
+          libusb1
 
           # ccid
         ];
@@ -204,9 +206,9 @@
     #   };
     # };
 
-    chaotic = {
-      scx.enable = pkgs.stdenvNoCC.isx86_64; # by default uses scx_rustland scheduler
-    };
+    # chaotic = {
+    #   scx.enable = pkgs.stdenvNoCC.isx86_64; # by default uses scx_rustland scheduler
+    # };
 
     boot = {
       kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;

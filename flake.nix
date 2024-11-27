@@ -740,14 +740,14 @@
     #   };
     # };
 
-    # conky = {
-    #   url = "github:brndnmtthws/conky";
+    conky = {
+      url = "github:brndnmtthws/conky";
 
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     # flake-utils.follows = "flake-utils";
-    #   };
-    # };
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        # flake-utils.follows = "flake-utils";
+      };
+    };
 
     nixos-06cb-009a-fingerprint-sensor = {
       url = "github:tomasharkema/nixos-06cb-009a-fingerprint-sensor";
@@ -899,8 +899,14 @@
       url = "github:nlewo/comin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nur-xddxdd = {
       url = "github:xddxdd/nur-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    zjstatus = {
+      url = "github:dj95/zjstatus";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
