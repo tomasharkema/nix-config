@@ -117,18 +117,10 @@
     };
 
     services.scx = {
-      enable = true;
+      enable = !(config.traits.server.enable) && pkgs.stdenvNoCC.isx86_64;
       package = pkgs.scx_git.full;
       scheduler = "scx_lavd";
     };
-
-    # chaotic = {
-    #   scx = {
-    #     enable = !(config.traits.server.enable) && pkgs.stdenvNoCC.isx86_64;
-    #     scheduler = "scx_bpfland";
-    #     package = pkgs.scx.full;
-    #   };
-    # };
 
     # environment.etc = {
     #   "current-system-packages".source = pkgs.custom.pkgs-index.override {

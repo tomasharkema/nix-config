@@ -199,16 +199,12 @@
       };
     };
 
-    # programs = {
-    #   captive-browser = {
-    #     enable = true;
-    #     interface = "wlp4s0";
-    #   };
-    # };
-
-    # chaotic = {
-    #   scx.enable = pkgs.stdenvNoCC.isx86_64; # by default uses scx_rustland scheduler
-    # };
+    programs = {
+      captive-browser = {
+        enable = true;
+        interface = "wlp4s0";
+      };
+    };
 
     boot = {
       kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;

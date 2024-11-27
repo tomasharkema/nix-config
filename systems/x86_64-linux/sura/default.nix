@@ -79,9 +79,9 @@
       };
     };
 
-    # chaotic = {
-    #   scx.enable = lib.mkForce false; # pkgs.stdenvNoCC.isx86_64; # by default uses scx_rustland scheduler
-    # };
+    services.scx = {
+      enable = lib.mkForce false; # pkgs.stdenvNoCC.isx86_64; # by default uses scx_rustland scheduler
+    };
 
     boot = {
       # kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
