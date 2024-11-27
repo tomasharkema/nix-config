@@ -52,7 +52,7 @@ in {
   #     config = { config, pkgs, ... }: {
   #       systemd.services = { };
 
-  #       system.stateVersion = "24.11";
+  #       system.stateVersion = "25.05";
 
   #       networking = {
   #         firewall = {

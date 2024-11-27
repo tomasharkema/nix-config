@@ -162,7 +162,7 @@ in {
 
     # home-manager = {
     #   users.media = {
-    #     home.stateVersion = mkDefault "24.11";
+    #     home.stateVersion = mkDefault "25.05";
     #     xdg.enable = true;
     #   };
     # };

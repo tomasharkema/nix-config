@@ -149,19 +149,19 @@ in
           desktopManager.gnome = {
             enable = true;
 
-            extraGSettingsOverridePackages = with pkgs; [
-              gnome.mutter
-              gpaste
-              pkgs.custom.usbguard-gnome
-              # gnome-menus
-            ];
+            # extraGSettingsOverridePackages = with pkgs; [
+            #   gnome.mutter
+            #   gpaste
+            #   pkgs.custom.usbguard-gnome
+            #   # gnome-menus
+            # ];
             # , 'variable-refresh-rate','xwayland-native-scaling'
             # 'xwayland-native-scaling',
-            extraGSettingsOverrides = ''
-              [org.gnome.mutter]
-              experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland', 'variable-refresh-rate', 'xwayland-native-scaling']
-              edge-tiling=true
-            '';
+            # extraGSettingsOverrides = ''
+            #   [org.gnome.mutter]
+            #   experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland', 'variable-refresh-rate', 'xwayland-native-scaling']
+            #   edge-tiling=true
+            # '';
 
             sessionPath = with pkgs; [
               mutter

@@ -59,7 +59,7 @@ in {
     home = {
       file = {"itermCatppuccin".source = itermCatppuccin;} // osConfig.home.homeFiles;
 
-      stateVersion = "24.11";
+      stateVersion = "25.05";
 
       # (import ./packages/common.nix {inherit pkgs inputs lib;})
       # ++
@@ -135,7 +135,7 @@ in {
       # termite.enable = osConfig.gui.enable;
       # terminator.enable = lib.mkIf pkgs.stdenv.isLinux osConfig.gui.enable;
 
-      yt-dlp.enable = true;
+      # yt-dlp.enable = true;
 
       direnv = {
         enable = true;

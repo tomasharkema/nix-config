@@ -54,7 +54,7 @@
       };
     };
 
-    # system.stateVersion = "24.11";
+    # system.stateVersion = "25.05";
 
     # fileSystems."/".fsType = lib.mkForce "tmpfs";
     # fileSystems."/".device = lib.mkForce "none";

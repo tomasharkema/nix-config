@@ -167,7 +167,7 @@ in {
         libGLU
         meteo
         mission-center
-        nix-software-center
+        # nix-software-center
         partition-manager
         pavucontrol
         powertop
@@ -194,7 +194,7 @@ in {
         yelp
         f1viewer
         zed-editor
-        ytdlp-gui
+        # ytdlp-gui
       ]
       ++ lib.optionals pkgs.stdenv.isx86_64 [
         custom.tabby

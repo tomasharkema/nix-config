@@ -34,7 +34,7 @@ in {
     '';
 
     system = {
-      stateVersion = "24.11";
+      stateVersion = "25.05";
       nixos.tags = [
         "snowfall"
         (self.shortRev or "dirty")

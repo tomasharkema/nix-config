@@ -39,7 +39,7 @@ in {
     #   }: {
     #     environment.systemPackages = with pkgs; [freeipa];
 
-    #     system.stateVersion = "24.11";
+    #     system.stateVersion = "25.05";
 
     #     networking = {
     #       hostName = "${hostHostName}-replica";

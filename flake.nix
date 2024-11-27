@@ -66,7 +66,7 @@
         # nix-snapshotter.overlays.default
         # otel.overlays.default
         nvidia-patch.overlays.default
-        ytdlp-gui.overlay
+        # ytdlp-gui.overlay
         nixos-recovery.overlays.recovery
         # peerix.overlay
         snowfall-flake.overlays."package/flake"
@@ -855,10 +855,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ytdlp-gui = {
-      url = "https://flakehub.com/f/BKSalman/ytdlp-gui/*.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # ytdlp-gui = {
+    #   url = "https://flakehub.com/f/BKSalman/ytdlp-gui/*.tar.gz";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     piratebay = {
       url = "https://flakehub.com/f/tsirysndr/piratebay/*.tar.gz";
