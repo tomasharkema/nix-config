@@ -7,9 +7,8 @@
 }: {
   imports = with inputs; [
     ./hardware-configuration.nix
-    nixos-hardware.nixosModules.common-gpu-intel
-    nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
-    nixos-nvidia-vgpu-550.nixosModules.nvidia-vgpu
+
+    nvidia-vgpu-nixos.nixosModules.host
   ];
 
   config = {
@@ -119,6 +118,7 @@
       enable = true;
       bridgeInterfaces = ["enp2s0"];
     };
+    programs.mdevctl.enable = true;
 
     # console.earlySetup = true;
 
@@ -145,13 +145,16 @@
         # forceFullCompositionPipeline = true;
         open = true;
 
-        vgpu = {
+        package = config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
+
+        vgpu.patcher = {
           enable = true;
-          # pinKernel = true;
+          options.doNotForceGPLLicense = false;
           copyVGPUProfiles = {
             # RTX2080     Quadro RTX 4000
             "1E87:0000" = "1E30:12BA";
           };
+          enablePatcherCmd = true;
         };
       };
     };
