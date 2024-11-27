@@ -800,10 +800,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nvidia-vgpu-nixos = {
-    #   url = "github:mrzenc/nvidia-vgpu-nixos";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    nvidia-vgpu-nixos = {
+      url = "github:mrzenc/nvidia-vgpu-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # nix-htop = {
     #   url = "https://flakehub.com/f/tomasharkema/nix-htop/0.0.*.tar.gz";

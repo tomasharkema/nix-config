@@ -15,8 +15,7 @@ in {
 
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
-    # nixos-hardware.nixosModules.supermicro-x10sll-f
-    nixos-nvidia-vgpu.nixosModules.nvidia-vgpu
+    nvidia-vgpu-nixos.nixosModules.host
   ];
 
   config = {
@@ -283,29 +282,39 @@ in {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
 
-        vgpu = {
+        package = config.boot.kernelPackages.nvidiaPackages.vgpu_16_5;
+
+        vgpu.patcher = {
           enable = true;
-          # pinKernel = true;
-
-          # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
-
+          options.doNotForceGPLLicense = false;
           copyVGPUProfiles = {
             "1380:0000" = "13BD:1160";
           };
-
-          fastapi-dls = {
-            enable = true;
-            docker-directory = "/var/lib/fastapi";
-            local_ipv4 = "192.168.0.101";
-            timezone = "Europe/Amsterdam";
-          };
+          enablePatcherCmd = true;
         };
+        # vgpu = {
+        #   enable = true;
+        #   pinKernel = true;
+
+        #   # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
+
+        #   copyVGPUProfiles = {
+        #     "1380:0000" = "13BD:1160";
+        #   };
+
+        #   fastapi-dls = {
+        #     enable = true;
+        #     docker-directory = "/var/lib/fastapi";
+        #     local_ipv4 = "192.168.0.101";
+        #     timezone = "Europe/Amsterdam";
+        #   };
+        # };
       };
     };
 
-    virtualisation.oci-containers.containers.fastapi-dls = {
-      ports = lib.mkForce ["7070:443"];
-    };
+    # virtualisation.oci-containers.containers.fastapi-dls = {
+    #   ports = lib.mkForce ["7070:443"];
+    # };
 
     # services.udev.extraRules = ''
     #   SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"

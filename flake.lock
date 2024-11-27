@@ -1895,6 +1895,26 @@
         "type": "github"
       }
     },
+    "nvidia-vgpu-nixos": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1732214034,
+        "narHash": "sha256-jRAUq82X5zL33QQk493o5NqbtfT2WpZfYi9ZWvdBBeA=",
+        "owner": "mrzenc",
+        "repo": "nvidia-vgpu-nixos",
+        "rev": "7d393ee60cad594d70786968a55212c6c31d03c2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mrzenc",
+        "repo": "nvidia-vgpu-nixos",
+        "type": "github"
+      }
+    },
     "piratebay": {
       "inputs": {
         "advisory-db": "advisory-db",
@@ -2074,6 +2094,7 @@
         "nixvim": "nixvim",
         "nur-xddxdd": "nur-xddxdd",
         "nvidia-patch": "nvidia-patch",
+        "nvidia-vgpu-nixos": "nvidia-vgpu-nixos",
         "piratebay": "piratebay",
         "poetry2nix": "poetry2nix",
         "pre-commit-hooks-nix": "pre-commit-hooks-nix_3",
