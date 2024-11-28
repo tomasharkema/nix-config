@@ -114,9 +114,25 @@
       flatpak.enable = true;
     };
 
-    services.hypervisor = {
+    virtualisation.kvmgt = {
       enable = true;
-      bridgeInterfaces = ["enp2s0"];
+      device = "0000:01:00.0";
+      vgpus = {
+        "nvidia-257" = {
+          uuid = [
+            "c7f90d47-b9b5-497c-b775-d64787e730fb"
+            "48644214-af2f-47fb-a924-e51cc8bc1761"
+            "e76bb97c-f6d0-424f-8d62-81ae70528f76"
+          ];
+        };
+      };
+    };
+
+    services = {
+      hypervisor = {
+        enable = true;
+        bridgeInterfaces = ["enp2s0"];
+      };
     };
     programs.mdevctl.enable = true;
 
@@ -143,7 +159,7 @@
       nvidia = {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
-        open = true;
+        open = false; #true;
 
         package = config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
 

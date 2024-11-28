@@ -61,8 +61,6 @@ in {
       virt-top
       _86Box-with-roms
       # remotebox
-      virtio-win
-
       qemu-utils
       virtiofsd
     ];
@@ -84,6 +82,7 @@ in {
     systemd.packages = [pkgs.custom.libvirt-dbus];
 
     environment.etc = {
+      "libvirt/virtio-win".source = pkgs.virtio-win;
       # "sasl2/libvirt.conf" = {
       #   text = ''
       #     mech_list: gssapi
