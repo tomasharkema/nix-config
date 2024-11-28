@@ -83,6 +83,7 @@ in {
 
     environment.etc = {
       "libvirt/virtio-win".source = pkgs.virtio-win;
+      "libvirt/virtio-win.iso".source = pkgs.virtio-win.src;
       # "sasl2/libvirt.conf" = {
       #   text = ''
       #     mech_list: gssapi

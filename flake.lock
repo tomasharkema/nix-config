@@ -328,11 +328,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1732645828,
-        "narHash": "sha256-+4U2I2653JvPFxcux837ulwYS864QvEueIljUkwytsk=",
+        "lastModified": 1732742778,
+        "narHash": "sha256-i+Uw8VOHzQe9YdNwKRbzvaPWLE07tYVqUDzSFTXhRgk=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "869ba3a87486289a4197b52a6c9e7222edf00b3e",
+        "rev": "341482e2f4d888e3f60cae1c12c3df896e7230d8",
         "type": "github"
       },
       "original": {
@@ -1237,11 +1237,11 @@
         "umu": "umu"
       },
       "locked": {
-        "lastModified": 1732543374,
-        "narHash": "sha256-suhk41NhdsnN3aa7gpsr8KnYJtbaLeZBJMB2vqWbkzA=",
+        "lastModified": 1732758553,
+        "narHash": "sha256-divlhUduT0/t8D9k11Yd3Ah3xpr302vV1KXxIMb8I3M=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "18b8f0796f3e9dd8b9d9f262a56f2914a0586a22",
+        "rev": "effe1d54e23f430d3e803f63e9e47aba33acfb63",
         "type": "github"
       },
       "original": {
@@ -1524,48 +1524,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "nixos-images",
-        "type": "github"
-      }
-    },
-    "nixos-nvidia-vgpu": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1732451226,
-        "narHash": "sha256-32SFylJXS4MEdzHcdzBhG+0cZMe7PPw3SU4ef6ZdqEc=",
-        "owner": "Yeshey",
-        "repo": "nixos-nvidia-vgpu",
-        "rev": "7be4cec976b6bb03c9369f4ee3fb5e271e2eb37d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Yeshey",
-        "ref": "535.129",
-        "repo": "nixos-nvidia-vgpu",
-        "type": "github"
-      }
-    },
-    "nixos-nvidia-vgpu-550": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1732451291,
-        "narHash": "sha256-1h+gGIjcC7TW63qdFyAz5fTEKhTjstPIj818wFDXIfs=",
-        "owner": "Yeshey",
-        "repo": "nixos-nvidia-vgpu",
-        "rev": "7b716766d5b375519873708b51ab932da88de057",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Yeshey",
-        "ref": "550.90",
-        "repo": "nixos-nvidia-vgpu",
         "type": "github"
       }
     },
@@ -2087,8 +2045,6 @@
         "nixos-anywhere": "nixos-anywhere",
         "nixos-facter-modules": "nixos-facter-modules",
         "nixos-hardware": "nixos-hardware",
-        "nixos-nvidia-vgpu": "nixos-nvidia-vgpu",
-        "nixos-nvidia-vgpu-550": "nixos-nvidia-vgpu-550",
         "nixos-recovery": "nixos-recovery",
         "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",

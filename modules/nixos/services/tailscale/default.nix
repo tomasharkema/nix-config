@@ -44,7 +44,7 @@ in {
       tailscale = {
         enable = true;
         package = pkgs.tailscale;
-        authKeyFile = config.age.secrets.tailscale.path;
+        # authKeyFile = config.age.secrets.tailscale.path;
         useRoutingFeatures = "both";
         extraUpFlags = [
           "--advertise-tags=tag:nixos"

@@ -28,10 +28,10 @@
           path = "/home/tomas/.config/attic/netrc";
         };
 
-        tailscale = {
-          rekeyFile = ./tailscale.age;
-          mode = "644";
-        };
+        # tailscale = {
+        #   rekeyFile = ./tailscale.age;
+        #   mode = "644";
+        # };
         gh = {
           rekeyFile = ./gh.age;
           mode = "644";
