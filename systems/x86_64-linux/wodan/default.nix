@@ -161,7 +161,7 @@
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
         # open = true;
-
+        nvidiaSettings = lib.mkForce false;
         package = config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
 
         vgpu.patcher = {
