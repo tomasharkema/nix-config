@@ -106,7 +106,7 @@
     };
 
     boot = {
-      kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
+      kernelPackages = pkgs.linuxPackages_stable;
     };
 
     proxy-services = {enable = false;};

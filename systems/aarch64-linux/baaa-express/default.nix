@@ -132,7 +132,7 @@
       #   "hid_corsair"
       # ];
 
-      # kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
+      kernelPackages = pkgs.linuxPackages_stable;
 
       kernelParams = lib.mkForce [
         # "console=ttyS0,115200n8"
