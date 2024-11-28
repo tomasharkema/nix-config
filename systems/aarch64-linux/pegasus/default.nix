@@ -106,7 +106,7 @@
     };
 
     boot = {
-      kernelPackages = pkgs.linuxPackages_stable;
+      kernelPackages = pkgs.linuxPackages;
     };
 
     proxy-services = {enable = false;};
