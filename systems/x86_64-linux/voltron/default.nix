@@ -200,6 +200,7 @@
     };
 
     programs = {
+      adb.enable = true;
       captive-browser = {
         enable = true;
         interface = "wlp4s0";

@@ -140,6 +140,8 @@ in {
     environment.systemPackages = with pkgs;
       [
         ptyxis
+        wl-clipboard-rs
+        python312Packages.pyclip
         onioncircuits
         onionshare-gui
         pods
