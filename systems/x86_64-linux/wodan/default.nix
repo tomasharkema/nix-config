@@ -133,6 +133,7 @@
         enable = true;
         bridgeInterfaces = ["enp2s0"];
       };
+      xserver.videoDrivers = ["nvidia"];
     };
     programs.mdevctl.enable = true;
 
@@ -159,7 +160,7 @@
       nvidia = {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
-        open = false; #true;
+        # open = true;
 
         package = config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
 
