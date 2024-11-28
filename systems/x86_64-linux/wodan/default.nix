@@ -122,7 +122,6 @@
           uuid = [
             "c7f90d47-b9b5-497c-b775-d64787e730fb"
             "48644214-af2f-47fb-a924-e51cc8bc1761"
-            "e76bb97c-f6d0-424f-8d62-81ae70528f76"
           ];
         };
       };
@@ -233,7 +232,6 @@
 
       kernelModules = [
         "i2c-dev"
-        "ixgbe"
         "btusb"
         "apfs"
         "vfio_pci"
@@ -244,8 +242,8 @@
 
       initrd = {
         kernelModules = [
-          "ixgbe"
-          "btusb"
+          # "ixgbe"
+          # "btusb"
           "vfio_pci"
           "vfio"
           "vfio_iommu_type1"
