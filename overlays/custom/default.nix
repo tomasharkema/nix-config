@@ -10,7 +10,7 @@
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
   # _389-ds-base = self.packages."${prev.system}"._389-ds-base;
-  freeipa = self.packages."${prev.system}".freeipa;
+  freeipa = builtins.trace "${prev.freeipa.version} ${final.freeipa.version}" self.packages."${prev.system}".freeipa;
   sssd = self.packages."${prev.system}".sssd.override {withSudo = true;};
 
   docset = inputs.nixos-dash-docset.packages."${prev.system}".docset;
@@ -23,7 +23,7 @@
 
   nixd = inputs.nixd.packages."${prev.system}".default;
 
-  utillinux = prev.util-linux;
+  # utillinux = prev.util-linux;
 
   # dosbox-x = prev.dosbox-x.overrideAttrs ({postInstall ? "", ...}: {
   #   postInstall =

@@ -18,9 +18,10 @@ in {
       # config.nur.repos.mloeper.usbguard-applet-qt
       custom.usbguard-gnome
       usbguard-generate-rules
+      usbguard
     ];
 
-    systemd.packages = [pkgs.usbguard-notifier];
+    systemd.packages = [pkgs.usbguard pkgs.usbguard-notifier pkgs.custom.usbguard-gnome];
 
     system.activationScripts.usbguard-rules = ''
       if [ ! -f "${config.services.usbguard.ruleFile}" ]; then
