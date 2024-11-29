@@ -244,6 +244,7 @@
       ];
 
       kernelModules = [
+        "binder_linux"
         "pstore"
         "i915"
         "spi"
