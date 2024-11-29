@@ -37,12 +37,12 @@
       };
     };
 
-    system = {
-      switch = {
-        enable = false;
-        enableNg = true;
-      };
-    };
+    # system = {
+    #   switch = {
+    #     enable = false;
+    #     enableNg = true;
+    #   };
+    # };
 
     virtualisation.spiceUSBRedirection.enable = true;
 

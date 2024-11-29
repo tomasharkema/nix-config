@@ -227,17 +227,11 @@
       # modprobeConfig.enable = true;
 
       kernelParams = [
-        "iommu.passthrough=1"
-
-        # "iwlwifi.11n_disable=1"
-        # "iwlwifi.swcrypto=1"
-        # "mem_sleep_default=deep"
-        #   # "nowatchdog"
-        #   # "mitigations=off"
         "i915.enable_gvt=1"
         "i915.enable_guc=0"
-        "intel_iommu=on"
-        "iommu=pt"
+        # "intel_iommu=on"
+        # "iommu=pt"
+        # "iommu.passthrough=1"
       ];
       blacklistedKernelModules = [
         "nouveau"
@@ -250,9 +244,9 @@
         "spi"
         # "sgx"
         # "isgx"
-        "vfio_pci"
-        "vfio"
-        "vfio_iommu_type1"
+        # "vfio_pci"
+        # "vfio"
+        # "vfio_iommu_type1"
         "kvm-intel"
         # "watchdog"
         "usbmon"
