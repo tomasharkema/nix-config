@@ -5,10 +5,11 @@
 
       imports = [inputs.agenix-rekey.flakeModule];
 
-      src = builtins.path {
-        path = ./.;
-        name = "snowfall-flake-source";
-      };
+      src = ./.;
+      #  builtins.path {
+      #   path = ./.;
+      #   name = "snowfall-flake-source";
+      # };
 
       channels-config = {
         allowUnfreePredicate = _: true;
