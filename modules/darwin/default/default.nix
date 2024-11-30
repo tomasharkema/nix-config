@@ -96,7 +96,9 @@
         noto-fonts-extra
         noto-fonts-emoji
         noto-fonts-cjk-sans
-        nerdfonts
+
+        nerd-fonts.jetbrains-mono
+
         terminus-nerdfont
         ubuntu_font_family
         pkgs.custom.neue-haas-grotesk

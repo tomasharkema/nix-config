@@ -87,7 +87,7 @@
         liberation_ttf
         lmmath
         mplus-outline-fonts.githubRelease
-        nerdfonts
+        nerd-fonts.jetbrains-mono
         custom.neue-haas-grotesk
         noto-fonts
         noto-fonts-cjk-sans

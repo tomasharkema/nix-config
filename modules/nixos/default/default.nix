@@ -100,7 +100,7 @@
             else lib.mkDefault pkgs.linuxPackages_cachyos
           ); # (pkgs.linuxPackagesFor pkgs.linux_cachyos);
 
-      kernelModules = ["wireguard"];
+      kernelModules = ["wireguard" "apfs"];
 
       supportedFilesystems = [
         "ntfs"
@@ -152,6 +152,8 @@
       enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          apfs-fuse
+          apfsprogs
           jupyter
           caffeine-ng
           pkgs.custom.nix-helpers
@@ -334,7 +336,7 @@
         fonts = [
           {
             name = "JetBrainsMono Nerd Font Mono";
-            package = pkgs.nerdfonts;
+            package = pkgs.nerd-fonts.jetbrains-mono;
           }
         ];
       };
