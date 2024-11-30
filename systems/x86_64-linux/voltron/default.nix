@@ -145,10 +145,10 @@
       usbmuxd.enable = true;
       # power-profiles-daemon.enable = lib.mkForce true;
 
-      ollama = {
-        enable = true;
-        acceleration = "cuda";
-      };
+      # ollama = {
+      #   enable = true;
+      #   acceleration = "cuda";
+      # };
 
       udev = {
         enable = true;
