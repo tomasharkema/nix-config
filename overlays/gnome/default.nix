@@ -4,6 +4,7 @@
   ...
 }: final: prev: {
   # gnome = prev.gnome.overrideScope' (gnomeFinal: gnomePrev: {
+  # mutter = prev.mutter;
   #   mutter = gnomePrev.mutter.overrideAttrs (old: {
   #     src = fetchTarball {
   #       url =

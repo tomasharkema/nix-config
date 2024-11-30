@@ -149,13 +149,13 @@ in
           desktopManager.gnome = {
             enable = true;
 
-            # extraGSettingsOverridePackages = with pkgs; [
-            #   gnome.mutter
-            #   gpaste
-            #   pkgs.custom.usbguard-gnome
-            #   # gnome-menus
-            #   libusb1
-            # ];
+            extraGSettingsOverridePackages = with pkgs; [
+              #   mutter
+              #   gpaste
+              custom.usbguard-gnome
+              #   gnome-menus
+              #   libusb1
+            ];
 
             # extraGSettingsOverrides = ''
             #   [org.gnome.mutter]

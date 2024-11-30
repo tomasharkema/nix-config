@@ -39,8 +39,8 @@
 
     # system = {
     #   switch = {
-    #     enable = false;
-    #     enableNg = true;
+    #     enable = true; #false;
+    #     enableNg = false; #true;
     #   };
     # };
 
@@ -339,7 +339,7 @@
         ];
       };
 
-      preload.enable = true;
+      # preload.enable = true;
 
       actkbd.enable = lib.mkForce false;
 

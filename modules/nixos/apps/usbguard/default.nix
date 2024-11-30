@@ -46,6 +46,14 @@ in {
     };
 
     services = {
+      dbus = {
+        enable = true;
+        packages = with pkgs; [
+          custom.usbguard-gnome
+          usbguard-notifier
+          usbguard
+        ];
+      };
       usbguard = {
         enable = lib.mkDefault true;
         dbus.enable = true;
