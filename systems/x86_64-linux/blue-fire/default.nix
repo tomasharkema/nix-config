@@ -80,6 +80,42 @@ in {
     };
 
     services = {
+      samba = {
+        enable = true;
+        securityType = "user";
+        openFirewall = true;
+
+        winbindd.enable = true;
+        smbd.enable = true;
+        nmbd.enable = true;
+
+        settings = {
+          global = {
+            "workgroup" = "WORKGROUP";
+            "server string" = "blue-fire";
+            "netbios name" = "blue-fire";
+            "security" = "user";
+            #"use sendfile" = "yes";
+            #"max protocol" = "smb2";
+            # note: localhost is the ipv6 localhost ::1
+            "hosts allow" = "192.168., 100.";
+            # "hosts deny" = "0.0.0.0/0";
+            "guest account" = "nobody";
+            # "map to guest" = "tomas";
+          };
+          "public" = {
+            "path" = "/mnt/smb";
+            "browseable" = "yes";
+            "read only" = "no";
+            "guest ok" = "yes";
+            "create mask" = "0644";
+            "directory mask" = "0755";
+            "force user" = "tomas";
+            "force group" = "tomas";
+          };
+        };
+      };
+
       watchdogd = {
         enable = true;
       };

@@ -85,7 +85,7 @@
           # silver-star-ipmi raw 0x30 0x30 0x01 0x00
           # silver-star-ipmi raw 0x30 0x30 0x02 0xff 0x10
           silver-star-ipmi = ''
-            ipmitool -I lanplus -H 192.168.0.45 -U root -P "$(op item get abrgfwmlbnc2zghpugawqoagjq --field password)"'';
+            ipmitool -I lanplus -H 192.168.0.45 -U root -P "$(op item get abrgfwmlbnc2zghpugawqoagjq --field password --reveal)"'';
 
           blue-fire-ipmi = ''
             ipmitool -I lanplus -H 192.168.0.46 -U ADMIN -P "$(op item get ydq2vns3nc4hj43n4avtryckpa --field password --reveal )"'';
