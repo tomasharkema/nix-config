@@ -416,7 +416,7 @@
       "https://nyx.chaotic.cx/"
       "https://nix-gaming.cachix.org"
       "https://nix-community.cachix.org"
-      "https://nix-cache.harke.ma/tomas/"
+      # "https://nix-cache.harke.ma/tomas/"
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
     ];
@@ -425,7 +425,7 @@
       "https://nyx.chaotic.cx/"
       "https://nix-gaming.cachix.org"
       "https://nix-community.cachix.org"
-      "https://nix-cache.harke.ma/tomas/"
+      # "https://nix-cache.harke.ma/tomas/"
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
     ];
@@ -435,7 +435,7 @@
       "https://nyx.chaotic.cx/"
       "https://nix-gaming.cachix.org"
       "https://nix-community.cachix.org"
-      "https://nix-cache.harke.ma/tomas/"
+      # "https://nix-cache.harke.ma/tomas/"
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
     ];

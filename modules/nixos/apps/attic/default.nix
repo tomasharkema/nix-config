@@ -27,7 +27,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     age.secrets.attic-key = {
       rekeyFile = ./attic-key.age;
     };
