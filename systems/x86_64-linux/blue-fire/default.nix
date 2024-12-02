@@ -97,12 +97,6 @@ in {
           /export/smb  *(rw,nohide,insecure,no_subtree_check)
         '';
       };
-      networking.firewall = {
-        enable = true;
-        # for NFSv3; view with `rpcinfo -p`
-        allowedTCPPorts = [111 2049 4000 4001 4002 20048];
-        allowedUDPPorts = [111 2049 4000 4001 4002 20048];
-      };
 
       samba = {
         enable = true;
@@ -234,17 +228,26 @@ in {
       hostId = "529fd7aa";
 
       firewall = {
-        enable = true;
         allowPing = true;
       };
 
       # useDHCP = false;
       networkmanager.enable = true;
 
-      firewall.allowedTCPPorts = [
-        2049
-        7070
-      ];
+      firewall = {
+        allowedTCPPorts = [
+          7070
+          111
+          2049
+          4000
+          4001
+          4002
+          20048
+        ];
+        allowedUDPPorts = [111 2049 4000 4001 4002 20048];
+        enable = true;
+      };
+
       bonds.bond0 = {
         interfaces = [
           "enp6s0f0"
