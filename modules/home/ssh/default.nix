@@ -75,15 +75,15 @@
         #       # "IdentityAgent" = mkIf osConfig.gui.enable onePasswordSocket;
         #     };
         # };
-        silver-star = {
-          hostname = "silver-star";
-          user = "root";
-          forwardAgent = true;
-          extraOptions = {
-            # RequestTTY = "yes";
-            # RemoteCommand = "tmux new -A -s \$\{\%n\}";
-          };
-        };
+        # silver-star = {
+        #   hostname = "silver-star";
+        #   user = "root";
+        #   forwardAgent = true;
+        #   extraOptions = {
+        #     # RequestTTY = "yes";
+        #     # RemoteCommand = "tmux new -A -s \$\{\%n\}";
+        #   };
+        # };
       };
     };
   };

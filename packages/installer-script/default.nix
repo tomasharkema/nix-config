@@ -73,6 +73,7 @@
             && ((builtins.hasAttr "_module" value)
               && value._module.specialArgs.system
               == system)
+            && (value.config.disko.devices.disk != {})
             && (builtins.hasAttr "diskoScript" value.config.system.build))
         then {
           "${name}" =
