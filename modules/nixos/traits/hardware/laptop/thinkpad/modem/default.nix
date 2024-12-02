@@ -42,7 +42,6 @@ in {
 
       extraModulePackages = [
         xmm7360
-        config.boot.kernelPackages.acpi_call
       ];
 
       blacklistedKernelModules = [
