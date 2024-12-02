@@ -187,7 +187,7 @@
           # fancy-motd
           # mkchromecast
           # nix-switcher # : needs github auth
-          # ntfy
+          ntfy
           # rtop
           # onionshare
           git
