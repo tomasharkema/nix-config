@@ -438,6 +438,7 @@
       # "https://nix-cache.harke.ma/tomas/"
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
+      "https://tomasharkema.cachix.org"
     ];
     extra-trusted-public-keys = [
       "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
@@ -447,6 +448,7 @@
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
       "tomas:hER/5A08v05jH8GnQUZRrh33+HDNbeiJj8z/8JY6ZvI="
+      "tomasharkema.cachix.org-1:BV3Sv3qGZ0bcybPFeigwKoxnpj/NBAFYHq9FMO1XgH4="
     ];
 
     # allowed-uris = [
