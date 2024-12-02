@@ -341,7 +341,7 @@
         ];
       };
 
-      # preload.enable = true;
+      preload.enable = true;
 
       actkbd.enable = lib.mkForce false;
 
