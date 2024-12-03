@@ -294,10 +294,10 @@ in {
       ];
       # blacklistedKernelModules = ["nouveau"];
 
-      # recovery = {
-      #   sign = true;
-      #   install = true;
-      # };
+      recovery = {
+        #   sign = true;
+        install = true;
+      };
 
       loader = {
         systemd-boot = {
