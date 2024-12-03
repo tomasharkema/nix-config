@@ -80,10 +80,11 @@ in {
         # legacy = true;
       };
     };
-
-    services = {
+    security = {
       audit.enable = false;
       autitd.enable = false;
+    };
+    services = {
       watchdogd = {
         enable = true;
       };
