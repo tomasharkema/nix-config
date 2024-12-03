@@ -88,6 +88,10 @@ in {
       auditd.enable = lib.mkForce false;
     };
 
+    systemd = {
+      enableEmergencyMode = true;
+    };
+
     services = {
       watchdogd = {
         enable = true;

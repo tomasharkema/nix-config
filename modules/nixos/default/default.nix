@@ -17,6 +17,12 @@
       #   (assertPackage pkgs "sssd")
     ];
 
+    age.secrets = {
+      cachix-key = {
+        rekeyFile = ./cachix-key.age;
+      };
+    };
+
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
 
@@ -315,6 +321,7 @@
       cachix-watch-store = {
         enable = true;
         cacheName = "tomasharkema";
+        cachixTokenFile = config.age.secrets.cachix-key.path;
       };
 
       sysstat.enable = lib.mkDefault true;

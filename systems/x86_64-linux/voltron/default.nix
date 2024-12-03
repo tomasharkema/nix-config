@@ -207,6 +207,10 @@
       };
     };
 
+    systemd = {
+      enableEmergencyMode = true;
+    };
+
     boot = {
       kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
       # resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";

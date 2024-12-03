@@ -220,6 +220,10 @@ in {
     #   "github:ryantm/"
     # ];
 
+    systemd = {
+      enableEmergencyMode = true;
+    };
+
     networking = {
       hosts = {
         "192.168.0.100" = ["nix-cache.harke.ma"];
