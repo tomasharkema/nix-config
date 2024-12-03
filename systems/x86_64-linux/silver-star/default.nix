@@ -21,7 +21,7 @@ in {
   config = {
     age = {
       rekey = {
-        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVhJ1k25x/1A/zN96p48MGrPJxVboTe17rO9Mcb61qG root@blue-fire";
+        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGeggnAoRp+d3NnsK1l7UqUS4Ojx8zh0vW3M5wq3Uka9 root@silver-star";
       };
     };
 

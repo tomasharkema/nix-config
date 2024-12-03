@@ -69,10 +69,10 @@
     # '';
 
     services = {
-      # pcscd = {
-      #   enable = true;
-      #   plugins = [pkgs.yubikey-personalization];
-      # };
+      pcscd = {
+        enable = true;
+        #   plugins = [pkgs.yubikey-personalization];
+      };
       # yubikey-agent.enable = config.gui.enable;
 
       udev = {
