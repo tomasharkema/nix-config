@@ -45,7 +45,7 @@ in {
       hardware = {
         tpm.enable = true;
         secure-boot.enable = true;
-        remote-unlock.enable = true;
+        # remote-unlock.enable = true;
         nvidia = {
           # enable = true;
           # beta = false;
@@ -288,7 +288,6 @@ in {
       ];
       blacklistedKernelModules = ["nouveau"];
 
-      binfmt.emulatedSystems = ["aarch64-linux"];
       recovery = {
         sign = true;
         install = true;
