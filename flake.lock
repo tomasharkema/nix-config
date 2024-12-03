@@ -117,16 +117,18 @@
         ]
       },
       "locked": {
-        "lastModified": 1732922729,
-        "narHash": "sha256-vp02vUhYVA2yECXTPXifUgb3YtEPYaerpD6lts99010=",
-        "rev": "e581215cbee1ccf67a08f478d3c49808bc93a523",
-        "revCount": 1531,
-        "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.1531%2Brev-e581215cbee1ccf67a08f478d3c49808bc93a523/01937a42-9657-7647-a534-f2c7fb2bf814/source.tar.gz"
+        "lastModified": 1733158806,
+        "narHash": "sha256-nRFUS2LR0oWxL14kD8wZ7z/ov5Bh0k6sW1+CSW3uLOc=",
+        "owner": "chaotic-cx",
+        "repo": "nyx",
+        "rev": "c60cb1640cf0d1e6d573757f0a45f2de6e8badec",
+        "type": "github"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://flakehub.com/f/chaotic-cx/nyx/%2A.tar.gz"
+        "owner": "chaotic-cx",
+        "ref": "nyxpkgs-unstable",
+        "repo": "nyx",
+        "type": "github"
       }
     },
     "cl-nix-lite": {
@@ -1105,11 +1107,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1733133928,
-        "narHash": "sha256-gU40r9AfpIr4eq+0noM8yH1Hxf+EA3dqfIpFtQl8Y1E=",
+        "lastModified": 1733175814,
+        "narHash": "sha256-zFOtOaqjzZfPMsm1mwu98syv3y+jziAq5DfWygaMtLg=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "873e39d5f4437d2f3ab06881fea8e63e45e1d011",
+        "rev": "bf23fe41082aa0289c209169302afd3397092f22",
         "type": "github"
       },
       "original": {

@@ -813,7 +813,7 @@
     };
 
     chaotic = {
-      url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
