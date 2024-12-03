@@ -274,11 +274,11 @@ in {
       };
       kernelPackages = pkgs.linuxPackages_6_6;
       kernelParams = [
-        "intel_iommu=on"
-        "iommu=pt"
-        "console=tty1"
-        "console=ttyS2,115200n8"
-        "mitigations=off"
+        # "intel_iommu=on"
+        # "iommu=pt"
+        # "console=tty1"
+        # "console=ttyS2,115200n8"
+        # "mitigations=off"
         #"vfio-pci.ids=10de:1380,10de:0fbc"
         # "pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
@@ -286,7 +286,7 @@ in {
         # "iomem=relaxed"
         # "pci=nomsi"
       ];
-      blacklistedKernelModules = ["nouveau"];
+      # blacklistedKernelModules = ["nouveau"];
 
       recovery = {
         sign = true;
