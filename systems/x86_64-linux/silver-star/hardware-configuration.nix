@@ -14,16 +14,16 @@
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/db2f1601-20e7-4763-abf4-a3dc0e829eaf";
-    fsType = "btrfs";
-  };
+  # fileSystems."/" = {
+  #   device = "/dev/disk/by-uuid/db2f1601-20e7-4763-abf4-a3dc0e829eaf";
+  #   fsType = "btrfs";
+  # };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/C310-6D54";
-    fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
-  };
+  # fileSystems."/boot" = {
+  #   device = "/dev/disk/by-uuid/C310-6D54";
+  #   fsType = "vfat";
+  #   options = ["fmask=0022" "dmask=0022"];
+  # };
 
   swapDevices = [];
 

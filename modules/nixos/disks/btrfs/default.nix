@@ -125,6 +125,11 @@ in {
         default = "main";
         description = "Dev for main partion.";
       };
+      boot = lib.mkOption {
+        type = lib.types.nullOr lib.types.str;
+        default = null;
+        description = "override boot device";
+      };
       media = lib.mkOption {
         type = lib.types.nullOr lib.types.str;
         default = null;
@@ -212,9 +217,9 @@ in {
 
     disko.devices = {
       disk = {
-        "${cfg.mainOverride}" = {
+        boot = lib.mkIf (cfg.boot != null) {
           type = "disk";
-          device = cfg.main;
+          device = cfg.boot;
           content = {
             type = "gpt";
             partitions = {
@@ -223,6 +228,29 @@ in {
                 type = "EF02"; # for grub MBR
               };
               ESP = {
+                size = "100%";
+                type = "EF00";
+                content = {
+                  type = "filesystem";
+                  format = "vfat";
+                  mountpoint = "/boot";
+                };
+              };
+            };
+          };
+        };
+
+        "${cfg.mainOverride}" = {
+          type = "disk";
+          device = cfg.main;
+          content = {
+            type = "gpt";
+            partitions = {
+              boot = lib.mkIf (cfg.boot == null) {
+                size = "1M";
+                type = "EF02"; # for grub MBR
+              };
+              ESP = lib.mkIf (cfg.boot == null) {
                 size = "1G";
                 type = "EF00";
                 content = {
