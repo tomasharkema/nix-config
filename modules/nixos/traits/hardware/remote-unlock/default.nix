@@ -56,9 +56,9 @@ in {
 
         secrets = {
           # "/etc/tor/onion/bootup" = "/etc/tor/onion/bootup";
-          "/etc/ssh/boot/ssh_host_ecdsa_key" = "/etc/ssh/boot/ssh_host_ecdsa_key";
-          "/etc/ssh/boot/ssh_host_ed25519_key" = "/etc/ssh/boot/ssh_host_ed25519_key";
-          "/etc/ssh/boot/ssh_host_rsa_key" = "/etc/ssh/boot/ssh_host_rsa_key";
+          # "/etc/ssh/boot/ssh_host_ecdsa_key" = "/etc/ssh/boot/ssh_host_ecdsa_key";
+          # "/etc/ssh/boot/ssh_host_ed25519_key" = "/etc/ssh/boot/ssh_host_ed25519_key";
+          # "/etc/ssh/boot/ssh_host_rsa_key" = "/etc/ssh/boot/ssh_host_rsa_key";
           # "/etc/notify.key" = "${config.age.secrets.notify.path}";
         };
 
