@@ -81,10 +81,12 @@ in {
         # legacy = true;
       };
     };
+
     security = {
       audit.enable = lib.mkForce false;
       auditd.enable = lib.mkForce false;
     };
+
     services = {
       watchdogd = {
         enable = true;
@@ -292,10 +294,11 @@ in {
       ];
       # blacklistedKernelModules = ["nouveau"];
 
-      recovery = {
-        sign = true;
-        install = true;
-      };
+      # recovery = {
+      #   sign = true;
+      #   install = true;
+      # };
+
       loader = {
         systemd-boot = {
           # enable = true;
