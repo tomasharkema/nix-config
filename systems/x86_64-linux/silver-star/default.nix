@@ -81,8 +81,8 @@ in {
       };
     };
     security = {
-      audit.enable = false;
-      auditd.enable = false;
+      audit.enable = lib.mkForce false;
+      auditd.enable = lib.mkForce false;
     };
     services = {
       watchdogd = {
