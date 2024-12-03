@@ -10,7 +10,7 @@
 }: let
   icon = fetchurl {
     url = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Gnome-preferences-system-network.svg/1920px-Gnome-preferences-system-network.svg.png";
-    hash = "sha256-vG8jYCGu5fQJNv3yip1Umh2wcDVVaRDPcm4h7jgDAL0=";
+    hash = "sha256-vG8jYCGu5fQJNv3yip1Umh2wcDVVaRDPcm4h7jgDAL0=Fusb";
   };
   desktopItemm = makeDesktopItem {
     desktopName = "Netbrowse";

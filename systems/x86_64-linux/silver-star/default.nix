@@ -93,6 +93,7 @@ in {
     };
 
     services = {
+      usbguard.enable = false;
       watchdogd = {
         enable = true;
       };
