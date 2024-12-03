@@ -82,7 +82,7 @@ in {
     };
     security = {
       audit.enable = false;
-      autitd.enable = false;
+      auditd.enable = false;
     };
     services = {
       watchdogd = {
