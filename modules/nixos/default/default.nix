@@ -111,7 +111,7 @@
       loader = {
         systemd-boot = {
           netbootxyz.enable = true;
-          configurationLimit = 20;
+          configurationLimit = 10;
         };
       };
     };
