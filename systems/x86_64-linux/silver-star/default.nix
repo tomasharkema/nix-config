@@ -284,8 +284,10 @@ in {
       blacklistedKernelModules = ["nouveau"];
 
       recovery = {
-        #   sign = true;
+        enable = true;
         install = true;
+        sign = true;
+        netboot.enable = true;
       };
 
       loader = {
