@@ -116,12 +116,6 @@
       };
     };
 
-    services.scx = {
-      enable = !(config.traits.server.enable) && pkgs.stdenvNoCC.isx86_64;
-      package = pkgs.scx_git.full;
-      scheduler = "scx_lavd";
-    };
-
     # environment.etc = {
     #   "current-system-packages".source = pkgs.custom.pkgs-index.override {
     #     packages = config.environment.systemPackages;
@@ -312,6 +306,17 @@
     };
 
     services = {
+      scx = {
+        enable = !(config.traits.server.enable) && pkgs.stdenvNoCC.isx86_64;
+        package = pkgs.scx_git.full;
+        scheduler = "scx_lavd";
+      };
+
+      cachix-watch-store = {
+        enable = true;
+        cacheName = "tomasharkema";
+      };
+
       sysstat.enable = lib.mkDefault true;
       irqbalance.enable = true;
       # aria2.enable = true;
