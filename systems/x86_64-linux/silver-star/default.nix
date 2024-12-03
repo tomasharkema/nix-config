@@ -15,7 +15,7 @@ in {
 
     nixos-hardware.nixosModules.common-cpu-intel
     nixos-hardware.nixosModules.common-pc-ssd
-    # nvidia-vgpu-nixos.nixosModules.host
+    nvidia-vgpu-nixos.nixosModules.host
   ];
 
   config = {
@@ -64,6 +64,7 @@ in {
     apps = {
       # attic-server.enable = true;
       ntopng.enable = true;
+      mailrise.enable = true;
       atop = {
         enable = true;
         httpd = true;
@@ -210,18 +211,18 @@ in {
       # icingaweb2
     ];
 
-    # virtualisation.kvmgt = {
-    #   enable = true;
-    #   device = "0000:01:00.0";
-    #   vgpus = {
-    #     "nvidia-36" = {
-    #       uuid = [
-    #         "e1ab260f-44a2-4e07-9889-68a1caafb399"
-    #         "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
-    #       ];
-    #     };
-    #   };
-    # };
+    virtualisation.kvmgt = {
+      enable = true;
+      device = "0000:42:00.0";
+      vgpus = {
+        "nvidia-36" = {
+          uuid = [
+            "e1ab260f-44a2-4e07-9889-68a1caafb399"
+            "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
+          ];
+        };
+      };
+    };
 
     hardware = {
       cpu.intel.updateMicrocode = true;
@@ -231,39 +232,22 @@ in {
 
       # nvidia-container-toolkit.enable = true;
 
-      #   nvidia = {
-      #     modesetting.enable = true;
-      #     # forceFullCompositionPipeline = true;
-      #     nvidiaSettings = lib.mkForce false;
+      nvidia = {
+        modesetting.enable = true;
+        #     # forceFullCompositionPipeline = true;
+        nvidiaSettings = lib.mkForce false;
 
-      #     package = config.boot.kernelPackages.nvidiaPackages.vgpu_16_5;
+        package = config.boot.kernelPackages.nvidiaPackages.vgpu_16_5;
 
-      #     vgpu.patcher = {
-      #       enable = true;
-      #       options.doNotForceGPLLicense = false;
-      #       copyVGPUProfiles = {
-      #         "1380:0000" = "13BD:1160";
-      #       };
-      #       enablePatcherCmd = true;
-      #     };
-      #     # vgpu = {
-      #     #   enable = true;
-      #     #   pinKernel = true;
-
-      #     #   # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
-
-      #     #   copyVGPUProfiles = {
-      #     #     "1380:0000" = "13BD:1160";
-      #     #   };
-
-      #     #   fastapi-dls = {
-      #     #     enable = true;
-      #     #     docker-directory = "/var/lib/fastapi";
-      #     #     local_ipv4 = "192.168.0.101";
-      #     #     timezone = "Europe/Amsterdam";
-      #     #   };
-      #     # };
-      #   };
+        vgpu.patcher = {
+          enable = true;
+          options.doNotForceGPLLicense = false;
+          copyVGPUProfiles = {
+            "1c82:0000" = "13BD:1160";
+          };
+          enablePatcherCmd = true;
+        };
+      };
     };
 
     # virtualisation.oci-containers.containers.fastapi-dls = {
