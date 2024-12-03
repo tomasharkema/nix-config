@@ -199,7 +199,7 @@ in {
         # ytdlp-gui
       ]
       ++ lib.optionals pkgs.stdenv.isx86_64 [
-        custom.tabby
+        # custom.tabby
         jetbrains-toolbox
         synology-drive-client
         # gpt4all-cuda
