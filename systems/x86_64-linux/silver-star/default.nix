@@ -255,10 +255,56 @@ in {
       };
     };
 
-    # virtualisation.oci-containers.containers.fastapi-dls = {
-    #   ports = lib.mkForce ["7070:443"];
-    # };
+    virtualisation.oci-containers.containers = {
+      openmanage = {
+        image = "docker.io/teumaauss/srvadminfed";
+        imageFile = pkgs.dockerTools.pullImage {
+          imageName = "docker.io/teumaauss/srvadminfed";
+          imageDigest = "sha256:c890f84fa75826e251dfb064f7390b995bef658f1f93483bcdf945a5135f9c11";
+          sha256 = "02dppwz9v4czik5bp225f6sc6a8vk9wvpsc3yjk4w7xlqk291izb";
+          finalImageName = "docker.io/teumaauss/srvadminfed";
+          finalImageTag = "latest";
+        };
 
+        extraOptions = [
+          "--privileged"
+          "--net=host"
+          "--device=/dev/mem"
+          "--systemd=always"
+        ];
+        autoStart = true;
+      };
+
+      fastapi-dls = {
+        image = "collinwebdesigns/fastapi-dls";
+        imageFile = pkgs.dockerTools.pullImage {
+          imageName = "collinwebdesigns/fastapi-dls";
+          imageDigest = "sha256:0039c37c10144e83588c90980fb0fb6225a9bf5c6301ae6823db6fad79d21acb";
+          sha256 = "0yr2dn0dzslp7dc0i6v6kfqbasdkrg36vywr15kizhy0cfgkfrpr";
+          finalImageName = "collinwebdesigns/fastapi-dls";
+          finalImageTag = "latest";
+        };
+        volumes = [
+          "/var/lib/fastapi-dls/cert:/app/cert:rw"
+          "dls-db:/app/database"
+        ];
+        # Set environment variables
+        environment = {
+          TZ = "Europa/Amsterdam";
+          DLS_URL = config.networking.hostName;
+          DLS_PORT = "443";
+          LEASE_EXPIRE_DAYS = "90";
+          DATABASE = "sqlite:////app/database/db.sqlite";
+          DEBUG = "true";
+        };
+        extraOptions = [
+        ];
+        # Publish the container's port to the host
+        ports = ["7070:443"];
+        # Do not automatically start the container, it will be managed
+        autoStart = true;
+      };
+    };
     # services.udev.extraRules = ''
     #   SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
     # '';
