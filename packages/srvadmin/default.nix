@@ -14,6 +14,7 @@
   libxslt,
   glibc,
   wsmancli,
+  buildFHSEnv,
 }:
 stdenv.mkDerivation {
   pname = "srvadmin";
@@ -59,6 +60,8 @@ stdenv.mkDerivation {
   ];
 
   installPhase = ''
+    runHook preInstall
+
     ls -la .
     ls -la etc
 
@@ -93,5 +96,7 @@ stdenv.mkDerivation {
     #   echo "sub $file"
     #   ln -s "$file" "$out/bin/$(basename $file)"
     # done
+
+    runHook postInstall
   '';
 }
