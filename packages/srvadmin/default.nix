@@ -3,32 +3,74 @@
   lib,
   stdenv,
   fetchurl,
+  autoPatchelfHook,
   tree,
+  libz,
+  libxml2,
+  ncurses,
+  linux-pam,
+  openssl_1_1,
+  openwsman,
+  libxslt,
+  glibc,
+  wsmancli,
 }:
 stdenv.mkDerivation {
   pname = "srvadmin";
-  version = "950";
+  version = "9.5.0";
 
   # Depends: srvadmin-base (>= 9.5.0), srvadmin-storageservices (>= 9.5.0), srvadmin-webserver (>= 9.5.0), srvadmin-standardagent (>= 9.5.0), srvadmin-server-snmp (>= 9.5.0), srvadmin-server-cli (>= 9.5.0), srvadmin-oslog (>= 9.5.0), srvadmin-idracadm8 (>= 9.5.0)
 
-  srcs = [
-    (fetchurl {
-      url = "https://linux.dell.com/repo/community/openmanage/950/focal/pool/main/s/srvadmin-cm/srvadmin-cm_9.5.0-20.09.00_amd64.deb";
-      sha256 = "02nz3skhvfnqbra3i4pnkx967w61pqnxfs19kw5b42071c943s4f";
-    })
+  srcs =
+    (import ./srv.nix {inherit fetchurl;})
+    ++ [
+      # (fetchurl {
+      #   url = "http://http.us.debian.org/debian/pool/main/a/argtable2/libargtable2-dev_13-3_amd64.deb";
+      #   sha256 = "sha256-WE9VHMOueb5DT99q5TtjXXzjf7SnITIrwApptUft6dw=";
+      # })
+      (fetchurl {
+        url = "http://archive.ubuntu.com/ubuntu/pool/universe/s/sblim-cmpi-devel/libcmpicppimpl0_2.0.3-0ubuntu3_amd64.deb";
+        sha256 = "sha256-5ec6i4Gh2KPgQpHg+X9FHieF6IS1dVCThsQuutIAEvg=";
+      })
+      (fetchurl {
+        url = "http://archive.ubuntu.com/ubuntu/pool/universe/o/openwsman/libwsman-client4t64_2.6.5-0ubuntu15_amd64.deb";
+        sha256 = "sha256-FKq7ByAzNqV0Sv58w0WHFZCFiGUs93kyA618Qit2fgQ=";
+      })
+    ];
+
+  nativeBuildInputs = [
+    dpkg
+
+    autoPatchelfHook
   ];
 
-  nativeBuildInputs = [dpkg];
-
-  buildInputs = [tree];
+  buildInputs = [
+    tree
+    libz
+    libxml2
+    ncurses
+    linux-pam
+    openssl_1_1
+    openwsman
+    libxslt
+    # stdenv.cc.cc
+    wsmancli
+    glibc
+  ];
 
   installPhase = ''
-    tree .
+        mkdir -p $out
 
-    mkdir -p $out
+        cp -r opt $out
+        cp -r usr/ $out
+        ls -ls $out/opt/dell $out/opt/dell/srvadmin
 
-    cp -r opt $out
+        mv $out/opt/dell/srvadmin/bin $out
+        mv $out/opt/dell/srvadmin/lib64 $out
 
-    tree $out
+        # cp -vr ./usr/. $out
+    #
+        # sleep 1000
+
   '';
 }
