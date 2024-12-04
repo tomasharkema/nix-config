@@ -59,18 +59,24 @@ stdenv.mkDerivation {
   ];
 
   installPhase = ''
-        mkdir -p $out
+    mkdir -p $out/{bin,lib}
 
-        cp -r opt $out
-        cp -r usr/ $out
-        ls -ls $out/opt/dell $out/opt/dell/srvadmin
+    cp -r opt $out
+    cp -r usr/lib $out
+    ls -la $out/opt/dell $out/opt/dell/srvadmin
 
-        mv $out/opt/dell/srvadmin/bin $out
-        mv $out/opt/dell/srvadmin/lib64 $out
+    # ln -s $out/opt/dell/srvadmin/bin $out/bin
 
-        # cp -vr ./usr/. $out
-    #
-        # sleep 1000
+    # cp -vr ./usr/. $out
 
+    substituteInPlace "$out/opt/dell/srvadmin/bin/omupdate" \
+      --replace-fail "/opt/dell" "$out/opt/dell"
+
+    # sleep 1000
+    for file in $out/opt/dell/srvadmin/bin/*
+    do
+      echo "sub $file"
+      ln -s "$file" "$out/bin/$(basename $file)"
+    done
   '';
 }
