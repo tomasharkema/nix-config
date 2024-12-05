@@ -241,6 +241,7 @@ in {
       # ipmiview
       # ipmiutil
       # vagrant
+      libsmbios
       virt-manager
       ipmitool
       boot-into-bios
@@ -294,17 +295,19 @@ in {
     virtualisation.oci-containers.containers = {
       openmanage = {
         image = "docker.io/teumaauss/srvadmin";
+
         imageFile = pkgs.dockerTools.pullImage {
           imageName = "docker.io/teumaauss/srvadmin";
-          imageDigest = "sha256:4fa4cb4970ae35173bb3b1c779134ffdadb54904ad214419882c36e4a7625983";
-          sha256 = "1hpwda0dgd0i6xkjj3hinfln76fr5z4x1l3yjqklrxlgqrrssalh";
+          imageDigest = "sha256:287ed0729a3250f114b0369b3a462ba50fc59f8531ef56518804ea4c60e91b52";
+          sha256 = "0in9idw5mclh304968j0fsf5qcqsqp60g7x04ga0pn8bcynrjjr7";
           finalImageName = "docker.io/teumaauss/srvadmin";
           finalImageTag = "latest";
         };
+
         volumes = let
-          k = config.boot.kernelPackages.kernel.version;
+          kernelVideo = config.boot.kernelPackages.kernel.version;
         in [
-          "/run/current-system/sw/lib/modules/${k}:/lib/modules/${k}"
+          "/run/current-system/sw/lib/modules/${kernelVideo}:/lib/modules/${kernelVideo}"
           "/usr/libexec/dell_dup:/usr/libexec/dell_dup:Z"
         ];
 
