@@ -302,8 +302,16 @@ with inputs.home-manager.lib.hm.gvariant; {
         # };
 
         "org/virt-manager/virt-manager/connections" = {
-          autoconnect = ["qemu:///system"];
-          uris = ["qemu+ssh://tomas@wodan/system" "qemu+ssh://tomas@blue-fire/system" "qemu+ssh://root@silver-star/system" "qemu:///system"];
+          autoconnect = [
+            "qemu:///system"
+            "qemu+ssh://tomas@silver-star/system"
+          ];
+          uris = [
+            "qemu+ssh://tomas@wodan/system"
+            "qemu+ssh://tomas@blue-fire/system"
+            "qemu+ssh://tomas@silver-star/system"
+            "qemu:///system"
+          ];
         };
 
         "com/gexperts/Tilix" = {

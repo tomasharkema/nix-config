@@ -11,13 +11,17 @@ ENV container podman
 
 RUN yum -y install passwd # gcc wget perl passwd which tar nano dmidecode strace less openssl-devel
 
-RUN curl -O https://linux.dell.com/repo/hardware/dsu/bootstrap.cgi
-RUN bash bootstrap.cgi
-RUN yum update -y
-RUN yum install -y srvadmin-all dell-system-update
+RUN curl -fsSL https://linux.dell.com/repo/hardware/dsu/bootstrap.cgi | bash -x
+RUN curl -O https://linux.dell.com/repo/hardware/ism/bootstrap.sh
+RUN sed -i 's#SERVER=""#SERVER="https://linux.dell.com"#g' bootstrap.sh
+RUN sed -i 's#REPO_URL=""#REPO_URL="/repo/hardware/ism/"#g' bootstrap.sh
+RUN sh bootstrap.sh -x
 
-RUN systemctl enable dsm_om_connsvc.service dsm_sa_snmpd.service dsm_om_shrsvc.service dsm_sa_datamgrd.service dsm_sa_eventmgrd.service    
-RUN systemctl disable instsvcdrv.service          
+RUN yum update -y
+RUN yum install -y srvadmin-all dell-system-update dcism
+
+RUN systemctl enable dcismeng instsvcdrv.service dsm_om_connsvc.service dsm_sa_snmpd.service dsm_om_shrsvc.service dsm_sa_datamgrd.service dsm_sa_eventmgrd.service    
+# RUN systemctl disable instsvcdrv.service          
 
 CMD ["/usr/sbin/init"]
 

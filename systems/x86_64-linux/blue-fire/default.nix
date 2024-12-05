@@ -79,8 +79,8 @@ in {
       };
     };
 
-    fileSystems."/export/smb" = {
-      device = "/mnt/smb";
+    fileSystems."/export/isos" = {
+      device = "/mnt/isos";
       options = ["bind"];
     };
 
@@ -93,8 +93,8 @@ in {
         statdPort = 4000;
         extraNfsdConfig = '''';
         exports = ''
-          /export      *(rw,fsid=0,no_subtree_check)
-          /export/smb  *(rw,nohide,insecure,no_subtree_check)
+          /export       *(rw,fsid=0,no_subtree_check)
+          /export/isos  *(rw,nohide,insecure,no_subtree_check)
         '';
       };
 
@@ -121,8 +121,8 @@ in {
             "guest account" = "nobody";
             "map to guest" = "tomas";
           };
-          "public" = {
-            "path" = "/mnt/smb";
+          "isos" = {
+            "path" = "/export/isos";
             "browseable" = "yes";
             "read only" = "no";
             "guest ok" = "yes";

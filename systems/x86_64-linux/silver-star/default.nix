@@ -93,6 +93,7 @@ in {
     };
 
     services = {
+      throttled.enable = lib.mkForce false;
       usbguard.enable = false;
       watchdogd = {
         enable = true;
@@ -187,6 +188,41 @@ in {
         allowPing = true;
       };
 
+      bridges.br0 = {
+        interfaces = ["enp5s0"];
+      };
+
+      interfaces = {
+        "enp5s0" = {
+          # useDHCP = lib.mkDefault true;
+          wakeOnLan.enable = true;
+          mtu = 9000;
+        };
+        "eno1" = {
+          useDHCP = lib.mkDefault false;
+          wakeOnLan.enable = true;
+          mtu = 9000;
+        };
+        "eno2" = {
+          wakeOnLan.enable = true;
+          mtu = 9000;
+        };
+        "eno3" = {
+          useDHCP = lib.mkDefault false;
+          wakeOnLan.enable = true;
+          mtu = 9000;
+        };
+        "eno4" = {
+          useDHCP = lib.mkDefault false;
+          wakeOnLan.enable = true;
+          mtu = 9000;
+        };
+        "br0" = {
+          useDHCP = lib.mkDefault true;
+          mtu = 9000;
+        };
+      };
+
       # useDHCP = false;
       networkmanager.enable = true;
     };
@@ -257,14 +293,19 @@ in {
 
     virtualisation.oci-containers.containers = {
       openmanage = {
-        image = "docker.io/teumaauss/srvadminfed";
+        image = "docker.io/teumaauss/srvadmin";
         imageFile = pkgs.dockerTools.pullImage {
-          imageName = "docker.io/teumaauss/srvadminfed";
-          imageDigest = "sha256:c890f84fa75826e251dfb064f7390b995bef658f1f93483bcdf945a5135f9c11";
-          sha256 = "02dppwz9v4czik5bp225f6sc6a8vk9wvpsc3yjk4w7xlqk291izb";
-          finalImageName = "docker.io/teumaauss/srvadminfed";
+          imageName = "docker.io/teumaauss/srvadmin";
+          imageDigest = "sha256:4fa4cb4970ae35173bb3b1c779134ffdadb54904ad214419882c36e4a7625983";
+          sha256 = "1hpwda0dgd0i6xkjj3hinfln76fr5z4x1l3yjqklrxlgqrrssalh";
+          finalImageName = "docker.io/teumaauss/srvadmin";
           finalImageTag = "latest";
         };
+        volumes = let
+          k = config.boot.kernelPackages.kernel.version;
+        in [
+          "/run/current-system/sw/lib/modules/${k}:/lib/modules/${k}"
+        ];
 
         extraOptions = [
           "--privileged"
