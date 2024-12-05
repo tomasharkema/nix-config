@@ -76,6 +76,8 @@ stdenv.mkDerivation {
     mkdir opt/dell/srvadmin/lib
     mv opt/dell/srvadmin/lib64/* opt/dell/srvadmin/lib
 
+    cat opt/dell/srvadmin/etc/omreg.d/*.cfg > opt/dell/srvadmin/etc/omreg.cfg
+
     cp -r opt $out
     cp -r ./usr/lib $out
     cp -r opt/dell/srvadmin/* $out
