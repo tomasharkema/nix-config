@@ -305,6 +305,7 @@ in {
           k = config.boot.kernelPackages.kernel.version;
         in [
           "/run/current-system/sw/lib/modules/${k}:/lib/modules/${k}"
+          "/usr/libexec/dell_dup:/usr/libexec/dell_dup:Z"
         ];
 
         extraOptions = [
@@ -391,9 +392,13 @@ in {
           "ahci"
           "usbhid"
           "usb_storage"
+          "dell_rbu"
+          "dcdbas"
           # "sd_mod"
         ];
         kernelModules = [
+          "dcdbas"
+          "dell_rbu"
           # "pci-me"
           "kvm-intel"
 
