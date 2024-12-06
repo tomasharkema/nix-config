@@ -50,8 +50,6 @@
         deploy-rs
 
         devenv
-
-        fh
         flake-checker
         # fup-repl
         manix

@@ -171,7 +171,7 @@
       };
 
       # flake-utils-plus
-      # generateRegistryFromInputs = true;
+      generateRegistryFromInputs = true;
       # generateNixPathFromInputs = true;
       # linkInputs = true;
     };

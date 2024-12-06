@@ -171,7 +171,6 @@ in
       # direnv
       flake-checker
       autoflake
-      fh
       hci
       git
       gnupg
