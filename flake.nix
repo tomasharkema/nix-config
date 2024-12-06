@@ -474,7 +474,7 @@
   };
 
   inputs = {
-    flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/*.tar.gz";
+    flake-schemas.url = "github:DeterminateSystems/flake-schemas";
 
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
@@ -483,7 +483,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    systems.url = "github:nix-systems/default";
+    # systems.url = "github:nix-systems/default";
 
     darwin = {
       url = "github:LnL7/nix-darwin";
@@ -517,18 +517,18 @@
       };
     };
 
-    pre-commit-hooks-nix = {
-      url = "github:cachix/pre-commit-hooks.nix";
+    # pre-commit-hooks-nix = {
+    #   url = "github:cachix/pre-commit-hooks.nix";
 
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
+    # treefmt-nix = {
+    #   url = "github:numtide/treefmt-nix";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #   };
+    # };
 
     # crane = {
     #   url = "github:ipetkov/crane";
@@ -580,7 +580,7 @@
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
         darwin.follows = "darwin";
-        systems.follows = "systems";
+        # systems.follows = "systems";
       };
     };
 
@@ -755,7 +755,7 @@
     nixos-06cb-009a-fingerprint-sensor = {
       url = "github:tomasharkema/nixos-06cb-009a-fingerprint-sensor";
 
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # netkit = {
@@ -850,7 +850,7 @@
     # };
 
     piratebay = {
-      url = "https://flakehub.com/f/tsirysndr/piratebay/*.tar.gz";
+      url = "github:tsirysndr/piratebay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

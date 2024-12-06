@@ -24,7 +24,6 @@ in {
         devenv
         flake-checker
         autoflake
-        # fh
         manix
         nix-search-cli
 

@@ -44,7 +44,7 @@ in {
       builder.enable = true;
 
       hardware = {
-        tpm.enable = true;
+        # tpm.enable = true;
         secure-boot.enable = true;
         # remote-unlock.enable = true;
         nvidia = {
@@ -93,6 +93,7 @@ in {
     };
 
     services = {
+      tcsd.enable = true;
       throttled.enable = lib.mkForce false;
       usbguard.enable = false;
       watchdogd = {
@@ -163,24 +164,6 @@ in {
     # freeipa.replica.enable = true;
     # };
 
-    # nix.settings.allowed-uris = [
-    #   "https://"
-    #   "git+https://"
-    #   "github:"
-    #   "github:NixOS/"
-    #   "github:nixos/"
-    #   "github:hercules-ci/"
-    #   "github:numtide/"
-    #   "github:cachix/"
-    #   "github:nix-community/"
-    #   "github:snowfallorg/"
-    #   "github:edolstra/"
-    #   "github:tomasharkema/"
-    #   "github:snowfallorg/"
-    #   "github:gytis-ivaskevicius/"
-    #   "github:ryantm/"
-    # ];
-
     networking = {
       hostName = "silver-star";
 
@@ -241,6 +224,7 @@ in {
       # ipmiview
       # ipmiutil
       # vagrant
+      simpleTpmPk11
       libsmbios
       virt-manager
       ipmitool
@@ -358,6 +342,7 @@ in {
       tmp = {
         useTmpfs = true;
       };
+      binfmt.emulatedSystems = ["aarch64-linux"];
       kernelPackages = pkgs.linuxPackages_6_6;
       kernelParams = [
         "intel_iommu=on"
