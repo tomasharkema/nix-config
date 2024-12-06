@@ -45,6 +45,8 @@
       colorschemes.catppuccin.enable = true;
 
       plugins = {
+        snacks.enable = true;
+
         lsp-format.enable = true;
         lsp-status.enable = true;
         lsp = {
@@ -58,7 +60,6 @@
             marksman = {enable = true;};
             pyright = {enable = true;};
             gopls = {enable = true;};
-            terraformls = {enable = true;};
             # tsserver = {enable = false;};
             yamlls = {
               enable = true;
@@ -105,10 +106,11 @@
         #   };
         # };
 
-        # treesitter = {
-        #   enable = true;
-        #   package = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
-        # };
+        treesitter = {
+          enable = true;
+          settings.indent.enable = true;
+          grammarPackages = pkgs.vimPlugins.nvim-treesitter.passthru.allGrammars;
+        };
         packer = {
           enable = true;
           plugins = [
@@ -189,7 +191,7 @@
         zig = {
           enable = true;
         };
-        cmp-zsh.enable = true;
+        # cmp-zsh.enable = true;
         conform-nvim = {
           enable = true;
           #   format_on_save = {

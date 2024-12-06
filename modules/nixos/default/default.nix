@@ -508,7 +508,7 @@
         remotes = [
           {
             name = "origin";
-            url = "https://gitlab.com/tomasharkema/nix-config.git";
+            url = "https://github.com/tomasharkema/nix-config";
             branches.main.name = "main";
           }
         ];

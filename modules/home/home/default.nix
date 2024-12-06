@@ -118,7 +118,8 @@ in {
           # SPACESHIP_PROMPT_ADD_NEWLINE = "false";
         }
         else {
-          # EDITOR = "nvim";
+          EDITOR = "nvim";
+          SSH_AUTH_SOCK = lib.mkIf osConfig.programs._1password-gui.enable "/home/${osConfig.user.name}/.1password/agent.sock";
         }
       );
     };
