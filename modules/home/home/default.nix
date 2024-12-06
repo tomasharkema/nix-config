@@ -110,17 +110,19 @@ in {
       '');
 
       sessionVariables = (
-        if pkgs.stdenv.hostPlatform.isDarwin
-        then {
+        lib.mkMerge
+        (lib.optional pkgs.stdenv.hostPlatform.isDarwin {
           EDITOR = "subl";
           # SSH_AUTH_SOCK = "/Users/${osConfig.user.name}/.1password/agent.sock";
           SSH_AUTH_SOCK = "/Users/${osConfig.user.name}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
           # SPACESHIP_PROMPT_ADD_NEWLINE = "false";
-        }
-        else {
+        })
+        ++ (lib.optional (!pkgs.stdenv.hostPlatform.isDarwin) {
           EDITOR = "nvim";
-          SSH_AUTH_SOCK = lib.mkIf osConfig.programs._1password-gui.enable "/home/${osConfig.user.name}/.1password/agent.sock";
-        }
+        })
+        ++ (lib.optional osConfig.programs._1password-gui.enable {
+          SSH_AUTH_SOCK = "/home/${osConfig.user.name}/.1password/agent.sock";
+        })
       );
     };
 
