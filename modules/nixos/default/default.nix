@@ -152,6 +152,8 @@
       enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          zstd
+          pigz
           apfs-fuse
           apfsprogs
           jupyter
