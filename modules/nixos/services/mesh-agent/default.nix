@@ -8,11 +8,10 @@
   folder = "/usr/local/mesh_services/meshagent";
 in {
   options.services.meshagent = {
-    enable = (lib.mkEnableOption "meshagent") // {default = true;};
+    enable = lib.mkEnableOption "meshagent";
   };
 
-  config = lib.mkIf false {
-    # cfg.enable {
+  config = lib.mkIf cfg.enable {
     age.secrets = {
       meshagent = {
         rekeyFile = ./msh.age;
