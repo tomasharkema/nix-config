@@ -84,7 +84,7 @@ in {
           # rtfm
           jq
           # fig
-          # kitty-img
+          kitty-img
           # todoman
           # dooit
           ttdl

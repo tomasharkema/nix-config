@@ -72,9 +72,9 @@ in {
         {package = osConfig.programs.firefox.package;}
         {package = geary;}
         {package = config.programs.vscode.package;}
-        {package = tilix;}
-        {package = ptyxis;}
-        {package = config.programs.kitty.package;}
+        # {package = tilix;}
+        # {package = ptyxis;}
+        # {package = config.programs.kitty.package;}
         {package = config.programs.wezterm.package;}
       ]
       ++ (lib.optional pkgs.stdenv.isx86_64 {package = termius;})
