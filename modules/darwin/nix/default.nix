@@ -71,7 +71,7 @@ in {
         ];
         config = {
           virtualisation = {
-            rosetta.enable = true;
+            # rosetta.enable = true;
             darwin-builder = {
               diskSize = 40 * 1024;
               memorySize = 6 * 1024;
