@@ -139,6 +139,10 @@ in {
         useTmpfs = true;
       };
 
+      supportedFilesystems = [
+        "xfs"
+      ];
+
       kernel.sysctl."net.ipv6.conf.enp1s0.disable_ipv6" = true;
 
       initrd = {
@@ -163,9 +167,9 @@ in {
         "uinput"
         "nvme"
       ];
-      extraModulePackages = [
-        (pkgs.custom.amifldrv.override {kernel = config.boot.kernelPackages.kernel;})
-      ];
+      # extraModulePackages = [
+      #   (pkgs.custom.amifldrv.override {kernel = config.boot.kernelPackages.kernel;})
+      # ];
       recovery = {
         enable = true;
         install = true;
