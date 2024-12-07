@@ -63,7 +63,7 @@ with pkgs; {
         wget
         nix-top
         # nixos-anywhere
-        lnav
+        # lnav
         # mattermost-desktop
         # tg
         # _1password

@@ -152,6 +152,8 @@
       enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          zstd
+          pigz
           apfs-fuse
           apfsprogs
           jupyter
@@ -506,7 +508,7 @@
         remotes = [
           {
             name = "origin";
-            url = "https://gitlab.com/tomasharkema/nix-config.git";
+            url = "https://github.com/tomasharkema/nix-config";
             branches.main.name = "main";
           }
         ];

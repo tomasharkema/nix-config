@@ -218,12 +218,10 @@ in
           enable = true;
           settings = {
             GNOME = [
-              "com.gexperts.Tilix.desktop"
-              "kitty.desktop"
+              "org.wezfurlong.wezterm"
             ];
             default = [
-              "com.gexperts.Tilix.desktop"
-              "kitty.desktop"
+              "org.wezfurlong.wezterm"
             ];
           };
         };
