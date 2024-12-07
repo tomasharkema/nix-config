@@ -229,7 +229,9 @@
           iptraf-ng
           kexec-tools
           kmon
+          cksfv
           lazydocker
+          custom.unrarall
           ldapdomaindump
           libnotify
           lm_sensors

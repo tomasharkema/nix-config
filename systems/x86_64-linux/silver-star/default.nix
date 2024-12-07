@@ -83,10 +83,10 @@ in {
       };
     };
 
-    security = {
-      audit.enable = lib.mkForce false;
-      auditd.enable = lib.mkForce false;
-    };
+    # security = {
+    #   audit.enable = lib.mkForce false;
+    #   auditd.enable = lib.mkForce false;
+    # };
 
     systemd = {
       enableEmergencyMode = true;
