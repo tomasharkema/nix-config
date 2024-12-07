@@ -506,7 +506,7 @@
       };
 
       comin = {
-        enable = true;
+        enable = lib.mkDefault true;
         remotes = [
           {
             name = "origin";
