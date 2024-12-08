@@ -74,7 +74,7 @@ in {
         open = lib.mkForce cfg.open;
         nvidiaSettings = true;
 
-        package = pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.beta);
+        package = config.boot.kernelPackages.nvidiaPackages.beta; #pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.beta);
       };
 
       graphics = {
