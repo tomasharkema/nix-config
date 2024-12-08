@@ -27,13 +27,13 @@ in {
     crt = {
       key = lib.mkOption {
         type = lib.types.str;
-        default = "/etc/ssl/private/tailscale.key";
+        default = "/etc/nginx/ssl/tailscale.key";
         description = "vhost";
       };
 
       crt = lib.mkOption {
         type = lib.types.str;
-        default = "/etc/ssl/certs/tailscale.crt";
+        default = "/etc/nginx/ssl/tailscale.crt";
         description = "vhost";
       };
     };
@@ -94,7 +94,9 @@ in {
       #  pathConfig.PathExists = [certPath keyPath];
       #};
 
-      services.tailscale-cert = {
+      services.tailscale-cert = let
+        tailscale = lib.getExe pkgs.tailscale;
+      in {
         enable = true;
         description = "tailscale-cert";
 
@@ -111,11 +113,7 @@ in {
           mkdir -p "$cert_dir" || true
           mkdir -p "$key_dir" || true
 
-          ${
-            lib.getExe pkgs.tailscale
-          } cert --cert-file "${certPath}" --key-file "${keyPath}" "${cfg.vhost}"
-
-          chown -R nginx:ssl-cert "${keyPath}"
+          ${tailscale} cert --cert-file "${certPath}" --key-file "${keyPath}" "${cfg.vhost}"
         '';
         #chmod 664 -R "${cfg.cert.dir}"
         #chown nginx:ssl-cert -R "${cfg.cert.dir}"

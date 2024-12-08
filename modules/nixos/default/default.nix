@@ -303,6 +303,14 @@
         ));
     };
 
+    systemd.tmpfiles = {
+      packages = [pkgs.abrt];
+
+      settings."99-panic-plane" = {
+        " /sys/kernel/debug/dri/0/drm_panic_plane_0".w.argument = "1";
+      };
+    };
+
     apps = {
       attic.enable = lib.mkDefault true;
       ipa.enable = lib.mkDefault true;

@@ -46,18 +46,6 @@ in {
       hardware = {
         # tpm.enable = true;
         secure-boot.enable = true;
-        # remote-unlock.enable = true;
-        nvidia = {
-          # enable = true;
-          # beta = false;
-          # open = false;
-        };
-        # nfs = {
-        #   enable = true;
-        #   machines = {
-        #     silver-star.enable = true;
-        #   };
-        # };
       };
     };
 
@@ -74,25 +62,16 @@ in {
       zabbix.server.enable = true;
     };
 
-    gui = {
-      # icewm.enable = true;
-      # desktop.enable = true;
-      rdp = {
-        # enable = true;
-        # legacy = true;
-      };
-    };
-
-    # security = {
-    #   audit.enable = lib.mkForce false;
-    #   auditd.enable = lib.mkForce false;
-    # };
-
-    systemd = {
-      enableEmergencyMode = true;
-    };
-
     services = {
+      hypervisor = {
+        enable = true;
+        # bridgeInterfaces = [ "eno1" ];
+      };
+
+      # xserver.videoDrivers = ["nvidia"];
+
+      "nix-private-cache".enable = true;
+
       tcsd.enable = true;
       throttled.enable = lib.mkForce false;
       usbguard.enable = false;
@@ -208,15 +187,6 @@ in {
 
       # useDHCP = false;
       networkmanager.enable = true;
-    };
-
-    services = {
-      hypervisor = {
-        enable = true;
-        # bridgeInterfaces = [ "eno1" ];
-      };
-
-      # xserver.videoDrivers = ["nvidia"];
     };
 
     environment.systemPackages = with pkgs; [

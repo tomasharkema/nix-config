@@ -31,7 +31,6 @@
 
     # services.freeipa.replica.enable = true;
     # services.upower.enable = mkForce false;
-    systemd.enableEmergencyMode = true;
 
     networking = {
       hosts = {
