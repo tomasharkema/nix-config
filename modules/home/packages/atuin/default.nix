@@ -21,7 +21,8 @@
       settings = {
         key_path = key_path;
         # key_path = osConfig.age.secrets.atuin.path;
-        sync_address = "https://atuin.harke.ma";
+        # sync_address = "https://atuin.harke.ma";
+        sync_address = "http://silver-star.ling-lizars.ts.net:8888";
         auto_sync = true;
         sync_frequency = "10m";
         workspaces = true;

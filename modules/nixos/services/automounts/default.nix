@@ -27,9 +27,9 @@ in {
           machines;
         sshFsMapConf = pkgs.writeText "sshfs.conf" (lib.concatStringsSep "\n" sshFsLines);
         nfsConf = pkgs.writeText "nfs.conf" ''
-          ${lib.concatStringsSep "\n" (map (folder: ''
-            silver-star-${folder} -rw,soft,intr,rsize=8192,wsize=8192 silver-star:/mnt/user/${folder}
-          '') ["downloads" "data" "appdata" "backup" "games" "games_ssd" "domains" "isos"])}
+
+          dione-tomas -rw,soft,intr,rsize=8192,wsize=8192 192.168.178.3:/volume1/tomas
+
         '';
       in ''
         /mnt/servers/sshfs file:${sshFsMapConf} --timeout=30
