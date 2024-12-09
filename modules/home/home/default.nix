@@ -120,7 +120,7 @@ in {
           ++ (lib.optional (!pkgs.stdenv.hostPlatform.isDarwin) {
             EDITOR = "nvim";
           })
-          ++ (lib.optional osConfig.programs._1password-gui.enable {
+          ++ (lib.optional ((!pkgs.stdenv.hostPlatform.isDarwin) && osConfig.programs._1password-gui.enable) {
             SSH_AUTH_SOCK = "/home/${osConfig.user.name}/.1password/agent.sock";
           })
         )
