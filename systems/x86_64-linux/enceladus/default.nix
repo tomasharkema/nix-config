@@ -72,7 +72,19 @@ in {
 
           api-endpoint = "https://nix.harke.ma/";
 
-          #
+          # File storage configuration
+          storage = {
+            # Storage type
+            #
+            # Can be "local" or "s3".
+            type = "local";
+
+            # ## Local storage
+
+            # The directory to store all files under
+            path = "/srv/atticd/storage";
+          };
+
           # Warning: If you change any of the values here, it will be
           # difficult to reuse existing chunks for newly-uploaded NARs
           # since the cutpoints will be different. As a result, the
