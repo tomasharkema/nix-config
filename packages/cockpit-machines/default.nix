@@ -25,7 +25,10 @@ stdenv.mkDerivation rec {
   #   touch dist/manifest.json
   # '';
 
-  # postFixup = ''
+  postFixup = ''
+    substituteInPlace $out/share/cockpit/machines/manifest.json \
+      --replace-warn "/usr" "/run/current-system/sw"
+  '';
   #   gunzip $out/share/cockpit/machines/index.js.gz
   #   sed -i "s#/usr/bin/python3#/usr/bin/env python3#ig" $out/share/cockpit/machines/index.js
   #   sed -i "s#/usr/bin/pwscore#/usr/bin/env pwscore#ig" $out/share/cockpit/machines/index.js

@@ -200,7 +200,6 @@ stdenv.mkDerivation rec {
       --replace-fail /usr $out
 
     for file in $out/share/cockpit/*/manifest.json; do
-      echo $file
       substituteInPlace $file \
         --replace-warn /usr /run/current-system/sw
     done

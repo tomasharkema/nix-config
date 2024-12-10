@@ -26,17 +26,21 @@
     environment.pathsToLink = ["/libexec"];
     systemd = {
       services = {
-        "cockpit".environment = {
-          G_MESSAGES_DEBUG = lib.mkForce "cockpit-ws,cockpit-bridge";
-        };
+        # "cockpit-issue" = {
+        #   description = "Cockpit issue updater service";
+
+        #   documentation = "man:cockpit-ws(8)";
+        #   wants = ["network-online.target"];
+        #   after = ["network-online.target" "cockpit.socket"];
+
+        #   serviceConfig = {
+        #     Type = "oneshot";
+        #     ExecStart = "-@datadir@/@PACKAGE@/issue/update-issue";
+        #   };
+        # };
 
         "cockpit-session@" = {
-          unitConfig = {
-            Description = "Cockpit session %I";
-          };
-          environment = {
-            G_MESSAGES_DEBUG = lib.mkForce "cockpit-ws,cockpit-bridge";
-          };
+          description = "Cockpit session %I";
 
           path = [
             pkgs.coreutils
@@ -55,10 +59,8 @@
         };
 
         "cockpit-session-socket-user" = {
-          unitConfig = {
-            Description = "Dynamic user for /run/cockpit/session socket";
-            BindsTo = ["cockpit-session.socket"];
-          };
+          description = "Dynamic user for /run/cockpit/session socket";
+          bindsTo = ["cockpit-session.socket"];
 
           serviceConfig = {
             DynamicUser = "yes";
@@ -70,30 +72,14 @@
           };
         };
       };
+
       sockets = {
         "cockpit-session" = {
-          unitConfig = {
-            Description = "Initiator socket for Cockpit sessions";
-            PartOf = ["cockpit.service"];
-            Requires = ["cockpit-session-socket-user.service"];
-            After = ["cockpit-session-socket-user.service"];
-          };
-          socketConfig = {
-            ListenStream = "/run/cockpit/session";
-            SocketUser = "root";
-            SocketGroup = "cockpit-session-socket";
-            SocketMode = "0660";
-            RemoveOnStop = "yes";
-            Accept = "yes";
-          };
-        };
-        "cockpit-session-socket-user" = {
-          unitConfig = {
-            Description = "Initiator socket for Cockpit sessions";
-            PartOf = ["cockpit.service"];
-            Requires = ["cockpit-session-socket-user.service"];
-            After = ["cockpit-session-socket-user.service"];
-          };
+          description = "Initiator socket for Cockpit sessions";
+          partOf = ["cockpit.service"];
+          requires = ["cockpit-session-socket-user.service"];
+          after = ["cockpit-session-socket-user.service"];
+
           socketConfig = {
             ListenStream = "/run/cockpit/session";
             SocketUser = "root";
