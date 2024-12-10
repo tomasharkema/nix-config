@@ -439,6 +439,7 @@
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
       "https://tomasharkema.cachix.org"
+      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema/"
     ];
     extra-trusted-public-keys = [
       "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
@@ -449,6 +450,7 @@
       "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
       "tomas:hER/5A08v05jH8GnQUZRrh33+HDNbeiJj8z/8JY6ZvI="
       "tomasharkema.cachix.org-1:BV3Sv3qGZ0bcybPFeigwKoxnpj/NBAFYHq9FMO1XgH4="
+      "tomasharkema:v3sMQpfpSW5KGDK115NB2pQLNzmS2qqjVGa39/fYPjk="
     ];
 
     # allowed-uris = [
