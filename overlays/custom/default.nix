@@ -25,6 +25,16 @@
 
   nixd = inputs.nixd.packages."${prev.system}".default;
 
+  udisks = prev.udisks.overrideAttrs (old: {
+    configureFlags =
+      old.configureFlags
+      ++ [
+        "--enable-btrfs"
+        "--enable-lvm2"
+        "--enable-smart"
+      ];
+  });
+
   # utillinux = prev.util-linux;
 
   # dosbox-x = prev.dosbox-x.overrideAttrs ({postInstall ? "", ...}: {
