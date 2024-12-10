@@ -24,6 +24,11 @@ stdenv.mkDerivation rec {
     touch dist/manifest.json
   '';
 
+  postFixup = ''
+    substituteInPlace $out/share/cockpit/podman/manifest.json \
+      --replace-warn "/lib/systemd/system/podman.socket" "/run/podman/podman.sock"
+  '';
+
   dontBuild = true;
 
   meta = {
