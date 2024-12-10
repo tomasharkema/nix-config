@@ -9,20 +9,107 @@
       enable = true;
       port = 9090;
       package = pkgs.cockpit;
+
       settings = {
-        WebService =
-          if config.services.nginx.enable
-          then {
-            # AllowUnencrypted = false;
-            Origins = "https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost} http://localhost:9090 ws://localhost:9090";
-            ProtocolHeader = "X-Forwarded-Proto";
-            UrlRoot = "/cockpit";
-          }
-          else {};
+        WebService = {
+          ClientCertAuthentication = true;
+        };
+
+        # WebService =
+        #   if config.services.nginx.enable
+        #   then {
+        #     # AllowUnencrypted = false;
+        #     Origins = "https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost} http://localhost:9090 ws://localhost:9090";
+        #     ProtocolHeader = "X-Forwarded-Proto";
+        #     UrlRoot = "/cockpit";
+        #   }
+        #   else {};
       };
     };
-    environment.systemPackages = with pkgs;
-    with pkgs.custom; [
+    environment.pathsToLink = ["/libexec"];
+    systemd = {
+      services = {
+        "cockpit".environment = {
+          G_MESSAGES_DEBUG = lib.mkForce "cockpit-ws,cockpit-bridge";
+        };
+
+        "cockpit-session@" = {
+          unitConfig = {
+            Description = "Cockpit session %I";
+          };
+          environment = {
+            G_MESSAGES_DEBUG = lib.mkForce "cockpit-ws,cockpit-bridge";
+          };
+
+          path = [
+            pkgs.coreutils
+            pkgs.cockpit
+          ];
+
+          serviceConfig = {
+            ExecStart = "${pkgs.cockpit}/libexec/cockpit-session";
+            StandardInput = "socket";
+            StandardOutput = "inherit";
+            StandardError = "journal";
+            User = "root";
+            # bridge error, authentication failure, or timeout, that's not a problem with the unit
+            SuccessExitStatus = "1 5 127";
+          };
+        };
+
+        "cockpit-session-socket-user" = {
+          unitConfig = {
+            Description = "Dynamic user for /run/cockpit/session socket";
+            BindsTo = ["cockpit-session.socket"];
+          };
+
+          serviceConfig = {
+            DynamicUser = "yes";
+            User = "cockpit-session-socket";
+            Group = "cockpit-session-socket";
+            Type = "oneshot";
+            ExecStart = "${pkgs.coreutils}/bin/true";
+            RemainAfterExit = "yes";
+          };
+        };
+      };
+      sockets = {
+        "cockpit-session" = {
+          unitConfig = {
+            Description = "Initiator socket for Cockpit sessions";
+            PartOf = ["cockpit.service"];
+            Requires = ["cockpit-session-socket-user.service"];
+            After = ["cockpit-session-socket-user.service"];
+          };
+          socketConfig = {
+            ListenStream = "/run/cockpit/session";
+            SocketUser = "root";
+            SocketGroup = "cockpit-session-socket";
+            SocketMode = "0660";
+            RemoveOnStop = "yes";
+            Accept = "yes";
+          };
+        };
+        "cockpit-session-socket-user" = {
+          unitConfig = {
+            Description = "Initiator socket for Cockpit sessions";
+            PartOf = ["cockpit.service"];
+            Requires = ["cockpit-session-socket-user.service"];
+            After = ["cockpit-session-socket-user.service"];
+          };
+          socketConfig = {
+            ListenStream = "/run/cockpit/session";
+            SocketUser = "root";
+            SocketGroup = "cockpit-session-socket";
+            SocketMode = "0660";
+            RemoveOnStop = "yes";
+            Accept = "yes";
+          };
+        };
+      };
+    };
+
+    environment.systemPackages = with pkgs; [
       cockpit-podman
       cockpit-tailscale
       cockpit-machines

@@ -423,9 +423,9 @@
 
       openssh = {
         enable = true;
-        passwordAuthentication = false;
+        # passwordAuthentication = false;
         settings = {
-          PasswordAuthentication = false;
+          # PasswordAuthentication = false;
           PermitRootLogin = "no";
 
           # PasswordAuthentication = false;
