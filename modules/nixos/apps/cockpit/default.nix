@@ -30,7 +30,7 @@
     systemd = {
       services = {
         "cockpit".environment = {
-          G_MESSAGES_DEBUG = lib.mkForce "cockpit-ws,cockpit-bridge,cockpit-session";
+          G_MESSAGES_DEBUG = lib.mkForce "cockpit-ws,cockpit-bridge";
         };
 
         "cockpit-session@" = {
@@ -38,7 +38,7 @@
             Description = "Cockpit session %I";
           };
           environment = {
-            G_MESSAGES_DEBUG = lib.mkForce "cockpit-ws,cockpit-bridge,cockpit-session";
+            G_MESSAGES_DEBUG = lib.mkForce "cockpit-ws,cockpit-bridge";
           };
 
           path = [
