@@ -10,11 +10,6 @@ in {
   options.apps.attic = {
     enable = lib.mkEnableOption "enable attic conf";
 
-    serverName = lib.mkOption {
-      default = "backup";
-      type = lib.types.str;
-    };
-
     storeName = lib.mkOption {
       default = "tomasharkema";
       type = lib.types.str;
@@ -41,7 +36,7 @@ in {
 
       unitConfig = {
         # allow to restart indefinitely
-        StartLimitIntervalSec = 0;
+        StartLimitIntervalSec = 5;
       };
 
       serviceConfig = {
@@ -62,9 +57,9 @@ in {
         set -eux -o pipefail
         ATTIC_TOKEN=$(< $CREDENTIALS_DIRECTORY/prod-auth-token)
 
-        attic login ${cfg.serverName} ${cfg.serverAddress} $ATTIC_TOKEN
+        attic login tomasharkema ${cfg.serverAddress} $ATTIC_TOKEN
 
-        exec attic watch-store ${cfg.serverName}:${cfg.storeName} -j1
+        exec attic watch-store tomasharkema:${cfg.storeName} -j1
       '';
     };
 
