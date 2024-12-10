@@ -331,11 +331,11 @@
         scheduler = "scx_lavd";
       };
 
-      cachix-watch-store = {
-        enable = true;
-        cacheName = "tomasharkema";
-        cachixTokenFile = config.age.secrets.cachix-key.path;
-      };
+      # cachix-watch-store = {
+      #   enable = true;
+      #   cacheName = "tomasharkema";
+      #   cachixTokenFile = config.age.secrets.cachix-key.path;
+      # };
 
       sysstat.enable = lib.mkDefault true;
       irqbalance.enable = true;

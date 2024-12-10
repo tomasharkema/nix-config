@@ -16,7 +16,7 @@
 
   usbguard = prev.usbguard.overrideAttrs {meta.mainProgram = "usbguard";};
 
-  cachix = prev.cachix.overrideAttrs {meta.mainProgram = "cachix";};
+  # cachix = prev.cachix.overrideAttrs {meta.mainProgram = "cachix";};
 
   # zerotierone = prev.zerotierone.overrideAttrs (drv: {
   #   postPatch = ''

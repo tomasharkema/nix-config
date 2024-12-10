@@ -16,18 +16,18 @@ in {
     };
 
     storeName = lib.mkOption {
-      default = "tomas";
+      default = "tomasharkema";
       type = lib.types.str;
     };
 
     serverAddress = lib.mkOption {
-      default = "http://silver-star:6067/";
+      default = "http://silver-star.ling-lizard.ts.net:7124/";
       # default = "https://nix-cache.harke.ma/";
       type = lib.types.str;
     };
   };
 
-  config = lib.mkIf (cfg.enable && false) {
+  config = lib.mkIf cfg.enable {
     age.secrets.attic-key = {
       rekeyFile = ./attic-key.age;
     };
