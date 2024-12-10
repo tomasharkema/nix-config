@@ -20,13 +20,6 @@
           group = "tomas";
           path = "/home/tomas/.config/attic/config.toml";
         };
-        "attic-netrc" = {
-          rekeyFile = ./attic-netrc.age;
-          mode = "644";
-          owner = "tomas";
-          group = "tomas";
-          path = "/home/tomas/.config/attic/netrc";
-        };
 
         # tailscale = {
         #   rekeyFile = ./tailscale.age;

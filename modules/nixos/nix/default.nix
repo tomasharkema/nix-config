@@ -158,7 +158,6 @@
             "tomas"
             "root"
           ];
-        #netrc-file = config.age.secrets.attic-netrc.path ++ config.age.secrets.netrc.path;
         netrc-file = config.age.secrets.netrc.path;
         keep-outputs = true;
         keep-derivations = true;

@@ -84,6 +84,7 @@
       kernelParams = [
         "preempt=full"
         "mitigations=off"
+        "delayacct"
       ];
 
       kernel.sysctl = {

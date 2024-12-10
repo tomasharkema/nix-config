@@ -60,6 +60,7 @@ in {
       # "bmc-watchdog".enable = true;
       podman.enable = true;
       zabbix.server.enable = true;
+      atticd.enable = true;
     };
 
     services = {
