@@ -90,11 +90,11 @@
     },
     "catppuccin": {
       "locked": {
-        "lastModified": 1733869110,
-        "narHash": "sha256-MJ/EYyrqTUMTSIhPdGQkbAiBk6QP58GpPEzsAIfNugg=",
+        "lastModified": 1733900652,
+        "narHash": "sha256-g2A9sNPPaumDzb2jNd2h8eiKzlwmlFzO1qymaq2GovU=",
         "owner": "catppuccin",
         "repo": "nix",
-        "rev": "231918224d0ba4101a3f369cb911e838d1511692",
+        "rev": "f47bf8bbec54f721b0b5282e6bcfa85888b822dd",
         "type": "github"
       },
       "original": {
@@ -1725,11 +1725,11 @@
         "treefmt-nix": "treefmt-nix_5"
       },
       "locked": {
-        "lastModified": 1733821188,
-        "narHash": "sha256-neIbYNQ66CHdzQaXpAS+ZEX5Isrsu+B9WIsvZT8xxtw=",
+        "lastModified": 1733904763,
+        "narHash": "sha256-vH5frL1zBDiwAY6CSOPxs5trV6nou29qHt8B5fw7I5U=",
         "owner": "xddxdd",
         "repo": "nur-packages",
-        "rev": "e3ec1f847c20253b2f394485a809b46d14b3e3d8",
+        "rev": "79cb03b2131f544c4ad7d9b98cc9998b356d400a",
         "type": "github"
       },
       "original": {

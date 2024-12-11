@@ -28,7 +28,7 @@ in {
         sshFsMapConf = pkgs.writeText "sshfs.conf" (lib.concatStringsSep "\n" sshFsLines);
         nfsConf = pkgs.writeText "nfs.conf" ''
 
-          dione-tomas -rw,soft,intr,rsize=8192,wsize=8192 192.168.178.3:/volume1/tomas
+          dione-tomas -rw,soft,intr,rsize=8192,wsize=8192,anonuid=1000,anongid=1000 192.168.178.3:/volume1/tomas
 
         '';
       in ''
