@@ -183,7 +183,7 @@
           agenix-rekey
           distrobox
           distrobox-tui
-
+          squashfsTools
           s-tui
           # dry
           # etcher

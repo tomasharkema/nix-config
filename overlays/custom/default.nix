@@ -4,7 +4,7 @@
   self,
   inputs,
   ...
-}: final: prev: {
+}: final: prev: rec {
   libcec = prev.libcec.override {withLibraspberrypi = true;};
 
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
@@ -26,24 +26,20 @@
   nixd = inputs.nixd.packages."${prev.system}".default;
 
   udisks2 = prev.udisks2.overrideAttrs (old: {
+    buildInputs = old.buildInputs ++ [prev.libiscsi prev.libconfig];
     configureFlags =
       old.configureFlags
       ++ [
+        "--enable-all-modules"
         "--enable-btrfs"
         "--enable-lvm2"
         "--enable-smart"
+        # "--enable-lsm"
+        # "--enable-iscsi"
       ];
   });
 
-  udisks = prev.udisks.overrideAttrs (old: {
-    configureFlags =
-      old.configureFlags
-      ++ [
-        "--enable-btrfs"
-        "--enable-lvm2"
-        "--enable-smart"
-      ];
-  });
+  udisks = udisks2;
   # utillinux = prev.util-linux;
 
   # dosbox-x = prev.dosbox-x.overrideAttrs ({postInstall ? "", ...}: {
