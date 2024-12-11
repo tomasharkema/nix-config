@@ -114,14 +114,14 @@ in {
           (lib.optional pkgs.stdenv.hostPlatform.isDarwin {
             EDITOR = "subl";
             # SSH_AUTH_SOCK = "/Users/${osConfig.user.name}/.1password/agent.sock";
-            SSH_AUTH_SOCK = "/Users/${osConfig.user.name}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+            # SSH_AUTH_SOCK = "/Users/${osConfig.user.name}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
             # SPACESHIP_PROMPT_ADD_NEWLINE = "false";
           })
           ++ (lib.optional (!pkgs.stdenv.hostPlatform.isDarwin) {
             EDITOR = "nvim";
           })
           ++ (lib.optional ((!pkgs.stdenv.hostPlatform.isDarwin) && osConfig.programs._1password-gui.enable) {
-            SSH_AUTH_SOCK = "/home/${osConfig.user.name}/.1password/agent.sock";
+            # SSH_AUTH_SOCK = "/home/${osConfig.user.name}/.1password/agent.sock";
           })
         )
       );
