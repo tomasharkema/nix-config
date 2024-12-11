@@ -255,6 +255,7 @@ in
         dconf-editor
         gjs
         gnome-autoar
+        gnome-commander
         gnome-extension-manager
         gnome-firmware
         gnome-menus
@@ -266,8 +267,8 @@ in
         gnome-clocks
         gnome-control-center
         gnome-nettool
+        gnome-applets
         # gnome-online-miners
-        gnome-power-manager
         # gnome-session
         # gnome-session-ctl
         # gnome-settings-daemon

@@ -35,7 +35,7 @@
   systemd,
   udev,
   xmlto,
-  udisks,
+  udisks2,
   btrfs-progs,
 }:
 stdenv.mkDerivation rec {
@@ -59,7 +59,7 @@ stdenv.mkDerivation rec {
     gettext
     git
     (lib.getBin libxslt)
-    udisks
+    udisks2
     btrfs-progs
     nodejs
     openssl
