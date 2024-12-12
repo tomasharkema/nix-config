@@ -139,7 +139,7 @@ in {
       tmp = {
         useTmpfs = true;
       };
-
+      swraid.enable = true;
       supportedFilesystems = [
         "xfs"
       ];
