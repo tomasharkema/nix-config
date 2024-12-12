@@ -48,7 +48,9 @@
         ccid
         gnupg
         custom.distrib-dl
-        # davinci-resolve
+        davinci-resolve
+        handbrake
+
         keybase-gui
         # calibre
         glxinfo
@@ -144,7 +146,7 @@
       abrt.enable = true;
       # remote-builders.client.enable = true;
       usbmuxd.enable = true;
-      # power-profiles-daemon.enable = lib.mkForce true;
+      power-profiles-daemon.enable = lib.mkForce true;
 
       # ollama = {
       #   enable = true;
@@ -190,15 +192,15 @@
       };
     };
 
-    virtualisation.kvmgt = {
-      enable = true;
-      device = "0000:00:02.0";
-      vgpus = {
-        "i915-GVTg_V5_8" = {
-          uuid = ["e2ab260f-44a2-4e07-9889-68a1caafb399"];
-        };
-      };
-    };
+    # virtualisation.kvmgt = {
+    #   enable = true;
+    #   device = "0000:00:02.0";
+    #   vgpus = {
+    #     "i915-GVTg_V5_8" = {
+    #       uuid = ["e2ab260f-44a2-4e07-9889-68a1caafb399"];
+    #     };
+    #   };
+    # };
 
     programs = {
       adb.enable = true;
@@ -228,8 +230,8 @@
       # modprobeConfig.enable = true;
 
       kernelParams = [
-        "i915.enable_gvt=1"
-        "i915.enable_guc=0"
+        # "i915.enable_gvt=1"
+        # "i915.enable_guc=0"
         # "intel_iommu=on"
         # "iommu=pt"
         # "iommu.passthrough=1"
@@ -239,7 +241,6 @@
       ];
 
       kernelModules = [
-        "binder_linux"
         "pstore"
         "i915"
         "spi"
@@ -250,7 +251,7 @@
         # "vfio_iommu_type1"
         "kvm-intel"
         # "watchdog"
-        "usbmon"
+        # "usbmon"
       ];
       # extraModprobeConfig = "options i915 enable_guc=2";
       initrd.kernelModules = [
