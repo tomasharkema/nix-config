@@ -35,6 +35,23 @@
   #   GPTCOMMIT__OPENAI__API_KEY="$(${pkgs._1password}/bin/op item get 2vzrjmprwi25zts7mzb4zmmad4 --field credential)"
   #   exec ${lib.getExe pkgs.gptcommit}
   # '';
+  squash-folder = pkgs.writeShellScriptBin "squash-folder" ''
+    set -e
+
+    FOLDER="$1"
+
+    if [[ ! -d "$FOLDER" ]]; then
+      echo "folder $1 does not exists"
+      exit 1
+    fi
+
+    du -sh "$FOLDER"
+
+    mksquashfs "$FOLDER" "$FOLDER.sqfs" -comp zstd
+
+    du -sh "$FOLDER" "$FOLDER.sqfs"
+
+  '';
 in {
   imports = [];
 
