@@ -22,22 +22,25 @@
   gnutar,
   libsystemtap,
   arocc,
+  flex,
+  bison,
+  gnumake,
 }:
 stdenv.mkDerivation rec {
   pname = "pcp";
-  version = "6.3.1";
+  version = "6.3.2";
 
   src = fetchFromGitHub {
     owner = "performancecopilot";
     repo = "pcp";
     rev = version;
-    hash = "sha256-2Gre8N8Z5CgQ2nsZOFxo+vLszGAUQIaI6bwFu8KoeRQ=";
+    hash = "sha256-FqTsOk09KEF+2kGKLJV14+CuvT8YTlXCeTOaA1LoKak=";
   };
 
   nativeBuildInputs = [
     pkg-config
     # bintools
-    # autoreconfHook
+    # autoreconf/Hook
     # autoconf
     gettext
     # automake
@@ -50,6 +53,7 @@ stdenv.mkDerivation rec {
     clang
     which
     libtool
+    bintools
     arocc
     libsForQt5.full
     libsystemtap
@@ -76,6 +80,10 @@ stdenv.mkDerivation rec {
     "QMAKE=${libsForQt5.full}/bin/qmake"
     "MAKEDEPEND=/bin/true"
     "BZIP2=${bzip2}/bin/bzip2"
+    "AR=${bintools}/bin/ar"
+    "LEX=${flex}/bin/flex"
+    "YACC=${bison}/bin/yacc"
+    "MAKE=${gnumake}/bin/make"
   ];
 
   meta = with lib; {

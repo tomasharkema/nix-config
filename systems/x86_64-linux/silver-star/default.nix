@@ -50,6 +50,7 @@ in {
     };
 
     apps = {
+      netdata.server.enable = true;
       # attic-server.enable = true;
       ntopng.enable = true;
       mailrise.enable = true;
