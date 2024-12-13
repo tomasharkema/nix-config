@@ -82,6 +82,7 @@ in {
       # ++
       packages = with pkgs;
         [
+          squash-folder
           lrzsz
           devcontainer
           # picotool

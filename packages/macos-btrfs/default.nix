@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  darwin,
 }:
 stdenv.mkDerivation rec {
   pname = "macos-btrfs";
@@ -13,6 +14,19 @@ stdenv.mkDerivation rec {
     rev = "c5352ffd3429583a31ea6dc1a9fb4a4b1351aa01";
     hash = "sha256-s5AwUh0QYOxmhFEOJp+xh+HdWSeVBEfIXt1JIyJs+xc=";
   };
+
+  buildInputs = [
+    darwin.apple_sdk.MacOSX-SDK
+    darwin.apple_sdk.IOKit
+  ];
+
+  installPhase = ''
+    runHook preInstall
+
+    make macos
+
+    runHook postInstall
+  '';
 
   meta = {
     description = "BTRFS filesystem plugin for macOS";
