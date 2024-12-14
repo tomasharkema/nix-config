@@ -13,8 +13,8 @@ in {
   imports = with inputs; [
     ./hardware-configuration.nix
 
-    nixos-hardware.nixosModules.common-cpu-intel
-    nixos-hardware.nixosModules.common-pc-ssd
+    # nixos-hardware.nixosModules.common-cpu-intel
+    # nixos-hardware.nixosModules.common-pc-ssd
     nvidia-vgpu-nixos.nixosModules.host
   ];
 
@@ -63,13 +63,13 @@ in {
       zabbix.server.enable = true;
       atticd.enable = true;
     };
-
+    programs.mosh.enable = true;
     services = {
       hypervisor = {
         enable = true;
         # bridgeInterfaces = [ "eno1" ];
       };
-
+      # mosh.enable = true;
       # xserver.videoDrivers = ["nvidia"];
 
       "nix-private-cache".enable = true;
