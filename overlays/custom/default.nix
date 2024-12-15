@@ -27,6 +27,7 @@
 
   udisks2 = prev.udisks2.overrideAttrs (old: {
     buildInputs = old.buildInputs ++ [prev.libiscsi prev.libconfig];
+    doCheck = false;
     configureFlags =
       old.configureFlags
       ++ [

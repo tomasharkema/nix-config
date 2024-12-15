@@ -82,6 +82,7 @@ in {
       # ++
       packages = with pkgs;
         [
+          yazi
           squash-folder
           lrzsz
           devcontainer

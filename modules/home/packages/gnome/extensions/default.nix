@@ -22,6 +22,7 @@
         {package = ping;}
         # {package = media-controls;}
         {package = gsconnect;}
+        {package = status-area-horizontal-spacing;}
         {package = systemd-manager;}
         # {package = move-clock;}
         {package = home-assistant-extension;}
