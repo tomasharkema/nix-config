@@ -22,17 +22,17 @@ in {
       avahi = {
         enable = true;
 
-        extraServiceFiles.store = ''
-          <?xml version="1.0" standalone='no'?><!--*-nxml-*-->
-          <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
-          <service-group>
-            <name replace-wildcards="yes">nix-store</name>
-            <service>
-              <type>_ssh._tcp</type>
-              <port>${builtins.toString config.services.nix-serve.port}</port>
-            </service>
-          </service-group>
-        '';
+        # extraServiceFiles.store = ''
+        #   <?xml version="1.0" standalone='no'?><!--*-nxml-*-->
+        #   <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+        #   <service-group>
+        #     <name replace-wildcards="yes">nix-store</name>
+        #     <service>
+        #       <type>_ssh._tcp</type>
+        #       <port>${builtins.toString config.services.nix-serve.port}</port>
+        #     </service>
+        #   </service-group>
+        # '';
       };
     };
   };
