@@ -41,7 +41,7 @@ in {
       hardware = {
         tpm.enable = true;
         secure-boot.enable = false;
-        remote-unlock.enable = true;
+        remote-unlock.enable = false;
         nvidia = {
           # enable = true;
           # beta = false;
