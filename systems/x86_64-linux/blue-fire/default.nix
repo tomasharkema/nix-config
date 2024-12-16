@@ -11,10 +11,6 @@
   workerPort = "9988";
 in {
   imports = with inputs; [
-    ./hardware-configuration.nix
-
-    nixos-hardware.nixosModules.common-cpu-intel
-    nixos-hardware.nixosModules.common-pc-ssd
     nvidia-vgpu-nixos.nixosModules.host
   ];
 
@@ -24,6 +20,8 @@ in {
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVhJ1k25x/1A/zN96p48MGrPJxVboTe17rO9Mcb61qG root@blue-fire";
       };
     };
+
+    facter.reportPath = ./facter.json;
 
     disks.btrfs = {
       enable = true;
