@@ -4,11 +4,11 @@
 }:
 pkgs.stdenvNoCC.mkDerivation rec {
   pname = "LaunchControl";
-  version = "2.6.2";
+  version = "2.6.4";
 
   src = pkgs.fetchurl {
     url = "https://www.soma-zone.com/download/files/LaunchControl-${version}.tar.xz";
-    sha256 = "sha256-6nmGapr91Qh5JN6NwIjSSq+eFJJviYFtv9CdMJkB4YY=";
+    sha256 = "sha256-q0kwcKcrA6tkfd5/wMEjp2zo5UhyNXt/RKRy1YeHwhw=";
   };
 
   nativeBuildInputs = with pkgs; [xz tree];

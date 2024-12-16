@@ -11,7 +11,7 @@
 
   config = {
     age.rekey = {
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJvvDPvcdtTqOqKdAc5ixilJjQYGJFamhVLN6cjn67wz root@euro-mir-vm";
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkPlI0DLWGqTA6VKzEUjKYFyPmMn+gHhhDkZLRZRe5q root@euro-mir-vm";
     };
 
     # nixpkgs.crossSystem.system = "aarch64-linux";
@@ -38,7 +38,7 @@
       kernelModules = ["virtio_gpu"];
     };
 
-    # virtualisation.rosetta.enable = true;
+    virtualisation.rosetta.enable = true;
 
     # fileSystems = {
     #   "/" = {
