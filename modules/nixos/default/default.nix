@@ -23,6 +23,8 @@
       };
     };
 
+    system.build.self = inputs.self;
+
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
 
@@ -518,7 +520,7 @@
       };
 
       comin = {
-        enable = lib.mkDefault true;
+        enable = lib.mkDefault (inputs.self ? shortRev);
         remotes = [
           {
             name = "origin";
@@ -537,7 +539,7 @@
 
     programs = {
       fzf.fuzzyCompletion = true;
-
+      mosh.enable = true;
       dconf.enable = true;
 
       # darling.enable = pkgs.stdenv.isx86_64;
@@ -548,6 +550,7 @@
         enable = true;
         lfs.enable = true;
       };
+
       htop = {
         enable = true;
         package = pkgs.htop;
@@ -561,12 +564,11 @@
       ssh = {
         # startAgent = true;
         # forwardX11 = true;
-        extraConfig = ''
-          ForwardAgent yes
-
-        '';
+        # extraConfig = ''
+        #  ForwardAgent yes
+        # '';
       };
-      # mosh.enable = true;
+
       nix-ld.enable = true;
       zsh = {
         enable = true;
