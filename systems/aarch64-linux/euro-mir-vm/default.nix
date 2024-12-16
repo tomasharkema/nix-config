@@ -70,7 +70,7 @@
     };
 
     boot = {
-      growPartition = lib.mkDefault false;
+      growPartition = true;
 
       tmp = {
         useTmpfs = false;
@@ -83,7 +83,7 @@
     traits = {
       developer.enable = false;
       hardware = {
-        tpm.enable = false;
+        tpm.enable = true;
         secure-boot.enable = false;
         vm.enable = true;
         remote-unlock.enable = false;
