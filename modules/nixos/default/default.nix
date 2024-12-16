@@ -107,7 +107,10 @@
             else lib.mkDefault pkgs.linuxPackages_cachyos
           ); # (pkgs.linuxPackagesFor pkgs.linux_cachyos);
 
-      kernelModules = ["wireguard" "apfs"];
+      kernelModules = [
+        "wireguard"
+        "apfs"
+      ];
 
       supportedFilesystems = [
         "ntfs"
@@ -204,6 +207,7 @@
           catt
           chunkfs
           clex
+          nixos-facter
           # compsize
           ctop
           curl

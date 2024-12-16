@@ -42,7 +42,7 @@ in {
 
       hardware = {
         tpm.enable = true;
-        secure-boot.enable = true;
+        secure-boot.enable = false;
         remote-unlock.enable = true;
         nvidia = {
           # enable = true;
@@ -244,7 +244,14 @@ in {
           4002
           20048
         ];
-        allowedUDPPorts = [111 2049 4000 4001 4002 20048];
+        allowedUDPPorts = [
+          111
+          2049
+          4000
+          4001
+          4002
+          20048
+        ];
         enable = true;
       };
 
