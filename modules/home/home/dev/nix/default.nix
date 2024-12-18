@@ -5,7 +5,6 @@
   ...
 }: let
   update = pkgs.writeShellScriptBin "update" ''
-
     set -e
 
     nix flake update --refresh &
@@ -15,7 +14,6 @@
     PS2=$!
 
     wait $PS1 $PS2
-
   '';
 in {
   config = {
