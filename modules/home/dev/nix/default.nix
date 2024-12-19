@@ -5,7 +5,7 @@
   ...
 }: let
   update = pkgs.writeShellScriptBin "update" ''
-    set -e
+    set -e -o pipefile
 
     nix flake update --refresh &
     PS1=$!
