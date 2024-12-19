@@ -23,10 +23,10 @@
 
   config = {
     age.secrets = {
-      openai = {
-        rekeyFile = ./openai.age;
-        owner = "${config.user.name}";
-      };
+      # openai = {
+      #   rekeyFile = ./openai.age;
+      #   owner = "${config.user.name}";
+      # };
     };
 
     snowfallorg.users."${config.user.name}".home.config = {

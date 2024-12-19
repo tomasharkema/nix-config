@@ -116,7 +116,7 @@ in {
           lazycli
           # f1viewer
           # aicommits
-          openai
+          # openai
         ]
         ++ (lib.optionals pkgs.stdenv.isx86_64 [
           httpie-desktop

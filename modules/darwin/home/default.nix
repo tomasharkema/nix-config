@@ -23,10 +23,10 @@
 
   config = {
     age.secrets = {
-      openai = {
-        rekeyFile = ../../nixos/home/openai.age;
-        owner = "${config.user.name}";
-      };
+      # openai = {
+      #   rekeyFile = ../../nixos/home/openai.age;
+      #   owner = "${config.user.name}";
+      # };
     };
 
     environment = {
