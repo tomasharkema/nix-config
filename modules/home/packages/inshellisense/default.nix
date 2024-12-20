@@ -16,7 +16,7 @@ in {
     };
   };
 
-  config = lib.mkIf (cfg.enable) {
+  config = lib.mkIf (cfg.enable && false) {
     home.packages = [cfg.package];
 
     assertions = builtins.map (n: {
