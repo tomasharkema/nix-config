@@ -4,44 +4,39 @@
   config,
   inputs,
   ...
-}:
-with pkgs; let
-  # nixos-generate = inputs.nixos-generators.packages."${pkgs.system}".nixos-generate;
-  # agenix-rekey = inputs.agenix-rekey.packages."${pkgs.system}".agenix-rekey;
-  _mbufferSend = writeShellScriptBin "_mbufferSend" ''
-    mbuffer -I pegasus:8000 -m 1G | zstd -e - -19 | > pegasus-bak-2.tar.zst
-    ssh media@pegasus.local "tar chf - /home/media | mbuffer -m 100M -O euro-mir-2:8000"
-
-  '';
-
-  write-script = writeShellScriptBin "write-script" ''
+}: let
+  # _mbufferSend = pkgs.writeShellScriptBin "_mbufferSend" ''
+  #   mbuffer -I pegasus:8000 -m 1G | zstd -e - -19 | > pegasus-bak-2.tar.zst
+  #   ssh media@pegasus.local "tar chf - /home/media | mbuffer -m 100M -O euro-mir-2:8000"
+  # '';
+  write-script = pkgs.writeShellScriptBin "write-script" ''
     set -x
     echo "pv $1 $2"
     pv $1 -cN in -B 500M -pterbT | zstd -d - | pv -cN out -B 500M -pterbT > $2
   '';
-  deployment = writeShellScriptBin "deployment" ''
-    ${pkgs.deploy-rs}/bin/deploy --skip-checks --targets $@ -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
-  '';
-  deploy-all = writeShellScriptBin "deploy-all" ''
-    ${pkgs.deploy-rs}/bin/deploy --skip-checks -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
-  '';
-  deploy-machine = writeShellScriptBin "deploy-machine" ''
-    set -x
-    ${pkgs.deploy-rs}/bin/deploy --skip-checks ".#$@" -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
-  '';
-  # reencrypt = writeShellScriptBin "reencrypt" ''
+  # deployment = pkgs.writeShellScriptBin "deployment" ''
+  #   ${pkgs.deploy-rs}/bin/deploy --skip-checks --targets $@ -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
+  # '';
+  # deploy-all = pkgs.writeShellScriptBin "deploy-all" ''
+  #   ${pkgs.deploy-rs}/bin/deploy --skip-checks -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
+  # '';
+  # deploy-machine = pkgs.writeShellScriptBin "deploy-machine" ''
+  #   set -x
+  #   ${pkgs.deploy-rs}/bin/deploy --skip-checks ".#$@" -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
+  # '';
+  # reencrypt = pkgs.writeShellScriptBin "reencrypt" ''
   #   cd secrets;
   #   agenix -r
   # '';
-  mkiso = writeShellScriptBin "mkiso" ''
+  mkiso = pkgs.writeShellScriptBin "mkiso" ''
     LINK="./out/install.iso";
     nom build '.#nixosConfigurations.hyperv-nixos.config.formats.install-iso' --out-link $LINK
     pv $LINK -cN in -B 100M -pterbT | xz -T4 -9 | pv -cN out -B 100M -pterbT > ./out/install.iso.xz
   '';
-  remote-deploy = writeShellScriptBin "remote-deploy" ''
+  remote-deploy = pkgs.writeShellScriptBin "remote-deploy" ''
     remote deployment '.#arthur' '.#enzian'
   '';
-  upload-all = writeShellScriptBin "upload-all" ''
+  upload-all = pkgs.writeShellScriptBin "upload-all" ''
     FILES="/nix/store/*"
     for f in $FILES
     do
@@ -49,12 +44,12 @@ with pkgs; let
       attic push tomas "$f"
     done
   '';
-  nix-update-all = writeShellScriptBin "nix-update-all" ''
+  nix-update-all = pkgs.writeShellScriptBin "nix-update-all" ''
     update_path="${inputs.nixpkgs}/maintainers/scripts/update.nix"
     echo $update_path
     exec nix-shell "$update_path"
   '';
-  update-pkgs = writeShellScriptBin "update-pkgs" ''
+  update-pkgs = pkgs.writeShellScriptBin "update-pkgs" ''
     set -x
     nixPath="$(nix eval -f . inputs.nixpkgs.outPath --json | jq -r)"
     echo "found $nixPath"
@@ -64,12 +59,12 @@ with pkgs; let
     nix-shell $nixUpdate --arg include-overlays $overlayExpr --arg predicate '(path: pkg: true)' --verbose --show-trace $@
   '';
 
-  test-installer = writeShellScriptBin "test-installer" ''
+  test-installer = pkgs.writeShellScriptBin "test-installer" ''
     VM_PATH="$(nix build '.#nixosConfigurations.installer-x86.config.system.build.vm' --print-out-paths)"
     QEMU_KERNEL_PARAMS=console=ttyS0 $VM_PATH/bin/run-nixos-vm -nographic; reset
   '';
 
-  # cachix-deploy = writeShellScriptBin "cachix-deploy" ''
+  # cachix-deploy = pkgs.writeShellScriptBin "cachix-deploy" ''
   #   set -x
   #   set -e
   #   spec=$(nom build --print-out-paths)
@@ -79,7 +74,7 @@ with pkgs; let
   # '';
 
   # example: `cachix-reploy-pin "darwinConfigurations.euro-mir.config.system.build.toplevel" "darwin-0.1"`
-  # cachix-reploy-pin = writeShellScriptBin "cachix-reploy-pin" ''
+  # cachix-reploy-pin = pkgs.writeShellScriptBin "cachix-reploy-pin" ''
   #   set -x
   #   set -e
 
@@ -89,23 +84,23 @@ with pkgs; let
   #   cachix pin tomasharkema $2 $res
   # '';
 
-  dconf-update = writeShellScriptBin "dconf-update" ''
+  dconf-update = pkgs.writeShellScriptBin "dconf-update" ''
     ${lib.getExe pkgs.dconf} dump / > dconf.settings
     ${lib.getExe pkgs.dconf2nix} -i dconf.settings -o dconf.nix
   '';
-  dconf-save = writeShellScriptBin "dconf-save" ''
+  dconf-save = pkgs.writeShellScriptBin "dconf-save" ''
     current_hostname="$(hostname)"
     echo "Saving dconf for $current_hostname"
     ${lib.getExe pkgs.dconf} dump / > "dconf/$current_hostname.conf"
   '';
 
-  test-remote = writeShellScriptBin "test-remote" ''
+  test-remote = pkgs.writeShellScriptBin "test-remote" ''
     SERVER="$1"
     echo "test remote $SERVER..."
     exec ${lib.getExe pkgs.buildPackages.nixos-rebuild} test --flake ".#$SERVER" --target-host "$SERVER" --use-remote-sudo --verbose --show-trace -L --use-substitutes
   '';
 
-  upload-to-installer = writeShellScriptBin "upload-to-installer" ''
+  upload-to-installer = pkgs.writeShellScriptBin "upload-to-installer" ''
     configuration="$1"
     host="$2"
     flake="nixosConfigurations.\"$configuration\".config.system.build.toplevel"
@@ -117,7 +112,7 @@ with pkgs; let
     nix build ".#$flake" --eval-store auto --store "ssh-ng://$host?remote-store=local?root=/mnt"
   '';
 
-  dp = writeShellScriptBin "dp" ''
+  dp = pkgs.writeShellScriptBin "dp" ''
     configuration="$1"
     host="$2"
     flake="nixosConfigurations.\"$configuration\".config.system.build.toplevel"
@@ -129,7 +124,7 @@ with pkgs; let
   # diffs = import ../diffs attrs;
   # packages-json = diffs.packages-json;
   # gum = lib.getExe pkgs.gum;
-  # packages-json = writeShellScriptBin "packages-json" ''
+  # packages-json = pkgs.writeShellScriptBin "packages-json" ''
   #   export DIR="$(mktemp -d)"
   #   SYSTEM_PKGS=".#$1.config.environment.systemPackages"
   #   # gum spin --spinner line --title "Evaluating $SYSTEM_PKGS to $DIR/first.json" --
@@ -139,34 +134,45 @@ with pkgs; let
   #   nix eval "$HOME_PKGS" --json | tee "$DIR/second.json"
   #   cat "$DIR/first.json" "$DIR/second.json" | jq -s add | tee "$DIR/out.json" | gum pager
   # '';
-  upload-all-store = writeShellScriptBin "upload-all-store" ''
+  upload-all-store = pkgs.writeShellScriptBin "upload-all-store" ''
     NPATHS=50
     NPROCS=4
 
     exec nix path-info --all | xargs -n$NPATHS -P$NPROCS attic push tomas -j 1
   '';
 
-  build-host-pkgs = writeShellScriptBin "build-host-pkgs" ''
+  build-host-pkgs = pkgs.writeShellScriptBin "build-host-pkgs" ''
     PACKAGE="$1"
     echo "Build $PACKAGE"
     exec nom build ".#nixosConfigurations.$HOSTNAME.pkgs.$PACKAGE" --out-link ./out/$PACKAGE
   '';
-  nixos-system = writeShellScriptBin "nixos-system" ''
+  nixos-system = pkgs.writeShellScriptBin "nixos-system" ''
     HOST="$1"
     echo "Build $HOST"
     exec nom build ".#nixosConfigurations.$HOST.config.system.build.toplevel" --out-link ./out/$HOST
   '';
-  darwin-system = writeShellScriptBin "darwin-system" ''
+  darwin-system = pkgs.writeShellScriptBin "darwin-system" ''
     HOST="$1"
     echo "Build $HOST"
     exec nom build ".#darwinConfigurations.$HOST.config.system.build.toplevel" --out-link ./out/$HOST
+  '';
+  update = pkgs.writeShellScriptBin "update" ''
+    set -e -o pipefail
+
+    nix flake update --refresh &
+    PS1=$!
+
+    devenv update &
+    PS2=$!
+
+    wait $PS1 $PS2
   '';
 in {
   # starship.enable = true;
 
   languages.nix = {
     enable = true;
-    lsp.package = nil;
+    lsp.package = pkgs.nil;
   };
 
   pre-commit.hooks = {
@@ -220,7 +226,7 @@ in {
   packages = with pkgs; [
     actionlint
 
-    #pkgs.nixVersions.latest
+    update
     nixos-system
     darwin-system
     build-host-pkgs
@@ -251,9 +257,9 @@ in {
     dconf-update
     dconf2nix
     deadnix
-    deploy-all
-    deploy-machine
-    deployment
+    # deploy-all
+    # deploy-machine
+    # deployment
     direnv
     dp
     git
