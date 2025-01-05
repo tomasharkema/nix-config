@@ -47,7 +47,7 @@
     };
 
     apps = {
-      home-assistant.enable = true;
+      # home-assistant.enable = true;
       podman.enable = true;
     };
 

@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  cfg = config.apps.home-assistant;
+  # cfg = config.apps.home-assistant;
 in {
   # options.apps.home-assistant = {
   #   enable = lib.mkEnableOption "home-assistant";
