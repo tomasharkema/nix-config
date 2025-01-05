@@ -99,8 +99,8 @@ in {
 
     home = {
       packages = with pkgs; [
-        trayscale
-        custom.zerotier-ui
+        # trayscale
+        # custom.zerotier-ui
         notify-client
       ];
 

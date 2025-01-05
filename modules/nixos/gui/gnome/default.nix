@@ -246,33 +246,35 @@ in
       #   };
       # };
 
+      warnings = map (p: "${p.name} disabled") (with pkgs; [
+        gnome-extension-manager
+        gnome-packagekit
+        gnome-session
+        gnome-session-ctl
+        gnome-settings-daemon
+        gnome-shell-extensions
+        seahorse
+        gnome-photos
+      ]);
+
       environment.systemPackages = with pkgs; [
-        # gnome-packagekit
-        # seahorse
         adwaita-icon-theme
         clutter
         clutter-gtk
         dconf-editor
         gjs
+        gnome-applets
+        gnome-applets
         gnome-autoar
+        gnome-clocks
         gnome-commander
-        gnome-extension-manager
+        gnome-control-center
         gnome-firmware
         gnome-menus
-        gnome-photos
+        gnome-nettool
         gnome-themes-extra
         gnome-tweaks
         gnome-user-share
-        gnome-applets
-        gnome-clocks
-        gnome-control-center
-        gnome-nettool
-        gnome-applets
-        # gnome-online-miners
-        # gnome-session
-        # gnome-session-ctl
-        # gnome-settings-daemon
-        # gnome-shell-extensions
         gtop
         libgnome-keyring
         libgtop

@@ -4,7 +4,16 @@
   self,
   inputs,
   ...
-}: final: prev: rec {
+}: final: prev: let
+  overridePkgCheckVersionSnapshot = name: version: pkg: (
+    let
+      pkgVersion = prev."${name}".version;
+    in
+      if (pkgVersion == version)
+      then pkg
+      else (builtins.throw "nixpkgs' upstream for ${pkg.name} has been updated to ${pkgVersion}. (yours is at ${pkg.version} with snapshot ${version})")
+  );
+in rec {
   libcec = prev.libcec.override {withLibraspberrypi = true;};
 
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
@@ -13,7 +22,8 @@
   freeipa =
     #builtins.trace "${prev.freeipa.version} ${final.freeipa.version}"
     self.packages."${prev.system}".freeipa;
-  sssd = self.packages."${prev.system}".sssd.override {withSudo = true;};
+
+  sssd = overridePkgCheckVersionSnapshot "sssd" "2.9.5" (self.packages."${prev.system}".sssd.override {withSudo = true;});
 
   docset = inputs.nixos-dash-docset.packages."${prev.system}".docset;
 
@@ -24,6 +34,8 @@
   # wezterm = inputs.wezterm.packages."${prev.system}".default;
 
   nixd = inputs.nixd.packages."${prev.system}".default;
+
+  udisks = overridePkgCheckVersionSnapshot "udisks2" "" udisks2;
 
   udisks2 = prev.udisks2.overrideAttrs (old: {
     buildInputs = old.buildInputs ++ [prev.libiscsi prev.libconfig];
@@ -40,7 +52,6 @@
       ];
   });
 
-  udisks = udisks2;
   # utillinux = prev.util-linux;
 
   # dosbox-x = prev.dosbox-x.overrideAttrs ({postInstall ? "", ...}: {

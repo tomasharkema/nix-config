@@ -21,13 +21,13 @@ in {
     users.users.${config.user.name} = {extraGroups = ["i2c"];};
 
     environment.systemPackages = with pkgs; [
-      ddcutil
+      # ddcutil
       # xorg.xbacklight
       # gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil
       brightnessctl
     ];
 
-    services.ddccontrol.enable = true;
+    # services.ddccontrol.enable = true;
     hardware.i2c.enable = true;
     # programs.light.enable = true;
   };

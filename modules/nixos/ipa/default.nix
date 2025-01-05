@@ -22,7 +22,7 @@ in {
   config = lib.mkIf (cfg.enable) {
     environment = {
       systemPackages = with pkgs; [
-        ldapvi
+        # ldapvi
         ldapmonitor
         pkcs11helper
         realmd

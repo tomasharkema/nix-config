@@ -158,98 +158,87 @@
       enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
-          zstd
-          pigz
-          apfs-fuse
-          apfsprogs
-          jupyter
-          caffeine-ng
-          pkgs.custom.nix-helpers
-          minio-client
-          ssh-import-id
-          tcptrack
-          netproc
-          netop
-          nethogs
-          wavemon
-          strace
-          lrzsz
-          nix-btm
-          update-nix-fetchgit
-          updatecli
-          devcontainer
-          # tailspin
-          colorized-logs
-          glog
-          glogg
-          socklog
-          watchlog
-          tsui
-          agenix-rekey
-          distrobox
-          distrobox-tui
-          squashfsTools
-          s-tui
+          # compsize
+          # dirdiff
           # dry
           # etcher
+          # fam # unmaintained
           # fancy-motd
           # mkchromecast
           # nix-switcher # : needs github auth
           # ntfy
-          # rtop
           # onionshare
-          git
+          # oterm
+          # rtop
+          # socklog
+          # tailspin
+          # tsui
+          # ttop
+          agenix-rekey
           aide
+          apfs-fuse
+          apfsprogs
           archivemount
           bandwhich
           bash
           bashmount
           bmon
+          caffeine-ng
           castnow
           catt
           chunkfs
+          cksfv
           clex
-          nixos-facter
-          # compsize
+          colorized-logs
           ctop
           curl
+          custom.unrarall
+          devcontainer
           devdash
           devtodo
           dfrs
-          dirdiff
-          # oterm
-          ssh-import-id
+          distrobox
+          distrobox-tui
           duc
           ethtool
-          htmlq
-          # fam # unmaintained
           fcast-receiver
           fwupd
           fwupd-efi
-          systeroid
           gdu
           git
+          git
+          glog
+          glogg
           googler
+          htmlq
+          hueadm
           hw-probe
           ifuse
           ipcalc
           iptraf-ng
+          jupyter
           kexec-tools
           kmon
-          cksfv
           lazydocker
-          custom.unrarall
           ldapdomaindump
           libnotify
           lm_sensors
           lorri
+          lrzsz
           lshw
           mbuffer
+          minio-client
           ncdu
+          nethogs
+          netop
+          netproc
+          netscanner
           nfs-utils
           nil
+          nix-btm
           nix-top
           nixd
+          nixos-facter
           ntfs3g
           ntfy-sh
           nvchecker
@@ -259,33 +248,44 @@
           parallel-disk-usage
           pavucontrol
           pciutils
+          pigz
+          pkgs.custom.nix-helpers
           ponymix
           pulsemixer
           pv
+          s-tui
           silenthound
           smartmontools
           socat
+          squashfsTools
+          ssh-import-id
+          ssh-import-id
           ssh-tools
           sshfs
           sshportal
+          strace
           swapview
           systemctl-tui
+          systeroid
           sysz
+          tcptrack
           tiptop
           tpm-tools
           treecat
           ttmkfdir
-          # ttop
           tydra
-          netscanner
+          update-nix-fetchgit
+          updatecli
           usbutils
           usermount
           viddy
+          watchlog
+          wavemon
           wget
-          hueadm
           wget
           wmctrl
           wtf
+          zstd
         ])
         ++ (with pkgs.custom; [
           ssh-proxy-agent

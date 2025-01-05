@@ -216,8 +216,8 @@ in {
         # pkgs.wolfram-engine
         # spotify
         # angryipscanner
-        bottles
-        custom.qlogexplorer
+        # bottles
+        # custom.qlogexplorer
         devdocs-desktop
         # discordo
         dmidecode
@@ -234,8 +234,9 @@ in {
         xpipe
       ]
       ++ (with pkgs.custom; [
-        zerotier-ui
+        # zerotier-ui
         netbrowse
+        trayscale
         usbguard-gnome
         sysd-manager
       ]);
