@@ -26,7 +26,7 @@ in {
       ntopng.enable = true;
       steam.enable = true;
       # usbip.enable = true;
-      # home-assistant.enable = true;
+      hass.enable = true;
       # spotifyd.enable = true;
     };
 

@@ -315,7 +315,7 @@ in {
         useTmpfs = true;
       };
       binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxPackages_6_1;
+      kernelPackages = pkgs.linuxPackages_6_6;
       kernelParams = [
         "intel_iommu=on"
         "iommu=pt"
