@@ -24,73 +24,73 @@
       };
     };
     environment.pathsToLink = ["/libexec"];
-    systemd = {
-      services = {
-        # "cockpit-issue" = {
-        #   description = "Cockpit issue updater service";
+    # systemd = {
+    #   services = {
+    #     # "cockpit-issue" = {
+    #     #   description = "Cockpit issue updater service";
 
-        #   documentation = "man:cockpit-ws(8)";
-        #   wants = ["network-online.target"];
-        #   after = ["network-online.target" "cockpit.socket"];
+    #     #   documentation = "man:cockpit-ws(8)";
+    #     #   wants = ["network-online.target"];
+    #     #   after = ["network-online.target" "cockpit.socket"];
 
-        #   serviceConfig = {
-        #     Type = "oneshot";
-        #     ExecStart = "-@datadir@/@PACKAGE@/issue/update-issue";
-        #   };
-        # };
+    #     #   serviceConfig = {
+    #     #     Type = "oneshot";
+    #     #     ExecStart = "-@datadir@/@PACKAGE@/issue/update-issue";
+    #     #   };
+    #     # };
 
-        "cockpit-session@" = {
-          description = "Cockpit session %I";
+    #     "cockpit-session@" = {
+    #       description = "Cockpit session %I";
 
-          path = [
-            pkgs.coreutils
-            pkgs.cockpit
-          ];
+    #       path = [
+    #         pkgs.coreutils
+    #         pkgs.cockpit
+    #       ];
 
-          serviceConfig = {
-            ExecStart = "${pkgs.cockpit}/libexec/cockpit-session";
-            StandardInput = "socket";
-            StandardOutput = "inherit";
-            StandardError = "journal";
-            User = "root";
-            # bridge error, authentication failure, or timeout, that's not a problem with the unit
-            SuccessExitStatus = "1 5 127";
-          };
-        };
+    #       serviceConfig = {
+    #         ExecStart = "${pkgs.cockpit}/libexec/cockpit-session";
+    #         StandardInput = "socket";
+    #         StandardOutput = "inherit";
+    #         StandardError = "journal";
+    #         User = "root";
+    #         # bridge error, authentication failure, or timeout, that's not a problem with the unit
+    #         SuccessExitStatus = "1 5 127";
+    #       };
+    #     };
 
-        "cockpit-session-socket-user" = {
-          description = "Dynamic user for /run/cockpit/session socket";
-          bindsTo = ["cockpit-session.socket"];
+    #     "cockpit-session-socket-user" = {
+    #       description = "Dynamic user for /run/cockpit/session socket";
+    #       bindsTo = ["cockpit-session.socket"];
 
-          serviceConfig = {
-            DynamicUser = "yes";
-            User = "cockpit-session-socket";
-            Group = "cockpit-session-socket";
-            Type = "oneshot";
-            ExecStart = "${pkgs.coreutils}/bin/true";
-            RemainAfterExit = "yes";
-          };
-        };
-      };
+    #       serviceConfig = {
+    #         DynamicUser = "yes";
+    #         User = "cockpit-session-socket";
+    #         Group = "cockpit-session-socket";
+    #         Type = "oneshot";
+    #         ExecStart = "${pkgs.coreutils}/bin/true";
+    #         RemainAfterExit = "yes";
+    #       };
+    #     };
+    #   };
 
-      sockets = {
-        "cockpit-session" = {
-          description = "Initiator socket for Cockpit sessions";
-          partOf = ["cockpit.service"];
-          requires = ["cockpit-session-socket-user.service"];
-          after = ["cockpit-session-socket-user.service"];
+    #   sockets = {
+    #     "cockpit-session" = {
+    #       description = "Initiator socket for Cockpit sessions";
+    #       partOf = ["cockpit.service"];
+    #       requires = ["cockpit-session-socket-user.service"];
+    #       after = ["cockpit-session-socket-user.service"];
 
-          socketConfig = {
-            ListenStream = "/run/cockpit/session";
-            SocketUser = "root";
-            SocketGroup = "cockpit-session-socket";
-            SocketMode = "0660";
-            RemoveOnStop = "yes";
-            Accept = "yes";
-          };
-        };
-      };
-    };
+    #       socketConfig = {
+    #         ListenStream = "/run/cockpit/session";
+    #         SocketUser = "root";
+    #         SocketGroup = "cockpit-session-socket";
+    #         SocketMode = "0660";
+    #         RemoveOnStop = "yes";
+    #         Accept = "yes";
+    #       };
+    #     };
+    #   };
+    # };
 
     environment.systemPackages = with pkgs; [
       cockpit-podman

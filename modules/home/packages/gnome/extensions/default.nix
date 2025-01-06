@@ -53,7 +53,7 @@
         {package = arc-menu;}
         {package = blur-my-shell;}
         {package = extension-list;}
-        {package = hue-lights;}
+        # {package = hue-lights;}
         # {
         #   package =
         #     ip-finder;
