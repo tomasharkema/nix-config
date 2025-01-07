@@ -103,8 +103,14 @@ in {
     #     ++ lib.optional pkgs.stdenvNoCC.isx86_64 intel-compute-runtime;
     # };
 
+    services.gnome.evolution-data-server.enable = true;
+
     programs = {
-      evolution.enable = false;
+      evolution = {
+        enable = true;
+        plugins = [pkgs.evolution-ews];
+      };
+
       geary.enable = true;
     };
 

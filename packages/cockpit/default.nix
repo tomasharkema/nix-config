@@ -37,16 +37,17 @@
   xmlto,
   udisks2,
   btrfs-progs,
+  withOldBridge ? true,
 }:
 stdenv.mkDerivation rec {
   pname = "cockpit";
-  version = "330";
+  version = "331";
 
   src = fetchFromGitHub {
     owner = "cockpit-project";
     repo = "cockpit";
     rev = "refs/tags/${version}";
-    hash = "sha256-tPoFa9/22WUO+N3Pc/7jdWIOsoImeru6/F+2yUi92iI=";
+    hash = "sha256-G0L1ZcvjUCSNkDvYoyConymZ4bsEye03t5K15EyI008=";
     fetchSubmodules = true;
   };
 
@@ -142,16 +143,17 @@ stdenv.mkDerivation rec {
     echo "m4_define(VERSION_NUMBER, [${version}])" > version.m4
   '';
 
-  configureFlags = [
-    "--enable-prefix-only=yes"
-    "--enable-debug=yes"
-    "--disable-pcp" # TODO: figure out how to package its dependency
-    "--with-default-session-path=/run/wrappers/bin:/run/current-system/sw/bin"
-    "--with-admin-group=root" # TODO: really? Maybe "wheel"?
-    # "--enable-old-bridge=yes"
-    "--enable-multihost"
-    "--enable-cockpit-client"
-  ];
+  configureFlags =
+    [
+      "--enable-prefix-only=yes"
+      # "--enable-debug=no"
+      "--disable-pcp" # TODO: figure out how to package its dependency
+      "--with-default-session-path=/run/wrappers/bin:/run/current-system/sw/bin"
+      "--with-admin-group=root" # TODO: really? Maybe "wheel"?
+      # "--enable-multihost"
+      # "--enable-cockpit-client"
+    ]
+    ++ (lib.optional withOldBridge "--enable-old-bridge=yes");
 
   enableParallelBuilding = true;
 
@@ -162,12 +164,12 @@ stdenv.mkDerivation rec {
 
   postBuild = ''
     chmod +x \
-      src/systemd/update-motd \
+      src/systemd/update-issue \
       src/tls/cockpit-certificate-helper \
       src/ws/cockpit-desktop
 
     patchShebangs \
-      src/systemd/update-motd \
+      src/systemd/update-issue \
       src/tls/cockpit-certificate-helper \
       src/ws/cockpit-desktop
 
@@ -187,7 +189,7 @@ stdenv.mkDerivation rec {
     } \
       --run 'cd $(mktemp -d)'
 
-    wrapProgram $out/share/cockpit/motd/update-motd \
+    wrapProgram $out/share/cockpit/issue/update-issue \
       --prefix PATH : ${lib.makeBinPath [gnused]}
 
     wrapProgram $out/bin/cockpit-bridge \

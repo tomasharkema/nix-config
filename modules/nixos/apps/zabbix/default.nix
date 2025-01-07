@@ -10,7 +10,7 @@ in {
     server.enable = lib.mkEnableOption "zabbix server";
   };
 
-  config = {
+  config = lib.mkIf false {
     # networking = {
     #   useNetworkd = true;
     #   networkmanager.enable = lib.mkForce false;

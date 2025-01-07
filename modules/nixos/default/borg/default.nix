@@ -29,7 +29,7 @@
     then "/home/tomas/.ssh/id_ecdsa.tpm"
     else "/home/tomas/.ssh/id_ed25519";
 in {
-  config = {
+  config = lib.mkIf false {
     services.borgbackup = {
       # enable = true;
 

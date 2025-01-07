@@ -87,8 +87,8 @@ in {
 
       beesd.filesystems = {
         root = {
-          spec = "UUID=91663f26-5426-4a0d-96f0-e507f2cd8196";
-          hashTableSizeMB = 1024;
+          spec = "UUID=948d8479-177a-4204-a6a8-5d2013f3dc88";
+          hashTableSizeMB = 2048;
           verbosity = "crit";
           extraOptions = [
             "--loadavg-target"
@@ -221,6 +221,12 @@ in {
         };
       };
     };
+
+    # fileSystems."/etc" = {
+    #   device = "none";
+    #   fsType = "tmpfs";
+    #   options = ["defaults" "size=25%" "mode=755"];
+    # };
 
     hardware = {
       cpu.intel.updateMicrocode = true;

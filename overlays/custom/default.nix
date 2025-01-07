@@ -11,7 +11,7 @@
     in
       if (pkgVersion == version)
       then pkg
-      else (builtins.throw "nixpkgs' upstream for ${pkg.name} has been updated to ${pkgVersion}. (yours is at ${pkg.version} with snapshot ${version})")
+      else (builtins.throw "nixpkgs' upstream for ${name} has been updated to ${pkgVersion}. (yours is at ${pkg.version} with snapshot ${version})")
   );
 in rec {
   libcec = prev.libcec.override {withLibraspberrypi = true;};
@@ -39,7 +39,7 @@ in rec {
 
   udisks2 = prev.udisks2.overrideAttrs (old: {
     buildInputs = old.buildInputs ++ [prev.libiscsi prev.libconfig];
-    doCheck = false;
+    # doCheck = false;
     configureFlags =
       old.configureFlags
       ++ [
@@ -64,7 +64,7 @@ in rec {
   # });
   # ffmpeg = prev.ffmpeg.override {ffmpegVariant = "full";};
 
-  # cockpit = self.packages."${prev.system}".cockpit;
+  cockpit = overridePkgCheckVersionSnapshot "cockpit" "331" (self.packages."${prev.system}".cockpit);
   cockpit-podman = self.packages."${prev.system}".cockpit-podman;
   cockpit-tailscale = self.packages."${prev.system}".cockpit-tailscale;
   cockpit-machines = self.packages."${prev.system}".cockpit-machines;

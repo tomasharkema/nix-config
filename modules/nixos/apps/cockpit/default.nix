@@ -24,6 +24,12 @@
       };
     };
     environment.pathsToLink = ["/libexec"];
+
+    systemd = {
+      sockets.cockpit-session.wantedBy = ["multi-user.target"];
+      services.cockpit-session-socket-user.serviceConfig.ExecStart = "${pkgs.coreutils}/bin/true";
+    };
+
     # systemd = {
     #   services = {
     #     # "cockpit-issue" = {
