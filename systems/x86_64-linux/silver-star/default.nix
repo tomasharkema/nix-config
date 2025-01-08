@@ -138,6 +138,8 @@ in {
         kexecTime = "5m";
         rebootTime = "5m";
       };
+
+      services."docker-compose@atuin".wantedBy = ["multi-user.target"];
     };
 
     # services = {
