@@ -33,9 +33,6 @@
     # services.upower.enable = mkForce false;
 
     networking = {
-      hosts = {
-        "192.168.0.100" = ["nix-cache.harke.ma"];
-      };
       networkmanager.enable = true;
 
       hostName = "wodan";
@@ -94,11 +91,12 @@
           ];
         };
       };
-      ollama = {
-        enable = true;
-        acceleration = "cuda";
-        host = "0.0.0.0";
-      };
+
+      # ollama = {
+      #   enable = true;
+      #   acceleration = "cuda";
+      #   host = "0.0.0.0";
+      # };
       # open-webui = {
       #   enable = true;
       #   host = "0.0.0.0";
@@ -108,7 +106,7 @@
     apps = {
       steam = {
         enable = true;
-        sunshine = true;
+        # sunshine = true;
       };
       flatpak.enable = true;
     };

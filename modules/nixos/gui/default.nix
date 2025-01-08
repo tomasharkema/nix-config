@@ -23,7 +23,7 @@ in {
     apps.flatpak.enable = lib.mkDefault true;
 
     services = {
-      # ddccontrol.enable = true;
+      ddccontrol.enable = true;
       seatd.enable = true;
       printing.enable = true;
     };
