@@ -33,9 +33,6 @@
     # services.upower.enable = mkForce false;
 
     networking = {
-      hosts = {
-        "192.168.0.100" = ["nix-cache.harke.ma"];
-      };
       networkmanager.enable = true;
 
       hostName = "wodan";
@@ -82,7 +79,9 @@
       command-center = {
         #enableBot = true;
       };
+
       remote-builders.server.enable = true;
+
       beesd.filesystems = {
         root = {
           spec = "UUID=f3558990-77b0-4113-b45c-3d2da3f46c14";
@@ -94,11 +93,12 @@
           ];
         };
       };
-      ollama = {
-        enable = true;
-        acceleration = "cuda";
-        host = "0.0.0.0";
-      };
+
+      # ollama = {
+      #   enable = true;
+      #   acceleration = "cuda";
+      #   host = "0.0.0.0";
+      # };
       # open-webui = {
       #   enable = true;
       #   host = "0.0.0.0";
@@ -108,23 +108,23 @@
     apps = {
       steam = {
         enable = true;
-        sunshine = true;
+        # sunshine = true;
       };
       flatpak.enable = true;
     };
 
-    virtualisation.kvmgt = {
-      enable = true;
-      device = "0000:01:00.0";
-      vgpus = {
-        "nvidia-257" = {
-          uuid = [
-            "c7f90d47-b9b5-497c-b775-d64787e730fb"
-            "48644214-af2f-47fb-a924-e51cc8bc1761"
-          ];
-        };
-      };
-    };
+    # virtualisation.kvmgt = {
+    #   enable = true;
+    #   device = "0000:01:00.0";
+    #   vgpus = {
+    #     "nvidia-257" = {
+    #       uuid = [
+    #         "c7f90d47-b9b5-497c-b775-d64787e730fb"
+    #         "48644214-af2f-47fb-a924-e51cc8bc1761"
+    #       ];
+    #     };
+    #   };
+    # };
 
     services = {
       hypervisor = {
@@ -159,18 +159,18 @@
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
         # open = true;
-        nvidiaSettings = lib.mkForce false;
-        package = config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
+        # nvidiaSettings = lib.mkForce false;
+        # package = config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
 
-        vgpu.patcher = {
-          enable = true;
-          options.doNotForceGPLLicense = false;
-          copyVGPUProfiles = {
-            # RTX2080     Quadro RTX 4000
-            "1E87:0000" = "1E30:12BA";
-          };
-          enablePatcherCmd = true;
-        };
+        # vgpu.patcher = {
+        #   enable = true;
+        #   options.doNotForceGPLLicense = false;
+        #   copyVGPUProfiles = {
+        #     # RTX2080     Quadro RTX 4000
+        #     "1E87:0000" = "1E30:12BA";
+        #   };
+        #   enablePatcherCmd = true;
+        # };
       };
     };
 
@@ -183,10 +183,10 @@
         nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
-        # nvidia = {
-        #   enable = true;
-        #   open = true;
-        # };
+        nvidia = {
+          enable = true;
+          open = true;
+        };
         sgx.enable = true;
         remote-unlock.enable = true;
         monitor.enable = true;
@@ -227,7 +227,7 @@
       binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = ["ntfs"];
 
-      kernelPackages = pkgs.linuxPackages_6_6;
+      # kernelPackages = pkgs.linuxPackages_6_6;
 
       kernelModules = [
         "i2c-dev"
@@ -255,7 +255,7 @@
       kernelParams = [
         "intel_iommu=on"
         "iommu=pt"
-        # "iomem=relaxed"
+        "iomem=relaxed"
         # "drm.edid_firmware=HDMI-A-1:edid/samsung-q800t-hdmi2.1"
         # "video=HDMI-A-1:e"
       ];

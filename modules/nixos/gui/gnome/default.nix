@@ -174,7 +174,7 @@ in
               libusb1
               gnome-menus
               # pkgs.custom.openglide
-              # ddcutil
+              ddcutil
             ];
           };
 
