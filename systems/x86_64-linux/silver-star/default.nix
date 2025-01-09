@@ -139,7 +139,7 @@ in {
         rebootTime = "5m";
       };
 
-      services."docker-compose@atuin".wantedBy = ["multi-user.target"];
+      # services."docker-compose@atuin".wantedBy = ["multi-user.target"];
     };
 
     # services = {
@@ -213,6 +213,7 @@ in {
 
     virtualisation.kvmgt = {
       enable = true;
+
       device = "0000:42:00.0";
       vgpus = {
         "nvidia-36" = {
@@ -249,7 +250,7 @@ in {
           enable = true;
           options.doNotForceGPLLicense = false;
           copyVGPUProfiles = {
-            "1c82:0000" = "13BD:1160";
+            "1380:0000" = "13BD:1160";
           };
           enablePatcherCmd = true;
         };
@@ -413,22 +414,22 @@ in {
         # "nvidia_drm"
       ];
 
-      systemd.services."serial-getty@ttyS2" = {
-        #   overrideStrategy = "asDropin";
-        #   serviceConfig = let
-        #     tmux = pkgs.writeShellScript "tmux.sh" ''
-        #       ${pkgs.tmux}/bin/tmux kill-session -t start 2> /dev/null
-        #       ${pkgs.tmux}/bin/tmux new-session -s start
-        #     '';
-        #   in {
-        #     TTYVTDisallocate = "no";
-        #     #ExecStart = ["" "-${tmux}"];
-        #     #StandardInput = "tty";
-        #     #StandardOutput = "tty";
-        #   };
-        wantedBy = ["multi-user.target"];
-        #   #environment.TERM = "vt102";
-      };
+      # systemd.services."serial-getty@ttyS2" = {
+      #   overrideStrategy = "asDropin";
+      #   serviceConfig = let
+      #     tmux = pkgs.writeShellScript "tmux.sh" ''
+      #       ${pkgs.tmux}/bin/tmux kill-session -t start 2> /dev/null
+      #       ${pkgs.tmux}/bin/tmux new-session -s start
+      #     '';
+      #   in {
+      #     TTYVTDisallocate = "no";
+      #     #ExecStart = ["" "-${tmux}"];
+      #     #StandardInput = "tty";
+      #     #StandardOutput = "tty";
+      #   };
+      # wantedBy = ["multi-user.target"];
+      #   #environment.TERM = "vt102";
+      # };
     };
   };
 }

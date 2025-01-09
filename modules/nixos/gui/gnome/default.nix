@@ -81,7 +81,6 @@ in
                   "rt-scheduler"
                   "xwayland-native-scaling"
                   "kms-modifiers"
-                  "autoclose-xwayland"
                 ];
                 edge-tiling = true;
               };

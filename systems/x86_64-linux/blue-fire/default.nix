@@ -350,13 +350,13 @@ in {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
 
-        package = config.boot.kernelPackages.nvidiaPackages.vgpu_16_5;
+        package = pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.vgpu_16_2);
 
         vgpu.patcher = {
           enable = true;
           options.doNotForceGPLLicense = false;
           copyVGPUProfiles = {
-            "1380:0000" = "13BD:1160";
+            "1c82:0000" = "13BD:1160";
           };
           enablePatcherCmd = true;
         };
@@ -407,7 +407,9 @@ in {
         # "pci=nomsi"
       ];
       blacklistedKernelModules = ["nouveau"];
-
+      extraModulePackages = [
+        config.boot.kernelPackages.intel-speed-select
+      ];
       binfmt.emulatedSystems = ["aarch64-linux"];
       recovery = {
         sign = true;
