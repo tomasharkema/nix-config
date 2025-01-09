@@ -152,11 +152,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1736112920,
-        "narHash": "sha256-MME0HoMWJtk67vW4lop1eTK4//EXJB/hefo6+JbdHZs=",
+        "lastModified": 1736452638,
+        "narHash": "sha256-2l8AY9EhgZjQshEHaZm8BlY9jwe8y3/kkEI4wOx6Jew=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "aa7b9944e164d9284939b78d05b8cf8df319a5d5",
+        "rev": "5ec9d57626fdf2f18c87550b4797a049b49bedff",
         "type": "github"
       },
       "original": {
@@ -2645,11 +2645,11 @@
       },
       "locked": {
         "dir": "packaging/nix",
-        "lastModified": 1736404334,
-        "narHash": "sha256-pYL3eOb6e4rN4HImu14YEqseQbePESdUHzXPcoyKkeo=",
+        "lastModified": 1736449219,
+        "narHash": "sha256-ka8Lmw08Wyq5FrrQetIQI5gGyf6RAbtWQ4f+dlZlz6U=",
         "ref": "refs/heads/main",
-        "rev": "75f5c5fdf0ad806d7676ba4dcb07332cfad71fdf",
-        "revCount": 892,
+        "rev": "fd661977850e02fa356df4324c86c73b29c2621a",
+        "revCount": 893,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging/nix"

@@ -14,6 +14,33 @@
     echo "pv $1 $2"
     pv $1 -cN in -B 500M -pterbT | zstd -d - | pv -cN out -B 500M -pterbT > $2
   '';
+
+  unifi-print = pkgs.writeShellScriptBin "unifi-print" ''
+    set -x
+    set -e
+
+    UNIFI_TOKEN="$(op item get unifi-token --reveal --field credential)"
+
+    unifi_request() {
+      curl -k -X GET "https://192.168.1.1/proxy/network/integrations$1" \
+        -H "X-API-KEY: $UNIFI_TOKEN" \
+        -H 'Accept: application/json'
+    }
+
+    sites() {
+      unifi_request "/v1/sites"
+    }
+
+    devices() {
+      unifi_request "/v1/sites/$1/devices"
+    }
+
+    SITES="$(sites | jq -r '.data.[].id')"
+
+    devices "$SITES" | jqp
+
+  '';
+
   # deployment = pkgs.writeShellScriptBin "deployment" ''
   #   ${pkgs.deploy-rs}/bin/deploy --skip-checks --targets $@ -- --log-format internal-json -v |& ${pkgs.nix-output-monitor}/bin/nom --json
   # '';
@@ -240,6 +267,7 @@ in {
     # cntr
     flake-checker
     autoflake
+    unifi-print
     nix-init
     # nix-serve
     # nixci
