@@ -427,9 +427,10 @@
       "https://nyx.chaotic.cx/"
       "https://nix-gaming.cachix.org"
       "https://nix-community.cachix.org"
-      # "https://nix-cache.harke.ma/tomas/"
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
+      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
+      "http://dione.mastodon-mizar.ts.net:7123/tomasharkema"
     ];
 
     extra-substituters = [
@@ -437,12 +438,13 @@
       "https://nyx.chaotic.cx/"
       "https://nix-gaming.cachix.org"
       "https://nix-community.cachix.org"
-      # "https://nix-cache.harke.ma/tomas/"
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
       "https://tomasharkema.cachix.org"
-      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema/"
+      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
+      "http://dione.mastodon-mizar.ts.net:7123/tomasharkema"
     ];
+
     extra-trusted-public-keys = [
       "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
       "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
@@ -453,6 +455,7 @@
       "tomas:hER/5A08v05jH8GnQUZRrh33+HDNbeiJj8z/8JY6ZvI="
       "tomasharkema.cachix.org-1:BV3Sv3qGZ0bcybPFeigwKoxnpj/NBAFYHq9FMO1XgH4="
       "tomasharkema:v3sMQpfpSW5KGDK115NB2pQLNzmS2qqjVGa39/fYPjk="
+      "tomasharkema:O7hvvAIoFVjO5giONleXcRE1Og7IDt2DdvAQRg4GCkI="
     ];
 
     # allowed-uris = [

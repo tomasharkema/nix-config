@@ -37,7 +37,7 @@
   xmlto,
   udisks2,
   btrfs-progs,
-  withOldBridge ? true,
+  withOldBridge ? false,
 }:
 stdenv.mkDerivation rec {
   pname = "cockpit";
@@ -150,7 +150,7 @@ stdenv.mkDerivation rec {
       "--disable-pcp" # TODO: figure out how to package its dependency
       "--with-default-session-path=/run/wrappers/bin:/run/current-system/sw/bin"
       "--with-admin-group=root" # TODO: really? Maybe "wheel"?
-      # "--enable-multihost"
+      "--enable-multihost"
       # "--enable-cockpit-client"
     ]
     ++ (lib.optional withOldBridge "--enable-old-bridge=yes");
@@ -200,6 +200,12 @@ stdenv.mkDerivation rec {
 
     substituteInPlace $out/share/polkit-1/actions/org.cockpit-project.cockpit-bridge.policy \
       --replace-fail /usr $out
+
+    substituteInPlace $out/lib/systemd/system/cockpit-wsinstance-socket-user.service \
+      --replace-fail "/bin/true" "${coreutils}/bin/true"
+
+    substituteInPlace $out/lib/systemd/system/cockpit-session-socket-user.service \
+      --replace-fail "/bin/true" "${coreutils}/bin/true"
 
     for file in $out/share/cockpit/*/manifest.json; do
       substituteInPlace $file \

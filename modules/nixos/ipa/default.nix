@@ -197,6 +197,8 @@ in {
 
     system.nssDatabases.sudoers = ["sss"];
 
+    networking.domain = "harkema.io";
+
     security = {
       ipa = {
         enable = true;

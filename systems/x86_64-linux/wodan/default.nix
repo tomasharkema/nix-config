@@ -22,6 +22,7 @@
       ntfs2btrfs
       glxinfo
       apfsprogs
+      cifs-utils
     ];
 
     time = {
@@ -40,18 +41,41 @@
       firewall = {
         enable = true;
       };
-      useDHCP = lib.mkDefault false;
+
+      useDHCP = lib.mkDefault true;
+
+      dhcpcd = {
+        persistent = true;
+      };
+
+      defaultGateway = {
+        address = "192.168.1.1";
+        interface = "enp2s0";
+      };
 
       interfaces = {
         "enp2s0" = {
           mtu = 9000;
           wakeOnLan.enable = true;
+          ipv4.addresses = [
+            {
+              address = "192.168.1.170";
+              prefixLength = 24;
+            }
+          ];
         };
         "eno1" = {
           mtu = 9000;
           wakeOnLan.enable = true;
         };
       };
+      # dhcpcd.extraConfig = ''
+      #   interface enp2s0
+      #   metric 100
+
+      #   interface eno1
+      #   metric 1000
+      # '';
     };
 
     gui = {
@@ -66,10 +90,16 @@
         hidpi.enable = true;
       };
     };
-    # fileSystems."/mnt/media" = {
-    #   device = "192.168.0.11:/export/media";
-    #   fsType = "nfs";
-    # };
+
+    fileSystems."/mnt/dione-downloads" = {
+      device = "//192.168.1.102/downloads";
+      fsType = "cifs";
+      options = let
+        # this line prevents hanging on network split
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+      in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
+    };
+
     services = {
       # kmscon.enable = lib.mkForce false;
       hardware = {
@@ -133,9 +163,10 @@
       };
       xserver.videoDrivers = ["nvidia"];
     };
-    programs.mdevctl.enable = true;
 
-    # console.earlySetup = true;
+    # programs.mdevctl.enable = true;
+
+    console.earlySetup = true;
 
     hardware = {
       # firmware = let
@@ -158,7 +189,7 @@
       nvidia = {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
-        # open = true;
+        open = true;
         # nvidiaSettings = lib.mkForce false;
         # package = config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
 
@@ -243,9 +274,9 @@
         kernelModules = [
           # "ixgbe"
           # "btusb"
-          "vfio_pci"
-          "vfio"
-          "vfio_iommu_type1"
+          # "vfio_pci"
+          # "vfio"
+          # "vfio_iommu_type1"
 
           "kvm-intel"
         ];
@@ -253,8 +284,8 @@
 
       # KMS will load the module, regardless of blacklisting
       kernelParams = [
-        "intel_iommu=on"
-        "iommu=pt"
+        # "intel_iommu=on"
+        # "iommu=pt"
         "iomem=relaxed"
         # "drm.edid_firmware=HDMI-A-1:edid/samsung-q800t-hdmi2.1"
         # "video=HDMI-A-1:e"

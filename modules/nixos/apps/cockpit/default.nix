@@ -18,17 +18,16 @@
             Origins = "https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost} http://localhost:9090 ws://localhost:9090";
             ProtocolHeader = "X-Forwarded-Proto";
             UrlRoot = "/cockpit";
-            ClientCertAuthentication = true;
+            # ClientCertAuthentication = true;
           }
-          else {ClientCertAuthentication = true;};
+          else {
+            # ClientCertAuthentication = true;
+            # AllowUnencrypted = false;
+          };
       };
     };
-    environment.pathsToLink = ["/libexec"];
 
-    systemd = {
-      sockets.cockpit-session.wantedBy = ["multi-user.target"];
-      services.cockpit-session-socket-user.serviceConfig.ExecStart = "${pkgs.coreutils}/bin/true";
-    };
+    environment.pathsToLink = ["/libexec"];
 
     # systemd = {
     #   services = {
@@ -46,6 +45,7 @@
     #     # };
 
     #     "cockpit-session@" = {
+    #       overrideStrategy = "asDropin";
     #       description = "Cockpit session %I";
 
     #       path = [
@@ -110,6 +110,7 @@
     # services.multipath = {
     #   enable = true;
     # };
+    systemd.sockets."cockpit-session".wantedBy = ["multi-user.target"];
 
     proxy-services.services = {
       "/" = {
@@ -136,25 +137,25 @@
       };
     };
 
-    # systemd.services.cockpit-tailscale-cert = {
-    #   enable = true;
-    #   description = "cockpit-tailscale-cert";
-    #   unitConfig = {
-    #     Type = "oneshot";
-    #     RemainAfterExit = "yes";
-    #     StartLimitIntervalSec = 500;
-    #     StartLimitBurst = 5;
-    #   };
-    #   script = ''
-    #     ${lib.getExe pkgs.tailscale} cert \
-    #       --cert-file /etc/cockpit/ws-certs.d/${config.proxy-services.vhost}.cert \
-    #       --key-file /etc/cockpit/ws-certs.d/${config.proxy-services.vhost}.key \
-    #       ${config.proxy-services.vhost}
-    #   '';
-    #   wantedBy = ["multi-user.target" "network.target"];
-    #   after = ["tailscaled.service"];
-    #   wants = ["tailscaled.service"];
-    # };
+    systemd.services.cockpit-tailscale-cert = {
+      enable = true;
+      description = "cockpit-tailscale-cert";
+      unitConfig = {
+        Type = "oneshot";
+        RemainAfterExit = "yes";
+        StartLimitIntervalSec = 500;
+        StartLimitBurst = 5;
+      };
+      script = ''
+        ${lib.getExe pkgs.tailscale} cert \
+          --cert-file /etc/cockpit/ws-certs.d/${config.proxy-services.vhost}.cert \
+          --key-file /etc/cockpit/ws-certs.d/${config.proxy-services.vhost}.key \
+          ${config.proxy-services.vhost}
+      '';
+      wantedBy = ["multi-user.target" "network.target"];
+      after = ["tailscaled.service"];
+      wants = ["tailscaled.service"];
+    };
 
     # environment.etc = {
     #   "pam.d/cockpit".text = lib.mkForce ''

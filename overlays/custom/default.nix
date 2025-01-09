@@ -65,6 +65,7 @@ in rec {
   # ffmpeg = prev.ffmpeg.override {ffmpegVariant = "full";};
 
   cockpit = overridePkgCheckVersionSnapshot "cockpit" "331" (self.packages."${prev.system}".cockpit);
+
   cockpit-podman = self.packages."${prev.system}".cockpit-podman;
   cockpit-tailscale = self.packages."${prev.system}".cockpit-tailscale;
   cockpit-machines = self.packages."${prev.system}".cockpit-machines;
