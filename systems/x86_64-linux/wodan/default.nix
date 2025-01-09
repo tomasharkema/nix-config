@@ -22,6 +22,7 @@
       ntfs2btrfs
       glxinfo
       apfsprogs
+      cifs-utils
     ];
 
     time = {
@@ -66,10 +67,16 @@
         hidpi.enable = true;
       };
     };
-    # fileSystems."/mnt/media" = {
-    #   device = "192.168.0.11:/export/media";
-    #   fsType = "nfs";
-    # };
+
+    fileSystems."/mnt/dione-downloads" = {
+      device = "//192.168.1.102/downloads";
+      fsType = "cifs";
+      options = let
+        # this line prevents hanging on network split
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+      in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
+    };
+
     services = {
       # kmscon.enable = lib.mkForce false;
       hardware = {
