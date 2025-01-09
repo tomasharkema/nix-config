@@ -64,7 +64,7 @@ in rec {
   # });
   # ffmpeg = prev.ffmpeg.override {ffmpegVariant = "full";};
 
-  # cockpit = self.packages."${prev.system}".cockpit;
+  cockpit = self.packages."${prev.system}".cockpit;
   cockpit-podman = self.packages."${prev.system}".cockpit-podman;
   cockpit-tailscale = self.packages."${prev.system}".cockpit-tailscale;
   cockpit-machines = self.packages."${prev.system}".cockpit-machines;

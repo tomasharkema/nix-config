@@ -144,7 +144,7 @@ stdenv.mkDerivation rec {
 
   configureFlags = [
     "--enable-prefix-only=yes"
-    "--enable-debug=yes"
+    # "--enable-debug=yes"
     "--disable-pcp" # TODO: figure out how to package its dependency
     "--with-default-session-path=/run/wrappers/bin:/run/current-system/sw/bin"
     "--with-admin-group=root" # TODO: really? Maybe "wheel"?
@@ -198,6 +198,12 @@ stdenv.mkDerivation rec {
 
     substituteInPlace $out/share/polkit-1/actions/org.cockpit-project.cockpit-bridge.policy \
       --replace-fail /usr $out
+
+    substituteInPlace $out/lib/systemd/system/cockpit-wsinstance-socket-user.service \
+      --replace-fail "/bin/true" "${coreutils}/bin/true"
+
+    substituteInPlace $out/lib/systemd/system/cockpit-session-socket-user.service \
+      --replace-fail "/bin/true" "${coreutils}/bin/true"
 
     for file in $out/share/cockpit/*/manifest.json; do
       substituteInPlace $file \

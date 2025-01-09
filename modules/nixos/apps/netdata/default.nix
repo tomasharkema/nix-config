@@ -8,7 +8,7 @@
   cfgServer = cfg.server;
 
   guid = "059640A0-AB30-4DA2-AE4D-1AE21B5CF71D";
-  server = "hsilver-star.ling-lizard.ts.net:19999";
+  server = "silver-star.ling-lizard.ts.net:19999";
 in {
   options.apps.netdata = {
     enable =
@@ -84,8 +84,8 @@ in {
           # Allow only localhost connections
           "allow connections from" = "localhost 100.* *.ling-lizard.ts.net";
 
-          "ssl key" = config.proxy-services.crt.key;
-          "ssl certificate" = config.proxy-services.crt.crt;
+          # "ssl key" = config.proxy-services.crt.key;
+          # "ssl certificate" = config.proxy-services.crt.crt;
         };
       };
 

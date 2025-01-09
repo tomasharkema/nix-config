@@ -6,8 +6,8 @@
 }: let
   cfg = config.proxy-services;
 
-  certPath = "${cfg.crt.crt}";
-  keyPath = "${cfg.crt.key}";
+  certPath = cfg.crt.crt;
+  keyPath = cfg.crt.key;
 in {
   options.proxy-services = {
     enable = lib.mkEnableOption "enable nginx";
@@ -27,13 +27,13 @@ in {
     crt = {
       key = lib.mkOption {
         type = lib.types.str;
-        default = "/etc/nginx/ssl/tailscale.key";
+        default = "/etc/nginx/ssl/${cfg.vhost}.key";
         description = "vhost";
       };
 
       crt = lib.mkOption {
         type = lib.types.str;
-        default = "/etc/nginx/ssl/tailscale.crt";
+        default = "/etc/nginx/ssl/${cfg.vhost}.crt";
         description = "vhost";
       };
     };
@@ -54,8 +54,8 @@ in {
       virtualHosts."${cfg.vhost}" = {
         forceSSL = true;
 
-        sslCertificate = "${certPath}";
-        sslCertificateKey = "${keyPath}";
+        sslCertificate = certPath;
+        sslCertificateKey = keyPath;
 
         locations =
           {
@@ -73,26 +73,23 @@ in {
       };
     };
 
-    users.groups = {
-      "ssl-cert" = {members = ["root" "tomas" "nginx" "tailscale"];};
-    };
+    # users.groups = {
+    #   "ssl-cert" = {members = ["root" "tomas" "nginx" "tailscale"];};
+    # };
 
     networking.firewall.allowedTCPPorts = [80 443];
 
     systemd = {
-      #tmpfiles.rules = [
-      #  "d '${cfg.cert.dir}' 0660 root ssl-cert -"
-      #  "Z '${cfg.cert.dir}' 0660 root ssl-cert"
-      #  "f '${keyPath}' 0640 root ssl-cert - -"
-      #  "f '${certPath}' 0660 root ssl-cert - -"
-      #];
+      timers.tailscale-cert = {
+        description = "Renew Tailscale cert";
 
-      #paths.tailscale-cert-location = {
-      #  description = "tailscale-cert";
-      #  wantedBy = []; # ["multi-user.target"];
-      #  # This file must be copied last
-      #  pathConfig.PathExists = [certPath keyPath];
-      #};
+        timerConfig = {
+          OnCalendar = "monthly";
+          Unit = "%i.service";
+          Persistent = true;
+        };
+        wantedBy = ["timers.target"];
+      };
 
       services.tailscale-cert = let
         tailscale = lib.getExe pkgs.tailscale;
@@ -103,28 +100,13 @@ in {
         serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = true;
+          WorkingDirectory = "/etc/nginx/ssl";
         };
-        # script = ''
-        # mkdir "${cfg.cert.dir}" || true
+
         script = ''
-          cert_dir="$(dirname "${certPath}")"
-          key_dir="$(dirname "${keyPath}")"
-
-          mkdir -p "$cert_dir" || true
-          mkdir -p "$key_dir" || true
-
-          ${tailscale} cert --cert-file "${certPath}" --key-file "${keyPath}" "${cfg.vhost}"
+          ${tailscale} cert "${cfg.vhost}"
+          chown nginx:nginx *
         '';
-        #chmod 664 -R "${cfg.cert.dir}"
-        #chown nginx:ssl-cert -R "${cfg.cert.dir}"
-
-        # mkdir -p /etc/nginx/ssl/
-        # cp -r "${cfg.cert.dir}" /etc/nginx/ssl/
-        # chown nginx:nginx -R /etc/nginx/ssl/
-        # '';
-        # mkdir -p "${cfg.dir}"
-        # chown root:ssl-cert -R "${cfg.dir}"
-        # chmod 660 -R "${cfg.dir}"
 
         wantedBy = ["multi-user.target" "tailscaled.service" "network.target"];
         after = ["multi-user.target" "tailscaled.service" "network.target"];

@@ -24,7 +24,7 @@ in {
     };
 
     networking = {
-      useDHCP = false;
+      # useDHCP = false;
 
       # iptables.enable = true;
 
