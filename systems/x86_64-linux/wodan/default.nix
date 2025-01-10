@@ -48,19 +48,26 @@
         "enp2s0" = {
           mtu = 9000;
           wakeOnLan.enable = true;
+          ipv4.addresses = [
+            {
+              address = "192.168.1.170";
+              prefixLength = 24;
+            }
+          ];
         };
         "eno1" = {
           mtu = 9000;
           wakeOnLan.enable = true;
         };
       };
-      # dhcpcd.extraConfig = ''
-      #   interface enp2s0
-      #   metric 100
 
-      #   interface eno1
-      #   metric 1000
-      # '';
+      dhcpcd.extraConfig = ''
+        interface enp2s0
+        metric 100
+
+        interface eno1
+        metric 1000
+      '';
     };
 
     gui = {
@@ -88,7 +95,10 @@
     services = {
       # kmscon.enable = lib.mkForce false;
       hardware = {
-        openrgb.enable = true;
+        openrgb = {
+          enable = true;
+        };
+
         bolt.enable = true;
       };
       command-center = {
