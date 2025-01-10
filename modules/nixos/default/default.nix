@@ -272,6 +272,7 @@
           tiptop
           tpm-tools
           treecat
+          networkmanagerapplet
           ttmkfdir
           tydra
           update-nix-fetchgit
