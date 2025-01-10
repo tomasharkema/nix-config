@@ -123,7 +123,7 @@
           enable = true;
           open = false;
         };
-        sgx.enable = true;
+        # sgx.enable = true;
         # remote-unlock.enable = true;
         bluetooth.enable = true;
         monitor.enable = true;
