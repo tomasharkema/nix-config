@@ -7,7 +7,7 @@
 }: let
   enable = inputs.self ? shortRev;
 in {
-  config = {
+  config = lib.mkIf false {
     warnings = lib.optional (!enable) "comin turned off!";
 
     services.comin = {

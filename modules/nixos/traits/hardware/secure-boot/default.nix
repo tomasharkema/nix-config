@@ -15,7 +15,7 @@ in {
     boot = {
       lanzaboote = {
         enable = true;
-        enrollKeys = true;
+        # enrollKeys = true;
         pkiBundle = "/var/lib/sbctl";
 
         configurationLimit = 10;

@@ -20,6 +20,10 @@ in {
       # jitterentropy-rngd.enable = true;
     };
 
+    programs.ssh.extraConfig = ''
+      PKCS11Provider /run/current-system/sw/lib/libtpm2_pkcs11.so
+    '';
+
     security.tpm2 = {
       enable = true;
 
@@ -48,9 +52,11 @@ in {
       #   tpm-luks
       # tpm-tools
       #   # tpm2-abrmd
-      # tpm2-pkcs11
+      tpm2-pkcs11
+      tpm2-openssl
       tpm2-tools
-      #   # tpm2-totp
+      tpm-fido
+      tpm2-totp
       #   # tpm2-tss
       tpmmanager
     ];

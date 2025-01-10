@@ -13,7 +13,7 @@ in {
     enable = lib.mkEnableOption "local-store";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     services = {
       nix-serve = {
         enable = true;
