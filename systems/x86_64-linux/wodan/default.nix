@@ -44,25 +44,10 @@
 
       useDHCP = lib.mkDefault true;
 
-      dhcpcd = {
-        persistent = true;
-      };
-
-      defaultGateway = {
-        address = "192.168.1.1";
-        interface = "enp2s0";
-      };
-
       interfaces = {
         "enp2s0" = {
           mtu = 9000;
           wakeOnLan.enable = true;
-          ipv4.addresses = [
-            {
-              address = "192.168.1.170";
-              prefixLength = 24;
-            }
-          ];
         };
         "eno1" = {
           mtu = 9000;
