@@ -9,13 +9,9 @@
 }: let
   self = inputs.self;
 in {
-  imports = with inputs; [
-    # (modulesPath + "/installer/scan/not-detected.nix")
-    nixos-hardware.nixosModules.common-cpu-intel
-    nixos-hardware.nixosModules.common-pc-ssd
-  ];
-
   config = {
+    facter.reportPath = ./facter.json;
+
     age.rekey = {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIseppvkEAzMD/B2xLqijr4UhTig0bZfqnXS6NcaAHxR root@nixos";
     };
@@ -24,7 +20,7 @@ in {
 
     apps = {
       ntopng.enable = true;
-      steam.enable = true;
+      # steam.enable = true;
       # usbip.enable = true;
       hass.enable = true;
       # spotifyd.enable = true;
@@ -90,10 +86,10 @@ in {
     # };
 
     gui = {
-      enable = true;
+      # enable = true;
       desktop = {
-        enable = true;
-        rdp.enable = true;
+        # enable = true;
+        # rdp.enable = true;
       };
       quiet-boot.enable = true;
       # gamemode.enable = true;
@@ -124,14 +120,25 @@ in {
 
     networking = {
       hostName = "enceladus";
+
       firewall = {
         enable = true;
       };
-      enableIPv6 = false;
-      # useDHCP = lib.mkDefault false;
-      interfaces."enp1s0" = {
-        useDHCP = lib.mkDefault true;
-        wakeOnLan.enable = true;
+
+      interfaces = {
+        "enp1s0" = {
+          useDHCP = lib.mkDefault true;
+          wakeOnLan.enable = true;
+        };
+        "vlan800" = {
+          useDHCP = lib.mkDefault true;
+          wakeOnLan.enable = true;
+        };
+      };
+
+      vlans."vlan800" = {
+        id = 800;
+        interface = "enp1s0";
       };
     };
 

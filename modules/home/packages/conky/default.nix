@@ -7,7 +7,7 @@
   ...
 }: let
   conkyConfig = builtins.readFile ./conky.lua;
-  linux = lib.optional (pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
+  linux = lib.optional (false && pkgs.stdenv.isLinux && osConfig.gui.enable && osConfig.gui.gnome.enable) {
     services.conky = {
       enable = true;
       extraConfig = conkyConfig;
