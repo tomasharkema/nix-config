@@ -96,10 +96,11 @@
       age-plugin-yubikey
       libfido2
       yubico-piv-tool
-      # yubioath-flutter
+      yubikey-manager
+      yubioath-flutter
       # yubikey-agent
       # yubikey-manager
-      # yubikey-manager-qt
+      yubikey-manager-qt
       yubikey-personalization
       yubikey-personalization-gui
       # opensc

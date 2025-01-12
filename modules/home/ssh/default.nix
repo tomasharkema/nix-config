@@ -48,8 +48,8 @@
           };
         };
 
-        "ipa.harkema.io" = {
-          hostname = "ipa.harkema.io";
+        "ipa.ling-lizard.ts.net" = {
+          hostname = "ipa.ling-lizard.ts.net";
           user = "root";
           extraOptions = {
             "IdentityAgent" = onePasswordSocket;
