@@ -55,7 +55,7 @@ in {
 
     services = {
       trayscale.enable = true;
-      trayer = true;
+      # trayer = true;
       gnome-keyring = {
         components = ["secrets"];
         enable = true;
