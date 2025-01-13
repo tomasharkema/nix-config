@@ -210,7 +210,6 @@
           '';
           plugins =
             [
-              # "you-should-use"
               "1password"
               "autojump"
               "aws"
@@ -222,7 +221,6 @@
               "copyfile"
               "copypath"
               "cp"
-              # "direnv"
               "dirhistory"
               "dirpersist"
               "dotnet"
@@ -262,8 +260,8 @@
               "tailscale"
               "thefuck"
               "tig"
-              "tmux"
               "tldr"
+              "tmux"
               "torrent"
               "transfer"
               "universalarchive"
@@ -279,8 +277,10 @@
               "zoxide"
               "zsh-interactive-cd"
               "zsh-navigation-tools"
+              # "direnv"
               # "docker"
               # "iterm-tab-color"
+              # "you-should-use"
             ]
             ++ (lib.optionals pkgs.stdenv.isDarwin [
               "brew"

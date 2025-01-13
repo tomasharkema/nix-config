@@ -188,7 +188,6 @@ in {
         sublime-merge
         sublime4
         transmission-remote-gtk
-        trayscale
         tremotesf
         ulauncher
         usbview
@@ -242,7 +241,6 @@ in {
       ++ (with pkgs.custom; [
         # zerotier-ui
         netbrowse
-        trayscale
         usbguard-gnome
         sysd-manager
       ]);

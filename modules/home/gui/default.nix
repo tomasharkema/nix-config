@@ -43,6 +43,7 @@
 in {
   config = lib.mkIf (stdenv.isLinux && osConfig.gui.enable) {
     gtk.gtk3.bookmarks = [
+      "file:///home/tomas/Downloads"
       "file:///home/tomas/Dropbox"
       "file:///home/tomas/Developer"
       "file:///home/tomas/Developer/nix-config"
@@ -52,14 +53,18 @@ in {
       "file:///run/user/1000/kbfs"
     ];
 
-    services.gnome-keyring = {
-      components = ["secrets"];
-      enable = true;
+    services = {
+      trayscale.enable = true;
+      trayer = true;
+      gnome-keyring = {
+        components = ["secrets"];
+        enable = true;
+      };
     };
 
     autostart.programs = [
       {package = pkgs.telegram-desktop;}
-      {package = pkgs.trayscale;}
+      # {package = pkgs.trayscale;}
       # {package = pkgs.zerotier-ui;}
       {
         desktopName = "org.gnome.usbguard.desktop";
@@ -99,7 +104,6 @@ in {
 
     home = {
       packages = with pkgs; [
-        # trayscale
         # custom.zerotier-ui
         notify-client
       ];

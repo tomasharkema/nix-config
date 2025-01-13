@@ -133,9 +133,10 @@
     apps = {
       steam = {
         enable = true;
-        # sunshine = true;
+        sunshine = true;
       };
       flatpak.enable = true;
+      podman.enable = true;
     };
 
     # virtualisation.kvmgt = {
@@ -177,8 +178,6 @@
         # package = config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
       };
     };
-
-    apps.podman.enable = true;
 
     traits = {
       server.enable = true;
