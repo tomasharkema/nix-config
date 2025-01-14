@@ -353,14 +353,13 @@ in {
 
         # package = pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.vgpu_16_5);
 
-        package = config.boot.kernelPackages.nvidiaPackages.vgpu_16_5;
+        package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.vgpu_16_5;
 
         vgpu.patcher = {
           enable = true;
           options.doNotForceGPLLicense = false;
           copyVGPUProfiles = {
-            "1C82:0000" = "13BD:1160";
-            # "1C82:0000" = "1B38:0000";
+            "1C82:0000" = "1B38:0000";
           };
           enablePatcherCmd = true;
         };
