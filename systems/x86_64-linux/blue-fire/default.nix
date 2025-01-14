@@ -65,12 +65,12 @@ in {
     };
 
     gui = {
-      icewm.enable = true;
+      # icewm.enable = true;
       # desktop.enable = true;
-      rdp = {
-        enable = true;
-        legacy = true;
-      };
+      # rdp = {
+      # enable = true;
+      # legacy = true;
+      # };
     };
 
     fileSystems = {
@@ -87,6 +87,13 @@ in {
     };
 
     services = {
+      hypervisor = {
+        enable = true;
+        # bridgeInterfaces = [ "eno1" ];
+      };
+
+      xserver.videoDrivers = ["nvidia"];
+
       nfs.server = {
         enable = true;
         # fixed rpc.statd port; for firewall
@@ -303,20 +310,11 @@ in {
       };
     };
 
-    services = {
-      hypervisor = {
-        enable = true;
-        # bridgeInterfaces = [ "eno1" ];
-      };
-
-      xserver.videoDrivers = ["nvidia"];
-    };
-
     environment.systemPackages = with pkgs; [
       # ipmicfg
       # ipmiview
       # ipmiutil
-      # vagrant
+      # vagrantservices
       virt-manager
       ipmitool
       boot-into-bios
@@ -332,7 +330,7 @@ in {
       enable = true;
       device = "0000:01:00.0";
       vgpus = {
-        "nvidia-36" = {
+        "nvidia-48" = {
           uuid = [
             "e1ab260f-44a2-4e07-9889-68a1caafb399"
             "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
@@ -360,29 +358,12 @@ in {
 
         vgpu.patcher = {
           enable = true;
-          options.doNotForceGPLLicense = true;
+          options.doNotForceGPLLicense = false;
           copyVGPUProfiles = {
-            "1c82:0000" = "13BD:1160";
+            "1C82:0000" = "1B38:0000";
           };
           enablePatcherCmd = true;
         };
-        # vgpu = {
-        #   enable = true;
-        #   pinKernel = true;
-
-        #   # vgpu_driver_src.sha256 = "02xsgav0v5xrzbjxwx249448cj6g46gav3nlrysjjzh3az676w5r";
-
-        #   copyVGPUProfiles = {
-        #     "1380:0000" = "13BD:1160";
-        #   };
-
-        #   fastapi-dls = {
-        #     enable = true;
-        #     docker-directory = "/var/lib/fastapi";
-        #     local_ipv4 = "192.168.0.101";
-        #     timezone = "Europe/Amsterdam";
-        #   };
-        # };
       };
     };
 
@@ -405,11 +386,11 @@ in {
         "console=tty1"
         "console=ttyS2,115200n8"
         "mitigations=off"
-        #"vfio-pci.ids=10de:1380,10de:0fbc"
+        "vfio-pci.ids=10de:1c82,10de:0fb9"
         # "pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
         # "kvm.ignore_msrs=1"
-        # "iomem=relaxed"
+        "iomem=relaxed"
         # "pci=nomsi"
       ];
       blacklistedKernelModules = ["nouveau"];

@@ -799,7 +799,7 @@
     # };
 
     nvidia-vgpu-nixos = {
-      url = "github:mrzenc/nvidia-vgpu-nixos";
+      url = "github:mrzenc/vgpu4nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

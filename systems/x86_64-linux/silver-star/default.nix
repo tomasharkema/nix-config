@@ -240,7 +240,7 @@ in {
 
         vgpu.patcher = {
           enable = true;
-          options.doNotForceGPLLicense = false;
+          options.doNotForceGPLLicense = true;
           copyVGPUProfiles = {
             "1380:0000" = "13BD:1160";
           };
