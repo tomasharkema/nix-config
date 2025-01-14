@@ -247,12 +247,12 @@ in
 
       warnings = map (p: "${p.name} disabled") (with pkgs; [
         gnome-extension-manager
-        gnome-packagekit
-        gnome-session
-        gnome-session-ctl
-        gnome-settings-daemon
-        gnome-shell-extensions
-        seahorse
+        #   gnome-packagekit
+        #   gnome-session
+        #   gnome-session-ctl
+        #   gnome-settings-daemon
+        #   gnome-shell-extensions
+        #   seahorse
         gnome-photos
       ]);
 
@@ -263,20 +263,27 @@ in
         dconf-editor
         gjs
         gnome-applets
-        gnome-applets
         gnome-autoar
         gnome-clocks
         gnome-commander
         gnome-control-center
+        # gnome-extension-manager
         gnome-firmware
         gnome-menus
         gnome-nettool
+        gnome-packagekit
+        # gnome-photos
+        gnome-session
+        gnome-session-ctl
+        gnome-settings-daemon
+        gnome-shell-extensions
         gnome-themes-extra
         gnome-tweaks
         gnome-user-share
         gtop
         libgnome-keyring
         libgtop
+        seahorse
         themix-gui
         wike
         zenity

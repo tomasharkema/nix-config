@@ -110,7 +110,7 @@
     # services.multipath = {
     #   enable = true;
     # };
-    systemd.sockets."cockpit-session".wantedBy = ["multi-user.target"];
+    # systemd.sockets."cockpit-session".wantedBy = ["multi-user.target"];
 
     proxy-services.services = {
       "/" = {

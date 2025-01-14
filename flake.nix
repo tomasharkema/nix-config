@@ -131,6 +131,8 @@
           nix-gaming.nixosModules.pipewireLowLatency
           nix-gaming.nixosModules.platformOptimizations
 
+          nvidia-vgpu-nixos.nixosModules.host
+
           # nixos-service.nixosModules.nixos-service
           # nix-virt.nixosModules.default
           ./defaultNixosAge.nix

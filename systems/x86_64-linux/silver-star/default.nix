@@ -10,14 +10,6 @@
   '';
   workerPort = "9988";
 in {
-  imports = with inputs; [
-    ./hardware-configuration.nix
-
-    # nixos-hardware.nixosModules.common-cpu-intel
-    # nixos-hardware.nixosModules.common-pc-ssd
-    nvidia-vgpu-nixos.nixosModules.host
-  ];
-
   config = {
     age = {
       rekey = {

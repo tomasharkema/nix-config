@@ -10,10 +10,6 @@
   '';
   workerPort = "9988";
 in {
-  imports = with inputs; [
-    nvidia-vgpu-nixos.nixosModules.host
-  ];
-
   config = {
     age = {
       rekey = {
@@ -77,9 +73,17 @@ in {
       };
     };
 
-    fileSystems."/export/isos" = {
-      device = "/mnt/isos";
-      options = ["bind"];
+    fileSystems = {
+      "/export/isos" = {
+        device = "/mnt/isos";
+        options = ["bind"];
+      };
+
+      "/mnt/dione-downloads" = {
+        device = "192.168.1.102:/volume1/tomas";
+        fsType = "nfs";
+        options = ["nfsvers=4.2"];
+      };
     };
 
     services = {
@@ -219,9 +223,9 @@ in {
     # ];
 
     networking = {
-      hosts = {
-        "192.168.0.100" = ["nix-cache.harke.ma"];
-      };
+      # hosts = {
+      #   "192.168.0.100" = ["nix-cache.harke.ma"];
+      # };
       hostName = "blue-fire";
       hostId = "529fd7aa";
 
@@ -350,11 +354,13 @@ in {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
 
-        package = pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.vgpu_16_2);
+        # package = pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.vgpu_16_5);
+
+        package = config.boot.kernelPackages.nvidiaPackages.vgpu_16_5;
 
         vgpu.patcher = {
           enable = true;
-          options.doNotForceGPLLicense = false;
+          options.doNotForceGPLLicense = true;
           copyVGPUProfiles = {
             "1c82:0000" = "13BD:1160";
           };
@@ -407,17 +413,17 @@ in {
         # "pci=nomsi"
       ];
       blacklistedKernelModules = ["nouveau"];
-      extraModulePackages = [
-        config.boot.kernelPackages.intel-speed-select
-      ];
+
       binfmt.emulatedSystems = ["aarch64-linux"];
+
       recovery = {
         sign = true;
         install = true;
       };
+
       loader = {
         systemd-boot = {
-          # enable = true;
+          enable = true;
           configurationLimit = 10;
         };
         efi.canTouchEfiVariables = true;

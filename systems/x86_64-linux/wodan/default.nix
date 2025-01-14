@@ -5,13 +5,9 @@
   config,
   ...
 }: {
-  imports = with inputs; [
-    ./hardware-configuration.nix
-
-    nvidia-vgpu-nixos.nixosModules.host
-  ];
-
   config = {
+    facter.reportPath = ./facter.json;
+
     age.rekey = {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII8iCdfina2waZYTj0toLyknDT3eJmMtPsVN3iFgnGUR root@wodan";
     };
@@ -39,7 +35,7 @@
       hostName = "wodan";
 
       firewall = {
-        enable = true;
+        enable = false;
       };
 
       useDHCP = lib.mkDefault true;
@@ -93,7 +89,7 @@
     };
 
     services = {
-      # kmscon.enable = lib.mkForce false;
+      kmscon.enable = lib.mkForce false;
       hardware = {
         openrgb = {
           enable = true;
@@ -119,15 +115,15 @@
         };
       };
 
-      # ollama = {
-      #   enable = true;
-      #   acceleration = "cuda";
-      #   host = "0.0.0.0";
-      # };
-      # open-webui = {
-      #   enable = true;
-      #   host = "0.0.0.0";
-      # };
+      ollama = {
+        enable = true;
+        acceleration = "cuda";
+        host = "0.0.0.0";
+      };
+      open-webui = {
+        enable = true;
+        host = "0.0.0.0";
+      };
     };
 
     apps = {
@@ -143,10 +139,14 @@
     #   enable = true;
     #   device = "0000:01:00.0";
     #   vgpus = {
-    #     "nvidia-257" = {
+    #     "nvidia-332" = {
     #       uuid = [
-    #         "c7f90d47-b9b5-497c-b775-d64787e730fb"
-    #         "48644214-af2f-47fb-a924-e51cc8bc1761"
+    #         "082b6689-7d8e-4790-ba84-253c91dc4ce7"
+    #       ];
+    #     };
+    #     "nvidia-333" = {
+    #       uuid = [
+    #         "46d87c24-ae51-4f6a-b0b2-11c7cc652b7f"
     #       ];
     #     };
     #   };
@@ -160,7 +160,7 @@
       xserver.videoDrivers = ["nvidia"];
     };
 
-    # programs.mdevctl.enable = true;
+    programs.mdevctl.enable = true;
 
     console.earlySetup = true;
 
@@ -173,9 +173,19 @@
       nvidia = {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
-        open = true;
-        # nvidiaSettings = lib.mkForce false;
+        # open = true;
+        nvidiaSettings = lib.mkForce false;
         # package = config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
+
+        # vgpu.patcher = {
+        #   enable = true;
+        #   options.doNotForceGPLLicense = false;
+        #   copyVGPUProfiles = {
+        #     # RTX2080     Quadro RTX 4000
+        #     "1E87:0000" = "1E30:12BA";
+        #   };
+        #   enablePatcherCmd = true;
+        # };
       };
     };
 
@@ -236,16 +246,17 @@
         sign = true;
         netboot.enable = true;
       };
-      # kernelPackages = pkgs.linuxPackages_6_6;
+      kernelPackages = pkgs.linuxPackages_6_11;
 
       kernelModules = [
         "i2c-dev"
         "btusb"
         "apfs"
-        "vfio_pci"
-        "vfio"
-        "vfio_iommu_type1"
-        "kvm-intel"
+        # "vfio_pci"
+        # "vfio"
+        # "vfio_iommu_type1"
+        # "kvm-intel"
+        # "nvidia_vgpu_vfio"
       ];
 
       initrd = {
@@ -255,20 +266,22 @@
           # "vfio_pci"
           # "vfio"
           # "vfio_iommu_type1"
-
+          # "nvidia_vgpu_vfio"
           "kvm-intel"
         ];
       };
 
       # KMS will load the module, regardless of blacklisting
       kernelParams = [
-        # "intel_iommu=on"
-        # "iommu=pt"
+        "intel_iommu=on"
+        "iommu=pt"
         "iomem=relaxed"
         # "drm.edid_firmware=HDMI-A-1:edid/samsung-q800t-hdmi2.1"
         # "video=HDMI-A-1:e"
+        # "pci-stub.ids=1458:37a7"
       ];
-      blacklistedKernelModules = lib.mkDefault ["nouveau"];
+
+      blacklistedKernelModules = ["nouveau"];
       #extraModprobeConfig = ''
       #  options nvidia-drm modeset=1";
       #  blacklist nouveau
