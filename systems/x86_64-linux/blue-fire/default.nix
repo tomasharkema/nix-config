@@ -39,7 +39,7 @@ in {
         secure-boot.enable = false;
         remote-unlock.enable = false;
         nvidia = {
-          # enable = true;
+          enable = true;
           # beta = false;
           # open = false;
         };
@@ -54,14 +54,14 @@ in {
 
     apps = {
       # attic-server.enable = true;
-      ntopng.enable = true;
+      ntopng.enable = false; # true;
       atop = {
-        enable = true;
-        httpd = true;
+        enable = false;
+        httpd = false;
       };
       "bmc-watchdog".enable = true;
       podman.enable = true;
-      zabbix.server.enable = true;
+      # zabbix.server.enable = true;
     };
 
     gui = {
@@ -82,7 +82,6 @@ in {
       "/mnt/dione-downloads" = {
         device = "192.168.1.102:/volume1/tomas";
         fsType = "nfs";
-        options = ["nfsvers=4.2"];
       };
     };
 
@@ -326,18 +325,18 @@ in {
       # icingaweb2
     ];
 
-    virtualisation.kvmgt = {
-      enable = true;
-      device = "0000:01:00.0";
-      vgpus = {
-        "nvidia-39" = {
-          uuid = [
-            "e1ab260f-44a2-4e07-9889-68a1caafb399"
-            "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
-          ];
-        };
-      };
-    };
+    # virtualisation.kvmgt = {
+    #   enable = true;
+    #   device = "0000:01:00.0";
+    #   vgpus = {
+    #     "nvidia-39" = {
+    #       uuid = [
+    #         "e1ab260f-44a2-4e07-9889-68a1caafb399"
+    #         "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
+    #       ];
+    #     };
+    #   };
+    # };
 
     hardware = {
       cpu.intel.updateMicrocode = true;

@@ -71,7 +71,7 @@
         nvidia-patch.overlays.default
         # ytdlp-gui.overlay
         nixos-recovery.overlays.recovery
-        # peerix.overlay
+        peerix.overlay
         snowfall-flake.overlays."package/flake"
         # nixos-checkmk.overlays.default
         # nixos-service.overlays.default
@@ -115,7 +115,7 @@
           # nixos-checkmk.nixosModules.check_mk_agent
           nixos-recovery.nixosModules.recovery
           catppuccin.nixosModules.catppuccin
-          # peerix.nixosModules.peerix
+          peerix.nixosModules.peerix
 
           # impermanence.nixosModule
           disko.nixosModules.default
@@ -671,14 +671,14 @@
       };
     };
 
-    # peerix = {
-    #   # url = "github:cid-chan/peerix";
-    #   url = "github:tomasharkema/peerix";
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     flake-utils.follows = "flake-utils";
-    #   };
-    # };
+    peerix = {
+      url = "github:cid-chan/peerix";
+      # url = "github:tomasharkema/peerix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        # flake-utils.follows = "flake-utils";
+      };
+    };
 
     # stylix = {
     #   url = "github:danth/stylix/release-24.05";

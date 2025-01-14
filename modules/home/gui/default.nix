@@ -54,7 +54,7 @@ in {
     ];
 
     services = {
-      trayscale.enable = true;
+      # trayscale.enable = true;
       # trayer = true;
       gnome-keyring = {
         components = ["secrets"];
@@ -64,7 +64,7 @@ in {
 
     autostart.programs = [
       {package = pkgs.telegram-desktop;}
-      # {package = pkgs.trayscale;}
+      {package = pkgs.trayscale;}
       # {package = pkgs.zerotier-ui;}
       {
         desktopName = "org.gnome.usbguard.desktop";
