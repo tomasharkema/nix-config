@@ -330,7 +330,7 @@ in {
       enable = true;
       device = "0000:01:00.0";
       vgpus = {
-        "nvidia-48" = {
+        "nvidia-39" = {
           uuid = [
             "e1ab260f-44a2-4e07-9889-68a1caafb399"
             "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
@@ -360,7 +360,8 @@ in {
           enable = true;
           options.doNotForceGPLLicense = false;
           copyVGPUProfiles = {
-            "1C82:0000" = "1B38:0000";
+            "1C82:0000" = "13BD:1160";
+            # "1C82:0000" = "1B38:0000";
           };
           enablePatcherCmd = true;
         };
@@ -386,7 +387,7 @@ in {
         "console=tty1"
         "console=ttyS2,115200n8"
         "mitigations=off"
-        "vfio-pci.ids=10de:1c82,10de:0fb9"
+        # "vfio-pci.ids=10de:1c82,10de:0fb9"
         # "pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
         # "kvm.ignore_msrs=1"
