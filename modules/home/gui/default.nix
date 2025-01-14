@@ -54,13 +54,18 @@ in {
     ];
 
     services = {
-      # trayscale.enable = true;
-      # trayer = true;
+      trayscale = {
+        enable = true;
+        hideWindow = true;
+      };
+      trayer.enable = true;
       gnome-keyring = {
         components = ["secrets"];
         enable = true;
       };
     };
+
+    xsession.enable = true;
 
     autostart.programs = [
       {package = pkgs.telegram-desktop;}
