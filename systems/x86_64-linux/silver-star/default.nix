@@ -253,6 +253,12 @@ in {
     };
 
     virtualisation.oci-containers.containers = {
+      beszel = {
+        image = "henrygd/beszel";
+        ports = ["8090:8090"];
+        volumes = ["/srv/beszel/data:/beszel_data"];
+      };
+
       openmanage = {
         image = "docker.io/teumaauss/srvadmin";
 
@@ -304,9 +310,9 @@ in {
         };
         extraOptions = [
         ];
-        # Publish the container's port to the host
+
         ports = ["7070:443"];
-        # Do not automatically start the container, it will be managed
+
         autoStart = true;
       };
     };

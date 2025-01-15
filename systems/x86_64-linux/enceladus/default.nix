@@ -129,16 +129,33 @@ in {
         "enp1s0" = {
           useDHCP = lib.mkDefault true;
           wakeOnLan.enable = true;
+          mtu = 9000;
         };
         "vlan800" = {
+          mtu = 9000;
           useDHCP = lib.mkDefault true;
+        };
+        "vlan100" = {
+          mtu = 9000;
+          ipv4.addresses = [
+            {
+              address = "192.168.0.102";
+              prefixLength = 24;
+            }
+          ];
           wakeOnLan.enable = true;
         };
       };
 
-      vlans."vlan800" = {
-        id = 800;
-        interface = "enp1s0";
+      vlans = {
+        "vlan800" = {
+          id = 800;
+          interface = "enp1s0";
+        };
+        "vlan100" = {
+          id = 100;
+          interface = "enp1s0";
+        };
       };
     };
 

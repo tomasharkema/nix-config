@@ -64,6 +64,25 @@ in {
       # zabbix.server.enable = true;
     };
 
+    virtualisation.oci-containers.containers = {
+      plex = {
+        image = "lscr.io/linuxserver/plex:latest";
+
+        volumes = [
+          "/srv/plex/library:/config:Z"
+          "/mnt/dione-downloads/downloads:/downloads:Z"
+        ];
+
+        extraOptions = [
+          "--privileged"
+          "--net=host"
+          "--device=nvidia.com/gpu=all"
+          "--security-opt=label=disable"
+        ];
+        autoStart = true;
+      };
+    };
+
     gui = {
       # icewm.enable = true;
       # desktop.enable = true;
@@ -254,20 +273,20 @@ in {
         enable = true;
       };
 
-      bonds.bond0 = {
-        interfaces = [
-          "enp6s0f0"
-          "enp6s0f1"
-          "enp6s0f2"
-          "enp6s0f3"
-        ];
-        driverOptions = {
-          mode = "802.3ad";
-        };
-      };
+      # bonds.bond0 = {
+      #  interfaces = [
+      #    "enp6s0f0"
+      #    "enp6s0f1"
+      #    "enp6s0f2"
+      #    "enp6s0f3"
+      #  ];
+      #  driverOptions = {
+      #    mode = "802.3ad";
+      #  };
+      # };
 
       bridges.br0 = {
-        interfaces = ["bond0"];
+        interfaces = ["enp6s0f0"];
       };
 
       interfaces = {
@@ -294,9 +313,9 @@ in {
         "br0" = {
           useDHCP = lib.mkDefault true;
         };
-        "bond0" = {
-          mtu = 9000;
-        };
+        #"bond0" = {
+        #  mtu = 9000;
+        #};
       };
     };
 
@@ -341,48 +360,22 @@ in {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
-        nvidiaPersistenced = lib.mkForce false;
+        nvidiaPersistenced = lib.mkForce true;
 
         # nix-prefetch-url --type sha256 https://us.download.nvidia.com/XFree86/Linux-x86_64/550.90.07/NVIDIA-Linux-x86_64-550.90.07.run
-        package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
+        # package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
 
-        # package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.mkVgpuDriver {
-        #   version = "550.90.05";
-        #   sha256 = "sha256-ydNOnbhbqkO2gVaUQXsIWCZsbjw0NMEYl9iV0T01OX0=";
-        #   guestVersion = "550.90.07";
-        #   guestSha256 = "sha256-hR0b+ctNdXhDA6J1Zo1tYEgMtCvoBQ4jQpQvg1/Kjg4=";
-        #   openSha256 = null; # TODO: nvidia-open support
-        #   generalVersion = "550.90.07";
-        #   settingsSha256 = "sha256-sX9dHEp9zH9t3RWp727lLCeJLo8QRAGhVb8iN6eX49g=";
-        #   persistencedSha256 = "sha256-qe8e1Nxla7F0U88AbnOZm6cHxo57pnLCqtjdvOvq9jk=";
-        #   gridVersion = "17.3";
-        #   zipFilename = "NVIDIA-GRID-Linux-KVM-550.90.05-550.90.07-552.74.zip";
-        #   vgpuPatcher = config.boot.kernelPackages.nvidiaPackages.mmkVgpuPatcher {
-        #     version = "550.90";
-        #     rev = "8f19e550540dcdeccaded6cb61a71483ea00d509";
-        #     sha256 = "sha256-TyZkZcv7RI40U8czvcE/kIagpUFS/EJhVN0SYPzdNJM=";
-        #     generalVersion = "550.90.07";
-        #     generalSha256 = "sha256-Uaz1edWpiE9XOh0/Ui5/r6XnhB4iqc7AtLvq4xsLlzM=";
-        #     linuxGuest = "550.90.07";
-        #     linuxSha256 = "sha256-hR0b+ctNdXhDA6J1Zo1tYEgMtCvoBQ4jQpQvg1/Kjg4=";
-        #     windowsGuestFilename = "552.74_grid_win10_win11_server2022_dch_64bit_international.exe";
-        #     windowsSha256 = "sha256-UU+jbwlfg9xCie8IjPASb/gWalcEzAwzy+VAmgr0868=";
-        #     gridVersion = "17.3";
+        # vgpu.patcher = {
+        #   enable = true;
+        #   options = {
+        #     doNotForceGPLLicense = false;
+        #     remapP40ProfilesToV100D = true;
         #   };
+        #   copyVGPUProfiles = {
+        #     "1C82:0000" = "1B38:0000";
+        #   };
+        #   enablePatcherCmd = true;
         # };
-
-        vgpu.patcher = {
-          enable = true;
-          options = {
-            doNotForceGPLLicense = false;
-
-            remapP40ProfilesToV100D = true;
-          };
-          copyVGPUProfiles = {
-            "1C82:0000" = "1B38:0000";
-          };
-          enablePatcherCmd = true;
-        };
       };
     };
 
