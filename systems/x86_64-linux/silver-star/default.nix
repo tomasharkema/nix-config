@@ -236,11 +236,14 @@ in {
         #     # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
 
-        package = config.boot.kernelPackages.nvidiaPackages.vgpu_16_5;
+        package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
 
         vgpu.patcher = {
           enable = true;
-          options.doNotForceGPLLicense = true;
+          options = {
+            doNotForceGPLLicense = false;
+            remapP40ProfilesToV100D = true;
+          };
           copyVGPUProfiles = {
             "1380:0000" = "13BD:1160";
           };
