@@ -16,9 +16,9 @@ config.launch_menu = {
   { args = { "atop" } },
 }
 
-wezterm.plugin.require("@weztermStatus@").apply_to_config(config, { cells = { date = {
-  format = " %H:%M:%S ",
-} } })
+-- wezterm.plugin.require("@weztermStatus@").apply_to_config(config, { cells = { date = {
+--   format = " %H:%M:%S ",
+-- } } })
 
 config.font = wezterm.font_with_fallback({ -- <built-in>, BuiltIn,
   {
@@ -42,7 +42,7 @@ config.window_decorations = "TITLE | RESIZE"
 config.automatically_reload_config = true
 -- config.macos_window_background_blur = 20
 
--- config.enable_scroll_bar = true
+config.enable_scroll_bar = true
 
 config.keys = {
   {

@@ -30,30 +30,23 @@
       hashKnownHosts = true;
 
       matchBlocks = {
-        "*" = {
-          match = "host * exec \"test -z $SSH_TTY\"";
-          extraOptions = {
-            IdentityAgent = onePasswordSocket;
-            PKCS11Provider =
-              if pkgs.stdenvNoCC.isDarwin
-              then "${pkgs.yubico-piv-tool}/lib/libykcs11.dylib"
-              else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
-          };
-        };
-
-        "ssh.dev.azure.com" = {
-          hostname = "ssh.dev.azure.com";
-          extraOptions = {
-            IdentityAgent = onePasswordSocket;
-          };
-        };
+        # "*" = {
+        #   match = "host * exec \"test -z $SSH_TTY\"";
+        #   extraOptions = {
+        #     IdentityAgent = onePasswordSocket;
+        #     PKCS11Provider =
+        #       if pkgs.stdenvNoCC.isDarwin
+        #       then "${pkgs.yubico-piv-tool}/lib/libykcs11.dylib"
+        #       else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
+        #   };
+        # };
 
         "ipa.ling-lizard.ts.net" = {
           hostname = "ipa.ling-lizard.ts.net";
           user = "root";
-          extraOptions = {
-            "IdentityAgent" = onePasswordSocket;
-          };
+          # extraOptions = {
+          #   "IdentityAgent" = onePasswordSocket;
+          # };
         };
         # "*" = {
         #   forwardAgent = true;

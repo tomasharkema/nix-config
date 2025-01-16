@@ -36,12 +36,10 @@ in {
               user = "tomas";
               forwardAgent = true;
               extraOptions = {
-                ProxyCommand = lib.mkIf pkgs.stdenv.isLinux "${pkgs.sssd}/bin/sss_ssh_knownhostsproxy -p %p %h";
+                # ProxyCommand = lib.mkIf pkgs.stdenv.isLinux "${pkgs.sssd}/bin/sss_ssh_knownhostsproxy -p %p %h";
                 # GlobalKnownHostsFile = lib.mkIf pkgs.stdenv.isLinux "/var/lib/sss/pubconf/known_hosts";
                 RequestTTY = "yes";
-                RemoteCommand = ''
-                  zellij attach -c "ssh-''${%n}"
-                '';
+                RemoteCommand = "zellij attach -c \"ssh-\${%n}\"";
                 # RemoteCommand = "tmux new -A -s \$\{\%n\}";
               };
             };
