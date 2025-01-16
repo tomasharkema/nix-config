@@ -41,7 +41,7 @@ in {
         nvidia = {
           enable = true;
           beta = false;
-          open = false;
+          open = true;
         };
         # nfs = {
         #   enable = true;
@@ -60,26 +60,40 @@ in {
         httpd = false;
       };
       "bmc-watchdog".enable = true;
-      podman.enable = true;
+      podman.enable = lib.mkForce false; # true;
       # zabbix.server.enable = true;
     };
 
-    virtualisation.oci-containers.containers = {
-      plex = {
-        image = "lscr.io/linuxserver/plex:latest";
+    virtualisation = {
+      docker = {
+        enable = true;
+        enableNvidia = true;
+        enableOnBoot = true;
+      };
 
-        volumes = [
-          "/srv/plex/library:/config:Z"
-          "/mnt/dione-downloads/downloads:/downloads:Z"
-        ];
+      oci-containers = {
+        backend = "docker";
+        containers = {
+          plex = {
+            image = "lscr.io/linuxserver/plex:latest";
 
-        extraOptions = [
-          "--privileged"
-          "--net=host"
-          "--device=nvidia.com/gpu=all"
-          "--security-opt=label=disable"
-        ];
-        autoStart = true;
+            volumes = [
+              "/srv/plex/library:/config:Z"
+              "/mnt/dione-downloads/downloads:/downloads:Z"
+            ];
+            environment = {
+              PUID = "1000";
+              PGID = "1000";
+            };
+            extraOptions = [
+              "--privileged"
+              "--net=host"
+              "--device=nvidia.com/gpu=all"
+              "--security-opt=label=disable"
+            ];
+            autoStart = true;
+          };
+        };
       };
     };
 
@@ -332,6 +346,7 @@ in {
       ipmicfg
       ipmiutil
       tremotesf
+      cudaPackages.cudatoolkit
       # icingaweb2
     ];
 
