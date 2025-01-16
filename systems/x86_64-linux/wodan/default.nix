@@ -174,7 +174,7 @@
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
         # open = true;
-        nvidiaSettings = lib.mkForce false;
+        # nvidiaSettings = lib.mkForce false;
         # package = config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
 
         # vgpu.patcher = {
@@ -246,7 +246,7 @@
         sign = true;
         netboot.enable = true;
       };
-      kernelPackages = pkgs.linuxPackages_6_11;
+      # kernelPackages = pkgs.linuxPackages_6_11;
 
       kernelModules = [
         "i2c-dev"
