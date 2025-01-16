@@ -16,7 +16,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     environment.systemPackages = [cfg.package pkgs.custom.bluetooth-autoconnect];
 
     services.dbus = {
