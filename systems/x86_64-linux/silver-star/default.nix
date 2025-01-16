@@ -147,7 +147,7 @@ in {
       };
 
       bridges.br0 = {
-        interfaces = ["enp5s0"];
+        interfaces = ["eno1"];
       };
 
       interfaces = {
