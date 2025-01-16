@@ -18,7 +18,7 @@
           "--net=host"
         ];
 
-        entrypoint = {
+        environment = {
           PORT = "45876";
           KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH1dOnPIMt4jFOCSoawrp8FbGS6qs4+ujBk//6IRhdwT";
         };
