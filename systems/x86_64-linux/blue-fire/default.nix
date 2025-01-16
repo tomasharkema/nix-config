@@ -78,8 +78,8 @@ in {
             image = "lscr.io/linuxserver/plex:latest";
 
             volumes = [
-              "/srv/plex/library:/config:Z"
-              "/mnt/dione-downloads/downloads:/downloads:Z"
+              "/srv/plex/library:/config"
+              "/mnt/dione-downloads/downloads:/downloads"
             ];
             environment = {
               PUID = "1000";
