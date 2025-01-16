@@ -246,7 +246,7 @@
         sign = true;
         netboot.enable = true;
       };
-      kernelPackages = pkgs.linuxPackages_6_11;
+      # kernelPackages = pkgs.linuxPackages_6_11;
 
       kernelModules = [
         "i2c-dev"
