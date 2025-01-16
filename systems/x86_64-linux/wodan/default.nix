@@ -44,12 +44,12 @@
         "enp2s0" = {
           mtu = 9000;
           wakeOnLan.enable = true;
-          ipv4.addresses = [
-            {
-              address = "192.168.1.170";
-              prefixLength = 24;
-            }
-          ];
+          # ipv4.addresses = [
+          #   {
+          #     address = "192.168.1.170";
+          #     prefixLength = 24;
+          #   }
+          # ];
         };
         "eno1" = {
           mtu = 9000;
@@ -57,13 +57,13 @@
         };
       };
 
-      dhcpcd.extraConfig = ''
-        interface enp2s0
-        metric 100
+      # dhcpcd.extraConfig = ''
+      #   interface enp2s0
+      #   metric 100
 
-        interface eno1
-        metric 1000
-      '';
+      #   interface eno1
+      #   metric 1000
+      # '';
     };
 
     gui = {
@@ -97,9 +97,6 @@
 
         bolt.enable = true;
       };
-      command-center = {
-        #enableBot = true;
-      };
 
       remote-builders.server.enable = true;
 
@@ -129,7 +126,7 @@
     apps = {
       steam = {
         enable = true;
-        sunshine = true;
+        # sunshine = true;
       };
       flatpak.enable = true;
       podman.enable = true;
@@ -174,7 +171,7 @@
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
         # open = true;
-        nvidiaSettings = lib.mkForce false;
+        # nvidiaSettings = lib.mkForce false;
         # package = config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
 
         # vgpu.patcher = {
@@ -196,11 +193,12 @@
         nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
+
         nvidia = {
           enable = true;
           open = true;
         };
-        sgx.enable = true;
+
         remote-unlock.enable = true;
         monitor.enable = true;
         disable-sleep.enable = true;
@@ -238,7 +236,7 @@
         useTmpfs = true;
       };
       binfmt.emulatedSystems = ["aarch64-linux"];
-      supportedFilesystems = ["ntfs"];
+      supportedFilesystems = ["ntfs" "apfs"];
 
       recovery = {
         enable = true;
@@ -251,7 +249,6 @@
       kernelModules = [
         "i2c-dev"
         "btusb"
-        "apfs"
         # "vfio_pci"
         # "vfio"
         # "vfio_iommu_type1"
