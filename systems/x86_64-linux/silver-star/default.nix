@@ -257,6 +257,8 @@ in {
         image = "henrygd/beszel";
         ports = ["8090:8090"];
         volumes = ["/srv/beszel/data:/beszel_data"];
+
+        autoStart = true;
       };
 
       openmanage = {
