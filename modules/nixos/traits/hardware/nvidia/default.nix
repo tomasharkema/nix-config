@@ -42,6 +42,7 @@ in {
       nvfancontrol
       nvitop
       # gwe
+      cudaPackages.cudatoolkit
       egl-wayland
     ];
 

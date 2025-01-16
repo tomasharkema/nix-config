@@ -346,7 +346,6 @@ in {
       ipmicfg
       ipmiutil
       tremotesf
-      cudaPackages.cudatoolkit
       # icingaweb2
     ];
 
