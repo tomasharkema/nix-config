@@ -762,9 +762,13 @@
     # };
 
     nixos-06cb-009a-fingerprint-sensor = {
-      url = "github:tomasharkema/nixos-06cb-009a-fingerprint-sensor";
+      url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor/24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-      #      inputs.nixpkgs.follows = "nixpkgs";
+    nixos-vfio = {
+      url = "github:j-brn/nixos-vfio";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # netkit = {
