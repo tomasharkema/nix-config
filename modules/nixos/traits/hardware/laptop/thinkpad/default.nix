@@ -11,22 +11,23 @@ in {
     enable = lib.mkEnableOption "laptop";
   };
 
-  options = {
-    services.fprintd = {
-      enable = lib.mkEnableOption "fprintd daemon and PAM module for fingerprint readers handling";
-      package = lib.mkOption {
-        type = lib.types.package;
-        # default = fprintdPkg;
-      };
-    };
-  };
+  # options = {
+  #   services.fprintd = {
+  #     enable = lib.mkEnableOption "fprintd daemon and PAM module for fingerprint readers handling";
+  #     package = lib.mkOption {
+  #       type = lib.types.package;
+  #       # default = fprintdPkg;
+  #     };
+  #   };
+  # };
 
   imports = with inputs; [
-    nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
-    nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
+    # nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
+    # nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
+    nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
   ];
 
-  disabledModules = ["services/security/fprintd.nix"];
+  # disabledModules = ["services/security/fprintd.nix"];
 
   config = lib.mkIf cfg.enable {
     system.nixos.tags = ["thinkpad"];
@@ -80,6 +81,13 @@ in {
     # };
 
     services = {
+      "06cb-009a-fingerprint-sensor" = {
+        enable = true;
+        # backend = "python-validity";
+        backend = "libfprint-tod";
+        calib-data-file = ./calib-data.bin;
+      };
+
       # tp-auto-kbbl.enable = true;
       # thinkfan.enable = true;
       # fprintd = {
@@ -103,9 +111,9 @@ in {
       #       });
       #   };
       # };
-      open-fprintd.enable = true;
-      python-validity.enable = true;
-      fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
+      # open-fprintd.enable = true;
+      # python-validity.enable = true;
+      # fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
 
       # udev.extraRules = ''
       #   SUBSYSTEM=="usb", ATTRS{idVendor}=="06cb", ATTRS{idProduct}=="009a", ATTRS{dev}=="*", TEST=="power/control", ATTR{power/control}="auto", MODE="0660", GROUP="plugdev"
@@ -130,7 +138,7 @@ in {
 
     security.pam.services = {
       "gdm-fingerprint" = {
-        # enableGnomeKeyring = true;
+        #     # enableGnomeKeyring = true;
         fprintAuth = true;
       };
       xscreensaver = {

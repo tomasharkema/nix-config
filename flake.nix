@@ -233,6 +233,8 @@
       #   inherit inputs;
       # };
 
+      flakeInputs = inputs;
+
       githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {
         checks =
           inputs.nixpkgs.lib.getAttrs [
