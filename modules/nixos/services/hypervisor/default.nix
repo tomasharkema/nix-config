@@ -79,6 +79,15 @@ in {
       ];
     };
 
+    users = {
+      users = {
+        qemu-libvirtd.group = "qemu-libvirtd";
+        "${config.user.name}".extraGroups = ["libvirtd" "qemu-libvirtd" "vboxusers"];
+        "root".extraGroups = ["libvirtd" "qemu-libvirtd" "vboxusers"];
+      };
+      groups.qemu-libvirtd = {};
+    };
+
     systemd.packages = [pkgs.custom.libvirt-dbus];
 
     environment.etc = {
@@ -121,9 +130,9 @@ in {
     # };
 
     boot = {
-      kernelParams = [
-        "kvm_intel.nested=1"
-      ];
+      # kernelParams = [
+      #   "kvm_intel.nested=1"
+      # ];
       kernelModules = [
         "mdev"
         "kvmgt"
@@ -140,10 +149,12 @@ in {
       kvmgt.enable = true;
       # tpm.enable = true;
 
-      # libvirt = {
-      #   enable = true;
-      #   swtpm.enable = true;
-      # };
+      vfio = {
+        enable = true;
+        IOMMUType = "intel";
+        blacklistNvidia = true;
+        ignoreMSRs = true;
+      };
 
       libvirtd = {
         enable = true;
@@ -152,9 +163,7 @@ in {
           package = pkgs.qemu_kvm;
           # runAsRoot = true;
           verbatimConfig = ''
-            #   # Adapted from /var/lib/libvirt/qemu.conf
-            #   # Note that AAVMF and OVMF are for Aarch64 and x86 respectively
-              nvram = [ "/run/libvirt/nix-ovmf/AAVMF_CODE.fd:/run/libvirt/nix-ovmf/AAVMF_VARS.fd", "/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd" ]
+            nvram = [ "/run/libvirt/nix-ovmf/AAVMF_CODE.fd:/run/libvirt/nix-ovmf/AAVMF_VARS.fd", "/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd" ]
           '';
           swtpm.enable = true;
 
@@ -206,11 +215,6 @@ in {
       #     };
       #   };
       # };
-    };
-
-    users.users = {
-      "${config.user.name}".extraGroups = ["libvirtd" "qemu-libvirtd" "vboxusers"];
-      "root".extraGroups = ["libvirtd" "qemu-libvirtd" "vboxusers"];
     };
 
     networking = {

@@ -53,7 +53,6 @@ in {
       # "bmc-watchdog".enable = true;
       podman.enable = true;
       zabbix.server.enable = true;
-      atticd.enable = true;
     };
 
     services = {
@@ -250,19 +249,7 @@ in {
       };
     };
 
-    users = {
-      users.qemu-libvirtd.group = "qemu-libvirtd";
-      groups.qemu-libvirtd = {};
-    };
-
     virtualisation = {
-      vfio = {
-        enable = true;
-        IOMMUType = "intel";
-        blacklistNvidia = true;
-        ignoreMSRs = true;
-      };
-
       oci-containers.containers = {
         openmanage = {
           image = "docker.io/teumaauss/srvadmin";
