@@ -39,9 +39,9 @@ in {
         secure-boot.enable = false;
         remote-unlock.enable = false;
         nvidia = {
-          enable = true;
-          beta = false;
-          open = true;
+          # enable = true;
+          # beta = false;
+          # open = true;
         };
         # nfs = {
         #   enable = true;
@@ -62,12 +62,12 @@ in {
       "bmc-watchdog".enable = true;
       podman.enable = lib.mkForce false; # true;
       # zabbix.server.enable = true;
+      atticd.enable = true;
     };
 
     virtualisation = {
       docker = {
         enable = true;
-        enableNvidia = true;
         enableOnBoot = true;
       };
 
@@ -349,18 +349,18 @@ in {
       # icingaweb2
     ];
 
-    # virtualisation.kvmgt = {
-    #   enable = true;
-    #   device = "0000:01:00.0";
-    #   vgpus = {
-    #     "nvidia-39" = {
-    #       uuid = [
-    #         "e1ab260f-44a2-4e07-9889-68a1caafb399"
-    #         "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
-    #       ];
-    #     };
-    #   };
-    # };
+    virtualisation.kvmgt = {
+      enable = true;
+      device = "0000:01:00.0";
+      vgpus = {
+        "nvidia-257" = {
+          uuid = [
+            "e1ab260f-44a2-4e07-9889-68a1caafb399"
+            "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
+          ];
+        };
+      };
+    };
 
     hardware = {
       cpu.intel.updateMicrocode = true;
@@ -371,25 +371,24 @@ in {
       nvidia-container-toolkit.enable = true;
 
       nvidia = {
-        modesetting.enable = true;
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
         nvidiaPersistenced = lib.mkForce true;
 
         # nix-prefetch-url --type sha256 https://us.download.nvidia.com/XFree86/Linux-x86_64/550.90.07/NVIDIA-Linux-x86_64-550.90.07.run
-        # package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
+        package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
 
-        # vgpu.patcher = {
-        #   enable = true;
-        #   options = {
-        #     doNotForceGPLLicense = false;
-        #     remapP40ProfilesToV100D = true;
-        #   };
-        #   copyVGPUProfiles = {
-        #     "1C82:0000" = "1B38:0000";
-        #   };
-        #   enablePatcherCmd = true;
-        # };
+        vgpu.patcher = {
+          enable = true;
+          options = {
+            doNotForceGPLLicense = false;
+            # remapP40ProfilesToV100D = true;
+          };
+          copyVGPUProfiles = {
+            "1E87:0000" = "1E30:12BA";
+          };
+          enablePatcherCmd = true;
+        };
       };
     };
 
@@ -397,18 +396,12 @@ in {
     #   ports = lib.mkForce ["7070:443"];
     # };
 
-    # services.udev.extraRules = ''
-    #   SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
-    # '';
-
     boot = {
       tmp = {
         useTmpfs = true;
       };
       kernelPackages = pkgs.linuxPackages_6_6;
       kernelParams = [
-        "intel_iommu=on"
-        "iommu=pt"
         "console=tty1"
         "console=ttyS2,115200n8"
         "mitigations=off"
@@ -419,7 +412,6 @@ in {
         #"iomem=relaxed"
         # "pci=nomsi"
       ];
-      blacklistedKernelModules = ["nouveau"];
 
       binfmt.emulatedSystems = ["aarch64-linux"];
 
@@ -455,15 +447,6 @@ in {
           "ipmi_si"
           "ipmi_devintf"
           "ipmi_msghandler"
-
-          "vfio_pci"
-          "vfio"
-          "vfio_iommu_type1"
-
-          "nvidia"
-          "nvidia_modeset"
-          "nvidia_uvm"
-          "nvidia_drm"
         ];
       };
       kernelModules = [
@@ -479,15 +462,6 @@ in {
         "ipmi_devintf"
         "ipmi_msghandler"
         "ipmi_watchdog"
-
-        "vfio_pci"
-        "vfio"
-        "vfio_iommu_type1"
-
-        "nvidia"
-        "nvidia_modeset"
-        "nvidia_uvm"
-        "nvidia_drm"
       ];
     };
     systemd = {

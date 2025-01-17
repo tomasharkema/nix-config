@@ -434,8 +434,8 @@
       "https://nix-community.cachix.org"
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
-      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
-      "http://dione.mastodon-mizar.ts.net:7123/tomasharkema"
+      "http://blue-fire.ling-lizard.ts.net:7124/tomasharkema"
+      # "http://dione.mastodon-mizar.ts.net:7123/tomasharkema"
     ];
 
     extra-substituters = [
@@ -446,8 +446,8 @@
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
       "https://tomasharkema.cachix.org"
-      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
-      "http://dione.mastodon-mizar.ts.net:7123/tomasharkema"
+      "http://blue-fire.ling-lizard.ts.net:7124/tomasharkema"
+      # "http://dione.mastodon-mizar.ts.net:7123/tomasharkema"
     ];
 
     extra-trusted-public-keys = [

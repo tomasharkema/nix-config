@@ -27,19 +27,19 @@
       controlPersist = "30m";
 
       # addKeysToAgent = true;
-      hashKnownHosts = true;
+      # hashKnownHosts = true;
 
       matchBlocks = {
-        # "*" = {
-        #   match = "host * exec \"test -z $SSH_TTY\"";
-        #   extraOptions = {
-        #     IdentityAgent = onePasswordSocket;
-        #     PKCS11Provider =
-        #       if pkgs.stdenvNoCC.isDarwin
-        #       then "${pkgs.yubico-piv-tool}/lib/libykcs11.dylib"
-        #       else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
-        #   };
-        # };
+        "*" = {
+          match = "host * exec \"test -z $SSH_TTY\"";
+          extraOptions = {
+            IdentityAgent = onePasswordSocket;
+            PKCS11Provider =
+              if pkgs.stdenvNoCC.isDarwin
+              then "${pkgs.yubico-piv-tool}/lib/libykcs11.dylib"
+              else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
+          };
+        };
 
         "ipa.ling-lizard.ts.net" = {
           hostname = "ipa.ling-lizard.ts.net";
