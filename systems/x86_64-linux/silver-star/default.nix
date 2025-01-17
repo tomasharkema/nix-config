@@ -252,75 +252,73 @@ in {
       };
     };
 
-    virtualisation.oci-containers.containers = {
-      beszel = {
-        image = "henrygd/beszel";
-        ports = ["8090:8090"];
-        volumes = ["/srv/beszel/data:/beszel_data"];
-
-        autoStart = true;
+    virtualisation = {
+      vfio = {
+        enable = true;
+        IOMMUType = "intel";
+        blacklistNvidia = true;
+        ignoreMSRs = true;
       };
 
-      openmanage = {
-        image = "docker.io/teumaauss/srvadmin";
+      oci-containers.containers = {
+        openmanage = {
+          image = "docker.io/teumaauss/srvadmin";
 
-        imageFile = pkgs.dockerTools.pullImage {
-          imageName = "docker.io/teumaauss/srvadmin";
-          imageDigest = "sha256:287ed0729a3250f114b0369b3a462ba50fc59f8531ef56518804ea4c60e91b52";
-          sha256 = "0in9idw5mclh304968j0fsf5qcqsqp60g7x04ga0pn8bcynrjjr7";
-          finalImageName = "docker.io/teumaauss/srvadmin";
-          finalImageTag = "latest";
+          imageFile = pkgs.dockerTools.pullImage {
+            imageName = "docker.io/teumaauss/srvadmin";
+            imageDigest = "sha256:287ed0729a3250f114b0369b3a462ba50fc59f8531ef56518804ea4c60e91b52";
+            sha256 = "0in9idw5mclh304968j0fsf5qcqsqp60g7x04ga0pn8bcynrjjr7";
+            finalImageName = "docker.io/teumaauss/srvadmin";
+            finalImageTag = "latest";
+          };
+
+          volumes = let
+            kernelVideo = config.boot.kernelPackages.kernel.version;
+          in [
+            "/run/current-system/sw/lib/modules/${kernelVideo}:/lib/modules/${kernelVideo}"
+            "/usr/libexec/dell_dup:/usr/libexec/dell_dup:Z"
+          ];
+
+          extraOptions = [
+            "--privileged"
+            "--net=host"
+            "--device=/dev/mem"
+            "--systemd=always"
+          ];
+          autoStart = true;
         };
 
-        volumes = let
-          kernelVideo = config.boot.kernelPackages.kernel.version;
-        in [
-          "/run/current-system/sw/lib/modules/${kernelVideo}:/lib/modules/${kernelVideo}"
-          "/usr/libexec/dell_dup:/usr/libexec/dell_dup:Z"
-        ];
+        fastapi-dls = {
+          image = "collinwebdesigns/fastapi-dls";
+          imageFile = pkgs.dockerTools.pullImage {
+            imageName = "collinwebdesigns/fastapi-dls";
+            imageDigest = "sha256:0039c37c10144e83588c90980fb0fb6225a9bf5c6301ae6823db6fad79d21acb";
+            sha256 = "0yr2dn0dzslp7dc0i6v6kfqbasdkrg36vywr15kizhy0cfgkfrpr";
+            finalImageName = "collinwebdesigns/fastapi-dls";
+            finalImageTag = "latest";
+          };
+          volumes = [
+            "/var/lib/fastapi-dls/cert:/app/cert:rw"
+            "dls-db:/app/database"
+          ];
+          # Set environment variables
+          environment = {
+            TZ = "Europa/Amsterdam";
+            DLS_URL = config.networking.hostName;
+            DLS_PORT = "443";
+            LEASE_EXPIRE_DAYS = "90";
+            DATABASE = "sqlite:////app/database/db.sqlite";
+            DEBUG = "true";
+          };
+          extraOptions = [
+          ];
 
-        extraOptions = [
-          "--privileged"
-          "--net=host"
-          "--device=/dev/mem"
-          "--systemd=always"
-        ];
-        autoStart = true;
-      };
+          ports = ["7070:443"];
 
-      fastapi-dls = {
-        image = "collinwebdesigns/fastapi-dls";
-        imageFile = pkgs.dockerTools.pullImage {
-          imageName = "collinwebdesigns/fastapi-dls";
-          imageDigest = "sha256:0039c37c10144e83588c90980fb0fb6225a9bf5c6301ae6823db6fad79d21acb";
-          sha256 = "0yr2dn0dzslp7dc0i6v6kfqbasdkrg36vywr15kizhy0cfgkfrpr";
-          finalImageName = "collinwebdesigns/fastapi-dls";
-          finalImageTag = "latest";
+          autoStart = true;
         };
-        volumes = [
-          "/var/lib/fastapi-dls/cert:/app/cert:rw"
-          "dls-db:/app/database"
-        ];
-        # Set environment variables
-        environment = {
-          TZ = "Europa/Amsterdam";
-          DLS_URL = config.networking.hostName;
-          DLS_PORT = "443";
-          LEASE_EXPIRE_DAYS = "90";
-          DATABASE = "sqlite:////app/database/db.sqlite";
-          DEBUG = "true";
-        };
-        extraOptions = [
-        ];
-
-        ports = ["7070:443"];
-
-        autoStart = true;
       };
     };
-    # services.udev.extraRules = ''
-    #   SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
-    # '';
 
     boot = {
       tmp = {
@@ -329,8 +327,6 @@ in {
       binfmt.emulatedSystems = ["aarch64-linux"];
       kernelPackages = pkgs.linuxPackages_6_6;
       kernelParams = [
-        "intel_iommu=on"
-        "iommu=pt"
         # "console=tty1"
         # "console=ttyS2,115200n8"
         "mitigations=off"
@@ -338,10 +334,9 @@ in {
         # "pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
         # "kvm.ignore_msrs=1"
-        "iomem=relaxed"
+        # "iomem=relaxed"
         # "pci=nomsi"
       ];
-      blacklistedKernelModules = ["nouveau"];
 
       recovery = {
         enable = true;
