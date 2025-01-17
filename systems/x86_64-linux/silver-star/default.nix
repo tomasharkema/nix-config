@@ -55,14 +55,14 @@ in {
       zabbix.server.enable = true;
       atticd.enable = true;
     };
-    programs.mosh.enable = true;
+
     services = {
       hypervisor = {
         enable = true;
         # bridgeInterfaces = [ "eno1" ];
       };
       # mosh.enable = true;
-      # xserver.videoDrivers = ["nvidia"];
+      xserver.videoDrivers = ["nvidia"];
 
       "nix-private-cache".enable = true;
 
@@ -229,11 +229,9 @@ in {
       enableAllFirmware = true;
       enableRedistributableFirmware = true;
 
-      # nvidia-container-toolkit.enable = true;
+      nvidia-container-toolkit.enable = true;
 
       nvidia = {
-        modesetting.enable = true;
-        #     # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
 
         package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
@@ -250,6 +248,11 @@ in {
           enablePatcherCmd = true;
         };
       };
+    };
+
+    users = {
+      users.qemu-libvirtd.group = "qemu-libvirtd";
+      groups.qemu-libvirtd = {};
     };
 
     virtualisation = {
