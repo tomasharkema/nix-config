@@ -107,7 +107,7 @@
       systems.modules = {
         nixos = with inputs; [
           comin.nixosModules.comin
-          nixos-vfio.nixosModules.default
+          # nixos-vfio.nixosModules.default
           # nix-snapshotter.nixosModules.default
           chaotic.nixosModules.default
           nixos-facter-modules.nixosModules.facter
@@ -769,10 +769,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-vfio = {
-      url = "github:j-brn/nixos-vfio";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixos-vfio = {
+    #   url = "github:j-brn/nixos-vfio";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # netkit = {
     #   url = "github:icebox-nix/netkit.nix";

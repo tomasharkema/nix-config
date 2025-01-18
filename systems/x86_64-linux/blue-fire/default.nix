@@ -126,54 +126,54 @@ in {
 
       xserver.videoDrivers = ["nvidia"];
 
-      nfs.server = {
-        enable = true;
-        # fixed rpc.statd port; for firewall
-        lockdPort = 4001;
-        mountdPort = 4002;
-        statdPort = 4000;
-        extraNfsdConfig = '''';
-        exports = ''
-          /export       *(rw,fsid=0,no_subtree_check)
-          /export/isos  *(rw,nohide,insecure,no_subtree_check)
-        '';
-      };
+      # nfs.server = {
+      #   enable = true;
+      #   # fixed rpc.statd port; for firewall
+      #   lockdPort = 4001;
+      #   mountdPort = 4002;
+      #   statdPort = 4000;
+      #   extraNfsdConfig = '''';
+      #   exports = ''
+      #     /export       *(rw,fsid=0,no_subtree_check)
+      #     /export/isos  *(rw,nohide,insecure,no_subtree_check)
+      #   '';
+      # };
 
-      samba = {
-        enable = true;
-        securityType = "user";
-        openFirewall = true;
+      # samba = {
+      #   enable = true;
+      #   securityType = "user";
+      #   openFirewall = true;
 
-        winbindd.enable = true;
-        smbd.enable = true;
-        nmbd.enable = true;
+      #   winbindd.enable = true;
+      #   smbd.enable = true;
+      #   nmbd.enable = true;
 
-        settings = {
-          global = {
-            "workgroup" = "WORKGROUP";
-            "server string" = "blue-fire";
-            "netbios name" = "blue-fire";
-            "security" = "user";
-            #"use sendfile" = "yes";
-            #"max protocol" = "smb2";
-            # note: localhost is the ipv6 localhost ::1
-            "hosts allow" = "192.168.";
-            # "hosts deny" = "0.0.0.0/0";
-            "guest account" = "nobody";
-            "map to guest" = "tomas";
-          };
-          "isos" = {
-            "path" = "/export/isos";
-            "browseable" = "yes";
-            "read only" = "no";
-            "guest ok" = "yes";
-            "create mask" = "0644";
-            "directory mask" = "0755";
-            "force user" = "tomas";
-            "force group" = "tomas";
-          };
-        };
-      };
+      #   settings = {
+      #     global = {
+      #       "workgroup" = "WORKGROUP";
+      #       "server string" = "blue-fire";
+      #       "netbios name" = "blue-fire";
+      #       "security" = "user";
+      #       #"use sendfile" = "yes";
+      #       #"max protocol" = "smb2";
+      #       # note: localhost is the ipv6 localhost ::1
+      #       "hosts allow" = "192.168.";
+      #       # "hosts deny" = "0.0.0.0/0";
+      #       "guest account" = "nobody";
+      #       "map to guest" = "tomas";
+      #     };
+      #     "isos" = {
+      #       "path" = "/export/isos";
+      #       "browseable" = "yes";
+      #       "read only" = "no";
+      #       "guest ok" = "yes";
+      #       "create mask" = "0644";
+      #       "directory mask" = "0755";
+      #       "force user" = "tomas";
+      #       "force group" = "tomas";
+      #     };
+      #   };
+      # };
 
       watchdogd = {
         enable = true;
@@ -472,8 +472,6 @@ in {
         rebootTime = "5m";
       };
       services = {
-        nvidia-xid-logd.enable = lib.mkForce true;
-
         "serial-getty@ttyS2" = {
           #   overrideStrategy = "asDropin";
           #   serviceConfig = let

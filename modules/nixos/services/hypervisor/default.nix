@@ -88,6 +88,24 @@ in {
     #   groups.qemu-libvirtd = {};
     # };
 
+    users.users = {
+      root.extraGroups = [
+        "kvm"
+        "libvirtd"
+        "tty"
+
+        "libvirt"
+        "qemu-libvirtd"
+      ];
+      tomas.extraGroups = [
+        "kvm"
+        "libvirtd"
+        "libvirt"
+        "tty"
+        "qemu-libvirtd"
+      ];
+    };
+
     systemd.packages = [pkgs.custom.libvirt-dbus];
 
     environment.etc = {
@@ -136,12 +154,15 @@ in {
         "kvm_intel.nested=1"
         "intel_iommu=on"
         "intel_iommu=igfx_off"
+        "default_hugepagesz=1G"
+        "hugepagesz=1G"
+        "hugepages=1"
       ];
       blacklistedKernelModules = [
         "nvidia"
         "nouveau"
       ];
-      kernelModules = [
+      kernelModules = lib.mkBefore [
         "kvm-intel"
         "mdev"
         "kvmgt"
@@ -149,7 +170,7 @@ in {
         "vfio"
         "vfio_iommu_type1"
       ];
-      initrd.kernelModules = [
+      initrd.kernelModules = lib.mkBefore [
         "kvm-intel"
         "vfio_pci"
         "vfio"
@@ -185,9 +206,23 @@ in {
         qemu = {
           package = pkgs.qemu_kvm;
           runAsRoot = true;
-          # verbatimConfig = ''
+          verbatimConfig = ''
+            cgroup_device_acl = [
+              "/dev/null",
+              "/dev/full",
+              "/dev/zero",
+              "/dev/random",
+              "/dev/urandom",
+              "/dev/ptmx",
+              "/dev/kvm",
+              "/dev/kqemu",
+              "/dev/rtc",
+              "/dev/hpet",
+              "/dev/pts"
+            ]
+          '';
           #   nvram = [ "/run/libvirt/nix-ovmf/AAVMF_CODE.fd:/run/libvirt/nix-ovmf/AAVMF_VARS.fd", "/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd" ]
-          # '';
+
           swtpm.enable = true;
 
           vhostUserPackages = [pkgs.virtiofsd];
