@@ -128,9 +128,9 @@ in {
     #   keytab: ${libvirtKeytab}
     # '';
     # };
-    services.udev.extraRules = ''
-      SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
-    '';
+    # services.udev.extraRules = ''
+    #   SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
+    # '';
     boot = {
       kernelParams = [
         "kvm_intel.nested=1"
@@ -177,12 +177,17 @@ in {
       libvirtd = {
         enable = true;
 
+        nss = {
+          enable = true;
+          enableGuest = true;
+        };
+
         qemu = {
           package = pkgs.qemu_kvm;
-          # runAsRoot = true;
-          verbatimConfig = ''
-            nvram = [ "/run/libvirt/nix-ovmf/AAVMF_CODE.fd:/run/libvirt/nix-ovmf/AAVMF_VARS.fd", "/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd" ]
-          '';
+          runAsRoot = true;
+          # verbatimConfig = ''
+          #   nvram = [ "/run/libvirt/nix-ovmf/AAVMF_CODE.fd:/run/libvirt/nix-ovmf/AAVMF_VARS.fd", "/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd" ]
+          # '';
           swtpm.enable = true;
 
           vhostUserPackages = [pkgs.virtiofsd];
