@@ -52,6 +52,7 @@ in {
       # "bmc-watchdog".enable = true;
       podman.enable = true;
       zabbix.server.enable = true;
+      atticd.enable = true;
     };
 
     services = {
@@ -204,7 +205,8 @@ in {
     virtualisation.kvmgt = {
       enable = true;
 
-      device = "0000:42:00.0";
+      # device = "0000:42:00.0";
+      device = "0000:05:00.0";
       vgpus = {
         "nvidia-36" = {
           uuid = [
@@ -241,7 +243,9 @@ in {
             remapP40ProfilesToV100D = true;
           };
           copyVGPUProfiles = {
+            "1E87:0000" = "1E30:12BA";
             "1380:0000" = "13BD:1160";
+            "1C82" = "13BD:1160";
           };
           enablePatcherCmd = true;
         };

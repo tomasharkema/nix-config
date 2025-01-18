@@ -386,6 +386,7 @@ in {
           };
           copyVGPUProfiles = {
             "1E87:0000" = "1E30:12BA";
+            "1380:0000" = "13BD:1160";
           };
           enablePatcherCmd = true;
         };
