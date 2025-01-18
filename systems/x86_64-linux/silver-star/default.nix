@@ -38,6 +38,11 @@ in {
       hardware = {
         # tpm.enable = true;
         secure-boot.enable = true;
+
+        nvidia = {
+          enable = false;
+          open = false;
+        };
       };
     };
 
@@ -46,8 +51,8 @@ in {
       ntopng.enable = true;
       mailrise.enable = true;
       atop = {
-        enable = true;
-        httpd = true;
+        enable = false; # true;
+        httpd = false; # true;
       };
       # "bmc-watchdog".enable = true;
       podman.enable = true;
@@ -202,20 +207,20 @@ in {
       # icingaweb2
     ];
 
-    virtualisation.kvmgt = {
-      enable = true;
+    # virtualisation.kvmgt = {
+    #   enable = true;
 
-      # device = "0000:42:00.0";
-      device = "0000:05:00.0";
-      vgpus = {
-        "nvidia-36" = {
-          uuid = [
-            "e1ab260f-44a2-4e07-9889-68a1caafb399"
-            "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
-          ];
-        };
-      };
-    };
+    #   # device = "0000:42:00.0";
+    #   device = "0000:05:00.0";
+    #   vgpus = {
+    #     "nvidia-36" = {
+    #       uuid = [
+    #         "e1ab260f-44a2-4e07-9889-68a1caafb399"
+    #         "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
+    #       ];
+    #     };
+    #   };
+    # };
 
     # fileSystems."/etc" = {
     #   device = "none";
@@ -232,8 +237,11 @@ in {
       nvidia-container-toolkit.enable = true;
 
       nvidia = {
+        # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
+        nvidiaPersistenced = lib.mkForce true;
 
+        # nix-prefetch-url --type sha256 https://us.download.nvidia.com/XFree86/Linux-x86_64/550.90.07/NVIDIA-Linux-x86_64-550.90.07.run
         package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
 
         vgpu.patcher = {
@@ -245,7 +253,6 @@ in {
           copyVGPUProfiles = {
             "1E87:0000" = "1E30:12BA";
             "1380:0000" = "13BD:1160";
-            "1C82" = "13BD:1160";
           };
           enablePatcherCmd = true;
         };
@@ -369,15 +376,6 @@ in {
           "ipmi_si"
           "ipmi_devintf"
           "ipmi_msghandler"
-          "vfio_pci"
-          "vfio"
-          "vfio_iommu_type1"
-          # "vfio_virqfd"
-
-          # "nvidia"
-          # "nvidia_modeset"
-          # "nvidia_uvm"
-          # "nvidia_drm"
         ];
       };
       kernelModules = [
@@ -393,16 +391,6 @@ in {
         "ipmi_devintf"
         "ipmi_msghandler"
         "ipmi_watchdog"
-
-        "vfio_pci"
-        "vfio"
-        "vfio_iommu_type1"
-        # "vfio_virqfd"
-
-        # "nvidia"
-        # "nvidia_modeset"
-        # "nvidia_uvm"
-        # "nvidia_drm"
       ];
 
       # systemd.services."serial-getty@ttyS2" = {
