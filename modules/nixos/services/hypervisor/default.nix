@@ -79,14 +79,14 @@ in {
       ];
     };
 
-    users = {
-      users = {
-        qemu-libvirtd.group = "qemu-libvirtd";
-        "${config.user.name}".extraGroups = ["libvirtd" "qemu-libvirtd" "vboxusers"];
-        "root".extraGroups = ["libvirtd" "qemu-libvirtd" "vboxusers"];
-      };
-      groups.qemu-libvirtd = {};
-    };
+    # users = {
+    #   users = {
+    #     qemu-libvirtd.group = "qemu-libvirtd";
+    #     "${config.user.name}".extraGroups = ["libvirtd" "qemu-libvirtd" "vboxusers"];
+    #     "root".extraGroups = ["libvirtd" "qemu-libvirtd" "vboxusers"];
+    #   };
+    #   groups.qemu-libvirtd = {};
+    # };
 
     systemd.packages = [pkgs.custom.libvirt-dbus];
 
@@ -128,14 +128,32 @@ in {
     #   keytab: ${libvirtKeytab}
     # '';
     # };
-
+    services.udev.extraRules = ''
+      SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
+    '';
     boot = {
-      # kernelParams = [
-      #   "kvm_intel.nested=1"
-      # ];
+      kernelParams = [
+        "kvm_intel.nested=1"
+        "intel_iommu=on"
+        "intel_iommu=igfx_off"
+      ];
+      blacklistedKernelModules = [
+        "nvidia"
+        "nouveau"
+      ];
       kernelModules = [
+        "kvm-intel"
         "mdev"
         "kvmgt"
+        "vfio_pci"
+        "vfio"
+        "vfio_iommu_type1"
+      ];
+      initrd.kernelModules = [
+        "kvm-intel"
+        "vfio_pci"
+        "vfio"
+        "vfio_iommu_type1"
       ];
     };
 
@@ -149,12 +167,12 @@ in {
       kvmgt.enable = true;
       # tpm.enable = true;
 
-      vfio = {
-        enable = true;
-        IOMMUType = "intel";
-        blacklistNvidia = true;
-        ignoreMSRs = true;
-      };
+      # vfio = {
+      #   enable = true;
+      #   IOMMUType = "intel";
+      #   blacklistNvidia = true;
+      #   ignoreMSRs = true;
+      # };
 
       libvirtd = {
         enable = true;
