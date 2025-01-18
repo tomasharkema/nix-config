@@ -55,11 +55,12 @@ in {
 
     boot = {
       # kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
+
       kernelParams = [
         # "nvidia-drm.modeset=1"
         # "nvidia-drm.fbdev=1"
         # "nvidia_drm.modeset=1"
-        # "nvidia_drm.fbdev=1"
+        "nvidia_drm.fbdev=1"
 
         # "apm=power_off"
         # "acpi=force"
@@ -75,10 +76,10 @@ in {
         open = lib.mkForce cfg.open;
         nvidiaSettings = true;
 
-        package =
-          # pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc
-          config.boot.kernelPackages.nvidiaPackages.beta;
-        #);
+        package = pkgs.nvidia-patch.patch-nvenc (
+          pkgs.nvidia-patch.patch-fbc
+          config.boot.kernelPackages.nvidiaPackages.beta
+        );
       };
 
       graphics = {

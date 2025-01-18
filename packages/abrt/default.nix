@@ -3,7 +3,6 @@
   stdenv,
   fetchFromGitHub,
   gettext,
-  autoreconfHook,
   pkg-config,
   python3,
   intltool,
@@ -34,6 +33,7 @@
   util-linux,
   makeWrapper,
   doxygen,
+  autoreconfHook,
   autoPatchelfHook,
   wrapGAppsHook,
 }: let
