@@ -38,6 +38,11 @@ in {
       hardware = {
         # tpm.enable = true;
         secure-boot.enable = true;
+
+        nvidia = {
+          enable = false;
+          open = false;
+        };
       };
     };
 
@@ -46,12 +51,13 @@ in {
       ntopng.enable = true;
       mailrise.enable = true;
       atop = {
-        enable = true;
-        httpd = true;
+        enable = false; # true;
+        httpd = false; # true;
       };
       # "bmc-watchdog".enable = true;
       podman.enable = true;
       zabbix.server.enable = true;
+      atticd.enable = true;
     };
 
     services = {
@@ -71,7 +77,7 @@ in {
         enable = true;
       };
 
-      das_watchdog.enable = lib.mkForce false;
+      # das_watchdog.enable = lib.mkForce false;
 
       remote-builders.server.enable = true;
 
@@ -201,19 +207,20 @@ in {
       # icingaweb2
     ];
 
-    virtualisation.kvmgt = {
-      enable = true;
+    # virtualisation.kvmgt = {
+    #   enable = true;
 
-      device = "0000:42:00.0";
-      vgpus = {
-        "nvidia-36" = {
-          uuid = [
-            "e1ab260f-44a2-4e07-9889-68a1caafb399"
-            "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
-          ];
-        };
-      };
-    };
+    #   # device = "0000:42:00.0";
+    #   device = "0000:05:00.0";
+    #   vgpus = {
+    #     "nvidia-36" = {
+    #       uuid = [
+    #         "e1ab260f-44a2-4e07-9889-68a1caafb399"
+    #         "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
+    #       ];
+    #     };
+    #   };
+    # };
 
     # fileSystems."/etc" = {
     #   device = "none";
@@ -230,8 +237,11 @@ in {
       nvidia-container-toolkit.enable = true;
 
       nvidia = {
+        # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
+        nvidiaPersistenced = lib.mkForce true;
 
+        # nix-prefetch-url --type sha256 https://us.download.nvidia.com/XFree86/Linux-x86_64/550.90.07/NVIDIA-Linux-x86_64-550.90.07.run
         package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
 
         vgpu.patcher = {
@@ -241,6 +251,7 @@ in {
             remapP40ProfilesToV100D = true;
           };
           copyVGPUProfiles = {
+            "1E87:0000" = "1E30:12BA";
             "1380:0000" = "13BD:1160";
           };
           enablePatcherCmd = true;
@@ -319,6 +330,13 @@ in {
         # "console=tty1"
         # "console=ttyS2,115200n8"
         "mitigations=off"
+        "intremap=no_x2apic_optout"
+        "nox2apic"
+
+        "intel_iommu=on"
+        "iommu=pt"
+        "video=efifb:off,vesafb:off"
+
         #"vfio-pci.ids=10de:1380,10de:0fbc"
         # "pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
@@ -361,19 +379,12 @@ in {
           "uinput"
           #          "tpm_rng"
           "ipmi_ssif"
-          # "acpi_ipmi"
+          "ipmi_ipmb"
           "ipmi_si"
           "ipmi_devintf"
           "ipmi_msghandler"
-          "vfio_pci"
-          "vfio"
-          "vfio_iommu_type1"
-          # "vfio_virqfd"
-
-          # "nvidia"
-          # "nvidia_modeset"
-          # "nvidia_uvm"
-          # "nvidia_drm"
+          "ipmi_watchdog"
+          "acpi_ipmi"
         ];
       };
       kernelModules = [
@@ -382,23 +393,14 @@ in {
         "kvm-intel"
         "uinput"
         "fuse"
+        "ipmi_ipmb"
         #       "tpm_rng"
         "ipmi_ssif"
-        # "acpi_ipmi"
+        "acpi_ipmi"
         "ipmi_si"
         "ipmi_devintf"
         "ipmi_msghandler"
         "ipmi_watchdog"
-
-        "vfio_pci"
-        "vfio"
-        "vfio_iommu_type1"
-        # "vfio_virqfd"
-
-        # "nvidia"
-        # "nvidia_modeset"
-        # "nvidia_uvm"
-        # "nvidia_drm"
       ];
 
       # systemd.services."serial-getty@ttyS2" = {
