@@ -12,7 +12,10 @@ in {
     system.nixos.tags = ["monitor"];
 
     boot = {
-      kernelModules = ["i2c-dev" "ddcci_backlight"];
+      kernelModules = [
+        "i2c-dev"
+        # "ddcci_backlight"
+      ];
       # extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
     };
 

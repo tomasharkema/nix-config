@@ -243,7 +243,7 @@
       kernelModules = [
         "pstore"
         "i915"
-        "spi"
+        # "spi"
         # "sgx"
         # "isgx"
         # "vfio_pci"

@@ -253,7 +253,7 @@ in
         #   gnome-settings-daemon
         #   gnome-shell-extensions
         #   seahorse
-        gnome-photos
+        # gnome-photos
       ]);
 
       environment.systemPackages = with pkgs; [
@@ -272,7 +272,7 @@ in
         gnome-menus
         gnome-nettool
         gnome-packagekit
-        # gnome-photos
+        gnome-photos
         gnome-session
         gnome-session-ctl
         gnome-settings-daemon

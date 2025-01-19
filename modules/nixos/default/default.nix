@@ -314,7 +314,7 @@
       packages = [pkgs.abrt];
 
       settings."99-panic-plane" = {
-        " /sys/kernel/debug/dri/0/drm_panic_plane_0".w.argument = "1";
+        "/sys/kernel/debug/dri/0/drm_panic_plane_0".w.argument = "1";
       };
     };
 
@@ -522,8 +522,8 @@
     };
 
     security = {
-      audit.enable = true;
-      auditd.enable = true;
+      # audit.enable = true;
+      # auditd.enable = true;
       pam.sshAgentAuth.enable = true;
     };
 

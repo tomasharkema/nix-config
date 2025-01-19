@@ -40,8 +40,9 @@ in {
         secure-boot.enable = true;
 
         nvidia = {
-          enable = false;
+          enable = true;
           open = false;
+          grid = true;
         };
       };
     };
@@ -239,23 +240,9 @@ in {
       nvidia = {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
-        nvidiaPersistenced = lib.mkForce true;
+        nvidiaPersistenced = lib.mkForce false;
 
         # nix-prefetch-url --type sha256 https://us.download.nvidia.com/XFree86/Linux-x86_64/550.90.07/NVIDIA-Linux-x86_64-550.90.07.run
-        package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
-
-        vgpu.patcher = {
-          enable = true;
-          options = {
-            doNotForceGPLLicense = false;
-            remapP40ProfilesToV100D = true;
-          };
-          copyVGPUProfiles = {
-            "1E87:0000" = "1E30:12BA";
-            "1380:0000" = "13BD:1160";
-          };
-          enablePatcherCmd = true;
-        };
       };
     };
 
@@ -320,6 +307,20 @@ in {
       };
     };
 
+    systemd.services = {
+      "tsnsrv-nix-cache" = {
+        environment = {
+          TS_STATE_DIR = "/var/lib/tsnsrv";
+        };
+        script = "${pkgs.custom.tsnsrv}/bin/tsnsrv -name nix-cache http://127.0.0.1:7124";
+        wantedBy = ["multi-user.target"];
+      };
+
+      "docker-compose@atuin" = {
+        wantedBy = ["multi-user.target"];
+      };
+    };
+
     boot = {
       tmp = {
         useTmpfs = true;
@@ -327,8 +328,8 @@ in {
       binfmt.emulatedSystems = ["aarch64-linux"];
       kernelPackages = pkgs.linuxPackages_6_6;
       kernelParams = [
-        # "console=tty1"
-        # "console=ttyS2,115200n8"
+        "console=tty1"
+        "console=ttyS0,115200n8"
         "mitigations=off"
         "intremap=no_x2apic_optout"
         "nox2apic"
@@ -403,6 +404,9 @@ in {
         "ipmi_watchdog"
       ];
 
+      systemd.services."serial-getty@ttyS0" = {
+        wantedBy = ["multi-user.target"];
+      };
       # systemd.services."serial-getty@ttyS2" = {
       #   overrideStrategy = "asDropin";
       #   serviceConfig = let

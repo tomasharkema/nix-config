@@ -290,6 +290,9 @@
       # [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     };
 
+    systemd.services."serial-getty@ttyUSB0" = {
+      wantedBy = ["multi-user.target"];
+    };
     # boot = {
     #   loader = {
     #     efi = {
