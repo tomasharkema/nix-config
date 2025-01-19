@@ -1537,7 +1537,6 @@
           "name": "0329",
           "value": 0
         },
-        "serial": "20120731-1",
         "model": "iDRAC Virtual CD",
         "sysfs_id": "/class/block/sr0",
         "sysfs_bus_id": "8:0:0:0",
@@ -1564,16 +1563,6 @@
           "minor": 1,
           "range": 1
         },
-        "resources": [
-          {
-            "type": "baud",
-            "speed": 480000000,
-            "bits": 0,
-            "stop_bits": 0,
-            "parity": 0,
-            "handshake": 0
-          }
-        ],
         "driver": "usb-storage",
         "driver_module": "usb_storage",
         "drivers": [
@@ -1583,8 +1572,7 @@
         "driver_modules": [
           "sr_mod",
           "usb_storage"
-        ],
-        "module_alias": "usb:v0624p0251d0000dc00dsc00dp00ic08isc06ip50in00"
+        ]
       }
     ],
     "cpu": [
@@ -1655,7 +1643,6 @@
           "dca",
           "sse4_1",
           "sse4_2",
-          "x2apic",
           "popcnt",
           "tsc_deadline_timer",
           "aes",
@@ -1691,7 +1678,7 @@
           "itlb_multihit",
           "mmio_unknown"
         ],
-        "bogo": 3600.11,
+        "bogo": 3599.98,
         "cache": 20480,
         "units": 32,
         "physical_id": 0,
@@ -1775,7 +1762,6 @@
           "dca",
           "sse4_1",
           "sse4_2",
-          "x2apic",
           "popcnt",
           "tsc_deadline_timer",
           "aes",
@@ -1811,7 +1797,7 @@
           "itlb_multihit",
           "mmio_unknown"
         ],
-        "bogo": 3600.11,
+        "bogo": 3599.98,
         "cache": 20480,
         "units": 32,
         "physical_id": 1,
@@ -1883,11 +1869,11 @@
         "unix_device_number": {
           "type": 98,
           "major": 259,
-          "minor": 1,
+          "minor": 0,
           "range": 0
         },
         "unix_device_names": [
-          "/dev/disk/by-diskseq/2",
+          "/dev/disk/by-diskseq/1",
           "/dev/disk/by-id/nvme-TOSHIBA-RC500_996A62BFK09L",
           "/dev/disk/by-id/nvme-TOSHIBA-RC500_996A62BFK09L_1",
           "/dev/disk/by-id/nvme-eui.00000000000000008ce38e03001ef700",
@@ -1934,7 +1920,7 @@
           "value": 132
         },
         "slot": {
-          "bus": 7,
+          "bus": 8,
           "number": 0
         },
         "base_class": {
@@ -1948,25 +1934,25 @@
           "value": 0
         },
         "vendor": {
-          "hex": "0951",
-          "name": "Kingston",
-          "value": 2385
+          "hex": "0624",
+          "name": "iDRAC",
+          "value": 1572
         },
         "device": {
-          "hex": "1666",
-          "name": "DataTraveler 3.0",
-          "value": 5734
+          "hex": "0251",
+          "name": "Virtual Floppy",
+          "value": 593
         },
         "revision": {
           "hex": "0000",
-          "name": "PMAP",
+          "name": "0329",
           "value": 0
         },
-        "serial": "1EC411B003D9",
-        "model": "Kingston DataTraveler 3.0",
+        "serial": "20120731-1",
+        "model": "iDRAC Virtual Floppy",
         "sysfs_id": "/class/block/sdb",
-        "sysfs_bus_id": "7:0:0:0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.1/1-1.1:1.0/host7/target7:0:0/7:0:0:0",
+        "sysfs_bus_id": "8:0:0:1",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6.4/1-1.6.4:1.0/host8/target8:0:0/8:0:0:1",
         "unix_device_name": "/dev/sdb",
         "unix_device_number": {
           "type": 98,
@@ -1975,17 +1961,17 @@
           "range": 16
         },
         "unix_device_names": [
-          "/dev/disk/by-diskseq/14",
-          "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_1C1B0D6AE9B0E410390F2CA6-0:0",
-          "/dev/disk/by-path/pci-0000:00:1a.0-usb-0:1.1:1.0-scsi-0:0:0:0",
-          "/dev/disk/by-path/pci-0000:00:1a.0-usbv2-0:1.1:1.0-scsi-0:0:0:0",
+          "/dev/disk/by-diskseq/15",
+          "/dev/disk/by-id/usb-iDRAC_Virtual_Floppy_20120731-1-0:1",
+          "/dev/disk/by-path/pci-0000:00:1a.0-usb-0:1.6.4:1.0-scsi-0:0:0:1",
+          "/dev/disk/by-path/pci-0000:00:1a.0-usbv2-0:1.6.4:1.0-scsi-0:0:0:1",
           "/dev/sdb"
         ],
-        "unix_device_name2": "/dev/sg0",
+        "unix_device_name2": "/dev/sg2",
         "unix_device_number2": {
           "type": 99,
           "major": 21,
-          "minor": 0,
+          "minor": 2,
           "range": 1
         },
         "resources": [
@@ -1999,17 +1985,11 @@
           },
           {
             "type": "disk_geo",
-            "cylinders": 59136,
-            "heads": 64,
-            "sectors": 32,
+            "cylinders": 1024,
+            "heads": 0,
+            "sectors": 62,
             "size": 0,
             "geo_type": "logical"
-          },
-          {
-            "type": "size",
-            "unit": "sectors",
-            "value_1": 121110528,
-            "value_2": 512
           }
         ],
         "driver": "usb-storage",
@@ -2022,7 +2002,7 @@
           "sd_mod",
           "usb_storage"
         ],
-        "module_alias": "usb:v0951p1666d0110dc00dsc00dp00ic08isc06ip50in00"
+        "module_alias": "usb:v0624p0251d0000dc00dsc00dp00ic08isc06ip50in00"
       },
       {
         "index": 180,
@@ -2077,11 +2057,11 @@
         "unix_device_number": {
           "type": 98,
           "major": 259,
-          "minor": 0,
+          "minor": 3,
           "range": 0
         },
         "unix_device_names": [
-          "/dev/disk/by-diskseq/1",
+          "/dev/disk/by-diskseq/2",
           "/dev/disk/by-id/nvme-TOSHIBA-RC500_997A613RK09L",
           "/dev/disk/by-id/nvme-TOSHIBA-RC500_997A613RK09L_1",
           "/dev/disk/by-id/nvme-eui.00000000000000008ce38e03001f1c76",
@@ -2128,7 +2108,7 @@
           "value": 132
         },
         "slot": {
-          "bus": 8,
+          "bus": 7,
           "number": 0
         },
         "base_class": {
@@ -2142,24 +2122,25 @@
           "value": 0
         },
         "vendor": {
-          "hex": "0624",
-          "name": "iDRAC",
-          "value": 1572
+          "hex": "0951",
+          "name": "Kingston",
+          "value": 2385
         },
         "device": {
-          "hex": "0251",
-          "name": "Virtual Floppy",
-          "value": 593
+          "hex": "1666",
+          "name": "DataTraveler 3.0",
+          "value": 5734
         },
         "revision": {
           "hex": "0000",
-          "name": "0329",
+          "name": "PMAP",
           "value": 0
         },
-        "model": "iDRAC Virtual Floppy",
+        "serial": "1EC411B003D9",
+        "model": "Kingston DataTraveler 3.0",
         "sysfs_id": "/class/block/sda",
-        "sysfs_bus_id": "8:0:0:1",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6.4/1-1.6.4:1.0/host8/target8:0:0/8:0:0:1",
+        "sysfs_bus_id": "7:0:0:0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.1/1-1.1:1.0/host7/target7:0:0/7:0:0:0",
         "unix_device_name": "/dev/sda",
         "unix_device_number": {
           "type": 98,
@@ -2168,27 +2149,41 @@
           "range": 16
         },
         "unix_device_names": [
-          "/dev/disk/by-diskseq/15",
-          "/dev/disk/by-id/usb-iDRAC_Virtual_Floppy_20120731-1-0:1",
-          "/dev/disk/by-path/pci-0000:00:1a.0-usb-0:1.6.4:1.0-scsi-0:0:0:1",
-          "/dev/disk/by-path/pci-0000:00:1a.0-usbv2-0:1.6.4:1.0-scsi-0:0:0:1",
+          "/dev/disk/by-diskseq/13",
+          "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_1C1B0D6AE9B0E410390F2CA6-0:0",
+          "/dev/disk/by-path/pci-0000:00:1a.0-usb-0:1.1:1.0-scsi-0:0:0:0",
+          "/dev/disk/by-path/pci-0000:00:1a.0-usbv2-0:1.1:1.0-scsi-0:0:0:0",
           "/dev/sda"
         ],
-        "unix_device_name2": "/dev/sg2",
+        "unix_device_name2": "/dev/sg0",
         "unix_device_number2": {
           "type": 99,
           "major": 21,
-          "minor": 2,
+          "minor": 0,
           "range": 1
         },
         "resources": [
           {
+            "type": "baud",
+            "speed": 480000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          },
+          {
             "type": "disk_geo",
-            "cylinders": 1024,
-            "heads": 0,
-            "sectors": 62,
+            "cylinders": 59136,
+            "heads": 64,
+            "sectors": 32,
             "size": 0,
             "geo_type": "logical"
+          },
+          {
+            "type": "size",
+            "unit": "sectors",
+            "value_1": 121110528,
+            "value_2": 512
           }
         ],
         "driver": "usb-storage",
@@ -2200,7 +2195,8 @@
         "driver_modules": [
           "sd_mod",
           "usb_storage"
-        ]
+        ],
+        "module_alias": "usb:v0951p1666d0110dc00dsc00dp00ic08isc06ip50in00"
       },
       {
         "index": 182,
@@ -3307,7 +3303,7 @@
           },
           {
             "type": "irq",
-            "base": 87,
+            "base": 96,
             "triggered": 0,
             "enabled": true
           },
@@ -3353,7 +3349,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 87,
+          "irq": 96,
           "prog_if": 0
         },
         "driver": "tg3",
@@ -3425,7 +3421,7 @@
           },
           {
             "type": "irq",
-            "base": 81,
+            "base": 85,
             "triggered": 0,
             "enabled": true
           },
@@ -3471,7 +3467,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 81,
+          "irq": 85,
           "prog_if": 0
         },
         "driver": "tg3",
@@ -3543,7 +3539,7 @@
           },
           {
             "type": "irq",
-            "base": 91,
+            "base": 99,
             "triggered": 0,
             "enabled": true
           },
@@ -3589,7 +3585,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 91,
+          "irq": 99,
           "prog_if": 0
         },
         "driver": "tg3",
@@ -3661,7 +3657,7 @@
           },
           {
             "type": "irq",
-            "base": 83,
+            "base": 91,
             "triggered": 0,
             "enabled": true
           },
@@ -3707,7 +3703,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 83,
+          "irq": 91,
           "prog_if": 0
         },
         "driver": "tg3",
@@ -3842,8 +3838,8 @@
     ],
     "network_interface": [
       {
-        "index": 196,
-        "attached_to": 192,
+        "index": 195,
+        "attached_to": 0,
         "class_list": [
           "network_interface"
         ],
@@ -3853,38 +3849,19 @@
           "value": 263
         },
         "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
         },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/idrac",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6.3/1-1.6.3:1.0",
-        "unix_device_name": "idrac",
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_name": "lo",
         "unix_device_names": [
-          "idrac"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 53
-          },
-          {
-            "type": "phwaddr",
-            "address": 53
-          }
-        ],
-        "driver": "cdc_ether",
-        "driver_module": "cdc_ether",
-        "drivers": [
-          "cdc_ether"
-        ],
-        "driver_modules": [
-          "cdc_ether"
+          "lo"
         ]
       },
       {
-        "index": 197,
+        "index": 196,
         "attached_to": 117,
         "class_list": [
           "network_interface"
@@ -3926,7 +3903,7 @@
         ]
       },
       {
-        "index": 198,
+        "index": 197,
         "attached_to": 142,
         "class_list": [
           "network_interface"
@@ -3969,6 +3946,48 @@
       },
       {
         "index": 201,
+        "attached_to": 192,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/idrac",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6.3/1-1.6.3:1.0",
+        "unix_device_name": "idrac",
+        "unix_device_names": [
+          "idrac"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 53
+          },
+          {
+            "type": "phwaddr",
+            "address": 53
+          }
+        ],
+        "driver": "cdc_ether",
+        "driver_module": "cdc_ether",
+        "drivers": [
+          "cdc_ether"
+        ],
+        "driver_modules": [
+          "cdc_ether"
+        ]
+      },
+      {
+        "index": 202,
         "attached_to": 60,
         "class_list": [
           "network_interface"
@@ -4010,7 +4029,7 @@
         ]
       },
       {
-        "index": 202,
+        "index": 205,
         "attached_to": 83,
         "class_list": [
           "network_interface"
@@ -4049,29 +4068,6 @@
         ],
         "driver_modules": [
           "tg3"
-        ]
-      },
-      {
-        "index": 203,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_name": "lo",
-        "unix_device_names": [
-          "lo"
         ]
       }
     ],
@@ -4718,7 +4714,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 94,
+            "base": 92,
             "triggered": 0,
             "enabled": true
           },
@@ -4736,7 +4732,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 94,
+          "irq": 92,
           "prog_if": 0
         },
         "driver": "ioatdma",
@@ -5276,7 +5272,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 94,
+            "base": 92,
             "triggered": 0,
             "enabled": true
           },
@@ -5294,7 +5290,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 94,
+          "irq": 92,
           "prog_if": 0
         },
         "driver": "ioatdma",
@@ -5888,7 +5884,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 94,
+            "base": 92,
             "triggered": 0,
             "enabled": true
           },
@@ -5906,7 +5902,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 94,
+          "irq": 92,
           "prog_if": 0
         },
         "driver": "ioatdma",
@@ -6611,7 +6607,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 94,
+            "base": 92,
             "triggered": 0,
             "enabled": true
           },
@@ -6629,7 +6625,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 94,
+          "irq": 92,
           "prog_if": 0
         },
         "driver": "ioatdma",
@@ -7703,7 +7699,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 96,
+            "base": 94,
             "triggered": 0,
             "enabled": true
           },
@@ -7721,7 +7717,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 96,
+          "irq": 94,
           "prog_if": 0
         },
         "driver": "ioatdma",
@@ -8261,7 +8257,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 96,
+            "base": 94,
             "triggered": 0,
             "enabled": true
           },
@@ -8279,7 +8275,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 96,
+          "irq": 94,
           "prog_if": 0
         },
         "driver": "ioatdma",
@@ -8872,7 +8868,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 96,
+            "base": 94,
             "triggered": 0,
             "enabled": true
           },
@@ -8890,7 +8886,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 96,
+          "irq": 94,
           "prog_if": 0
         },
         "driver": "ioatdma",
@@ -9648,7 +9644,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 96,
+            "base": 94,
             "triggered": 0,
             "enabled": true
           },
@@ -9666,7 +9662,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 96,
+          "irq": 94,
           "prog_if": 0
         },
         "driver": "ioatdma",
@@ -11209,7 +11205,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 85,
+            "base": 87,
             "triggered": 0,
             "enabled": true
           },
@@ -11227,7 +11223,7 @@
           "command": 6,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 85,
+          "irq": 87,
           "prog_if": 0
         },
         "driver": "snd_hda_intel",
@@ -11442,7 +11438,7 @@
           },
           {
             "type": "irq",
-            "base": 60,
+            "base": 76,
             "triggered": 0,
             "enabled": true
           },
@@ -11460,7 +11456,7 @@
           "command": 1095,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 60,
+          "irq": 76,
           "prog_if": 1
         },
         "driver": "ahci",
