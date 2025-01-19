@@ -77,7 +77,7 @@ in {
         enable = true;
       };
 
-      das_watchdog.enable = lib.mkForce false;
+      # das_watchdog.enable = lib.mkForce false;
 
       remote-builders.server.enable = true;
 
@@ -379,10 +379,12 @@ in {
           "uinput"
           #          "tpm_rng"
           "ipmi_ssif"
-          # "acpi_ipmi"
+          "ipmi_ipmb"
           "ipmi_si"
           "ipmi_devintf"
           "ipmi_msghandler"
+          "ipmi_watchdog"
+          "acpi_ipmi"
         ];
       };
       kernelModules = [
@@ -391,9 +393,10 @@ in {
         "kvm-intel"
         "uinput"
         "fuse"
+        "ipmi_ipmb"
         #       "tpm_rng"
         "ipmi_ssif"
-        # "acpi_ipmi"
+        "acpi_ipmi"
         "ipmi_si"
         "ipmi_devintf"
         "ipmi_msghandler"

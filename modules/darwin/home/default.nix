@@ -30,8 +30,8 @@
     };
 
     environment = {
-      # variables.XDG_DATA_DIRS = ["/usr/local/share"];
-      # systemPackages = with pkgs; [virt-manager];
+      variables.XDG_DATA_DIRS = ["/usr/local/share"];
+      systemPackages = with pkgs; [virt-manager];
     };
 
     snowfallorg.users."${config.user.name}" = {
