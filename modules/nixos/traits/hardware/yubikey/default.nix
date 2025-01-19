@@ -60,18 +60,26 @@
       # };
     };
 
-    # security.polkit.extraConfig = ''
-    #   polkit.addRule(function(action, subject) {
-    #     if (subject.isInGroup("ykusers")) {
-    #       return polkit.Result.YES;
-    #     }
-    #   })
-    # '';
+    security.polkit.extraConfig = ''
+      polkit.addRule(function(action, subject) {
+        if (subject.isInGroup("ykusers")) {
+          return polkit.Result.YES;
+        }
+      });
+
+      polkit.addRule(function(action, subject) {
+          if ((action.id == "org.debian.pcsc-lite.access_pcsc"
+              || action.id == "org.debian.pcsc-lite.access_card")
+              && subject.user == "gdm") {
+              return polkit.Result.YES;
+          }
+      });
+    '';
 
     services = {
       pcscd = {
         enable = true;
-        #   plugins = [pkgs.yubikey-personalization];
+        # plugins = [pkgs.yubikey-personalization];
       };
       # yubikey-agent.enable = config.gui.enable;
 
