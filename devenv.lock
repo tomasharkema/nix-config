@@ -75,10 +75,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1737043064,
+        "lastModified": 1737294423,
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
-        "rev": "94ee657f6032d913fe0ef49adaa743804635b0bb",
+        "rev": "4c099900ec87f573ee7ed90c964574507fed3d0d",
         "type": "github"
       },
       "original": {
