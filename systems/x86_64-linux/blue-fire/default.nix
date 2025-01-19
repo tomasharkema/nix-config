@@ -39,9 +39,10 @@ in {
         secure-boot.enable = false;
         remote-unlock.enable = false;
         nvidia = {
-          # enable = true;
-          # beta = false;
-          # open = true;
+          enable = true;
+          beta = false;
+          open = false;
+          grid = true;
         };
         # nfs = {
         #   enable = true;
@@ -373,22 +374,22 @@ in {
       nvidia = {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
-        nvidiaPersistenced = lib.mkForce true;
+        nvidiaPersistenced = lib.mkForce false;
 
         # nix-prefetch-url --type sha256 https://us.download.nvidia.com/XFree86/Linux-x86_64/550.90.07/NVIDIA-Linux-x86_64-550.90.07.run
-        package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
+        # package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
 
         vgpu.patcher = {
-          enable = true;
+          #enable = true;
           options = {
-            doNotForceGPLLicense = false;
-            # remapP40ProfilesToV100D = true;
+            # doNotForceGPLLicense = false;
+            remapP40ProfilesToV100D = lib.mkForce false;
           };
-          copyVGPUProfiles = {
-            "1E87:0000" = "1E30:12BA";
-            "1380:0000" = "13BD:1160";
-          };
-          enablePatcherCmd = true;
+          #copyVGPUProfiles = {
+          #  "1E87:0000" = "1E30:12BA";
+          #  "1380:0000" = "13BD:1160";
+          #};
+          #enablePatcherCmd = true;
         };
       };
     };
