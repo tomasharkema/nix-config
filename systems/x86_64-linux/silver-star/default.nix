@@ -330,6 +330,13 @@ in {
         # "console=tty1"
         # "console=ttyS2,115200n8"
         "mitigations=off"
+        "intremap=no_x2apic_optout"
+        "nox2apic"
+
+        "intel_iommu=on"
+        "iommu=pt"
+        "video=efifb:off,vesafb:off"
+
         #"vfio-pci.ids=10de:1380,10de:0fbc"
         # "pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
