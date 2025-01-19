@@ -20,7 +20,7 @@ in {
         # api-endpoint = "https://nix.harke.ma/";
 
         api-endpoint = "http://${config.networking.hostName}.ling-lizard.ts.net:7124/";
-
+        database = {url = "sqlite:///srv/atticd/db/server.db?mode=rwc";};
         # File storage configuration
         storage = {
           # Storage type
