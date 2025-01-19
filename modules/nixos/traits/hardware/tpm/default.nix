@@ -44,7 +44,7 @@ in {
         # kernelModules = ["tpm_rng"];
       };
 
-      kernelModules = ["tpm_rng"];
+      # kernelModules = ["tpm_rng"];
     };
 
     environment.systemPackages = with pkgs; [

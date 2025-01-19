@@ -24,6 +24,11 @@ in {
       default = false;
       type = lib.types.bool;
     };
+
+    grid = lib.mkOption {
+      default = false;
+      type = lib.types.bool;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -76,10 +81,36 @@ in {
         open = lib.mkForce cfg.open;
         nvidiaSettings = true;
 
-        package = pkgs.nvidia-patch.patch-nvenc (
-          pkgs.nvidia-patch.patch-fbc
-          config.boot.kernelPackages.nvidiaPackages.beta
-        );
+        package =
+          if cfg.grid
+          then
+            config.boot.kernelPackages.nvidiaPackages.vgpu_17_3.overrideAttrs (
+              finalAttrs: previousAttrs: {
+                meta =
+                  previousAttrs.meta
+                  // {
+                    license = lib.licenses.mit;
+                  };
+              }
+            )
+          else
+            pkgs.nvidia-patch.patch-nvenc (
+              pkgs.nvidia-patch.patch-fbc
+              config.boot.kernelPackages.nvidiaPackages.beta
+            );
+
+        vgpu.patcher = lib.mkIf cfg.grid {
+          enable = true;
+          options = {
+            doNotForceGPLLicense = false;
+            remapP40ProfilesToV100D = true;
+          };
+          copyVGPUProfiles = {
+            "1E87:0000" = "1E30:12BA";
+            "1380:0000" = "13BD:1160";
+          };
+          enablePatcherCmd = true;
+        };
       };
 
       graphics = {

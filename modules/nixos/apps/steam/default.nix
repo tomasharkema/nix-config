@@ -41,28 +41,28 @@ in {
 
     users = {
       users = {
-        "steam" = {
-          linger = true;
+        # "steam" = {
+        #   linger = true;
 
-          isNormalUser = true;
-          group = "steam";
+        #   isNormalUser = true;
+        #   group = "steam";
 
-          home = "/home/steam";
-          extraGroups = ["video" "audio" "input" "users"];
-        };
+        #   home = "/home/steam";
+        #   extraGroups = ["video" "audio" "input" "users"];
+        # };
 
-        sunshine = {
-          linger = true;
-          isNormalUser = true;
-          home = "/home/sunshine";
-          description = "Sunshine Server";
-          extraGroups = ["wheel" "networkmanager" "input" "video"];
-        };
+        # sunshine = {
+        #   linger = true;
+        #   isNormalUser = true;
+        #   home = "/home/sunshine";
+        #   description = "Sunshine Server";
+        #   extraGroups = ["wheel" "networkmanager" "input" "video"];
+        # };
       };
       groups = {
         input.members = ["tomas"];
-        gamemode.members = ["tomas"];
-        "steam".name = "steam";
+        #   gamemode.members = ["tomas"];
+        #   "steam".name = "steam";
       };
     };
 
@@ -110,37 +110,37 @@ in {
       extest
     ];
 
-    services = lib.mkIf cfg.sunshine {
-      avahi.publish.userServices = true;
+    # services = lib.mkIf cfg.sunshine {
+    #   avahi.publish.userServices = true;
 
-      udev.extraRules = ''
-        KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
-        KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
-      '';
+    #   udev.extraRules = ''
+    #     KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
+    #     KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
+    #   '';
 
-      jack.loopback.enable = true;
-      sunshine = {
-        enable = true;
-        package = sunshineOverride;
-        # capSysAdmin = true;
-        openFirewall = true;
-        autoStart = true;
-      };
-    };
+    #   jack.loopback.enable = true;
+    #   sunshine = {
+    #     enable = true;
+    #     package = sunshineOverride;
+    #     # capSysAdmin = true;
+    #     openFirewall = true;
+    #     autoStart = true;
+    #   };
+    # };
 
-    security = {
-      sudo.extraRules = lib.mkIf cfg.sunshine [
-        {
-          users = ["sunshine"];
-          commands = [
-            {
-              command = "ALL";
-              options = ["NOPASSWD"];
-            }
-          ];
-        }
-      ];
-    };
+    # security = {
+    #   sudo.extraRules = lib.mkIf cfg.sunshine [
+    #     {
+    #       users = ["sunshine"];
+    #       commands = [
+    #         {
+    #           command = "ALL";
+    #           options = ["NOPASSWD"];
+    #         }
+    #       ];
+    #     }
+    #   ];
+    # };
 
     # Enable OpenGL
     hardware.graphics = {
