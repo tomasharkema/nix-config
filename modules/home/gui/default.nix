@@ -58,7 +58,7 @@ in {
         enable = true;
         hideWindow = true;
       };
-      trayer.enable = true;
+      # trayer.enable = true;
       gnome-keyring = {
         components = ["secrets"];
         enable = true;
