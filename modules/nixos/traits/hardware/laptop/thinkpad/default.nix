@@ -6,6 +6,11 @@
   ...
 }: let
   cfg = config.traits.hardware.laptop.thinkpad;
+
+  tod-firmware = pkgs.fetchurl {
+    url = "https://download.lenovo.com/pccbbs/mobiles/nz3gf07w.exe";
+    sha256 = "1vvhcbd2dai2rysk90iq8lf26j2r8mi1hf4arhclb797w5pzmy60";
+  };
 in {
   options.traits.hardware.laptop.thinkpad = {
     enable = lib.mkEnableOption "laptop";
@@ -32,16 +37,19 @@ in {
   config = lib.mkIf cfg.enable {
     system.nixos.tags = ["thinkpad"];
 
-    environment.systemPackages = with pkgs; [
-      modemmanager
-      modem-manager-gui
-      libmbim
-      libqmi
-      tpacpi-bat
-      # custom.lenovo-wwan-unlock
-      # sgx-psw
-    ];
+    environment = {
+      etc."tod/nz3gf07w.exe".source = tod-firmware;
 
+      systemPackages = with pkgs; [
+        modemmanager
+        modem-manager-gui
+        libmbim
+        libqmi
+        tpacpi-bat
+        # custom.lenovo-wwan-unlock
+        # sgx-psw
+      ];
+    };
     hardware.trackpoint.enable = true;
 
     systemd = {
@@ -83,9 +91,9 @@ in {
     services = {
       "06cb-009a-fingerprint-sensor" = {
         enable = true;
-        # backend = "python-validity";
-        backend = "libfprint-tod";
-        calib-data-file = ./calib-data.bin;
+        backend = "python-validity";
+        # backend = "libfprint-tod";
+        # calib-data-file = ./calib-data.bin;
       };
 
       # tp-auto-kbbl.enable = true;

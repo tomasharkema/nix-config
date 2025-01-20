@@ -42,7 +42,7 @@ in {
         nvidia = {
           enable = true;
           open = false;
-          grid = true;
+          grid = false;
         };
       };
     };
@@ -72,8 +72,11 @@ in {
       "nix-private-cache".enable = true;
 
       tcsd.enable = true;
+
       throttled.enable = lib.mkForce false;
+
       usbguard.enable = false;
+
       watchdogd = {
         enable = true;
       };
@@ -155,6 +158,11 @@ in {
         interfaces = ["eno1"];
       };
 
+      defaultGateway = {
+        address = "192.168.0.1";
+        interface = "br0";
+      };
+
       interfaces = {
         "enp5s0" = {
           # useDHCP = lib.mkDefault true;
@@ -181,8 +189,14 @@ in {
           mtu = 9000;
         };
         "br0" = {
-          useDHCP = lib.mkDefault true;
+          useDHCP = lib.mkDefault false;
           mtu = 9000;
+          ipv4.addresses = [
+            {
+              address = "192.168.0.100";
+              prefixLength = 24;
+            }
+          ];
         };
       };
 
@@ -248,16 +262,25 @@ in {
 
     virtualisation = {
       oci-containers.containers = {
+        netbootxyz = {
+          image = "ghcr.io/linuxserver/netbootxyz";
+
+          autoStart = true;
+
+          volumes = [
+            "/var/lib/netboot/config:/config"
+            "/var/lib/netboot/assets:/assets"
+          ];
+
+          ports = [
+            "3000:3000"
+            "69:69/udp"
+            "8083:80"
+          ];
+        };
+
         openmanage = {
           image = "docker.io/teumaauss/srvadmin";
-
-          imageFile = pkgs.dockerTools.pullImage {
-            imageName = "docker.io/teumaauss/srvadmin";
-            imageDigest = "sha256:287ed0729a3250f114b0369b3a462ba50fc59f8531ef56518804ea4c60e91b52";
-            sha256 = "0in9idw5mclh304968j0fsf5qcqsqp60g7x04ga0pn8bcynrjjr7";
-            finalImageName = "docker.io/teumaauss/srvadmin";
-            finalImageTag = "latest";
-          };
 
           volumes = let
             kernelVideo = config.boot.kernelPackages.kernel.version;
@@ -277,15 +300,16 @@ in {
 
         fastapi-dls = {
           image = "collinwebdesigns/fastapi-dls";
+
           volumes = [
             "/var/lib/fastapi-dls/cert:/app/cert:rw"
-            "dls-db:/app/database"
+            "/var/lib/fastapi-dls/dls-db:/app/database"
           ];
           # Set environment variables
           environment = {
             TZ = "Europa/Amsterdam";
             DLS_URL = config.networking.hostName;
-            DLS_PORT = "443";
+            DLS_PORT = "7070";
             LEASE_EXPIRE_DAYS = "90";
             DATABASE = "sqlite:////app/database/db.sqlite";
             DEBUG = "true";
@@ -309,9 +333,9 @@ in {
         wantedBy = ["multi-user.target"];
       };
 
-      "docker-compose@atuin" = {
-        wantedBy = ["multi-user.target"];
-      };
+      #"docker-compose@atuin" = {
+      #  wantedBy = [ "multi-user.target" ];
+      #};
     };
 
     boot = {
@@ -319,7 +343,7 @@ in {
         useTmpfs = true;
       };
       binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxPackages_6_6;
+      kernelPackages = pkgs.linuxPackages_6_12;
       kernelParams = [
         "console=tty1"
         "console=ttyS0,115200n8"

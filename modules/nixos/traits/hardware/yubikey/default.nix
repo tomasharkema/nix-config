@@ -79,7 +79,7 @@
     services = {
       pcscd = {
         enable = true;
-        #   plugins = [pkgs.yubikey-personalization];
+        # plugins = [pkgs.yubikey-personalization];
       };
       # yubikey-agent.enable = config.gui.enable;
 

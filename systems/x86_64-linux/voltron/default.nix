@@ -39,8 +39,11 @@
 
     environment = {
       systemPackages = with pkgs; [
-        custom.swift
+        gnomeExtensions.power-tracker
 
+        custom.swift
+        powerstat
+        powerjoular
         libimobiledevice
         intel-gpu-tools
         nvramtool
