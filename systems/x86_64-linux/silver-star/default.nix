@@ -42,7 +42,7 @@ in {
         nvidia = {
           enable = true;
           open = false;
-          grid = true;
+          grid = false;
         };
       };
     };
@@ -72,10 +72,13 @@ in {
       "nix-private-cache".enable = true;
 
       tcsd.enable = true;
+
       throttled.enable = lib.mkForce false;
+
       usbguard.enable = false;
+
       watchdogd = {
-        enable = true;
+        # enable = true;
       };
 
       # das_watchdog.enable = lib.mkForce false;
@@ -155,6 +158,11 @@ in {
         interfaces = ["eno1"];
       };
 
+      defaultGateway = {
+        address = "192.168.0.1";
+        interface = "br0";
+      };
+
       interfaces = {
         "enp5s0" = {
           # useDHCP = lib.mkDefault true;
@@ -181,8 +189,14 @@ in {
           mtu = 9000;
         };
         "br0" = {
-          useDHCP = lib.mkDefault true;
+          useDHCP = lib.mkDefault false;
           mtu = 9000;
+          ipv4.addresses = [
+            {
+              address = "192.168.0.100";
+              prefixLength = 24;
+            }
+          ];
         };
       };
 
@@ -248,6 +262,23 @@ in {
 
     virtualisation = {
       oci-containers.containers = {
+        netbootxyz = {
+          image = "ghcr.io/linuxserver/netbootxyz";
+
+          autoStart = true;
+
+          volumes = [
+            "/var/lib/netboot/config:/config"
+            "/var/lib/netboot/assets:/assets"
+          ];
+
+          ports = [
+            "3000:3000"
+            "69:69/udp"
+            "8083:80"
+          ];
+        };
+
         openmanage = {
           image = "docker.io/teumaauss/srvadmin";
 
@@ -316,9 +347,9 @@ in {
         wantedBy = ["multi-user.target"];
       };
 
-      "docker-compose@atuin" = {
-        wantedBy = ["multi-user.target"];
-      };
+      #"docker-compose@atuin" = {
+      #  wantedBy = [ "multi-user.target" ];
+      #};
     };
 
     boot = {
@@ -326,7 +357,7 @@ in {
         useTmpfs = true;
       };
       binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxPackages_6_6;
+      kernelPackages = pkgs.linuxPackages_6_12;
       kernelParams = [
         "console=tty1"
         "console=ttyS0,115200n8"
