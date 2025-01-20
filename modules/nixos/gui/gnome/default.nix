@@ -63,8 +63,7 @@ in
           gdm = {
             databases =
               (lib.optional cfg.hidpi.enable {
-                settings."org/gnome/desktop/interface".scaling-factor =
-                  lib.gvariant.mkUint32 2;
+                settings."org/gnome/desktop/interface".scaling-factor = lib.gvariant.mkUint32 2;
               })
               ++ [
                 {
@@ -84,8 +83,7 @@ in
                 ];
                 edge-tiling = true;
               };
-              settings."org/gnome/desktop/interface".scaling-factor =
-                lib.gvariant.mkUint32 2;
+              settings."org/gnome/desktop/interface".scaling-factor = lib.gvariant.mkUint32 2;
             }
           ];
         };
@@ -245,16 +243,18 @@ in
       #   };
       # };
 
-      warnings = map (p: "${p.name} disabled") (with pkgs; [
-        gnome-extension-manager
-        #   gnome-packagekit
-        #   gnome-session
-        #   gnome-session-ctl
-        #   gnome-settings-daemon
-        #   gnome-shell-extensions
-        #   seahorse
-        # gnome-photos
-      ]);
+      warnings = map (p: "${p.name} disabled") (
+        with pkgs; [
+          gnome-extension-manager
+          #   gnome-packagekit
+          #   gnome-session
+          #   gnome-session-ctl
+          #   gnome-settings-daemon
+          #   gnome-shell-extensions
+          #   seahorse
+          gnome-photos
+        ]
+      );
 
       environment.systemPackages = with pkgs; [
         adwaita-icon-theme
@@ -272,7 +272,7 @@ in
         gnome-menus
         gnome-nettool
         gnome-packagekit
-        gnome-photos
+        # gnome-photos
         gnome-session
         gnome-session-ctl
         gnome-settings-daemon
