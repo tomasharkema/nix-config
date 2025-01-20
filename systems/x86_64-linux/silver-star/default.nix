@@ -282,14 +282,6 @@ in {
         openmanage = {
           image = "docker.io/teumaauss/srvadmin";
 
-          imageFile = pkgs.dockerTools.pullImage {
-            imageName = "docker.io/teumaauss/srvadmin";
-            imageDigest = "sha256:287ed0729a3250f114b0369b3a462ba50fc59f8531ef56518804ea4c60e91b52";
-            sha256 = "0in9idw5mclh304968j0fsf5qcqsqp60g7x04ga0pn8bcynrjjr7";
-            finalImageName = "docker.io/teumaauss/srvadmin";
-            finalImageTag = "latest";
-          };
-
           volumes = let
             kernelVideo = config.boot.kernelPackages.kernel.version;
           in [
@@ -308,22 +300,16 @@ in {
 
         fastapi-dls = {
           image = "collinwebdesigns/fastapi-dls";
-          imageFile = pkgs.dockerTools.pullImage {
-            imageName = "collinwebdesigns/fastapi-dls";
-            imageDigest = "sha256:0039c37c10144e83588c90980fb0fb6225a9bf5c6301ae6823db6fad79d21acb";
-            sha256 = "0yr2dn0dzslp7dc0i6v6kfqbasdkrg36vywr15kizhy0cfgkfrpr";
-            finalImageName = "collinwebdesigns/fastapi-dls";
-            finalImageTag = "latest";
-          };
+
           volumes = [
             "/var/lib/fastapi-dls/cert:/app/cert:rw"
-            "dls-db:/app/database"
+            "/var/lib/fastapi-dls/dls-db:/app/database"
           ];
           # Set environment variables
           environment = {
             TZ = "Europa/Amsterdam";
             DLS_URL = config.networking.hostName;
-            DLS_PORT = "443";
+            DLS_PORT = "7070";
             LEASE_EXPIRE_DAYS = "90";
             DATABASE = "sqlite:////app/database/db.sqlite";
             DEBUG = "true";
