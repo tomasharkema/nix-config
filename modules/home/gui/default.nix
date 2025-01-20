@@ -95,7 +95,11 @@ in {
           genericName = "Avahi Discover";
           exec = "${osConfig.services.avahi.package}/bin/avahi-discover-standalone";
           terminal = false;
-          categories = ["Application" "Network" "WebBrowser"];
+          categories = [
+            "Application"
+            "Network"
+            "WebBrowser"
+          ];
           icon = "network-wired";
         };
       };
@@ -106,7 +110,7 @@ in {
         picture-uri-dark = "file://${bg}";
       };
     };
-
+    services.poweralertd.enable = true;
     home = {
       packages = with pkgs; [
         # custom.zerotier-ui
