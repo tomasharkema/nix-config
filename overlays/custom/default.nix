@@ -23,7 +23,9 @@ in rec {
     #builtins.trace "${prev.freeipa.version} ${final.freeipa.version}"
     self.packages."${prev.system}".freeipa;
 
-  sssd = overridePkgCheckVersionSnapshot "sssd" "2.9.5" (self.packages."${prev.system}".sssd.override {withSudo = true;});
+  sssd = overridePkgCheckVersionSnapshot "sssd" "2.9.5" (
+    self.packages."${prev.system}".sssd.override {withSudo = true;}
+  );
 
   docset = inputs.nixos-dash-docset.packages."${prev.system}".docset;
 
@@ -38,7 +40,12 @@ in rec {
   udisks = overridePkgCheckVersionSnapshot "udisks2" "" udisks2;
 
   udisks2 = prev.udisks2.overrideAttrs (old: {
-    buildInputs = old.buildInputs ++ [prev.libiscsi prev.libconfig];
+    buildInputs =
+      old.buildInputs
+      ++ [
+        prev.libiscsi
+        prev.libconfig
+      ];
     # doCheck = false;
     configureFlags =
       old.configureFlags
@@ -64,8 +71,20 @@ in rec {
   # });
   # ffmpeg = prev.ffmpeg.override {ffmpegVariant = "full";};
 
-  cockpit = overridePkgCheckVersionSnapshot "cockpit" "331" (self.packages."${prev.system}".cockpit.override {withOldBridge = true;});
+  #cockpit = overridePkgCheckVersionSnapshot "cockpit" "331" (self.packages."${prev.system}".cockpit.override {withOldBridge = true;});
+  #cockpit = prev.cockpit.overrideAttrs (old: {
 
+  #fixupPhase = old.fixupPhase + ''
+  #'';
+
+  #postFixup = ''
+  #    for file in $out/share/cockpit/*/manifest.json; do
+  #      substituteInPlace $file \
+  #      --replace-warn /usr /run/current-system/sw
+  #    done
+  # '';
+
+  #});
   cockpit-podman = self.packages."${prev.system}".cockpit-podman;
   cockpit-tailscale = self.packages."${prev.system}".cockpit-tailscale;
   cockpit-machines = self.packages."${prev.system}".cockpit-machines;

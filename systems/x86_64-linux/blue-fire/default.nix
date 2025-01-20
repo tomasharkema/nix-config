@@ -402,7 +402,7 @@ in {
       tmp = {
         useTmpfs = true;
       };
-      kernelPackages = pkgs.linuxPackages_6_6;
+      kernelPackages = pkgs.linuxPackages_6_12;
       kernelParams = [
         "console=tty1"
         "console=ttyS2,115200n8"

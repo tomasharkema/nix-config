@@ -78,7 +78,7 @@ in {
       usbguard.enable = false;
 
       watchdogd = {
-        # enable = true;
+        enable = true;
       };
 
       # das_watchdog.enable = lib.mkForce false;
