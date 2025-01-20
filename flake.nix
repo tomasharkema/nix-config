@@ -434,7 +434,7 @@
       "https://nix-community.cachix.org"
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
-      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
+      "https://nix-cache.ling-lizard.ts.net/tomasharkema"
     ];
 
     extra-substituters = [
@@ -445,7 +445,7 @@
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
       "https://tomasharkema.cachix.org"
-      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
+      "https://nix-cache.ling-lizard.ts.net/tomasharkema"
     ];
 
     extra-trusted-public-keys = [
