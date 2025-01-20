@@ -158,6 +158,7 @@
       enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          config.boot.kernelPackages.cpupower
           # compsize
           # dirdiff
           # dry

@@ -61,6 +61,8 @@ in {
     boot = {
       # kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
 
+      # kernelPackages = lib.mkIf cfg.grid pkgs.linuxPackages_6_11;
+
       kernelParams = [
         # "nvidia-drm.modeset=1"
         # "nvidia-drm.fbdev=1"
@@ -86,6 +88,14 @@ in {
           then
             config.boot.kernelPackages.nvidiaPackages.vgpu_17_3.overrideAttrs (
               finalAttrs: previousAttrs: {
+                # patches =
+
+                #   [
+                #     (pkgs.fetchpatch {
+                #       url = "https://forums.developer.nvidia.com/uploads/short-url/cC7iLwsUcpxtp4iPZoVpjPvQLz7.txt";
+                #       sha256 = "sha256-nDjZPGrZB0P+f7AR1sM+My6O60KYLsk/+nqMTSunXuw=";
+                #     })
+                #   ];
                 meta =
                   previousAttrs.meta
                   // {
@@ -95,8 +105,7 @@ in {
             )
           else
             pkgs.nvidia-patch.patch-nvenc (
-              pkgs.nvidia-patch.patch-fbc
-              config.boot.kernelPackages.nvidiaPackages.beta
+              pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.beta
             );
 
         vgpu.patcher = lib.mkIf cfg.grid {

@@ -277,13 +277,6 @@ in {
 
         fastapi-dls = {
           image = "collinwebdesigns/fastapi-dls";
-          imageFile = pkgs.dockerTools.pullImage {
-            imageName = "collinwebdesigns/fastapi-dls";
-            imageDigest = "sha256:0039c37c10144e83588c90980fb0fb6225a9bf5c6301ae6823db6fad79d21acb";
-            sha256 = "0yr2dn0dzslp7dc0i6v6kfqbasdkrg36vywr15kizhy0cfgkfrpr";
-            finalImageName = "collinwebdesigns/fastapi-dls";
-            finalImageTag = "latest";
-          };
           volumes = [
             "/var/lib/fastapi-dls/cert:/app/cert:rw"
             "dls-db:/app/database"

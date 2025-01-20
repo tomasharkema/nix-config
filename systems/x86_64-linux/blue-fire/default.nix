@@ -354,7 +354,7 @@ in {
       enable = true;
       device = "0000:01:00.0";
       vgpus = {
-        "nvidia-257" = {
+        "nvidia-436" = {
           uuid = [
             "e1ab260f-44a2-4e07-9889-68a1caafb399"
             "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
@@ -402,7 +402,7 @@ in {
       tmp = {
         useTmpfs = true;
       };
-      kernelPackages = pkgs.linuxPackages_6_6;
+      kernelPackages = pkgs.linuxPackages_6_11;
       kernelParams = [
         "console=tty1"
         "console=ttyS2,115200n8"
