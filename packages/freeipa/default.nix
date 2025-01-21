@@ -40,12 +40,14 @@
 }: let
   pathsPy = ./paths.py;
 
-  python3 = pkgs.python3.withPackages (ps:
-    with ps; [
-      setuptools
-      distlib
-      distutils-extra
-    ]);
+  python3 = pkgs.python39.withPackages (
+    ps:
+      with ps; [
+        setuptools
+        distlib
+        distutils-extra
+      ]
+  );
   pythonInputs = with python3.pkgs; [
     six
     python-ldap
@@ -61,7 +63,7 @@
     dbus-python
     cryptography
     python-memcached
-    qrcode
+    # qrcode
     pyusb
     yubico
     setuptools
@@ -85,9 +87,9 @@ in
       autoreconfHook
       python3
       python3.pkgs.wrapPython
-      python3.pkgs.setuptools
-      python3.pkgs.distlib
-      python3.pkgs.distutils-extra
+      #python3.pkgs.setuptools
+      #python3.pkgs.distlib
+      #python3.pkgs.distutils-extra
       jre
       rhino
       lesscpy
