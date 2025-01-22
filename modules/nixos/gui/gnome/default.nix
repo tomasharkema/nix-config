@@ -194,7 +194,7 @@ in
           core-shell.enable = true;
           core-utilities.enable = true;
           gnome-user-share.enable = true;
-          gnome-keyring.enable = true;
+          gnome-keyring.enable = lib.mkForce false; # true;
           games.enable = false;
           # evolution-data-server.enable = true;
           rygel.enable = true;

@@ -560,7 +560,7 @@
         # '';
       };
 
-      nix-ld.enable = true;
+      # nix-ld.enable = true;
       zsh = {
         enable = true;
         vteIntegration = true;

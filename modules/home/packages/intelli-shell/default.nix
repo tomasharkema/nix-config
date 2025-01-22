@@ -9,7 +9,7 @@
     then "$HOME/.local/share/intelli-shell"
     else "$HOME/Library/Application Support/org.IntelliShell.Intelli-Shell";
 in {
-  config = {
+  config = lib.mkIf false {
     home.packages = [pkgs.custom.intelli-shell];
 
     programs.zsh.initExtra = ''

@@ -3,6 +3,14 @@
   self,
   ...
 }: final: prev: {
+  gnome-keyring = prev.gnome-keyring.overrideAttrs (prev: {
+    postFixup =
+      prev.postFixup
+      + ''
+        rm -rf $out/etc/xdg/autostart/gnome-keyring-ssh.desktop
+      '';
+  });
+
   # gnome = prev.gnome.overrideScope' (gnomeFinal: gnomePrev: {
   # mutter = prev.mutter;
   #   mutter = gnomePrev.mutter.overrideAttrs (old: {

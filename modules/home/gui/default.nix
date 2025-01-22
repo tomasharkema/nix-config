@@ -60,7 +60,7 @@ in {
       };
       # trayer.enable = true;
       gnome-keyring = {
-        components = ["secrets"];
+        components = ["pkcs11" "secrets"];
         enable = true;
       };
     };

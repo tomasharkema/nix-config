@@ -18,7 +18,7 @@ in {
   config = lib.mkIf (cfg.enable) {
     gui.fonts.enable = true;
 
-    security.pam.services.passwd.enableGnomeKeyring = true;
+    # security.pam.services.passwd.enableGnomeKeyring = true;
 
     services = {
       gpsd = {
@@ -123,7 +123,7 @@ in {
     ];
 
     services.gnome = {
-      gnome-keyring.enable = true;
+      gnome-keyring.enable = false; # true;
       gnome-online-accounts.enable = true;
     };
 
@@ -233,10 +233,12 @@ in {
         # gnome_mplayer
         ipmiview
         libsmbios
-        (plex-media-player.overrideAttrs (old: {
-          # cudaSupport = true;
-          stdenv = pkgs.cudaPackages.backendStdenv;
-        }))
+        plex-media-player
+        # (plex-media-player.overrideAttrs (old: {
+        #   # cudaSupport = true;
+        #   stdenv = pkgs.cudaPackages.backendStdenv;
+        # }))
+        # plex-desktop
         plexamp
         xpipe
       ]

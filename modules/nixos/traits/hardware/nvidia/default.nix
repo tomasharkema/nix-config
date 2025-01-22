@@ -49,6 +49,8 @@ in {
       # gwe
       cudaPackages.cudatoolkit
       egl-wayland
+
+      # pkgs.nixgl.auto.nixGLDefault
     ];
 
     services = {
@@ -57,6 +59,10 @@ in {
         nvidia_smi: yes
       '';
     };
+
+    environment.extraInit = ''
+      export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/run/current-system/sw/lib:/run/opengl-driver/lib:/run/opengl-driver-32/lib"
+    '';
 
     boot = {
       # kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
