@@ -52,12 +52,13 @@ in {
       ntopng.enable = true;
       mailrise.enable = true;
       atop = {
-        enable = false; # true;
+        enable = true;
         httpd = false; # true;
       };
       # "bmc-watchdog".enable = true;
       podman.enable = true;
-      zabbix.server.enable = true;
+      docker.enable = false;
+      # zabbix.server.enable = true;
       atticd.enable = true;
     };
 
@@ -75,13 +76,20 @@ in {
 
       throttled.enable = lib.mkForce false;
 
+      tailscale.tsnsrv = {
+        enable = true;
+        vhosts = {
+          nix-cache = {port = 7124;};
+        };
+      };
+
       usbguard.enable = false;
 
       watchdogd = {
         enable = true;
       };
 
-      # das_watchdog.enable = lib.mkForce false;
+      das_watchdog.enable = lib.mkForce false;
 
       remote-builders.server.enable = true;
 
@@ -134,7 +142,7 @@ in {
     systemd = {
       watchdog = {
         device = "/dev/watchdog";
-        runtimeTime = "5m";
+        runtimeTime = "30s";
         kexecTime = "5m";
         rebootTime = "5m";
       };
@@ -209,6 +217,7 @@ in {
       # ipmiview
       # ipmiutil
       # vagrant
+      docker-compose
       simpleTpmPk11
       libsmbios
       virt-manager
@@ -254,7 +263,7 @@ in {
       nvidia = {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
-        nvidiaPersistenced = lib.mkForce false;
+        nvidiaPersistenced = lib.mkForce true;
 
         # nix-prefetch-url --type sha256 https://us.download.nvidia.com/XFree86/Linux-x86_64/550.90.07/NVIDIA-Linux-x86_64-550.90.07.run
       };
@@ -324,19 +333,19 @@ in {
       };
     };
 
-    systemd.services = {
-      "tsnsrv-nix-cache" = {
-        environment = {
-          TS_STATE_DIR = "/var/lib/tsnsrv";
-        };
-        script = "${pkgs.custom.tsnsrv}/bin/tsnsrv -name nix-cache http://127.0.0.1:7124";
-        wantedBy = ["multi-user.target"];
-      };
+    # systemd.services = {
+    #   "tsnsrv-nix-cache" = {
+    #     environment = {
+    #       TS_STATE_DIR = "/var/lib/tsnsrv";
+    #     };
+    #     script = "${pkgs.custom.tsnsrv}/bin/tsnsrv -name nix-cache http://127.0.0.1:7124";
+    #     wantedBy = ["multi-user.target"];
+    #   };
 
-      #"docker-compose@atuin" = {
-      #  wantedBy = [ "multi-user.target" ];
-      #};
-    };
+    #   #"docker-compose@atuin" = {
+    #   #  wantedBy = [ "multi-user.target" ];
+    #   #};
+    # };
 
     boot = {
       tmp = {

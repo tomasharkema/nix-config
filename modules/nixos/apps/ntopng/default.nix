@@ -17,13 +17,13 @@ in {
         '';
       };
     };
-    proxy-services.services = {
-      "/ntopng" = {
-        proxyPass = "http://localhost:${toString config.services.ntopng.httpPort}/";
-        extraConfig = ''
-          rewrite /ntopng(.*) $1 break;
-        '';
-      };
-    };
+    # proxy-services.services = {
+    #   "/ntopng" = {
+    #     proxyPass = "http://localhost:${toString config.services.ntopng.httpPort}/";
+    #     extraConfig = ''
+    #       rewrite /ntopng(.*) $1 break;
+    #     '';
+    #   };
+    # };
   };
 }

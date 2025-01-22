@@ -24,7 +24,7 @@ in {
       gpsd = {
         enable = true;
       };
-
+      localtimed.enable = true;
       dbus = {
         enable = true;
         packages = with pkgs; [
@@ -114,7 +114,7 @@ in {
       geary.enable = true;
     };
 
-    boot.extraModulePackages = [config.boot.kernelPackages.akvcam];
+    # boot.extraModulePackages = [config.boot.kernelPackages.akvcam];
 
     xdg.portal.extraPortals = [
       pkgs.xdg-desktop-portal-gtk

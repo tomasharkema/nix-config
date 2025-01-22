@@ -40,12 +40,33 @@
 }: let
   pathsPy = ./paths.py;
 
-  python3 = pkgs.python3.withPackages (ps:
-    with ps; [
-      setuptools
-      distlib
-      distutils-extra
-    ]);
+  python3 = pkgs.python3.withPackages (
+    ps:
+      with ps; [
+        setuptools
+        distlib
+        distutils-extra
+      ]
+  );
+
+  cryptographyNew = python3.pkgs.cryptography.overridePythonAttrs (old: rec {
+    pname = "cryptography";
+    version = "43.0.1"; # Also update the hash in vectors.nix
+
+    src = pkgs.fetchPypi {
+      inherit pname version;
+      hash = "sha256-ID6Sp1cW2M+0kdxHx54X0NkgfM/8vLNfWY++RjrjRE0=";
+    };
+    cargoRoot = "src/rust";
+    doCheck = false;
+    cargoDeps = pkgs.rustPlatform.fetchCargoTarball {
+      inherit src;
+      sourceRoot = "${pname}-${version}/${cargoRoot}";
+      name = "${pname}-${version}";
+      hash = "sha256-wiAHM0ucR1X7GunZX8V0Jk2Hsi+dVdGgDKqcYjSdD7Q=";
+    };
+  });
+
   pythonInputs = with python3.pkgs; [
     six
     python-ldap
@@ -59,7 +80,7 @@
     cffi
     lxml
     dbus-python
-    cryptography
+    cryptographyNew
     python-memcached
     qrcode
     pyusb
@@ -72,13 +93,13 @@
 in
   stdenv.mkDerivation rec {
     pname = "freeipa";
-    version = "4.12.2";
+    version = "4.12.3";
 
     src = fetchFromGitHub {
       owner = "freeipa";
       repo = "freeipa";
       rev = "release-${builtins.replaceStrings ["."] ["-"] version}";
-      hash = "sha256-Jfo6nbLzWWpZmKolB2n1b6FT4jCwiTyXvIBR2UJMjCI=";
+      hash = "sha256-TFYzddiQlp0tB6CKC9yxii6kmbRyYiwPYqYNad2dp0M=";
     };
 
     nativeBuildInputs = [

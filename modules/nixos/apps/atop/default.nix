@@ -18,15 +18,15 @@ in {
       setuidWrapper.enable = true;
       atopService.enable = true;
       atopacctService.enable = true;
-      atopgpu.enable = true;
+      # atopgpu.enable = true;
       # netatop.enable = true;
     };
-    environment.systemPackages = [pkgs.atop];
+    # environment.sy .stemPackages = [pkgs.atop];
 
     boot = {
-      extraModulePackages = [
-        config.boot.kernelPackages.netatop
-      ];
+      # extraModulePackages = [
+      #   config.boot.kernelPackages.netatop
+      # ];
       # kernelModules = ["netatop"];
     };
 

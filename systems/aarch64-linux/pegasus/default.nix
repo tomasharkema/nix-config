@@ -109,7 +109,7 @@
       kernelPackages = pkgs.linuxPackages_rpi4;
     };
 
-    proxy-services = {enable = false;};
+    # proxy-services = {enable = false;};
 
     hardware = {
       enableRedistributableFirmware = true;

@@ -41,10 +41,10 @@
       '';
     };
 
-    proxy-services.services = {
-      "/monit/" = {
-        proxyPass = "http://localhost:${config.apps.monit.port}/";
-      };
-    };
+    # proxy-services.services = {
+    #   "/monit/" = {
+    #     proxyPass = "http://localhost:${config.apps.monit.port}/";
+    #   };
+    # };
   };
 }

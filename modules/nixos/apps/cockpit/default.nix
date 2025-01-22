@@ -11,19 +11,19 @@
       package = pkgs.cockpit;
 
       settings = {
-        WebService =
-          if config.services.nginx.enable
-          then {
-            # AllowUnencrypted = false;
-            Origins = "https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost} http://localhost:9090 ws://localhost:9090";
-            ProtocolHeader = "X-Forwarded-Proto";
-            UrlRoot = "/cockpit";
-            # ClientCertAuthentication = true;
-          }
-          else {
-            # ClientCertAuthentication = true;
-            # AllowUnencrypted = false;
-          };
+        # WebService =
+        #   if config.services.nginx.enable
+        #   then {
+        #     # AllowUnencrypted = false;
+        #     Origins = "https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost} http://localhost:9090 ws://localhost:9090";
+        #     ProtocolHeader = "X-Forwarded-Proto";
+        #     UrlRoot = "/cockpit";
+        #     # ClientCertAuthentication = true;
+        #   }
+        #   else {
+        #     # ClientCertAuthentication = true;
+        #     # AllowUnencrypted = false;
+        #   };
       };
     };
 
@@ -112,50 +112,50 @@
     # };
     # systemd.sockets."cockpit-session".wantedBy = ["multi-user.target"];
 
-    proxy-services.services = {
-      "/" = {
-        # default = true;
-        return = "302 /cockpit/";
-      };
-      "/cockpit/" = {
-        proxyPass = "https://localhost:9090/cockpit/";
-        proxyWebsockets = true;
-        extraConfig = ''
-          # proxy_set_header Host $host;
-          # proxy_set_header X-Forwarded-Proto $scheme;
+    # proxy-services.services = {
+    #   "/" = {
+    #     # default = true;
+    #     return = "302 /cockpit/";
+    #   };
+    #   "/cockpit/" = {
+    #     proxyPass = "https://localhost:9090/cockpit/";
+    #     proxyWebsockets = true;
+    #     extraConfig = ''
+    #       # proxy_set_header Host $host;
+    #       # proxy_set_header X-Forwarded-Proto $scheme;
 
-          # # Required for web sockets to function
-          # proxy_http_version 1.1;
-          # proxy_buffering off;
-          # proxy_set_header Upgrade $http_upgrade;
-          # proxy_set_header Connection "upgrade";
+    #       # # Required for web sockets to function
+    #       # proxy_http_version 1.1;
+    #       # proxy_buffering off;
+    #       # proxy_set_header Upgrade $http_upgrade;
+    #       # proxy_set_header Connection "upgrade";
 
-          # # Pass ETag header from Cockpit to clients.
-          # # See: https://github.com/cockpit-project/cockpit/issues/5239
-          # gzip off;
-        '';
-      };
-    };
+    #       # # Pass ETag header from Cockpit to clients.
+    #       # # See: https://github.com/cockpit-project/cockpit/issues/5239
+    #       # gzip off;
+    #     '';
+    #   };
+    # };
 
-    systemd.services.cockpit-tailscale-cert = {
-      enable = true;
-      description = "cockpit-tailscale-cert";
-      unitConfig = {
-        Type = "oneshot";
-        RemainAfterExit = "yes";
-        StartLimitIntervalSec = 500;
-        StartLimitBurst = 5;
-      };
-      script = ''
-        ${lib.getExe pkgs.tailscale} cert \
-          --cert-file /etc/cockpit/ws-certs.d/${config.proxy-services.vhost}.cert \
-          --key-file /etc/cockpit/ws-certs.d/${config.proxy-services.vhost}.key \
-          ${config.proxy-services.vhost}
-      '';
-      wantedBy = ["multi-user.target" "network.target"];
-      after = ["tailscaled.service"];
-      wants = ["tailscaled.service"];
-    };
+    # systemd.services.cockpit-tailscale-cert = {
+    #   enable = true;
+    #   description = "cockpit-tailscale-cert";
+    #   unitConfig = {
+    #     Type = "oneshot";
+    #     RemainAfterExit = "yes";
+    #     StartLimitIntervalSec = 500;
+    #     StartLimitBurst = 5;
+    #   };
+    #   script = ''
+    #     ${lib.getExe pkgs.tailscale} cert \
+    #       --cert-file /etc/cockpit/ws-certs.d/${config.proxy-services.vhost}.cert \
+    #       --key-file /etc/cockpit/ws-certs.d/${config.proxy-services.vhost}.key \
+    #       ${config.proxy-services.vhost}
+    #   '';
+    #   wantedBy = ["multi-user.target" "network.target"];
+    #   after = ["tailscaled.service"];
+    #   wants = ["tailscaled.service"];
+    # };
 
     # environment.etc = {
     #   "pam.d/cockpit".text = lib.mkForce ''

@@ -325,7 +325,7 @@
       atop.enable = lib.mkDefault true;
     };
 
-    proxy-services.enable = lib.mkDefault true;
+    # proxy-services.enable = lib.mkDefault true;
 
     systemd = {
       enableEmergencyMode = lib.mkDefault false;
@@ -427,7 +427,7 @@
         enable = true;
       };
 
-      das_watchdog.enable = true;
+      # das_watchdog.enable = true;
 
       openssh = {
         enable = true;

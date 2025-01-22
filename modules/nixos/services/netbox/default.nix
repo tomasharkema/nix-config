@@ -20,18 +20,18 @@ in {
       settings = {BASE_PATH = "netbox/";};
     };
 
-    proxy-services.services = {
-      "/netbox/static/" = {
-        alias = "${config.services.netbox.dataDir}/static/";
-      };
-      "/netbox/" = {
-        proxyPass = "http://${config.services.netbox.listenAddress}:${
-          toString config.services.netbox.port
-        }";
-        # extraConfig = ''
-        #   rewrite /netbox(.*) $1 break;
-        # '';
-      };
-    };
+    # proxy-services.services = {
+    #   "/netbox/static/" = {
+    #     alias = "${config.services.netbox.dataDir}/static/";
+    #   };
+    #   "/netbox/" = {
+    #     proxyPass = "http://${config.services.netbox.listenAddress}:${
+    #       toString config.services.netbox.port
+    #     }";
+    #     # extraConfig = ''
+    #     #   rewrite /netbox(.*) $1 break;
+    #     # '';
+    #   };
+    # };
   };
 }

@@ -19,9 +19,9 @@ in {
   # };
 
   config = lib.mkIf cfg.enable {
-    age.secrets.zerotier = {
-      rekeyFile = ./zerotier.age;
-    };
+    # age.secrets.zerotier = {
+    #   rekeyFile = ./zerotier.age;
+    # };
 
     networking = {
       # useDHCP = false;
@@ -31,7 +31,7 @@ in {
       firewall = {
         trustedInterfaces = [
           "tailscale0"
-          "zthnhagpcb"
+          # "zthnhagpcb"
         ];
         allowedTCPPorts = [config.services.tailscale.port];
         allowedUDPPorts = [config.services.tailscale.port];
@@ -47,7 +47,7 @@ in {
         # authKeyFile = config.age.secrets.tailscale.path;
         useRoutingFeatures = "both";
         extraUpFlags = [
-          "--advertise-tags=tag:nixos"
+          # "--advertise-tags=tag:nixos"
           "--operator=tomas"
           "--accept-dns"
           # "--accept-routes"
@@ -73,41 +73,41 @@ in {
         # reflector = true;
       };
 
-      zerotierone = {
-        enable = true;
-        joinNetworks = [];
-      };
+      # zerotierone = {
+      #   enable = true;
+      #   joinNetworks = [];
+      # };
     };
 
-    systemd.services = {
-      zerotier-networks = {
-        enable = true;
-        description = "zerotier-networks";
-        path = [
-          config.services.zerotierone.package
-          pkgs.jq
-        ];
+    # systemd.services = {
+    #   zerotier-networks = {
+    #     enable = true;
+    #     description = "zerotier-networks";
+    #     path = [
+    #       config.services.zerotierone.package
+    #       pkgs.jq
+    #     ];
 
-        wantedBy = ["zerotierone.service"];
+    #     wantedBy = ["zerotierone.service"];
 
-        script = ''
-          rm -rf /var/lib/zerotier-one/networks.d/*
+    #     script = ''
+    #       rm -rf /var/lib/zerotier-one/networks.d/*
 
-          if [ -f "$CREDENTIALS_DIRECTORY/zerotier-network" ]; then
-            network="$(cat $CREDENTIALS_DIRECTORY/zerotier-network | jq -r)"
-            touch "/var/lib/zerotier-one/networks.d/$network.conf"
-          else
-            echo "No zerotier network configured."
-            exit 1
-          fi
-        '';
+    #       if [ -f "$CREDENTIALS_DIRECTORY/zerotier-network" ]; then
+    #         network="$(cat $CREDENTIALS_DIRECTORY/zerotier-network | jq -r)"
+    #         touch "/var/lib/zerotier-one/networks.d/$network.conf"
+    #       else
+    #         echo "No zerotier network configured."
+    #         exit 1
+    #       fi
+    #     '';
 
-        serviceConfig = {
-          LoadCredential = "zerotier-network:${config.age.secrets.zerotier.path}";
-          Type = "oneshot";
-          RemainAfterExit = true;
-        };
-      };
-    };
+    #     serviceConfig = {
+    #       LoadCredential = "zerotier-network:${config.age.secrets.zerotier.path}";
+    #       Type = "oneshot";
+    #       RemainAfterExit = true;
+    #     };
+    #   };
+    # };
   };
 }
