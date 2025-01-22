@@ -12,7 +12,7 @@
     age.rekey = {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGUTP5KhcV1yxEU58RGanzhh5x/mWVH5aGJVSPGz1r6B root@baaa-express";
     };
-
+    nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
     networking = {
       firewall.enable = false;
       hostName = "baaa-express";

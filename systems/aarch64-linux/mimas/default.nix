@@ -11,6 +11,8 @@
   ];
 
   config = {
+    nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
+
     age.rekey = {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGUTP5KhcV1yxEU58RGanzhh5x/mWVH5aGJVSPGz1r6B root@baaa-express";
     };

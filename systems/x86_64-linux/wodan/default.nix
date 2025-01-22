@@ -7,6 +7,7 @@
 }: {
   config = {
     facter.reportPath = ./facter.json;
+    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
     age.rekey = {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII8iCdfina2waZYTj0toLyknDT3eJmMtPsVN3iFgnGUR root@wodan";
@@ -23,7 +24,7 @@
 
     time = {
       # hardwareClockInLocalTime = true;
-      timeZone = "Europe/Amsterdam";
+      # timeZone = "Europe/Amsterdam";
     };
 
     # services.freeipa.replica.enable = true;
@@ -236,13 +237,19 @@
         useTmpfs = true;
       };
       binfmt.emulatedSystems = ["aarch64-linux"];
-      supportedFilesystems = ["ntfs" "apfs"];
+      supportedFilesystems = [
+        "ntfs"
+        "apfs"
+      ];
+
+      loader.systemd-boot.memtest86.enable = true;
 
       recovery = {
         enable = true;
         install = true;
         sign = true;
         netboot.enable = true;
+        # memtest86.enable = true;
       };
       # kernelPackages = pkgs.linuxPackages_6_11;
 

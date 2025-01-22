@@ -24,7 +24,9 @@ in {
       gpsd = {
         enable = true;
       };
-      localtimed.enable = true;
+
+      # localtimed.enable = true;
+
       dbus = {
         enable = true;
         packages = with pkgs; [

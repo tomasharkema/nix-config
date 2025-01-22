@@ -20,6 +20,8 @@
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKZ68XxpD6TUAyuYa5sl6vPUnSrmTQqD015L05n+B+jY root@enzian";
     };
 
+    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
     apps = {
       ntopng.enable = true;
       steam.enable = true;
