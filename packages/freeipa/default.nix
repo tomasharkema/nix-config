@@ -82,7 +82,7 @@
     dbus-python
     cryptographyNew
     python-memcached
-    # qrcode
+    qrcode
     pyusb
     yubico
     setuptools
