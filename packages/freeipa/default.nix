@@ -82,7 +82,7 @@
     dbus-python
     cryptographyNew
     python-memcached
-    qrcode
+    # qrcode
     pyusb
     yubico
     setuptools
@@ -106,9 +106,9 @@ in
       autoreconfHook
       python3
       python3.pkgs.wrapPython
-      python3.pkgs.setuptools
-      python3.pkgs.distlib
-      python3.pkgs.distutils-extra
+      #python3.pkgs.setuptools
+      #python3.pkgs.distlib
+      #python3.pkgs.distutils-extra
       jre
       rhino
       lesscpy
