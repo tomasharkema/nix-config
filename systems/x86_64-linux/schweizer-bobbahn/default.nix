@@ -103,6 +103,9 @@
         sign = true;
         netboot.enable = true;
       };
+      kernelParams = [
+        "iomem=relaxed"
+      ];
     };
 
     # hardware = {
