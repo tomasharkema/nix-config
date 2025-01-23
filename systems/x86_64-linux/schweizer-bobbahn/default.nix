@@ -20,9 +20,9 @@
 
     powerManagement.enable = true;
 
-    #    environment = {
-    #      systemPackages = with pkgs; [intel-gpu-tools];
-    #    };
+    environment = {
+      systemPackages = with pkgs; [intel-gpu-tools custom.flashprog];
+    };
 
     gui = {
       enable = true;
