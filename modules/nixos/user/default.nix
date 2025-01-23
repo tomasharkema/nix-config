@@ -123,6 +123,7 @@
         };
         agent = {};
         rslsync = lib.mkIf config.apps.resilio.enable {};
+        dialout.members = ["tomas"];
       };
     };
 

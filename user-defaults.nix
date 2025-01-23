@@ -18,7 +18,7 @@
     nixpkgs.config.allowUnfree = true;
 
     users = {
-      mutableUsers = true;
+      # mutableUsers = true;
 
       users = {
         root = {

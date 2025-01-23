@@ -28,6 +28,7 @@
         workspaces = true;
         style = "compact";
         secrets_filter = true;
+        filter_mode = "workspace";
         common_subcommands = ["cargo" "go" "git" "npm" "yarn" "pnpm" "kubectl" "nix" "nom" "nh"];
         daemon = lib.mkIf pkgs.stdenv.isLinux {
           enabled = true;

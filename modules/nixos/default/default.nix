@@ -272,6 +272,7 @@
           tcptrack
           nmap
           tiptop
+          tio
           tpm-tools
           treecat
           networkmanagerapplet
