@@ -375,7 +375,7 @@ in {
       ipmicfg
       ipmiutil
       tremotesf
-      # icingaweb2
+      icingaweb2
     ];
 
     virtualisation.kvmgt = {
