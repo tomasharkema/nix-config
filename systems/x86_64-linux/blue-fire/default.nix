@@ -19,6 +19,11 @@ in {
 
     facter.reportPath = ./facter.json;
 
+    nixpkgs.config.allowUnfreePredicate = pkg:
+      builtins.elem (lib.getName pkg) [
+        "nvidia-persistenced"
+      ];
+
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K";
@@ -116,6 +121,10 @@ in {
       "/mnt/dione-downloads" = {
         device = "192.168.1.102:/volume1/tomas";
         fsType = "nfs";
+        options = [
+          "x-systemd.automount"
+          "noauto"
+        ];
       };
     };
 
@@ -195,17 +204,17 @@ in {
           ];
         };
       };
-      # icingaweb2 = {
-      #   enable = true;
-      #   virtualHost = "mon.blue-fire.harkema.intra";
-      #   modules.setup.enable = true;
-      #   authentications = {
-      #     icingaweb = {
-      #       backend = "db";
-      #       resource = "icingaweb_db";
-      #     };
-      #   };
-      # };
+      icingaweb2 = {
+        enable = true;
+        virtualHost = "mon.blue-fire.harkema.intra";
+        modules.setup.enable = true;
+        authentications = {
+          icingaweb = {
+            backend = "db";
+            resource = "icingaweb_db";
+          };
+        };
+      };
 
       # ha.initialMaster = true;
       # command-center = {
@@ -260,14 +269,12 @@ in {
       hostName = "blue-fire";
       hostId = "529fd7aa";
 
-      firewall = {
-        allowPing = true;
-      };
-
-      # useDHCP = false;
+      useDHCP = false;
       networkmanager.enable = true;
 
       firewall = {
+        allowPing = true;
+
         allowedTCPPorts = [
           7070
           111
@@ -285,7 +292,7 @@ in {
           4002
           20048
         ];
-        enable = true;
+        enable = false;
       };
 
       # bonds.bond0 = {
@@ -300,33 +307,54 @@ in {
       #  };
       # };
 
-      bridges.br0 = {
-        interfaces = ["enp6s0f0"];
-      };
+      nameservers = ["192.168.0.1"];
 
+      bridges.br0 = {
+        interfaces = ["enp6s0"];
+      };
+      defaultGateway = {
+        address = "192.168.0.1";
+        interface = "br0";
+      };
       interfaces = {
-        "enp6s0f0" = {
-          # useDHCP = lib.mkDefault true;
+        "eno1" = {
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
-        "enp6s0f1" = {
-          # useDHCP = lib.mkDefault true;
+
+        "eno2" = {
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
-        "enp6s0f2" = {
-          # useDHCP = lib.mkDefault true;
+
+        "eno3" = {
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
-        "enp6s0f3" = {
-          # useDHCP = lib.mkDefault true;
+
+        "eno4" = {
+          useDHCP = false;
+          wakeOnLan.enable = true;
+          mtu = 9000;
+        };
+
+        "enp6s0" = {
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
         "br0" = {
-          useDHCP = lib.mkDefault true;
+          useDHCP = false;
+          mtu = 9000;
+          ipv4.addresses = [
+            {
+              address = "192.168.0.101";
+              prefixLength = 24;
+            }
+          ];
         };
         #"bond0" = {
         #  mtu = 9000;
