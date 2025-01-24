@@ -76,13 +76,13 @@
 in
   stdenv.mkDerivation (finalAttrs: {
     pname = "sssd";
-    version = "2.10.0";
+    version = "2.10.1";
 
     src = fetchFromGitHub {
       owner = "SSSD";
       repo = "sssd";
       rev = "refs/tags/${finalAttrs.version}";
-      sha256 = "sha256-DQDynDYsbGXq3qy7hfiASp5kzFrykzhWFQaId8WCxVw=";
+      sha256 = "sha256-p/PijS84fCorm2UyiFYZl+Li8+rUUQiPIImRN7xJmRk=";
     };
 
     # patches = [

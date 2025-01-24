@@ -267,12 +267,12 @@ in
         gnome-clocks
         gnome-commander
         gnome-control-center
-        gnome-extension-manager
+        # gnome-extension-manager
         gnome-firmware
         gnome-menus
         gnome-nettool
         gnome-packagekit
-        gnome-photos
+        # gnome-photos
         gnome-session
         gnome-session-ctl
         gnome-settings-daemon
