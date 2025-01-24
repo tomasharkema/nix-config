@@ -21,14 +21,14 @@
     powerManagement.enable = true;
 
     environment = {
-      systemPackages = with pkgs; [intel-gpu-tools custom.flashprog];
+      # systemPackages = with pkgs; [intel-gpu-tools custom.flashprog];
     };
 
     gui = {
       enable = true;
       desktop.enable = true;
       gnome.enable = lib.mkDefault true;
-      quiet-boot.enable = true;
+      quiet-boot.enable = false; # true;
     };
 
     # apps.spotifyd.enable = true;
@@ -36,9 +36,9 @@
     apps = {
       steam.enable = false; # true;
       # usbip.enable = true;
-      netdata.enable = true;
-      unified-remote.enable = true;
-      cec.enable = true;
+      netdata.enable = false;
+      # unified-remote.enable = true;
+      # cec.enable = true;
     };
 
     disks.btrfs = {
@@ -52,9 +52,12 @@
 
     apps.resilio.enable = false;
 
+    systemd.enableEmergencyMode = true;
+    boot.initrd.systemd.emergencyAccess = true;
+
     traits = {
       low-power.enable = true;
-      ecrypt.enable = true;
+      # ecrypt.enable = true;
       hardware = {
         # intel.enable = true;
         # tpm.enable = true;
@@ -63,7 +66,7 @@
         remote-unlock.enable = false;
         bluetooth.enable = true;
 
-        disable-sleep.enable = true;
+        disable-sleep.enable = false; # true;
       };
     };
 
@@ -85,6 +88,7 @@
         # allowInterfaces = [ "wlo1" ];
         reflector = lib.mkForce false;
       };
+      kmscon.enable = lib.mkForce false;
     };
 
     zramSwap = {
@@ -92,9 +96,9 @@
     };
 
     boot = {
-      kernelModules = ["i915"];
+      # kernelModules = ["i915"];
       tmp = {
-        useTmpfs = true;
+        useTmpfs = false; # true;
       };
 
       recovery = {
