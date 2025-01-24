@@ -203,17 +203,6 @@ in {
       };
     };
 
-    system.activationScripts = {
-      "system-release" = ''
-        echo $(uname -mrs) > /etc/system-release
-      '';
-
-      "copy-etc-files" = ''
-        ${pkgs.rsync}/bin/rsync --verbose --ignore-existing -r ${package}/etc/libreport/ /etc/libreport
-        ${pkgs.rsync}/bin/rsync --verbose --ignore-existing -r ${package}/etc/abrt/ /etc/abrt
-      '';
-    };
-
     systemd = {
       # packages = [pkgs.abrt];
 
@@ -320,6 +309,14 @@ in {
           serviceConfig = {
             ExecStart = "${package}/bin/abrt-dump-journal-xorg -fxtD";
           };
+        };
+
+        abrt-config = {
+          script = ''
+            echo $(uname -mrs) > /etc/system-release
+            ${pkgs.rsync}/bin/rsync --verbose --ignore-existing -r ${package}/etc/libreport/ /etc/libreport
+            ${pkgs.rsync}/bin/rsync --verbose --ignore-existing -r ${package}/etc/abrt/ /etc/abrt
+          '';
         };
 
         abrtd = {

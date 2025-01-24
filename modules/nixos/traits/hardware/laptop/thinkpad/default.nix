@@ -165,10 +165,10 @@ in {
         # enableGnomeKeyring = true;
         fprintAuth = true;
       };
-      "polkit-1" = {
-        # enableGnomeKeyring = true;
-        fprintAuth = true;
-      };
+      # "polkit-1" = {
+      #   # enableGnomeKeyring = true;
+      #   fprintAuth = true;
+      # };
       passwd = {
         fprintAuth = true;
       };

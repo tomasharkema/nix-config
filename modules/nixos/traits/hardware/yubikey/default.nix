@@ -68,10 +68,9 @@
       });
 
       polkit.addRule(function(action, subject) {
-          if ((action.id == "org.debian.pcsc-lite.access_pcsc"
-              || action.id == "org.debian.pcsc-lite.access_card")
-              && subject.user == "gdm") {
-              return polkit.Result.YES;
+          if (action.id == "org.debian.pcsc-lite.access_pcsc" &&
+              subject.user == "gdm") {
+                  return polkit.Result.YES;
           }
       });
     '';

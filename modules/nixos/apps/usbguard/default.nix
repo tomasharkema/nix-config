@@ -21,7 +21,7 @@ in {
       usbguard
     ];
 
-    systemd.packages = [pkgs.usbguard pkgs.usbguard-notifier pkgs.custom.usbguard-gnome];
+    systemd.packages = with pkgs; [usbguard usbguard-notifier custom.usbguard-gnome];
 
     system.activationScripts.usbguard-rules = ''
       if [ ! -f "${config.services.usbguard.ruleFile}" ]; then
