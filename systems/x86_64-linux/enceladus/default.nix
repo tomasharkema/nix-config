@@ -169,7 +169,7 @@ in {
       ];
 
       kernel.sysctl."net.ipv6.conf.enp1s0.disable_ipv6" = true;
-
+      kernelParams = ["iomem=relaxed"];
       initrd = {
         availableKernelModules = [
           "xhci_pci"

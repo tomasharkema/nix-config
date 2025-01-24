@@ -245,14 +245,14 @@ in
 
       warnings = map (p: "${p.name} disabled") (
         with pkgs; [
-          gnome-extension-manager
+          # gnome-extension-manager
           #   gnome-packagekit
           #   gnome-session
           #   gnome-session-ctl
           #   gnome-settings-daemon
           #   gnome-shell-extensions
           #   seahorse
-          gnome-photos
+          # gnome-photos
         ]
       );
 
@@ -267,12 +267,12 @@ in
         gnome-clocks
         gnome-commander
         gnome-control-center
-        # gnome-extension-manager
+        gnome-extension-manager
         gnome-firmware
         gnome-menus
         gnome-nettool
         gnome-packagekit
-        # gnome-photos
+        gnome-photos
         gnome-session
         gnome-session-ctl
         gnome-settings-daemon

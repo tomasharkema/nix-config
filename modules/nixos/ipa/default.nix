@@ -82,6 +82,20 @@ in {
       packages = [pkgs.realmd];
 
       services = {
+        ipa-host-mod-sshpubkey = {
+          path = with pkgs; [freeipa iproute2];
+          script = ''
+            set -x
+            MACS="`ip -j link | jq '.[].address' -r`"
+            MAC_ARGS="`for mac in $MACS; do echo "--macaddress=$mac "; done`"
+
+            ipa host-mod "${config.networking.fqdn}" w\
+              --sshpubkey="$(cat /etc/ssh/ssh_host_ed25519_key.pub)" \
+              --sshpubkey="$(cat /etc/ssh/ssh_host_rsa_key.pub)" \
+              --updatedns $MAC_ARGS
+          '';
+        };
+
         sssd.before = ["nfs-idmapd.service" "rpc-gssd.service" "rpc-svcgssd.service"];
 
         sssd-kcm = {
@@ -190,10 +204,6 @@ in {
         argument = "${pkgs.zsh}/bin/zsh";
       };
     };
-
-    # system.activationScripts.host-mod-pubkey.text = ''
-    #   ipa host-mod "$HOSTNAME.harkema.io" --sshpubkey="$(cat /etc/ssh/ssh_host_ed25519_key.pub)" || echo "REGISTER PUBKEY"
-    # '';
 
     system.nssDatabases.sudoers = ["sss"];
 
