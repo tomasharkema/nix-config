@@ -61,7 +61,7 @@ in {
     };
 
     environment.extraInit = ''
-      export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/run/current-system/sw/lib:/run/opengl-driver/lib:/run/opengl-driver-32/lib"
+      export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib"
     '';
 
     boot = {
