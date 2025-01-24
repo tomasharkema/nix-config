@@ -271,6 +271,45 @@ in {
 
     virtualisation = {
       oci-containers.containers = {
+        seq = {
+          # docker run --name seq -d --restart unless-stopped -e ACCEPT_EULA=Y -p 5341:80 datalust/seq:latest
+
+          image = "datalust/seq:latest";
+
+          autoStart = true;
+
+          environment = {
+            ACCEPT_EULA = "Y";
+          };
+
+          volumes = [
+            "/srv/seq/data:/data"
+            # "/var/lib/netboot/config:/config"
+            # "/var/lib/netboot/assets:/assets"
+          ];
+
+          ports = [
+            "5341:5341"
+            "5380:80"
+          ];
+        };
+
+        seq-input-syslog = {
+          # docker run --name seq -d --restart unless-stopped -e ACCEPT_EULA=Y -p 5341:80 datalust/seq:latest
+
+          image = "datalust/seq-input-syslog:latest";
+
+          autoStart = true;
+
+          environment = {
+            SEQ_ADDRESS = "http://127.0.0.2:5341";
+          };
+
+          ports = [
+            "514:514/udp"
+          ];
+        };
+
         netbootxyz = {
           image = "ghcr.io/linuxserver/netbootxyz";
 
