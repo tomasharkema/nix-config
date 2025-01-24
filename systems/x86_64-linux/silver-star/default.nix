@@ -302,7 +302,7 @@ in {
           autoStart = true;
 
           environment = {
-            SEQ_ADDRESS = "http://127.0.0.2:5341";
+            SEQ_ADDRESS = "http://127.0.0.1:5341";
           };
 
           ports = [
