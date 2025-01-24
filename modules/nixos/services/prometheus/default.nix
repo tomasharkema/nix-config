@@ -25,6 +25,14 @@ in {
       )
     '';
 
+    systemd.tmpfiles.settings."9-promtail" = {
+      "/var/lib/promtail".d = {
+        mode = "0777";
+        user = "root";
+        group = "root";
+      };
+    };
+
     services = {
       prometheus = {
         exporters = {
@@ -111,8 +119,8 @@ in {
         };
       };
 
-      promtail = lib.mkIf false {
-        # enable = true;
+      promtail = {
+        enable = true;
         extraFlags = ["--config.expand-env=true"];
         configuration = {
           server = {
@@ -120,19 +128,11 @@ in {
             grpc_listen_port = 0;
           };
           positions = {filename = "/var/lib/promtail/positions.yaml";};
-          # positions = {filename = "/tmp/positions.yaml";};
+
           clients = [
-            # {url = "http://silver-star:3100/loki/api/v1/push";}
-
-            {
-              url = "https://logs-prod-012.grafana.net/loki/api/v1/push";
-
-              basic_auth = {
-                username = "1033315";
-                password_file = "";
-              };
-            }
+            {url = "http://silver-star.ling-lizard.ts.net:3100/loki/api/v1/push";}
           ];
+
           scrape_configs = [
             {
               job_name = "journal";

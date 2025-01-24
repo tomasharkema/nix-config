@@ -271,29 +271,29 @@ in {
 
     virtualisation = {
       oci-containers.containers = {
-        seq = {
-          # docker run --name seq -d --restart unless-stopped -e ACCEPT_EULA=Y -p 5341:80 datalust/seq:latest
+        # seq = {
+        #   # docker run --name seq -d --restart unless-stopped -e ACCEPT_EULA=Y -p 5341:80 datalust/seq:latest
 
-          image = "datalust/seq:latest";
+        #   image = "datalust/seq:latest";
 
-          autoStart = true;
+        #   autoStart = true;
 
-          environment = {
-            ACCEPT_EULA = "Y";
-          };
+        #   environment = {
+        #     ACCEPT_EULA = "Y";
+        #   };
 
-          volumes = [
-            "/srv/seq/data:/data"
-            # "/var/lib/netboot/config:/config"
-            # "/var/lib/netboot/assets:/assets"
-          ];
+        #   volumes = [
+        #     "/srv/seq/data:/data"
+        #     # "/var/lib/netboot/config:/config"
+        #     # "/var/lib/netboot/assets:/assets"
+        #   ];
 
-          ports = [
-            "5341:5341"
-            "514:514/udp"
-            "5380:80"
-          ];
-        };
+        #   ports = [
+        #     "5341:5341"
+        #     "514:514/udp"
+        #     "5380:80"
+        #   ];
+        # };
 
         # seq-input-syslog = {
         #   # docker run --name seq -d --restart unless-stopped -e ACCEPT_EULA=Y -p 5341:80 datalust/seq:latest
@@ -322,7 +322,7 @@ in {
           ];
 
           ports = [
-            "3000:3000"
+            "3001:3000"
             "69:69/udp"
             "8083:80"
           ];
@@ -471,6 +471,17 @@ in {
       ];
 
       systemd.services."serial-getty@ttyS0" = {
+        wantedBy = ["multi-user.target"];
+      };
+      systemd.services."docker-compose@atuin" = {
+        wantedBy = ["multi-user.target"];
+      };
+
+      systemd.services."docker-compose@grafana" = {
+        wantedBy = ["multi-user.target"];
+      };
+
+      systemd.services."docker-compose@zabbix" = {
         wantedBy = ["multi-user.target"];
       };
       # systemd.services."serial-getty@ttyS2" = {

@@ -7,8 +7,8 @@
   config = lib.mkIf (config.apps.podman.enable || config.apps.docker.enable) {
     systemd.services = {
       "docker-compose@" = {
+        overrideStrategy = "asDropin";
         wantedBy = ["multi-user.target"];
-
         description = "%i service with docker compose";
         partOf = ["podman.service"];
         after = ["podman.service"];
