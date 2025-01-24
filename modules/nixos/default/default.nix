@@ -352,6 +352,13 @@
       rpcbind.enable = true;
       cachefilesd.enable = true;
 
+      rsyslogd = {
+        enable = true;
+        extraConfig = ''
+          *.* @silver-star.ling-lizard.ts.net:514;RSYSLOG_SyslogProtocol23Format
+        '';
+      };
+
       acpid = {
         enable = true;
         logEvents = true;
