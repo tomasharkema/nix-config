@@ -130,7 +130,7 @@ in {
 
       sessionVariablesExtra = ''
         ${lib.optionalString ((!pkgs.stdenv.hostPlatform.isDarwin) && osConfig.programs._1password-gui.enable) ''
-          if [ -z "$SSH_AUTH_SOCK" -a -n "$XDG_RUNTIME_DIR" ]; then
+          if [ -z "$SSH_TTY" -a -z "$SSH_AUTH_SOCK" -a -n "$XDG_RUNTIME_DIR" ]; then
             export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/yubikey-agent/yubikey-agent.sock"
           fi
         ''}
