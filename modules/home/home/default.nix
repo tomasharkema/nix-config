@@ -128,6 +128,14 @@ in {
         ln -sfn "/Users/${osConfig.user.name}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" "/Users/${osConfig.user.name}/.1password/agent.sock"
       '');
 
+      sessionVariablesExtra = ''
+        ${lib.optionalString ((!pkgs.stdenv.hostPlatform.isDarwin) && osConfig.programs._1password-gui.enable) ''
+          if [ -z "$SSH_AUTH_SOCK" -a -n "$XDG_RUNTIME_DIR" ]; then
+            export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/yubikey-agent/yubikey-agent.sock"
+          fi
+        ''}
+      '';
+
       sessionVariables = (
         lib.mkMerge (
           (lib.optional pkgs.stdenv.hostPlatform.isDarwin {
@@ -140,7 +148,7 @@ in {
             EDITOR = "nvim";
           })
           ++ (lib.optional ((!pkgs.stdenv.hostPlatform.isDarwin) && osConfig.programs._1password-gui.enable) {
-            # SSH_AUTH_SOCK = "/home/${osConfig.user.name}/.1password/agent.sock";
+            SSH_AUTH_SOCK = "/home/${osConfig.user.name}/.1password/agent.sock";
           })
         )
       );
