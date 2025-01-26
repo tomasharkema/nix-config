@@ -913,8 +913,14 @@
       url = "github:dj95/zjstatus";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nixgl = {
       url = "github:nix-community/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    raspberry-pi-nix = {
+      url = "github:nix-community/raspberry-pi-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
