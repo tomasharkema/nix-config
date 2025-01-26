@@ -53,7 +53,8 @@ in {
         "wezterm"
         "windows-app"
 
-        "docker"
+        "podman"
+        # "docker"
         # "spotifyd"
         # "1password"
         # "cleanshot"
@@ -61,7 +62,7 @@ in {
         # "google-chrome"
         # "hammerspoon"
         # "imageoptim"
-        "istat-menus"
+        # "istat-menus"
         # "monodraw"
         # "raycast"
         "rectangle"
