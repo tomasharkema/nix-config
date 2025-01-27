@@ -214,7 +214,7 @@
     };
 
     boot = {
-      kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
+      kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
       # resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
       tmp = {
