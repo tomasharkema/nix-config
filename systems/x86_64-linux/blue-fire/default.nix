@@ -74,25 +74,27 @@ in {
     virtualisation = {
       oci-containers = {
         containers = {
-          plex = {
-            image = "lscr.io/linuxserver/plex:latest";
+          # plex = {
+          #   image = "docker.io/plexinc/pms-docker:beta";
 
-            volumes = [
-              "/srv/plex/library:/config"
-              "/mnt/dione-downloads/downloads:/downloads"
-            ];
-            environment = {
-              PUID = "1000";
-              PGID = "1000";
-            };
-            extraOptions = [
-              "--privileged"
-              "--net=host"
-              "--device=nvidia.com/gpu=all"
-              "--security-opt=label=disable"
-            ];
-            autoStart = true;
-          };
+          #   volumes = [
+          #     "/srv/plex/library:/config"
+          #     "/mnt/dione-downloads/downloads:/downloads"
+          #     "/tmp/transcode:/transcode"
+          #   ];
+          #   environment = {
+          #     PUID = "1000";
+          #     PGID = "1000";
+          #   };
+          #   extraOptions = [
+          #     "--privileged"
+          #     "--net=host"
+          #     "--device=nvidia.com/gpu=all"
+          #     "--device=/dev/dri:/dev/dri"
+          #     "--security-opt=seccomp=unconfined"
+          #   ];
+          #   autoStart = true;
+          # };
         };
       };
     };
@@ -127,7 +129,12 @@ in {
         enable = true;
         # bridgeInterfaces = [ "eno1" ];
       };
+      plex = {
+        enable = true;
 
+        dataDir = "/srv/plex/library";
+        accelerationDevices = ["*"];
+      };
       xserver.videoDrivers = ["nvidia"];
 
       # nfs.server = {
