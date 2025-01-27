@@ -5,7 +5,9 @@
   ...
 }: {
   imports = with inputs; [
-    nixos-hardware.nixosModules.raspberry-pi-4
+    raspberry-pi-nix.nixosModules.raspberry-pi
+    raspberry-pi-nix.nixosModules.sd-image
+    # nixos-hardware.nixosModules.raspberry-pi-4
     # "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
     # "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
   ];
@@ -77,7 +79,7 @@
     ];
 
     traits = {
-      raspberry.enable = true;
+      # raspberry.enable = true;
       low-power.enable = true;
       hardware.bluetooth.enable = true;
     };
@@ -107,13 +109,57 @@
       keep-derivations = lib.mkForce false;
     };
 
-    boot = {
-      kernelPackages = pkgs.linuxPackages_rpi4;
-    };
+    # boot = {
+    #   kernelPackages = pkgs.linuxPackages_rpi4;
+    # };
 
     # proxy-services = {enable = false;};
+    raspberry-pi-nix.board = "bcm2711";
+    # raspberry-pi-nix.board = "bcm2712"; # rpi 5
 
     hardware = {
+      raspberry-pi.config = {
+        pi4 = {
+          options = {
+            arm_boost = {
+              enable = true;
+              value = true;
+            };
+          };
+          dt-overlays = {
+            vc4-kms-v3d = {
+              enable = true;
+              params = {cma-512 = {enable = true;};};
+            };
+          };
+        };
+        all = {
+          options = {
+            # The firmware will start our u-boot binary rather than a
+            # linux kernel.
+            # kernel = {
+            #   enable = true;
+            #   value = "u-boot-rpi-arm64.bin";
+            # };
+            arm_64bit = {
+              enable = true;
+              value = true;
+            };
+            enable_uart = {
+              enable = true;
+              value = true;
+            };
+          };
+
+          dt-overlays = {
+            vc4-kms-v3d = {
+              enable = true;
+              params = {};
+            };
+          };
+        };
+      };
+
       enableRedistributableFirmware = true;
       i2c.enable = true;
 
@@ -125,26 +171,26 @@
         ];
       };
 
-      raspberry-pi."4" = {
-        apply-overlays-dtmerge.enable = true;
-        fkms-3d = {
-          enable = true;
-          # cma = 1024;
-        };
-        # dwc2 = {
-        #   enable = true;
-        #   dr_mode = "peripheral";
-        # };
-        # xhci.enable = true;
-        # i2c0.enable = true;
-        # audio.enable = true;
-      };
+      # raspberry-pi."4" = {
+      #   apply-overlays-dtmerge.enable = true;
+      #   fkms-3d = {
+      #     enable = true;
+      #     # cma = 1024;
+      #   };
+      #   # dwc2 = {
+      #   #   enable = true;
+      #   #   dr_mode = "peripheral";
+      #   # };
+      #   # xhci.enable = true;
+      #   # i2c0.enable = true;
+      #   # audio.enable = true;
+      # };
 
-      deviceTree = {
-        enable = true;
-        # filter = "bcm2711-rpi-4*.dtb";
-        # filter = mkForce "*rpi-4-*.dtb";
-      };
+      # deviceTree = {
+      # enable = true;
+      # filter = "bcm2711-rpi-4*.dtb";
+      # filter = mkForce "*rpi-4-*.dtb";
+      # };
     };
   };
 }

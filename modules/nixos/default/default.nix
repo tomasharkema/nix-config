@@ -193,7 +193,6 @@
           colorized-logs
           ctop
           curl
-          custom.unrarall
           devcontainer
           devdash
           devtodo
@@ -355,7 +354,39 @@
       rsyslogd = {
         enable = true;
         extraConfig = ''
-          *.* @silver-star.ling-lizard.ts.net:514;RSYSLOG_SyslogProtocol23Format
+          #################
+          #### MODULES ####
+          #################
+
+          module(load="imuxsock") # provides support for local system logging
+          #module(load="immark")  # provides --MARK-- message capability
+
+          # provides UDP syslog reception
+          module(load="imudp")
+          input(type="imudp" port="514")
+
+          # provides TCP syslog reception
+          module(load="imtcp")
+          input(type="imtcp" port="514")
+
+          # provides kernel logging support and enable non-kernel klog messages
+          # module(load="imklog" permitnonkernelfacility="on")
+
+          # Forward everything
+          *.*  action(type="omfwd"
+                protocol="udp" target="silver-star.ling-lizard.ts.net" port="514"
+                Template="RSYSLOG_SyslogProtocol23Format"
+                TCP_Framing="octet-counted" KeepAlive="on"
+                action.resumeRetryCount="-1"
+                queue.type="linkedlist" queue.size="50000")
+
+          *.*  action(type="omfwd"
+                protocol="udp" target="silver-star.ling-lizard.ts.net" port="1514"
+                Template="RSYSLOG_SyslogProtocol23Format"
+                TCP_Framing="octet-counted" KeepAlive="on"
+                action.resumeRetryCount="-1"
+                queue.type="linkedlist" queue.size="50000")
+
         '';
       };
 

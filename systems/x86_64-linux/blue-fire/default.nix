@@ -66,19 +66,13 @@ in {
         httpd = false;
       };
       "bmc-watchdog".enable = true;
-      podman.enable = lib.mkForce false; # true;
+      podman.enable = lib.mkForce true;
       # zabbix.server.enable = true;
       atticd.enable = true;
     };
 
     virtualisation = {
-      docker = {
-        enable = true;
-        enableOnBoot = true;
-      };
-
       oci-containers = {
-        backend = "docker";
         containers = {
           plex = {
             image = "lscr.io/linuxserver/plex:latest";
@@ -204,17 +198,17 @@ in {
           ];
         };
       };
-      icingaweb2 = {
-        enable = true;
-        virtualHost = "mon.blue-fire.harkema.intra";
-        modules.setup.enable = true;
-        authentications = {
-          icingaweb = {
-            backend = "db";
-            resource = "icingaweb_db";
-          };
-        };
-      };
+      # icingaweb2 = {
+      #   enable = true;
+      #   virtualHost = "mon.blue-fire.harkema.intra";
+      #   modules.setup.enable = true;
+      #   authentications = {
+      #     icingaweb = {
+      #       backend = "db";
+      #       resource = "icingaweb_db";
+      #     };
+      #   };
+      # };
 
       # ha.initialMaster = true;
       # command-center = {
