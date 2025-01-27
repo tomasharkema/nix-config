@@ -193,7 +193,6 @@
           colorized-logs
           ctop
           curl
-          custom.unrarall
           devcontainer
           devdash
           devtodo
