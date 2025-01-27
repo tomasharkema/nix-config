@@ -26,7 +26,7 @@
       # };
       playerctld.enable = true;
 
-      notify-osd.enable = builtins.warn "notify-osd turned off!" false;
+      notify-osd.enable = true; # builtins.warn "notify-osd turned off!" false;
 
       mpd = {
         enable = true;
