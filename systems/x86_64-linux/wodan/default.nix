@@ -18,7 +18,7 @@
       davinci-resolve
       ntfs2btrfs
       glxinfo
-      apfsprogs
+      # apfsprogs
       cifs-utils
     ];
 
@@ -239,7 +239,7 @@
       binfmt.emulatedSystems = ["aarch64-linux"];
       supportedFilesystems = [
         "ntfs"
-        "apfs"
+        # "apfs"
       ];
 
       loader.systemd-boot.memtest86.enable = true;

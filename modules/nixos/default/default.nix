@@ -111,12 +111,12 @@
 
       kernelModules = [
         "wireguard"
-        "apfs"
+        # "apfs"
       ];
 
       supportedFilesystems = [
         "ntfs"
-        "apfs"
+        # "apfs"
         "nfs"
       ];
 
@@ -177,8 +177,8 @@
           # ttop
           agenix-rekey
           aide
-          apfs-fuse
-          apfsprogs
+          # apfs-fuse
+          # apfsprogs
           archivemount
           bandwhich
           bash
