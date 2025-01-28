@@ -155,7 +155,7 @@
       ];
 
       # sessionVariables.MOZ_ENABLE_WAYLAND = "0";
-      enableAllTerminfo = true;
+      enableAllTerminfo = pkgs.stdenv.isx86_64;
       systemPackages =
         (with pkgs; [
           config.boot.kernelPackages.cpupower

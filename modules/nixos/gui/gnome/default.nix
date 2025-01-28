@@ -215,10 +215,10 @@ in
           enable = true;
           settings = {
             GNOME = [
-              "org.wezfurlong.wezterm"
+              "com.mitchellh.ghostty"
             ];
             default = [
-              "org.wezfurlong.wezterm"
+              "com.mitchellh.ghostty"
             ];
           };
         };
