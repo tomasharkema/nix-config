@@ -3,31 +3,29 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   inherit (pkgs.stdenvNoCC) isDarwin;
-  inherit (lib)
+  inherit
+    (lib)
     types
     mkIf
     mkEnableOption
     mkOption
     ;
-  shellInit =
-    shell:
+  shellInit = shell:
     "source "
     + cfg.package
     + "/Applications/iTerm2.app/Contents/Resources/iterm2_shell_integration."
     + shell;
   cfg = config.programs.iterm2;
-in
-{
+in {
   options.programs.iterm2 = {
     enable = mkEnableOption "Enable the iTerm2 terminal emulator (system-wide).";
     package = mkOption {
       type = types.package;
       default =
-        if isDarwin then
-          pkgs.iterm2
+        if isDarwin
+        then pkgs.iterm2
         else
           pkgs.iterm2.overrideAttrs (o: {
             # Remove the generated binary
@@ -57,10 +55,11 @@ in
     };
   };
   config = mkIf false {
-    home.packages = mkIf cfg.enable [ cfg.package ];
+    home.packages = mkIf cfg.enable [cfg.package];
     programs.bash.initExtra = mkIf cfg.enableBashIntegration (shellInit "bash");
     programs.zsh.initExtraFirst = mkIf cfg.enableZshIntegration (shellInit "zsh");
     programs.fish.shellInit = mkIf cfg.enableFishIntegration (shellInit "fish");
   };
 }
 # {...}: {}
+
