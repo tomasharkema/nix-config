@@ -80,14 +80,14 @@
       };
     };
 
-    fileSystems."/mnt/dione-downloads" = {
-      device = "//192.168.1.102/downloads";
-      fsType = "cifs";
-      options = let
-        # this line prevents hanging on network split
-        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-      in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
-    };
+    # fileSystems."/mnt/dione-downloads" = {
+    #   device = "//192.168.1.102/downloads";
+    #   fsType = "cifs";
+    #   options = let
+    #     # this line prevents hanging on network split
+    #     automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+    #   in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
+    # };
 
     services = {
       kmscon.enable = lib.mkForce false;
@@ -188,8 +188,8 @@
     };
 
     traits = {
-      server.enable = true;
-      builder.enable = true;
+      # server.enable = true;
+      # builder.enable = true;
       hardware = {
         nvme.enable = true;
         tpm.enable = true;
@@ -251,7 +251,7 @@
         netboot.enable = true;
         # memtest86.enable = true;
       };
-      kernelPackages = pkgs.linuxPackages_6_12;
+      kernelPackages = pkgs.linuxPackages_latest;
 
       kernelModules = [
         "i2c-dev"
