@@ -210,6 +210,7 @@
           glog
           glogg
           googler
+          ghostty
           htmlq
           hueadm
           hw-probe
