@@ -16,7 +16,7 @@ in {
     };
 
     serverAddress = lib.mkOption {
-      default = "http://silver-star.ling-lizard.ts.net:7124/";
+      default = "https://nix-cache.ling-lizard.ts.net/";
       # default = "https://nix-cache.harke.ma/";
       type = lib.types.str;
     };
