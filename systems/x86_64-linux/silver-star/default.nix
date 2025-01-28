@@ -79,7 +79,9 @@ in {
       tailscale.tsnsrv = {
         enable = true;
         vhosts = {
-          nix-cache = {port = 7124;};
+          nix-cache = {
+            port = 7124;
+          };
         };
       };
 
@@ -271,48 +273,6 @@ in {
 
     virtualisation = {
       oci-containers.containers = {
-        seq = {
-          # docker run --name seq -d --restart unless-stopped -e ACCEPT_EULA=Y -p 5341:80 datalust/seq:latest
-
-          image = "datalust/seq:latest";
-
-          autoStart = true;
-
-          environment = {
-            ACCEPT_EULA = "Y";
-          };
-          extraOptions = ["--network=seq_default"];
-          volumes = [
-            "/srv/seq/data:/data"
-            # "/var/lib/netboot/config:/config"
-            # "/var/lib/netboot/assets:/assets"
-          ];
-
-          ports = [
-            "5341:5341"
-            "5380:80"
-          ];
-        };
-
-        seq-input-syslog = {
-          # docker run --name seq -d --restart unless-stopped -e ACCEPT_EULA=Y -p 5341:80 datalust/seq:latest
-
-          image = "datalust/seq-input-syslog:latest";
-
-          autoStart = true;
-
-          environment = {
-            SEQ_ADDRESS = "http://seq:5341";
-          };
-
-          extraOptions = ["--network=seq_default"];
-          ports = [
-            "1514:514"
-            "1514:514/udp"
-          ];
-          dependsOn = ["seq"];
-        };
-
         netbootxyz = {
           image = "ghcr.io/linuxserver/netbootxyz";
 
@@ -394,7 +354,7 @@ in {
         useTmpfs = true;
       };
       binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxPackages_6_12;
+      kernelPackages = pkgs.linuxPackages_6_11;
       kernelParams = [
         "console=tty1"
         "console=ttyS0,115200n8"
