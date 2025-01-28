@@ -262,6 +262,7 @@ in
         clutter-gtk
         dconf-editor
         gjs
+        ghostty
         gnome-applets
         gnome-autoar
         gnome-clocks

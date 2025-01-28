@@ -859,10 +859,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # ytdlp-gui = {
-    #   url = "https://flakehub.com/f/BKSalman/ytdlp-gui/*.tar.gz";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    ytdlp-gui = {
+      url = "github:BKSalman/ytdlp-gui";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     piratebay = {
       url = "github:tsirysndr/piratebay";
@@ -874,10 +874,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # wezterm = {
-    #   url = "github:wez/wezterm?dir=nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    wezterm = {
+      url = "github:wez/wezterm?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-github-actions = {
       url = "github:nix-community/nix-github-actions";
