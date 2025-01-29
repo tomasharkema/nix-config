@@ -53,7 +53,7 @@
 
   languageserver = {
     nix = {
-      command = "nil";
+      command = "nixd";
       filetypes = ["nix"];
     };
     "csharp-ls" = {
