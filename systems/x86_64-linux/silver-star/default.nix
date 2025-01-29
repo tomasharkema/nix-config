@@ -55,10 +55,10 @@ in {
         enable = true;
         httpd = false; # true;
       };
-      # "bmc-watchdog".enable = true;
+      "bmc-watchdog".enable = true;
       podman.enable = true;
       docker.enable = false;
-      # zabbix.server.enable = true;
+      zabbix.server.enable = true;
       atticd.enable = true;
     };
 
@@ -173,6 +173,13 @@ in {
         interface = "br0";
       };
 
+      # vlans = {
+      #   "vlan69" = {
+      #     id = 69;
+      #     interface = "enp5s0";
+      #   };
+      # };
+
       interfaces = {
         "enp5s0" = {
           # useDHCP = lib.mkDefault true;
@@ -208,6 +215,11 @@ in {
             }
           ];
         };
+        # "vlan69" = {
+        #   useDHCP = lib.mkDefault true;
+        #   wakeOnLan.enable = true;
+        #   mtu = 9000;
+        # };
       };
 
       # useDHCP = false;
@@ -443,9 +455,9 @@ in {
         wantedBy = ["multi-user.target"];
       };
 
-      systemd.services."docker-compose@zabbix" = {
-        wantedBy = ["multi-user.target"];
-      };
+      # systemd.services."docker-compose@zabbix" = {
+      #   wantedBy = ["multi-user.target"];
+      # };
       # systemd.services."serial-getty@ttyS2" = {
       #   overrideStrategy = "asDropin";
       #   serviceConfig = let
