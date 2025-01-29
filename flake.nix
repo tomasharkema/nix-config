@@ -118,7 +118,7 @@
           nixos-recovery.nixosModules.recovery
           catppuccin.nixosModules.catppuccin
           # peerix.nixosModules.peerix
-
+          tsnsrv.nixosModules.default
           # impermanence.nixosModule
           disko.nixosModules.default
 
@@ -921,6 +921,11 @@
 
     raspberry-pi-nix = {
       url = "github:nix-community/raspberry-pi-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    tsnsrv = {
+      url = "github:boinkor-net/tsnsrv";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

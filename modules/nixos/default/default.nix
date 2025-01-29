@@ -352,13 +352,6 @@
       rpcbind.enable = true;
       cachefilesd.enable = true;
 
-      rsyslogd = {
-        enable = true;
-        extraConfig = ''
-          *.* action(type="omfwd" protocol="udp" target="silver-star.ling-lizard.ts.net" port="514" Template="RSYSLOG_SyslogProtocol23Format")
-        '';
-      };
-
       acpid = {
         enable = true;
         logEvents = true;

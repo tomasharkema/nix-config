@@ -15,6 +15,11 @@ in {
       rekey = {
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKMfjVCxpx87jpHR6CAUoZsEvwZOSTKyUmYDl3vXIUeu root@silver-star";
       };
+      secrets = {
+        tsnsrv = {
+          rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
+        };
+      };
     };
 
     facter.reportPath = ./facter.json;
@@ -76,11 +81,12 @@ in {
 
       throttled.enable = lib.mkForce false;
 
-      tailscale.tsnsrv = {
+      tsnsrv = {
         enable = true;
-        vhosts = {
+        defaults.authKeyPath = config.age.secrets.tsnsrv.path;
+        services = {
           nix-cache = {
-            port = 7124;
+            toURL = "http://127.0.0.1:7124";
           };
         };
       };

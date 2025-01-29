@@ -14,7 +14,7 @@
 in {
   options = {
     apps.ipa = {
-      enable = lib.mkEnableOption "enable ipa";
+      enable = lib.mkEnableOption "enable ipa" // {default = true;};
     };
     # services.intune.enable = mkEnableOption "intune";
   };
@@ -83,13 +83,18 @@ in {
 
       services = {
         ipa-host-mod-sshpubkey = {
-          path = with pkgs; [freeipa iproute2];
+          path = with pkgs; [freeipa iproute2 jq];
+
+          after = ["sssd.service" "network-online.target"];
+          wants = ["network-online.target"];
+          wantedBy = ["multi-user.target"];
+
           script = ''
             set -x
-            MACS="`ip -j link | jq '.[].address' -r`"
+            MACS="`ip -j link | jq '.[].address' -r | grep -vE 'null' | grep -vE '00:00:00:00:00:00'`"
             MAC_ARGS="`for mac in $MACS; do echo "--macaddress=$mac "; done`"
 
-            ipa host-mod "${config.networking.fqdn}" w\
+            ipa host-mod "${config.networking.fqdn}" \
               --sshpubkey="$(cat /etc/ssh/ssh_host_ed25519_key.pub)" \
               --sshpubkey="$(cat /etc/ssh/ssh_host_rsa_key.pub)" \
               --updatedns $MAC_ARGS
@@ -176,22 +181,22 @@ in {
           interactive_prompt = "Insert your Passkey device, then press ENTER."
 
           [sssd]
-          debug_level = 6
+          debug_level = 0
 
           [nss]
-          debug_level = 6
+          debug_level = 0
 
           [sudo]
-          debug_level = 6
+          debug_level = 0
 
           [ssh]
-          debug_level = 6
+          debug_level = 0
 
           [pac]
-          debug_level = 6
+          debug_level = 0
 
           [ifp]
-          debug_level = 6
+          debug_level = 0
         '';
 
         # [sssd]
@@ -238,6 +243,9 @@ in {
             if (action.id == "org.freedesktop.policykit.exec" && subject.isInGroup("admins")) {
               return polkit.Result.YES;
             }
+          });
+          polkit.addAdminRule(function(action, subject) {
+            return ["unix-group:admins", "unix-group:wheel"];
           });
         '';
       };
