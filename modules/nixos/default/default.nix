@@ -355,7 +355,7 @@
       rsyslogd = {
         enable = true;
         extraConfig = ''
-          *.*    @silver-star.ling-lizard.ts.net:514;RSYSLOG_SyslogProtocol23Format
+          *.* action(type="omfwd" protocol="udp" target="silver-star.ling-lizard.ts.net" port="514" Template="RSYSLOG_SyslogProtocol23Format")
         '';
       };
 

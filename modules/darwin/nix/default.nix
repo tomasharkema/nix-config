@@ -47,7 +47,12 @@ in {
     # };
 
     environment = {
-      systemPackages = with pkgs; [age-plugin-yubikey];
+      systemPackages = with pkgs; [
+        age-plugin-yubikey
+
+        nil
+        nixd
+      ];
       variables = {
         # OTEL_EXPORTER_OTLP_ENDPOINT = "http://silver-star:8428/opentelemetry/v1/metrics";
         # OTEL_EXPORTER_OTLP_TRACES_PROTOCOL = "http/json";

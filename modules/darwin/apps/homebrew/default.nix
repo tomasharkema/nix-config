@@ -40,9 +40,7 @@ in {
         "swiftlint"
         "swiftformat"
         "colima"
-        "gradle"
         "terminal-notifier"
-        "colima"
       ];
 
       casks = [
@@ -52,8 +50,8 @@ in {
         "swiftbar"
         "wezterm"
         "windows-app"
-
-        "podman"
+        "ghostty"
+        "podman-desktop"
         # "docker"
         # "spotifyd"
         # "1password"

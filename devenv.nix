@@ -199,7 +199,7 @@ in {
 
   languages.nix = {
     enable = true;
-    lsp.package = pkgs.nil;
+    lsp.package = pkgs.nixd;
   };
 
   pre-commit.hooks = {
@@ -207,6 +207,7 @@ in {
     shellcheck.enable = true;
     shfmt.enable = true;
     nil.enable = true;
+
     stylua.enable = true;
 
     # treefmt.enable = true;

@@ -6,7 +6,7 @@
 }: {
   options = {};
 
-  config = {
+  config = lib.mkIf pkgs.stdenv.isLinux {
     xdg.configFile."ghostty/config".text = lib.generators.toINIWithGlobalSection {} {
       globalSection = {
         theme = "catppuccin-mocha";

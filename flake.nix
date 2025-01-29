@@ -341,7 +341,7 @@
       checks = inputs.self.images.installer.iso;
       inherit (inputs.flake-schemas) schemas;
 
-      # formatter = inputs.nixpkgs.nixfmt;
+      # formatter = inputs.nixpkgs.nixfmt-rfc-style;
       outputs-builder = channels: let
         pkgs = channels.nixpkgs;
         system = pkgs.system;
@@ -424,7 +424,7 @@
       "https://nyx.chaotic.cx/"
       "https://nix-gaming.cachix.org"
       "https://nix-community.cachix.org"
-      # "https://nix-cache.harke.ma/tomas/"
+      "https://nix-cache.ling-lizard.ts.net/tomasharkema"
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
     ];
