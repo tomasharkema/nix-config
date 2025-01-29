@@ -117,6 +117,7 @@
         enable = true;
         acceleration = "cuda";
         host = "0.0.0.0";
+        loadModels = ["llama3.1:8b" "starcoder2:3b"];
       };
       open-webui = {
         enable = true;
