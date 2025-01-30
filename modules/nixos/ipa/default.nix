@@ -217,7 +217,7 @@ in {
         ifpAllowedUids = [
           "root"
           "tomas"
-          "gdm"
+
           #"1000" "1002" "gdm" "132"
         ];
         cacheCredentials = true;
