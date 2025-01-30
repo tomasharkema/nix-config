@@ -64,6 +64,33 @@ in {
           }
         '';
 
+        "nsswitch.conf".text = ''
+          sudoers:   ${lib.concatStringsSep " " ["sss"]}
+          netgroup:  ${lib.concatStringsSep " " ["sss"]}
+        '';
+
+        "sssd/conf.d".enable = false;
+
+        "sssd/conf.d/passkey.conf".text = ''
+          [pam]
+          pam_passkey_auth = True
+          pam_cert_auth = True
+          passkey_debug_libfido2 = True
+          passkey_child_timeout = 60
+          debug_level = 6
+
+          [domain/harkema.io]
+          id_provider = ipa
+          ipa_server = _srv_, ipa.harkema.io
+          ipa_domain = harkema.io
+          ipa_hostname = ${config.networking.hostName}.harkema.io
+          auth_provider = ipa
+          chpass_provider = ipa
+          access_provider = ipa
+          cache_credentials = True
+          krb5_store_password_if_offline = True
+        '';
+
         # "chromium/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
         # "opt/chrome/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
 
@@ -141,10 +168,6 @@ in {
       pki.certificateFiles = [config.security.ipa.certificate];
     };
 
-    environment.etc."nsswitch.conf".text = ''
-      sudoers:   ${lib.concatStringsSep " " ["sss"]}
-      netgroup:  ${lib.concatStringsSep " " ["sss"]}
-    '';
     services.udev.extraRules = ''
       SUBSYSTEM=="hidraw", ENV{ID_SECURITY_TOKEN}=="1", RUN{program}+="${pkgs.acl}/bin/setfacl -m u:sssd:rw $env{DEVNAME}"
     '';
@@ -165,47 +188,12 @@ in {
       #   '';
       # };
 
+      # sshd.
+
       sssd = {
         enable = true;
         kcm = true;
         sshAuthorizedKeysIntegration = true;
-
-        config = lib.mkAfter ''
-          [pam]
-          pam_passkey_auth = True
-          pam_cert_auth = True
-          passkey_debug_libfido2 = True
-          passkey_child_timeout = 60
-          debug_level = 6
-
-
-          # [domain/shadowutils]
-          # id_provider = proxy
-          # proxy_lib_name = files
-          # auth_provider = none
-          # local_auth_policy = match
-
-          [prompting/passkey]
-          interactive_prompt = "Insert your Passkey device, then press ENTER."
-
-          [sssd]
-          debug_level = 0
-
-          [nss]
-          debug_level = 0
-
-          [sudo]
-          debug_level = 0
-
-          [ssh]
-          debug_level = 0
-
-          [pac]
-          debug_level = 0
-
-          [ifp]
-          debug_level = 0
-        '';
 
         # [sssd]
         # debug_level 0x1310
