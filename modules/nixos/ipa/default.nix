@@ -169,6 +169,11 @@ in {
       SUBSYSTEM=="hidraw", ENV{ID_SECURITY_TOKEN}=="1", RUN{program}+="${pkgs.acl}/bin/setfacl -m u:sssd:rw $env{DEVNAME}"
     '';
 
+    # programs.ssh.extraConfig = ''
+    #   ProxyCommand ${pkgs.sssd}/bin/sss_ssh_knownhostsproxy -p %p %h
+    #   GlobalKnownHostsFile /var/lib/sss/pubconf/known_hosts
+    # '';
+
     services = {
       dbus = {
         enable = true;
@@ -184,8 +189,7 @@ in {
       #     enable-cache netgroup no
       #   '';
       # };
-
-      # sshd.
+      # };
 
       sssd = {
         enable = true;

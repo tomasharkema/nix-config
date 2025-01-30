@@ -147,6 +147,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        firefoxpwa
         ptyxis
         wl-clipboard-rs
         python312Packages.pyclip
