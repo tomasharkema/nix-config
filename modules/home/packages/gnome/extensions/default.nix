@@ -23,9 +23,9 @@
         # {package = media-controls;}
         {package = gsconnect;}
         {package = status-area-horizontal-spacing;}
-        {package = systemd-manager;}
+        # {package = systemd-manager;}
         # {package = move-clock;}
-        {package = home-assistant-extension;}
+        # {package = home-assistant-extension;}
         {package = caffeine;}
         {package = dash-to-panel;}
         {package = reboottouefi;}
@@ -51,8 +51,8 @@
         # }
         {package = app-hider;}
         {package = arc-menu;}
-        {package = blur-my-shell;}
-        {package = extension-list;}
+        # {package = blur-my-shell;}
+        # {package = extension-list;}
         # {package = hue-lights;}
         # {
         #   package =

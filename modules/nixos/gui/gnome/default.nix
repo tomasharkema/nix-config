@@ -147,18 +147,18 @@ in
             enable = true;
 
             extraGSettingsOverridePackages = with pkgs; [
-              #   mutter
-              #   gpaste
+              mutter
+              # gpaste
               custom.usbguard-gnome
-              #   gnome-menus
-              #   libusb1
+              # gnome-menus
+              # libusb1
             ];
 
-            # extraGSettingsOverrides = ''
-            #   [org.gnome.mutter]
-            #   experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland', 'variable-refresh-rate', 'xwayland-native-scaling']
-            #   edge-tiling=true
-            # '';
+            extraGSettingsOverrides = ''
+              [org.gnome.mutter]
+              experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland', 'variable-refresh-rate', 'xwayland-native-scaling']
+              edge-tiling=true
+            '';
 
             sessionPath = with pkgs; [
               mutter
@@ -267,11 +267,11 @@ in
         gnome-clocks
         gnome-commander
         gnome-control-center
-        # gnome-extension-manager
+        # gnome-extension-managers
         gnome-firmware
         gnome-menus
         gnome-nettool
-        gnome-packagekit
+        # gnome-packagekit
         # gnome-photos
         gnome-session
         gnome-session-ctl
