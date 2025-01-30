@@ -115,11 +115,18 @@ in {
           script = ''
             set -x
             MACS="`ip -j link | jq '.[].address' -r | grep -vE 'null' | grep -vE '00:00:00:00:00:00'`"
-            MAC_ARGS="`for mac in $MACS; do echo "--macaddress=$mac "; done`"
 
-            ipa host-mod "${config.networking.fqdn}" --sshpubkey="$(cat /etc/ssh/ssh_host_ed25519_key.pub)" --sshpubkey="$(cat /etc/ssh/ssh_host_rsa_key.pub)"
-            ipa host-mod "${config.networking.fqdn}" $(expr $MAC_ARGS)
-            ipa host-mod "${config.networking.fqdn}" --updatedns
+            MAC_ARGS=()
+
+            for mac in $MACS
+            do
+              MAC_ARGS+=(--macaddress $mac)
+            done
+
+            ipa host-mod "${config.networking.fqdn}" \
+              --sshpubkey="$(cat /etc/ssh/ssh_host_ed25519_key.pub)" \
+              --sshpubkey="$(cat /etc/ssh/ssh_host_rsa_key.pub)" \
+              --updatedns "''${MAC_ARGS[@]}"
           '';
         };
 
