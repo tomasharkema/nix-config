@@ -83,7 +83,12 @@ in {
 
       services = {
         ipa-host-mod-sshpubkey = {
-          path = with pkgs; [freeipa iproute2 jq];
+          path = with pkgs; [
+            freeipa
+            iproute2
+            jq
+            grep
+          ];
 
           after = ["sssd.service" "network-online.target"];
           wants = ["network-online.target"];
