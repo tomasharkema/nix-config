@@ -26,12 +26,11 @@
       # };
       playerctld.enable = true;
 
-      notify-osd.enable = true; # builtins.warn "notify-osd turned off!" false;
-
       mpd = {
         enable = true;
         musicDirectory = "/home/tomas/Music";
       };
+
       mbsync.enable = true;
       mopidy.enable = true;
     };
