@@ -71,26 +71,28 @@ in {
 
         "sssd/conf.d".enable = false;
 
-        "sssd/conf.d/passkey.conf".text = ''
-          [pam]
-          pam_passkey_auth = True
-          pam_cert_auth = True
-          passkey_debug_libfido2 = True
-          passkey_child_timeout = 60
-          debug_level = 6
+        "sssd/conf.d/passkey.conf" = {
+          mode = "640";
+          text = ''
+            [pam]
+            pam_passkey_auth = True
+            pam_cert_auth = True
+            passkey_debug_libfido2 = True
+            passkey_child_timeout = 60
+            debug_level = 6
 
-          [domain/harkema.io]
-          id_provider = ipa
-          ipa_server = _srv_, ipa.harkema.io
-          ipa_domain = harkema.io
-          ipa_hostname = ${config.networking.hostName}.harkema.io
-          auth_provider = ipa
-          chpass_provider = ipa
-          access_provider = ipa
-          cache_credentials = True
-          krb5_store_password_if_offline = True
-        '';
-
+            [domain/harkema.io]
+            id_provider = ipa
+            ipa_server = _srv_, ipa.harkema.io
+            ipa_domain = harkema.io
+            ipa_hostname = ${config.networking.hostName}.harkema.io
+            auth_provider = ipa
+            chpass_provider = ipa
+            access_provider = ipa
+            cache_credentials = True
+            krb5_store_password_if_offline = True
+          '';
+        };
         # "chromium/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
         # "opt/chrome/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
 
