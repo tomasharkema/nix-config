@@ -76,7 +76,7 @@
 in
   stdenv.mkDerivation (finalAttrs: {
     pname = "sssd";
-    version = "2.10.1";
+    version = "2.10.2";
 
     src = fetchFromGitHub {
       owner = "SSSD";

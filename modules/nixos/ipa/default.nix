@@ -80,17 +80,6 @@ in {
             passkey_debug_libfido2 = True
             passkey_child_timeout = 60
             debug_level = 6
-
-            [domain/harkema.io]
-            id_provider = ipa
-            ipa_server = _srv_, ipa.harkema.io
-            ipa_domain = harkema.io
-            ipa_hostname = ${config.networking.hostName}.harkema.io
-            auth_provider = ipa
-            chpass_provider = ipa
-            access_provider = ipa
-            cache_credentials = True
-            krb5_store_password_if_offline = True
           '';
         };
         # "chromium/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
@@ -224,12 +213,15 @@ in {
           sha256 = "0x8nsnb0v1q8n4bs8nyhxp5hg0jg5qy8fg9k7vk0w3ph49sb3g38";
         };
         # certificate = "${./ca.crt}";
-        dyndns.enable = false;
+        dyndns.enable = true;
         ifpAllowedUids = [
           "root"
           "tomas"
+          "gdm"
           #"1000" "1002" "gdm" "132"
         ];
+        cacheCredentials = true;
+        offlinePasswords = true;
       };
 
       # sudo.package = (pkgs.sudo.override { withSssd = true; });
