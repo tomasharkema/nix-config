@@ -83,7 +83,12 @@ in {
 
       services = {
         ipa-host-mod-sshpubkey = {
-          path = with pkgs; [freeipa iproute2 jq];
+          path = with pkgs; [
+            freeipa
+            iproute2
+            jq
+            gnugrep
+          ];
 
           after = ["sssd.service" "network-online.target"];
           wants = ["network-online.target"];
@@ -139,6 +144,9 @@ in {
     environment.etc."nsswitch.conf".text = ''
       sudoers:   ${lib.concatStringsSep " " ["sss"]}
       netgroup:  ${lib.concatStringsSep " " ["sss"]}
+    '';
+    services.udev.extraRules = ''
+      SUBSYSTEM=="hidraw", ENV{ID_SECURITY_TOKEN}=="1", RUN{program}+="${pkgs.acl}/bin/setfacl -m u:sssd:rw $env{DEVNAME}"
     '';
 
     services = {
