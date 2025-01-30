@@ -126,7 +126,7 @@ in {
             ipa host-mod "${config.networking.fqdn}" \
               --sshpubkey="$(cat /etc/ssh/ssh_host_ed25519_key.pub)" \
               --sshpubkey="$(cat /etc/ssh/ssh_host_rsa_key.pub)" \
-              --updatedns "''${MAC_ARGS[@]}"
+              --updatedns "''${MAC_ARGS[@]}" || true
           '';
         };
 
