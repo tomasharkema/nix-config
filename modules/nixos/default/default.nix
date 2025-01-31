@@ -340,6 +340,23 @@
         scheduler = "scx_lavd";
       };
 
+      datadog-agent = {
+        enable = true;
+        # enableTraceAgent = true;
+        # enableLiveProcessCollection = true;
+        hostname = config.networking.hostName;
+        apiKeyFile = pkgs.writeText "apitoken.txt" "dp4LzwAubD3ECS5k1wW7e775";
+        ddUrl = "https://in-datadog.logs.betterstack.com";
+
+        extraConfig = {
+          logs_enabled = true;
+          logs_config = {
+            logs_dd_url = "in-datadog.logs.betterstack.com:443";
+            force_use_http = true;
+          };
+        };
+      };
+
       # cachix-watch-store = {
       #   enable = true;
       #   cacheName = "tomasharkema";
@@ -525,8 +542,8 @@
     };
 
     security = {
-      # audit.enable = true;
-      # auditd.enable = true;
+      audit.enable = true;
+      auditd.enable = true;
       pam.sshAgentAuth.enable = true;
     };
 
