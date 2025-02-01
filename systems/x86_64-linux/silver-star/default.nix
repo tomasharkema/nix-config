@@ -314,7 +314,7 @@ in {
 
           volumes = [
             "/var/lib/iventoy/config:/app/data"
-            "/var/lib/iventoy/assets://app/data"
+            "/var/lib/iventoy/assets:/app/isos"
           ];
           environment = {
             AUTO_START_PXE = "true";
