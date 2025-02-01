@@ -590,24 +590,23 @@
     # };
     # };
 
-    nix = {
-      distributedBuilds = lib.mkForce true;
-      buildMachines = [
-        {
-          hostName = "raspi5";
-          systems = [
-            "aarch64-linux"
-          ];
-          maxJobs = 4;
-          supportedFeatures = [
-            "kvm"
-            "benchmark"
-            "big-parallel"
-          ];
-          protocol = "ssh-ng";
-        }
-      ];
-    };
+    #     nix = {
+    #       distributedBuilds = lib.mkForce true;
+    #       buildMachines = [
+    #         {
+    #           hostName = "raspi5";
+    # sshUser="root";
+    # system="aarch64-linux";
+    #           maxJobs = 4;
+    #           supportedFeatures = [
+    #             "kvm"
+    #            "benchmark"
+    #             "big-parallel"
+    #           ];
+    #           protocol = "ssh-ng";
+    #         }
+    #       ];
+    #     };
 
     networking = {
       firewall = {
