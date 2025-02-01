@@ -19,9 +19,9 @@ in {
     services = {
       zabbixAgent = {
         enable = true;
-        server = "silver-star";
+        server = "silver-star,127.0.0.1";
         settings = {
-          ServerActive = "silver-star";
+          ServerActive = "silver-star.ling-lizard.ts.net";
         };
       };
 
@@ -31,7 +31,7 @@ in {
       tsnsrv = {
         services = {
           zabbix = {
-            toURL = "https://127.0.0.1";
+            toURL = "http://127.0.0.1";
             upstreamHeaders = {
               Host = "zabbix.ling-lizard.ts.net";
             };
@@ -42,10 +42,11 @@ in {
       zabbixWeb = lib.mkIf cfgServer.enable {
         enable = true;
         frontend = "nginx";
-        virtualHost = {
-          hostName = "zabbix.ling-lizard.ts.net";
-          adminAddr = "webmaster@localhost";
-        };
+        hostname = "zabbix.ling-lizard.ts.net";
+        # virtualHost = {
+        #   hostName = "zabbix.ling-lizard.ts.net";
+        #   adminAddr = "webmaster@localhost";
+        # };
       };
     };
   };
