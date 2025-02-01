@@ -167,6 +167,7 @@ in {
       hostName = "silver-star";
 
       firewall = {
+        enable = false;
         allowPing = true;
       };
 
@@ -309,16 +310,19 @@ in {
         };
 
         iventoy = {
-          image = "ziggyds/iventoy:latest";
+          image = "teumaauss/iventoy:latest";
           autoStart = true;
 
           volumes = [
-            "/var/lib/iventoy/config:/app/data"
-            "/var/lib/iventoy/assets:/app/isos"
+            "/var/lib/iventoy/config:/app/data-2"
+            "/var/lib/iventoy/assets:/app/iso"
           ];
           environment = {
             AUTO_START_PXE = "true";
           };
+          extraOptions = [
+            "--privileged"
+          ];
           ports = [
             "26000:26000"
             "16000:16000"
