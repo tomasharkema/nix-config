@@ -108,7 +108,6 @@
         netboot.enable = true;
       };
       kernelParams = [
-        "iomem=relaxed"
       ];
     };
 

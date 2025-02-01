@@ -303,8 +303,28 @@ in {
 
           ports = [
             "3001:3000"
-            "69:69/udp"
+            # "69:69/udp"
             "8083:80"
+          ];
+        };
+
+        iventoy = {
+          image = "ziggyds/iventoy:latest";
+          autoStart = true;
+
+          volumes = [
+            "/var/lib/iventoy/config:/app/data"
+            "/var/lib/iventoy/assets://app/data"
+          ];
+          environment = {
+            AUTO_START_PXE = "true";
+          };
+          ports = [
+            "26000:26000"
+            "16000:16000"
+            "10809:10809"
+            "67:67/udp"
+            "69:69/udp"
           ];
         };
 
@@ -374,7 +394,6 @@ in {
         # "pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
         # "kvm.ignore_msrs=1"
-        # "iomem=relaxed"
         # "pci=nomsi"
       ];
 

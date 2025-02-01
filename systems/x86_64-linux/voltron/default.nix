@@ -233,7 +233,6 @@
       # modprobeConfig.enable = true;
 
       kernelParams = [
-        "iomem=relaxed"
         # "i915.enable_gvt=1"
         # "i915.enable_guc=0"
         # "intel_iommu=on"
