@@ -1094,11 +1094,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738415006,
-        "narHash": "sha256-ZlLTnqIQQ8OE6AtT+fluB642j2R9tnvxHHtpnmLjSxQ=",
+        "lastModified": 1738448366,
+        "narHash": "sha256-4ATtQqBlgsGqkHTemta0ydY6f7JBRXz4Hf574NHQpkg=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "8544cd092047a7e92d0dce011108a563de7fc0f2",
+        "rev": "18fa9f323d8adbb0b7b8b98a8488db308210ed93",
         "type": "github"
       },
       "original": {
@@ -1725,11 +1725,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1738366771,
-        "narHash": "sha256-nyEBrP5t1g4vmy7YBkiGaIu19eG8zV3T4IQLQbJsVU8=",
+        "lastModified": 1738435849,
+        "narHash": "sha256-Wk3NH6B9CqXYxXtsVdU5yBXZnUoV1sImcX/SDgukDE8=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "c75e4ea37f25ec98aa6f2035e03e748e7369662c",
+        "rev": "ccd009298879f555b2a051fca02911b2a90a7b96",
         "type": "github"
       },
       "original": {
@@ -2653,11 +2653,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738163474,
-        "narHash": "sha256-cZ2HxA53a7Mliq/8yX4w21oDBSOCIQFmfpAlgC8hHs8=",
+        "lastModified": 1738434112,
+        "narHash": "sha256-ceFYmfmK3dKEcw1XGU716hx51vMZlp05Bts6QxDoM4o=",
         "owner": "boinkor-net",
         "repo": "tsnsrv",
-        "rev": "9825c042efe7ac69e8c007ae68b5bf0ef837f049",
+        "rev": "2601099ddc38cea3addad5996a64cf28398a4994",
         "type": "github"
       },
       "original": {
