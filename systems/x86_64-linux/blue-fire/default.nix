@@ -442,7 +442,6 @@ in {
         # "pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
         # "kvm.ignore_msrs=1"
-        #"iomem=relaxed"
         # "pci=nomsi"
       ];
 
