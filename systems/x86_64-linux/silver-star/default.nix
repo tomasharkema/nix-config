@@ -381,7 +381,7 @@ in {
       tmp = {
         useTmpfs = true;
       };
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      # binfmt.emulatedSystems = ["aarch64-linux"];
       kernelPackages = pkgs.linuxPackages_6_11;
       kernelParams = [
         "console=tty1"

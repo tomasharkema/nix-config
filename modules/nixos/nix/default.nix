@@ -73,19 +73,19 @@
       bash.undistractMe.enable = true;
 
       #ccache = {
-        #enable = true;
-        #packageNames = [
-          # "sssd"
-          # "freeipa"
-          # "mutter"
-          # "gnome-shell"
-          # "gnome-session"\
-          # "satyr"
-          # "libreport"
-          # "abrt"
-          # "gnome-abrt"
-          # "will-crash"
-       # ];
+      #enable = true;
+      #packageNames = [
+      # "sssd"
+      # "freeipa"
+      # "mutter"
+      # "gnome-shell"
+      # "gnome-session"\
+      # "satyr"
+      # "libreport"
+      # "abrt"
+      # "gnome-abrt"
+      # "will-crash"
+      # ];
       #};
     };
 

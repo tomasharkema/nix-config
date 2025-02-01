@@ -14,6 +14,7 @@
 
   config = {
     nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
+    nixpkgs.buildPlatform = builtins.currentSystem;
 
     age.rekey = {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBanxLefIcrVxhtzYj7OvNwZj3P5upoj7AwVyV0Id5T7 root@pegasus";
@@ -86,8 +87,8 @@
     # };
 
     # proxy-services = {enable = false;};
-    raspberry-pi-nix.board = "bcm2837";
-    # raspberry-pi-nix.board = "bcm2712"; # rpi 5
+    # raspberry-pi-nix.board = "bcm2837";
+    raspberry-pi-nix.board = "bcm2712"; # rpi 5
 
     hardware = {
       raspberry-pi.config = {
