@@ -151,10 +151,7 @@
       usbmuxd.enable = true;
       power-profiles-daemon.enable = lib.mkForce true;
 
-      # ollama = {
-      #   enable = true;
-      #   acceleration = "cuda";
-      # };
+      clamav.daemon.settings.MaxThreads = 4;
 
       udev = {
         enable = true;
