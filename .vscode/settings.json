@@ -1,31 +1,9 @@
 {
-  // "nix.serverPath": "nil",
   "nix.formatterPath": "alejandra",
-
-
   "nix.enableLanguageServer": true,
-  "nix.serverPath": "nixd",
+  "nix.serverPath": "nil",
   "nix.serverSettings": {
-    "nixd": {
-      "formatting": {
-        "command": ["alejandra"],
-      },
-      "options": {
-        // By default, this entry will be read from `import <nixpkgs> { }`.
-        // You can write arbitrary Nix expressions here, to produce valid "options" declaration result.
-        // Tip: for flake-based configuration, utilize `builtins.getFlake`
-        "nixos": {
-          "expr": "(builtins.getFlake \"${workspaceFolder}\").nixosConfigurations.voltron.options",
-        },
-        // "home-manager": {
-        //   "expr": "(builtins.getFlake \"${workspaceFolder}\").homeConfigurations.voltron.options",
-        // },
-        // Tip: use ${workspaceFolder} variable to define path
-        "nix-darwin": {
-          "expr": "(builtins.getFlake \"${workspaceFolder}\").darwinConfigurations.euro-mir.options",
-        },
-      },
-    },
+
   },
 
   "[nix]": {

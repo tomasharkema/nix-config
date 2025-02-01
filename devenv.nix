@@ -199,7 +199,7 @@ in {
 
   languages.nix = {
     enable = true;
-    lsp.package = pkgs.nixd;
+    lsp.package = pkgs.nil;
   };
 
   pre-commit.hooks = {

@@ -10,7 +10,7 @@ in {
     server.enable = lib.mkEnableOption "zabbix server";
   };
 
-  config = lib.mkIf false {
+  config = {
     # networking = {
     #   useNetworkd = true;
     #   networkmanager.enable = lib.mkForce false;
@@ -18,21 +18,32 @@ in {
 
     services = {
       zabbixAgent = {
-        # enable = true;
+        enable = true;
         server = "silver-star";
         settings = {
           ServerActive = "silver-star";
         };
       };
 
-      zabbixServer = {
+      zabbixServer = lib.mkIf cfgServer.enable {
         enable = true;
       };
+      tsnsrv = {
+        services = {
+          zabbix = {
+            toURL = "https://127.0.0.1";
+            upstreamHeaders = {
+              Host = "zabbix.ling-lizard.ts.net";
+            };
+          };
+        };
+      };
 
-      zabbixWeb = {
+      zabbixWeb = lib.mkIf cfgServer.enable {
         enable = true;
+        frontend = "nginx";
         virtualHost = {
-          hostName = "zabbix.localhost";
+          hostName = "zabbix.ling-lizard.ts.net";
           adminAddr = "webmaster@localhost";
         };
       };

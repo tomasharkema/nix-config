@@ -884,11 +884,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixd = {
-      url = "github:nix-community/nixd/release/2.x";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # otel = {
     #   url = "github:tomasharkema/nix-otel";
     #   inputs.nixpkgs.follows = "nixpkgs";

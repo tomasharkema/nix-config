@@ -353,20 +353,6 @@ in {
       };
     };
 
-    # systemd.services = {
-    #   "tsnsrv-nix-cache" = {
-    #     environment = {
-    #       TS_STATE_DIR = "/var/lib/tsnsrv";
-    #     };
-    #     script = "${pkgs.custom.tsnsrv}/bin/tsnsrv -name nix-cache http://127.0.0.1:7124";
-    #     wantedBy = ["multi-user.target"];
-    #   };
-
-    #   #"docker-compose@atuin" = {
-    #   #  wantedBy = [ "multi-user.target" ];
-    #   #};
-    # };
-
     boot = {
       tmp = {
         useTmpfs = true;

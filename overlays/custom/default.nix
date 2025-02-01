@@ -35,7 +35,7 @@ in rec {
 
   # wezterm = inputs.wezterm.packages."${prev.system}".default;
 
-  nixd = inputs.nixd.packages."${prev.system}".default;
+  # nixd = inputs.nixd.packages."${prev.system}".default;
 
   udisks = overridePkgCheckVersionSnapshot "udisks2" "" udisks2;
 
