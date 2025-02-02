@@ -137,7 +137,7 @@ in
         configureFlagsArray+=("--with-sudo")
       '';
 
-    # enableParallelBuilding = true;
+    enableParallelBuilding = true;
     # Disable parallel install due to missing depends:
     #   libtool:   error: error: relink '_py3sss.la' with the above command before installing i
     enableParallelInstalling = false;
@@ -238,6 +238,7 @@ in
       "secdbpath=$(out)/var/lib/sss/secrets"
       "initdir=$(out)/rc.d/init"
       "libexecdir=$(out)/libexec"
+      "ldblibdir=$(out)/modules/ldb"
     ];
 
     postInstall = ''
@@ -250,6 +251,9 @@ in
       for f in $out/bin/sss{ctl,_cache,_debuglevel,_override,_seed} $(find $out/libexec/ -type f -executable); do
         wrapProgram $f --prefix LDB_MODULES_PATH : $out/modules/ldb
       done
+
+      wrapProgram $out/bin/sssd --prefix LDB_MODULES_PATH : $out/modules/ldb
+      wrapProgram "$out/libexec/sssd/sssd_pam" --prefix LDB_MODULES_PATH : $out/modules/ldb
 
       wrapPythonProgramsIn "$out/libexec/sssd/sss_analyze" "${py}"
     '';
@@ -279,5 +283,11 @@ in
       license = lib.licenses.gpl3Plus;
       platforms = lib.platforms.linux;
       maintainers = with lib.maintainers; [illustris];
+      pkgConfigModules = [
+        "ipa_hbac"
+        "sss_certmap"
+        "sss_idmap"
+        "sss_nss_idmap"
+      ];
     };
   })

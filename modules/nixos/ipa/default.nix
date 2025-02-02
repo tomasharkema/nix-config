@@ -130,8 +130,13 @@ in {
           '';
         };
 
-        sssd.before = ["nfs-idmapd.service" "rpc-gssd.service" "rpc-svcgssd.service"];
+        sssd = {
+          before = ["nfs-idmapd.service" "rpc-gssd.service" "rpc-svcgssd.service"];
 
+          environment = {
+            LDB_MODULES_PATH = "${pkgs.sssd}/modules/ldb";
+          };
+        };
         sssd-kcm = {
           # enable = true;
           # description = "SSSD Kerberos Cache Manager";
