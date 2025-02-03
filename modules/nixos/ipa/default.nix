@@ -21,8 +21,10 @@ in {
 
   config = lib.mkIf (cfg.enable) {
     environment = {
+      # pathsToLink = ["/modules/ldb"];
       systemPackages = with pkgs; [
         # ldapvi
+        ldb
         ldapmonitor
         pkcs11helper
         realmd
@@ -133,9 +135,13 @@ in {
         sssd = {
           before = ["nfs-idmapd.service" "rpc-gssd.service" "rpc-svcgssd.service"];
 
-          environment = {
-            LDB_MODULES_PATH = "${pkgs.sssd}/modules/ldb";
-          };
+          # environment = {
+          #   LDB_MODULES_PATH = "/run/current-system/sw/modules/ldb";
+          # };
+
+          # script = lib.mkForce "${pkgs.sssd}/bin/sssd -D";
+
+          # -c ${settingsFile}
         };
         sssd-kcm = {
           # enable = true;

@@ -238,22 +238,22 @@ in
       "secdbpath=$(out)/var/lib/sss/secrets"
       "initdir=$(out)/rc.d/init"
       "libexecdir=$(out)/libexec"
-      "ldblibdir=$(out)/modules/ldb"
+      # "ldblibdir=$(out)/modules/ldb"
     ];
 
     postInstall = ''
       rm -rf "$out"/run
       rm -rf "$out"/rc.d
-      rm -f "$out"/modules/ldb/memberof.la
+      # rm -f "$out"/modules/ldb/memberof.la
       find "$out" -depth -type d -exec rmdir --ignore-fail-on-non-empty {} \;
     '';
     postFixup = ''
-      for f in $out/bin/sss{ctl,_cache,_debuglevel,_override,_seed} $(find $out/libexec/ -type f -executable); do
-        wrapProgram $f --prefix LDB_MODULES_PATH : $out/modules/ldb
-      done
+      # for f in $out/bin/sss{ctl,_cache,_debuglevel,_override,_seed} $(find $out/libexec/ -type f -executable); do
+      #   wrapProgram $f --prefix LDB_MODULES_PATH : $out/modules/ldb
+      # done
 
-      wrapProgram $out/bin/sssd --prefix LDB_MODULES_PATH : $out/modules/ldb
-      wrapProgram "$out/libexec/sssd/sssd_pam" --prefix LDB_MODULES_PATH : $out/modules/ldb
+      # wrapProgram $out/bin/sssd --prefix LDB_MODULES_PATH : $out/modules/ldb
+      # wrapProgram "$out/libexec/sssd/sssd_pam" --prefix LDB_MODULES_PATH : $out/modules/ldb
 
       wrapPythonProgramsIn "$out/libexec/sssd/sss_analyze" "${py}"
     '';
