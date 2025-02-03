@@ -93,11 +93,6 @@ in {
               spake_preauth_groups = edwards25519
         '';
 
-        "nsswitch.conf".text = ''
-          sudoers:   ${lib.concatStringsSep " " ["sss"]}
-          netgroup:  ${lib.concatStringsSep " " ["sss"]}
-        '';
-
         "sssd/conf.d".enable = false;
 
         "sssd/conf.d/passkey.conf" = {
@@ -108,7 +103,7 @@ in {
             pam_cert_auth = True
             passkey_debug_libfido2 = True
             passkey_child_timeout = 60
-            debug_level = 6
+            debug_level = 10
           '';
         };
 
