@@ -18,7 +18,7 @@
           mode = "644";
           owner = "tomas";
           group = "tomas";
-          path = "/home/tomas/.config/attic/config.toml";
+          # path = "/home/tomas/.config/attic/config.toml";
         };
 
         # tailscale = {

@@ -21,7 +21,8 @@ in {
 
   config = lib.mkIf (cfg.enable) {
     environment = {
-      # pathsToLink = ["/modules/ldb"];
+      pathsToLink = ["/modules/ldb"];
+      variables = {LDB_MODULES_PATH = "/run/current-system/sw/modules/ldb";};
       systemPackages = with pkgs; [
         # ldapvi
         ldb
@@ -66,6 +67,32 @@ in {
           }
         '';
 
+        "krb5.conf.d/enable_sssd_conf_dir".text = ''
+          includedir /var/lib/sss/pubconf/krb5.include.d/
+        '';
+
+        "krb5.conf.d/sssd_enable_idp".text = ''
+          # Enable SSSD OAuth2 Kerberos preauthentication plugins.
+          #
+          # This will allow you to obtain Kerberos TGT through OAuth2 authentication.
+          #
+          # To disable the OAuth2 plugin, comment out the following lines.
+
+          [plugins]
+           clpreauth = {
+            module = idp:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_idp_plugin.so
+           }
+
+           kdcpreauth = {
+            module = idp:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_idp_plugin.so
+           }
+        '';
+
+        "krb5.conf.d/freeipa".text = ''
+          [libdefaults]
+              spake_preauth_groups = edwards25519
+        '';
+
         "nsswitch.conf".text = ''
           sudoers:   ${lib.concatStringsSep " " ["sss"]}
           netgroup:  ${lib.concatStringsSep " " ["sss"]}
@@ -84,6 +111,7 @@ in {
             debug_level = 6
           '';
         };
+
         # "chromium/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
         # "opt/chrome/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
 
@@ -139,8 +167,11 @@ in {
           #   LDB_MODULES_PATH = "/run/current-system/sw/modules/ldb";
           # };
 
-          # script = lib.mkForce "${pkgs.sssd}/bin/sssd -D";
-
+          # script = lib.mkForce "echo $LDB_MODULES_PATH && ${pkgs.sssd}/bin/sssd -D";
+          # serviceConfig = {
+          #   Type = lib.mkForce "notify";
+          #   NotifyAccess = "main";
+          # };
           # -c ${settingsFile}
         };
         sssd-kcm = {
@@ -151,7 +182,7 @@ in {
           # requires = ["sssd-kcm.socket"];
 
           serviceConfig = {
-            # ExecStartPre = "-${pkgs.sssd}/bin/sssd --genconf-section=kcm";
+            ExecStartPre = lib.mkForce null;
             ExecStart = lib.mkForce "${pkgs.sssd}/libexec/sssd/sssd_kcm";
           };
           # restartTriggers = [
@@ -159,14 +190,14 @@ in {
           # ];
         };
       };
-      # sockets.sssd-kcm = {
-      #   enable = true;
-      #   description = "SSSD Kerberos Cache Manager responder socket";
-      #   wantedBy = ["sockets.target"];
-      #   # Matches the default in MIT krb5 and Heimdal:
-      #   # https://github.com/krb5/krb5/blob/krb5-1.19.3-final/src/include/kcm.h#L43
-      #   listenStreams = ["/var/run/.heim_org.h5l.kcm-socket"];
-      # };
+      sockets.sssd-kcm = {
+        enable = true;
+        description = "SSSD Kerberos Cache Manager responder socket";
+        wantedBy = ["sockets.target"];
+        # Matches the default in MIT krb5 and Heimdal:
+        # https://github.com/krb5/krb5/blob/krb5-1.19.3-final/src/include/kcm.h#L43
+        # listenStreams = ["/var/run/.heim_org.h5l.kcm-socket"];
+      };
     };
 
     security = {
@@ -206,17 +237,21 @@ in {
         enable = true;
         kcm = true;
         sshAuthorizedKeysIntegration = true;
+        # config = lib.mkAfter ''
+        #   [sssd]
+        #   debug_level = 10
 
-        # [sssd]
-        # debug_level 0x1310
+        #   [pam]
+        #   debug_level = 10
+        # '';
       };
     };
 
-    systemd.tmpfiles.settings."10-zsh" = {
-      "/bin/zsh"."L+" = {
-        argument = "${pkgs.zsh}/bin/zsh";
-      };
-    };
+    # systemd.tmpfiles.settings."10-zsh" = {
+    #   "/bin/zsh"."L+" = {
+    #     argument = "${pkgs.zsh}/bin/zsh";
+    #   };
+    # };
 
     system.nssDatabases.sudoers = ["sss"];
 
@@ -234,7 +269,7 @@ in {
           sha256 = "0x8nsnb0v1q8n4bs8nyhxp5hg0jg5qy8fg9k7vk0w3ph49sb3g38";
         };
         # certificate = "${./ca.crt}";
-        dyndns.enable = true;
+        # dyndns.enable = true;
         ifpAllowedUids = [
           "root"
           "tomas"
@@ -244,8 +279,6 @@ in {
         cacheCredentials = true;
         offlinePasswords = true;
       };
-
-      # sudo.package = (pkgs.sudo.override { withSssd = true; });
 
       polkit = {
         enable = true;
