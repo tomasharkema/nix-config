@@ -10,9 +10,17 @@
     key_path = "${config.home.homeDirectory}/.atuin/key";
   in {
     home.activation.atuin-key = inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
+      if [ ! -d "$(dirname "${key_path}")" ]; then
+        mkdir "$(dirname "${key_path}")"
+      fi
+
       if [ -f "${osConfig.age.secrets.atuin.path}" ]; then
         install -Dm 600 "${osConfig.age.secrets.atuin.path}" "${key_path}"
       fi
+
+      # if [ -f "${osConfig.age.secrets."attic-config.toml".path}" ]; then
+      #   install -Dm 600 "${osConfig.age.secrets."attic-config.toml".path}" "/home/tomas/.config/attic/config.toml"
+      # fi
     '';
 
     programs.atuin = {
