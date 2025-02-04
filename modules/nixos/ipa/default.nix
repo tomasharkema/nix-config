@@ -90,10 +90,10 @@ in {
       };
     };
 
-    programs.firefox = {
-      nativeMessagingHosts.euwebid = true;
-      policies.SecurityDevices.p11-kit-proxy = "${pkgs.p11-kit}/lib/p11-kit-proxy.so";
-    };
+    # programs.firefox = {
+    #   nativeMessagingHosts.euwebid = true;
+    #   policies.SecurityDevices.p11-kit-proxy = "${pkgs.p11-kit}/lib/p11-kit-proxy.so";
+    # };
 
     # FROM: https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/misc/sssd.nix
     systemd = {
