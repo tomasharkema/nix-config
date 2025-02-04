@@ -15,7 +15,8 @@
         allowUnfreePredicate = _: true;
         allowUnfree = true;
 
-        firefox.enableGnomeExtensions = true;
+        # firefox.enableGnomeExtensions = true;
+        # firefox.smartcardSupport = true;
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;
         nvidia.acceptLicense = true;

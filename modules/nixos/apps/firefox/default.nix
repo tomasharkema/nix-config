@@ -9,15 +9,19 @@ in {
   options.apps.firefox.enable = lib.mkEnableOption "firefox";
 
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      firefoxpwa
+    ];
+
     programs.firefox = {
       enable = true;
       package = pkgs.firefox;
 
       nativeMessagingHosts = {
-        fxCast = true;
+        # fxCast = true;
         # ff2mpv = true;
-        gsconnect = true;
-        packages = with pkgs; [gnome-browser-connector];
+        # gsconnect = true;
+        packages = with pkgs; [gnome-browser-connector firefoxpwa];
       };
     };
   };

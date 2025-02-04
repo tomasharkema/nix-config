@@ -67,20 +67,6 @@ in {
 
     xsession.enable = true;
 
-    autostart.programs = [
-      {package = pkgs.telegram-desktop;}
-      {package = pkgs.trayscale;}
-      # {package = pkgs.zerotier-ui;}
-      {
-        desktopName = "org.gnome.usbguard.desktop";
-        path = "${pkgs.custom.usbguard-gnome}/share/applications/org.gnome.usbguard.desktop";
-      }
-      # {package = osConfig.nur.repos.mloeper.usbguard-applet-qt;}
-      # {package = pkgs.notify-client;}
-      # {package = pkgs.geary;}
-      {package = osConfig.programs._1password-gui.package;}
-    ];
-
     xdg = {
       userDirs = {
         enable = true;
@@ -128,6 +114,7 @@ in {
         userSymlinks-notify = ''
           if [ ! -d "$HOME/.config/notify" ]; then
             mkdir $HOME/.config/notify
+            chown tomas:tomas -R /home/tomas/.config
           fi
           ln -sfn "${osConfig.age.secrets.notify.path}" ~/.config/notify/provider-config.yaml
         '';

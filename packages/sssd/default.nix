@@ -76,13 +76,14 @@
 in
   stdenv.mkDerivation (finalAttrs: {
     pname = "sssd";
-    version = "2.10.2";
+    # version 2.10.2 breaks PAM
+    version = "2.10.1";
 
     src = fetchFromGitHub {
       owner = "SSSD";
       repo = "sssd";
       rev = "refs/tags/${finalAttrs.version}";
-      sha256 = "sha256-S4OJtG4hNQ0G5Qg1eD1pvJ6wihW7m+zB3i5izV3ZkR8=";
+      sha256 = "sha256-p/PijS84fCorm2UyiFYZl+Li8+rUUQiPIImRN7xJmRk=";
     };
 
     # patches = [
@@ -128,6 +129,7 @@ in
           --without-semanage
           --with-passkey
           --with-initscript=systemd
+          --with-sssd-user=root
           --with-xml-catalog-path=''${SGML_CATALOG_FILES%%:*}
           --with-ldb-lib-dir=$out/modules/ldb
           --with-nscd=${glibc.bin}/sbin/nscd
@@ -137,7 +139,7 @@ in
         configureFlagsArray+=("--with-sudo")
       '';
 
-    # enableParallelBuilding = true;
+    enableParallelBuilding = true;
     # Disable parallel install due to missing depends:
     #   libtool:   error: error: relink '_py3sss.la' with the above command before installing i
     enableParallelInstalling = false;
@@ -238,6 +240,7 @@ in
       "secdbpath=$(out)/var/lib/sss/secrets"
       "initdir=$(out)/rc.d/init"
       "libexecdir=$(out)/libexec"
+      "ldblibdir=$(out)/modules/ldb"
     ];
 
     postInstall = ''
@@ -250,6 +253,9 @@ in
       for f in $out/bin/sss{ctl,_cache,_debuglevel,_override,_seed} $(find $out/libexec/ -type f -executable); do
         wrapProgram $f --prefix LDB_MODULES_PATH : $out/modules/ldb
       done
+
+      # wrapProgram $out/bin/sssd --prefix LDB_MODULES_PATH : $out/modules/ldb
+      # wrapProgram "$out/libexec/sssd/sssd_pam" --prefix LDB_MODULES_PATH : $out/modules/ldb
 
       wrapPythonProgramsIn "$out/libexec/sssd/sss_analyze" "${py}"
     '';
@@ -279,5 +285,11 @@ in
       license = lib.licenses.gpl3Plus;
       platforms = lib.platforms.linux;
       maintainers = with lib.maintainers; [illustris];
+      pkgConfigModules = [
+        "ipa_hbac"
+        "sss_certmap"
+        "sss_idmap"
+        "sss_nss_idmap"
+      ];
     };
   })
