@@ -16,5 +16,24 @@
       enable = true;
       main = "/dev/vda";
     };
+
+    services = {
+      kmscon.enable = lib.mkForce false;
+      resilio.enable = lib.mkForce false;
+    };
+
+    traits = {hardware.vm.enable = true;};
+
+    networking = {
+      hostName = "test";
+    };
+
+    virtualisation.vmVariant = {
+      # following configuration is added only when building VM with build-vm
+      virtualisation = {
+        memorySize = 4096; # Use 2048MiB memory.
+        cores = 4;
+      };
+    };
   };
 }
