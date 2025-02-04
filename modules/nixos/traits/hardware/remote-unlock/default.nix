@@ -54,43 +54,43 @@ in {
         # verbose = true;
         compressorArgs = ["-19"];
 
-        secrets = {
-          # "/etc/tor/onion/bootup" = "/etc/tor/onion/bootup";
-          # "/etc/ssh/boot/ssh_host_ecdsa_key" = "/etc/ssh/boot/ssh_host_ecdsa_key";
-          # "/etc/ssh/boot/ssh_host_ed25519_key" = "/etc/ssh/boot/ssh_host_ed25519_key";
-          # "/etc/ssh/boot/ssh_host_rsa_key" = "/etc/ssh/boot/ssh_host_rsa_key";
-          # "/etc/notify.key" = "${config.age.secrets.notify.path}";
-        };
+        # secrets = {
+        # "/etc/tor/onion/bootup" = "/etc/tor/onion/bootup";
+        # "/etc/ssh/boot/ssh_host_ecdsa_key" = "/etc/ssh/boot/ssh_host_ecdsa_key";
+        # "/etc/ssh/boot/ssh_host_ed25519_key" = "/etc/ssh/boot/ssh_host_ed25519_key";
+        # "/etc/ssh/boot/ssh_host_rsa_key" = "/etc/ssh/boot/ssh_host_rsa_key";
+        # "/etc/notify.key" = "${config.age.secrets.notify.path}";
+        # };
 
         systemd = {
-          packages = with pkgs; [
-            haveged
-            iproute2
-            ntp
-            rsyslog
-            # tor
-            # zerotierone
-            libcxx
-            glibc
-            # ntfy-sh
-          ];
+          # packages = with pkgs; [
+          #   haveged
+          #   iproute2
+          #   ntp
+          #   rsyslog
+          #   # tor
+          #   # zerotierone
+          #   libcxx
+          #   glibc
+          #   # ntfy-sh
+          # ];
 
-          extraBin = {
-            # tor = "${pkgs.tor}/bin/tor";
-            rsyslogd = "${pkgs.rsyslog}/sbin/rsyslogd";
-            mkdir = "${pkgs.coreutils}/bin/mkdir";
-            # ntfy = "${pkgs.ntfy-sh}/bin/ntfy";
-            curl = "${pkgs.curl}/bin/curl";
-            libc = "${pkgs.musl}/lib/libc.so";
-          };
-          storePaths = [
-            "${pkgs.tor}/bin/tor"
-            "${pkgs.rsyslog}/sbin/rsyslogd"
-            "${pkgs.coreutils}/bin/mkdir"
-            # "${pkgs.ntfy-sh}/bin/ntfy"
-            "${pkgs.curl}/bin/curl"
-            "${pkgs.musl}/lib/libc.so"
-          ];
+          # extraBin = {
+          #   # tor = "${pkgs.tor}/bin/tor";
+          #   rsyslogd = "${pkgs.rsyslog}/sbin/rsyslogd";
+          #   mkdir = "${pkgs.coreutils}/bin/mkdir";
+          #   # ntfy = "${pkgs.ntfy-sh}/bin/ntfy";
+          #   curl = "${pkgs.curl}/bin/curl";
+          #   libc = "${pkgs.musl}/lib/libc.so";
+          # };
+          # storePaths = [
+          #   "${pkgs.tor}/bin/tor"
+          #   "${pkgs.rsyslog}/sbin/rsyslogd"
+          #   "${pkgs.coreutils}/bin/mkdir"
+          #   # "${pkgs.ntfy-sh}/bin/ntfy"
+          #   "${pkgs.curl}/bin/curl"
+          #   "${pkgs.musl}/lib/libc.so"
+          # ];
           enable = true;
 
           users.root.shell = "/bin/systemd-tty-ask-password-agent";
@@ -192,27 +192,27 @@ in {
           "nls_iso8859_1"
         ];
 
-        network = {
-          enable = true;
-          flushBeforeStage2 = true;
+        # network = {
+        #   enable = true;
+        #   flushBeforeStage2 = true;
 
-          # udhcpc.enable = true;
-          ssh = {
-            enable = true;
-            port = 22222;
-            # shell = "/bin/cryptsetup-askpass";
-            authorizedKeys =
-              lib.splitString "\n"
-              (builtins.readFile pkgs.custom.authorized-keys);
-            hostKeys = [
-              "/etc/ssh/boot/ssh_host_ed25519_key"
-              "/etc/ssh/boot/ssh_host_rsa_key"
-              "/etc/ssh/boot/ssh_host_ecdsa_key"
-            ];
-          };
-        };
+        # udhcpc.enable = true;
+        # ssh = {
+        #   enable = true;
+        #   port = 22222;
+        #   # shell = "/bin/cryptsetup-askpass";
+        #   authorizedKeys =
+        #     lib.splitString "\n"
+        #     (builtins.readFile pkgs.custom.authorized-keys);
+        #   hostKeys = [
+        #     "/etc/ssh/boot/ssh_host_ed25519_key"
+        #     "/etc/ssh/boot/ssh_host_rsa_key"
+        #     "/etc/ssh/boot/ssh_host_ecdsa_key"
+        #   ];
+        # };
+        #   };
       };
-      kernelParams = ["ip=dhcp"];
+      # kernelParams = ["ip=dhcp"];
     };
   };
 }
