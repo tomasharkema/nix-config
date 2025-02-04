@@ -252,7 +252,7 @@
         netboot.enable = true;
         # memtest86.enable = true;
       };
-      kernelPackages = pkgs.linuxPackages_latest;
+      # kernelPackages = pkgs.linuxPackages_latest;
 
       kernelModules = [
         "i2c-dev"
