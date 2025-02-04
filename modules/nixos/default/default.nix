@@ -106,7 +106,7 @@
           (
             if config.traits.server.enable
             then lib.mkDefault pkgs.linuxPackages_cachyos-server
-            else lib.mkDefault pkgs.linuxPackages_latest # pkgs.linuxPackages_cachyos
+            else lib.mkDefault pkgs.linuxPackages_cachyos # pkgs.linuxPackages_latest # pkgs.linuxPackages_cachyos
           ); # (pkgs.linuxPackagesFor pkgs.linux_cachyos);
 
       kernelModules = [
@@ -330,7 +330,7 @@
     # proxy-services.enable = lib.mkDefault true;
 
     systemd = {
-      enableEmergencyMode = lib.mkDefault false;
+      enableEmergencyMode = lib.mkDefault true;
     };
 
     services = {
