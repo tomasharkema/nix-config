@@ -43,7 +43,7 @@
           };
         };
 
-        scanner.enable = true;
+        # scanner.enable = true;
         fangfrisch.enable = true;
 
         updater.enable = true;
