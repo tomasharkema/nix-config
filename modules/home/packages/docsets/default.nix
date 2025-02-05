@@ -20,7 +20,7 @@
   #   ${pkgs.custom.doc2dash}/bin/doc2dash ${gtk4'.devdoc}/share/doc/gtk4
   # '';
 in {
-  config = lib.mkIf pkgs.stdenv.isLinux {
+  config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
     home = {
       packages = with pkgs; [zeal];
       file = {

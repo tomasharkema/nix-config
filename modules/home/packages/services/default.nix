@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  osConfig,
   ...
 }: {
   config = lib.mkIf pkgs.stdenv.isLinux {
@@ -24,15 +25,15 @@
       #     label = %time%  %date%
       #   '';
       # };
-      playerctld.enable = true;
+      playerctld.enable = osConfig.gui.enable;
 
       mpd = {
-        enable = true;
+        enable = osConfig.gui.enable;
         musicDirectory = "/home/tomas/Music";
       };
 
-      mbsync.enable = true;
-      mopidy.enable = true;
+      mbsync.enable = osConfig.gui.enable;
+      mopidy.enable = osConfig.gui.enable;
     };
   };
 }

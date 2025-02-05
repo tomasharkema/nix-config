@@ -40,8 +40,10 @@
           allowUnfreePredicate = _: true;
           allowUnfree = true;
           cudaSupport = true;
+          contentAddressedByDefault = true;
           # For example, enable smartcard support in Firefox.
           # firefox.smartcardSupport = true;
+
           permittedInsecurePackages = [
             "openssl-1.1.1w"
             # "python3.12-youtube-dl-2021.12.17"
@@ -405,8 +407,8 @@
   nixConfig = {
     use-cgroups = true;
     #  ca-derivations recursive-nix
-    extra-experimental-features = "nix-command flakes cgroups";
-
+    extra-experimental-features = "nix-command flakes cgroups ca-derivations";
+    experimental-features = "nix-command flakes cgroups ca-derivations";
     distributedBuilds = true;
     builders-use-substitutes = true;
 
@@ -441,6 +443,7 @@
 
     extra-substituters = [
       "https://cache.nixos.org"
+      "https://cache.ngi0.nixos.org"
       "https://nyx.chaotic.cx/"
       "https://nix-gaming.cachix.org"
       "https://nix-community.cachix.org"
@@ -461,6 +464,7 @@
       "tomasharkema.cachix.org-1:BV3Sv3qGZ0bcybPFeigwKoxnpj/NBAFYHq9FMO1XgH4="
       "tomasharkema:v3sMQpfpSW5KGDK115NB2pQLNzmS2qqjVGa39/fYPjk="
       "tomasharkema:O7hvvAIoFVjO5giONleXcRE1Og7IDt2DdvAQRg4GCkI="
+      "cache.ngi0.nixos.org-1:KqH5CBLNSyX184S9BKZJo1LxrxJ9ltnY2uAs5c/f1MA="
     ];
 
     # allowed-uris = [

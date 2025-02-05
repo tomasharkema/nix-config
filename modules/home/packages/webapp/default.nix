@@ -125,7 +125,7 @@ in {
     #     icon = icon;
     #   });
   in
-    lib.mkIf pkgs.stdenv.isLinux {
+    lib.mkIf (pkgs.stdenv.isLinux && false) {
       systemd.user.tmpfiles.rules =
         lib.lists.forEach folders ({path, ...}: "d ${path} 0777 tomas tomas -");
       # environment.systemPackages = apps;

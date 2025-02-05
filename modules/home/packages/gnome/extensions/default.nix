@@ -1,9 +1,10 @@
 {
   pkgs,
   lib,
+  osConfig,
   ...
 }: {
-  config = lib.mkIf pkgs.stdenv.isLinux {
+  config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.gnome.enable) {
     home.packages = with pkgs; [
       # appindicator-sharp
       # ddcui
