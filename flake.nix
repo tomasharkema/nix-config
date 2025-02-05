@@ -79,7 +79,7 @@
         # nixos-checkmk.overlays.default
         # nixos-service.overlays.default
         agenix-rekey.overlays.default
-        # nixvim.overlays.default
+        nixvim.overlays.default
         chaotic.overlays.default
         # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
@@ -89,7 +89,7 @@
 
       homes.modules = with inputs; [
         # catppuccin.homeManagerModules.catppuccin
-        # nixvim.homeManagerModules.nixvim
+        nixvim.homeManagerModules.nixvim
         nix-index-database.hmModules.nix-index
         _1password-shell-plugins.hmModules.default
         # agenix.homeManagerModules.default
@@ -110,7 +110,7 @@
 
       systems.modules = {
         nixos = with inputs; [
-          comin.nixosModules.comin
+          # comin.nixosModules.comin
           # nixos-vfio.nixosModules.default
           # nix-snapshotter.nixosModules.default
           chaotic.nixosModules.default
@@ -575,19 +575,19 @@
       };
     };
 
-    # nixvim = {
-    #   url = "github:nix-community/nixvim"; # /nixos-24.05";
+    nixvim = {
+      url = "github:nix-community/nixvim"; # /nixos-24.05";
 
-    #   inputs = {
-    #     # nixpkgs.follows = "nixpkgs";
-    #     # home-manager.follows = "home-manager";
-    #     # nix-darwin.follows = "darwin";
-    #     # flake-compat.follows = "flake-compat";
-    #     # flake-parts.follows = "flake-parts";
-    #     # devshell.follows = "devshell";
-    #     # treefmt-nix.follows = "treefmt-nix";
-    #   };
-    # };
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        nix-darwin.follows = "darwin";
+        #     # flake-compat.follows = "flake-compat";
+        #     # flake-parts.follows = "flake-parts";
+        #     # devshell.follows = "devshell";
+        #     # treefmt-nix.follows = "treefmt-nix";
+      };
+    };
 
     agenix = {
       url = "github:ryantm/agenix";
@@ -899,10 +899,10 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    comin = {
-      url = "github:nlewo/comin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # comin = {
+    #   url = "github:nlewo/comin";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nur-xddxdd = {
       url = "github:xddxdd/nur-packages";

@@ -230,7 +230,7 @@ in {
       };
 
       # useDHCP = false;
-      networkmanager.enable = true;
+      networkmanager.enable = false; # true;
     };
 
     environment.systemPackages = with pkgs; [

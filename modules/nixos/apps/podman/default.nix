@@ -34,6 +34,10 @@ in {
 
     # services.resolved.enable = true;
 
+    systemd.services.podman.environment = {
+      LOGGING = "--log-level=warn";
+    };
+
     virtualisation = {
       oci-containers.backend = "podman";
 

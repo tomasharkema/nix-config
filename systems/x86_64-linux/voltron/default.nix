@@ -145,7 +145,7 @@
     };
 
     services = {
-      comin.enable = false;
+      # comin.enable = false;
       abrt.enable = true;
       # remote-builders.client.enable = true;
       usbmuxd.enable = true;
