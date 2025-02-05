@@ -249,9 +249,9 @@ in {
       mtr.enable = true;
       dconf.enable = true;
 
-      chromium = {
-        enable = true;
-      };
+      #chromium = {
+      #  enable = true;
+      #};
       appimage = {
         enable = true;
         binfmt = true;
@@ -264,7 +264,7 @@ in {
       packages =
         [
           pkgs.usbguard-notifier
-          config.system.build.chromium
+          #config.system.build.chromium
           pkgs.ptyxis
         ]
         ++ (lib.optional pkgs.stdenv.isx86_64 pkgs.widevine-cdm);
@@ -275,13 +275,13 @@ in {
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
 
-    system.build.chromium = pkgs.chromium.override {
-      enableWideVine = pkgs.stdenv.isx86_64;
-      commandLineArgs = [
-        "--enable-features=VaapiVideoDecodeLinuxGL"
-        "--ignore-gpu-blocklist"
-        "--enable-zero-copy"
-      ];
-    };
+    #system.build.chromium = pkgs.chromium.override {
+    #  enableWideVine = pkgs.stdenv.isx86_64;
+    #  commandLineArgs = [
+    #    "--enable-features=VaapiVideoDecodeLinuxGL"
+    #    "--ignore-gpu-blocklist"
+    #    "--enable-zero-copy"
+    #  ];
+    #};
   };
 }

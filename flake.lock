@@ -75,11 +75,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1738692644,
-        "narHash": "sha256-wAbTPbmD7opkK8Pl1vsRpt3hJ7EZAqs1Ms4AWRK/NuU=",
+        "lastModified": 1738758381,
+        "narHash": "sha256-cNEfY2a6amDIMHNcgiBDqwUHg+vA2C9evIeLHb+AVDI=",
         "owner": "oddlama",
         "repo": "agenix-rekey",
-        "rev": "9585d1bdec1d923357d0c7addabcc2a0cdea546a",
+        "rev": "2df379f6fec3ecc4190e1778b29a3eceef86d546",
         "type": "github"
       },
       "original": {
@@ -972,11 +972,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738741704,
-        "narHash": "sha256-+XVScrF7Yymk9659dFb/ikCIET7DblHBVgK3RTW8mQg=",
+        "lastModified": 1738753876,
+        "narHash": "sha256-yXT82kERWL4R81hfun9BuT478Q6ut0dJzdQjAxjRS38=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "3b6fde96d8b41a4a21cbacba8de7debf7ea78021",
+        "rev": "f20b7a8ab527a2482f13754dc00b2deaddc34599",
         "type": "github"
       },
       "original": {
@@ -1110,15 +1110,14 @@
         "flake-parts": "flake-parts_3",
         "nixpkgs": [
           "nixpkgs"
-        ],
-        "umu": "umu"
+        ]
       },
       "locked": {
-        "lastModified": 1738633089,
-        "narHash": "sha256-awMsAhuhPctQ0v4fbNX0aRNqQTL1qDLgVjOJJHQ4y4M=",
+        "lastModified": 1738771623,
+        "narHash": "sha256-DzRMp0zXy32iDHRdCFo0MWD9s8+DoflMK9BY2CAgr7A=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "3c83a677771fea8b55724f2d5cde0ca878c65712",
+        "rev": "3030553160ece3b8ea7df66d2670e8f41f0c0ec7",
         "type": "github"
       },
       "original": {
@@ -2411,11 +2410,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738723131,
-        "narHash": "sha256-H1dvGPZ8cghyrpdCXToQehe0UGvAGLFn9ViI0S6wEsc=",
+        "lastModified": 1738784681,
+        "narHash": "sha256-rd2gSvy20En/uRQfD2YeCIPTtC6DwAzLbXwh5glfSn0=",
         "owner": "boinkor-net",
         "repo": "tsnsrv",
-        "rev": "b03f76b7846b8b7273501d9b59043b75eddaa4fa",
+        "rev": "2e58a12a486ce044f75283d3b37b5a7349093dea",
         "type": "github"
       },
       "original": {
@@ -2455,31 +2454,6 @@
       "original": {
         "type": "tarball",
         "url": "https://ftp.denx.de/pub/u-boot/u-boot-2024.07.tar.bz2"
-      }
-    },
-    "umu": {
-      "inputs": {
-        "nixpkgs": [
-          "nix-gaming",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "dir": "packaging/nix",
-        "lastModified": 1738306689,
-        "narHash": "sha256-g1p++aLe6q6OdGy3K91uyCjAeBUkkT4uoItSFQT+PJw=",
-        "ref": "refs/heads/main",
-        "rev": "7a71163b79e56222fe3f3097d1e71208a91a1a3b",
-        "revCount": 917,
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/Open-Wine-Components/umu-launcher/"
-      },
-      "original": {
-        "dir": "packaging/nix",
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/Open-Wine-Components/umu-launcher/"
       }
     },
     "utils": {
