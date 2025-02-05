@@ -204,14 +204,13 @@
 
     programs = {
       adb.enable = true;
-      captive-browser = {
-        enable = true;
-        interface = "wlp4s0";
-      };
+      # captive-browser = {
+      #   enable = true;
+      #   interface = "wlp4s0";
+      # };
     };
 
     boot = {
-      kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
       # resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
 
       tmp = {
@@ -239,8 +238,14 @@
       blacklistedKernelModules = [
         "nouveau"
       ];
-
+      # modprobeConfig = {
+      #   enable = true;
+      # };
+      # extraModprobeConfig = ''
+      #   options psmouse synaptics_intertouch=1
+      # '';
       kernelModules = [
+        # "psmouse"
         "pstore"
         "i915"
         # "spi"

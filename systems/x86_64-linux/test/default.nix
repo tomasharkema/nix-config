@@ -31,7 +31,7 @@
     virtualisation.vmVariant = {
       # following configuration is added only when building VM with build-vm
       virtualisation = {
-        memorySize = 4096; # Use 2048MiB memory.
+        memorySize = 4096;
         cores = 4;
       };
     };

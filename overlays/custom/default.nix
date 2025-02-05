@@ -163,6 +163,54 @@ in rec {
   #   ];
   # });
 
+  libqmi = prev.libqmi.overrideAttrs (old: rec {
+    pname = "libqmi";
+    version = "1.35.6-dev";
+
+    src = prev.fetchFromGitLab {
+      domain = "gitlab.freedesktop.org";
+      owner = "mobile-broadband";
+      repo = "libqmi";
+      rev = version;
+      hash = "sha256-kw2i9NVYJTcFbgcuZ8GNS0wt/ZgcomeAP/KWXXAV8Xk=";
+    };
+  });
+
+  libmbim = prev.libmbim.overrideAttrs (old: rec {
+    pname = "libmbim";
+    version = "1.31.5-dev";
+
+    src = prev.fetchFromGitLab {
+      domain = "gitlab.freedesktop.org";
+      owner = "mobile-broadband";
+      repo = "libmbim";
+      rev = version;
+      hash = "sha256-Brut0PobAc6rTbGAo4NTauzHtwJrZOJjEw26hyXqA5w="; # "sha256-sHTpu9WeMZroT+1I18ObEHWSzcyj/Relyz8UNe+WawI=";
+    };
+  });
+
+  # modemmanager = prev.modemmanager.overrideAttrs (
+  #   old: {
+  #     pname = "modemmanager";
+  #     version = "1.23.12";
+
+  #     src = prev.fetchFromGitLab {
+  #       domain = "gitlab.freedesktop.org";
+  #       owner = "tuxor1337";
+  #       repo = "ModemManager";
+  #       rev = "port-xmm7360";
+  #       hash = "sha256-ayBow2JDWMp4hFeae7jpNx6NTsDtc682HjiZapoQAEs=";
+  #     };
+  #     patches = [];
+  #     mesonFlags =
+  #       old.mesonFlags
+  #       + [
+  #         "--sysconfdir=${placeholder "out"}/etc"
+  #       ];
+  #   }
+  # );
+
+  modemmanager = prev.custom.modemmanager-xmm;
   # modemmanager = prev.modemmanager.overrideAttrs (oldAttrs: {
   # src = prev.fetchFromGitLab {
   #   # https://gitlab.freedesktop.org/tuxor1337/ModemManager/-/tree/port-xmm7360

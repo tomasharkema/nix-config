@@ -39,31 +39,36 @@ in {
 
     boot = {
       kernelModules = [
-        # "acpi_call"
-        "xmm7360"
+        "acpi_call"
+        # "xmm7360"
+      ];
+      initrd.kernelModules = [
+        "acpi_call"
+        # "xmm7360"
       ];
 
       extraModulePackages = [
-        xmm7360
+        config.boot.kernelPackages.acpi_call
+        # xmm7360
       ];
 
       blacklistedKernelModules = [
-        "iosm"
+        # "iosm"
       ];
     };
 
-    systemd.services.xmm7360 = {
-      description = "XMM7360 Modem Init";
-      after = ["NetworkManager.service"];
-      requires = ["multi-user.target" "systemd-user-sessions.service" "dev-ttyXMM2.device"];
-      wantedBy = ["graphical.target"];
+    # systemd.services.xmm7360 = {
+    #   description = "XMM7360 Modem Init";
+    #   after = ["NetworkManager.service"];
+    #   requires = ["multi-user.target" "systemd-user-sessions.service" "dev-ttyXMM2.device"];
+    #   wantedBy = ["graphical.target"];
 
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "${xmm7360}/bin/open_xdatachannel.py -c /etc/xmm7360";
-        RemainAfterExit = "yes";
-        TimeoutSec = "60";
-      };
-    };
+    #   serviceConfig = {
+    #     Type = "oneshot";
+    #     ExecStart = "${xmm7360}/bin/open_xdatachannel.py -c /etc/xmm7360";
+    #     RemainAfterExit = "yes";
+    #     TimeoutSec = "60";
+    #   };
+    # };
   };
 }
