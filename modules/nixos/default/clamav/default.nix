@@ -19,6 +19,17 @@
     # done
 
     services = {
+      logrotate = {
+        enable = true;
+
+        settings = {
+          "/var/log/clamav/*.log" = {
+            frequency = "daily";
+            rotate = 3;
+          };
+        };
+      };
+
       clamav = {
         daemon = {
           enable = true;
@@ -32,7 +43,7 @@
           };
         };
 
-        scanner.enable = true;
+        # scanner.enable = true;
         fangfrisch.enable = true;
 
         updater.enable = true;
