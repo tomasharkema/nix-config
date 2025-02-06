@@ -85,6 +85,7 @@
         # opentelemetry-nix.overlays.default
         # devenv.overlays.default
         nixgl.overlay
+        raspberry-pi-nix.overlays.core
       ];
 
       homes.modules = with inputs; [
