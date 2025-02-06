@@ -18,10 +18,10 @@ in {
   # };
 
   config = {
-    # services.atd = {
-    #   enable = true;
-    #   allowEveryone = true;
-    # };
+    services.atd = {
+      enable = true;
+      allowEveryone = true;
+    };
 
     # systemd.services = {
     #   "${notifyServiceName}@" = {
