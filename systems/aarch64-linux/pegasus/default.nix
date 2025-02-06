@@ -118,7 +118,16 @@
     raspberry-pi-nix = {
       board = "bcm2712"; # rpi 5
     };
-
+    fileSystems = {
+      # "/boot" = {
+      #   device = "/dev/disk/by-label/NIXOS_BOOT";
+      #   fsType = "vfat";
+      # };
+      "/" = {
+        device = "/dev/disk/by-label/NIXOS_SD";
+        fsType = "ext4";
+      };
+    };
     hardware = {
       raspberry-pi.config = {
         uboot = false;
