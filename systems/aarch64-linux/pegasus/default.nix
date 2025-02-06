@@ -117,6 +117,7 @@
     # raspberry-pi-nix.board = "bcm2711";
     raspberry-pi-nix = {
       board = "bcm2712"; # rpi 5
+      uboot.enable = false;
     };
     fileSystems = {
       # "/boot" = {
@@ -130,7 +131,6 @@
     };
     hardware = {
       raspberry-pi.config = {
-        uboot = false;
         pi4 = {
           options = {
             arm_boost = {
