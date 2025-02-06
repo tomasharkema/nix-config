@@ -114,8 +114,8 @@
     # };
 
     # proxy-services = {enable = false;};
-    raspberry-pi-nix.board = "bcm2711";
-    # raspberry-pi-nix.board = "bcm2712"; # rpi 5
+    # raspberry-pi-nix.board = "bcm2711";
+    raspberry-pi-nix.board = "bcm2712"; # rpi 5
 
     hardware = {
       raspberry-pi.config = {
@@ -137,10 +137,10 @@
           options = {
             # The firmware will start our u-boot binary rather than a
             # linux kernel.
-            # kernel = {
-            #   enable = true;
-            #   value = "u-boot-rpi-arm64.bin";
-            # };
+            kernel = {
+              enable = true;
+              value = "u-boot-rpi-arm64.bin";
+            };
             arm_64bit = {
               enable = true;
               value = true;
