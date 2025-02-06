@@ -40,7 +40,7 @@
           allowUnfreePredicate = _: true;
           allowUnfree = true;
           cudaSupport = true;
-          contentAddressedByDefault = true;
+          # contentAddressedByDefault = true;
           # For example, enable smartcard support in Firefox.
           # firefox.smartcardSupport = true;
 
@@ -406,8 +406,8 @@
   nixConfig = {
     use-cgroups = true;
     #  ca-derivations recursive-nix
-    extra-experimental-features = "nix-command flakes cgroups ca-derivations";
-    experimental-features = "nix-command flakes cgroups ca-derivations";
+    extra-experimental-features = "nix-command flakes cgroups"; # ca-derivations";
+    experimental-features = "nix-command flakes cgroups"; # ca-derivations";
     distributedBuilds = true;
     builders-use-substitutes = true;
 
