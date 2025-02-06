@@ -352,6 +352,16 @@
       #   cachixTokenFile = config.age.secrets.cachix-key.path;
       # };
 
+      earlyoom.enableNotifications = true;
+
+      smartd = {
+        enable = true;
+        notifications = {
+          wall.enable = true;
+          systembus-notify.enable = true;
+        };
+      };
+
       sysstat.enable = lib.mkDefault true;
       irqbalance.enable = true;
       # aria2.enable = true;
