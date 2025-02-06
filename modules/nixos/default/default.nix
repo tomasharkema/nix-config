@@ -223,7 +223,7 @@
           ifuse
           ipcalc
           iptraf-ng
-          jupyter
+          # jupyter
           kexec-tools
           kmon
           lazydocker

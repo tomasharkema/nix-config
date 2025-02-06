@@ -342,7 +342,6 @@
       };
 
       checks = inputs.self.images.installer.iso;
-      inherit (inputs.flake-schemas) schemas;
 
       # formatter = inputs.nixpkgs.nixfmt-rfc-style;
       outputs-builder = channels: let
@@ -490,8 +489,6 @@
   };
 
   inputs = {
-    flake-schemas.url = "github:DeterminateSystems/flake-schemas";
-
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
     home-manager = {

@@ -196,7 +196,7 @@ in
           gnome-user-share.enable = true;
           gnome-keyring.enable = lib.mkForce false; # true;
           games.enable = false;
-          # evolution-data-server.enable = true;
+          evolution-data-server.enable = true;
           rygel.enable = true;
           tracker.enable = true;
 

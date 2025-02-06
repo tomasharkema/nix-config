@@ -107,11 +107,13 @@
         #   };
         # };
 
-        # treesitter = {
-        #   enable = true;
-        #   settings.indent.enable = true;
-        #   grammarPackages = pkgs.vimPlugins.nvim-treesitter.passthru.allGrammars;
-        # };
+        treesitter = {
+          enable = true;
+          settings = {
+            indent.enable = true;
+          };
+          #   grammarPackages = pkgs.vimPlugins.nvim-treesitter.passthru.allGrammars;
+        };
         packer = {
           enable = true;
           plugins = [
