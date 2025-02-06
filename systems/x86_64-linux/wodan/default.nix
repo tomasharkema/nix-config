@@ -172,8 +172,9 @@
       nvidia = {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
-        # open = true;
-        # nvidiaSettings = lib.mkForce false;
+        open = true;
+        nvidiaSettings = true;
+        nvidiaPersistenced = true;
         # package = config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
 
         # vgpu.patcher = {
@@ -203,7 +204,7 @@
 
         remote-unlock.enable = true;
         monitor.enable = true;
-        disable-sleep.enable = true;
+        # disable-sleep.enable = true;
 
         # nfs = {
         # enable = true;

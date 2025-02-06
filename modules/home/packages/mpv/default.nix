@@ -5,11 +5,11 @@
   osConfig,
   ...
 }: {
-  config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
+  config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && false) {
     services = {
       # plex-mpv-shim.enable = true;
-      mpdris2.enable = true;
-      playerctld.enable = true;
+      # mpdris2.enable = true;
+      # playerctld.enable = true;
     };
 
     programs.mpv = {

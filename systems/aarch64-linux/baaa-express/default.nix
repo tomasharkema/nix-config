@@ -57,7 +57,7 @@
       avahi = {
         enable = true;
       };
-      mopidy = {
+      mopidy = lib.mkIf false {
         enable = true;
         extensionPackages = with pkgs; [
           mopidy-spotify
