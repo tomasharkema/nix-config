@@ -304,33 +304,33 @@ in {
 
           ports = [
             "3001:3000"
-            # "69:69/udp"
+            "69:69/udp"
             "8083:80"
           ];
         };
 
-        iventoy = {
-          image = "teumaauss/iventoy:latest";
-          autoStart = true;
+        # iventoy = {
+        #   image = "teumaauss/iventoy:latest";
+        #   autoStart = true;
 
-          volumes = [
-            "/var/lib/iventoy/config:/app/data-2"
-            "/var/lib/iventoy/assets:/app/iso"
-          ];
-          environment = {
-            AUTO_START_PXE = "true";
-          };
-          extraOptions = [
-            "--privileged"
-          ];
-          ports = [
-            "26000:26000"
-            "16000:16000"
-            "10809:10809"
-            "67:67/udp"
-            "69:69/udp"
-          ];
-        };
+        #   volumes = [
+        #     "/var/lib/iventoy/config:/app/data-2"
+        #     "/var/lib/iventoy/assets:/app/iso"
+        #   ];
+        #   environment = {
+        #     AUTO_START_PXE = "true";
+        #   };
+        #   extraOptions = [
+        #     "--privileged"
+        #   ];
+        #   ports = [
+        #     "26000:26000"
+        #     "16000:16000"
+        #     "10809:10809"
+        #     "67:67/udp"
+        #     "69:69/udp"
+        #   ];
+        # };
 
         openmanage = {
           image = "docker.io/teumaauss/srvadmin";

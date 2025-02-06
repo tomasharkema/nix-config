@@ -147,7 +147,7 @@
     services = {
       # comin.enable = false;
       abrt.enable = true;
-      # remote-builders.client.enable = true;
+      remote-builders.client.enable = true;
       usbmuxd.enable = true;
       power-profiles-daemon.enable = lib.mkForce true;
 

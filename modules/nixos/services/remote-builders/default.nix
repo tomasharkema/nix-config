@@ -49,10 +49,7 @@ in {
           sshUser = "builder";
           sshKey = config.age.secrets."builder-key".path;
           hostName = "blue-fire";
-          systems = [
-            "aarch64-linux"
-            "x86_64-linux"
-          ];
+          system = "x86_64-linux";
           maxJobs = 4;
           supportedFeatures = [
             "kvm"
@@ -65,28 +62,22 @@ in {
         {
           sshUser = "builder";
           sshKey = config.age.secrets."builder-key".path;
-          hostName = "enceladus";
-          systems = [
-            "aarch64-linux"
-            "x86_64-linux"
-          ];
-          maxJobs = 4;
+          hostName = "silver-star";
+          system = "x86_64-linux";
+          maxJobs = 8;
           supportedFeatures = [
             "kvm"
             "benchmark"
             "big-parallel"
           ];
-          speedFactor = 50;
+          speedFactor = 80;
           protocol = "ssh-ng";
         }
         {
           sshUser = "builder";
           sshKey = config.age.secrets."builder-key".path;
           hostName = "wodan";
-          systems = [
-            "aarch64-linux"
-            "x86_64-linux"
-          ];
+          system = "x86_64-linux";
           maxJobs = 4;
           supportedFeatures = [
             "kvm"
