@@ -19,6 +19,10 @@ in {
         tsnsrv = {
           rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
         };
+
+        "healthchecks" = {
+          rekeyFile = ./healthchecks.age;
+        };
       };
     };
 
@@ -76,6 +80,26 @@ in {
       xserver.videoDrivers = ["nvidia"];
 
       "nix-private-cache".enable = true;
+
+      healthchecks = {
+        enable = true;
+        listenAddress = "0.0.0.0";
+
+        # notificationSender = "tomas+hydra@harkema.io";
+        # useSubstitutes = true;
+        # smtpHost = "smtp-relay.gmail.com";
+
+        settings = {
+          SECRET_KEY_FILE = config.age.secrets.healthchecks.path;
+
+          EMAIL_HOST = "silver-star-vm.ling-lizard.ts.net";
+          EMAIL_PORT = "8025";
+          # EMAIL_HOST_USER = "tomas@harkema.io";
+          # # EMAIL_HOST_PASSWORD=mypassword
+          EMAIL_USE_SSL = "False";
+          EMAIL_USE_TLS = "False";
+        };
+      };
 
       tcsd.enable = true;
 
@@ -136,8 +160,8 @@ in {
         ipmi = {
           enable = true;
         };
-        idrac.enable = true;
-        snmp.enable = true;
+        # idrac.enable = true;
+        # snmp.enable = true;
       };
       # nfs = {
       #   server = {

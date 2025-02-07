@@ -11,11 +11,6 @@
       rekey = {
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPmfcfVeCBPcxmRRDtfSJcnAEZR5puw+h9eLN8M/jKOn root@silver-star-vm";
       };
-      secrets = {
-        "healthchecks" = {
-          rekeyFile = ./healthchecks.age;
-        };
-      };
     };
 
     swapDevices = lib.mkForce [];
@@ -76,7 +71,7 @@
     apps = {
       # attic-server.enable = true;
       ipa.enable = false;
-      mailrise.enable = true;
+      mailrise.enable = false;
       resilio.enable = lib.mkForce false;
     };
 
@@ -94,32 +89,8 @@
         enable = false;
       };
 
-      healthchecks = {
-        enable = true;
-        listenAddress = "0.0.0.0";
-
-        # notificationSender = "tomas+hydra@harkema.io";
-        # useSubstitutes = true;
-        # smtpHost = "smtp-relay.gmail.com";
-
-        settings = {
-          SECRET_KEY_FILE = config.age.secrets.healthchecks.path;
-
-          EMAIL_HOST = "silver-star-vm.ling-lizard.ts.net";
-          EMAIL_PORT = "8025";
-          # EMAIL_HOST_USER = "tomas@harkema.io";
-          # # EMAIL_HOST_PASSWORD=mypassword
-          EMAIL_USE_SSL = "False";
-          EMAIL_USE_TLS = "False";
-        };
-      };
-
       earlyoom = {
         enable = lib.mkForce false;
-      };
-
-      tailscale = {
-        extraUpFlags = lib.mkForce ["--operator=tomas"];
       };
 
       # freeipa.enable = true;
