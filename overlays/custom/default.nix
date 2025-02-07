@@ -163,7 +163,7 @@ in rec {
   #   ];
   # });
 
-  libqmi = prev.libqmi.overrideAttrs (old: rec {
+  _libqmi = prev.libqmi.overrideAttrs (old: rec {
     pname = "libqmi";
     version = "1.35.6-dev";
 
@@ -176,7 +176,7 @@ in rec {
     };
   });
 
-  libmbim = prev.libmbim.overrideAttrs (old: rec {
+  _libmbim = prev.libmbim.overrideAttrs (old: rec {
     pname = "libmbim";
     version = "1.31.5-dev";
 
@@ -188,7 +188,7 @@ in rec {
       hash = "sha256-Brut0PobAc6rTbGAo4NTauzHtwJrZOJjEw26hyXqA5w="; # "sha256-sHTpu9WeMZroT+1I18ObEHWSzcyj/Relyz8UNe+WawI=";
     };
   });
-  modemmanager = prev.custom.modemmanager-xmm;
+  _modemmanager = prev.custom.modemmanager-xmm;
 
   # modemmanager = prev.modemmanager.overrideAttrs (
   #   old: {
