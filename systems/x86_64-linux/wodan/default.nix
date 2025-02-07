@@ -94,11 +94,12 @@
       hardware = {
         openrgb = {
           enable = true;
+          package = pkgs.openrgb-with-all-plugins;
         };
 
         bolt.enable = true;
       };
-
+      ratbagd.enable = true;
       remote-builders.server.enable = true;
 
       beesd.filesystems = {
