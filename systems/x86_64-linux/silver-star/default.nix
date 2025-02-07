@@ -136,6 +136,8 @@ in {
         ipmi = {
           enable = true;
         };
+        idrac.enable = true;
+        snmp.enable = true;
       };
       # nfs = {
       #   server = {

@@ -188,6 +188,7 @@ in rec {
       hash = "sha256-Brut0PobAc6rTbGAo4NTauzHtwJrZOJjEw26hyXqA5w="; # "sha256-sHTpu9WeMZroT+1I18ObEHWSzcyj/Relyz8UNe+WawI=";
     };
   });
+  modemmanager = prev.custom.modemmanager-xmm;
 
   # modemmanager = prev.modemmanager.overrideAttrs (
   #   old: {
@@ -210,7 +211,6 @@ in rec {
   #   }
   # );
 
-  modemmanager = prev.custom.modemmanager-xmm;
   # modemmanager = prev.modemmanager.overrideAttrs (oldAttrs: {
   # src = prev.fetchFromGitLab {
   #   # https://gitlab.freedesktop.org/tuxor1337/ModemManager/-/tree/port-xmm7360

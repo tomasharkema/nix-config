@@ -116,6 +116,12 @@ in {
             - name: local
               address: 'unix:///var/run/docker.sock'
         '';
+        "go.d/systemdunits.conf" = pkgs.writeText "systemdunits.conf" ''
+          jobs:
+          - name: service-units
+            include:
+              - '*.service'
+        '';
       };
     };
   };
