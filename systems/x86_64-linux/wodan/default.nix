@@ -20,6 +20,9 @@
       glxinfo
       # apfsprogs
       cifs-utils
+      piper
+      libratbag
+      custom.ims-prog
     ];
 
     time = {
