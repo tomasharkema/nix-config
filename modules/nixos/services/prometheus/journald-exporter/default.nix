@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  cfg = config.prometheus;
+  cfg = config.apps.prometheus;
   journalPort = config.prometheus.journald-exporter.port;
 in {
   options.prometheus.journald-exporter = {

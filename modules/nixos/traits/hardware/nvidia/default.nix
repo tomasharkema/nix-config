@@ -58,6 +58,7 @@ in {
       netdata.configDir."python.d.conf" = pkgs.writeText "python.d.conf" ''
         nvidia_smi: yes
       '';
+      prometheus.exporters.nvidia-gpu.enable = true;
     };
 
     environment.extraInit = ''

@@ -20,6 +20,9 @@
       glxinfo
       # apfsprogs
       cifs-utils
+      piper
+      libratbag
+      custom.ims-prog
     ];
 
     time = {
@@ -94,11 +97,12 @@
       hardware = {
         openrgb = {
           enable = true;
+          package = pkgs.openrgb-with-all-plugins;
         };
 
         bolt.enable = true;
       };
-
+      ratbagd.enable = true;
       remote-builders.server.enable = true;
 
       beesd.filesystems = {
@@ -119,10 +123,10 @@
         host = "0.0.0.0";
         loadModels = ["llama3.1:8b" "starcoder2:3b"];
       };
-      open-webui = {
-        enable = true;
-        host = "0.0.0.0";
-      };
+      # open-webui = {
+      #   enable = true;
+      #   host = "0.0.0.0";
+      # };
     };
 
     apps = {

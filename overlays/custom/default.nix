@@ -18,7 +18,7 @@ in rec {
 
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
-  # _389-ds-base = self.packages."${prev.system}"._389-ds-base;
+  _389-ds-base = self.packages."${prev.system}"._389-ds-base;
   freeipa =
     #builtins.trace "${prev.freeipa.version} ${final.freeipa.version}"
     self.packages."${prev.system}".freeipa;
@@ -163,7 +163,7 @@ in rec {
   #   ];
   # });
 
-  libqmi = prev.libqmi.overrideAttrs (old: rec {
+  _libqmi = prev.libqmi.overrideAttrs (old: rec {
     pname = "libqmi";
     version = "1.35.6-dev";
 
@@ -176,7 +176,7 @@ in rec {
     };
   });
 
-  libmbim = prev.libmbim.overrideAttrs (old: rec {
+  _libmbim = prev.libmbim.overrideAttrs (old: rec {
     pname = "libmbim";
     version = "1.31.5-dev";
 
@@ -188,6 +188,7 @@ in rec {
       hash = "sha256-Brut0PobAc6rTbGAo4NTauzHtwJrZOJjEw26hyXqA5w="; # "sha256-sHTpu9WeMZroT+1I18ObEHWSzcyj/Relyz8UNe+WawI=";
     };
   });
+  _modemmanager = prev.custom.modemmanager-xmm;
 
   # modemmanager = prev.modemmanager.overrideAttrs (
   #   old: {
@@ -210,7 +211,6 @@ in rec {
   #   }
   # );
 
-  modemmanager = prev.custom.modemmanager-xmm;
   # modemmanager = prev.modemmanager.overrideAttrs (oldAttrs: {
   # src = prev.fetchFromGitLab {
   #   # https://gitlab.freedesktop.org/tuxor1337/ModemManager/-/tree/port-xmm7360

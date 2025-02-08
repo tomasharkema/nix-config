@@ -57,7 +57,7 @@ in {
       "nix-private-cache".enable = true;
       local-store.enable = true;
       throttled.enable = lib.mkForce false;
-      # remote-builders.server.enable = true;
+      remote-builders.client.enable = true;
       blueman.enable = true;
 
       beesd.filesystems = {

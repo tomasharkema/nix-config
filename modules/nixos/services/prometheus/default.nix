@@ -4,10 +4,10 @@
   lib,
   ...
 }: let
-  cfg = config.prometheus;
+  cfg = config.apps.prometheus;
   format = pkgs.formats.yaml {};
 in {
-  options.prometheus = {enable = lib.mkEnableOption "prometheus" // {default = true;};};
+  options.apps.prometheus = {enable = lib.mkEnableOption "prometheus" // {default = true;};};
 
   config = lib.mkIf cfg.enable {
     system.nixos.tags = ["prometheus"];
@@ -51,6 +51,8 @@ in {
           nginx = {enable = true;};
 
           systemd.enable = true;
+
+          smartctl.enable = true;
         };
       };
 

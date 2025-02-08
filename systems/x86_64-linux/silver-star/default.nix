@@ -19,6 +19,10 @@ in {
         tsnsrv = {
           rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
         };
+
+        "healthchecks" = {
+          rekeyFile = ./healthchecks.age;
+        };
       };
     };
 
@@ -76,6 +80,26 @@ in {
       xserver.videoDrivers = ["nvidia"];
 
       "nix-private-cache".enable = true;
+
+      healthchecks = {
+        enable = true;
+        listenAddress = "0.0.0.0";
+
+        # notificationSender = "tomas+hydra@harkema.io";
+        # useSubstitutes = true;
+        # smtpHost = "smtp-relay.gmail.com";
+
+        settings = {
+          SECRET_KEY_FILE = config.age.secrets.healthchecks.path;
+
+          EMAIL_HOST = "silver-star-vm.ling-lizard.ts.net";
+          EMAIL_PORT = "8025";
+          # EMAIL_HOST_USER = "tomas@harkema.io";
+          # # EMAIL_HOST_PASSWORD=mypassword
+          EMAIL_USE_SSL = "False";
+          EMAIL_USE_TLS = "False";
+        };
+      };
 
       tcsd.enable = true;
 
@@ -136,6 +160,8 @@ in {
         ipmi = {
           enable = true;
         };
+        # idrac.enable = true;
+        # snmp.enable = true;
       };
       # nfs = {
       #   server = {
@@ -304,33 +330,33 @@ in {
 
           ports = [
             "3001:3000"
-            # "69:69/udp"
+            "69:69/udp"
             "8083:80"
           ];
         };
 
-        iventoy = {
-          image = "teumaauss/iventoy:latest";
-          autoStart = true;
+        # iventoy = {
+        #   image = "teumaauss/iventoy:latest";
+        #   autoStart = true;
 
-          volumes = [
-            "/var/lib/iventoy/config:/app/data-2"
-            "/var/lib/iventoy/assets:/app/iso"
-          ];
-          environment = {
-            AUTO_START_PXE = "true";
-          };
-          extraOptions = [
-            "--privileged"
-          ];
-          ports = [
-            "26000:26000"
-            "16000:16000"
-            "10809:10809"
-            "67:67/udp"
-            "69:69/udp"
-          ];
-        };
+        #   volumes = [
+        #     "/var/lib/iventoy/config:/app/data-2"
+        #     "/var/lib/iventoy/assets:/app/iso"
+        #   ];
+        #   environment = {
+        #     AUTO_START_PXE = "true";
+        #   };
+        #   extraOptions = [
+        #     "--privileged"
+        #   ];
+        #   ports = [
+        #     "26000:26000"
+        #     "16000:16000"
+        #     "10809:10809"
+        #     "67:67/udp"
+        #     "69:69/udp"
+        #   ];
+        # };
 
         openmanage = {
           image = "docker.io/teumaauss/srvadmin";

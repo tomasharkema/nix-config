@@ -39,16 +39,16 @@ in {
 
     boot = {
       kernelModules = [
-        "acpi_call"
+        # "acpi_call"
         # "xmm7360"
       ];
       initrd.kernelModules = [
-        "acpi_call"
+        # "acpi_call"
         # "xmm7360"
       ];
 
       extraModulePackages = [
-        config.boot.kernelPackages.acpi_call
+        # config.boot.kernelPackages.acpi_call
         # xmm7360
       ];
 
