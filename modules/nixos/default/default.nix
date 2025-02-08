@@ -253,7 +253,7 @@
           pamix
           pamixer
           parallel-disk-usage
-
+          gnupg
           pciutils
           pigz
           pkgs.custom.nix-helpers
