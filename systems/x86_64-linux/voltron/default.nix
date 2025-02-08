@@ -40,8 +40,7 @@
     environment = {
       systemPackages = with pkgs; [
         gnomeExtensions.power-tracker
-
-        custom.swift
+        # custom.swift
         powerstat
         powerjoular
         libimobiledevice
