@@ -18,7 +18,7 @@ in rec {
 
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
-  # _389-ds-base = self.packages."${prev.system}"._389-ds-base;
+  _389-ds-base = self.packages."${prev.system}"._389-ds-base;
   freeipa =
     #builtins.trace "${prev.freeipa.version} ${final.freeipa.version}"
     self.packages."${prev.system}".freeipa;
