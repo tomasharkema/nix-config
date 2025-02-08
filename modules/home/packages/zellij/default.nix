@@ -9,17 +9,17 @@
     programs.zellij = {
       enable = true;
 
-      # enableZshIntegration = true;
+      enableZshIntegration = false;
 
       settings = {
         theme = "catppuccin-mocha";
         # load_plugins = {
-          # "${pkgs.zjstatus}/bin/zjframes.wasm" = {
-          #   hide_frame_for_single_pane = "true";
-          #   hide_frame_except_for_search = "true";
-          #   hide_frame_except_for_fullscreen = "true";
-          # };
-          # "https://github.com/cristiand391/zj-status-bar/releases/download/0.3.0/zj-status-bar.wasm" = {};
+        # "${pkgs.zjstatus}/bin/zjframes.wasm" = {
+        #   hide_frame_for_single_pane = "true";
+        #   hide_frame_except_for_search = "true";
+        #   hide_frame_except_for_fullscreen = "true";
+        # };
+        # "https://github.com/cristiand391/zj-status-bar/releases/download/0.3.0/zj-status-bar.wasm" = {};
         # };
       };
     };
@@ -44,7 +44,7 @@
       #    }
       #    pane
       #  }
-     # '';
+      # '';
 
       #${pkgs.zjstatus}/bin/zjstatus.wasm
       # ".config/zellij/layouts/default.kdl".text = ''
