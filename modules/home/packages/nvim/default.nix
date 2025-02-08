@@ -22,11 +22,11 @@
       csharp-ls
     ];
 
-    #   programs.neovim = lib.mkIf false {
-    #     viAlias = true;
-    #     vimAlias = true;
-    #     # defaultEditor = true;
-    #   };
+    programs.neovim = {
+      viAlias = true;
+      vimAlias = true;
+      # defaultEditor = true;
+    };
 
     #   xdg.configFile = {
     #     #     "nvim/coc-settings.json" = {
@@ -41,11 +41,11 @@
 
     programs.nixvim = {
       enable = true;
-      # enableMan = true;
+      enableMan = true;
 
       colorschemes.catppuccin.enable = true;
 
-      plugins = lib.mkIf false {
+      plugins = {
         snacks.enable = true;
         comment.enable = true;
         lsp-format.enable = true;

@@ -23,6 +23,8 @@
       piper
       libratbag
       custom.ims-prog
+      heimdall
+      heimdall-gui
     ];
 
     time = {
@@ -163,7 +165,11 @@
       xserver.videoDrivers = ["nvidia"];
     };
 
-    programs.mdevctl.enable = true;
+    # programs.mdevctl.enable = true;
+
+    programs = {
+      adb.enable = true;
+    };
 
     console.earlySetup = true;
 
