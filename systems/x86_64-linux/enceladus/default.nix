@@ -19,31 +19,31 @@ in {
     environment.systemPackages = with pkgs; [inteltool];
 
     apps = {
-      ntopng.enable = true;
+      # ntopng.enable = true;
       # steam.enable = true;
       # usbip.enable = true;
-      hass.enable = true;
+      # hass.enable = true;
       # spotifyd.enable = true;
     };
 
     virtualisation = {
       oci-containers.containers = {
-        netbootxyz = {
-          image = "ghcr.io/linuxserver/netbootxyz";
+        # netbootxyz = {
+        #   image = "ghcr.io/linuxserver/netbootxyz";
 
-          autoStart = true;
+        #   autoStart = true;
 
-          volumes = [
-            "/var/lib/netboot/config:/config"
-            "/var/lib/netboot/assets:/assets"
-          ];
+        #   volumes = [
+        #     "/var/lib/netboot/config:/config"
+        #     "/var/lib/netboot/assets:/assets"
+        #   ];
 
-          ports = [
-            "3000:3000"
-            "69:69/udp"
-            "8083:80"
-          ];
-        };
+        #   ports = [
+        #     "3000:3000"
+        #     "69:69/udp"
+        #     "8083:80"
+        #   ];
+        # };
       };
     };
 
