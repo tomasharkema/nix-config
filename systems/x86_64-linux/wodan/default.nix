@@ -289,8 +289,8 @@
 
       # KMS will load the module, regardless of blacklisting
       kernelParams = [
-        "console=tty1"
-        "console=ttyUSB0,115200n8"
+        # "console=tty1"
+        # "console=ttyUSB0,115200n8"
         "intel_iommu=on"
         "iommu=pt"
         "preempt=full"
