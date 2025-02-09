@@ -99,7 +99,7 @@ in {
     environment.systemPackages = with pkgs; [
       # sunshine
       protontricks
-      #heroic
+      heroic
       gamehub
       cartridges
       steamcmd

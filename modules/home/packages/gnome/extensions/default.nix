@@ -13,6 +13,12 @@
     dconf.settings."org/gnome/shell".enabled-extensions = [
       "GPaste@gnome-shell-extensions.gnome.org"
       "drive-menu@gnome-shell-extensions.gcampax.github.com"
+      "another-window-session-manager@gmail.com"
+      "batterytime@typeof.pw"
+      "mprisLabel@moon-0xff.github.com"
+      "vscode-search-provider@mrmarble.github.com"
+      "extensions-search-provider@G-dH.github.com"
+      "Denon_AVR_controler@sylter.fr"
     ];
 
     programs.gnome-shell = {
@@ -21,10 +27,10 @@
       extensions = with pkgs.gnomeExtensions; [
         {package = gravatar;}
         {package = ping;}
-        # {package = media-controls;}
+        {package = media-controls;}
         {package = gsconnect;}
         {package = status-area-horizontal-spacing;}
-        # {package = systemd-manager;}
+        {package = systemd-manager;}
         # {package = move-clock;}
         # {package = home-assistant-extension;}
         {package = caffeine;}
@@ -52,7 +58,7 @@
         # }
         {package = app-hider;}
         {package = arc-menu;}
-        # {package = blur-my-shell;}
+        {package = blur-my-shell;}
         # {package = extension-list;}
         # {package = hue-lights;}
         # {
@@ -67,10 +73,11 @@
         {package = no-overview;}
         {package = remmina-search-provider;}
         {package = ssh-search-provider-reborn;}
-        {package = another-window-session-manager;}
+        # {package = another-window-session-manager;}
         {package = search-light;}
         # {package = tweaks-in-system-menu;}
         {package = removable-drive-menu;}
+        {package = vscode-search-provider;}
         {package = search-light;}
         # {
         #   package =

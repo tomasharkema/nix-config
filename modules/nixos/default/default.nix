@@ -84,7 +84,7 @@
       hardwareScan = true;
 
       kernelParams = [
-        # "preempt=full"
+        "preempt=full"
         "mitigations=off"
         "delayacct"
 
