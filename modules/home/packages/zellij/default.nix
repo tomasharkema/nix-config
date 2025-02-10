@@ -2,7 +2,12 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  zjstatusbar = pkgs.fetchurl {
+    url = "https://github.com/cristiand391/zj-status-bar/releases/download/0.3.0/zj-status-bar.wasm";
+    sha256 = "1s091b9hv4bsh0mbz7g9di8l8bzbhh1srmvsq71mk41bvc59ds5i";
+  };
+in {
   config = {
     home.packages = with pkgs; [lsof brotab];
 
@@ -13,14 +18,16 @@
 
       settings = {
         theme = "catppuccin-mocha";
-        # load_plugins = {
-        # "${pkgs.zjstatus}/bin/zjframes.wasm" = {
-        #   hide_frame_for_single_pane = "true";
-        #   hide_frame_except_for_search = "true";
-        #   hide_frame_except_for_fullscreen = "true";
-        # };
-        # "https://github.com/cristiand391/zj-status-bar/releases/download/0.3.0/zj-status-bar.wasm" = {};
-        # };
+        load_plugins = {
+          "file:${builtins.unsafeDiscardStringContext pkgs.zjstatus}/bin/zjframes.wasm" = {};
+
+          # = {
+          #   hide_frame_for_single_pane = "true";
+          #   hide_frame_except_for_search = "true";
+          #   hide_frame_except_for_fullscreen = "true";
+          # };
+          "file:${builtins.unsafeDiscardStringContext zjstatusbar}" = {};
+        };
       };
     };
 
