@@ -141,6 +141,8 @@
       podman.enable = true;
     };
 
+    virtualisation.waydroid.enable = true;
+
     # virtualisation.kvmgt = {
     #   enable = true;
     #   device = "0000:01:00.0";
