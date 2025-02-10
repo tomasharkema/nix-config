@@ -216,7 +216,10 @@ in {
 
     gptcommit.enable = true;
     check-added-large-files.enable = true;
-    ripsecrets.enable = true;
+    ripsecrets = {
+      enable = true;
+      excludes = ["**/facter.json"];
+    };
 
     "by-name" = {
       enable = true;
