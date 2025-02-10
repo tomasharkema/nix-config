@@ -378,10 +378,10 @@
         # packages = with pkgs; [mpv];
       };
 
-      atd = {
-        enable = true;
-        allowEveryone = true;
-      };
+      # atd = {
+      #   enable = true;
+      #   allowEveryone = true;
+      # };
 
       kmscon = {
         enable = lib.mkDefault true;

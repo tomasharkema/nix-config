@@ -158,10 +158,10 @@ in {
         "hugepagesz=1G"
         "hugepages=1"
       ];
-      blacklistedKernelModules = [
-        "nvidia"
-        "nouveau"
-      ];
+      # blacklistedKernelModules = [
+      #   "nvidia"
+      #   "nouveau"
+      # ];
       kernelModules = lib.mkBefore [
         "kvm-intel"
         "mdev"
@@ -170,12 +170,12 @@ in {
         "vfio"
         "vfio_iommu_type1"
       ];
-      initrd.kernelModules = lib.mkBefore [
-        "kvm-intel"
-        "vfio_pci"
-        "vfio"
-        "vfio_iommu_type1"
-      ];
+      # initrd.kernelModules = lib.mkBefore [
+      #   "kvm-intel"
+      #   "vfio_pci"
+      #   "vfio"
+      #   "vfio_iommu_type1"
+      # ];
     };
 
     # programs.ccache = {

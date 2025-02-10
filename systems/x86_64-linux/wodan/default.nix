@@ -25,6 +25,7 @@
       custom.ims-prog
       heimdall
       heimdall-gui
+      custom.binwalk
     ];
 
     time = {
@@ -123,7 +124,7 @@
         enable = true;
         acceleration = "cuda";
         host = "0.0.0.0";
-        loadModels = ["llama3.1:8b" "starcoder2:3b"];
+        # loadModels = ["llama3.1:8b" "starcoder2:3b"];
       };
       # open-webui = {
       #   enable = true;
@@ -171,7 +172,7 @@
       adb.enable = true;
     };
 
-    console.earlySetup = true;
+    # console.earlySetup = true;
 
     hardware = {
       cpu.intel.updateMicrocode = true;
@@ -185,6 +186,12 @@
         open = true;
         nvidiaSettings = true;
         nvidiaPersistenced = true;
+
+        powerManagement = {
+          enable = true;
+          # finegrained = true;
+        };
+
         # package = config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
 
         # vgpu.patcher = {
@@ -283,22 +290,23 @@
           # "vfio"
           # "vfio_iommu_type1"
           # "nvidia_vgpu_vfio"
-          "kvm-intel"
+          # "kvm-intel"
         ];
       };
 
       # KMS will load the module, regardless of blacklisting
       kernelParams = [
-        "console=tty1"
-        "console=ttyUSB0,115200n8"
+        # "console=tty1"
+        # "console=ttyUSB0,115200n8"
         "intel_iommu=on"
         "iommu=pt"
+        "preempt=full"
         # "drm.edid_firmware=HDMI-A-1:edid/samsung-q800t-hdmi2.1"
         # "video=HDMI-A-1:e"
         # "pci-stub.ids=1458:37a7"
       ];
 
-      blacklistedKernelModules = ["nouveau"];
+      # blacklistedKernelModules = ["nouveau"];
       #extraModprobeConfig = ''
       #  options nvidia-drm modeset=1";
       #  blacklist nouveau
@@ -308,9 +316,9 @@
       # [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     };
 
-    systemd.services."serial-getty@ttyUSB0" = {
-      wantedBy = ["multi-user.target"];
-    };
+    # systemd.services."serial-getty@ttyUSB0" = {
+    #   wantedBy = ["multi-user.target"];
+    # };
     # boot = {
     #   loader = {
     #     efi = {
