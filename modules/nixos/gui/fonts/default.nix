@@ -70,6 +70,9 @@
       };
 
       packages = with pkgs; [
+        font-awesome
+        powerline-fonts
+        powerline-symbols
         custom.din
         custom.computer-modern
         custom.futura
