@@ -218,7 +218,7 @@ in {
     check-added-large-files.enable = true;
     ripsecrets = {
       enable = true;
-      excludes = ["**/facter.json"];
+      excludes = ["facter.json"];
     };
 
     "by-name" = {
