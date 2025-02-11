@@ -21,7 +21,7 @@
       enable = true;
       main = "/dev/disk/by-id/ata-C400-MTFDDAT128MAM_0000000013050365897F";
       encrypt = true;
-      newSubvolumes = true;
+      newSubvolumes.enable = true;
       # btrbk.enable = true;
       snapper.enable = true; # false;
     };

@@ -92,7 +92,7 @@ in
         evince.enable = true;
 
         gnome-disks.enable = true;
-        gnome-terminal.enable = true;
+        # gnome-terminal.enable = true;
         gpaste.enable = true;
       };
 
@@ -215,10 +215,10 @@ in
           enable = true;
           settings = {
             GNOME = [
-              "com.mitchellh.ghostty"
+              "kitty"
             ];
             default = [
-              "com.mitchellh.ghostty"
+              "kitty"
             ];
           };
         };

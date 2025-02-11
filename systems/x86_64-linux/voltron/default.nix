@@ -26,9 +26,13 @@
       enable = true;
       main = "/dev/nvme0n1";
       encrypt = true;
-      newSubvolumes = true;
+      newSubvolumes.enable = true;
       # btrbk.enable = true;
       snapper.enable = true; # false;
+      swap = {
+        size = "32G";
+        resume.enable = false;
+      };
     };
 
     # programs.gnupg.agent = {
@@ -125,7 +129,7 @@
           enable = true;
           open = false;
         };
-        # sgx.enable = true;
+        sgx.enable = true;
         # remote-unlock.enable = true;
         bluetooth.enable = true;
         monitor.enable = true;
@@ -146,7 +150,7 @@
     services = {
       # comin.enable = false;
       abrt.enable = true;
-      remote-builders.client.enable = true;
+      # remote-builders.client.enable = true;
       usbmuxd.enable = true;
       power-profiles-daemon.enable = lib.mkForce true;
 

@@ -44,41 +44,41 @@
             mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/home";
           };
-          "resilio-sync" = lib.mkIf (cfg.newSubvolumes && cfg.media == null) {
+          "resilio-sync" = lib.mkIf (cfg.newSubvolumes.enable && cfg.media == null) {
             mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/mnt/resilio-sync";
           };
-          "resilio-sync-lib" = lib.mkIf cfg.newSubvolumes {
+          "resilio-sync-lib" = lib.mkIf cfg.newSubvolumes.enable {
             mountOptions = ["noatime" "discard=async"];
             mountpoint = "/var/lib/resilio-sync";
           };
-          "nix" = lib.mkIf cfg.newSubvolumes {
+          "nix" = lib.mkIf cfg.newSubvolumes.enable {
             mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/nix";
           };
-          "containers" = lib.mkIf cfg.newSubvolumes {
+          "containers" = lib.mkIf cfg.newSubvolumes.enable {
             mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/var/lib/containers";
           };
-          "snapshots" = lib.mkIf cfg.newSubvolumes {
+          "snapshots" = lib.mkIf cfg.newSubvolumes.enable {
             mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/.snapshots";
           };
-          "home-snapshots" = lib.mkIf cfg.newSubvolumes {
+          "home-snapshots" = lib.mkIf cfg.newSubvolumes.enable {
             mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/home/.snapshots";
           };
-          "steam" = lib.mkIf cfg.newSubvolumes {
+          "steam" = lib.mkIf cfg.newSubvolumes.enable {
             mountOptions =
               ["noatime" "discard=async"]
               ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/mnt/steam";
           };
-          "flatpak" = lib.mkIf cfg.newSubvolumes {
+          "flatpak" = lib.mkIf cfg.newSubvolumes.enable {
             mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/var/lib/flatpak";
           };
-          "log" = lib.mkIf cfg.newSubvolumes {
+          "log" = lib.mkIf cfg.newSubvolumes.enable {
             mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/var/log";
           };
@@ -103,11 +103,13 @@ in {
   options = {
     disks.btrfs = {
       enable = lib.mkEnableOption "Enable BTRFS";
-      autoscrub = lib.mkEnableOption "Enable BTRFS Autoscrub";
+      autoscrub.enable = lib.mkEnableOption "Enable BTRFS Autoscrub";
 
-      newSubvolumes = lib.mkEnableOption "Enable BTRFS newSubvolumes";
+      newSubvolumes.enable = lib.mkEnableOption "Enable BTRFS newSubvolumes";
 
       snapper.enable = lib.mkEnableOption "enable snapper" // {default = true;};
+
+      resume.enable = lib.mkEnableOption "Enable BTRFS resume device";
 
       main = lib.mkOption {
         type = lib.types.str;
@@ -135,11 +137,23 @@ in {
         default = null;
         description = "Dev for optional media partition";
       };
+
       encrypt = lib.mkEnableOption "encrypted";
-      swap = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "swap";
+
+      swap = {
+        enable = lib.mkOption {
+          type = lib.types.bool;
+          default = true;
+          description = "swap";
+        };
+
+        size = lib.mkOption {
+          type = lib.types.str;
+          default = "16G";
+          description = "swap";
+        };
+
+        resume.enable = lib.mkEnableOption "Enable BTRFS resume device";
       };
     };
   };
@@ -153,7 +167,7 @@ in {
     };
 
     services = {
-      btrfs.autoScrub = lib.mkIf cfg.autoscrub {
+      btrfs.autoScrub = lib.mkIf cfg.autoscrub.enable {
         enable = true;
         fileSystems = ["/"];
       };
@@ -251,7 +265,7 @@ in {
                 type = "EF02"; # for grub MBR
               };
               ESP = lib.mkIf (cfg.boot == null) {
-                size = "1G";
+                size = "2G";
                 type = "EF00";
                 content = {
                   type = "filesystem";
@@ -260,12 +274,12 @@ in {
                 };
               };
 
-              swap = lib.mkIf cfg.swap {
-                size = "16G";
+              swap = lib.mkIf cfg.swap.enable {
+                size = cfg.swap.enable;
                 content = {
                   type = "swap";
                   randomEncryption = true;
-                  resumeDevice = true;
+                  resumeDevice = cfg.swap.resume.enable;
                 };
               };
               root = lib.mkIf (!cfg.encrypt) innerContent.root;

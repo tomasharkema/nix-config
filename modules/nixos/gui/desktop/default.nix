@@ -94,19 +94,74 @@ in {
     # hdr.enable = true;
     # };
 
-    # hardware.graphics = {
-    #   enable = true;
-    #   enable32Bit = pkgs.stdenvNoCC.isx86_64;
-    #   extraPackages = with pkgs;
-    #     [
-    #       mesa
-    #       mesa.drivers
-    #     ]
-    #     ++ lib.optional pkgs.stdenvNoCC.isx86_64 intel-compute-runtime;
-    # };
+    hardware.graphics = {
+      # package = pkgs.mesa.drivers;
+      # package32 = pkgs.pkgsi686Linux.mesa.drivers;
+      #   enable = true;
+      #   enable32Bit = pkgs.stdenvNoCC.isx86_64;
+      #   extraPackages = with pkgs;
+      #     [
+      #       mesa
+      #       mesa.drivers
+      #     ]
+      #     ++ lib.optional pkgs.stdenvNoCC.isx86_64 intel-compute-runtime;
+    };
+
+    home-manager.users.tomas = {
+      programs = {
+        rofi = {
+          enable = true;
+          pass.enable = true;
+          terminal = "kitty";
+        };
+        waybar = {
+          enable = true;
+          systemd.enable = true;
+        };
+      };
+
+      services = {
+        swaync = {enable = true;};
+      };
+
+      wayland.windowManager.hyprland = {
+        enable = true;
+        systemd = {
+          enable = true;
+          enableXdgAutostart = true;
+        };
+        xwayland.enable = true;
+
+        settings = {
+          "$mod" = "SUPER";
+          bind = [
+            # "$mod, space, exec $menu"
+          ];
+        };
+      };
+    };
 
     programs = {
       geary.enable = true;
+
+      hyprland = {
+        enable = true;
+      };
+
+      ssh = {
+        # startAgent = true;
+      };
+      mtr.enable = true;
+      dconf.enable = true;
+
+      #chromium = {
+      #  enable = true;
+      #};
+      appimage = {
+        enable = true;
+        binfmt = true;
+      };
+      virt-manager.enable = true;
     };
 
     boot.extraModulePackages = [config.boot.kernelPackages.akvcam];
@@ -136,126 +191,112 @@ in {
       ];
     };
 
-    programs.virt-manager.enable = true;
+    environment = {
+      sessionVariables.NIXOS_OZONE_WL = "1";
 
-    environment.systemPackages = with pkgs;
-      [
-        ptyxis
-        wl-clipboard
-        python312Packages.pyclip
-        onioncircuits
-        onionshare-gui
-        pods
-        meld
-        pika-backup
-        # custom.anydesk
-        vlc
-        boxbuddy
-        clutter
-        # dosbox-x
-        effitask
-        filezilla
-        font-manager
-        # fractal
-        doublecmd
-        gamehub
-        # gnomecast
-        # go-chromecast
-        gotop
-        gparted
-        grsync
-        gtk-engine-murrine
-        ktailctl
-        libGL
-        libGLU
-        meteo
-        mission-center
-        # nix-software-center
-        partition-manager
-        pavucontrol
-        powertop
-        pwvucontrol
-        qdirstat
-        qjournalctl
-        rtfm
-        spot
-        sqlitebrowser
-        sublime-merge
-        sublime4
-        transmission-remote-gtk
-        tremotesf
-        ulauncher
-        usbview
-        ventoy-full
-        vsce
-        vte-gtk4
-        xdg-utils
-        xdgmenumaker
-        xdiskusage
-        xdotool
-        yelp
-        f1viewer
-        zed-editor
-        # ytdlp-gui
-      ]
-      ++ lib.optionals pkgs.stdenv.isx86_64 [
-        # custom.tabby
-        jetbrains-toolbox
-        synology-drive-client
-        # gpt4all-cuda
-        _86Box-with-roms
-        #       config.boot.linuxPackages.nvidia_x11
-        #     ];
-        #     ++ [
-        #     prev.runtimeDependencies
-        #   runtimeDependencies =
-        # (plex-media-player.overrideAttrs (prev: {
-        # }))
-        # handbrake
-        # pkgs.custom.git-butler
-        # pkgs.wolfram-engine
-        # spotify
-        # angryipscanner
-        bottles
-        # custom.qlogexplorer
-        devdocs-desktop
-        # discordo
-        dmidecode
-        gdm-settings
-        # gmtk
-        # gnome_mplayer
-        ipmiview
-        libsmbios
-        plex-media-player
-        # (plex-media-player.overrideAttrs (old: {
-        #   # cudaSupport = true;
-        #   stdenv = pkgs.cudaPackages.backendStdenv;
-        # }))
-        # plex-desktop
-        plexamp
-        xpipe
-      ]
-      ++ (with pkgs.custom; [
-        # zerotier-ui
-        netbrowse
-        usbguard-gnome
-        sysd-manager
-      ]);
-
-    programs = {
-      ssh = {
-        # startAgent = true;
-      };
-      mtr.enable = true;
-      dconf.enable = true;
-
-      #chromium = {
-      #  enable = true;
-      #};
-      appimage = {
-        enable = true;
-        binfmt = true;
-      };
+      systemPackages = with pkgs;
+        [
+          ptyxis
+          wl-clipboard
+          python312Packages.pyclip
+          onioncircuits
+          onionshare-gui
+          pods
+          meld
+          pika-backup
+          # custom.anydesk
+          vlc
+          boxbuddy
+          clutter
+          # dosbox-x
+          effitask
+          filezilla
+          font-manager
+          # fractal
+          doublecmd
+          gamehub
+          # gnomecast
+          # go-chromecast
+          gotop
+          gparted
+          grsync
+          gtk-engine-murrine
+          ktailctl
+          libGL
+          libGLU
+          meteo
+          mission-center
+          # nix-software-center
+          partition-manager
+          pavucontrol
+          powertop
+          pwvucontrol
+          qdirstat
+          qjournalctl
+          rtfm
+          spot
+          sqlitebrowser
+          sublime-merge
+          sublime4
+          transmission-remote-gtk
+          tremotesf
+          ulauncher
+          usbview
+          ventoy-full
+          vsce
+          vte-gtk4
+          xdg-utils
+          xdgmenumaker
+          xdiskusage
+          xdotool
+          yelp
+          f1viewer
+          zed-editor
+          # ytdlp-gui
+        ]
+        ++ lib.optionals pkgs.stdenv.isx86_64 [
+          # custom.tabby
+          jetbrains-toolbox
+          synology-drive-client
+          # gpt4all-cuda
+          _86Box-with-roms
+          #       config.boot.linuxPackages.nvidia_x11
+          #     ];
+          #     ++ [
+          #     prev.runtimeDependencies
+          #   runtimeDependencies =
+          # (plex-media-player.overrideAttrs (prev: {
+          # }))
+          # handbrake
+          # pkgs.custom.git-butler
+          # pkgs.wolfram-engine
+          # spotify
+          # angryipscanner
+          bottles
+          # custom.qlogexplorer
+          devdocs-desktop
+          # discordo
+          dmidecode
+          gdm-settings
+          # gmtk
+          # gnome_mplayer
+          ipmiview
+          libsmbios
+          plex-media-player
+          # (plex-media-player.overrideAttrs (old: {
+          #   # cudaSupport = true;
+          #   stdenv = pkgs.cudaPackages.backendStdenv;
+          # }))
+          # plex-desktop
+          plexamp
+          xpipe
+        ]
+        ++ (with pkgs.custom; [
+          # zerotier-ui
+          netbrowse
+          usbguard-gnome
+          sysd-manager
+        ]);
     };
 
     apps.firefox.enable = true;

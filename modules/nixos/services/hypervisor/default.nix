@@ -111,6 +111,10 @@ in {
     environment.etc = {
       "libvirt/virtio-win".source = pkgs.virtio-win;
       "libvirt/virtio-win.iso".source = pkgs.virtio-win.src;
+
+      "ovmf/x86.fd".source = config.system.build.ovmf-x86;
+      "ovmf/aarch.fd".source = config.system.build.ovmf-aarch;
+
       # "sasl2/libvirt.conf" = {
       #   text = ''
       #     mech_list: gssapi
@@ -184,6 +188,18 @@ in {
 
     hardware.ksm.enable = true;
 
+    system.build = {
+      ovmf-x86 =
+        (pkgs.OVMFFull)
+        .fd;
+      ovmf-aarch =
+        (pkgs.pkgsCross.aarch64-multiplatform.OVMF.override {
+          secureBoot = true;
+          tpmSupport = true;
+        })
+        .fd;
+    };
+
     virtualisation = {
       kvmgt.enable = true;
       # tpm.enable = true;
@@ -230,13 +246,8 @@ in {
           ovmf = {
             enable = true;
             packages = [
-              ((pkgs.OVMFFull)
-                .fd)
-              ((pkgs.pkgsCross.aarch64-multiplatform.OVMF.override {
-                  secureBoot = true;
-                  tpmSupport = true;
-                })
-                .fd)
+              config.system.build.ovmf-x86
+              config.system.build.ovmf-aarch
             ];
           };
         };

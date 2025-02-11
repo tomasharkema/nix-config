@@ -73,7 +73,7 @@
       main = "/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y";
       media = "/dev/disk/by-id/ata-TOSHIBA_MQ01ABD100_Y6I8PBOHT";
       encrypt = true;
-      newSubvolumes = true;
+      newSubvolumes.enable = true;
     };
 
     # wifi.enable = true;

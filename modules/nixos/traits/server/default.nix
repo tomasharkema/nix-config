@@ -25,14 +25,12 @@ in {
         # socketPath = "/run/openvscode/socket";
         # connectionTokenFile = "/var/lib/openvscode/token";
       };
-      scx = {
-        enable = lib.mkForce false;
-      };
     };
+    disks.btrfs.swap.resume.enable = false;
 
     hardware = {
       nvidia = {
-        nvidiaPersistenced = false;
+        nvidiaPersistenced = true;
       };
     };
 

@@ -25,7 +25,6 @@
       custom.ims-prog
       heimdall
       heimdall-gui
-      custom.binwalk
     ];
 
     time = {
@@ -248,9 +247,10 @@
       second = "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768637D1FE";
 
       encrypt = true;
-      newSubvolumes = true;
+      newSubvolumes.enable = true;
       # btrbk.enable = true;
       snapper.enable = true; # false;
+      swap.size = "64G";
     };
 
     boot = {

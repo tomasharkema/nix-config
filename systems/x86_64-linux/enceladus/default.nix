@@ -99,7 +99,7 @@ in {
       enable = true;
       main = "/dev/disk/by-id/nvme-512GB_SSD_CN348BH0814055";
       encrypt = true;
-      newSubvolumes = true;
+      newSubvolumes.enable = true;
     };
 
     # wifi.enable = true;

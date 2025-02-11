@@ -68,7 +68,7 @@ in {
       "bmc-watchdog".enable = true;
       podman.enable = lib.mkForce true;
       # zabbix.server.enable = true;
-      atticd.enable = true;
+      # atticd.enable = true;
     };
 
     virtualisation = {
