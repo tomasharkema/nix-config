@@ -107,46 +107,8 @@ in {
       #     ++ lib.optional pkgs.stdenvNoCC.isx86_64 intel-compute-runtime;
     };
 
-    home-manager.users.tomas = {
-      programs = {
-        rofi = {
-          enable = true;
-          pass.enable = true;
-          terminal = "kitty";
-        };
-        waybar = {
-          enable = true;
-          systemd.enable = true;
-        };
-      };
-
-      services = {
-        swaync = {enable = true;};
-      };
-
-      wayland.windowManager.hyprland = {
-        enable = true;
-        systemd = {
-          enable = true;
-          enableXdgAutostart = true;
-        };
-        xwayland.enable = true;
-
-        settings = {
-          "$mod" = "SUPER";
-          bind = [
-            # "$mod, space, exec $menu"
-          ];
-        };
-      };
-    };
-
     programs = {
       geary.enable = true;
-
-      hyprland = {
-        enable = true;
-      };
 
       ssh = {
         # startAgent = true;
