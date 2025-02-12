@@ -19,7 +19,8 @@
 
       hyprsunset
 
-      dolphin
+      polybarFull
+
       swaynotificationcenter
 
       cool-retro-term
@@ -320,8 +321,8 @@
 
         extraConfig = builtins.readFile ./hyprland.conf;
         plugins = with pkgs.hyprlandPlugins; [
-          hyprexpo
-          hyprbars
+          # hyprexpo
+          # hyprbars
         ];
         settings = {
           monitor = ",preferred,auto,${
@@ -329,6 +330,51 @@
             then "1.6"
             else "1"
           }";
+
+          render = {
+            direct_scanout = true;
+            # Fixes some apps stuttering (xournalpp, hyprlock). Possibly an amdgpu bug
+            explicit_sync = 0;
+            explicit_sync_kms = 0;
+          };
+
+          general = {
+            allow_tearing = true;
+          };
+          xwayland = {
+            force_zero_scaling = true;
+          };
+          # exec-once = [ "hyprlock" ];
+
+          misc = {
+            vrr = 1;
+          };
+
+          plugin = {
+            # hyprbars = {
+            #   bar_height = 20;
+            #   bar_precedence_over_border = true;
+
+            #   # order is right-to-left
+            #   hyprbars-button = [
+            #     # close
+            #     "rgb(ffb4ab), 15, , hyprctl dispatch killactive"
+            #     # maximize
+            #     "rgb(b6c4ff), 15, , hyprctl dispatch fullscreen 1"
+            #   ];
+            # };
+
+            # hyprexpo = {
+            #   columns = 3;
+            #   gap_size = 4;
+            #   bg_col = "rgb(000000)";
+
+            #   enable_gesture = true;
+            #   gesture_distance = 300;
+            #   gesture_positive = false;
+            # };
+          };
+
           #   "$mod" = "SUPER";
           #   bind = [
           #     # "$mod, space, exec $menu"
