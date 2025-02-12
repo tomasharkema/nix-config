@@ -20,14 +20,12 @@
       hyprsunset
 
       dolphin
-      rofi-wayland
       swaynotificationcenter
 
       cool-retro-term
 
       starship
       helix
-      waybar
       qutebrowser
       zathura
       mpv
@@ -38,12 +36,41 @@
       programs = {
         rofi = {
           enable = true;
+          package = pkgs.rofi-wayland;
           pass.enable = true;
           terminal = "kitty";
         };
         waybar = {
           enable = true;
           systemd.enable = true;
+
+          settings = [
+            {
+              mainBar = {
+                layer = "top";
+                position = "top";
+                height = 50;
+                # output = [
+                #   "eDP-1"
+                #   "HDMI-A-1"
+                # ];
+                modules-left = ["hyprland/workspaces" "hyprland/mode" "wlr/taskbar"];
+                modules-center = [
+                  "hyprland/window"
+                  #"custom/hello-from-waybar"
+                ];
+                modules-right = [
+                  "mpd"
+                  # "custom/mymodule#with-css-id"
+                  "temperature"
+                ];
+                "hyprland/workspaces" = {
+                  disable-scroll = true;
+                  all-outputs = true;
+                };
+              };
+            }
+          ];
         };
       };
 
@@ -64,7 +91,7 @@
         settings = {
           monitor = ",preferred,auto,${
             if config.gui.hidpi.enable
-            then "2"
+            then "1.6"
             else "1"
           }";
           #   "$mod" = "SUPER";

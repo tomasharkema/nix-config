@@ -10,32 +10,32 @@
         rm -rf $out/etc/xdg/autostart/gnome-keyring-ssh.desktop
       '';
   });
-  gvdb = self.packages."${prev.system}".gvdb;
+  # gvdb = self.packages."${prev.system}".gvdb;
   # gnome = prev.gnome.overrideScope' (gnomeFinal: gnomePrev: {
 
-  mutter = prev.mutter.overrideAttrs (oldAttrs: {
-    # GNOME dynamic triple buffering (huge performance improvement)
-    # See https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441
-    src = final.fetchFromGitLab {
-      domain = "gitlab.gnome.org";
-      owner = "vanvugt";
-      repo = "mutter";
-      rev = "triple-buffering-v4-47";
-      hash = "sha256-ajxm+EDgLYeqPBPCrgmwP+FxXab1D7y8WKDQdR95wLI=";
-    };
+  # mutter = prev.mutter.overrideAttrs (oldAttrs: {
+  #   # GNOME dynamic triple buffering (huge performance improvement)
+  #   # See https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441
+  #   src = final.fetchFromGitLab {
+  #     domain = "gitlab.gnome.org";
+  #     owner = "vanvugt";
+  #     repo = "mutter";
+  #     rev = "triple-buffering-v4-47";
+  #     hash = "sha256-ajxm+EDgLYeqPBPCrgmwP+FxXab1D7y8WKDQdR95wLI=";
+  #   };
 
-    preConfigure = let
-      gvdb = final.fetchFromGitLab {
-        domain = "gitlab.gnome.org";
-        owner = "GNOME";
-        repo = "gvdb";
-        rev = "2b42fc75f09dbe1cd1057580b5782b08f2dcb400";
-        hash = "sha256-CIdEwRbtxWCwgTb5HYHrixXi+G+qeE1APRaUeka3NWk=";
-      };
-    in ''
-      cp -a "${gvdb}" ./subprojects/gvdb
-    '';
-  });
+  #   preConfigure = let
+  #     gvdb = final.fetchFromGitLab {
+  #       domain = "gitlab.gnome.org";
+  #       owner = "GNOME";
+  #       repo = "gvdb";
+  #       rev = "2b42fc75f09dbe1cd1057580b5782b08f2dcb400";
+  #       hash = "sha256-CIdEwRbtxWCwgTb5HYHrixXi+G+qeE1APRaUeka3NWk=";
+  #     };
+  #   in ''
+  #     cp -a "${gvdb}" ./subprojects/gvdb
+  #   '';
+  # });
   # dconf = prev.dconf;
   # flatpak = prev.flatpak;
 
