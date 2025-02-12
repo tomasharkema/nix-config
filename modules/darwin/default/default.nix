@@ -90,7 +90,7 @@
 
     fonts = {
       packages = with pkgs; [
-        iosevka
+        nerd-fonts.iosevka
         font-awesome
         powerline-fonts
         powerline-symbols
