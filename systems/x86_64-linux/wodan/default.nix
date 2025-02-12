@@ -80,8 +80,8 @@
       };
       gamemode.enable = true;
       quiet-boot.enable = true;
+      hidpi.enable = true;
       gnome = {
-        hidpi.enable = true;
       };
     };
 

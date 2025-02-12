@@ -13,6 +13,7 @@
 
       flavor = "mocha";
       accent = "blue";
+      cache.enable = true;
     };
 
     home.pointerCursor = lib.mkIf pkgs.stdenv.isDarwin (lib.mkForce null);

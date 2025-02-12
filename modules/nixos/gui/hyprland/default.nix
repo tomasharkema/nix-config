@@ -17,6 +17,8 @@
       hypridle
       hyprpaper
 
+      hyprsunset
+
       dolphin
       rofi-wayland
       swaynotificationcenter
@@ -59,12 +61,17 @@
 
         extraConfig = builtins.readFile ./hyprland.conf;
 
-        # settings = {
-        #   "$mod" = "SUPER";
-        #   bind = [
-        #     # "$mod, space, exec $menu"
-        #   ];
-        # };
+        settings = {
+          monitor = ",preferred,auto,${
+            if config.gui.hidpi.enable
+            then "2"
+            else "1"
+          }";
+          #   "$mod" = "SUPER";
+          #   bind = [
+          #     # "$mod, space, exec $menu"
+          #   ];
+        };
       };
     };
   };

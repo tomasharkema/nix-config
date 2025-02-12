@@ -12,8 +12,6 @@ in
     options.gui.gnome = {
       enable = lib.mkEnableOption "enable gnome desktop environment";
 
-      hidpi.enable = lib.mkEnableOption "enable gnome desktop environment";
-
       cursorSize = lib.mkOption {
         type = lib.types.int;
         default = 24;
@@ -28,7 +26,7 @@ in
         [
           "gnome"
         ]
-        ++ (lib.optional cfg.hidpi.enable "hidpi");
+        ++ (lib.optional config.gui.hidpi.enable "hidpi");
 
       # programs.hyprland = {
       #   # Install the packages from nixpkgs
@@ -62,7 +60,7 @@ in
         dconf.profiles = {
           gdm = {
             databases =
-              (lib.optional cfg.hidpi.enable {
+              (lib.optional config.gui.hidpi.enable {
                 settings."org/gnome/desktop/interface".scaling-factor = lib.gvariant.mkUint32 2;
               })
               ++ [

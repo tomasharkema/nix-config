@@ -11,7 +11,11 @@ in {
   #   "${inputs.unstable}/nixos/modules/services/desktops/seatd.nix"
   # ];
 
-  options.gui = {enable = lib.mkEnableOption "gui.defaults";};
+  options.gui = {
+    enable = lib.mkEnableOption "gui.defaults";
+
+    hidpi.enable = lib.mkEnableOption "enable gnome desktop environment";
+  };
 
   config = lib.mkIf cfg.enable {
     gui = {
