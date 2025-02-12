@@ -19,14 +19,14 @@ in {
       settings = {
         theme = "catppuccin-mocha";
         load_plugins = {
-          "file:${builtins.unsafeDiscardStringContext pkgs.zjstatus}/bin/zjframes.wasm" = {};
+          # "file:${builtins.unsafeDiscardStringContext pkgs.zjstatus}/bin/zjframes.wasm" = {};
 
           # = {
           #   hide_frame_for_single_pane = "true";
           #   hide_frame_except_for_search = "true";
           #   hide_frame_except_for_fullscreen = "true";
           # };
-          "file:${builtins.unsafeDiscardStringContext zjstatusbar}" = {};
+          # "file:${builtins.unsafeDiscardStringContext zjstatusbar}" = {};
         };
       };
     };
