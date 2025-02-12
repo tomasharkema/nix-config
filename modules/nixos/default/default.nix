@@ -421,6 +421,7 @@ in {
       kmscon = {
         enable = lib.mkDefault true;
         hwRender = true;
+        useXkbConfig = true;
         fonts = [
           {
             name = "JetBrainsMono Nerd Font Mono";
