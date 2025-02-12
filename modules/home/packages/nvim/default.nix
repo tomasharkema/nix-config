@@ -53,7 +53,7 @@
         lsp = {
           enable = true;
           servers = {
-            # nixd = {enable = true;};
+            nixd = {enable = true;};
             eslint = {enable = true;};
             html = {enable = true;};
             lua_ls = {enable = true;};
@@ -65,6 +65,7 @@
             yamlls = {
               enable = true;
             };
+            hyprls.enable = true;
           };
         };
         # none-ls = {
@@ -112,7 +113,7 @@
           settings = {
             indent.enable = true;
           };
-          #   grammarPackages = pkgs.vimPlugins.nvim-treesitter.passthru.allGrammars;
+          grammarPackages = pkgs.vimPlugins.nvim-treesitter.passthru.allGrammars;
         };
         packer = {
           enable = true;

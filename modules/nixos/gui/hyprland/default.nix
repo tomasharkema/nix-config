@@ -17,21 +17,22 @@
       hypridle
       hyprpaper
 
-      rofi
+      dolphin
+      rofi-wayland
       swaynotificationcenter
 
       cool-retro-term
 
       starship
       helix
-
+      waybar
       qutebrowser
       zathura
       mpv
       imv
     ];
 
-    home-manager.users.tomas = lib.mkIf false {
+    home-manager.users.tomas = {
       programs = {
         rofi = {
           enable = true;
@@ -56,12 +57,14 @@
         };
         xwayland.enable = true;
 
-        settings = {
-          "$mod" = "SUPER";
-          bind = [
-            # "$mod, space, exec $menu"
-          ];
-        };
+        extraConfig = builtins.readFile ./hyprland.conf;
+
+        # settings = {
+        #   "$mod" = "SUPER";
+        #   bind = [
+        #     # "$mod, space, exec $menu"
+        #   ];
+        # };
       };
     };
   };
