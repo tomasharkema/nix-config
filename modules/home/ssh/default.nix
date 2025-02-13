@@ -40,7 +40,11 @@
               else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
           };
         };
-
+        "aur.archlinux.org" = {
+          extraOptions = {
+            PubkeyAuthentication = "no";
+          };
+        };
         "ipa.ling-lizard.ts.net" = {
           hostname = "ipa.ling-lizard.ts.net";
           user = "root";
