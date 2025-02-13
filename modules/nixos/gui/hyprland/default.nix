@@ -61,7 +61,13 @@
         waybar = {
           enable = true;
           systemd.enable = true;
-
+          style = ''
+            * {
+              border: none;
+              border-radius: 0;
+              font-family: "B612 Nerd Font", "Inter Display", "Font Awesome 6 Free";
+            }
+          '';
           settings = [
             {
               # layer = "top";
