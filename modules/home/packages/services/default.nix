@@ -25,15 +25,15 @@
       #     label = %time%  %date%
       #   '';
       # };
-      # playerctld.enable = osConfig.gui.enable;
+      playerctld.enable = osConfig.gui.enable;
 
-      # mpd = {
-      #   enable = osConfig.gui.enable;
-      #   musicDirectory = "/home/tomas/Music";
-      # };
+      mpd = {
+        enable = osConfig.gui.enable;
+        musicDirectory = "/home/tomas/Music";
+      };
 
       # mbsync.enable = osConfig.gui.enable;
-      # mopidy.enable = osConfig.gui.enable;
+      mopidy.enable = osConfig.gui.enable;
     };
   };
 }

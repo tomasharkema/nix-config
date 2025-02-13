@@ -66,7 +66,7 @@
             {
               # layer = "top";
               # position = "top";
-              height = 50;
+              height = 30;
               spacing = 10;
               # output = [
               #   "eDP-1"
@@ -96,12 +96,13 @@
                 "temperature"
                 "backlight"
                 "keyboard-state"
-                "sway/language"
+                # "sway/language"
                 "battery"
                 "battery#bat2"
                 "backlight"
-                "clock"
+
                 "tray"
+                "clock"
                 "custom/lock"
                 "custom/power"
               ];
@@ -109,7 +110,10 @@
                 disable-scroll = true;
                 all-outputs = true;
               };
-
+              clock = {
+                interval = 1;
+                format = "{:%H:%M:%S}";
+              };
               "keyboard-state" = {
                 "numlock" = true;
 
@@ -166,9 +170,10 @@
                   "deactivated" = "";
                 };
               };
-              # "tray"= {
-              #     // "icon-size"= 21;        "spacing"= 10;
-              # };
+              "tray" = {
+                "icon-size" = 21;
+                "spacing" = 10;
+              };
               # "clock"= {
               #     // "timezone"= "America/New_York";        "tooltip-format"= "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";        "format-alt"= "{:%Y-%m-%d}"
               # };
@@ -212,7 +217,7 @@
               };
               "network" = {
                 # // "interface"= "wlp2*", // (Optional) To force the use of this interface
-                "format-wifi" = "{essid} ({signalStrength}%) ";
+                "format-wifi" = "{essid} ";
                 "format-ethernet" = "{ipaddr}/{cidr} ";
                 "tooltip-format" = "{ifname} via {gwaddr} ";
                 "format-linked" = "{ifname} (No IP) ";
@@ -283,7 +288,7 @@
                 "format" = "";
               };
               "backlight" = {
-                "device" = "nvidia_0";
+                # "device" = "nvidia_0";
                 "format" = "{icon}";
                 "on-scroll-up" = "brightnessctl s '+10%'";
                 "on-scroll-down" = "brightnessctl s '10%-'";
