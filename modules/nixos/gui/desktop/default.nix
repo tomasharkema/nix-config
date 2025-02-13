@@ -137,21 +137,21 @@ in {
       gnome-online-accounts.enable = true;
     };
 
-    networking.firewall = {
-      allowedTCPPorts = [
-        1900
-        5353
-        8324
-        8080
-        8060 # the plex frontend does upnp things
-        32433 # plex-media-player
-        32410
-        32412
-        32413
-        32414
-        32469
-      ];
-    };
+    # networking.firewall = {
+    #   allowedTCPPorts = [
+    #     1900
+    #     5353
+    #     8324
+    #     8080
+    #     8060 # the plex frontend does upnp things
+    #     32433 # plex-media-player
+    #     32410
+    #     32412
+    #     32413
+    #     32414
+    #     32469
+    #   ];
+    # };
 
     environment = {
       sessionVariables.NIXOS_OZONE_WL = "1";
