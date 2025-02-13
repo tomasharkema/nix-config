@@ -67,7 +67,7 @@
               # layer = "top";
               # position = "top";
               height = 30;
-              spacing = 10;
+              spacing = 0; # 10
               # output = [
               #   "eDP-1"
               #   "HDMI-A-1"

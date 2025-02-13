@@ -197,16 +197,16 @@
 in {
   # starship.enable = true;
 
-  languages.nix = {
-    enable = true;
-    lsp.package = pkgs.nil;
-  };
+  # languages.nix = {
+  #   enable = true;
+  #   lsp.package = pkgs.nixd;
+  # };
 
   pre-commit.hooks = {
     alejandra.enable = true;
     shellcheck.enable = true;
     shfmt.enable = true;
-    nil.enable = true;
+    # nil.enable = true;
 
     stylua.enable = true;
 
@@ -307,7 +307,7 @@ in {
     nix-prefetch-scripts
     nix-prefetch-scripts
     nix-tree
-    nixd
+    # nixd
     nixfmt-rfc-style
     nixpkgs-fmt
     nixpkgs-lint

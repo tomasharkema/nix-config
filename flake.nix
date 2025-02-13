@@ -928,5 +928,10 @@
       url = "github:boinkor-net/tsnsrv";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixd = {
+      url = "github:nix-community/nixd/release/2.x";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
