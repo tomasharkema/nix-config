@@ -84,11 +84,8 @@
                 #"custom/hello-from-waybar"
               ];
               modules-right = [
-                "pulseaudio"
-
                 "mpd"
                 "idle_inhibitor"
-                "pulseaudio"
                 "network"
                 "power-profiles-daemon"
                 "cpu"
@@ -102,6 +99,7 @@
                 "backlight"
 
                 "tray"
+                "pulseaudio"
                 "clock"
                 "custom/lock"
                 "custom/power"
@@ -184,12 +182,19 @@
               "memory" = {
                 "format" = "{}% ";
               };
-              # "temperature"= {
-              #     // "thermal-zone"= 2;        // "hwmon-path"= "/sys/class/hwmon/hwmon2/temp1_input";        "critical-threshold"= 80;        // "format-critical"= "{temperatureC}°C {icon}";        "format"= "{temperatureC}°C {icon}";        "format-icons"= ["", "", ""]
-              # };
-              # "backlight"= {
-              #     // "device"= "acpi_video1";        "format"= "{percent}% {icon}";        "format-icons"= ["", "", "", "", "", "", "", "", ""]
-              # };
+              "temperature" = {
+                "thermal-zone" = 2;
+                "hwmon-path" = "/sys/class/hwmon/hwmon2/temp1_input";
+                "critical-threshold" = 80;
+                "format-critical" = "{temperatureC}°C {icon}";
+                "format" = "{temperatureC}°C {icon}";
+                "format-icons" = ["" "" ""];
+              };
+              "backlight" = {
+                "device" = "acpi_video1";
+                "format" = "{percent}% {icon}";
+                "format-icons" = ["" "" "" "" "" "" "" "" ""];
+              };
               "battery" = {
                 # "states"= {
                 #     // "good"= 95;            "warning"= 30;            "critical"= 15
@@ -287,24 +292,24 @@
                 "on-click" = "hyprlock &";
                 "format" = "";
               };
-              "backlight" = {
-                # "device" = "nvidia_0";
-                "format" = "{icon}";
-                "on-scroll-up" = "brightnessctl s '+10%'";
-                "on-scroll-down" = "brightnessctl s '10%-'";
-                "on-click" = "((( $(brightnessctl g) == 100 )) && brightnessctl s '0') || (brightnessctl s '+10%')";
-                "format-icons" = [
-                  ""
-                  ""
-                  ""
-                  ""
-                  ""
-                  ""
-                  ""
-                  ""
-                  ""
-                ];
-              };
+              # "backlight" = {
+              #   # "device" = "nvidia_0";
+              #   "format" = "{icon}";
+              #   "on-scroll-up" = "brightnessctl s '+10%'";
+              #   "on-scroll-down" = "brightnessctl s '10%-'";
+              #   "on-click" = "((( $(brightnessctl g) == 100 )) && brightnessctl s '0') || (brightnessctl s '+10%')";
+              #   "format-icons" = [
+              #     ""
+              #     ""
+              #     ""
+              #     ""
+              #     ""
+              #     ""
+              #     ""
+              #     ""
+              #     ""
+              #   ];
+              # };
             }
           ];
         };
@@ -336,6 +341,16 @@
             else "1"
           }";
 
+          env = [
+            "XCURSOR_SIZE,24"
+            "HYPRCURSOR_SIZE,24"
+            "GDK_SCALE,${
+              if config.gui.hidpi.enable
+              then "2"
+              else "1"
+            }"
+          ];
+
           render = {
             direct_scanout = true;
             # Fixes some apps stuttering (xournalpp, hyprlock). Possibly an amdgpu bug
@@ -349,41 +364,10 @@
           xwayland = {
             force_zero_scaling = true;
           };
-          # exec-once = [ "hyprlock" ];
 
           misc = {
             vrr = 1;
           };
-
-          plugin = {
-            # hyprbars = {
-            #   bar_height = 20;
-            #   bar_precedence_over_border = true;
-
-            #   # order is right-to-left
-            #   hyprbars-button = [
-            #     # close
-            #     "rgb(ffb4ab), 15, , hyprctl dispatch killactive"
-            #     # maximize
-            #     "rgb(b6c4ff), 15, , hyprctl dispatch fullscreen 1"
-            #   ];
-            # };
-
-            # hyprexpo = {
-            #   columns = 3;
-            #   gap_size = 4;
-            #   bg_col = "rgb(000000)";
-
-            #   enable_gesture = true;
-            #   gesture_distance = 300;
-            #   gesture_positive = false;
-            # };
-          };
-
-          #   "$mod" = "SUPER";
-          #   bind = [
-          #     # "$mod, space, exec $menu"
-          #   ];
         };
       };
     };

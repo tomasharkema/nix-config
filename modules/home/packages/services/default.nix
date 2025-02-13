@@ -33,7 +33,7 @@
       };
 
       # mbsync.enable = osConfig.gui.enable;
-      mopidy.enable = osConfig.gui.enable;
+      # mopidy.enable = osConfig.gui.enable;
     };
   };
 }

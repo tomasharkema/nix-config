@@ -3,9 +3,11 @@
   border-radius: 0;
   font-family: "B612 Nerd Font", "Inter Display", "Font Awesome 6 Free";
 }
+/* "Inter Display" */
 /* "B612 Nerd Font", */
 #waybar {
   background: transparent;
+  background-color: black;
   color: @text;
   margin: 5px 5px;
 }
@@ -26,6 +28,7 @@
 #workspaces button.active {
   color: @sky;
   border-radius: 1rem;
+  font-weight: bold;
 }
 
 #workspaces button:hover {
