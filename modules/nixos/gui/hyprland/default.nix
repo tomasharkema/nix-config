@@ -67,7 +67,7 @@
               # layer = "top";
               # position = "top";
               height = 30;
-              spacing = 0; # 10
+              spacing = 0; # 2; # 10
               # output = [
               #   "eDP-1"
               #   "HDMI-A-1"
@@ -84,23 +84,23 @@
                 #"custom/hello-from-waybar"
               ];
               modules-right = [
-                "mpd"
-                "idle_inhibitor"
-                "network"
+                # "mpd"
+                # "idle_inhibitor"
+                # "network"
                 "power-profiles-daemon"
-                "cpu"
-                "memory"
-                "temperature"
+                # "cpu"
+                # "memory"
+                # "temperature"
                 "backlight"
-                "keyboard-state"
+                # "keyboard-state"
                 # "sway/language"
                 "battery"
                 "battery#bat2"
                 "backlight"
 
-                "tray"
-                "pulseaudio"
+                # "pulseaudio"
                 "clock"
+                "tray"
                 "custom/lock"
                 "custom/power"
               ];
