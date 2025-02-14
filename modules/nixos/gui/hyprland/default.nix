@@ -91,7 +91,7 @@
                 # "cpu"
                 # "memory"
                 # "temperature"
-                "backlight"
+
                 # "keyboard-state"
                 # "sway/language"
                 "battery"

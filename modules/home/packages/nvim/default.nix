@@ -219,7 +219,18 @@
         zig = {
           enable = true;
         };
-        # cmp-zsh.enable = true;
+        cmp = {
+          enable = true;
+          autoEnableSources = true;
+          settings.sources = [
+            {name = "nvim_lsp";}
+            {name = "path";}
+            {name = "buffer";}
+            {name = "zsh";}
+          ];
+        };
+
+        cmp-zsh.enable = true;
         conform-nvim = {
           enable = true;
           #   format_on_save = {
