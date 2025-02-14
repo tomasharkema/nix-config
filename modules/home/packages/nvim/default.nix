@@ -25,19 +25,8 @@
     programs.neovim = {
       viAlias = true;
       vimAlias = true;
-      # defaultEditor = true;
+      defaultEditor = true;
     };
-
-    #   xdg.configFile = {
-    #     #     "nvim/coc-settings.json" = {
-    #     #       source = builtins.toFile "coc-settings.json" (
-    #     #         builtins.toJSON (coc {
-    #     #           homeDir = config.xdg.configHome;
-    #     #           inherit pkgs;
-    #     #         })
-    #     #       );
-    #     #     };
-    #   };
 
     programs.nixvim = {
       enable = true;
@@ -53,14 +42,39 @@
         lsp = {
           enable = true;
           servers = {
-            nixd = {enable = true;};
-            eslint = {enable = true;};
-            html = {enable = true;};
-            lua_ls = {enable = true;};
+            nixd = {
+              enable = true;
+
+              autostart = true;
+              settings = {
+                nixpkgs = {
+                  expr = "import (builtins.getFlake \"/home/tomas/Developer/nix-config\").inputs.nixpkgs { }"; # "import <nixpkgs> { }";
+                };
+                formatting = {
+                  command = ["alejandra"];
+                };
+                options = {};
+              };
+            };
+            eslint = {
+              enable = true;
+            };
+            html = {
+              enable = true;
+            };
+            lua_ls = {
+              enable = true;
+            };
             # nil_ls = {enable = true;};
-            marksman = {enable = true;};
-            pyright = {enable = true;};
-            gopls = {enable = true;};
+            marksman = {
+              enable = true;
+            };
+            pyright = {
+              enable = true;
+            };
+            gopls = {
+              enable = true;
+            };
             # tsserver = {enable = false;};
             yamlls = {
               enable = true;
@@ -107,7 +121,12 @@
         #     };
         #   };
         # };
-
+        yazi.enable = true;
+        dap.enable = true;
+        dap-go.enable = true;
+        dap-ui.enable = true;
+        zellij-nav.enable = true;
+        lazygit.enable = true;
         treesitter = {
           enable = true;
           settings = {
@@ -133,6 +152,7 @@
         };
         telescope = {
           enable = true;
+          extensions.manix.enable = true;
         };
         fugitive = {
           enable = true;
@@ -176,7 +196,9 @@
         nix = {
           enable = true;
         };
-        fzf-lua = {enable = true;};
+        fzf-lua = {
+          enable = true;
+        };
         auto-save = {
           enable = true;
           enableAutoSave = true;
@@ -184,7 +206,9 @@
         git-worktree = {
           enable = true;
         };
-        direnv = {enable = true;};
+        direnv = {
+          enable = true;
+        };
         multicursors.enable = true;
         toggleterm = {
           enable = true;

@@ -158,7 +158,8 @@ in {
 
     programs = {
       # freetube.enable = true;
-
+      info.enable = true;
+      yazi.enable = true;
       home-manager.enable = true;
 
       nix-index-database.comma.enable = true;
