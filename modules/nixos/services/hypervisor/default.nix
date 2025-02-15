@@ -105,7 +105,16 @@ in {
         "qemu-libvirtd"
       ];
     };
-
+    fileSystems = {
+      "/var/lib/libvirt/images/isos" = {
+        device = "192.168.1.102:/volume1/tomas/isos";
+        fsType = "nfs";
+        options = [
+          "x-systemd.automount"
+          "noauto"
+        ];
+      };
+    };
     systemd.packages = [pkgs.custom.libvirt-dbus];
 
     environment.etc = {

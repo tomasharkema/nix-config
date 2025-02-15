@@ -85,15 +85,6 @@
       };
     };
 
-    # fileSystems."/mnt/dione-downloads" = {
-    #   device = "//192.168.1.102/downloads";
-    #   fsType = "cifs";
-    #   options = let
-    #     # this line prevents hanging on network split
-    #     automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-    #   in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
-    # };
-
     services = {
       kmscon.enable = lib.mkForce true;
       hardware = {
@@ -125,10 +116,10 @@
         host = "0.0.0.0";
         # loadModels = ["llama3.1:8b" "starcoder2:3b"];
       };
-      # open-webui = {
-      #   enable = true;
-      #   host = "0.0.0.0";
-      # };
+      open-webui = {
+        # enable = true;
+        host = "0.0.0.0";
+      };
     };
 
     apps = {
@@ -166,14 +157,9 @@
       };
       xserver.videoDrivers = ["nvidia"];
     };
-
-    # programs.mdevctl.enable = true;
-
     programs = {
       adb.enable = true;
     };
-
-    # console.earlySetup = true;
 
     hardware = {
       cpu.intel.updateMicrocode = true;
@@ -189,7 +175,7 @@
         nvidiaPersistenced = true;
 
         powerManagement = {
-          enable = true;
+          # enable = true;
           # finegrained = true;
         };
 
@@ -222,23 +208,10 @@
 
         remote-unlock.enable = true;
         monitor.enable = true;
-        # disable-sleep.enable = true;
 
-        # nfs = {
-        # enable = true;
-        # machines = {
-        # silver-star.enable = true;
-        # dione.enable = true;
-        # };
-        # };
+        disable-sleep.enable = true;
       };
     };
-
-    # swapDevices = [{
-    #   device = "/dev/disk/by-partuuid/b1fe4821-e631-494e-bb76-4e9ae272789a";
-    #   size = 16 * 1024;
-    #   randomEncryption.enable = true;
-    # }];
 
     disks.btrfs = {
       enable = true;
@@ -258,6 +231,7 @@
         useTmpfs = true;
       };
       binfmt.emulatedSystems = ["aarch64-linux"];
+
       supportedFilesystems = [
         "ntfs"
         # "apfs"

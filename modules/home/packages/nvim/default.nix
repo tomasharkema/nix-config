@@ -34,11 +34,17 @@
 
       colorschemes.catppuccin.enable = true;
 
+      globals.mapleader = " ";
+
       plugins = {
+        which-key = {enable = true;};
+
         snacks.enable = true;
         comment.enable = true;
+
         lsp-format.enable = true;
         lsp-status.enable = true;
+
         lsp = {
           enable = true;
           servers = {
@@ -123,7 +129,10 @@
         # };
         yazi.enable = true;
         dap.enable = true;
-        dap-go.enable = true;
+        dap-go = {
+          enable = true;
+          settings.delve.path = "${pkgs.delve}/bin/dlv";
+        };
         dap-ui.enable = true;
         zellij-nav.enable = true;
         lazygit.enable = true;
@@ -134,13 +143,13 @@
           };
           grammarPackages = pkgs.vimPlugins.nvim-treesitter.passthru.allGrammars;
         };
-        packer = {
-          enable = true;
-          plugins = [
-            {name = "FluxxField/bionic-reading.nvim";}
-            {name = "jmederosalvarado/roslyn.nvim";}
-          ];
-        };
+        #packer = {
+        #  enable = true;
+        #  plugins = [
+        #    {name = "FluxxField/bionic-reading.nvim";}
+        #    {name = "jmederosalvarado/roslyn.nvim";}
+        #  ];
+        #};
         dashboard = {
           enable = true;
         };
@@ -152,7 +161,16 @@
         };
         telescope = {
           enable = true;
-          extensions.manix.enable = true;
+
+          extensions = {
+            manix.enable = true;
+
+            undo.enable = true;
+            project.enable = true;
+            project-nvim.enable = true;
+            ui-select.enable = true;
+            file-browser.enable = true;
+          };
         };
         fugitive = {
           enable = true;
@@ -229,8 +247,8 @@
             {name = "zsh";}
           ];
         };
-
         cmp-zsh.enable = true;
+
         conform-nvim = {
           enable = true;
           #   format_on_save = {

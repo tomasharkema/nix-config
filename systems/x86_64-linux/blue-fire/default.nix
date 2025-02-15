@@ -113,15 +113,6 @@ in {
         device = "/mnt/isos";
         options = ["bind"];
       };
-
-      "/mnt/dione-downloads" = {
-        device = "192.168.1.102:/volume1/tomas";
-        fsType = "nfs";
-        options = [
-          "x-systemd.automount"
-          "noauto"
-        ];
-      };
     };
 
     services = {
