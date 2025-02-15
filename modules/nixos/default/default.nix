@@ -24,7 +24,7 @@
     };
 
     system.build.self = inputs.self;
-
+    systemd.additionalUpstreamSystemUnits = ["systemd-bsod.service"];
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
 
