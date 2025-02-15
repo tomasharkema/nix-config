@@ -81,18 +81,18 @@
           enable = true;
           settings = {
             general = {
-              lock_cmd = ''${lib.getExe pkgs.notify-send} "lock!"''; # dbus/sysd lock command (loginctl lock-session)
-              unlock_cmd = ''${lib.getExe pkgs.notify-send} "unlock!"''; # same as above, but unlock
-              before_sleep_cmd = ''${lib.getExe pkgs.notify-send} "Zzz"''; # command ran before sleep
-              after_sleep_cmd = ''${lib.getExe pkgs.notify-send} "Awake!"''; # command ran after sleep
+              lock_cmd = ''${pkgs.libnotify}/bin/notify-send "lock!"''; # dbus/sysd lock command (loginctl lock-session)
+              unlock_cmd = ''${pkgs.libnotify}/bin/notify-send "unlock!"''; # same as above, but unlock
+              before_sleep_cmd = ''${pkgs.libnotify}/bin/notify-send "Zzz"''; # command ran before sleep
+              after_sleep_cmd = ''${pkgs.libnotify}/bin/notify-send "Awake!"''; # command ran after sleep
               ignore_dbus_inhibit = false; # whether to ignore dbus-sent idle-inhibit requests (used by e.g. firefox or steam)
               ignore_systemd_inhibit = false; # whether to ignore systemd-inhibit --what=idle inhibitors
             };
 
             listener = {
               timeout = 500; # in seconds
-              on-timeout = ''${lib.getExe pkgs.notify-send} "You are idle!"''; # command to run when timeout has passed
-              on-resume = ''${lib.getExe pkgs.notify-send} "Welcome back!"''; # command to run when activity is detected after timeout has fired.
+              on-timeout = ''${pkgs.libnotify}/bin/notify-send "You are idle!"''; # command to run when timeout has passed
+              on-resume = ''${pkgs.libnotify}/bin/notify-send "Welcome back!"''; # command to run when activity is detected after timeout has fired.
             };
           };
         };

@@ -80,13 +80,7 @@ in {
 
     environment = {
       etc."xdg/autostart/geary-autostart.desktop".source = "${pkgs.geary}/share/applications/geary-autostart.desktop";
-      sessionVariables = {
-        # LD_LIBRARY_PATH = [
-        #   "/run/current-system/sw/lib"
-        #   "/run/opengl-driver/lib"
-        #   "/run/opengl-driver-32/lib"
-        # ];
-      };
+      sessionVariables.NIXOS_OZONE_WL = "1";
     };
     # chaotic = {
     # scx.enable = true;
@@ -154,8 +148,6 @@ in {
     # };
 
     environment = {
-      sessionVariables.NIXOS_OZONE_WL = "1";
-
       systemPackages = with pkgs;
         [
           ptyxis
