@@ -4,11 +4,11 @@
   config,
   ...
 }: {
-  config = lib.mkIf false {
+  config = {
     programs.wezterm = {
       enable = true;
       enableZshIntegration = true;
-      # package = pkgs.wezterm;
+      package = pkgs.wezterm;
 
       extraConfig = builtins.readFile ./wezterm.lua;
 
