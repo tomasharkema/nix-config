@@ -81,6 +81,8 @@
           #pvzst = "pv @1 -N in -B 500M -pterbT | zstd - -e -T4 | pv -N out -B 500M -pterbT > @2";
           cat = "bat";
           dig = "dog";
+          yz = "yazi";
+          ys = "yazi /sys";
 
           # silver-star-ipmi raw 0x30 0x30 0x01 0x00
           # silver-star-ipmi raw 0x30 0x30 0x02 0xff 0x10
@@ -93,7 +95,21 @@
           docker-login = "op item get raeclwvdys3epkmc5zthv4pdha --format=json --vault=qtvfhvfotoqynomh2wd3yzoofe | jq '.fields[1].value' -r | docker login ghcr.io --username tomasharkema --password-stdin";
 
           subl = (lib.mkIf pkgs.stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
-          # dev = ''
+        };
+
+        plugins = with pkgs; [
+          rec {
+            name = "you-should-use";
+            file = "share/zsh/plugins/you-should-use/you-should-use.plugin.zsh";
+            src = zsh-you-should-use;
+          }
+          rec {
+            name = src.pname;
+            file = "share/zsh-z/zsh-z.plugin.zsh";
+            src = zsh-z;
+          }
+          # rec {
+          #   name = src.pname;          # dev = ''
           #   nix develop --profile dev-profile -c true && \
           #     cachix push tomasharkema dev-profile && \
           #     exec nix develop --profile dev-profile
@@ -113,21 +129,6 @@
           # upload-after-build = ''
           #   jq -r '.[].outputs | to_entries[].value' | nix copy --to 'https://nix-cache.harke.ma' --stdin
           # '';
-        };
-
-        plugins = with pkgs; [
-          rec {
-            name = "you-should-use";
-            file = "share/zsh/plugins/you-should-use/you-should-use.plugin.zsh";
-            src = zsh-you-should-use;
-          }
-          rec {
-            name = src.pname;
-            file = "share/zsh-z/zsh-z.plugin.zsh";
-            src = zsh-z;
-          }
-          # rec {
-          #   name = src.pname;
           #   file = "share/zsh-bd/bd.plugin.zsh";
           #   src = zsh-bd;
           # }

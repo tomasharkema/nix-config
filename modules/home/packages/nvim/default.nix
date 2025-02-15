@@ -34,7 +34,7 @@
 
       colorschemes.catppuccin.enable = true;
 
-      globals.mapleader = " ";
+      globals.mapleader = "\\";
 
       plugins = {
         which-key = {enable = true;};

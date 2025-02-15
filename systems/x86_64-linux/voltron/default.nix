@@ -195,15 +195,15 @@
       };
     };
 
-    # virtualisation.kvmgt = {
-    #   enable = true;
-    #   device = "0000:00:02.0";
-    #   vgpus = {
-    #     "i915-GVTg_V5_8" = {
-    #       uuid = ["e2ab260f-44a2-4e07-9889-68a1caafb399"];
-    #     };
-    #   };
-    # };
+    virtualisation.kvmgt = {
+      enable = true;
+      device = "0000:00:02.0";
+      vgpus = {
+        "i915-GVTg_V5_2" = {
+          uuid = ["e2ab260f-44a2-4e07-9889-68a1caafb399"];
+        };
+      };
+    };
 
     programs = {
       adb.enable = true;
@@ -232,10 +232,13 @@
       # modprobeConfig.enable = true;
 
       kernelParams = [
+        "i915.enable_gvt=1"
+        "i915.enable_fbc=0"
+
         # "i915.enable_gvt=1"
         # "i915.enable_guc=0"
-        # "intel_iommu=on"
-        # "iommu=pt"
+        "intel_iommu=on"
+        "iommu=pt"
         # "iommu.passthrough=1"
       ];
       blacklistedKernelModules = [
