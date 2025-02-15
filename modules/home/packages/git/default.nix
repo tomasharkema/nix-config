@@ -45,6 +45,11 @@
 
       gitui.enable = true;
 
+      git-worktree-switcher = {
+        enable = true;
+        enableZshIntegration = true;
+      };
+
       git = {
         enable = true;
         userName = "tomasharkema";
@@ -58,8 +63,12 @@
           # signer = "";
         };
 
+        maintenance = {
+          enable = true;
+          repositories = ["/home/tomas/Developer/nix-config"];
+        };
         extraConfig = {
-          maintenance.auto = true;
+          # maintenance.auto = true;
           rerere = {enable = true;};
           pull = {rebase = false;};
           branch = {autosetupmerge = true;};
