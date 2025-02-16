@@ -55,6 +55,10 @@
         XDG_SESSION_TYPE = "wayland";
       };
 
+      xdg.portal = {
+        enable = true;
+      };
+
       programs = {
         rofi = {
           enable = true;
