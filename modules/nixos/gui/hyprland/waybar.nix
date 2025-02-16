@@ -31,7 +31,7 @@
       # "keyboard-state"
       # "sway/language"
       "battery"
-      "battery#bat2"
+
       "backlight"
 
       # "pulseaudio"
@@ -132,19 +132,22 @@
       "format-icons" = ["" "" "" "" "" "" "" "" ""];
     };
     "battery" = {
-      # "states"= {
-      #     // "good"= 95;            "warning"= 30;            "critical"= 15
-      # };
+      "states" = {
+        "good" = 95;
+        "warning" = 30;
+        "critical" = 15;
+      };
       "format" = "{capacity}% {icon}";
       "format-full" = "{capacity}% {icon}";
       "format-charging" = "{capacity}% ";
       "format-plugged" = "{capacity}% ";
       "format-alt" = "{time} {icon}"; # // "format-good"= ""; #// An empty format will hide the module
-      # // "format-full"= "";        "format-icons"= ["", "", "", "", ""]
+      # // "format-full"= "";
+      "format-icons" = ["" "" "" "" ""];
     };
-    "battery#bat2" = {
-      "bat" = "BAT2";
-    };
+    # "battery#bat2" = {
+    # "bat" = "BAT2";
+    #  };
     "power-profiles-daemon" = {
       "format" = "{icon}";
       "tooltip-format" = "Power profile: {profile}\nDriver: {driver}";

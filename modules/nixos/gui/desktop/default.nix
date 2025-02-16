@@ -226,7 +226,7 @@ in {
           # pkgs.wolfram-engine
           # spotify
           # angryipscanner
-          bottles
+          #bottles
           # custom.qlogexplorer
           devdocs-desktop
           # discordo
