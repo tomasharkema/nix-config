@@ -11,9 +11,29 @@
     url = "https://download.lenovo.com/pccbbs/mobiles/nz3gf07w.exe";
     sha256 = "1vvhcbd2dai2rysk90iq8lf26j2r8mi1hf4arhclb797w5pzmy60";
   };
+
+  thinkpad-bat-rules = pkgs.stdenv.mkDerivation rec {
+    pname = "thinkpad-thresholds-udev";
+    version = "main";
+
+    src = pkgs.fetchurl {
+      url = "https://gitlab.com/marcosdalvarez/thinkpad-battery-threshold-extension/-/raw/main/others/99-thinkpad-thresholds-udev.rules";
+      sha256 = "0gxb1cvh4vazc79bcqal7w825xy44hjj3n21s95xkrkkqsqpm8ar";
+    };
+
+    phases = ["installPhase"];
+
+    buildInputs = [pkgs.coreutils];
+
+    installPhase = ''
+      install -D $src $out/etc/udev/rules.d/99-thinkpad-thresholds-udev.rules
+      substituteInPlace $out/etc/udev/rules.d/99-thinkpad-thresholds-udev.rules \
+        --replace-fail "/bin/chmod" "${pkgs.coreutils}/bin/chmod"
+    '';
+  };
 in {
   options.traits.hardware.laptop.thinkpad = {
-    enable = lib.mkEnableOption "laptop";
+    enable = lib.mkEnableOption "laptop thinkpad";
   };
 
   # options = {
@@ -83,11 +103,6 @@ in {
         };
       };
     };
-
-    # systemd.services.fprintd.environment = {
-    #   G_MESSAGES_DEBUG = "all";
-    # };
-
     services = {
       "06cb-009a-fingerprint-sensor" = {
         enable = true;
@@ -128,7 +143,12 @@ in {
       #   SUBSYSTEM=="usb", ATTRS{idVendor}=="06cb", ATTRS{idProduct}=="009a", ENV{LIBFPRINT_DRIVER}="vfs009"
       # '';
 
-      udev.packages = [pkgs.modemmanager];
+      udev = {
+        packages = [
+          pkgs.modemmanager
+          thinkpad-bat-rules
+        ];
+      };
       dbus.packages = [pkgs.modemmanager];
     };
 

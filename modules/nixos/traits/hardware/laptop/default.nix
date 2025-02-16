@@ -47,6 +47,9 @@ in {
 
       thermald.enable = true;
 
+      netdata.enable = lib.mkForce false;
+      prometheus.enable = lib.mkForce false;
+
       # xrdp.enable = mkForce false;
 
       # tlp.enable = true;
