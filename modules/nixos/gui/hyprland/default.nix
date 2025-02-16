@@ -128,6 +128,8 @@
             }"
           ];
 
+          exec = ["hyprshade auto"];
+
           render = {
             direct_scanout = true;
             # Fixes some apps stuttering (xournalpp, hyprlock). Possibly an amdgpu bug
