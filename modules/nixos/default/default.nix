@@ -191,7 +191,7 @@
           bash
           bashmount
           bmon
-          caffeine-ng
+          # caffeine-ng
           castnow
           catt
           chunkfs

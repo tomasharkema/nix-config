@@ -33,7 +33,7 @@
         {package = systemd-manager;}
         # {package = move-clock;}
         # {package = home-assistant-extension;}
-        {package = caffeine;}
+        # {package = caffeine;}
         {package = dash-to-panel;}
         {package = reboottouefi;}
         {package = status-area-horizontal-spacing;}
