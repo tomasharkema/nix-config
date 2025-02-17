@@ -17,10 +17,11 @@ in {
       enable = true;
       config.common.default = "gnome";
 
-      # extraPortals = with pkgs; [
-      #   xdg-desktop-portal-kde
-      #   xdg-desktop-portal-gtk
-      # ];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-kde
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-hyprland
+      ];
     };
 
     services.flatpak = {
@@ -63,12 +64,14 @@ in {
             "com.spotify.Client"
             "tv.plex.PlexDesktop"
             "com.gitbutler.gitbutler"
+            "org.darktable.Darktable"
           ]
         );
 
       #  mkIf pkgs.stdenv.isx86_64
       update = {
-        onActivation = true;
+        #onActivation = true;
+
         auto = {
           enable = true;
           onCalendar = "daily"; # Default value

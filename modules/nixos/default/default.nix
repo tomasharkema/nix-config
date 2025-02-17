@@ -553,7 +553,7 @@
 
     programs = {
       fzf.fuzzyCompletion = true;
-      mosh.enable = true;
+      #`mosh.enable = true;
       dconf.enable = true;
 
       # darling.enable = pkgs.stdenv.isx86_64;
