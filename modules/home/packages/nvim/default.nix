@@ -58,8 +58,8 @@
 
         plugins = {
           which-key = {enable = true;};
-
-          #snacks.enable = true;
+          persistence.enable = true;
+          # snacks.enable = true;
           comment = {
             enable = true;
           };
