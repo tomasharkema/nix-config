@@ -129,6 +129,7 @@
       };
       flatpak.enable = true;
       podman.enable = true;
+      ddc.enable = true;
     };
 
     virtualisation.waydroid.enable = true;
