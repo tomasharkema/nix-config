@@ -5,6 +5,10 @@
   lib,
   ...
 }: {
+  imports = with inputs; [
+    nvidia-vgpu-nixos.nixosModules.guest
+  ];
+
   config = {
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 

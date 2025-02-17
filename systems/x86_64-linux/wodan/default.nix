@@ -132,7 +132,7 @@
     };
 
     virtualisation.waydroid.enable = true;
-
+    chaotic.hdr.enable = true;
     # virtualisation.kvmgt = {
     #   enable = true;
     #   device = "0000:01:00.0";
@@ -156,8 +156,13 @@
         bridgeInterfaces = ["enp2s0"];
       };
       xserver.videoDrivers = ["nvidia"];
+      ddccontrol.enable = true;
     };
     programs = {
+      light = {
+        enable = true;
+        brightnessKeys = {enable = true;};
+      };
       adb.enable = true;
     };
 
@@ -247,10 +252,12 @@
         # memtest86.enable = true;
       };
       # kernelPackages = pkgs.linuxPackages_latest;
-
+      extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
       kernelModules = [
-        "i2c-dev"
+        #"i2c-dev"
         "btusb"
+        "ddcci"
+        "ddcci-backlight"
         # "vfio_pci"
         # "vfio"
         # "vfio_iommu_type1"
@@ -283,7 +290,9 @@
       ];
 
       # blacklistedKernelModules = ["nouveau"];
-      #extraModprobeConfig = ''
+      extraModprobeConfig = ''
+        options nvidia NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100
+      '';
       #  options nvidia-drm modeset=1";
       #  blacklist nouveau
       #  options nouveau modeset=0

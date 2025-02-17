@@ -114,20 +114,22 @@ in {
             # pkgs.nvidia-patch.patch-nvenc (
             # pkgs.nvidia-patch.patch-fbc
             config.boot.kernelPackages.nvidiaPackages.beta
-          # )
+          #)
           ;
 
-        vgpu.patcher = lib.mkIf cfg.grid {
-          enable = true;
-          options = {
-            doNotForceGPLLicense = false;
-            remapP40ProfilesToV100D = true;
+        vgpu = lib.mkIf cfg.grid {
+          patcher = {
+            enable = true;
+            options = {
+              doNotForceGPLLicense = false;
+              remapP40ProfilesToV100D = true;
+            };
+            copyVGPUProfiles = {
+              "1E87:0000" = "1E30:12BA";
+              "1380:0000" = "13BD:1160";
+            };
+            enablePatcherCmd = true;
           };
-          copyVGPUProfiles = {
-            "1E87:0000" = "1E30:12BA";
-            "1380:0000" = "13BD:1160";
-          };
-          enablePatcherCmd = true;
         };
       };
 

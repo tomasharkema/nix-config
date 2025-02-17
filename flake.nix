@@ -137,7 +137,7 @@
           nix-gaming.nixosModules.platformOptimizations
 
           nvidia-vgpu-nixos.nixosModules.host
-
+          # nvidia-vgpu-nixos.nixosModules.guest
           # nixos-service.nixosModules.nixos-service
           # nix-virt.nixosModules.default
           ./defaultNixosAge.nix

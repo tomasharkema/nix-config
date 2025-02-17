@@ -32,4 +32,20 @@
   #     };
   #   };
   # });
+
+  ntopng = prev.ntopng.overrideAttrs (old: {
+    version = "git+99588883";
+    src = prev.fetchFromGitHub {
+      owner = "ntop";
+      repo = "ntopng";
+      rev = "995888839d09242dce99a65a8979e536ac02eb18";
+      hash = "sha256-HE/sLpHED1cOqD8Pc1Ui8fwh2Yc68nRJYfyBOTM86vQ=";
+      fetchSubmodules = true;
+    };
+    preConfigure = ''
+      substituteInPlace Makefile.in \
+        --replace "/bin/rm" "rm" \
+        --replace "cp -r ./httpdocs" "cp -LR ./httpdocs"
+    '';
+  });
 })

@@ -22,6 +22,8 @@ in {
 
         "healthchecks" = {
           rekeyFile = ./healthchecks.age;
+          group = "healthchecks";
+          owner = "healthchecks";
         };
       };
     };
@@ -51,14 +53,14 @@ in {
         nvidia = {
           enable = true;
           open = false;
-          grid = false;
+          grid = true;
         };
       };
     };
 
     apps = {
       netdata.server.enable = true;
-      ntopng.enable = true;
+
       mailrise.enable = true;
       atop = {
         enable = true;
@@ -92,7 +94,7 @@ in {
         settings = {
           SECRET_KEY_FILE = config.age.secrets.healthchecks.path;
 
-          EMAIL_HOST = "silver-star-vm.ling-lizard.ts.net";
+          EMAIL_HOST = "silver-star.ling-lizard.ts.net";
           EMAIL_PORT = "8025";
           # EMAIL_HOST_USER = "tomas@harkema.io";
           # # EMAIL_HOST_PASSWORD=mypassword

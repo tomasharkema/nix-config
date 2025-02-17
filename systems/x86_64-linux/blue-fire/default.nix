@@ -10,6 +10,10 @@
   '';
   workerPort = "9988";
 in {
+  # imports = with inputs; [
+  #   nvidia-vgpu-nixos.nixosModules.host
+  # ];
+
   config = {
     age = {
       rekey = {
@@ -49,18 +53,12 @@ in {
           open = false;
           grid = true;
         };
-        # nfs = {
-        #   enable = true;
-        #   machines = {
-        #     silver-star.enable = true;
-        #   };
-        # };
       };
     };
 
     apps = {
       # attic-server.enable = true;
-      ntopng.enable = false; # true;
+      ntopng.enable = true;
       atop = {
         enable = false;
         httpd = false;
@@ -69,50 +67,6 @@ in {
       podman.enable = lib.mkForce true;
       # zabbix.server.enable = true;
       # atticd.enable = true;
-    };
-
-    virtualisation = {
-      oci-containers = {
-        containers = {
-          # plex = {
-          #   image = "docker.io/plexinc/pms-docker:beta";
-
-          #   volumes = [
-          #     "/srv/plex/library:/config"
-          #     "/mnt/dione-downloads/downloads:/downloads"
-          #     "/tmp/transcode:/transcode"
-          #   ];
-          #   environment = {
-          #     PUID = "1000";
-          #     PGID = "1000";
-          #   };
-          #   extraOptions = [
-          #     "--privileged"
-          #     "--net=host"
-          #     "--device=nvidia.com/gpu=all"
-          #     "--device=/dev/dri:/dev/dri"
-          #     "--security-opt=seccomp=unconfined"
-          #   ];
-          #   autoStart = true;
-          # };
-        };
-      };
-    };
-
-    gui = {
-      # icewm.enable = true;
-      # desktop.enable = true;
-      # rdp = {
-      # enable = true;
-      # legacy = true;
-      # };
-    };
-
-    fileSystems = {
-      "/export/isos" = {
-        device = "/mnt/isos";
-        options = ["bind"];
-      };
     };
 
     services = {
@@ -127,56 +81,6 @@ in {
         accelerationDevices = ["*"];
       };
       xserver.videoDrivers = ["nvidia"];
-
-      # nfs.server = {
-      #   enable = true;
-      #   # fixed rpc.statd port; for firewall
-      #   lockdPort = 4001;
-      #   mountdPort = 4002;
-      #   statdPort = 4000;
-      #   extraNfsdConfig = '''';
-      #   exports = ''
-      #     /export       *(rw,fsid=0,no_subtree_check)
-      #     /export/isos  *(rw,nohide,insecure,no_subtree_check)
-      #   '';
-      # };
-
-      # samba = {
-      #   enable = true;
-      #   securityType = "user";
-      #   openFirewall = true;
-
-      #   winbindd.enable = true;
-      #   smbd.enable = true;
-      #   nmbd.enable = true;
-
-      #   settings = {
-      #     global = {
-      #       "workgroup" = "WORKGROUP";
-      #       "server string" = "blue-fire";
-      #       "netbios name" = "blue-fire";
-      #       "security" = "user";
-      #       #"use sendfile" = "yes";
-      #       #"max protocol" = "smb2";
-      #       # note: localhost is the ipv6 localhost ::1
-      #       "hosts allow" = "192.168.";
-      #       # "hosts deny" = "0.0.0.0/0";
-      #       "guest account" = "nobody";
-      #       "map to guest" = "tomas";
-      #     };
-      #     "isos" = {
-      #       "path" = "/export/isos";
-      #       "browseable" = "yes";
-      #       "read only" = "no";
-      #       "guest ok" = "yes";
-      #       "create mask" = "0644";
-      #       "directory mask" = "0755";
-      #       "force user" = "tomas";
-      #       "force group" = "tomas";
-      #     };
-      #   };
-      # };
-
       watchdogd = {
         enable = true;
       };
@@ -230,29 +134,6 @@ in {
       #   };
       # };
     };
-
-    # services = {
-    # podman.enable = true;
-    # freeipa.replica.enable = true;
-    # };
-
-    # nix.settings.allowed-uris = [
-    #   "https://"
-    #   "git+https://"
-    #   "github:"
-    #   "github:NixOS/"
-    #   "github:nixos/"
-    #   "github:hercules-ci/"
-    #   "github:numtide/"
-    #   "github:cachix/"
-    #   "github:nix-community/"
-    #   "github:snowfallorg/"
-    #   "github:edolstra/"
-    #   "github:tomasharkema/"
-    #   "github:snowfallorg/"
-    #   "github:gytis-ivaskevicius/"
-    #   "github:ryantm/"
-    # ];
 
     networking = {
       # hosts = {
@@ -426,8 +307,8 @@ in {
       kernelPackages = pkgs.linuxPackages_6_11;
 
       kernelParams = [
-        "console=tty1"
         "console=ttyS2,115200n8"
+        "console=tty1"
         "mitigations=off"
         #"vfio-pci.ids=10de:1c82"
         # "pcie_acs_override=downstream,multifunction"
@@ -466,12 +347,6 @@ in {
           "kvm-intel"
 
           "uinput"
-          #          "tpm_rng"
-          "ipmi_ssif"
-          # "acpi_ipmi"
-          "ipmi_si"
-          "ipmi_devintf"
-          "ipmi_msghandler"
         ];
       };
       kernelModules = [

@@ -92,12 +92,12 @@
       ];
 
       kernel.sysctl = {
-        "net.ipv4.ip_forward" = 1;
-        "vm.swappiness" = 180;
-        "vm.watermark_boost_factor" = 0;
-        "vm.watermark_scale_factor" = 125;
-        "vm.page-cluster" = 0;
-        "vm.overcommit_memory" = 1;
+        "net.ipv4.ip_forward" = lib.mkDefault 1;
+        "vm.swappiness" = lib.mkDefault 180;
+        "vm.watermark_boost_factor" = lib.mkDefault 0;
+        "vm.watermark_scale_factor" = lib.mkDefault 125;
+        "vm.page-cluster" = lib.mkDefault 0;
+        "vm.overcommit_memory" = lib.mkDefault "1";
       };
 
       tmp = {
