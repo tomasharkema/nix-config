@@ -40,6 +40,10 @@
             OnAccessMountPath = ["/"];
             OnAccessIncludePath = ["/home"];
             OnAccessExtraScanning = true;
+            OnAccessExcludePath = [
+              "^/var/lib"
+              "^/srv"
+            ];
           };
         };
 
