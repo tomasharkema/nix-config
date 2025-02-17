@@ -54,6 +54,16 @@
               # silent = true;
             };
           }
+          {
+            action = ":Telescope live_grep<CR>";
+            key = "<C-F>";
+            mode = ["n" "v"];
+          }
+          {
+            action = ":Telescope find_files<CR>";
+            key = "<C-O>";
+            mode = ["n" "v"];
+          }
         ];
 
         plugins = {

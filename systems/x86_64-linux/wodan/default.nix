@@ -32,8 +32,10 @@
       # timeZone = "Europe/Amsterdam";
     };
 
-    # services.freeipa.replica.enable = true;
-    # services.upower.enable = mkForce false;
+    security = {
+      audit.enable = true;
+      auditd.enable = true;
+    };
 
     networking = {
       networkmanager.enable = true;
@@ -117,7 +119,7 @@
         # loadModels = ["llama3.1:8b" "starcoder2:3b"];
       };
       open-webui = {
-        # enable = true;
+        #enable = true;
         host = "0.0.0.0";
       };
     };

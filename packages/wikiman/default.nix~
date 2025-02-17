@@ -8,21 +8,17 @@ stdenv.mkDerivation rec {
   pname = "wikiman";
   version = "2.13.2";
 
-  src = fetchFromGitHub {
-    owner = "filiparag";
-    repo = "wikiman";
-    rev = version;
-    hash = "sha256-gk/9PVIRw9OQrdCSS+LcniXDYNcHUQUxZ2XGQCwpHaI=";
-    # fetchSubmodules = true;
-  };
+  #src = fetchFromGitHub {
+  #  owner = "filiparag";
+  #  repo = "wikiman";
+  #  rev = version;
+  #  hash = "";
+  #  fetchSubmodules = true;
+  #};
 
-  makeFlags = ["prefix=${placeholder "out"}"];
-
-  postInstall = ''
-    mv $out/usr/* $out
-
-    substituteInPlace $out/bin/wikiman --replace-fail "/usr/local" "$out"
-  '';
+  src = fetchgit {
+    src = "git@github.com:filiparag/wikiman.git";
+ sha256=""; };
 
   meta = {
     description = "Wikiman is an offline search engine for manual pages, Arch Wiki, Gentoo Wiki and other documentation";

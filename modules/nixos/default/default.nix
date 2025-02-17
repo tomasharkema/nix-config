@@ -164,6 +164,7 @@
       enableAllTerminfo = pkgs.stdenv.isx86_64;
       systemPackages =
         (with pkgs; [
+          custom.wikiman
           custom.glide
           custom.binwalk
           # compsize
@@ -344,7 +345,7 @@
       scx = {
         enable = !(config.traits.server.enable) && pkgs.stdenvNoCC.isx86_64;
         package = pkgs.scx_git.full;
-        scheduler = "scx_lavd";
+        scheduler = "scx_lavd"; # "scx_bpfland";
       };
 
       # cachix-watch-store = {
