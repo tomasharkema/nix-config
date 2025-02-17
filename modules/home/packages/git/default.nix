@@ -5,7 +5,7 @@
   ...
 }: {
   config = {
-    # gh = "op plugin run -- gh";
+    # gh = "op plugin run -- gh ";
 
     home.packages = [pkgs.custom.git-credential-1password];
 
@@ -59,7 +59,8 @@
 
         signing = {
           key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";
-          format = "ssh";
+          signByDefault = true;
+          format = lib.mkForce "ssh";
           # signer = "";
         };
 

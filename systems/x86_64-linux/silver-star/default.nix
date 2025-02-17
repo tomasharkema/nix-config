@@ -410,7 +410,7 @@ in {
         useTmpfs = true;
       };
       # binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxPackages_6_11;
+      kernelPackages = pkgs.linuxPackages_6_6;
       kernelParams = [
         "console=tty1"
         "console=ttyS0,115200n8"
