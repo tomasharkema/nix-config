@@ -30,7 +30,7 @@ in {
       extraPackages = with pkgs; [cachix];
     };
   in
-    lib.mkIf cfg.enable {
+    lib.mkIf (cfg.enable && false) {
       age.secrets."ght-runner" = {
         rekeyFile = ./ght-runner.age;
         owner = user;
