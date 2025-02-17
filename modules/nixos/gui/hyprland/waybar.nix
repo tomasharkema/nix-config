@@ -33,7 +33,7 @@
       "battery"
 
       "backlight"
-
+      "backlight-slider"
       # "pulseaudio"
       "clock"
       "tray"
