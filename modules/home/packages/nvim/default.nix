@@ -64,6 +64,10 @@
             key = "<C-O>";
             mode = ["n" "v"];
           }
+          {
+            key = ";";
+            action = ":";
+          }
         ];
 
         plugins = {
@@ -76,7 +80,7 @@
           # dropbar.enable = true;
           lsp-format.enable = true;
           lsp-status.enable = true;
-
+          autoclose.enable = true;
           lsp = {
             enable = true;
             servers = {
@@ -280,6 +284,7 @@
               {name = "path";}
               {name = "buffer";}
               {name = "zsh";}
+              {name = "cmdline";}
             ];
           };
           cmp-zsh.enable = true;
@@ -417,13 +422,6 @@
         # #     endif
         # #    endfunction
         # #'';
-
-        # keymaps = [
-        #   {
-        #     key = ";";
-        #     action = ":";
-        #   }
-        # ];
       };
     };
   };

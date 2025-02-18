@@ -138,23 +138,23 @@
 
           exec = ["hyprshade auto"];
 
-          #render = {
-          #  direct_scanout = true;
-          #  # Fixes some apps stuttering (xournalpp, hyprlock). Possibly an amdgpu bug
-          #  explicit_sync = 0;
-          #  explicit_sync_kms = 0;
-          #};
+          render = {
+            direct_scanout = true;
+            # Fixes some apps stuttering (xournalpp, hyprlock). Possibly an amdgpu bug
+            explicit_sync = 0;
+            explicit_sync_kms = 0;
+          };
 
-          #general = {
-          #  allow_tearing = true;
-          #};
+          general = {
+            allow_tearing = true;
+          };
           xwayland = {
             force_zero_scaling = true;
           };
 
-          #misc = {
-          #  vrr = 1;
-          #};
+          misc = {
+            vrr = 1;
+          };
         };
       };
     };
