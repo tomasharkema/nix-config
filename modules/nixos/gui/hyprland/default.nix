@@ -6,14 +6,10 @@
 }: {
   config = {
     programs = {
-      hyprland = {
-        enable = true;
-      };
+      hyprland = {enable = true;};
       hyprlock.enable = true;
     };
-    services = {
-      hypridle.enable = true;
-    };
+    services = {hypridle.enable = true;};
     environment.systemPackages = with pkgs; [
       pyprland
       hyprpicker
@@ -48,16 +44,15 @@
     ];
 
     home-manager.users.tomas = {
-      systemd.user.targets.tray.Unit.Requires = lib.mkForce ["graphical-session.target"];
+      systemd.user.targets.tray.Unit.Requires =
+        lib.mkForce ["graphical-session.target"];
       home.sessionVariables = {
         QT_QPA_PLATFORM = "wayland";
         SDL_VIDEODRIVER = "wayland";
         XDG_SESSION_TYPE = "wayland";
       };
 
-      xdg.portal = {
-        enable = true;
-      };
+      xdg.portal = {enable = true;};
 
       programs = {
         rofi = {
@@ -69,9 +64,7 @@
 
         wlogout.enable = true;
 
-        hyprlock = {
-          enable = true;
-        };
+        hyprlock = {enable = true;};
 
         waybar = {
           enable = true;
@@ -82,9 +75,7 @@
       };
 
       services = {
-        swaync = {
-          enable = true;
-        };
+        swaync = {enable = true;};
         hypridle = {
           enable = true;
           settings = {
@@ -93,8 +84,10 @@
               # unlock_cmd = ''${pkgs.libnotify}/bin/notify-send "unlock!"''; # same as above, but unlock
               # before_sleep_cmd = ''${pkgs.libnotify}/bin/notify-send "Zzz"''; # command ran before sleep
               # after_sleep_cmd = ''${pkgs.libnotify}/bin/notify-send "Awake!"''; # command ran after sleep
-              ignore_dbus_inhibit = false; # whether to ignore dbus-sent idle-inhibit requests (used by e.g. firefox or steam)
-              ignore_systemd_inhibit = false; # whether to ignore systemd-inhibit --what=idle inhibitors
+              ignore_dbus_inhibit =
+                false; # whether to ignore dbus-sent idle-inhibit requests (used by e.g. firefox or steam)
+              ignore_systemd_inhibit =
+                false; # whether to ignore systemd-inhibit --what=idle inhibitors
             };
 
             listener = {
@@ -136,8 +129,11 @@
             }"
           ];
 
-          exec = ["hyprshade auto"];
-
+          exec-once = ["hyprshade auto"];
+          experimental = {
+            # hdr = true;
+            # wide_color_gamut = true;
+          };
           render = {
             direct_scanout = true;
             # Fixes some apps stuttering (xournalpp, hyprlock). Possibly an amdgpu bug
@@ -145,16 +141,10 @@
             explicit_sync_kms = 0;
           };
 
-          general = {
-            allow_tearing = true;
-          };
-          xwayland = {
-            force_zero_scaling = true;
-          };
+          general = {allow_tearing = true;};
+          xwayland = {force_zero_scaling = true;};
 
-          misc = {
-            vrr = 1;
-          };
+          misc = {vrr = 1;};
         };
       };
     };

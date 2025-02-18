@@ -42,9 +42,7 @@
 
       hostName = "wodan";
 
-      firewall = {
-        enable = false;
-      };
+      firewall = {enable = false;};
 
       useDHCP = lib.mkDefault true;
 
@@ -83,8 +81,7 @@
       gamemode.enable = true;
       quiet-boot.enable = true;
       hidpi.enable = true;
-      gnome = {
-      };
+      gnome = {};
     };
 
     services = {
@@ -105,10 +102,7 @@
           spec = "UUID=f3558990-77b0-4113-b45c-3d2da3f46c14";
           hashTableSizeMB = 2048;
           verbosity = "crit";
-          extraOptions = [
-            "--loadavg-target"
-            "2.0"
-          ];
+          extraOptions = ["--loadavg-target" "2.0"];
         };
       };
 
@@ -135,7 +129,13 @@
     };
 
     virtualisation.waydroid.enable = true;
-    chaotic.hdr.enable = true;
+
+    # chaotic.hdr = {
+    #   enable = true;
+    #
+    #   specialisation.enable = false;
+    # };
+
     # virtualisation.kvmgt = {
     #   enable = true;
     #   device = "0000:01:00.0";
@@ -235,9 +235,7 @@
     };
 
     boot = {
-      tmp = {
-        useTmpfs = true;
-      };
+      tmp = {useTmpfs = true;};
       binfmt.emulatedSystems = ["aarch64-linux"];
 
       supportedFilesystems = [
