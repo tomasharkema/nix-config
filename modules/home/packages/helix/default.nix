@@ -16,13 +16,19 @@
             select = "underline";
           };
           true-color = true;
+
+          lsp = {
+            enable = true;
+            display-inlay-hints = true;
+          };
+          auto-save = {focus-lost = true;};
         };
       };
       languages.language = [
         {
           name = "nix";
           auto-format = true;
-          formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
+          formatter.command = "${pkgs.alejandra}/bin/alejandra";
         }
       ];
       # themes = {
