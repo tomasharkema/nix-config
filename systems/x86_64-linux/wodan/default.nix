@@ -59,10 +59,10 @@
           #   }
           # ];
         };
-        "eno1" = {
-          mtu = 9000;
-          wakeOnLan.enable = true;
-        };
+        # "eno1" = {
+        #   mtu = 9000;
+        #   wakeOnLan.enable = true;
+        # };
       };
 
       # dhcpcd.extraConfig = ''

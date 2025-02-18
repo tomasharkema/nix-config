@@ -17,11 +17,7 @@
       #   (assertPackage pkgs "sssd")
     ];
 
-    age.secrets = {
-      cachix-key = {
-        rekeyFile = ./cachix-key.age;
-      };
-    };
+    age.secrets = {cachix-key = {rekeyFile = ./cachix-key.age;};};
 
     system.build.self = inputs.self;
     systemd.additionalUpstreamSystemUnits = ["systemd-bsod.service"];
@@ -54,9 +50,7 @@
 
     virtualisation.spiceUSBRedirection.enable = true;
 
-    zramSwap = {
-      enable = lib.mkDefault true;
-    };
+    zramSwap = {enable = lib.mkDefault true;};
 
     console = {
       earlySetup = true;
@@ -112,7 +106,9 @@
           (
             if config.traits.server.enable
             then lib.mkDefault pkgs.linuxPackages_cachyos-server
-            else lib.mkDefault pkgs.linuxPackages_cachyos # pkgs.linuxPackages_latest # pkgs.linuxPackages_cachyos
+            else
+              lib.mkDefault
+              pkgs.linuxPackages_cachyos # pkgs.linuxPackages_latest # pkgs.linuxPackages_cachyos
           ); # (pkgs.linuxPackagesFor pkgs.linux_cachyos);
 
       kernelModules = [
@@ -164,6 +160,7 @@
       enableAllTerminfo = pkgs.stdenv.isx86_64;
       systemPackages =
         (with pkgs; [
+          custom.zide
           custom.wikiman
           custom.glide
           custom.binwalk
@@ -308,17 +305,15 @@
           sshed
           # rmfuse
         ])
-        ++ (lib.optionals pkgs.stdenv.isx86_64 (
-          with pkgs; [
-            gnutls
-            cmospwd
-            uefisettings
-            libsmbios
-            custom.ztui
-            dmidecode
-            refind
-          ]
-        ));
+        ++ (lib.optionals pkgs.stdenv.isx86_64 (with pkgs; [
+          gnutls
+          cmospwd
+          uefisettings
+          libsmbios
+          custom.ztui
+          dmidecode
+          refind
+        ]));
     };
 
     systemd.tmpfiles = {
@@ -337,9 +332,7 @@
 
     # proxy-services.enable = lib.mkDefault true;
 
-    systemd = {
-      enableEmergencyMode = lib.mkDefault true;
-    };
+    systemd = {enableEmergencyMode = lib.mkDefault true;};
 
     services = {
       scx = {
@@ -447,9 +440,7 @@
 
       seatd.enable = true;
 
-      udisks2 = {
-        enable = true;
-      };
+      udisks2 = {enable = true;};
 
       # das_watchdog.enable = true;
 
@@ -631,9 +622,7 @@
     #     };
 
     networking = {
-      firewall = {
-        enable = lib.mkDefault true;
-      };
+      firewall = {enable = lib.mkDefault true;};
 
       networkmanager.enable = lib.mkDefault true;
       timeServers = ["time.cloudflare.com"];
