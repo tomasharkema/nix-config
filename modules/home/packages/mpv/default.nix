@@ -5,7 +5,7 @@
   osConfig,
   ...
 }: {
-  config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable && false) {
+  config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
     services = {
       # plex-mpv-shim.enable = true;
       mpdris2.enable = true;
@@ -31,14 +31,14 @@
       };
 
       scripts = with pkgs.mpvScripts; [
-        mpris
+        # mpris
         # youtube-upnext
-        simple-mpv-webui
-        mpv-playlistmanager
-        mpv-notify-send
-        mpv-cheatsheet
-        uosc
-        memo
+        # simple-mpv-webui
+        # mpv-playlistmanager
+        # mpv-notify-send
+        # mpv-cheatsheet
+        # uosc
+        # memo
       ];
 
       scriptOpts = {
