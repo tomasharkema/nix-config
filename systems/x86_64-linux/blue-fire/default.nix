@@ -275,7 +275,7 @@ in {
       nvidia = {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
-        nvidiaPersistenced = lib.mkForce true;
+        # nvidiaPersistenced = lib.mkForce true;
 
         # nix-prefetch-url --type sha256 https://us.download.nvidia.com/XFree86/Linux-x86_64/550.90.07/NVIDIA-Linux-x86_64-550.90.07.run
         # package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
