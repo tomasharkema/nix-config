@@ -4,6 +4,8 @@
   lib,
   ...
 }: {
+  options.apps.clamav.onacc = {enable = lib.mkEnableOption "onacc" // {default = true;};};
+
   config = {
     environment.systemPackages = with pkgs; [
       clamtk
@@ -60,29 +62,30 @@
 
       clamav-clamonacc = let
         cfg = config.services.clamav;
-      in {
-        description = "ClamAV On-Access Scanner";
-        after = ["clamav-daemon.service"];
-        requires = ["clamav-daemon.service"];
-        wantedBy = ["multi-user.target"];
-        # wants = lib.optionals cfg.updater.enable ["clamav-freshclam.service"];
+      in
+        lib.mkIf config.apps.clamav.onacc.enable {
+          description = "ClamAV On-Access Scanner";
+          after = ["clamav-daemon.service"];
+          requires = ["clamav-daemon.service"];
+          wantedBy = ["multi-user.target"];
+          # wants = lib.optionals cfg.updater.enable ["clamav-freshclam.service"];
 
-        serviceConfig = {
-          Type = "simple";
-          ExecStartPre = "${pkgs.bash}/bin/bash -c \"while [ ! -S /run/clamav/clamd.ctl ]; do sleep 1; done\"";
-          ExecStart = "${cfg.package}/sbin/clamonacc -F --log=/var/log/clamav/clamonacc.log --move=/root/quarantine";
-          ExecStop = "kill -SIGKILL $MAINPID";
+          serviceConfig = {
+            Type = "simple";
+            ExecStartPre = "${pkgs.bash}/bin/bash -c \"while [ ! -S /run/clamav/clamd.ctl ]; do sleep 1; done\"";
+            ExecStart = "${cfg.package}/sbin/clamonacc -F --log=/var/log/clamav/clamonacc.log --move=/root/quarantine";
+            ExecStop = "kill -SIGKILL $MAINPID";
 
-          # User = "clamav";
-          # Group = "clamav";
-          # StateDirectory = "clamav";
-          # RuntimeDirectory = "clamav";
-          # PrivateTmp = "yes";
-          # PrivateDevices = "yes";
-          # PrivateNetwork = "yes";
-          Slice = "system-clamav.slice";
+            # User = "clamav";
+            # Group = "clamav";
+            # StateDirectory = "clamav";
+            # RuntimeDirectory = "clamav";
+            # PrivateTmp = "yes";
+            # PrivateDevices = "yes";
+            # PrivateNetwork = "yes";
+            Slice = "system-clamav.slice";
+          };
         };
-      };
     };
   };
 }

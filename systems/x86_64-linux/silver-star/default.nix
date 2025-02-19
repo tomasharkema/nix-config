@@ -60,7 +60,7 @@ in {
 
     apps = {
       netdata.server.enable = true;
-
+      clamav.onacc.enable = false;
       mailrise.enable = true;
       atop = {
         enable = true;
@@ -69,7 +69,7 @@ in {
       "bmc-watchdog".enable = true;
       podman.enable = true;
       docker.enable = false;
-      zabbix.server.enable = true;
+      # zabbix.server.enable = true;
       atticd.enable = true;
     };
 
@@ -81,10 +81,10 @@ in {
       # mosh.enable = true;
       xserver.videoDrivers = ["nvidia"];
 
-      "nix-private-cache".enable = true;
+      # "nix-private-cache".enable = true;
 
       healthchecks = {
-        enable = true;
+        # enable = true;
         listenAddress = "0.0.0.0";
 
         # notificationSender = "tomas+hydra@harkema.io";
@@ -295,12 +295,6 @@ in {
     #   };
     # };
 
-    # fileSystems."/etc" = {
-    #   device = "none";
-    #   fsType = "tmpfs";
-    #   options = ["defaults" "size=25%" "mode=755"];
-    # };
-
     hardware = {
       cpu.intel.updateMicrocode = true;
 
@@ -313,7 +307,15 @@ in {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
         # nvidiaPersistenced = lib.mkForce true;
-
+        package = lib.mkForce (config.boot.kernelPackages.nvidiaPackages.vgpu_16_5.overrideAttrs (
+          finalAttrs: previousAttrs: {
+            meta =
+              previousAttrs.meta
+              // {
+                license = lib.licenses.mit;
+              };
+          }
+        ));
         # nix-prefetch-url --type sha256 https://us.download.nvidia.com/XFree86/Linux-x86_64/550.90.07/NVIDIA-Linux-x86_64-550.90.07.run
       };
     };
