@@ -35,14 +35,15 @@
           enable = true;
           settings = {
             LogSyslog = true;
-
+            OnAccessExcludeRootUID = true;
             OnAccessExcludeUname = "clamav";
-            OnAccessMountPath = ["/"];
+            # OnAccessMountPath = ["/"];
             OnAccessIncludePath = ["/home"];
             OnAccessExtraScanning = true;
             OnAccessExcludePath = [
               "^/var/lib"
               "^/srv"
+              "^/nix"
             ];
           };
         };
