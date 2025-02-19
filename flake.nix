@@ -423,8 +423,15 @@
     # allow-unsafe-native-code-during-evaluation = true;
 
     # netrc-file = "/etc/nix/netrc";
-    trusted-public-keys = ["cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="];
-    substituters = ["https://cache.nixos.org/"];
+    trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "tomasharkema:v3sMQpfpSW5KGDK115NB2pQLNzmS2qqjVGa39/fYPjk="
+    ];
+    substituters = [
+      "https://cache.nixos.org/"
+      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
+      "https://nix-cache.ling-lizard.ts.net/tomasharkema"
+    ];
 
     trustedBinaryCaches = [
       "https://cache.nixos.org"
@@ -433,6 +440,7 @@
       "https://nix-community.cachix.org"
       "https://nix-cache.ling-lizard.ts.net/tomasharkema"
       "https://devenv.cachix.org"
+      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
       "https://cuda-maintainers.cachix.org"
     ];
     binaryCaches = [
@@ -442,6 +450,7 @@
       "https://nix-community.cachix.org"
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
+      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
       "https://nix-cache.ling-lizard.ts.net/tomasharkema"
     ];
 
@@ -455,6 +464,7 @@
       "https://cuda-maintainers.cachix.org"
       "https://tomasharkema.cachix.org"
       "https://nix-cache.ling-lizard.ts.net/tomasharkema"
+      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
     ];
 
     extra-trusted-public-keys = [
@@ -468,6 +478,7 @@
       "tomasharkema.cachix.org-1:BV3Sv3qGZ0bcybPFeigwKoxnpj/NBAFYHq9FMO1XgH4="
       "tomasharkema:v3sMQpfpSW5KGDK115NB2pQLNzmS2qqjVGa39/fYPjk="
       "tomasharkema:O7hvvAIoFVjO5giONleXcRE1Og7IDt2DdvAQRg4GCkI="
+
       "cache.ngi0.nixos.org-1:KqH5CBLNSyX184S9BKZJo1LxrxJ9ltnY2uAs5c/f1MA="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
