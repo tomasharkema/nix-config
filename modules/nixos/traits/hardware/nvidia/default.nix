@@ -25,9 +25,15 @@ in {
       type = lib.types.bool;
     };
 
-    grid = lib.mkOption {
-      default = false;
-      type = lib.types.bool;
+    grid = {
+      enable = lib.mkOption {
+        default = false;
+        type = lib.types.bool;
+      };
+      legacy = lib.mkOption {
+        default = false;
+        type = lib.types.bool;
+      };
     };
   };
 
@@ -109,12 +115,12 @@ in {
           #)
           ;
 
-        vgpu = lib.mkIf cfg.grid {
+        vgpu = lib.mkIf cfg.grid.enable {
           patcher = {
             enable = true;
             options = {
               doNotForceGPLLicense = false;
-              remapP40ProfilesToV100D = true;
+              remapP40ProfilesToV100D = cfg.grid.legacy;
             };
             copyVGPUProfiles = {
               "1E87:0000" = "1E30:12BA";

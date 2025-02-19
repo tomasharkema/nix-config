@@ -53,7 +53,10 @@ in {
         nvidia = {
           enable = true;
           open = false;
-          grid = true;
+          grid = {
+            enable = true;
+            legacy = true;
+          };
         };
       };
     };
@@ -307,16 +310,6 @@ in {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
         # nvidiaPersistenced = lib.mkForce true;
-        package = lib.mkForce (config.boot.kernelPackages.nvidiaPackages.vgpu_16_5.overrideAttrs (
-          finalAttrs: previousAttrs: {
-            meta =
-              previousAttrs.meta
-              // {
-                license = lib.licenses.mit;
-              };
-          }
-        ));
-        # nix-prefetch-url --type sha256 https://us.download.nvidia.com/XFree86/Linux-x86_64/550.90.07/NVIDIA-Linux-x86_64-550.90.07.run
       };
     };
 

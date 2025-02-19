@@ -51,7 +51,7 @@ in {
           enable = true;
           beta = false;
           open = false;
-          grid = true;
+          grid = {enable = true;};
         };
       };
     };
