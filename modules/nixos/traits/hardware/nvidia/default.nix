@@ -97,7 +97,7 @@ in {
         nvidiaSettings = true;
 
         package =
-          if cfg.grid
+          if cfg.grid.enable
           then
             config.boot.kernelPackages.nvidiaPackages.vgpu_17_3.overrideAttrs (
               finalAttrs: previousAttrs: {
