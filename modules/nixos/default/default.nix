@@ -71,7 +71,7 @@
         ];
       };
       initrd = {
-        systemd.emergencyAccess = "abcdefg";
+        # systemd.emergencyAccess = "abcdefg";
         includeDefaultModules = true;
       };
 
@@ -332,7 +332,7 @@
 
     # proxy-services.enable = lib.mkDefault true;
 
-    systemd = {enableEmergencyMode = lib.mkDefault true;};
+    # systemd = {enableEmergencyMode = lib.mkDefault true;};
 
     services = {
       scx = {

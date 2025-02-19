@@ -52,8 +52,8 @@
 
     apps.resilio.enable = false;
 
-    systemd.enableEmergencyMode = true;
-    boot.initrd.systemd.emergencyAccess = true;
+    # systemd.enableEmergencyMode = true;
+    # boot.initrd.systemd.emergencyAccess = true;
 
     traits = {
       low-power.enable = true;
