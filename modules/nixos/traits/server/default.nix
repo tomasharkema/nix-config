@@ -30,7 +30,7 @@ in {
 
     hardware = {
       nvidia = {
-        nvidiaPersistenced = true;
+        # nvidiaPersistenced = true;
       };
     };
 
