@@ -63,6 +63,8 @@
         inxi
         pwvucontrol
         usbtop
+        piper
+        libratbag
       ];
     };
 
@@ -148,6 +150,7 @@
     };
 
     services = {
+      ratbagd.enable = true;
       # comin.enable = false;
       abrt.enable = true;
       # remote-builders.client.enable = true;

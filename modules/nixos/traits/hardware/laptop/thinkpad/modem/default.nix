@@ -39,8 +39,8 @@ in {
 
     boot = {
       kernelModules = [
-        # "acpi_call"
-        # "xmm7360"
+        "acpi_call"
+        "xmm7360"
       ];
       initrd.kernelModules = [
         # "acpi_call"
@@ -49,11 +49,11 @@ in {
 
       extraModulePackages = [
         # config.boot.kernelPackages.acpi_call
-        # xmm7360
+        xmm7360
       ];
 
       blacklistedKernelModules = [
-        # "iosm"
+        "iosm"
       ];
     };
 
