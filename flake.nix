@@ -426,11 +426,13 @@
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "tomasharkema:v3sMQpfpSW5KGDK115NB2pQLNzmS2qqjVGa39/fYPjk="
+      "watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="
     ];
     substituters = [
       "https://cache.nixos.org/"
       "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
       "https://nix-cache.ling-lizard.ts.net/tomasharkema"
+      "https://watersucks.cachix.org"
     ];
 
     trustedBinaryCaches = [

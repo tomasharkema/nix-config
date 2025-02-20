@@ -345,13 +345,6 @@
         package = pkgs.scx_git.full;
         scheduler = "scx_lavd"; # "scx_bpfland";
       };
-
-      # cachix-watch-store = {
-      #   enable = true;
-      #   cacheName = "tomasharkema";
-      #   cachixTokenFile = config.age.secrets.cachix-key.path;
-      # };
-
       earlyoom.enableNotifications = true;
 
       smartd = {

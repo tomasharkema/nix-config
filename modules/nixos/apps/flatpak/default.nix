@@ -56,10 +56,12 @@ in {
           #"org.freefilesync.FreeFileSync"
           #"org.gnome.meld"
           #"com.bitwarden.desktop"
+          "io.github.flattool.Warehouse"
         ]
         ++ (
           lib.optionals pkgs.stdenv.isx86_64
           [
+            "com.usebottles.bottles"
             "com.discordapp.Discord"
             "com.spotify.Client"
             "tv.plex.PlexDesktop"
