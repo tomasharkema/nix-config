@@ -57,18 +57,17 @@ in {
       ];
     };
 
-    # systemd.services.xmm7360 = {
-    #   description = "XMM7360 Modem Init";
-    #   after = ["NetworkManager.service"];
-    #   requires = ["multi-user.target" "systemd-user-sessions.service" "dev-ttyXMM2.device"];
-    #   wantedBy = ["graphical.target"];
-
-    #   serviceConfig = {
-    #     Type = "oneshot";
-    #     ExecStart = "${xmm7360}/bin/open_xdatachannel.py -c /etc/xmm7360";
-    #     RemainAfterExit = "yes";
-    #     TimeoutSec = "60";
-    #   };
-    # };
+    systemd.services.xmm7360 = {
+      description = "XMM7360 Modem Init";
+      after = ["NetworkManager.service"];
+      requires = ["multi-user.target" "systemd-user-sessions.service" "dev-ttyXMM2.device"];
+      wantedBy = ["graphical.target"];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${xmm7360}/bin/open_xdatachannel.py -c /etc/xmm7360";
+        RemainAfterExit = "yes";
+        TimeoutSec = "60";
+      };
+    };
   };
 }
