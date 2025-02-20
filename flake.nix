@@ -91,7 +91,7 @@
         # catppuccin.homeManagerModules.catppuccin
         nixvim.homeManagerModules.nixvim
         nix-index-database.hmModules.nix-index
-        _1password-shell-plugins.hmModules.default
+        op-shell-plugins.hmModules.default
         # agenix.homeManagerModules.default
       ];
 
@@ -750,7 +750,7 @@
     # inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    _1password-shell-plugins = {
+    op-shell-plugins = {
       url = "github:1Password/shell-plugins";
 
       inputs = {
