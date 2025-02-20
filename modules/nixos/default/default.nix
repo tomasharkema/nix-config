@@ -20,7 +20,12 @@
     age.secrets = {cachix-key = {rekeyFile = ./cachix-key.age;};};
 
     system.build.self = inputs.self;
-    systemd.additionalUpstreamSystemUnits = ["systemd-bsod.service"];
+
+    systemd = {
+      additionalUpstreamSystemUnits = ["systemd-bsod.service"];
+      services."prepare-kexec".wantedBy = ["multi-user.target"];
+    };
+
     # Set your time zone.
     time.timeZone = "Europe/Amsterdam";
 
