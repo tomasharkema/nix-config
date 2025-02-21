@@ -83,7 +83,9 @@
           dig = "dog";
           yz = "yazi";
           ys = "yazi /sys";
-
+          tree = "tre";
+          man = "batman";
+          wget = "wget2";
           # silver-star-ipmi raw 0x30 0x30 0x01 0x00
           # silver-star-ipmi raw 0x30 0x30 0x02 0xff 0x10
           silver-star-ipmi = ''

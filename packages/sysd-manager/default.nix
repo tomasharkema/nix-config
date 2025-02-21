@@ -15,7 +15,6 @@
   pango,
   systemd,
   gtksourceview5,
-  tree,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "sysd-manager";
@@ -64,9 +63,6 @@ rustPlatform.buildRustPackage rec {
   # pythonImportsCheck = [ "sysd_manager" ];
 
   postInstall = ''
-
-    ${tree}/bin/tree .
-
     mkdir -p $out/share/gsettings-schemas/${pname}-${version}/glib-2.0/schemas
     cp -r data/* $out/share/
     mv $out/share/schemas $out/share/gsettings-schemas/${pname}-${version}/glib-2.0/schemas
