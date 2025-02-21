@@ -30,6 +30,11 @@ in {
 
     facter.reportPath = ./facter.json;
 
+    # users = {
+    #   extraUsers = {healthchecks = {};};
+    #   extraGroups = {healthchecks = {};};
+    # };
+
     disks.btrfs = {
       enable = true;
       main = "/dev/nvme0n1";
@@ -87,7 +92,7 @@ in {
       # "nix-private-cache".enable = true;
 
       healthchecks = {
-        # enable = true;
+        enable = true;
         listenAddress = "0.0.0.0";
 
         # notificationSender = "tomas+hydra@harkema.io";
@@ -404,6 +409,10 @@ in {
       tmp = {
         useTmpfs = true;
       };
+
+      crashDump = {enable = true;};
+      copyKernels = {enable = true;};
+
       # binfmt.emulatedSystems = ["aarch64-linux"];
       kernelPackages = pkgs.linuxPackages_6_6;
       kernelParams = [
