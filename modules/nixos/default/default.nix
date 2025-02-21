@@ -87,10 +87,6 @@
       hardwareScan = true;
 
       kernelParams = [
-        "preempt=lazy"
-        "mitigations=off"
-        "delayacct"
-
         "zswap.enabled=1"
       ];
 
