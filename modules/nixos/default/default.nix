@@ -76,14 +76,16 @@
         ];
       };
       initrd = {
+        compressor = "zstd";
+        compressorArgs = ["-19"];
         # systemd.emergencyAccess = "abcdefg";
-        includeDefaultModules = true;
+        #includeDefaultModules = true;
       };
 
       hardwareScan = true;
 
       kernelParams = [
-        "preempt=full"
+        "preempt=lazy"
         "mitigations=off"
         "delayacct"
 
@@ -165,6 +167,7 @@
       enableAllTerminfo = pkgs.stdenv.isx86_64;
       systemPackages =
         (with pkgs; [
+          # lz4
           custom.zide
           custom.wikiman
           custom.glide
@@ -447,7 +450,7 @@
         # passwordAuthentication = false;
         settings = {
           # PasswordAuthentication = false;
-          PermitRootLogin = "no";
+          PermitRootLogin = lib.mkForce "yes";
 
           # PasswordAuthentication = false;
           # KbdInteractiveAuthentication = true;
@@ -562,6 +565,7 @@
           show_program_path = false;
           hide_kernel_threads = true;
           hide_userland_threads = true;
+          screen_tabs = true;
         };
       };
 

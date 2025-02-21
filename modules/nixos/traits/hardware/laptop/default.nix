@@ -59,17 +59,22 @@ in {
         enable = true;
         logEvents = true;
 
-        # acEventCommands = ''
-        #   case "$@" in
-        #     *00000001)
-        #       systemctl start beesd@root.service
-        #       ;;
+        acEventCommands = let
+          systemctl = "${pkgs.systemd}/bin/systemctl";
+          ppd = "${pkgs.power-profiles-daemon}/bin/powerprofilesctl";
+        in ''
+          case "$@" in
+            *00000001)
+              ${systemctl} start --no-block beesd@root.service
+              ${ppd} set performance
+             ;;
 
-        #     *00000000)
-        #       systemctl stop beesd@root.service
-        #       ;;
-        #   esac
-        # '';
+            *00000000)
+              ${systemctl} stop --no-block beesd@root.service
+              ${ppd} set performance
+             ;;
+          esac
+        '';
       };
     };
   };

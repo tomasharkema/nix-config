@@ -20,7 +20,10 @@
       };
     };
 
-    facter.reportPath = ./facter.json;
+    facter = {
+      reportPath = ./facter.json;
+      # detected.boot.graphics.kernelModules = lib.mkForce ["i915" "nouveau"];
+    };
 
     disks.btrfs = {
       enable = true;

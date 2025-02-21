@@ -52,7 +52,6 @@ in {
     boot = {
       initrd = {
         # verbose = true;
-        compressorArgs = ["-19"];
 
         # secrets = {
         # "/etc/tor/onion/bootup" = "/etc/tor/onion/bootup";
