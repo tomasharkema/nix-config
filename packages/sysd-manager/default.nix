@@ -45,7 +45,6 @@ rustPlatform.buildRustPackage rec {
   ];
 
   buildInputs = [
-    tree
     systemd
     cairo
     gdk-pixbuf
