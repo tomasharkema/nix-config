@@ -1,4 +1,24 @@
-[
+{pkgs, ...}: let
+  power_menu = pkgs.writeText "power_menu.xml" ''
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <interface>
+        <object class="GtkMenu" id="menu">
+            <child>
+                <object class="GtkMenuItem" id="poweroff">
+                    <property name="label">Power Off</property>
+                </object>
+            </child>
+            <child>
+                <object class="GtkMenuItem" id="reboot">
+                    <property name="label">Reboot</property>
+                </object>
+            </child>
+        </object>
+    </interface>
+
+  '';
+in [
   {
     # layer = "top";
     # position = "top";
@@ -218,7 +238,7 @@
       "format" = "⏻ ";
       "tooltip" = false;
       "menu" = "on-click";
-      "menu-file" = "$HOME/.config/waybar/power_menu.xml"; # // Menu file in resources folder
+      "menu-file" = "${power_menu}"; # // Menu file in resources folder
       "menu-actions" = {
         "shutdown" = "shutdown";
         "reboot" = "reboot";

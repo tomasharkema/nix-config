@@ -75,11 +75,13 @@
           #   })
         ];
       };
+      crashDump.enable = true;
       initrd = {
         compressor = "zstd";
         compressorArgs = ["-19"];
         # systemd.emergencyAccess = "abcdefg";
         #includeDefaultModules = true;
+        unl0kr = {enable = true;};
       };
 
       hardwareScan = true;
