@@ -81,7 +81,7 @@
         compressorArgs = ["-19"];
         # systemd.emergencyAccess = "abcdefg";
         #includeDefaultModules = true;
-        unl0kr = {enable = true;};
+        unl0kr = {enable = config.disks.btrfs.encrypt;};
       };
 
       hardwareScan = true;
