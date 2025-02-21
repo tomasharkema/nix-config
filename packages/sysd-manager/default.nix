@@ -67,8 +67,9 @@ rustPlatform.buildRustPackage rec {
 
     ${tree}/bin/tree .
 
-    mkdir $out/share
+    mkdir -p $out/share/gsettings-schemas/${pname}-${version}/glib-2.0/schemas
     cp -r data/* $out/share/
+    mv $out/share/schemas $out/share/gsettings-schemas/${pname}-${version}/glib-2.0/schemas
 
     # sleep 1000
   '';
