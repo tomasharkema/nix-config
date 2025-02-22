@@ -82,6 +82,7 @@ in {
       # ++
       packages = with pkgs;
         [
+          tre-command
           yazi
           squash-folder
           lrzsz

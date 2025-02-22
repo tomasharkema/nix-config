@@ -14,11 +14,14 @@
   libadwaita,
   pango,
   systemd,
+  desktop-file-utils,
+  gettext,
+  gobject-introspection,
   gtksourceview5,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "sysd-manager";
-  version = "1.15.1";
+  version = "1.15.0";
   # pyproject = true;
 
   src = fetchFromGitHub {
@@ -27,12 +30,10 @@ rustPlatform.buildRustPackage rec {
     rev = "v${version}";
     hash = "sha256-iV1cxZ1PludRo2zlAXQTu1CQJ5hdrm2YNi/5s+aa2Io=";
   };
+
   doCheck = false;
-  #cargoLock = {lockFile = ./Cargo.lock;};
-  cargoHash = "sha256-Ys3nvHX0F7nJikVwd0anB2fcfwcHdvdZ1Ww2lemy/GM=";
-  #postPatch = ''
-  #  ln -s ${./Cargo.lock} Cargo.lock
-  #'';
+
+  cargoHash = "sha256-fFr6TFF9kbCWmgE2TgvNN9swmNPJhL//0qeHd1RXo3E=";
 
   nativeBuildInputs = [
     cargo
@@ -41,6 +42,9 @@ rustPlatform.buildRustPackage rec {
     python3.pkgs.wheel
     rustPlatform.cargoSetupHook
     rustc
+    desktop-file-utils
+    gettext
+    gobject-introspection
     wrapGAppsHook4
   ];
 
@@ -55,18 +59,10 @@ rustPlatform.buildRustPackage rec {
     gtksourceview5
   ];
 
-  # propagatedBuildInputs = with python3.pkgs; [
-  #   aiohttp
-  # ];
-
-  # pythonImportsCheck = [ "sysd_manager" ];
-
   postInstall = ''
     mkdir -p $out/share/gsettings-schemas/${pname}-${version}/glib-2.0/schemas
     cp -r data/* $out/share/
-    mv $out/share/schemas $out/share/gsettings-schemas/${pname}-${version}/glib-2.0/schemas
-
-    # sleep 1000
+    mv $out/share/schemas/* $out/share/gsettings-schemas/${pname}-${version}/glib-2.0/schemas
   '';
 
   meta = with lib; {
