@@ -75,20 +75,18 @@
           #   })
         ];
       };
+      crashDump.enable = true;
       initrd = {
         compressor = "zstd";
         compressorArgs = ["-19"];
         # systemd.emergencyAccess = "abcdefg";
         #includeDefaultModules = true;
+        unl0kr = {enable = config.disks.btrfs.encrypt;};
       };
 
       hardwareScan = true;
 
       kernelParams = [
-        "preempt=lazy"
-        "mitigations=off"
-        "delayacct"
-
         "zswap.enabled=1"
       ];
 
@@ -120,6 +118,7 @@
 
       kernelModules = [
         "wireguard"
+        "netconsole"
         # "apfs"
       ];
 
@@ -128,7 +127,7 @@
         # "apfs"
         "nfs"
       ];
-
+      initrd.kernelModules = ["netconsole"];
       loader = {
         systemd-boot = {
           netbootxyz.enable = true;
@@ -172,6 +171,11 @@
           custom.wikiman
           custom.glide
           custom.binwalk
+          bat-extras.batman
+          bat-extras.batdiff
+          bat-extras.batwatch
+          bat-extras.batpipe
+          bat-extras.batgrep
           # compsize
           # dirdiff
           # dry

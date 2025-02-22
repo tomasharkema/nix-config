@@ -35,6 +35,12 @@ in {
       playerctld.enable = true;
     };
 
+    boot.kernelParams = [
+      "preempt=lazy"
+      "mitigations=off"
+      "delayacct"
+    ];
+
     environment.systemPackages = with pkgs; [
     ];
   };

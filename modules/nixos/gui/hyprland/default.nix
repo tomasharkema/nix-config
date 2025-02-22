@@ -70,7 +70,7 @@
           enable = true;
           systemd.enable = true;
           style = builtins.readFile ./waybar.css;
-          settings = import ./waybar.nix;
+          settings = import ./waybar.nix {inherit pkgs;};
         };
       };
 
