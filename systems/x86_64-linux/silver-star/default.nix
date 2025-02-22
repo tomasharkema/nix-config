@@ -30,11 +30,6 @@ in {
 
     facter.reportPath = ./facter.json;
 
-    # users = {
-    #   extraUsers = {healthchecks = {};};
-    #   extraGroups = {healthchecks = {};};
-    # };
-
     disks.btrfs = {
       enable = true;
       main = "/dev/nvme0n1";
@@ -145,25 +140,7 @@ in {
             "2.0"
           ];
         };
-      };
-      # icingaweb2 = {
-      #   enable = true;
-      #   virtualHost = "mon.blue-fire.harkema.intra";
-      #   modules.setup.enable = true;
-      #   authentications = {
-      #     icingaweb = {
-      #       backend = "db";
-      #       resource = "icingaweb_db";
-      #     };
-      #   };
-      # };
-
-      # ha.initialMaster = true;
-      # command-center = {
-      #   enableBot = true;
-      # };
-
-      # tcsd.enable = true;
+      }; # tcsd.enable = true;
       kmscon.enable = lib.mkForce false;
 
       prometheus.exporters = {
@@ -193,11 +170,6 @@ in {
 
       # services."docker-compose@atuin".wantedBy = ["multi-user.target"];
     };
-
-    # services = {
-    # podman.enable = true;
-    # freeipa.replica.enable = true;
-    # };
 
     networking = {
       hostName = "silver-star";
@@ -306,8 +278,8 @@ in {
     hardware = {
       cpu.intel.updateMicrocode = true;
 
-      enableAllFirmware = true;
-      enableRedistributableFirmware = true;
+      #enableAllFirmware = true;
+      #enableRedistributableFirmware = true;
 
       nvidia-container-toolkit.enable = true;
 
@@ -315,6 +287,11 @@ in {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
         # nvidiaPersistenced = lib.mkForce true;
+        vgpu.patcher = {
+          options = {
+            remapP40ProfilesToV100D = lib.mkForce true;
+          };
+        };
       };
     };
 
