@@ -260,6 +260,23 @@
 
       loader.systemd-boot.memtest86.enable = true;
 
+      kernelPatches = [
+        {
+          name = "pstore-config";
+          patch = null;
+          extraStructuredConfig = {
+            PSTORE = lib.kernel.yes;
+            PSTORE_DEFLATE_COMPRESS = lib.kernel.yes;
+            PSTORE_COMPRESS = lib.kernel.yes;
+            PSTORE_DEFLATE_COMPRESS_DEFAULT = lib.kernel.yes;
+            PSTORE_COMPRESS_DEFAULT = "deflate";
+            PSTORE_CONSOLE = lib.kernel.yes;
+            PSTORE_PMSG = lib.kernel.yes;
+            PSTORE_RAM = lib.kernel.yes;
+          };
+        }
+      ];
+
       recovery = {
         enable = true;
         install = true;

@@ -19,6 +19,8 @@ in {
       // {
         default = !(cfg.server.enable);
       };
+
+    pstore.enable = lib.mkEnableOption "abrt pstore";
   };
 
   config = lib.mkIf cfg.enable {
@@ -53,7 +55,7 @@ in {
       };
     };
     # https://askubuntu.com/q/1449867
-    boot = {
+    boot = lib.mkIf cfg.pstore.enable {
       kernelParams = [
         "efi_pstore.pstore_disable=0"
       ];
@@ -209,7 +211,7 @@ in {
       tmpfiles = {
         packages = [pkgs.abrt];
 
-        settings."99-pstore" = {
+        settings."99-pstore" = lib.mkIf cfg.pstore.enable {
           "/sys/module/printk/parameters/always_kmsg_dump".w.argument = "Y";
           "/sys/module/kernel/parameters/crash_kexec_post_notifiers".w.argument = "Y";
         };

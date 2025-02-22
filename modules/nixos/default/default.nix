@@ -7,10 +7,10 @@
 }: {
   config = {
     assertions = [
-      {
-        assertion = (builtins.length config.boot.kernelPatches) == 0;
-        message = "Kernelpatches require recompilation :(";
-      }
+      # {
+      #   assertion = (builtins.length config.boot.kernelPatches) == 0;
+      #   message = "Kernelpatches require recompilation :(";
+      # }
 
       #   (assertPackage pkgs "_389-ds-base")
       #   (assertPackage pkgs "freeipa")
