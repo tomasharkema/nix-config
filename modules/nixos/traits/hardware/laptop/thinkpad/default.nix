@@ -166,8 +166,8 @@ in {
 
     security.pam.services = {
       "gdm-fingerprint" = {
-        #     # enableGnomeKeyring = true;
-        fprintAuth = true;
+        # enableGnomeKeyring = true;
+        # fprintAuth = true;
       };
       xscreensaver = {
         # enableGnomeKeyring = true;

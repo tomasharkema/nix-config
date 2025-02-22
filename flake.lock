@@ -1065,11 +1065,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1740060750,
-        "narHash": "sha256-FOC9OzJ5Ckh6VjzGSRh4F3UCUOdM8NrzQT19PQcQJ44=",
+        "lastModified": 1740208222,
+        "narHash": "sha256-FqgPcK5BK+Mc4cGBCGz555UsVd/TQK9FvmuamBWu+ZY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0c0b0ac8af6ca76b1fcb514483a9bd73c18f1e8c",
+        "rev": "f4a07823a298deff0efb0db30f9318511de7c232",
         "type": "github"
       },
       "original": {
@@ -1234,11 +1234,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1740102075,
-        "narHash": "sha256-4ZFfFwcPTWVVxZKcfouAVx8eDBDTaHUSySHJCe+xQus=",
+        "lastModified": 1740188262,
+        "narHash": "sha256-Lud4scstZhNyvKQm2r8yTqAtO/nsE0gHM2fr1FEd+mo=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "e319f4c8f0082f2b69cf7580b41cf577211f3742",
+        "rev": "98d916077d100f8e220dad75c70a61382747b609",
         "type": "github"
       },
       "original": {
@@ -1757,11 +1757,11 @@
         "treefmt-nix": "treefmt-nix_5"
       },
       "locked": {
-        "lastModified": 1740133916,
-        "narHash": "sha256-1PIIuqd4Tfv9smr7AiMlMO+5VD3H9rwIiuzkNdXm2BE=",
+        "lastModified": 1740218739,
+        "narHash": "sha256-81XOR255AgeMMnMvvKXEErikCYIPnwigczbmUCSaAQo=",
         "owner": "xddxdd",
         "repo": "nur-packages",
-        "rev": "421f8479fe17d475000babd9691cf6a007b38bd9",
+        "rev": "10977ab9f2ac2d972ebf055c07943e17bd10f9f4",
         "type": "github"
       },
       "original": {
@@ -2012,15 +2012,14 @@
         "rpi-linux-6_12_11-src": "rpi-linux-6_12_11-src",
         "rpi-linux-6_6_67-src": "rpi-linux-6_6_67-src",
         "rpi-linux-stable-src": "rpi-linux-stable-src",
-        "rpicam-apps-src": "rpicam-apps-src",
-        "u-boot-src": "u-boot-src"
+        "rpicam-apps-src": "rpicam-apps-src"
       },
       "locked": {
-        "lastModified": 1738949424,
-        "narHash": "sha256-w+OitboChUZUZAn2lFA3YGxUBSz4F5TLqBwEkkEtN+0=",
+        "lastModified": 1740187527,
+        "narHash": "sha256-thcUeJlXJ6lD5s1UDKE3jYyzdSRxMjcE/mSWf5Y0KHU=",
         "owner": "nix-community",
         "repo": "raspberry-pi-nix",
-        "rev": "f3171167258766def0851915685b9a6e7ca7e96e",
+        "rev": "4f6706677c4adeca591ada531fc4d7b7b68c0414",
         "type": "github"
       },
       "original": {
@@ -2731,19 +2730,6 @@
         "owner": "neuralinkcorp",
         "repo": "tsui",
         "type": "github"
-      }
-    },
-    "u-boot-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1719857238,
-        "narHash": "sha256-mJ2TBy0Y5ZtcGFgtU5RKr0UDUp5FWzojbFb+o/ebRJU=",
-        "type": "tarball",
-        "url": "https://ftp.denx.de/pub/u-boot/u-boot-2024.07.tar.bz2"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://ftp.denx.de/pub/u-boot/u-boot-2024.07.tar.bz2"
       }
     },
     "utils": {

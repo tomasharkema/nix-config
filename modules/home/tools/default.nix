@@ -127,7 +127,7 @@ with pkgs; {
         starship
         tldr
         tmate
-        tree
+        tre
         unrar
         unzip
         wget

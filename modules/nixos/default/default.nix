@@ -118,6 +118,7 @@
 
       kernelModules = [
         "wireguard"
+        "netconsole"
         # "apfs"
       ];
 
@@ -126,7 +127,7 @@
         # "apfs"
         "nfs"
       ];
-
+      initrd.kernelModules = ["netconsole"];
       loader = {
         systemd-boot = {
           netbootxyz.enable = true;
@@ -170,6 +171,11 @@
           custom.wikiman
           custom.glide
           custom.binwalk
+          bat-extras.batman
+          bat-extras.batdiff
+          bat-extras.batwatch
+          bat-extras.batpipe
+          bat-extras.batgrep
           # compsize
           # dirdiff
           # dry
@@ -445,10 +451,11 @@
 
       openssh = {
         enable = true;
-        # passwordAuthentication = false;
+        permitRootLogin = lib.mkForce "no";
+        passwordAuthentication = false;
         settings = {
-          # PasswordAuthentication = false;
-          PermitRootLogin = lib.mkForce "yes";
+          PasswordAuthentication = false;
+          PermitRootLogin = lib.mkForce "no";
 
           # PasswordAuthentication = false;
           # KbdInteractiveAuthentication = true;
