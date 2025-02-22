@@ -447,10 +447,11 @@
 
       openssh = {
         enable = true;
-        # passwordAuthentication = false;
+        permitRootLogin = lib.mkForce "no";
+        passwordAuthentication = false;
         settings = {
-          # PasswordAuthentication = false;
-          PermitRootLogin = lib.mkForce "yes";
+          PasswordAuthentication = false;
+          PermitRootLogin = lib.mkForce "no";
 
           # PasswordAuthentication = false;
           # KbdInteractiveAuthentication = true;

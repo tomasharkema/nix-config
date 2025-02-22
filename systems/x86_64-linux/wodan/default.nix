@@ -130,11 +130,11 @@
 
     virtualisation.waydroid.enable = true;
 
-    chaotic.hdr = {
-      enable = true;
+    # chaotic.hdr = {
+    #   enable = true;
 
-      specialisation.enable = false;
-    };
+    #   specialisation.enable = false;
+    # };
 
     # virtualisation.kvmgt = {
     #   enable = true;
@@ -252,7 +252,7 @@
         netboot.enable = true;
         # memtest86.enable = true;
       };
-      # kernelPackages = pkgs.linuxPackages_latest;
+      kernelPackages = pkgs.linuxPackages_latest;
       extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
       kernelModules = [
         #"i2c-dev"
