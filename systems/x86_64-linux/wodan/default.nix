@@ -46,17 +46,32 @@
 
       useDHCP = lib.mkDefault true;
 
+      bridges.br0 = {
+        interfaces = ["enp2s0"];
+      };
+
+      defaultGateway = {
+        address = "192.168.1.1";
+        interface = "br0";
+      };
+
       interfaces = {
         "enp2s0" = {
           mtu = 9000;
           wakeOnLan.enable = true;
-          # ipv4.addresses = [
-          #   {
-          #     address = "192.168.1.170";
-          #     prefixLength = 24;
-          #   }
-          # ];
+          useDHCP = lib.mkDefault false;
         };
+        "br0" = {
+          useDHCP = lib.mkDefault false;
+          mtu = 9000;
+          ipv4.addresses = [
+            {
+              address = "192.168.1.170";
+              prefixLength = 24;
+            }
+          ];
+        };
+
         # "eno1" = {
         #   mtu = 9000;
         #   wakeOnLan.enable = true;
@@ -252,7 +267,7 @@
         netboot.enable = true;
         # memtest86.enable = true;
       };
-      kernelPackages = pkgs.linuxPackages_latest;
+
       extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
       kernelModules = [
         #"i2c-dev"

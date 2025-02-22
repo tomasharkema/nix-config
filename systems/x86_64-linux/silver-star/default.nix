@@ -120,8 +120,6 @@ in {
         };
       };
 
-      usbguard.enable = false;
-
       watchdogd = {
         enable = true;
       };
@@ -140,7 +138,8 @@ in {
             "2.0"
           ];
         };
-      }; # tcsd.enable = true;
+      };
+      # tcsd.enable = true;
       kmscon.enable = lib.mkForce false;
 
       prometheus.exporters = {
@@ -150,14 +149,6 @@ in {
         # idrac.enable = true;
         # snmp.enable = true;
       };
-      # nfs = {
-      #   server = {
-      #     enable = true;
-      #     exports = ''
-      #       /export/media        *(rw,fsid=0,no_subtree_check)
-      #     '';
-      #   };
-      # };
     };
 
     systemd = {
