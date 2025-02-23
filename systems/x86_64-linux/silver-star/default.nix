@@ -278,6 +278,23 @@ in {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
         # nvidiaPersistenced = lib.mkForce true;
+        package = config.boot.kernelPackages.nvidiaPackages.vgpu_17_3.overrideAttrs (old: {
+          meta.license = lib.licenses.mit;
+          patches =
+            #old.patches +
+            [
+              # (pkgs.fetchpatch {
+              #   url = "https://gitlab.com/polloloco/vgpu-proxmox/-/raw/master/550.90.05.patch?ref_type=heads&inline=false";
+              #   hash = "sha256-dvVQWa226G155YBeMh2zrgv4TcF0KBdNrfxoJ2V0mGk=";
+              # })
+              # ../../../modules/nixos/traits/hardware/nvidia/6.12.patch
+
+              # (pkgs.fetchpatch {
+              #   url = "https://github.com/Binary-Eater/open-gpu-kernel-modules/commit/8ac26d3c66ea88b0f80504bdd1e907658b41609d.patch";
+              #   hash = "sha256-+SfIu3uYNQCf/KXhv4PWvruTVKQSh4bgU1moePhe57U=";
+              # })
+            ];
+        });
         vgpu.patcher = {
           options = {
             remapP40ProfilesToV100D = lib.mkForce true;
