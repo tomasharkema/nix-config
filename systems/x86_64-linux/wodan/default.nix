@@ -32,11 +32,6 @@
       # timeZone = "Europe/Amsterdam";
     };
 
-    security = {
-      audit.enable = true;
-      auditd.enable = true;
-    };
-
     networking = {
       networkmanager.enable = true;
 

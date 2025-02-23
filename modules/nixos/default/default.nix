@@ -76,8 +76,7 @@
         ];
       };
       crashDump.enable = true;
-
-      kernelPatches = [
+      kernelPatches = lib.mkIf true [
         {
           name = "pstore-config";
           patch = null;
@@ -86,7 +85,7 @@
             PSTORE_DEFLATE_COMPRESS = lib.kernel.yes;
             PSTORE_COMPRESS = lib.kernel.yes;
             PSTORE_DEFLATE_COMPRESS_DEFAULT = lib.kernel.yes;
-            PSTORE_COMPRESS_DEFAULT = "deflate";
+            PSTORE_COMPRESS_DEFAULT = lib.kernel.freeform "deflate";
             PSTORE_CONSOLE = lib.kernel.yes;
             PSTORE_PMSG = lib.kernel.yes;
             PSTORE_RAM = lib.kernel.yes;

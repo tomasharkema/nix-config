@@ -105,17 +105,33 @@ in {
         "qemu-libvirtd"
       ];
     };
-    fileSystems = {
-      "/var/lib/libvirt/images/isos" = {
-        device = "192.168.1.102:/volume1/tomas/isos";
-        fsType = "nfs";
-        options = [
-          "x-systemd.automount"
-          "noauto"
-        ];
-      };
+
+    services.rpcbind.enable = true;
+
+    systemd = {
+      mounts = [
+        {
+          type = "nfs";
+          mountConfig = {
+            Options = "noatime";
+          };
+          what = "192.168.1.102:/volume1/tomas/isos";
+          where = "/var/lib/libvirt/images/isos";
+        }
+      ];
+
+      automounts = [
+        {
+          wantedBy = ["multi-user.target"];
+          automountConfig = {
+            TimeoutIdleSec = "600";
+          };
+          where = "/var/lib/libvirt/images/isos";
+        }
+      ];
+
+      packages = [pkgs.custom.libvirt-dbus];
     };
-    systemd.packages = [pkgs.custom.libvirt-dbus];
 
     environment.etc = {
       "libvirt/virtio-win".source = pkgs.virtio-win;
