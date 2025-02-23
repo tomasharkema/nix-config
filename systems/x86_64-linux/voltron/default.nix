@@ -225,7 +225,7 @@
       tmp = {
         useTmpfs = true;
       };
-      kernelPackages = pkgs.linuxPackages_latest;
+      # kernelPackages = pkgs.linuxPackages_latest;
       recovery = {
         enable = true;
         install = true;
@@ -258,7 +258,6 @@
       # '';
       kernelModules = [
         # "psmouse"
-        "pstore"
         "i915"
         # "spi"
         # "sgx"
@@ -272,7 +271,6 @@
       ];
       # extraModprobeConfig = "options i915 enable_guc=2";
       initrd.kernelModules = [
-        "pstore"
         # "spi"
         # "sgx"
         "i915"

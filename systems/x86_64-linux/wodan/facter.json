@@ -1032,7 +1032,7 @@
     "disk": [
       {
         "index": 46,
-        "attached_to": 41,
+        "attached_to": 31,
         "class_list": [
           "disk",
           "block_device",
@@ -1074,24 +1074,24 @@
           "hex": "5017",
           "value": 20503
         },
-        "serial": "50026B768637D1FE",
+        "serial": "50026B768639292E",
         "model": "KINGSTON SNV2S1000G",
         "sysfs_id": "/class/block/nvme0n1",
         "sysfs_bus_id": "nvme0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1b.4/0000:04:00.0/nvme/nvme0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0/nvme/nvme0",
         "unix_device_name": "/dev/nvme0n1",
         "unix_device_number": {
           "type": 98,
           "major": 259,
-          "minor": 1,
+          "minor": 2,
           "range": 0
         },
         "unix_device_names": [
-          "/dev/disk/by-diskseq/2",
-          "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768637D1FE",
-          "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768637D1FE_1",
-          "/dev/disk/by-id/nvme-eui.00000000000000000026b768637d1fe5",
-          "/dev/disk/by-path/pci-0000:04:00.0-nvme-1",
+          "/dev/disk/by-diskseq/4",
+          "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768639292E",
+          "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768639292E_1",
+          "/dev/disk/by-id/nvme-eui.00000000000000000026b768639292e5",
+          "/dev/disk/by-path/pci-0000:07:00.0-nvme-1",
           "/dev/nvme0n1"
         ],
         "resources": [
@@ -1175,7 +1175,7 @@
           "range": 16
         },
         "unix_device_names": [
-          "/dev/disk/by-diskseq/4",
+          "/dev/disk/by-diskseq/2",
           "/dev/disk/by-id/usb-Samsung_PSSD_T7_S7MNNS0X412472X-0:0",
           "/dev/disk/by-path/pci-0000:00:14.0-usb-0:8:1.0-scsi-0:0:0:0",
           "/dev/disk/by-path/pci-0000:00:14.0-usbv3-0:8:1.0-scsi-0:0:0:0",
@@ -1211,14 +1211,13 @@
           "uas"
         ],
         "driver_modules": [
-          "sd_mod",
           "uas"
         ],
         "module_alias": "usb:v04E8p4001d0100dc00dsc00dp00ic08isc06ip62in00"
       },
       {
         "index": 48,
-        "attached_to": 31,
+        "attached_to": 41,
         "class_list": [
           "disk",
           "block_device",
@@ -1260,11 +1259,11 @@
           "hex": "5017",
           "value": 20503
         },
-        "serial": "50026B768639292E",
+        "serial": "50026B768637D1FE",
         "model": "KINGSTON SNV2S1000G",
         "sysfs_id": "/class/block/nvme1n1",
         "sysfs_bus_id": "nvme1",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0/nvme/nvme1",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1b.4/0000:04:00.0/nvme/nvme1",
         "unix_device_name": "/dev/nvme1n1",
         "unix_device_number": {
           "type": 98,
@@ -1273,11 +1272,11 @@
           "range": 0
         },
         "unix_device_names": [
-          "/dev/disk/by-diskseq/1",
-          "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768639292E",
-          "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768639292E_1",
-          "/dev/disk/by-id/nvme-eui.00000000000000000026b768639292e5",
-          "/dev/disk/by-path/pci-0000:07:00.0-nvme-1",
+          "/dev/disk/by-diskseq/3",
+          "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768637D1FE",
+          "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768637D1FE_1",
+          "/dev/disk/by-id/nvme-eui.00000000000000000026b768637d1fe5",
+          "/dev/disk/by-path/pci-0000:04:00.0-nvme-1",
           "/dev/nvme1n1"
         ],
         "resources": [
@@ -1360,7 +1359,7 @@
           "range": 16
         },
         "unix_device_names": [
-          "/dev/disk/by-diskseq/3",
+          "/dev/disk/by-diskseq/1",
           "/dev/disk/by-id/ata-WDC_WD1001FALS-403AA0_WD-WCATR8206065",
           "/dev/disk/by-id/wwn-0x50014ee2061b1d4c",
           "/dev/disk/by-path/pci-0000:00:17.0-ata-1",
@@ -1384,14 +1383,9 @@
           }
         ],
         "driver": "ahci",
-        "driver_module": "ahci",
         "drivers": [
           "ahci",
           "sd"
-        ],
-        "driver_modules": [
-          "ahci",
-          "sd_mod"
         ]
       },
       {
@@ -1423,14 +1417,14 @@
         "unix_device_names": [
           "/dev/disk/by-diskseq/7",
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/711a8d2d-e901-4723-9935-9808272b14c3",
+          "/dev/disk/by-uuid/f19533ad-e6ab-46f0-b577-abd1360d5f3a",
           "/dev/zram0"
         ],
         "resources": [
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 8203648,
+            "value_1": 8186368,
             "value_2": 4096
           }
         ]
@@ -1583,7 +1577,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.13.3 xhci-hcd",
+          "name": "Linux 6.13.3-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1597,7 +1591,7 @@
           "value": 0
         },
         "serial": "0000:06:00.0",
-        "model": "Linux 6.13.3 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.13.3-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1c.7/0000:06:00.0/usb3/3-0:1.0",
         "sysfs_bus_id": "3-0:1.0",
         "resources": [
@@ -1747,7 +1741,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.13.3 xhci-hcd",
+          "name": "Linux 6.13.3-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1761,7 +1755,7 @@
           "value": 0
         },
         "serial": "0000:06:00.0",
-        "model": "Linux 6.13.3 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.13.3-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1c.7/0000:06:00.0/usb4/4-0:1.0",
         "sysfs_bus_id": "4-0:1.0",
         "detail": {
@@ -1820,7 +1814,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.13.3 xhci-hcd",
+          "name": "Linux 6.13.3-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1834,7 +1828,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.13.3 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.13.3-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -2065,7 +2059,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.13.3 xhci-hcd",
+          "name": "Linux 6.13.3-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2079,7 +2073,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.13.3 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.13.3-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -2162,18 +2156,18 @@
         "model": "Logitech G915 X",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-10/1-10:1.0",
         "sysfs_bus_id": "1-10:1.0",
-        "unix_device_name": "/dev/input/event2",
+        "unix_device_name": "/dev/input/event5",
         "unix_device_number": {
           "type": 99,
           "major": 13,
-          "minor": 66,
+          "minor": 69,
           "range": 1
         },
         "unix_device_names": [
           "/dev/input/by-id/usb-Logitech_G915_X_BFBBCC3F-event-kbd",
           "/dev/input/by-path/pci-0000:00:14.0-usb-0:10:1.0-event-kbd",
           "/dev/input/by-path/pci-0000:00:14.0-usbv2-0:10:1.0-event-kbd",
-          "/dev/input/event2"
+          "/dev/input/event5"
         ],
         "resources": [
           {
@@ -2272,18 +2266,18 @@
         "model": "Logitech G502 X PLUS",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-9/1-9:1.1",
         "sysfs_bus_id": "1-9:1.1",
-        "unix_device_name": "/dev/input/event1",
+        "unix_device_name": "/dev/input/event4",
         "unix_device_number": {
           "type": 99,
           "major": 13,
-          "minor": 65,
+          "minor": 68,
           "range": 1
         },
         "unix_device_names": [
           "/dev/input/by-id/usb-Logitech_G502_X_PLUS_48649791-if01-event-kbd",
           "/dev/input/by-path/pci-0000:00:14.0-usb-0:9:1.1-event-kbd",
           "/dev/input/by-path/pci-0000:00:14.0-usbv2-0:9:1.1-event-kbd",
-          "/dev/input/event1"
+          "/dev/input/event4"
         ],
         "resources": [
           {
@@ -2360,7 +2354,7 @@
           {
             "type": "mem",
             "base": 0,
-            "range": 67204481024,
+            "range": 67063066624,
             "enabled": true,
             "access": "read_write",
             "prefetch": "unknown"
@@ -2943,7 +2937,7 @@
           },
           {
             "type": "irq",
-            "base": 138,
+            "base": 145,
             "triggered": 0,
             "enabled": true
           },
@@ -2965,7 +2959,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 138,
+          "irq": 145,
           "prog_if": 0
         },
         "driver": "e1000e",
@@ -3040,7 +3034,7 @@
           },
           {
             "type": "hwaddr",
-            "address": 56
+            "address": 51
           },
           {
             "type": "phwaddr",
@@ -3134,7 +3128,7 @@
     ],
     "network_interface": [
       {
-        "index": 70,
+        "index": 69,
         "attached_to": 40,
         "class_list": [
           "network_interface"
@@ -3266,7 +3260,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 56
+            "address": 51
           },
           {
             "type": "phwaddr",
@@ -3765,7 +3759,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 165,
+            "base": 182,
             "triggered": 0,
             "enabled": true
           },
@@ -3791,7 +3785,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 165,
+          "irq": 182,
           "prog_if": 0
         },
         "driver": "snd_hda_intel",
@@ -3969,7 +3963,7 @@
           },
           {
             "type": "irq",
-            "base": 155,
+            "base": 128,
             "triggered": 0,
             "enabled": true
           },
@@ -4003,15 +3997,11 @@
           "command": 1031,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 155,
+          "irq": 128,
           "prog_if": 1
         },
         "driver": "ahci",
-        "driver_module": "ahci",
         "drivers": [
-          "ahci"
-        ],
-        "driver_modules": [
           "ahci"
         ],
         "module_alias": "pci:v00008086d0000A352sv00001458sd0000B005bc01sc06i01",
@@ -4598,12 +4588,8 @@
           "prog_if": 48
         },
         "driver": "xhci_hcd",
-        "driver_module": "xhci_pci",
         "drivers": [
           "xhci_hcd"
-        ],
-        "driver_modules": [
-          "xhci_pci"
         ],
         "module_alias": "pci:v00001B21d00001142sv00001B21sd00001142bc0Csc03i30"
       },
@@ -4665,7 +4651,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 128,
+            "base": 129,
             "triggered": 0,
             "enabled": true
           },
@@ -4683,16 +4669,12 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 128,
+          "irq": 129,
           "prog_if": 48
         },
         "driver": "xhci_hcd",
-        "driver_module": "xhci_pci",
         "drivers": [
           "xhci_hcd"
-        ],
-        "driver_modules": [
-          "xhci_pci"
         ],
         "module_alias": "pci:v00008086d0000A36Dsv00001458sd00005007bc0Csc03i30",
         "label": "Onboard - Other"
