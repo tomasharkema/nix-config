@@ -225,7 +225,7 @@
       tmp = {
         useTmpfs = true;
       };
-      kernelPackages = pkgs.linuxPackages_latest;
+      # kernelPackages = pkgs.linuxPackages_latest;
       recovery = {
         enable = true;
         install = true;
