@@ -76,8 +76,7 @@
         ];
       };
       crashDump.enable = true;
-
-      kernelPatches = [
+      kernelPatches = lib.mkIf true [
         {
           name = "pstore-config";
           patch = null;
