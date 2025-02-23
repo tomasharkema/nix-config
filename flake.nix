@@ -895,10 +895,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # wezterm = {
-    #   url = "github:wez/wezterm?dir=nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    wezterm = {
+      url = "github:wez/wezterm?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-github-actions = {
       url = "github:nix-community/nix-github-actions";
@@ -920,10 +920,10 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    nur-xddxdd = {
-      url = "github:xddxdd/nur-packages";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nur-xddxdd = {
+    #   url = "github:xddxdd/nur-packages";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     zjstatus = {
       url = "github:dj95/zjstatus";
