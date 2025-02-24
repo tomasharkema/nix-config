@@ -25,6 +25,8 @@
       custom.ims-prog
       heimdall
       heimdall-gui
+      handbrake
+      davinci-resolve
     ];
 
     time = {
