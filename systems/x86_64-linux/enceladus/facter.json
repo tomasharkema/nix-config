@@ -23,8 +23,8 @@
     },
     "bluetooth": [
       {
-        "index": 32,
-        "attached_to": 34,
+        "index": 33,
+        "attached_to": 35,
         "class_list": [
           "usb",
           "bluetooth"
@@ -107,8 +107,8 @@
         "module_alias": "usb:v8087p0026d0002dcE0dsc01dp01icE0isc01ip01in00"
       },
       {
-        "index": 33,
-        "attached_to": 34,
+        "index": 34,
+        "attached_to": 35,
         "class_list": [
           "usb",
           "bluetooth"
@@ -641,7 +641,7 @@
     ],
     "disk": [
       {
-        "index": 30,
+        "index": 31,
         "attached_to": 12,
         "class_list": [
           "disk",
@@ -730,7 +730,7 @@
         ]
       },
       {
-        "index": 31,
+        "index": 32,
         "attached_to": 0,
         "class_list": [
           "disk",
@@ -756,13 +756,16 @@
           "range": 1
         },
         "unix_device_names": [
+          "/dev/disk/by-diskseq/3",
+          "/dev/disk/by-label/zram0",
+          "/dev/disk/by-uuid/798f1562-8b5f-4517-85c8-6cd71337067c",
           "/dev/zram0"
         ],
         "resources": [
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 2018048,
+            "value_1": 2017536,
             "value_2": 4096
           }
         ]
@@ -882,7 +885,7 @@
     ],
     "hub": [
       {
-        "index": 34,
+        "index": 35,
         "attached_to": 27,
         "class_list": [
           "usb",
@@ -904,7 +907,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.12.8-cachyos xhci-hcd",
+          "name": "Linux 6.13.2-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -914,11 +917,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.12",
+          "name": "6.13",
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.12.8-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.13.2-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -962,10 +965,10 @@
         "drivers": [
           "hub"
         ],
-        "module_alias": "usb:v1D6Bp0002d0612dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0613dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 35,
+        "index": 37,
         "attached_to": 27,
         "class_list": [
           "usb",
@@ -987,7 +990,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.12.8-cachyos xhci-hcd",
+          "name": "Linux 6.13.2-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -997,11 +1000,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.12",
+          "name": "6.13",
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.12.8-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.13.2-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -1035,7 +1038,7 @@
         "drivers": [
           "hub"
         ],
-        "module_alias": "usb:v1D6Bp0003d0612dc09dsc00dp03ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0003d0613dc09dsc00dp03ic09isc00ip00in00"
       }
     ],
     "memory": [
@@ -1060,7 +1063,7 @@
           {
             "type": "mem",
             "base": 0,
-            "range": 16531902464,
+            "range": 16528134144,
             "enabled": true,
             "access": "read_write",
             "prefetch": "unknown"
@@ -1070,6 +1073,155 @@
             "range": 16106127360
           }
         ]
+      }
+    ],
+    "monitor": [
+      {
+        "index": 29,
+        "attached_to": 26,
+        "class_list": [
+          "monitor"
+        ],
+        "base_class": {
+          "hex": "0100",
+          "name": "Monitor",
+          "value": 256
+        },
+        "sub_class": {
+          "hex": "0002",
+          "name": "LCD Monitor",
+          "value": 2
+        },
+        "vendor": {
+          "hex": "1e6d",
+          "name": "LG ELECTRONICS",
+          "value": 7789
+        },
+        "device": {
+          "hex": "5bc1",
+          "name": "LG ULTRAFINE",
+          "value": 23489
+        },
+        "serial": "210MACEMY819",
+        "model": "LG ELECTRONICS LG ULTRAFINE",
+        "resources": [
+          {
+            "type": "monitor",
+            "width": 1024,
+            "height": 768,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 1024,
+            "height": 768,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 1920,
+            "height": 1080,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 3840,
+            "height": 2160,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 640,
+            "height": 480,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 800,
+            "height": 600,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 800,
+            "height": 600,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "size",
+            "unit": "mm",
+            "value_1": 600,
+            "value_2": 340
+          }
+        ],
+        "detail": {
+          "manufacture_year": 2022,
+          "manufacture_week": 10,
+          "vertical_sync": {
+            "min": 40,
+            "max": 60
+          },
+          "horizontal_sync": {
+            "min": 30,
+            "max": 135
+          },
+          "horizontal_sync_timings": {
+            "disp": 3840,
+            "sync_start": 3888,
+            "sync_end": 3920,
+            "total": 4000
+          },
+          "vertical_sync_timings": {
+            "disp": 2160,
+            "sync_start": 2163,
+            "sync_end": 2168,
+            "total": 2222
+          },
+          "clock": 533250,
+          "width": 3840,
+          "height": 2160,
+          "width_millimetres": 600,
+          "height_millimetres": 340,
+          "horizontal_flag": 45,
+          "vertical_flag": 43,
+          "vendor": "",
+          "name": "LG ULTRAFINE"
+        },
+        "driver_info": {
+          "type": "display",
+          "width": 3840,
+          "height": 2160,
+          "vertical_sync": {
+            "min": 40,
+            "max": 60
+          },
+          "horizontal_sync": {
+            "min": 30,
+            "max": 135
+          },
+          "bandwidth": 0,
+          "horizontal_sync_timings": {
+            "disp": 3840,
+            "sync_start": 3888,
+            "sync_end": 3920,
+            "total": 4000
+          },
+          "vertical_sync_timings": {
+            "disp": 2160,
+            "sync_start": 2163,
+            "sync_end": 2168,
+            "total": 2222
+          },
+          "horizontal_flag": 45,
+          "vertical_flag": 43
+        }
       }
     ],
     "network_controller": [
@@ -1128,7 +1280,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 98
+            "address": 49
           },
           {
             "type": "irq",
@@ -1364,7 +1516,7 @@
     ],
     "network_interface": [
       {
-        "index": 39,
+        "index": 38,
         "attached_to": 15,
         "class_list": [
           "network_interface"
@@ -1407,6 +1559,39 @@
       },
       {
         "index": 40,
+        "attached_to": 15,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/vlan800",
+        "unix_device_name": "vlan800",
+        "unix_device_names": [
+          "vlan800"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 55
+          }
+        ],
+        "driver": "802.1Q VLAN Support",
+        "drivers": [
+          "802.1Q VLAN Support"
+        ]
+      },
+      {
+        "index": 41,
         "attached_to": 13,
         "class_list": [
           "network_interface"
@@ -1431,7 +1616,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 98
+            "address": 49
           },
           {
             "type": "phwaddr",
@@ -1448,7 +1633,40 @@
         ]
       },
       {
-        "index": 46,
+        "index": 42,
+        "attached_to": 15,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/vlan100",
+        "unix_device_name": "vlan100",
+        "unix_device_names": [
+          "vlan100"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 55
+          }
+        ],
+        "driver": "802.1Q VLAN Support",
+        "drivers": [
+          "802.1Q VLAN Support"
+        ]
+      },
+      {
+        "index": 43,
         "attached_to": 0,
         "class_list": [
           "network_interface"
@@ -2584,7 +2802,7 @@
     },
     "unknown": [
       {
-        "index": 29,
+        "index": 30,
         "attached_to": 0,
         "class_list": [
           "unknown"
@@ -2629,6 +2847,117 @@
             "enabled": true
           }
         ]
+      }
+    ],
+    "usb": [
+      {
+        "index": 36,
+        "attached_to": 35,
+        "class_list": [
+          "usb",
+          "unknown"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0007",
+          "name": "Communication controller",
+          "value": 7
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Serial controller",
+          "value": 0
+        },
+        "pci_interface": {
+          "hex": "0080",
+          "value": 128
+        },
+        "vendor": {
+          "hex": "10c4",
+          "name": "Silicon Labs",
+          "value": 4292
+        },
+        "device": {
+          "hex": "ea60",
+          "name": "CP2102N USB to UART Bridge Controller",
+          "value": 60000
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "1.00",
+          "value": 0
+        },
+        "serial": "a8c19d277c11ec11a8e621c7bd930c07",
+        "model": "Silicon CP2102N USB to UART Bridge Controller",
+        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-1/1-1:1.0",
+        "sysfs_bus_id": "1-1:1.0",
+        "unix_device_name": "/dev/ttyUSB0",
+        "unix_device_number": {
+          "type": 99,
+          "major": 188,
+          "minor": 0,
+          "range": 1
+        },
+        "unix_device_names": [
+          "/dev/serial/by-id/usb-Silicon_Labs_CP2102N_USB_to_UART_Bridge_Controller_a8c19d277c11ec11a8e621c7bd930c07-if00-port0",
+          "/dev/serial/by-path/pci-0000:00:14.0-usb-0:1:1.0-port0",
+          "/dev/serial/by-path/pci-0000:00:14.0-usbv2-0:1:1.0-port0",
+          "/dev/ttyUSB0"
+        ],
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 12000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_protocol": 0,
+          "interface_class": {
+            "hex": "00ff",
+            "name": "vendor_spec",
+            "value": 255
+          },
+          "interface_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "interface_protocol": 0,
+          "interface_number": 0,
+          "interface_alternate_setting": 0
+        },
+        "hotplug": "usb",
+        "driver": "cp210x",
+        "driver_module": "cp210x",
+        "drivers": [
+          "cp210x"
+        ],
+        "driver_modules": [
+          "cp210x"
+        ],
+        "module_alias": "usb:v10C4pEA60d0100dc00dsc00dp00icFFisc00ip00in00"
       }
     ],
     "usb_controller": [
