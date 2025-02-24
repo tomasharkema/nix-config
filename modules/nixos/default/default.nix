@@ -114,9 +114,8 @@
             then lib.mkDefault pkgs.linuxPackages_cachyos-server
             else
               lib.mkDefault
-              pkgs.linuxPackages_cachyos # pkgs.linuxPackages_latest # pkgs.linuxPackages_cachyos
-          ); # (pkgs.linuxPackagesFor pkgs.linux_cachyos);
-
+              pkgs.linuxPackages_cachyos
+          );
       kernelModules = [
         "wireguard"
         "netconsole"
@@ -387,7 +386,10 @@
       kmscon = {
         enable = lib.mkDefault true;
         hwRender = true;
-        useXkbConfig = true;
+        # useXkbConfig = true;
+        extraConfig = ''
+          xkb-layout=us
+        '';
         fonts = [
           {
             name = "JetBrainsMono Nerd Font Mono";
