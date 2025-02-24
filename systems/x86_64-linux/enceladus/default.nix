@@ -18,42 +18,13 @@ in {
 
     environment.systemPackages = with pkgs; [inteltool];
 
-    apps = {
-      # ntopng.enable = true;
-      # steam.enable = true;
-      # usbip.enable = true;
-      # hass.enable = true;
-      # spotifyd.enable = true;
-    };
-
-    virtualisation = {
-      oci-containers.containers = {
-        # netbootxyz = {
-        #   image = "ghcr.io/linuxserver/netbootxyz";
-
-        #   autoStart = true;
-
-        #   volumes = [
-        #     "/var/lib/netboot/config:/config"
-        #     "/var/lib/netboot/assets:/assets"
-        #   ];
-
-        #   ports = [
-        #     "3000:3000"
-        #     "69:69/udp"
-        #     "8083:80"
-        #   ];
-        # };
-      };
-    };
-
     hardware = {
       cpu.intel.updateMicrocode = true;
       bluetooth.enable = true;
-      # nvidia.package = mkForce config.boot.kernelPackages.nvidiaPackages.stable;
     };
 
     services = {
+      hypervisor.enable = true;
       # "nix-private-cache".enable = true;
       # local-store.enable = true;
       throttled.enable = lib.mkForce false;
@@ -168,33 +139,6 @@ in {
         "xfs"
       ];
 
-      kernel.sysctl."net.ipv6.conf.enp1s0.disable_ipv6" = true;
-      kernelParams = [];
-      initrd = {
-        availableKernelModules = [
-          "xhci_pci"
-          "ahci"
-          "usbhid"
-          "usb_storage"
-          "sd_mod"
-        ];
-        kernelModules = [
-          "i915"
-          "kvm-intel"
-          "uinput"
-          "nvme"
-        ];
-      };
-      kernelModules = [
-        "amifldrv"
-        "i915"
-        "kvm-intel"
-        "uinput"
-        "nvme"
-      ];
-      # extraModulePackages = [
-      #   (pkgs.custom.amifldrv.override {kernel = config.boot.kernelPackages.kernel;})
-      # ];
       recovery = {
         enable = true;
         install = true;
