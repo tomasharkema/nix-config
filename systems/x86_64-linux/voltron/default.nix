@@ -5,14 +5,6 @@
   lib,
   ...
 }: {
-  imports = with inputs; [
-    # ./hardware-configuration.nix
-    # nixos-hardware.nixosModules.common-pc-laptop-acpi_call
-    # nixos-hardware.nixosModules.common-cpu-intel
-    # nixos-hardware.nixosModules.common-gpu-intel
-    # nixos-hardware.nixosModules.common-gpu-intel-kaby-lake
-  ];
-
   config = {
     age = {
       rekey = {
@@ -22,7 +14,6 @@
 
     facter = {
       reportPath = ./facter.json;
-      # detected.boot.graphics.kernelModules = lib.mkForce ["i915" "nouveau"];
     };
 
     disks.btrfs = {
@@ -34,7 +25,7 @@
       snapper.enable = true; # false;
       swap = {
         size = "32G";
-        resume.enable = false;
+        resume.enable = true;
       };
     };
 

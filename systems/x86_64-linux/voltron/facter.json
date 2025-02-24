@@ -1681,14 +1681,14 @@
         "unix_device_names": [
           "/dev/disk/by-diskseq/5",
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/96674444-0da1-4e9d-b4ff-955930dd03ef",
+          "/dev/disk/by-uuid/70268061-f0a1-4df3-830c-56707942e484",
           "/dev/zram0"
         ],
         "resources": [
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 4073344,
+            "value_1": 4057472,
             "value_2": 4096
           }
         ]
@@ -1756,7 +1756,7 @@
           },
           {
             "type": "irq",
-            "base": 181,
+            "base": 174,
             "triggered": 0,
             "enabled": true
           },
@@ -1790,7 +1790,7 @@
           "command": 1031,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 181,
+          "irq": 174,
           "prog_if": 0
         },
         "driver": "nvidia",
@@ -1940,7 +1940,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.13.2-cachyos xhci-hcd",
+          "name": "Linux 6.13.4-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1954,7 +1954,7 @@
           "value": 0
         },
         "serial": "0000:3f:00.0",
-        "model": "Linux 6.13.2-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.13.4-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0/0000:08:02.0/0000:3f:00.0/usb3/3-0:1.0",
         "sysfs_bus_id": "3-0:1.0",
         "resources": [
@@ -2023,7 +2023,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.13.2-cachyos xhci-hcd",
+          "name": "Linux 6.13.4-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2037,7 +2037,7 @@
           "value": 0
         },
         "serial": "0000:3f:00.0",
-        "model": "Linux 6.13.2-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.13.4-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0/0000:08:02.0/0000:3f:00.0/usb4/4-0:1.0",
         "sysfs_bus_id": "4-0:1.0",
         "detail": {
@@ -2096,7 +2096,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.13.2-cachyos xhci-hcd",
+          "name": "Linux 6.13.4-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2110,7 +2110,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.13.2-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.13.4-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -2179,7 +2179,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.13.2-cachyos xhci-hcd",
+          "name": "Linux 6.13.4-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2193,7 +2193,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.13.2-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.13.4-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -2252,14 +2252,14 @@
           {
             "type": "mem",
             "base": 0,
-            "range": 33369358336,
+            "range": 33239359488,
             "enabled": true,
             "access": "read_write",
             "prefetch": "unknown"
           },
           {
             "type": "phys_mem",
-            "range": 34359738368
+            "range": 32212254720
           }
         ]
       }
@@ -2878,30 +2878,7 @@
     ],
     "network_interface": [
       {
-        "index": 56,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_name": "lo",
-        "unix_device_names": [
-          "lo"
-        ]
-      },
-      {
-        "index": 59,
+        "index": 55,
         "attached_to": 12,
         "class_list": [
           "network_interface"
@@ -2933,7 +2910,7 @@
         ]
       },
       {
-        "index": 60,
+        "index": 56,
         "attached_to": 34,
         "class_list": [
           "network_interface"
@@ -2975,7 +2952,30 @@
         ]
       },
       {
-        "index": 61,
+        "index": 59,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_name": "lo",
+        "unix_device_names": [
+          "lo"
+        ]
+      },
+      {
+        "index": 60,
         "attached_to": 32,
         "class_list": [
           "network_interface"
@@ -3947,7 +3947,7 @@
         ],
         "detail": {
           "function": 0,
-          "command": 1031,
+          "command": 1027,
           "header_type": 0,
           "secondary_bus": 0,
           "irq": 135,
