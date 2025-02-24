@@ -71,6 +71,7 @@ in {
       main = "/dev/disk/by-id/nvme-512GB_SSD_CN348BH0814055";
       encrypt = true;
       newSubvolumes.enable = true;
+      snapper.enable = false;
     };
 
     # wifi.enable = true;
