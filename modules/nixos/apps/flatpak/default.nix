@@ -18,7 +18,7 @@ in {
       config.common.default = "gnome";
 
       extraPortals = with pkgs; [
-        xdg-desktop-portal-kde
+        # xdg-desktop-portal-kde
         xdg-desktop-portal-gtk
         xdg-desktop-portal-hyprland
       ];
