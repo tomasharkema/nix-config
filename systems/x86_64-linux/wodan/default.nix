@@ -46,7 +46,7 @@
       bridges.br0 = {
         interfaces = ["enp2s0"];
       };
-
+      search = ["lan"];
       defaultGateway = {
         address = "192.168.1.1";
         interface = "br0";

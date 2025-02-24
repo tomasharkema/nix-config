@@ -470,11 +470,6 @@
 
       avahi = {
         enable = true;
-        package = pkgs.avahi.override (old: {
-          gtk3Support = true;
-          # qt5Support = true;
-          # withPython = true;
-        });
 
         extraServiceFiles = {
           ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";

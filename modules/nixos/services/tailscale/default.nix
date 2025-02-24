@@ -60,8 +60,8 @@ in {
 
       avahi = {
         enable = true;
-        # allowInterfaces = [ "zthnhagpcb" "tailscale0" ];
-        ipv6 = true;
+        allowInterfaces = ["tailscale0"];
+        ipv6 = false;
         publish.enable = true;
         publish.userServices = true;
         publish.addresses = true;
