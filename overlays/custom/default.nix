@@ -18,6 +18,17 @@ in rec {
 
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
+  cxxopts = prev.cxxopts.overrideAttrs (old: {
+    # buildPhase = ''
+    #   NIX_CFLAGS_COMPILE="-std=c++17 $NIX_CFLAGS_COMPILE"
+    # '';
+    buildInputs =
+      prev.lib.optionals
+      true # old.enableUnicodeHelp
+      
+      [prev.icu74.dev];
+  });
+
   _389-ds-base = self.packages."${prev.system}"._389-ds-base;
   freeipa =
     #builtins.trace "${prev.freeipa.version} ${final.freeipa.version}"
