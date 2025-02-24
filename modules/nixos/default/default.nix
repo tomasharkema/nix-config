@@ -82,7 +82,7 @@
         compressorArgs = ["-19"];
         # systemd.emergencyAccess = "abcdefg";
         #includeDefaultModules = true;
-        unl0kr = {enable = config.disks.btrfs.encrypt;};
+        # unl0kr = {enable = config.disks.btrfs.encrypt;};
       };
 
       hardwareScan = true;
@@ -116,6 +116,7 @@
               lib.mkDefault
               pkgs.linuxPackages_cachyos
           );
+
       kernelModules = [
         "wireguard"
         "netconsole"
@@ -384,12 +385,10 @@
       # };
 
       kmscon = {
-        enable = lib.mkDefault true;
+        # enable = lib.mkDefault true;
         hwRender = true;
-        # useXkbConfig = true;
-        extraConfig = ''
-          xkb-layout=us
-        '';
+        useXkbConfig = true;
+
         fonts = [
           {
             name = "JetBrainsMono Nerd Font Mono";
