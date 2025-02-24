@@ -181,7 +181,7 @@ in {
           meteo
           mission-center
           # nix-software-center
-          partition-manager
+          # partition-manager
           pavucontrol
           powertop
           pwvucontrol
