@@ -72,7 +72,7 @@
         # nix-snapshotter.overlays.default
         # otel.overlays.default
         nvidia-patch.overlays.default
-        # ytdlp-gui.overlay
+        ytdlp-gui.overlay
         nixos-recovery.overlays.recovery
         # peerix.overlay
         snowfall-flake.overlays."package/flake"
