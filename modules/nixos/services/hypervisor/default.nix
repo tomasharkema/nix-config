@@ -124,8 +124,11 @@ in {
 
     systemd = {
       tmpfiles.settings."9-isos" = {
-        "/var/lib/libvirt/storage/isos.xml"."L+" = {
-          argument = "${isosStorage}";
+        "/var/lib/libvirt/storage/isos.xml" = {
+          "L+" = {
+            argument = "${isosStorage}";
+            mode = "600";
+          };
         };
       };
       mounts = [
