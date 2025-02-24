@@ -97,7 +97,6 @@
     };
 
     services = {
-      kmscon.enable = lib.mkForce true;
       hardware = {
         openrgb = {
           enable = true;
