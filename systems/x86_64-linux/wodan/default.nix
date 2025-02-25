@@ -13,7 +13,7 @@
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII8iCdfina2waZYTj0toLyknDT3eJmMtPsVN3iFgnGUR root@wodan";
     };
     # btrfs balance -dconvert=raid0 -mconvert=raid1 /home
-    system.etc.overlay.enable = true;
+    # system.etc.overlay.enable = true;
     environment = {
       systemPackages = with pkgs; [
         davinci-resolve
