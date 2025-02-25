@@ -31,6 +31,10 @@ in {
       # remote-builders.client.enable = true;
       blueman.enable = true;
 
+      # udev.extraRules = ''
+      #   ACTION=="add", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", SYMLINK+="ttypikvm"
+      # '';
+
       beesd.filesystems = {
         root = {
           spec = "UUID=7227b9fb-8619-403a-8944-4cc3f615ad6f";
@@ -42,6 +46,10 @@ in {
           ];
         };
       };
+    };
+
+    systemd.services."serial-getty@ttyUSB0" = {
+      wantedBy = ["multi-user.target"];
     };
 
     # specialisation = {
