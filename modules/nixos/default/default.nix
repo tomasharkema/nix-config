@@ -469,6 +469,23 @@
 
       avahi = {
         enable = true;
+        # allowInterfaces = ["tailscale0"];
+        ipv6 = false;
+        publish.enable = true;
+        publish.userServices = true;
+        publish.addresses = true;
+        publish.domain = true;
+        publish.hinfo = true;
+        nssmdns4 = true;
+        publish.workstation = true;
+        openFirewall = true;
+        # reflector = true;
+
+        package = pkgs.avahi.override (old: {
+          gtk3Support = true;
+          # qt5Support = true;
+          # withPython = true;
+        });
 
         extraServiceFiles = {
           ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";

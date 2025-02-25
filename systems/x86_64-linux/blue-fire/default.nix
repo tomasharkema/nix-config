@@ -364,6 +364,9 @@ in {
         "ipmi_watchdog"
       ];
     };
+
+    services.rpcbind.enable = true;
+
     systemd = {
       watchdog = {
         device = "/dev/watchdog";
@@ -371,22 +374,31 @@ in {
         kexecTime = "5m";
         rebootTime = "5m";
       };
+
+      mounts = [
+        {
+          type = "nfs";
+          mountConfig = {
+            Options = "noatime";
+          };
+          what = "192.168.1.102:/volume1/tomas";
+          where = "/mnt/dione-downloads";
+        }
+      ];
+
+      automounts = [
+        {
+          wantedBy = ["multi-user.target"];
+          automountConfig = {
+            TimeoutIdleSec = "600";
+          };
+          where = "/mnt/dione-downloads";
+        }
+      ];
+
       services = {
         "serial-getty@ttyS2" = {
-          #   overrideStrategy = "asDropin";
-          #   serviceConfig = let
-          #     tmux = pkgs.writeShellScript "tmux.sh" ''
-          #       ${pkgs.tmux}/bin/tmux kill-session -t start 2> /dev/null
-          #       ${pkgs.tmux}/bin/tmux new-session -s start
-          #     '';
-          #   in {
-          #     TTYVTDisallocate = "no";
-          #     #ExecStart = ["" "-${tmux}"];
-          #     #StandardInput = "tty";
-          #     #StandardOutput = "tty";
-          #   };
           wantedBy = ["multi-user.target"];
-          #   #environment.TERM = "vt102";
         };
       };
     };

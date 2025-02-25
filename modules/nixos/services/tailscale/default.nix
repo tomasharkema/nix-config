@@ -58,21 +58,6 @@ in {
       tailscaleAuth.enable = true;
       nginx.tailscaleAuth.enable = true;
 
-      avahi = {
-        enable = true;
-        allowInterfaces = ["tailscale0"];
-        ipv6 = false;
-        publish.enable = true;
-        publish.userServices = true;
-        publish.addresses = true;
-        publish.domain = true;
-        publish.hinfo = true;
-        nssmdns4 = true;
-        publish.workstation = true;
-        openFirewall = true;
-        # reflector = true;
-      };
-
       # zerotierone = {
       #   enable = true;
       #   joinNetworks = [];
