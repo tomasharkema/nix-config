@@ -15,7 +15,7 @@ in {
   };
 
   config = {
-    age.secrets."builder-key" = lib.mkIf cfg.client.enable {
+    age.secrets."builder-key" = {
       rekeyFile = ./builder.key.age;
       generator.script = "ssh-ed25519";
     };
@@ -39,55 +39,73 @@ in {
     nix = {
       settings.trusted-users = lib.mkIf cfg.server.enable ["${user}"];
 
-      distributedBuilds = cfg.client.enable;
+      distributedBuilds = true;
       extraOptions = ''
         builders-use-substitutes = true
       '';
 
-      buildMachines = lib.mkIf cfg.client.enable [
-        {
-          sshUser = "builder";
-          sshKey = config.age.secrets."builder-key".path;
-          hostName = "blue-fire";
-          system = "x86_64-linux";
-          maxJobs = 4;
-          supportedFeatures = [
-            "kvm"
-            "benchmark"
-            "big-parallel"
-          ];
-          speedFactor = 70;
-          protocol = "ssh-ng";
-        }
-        {
-          sshUser = "builder";
-          sshKey = config.age.secrets."builder-key".path;
-          hostName = "silver-star";
-          system = "x86_64-linux";
-          maxJobs = 8;
-          supportedFeatures = [
-            "kvm"
-            "benchmark"
-            "big-parallel"
-          ];
-          speedFactor = 80;
-          protocol = "ssh-ng";
-        }
-        {
-          sshUser = "builder";
-          sshKey = config.age.secrets."builder-key".path;
-          hostName = "wodan";
-          system = "x86_64-linux";
-          maxJobs = 4;
-          supportedFeatures = [
-            "kvm"
-            "benchmark"
-            "big-parallel"
-          ];
-          speedFactor = 100;
-          protocol = "ssh-ng";
-        }
-      ];
+      buildMachines =
+        [
+          {
+            hostName = "raspi5";
+            sshKey = config.age.secrets."builder-key".path;
+            sshUser = "builder";
+            system = "aarch64-linux";
+            maxJobs = 4;
+            supportedFeatures = [
+              "kvm"
+              "benchmark"
+              "big-parallel"
+            ];
+            protocol = "ssh-ng";
+          }
+        ]
+        ++ (
+          lib.optionals cfg.client.enable [
+            {
+              sshUser = "builder";
+              sshKey = config.age.secrets."builder-key".path;
+              hostName = "blue-fire";
+              system = "x86_64-linux";
+              maxJobs = 4;
+              supportedFeatures = [
+                "kvm"
+                "benchmark"
+                "big-parallel"
+              ];
+              speedFactor = 70;
+              protocol = "ssh-ng";
+            }
+            {
+              sshUser = "builder";
+              sshKey = config.age.secrets."builder-key".path;
+              hostName = "silver-star";
+              system = "x86_64-linux";
+              maxJobs = 8;
+              supportedFeatures = [
+                "kvm"
+                "benchmark"
+                "big-parallel"
+              ];
+              speedFactor = 80;
+              protocol = "ssh-ng";
+            }
+            {
+              sshUser = "builder";
+              sshKey = config.age.secrets."builder-key".path;
+              hostName = "wodan";
+              system = "x86_64-linux";
+              maxJobs = 4;
+              supportedFeatures = [
+                "kvm"
+                "benchmark"
+                "big-parallel"
+              ];
+              speedFactor = 100;
+              protocol = "ssh-ng";
+            }
+          ]
+        );
     };
   };
 }
