@@ -302,9 +302,9 @@
       ];
 
       # blacklistedKernelModules = ["nouveau"];
-      extraModprobeConfig = ''
-        options nvidia NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100
-      '';
+      # extraModprobeConfig = ''
+      #   options nvidia NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100
+      # '';
       #  options nvidia-drm modeset=1";
       #  blacklist nouveau
       #  options nouveau modeset=0
