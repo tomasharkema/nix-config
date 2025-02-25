@@ -121,6 +121,7 @@
         "wireguard"
         "netconsole"
         # "apfs"
+        "sha256"
       ];
 
       supportedFilesystems = [
@@ -128,7 +129,7 @@
         # "apfs"
         "nfs"
       ];
-      initrd.kernelModules = ["netconsole"];
+      initrd.kernelModules = ["netconsole" "sha256"];
       loader = {
         systemd-boot = {
           netbootxyz.enable = true;
