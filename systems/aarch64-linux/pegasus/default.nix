@@ -115,9 +115,7 @@
 
     # proxy-services = {enable = false;};
     # raspberry-pi-nix.board = "bcm2711";
-    raspberry-pi-nix = {
-      board = "bcm2712"; # rpi 5
-    };
+
     fileSystems = {
       # "/boot" = {
       #   device = "/dev/disk/by-label/NIXOS_BOOT";
@@ -128,9 +126,16 @@
         fsType = "ext4";
       };
     };
+
+    raspberry-pi-nix = {
+      board = "bcm2712"; # rpi 5
+      # uboot.enable = true;
+      kernel-version = "v6_12_11";
+    };
+
     hardware = {
       raspberry-pi.config = {
-        uboot = false;
+        # uboot = false;
         pi4 = {
           options = {
             arm_boost = {

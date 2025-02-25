@@ -277,7 +277,7 @@
           smartmontools
           socat
           squashfsTools
-          ssh-import-id
+          squashfs-tools-ng
           ssh-import-id
           ssh-tools
           sshfs
