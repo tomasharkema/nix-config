@@ -168,6 +168,7 @@
       enableAllTerminfo = pkgs.stdenv.isx86_64;
       systemPackages =
         (with pkgs; [
+          libheif
           # lz4
           custom.zide
           custom.wikiman
@@ -178,22 +179,22 @@
           bat-extras.batwatch
           bat-extras.batpipe
           bat-extras.batgrep
-          # compsize
-          # dirdiff
+          compsize
+
           # dry
-          # etcher
+
           # fam # unmaintained
-          # fancy-motd
+          fancy-motd
           # mkchromecast
           # nix-switcher # : needs github auth
           # ntfy
-          # onionshare
-          # oterm
-          # rtop
+          onionshare
+          oterm
+          rtop
           # socklog
           # tailspin
-          # tsui
-          # ttop
+          tsui
+          ttop
           agenix-rekey
           aide
           # apfs-fuse
@@ -365,7 +366,7 @@
       };
 
       sysstat.enable = lib.mkDefault true;
-      irqbalance.enable = true;
+      # irqbalance.enable = true;
       # aria2.enable = true;
       rpcbind.enable = true;
       cachefilesd.enable = true;

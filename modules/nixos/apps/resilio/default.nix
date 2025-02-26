@@ -5,7 +5,8 @@
   ...
 }: let
   cfg = config.apps.resilio;
-  known_host = "100.120.66.165:52380";
+  port = 52380;
+  known_host = "100.125.116.111:${builtins.toString port}";
 
   root = "/mnt/resilio-sync";
 
@@ -57,9 +58,16 @@ in {
         mode = "644";
       };
     };
+    networking.firewall = {
+      allowedTCPPorts = [port];
+      allowedUDPPorts = [port];
+    };
 
     services.resilio = {
       enable = true;
+      # listeningPort = port;
+      # directoryRoot = root;
+
       sharedFolders =
         [
           {
