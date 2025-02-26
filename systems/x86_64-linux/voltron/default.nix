@@ -144,6 +144,7 @@
     };
 
     services = {
+      #  kmscon.enable = true;
       ratbagd.enable = true;
       # comin.enable = false;
       abrt.enable = true;
@@ -211,8 +212,6 @@
     };
 
     boot = {
-      # resumeDevice = "/dev/disk/by-partlabel/disk-main-swap";
-
       tmp = {
         useTmpfs = true;
       };
