@@ -90,10 +90,10 @@
           nvidiaBusId = "PCI:02:0:0";
         };
 
-        # powerManagement = {
-        # enable = true;
-        # finegrained = true;
-        # };
+        powerManagement = {
+          enable = true;
+          # finegrained = true;
+        };
       };
 
       # fancontrol.enable = true;
