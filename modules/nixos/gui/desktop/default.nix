@@ -206,7 +206,6 @@ in {
           yelp
           f1viewer
           # zed-editor
-          ytdlp-gui
         ]
         ++ lib.optionals pkgs.stdenv.isx86_64 [
           # custom.tabby

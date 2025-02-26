@@ -54,7 +54,7 @@ in {
       nvitop
       # gwe
       cudaPackages.cudatoolkit
-      egl-wayland
+      # egl-wayland
 
       # pkgs.nixgl.auto.nixGLDefault
     ];
@@ -140,7 +140,7 @@ in {
           nvidia-vaapi-driver
           # libvdpau-va-gl
           vaapiVdpau
-          egl-wayland
+          # egl-wayland
         ];
       };
     };

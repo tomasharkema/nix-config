@@ -72,7 +72,6 @@
         # nix-snapshotter.overlays.default
         # otel.overlays.default
         nvidia-patch.overlays.default
-        ytdlp-gui.overlay
         nixos-recovery.overlays.recovery
         # peerix.overlay
         snowfall-flake.overlays."package/flake"
@@ -596,8 +595,8 @@
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
-        nix-darwin.follows = "darwin";
+        # home-manager.follows = "home-manager";
+        # nix-darwin.follows = "darwin";
         #     # flake-compat.follows = "flake-compat";
         #     # flake-parts.follows = "flake-parts";
         #     # devshell.follows = "devshell";
@@ -877,11 +876,6 @@
 
     nvidia-patch = {
       url = "github:icewind1991/nvidia-patch-nixos";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    ytdlp-gui = {
-      url = "github:BKSalman/ytdlp-gui";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
