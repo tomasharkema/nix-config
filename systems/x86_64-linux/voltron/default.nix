@@ -25,7 +25,7 @@
       snapper.enable = true; # false;
       swap = {
         size = "32G";
-        resume.enable = true;
+        # resume.enable = true;
       };
     };
 
@@ -91,7 +91,7 @@
         };
 
         powerManagement = {
-          enable = true;
+          # enable = true;
           # finegrained = true;
         };
       };

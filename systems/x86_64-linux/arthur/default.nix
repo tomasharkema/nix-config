@@ -5,8 +5,8 @@
   ...
 }: {
   imports = with inputs; [
-    nixos-hardware.nixosModules.common-cpu-intel
-    nixos-hardware.nixosModules.common-pc-ssd
+    # nixos-hardware.nixosModules.common-cpu-intel
+    # nixos-hardware.nixosModules.common-pc-ssd
     # (pkgs.modulesPath + "/installer/scan/not-detected.nix")
     ./hardware-configuration.nix
   ];
