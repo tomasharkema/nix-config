@@ -20,7 +20,7 @@
     age.secrets = {cachix-key = {rekeyFile = ./cachix-key.age;};};
 
     system.build.self = inputs.self;
-
+    system.etc.overlay.enable = true;
     systemd = {
       additionalUpstreamSystemUnits = ["systemd-bsod.service"];
       services = {

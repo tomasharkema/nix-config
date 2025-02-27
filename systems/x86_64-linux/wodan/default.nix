@@ -14,8 +14,6 @@
     };
     # btrfs balance -dconvert=raid0 -mconvert=raid1 /home
 
-    system.etc.overlay.enable = true;
-
     environment = {
       systemPackages = with pkgs; [
         davinci-resolve
