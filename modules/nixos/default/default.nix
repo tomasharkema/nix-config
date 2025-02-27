@@ -175,6 +175,7 @@
       enableAllTerminfo = pkgs.stdenv.isx86_64;
       systemPackages =
         (with pkgs; [
+          xterm
           libheif
           # lz4
           custom.zide
