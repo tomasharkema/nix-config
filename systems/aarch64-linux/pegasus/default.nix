@@ -6,7 +6,7 @@
 }: {
   imports = with inputs; [
     raspberry-pi-nix.nixosModules.raspberry-pi
-    # raspberry-pi-nix.nixosModules.sd-image
+    raspberry-pi-nix.nixosModules.sd-image
     # nixos-hardware.nixosModules.raspberry-pi-4
     # "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
     # "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"

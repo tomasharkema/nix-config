@@ -17,7 +17,7 @@ in {
     };
 
     environment.systemPackages = with pkgs; [inteltool];
-
+    system.etc.overlay.enable = true;
     hardware = {
       cpu.intel.updateMicrocode = true;
       bluetooth.enable = true;
