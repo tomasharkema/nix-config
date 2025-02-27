@@ -13,7 +13,9 @@
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII8iCdfina2waZYTj0toLyknDT3eJmMtPsVN3iFgnGUR root@wodan";
     };
     # btrfs balance -dconvert=raid0 -mconvert=raid1 /home
-    # system.etc.overlay.enable = true;
+
+    system.etc.overlay.enable = true;
+
     environment = {
       systemPackages = with pkgs; [
         davinci-resolve
@@ -231,6 +233,7 @@
         monitor.enable = true;
 
         disable-sleep.enable = true;
+        network.xgbe.enable = true;
       };
     };
 
@@ -250,16 +253,6 @@
     boot = {
       tmp = {useTmpfs = true;};
       binfmt.emulatedSystems = ["aarch64-linux"];
-
-      kernel.sysctl = {
-        "net.core.rmem_max" = 67108864;
-        "net.core.wmem_max" = 67108864;
-        "net.ipv4.tcp_rmem" = "4096 87380 33554432";
-        "net.ipv4.tcp_wmem" = "4096 65536 33554432";
-        "net.ipv4.tcp_congestion_control" = "htcp";
-        "net.ipv4.tcp_mtu_probing" = "1";
-        "net.core.default_qdisc" = "fq";
-      };
 
       supportedFilesystems = [
         "ntfs"
