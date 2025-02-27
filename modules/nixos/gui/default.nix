@@ -35,7 +35,7 @@ in {
       playerctld.enable = true;
       displayManager.defaultSession = "hyprland";
     };
-
+    programs.nm-applet.enable = true;
     boot.kernelParams = [
       "preempt=lazy"
 

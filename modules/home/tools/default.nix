@@ -31,7 +31,7 @@ with pkgs; {
         curl
         sysz
         # netscanner
-        bandwhich
+
         bashmount
         bmon
         # compsize

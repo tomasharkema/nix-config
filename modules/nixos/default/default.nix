@@ -19,8 +19,12 @@
 
     age.secrets = {cachix-key = {rekeyFile = ./cachix-key.age;};};
 
-    system.build.self = inputs.self;
-    system.etc.overlay.enable = true;
+    system = {
+      build.self = inputs.self;
+      etc.overlay.enable = config.boot.initrd.systemd.enable;
+      nixos.tags = ["${config.boot.kernelPackages.kernel.version}"];
+    };
+
     systemd = {
       additionalUpstreamSystemUnits = ["systemd-bsod.service"];
       services = {
@@ -572,28 +576,53 @@
       audit.enable = true;
       auditd.enable = true;
       pam.sshAgentAuth.enable = true;
+      wrappers.nethoscope = {
+        owner = "tomas";
+        group = "tomas";
+      };
     };
 
     programs = {
       fzf.fuzzyCompletion = true;
       #`mosh.enable = true;
       dconf.enable = true;
-
+      sharing.enable = true;
       # darling.enable = pkgs.stdenv.isx86_64;
-
+      autojump.enable = true;
+      bandwhich.enable = true;
+      cpu-energy-meter.enable = true;
       flashrom.enable = true;
-
+      flashprog.enable = true;
+      git-worktree-switcher.enable = true;
+      iftop.enable = true;
+      localsend = {
+        enable = true;
+        openFirewall = true;
+      };
+      nix-index = {
+        enable = true;
+        enableZshIntegration = true;
+      };
+      nethoscope.enable = true;
       git = {
         enable = true;
         lfs.enable = true;
       };
+      udevil.enable = true;
+      usbtop.enable = true;
+      wavemon.enable = true;
+      trippy.enable = true;
+      ydotool.enable = true;
+
+      system-config-printer.enable = true;
+      corefreq.enable = true;
 
       htop = {
         enable = true;
         package = pkgs.htop;
         settings = {
           show_program_path = false;
-          hide_kernel_threads = true;
+          hide_xkernel_threads = true;
           hide_userland_threads = true;
           screen_tabs = true;
         };
