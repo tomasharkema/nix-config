@@ -29,7 +29,7 @@
             source = pkgs.writeText "ethtool-up.sh" ''
               ETHSPEED="$(cat /sys/class/net/$1/speed)"
               logger "$1 $ETHSPEED"
-              if [[ "$ETHSPEED" == "10000" "$2" == "up" ]]; then
+              if [[ "$ETHSPEED" == "10000" && "$2" == "up" ]]; then
                 logger "$1 up"
                 ${lib.getExe pkgs.ethtool} -K $1 tx on
                 ${lib.getExe pkgs.ethtool} -K $1 rx on

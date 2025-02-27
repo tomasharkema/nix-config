@@ -135,7 +135,6 @@ in
         #   };
         # };
 
-        displayManager.defaultSession = "gnome";
         # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
 
         xserver = {
