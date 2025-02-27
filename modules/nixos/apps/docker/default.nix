@@ -32,7 +32,7 @@ in {
       docker = {
         enable = true;
         enableOnBoot = true;
-        storageDriver = "btrfs";
+        # storageDriver = "btrfs";
       };
     };
   };

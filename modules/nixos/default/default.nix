@@ -590,7 +590,7 @@
       # darling.enable = pkgs.stdenv.isx86_64;
       autojump.enable = true;
       bandwhich.enable = true;
-      cpu-energy-meter.enable = true;
+      cpu-energy-meter.enable = pkgs.stdenv.isx86_64;
       flashrom.enable = true;
       flashprog.enable = true;
       git-worktree-switcher.enable = true;
