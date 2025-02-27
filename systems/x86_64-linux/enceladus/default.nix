@@ -31,9 +31,9 @@ in {
       # remote-builders.client.enable = true;
       blueman.enable = true;
 
-      # udev.extraRules = ''
-      #   ACTION=="add", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", SYMLINK+="ttypikvm"
-      # '';
+      udev.extraRules = ''
+        ACTION=="add", ATTRS{idProduct}=="ea60", "ATTRS{idVendor}=="10c4", SYMLINK+="ttyPK0"
+      '';
 
       beesd.filesystems = {
         root = {
@@ -105,9 +105,18 @@ in {
         enable = true;
       };
 
+      bridges.br0 = {
+        interfaces = ["enp1s0"];
+      };
+
       interfaces = {
         "enp1s0" = {
-          useDHCP = lib.mkDefault true;
+          useDHCP = lib.mkDefault false;
+          wakeOnLan.enable = true;
+          mtu = 9000;
+        };
+        "br0" = {
+          useDHCP = true;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
@@ -148,6 +157,11 @@ in {
         "xfs"
       ];
 
+      kernelParams = [
+        "console=ttyUSB0,115200n8"
+        "console=tty1"
+        "iomem=relaxed"
+      ];
       recovery = {
         enable = true;
         install = true;
