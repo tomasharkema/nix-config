@@ -47,6 +47,7 @@ in {
         tpm.enable = true;
         secure-boot.enable = false;
         # remote-unlock.enable = false;
+        network.xgbe.enable = true;
         nvidia = {
           enable = true;
           beta = false;

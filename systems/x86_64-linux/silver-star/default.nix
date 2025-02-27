@@ -403,7 +403,6 @@ in {
       kernelParams = [
         "console=tty1"
         "console=ttyS0,115200n8"
-        "mitigations=off"
         "intremap=no_x2apic_optout"
         "nox2apic"
 

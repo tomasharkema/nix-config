@@ -33,11 +33,12 @@ in {
       mpd.enable = true;
       mopidy.enable = true;
       playerctld.enable = true;
+      displayManager.defaultSession = "hyprland";
     };
 
     boot.kernelParams = [
       "preempt=lazy"
-      "mitigations=off"
+
       "delayacct"
     ];
 

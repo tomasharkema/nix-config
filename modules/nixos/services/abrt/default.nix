@@ -211,7 +211,7 @@ in {
       tmpfiles = {
         packages = [pkgs.abrt];
 
-        settings."99-pstore" = lib.mkIf cfg.pstore.enable {
+        settings."99-pstore" = lib.mkIf (cfg.pstore.enable || true) {
           "/sys/module/printk/parameters/always_kmsg_dump".w.argument = "Y";
           "/sys/module/kernel/parameters/crash_kexec_post_notifiers".w.argument = "Y";
         };

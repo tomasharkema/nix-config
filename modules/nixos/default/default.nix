@@ -23,7 +23,11 @@
 
     systemd = {
       additionalUpstreamSystemUnits = ["systemd-bsod.service"];
-      services."prepare-kexec".wantedBy = ["multi-user.target"];
+      services = {
+        "prepare-kexec".wantedBy = ["multi-user.target"];
+        NetworkManager-wait-online.enable = lib.mkForce false;
+        systemd-networkd-wait-online.enable = lib.mkForce false;
+      };
     };
 
     # Set your time zone.
@@ -89,6 +93,9 @@
 
       kernelParams = [
         "zswap.enabled=1"
+        "efi_pstore.pstore_disable=0"
+        "printk.always_kmsg_dump"
+        "crash_kexec_post_notifiers"
       ];
 
       kernel.sysctl = {
@@ -612,19 +619,6 @@
       enableRedistributableFirmware = lib.mkDefault true;
       # fancontrol.enable = true;
     };
-
-    # systemd = {
-    # targets = {
-    #   sleep.enable = lib.mkDefault false;
-    #   suspend.enable = lib.mkDefault false;
-    #   hibernate.enable = lib.mkDefault false;
-    #   hybrid-sleep.enable = lib.mkDefault false;
-    # };
-    # services = {
-    # NetworkManager-wait-online.enable = lib.mkForce false;
-    #     systemd-networkd-wait-online.enable = lib.mkForce false;
-    # };
-    # };
 
     nix = lib.mkIf pkgs.stdenv.isx86_64 {
       distributedBuilds = true;
