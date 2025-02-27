@@ -38,7 +38,7 @@ in {
 
     boot.kernelParams = [
       "preempt=lazy"
-      "mitigations=off"
+
       "delayacct"
     ];
 
