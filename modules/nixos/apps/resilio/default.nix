@@ -65,7 +65,7 @@ in {
 
     services.resilio = {
       enable = true;
-      # listeningPort = port;
+      listeningPort = port;
       # directoryRoot = root;
 
       sharedFolders =
