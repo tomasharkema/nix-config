@@ -171,7 +171,7 @@ in {
       };
 
       bridges.br0 = {
-        interfaces = ["eno3"];
+        interfaces = ["eno2"];
       };
 
       defaultGateway = {
