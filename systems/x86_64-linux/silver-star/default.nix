@@ -171,7 +171,7 @@ in {
       };
 
       bridges.br0 = {
-        interfaces = ["eno1"];
+        interfaces = ["eno3"];
       };
 
       defaultGateway = {
@@ -187,11 +187,6 @@ in {
       # };
 
       interfaces = {
-        "enp5s0" = {
-          # useDHCP = lib.mkDefault true;
-          wakeOnLan.enable = true;
-          mtu = 9000;
-        };
         "eno1" = {
           useDHCP = lib.mkDefault false;
           wakeOnLan.enable = true;
@@ -399,7 +394,7 @@ in {
       copyKernels = {enable = true;};
 
       # binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxPackages_6_11;
+      kernelPackages = pkgs.linuxPackages_6_6;
       kernelParams = [
         "console=tty1"
         "console=ttyS0,115200n8"
@@ -409,7 +404,7 @@ in {
         "intel_iommu=on"
         "iommu=pt"
         "video=efifb:off,vesafb:off"
-
+        "ixgbe.allow_unsupported_sfp=1,1"
         #"vfio-pci.ids=10de:1380,10de:0fbc"
         # "pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"

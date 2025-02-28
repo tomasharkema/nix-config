@@ -179,6 +179,7 @@
       enableAllTerminfo = pkgs.stdenv.isx86_64;
       systemPackages =
         (with pkgs; [
+          bridge-utils
           xterm
           libheif
           # lz4
