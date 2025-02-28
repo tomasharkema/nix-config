@@ -21,7 +21,7 @@
 
     system = {
       build.self = inputs.self;
-      etc.overlay.enable = config.boot.initrd.systemd.enable;
+      #      etc.overlay.enable = config.boot.initrd.systemd.enable;
       nixos.tags = ["${config.boot.kernelPackages.kernel.version}"];
     };
 
