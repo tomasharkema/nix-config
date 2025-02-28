@@ -231,7 +231,6 @@
         monitor.enable = true;
 
         disable-sleep.enable = true;
-        network.xgbe.enable = true;
       };
     };
 

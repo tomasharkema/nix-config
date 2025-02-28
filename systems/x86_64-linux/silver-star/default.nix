@@ -49,7 +49,7 @@ in {
       hardware = {
         # tpm.enable = true;
         secure-boot.enable = true;
-
+        network.xgbe.enable = true;
         nvidia = {
           enable = true;
           open = false;
