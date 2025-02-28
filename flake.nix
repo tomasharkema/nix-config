@@ -84,6 +84,7 @@
         # opentelemetry-nix.overlays.default
         # devenv.overlays.default
         nixgl.overlay
+        hyprpanel.overlay
       ];
 
       homes.modules = with inputs; [
@@ -941,6 +942,10 @@
 
     nixd = {
       url = "github:nix-community/nixd/release/2.x";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprpanel = {
+      url = "github:Jas-SinghFSU/HyprPanel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
