@@ -53,10 +53,10 @@ in {
         nvidia = {
           enable = true;
           open = false;
-          # grid = {
-          #   enable = true;
-          #   legacy = true;
-          # };
+          grid = {
+            enable = true;
+            legacy = true;
+          };
         };
       };
     };
@@ -373,7 +373,7 @@ in {
       # copyKernels = {enable = true;};
 
       # binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxPackages_6_12;
+      kernelPackages = pkgs.linuxPackages_6_11;
       kernelParams = [
         "console=tty1"
         "console=ttyS0,115200n8"
