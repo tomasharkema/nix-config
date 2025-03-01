@@ -46,7 +46,7 @@
       useDHCP = lib.mkDefault true;
 
       bridges.br0 = {
-        interfaces = ["enp2s0"];
+        interfaces = ["eno1"];
       };
       search = ["lan"];
       defaultGateway = {
@@ -55,7 +55,8 @@
       };
 
       interfaces = {
-        "enp2s0" = {
+        "eno1" = {
+          # "enp2s0" = {
           mtu = 9000;
           wakeOnLan.enable = true;
           useDHCP = lib.mkDefault false;

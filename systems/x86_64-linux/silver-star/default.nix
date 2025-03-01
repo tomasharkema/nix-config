@@ -193,6 +193,7 @@ in {
           mtu = 9000;
         };
         "eno2" = {
+          useDHCP = lib.mkDefault false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };

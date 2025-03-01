@@ -616,7 +616,7 @@
       ydotool.enable = true;
 
       system-config-printer.enable = true;
-      corefreq.enable = true;
+      # corefreq.enable = true;
 
       htop = {
         enable = true;
