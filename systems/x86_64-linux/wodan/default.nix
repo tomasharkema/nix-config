@@ -43,7 +43,7 @@
 
       firewall = {enable = false;};
 
-      useDHCP = lib.mkDefault true;
+      useDHCP = false;
 
       bridges.br0 = {
         interfaces = ["eno1"];
@@ -59,10 +59,10 @@
           # "enp2s0" = {
           mtu = 9000;
           wakeOnLan.enable = true;
-          useDHCP = lib.mkDefault false;
+          useDHCP = false;
         };
         "br0" = {
-          useDHCP = lib.mkDefault false;
+          useDHCP = false;
           mtu = 9000;
           ipv4.addresses = [
             {
