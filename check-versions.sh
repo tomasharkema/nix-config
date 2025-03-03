@@ -2,6 +2,8 @@
 
 # set -x
 
+# MATCH="([^\/]*\/[^\/]*)\.git"
+
 FLAKE_ACC="(builtins.getFlake \"$(pwd)\")"
 
 PACKAGES="$(nix eval --expr "builtins.attrNames $FLAKE_ACC.packages.\"\${builtins.currentSystem}\"" --json --impure | jq '.[]' -r)"

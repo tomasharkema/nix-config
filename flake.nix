@@ -203,40 +203,6 @@
           )
         ];
       };
-
-      # deploy = lib.mkDeploy {
-      # inherit (inputs) self;
-      # inherit inputs;
-      # overrides = {
-      #   sshUser = "root";
-      #   # wodan-vm = {
-      #   #   hostname = "192.168.1.74";
-      #   # };
-      #   # wodan-wsl = {
-      #   #   sshUser = "root";
-      #   #   hostname = "192.168.1.42";
-      #   # };
-      #   euro-mir-vm = {
-      #     sshUser = "root";
-      #     hostname = "172.25.255.212";
-      #   };
-      #   schweizer-bobbahn = {
-      #     hostnamw = "schweizer-bobbahn.local";
-      #     # targetHost = "192.168.178.46";
-      #     sshUser = "root";
-      #   };
-      # };
-      # };
-
-      #   builtins.mapAttrs
-      #   (system: deploy-lib:
-      #     deploy-lib.deployChecks inputs.self.deploy)
-      #   inputs.deploy-rs.lib;
-
-      # flakeItems = {
-      #   inherit inputs;
-      # };
-
       flakeInputs = inputs;
 
       githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {

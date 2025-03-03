@@ -180,12 +180,12 @@ in {
         interface = "br0";
       };
 
-      # vlans = {
-      #   "vlan69" = {
-      #     id = 69;
-      #     interface = "enp5s0";
-      #   };
-      # };
+      vlans = {
+        "vlan69" = {
+          id = 69;
+          interface = "eno2";
+        };
+      };
 
       interfaces = {
         "eno1" = {
@@ -218,11 +218,11 @@ in {
             }
           ];
         };
-        # "vlan69" = {
-        #   useDHCP = lib.mkDefault true;
-        #   wakeOnLan.enable = true;
-        #   mtu = 9000;
-        # };
+        "vlan69" = {
+          useDHCP = lib.mkDefault true;
+          wakeOnLan.enable = true;
+          mtu = 9000;
+        };
       };
 
       # useDHCP = false;
@@ -381,7 +381,7 @@ in {
         "console=ttyS0,115200n8"
         "intremap=no_x2apic_optout"
         "nox2apic"
-
+        "iomem=relaxed"
         "intel_iommu=on"
         "iommu=pt"
         "video=efifb:off,vesafb:off"
