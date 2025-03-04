@@ -130,7 +130,7 @@
     raspberry-pi-nix = {
       board = "bcm2712"; # rpi 5
       # uboot.enable = true;
-      kernel-version = "v6_12_11";
+      kernel-version = "v6_12_17";
     };
 
     hardware = {
