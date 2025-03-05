@@ -1398,6 +1398,7 @@
           "3dnowprefetch",
           "cpuid_fault",
           "epb",
+          "pti",
           "ssbd",
           "ibrs",
           "ibpb",
@@ -1681,7 +1682,7 @@
         "unix_device_names": [
           "/dev/disk/by-diskseq/5",
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/70268061-f0a1-4df3-830c-56707942e484",
+          "/dev/disk/by-uuid/93f16d17-95ca-4f1d-b2bd-66b94dd40a8a",
           "/dev/zram0"
         ],
         "resources": [
@@ -1756,7 +1757,7 @@
           },
           {
             "type": "irq",
-            "base": 174,
+            "base": 173,
             "triggered": 0,
             "enabled": true
           },
@@ -1790,7 +1791,7 @@
           "command": 1031,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 174,
+          "irq": 173,
           "prog_if": 0
         },
         "driver": "nvidia",
@@ -2252,7 +2253,7 @@
           {
             "type": "mem",
             "base": 0,
-            "range": 33239359488,
+            "range": 33239355392,
             "enabled": true,
             "access": "read_write",
             "prefetch": "unknown"
@@ -2879,38 +2880,6 @@
     "network_interface": [
       {
         "index": 55,
-        "attached_to": 12,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0080",
-          "name": "Network Interface",
-          "value": 128
-        },
-        "model": "Network Interface",
-        "sysfs_id": "/class/net/wwan0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.4/0000:03:00.0",
-        "unix_device_name": "wwan0",
-        "unix_device_names": [
-          "wwan0"
-        ],
-        "driver": "xmm7360",
-        "driver_module": "xmm7360",
-        "drivers": [
-          "xmm7360"
-        ],
-        "driver_modules": [
-          "xmm7360"
-        ]
-      },
-      {
-        "index": 56,
         "attached_to": 34,
         "class_list": [
           "network_interface"
@@ -2952,30 +2921,7 @@
         ]
       },
       {
-        "index": 59,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_name": "lo",
-        "unix_device_names": [
-          "lo"
-        ]
-      },
-      {
-        "index": 60,
+        "index": 56,
         "attached_to": 32,
         "class_list": [
           "network_interface"
@@ -3014,6 +2960,61 @@
         ],
         "driver_modules": [
           "e1000e"
+        ]
+      },
+      {
+        "index": 57,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_name": "lo",
+        "unix_device_names": [
+          "lo"
+        ]
+      },
+      {
+        "index": 59,
+        "attached_to": 12,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0080",
+          "name": "Network Interface",
+          "value": 128
+        },
+        "model": "Network Interface",
+        "sysfs_id": "/class/net/wwan0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.4/0000:03:00.0",
+        "unix_device_name": "wwan0",
+        "unix_device_names": [
+          "wwan0"
+        ],
+        "driver": "xmm7360",
+        "driver_module": "xmm7360",
+        "drivers": [
+          "xmm7360"
+        ],
+        "driver_modules": [
+          "xmm7360"
         ]
       }
     ],
@@ -3657,7 +3658,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 173,
+            "base": 174,
             "triggered": 0,
             "enabled": true
           },
@@ -3683,7 +3684,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 173,
+          "irq": 174,
           "prog_if": 0
         },
         "driver": "snd_hda_intel",
@@ -3947,7 +3948,7 @@
         ],
         "detail": {
           "function": 0,
-          "command": 1027,
+          "command": 1031,
           "header_type": 0,
           "secondary_bus": 0,
           "irq": 135,
