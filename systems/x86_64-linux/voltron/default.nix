@@ -226,7 +226,7 @@
       binfmt.emulatedSystems = ["aarch64-linux"];
 
       # modprobeConfig.enable = true;
-
+      supportedFilesystems = ["ext2" "ext3" "ext4"];
       kernelParams = [
         "i915.enable_gvt=1"
         "i915.enable_fbc=0"
