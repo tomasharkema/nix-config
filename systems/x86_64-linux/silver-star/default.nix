@@ -245,6 +245,7 @@ in {
       ipmicfg
       ipmiutil
       tremotesf
+      custom.racadm
       # icingaweb2
     ];
 
