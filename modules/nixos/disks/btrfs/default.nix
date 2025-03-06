@@ -275,7 +275,7 @@ in {
               };
 
               swap = lib.mkIf cfg.swap.enable {
-                size = cfg.swap.enable;
+                size = cfg.swap.size;
                 content = {
                   type = "swap";
                   randomEncryption = true;

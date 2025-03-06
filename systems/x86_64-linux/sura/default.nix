@@ -6,8 +6,8 @@
   ...
 }: {
   imports = with inputs; [
-    # nixos-hardware.nixosModules.microsoft-surface-pro-intel
-    # nixos-hardware.nixosModules.microsoft-surface-common
+    nixos-hardware.nixosModules.microsoft-surface-pro-intel
+    nixos-hardware.nixosModules.microsoft-surface-common
   ];
 
   config = {
