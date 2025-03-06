@@ -349,10 +349,12 @@ in {
           image = "docker.io/teumaauss/srvadmin";
 
           volumes = let
-            kernelVideo = config.boot.kernelPackages.kernel.version;
+            kernelVersion = config.boot.kernelPackages.kernel.version;
           in [
-            "/run/current-system/sw/lib/modules/${kernelVideo}:/lib/modules/${kernelVideo}"
-            "/usr/libexec/dell_dup:/usr/libexec/dell_dup:Z"
+            "/run/current-system/sw/lib/modules/${kernelVersion}:/lib/modules/${kernelVersion}"
+            "/sys:/sys"
+            "/srv/openmanage/shared:/data:Z"
+            # "/usr/libexec/dell_dup:/usr/libexec/dell_dup:Z"
           ];
 
           extraOptions = [
