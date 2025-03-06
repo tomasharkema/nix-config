@@ -34,7 +34,7 @@ in {
       enable = true;
       main = "/dev/nvme0n1";
       second = "/dev/nvme1n1";
-      boot = "/dev/sda";
+      boot = "/dev/disk/by-partlabel/disk-boot-ESP";
       snapper.enable = false;
       # btrbk.enable = true;
     };
