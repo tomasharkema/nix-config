@@ -73,7 +73,7 @@ in {
       "bmc-watchdog".enable = true;
       podman.enable = true;
       docker.enable = false;
-      # zabbix.server.enable = true;
+      zabbix.server.enable = true;
       atticd.enable = true;
     };
 
@@ -106,7 +106,7 @@ in {
           EMAIL_USE_TLS = "False";
         };
       };
-
+      usbguard.enable = lib.mkForce false;
       tcsd.enable = true;
 
       throttled.enable = lib.mkForce false;
