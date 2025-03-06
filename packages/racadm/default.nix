@@ -1,7 +1,6 @@
 {
   stdenv,
   fetchurl,
-  tree,
   dpkg,
   autoPatchelfHook,
   fetchFromGitHub,
@@ -46,7 +45,6 @@ in
     buildInputs = [argtable];
 
     postUnpack = ''
-      ${tree}/bin/tree .
       dpkg-deb --fsys-tarfile iDRACTools/racadm/UBUNTU20/x86_64/srvadmin-hapi_11.0.1.0_amd64.deb | \
         tar -vx --no-same-owner -C iDRACTools
 
@@ -55,12 +53,9 @@ in
 
       dpkg-deb --fsys-tarfile iDRACTools/racadm/UBUNTU20/x86_64/srvadmin-idracadm7_11.0.1.0_all.deb | \
         tar -vx --no-same-owner -C iDRACTools
-
-      ${tree}/bin/tree .
     '';
 
     installPhase = ''
-      ${tree}/bin/tree .
       mkdir -p $out/{bin,lib}
       cp -r usr/libexec $out
       cp -r opt/dell/srvadmin/* $out
@@ -69,7 +64,9 @@ in
       rm -rf $out/var
 
       substituteInPlace $out/lib/systemd/system/instsvcdrv.service --replace-fail "/usr" "$out"
-      substituteInPlace $out/libexec/instsvcdrv-helper --replace-fail "/opt/dell/srvadmin\"" "$out\"" \
-        --replace-fail "/opt/dell/srvadmin/" "/"
+      substituteInPlace $out/libexec/instsvcdrv-helper \
+        --replace-fail "/opt/dell/srvadmin\"" "$out\"" \
+        --replace-fail "/opt/dell/srvadmin/" "/" \
+        --replace-fail "OS_MODULES_DIR=\"/lib/modules\"" "OS_MODULES_DIR="/run/booted-system/sw/lib/modules""
     '';
   }
