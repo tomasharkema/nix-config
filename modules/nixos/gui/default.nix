@@ -48,16 +48,16 @@ in {
         "delayacct"
       ];
 
-      kernelModules = ["wacom"];
+      # kernelModules = ["wacom"];
 
-      extraModulePackages = [
-        config.system.build.input-wacom
-      ];
+      # extraModulePackages = [
+      #   config.system.build.input-wacom
+      # ];
     };
 
     environment.systemPackages = with pkgs; [
       coppwr
-      libwacom
+      # libwacom
     ];
   };
 }
