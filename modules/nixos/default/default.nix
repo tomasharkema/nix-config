@@ -20,7 +20,9 @@
     age.secrets = {cachix-key = {rekeyFile = ./cachix-key.age;};};
 
     system = {
-      build.self = inputs.self;
+      build = {
+        self = inputs.self;
+      };
       #      etc.overlay.enable = config.boot.initrd.systemd.enable;
       nixos.tags = ["${config.boot.kernelPackages.kernel.version}"];
     };
@@ -179,6 +181,7 @@
       enableAllTerminfo = pkgs.stdenv.isx86_64;
       systemPackages =
         (with pkgs; [
+          config.system.build.input-wacom
           bridge-utils
           xterm
           libheif
@@ -193,7 +196,6 @@
           bat-extras.batpipe
           bat-extras.batgrep
           compsize
-
           # dry
 
           # fam # unmaintained

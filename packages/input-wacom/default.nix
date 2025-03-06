@@ -13,13 +13,13 @@
 }:
 stdenv.mkDerivation rec {
   pname = "input-wacom";
-  version = "1.3.0";
+  version = "1.4.0";
 
   src = fetchFromGitHub {
     owner = "linuxwacom";
     repo = "input-wacom";
     rev = "v${version}";
-    hash = "sha256-p2XLW92i4CVuev2eM6uQQykWKa7lm+/lBdOptoD9YNU=";
+    hash = "sha256-nRvJsnOitMYefaU5P0Au4dJ7DzMRYBwScrOmLUSw3So=";
   };
 
   nativeBuildInputs =
@@ -32,10 +32,15 @@ stdenv.mkDerivation rec {
     ]
     ++ kernel.moduleBuildDependencies;
 
-  makeFlags = [
-    "WCM_KERNEL_VER=${kernel.modDirVersion}"
-    "WCM_KERNEL_DIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
+  configureFlags = [
+    "--with-kernel=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
+    "--with-kernel-version=${kernel.modDirVersion}"
   ];
+
+  installPhase = ''
+    mkdir -p $out/lib/modules/${kernel.modDirVersion}/extra
+    cp /build/source/4.18/*.ko $out/lib/modules/${kernel.modDirVersion}/extra
+  '';
 
   meta = {
     description = "Linux kernel driver for Wacom devices";

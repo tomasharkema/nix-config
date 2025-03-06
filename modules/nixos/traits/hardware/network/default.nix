@@ -23,25 +23,25 @@
         "net.core.default_qdisc" = "fq";
       };
 
-      networking.networkmanager = {
-        dispatcherScripts = [
-          {
-            source = pkgs.writeText "ethtool-up.sh" ''
-              ETHSPEED="$(cat /sys/class/net/$1/speed)"
-              logger "$1 $ETHSPEED"
-              if [[ "$ETHSPEED" == "10000" && "$2" == "up" ]]; then
-                logger "$1 up"
-                ${lib.getExe pkgs.ethtool} -K $1 tx on
-                ${lib.getExe pkgs.ethtool} -K $1 rx on
-                ${lib.getExe pkgs.ethtool} -K $1 tso on
-                ${lib.getExe pkgs.ethtool} -K $1 gso on
-                ${lib.getExe pkgs.ethtool} -K $1 sg on
-              fi
-            '';
-            type = "basic";
-          }
-        ];
-      };
+      # networking.networkmanager = {
+      #   dispatcherScripts = [
+      #     {
+      #       source = pkgs.writeText "ethtool-up.sh" ''
+      #         ETHSPEED="$(cat /sys/class/net/$1/speed)"
+      #         logger "$1 $ETHSPEED"
+      #         if [[ "$ETHSPEED" == "10000" && "$2" == "up" ]]; then
+      #           logger "$1 up"
+      #           ${lib.getExe pkgs.ethtool} -K $1 tx on
+      #           ${lib.getExe pkgs.ethtool} -K $1 rx on
+      #           ${lib.getExe pkgs.ethtool} -K $1 tso on
+      #           ${lib.getExe pkgs.ethtool} -K $1 gso on
+      #           ${lib.getExe pkgs.ethtool} -K $1 sg on
+      #         fi
+      #       '';
+      #       type = "basic";
+      #     }
+      #   ];
+      # };
     })
   ];
 }

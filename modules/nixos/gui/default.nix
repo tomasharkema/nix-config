@@ -18,12 +18,15 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    system.build.input-wacom = pkgs.custom.input-wacom.override {kernel = config.boot.kernelPackages.kernel;};
+
     gui = {
       gamemode.enable = lib.mkDefault false;
       quiet-boot.enable = lib.mkDefault true;
       desktop.enable = lib.mkDefault true;
       gnome.enable = lib.mkDefault true;
     };
+
     apps.flatpak.enable = lib.mkDefault true;
 
     services = {
@@ -35,15 +38,26 @@ in {
       playerctld.enable = true;
       displayManager.defaultSession = "hyprland";
     };
-    programs.nm-applet.enable = true;
-    boot.kernelParams = [
-      "preempt=lazy"
 
-      "delayacct"
-    ];
+    programs.nm-applet.enable = true;
+
+    boot = {
+      kernelParams = [
+        "preempt=lazy"
+
+        "delayacct"
+      ];
+
+      kernelModules = ["wacom"];
+
+      extraModulePackages = [
+        config.system.build.input-wacom
+      ];
+    };
 
     environment.systemPackages = with pkgs; [
       coppwr
+      libwacom
     ];
   };
 }
