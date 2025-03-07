@@ -115,6 +115,7 @@ in {
           projectable
           # xplr
           lazycli
+          lazyjournal
           # f1viewer
           # aicommits
           # openai
