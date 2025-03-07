@@ -54,10 +54,10 @@ in {
         nvidia = {
           enable = true;
           open = false;
-          grid = {
-            enable = true;
-            legacy = true;
-          };
+          # grid = {
+          #   enable = true;
+          #   legacy = true;
+          # };
         };
       };
     };
@@ -134,7 +134,7 @@ in {
       beesd.filesystems = {
         root = {
           spec = "UUID=948d8479-177a-4204-a6a8-5d2013f3dc88";
-          hashTableSizeMB = 2048;
+          hashTableSizeMB = 4096;
           verbosity = "crit";
           extraOptions = [
             "--loadavg-target"
@@ -142,7 +142,7 @@ in {
           ];
         };
       };
-      # tcsd.enable = true;
+
       kmscon.enable = lib.mkForce false;
 
       prometheus.exporters = {
@@ -451,7 +451,7 @@ in {
           "dell_rbu"
           # "pci-me"
           "kvm-intel"
-
+          "mei-me"
           "uinput"
           #          "tpm_rng"
           "ipmi_ssif"
@@ -465,6 +465,7 @@ in {
       };
       kernelModules = [
         "pci-me"
+        "mei-me"
         "coretemp"
         "kvm-intel"
         "uinput"

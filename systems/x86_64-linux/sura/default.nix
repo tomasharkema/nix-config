@@ -17,20 +17,16 @@
       rekey.hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINd5H6IZiTv8r7FCxgM+GoOzjFLYnax54PPI+vGNpOos root@sura";
     };
 
-    disks.btrfs = {
+    disks.ext4 = {
       enable = true;
       main = "/dev/disk/by-id/ata-C400-MTFDDAT128MAM_0000000013050365897F";
-      encrypt = true;
-      newSubvolumes.enable = true;
-      # btrbk.enable = true;
-      snapper.enable = true; # false;
     };
 
     services = {
       remote-builders.client.enable = true;
       usbmuxd.enable = true;
       resilio.enable = lib.mkForce false;
-
+      kmscon.enable = lib.mkForce false;
       usbguard.enable = lib.mkForce false;
       tlp.enable = lib.mkForce false;
       netdata.enable = lib.mkForce false;
@@ -60,9 +56,6 @@
       # gamemode.enable = true;
       quiet-boot.enable = true;
     };
-
-    # virtualisation.waydroid.enable = true;
-
     traits = {
       low-power.enable = true;
       hardware = {
@@ -79,10 +72,6 @@
       firewall = {
         enable = true;
       };
-    };
-
-    services.scx = {
-      enable = lib.mkForce false; # pkgs.stdenvNoCC.isx86_64; # by default uses scx_rustland scheduler
     };
 
     boot = {

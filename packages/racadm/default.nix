@@ -7,6 +7,9 @@
   cmake,
   ninja,
   pkg-config,
+  linuxPackages,
+  kernel ? linuxPackages.kernel,
+  kmod,
 }: let
   argtable = stdenv.mkDerivation rec {
     pname = "argtable";
@@ -55,6 +58,15 @@ in
         tar -vx --no-same-owner -C iDRACTools
     '';
 
+    postBuild = ''
+      ls -la
+      ls -la etc
+      echo "${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
+      KDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build make -f opt/dell/srvadmin/src/srvadmin-hapi/dks/Makefile
+    '';
+
+    # --replace-fail "/opt/dell/srvadmin\"" "$out\"" \--replace-fail "/opt/dell/srvadmin/" "/" \
+
     installPhase = ''
       mkdir -p $out/{bin,lib}
       cp -r usr/libexec $out
@@ -64,9 +76,7 @@ in
       rm -rf $out/var
 
       substituteInPlace $out/lib/systemd/system/instsvcdrv.service --replace-fail "/usr" "$out"
-      substituteInPlace $out/libexec/instsvcdrv-helper \
-        --replace-fail "/opt/dell/srvadmin\"" "$out\"" \
-        --replace-fail "/opt/dell/srvadmin/" "/" \
-        --replace-fail "OS_MODULES_DIR=\"/lib/modules\"" "OS_MODULES_DIR="/run/booted-system/sw/lib/modules""
+      substituteInPlace $out/libexec/instsvcdrv-helper --replace-fail 'ISVCDD_PROD_NAME=' 'set -x; ISVCDD_PROD_NAME=' \
+        --replace-fail "OS_MODULES_DIR=\"/lib/modules\"" "OS_MODULES_DIR="/run/booted-system/sw/lib/modules""  --replace-fail ":/sbin:/usr/sbin:/bin:/usr/bin" ":$out/bin" --replace-fail "VERBOSE_LOGGING=false" "VERBOSE_LOGGING=true"
     '';
   }
