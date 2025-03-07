@@ -99,15 +99,20 @@ in {
         package =
           if cfg.grid.enable
           then
-            config.boot.kernelPackages.nvidiaPackages.vgpu_17_3.overrideAttrs (
-              finalAttrs: previousAttrs: {
-                meta =
-                  previousAttrs.meta
-                  // {
-                    license = lib.licenses.mit;
-                  };
-              }
-            )
+            ((
+                if cfg.grid.legacy
+                then config.boot.kernelPackages.nvidiaPackages.vgpu_16_5
+                else config.boot.kernelPackages.nvidiaPackages.vgpu_17_3
+              )
+              .overrideAttrs (
+                finalAttrs: previousAttrs: {
+                  meta =
+                    previousAttrs.meta
+                    // {
+                      license = lib.licenses.mit;
+                    };
+                }
+              ))
           else
             # pkgs.nvidia-patch.patch-nvenc (
             # pkgs.nvidia-patch.patch-fbc
@@ -120,7 +125,7 @@ in {
             enable = true;
             options = {
               doNotForceGPLLicense = false;
-              remapP40ProfilesToV100D = cfg.grid.legacy;
+              # remapP40ProfilesToV100D = cfg.grid.legacy;
             };
             copyVGPUProfiles = {
               "1E87:0000" = "1E30:12BA";

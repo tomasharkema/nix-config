@@ -59,13 +59,14 @@ in {
 
     apps = {
       # attic-server.enable = true;
-      ntopng.enable = true;
+
       atop = {
         enable = false;
         httpd = false;
       };
       "bmc-watchdog".enable = true;
       podman.enable = lib.mkForce true;
+      ollama.enable = true;
       # zabbix.server.enable = true;
       # atticd.enable = true;
     };
