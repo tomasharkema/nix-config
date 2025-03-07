@@ -17,7 +17,11 @@
       #   (assertPackage pkgs "sssd")
     ];
 
-    age.secrets = {cachix-key = {rekeyFile = ./cachix-key.age;};};
+    age.secrets = {
+      cachix-key = {
+        rekeyFile = ./cachix-key.age;
+      };
+    };
 
     system = {
       build = {
@@ -65,7 +69,9 @@
 
     virtualisation.spiceUSBRedirection.enable = true;
 
-    zramSwap = {enable = lib.mkDefault true;};
+    zramSwap = {
+      enable = lib.mkDefault true;
+    };
 
     console = {
       earlySetup = true;
@@ -128,9 +134,7 @@
           (
             if config.traits.server.enable
             then lib.mkDefault pkgs.linuxPackages_cachyos-server
-            else
-              lib.mkDefault
-              pkgs.linuxPackages_cachyos
+            else lib.mkDefault pkgs.linuxPackages_cachyos
           );
 
       kernelModules = [
@@ -145,7 +149,10 @@
         # "apfs"
         "nfs"
       ];
-      initrd.kernelModules = ["netconsole" "sha256"];
+      initrd.kernelModules = [
+        "netconsole"
+        "sha256"
+      ];
       loader = {
         systemd-boot = {
           netbootxyz.enable = true;
@@ -254,6 +261,8 @@
           ifuse
           ipcalc
           iptraf-ng
+          usbredir
+          whatfiles
           # jupyter
           kexec-tools
           kmon
@@ -325,7 +334,7 @@
           wget
           wget
           wmctrl
-          wtf
+          wtfutil
           zstd
         ])
         ++ (with pkgs.custom; [
@@ -337,16 +346,18 @@
           sshed
           # rmfuse
         ])
-        ++ (lib.optionals pkgs.stdenv.isx86_64 (with pkgs; [
-          spectre-meltdown-checker
-          gnutls
-          cmospwd
-          uefisettings
-          libsmbios
-          custom.ztui
-          dmidecode
-          refind
-        ]));
+        ++ (lib.optionals pkgs.stdenv.isx86_64 (
+          with pkgs; [
+            spectre-meltdown-checker
+            gnutls
+            cmospwd
+            uefisettings
+            libsmbios
+            custom.ztui
+            dmidecode
+            refind
+          ]
+        ));
     };
 
     systemd.tmpfiles = {
@@ -467,7 +478,9 @@
 
       seatd.enable = true;
 
-      udisks2 = {enable = true;};
+      udisks2 = {
+        enable = true;
+      };
 
       # das_watchdog.enable = true;
 
@@ -663,7 +676,9 @@
     };
 
     networking = {
-      firewall = {enable = lib.mkDefault true;};
+      firewall = {
+        enable = lib.mkDefault true;
+      };
 
       networkmanager.enable = lib.mkDefault true;
       timeServers = ["time.cloudflare.com"];

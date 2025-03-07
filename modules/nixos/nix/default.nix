@@ -134,7 +134,10 @@
       settings = {
         trusted-public-keys = [pubKey];
 
-        extra-platforms = ["aarch64-linux" "i686-linux"];
+        extra-platforms = [
+          "aarch64-linux"
+          "i686-linux"
+        ];
 
         extra-sandbox-paths = [config.programs.ccache.cacheDir];
 
@@ -170,7 +173,7 @@
       };
 
       # flake-utils-plus
-      generateRegistryFromInputs = true;
+      generateRegistryFromInputs = false; # true;
       generateNixPathFromInputs = true;
       linkInputs = true;
     };

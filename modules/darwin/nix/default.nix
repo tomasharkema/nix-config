@@ -16,8 +16,7 @@ in {
   options = {
     gui = {
       enable = lib.mkEnableOption "Whether or not to manage nix configuration.";
-      gnome.enable =
-        lib.mkEnableOption "Whether or not to manage nix configuration.";
+      gnome.enable = lib.mkEnableOption "Whether or not to manage nix configuration.";
     };
   };
 
@@ -36,7 +35,7 @@ in {
 
     traits.developer.enable = true;
 
-    services.nix-daemon.enable = true;
+    # services.nix-daemon.enable = true;
     programs.direnv.enable = true;
     # age.secrets."op" = {
     #   rekeyFile = ../../../secrets/op.age;
@@ -60,7 +59,10 @@ in {
     };
 
     nix = let
-      users = ["root" "${config.user.name}"];
+      users = [
+        "root"
+        "${config.user.name}"
+      ];
     in {
       # package = pkgs.nixVersions.nix_2_23; #.latest;
 
@@ -76,7 +78,7 @@ in {
         ];
         config = {
           virtualisation = {
-            # rosetta.enable = true;
+            rosetta.enable = true;
             darwin-builder = {
               diskSize = 40 * 1024;
               memorySize = 6 * 1024;
@@ -120,13 +122,15 @@ in {
 
       gc = {
         automatic = true;
-        interval = {Day = 1;};
+        interval = {
+          Day = 1;
+        };
         options = "--delete-older-than 14d";
-        user = "${config.user.name}";
+        # user = "${config.user.name}";
       };
 
       # flake-utils-plus
-      generateRegistryFromInputs = true;
+      generateRegistryFromInputs = false; # true;
       generateNixPathFromInputs = true;
       linkInputs = true;
     };

@@ -85,7 +85,6 @@
       # synergy.server = {
       #   enable = true;
       # };
-      nix-daemon.enable = true;
     };
 
     fonts = {
@@ -142,7 +141,10 @@
       '';
 
       settings = {
-        trusted-users = ["root" "tomas"];
+        trusted-users = [
+          "root"
+          "tomas"
+        ];
 
         # extra-substituters = [
         #   "https://nix-gaming.cachix.org"

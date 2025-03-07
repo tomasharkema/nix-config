@@ -19,7 +19,6 @@
       # nodejs
       ripgrep
       ack
-      csharp-ls
     ];
 
     programs = {
@@ -41,7 +40,10 @@
           {
             action = ":lua require('Comment.api').toggle_current_linewise()<CR>";
             key = "<C-_>";
-            mode = ["n" "v"];
+            mode = [
+              "n"
+              "v"
+            ];
             options = {
               # silent = true;
             };
@@ -49,7 +51,10 @@
           {
             action = ":lua require('Comment.api').toggle_current_linewise()<CR>";
             key = "<C-/>";
-            mode = ["n" "v"];
+            mode = [
+              "n"
+              "v"
+            ];
             options = {
               # silent = true;
             };
@@ -57,12 +62,18 @@
           {
             action = ":Telescope live_grep<CR>";
             key = "<C-F>";
-            mode = ["n" "v"];
+            mode = [
+              "n"
+              "v"
+            ];
           }
           {
             action = ":Telescope find_files<CR>";
             key = "<C-O>";
-            mode = ["n" "v"];
+            mode = [
+              "n"
+              "v"
+            ];
           }
           {
             key = ";";
@@ -71,7 +82,9 @@
         ];
 
         plugins = {
-          which-key = {enable = true;};
+          which-key = {
+            enable = true;
+          };
           persistence.enable = true;
           # snacks.enable = true;
           comment = {

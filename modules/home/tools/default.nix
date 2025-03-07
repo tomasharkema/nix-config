@@ -5,7 +5,8 @@
 }:
 with pkgs; {
   config = {
-    home.packages = with pkgs; ((lib.optionals pkgs.stdenv.isLinux [
+    home.packages = with pkgs; (
+      (lib.optionals pkgs.stdenv.isLinux [
         ftop
       ])
       ++ [
@@ -39,7 +40,7 @@ with pkgs; {
         curl
         # devtodo
         # devdash
-        wtf
+        wtfutil
         # fwupd
         # fwupd-efi
         # hw-probe
@@ -135,7 +136,8 @@ with pkgs; {
         yq
         zip
         zsh
-      ]);
+      ]
+    );
   };
   # home.packages = with pkgs; [
   #   # moonlight
