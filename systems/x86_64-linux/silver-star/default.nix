@@ -54,10 +54,10 @@ in {
         nvidia = {
           enable = true;
           open = false;
-          # grid = {
-          #   enable = true;
-          #   legacy = true;
-          # };
+          grid = {
+            enable = true;
+            legacy = true;
+          };
         };
       };
     };
@@ -72,7 +72,7 @@ in {
         httpd = false; # true;
       };
       ollama.enable = true;
-      "bmc-watchdog".enable = true;
+      # "bmc-watchdog".enable = true;
       podman.enable = true;
       docker.enable = false;
       zabbix.server.enable = true;
@@ -108,6 +108,7 @@ in {
           EMAIL_USE_TLS = "False";
         };
       };
+
       usbguard.enable = lib.mkForce false;
       tcsd.enable = true;
 
@@ -123,9 +124,9 @@ in {
         };
       };
 
-      watchdogd = {
-        enable = true;
-      };
+      # watchdogd = {
+      #   enable = true;
+      # };
 
       das_watchdog.enable = lib.mkForce false;
 
@@ -153,38 +154,38 @@ in {
         # snmp.enable = true;
       };
 
-      rsyslogd = {
-        enable = true;
-        extraConfig = ''
-          $ModLoad imudp
+      #   rsyslogd = {
+      #     enable = true;
+      #     extraConfig = ''
+      #       $ModLoad imudp
 
-          $RuleSet remote
-          # Modify the following template according to the devices on which you want to
-          # store logs. Change the IP address and subdirectory name on each
-          # line. Add or remove "else if" lines according to the number of your
-          # devices.
-          if $fromhost-ip=='10.20.30.40' then /var/log/remote/spineswitch1/console.log
-          else if $fromhost-ip=='10.20.30.41' then /var/log/remote/leafswitch1/console.log
-          else if $fromhost-ip=='10.20.30.42' then /var/log/remote/leafswitch2/console.log
-          else /var/log/remote/other/console.log
-          & stop
+      #       $RuleSet remote
+      #       # Modify the following template according to the devices on which you want to
+      #       # store logs. Change the IP address and subdirectory name on each
+      #       # line. Add or remove "else if" lines according to the number of your
+      #       # devices.
+      #       if $fromhost-ip=='10.20.30.40' then /var/log/remote/spineswitch1/console.log
+      #       else if $fromhost-ip=='10.20.30.41' then /var/log/remote/leafswitch1/console.log
+      #       else if $fromhost-ip=='10.20.30.42' then /var/log/remote/leafswitch2/console.log
+      #       else /var/log/remote/other/console.log
+      #       & stop
 
-          $InputUDPServerBindRuleset remote
-          $UDPServerRun 6666
+      #       $InputUDPServerBindRuleset remote
+      #       $UDPServerRun 6666
 
-          $RuleSet RSYSLOG_DefaultRuleset
+      #       $RuleSet RSYSLOG_DefaultRuleset
 
-        '';
-      };
+      #     '';
+      #   };
     };
 
     systemd = {
-      watchdog = {
-        device = "/dev/watchdog";
-        runtimeTime = "30s";
-        kexecTime = "5m";
-        rebootTime = "5m";
-      };
+      # watchdog = {
+      #   device = "/dev/watchdog";
+      #   runtimeTime = "30s";
+      #   kexecTime = "5m";
+      #   rebootTime = "5m";
+      # };
 
       # services."docker-compose@atuin".wantedBy = ["multi-user.target"];
     };
@@ -301,7 +302,7 @@ in {
       nvidia = {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
-        # nvidiaPersistenced = lib.mkForce true;
+        nvidiaPersistenced = lib.mkForce true;
       };
     };
 
@@ -403,17 +404,17 @@ in {
       # copyKernels = {enable = true;};
 
       # binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxPackages_6_6;
+      kernelPackages = pkgs.linuxPackages_6_11;
       kernelParams = [
         "console=tty1"
         "console=ttyS0,115200n8"
-        "intremap=no_x2apic_optout"
-        "nox2apic"
+        # "intremap=no_x2apic_optout"
+        # "nox2apic"
         "iomem=relaxed"
         "intel_iommu=on"
         "iommu=pt"
-        "video=efifb:off,vesafb:off"
-        "ixgbe.allow_unsupported_sfp=1,1"
+        # "video=efifb:off,vesafb:off"
+        # "ixgbe.allow_unsupported_sfp=1,1"
         #"vfio-pci.ids=10de:1380,10de:0fbc"
         # "pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
@@ -447,11 +448,11 @@ in {
           # "sd_mod"
         ];
         kernelModules = [
-          "dcdbas"
+          # "dcdbas"
           # "dell_rbu"
           # "pci-me"
           "kvm-intel"
-          "mei-me"
+          # "mei-me"
           "uinput"
           #          "tpm_rng"
           "ipmi_ssif"
@@ -464,8 +465,8 @@ in {
         ];
       };
       kernelModules = [
-        "pci-me"
-        "mei-me"
+        # "pci-me"
+        # "mei-me"
         "coretemp"
         "kvm-intel"
         "uinput"
