@@ -118,9 +118,8 @@ in {
         enable = true;
         defaults.authKeyPath = config.age.secrets.tsnsrv.path;
         services = {
-          nix-cache = {
-            toURL = "http://127.0.0.1:7124";
-          };
+          nix-cache = {toURL = "http://127.0.0.1:7124";};
+          searxng = {toURL = "http://127.0.0.1:8088";};
         };
       };
 

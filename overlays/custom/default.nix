@@ -35,7 +35,7 @@ in rec {
     self.packages."${prev.system}".freeipa;
 
   sssd = overridePkgCheckVersionSnapshot "sssd" "2.9.5" (
-    self.packages."${prev.system}".sssd.override {withSudo = true;}
+    self.packages."${prev.system}".sssd # .override {withSudo = true;}
   );
 
   docset = inputs.nixos-dash-docset.packages."${prev.system}".docset;
