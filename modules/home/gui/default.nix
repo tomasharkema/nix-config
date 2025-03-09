@@ -5,10 +5,8 @@
   config,
   ...
 }: let
-  inherit (pkgs) stdenv;
-
   bgGenerate = name: srcc:
-    stdenv.mkDerivation {
+    pkgs.stdenv.mkDerivation {
       name = "png-${name}.png";
 
       phases = ["buildPhase"];
@@ -32,16 +30,21 @@
     sha256 = "sha256-HxfX3ekUuZLluyN1yvfqVIQaNSejhV03sGFzi22zZ24=";
   };
 
-  bg = pkgs.fetchurl {
+  bg2 = pkgs.fetchurl {
     url = "https://i.redd.it/52bb00rh254d1.jpeg";
     sha256 = "sha256-2BQKeHFUPXk6YzF8XzIuvYestvBp27/WZqvZqAdZewE=";
+  };
+
+  bg = pkgs.fetchurl {
+    url = "https://4kwallpapers.com/images/wallpapers/astrophotography-5120x2880-21270.jpg";
+    sha256 = "0ir1rs0dfqjcj55i09d5kjxz0s50kcb08fmlm46w16bkpmzqzxns";
   };
 
   bgLight = bg;
   bgPng = bgGenerate "bg" bg;
   bgLightPng = bgGenerate "bgLight" bgLight;
 in {
-  config = lib.mkIf (stdenv.isLinux && osConfig.gui.enable) {
+  config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
     gtk.gtk3.bookmarks = [
       "file:///home/tomas/Downloads"
       "file:///home/tomas/Dropbox"
@@ -101,6 +104,7 @@ in {
       packages = with pkgs; [
         # custom.zerotier-ui
         notify-client
+        trayscale
       ];
 
       activation = {

@@ -44,7 +44,7 @@ in rec {
 
   piratebay = inputs.piratebay.packages."${prev.system}".default;
 
-  wezterm = inputs.wezterm.packages."${prev.system}".default;
+  # wezterm = inputs.wezterm.packages."${prev.system}".default;
 
   nixd = inputs.nixd.packages."${prev.system}".default;
 
