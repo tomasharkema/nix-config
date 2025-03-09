@@ -104,7 +104,7 @@
       hardwareScan = true;
 
       kernelParams = [
-        "zswap.enabled=1"
+        (lib.mkIf (!config.traits.server.enable) "zswap.enabled=1")
         "efi_pstore.pstore_disable=0"
         "printk.always_kmsg_dump"
         "crash_kexec_post_notifiers"
@@ -119,7 +119,7 @@
         "vm.watermark_scale_factor" = lib.mkDefault 125;
         "vm.page-cluster" = lib.mkDefault 0;
         "vm.overcommit_memory" = lib.mkDefault "1";
-        "kernel.printk" = "8 4 1 7";
+        # "kernel.printk" = "8 4 1 7";
       };
 
       tmp = {

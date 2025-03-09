@@ -34,11 +34,11 @@ in {
       enable = true;
       main = "/dev/nvme0n1";
       second = "/dev/nvme1n1";
-      boot = "/dev/disk/by-partlabel/disk-boot-ESP";
+      boot = "/dev/sda2";
       snapper.enable = false;
       # btrbk.enable = true;
     };
-
+    zramSwap.enable = false;
     traits = {
       server = {
         enable = true;
@@ -71,7 +71,7 @@ in {
         enable = true;
         httpd = false; # true;
       };
-      ollama.enable = true;
+      # ollama.enable = true;
       # "bmc-watchdog".enable = true;
       podman.enable = true;
       docker.enable = false;
@@ -86,7 +86,7 @@ in {
       };
       # mosh.enable = true;
       xserver.videoDrivers = ["nvidia"];
-
+      zram-generator.enable = false;
       # "nix-private-cache".enable = true;
 
       healthchecks = {
@@ -404,7 +404,7 @@ in {
       # copyKernels = {enable = true;};
 
       # binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxPackages_6_11;
+      kernelPackages = pkgs.linuxPackages_6_6;
       kernelParams = [
         "console=tty1"
         "console=ttyS0,115200n8"
