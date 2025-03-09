@@ -57,7 +57,8 @@ in {
 
     environment.systemPackages = with pkgs; [
       coppwr
-      # libwacom
+      libwacom
+      chromium
     ];
   };
 }
