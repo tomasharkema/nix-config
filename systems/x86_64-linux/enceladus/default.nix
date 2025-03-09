@@ -22,7 +22,7 @@ in {
       cpu.intel.updateMicrocode = true;
       bluetooth.enable = true;
     };
-
+    apps.podman.enable = true;
     services = {
       hypervisor.enable = true;
       # "nix-private-cache".enable = true;
@@ -43,6 +43,27 @@ in {
           extraOptions = [
             "--loadavg-target"
             "2.0"
+          ];
+        };
+      };
+    };
+
+    virtualisation = {
+      oci-containers.containers = {
+        netbootxyz = {
+          image = "ghcr.io/linuxserver/netbootxyz";
+
+          autoStart = true;
+
+          volumes = [
+            "/var/lib/netboot/config:/config"
+            "/var/lib/netboot/assets:/assets"
+          ];
+
+          ports = [
+            "3001:3000"
+            "69:69/udp"
+            "8083:80"
           ];
         };
       };
@@ -102,7 +123,7 @@ in {
       hostName = "enceladus";
 
       firewall = {
-        enable = true;
+        enable = false;
       };
 
       bridges.br0 = {
@@ -124,11 +145,19 @@ in {
           mtu = 9000;
           useDHCP = lib.mkDefault true;
         };
+        "vlan69" = {
+          ipv4.addresses = [
+            {
+              address = "192.168.69.40";
+              prefixLength = 24;
+            }
+          ];
+        };
         "vlan100" = {
           mtu = 9000;
           ipv4.addresses = [
             {
-              address = "192.168.0.102";
+              address = "192.168.0.103";
               prefixLength = 24;
             }
           ];
@@ -143,6 +172,10 @@ in {
         };
         "vlan100" = {
           id = 100;
+          interface = "enp1s0";
+        };
+        "vlan69" = {
+          id = 69;
           interface = "enp1s0";
         };
       };
