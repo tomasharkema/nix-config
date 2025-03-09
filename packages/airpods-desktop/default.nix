@@ -51,6 +51,18 @@
     rev = "3d1f6a5a2a3fbcba077e00ad0ccc2dd9fefc2ca7";
     hash = "sha256-CWGeYzSl2h+Aw/6yMWI0BDPiNq3BFGH3+M9F/ZrKh/Q=";
   };
+  boost-stacktrace = fetchFromGitHub {
+    owner = "boostorg";
+    repo = "stacktrace";
+    rev = "d6499f26d471158b6e6f65eea7425200f842b547";
+    hash = "sha256-7Kqwd7CwhPMXND/EQ+zvjHoDZ51BYXFzhv+kiEYzrUU=";
+  };
+  boost-pfr = fetchFromGitHub {
+    owner = "boostorg";
+    repo = "pfr";
+    rev = "3fe5ce61eee743c6da097c28bc0b84bdf29f6cc4";
+    hash = "sha256-8pzmARZGkJIBagBERDgiPz66SVfMBZGePv7FP2U54IU=";
+  };
 in
   stdenv.mkDerivation rec {
     pname = "AirPodsDesktop";
@@ -70,7 +82,8 @@ in
       qt5.wrapQtAppsHook
       curl
       extra-cmake-modules
-      # boost
+      boost
+      boost-stacktrace
     ];
 
     buildInputs = [
@@ -90,9 +103,13 @@ in
       "-DFETCHCONTENT_SOURCE_DIR_NLOHMANN_JSON=${json}"
       "-DFETCHCONTENT_SOURCE_DIR_SINGLEAPPLICATION=${singleApplication}"
       "-DFETCHCONTENT_SOURCE_DIR_MAGIC_ENUM=${magicEnum}"
+      "-Dboost_stacktrace_DIR=${boost-stacktrace}"
       "-DCPR_USE_SYSTEM_CURL=ON"
       "-DCPR_FORCE_USE_SYSTEM_CURL=ON"
-      "-DUSE_STATIC_BOOST=false"
+      "-DBOOST_ROOT=${boost}"
+      "-DUSE_STATIC_BOOST=FALSE"
+      "-DBoost_DEBUG:BOOL=ON"
+      "-DAPD_STACKTRACE_COMPONENT=stacktrace"
     ];
 
     enableParallelBuilding = true;
