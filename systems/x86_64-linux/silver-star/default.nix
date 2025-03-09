@@ -198,7 +198,7 @@ in {
       };
 
       bridges.br0 = {
-        interfaces = ["eno2"];
+        interfaces = ["eno1"];
       };
 
       defaultGateway = {
@@ -220,7 +220,7 @@ in {
           mtu = 9000;
         };
         "eno2" = {
-          useDHCP = lib.mkDefault false;
+          useDHCP = lib.mkDefault true;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
