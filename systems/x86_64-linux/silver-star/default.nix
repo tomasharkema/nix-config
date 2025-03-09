@@ -442,13 +442,13 @@ in {
           "ahci"
           "usbhid"
           "usb_storage"
-          "dell_rbu"
+          # "dell_rbu"
           "dcdbas"
           # "sd_mod"
         ];
         kernelModules = [
           "dcdbas"
-          "dell_rbu"
+          # "dell_rbu"
           # "pci-me"
           "kvm-intel"
           "mei-me"
@@ -478,6 +478,7 @@ in {
         "ipmi_devintf"
         "ipmi_msghandler"
         "ipmi_watchdog"
+        "dcdbas"
       ];
 
       systemd.services."serial-getty@ttyS0" = {
