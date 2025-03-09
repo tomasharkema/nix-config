@@ -574,19 +574,14 @@
 
       udev.enable = lib.mkDefault true;
 
-      chrony = {
-        enable = true;
-        enableNTS = true;
-      };
       ntp = {
-        enable = lib.mkForce false;
-        #   enable = true;
-        #   servers = [
-        #     "0.nl.pool.ntp.org"
-        #     "1.nl.pool.ntp.org"
-        #     "2.nl.pool.ntp.org"
-        #     "3.nl.pool.ntp.org"
-        #   ];
+        enable = true;
+        servers = [
+          "0.nl.pool.ntp.org"
+          "1.nl.pool.ntp.org"
+          "2.nl.pool.ntp.org"
+          "3.nl.pool.ntp.org"
+        ];
       };
     };
 
@@ -598,6 +593,8 @@
         owner = "tomas";
         group = "tomas";
       };
+      sudo.enable = false;
+      sudo-rs.enable = true;
     };
 
     programs = {
@@ -668,13 +665,6 @@
       enableRedistributableFirmware = lib.mkDefault true;
       # fancontrol.enable = true;
     };
-
-    nix = lib.mkIf pkgs.stdenv.isx86_64 {
-      distributedBuilds = true;
-      buildMachines = [
-      ];
-    };
-
     networking = {
       firewall = {
         enable = lib.mkDefault true;

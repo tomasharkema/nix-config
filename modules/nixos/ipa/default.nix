@@ -196,7 +196,7 @@ in {
     };
 
     security = {
-      sudo.package = pkgs.sudo.override {withSssd = true;};
+      # sudo.package = pkgs.sudo.override {withSssd = true;};
       krb5.settings.libdefaults.default_ccache_name = "KCM:";
 
       pki.certificateFiles = [config.security.ipa.certificate];
