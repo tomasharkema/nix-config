@@ -208,7 +208,7 @@
           bat-extras.batgrep
           compsize
           # dry
-
+          python3Packages.meshtastic
           # fam # unmaintained
           fancy-motd
           # mkchromecast

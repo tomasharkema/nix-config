@@ -61,7 +61,7 @@ in {
         enable = true;
         hideWindow = true;
       };
-      yubikey-agent.enable = true;
+      # yubikey-agent.enable = true;
       gnome-keyring = {
         components = ["pkcs11" "secrets"];
         enable = true;
