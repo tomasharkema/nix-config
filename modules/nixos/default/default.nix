@@ -306,6 +306,8 @@
           silenthound
           smartmontools
           socat
+          websocat
+          ser2net
           squashfsTools
           squashfs-tools-ng
           ssh-import-id
