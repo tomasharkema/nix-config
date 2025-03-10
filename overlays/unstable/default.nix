@@ -33,7 +33,7 @@
   #   };
   # });
 
-  _ntopng = prev.ntopng.overrideAttrs (old: {
+  ntopng = prev.ntopng.overrideAttrs (old: {
     version = "git+99588883";
     src = prev.fetchFromGitHub {
       owner = "ntop";
