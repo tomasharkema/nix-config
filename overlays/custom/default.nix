@@ -18,7 +18,7 @@ in rec {
 
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
-  cxxopts = prev.cxxopts.overrideAttrs (old: {
+  _cxxopts = prev.cxxopts.overrideAttrs (old: {
     # buildPhase = ''
     #   NIX_CFLAGS_COMPILE="-std=c++17 $NIX_CFLAGS_COMPILE"
     # '';
@@ -46,7 +46,7 @@ in rec {
 
   # wezterm = inputs.wezterm.packages."${prev.system}".default;
 
-  nixd = inputs.nixd.packages."${prev.system}".default;
+  _nixd = inputs.nixd.packages."${prev.system}".default;
 
   udisks = overridePkgCheckVersionSnapshot "udisks2" "" udisks2;
 
