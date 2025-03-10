@@ -197,7 +197,9 @@ in {
             explicit_sync = 0;
             explicit_sync_kms = 0;
           };
-          windowrulev2 = ["float,class:^(firefox)$,title:^(Picture-in-Picture)$"];
+          windowrulev2 = [
+            "float pin,class:^(firefox)$,title:^(Picture-in-Picture)$"
+          ];
           general = {allow_tearing = true;};
           xwayland = {force_zero_scaling = true;};
 

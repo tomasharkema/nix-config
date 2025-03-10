@@ -40,13 +40,13 @@ in [
       #"custom/hello-from-waybar"
     ];
     modules-right = [
-      # "mpd"
+      "mpd"
       # "idle_inhibitor"
-      # "network"
+      "network"
       "power-profiles-daemon"
       # "cpu"
       # "memory"
-      # "temperature"
+      "temperature"
 
       # "keyboard-state"
       # "sway/language"
