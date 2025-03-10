@@ -134,11 +134,10 @@
 
     virtualisation.waydroid.enable = true;
 
-    # chaotic.hdr = {
-    #   enable = true;
-
-    #   specialisation.enable = false;
-    # };
+    chaotic.hdr = {
+      enable = true;
+      specialisation.enable = false;
+    };
 
     # virtualisation.kvmgt = {
     #   enable = true;

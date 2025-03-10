@@ -61,11 +61,13 @@ in {
         enable = true;
         hideWindow = true;
       };
-
+      yubikey-agent.enable = true;
       gnome-keyring = {
         components = ["pkcs11" "secrets"];
         enable = true;
       };
+      activitywatch.enable = true;
+      tldr-update.enable = true;
     };
 
     xsession.enable = true;

@@ -170,7 +170,11 @@ in {
       # terminator.enable = lib.mkIf pkgs.stdenv.isLinux osConfig.gui.enable;
 
       # yt-dlp.enable = true;
-
+      noti = {
+        enable = true;
+        settings = {ntfy.url = "ntfy.sh/tomasharkema-nixos";};
+      };
+      topgrade.enable = true;
       direnv = {
         enable = true;
         nix-direnv.enable = true;

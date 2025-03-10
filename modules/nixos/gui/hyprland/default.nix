@@ -13,7 +13,12 @@
 in {
   config = {
     programs = {
-      hyprland = {enable = true;};
+      hyprland = {
+        enable = true;
+        # package = pkgs.hyprland.override {
+        #   hidpiXWayland = true;
+        # };
+      };
       hyprlock.enable = true;
     };
     security.pam.services.hyprlock = {};
@@ -46,12 +51,13 @@ in {
       mpv
       imv
 
+      hyprpolkitagent
       grim
       slurp
       wl-clipboard
       wlr-randr
     ];
-
+    systemd.packages = with pkgs; [hyprpolkitagent];
     home-manager.users.tomas = {
       systemd.user.targets.tray.Unit.Requires =
         lib.mkForce ["graphical-session.target"];
@@ -77,7 +83,7 @@ in {
           enable = true;
           settings = {
             input-field = {
-              monitor = "DP-2";
+              monitor = "DP-3";
               size = "200,50";
               outline_thickness = 2;
               dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
@@ -107,7 +113,8 @@ in {
       };
 
       services = {
-        swaync = {enable = true;};
+        # swaync = {enable = true;};
+        mako = {enable = true;};
         hypridle = {
           enable = true;
           settings = {
@@ -145,7 +152,15 @@ in {
           # hyprbars
         ];
         settings = {
-          monitor = ",preferred,auto,${
+          "$terminal" = "kitty";
+          "$fileManager" = "nautilus";
+          "$menu" = "rofi -show drun";
+
+          monitor = ",${
+            if config.gui.hidpi.enable
+            then "highres"
+            else "preferred"
+          },auto,${
             if config.gui.hidpi.enable
             then "1.6"
             else "1"
@@ -156,12 +171,22 @@ in {
             "HYPRCURSOR_SIZE,24"
             "GDK_SCALE,${
               if config.gui.hidpi.enable
-              then "2"
+              then "1.6"
               else "1"
             }"
           ];
 
-          exec-once = ["hyprshade auto"];
+          exec-once = [
+            "hyprshade auto"
+            "hypridle"
+            "hyprsunset"
+            "systemctl --user start hyprpolkitagent"
+
+            "[workspace 1 silent] $terminal"
+            "nm-applet & usbguard-gnome &"
+
+            "[workspace 2 silent] firefox"
+          ];
           experimental = {
             # hdr = true;
             # wide_color_gamut = true;
@@ -172,7 +197,7 @@ in {
             explicit_sync = 0;
             explicit_sync_kms = 0;
           };
-
+          windowrulev2 = ["float,class:^(firefox)$,title:^(Picture-in-Picture)$"];
           general = {allow_tearing = true;};
           xwayland = {force_zero_scaling = true;};
 

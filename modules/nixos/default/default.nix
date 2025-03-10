@@ -28,7 +28,7 @@
         self = inputs.self;
       };
       #      etc.overlay.enable = config.boot.initrd.systemd.enable;
-      nixos.tags = ["${config.boot.kernelPackages.kernel.version}"];
+      nixos.tags = ["${config.boot.kernelPackages.kernel.modDirVersion}"];
     };
 
     systemd = {
@@ -38,6 +38,8 @@
         NetworkManager-wait-online.enable = lib.mkForce false;
         systemd-networkd-wait-online.enable = lib.mkForce false;
       };
+      sysupdate.enable = true;
+      repart.enable = true;
     };
 
     # Set your time zone.

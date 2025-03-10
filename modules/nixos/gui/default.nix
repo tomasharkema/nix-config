@@ -57,8 +57,10 @@ in {
 
     environment.systemPackages = with pkgs; [
       coppwr
+      custom.meshtastic
       libwacom
       chromium
+      noti
     ];
   };
 }
