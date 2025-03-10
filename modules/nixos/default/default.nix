@@ -597,8 +597,8 @@
         owner = "tomas";
         group = "tomas";
       };
-      sudo.enable = false;
-      sudo-rs.enable = true;
+      # sudo.enable = false;
+      # sudo-rs.enable = true;
     };
 
     programs = {
