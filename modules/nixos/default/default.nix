@@ -39,7 +39,7 @@
         systemd-networkd-wait-online.enable = lib.mkForce false;
       };
       sysupdate.enable = true;
-      repart.enable = true;
+      # repart.enable = true;
     };
 
     # Set your time zone.
