@@ -114,7 +114,11 @@ in {
 
       services = {
         # swaync = {enable = true;};
-        mako = {enable = true;};
+        mako = {
+          enable = true;
+
+          font = "B612 12";
+        };
         hypridle = {
           enable = true;
           settings = {

@@ -262,7 +262,38 @@
           nix-develop.enable = true;
           notify.enable = true;
           zellij.enable = true;
-          statuscol.enable = true;
+          statuscol = {
+            enable = true;
+            settings.segments = [
+              {
+                click = "v:lua.ScFa";
+                text = [
+                  "%C"
+                ];
+              }
+              {
+                click = "v:lua.ScSa";
+                text = [
+                  "%s"
+                ];
+              }
+              {
+                click = "v:lua.ScLa";
+                condition = [
+                  true
+                  {
+                    __raw = "require('statuscol.builtin').not_empty";
+                  }
+                ];
+                text = [
+                  {
+                    __raw = "require('statuscol.builtin').lnumfunc";
+                  }
+                  " "
+                ];
+              }
+            ];
+          };
           nix = {
             enable = true;
           };

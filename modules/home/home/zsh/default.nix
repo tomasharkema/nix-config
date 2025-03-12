@@ -96,6 +96,8 @@
 
           docker-login = "op item get raeclwvdys3epkmc5zthv4pdha --format=json --vault=qtvfhvfotoqynomh2wd3yzoofe | jq '.fields[1].value' -r | docker login ghcr.io --username tomasharkema --password-stdin";
 
+          unifi-tui = ''unifi-tui --url "https://192.168.1.1/proxy/network/integrations" --api-key "$(op item get ojsyugyddrsxtq3kayoonibhda --reveal --field credential)"'';
+
           subl = (lib.mkIf pkgs.stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
         };
 

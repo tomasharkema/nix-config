@@ -357,7 +357,7 @@
             cmospwd
             uefisettings
             libsmbios
-            custom.ztui
+
             dmidecode
             refind
           ]
@@ -389,7 +389,7 @@
         scheduler = "scx_lavd"; # "scx_bpfland";
       };
       earlyoom.enableNotifications = true;
-
+      locate.enable = true;
       smartd = {
         enable = true;
         notifications = {
