@@ -56,11 +56,11 @@ in {
   imports = [];
 
   config = {
-    services.lorri = lib.mkIf pkgs.stdenv.isLinux {
-      enable = true;
-
-      enableNotifications = true;
-    };
+    # services.lorri = lib.mkIf pkgs.stdenv.isLinux {
+    #   enable = true;
+    #
+    #   enableNotifications = true;
+    # };
 
     # programs.inshellisense =  {
     #   enable = true;
@@ -82,6 +82,7 @@ in {
       # ++
       packages = with pkgs;
         [
+          custom.unifi-tui
           tre-command
           yazi
           squash-folder
