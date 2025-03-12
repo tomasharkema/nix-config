@@ -196,6 +196,8 @@
           bridge-utils
           xterm
           libheif
+          gensio
+          ser2net
           # lz4
           custom.zide
           custom.wikiman
