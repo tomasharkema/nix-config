@@ -71,7 +71,7 @@
         extraConfig = {
           # maintenance.auto = true;
           rerere = {enable = true;};
-          pull = {rebase = false;};
+          pull = {rebase = true;};
           branch = {autosetupmerge = true;};
 
           commit.gpgsign = true;

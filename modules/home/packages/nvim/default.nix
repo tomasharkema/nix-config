@@ -35,7 +35,9 @@
         colorschemes.catppuccin.enable = true;
 
         globals.mapleader = "\\";
-
+        clipboard = {
+          providers.wl-copy.enable = pkgs.stdenv.isLinux;
+        };
         keymaps = [
           {
             action = ":lua require('Comment.api').toggle_current_linewise()<CR>";
@@ -92,7 +94,7 @@
           };
           # dropbar.enable = true;
           lsp-format.enable = true;
-          lsp-status.enable = true;
+          # lsp-status.enable = true;
           autoclose.enable = true;
           lsp = {
             enable = true;
@@ -251,7 +253,7 @@
             enable = true;
           };
           gitgutter = {
-            enable = true;
+            # enable = true;
           };
           surround = {
             enable = true;
@@ -353,63 +355,62 @@
           # vim-csharp
           # csharpls-extended-lsp-nvim
         ];
-
+        globalOpts = {number = true;};
         # options = {
         #   number = true;
         #   syntax = "enable";
-        #   fileencodings = "utf-8,sjis,euc-jp,latin";
-        #   encoding = "utf-8";
+        #   #   fileencodings = "utf-8,sjis,euc-jp,latin";
+        #   #   encoding = "utf-8";
         #   title = true;
         #   autoindent = true;
-
+        #
         #   background = "dark";
-        #   backup = false;
-        #   hlsearch = true;
+        #   #   backup = false;
+        #   #   hlsearch = true;
         #   showcmd = true;
         #   cmdheight = 1;
         #   laststatus = 2;
         #   scrolloff = 10;
         #   expandtab = true;
         #   shell = "zsh";
-        #   backupskip = "/tmp/*,/private/tmp/*";
-        #   inccommand = "split";
-        #   ruler = false;
-        #   showmatch = false;
-        #   lazyredraw = true;
-        #   ignorecase = true;
-        #   smarttab = true;
+        #   #   backupskip = "/tmp/*,/private/tmp/*";
+        #   #   inccommand = "split";
+        #   #   ruler = false;
+        #   #   showmatch = false;
+        #   #   lazyredraw = true;
+        #   #   ignorecase = true;
+        #   #   smarttab = true;
         #   shiftwidth = 2;
         #   tabstop = 2;
-        #   ai = true;
-        #   ci = true;
-        #   wrap = true;
-        #   backspace = "start,eol,indent";
-        #   path = "vim.opts.path + **";
-        #   wildignore = "vim.opts.wildignore + */node_modules/*";
-        #   cursorline = true;
-        #   exrc = true;
-        #   mouse = "a";
-        #   suffixesadd = ".js,.es,.jsx,.json,.css,.less,.sass,.styl,.php,.py,.md,.nix";
+        #   #   ai = true;
+        #   #   ci = true;
+        #   #   wrap = true;
+        #   #   backspace = "start,eol,indent";
+        #   #   path = "vim.opts.path + **";
+        #   #   wildignore = "vim.opts.wildignore + */node_modules/*";
+        #   #   cursorline = true;
+        #   #   exrc = true;
+        #   #   mouse = "a";
+        #   #   suffixesadd = ".js,.es,.jsx,.json,.css,.less,.sass,.styl,.php,.py,.md,.nix";
         # };
-
-        autoCmd = [
-          {
-            event = ["InsertLeave"];
-            pattern = ["*"];
-            command = "set nopaste";
-          }
-          {
-            event = ["WinEnter"];
-            pattern = ["*"];
-            command = "set cul";
-          }
-          {
-            event = ["WinLeave"];
-            pattern = ["*"];
-            command = "set nocul";
-          }
-        ];
-
+        # autoCmd = [
+        #   {
+        #     event = ["InsertLeave"];
+        #     pattern = ["*"];
+        #     command = "set nopaste";
+        #   }
+        #   {
+        #     event = ["WinEnter"];
+        #     pattern = ["*"];
+        #     command = "set cul";
+        #   }
+        #   {
+        #     event = ["WinLeave"];
+        #     pattern = ["*"];
+        #     command = "set nocul";
+        #   }
+        # ];
+        #
         # highlight = {
         #   BufferCurrent = {
         #     fg = "#eceff4";
