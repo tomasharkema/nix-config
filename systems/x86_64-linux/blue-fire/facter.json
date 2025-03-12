@@ -855,6 +855,7 @@
           "abm",
           "cpuid_fault",
           "epb",
+          "pti",
           "ssbd",
           "ibrs",
           "ibpb",
@@ -894,7 +895,7 @@
           "srbds",
           "mmio_unknown"
         ],
-        "bogo": 7183.91,
+        "bogo": 7184.31,
         "cache": 8192,
         "units": 16,
         "physical_id": 0,
@@ -927,7 +928,7 @@
           "value": 133
         },
         "slot": {
-          "bus": 2,
+          "bus": 1,
           "number": 0
         },
         "base_class": {
@@ -942,24 +943,24 @@
         },
         "vendor": {
           "hex": "0000",
-          "name": "WDC",
+          "name": "Samsung",
           "value": 0
         },
         "device": {
           "hex": "0000",
-          "name": "WD40EZRX-00S",
+          "name": "SSD 850",
           "value": 0
         },
         "revision": {
           "hex": "0000",
-          "name": "0A80",
+          "name": "2B6Q",
           "value": 0
         },
-        "serial": "WD-WCC4E0VSU30H",
-        "model": "WDC WD40EZRX-00S",
+        "serial": "S21JNXBGC17548K",
+        "model": "Samsung SSD 850",
         "sysfs_id": "/class/block/sdb",
-        "sysfs_bus_id": "2:0:0:0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0",
+        "sysfs_bus_id": "1:0:0:0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0",
         "unix_device_name": "/dev/sdb",
         "unix_device_number": {
           "type": 98,
@@ -969,18 +970,16 @@
         },
         "unix_device_names": [
           "/dev/disk/by-diskseq/2",
-          "/dev/disk/by-id/ata-WDC_WD40EZRX-00SPEB0_WD-WCC4E0VSU30H",
-          "/dev/disk/by-id/wwn-0x50014ee20c7b59b2",
-          "/dev/disk/by-label/media",
-          "/dev/disk/by-path/pci-0000:00:1f.2-ata-3",
-          "/dev/disk/by-path/pci-0000:00:1f.2-ata-3.0",
-          "/dev/disk/by-uuid/788f2a25-87b0-4581-aadd-ebb5232a07f7",
+          "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K",
+          "/dev/disk/by-id/wwn-0x5002538d40913786",
+          "/dev/disk/by-path/pci-0000:00:1f.2-ata-2",
+          "/dev/disk/by-path/pci-0000:00:1f.2-ata-2.0",
           "/dev/sdb"
         ],
         "resources": [
           {
             "type": "disk_geo",
-            "cylinders": 486401,
+            "cylinders": 60801,
             "heads": 255,
             "sectors": 63,
             "size": 0,
@@ -989,7 +988,7 @@
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 7814037168,
+            "value_1": 976773168,
             "value_2": 512
           }
         ],
@@ -1058,7 +1057,7 @@
           "range": 16
         },
         "unix_device_names": [
-          "/dev/disk/by-diskseq/14",
+          "/dev/disk/by-diskseq/4",
           "/dev/disk/by-id/usb-Generic-_Multi-Card_20071114173400000-0:0",
           "/dev/disk/by-path/pci-0000:00:14.0-usb-0:11:1.0-scsi-0:0:0:0",
           "/dev/disk/by-path/pci-0000:00:14.0-usbv2-0:11:1.0-scsi-0:0:0:0",
@@ -1106,7 +1105,7 @@
           "value": 133
         },
         "slot": {
-          "bus": 1,
+          "bus": 2,
           "number": 0
         },
         "base_class": {
@@ -1121,24 +1120,24 @@
         },
         "vendor": {
           "hex": "0000",
-          "name": "Samsung",
+          "name": "WDC",
           "value": 0
         },
         "device": {
           "hex": "0000",
-          "name": "SSD 850",
+          "name": "WD40EZRX-00S",
           "value": 0
         },
         "revision": {
           "hex": "0000",
-          "name": "2B6Q",
+          "name": "0A80",
           "value": 0
         },
-        "serial": "S21JNXBGC17548K",
-        "model": "Samsung SSD 850",
+        "serial": "WD-WCC4E0VSU30H",
+        "model": "WDC WD40EZRX-00S",
         "sysfs_id": "/class/block/sda",
-        "sysfs_bus_id": "1:0:0:0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0",
+        "sysfs_bus_id": "2:0:0:0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0",
         "unix_device_name": "/dev/sda",
         "unix_device_number": {
           "type": 98,
@@ -1148,16 +1147,18 @@
         },
         "unix_device_names": [
           "/dev/disk/by-diskseq/1",
-          "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K",
-          "/dev/disk/by-id/wwn-0x5002538d40913786",
-          "/dev/disk/by-path/pci-0000:00:1f.2-ata-2",
-          "/dev/disk/by-path/pci-0000:00:1f.2-ata-2.0",
+          "/dev/disk/by-id/ata-WDC_WD40EZRX-00SPEB0_WD-WCC4E0VSU30H",
+          "/dev/disk/by-id/wwn-0x50014ee20c7b59b2",
+          "/dev/disk/by-label/media",
+          "/dev/disk/by-path/pci-0000:00:1f.2-ata-3",
+          "/dev/disk/by-path/pci-0000:00:1f.2-ata-3.0",
+          "/dev/disk/by-uuid/788f2a25-87b0-4581-aadd-ebb5232a07f7",
           "/dev/sda"
         ],
         "resources": [
           {
             "type": "disk_geo",
-            "cylinders": 60801,
+            "cylinders": 486401,
             "heads": 255,
             "sectors": 63,
             "size": 0,
@@ -1166,7 +1167,7 @@
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 976773168,
+            "value_1": 7814037168,
             "value_2": 512
           }
         ],
@@ -1208,23 +1209,23 @@
           "range": 1
         },
         "unix_device_names": [
-          "/dev/disk/by-diskseq/3",
+          "/dev/disk/by-diskseq/5",
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/e6733fd7-e066-49b6-83a9-ccff47cd1363",
+          "/dev/disk/by-uuid/9c315a42-785b-46ae-8807-a464376c3fb5",
           "/dev/zram0"
         ],
         "resources": [
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 4103296,
+            "value_1": 4086784,
             "value_2": 4096
           }
         ]
       },
       {
-        "index": 51,
-        "attached_to": 49,
+        "index": 52,
+        "attached_to": 50,
         "class_list": [
           "disk",
           "usb",
@@ -1518,7 +1519,7 @@
           },
           {
             "type": "irq",
-            "base": 65,
+            "base": 72,
             "triggered": 0,
             "enabled": true
           },
@@ -1560,7 +1561,7 @@
           "command": 1351,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 65,
+          "irq": 72,
           "prog_if": 0
         },
         "driver": "nvidia",
@@ -1577,7 +1578,7 @@
     "hub": [
       {
         "index": 47,
-        "attached_to": 49,
+        "attached_to": 50,
         "class_list": [
           "usb",
           "hub"
@@ -1674,7 +1675,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.6.78 xhci-hcd",
+          "name": "Linux 6.11.11 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1684,11 +1685,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.06",
+          "name": "6.11",
           "value": 0
         },
         "serial": "0000:01:00.2",
-        "model": "Linux 6.6.78 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.11.11 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:01.0/0000:01:00.2/usb6/6-0:1.0",
         "sysfs_bus_id": "6-0:1.0",
         "detail": {
@@ -1722,10 +1723,90 @@
         "drivers": [
           "hub"
         ],
-        "module_alias": "usb:v1D6Bp0003d0606dc09dsc00dp03ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0003d0611dc09dsc00dp03ic09isc00ip00in00"
       },
       {
         "index": 49,
+        "attached_to": 56,
+        "class_list": [
+          "usb",
+          "hub"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "010a",
+          "name": "Hub",
+          "value": 266
+        },
+        "vendor": {
+          "hex": "8087",
+          "value": 32903
+        },
+        "device": {
+          "hex": "8000",
+          "value": 32768
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "0.05",
+          "value": 0
+        },
+        "model": "Hub",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1:1.0",
+        "sysfs_bus_id": "2-1:1.0",
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 480000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "0009",
+            "name": "hub",
+            "value": 9
+          },
+          "device_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_protocol": 1,
+          "interface_class": {
+            "hex": "0009",
+            "name": "hub",
+            "value": 9
+          },
+          "interface_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "interface_protocol": 0,
+          "interface_number": 0,
+          "interface_alternate_setting": 0
+        },
+        "hotplug": "usb",
+        "driver": "hub",
+        "drivers": [
+          "hub"
+        ],
+        "module_alias": "usb:v8087p8000d0005dc09dsc00dp01ic09isc00ip00in00"
+      },
+      {
+        "index": 50,
         "attached_to": 38,
         "class_list": [
           "usb",
@@ -1747,7 +1828,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.6.78 xhci-hcd",
+          "name": "Linux 6.11.11 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1757,11 +1838,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.06",
+          "name": "6.11",
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.6.78 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.11.11 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb3/3-0:1.0",
         "sysfs_bus_id": "3-0:1.0",
         "resources": [
@@ -1805,10 +1886,10 @@
         "drivers": [
           "hub"
         ],
-        "module_alias": "usb:v1D6Bp0002d0606dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0611dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 50,
+        "index": 51,
         "attached_to": 38,
         "class_list": [
           "usb",
@@ -1830,7 +1911,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.6.78 xhci-hcd",
+          "name": "Linux 6.11.11 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1840,11 +1921,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.06",
+          "name": "6.11",
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.6.78 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.11.11 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb4/4-0:1.0",
         "sysfs_bus_id": "4-0:1.0",
         "detail": {
@@ -1878,11 +1959,11 @@
         "drivers": [
           "hub"
         ],
-        "module_alias": "usb:v1D6Bp0003d0606dc09dsc00dp03ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0003d0611dc09dsc00dp03ic09isc00ip00in00"
       },
       {
-        "index": 52,
-        "attached_to": 31,
+        "index": 53,
+        "attached_to": 28,
         "class_list": [
           "usb",
           "hub"
@@ -1903,7 +1984,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.6.78 ehci_hcd",
+          "name": "Linux 6.11.11 ehci_hcd",
           "value": 7531
         },
         "device": {
@@ -1913,12 +1994,12 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.06",
+          "name": "6.11",
           "value": 0
         },
-        "serial": "0000:00:1d.0",
-        "model": "Linux 6.6.78 ehci_hcd EHCI Host Controller",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb1/1-0:1.0",
+        "serial": "0000:00:1a.0",
+        "model": "Linux 6.11.11 ehci_hcd EHCI Host Controller",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
           {
@@ -1961,10 +2042,10 @@
         "drivers": [
           "hub"
         ],
-        "module_alias": "usb:v1D6Bp0002d0606dc09dsc00dp00ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0611dc09dsc00dp00ic09isc00ip00in00"
       },
       {
-        "index": 53,
+        "index": 54,
         "attached_to": 20,
         "class_list": [
           "usb",
@@ -1986,7 +2067,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.6.78 xhci-hcd",
+          "name": "Linux 6.11.11 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1996,11 +2077,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.06",
+          "name": "6.11",
           "value": 0
         },
         "serial": "0000:01:00.2",
-        "model": "Linux 6.6.78 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.11.11 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:01.0/0000:01:00.2/usb5/5-0:1.0",
         "sysfs_bus_id": "5-0:1.0",
         "resources": [
@@ -2044,11 +2125,91 @@
         "drivers": [
           "hub"
         ],
-        "module_alias": "usb:v1D6Bp0002d0606dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0611dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 54,
-        "attached_to": 28,
+        "index": 55,
+        "attached_to": 53,
+        "class_list": [
+          "usb",
+          "hub"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "010a",
+          "name": "Hub",
+          "value": 266
+        },
+        "vendor": {
+          "hex": "8087",
+          "value": 32903
+        },
+        "device": {
+          "hex": "8008",
+          "value": 32776
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "0.05",
+          "value": 0
+        },
+        "model": "Hub",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1:1.0",
+        "sysfs_bus_id": "1-1:1.0",
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 480000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "0009",
+            "name": "hub",
+            "value": 9
+          },
+          "device_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_protocol": 1,
+          "interface_class": {
+            "hex": "0009",
+            "name": "hub",
+            "value": 9
+          },
+          "interface_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "interface_protocol": 0,
+          "interface_number": 0,
+          "interface_alternate_setting": 0
+        },
+        "hotplug": "usb",
+        "driver": "hub",
+        "drivers": [
+          "hub"
+        ],
+        "module_alias": "usb:v8087p8008d0005dc09dsc00dp01ic09isc00ip00in00"
+      },
+      {
+        "index": 56,
+        "attached_to": 31,
         "class_list": [
           "usb",
           "hub"
@@ -2069,7 +2230,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.6.78 ehci_hcd",
+          "name": "Linux 6.11.11 ehci_hcd",
           "value": 7531
         },
         "device": {
@@ -2079,12 +2240,12 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.06",
+          "name": "6.11",
           "value": 0
         },
-        "serial": "0000:00:1a.0",
-        "model": "Linux 6.6.78 ehci_hcd EHCI Host Controller",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb2/2-0:1.0",
+        "serial": "0000:00:1d.0",
+        "model": "Linux 6.11.11 ehci_hcd EHCI Host Controller",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "resources": [
           {
@@ -2127,7 +2288,7 @@
         "drivers": [
           "hub"
         ],
-        "module_alias": "usb:v1D6Bp0002d0606dc09dsc00dp00ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0611dc09dsc00dp00ic09isc00ip00in00"
       }
     ],
     "memory": [
@@ -2152,7 +2313,7 @@
           {
             "type": "mem",
             "base": 0,
-            "range": 33614827520,
+            "range": 33479913472,
             "enabled": true,
             "access": "read_write",
             "prefetch": "unknown"
@@ -2740,156 +2901,7 @@
     ],
     "network_interface": [
       {
-        "index": 55,
-        "attached_to": 19,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/eno4",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.7/0000:08:00.0",
-        "unix_device_name": "eno4",
-        "unix_device_names": [
-          "eno4"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 48
-          },
-          {
-            "type": "phwaddr",
-            "address": 48
-          }
-        ],
-        "driver": "igb",
-        "driver_module": "igb",
-        "drivers": [
-          "igb"
-        ],
-        "driver_modules": [
-          "igb"
-        ]
-      },
-      {
-        "index": 56,
-        "attached_to": 30,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/eno2",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.3/0000:05:00.0",
-        "unix_device_name": "eno2",
-        "unix_device_names": [
-          "eno2"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 48
-          },
-          {
-            "type": "phwaddr",
-            "address": 48
-          }
-        ],
-        "driver": "igb",
-        "driver_module": "igb",
-        "drivers": [
-          "igb"
-        ],
-        "driver_modules": [
-          "igb"
-        ]
-      },
-      {
         "index": 57,
-        "attached_to": 27,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/enp6s0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.4/0000:06:00.0",
-        "unix_device_name": "enp6s0",
-        "unix_device_names": [
-          "enp6s0"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 56
-          },
-          {
-            "type": "phwaddr",
-            "address": 56
-          }
-        ],
-        "driver": "ixgbe",
-        "driver_module": "ixgbe",
-        "drivers": [
-          "ixgbe"
-        ],
-        "driver_modules": [
-          "ixgbe"
-        ]
-      },
-      {
-        "index": 58,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_name": "lo",
-        "unix_device_names": [
-          "lo"
-        ]
-      },
-      {
-        "index": 59,
         "attached_to": 23,
         "class_list": [
           "network_interface"
@@ -2931,7 +2943,7 @@
         ]
       },
       {
-        "index": 62,
+        "index": 58,
         "attached_to": 37,
         "class_list": [
           "network_interface"
@@ -2952,6 +2964,155 @@
         "unix_device_name": "eno1",
         "unix_device_names": [
           "eno1"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 48
+          },
+          {
+            "type": "phwaddr",
+            "address": 48
+          }
+        ],
+        "driver": "igb",
+        "driver_module": "igb",
+        "drivers": [
+          "igb"
+        ],
+        "driver_modules": [
+          "igb"
+        ]
+      },
+      {
+        "index": 59,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_name": "lo",
+        "unix_device_names": [
+          "lo"
+        ]
+      },
+      {
+        "index": 60,
+        "attached_to": 19,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/eno4",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.7/0000:08:00.0",
+        "unix_device_name": "eno4",
+        "unix_device_names": [
+          "eno4"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 48
+          },
+          {
+            "type": "phwaddr",
+            "address": 48
+          }
+        ],
+        "driver": "igb",
+        "driver_module": "igb",
+        "drivers": [
+          "igb"
+        ],
+        "driver_modules": [
+          "igb"
+        ]
+      },
+      {
+        "index": 61,
+        "attached_to": 27,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/enp6s0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.4/0000:06:00.0",
+        "unix_device_name": "enp6s0",
+        "unix_device_names": [
+          "enp6s0"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 56
+          },
+          {
+            "type": "phwaddr",
+            "address": 56
+          }
+        ],
+        "driver": "ixgbe",
+        "driver_module": "ixgbe",
+        "drivers": [
+          "ixgbe"
+        ],
+        "driver_modules": [
+          "ixgbe"
+        ]
+      },
+      {
+        "index": 63,
+        "attached_to": 30,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/eno2",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.3/0000:05:00.0",
+        "unix_device_name": "eno2",
+        "unix_device_names": [
+          "eno2"
         ],
         "resources": [
           {
@@ -3196,7 +3357,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 35,
+            "base": 71,
             "triggered": 0,
             "enabled": true
           },
@@ -3214,7 +3375,7 @@
           "command": 1350,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 35,
+          "irq": 71,
           "prog_if": 0
         },
         "driver": "nvidia-gpu",
@@ -3569,7 +3730,7 @@
           },
           {
             "type": "irq",
-            "base": 34,
+            "base": 70,
             "triggered": 0,
             "enabled": true
           },
@@ -3587,7 +3748,7 @@
           "command": 1351,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 34,
+          "irq": 70,
           "prog_if": 1
         },
         "driver": "ahci",
@@ -3806,7 +3967,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 33,
+            "base": 69,
             "triggered": 0,
             "enabled": true
           },
@@ -3832,7 +3993,7 @@
           "command": 1346,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 33,
+          "irq": 69,
           "prog_if": 48
         },
         "driver": "xhci_hcd",
@@ -4113,7 +4274,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 32,
+            "base": 61,
             "triggered": 0,
             "enabled": true
           },
@@ -4131,7 +4292,7 @@
           "command": 1350,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 32,
+          "irq": 61,
           "prog_if": 48
         },
         "driver": "xhci_hcd",

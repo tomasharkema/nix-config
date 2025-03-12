@@ -193,25 +193,25 @@ in {
       };
       interfaces = {
         "eno1" = {
-          useDHCP = false;
+          useDHCP = true;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
 
         "eno2" = {
-          useDHCP = false;
+          useDHCP = true;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
 
         "eno3" = {
-          useDHCP = false;
+          useDHCP = true;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
 
         "eno4" = {
-          useDHCP = false;
+          useDHCP = true;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
@@ -309,9 +309,10 @@ in {
       kernelPackages = pkgs.linuxPackages_6_11;
 
       kernelParams = [
-        "console=ttyS2,115200n8"
         "console=tty1"
-        # "mitigations=off"
+        "console=ttyS2,115200"
+
+        # "mitigations=off"i
         #"vfio-pci.ids=10de:1c82"
         # "pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
@@ -399,9 +400,9 @@ in {
       ];
 
       services = {
-        "serial-getty@ttyS2" = {
-          wantedBy = ["multi-user.target"];
-        };
+        # "serial-getty@ttyS2" = {
+        #   wantedBy = ["multi-user.target"];
+        # };
       };
     };
   };
