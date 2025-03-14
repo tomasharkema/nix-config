@@ -18,6 +18,8 @@ in rec {
 
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
+  pwvucontrol = prev.custom.pwvucontrol;
+
   _cxxopts = prev.cxxopts.overrideAttrs (old: {
     # buildPhase = ''
     #   NIX_CFLAGS_COMPILE="-std=c++17 $NIX_CFLAGS_COMPILE"
