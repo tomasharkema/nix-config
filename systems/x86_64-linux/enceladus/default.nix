@@ -16,11 +16,15 @@ in {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIseppvkEAzMD/B2xLqijr4UhTig0bZfqnXS6NcaAHxR root@nixos";
     };
 
-    environment.systemPackages = with pkgs; [inteltool];
+    environment.systemPackages = with pkgs; [
+      inteltool
+      rtl-sdr
+    ];
 
     hardware = {
       cpu.intel.updateMicrocode = true;
       bluetooth.enable = true;
+      rtl-sdr.enable = true;
     };
     apps.podman.enable = true;
     services = {
@@ -30,11 +34,6 @@ in {
       throttled.enable = lib.mkForce false;
       # remote-builders.client.enable = true;
       blueman.enable = true;
-
-      udev.extraRules = ''
-        ACTION=="add", ATTRS{idProduct}=="ea60", "ATTRS{idVendor}=="10c4", SYMLINK+="ttyPK0"
-      '';
-
       beesd.filesystems = {
         root = {
           spec = "UUID=7227b9fb-8619-403a-8944-4cc3f615ad6f";
