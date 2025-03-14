@@ -79,10 +79,6 @@ in {
       };
     };
 
-    systemd.services."serial-getty@ttyUSB0" = {
-      wantedBy = ["multi-user.target"];
-    };
-
     # specialisation = {
     #   mediacenter.configuration = {
     #     gui = {
@@ -114,6 +110,8 @@ in {
     };
 
     # wifi.enable = true;
+
+    systemd.services."docker-compose@adsb".wantedBy = ["multi-user.target"];
 
     traits = {
       builder.enable = true;
