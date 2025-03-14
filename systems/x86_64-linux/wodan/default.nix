@@ -23,7 +23,7 @@
         cifs-utils
         piper
         libratbag
-        custom.ims-prog
+
         heimdall
         heimdall-gui
         handbrake

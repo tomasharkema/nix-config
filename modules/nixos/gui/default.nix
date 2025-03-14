@@ -37,6 +37,8 @@ in {
       mopidy.enable = true;
       playerctld.enable = true;
       displayManager.defaultSession = "hyprland";
+
+      udev.packages = with pkgs; [imsprog];
     };
 
     programs.nm-applet.enable = true;
@@ -61,6 +63,7 @@ in {
       libwacom
       chromium
       noti
+      imsprog
     ];
   };
 }
