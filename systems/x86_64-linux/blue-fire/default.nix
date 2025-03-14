@@ -127,14 +127,6 @@ in {
           enable = true;
         };
       };
-      # nfs = {
-      #   server = {
-      #     enable = true;
-      #     exports = ''
-      #       /export/media        *(rw,fsid=0,no_subtree_check)
-      #     '';
-      #   };
-      # };
     };
 
     networking = {

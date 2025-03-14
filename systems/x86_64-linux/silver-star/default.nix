@@ -5,9 +5,6 @@
   config,
   ...
 }: let
-  boot-into-bios = pkgs.writeShellScriptBin "boot-into-bios" ''
-    sudo ${pkgs.ipmitool}/bin/ipmitool chassis bootparam set bootflag force_bios
-  '';
   workerPort = "9988";
 in {
   config = {
@@ -54,10 +51,10 @@ in {
         nvidia = {
           enable = true;
           open = false;
-          grid = {
-            enable = true;
-            legacy = true;
-          };
+          # grid = {
+          #   enable = true;
+          #   legacy = true;
+          # };
         };
       };
     };
@@ -78,17 +75,27 @@ in {
       zabbix.server.enable = true;
       atticd.enable = true;
     };
-
+    fileSystems."/export/netboot" = {
+      device = "/mnt/netboot";
+      options = ["bind"];
+    };
     services = {
       hypervisor = {
         enable = true;
         # bridgeInterfaces = [ "eno1" ];
       };
       # mosh.enable = true;
-      xserver.videoDrivers = ["nvidia"];
+      # xserver.videoDrivers = ["nvidia"];
       zram-generator.enable = false;
       # "nix-private-cache".enable = true;
-
+      nfs = {
+        server = {
+          enable = true;
+          exports = ''
+            /export/netboot        *(rw,fsid=0,no_subtree_check)
+          '';
+        };
+      };
       healthchecks = {
         enable = true;
         listenAddress = "0.0.0.0";
@@ -265,7 +272,6 @@ in {
       libsmbios
       virt-manager
       ipmitool
-      boot-into-bios
       openipmi
       freeipmi
       ipmicfg
@@ -293,16 +299,16 @@ in {
     hardware = {
       cpu.intel.updateMicrocode = true;
 
-      #enableAllFirmware = true;
-      #enableRedistributableFirmware = true;
-
-      nvidia-container-toolkit.enable = true;
-
-      nvidia = {
-        # forceFullCompositionPipeline = true;
-        nvidiaSettings = lib.mkForce false;
-        nvidiaPersistenced = lib.mkForce true;
-      };
+      enableAllFirmware = true;
+      enableRedistributableFirmware = true;
+      #
+      # nvidia-container-toolkit.enable = true;
+      #
+      # nvidia = {
+      #   # forceFullCompositionPipeline = true;
+      #   nvidiaSettings = lib.mkForce false;
+      #   nvidiaPersistenced = lib.mkForce true;
+      # };
     };
 
     virtualisation = {
@@ -389,7 +395,7 @@ in {
 
           ports = ["7070:443"];
 
-          autoStart = true;
+          # autoStart = true;
         };
       };
     };
@@ -403,10 +409,11 @@ in {
       # copyKernels = {enable = true;};
 
       # binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxPackages_6_6;
+      kernelPackages = pkgs.linuxPackages_6_12;
       kernelParams = [
         "console=tty1"
-        "console=ttyS0,115200n8"
+        "console=ttyS0,115200"
+        "console=ttyS1,115200"
         # "intremap=no_x2apic_optout"
         # "nox2apic"
         "iomem=relaxed"
@@ -438,29 +445,30 @@ in {
 
       initrd = {
         availableKernelModules = [
-          "xhci_pci"
-          "ahci"
-          "usbhid"
-          "usb_storage"
-          # "dell_rbu"
-          "dcdbas"
-          # "sd_mod"
+          # "xhci_pci"
+          # "ahci"
+          # "usbhid"
+          # "usb_storage"
+          # # "dell_rbu"
+          # 3
+          # "dcdbas"
+          # # "sd_mod"
         ];
         kernelModules = [
-          # "dcdbas"
-          # "dell_rbu"
-          # "pci-me"
-          "kvm-intel"
-          # "mei-me"
-          "uinput"
-          #          "tpm_rng"
-          "ipmi_ssif"
-          "ipmi_ipmb"
-          "ipmi_si"
-          "ipmi_devintf"
-          "ipmi_msghandler"
-          "ipmi_watchdog"
-          "acpi_ipmi"
+          # # "dcdbas"
+          # # "dell_rbu"
+          # # "pci-me"
+          # "kvm-intel"
+          # # "mei-me"
+          # "uinput"
+          # #          "tpm_rng"
+          # "ipmi_ssif"
+          # "ipmi_ipmb"
+          # "ipmi_si"
+          # "ipmi_devintf"
+          # "ipmi_msghandler"
+          # "ipmi_watchdog"
+          # "acpi_ipmi"
         ];
       };
       kernelModules = [
@@ -481,9 +489,9 @@ in {
         "dcdbas"
       ];
 
-      systemd.services."serial-getty@ttyS0" = {
-        wantedBy = ["multi-user.target"];
-      };
+      # systemd.services."serial-getty@ttyS0" = {
+      #   wantedBy = ["multi-user.target"];
+      # };
       systemd.services."docker-compose@atuin" = {
         wantedBy = ["multi-user.target"];
       };
@@ -491,26 +499,6 @@ in {
       systemd.services."docker-compose@grafana" = {
         wantedBy = ["multi-user.target"];
       };
-
-      # systemd.services."docker-compose@zabbix" = {
-      #   wantedBy = ["multi-user.target"];
-      # };
-      # systemd.services."serial-getty@ttyS2" = {
-      #   overrideStrategy = "asDropin";
-      #   serviceConfig = let
-      #     tmux = pkgs.writeShellScript "tmux.sh" ''
-      #       ${pkgs.tmux}/bin/tmux kill-session -t start 2> /dev/null
-      #       ${pkgs.tmux}/bin/tmux new-session -s start
-      #     '';
-      #   in {
-      #     TTYVTDisallocate = "no";
-      #     #ExecStart = ["" "-${tmux}"];
-      #     #StandardInput = "tty";
-      #     #StandardOutput = "tty";
-      #   };
-      # wantedBy = ["multi-user.target"];
-      #   #environment.TERM = "vt102";
-      # };
     };
   };
 }
