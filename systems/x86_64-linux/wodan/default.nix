@@ -33,7 +33,7 @@
 
     time = {
       # hardwareClockInLocalTime = true;
-      # timeZone = "Europe/Amsterdam";
+      timeZone = "Europe/Amsterdam";
     };
 
     networking = {
@@ -46,7 +46,7 @@
       useDHCP = false;
 
       bridges.br0 = {
-        interfaces = ["eno1"];
+        interfaces = ["enp2s0"];
       };
       search = ["lan"];
       defaultGateway = {
@@ -57,6 +57,11 @@
       interfaces = {
         "eno1" = {
           # "enp2s0" = {
+          mtu = 9000;
+          wakeOnLan.enable = true;
+          useDHCP = true;
+        };
+        enp2s0 = {
           mtu = 9000;
           wakeOnLan.enable = true;
           useDHCP = false;
