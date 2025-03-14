@@ -16,7 +16,7 @@ in {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIseppvkEAzMD/B2xLqijr4UhTig0bZfqnXS6NcaAHxR root@nixos";
     };
 
-    environment.systemPackages = with pkgs; [inteltool];
+    environment.systemPackages = with pkgs; [inteltool rtl-sdr];
 
     hardware = {
       cpu.intel.updateMicrocode = true;
@@ -31,9 +31,13 @@ in {
       # remote-builders.client.enable = true;
       blueman.enable = true;
 
-      udev.extraRules = ''
-        ACTION=="add", ATTRS{idProduct}=="ea60", "ATTRS{idVendor}=="10c4", SYMLINK+="ttyPK0"
-      '';
+      udev = {
+        packages = with pkgs; [rtl-sdr];
+
+        # extraRules = ''
+        #   ACTION=="add", ATTRS{idProduct}=="ea60", "ATTRS{idVendor}=="10c4", SYMLINK+="ttyPK0"
+        # '';
+      };
 
       beesd.filesystems = {
         root = {
