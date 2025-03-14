@@ -111,7 +111,10 @@ in {
 
     # wifi.enable = true;
 
-    systemd.services."docker-compose@adsb".wantedBy = ["multi-user.target"];
+    systemd.services = {
+      "docker-compose@adsb".wantedBy = ["multi-user.target"];
+      "docker-compose@ser2net".wantedBy = ["multi-user.target"];
+    };
 
     traits = {
       builder.enable = true;
