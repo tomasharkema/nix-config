@@ -412,8 +412,8 @@ in {
       kernelPackages = pkgs.linuxPackages_6_12;
       kernelParams = [
         "console=tty1"
-        "console=ttyS0,115200"
-        "console=ttyS1,115200"
+        "console=ttyS1,115200n8"
+        "console=ttyS2,115200n8"
         # "intremap=no_x2apic_optout"
         # "nox2apic"
         "iomem=relaxed"
