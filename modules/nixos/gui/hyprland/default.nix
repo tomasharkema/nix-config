@@ -242,7 +242,6 @@
           ];
 
           exec-once = [
-            "hyprshade auto"
             "hypridle &"
             "hyprsunset &"
             "systemctl --user start hyprpolkitagent"
@@ -251,7 +250,7 @@
             "nm-applet &"
             "usbguard-gnome &"
 
-            "[workspace 2 silent] firefox"
+            "[workspace 2 silent] firefox &"
           ];
           bind = [
           ];

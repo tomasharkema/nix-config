@@ -25,7 +25,7 @@
       snapper.enable = true; # false;
       swap = {
         size = "32G";
-        # resume.enable = true;
+        resume.enable = true;
       };
     };
 
@@ -177,8 +177,8 @@
       hardware.bolt.enable = true;
       beesd.filesystems = {
         root = {
-          spec = "UUID=89101fa6-b1b1-4922-9ff7-d2d47cba14bd";
-          hashTableSizeMB = 2048;
+          spec = "UUID=58cb1af5-de48-4aef-b3c3-72ec19237a89";
+          hashTableSizeMB = 4096;
           verbosity = "crit";
           extraOptions = [
             "--loadavg-target"
