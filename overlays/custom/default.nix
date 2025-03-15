@@ -20,6 +20,7 @@ in rec {
 
   pwvucontrol = prev.custom.pwvucontrol;
 
+  gensio = prev.custom.gensio;
   _cxxopts = prev.cxxopts.overrideAttrs (old: {
     # buildPhase = ''
     #   NIX_CFLAGS_COMPILE="-std=c++17 $NIX_CFLAGS_COMPILE"
