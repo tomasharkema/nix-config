@@ -6,7 +6,7 @@
 }: {
   options.apps.clamav.onacc = {enable = lib.mkEnableOption "onacc" // {default = true;};};
 
-  config = {
+  config = lib.mkIf false {
     environment.systemPackages = with pkgs; [
       clamtk
     ];
