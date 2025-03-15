@@ -362,6 +362,7 @@ in {
             "/run/current-system/sw/lib/modules/${kernelVersion}:/lib/modules/${kernelVersion}"
             "/sys:/sys"
             "/srv/openmanage/shared:/data:Z"
+            "/nix/store:/nix/store:ro"
             # "/usr/libexec/dell_dup:/usr/libexec/dell_dup:Z"
           ];
 

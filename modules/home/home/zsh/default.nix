@@ -58,7 +58,9 @@
         #}
         #zle -N nixos-menu
         #bindkey '^A' nixos-menu
-
+        initExtraBeforeCompInit = ''
+          zstyle ':completion:*:ssh:*' hosts off
+        '';
         initExtra = ''
           bindkey -M emacs -s '^A' 'menu^M'
           bindkey -M vicmd -s '^A' 'menu^M'
