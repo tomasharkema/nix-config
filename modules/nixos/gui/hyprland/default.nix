@@ -3,14 +3,7 @@
   pkgs,
   lib,
   ...
-}: let
-  hyprlock-blur = pkgs.writeShellScriptBin "hyprlock-blur" ''
-    ${pkgs.grim}/bin/grim -o DP-2 -l 0 /tmp/screenshot1.png &
-    ${pkgs.grim}/bin/grim -o HDMI-A-1 -l 0 /tmp/screenshot2.png &
-    wait &&
-    hyprlock
-  '';
-in {
+}: {
   config = {
     programs = {
       hyprland = {
@@ -57,10 +50,12 @@ in {
       wl-clipboard
       wlr-randr
     ];
+
     systemd.packages = with pkgs; [hyprpolkitagent];
+
     home-manager.users.tomas = {
-      systemd.user.targets.tray.Unit.Requires =
-        lib.mkForce ["graphical-session.target"];
+      systemd.user.targets.tray.Unit.Requires = lib.mkForce ["graphical-session.target"];
+
       home.sessionVariables = {
         QT_QPA_PLATFORM = "wayland";
         SDL_VIDEODRIVER = "wayland";
@@ -77,27 +72,86 @@ in {
           terminal = "kitty";
         };
 
-        wlogout.enable = true;
+        # wlogout.enable = true;
 
         hyprlock = {
           enable = true;
-          settings = {
-            input-field = {
-              monitor = "DP-3";
-              size = "200,50";
+          settings = let
+            foreground = "rgba(240, 240, 240, 0.70)";
+            font = "B612";
+          in {
+            general = {
+              grace = 5;
+              no_fade_in = false;
+              disable_loading_bar = false;
+            };
+
+            # BACKGROUND
+            background = {
+              monitor = "";
+              blur_passes = 0;
+              contrast = 0.8916;
+              brightness = 0.7172;
+              vibrancy = 0.1696;
+              vibrancy_darkness = 0.0;
+            };
+
+            label = [
+              {
+                # Day-Month-Date
+                monitor = "";
+                text = ''cmd[update:1000] echo -e "$(date +"%A, %B %d")"'';
+                color = foreground;
+                font_size = 28;
+                font_family = font + " Bold";
+                position = "0, 490";
+                halign = "center";
+                valign = "center";
+              }
+              # Time
+              {
+                monitor = "";
+                text = ''cmd[update:1000] echo "<span>$(date +"%I:%M")</span>"'';
+                color = foreground;
+                font_size = 160;
+                font_family = "steelfish outline regular";
+                position = "0, 370";
+                halign = "center";
+                valign = "center";
+              }
+              # USER
+              {
+                monitor = "";
+                text = "    $USER";
+                color = foreground;
+                outline_thickness = 2;
+                dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
+                dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
+                dots_center = true;
+                font_size = 18;
+                font_family = font + " Bold";
+                position = "0, -180";
+                halign = "center";
+                valign = "center";
+              }
+            ];
+
+            # INPUT FIELD
+            input-field = lib.mkForce {
+              monitor = "";
+              size = "300, 60";
               outline_thickness = 2;
               dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
-              dots_spacing = 0.35; # Scale of dots' absolute size, 0.0 - 1.0
+              dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
               dots_center = true;
-              outer_color = "rgba(0, 0, 0, 0)";
-              inner_color = "rgba(0, 0, 0, 0.2)";
-              font_color = "rgb(111, 45, 104)";
+              outer_color = "rgba(25, 25, 25, 0)";
+              inner_color = "rgba(25, 25, 25, 0.1)";
+              font_color = foreground;
               fade_on_empty = false;
-              rounding = -1;
-              check_color = "rgb(30, 107, 204)";
-              placeholder_text = ''<i><span foreground="##cdd6f4">Input Password...</span></i>'';
+              font_family = font + " Bold";
+              placeholder_text = "<i>🔒 Enter Password</i>";
               hide_input = false;
-              position = "0, -100";
+              position = "0, -250";
               halign = "center";
               valign = "center";
             };
@@ -119,25 +173,32 @@ in {
 
           font = "B612 12";
         };
+        batsignal = {
+          enable = true;
+          extraArgs = ["-c 10" "-w 30" "-f disabled" "-D ${pkgs.hyprlock}/bin/hyprlock"];
+        };
         hypridle = {
           enable = true;
+
           settings = {
             general = {
-              # lock_cmd = ''${pkgs.libnotify}/bin/notify-send "lock!"''; # dbus/sysd lock command (loginctl lock-session)
-              # unlock_cmd = ''${pkgs.libnotify}/bin/notify-send "unlock!"''; # same as above, but unlock
-              # before_sleep_cmd = ''${pkgs.libnotify}/bin/notify-send "Zzz"''; # command ran before sleep
-              # after_sleep_cmd = ''${pkgs.libnotify}/bin/notify-send "Awake!"''; # command ran after sleep
-              ignore_dbus_inhibit =
-                false; # whether to ignore dbus-sent idle-inhibit requests (used by e.g. firefox or steam)
-              ignore_systemd_inhibit =
-                false; # whether to ignore systemd-inhibit --what=idle inhibitors
+              ignore_dbus_inhibit = false;
+              lock_cmd = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
+              before_sleep_cmd = "loginctl lock-session";
+              after_sleep_cmd = "hyprctl dispatch dpms on";
             };
 
-            listener = {
-              timeout = 500; # in seconds
-              # on-timeout = ''${pkgs.libnotify}/bin/notify-send "You are idle!"''; # command to run when timeout has passed
-              # on-resume = ''${pkgs.libnotify}/bin/notify-send "Welcome back!"''; # command to run when activity is detected after timeout has fired.
-            };
+            listener = [
+              {
+                timeout = 600;
+                on-timeout = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
+              }
+
+              {
+                timeout = 660;
+                on-timeout = "systemctl suspend";
+              }
+            ];
           };
         };
       };
@@ -182,15 +243,19 @@ in {
 
           exec-once = [
             "hyprshade auto"
-            "hypridle"
-            "hyprsunset"
+            "hypridle &"
+            "hyprsunset &"
             "systemctl --user start hyprpolkitagent"
 
             "[workspace 1 silent] $terminal"
-            "nm-applet & usbguard-gnome &"
+            "nm-applet &"
+            "usbguard-gnome &"
 
             "[workspace 2 silent] firefox"
           ];
+          bind = [
+          ];
+
           experimental = {
             # hdr = true;
             # wide_color_gamut = true;
