@@ -18,7 +18,7 @@ in rec {
 
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
-  pwvucontrol = prev.custom.pwvucontrol;
+  # pwvucontrol = prev.custom.pwvucontrol;
 
   gensio = prev.custom.gensio;
   _cxxopts = prev.cxxopts.overrideAttrs (old: {
