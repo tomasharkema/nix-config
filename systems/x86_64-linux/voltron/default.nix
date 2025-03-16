@@ -33,7 +33,20 @@
     #   enable = true;
     # };
 
-    systemd.services.usbmuxd.path = [pkgs.libusb1];
+    systemd = {
+      services.usbmuxd.path = [pkgs.libusb1];
+      network.links."81-pi" = {
+        matchConfig = {
+          Property = [
+            "ID_USB_MODEL_ID=a4aa"
+            "ID_USB_VENDOR_ID=0525"
+          ];
+          Driver = "cdc_ether";
+        };
+        linkConfig.Name = "pi0";
+        # networkConfig.DHCP = true;
+      };
+    };
 
     environment = {
       systemPackages = with pkgs; [
@@ -137,8 +150,8 @@
       networkmanager.enable = true;
       # wireless.enable = true;
       firewall = {
-        enable = true;
-
+        enable = false;
+        allowPing = true;
         # trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
       };
     };
