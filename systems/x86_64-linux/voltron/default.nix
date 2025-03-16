@@ -38,8 +38,8 @@
       network.links."81-pi" = {
         matchConfig = {
           Property = [
-            "ID_USB_MODEL_ID=a4aa"
-            "ID_USB_VENDOR_ID=0525"
+            "ID_MODEL_ID=a4aa"
+            "ID_VENDOR_ID=0525"
           ];
           Driver = "cdc_ether";
         };
@@ -50,6 +50,7 @@
 
     environment = {
       systemPackages = with pkgs; [
+        gt
         gnomeExtensions.power-tracker
         # custom.swift
         powerstat
@@ -150,7 +151,7 @@
       networkmanager.enable = true;
       # wireless.enable = true;
       firewall = {
-        enable = false;
+        enable = true; # wlp4s0; # false;
         allowPing = true;
         # trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
       };
@@ -169,6 +170,9 @@
 
       udev = {
         enable = true;
+        #extraRules = ''
+        #  `SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="aa:bb:cc:dd:ee:ff", NAME="net1`
+        #'';
         packages = with pkgs; [
           heimdall-gui
           libusb1
