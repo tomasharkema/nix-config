@@ -27,11 +27,6 @@ in {
       legacy = false;
     };
 
-    boot = {
-      # kernelModules = ["acpi_call"];
-      # extraModulePackages = with config.boot.kernelPackages; [acpi_call];
-    };
-
     # boot.kernelParams = [
     #   "ahci.mobile_lpm_policy=3"
     #   "rtc_cmos.use_acpi_alarm=1"
@@ -71,7 +66,7 @@ in {
 
             *00000000)
               ${systemctl} stop --no-block beesd@root.service
-              ${ppd} set performance
+              ${ppd} set balanced
              ;;
           esac
         '';
