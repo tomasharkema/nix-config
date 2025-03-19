@@ -16,7 +16,6 @@ in {
         tsnsrv = {
           rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
         };
-
         "healthchecks" = {
           rekeyFile = ./healthchecks.age;
           group = "healthchecks";

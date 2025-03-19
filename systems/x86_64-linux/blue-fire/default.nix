@@ -19,6 +19,11 @@ in {
       rekey = {
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVhJ1k25x/1A/zN96p48MGrPJxVboTe17rO9Mcb61qG root@blue-fire";
       };
+      secrets = {
+        tsnsrv = {
+          rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
+        };
+      };
     };
 
     facter.reportPath = ./facter.json;
@@ -67,7 +72,6 @@ in {
       "bmc-watchdog".enable = true;
       podman.enable = lib.mkForce true;
       ollama.enable = true;
-      # zabbix.server.enable = true;
       atticd.enable = true;
     };
 
@@ -85,6 +89,15 @@ in {
       xserver.videoDrivers = ["nvidia"];
       watchdogd = {
         enable = true;
+      };
+
+      tsnsrv = {
+        enable = true;
+        defaults.authKeyPath = config.age.secrets.tsnsrv.path;
+        services = {
+          nix-cache = {toURL = "http://127.0.0.1:7124";};
+          searxng = {toURL = "http://127.0.0.1:8088";};
+        };
       };
 
       das_watchdog.enable = lib.mkForce false;
