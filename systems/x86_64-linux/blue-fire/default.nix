@@ -222,7 +222,7 @@ in {
     ];
 
     virtualisation.kvmgt = {
-      enable = false;
+      enable = lib.mkForce false;
       device = "0000:01:00.0";
       vgpus = {
         "nvidia-256" = {

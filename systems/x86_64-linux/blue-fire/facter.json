@@ -895,7 +895,7 @@
           "srbds",
           "mmio_unknown"
         ],
-        "bogo": 7184.31,
+        "bogo": 7183.84,
         "cache": 8192,
         "units": 16,
         "physical_id": 0,
@@ -1211,7 +1211,7 @@
         "unix_device_names": [
           "/dev/disk/by-diskseq/5",
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/9c315a42-785b-46ae-8807-a464376c3fb5",
+          "/dev/disk/by-uuid/65019bc4-c241-48fb-8562-23978e7f7dbe",
           "/dev/zram0"
         ],
         "resources": [
@@ -2313,7 +2313,7 @@
           {
             "type": "mem",
             "base": 0,
-            "range": 33479913472,
+            "range": 33479905280,
             "enabled": true,
             "access": "read_write",
             "prefetch": "unknown"
@@ -2902,48 +2902,6 @@
     "network_interface": [
       {
         "index": 57,
-        "attached_to": 23,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/eno3",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.6/0000:07:00.0",
-        "unix_device_name": "eno3",
-        "unix_device_names": [
-          "eno3"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 48
-          },
-          {
-            "type": "phwaddr",
-            "address": 48
-          }
-        ],
-        "driver": "igb",
-        "driver_module": "igb",
-        "drivers": [
-          "igb"
-        ],
-        "driver_modules": [
-          "igb"
-        ]
-      },
-      {
-        "index": 58,
         "attached_to": 37,
         "class_list": [
           "network_interface"
@@ -2985,30 +2943,7 @@
         ]
       },
       {
-        "index": 59,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_name": "lo",
-        "unix_device_names": [
-          "lo"
-        ]
-      },
-      {
-        "index": 60,
+        "index": 58,
         "attached_to": 19,
         "class_list": [
           "network_interface"
@@ -3029,6 +2964,48 @@
         "unix_device_name": "eno4",
         "unix_device_names": [
           "eno4"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 48
+          },
+          {
+            "type": "phwaddr",
+            "address": 48
+          }
+        ],
+        "driver": "igb",
+        "driver_module": "igb",
+        "drivers": [
+          "igb"
+        ],
+        "driver_modules": [
+          "igb"
+        ]
+      },
+      {
+        "index": 59,
+        "attached_to": 30,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/eno2",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.3/0000:05:00.0",
+        "unix_device_name": "eno2",
+        "unix_device_names": [
+          "eno2"
         ],
         "resources": [
           {
@@ -3092,8 +3069,31 @@
         ]
       },
       {
+        "index": 62,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_name": "lo",
+        "unix_device_names": [
+          "lo"
+        ]
+      },
+      {
         "index": 63,
-        "attached_to": 30,
+        "attached_to": 23,
         "class_list": [
           "network_interface"
         ],
@@ -3108,11 +3108,11 @@
           "value": 1
         },
         "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/eno2",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.3/0000:05:00.0",
-        "unix_device_name": "eno2",
+        "sysfs_id": "/class/net/eno3",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.6/0000:07:00.0",
+        "unix_device_name": "eno3",
         "unix_device_names": [
-          "eno2"
+          "eno3"
         ],
         "resources": [
           {
