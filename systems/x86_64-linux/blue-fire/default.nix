@@ -68,7 +68,7 @@ in {
       podman.enable = lib.mkForce true;
       ollama.enable = true;
       # zabbix.server.enable = true;
-      # atticd.enable = true;
+      atticd.enable = true;
     };
 
     services = {
