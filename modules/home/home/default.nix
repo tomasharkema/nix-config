@@ -83,7 +83,7 @@ in {
       packages = with pkgs;
         [
           custom.unifi-tui
-          tre-command
+          tree #tre-command
           yazi
           squash-folder
           lrzsz
