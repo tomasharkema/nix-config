@@ -185,12 +185,12 @@ in {
     };
 
     systemd = {
-      # watchdog = {
-      #   device = "/dev/watchdog";
-      #   runtimeTime = "30s";
-      #   kexecTime = "5m";
-      #   rebootTime = "5m";
-      # };
+      watchdog = {
+        device = "/dev/watchdog";
+        runtimeTime = "30s";
+        kexecTime = "5m";
+        rebootTime = "5m";
+      };
 
       # services."docker-compose@atuin".wantedBy = ["multi-user.target"];
     };

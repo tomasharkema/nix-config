@@ -305,9 +305,8 @@ in {
         "kvm-intel"
         "uinput"
         "fuse"
-        #       "tpm_rng"
         "ipmi_ssif"
-        # "acpi_ipmi"
+        "acpi_ipmi"
         "ipmi_si"
         "ipmi_devintf"
         "ipmi_msghandler"
@@ -320,7 +319,7 @@ in {
     systemd = {
       watchdog = {
         device = "/dev/watchdog";
-        runtimeTime = "5m";
+        runtimeTime = "30s";
         kexecTime = "5m";
         rebootTime = "5m";
       };

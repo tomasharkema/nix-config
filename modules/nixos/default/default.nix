@@ -199,6 +199,13 @@
           gensio
           ser2net
           # lz4
+          starship
+          helix
+          qutebrowser
+          zathura
+          mpv
+          imv
+
           custom.zide
           custom.wikiman
           custom.glide

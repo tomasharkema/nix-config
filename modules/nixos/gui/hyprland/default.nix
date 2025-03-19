@@ -37,13 +37,6 @@
 
       cool-retro-term
 
-      starship
-      helix
-      qutebrowser
-      zathura
-      mpv
-      imv
-
       hyprpolkitagent
       grim
       slurp
@@ -53,7 +46,7 @@
 
     systemd.packages = with pkgs; [hyprpolkitagent];
 
-    home-manager.users.tomas = {
+    home-manager.users."${config.user.name}" = {
       systemd.user.targets.tray.Unit.Requires = lib.mkForce ["graphical-session.target"];
 
       home.sessionVariables = {
@@ -242,15 +235,15 @@
           ];
 
           exec-once = [
-            "hypridle &"
-            "hyprsunset &"
+            "hypridle"
+            "hyprsunset"
             "systemctl --user start hyprpolkitagent"
 
             "[workspace 1 silent] $terminal"
-            "nm-applet &"
-            "usbguard-gnome &"
+            "nm-applet"
+            "usbguard-gnome"
 
-            "[workspace 2 silent] firefox &"
+            "[workspace 2 silent] firefox"
           ];
           bind = [
           ];
