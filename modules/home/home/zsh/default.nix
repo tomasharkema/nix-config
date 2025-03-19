@@ -65,14 +65,6 @@
           bindkey -M emacs -s '^A' 'menu^M'
           bindkey -M vicmd -s '^A' 'menu^M'
           bindkey -M viins -s '^A' 'menu^M'
-
-          function zellij_refresh_ssh_sock {
-            if [ -n "$ZELLIJ" ]; then
-              export SSH_AUTH_SOCK=$(\ls /tmp/ssh-*/agent.$(pgrep sshd -u $USER));
-            fi
-          }
-
-          add-zsh-hook precmd zellij_refresh_ssh_sock
         '';
 
         # initExtraFirst = ''
