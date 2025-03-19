@@ -28,11 +28,6 @@ in {
 
     facter.reportPath = ./facter.json;
 
-    nixpkgs.config.allowUnfreePredicate = pkg:
-      builtins.elem (lib.getName pkg) [
-        "nvidia-persistenced"
-      ];
-
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K";
@@ -50,14 +45,16 @@ in {
 
       hardware = {
         tpm.enable = true;
-        secure-boot.enable = false;
+        secure-boot.enable = true;
         # remote-unlock.enable = false;
         network.xgbe.enable = true;
         nvidia = {
           enable = true;
           beta = false;
           open = false;
-          grid = {enable = true;};
+          grid = {
+            enable = false; # true;
+          };
         };
       };
     };
@@ -115,23 +112,6 @@ in {
           ];
         };
       };
-      # icingaweb2 = {
-      #   enable = true;
-      #   virtualHost = "mon.blue-fire.harkema.intra";
-      #   modules.setup.enable = true;
-      #   authentications = {
-      #     icingaweb = {
-      #       backend = "db";
-      #       resource = "icingaweb_db";
-      #     };
-      #   };
-      # };
-
-      # ha.initialMaster = true;
-      # command-center = {
-      #   enableBot = true;
-      # };
-
       # tcsd.enable = true;
       kmscon.enable = lib.mkForce false;
 
@@ -155,23 +135,6 @@ in {
       firewall = {
         allowPing = true;
 
-        allowedTCPPorts = [
-          7070
-          111
-          2049
-          4000
-          4001
-          4002
-          20048
-        ];
-        allowedUDPPorts = [
-          111
-          2049
-          4000
-          4001
-          4002
-          20048
-        ];
         enable = false;
       };
 
@@ -259,7 +222,7 @@ in {
     ];
 
     virtualisation.kvmgt = {
-      enable = true;
+      enable = false;
       device = "0000:01:00.0";
       vgpus = {
         "nvidia-256" = {
@@ -282,42 +245,22 @@ in {
       nvidia = {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
-        # nvidiaPersistenced = lib.mkForce true;
-
-        # nix-prefetch-url --type sha256 https://us.download.nvidia.com/XFree86/Linux-x86_64/550.90.07/NVIDIA-Linux-x86_64-550.90.07.run
-        # package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
-
-        vgpu.patcher = {
-          #enable = true;
-          options = {
-            # doNotForceGPLLicense = false;
-            remapP40ProfilesToV100D = lib.mkForce false;
-          };
-          #copyVGPUProfiles = {
-          #  "1E87:0000" = "1E30:12BA";
-          #  "1380:0000" = "13BD:1160";
-          #};
-          #enablePatcherCmd = true;
-        };
+        nvidiaPersistenced = lib.mkForce true;
       };
     };
-
-    # virtualisation.oci-containers.containers.fastapi-dls = {
-    #   ports = lib.mkForce ["7070:443"];
-    # };
 
     boot = {
       tmp = {
         useTmpfs = true;
       };
 
-      kernelPackages = pkgs.linuxPackages_6_11;
+      kernelPackages = pkgs.linuxPackages_6_12;
 
       kernelParams = [
         "console=tty1"
         "console=ttyS2,115200"
-
-        # "mitigations=off"i
+        "iomem=relaxed"
+        "mitigations=off"
         #"vfio-pci.ids=10de:1c82"
         # "pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
@@ -334,7 +277,6 @@ in {
 
       loader = {
         systemd-boot = {
-          enable = true;
           configurationLimit = 10;
 
           netbootxyz.enable = true;
