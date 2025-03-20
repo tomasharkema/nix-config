@@ -46,7 +46,10 @@
       useDHCP = false;
 
       bridges.br0 = {
-        interfaces = ["enp2s0"];
+        interfaces = [
+          "eno1"
+          # "enp2s0"
+        ];
       };
       search = ["lan"];
       defaultGateway = {
@@ -56,16 +59,15 @@
 
       interfaces = {
         "eno1" = {
-          # "enp2s0" = {
           mtu = 9000;
           wakeOnLan.enable = true;
-          useDHCP = true;
+          useDHCP = false; # true;
         };
-        enp2s0 = {
-          mtu = 9000;
-          wakeOnLan.enable = true;
-          useDHCP = false;
-        };
+        # enp2s0 = {
+        #   mtu = 9000;
+        #   wakeOnLan.enable = true;
+        #   useDHCP = false;
+        # };
         "br0" = {
           useDHCP = false;
           mtu = 9000;
