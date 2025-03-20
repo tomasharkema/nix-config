@@ -24,7 +24,10 @@ in {
       };
     };
 
-    facter.reportPath = ./facter.json;
+    facter = {
+      reportPath = ./facter.json;
+      detected.graphics.enable = false;
+    };
 
     disks.btrfs = {
       enable = true;
@@ -74,10 +77,12 @@ in {
       zabbix.server.enable = true;
       atticd.enable = true;
     };
+
     fileSystems."/export/netboot" = {
       device = "/mnt/netboot";
       options = ["bind"];
     };
+
     services = {
       hypervisor = {
         enable = true;
@@ -304,9 +309,9 @@ in {
       nvidia-container-toolkit.enable = true;
       #
       nvidia = {
-        #   # forceFullCompositionPipeline = true;
-        #   nvidiaSettings = lib.mkForce false;
-        nvidiaPersistenced = lib.mkForce true;
+        # forceFullCompositionPipeline = true;
+        # nvidiaSettings = lib.mkForce false;
+        # nvidiaPersistenced = lib.mkForce true;
       };
     };
 
@@ -419,6 +424,7 @@ in {
         "iomem=relaxed"
         "intel_iommu=on"
         "iommu=pt"
+        "ipmi_watchdog.timeout=180"
         # "video=efifb:off,vesafb:off"
         # "ixgbe.allow_unsupported_sfp=1,1"
         #"vfio-pci.ids=10de:1380,10de:0fbc"
@@ -488,13 +494,17 @@ in {
         "ipmi_watchdog"
         "dcdbas"
       ];
+    };
 
-      systemd.services."docker-compose@atuin" = {
-        wantedBy = ["multi-user.target"];
-      };
+    systemd = {
+      services = {
+        "docker-compose@atuin" = {
+          wantedBy = ["multi-user.target"];
+        };
 
-      systemd.services."docker-compose@grafana" = {
-        wantedBy = ["multi-user.target"];
+        "docker-compose@grafana" = {
+          wantedBy = ["multi-user.target"];
+        };
       };
     };
   };
