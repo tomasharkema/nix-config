@@ -30,7 +30,7 @@ in {
       enable = true;
       main = "/dev/nvme0n1";
       second = "/dev/nvme1n1";
-      boot = "/dev/sda2";
+      boot = "/dev/disk/by-id/usb-DELL_IDSDM_012345678901-0:0";
       snapper.enable = false;
       # btrbk.enable = true;
     };
@@ -50,10 +50,10 @@ in {
         nvidia = {
           enable = true;
           open = false;
-          # grid = {
-          #   enable = true;
-          #   legacy = true;
-          # };
+          grid = {
+            enable = true;
+            legacy = false;
+          };
         };
       };
     };
@@ -301,13 +301,13 @@ in {
       enableAllFirmware = true;
       enableRedistributableFirmware = true;
       #
-      # nvidia-container-toolkit.enable = true;
+      nvidia-container-toolkit.enable = true;
       #
-      # nvidia = {
-      #   # forceFullCompositionPipeline = true;
-      #   nvidiaSettings = lib.mkForce false;
-      #   nvidiaPersistenced = lib.mkForce true;
-      # };
+      nvidia = {
+        #   # forceFullCompositionPipeline = true;
+        #   nvidiaSettings = lib.mkForce false;
+        nvidiaPersistenced = lib.mkForce true;
+      };
     };
 
     virtualisation = {
@@ -408,8 +408,8 @@ in {
       crashDump = {enable = true;};
       # copyKernels = {enable = true;};
 
-      # binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxPackages_6_12;
+      binfmt.emulatedSystems = ["aarch64-linux"];
+      kernelPackages = pkgs.linuxPackages_6_6; # _12;
       kernelParams = [
         "console=tty1"
         "console=ttyS1,115200n8"
@@ -489,9 +489,6 @@ in {
         "dcdbas"
       ];
 
-      # systemd.services."serial-getty@ttyS0" = {
-      #   wantedBy = ["multi-user.target"];
-      # };
       systemd.services."docker-compose@atuin" = {
         wantedBy = ["multi-user.target"];
       };

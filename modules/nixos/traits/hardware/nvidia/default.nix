@@ -125,7 +125,7 @@ in {
             enable = true;
             options = {
               doNotForceGPLLicense = false;
-              # remapP40ProfilesToV100D = cfg.grid.legacy;
+              #   # remapP40ProfilesToV100D = cfg.grid.legacy;
             };
             copyVGPUProfiles = {
               "1E87:0000" = "1E30:12BA";
