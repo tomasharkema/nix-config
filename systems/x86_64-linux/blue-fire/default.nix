@@ -259,8 +259,8 @@ in {
       kernelParams = [
         "console=tty1"
         "console=ttyS2,115200"
-        "iomem=relaxed"
-        "mitigations=off"
+        # "iomem=relaxed"
+        # "mitigations=off"
         #"vfio-pci.ids=10de:1c82"
         # "pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
