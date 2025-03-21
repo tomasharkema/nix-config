@@ -310,7 +310,7 @@ in {
       #
       nvidia = {
         # forceFullCompositionPipeline = true;
-        # nvidiaSettings = lib.mkForce false;
+        nvidiaSettings = lib.mkForce false;
         # nvidiaPersistenced = lib.mkForce true;
       };
     };
