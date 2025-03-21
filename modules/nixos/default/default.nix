@@ -209,7 +209,7 @@
           custom.zide
           custom.wikiman
           custom.glide
-          custom.binwalk
+          binwalk
           bat-extras.batman
           bat-extras.batdiff
           bat-extras.batwatch
