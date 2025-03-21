@@ -63,6 +63,7 @@ in {
       libwacom
       chromium
       noti
+      ghex
       imsprog
     ];
   };

@@ -199,6 +199,7 @@
           gensio
           ser2net
           # lz4
+          p7zip
           starship
           helix
           qutebrowser
