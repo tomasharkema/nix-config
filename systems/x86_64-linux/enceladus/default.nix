@@ -45,7 +45,7 @@ in {
         # '';
       };
 
-      beesd.filesystems = {
+      beesd.filesystems = lib.mkIf false {
         root = {
           spec = "UUID=7227b9fb-8619-403a-8944-4cc3f615ad6f";
           hashTableSizeMB = 1024;
@@ -196,15 +196,16 @@ in {
       tmp = {
         useTmpfs = true;
       };
-      swraid.enable = true;
-      supportedFilesystems = [
-        "xfs"
-      ];
+
+      # swraid.enable = true;
+      # supportedFilesystems = [
+      #   "xfs"
+      # ];
 
       kernelParams = [
         "console=ttyUSB0,115200n8"
         "console=tty1"
-        "iomem=relaxed"
+        # "iomem=relaxed"
       ];
       recovery = {
         enable = true;

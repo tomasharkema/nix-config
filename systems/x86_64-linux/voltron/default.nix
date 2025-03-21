@@ -192,7 +192,7 @@
       };
 
       hardware.bolt.enable = true;
-      beesd.filesystems = {
+      beesd.filesystems = lib.mkIf false {
         root = {
           spec = "UUID=58cb1af5-de48-4aef-b3c3-72ec19237a89";
           hashTableSizeMB = 4096;
