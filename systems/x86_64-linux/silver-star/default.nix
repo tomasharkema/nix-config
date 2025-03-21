@@ -70,7 +70,7 @@ in {
         enable = true;
         httpd = false; # true;
       };
-      # ollama.enable = true;
+      ollama.enable = true;
       # "bmc-watchdog".enable = true;
       podman.enable = true;
       docker.enable = false;
@@ -145,7 +145,7 @@ in {
       beesd.filesystems = {
         root = {
           spec = "UUID=948d8479-177a-4204-a6a8-5d2013f3dc88";
-          hashTableSizeMB = 4096;
+          hashTableSizeMB = 2048;
           verbosity = "crit";
           extraOptions = [
             "--loadavg-target"
@@ -191,7 +191,7 @@ in {
 
     systemd = {
       watchdog = {
-        device = "/dev/watchdog";
+        #device = "/dev/watchdog";
         runtimeTime = "30s";
         kexecTime = "5m";
         rebootTime = "5m";
@@ -220,7 +220,7 @@ in {
       vlans = {
         "vlan69" = {
           id = 69;
-          interface = "eno2";
+          interface = "eno1";
         };
       };
 
@@ -263,7 +263,7 @@ in {
       };
 
       # useDHCP = false;
-      networkmanager.enable = false; # true;
+      networkmanager.enable = true;
     };
 
     environment.systemPackages = with pkgs; [
@@ -415,11 +415,11 @@ in {
       # copyKernels = {enable = true;};
 
       binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxPackages_6_6; # _12;
+      kernelPackages = pkgs.linuxPackages_6_11;
       kernelParams = [
         "console=tty1"
+        "console=ttyS0,115200n8"
         "console=ttyS1,115200n8"
-        "console=ttyS2,115200n8"
         # "intremap=no_x2apic_optout"
         # "nox2apic"
         "iomem=relaxed"
