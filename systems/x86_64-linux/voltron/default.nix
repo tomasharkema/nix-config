@@ -35,17 +35,17 @@
 
     systemd = {
       services.usbmuxd.path = [pkgs.libusb1];
-      network.links."81-pi" = {
-        matchConfig = {
-          Property = [
-            "ID_MODEL_ID=a4aa"
-            "ID_VENDOR_ID=0525"
-          ];
-          Driver = "cdc_ether";
-        };
-        linkConfig.Name = "pi0";
-        # networkConfig.DHCP = true;
-      };
+      # network.links."81-pi" = {
+      #   matchConfig = {
+      #     Property = [
+      #       "ID_MODEL_ID=a4aa"
+      #       "ID_VENDOR_ID=0525"
+      #     ];
+      #    Driver = "cdc_ether";
+      #   };
+      #   linkConfig.Name = "pi0";
+      # networkConfig.DHCP = true;
+      # };
     };
 
     environment = {
@@ -151,7 +151,7 @@
       networkmanager.enable = true;
       # wireless.enable = true;
       firewall = {
-        enable = true; # wlp4s0; # false;
+        enable = false; # true; # wlp4s0; # false;
         allowPing = true;
         # trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
       };
