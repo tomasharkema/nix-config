@@ -205,7 +205,7 @@
           zathura
           mpv
           imv
-
+          rsbkb
           custom.zide
           custom.wikiman
           custom.glide
