@@ -70,7 +70,7 @@
         glxinfo
         inxi
         pwvucontrol
-        usbtop
+
         piper
         libratbag
       ];

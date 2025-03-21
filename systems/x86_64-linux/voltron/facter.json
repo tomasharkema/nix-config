@@ -23,8 +23,8 @@
     },
     "bluetooth": [
       {
-        "index": 48,
-        "attached_to": 50,
+        "index": 49,
+        "attached_to": 52,
         "class_list": [
           "usb",
           "bluetooth"
@@ -107,8 +107,8 @@
         "module_alias": "usb:v8087p0A2Bd0010dcE0dsc01dp01icE0isc01ip01in00"
       },
       {
-        "index": 53,
-        "attached_to": 50,
+        "index": 56,
+        "attached_to": 52,
         "class_list": [
           "usb",
           "bluetooth"
@@ -1028,7 +1028,7 @@
     "camera": [
       {
         "index": 45,
-        "attached_to": 50,
+        "attached_to": 52,
         "class_list": [
           "camera",
           "usb"
@@ -1129,8 +1129,8 @@
         "module_alias": "usb:v04F2pB604d0027dcEFdsc02dp01ic0Eisc02ip00in01"
       },
       {
-        "index": 52,
-        "attached_to": 50,
+        "index": 54,
+        "attached_to": 52,
         "class_list": [
           "camera",
           "usb"
@@ -1233,8 +1233,8 @@
     ],
     "chip_card": [
       {
-        "index": 47,
-        "attached_to": 50,
+        "index": 48,
+        "attached_to": 52,
         "class_list": [
           "chip_card",
           "usb"
@@ -1619,7 +1619,7 @@
           "range": 16
         },
         "unix_device_names": [
-          "/dev/disk/by-diskseq/3",
+          "/dev/disk/by-diskseq/2",
           "/dev/disk/by-id/usb-Generic-_SD_MMC_20120501030900000-0:0",
           "/dev/disk/by-path/pci-0000:00:14.0-usb-0:3:1.0-scsi-0:0:0:0",
           "/dev/disk/by-path/pci-0000:00:14.0-usbv3-0:3:1.0-scsi-0:0:0:0",
@@ -1635,11 +1635,17 @@
         "resources": [
           {
             "type": "disk_geo",
-            "cylinders": 1024,
-            "heads": 0,
-            "sectors": 62,
+            "cylinders": 60906,
+            "heads": 64,
+            "sectors": 32,
             "size": 0,
             "geo_type": "logical"
+          },
+          {
+            "type": "size",
+            "unit": "sectors",
+            "value_1": 124735488,
+            "value_2": 512
           }
         ],
         "driver": "usb-storage",
@@ -1680,9 +1686,9 @@
           "range": 1
         },
         "unix_device_names": [
-          "/dev/disk/by-diskseq/5",
+          "/dev/disk/by-diskseq/4",
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/93f16d17-95ca-4f1d-b2bd-66b94dd40a8a",
+          "/dev/disk/by-uuid/c6cdd7f5-94a3-46ea-9e8d-68b72080f88d",
           "/dev/zram0"
         ],
         "resources": [
@@ -1757,7 +1763,7 @@
           },
           {
             "type": "irq",
-            "base": 173,
+            "base": 172,
             "triggered": 0,
             "enabled": true
           },
@@ -1791,7 +1797,7 @@
           "command": 1031,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 173,
+          "irq": 172,
           "prog_if": 0
         },
         "driver": "nvidia",
@@ -1941,7 +1947,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.13.4-cachyos xhci-hcd",
+          "name": "Linux 6.13.7-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1955,7 +1961,7 @@
           "value": 0
         },
         "serial": "0000:3f:00.0",
-        "model": "Linux 6.13.4-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.13.7-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0/0000:08:02.0/0000:3f:00.0/usb3/3-0:1.0",
         "sysfs_bus_id": "3-0:1.0",
         "resources": [
@@ -2002,7 +2008,7 @@
         "module_alias": "usb:v1D6Bp0002d0613dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 49,
+        "index": 51,
         "attached_to": 23,
         "class_list": [
           "usb",
@@ -2024,7 +2030,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.13.4-cachyos xhci-hcd",
+          "name": "Linux 6.13.7-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2038,7 +2044,7 @@
           "value": 0
         },
         "serial": "0000:3f:00.0",
-        "model": "Linux 6.13.4-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.13.7-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0/0000:08:02.0/0000:3f:00.0/usb4/4-0:1.0",
         "sysfs_bus_id": "4-0:1.0",
         "detail": {
@@ -2075,7 +2081,7 @@
         "module_alias": "usb:v1D6Bp0003d0613dc09dsc00dp03ic09isc00ip00in00"
       },
       {
-        "index": 50,
+        "index": 52,
         "attached_to": 37,
         "class_list": [
           "usb",
@@ -2097,7 +2103,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.13.4-cachyos xhci-hcd",
+          "name": "Linux 6.13.7-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2111,7 +2117,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.13.4-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.13.7-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -2158,7 +2164,7 @@
         "module_alias": "usb:v1D6Bp0002d0613dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 54,
+        "index": 58,
         "attached_to": 37,
         "class_list": [
           "usb",
@@ -2180,7 +2186,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.13.4-cachyos xhci-hcd",
+          "name": "Linux 6.13.7-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2194,7 +2200,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.13.4-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.13.7-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -2253,7 +2259,7 @@
           {
             "type": "mem",
             "base": 0,
-            "range": 33239355392,
+            "range": 33239343104,
             "enabled": true,
             "access": "read_write",
             "prefetch": "unknown"
@@ -2263,6 +2269,121 @@
             "range": 32212254720
           }
         ]
+      }
+    ],
+    "modem": [
+      {
+        "index": 47,
+        "attached_to": 46,
+        "class_list": [
+          "modem",
+          "usb"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0102",
+          "name": "Modem",
+          "value": 258
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Modem",
+          "value": 0
+        },
+        "vendor": {
+          "hex": "0525",
+          "name": "Net Chip Technology, Inc.",
+          "value": 1317
+        },
+        "device": {
+          "hex": "a4aa",
+          "name": "CDC Composite Gadget",
+          "value": 42154
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "6.06",
+          "value": 0
+        },
+        "model": "Net Chip CDC Composite Gadget",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0/0000:08:02.0/0000:3f:00.0/usb3/3-1/3-1:1.2",
+        "sysfs_bus_id": "3-1:1.2",
+        "unix_device_name": "/dev/ttyACM0",
+        "unix_device_names": [
+          "/dev/serial/by-id/usb-Linux_6.6.51+rpt-rpi-v6_with_20980000.usb_CDC_Composite_Gadget-if02",
+          "/dev/serial/by-path/pci-0000:3f:00.0-usb-0:1:1.2",
+          "/dev/serial/by-path/pci-0000:3f:00.0-usbv2-0:1:1.2",
+          "/dev/ttyACM0"
+        ],
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 480000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "0002",
+            "name": "comm",
+            "value": 2
+          },
+          "device_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_protocol": 0,
+          "interface_class": {
+            "hex": "0002",
+            "name": "comm",
+            "value": 2
+          },
+          "interface_subclass": {
+            "hex": "0002",
+            "name": "comm",
+            "value": 2
+          },
+          "interface_protocol": 1,
+          "interface_number": 2,
+          "interface_alternate_setting": 0,
+          "interface_association": {
+            "function_class": {
+              "hex": "0002",
+              "name": "comm",
+              "value": 2
+            },
+            "function_subclass": {
+              "hex": "0002",
+              "name": "comm",
+              "value": 2
+            },
+            "function_protocol": 1,
+            "interface_count": 2,
+            "first_interface": 2
+          }
+        },
+        "hotplug": "usb",
+        "driver": "cdc_acm",
+        "driver_module": "cdc_acm",
+        "drivers": [
+          "cdc_acm"
+        ],
+        "driver_modules": [
+          "cdc_acm"
+        ],
+        "module_alias": "usb:v0525pA4AAd0606dc02dsc00dp00ic02isc02ip01in02"
       }
     ],
     "monitor": [
@@ -2346,7 +2467,7 @@
     "mouse": [
       {
         "index": 44,
-        "attached_to": 50,
+        "attached_to": 52,
         "class_list": [
           "mouse",
           "usb"
@@ -2466,7 +2587,7 @@
         "module_alias": "usb:v0EEFpC0ADd4502dc00dsc00dp00ic03isc01ip02in00"
       },
       {
-        "index": 62,
+        "index": 65,
         "attached_to": 0,
         "bus_type": {
           "hex": "0008",
@@ -2659,7 +2780,7 @@
           },
           {
             "type": "irq",
-            "base": 172,
+            "base": 171,
             "triggered": 0,
             "enabled": true
           },
@@ -2681,7 +2802,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 172,
+          "irq": 171,
           "prog_if": 0
         },
         "driver": "e1000e",
@@ -2758,7 +2879,7 @@
           },
           {
             "type": "irq",
-            "base": 171,
+            "base": 173,
             "triggered": 0,
             "enabled": true
           },
@@ -2863,7 +2984,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 171,
+          "irq": 173,
           "prog_if": 0
         },
         "driver": "iwlwifi",
@@ -2875,11 +2996,171 @@
           "iwlwifi"
         ],
         "module_alias": "pci:v00008086d000024FDsv00008086sd00000010bc02sc80i00"
+      },
+      {
+        "index": 50,
+        "attached_to": 46,
+        "class_list": [
+          "network_controller",
+          "usb"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0002",
+          "name": "Network controller",
+          "value": 2
+        },
+        "sub_class": {
+          "hex": "0091",
+          "name": "USB Host-to-Host link",
+          "value": 145
+        },
+        "vendor": {
+          "hex": "0525",
+          "name": "Net Chip Technology, Inc.",
+          "value": 1317
+        },
+        "device": {
+          "hex": "a4aa",
+          "name": "CDC Composite Gadget",
+          "value": 42154
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "6.06",
+          "value": 0
+        },
+        "model": "Net Chip CDC Composite Gadget",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0/0000:08:02.0/0000:3f:00.0/usb3/3-1/3-1:1.0",
+        "sysfs_bus_id": "3-1:1.0",
+        "unix_device_name": "enp63s0u1",
+        "unix_device_names": [
+          "enp63s0u1"
+        ],
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 480000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          },
+          {
+            "type": "hwaddr",
+            "address": 100
+          },
+          {
+            "type": "phwaddr",
+            "address": 100
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "0002",
+            "name": "comm",
+            "value": 2
+          },
+          "device_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_protocol": 0,
+          "interface_class": {
+            "hex": "0002",
+            "name": "comm",
+            "value": 2
+          },
+          "interface_subclass": {
+            "hex": "0006",
+            "name": "image",
+            "value": 6
+          },
+          "interface_protocol": 0,
+          "interface_number": 0,
+          "interface_alternate_setting": 0,
+          "interface_association": {
+            "function_class": {
+              "hex": "0002",
+              "name": "comm",
+              "value": 2
+            },
+            "function_subclass": {
+              "hex": "0006",
+              "name": "image",
+              "value": 6
+            },
+            "function_protocol": 0,
+            "interface_count": 2,
+            "first_interface": 0
+          }
+        },
+        "hotplug": "usb",
+        "driver": "cdc_ether",
+        "driver_module": "cdc_ether",
+        "drivers": [
+          "cdc_ether"
+        ],
+        "driver_modules": [
+          "cdc_ether"
+        ],
+        "module_alias": "usb:v0525pA4AAd0606dc02dsc00dp00ic02isc06ip00in00"
       }
     ],
     "network_interface": [
       {
-        "index": 55,
+        "index": 59,
+        "attached_to": 50,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/enp63s0u1",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0/0000:08:02.0/0000:3f:00.0/usb3/3-1/3-1:1.0",
+        "unix_device_name": "enp63s0u1",
+        "unix_device_names": [
+          "enp63s0u1"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 100
+          },
+          {
+            "type": "phwaddr",
+            "address": 100
+          }
+        ],
+        "driver": "cdc_ether",
+        "driver_module": "cdc_ether",
+        "drivers": [
+          "cdc_ether"
+        ],
+        "driver_modules": [
+          "cdc_ether"
+        ]
+      },
+      {
+        "index": 61,
         "attached_to": 34,
         "class_list": [
           "network_interface"
@@ -2921,7 +3202,7 @@
         ]
       },
       {
-        "index": 56,
+        "index": 62,
         "attached_to": 32,
         "class_list": [
           "network_interface"
@@ -2963,30 +3244,7 @@
         ]
       },
       {
-        "index": 57,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_name": "lo",
-        "unix_device_names": [
-          "lo"
-        ]
-      },
-      {
-        "index": 59,
+        "index": 63,
         "attached_to": 12,
         "class_list": [
           "network_interface"
@@ -3015,6 +3273,29 @@
         ],
         "driver_modules": [
           "xmm7360"
+        ]
+      },
+      {
+        "index": 64,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_name": "lo",
+        "unix_device_names": [
+          "lo"
         ]
       }
     ],
@@ -3395,7 +3676,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 154,
+            "base": 170,
             "triggered": 0,
             "enabled": true
           },
@@ -3413,7 +3694,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 154,
+          "irq": 170,
           "prog_if": 0
         },
         "driver": "mei_me",
@@ -3789,7 +4070,7 @@
     "usb": [
       {
         "index": 43,
-        "attached_to": 50,
+        "attached_to": 52,
         "class_list": [
           "usb",
           "unknown"
@@ -3872,6 +4153,218 @@
           "usbfs"
         ],
         "module_alias": "usb:v06CBp009Ad0164dcFFdsc10dpFFicFFisc00ip00in00"
+      },
+      {
+        "index": 55,
+        "attached_to": 46,
+        "class_list": [
+          "usb",
+          "unknown"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
+        },
+        "vendor": {
+          "hex": "0525",
+          "name": "Net Chip Technology, Inc.",
+          "value": 1317
+        },
+        "device": {
+          "hex": "a4aa",
+          "name": "CDC Composite Gadget",
+          "value": 42154
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "6.06",
+          "value": 0
+        },
+        "model": "Net Chip CDC Composite Gadget",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0/0000:08:02.0/0000:3f:00.0/usb3/3-1/3-1:1.3",
+        "sysfs_bus_id": "3-1:1.3",
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 480000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "0002",
+            "name": "comm",
+            "value": 2
+          },
+          "device_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_protocol": 0,
+          "interface_class": {
+            "hex": "000a",
+            "name": "data",
+            "value": 10
+          },
+          "interface_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "interface_protocol": 0,
+          "interface_number": 3,
+          "interface_alternate_setting": 0,
+          "interface_association": {
+            "function_class": {
+              "hex": "0002",
+              "name": "comm",
+              "value": 2
+            },
+            "function_subclass": {
+              "hex": "0002",
+              "name": "comm",
+              "value": 2
+            },
+            "function_protocol": 1,
+            "interface_count": 2,
+            "first_interface": 2
+          }
+        },
+        "hotplug": "usb",
+        "driver": "cdc_acm",
+        "driver_module": "cdc_acm",
+        "drivers": [
+          "cdc_acm"
+        ],
+        "driver_modules": [
+          "cdc_acm"
+        ],
+        "module_alias": "usb:v0525pA4AAd0606dc02dsc00dp00ic0Aisc00ip00in03"
+      },
+      {
+        "index": 57,
+        "attached_to": 46,
+        "class_list": [
+          "usb",
+          "unknown"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
+        },
+        "vendor": {
+          "hex": "0525",
+          "name": "Net Chip Technology, Inc.",
+          "value": 1317
+        },
+        "device": {
+          "hex": "a4aa",
+          "name": "CDC Composite Gadget",
+          "value": 42154
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "6.06",
+          "value": 0
+        },
+        "model": "Net Chip CDC Composite Gadget",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0/0000:08:02.0/0000:3f:00.0/usb3/3-1/3-1:1.1",
+        "sysfs_bus_id": "3-1:1.1",
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 480000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "0002",
+            "name": "comm",
+            "value": 2
+          },
+          "device_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_protocol": 0,
+          "interface_class": {
+            "hex": "000a",
+            "name": "data",
+            "value": 10
+          },
+          "interface_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "interface_protocol": 0,
+          "interface_number": 1,
+          "interface_alternate_setting": 1,
+          "interface_association": {
+            "function_class": {
+              "hex": "0002",
+              "name": "comm",
+              "value": 2
+            },
+            "function_subclass": {
+              "hex": "0006",
+              "name": "image",
+              "value": 6
+            },
+            "function_protocol": 0,
+            "interface_count": 2,
+            "first_interface": 0
+          }
+        },
+        "hotplug": "usb",
+        "driver": "cdc_ether",
+        "driver_module": "cdc_ether",
+        "drivers": [
+          "cdc_ether"
+        ],
+        "driver_modules": [
+          "cdc_ether"
+        ],
+        "module_alias": "usb:v0525pA4AAd0606dc02dsc00dp00ic0Aisc00ip00in01"
       }
     ],
     "usb_controller": [
