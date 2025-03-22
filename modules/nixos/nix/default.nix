@@ -173,7 +173,7 @@
       };
 
       # flake-utils-plus
-      generateRegistryFromInputs = false; # true;
+      generateRegistryFromInputs = true;
       generateNixPathFromInputs = true;
       linkInputs = true;
     };

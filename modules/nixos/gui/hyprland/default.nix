@@ -21,6 +21,7 @@
       pyprland
       hyprpicker
       hyprcursor
+      hyprshot
       # hyprlock
       # hypridle
       hyprpaper
@@ -244,8 +245,6 @@
             "usbguard-gnome"
 
             "[workspace 2 silent] firefox"
-          ];
-          bind = [
           ];
 
           experimental = {

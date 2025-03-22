@@ -193,6 +193,8 @@
       enableAllTerminfo = pkgs.stdenv.isx86_64;
       systemPackages =
         (with pkgs; [
+          pulseview
+          sigrok-cli
           custom.partclone-utils
           bridge-utils
           xterm
