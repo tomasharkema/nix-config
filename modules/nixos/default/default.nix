@@ -193,6 +193,7 @@
       enableAllTerminfo = pkgs.stdenv.isx86_64;
       systemPackages =
         (with pkgs; [
+          custom.partclone-utils
           bridge-utils
           xterm
           libheif
