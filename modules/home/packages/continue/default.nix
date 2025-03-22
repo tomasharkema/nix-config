@@ -10,17 +10,17 @@
         source = pkgs.writers.writeJSON "config.json" {
           "models" = [
             {
-              title = "llama3";
+              title = "starcoder2";
               provider = "ollama";
-              model = "llama3.1:8b";
-              apiBase = "http://wodan:11434";
+              model = "starcoder2:7b";
+              apiBase = "http://silver-star:11434";
             }
           ];
           "tabAutocompleteModel" = {
-            title = "starcoder";
+            title = "starcoder2";
             provider = "ollama";
-            model = "starcoder2:3b";
-            apiBase = "http://wodan:11434";
+            model = "starcoder2:7b";
+            apiBase = "http://silver-star:11434";
           };
           # "slashCommands" = [
           #   {

@@ -69,10 +69,10 @@ in {
         enable = false;
         httpd = false;
       };
-      "bmc-watchdog".enable = true;
+      # "bmc-watchdog".enable = true;
       podman.enable = lib.mkForce true;
-      ollama.enable = true;
-      atticd.enable = true;
+      # ollama.enable = true;
+      # atticd.enable = true;
     };
 
     services = {

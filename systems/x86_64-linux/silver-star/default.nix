@@ -83,6 +83,15 @@ in {
       options = ["bind"];
     };
 
+    users = {
+      groups.ipmi.members = [
+        "tomas"
+        "root"
+        "netdata"
+        "ipmi-exporter"
+      ];
+    };
+
     services = {
       hypervisor = {
         enable = true;
@@ -119,7 +128,9 @@ in {
           EMAIL_USE_TLS = "False";
         };
       };
-
+      udev.extraRules = ''
+        SUBSYSTEM=="ipmi", GROUP="ipmi", MODE="0666"
+      '';
       usbguard.enable = lib.mkForce false;
       tcsd.enable = true;
 
