@@ -51,7 +51,7 @@ in {
               "/etc/secrets/initrd/ssh_host_ed25519_key"
             ];
           };
-          flushBeforeStage2 = true;
+          # flushBeforeStage2 = true;
         };
       };
     };
