@@ -208,6 +208,7 @@
           mpv
           imv
           rsbkb
+          nix-search-cli
           custom.zide
           custom.wikiman
           custom.glide
