@@ -206,17 +206,16 @@
           "value": 6659
         },
         "sub_vendor": {
-          "hex": "1a03",
-          "name": "ASPEED Technology Inc.",
-          "value": 6659
+          "hex": "15d9",
+          "value": 5593
         },
         "device": {
           "hex": "1150",
           "value": 4432
         },
         "sub_device": {
-          "hex": "1150",
-          "value": 4432
+          "hex": "0806",
+          "value": 2054
         },
         "revision": {
           "hex": "0003",
@@ -234,7 +233,7 @@
           "irq": 0,
           "prog_if": 0
         },
-        "module_alias": "pci:v00001A03d00001150sv00001A03sd00001150bc06sc04i00"
+        "module_alias": "pci:v00001A03d00001150sv000015D9sd00000806bc06sc04i00"
       },
       {
         "index": 17,
@@ -896,7 +895,7 @@
           "srbds",
           "mmio_unknown"
         ],
-        "bogo": 7199.52,
+        "bogo": 7199.43,
         "cache": 8192,
         "units": 16,
         "physical_id": 0,
@@ -1124,7 +1123,7 @@
         "unix_device_names": [
           "/dev/disk/by-diskseq/4",
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/cf49fb54-75c0-45fd-a2f0-d3eeeac1492c",
+          "/dev/disk/by-uuid/6c5cbf51-f4ce-4c84-936c-e102c9abd126",
           "/dev/zram0"
         ],
         "resources": [
@@ -2881,7 +2880,7 @@
         ]
       },
       {
-        "index": 57,
+        "index": 55,
         "attached_to": 26,
         "class_list": [
           "network_interface"
@@ -2920,6 +2919,29 @@
         ],
         "driver_modules": [
           "ixgbe"
+        ]
+      },
+      {
+        "index": 56,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_name": "lo",
+        "unix_device_names": [
+          "lo"
         ]
       },
       {
@@ -2965,7 +2987,7 @@
         ]
       },
       {
-        "index": 59,
+        "index": 60,
         "attached_to": 35,
         "class_list": [
           "network_interface"
@@ -3004,29 +3026,6 @@
         ],
         "driver_modules": [
           "igb"
-        ]
-      },
-      {
-        "index": 60,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_name": "lo",
-        "unix_device_names": [
-          "lo"
         ]
       }
     ],
