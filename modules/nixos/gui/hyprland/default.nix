@@ -236,7 +236,7 @@
           ];
 
           exec-once = [
-            "hypridle"
+            # "hypridle"
             "hyprsunset"
             "systemctl --user start hyprpolkitagent"
 

@@ -156,7 +156,7 @@ in {
         )
       );
     };
-
+    catppuccin.cache.enable = false;
     fonts.fontconfig.enable = true;
 
     programs = {
@@ -170,7 +170,7 @@ in {
       # termite.enable = osConfig.gui.enable;
       # terminator.enable = lib.mkIf pkgs.stdenv.isLinux osConfig.gui.enable;
 
-      # yt-dlp.enable = true;
+      yt-dlp.enable = true;
       noti = {
         enable = true;
         settings = {ntfy.url = "ntfy.sh/tomasharkema-nixos";};
