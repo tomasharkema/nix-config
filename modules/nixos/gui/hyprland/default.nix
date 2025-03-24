@@ -245,6 +245,9 @@
             "usbguard-gnome"
 
             "[workspace 2 silent] firefox"
+
+            "gsettings set org.gnome.desktop.interface gtk-theme \"catppuccin-mocha-blue-compact+black\"" # for GTK3 apps
+            "exec = gsettings set org.gnome.desktop.interface color-scheme \"prefer-dark\"" # for GTK4 apps
           ];
 
           experimental = {

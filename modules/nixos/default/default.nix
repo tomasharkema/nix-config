@@ -115,7 +115,7 @@ in {
         "printk.always_kmsg_dump"
         "crash_kexec_post_notifiers"
 
-        "netconsole=@/,@192.168.0.100/"
+        # "netconsole=@/,@192.168.0.100/"
       ];
 
       kernel.sysctl = {
@@ -145,7 +145,7 @@ in {
 
       kernelModules = [
         "wireguard"
-        "netconsole"
+        # "netconsole"
         # "apfs"
         "sha256"
       ];
@@ -156,7 +156,7 @@ in {
         "nfs"
       ];
       initrd.kernelModules = [
-        "netconsole"
+        # "netconsole"
         "sha256"
       ];
       loader = {
@@ -595,8 +595,10 @@ in {
         };
       };
 
-      udev.enable = lib.mkDefault true;
-
+      udev = {
+        enable = lib.mkDefault true;
+        packages = with pkgs; [picoprobe-udev-rules];
+      };
       ntp = {
         enable = true;
         servers = [
