@@ -4,7 +4,11 @@
   lib,
   inputs,
   ...
-}: {
+}: let
+  sbctl-tpm = pkgs.writeShellScriptBin "sbctl-tpm" ''
+    sudo sbctl rotate-keys --pk-keytype tpm --kek-keytype kek --db-keytype file
+  '';
+in {
   config = {
     assertions = [
       # {
@@ -193,6 +197,7 @@
       enableAllTerminfo = pkgs.stdenv.isx86_64;
       systemPackages =
         (with pkgs; [
+          sbctl-tpm
           pulseview
           sigrok-cli
           custom.partclone-utils
