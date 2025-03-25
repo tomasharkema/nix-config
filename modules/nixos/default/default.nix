@@ -197,6 +197,7 @@ in {
       enableAllTerminfo = pkgs.stdenv.isx86_64;
       systemPackages =
         (with pkgs; [
+          cutecom
           sbctl-tpm
           pulseview
           sigrok-cli
