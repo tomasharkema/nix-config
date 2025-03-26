@@ -337,7 +337,7 @@ in {
           strace
           swapview
           systemctl-tui
-          systeroid
+          # systeroid
           sysz
           tcptrack
           nmap
