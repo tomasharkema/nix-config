@@ -328,6 +328,17 @@ in {
           socat
           websocat
           ser2net
+
+          picotool
+          openocd
+          cmake
+          ninja
+          gnumake
+          gdb
+          gdbgui
+          clang-tools
+          i2c-tools
+
           squashfsTools
           squashfs-tools-ng
           ssh-import-id
