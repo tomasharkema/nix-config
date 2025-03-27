@@ -250,7 +250,6 @@ in {
 
     system.nssDatabases = {
       sudoers = ["sss"];
-      netgroup = ["sss"];
     };
     networking.domain = "harkema.io";
 
