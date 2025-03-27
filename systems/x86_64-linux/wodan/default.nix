@@ -177,6 +177,11 @@
         brightnessKeys = {enable = true;};
       };
       adb.enable = true;
+      wireshark = {
+        enable = true;
+        usbmon.enable = true;
+        dumpcap.enable = true;
+      };
     };
 
     hardware = {
@@ -223,10 +228,10 @@
           enable = true;
           open = true;
         };
-
+        sgx.enable = true;
         remote-unlock.enable = true;
         monitor.enable = true;
-
+        bluetooth.enable = true;
         disable-sleep.enable = true;
       };
     };

@@ -41,6 +41,11 @@ in {
       udev.packages = with pkgs; [imsprog];
     };
 
+    hardware = {
+      sensor.iio.enable = true;
+      usbStorage.manageShutdown = true;
+    };
+
     programs.nm-applet.enable = true;
 
     boot = {

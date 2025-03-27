@@ -197,6 +197,7 @@ in {
       enableAllTerminfo = pkgs.stdenv.isx86_64;
       systemPackages =
         (with pkgs; [
+          config.boot.kernelPackages.iio-utils
           cutecom
           sbctl-tpm
           pulseview
@@ -651,6 +652,7 @@ in {
         enable = true;
         openFirewall = true;
       };
+      wireshark = {enable = true;};
       nix-index = {
         enable = true;
         enableZshIntegration = true;
@@ -701,6 +703,11 @@ in {
       enableAllFirmware = lib.mkDefault true;
       enableRedistributableFirmware = lib.mkDefault true;
       # fancontrol.enable = true;
+      sensor.hddtemp = {
+        enable = true;
+        drives = ["/dev/disk/by-path/*"];
+      };
+      mcelog.enable = true;
     };
     networking = {
       firewall = {

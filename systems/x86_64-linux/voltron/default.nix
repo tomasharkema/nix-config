@@ -93,6 +93,7 @@
 
     hardware = {
       mcelog.enable = true;
+      usb-modeswitch .enable = true;
       nvidia = {
         # forceFullCompositionPipeline = true;
 
