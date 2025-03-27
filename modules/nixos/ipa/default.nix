@@ -248,8 +248,10 @@ in {
     #   };
     # };
 
-    system.nssDatabases.sudoers = ["sss"];
-
+    system.nssDatabases = {
+      sudoers = ["sss"];
+      netgroup = ["sss"];
+    };
     networking.domain = "harkema.io";
 
     security = {
