@@ -37,7 +37,7 @@ in {
       snapper.enable = false;
       # btrbk.enable = true;
     };
-    zramSwap.enable = false;
+    # zramSwap.enable = false;
     traits = {
       server = {
         enable = true;
@@ -99,7 +99,7 @@ in {
       };
       # mosh.enable = true;
       # xserver.videoDrivers = ["nvidia"];
-      zram-generator.enable = false;
+      # zram-generator.enable = false;
       # "nix-private-cache".enable = true;
       nfs = {
         server = {
@@ -145,9 +145,9 @@ in {
         };
       };
 
-      # watchdogd = {
-      #   enable = true;
-      # };
+      watchdogd = {
+        enable = true;
+      };
 
       das_watchdog.enable = lib.mkForce false;
 
@@ -426,7 +426,7 @@ in {
       # copyKernels = {enable = true;};
 
       binfmt.emulatedSystems = ["aarch64-linux"];
-      kernelPackages = pkgs.linuxPackages_6_11;
+      kernelPackages = pkgs.linuxPackages_6_12;
       kernelParams = [
         "console=tty1"
         "console=ttyS0,115200n8"
@@ -445,7 +445,7 @@ in {
         # "kvm.ignore_msrs=1"
         # "pci=nomsi"
       ];
-
+      blacklistedKernelModules = ["iTCO_wdt"];
       recovery = {
         enable = true;
         install = true;
