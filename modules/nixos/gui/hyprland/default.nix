@@ -18,6 +18,7 @@
 
     services = {hypridle.enable = true;};
     environment.systemPackages = with pkgs; [
+      wluma
       pyprland
       hyprpicker
       hyprcursor
@@ -239,7 +240,7 @@
             # "hypridle"
             "hyprsunset"
             "systemctl --user start hyprpolkitagent"
-
+            "wluma"
             "[workspace 1 silent] $terminal"
             "nm-applet"
             "usbguard-gnome"
