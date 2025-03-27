@@ -429,7 +429,9 @@ in {
           systembus-notify.enable = true;
         };
       };
-
+      watchdogd = {
+        enable = true;
+      };
       sysstat.enable = lib.mkDefault true;
       # irqbalance.enable = true;
       # aria2.enable = true;

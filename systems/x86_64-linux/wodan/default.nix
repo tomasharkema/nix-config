@@ -273,6 +273,7 @@
         #"i2c-dev"
         "btusb"
         "ddcci"
+        "iTCO_wdt"
         "ddcci-backlight"
         # "vfio_pci"
         # "vfio"
@@ -283,7 +284,7 @@
 
       initrd = {
         kernelModules = [
-          # "ixgbe"
+          "iTCO_wdt" # "ixgbe"
           # "btusb"
           # "vfio_pci"
           # "vfio"
