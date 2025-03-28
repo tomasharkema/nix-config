@@ -104,6 +104,7 @@
       quiet-boot.enable = true;
       hidpi.enable = true;
       gnome = {};
+      hyrland.illuminanced.enable = true;
     };
 
     services = {
@@ -114,6 +115,10 @@
         };
 
         bolt.enable = true;
+      };
+      input-remapper = {
+        enable = true;
+        enableUdevRules = true;
       };
       ratbagd.enable = true;
       remote-builders.server.enable = true;
