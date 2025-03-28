@@ -63,6 +63,7 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
+      thonny
       coppwr
       custom.meshtastic
       libwacom
