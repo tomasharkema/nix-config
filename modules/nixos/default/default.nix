@@ -42,8 +42,17 @@ in {
         NetworkManager-wait-online.enable = lib.mkForce false;
         systemd-networkd-wait-online.enable = lib.mkForce false;
       };
+      #
+
       sysupdate.enable = true;
       # repart.enable = true;
+
+      watchdog = {
+        rebootTime = "5m";
+        device = "/dev/watchdog";
+        runtimeTime = "30s";
+        kexecTime = "5m";
+      };
     };
 
     # Set your time zone.
