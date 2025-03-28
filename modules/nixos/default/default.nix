@@ -197,6 +197,9 @@ in {
       enableAllTerminfo = pkgs.stdenv.isx86_64;
       systemPackages =
         (with pkgs; [
+          wireshark
+          termshark
+          tshark
           config.boot.kernelPackages.iio-utils
           cutecom
           sbctl-tpm
