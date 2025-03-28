@@ -9,9 +9,9 @@
       arduino
       arduino-cli
       arduinoOTA
-      arduino-ide
-      arduino-language-server
 
+      arduino-language-server
+      (lib.mkIf config.gui.enable arduino-ide)
       picotool
       cmakeCurses
       gcc-arm-embedded
