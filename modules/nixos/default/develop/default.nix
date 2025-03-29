@@ -17,7 +17,6 @@
   });
 in {
   config = {
-    
     environment.systemPackages = with pkgs; [
       arduino
       arduino-cli
@@ -29,29 +28,28 @@ in {
       cmakeCurses
       gcc-arm-embedded
       gnumake
-    
 
-        arduinoOTA
-        arduino-ide
-        arduino-language-served
+      arduinoOTA
+      arduino-ide
+      arduino-language-served
 
-        picotool
-        cmakeCurses
-        gcc-arm-embedded
-        gnumake
+      picotool
+      cmakeCurses
+      gcc-arm-embedded
+      gnumake
 
-        go
-        go-outline
-        gdlv
-        delve
-        godef
-        golint
-        gopkgs
-        gopls
-        gotools
-        golangci-lint
-      ];
-    };
+      go
+      go-outline
+      gdlv
+      delve
+      godef
+      golint
+      gopkgs
+      gopls
+      gotools
+      golangci-lint
+    ];
+
     services.udev.packages = with pkgs; [picotool];
   };
 }
