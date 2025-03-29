@@ -5,20 +5,19 @@
   ...
 }: let
   cfg = config.services.hypervisor;
-
-  isosStorage = pkgs.writeText "isos.xml" ''
-    <pool type="netfs">
-      <name>virtimages</name>
-      <source>
-        <host name="192.168.1.102"/>
-        <dir path="/volume1/isos"/>
-        <format type='nfs'/>
-      </source>
-      <target>
-        <path>/var/lib/libvirt/images/isos-2</path>
-      </target>
-    </pool>
-  '';
+  # isosStorage = pkgs.writeText "isos.xml" ''
+  #   <pool type="netfs">
+  #     <name>virtimages</name>
+  #     <source>
+  #       <host name="192.168.1.102"/>
+  #       <dir path="/volume1/isos"/>
+  #       <format type='nfs'/>
+  #     </source>
+  #     <target>
+  #       <path>/var/lib/libvirt/images/isos-2</path>
+  #     </target>
+  #   </pool>
+  # '';
 in {
   options.services.hypervisor = {
     enable = lib.mkEnableOption "hypervisor";
@@ -123,35 +122,14 @@ in {
     services.rpcbind.enable = true;
 
     systemd = {
-      tmpfiles.settings."9-isos" = {
-        "/var/lib/libvirt/storage/isos.xml" = {
-          "L+" = {
-            argument = "${isosStorage}";
-            mode = "600";
-          };
-        };
-      };
-
-      mounts = [
-        {
-          type = "nfs";
-          mountConfig = {
-            Options = "noatime";
-          };
-          what = "192.168.1.102:/volume1/isos";
-          where = "/var/lib/libvirt/images/isos";
-        }
-      ];
-
-      automounts = [
-        {
-          wantedBy = ["multi-user.target"];
-          automountConfig = {
-            TimeoutIdleSec = "600";
-          };
-          where = "/var/lib/libvirt/images/isos";
-        }
-      ];
+      # tmpfiles.settings."9-isos" = {
+      #   "/var/lib/libvirt/storage/isos.xml" = {
+      #     "L+" = {
+      #       argument = "${isosStorage}";
+      #       mode = "600";
+      #     };
+      #   };
+      # };
 
       packages = [pkgs.custom.libvirt-dbus];
     };

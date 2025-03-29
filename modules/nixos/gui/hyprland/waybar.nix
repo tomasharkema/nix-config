@@ -248,7 +248,7 @@ in [
     };
     "custom/lock" = {
       "tooltip" = false;
-      "on-click" = "hyprlock &";
+      # "on-click" = "hyprlock &";
       "format" = "";
     };
     # "backlight" = {

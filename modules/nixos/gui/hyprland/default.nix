@@ -12,7 +12,7 @@
         #   hidpiXWayland = true;
         # };
       };
-      hyprlock.enable = true;
+      # hyprlock.enable = true;
     };
     security.pam.services.hyprlock = {};
 
@@ -70,7 +70,7 @@
         # wlogout.enable = true;
 
         hyprlock = {
-          enable = true;
+          # enable = true;
           settings = let
             foreground = "rgba(240, 240, 240, 0.70)";
             font = "B612";
