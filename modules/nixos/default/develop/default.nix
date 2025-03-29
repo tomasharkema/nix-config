@@ -31,7 +31,7 @@ in {
 
       arduinoOTA
       arduino-ide
-      arduino-language-served
+      arduino-language-server
 
       picotool
       cmakeCurses
