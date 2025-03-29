@@ -26,7 +26,7 @@
 
         heimdall
         heimdall-gui
-        handbrake
+        # handbrake
         davinci-resolve
       ];
     };

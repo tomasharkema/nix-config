@@ -63,7 +63,7 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-      handbrake
+      # handbrake
       thonny
       coppwr
       custom.meshtastic

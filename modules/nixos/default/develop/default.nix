@@ -21,7 +21,8 @@ in {
       arduino
       arduino-cli
       arduinoOTA
-
+      elf2uf2-rs
+      probe-rs-tools
       arduino-language-server
       (lib.mkIf config.gui.enable arduino-ide)
       picotool
