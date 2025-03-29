@@ -5,8 +5,8 @@
   ...
 }: let
   # /sys/bus/ddcci/devices/*/backlight/*/
-  backlightDevice = "/sys/bus/ddcci/devices/ddcci6/backlight/ddcci6";
-  sensorDevice = "/sys/bus/iio/devices/iio:device0";
+  backlightDevice = "/sys/bus/ddcci/devices/*/backlight/*";
+  sensorDevice = "/sys/bus/iio/devices/*";
   pid = "/run/illuminanced.pid";
   configFile = pkgs.writeText "config.toml" ''
     [daemonize]
