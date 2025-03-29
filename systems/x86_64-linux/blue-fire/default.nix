@@ -86,7 +86,7 @@ in {
         dataDir = "/srv/plex/library";
         accelerationDevices = ["*"];
       };
-      xserver.videoDrivers = ["nvidia"];
+      # xserver.videoDrivers = ["nvidia"];
       watchdogd = {
         enable = true;
       };

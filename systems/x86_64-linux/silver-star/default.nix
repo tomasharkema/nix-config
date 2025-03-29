@@ -317,7 +317,7 @@ in {
       enableAllFirmware = true;
       enableRedistributableFirmware = true;
       #
-      nvidia-container-toolkit.enable = true;
+      # nvidia-container-toolkit.enable = true;
       #
       nvidia = {
         # forceFullCompositionPipeline = true;

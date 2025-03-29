@@ -75,6 +75,7 @@ in {
       # kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
 
       # kernelPackages = lib.mkIf cfg.grid pkgs.linuxPackages_6_11;
+      blacklistedKernelModules = ["nouveau"];
 
       kernelParams = [
         # "nvidia-drm.modeset=1"
@@ -94,15 +95,28 @@ in {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
         open = lib.mkForce cfg.open;
-        nvidiaSettings = true;
-
+        nvidiaSettings = !(cfg.grid.enable);
         package =
           if cfg.grid.enable
           then
             ((
                 if cfg.grid.legacy
                 then config.boot.kernelPackages.nvidiaPackages.vgpu_16_5
-                else config.boot.kernelPackages.nvidiaPackages.vgpu_17_3
+                else
+                  (config.boot.kernelPackages.nvidiaPackages.vgpu_17_3.overrideAttrs (finalAttrs: previousAttrs: {
+                    prePatch = ''
+                      substituteInPlace kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.c --replace-fail "no_llseek" "noop_llseek"
+
+                    '';
+
+                    patches = [
+                      # ./6.12.patch
+                      # (pkgs.fetchpatch {
+                      #      url = "https://gitlab.com/polloloco/vgpu-proxmox/-/raw/master/550.144.02.patch?ref_type=heads&inline=false";
+                      #      hash = "sha256-oUSKlGdtB8xklRL/r2dGHfYnhxNarEk1S6WtM20zSS4=";
+                      # })
+                    ];
+                  }))
               )
               .overrideAttrs (
                 finalAttrs: previousAttrs: {
@@ -120,7 +134,7 @@ in {
           #)
           ;
 
-        vgpu = lib.mkIf cfg.grid.enable {
+        vgpu = lib.mkIf (cfg.grid.enable) {
           patcher = {
             enable = true;
             options = {

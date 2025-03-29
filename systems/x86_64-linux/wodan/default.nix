@@ -173,7 +173,7 @@
         enable = true;
         bridgeInterfaces = ["enp2s0"];
       };
-      xserver.videoDrivers = ["nvidia"];
+      # xserver.videoDrivers = ["nvidia"];
       ddccontrol.enable = true;
     };
     programs = {
