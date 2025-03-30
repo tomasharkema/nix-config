@@ -23,6 +23,9 @@ in {
       arduinoOTA
       elf2uf2-rs
       probe-rs-tools
+      rustup
+      probe-rs
+      flip-link
       arduino-language-server
       (lib.mkIf config.gui.enable arduino-ide)
       picotool
