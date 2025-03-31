@@ -110,6 +110,7 @@ in {
                     '';
 
                     patches = [
+                      ./drm.patch
                       # ./6.12.patch
                       # (pkgs.fetchpatch {
                       #      url = "https://gitlab.com/polloloco/vgpu-proxmox/-/raw/master/550.144.02.patch?ref_type=heads&inline=false";
