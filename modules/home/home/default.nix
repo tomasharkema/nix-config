@@ -156,7 +156,10 @@ in {
         )
       );
     };
-    catppuccin.cache.enable = false;
+    catppuccin = {
+      vscode.enable = false;
+      cache.enable = false;
+    };
     fonts.fontconfig.enable = true;
 
     programs = {
@@ -184,6 +187,7 @@ in {
       vscode = lib.mkIf pkgs.stdenv.isLinux {
         enable = true;
         package = pkgs.vscode; # .fhs;
+        # catppuccin.enable = false;
       };
 
       htop = {
