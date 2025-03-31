@@ -27,7 +27,7 @@ in {
       probe-rs
       flip-link
       arduino-language-server
-      (lib.mkIf config.gui.enable arduino-ide)
+
       picotool
       cmakeCurses
       gcc-arm-embedded

@@ -72,6 +72,7 @@ in {
       noti
       ghex
       imsprog
+      #rr(lib.mkIf pkgs.stdenv.is86_64 arduino-gui)
     ];
   };
 }
