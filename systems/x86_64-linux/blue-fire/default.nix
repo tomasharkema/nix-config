@@ -80,12 +80,7 @@ in {
         enable = true;
         # bridgeInterfaces = [ "eno1" ];
       };
-      plex = {
-        enable = true;
 
-        dataDir = "/srv/plex/library";
-        accelerationDevices = ["*"];
-      };
       # xserver.videoDrivers = ["nvidia"];
       watchdogd = {
         enable = true;

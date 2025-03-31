@@ -37,7 +37,7 @@
         # nix-serve
         # nixci
 
-        nux
+        # nux
         disnix
         nox
 

@@ -135,7 +135,12 @@ in {
       tcsd.enable = true;
 
       throttled.enable = lib.mkForce false;
+      plex = {
+        enable = true;
 
+        dataDir = "/srv/plex/library";
+        accelerationDevices = ["*"];
+      };
       tsnsrv = {
         enable = true;
         defaults.authKeyPath = config.age.secrets.tsnsrv.path;
