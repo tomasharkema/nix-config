@@ -205,22 +205,6 @@
       };
       flakeInputs = inputs;
 
-      githubActions = inputs.nix-github-actions.lib.mkGithubMatrix {
-        checks =
-          inputs.nixpkgs.lib.getAttrs [
-            "x86_64-linux"
-            # "aarch64-linux"
-          ]
-          inputs.self.packages;
-        platforms = {
-          "x86_64-linux" = "x86_64-linux";
-          # "aarch64-linux" = "aarch64-linux";
-
-          # "x86_64-darwin" = "x86_64-darwin";
-          # "aarch64-darwin" = "aarch64-darwin";
-        };
-      };
-
       agenix-rekey = let
         lib = inputs.nixpkgs.lib;
       in
@@ -860,11 +844,6 @@
     #   url = "github:wez/wezterm?dir=nix";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-
-    nix-github-actions = {
-      url = "github:nix-community/nix-github-actions";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # otel = {
     #   url = "github:tomasharkema/nix-otel";

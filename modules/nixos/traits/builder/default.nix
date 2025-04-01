@@ -5,11 +5,11 @@
   inputs,
   ...
 }: let
-  cfg = config.traits.builder;
+  cfg = config.traits.github-runner;
   user = "github-runner";
   group = "github-runner";
 in {
-  options.traits.builder = {
+  options.traits.github-runner = {
     enable = lib.mkEnableOption "builder";
   };
 
@@ -30,7 +30,7 @@ in {
       extraPackages = with pkgs; [cachix];
     };
   in
-    lib.mkIf (cfg.enable && false) {
+    lib.mkIf (cfg.enable) {
       age.secrets."ght-runner" = {
         rekeyFile = ./ght-runner.age;
         owner = user;

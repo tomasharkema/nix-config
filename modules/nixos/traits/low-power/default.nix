@@ -10,7 +10,6 @@ in {
     enable = lib.mkEnableOption "low-power";
   };
   config = lib.mkIf cfg.enable {
-    traits.builder.enable = lib.mkForce false;
     apps.resilio.enable = lib.mkForce false;
 
     nix.settings = {

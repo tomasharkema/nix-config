@@ -44,8 +44,6 @@ in {
         headless.enable = true;
       };
 
-      builder.enable = true;
-
       hardware = {
         tpm.enable = true;
         secure-boot.enable = true;

@@ -26,7 +26,9 @@ in {
       bluetooth.enable = true;
       rtl-sdr.enable = true;
     };
+
     apps.podman.enable = true;
+
     services = {
       syncplay.enable = true;
       hypervisor.enable = true;
@@ -118,8 +120,6 @@ in {
     };
 
     traits = {
-      builder.enable = true;
-
       hardware = {
         # intel.enable = true;
         nvme.enable = true;

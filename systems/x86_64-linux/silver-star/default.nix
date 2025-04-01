@@ -43,8 +43,7 @@ in {
         enable = true;
         headless.enable = true;
       };
-
-      builder.enable = true;
+      github-runner.enable = true;
 
       hardware = {
         # tpm.enable = true;
