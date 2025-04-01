@@ -19,6 +19,15 @@ in {
 
     systemd.tmpfiles.rules = ["d ${cfg.folder} 0777 root root -"];
 
+    services.tsnsrv.services = {
+      hass = {
+        toURL = "http://127.0.0.1:8123";
+        upstreamHeaders = {
+          Host = "hass.ling-lizard.ts.net";
+        };
+      };
+    };
+
     virtualisation = {
       oci-containers.containers = {
         home-assistant = {
