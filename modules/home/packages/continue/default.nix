@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  config = {
+  config = lib.mkIf false {
     home.file = {
       ".continue/config.json" = {
         source = pkgs.writers.writeJSON "config.json" {

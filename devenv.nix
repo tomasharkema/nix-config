@@ -15,30 +15,8 @@
     pv $1 -cN in -B 500M -pterbT | zstd -d - | pv -cN out -B 500M -pterbT > $2
   '';
 
-  unifi-print = pkgs.writeShellScriptBin "unifi-print" ''
-    set -x
-    set -e
-
-    UNIFI_TOKEN="$(op item get unifi-token --reveal --field credential)"
-
-    unifi_request() {
-      curl -k -X GET "https://192.168.1.1/proxy/network/integrations$1" \
-        -H "X-API-KEY: $UNIFI_TOKEN" \
-        -H 'Accept: application/json'
-    }
-
-    sites() {
-      unifi_request "/v1/sites"
-    }
-
-    devices() {
-      unifi_request "/v1/sites/$1/devices"
-    }
-
-    SITES="$(sites | jq -r '.data.[].id')"
-
-    devices "$SITES" | jqp
-
+  build-all = pkgs.writeShellScriptBin "build-all" ''
+    nom build '.#images.all' --verbose --refresh -L --out-link ./out/all --keep-going
   '';
 
   # deployment = pkgs.writeShellScriptBin "deployment" ''
@@ -256,7 +234,7 @@ in {
 
   packages = with pkgs; [
     actionlint
-
+    build-all
     update
     nixos-system
     darwin-system
@@ -271,7 +249,7 @@ in {
     # cntr
     flake-checker
     autoflake
-    unifi-print
+
     nix-init
     # nix-serve
     # nixci
