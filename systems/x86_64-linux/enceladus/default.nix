@@ -202,12 +202,13 @@ in {
       # supportedFilesystems = [
       #   "xfs"
       # ];
-
+      kernelModules = ["iTCO_wdt"];
       kernelParams = [
         "console=ttyUSB0,115200n8"
         "console=tty1"
         # "iomem=relaxed"
       ];
+      initrd.kernelModules = ["iTCO_wdt"];
       recovery = {
         enable = true;
         install = true;
