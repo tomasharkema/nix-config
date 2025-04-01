@@ -127,9 +127,11 @@ in {
           EMAIL_USE_TLS = "False";
         };
       };
+      mosquitto.enable = true;
       udev.extraRules = ''
-        SUBSYSTEM=="ipmi", GROUP="ipmi", MODE="0666"
+        SUBSYSTEM=="ipmi", GROUP="ipmi", MODE="0777"
       '';
+
       usbguard.enable = lib.mkForce false;
       tcsd.enable = true;
 
