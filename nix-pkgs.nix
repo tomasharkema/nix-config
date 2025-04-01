@@ -10,48 +10,19 @@
         # nix-doc
       ])
       ++ (with pkgs; [
-        #   # # snowfallorg.flake
-        #   # nix-init
-        #   # nixci
-        #   # nixos-shell
-        #   # nixpkgs-fmt
-        #   # nixpkgs-lint
-        #   hosts = inputs.self.nixosConfigurations;
-        #   nix-prefetch-scripts
-        #   nix-serve
-        # (nixos-hosts.override {
-        # })
-        # # snowfallorg.flake
-        # attic
-        # cachix
-        # custom.nixos-revision
-        # nix-delegate
-        # nix-delegate
-        # nix-fast-build
-        # nix-fast-build
+        wol
         nix-init
-        # nix-janitor
-        # nix-janitor
-        # nix-plugins
-        # nix-plugins
-        # nix-serve
-        # nixci
-
-        # nux
         disnix
         nox
-
-        # agenix
         alejandra
         autoflake
         attic-client
         cachix
         deadnix
         deploy-rs
-
         devenv
         flake-checker
-        # fup-repl
+        fup-repl
         manix
         nerd-font-patcher
         nil
