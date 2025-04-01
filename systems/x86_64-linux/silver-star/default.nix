@@ -64,7 +64,7 @@ in {
       netdata.server.enable = true;
       clamav.onacc.enable = false;
       mailrise.enable = true;
-      ntopng.enable = true;
+
       atop = {
         enable = true;
         httpd = false; # true;
