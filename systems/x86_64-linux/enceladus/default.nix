@@ -30,7 +30,6 @@ in {
     apps.podman.enable = true;
 
     services = {
-      syncplay.enable = true;
       hypervisor.enable = true;
       # "nix-private-cache".enable = true;
       # local-store.enable = true;

@@ -120,6 +120,7 @@
         enable = true;
         enableUdevRules = true;
       };
+      syncplay.enable = true;
       ratbagd.enable = true;
       remote-builders.server.enable = true;
       watchdogd.enable = true;
