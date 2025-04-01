@@ -272,7 +272,6 @@
             self.nixosConfigurations.enzian.config.system.build.toplevel
             self.nixosConfigurations.sura.config.system.build.toplevel
             self.nixosConfigurations.silver-star.config.system.build.toplevel
-            self.nixosConfigurations.silver-star-vm.config.system.build.toplevel
           ];
         };
 
