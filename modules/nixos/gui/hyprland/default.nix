@@ -18,6 +18,7 @@
 
     services = {hypridle.enable = true;};
     environment.systemPackages = with pkgs; [
+      iio-hyprland
       wluma
       pyprland
       hyprpicker
@@ -240,15 +241,16 @@
             # "hypridle"
             "hyprsunset"
             "systemctl --user start hyprpolkitagent"
-            "wluma"
+
             "[workspace 1 silent] $terminal"
-            "nm-applet"
-            "usbguard-gnome"
+            "${pkgs.networkmanagerapplet}/bin/nm-applet"
+            "${pkgs.custom.usbguard-gnome}/bin/usbguard-gnome"
 
             "[workspace 2 silent] firefox"
 
             "gsettings set org.gnome.desktop.interface gtk-theme \"catppuccin-mocha-blue-compact+black\"" # for GTK3 apps
-            "exec = gsettings set org.gnome.desktop.interface color-scheme \"prefer-dark\"" # for GTK4 apps
+            "gsettings set org.gnome.desktop.interface color-scheme \"prefer-dark\"" # for GTK4 apps
+            "${lib.getExe pkgs.iio-hyprland}"
           ];
 
           experimental = {

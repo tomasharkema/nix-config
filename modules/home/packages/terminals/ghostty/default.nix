@@ -10,7 +10,7 @@
     xdg.configFile."ghostty/config".text = lib.generators.toINIWithGlobalSection {} {
       globalSection = {
         theme = "catppuccin-mocha";
-        font-family = "JetBrains Mono";
+        font-family = "JetBrainsMono Nerd Font Mono";
         background = "000000";
       };
     };

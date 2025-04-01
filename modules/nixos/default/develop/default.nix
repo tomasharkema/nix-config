@@ -34,7 +34,7 @@ in {
       gnumake
 
       arduinoOTA
-      arduino-ide
+
       arduino-language-server
 
       picotool

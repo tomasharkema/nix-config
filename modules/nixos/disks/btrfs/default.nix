@@ -74,10 +74,6 @@
               ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/mnt/steam";
           };
-          "flatpak" = lib.mkIf cfg.newSubvolumes.enable {
-            mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
-            mountpoint = "/var/lib/flatpak";
-          };
           "log" = lib.mkIf cfg.newSubvolumes.enable {
             mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/var/log";
