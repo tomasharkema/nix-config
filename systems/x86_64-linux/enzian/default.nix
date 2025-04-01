@@ -23,7 +23,6 @@
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
     apps = {
-      ntopng.enable = true;
       steam.enable = true;
       # usbip.enable = true;
       # home-assistant.enable = true;
@@ -154,7 +153,7 @@
         netboot.enable = true;
       };
     };
-    apps.spotifyd.enable = true;
+
     hardware = {
       cpu.intel.updateMicrocode = true;
       bluetooth.enable = true;
