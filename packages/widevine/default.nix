@@ -1,6 +1,13 @@
-{ lib, stdenv, fetchzip, fetchurl, dpkg, tree, }:
-
-if stdenv.isx86_64 then
+{
+  lib,
+  stdenv,
+  fetchzip,
+  fetchurl,
+  dpkg,
+  tree,
+}:
+if stdenv.isx86_64
+then
   stdenv.mkDerivation rec {
     pname = "widevine";
     version = "4.10.2710.0";
@@ -25,14 +32,12 @@ if stdenv.isx86_64 then
     '';
   }
 else
-
   stdenv.mkDerivation rec {
     pname = "widevine";
     version = "4.10.2662.3+1";
 
     src = fetchurl {
-      url =
-        "https://archive.raspberrypi.org/debian/pool/main/w/widevine/widevine_${version}.tar.xz";
+      url = "https://archive.raspberrypi.org/debian/pool/main/w/widevine/widevine_${version}.tar.xz";
       hash = "sha256-cqeV0Od3ErH/JR30UybygryYW80HapKR/64nuF9JVEM=";
     };
 

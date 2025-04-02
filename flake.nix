@@ -264,15 +264,18 @@
         linuxKernel_arm = self.nixosConfigurations.euro-mir-vm.config.boot.kernelPackages.kernel;
 
         all = self.pkgs."x86_64-linux".nixpkgs.mkShell {
-          buildInputs = [
-            self.nixosConfigurations.wodan.config.system.build.toplevel
-            self.nixosConfigurations.blue-fire.config.system.build.toplevel
-            self.nixosConfigurations.enceladus.config.system.build.toplevel
-            self.nixosConfigurations.voltron.config.system.build.toplevel
-            self.nixosConfigurations.enzian.config.system.build.toplevel
-            self.nixosConfigurations.sura.config.system.build.toplevel
-            self.nixosConfigurations.silver-star.config.system.build.toplevel
-          ];
+          buildInputs = let
+            names = [
+              "wodan"
+              "blue-fire"
+              "enceladus"
+              "voltron"
+              "enzian"
+              "sura"
+              "pegasus"
+            ];
+          in
+            builtins.map (n: self.nixosConfigurations."${n}".config.system.build.toplevel) names;
         };
 
         # services = let
