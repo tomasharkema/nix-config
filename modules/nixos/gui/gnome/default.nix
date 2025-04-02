@@ -28,13 +28,6 @@ in
         ]
         ++ (lib.optional config.gui.hidpi.enable "hidpi");
 
-      # programs.hyprland = {
-      #   # Install the packages from nixpkgs
-      #   enable = true;
-      #   # Whether to enable XWayland
-      #   xwayland.enable = true;
-      # };
-
       environment = {
         etc."X11/Xwrapper.config".text = ''
           allowed_users=anybody
