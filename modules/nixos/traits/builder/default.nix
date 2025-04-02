@@ -39,7 +39,7 @@ in {
 
       services.github-runners = {
         "${config.networking.hostName}-runner-1" = github-default;
-        "${config.networking.hostName}-runner-2" = github-default;
+        # "${config.networking.hostName}-runner-2" = github-default;
       };
 
       users = {
