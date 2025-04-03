@@ -275,7 +275,7 @@ in {
           ctop
           curl
           devcontainer
-          devdash
+
           devtodo
           dfrs
           distrobox
@@ -290,7 +290,7 @@ in {
           git
           glog
           glogg
-          googler
+
           ghostty
           htmlq
           hueadm
