@@ -12,9 +12,12 @@
         description = "%i service with docker compose";
         partOf = ["podman.service"];
         after = ["podman.service"];
+        requires = ["podman.service"];
+
         unitConfig = {
           ConditionPathExists = ["/etc/docker/compose/%i"];
         };
+
         serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = true;

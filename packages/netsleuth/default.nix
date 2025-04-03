@@ -19,13 +19,13 @@
 in
   stdenv.mkDerivation rec {
     pname = "netsleuth";
-    version = "1.0.2";
+    version = "1.1.0";
 
     src = fetchFromGitHub {
       owner = "vmkspv";
       repo = "netsleuth";
       rev = "v${version}";
-      hash = "sha256-QK1nzMTN6LTFBaFV1TGkaKNIJY3gH0m4QFpAToqkOPI=";
+      hash = "sha256-jvF8UX9qmf6VyRFFiWD5cGQfUpY2mioS5EGNsslFHQ4=";
     };
 
     nativeBuildInputs = [

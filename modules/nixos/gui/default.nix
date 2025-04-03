@@ -63,7 +63,8 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-      # handbrake
+      custom.netsleuth
+      handbrake
       thonny
       coppwr
       custom.meshtastic
