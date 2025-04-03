@@ -30,7 +30,7 @@ in {
         "d ${root} 0777 rslsync rslsync -"
         "Z ${root} 0777 rslsync rslsync"
         "d /var/lib/resilio-sync 0777 rslsync rslsync -"
-        "L+ /var/lib/resilio-sync/debug.txt - - - - ${debugTxt}"
+        # "L+ /var/lib/resilio-sync/debug.txt - - - - ${debugTxt}"
         "L+ /home/tomas/resilio-sync - - - - ${root}"
       ];
     };

@@ -891,8 +891,14 @@
       url = "github:nix-community/nixd/release/2.x";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     hyprpanel = {
       url = "github:Jas-SinghFSU/HyprPanel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

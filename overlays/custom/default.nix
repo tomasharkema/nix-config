@@ -19,7 +19,7 @@ in rec {
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
   # pwvucontrol = prev.custom.pwvucontrol;
-
+  hyprlock = inputs.hyprlock.packages."${prev.system}".hyprlock;
   gensio = prev.custom.gensio;
   _cxxopts = prev.cxxopts.overrideAttrs (old: {
     # buildPhase = ''
