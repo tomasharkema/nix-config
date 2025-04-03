@@ -142,11 +142,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1743630992,
-        "narHash": "sha256-4QKnn7sHskureX2DvKcvxR4tbjauSoCPVQJ+I8PAAUg=",
+        "lastModified": 1743673833,
+        "narHash": "sha256-hjB/XeUFl46d/etBzfi3ZBnP+0PqAypnGLSqIKqLIyE=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "421cce2410fe9f0a71c717e1e28d37eb4ddd0283",
+        "rev": "18f721d3347fa79f75195d5a309b47beb47287a2",
         "type": "github"
       },
       "original": {
@@ -1446,11 +1446,11 @@
     },
     "nixos-facter-modules": {
       "locked": {
-        "lastModified": 1738752252,
-        "narHash": "sha256-/nA3tDdp/2g0FBy8966ppC2WDoyXtUWaHkZWL+N3ZKc=",
+        "lastModified": 1743671943,
+        "narHash": "sha256-7sYig0+RcrR3sOL5M+2spbpFUHyEP7cnUvCaqFOBjyU=",
         "owner": "numtide",
         "repo": "nixos-facter-modules",
-        "rev": "60f8b8f3f99667de6a493a44375e5506bf0c48b1",
+        "rev": "58ad9691670d293a15221d4a78818e0088d2e086",
         "type": "github"
       },
       "original": {
@@ -1659,11 +1659,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1741330828,
-        "narHash": "sha256-Vj5UBTlVRWGX3T0EAI6pVWTMmi8SpAeMuRMMVz/Hgz0=",
+        "lastModified": 1743670877,
+        "narHash": "sha256-OHuOhVCfx10VpWwl9T5Q+QB3To0N95flBR1rSwOiUHA=",
         "owner": "icewind1991",
         "repo": "nvidia-patch-nixos",
-        "rev": "0cc22a482f2aa4c13daeac0935a787d868122ff0",
+        "rev": "e80a4919e88a8cb496f649234fb3fc7e992ece10",
         "type": "github"
       },
       "original": {
