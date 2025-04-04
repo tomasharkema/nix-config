@@ -68,7 +68,7 @@ in {
 
       # nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
-      linux-builder = {
+      linux-builder = lib.mkIf false {
         enable = true;
         ephemeral = true;
         maxJobs = 4;
@@ -78,7 +78,7 @@ in {
         ];
         config = {
           virtualisation = {
-            rosetta.enable = true;
+            # rosetta.enable = true;
             darwin-builder = {
               diskSize = 40 * 1024;
               memorySize = 6 * 1024;

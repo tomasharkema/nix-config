@@ -364,7 +364,7 @@ in {
           socat
           websocat
           ser2net
-
+          wol
           picotool
           openocd
           cmake

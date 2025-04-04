@@ -12,13 +12,14 @@
       ++ (with pkgs; [
         caligula
         python3Packages.uv
-
         nix-search-tv
         xxd
         gcc
         platformio-core
         gcc-arm-embedded
         wol
+        tio
+        picotool
         nix-init
         disnix
         nox
@@ -48,6 +49,7 @@
         nix-update
         nix-update-source
         nix-visualize
+        rustup
 
         nixd
         nixfmt-rfc-style
