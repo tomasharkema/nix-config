@@ -93,7 +93,8 @@
 
     hardware = {
       mcelog.enable = true;
-      usb-modeswitch .enable = true;
+      usb-modeswitch.enable = true;
+
       nvidia = {
         # forceFullCompositionPipeline = true;
 
@@ -192,6 +193,23 @@
         enable = true;
       };
 
+      hardware.lcd.server = lib.mkIf false {
+        enable = true;
+        #extraConfig=''
+        #  [text]
+        #  Size=128x32
+        #'';
+        extraConfig = ''
+          [hd44780]
+          ConnectionType=i2c
+          Port=0x3C
+          Device=/dev/i2c-8
+          Speed=0
+          Keypad=no
+          Size=128x64
+          CharMap=hd44780_default
+        '';
+      };
       hardware.bolt.enable = true;
       beesd.filesystems = lib.mkIf false {
         root = {
