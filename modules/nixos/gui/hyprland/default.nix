@@ -81,9 +81,11 @@
           settings = import ./waybar.nix {inherit pkgs;};
         };
       };
-
+      catppuccin.swaync.font = "B612";
       services = {
-        swaync = {enable = true;};
+        swaync = {
+          enable = true;
+        };
         # mako = {
         #   enable = true;
         #   font = "B612 12";
