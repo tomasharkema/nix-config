@@ -101,7 +101,7 @@ with pkgs; {
         just
         # keybase
         ldns
-        lolcat
+        # lolcat
         lsd
         manix
 

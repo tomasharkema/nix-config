@@ -87,6 +87,10 @@
       };
       gamemode.enable = true;
       quiet-boot.enable = true;
+      hyrland.illuminanced = {
+        enable = true;
+        backlightDevice = "/sys/class/backlight/intel_backlight";
+      };
     };
 
     # chaotic.mesa-git.enable = true;
