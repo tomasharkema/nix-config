@@ -99,7 +99,7 @@ in {
         # enable = true;
         # rdp.enable = true;
       };
-      quiet-boot.enable = true;
+      #quiet-boot.enable = true;
       # gamemode.enable = true;
     };
 

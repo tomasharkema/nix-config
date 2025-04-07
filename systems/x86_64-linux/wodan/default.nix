@@ -104,7 +104,7 @@
       quiet-boot.enable = true;
       hidpi.enable = true;
       gnome = {};
-      hyrland.illuminanced.enable = true;
+      hyrland.wluma.enable = true;
     };
 
     services = {
