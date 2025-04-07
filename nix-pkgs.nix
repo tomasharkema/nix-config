@@ -10,6 +10,8 @@
         # nix-doc
       ])
       ++ (with pkgs; [
+        gcc
+        gcc-arm-embedded
         wol
         nix-init
         disnix

@@ -206,6 +206,7 @@ in {
       enableAllTerminfo = pkgs.stdenv.isx86_64;
       systemPackages =
         (with pkgs; [
+          lnav
           wireshark
           termshark
           tshark

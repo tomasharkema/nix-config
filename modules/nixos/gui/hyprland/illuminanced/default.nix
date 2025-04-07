@@ -24,10 +24,8 @@ in {
     # SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", ATTRS{serial}=="A6008isP", SYMLINK+="arduino"
     services.udev.extraRules = let
       run_gpio = pkgs.writeShellScript "run_gpio.sh" ''
-        {
-          echo bh1750 0x23 > "/sys$DEVPATH/device/new_device"
-          systemctl restart illuminanced.service
-        } &>> "/var/log/run_gpio.log"
+        echo bh1750 0x23 > "/sys$DEVPATH/device/new_device"
+        systemctl restart illuminanced.service
       '';
     in ''
       ACTION=="add", SUBSYSTEM=="i2c-dev", ATTRS{product_id}=="0xea90", ATTRS{vendor_id}=="0x10c4", RUN+="${run_gpio}"
@@ -81,7 +79,7 @@ in {
         light_5 = 10
       '';
     in {
-      illuminanced = {
+      illuminanced = lib.mkIf false {
         description = "Ambient light monitoring Service";
 
         # wants = [
