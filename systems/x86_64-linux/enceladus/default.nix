@@ -203,7 +203,7 @@ in {
       # ];
       kernelModules = ["iTCO_wdt"];
       kernelParams = [
-        "console=ttyUSB0,115200n8"
+        "console=ttyACM1,115200"
         "console=tty1"
         # "iomem=relaxed"
       ];
