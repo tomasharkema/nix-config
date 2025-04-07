@@ -72,7 +72,7 @@ in rec {
         # "--enable-iscsi"
       ];
   });
-
+  wluma = inputs.wluma.defaultPackage."${prev.system}";
   meshtastic-py = prev.python3Packages.meshtastic.overridePythonAttrs (old: rec {
     pname = "meshtastic";
     version = "2.6.0";

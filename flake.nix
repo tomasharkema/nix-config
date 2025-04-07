@@ -901,5 +901,10 @@
       url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    wluma = {
+      url = "github:tomasharkema/wluma";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
