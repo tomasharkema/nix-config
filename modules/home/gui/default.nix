@@ -160,7 +160,7 @@ in {
         ".local/share/flatpak/overrides/global" = {
           text = ''
             [Context]
-            filesystems=/run/current-system/sw/share/X11/fonts:ro;/nix/store:ro;/home/tomas/.local/share/fonts:ro;
+            filesystems=/run/current-system/sw/share/X11/fonts:ro;/nix/store:ro;~/.local/share/fonts:ro;~/.icons:ro;
           '';
         };
         # /home/tomas/.config/gtk-4.0:ro;/home/tomas/.config/gtk-3.0:ro;

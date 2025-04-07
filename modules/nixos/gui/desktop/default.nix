@@ -246,9 +246,8 @@ in {
         ]
         ++ (with pkgs.custom; [
           # zerotier-ui
-          netbrowse
+
           usbguard-gnome
-          sysd-manager
         ]);
     };
 

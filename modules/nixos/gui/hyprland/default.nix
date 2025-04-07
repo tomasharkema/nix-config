@@ -147,7 +147,7 @@
           }";
 
           env = [
-            "XCURSOR_SIZE,24"
+            "HYPRCURSOR_THEME,macOS"
             "HYPRCURSOR_SIZE,24"
             "GDK_SCALE,${
               if config.gui.hidpi.enable

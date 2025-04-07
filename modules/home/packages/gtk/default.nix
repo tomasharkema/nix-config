@@ -18,7 +18,7 @@
 in {
   config = lib.mkIf enable {
     dconf.settings."org/gnome/desktop/interface" = {
-      cursor-size = 24;
+      cursor-size = cursorSize;
       cursor-theme = "macOS";
     };
     gtk = {
