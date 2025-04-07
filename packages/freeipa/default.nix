@@ -59,11 +59,11 @@
     };
     cargoRoot = "src/rust";
     doCheck = false;
-    cargoDeps = pkgs.rustPlatform.fetchCargoTarball {
+    cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
       inherit src;
       sourceRoot = "${pname}-${version}/${cargoRoot}";
       name = "${pname}-${version}";
-      hash = "sha256-wiAHM0ucR1X7GunZX8V0Jk2Hsi+dVdGgDKqcYjSdD7Q=";
+      hash = "sha256-QZ6gUVhm9DZVIMNL0xb2SY59N99q4NSWEs1K76HNZ7g=";
     };
   });
 
