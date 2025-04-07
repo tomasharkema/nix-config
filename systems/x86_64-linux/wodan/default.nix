@@ -47,8 +47,8 @@
 
       bridges.br0 = {
         interfaces = [
-          "eno1"
-          # "enp2s0"
+          # "eno1"
+          "enp2s0"
         ];
       };
       search = ["lan"];
@@ -63,11 +63,11 @@
           wakeOnLan.enable = true;
           useDHCP = false; # true;
         };
-        # enp2s0 = {
-        #   mtu = 9000;
-        #   wakeOnLan.enable = true;
-        #   useDHCP = false;
-        # };
+        enp2s0 = {
+          mtu = 9000;
+          wakeOnLan.enable = true;
+          useDHCP = false;
+        };
         "br0" = {
           useDHCP = false;
           mtu = 9000;
