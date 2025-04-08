@@ -10,7 +10,6 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      firefoxpwa
     ];
 
     programs.firefox = {
@@ -21,7 +20,7 @@ in {
         # fxCast = true;
         # ff2mpv = true;
         # gsconnect = true;
-        packages = with pkgs; [gnome-browser-connector firefoxpwa];
+        packages = with pkgs; [gnome-browser-connector];
       };
     };
   };
