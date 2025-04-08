@@ -11,6 +11,7 @@
       ])
       ++ (with pkgs; [
         gcc
+        platformio-core
         gcc-arm-embedded
         wol
         nix-init
