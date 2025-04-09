@@ -10,6 +10,7 @@
         # nix-doc
       ])
       ++ (with pkgs; [
+        xxd
         gcc
         platformio-core
         gcc-arm-embedded
