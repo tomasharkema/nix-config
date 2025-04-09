@@ -31,6 +31,7 @@ in {
         in
           pkgs.writeText "nfs.conf" ''
             dione-tomas ${common} 192.168.1.102:/volume1/tomas
+            dione-downloads ${common} 192.168.1.102:/volume1/downloads
             isos ${common} 192.168.1.102:/volume1/isos
           '';
       in ''
