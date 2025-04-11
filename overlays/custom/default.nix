@@ -73,17 +73,6 @@ in rec {
       ];
   });
   wluma = inputs.wluma.defaultPackage."${prev.system}";
-  meshtastic-py = prev.python3Packages.meshtastic.overridePythonAttrs (old: rec {
-    pname = "meshtastic";
-    version = "2.6.0";
-
-    src = prev.fetchFromGitHub {
-      owner = "meshtastic";
-      repo = "Meshtastic-python";
-      tag = version;
-      hash = "sha256-JPQa5l+xIHjA6STLVg887drYG7wXKvGBArV6cOzYKvA=";
-    };
-  });
 
   # utillinux = prev.util-linux;
 

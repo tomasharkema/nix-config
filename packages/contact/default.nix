@@ -3,10 +3,8 @@
   stdenv,
   fetchFromGitHub,
   python3,
-  meshtastic-py,
-  tree,
 }: let
-  py = python3.withPackages (ps: with ps; [meshtastic-py]);
+  py = python3.withPackages (ps: with ps; [meshtastic]);
 in
   python3.pkgs.buildPythonApplication rec {
     pname = "contact";
@@ -37,15 +35,15 @@ in
 
       cp ${./setup.py} setup.py
       cp ${./pyproject.toml} pyproject.toml
-      ls -la
+      ls -lia
     '';
 
     # postInstall = ''
     #   mkdir -p $out/bin
     #   cp -r . $out/bin
     # '';
-    nativeBuildInputs = [tree];
-    propagatedBuildInputs = [meshtastic-py];
+    nativeBuildInputs = [];
+    #propagatedBuildInputs = [meshtastic-py];
 
     meta = {
       description = "";

@@ -244,7 +244,7 @@ in {
           bat-extras.batgrep
           compsize
           # dry
-          meshtastic-py
+          python3Packages.meshtastic
           # fam # unmaintained
           fancy-motd
           # mkchromecast
