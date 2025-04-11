@@ -11,7 +11,7 @@ ENV container podman
 
 RUN echo "$USER:$PASS" | chpasswd && \
     set -x && \
-    yum -y install passwd dmidecode perl procps which tar libstdc++.so.6 gcc && \
+    yum -y install passwd dmidecode perl procps which tar gcc && \
     curl -fsSL "https://linux.dell.com/repo/hardware/dsu/bootstrap.cgi" | bash -x && \
     curl -O https://linux.dell.com/repo/hardware/ism/bootstrap.sh && \
     sed -i 's#SERVER=""#SERVER="https://linux.dell.com"#g' bootstrap.sh && \
