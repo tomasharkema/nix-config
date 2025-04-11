@@ -232,6 +232,7 @@ in {
           mpv
           imv
           rsbkb
+          gpsd
           nix-search-cli
           custom.zide
           custom.wikiman
