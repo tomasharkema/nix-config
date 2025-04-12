@@ -112,13 +112,6 @@
         bolt.enable = true;
       };
 
-      gpsd = {
-        enable = true;
-        devices = ["/dev/serial/by-id/usb-Silicon_Labs_CP2102_USB_to_UART_Bridge_Controller_0004-if00-port0"];
-        listenany = true;
-        debugLevel = 1;
-      };
-
       input-remapper = {
         enable = true;
         enableUdevRules = true;
@@ -147,8 +140,6 @@
       podman.enable = true;
       ddc.enable = true;
     };
-
-    virtualisation.waydroid.enable = true;
 
     chaotic.hdr = {
       enable = true;
