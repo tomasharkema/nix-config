@@ -30,6 +30,8 @@ in {
     system = {
       build = {
         self = inputs.self;
+
+        pico-rng = pkgs.custom.pico-rng.override {kernel = config.boot.kernelPackages.kernel;};
       };
       #      etc.overlay.enable = config.boot.initrd.systemd.enable;
       nixos.tags = ["${config.boot.kernelPackages.kernel.modDirVersion}"];
