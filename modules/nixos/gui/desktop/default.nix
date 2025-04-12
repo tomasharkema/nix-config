@@ -23,6 +23,9 @@ in {
     services = {
       gpsd = {
         enable = true;
+        devices = lib.mkDefault [
+          "tcp://192.168.1.141:2947"
+        ];
       };
 
       # localtimed.enable = true;
