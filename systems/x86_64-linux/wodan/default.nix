@@ -78,11 +78,6 @@
             }
           ];
         };
-
-        # "eno1" = {
-        #   mtu = 9000;
-        #   wakeOnLan.enable = true;
-        # };
       };
 
       # dhcpcd.extraConfig = ''
@@ -116,6 +111,14 @@
 
         bolt.enable = true;
       };
+
+      gpsd = {
+        enable = true;
+        devices = ["/dev/serial/by-id/usb-Silicon_Labs_CP2102_USB_to_UART_Bridge_Controller_0004-if00-port0"];
+        listenany = true;
+        debugLevel = 1;
+      };
+
       input-remapper = {
         enable = true;
         enableUdevRules = true;
