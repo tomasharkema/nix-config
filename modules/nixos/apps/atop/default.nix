@@ -19,16 +19,8 @@ in {
       atopService.enable = true;
       atopacctService.enable = true;
       atopgpu.enable = config.traits.hardware.nvidia.enable;
-      netatop.enable = true;
     };
     # environment.sy .stemPackages = [pkgs.atop];
-
-    boot = {
-      extraModulePackages = [
-        config.boot.kernelPackages.netatop
-      ];
-      # kernelModules = ["netatop"];
-    };
 
     # systemd.services.atophttpd = mkIf cfg.httpd {
     #   enable = true;

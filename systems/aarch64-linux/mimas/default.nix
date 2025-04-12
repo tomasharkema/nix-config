@@ -73,7 +73,6 @@
 
     programs.atop = {
       enable = lib.mkForce false;
-      netatop.enable = false;
     };
 
     boot = {
