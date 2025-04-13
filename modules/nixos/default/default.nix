@@ -120,6 +120,10 @@ in {
 
       hardwareScan = true;
 
+      extraModulePackages = [
+        config.system.build.pico-rng
+      ];
+
       kernelParams = [
         (lib.mkIf (!config.traits.server.enable) "zswap.enabled=1")
         "efi_pstore.pstore_disable=0"
@@ -279,7 +283,7 @@ in {
           ctop
           curl
           devcontainer
-xxd
+          xxd
           devtodo
           dfrs
           distrobox

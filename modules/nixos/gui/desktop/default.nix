@@ -24,7 +24,7 @@ in {
       gpsd = {
         enable = true;
         devices = lib.mkDefault [
-          "gpsd://192.168.1.141"
+          "gpsd://enceladus.local:2947"
         ];
       };
 
