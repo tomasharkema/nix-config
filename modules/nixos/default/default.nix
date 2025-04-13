@@ -125,7 +125,7 @@ in {
       ];
 
       kernelParams = [
-        (lib.mkIf (!config.traits.server.enable) "zswap.enabled=1")
+        "zswap.enabled=1"
         "efi_pstore.pstore_disable=0"
         "printk.always_kmsg_dump"
         "crash_kexec_post_notifiers"
