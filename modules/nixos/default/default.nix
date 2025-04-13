@@ -279,7 +279,7 @@ in {
           ctop
           curl
           devcontainer
-
+xxd
           devtodo
           dfrs
           distrobox
