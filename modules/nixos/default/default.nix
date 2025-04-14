@@ -46,7 +46,7 @@ in {
       };
       #
 
-      sysupdate.enable = true;
+      # sysupdate.enable = true;
       # repart.enable = true;
 
       watchdog = {
@@ -108,7 +108,7 @@ in {
           #   })
         ];
       };
-      crashDump.enable = true;
+      crashDump.enable = pkgs.stdenv.isx86_64; # true;
 
       initrd = {
         compressor = "zstd";
