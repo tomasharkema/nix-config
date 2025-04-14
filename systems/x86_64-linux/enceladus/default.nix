@@ -40,7 +40,7 @@ in {
         enable = true;
         devices = lib.mkForce ["/dev/serial/by-id/usb-Silicon_Labs_CP2102_USB_to_UART_Bridge_Controller_0004-if00-port0"];
         listenany = true;
-        debugLevel = 5;
+        # debugLevel = 5;
         readonly = false;
       };
       udev = {
