@@ -451,7 +451,9 @@ in {
         # "kvm.ignore_msrs=1"
         # "pci=nomsi"
       ];
+
       blacklistedKernelModules = ["iTCO_wdt"];
+
       recovery = {
         enable = true;
         install = true;
@@ -479,6 +481,7 @@ in {
           # # "sd_mod"
         ];
         kernelModules = [
+          "pico_rng"
           # # "dcdbas"
           # # "dell_rbu"
           # # "pci-me"
@@ -498,6 +501,7 @@ in {
       kernelModules = [
         # "pci-me"
         # "mei-me"
+        "pico_rng"
         "coretemp"
         "kvm-intel"
         "uinput"
