@@ -27,7 +27,7 @@ inputs.nixpkgs.lib.nixosSystem {
         config = {
           boot.kernelParams = [
             # "console=ttyS0,115200n8"
-            "console=ttyS1,115200n8"
+            "console=ttyS1,115200"
           ];
 
           swapDevices = [

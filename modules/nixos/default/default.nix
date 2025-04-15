@@ -251,7 +251,7 @@ in {
           bat-extras.batgrep
           compsize
           # dry
-          python3Packages.meshtastic
+
           # fam # unmaintained
           fancy-motd
           # mkchromecast
@@ -406,6 +406,7 @@ in {
         ])
         ++ (lib.optionals pkgs.stdenv.isx86_64 (
           with pkgs; [
+            python3Packages.meshtastic
             spectre-meltdown-checker
             gnutls
             cmospwd
