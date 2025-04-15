@@ -5,8 +5,6 @@
   ...
 }: {
   imports = with inputs; [
-    raspberry-pi-nix.nixosModules.raspberry-pi
-    raspberry-pi-nix.nixosModules.sd-image
     # nixos-hardware.nixosModules.raspberry-pi-4
     # "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
     # "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
@@ -79,7 +77,7 @@
     ];
 
     traits = {
-      # raspberry.enable = true;
+      raspberry.enable = true;
       low-power.enable = true;
       hardware.bluetooth.enable = true;
     };
@@ -127,55 +125,49 @@
       };
     };
 
-    raspberry-pi-nix = {
-      board = "bcm2712"; # rpi 5
-      # uboot.enable = true;
-      kernel-version = "v6_12_17";
-    };
-
     hardware = {
-      raspberry-pi.config = {
-        # uboot = false;
-        pi4 = {
-          options = {
-            arm_boost = {
-              enable = true;
-              value = true;
-            };
-          };
-          dt-overlays = {
-            vc4-kms-v3d = {
-              enable = true;
-              params = {cma-512 = {enable = true;};};
-            };
-          };
-        };
-        all = {
-          options = {
-            # The firmware will start our u-boot binary rather than a
-            # linux kernel.
-            # kernel = {
-            #   enable = true;
-            #   value = "u-boot-rpi-arm64.bin";
-            # };
-            arm_64bit = {
-              enable = true;
-              value = true;
-            };
-            enable_uart = {
-              enable = true;
-              value = true;
-            };
-          };
+      # raspberry-pi.config = {
+      #   # uboot = false;
+      #   pi4 = {
+      #     options = {
+      #       arm_boost = {
+      #         enable = true;
+      #         value = true;
+      #       };
+      #     };
+      #     dt-overlays = {
+      #       vc4-kms-v3d = {
+      #         enable = true;
+      #         params = {cma-512 = {enable = true;};};
+      #       };
+      #     };
+      #   };
+      #   all = {
+      #     options = {
+      #       # The firmware will start our u-boot binary rather than a
+      #       # linux kernel.
+      #       # kernel = {
+      #       #   enable = true;
+      #       #   value = "u-boot-rpi-arm64.bin";
+      #       # };
+      #       arm_64bit = {
+      #         enable = true;
+      #         value = true;
+      #       };
+      #       enable_uart = {
+      #         enable = true;
+      #         value = true;
+      #       };
+      #     };
 
-          dt-overlays = {
-            vc4-kms-v3d = {
-              enable = true;
-              params = {};
-            };
-          };
-        };
-      };
+      #     dt-overlays = {
+      #       vc4-kms-v3d = {
+      #         enable = true;
+      #         params = {};
+      #       };
+      #     };
+      #   };
+      # };
 
       enableRedistributableFirmware = true;
       i2c.enable = true;

@@ -731,7 +731,7 @@ in {
         enable = true;
         drives = ["/dev/disk/by-path/*"];
       };
-      mcelog.enable = true;
+      libftdi.enable = true;
     };
     networking = {
       firewall = {
