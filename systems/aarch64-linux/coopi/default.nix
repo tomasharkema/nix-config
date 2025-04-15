@@ -5,6 +5,10 @@
   ...
 }: {
   config = {
+    age.rekey = {
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE1YWKTdedduXBRefDk2melpN4UlkYZLi95xEY+jcni2 root@nixos";
+    };
+
     hardware = {
       enableRedistributableFirmware = true;
       i2c.enable = true;
