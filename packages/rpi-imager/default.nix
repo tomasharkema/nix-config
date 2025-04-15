@@ -7,6 +7,9 @@
   pkg-config,
   xz,
   curl,
+  gnutls,
+  qt6,
+  util-linux,
 }:
 stdenv.mkDerivation rec {
   pname = "rpi-imager";
@@ -25,11 +28,18 @@ stdenv.mkDerivation rec {
     pkg-config
     cmake
     ninja
+    qt6.wrapQtAppsHook
   ];
+
   buildInputs = [
     xz
+    gnutls
     curl
+    qt6.qtbase
+    qt6.full
+    util-linux
   ];
+
   meta = {
     description = "The home of Raspberry Pi Imager, a user-friendly tool for creating bootable media for Raspberry Pi devices";
     homepage = "https://github.com/raspberrypi/rpi-imager";
