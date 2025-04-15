@@ -10,7 +10,14 @@ inputs.nixpkgs.lib.nixosSystem {
   modules = [
     "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel-no-zfs-installer.nix"
     ./installer.nix
-
+    {
+      nixpkgs = {
+        hostPlatform.system = "aarch64-linux";
+        buildPlatform.system = "x86_64-linux";
+        # crossSystem.system = "aarch64-linux";
+        config.allowUnsupportedSystem = true;
+      };
+    }
     (
       {
         lib,
@@ -26,7 +33,7 @@ inputs.nixpkgs.lib.nixosSystem {
           swapDevices = [
             {
               device = "/swapfile";
-              size = 2 * 1024;
+              size = 1 * 1024;
             }
           ];
 
