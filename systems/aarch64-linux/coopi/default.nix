@@ -15,7 +15,14 @@
 
       deviceTree = {
         enable = true;
-        filter = "*-rpi-zero-2-w*";
+        filter = "*rpi*.dtb";
+
+        overlays = [
+          {
+            name = "ina219";
+            dtsFile = ./i2c-ina219.dts;
+          }
+        ];
       };
     };
 
@@ -26,17 +33,6 @@
     };
 
     zramSwap = {enable = true;};
-
-    fileSystems = {
-      # "/boot" = {
-      #   device = "/dev/disk/by-label/NIXOS_BOOT";
-      #   fsType = "vfat";
-      # };
-      "/" = {
-        device = "/dev/disk/by-label/NIXOS_SD";
-        fsType = "ext4";
-      };
-    };
 
     swapDevices = [
       {

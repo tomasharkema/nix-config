@@ -10,7 +10,18 @@ in {
     enable = lib.mkEnableOption "low-power";
   };
   config = lib.mkIf cfg.enable {
-    apps.resilio.enable = lib.mkForce false;
+    services = {
+      netdata.enable = lib.mkForce false;
+      tor.enable = lib.mkForce false;
+      fwupd.enable = lib.mkForce false;
+      promtail.enable = lib.mkForce false;
+      usbguard.enable = lib.mkForce false;
+    };
+
+    apps = {
+      attic.enable = false;
+      resilio.enable = lib.mkForce false;
+    };
 
     nix.settings = {
       keep-outputs = lib.mkForce false;

@@ -28,6 +28,10 @@ in {
         device = "/dev/disk/by-label/NIXOS_SD";
         fsType = "ext4";
       };
+      "/boot/firmware" = {
+        device = "/dev/disk/by-label/FIRMWARE";
+        fsType = "fat";
+      };
     };
 
     boot = {
@@ -48,7 +52,12 @@ in {
       };
     };
 
-    services.fwupd.enable = true;
+    security = {
+      audit.enable = false;
+      auditd.enable = false;
+    };
+
+    services.fwupd.enable = false;
 
     # sdImage.compressImage = false;
 

@@ -25,6 +25,8 @@ inputs.nixpkgs.lib.nixosSystem {
         ...
       }: {
         config = {
+          sdImage = {firmwareSize = 4 * 1024;};
+
           boot.kernelParams = [
             # "console=ttyS0,115200n8"
             "console=ttyS1,115200"
@@ -33,7 +35,7 @@ inputs.nixpkgs.lib.nixosSystem {
           swapDevices = [
             {
               device = "/swapfile";
-              size = 1 * 1024;
+              size = 4 * 1024;
             }
           ];
 
@@ -65,7 +67,6 @@ inputs.nixpkgs.lib.nixosSystem {
                   wifi-security = {
                     auth-alg = "open";
                     key-mgmt = "wpa-psk";
-                    psk = "brakkemeuk?!";
                   };
                 };
               };
