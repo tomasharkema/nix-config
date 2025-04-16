@@ -162,7 +162,6 @@ in {
         "wireguard"
         # "netconsole"
         # "apfs"
-        "sha256"
       ];
 
       supportedFilesystems = [
@@ -172,7 +171,6 @@ in {
       ];
       initrd.kernelModules = [
         # "netconsole"
-        "sha256"
       ];
       loader = {
         systemd-boot = {

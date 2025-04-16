@@ -3,8 +3,14 @@
   config,
   lib,
   ...
-}: {
-  config = {
+}: let
+  cfg = config.services.beszel;
+in {
+  options.services.beszel = {
+    enable = lib.mkEnableOption "beszel" // {default = true;};
+  };
+
+  config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers = {
       beszel-agent = {
         image = "henrygd/beszel-agent";

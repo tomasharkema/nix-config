@@ -159,7 +159,9 @@ in {
       # growPartition = true;
       supportedFilesystems = ["btrfs"];
       initrd.availableKernelModules = ["aesni_intel" "cryptd"];
-      kernelModules = ["sha256"];
+      kernelModules = [
+        # "sha256"
+      ];
     };
 
     services = {

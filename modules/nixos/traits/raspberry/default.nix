@@ -28,10 +28,10 @@ in {
         device = "/dev/disk/by-label/NIXOS_SD";
         fsType = "ext4";
       };
-      "/boot/firmware" = {
-        device = "/dev/disk/by-label/FIRMWARE";
-        fsType = "fat";
-      };
+      # "/boot/firmware" = {
+      #   device = "/dev/disk/by-label/FIRMWARE";
+      #   fsType = "fat";
+      # };
     };
 
     boot = {
@@ -57,7 +57,22 @@ in {
       auditd.enable = lib.mkForce false;
     };
 
-    services.fwupd.enable = false;
+    programs = {
+      atop.enable = lib.mkForce false;
+    };
+
+    services = {
+      fwupd.enable = lib.mkForce false;
+      smartd.enable = lib.mkForce false;
+      beszel.enable = lib.mkForce false;
+      keybase = {
+        enable = lib.mkForce true;
+      };
+
+      kbfs = {
+        enable = lib.mkForce true;
+      };
+    };
 
     # sdImage.compressImage = false;
 

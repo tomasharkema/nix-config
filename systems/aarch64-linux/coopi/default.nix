@@ -41,6 +41,18 @@
       }
     ];
 
+    services.hardware.lcd.server = {
+      enable = true;
+      extraConfig = ''
+        Driver=glcdlib
+
+        [glcdlib]
+        Driver=framebuffer
+        UseFT2=yes
+        FontFile=${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/NerdFonts/JetBrainsMono/JetBrainsMonoNerdFontMono-Regular.ttf
+      '';
+    };
+
     traits = {
       raspberry.enable = true;
       low-power.enable = true;

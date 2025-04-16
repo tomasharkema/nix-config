@@ -32,6 +32,11 @@ in rec {
       [prev.icu74.dev];
   });
 
+  lcdproc = prev.lcdproc.overrideAttrs (old: {
+    # configureFlags = ["--enable-drivers=all"];
+    buildInputs = old.buildInputs ++ [prev.custom.glcd-proc-driver prev.custom.graphlcd-base];
+  });
+
   _389-ds-base = self.packages."${prev.system}"._389-ds-base;
   freeipa =
     #builtins.trace "${prev.freeipa.version} ${final.freeipa.version}"
