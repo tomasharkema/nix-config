@@ -10,6 +10,7 @@
         # nix-doc
       ])
       ++ (with pkgs; [
+        caligula
         xxd
         gcc
         platformio-core

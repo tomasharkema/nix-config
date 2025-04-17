@@ -12,8 +12,8 @@ inputs.nixpkgs.lib.nixosSystem {
     ./installer.nix
     {
       nixpkgs = {
-        hostPlatform.system = "aarch64-linux";
-        buildPlatform.system = "x86_64-linux";
+        #hostPlatform.system = "aarch64-linux";
+        #buildPlatform.system = "x86_64-linux";
         # crossSystem.system = "aarch64-linux";
         config.allowUnsupportedSystem = true;
       };

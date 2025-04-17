@@ -30,9 +30,12 @@ in {
     # boot.supportedFilesystems = ["bcachefs"];
     users = {
       users = {
-        nixos = {uid = 2000;};
+        nixos = {
+          uid = 2000;
+          #gid = 2000;
+        };
         tomas = {
-          shell = pkgs.zsh;
+          # shell = pkgs.zsh;
           isNormalUser = true;
           description = "tomas";
           group = "tomas";
@@ -48,14 +51,18 @@ in {
           ];
           initialHashedPassword = "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
           uid = 1000;
+
           openssh.authorizedKeys.keyFiles = ["${keys}"];
         };
         root.openssh.authorizedKeys.keyFiles = ["${keys}"];
       };
-      groups.tomas = {};
+      groups = {
+        nixos.gid = 2000;
+        tomas = {gid = 1000;};
+      };
     };
 
-    programs.zsh.enable = true;
+    # programs.zsh.enable = true;
 
     services = {tailscale.enable = true;};
 

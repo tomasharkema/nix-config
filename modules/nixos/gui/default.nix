@@ -63,6 +63,7 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
+      rpi-imager
       custom.netsleuth
       handbrake
       thonny

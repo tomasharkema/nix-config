@@ -40,6 +40,7 @@ in {
       # ];
       # kernelModules = ["dwc2" "g_serial"];
       # kernelParams = ["console=tty0"];
+      consoleLogLevel = lib.mkDefault 7;
 
       tmp = {
         useTmpfs = false;
