@@ -34,6 +34,11 @@ in {
       # };
     };
 
+    system.etc.overlay = {
+      enable = true;
+      mutable = true;
+    };
+
     boot = {
       # kernelParams = [
       #   "console=tty1"
