@@ -11,6 +11,7 @@
       ])
       ++ (with pkgs; [
         caligula
+        nix-search-tv
         xxd
         gcc
         platformio-core
