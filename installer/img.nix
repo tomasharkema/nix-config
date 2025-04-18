@@ -27,16 +27,25 @@ inputs.nixpkgs.lib.nixosSystem {
         config = {
           sdImage = {firmwareSize = 4 * 1024;};
 
+
           boot = {
             kernelParams = [
               # "console=ttyS0,115200n8"
-              "console=ttyS1,115200"
+                "console=ttyS1,115200n8"
             ];
 
             loader.generic-extlinux-compatible.useGenerationDeviceTree = false;
           };
 
-          environment.systemPackages = with pkgs; [nixos-facter];
+
+environment.systemPackages  = with pkgs; [
+nixos-facter
+dtc raspberrypifw raspberrypi-eeprom device-tree_rpi
+
+
+];
+
+
           swapDevices = [
             {
               device = "/swapfile";

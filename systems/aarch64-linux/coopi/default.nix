@@ -10,12 +10,9 @@
     };
 
     hardware = {
-      enableRedistributableFirmware = true;
-      i2c.enable = true;
 
       deviceTree = {
         enable = true;
-        filter = "*rpi*.dtb";
 
         overlays = [
           {
@@ -33,13 +30,6 @@
     };
 
     zramSwap = {enable = true;};
-
-    swapDevices = [
-      {
-        device = "/swapfile";
-        size = 16 * 1024;
-      }
-    ];
 
     services.hardware.lcd.server = {
       enable = true;

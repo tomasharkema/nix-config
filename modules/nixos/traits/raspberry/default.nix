@@ -19,19 +19,28 @@ in {
       };
     };
 
+    hardware = {
+      enableRedistributableFirmware = true;
+      i2c.enable = true;
+      bluetooth = {
+        enable = true;
+        powerOnBoot = true;
+      };
+      deviceTree = {
+        enable = true;
+        filter = "*rpi*.dtb";
+      };
+    };
+
     fileSystems = {
-      # "/boot" = {
-      #   device = "/dev/disk/by-label/NIXOS_BOOT";
-      #   fsType = "vfat";
-      # };
       "/" = {
         device = "/dev/disk/by-label/NIXOS_SD";
         fsType = "ext4";
       };
-      # "/boot/firmware" = {
-      #   device = "/dev/disk/by-label/FIRMWARE";
-      #   fsType = "fat";
-      # };
+      "/boot/firmware" = {
+        device = "/dev/disk/by-label/FIRMWARE";
+        fsType = "vfat";
+      };
     };
 
     # requires initrd systemd
@@ -45,12 +54,21 @@ in {
       #   "console=tty1"
       # ];
       # kernelModules = ["dwc2" "g_serial"];
-      # kernelParams = ["console=tty0"];
+      kernelParams = ["console=serial0,115200n8"];
+
       consoleLogLevel = lib.mkDefault 7;
+      
+      initrd.availableKernelModules = [
+          "usbhid"
+          "usb_storage"
+          "vc4"
+          "pcie_brcmstb" # required for the pcie bus to work
+          "reset-raspberrypi" # required for vl805 firmware to load
+        ];
 
       tmp = {
         useTmpfs = false;
-        cleanOnBoot = false;
+        cleanOnBoot = true;
       };
       loader = {
         grub.enable = false;
@@ -111,6 +129,13 @@ in {
       bluez
     ];
 
+    swapDevices = [
+      {
+        device = "/swapfile";
+        size = 8 * 1024;
+      }
+    ];
+
     apps.resilio.enable = false;
 
     # system.stateVersion = "25.05";
@@ -118,15 +143,6 @@ in {
     nix.settings = {
       keep-outputs = lib.mkForce false;
       keep-derivations = lib.mkForce false;
-    };
-
-    hardware = {
-      enableRedistributableFirmware = true;
-      # firmware = [pkgs.wireless-regdb];
-      bluetooth = {
-        enable = true;
-        powerOnBoot = true;
-      };
     };
 
     # boot.loader.raspberryPi.firmwareConfig = ''
