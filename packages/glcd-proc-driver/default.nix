@@ -16,10 +16,6 @@ stdenv.mkDerivation rec {
     hash = "sha256-+AsEWENtHdPKAH5DzvHT9asSU3ya2mUUyr7kn6O5JAo=";
   };
 
-  # preBuild = ''
-  #   set -x
-  # '';
-
   installFlags = ["DESTDIR=${placeholder "out"}"];
 
   nativeBuildInputs = [pkg-config];
