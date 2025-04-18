@@ -70,7 +70,7 @@
         glxinfo
         inxi
         pwvucontrol
-
+        i2c-tools
         piper
         libratbag
       ];
@@ -96,7 +96,7 @@
     # chaotic.mesa-git.enable = true;
 
     hardware = {
-      mcelog.enable = true;
+      # mcelog.enable = true;
       usb-modeswitch.enable = true;
 
       nvidia = {
@@ -157,7 +157,7 @@
       networkmanager.enable = true;
       # wireless.enable = true;
       firewall = {
-        enable = false; # true; # wlp4s0; # false;
+        enable = true; # wlp4s0; # false;
         allowPing = true;
         # trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
       };

@@ -40,7 +40,7 @@ in [
       #"custom/hello-from-waybar"
     ];
     modules-right = [
-      "mpd"
+      # "mpd"
       # "idle_inhibitor"
       "network"
       "power-profiles-daemon"
@@ -81,42 +81,52 @@ in [
     "sway/mode" = {
       "format" = "<span style=\"italic\">{}</span>";
     };
-    "sway/scratchpad" = {
-      "format" = "{icon} {count}";
-      "show-empty" = false;
-      "format-icons" = [
-        ""
-        ""
-      ];
-      "tooltip" = true;
-      "tooltip-format" = "{app}: {title}";
-    };
-    "mpd" = {
-      "format" = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ";
-      "format-disconnected" = "Disconnected ";
-      "format-stopped" = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ";
-      "unknown-tag" = "N/A";
+    "network" = {
+      "interface" = "*";
+      "format-wifi" = " {bandwidthDowbBits}  {bandwidthUpBits} ";
+      "format-ethernet" = " {bandwidthDownBits}  {bandwidthUpBits} ";
+      "format-linked" = "(No IP)";
+      "format-disconnected" = "";
+      "on-click" = "alacritty -e nmtui";
+      "tooltip" = false;
       "interval" = 5;
-      "consume-icons" = {
-        "on" = " ";
-      };
-      "random-icons" = {
-        "off" = "<span color=\"#f53c3c\"></span> ";
-        "on" = " ";
-      };
-      "repeat-icons" = {
-        "on" = " ";
-      };
-      "single-icons" = {
-        "on" = "1 ";
-      };
-      "state-icons" = {
-        "paused" = "";
-        "playing" = "";
-      };
-      "tooltip-format" = "MPD (connected)";
-      "tooltip-format-disconnected" = "MPD (disconnected)";
     };
+    # "sway/scratchpad" = {
+    #   "format" = "{icon} {count}";
+    #   "show-empty" = false;
+    #   "format-icons" = [
+    #     ""
+    #     ""
+    #   ];
+    #   "tooltip" = true;
+    #   "tooltip-format" = "{app}: {title}";
+    # };
+    # "mpd" = {
+    #   "format" = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ";
+    #   "format-disconnected" = "Disconnected ";
+    #   "format-stopped" = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ";
+    #   "unknown-tag" = "N/A";
+    #   "interval" = 5;
+    #   "consume-icons" = {
+    #     "on" = " ";
+    #   };
+    #   "random-icons" = {
+    #     "off" = "<span color=\"#f53c3c\"></span> ";
+    #     "on" = " ";
+    #   };
+    #   "repeat-icons" = {
+    #     "on" = " ";
+    #   };
+    #   "single-icons" = {
+    #     "on" = "1 ";
+    #   };
+    #   "state-icons" = {
+    #     "paused" = "";
+    #     "playing" = "";
+    #   };
+    #   "tooltip-format" = "MPD (connected)";
+    #   "tooltip-format-disconnected" = "MPD (disconnected)";
+    # };
     "idle_inhibitor" = {
       "format" = "{icon}";
       "format-icons" = {
@@ -179,15 +189,15 @@ in [
         "power-saver" = "";
       };
     };
-    "network" = {
-      # // "interface"= "wlp2*", // (Optional) To force the use of this interface
-      "format-wifi" = "{essid} ";
-      "format-ethernet" = "{ipaddr}/{cidr} ";
-      "tooltip-format" = "{ifname} via {gwaddr} ";
-      "format-linked" = "{ifname} (No IP) ";
-      "format-disconnected" = "Disconnected ⚠";
-      "format-alt" = "{ifname}: {ipaddr}/{cidr}";
-    };
+    # "network" = {
+    #   # // "interface"= "wlp2*"; // (Optional) To force the use of this interface
+    #   "format-wifi" = "{essid} ";
+    #   "format-ethernet" = "{ipaddr}/{cidr} ";
+    #   "tooltip-format" = "{ifname} via {gwaddr} ";
+    #   "format-linked" = "{ifname} (No IP) ";
+    #   "format-disconnected" = "Disconnected ⚠";
+    #   "format-alt" = "{ifname}: {ipaddr}/{cidr}";
+    # };
     "pulseaudio" = {
       # // "scroll-step"= 1;// %, can be a float
       "format" = "{volume}% {icon} {format_source}";

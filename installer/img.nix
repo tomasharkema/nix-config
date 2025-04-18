@@ -27,11 +27,16 @@ inputs.nixpkgs.lib.nixosSystem {
         config = {
           sdImage = {firmwareSize = 4 * 1024;};
 
-          boot.kernelParams = [
-            # "console=ttyS0,115200n8"
-            "console=ttyS1,115200"
-          ];
+          boot = {
+            kernelParams = [
+              # "console=ttyS0,115200n8"
+              "console=ttyS1,115200"
+            ];
 
+            loader.generic-extlinux-compatible.useGenerationDeviceTree = false;
+          };
+
+          environment.systemPackages = with pkgs; [nixos-facter];
           swapDevices = [
             {
               device = "/swapfile";

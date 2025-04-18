@@ -34,10 +34,11 @@ in {
       # };
     };
 
-    system.etc.overlay = {
-      enable = true;
-      mutable = true;
-    };
+    # requires initrd systemd
+    # system.etc.overlay = {
+    #   enable = true;
+    #   mutable = true;
+    # };
 
     boot = {
       # kernelParams = [
@@ -54,7 +55,10 @@ in {
       loader = {
         grub.enable = false;
         systemd-boot.enable = lib.mkForce false;
-        generic-extlinux-compatible.enable = lib.mkDefault true;
+        generic-extlinux-compatible = {
+          enable = lib.mkDefault true;
+          useGenerationDeviceTree = false;
+        };
       };
     };
 
