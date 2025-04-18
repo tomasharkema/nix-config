@@ -168,6 +168,7 @@ in {
       "gdm-fingerprint" = {
         # enableGnomeKeyring = true;
         # fprintAuth = true;
+        fprintAuth = false;
       };
       xscreensaver = {
         # enableGnomeKeyring = true;

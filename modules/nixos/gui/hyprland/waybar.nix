@@ -1,6 +1,6 @@
 {pkgs, ...}: let
+  lib = pkgs.lib;
   power_menu = pkgs.writeText "power_menu.xml" ''
-
     <?xml version="1.0" encoding="UTF-8"?>
     <interface>
         <object class="GtkMenu" id="menu">
@@ -16,14 +16,20 @@
             </child>
         </object>
     </interface>
+  '';
+  pingScript = pkgs.writeShellScript "waybar-ping" ''
+    #!/bin/bash
 
+    ping -q -w 3 -c 1 1.1.1.1 | ${lib.getExe pkgs.jc} --ping | ${lib.getExe pkgs.jq} '.round_trip_ms_avg' --unbuffered --compact-output \
+      && echo '{"text":"$round_trip_ms_avg","class":"connected","percentage":100}' \
+      || echo '{"text":"Disconnected","class":"disconnected","percentage":0}'
   '';
 in [
   {
     # layer = "top";
     # position = "top";
     height = 30;
-    spacing = 0; # 2; # 10
+    spacing = 2; # 0; # 2; # 10
     # output = [
     #   "eDP-1"
     #   "HDMI-A-1"
@@ -43,6 +49,7 @@ in [
       # "mpd"
       # "idle_inhibitor"
       "network"
+      "custom/network"
       "power-profiles-daemon"
       # "cpu"
       # "memory"
@@ -57,6 +64,7 @@ in [
       # "pulseaudio"
       "clock"
       "tray"
+      "idle_inhibitor"
       "custom/lock"
       "custom/power"
     ];
@@ -232,6 +240,13 @@ in [
       "escape" = true;
       "exec" = "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"; # // Script in resources folder
       # // "exec"= "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    };
+
+    "custom/network" = {
+      "exec" = pingScript;
+      "interval" = 5;
+      "format" = "{}";
+      "tooltip" = false;
     };
 
     "custom/music" = {

@@ -14,7 +14,7 @@
       };
       # hyprlock.enable = true;
     };
-    security.pam.services.hyprlock = {};
+    security.pam.services.hyprlock = {fprintAuth = true;};
 
     services = {hypridle.enable = true;};
     environment.systemPackages = with pkgs; [
