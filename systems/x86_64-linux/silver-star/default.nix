@@ -108,7 +108,7 @@ in {
           '';
         };
       };
-      healthchecks = {
+      healthchecks = lib.mkIf false {
         enable = true;
         listenAddress = "0.0.0.0";
 
@@ -133,7 +133,7 @@ in {
       '';
 
       usbguard.enable = lib.mkForce false;
-      tcsd.enable = true;
+      # tcsd.enable = true;
 
       throttled.enable = lib.mkForce false;
       plex = {
@@ -221,7 +221,7 @@ in {
       hostName = "silver-star";
 
       firewall = {
-        enable = false;
+        enable = true;
         allowPing = true;
       };
 
