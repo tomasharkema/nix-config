@@ -149,14 +149,16 @@ in {
       };
 
       kernelPackages =
-        if (pkgs.stdenv.isAarch64 || config.traits.hardware.vm.enable)
-        then lib.mkDefault pkgs.linuxPackages_latest
-        else
-          (
-            if config.traits.server.enable
-            then lib.mkDefault pkgs.linuxPackages_cachyos-server
-            else lib.mkDefault pkgs.linuxPackages_cachyos
-          );
+        #if (pkgs.stdenv.isAarch64 || config.traits.hardware.vm.enable)
+        #then
+        lib.mkDefault pkgs.linuxPackages_latest
+        #else
+        #  (
+        #   if config.traits.server.enable
+        #   then lib.mkDefault pkgs.linuxPackages_cachyos-server
+        #   else lib.mkDefault pkgs.linuxPackages_cachyos
+        # )
+        ;
 
       kernelModules = [
         "wireguard"
