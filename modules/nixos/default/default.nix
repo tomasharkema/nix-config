@@ -217,7 +217,7 @@ in {
           termshark
           tshark
           python3Packages.pip
-          micropython
+          #micropython
           config.boot.kernelPackages.iio-utils
           cutecom
           sbctl-tpm
