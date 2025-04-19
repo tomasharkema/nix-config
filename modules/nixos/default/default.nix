@@ -455,7 +455,7 @@ in {
       watchdogd = {
         enable = true;
       };
-      sysstat.enable = lib.mkDefault true;
+      # sysstat.enable = lib.mkDefault true;
       # irqbalance.enable = true;
       # aria2.enable = true;
       rpcbind.enable = true;

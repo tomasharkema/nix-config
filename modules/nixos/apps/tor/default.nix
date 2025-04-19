@@ -4,7 +4,7 @@
   config,
   ...
 }: {
-  config = {
+  config = lib.mkIf false {
     environment.systemPackages = with pkgs;
       [tor]
       ++ lib.optional (pkgs.system == "x86_64-linux" && config.gui.enable)

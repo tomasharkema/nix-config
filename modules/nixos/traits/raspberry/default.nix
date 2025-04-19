@@ -57,14 +57,14 @@ in {
       kernelParams = ["console=serial0,115200n8"];
 
       consoleLogLevel = lib.mkDefault 7;
-      
+
       initrd.availableKernelModules = [
-          "usbhid"
-          "usb_storage"
-          "vc4"
-          "pcie_brcmstb" # required for the pcie bus to work
-          "reset-raspberrypi" # required for vl805 firmware to load
-        ];
+        "usbhid"
+        "usb_storage"
+        "vc4"
+        "pcie_brcmstb" # required for the pcie bus to work
+        "reset-raspberrypi" # required for vl805 firmware to load
+      ];
 
       tmp = {
         useTmpfs = false;
@@ -90,6 +90,7 @@ in {
     };
 
     services = {
+      locate.enable = lib.mkForce false;
       fwupd.enable = lib.mkForce false;
       smartd.enable = lib.mkForce false;
       beszel.enable = lib.mkForce false;
