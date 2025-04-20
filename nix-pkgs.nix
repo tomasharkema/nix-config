@@ -11,6 +11,8 @@
       ])
       ++ (with pkgs; [
         caligula
+        python3Packages.uv
+
         nix-search-tv
         xxd
         gcc
