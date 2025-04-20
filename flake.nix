@@ -218,15 +218,9 @@
         };
 
       machines = with inputs; let
-        names = builtins.attrNames self.nixosConfigurations;
+        names = builtins.attrNames (builtins.readDir ./systems-by-name);
       in rec {
         all =
-          builtins.filter (
-            name: let
-              cfg = self.nixosConfigurations."${name}".config;
-            in
-              cfg.networking.hostName != "nixos" && cfg.networking.hostName != "test"
-          )
           names;
 
         excludingSelf = cfg: (builtins.filter (name: cfg.networking.hostName != name) all);
