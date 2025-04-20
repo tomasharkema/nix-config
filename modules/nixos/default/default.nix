@@ -51,7 +51,7 @@ in {
 
       watchdog = {
         rebootTime = "5m";
-        device = "/dev/watchdog";
+        # device = "/dev/watchdog";
         runtimeTime = "30s";
         kexecTime = "5m";
       };
@@ -86,9 +86,9 @@ in {
 
     virtualisation.spiceUSBRedirection.enable = true;
 
-    zramSwap = {
-      enable = lib.mkDefault true;
-    };
+    # zramSwap = {
+    #   enable = lib.mkDefault true;
+    # };
 
     console = {
       earlySetup = true;
@@ -110,9 +110,21 @@ in {
       };
       crashDump.enable = pkgs.stdenv.isx86_64; # true;
 
+      # kernelPatches = [
+      #   {
+      #     name = "tft";
+      #     patch = null;
+      #     extraStructuredConf = {
+      #       CONFIG_STAGING = lib.kernel.yes;
+      #       CONFIG_FB_TFT = lib.kernel.yes;
+      #       CONFIG_FB_TFT_SH1106 = lib.kernel.yes; # (optional)
+      #     };
+      #   }
+      # ];
+
       initrd = {
-        compressor = "zstd";
-        compressorArgs = ["-19"];
+        # compressor = "zstd";
+        # compressorArgs = ["-19"];
         # systemd.emergencyAccess = "abcdefg";
         #includeDefaultModules = true;
         # unl0kr = {enable = config.disks.btrfs.encrypt;};
@@ -125,7 +137,7 @@ in {
       ];
 
       kernelParams = [
-        "zswap.enabled=1"
+        # "zswap.enabled=1"
         "efi_pstore.pstore_disable=0"
         "printk.always_kmsg_dump"
         "crash_kexec_post_notifiers"
@@ -521,15 +533,15 @@ in {
 
       # cron.enable = true;
 
-      zram-generator = {
-        enable = lib.mkDefault true;
-        settings = {
-          zram0 = {
-            # zram-size = "ram / 2";
-            compression-algorithm = "zstd";
-          };
-        };
-      };
+      # zram-generator = {
+      #   enable = lib.mkDefault true;
+      #   settings = {
+      #     zram0 = {
+      #       # zram-size = "ram / 2";
+      #       compression-algorithm = "zstd";
+      #     };
+      #   };
+      # };
       # earlyoom = {
       #   enable = true;
       #   enableNotifications = true;

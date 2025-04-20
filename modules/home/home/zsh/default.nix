@@ -168,11 +168,11 @@
             file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
             src = zsh-nix-shell;
           }
-          rec {
-            name = src.pname;
-            file = "share/zsh/plugins/command-time/command-time.plugin.zsh";
-            src = zsh-command-time;
-          }
+          # rec {
+          #   name = src.pname;
+          #   file = "share/zsh/plugins/command-time/command-time.plugin.zsh";
+          #   src = zsh-command-time;
+          # }
           rec {
             name = src.pname;
             file = "share/zsh/plugins/nix/nix.plugin.zsh";
@@ -221,7 +221,7 @@
               "autojump"
               "aws"
               "battery"
-              "bgnotify"
+              # "bgnotify"
               "colorize"
               "common-aliases"
               "copybuffer"
@@ -245,8 +245,8 @@
               "github"
               "gitignore"
               "golang"
-              "history-substring-search"
-              "history"
+              # "history-substring-search"
+              # "history"
               "iterm2"
               "jira"
               "jsontools"
@@ -276,7 +276,6 @@
               "vi-mode"
               "vscode"
               "wakeonlan"
-              "wd"
               "wd"
               "web-search"
               "yarn"
