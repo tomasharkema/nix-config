@@ -10,8 +10,6 @@
 			ina219@43 {
 				compatible = "ti,ina219";
 				reg = <0x43>;
-				#abracon,tc-diode = "standard";
-				#3abracon,tc-resistor = <0>;
 			};
 		};
 	};
