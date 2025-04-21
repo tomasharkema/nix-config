@@ -110,17 +110,17 @@ in {
       };
       crashDump.enable = pkgs.stdenv.isx86_64; # true;
 
-      kernelPatches = [
-        {
-          name = "tft";
-          patch = null;
-          extraStructuredConf = with lib.kernel; {
-            STAGING = yes;
-            FB_TFT = yes;
-            TFT_SH1106 = yes;
-          };
-        }
-      ];
+      # kernelPatches = [
+      #   {
+      #     name = "tft";
+      #     patch = null;
+      #     extraStructuredConf = with lib.kernel; {
+      #       STAGING = yes;
+      #       FB_TFT = yes;
+      #       TFT_SH1106 = yes;
+      #     };
+      #   }
+      # ];
 
       initrd = {
         compressor = "zstd";
@@ -161,16 +161,14 @@ in {
       };
 
       kernelPackages =
-        #if (pkgs.stdenv.isAarch64 || config.traits.hardware.vm.enable)
-        #then
-        lib.mkDefault pkgs.linuxPackages_latest
-        #else
-        #  (
-        #    if config.traits.server.enable
-        #    then lib.mkDefault pkgs.linuxPackages_cachyos-server
-        #    else lib.mkDefault pkgs.linuxPackages_cachyos
-        #  )
-        ;
+        if (pkgs.stdenv.isAarch64 || config.traits.hardware.vm.enable)
+        then lib.mkDefault pkgs.linuxPackages_latest
+        else
+          (
+            if config.traits.server.enable
+            then lib.mkDefault pkgs.linuxPackages_cachyos-server
+            else lib.mkDefault pkgs.linuxPackages_cachyos
+          );
 
       kernelModules = [
         "wireguard"
