@@ -39,6 +39,7 @@
       #   matchConfig = {
       #     Property = [
       #       "ID_MODEL_ID=a4aa"
+
       #       "ID_VENDOR_ID=0525"
       #     ];
       #    Driver = "cdc_ether";
@@ -97,13 +98,14 @@
 
     hardware = {
       # mcelog.enable = true;
-      usb-modeswitch.enable = true;
+      # usb-modeswitch.enable = true;
 
       nvidia = {
         # forceFullCompositionPipeline = true;
-
+        modesetting.enable = true;
         prime = {
-          sync.enable = true;
+          # sync.enable = true;
+          reverseSync.enable = true;
           # offload.enable = true;
           # offload.enableOffloadCmd = true;
           intelBusId = "PCI:0:2:0";
@@ -111,7 +113,7 @@
         };
 
         powerManagement = {
-          # enable = true;
+          enable = true;
           # finegrained = true;
         };
       };
@@ -190,7 +192,7 @@
       # fprintd.tod.driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
       #   calib-data-file = ./calib-data.bin;
       # };
-      switcherooControl.enable = true;
+      # switcherooControl.enable = true;
       # journald.storage = "volatile";
 
       hypervisor = {
@@ -233,15 +235,15 @@
       };
     };
 
-    virtualisation.kvmgt = {
-      enable = true;
-      device = "0000:00:02.0";
-      vgpus = {
-        "i915-GVTg_V5_2" = {
-          uuid = ["e2ab260f-44a2-4e07-9889-68a1caafb399"];
-        };
-      };
-    };
+    # virtualisation.kvmgt = {
+    #   enable = true;
+    #   device = "0000:00:02.0";
+    #   vgpus = {
+    #     "i915-GVTg_V5_2" = {
+    #       uuid = ["e2ab260f-44a2-4e07-9889-68a1caafb399"];
+    #     };
+    #   };
+    # };
 
     programs = {
       adb.enable = true;
@@ -270,7 +272,7 @@
       kernelParams = [
         "i915.enable_gvt=1"
         "i915.enable_fbc=0"
-
+        "ibt=off"
         # "i915.enable_gvt=1"
         # "i915.enable_guc=0"
         "intel_iommu=on"
@@ -301,9 +303,15 @@
       ];
       # extraModprobeConfig = "options i915 enable_guc=2";
       initrd.kernelModules = [
+        "nvidia"
+        "i915"
+        "nvidia_modeset"
+        # "nvidia_uvm"
+        "nvidia_drm"
+
         # "spi"
         # "sgx"
-        "i915"
+        # "i915"
         #  "watchdog"
         # "isgx"
         # "vfio_pci"
