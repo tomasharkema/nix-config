@@ -47,65 +47,65 @@ in {
           module: ${pkgs.yubico-piv-tool}/lib/libykcs11.so
         '';
 
-        "krb5.conf".text = lib.mkBefore ''
-          includedir /etc/krb5.conf.d/
-        '';
+        # "krb5.conf".text = lib.mkBefore ''
+        #   includedir /etc/krb5.conf.d/
+        # '';
 
-        "krb5.conf.d/kcm_default_ccache".text = ''
-          [libdefaults]
-          default_ccache_name = KCM:
-        '';
+        # "krb5.conf.d/kcm_default_ccache".text = ''
+        #   [libdefaults]
+        #   default_ccache_name = KCM:
+        # '';
 
-        "krb5.conf.d/enable_passkey".text = ''
-          [plugins]
-          clpreauth = {
-            module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
-          }
+        # "krb5.conf.d/enable_passkey".text = ''
+        #   [plugins]
+        #   clpreauth = {
+        #     module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
+        #   }
 
-          kdcpreauth = {
-            module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
-          }
-        '';
+        #   kdcpreauth = {
+        #     module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
+        #   }
+        # '';
 
-        "krb5.conf.d/enable_sssd_conf_dir".text = ''
-          includedir /var/lib/sss/pubconf/krb5.include.d/
-        '';
+        # "krb5.conf.d/enable_sssd_conf_dir".text = ''
+        #   includedir /var/lib/sss/pubconf/krb5.include.d/
+        # '';
 
-        "krb5.conf.d/sssd_enable_idp".text = ''
-          # Enable SSSD OAuth2 Kerberos preauthentication plugins.
-          #
-          # This will allow you to obtain Kerberos TGT through OAuth2 authentication.
-          #
-          # To disable the OAuth2 plugin, comment out the following lines.
+        # "krb5.conf.d/sssd_enable_idp".text = ''
+        #   # Enable SSSD OAuth2 Kerberos preauthentication plugins.
+        #   #
+        #   # This will allow you to obtain Kerberos TGT through OAuth2 authentication.
+        #   #
+        #   # To disable the OAuth2 plugin, comment out the following lines.
 
-          [plugins]
-           clpreauth = {
-            module = idp:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_idp_plugin.so
-           }
+        #   [plugins]
+        #    clpreauth = {
+        #     module = idp:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_idp_plugin.so
+        #    }
 
-           kdcpreauth = {
-            module = idp:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_idp_plugin.so
-           }
-        '';
+        #    kdcpreauth = {
+        #     module = idp:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_idp_plugin.so
+        #    }
+        # '';
 
-        "krb5.conf.d/freeipa".text = ''
-          [libdefaults]
-              spake_preauth_groups = edwards25519
-        '';
+        # "krb5.conf.d/freeipa".text = ''
+        #   [libdefaults]
+        #       spake_preauth_groups = edwards25519
+        # '';
 
-        "sssd/conf.d".enable = false;
+        # "sssd/conf.d".enable = false;
 
-        "sssd/conf.d/passkey.conf" = {
-          mode = "640";
-          text = ''
-            [pam]
-            pam_passkey_auth = True
-            pam_cert_auth = True
-            passkey_debug_libfido2 = True
-            passkey_child_timeout = 60
-            debug_level = 10
-          '';
-        };
+        # "sssd/conf.d/passkey.conf" = {
+        #   mode = "640";
+        #   text = ''
+        #     [pam]
+        #     pam_passkey_auth = True
+        #     pam_cert_auth = True
+        #     passkey_debug_libfido2 = True
+        #     passkey_child_timeout = 60
+        #     debug_level = 10
+        #   '';
+        # };
 
         # "chromium/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
         # "opt/chrome/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
@@ -169,30 +169,30 @@ in {
           # };
           # -c ${settingsFile}
         };
-        sssd-kcm = {
-          # enable = true;
-          # description = "SSSD Kerberos Cache Manager";
+        # sssd-kcm = {
+        #   # enable = true;
+        #   # description = "SSSD Kerberos Cache Manager";
 
-          # wantedBy = ["multi-user.target" "sssd.service"];
-          # requires = ["sssd-kcm.socket"];
+        #   # wantedBy = ["multi-user.target" "sssd.service"];
+        #   # requires = ["sssd-kcm.socket"];
 
-          serviceConfig = {
-            ExecStartPre = lib.mkForce null;
-            ExecStart = lib.mkForce "${pkgs.sssd}/libexec/sssd/sssd_kcm";
-          };
-          # restartTriggers = [
-          #   settingsFileUnsubstituted
-          # ];
-        };
+        #   serviceConfig = {
+        #     ExecStartPre = lib.mkForce null;
+        #     ExecStart = lib.mkForce "${pkgs.sssd}/libexec/sssd/sssd_kcm";
+        #   };
+        #   # restartTriggers = [
+        #   #   settingsFileUnsubstituted
+        #   # ];
+        # };
       };
-      sockets.sssd-kcm = {
-        enable = true;
-        description = "SSSD Kerberos Cache Manager responder socket";
-        wantedBy = ["sockets.target"];
-        # Matches the default in MIT krb5 and Heimdal:
-        # https://github.com/krb5/krb5/blob/krb5-1.19.3-final/src/include/kcm.h#L43
-        # listenStreams = ["/var/run/.heim_org.h5l.kcm-socket"];
-      };
+      # sockets.sssd-kcm = {
+      # enable = true;
+      # description = "SSSD Kerberos Cache Manager responder socket";
+      # wantedBy = ["sockets.target"];
+      # Matches the default in MIT krb5 and Heimdal:
+      # https://github.com/krb5/krb5/blob/krb5-1.19.3-final/src/include/kcm.h#L43
+      # listenStreams = ["/var/run/.heim_org.h5l.kcm-socket"];
+      # };
     };
 
     security = {
