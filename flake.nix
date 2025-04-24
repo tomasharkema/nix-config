@@ -71,7 +71,7 @@
       overlays = with inputs; [
         # nix-snapshotter.overlays.default
         # otel.overlays.default
-        nvidia-patch.overlays.default
+        # nvidia-patch.overlays.default
         nixos-recovery.overlays.recovery
         # peerix.overlay
         snowfall-flake.overlays."package/flake"
@@ -504,7 +504,6 @@
 
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-
     # treefmt-nix = {
     #   url = "github:numtide/treefmt-nix";
     #   inputs = {
@@ -612,6 +611,7 @@
 
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lanzaboote = {
@@ -826,10 +826,10 @@
       };
     };
 
-    nvidia-patch = {
-      url = "github:icewind1991/nvidia-patch-nixos";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #nvidia-patch = {
+    #  url = "github:icewind1991/nvidia-patch-nixos";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     piratebay = {
       url = "github:tsirysndr/piratebay";

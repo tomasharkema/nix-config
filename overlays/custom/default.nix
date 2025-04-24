@@ -37,16 +37,16 @@ in rec {
     buildInputs = old.buildInputs ++ [prev.custom.glcd-proc-driver prev.custom.graphlcd-base];
   });
 
-  _389-ds-base = self.packages."${prev.system}"._389-ds-base;
-  freeipa =
-    #builtins.trace "${prev.freeipa.version} ${final.freeipa.version}"
-    self.packages."${prev.system}".freeipa;
+  #_389-ds-base = self.packages."${prev.system}"._389-ds-base;
+  #freeipa =
+  #builtins.trace "${prev.freeipa.version} ${final.freeipa.version}"
+  #self.packages."${prev.system}".freeipa;
 
-  sssd = overridePkgCheckVersionSnapshot "sssd" "2.9.5" (
-    self.packages."${prev.system}".sssd # .override {withSudo = true;}
-  );
+  #sssd = overridePkgCheckVersionSnapshot "sssd" "2.9.5" (
+  #  self.packages."${prev.system}".sssd # .override {withSudo = true;}
+  #);
 
-  docset = inputs.nixos-dash-docset.packages."${prev.system}".docset;
+  #docset = inputs.nixos-dash-docset.packages."${prev.system}".docset;
 
   tsui = inputs.tsui.packages."${prev.system}".tsui;
 
@@ -54,29 +54,30 @@ in rec {
 
   # wezterm = inputs.wezterm.packages."${prev.system}".default;
 
-  _nixd = inputs.nixd.packages."${prev.system}".default;
+  #_nixd = inputs.nixd.packages."${prev.system}".default;
 
-  udisks = overridePkgCheckVersionSnapshot "udisks2" "" udisks2;
+  # __udisks = overridePkgCheckVersionSnapshot "udisks2" "" udisks2;
 
-  udisks2 = prev.udisks2.overrideAttrs (old: {
-    buildInputs =
-      old.buildInputs
-      ++ [
-        prev.libiscsi
-        prev.libconfig
-      ];
-    # doCheck = false;
-    configureFlags =
-      old.configureFlags
-      ++ [
-        "--enable-all-modules"
-        "--enable-btrfs"
-        "--enable-lvm2"
-        "--enable-smart"
-        # "--enable-lsm"
-        # "--enable-iscsi"
-      ];
-  });
+  # __udisks2 = prev.udisks2.overrideAttrs (old: {
+  #   buildInputs =
+  #     old.buildInputs
+  #     ++ [
+  #       prev.libiscsi
+  #       prev.libconfig
+  #     ];
+  #   # doCheck = false;
+  #   configureFlags =
+  #     old.configureFlags
+  #     ++ [
+  #       "--enable-all-modules"
+  #       "--enable-btrfs"
+  #       "--enable-lvm2"
+  #       "--enable-smart"
+  #       # "--enable-lsm"
+  #       # "--enable-iscsi"
+  #     ];
+  # });
+
   wluma = inputs.wluma.defaultPackage."${prev.system}";
 
   # utillinux = prev.util-linux;
