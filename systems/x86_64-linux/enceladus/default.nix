@@ -19,6 +19,7 @@ in {
     environment.systemPackages = with pkgs; [
       inteltool
       rtl-sdr
+      pps-tools
     ];
 
     hardware = {
