@@ -121,7 +121,7 @@ in {
 
     systemd.services = {
       "docker-compose@adsb".wantedBy = ["multi-user.target"];
-      "docker-compose@ser2net".wantedBy = ["multi-user.target"];
+      # "docker-compose@ser2net".wantedBy = ["multi-user.target"];
     };
 
     traits = {
