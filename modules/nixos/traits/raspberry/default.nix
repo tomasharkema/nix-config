@@ -101,7 +101,7 @@ in {
       keybase = {
         enable = lib.mkForce true;
       };
-
+      usbguard.enable = false;
       kbfs = {
         enable = lib.mkForce true;
       };
