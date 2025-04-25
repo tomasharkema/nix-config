@@ -14,7 +14,7 @@
     nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 
     age.rekey = {
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBanxLefIcrVxhtzYj7OvNwZj3P5upoj7AwVyV0Id5T7 root@pegasus";
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIMzZxdX/aTyjIrUUFwSKo3zVo2iGJ/PS9uu9KDZXb4b root@pegasus";
     };
 
     services = {
@@ -60,21 +60,13 @@
       networkmanager.enable = true;
     };
 
-    virtualisation.vmVariant = {
-      virtualisation = {
-        diskSize = 50 * 1024;
-        memorySize = 4 * 1024;
-        cores = 4;
-      };
-    };
-
-    zramSwap = {enable = true;};
-    swapDevices = [
-      {
-        device = "/swapfile";
-        size = 16 * 1024;
-      }
-    ];
+    # zramSwap = {enable = true;};
+    # swapDevices = [
+    #   {
+    #     device = "/swapfile";
+    #     size = 16 * 1024;
+    #   }
+    # ];
 
     traits = {
       raspberry.enable = true;
@@ -90,8 +82,8 @@
       #   enable = true;
       #   raspberry = true;
       # };
-      unified-remote.enable = true;
-      netdata.enable = true;
+      # unified-remote.enable = true;
+      # netdata.enable = true;
     };
 
     environment.systemPackages = with pkgs; [
@@ -119,10 +111,10 @@
       #   device = "/dev/disk/by-label/NIXOS_BOOT";
       #   fsType = "vfat";
       # };
-      "/" = {
-        device = "/dev/disk/by-label/NIXOS_SD";
-        fsType = "ext4";
-      };
+      # "/" = {
+      #   device = "/dev/disk/by-label/NIXOS_SD";
+      #   fsType = "ext4";
+      # };
     };
 
     hardware = {
@@ -178,6 +170,12 @@
           vaapiVdpau
           # libvdpau-va-gl
         ];
+      };
+
+      hardware = {
+        deviceTree = {
+          enable = true;
+        };
       };
 
       # raspberry-pi."4" = {

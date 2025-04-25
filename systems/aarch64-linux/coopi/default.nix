@@ -10,7 +10,6 @@
     };
 
     hardware = {
-
       deviceTree = {
         enable = true;
 
@@ -29,7 +28,7 @@
       networkmanager.enable = true;
     };
 
-    zramSwap = {enable = true;};
+    zramSwap = {enable = false;};
 
     services.hardware.lcd.server = {
       enable = true;
