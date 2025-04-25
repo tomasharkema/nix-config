@@ -54,7 +54,11 @@ in {
       #   "console=tty1"
       # ];
       # kernelModules = ["dwc2" "g_serial"];
-      kernelParams = ["console=serial0,115200n8"];
+      kernelParams = [
+        "console=serial0,115200n8"
+        "console=ttyS0,115200n8"
+        "console=ttyS1,115200n8"
+      ];
 
       consoleLogLevel = lib.mkDefault 7;
 
