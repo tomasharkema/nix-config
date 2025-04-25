@@ -171,11 +171,8 @@
           # libvdpau-va-gl
         ];
       };
-
-      hardware = {
-        deviceTree = {
-          enable = true;
-        };
+      deviceTree = {
+        enable = true;
       };
 
       # raspberry-pi."4" = {
