@@ -117,6 +117,183 @@
       # };
     };
 
+    services.hardware.lcd = {
+      server = {
+        enable = true;
+        # extraConfig = ''
+        #   Driver=glcdlib
+
+        #   [glcdlib]
+        #   Driver=framebuffer
+        #   UseFT2=yes
+        #   FontFile=${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/NerdFonts/JetBrainsMono/JetBrainsMonoNerdFontMono-Regular.ttf
+        # '';
+        extraConfig = ''
+          Driver=curses
+
+          ## Curses driver ##
+          [curses]
+
+          # color settings
+          # foreground color [default: blue]
+          Foreground=white
+          # background color when "backlight" is off [default: cyan]
+          Background=black
+          # background color when "backlight" is on [default: red]
+          Backlight=black
+
+          # display size [default: 20x4]
+          Size=16x3
+
+          # What position (X,Y) to start the left top corner at...
+          # Default: (7,7)
+          TopLeftX=0
+          TopLeftY=0
+
+          # use ASC symbols for icons & bars [default: no; legal: yes, no]
+          UseACS=no
+
+          # draw Border [default: yes; legal: yes, no]
+          DrawBorder=no
+
+        '';
+      };
+
+      client = {
+        enable = true;
+
+        extraConfig = ''
+
+          [CPU]
+          # Show screen
+          Active=True
+          OnTime=1
+          OffTime=2
+          ShowInvisible=false
+
+
+          [Iface]
+          # Show screen
+          Active=True
+
+          # Show stats for Interface0
+          Interface0=eth0
+          # Interface alias name to display [default: <interface name>]
+          Alias0=LAN
+
+          # Show stats for Interface1
+          #Interface1=eth1
+          #Alias1=WAN
+
+          # Show stats for Interface2
+          #Interface2=eth2
+          #Alias2=MGMT
+
+          # for more than 3 interfaces change MAX_INTERFACES in iface.h and rebuild
+
+          # Units to display [default: byte; legal: byte, bit, packet]
+          unit=bit
+
+          # add screen with transferred traffic
+          #transfer=TRUE
+
+
+          [Memory]
+          # Show screen
+          Active=True
+
+
+          [Load]
+          # Show screen
+          Active=True
+          # Min Load Avg at which the backlight will be turned off [default: 0.05]
+          LowLoad=0.05
+          # Max Load Avg at which the backlight will start blinking [default: 1.3]
+          HighLoad=1.3
+
+
+          [SMP-CPU]
+          # Show screen
+          Active=true
+
+          [Battery]
+          # Show screen
+          Active=false
+
+
+          [CPUGraph]
+          # Show screen
+          Active=true
+
+
+          [ProcSize]
+          # Show screen
+          Active=true
+
+
+          [Disk]
+          # Show screen
+          Active=true
+          # You can add up to 10 "Ignore" entries to have lcdproc ignore
+          # mounts that are not of interest. By default it attempts to filter
+          # filesystem types like procfs but of course this doesn't prevent
+          # entries you wish to have mounted but don't need to monitor
+          # (like /boot/efi) from being listed.
+          Ignore=/boot/efi
+          Ignore=/dev
+          #Ignore=...
+
+        '';
+      };
+    };
+
+    systemd.services = {
+      lcdd.serviceConfig = {
+        StandardOutput = "tty";
+        TTYPath = "/dev/tty1";
+      };
+      # "getty@tty1".enable = false;
+    };
+
+    environment.etc."graphlcd.conf".text = ''
+      WaitMethod=3
+      WaitPriority=0
+
+      [framebuffer]
+      # framebuffer driver
+      #  Output goes to a framebuffer device
+      Driver=framebuffer
+
+      #UpsideDown=no
+      #Invert=no
+
+      # Device
+      #  Framebuffer device
+      #  Default value: /dev/fb0
+      Device=/dev/fb0
+
+      # Damage | ReportDamage
+      #  Damage reporting for framebuffer devices with update problems
+      #  Possible values: none, auto, udlfb, ugly
+      #    none:  no damage reporting
+      #    auto:  automatic determination if damage reporting is needed
+      #    udlfb: damage reporting for udlfb-devices (displaylink)
+      #    ugly:  dirty damagereporting (a '\n' is written to the framebuffer file handle)
+      #  Default value: none
+      #Damage=none
+
+      # Zoom
+      #  Determines if pixels should be drawn double sized.
+      #  If zoom is set, the actual resolution will be halved (both width and height)
+      #  e.g.: framebuffer has resolution 800x600: this driver will report a drawing area of 400x300
+      #  Possible values: 0, 1
+      #  Default value: 1
+      Zoom=0
+
+      Width=128
+      Height=32
+    '';
+
     hardware = {
       # raspberry-pi.config = {
       #   # uboot = false;

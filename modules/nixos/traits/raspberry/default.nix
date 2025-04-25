@@ -132,6 +132,7 @@ in {
       libraspberrypi
       raspberrypifw
       bluez
+      libgpiod
     ];
 
     swapDevices = [

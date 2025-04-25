@@ -261,7 +261,7 @@ in {
           bat-extras.batgrep
           compsize
           # dry
-
+          libgpiod
           # fam # unmaintained
           fancy-motd
           # mkchromecast
