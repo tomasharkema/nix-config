@@ -165,11 +165,11 @@ in {
     };
 
     security.pam.services = {
-      "gdm-fingerprint" = {
-        # enableGnomeKeyring = true;
-        # fprintAuth = true;
-        fprintAuth = false;
-      };
+      # "gdm-fingerprint" = {
+      #   # enableGnomeKeyring = true;
+      #   # fprintAuth = true;
+      #   fprintAuth = false;
+      # };
       xscreensaver = {
         # enableGnomeKeyring = true;
         fprintAuth = true;
@@ -190,9 +190,9 @@ in {
         # enableGnomeKeyring = true;
         fprintAuth = true;
       };
-      passwd = {
-        fprintAuth = true;
-      };
+      # passwd = {
+      #   fprintAuth = true;
+      # };
       "systemd-user" = {
         # enableGnomeKeyring = true;
         fprintAuth = true;

@@ -53,7 +53,7 @@ in [
       "power-profiles-daemon"
       # "cpu"
       # "memory"
-      "temperature"
+      # "temperature"
 
       # "keyboard-state"
       # "sway/language"
