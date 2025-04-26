@@ -17,6 +17,8 @@
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIMzZxdX/aTyjIrUUFwSKo3zVo2iGJ/PS9uu9KDZXb4b root@pegasus";
     };
 
+    facter.reportPath = ./facter.json;
+
     services = {
       # udev.extraRules = ''
       #   # allow access to raspi cec device for video group (and optionally register it as a systemd device, used below)
