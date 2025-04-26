@@ -254,7 +254,7 @@
         StandardOutput = "tty";
         TTYPath = "/dev/tty1";
       };
-      # "getty@tty1".enable = false;
+      "getty@tty1".enable = false;
     };
 
     environment.etc."graphlcd.conf".text = ''
