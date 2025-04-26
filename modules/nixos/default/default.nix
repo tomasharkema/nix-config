@@ -52,7 +52,7 @@ in {
       watchdog = {
         rebootTime = "5m";
         # device = "/dev/watchdog";
-        runtimeTime = "30s";
+        runtimeTime = "1m";
         kexecTime = "5m";
       };
     };
