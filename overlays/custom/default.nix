@@ -38,39 +38,37 @@ in rec {
   });
 
   #_389-ds-base = self.packages."${prev.system}"._389-ds-base;
-  #freeipa =
-  #builtins.trace "${prev.freeipa.version} ${final.freeipa.version}"
-  #self.packages."${prev.system}".freeipa;
+  freeipa = self.packages."${prev.system}".freeipa;
 
-  #sssd = overridePkgCheckVersionSnapshot "sssd" "2.9.5" (
-  #  self.packages."${prev.system}".sssd # .override {withSudo = true;}
-  #);
+  sssd = overridePkgCheckVersionSnapshot "sssd" "2.9.5" (
+    self.packages."${prev.system}".sssd # .override {withSudo = true;}
+  );
 
-  _sssd = prev.sssd.overrideAttrs (old: rec {
-    version = "2.10.1";
+  # _sssd = prev.sssd.overrideAttrs (old: rec {
+  #   version = "2.10.1";
 
-    src = prev.fetchFromGitHub {
-      owner = "SSSD";
-      repo = "sssd";
-      rev = "refs/tags/${version}";
-      sha256 = "sha256-p/PijS84fCorm2UyiFYZl+Li8+rUUQiPIImRN7xJmRk=";
-    };
+  #   src = prev.fetchFromGitHub {
+  #     owner = "SSSD";
+  #     repo = "sssd";
+  #     rev = "refs/tags/${version}";
+  #     sha256 = "sha256-p/PijS84fCorm2UyiFYZl+Li8+rUUQiPIImRN7xJmRk=";
+  #   };
 
-    preConfigure =
-      old.preConfigure
-      + ''
-        configureFlagsArray+=("--with-initscript=systemd")
-      '';
-    buildInputs =
-      old.buildInputs ++ [prev.libcap];
+  #   preConfigure =
+  #     old.preConfigure
+  #     + ''
+  #       configureFlagsArray+=("--with-initscript=systemd")
+  #     '';
+  #   buildInputs =
+  #     old.buildInputs ++ [prev.libcap];
 
-    env.NIX_CFLAGS_COMPILE =
-      old.env.NIX_CFLAGS_COMPILE
-      + (toString [
-        ''-DRENEWAL_PROG_PATH="${prev.adcli}/bin/adcli"''
-        "-I${prev.libxml2.dev}/include/libxml2"
-      ]);
-  });
+  #   env.NIX_CFLAGS_COMPILE =
+  #     old.env.NIX_CFLAGS_COMPILE
+  #     + (toString [
+  #       ''-DRENEWAL_PROG_PATH="${prev.adcli}/bin/adcli"''
+  #       "-I${prev.libxml2.dev}/include/libxml2"
+  #     ]);
+  # });
 
   #docset = inputs.nixos-dash-docset.packages."${prev.system}".docset;
 
