@@ -31,7 +31,7 @@
     zramSwap = {enable = false;};
 
     services.hardware.lcd.server = {
-      enable = true;
+      # enable = true;
       extraConfig = ''
         Driver=glcdlib
 

@@ -176,6 +176,13 @@
 
       clamav.daemon.settings.MaxThreads = 4;
 
+      "06cb-009a-fingerprint-sensor" = {
+        enable = true;
+        # backend = "python-validity";
+        backend = "libfprint-tod";
+        calib-data-file = ./calib-data.bin;
+      };
+
       udev = {
         enable = true;
         #extraRules = ''
