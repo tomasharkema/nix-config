@@ -106,9 +106,9 @@ in {
     services = {
       "06cb-009a-fingerprint-sensor" = {
         enable = true;
-        # backend = "python-validity";
-        backend = "libfprint-tod";
-        calib-data-file = ./calib-data.bin;
+        backend = lib.mkDefault "python3-validity";
+        # backend = "libfprint-tod";
+        # calib-data-file = ./calib-data.bin;
       };
 
       # tp-auto-kbbl.enable = true;

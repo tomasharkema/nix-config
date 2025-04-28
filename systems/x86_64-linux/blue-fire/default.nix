@@ -315,9 +315,9 @@ in {
     systemd = {
       watchdog = {
         device = "/dev/watchdog";
-        runtimeTime = "30s";
-        kexecTime = "5m";
-        rebootTime = "5m";
+        # runtimeTime = "30s";
+        # kexecTime = "5m";
+        # rebootTime = "5m";
       };
 
       mounts = [
