@@ -230,7 +230,7 @@ in {
       #   themes.base16.src = pkgs.writeText "base16.tmTheme" osConfig.variables.theme.tmTheme;
       # };
 
-      lsd.enable = true;
+      # lsd.enable = true;
       jq.enable = true;
       skim.enable = true;
 
