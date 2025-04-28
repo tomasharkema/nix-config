@@ -52,6 +52,7 @@ in {
     };
 
     systemd.services.xmm7360 = {
+      enable = false;
       description = "XMM7360 Modem Init";
       after = ["NetworkManager.service"];
       requires = ["multi-user.target" "systemd-user-sessions.service" "dev-ttyXMM2.device"];
