@@ -30,7 +30,7 @@ in {
 
     apps.podman.enable = true;
 
-    services = {
+    servicgpsdes = {
       hypervisor.enable = true;
       # "nix-private-cache".enable = true;
       # local-store.enable = true;
@@ -65,6 +65,20 @@ in {
           ];
         };
       };
+    };
+
+    systemd.sockets.gpsd = {
+      description = "GPS (Global Positioning System) Daemon Sockets";
+
+      listenStream = [
+        "/run/gpsd.sock"
+        "[::]:2947"
+        "0.0.0.0:2947"
+      ];
+      socketMode = 0600;
+      # BindIPv6Only=yes
+
+      wantedBy = ["sockets.target"];
     };
 
     virtualisation = {
