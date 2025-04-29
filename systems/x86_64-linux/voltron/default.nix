@@ -104,8 +104,8 @@
         # forceFullCompositionPipeline = true;
         modesetting.enable = true;
         prime = {
-          # sync.enable = true;
-          reverseSync.enable = true;
+          sync.enable = true;
+          # reverseSync.enable = true;
           # offload.enable = true;
           # offload.enableOffloadCmd = true;
           intelBusId = "PCI:0:2:0";
