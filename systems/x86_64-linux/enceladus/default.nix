@@ -30,7 +30,7 @@ in {
 
     apps.podman.enable = true;
 
-    servicgpsdes = {
+    services = {
       hypervisor.enable = true;
       # "nix-private-cache".enable = true;
       # local-store.enable = true;
