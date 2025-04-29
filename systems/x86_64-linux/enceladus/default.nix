@@ -75,9 +75,10 @@ in {
         "[::]:2947"
         "0.0.0.0:2947"
       ];
-      socketMode = 0600;
-      # BindIPv6Only=yes
-
+      socketConfig = {
+        SocketMode = 0600;
+        # BindIPv6Only=yes
+      };
       wantedBy = ["sockets.target"];
     };
 
