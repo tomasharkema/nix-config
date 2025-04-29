@@ -18,11 +18,7 @@
     </interface>
   '';
   pingScript = pkgs.writeShellScript "waybar-ping" ''
-    #!/bin/bash
-
-    ping -q -w 3 -c 1 1.1.1.1 | ${lib.getExe pkgs.jc} --ping | ${lib.getExe pkgs.jq} '.round_trip_ms_avg' --unbuffered --compact-output \
-      && echo '{"text":"$round_trip_ms_avg","class":"connected","percentage":100}' \
-      || echo '{"text":"Disconnected","class":"disconnected","percentage":0}'
+    ping -q -w 3 -c 1 1.1.1.1 | ${lib.getExe pkgs.jc} --ping | ${lib.getExe pkgs.jq} '.round_trip_ms_avg' --unbuffered --compact-output
   '';
 in [
   {
@@ -95,7 +91,7 @@ in [
       "format-ethernet" = " {bandwidthDownBits}  {bandwidthUpBits} ";
       "format-linked" = "(No IP)";
       "format-disconnected" = "";
-      "on-click" = "alacritty -e nmtui";
+      "on-click" = "kitty -e nmtui";
       "tooltip" = false;
       "interval" = 5;
     };
@@ -229,23 +225,10 @@ in [
       };
       "on-click" = "pavucontrol";
     };
-    "custom/media" = {
-      "format" = "{icon} {}";
-      "return-type" = "json";
-      "max-length" = 40;
-      "format-icons" = {
-        "spotify" = "";
-        "default" = "🎜";
-      };
-      "escape" = true;
-      "exec" = "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"; # // Script in resources folder
-      # // "exec"= "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    };
-
     "custom/network" = {
       "exec" = pingScript;
       "interval" = 5;
-      "format" = "{}";
+      "format" = "{text} ms";
       "tooltip" = false;
     };
 
@@ -273,7 +256,7 @@ in [
     };
     "custom/lock" = {
       "tooltip" = false;
-      # "on-click" = "hyprlock &";
+      "on-click" = "hyprlock &";
       "format" = "";
     };
     # "backlight" = {
