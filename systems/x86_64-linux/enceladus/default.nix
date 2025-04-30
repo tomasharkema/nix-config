@@ -68,18 +68,12 @@ in {
     };
 
     systemd.sockets.gpsd = {
-      description = "GPS (Global Positioning System) Daemon Sockets";
-
       listenStreams = [
         "/run/gpsd.sock"
+        "/var/run/gpsd.sock"
         "[::]:2947"
         "0.0.0.0:2947"
       ];
-      socketConfig = {
-        SocketMode = 0600;
-        # BindIPv6Only=yes
-      };
-      wantedBy = ["sockets.target"];
     };
 
     virtualisation = {
