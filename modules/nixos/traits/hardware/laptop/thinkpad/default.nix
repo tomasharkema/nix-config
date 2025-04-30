@@ -165,62 +165,62 @@ in {
     # };
 
     security.pam.services = {
-      # "gdm-fingerprint" = {
-      #   # enableGnomeKeyring = true;
-      #   # fprintAuth = true;
-      #   fprintAuth = false;
-      # };
-      # xscreensaver = {
-      #   # enableGnomeKeyring = true;
+      "gdm-fingerprint" = {
+        # enableGnomeKeyring = true;
+        # fprintAuth = true;
+        fprintAuth = false;
+      };
+      xscreensaver = {
+        # enableGnomeKeyring = true;
+        fprintAuth = true;
+      };
+      "runuser" = {
+        # enableGnomeKeyring = true;
+        fprintAuth = true;
+      };
+      "runuser-l" = {
+        # enableGnomeKeyring = true;
+        fprintAuth = true;
+      };
+      su = {
+        # enableGnomeKeyring = true;
+        fprintAuth = true;
+      };
+      "polkit-1" = {
+        # enableGnomeKeyring = true;
+        fprintAuth = true;
+      };
+      # passwd = {
       #   fprintAuth = true;
       # };
-      # "runuser" = {
-      #   # enableGnomeKeyring = true;
-      #   fprintAuth = true;
-      # };
-      # "runuser-l" = {
-      #   # enableGnomeKeyring = true;
-      #   fprintAuth = true;
-      # };
-      # su = {
-      #   # enableGnomeKeyring = true;
-      #   fprintAuth = true;
-      # };
-      # "polkit-1" = {
-      #   # enableGnomeKeyring = true;
-      #   fprintAuth = true;
-      # };
-      # # passwd = {
-      # #   fprintAuth = true;
-      # # };
-      # "systemd-user" = {
-      #   # enableGnomeKeyring = true;
-      #   fprintAuth = true;
-      # };
-      # sudo = {
-      #   # enableGnomeKeyring = true;
-      #   fprintAuth = true;
-      # };
-      # auth = {
-      #   # enableGnomeKeyring = true;
-      #   fprintAuth = true;
-      # };
-      # login = {
-      #   # enableGnomeKeyring = true;
-      #   fprintAuth = true;
-      # };
-      # vlock = {
-      #   # enableGnomeKeyring = true;
-      #   fprintAuth = true;
-      # };
-      # "xscreenserver" = {
-      #   # enableGnomeKeyring = true;
-      #   fprintAuth = true;
-      # };
-      # xlock = {
-      #   # enableGnomeKeyring = true;
-      #   fprintAuth = true;
-      # };
+      "systemd-user" = {
+        # enableGnomeKeyring = true;
+        fprintAuth = true;
+      };
+      sudo = {
+        # enableGnomeKeyring = true;
+        fprintAuth = true;
+      };
+      auth = {
+        # enableGnomeKeyring = true;
+        fprintAuth = true;
+      };
+      login = {
+        # enableGnomeKeyring = true;
+        fprintAuth = true;
+      };
+      vlock = {
+        # enableGnomeKeyring = true;
+        fprintAuth = true;
+      };
+      "xscreenserver" = {
+        # enableGnomeKeyring = true;
+        fprintAuth = true;
+      };
+      xlock = {
+        # enableGnomeKeyring = true;
+        fprintAuth = true;
+      };
       passwd.enableGnomeKeyring = true;
     };
   };
