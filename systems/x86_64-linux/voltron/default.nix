@@ -65,7 +65,7 @@
         custom.distrib-dl
         # davinci-resolve
         # handbrake
-
+        davinci-resolve
         keybase-gui
         # calibre
         glxinfo
