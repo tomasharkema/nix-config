@@ -4,9 +4,7 @@
   inputs,
   config,
   ...
-}: let
-  workerPort = "9988";
-in {
+}: {
   config = {
     age = {
       rekey = {
@@ -37,7 +35,7 @@ in {
       snapper.enable = false;
       # btrbk.enable = true;
     };
-    # zramSwap.enable = false;
+    zramSwap.enable = false;
     traits = {
       server = {
         enable = true;
@@ -98,8 +96,9 @@ in {
       };
       # mosh.enable = true;
       # xserver.videoDrivers = ["nvidia"];
-      # zram-generator.enable = false;
+      zram-generator.enable = false;
       # "nix-private-cache".enable = true;
+
       nfs = {
         server = {
           enable = true;
@@ -108,7 +107,8 @@ in {
           '';
         };
       };
-      healthchecks = lib.mkIf false {
+
+      healthchecks = {
         enable = true;
         listenAddress = "0.0.0.0";
 
@@ -127,7 +127,9 @@ in {
           EMAIL_USE_TLS = "False";
         };
       };
+
       mosquitto.enable = true;
+
       udev.extraRules = ''
         SUBSYSTEM=="ipmi", GROUP="ipmi", MODE="0777"
       '';
@@ -136,18 +138,21 @@ in {
       # tcsd.enable = true;
 
       throttled.enable = lib.mkForce false;
+
       plex = {
         enable = true;
 
         dataDir = "/srv/plex/library";
         accelerationDevices = ["*"];
       };
+
       tsnsrv = {
         enable = true;
         defaults.authKeyPath = config.age.secrets.tsnsrv.path;
         services = {
           nix-cache = {toURL = "http://127.0.0.1:7124";};
           searxng = {toURL = "http://127.0.0.1:8088";};
+          healthchecks = {toURL = "http://127.0.0.1:8000";};
         };
       };
 
@@ -181,33 +186,29 @@ in {
         # snmp.enable = true;
       };
 
-      #   rsyslogd = {
-      #     enable = true;
-      #     extraConfig = ''
-      #       $ModLoad imudp
+      rsyslogd = {
+        enable = true;
+        extraConfig = ''
+          $ModLoad imudp
 
-      #       $RuleSet remote
-      #       # Modify the following template according to the devices on which you want to
-      #       # store logs. Change the IP address and subdirectory name on each
-      #       # line. Add or remove "else if" lines according to the number of your
-      #       # devices.
-      #       if $fromhost-ip=='10.20.30.40' then /var/log/remote/spineswitch1/console.log
-      #       else if $fromhost-ip=='10.20.30.41' then /var/log/remote/leafswitch1/console.log
-      #       else if $fromhost-ip=='10.20.30.42' then /var/log/remote/leafswitch2/console.log
-      #       else /var/log/remote/other/console.log
-      #       & stop
+          $RuleSet remote
+          # Modify the following template according to the devices on which you want to
+          # store logs. Change the IP address and subdirectory name on each
+          # line. Add or remove "else if" lines according to the number of your
+          # devices.
+          if $fromhost-ip=='10.20.30.40' then /var/log/remote/spineswitch1/console.log
+          else if $fromhost-ip=='10.20.30.41' then /var/log/remote/leafswitch1/console.log
+          else if $fromhost-ip=='10.20.30.42' then /var/log/remote/leafswitch2/console.log
+          else /var/log/remote/other/console.log
+          & stop
 
-      #       $InputUDPServerBindRuleset remote
-      #       $UDPServerRun 6666
+          $InpuUDPServerBindRuleset remote
+          $UDPServerRun 6666
 
-      #       $RuleSet RSYSLOG_DefaultRuleset
+          $RuleSet RSYSLOG_DefaultRuleset
 
-      #     '';
-      #   };
-    };
-
-    systemd = {
-      # services."docker-compose@atuin".wantedBy = ["multi-user.target"];
+        '';
+      };
     };
 
     networking = {
