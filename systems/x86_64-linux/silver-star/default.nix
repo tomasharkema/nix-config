@@ -108,7 +108,7 @@
         };
       };
 
-      healthchecks = {
+      healthchecks = lib.mkIf false {
         enable = true;
         listenAddress = "0.0.0.0";
 
@@ -152,7 +152,7 @@
         services = {
           nix-cache = {toURL = "http://127.0.0.1:7124";};
           searxng = {toURL = "http://127.0.0.1:8088";};
-          healthchecks = {toURL = "http://127.0.0.1:8000";};
+          # healthchecks = {toURL = "http://127.0.0.1:8000";};
         };
       };
 
@@ -433,7 +433,7 @@
         "console=ttyS1,115200n8"
         # "intremap=no_x2apic_optout"
         # "nox2apic"
-        "iomem=relaxed"
+        # "iomem=relaxed"
         "intel_iommu=on"
         "iommu=pt"
         "ipmi_watchdog.timeout=180"

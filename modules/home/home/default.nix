@@ -159,6 +159,7 @@ in {
     catppuccin = {
       vscode.enable = false;
       cache.enable = false;
+      mako.enable = false;
     };
     fonts.fontconfig.enable = true;
 
