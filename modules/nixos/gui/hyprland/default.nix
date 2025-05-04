@@ -80,7 +80,10 @@
           settings = import ./waybar.nix {inherit pkgs;};
         };
       };
-      catppuccin.swaync.font = "B612";
+      catppuccin = {
+        swaync.font = "B612";
+        mako.enable = false;
+      };
       services = {
         swaync = {
           enable = true;
