@@ -219,7 +219,10 @@ in {
       ];
 
       # sessionVariables.MOZ_ENABLE_WAYLAND = "0";
-      enableAllTerminfo = pkgs.stdenv.isx86_64;
+
+      variables.NH_FLAKE = "/home/tomas/Developer/nix-config";
+
+      enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
           lnav
