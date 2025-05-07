@@ -193,8 +193,8 @@ in {
           # rtfm
           spot
           sqlitebrowser
-          sublime-merge
-          sublime4
+          # sublime-merge
+          # sublime4
           transmission-remote-gtk
           tremotesf
           ulauncher
