@@ -18,7 +18,7 @@
     </interface>
   '';
   pingScript = pkgs.writeShellScript "waybar-ping" ''
-    ping -q -w 3 -c 1 1.1.1.1 | ${lib.getExe pkgs.jc} --ping | ${lib.getExe pkgs.jq} '.round_trip_ms_avg' --unbuffered --compact-output
+    ping -q -w 3 -c 1 1.1.1.1 | ${lib.getExe pkgs.jc} --ping | ${lib.getExe pkgs.jq} '.round_trip_ms_avg | round' --unbuffered --compact-output
   '';
 in [
   {
