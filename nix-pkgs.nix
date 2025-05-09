@@ -6,9 +6,10 @@
 }: {
   config = {
     environment.systemPackages =
-      (lib.optionals pkgs.stdenv.isx86_64 [
+      (lib.optionals pkgs.stdenv.isx86_64 (with pkgs; [
         # nix-doc
-      ])
+        wol
+      ]))
       ++ (with pkgs; [
         caligula
         python3Packages.uv
@@ -17,7 +18,6 @@
         gcc
         platformio-core
         gcc-arm-embedded
-        wol
         tio
         picotool
         nix-init
