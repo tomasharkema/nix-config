@@ -79,6 +79,9 @@ in {
       noti
       ghex
       imsprog
+      gphoto2
+      gphoto2fs
+      gphotos-sync
       (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
     ];
   };
