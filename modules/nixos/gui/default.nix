@@ -27,6 +27,8 @@ in {
       gnome.enable = lib.mkDefault true;
     };
 
+    users.users.tomas.extraGroups = ["camera"];
+
     apps.flatpak.enable = lib.mkDefault true;
 
     services = {
@@ -46,7 +48,10 @@ in {
       usbStorage.manageShutdown = true;
     };
 
-    programs.nm-applet.enable = true;
+    programs = {
+      gphoto2.enable = true;
+      nm-applet.enable = true;
+    };
 
     boot = {
       kernelParams = [
