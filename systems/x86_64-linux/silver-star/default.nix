@@ -391,7 +391,7 @@
           autoStart = true;
         };
 
-        fastapi-dls = {
+        fastapi-dls = lib.mkIf false {
           image = "collinwebdesigns/fastapi-dls";
 
           volumes = [
