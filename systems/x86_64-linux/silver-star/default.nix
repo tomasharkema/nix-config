@@ -14,11 +14,11 @@
         tsnsrv = {
           rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
         };
-        "healthchecks" = {
-          rekeyFile = ./healthchecks.age;
-          group = "healthchecks";
-          owner = "healthchecks";
-        };
+        # "healthchecks" = {
+        #   rekeyFile = ./healthchecks.age;
+        #   group = "healthchecks";
+        #   owner = "healthchecks";
+        # };
       };
     };
 
