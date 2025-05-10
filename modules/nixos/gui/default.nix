@@ -39,19 +39,40 @@ in {
       mopidy.enable = true;
       playerctld.enable = true;
       displayManager.defaultSession = "hyprland";
+      g810-led = {
+        enable = true;
+        profile = ''
+          # G810-LED Profile (turn all keys on)
 
-      udev.packages = with pkgs; [imsprog];
+          # Set all keys on
+          a ffffff
+
+          c";
+        '';
+      };
+      # automatic-timezoned.enable = true;
+      udev.packages = with pkgs; [imsprog logitech-udev-rules];
     };
 
     hardware = {
       sensor.iio.enable = true;
       usbStorage.manageShutdown = true;
+      logitech = {
+        enable = true;
+        enableGraphical = true;
+        wireless = {
+          enable = true;
+          enableGraphical = true;
+        };
+      };
     };
 
     programs = {
       gphoto2.enable = true;
       nm-applet.enable = true;
     };
+
+    # systemd = {enableEmergencyMode = lib.mkDefault true;};
 
     boot = {
       kernelParams = [
@@ -78,11 +99,14 @@ in {
       chromium
       noti
       ghex
+      solaar
+      solana-cli
       imsprog
       gphoto2
       gphoto2fs
       gphotos-sync
       blueberry
+      custom.spi-tools
       (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
     ];
   };

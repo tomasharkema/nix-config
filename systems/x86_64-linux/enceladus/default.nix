@@ -41,7 +41,7 @@ in {
         enable = true;
         devices = lib.mkForce ["/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A50285BI-if00-port0"];
         listenany = true;
-        # debugLevel = 5;
+        debugLevel = 5;
         readonly = false;
       };
       udev = {

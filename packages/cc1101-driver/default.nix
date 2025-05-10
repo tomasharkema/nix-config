@@ -34,6 +34,7 @@ in
       runHook preInstall
 
       install -D cc1101.ko $out/lib/modules/${kernel.modDirVersion}/updates/cc1101.ko
+      install -D cc1101.dts $out/lib/overlays/cc1101.dts
 
       runHook postInstall
     '';

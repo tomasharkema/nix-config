@@ -165,6 +165,14 @@
       };
     };
 
+    users = {
+      groups = {
+        spi = {};
+        gpio = {};
+      };
+      users.tomas.extraGroups = ["spi" "gpio"];
+    };
+
     services = {
       #  kmscon.enable = true;
       ratbagd.enable = true;
@@ -185,9 +193,13 @@
 
       udev = {
         enable = true;
-        #extraRules = ''
-        #  `SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="aa:bb:cc:dd:ee:ff", NAME="net1`
-        #'';
+        extraRules = ''
+          SUBSYSTEM=="spidev", KERNEL=="spidev0.0", GROUP="spi", MODE="0660"
+
+          SUBSYSTEM=="gpio", KERNEL=="gpiochip*", ACTION=="add", RUN+="${pkgs.bash}/bin/bash -c 'chown root:gpio /sys/class/gpio/export /sys/class/gpio/unexport ; chmod 220 /sys/class/gpio/export /sys/class/gpio/unexport'"
+          SUBSYSTEM=="gpio", KERNEL=="gpio*", ACTION=="add",RUN+="${pkgs.bash}/bin/bash -c 'chown root:gpio /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value ; chmod 660 /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value'"
+
+        '';
         packages = with pkgs; [
           heimdall-gui
           libusb1
@@ -261,6 +273,19 @@
     };
 
     system.build.cc1101-driver = pkgs.custom.cc1101-driver.override {kernel = config.boot.kernelPackages.kernel;};
+
+    # hardware = {
+    #   deviceTree = {
+    #     # enable = true;
+
+    #     overlays = [
+    #       {
+    #         name = "cc1101";
+    #         dtsFile = "${pkgs.custom.cc1101-driver}/lib/overlays/cc1101.dts";
+    #       }
+    #     ];
+    #   };
+    # };
 
     boot = {
       tmp = {

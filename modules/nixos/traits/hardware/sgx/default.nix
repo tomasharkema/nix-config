@@ -14,7 +14,7 @@ in {
     hardware.cpu.intel.sgx = {
       enableDcapCompat = true;
       provision = {
-        enable = true;
+        # enable = true;
       };
     };
 
@@ -35,8 +35,8 @@ in {
     ];
 
     # boot = {
-    #   kernelModules = [ "isgx" ];
-    #   initrd.kernelModules = [ "isgx" ];
+    #   kernelModules = ["isgx"];
+    #   initrd.kernelModules = ["isgx"];
     # };
   };
 }

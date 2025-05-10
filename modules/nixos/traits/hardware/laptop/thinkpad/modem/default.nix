@@ -67,7 +67,11 @@ in {
         "iosm"
       ];
     };
+    hardware = {
+      usb-modeswitch.enable = true;
 
+      usbWwan.enable = true;
+    };
     systemd.services.xmm7360 = {
       # enable = false;
       description = "XMM7360 Modem Init";

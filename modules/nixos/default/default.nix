@@ -77,13 +77,6 @@ in {
       };
     };
 
-    # system = {
-    #   switch = {
-    #     enable = true; #false;
-    #     enableNg = false; #true;
-    #   };
-    # };
-
     virtualisation.spiceUSBRedirection.enable = true;
 
     # zramSwap = {
@@ -108,19 +101,8 @@ in {
           #   })
         ];
       };
-      crashDump.enable = pkgs.stdenv.isx86_64; # true;
 
-      # kernelPatches = [
-      #   {
-      #     name = "tft";
-      #     patch = null;
-      #     extraStructuredConf = with lib.kernel; {
-      #       STAGING = yes;
-      #       FB_TFT = yes;
-      #       TFT_SH1106 = yes;
-      #     };
-      #   }
-      # ];
+      crashDump.enable = pkgs.stdenv.isx86_64; # true;
 
       initrd = {
         compressor = "zstd";
@@ -181,7 +163,7 @@ in {
 
       supportedFilesystems = [
         "ntfs"
-        "apfs"
+        # "apfs"
         "nfs"
       ];
       initrd.kernelModules = [
@@ -451,8 +433,6 @@ in {
 
     # proxy-services.enable = lib.mkDefault true;
 
-    # systemd = {enableEmergencyMode = lib.mkDefault true;};
-
     services = {
       scx = {
         enable = !(config.traits.server.enable) && pkgs.stdenvNoCC.isx86_64;
@@ -507,7 +487,7 @@ in {
 
       preload.enable = true;
 
-      actkbd.enable = lib.mkForce false;
+      # actkbd.enable = lib.mkForce false;
 
       ananicy = {
         enable = true;
@@ -719,7 +699,7 @@ in {
       ydotool.enable = true;
 
       system-config-printer.enable = true;
-      # corefreq.enable = true;
+      corefreq.enable = true;
 
       htop = {
         enable = true;
@@ -758,6 +738,7 @@ in {
         drives = ["/dev/disk/by-path/*"];
       };
       libftdi.enable = true;
+      mcelog.enable = true;
     };
     networking = {
       firewall = {
@@ -765,7 +746,7 @@ in {
       };
 
       networkmanager.enable = lib.mkDefault true;
-      timeServers = ["time.cloudflare.com"];
+      # timeServers = ["time.cloudflare.com"];
 
       useNetworkd = lib.mkIf config.networking.networkmanager.enable false;
     };
