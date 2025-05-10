@@ -82,6 +82,7 @@ in {
       gphoto2
       gphoto2fs
       gphotos-sync
+      blueberry
       (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
     ];
   };
