@@ -126,7 +126,7 @@ in {
         compressor = "zstd";
         compressorArgs = ["-19"];
         # systemd.emergencyAccess = "abcdefg";
-        #includeDefaultModules = true;
+        includeDefaultModules = true;
         # unl0kr = {enable = config.disks.btrfs.encrypt;};
       };
 
@@ -134,10 +134,13 @@ in {
 
       extraModulePackages = [
         config.system.build.pico-rng
+        config.boot.kernelPackages.cryptodev
+        config.boot.kernelPackages.acpi_call
+        config.boot.kernelPackages.fanout
       ];
 
       kernelParams = [
-        # "zswap.enabled=1"
+        "zswap.enabled=1"
         "efi_pstore.pstore_disable=0"
         "printk.always_kmsg_dump"
         "crash_kexec_post_notifiers"
@@ -178,7 +181,7 @@ in {
 
       supportedFilesystems = [
         "ntfs"
-        # "apfs"
+        "apfs"
         "nfs"
       ];
       initrd.kernelModules = [
@@ -230,7 +233,7 @@ in {
           termshark
           tshark
           python3Packages.pip
-          #micropython
+          micropython
           config.boot.kernelPackages.iio-utils
           cutecom
           sbctl-tpm
@@ -649,6 +652,15 @@ in {
       udev = {
         enable = lib.mkDefault true;
         packages = with pkgs; [picoprobe-udev-rules];
+
+        extraRules = ''
+          ACTION=="add", SUBSYSTEM=="usb", \
+            ATTR{idVendor}=="1d50", ATTR{idProduct}=="6170", \
+            RUN+="${pkgs.kmod}/bin/modprobe -b dln2"
+
+          ACTION=="add", SUBSYSTEM=="drivers", ENV{DEVPATH}=="/bus/usb/drivers/dln2", \
+            ATTR{new_id}="1d50 6170 ff"
+        '';
       };
       ntp = {
         enable = true;

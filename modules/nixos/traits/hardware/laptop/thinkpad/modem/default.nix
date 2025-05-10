@@ -23,8 +23,24 @@
     BIN_DIR=/run/current-system/sw/bin
   '';
   xmm7360 = pkgs.custom.xmm7360-pci.override {kernel = config.boot.kernelPackages.kernel;};
+  xmm7360-reset = pkgs.writeShellScriptBin "xmm7360-reset" ''
+
+    if [ $UID != 0 ] ; then
+      echo "please run as root"
+      exit 1
+    fi
+
+    ${pkgs.kmod}/bin/rmmod xmm7360
+    dd if=/sys/bus/pci/devices/0000:03:00.0/config of=/tmp/xmm_cfg bs=256 count=1 status=none
+    ${pkgs.kmod}/bin/modprobe acpi_call
+    echo '\_SB.PCI0.RP07.PXSX._RST' | tee /proc/acpi/call
+    sleep 1
+    dd of=/sys/bus/pci/devices/0000:03:00.0/config if=/tmp/xmm_cfg bs=256 count=1 status=none
+  '';
 in {
   config = lib.mkIf cfg.enable {
+    system.build.xmm7360 = xmm7360;
+
     environment = {
       etc = {
         "xmm7360".source = settingsFile;
@@ -32,8 +48,9 @@ in {
 
       systemPackages = with pkgs; [
         custom.xmmctl
-        xmm7360
+        config.system.build.xmm7360
         custom.xmm2usb
+        xmm7360-reset
       ];
     };
 

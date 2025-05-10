@@ -254,11 +254,13 @@
 
     programs = {
       adb.enable = true;
-      # captive-browser = {
-      #   enable = true;
-      #   interface = "wlp4s0";
-      # };
+      captive-browser = {
+        enable = true;
+        interface = "wlp4s0";
+      };
     };
+
+    system.build.cc1101-driver = pkgs.custom.cc1101-driver.override {kernel = config.boot.kernelPackages.kernel;};
 
     boot = {
       tmp = {
@@ -273,7 +275,9 @@
       };
 
       binfmt.emulatedSystems = ["aarch64-linux"];
-
+      extraModulePackages = [
+        config.system.build.cc1101-driver
+      ];
       # modprobeConfig.enable = true;
       supportedFilesystems = ["ext2" "ext3" "ext4"];
       kernelParams = [
