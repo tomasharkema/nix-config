@@ -1898,7 +1898,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.14.4-cachyos xhci-hcd",
+          "name": "Linux 6.14.5-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1912,7 +1912,7 @@
           "value": 0
         },
         "serial": "0000:3f:00.0",
-        "model": "Linux 6.14.4-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.14.5-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0/0000:08:02.0/0000:3f:00.0/usb3/3-0:1.0",
         "sysfs_bus_id": "3-0:1.0",
         "resources": [
@@ -1981,7 +1981,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.14.4-cachyos xhci-hcd",
+          "name": "Linux 6.14.5-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1995,7 +1995,7 @@
           "value": 0
         },
         "serial": "0000:3f:00.0",
-        "model": "Linux 6.14.4-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.14.5-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0/0000:08:02.0/0000:3f:00.0/usb4/4-0:1.0",
         "sysfs_bus_id": "4-0:1.0",
         "detail": {
@@ -2054,7 +2054,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.14.4-cachyos xhci-hcd",
+          "name": "Linux 6.14.5-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2068,7 +2068,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.14.4-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.14.5-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -2137,7 +2137,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.14.4-cachyos xhci-hcd",
+          "name": "Linux 6.14.5-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2151,7 +2151,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.14.4-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.14.5-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -2423,7 +2423,7 @@
         "module_alias": "usb:v0EEFpC0ADd4502dc00dsc00dp00ic03isc01ip02in00"
       },
       {
-        "index": 58,
+        "index": 59,
         "attached_to": 0,
         "bus_type": {
           "hex": "0008",
@@ -2456,6 +2456,104 @@
       }
     ],
     "network_controller": [
+      {
+        "index": 12,
+        "attached_to": 33,
+        "class_list": [
+          "network_controller",
+          "pci",
+          "unknown"
+        ],
+        "bus_type": {
+          "hex": "0004",
+          "name": "PCI",
+          "value": 4
+        },
+        "slot": {
+          "bus": 3,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "000d",
+          "name": "Wireless controller",
+          "value": 13
+        },
+        "sub_class": {
+          "hex": "0040",
+          "value": 64
+        },
+        "vendor": {
+          "hex": "8086",
+          "name": "Intel Corporation",
+          "value": 32902
+        },
+        "sub_vendor": {
+          "hex": "8086",
+          "name": "Intel Corporation",
+          "value": 32902
+        },
+        "device": {
+          "hex": "7360",
+          "value": 29536
+        },
+        "sub_device": {
+          "hex": "0020",
+          "value": 32
+        },
+        "revision": {
+          "hex": "0001",
+          "value": 1
+        },
+        "model": "Intel Wireless controller",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1c.4/0000:03:00.0",
+        "sysfs_bus_id": "0000:03:00.0",
+        "sysfs_iommu_group_id": 12,
+        "unix_device_name": "wwan0",
+        "unix_device_names": [
+          "wwan0"
+        ],
+        "resources": [
+          {
+            "type": "irq",
+            "base": 153,
+            "triggered": 0,
+            "enabled": true
+          },
+          {
+            "type": "mem",
+            "base": 3709861888,
+            "range": 4096,
+            "enabled": true,
+            "access": "read_write",
+            "prefetch": "no"
+          },
+          {
+            "type": "mem",
+            "base": 3709865984,
+            "range": 1024,
+            "enabled": true,
+            "access": "read_write",
+            "prefetch": "no"
+          }
+        ],
+        "detail": {
+          "function": 0,
+          "command": 1030,
+          "header_type": 0,
+          "secondary_bus": 0,
+          "irq": 153,
+          "prog_if": 0
+        },
+        "driver": "xmm7360",
+        "driver_module": "xmm7360",
+        "drivers": [
+          "xmm7360"
+        ],
+        "driver_modules": [
+          "xmm7360"
+        ],
+        "module_alias": "pci:v00008086d00007360sv00008086sd00000020bc0Dsc40i00"
+      },
       {
         "index": 32,
         "attached_to": 0,
@@ -2518,7 +2616,7 @@
           },
           {
             "type": "irq",
-            "base": 154,
+            "base": 172,
             "triggered": 0,
             "enabled": true
           },
@@ -2540,7 +2638,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 154,
+          "irq": 172,
           "prog_if": 0
         },
         "driver": "e1000e",
@@ -2617,7 +2715,7 @@
           },
           {
             "type": "irq",
-            "base": 172,
+            "base": 171,
             "triggered": 0,
             "enabled": true
           },
@@ -2722,7 +2820,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 172,
+          "irq": 171,
           "prog_if": 0
         },
         "driver": "iwlwifi",
@@ -2738,7 +2836,7 @@
     ],
     "network_interface": [
       {
-        "index": 55,
+        "index": 54,
         "attached_to": 32,
         "class_list": [
           "network_interface"
@@ -2780,7 +2878,62 @@
         ]
       },
       {
-        "index": 56,
+        "index": 55,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_name": "lo",
+        "unix_device_names": [
+          "lo"
+        ]
+      },
+      {
+        "index": 57,
+        "attached_to": 12,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0080",
+          "name": "Network Interface",
+          "value": 128
+        },
+        "model": "Network Interface",
+        "sysfs_id": "/class/net/wwan0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.4/0000:03:00.0",
+        "unix_device_name": "wwan0",
+        "unix_device_names": [
+          "wwan0"
+        ],
+        "driver": "xmm7360",
+        "driver_module": "xmm7360",
+        "drivers": [
+          "xmm7360"
+        ],
+        "driver_modules": [
+          "xmm7360"
+        ]
+      },
+      {
+        "index": 58,
         "attached_to": 34,
         "class_list": [
           "network_interface"
@@ -2820,117 +2973,9 @@
         "driver_modules": [
           "iwlwifi"
         ]
-      },
-      {
-        "index": 57,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_name": "lo",
-        "unix_device_names": [
-          "lo"
-        ]
       }
     ],
     "pci": [
-      {
-        "index": 12,
-        "attached_to": 33,
-        "class_list": [
-          "pci",
-          "unknown"
-        ],
-        "bus_type": {
-          "hex": "0004",
-          "name": "PCI",
-          "value": 4
-        },
-        "slot": {
-          "bus": 3,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "000d",
-          "name": "Wireless controller",
-          "value": 13
-        },
-        "sub_class": {
-          "hex": "0040",
-          "value": 64
-        },
-        "vendor": {
-          "hex": "8086",
-          "name": "Intel Corporation",
-          "value": 32902
-        },
-        "sub_vendor": {
-          "hex": "8086",
-          "name": "Intel Corporation",
-          "value": 32902
-        },
-        "device": {
-          "hex": "7360",
-          "value": 29536
-        },
-        "sub_device": {
-          "hex": "0020",
-          "value": 32
-        },
-        "revision": {
-          "hex": "0001",
-          "value": 1
-        },
-        "model": "Intel Wireless controller",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1c.4/0000:03:00.0",
-        "sysfs_bus_id": "0000:03:00.0",
-        "sysfs_iommu_group_id": 12,
-        "resources": [
-          {
-            "type": "irq",
-            "base": 16,
-            "triggered": 0,
-            "enabled": true
-          },
-          {
-            "type": "mem",
-            "base": 3709861888,
-            "range": 4096,
-            "enabled": true,
-            "access": "read_write",
-            "prefetch": "no"
-          },
-          {
-            "type": "mem",
-            "base": 3709865984,
-            "range": 1024,
-            "enabled": true,
-            "access": "read_write",
-            "prefetch": "no"
-          }
-        ],
-        "detail": {
-          "function": 0,
-          "command": 2,
-          "header_type": 0,
-          "secondary_bus": 0,
-          "irq": 16,
-          "prog_if": 0
-        },
-        "module_alias": "pci:v00008086d00007360sv00008086sd00000020bc0Dsc40i00"
-      },
       {
         "index": 13,
         "attached_to": 0,
