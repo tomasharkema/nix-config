@@ -215,7 +215,6 @@ in {
           termshark
           tshark
           python3Packages.pip
-          micropython
           config.boot.kernelPackages.iio-utils
           cutecom
           sbctl-tpm
@@ -410,7 +409,7 @@ in {
             cmospwd
             uefisettings
             libsmbios
-
+            micropython
             dmidecode
             refind
           ]

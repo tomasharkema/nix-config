@@ -17,8 +17,6 @@ in {
   config = lib.mkIf cfg.enable {
     apps.podman.enable = true;
 
-    systemd.tmpfiles.rules = ["d ${cfg.folder} 0777 root root -"];
-
     services.tsnsrv.services = {
       hass = {
         toURL = "http://127.0.0.1:8123";
