@@ -89,15 +89,11 @@ in {
       auditd.enable = lib.mkForce false;
     };
 
-    programs = {
-      atop.enable = lib.mkForce false;
-    };
-
     services = {
       locate.enable = lib.mkForce false;
       fwupd.enable = lib.mkForce false;
       smartd.enable = lib.mkForce false;
-      beszel.enable = lib.mkForce false;
+
       keybase = {
         enable = lib.mkForce true;
       };
