@@ -114,7 +114,7 @@ in {
 
       hardwareScan = true;
 
-      extraModulePackages = [
+      extraModulePackages = lib.mkIf pkgs.stdenv.isx86_64 [
         config.system.build.pico-rng
         config.boot.kernelPackages.cryptodev
         config.boot.kernelPackages.acpi_call
@@ -698,7 +698,7 @@ in {
       ydotool.enable = true;
 
       system-config-printer.enable = true;
-      corefreq.enable = true;
+      corefreq.enable = pkgs.stdenv.isx86_64;
 
       htop = {
         enable = true;

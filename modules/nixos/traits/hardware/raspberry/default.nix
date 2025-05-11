@@ -4,9 +4,9 @@
   lib,
   ...
 }: let
-  cfg = config.traits.raspberry;
+  cfg = config.traits.hardware.raspberry;
 in {
-  options.traits.raspberry = {
+  options.traits.hardware.raspberry = {
     enable = lib.mkEnableOption "SnowflakeOS GNOME configuration";
   };
 
@@ -59,6 +59,8 @@ in {
         "console=ttyS0,115200n8"
         "console=ttyS1,115200n8"
       ];
+
+      kernelPackages = pkgs.linuxPackages;
 
       consoleLogLevel = lib.mkDefault 7;
 

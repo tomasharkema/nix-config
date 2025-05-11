@@ -43,7 +43,7 @@
     };
 
     traits = {
-      raspberry.enable = true;
+      hardware.raspberry.enable = true;
       low-power.enable = true;
       hardware.bluetooth.enable = true;
     };
