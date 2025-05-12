@@ -199,7 +199,7 @@ in {
           tremotesf
           ulauncher
           usbview
-          ventoy-full
+          # ventoy-full
           vsce
           vte-gtk4
           xdg-utils
