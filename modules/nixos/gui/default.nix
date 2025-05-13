@@ -57,6 +57,7 @@ in {
     hardware = {
       sensor.iio.enable = true;
       usbStorage.manageShutdown = true;
+      flipperzero.enable = true;
       logitech = {
         enable = true;
         enableGraphical = true;
@@ -107,6 +108,7 @@ in {
       gphotos-sync
       blueberry
       custom.spi-tools
+      qFlipper
       (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
     ];
   };
