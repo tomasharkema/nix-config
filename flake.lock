@@ -1624,11 +1624,11 @@
         "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1747083534,
-        "narHash": "sha256-r88FEbKX1HLTovPFt1QHxzZDV7D4TGHhYlJcHmK7hYk=",
+        "lastModified": 1747171847,
+        "narHash": "sha256-KZ04peb/fGhpdLVXzAOsIWHMyvolQq0Kn7VA+NSHWVo=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "ff0ccdf572ad6700a2a29a82cc5d17db29708988",
+        "rev": "d385972711e9a9a3e7f5e556dd44785c3e2fd4f6",
         "type": "github"
       },
       "original": {

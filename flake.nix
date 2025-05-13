@@ -22,9 +22,9 @@
         nvidia.acceptLicense = true;
         cudaSupport = true;
 
-        # allowAliases = true;
+        allowAliases = true;
 
-        # config.allowAliases = true;
+        config.allowAliases = true;
 
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
@@ -270,6 +270,7 @@
               "enzian"
               "sura"
               "pegasus"
+              "coopi"
             ];
           in
             builtins.map (n: self.nixosConfigurations."${n}".config.system.build.toplevel) names;
