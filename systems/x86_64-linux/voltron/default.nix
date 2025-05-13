@@ -33,6 +33,11 @@
     #   enable = true;
     # };
 
+    chaotic.hdr = {
+      enable = true;
+      specialisation.enable = false;
+    };
+
     systemd = {
       services.usbmuxd.path = [pkgs.libusb1];
       # network.links."81-pi" = {
