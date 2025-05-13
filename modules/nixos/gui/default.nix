@@ -94,6 +94,9 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
+      ddrescue
+      ddrescueview
+      ddrutility
       rpi-imager
       custom.netsleuth
       handbrake
