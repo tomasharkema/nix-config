@@ -18,7 +18,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    system.build.input-wacom = pkgs.custom.input-wacom.override {kernel = config.boot.kernelPackages.kernel;};
+    system.build = {
+      input-wacom = pkgs.custom.input-wacom.override {kernel = config.boot.kernelPackages.kernel;};
+      i2c-ch341-usb = pkgs.custom.i2c-ch341-usb.override {kernel = config.boot.kernelPackages.kernel;};
+    };
 
     gui = {
       gamemode.enable = lib.mkDefault false;
@@ -84,9 +87,10 @@ in {
 
       # kernelModules = ["wacom"];
 
-      # extraModulePackages = [
-      #   config.system.build.input-wacom
-      # ];
+      extraModulePackages = [
+        config.system.build.input-wacom
+        config.system.build.i2c-ch341-usb
+      ];
     };
 
     environment.systemPackages = with pkgs; [
