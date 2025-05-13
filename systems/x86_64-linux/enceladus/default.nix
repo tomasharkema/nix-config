@@ -43,6 +43,9 @@ in {
         listenany = true;
         debugLevel = 5;
         readonly = false;
+        extraArgs = [
+          "-n"
+        ];
       };
       udev = {
         packages = with pkgs; [
@@ -67,15 +70,19 @@ in {
       };
     };
 
-    systemd.sockets.gpsd = {
-      listenStreams = [
-        "/run/gpsd.sock"
-        "/var/run/gpsd.sock"
-        "[::]:2947"
-        "0.0.0.0:2947"
-      ];
+    systemd = {
+      services.gpsd = {
+        requires = ["gpsd.socket"];
+        wantedBy = ["gpsd.socket"];
+      };
+      sockets.gpsd = {
+        listenStreams = [
+          "/run/gpsd.sock"
+          "0.0.0.0:2947"
+        ];
+        socketConfig.SocketMode = 0600;
+      };
     };
-
     virtualisation = {
       oci-containers.containers = {
         netbootxyz = {
