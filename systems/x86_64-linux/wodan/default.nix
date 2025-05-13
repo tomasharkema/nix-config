@@ -251,8 +251,9 @@
     boot = {
       tmp = {useTmpfs = true;};
       binfmt.emulatedSystems = ["aarch64-linux"];
-
+      swraid.enable = true;
       supportedFilesystems = [
+        "xfs"
         "ntfs"
         # "apfs"
       ];

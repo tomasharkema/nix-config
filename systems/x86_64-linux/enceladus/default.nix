@@ -213,10 +213,6 @@ in {
         useTmpfs = true;
       };
 
-      # swraid.enable = true;
-      # supportedFilesystems = [
-      #   "xfs"
-      # ];
       kernelModules = ["iTCO_wdt"];
       kernelParams = [
         "console=ttyACM0,115200"

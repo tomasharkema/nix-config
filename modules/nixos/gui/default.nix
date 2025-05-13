@@ -97,6 +97,7 @@ in {
       ddrescue
       ddrescueview
       ddrutility
+      darktable
       rpi-imager
       custom.netsleuth
       handbrake
