@@ -48,12 +48,8 @@ in {
         '';
 
         "krb5.conf".text = lib.mkBefore ''
-          includedir /etc/krb5.conf.d/
-          [libdefaults]
-          default_ccache_name = KCM:
-        '';
+          includedir /var/lib/sss/pubconf/krb5.include.d/
 
-        "krb5.conf.d/kcm_default_ccache".text = ''
           [libdefaults]
           default_ccache_name = KCM:
         '';
@@ -68,10 +64,6 @@ in {
         #     module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
         #   }
         # '';
-
-        "krb5.conf.d/enable_sssd_conf_dir".text = ''
-          includedir /var/lib/sss/pubconf/krb5.include.d/
-        '';
 
         # "krb5.conf.d/sssd_enable_idp".text = ''
         #   # Enable SSSD OAuth2 Kerberos preauthentication plugins.

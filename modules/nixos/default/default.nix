@@ -249,6 +249,7 @@ in {
           compsize
           # dry
           libgpiod
+          gpio-utils
           # fam # unmaintained
           fancy-motd
           # mkchromecast
