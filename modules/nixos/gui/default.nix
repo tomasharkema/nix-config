@@ -85,7 +85,10 @@ in {
         "delayacct"
       ];
 
-      # kernelModules = ["wacom"];
+      kernelModules = [
+        "wacom"
+        "spi-ch341-usb"
+      ];
 
       extraModulePackages = [
         config.system.build.input-wacom
