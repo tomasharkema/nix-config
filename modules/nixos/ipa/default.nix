@@ -29,7 +29,7 @@ in {
         ldapmonitor
         pkcs11helper
         realmd
-
+        heimdal
         (pkgs.writeShellScriptBin "setup-browser-eid" ''
           NSSDB="''${HOME}/.pki/nssdb"
           mkdir -p ''${NSSDB}
