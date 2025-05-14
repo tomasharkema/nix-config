@@ -28,7 +28,13 @@ in {
       rtl-sdr.enable = true;
     };
 
-    apps.podman.enable = true;
+    apps = {
+      podman.enable = true;
+      gpsd = {
+        enable = true;
+        server.enable = true;
+      };
+    };
 
     services = {
       hypervisor.enable = true;
@@ -37,16 +43,7 @@ in {
       throttled.enable = lib.mkForce false;
       # remote-builders.client.enable = true;
       blueman.enable = true;
-      gpsd = {
-        enable = true;
-        devices = lib.mkForce ["/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A50285BI-if00-port0"];
-        listenany = true;
-        debugLevel = 5;
-        readonly = false;
-        extraArgs = [
-          "-n"
-        ];
-      };
+
       udev = {
         packages = with pkgs; [
           # rtl-sdr
@@ -70,19 +67,6 @@ in {
       };
     };
 
-    systemd = {
-      services.gpsd = {
-        requires = ["gpsd.socket"];
-        wantedBy = ["gpsd.socket"];
-      };
-      sockets.gpsd = {
-        listenStreams = [
-          "/run/gpsd.sock"
-          "0.0.0.0:2947"
-        ];
-        socketConfig.SocketMode = 0600;
-      };
-    };
     virtualisation = {
       oci-containers.containers = {
         netbootxyz = {

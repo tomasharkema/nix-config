@@ -236,6 +236,7 @@ in {
           imv
           rsbkb
           gpsd
+          custom.flipperzero-ufbt
           nix-search-cli
           custom.zide
           custom.wikiman

@@ -20,14 +20,9 @@ in {
 
     # security.pam.services.passwd.enableGnomeKeyring = true;
 
-    services = {
-      gpsd = {
-        enable = true;
-        devices = lib.mkDefault [
-          "gpsd://enceladus.local:2947"
-        ];
-      };
+    apps.gpsd.enable = true;
 
+    services = {
       # localtimed.enable = true;
 
       dbus = {
