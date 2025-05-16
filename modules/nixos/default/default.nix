@@ -290,8 +290,7 @@ in {
           duc
           ethtool
           fcast-receiver
-          fwupd
-          fwupd-efi
+
           gdu
           git
           git
@@ -414,6 +413,8 @@ in {
             micropython
             dmidecode
             refind
+            fwupd
+            fwupd-efi
           ]
         ));
     };
