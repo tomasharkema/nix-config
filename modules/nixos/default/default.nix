@@ -643,8 +643,13 @@ in {
             ATTR{new_id}="1d50 6170 ff"
         '';
       };
-      ntp = {
+
+      chrony = {
         enable = true;
+      };
+
+      ntp = {
+        enable = false; # true;
         servers = [
           "0.nl.pool.ntp.org"
           "1.nl.pool.ntp.org"
@@ -747,7 +752,7 @@ in {
       };
 
       networkmanager.enable = lib.mkDefault true;
-      # timeServers = ["time.cloudflare.com"];
+      timeServers = ["raspi5.local"];
 
       useNetworkd = lib.mkIf config.networking.networkmanager.enable false;
     };
