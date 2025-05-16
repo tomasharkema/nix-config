@@ -38,6 +38,8 @@ in {
           (lib.mkIf cfg.server.enable "0.0.0.0:2947")
           (lib.mkIf (!cfg.server.enable) "127.0.0.1:2947")
         ];
+        wantedBy = ["sockets.target"];
+        description = "gpsd socket";
         socketConfig.SocketMode = 0600;
       };
     };
