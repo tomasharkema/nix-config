@@ -28,7 +28,7 @@
       networkmanager.enable = true;
     };
 
-    zramSwap = {enable = false;};
+    zramSwap = {enable = true;};
 
     services.hardware.lcd.server = {
       # enable = true;

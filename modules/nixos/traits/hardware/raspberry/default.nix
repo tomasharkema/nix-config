@@ -81,7 +81,7 @@ in {
         systemd-boot.enable = lib.mkForce false;
         generic-extlinux-compatible = {
           enable = lib.mkDefault true;
-          useGenerationDeviceTree = false;
+          #useGenerationDeviceTree = false;
         };
       };
     };
@@ -147,6 +147,12 @@ in {
     nix.settings = {
       keep-outputs = lib.mkForce false;
       keep-derivations = lib.mkForce false;
+    };
+
+    programs = {
+      nh = {
+        clean.enable = false;
+      };
     };
 
     # boot.loader.raspberryPi.firmwareConfig = ''

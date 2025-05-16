@@ -29,7 +29,7 @@ in {
         requires = ["gpsd.socket"];
         wantedBy = ["gpsd.socket"];
         serviceConfig = lib.mkIf (!cfg.server.enable) {
-          ExecStart = lib.mkForce "${pkgs.gpsd}/sbin/gpsd gpsd://enceladus.local";
+          ExecStart = lib.mkForce "${pkgs.gpsd}/sbin/gpsd gpsd://raspi5.local";
         };
       };
       sockets.gpsd = {

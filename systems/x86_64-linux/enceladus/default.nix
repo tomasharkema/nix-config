@@ -32,7 +32,7 @@ in {
       podman.enable = true;
       gpsd = {
         enable = true;
-        server.enable = true;
+        #server.enable = true;
       };
     };
 
