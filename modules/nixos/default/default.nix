@@ -649,7 +649,7 @@ in {
       };
 
       ntp = {
-        enable = false; # true;
+        enable = lib.mkForce false; # true;
         servers = [
           "0.nl.pool.ntp.org"
           "1.nl.pool.ntp.org"

@@ -195,10 +195,6 @@ in {
       pki.certificateFiles = [config.security.ipa.certificate];
     };
 
-    services.udev.extraRules = ''
-      SUBSYSTEM=="hidraw", ENV{ID_SECURITY_TOKEN}=="1", RUN{program}+="${pkgs.acl}/bin/setfacl -m u:sssd:rw $env{DEVNAME}"
-    '';
-
     # programs.ssh.extraConfig = ''
     #   ProxyCommand ${pkgs.sssd}/bin/sss_ssh_knownhostsproxy -p %p %h
     #   GlobalKnownHostsFile /var/lib/sss/pubconf/known_hosts
@@ -209,7 +205,9 @@ in {
         enable = true;
         packages = [pkgs.realmd];
       };
-
+      udev.extraRules = ''
+        SUBSYSTEM=="hidraw", ENV{ID_SECURITY_TOKEN}=="1", RUN{program}+="${pkgs.acl}/bin/setfacl -m u:sssd:rw $env{DEVNAME}"
+      '';
       # nscd = {
       #   enableNsncd = true;
       #   config = ''
