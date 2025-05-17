@@ -13,17 +13,22 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.gpsd = {
-      enable = true;
-      devices = lib.mkIf cfg.server.enable (lib.mkForce ["/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A50285BI-if00-port0"]);
-      listenany = lib.mkIf cfg.server.enable true;
-      debugLevel = lib.mkIf cfg.server.enable 5;
-      readonly = lib.mkIf cfg.server.enable false;
-      extraArgs = lib.mkIf cfg.server.enable [
-        "-n"
-      ];
+    services = {
+      gpsd = {
+        enable = true;
+        devices = lib.mkIf cfg.server.enable (lib.mkForce ["/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A50285BI-if00-port0"]);
+        listenany = lib.mkIf cfg.server.enable true;
+        debugLevel = lib.mkIf cfg.server.enable 5;
+        readonly = lib.mkIf cfg.server.enable false;
+        extraArgs = lib.mkIf cfg.server.enable [
+          "-n"
+        ];
+      };
+      geoclue2 = {
+        enable = true;
+        enableDemoAgent = lib.mkForce true;
+      };
     };
-
     systemd = {
       services.gpsd = {
         requires = ["gpsd.socket"];

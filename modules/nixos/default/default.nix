@@ -392,6 +392,7 @@ in {
           wmctrl
           wtfutil
           zstd
+          isd
         ])
         ++ (with pkgs.custom; [
           ssh-proxy-agent

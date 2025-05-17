@@ -17,6 +17,7 @@ in
       rev = "v${version}";
       hash = "sha256-MnwJ1ucRxv9DhTEbIXS6UVg+xsCcKGOxovIlv8mqT+I=";
     };
+
     nativeBuildInputs = kernel.moduleBuildDependencies;
 
     makeFlags = ["KDIR=${buildFolder}" "KERNEL_DIR=${buildFolder}"];
