@@ -753,7 +753,7 @@ in {
       };
 
       networkmanager.enable = lib.mkDefault true;
-      timeServers = ["raspi5.local"];
+      timeServers = ["192.168.9.49"];
 
       useNetworkd = lib.mkIf config.networking.networkmanager.enable false;
     };
