@@ -271,6 +271,11 @@
           wakeOnLan.enable = true;
           mtu = 9000;
         };
+        "vlan66" = {
+          useDHCP = lib.mkDefault true;
+          wakeOnLan.enable = true;
+          mtu = 9000;
+        };
       };
 
       # useDHCP = false;
