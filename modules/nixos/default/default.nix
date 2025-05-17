@@ -647,6 +647,10 @@ in {
 
       chrony = {
         enable = true;
+
+        servers = [
+          "raspi5.local"
+        ];
       };
 
       ntp = {
