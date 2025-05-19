@@ -95,7 +95,7 @@ in {
       locate.enable = lib.mkForce false;
       fwupd.enable = lib.mkForce false;
       smartd.enable = lib.mkForce false;
-
+      beszel.enable = lib.mkForce false;
       keybase = {
         enable = lib.mkForce true;
       };

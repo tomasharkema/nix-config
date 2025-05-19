@@ -207,28 +207,28 @@ in rec {
       hash = "sha256-Brut0PobAc6rTbGAo4NTauzHtwJrZOJjEw26hyXqA5w="; # "sha256-sHTpu9WeMZroT+1I18ObEHWSzcyj/Relyz8UNe+WawI=";
     };
   });
-  _modemmanager = prev.custom.modemmanager-xmm;
+  #_modemmanager = prev.custom.modemmanager-xmm;
 
-  # modemmanager = prev.modemmanager.overrideAttrs (
-  #   old: {
-  #     pname = "modemmanager";
-  #     version = "1.23.12";
+  _modemmanager = prev.modemmanager.overrideAttrs (
+    old: rec {
+      pname = "modemmanager";
+      version = "1.24.0";
 
-  #     src = prev.fetchFromGitLab {
-  #       domain = "gitlab.freedesktop.org";
-  #       owner = "tuxor1337";
-  #       repo = "ModemManager";
-  #       rev = "port-xmm7360";
-  #       hash = "sha256-ayBow2JDWMp4hFeae7jpNx6NTsDtc682HjiZapoQAEs=";
-  #     };
-  #     patches = [];
-  #     mesonFlags =
-  #       old.mesonFlags
-  #       + [
-  #         "--sysconfdir=${placeholder "out"}/etc"
-  #       ];
-  #   }
-  # );
+      src = prev.fetchFromGitLab {
+        domain = "gitlab.freedesktop.org";
+        owner = "mobile-broadband";
+        repo = "ModemManager";
+        rev = version;
+        hash = "sha256-3jI75aR2esmv5dkE4TrdCHIcCvtdOBKnBC5XLEKoVFs=";
+      };
+      #     patches = [];
+      #     mesonFlags =
+      #       old.mesonFlags
+      #       + [
+      #         "--sysconfdir=${placeholder "out"}/etc"
+      #       ];
+    }
+  );
 
   # modemmanager = prev.modemmanager.overrideAttrs (oldAttrs: {
   # src = prev.fetchFromGitLab {
