@@ -33,7 +33,6 @@
       #   fsType = "ext4";
       # };
     };
-    traits.raspberry.enable = true;
 
     environment.systemPackages = with pkgs; [
       libraspberrypi
@@ -42,7 +41,10 @@
 
     traits = {
       low-power.enable = true;
-      hardware.bluetooth.enable = true;
+      hardware = {
+        bluetooth.enable = true;
+        raspberry.enable = true;
+      };
     };
 
     services = {
