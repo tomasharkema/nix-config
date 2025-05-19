@@ -81,7 +81,7 @@ in {
         systemd-boot.enable = lib.mkForce false;
         generic-extlinux-compatible = {
           enable = lib.mkDefault true;
-          #useGenerationDeviceTree = false;
+          useGenerationDeviceTree = false;
         };
       };
     };
