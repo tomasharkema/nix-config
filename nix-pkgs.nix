@@ -11,6 +11,9 @@
         wol
       ]))
       ++ (with pkgs; [
+        # godap
+        bc
+        ggh
         caligula
         python3Packages.uv
         nix-search-tv
