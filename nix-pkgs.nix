@@ -12,6 +12,7 @@
       ]))
       ++ (with pkgs; [
         # godap
+        calc
         bc
         ggh
         caligula
