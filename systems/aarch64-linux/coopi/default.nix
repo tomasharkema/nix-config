@@ -28,6 +28,28 @@
       networkmanager.enable = true;
     };
 
+    power.ups = {
+      enable = true;
+      mode = "netserver";
+
+      ups = {
+        ina219 = {
+          driver = "hwmon_ina219";
+          port = "auto";
+        };
+      };
+      users.ups = {passwordFile = "/dev/null";};
+      upsmon = {
+        #settings.MINSUPPLIES = 1;
+        monitor = {
+          "ina219" = {
+            user = "ups";
+            powerValue = 1;
+          };
+        };
+      };
+    };
+
     zramSwap = {enable = true;};
 
     services.hardware.lcd.server = {
