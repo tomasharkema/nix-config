@@ -53,7 +53,7 @@ in {
       # kernelParams = [
       #   "console=tty1"
       # ];
-      # kernelModules = ["dwc2" "g_serial"];
+      kernelModules = ["i2c-dev"];
       kernelParams = [
         "console=serial0,115200n8"
         "console=ttyS0,115200n8"
@@ -64,14 +64,16 @@ in {
 
       consoleLogLevel = lib.mkDefault 7;
 
-      initrd.availableKernelModules = [
-        "usbhid"
-        "usb_storage"
-        "vc4"
-        "pcie_brcmstb" # required for the pcie bus to work
-        "reset-raspberrypi" # required for vl805 firmware to load
-      ];
-
+      initrd = {
+        availableKernelModules = [
+          "usbhid"
+          "usb_storage"
+          "vc4"
+          "pcie_brcmstb" # required for the pcie bus to work
+          "reset-raspberrypi" # required for vl805 firmware to load
+        ];
+        kernelModules = ["i2c-dev"];
+      };
       tmp = {
         useTmpfs = false;
         cleanOnBoot = true;
