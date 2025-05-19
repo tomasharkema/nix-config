@@ -60,7 +60,7 @@ in {
         "console=ttyS1,115200n8"
       ];
 
-      kernelPackages = pkgs.linuxPackages;
+      kernelPackages = pkgs.linuxPackages_latest;
 
       consoleLogLevel = lib.mkDefault 7;
 
@@ -69,8 +69,8 @@ in {
           "usbhid"
           "usb_storage"
           "vc4"
-          "pcie_brcmstb" # required for the pcie bus to work
-          "reset-raspberrypi" # required for vl805 firmware to load
+          #"pcie_brcmstb" # required for the pcie bus to work
+          #"reset-raspberrypi" # required for vl805 firmware to load
         ];
         kernelModules = ["i2c-dev"];
       };
@@ -138,7 +138,7 @@ in {
     swapDevices = [
       {
         device = "/swapfile";
-        size = 8 * 1024;
+        size = 16 * 1024;
       }
     ];
 
