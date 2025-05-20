@@ -99,7 +99,7 @@ in {
       smartd.enable = lib.mkForce false;
       beszel.enable = lib.mkForce false;
       keybase = {
-        enable = lib.mkForce true;
+        enable = lib.mkForce false;
       };
       usbguard.enable = false;
       kbfs = {
