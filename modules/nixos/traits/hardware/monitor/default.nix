@@ -19,10 +19,6 @@ in {
       # extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
     };
 
-    users.groups = {"i2c" = {};};
-
-    users.users.${config.user.name} = {extraGroups = ["i2c"];};
-
     environment.systemPackages = with pkgs; [
       # ddcutil
       # xorg.xbacklight

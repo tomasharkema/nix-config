@@ -132,6 +132,9 @@ in {
       libraspberrypi
       raspberrypifw
       bluez
+      dtc
+      raspberrypi-eeprom
+      device-tree_rpi
       libgpiod
     ];
 
@@ -142,8 +145,10 @@ in {
       }
     ];
 
-    apps.resilio.enable = false;
-
+    apps = {
+      resilio.enable = false;
+      atop.enable = lib.mkForce false;
+    };
     # system.stateVersion = "25.05";
 
     nix.settings = {

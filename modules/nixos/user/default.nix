@@ -85,6 +85,7 @@
           description = "tomas";
           group = "${config.user.name}";
           extraGroups = [
+            "i2c"
             "networkmanager"
             "wheel"
             "rslsync"
@@ -125,6 +126,7 @@
         agent = {};
         rslsync = lib.mkIf config.apps.resilio.enable {};
         dialout.members = ["tomas"];
+        i2c.members = ["tomas"];
       };
     };
 
