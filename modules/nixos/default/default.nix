@@ -650,7 +650,8 @@ in {
         enable = true;
 
         servers = [
-          "raspi5.local"
+          "192.168.9.206"
+          "pool.chrony.eu"
         ];
       };
 
