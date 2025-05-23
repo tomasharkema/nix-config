@@ -651,7 +651,7 @@ in {
 
         servers = [
           "meshpi3.local"
-          "pool.chrony.eu"
+          "time.cloudflare.com"
         ];
       };
 
