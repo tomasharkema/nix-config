@@ -650,7 +650,7 @@ in {
         enable = true;
 
         servers = [
-          "192.168.9.206"
+          "meshpi3.local"
           "pool.chrony.eu"
         ];
       };
