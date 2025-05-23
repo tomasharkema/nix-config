@@ -24,7 +24,7 @@ in {
           "-n"
         ];
       };
-      geoclue2 = {
+      geoclue2 = lib.mkIf false {
         enable = true;
         enableDemoAgent = lib.mkForce true;
       };
@@ -34,7 +34,7 @@ in {
         requires = ["gpsd.socket"];
         wantedBy = ["gpsd.socket"];
         serviceConfig = lib.mkIf (!cfg.server.enable) {
-          ExecStart = lib.mkForce "${pkgs.gpsd}/sbin/gpsd gpsd://raspi5.local";
+          ExecStart = lib.mkForce "${pkgs.gpsd}/sbin/gpsd gpsd://meshpi3.local";
         };
       };
       sockets.gpsd = {
