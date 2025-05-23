@@ -88,8 +88,11 @@ in {
 
       kernelModules = [
         "wacom"
-        "i2c-ch341-usb"
+        "spi_ch341"
+        "spidev"
+        #"i2c-ch341-usb"
       ];
+      blacklistedKernelModules = ["ch341"];
 
       extraModulePackages = [
         config.system.build.input-wacom
