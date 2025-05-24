@@ -712,7 +712,7 @@ in {
       ydotool.enable = true;
 
       system-config-printer.enable = true;
-      corefreq.enable = pkgs.stdenv.isx86_64;
+      # corefreq.enable = pkgs.stdenv.isx86_64;
 
       htop = {
         enable = true;
