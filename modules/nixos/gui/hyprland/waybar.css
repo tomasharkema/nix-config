@@ -1,7 +1,7 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: "B612 Nerd Font", "Inter Display", "Font Awesome 6 Free";
+  font-family: "Inter Display", "Font Awesome 6 Free";
 }
 
 /* "Inter Display" */
@@ -108,4 +108,3 @@
 #workspaces button.urgent {
   color: @red;
 }
-
