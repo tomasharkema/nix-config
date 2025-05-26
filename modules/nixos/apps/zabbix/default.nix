@@ -16,7 +16,7 @@ in {
     #   networkmanager.enable = lib.mkForce false;
     # };
 
-    services = {
+    services = lib.mkIf false {
       zabbixAgent = {
         enable = true;
         server = "silver-star,127.0.0.1";
