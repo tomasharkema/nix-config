@@ -55,7 +55,11 @@ in {
         '';
       };
       # automatic-timezoned.enable = true;
-      udev.packages = with pkgs; [imsprog logitech-udev-rules];
+      udev.packages = with pkgs; [
+        imsprog
+        logitech-udev-rules
+        platformio-core.udev
+      ];
     };
 
     hardware = {
