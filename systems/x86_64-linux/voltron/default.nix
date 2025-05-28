@@ -33,7 +33,7 @@
     #   enable = true;
     # };
 
-    chaotic.hdr = {
+    chaotic.hdr = lib.mkIf false {
       enable = true;
       specialisation.enable = false;
     };

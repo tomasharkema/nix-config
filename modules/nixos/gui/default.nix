@@ -19,7 +19,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     system.build = {
-      input-wacom = pkgs.custom.input-wacom.override {kernel = config.boot.kernelPackages.kernel;};
+      #input-wacom = pkgs.custom.input-wacom.override {kernel = config.boot.kernelPackages.kernel;};
       i2c-ch341-usb = pkgs.custom.i2c-ch341-usb.override {kernel = config.boot.kernelPackages.kernel;};
       ch341-i2c-spi-gpio = pkgs.custom.ch341-i2c-spi-gpio.override {kernel = config.boot.kernelPackages.kernel;};
     };
@@ -91,7 +91,7 @@ in {
       ];
 
       kernelModules = [
-        "wacom"
+        # "wacom"
         "spi_ch341"
         "spidev"
         #"i2c-ch341-usb"
@@ -99,7 +99,7 @@ in {
       blacklistedKernelModules = ["ch341"];
 
       extraModulePackages = [
-        config.system.build.input-wacom
+        #config.system.build.input-wacom
         config.system.build.i2c-ch341-usb
         config.system.build.ch341-i2c-spi-gpio
       ];

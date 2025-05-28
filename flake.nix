@@ -25,7 +25,7 @@
         allowAliases = true;
 
         config.allowAliases = true;
-
+        lazy-trees = true;
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
         # buildPlatform.system = "x86_64-linux";
@@ -43,7 +43,7 @@
           # contentAddressedByDefault = true;
           # For example, enable smartcard support in Firefox.
           # firefox.smartcardSupport = true;
-
+          lazy-trees = true;
           permittedInsecurePackages = [
             "openssl-1.1.1w"
             # "python3.12-youtube-dl-2021.12.17"
@@ -363,7 +363,7 @@
     experimental-features = "nix-command flakes cgroups"; # ca-derivations";
     distributedBuilds = true;
     builders-use-substitutes = true;
-
+    lazy-trees = true;
     trusted-users = [
       "root"
       "tomas"
