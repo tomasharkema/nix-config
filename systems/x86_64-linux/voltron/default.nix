@@ -277,7 +277,7 @@
       };
     };
 
-    system.build.cc1101-driver = pkgs.custom.cc1101-driver.override {kernel = config.boot.kernelPackages.kernel;};
+    # system.build.cc1101-driver = pkgs.custom.cc1101-driver.override {kernel = config.boot.kernelPackages.kernel;};
 
     # hardware = {
     #   deviceTree = {
@@ -306,7 +306,7 @@
 
       binfmt.emulatedSystems = ["aarch64-linux"];
       extraModulePackages = [
-        config.system.build.cc1101-driver
+        # config.system.build.cc1101-driver
       ];
       # modprobeConfig.enable = true;
       supportedFilesystems = ["ext2" "ext3" "ext4"];
