@@ -19,7 +19,7 @@ in {
       atopService.enable = true;
       atopacctService.enable = true;
       atopgpu.enable = config.traits.hardware.nvidia.enable;
-      netatop.enable = true;
+      #netatop.enable = true;
     };
     # environment.sy .stemPackages = [pkgs.atop];
 
