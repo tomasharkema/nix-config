@@ -73,6 +73,7 @@
       docker.enable = false;
       zabbix.server.enable = true;
       atticd.enable = true;
+      prometheus.server.enable = true;
     };
 
     fileSystems."/export/netboot" = {
@@ -297,7 +298,7 @@
       ipmicfg
       ipmiutil
       tremotesf
-      custom.racadm
+      # custom.racadm
       # icingaweb2
     ];
 

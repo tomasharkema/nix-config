@@ -5,11 +5,10 @@
 
       imports = [inputs.agenix-rekey.flakeModule];
 
-      src = ./.;
-      #  builtins.path {
-      #   path = ./.;
-      #   name = "snowfall-flake-source";
-      # };
+      src = builtins.path {
+        path = ./.;
+        name = "snowfall-flake-source";
+      };
 
       channels-config = {
         allowUnfreePredicate = _: true;
@@ -32,7 +31,7 @@
         # permittedInsecurePackages = [ "openssl-1.1.1w" ];
         permittedInsecurePackages = [
           # "python3.12-youtube-dl-2021.12.17"
-          "openssl-1.1.1w"
+          # "openssl-1.1.1w"
 
           # "python-2.7.18.8"
         ];
@@ -45,7 +44,7 @@
           # firefox.smartcardSupport = true;
           lazy-trees = true;
           permittedInsecurePackages = [
-            "openssl-1.1.1w"
+            # "openssl-1.1.1w"
             # "python3.12-youtube-dl-2021.12.17"
             # "python-2.7.18.8"
           ];

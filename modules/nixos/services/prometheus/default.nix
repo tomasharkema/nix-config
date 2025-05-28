@@ -7,7 +7,11 @@
   cfg = config.apps.prometheus;
   format = pkgs.formats.yaml {};
 in {
-  options.apps.prometheus = {enable = lib.mkEnableOption "prometheus" // {default = true;};};
+  options.apps.prometheus = {
+    enable = lib.mkEnableOption "prometheus" // {default = true;};
+
+    server.enable = lib.mkEnableOption "prometheus server";
+  };
 
   config = lib.mkIf cfg.enable {
     system.nixos.tags = ["prometheus"];
@@ -25,17 +29,66 @@ in {
       )
     '';
 
-    systemd.tmpfiles.settings."9-promtail" = {
-      "/var/lib/promtail".d = {
-        mode = "0777";
-        user = "root";
-        group = "root";
+    systemd = {
+      tmpfiles.settings."9-promtail" = {
+        "/var/lib/promtail".d = {
+          mode = "0777";
+          user = "root";
+          group = "root";
+        };
+      };
+
+      services.gpsd-exporter = lib.mkIf cfg.server.enable {
+        description = "gpsd-exporter";
+        wantedBy = ["default.target"];
+        script = ''
+          ${lib.getExe pkgs.custom.gpsd-exporter} -d 192.168.9.206:2947
+        '';
       };
     };
-
     services = {
       prometheus = {
+        enable = cfg.server.enable;
+        pushgateway.enable = cfg.server.enable;
+
+        scrapeConfigs = lib.mkIf cfg.server.enable [
+          {
+            job_name = "gpsd-exporter";
+            static_configs = [
+              {
+                targets = ["localhost:9978"];
+              }
+            ];
+          }
+
+          {
+            job_name = "chrony-exporter";
+            static_configs = [
+              {
+                targets = ["localhost:${builtins.toString config.services.prometheus.exporters.chrony.port}"];
+              }
+            ];
+          }
+          {
+            job_name = "coopi";
+            static_configs = [
+              {
+                targets = ["192.168.9.155:9100"];
+              }
+            ];
+          }
+          {
+            job_name = "ultrafeeder";
+            static_configs = [
+              {
+                targets = ["enceladus:9273" "enceladus:9274"];
+              }
+            ];
+          }
+        ];
+
         exporters = {
+          chrony.enable = true;
           node = {
             enable = true;
             enabledCollectors = ["systemd" "textfile"];
