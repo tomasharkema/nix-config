@@ -16,6 +16,23 @@
 
   usbguard = prev.usbguard.overrideAttrs {meta.mainProgram = "usbguard";};
 
+  gpsd = prev.gpsd.overrideAttrs (old: rec {
+    pname = "gpsd";
+    version = "3.26.1";
+
+    src = prev.fetchurl {
+      url = "mirror://savannah/${pname}/${pname}-${version}.tar.gz";
+      sha256 = "sha256-3H5GWWjBVA5hvFfHWG1qV6AEchKgFO/a00j5B7wuCZA=";
+    };
+
+    patches = [
+      (prev.fetchpatch {
+        url = "https://raw.githubusercontent.com/NixOS/nixpkgs/refs/heads/nixos-25.05/pkgs/by-name/gp/gpsd/sconstruct-env-fixes.patch";
+        hash = "sha256-VGdL4g+t/1W8mr3T1L/Mqu8E5vayczu/trhonU7guJQ=";
+      })
+    ];
+  });
+
   # cachix = prev.cachix.overrideAttrs {meta.mainProgram = "cachix";};
 
   # zerotierone = prev.zerotierone.overrideAttrs (drv: {
