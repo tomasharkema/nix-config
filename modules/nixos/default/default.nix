@@ -650,9 +650,23 @@ in {
         enable = true;
 
         servers = [
-          "meshpi3.local"
-          "time.cloudflare.com"
+          #"meshpi3.local"
+          #"time.cloudflare.com"
         ];
+
+        extraConfig = ''
+          makestep 1.1 100
+          server meshpi3.local minpoll 1 maxpoll 2
+
+          pool  nl.pool.ntp.org           iburst  minpoll 4  maxpoll 4
+          #pool  europe.pool.ntp.org    iburst  minpoll 4  maxpoll 4
+          #pool  de.pool.ntp.org        iburst  minpoll 4  maxpoll 4
+
+          server  ntp0.nl.uu.net  iburst  minpoll 4  maxpoll 4
+          server  ntp1.nl.uu.net  iburst  minpoll 4  maxpoll 4
+          server  ntp1.time.nl    iburst  minpoll 4  maxpoll 4
+
+        '';
       };
 
       ntp = {
