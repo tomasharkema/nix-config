@@ -915,10 +915,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1748455938,
+        "lastModified": 1748489961,
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "02077149e2921014511dac2729ae6dadb4ec50e2",
+        "rev": "95c988cf08e9a5a8fe7cc275d5e3f24e9e87bd51",
         "type": "github"
       },
       "original": {
@@ -1599,10 +1599,10 @@
         "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1748460828,
+        "lastModified": 1748477044,
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "af5a0deaddb54e7b2a787dca6d43724dd103945a",
+        "rev": "28a2abf874c3ecbbf91edf1b2b9fe595f0f54099",
         "type": "github"
       },
       "original": {
