@@ -129,8 +129,17 @@
         };
       };
 
-      mosquitto.enable = true;
-
+      mosquitto = {
+        enable = true;
+        listeners = [
+          {
+            users.tomas = {
+              password = "tomas";
+              acl = ["readwrite #"];
+            };
+          }
+        ];
+      };
       udev.extraRules = ''
         SUBSYSTEM=="ipmi", GROUP="ipmi", MODE="0777"
       '';
