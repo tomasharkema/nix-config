@@ -141,10 +141,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1748529774,
+        "lastModified": 1748622923,
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "950173ebff70f60aee44403dfea456587e361f31",
+        "rev": "b5d4ae9b00b7a3216b27ec824f6621145ecd238b",
         "type": "github"
       },
       "original": {
@@ -915,10 +915,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1748610552,
+        "lastModified": 1748668774,
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "482c306ef70785f53d9d90839b6b5643521ac031",
+        "rev": "60e4624302d956fe94d3f7d96a560d14d70591b9",
         "type": "github"
       },
       "original": {
@@ -1217,10 +1217,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1748570315,
+        "lastModified": 1748656608,
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "f85768830fdaee114ea6d18dee80737c74a8dcc9",
+        "rev": "b585487bb87faec1c7a09aada7cfe77dd7b3c5fe",
         "type": "github"
       },
       "original": {
@@ -1444,10 +1444,10 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1748613622,
+        "lastModified": 1748634340,
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "b9d69212b5e65620e7d5b08df818db656f7fefb3",
+        "rev": "daa628a725ab4948e0e2b795e8fb6f4c3e289a7a",
         "type": "github"
       },
       "original": {
@@ -1599,10 +1599,10 @@
         "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1748521000,
+        "lastModified": 1748564405,
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "a9e45072d82374dd3f0d971795e7d7f99e5bc6c2",
+        "rev": "8b3a69cfea5ba2fa008c6c57ab79c99c513a349b",
         "type": "github"
       },
       "original": {
