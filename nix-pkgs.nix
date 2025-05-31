@@ -12,6 +12,8 @@
       ]))
       ++ (with pkgs; [
         # godap
+        fldigi
+        minimodem
         calc
         bc
         ggh
