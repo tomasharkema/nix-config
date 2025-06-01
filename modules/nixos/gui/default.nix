@@ -110,6 +110,7 @@ in {
       ddrescueview
       ddrutility
       darktable
+      custom.wsjtx
       sdrpp
       rpi-imager
       custom.netsleuth
