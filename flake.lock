@@ -915,10 +915,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1748737919,
+        "lastModified": 1748811839,
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "5675a9686851d9626560052a032c4e14e533c1fa",
+        "rev": "6abf27943bbb09a0f9d443df45ec70b07a6cbe20",
         "type": "github"
       },
       "original": {
@@ -1217,10 +1217,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1748656608,
+        "lastModified": 1748743761,
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "b585487bb87faec1c7a09aada7cfe77dd7b3c5fe",
+        "rev": "0f75191a5c244a38192c7587da7c3f04d35c5938",
         "type": "github"
       },
       "original": {
@@ -1280,10 +1280,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1748145500,
+        "lastModified": 1748751003,
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "rev": "a98adbf54d663395df0b9929f6481d4d80fc8927",
+        "rev": "2860bee699248d828c2ed9097a1cd82c2f991b43",
         "type": "github"
       },
       "original": {
@@ -1310,6 +1310,27 @@
       "original": {
         "owner": "snowfallorg",
         "repo": "nix-software-center",
+        "type": "github"
+      }
+    },
+    "nix-vm-test": {
+      "inputs": {
+        "nixpkgs": [
+          "nixos-anywhere",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1748765518,
+        "narHash": "sha256-vftOR+7zwnMWl5UpG32GL1VBeNGTDZZT0hv+2uNuBGw=",
+        "owner": "Mic92",
+        "repo": "nix-vm-test",
+        "rev": "d6642fbaf42fc98883d84bab66cd0ec720d9dd0c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "nix-vm-test",
         "type": "github"
       }
     },
@@ -1382,6 +1403,7 @@
           "disko"
         ],
         "flake-parts": "flake-parts_5",
+        "nix-vm-test": "nix-vm-test",
         "nixos-images": "nixos-images",
         "nixos-stable": "nixos-stable",
         "nixpkgs": [
@@ -1390,10 +1412,10 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1748730521,
+        "lastModified": 1748818374,
         "owner": "nix-community",
         "repo": "nixos-anywhere",
-        "rev": "d2cebeb849a2331b68c986bfefb258cc4319e2ed",
+        "rev": "1258275eff2eca10687a51e70b1f2d731547a935",
         "type": "github"
       },
       "original": {
@@ -1519,10 +1541,10 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1748460289,
+        "lastModified": 1748693115,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "96ec055edbe5ee227f28cdbc3f1ddf1df5965102",
+        "rev": "910796cabe436259a29a72e8d3f5e180fc6dfacc",
         "type": "github"
       },
       "original": {
