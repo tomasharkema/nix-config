@@ -217,14 +217,6 @@ in {
         enable = true;
         enableZshIntegration = true;
       };
-
-      thefuck = {
-        enable = true;
-        enableZshIntegration = true;
-      };
-
-      alacritty.enable = osConfig.gui.enable;
-
       # bat = {
       #   enable = true;
       #   config.theme = "base16";

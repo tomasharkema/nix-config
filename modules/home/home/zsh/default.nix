@@ -273,7 +273,6 @@
               "swiftpm"
               "systemadmin"
               "tailscale"
-              "thefuck"
               "tig"
               "tldr"
               "tmux"
