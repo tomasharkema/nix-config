@@ -133,10 +133,9 @@
         enable = true;
         listeners = [
           {
-            users.tomas = {
-              password = "tomas";
-              acl = ["readwrite #"];
-            };
+            acl = ["pattern readwrite #"];
+            omitPasswordAuth = true;
+            settings.allow_anonymous = true;
           }
         ];
       };
@@ -227,6 +226,8 @@
       firewall = {
         enable = true;
         allowPing = true;
+        allowedTCPPorts = [1883];
+        allowedUDPPorts = [1883];
       };
 
       bridges.br0 = {
@@ -241,6 +242,10 @@
       vlans = {
         "vlan69" = {
           id = 69;
+          interface = "eno1";
+        };
+        "vlan66" = {
+          id = 66;
           interface = "eno1";
         };
       };

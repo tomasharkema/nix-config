@@ -13,6 +13,7 @@
       ++ (with pkgs; [
         # godap
         fldigi
+        mqttui
         minimodem
         calc
         bc
