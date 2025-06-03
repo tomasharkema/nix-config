@@ -35,6 +35,7 @@ in {
       };
       #      etc.overlay.enable = config.boot.initrd.systemd.enable;
       nixos.tags = ["${config.boot.kernelPackages.kernel.modDirVersion}"];
+      rebuild.enableNg = true;
     };
 
     systemd = {
@@ -210,6 +211,7 @@ in {
       enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          nixos-rebuild-ng
           lnav
           wireshark
           termshark
