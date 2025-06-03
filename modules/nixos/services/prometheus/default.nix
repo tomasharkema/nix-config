@@ -50,7 +50,15 @@ in {
       prometheus = {
         enable = cfg.server.enable;
         pushgateway.enable = cfg.server.enable;
-
+        alertmanager-ntfy = {
+          enable = true;
+          settings = {
+            ntfy = {
+              baseurl = "https://ntfy.sh";
+              notification.topic = "tomasharkema-nixos";
+            };
+          };
+        };
         scrapeConfigs = lib.mkIf cfg.server.enable [
           {
             job_name = "gpsd-exporter";
