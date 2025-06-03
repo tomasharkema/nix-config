@@ -50,7 +50,7 @@ in {
       prometheus = {
         enable = cfg.server.enable;
         pushgateway.enable = cfg.server.enable;
-        alertmanager-ntfy = {
+        alertmanager-ntfy = lib.mkIf cfg.server.enable {
           enable = true;
           settings = {
             ntfy = {
