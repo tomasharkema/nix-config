@@ -162,10 +162,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1749030212,
+        "lastModified": 1749037647,
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "9fdf85078e9952c910d4593cbb50ae935625ee58",
+        "rev": "dcc72d01c5a8a4ea2768b13b2f57794ced9d2525",
         "type": "github"
       },
       "original": {
@@ -936,10 +936,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1748979197,
+        "lastModified": 1749062139,
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "34a13086148cbb3ae65a79f753eb451ce5cac3d3",
+        "rev": "86b95fc1ed2b9b04a451a08ccf13d78fb421859c",
         "type": "github"
       },
       "original": {
@@ -1488,10 +1488,10 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1748942041,
+        "lastModified": 1749056381,
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "fc7c4714125cfaa19b048e8aaf86b9c53e04d853",
+        "rev": "029bd66faa180e11262dd1bc2732254c33415f52",
         "type": "github"
       },
       "original": {
