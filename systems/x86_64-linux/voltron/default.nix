@@ -185,7 +185,7 @@
       abrt.enable = true;
       # remote-builders.client.enable = true;
       usbmuxd.enable = true;
-      power-profiles-daemon.enable = lib.mkForce true;
+      # power-profiles-daemon.enable = lib.mkForce true;
 
       clamav.daemon.settings.MaxThreads = 4;
 
