@@ -233,7 +233,7 @@ in {
           # gnome_mplayer
           ipmiview
           libsmbios
-          plex-media-player
+          # plex-media-player
           # (plex-media-player.overrideAttrs (old: {
           #   # cudaSupport = true;
           #   stdenv = pkgs.cudaPackages.backendStdenv;

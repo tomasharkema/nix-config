@@ -16,7 +16,7 @@
 
   usbguard = prev.usbguard.overrideAttrs {meta.mainProgram = "usbguard";};
 
-  gpsd = prev.gpsd.overrideAttrs (old: rec {
+  _gpsd = prev.gpsd.overrideAttrs (old: rec {
     pname = "gpsd";
     version = "3.26.1";
 

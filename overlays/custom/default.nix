@@ -37,10 +37,10 @@ in rec {
     buildInputs = old.buildInputs ++ [prev.custom.glcd-proc-driver prev.custom.graphlcd-base];
   });
 
-  _389-ds-base = self.packages."${prev.system}"._389-ds-base;
-  freeipa = self.packages."${prev.system}".freeipa;
+  __389-ds-base = self.packages."${prev.system}"._389-ds-base;
+  _freeipa = self.packages."${prev.system}".freeipa;
 
-  sssd = overridePkgCheckVersionSnapshot "sssd" "2.9.5" (
+  _sssd = overridePkgCheckVersionSnapshot "sssd" "2.9.5" (
     self.packages."${prev.system}".sssd # .override {withSudo = true;}
   );
 
