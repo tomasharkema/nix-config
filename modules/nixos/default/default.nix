@@ -722,13 +722,13 @@ in {
         lfs.enable = true;
       };
       udevil.enable = true;
-      # usbtop.enable = true;
+      usbtop.enable = true;
       wavemon.enable = true;
       trippy.enable = true;
       ydotool.enable = true;
 
       system-config-printer.enable = true;
-      # corefreq.enable = pkgs.stdenv.isx86_64;
+      corefreq.enable = pkgs.stdenv.isx86_64;
 
       htop = {
         enable = true;

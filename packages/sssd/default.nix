@@ -77,7 +77,7 @@ in
   stdenv.mkDerivation (finalAttrs: {
     pname = "sssd";
     # version 2.10.2 breaks PAM
-    version = "2.10.1";
+    version = "2.11.0";
 
     src = fetchFromGitHub {
       owner = "SSSD";
