@@ -1239,10 +1239,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1749175147,
+        "lastModified": 1749261344,
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "f8a59c94a4f7d3a391d8a610a2ee193f3c1f054e",
+        "rev": "ff0d42de196b7fa8df8b0b1437ef01c042484d42",
         "type": "github"
       },
       "original": {
