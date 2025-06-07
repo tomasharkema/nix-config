@@ -15,6 +15,7 @@ in {
       '';
     };
 
+    system.primaryUser = "tomas";
     homebrew = {
       enable = true;
       autoUpdate = true;

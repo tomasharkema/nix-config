@@ -9,12 +9,13 @@
       (lib.optionals pkgs.stdenv.isx86_64 (with pkgs; [
         # nix-doc
         wol
+        minimodem
       ]))
       ++ (with pkgs; [
         # godap
         fldigi
         mqttui
-        minimodem
+
         calc
         bc
         ggh
