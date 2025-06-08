@@ -211,6 +211,7 @@ in {
       enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          custom.discovery-rs
           nixos-rebuild-ng
           lnav
           wireshark
