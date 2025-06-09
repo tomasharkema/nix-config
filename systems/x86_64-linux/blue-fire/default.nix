@@ -94,7 +94,7 @@ in {
       };
 
       das_watchdog.enable = lib.mkForce false;
-
+      lldpd.enable = true;
       remote-builders.server.enable = true;
 
       beesd.filesystems = lib.mkIf false {

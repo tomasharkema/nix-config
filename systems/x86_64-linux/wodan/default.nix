@@ -110,7 +110,7 @@
 
         bolt.enable = true;
       };
-
+      lldpd.enable = true;
       input-remapper = {
         enable = true;
         enableUdevRules = true;

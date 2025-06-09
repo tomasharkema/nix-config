@@ -142,7 +142,7 @@
       udev.extraRules = ''
         SUBSYSTEM=="ipmi", GROUP="ipmi", MODE="0777"
       '';
-
+      lldpd.enable = true;
       usbguard.enable = lib.mkForce false;
       # tcsd.enable = true;
 

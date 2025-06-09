@@ -43,7 +43,7 @@ in {
       throttled.enable = lib.mkForce false;
       # remote-builders.client.enable = true;
       blueman.enable = true;
-
+      lldpd.enable = true;
       udev = {
         packages = with pkgs; [
           # rtl-sdr
