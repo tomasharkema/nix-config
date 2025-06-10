@@ -185,10 +185,17 @@
           ];
         };
       };
+
       glitchtip = {
         enable = true;
-        settings.GLITCHTIP_DOMAIN = "https://glitchtip.ling-lizard.ts.net";
+        port = 8923;
+        listenAddress = "0.0.0.0";
+
+        settings = {
+          GLITCHTIP_DOMAIN = "https://glitchtip.ling-lizard.ts.net";
+        };
       };
+
       pocket-id = {
         enable = true;
         settings = {
