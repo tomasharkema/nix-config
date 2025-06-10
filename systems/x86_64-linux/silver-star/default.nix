@@ -14,6 +14,7 @@
         tsnsrv = {
           rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
         };
+        cloudflared.rekeyFile = ./cloudflared.age;
         # "healthchecks" = {
         #   rekeyFile = ./healthchecks.age;
         #   group = "healthchecks";
