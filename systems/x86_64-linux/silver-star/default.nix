@@ -184,6 +184,11 @@
           ];
         };
       };
+      glitchtip = {
+        enable = true;
+        settings.GLITCHTIP_DOMAIN = "https://glitchtip.ling-lizard.ts.net";
+      };
+      pocket-id.enable = true;
 
       kmscon.enable = lib.mkForce false;
 
