@@ -189,7 +189,29 @@
         enable = true;
         settings.GLITCHTIP_DOMAIN = "https://glitchtip.ling-lizard.ts.net";
       };
-      pocket-id.enable = true;
+      pocket-id = {
+        enable = true;
+        settings = {
+          APP_URL = "https://id.harke.ma";
+          # APP_URL = "http://localhost:1411";
+          TRUST_PROXY = true;
+        };
+      };
+
+      cloudflared = {
+        enable = true;
+        tunnels = {
+          "69bc7708-5c7b-422d-b283-9199354f431f" = {
+            credentialsFile = config.age.secrets.cloudflared.path;
+            default = "http_status:404";
+            ingress = {
+              "id.harke.ma" = {
+                service = "http://localhost:1411";
+              };
+            };
+          };
+        };
+      };
 
       kmscon.enable = lib.mkForce false;
 
