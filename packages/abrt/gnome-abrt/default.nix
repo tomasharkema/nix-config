@@ -35,13 +35,13 @@
 in
   stdenv.mkDerivation rec {
     pname = "gnome-abrt";
-    version = "1.5.0";
+    version = "1.5.2";
 
     src = fetchFromGitHub {
       owner = "abrt";
       repo = "gnome-abrt";
       rev = version;
-      hash = "sha256-BSKzuh4BKKSi89Xwy+bZRoy0PivPZLkCKxcOhcyNJo0=";
+      hash = "sha256-YdWXKtcaGR3x59xvPnTsIer+7wz6qZVzDR7nNP69fsc=";
     };
 
     enableParallelBuilding = true;

@@ -106,6 +106,7 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
+      custom.butler
       ddrescue
       ddrescueview
       ddrutility
