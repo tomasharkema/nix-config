@@ -936,10 +936,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1749526396,
+        "lastModified": 1749628652,
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "427c96044f11a5da50faf6adaf38c9fa47e6d044",
+        "rev": "450f06ec3cd0d86f67db58a7245db8848773e895",
         "type": "github"
       },
       "original": {
@@ -1239,10 +1239,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1749348095,
+        "lastModified": 1749607138,
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "4221d80488883c40003f0704af78699a583f0c9f",
+        "rev": "64d5eadf51813cc6543c26a76023d85309dd7f58",
         "type": "github"
       },
       "original": {
@@ -1643,10 +1643,10 @@
         "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1749496904,
+        "lastModified": 1749623409,
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "e0b3d8bc3a0ab5a7cc0792c7705e92f9c5c598f3",
+        "rev": "7eb08d84a839bbda9aa30c3dd6f15865728755aa",
         "type": "github"
       },
       "original": {
