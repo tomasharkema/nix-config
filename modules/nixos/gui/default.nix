@@ -36,7 +36,7 @@ in {
     apps.flatpak.enable = lib.mkDefault true;
 
     services = {
-      tzupdate.enable = true;
+      # tzupdate.enable = true;
       devmon.enable = true;
       ddccontrol.enable = true;
       seatd.enable = true;
