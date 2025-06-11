@@ -162,6 +162,9 @@
         services = {
           nix-cache = {toURL = "http://127.0.0.1:7124";};
           searxng = {toURL = "http://127.0.0.1:8088";};
+          glitchtip = {
+            toURL = "http://127.0.0.1:${builtins.toString config.services.glitchtip.port}";
+          };
           # healthchecks = {toURL = "http://127.0.0.1:8000";};
         };
       };
@@ -189,7 +192,7 @@
       glitchtip = {
         enable = true;
         port = 8923;
-        listenAddress = "0.0.0.0";
+        # listenAddress = "0.0.0.0";
 
         settings = {
           GLITCHTIP_DOMAIN = "https://glitchtip.ling-lizard.ts.net";
