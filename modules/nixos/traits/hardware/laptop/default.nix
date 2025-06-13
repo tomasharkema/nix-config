@@ -47,7 +47,7 @@ in {
 
       # xrdp.enable = mkForce false;
 
-      tlp = {
+      tlp = lib.mkIf false {
         enable = true;
         settings = {
           CPU_SCALING_GOVERNOR_ON_AC = "performance";
@@ -70,9 +70,9 @@ in {
         };
       };
 
-      power-profiles-daemon.enable = lib.mkForce false;
+      power-profiles-daemon.enable = true;
 
-      acpid = lib.mkIf false {
+      acpid = {
         enable = true;
         logEvents = true;
 
