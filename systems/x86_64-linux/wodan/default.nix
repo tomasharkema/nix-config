@@ -140,7 +140,7 @@
       ddc.enable = true;
     };
 
-    chaotic.hdr = lib.mkIf false {
+    chaotic.hdr = {
       enable = true;
       specialisation.enable = false;
     };
