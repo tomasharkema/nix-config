@@ -7,7 +7,7 @@
 }: let
   wrapperDir = config.security.wrapperDir;
 in {
-  config = {
+  config = lib.mkIf false {
     security.wrappers.keybase-redirector = {
       owner = "root";
       group = "root";
