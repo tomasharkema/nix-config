@@ -12,10 +12,13 @@ in {
     home-manager.users."${config.user.name}".programs.zsh = {
       initExtra = ''
         eval "$(/opt/homebrew/bin/brew shellenv)"
+
+        export PATH="/Users/tomas/.local/bin:$PATH"
       '';
     };
 
     system.primaryUser = "tomas";
+
     homebrew = {
       enable = true;
       autoUpdate = true;
