@@ -15,6 +15,7 @@
           rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
         };
         cloudflared.rekeyFile = ./cloudflared.age;
+        grafana-ntfy.rekeyFile = ./grafana-ntfy.age;
         # "healthchecks" = {
         #   rekeyFile = ./healthchecks.age;
         #   group = "healthchecks";
