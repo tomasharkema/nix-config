@@ -157,6 +157,17 @@
         accelerationDevices = ["*"];
       };
 
+      grafana-to-ntfy = {
+        enable = true;
+        settings = {
+          ntfyUrl = "https://ntfy.sh/grafana-abcdefg";
+          ntfyBAuthUser = null;
+          ntfyBAuthPass = null;
+          bauthUser = "ntfy";
+          bauthPass = "/tmp/webhook-grafana";
+        };
+      };
+
       tsnsrv = {
         enable = true;
         defaults.authKeyPath = config.age.secrets.tsnsrv.path;
@@ -166,6 +177,7 @@
           glitchtip = {
             toURL = "http://127.0.0.1:${builtins.toString config.services.glitchtip.port}";
           };
+          grafana = {toURL = "http://127.0.0.1:3000";};
           # healthchecks = {toURL = "http://127.0.0.1:8000";};
         };
       };
