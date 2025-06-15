@@ -308,7 +308,7 @@
       extraModulePackages = [
         # config.system.build.cc1101-driver
       ];
-      # modprobeConfig.enable = true;
+      modprobeConfig.enable = true;
       supportedFilesystems = ["ext2" "ext3" "ext4"];
       kernelParams = [
         "i915.enable_gvt=1"
@@ -342,7 +342,7 @@
         # "watchdog"
         # "usbmon"
       ];
-      # extraModprobeConfig = "options i915 enable_guc=2";
+      extraModprobeConfig = "options thinkpad_acpi fan_control=1";
       initrd.kernelModules = [
         "nvidia"
         "i915"
