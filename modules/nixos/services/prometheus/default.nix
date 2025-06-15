@@ -37,70 +37,16 @@ in {
           group = "root";
         };
       };
-
-      services.gpsd-exporter = lib.mkIf cfg.server.enable {
-        description = "gpsd-exporter";
-        wantedBy = ["default.target"];
-        script = ''
-          ${lib.getExe pkgs.custom.gpsd-exporter} -d 192.168.9.206:2947
-        '';
-      };
     };
+
     services = {
       prometheus = {
-        enable = cfg.server.enable;
-        pushgateway.enable = cfg.server.enable;
-        alertmanager-ntfy = lib.mkIf cfg.server.enable {
-          enable = true;
-          settings = {
-            ntfy = {
-              baseurl = "https://ntfy.sh";
-              notification.topic = "tomasharkema-nixos";
-            };
-          };
-        };
-        scrapeConfigs = lib.mkIf cfg.server.enable [
-          {
-            job_name = "gpsd-exporter";
-            static_configs = [
-              {
-                targets = ["localhost:9978"];
-              }
-            ];
-          }
-
-          {
-            job_name = "chrony-exporter";
-            static_configs = [
-              {
-                targets = ["localhost:${builtins.toString config.services.prometheus.exporters.chrony.port}"];
-              }
-            ];
-          }
-          {
-            job_name = "coopi";
-            static_configs = [
-              {
-                targets = ["192.168.9.155:9100"];
-              }
-            ];
-          }
-          {
-            job_name = "ultrafeeder";
-            static_configs = [
-              {
-                targets = ["enceladus:9273" "enceladus:9274"];
-              }
-            ];
-          }
-        ];
-
         exporters = {
           chrony.enable = true;
           node = {
             enable = true;
-            enabledCollectors = ["systemd" "textfile"];
-            disabledCollectors = ["arp"];
+            enabledCollectors = ["systemd" "textfile" "arp"];
+            # disabledCollectors = ["arp"];
 
             extraFlags = [
               "--collector.textfile.directory=/var/lib/prometheus-node-exporter-text-files"

@@ -157,16 +157,16 @@
         accelerationDevices = ["*"];
       };
 
-      grafana-to-ntfy = {
-        enable = true;
-        settings = {
-          ntfyUrl = "https://ntfy.sh/grafana-abcdefg";
-          ntfyBAuthUser = null;
-          ntfyBAuthPass = null;
-          bauthUser = "ntfy";
-          bauthPass = "/tmp/webhook-grafana";
-        };
-      };
+      #grafana-to-ntfy = {
+      #  enable = true;
+      #  settings = {
+      #    ntfyUrl = "https://ntfy.sh/grafana-abcdefg";
+      #    #ntfyBAuthUser = null;
+      #    ntfyBAuthPass = "/dev/null";
+      #    bauthUser = "ntfy";
+      #    bauthPass = config.age.secrets.grafana-ntfy.path;
+      #  };
+      #};
 
       tsnsrv = {
         enable = true;

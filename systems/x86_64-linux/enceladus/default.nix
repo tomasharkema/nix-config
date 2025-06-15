@@ -6,9 +6,7 @@
   config,
   format,
   ...
-}: let
-  self = inputs.self;
-in {
+}: {
   config = {
     facter.reportPath = ./facter.json;
 
