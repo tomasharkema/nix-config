@@ -14,7 +14,7 @@
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
     age = {
-      rekey.hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINd5H6IZiTv8r7FCxgM+GoOzjFLYnax54PPI+vGNpOos root@sura";
+      rekey.hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMWmCzK3uR/xRwnff4s/7TkZ7CopG0zG9HH6qyCWZNUf root@sura";
     };
 
     disks.ext4 = {
