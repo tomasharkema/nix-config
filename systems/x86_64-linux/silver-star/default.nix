@@ -17,7 +17,11 @@
         cloudflared.rekeyFile = ./cloudflared.age;
         grafana-ntfy.rekeyFile = ./grafana-ntfy.age;
 
-        netbox.rekeyFile = ./netbox.age;
+        netbox = {
+          rekeyFile = ./netbox.age;
+          group = "netbox";
+          owner = "netbox";
+        };
 
         "healthchecks" = {
           rekeyFile = ./healthchecks.age;
@@ -137,6 +141,7 @@
       netbox = {
         enable = true;
         secretKeyFile = config.age.secrets.netbox.path;
+        settings.ALLOWED_HOSTS = ["netbox.ling-lizard.ts.net"];
       };
 
       mosquitto = {
