@@ -16,6 +16,7 @@
         };
         cloudflared.rekeyFile = ./cloudflared.age;
         grafana-ntfy.rekeyFile = ./grafana-ntfy.age;
+        netbox.rekeyFile = ./netbox.age;
         # "healthchecks" = {
         #   rekeyFile = ./healthchecks.age;
         #   group = "healthchecks";
