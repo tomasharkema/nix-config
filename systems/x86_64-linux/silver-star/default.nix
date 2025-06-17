@@ -16,12 +16,14 @@
         };
         cloudflared.rekeyFile = ./cloudflared.age;
         grafana-ntfy.rekeyFile = ./grafana-ntfy.age;
+
         netbox.rekeyFile = ./netbox.age;
-        # "healthchecks" = {
-        #   rekeyFile = ./healthchecks.age;
-        #   group = "healthchecks";
-        #   owner = "healthchecks";
-        # };
+
+        "healthchecks" = {
+          rekeyFile = ./healthchecks.age;
+          group = "healthchecks";
+          owner = "healthchecks";
+        };
       };
     };
 
@@ -112,7 +114,7 @@
         };
       };
 
-      healthchecks = lib.mkIf false {
+      healthchecks = {
         enable = true;
         listenAddress = "0.0.0.0";
 
@@ -130,6 +132,11 @@
           EMAIL_USE_SSL = "False";
           EMAIL_USE_TLS = "False";
         };
+      };
+
+      netbox = {
+        enable = true;
+        secretKeyFile = config.age.secrets.netbox.path;
       };
 
       mosquitto = {
