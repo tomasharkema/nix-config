@@ -141,6 +141,7 @@
       netbox = {
         enable = true;
         secretKeyFile = config.age.secrets.netbox.path;
+        listenAddress = "127.0.0.1";
         settings.ALLOWED_HOSTS = ["netbox.ling-lizard.ts.net"];
       };
 
@@ -191,7 +192,8 @@
             toURL = "http://127.0.0.1:${builtins.toString config.services.glitchtip.port}";
           };
           grafana = {toURL = "http://127.0.0.1:3000";};
-          # healthchecks = {toURL = "http://127.0.0.1:8000";};
+          healthchecks = {toURL = "http://127.0.0.1:8000";};
+          netbox = {toURL = "http://127.0.0.1:${builtins.toString config.services.netbox.port}";};
         };
       };
 
