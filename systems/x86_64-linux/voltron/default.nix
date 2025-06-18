@@ -126,14 +126,23 @@
       # fancontrol.enable = true;
     };
 
-    # virtualisation.waydroid.enable = true;
+    virtualisation.waydroid.enable = true;
+    virtualisation.docker = {
+      enable = true;
+      #storageDriver = "btrfs";
 
+      daemon.settings.features."containerd-snapshotter" = true;
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
+    };
     apps = {
       steam.enable = true;
       # opensnitch.enable = true;
       # usbip.enable = true;
       # samsung.enable = true;
-      podman.enable = true;
+      podman.enable = false;
       resilio = {
         enable = true;
         enableEnc = true;
@@ -175,11 +184,11 @@
         spi = {};
         gpio = {};
       };
-      users.tomas.extraGroups = ["spi" "gpio"];
+      users.tomas.extraGroups = ["spi" "gpio" "docker"];
     };
 
     services = {
-      #  kmscon.enable = true;
+      kmscon.enable = true;
       ratbagd.enable = true;
       # comin.enable = false;
       abrt.enable = true;

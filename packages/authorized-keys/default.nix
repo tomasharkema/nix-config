@@ -9,7 +9,7 @@ stdenvNoCC.mkDerivation rec {
 
   src = fetchurl {
     url = "https://github.com/tomasharkema.keys";
-    sha256 = "sha256-VAfnzfSUyTJWum+m2+9erywQ6m7xxFAt38FR1QMgk1A=";
+    sha256 = "sha256-fsx70LgiO91qoBkKxyB4MLN9OiKfk1/yP1DklalpmT8=";
   };
 
   dontUnpack = true;
