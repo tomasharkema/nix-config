@@ -225,7 +225,6 @@ in {
           # angryipscanner
           #bottles
           # custom.qlogexplorer
-          devdocs-desktop
           # discordo
           dmidecode
           gdm-settings
