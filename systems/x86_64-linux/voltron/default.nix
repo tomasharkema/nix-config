@@ -188,7 +188,7 @@
     };
 
     services = {
-      kmscon.enable = true;
+      # kmscon.enable = true;
       ratbagd.enable = true;
       # comin.enable = false;
       abrt.enable = true;
