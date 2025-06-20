@@ -191,7 +191,7 @@ in
           tracker.enable = true;
 
           tracker-miners.enable = true;
-
+          gcr-ssh-agent.enable = lib.mkForce false;
           sushi.enable = true;
         };
 
