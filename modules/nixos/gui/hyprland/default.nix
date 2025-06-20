@@ -19,6 +19,7 @@
 
     services = {hypridle.enable = true;};
     environment.systemPackages = with pkgs; [
+      hyprpanel
       pyprland
       hyprpicker
       hyprcursor
@@ -72,9 +73,28 @@
         hyprlock = {
           enable = true;
         };
+        hyprpanel = {
+          enable = true;
+          systemd.enable = true;
+
+          settings = {
+            theme.font = {
+              name = "Inter Variable";
+              size = "1.0rem";
+              weight = 400;
+            };
+            menus.clock = {
+              weather = {
+                location = "Amsterdam";
+                unit = "metric";
+              };
+              time.military = true;
+            };
+          };
+        };
 
         waybar = {
-          enable = true;
+          # enable = true;
           systemd.enable = true;
           style = builtins.readFile ./waybar.css;
           settings = import ./waybar.nix {inherit pkgs;};
@@ -84,9 +104,10 @@
         swaync.font = "B612";
         mako.enable = false;
       };
+
       services = {
         swaync = {
-          enable = true;
+          enable = false;
         };
         # mako = {
         #   enable = true;
@@ -96,6 +117,7 @@
         #   enable = true;
         #   extraArgs = ["-c 10" "-w 30" "-f disabled" "-D ${pkgs.hyprlock}/bin/hyprlock"];
         # };
+
         hypridle = {
           enable = true;
 
@@ -162,9 +184,8 @@
 
           exec-once = [
             # "hypridle"
-            "hyprsunset"
             "systemctl --user start hyprpolkitagent"
-
+            "hyprpanel"
             "[workspace 1 silent] $terminal"
             "${pkgs.networkmanagerapplet}/bin/nm-applet"
             "${pkgs.custom.usbguard-gnome}/bin/usbguard-gnome"

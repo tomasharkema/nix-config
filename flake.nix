@@ -92,6 +92,7 @@
         nix-index-database.hmModules.nix-index
         op-shell-plugins.hmModules.default
         # agenix.homeManagerModules.default
+        hyprpanel.homeManagerModules.hyprpanel
       ];
 
       # systems.hosts = let
