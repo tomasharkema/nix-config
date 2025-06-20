@@ -119,7 +119,7 @@
       };
 
       healthchecks = {
-        enable = true;
+        # enable = true;
         listenAddress = "0.0.0.0";
 
         # notificationSender = "tomas+hydra@harkema.io";
@@ -561,6 +561,9 @@
           # # "sd_mod"
         ];
         kernelModules = [
+          "acpi_power_meter"
+          "acpi_ipmi"
+          "ipmi_si"
           "pico_rng"
           # # "dcdbas"
           # # "dell_rbu"
@@ -587,6 +590,8 @@
         "uinput"
         "fuse"
         "ipmi_ipmb"
+        "acpi_ipmi"
+        "acpi_power_meter"
         #       "tpm_rng"
         "ipmi_ssif"
         "acpi_ipmi"
