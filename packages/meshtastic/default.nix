@@ -22,13 +22,13 @@
 in
   stdenv.mkDerivation rec {
     pname = "gtk-meshtastic-client";
-    version = "1.0";
+    version = "1.2";
 
     src = fetchFromGitLab {
       owner = "kop316";
       repo = "gtk-meshtastic-client";
       rev = version;
-      hash = "sha256-QNqlz3PrUgMm54i1sDqQ+ZV8sLm0LuTg8rZhYNdQJ9I=";
+      hash = "sha256-P0U3OO1BSysGGMGADPVREWoJqcKeZITla91iIdV7y4M=";
     };
 
     nativeBuildInputs = [
