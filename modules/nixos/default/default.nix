@@ -313,7 +313,7 @@ in {
           kexec-tools
           kmon
           lazydocker
-          ldapdomaindump
+          # ldapdomaindump
           libnotify
           lm_sensors
           lorri

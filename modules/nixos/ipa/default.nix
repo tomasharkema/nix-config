@@ -26,7 +26,7 @@ in {
       systemPackages = with pkgs; [
         # ldapvi
         ldb
-        ldapmonitor
+        # ldapmonitor
         pkcs11helper
         realmd
         # heimdal
