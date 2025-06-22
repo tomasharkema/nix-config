@@ -83,7 +83,7 @@ in
       owner = "SSSD";
       repo = "sssd";
       rev = "refs/tags/${finalAttrs.version}";
-      sha256 = "sha256-p/PijS84fCorm2UyiFYZl+Li8+rUUQiPIImRN7xJmRk=";
+      sha256 = "sha256-gqVBg1OcuoKtmfFnM1p29hlKxRfxgF3tayrkXrJ0fpo=";
     };
 
     # patches = [
