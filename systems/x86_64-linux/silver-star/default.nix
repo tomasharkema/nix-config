@@ -118,6 +118,8 @@
         };
       };
 
+      uptime-kuma.enable = true;
+
       healthchecks = {
         # enable = true;
         listenAddress = "0.0.0.0";
