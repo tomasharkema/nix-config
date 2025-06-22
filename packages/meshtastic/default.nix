@@ -17,6 +17,7 @@
   wrapGAppsHook,
   libshumate,
   desktop-file-utils,
+  meshtastic-py,
 }: let
   py = python3.withPackages (ps: with ps; [glib gobject-introspection pygobject3 meshtastic-py pyqrcode]);
 in
