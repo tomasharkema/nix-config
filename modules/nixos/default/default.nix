@@ -131,15 +131,15 @@ in {
         # "netconsole=@/,@192.168.0.100/"
       ];
 
-      kernel.sysctl = {
-        "net.ipv4.ip_forward" = lib.mkDefault 1;
-        "vm.swappiness" = lib.mkDefault 180;
-        "vm.watermark_boost_factor" = lib.mkDefault 0;
-        "vm.watermark_scale_factor" = lib.mkDefault 125;
-        "vm.page-cluster" = lib.mkDefault 0;
-        "vm.overcommit_memory" = lib.mkDefault "1";
-        # "kernel.printk" = "8 4 1 7";
-      };
+      # kernel.sysctl = {
+      #   "net.ipv4.ip_forward" = lib.mkDefault 1;
+      #   "vm.swappiness" = lib.mkDefault 180;
+      #   "vm.watermark_boost_factor" = lib.mkDefault 0;
+      #   "vm.watermark_scale_factor" = lib.mkDefault 125;
+      #   "vm.page-cluster" = lib.mkDefault 0;
+      #   "vm.overcommit_memory" = lib.mkDefault "1";
+      #   # "kernel.printk" = "8 4 1 7";
+      # };
 
       tmp = {
         useTmpfs = lib.mkDefault true;
@@ -157,7 +157,7 @@ in {
           );
 
       kernelModules = [
-        "wireguard"
+        # "wireguard"
         # "netconsole"
         # "apfs"
       ];
@@ -426,9 +426,7 @@ in {
     systemd.tmpfiles = {
       packages = [pkgs.abrt];
 
-      settings."99-panic-plane" = {
-        "/sys/kernel/debug/dri/0/drm_panic_plane_0".w.argument = "1";
-      };
+      # se
     };
 
     apps = {
@@ -728,7 +726,7 @@ in {
         lfs.enable = true;
       };
       udevil.enable = true;
-      usbtop.enable = true;
+      # usbtop.enable = true;
       wavemon.enable = true;
       trippy.enable = true;
       ydotool.enable = true;
@@ -781,7 +779,7 @@ in {
       };
 
       networkmanager.enable = lib.mkDefault true;
-      timeServers = ["192.168.9.49"];
+      # timeServers = ["192.168.9.49"];
 
       useNetworkd = lib.mkIf config.networking.networkmanager.enable false;
     };
