@@ -126,7 +126,7 @@
       # fancontrol.enable = true;
     };
 
-    virtualisation.waydroid.enable = true;
+    #virtualisation.waydroid.enable = true;
     virtualisation.docker = {
       enable = true;
       #storageDriver = "btrfs";
