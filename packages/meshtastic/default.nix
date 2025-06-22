@@ -18,7 +18,7 @@
   libshumate,
   desktop-file-utils,
 }: let
-  py = python3.withPackages (ps: with ps; [glib gobject-introspection pygobject3 meshtastic pyqrcode]);
+  py = python3.withPackages (ps: with ps; [glib gobject-introspection pygobject3 meshtastic-py pyqrcode]);
 in
   stdenv.mkDerivation rec {
     pname = "gtk-meshtastic-client";

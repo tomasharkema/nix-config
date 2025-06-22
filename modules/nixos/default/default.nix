@@ -408,7 +408,7 @@ in {
         ])
         ++ (lib.optionals pkgs.stdenv.isx86_64 (
           with pkgs; [
-            python3Packages.meshtastic
+            meshtastic-py
             spectre-meltdown-checker
             gnutls
             cmospwd
@@ -447,6 +447,11 @@ in {
       };
       earlyoom.enableNotifications = true;
       # locate.enable = true;
+
+      uptimed.enable = true;
+      tuptime.enable = true;
+      # uptime.enableSeparateMonitoringService = true;
+
       smartd = {
         enable = true;
         notifications = {

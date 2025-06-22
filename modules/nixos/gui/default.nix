@@ -108,7 +108,7 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-      ida-free
+      # ida-free
       custom.butler
       ddrescue
       ddrescueview
