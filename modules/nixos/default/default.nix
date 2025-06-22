@@ -233,7 +233,7 @@ in {
           p7zip
           starship
           helix
-          qutebrowser
+
           zathura
           mpv
           imv
@@ -338,7 +338,7 @@ in {
           openldap
           pamix
           pamixer
-          parallel-disk-usage
+
           gnupg
           pciutils
           pigz
