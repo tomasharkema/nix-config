@@ -12,6 +12,7 @@
         #   hidpiXWayland = true;
         # };
       };
+      iio-hyprland.enable = true;
       # hyprlock.enable = true;
     };
 
@@ -62,12 +63,12 @@
 
       programs = {
         rofi = {
-          enable = true;
+          # enable = true;
           package = pkgs.rofi-wayland;
           pass.enable = true;
           terminal = "kitty";
         };
-
+        anyrun.enable = true;
         # wlogout.enable = true;
 
         hyprlock = {
