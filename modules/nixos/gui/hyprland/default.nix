@@ -37,7 +37,7 @@
 
       polybarFull
 
-      swaynotificationcenter
+      # swaynotificationcenter
 
       cool-retro-term
 
@@ -68,7 +68,10 @@
           pass.enable = true;
           terminal = "kitty";
         };
-        anyrun.enable = true;
+        anyrun = {
+          enable = true;
+        };
+
         # wlogout.enable = true;
 
         hyprlock = {
@@ -80,16 +83,28 @@
 
           settings = {
             theme.font = {
-              name = "Inter Variable";
+              # name = "Inter Variable";
+              name = "B612";
               size = "1.0rem";
               weight = 400;
             };
+            bar.clock.format = "%d %b %Y   %H:%M:%S";
             menus.clock = {
               weather = {
                 location = "Amsterdam";
                 unit = "metric";
               };
               time.military = true;
+            };
+
+            layout = {
+              "bar.layouts" = {
+                "0" = {
+                  left = ["dashboard" "workspaces" "windowtitle"];
+                  middle = ["media"];
+                  right = ["volume" "network" "bluetooth" "battery" "systray" "hypridle" "clock" "notifications"];
+                };
+              };
             };
           };
         };
@@ -102,7 +117,7 @@
         };
       };
       catppuccin = {
-        swaync.font = "B612";
+        # swaync.font = "B612";
         mako.enable = false;
       };
 

@@ -82,9 +82,9 @@ in [
         "unlocked" = "";
       };
     };
-    "sway/mode" = {
-      "format" = "<span style=\"italic\">{}</span>";
-    };
+    # "sway/mode" = {
+    #   "format" = "<span style=\"italic\">{}</span>";
+    # };
     "network" = {
       "interface" = "*";
       "format-wifi" = " {bandwidthDowbBits}  {bandwidthUpBits} ";

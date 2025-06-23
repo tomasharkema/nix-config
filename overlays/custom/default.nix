@@ -51,12 +51,12 @@ in rec {
     buildInputs = old.buildInputs ++ [prev.custom.glcd-proc-driver prev.custom.graphlcd-base];
   });
 
-  _389-ds-base = self.packages."${prev.system}"._389-ds-base;
-  freeipa = self.packages."${prev.system}".freeipa;
+  # _389-ds-base = self.packages."${prev.system}"._389-ds-base;
+  # freeipa = self.packages."${prev.system}".freeipa;
 
-  sssd = overridePkgCheckVersionSnapshot "sssd" "2.9.7" (
-    self.packages."${prev.system}".sssd.override {withSudo = true;}
-  );
+  # sssd = overridePkgCheckVersionSnapshot "sssd" "2.9.7" (
+  #   self.packages."${prev.system}".sssd.override {withSudo = true;}
+  # );
 
   #docset = inputs.nixos-dash-docset.packages."${prev.system}".docset;
   # hyprpanel = inputs.hyprpanel.packages."${prev.system}".default;
