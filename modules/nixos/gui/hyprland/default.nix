@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   config = lib.mkIf config.gui.enable {
@@ -68,8 +69,26 @@
           pass.enable = true;
           terminal = "kitty";
         };
+
         anyrun = {
           enable = true;
+          package = inputs.anyrun.packages.${pkgs.system}.anyrun-with-all-plugins;
+          config = {
+            plugins = [
+              inputs.anyrun.packages.${pkgs.system}.applications
+              inputs.anyrun.packages.${pkgs.system}.kidex
+              inputs.anyrun.packages.${pkgs.system}.rink
+              inputs.anyrun.packages.${pkgs.system}.stdin
+              inputs.anyrun.packages.${pkgs.system}.translate
+              inputs.anyrun.packages.${pkgs.system}.dictionary
+              inputs.anyrun.packages.${pkgs.system}.randr
+              inputs.anyrun.packages.${pkgs.system}.shell
+              inputs.anyrun.packages.${pkgs.system}.symbols
+              inputs.anyrun.packages.${pkgs.system}.websearch
+              # An array of all the plugins you want, which either can be paths to the .so files, or their packages
+              # inputs.anyrun.packages.${pkgs.system}.applications
+            ];
+          };
         };
 
         # wlogout.enable = true;

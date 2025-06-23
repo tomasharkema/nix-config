@@ -108,7 +108,9 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
+      helvum
       # ida-free
+      segger-jlink
       custom.butler
       ddrescue
       ddrescueview

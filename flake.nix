@@ -13,6 +13,7 @@
       channels-config = {
         allowUnfreePredicate = _: true;
         allowUnfree = true;
+        segger-jlink.acceptLicense = true;
 
         # firefox.enableGnomeExtensions = true;
         # firefox.smartcardSupport = true;
@@ -34,6 +35,8 @@
           # "openssl-1.1.1w"
 
           # "python-2.7.18.8"
+
+          "segger-jlink-qt4-810"
         ];
         config = {
           allowUnfreePredicate = _: true;
@@ -379,6 +382,7 @@
       "watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="
       "raspi5.harkema.io-1:/kwt4HGmzEnXtQ2i8LMnfu8PrFaiX+oT7z5jsA3sXhs="
     ];
+
     substituters = [
       "https://cache.nixos.org/"
       "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
@@ -418,9 +422,11 @@
       "https://tomasharkema.cachix.org"
       # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
       "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
+      "https://anyrun.cachix.org"
     ];
 
     extra-trusted-public-keys = [
+      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
       "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
       "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
