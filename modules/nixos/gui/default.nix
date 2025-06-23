@@ -41,7 +41,7 @@ in {
       ddccontrol.enable = true;
       seatd.enable = true;
       printing.enable = true;
-      mpd.enable = true;
+      # mpd.enable = true;
       mopidy.enable = true;
       playerctld.enable = true;
       displayManager.defaultSession = "hyprland";

@@ -60,7 +60,7 @@
         gnomeExtensions.power-tracker
         # custom.swift
         powerstat
-        powerjoular
+        # powerjoular
         libimobiledevice
         intel-gpu-tools
         nvramtool

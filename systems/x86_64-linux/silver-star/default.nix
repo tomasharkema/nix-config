@@ -58,7 +58,7 @@
         network.xgbe.enable = true;
         nvidia = {
           enable = true;
-          open = true; # false;
+          open = true; #false;
           grid = {
             enable = false; # true;
             legacy = false;
@@ -118,7 +118,10 @@
         };
       };
 
-      uptime-kuma.enable = true;
+      uptime-kuma = {
+        enable = true;
+        settings = {PORT = "4000";};
+      };
 
       healthchecks = {
         # enable = true;
@@ -157,10 +160,13 @@
           }
         ];
       };
+
       udev.extraRules = ''
         SUBSYSTEM=="ipmi", GROUP="ipmi", MODE="0777"
       '';
+
       lldpd.enable = true;
+
       usbguard.enable = lib.mkForce false;
       # tcsd.enable = true;
 

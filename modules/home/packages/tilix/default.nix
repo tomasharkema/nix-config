@@ -25,6 +25,6 @@ in {
       recursive = true;
     };
 
-    home.packages = with pkgs; [tilix];
+    # home.packages = with pkgs; [tilix];
   };
 }

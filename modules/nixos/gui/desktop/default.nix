@@ -29,7 +29,7 @@ in {
         enable = true;
         packages = with pkgs; [
           # custom.anydesk
-          tilix
+          # tilix
           usbguard-notifier
           ptyxis
         ];
