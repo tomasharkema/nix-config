@@ -449,7 +449,13 @@ in {
       uptimed.enable = true;
       tuptime.enable = true;
       # uptime.enableSeparateMonitoringService = true;
-
+      snmpd = {
+        enable = true;
+        configText = ''
+          agentAddress udp:161
+          rocommunity public
+        '';
+      };
       smartd = {
         enable = true;
         notifications = {

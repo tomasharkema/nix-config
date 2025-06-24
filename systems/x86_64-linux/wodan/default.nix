@@ -16,6 +16,7 @@
 
     environment = {
       systemPackages = with pkgs; [
+        snmpcheck
         davinci-resolve
         ntfs2btrfs
         glxinfo
@@ -178,7 +179,7 @@
       adb.enable = true;
       wireshark = {
         enable = true;
-        usbmon.enable = true;
+        # usbmon.enable = true;
         dumpcap.enable = true;
       };
     };
