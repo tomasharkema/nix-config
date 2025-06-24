@@ -96,13 +96,15 @@
         hyprlock = {
           enable = true;
         };
+
         hyprpanel = {
           enable = true;
           systemd.enable = true;
+          # hyprland.enable = true;
 
           settings = {
             theme.font = {
-              # name = "Inter Variable";
+              #   # name = "Inter Variable";
               name = "B612";
               size = "1.0rem";
               weight = 400;
@@ -116,13 +118,15 @@
               time.military = true;
             };
 
-            layout = {
-              "bar.layouts" = {
-                "0" = {
-                  left = ["dashboard" "workspaces" "windowtitle"];
-                  middle = ["media"];
-                  right = ["volume" "network" "bluetooth" "battery" "systray" "hypridle" "clock" "notifications"];
-                };
+            layout = let
+              baseLayout = {
+                left = ["dashboard" "workspaces" "windowtitle"];
+                middle = ["media"];
+                right = ["volume" "network" "bluetooth" "battery" "systray" "hypridle" "clock" "notifications"];
+              };
+            in {
+              bar.layouts = {
+                "0" = baseLayout;
               };
             };
           };
