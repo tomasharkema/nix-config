@@ -452,8 +452,8 @@ in {
       snmpd = {
         enable = true;
         configText = ''
-          agentAddress udp:161
-          rocommunity public
+          rocommunity   public
+          trapsink      localhost:162 public
         '';
       };
       smartd = {
