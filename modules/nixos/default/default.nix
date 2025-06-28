@@ -674,7 +674,7 @@ in {
 
         extraConfig = ''
           makestep 1.1 100
-          server meshpi3.local iburst minpoll 1 maxpoll 2
+          server timepi.local iburst minpoll 1 maxpoll 2
 
           pool  nl.pool.ntp.org           iburst  minpoll 4  maxpoll 4
           #pool  europe.pool.ntp.org    iburst  minpoll 4  maxpoll 4
