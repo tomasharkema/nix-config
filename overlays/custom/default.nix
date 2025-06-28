@@ -15,21 +15,24 @@
   );
 in rec {
   libcec = prev.libcec.override {withLibraspberrypi = true;};
-  meshtastic-py = prev.python3Packages.meshtastic.overrideAttrs (old: {
-    postPatch = ''
-      substituteInPlace pyproject.toml --replace-fail "packaging = \"^24.0\"" "packaging = \"^25.0\""
-    '';
 
-    nativeCheckInputs = with prev; [
-      hypothesis
-      pytestCheckHook
-      argcomplete
-      dotmap
-      print-color
-      pyqrcode
-      wcwidth
-    ];
-  });
+  # meshtastic-py = prev.python3Packages.meshtastic.overrideAttrs (old: {
+  #   postPatch = ''
+  #     substituteInPlace pyproject.toml \
+  #       --replace-fail "packaging = \"^24.0\"" "packaging = \"^25.0\""
+  #   '';
+
+  #   nativeCheckInputs = with prev; [
+  #     hypothesis
+  #     pytestCheckHook
+  #     argcomplete
+  #     dotmap
+  #     print-color
+  #     pyqrcode
+  #     wcwidth
+  #   ];
+  # });
+
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
   # pwvucontrol = prev.custom.pwvucontrol;

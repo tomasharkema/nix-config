@@ -123,7 +123,7 @@ in {
       handbrake
       thonny
       coppwr
-      custom.meshtastic
+      custom.gtk-meshtastic-client
       libwacom
       chromium
       noti

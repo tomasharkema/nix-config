@@ -4,7 +4,7 @@
   fetchFromGitHub,
   python3,
 }: let
-  py = python3.withPackages (ps: with ps; [meshtastic-py]);
+  py = python3.withPackages (ps: with ps; [meshtastic]);
 in
   python3.pkgs.buildPythonApplication rec {
     pname = "contact";
