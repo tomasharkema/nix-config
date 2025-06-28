@@ -12,6 +12,10 @@
 
     age.rekey = {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIseppvkEAzMD/B2xLqijr4UhTig0bZfqnXS6NcaAHxR root@nixos";
+
+      tsnsrv = {
+        rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
+      };
     };
 
     environment.systemPackages = with pkgs; [
@@ -55,8 +59,9 @@
 
       tsnsrv = {
         enable = true;
+        defaults.authKeyPath = config.age.secrets.tsnsrv.path;
         services = {
-          hass = {
+          adsb = {
             toURL = "http://127.0.0.1:8080";
             upstreamHeaders = {
               Host = "adsb.ling-lizard.ts.net";
