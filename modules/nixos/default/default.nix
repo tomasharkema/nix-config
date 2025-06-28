@@ -448,7 +448,9 @@ in {
 
       uptimed.enable = true;
       tuptime.enable = true;
+
       # uptime.enableSeparateMonitoringService = true;
+
       snmpd = {
         enable = true;
         configText = ''
@@ -456,6 +458,7 @@ in {
           trapsink      localhost:162 public
         '';
       };
+
       smartd = {
         enable = true;
         notifications = {
@@ -463,12 +466,15 @@ in {
           systembus-notify.enable = true;
         };
       };
+
       watchdogd = {
         enable = true;
       };
+
       # sysstat.enable = lib.mkDefault true;
       # irqbalance.enable = true;
       # aria2.enable = true;
+
       rpcbind.enable = true;
       cachefilesd.enable = true;
 

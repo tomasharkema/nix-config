@@ -42,6 +42,7 @@
       # remote-builders.client.enable = true;
       blueman.enable = true;
       lldpd.enable = true;
+
       udev = {
         packages = with pkgs; [
           # rtl-sdr
@@ -50,6 +51,18 @@
         # extraRules = ''
         #   ACTION=="add", ATTRS{idProduct}=="ea60", "ATTRS{idVendor}=="10c4", SYMLINK+="ttyPK0"
         # '';
+      };
+
+      tsnsrv = {
+        enable = true;
+        services = {
+          hass = {
+            toURL = "http://127.0.0.1:8080";
+            upstreamHeaders = {
+              Host = "adsb.ling-lizard.ts.net";
+            };
+          };
+        };
       };
 
       beesd.filesystems = lib.mkIf false {
@@ -110,7 +123,7 @@
 
     disks.btrfs = {
       enable = true;
-      main = "/dev/disk/by-id/nvme-512GB_SSD_CN348BH0814055";
+      main = "/dev/disk/by-id/nvme-512GB_SSD_CN348BH081hass4055";
       encrypt = true;
       newSubvolumes.enable = true;
       snapper.enable = false;

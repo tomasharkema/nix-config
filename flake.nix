@@ -35,7 +35,7 @@
           # "openssl-1.1.1w"
 
           # "python-2.7.18.8"
-
+          "netbox-4.2.9"
           "segger-jlink-qt4-810"
         ];
         config = {

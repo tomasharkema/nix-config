@@ -7,7 +7,7 @@
   config = {
     services.cockpit = {
       enable = true;
-      port = 9099;
+      # port = 9099;
       package = pkgs.cockpit;
 
       settings = {

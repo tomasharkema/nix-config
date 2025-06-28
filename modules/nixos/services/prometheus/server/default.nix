@@ -31,15 +31,18 @@ in {
       prometheus = {
         enable = true;
         pushgateway.enable = true;
-        alertmanager-ntfy = {
-          enable = true;
-          settings = {
-            ntfy = {
-              baseurl = "https://ntfy.sh";
-              notification.topic = "tomasharkema-nixos";
-            };
-          };
-        };
+        port = 9999;
+
+        # alertmanager-ntfy = {
+        #   enable = true;
+        #   settings = {
+        #     ntfy = {
+        #       baseurl = "https://ntfy.sh";
+        #       notification.topic = "tomasharkema-nixos";
+        #     };
+        #   };
+        # };
+
         scrapeConfigs = [
           {
             job_name = "node-exporter";
