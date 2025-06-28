@@ -10,7 +10,7 @@ in {
     enable = lib.mkEnableOption "enable netbox-service";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     age.secrets.netbox = {
       rekeyFile = ./netbox.age;
       group = "netbox";
