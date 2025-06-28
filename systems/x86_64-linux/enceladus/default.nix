@@ -12,9 +12,10 @@
 
     age.rekey = {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIseppvkEAzMD/B2xLqijr4UhTig0bZfqnXS6NcaAHxR root@nixos";
-
-      tsnsrv = {
-        rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
+      secrets = {
+        tsnsrv = {
+          rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
+        };
       };
     };
 
