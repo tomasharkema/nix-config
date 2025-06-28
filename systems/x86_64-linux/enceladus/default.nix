@@ -10,8 +10,10 @@
   config = {
     facter.reportPath = ./facter.json;
 
-    age.rekey = {
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIseppvkEAzMD/B2xLqijr4UhTig0bZfqnXS6NcaAHxR root@nixos";
+    age = {
+      rekey = {
+        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIseppvkEAzMD/B2xLqijr4UhTig0bZfqnXS6NcaAHxR root@nixos";
+      };
       secrets = {
         tsnsrv = {
           rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
