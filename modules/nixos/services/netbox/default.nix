@@ -4,34 +4,55 @@
   lib,
   ...
 }: let
-  cfg = config.services.netbox-service;
+  cfg = config.apps.netbox;
 in {
-  options.services.netbox-service = {
+  options.apps.netbox = {
     enable = lib.mkEnableOption "enable netbox-service";
   };
 
   config = lib.mkIf cfg.enable {
-    systemd.services.netbox = {serviceConfig = {TimeoutSec = 900;};};
-
-    services.netbox = {
-      enable = true;
-      secretKeyFile = "/var/lib/netbox/secret-key-file";
-      listenAddress = "127.0.0.1";
-      settings = {BASE_PATH = "netbox/";};
+    age.secrets.netbox = {
+      rekeyFile = ./netbox.age;
+      group = "netbox";
+      owner = "netbox";
     };
 
-    # proxy-services.services = {
-    #   "/netbox/static/" = {
-    #     alias = "${config.services.netbox.dataDir}/static/";
-    #   };
-    #   "/netbox/" = {
-    #     proxyPass = "http://${config.services.netbox.listenAddress}:${
-    #       toString config.services.netbox.port
-    #     }";
-    #     # extraConfig = ''
-    #     #   rewrite /netbox(.*) $1 break;
-    #     # '';
-    #   };
-    # };
+    systemd.services.netbox = {serviceConfig = {TimeoutSec = 900;};};
+
+    users.users.nginx.extraGroups = ["netbox"];
+    users.users.netbox.extraGroups = ["nginx"];
+
+    services = {
+      netbox = {
+        enable = true;
+        secretKeyFile = config.age.secrets.netbox.path;
+        listenAddress = "127.0.0.1";
+        port = 8001;
+        settings.ALLOWED_HOSTS = ["netbox.ling-lizard.ts.net"];
+      };
+
+      nginx = {
+        enable = true;
+        # user = "netbox";
+        # recommendedTlsSettings = true;
+        clientMaxBodySize = "25m";
+
+        virtualHosts."netbox.ling-lizard.ts.net" = {
+          listen = [
+            {
+              port = 8002;
+              addr = "0.0.0.0";
+            }
+          ];
+          locations = {
+            "/" = {
+              proxyPass = "http://127.0.0.1:8001";
+              # proxyPass = "http://${config.services.netbox.listenAddress}:${config.services.netbox.port}";
+            };
+            "/static/" = {alias = "${config.services.netbox.dataDir}/static/";};
+          };
+        };
+      };
+    };
   };
 }

@@ -16,13 +16,6 @@
         };
         cloudflared.rekeyFile = ./cloudflared.age;
         grafana-ntfy.rekeyFile = ./grafana-ntfy.age;
-
-        netbox = {
-          rekeyFile = ./netbox.age;
-          group = "netbox";
-          owner = "netbox";
-        };
-
         "healthchecks" = {
           rekeyFile = ./healthchecks.age;
           group = "healthchecks";
@@ -69,6 +62,7 @@
 
     apps = {
       netdata.server.enable = true;
+      netbox.enable = true;
       clamav.onacc.enable = false;
       mailrise.enable = true;
       hass.enable = true;
@@ -143,13 +137,6 @@
         };
       };
 
-      netbox = {
-        enable = true;
-        secretKeyFile = config.age.secrets.netbox.path;
-        listenAddress = "127.0.0.1";
-        settings.ALLOWED_HOSTS = ["netbox.ling-lizard.ts.net"];
-      };
-
       mosquitto = {
         enable = true;
         listeners = [
@@ -201,7 +188,7 @@
           };
           grafana = {toURL = "http://127.0.0.1:3000";};
           healthchecks = {toURL = "http://127.0.0.1:8000";};
-          netbox = {toURL = "http://127.0.0.1:${builtins.toString config.services.netbox.port}";};
+          netbox = {toURL = "http://127.0.0.1:8002";};
         };
       };
 
