@@ -118,15 +118,13 @@
               time.military = true;
             };
 
-            layout = let
-              baseLayout = {
-                left = ["dashboard" "workspaces" "windowtitle"];
-                middle = ["media"];
-                right = ["volume" "network" "bluetooth" "battery" "systray" "hypridle" "clock" "notifications"];
-              };
-            in {
+            layout = {
               bar.layouts = {
-                "0" = baseLayout;
+                "0" = {
+                  left = ["dashboard" "workspaces" "windowtitle"];
+                  middle = ["media"];
+                  right = ["volume" "network" "bluetooth" "battery" "systray" "hypridle" "clock" "notifications"];
+                };
               };
             };
           };

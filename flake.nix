@@ -888,7 +888,7 @@
     };
 
     nixd = {
-      url = "github:nix-community/nixd/release/2.x";
+      url = "github:nix-community/nixd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
