@@ -32,6 +32,7 @@ stdenv.mkDerivation rec {
       url = "https://raw.githubusercontent.com/chaotic-aur/pkgbuild-xmm7360-pci-git/refs/heads/master/dns-priority.patch";
       sha256 = "sha256-/oSuUn6INq0uo2wmVieRo5CWgjTLYO51mqinBEbcanA=";
     })
+    ./linux-6.15.patch
   ];
 
   prePatch = let

@@ -1,0 +1,13 @@
+diff --git a/xmm7360.c b/xmm7360.c
+index 1b5a90c..c593d0a 100644
+--- a/xmm7360.c
++++ b/xmm7360.c
+@@ -1111,7 +1111,7 @@ static void xmm7360_net_setup(struct net_device *dev)
+ {
+ 	struct xmm_net *xn = netdev_priv(dev);
+ 	spin_lock_init(&xn->lock);
+-	hrtimer_init(&xn->deadline, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
++	hrtimers_init(&xn->deadline, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+ 	xn->deadline.function = xmm7360_net_deadline_cb;
+ 	skb_queue_head_init(&xn->queue);
+ 
