@@ -38,7 +38,7 @@
     dd of=/sys/bus/pci/devices/0000:03:00.0/config if=/tmp/xmm_cfg bs=256 count=1 status=none
   '';
 in {
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     system.build.xmm7360 = xmm7360;
 
     environment = {
