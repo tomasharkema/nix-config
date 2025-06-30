@@ -498,6 +498,8 @@
       };
     };
 
+    powerManagement.powertop.enable = true;
+
     boot = {
       tmp = {
         useTmpfs = true;

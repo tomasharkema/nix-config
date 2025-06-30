@@ -119,6 +119,8 @@
     #   };
     # };
 
+    powerManagement.powertop.enable = true;
+
     gui = {
       # enable = true;
       desktop = {

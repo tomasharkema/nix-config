@@ -118,6 +118,8 @@ in {
       };
     };
 
+    powerManagement.powertop.enable = true;
+
     networking = {
       # hosts = {
       #   "192.168.0.100" = ["nix-cache.harke.ma"];
