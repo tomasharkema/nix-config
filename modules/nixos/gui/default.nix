@@ -109,6 +109,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       helvum
+      synology-drive-client
       # ida-free
       segger-jlink
       custom.butler
