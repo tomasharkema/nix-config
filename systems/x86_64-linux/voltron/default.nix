@@ -33,11 +33,6 @@
     #   enable = true;
     # };
 
-    chaotic.hdr = lib.mkIf false {
-      enable = true;
-      specialisation.enable = false;
-    };
-
     systemd = {
       services.usbmuxd.path = [pkgs.libusb1];
       # network.links."81-pi" = {
@@ -126,23 +121,14 @@
       # fancontrol.enable = true;
     };
 
-    #virtualisation.waydroid.enable = true;
-    virtualisation.docker = {
-      enable = true;
-      #storageDriver = "btrfs";
+    virtualisation.waydroid.enable = true;
 
-      daemon.settings.features."containerd-snapshotter" = true;
-      rootless = {
-        enable = true;
-        setSocketVariable = true;
-      };
-    };
     apps = {
       steam.enable = true;
       # opensnitch.enable = true;
       # usbip.enable = true;
       # samsung.enable = true;
-      podman.enable = false;
+      docker.enable = true;
       resilio = {
         enable = true;
         enableEnc = true;
@@ -280,9 +266,16 @@
 
     programs = {
       adb.enable = true;
+
       captive-browser = {
         enable = true;
         interface = "wlp4s0";
+      };
+
+      wireshark = {
+        enable = true;
+        usbmon.enable = true;
+        dumpcap.enable = true;
       };
     };
 

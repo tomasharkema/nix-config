@@ -48,7 +48,7 @@
 
     apps = {
       hass.enable = true;
-      podman.enable = true;
+      docker.enable = true;
     };
 
     disks.btrfs = {

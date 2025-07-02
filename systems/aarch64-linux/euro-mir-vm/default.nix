@@ -66,7 +66,7 @@
       flatpak.enable = true;
       # opensnitch.enable = true;
       ancs4linux.enable = false;
-      podman.enable = true;
+      docker.enable = true;
     };
 
     boot = {

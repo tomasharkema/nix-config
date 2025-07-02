@@ -4,15 +4,15 @@
   config,
   ...
 }: {
-  config = lib.mkIf (config.apps.podman.enable || config.apps.docker.enable) {
+  config = lib.mkIf config.apps.docker.enable {
     systemd.services = {
       "docker-compose@" = {
         overrideStrategy = "asDropin";
         wantedBy = ["multi-user.target"];
         description = "%i service with docker compose";
-        partOf = ["podman.service"];
-        after = ["podman.service"];
-        requires = ["podman.service"];
+        partOf = ["docker.service"];
+        after = ["docker.service"];
+        requires = ["docker.service"];
 
         unitConfig = {
           ConditionPathExists = ["/etc/docker/compose/%i"];

@@ -73,7 +73,7 @@ in {
     #   };
     # };
 
-    apps.podman.enable = true;
+    apps.docker.enable = true;
 
     virtualisation = {
       podman = {

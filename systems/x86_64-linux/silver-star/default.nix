@@ -72,8 +72,7 @@
       };
       ollama.enable = true;
       # "bmc-watchdog".enable = true;
-      podman.enable = true;
-      docker.enable = false;
+      docker.enable = true;
       zabbix.server.enable = true;
       atticd.enable = true;
       prometheus.server.enable = true;

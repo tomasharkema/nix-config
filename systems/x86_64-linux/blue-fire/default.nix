@@ -68,8 +68,8 @@ in {
         httpd = false;
       };
       # "bmc-watchdog".enable = true;
-      podman.enable = lib.mkForce true;
-      # ollama.enable = true;
+      docker.enable = true;
+      ollama.enable = true;
       # atticd.enable = true;
     };
 
@@ -88,7 +88,7 @@ in {
         enable = true;
         defaults.authKeyPath = config.age.secrets.tsnsrv.path;
         services = {
-          nix-cache = {toURL = "http://127.0.0.1:7124";};
+          # nix-cache = {toURL = "http://127.0.0.1:7124";};
           searxng = {toURL = "http://127.0.0.1:8088";};
         };
       };

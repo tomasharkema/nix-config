@@ -26,6 +26,7 @@ in {
         # connectionTokenFile = "/var/lib/openvscode/token";
       };
     };
+
     disks.btrfs.swap.resume.enable = false;
 
     hardware = {
@@ -34,7 +35,7 @@ in {
       };
     };
 
-    apps.podman.enable = true;
+    apps.docker.enable = true;
 
     boot = {
       tmp = {

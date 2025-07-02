@@ -11,7 +11,7 @@
   db-folder = "${folder}/db";
 in {
   config = lib.mkIf cfg.enable {
-    apps.podman.enable = true;
+    apps.docker.enable = true;
 
     systemd.tmpfiles.rules = ["d ${db-folder} 0600 root root -"];
 

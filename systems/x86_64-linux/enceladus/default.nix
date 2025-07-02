@@ -34,7 +34,7 @@
     };
 
     apps = {
-      podman.enable = true;
+      docker.enable = true;
       gpsd = {
         enable = true;
         #server.enable = true;

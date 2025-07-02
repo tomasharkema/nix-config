@@ -137,7 +137,7 @@
       };
       ollama.enable = true;
       flatpak.enable = true;
-      podman.enable = true;
+      docker.enable = true;
       ddc.enable = true;
     };
 

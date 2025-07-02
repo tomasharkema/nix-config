@@ -12,7 +12,7 @@ in {
     apps = {
       ipa.enable = false;
 
-      podman.enable = true;
+      docker.enable = true;
     };
 
     networking = {firewall = {trustedInterfaces = ["veth0" "veth1"];};};

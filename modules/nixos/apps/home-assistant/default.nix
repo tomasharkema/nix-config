@@ -15,7 +15,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    apps.podman.enable = true;
+    apps.docker.enable = true;
 
     services.tsnsrv.services = {
       hass = {
@@ -32,8 +32,13 @@ in {
           image = "ghcr.io/home-assistant/home-assistant:stable";
 
           autoStart = true;
+
           extraOptions = ["--privileged" "--network=host"];
-          volumes = ["/run/dbus:/run/dbus:ro" "${cfg.folder}:/config:Z"];
+
+          volumes = [
+            "/run/dbus:/run/dbus:ro"
+            "${cfg.folder}:/config:Z"
+          ];
         };
       };
     };

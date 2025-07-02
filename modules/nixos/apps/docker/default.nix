@@ -9,14 +9,8 @@ in {
   options.apps.docker = {enable = lib.mkEnableOption "enable docker";};
 
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = !config.apps.podman.enable;
-        message = "docker and podman cant be enabled both";
-      }
-    ];
-
     system.nixos.tags = ["docker"];
+
     environment.systemPackages = with pkgs; [
       dive
       docker-compose
@@ -33,6 +27,13 @@ in {
         enable = true;
         enableOnBoot = true;
         # storageDriver = "btrfs";
+
+        daemon.settings.features."containerd-snapshotter" = true;
+
+        rootless = {
+          enable = true;
+          setSocketVariable = true;
+        };
       };
     };
   };
