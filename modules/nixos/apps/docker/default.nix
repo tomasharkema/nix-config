@@ -19,7 +19,21 @@ in {
     ];
 
     virtualisation = {
-      oci-containers.backend = "docker";
+      oci-containers = {
+        backend = "docker";
+
+        containers = {
+          watchtower = {
+            image = "containrrr/watchtower";
+
+            autoStart = true;
+
+            volumes = [
+              "/var/run/docker.sock:/var/run/docker.sock"
+            ];
+          };
+        };
+      };
 
       containers.enable = true;
 

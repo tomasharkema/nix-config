@@ -11,6 +11,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    apps.docker.enable = true;
+
     virtualisation.oci-containers.containers = {
       beszel-agent = {
         image = "henrygd/beszel-agent";
