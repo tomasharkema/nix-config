@@ -89,7 +89,7 @@
     virtualisation = {
       oci-containers.containers = {
         netbootxyz = {
-          image = "ghcr.io/linuxserver/netbootxyz";
+          image = "linuxserver/netbootxyz:0.7.6";
 
           autoStart = true;
 
