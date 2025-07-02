@@ -64,6 +64,28 @@ in {
           }
 
           {
+            job_name = "ipmi-exporter";
+            static_configs = let
+              port = config.services.prometheus.exporters.ipmi.port;
+            in [
+              {
+                targets = ["localhost:${builtins.toString port}" "blue-fire:${builtins.toString port}"];
+              }
+            ];
+          }
+
+          {
+            job_name = "idrac-exporter";
+            static_configs = let
+              port = config.services.prometheus.exporters.idrac.port;
+            in [
+              {
+                targets = ["localhost:${builtins.toString port}"];
+              }
+            ];
+          }
+
+          {
             job_name = "chrony-exporter";
             static_configs = [
               {
@@ -75,7 +97,7 @@ in {
             job_name = "coopi";
             static_configs = [
               {
-                targets = ["192.168.9.155:9100"];
+                targets = ["coopi:9100"];
               }
             ];
           }

@@ -42,6 +42,7 @@ in {
       server = {
         enable = true;
         headless.enable = true;
+        ipmi.enable = true;
       };
 
       hardware = {

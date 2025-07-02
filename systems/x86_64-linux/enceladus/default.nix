@@ -50,6 +50,8 @@
       blueman.enable = true;
       lldpd.enable = true;
 
+      netbootxyz.enable = true;
+
       udev = {
         packages = with pkgs; [
           # rtl-sdr
@@ -81,27 +83,6 @@
           extraOptions = [
             "--loadavg-target"
             "2.0"
-          ];
-        };
-      };
-    };
-
-    virtualisation = {
-      oci-containers.containers = {
-        netbootxyz = {
-          image = "linuxserver/netbootxyz:0.7.6";
-
-          autoStart = true;
-
-          volumes = [
-            "/var/lib/netboot/config:/config"
-            "/var/lib/netboot/assets:/assets"
-          ];
-
-          ports = [
-            "3001:3000"
-            "69:69/udp"
-            "8083:80"
           ];
         };
       };

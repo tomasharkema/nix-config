@@ -37,11 +37,14 @@
       snapper.enable = false;
       # btrbk.enable = true;
     };
+
     zramSwap.enable = false;
+
     traits = {
       server = {
         enable = true;
         headless.enable = true;
+        ipmi.enable = true;
       };
       github-runner.enable = true;
 
@@ -81,15 +84,6 @@
     fileSystems."/export/netboot" = {
       device = "/mnt/netboot";
       options = ["bind"];
-    };
-
-    users = {
-      groups.ipmi.members = [
-        "tomas"
-        "root"
-        "netdata"
-        "ipmi-exporter"
-      ];
     };
 
     services = {
@@ -146,10 +140,6 @@
           }
         ];
       };
-
-      udev.extraRules = ''
-        SUBSYSTEM=="ipmi", GROUP="ipmi", MODE="0777"
-      '';
 
       lldpd.enable = true;
 
@@ -225,7 +215,6 @@
         enable = true;
         settings = {
           APP_URL = "https://id.harke.ma";
-          # APP_URL = "http://localhost:1411";
           TRUST_PROXY = true;
         };
       };
@@ -248,14 +237,45 @@
       kmscon.enable = lib.mkForce false;
 
       prometheus.exporters = {
-        ipmi = {
+        idrac = {
           enable = true;
+          configuration = {
+            hosts = {
+              "192.168.69.45" = {
+                username = "metrics";
+                password = "metrics";
+              };
+            };
+            metrics = {
+              memory = true;
+              power = true;
+              sel = true;
+              sensors = true;
+              storage = true;
+              system = true;
+            };
+            retries = 1;
+            timeout = 10;
+          };
         };
-        # idrac.enable = true;
-        # snmp.enable = true;
+
+        snmp = {
+          enable = true;
+
+          configuration = {
+            auths = {
+              public_v2 = {
+                community = "public";
+                version = 2;
+              };
+            };
+          };
+        };
       };
 
-      rsyslogd = {
+      netbootxyz.enable = true;
+
+      rsyslogd = lib.mkIf false {
         enable = true;
         extraConfig = ''
           $ModLoad imudp
@@ -402,29 +422,12 @@
       nvidia = {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
-        # nvidiaPersistenced = lib.mkForce true;
+        nvidiaPersistenced = true;
       };
     };
 
     virtualisation = {
       oci-containers.containers = {
-        netbootxyz = {
-          image = "linuxserver/netbootxyz:0.7.6";
-
-          autoStart = true;
-
-          volumes = [
-            "/var/lib/netboot/config:/config"
-            "/var/lib/netboot/assets:/assets"
-          ];
-
-          ports = [
-            "3001:3000"
-            "69:69/udp"
-            "8083:80"
-          ];
-        };
-
         # iventoy = {
         #   image = "teumaauss/iventoy:latest";
         #   autoStart = true;
@@ -449,24 +452,24 @@
         # };
 
         openmanage = {
-          image = "docker.io/teumaauss/srvadmin";
+          image = "teumaauss/srvadmin:latest";
 
           volumes = let
             kernelVersion = config.boot.kernelPackages.kernel.version;
           in [
-            "/run/current-system/sw/lib/modules/${kernelVersion}:/lib/modules/${kernelVersion}"
+            "/run/current-system/sw/lib/modules/${kernelVersion}:/lib/modules/${kernelVersion}:ro"
             "/sys:/sys"
-            "/srv/openmanage/shared:/data:Z"
+            "/srv/openmanage/shared:/data"
             "/nix/store:/nix/store:ro"
             "/etc/os-release:/etc/os-release:ro"
-            "/usr/libexec/dell_dup:/usr/libexec/dell_dup:Z"
+            "/usr/libexec/dell_dup:/usr/libexec/dell_dup"
           ];
 
           extraOptions = [
             "--privileged"
             "--net=host"
             "--device=/dev/mem"
-            "--systemd=always"
+            # "--systemd=always"
           ];
           autoStart = true;
         };
@@ -508,14 +511,16 @@
       # copyKernels = {enable = true;};
 
       binfmt.emulatedSystems = ["aarch64-linux"];
+
       kernelPackages = pkgs.linuxPackages_6_12;
+
       kernelParams = [
         "console=tty1"
         "console=ttyS0,115200n8"
         "console=ttyS1,115200n8"
         # "intremap=no_x2apic_optout"
         # "nox2apic"
-        # "iomem=relaxed"
+        "iomem=relaxed"
         "intel_iommu=on"
         "iommu=pt"
         "ipmi_watchdog.timeout=180"
