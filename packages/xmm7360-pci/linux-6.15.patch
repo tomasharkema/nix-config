@@ -7,7 +7,7 @@ index 1b5a90c..c593d0a 100644
  	struct xmm_net *xn = netdev_priv(dev);
  	spin_lock_init(&xn->lock);
 -	hrtimer_init(&xn->deadline, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
-+	hrtimers_init(&xn->deadline, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
++	hrtimer_setup(&xn->deadline, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
  	xn->deadline.function = xmm7360_net_deadline_cb;
  	skb_queue_head_init(&xn->queue);
  
