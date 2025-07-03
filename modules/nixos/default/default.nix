@@ -259,6 +259,38 @@ in {
           # mkchromecast
           # nix-switcher # : needs github auth
           # ntfy
+          testdisk # useful for repairing boot problems
+          ms-sys # for writing Microsoft boot sectors / MBRs
+          efibootmgr
+          efivar
+          parted
+          gptfdisk
+          ddrescue
+          ccrypt
+          cryptsetup # needed for dm-crypt volumes
+
+          # Some text editors.
+          vim
+
+          # Some networking tools.
+          fuse
+          fuse3
+          sshfs-fuse
+          socat
+          screen
+          tcpdump
+
+          # Hardware-related tools.
+          sdparm
+          hdparm
+          smartmontools # for diagnosing hard disks
+          pciutils
+          usbutils
+          nvme-cli
+
+          # Some compression/archiver tools.
+          unzip
+          zip
           onionshare
           oterm
           rtop
