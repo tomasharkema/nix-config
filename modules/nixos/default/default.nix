@@ -307,7 +307,6 @@ in {
           bash
           bashmount
           bmon
-          # caffeine-ng
           castnow
           catt
           chunkfs

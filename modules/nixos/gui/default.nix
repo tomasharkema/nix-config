@@ -85,7 +85,7 @@ in {
     };
 
     programs = {
-      # gphoto2.enable = true;
+      gphoto2.enable = true;
       nm-applet.enable = true;
     };
 
@@ -138,8 +138,10 @@ in {
       solaar
       solana-cli
       imsprog
-      # gphoto2
-      # gphoto2fs
+
+      caffeine-ng
+      gphoto2
+      gphoto2fs
       # gphotos-sync
       blueberry
       custom.spi-tools
