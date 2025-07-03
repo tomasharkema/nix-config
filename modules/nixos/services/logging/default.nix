@@ -5,7 +5,7 @@
   ...
 }: {
   config = {
-    services.promtail = {
+    services.promtail = lib.mkIf false {
       enable = true;
       extraFlags = ["--config.expand-env=true"];
       configuration = {

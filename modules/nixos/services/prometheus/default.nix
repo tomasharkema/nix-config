@@ -29,15 +29,15 @@ in {
       )
     '';
 
-    systemd = {
-      tmpfiles.settings."9-promtail" = {
-        "/var/lib/promtail".d = {
-          mode = "0777";
-          user = "root";
-          group = "root";
-        };
-      };
-    };
+    # systemd = {
+    #   tmpfiles.settings."9-promtail" = {
+    #     "/var/lib/promtail".d = {
+    #       mode = "0777";
+    #       user = "root";
+    #       group = "root";
+    #     };
+    #   };
+    # };
 
     services = {
       prometheus = {
@@ -100,32 +100,6 @@ in {
               config.services.prometheus.exporters.systemd.port
             }/metrics";
           });
-      };
-
-      vmagent = lib.mkIf false {
-        # enable = true;
-
-        remoteWrite.url = "http://silver-star:8428/api/v1/write";
-        prometheusConfig = {
-          scrape_configs = [
-            {
-              job_name = "systemd";
-              static_configs = [
-                {
-                  targets = ["127.0.0.1:${builtins.toString config.services.prometheus.exporters.systemd.port}"];
-                }
-              ];
-            }
-            {
-              job_name = "node";
-              static_configs = [
-                {
-                  targets = ["127.0.0.1:${builtins.toString config.services.prometheus.exporters.node.port}"];
-                }
-              ];
-            }
-          ];
-        };
       };
     };
   };

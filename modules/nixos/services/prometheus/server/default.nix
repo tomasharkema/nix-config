@@ -28,20 +28,68 @@ in {
     ];
 
     services = {
+      mimir = {
+        enable = true;
+
+        configuration = {
+          blocks_storage = {
+            backend = "filesystem";
+            bucket_store = {
+              sync_dir = "/tmp/mimir/tsdb-sync";
+            };
+            filesystem = {
+              dir = "/tmp/mimir/data/tsdb";
+            };
+            tsdb = {
+              dir = "/tmp/mimir/tsdb";
+            };
+          };
+        };
+      };
+
       prometheus = {
         enable = true;
-        pushgateway.enable = true;
+        # pushgateway.enable = true;
         port = 9999;
 
-        # alertmanager-ntfy = {
-        #   enable = true;
-        #   settings = {
-        #     ntfy = {
-        #       baseurl = "https://ntfy.sh";
-        #       notification.topic = "tomasharkema-nixos";
-        #     };
-        #   };
-        # };
+        alertmanager = {
+          enable = true;
+          configuration = {
+            route = {
+              group_by = ["alertname"];
+              group_wait = "30s";
+              group_interval = "5m";
+              repeat_interval = "1h";
+              receiver = "web.hook";
+            };
+            receivers = [
+              {
+                name = "web.hook";
+                webhook_configs = [
+                  {url = "http://127.0.0.1:9998/";}
+                ];
+              }
+            ];
+          };
+        };
+
+        alertmanager-ntfy = {
+          enable = true;
+          settings = {
+            http.addr = "127.0.0.1:9998";
+            ntfy = {
+              baseurl = "https://ntfy.sh";
+              notification.topic = "tomasharkema-nixos";
+            };
+          };
+        };
+
+        ruleFiles = [
+          (pkgs.fetchurl {
+            url = "https://gist.github.com/krisek/62a98e2645af5dce169a7b506e999cd8/raw/b67dd1dad1bcf2896f56dd02a657d8eac8e893ea/alert.rules.yml";
+            sha256 = "1mcrd16zpmb83i1gca024cg672z9i9p8yi1cjv1z9jkjalr94ids";
+          })
+        ];
 
         scrapeConfigs = [
           {

@@ -111,7 +111,7 @@
       };
 
       healthchecks = {
-        # enable = true;
+        enable = true;
         listenAddress = "0.0.0.0";
 
         # notificationSender = "tomas+hydra@harkema.io";
@@ -121,9 +121,9 @@
         settings = {
           SECRET_KEY_FILE = config.age.secrets.healthchecks.path;
 
-          EMAIL_HOST = "silver-star.ling-lizard.ts.net";
+          EMAIL_HOST = "localhost";
           EMAIL_PORT = "8025";
-          # EMAIL_HOST_USER = "tomas@harkema.io";
+          EMAIL_HOST_USER = "tomas@harkema.io";
           # # EMAIL_HOST_PASSWORD=mypassword
           EMAIL_USE_SSL = "False";
           EMAIL_USE_TLS = "False";
