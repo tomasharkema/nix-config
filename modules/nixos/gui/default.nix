@@ -40,6 +40,7 @@ in {
       devmon.enable = true;
       ddccontrol.enable = true;
       seatd.enable = true;
+
       printing = {
         enable = true;
         drivers = with pkgs; [
@@ -47,10 +48,13 @@ in {
           custom.brother-mfc2710dw-ppd
         ];
       };
-      mpd.enable = true;
+
       mopidy.enable = true;
+
       playerctld.enable = true;
+
       displayManager.defaultSession = "hyprland";
+
       g810-led = {
         enable = true;
         profile = ''
@@ -59,7 +63,7 @@ in {
           # Set all keys on
           a ffffff
 
-          c";
+          c
         '';
       };
       # automatic-timezoned.enable = true;
