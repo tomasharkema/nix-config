@@ -54,9 +54,9 @@
         network.xgbe.enable = true;
         nvidia = {
           enable = true;
-          open = true; #false;
+          open = false;
           grid = {
-            enable = false; # true;
+            enable = true;
             legacy = false;
           };
         };
@@ -274,30 +274,6 @@
       };
 
       netbootxyz.enable = true;
-
-      rsyslogd = lib.mkIf false {
-        enable = true;
-        extraConfig = ''
-          $ModLoad imudp
-
-          $RuleSet remote
-          # Modify the following template according to the devices on which you want to
-          # store logs. Change the IP address and subdirectory name on each
-          # line. Add or remove "else if" lines according to the number of your
-          # devices.
-          if $fromhost-ip=='10.20.30.40' then /var/log/remote/spineswitch1/console.log
-          else if $fromhost-ip=='10.20.30.41' then /var/log/remote/leafswitch1/console.log
-          else if $fromhost-ip=='10.20.30.42' then /var/log/remote/leafswitch2/console.log
-          else /var/log/remote/other/console.log
-          & stop
-
-          $InpuUDPServerBindRuleset remote
-          $UDPServerRun 6666
-
-          $RuleSet RSYSLOG_DefaultRuleset
-
-        '';
-      };
     };
 
     networking = {
