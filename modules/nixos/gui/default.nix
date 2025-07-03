@@ -40,8 +40,14 @@ in {
       devmon.enable = true;
       ddccontrol.enable = true;
       seatd.enable = true;
-      printing.enable = true;
-      # mpd.enable = true;
+      printing = {
+        enable = true;
+        drivers = with pkgs; [
+          brlaser
+          custom.brother-mfc2710dw-ppd
+        ];
+      };
+      mpd.enable = true;
       mopidy.enable = true;
       playerctld.enable = true;
       displayManager.defaultSession = "hyprland";
