@@ -55,7 +55,7 @@ in {
           beta = false;
           open = false;
           grid = {
-            enable = false; # true;
+            enable = true;
           };
         };
       };
@@ -239,7 +239,7 @@ in {
       enableAllFirmware = true;
       enableRedistributableFirmware = true;
 
-      nvidia-container-toolkit.enable = true;
+      # nvidia-container-toolkit.enable = true;
 
       nvidia = {
         # forceFullCompositionPipeline = true;

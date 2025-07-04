@@ -60,7 +60,7 @@ in {
     ];
 
     services = {
-      xserver.videoDrivers = ["nvidia"];
+      #xserver.videoDrivers = ["nvidia"];
       netdata.configDir."python.d.conf" = pkgs.writeText "python.d.conf" ''
         nvidia_smi: yes
       '';
@@ -89,13 +89,14 @@ in {
     };
 
     hardware = {
-      nvidia-container-toolkit.enable = true;
+      # nvidia-container-toolkit.enable = true;
 
       nvidia = {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
         open = lib.mkForce cfg.open;
         nvidiaSettings = !(cfg.grid.enable);
+        nvidiaPersistenced = cfg.grid.enable;
         package =
           if cfg.grid.enable
           then
@@ -103,20 +104,21 @@ in {
                 if cfg.grid.legacy
                 then config.boot.kernelPackages.nvidiaPackages.vgpu_16_5
                 else
-                  (config.boot.kernelPackages.nvidiaPackages.vgpu_17_3.overrideAttrs (finalAttrs: previousAttrs: {
+                  (config.boot.kernelPackages.nvidiaPackages.vgpu_17_3.overrideAttrs ({patches ? [], ...}: {
                     prePatch = ''
                       substituteInPlace kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.c --replace-fail "no_llseek" "noop_llseek"
-
                     '';
 
-                    patches = [
-                      ./drm.patch
-                      # ./6.12.patch
-                      # (pkgs.fetchpatch {
-                      #      url = "https://gitlab.com/polloloco/vgpu-proxmox/-/raw/master/550.144.02.patch?ref_type=heads&inline=false";
-                      #      hash = "sha256-oUSKlGdtB8xklRL/r2dGHfYnhxNarEk1S6WtM20zSS4=";
-                      # })
-                    ];
+                    patches =
+                      patches
+                      ++ [
+                        # ./drm.patch
+                        # ./6.12.patch
+                        # (pkgs.fetchpatch {
+                        #      url = "https://gitlab.com/polloloco/vgpu-proxmox/-/raw/master/550.144.02.patch?ref_type=heads&inline=false";
+                        #      hash = "sha256-oUSKlGdtB8xklRL/r2dGHfYnhxNarEk1S6WtM20zSS4=";
+                        # })
+                      ];
                   }))
               )
               .overrideAttrs (
@@ -135,7 +137,7 @@ in {
             );
 
         vgpu = lib.mkIf (cfg.grid.enable) {
-          patcher = {
+          patcher = lib.mkIf false {
             enable = true;
             options = {
               doNotForceGPLLicense = false;
