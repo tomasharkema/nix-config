@@ -107,7 +107,10 @@
 
       uptime-kuma = {
         enable = true;
-        settings = {PORT = "4000";};
+        settings = {
+          HOST = "0.0.0.0";
+          PORT = "4000";
+        };
       };
 
       healthchecks = {

@@ -103,4 +103,3 @@ index 8cb94219..27b3cbd9 100644
  failed_drm_register:
  
      nv_drm_dev_free(dev);
-
