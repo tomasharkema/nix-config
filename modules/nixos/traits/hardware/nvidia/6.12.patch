@@ -1,7 +1,7 @@
-diff --git a/kernel-open/nvidia-drm/nvidia-drm-drv.c b/kernel-open/nvidia-drm/nvidia-drm-drv.c
+diff --git a/kernel/nvidia-drm/nvidia-drm-drv.c b/kernel/nvidia-drm/nvidia-drm-drv.c
 index 8cb94219..27b3cbd9 100644
---- a/kernel-open/nvidia-drm/nvidia-drm-drv.c
-+++ b/kernel-open/nvidia-drm/nvidia-drm-drv.c
+--- a/kernel/nvidia-drm/nvidia-drm-drv.c
++++ b/kernel/nvidia-drm/nvidia-drm-drv.c
 @@ -100,6 +100,11 @@
  #include <drm/drm_atomic_helper.h>
  #endif
