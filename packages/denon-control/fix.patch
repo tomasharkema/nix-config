@@ -1,0 +1,13 @@
+diff --git a/lib/string.cc b/lib/string.cc
+index 38d32a6..33a2904 100644
+--- a/lib/string.cc
++++ b/lib/string.cc
+@@ -2,7 +2,7 @@
+ 
+ #include <cstring>
+ #include <iostream>
+-
++#include <algorithm>
+ 
+ bool startswith(std::string_view data, std::string_view key)
+ {
