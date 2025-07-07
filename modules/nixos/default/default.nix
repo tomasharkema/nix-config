@@ -816,12 +816,17 @@ in {
       libftdi.enable = true;
       mcelog.enable = true;
     };
+
     networking = {
       firewall = {
         enable = lib.mkDefault true;
       };
 
-      networkmanager.enable = lib.mkDefault true;
+      networkmanager = {
+        enable = lib.mkDefault true;
+        wifi.scanRandMacAddress = lib.mkDefault true;
+      };
+
       # timeServers = ["192.168.9.49"];
 
       useNetworkd = lib.mkIf config.networking.networkmanager.enable false;

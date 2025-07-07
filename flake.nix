@@ -742,7 +742,7 @@
     # };
 
     nixos-06cb-009a-fingerprint-sensor = {
-      url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor/24.11";
+      url = "github:tomasharkema/nixos-06cb-009a-fingerprint-sensor/25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -798,7 +798,7 @@
 
     nixos-recovery = {
       # url = "https://flakehub.com/f/tomasharkema/nixos-recovery/0.0.*.tar.gz";
-      url = "github:tomasharkema/nixos-recovery";
+      url = "github:tomasharkema/nixos-recovery/develop";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         # flake-parts.follows = "flake-parts";

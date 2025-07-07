@@ -10,7 +10,7 @@ in
     pname = "contact";
     version = "1.3.14";
 
-    # pyproject = false;
+    pyproject = true;
 
     src = fetchFromGitHub {
       owner = "pdxlocations";
@@ -23,6 +23,7 @@ in
     #   mkdir -p $out/bin
     #   cp -r . $out/bin
     # '';
+    build-system = [py.setuptools];
     nativeBuildInputs = [];
     #propagatedBuildInputs = [meshtastic-py];
 

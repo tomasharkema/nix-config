@@ -173,6 +173,8 @@
       users.tomas.extraGroups = ["spi" "gpio" "docker"];
     };
 
+    security.pam.services.login.fprintAuth = lib.mkForce false;
+
     services = {
       # kmscon.enable = true;
       ratbagd.enable = true;
@@ -186,8 +188,8 @@
 
       "06cb-009a-fingerprint-sensor" = {
         enable = true;
-        backend = "python-validity";
-        # backend = "libfprint-tod";
+        # backend = "python-validity";
+        backend = "libfprint-tod";
         calib-data-file = ./calib-data.bin;
       };
 

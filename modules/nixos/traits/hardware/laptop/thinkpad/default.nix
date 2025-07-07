@@ -106,8 +106,8 @@ in {
     services = {
       "06cb-009a-fingerprint-sensor" = {
         enable = true;
-        backend = lib.mkDefault "python3-validity";
-        # backend = "libfprint-tod";
+        # backend = lib.mkDefault "python3-validity";
+        backend = "libfprint-tod";
         # calib-data-file = ./calib-data.bin;
       };
 
@@ -165,11 +165,11 @@ in {
     # };
 
     security.pam.services = {
-      "gdm-fingerprint" = {
-        # enableGnomeKeyring = true;
-        # fprintAuth = true;
-        fprintAuth = false;
-      };
+      # "gdm-fingerprint" = {
+      #   # enableGnomeKeyring = true;
+      #   # fprintAuth = true;
+      #   fprintAuth = false;
+      # };
       xscreensaver = {
         # enableGnomeKeyring = true;
         fprintAuth = true;

@@ -21,6 +21,9 @@ with python3Packages;
       hash = "sha256-dAJqkWwsuYgQRejzHRF1JnvO8ecogZa0MNdxgijD2qg=";
     };
 
+    pyproject = true;
+    build-system = [setuptools];
+
     propagatedBuildInputs = [
       pygobject3
       pyparsing
