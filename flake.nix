@@ -86,7 +86,6 @@
         # opentelemetry-nix.overlays.default
         devenv.overlays.default
         nixgl.overlay
-        hyprpanel.overlay
       ];
 
       homes.modules = with inputs; [
