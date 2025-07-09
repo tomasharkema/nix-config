@@ -112,8 +112,8 @@ in {
                     patches =
                       patches
                       ++ [
-                        ./drm.patch
-                        ./6.12.patch
+                        #./drm.patch
+                        #./6.12.patch
                         # (pkgs.fetchpatch {
                         #      url = "https://gitlab.com/polloloco/vgpu-proxmox/-/raw/master/550.144.02.patch?ref_type=heads&inline=false";
                         #      hash = "sha256-oUSKlGdtB8xklRL/r2dGHfYnhxNarEk1S6WtM20zSS4=";

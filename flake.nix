@@ -129,7 +129,7 @@
 
           lanzaboote.nixosModules.lanzaboote
           # lanzaboote.nixosModules.uki
-          vscode-server.nixosModules.default
+          # vscode-server.nixosModules.default
 
           # home-manager.nixosModules.home-manager
           agenix.nixosModules.default
@@ -841,10 +841,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    vscode-server = {
-      url = "github:nix-community/nixos-vscode-server";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # vscode-server = {
+    #   url = "github:nix-community/nixos-vscode-server";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # wezterm = {
     #   url = "github:wez/wezterm?dir=nix";
