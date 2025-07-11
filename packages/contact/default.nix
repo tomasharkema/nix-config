@@ -3,8 +3,9 @@
   stdenv,
   fetchFromGitHub,
   python3,
+  meshtastic-fix,
 }: let
-  py = python3.withPackages (ps: with ps; [meshtastic]);
+  py = python3.withPackages (ps: with ps; [meshtastic-fix]);
 in
   python3.pkgs.buildPythonApplication rec {
     pname = "contact";

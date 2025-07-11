@@ -439,7 +439,7 @@ in {
         ])
         ++ (lib.optionals pkgs.stdenv.isx86_64 (
           with pkgs; [
-            python3Packages.meshtastic
+            meshtastic-fix
             spectre-meltdown-checker
             gnutls
             cmospwd

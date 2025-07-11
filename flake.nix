@@ -84,7 +84,7 @@
         chaotic.overlays.default
         # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
-        devenv.overlays.default
+        # devenv.overlays.default
         nixgl.overlay
       ];
 

@@ -17,13 +17,14 @@
   wrapGAppsHook,
   libshumate,
   desktop-file-utils,
+  meshtastic-fix,
 }: let
   py = python3.withPackages (ps:
     with ps; [
       glib
       gobject-introspection
       pygobject3
-      meshtastic
+      meshtastic-fix
       pyqrcode
     ]);
 in
