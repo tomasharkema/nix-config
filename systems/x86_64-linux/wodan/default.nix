@@ -27,7 +27,7 @@
 
         heimdall
         heimdall-gui
-        # handbrake
+        handbrake
       ];
     };
 

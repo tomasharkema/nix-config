@@ -63,9 +63,9 @@
         ccid
         gnupg
         custom.distrib-dl
-        # davinci-resolve
-        # handbrake
         davinci-resolve
+        handbrake
+
         keybase-gui
         # calibre
         glxinfo

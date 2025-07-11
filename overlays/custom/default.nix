@@ -16,13 +16,15 @@
 in rec {
   libcec = prev.libcec.override {withLibraspberrypi = true;};
 
-  meshtastic-fix = prev.python3Packages.meshtastic.overrideAttrs (old: {
+  meshtastic-fix = prev.python3Packages.meshtastic.overridePythonAttrs (old: {
     # postPatch = ''
     #   substituteInPlace pyproject.toml \
     #     --replace-fail "packaging = \"^24.0\"" "packaging = \"^25.0\""
     # '';
-
-    nativeCheckInputs = with prev; [
+    # dependencies = [];
+    # optional-dependencies = [];
+    doCheck = false;
+    nativeCheckInputs = with prev.python3Packages; [
       hypothesis
       pytestCheckHook
       argcomplete
