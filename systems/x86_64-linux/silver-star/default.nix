@@ -26,7 +26,7 @@
 
     facter = {
       reportPath = ./facter.json;
-      detected.graphics.enable = false;
+      # detected.graphics.enable = false;
     };
 
     disks.btrfs = {
@@ -54,7 +54,7 @@
         network.xgbe.enable = true;
         nvidia = {
           enable = true;
-          open = true; #false;
+          open = false;
           grid = {
             legacy = false;
           };

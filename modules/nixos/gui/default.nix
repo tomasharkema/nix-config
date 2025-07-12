@@ -122,9 +122,10 @@ in {
       openrct2
       openrw
       openra
-      openroad
       openrisk
-      openring
+      openloco
+      opendrop
+      openswitcher
 
       helvum
       custom.denon-control

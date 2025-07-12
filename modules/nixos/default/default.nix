@@ -302,6 +302,9 @@ in {
           aide
           # apfs-fuse
           # apfsprogs
+          openseachest
+          opensoundmeter
+
           archivemount
           bandwhich
           bash
