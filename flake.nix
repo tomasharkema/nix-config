@@ -33,10 +33,11 @@
         permittedInsecurePackages = [
           # "python3.12-youtube-dl-2021.12.17"
           # "openssl-1.1.1w"
-
+          "dotnet-sdk-6.0.428"
           # "python-2.7.18.8"
           "netbox-4.2.9"
           "segger-jlink-qt4-810"
+          "dotnet-runtime-6.0.36"
         ];
         config = {
           allowUnfreePredicate = _: true;

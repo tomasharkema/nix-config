@@ -118,6 +118,13 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
+      openrct2
+      openrw
+      openra
+      openroad
+      openrisk
+      openring
+
       helvum
       custom.denon-control
       synology-drive-client
