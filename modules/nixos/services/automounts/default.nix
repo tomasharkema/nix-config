@@ -29,9 +29,9 @@ in {
         nfsConf = let
           common = "-rw,soft,intr,rsize=8192,wsize=8192,anonuid=1000,anongid=1000";
         in
+          # dione-downloads ${common} 192.168.1.102:/volume1/downloads
           pkgs.writeText "nfs.conf" ''
             dione-tomas ${common} 192.168.1.102:/volume1/tomas
-            dione-downloads ${common} 192.168.1.102:/volume1/downloads
             isos ${common} 192.168.1.102:/volume1/isos
           '';
       in ''

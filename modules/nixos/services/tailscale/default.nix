@@ -55,8 +55,8 @@ in {
         openFirewall = true;
       };
 
-      tailscaleAuth.enable = true;
-      nginx.tailscaleAuth.enable = true;
+      # tailscaleAuth.enable = true;
+      # nginx.tailscaleAuth.enable = true;
 
       # zerotierone = {
       #   enable = true;

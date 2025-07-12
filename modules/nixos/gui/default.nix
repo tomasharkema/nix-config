@@ -118,6 +118,7 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
+      custom.wifiman
       openrct2
       openrw
       openra

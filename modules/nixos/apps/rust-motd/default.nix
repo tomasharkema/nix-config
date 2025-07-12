@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  config = {
+  config = lib.mkIf false {
     programs = {
       rust-motd = {
         enable = true;
