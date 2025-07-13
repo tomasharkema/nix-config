@@ -126,11 +126,12 @@ in {
       openloco
       opendrop
       openswitcher
+      sway-launcher-desktop
 
       helvum
       custom.denon-control
       synology-drive-client
-      #ida-free
+      ida-free
       segger-jlink
       custom.butler
       ddrescue

@@ -121,7 +121,7 @@
       # fancontrol.enable = true;
     };
 
-    virtualisation.waydroid.enable = true;
+    # virtualisation.waydroid.enable = true;
 
     apps = {
       steam.enable = true;

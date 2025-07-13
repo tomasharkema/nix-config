@@ -233,7 +233,12 @@ in {
           p7zip
           starship
           helix
-
+          regname
+          nyaa
+          hextazy
+          tran
+          tparted
+          play
           zathura
           mpv
           imv

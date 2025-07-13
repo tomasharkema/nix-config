@@ -37,8 +37,14 @@ stdenv.mkDerivation {
     mkdir $out
     cp -a usr/* $out
 
-    substituteInPlace $out/lib/wi-fiman-desktop/wifiman-desktop.service \
-      --replace-fail "/usr/lib/wi-fiman-desktop/wifiman-desktopd" "$out/lib/wi-fiman-desktop/wifiman-desktopd"
+    mv $out/lib/wi-fiman-desktop/* $out/lib
+    mv $out/lib/wi-fiman-desktop/.* $out/lib
+
+    substituteInPlace $out/lib/wifiman-desktop.service \
+      --replace-fail "/usr/lib/wi-fiman-desktop/wifiman-desktopd" "$out/lib/wifiman-desktopd"
+
+    mkdir $out/lib/systemd
+    mv $out/lib/wifiman-desktop.service $out/lib/systemd/
 
     substituteInPlace $out/share/applications/wi-fiman-desktop.desktop \
       --replace-fail "Exec=wi-fiman-desktop" "Exec=$out/bin/wi-fiman-desktop"
