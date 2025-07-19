@@ -38,7 +38,7 @@ in {
     services = {
       # tzupdate.enable = true;
       devmon.enable = true;
-      ddccontrol.enable = true;
+
       seatd.enable = true;
 
       printing = {
@@ -137,7 +137,7 @@ in {
       ddrescue
       ddrescueview
       ddrutility
-      darktable
+      # darktable
       custom.wsjtx
       sdrpp
       rpi-imager

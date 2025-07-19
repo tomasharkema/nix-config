@@ -255,7 +255,7 @@ in
         gnome-applets
         gnome-autoar
         gnome-clocks
-        gnome-commander
+        # gnome-commander
         gnome-control-center
         # gnome-extension-managers
         gnome-firmware

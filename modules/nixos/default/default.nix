@@ -297,7 +297,7 @@ in {
           unzip
           zip
           onionshare
-          oterm
+          # oterm
           rtop
           # socklog
           # tailspin
@@ -434,7 +434,7 @@ in {
           wmctrl
           wtfutil
           zstd
-          isd
+          # isd
         ])
         ++ (with pkgs.custom; [
           ssh-proxy-agent
@@ -479,7 +479,7 @@ in {
     services = {
       scx = {
         enable = !(config.traits.server.enable) && pkgs.stdenvNoCC.isx86_64;
-        #package = pkgs.scx_git.full;
+        package = pkgs.scx_git.full;
         scheduler = "scx_lavd"; # "scx_bpfland";
       };
       earlyoom.enableNotifications = true;
@@ -490,13 +490,13 @@ in {
 
       # uptime.enableSeparateMonitoringService = true;
 
-      snmpd = {
-        enable = true;
-        configText = ''
-          rocommunity   public
-          trapsink      localhost:162 public
-        '';
-      };
+      # snmpd = {
+      #   enable = true;
+      #   configText = ''
+      #     rocommunity   public
+      #     trapsink      localhost:162 public
+      #   '';
+      # };
 
       smartd = {
         enable = true;
@@ -511,7 +511,7 @@ in {
       };
 
       # sysstat.enable = lib.mkDefault true;
-      # irqbalance.enable = true;
+      irqbalance.enable = true;
       # aria2.enable = true;
 
       rpcbind.enable = true;

@@ -171,7 +171,7 @@ in {
           # go-chromecast
           gotop
           gparted
-          grsync
+          # grsync
           gtk-engine-murrine
           ktailctl
           libGL

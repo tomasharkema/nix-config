@@ -67,11 +67,11 @@ in {
     environment.systemPackages = with pkgs; [
       kvmtool
       libvirt
-      qemu_kvm
+      qemu
       pkgs.custom.libvirt-dbus
       # nemu
       qtemu
-      virt-top
+      # virt-top
       _86Box-with-roms
       # remotebox
       qemu-utils
@@ -86,7 +86,7 @@ in {
         virt-manager
         kvmtool
         libvirt
-        qemu_kvm
+        qemu
 
         pkgs.custom.libvirt-dbus
       ];
@@ -246,7 +246,7 @@ in {
         };
 
         qemu = {
-          package = pkgs.qemu_full;
+          package = pkgs.qemu;
           runAsRoot = true;
           verbatimConfig = ''
             cgroup_device_acl = [
