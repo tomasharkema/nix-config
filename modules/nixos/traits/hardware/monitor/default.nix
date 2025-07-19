@@ -26,7 +26,7 @@ in {
       brightnessctl
     ];
 
-    services.ddccontrol.enable = true;
+    # services.ddccontrol.enable = true;
     hardware.i2c.enable = true;
     # programs.light.enable = true;
   };
