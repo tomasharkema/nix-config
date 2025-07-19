@@ -142,7 +142,7 @@ in {
       sdrpp
       rpi-imager
       custom.netsleuth
-      handbrake
+      # handbrake
       thonny
       coppwr
       custom.gtk-meshtastic-client
