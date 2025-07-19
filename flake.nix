@@ -92,7 +92,7 @@
       homes.modules = with inputs; [
         # catppuccin.homeManagerModules.catppuccin
         nixvim.homeManagerModules.nixvim
-        nix-index-database.hmModules.nix-index
+        nix-index-database.homeModules.nix-index
         op-shell-plugins.hmModules.default
         # agenix.homeManagerModules.default
         # hyprpanel.homeManagerModules.hyprpanel
