@@ -69,9 +69,9 @@
           pass.enable = true;
           terminal = "kitty";
         };
-
+        fuzzel.enable = true;
         anyrun = {
-          enable = true;
+          # enable = true;
           package = inputs.anyrun.packages.${pkgs.system}.anyrun-with-all-plugins;
           config = {
             plugins = [
@@ -95,39 +95,6 @@
 
         hyprlock = {
           enable = true;
-        };
-
-        hyprpanel = {
-          enable = true;
-          systemd.enable = true;
-          # hyprland.enable = true;
-
-          settings = {
-            theme.font = {
-              #   # name = "Inter Variable";
-              name = "B612";
-              size = "1.0rem";
-              weight = 400;
-            };
-            bar.clock.format = "%d %b %Y   %H:%M:%S";
-            menus.clock = {
-              weather = {
-                location = "Amsterdam";
-                unit = "metric";
-              };
-              time.military = true;
-            };
-
-            layout = {
-              bar.layouts = {
-                "0" = {
-                  left = ["dashboard" "workspaces" "windowtitle"];
-                  middle = ["media"];
-                  right = ["volume" "network" "bluetooth" "battery" "systray" "hypridle" "clock" "notifications"];
-                };
-              };
-            };
-          };
         };
 
         waybar = {
