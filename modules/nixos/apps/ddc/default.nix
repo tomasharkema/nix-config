@@ -10,7 +10,7 @@ in {
     enable = lib.mkEnableOption "ddc";
   };
 
-  config = lib.mkIf (cfg.enable && false) {
+  config = lib.mkIf cfg.enable {
     services = {
       ddccontrol.enable = true;
       udev.extraRules = ''
