@@ -237,11 +237,13 @@
           CharMap=hd44780_default
         '';
       };
+
       hardware.bolt.enable = true;
-      beesd.filesystems = lib.mkIf false {
+
+      beesd.filesystems = {
         root = {
           spec = "UUID=58cb1af5-de48-4aef-b3c3-72ec19237a89";
-          hashTableSizeMB = 4096;
+          hashTableSizeMB = 2048;
           verbosity = "crit";
           extraOptions = [
             "--loadavg-target"

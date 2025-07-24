@@ -478,9 +478,9 @@ in {
 
     services = {
       scx = {
-        enable = !(config.traits.server.enable) && pkgs.stdenvNoCC.isx86_64;
-        # package = pkgs.scx_git.full;
-        # scheduler = "scx_lavd"; # "scx_bpfland";
+        enable = pkgs.stdenvNoCC.isx86_64;
+        package = pkgs.scx_git.full;
+        scheduler = "scx_lavd"; # "scx_bpfland";
       };
       earlyoom.enableNotifications = true;
       # locate.enable = true;

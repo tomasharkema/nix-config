@@ -156,7 +156,6 @@ in {
           pods
           meld
           pika-backup
-          # custom.anydesk
           vlc
           boxbuddy
           clutter
