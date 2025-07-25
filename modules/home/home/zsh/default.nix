@@ -229,7 +229,7 @@
               "autojump"
               "aws"
               "battery"
-              # "bgnotify"
+              "bgnotify"
               "colorize"
               "common-aliases"
               "copybuffer"
