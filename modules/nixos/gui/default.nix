@@ -127,7 +127,7 @@ in {
       opendrop
       openswitcher
       sway-launcher-desktop
-
+      chiaki
       helvum
       custom.denon-control
       synology-drive-client
