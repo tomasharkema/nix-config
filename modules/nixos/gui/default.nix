@@ -18,6 +18,13 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = cfg.desktop.enable;
+        message = "you can't enable this for that reason";
+      }
+    ];
+
     system.build = {
       #input-wacom = pkgs.custom.input-wacom.override {kernel = config.boot.kernelPackages.kernel;};
       i2c-ch341-usb = pkgs.custom.i2c-ch341-usb.override {kernel = config.boot.kernelPackages.kernel;};
@@ -116,53 +123,5 @@ in {
         config.system.build.ch341-i2c-spi-gpio
       ];
     };
-
-    environment.systemPackages = with pkgs; [
-      custom.wifiman
-      openrct2
-      openrw
-      openra
-      openrisk
-      openloco
-      opendrop
-      openswitcher
-      sway-launcher-desktop
-      chiaki
-      helvum
-      custom.denon-control
-      synology-drive-client
-      ida-free
-      segger-jlink
-      custom.butler
-      ddrescue
-      ddrescueview
-      ddrutility
-      # darktable
-      custom.wsjtx
-      sdrpp
-      rpi-imager
-      custom.netsleuth
-      # handbrake
-      thonny
-      coppwr
-      custom.gtk-meshtastic-client
-      libwacom
-      chromium
-      noti
-      ghex
-      solaar
-      solana-cli
-      imsprog
-
-      caffeine-ng
-      gphoto2
-      gphoto2fs
-      # gphotos-sync
-      blueberry
-      custom.spi-tools
-      qFlipper
-      mtr-gui
-      (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
-    ];
   };
 }

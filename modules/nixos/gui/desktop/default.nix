@@ -16,6 +16,13 @@ in {
   };
 
   config = lib.mkIf (cfg.enable) {
+    assertions = [
+      {
+        assertion = config.gui.enable;
+        message = "you can't enable this for that reason";
+      }
+    ];
+
     gui.fonts.enable = true;
 
     # security.pam.services.passwd.enableGnomeKeyring = true;
@@ -144,108 +151,6 @@ in {
     #     32469
     #   ];
     # };
-
-    environment = {
-      systemPackages = with pkgs;
-        [
-          ptyxis
-          wl-clipboard
-          python312Packages.pyclip
-          onioncircuits
-          onionshare-gui
-          pods
-          meld
-          pika-backup
-          vlc
-          boxbuddy
-          clutter
-          # dosbox-x
-          effitask
-          filezilla
-          font-manager
-          # fractal
-          doublecmd
-          gamehub
-          # gnomecast
-          # go-chromecast
-          gotop
-          gparted
-          # grsync
-          gtk-engine-murrine
-          ktailctl
-          libGL
-          libGLU
-          meteo
-          mission-center
-          # nix-software-center
-          # partition-manager
-          pavucontrol
-          powertop
-          pwvucontrol
-          qdirstat
-          qjournalctl
-          # rtfm
-          spot
-          sqlitebrowser
-          # sublime-merge
-          # sublime4
-          transmission-remote-gtk
-          tremotesf
-          ulauncher
-          usbview
-          # ventoy-full
-          vsce
-          vte-gtk4
-          xdg-utils
-          xdgmenumaker
-          xdiskusage
-          xdotool
-          yelp
-          f1viewer
-          zed-editor
-        ]
-        ++ lib.optionals pkgs.stdenv.isx86_64 [
-          # custom.tabby
-          jetbrains-toolbox
-          synology-drive-client
-          # gpt4all-cuda
-          _86Box-with-roms
-          #       config.boot.linuxPackages.nvidia_x11
-          #     ];
-          #     ++ [
-          #     prev.runtimeDependencies
-          #   runtimeDependencies =
-          # (plex-media-player.overrideAttrs (prev: {
-          # }))
-          # handbrake
-          # pkgs.custom.git-butler
-          # pkgs.wolfram-engine
-          # spotify
-          # angryipscanner
-          #bottles
-          # custom.qlogexplorer
-          # discordo
-          dmidecode
-          gdm-settings
-          # gmtk
-          # gnome_mplayer
-          ipmiview
-          libsmbios
-          # plex-media-player
-          # (plex-media-player.overrideAttrs (old: {
-          #   # cudaSupport = true;
-          #   stdenv = pkgs.cudaPackages.backendStdenv;
-          # }))
-          # plex-desktop
-          plexamp
-          xpipe
-        ]
-        ++ (with pkgs.custom; [
-          # zerotier-ui
-
-          usbguard-gnome
-        ]);
-    };
 
     apps.firefox.enable = true;
 
