@@ -17,7 +17,7 @@ in {
       '';
     };
 
-    system.primaryUser = "tomas";
+    system.primaryUser = "${config.user.name}";
 
     homebrew = {
       enable = true;
@@ -28,7 +28,6 @@ in {
         "UTM" = 1538878817;
         "Tailscale" = 1475387142;
         "RDP" = 1295203466;
-        # "slack" = 803453959;
         "Developer" = 640199958;
         "Telegram" = 747648890;
         "automute" = 1118136179;
