@@ -17,8 +17,6 @@
 in {
   options.apps.resilio = {
     enable = (lib.mkEnableOption "Enable preconfigured resilio service") // {default = true;};
-    # root = mkOpt types.str "/mnt/resilio-sync" "root";
-
     enableEnc = lib.mkEnableOption "Enable enc";
   };
 
