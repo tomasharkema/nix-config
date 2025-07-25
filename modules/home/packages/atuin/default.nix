@@ -29,9 +29,9 @@
 
       settings = {
         key_path = key_path;
-        # key_path = osConfig.age.secrets.atuin.path;
-        # sync_address = "https://atuin.harke.ma";
-        sync_address = "http://silver-star.ling-lizard.ts.net:8888";
+
+        sync_address = "https://atuin.ling-lizard.ts.net";
+
         auto_sync = true;
         sync_frequency = "10m";
         workspaces = true;
@@ -60,7 +60,7 @@
     # };
 
     systemd.user = {
-      services."atuin" = {
+      services.atuin = {
         Unit = {
           Description = "atuin";
           Requires = ["atuin.socket"];
@@ -75,7 +75,7 @@
         };
       };
 
-      sockets."atuin" = {
+      sockets.atuin = {
         Unit = {Description = "atuin";};
         Socket = {
           ListenStream = "%t/atuin.sock";
