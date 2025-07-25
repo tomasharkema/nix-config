@@ -75,7 +75,7 @@
         };
       };
 
-      beesd.filesystems = lib.mkIf false {
+      beesd.filesystems = {
         root = {
           spec = "UUID=7227b9fb-8619-403a-8944-4cc3f615ad6f";
           hashTableSizeMB = 1024;
