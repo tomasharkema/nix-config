@@ -37,13 +37,6 @@ in {
 
     # services.nix-daemon.enable = true;
     programs.direnv.enable = true;
-    # age.secrets."op" = {
-    #   rekeyFile = ../../../secrets/op.age;
-    #   mode = "744";
-    #   # path = "/home/tomas/.google_authenticator";
-    #   # owner = "tomas";
-    #   # group = "tomas";
-    # };
 
     environment = {
       systemPackages = with pkgs; [

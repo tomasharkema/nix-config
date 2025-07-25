@@ -206,7 +206,7 @@ in {
 
       # sessionVariables.MOZ_ENABLE_WAYLAND = "0";
 
-      variables.NH_FLAKE = "/home/tomas/Developer/nix-config";
+      variables.NH_FLAKE = "${config.home.homeDirectory}/Developer/nix-config";
 
       enableAllTerminfo = true;
       systemPackages =
@@ -648,7 +648,7 @@ in {
               <service>
                 <type>_nfs._tcp</type>
                 <port>2049</port>
-                <txt-record>path=/home/tomas</txt-record>
+                <txt-record>path=${config.home.homeDirectory}</txt-record>
               </service>
             </service-group>
           '';

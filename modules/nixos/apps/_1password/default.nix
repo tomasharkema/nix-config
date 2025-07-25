@@ -16,10 +16,6 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs = {
-      # ssh.extraConfig = lib.mkIf config.gui.desktop.enable ''
-      #   IdentityAgent /home/tomas/.1password/agent.sock
-      # '';
-
       _1password = {
         enable = true;
         # package = pkgs._1password;

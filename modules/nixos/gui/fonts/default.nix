@@ -14,7 +14,7 @@
         };
       };
       user.tmpfiles.users.tomas.rules = [
-        "L+ /home/tomas/.local/share/fonts - - - - /run/current-system/sw/share/X11/fonts"
+        "L+ ${config.home.homeDirectory}/.local/share/fonts - - - - /run/current-system/sw/share/X11/fonts"
       ];
     };
 

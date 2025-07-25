@@ -3,6 +3,7 @@
   pkgs,
   lib,
   inputs,
+  config,
   ...
 }: let
   machines = inputs.self.machines.excludingSelf osConfig;
@@ -36,7 +37,7 @@ in {
       enable = true;
       modifications = (
         map (machine: {
-          path = "/home/tomas/.local/share/remmina/nixos_rdp_${machine}_${machine}.remmina";
+          path = "${config.home.homeDirectory}/.local/share/remmina/nixos_rdp_${machine}_${machine}.remmina";
           type = "ini";
           modifications = writeINI {
             remmina = {

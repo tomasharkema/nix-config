@@ -46,10 +46,10 @@
 in {
   config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
     gtk.gtk3.bookmarks = [
-      "file:///home/tomas/Downloads"
-      "file:///home/tomas/Dropbox"
-      "file:///home/tomas/Developer"
-      "file:///home/tomas/Developer/nix-config"
+      "file://${config.home.homeDirectory}/Downloads"
+      "file://${config.home.homeDirectory}/Dropbox"
+      "file://${config.home.homeDirectory}/Developer"
+      "file://${config.home.homeDirectory}/Developer/nix-config"
       "file:///mnt/steam"
       "file:///mnt/resilio-sync"
       "file:///mnt/servers"
@@ -120,7 +120,7 @@ in {
         userSymlinks-notify = ''
           if [ ! -d "$HOME/.config/notify" ]; then
             mkdir $HOME/.config/notify
-            chown tomas:tomas -R /home/tomas/.config
+            chown tomas:tomas -R $HOME/.config
           fi
           ln -sfn "${osConfig.age.secrets.notify.path}" ~/.config/notify/provider-config.yaml
         '';
@@ -163,11 +163,6 @@ in {
             filesystems=/run/current-system/sw/share/X11/fonts:ro;/nix/store:ro;~/.local/share/fonts:ro;~/.icons:ro;
           '';
         };
-        # /home/tomas/.config/gtk-4.0:ro;/home/tomas/.config/gtk-3.0:ro;
-        # };
-        # ".local/share/Zeal/Zeal/docsets/nixos.docset" = {
-        # source = "${pkgs.docset}/share/docset-24.05.docset";
-        # };
       };
     };
   };

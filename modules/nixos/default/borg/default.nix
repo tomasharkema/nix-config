@@ -26,17 +26,17 @@
 
   sshKey =
     if config.traits.hardware.tpm.enable
-    then "/home/tomas/.ssh/id_ecdsa.tpm"
-    else "/home/tomas/.ssh/id_ed25519";
+    then "${config.home.homeDirectory}/.ssh/id_ecdsa.tpm"
+    else "${config.home.homeDirectory}/.ssh/id_ed25519";
 in {
   config = lib.mkIf false {
     services.borgbackup = {
       # enable = true;
 
-      jobs.home-tomas = rec {
+      jobs.home-tomas = {
         user = "tomas";
         group = "tomas";
-        paths = "/home/tomas";
+        paths = "${config.home.homeDirectory}";
         encryption.mode = "none";
         # environment.BORG_RSH = "ssh -i ${sshKey}";
         repo = "ssh://tomas@dione.mastodon-mizar.ts.net/volumes1/tomas/borg";

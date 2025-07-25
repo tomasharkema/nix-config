@@ -105,9 +105,7 @@
                 autostart = true;
                 settings = {
                   nixpkgs = {
-                    expr =
-                      # "import (builtins.getFlake \"/home/tomas/Developer/nix-config\").inputs.nixpkgs { }";
-                      "import <nixpkgs> { }";
+                    expr = "import <nixpkgs> { }";
                   };
                   formatting = {
                     command = ["alejandra"];

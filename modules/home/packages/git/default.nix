@@ -1,7 +1,6 @@
 {
   pkgs,
-  lib,
-  osConfig,
+  config,
   ...
 }: {
   config = {
@@ -66,7 +65,7 @@
 
         maintenance = {
           enable = true;
-          repositories = ["/home/tomas/Developer/nix-config"];
+          repositories = ["${config.home.homeDirectory}/Developer/nix-config"];
         };
         extraConfig = {
           # maintenance.auto = true;

@@ -19,7 +19,7 @@
       fi
 
       # if [ -f "${osConfig.age.secrets."attic-config.toml".path}" ]; then
-      #   install -Dm 600 "${osConfig.age.secrets."attic-config.toml".path}" "/home/tomas/.config/attic/config.toml"
+      #   install -Dm 600 "${osConfig.age.secrets."attic-config.toml".path}" "${config.home.homeDirectory}/.config/attic/config.toml"
       # fi
     '';
 

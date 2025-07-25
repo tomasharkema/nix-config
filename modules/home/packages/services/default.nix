@@ -2,6 +2,7 @@
   pkgs,
   lib,
   osConfig,
+  config,
   ...
 }: {
   config = lib.mkIf pkgs.stdenv.isLinux {
@@ -29,7 +30,7 @@
 
       mpd = {
         enable = osConfig.gui.enable;
-        musicDirectory = "/home/tomas/Music";
+        musicDirectory = "${config.home.homeDirectory}/Music";
       };
 
       # mbsync.enable = osConfig.gui.enable;

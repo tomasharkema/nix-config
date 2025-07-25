@@ -12,7 +12,6 @@ in {
       rekey = {
         masterIdentities = [
           ./secrets/age-yubikey-identity-usbc.pub
-          # "/home/tomas/.ssh/id_ed25519"
         ];
         # extraEncryptionPubkeys = [
         #   ./secrets/age-yubikey-identity-usba.pub

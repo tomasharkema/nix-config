@@ -76,8 +76,8 @@ with inputs.home-manager.lib.hm.gvariant; {
         };
 
         "org/gnome/shell/extensions/TodoTxt" = {
-          donetxt-location = "/home/tomas/resilio-sync/shared-documents/done.txt";
-          todotxt-location = "/home/tomas/resilio-sync/shared-documents/todo.txt";
+          donetxt-location = "${config.home.homeDirectory}/resilio-sync/shared-documents/done.txt";
+          todotxt-location = "${config.home.homeDirectory}/resilio-sync/shared-documents/todo.txt";
         };
 
         "org/gnome/gnome-session" = {

@@ -129,7 +129,7 @@ in {
             ExecStart = let
               proxy =
                 if config.programs._1password-gui.enable
-                then " -A /home/tomas/.1password/agent.sock"
+                then " -A ${config.home.homeDirectory}/.1password/agent.sock"
                 else "";
             in "${cfg.package}/bin/ssh-tpm-agent${proxy}";
 
