@@ -243,7 +243,6 @@
               "encode64"
               "extract"
               "fastfile"
-              "fig"
               "fzf"
               "gh"
               "git-auto-fetch"

@@ -26,6 +26,7 @@
     programs.atuin = {
       enable = true;
       enableZshIntegration = true;
+
       settings = {
         key_path = key_path;
         # key_path = osConfig.age.secrets.atuin.path;
