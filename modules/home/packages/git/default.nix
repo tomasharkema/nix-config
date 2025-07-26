@@ -73,9 +73,10 @@
           rerere = {enable = true;};
           pull = {rebase = true;};
           branch = {autosetupmerge = true;};
-
+push.autoSetupRemote = true;
           commit.gpgsign = true;
           init.defaultBranch = "main";
+maintenance.auto=true;
 
           credential.helper = ["${pkgs.custom.git-credential-1password}/bin/git-credential-1password"];
 
