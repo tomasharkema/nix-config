@@ -98,7 +98,7 @@ in {
       lldpd.enable = true;
       remote-builders.server.enable = true;
 
-      beesd.filesystems = {
+      beesd.filesystems = lib.mkIf false {
         root = {
           spec = "UUID=91663f26-5426-4a0d-96f0-e507f2cd8196";
           hashTableSizeMB = 1024;
