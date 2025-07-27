@@ -41,7 +41,6 @@ in {
         # "xcpretty"
         "swiftlint"
         "swiftformat"
-        "colima"
         "terminal-notifier"
       ];
 
@@ -53,7 +52,6 @@ in {
         "wezterm"
         "windows-app"
         "ghostty"
-        "podman-desktop"
         # "docker"
         # "spotifyd"
         # "1password"

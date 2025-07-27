@@ -85,6 +85,8 @@
       options = ["bind"];
     };
 
+    system.includeBuildDependencies = true;
+
     services = {
       hypervisor = {
         enable = true;

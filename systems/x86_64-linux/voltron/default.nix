@@ -283,6 +283,7 @@
       };
     };
 
+    system.includeBuildDependencies = true;
     # system.build.cc1101-driver = pkgs.custom.cc1101-driver.override {kernel = config.boot.kernelPackages.kernel;};
 
     # hardware = {

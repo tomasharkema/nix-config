@@ -99,7 +99,6 @@
     # };
 
     environment.systemPackages = with pkgs; [
-      cockpit-podman
       cockpit-tailscale
       cockpit-machines
       cockpit-sensors
