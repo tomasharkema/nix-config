@@ -35,7 +35,9 @@ in rec {
     ];
   });
 
-  libsoup_2_4 = prev.libsoup_3;
+  gamehub = prev.gamehub.overrideAttrs ({buildInputs, ...}: {
+    buildInputs = buildInputs ++ [prev.libxml2];
+  });
 
   # platformio-core = prev.platformio-core.overrideAttrs {
   #   doCheck = false;
@@ -147,8 +149,6 @@ in rec {
   ssh-tpm-agent = self.packages."${prev.system}".ssh-tpm-agent;
 
   intel-vaapi-driver = prev.intel-vaapi-driver.override {enableHybridCodec = true;};
-
-  zjstatus = inputs.zjstatus.packages.${prev.system}.default;
 
   # mission-center = prev.mission-center.overrideAttrs ({postPatch, ...}: {
   #   postPatch =

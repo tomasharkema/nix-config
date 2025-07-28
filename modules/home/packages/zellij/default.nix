@@ -2,12 +2,7 @@
   pkgs,
   lib,
   ...
-}: let
-  zjstatusbar = pkgs.fetchurl {
-    url = "https://github.com/cristiand391/zj-status-bar/releases/download/0.3.0/zj-status-bar.wasm";
-    sha256 = "1s091b9hv4bsh0mbz7g9di8l8bzbhh1srmvsq71mk41bvc59ds5i";
-  };
-in {
+}: {
   config = {
     home.packages = with pkgs; [lsof brotab];
 

@@ -26,19 +26,22 @@
 
         config.allowAliases = true;
         lazy-trees = true;
+
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
         # buildPlatform.system = "x86_64-linux";
-        # permittedInsecurePackages = [ "openssl-1.1.1w" ];
+
         permittedInsecurePackages = [
           # "python3.12-youtube-dl-2021.12.17"
           # "openssl-1.1.1w"
           "dotnet-sdk-6.0.428"
           # "python-2.7.18.8"
-          "netbox-4.2.9"
+          #"netbox-4.2.9"
           "segger-jlink-qt4-810"
           "dotnet-runtime-6.0.36"
+          "libsoup-2.74.3"
         ];
+
         config = {
           allowUnfreePredicate = _: true;
           allowUnfree = true;
@@ -873,11 +876,6 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    zjstatus = {
-      url = "github:dj95/zjstatus";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixgl = {
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -900,11 +898,6 @@
 
     hyprlock = {
       url = "github:hyprwm/hyprlock";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    anyrun = {
-      url = "github:anyrun-org/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
