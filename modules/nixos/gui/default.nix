@@ -77,7 +77,7 @@ in {
       udev.packages = with pkgs; [
         imsprog
         logitech-udev-rules
-        platformio-core.udev
+        # platformio-core.udev
       ];
     };
 

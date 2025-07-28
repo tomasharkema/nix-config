@@ -37,6 +37,16 @@ in rec {
 
   libsoup_2_4 = prev.libsoup_3;
 
+  # platformio-core = prev.platformio-core.overrideAttrs {
+  #   doCheck = false;
+  #   dontCheck = true;
+  # };
+
+  # platformio = prev.platformio.overrideAttrs {
+  #   doCheck = false;
+  #   dontCheck = true;
+  # };
+
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
   # pwvucontrol = prev.custom.pwvucontrol;

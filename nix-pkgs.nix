@@ -24,7 +24,7 @@
         nix-search-tv
         xxd
         gcc
-        platformio-core
+        # platformio-core
         gcc-arm-embedded
         tio
         picotool
