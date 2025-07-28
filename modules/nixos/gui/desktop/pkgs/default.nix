@@ -123,7 +123,7 @@
     gdm-settings
     # gmtk
     (ipmiview.overrideAttrs (old: {
-      src = old.fetchurl {
+      src = pkgs.fetchurl {
         url = "https://www.supermicro.com/Bios/sw_download/960/IPMIView_2.23.0_build.250519_bundleJRE_Linux_x64.tar.gz";
         sha256 = "13d0figi3azajafnlfwc0amw3b00rmxyrmq60rixvwx4wx2h361j";
       };
