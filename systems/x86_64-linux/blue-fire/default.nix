@@ -205,10 +205,6 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-      # ipmicfg
-      # ipmiview
-      # ipmiutil
-      # vagrantservices
       virt-manager
       ipmitool
       boot-into-bios

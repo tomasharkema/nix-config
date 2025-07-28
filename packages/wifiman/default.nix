@@ -2,11 +2,10 @@
   fetchurl,
   stdenv,
   dpkg,
-  tree,
   autoPatchelfHook,
   glibc,
   libgcc,
-  webkitgtk_4_0,
+  webkitgtk,
   glib,
   gobject-introspection,
   gtk3,
@@ -28,7 +27,7 @@ stdenv.mkDerivation {
     gtk3
     glibc
     libgcc
-    webkitgtk_4_0
+    webkitgtk
     glib
     gobject-introspection
   ];

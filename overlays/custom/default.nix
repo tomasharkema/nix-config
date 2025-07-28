@@ -35,6 +35,8 @@ in rec {
     ];
   });
 
+  libsoup_2_4 = prev.libsoup_3;
+
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
   # pwvucontrol = prev.custom.pwvucontrol;

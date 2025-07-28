@@ -360,10 +360,6 @@
     };
 
     environment.systemPackages = with pkgs; [
-      # ipmicfg
-      # ipmiview
-      # ipmiutil
-      # vagrant
       docker-compose
       simpleTpmPk11
       libsmbios

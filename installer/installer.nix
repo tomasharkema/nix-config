@@ -70,7 +70,7 @@ in {
       nixos-install-tools
       git
       curl
-      wget2
+      # wget2
       btop
       htop
       inputs.self.packages."${pkgs.system}".nix-helpers

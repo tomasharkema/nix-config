@@ -5,7 +5,7 @@
   ...
 }: let
   pks = with pkgs; [
-    custom.wifiman
+    # custom.wifiman
     openrct2
     openrw
     openra
@@ -122,7 +122,13 @@
     dmidecode
     gdm-settings
     # gmtk
-    ipmiview
+    (ipmiview.overrideAttrs (old: {
+      src = old.fetchurl {
+        url = "https://www.supermicro.com/Bios/sw_download/960/IPMIView_2.23.0_build.250519_bundleJRE_Linux_x64.tar.gz";
+        sha256 = "13d0figi3azajafnlfwc0amw3b00rmxyrmq60rixvwx4wx2h361j";
+      };
+      version = "2.23.0";
+    }))
     libsmbios
     plex-desktop
     plexamp
