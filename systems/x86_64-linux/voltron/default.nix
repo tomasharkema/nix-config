@@ -283,7 +283,7 @@
       };
     };
 
-    system.includeBuildDependencies = true;
+    # system.includeBuildDependencies = true;
     # system.build.cc1101-driver = pkgs.custom.cc1101-driver.override {kernel = config.boot.kernelPackages.kernel;};
 
     # hardware = {
@@ -303,7 +303,9 @@
       tmp = {
         useTmpfs = true;
       };
-      # kernelPackages = pkgs.linuxPackages_latest;
+
+      # kernelPackages = pkgs.linuxPackages;
+
       recovery = {
         enable = true;
         install = true;
