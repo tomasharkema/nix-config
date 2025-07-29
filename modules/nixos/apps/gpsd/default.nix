@@ -24,9 +24,10 @@ in {
           "-n"
         ];
       };
-      geoclue2 = lib.mkIf false {
+      geoclue2 = {
         enable = true;
-        enableDemoAgent = lib.mkForce true;
+        package = pkgs.custom.geoclue-gpsd;
+        # enableDemoAgent = lib.mkForce true;
       };
     };
     systemd = {
