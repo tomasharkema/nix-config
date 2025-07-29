@@ -26,8 +26,8 @@ in {
       };
       geoclue2 = {
         enable = true;
-        package = pkgs.custom.geoclue-gpsd;
-        # enableDemoAgent = lib.mkForce true;
+        # package = pkgs.custom.geoclue-gpsd;
+        enableDemoAgent = lib.mkForce true;
       };
     };
     systemd = {
