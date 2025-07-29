@@ -68,7 +68,7 @@ in {
             "com.spotify.Client"
             "tv.plex.PlexDesktop"
             "com.gitbutler.gitbutler"
-            "org.darktable.Darktable"
+            # "org.darktable.Darktable"
           ]
         );
 

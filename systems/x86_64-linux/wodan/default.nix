@@ -31,7 +31,7 @@
       ];
     };
 
-    system.includeBuildDependencies = true;
+    # system.includeBuildDependencies = true;
 
     time = {
       # hardwareClockInLocalTime = true;

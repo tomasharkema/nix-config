@@ -24,12 +24,12 @@
     ddrescue
     ddrescueview
     ddrutility
-    # darktable
+    darktable
     custom.wsjtx
     sdrpp
     rpi-imager
     custom.netsleuth
-    # handbrake
+    handbrake
     thonny
     coppwr
     custom.gtk-meshtastic-client
@@ -62,26 +62,25 @@
     vlc
     boxbuddy
     clutter
-    # dosbox-x
+    dosbox-x
     effitask
     filezilla
     font-manager
-    # fractal
+    fractal
     doublecmd
     gamehub
-    # gnomecast
-    # go-chromecast
+    gnomecast
+    go-chromecast
     gotop
     gparted
-    # grsync
+    grsync
     gtk-engine-murrine
     ktailctl
     libGL
     libGLU
-    meteo
+
     mission-center
     # nix-software-center
-    # partition-manager
     pavucontrol
     powertop
     pwvucontrol
@@ -121,7 +120,6 @@
     discordo
     dmidecode
     gdm-settings
-    # gmtk
     (ipmiview.overrideAttrs (old: {
       src = pkgs.fetchurl {
         url = "https://www.supermicro.com/Bios/sw_download/960/IPMIView_2.23.0_build.250519_bundleJRE_Linux_x64.tar.gz";
