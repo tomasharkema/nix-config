@@ -35,13 +35,14 @@ in {
         requires = ["gpsd.socket"];
         wantedBy = ["gpsd.socket"];
         serviceConfig = lib.mkIf (!cfg.server.enable) {
-          ExecStart = lib.mkForce "${pkgs.gpsd}/sbin/gpsd gpsd://meshpi3.local";
+          ExecStart = lib.mkForce "${pkgs.gpsd}/sbin/gpsd gpsd://timepi.local";
         };
       };
       sockets.gpsd = {
         listenStreams = [
           "/run/gpsd.sock"
           "0.0.0.0:2947"
+          # "[::]:2947"
         ];
         wantedBy = ["sockets.target"];
         description = "gpsd socket";

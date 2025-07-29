@@ -707,7 +707,7 @@ in {
         enable = true;
 
         servers = [
-          #"meshpi3.local"
+          #"timepi.local"
           #"time.cloudflare.com"
         ];
 
