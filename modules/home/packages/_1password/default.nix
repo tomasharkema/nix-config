@@ -8,8 +8,7 @@
   enableGui =
     pkgs.stdenv.isDarwin
     || (pkgs.stdenv.isLinux
-      && osConfig.gui.desktop.enable
-      && osConfig.gui.gnome.enable);
+      && osConfig.gui.desktop.enable);
 in {
   config = lib.mkIf enableGui {
     programs._1password-shell-plugins = {

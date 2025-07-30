@@ -380,6 +380,7 @@
 
     # netrc-file = "/etc/nix/netrc";
     trusted-public-keys = [
+      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "tomasharkema:4Ou4kbViWV9ZPL5DGQZ5j4IEwpQrJ/u9YnU/7oY9djE="
       "watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="
@@ -403,6 +404,7 @@
       "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
       "https://cuda-maintainers.cachix.org"
     ];
+
     binaryCaches = [
       "https://cache.nixos.org"
       "https://nyx.chaotic.cx/"

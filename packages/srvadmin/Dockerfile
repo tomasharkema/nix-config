@@ -7,7 +7,7 @@ ENV TERM xterm
 ENV USER root
 ENV PASS password
 ENV SYSTEMCTL_SKIP_REDIRECT=1
-#ENV container podman
+ENV container docker
 
 RUN echo "$USER:$PASS" | chpasswd && \
     set -x && \
@@ -32,3 +32,5 @@ WORKDIR /opt/dell/srvadmin/bin
 
 
 EXPOSE 1311 161 162
+
+VOLUME [ "/sys/fs/cgroup" ]

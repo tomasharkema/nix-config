@@ -339,6 +339,7 @@
       #   options psmouse synaptics_intertouch=1
       # '';
       kernelModules = [
+        "coretemp"
         # "psmouse"
         "i915"
         # "spi"
