@@ -14,7 +14,13 @@
     opendrop
     openswitcher
     sway-launcher-desktop
+    digital
+    #  digikam
 
+    digiham
+    fllog
+    flamp
+    fldigi
     helvum
     custom.denon-control
     synology-drive-client
