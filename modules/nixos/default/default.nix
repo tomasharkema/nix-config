@@ -273,7 +273,7 @@ in {
           ddrescue
           ccrypt
           cryptsetup # needed for dm-crypt volumes
-
+          pythonPackages.pyftdi
           # Some text editors.
           vim
 
