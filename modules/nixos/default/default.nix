@@ -474,6 +474,10 @@ in {
       atop.enable = lib.mkDefault true;
     };
 
+    users.groups.ftdi = {
+      members = ["root" "tomas"];
+    };
+
     # proxy-services.enable = lib.mkDefault true;
 
     services = {
