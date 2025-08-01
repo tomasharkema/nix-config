@@ -29,6 +29,7 @@ in {
       #input-wacom = pkgs.custom.input-wacom.override {kernel = config.boot.kernelPackages.kernel;};
       i2c-ch341-usb = pkgs.custom.i2c-ch341-usb.override {kernel = config.boot.kernelPackages.kernel;};
       ch341-i2c-spi-gpio = pkgs.custom.ch341-i2c-spi-gpio.override {kernel = config.boot.kernelPackages.kernel;};
+      ch34x = pkgs.custom.ch34x.override {kernel = config.boot.kernelPackages.kernel;};
     };
 
     gui = {
@@ -121,6 +122,8 @@ in {
         #config.system.build.input-wacom
         config.system.build.i2c-ch341-usb
         config.system.build.ch341-i2c-spi-gpio
+
+        config.system.build.ch34x
       ];
     };
   };
