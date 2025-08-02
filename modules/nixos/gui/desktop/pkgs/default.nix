@@ -17,6 +17,7 @@
     digital
     #  digikam
     dsview
+    smuview
     digiham
     fllog
     flamp
