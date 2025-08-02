@@ -16,7 +16,7 @@
     sway-launcher-desktop
     digital
     #  digikam
-
+    dsview
     digiham
     fllog
     flamp
