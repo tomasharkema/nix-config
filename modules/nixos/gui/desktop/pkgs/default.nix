@@ -6,6 +6,8 @@
 }: let
   pks = with pkgs; [
     # custom.wifiman
+    wine-wayland
+    winetricks
     openrct2
     openrw
     openra
