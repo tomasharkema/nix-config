@@ -70,7 +70,7 @@ in {
       tldr-update.enable = true;
     };
 
-    xsession.enable = true;
+    # xsession.enable = true;
 
     xdg = {
       userDirs = {
@@ -136,6 +136,8 @@ in {
         ".background-image.svg" = lib.mkIf isSvg {source = "${bg}";};
         ".background-image.jpg" = lib.mkIf (!isSvg) {source = "${bg}";};
         ".background-image".source = "${bg}";
+
+        ".config/background".source = "${bg}";
         ".background-image.png".source = "${bgPng}";
         ".background-image-light.png".source = "${bgLightPng}";
         # "wp.jpg" = {

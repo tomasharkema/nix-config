@@ -12,6 +12,7 @@
         # package = pkgs.hyprland.override {
         #   hidpiXWayland = true;
         # };
+        systemd.setPath.enable = true;
       };
       iio-hyprland.enable = true;
       # hyprlock.enable = true;
@@ -60,7 +61,7 @@
         XDG_SESSION_TYPE = "wayland";
       };
 
-      xdg.portal = {enable = true;};
+      # xdg.portal = {enable = true;};
 
       programs = {
         rofi = {
@@ -70,26 +71,6 @@
           terminal = "kitty";
         };
         fuzzel.enable = true;
-        anyrun = {
-          # enable = true;
-          package = inputs.anyrun.packages.${pkgs.system}.anyrun-with-all-plugins;
-          config = {
-            plugins = [
-              inputs.anyrun.packages.${pkgs.system}.applications
-              inputs.anyrun.packages.${pkgs.system}.kidex
-              inputs.anyrun.packages.${pkgs.system}.rink
-              inputs.anyrun.packages.${pkgs.system}.stdin
-              inputs.anyrun.packages.${pkgs.system}.translate
-              inputs.anyrun.packages.${pkgs.system}.dictionary
-              inputs.anyrun.packages.${pkgs.system}.randr
-              inputs.anyrun.packages.${pkgs.system}.shell
-              inputs.anyrun.packages.${pkgs.system}.symbols
-              inputs.anyrun.packages.${pkgs.system}.websearch
-              # An array of all the plugins you want, which either can be paths to the .so files, or their packages
-              # inputs.anyrun.packages.${pkgs.system}.applications
-            ];
-          };
-        };
 
         # wlogout.enable = true;
 
@@ -156,6 +137,10 @@
         };
         xwayland.enable = true;
 
+        # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
+        package = null;
+        portalPackage = null;
+
         extraConfig = builtins.readFile ./hyprland.conf;
         plugins = with pkgs.hyprlandPlugins; [
           # hyprexpo
@@ -189,14 +174,14 @@
           exec-once = [
             # "hypridle"
             "systemctl --user start hyprpolkitagent"
-            "hyprpanel"
+            # "hyprpanel"
             "[workspace 1 silent] $terminal"
             "${pkgs.networkmanagerapplet}/bin/nm-applet"
             "${pkgs.custom.usbguard-gnome}/bin/usbguard-gnome"
 
             "[workspace 2 silent] firefox"
 
-            "gsettings set org.gnome.desktop.interface gtk-theme \"catppuccin-mocha-blue-compact+black\"" # for GTK3 apps
+            "gsettings set org.gnome.desktop.interface gtk-theme \"Adwaita-dark\"" # for GTK3 apps
             "gsettings set org.gnome.desktop.interface color-scheme \"prefer-dark\"" # for GTK4 apps
             "${lib.getExe pkgs.iio-hyprland}"
           ];

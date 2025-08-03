@@ -1,5 +1,9 @@
-{pkgs, ...}: {
-  config = {
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  config = lib.mkIf false {
     environment.systemPackages = with pkgs; [python3Packages.keyring custom.onepassword_keyring];
 
     home-manager.users.tomas.xdg.configFile = {

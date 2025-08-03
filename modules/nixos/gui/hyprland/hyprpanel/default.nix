@@ -5,6 +5,10 @@
 }: {
   config = {
     home-manager.users."${config.user.name}" = {
+      xdg.configFile.hyprpanel = {
+        ignorelinks = true;
+        recursive = true;
+      };
       programs.hyprpanel = {
         enable = true;
         systemd.enable = true;

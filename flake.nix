@@ -427,11 +427,9 @@
       "https://tomasharkema.cachix.org"
       # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
       "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
-      "https://anyrun.cachix.org"
     ];
 
     extra-trusted-public-keys = [
-      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
       "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
       "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
