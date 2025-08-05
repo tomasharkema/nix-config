@@ -187,7 +187,21 @@ in {
 
       vscode = lib.mkIf pkgs.stdenv.isLinux {
         enable = true;
-        package = pkgs.vscode; # .fhs;
+        package = pkgs.vscode.fhsWithPackages (ps:
+          with ps; [
+            cmake
+            clang
+            tmux
+            zsh
+            stdenv.cc.cc.lib
+            ninja
+
+            gcc-arm-embedded
+            libusb1
+            openocd
+
+            picotool
+          ]);
         # catppuccin.enable = false;
       };
 
