@@ -195,7 +195,7 @@ in {
             zsh
             stdenv.cc.cc.lib
             ninja
-
+            zstd
             gcc-arm-embedded
             libusb1
             openocd
