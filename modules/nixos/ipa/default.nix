@@ -6,11 +6,10 @@
   ...
 }: let
   cfg = config.apps.ipa;
-
-  chromePolicy = pkgs.writers.writeJSON "harkema.json" {
-    AuthServerWhitelist = "*.harkema.io";
-    AuthServerAllowlist = "*.harkema.io";
-  };
+  # chromePolicy = pkgs.writers.writeJSON "harkema.json" {
+  #   AuthServerWhitelist = "*.harkema.io";
+  #   AuthServerAllowlist = "*.harkema.io";
+  # };
 in {
   options = {
     apps.ipa = {
@@ -30,13 +29,6 @@ in {
         pkcs11helper
         realmd
         # heimdal
-        (pkgs.writeShellScriptBin "setup-browser-eid" ''
-          NSSDB="''${HOME}/.pki/nssdb"
-          mkdir -p ''${NSSDB}
-
-          ${pkgs.nssTools}/bin/modutil -force -dbdir sql:$NSSDB -add p11-kit-proxy \
-            -libfile ${pkgs.p11-kit}/lib/p11-kit-proxy.so
-        '')
       ];
 
       etc = {
@@ -104,8 +96,8 @@ in {
         # "chromium/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
         # "opt/chrome/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
 
-        "chromium/policies/managed/harkema.json".source = chromePolicy;
-        "opt/chrome/policies/managed/harkema.json".source = chromePolicy;
+        # "chromium/policies/managed/harkema.json".source = chromePolicy;
+        # "opt/chrome/policies/managed/harkema.json".source = chromePolicy;
       };
     };
 
@@ -239,9 +231,9 @@ in {
     #   };
     # };
 
-    system.nssDatabases = {
-      sudoers = ["sss"];
-    };
+    # system.nssDatabases = {
+    #   sudoers = ["sss"];
+    # };
     networking.domain = "harkema.io";
 
     security = {
