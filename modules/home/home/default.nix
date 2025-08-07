@@ -156,11 +156,13 @@ in {
         )
       );
     };
+
     catppuccin = {
       vscode.enable = false;
       cache.enable = false;
       mako.enable = false;
     };
+
     fonts.fontconfig.enable = true;
 
     programs = {
@@ -187,21 +189,21 @@ in {
 
       vscode = lib.mkIf pkgs.stdenv.isLinux {
         enable = true;
-        package = pkgs.vscode; #.fhsWithPackages (ps:
-        #with ps; [cmake
-        #  clang
-        #   tmux
-        #   zsh
-        #   stdenv.cc.cc.lib
-        #   ninja
-        #   zstd
-        #   gcc-arm-embedded
-        #   libusb1
-        #   openocd
 
-        #   picotool
-        # ]);
-        # catppuccin.enable = false;
+        package = pkgs.vscode.fhsWithPackages (ps:
+          with ps; [
+            cmake
+            clang
+            tmux
+            zsh
+            stdenv.cc.cc.lib
+            ninja
+            zstd
+            gcc-arm-embedded
+            libusb1
+            openocd
+            picotool
+          ]);
       };
 
       htop = {

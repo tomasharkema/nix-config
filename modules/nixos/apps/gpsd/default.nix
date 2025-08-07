@@ -24,12 +24,22 @@ in {
           "-n"
         ];
       };
+
       geoclue2 = {
         enable = true;
-        # package = pkgs.custom.geoclue-gpsd;
+        package = pkgs.geoclue2.overrideAttrs {
+          version = "unstable";
+          src = pkgs.custom.geoclue-gpsd.src;
+
+          postInstall = ''
+            substituteInPlace $out/lib/systemd/system/geoclue.service \
+              --replace-fail "Environment=\"GSETTINGS_BACKEND=memory\"" ""
+          '';
+        };
         enableDemoAgent = lib.mkForce true;
       };
     };
+
     systemd = {
       services.gpsd = {
         requires = ["gpsd.socket"];
