@@ -244,6 +244,7 @@ in {
           imv
           rsbkb
           gpsd
+          mpremote
           nix-search-cli
           custom.zide
           custom.wikiman
@@ -273,6 +274,8 @@ in {
           ccrypt
           cryptsetup # needed for dm-crypt volumes
           python313Packages.pyftdi
+          libftdi
+          libftdi1
           # Some text editors.
           vim
 
