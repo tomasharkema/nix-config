@@ -16,6 +16,9 @@
     openswitcher
     sway-launcher-desktop
     digital
+    esptool
+    esphome
+    platformio
     #  digikam
     dsview
     smuview
