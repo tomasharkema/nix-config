@@ -40,7 +40,7 @@
     sdrpp
     rpi-imager
     custom.netsleuth
-    handbrake
+    #handbrake
     thonny
     coppwr
     custom.gtk-meshtastic-client
@@ -122,7 +122,7 @@
 
     _86Box-with-roms
 
-    handbrake
+    #handbrake
     # pkgs.custom.git-butler
     # pkgs.wolfram-engine
     spotify
