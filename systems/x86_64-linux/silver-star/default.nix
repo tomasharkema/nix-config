@@ -184,6 +184,7 @@
           netbox = {toURL = "http://127.0.0.1:8002";};
           esphome = {toURL = "http://127.0.0.1:6052";};
           atuin = {toURL = "http://127.0.0.1:8888";};
+          trmnl = {toURL = "http://127.0.0.1:2300";};
         };
       };
 
