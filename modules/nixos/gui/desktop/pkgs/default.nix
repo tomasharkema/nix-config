@@ -18,6 +18,7 @@
     digital
     esptool
     esphome
+    kicad
     platformio
     #  digikam
     dsview
