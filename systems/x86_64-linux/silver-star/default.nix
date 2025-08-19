@@ -407,29 +407,6 @@
 
     virtualisation = {
       oci-containers.containers = {
-        # iventoy = {
-        #   image = "teumaauss/iventoy:latest";
-        #   autoStart = true;
-
-        #   volumes = [
-        #     "/var/lib/iventoy/config:/app/data-2"
-        #     "/var/lib/iventoy/assets:/app/iso"
-        #   ];
-        #   environment = {
-        #     AUTO_START_PXE = "true";
-        #   };
-        #   extraOptions = [
-        #     "--privileged"
-        #   ];
-        #   ports = [
-        #     "26000:26000"
-        #     "16000:16000"
-        #     "10809:10809"
-        #     "67:67/udp"
-        #     "69:69/udp"
-        #   ];
-        # };
-
         openmanage = {
           image = "teumaauss/srvadmin:latest";
 
@@ -592,6 +569,10 @@
         };
 
         "docker-compose@grafana" = {
+          wantedBy = ["multi-user.target"];
+        };
+
+        "docker-compose@esphome" = {
           wantedBy = ["multi-user.target"];
         };
       };

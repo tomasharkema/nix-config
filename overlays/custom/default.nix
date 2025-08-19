@@ -90,7 +90,7 @@ in rec {
 
   # wezterm = inputs.wezterm.packages."${prev.system}".default;
 
-  #_nixd = inputs.nixd.packages."${prev.system}".default;
+  nixd = inputs.nixd.packages."${prev.system}".default;
 
   # __udisks = overridePkgCheckVersionSnapshot "udisks2" "" udisks2;
 

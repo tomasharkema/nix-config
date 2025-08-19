@@ -17,7 +17,6 @@
     sway-launcher-desktop
     digital
     esptool
-    esphome
     kicad
     platformio
     #  digikam
