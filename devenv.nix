@@ -175,10 +175,10 @@
 in {
   # starship.enable = true;
 
-  # languages.nix = {
-  #   enable = true;
-  #   lsp.package = pkgs.nixd;
-  # };
+  languages.nix = {
+    enable = true;
+    lsp.package = pkgs.nixd;
+  };
 
   pre-commit.hooks = {
     alejandra.enable = true;

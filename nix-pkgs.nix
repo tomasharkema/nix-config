@@ -58,7 +58,6 @@
         nix-update-source
         nix-visualize
         rustup
-
         nixd
         nixfmt-rfc-style
         nixos-option

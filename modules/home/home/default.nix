@@ -171,16 +171,17 @@ in {
       yazi.enable = true;
       home-manager.enable = true;
 
-      nix-index-database.comma.enable = true;
-
-      # termite.enable = osConfig.gui.enable;
-      # terminator.enable = lib.mkIf pkgs.stdenv.isLinux osConfig.gui.enable;
+      nix-index-database = {
+        comma.enable = true;
+      };
 
       yt-dlp.enable = true;
+
       noti = {
         enable = true;
         settings = {ntfy.url = "ntfy.sh/tomasharkema-nixos";};
       };
+
       topgrade.enable = true;
       direnv = {
         enable = true;
