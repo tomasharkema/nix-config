@@ -189,21 +189,6 @@ in {
 
       vscode = lib.mkIf pkgs.stdenv.isLinux {
         enable = true;
-
-        # package = pkgs.vscode.fhsWithPackages (ps:
-        #   with ps; [
-        #     cmake
-        #     clang
-        #     tmux
-        #     zsh
-        #     stdenv.cc.cc.lib
-        #     ninja
-        #     zstd
-        #     gcc-arm-embedded
-        #     libusb1
-        #     openocd
-        #     picotool
-        #   ]);
       };
 
       htop = {
