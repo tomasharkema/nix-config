@@ -575,6 +575,9 @@
         "docker-compose@esphome" = {
           wantedBy = ["multi-user.target"];
         };
+        "docker-compose@byos_hanami" = {
+          wantedBy = ["multi-user.target"];
+        };
       };
     };
   };
