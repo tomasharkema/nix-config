@@ -16,6 +16,10 @@
 in rec {
   libcec = prev.libcec.override {withLibraspberrypi = true;};
 
+  synology-drive-client = prev.synology-drive-client.overrideAttrs ({buildInputs ? [], ...}: {
+    buildInputs = buildInputs ++ [prev.qt5.qtwayland];
+  });
+
   meshtastic-fix = prev.python3Packages.meshtastic.overridePythonAttrs (old: {
     # postPatch = ''
     #   substituteInPlace pyproject.toml \
