@@ -334,7 +334,6 @@ in {
           duc
           ethtool
           fcast-receiver
-          setserial
           gdu
           git
           git
