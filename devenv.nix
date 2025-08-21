@@ -239,7 +239,7 @@ in {
     gum
     manix
     mkiso
-    netdiscover
+    # netdiscover
     # nil
     # nix-eval-jobs
     nix-output-monitor
@@ -254,17 +254,17 @@ in {
     nurl
     deploy-rs
     # reencrypt
-    remote-deploy
+    # remote-deploy
     sops
     ssh-to-age
-    statix
+    # statix
     statix
     test-installer
     test-remote
     tydra
-    update-pkgs
-    upload-all
-    upload-all-store
+    # update-pkgs
+    # upload-all
+    # upload-all-store
     # upload-local
     upload-to-installer
     write-script
