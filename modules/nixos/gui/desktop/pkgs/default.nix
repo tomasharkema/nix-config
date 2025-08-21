@@ -6,6 +6,7 @@
 }: let
   pks = with pkgs; [
     # custom.wifiman
+    serial-studio
     wine-wayland
     openrct2
     openrw
@@ -30,6 +31,7 @@
     custom.denon-control
     synology-drive-client
     ida-free
+    segger-ozone
     segger-jlink
     custom.butler
     ddrescue

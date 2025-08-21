@@ -221,6 +221,7 @@ in {
           config.boot.kernelPackages.iio-utils
           cutecom
           sbctl-tpm
+          urjtag
           pulseview
           sigrok-cli
           custom.partclone-utils
