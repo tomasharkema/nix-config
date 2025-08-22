@@ -31,7 +31,7 @@ in {
 
     services = {
       # localtimed.enable = true;
-
+      udev.packages = [pkgs.saleae-logic-2];
       dbus = {
         enable = true;
         packages = with pkgs; [

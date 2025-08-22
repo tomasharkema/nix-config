@@ -20,6 +20,7 @@
     esptool
     kicad
     platformio
+    saleae-logic-2
     #  digikam
     dsview
     smuview
