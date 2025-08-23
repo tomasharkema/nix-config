@@ -226,6 +226,11 @@ in {
           sigrok-cli
           custom.partclone-utils
           bridge-utils
+          ipmitool
+          openipmi
+          freeipmi
+          ipmicfg
+          ipmiutil
           xterm
           libheif
           gensio
