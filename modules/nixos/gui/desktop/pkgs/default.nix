@@ -6,6 +6,7 @@
 }: let
   pks = with pkgs; [
     # custom.wifiman
+    nrfconnect
     serial-studio
     wine-wayland
     openrct2
