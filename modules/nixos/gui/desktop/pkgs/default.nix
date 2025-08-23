@@ -5,6 +5,12 @@
   ...
 }: let
   pks = with pkgs; [
+    nrfutil
+    nrf5-sdk
+
+    nrfconnect
+    nrf-command-line-tools
+    nrfconnect-bluetooth-low-energy
     # custom.wifiman
     nrfconnect
     serial-studio
