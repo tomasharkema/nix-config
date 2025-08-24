@@ -60,7 +60,13 @@
         # OTEL_EXPORTER_OTLP_METRICS_PROTOCOL = "http/proto";
       };
     };
-
+    boot.initrd = {
+      nix-store-veritysetup.enable = true;
+      systemd = {
+        enable = true;
+        dmVerity.enable = true;
+      };
+    };
     programs = {
       nh = {
         enable = true;
@@ -113,7 +119,7 @@
         config.user.name
       ];
     in {
-      package = pkgs.nixVersions.latest; # pkgs.nix-lazytrees2_git;
+      package = pkgs.nixVersions.latest; # pkgs.nix_git; #  # pkgs.nix-lazytrees2_git;
 
       # nixPath = [
       #   "nixpkgs=${inputs.nixpkgs}"

@@ -384,7 +384,8 @@ in {
           openldap
           pamix
           pamixer
-
+          nix-playground
+          nix-check-deps
           gnupg
           pciutils
           pigz
