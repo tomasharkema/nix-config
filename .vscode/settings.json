@@ -7,7 +7,6 @@
       "nixpkgs": {
         // For flake.
         // "expr": "import (builtins.getFlake \"/home/lyc/workspace/CS/OS/NixOS/flakes\").inputs.nixpkgs { }   "
-    
         // This expression will be interpreted as "nixpkgs" toplevel
         // Nixd provides package, lib completion/information from it.
         ///
@@ -16,25 +15,26 @@
         "expr": "import <nixpkgs> { }"
       },
       "formatting": {
-          // This is the default if ommited.
-          "command": [ "alejandra" ]
+        // This is the default if ommited.
+        "command": [
+          "alejandra"
+        ]
       },
       "options": {
-          // By default, this entriy will be read from `import <nixpkgs> { }`
-          // You can write arbitary nix expression here, to produce valid "options" declaration result.
-          // Tip: for flake-based configuration, utilize `builtins.getFlake`
-          // "nixos": {
-          //     "expr": "(builtins.getFlake \"/absolute/path/to/flake\").nixosConfigurations.<name>.options"
-          // },
-          // "home-manager": {
-          //     "expr": "(builtins.getFlake \"/absolute/path/to/flake\").homeConfigurations.<name>.options"
-          // }
+        // By default, this entriy will be read from `import <nixpkgs> { }`
+        // You can write arbitary nix expression here, to produce valid "options" declaration result.
+        // Tip: for flake-based configuration, utilize `builtins.getFlake`
+        // "nixos": {
+        //     "expr": "(builtins.getFlake \"/absolute/path/to/flake\").nixosConfigurations.<name>.options"
+        // },
+        // "home-manager": {
+        //     "expr": "(builtins.getFlake \"/absolute/path/to/flake\").homeConfigurations.<name>.options"
+        // }
       }
-  }
+    }
   },
-
   "[nix]": {
-    "editor.defaultFormatter": "kamadorueda.alejandra",
+    "editor.defaultFormatter": "jnoortheen.nix-ide",
     "editor.formatOnPaste": false,
     "editor.formatOnSave": true,
     "editor.formatOnType": false

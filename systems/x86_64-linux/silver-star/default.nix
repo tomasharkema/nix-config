@@ -5,6 +5,10 @@
   config,
   ...
 }: {
+  imports = [
+    ./trmnl
+  ];
+
   config = {
     age = {
       rekey = {
@@ -96,6 +100,8 @@
       # xserver.videoDrivers = ["nvidia"];
       zram-generator.enable = false;
       # "nix-private-cache".enable = true;
+
+      # immich = {enable=true;};
 
       nfs = {
         server = {
@@ -573,9 +579,6 @@
         };
 
         "docker-compose@esphome" = {
-          wantedBy = ["multi-user.target"];
-        };
-        "docker-compose@byos_hanami" = {
           wantedBy = ["multi-user.target"];
         };
       };
