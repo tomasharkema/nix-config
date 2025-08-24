@@ -98,13 +98,12 @@
     #   };
     # };
 
-    environment.systemPackages = with pkgs; [
-      cockpit-tailscale
-      cockpit-machines
-      cockpit-sensors
-      cockpit-files
-      # packagekit
-    ];
+    # environment.systemPackages = with pkgs; [
+    #   cockpit-tailscale
+    #   cockpit-machines
+    #   cockpit-sensors
+    #   cockpit-files
+    # ];
 
     # services.multipath = {
     #   enable = true;

@@ -94,7 +94,7 @@
 
       homes.modules = with inputs; [
         # catppuccin.homeManagerModules.catppuccin
-        nixvim.homeManagerModules.nixvim
+        nixvim.homeModules.nixvim
         nix-index-database.homeModules.nix-index
         op-shell-plugins.hmModules.default
         # agenix.homeManagerModules.default

@@ -96,6 +96,48 @@ in rec {
 
   nixd = inputs.nixd.packages."${prev.system}".default;
 
+  segger-jlink = let
+    version = "862";
+  in
+    prev.segger-jlink.overrideAttrs {
+      src = prev.fetchurl {
+        url = "https://www.segger.com/downloads/jlink/JLink_Linux_V${version}_x86_64.tgz";
+        hash = "sha256-3WECMBYbccIlkLdYVNFyXLTKxfxSeNOSWvF0d9ZKdmw=";
+        curlOpts = "--data accept_license_agreement=accepted";
+      };
+      inherit version;
+    };
+
+  nrfconnect = let
+    pname = "nrfconnect";
+    version = "5.2.0";
+
+    src = prev.fetchurl {
+      url = "https://github.com/NordicSemiconductor/pc-nrfconnect-launcher/releases/download/v${version}/nrfconnect-${version}-x86_64.AppImage";
+      hash = "sha256-Y42cxK44tFYFj7TFpe+rmSWTo0v5+u9VjG37SCGvmws=";
+      name = "${pname}-${version}.AppImage";
+    };
+
+    appimageContents = prev.appimageTools.extractType2 {
+      inherit pname version src;
+    };
+  in
+    prev.appimageTools.wrapType2 {
+      inherit pname version src;
+
+      extraPkgs = pkgs: [
+        prev.segger-jlink-headless
+      ];
+
+      extraInstallCommands = ''
+        install -Dm444 ${appimageContents}/nrfconnect.desktop -t $out/share/applications
+        install -Dm444 ${appimageContents}/usr/share/icons/hicolor/512x512/apps/nrfconnect.png \
+          -t $out/share/icons/hicolor/512x512/apps
+        substituteInPlace $out/share/applications/nrfconnect.desktop \
+          --replace-fail 'Exec=AppRun' 'Exec=nrfconnect'
+      '';
+    };
+
   # __udisks = overridePkgCheckVersionSnapshot "udisks2" "" udisks2;
 
   # __udisks2 = prev.udisks2.overrideAttrs (old: {
@@ -146,11 +188,11 @@ in rec {
   # '';
 
   #});
-  cockpit-podman = self.packages."${prev.system}".cockpit-podman;
-  cockpit-tailscale = self.packages."${prev.system}".cockpit-tailscale;
-  cockpit-machines = self.packages."${prev.system}".cockpit-machines;
-  cockpit-sensors = self.packages."${prev.system}".cockpit-sensors;
-  cockpit-files = self.packages."${prev.system}".cockpit-files;
+  # cockpit-podman = self.packages."${prev.system}".cockpit-podman;
+  # cockpit-tailscale = self.packages."${prev.system}".cockpit-tailscale;
+  # cockpit-machines = self.packages."${prev.system}".cockpit-machines;
+  # cockpit-sensors = self.packages."${prev.system}".cockpit-sensors;
+  # cockpit-files = self.packages."${prev.system}".cockpit-files;
 
   authorized-keys = self.packages."${prev.system}".authorized-keys;
 
