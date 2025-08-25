@@ -7,7 +7,7 @@
   pks = with pkgs; [
     nrfutil
     nrf5-sdk
-
+    zotero
     nrfconnect
     nrf-command-line-tools
     nrfconnect-bluetooth-low-energy
