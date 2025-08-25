@@ -6,7 +6,7 @@
   ...
 }: {
   imports = [
-    ./trmnl
+    ./trmnl.nix
   ];
 
   config = {
@@ -101,7 +101,7 @@
       zram-generator.enable = false;
       # "nix-private-cache".enable = true;
 
-      # immich = {enable=true;};
+      immich = {enable = true;};
 
       nfs = {
         server = {
