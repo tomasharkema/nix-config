@@ -1853,16 +1853,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1756134309,
-        "narHash": "sha256-GFIPWarj+X14zPg9VUy49WrSiVCV+G12QMQopRprdFE=",
+        "lastModified": 1756133646,
+        "narHash": "sha256-ibJ+D4EXhreo1zggcXm3xQz8ml3Qx7RzBl4V10sNZ28=",
         "owner": "1Password",
         "repo": "shell-plugins",
-        "rev": "62f91c1ddd1ff5b146329463b7053817cc12c7a4",
+        "rev": "0b021e2ca65e4fe5b2e4bee4f8905ec63b425d2b",
         "type": "github"
       },
       "original": {
         "owner": "1Password",
         "repo": "shell-plugins",
+        "rev": "0b021e2ca65e4fe5b2e4bee4f8905ec63b425d2b",
         "type": "github"
       }
     },

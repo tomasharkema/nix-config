@@ -714,7 +714,7 @@
     # };
 
     op-shell-plugins = {
-      url = "github:1Password/shell-plugins";
+      url = "github:1Password/shell-plugins/0b021e2ca65e4fe5b2e4bee4f8905ec63b425d2b";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
