@@ -14,13 +14,13 @@ in {
     boot = {
       kernelModules = [
         "i2c-dev"
-        # "ddcci_backlight"
+        "ddcci_backlight"
       ];
       extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
     };
 
     environment.systemPackages = with pkgs; [
-      # ddcutil
+      ddcutil
       # xorg.xbacklight
       # gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil
       brightnessctl
