@@ -197,7 +197,7 @@
         # forceFullCompositionPipeline = true;
         open = true;
         nvidiaSettings = true;
-        nvidiaPersistenced = lib.mkForce true;
+        # nvidiaPersistenced = lib.mkForce true;
 
         powerManagement = {
           # enable = true;

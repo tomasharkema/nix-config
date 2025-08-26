@@ -214,15 +214,15 @@
         };
       };
 
-      glitchtip = {
-        enable = true;
-        port = 8923;
-        # listenAddress = "0.0.0.0";
+      # glitchtip = {
+      #   enable = true;
+      #   port = 8923;
+      #   # listenAddress = "0.0.0.0";
 
-        settings = {
-          GLITCHTIP_DOMAIN = "https://glitchtip.ling-lizard.ts.net";
-        };
-      };
+      #   settings = {
+      #     GLITCHTIP_DOMAIN = "https://glitchtip.ling-lizard.ts.net";
+      #   };
+      # };
 
       pocket-id = {
         enable = true;
@@ -407,7 +407,7 @@
       nvidia = {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
-        nvidiaPersistenced = lib.mkForce true;
+        # nvidiaPersistenced = lib.mkForce true;
       };
     };
 

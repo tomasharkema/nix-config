@@ -96,7 +96,7 @@ in {
         # forceFullCompositionPipeline = true;
         open = lib.mkForce cfg.open;
         nvidiaSettings = !(cfg.grid.enable);
-        nvidiaPersistenced = cfg.grid.enable;
+        # nvidiaPersistenced = cfg.grid.enable;
         package =
           if cfg.grid.enable
           then
