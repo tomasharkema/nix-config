@@ -80,6 +80,7 @@
         # '';
 
         shellAliases = {
+          "$" = "";
           ll = "ls -l";
           ls = "exa";
           la = "exa -a";

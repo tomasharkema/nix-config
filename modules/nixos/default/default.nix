@@ -211,6 +211,7 @@ in {
       enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          uv
           custom.discovery-rs
           nixos-rebuild-ng
           lnav
