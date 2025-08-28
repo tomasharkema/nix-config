@@ -76,7 +76,7 @@
         enable = true;
         httpd = false; # true;
       };
-      ollama.enable = true;
+      # ollama.enable = true;
       # "bmc-watchdog".enable = true;
       docker.enable = true;
       zabbix.server.enable = true;
@@ -101,7 +101,7 @@
       zram-generator.enable = false;
       # "nix-private-cache".enable = true;
 
-      immich = {enable = true;};
+      # immich = {enable = true;};
 
       nfs = {
         server = {

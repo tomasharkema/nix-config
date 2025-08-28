@@ -47,14 +47,14 @@ in {
       # nvflash
       # nvidia-capture-sdk
       libva-utils
-      (nvtopPackages.full)
+      #(nvtopPackages.full)
       zenith-nvidia
       nvidia-offload
       nvfancontrol
-      nvitop
-      # gwe
-      cudaPackages.cudatoolkit
-      # egl-wayland
+      #nvitop
+      gwe
+      # cudaPackages.cudatoolkit
+      egl-wayland
 
       # pkgs.nixgl.auto.nixGLDefault
     ];
