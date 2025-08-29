@@ -801,7 +801,6 @@
     # };
 
     nixos-recovery = {
-      # url = "https://flakehub.com/f/tomasharkema/nixos-recovery/0.0.*.tar.gz";
       url = "github:tomasharkema/nixos-recovery/develop";
       inputs = {
         nixpkgs.follows = "nixpkgs";

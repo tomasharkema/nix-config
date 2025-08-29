@@ -45,7 +45,7 @@
     ddrescue
     ddrescueview
     ddrutility
-    darktable
+    # darktable
     custom.wsjtx
     sdrpp
     rpi-imager
@@ -59,7 +59,7 @@
     noti
     ghex
     solaar
-    solana-cli
+    # solana-cli
     imsprog
 
     caffeine-ng

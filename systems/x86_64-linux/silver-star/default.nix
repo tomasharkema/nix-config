@@ -102,6 +102,7 @@
       # "nix-private-cache".enable = true;
 
       # immich = {enable = true;};
+      irqbalance.enable = true;
 
       nfs = {
         server = {
