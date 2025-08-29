@@ -114,7 +114,6 @@ in {
       hardwareScan = true;
 
       extraModulePackages = lib.mkIf pkgs.stdenv.isx86_64 [
-        config.system.build.pico-rng
         config.boot.kernelPackages.cryptodev
         config.boot.kernelPackages.acpi_call
         config.boot.kernelPackages.fanout
