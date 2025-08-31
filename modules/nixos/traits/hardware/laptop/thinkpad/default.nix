@@ -77,10 +77,10 @@ in {
         pkgs.modemmanager
         # pkgs.custom.lenovo-wwan-unlock
       ];
-      # services = {
-      #   open-fprintd-resume.enable = true;
-      #   open-fprintd-suspend.enable = true;
-      # };
+      services = {
+        open-fprintd-resume.enable = true;
+        open-fprintd-suspend.enable = true;
+      };
 
       services = {
         print-restart = {
@@ -103,6 +103,7 @@ in {
         };
       };
     };
+
     services = {
       "06cb-009a-fingerprint-sensor" = {
         enable = true;
@@ -111,7 +112,7 @@ in {
         # calib-data-file = ./calib-data.bin;
       };
 
-      # tp-auto-kbbl.enable = true;
+      # tp-auto-kbbl.enable := true;
       # thinkfan.enable = true;
       # fprintd = {
       #   enable = lib.mkForce true;
