@@ -94,21 +94,21 @@ in
       #   ];
       # };
 
-      systemd = {
-        user.services.polkit-gnome-authentication-agent-1 = {
-          description = "polkit-gnome-authentication-agent-1";
-          wantedBy = ["graphical-session.target"];
-          wants = ["graphical-session.target"];
-          after = ["graphical-session.target"];
-          serviceConfig = {
-            Type = "simple";
-            ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-            Restart = "on-failure";
-            RestartSec = 1;
-            TimeoutStopSec = 10;
-          };
-        };
-      };
+      # systemd = {
+      #   user.services.polkit-gnome-authentication-agent-1 = {
+      #     description = "polkit-gnome-authentication-agent-1";
+      #     wantedBy = ["graphical-session.target"];
+      #     wants = ["graphical-session.target"];
+      #     after = ["graphical-session.target"];
+      #     serviceConfig = {
+      #       Type = "simple";
+      #       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      #       Restart = "on-failure";
+      #       RestartSec = 1;
+      #       TimeoutStopSec = 10;
+      #     };
+      #   };
+      # };
 
       services = {
         # pipewire.extraConfig.pipewire-pulse."92-tcp" = {
@@ -130,9 +130,15 @@ in
 
         # xrdp.defaultWindowManager = "${pkgs.gnome.gnome-session}/bin/gnome-session";
 
+        # desktopManager.cosmic = {
+        #   enable = true;
+        #   xwayland.enable = true;
+        # };
+
+        # displayManager.cosmic-greeter.enable = true;
+
         xserver = {
           # dpi = mkIf cfg.hidpi.enable 200;
-
           desktopManager.gnome = {
             enable = true;
 
