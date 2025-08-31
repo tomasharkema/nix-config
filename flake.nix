@@ -379,44 +379,13 @@
     # allow-unsafe-native-code-during-evaluation = true;
 
     # netrc-file = "/etc/nix/netrc";
-    trusted-public-keys = [
-      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "tomasharkema:4Ou4kbViWV9ZPL5DGQZ5j4IEwpQrJ/u9YnU/7oY9djE="
-      "watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="
-      "raspi5.harkema.io-1:/kwt4HGmzEnXtQ2i8LMnfu8PrFaiX+oT7z5jsA3sXhs="
-    ];
 
     substituters = [
       "https://cache.nixos.org/"
       "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
       # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
       "https://watersucks.cachix.org"
-    ];
 
-    trustedBinaryCaches = [
-      "https://cache.nixos.org"
-      "https://nyx.chaotic.cx/"
-      "https://nix-gaming.cachix.org"
-      "https://nix-community.cachix.org"
-      # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
-      "https://devenv.cachix.org"
-      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
-      "https://cuda-maintainers.cachix.org"
-    ];
-
-    binaryCaches = [
-      "https://cache.nixos.org"
-      "https://nyx.chaotic.cx/"
-      "https://nix-gaming.cachix.org"
-      "https://nix-community.cachix.org"
-      "https://devenv.cachix.org"
-      "https://cuda-maintainers.cachix.org"
-      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
-      # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
-    ];
-
-    extra-substituters = [
       "https://cache.nixos.org"
       "https://cache.ngi0.nixos.org"
       "https://nyx.chaotic.cx/"
@@ -429,7 +398,35 @@
       "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
     ];
 
-    extra-trusted-public-keys = [
+    # trustedBinaryCaches = [
+    #   "https://cache.nixos.org"
+    #   "https://nyx.chaotic.cx/"
+    #   "https://nix-gaming.cachix.org"
+    #   "https://nix-community.cachix.org"
+    #   # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
+    #   "https://devenv.cachix.org"
+    #   "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
+    #   "https://cuda-maintainers.cachix.org"
+    # ];
+
+    # binaryCaches = [
+    #   "https://cache.nixos.org"
+    #   "https://nyx.chaotic.cx/"
+    #   "https://nix-gaming.cachix.org"
+    #   "https://nix-community.cachix.org"
+    #   "https://devenv.cachix.org"
+    #   "https://cuda-maintainers.cachix.org"
+    #   "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
+    #   # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
+    # ];
+
+    trusted-public-keys = [
+      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "tomasharkema:4Ou4kbViWV9ZPL5DGQZ5j4IEwpQrJ/u9YnU/7oY9djE="
+      "watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="
+      "raspi5.harkema.io-1:/kwt4HGmzEnXtQ2i8LMnfu8PrFaiX+oT7z5jsA3sXhs="
+
       "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
       "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
@@ -461,7 +458,7 @@
     #   "github:snowfallorg/"
     # ];
 
-    allow-import-from-derivation = true;
+    # allow-import-from-derivation = true;
     keep-outputs = true;
     keep-derivations = true;
     accept-flake-config = true;
