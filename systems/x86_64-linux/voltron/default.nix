@@ -173,10 +173,10 @@
       users.tomas.extraGroups = ["spi" "gpio" "docker"];
     };
 
-    security.pam.services.login.fprintAuth = lib.mkForce false;
+    # security.pam.services.login.fprintAuth = lib.mkForce false;
 
     services = {
-      # kmscon.enable = true;
+      kmscon.enable = true;
       ratbagd.enable = true;
       # comin.enable = false;
       abrt.enable = true;
