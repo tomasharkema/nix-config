@@ -152,7 +152,7 @@
 
       interfaces = {
         "enp1s0" = {
-          useDHCP = lib.mkDefault false;
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
@@ -163,7 +163,7 @@
         };
         "vlan800" = {
           mtu = 9000;
-          useDHCP = lib.mkDefault true;
+          useDHCP = true;
         };
         "vlan69" = {
           ipv4.addresses = [
