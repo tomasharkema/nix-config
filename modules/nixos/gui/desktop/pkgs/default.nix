@@ -87,7 +87,7 @@
     effitask
     filezilla
     font-manager
-    fractal
+    # fractal
     doublecmd
     gamehub
     gnomecast

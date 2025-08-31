@@ -73,6 +73,10 @@ in rec {
       [prev.icu74.dev];
   });
 
+  _86Box-with-roms = prev.custom._86Box.override {
+    unfreeEnableRoms = true;
+  };
+
   lcdproc = prev.lcdproc.overrideAttrs (old: {
     # configureFlags = ["--enable-drivers=all"];
     buildInputs = old.buildInputs ++ [prev.custom.glcd-proc-driver prev.custom.graphlcd-base];
