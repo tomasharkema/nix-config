@@ -322,27 +322,27 @@
 
       interfaces = {
         "eno1" = {
-          useDHCP = lib.mkDefault false;
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
         "eno2" = {
-          useDHCP = lib.mkDefault true;
+          useDHCP = true;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
         "eno3" = {
-          useDHCP = lib.mkDefault false;
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
         "eno4" = {
-          useDHCP = lib.mkDefault false;
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
         "br0" = {
-          useDHCP = lib.mkDefault false;
+          useDHCP = false;
           mtu = 9000;
           ipv4.addresses = [
             {
@@ -352,12 +352,12 @@
           ];
         };
         "vlan69" = {
-          useDHCP = lib.mkDefault true;
+          useDHCP = true;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
         "vlan66" = {
-          useDHCP = lib.mkDefault true;
+          useDHCP = true;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
@@ -530,7 +530,7 @@
           "acpi_power_meter"
           "acpi_ipmi"
           "ipmi_si"
-          "pico_rng"
+
           # # "dcdbas"
           # # "dell_rbu"
           # # "pci-me"

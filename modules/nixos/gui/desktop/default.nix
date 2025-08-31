@@ -97,22 +97,30 @@ in {
     # hdr.enable = true;
     # };
 
-    hardware.graphics = {
-      # package = pkgs.mesa.drivers;
-      # package32 = pkgs.pkgsi686Linux.mesa.drivers;
-      #   enable = true;
-      #   enable32Bit = pkgs.stdenvNoCC.isx86_64;
-      #   extraPackages = with pkgs;
-      #     [
-      #       mesa
-      #       mesa.drivers
-      #     ]
-      #     ++ lib.optional pkgs.stdenvNoCC.isx86_64 intel-compute-runtime;
+    hardware = {
+      saleae-logic.enable = true;
+      libftdi.enable = true;
+      libjaylink.enable = true;
+      pulseaudio.enable = false;
+      usb-modeswitch.enable = true;
     };
 
     programs = {
+      pulseview.enable = true;
+      sniffnet.enable = true;
+      television = {
+        enable = true;
+        enableZshIntegration = true;
+      };
+      zmap.enable = true;
       geary.enable = true;
+      nautilus-open-any-terminal = {
+        enable = true;
+        terminal = "kitty";
+      };
+      plotinus.enable = true;
 
+      oddjobd.enable = true;
       ssh = {
         # startAgent = true;
       };
@@ -170,7 +178,6 @@ in {
 
     # Enable sound with pipewire.
     # sound.enable = mkDefault true;
-    hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
 
     #system.build.chromium = pkgs.chromium.override {

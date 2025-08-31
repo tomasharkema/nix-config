@@ -106,8 +106,8 @@ in {
     services = {
       "06cb-009a-fingerprint-sensor" = {
         enable = true;
-        # backend = lib.mkDefault "python3-validity";
-        backend = "libfprint-tod";
+        backend = lib.mkDefault "python3-validity";
+        # backend = "libfprint-tod";
         # calib-data-file = ./calib-data.bin;
       };
 
@@ -138,12 +138,12 @@ in {
       # python-validity.enable = true;
       # fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
 
-      udev.extraRules = ''
-        SUBSYSTEM=="usb", ATTRS{idVendor}=="06cb", ATTRS{idProduct}=="009a", ATTRS{dev}=="*", TEST=="power/control", ATTR{power/control}="auto", MODE="0660", GROUP="plugdev"
-        SUBSYSTEM=="usb", ATTRS{idVendor}=="06cb", ATTRS{idProduct}=="009a", ENV{LIBFPRINT_DRIVER}="vfs009"
-      '';
-
       udev = {
+        extraRules = ''
+          SUBSYSTEM=="usb", ATTRS{idVendor}=="06cb", ATTRS{idProduct}=="009a", ATTRS{dev}=="*", TEST=="power/control", ATTR{power/control}="auto", MODE="0660", GROUP="plugdev"
+          SUBSYSTEM=="usb", ATTRS{idVendor}=="06cb", ATTRS{idProduct}=="009a", ENV{LIBFPRINT_DRIVER}="vfs009"
+        '';
+
         packages = [
           pkgs.modemmanager
           thinkpad-bat-rules

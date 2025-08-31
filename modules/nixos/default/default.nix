@@ -36,6 +36,8 @@ in {
       rebuild.enableNg = true;
     };
 
+    security.isolate.enable = true;
+
     systemd = {
       additionalUpstreamSystemUnits = ["systemd-bsod.service"];
       services = {
@@ -43,10 +45,6 @@ in {
         NetworkManager-wait-online.enable = lib.mkForce false;
         systemd-networkd-wait-online.enable = lib.mkForce false;
       };
-      #
-
-      # sysupdate.enable = true;
-      # repart.enable = true;
 
       watchdog = {
         rebootTime = "5m";
@@ -220,7 +218,7 @@ in {
           cutecom
           sbctl-tpm
           urjtag
-          pulseview
+          redfishtool
           sigrok-cli
           custom.partclone-utils
           bridge-utils
@@ -290,7 +288,7 @@ in {
           socat
           screen
           tcpdump
-
+          bmc-tools
           # Hardware-related tools.
           sdparm
           hdparm
@@ -492,6 +490,7 @@ in {
         #package = pkgs.scx_git.full;
         scheduler = "scx_lavd"; # "scx_bpfland";
       };
+      # geoipupdate.enable = true;
       earlyoom.enableNotifications = true;
       # locate.enable = true;
 

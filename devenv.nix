@@ -118,12 +118,12 @@
   nixos-system = pkgs.writeShellScriptBin "nixos-system" ''
     HOST="$1"
     echo "Build $HOST"
-    exec nom build ".#nixosConfigurations.$HOST.config.system.build.toplevel" --out-link ./out/$HOST
+    exec nom build ".#nixosConfigurations.$HOST.config.system.build.toplevel" --out-link "./out/$HOST" "$@"
   '';
   darwin-system = pkgs.writeShellScriptBin "darwin-system" ''
     HOST="$1"
     echo "Build $HOST"
-    exec nom build ".#darwinConfigurations.$HOST.config.system.build.toplevel" --out-link ./out/$HOST
+    exec nom build ".#darwinConfigurations.$HOST.config.system.build.toplevel" --out-link "./out/$HOST" "$@"
   '';
   update = pkgs.writeShellScriptBin "update" ''
     set -e -o pipefail
