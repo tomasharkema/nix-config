@@ -121,7 +121,7 @@
       # fancontrol.enable = true;
     };
 
-    # virtualisation.waydroid.enable = true;
+    virtualisation.waydroid.enable = true;
 
     apps = {
       steam.enable = true;
@@ -188,9 +188,9 @@
 
       "06cb-009a-fingerprint-sensor" = {
         enable = true;
-        backend = "python-validity";
-        # backend = "libfprint-tod";
-        # calib-data-file = ./calib-data.bin;
+        # backend = "python-validity";
+        backend = "libfprint-tod";
+        calib-data-file = ./calib-data.bin;
       };
 
       udev = {
