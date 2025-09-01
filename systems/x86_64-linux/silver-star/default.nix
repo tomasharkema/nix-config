@@ -101,7 +101,7 @@
       zram-generator.enable = false;
       # "nix-private-cache".enable = true;
 
-      # immich = {enable = true;};
+      immich = {enable = true;};
       irqbalance.enable = true;
 
       nfs = {
