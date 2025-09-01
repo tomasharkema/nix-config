@@ -206,6 +206,7 @@ in {
       enableAllTerminfo = true;
       systemPackages =
         (with pkgs; [
+          (lib.mkIf pkgs.stdenv.isx86_64 ipmicfg)
           uv
           custom.discovery-rs
           nixos-rebuild-ng
@@ -225,7 +226,6 @@ in {
           ipmitool
           openipmi
           freeipmi
-          ipmicfg
           ipmiutil
           xterm
           libheif
