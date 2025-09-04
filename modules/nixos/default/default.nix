@@ -211,7 +211,7 @@ in {
           custom.discovery-rs
           nixos-rebuild-ng
           lnav
-          wireshark
+
           termshark
           tshark
           python3Packages.pip
@@ -485,6 +485,8 @@ in {
     # proxy-services.enable = lib.mkDefault true;
 
     services = {
+      languagetool.enable = true;
+
       scx = {
         enable = pkgs.stdenvNoCC.isx86_64;
         #package = pkgs.scx_git.full;
@@ -779,7 +781,12 @@ in {
         enable = true;
         openFirewall = true;
       };
-      wireshark = {enable = true;};
+      wireshark = {
+        enable = true;
+        dumpcap.enable = true;
+        usbmon.enable = true;
+        package = pkgs.wireshark;
+      };
       nix-index = {
         enable = true;
         enableZshIntegration = true;
