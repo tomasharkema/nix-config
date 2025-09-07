@@ -28,7 +28,9 @@
     kicad
     platformio
     saleae-logic-2
-    #  digikam
+    # digikam
+    rmview
+    tpmmanager
     dsview
     smuview
     digiham

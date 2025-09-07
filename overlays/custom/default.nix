@@ -98,6 +98,15 @@ in rec {
 
   # wezterm = inputs.wezterm.packages."${prev.system}".default;
 
+  wireshark = prev.wireshark.overrideAttrs ({buildInputs, ...}: {
+    buildInputs =
+      buildInputs
+      ++ [
+        prev.python3Packages.pyserial
+        prev.python3Packages.psutil
+      ];
+  });
+
   nixd = inputs.nixd.packages."${prev.system}".default;
 
   segger-jlink = let
