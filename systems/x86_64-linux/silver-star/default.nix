@@ -20,11 +20,11 @@
         };
         cloudflared.rekeyFile = ./cloudflared.age;
         grafana-ntfy.rekeyFile = ./grafana-ntfy.age;
-        "healthchecks" = {
-          rekeyFile = ./healthchecks.age;
-          group = "healthchecks";
-          owner = "healthchecks";
-        };
+        #        "healthchecks" = {
+        #         rekeyFile = ./healthchecks.age;
+        #        group = "healthchecks";
+        #       owner = "healthchecks";
+        #    };
       };
     };
 
@@ -76,7 +76,7 @@
         enable = true;
         httpd = false; # true;
       };
-      # ollama.enable = true;
+      ollama.enable = true;
       # "bmc-watchdog".enable = true;
       docker.enable = true;
       zabbix.server.enable = true;
@@ -182,7 +182,7 @@
         defaults.authKeyPath = config.age.secrets.tsnsrv.path;
         services = {
           nix-cache = {toURL = "http://127.0.0.1:7124";};
-          searxng = {toURL = "http://127.0.0.1:8088";};
+          # searxng = {toURL = "http://127.0.0.1:8088";};
           glitchtip = {
             toURL = "http://127.0.0.1:${builtins.toString config.services.glitchtip.port}";
           };
