@@ -1,7 +1,11 @@
 # https://github.com/bocytko/git-backup
-{ pkgs, lib, config, ... }:
-with pkgs.python3Packages;
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with pkgs.python3Packages; let
   cfg = config.gui.gnome;
 
   # git-backup = pkgs.fetchFromGitHub {
@@ -17,17 +21,9 @@ let
   # fi
 
   # directory = "/tmp/dconf-sync";
-
-  # bakConfig = {
-  #   "token" = "6b86190dd45c57c1a1b039a5a54d892e019102f7";
-  #   "directory" = directory;
-  # };
-
-  # configFile = pkgs.writeText "config.json" (builtins.toJSON bakConfig);
-
   sync-script = pkgs.writeShellApplication {
     name = "sync-script";
-    runtimeInputs = with pkgs; [ git hostname dconf mktemp openssh hostname ];
+    runtimeInputs = with pkgs; [git hostname dconf mktemp openssh hostname];
     text = ''
       set -eux
 
@@ -120,7 +116,7 @@ in {
 
       timers."dconf-sync" = {
         description = "dconf-sync";
-        wantedBy = [ "timers.target" ];
+        wantedBy = ["timers.target"];
         timerConfig = {
           OnUnitActiveSec = "5m";
           Unit = "dconf-sync.service";
