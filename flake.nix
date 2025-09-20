@@ -37,7 +37,7 @@
           "dotnet-sdk-6.0.428"
           # "python-2.7.18.8"
           #"netbox-4.2.9"
-          "segger-jlink-qt4-810"
+          "segger-jlink-qt4-824"
           "dotnet-runtime-6.0.36"
           "libsoup-2.74.3"
         ];
