@@ -88,7 +88,7 @@
         chaotic.overlays.default
         # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
-        devenv.overlays.default
+        # devenv.overlays.default
         nixgl.overlay
       ];
 
@@ -495,10 +495,10 @@
     #   url = "github:hercules-ci/flake-parts";
     # };
 
-    devenv = {
-      url = "github:cachix/devenv";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # devenv = {
+    #   url = "github:cachix/devenv";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     devshell = {
       url = "github:numtide/devshell";
