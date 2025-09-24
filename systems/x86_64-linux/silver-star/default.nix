@@ -104,8 +104,14 @@
 
       immich = {
         enable = true;
-        host = "192.168.0.100";
+        host = "0.0.0.0";
         openFirewall = true;
+
+        machine-learning = {
+          environment = {
+            IMMICH_HOST = "0.0.0.0";
+          };
+        };
       };
 
       irqbalance.enable = true;
@@ -198,6 +204,7 @@
           esphome = {toURL = "http://127.0.0.1:6052";};
           atuin = {toURL = "http://127.0.0.1:8888";};
           trmnl = {toURL = "http://127.0.0.1:2300";};
+          immich-ml = {toURL = "http://127.0.0.1:3003";};
         };
       };
 
