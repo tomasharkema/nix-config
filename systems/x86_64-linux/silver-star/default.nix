@@ -59,10 +59,10 @@
         network.xgbe.enable = true;
         nvidia = {
           enable = true;
-          open = false;
-          grid = {
-            legacy = false;
-          };
+          open = true;
+          # grid = {
+          #   legacy = false;
+          # };
         };
       };
     };
@@ -193,7 +193,7 @@
         enable = true;
         defaults.authKeyPath = config.age.secrets.tsnsrv.path;
         services = {
-          nix-cache = {toURL = "http://127.0.0.1:7124";};
+          # nix-cache = {toURL = "http://127.0.0.1:7124";};
           # searxng = {toURL = "http://127.0.0.1:8088";};
           glitchtip = {
             toURL = "http://127.0.0.1:${builtins.toString config.services.glitchtip.port}";
@@ -376,7 +376,7 @@
         };
       };
 
-      # useDHCP = false;
+      useDHCP = false;
       networkmanager.enable = true;
     };
 
@@ -421,7 +421,8 @@
       nvidia = {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
-        # nvidiaPersistenced = lib.mkForce true;
+        nvidiaPersistenced = lib.mkForce true;
+        open = true;
       };
     };
 
@@ -490,7 +491,8 @@
 
       binfmt.emulatedSystems = ["aarch64-linux"];
 
-      kernelPackages = pkgs.linuxPackages_6_12;
+      # kernelPackages = pkgs.linuxPackages_6_12;
+      kernelPackages = pkgs.linuxPackages_cachyos-server;
 
       kernelParams = [
         "console=tty1"
