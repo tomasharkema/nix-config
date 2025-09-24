@@ -40,6 +40,7 @@
       boot = "/dev/disk/by-id/usb-DELL_IDSDM_012345678901-0:0";
       snapper.enable = false;
       # btrbk.enable = true;
+      swap.enable = false;
     };
 
     zramSwap.enable = false;

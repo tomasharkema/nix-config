@@ -99,7 +99,7 @@ in {
   options = {
     disks.btrfs = {
       enable = lib.mkEnableOption "Enable BTRFS";
-      autoscrub.enable = lib.mkEnableOption "Enable BTRFS Autoscrub";
+      autoscrub.enable = lib.mkEnableOption "Enable BTRFS Autoscrub" // {default = true;};
 
       newSubvolumes.enable = lib.mkEnableOption "Enable BTRFS newSubvolumes";
 
@@ -168,6 +168,7 @@ in {
       btrfs.autoScrub = lib.mkIf cfg.autoscrub.enable {
         enable = true;
         fileSystems = ["/"];
+        interval = "weekly";
       };
       snapper = lib.mkIf cfg.snapper.enable {
         # snapshotRootOnBoot = true;
