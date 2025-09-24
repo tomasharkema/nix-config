@@ -88,7 +88,7 @@ in {
     };
   };
 
-  config = {
+  config = lib.mkIf false {
     systemd.services."email@" = {
       description = "Sends a status mail via sendmail on service failures.";
       onFailure = mkForce [];
