@@ -26,10 +26,10 @@ in {
     ];
 
     system.build = {
-      #input-wacom = pkgs.custom.input-wacom.override {kernel = config.boot.kernelPackages.kernel;};
-      i2c-ch341-usb = pkgs.custom.i2c-ch341-usb.override {kernel = config.boot.kernelPackages.kernel;};
-      ch341-i2c-spi-gpio = pkgs.custom.ch341-i2c-spi-gpio.override {kernel = config.boot.kernelPackages.kernel;};
-      ch34x = pkgs.custom.ch34x.override {kernel = config.boot.kernelPackages.kernel;};
+      # input-wacom = pkgs.custom.input-wacom.override {kernel = config.boot.kernelPackages.kernel;};
+      # i2c-ch341-usb = pkgs.custom.i2c-ch341-usb.override {kernel = config.boot.kernelPackages.kernel;};
+      # ch341-i2c-spi-gpio = pkgs.custom.ch341-i2c-spi-gpio.override {kernel = config.boot.kernelPackages.kernel;};
+      # ch34x = pkgs.custom.ch34x.override {kernel = config.boot.kernelPackages.kernel;};
     };
 
     gui = {
@@ -106,24 +106,22 @@ in {
     boot = {
       kernelParams = [
         "preempt=lazy"
-
         "delayacct"
       ];
 
       kernelModules = [
         # "wacom"
-        "spi_ch341"
+        # "spi_ch341"
         "spidev"
         #"i2c-ch341-usb"
       ];
-      blacklistedKernelModules = ["ch341"];
+      # blacklistedKernelModules = ["ch341"];
 
       extraModulePackages = [
-        #config.system.build.input-wacom
-        config.system.build.i2c-ch341-usb
-        config.system.build.ch341-i2c-spi-gpio
-
-        config.system.build.ch34x
+        # config.system.build.input-wacom
+        # config.system.build.i2c-ch341-usb
+        # config.system.build.ch341-i2c-spi-gpio§
+        # config.system.build.ch34x
       ];
     };
   };
