@@ -109,7 +109,7 @@
 
         machine-learning = {
           environment = {
-            IMMICH_HOST = "0.0.0.0";
+            IMMICH_HOST = lib.mkForce "0.0.0.0";
           };
         };
       };
