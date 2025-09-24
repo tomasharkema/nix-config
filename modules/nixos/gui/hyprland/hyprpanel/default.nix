@@ -46,7 +46,7 @@
                 "volume"
                 "network"
                 "bluetooth"
-                "battery"
+                (lib.mkIf config.traits.hardware.laptop.enable "battery")
                 "systray"
                 "hyprsunset"
                 "hypridle"

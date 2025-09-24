@@ -38,8 +38,8 @@ rustPlatform.buildRustPackage rec {
       openssl
     ]
     ++ lib.optionals stdenv.isDarwin [
-      darwin.Security
-      darwin.apple_sdk.frameworks.Carbon
+      # darwin.Security
+      # darwin.Carbon
     ]
     ++ lib.optionals stdenv.isLinux [
       openssl

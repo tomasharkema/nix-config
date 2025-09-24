@@ -242,6 +242,7 @@ in {
           tparted
           play
           zathura
+          piratebay
           mpv
           imv
           rsbkb

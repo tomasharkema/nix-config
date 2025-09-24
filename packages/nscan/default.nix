@@ -18,9 +18,9 @@ buildGoModule rec {
 
   buildInputs =
     (lib.optionals stdenv.isDarwin [
-      darwin.apple_sdk.frameworks.CoreMedia
-      darwin.apple_sdk.frameworks.Cocoa
-      darwin.apple_sdk.frameworks.AppKit
+      # darwin.apple_sdk.frameworks.CoreMedia
+      # darwin.apple_sdk.frameworks.Cocoa
+      # darwin.apple_sdk.frameworks.AppKit
     ])
     ++ (lib.optionals stdenv.isDarwin [lolcat]);
 }

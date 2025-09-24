@@ -101,10 +101,8 @@
         noto-fonts-extra
         noto-fonts-emoji
         noto-fonts-cjk-sans
-
         nerd-fonts.jetbrains-mono
-
-        terminus-nerdfont
+        nerd-fonts.terminess-ttf
         ubuntu_font_family
         pkgs.custom.neue-haas-grotesk
         custom.fast-font

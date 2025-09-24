@@ -8,6 +8,7 @@ with pkgs; {
     home.packages = with pkgs; (
       (lib.optionals pkgs.stdenv.isLinux [
         ftop
+        curlie
       ])
       ++ [
         ssh-tools
@@ -74,13 +75,11 @@ with pkgs; {
         bash
         bat
         bottom
-        piratebay
         bunyan-rs
         cheat
         coreutils
         ctop
         curl
-        curlie
         delta
         direnv
         dnsutils

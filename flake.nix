@@ -387,7 +387,6 @@
       "https://watersucks.cachix.org"
 
       "https://cache.nixos.org"
-      "https://cache.ngi0.nixos.org"
       "https://nyx.chaotic.cx/"
       "https://nix-gaming.cachix.org"
       "https://nix-community.cachix.org"
@@ -439,7 +438,6 @@
       "tomasharkema:O7hvvAIoFVjO5giONleXcRE1Og7IDt2DdvAQRg4GCkI="
       "tomasharkema:4Ou4kbViWV9ZPL5DGQZ5j4IEwpQrJ/u9YnU/7oY9djE="
       "raspi5.harkema.io-1:/kwt4HGmzEnXtQ2i8LMnfu8PrFaiX+oT7z5jsA3sXhs="
-      "cache.ngi0.nixos.org-1:KqH5CBLNSyX184S9BKZJo1LxrxJ9ltnY2uAs5c/f1MA="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
 
