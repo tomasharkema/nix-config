@@ -191,6 +191,8 @@ in {
       #   provider = "graphene-hardened";
       # };
 
+      homeBinInPath = true;
+
       pathsToLink = [
         "/share/zsh"
         "/share/xdg-desktop-portal"

@@ -128,7 +128,7 @@
           catppuccin.nixosModules.catppuccin
           # peerix.nixosModules.peerix
           tsnsrv.nixosModules.default
-          # impermanence.nixosModule
+          impermanence.nixosModule
           disko.nixosModules.default
 
           lanzaboote.nixosModules.lanzaboote
@@ -485,17 +485,16 @@
       flake = false;
     };
 
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
+
     # flake-utils = {
     #   url = "github:numtide/flake-utils";
     # };
 
     # flake-parts = {
     #   url = "github:hercules-ci/flake-parts";
-    # };
-
-    # devenv = {
-    #   url = "github:cachix/devenv";
-    #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
     devshell = {
@@ -515,10 +514,6 @@
     #   inputs = {
     #     nixpkgs.follows = "nixpkgs";
     #   };
-    # };
-
-    # crane = {
-    #   url = "github:ipetkov/crane";
     # };
 
     catppuccin = {
@@ -595,11 +590,6 @@
         # flake-parts.follows = "flake-parts";
       };
     };
-
-    # cachix-deploy-flake = {
-    #   url = "github:cachix/cachix-deploy-flake";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
 
     nix-software-center = {
       url = "github:snowfallorg/nix-software-center";
@@ -698,8 +688,6 @@
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        # flake-utils.follows = "flake-utils";
-        # treefmt-nix.follows = "treefmt-nix";
       };
     };
 
@@ -799,7 +787,6 @@
       url = "github:tomasharkema/nixos-recovery/develop";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        # flake-parts.follows = "flake-parts";
       };
     };
 
