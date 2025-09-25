@@ -6,6 +6,7 @@
   kernel ? pkgs.linuxPackages_latest.kernel,
 }: let
   buildFolder = "${kernel.dev}/lib/modules/${kernel.modDirVersion}/build";
+  outputFolder = "${placeholder "out"}/lib/modules/${kernel.modDirVersion}/updates/";
 in
   stdenv.mkDerivation rec {
     pname = "ch341-i2c-spi-gpio";
@@ -14,8 +15,8 @@ in
     src = fetchFromGitHub {
       owner = "frank-zago";
       repo = "ch341-i2c-spi-gpio";
-      rev = "b80a9c375d9e00aaf69610c3826d00ce526a0d69";
-      hash = "sha256-EN2AkauuwUE6haV6a5W6VvK0Pyj5WgS8nq3Cr2ctyoo=";
+      rev = "508991c22657bf43080758e1e930eff9f8580688";
+      hash = "sha256-i8TJhq/pl5DOz7xYokTkkQ6tQ5Dqy5mmdw6tLlvxhNc=";
     };
 
     nativeBuildInputs = kernel.moduleBuildDependencies;
@@ -25,10 +26,10 @@ in
     installPhase = ''
       runHook preInstall
 
-      install -D ch341-core.ko $out/lib/modules/${kernel.modDirVersion}/updates/ch341-core.ko
-      install -D i2c-ch341.ko $out/lib/modules/${kernel.modDirVersion}/updates/i2c-ch341.ko
-      install -D gpio-ch341.ko $out/lib/modules/${kernel.modDirVersion}/updates/gpio-ch341.ko
-      install -D spi-ch341.ko $out/lib/modules/${kernel.modDirVersion}/updates/spi-ch341.ko
+      install -D ch341-core.ko ${outputFolder}/ch341-core.ko
+      install -D i2c-ch341.ko ${outputFolder}/i2c-ch341.ko
+      install -D gpio-ch341.ko ${outputFolder}/gpio-ch341.ko
+      install -D spi-ch341.ko ${outputFolder}/spi-ch341.ko
 
       runHook postInstall
     '';

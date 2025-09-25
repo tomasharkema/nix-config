@@ -31,10 +31,6 @@
   #   aicommits config set OPENAI_KEY=$OPENAI_API_KEY
   #   exec ${pkgs.custom.aicommits}/bin/aicommits "$@"
   # '';
-  # gptcommit-wrap = pkgs.writeShellScriptBin "gptcommit" ''
-  #   GPTCOMMIT__OPENAI__API_KEY="$(${pkgs._1password}/bin/op item get 2vzrjmprwi25zts7mzb4zmmad4 --field credential)"
-  #   exec ${lib.getExe pkgs.gptcommit}
-  # '';
   squash-folder = pkgs.writeShellScriptBin "squash-folder" ''
     set -e
 
@@ -99,7 +95,6 @@ in {
           libnotify
           trippy
           # fup-repl
-          # gptcommit-wrap
 
           udict
           # rtfm

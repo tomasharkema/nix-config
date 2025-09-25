@@ -148,7 +148,7 @@ in {
           (
             if config.traits.server.enable
             then lib.mkDefault pkgs.linuxPackages_cachyos-server
-            else lib.mkDefault pkgs.linuxPackages_cachyos
+            else lib.mkDefault pkgs.linuxPackages_cachyos-gcc
           );
 
       kernelModules = [

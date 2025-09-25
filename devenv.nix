@@ -157,7 +157,6 @@ in {
     # statix.enable = true;
     # deadnix.enable = true;
 
-    gptcommit.enable = true;
     check-added-large-files.enable = true;
     ripsecrets = {
       enable = true;

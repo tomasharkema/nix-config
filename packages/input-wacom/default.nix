@@ -10,16 +10,17 @@
   linuxPackages,
   kernel ? linuxPackages.kernel,
   kmod,
+  nix-update-script,
 }:
 stdenv.mkDerivation rec {
   pname = "input-wacom";
-  version = "1.4.0";
+  version = "1.5.0";
 
   src = fetchFromGitHub {
     owner = "linuxwacom";
     repo = "input-wacom";
     rev = "v${version}";
-    hash = "sha256-nRvJsnOitMYefaU5P0Au4dJ7DzMRYBwScrOmLUSw3So=";
+    hash = "sha256-Rk0SWCiCFOIkvPRZKPaes0x4+kYoWnrFlcWZU8DSJFE=";
   };
 
   nativeBuildInputs =
@@ -41,7 +42,9 @@ stdenv.mkDerivation rec {
     mkdir -p $out/lib/modules/${kernel.modDirVersion}/extra
     cp /build/source/4.18/*.ko $out/lib/modules/${kernel.modDirVersion}/extra
   '';
-
+  passthru = {
+    updateScript = nix-update-script {};
+  };
   meta = {
     description = "Linux kernel driver for Wacom devices";
     homepage = "https://github.com/linuxwacom/input-wacom";
