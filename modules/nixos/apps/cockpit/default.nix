@@ -9,21 +9,23 @@
       enable = true;
       # port = 9099;
       package = pkgs.cockpit;
-
+      allowed-origins = ["localhost" "${config.networking.hostName}.ling-lizard.ts.net"];
       settings = {
-        # WebService =
-        #   if config.services.nginx.enable
-        #   then {
-        #     # AllowUnencrypted = false;
-        #     Origins = "https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost} http://localhost:9090 ws://localhost:9090";
-        #     ProtocolHeader = "X-Forwarded-Proto";
-        #     UrlRoot = "/cockpit";
-        #     # ClientCertAuthentication = true;
-        #   }
-        #   else {
-        #     # ClientCertAuthentication = true;
-        #     # AllowUnencrypted = false;
-        #   };
+        WebService =
+          if config.services.nginx.enable
+          then {
+            AllowUnencrypted = false;
+            # Origins = "https://localhost:9090 wss://localhost:9090 https://${config.networking.hostName}.ling-lizard.ts.net:9090 wss://${config.networking.hostName}.ling-lizard.ts.net:9090";
+            ProtocolHeader = "X-Forwarded-Proto";
+            UrlRoot = "/cockpit";
+            ClientCertAuthentication = true;
+          }
+          else {
+            ClientCertAuthentication = true;
+            AllowUnencrypted = false;
+            # https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost}
+            # Origins = "https://localhost:9090 wss://localhost:9090 https://${config.networking.hostName}.ling-lizard.ts.net:9090 wss://${config.networking.hostName}.ling-lizard.ts.net:9090";
+          };
       };
     };
 
