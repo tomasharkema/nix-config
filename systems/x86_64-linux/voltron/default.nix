@@ -54,7 +54,6 @@
         gnupg
         custom.distrib-dl
         davinci-resolve
-        handbrake
 
         keybase-gui
         # calibre

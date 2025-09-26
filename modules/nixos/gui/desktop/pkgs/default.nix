@@ -28,7 +28,7 @@
     kicad
     platformio
     saleae-logic-2
-    # digikam
+    digikam
     rmview
     tpmmanager
     dsview
@@ -47,12 +47,12 @@
     ddrescue
     ddrescueview
     ddrutility
-    # darktable
+    darktable
     custom.wsjtx
     sdrpp
     rpi-imager
     custom.netsleuth
-    #handbrake
+    handbrake
     thonny
     coppwr
     custom.gtk-meshtastic-client
@@ -134,7 +134,6 @@
 
     _86Box-with-roms
 
-    #handbrake
     # pkgs.custom.git-butler
     # pkgs.wolfram-engine
     spotify
