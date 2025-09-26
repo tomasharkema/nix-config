@@ -241,6 +241,7 @@ in {
           memory_usage.disabled = false;
           directory = {fish_style_pwd_dir_length = 2;};
           # add_newline = false;
+          follow_symlinks = false;
         };
       };
     };

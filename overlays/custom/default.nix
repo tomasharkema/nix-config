@@ -60,7 +60,7 @@ in rec {
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
   # pwvucontrol = prev.custom.pwvucontrol;
-  hyprlock = inputs.hyprlock.packages."${prev.system}".hyprlock;
+  # hyprlock = inputs.hyprlock.packages."${prev.system}".hyprlock;
   gensio = prev.custom.gensio;
   _cxxopts = prev.cxxopts.overrideAttrs (old: {
     # buildPhase = ''
@@ -82,7 +82,7 @@ in rec {
     buildInputs = old.buildInputs ++ [prev.custom.glcd-proc-driver prev.custom.graphlcd-base];
   });
 
-  _389-ds-base = self.packages."${prev.system}"._389-ds-base;
+  # _389-ds-base = self.packages."${prev.system}"._389-ds-base;
   # freeipa = self.packages."${prev.system}".freeipa;
 
   # sssd = overridePkgCheckVersionSnapshot "sssd" "2.9.7" (
@@ -277,53 +277,53 @@ in rec {
   #   ];
   # });
 
-  _libqmi = prev.libqmi.overrideAttrs (old: rec {
-    pname = "libqmi";
-    version = "1.35.6-dev";
+  # _libqmi = prev.libqmi.overrideAttrs (old: rec {
+  #   pname = "libqmi";
+  #   version = "1.35.6-dev";
 
-    src = prev.fetchFromGitLab {
-      domain = "gitlab.freedesktop.org";
-      owner = "mobile-broadband";
-      repo = "libqmi";
-      rev = version;
-      hash = "sha256-kw2i9NVYJTcFbgcuZ8GNS0wt/ZgcomeAP/KWXXAV8Xk=";
-    };
-  });
+  #   src = prev.fetchFromGitLab {
+  #     domain = "gitlab.freedesktop.org";
+  #     owner = "mobile-broadband";
+  #     repo = "libqmi";
+  #     rev = version;
+  #     hash = "sha256-kw2i9NVYJTcFbgcuZ8GNS0wt/ZgcomeAP/KWXXAV8Xk=";
+  #   };
+  # });
 
-  _libmbim = prev.libmbim.overrideAttrs (old: rec {
-    pname = "libmbim";
-    version = "1.31.5-dev";
+  # _libmbim = prev.libmbim.overrideAttrs (old: rec {
+  #   pname = "libmbim";
+  #   version = "1.31.5-dev";
 
-    src = prev.fetchFromGitLab {
-      domain = "gitlab.freedesktop.org";
-      owner = "mobile-broadband";
-      repo = "libmbim";
-      rev = version;
-      hash = "sha256-Brut0PobAc6rTbGAo4NTauzHtwJrZOJjEw26hyXqA5w="; # "sha256-sHTpu9WeMZroT+1I18ObEHWSzcyj/Relyz8UNe+WawI=";
-    };
-  });
+  #   src = prev.fetchFromGitLab {
+  #     domain = "gitlab.freedesktop.org";
+  #     owner = "mobile-broadband";
+  #     repo = "libmbim";
+  #     rev = version;
+  #     hash = "sha256-Brut0PobAc6rTbGAo4NTauzHtwJrZOJjEw26hyXqA5w="; # "sha256-sHTpu9WeMZroT+1I18ObEHWSzcyj/Relyz8UNe+WawI=";
+  #   };
+  # });
   #_modemmanager = prev.custom.modemmanager-xmm;
 
-  _modemmanager = prev.modemmanager.overrideAttrs (
-    old: rec {
-      pname = "modemmanager";
-      version = "1.24.0";
+  # _modemmanager = prev.modemmanager.overrideAttrs (
+  #   old: rec {
+  #     pname = "modemmanager";
+  #     version = "1.24.0";
 
-      src = prev.fetchFromGitLab {
-        domain = "gitlab.freedesktop.org";
-        owner = "mobile-broadband";
-        repo = "ModemManager";
-        rev = version;
-        hash = "sha256-3jI75aR2esmv5dkE4TrdCHIcCvtdOBKnBC5XLEKoVFs=";
-      };
-      #     patches = [];
-      #     mesonFlags =
-      #       old.mesonFlags
-      #       + [
-      #         "--sysconfdir=${placeholder "out"}/etc"
-      #       ];
-    }
-  );
+  #     src = prev.fetchFromGitLab {
+  #       domain = "gitlab.freedesktop.org";
+  #       owner = "mobile-broadband";
+  #       repo = "ModemManager";
+  #       rev = version;
+  #       hash = "sha256-3jI75aR2esmv5dkE4TrdCHIcCvtdOBKnBC5XLEKoVFs=";
+  #     };
+  #     #     patches = [];
+  #     #     mesonFlags =
+  #     #       old.mesonFlags
+  #     #       + [
+  #     #         "--sysconfdir=${placeholder "out"}/etc"
+  #     #       ];
+  #   }
+  # );
 
   # modemmanager = prev.modemmanager.overrideAttrs (oldAttrs: {
   # src = prev.fetchFromGitLab {
