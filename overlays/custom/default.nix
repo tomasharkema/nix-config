@@ -38,14 +38,14 @@ in rec {
       wcwidth
     ];
   });
-  geoclue2 = prev.geoclue2.overrideAttrs ({buildInputs, ...}: {
-    version = prev.custom.geoclue-gpsd.version;
-    src = prev.custom.geoclue-gpsd.src;
-    buildInputs = buildInputs ++ prev.custom.geoclue-gpsd.buildInputs;
-  });
-  gamehub = prev.gamehub.overrideAttrs ({buildInputs, ...}: {
-    buildInputs = buildInputs ++ [prev.libxml2];
-  });
+  # geoclue2 = prev.geoclue2.overrideAttrs ({buildInputs, ...}: {
+  #   version = prev.custom.geoclue-gpsd.version;
+  #   src = prev.custom.geoclue-gpsd.src;
+  #   buildInputs = buildInputs ++ prev.custom.geoclue-gpsd.buildInputs;
+  # });
+  # gamehub = prev.gamehub.overrideAttrs ({buildInputs, ...}: {
+  #   buildInputs = buildInputs ++ [prev.libxml2];
+  # });
 
   # platformio-core = prev.platformio-core.overrideAttrs {
   #   doCheck = false;
