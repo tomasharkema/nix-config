@@ -100,7 +100,7 @@ in {
       # sunshine
       protontricks
       heroic
-      gamehub
+      # gamehub
       cartridges
       steamcmd
       steam-run

@@ -91,7 +91,7 @@
     font-manager
     # fractal
     doublecmd
-    gamehub
+    # gamehub
     gnomecast
     go-chromecast
     gotop
