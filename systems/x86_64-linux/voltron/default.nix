@@ -25,7 +25,8 @@
       snapper.enable = true; # false;
       swap = {
         size = "32G";
-        resume.enable = true;
+        resume.enable = false;
+        # resume.enable = true;
       };
     };
 
@@ -33,21 +34,10 @@
     #   enable = true;
     # };
 
-    systemd = {
-      services.usbmuxd.path = [pkgs.libusb1];
-      # network.links."81-pi" = {
-      #   matchConfig = {
-      #     Property = [
-      #       "ID_MODEL_ID=a4aa"
+    # systemd = {
+    #   services.usbmuxd.path = [pkgs.libusb1];
 
-      #       "ID_VENDOR_ID=0525"
-      #     ];
-      #    Driver = "cdc_ether";
-      #   };
-      #   linkConfig.Name = "pi0";
-      # networkConfig.DHCP = true;
-      # };
-    };
+    # };
 
     environment = {
       systemPackages = with pkgs; [
@@ -55,7 +45,7 @@
         gnomeExtensions.power-tracker
         # custom.swift
         powerstat
-        # powerjoular
+        powerjoular
         libimobiledevice
         intel-gpu-tools
         nvramtool
@@ -64,7 +54,7 @@
         gnupg
         custom.distrib-dl
         davinci-resolve
-        # handbrake
+        handbrake
 
         keybase-gui
         # calibre
