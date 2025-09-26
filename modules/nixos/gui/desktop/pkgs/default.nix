@@ -116,7 +116,7 @@
     # sublime4
     transmission-remote-gtk
     tremotesf
-    ulauncher
+    #ulauncher
     usbview
     # ventoy-full
     vsce
