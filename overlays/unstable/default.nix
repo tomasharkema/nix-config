@@ -14,7 +14,7 @@
   #   nvidiaSupport = true;
   # };
 
-  # usbguard = prev.usbguard.overrideAttrs {meta.mainProgram = "usbguard";};
+  usbguard = prev.usbguard.overrideAttrs {meta.mainProgram = "usbguard";};
 
   # _gpsd = prev.gpsd.overrideAttrs (old: rec {
   #   pname = "gpsd";
