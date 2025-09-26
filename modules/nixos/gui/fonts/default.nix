@@ -74,6 +74,11 @@
         ++ [
           # custom.san-francisco
           # exult
+          openmoji-color
+          kreative-square
+          fairfax-hd
+          fairfax
+          constructium
           b612
           bakoma_ttf
           cm_unicode
