@@ -30,6 +30,7 @@
     saleae-logic-2
     digikam
     rmview
+    zenmap
     tpmmanager
     dsview
     smuview
