@@ -39,7 +39,7 @@
         disable-user-extensions = true;
       };
     };
-
+    hardware.microsoft-surface.kernelVersion = "stable";
     # microsoft-surface = {
     #   surface-control.enable = true;
     # };
