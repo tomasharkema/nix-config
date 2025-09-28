@@ -25,7 +25,7 @@
       # };
       #   apps.steam.enable = true;
 
-      icewm.enable = true;
+      # icewm.enable = true;
     };
 
     environment.systemPackages = with pkgs; [custom.elxflash];
