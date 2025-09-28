@@ -95,10 +95,10 @@ in {
         enable = true;
         # enableRedirector = true;
         # mountPoint = "%t/kbfs";
-        # extraFlags = [
-        # "-label kbfs"
-        # "-mount-type normal"
-        # ];
+        extraFlags = [
+          "-label kbfs"
+          "-mount-type normal"
+        ];
       };
     };
     environment.systemPackages = with pkgs; (
