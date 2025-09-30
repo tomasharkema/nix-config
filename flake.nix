@@ -382,7 +382,6 @@
 
     substituters = [
       "https://cache.nixos.org/"
-      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
       # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
       "https://watersucks.cachix.org"
       "https://nixpkgs.cachix.org"
@@ -392,7 +391,6 @@
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
       "https://tomasharkema.cachix.org"
-      # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
       "http://silver-star.ling-lizard.ts.net:7124"
     ];
 
