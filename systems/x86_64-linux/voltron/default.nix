@@ -25,8 +25,8 @@
       snapper.enable = true; # false;
       swap = {
         size = "32G";
-        resume.enable = false;
-        # resume.enable = true;
+        # resume.enable = false;
+        resume.enable = true;
       };
     };
 
