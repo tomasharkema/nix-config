@@ -35,7 +35,7 @@
 
     disks.btrfs = {
       enable = true;
-      main = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S7PJNJ0Y411286E-part1";
+      main = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S7PJNJ0Y411286E_1-part1";
       boot = "/dev/disk/by-id/usb-DELL_IDSDM_012345678901-0:0";
       snapper.enable = false;
       # btrbk.enable = true;
