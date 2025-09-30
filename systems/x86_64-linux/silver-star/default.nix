@@ -207,6 +207,7 @@
           grafana = {toURL = "http://127.0.0.1:3000";};
           healthchecks = {toURL = "http://127.0.0.1:8000";};
           netbox = {toURL = "http://127.0.0.1:8002";};
+          netdata = {toURL = "http://127.0.0.1:19999";};
           esphome = {toURL = "http://127.0.0.1:6052";};
           atuin = {toURL = "http://127.0.0.1:8888";};
           trmnl = {toURL = "http://127.0.0.1:2300";};
