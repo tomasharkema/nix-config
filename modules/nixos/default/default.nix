@@ -408,7 +408,8 @@ in {
           gdbgui
           clang-tools
           i2c-tools
-
+          nmon
+          sysstat
           squashfsTools
           squashfs-tools-ng
           ssh-import-id
