@@ -92,7 +92,7 @@
 
     programs.nh = {
       clean.enable = true;
-      clean.extraArgs = "--keep-since 1m";
+      clean.extraArgs = "--keep-since 1M";
     };
 
     services = {
