@@ -33,7 +33,6 @@
         nox
         alejandra
         autoflake
-        attic-client
         cachix
         deadnix
         deploy-rs

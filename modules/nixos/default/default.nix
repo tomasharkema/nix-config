@@ -476,7 +476,6 @@ in {
     };
 
     apps = {
-      attic.enable = lib.mkDefault true;
       ipa.enable = lib.mkDefault true;
       atop.enable = lib.mkDefault true;
     };

@@ -36,10 +36,6 @@ in {
         #   requires = ["unmetered-connection.service"];
         #   after = ["unmetered-connection.service"];
         # };
-        # "attic-watch-store" = {
-        #   requires = ["unmetered-connection.service"];
-        #   after = ["unmetered-connection.service"];
-        # };
       };
     };
   };

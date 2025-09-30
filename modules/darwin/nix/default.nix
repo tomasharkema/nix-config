@@ -21,18 +21,6 @@ in {
   };
 
   config = {
-    age = {
-      secrets = {
-        "attic-config.toml" = {
-          rekeyFile = ../../nixos/secrets/attic-config.toml.age;
-          # mode = "777";
-          owner = "${config.user.name}";
-          # group = "tomas";
-          path = "/Users/${config.user.name}/.config/attic/config.toml";
-        };
-      };
-    };
-
     traits.developer.enable = true;
 
     # services.nix-daemon.enable = true;

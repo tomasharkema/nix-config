@@ -62,8 +62,6 @@ in {
     };
 
     apps = {
-      # attic-server.enable = true;
-
       atop = {
         enable = false;
         httpd = false;
@@ -71,7 +69,6 @@ in {
       # "bmc-watchdog".enable = true;
       docker.enable = true;
       ollama.enable = true;
-      # atticd.enable = true;
     };
 
     services = {

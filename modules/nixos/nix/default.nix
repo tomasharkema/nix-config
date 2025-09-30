@@ -167,7 +167,7 @@
             "tomas"
             "root"
           ];
-        netrc-file = config.age.secrets.netrc.path;
+        # netrc-file = config.age.secrets.netrc.path;
         keep-outputs = true;
         keep-derivations = true;
         # substituters =

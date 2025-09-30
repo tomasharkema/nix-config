@@ -28,7 +28,6 @@
           # };
           service_status = {
             Accounts = "accounts-daemon";
-            Attic-watch-store = "attic-watch-store";
           };
           filesystems = {
             root = "/";

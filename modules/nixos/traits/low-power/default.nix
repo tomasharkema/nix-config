@@ -19,7 +19,6 @@ in {
     };
 
     apps = {
-      attic.enable = false;
       resilio.enable = lib.mkForce false;
     };
 

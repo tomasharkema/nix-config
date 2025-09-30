@@ -188,10 +188,6 @@ in {
 
   # dotenv.enable = true;
 
-  processes = {
-    attic.exec = "attic watch-store tomas -j1";
-  };
-
   # enterShell = ''
   #   nix flake update && devenv update
   # '';
@@ -221,7 +217,6 @@ in {
     ack
     age
     alejandra
-    attic-client
     bash
     bfg-repo-cleaner
     colima

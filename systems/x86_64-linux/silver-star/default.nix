@@ -81,7 +81,6 @@
       # "bmc-watchdog".enable = true;
       docker.enable = true;
       zabbix.server.enable = true;
-      atticd.enable = true;
       prometheus.server.enable = true;
     };
 
@@ -178,6 +177,13 @@
         accelerationDevices = ["*"];
       };
 
+      harmonia = {
+        enable = true;
+        signKeyPaths = [config.age.secrets."nix-sign-private".path];
+        settings = {
+          bind = "[::]:7124";
+        };
+      };
       #grafana-to-ntfy = {
       #  enable = true;
       #  settings = {
@@ -193,11 +199,11 @@
         enable = true;
         defaults.authKeyPath = config.age.secrets.tsnsrv.path;
         services = {
-          # nix-cache = {toURL = "http://127.0.0.1:7124";};
+          nix-cache = {toURL = "http://127.0.0.1:7124";};
           # searxng = {toURL = "http://127.0.0.1:8088";};
-          glitchtip = {
-            toURL = "http://127.0.0.1:${builtins.toString config.services.glitchtip.port}";
-          };
+          # glitchtip = {
+          #   toURL = "http://127.0.0.1:${builtins.toString config.services.glitchtip.port}";
+          # };
           grafana = {toURL = "http://127.0.0.1:3000";};
           healthchecks = {toURL = "http://127.0.0.1:8000";};
           netbox = {toURL = "http://127.0.0.1:8002";};
@@ -500,7 +506,7 @@
         "console=ttyS1,115200n8"
         # "intremap=no_x2apic_optout"
         # "nox2apic"
-        "iomem=relaxed"
+        # "iomem=relaxed"
         "intel_iommu=on"
         "iommu=pt"
         "ipmi_watchdog.timeout=180"

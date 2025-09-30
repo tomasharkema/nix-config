@@ -17,10 +17,6 @@
       if [ -f "${osConfig.age.secrets.atuin.path}" ]; then
         install -Dm 600 "${osConfig.age.secrets.atuin.path}" "${key_path}"
       fi
-
-      # if [ -f "${osConfig.age.secrets."attic-config.toml".path}" ]; then
-      #   install -Dm 600 "${osConfig.age.secrets."attic-config.toml".path}" "/home/tomas/.config/attic/config.toml"
-      # fi
     '';
 
     programs.atuin = {

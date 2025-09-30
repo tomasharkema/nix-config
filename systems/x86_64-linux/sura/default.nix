@@ -32,8 +32,6 @@
       netdata.enable = lib.mkForce false;
     };
 
-    apps.attic.enable = lib.mkForce false;
-
     home-manager.users.tomas.dconf.settings = {
       "org/gnome/shell" = {
         disable-user-extensions = true;

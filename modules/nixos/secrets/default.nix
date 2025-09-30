@@ -13,13 +13,6 @@
           mode = "644";
           # symlink = false;
         };
-        "attic-config.toml" = {
-          rekeyFile = ./attic-config.toml.age;
-          mode = "644";
-          owner = "tomas";
-          group = "tomas";
-          # path = "/home/tomas/.config/attic/config.toml";
-        };
 
         # tailscale = {
         #   rekeyFile = ./tailscale.age;
@@ -99,9 +92,9 @@
         # "domainjoin" = {
         #   rekeyFile = ./domainjoin.age;
         # };
-        netrc = {
-          rekeyFile = ./netrc.age;
-        };
+        # netrc = {
+        #   rekeyFile = ./netrc.age;
+        # };
       };
     };
   };
