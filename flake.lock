@@ -54,11 +54,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1759174959,
-        "narHash": "sha256-8JmI3y3B/PTeKzEDmHestjQlbvULTnLarIL42Pnte78=",
+        "lastModified": 1759255832,
+        "narHash": "sha256-+8RmfVC7+9bYwUnodGSbRaSGyvkGB/lkFe03xvyvu38=",
         "owner": "oddlama",
         "repo": "agenix-rekey",
-        "rev": "38dc6311bb3d54422c72ec097707e7a534f6d97a",
+        "rev": "cdf62e6ee25c0bba7bf391dace328346a7c27609",
         "type": "github"
       },
       "original": {
@@ -809,11 +809,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759236626,
-        "narHash": "sha256-1BjCUU2csqhR5umGYFnOOTU8r8Bi+bnB2SLsr0FLcws=",
+        "lastModified": 1759261733,
+        "narHash": "sha256-G104PUPKBgJmcu4NWs0LUaPpSOTD4jiq4mamLWu3Oc0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "9e0453a9b0c8ef22de0355b731d712707daa6308",
+        "rev": "5a21f4819ee1be645f46d6b255d49f4271ef6723",
         "type": "github"
       },
       "original": {
@@ -1278,11 +1278,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1758663926,
-        "narHash": "sha256-6CFdj7Xs616t1W4jLDH7IohAAvl5Dyib3qEv/Uqw1rk=",
+        "lastModified": 1759261527,
+        "narHash": "sha256-wPd5oGvBBpUEzMF0kWnXge0WITNsITx/aGI9qLHgJ4g=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "170ff93c860b2a9868ed1e1102d4e52cb3d934e1",
+        "rev": "e087756cf4abbe1a34f3544c480fc1034d68742f",
         "type": "github"
       },
       "original": {
@@ -1454,11 +1454,11 @@
         "systems": "systems_7"
       },
       "locked": {
-        "lastModified": 1759217440,
-        "narHash": "sha256-qP3wDVcwOMKSIhPKH0m+DmpFXIx9dZNNgw9wyRMz+Dw=",
+        "lastModified": 1759263360,
+        "narHash": "sha256-FIHkYBph5uJuc8wa8wKhDVmhGaMqyroD+4hH8q9hd0k=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "9faa339d9e930be3eb7d751af35ecfed7c493d14",
+        "rev": "94331cc50d47e63b926f702340510d2514dbea86",
         "type": "github"
       },
       "original": {
@@ -2139,11 +2139,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756154209,
-        "narHash": "sha256-GPt16AAGEYlubmCfK2B5NX976eOv8pojnT+av/Oy7b0=",
+        "lastModified": 1759265704,
+        "narHash": "sha256-b0d0lfERd3+N/K0oq4YsX2pSMGh5HX5D6ocehEoJjeU=",
         "owner": "boinkor-net",
         "repo": "tsnsrv",
-        "rev": "6c0f45ed88f0d3bbb26b3f8b727cf5febadaf04d",
+        "rev": "a4e47c178e0bdd4da72fad6f0dd2dea6b89d2d25",
         "type": "github"
       },
       "original": {
