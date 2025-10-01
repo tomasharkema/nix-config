@@ -60,6 +60,12 @@ in {
           systemd.enable = true;
 
           smartctl.enable = true;
+
+          postgres = lib.mkIf config.services.postgresql.enable {
+            enable = true;
+            listenAddress = "0.0.0.0";
+            port = 9187;
+          };
         };
       };
 

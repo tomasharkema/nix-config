@@ -19,7 +19,7 @@ in {
     services = {
       zabbixAgent = {
         enable = true;
-        server = "silver-star,127.0.0.1";
+        server = "silver-star,127.0.0.1,silver-star.ling-lizard.ts.net";
         settings = {
           ServerActive = "silver-star.ling-lizard.ts.net";
         };

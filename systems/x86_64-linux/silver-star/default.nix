@@ -79,7 +79,7 @@
       ollama.enable = true;
       # "bmc-watchdog".enable = true;
       docker.enable = true;
-      zabbix.server.enable = true;
+      # zabbix.server.enable = true;
       prometheus.server.enable = true;
     };
 
@@ -92,7 +92,7 @@
 
     programs.nh = {
       clean.enable = true;
-      clean.extraArgs = "--keep-since 1M";
+      clean.extraArgs = "--keep-since 3M";
     };
 
     services = {
@@ -199,6 +199,12 @@
       #  };
       #};
 
+      pgadmin = {
+        enable = true;
+        openFirewall = true;
+        initialEmail = "tomas@harkema.io";
+        initialPasswordFile = pkgs.writeText "ps" "testtest";
+      };
       tsnsrv = {
         enable = true;
         defaults.authKeyPath = config.age.secrets.tsnsrv.path;

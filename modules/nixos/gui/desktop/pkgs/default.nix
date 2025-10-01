@@ -74,7 +74,7 @@
     qFlipper
     mtr-gui
     (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
-
+    antares
     ptyxis
     wl-clipboard
     python312Packages.pyclip
