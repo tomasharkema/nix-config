@@ -409,6 +409,9 @@ in {
           clang-tools
           i2c-tools
           nmon
+          caligula
+          python3Packages.uv
+          nix-search-tv
           sysstat
           squashfsTools
           squashfs-tools-ng
