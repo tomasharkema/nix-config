@@ -31,11 +31,12 @@ in {
 
     services = {
       # localtimed.enable = true;
-      udev.packages = [
-        pkgs.saleae-logic-2
 
-        pkgs.nrf-udev
+      udev.packages = with pkgs; [
+        saleae-logic-2
+        nrf-udev
       ];
+
       dbus = {
         enable = true;
         packages = with pkgs; [

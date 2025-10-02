@@ -15,8 +15,8 @@ in
     src = fetchFromGitHub {
       owner = "frank-zago";
       repo = "ch341-i2c-spi-gpio";
-      rev = "508991c22657bf43080758e1e930eff9f8580688";
-      hash = "sha256-i8TJhq/pl5DOz7xYokTkkQ6tQ5Dqy5mmdw6tLlvxhNc=";
+      rev = "bf0a27ca1cf0335d1a0623c38bf41c5ba8da3658";
+      hash = "sha256-6nrl05ykatGYiX3SlgJ14BdO40qi18EQJZB8H21fk+g=";
     };
 
     nativeBuildInputs = kernel.moduleBuildDependencies;
@@ -33,6 +33,8 @@ in
 
       runHook postInstall
     '';
+
+    patches = [./linux-17.patch];
 
     meta = {
       description = "WinChipHead CH341 linux driver for I2C, SPI and GPIO mode";
