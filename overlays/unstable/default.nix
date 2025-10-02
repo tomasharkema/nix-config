@@ -15,7 +15,7 @@
   # };
 
   usbguard = prev.usbguard.overrideAttrs {meta.mainProgram = "usbguard";};
-  nix-search-tv = inputs.nix-search-tv.packages."${prev.system}".default;
+
   # _gpsd = prev.gpsd.overrideAttrs (old: rec {
   #   pname = "gpsd";
   #   version = "3.26.1";
