@@ -29,6 +29,10 @@ in {
         enable = true;
       };
 
+      # zabbixProxy = lib.mkIf (cfgServer.enable) {
+      #   enable = true;
+      # };
+
       tsnsrv = {
         services = {
           zabbix = {
@@ -48,6 +52,10 @@ in {
         #   hostName = "zabbix.ling-lizard.ts.net";
         #   adminAddr = "webmaster@localhost";
         # };
+      };
+
+      phpfpm.pools.zabbix = lib.mkIf cfgServer.enable {
+        phpPackage = pkgs.php83;
       };
     };
   };

@@ -79,7 +79,7 @@
       ollama.enable = true;
       # "bmc-watchdog".enable = true;
       docker.enable = true;
-      # zabbix.server.enable = true;
+      zabbix.server.enable = true;
       prometheus.server.enable = true;
     };
 
@@ -610,7 +610,9 @@
         "docker-compose@grafana" = {
           wantedBy = ["multi-user.target"];
         };
-
+        "docker-compose@faf" = {
+          wantedBy = ["multi-user.target"];
+        };
         "docker-compose@esphome" = {
           wantedBy = ["multi-user.target"];
         };

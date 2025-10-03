@@ -131,10 +131,9 @@ in {
                 }
               ))
           else
-            pkgs.nvidia-patch.patch-nvenc (
-              pkgs.nvidia-patch.patch-fbc
-              config.boot.kernelPackages.nvidiaPackages.beta
-            );
+            #pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc
+            config.boot.kernelPackages.nvidiaPackages.beta;
+        #);
 
         vgpu = lib.mkIf (cfg.grid.enable) {
           patcher = {

@@ -118,8 +118,8 @@ in {
 
       extraModulePackages = [
         # config.system.build.input-wacom
-        config.system.build.i2c-ch341-usb
-        config.system.build.ch341-i2c-spi-gpio
+        # config.system.build.i2c-ch341-usb
+        # config.system.build.ch341-i2c-spi-gpio
       ];
     };
   };
