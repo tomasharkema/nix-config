@@ -55,7 +55,7 @@ in {
           beta = false;
           open = false;
           grid = {
-            enable = true;
+            enable = false;
           };
         };
       };
@@ -116,7 +116,7 @@ in {
       };
     };
 
-    powerManagement.powertop.enable = true;
+    # powerManagement.powertop.enable = true;
 
     networking = {
       # hosts = {
@@ -213,18 +213,18 @@ in {
       icingaweb2
     ];
 
-    virtualisation.kvmgt = {
-      enable = lib.mkForce false;
-      device = "0000:01:00.0";
-      vgpus = {
-        "nvidia-256" = {
-          uuid = [
-            "e1ab260f-44a2-4e07-9889-68a1caafb399"
-            "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
-          ];
-        };
-      };
-    };
+    # virtualisation.kvmgt = {
+    #   enable = lib.mkForce false;
+    #   device = "0000:01:00.0";
+    #   vgpus = {
+    #     "nvidia-256" = {
+    #       uuid = [
+    #         "e1ab260f-44a2-4e07-9889-68a1caafb399"
+    #         "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
+    #       ];
+    #     };
+    #   };
+    # };
 
     hardware = {
       cpu.intel.updateMicrocode = true;
@@ -260,7 +260,7 @@ in {
         # "pci=nomsi"
       ];
 
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      # binfmt.emulatedSystems = ["aarch64-linux"];
 
       recovery = {
         sign = true;
