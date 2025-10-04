@@ -14,7 +14,7 @@ in {
     };
   };
 
-  config = lib.mkIf (cfg.enable && false) {
+  config = lib.mkIf cfg.enable {
     # environment.sessionVariables = {
     #   SSH_AUTH_SOCK = "/run/user/1000/ssh-tpm-agent.sock";
     # };

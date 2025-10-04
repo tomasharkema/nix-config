@@ -108,13 +108,13 @@ in {
         "delayacct"
       ];
 
-      kernelModules = [
-        # "wacom"
-        "spi_ch341"
-        "spidev"
-        #"i2c-ch341-usb"
-      ];
-      blacklistedKernelModules = ["ch341"];
+      # kernelModules = [
+      # "wacom"
+      # "spi_ch341"
+      # "spidev"
+      #"i2c-ch341-usb"
+      # ];
+      # blacklistedKernelModules = ["ch341"];
 
       extraModulePackages = [
         # config.system.build.input-wacom

@@ -3,27 +3,31 @@
   buildGoModule,
   fetchFromGitHub,
   openssl,
-  # linuxPackages,
-  # kernel ? linuxPackages.kernel,
+  pkg-config,
+  linuxPackages,
+  kernel ? linuxPackages.kernel,
 }:
 buildGoModule rec {
   pname = "ssh-tpm-agent";
-  version = "0.5.0";
+  version = "0.8.0";
 
   src = fetchFromGitHub {
     owner = "Foxboron";
     repo = "ssh-tpm-agent";
     rev = "v${version}";
-    hash = "sha256-J9qX6DQH8hOzO+MKiehUmnmJ58/yvpvQdfNGJTXa8TI=";
+    hash = "sha256-CSxZctiQ/d4gzCUtfx9Oetb8s0XpHf3MPH/H0XaaVgg=";
   };
 
   # proxyVendor = true;
   doCheck = false;
-  vendorHash = "sha256-Krpj0bMD+zYRutnyWYOsa30UdS6aeqHtQHiJ0UwpgE0=";
+  env.CGO_ENABLED = 0;
+
+  vendorHash = "sha256-e5gnlQX/tfuWhEYKVCcl96EwhvfoaldLLta0Fo2Y2gs=";
+
+  nativeBuildInputs = [kernel pkg-config];
 
   buildInputs = [
     openssl
-    # kernel
   ];
 
   meta = {

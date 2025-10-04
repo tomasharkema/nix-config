@@ -75,7 +75,7 @@ in {
       # kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
 
       # kernelPackages = lib.mkIf cfg.grid pkgs.linuxPackages_6_11;
-      blacklistedKernelModules = ["nouveau"];
+      # blacklistedKernelModules = ["nouveau"];
 
       kernelParams = [
         # "nvidia-drm.modeset=1"

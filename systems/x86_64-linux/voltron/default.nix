@@ -319,9 +319,7 @@
         "iommu=pt"
         # "iommu.passthrough=1"
       ];
-      blacklistedKernelModules = [
-        "nouveau"
-      ];
+      # blacklists
       # modprobeConfig = {
       #   enable = true;
       # };
@@ -332,7 +330,7 @@
         "coretemp"
         # "psmouse"
         "i915"
-        # "spi"
+        "spi"
         # "sgx"
         # "isgx"
         # "vfio_pci"
