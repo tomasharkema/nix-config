@@ -95,6 +95,14 @@
       clean.extraArgs = "--keep-since 3M";
     };
 
+    networking.nftables.enable = true;
+    virtualisation = {
+      incus = {
+        enable = true;
+        ui.enable = true;
+      };
+    };
+    users.groups = {"incus-admin".members = ["tomas"];};
     services = {
       hypervisor = {
         enable = true;

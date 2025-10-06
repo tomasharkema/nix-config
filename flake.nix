@@ -90,6 +90,7 @@
         # opentelemetry-nix.overlays.default
         # devenv.overlays.default
         nixgl.overlay
+        nixpkgs-esp-dev.overlays.default
       ];
 
       homes.modules = with inputs; [
@@ -882,6 +883,10 @@
 
     wluma = {
       url = "github:tomasharkema/wluma";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixpkgs-esp-dev = {
+      url = "github:mirrexagon/nixpkgs-esp-dev?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

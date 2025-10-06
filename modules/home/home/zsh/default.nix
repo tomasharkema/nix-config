@@ -79,7 +79,27 @@
         #   source "${iterm}";
         # '';
 
-        shellAliases = {
+        shellAliases = let
+          silver = ''
+            -H 192.168.69.45 -U root -P "$(op item get abrgfwmlbnc2zghpugawqoagjq --field password --reveal)"
+          '';
+          blue = ''
+            -H 192.168.69.46 -U ADMIN -P "$(op item get ydq2vns3nc4hj43n4avtryckpa --field password --reveal )"
+          '';
+        in {
+          silver-star-ipmi = ''
+            ipmitool -I lanplus ${silver}
+          '';
+          blue-fire-ipmi = ''
+            ipmitool -I lanplus ${blue}
+          '';
+          silver-star-console = ''
+            ipmiconsole ${silver}
+          '';
+          blue-fire-console = ''
+            ipmiconsole ${blue}
+          '';
+
           "$" = "";
           ll = "ls -l";
           ls = "exa";
@@ -101,9 +121,6 @@
           # wget = "wget2";
           # silver-star-ipmi raw 0x30 0x30 0x01 0x00
           # silver-star-ipmi raw 0x30 0x30 0x02 0xff 0x10
-          silver-star-ipmi = ''ipmitool -I lanplus -H 192.168.69.45 -U root -P "$(op item get abrgfwmlbnc2zghpugawqoagjq --field password --reveal)"'';
-
-          blue-fire-ipmi = ''ipmitool -I lanplus -H 192.168.69.46 -U ADMIN -P "$(op item get ydq2vns3nc4hj43n4avtryckpa --field password --reveal )"'';
 
           docker-login = "op item get raeclwvdys3epkmc5zthv4pdha --format=json --vault=qtvfhvfotoqynomh2wd3yzoofe | jq '.fields[1].value' -r | docker login ghcr.io --username tomasharkema --password-stdin";
 

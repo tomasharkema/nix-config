@@ -37,6 +37,13 @@ in {
         nrf-udev
       ];
 
+      scx = {
+        enable = pkgs.stdenvNoCC.isx86_64;
+        package = pkgs.scx_git.rustscheds;
+        # scheduler = "scx_lavd"; #
+        scheduler = "scx_bpfland";
+      };
+
       dbus = {
         enable = true;
         packages = with pkgs; [

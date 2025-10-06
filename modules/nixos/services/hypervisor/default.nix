@@ -69,9 +69,9 @@ in {
       libvirt
       qemu
       pkgs.custom.libvirt-dbus
-      # nemu
+      nemu
       qtemu
-      # virt-top
+      virt-top
       _86Box-with-roms
       # remotebox
       qemu-utils
@@ -90,6 +90,11 @@ in {
 
         pkgs.custom.libvirt-dbus
       ];
+
+      prometheus.exporters = {
+        libvirt.enable = true;
+      };
+      rpcbind.enable = true;
     };
 
     # users = {
@@ -118,8 +123,6 @@ in {
         "qemu-libvirtd"
       ];
     };
-
-    services.rpcbind.enable = true;
 
     systemd = {
       # tmpfiles.settings."9-isos" = {
@@ -216,16 +219,21 @@ in {
 
     system.build = {
       ovmf-x86 =
-        (pkgs.OVMFFull)
+        (pkgs.OVMFFull.override {
+          secureBoot = true;
+          tpmSupport = true;
+          httpSupport = true;
+        })
         .fd;
       ovmf-aarch =
         (pkgs.pkgsCross.aarch64-multiplatform.OVMF.override {
           secureBoot = true;
           tpmSupport = true;
+          httpSupport = true;
         })
         .fd;
     };
-
+    networking.nftables.enable = true;
     virtualisation = {
       kvmgt.enable = true;
       # tpm.enable = true;
@@ -241,28 +249,27 @@ in {
         enable = true;
 
         nss = {
-          enable = true;
           enableGuest = true;
         };
 
         qemu = {
-          package = pkgs.qemu;
+          package = pkgs.qemu_kvm;
           runAsRoot = true;
-          verbatimConfig = ''
-            cgroup_device_acl = [
-              "/dev/null",
-              "/dev/full",
-              "/dev/zero",
-              "/dev/random",
-              "/dev/urandom",
-              "/dev/ptmx",
-              "/dev/kvm",
-              "/dev/kqemu",
-              "/dev/rtc",
-              "/dev/hpet",
-              "/dev/pts"
-            ]
-          '';
+          # verbatimConfig = ''
+          #   cgroup_device_acl = [
+          #     "/dev/null",
+          #     "/dev/full",
+          #     "/dev/zero",
+          #     "/dev/random",
+          #     "/dev/urandom",
+          #     "/dev/ptmx",
+          #     "/dev/kvm",
+          #     "/dev/kqemu",
+          #     "/dev/rtc",
+          #     "/dev/hpet",
+          #     "/dev/pts"
+          #   ]
+          # '';
           #   nvram = [ "/run/libvirt/nix-ovmf/AAVMF_CODE.fd:/run/libvirt/nix-ovmf/AAVMF_VARS.fd", "/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd" ]
 
           swtpm.enable = true;

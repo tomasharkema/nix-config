@@ -30,7 +30,7 @@
 
       nixvim = {
         enable = true;
-        enableMan = true;
+        enableMan = false;
 
         colorschemes.catppuccin.enable = true;
 

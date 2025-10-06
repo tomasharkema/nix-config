@@ -213,7 +213,7 @@ in {
           custom.discovery-rs
           nixos-rebuild-ng
           lnav
-
+          esp-idf-full
           termshark
           tshark
           python3Packages.pip
@@ -493,11 +493,6 @@ in {
     services = {
       languagetool.enable = true;
 
-      scx = {
-        enable = pkgs.stdenvNoCC.isx86_64;
-        #package = pkgs.scx_git.full;
-        scheduler = "scx_lavd"; # "scx_bpfland";
-      };
       # geoipupdate.enable = true;
       earlyoom.enableNotifications = true;
       # locate.enable = true;

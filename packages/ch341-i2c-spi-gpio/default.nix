@@ -34,7 +34,7 @@ in
       runHook postInstall
     '';
 
-    patches = [./linux-17.patch];
+    # patches = [./linux-17.patch];
 
     meta = {
       description = "WinChipHead CH341 linux driver for I2C, SPI and GPIO mode";
