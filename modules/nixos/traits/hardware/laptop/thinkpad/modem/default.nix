@@ -62,7 +62,7 @@ in {
 
     boot = {
       kernelModules = [
-        # "acpi_call"
+        "acpi_call"
         "xmm7360"
       ];
       extraModulePackages = [
@@ -73,13 +73,14 @@ in {
         "iosm"
       ];
     };
+
     hardware = {
       usb-modeswitch.enable = true;
-
       usbWwan.enable = true;
     };
-    systemd.services.xmm7360 = {
-      # enable = false;
+
+    systemd.services.xmm7360 = lib.mkIf false {
+      enable = false;
       description = "XMM7360 Modem Init";
       after = ["NetworkManager.service"];
       requires = ["multi-user.target" "systemd-user-sessions.service" "dev-ttyXMM2.device"];
