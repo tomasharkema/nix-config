@@ -56,7 +56,7 @@ in {
         ];
       };
 
-      mopidy.enable = true;
+      # mopidy.enable = true;
 
       playerctld.enable = true;
 

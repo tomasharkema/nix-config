@@ -141,8 +141,8 @@ in {
       "libvirt/virtio-win".source = pkgs.virtio-win;
       "libvirt/virtio-win.iso".source = pkgs.virtio-win.src;
 
-      "ovmf/x86.fd".source = config.system.build.ovmf-x86;
-      "ovmf/aarch.fd".source = config.system.build.ovmf-aarch;
+      # "ovmf/x86.fd".source = config.system.build.ovmf-x86;
+      # "ovmf/aarch.fd".source = config.system.build.ovmf-aarch;
 
       # "sasl2/libvirt.conf" = {
       #   text = ''
@@ -217,22 +217,22 @@ in {
 
     hardware.ksm.enable = true;
 
-    system.build = {
-      ovmf-x86 =
-        (pkgs.OVMFFull.override {
-          secureBoot = true;
-          tpmSupport = true;
-          httpSupport = true;
-        })
-        .fd;
-      ovmf-aarch =
-        (pkgs.pkgsCross.aarch64-multiplatform.OVMF.override {
-          secureBoot = true;
-          tpmSupport = true;
-          httpSupport = true;
-        })
-        .fd;
-    };
+    # system.build = {
+    #   ovmf-x86 =
+    #     (pkgs.OVMFFull.override {
+    #       secureBoot = true;
+    #       tpmSupport = true;
+    #       httpSupport = true;
+    #     })
+    #     .fd;
+    #   ovmf-aarch =
+    #     (pkgs.pkgsCross.aarch64-multiplatform.OVMF.override {
+    #       secureBoot = true;
+    #       tpmSupport = true;
+    #       httpSupport = true;
+    #     })
+    #     .fd;
+    # };
     networking.nftables.enable = true;
     virtualisation = {
       kvmgt.enable = true;
@@ -276,13 +276,13 @@ in {
 
           vhostUserPackages = [pkgs.virtiofsd];
 
-          ovmf = {
-            enable = true;
-            packages = [
-              config.system.build.ovmf-x86
-              config.system.build.ovmf-aarch
-            ];
-          };
+          # ovmf = {
+          #   enable = true;
+          #   packages = [
+          #     config.system.build.ovmf-x86
+          #     config.system.build.ovmf-aarch
+          #   ];
+          # };
         };
       };
 
