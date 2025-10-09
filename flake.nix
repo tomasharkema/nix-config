@@ -91,6 +91,7 @@
         # devenv.overlays.default
         nixgl.overlay
         nixpkgs-esp-dev.overlays.default
+        niri.overlays.niri
       ];
 
       homes.modules = with inputs; [
@@ -135,7 +136,7 @@
           lanzaboote.nixosModules.lanzaboote
           # lanzaboote.nixosModules.uki
           # vscode-server.nixosModules.default
-
+          niri.nixosModules.niri
           # home-manager.nixosModules.home-manager
           agenix.nixosModules.default
           agenix-rekey.nixosModules.default
@@ -248,20 +249,6 @@
             "aarch64-linux" = config.system.build.sdImage;
           };
         };
-
-        ovmfx86 =
-          (inputs.nixpkgs.legacyPackages.x86_64-linux.OVMFFull.override {
-            secureBoot = true;
-            tpmSupport = true;
-          })
-          .fd;
-
-        ovmfaarch64 =
-          (inputs.nixpkgs.legacyPackages.x86_64-linux.pkgsCross.aarch64-multiplatform.OVMF.override {
-            secureBoot = true;
-            tpmSupport = true;
-          })
-          .fd;
 
         linuxKernel_x86 = self.nixosConfigurations.wodan.config.boot.kernelPackages.kernel;
 
@@ -709,15 +696,6 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    # nix-virt = {
-    #   url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
-
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     nixpkgs-ovmf.follows = "nixpkgs";
-    #   };
-    # };
-
     # conky = {
     #   url = "github:brndnmtthws/conky";
 
@@ -882,9 +860,15 @@
     # };
 
     wluma = {
-      url = "github:tomasharkema/wluma";
+      url = "github:tomasharkema/wluma?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    niri = {
+      url = "github:sodiboo/niri-flake?shallow=true";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixpkgs-esp-dev = {
       url = "github:mirrexagon/nixpkgs-esp-dev?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";

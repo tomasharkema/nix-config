@@ -381,7 +381,7 @@ in {
           ntfy-sh
           nvchecker
           openldap
-          pamix
+          # pamix
           pamixer
           nix-playground
           nix-check-deps
@@ -399,7 +399,7 @@ in {
           websocat
           ser2net
           wol
-          picotool
+          # picotool
           openocd
           cmake
           ninja

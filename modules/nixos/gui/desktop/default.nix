@@ -120,6 +120,10 @@ in {
         enable = true;
         enableZshIntegration = true;
       };
+      niri = {
+        enable = true;
+        package = pkgs.niri-unstable;
+      };
       zmap.enable = true;
       geary.enable = true;
       nautilus-open-any-terminal = {

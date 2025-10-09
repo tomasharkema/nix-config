@@ -74,6 +74,7 @@
         ++ [
           # custom.san-francisco
           # exult
+          adwaita-fonts
           openmoji-color
           kreative-square
           fairfax-hd

@@ -27,7 +27,7 @@
         # platformio-core
         gcc-arm-embedded
         tio
-        picotool
+        # picotool
         nix-init
         disnix
         nox

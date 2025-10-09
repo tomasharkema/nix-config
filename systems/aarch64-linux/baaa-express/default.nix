@@ -57,18 +57,6 @@
       avahi = {
         enable = true;
       };
-      mopidy = lib.mkIf false {
-        enable = true;
-        extensionPackages = with pkgs; [
-          mopidy-spotify
-          mopidy-mpd
-          mopidy-mpris
-          mopidy-notify
-          mopidy-mopify
-          mopidy-podcast
-          mopidy-musicbox-webclient
-        ];
-      };
     };
 
     # system.stateVersion = "25.05";

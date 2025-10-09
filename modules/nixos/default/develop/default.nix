@@ -27,17 +27,12 @@ in {
       probe-rs
       flip-link
       arduino-language-server
-
-      picotool
       cmakeCurses
       gcc-arm-embedded
       gnumake
-
       arduinoOTA
-
       arduino-language-server
-
-      picotool
+      # picotool
       cmakeCurses
       gcc-arm-embedded
       gnumake
@@ -54,6 +49,6 @@ in {
       golangci-lint
     ];
 
-    services.udev.packages = with pkgs; [picotool];
+    # services.udev.packages = with pkgs; [picotool];
   };
 }

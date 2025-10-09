@@ -141,9 +141,6 @@ in {
       "libvirt/virtio-win".source = pkgs.virtio-win;
       "libvirt/virtio-win.iso".source = pkgs.virtio-win.src;
 
-      "ovmf/x86.fd".source = config.system.build.ovmf-x86;
-      "ovmf/aarch.fd".source = config.system.build.ovmf-aarch;
-
       # "sasl2/libvirt.conf" = {
       #   text = ''
       #     mech_list: gssapi
@@ -161,13 +158,6 @@ in {
       #   text = ''
       #     mech_list: gssapi
       #     keytab: ${qemuKeytab}
-      #   '';
-      # };
-      # "libvirt/qemu.conf" = {
-      #   text = ''
-      #     # Adapted from /var/lib/libvirt/qemu.conf
-      #     # Note that AAVMF and OVMF are for Aarch64 and x86 respectively
-      #     nvram = [ "/run/libvirt/nix-ovmf/AAVMF_CODE.fd:/run/libvirt/nix-ovmf/AAVMF_VARS.fd", "/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd" ]
       #   '';
       # };
     };
@@ -217,22 +207,6 @@ in {
 
     hardware.ksm.enable = true;
 
-    system.build = {
-      ovmf-x86 =
-        (pkgs.OVMFFull.override {
-          secureBoot = true;
-          tpmSupport = true;
-          httpSupport = true;
-        })
-        .fd;
-      ovmf-aarch =
-        (pkgs.pkgsCross.aarch64-multiplatform.OVMF.override {
-          secureBoot = true;
-          tpmSupport = true;
-          httpSupport = true;
-        })
-        .fd;
-    };
     networking.nftables.enable = true;
     virtualisation = {
       kvmgt.enable = true;
@@ -270,19 +244,10 @@ in {
           #     "/dev/pts"
           #   ]
           # '';
-          #   nvram = [ "/run/libvirt/nix-ovmf/AAVMF_CODE.fd:/run/libvirt/nix-ovmf/AAVMF_VARS.fd", "/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd" ]
 
           swtpm.enable = true;
 
           vhostUserPackages = [pkgs.virtiofsd];
-
-          ovmf = {
-            enable = true;
-            packages = [
-              config.system.build.ovmf-x86
-              config.system.build.ovmf-aarch
-            ];
-          };
         };
       };
 
@@ -304,17 +269,6 @@ in {
       #     runAsRoot = true;
       #     swtpm.enable = true;
 
-      #     ovmf = {
-      #       enable = true;
-      #       packages = [
-      #         # (pkgs.OVMF.override {
-      #         #   secureBoot = true;
-      #         #   tpmSupport = true;
-      #         # })
-      #         pkgs.OVMFFull.fd
-      #         # pkgs.pkgsCross.aarch64-multiplatform.OVMF.fd
-      #       ];
-      #     };
       #   };
       # };
     };

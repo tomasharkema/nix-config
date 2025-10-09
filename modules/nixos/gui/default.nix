@@ -56,8 +56,6 @@ in {
         ];
       };
 
-      mopidy.enable = true;
-
       playerctld.enable = true;
 
       displayManager.defaultSession = "hyprland";
