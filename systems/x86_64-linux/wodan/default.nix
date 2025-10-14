@@ -24,10 +24,8 @@
         cifs-utils
         piper
         libratbag
-
         heimdall
         heimdall-gui
-        # handbrake
       ];
     };
 

@@ -4,7 +4,13 @@
   lib,
   inputs,
   ...
-}: {
+}: let
+  foxBg = pkgs.fetchurl {
+    url = "https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/d8b71c77-9985-41d2-b98e-51bebc60e595.avif";
+
+    sha256 = "06121rwydvmr9dc757ixxr59rfcask8p74mmsmprpcndddp55fgf";
+  };
+in {
   config = lib.mkIf config.gui.enable {
     programs = {
       hyprland = {

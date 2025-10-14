@@ -69,8 +69,8 @@ in {
       libvirt
       qemu
       pkgs.custom.libvirt-dbus
-      nemu
-      qtemu
+      # nemu
+      # qtemu
       virt-top
       _86Box-with-roms
       # remotebox
@@ -91,9 +91,9 @@ in {
         pkgs.custom.libvirt-dbus
       ];
 
-      prometheus.exporters = {
-        libvirt.enable = true;
-      };
+      # prometheus.exporters = {
+      #   libvirt.enable = true;
+      # };
       rpcbind.enable = true;
     };
 

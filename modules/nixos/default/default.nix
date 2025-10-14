@@ -218,7 +218,7 @@ in {
           tshark
           python3Packages.pip
           config.boot.kernelPackages.iio-utils
-          cutecom
+          # cutecom
           sbctl-tpm
           urjtag
           redfishtool

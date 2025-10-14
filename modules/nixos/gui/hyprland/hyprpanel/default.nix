@@ -16,8 +16,8 @@
 
         settings = {
           theme.font = {
-            # name = "Inter Variable";
-            name = "Inter Tight";
+            name = "Inter Variable";
+            # name = "Inter Tight";
             # name = "B612";
             size = "1.0rem";
             weight = 400;

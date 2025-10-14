@@ -41,12 +41,12 @@ in {
         #   module: ${pkgs.yubico-piv-tool}/lib/libykcs11.so
         # '';
 
-        # "krb5.conf".text = lib.mkBefore ''
-        #   includedir /var/lib/sss/pubconf/krb5.include.d/
+        "krb5.conf".text = lib.mkBefore ''
+          includedir /var/lib/sss/pubconf/krb5.include.d/
 
-        #   [libdefaults]
-        #   default_ccache_name = KCM:
-        # '';
+          [libdefaults]
+          default_ccache_name = KCM:
+        '';
 
         # "krb5.conf.d/enable_passkey".text = ''
         #   [plugins]
@@ -144,7 +144,7 @@ in {
         };
 
         sssd = {
-          # before = ["nfs-idmapd.service" "rpc-gssd.service" "rpc-svcgssd.service"];
+          before = ["nfs-idmapd.service" "rpc-gssd.service" "rpc-svcgssd.service"];
 
           # environment = {
           #   LDB_MODULES_PATH = "/run/current-system/sw/modules/ldb";
@@ -157,21 +157,21 @@ in {
           # };
           # -c ${settingsFile}
         };
-        # sssd-kcm = {
-        #   enable = true;
-        #   description = "SSSD Kerberos Cache Manager";
+        sssd-kcm = {
+          enable = true;
+          description = "SSSD Kerberos Cache Manager";
 
-        #   wantedBy = ["multi-user.target" "sssd.service"];
-        #   requires = ["sssd-kcm.socket"];
+          wantedBy = ["multi-user.target" "sssd.service"];
+          requires = ["sssd-kcm.socket"];
 
-        #   serviceConfig = {
-        #     ExecStartPre = lib.mkForce null;
-        #     ExecStart = lib.mkForce "${pkgs.sssd}/libexec/sssd/sssd_kcm";
-        #   };
-        #   # restartTriggers = [
-        #   #   settingsFileUnsubstituted
-        #   # ];
-        # };
+          serviceConfig = {
+            ExecStartPre = lib.mkForce null;
+            ExecStart = lib.mkForce "${pkgs.sssd}/libexec/sssd/sssd_kcm";
+          };
+          # restartTriggers = [
+          #   settingsFileUnsubstituted
+          # ];
+        };
       };
       # sockets.sssd-kcm = {
       # enable = true;
@@ -218,17 +218,17 @@ in {
         enable = true;
         kcm = true;
         sshAuthorizedKeysIntegration = true;
-        config = lib.mkAfter ''
-          [domain/harkema.io]
-          ldap_id_mapping = True
-          debug_level = 7
+        # config = lib.mkAfter ''
+        #   [domain/harkema.io]
+        #   ldap_id_mapping = True
+        #   debug_level = 7
 
-          [sssd]
-          debug_level = 7
+        #   [sssd]
+        #   debug_level = 7
 
-          [pam]
-          debug_level = 7
-        '';
+        #   [pam]
+        #   debug_level = 7
+        # '';
         # config = lib.mkAfter ''
         #   [sssd]
         #   debug_level = 10
