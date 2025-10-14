@@ -38,6 +38,7 @@
           # "python-2.7.18.8"
           #"netbox-4.2.9"
           "segger-jlink-qt4-824"
+          "segger-jlink-qt4-874"
           "dotnet-runtime-6.0.36"
           "libsoup-2.74.3"
         ];
@@ -100,6 +101,7 @@
         op-shell-plugins.hmModules.default
         # agenix.homeManagerModules.default
         # hyprpanel.homeManagerModules.hyprpanel
+        walker.homeManagerModules.default
       ];
 
       # systems.hosts = let
@@ -142,7 +144,7 @@
 
           nix-gaming.nixosModules.pipewireLowLatency
           nix-gaming.nixosModules.platformOptimizations
-
+          walker.nixosModules.default
           nvidia-vgpu-nixos.nixosModules.host
           # nvidia-vgpu-nixos.nixosModules.guest
           # nixos-service.nixosModules.nixos-service
@@ -248,20 +250,6 @@
             "aarch64-linux" = config.system.build.sdImage;
           };
         };
-
-        ovmfx86 =
-          (inputs.nixpkgs.legacyPackages.x86_64-linux.OVMFFull.override {
-            secureBoot = true;
-            tpmSupport = true;
-          })
-          .fd;
-
-        ovmfaarch64 =
-          (inputs.nixpkgs.legacyPackages.x86_64-linux.pkgsCross.aarch64-multiplatform.OVMF.override {
-            secureBoot = true;
-            tpmSupport = true;
-          })
-          .fd;
 
         linuxKernel_x86 = self.nixosConfigurations.wodan.config.boot.kernelPackages.kernel;
 
@@ -885,8 +873,14 @@
       url = "github:tomasharkema/wluma";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nixpkgs-esp-dev = {
       url = "github:mirrexagon/nixpkgs-esp-dev?shallow=true";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    walker = {
+      url = "github:abenz1267/walker?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

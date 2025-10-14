@@ -69,8 +69,8 @@ in {
       libvirt
       qemu
       pkgs.custom.libvirt-dbus
-      nemu
-      qtemu
+      # nemu
+      # qtemu
       virt-top
       _86Box-with-roms
       # remotebox
@@ -275,14 +275,6 @@ in {
           swtpm.enable = true;
 
           vhostUserPackages = [pkgs.virtiofsd];
-
-          # ovmf = {
-          #   enable = true;
-          #   packages = [
-          #     config.system.build.ovmf-x86
-          #     config.system.build.ovmf-aarch
-          #   ];
-          # };
         };
       };
 

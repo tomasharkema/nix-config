@@ -15,7 +15,7 @@
     nrfconnect
     serial-studio
     wine-wayland
-    openrct2
+    # openrct2
     openrw
     openra
     openrisk

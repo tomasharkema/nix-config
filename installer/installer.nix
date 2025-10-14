@@ -71,7 +71,7 @@ in {
       git
       curl
       tparted
-      # wget2
+      wget2
       btop
       htop
       inputs.self.packages."${pkgs.system}".nix-helpers

@@ -218,7 +218,7 @@ in {
           tshark
           python3Packages.pip
           config.boot.kernelPackages.iio-utils
-          cutecom
+          # cutecom
           sbctl-tpm
           urjtag
           redfishtool
@@ -381,8 +381,8 @@ in {
           ntfy-sh
           nvchecker
           openldap
-          pamix
-          pamixer
+          # pamix
+          # pamixer
           nix-playground
           nix-check-deps
           gnupg

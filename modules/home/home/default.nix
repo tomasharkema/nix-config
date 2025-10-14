@@ -91,7 +91,7 @@ in {
           # nix-htop
           augeas
           custom.bieye
-          # wget2
+          wget2
           libnotify
           trippy
           # fup-repl

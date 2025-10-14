@@ -218,17 +218,17 @@ in {
         enable = true;
         kcm = true;
         sshAuthorizedKeysIntegration = true;
-        config = lib.mkAfter ''
-          [domain/harkema.io]
-          ldap_id_mapping = True
-          debug_level = 7
+        # config = lib.mkAfter ''
+        #   [domain/harkema.io]
+        #   ldap_id_mapping = True
+        #   debug_level = 7
 
-          [sssd]
-          debug_level = 7
+        #   [sssd]
+        #   debug_level = 7
 
-          [pam]
-          debug_level = 7
-        '';
+        #   [pam]
+        #   debug_level = 7
+        # '';
         # config = lib.mkAfter ''
         #   [sssd]
         #   debug_level = 10

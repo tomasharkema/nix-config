@@ -113,6 +113,9 @@
       zram-generator.enable = false;
       # "nix-private-cache".enable = true;
 
+      sonarr.enable = true;
+      jackett.enable = true;
+
       immich = {
         enable = true;
         host = "0.0.0.0";
@@ -230,6 +233,7 @@
           atuin = {toURL = "http://127.0.0.1:8888";};
           trmnl = {toURL = "http://127.0.0.1:2300";};
           immich-ml = {toURL = "http://127.0.0.1:3003";};
+          incus = {toURL = "http://127.0.0.1:8443";};
         };
       };
 

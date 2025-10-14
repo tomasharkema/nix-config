@@ -16,7 +16,12 @@ in {
       enable = true;
       # the specified packages as well as 1Password CLI will be
       # automatically installed and configured to use shell plugins
-      plugins = with pkgs; [gh cachix openai hcloud awscli2];
+      plugins = with pkgs; [
+        gh
+        cachix
+        openai
+        hcloud
+      ];
     };
 
     home.packages = lib.mkIf pkgs.stdenv.isLinux [osConfig.programs._1password-gui.package];
