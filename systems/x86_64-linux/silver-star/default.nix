@@ -518,7 +518,7 @@
       crashDump = {enable = true;};
       # copyKernels = {enable = true;};
 
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      # binfmt.emulatedSystems = ["aarch64-linux"];
 
       # kernelPackages = pkgs.linuxPackages_6_12;
       kernelPackages = pkgs.linuxPackages_cachyos-server;
