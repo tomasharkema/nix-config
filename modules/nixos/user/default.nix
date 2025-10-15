@@ -55,7 +55,10 @@
     };
 
     programs = {
-      fuse.userAllowOther = true;
+      fuse = {
+        enable = true;
+        userAllowOther = true;
+      };
       zsh = {enable = true;};
     };
 

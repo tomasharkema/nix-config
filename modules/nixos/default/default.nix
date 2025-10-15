@@ -81,10 +81,11 @@ in {
     # };
 
     console = {
-      earlySetup = true;
+      # earlySetup = true;
       # font = "ter-v32n";
       # packages = with pkgs; [terminus_font];
-      keyMap = "us";
+      # keyMap = "us";
+      useXkbConfig = true;
     };
 
     boot = {
@@ -102,8 +103,8 @@ in {
       crashDump.enable = pkgs.stdenv.isx86_64; # true;
 
       initrd = {
-        compressor = "zstd";
-        compressorArgs = ["-19"];
+        # compressor = "zstd";
+        # compressorArgs = ["-19"];
         # systemd.emergencyAccess = "abcdefg";
         includeDefaultModules = true;
         # unl0kr = {enable = config.disks.btrfs.encrypt;};
@@ -119,9 +120,9 @@ in {
 
       kernelParams = [
         "zswap.enabled=1"
-        "efi_pstore.pstore_disable=0"
-        "printk.always_kmsg_dump"
-        "crash_kexec_post_notifiers"
+        # "efi_pstore.pstore_disable=0"
+        # "printk.always_kmsg_dump"
+        # "crash_kexec_post_notifiers"
 
         # "netconsole=@/,@192.168.0.100/"
       ];
@@ -399,7 +400,7 @@ in {
           websocat
           ser2net
           wol
-          # picotool
+          picotool
           openocd
           cmake
           ninja
@@ -509,6 +510,7 @@ in {
       #     trapsink      localhost:162 public
       #   '';
       # };
+      fanout.enable = true;
 
       smartd = {
         enable = true;
@@ -802,7 +804,7 @@ in {
       wavemon.enable = true;
       trippy.enable = true;
       ydotool.enable = true;
-
+      iotop.enable = true;
       system-config-printer.enable = true;
       # corefreq.enable = pkgs.stdenv.isx86_64;
 
@@ -844,6 +846,7 @@ in {
       };
       libftdi.enable = true;
       mcelog.enable = true;
+      rasdaemon.enable = true;
     };
 
     networking = {

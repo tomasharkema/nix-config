@@ -194,8 +194,8 @@ in {
           ];
 
           experimental = {
-            # hdr = true;
-            # wide_color_gamut = true;
+            hdr = true;
+            wide_color_gamut = true;
           };
           render = {
             direct_scanout = true;
