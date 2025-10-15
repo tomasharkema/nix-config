@@ -42,7 +42,7 @@
     };
 
     services = {
-      hypervisor.enable = true;
+      # hypervisor.enable = true;
       # "nix-private-cache".enable = true;
       # local-store.enable = true;
       throttled.enable = lib.mkForce false;
