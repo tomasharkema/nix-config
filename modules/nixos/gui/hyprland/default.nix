@@ -144,10 +144,10 @@ in {
         portalPackage = null;
 
         extraConfig = builtins.readFile ./hyprland.conf;
-        plugins = with pkgs.hyprlandPlugins; [
-          # hyprexpo
-          # hyprbars
-        ];
+        # plugins = with pkgs.hyprlandPlugins; [
+        #   # hyprexpo
+        #   # hyprbars
+        # ];
         settings = {
           # Set programs that you use
           # $terminal = kitty
@@ -194,15 +194,15 @@ in {
           ];
 
           bind = [
-            "PRINT, exec, hyprshot -m window"
+            ", PRINT, exec, hyprshot -m window"
             "$mainMod, R, exec, $menu"
             "$mainMod, space, exec, $menu"
           ];
 
-          experimental = {
-            hdr = true;
-            wide_color_gamut = true;
-          };
+          # experimental = {
+          #   hdr = true;
+          #   wide_color_gamut = true;
+          # };
           render = {
             direct_scanout = true;
           };
