@@ -32,7 +32,7 @@ in {
       gnumake
       arduinoOTA
       arduino-language-server
-      # picotool
+      picotool
       cmakeCurses
       gcc-arm-embedded
       gnumake

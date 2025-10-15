@@ -8,8 +8,8 @@
       secrets = {
         atuin = {
           rekeyFile = ./atuin.age;
-          owner = "tomas";
-          group = "tomas";
+          owner = "${config.user.name}";
+          group = "${config.user.name}";
           mode = "644";
           # symlink = false;
         };
