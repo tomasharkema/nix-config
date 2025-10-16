@@ -1123,11 +1123,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1760493063,
-        "narHash": "sha256-yYqrMI9jg7vTjHu4wOiER9HmqE+NvOqOjfYzuMsTo3Y=",
+        "lastModified": 1760579393,
+        "narHash": "sha256-YuXbuaJ/2EZ1FePhz1eTyo/b+kpiEmw4lj6wX0u0Q/0=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "d7f6ab23b939e6e1247321a0e63a89cacb98c03c",
+        "rev": "7d002241668a738df3973a6c07ef5d79e5508b24",
         "type": "github"
       },
       "original": {
@@ -2388,11 +2388,11 @@
         "systems": "systems_16"
       },
       "locked": {
-        "lastModified": 1760517179,
-        "narHash": "sha256-faaCDZjO96f/Kdhe8OvPeqxD+tFJpQfBgHQBjVTO8Ew=",
+        "lastModified": 1760599275,
+        "narHash": "sha256-ugWBJkrCVTlRIXNEY4zS4rrBDw/x2wANxEBBeK5PRU4=",
         "owner": "abenz1267",
         "repo": "walker",
-        "rev": "f7914312516815263b2451ec747a0ce76e74160f",
+        "rev": "40896f5f8572e7cad07ea3cdefdb92100ea6f1f8",
         "type": "github"
       },
       "original": {
