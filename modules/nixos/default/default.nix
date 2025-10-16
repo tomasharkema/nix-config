@@ -231,6 +231,7 @@ in {
           freeipmi
           ipmiutil
           xterm
+          picotool
           libheif
           gensio
           ser2net
