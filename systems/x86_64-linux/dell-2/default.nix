@@ -5,6 +5,9 @@
   lib,
   ...
 }: {
+  # imports = with inputs; [
+  #   nixos-hardware.nixosModules.dell-xps-15-9570-nvidia
+  # ];
   config = {
     age = {
       rekey = {
@@ -39,9 +42,11 @@
 
     # };
 
+    #system.etc.overlay.enable = true;
+
     environment = {
       systemPackages = with pkgs; [
-        gt
+        # gt
         gnomeExtensions.power-tracker
         # custom.swift
         powerstat
@@ -71,10 +76,8 @@
       desktop = {
         enable = true;
       };
-      gnome = {
-        enable = true;
-        # hidpi.enable = true;
-      };
+      gnome.enable = true;
+      hidpi.enable = true;
       gamemode.enable = true;
       quiet-boot.enable = true;
       hyrland.wluma = {
@@ -83,22 +86,27 @@
       };
     };
 
+    chaotic.hdr = {
+      enable = true;
+      specialisation.enable = false;
+    };
+
     # chaotic.mesa-git.enable = true;
 
     hardware = {
       # mcelog.enable = true;
       # usb-modeswitch.enable = true;
-
+      # fw-fanctrl.enable = true;
       nvidia = {
         # forceFullCompositionPipeline = true;
         modesetting.enable = true;
         prime = {
           sync.enable = true;
           # reverseSync.enable = true;
-          # offload.enable = true;
+          offload.enable = false;
           # offload.enableOffloadCmd = true;
           intelBusId = "PCI:0:2:0";
-          nvidiaBusId = "PCI:02:0:0";
+          nvidiaBusId = "PCI:01:0:0";
         };
 
         powerManagement = {
@@ -129,14 +137,14 @@
         nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
-        # laptop.enable = true;
+        laptop.enable = true;
         # laptop.thinkpad.enable = true;
         intel.enable = true;
         nvidia = {
           enable = true;
           open = false;
         };
-        # sgx.enable = true;
+        sgx.enable = true;
         # remote-unlock.enable = true;
         bluetooth.enable = true;
         monitor.enable = true;
@@ -165,6 +173,8 @@
     # security.pam.services.login.fprintAuth = lib.mkForce false;
 
     services = {
+      thermald.enable = true;
+      fprintd.enable = true;
       kmscon.enable = true;
       ratbagd.enable = true;
       # comin.enable = false;
@@ -238,7 +248,7 @@
 
       captive-browser = {
         enable = true;
-        interface = "wlp4s0";
+        interface = "wlp59s0";
       };
 
       wireshark = {
@@ -279,9 +289,9 @@
       };
 
       # binfmt.emulatedSystems = ["aarch64-linux"];
-      extraModulePackages = [
-        # config.system.build.cc1101-driver
-      ];
+      # extraModulePackages = [
+      # config.system.build.cc1101-driver
+      # ];
       # modprobeConfig.enable = true;
       # supportedFilesystems = ["ext2" "ext3" "ext4"];
       # kernelParams = [
@@ -304,8 +314,8 @@
       kernelModules = [
         "coretemp"
         # "psmouse"
-        "i915"
-        "spi"
+        # "i915"
+        # "spi"
         # "sgx"
         # "isgx"
         # "vfio_pci"
@@ -316,23 +326,23 @@
         # "usbmon"
       ];
 
-      initrd.kernelModules = [
-        "nvidia"
-        "i915"
-        "nvidia_modeset"
-        # "nvidia_uvm"
-        "nvidia_drm"
+      # initrd.kernelModules = [
+      # "nvidia"
+      # "i915"
+      # "nvidia_modeset"
+      # "nvidia_uvm"
+      # "nvidia_drm"
 
-        # "spi"
-        # "sgx"
-        # "i915"
-        #  "watchdog"
-        # "isgx"
-        # "vfio_pci"
-        # "vfio"
-        # "vfio_iommu_type1"
-        # "kvm-intel"
-      ];
+      # "spi"
+      # "sgx"
+      # "i915"
+      #  "watchdog"
+      # "isgx"
+      # "vfio_pci"
+      # "vfio"
+      # "vfio_iommu_type1"
+      # "kvm-intel"
+      # ];
     };
   };
 }

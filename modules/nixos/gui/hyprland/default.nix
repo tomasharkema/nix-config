@@ -18,7 +18,9 @@ in {
         # package = pkgs.hyprland.override {
         #   hidpiXWayland = true;
         # };
-        systemd.setPath.enable = true;
+        systemd = {
+          setPath.enable = true;
+        };
       };
       iio-hyprland.enable = true;
       # hyprlock.enable = true;
@@ -71,24 +73,17 @@ in {
 
       programs = {
         rofi = {
-          # enable = true;
-          package = pkgs.rofi-wayland;
+          enable = true;
+          package = pkgs.rofi;
           pass.enable = true;
           terminal = "kitty";
         };
-        fuzzel.enable = true;
+        # fuzzel.enable = true;
 
         # wlogout.enable = true;
 
         hyprlock = {
           enable = true;
-        };
-
-        waybar = {
-          # enable = true;
-          systemd.enable = true;
-          style = builtins.readFile ./waybar.css;
-          settings = import ./waybar.nix {inherit pkgs;};
         };
       };
 
@@ -149,11 +144,16 @@ in {
         portalPackage = null;
 
         extraConfig = builtins.readFile ./hyprland.conf;
-        plugins = with pkgs.hyprlandPlugins; [
-          # hyprexpo
-          # hyprbars
-        ];
+        # plugins = with pkgs.hyprlandPlugins; [
+        #   # hyprexpo
+        #   # hyprbars
+        # ];
         settings = {
+          # Set programs that you use
+          # $terminal = kitty
+          # $fileManager = nautilus
+          # $menu = fuzzel #anyrun #rofi -show drun
+          "$mainMod" = "SUPER";
           "$terminal" = "kitty";
           "$fileManager" = "nautilus";
           "$menu" = "rofi -show drun";
@@ -164,7 +164,7 @@ in {
             else "preferred"
           },auto,${
             if config.gui.hidpi.enable
-            then "1.6"
+            then "2"
             else "1"
           }";
 
@@ -173,7 +173,7 @@ in {
             "HYPRCURSOR_SIZE,24"
             "GDK_SCALE,${
               if config.gui.hidpi.enable
-              then "1.6"
+              then "2"
               else "1"
             }"
           ];
@@ -193,10 +193,16 @@ in {
             "${lib.getExe pkgs.iio-hyprland}"
           ];
 
-          experimental = {
-            # hdr = true;
-            # wide_color_gamut = true;
-          };
+          bind = [
+            ", PRINT, exec, hyprshot -m window"
+            "$mainMod, R, exec, $menu"
+            "$mainMod, space, exec, $menu"
+          ];
+
+          # experimental = {
+          #   hdr = true;
+          #   wide_color_gamut = true;
+          # };
           render = {
             direct_scanout = true;
           };
@@ -206,7 +212,11 @@ in {
           ];
           general = {allow_tearing = true;};
           xwayland = {force_zero_scaling = true;};
-
+          misc = {
+            force_default_wallpaper = 0; # Set to 0 or 1 to disable the anime mascot wallpapers
+            disable_hyprland_logo = true; # If true disables the random hyprland logo / anime girl background. :(
+            vfr = true;
+          };
           misc = {vrr = 1;};
         };
       };

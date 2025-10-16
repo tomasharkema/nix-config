@@ -8,12 +8,12 @@
   wrapperDir = config.security.wrapperDir;
 in {
   config = {
-    # security.wrappers.keybase-redirector = {
-    #   owner = "root";
-    #   group = "root";
-    #   setuid = true;
-    #   # source = "${pkgs.kbfs}/bin/redirector";
-    # };
+    security.wrappers.keybase-redirector = {
+      owner = "root";
+      group = "root";
+      setuid = true;
+      # source = "${pkgs.kbfs}/bin/redirector";
+    };
     # systemd.user.services = {
     #   kbfs = {
     #     path = ["/run/wrappers"];
@@ -93,7 +93,7 @@ in {
 
       kbfs = {
         enable = true;
-        # enableRedirector = true;
+        enableRedirector = true;
         # mountPoint = "%t/kbfs";
         extraFlags = [
           "-label kbfs"

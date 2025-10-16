@@ -83,18 +83,18 @@ in {
         capSysNice = true;
       };
 
-      gamemode.enable = true;
+      # gamemode.enable = true;
     };
 
-    #    programs.mangohud = {
-    #      enable = true;
-    #      enableSessionWide = true;
-    #      settings = {
-    #        full = true;
-    #    no_display = true;
-    #        cpu_load_change = true;
-    #      };
+    # programs.mangohud = {
+    #   enable = true;
+    #   enableSessionWide = true;
+    #   settings = {
+    #     full = true;
+    #     #    no_display = true;
+    #     cpu_load_change = true;
     #   };
+    # };
 
     environment.systemPackages = with pkgs; [
       # sunshine

@@ -30,7 +30,7 @@
         atuin = {
           rekeyFile = ../../nixos/secrets/atuin.age;
           owner = "${config.user.name}";
-          # group = "${config.user.name}";
+          group = "${config.user.name}";
           # mode = "644";
           # symlink = false;
         };
