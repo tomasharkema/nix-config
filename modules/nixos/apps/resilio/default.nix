@@ -10,6 +10,8 @@
 
   root = "/mnt/resilio-sync";
 
+  runConfigPath = "/run/rslsync/config.json";
+
   debugTxt = pkgs.writeText "debug.txt" ''
     80000000
     0
@@ -25,15 +27,15 @@ in {
 
     systemd = {
       tmpfiles.rules = [
-        "d ${root} 0777 rslsync rslsync -"
-        "Z ${root} 0777 rslsync rslsync"
-        "d /var/lib/resilio-sync 0777 rslsync rslsync -"
+        # "d ${root} 0777 rslsync rslsync -"
+        # "Z ${root} 0777 rslsync rslsync"
+        # "d /var/lib/resilio-sync 0777 rslsync rslsync -"
         # "L+ /var/lib/resilio-sync/debug.txt - - - - ${debugTxt}"
-        "L+ /home/tomas/resilio-sync - - - - ${root}"
+        # "L+ /home/tomas/resilio-sync - - - - ${root}"
       ];
     };
 
-    systemd.services.resilio.serviceConfig.Nice = 14;
+    # systemd.services.resilio.serviceConfig.Nice = 14;
 
     age.secrets = {
       "resilio-p" = lib.mkIf (!cfg.enableEnc) {
@@ -55,26 +57,35 @@ in {
         rekeyFile = ./resilio-shared-public.age;
         mode = "644";
       };
+      "resilio-license" = {
+        rekeyFile = ./resilio-license.age;
+        mode = "644";
+      };
     };
+
     networking.firewall = {
       allowedTCPPorts = [port];
       allowedUDPPorts = [port];
     };
 
+    systemd.services.resilio.serviceConfig.ExecStart = ''
+      ${lib.getExe config.services.resilio.package} --nodaemon --config ${runConfigPath} --license ${config.age.secrets."resilio-license".path}
+    '';
+
     services.resilio = {
       enable = true;
       listeningPort = port;
-      # directoryRoot = root;
-
+      directoryRoot = root;
+      checkForUpdates = false;
       sharedFolders =
         [
           {
             directory = "${root}/shared-documents";
             searchLAN = true;
             secretFile = config.age.secrets."resilio-docs".path;
-            useDHT = false;
-            useRelayServer = false;
-            useSyncTrash = true;
+            useDHT = true;
+            useSyncTrash = false;
+            useRelayServer = true;
             useTracker = true;
             knownHosts = [known_host];
           }
@@ -82,9 +93,9 @@ in {
             directory = "${root}/shared-public";
             searchLAN = true;
             secretFile = config.age.secrets."resilio-shared-public".path;
-            useDHT = false;
-            useRelayServer = false;
+            useDHT = true;
             useSyncTrash = false;
+            useRelayServer = true;
             useTracker = true;
             knownHosts = [known_host];
           }
@@ -93,9 +104,9 @@ in {
           directory = "${root}/P-dir-enc";
           searchLAN = true;
           secretFile = config.age.secrets."resilio-p-enc".path;
-          useDHT = false;
-          useRelayServer = false;
+          useDHT = true;
           useSyncTrash = false;
+          useRelayServer = true;
           useTracker = true;
           knownHosts = [known_host];
         })
@@ -103,9 +114,9 @@ in {
           directory = "${root}/P-dir";
           searchLAN = true;
           secretFile = config.age.secrets."resilio-p".path;
-          useDHT = false;
-          useRelayServer = false;
+          useDHT = true;
           useSyncTrash = false;
+          useRelayServer = true;
           useTracker = true;
           knownHosts = [known_host];
         });
