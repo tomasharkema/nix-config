@@ -210,9 +210,9 @@
           neo-tree = {
             enable = true;
           };
-          project-nvim = {
-            enable = true;
-          };
+          # project-nvim = {
+          #   enable = true;
+          # };
           telescope = {
             enable = true;
 
@@ -221,7 +221,7 @@
 
               undo.enable = true;
               project.enable = true;
-              project-nvim.enable = true;
+              # project-nvim.enable = true;
               ui-select.enable = true;
               file-browser.enable = true;
             };
@@ -231,13 +231,13 @@
           };
           lualine = {
             enable = true;
-            sections = {
-              lualine_x = [
-                "diagnostics"
-                "encoding"
-                "filetype"
-              ];
-            };
+            # sections = {
+            # lualine_x = [
+            #   "diagnostics"
+            #   "encoding"
+            #   "filetype"
+            # ];
+            # };
           };
           startify = {
             enable = true;
@@ -304,7 +304,7 @@
           };
           auto-save = {
             enable = true;
-            enableAutoSave = true;
+            # enableAutoSave = true;
           };
           git-worktree = {
             enable = true;

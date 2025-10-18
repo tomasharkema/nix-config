@@ -116,6 +116,13 @@
       sonarr.enable = true;
       jackett.enable = true;
 
+      transmission = {
+        enable = true;
+        settings = {
+          download-dir = "/mnt/servers/nfs/dione-tomas/downloads";
+        };
+      };
+
       immich = {
         enable = true;
         host = "0.0.0.0";

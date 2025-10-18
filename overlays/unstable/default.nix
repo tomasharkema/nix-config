@@ -14,6 +14,27 @@
   #   nvidiaSupport = true;
   # };
 
+  resilio-sync = prev.resilio-sync.overrideAttrs (old: rec {
+    pname = "resilio-sync";
+    version = "3.1.1.1075";
+
+    src =
+      {
+        x86_64-linux = prev.fetchurl {
+          url = "https://download-cdn.resilio.com/${version}/linux/x64/0/resilio-sync_x64.tar.gz";
+          hash = "sha256-FgRMK5dOxkbaXyi0BPYQZK0tR/ZZuuUGAciwThqICBk=";
+        };
+
+        aarch64-linux = prev.fetchurl {
+          url = "https://download-cdn.resilio.com/${version}/linux/arm64/0/resilio-sync_arm64.tar.gz";
+          hash = "sha256-iczg1jEy+49QczKxc0/UZJ8LPaCHsXKmSrudVb3RWZ8=";
+        };
+      }
+    .${
+        prev.stdenv.hostPlatform.system
+      } or (throw "Unsupported system: ${prev.stdenv.hostPlatform.system}");
+  });
+
   usbguard = prev.usbguard.overrideAttrs {meta.mainProgram = "usbguard";};
 
   # _gpsd = prev.gpsd.overrideAttrs (old: rec {
