@@ -85,6 +85,7 @@
             "wheel"
             "rslsync"
             "users"
+            "bluetooth"
             "fuse"
             "disk"
             "plugdev"
