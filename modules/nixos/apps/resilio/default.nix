@@ -22,7 +22,7 @@ in {
     enableEnc = lib.mkEnableOption "Enable enc";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable) {
     environment.systemPackages = with pkgs; [acl];
 
     systemd = {
@@ -60,22 +60,57 @@ in {
       "resilio-license" = {
         rekeyFile = ./resilio-license.age;
         mode = "644";
+        owner = "rslsync";
+        group = "rslsync";
+        path = "/run/resilio-sync/license.btskey";
       };
     };
 
     networking.firewall = {
-      allowedTCPPorts = [port];
-      allowedUDPPorts = [port];
+      allowedTCPPorts = [
+        port
+        52381
+        3838
+        1900
+        5351
+      ];
+      allowedUDPPorts = [
+        port
+        52381
+        3838
+        1900
+        5351
+      ];
     };
 
-    systemd.services.resilio.serviceConfig.ExecStart = ''
-      ${lib.getExe config.services.resilio.package} --nodaemon --config ${runConfigPath} --license ${config.age.secrets."resilio-license".path}
-    '';
+    systemd.services.resilio.serviceConfig = {
+      # LoadCredential = "resilio-license:${config.age.secrets."resilio-license".path}";
+      ExecStart = lib.mkForce (pkgs.writeShellScript "createIdentity.sh" ''
+        if [ ! -e /var/lib/resilio-sync/License ]; then
+          echo "creating identity..."
+          ${lib.concatStringsSep " " [
+          (lib.getExe config.services.resilio.package)
+          "--nodaemon"
+          "--config ${runConfigPath}"
+          "--license ${config.age.secrets."resilio-license".path}"
+          "--identity ${config.networking.hostName}"
+        ]}
+        fi
+
+        exec ${lib.concatStringsSep " " [
+          (lib.getExe config.services.resilio.package)
+          "--nodaemon"
+          "--config ${runConfigPath}"
+        ]}
+      '');
+    };
+
+    users.users.tomas.extraGroups = ["rslsync"];
 
     services.resilio = {
       enable = true;
       listeningPort = port;
-      directoryRoot = root;
+      # directoryRoot = root;
       checkForUpdates = false;
       sharedFolders =
         [
@@ -84,10 +119,11 @@ in {
             searchLAN = true;
             secretFile = config.age.secrets."resilio-docs".path;
             useDHT = true;
-            useSyncTrash = false;
+            useSyncTrash = true;
             useRelayServer = true;
             useTracker = true;
-            knownHosts = [known_host];
+            # knownHosts = [known_host];
+            knownHosts = [];
           }
           {
             directory = "${root}/shared-public";
@@ -97,7 +133,8 @@ in {
             useSyncTrash = false;
             useRelayServer = true;
             useTracker = true;
-            knownHosts = [known_host];
+            # knownHosts = [known_host];
+            knownHosts = [];
           }
         ]
         ++ (lib.optional cfg.enableEnc {
@@ -108,7 +145,8 @@ in {
           useSyncTrash = false;
           useRelayServer = true;
           useTracker = true;
-          knownHosts = [known_host];
+          # knownHosts = [known_host];
+          knownHosts = [];
         })
         ++ (lib.optional (!cfg.enableEnc) {
           directory = "${root}/P-dir";
@@ -118,7 +156,8 @@ in {
           useSyncTrash = false;
           useRelayServer = true;
           useTracker = true;
-          knownHosts = [known_host];
+          # knownHosts = [known_host];
+          knownHosts = [];
         });
     };
   };
