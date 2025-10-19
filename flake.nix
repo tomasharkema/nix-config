@@ -382,6 +382,7 @@
       "https://cuda-maintainers.cachix.org"
       "https://tomasharkema.cachix.org"
       "http://silver-star.ling-lizard.ts.net:7124"
+      "https://niri.cachix.org"
     ];
 
     # trustedBinaryCaches = [
@@ -427,6 +428,7 @@
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nixpkgs.cachix.org-1:q91R6hxbwFvDqTSDKwDAV4T5PxqXGxswD8vhONFMeOE="
       "tomas-nixos-1:attQnEt6Gq99mwz5J/h8EVhCpavuB0/z/u0Bt/Mko7E="
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
     ];
 
     # allowed-uris = [
@@ -868,7 +870,7 @@
 
     niri = {
       url = "github:sodiboo/niri-flake?shallow=true";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixpkgs-esp-dev = {

@@ -129,7 +129,7 @@ in {
       };
       niri = {
         enable = true;
-        package = pkgs.niri-unstable;
+        # package = pkgs.niri-unstable;
       };
       zmap.enable = true;
       geary.enable = true;

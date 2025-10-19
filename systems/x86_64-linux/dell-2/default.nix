@@ -28,8 +28,8 @@
       snapper.enable = true; # false;
       swap = {
         size = "32G";
-        # resume.enable = false;
-        resume.enable = true;
+        resume.enable = false;
+        # resume.enable = true;
       };
     };
 
@@ -125,7 +125,7 @@
       # opensnitch.enable = true;
       # usbip.enable = true;
       # samsung.enable = true;
-      docker.enable = true;
+      # docker.enable = true;
       resilio = {
         enable = true;
         enableEnc = true;
@@ -138,7 +138,6 @@
         tpm.enable = true;
         secure-boot.enable = true;
         laptop.enable = true;
-        # laptop.thinkpad.enable = true;
         intel.enable = true;
         nvidia = {
           enable = true;
@@ -156,8 +155,8 @@
       networkmanager.enable = true;
       # wireless.enable = true;
       firewall = {
-        # enable = true; # wlp4s0; # false;
-        # allowPing = true;
+        enable = true; # wlp4s0; # false;
+        allowPing = true;
         # trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
       };
     };
@@ -174,7 +173,13 @@
 
     services = {
       thermald.enable = true;
-      fprintd.enable = true;
+      fprintd = {
+        enable = true;
+        tod = {
+          enable = true;
+          driver = pkgs.libfprint-2-tod1-goodix;
+        };
+      };
       kmscon.enable = true;
       ratbagd.enable = true;
       # comin.enable = false;
