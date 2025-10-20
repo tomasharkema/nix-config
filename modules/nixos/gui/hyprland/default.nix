@@ -28,35 +28,42 @@ in {
 
     security.pam.services.hyprlock = {fprintAuth = true;};
 
-    services = {hypridle.enable = true;};
-    environment.systemPackages = with pkgs; [
-      hyprpanel
-      pyprland
-      hyprpicker
-      hyprcursor
-      hyprshot
-      # hyprlock
-      # hypridle
-      hyprpaper
-      hyprutils
-      hyprshade
-      hyprsysteminfo
-      hyprland-autoname-workspaces
-      hyprsunset
-      hyprland-activewindow
+    services = {
+      hypridle.enable = true;
+    };
 
-      polybarFull
+    environment = {
+      variables.GDK_SCALE = "2";
 
-      # swaynotificationcenter
+      systemPackages = with pkgs; [
+        hyprpanel
+        pyprland
+        hyprpicker
+        hyprcursor
+        hyprshot
+        # hyprlock
+        # hypridle
+        hyprpaper
+        hyprutils
+        hyprshade
+        hyprsysteminfo
+        hyprland-autoname-workspaces
+        hyprsunset
+        hyprland-activewindow
 
-      cool-retro-term
+        polybarFull
 
-      hyprpolkitagent
-      grim
-      slurp
-      wl-clipboard
-      wlr-randr
-    ];
+        # swaynotificationcenter
+
+        cool-retro-term
+
+        hyprpolkitagent
+        grim
+        slurp
+        wl-clipboard
+        wlr-randr
+      ];
+    };
 
     systemd.packages = with pkgs; [hyprpolkitagent];
 
@@ -171,11 +178,8 @@ in {
           env = [
             "HYPRCURSOR_THEME,macOS"
             "HYPRCURSOR_SIZE,24"
-            # "GDK_SCALE,${
-            #   if config.gui.hidpi.enable
-            #   then "2"
-            #   else "1"
-            # }"
+            (lib.mkIf config.gui.hidpi.enable "GDK_SCALE,2")
+            # (lib.mkIf config.gui.hidpi.enable "XCURSOR_SIZE,32")
           ];
 
           exec-once = [
@@ -211,7 +215,7 @@ in {
             "pin,class:^(firefox)$,title:^(Picture-in-Picture)$"
           ];
           # general = {allow_tearing = true;};
-          # xwayland = {force_zero_scaling = true;};
+          xwayland = {force_zero_scaling = true;};
           misc = {
             force_default_wallpaper = 0; # Set to 0 or 1 to disable the anime mascot wallpapers
             disable_hyprland_logo = true; # If true disables the random hyprland logo / anime girl background. :(
