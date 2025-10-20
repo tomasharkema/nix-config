@@ -171,11 +171,11 @@ in {
           env = [
             "HYPRCURSOR_THEME,macOS"
             "HYPRCURSOR_SIZE,24"
-            "GDK_SCALE,${
-              if config.gui.hidpi.enable
-              then "2"
-              else "1"
-            }"
+            # "GDK_SCALE,${
+            #   if config.gui.hidpi.enable
+            #   then "2"
+            #   else "1"
+            # }"
           ];
 
           exec-once = [
@@ -210,14 +210,14 @@ in {
             "float,class:^(firefox)$,title:^(Picture-in-Picture)$"
             "pin,class:^(firefox)$,title:^(Picture-in-Picture)$"
           ];
-          general = {allow_tearing = true;};
-          xwayland = {force_zero_scaling = true;};
+          # general = {allow_tearing = true;};
+          # xwayland = {force_zero_scaling = true;};
           misc = {
             force_default_wallpaper = 0; # Set to 0 or 1 to disable the anime mascot wallpapers
             disable_hyprland_logo = true; # If true disables the random hyprland logo / anime girl background. :(
-            vfr = true;
+            # vfr = true;
           };
-          misc = {vrr = 1;};
+          # misc = {vrr = 1;};
         };
       };
     };
