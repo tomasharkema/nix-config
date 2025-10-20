@@ -156,7 +156,7 @@ in {
     home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
       {package = thinkpad-thermal;}
       # {package = fnlock-switch-thinkpad-compact-usb-keyboard;}
-      {package = thinkpad-battery-threshold;}
+      # {package = thinkpad-battery-threshold;}
     ];
 
     # boot = {

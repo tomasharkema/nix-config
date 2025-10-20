@@ -863,10 +863,10 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    wluma = {
-      url = "github:tomasharkema/wluma?shallow=true";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # wluma = {
+    #   url = "github:tomasharkema/wluma?shallow=true";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     niri = {
       url = "github:sodiboo/niri-flake?shallow=true";

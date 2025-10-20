@@ -173,7 +173,7 @@ in rec {
   #     ];
   # });
 
-  wluma = inputs.wluma.defaultPackage."${prev.system}";
+  # wluma = inputs.wluma.defaultPackage."${prev.system}";
 
   # utillinux = prev.util-linux;
 

@@ -86,7 +86,7 @@ in {
       groups = {kbfs = {};};
     };
 
-    services = {
+    home-manager.users.tomas.services = {
       keybase = {
         enable = true;
       };
@@ -98,6 +98,7 @@ in {
         extraFlags = [
           "-label kbfs"
           "-mount-type normal"
+          # "-debug"
         ];
       };
     };

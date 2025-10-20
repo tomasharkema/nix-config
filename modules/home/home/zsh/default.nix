@@ -130,11 +130,11 @@
         };
 
         plugins = with pkgs; [
-          rec {
-            name = "you-should-use";
-            file = "share/zsh/plugins/you-should-use/you-should-use.plugin.zsh";
-            src = zsh-you-should-use;
-          }
+          # rec {
+          #   name = "you-should-use";
+          #   file = "share/zsh/plugins/you-should-use/you-should-use.plugin.zsh";
+          #   src = zsh-you-should-use;
+          # }
           rec {
             name = src.pname;
             file = "share/zsh-z/zsh-z.plugin.zsh";
@@ -238,8 +238,8 @@
           enable = true;
           extraConfig = ''
             ZSH_WEB_SEARCH_ENGINES=(nix-package "https://search.nixos.org/packages?query=" nix-option "https://search.nixos.org/options?query=")
-            COMPLETION_WAITING_DOTS=true
-            HYPHEN_INSENSITIVE=true
+            COMPLETION_WAITING_DOTS="true"
+            HYPHEN_INSENSITIVE="true"
           '';
           plugins =
             [

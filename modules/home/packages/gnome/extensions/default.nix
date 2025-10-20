@@ -14,7 +14,7 @@
       "GPaste@gnome-shell-extensions.gnome.org"
       "drive-menu@gnome-shell-extensions.gcampax.github.com"
       "another-window-session-manager@gmail.com"
-      "batterytime@typeof.pw"
+      # "batterytime@typeof.pw"
       "mprisLabel@moon-0xff.github.com"
       "vscode-search-provider@mrmarble.github.com"
       "extensions-search-provider@G-dH.github.com"

@@ -28,8 +28,8 @@
       snapper.enable = true; # false;
       swap = {
         size = "32G";
-        resume.enable = false;
-        # resume.enable = true;
+        # resume.enable = false;
+        resume.enable = true;
       };
     };
 
@@ -329,9 +329,10 @@
         "kvm-intel"
         # "watchdog"
         # "usbmon"
+        "intel_lpss_pci"
       ];
 
-      # initrd.kernelModules = [
+      initrd.kernelModules = ["intel_lpss_pci"];
       # "nvidia"
       # "i915"
       # "nvidia_modeset"

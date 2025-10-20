@@ -110,13 +110,13 @@ in {
         # unl0kr = {enable = config.disks.btrfs.encrypt;};
       };
 
-      hardwareScan = true;
+      # hardwareScan = true;
 
-      extraModulePackages = lib.mkIf pkgs.stdenv.isx86_64 [
-        config.boot.kernelPackages.cryptodev
-        config.boot.kernelPackages.acpi_call
-        config.boot.kernelPackages.fanout
-      ];
+      # extraModulePackages = lib.mkIf pkgs.stdenv.isx86_64 [
+      #   config.boot.kernelPackages.cryptodev
+      #   config.boot.kernelPackages.acpi_call
+      #   config.boot.kernelPackages.fanout
+      # ];
 
       kernelParams = [
         "zswap.enabled=1"
@@ -156,6 +156,8 @@ in {
         # "wireguard"
         # "netconsole"
         # "apfs"
+        "efi_pstore"
+        "pstore"
       ];
 
       supportedFilesystems = [
@@ -164,6 +166,8 @@ in {
         "nfs"
       ];
       initrd.kernelModules = [
+        "efi_pstore"
+        "pstore"
         # "netconsole"
       ];
       loader = {
