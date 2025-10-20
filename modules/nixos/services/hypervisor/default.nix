@@ -21,7 +21,7 @@
 in {
   options.services.hypervisor = {
     enable = lib.mkEnableOption "hypervisor";
-
+    iommu.enable = lib.mkEnableOption "hypervisor";
     webservices.enable = lib.mkEnableOption "webservices";
 
     bridgeInterfaces = lib.mkOption {
@@ -62,7 +62,7 @@ in {
     #   };
     # };
 
-    programs.mdevctl.enable = true;
+    # programs.mdevctl.enable = true;
 
     environment.systemPackages = with pkgs; [
       kvmtool
@@ -174,12 +174,12 @@ in {
     # '';
     boot = {
       kernelParams = [
-        "kvm_intel.nested=1"
-        "intel_iommu=on"
-        "intel_iommu=igfx_off"
-        "default_hugepagesz=1G"
-        "hugepagesz=1G"
-        "hugepages=1"
+        # "kvm_intel.nested=1"
+        # "intel_iommu=on"
+        # "intel_iommu=igfx_off"
+        # "default_hugepagesz=1G"
+        # "hugepagesz=1G"
+        # "hugepages=1"
       ];
       # blacklistedKernelModules = [
       #   "nvidia"
@@ -187,11 +187,11 @@ in {
       # ];
       kernelModules = lib.mkBefore [
         "kvm-intel"
-        "mdev"
-        "kvmgt"
-        "vfio_pci"
-        "vfio"
-        "vfio_iommu_type1"
+        # "mdev"
+        # "kvmgt"
+        # "vfio_pci"
+        # "vfio"
+        # "vfio_iommu_type1"
       ];
       # initrd.kernelModules = lib.mkBefore [
       #   "kvm-intel"
@@ -276,7 +276,7 @@ in {
     networking = {
       #   interfaces."br0".useDHCP = true;
 
-      firewall.trustedInterfaces = ["br0" "virbr0"];
+      # firewall.trustedInterfaces = ["br0" "virbr0"];
 
       #   bridges = {
       #     "br0" = {

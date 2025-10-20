@@ -103,7 +103,7 @@ in {
       crashDump.enable = pkgs.stdenv.isx86_64; # true;
 
       initrd = {
-        # compressor = "zstd";
+        # dm = "zstd";
         # compressorArgs = ["-19"];
         # systemd.emergencyAccess = "abcdefg";
         includeDefaultModules = true;

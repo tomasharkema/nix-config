@@ -332,23 +332,24 @@
         "intel_lpss_pci"
       ];
 
-      initrd.kernelModules = ["intel_lpss_pci"];
-      # "nvidia"
-      # "i915"
-      # "nvidia_modeset"
-      # "nvidia_uvm"
-      # "nvidia_drm"
+      initrd.kernelModules = [
+        "intel_lpss_pci"
+        "nvidia"
+        # "i915"
+        "nvidia_modeset"
+        "nvidia_uvm"
+        "nvidia_drm"
 
-      # "spi"
-      # "sgx"
-      # "i915"
-      #  "watchdog"
-      # "isgx"
-      # "vfio_pci"
-      # "vfio"
-      # "vfio_iommu_type1"
-      # "kvm-intel"
-      # ];
+        # "spi"
+        # "sgx"
+        # "i915"
+        #  "watchdog"
+        # "isgx"
+        # "vfio_pci"
+        # "vfio"
+        # "vfio_iommu_type1"
+        "kvm-intel"
+      ];
     };
   };
 }
