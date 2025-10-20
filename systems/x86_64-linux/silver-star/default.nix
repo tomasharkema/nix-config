@@ -88,10 +88,6 @@
         device = "/mnt/netboot";
         options = ["bind"];
       };
-      "/export/downloads" = {
-        device = "/mnt/servers/nfs/dione-tomas/downloads";
-        options = ["bind"];
-      };
     };
     # system.includeBuildDependencies = true;
 
@@ -128,7 +124,7 @@
         openPeerPorts = true;
         openFirewall = true;
         settings = {
-          download-dir = "/export/downloads";
+          download-dir = "/mnt/servers/nfs/dione-tomas/downloads";
           rpc-bind-address = "0.0.0.0";
           rpc-whitelist = "127.0.0.1,192.168.*.*,100.*.*.*";
         };
