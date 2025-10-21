@@ -13,6 +13,10 @@
   #   waylandSupport = true;
   #   nvidiaSupport = true;
   # };
+  plex = prev.plex.overrideAttrs (old: {
+    pname = "plex";
+    version = "1.42.2.10156";
+  });
 
   resilio-sync = prev.resilio-sync.overrideAttrs (old: rec {
     pname = "resilio-sync";

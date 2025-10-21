@@ -120,11 +120,11 @@
       transmission = {
         enable = true;
         openRPCPort = true;
-        downloadDirPermissions = "770";
+        #downloadDirPermissions = "770";
         openPeerPorts = true;
         openFirewall = true;
         settings = {
-          download-dir = "/mnt/servers/nfs/dione-tomas/downloads";
+          download-dir = "/exports/downloads";
           rpc-bind-address = "0.0.0.0";
           rpc-whitelist = "127.0.0.1,192.168.*.*,100.*.*.*";
         };

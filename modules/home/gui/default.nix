@@ -47,7 +47,6 @@ in {
   config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
     gtk.gtk3.bookmarks = [
       "file:///home/tomas/Downloads"
-      "file:///home/tomas/Dropbox"
       "file:///home/tomas/Developer"
       "file:///home/tomas/Developer/nix-config"
       "file:///mnt/steam"
