@@ -17,10 +17,12 @@ in {
 
     # environment.systemPackages = [pkgs.custom.tlpui];
 
-    home-manager.users.tomas.programs.gnome-shell.extensions =
-      lib.optional
-      (!config.traits.hardware.laptop.thinkpad.enable)
-      {package = pkgs.gnomeExtensions.battery-health-charging;};
+    home-manager.users.tomas.programs.gnome-shell.extensions = [
+      (
+        lib.mkIf (!config.traits.hardware.laptop.thinkpad.enable && false)
+        {package = pkgs.gnomeExtensions.battery-health-charging;}
+      )
+    ];
 
     gui.rdp = {
       enable = false;
