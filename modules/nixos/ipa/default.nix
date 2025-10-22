@@ -43,6 +43,7 @@ in {
 
         "krb5.conf".text = lib.mkBefore ''
           includedir /var/lib/sss/pubconf/krb5.include.d/
+          includedir /etc/krb5.conf.d/
 
           [libdefaults]
           default_ccache_name = KCM:
@@ -274,7 +275,7 @@ in {
       };
 
       krb5 = {
-        settings.libdefaults.default_ccache_name = "KCM:";
+        settings.libdefaults.default_ccache_name = "KEYRING:persistent:%{uid}";
       };
 
       polkit = {
