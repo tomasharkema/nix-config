@@ -97,16 +97,20 @@
     };
 
     networking.nftables.enable = true;
+
     virtualisation = {
       incus = {
         enable = true;
+        socketActivation = true;
         ui.enable = true;
       };
     };
     users.groups = {"incus-admin".members = ["tomas"];};
+
     services = {
       hypervisor = {
         enable = true;
+        iommu.enable = true;
         # bridgeInterfaces = [ "eno1" ];
       };
       # mosh.enable = true;
@@ -117,18 +121,18 @@
       sonarr.enable = true;
       jackett.enable = true;
 
-      transmission = {
-        enable = true;
-        openRPCPort = true;
-        #downloadDirPermissions = "770";
-        openPeerPorts = true;
-        openFirewall = true;
-        settings = {
-          download-dir = "/exports/downloads";
-          rpc-bind-address = "0.0.0.0";
-          rpc-whitelist = "127.0.0.1,192.168.*.*,100.*.*.*";
-        };
-      };
+      # transmission = {
+      #   enable = true;
+      #   openRPCPort = true;
+      #   #downloadDirPermissions = "770";
+      #   openPeerPorts = true;
+      #   openFirewall = true;
+      #   settings = {
+      #     download-dir = "/exports/downloads";
+      #     rpc-bind-address = "0.0.0.0";
+      #     rpc-whitelist = "127.0.0.1,192.168.*.*,100.*.*.*";
+      #   };
+      # };
 
       immich = {
         enable = true;
@@ -224,12 +228,13 @@
       #  };
       #};
 
-      pgadmin = {
-        enable = true;
-        openFirewall = true;
-        initialEmail = "tomas@harkema.io";
-        initialPasswordFile = pkgs.writeText "ps" "testtest";
-      };
+      # pgadmin = {
+      #   enable = true;
+      #   openFirewall = true;
+      #   initialEmail = "tomas@harkema.io";
+      #   initialPasswordFile = pkgs.writeText "ps" "testtest";
+      # };
+
       tsnsrv = {
         enable = true;
         defaults.authKeyPath = config.age.secrets.tsnsrv.path;
@@ -247,7 +252,10 @@
           atuin = {toURL = "http://127.0.0.1:8888";};
           trmnl = {toURL = "http://127.0.0.1:2300";};
           immich-ml = {toURL = "http://127.0.0.1:3003";};
-          incus = {toURL = "http://127.0.0.1:8443";};
+          incus = {
+            toURL = "https://127.0.0.1:8443";
+            insecureHTTPS = true;
+          };
         };
       };
 
@@ -352,8 +360,8 @@
       firewall = {
         enable = true;
         allowPing = true;
-        allowedTCPPorts = [1883];
-        allowedUDPPorts = [1883];
+        allowedTCPPorts = [1883 32400];
+        allowedUDPPorts = [1883 32400];
       };
 
       bridges.br0 = {
@@ -543,17 +551,18 @@
         "console=ttyS1,115200n8"
         # "intremap=no_x2apic_optout"
         # "nox2apic"
-        # "iomem=relaxed"
+        "iomem=relaxed"
         "intel_iommu=on"
         "iommu=pt"
         "ipmi_watchdog.timeout=180"
         # "video=efifb:off,vesafb:off"
         # "ixgbe.allow_unsupported_sfp=1,1"
         #"vfio-pci.ids=10de:1380,10de:0fbc"
-        # "pcie_acs_override=downstream,multifunction"
+        "pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
         # "kvm.ignore_msrs=1"
         # "pci=nomsi"
+        "mitigations=off"
       ];
 
       blacklistedKernelModules = ["iTCO_wdt"];
@@ -632,7 +641,6 @@
         "docker-compose@atuin" = {
           wantedBy = ["multi-user.target"];
         };
-
         "docker-compose@grafana" = {
           wantedBy = ["multi-user.target"];
         };

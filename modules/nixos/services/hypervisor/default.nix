@@ -173,32 +173,39 @@ in {
     #   SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
     # '';
     boot = {
-      kernelParams = [
-        # "kvm_intel.nested=1"
-        # "intel_iommu=on"
+      kernelParams = lib.mkIf cfg.iommu.enable [
+        "kvm_intel.nested=1"
+        "intel_iommu=on"
         # "intel_iommu=igfx_off"
-        # "default_hugepagesz=1G"
-        # "hugepagesz=1G"
-        # "hugepages=1"
+        "hugepagesz=2M"
+        "hugepages=2048"
       ];
       # blacklistedKernelModules = [
       #   "nvidia"
       #   "nouveau"
       # ];
-      kernelModules = lib.mkBefore [
-        "kvm-intel"
-        # "mdev"
-        # "kvmgt"
-        # "vfio_pci"
-        # "vfio"
-        # "vfio_iommu_type1"
-      ];
-      # initrd.kernelModules = lib.mkBefore [
-      #   "kvm-intel"
-      #   "vfio_pci"
-      #   "vfio"
-      #   "vfio_iommu_type1"
-      # ];
+      kernelModules =
+        if cfg.iommu.enable
+        then
+          #lib.mkBefore
+          [
+            "kvm-intel"
+            "mdev"
+            "kvmgt"
+            "vfio_pci"
+            "vfio"
+            "vfio_iommu_type1"
+          ]
+        else ["kvm-intel"];
+      initrd.kernelModules = lib.mkIf cfg.iommu.enable (
+        #lib.mkBefore
+        [
+          "kvm-intel"
+          "vfio_pci"
+          "vfio"
+          "vfio_iommu_type1"
+        ]
+      );
     };
 
     # programs.ccache = {

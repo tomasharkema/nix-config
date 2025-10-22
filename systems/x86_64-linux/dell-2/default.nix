@@ -299,7 +299,9 @@
       # ];
       # modprobeConfig.enable = true;
       # supportedFilesystems = ["ext2" "ext3" "ext4"];
-      # kernelParams = [
+      kernelParams = [
+        "mitigations=off"
+      ];
       #   "i915.enable_gvt=1"
       #   "i915.enable_fbc=0"
       #   "ibt=off"
