@@ -34,12 +34,12 @@ in {
       ];
 
       etc = {
-        # "pkcs11/modules/opensc-pkcs11".text = ''
-        #   module: ${pkgs.opensc}/lib/opensc-pkcs11.so
-        # '';
-        # "pkcs11/modules/libykcs11".text = ''
-        #   module: ${pkgs.yubico-piv-tool}/lib/libykcs11.so
-        # '';
+        "pkcs11/modules/opensc-pkcs11".text = ''
+          module: ${pkgs.opensc}/lib/opensc-pkcs11.so
+        '';
+        "pkcs11/modules/libykcs11".text = ''
+          module: ${pkgs.yubico-piv-tool}/lib/libykcs11.so
+        '';
 
         "krb5.conf".text = lib.mkBefore ''
           includedir /var/lib/sss/pubconf/krb5.include.d/
@@ -49,16 +49,16 @@ in {
           default_ccache_name = KCM:
         '';
 
-        # "krb5.conf.d/enable_passkey".text = ''
-        #   [plugins]
-        #   clpreauth = {
-        #     module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
-        #   }
+        "krb5.conf.d/enable_passkey".text = ''
+          [plugins]
+          clpreauth = {
+            module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
+          }
 
-        #   kdcpreauth = {
-        #     module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
-        #   }
-        # '';
+          kdcpreauth = {
+            module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
+          }
+        '';
 
         # "krb5.conf.d/sssd_enable_idp".text = ''
         #   # Enable SSSD OAuth2 Kerberos preauthentication plugins.
@@ -77,10 +77,10 @@ in {
         #    }
         # '';
 
-        # "krb5.conf.d/freeipa".text = ''
-        #   [libdefaults]
-        #       spake_preauth_groups = edwards25519
-        # '';
+        "krb5.conf.d/freeipa".text = ''
+          [libdefaults]
+              spake_preauth_groups = edwards25519
+        '';
 
         # "sssd/conf.d".enable = false;
 
@@ -144,34 +144,34 @@ in {
           '';
         };
 
-        sssd = {
-          before = ["nfs-idmapd.service" "rpc-gssd.service" "rpc-svcgssd.service"];
+        # sssd = {
+        #   before = ["nfs-idmapd.service" "rpc-gssd.service" "rpc-svcgssd.service"];
 
-          # environment = {
-          #   LDB_MODULES_PATH = "/run/current-system/sw/modules/ldb";
-          # };
+        #   # environment = {
+        #   #   LDB_MODULES_PATH = "/run/current-system/sw/modules/ldb";
+        #   # };
 
-          # script = lib.mkForce "echo $LDB_MODULES_PATH && ${pkgs.sssd}/bin/sssd -D";
-          # serviceConfig = {
-          #   Type = lib.mkForce "notify";
-          #   NotifyAccess = "main";
-          # };
-          # -c ${settingsFile}
-        };
+        #   # script = lib.mkForce "echo $LDB_MODULES_PATH && ${pkgs.sssd}/bin/sssd -D";
+        #   # serviceConfig = {
+        #   #   Type = lib.mkForce "notify";
+        #   #   NotifyAccess = "main";
+        #   # };
+        #   # -c ${settingsFile}
+        # };
         sssd-kcm = {
-          enable = true;
-          description = "SSSD Kerberos Cache Manager";
+          #   enable = true;
+          #   description = "SSSD Kerberos Cache Manager";
 
-          wantedBy = ["multi-user.target" "sssd.service"];
-          requires = ["sssd-kcm.socket"];
+          #   wantedBy = ["multi-user.target" "sssd.service"];
+          #   requires = ["sssd-kcm.socket"];
 
           serviceConfig = {
             ExecStartPre = lib.mkForce null;
             ExecStart = lib.mkForce "${pkgs.sssd}/libexec/sssd/sssd_kcm";
           };
-          # restartTriggers = [
-          #   settingsFileUnsubstituted
-          # ];
+          #   # restartTriggers = [
+          #   #   settingsFileUnsubstituted
+          #   # ];
         };
       };
       # sockets.sssd-kcm = {
