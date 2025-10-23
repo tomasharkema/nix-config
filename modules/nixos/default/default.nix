@@ -763,7 +763,14 @@ in {
     security = {
       audit.enable = true;
       auditd.enable = true;
-      pam.sshAgentAuth.enable = true;
+      # pam.sshAgentAuth.enable = true;
+      pam.rssh = {
+        enable = true;
+        settings = {
+          authorized_keys_command = "/etc/ssh/authorized_keys_command";
+          authorized_keys_command_user = "nobody";
+        };
+      };
       wrappers.nethoscope = {
         owner = "tomas";
         group = "tomas";
