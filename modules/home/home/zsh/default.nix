@@ -59,9 +59,12 @@
         #zle -N nixos-menu
         #bindkey '^A' nixos-menu
         initExtraBeforeCompInit = ''
+          COMPLETION_WAITING_DOTS="true"
+          HYPHEN_INSENSITIVE="true"
           zstyle ':completion:*:ssh:*' hosts off
         '';
         initExtra = ''
+
           bindkey -M emacs -s '^A' 'menu^M'
           bindkey -M vicmd -s '^A' 'menu^M'
           bindkey -M viins -s '^A' 'menu^M'
@@ -236,16 +239,15 @@
 
         oh-my-zsh = {
           enable = true;
+
           extraConfig = ''
             ZSH_WEB_SEARCH_ENGINES=(nix-package "https://search.nixos.org/packages?query=" nix-option "https://search.nixos.org/options?query=")
-            COMPLETION_WAITING_DOTS="true"
-            HYPHEN_INSENSITIVE="true"
+
           '';
           plugins =
             [
               "1password"
               "autojump"
-              "aws"
               "battery"
               "bgnotify"
               "colorize"
@@ -289,7 +291,6 @@
               "sublime"
               "sudo"
               "swiftpm"
-              "systemadmin"
               "tailscale"
               "tig"
               "tldr"

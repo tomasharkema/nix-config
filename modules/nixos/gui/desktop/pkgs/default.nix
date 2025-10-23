@@ -15,6 +15,11 @@
     nrfconnect
     serial-studio
     wine-wayland
+    bitwarden
+    bitwarden-menu
+    bitwarden-desktop
+    bitwarden-cli
+    dmenu
     # openrct2
     openrw
     openra

@@ -103,6 +103,7 @@
         # agenix.homeManagerModules.default
         # hyprpanel.homeManagerModules.hyprpanel
         walker.homeManagerModules.default
+        # niri.homeModules.config
       ];
 
       # systems.hosts = let
