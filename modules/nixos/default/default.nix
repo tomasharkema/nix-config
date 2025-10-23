@@ -767,8 +767,8 @@ in {
       pam.rssh = {
         enable = true;
         settings = {
-          authorized_keys_command = "/etc/ssh/authorized_keys_command";
-          authorized_keys_command_user = "nobody";
+          authorized_keys_command = config.services.openssh.authorizedKeysCommand;
+          authorized_keys_command_user = config.services.openssh.authorizedKeysCommandUser;
         };
       };
       wrappers.nethoscope = {
@@ -781,10 +781,9 @@ in {
 
     programs = {
       fzf.fuzzyCompletion = true;
-      #`mosh.enable = true;
+      # mosh.enable = true;
       dconf.enable = true;
       sharing.enable = true;
-      # darling.enable = pkgs.stdenv.isx86_64;
       autojump.enable = true;
       bandwhich.enable = true;
       cpu-energy-meter.enable = pkgs.stdenv.isx86_64;
