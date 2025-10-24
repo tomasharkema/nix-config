@@ -53,8 +53,7 @@
         ccid
         gnupg
         custom.distrib-dl
-        davinci-resolve
-
+        # davinci-resolve
         keybase-gui
         # calibre
         glxinfo

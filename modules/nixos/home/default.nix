@@ -44,15 +44,9 @@
       };
     };
 
-    services = {
-      # homed.enable = true;
-      userdbd.enable = true;
-    };
-
-    qt = {
-      enable = true;
-      platformTheme = "gnome";
-      style = "adwaita-dark";
-    };
+    # services = {
+    #   # homed.enable = true;
+    #   userdbd.enable = true;
+    # };
   };
 }

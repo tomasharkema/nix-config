@@ -497,7 +497,7 @@ in {
     security = {
       audit.enable = true;
       auditd.enable = true;
-      # pam.sshAgentAuth.enable = true;
+      pam.sshAgentAuth.enable = true;
       pam.rssh = {
         enable = true;
         settings = {

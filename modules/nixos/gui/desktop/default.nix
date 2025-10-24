@@ -28,6 +28,13 @@ in {
       }
     ];
 
+    qt = {
+      enable = true;
+      platformTheme = "gnome";
+      # platformTheme = "gtk2";
+      style = "adwaita-dark";
+    };
+
     system.build.gui.foxBg = foxBg;
 
     gui.fonts.enable = true;

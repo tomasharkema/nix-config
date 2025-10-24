@@ -79,19 +79,42 @@ in {
       ];
   });
 
-  qgnomeplatform = prev.qgnomeplatform.overrideAttrs ({cmakeFlags ? [], ...}: {
-    cmakeFlags =
-      cmakeFlags
-      ++ [
-        (lib.cmakeFeature "CMAKE_POLICY_VERSION_MINIMUM" "3.31")
+  qgnomeplatform = prev.qgnomeplatform.overrideAttrs ({
+    cmakeFlags ? [],
+    patches ? [],
+    buildInputs ? [],
+    ...
+  }: {
+    # cmakeFlags =
+    #   cmakeFlags
+    #   ++ [
+    #     # (lib.cmakeFeature "CMAKE_POLICY_VERSION_MINIMUM" "3.31")
+    #   ];
+    # buildInputs = buildInputs ++ [prev.libxkbcommon];
+    patches =
+      # patches
+      # ++
+      [
+        ./qt.patch
       ];
   });
 
-  qgnomeplatform-qt6 = prev.qgnomeplatform-qt6.overrideAttrs ({cmakeFlags ? [], ...}: {
-    cmakeFlags =
-      cmakeFlags
+  qgnomeplatform-qt6 = prev.qgnomeplatform-qt6.overrideAttrs ({
+    cmakeFlags ? [],
+    patches ? [],
+    buildInputs ? [],
+    ...
+  }: {
+    # cmakeFlags =
+    #   cmakeFlags
+    #   ++ [
+    #     # (lib.cmakeFeature "CMAKE_POLICY_VERSION_MINIMUM" "3.31")
+    #   ];
+    # buildInputs = buildInputs ++ [prev.libxkbcommon];
+    patches =
+      patches
       ++ [
-        (lib.cmakeFeature "CMAKE_POLICY_VERSION_MINIMUM" "3.31")
+        ./qt.patch
       ];
   });
 }

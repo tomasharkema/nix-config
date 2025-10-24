@@ -65,7 +65,7 @@
         };
       };
     };
-    qt.enable = lib.mkForce false;
+
     apps = {
       netdata.server.enable = true;
       netbox.enable = true;

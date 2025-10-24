@@ -18,16 +18,18 @@
             # Origins = "https://localhost:9090 wss://localhost:9090 https://${config.networking.hostName}.ling-lizard.ts.net:9090 wss://${config.networking.hostName}.ling-lizard.ts.net:9090";
             ProtocolHeader = "X-Forwarded-Proto";
             UrlRoot = "/cockpit";
-            ClientCertAuthentication = true;
+            # ClientCertAuthentication = true;
           }
           else {
-            ClientCertAuthentication = true;
-            AllowUnencrypted = false;
+            # ClientCertAuthentication = true;
+            # AllowUnencrypted = false;
             # https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost}
             # Origins = "https://localhost:9090 wss://localhost:9090 https://${config.networking.hostName}.ling-lizard.ts.net:9090 wss://${config.networking.hostName}.ling-lizard.ts.net:9090";
           };
       };
     };
+
+    security.pam.services."cockpit".enable = true;
 
     environment.pathsToLink = ["/libexec"];
 

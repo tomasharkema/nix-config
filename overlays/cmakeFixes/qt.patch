@@ -1,0 +1,16 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index cc0b067..d5b2385 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -26,9 +26,9 @@ include(GNUInstallDirs)
+ include(FeatureSummary)
+ 
+ if (USE_QT6)
+-    find_package(QT NAMES Qt6 COMPONENTS Core DBus Gui Widgets REQUIRED)
++    find_package(QT NAMES Qt6 COMPONENTS Core DBus Gui Widgets REQUIRED GuiPrivate)
+ else()
+-    find_package(QT NAMES Qt5 COMPONENTS Core DBus Gui Widgets REQUIRED)
++    find_package(QT NAMES Qt5 COMPONENTS Core DBus Gui Widgets REQUIRED GuiPrivate)
+ endif()
+ 
+ find_package(Qt${QT_VERSION_MAJOR} ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS

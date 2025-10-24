@@ -188,7 +188,7 @@ in {
             # "hyprpanel"
             "[workspace 1 silent] $terminal"
             "${pkgs.networkmanagerapplet}/bin/nm-applet"
-            "${pkgs.custom.usbguard-gnome}/bin/usbguard-gnome"
+            # "${pkgs.custom.usbguard-gnome}/bin/usbguard-gnome"
 
             "[workspace 2 silent] firefox"
 

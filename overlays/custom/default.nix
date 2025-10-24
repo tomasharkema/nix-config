@@ -14,6 +14,23 @@
       else (builtins.throw "nixpkgs' upstream for ${name} has been updated to ${pkgVersion}. (yours is at ${pkg.version} with snapshot ${version})")
   );
 in rec {
+  # cudaPackages = prev.cudaPackages.overrideScope (final: prev: {
+  #   cuda_cudart = prev.cuda_cudart.overrideAttrs {
+  #     meta.platforms = [
+  #       "aarch64-linux"
+  #       "x86_64-linux"
+  #       "i686-linux"
+  #     ];
+  #   };
+  #   cuda_nvcc = prev.cuda_nvcc.overrideAttrs {
+  #     meta.platforms = [
+  #       "aarch64-linux"
+  #       "x86_64-linux"
+  #       "i686-linux"
+  #     ];
+  #   };
+  # });
+
   libcec = prev.libcec.override {withLibraspberrypi = true;};
 
   synology-drive-client = prev.synology-drive-client.overrideAttrs ({buildInputs ? [], ...}: {
