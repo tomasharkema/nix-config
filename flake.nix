@@ -5,10 +5,12 @@
 
       imports = [inputs.agenix-rekey.flakeModule];
 
-      src = builtins.path {
-        path = ./.;
-        name = "snowfall-flake-source";
-      };
+      # src = builtins.path {
+      #   path = ./.;
+      #   name = "snowfall-flake-source";
+      # };
+      src = ./.;
+      # src = inputs.self;
 
       channels-config = {
         allowUnfreePredicate = _: true;
@@ -615,7 +617,7 @@
 
     snowfall-lib = {
       url = "github:snowfallorg/lib?shallow=true";
-
+      # url = "github:anntnzrb/snowfall-lib?shallow=true";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         # flake-compat.follows = "flake-compat";

@@ -30,7 +30,7 @@
         enableVteIntegration = true;
         enableSyntaxHighlighting = true;
 
-        dotDir = ".config/zsh";
+        dotDir = "${config.xdg.configHome}/zsh";
 
         autocd = true;
 
@@ -46,11 +46,11 @@
         };
 
         dirHashes = {
-          docs = "$HOME/Documents";
-          vids = "$HOME/Videos";
-          dl = "$HOME/Downloads";
-          dev = "$HOME/Developer";
-          nix-conf = "$HOME/Developer/nix-config";
+          docs = "${config.home.homeDirectory}/Documents";
+          vids = "${config.home.homeDirectory}/Videos";
+          dl = "${config.home.homeDirectory}/Downloads";
+          dev = "${config.home.homeDirectory}/Developer";
+          nix-conf = "${config.home.homeDirectory}/Developer/nix-config";
         };
 
         #nixos-menu () {
@@ -83,25 +83,13 @@
         # '';
 
         shellAliases = let
-          silver = ''
-            -H 192.168.69.45 -U root -P "$(op item get abrgfwmlbnc2zghpugawqoagjq --field password --reveal)"
-          '';
-          blue = ''
-            -H 192.168.69.46 -U ADMIN -P "$(op item get ydq2vns3nc4hj43n4avtryckpa --field password --reveal )"
-          '';
+          silver = "-H 192.168.69.45 -U root -P \"$(op item get abrgfwmlbnc2zghpugawqoagjq --field password --reveal)\"";
+          blue = "-H 192.168.69.46 -U ADMIN -P \"$(op item get ydq2vns3nc4hj43n4avtryckpa --field password --reveal)\"";
         in {
-          silver-star-ipmi = ''
-            ipmitool -I lanplus ${silver}
-          '';
-          blue-fire-ipmi = ''
-            ipmitool -I lanplus ${blue}
-          '';
-          silver-star-console = ''
-            ipmiconsole ${silver}
-          '';
-          blue-fire-console = ''
-            ipmiconsole ${blue}
-          '';
+          silver-star-ipmi = "ipmitool -I lanplus ${silver}";
+          blue-fire-ipmi = "ipmitool -I lanplus ${blue}";
+          silver-star-console = "ipmiconsole ${silver}";
+          blue-fire-console = "ipmiconsole ${blue}";
 
           "$" = "";
           ll = "ls -l";
