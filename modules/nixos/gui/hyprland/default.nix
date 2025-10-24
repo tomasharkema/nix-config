@@ -46,7 +46,7 @@ in {
         hyprpaper
         hyprutils
         hyprshade
-        hyprsysteminfo
+        #hyprsysteminfo
         hyprland-autoname-workspaces
         hyprsunset
         hyprland-activewindow

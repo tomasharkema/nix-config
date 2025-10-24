@@ -33,7 +33,7 @@
     kicad
     platformio
     saleae-logic-2
-    digikam
+    # digikam
     rmview
     zenmap
     tpmmanager
@@ -56,7 +56,7 @@
     darktable
     custom.wsjtx
     sdrpp
-    rpi-imager
+    # rpi-imager
     custom.netsleuth
     handbrake
     thonny

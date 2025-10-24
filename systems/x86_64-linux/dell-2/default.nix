@@ -19,6 +19,8 @@
       reportPath = ./facter.json;
     };
 
+    qt.enable = lib.mkForce false;
+
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/nvme-KXG50ZNV1T02_NVMe_TOSHIBA_1024GB_78OS10V1T8KQ_1";

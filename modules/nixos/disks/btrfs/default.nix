@@ -215,7 +215,7 @@ in {
       snapper
       snapper-gui
       tpm-luks
-      btrfs-assistant
+      #btrfs-assistant
       btrfs-snap
       btrfs-progs
       btrfs-heatmap

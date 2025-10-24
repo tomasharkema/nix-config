@@ -189,7 +189,6 @@ in
       # substituteInPlace "$out/share/dbus-1/services/org.freedesktop.problems.applet.service" \
       #   --replace-fail "/usr" "$out"
 
-
       ln -sf $out/bin/abrt $out/bin/abrt-cli
     '';
 

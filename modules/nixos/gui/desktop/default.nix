@@ -46,7 +46,7 @@ in {
 
       scx = {
         enable = pkgs.stdenvNoCC.isx86_64;
-        package = pkgs.scx_git.rustscheds;
+        # package = pkgs.scx_git.rustscheds;
         # scheduler = "scx_lavd"; #
         scheduler = "scx_bpfland";
       };
