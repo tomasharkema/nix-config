@@ -205,12 +205,13 @@
       tmp = {
         useTmpfs = true;
       };
-
+      kernelPackages = pkgs.linuxPackages_cachyos-lts;
       kernelModules = ["iTCO_wdt"];
       kernelParams = [
         "console=ttyACM0,115200"
         "console=tty1"
-        # "iomem=relaxed"
+        "mitigations=off"
+        "iomem=relaxed"
       ];
       initrd.kernelModules = ["iTCO_wdt"];
       recovery = {
