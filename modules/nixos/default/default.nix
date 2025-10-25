@@ -498,13 +498,13 @@ in {
       audit.enable = true;
       auditd.enable = true;
       pam.sshAgentAuth.enable = true;
-      pam.rssh = {
-        enable = true;
-        settings = {
-          authorized_keys_command = config.services.openssh.authorizedKeysCommand;
-          authorized_keys_command_user = config.services.openssh.authorizedKeysCommandUser;
-        };
-      };
+      # pam.rssh = {
+      #   enable = true;
+      #   settings = {
+      #     authorized_keys_command = config.services.openssh.authorizedKeysCommand;
+      #     authorized_keys_command_user = config.services.openssh.authorizedKeysCommandUser;
+      #   };
+      # };
       wrappers.nethoscope = {
         owner = "tomas";
         group = "tomas";
