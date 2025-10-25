@@ -55,8 +55,6 @@ in {
       gwe
       # cudaPackages.cudatoolkit
       egl-wayland
-
-      # pkgs.nixgl.auto.nixGLDefault
     ];
 
     services = {

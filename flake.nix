@@ -92,7 +92,6 @@
         # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
         # devenv.overlays.default
-        nixgl.overlay
         nixpkgs-esp-dev.overlays.default
         niri.overlays.niri
       ];
@@ -841,10 +840,10 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    nixgl = {
-      url = "github:nix-community/nixGL?shallow=true";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixgl = {
+    #   url = "github:nix-community/nixGL?shallow=true";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     tsnsrv = {
       url = "github:boinkor-net/tsnsrv?shallow=true";

@@ -45,12 +45,21 @@
             PubkeyAuthentication = "no";
           };
         };
+        "ipa" = {
+          hostname = "ipa";
+          user = "root";
+        };
         "ipa.ling-lizard.ts.net" = {
           hostname = "ipa.ling-lizard.ts.net";
           user = "root";
-          # extraOptions = {
-          #   "IdentityAgent" = onePasswordSocket;
-          # };
+        };
+        "enceladus-kvm" = {
+          hostname = "enceladus-kvm";
+          user = "root";
+        };
+        "enceladus-kvm.ling-lizard.ts.net" = {
+          hostname = "enceladus-kvm.ling-lizard.ts.net";
+          user = "root";
         };
         # "*" = {
         #   forwardAgent = true;

@@ -365,6 +365,11 @@ in {
           # PasswordAuthentication = false;
           # KbdInteractiveAuthentication = true;
           # AcceptEnv = "*";
+          KexAlgorithms = [
+            "sntrup761x25519-sha512"
+            "sntrup761x25519-sha512@openssh.com"
+            "mlkem768x25519-sha256"
+          ];
         };
       };
 
@@ -570,6 +575,7 @@ in {
         # extraConfig = ''
         #  ForwardAgent yes
         # '';
+        kexAlgorithms = config.services.openssh.settings.KexAlgorithms;
       };
 
       nix-ld.enable = true;

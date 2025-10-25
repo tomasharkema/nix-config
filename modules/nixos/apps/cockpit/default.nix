@@ -5,33 +5,46 @@
   ...
 }: {
   config = {
-    services.cockpit = {
-      enable = true;
-      # port = 9099;
-      package = pkgs.cockpit;
-      allowed-origins = ["localhost" "${config.networking.hostName}.ling-lizard.ts.net"];
-      settings = {
-        WebService =
-          if config.services.nginx.enable
-          then {
-            AllowUnencrypted = false;
-            # Origins = "https://localhost:9090 wss://localhost:9090 https://${config.networking.hostName}.ling-lizard.ts.net:9090 wss://${config.networking.hostName}.ling-lizard.ts.net:9090";
-            ProtocolHeader = "X-Forwarded-Proto";
-            UrlRoot = "/cockpit";
-            # ClientCertAuthentication = true;
-          }
-          else {
-            # ClientCertAuthentication = true;
-            # AllowUnencrypted = false;
-            # https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost}
-            # Origins = "https://localhost:9090 wss://localhost:9090 https://${config.networking.hostName}.ling-lizard.ts.net:9090 wss://${config.networking.hostName}.ling-lizard.ts.net:9090";
-          };
-      };
+    environment = {
+      pathsToLink = ["/libexec"];
+      systemPackages = with pkgs; [
+        cockpit
+        custom.cockpit-files
+        custom.cockpit-machines
+        custom.cockpit-sensors
+        custom.cockpit-tailscale
+      ];
     };
 
     security.pam.services."cockpit".enable = true;
 
-    environment.pathsToLink = ["/libexec"];
+    services.cockpit = {
+      enable = true;
+      port = 9090;
+
+      allowed-origins = ["localhost" "${config.networking.hostName}.ling-lizard.ts.net"];
+
+      settings = {
+        WebService =
+          # if config.services.nginx.enable
+          # then {
+          #   AllowUnencrypted = false;
+          #   # Origins = "https://localhost:9090 wss://localhost:9090 https://${config.networking.hostName}.ling-lizard.ts.net:9090 wss://${config.networking.hostName}.ling-lizard.ts.net:9090";
+          #   ProtocolHeader = "X-Forwarded-Proto";
+          #   UrlRoot = "/cockpit";
+          #   ClientCertAuthentication = true;
+          # }
+          # else
+          {
+            # ClientCertAuthentication = true;
+            Origins = lib.mkForce "https://192.168.0.100:${toString config.services.cockpit.port} https://${config.networking.hostName}.ling-lizard.ts.net:${toString config.services.cockpit.port}";
+            # ProtocolHeader = "X-Forwarded-Proto";
+            AllowUnencrypted = false;
+            LoginTo = true;
+            AllowMultiHost = true;
+          };
+      };
+    };
 
     # systemd = {
     #   services = {
