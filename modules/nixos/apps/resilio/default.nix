@@ -6,7 +6,7 @@
 }: let
   cfg = config.apps.resilio;
   port = 52380;
-  known_host = "100.125.116.111:${builtins.toString port}";
+  # known_host = "100.125.116.111:${builtins.toString port}";
 
   root = "/mnt/resilio-sync";
 
