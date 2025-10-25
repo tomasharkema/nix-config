@@ -542,9 +542,6 @@
 
       # binfmt.emulatedSystems = ["aarch64-linux"];
 
-      # kernelPackages = pkgs.linuxPackages_6_12;
-      kernelPackages = pkgs.linuxPackages_cachyos-server;
-
       kernelParams = [
         "console=tty1"
         "console=ttyS0,115200n8"
