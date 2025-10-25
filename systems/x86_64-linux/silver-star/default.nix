@@ -101,7 +101,7 @@
     virtualisation = {
       incus = {
         enable = true;
-        socketActivation = true;
+        # socketActivation = true;
         ui.enable = true;
       };
     };
@@ -360,8 +360,8 @@
       firewall = {
         enable = true;
         allowPing = true;
-        allowedTCPPorts = [1883 32400];
-        allowedUDPPorts = [1883 32400];
+        allowedTCPPorts = [1883 32400 8443];
+        allowedUDPPorts = [1883 32400 8443];
       };
 
       bridges.br0 = {
