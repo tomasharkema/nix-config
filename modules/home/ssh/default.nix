@@ -22,9 +22,9 @@
       enable = true;
       forwardAgent = true;
 
-      serverAliveInterval = 60;
-      controlMaster = "auto";
-      controlPersist = "30m";
+      # serverAliveInterval = 60;
+      # controlMaster = "auto";
+      # controlPersist = "30m";
 
       # addKeysToAgent = true;
       # hashKnownHosts = true;

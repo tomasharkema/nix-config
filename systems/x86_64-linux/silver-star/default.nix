@@ -96,8 +96,6 @@
       clean.extraArgs = "--keep-since 3M";
     };
 
-    networking.nftables.enable = true;
-
     virtualisation = {
       incus = {
         enable = true;
@@ -358,11 +356,13 @@
       hostName = "silver-star";
 
       firewall = {
-        enable = true;
+        enable = false;
         allowPing = true;
         allowedTCPPorts = [1883 32400 8443];
         allowedUDPPorts = [1883 32400 8443];
       };
+
+      # nftables.enable = false;
 
       bridges.br0 = {
         interfaces = ["eno1"];
