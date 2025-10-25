@@ -246,7 +246,7 @@ in {
         useTmpfs = true;
       };
 
-      kernelPackages = pkgs.linuxPackages_6_12;
+      # kernelPackages = pkgs.linuxPackages_6_12;
 
       kernelParams = [
         "console=tty1"
