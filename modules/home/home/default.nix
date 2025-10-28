@@ -153,9 +153,10 @@ in {
     };
 
     catppuccin = {
-      vscode.enable = false;
-      cache.enable = false;
-      mako.enable = false;
+      vscode.profiles.default.enable = false;
+
+      # cache.enable = false;
+      # mako.enable = false;
     };
 
     fonts.fontconfig.enable = true;

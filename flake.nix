@@ -22,7 +22,7 @@
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;
         nvidia.acceptLicense = true;
-        cudaSupport = true;
+        # cudaSupport = true;
 
         allowAliases = true;
 
@@ -49,7 +49,7 @@
         config = {
           allowUnfreePredicate = _: true;
           allowUnfree = true;
-          cudaSupport = true;
+          # cudaSupport = true;
           # contentAddressedByDefault = true;
           # For example, enable smartcard support in Firefox.
           # firefox.smartcardSupport = true;
@@ -797,7 +797,7 @@
     mac-app-util = {
       url = "github:hraban/mac-app-util?shallow=true";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
+        # nixpkgs.follows = "nixpkgs";
       };
     };
 

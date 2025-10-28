@@ -30,8 +30,8 @@
         atuin = {
           rekeyFile = ../../nixos/secrets/atuin.age;
           owner = "${config.user.name}";
-          group = "${config.user.name}";
-          # mode = "644";
+          # group = "${config.user.name}";
+          mode = "666";
           # symlink = false;
         };
         # spotify-tui = {

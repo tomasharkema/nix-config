@@ -79,20 +79,28 @@ in rec {
   # pwvucontrol = prev.custom.pwvucontrol;
   # hyprlock = inputs.hyprlock.packages."${prev.system}".hyprlock;
   gensio = prev.custom.gensio;
-  _cxxopts = prev.cxxopts.overrideAttrs (old: {
-    # buildPhase = ''
-    #   NIX_CFLAGS_COMPILE="-std=c++17 $NIX_CFLAGS_COMPILE"
-    # '';
-    buildInputs =
-      prev.lib.optionals
-      true # old.enableUnicodeHelp
-      
-      [prev.icu74.dev];
-  });
+  # _cxxopts = prev.cxxopts.overrideAttrs (old: {
+  #   # buildPhase = ''
+  #   #   NIX_CFLAGS_COMPILE="-std=c++17 $NIX_CFLAGS_COMPILE"
+  #   # '';
+  #   buildInputs = [prev.icu74.dev];
+  # });
 
   _86Box-with-roms = prev.custom._86Box.override {
     unfreeEnableRoms = true;
   };
+
+  # sbcl = prev.sbcl.overrideAttrs (old: {
+  #   dontTest = true;
+  #   dontCheck = true;
+  #   doCheck = false;
+  # });
+
+  # sbcl_2_5_7 = prev.sbcl_2_5_7.overrideAttrs (old: {
+  #   dontTest = true;
+  #   dontCheck = true;
+  #   doCheck = false;
+  # });
 
   lcdproc = prev.lcdproc.overrideAttrs (old: {
     # configureFlags = ["--enable-drivers=all"];
@@ -126,47 +134,47 @@ in rec {
 
   nixd = inputs.nixd.packages."${prev.system}".default;
 
-  segger-jlink = let
-    version = "862";
-  in
-    prev.segger-jlink.overrideAttrs {
-      src = prev.fetchurl {
-        url = "https://www.segger.com/downloads/jlink/JLink_Linux_V${version}_x86_64.tgz";
-        hash = "sha256-3WECMBYbccIlkLdYVNFyXLTKxfxSeNOSWvF0d9ZKdmw=";
-        curlOpts = "--data accept_license_agreement=accepted";
-      };
-      inherit version;
-    };
+  # segger-jlink = let
+  #   version = "862";
+  # in
+  #   prev.segger-jlink.overrideAttrs {
+  #     src = prev.fetchurl {
+  #       url = "https://www.segger.com/downloads/jlink/JLink_Linux_V${version}_x86_64.tgz";
+  #       hash = "sha256-3WECMBYbccIlkLdYVNFyXLTKxfxSeNOSWvF0d9ZKdmw=";
+  #       curlOpts = "--data accept_license_agreement=accepted";
+  #     };
+  #     inherit version;
+  #   };
 
-  nrfconnect = let
-    pname = "nrfconnect";
-    version = "5.2.0";
+  # nrfconnect = let
+  #   pname = "nrfconnect";
+  #   version = "5.2.0";
 
-    src = prev.fetchurl {
-      url = "https://github.com/NordicSemiconductor/pc-nrfconnect-launcher/releases/download/v${version}/nrfconnect-${version}-x86_64.AppImage";
-      hash = "sha256-Y42cxK44tFYFj7TFpe+rmSWTo0v5+u9VjG37SCGvmws=";
-      name = "${pname}-${version}.AppImage";
-    };
+  #   src = prev.fetchurl {
+  #     url = "https://github.com/NordicSemiconductor/pc-nrfconnect-launcher/releases/download/v${version}/nrfconnect-${version}-x86_64.AppImage";
+  #     hash = "sha256-Y42cxK44tFYFj7TFpe+rmSWTo0v5+u9VjG37SCGvmws=";
+  #     name = "${pname}-${version}.AppImage";
+  #   };
 
-    appimageContents = prev.appimageTools.extractType2 {
-      inherit pname version src;
-    };
-  in
-    prev.appimageTools.wrapType2 {
-      inherit pname version src;
+  #   appimageContents = prev.appimageTools.extractType2 {
+  #     inherit pname version src;
+  #   };
+  # in
+  #   prev.appimageTools.wrapType2 {
+  #     inherit pname version src;
 
-      extraPkgs = pkgs: [
-        prev.segger-jlink-headless
-      ];
+  #     extraPkgs = pkgs: [
+  #       prev.segger-jlink-headless
+  #     ];
 
-      extraInstallCommands = ''
-        install -Dm444 ${appimageContents}/nrfconnect.desktop -t $out/share/applications
-        install -Dm444 ${appimageContents}/usr/share/icons/hicolor/512x512/apps/nrfconnect.png \
-          -t $out/share/icons/hicolor/512x512/apps
-        substituteInPlace $out/share/applications/nrfconnect.desktop \
-          --replace-fail 'Exec=AppRun' 'Exec=nrfconnect'
-      '';
-    };
+  #     extraInstallCommands = ''
+  #       install -Dm444 ${appimageContents}/nrfconnect.desktop -t $out/share/applications
+  #       install -Dm444 ${appimageContents}/usr/share/icons/hicolor/512x512/apps/nrfconnect.png \
+  #         -t $out/share/icons/hicolor/512x512/apps
+  #       substituteInPlace $out/share/applications/nrfconnect.desktop \
+  #         --replace-fail 'Exec=AppRun' 'Exec=nrfconnect'
+  #     '';
+  #   };
 
   # __udisks = overridePkgCheckVersionSnapshot "udisks2" "" udisks2;
 

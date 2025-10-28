@@ -29,7 +29,7 @@ rustPlatform.buildRustPackage rec {
   ];
 
   buildInputs = lib.optionals stdenv.isDarwin [
-    darwin.apple_sdk.frameworks.IOKit
+    # darwin.apple_sdk.frameworks.IOKit
   ];
 
   meta = {

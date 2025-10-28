@@ -26,9 +26,11 @@
       zsh = {
         enable = true;
         enableAutosuggestions = true;
-        syntaxHighlighting.enable = true;
         enableVteIntegration = true;
-        enableSyntaxHighlighting = true;
+
+        syntaxHighlighting = {
+          enable = true;
+        };
 
         dotDir = "${config.xdg.configHome}/zsh";
 
