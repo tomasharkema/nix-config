@@ -43,6 +43,7 @@
           "segger-jlink-qt4-874"
           "dotnet-runtime-6.0.36"
           "libsoup-2.74.3"
+          "python3.13-ecdsa-0.19.1"
         ];
 
         config = {
