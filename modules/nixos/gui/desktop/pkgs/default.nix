@@ -33,7 +33,7 @@
     kicad
     platformio
     saleae-logic-2
-    # digikam
+    digikam
     rmview
     zenmap
     tpmmanager
@@ -50,6 +50,7 @@
     segger-ozone
     segger-jlink
     custom.butler
+    # davinci-resolve
     ddrescue
     ddrescueview
     ddrutility

@@ -302,6 +302,8 @@
       # supportedFilesystems = ["ext2" "ext3" "ext4"];
       kernelParams = [
         "mitigations=off"
+        "efi_pstore.pstore_disable=0"
+        "pstore.backend=efi"
       ];
       #   "i915.enable_gvt=1"
       #   "i915.enable_fbc=0"
@@ -321,6 +323,7 @@
       # '';
       kernelModules = [
         "coretemp"
+        "efi_pstore"
         # "psmouse"
         # "i915"
         # "spi"
@@ -342,6 +345,8 @@
         "nvidia_modeset"
         "nvidia_uvm"
         "nvidia_drm"
+
+        "efi_pstore"
 
         # "spi"
         # "sgx"
