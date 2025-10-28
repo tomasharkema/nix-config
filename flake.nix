@@ -127,9 +127,6 @@
           # nixos-vfio.nixosModules.default
           # nix-snapshotter.nixosModules.default
           chaotic.nixosModules.default
-          chaotic.nixosModules.nyx-cache
-          chaotic.nixosModules.nyx-overlay
-          chaotic.nixosModules.nyx-registry
 
           nixos-facter-modules.nixosModules.facter
           # nix-topology.nixosModules.default
