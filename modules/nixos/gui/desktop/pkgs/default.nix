@@ -20,7 +20,7 @@
     bitwarden-desktop
     bitwarden-cli
     dmenu
-    # openrct2
+    openrct2
     openrw
     openra
     openrisk
