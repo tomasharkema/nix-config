@@ -62,7 +62,6 @@
         ctop
         curl
         custom.discovery-rs
-        custom.glide
         custom.partclone-utils
         custom.meshtui
         custom.wikiman
