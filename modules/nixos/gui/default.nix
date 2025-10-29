@@ -14,7 +14,8 @@ in {
   options.gui = {
     enable = lib.mkEnableOption "gui.defaults";
 
-    hidpi.enable = lib.mkEnableOption "enable gnome desktop environment";
+    hidpi.enable = lib.mkEnableOption "enable generic hidpi for desktop";
+    hdr.enable = lib.mkEnableOption "enable generic hdr for desktop";
   };
 
   config = lib.mkIf cfg.enable {

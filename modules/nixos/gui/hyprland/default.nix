@@ -173,6 +173,10 @@ in {
             if config.gui.hidpi.enable
             then "2"
             else "1"
+          }${
+            if config.gui.hdr.enable
+            then ",bitdepth,10,cm,hdr"
+            else ""
           }";
 
           env = [

@@ -55,7 +55,7 @@
         powerjoular
         libimobiledevice
         intel-gpu-tools
-        nvramtool
+        nvramtoolq
         libusb1
         ccid
         gnupg

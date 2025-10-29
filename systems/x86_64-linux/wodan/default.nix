@@ -98,6 +98,7 @@
       gamemode.enable = true;
       quiet-boot.enable = true;
       hidpi.enable = true;
+      hdr.enable = true;
       gnome = {};
       hyrland.wluma.enable = true;
     };
