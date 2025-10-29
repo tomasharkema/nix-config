@@ -19,7 +19,7 @@
       reportPath = ./facter.json;
     };
 
-    qt.enable = lib.mkForce false;
+    # qt.enable = lib.mkForce false;
 
     disks.btrfs = {
       enable = true;
@@ -55,7 +55,7 @@
         powerjoular
         libimobiledevice
         intel-gpu-tools
-        nvramtoolq
+        nvramtool
         libusb1
         ccid
         gnupg
@@ -87,10 +87,10 @@
       };
     };
 
-    chaotic.hdr = {
-      enable = true;
-      specialisation.enable = false;
-    };
+    # chaotic.hdr = {
+    #   enable = true;
+    #   specialisation.enable = false;
+    # };
 
     # chaotic.mesa-git.enable = true;
 

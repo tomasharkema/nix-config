@@ -21,6 +21,7 @@
     bitwarden-cli
     dmenu
     openrct2
+    custom.letters
     openrw
     openra
     openrisk

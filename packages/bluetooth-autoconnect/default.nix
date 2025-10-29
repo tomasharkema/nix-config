@@ -1,13 +1,13 @@
 {
   fetchFromGitHub,
   bluez,
-  python312Packages,
+  python3Packages,
   libcap,
   glib,
   gobject-introspection,
   wrapGAppsHook,
 }:
-with python312Packages; let
+with python3Packages; let
   prctl = buildPythonPackage rec {
     pname = "python-prctl";
     version = "1.8.1";
