@@ -40,7 +40,7 @@ in {
     systemd = {
       additionalUpstreamSystemUnits = ["systemd-bsod.service"];
       services = {
-        "prepare-kexec".wantedBy = lib.mkIf pkgs.stdenv.isx86_64 ["multi-user.target"];
+        # "prepare-kexec".wantedBy = lib.mkIf pkgs.stdenv.isx86_64 ["multi-user.target"];
         NetworkManager-wait-online.enable = lib.mkForce false;
         systemd-networkd-wait-online.enable = lib.mkForce false;
       };
