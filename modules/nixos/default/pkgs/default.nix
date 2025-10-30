@@ -12,26 +12,21 @@
         # apfs-fuse
         # apfsprogs
         # bat-extras.batgrep
-        # cutecom
-        # dry
-        # fam # unmaintained
-        # gpio-utils
-        # Hardware-related tools.
-        # isd
+        cutecom
+        dry
+        gpio-utils
+        isd
         # jupyter
-        # ldapdomaindump
+        ldapdomaindump
         # lz4
         # mkchromecast
         # nix-switcher # : needs github auth
-        # ntfy
-        # oterm
-        # pamix
-        # socklog
-        # Some compression/archiver tools.
-        # Some networking tools.
-        # Some text editors.
-        # systeroid
-        # tailspin
+        ntfy
+        oterm
+        pamix
+        socklog
+        systeroid
+        tailspin
         agenix-rekey
         aide
         archivemount

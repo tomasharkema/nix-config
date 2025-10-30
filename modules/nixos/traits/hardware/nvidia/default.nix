@@ -158,7 +158,7 @@ in {
         extraPackages = with pkgs; [
           nvidia-vaapi-driver
           # libvdpau-va-gl
-          vaapiVdpau
+          # vaapiVdpau
           # egl-wayland
         ];
       };

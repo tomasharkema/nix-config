@@ -13,7 +13,7 @@
   intltool,
   doxygen,
   python3,
-  wrapGAppsHook,
+  wrapGAppsHook3,
 }:
 stdenv.mkDerivation rec {
   pname = "faf";
@@ -39,7 +39,7 @@ stdenv.mkDerivation rec {
     doxygen
     python3.pkgs.wrapPython
     python3.pkgs.setuptools
-    wrapGAppsHook
+    wrapGAppsHook3
   ];
 
   meta = with lib; {

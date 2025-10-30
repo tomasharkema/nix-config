@@ -17,9 +17,9 @@
     environment = {
       systemPackages = with pkgs; [
         snmpcheck
-        # davinci-resolve
+        davinci-resolve
         ntfs2btrfs
-        glxinfo
+        # glxinfo
         # apfsprogs
         cifs-utils
         piper

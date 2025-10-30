@@ -19,7 +19,7 @@
   intltool,
   doxygen,
   gobject-introspection,
-  wrapGAppsHook,
+  wrapGAppsHook3,
   autoPatchelfHook,
 }: let
   python = python3.withPackages (ps:
@@ -58,7 +58,7 @@ in
       docbook_xml_dtd_45
       intltool
       doxygen
-      wrapGAppsHook
+      wrapGAppsHook3
       autoPatchelfHook
     ];
 

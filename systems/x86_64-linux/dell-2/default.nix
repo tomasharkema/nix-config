@@ -63,7 +63,7 @@
         # davinci-resolve
         keybase-gui
         # calibre
-        glxinfo
+        # glxinfo
         inxi
         pwvucontrol
         i2c-tools

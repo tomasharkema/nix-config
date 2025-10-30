@@ -98,12 +98,11 @@
         custom.futura
         google-fonts
         noto-fonts
-        noto-fonts-extra
-        noto-fonts-emoji
+        noto-fonts-color-emoji
         noto-fonts-cjk-sans
         nerd-fonts.jetbrains-mono
         nerd-fonts.terminess-ttf
-        ubuntu_font_family
+        ubuntu-classic
         pkgs.custom.neue-haas-grotesk
         custom.fast-font
         # helvetica

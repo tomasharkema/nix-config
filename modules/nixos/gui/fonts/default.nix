@@ -84,7 +84,7 @@
           bakoma_ttf
           cm_unicode
           corefonts
-          vistafonts
+          vista-fonts
           custom.b612-nerdfont
           custom.computer-modern
           custom.din
@@ -103,15 +103,15 @@
           nerd-fonts.iosevka
           nerd-fonts.jetbrains-mono
           noto-fonts-cjk-sans
-          noto-fonts-emoji
-          noto-fonts-extra
+          noto-fonts-color-emoji
+          noto-fonts
           open-dyslexic
           open-sans
           powerline-fonts
           powerline-symbols
           proggyfonts
           roboto-mono
-          ubuntu_font_family
+          ubuntu-classic
           vegur
         ];
     };

@@ -2,12 +2,11 @@
   config,
   pkgs,
   lib,
-  inputs,
   ...
 }: let
-  sbctl-tpm = pkgs.writeShellScriptBin "sbctl-tpm" ''
-    sudo sbctl rotate-keys --pk-keytype tpm --kek-keytype kek --db-keytype file
-  '';
+  # sbctl-tpm = pkgs.writeShellScriptBin "sbctl-tpm" ''
+  #   sudo sbctl rotate-keys --pk-keytype tpm --kek-keytype kek --db-keytype file
+  # '';
 in {
   config = {
     assertions = [

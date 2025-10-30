@@ -5,10 +5,10 @@
   ...
 }: {
   config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.gnome.enable) {
-    home.packages = with pkgs; [
-      # appindicator-sharp
-      # ddcui
-    ];
+    # home.packages = with pkgs; [
+    #   # appindicator-sharp
+    #   # ddcui
+    # ];
 
     dconf.settings."org/gnome/shell".enabled-extensions = [
       "GPaste@gnome-shell-extensions.gnome.org"

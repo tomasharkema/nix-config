@@ -36,14 +36,10 @@ in {
         };
       };
 
-      # containers.enable = true;
-
       docker = {
         enable = true;
         enableOnBoot = true;
         storageDriver = "btrfs";
-
-        # daemon.settings.features."containerd-snapshotter" = true;
 
         rootless = {
           enable = true;

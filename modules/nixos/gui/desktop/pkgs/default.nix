@@ -15,7 +15,7 @@
     nrfconnect
     serial-studio
     wine-wayland
-    bitwarden
+
     bitwarden-menu
     bitwarden-desktop
     bitwarden-cli

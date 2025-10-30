@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  config = {
+  config = lib.mkIf config.gui.enable {
     home-manager.users."${config.user.name}" = {
       xdg.configFile.hyprpanel = {
         ignorelinks = true;

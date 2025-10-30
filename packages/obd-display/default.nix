@@ -7,9 +7,9 @@
   glibc,
   gtk2,
   gobject-introspection,
-  wrapGAppsHook,
+  wrapGAppsHook3,
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "obd-display";
   version = "unstable-2019-08-28";
 
@@ -26,13 +26,13 @@ stdenv.mkDerivation rec {
     glibc
     gtk2
     gobject-introspection
-    wrapGAppsHook
+    wrapGAppsHook3
   ];
   meta = {
     description = "OBD-II Display for Rasperry PI/Linux and Tiny-CAN";
     homepage = "https://github.com/MHS-Elektronik/OBD-Display";
     license = lib.licenses.mit;
-    maintainers = with lib.maintainers; [];
+    # maintainers = lib.maintainers; [];
     mainProgram = "obd-display";
     platforms = lib.platforms.all;
   };

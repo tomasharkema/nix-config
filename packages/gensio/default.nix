@@ -11,7 +11,7 @@
   udev,
   glib,
   tcl,
-  tclx,
+  tclPackages,
   autoPatchelfHook,
 }:
 stdenv.mkDerivation rec {
@@ -47,7 +47,7 @@ stdenv.mkDerivation rec {
       udev
       glib
       tcl
-      tclx
+      tclPackages.tclx
     ]
     ++ (lib.optionals stdenv.hostPlatform.isDarwin [openssl]);
 

@@ -3,7 +3,7 @@
   rustPlatform,
   fetchFromGitHub,
   pkg-config,
-  wrapGAppsHook,
+  wrapGAppsHook3,
   atk,
   cairo,
   gdk-pixbuf,
@@ -79,7 +79,7 @@ in
 
     nativeBuildInputs = [
       pkg-config
-      wrapGAppsHook
+      wrapGAppsHook3
       python3
       rustPlatform.bindgenHook
     ];

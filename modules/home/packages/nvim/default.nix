@@ -1,12 +1,4 @@
-{
-  inputs,
-  config,
-  pkgs,
-  system,
-  lib,
-  osConfig,
-  ...
-}:
+{pkgs, ...}:
 #let
 #  coc = import ./coc.nix;
 #in
@@ -221,7 +213,6 @@
 
               undo.enable = true;
               project.enable = true;
-              # project-nvim.enable = true;
               ui-select.enable = true;
               file-browser.enable = true;
             };
@@ -253,12 +244,12 @@
             enable = true;
           };
           gitgutter = {
-            # enable = true;
+            enable = true;
           };
           surround = {
             enable = true;
           };
-          nvim-colorizer = {
+          colorizer = {
             enable = true;
           };
           nix-develop.enable = true;
@@ -304,7 +295,6 @@
           };
           auto-save = {
             enable = true;
-            # enableAutoSave = true;
           };
           git-worktree = {
             enable = true;
@@ -335,16 +325,16 @@
           };
           cmp-zsh.enable = true;
 
-          conform-nvim = {
-            enable = true;
-            #   format_on_save = {
-            #     timeoutMs = 1000;
-            #   };
-            #   formattersByFt = {
-            #     lua = ["stylua"];
-            #     nix = ["alejandra"];
-            #   };
-          };
+          # conform-nvim = {
+          # enable = true;
+          # format_on_save = {
+          # timeoutMs = 1000;
+          # };
+          #   formattersByFt = {
+          #     lua = ["stylua"];
+          #     nix = ["alejandra"];
+          #   };
+          # };
         };
 
         extraPlugins = with pkgs.vimPlugins; [

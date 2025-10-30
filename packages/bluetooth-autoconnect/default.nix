@@ -5,7 +5,7 @@
   libcap,
   glib,
   gobject-introspection,
-  wrapGAppsHook,
+  wrapGAppsHook3,
 }:
 with python3Packages; let
   prctl = buildPythonPackage rec {
@@ -46,7 +46,7 @@ in
       bluez
     ];
 
-    nativeBuildInputs = [glib gobject-introspection dbus-python pygobject3 wrapGAppsHook];
+    nativeBuildInputs = [glib gobject-introspection dbus-python pygobject3 wrapGAppsHook3];
 
     installPhase = ''
       runHook preInstall

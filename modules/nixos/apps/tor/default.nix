@@ -7,7 +7,7 @@
   config = {
     environment.systemPackages = with pkgs; [
       tor
-      (lib.mkIf (pkgs.system == "x86_64-linux" && config.gui.enable) tor-browser-bundle-bin)
+      (lib.mkIf (pkgs.system == "x86_64-linux" && config.gui.enable) tor-browser)
     ];
 
     services.tor = {

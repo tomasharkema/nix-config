@@ -92,7 +92,6 @@
         chaotic.overlays.default
         # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
-        # devenv.overlays.default
         nixpkgs-esp-dev.overlays.default
         niri.overlays.niri
       ];
@@ -156,11 +155,7 @@
           # nix-virt.nixosModules.default
           ./defaultNixosAge.nix
           (
-            {
-              pkgs,
-              config,
-              ...
-            }: {
+            {config, ...}: {
               nix.extraOptions = ''
                 !include ${config.age.secrets.nix-access-tokens-github.path}
               '';
@@ -177,7 +172,6 @@
             {
               config,
               lib,
-              pkgs,
               ...
             }: {
               config = {
@@ -231,7 +225,7 @@
           # inherit ((colmena.lib.makeHive self.colmena).introspect (x: x)) nodes;
         };
 
-      machines = with inputs; let
+      machines = let
         names = builtins.attrNames (builtins.readDir ./systems-by-name);
       in rec {
         all =
@@ -240,7 +234,7 @@
         excludingSelf = cfg: (builtins.filter (name: cfg.networking.hostName != name) all);
       };
 
-      images = with inputs; rec {
+      images = with inputs; {
         # baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
         # pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
         installer = {
@@ -604,9 +598,9 @@
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote?shallow=true";
-
+      # url = "github:andre4ik3/lanzaboote?ref=fenix";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
+        #nixpkgs.follows = "nixpkgs";
         # crane.follows = "crane";
         # flake-parts.follows = "flake-parts";
         # flake-compat.follows = "flake-compat";

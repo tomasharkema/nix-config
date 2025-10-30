@@ -3,7 +3,7 @@
   rustPlatform,
   fetchFromGitLab,
   pkg-config,
-  wrapGAppsHook,
+  wrapGAppsHook3,
   atk,
   cairo,
   gdk-pixbuf,
@@ -28,7 +28,7 @@ rustPlatform.buildRustPackage rec {
 
   nativeBuildInputs = [
     pkg-config
-    wrapGAppsHook
+    wrapGAppsHook3
   ];
 
   buildInputs = [
@@ -46,7 +46,7 @@ rustPlatform.buildRustPackage rec {
     description = "";
     homepage = "https://gitlab.com/nexxontech/whatstux";
     license = lib.licenses.gpl3Only;
-    maintainers = with lib.maintainers; [];
+    # maintainers = with lib.maintainers; [];
     mainProgram = "whatstux";
   };
 }

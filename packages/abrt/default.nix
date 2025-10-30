@@ -35,7 +35,7 @@
   doxygen,
   autoreconfHook,
   autoPatchelfHook,
-  wrapGAppsHook,
+  wrapGAppsHook3,
 }: let
   sphinxFixed = sphinx.overrideAttrs (
     {postInstall ? "", ...}: {
@@ -131,7 +131,7 @@ in
       intltool
       doxygen
       python3.pkgs.wrapPython
-      wrapGAppsHook
+      wrapGAppsHook3
     ];
 
     buildInputs = [

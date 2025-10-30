@@ -12,7 +12,7 @@
   webkitgtk_6_0,
   desktop-file-utils,
   autoPatchelfHook,
-  wrapGAppsHook,
+  wrapGAppsHook3,
 }:
 stdenv.mkDerivation rec {
   pname = "butler";
@@ -31,7 +31,7 @@ stdenv.mkDerivation rec {
     glib
     pkg-config
     autoPatchelfHook
-    wrapGAppsHook
+    wrapGAppsHook3
   ];
 
   buildInputs = [

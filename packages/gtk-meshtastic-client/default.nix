@@ -14,7 +14,7 @@
   gtk4,
   libadwaita,
   gobject-introspection,
-  wrapGAppsHook,
+  wrapGAppsHook3,
   libshumate,
   desktop-file-utils,
   meshtastic-fix,
@@ -44,7 +44,7 @@ in
       meson
       ninja
       gobject-introspection
-      wrapGAppsHook
+      wrapGAppsHook3
       pkg-config
       desktop-file-utils
       py

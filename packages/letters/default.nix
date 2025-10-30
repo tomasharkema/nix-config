@@ -12,7 +12,7 @@
   python3,
   gtk4,
   gobject-introspection,
-  wrapGAppsHook,
+  wrapGAppsHook3,
   webkitgtk_6_0,
 }: let
   py = python3.withPackages (ps:
@@ -46,7 +46,7 @@ in
       cmake
       gtk4
       # gobject-introspection
-      wrapGAppsHook
+      wrapGAppsHook3
       webkitgtk_6_0
       py
     ];

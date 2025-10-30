@@ -9,7 +9,7 @@
   pkgs,
   glib,
   gobject-introspection,
-  wrapGAppsHook,
+  wrapGAppsHook3,
 }: let
   p2n = inputs.poetry2nix.lib.mkPoetry2Nix {inherit pkgs;};
   p2nix = p2n.overrideScope (final: prev: {
@@ -41,7 +41,7 @@ in (p2nix.mkPoetryApplication {
   };
   # nativeBuildInputs = with python3Packages; [pygobject3];
   propagatedBuildInputs = with python3Packages; [glib gobject-introspection dbus-python pygobject3];
-  nativeBuildInputs = with python3Packages; [glib gobject-introspection dbus-python pygobject3 wrapGAppsHook];
+  nativeBuildInputs = with python3Packages; [glib gobject-introspection dbus-python pygobject3 wrapGAppsHook3];
   preferWheels = true;
 
   postInstall = ''

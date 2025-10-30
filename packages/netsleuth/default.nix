@@ -12,7 +12,7 @@
   gtk4,
   appstream,
   desktop-file-utils,
-  wrapGAppsHook,
+  wrapGAppsHook3,
   gobject-introspection,
 }: let
   p = python3.withPackages (ps: with ps; [pygobject3 gst-python]);
@@ -32,7 +32,7 @@ in
       meson
       ninja
       pkg-config
-      wrapGAppsHook
+      wrapGAppsHook3
       gobject-introspection
     ];
 
@@ -50,7 +50,7 @@ in
       description = "A simple utility for the calculation and analysis of IP subnet values, designed to simplify network configuration tasks";
       homepage = "https://github.com/vmkspv/netsleuth";
       license = licenses.gpl3Only;
-      maintainers = with maintainers; [];
+      # maintainers = with maintainers; [];
       mainProgram = "netsleuth";
       platforms = platforms.all;
     };

@@ -1,8 +1,7 @@
 {
-  lib,
   python3Packages,
   gobject-introspection,
-  wrapGAppsHook,
+  wrapGAppsHook3,
   pkg-config,
   fetchFromGitHub,
   gtk3,
@@ -54,7 +53,7 @@ with python3Packages;
       gobject-introspection
       pkg-config
       pkgconfig
-      wrapGAppsHook
+      wrapGAppsHook3
       wheel
       # tpm2-pytss
       pdm
