@@ -68,7 +68,6 @@ in {
       };
       # "bmc-watchdog".enable = true;
       docker.enable = true;
-      ollama.enable = true;
     };
 
     services = {

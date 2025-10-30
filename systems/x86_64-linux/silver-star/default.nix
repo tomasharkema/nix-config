@@ -75,7 +75,6 @@
         enable = true;
         httpd = false; # true;
       };
-      # ollama.enable = true;
       # "bmc-watchdog".enable = true;
       docker.enable = true;
       zabbix.server.enable = true;

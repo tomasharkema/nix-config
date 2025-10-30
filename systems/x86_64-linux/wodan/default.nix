@@ -136,7 +136,6 @@
         enable = true;
         # sunshine = true;
       };
-      ollama.enable = true;
       flatpak.enable = true;
       docker.enable = true;
       ddc.enable = true;
