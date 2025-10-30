@@ -7,15 +7,16 @@
 }: let
   cfgDesktop = config.gui.desktop;
 in {
-  config = lib.mkIf cfgDesktop.enable {
+  config = lib.mkIf (cfgDesktop.enable && false) {
     programs.niri.enable = true;
     home-manager.users.tomas = {
       programs = {
         fuzzel.enable = true;
         alacritty.enable = true;
+
         niri = {
           # enable = true;
-          # package = pkgs.niri-unstable;
+
           settings = {
             spawn-at-startup = [
               {argv = ["waybar"];}

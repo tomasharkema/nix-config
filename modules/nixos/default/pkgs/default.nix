@@ -8,7 +8,7 @@
     environment.systemPackages =
       (with pkgs; [
         (lib.mkIf pkgs.stdenv.isx86_64 ipmicfg)
-
+        libsecret
         # apfs-fuse
         # apfsprogs
         # bat-extras.batgrep

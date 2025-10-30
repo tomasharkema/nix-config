@@ -364,11 +364,11 @@ in {
           # PasswordAuthentication = false;
           # KbdInteractiveAuthentication = true;
           # AcceptEnv = "*";
-          KexAlgorithms = [
-            "sntrup761x25519-sha512"
-            "sntrup761x25519-sha512@openssh.com"
-            "mlkem768x25519-sha256"
-          ];
+          # KexAlgorithms = [
+          #   "sntrup761x25519-sha512"
+          #   "sntrup761x25519-sha512@openssh.com"
+          #   "mlkem768x25519-sha256"
+          # ];
         };
       };
 
@@ -502,13 +502,13 @@ in {
       audit.enable = true;
       auditd.enable = true;
       pam.sshAgentAuth.enable = true;
-      # pam.rssh = {
-      #   enable = true;
-      #   settings = {
-      #     authorized_keys_command = config.services.openssh.authorizedKeysCommand;
-      #     authorized_keys_command_user = config.services.openssh.authorizedKeysCommandUser;
-      #   };
-      # };
+      pam.rssh = {
+        enable = true;
+        settings = {
+          authorized_keys_command = config.services.openssh.authorizedKeysCommand;
+          authorized_keys_command_user = config.services.openssh.authorizedKeysCommandUser;
+        };
+      };
       wrappers.nethoscope = {
         owner = "tomas";
         group = "tomas";
@@ -574,7 +574,7 @@ in {
         # extraConfig = ''
         #  ForwardAgent yes
         # '';
-        kexAlgorithms = config.services.openssh.settings.KexAlgorithms;
+        # kexAlgorithms = config.services.openssh.settings.KexAlgorithms;
       };
 
       nix-ld.enable = true;

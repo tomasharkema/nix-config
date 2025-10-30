@@ -101,76 +101,75 @@ in rec {
       cmakeFlags = cmakeFlags ++ ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"];
       doCheck = false;
     });
+  openrct2 = let
+    openrct2-version = "0.4.27";
 
-  # openrct2 = let
-  #   openrct2-version = "0.4.27";
+    # Those versions MUST match the pinned versions within the CMakeLists.txt
+    # file. The REPLAYS repository from the CMakeLists.txt is not necessary.
+    objects-version = "1.7.3";
+    openmsx-version = "1.6.1";
+    opensfx-version = "1.0.6";
+    title-sequences-version = "0.4.26";
 
-  #   # Those versions MUST match the pinned versions within the CMakeLists.txt
-  #   # file. The REPLAYS repository from the CMakeLists.txt is not necessary.
-  #   objects-version = "1.7.3";
-  #   openmsx-version = "1.6.1";
-  #   opensfx-version = "1.0.6";
-  #   title-sequences-version = "0.4.26";
+    objects = prev.fetchurl {
+      url = "https://github.com/OpenRCT2/objects/releases/download/v${objects-version}/objects.zip";
+      hash = "sha256-yBApJkV4cG7R24hmXhKnClg+cdxNPrTbJiU10vBYnqs=";
+    };
+    openmsx = prev.fetchurl {
+      url = "https://github.com/OpenRCT2/OpenMusic/releases/download/v${openmsx-version}/openmusic.zip";
+      hash = "sha256-mUs1DTsYDuHLlhn+J/frrjoaUjKEDEvUeonzP6id4aE=";
+    };
+    opensfx = prev.fetchurl {
+      url = "https://github.com/OpenRCT2/OpenSoundEffects/releases/download/v${opensfx-version}/opensound.zip";
+      hash = "sha256-BrkPPhnCFnUt9EHVUbJqnj4bp3Vb3SECUEtzv5k2CL4=";
+    };
+    title-sequences = prev.fetchurl {
+      url = "https://github.com/OpenRCT2/title-sequences/releases/download/v${title-sequences-version}/title-sequences.zip";
+      hash = "sha256-2ruXh7FXY0L8pN2fZLP4z6BKfmzpwruWEPR7dikFyFg=";
+    };
+  in
+    prev.openrct2.overrideAttrs ({buildInputs, ...}: {
+      pname = "openrct2";
+      version = openrct2-version;
 
-  #   objects = prev.fetchurl {
-  #     url = "https://github.com/OpenRCT2/objects/releases/download/v${objects-version}/objects.zip";
-  #     hash = "sha256-yBApJkV4cG7R24hmXhKnClg+cdxNPrTbJiU10vBYnqs=";
-  #   };
-  #   openmsx = prev.fetchurl {
-  #     url = "https://github.com/OpenRCT2/OpenMusic/releases/download/v${openmsx-version}/openmusic.zip";
-  #     hash = "sha256-mUs1DTsYDuHLlhn+J/frrjoaUjKEDEvUeonzP6id4aE=";
-  #   };
-  #   opensfx = prev.fetchurl {
-  #     url = "https://github.com/OpenRCT2/OpenSoundEffects/releases/download/v${opensfx-version}/opensound.zip";
-  #     hash = "sha256-BrkPPhnCFnUt9EHVUbJqnj4bp3Vb3SECUEtzv5k2CL4=";
-  #   };
-  #   title-sequences = prev.fetchurl {
-  #     url = "https://github.com/OpenRCT2/title-sequences/releases/download/v${title-sequences-version}/title-sequences.zip";
-  #     hash = "sha256-2ruXh7FXY0L8pN2fZLP4z6BKfmzpwruWEPR7dikFyFg=";
-  #   };
-  # in
-  #   prev.openrct2.overrideAttrs ({buildInputs, ...}: {
-  #     pname = "openrct2";
-  #     version = openrct2-version;
+      src = prev.fetchFromGitHub {
+        owner = "OpenRCT2";
+        repo = "OpenRCT2";
+        tag = "v${openrct2-version}";
+        hash = "sha256-q/urQEbiPkwktLG3hOf6qOhbjJP4SuKOcsPQNx5dsAw=";
+      };
 
-  #     src = prev.fetchFromGitHub {
-  #       owner = "OpenRCT2";
-  #       repo = "OpenRCT2";
-  #       tag = "v${openrct2-version}";
-  #       hash = "sha256-q/urQEbiPkwktLG3hOf6qOhbjJP4SuKOcsPQNx5dsAw=";
-  #     };
+      postUnpack = ''
+        mkdir -p $sourceRoot/data/{object,sequence}
+        unzip -o ${objects} -d $sourceRoot/data/object
+        unzip -o ${openmsx} -d $sourceRoot/data
+        unzip -o ${opensfx} -d $sourceRoot/data
+        unzip -o ${title-sequences} -d $sourceRoot/data/sequence
+      '';
 
-  #     postUnpack = ''
-  #       mkdir -p $sourceRoot/data/{object,sequence}
-  #       unzip -o ${objects} -d $sourceRoot/data/object
-  #       unzip -o ${openmsx} -d $sourceRoot/data
-  #       unzip -o ${opensfx} -d $sourceRoot/data
-  #       unzip -o ${title-sequences} -d $sourceRoot/data/sequence
-  #     '';
+      buildInputs =
+        (builtins.filter (x: x.name != "nlohmann_json-3.12.0") buildInputs)
+        ++ [
+          nlohmann_json_3_11_3
+        ];
 
-  #     buildInputs =
-  #       (builtins.filter (x: x.name != "nlohmann_json-3.12.0") buildInputs)
-  #       ++ [
-  #         nlohmann_json_3_11_3
-  #       ];
+      preConfigure =
+        # Verify that the correct version of each third party repository is used.
+        (
+          let
+            versionCheck = cmakeKey: version: ''
+              grep -q '^set(${cmakeKey}_VERSION "${version}")$' CMakeLists.txt \
+                || (echo "${cmakeKey} differs from expected version!"; exit 1)
+            '';
+          in
+            (versionCheck "OBJECTS" objects-version)
+            + (versionCheck "OPENMSX" openmsx-version)
+            + (versionCheck "OPENSFX" opensfx-version)
+            + (versionCheck "TITLE_SEQUENCE" title-sequences-version)
+        );
 
-  #     preConfigure =
-  #       # Verify that the correct version of each third party repository is used.
-  #       (
-  #         let
-  #           versionCheck = cmakeKey: version: ''
-  #             grep -q '^set(${cmakeKey}_VERSION "${version}")$' CMakeLists.txt \
-  #               || (echo "${cmakeKey} differs from expected version!"; exit 1)
-  #           '';
-  #         in
-  #           (versionCheck "OBJECTS" objects-version)
-  #           + (versionCheck "OPENMSX" openmsx-version)
-  #           + (versionCheck "OPENSFX" opensfx-version)
-  #           + (versionCheck "TITLE_SEQUENCE" title-sequences-version)
-  #       );
-
-  #     doCheck = false;
-  #   });
+      doCheck = false;
+    });
 
   _86Box-with-roms = prev.custom._86Box.override {
     unfreeEnableRoms = true;

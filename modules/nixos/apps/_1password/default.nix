@@ -28,7 +28,7 @@ in {
       _1password-gui = lib.mkIf cfg.gui.enable {
         enable = true;
         polkitPolicyOwners = ["tomas" "root"];
-        package = pkgs._1password-gui-beta;
+        package = pkgs._1password-gui;
       };
     };
 

@@ -93,7 +93,7 @@
         # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
         nixpkgs-esp-dev.overlays.default
-        niri.overlays.niri
+        # niri.overlays.niri
       ];
 
       homes.modules = with inputs; [
@@ -867,7 +867,7 @@
 
     niri = {
       url = "github:sodiboo/niri-flake?shallow=true";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixpkgs-esp-dev = {
