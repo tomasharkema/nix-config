@@ -2306,11 +2306,11 @@
         "systems": "systems_15"
       },
       "locked": {
-        "lastModified": 1761748096,
-        "narHash": "sha256-ybLP1UxK2WbN1pbyMhaFy56kWvVJ1kAPYb+EN8HEdkA=",
+        "lastModified": 1761809736,
+        "narHash": "sha256-+0gl5pwngWyYYosKvm0jnh9mPZnXMOXg/zyvwxTvnS8=",
         "owner": "abenz1267",
         "repo": "walker",
-        "rev": "be75bb9bde4fa5e5510fb4bedb976c5201b2da0f",
+        "rev": "87749f2d04d1f351bfaa74e8a133d9bcffb0e0fb",
         "type": "github"
       },
       "original": {
