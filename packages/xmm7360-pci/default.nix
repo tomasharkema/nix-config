@@ -11,29 +11,35 @@
 in
   stdenv.mkDerivation rec {
     pname = "xmm7360-pci";
-    version = "2024-02-24-${kernel.version}";
+    version = "2025-10-31-${kernel.version}";
 
+    # src = fetchFromGitHub {
+    #   owner = "xmm7360";
+    #   repo = "xmm7360-pci";
+    #   rev = "a8ff2c6ceee84cbe74df8a78cfaa5a016d362ed4";
+    #   sha256 = "sha256-wwm9ELALiJrC54azyJ95Rm3pcGLYzhxEe9mcCUvSVKk=";
+    # };
     src = fetchFromGitHub {
-      owner = "xmm7360";
-      repo = "xmm7360-pci";
-      rev = "a8ff2c6ceee84cbe74df8a78cfaa5a016d362ed4";
-      sha256 = "sha256-wwm9ELALiJrC54azyJ95Rm3pcGLYzhxEe9mcCUvSVKk=";
+      owner = "SimPilotAdamT";
+      repo = "xmm7360-pci-SPAT";
+      rev = "master";
+      sha256 = "sha256-T+yJqHzf5gj8r/z4MrN+ZBDr2kfUNEVZEf3eFvGcJKg=";
     };
 
     nativeBuildInputs = kernel.moduleBuildDependencies;
     patches = [
-      (fetchpatch {
-        url = "https://patch-diff.githubusercontent.com/raw/xmm7360/xmm7360-pci/pull/220.patch";
-        sha256 = "sha256-zIx9tkPo9LFgaOVSyEQBNIgVY2QwdYpM/tw6/ifiy1A=";
-      })
-      (fetchpatch {
-        url = "https://raw.githubusercontent.com/chaotic-aur/pkgbuild-xmm7360-pci-git/refs/heads/master/nodbus-exit-code.patch";
-        sha256 = "sha256-aOUaPskcHjZzjfy/es33va+GJqwLDH7NRdsh0rpp+Do=";
-      })
-      (fetchpatch {
-        url = "https://raw.githubusercontent.com/chaotic-aur/pkgbuild-xmm7360-pci-git/refs/heads/master/dns-priority.patch";
-        sha256 = "sha256-/oSuUn6INq0uo2wmVieRo5CWgjTLYO51mqinBEbcanA=";
-      })
+      # (fetchpatch {
+      #   url = "https://patch-diff.githubusercontent.com/raw/xmm7360/xmm7360-pci/pull/220.patch";
+      #   sha256 = "sha256-zIx9tkPo9LFgaOVSyEQBNIgVY2QwdYpM/tw6/ifiy1A=";
+      # })
+      # (fetchpatch {
+      #   url = "https://raw.githubusercontent.com/chaotic-aur/pkgbuild-xmm7360-pci-git/refs/heads/master/nodbus-exit-code.patch";
+      #   sha256 = "sha256-aOUaPskcHjZzjfy/es33va+GJqwLDH7NRdsh0rpp+Do=";
+      # })
+      # (fetchpatch {
+      #   url = "https://raw.githubusercontent.com/chaotic-aur/pkgbuild-xmm7360-pci-git/refs/heads/master/dns-priority.patch";
+      #   sha256 = "sha256-/oSuUn6INq0uo2wmVieRo5CWgjTLYO51mqinBEbcanA=";
+      # })
       ./linux-6.15.patch
     ];
 
@@ -48,7 +54,7 @@ in
       runHook preInstall
 
       mkdir -p $out/bin/
-      install -D xmm7360.ko $out/lib/modules/${kernel.modDirVersion}/misc/xmm7360.ko
+      install -D xmm7360.ko $out/lib/modules/${kernel.modDirVersion}/extra/xmm7360.ko
       cp rpc/* $out/bin/
 
       cp scripts/lte.sh $out/bin/lte

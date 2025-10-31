@@ -79,8 +79,8 @@ in {
       usbWwan.enable = true;
     };
 
-    systemd.services.xmm7360 = lib.mkIf false {
-      enable = false;
+    systemd.services.xmm7360 = {
+      # enable = false;
       description = "XMM7360 Modem Init";
       after = ["NetworkManager.service"];
       requires = [

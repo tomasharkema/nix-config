@@ -293,8 +293,8 @@
         "ibt=off"
         # "i915.enable_gvt=1"
         # "i915.enable_guc=0"
-        "intel_iommu=on"
-        "iommu=pt"
+        # "intel_iommu=on"
+        # "iommu=pt"
         # "iommu.passthrough=1"
         "mitigations=off"
       ];
