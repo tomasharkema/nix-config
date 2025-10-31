@@ -87,13 +87,6 @@
       };
     };
 
-    # chaotic.hdr = {
-    #   enable = true;
-    #   specialisation.enable = false;
-    # };
-
-    # chaotic.mesa-git.enable = true;
-
     hardware = {
       # mcelog.enable = true;
       # usb-modeswitch.enable = true;
@@ -102,17 +95,17 @@
         # forceFullCompositionPipeline = true;
         modesetting.enable = true;
         prime = {
-          sync.enable = true;
+          # sync.enable = true;
           # reverseSync.enable = true;
-          offload.enable = false;
-          # offload.enableOffloadCmd = true;
+          offload.enable = true;
+          offload.enableOffloadCmd = true;
           intelBusId = "PCI:0:2:0";
           nvidiaBusId = "PCI:01:0:0";
         };
 
         powerManagement = {
           enable = true;
-          # finegrained = true;
+          finegrained = true;
         };
       };
 
@@ -158,7 +151,7 @@
       firewall = {
         enable = true; # wlp4s0; # false;
         allowPing = true;
-        # trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
+        trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
       };
     };
 

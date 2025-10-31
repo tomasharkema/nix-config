@@ -86,8 +86,8 @@ in {
       usbStorage.manageShutdown = true;
       flipperzero.enable = true;
       logitech = {
-        enable = true;
-        enableGraphical = true;
+        # enable = true;
+        # enableGraphical = true;
         wireless = {
           enable = true;
           enableGraphical = true;
@@ -98,6 +98,14 @@ in {
     programs = {
       gphoto2.enable = true;
       nm-applet.enable = true;
+    };
+
+    chaotic = {
+      # scx.enable = true;
+      hdr = lib.mkIf cfg.hdr.enable {
+        enable = true;
+        specialisation.enable = false;
+      };
     };
 
     # systemd = {enableEmergencyMode = lib.mkDefault true;};

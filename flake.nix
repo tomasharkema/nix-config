@@ -22,12 +22,12 @@
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;
         nvidia.acceptLicense = true;
-        cudaSupport = true;
+        cudaSupport = false;
 
         allowAliases = true;
 
         config.allowAliases = true;
-        lazy-trees = true;
+        # lazy-trees = true;
 
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
@@ -45,15 +45,16 @@
           "libsoup-2.74.3"
           "python3.13-ecdsa-0.19.1"
         ];
-
+        enableBroken = true;
         config = {
           allowUnfreePredicate = _: true;
           allowUnfree = true;
-          cudaSupport = true;
+          cudaSupport = false;
+          enableBroken = true;
           # contentAddressedByDefault = true;
           # For example, enable smartcard support in Firefox.
           # firefox.smartcardSupport = true;
-          lazy-trees = true;
+          #lazy-trees = true;
           permittedInsecurePackages = [
             # "openssl-1.1.1w"
             # "python3.12-youtube-dl-2021.12.17"

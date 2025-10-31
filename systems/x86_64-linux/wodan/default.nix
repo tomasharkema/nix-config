@@ -141,11 +141,6 @@
       ddc.enable = true;
     };
 
-    chaotic.hdr = {
-      enable = true;
-      specialisation.enable = false;
-    };
-
     virtualisation.waydroid.enable = true;
 
     # virtualisation.kvmgt = {

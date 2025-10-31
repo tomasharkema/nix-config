@@ -47,7 +47,7 @@ in {
       # nvflash
       # nvidia-capture-sdk
       libva-utils
-      (nvtopPackages.full)
+      # (nvtopPackages.full)
       zenith-nvidia
       nvidia-offload
       nvfancontrol

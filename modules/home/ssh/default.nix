@@ -28,10 +28,13 @@
 
       # addKeysToAgent = true;
       # hashKnownHosts = true;
+      enableDefaultConfig = false;
+      controlPath = null;
 
       matchBlocks = {
         "*" = {
           match = "host * exec \"test -z $SSH_TTY\"";
+
           extraOptions = {
             IdentityAgent = onePasswordSocket;
             PKCS11Provider =

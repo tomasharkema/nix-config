@@ -145,12 +145,12 @@
           "i686-linux"
         ];
 
-        extra-sandbox-paths = [config.programs.ccache.cacheDir];
+        # extra-sandbox-paths = [config.programs.ccache.cacheDir];
 
         use-cgroups = true;
         #  ca-derivations recursive-nix
         extra-experimental-features = "nix-command flakes cgroups";
-        http-connections = 50;
+        # http-connections = 50;
         warn-dirty = false;
         log-lines = 50;
         sandbox = true;

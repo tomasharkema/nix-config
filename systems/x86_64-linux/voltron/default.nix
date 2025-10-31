@@ -82,8 +82,6 @@
       };
     };
 
-    # chaotic.mesa-git.enable = true;
-
     hardware = {
       # mcelog.enable = true;
       # usb-modeswitch.enable = true;
@@ -149,7 +147,7 @@
       firewall = {
         enable = true; # wlp4s0; # false;
         allowPing = true;
-        # trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
+        trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
       };
     };
 

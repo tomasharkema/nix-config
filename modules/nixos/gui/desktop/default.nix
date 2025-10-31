@@ -15,9 +15,9 @@ in {
   options.gui.desktop = {
     enable = lib.mkEnableOption "desktop";
 
-    rdp = {
-      enable = lib.mkEnableOption "desktop rdp";
-    };
+    # rdp = {
+    #   enable = lib.mkEnableOption "desktop rdp";
+    # };
   };
 
   config = lib.mkIf (cfg.enable) {
@@ -64,7 +64,6 @@ in {
           # custom.anydesk
           # tilix
           usbguard-notifier
-          ptyxis
         ];
       };
       # xrdp = mkIf cfg.rdp.enable {
@@ -89,35 +88,33 @@ in {
       gvfs.enable = true;
     };
 
-    security.polkit = lib.mkIf cfg.rdp.enable {
+    security.polkit = {
       enable = true;
-      extraConfig = ''
-        polkit.addRule(function(action, subject) {
-          if (
-            subject.isInGroup("users")
-              && (
-                action.id == "org.freedesktop.login1.reboot" ||
-                action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-                action.id == "org.freedesktop.login1.power-off" ||
-                action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+      extraConfig =
+        lib.mkIf false
+        # cfg.rdp.enable
+        ''
+          polkit.addRule(function(action, subject) {
+            if (
+              subject.isInGroup("users")
+                && (
+                  action.id == "org.freedesktop.login1.reboot" ||
+                  action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+                  action.id == "org.freedesktop.login1.power-off" ||
+                  action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+                )
               )
-            )
-          {
-            return polkit.Result.YES;
-          }
-        })
-      '';
+            {
+              return polkit.Result.YES;
+            }
+          })
+        '';
     };
 
     environment = {
       etc."xdg/autostart/geary-autostart.desktop".source = "${pkgs.geary}/share/applications/geary-autostart.desktop";
       sessionVariables.NIXOS_OZONE_WL = "1";
     };
-    # chaotic = {
-    # scx.enable = true;
-    # mesa-git.enable = true;
-    # hdr.enable = true;
-    # };
 
     hardware = {
       saleae-logic.enable = true;
@@ -193,7 +190,6 @@ in {
         [
           pkgs.usbguard-notifier
           #config.system.build.chromium
-          pkgs.ptyxis
         ]
         ++ (lib.optional pkgs.stdenv.isx86_64 pkgs.widevine-cdm);
     };

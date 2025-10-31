@@ -12,22 +12,21 @@ in {
     environment.systemPackages = with pkgs; [
       firefox-sync-client
       firefoxpwa
-      firefox-unwrapped
     ];
 
-    # programs.firefox = {
-    #   enable = true;
-    #   package = pkgs.firefox-bin;
+    programs.firefox = {
+      enable = true;
+      package = pkgs.firefox;
 
-    #   preferencesStatus = "default";
+      preferencesStatus = "default";
 
-    #   nativeMessagingHosts = {
-    #     packages = with pkgs; [firefoxpwa];
-    #     #   # fxCast = true;
-    #     #   # ff2mpv = true;
-    #     #   # gsconnect = true;
-    #     #   packages = with pkgs; [gnome-browser-connector];
-    #   };
-    # };
+      nativeMessagingHosts = {
+        packages = with pkgs; [firefoxpwa];
+        #     #   # fxCast = true;
+        #     #   # ff2mpv = true;
+        #     #   # gsconnect = true;
+        #     #   packages = with pkgs; [gnome-browser-connector];
+      };
+    };
   };
 }
