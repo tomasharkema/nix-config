@@ -135,7 +135,7 @@
           catppuccin.nixosModules.catppuccin
           # peerix.nixosModules.peerix
           tsnsrv.nixosModules.default
-          impermanence.nixosModule
+          # impermanence.nixosModule
           disko.nixosModules.default
 
           lanzaboote.nixosModules.lanzaboote
@@ -472,9 +472,9 @@
       flake = false;
     };
 
-    impermanence = {
-      url = "github:nix-community/impermanence?shallow=true";
-    };
+    # impermanence = {
+    #   url = "github:nix-community/impermanence?shallow=true";
+    # };
 
     # flake-utils = {
     #   url = "github:numtide/flake-utils";
