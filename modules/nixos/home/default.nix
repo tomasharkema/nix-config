@@ -44,9 +44,12 @@
       };
     };
 
-    # services = {
-    #   # homed.enable = true;
-    #   userdbd.enable = true;
-    # };
+    services = {
+      homed.enable = true;
+      userdbd = {
+        enable = true;
+        enableSSHSupport = false;
+      };
+    };
   };
 }

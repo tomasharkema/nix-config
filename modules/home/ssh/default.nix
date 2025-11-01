@@ -20,7 +20,7 @@
   in {
     programs.ssh = {
       enable = true;
-      forwardAgent = true;
+      # forwardAgent = true;
 
       # serverAliveInterval = 60;
       # controlMaster = "auto";
@@ -28,8 +28,8 @@
 
       # addKeysToAgent = true;
       # hashKnownHosts = true;
-      enableDefaultConfig = false;
-      controlPath = null;
+      # enableDefaultConfig = false;
+      # controlPath = null;
 
       matchBlocks = {
         "*" = {

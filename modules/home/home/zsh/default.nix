@@ -65,20 +65,20 @@
           HYPHEN_INSENSITIVE="true"
           zstyle ':completion:*:ssh:*' hosts off
         '';
-        # initExtra = ''
 
-        #   bindkey -M emacs -s '^A' 'menu^M'
-        #   bindkey -M vicmd -s '^A' 'menu^M'
-        #   bindkey -M viins -s '^A' 'menu^M'
+        initExtra = ''
+          bindkey -M emacs -s '^A' 'menu^M'
+          bindkey -M vicmd -s '^A' 'menu^M'
+          bindkey -M viins -s '^A' 'menu^M'
 
-        #   function zellij_refresh_ssh_sock {
-        #     if [ -n "$ZELLIJ" ]; then
-        #       export SSH_AUTH_SOCK=$(find /tmp/ssh*/ -type s -name "*agent.*" | head -1)
-        #     fi
-        #   }
+          function zellij_refresh_ssh_sock {
+            if [ -n "$ZELLIJ" ]; then
+              export SSH_AUTH_SOCK=$(find /tmp/ssh*/ -type s -name "*agent.*" | head -1)
+            fi
+          }
 
-        #   add-zsh-hook precmd zellij_refresh_ssh_sock
-        # '';
+          add-zsh-hook precmd zellij_refresh_ssh_sock
+        '';
 
         # initExtraFirst = ''
         #   source "${iterm}";
@@ -117,9 +117,11 @@
 
           docker-login = "op item get raeclwvdys3epkmc5zthv4pdha --format=json --vault=qtvfhvfotoqynomh2wd3yzoofe | jq '.fields[1].value' -r | docker login ghcr.io --username tomasharkema --password-stdin";
 
-          unifi-tui = ''unifi-tui --url "https://192.168.1.1/proxy/network/integrations" --api-key "$(op item get ojsyugyddrsxtq3kayoonibhda --reveal --field credential)"'';
+          unifi-tui = "unifi-tui --url \"https://192.168.1.1/proxy/network/integrations\" --api-key \"$(op item get ojsyugyddrsxtq3kayoonibhda --reveal --field credential)\"";
 
-          subl = (lib.mkIf pkgs.stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
+          # zellij = "systemd-run --scope --user zellij";
+
+          # subl = (lib.mkIf pkgs.stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
         };
 
         plugins = with pkgs; [

@@ -94,7 +94,7 @@
         # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
         nixpkgs-esp-dev.overlays.default
-        # niri.overlays.niri
+        niri.overlays.niri
       ];
 
       homes.modules = with inputs; [

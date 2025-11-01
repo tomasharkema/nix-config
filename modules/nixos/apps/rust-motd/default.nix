@@ -4,10 +4,11 @@
   lib,
   ...
 }: {
-  config = lib.mkIf false {
+  config = {
     programs = {
       rust-motd = {
         enable = true;
+        enableMotdInSSHD = true;
         settings = {
           global = {
             progress_full_character = "=";
