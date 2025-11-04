@@ -60,41 +60,41 @@ in {
           }
         '';
 
-        # "krb5.conf.d/sssd_enable_idp".text = ''
-        #   # Enable SSSD OAuth2 Kerberos preauthentication plugins.
-        #   #
-        #   # This will allow you to obtain Kerberos TGT through OAuth2 authentication.
-        #   #
-        #   # To disable the OAuth2 plugin, comment out the following lines.
+        "krb5.conf.d/sssd_enable_idp".text = ''
+          # Enable SSSD OAuth2 Kerberos preauthentication plugins.
+          #
+          # This will allow you to obtain Kerberos TGT through OAuth2 authentication.
+          #
+          # To disable the OAuth2 plugin, comment out the following lines.
 
-        #   [plugins]
-        #    clpreauth = {
-        #     module = idp:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_idp_plugin.so
-        #    }
+          [plugins]
+           clpreauth = {
+            module = idp:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_idp_plugin.so
+           }
 
-        #    kdcpreauth = {
-        #     module = idp:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_idp_plugin.so
-        #    }
-        # '';
+           kdcpreauth = {
+            module = idp:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_idp_plugin.so
+           }
+        '';
 
         "krb5.conf.d/freeipa".text = ''
           [libdefaults]
               spake_preauth_groups = edwards25519
         '';
 
-        # "sssd/conf.d".enable = false;
+        "sssd/conf.d".enable = false;
 
-        # "sssd/conf.d/passkey.conf" = {
-        #   mode = "640";
-        #   text = ''
-        #     [pam]
-        #     pam_passkey_auth = True
-        #     pam_cert_auth = True
-        #     passkey_debug_libfido2 = True
-        #     passkey_child_timeout = 60
-        #     debug_level = 10
-        #   '';
-        # };
+        "sssd/conf.d/passkey.conf" = {
+          mode = "640";
+          text = ''
+            [pam]
+            pam_passkey_auth = True
+            pam_cert_auth = True
+            passkey_debug_libfido2 = True
+            passkey_child_timeout = 60
+            debug_level = 10
+          '';
+        };
 
         # "chromium/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
         # "opt/chrome/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
@@ -158,21 +158,21 @@ in {
         #   # };
         #   # -c ${settingsFile}
         # };
-        sssd-kcm = {
-          #   enable = true;
-          #   description = "SSSD Kerberos Cache Manager";
+        # sssd-kcm = {
+        #   enable = true;
+        #   description = "SSSD Kerberos Cache Manager";
 
-          #   wantedBy = ["multi-user.target" "sssd.service"];
-          #   requires = ["sssd-kcm.socket"];
+        #   wantedBy = ["multi-user.target" "sssd.service"];
+        #   requires = ["sssd-kcm.socket"];
 
-          serviceConfig = {
-            ExecStartPre = lib.mkForce null;
-            ExecStart = lib.mkForce "${pkgs.sssd}/libexec/sssd/sssd_kcm";
-          };
-          #   # restartTriggers = [
-          #   #   settingsFileUnsubstituted
-          #   # ];
-        };
+        # serviceConfig = {
+        #   ExecStartPre = lib.mkForce null;
+        #   ExecStart = lib.mkForce "${pkgs.sssd}/libexec/sssd/sssd_kcm";
+        # };
+        #   # restartTriggers = [
+        #   #   settingsFileUnsubstituted
+        #   # ];
+        # };
       };
       # sockets.sssd-kcm = {
       # enable = true;
@@ -185,7 +185,7 @@ in {
     };
 
     security = {
-      # sudo.package = pkgs.sudo.override {withSssd = true;};
+      sudo.package = pkgs.sudo.override {withSssd = true;};
 
       pki.certificateFiles = [config.security.ipa.certificate];
     };
