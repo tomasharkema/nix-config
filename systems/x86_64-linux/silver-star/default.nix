@@ -14,9 +14,7 @@
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKMfjVCxpx87jpHR6CAUoZsEvwZOSTKyUmYDl3vXIUeu root@silver-star";
       };
       secrets = {
-        tsnsrv = {
-          rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
-        };
+        tsnsrv.rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
         cloudflared.rekeyFile = ./cloudflared.age;
         grafana-ntfy.rekeyFile = ./grafana-ntfy.age;
         #        "healthchecks" = {
@@ -24,6 +22,7 @@
         #        group = "healthchecks";
         #       owner = "healthchecks";
         #    };
+        firefox. rekeyFile = ./firefox.age;
       };
     };
 
@@ -284,8 +283,16 @@
       #     GLITCHTIP_DOMAIN = "https://glitchtip.ling-lizard.ts.net";
       #   };
       # };
+      mysql = {
+        # for firefox syncserver
+        enable = true;
+        package = pkgs.mariadb;
+      };
 
-      #firefox-syncserver = {enable = true;};
+      firefox-syncserver = {
+        enable = true;
+        secrets = config.age.secrets.firefox.path;
+      };
 
       pocket-id = {
         enable = true;
@@ -311,43 +318,6 @@
       };
 
       kmscon.enable = lib.mkForce false;
-
-      prometheus.exporters = {
-        idrac = {
-          enable = true;
-          configuration = {
-            hosts = {
-              "192.168.69.45" = {
-                username = "metrics";
-                password = "metrics";
-              };
-            };
-            metrics = {
-              memory = true;
-              power = true;
-              sel = true;
-              sensors = true;
-              storage = true;
-              system = true;
-            };
-            retries = 1;
-            timeout = 10;
-          };
-        };
-
-        snmp = {
-          enable = true;
-
-          configuration = {
-            auths = {
-              public_v2 = {
-                community = "public";
-                version = 2;
-              };
-            };
-          };
-        };
-      };
 
       netbootxyz.enable = true;
     };

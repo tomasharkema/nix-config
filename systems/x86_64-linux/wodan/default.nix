@@ -93,7 +93,6 @@
       enable = true;
       desktop = {
         enable = true;
-        rdp.enable = false;
       };
       gamemode.enable = true;
       quiet-boot.enable = true;

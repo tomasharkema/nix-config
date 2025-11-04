@@ -219,7 +219,7 @@
       in
         inputs.agenix-rekey.configure {
           userFlake = inputs.self;
-          nodes = lib.attrsets.filterAttrs (n: v: (!(lib.strings.hasPrefix "installer" n))) (
+          nixosConfigurations = lib.attrsets.filterAttrs (n: v: (!(lib.strings.hasPrefix "installer" n))) (
             inputs.self.nixosConfigurations // inputs.self.darwinConfigurations
           );
           # Example for colmena:

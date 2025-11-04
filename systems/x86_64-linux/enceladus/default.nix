@@ -15,9 +15,8 @@
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIseppvkEAzMD/B2xLqijr4UhTig0bZfqnXS6NcaAHxR root@nixos";
       };
       secrets = {
-        tsnsrv = {
-          rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
-        };
+        tsnsrv.rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
+        idrac.rekeyFile = ./idrac.age;
       };
     };
 
@@ -51,6 +50,13 @@
       lldpd.enable = true;
 
       netbootxyz.enable = true;
+
+      prometheus.exporters = {
+        idrac = {
+          enable = true;
+          configurationFile = config.age.secrets.idrac.path;
+        };
+      };
 
       udev = {
         packages = with pkgs; [
