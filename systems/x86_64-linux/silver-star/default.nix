@@ -285,6 +285,8 @@
       #   };
       # };
 
+      #firefox-syncserver = {enable = true;};
+
       pocket-id = {
         enable = true;
         settings = {

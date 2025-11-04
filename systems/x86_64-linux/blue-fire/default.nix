@@ -86,7 +86,7 @@ in {
         defaults.authKeyPath = config.age.secrets.tsnsrv.path;
         services = {
           # nix-cache = {toURL = "http://127.0.0.1:7124";};
-          searxng = {toURL = "http://127.0.0.1:8088";};
+          # searxng = {toURL = "http://127.0.0.1:8088";};
         };
       };
 
@@ -250,8 +250,8 @@ in {
       kernelParams = [
         "console=tty1"
         "console=ttyS2,115200"
-        # "iomem=relaxed"
-        # "mitigations=off"
+        "iomem=relaxed"
+        "mitigations=off"
         #"vfio-pci.ids=10de:1c82"
         # "pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
