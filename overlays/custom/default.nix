@@ -324,7 +324,7 @@ in rec {
 
   authorized-keys = self.packages."${prev.system}".authorized-keys;
 
-  ssh-tpm-agent = self.packages."${prev.system}".ssh-tpm-agent;
+  # ssh-tpm-agent = self.packages."${prev.system}".ssh-tpm-agent;
 
   intel-vaapi-driver = prev.intel-vaapi-driver.override {enableHybridCodec = true;};
 
