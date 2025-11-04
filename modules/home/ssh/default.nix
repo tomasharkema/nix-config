@@ -32,6 +32,13 @@
       # controlPath = null;
 
       matchBlocks = {
+        "*" = {
+          identityAgent = onePasswordSocket;
+          # pKCS11Provider =
+          #   if pkgs.stdenvNoCC.isDarwin
+          #   then "${pkgs.yubico-piv-tool}/lib/libykcs11.dylib"
+          #   else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
+        };
         # "*" = {
         #   match = "host * exec \"test -z $SSH_TTY\"";
 
