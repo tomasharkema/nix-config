@@ -158,21 +158,21 @@ in {
         #   # };
         #   # -c ${settingsFile}
         # };
-        # sssd-kcm = {
-        #   enable = true;
-        #   description = "SSSD Kerberos Cache Manager";
+        sssd-kcm = {
+          #   enable = true;
+          #   description = "SSSD Kerberos Cache Manager";
 
-        #   wantedBy = ["multi-user.target" "sssd.service"];
-        #   requires = ["sssd-kcm.socket"];
+          #   wantedBy = ["multi-user.target" "sssd.service"];
+          #   requires = ["sssd-kcm.socket"];
 
-        # serviceConfig = {
-        #   ExecStartPre = lib.mkForce null;
-        #   ExecStart = lib.mkForce "${pkgs.sssd}/libexec/sssd/sssd_kcm";
-        # };
-        #   # restartTriggers = [
-        #   #   settingsFileUnsubstituted
-        #   # ];
-        # };
+          serviceConfig = {
+            #   ExecStartPre = lib.mkForce null;
+            ExecStart = lib.mkForce "${pkgs.sssd}/libexec/sssd/sssd_kcm";
+          };
+          #   # restartTriggers = [
+          #   #   settingsFileUnsubstituted
+          #   # ];
+        };
       };
       # sockets.sssd-kcm = {
       # enable = true;
@@ -240,15 +240,15 @@ in {
       };
     };
 
-    # systemd.tmpfiles.settings."10-zsh" = {
-    #   "/bin/zsh"."L+" = {
-    #     argument = "${pkgs.zsh}/bin/zsh";
-    #   };
-    # };
+    systemd.tmpfiles.settings."10-zsh" = {
+      "/usr/bin/zsh"."L+" = {
+        argument = "${pkgs.zsh}/bin/zsh";
+      };
+    };
 
-    # system.nssDatabases = {
-    #   sudoers = ["sss"];
-    # };
+    system.nssDatabases = {
+      sudoers = ["sss"];
+    };
     networking.domain = "harkema.io";
 
     security = {
