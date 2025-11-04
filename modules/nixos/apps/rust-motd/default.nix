@@ -5,7 +5,7 @@
   ...
 }: {
   config = {
-    programs = {
+    programs = lib.mkIf false {
       rust-motd = {
         enable = true;
         enableMotdInSSHD = true;

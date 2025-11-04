@@ -72,7 +72,7 @@
         efivar
         esp-idf-full
         ethtool
-        fancy-motd
+        # fancy-motd
         fcast-receiver
         freeipmi
         fuse
