@@ -164,26 +164,27 @@ in {
           #   enable = true;
           #   description = "SSSD Kerberos Cache Manager";
 
-          #   wantedBy = ["multi-user.target" "sssd.service"];
-          #   requires = ["sssd-kcm.socket"];
+          wantedBy = ["multi-user.target" "sssd.service"];
+          requires = ["sssd-kcm.socket"];
 
           serviceConfig = {
             #   ExecStartPre = lib.mkForce null;
             ExecStart = lib.mkForce "${pkgs.sssd}/libexec/sssd/sssd_kcm";
           };
+
           #   # restartTriggers = [
           #   #   settingsFileUnsubstituted
           #   # ];
         };
       };
-      # sockets.sssd-kcm = {
-      # enable = true;
-      # description = "SSSD Kerberos Cache Manager responder socket";
-      # wantedBy = ["sockets.target"];
-      # Matches the default in MIT krb5 and Heimdal:
-      # https://github.com/krb5/krb5/blob/krb5-1.19.3-final/src/include/kcm.h#L43
-      # listenStreams = ["/var/run/.heim_org.h5l.kcm-socket"];
-      # };
+      sockets.sssd-kcm = {
+        enable = true;
+        description = "SSSD Kerberos Cache Manager responder socket";
+        wantedBy = ["sockets.target"];
+        # Matches the default in MIT krb5 and Heimdal:
+        # https://github.com/krb5/krb5/blob/krb5-1.19.3-final/src/include/kcm.h#L43
+        listenStreams = lib.mkForce ["/var/run/.heim_org.h5l.kcm-socket"];
+      };
     };
 
     security = {
