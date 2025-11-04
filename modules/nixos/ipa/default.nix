@@ -263,7 +263,7 @@ in {
           sha256 = "0knh6zfvyww08x9s5h1xyw564pckmc75zh6pnh9f1x3c114nkl90";
         };
         # certificate = "${./ca.crt}";
-        # dyndns.enable = true;
+        dyndns.enable = true;
         ifpAllowedUids = [
           "root"
           "tomas"
