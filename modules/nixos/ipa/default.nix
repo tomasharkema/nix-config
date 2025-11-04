@@ -44,7 +44,9 @@ in {
         "krb5.conf".text = lib.mkBefore ''
           includedir /var/lib/sss/pubconf/krb5.include.d/
           includedir /etc/krb5.conf.d/
+        '';
 
+        "krb5.conf.d/0-kcm".text = ''
           [libdefaults]
           default_ccache_name = KCM:
         '';
