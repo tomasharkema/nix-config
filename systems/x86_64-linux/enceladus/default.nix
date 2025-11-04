@@ -54,7 +54,7 @@
       prometheus.exporters = {
         idrac = {
           enable = true;
-          configurationFile = config.age.secrets.idrac.path;
+          configurationPath = config.age.secrets.idrac.path;
         };
       };
 
