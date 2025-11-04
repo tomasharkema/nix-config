@@ -20,7 +20,7 @@
   in {
     programs.ssh = {
       enable = true;
-      # forwardAgent = true;
+      forwardAgent = true;
 
       # serverAliveInterval = 60;
       # controlMaster = "auto";
