@@ -22,9 +22,9 @@
       enable = true;
       # forwardAgent = true;
 
-      serverAliveInterval = 60;
-      controlMaster = "auto";
-      controlPersist = "30m";
+      # serverAliveInterval = 60;
+      # controlMaster = "auto";
+      # controlPersist = "30m";
 
       # addKeysToAgent = true;
       # hashKnownHosts = true;
@@ -32,17 +32,17 @@
       # controlPath = null;
 
       matchBlocks = {
-        "*" = {
-          match = "host * exec \"test -z $SSH_TTY\"";
+        # "*" = {
+        #   match = "host * exec \"test -z $SSH_TTY\"";
 
-          extraOptions = {
-            IdentityAgent = onePasswordSocket;
-            PKCS11Provider =
-              if pkgs.stdenvNoCC.isDarwin
-              then "${pkgs.yubico-piv-tool}/lib/libykcs11.dylib"
-              else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
-          };
-        };
+        #   extraOptions = {
+        #     IdentityAgent = onePasswordSocket;
+        #     PKCS11Provider =
+        #       if pkgs.stdenvNoCC.isDarwin
+        #       then "${pkgs.yubico-piv-tool}/lib/libykcs11.dylib"
+        #       else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
+        #   };
+        # };
         "aur.archlinux.org" = {
           extraOptions = {
             PubkeyAuthentication = "no";
