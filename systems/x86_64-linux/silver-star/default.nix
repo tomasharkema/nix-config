@@ -292,6 +292,12 @@
       firefox-syncserver = {
         enable = true;
         secrets = config.age.secrets.firefox.path;
+
+        singleNode = {
+          enable = true;
+          hostname = "silver-star.ling-lizard.ts.net";
+          url = "http://silver-star.ling-lizard.ts.net:5000";
+        };
       };
 
       pocket-id = {
@@ -508,9 +514,8 @@
       };
 
       crashDump = {enable = true;};
-      # copyKernels = {enable = true;};
 
-      # binfmt.emulatedSystems = ["aarch64-linux"];
+      binfmt.emulatedSystems = ["aarch64-linux"];
 
       kernelParams = [
         "console=tty1"
@@ -522,6 +527,8 @@
         "intel_iommu=on"
         "iommu=pt"
         "ipmi_watchdog.timeout=180"
+        "iomem=relaxed"
+        "mitigations=off"
         # "video=efifb:off,vesafb:off"
         # "ixgbe.allow_unsupported_sfp=1,1"
         #"vfio-pci.ids=10de:1380,10de:0fbc"

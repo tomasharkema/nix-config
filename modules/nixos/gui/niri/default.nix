@@ -7,7 +7,7 @@
 }: let
   cfgDesktop = config.gui.desktop;
 in {
-  config = lib.mkIf (cfgDesktop.enable && false) {
+  config = lib.mkIf cfgDesktop.enable {
     programs.niri.enable = true;
     home-manager.users.tomas = {
       programs = {
@@ -15,8 +15,6 @@ in {
         alacritty.enable = true;
 
         niri = {
-          # enable = true;
-
           settings = {
             spawn-at-startup = [
               {argv = ["waybar"];}

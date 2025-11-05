@@ -230,8 +230,6 @@ in {
     # proxy-services.enable = lib.mkDefault true;
 
     services = {
-      languagetool.enable = true;
-
       # geoipupdate.enable = true;
       earlyoom.enableNotifications = true;
       # locate.enable = true;
@@ -366,6 +364,7 @@ in {
           GSSAPIAuthentication = "yes";
           UsePAM = true;
           ChallengeResponseAuthentication = "yes";
+          UseDns = true;
 
           # PasswordAuthentication = false;
           # KbdInteractiveAuthentication = true;
@@ -456,18 +455,17 @@ in {
         enable = lib.mkDefault true;
         packages = with pkgs; [picoprobe-udev-rules];
 
-        extraRules = ''
-          ACTION=="add", SUBSYSTEM=="usb", \
-            ATTR{idVendor}=="1d50", ATTR{idProduct}=="6170", \
-            RUN+="${pkgs.kmod}/bin/modprobe -b dln2"
+        # extraRules = ''
+        #   ACTION=="add", SUBSYSTEM=="usb", \
+        #     ATTR{idVendor}=="1d50", ATTR{idProduct}=="6170", \
+        #     RUN+="${pkgs.kmod}/bin/modprobe -b dln2"
 
-          ACTION=="add", SUBSYSTEM=="drivers", ENV{DEVPATH}=="/bus/usb/drivers/dln2", \
-            ATTR{new_id}="1d50 6170 ff"
+        #   ACTION=="add", SUBSYSTEM=="drivers", ENV{DEVPATH}=="/bus/usb/drivers/dln2", \
+        #     ATTR{new_id}="1d50 6170 ff"
 
-
-          SUBSYSTEMS=="usb", ATTRS{idVendor}=="16d0", ATTRS{idProduct}=="0753", MODE:="0666"
-          KERNEL=="ttyACM*", ATTRS{idVendor}=="16d0", ATTRS{idProduct}=="0753", MODE:="0666", ENV{ID_MM_DEVICE_IGNORE}="1"
-        '';
+        #   SUBSYSTEMS=="usb", ATTRS{idVendor}=="16d0", ATTRS{idProduct}=="0753", MODE:="0666"
+        #   KERNEL=="ttyACM*", ATTRS{idVendor}=="16d0", ATTRS{idProduct}=="0753", MODE:="0666", ENV{ID_MM_DEVICE_IGNORE}="1"
+        # '';
       };
 
       chrony = {
@@ -489,7 +487,6 @@ in {
           server  ntp0.nl.uu.net  iburst  minpoll 4  maxpoll 4
           server  ntp1.nl.uu.net  iburst  minpoll 4  maxpoll 4
           server  ntp1.time.nl    iburst  minpoll 4  maxpoll 4
-
         '';
       };
 
@@ -508,13 +505,13 @@ in {
       audit.enable = true;
       auditd.enable = true;
       pam.sshAgentAuth.enable = true;
-      # pam.rssh = {
-      #   enable = true;
-      #   settings = {
-      #     authorized_keys_command = config.services.openssh.authorizedKeysCommand;
-      #     authorized_keys_command_user = config.services.openssh.authorizedKeysCommandUser;
-      #   };
-      # };
+      pam.rssh = {
+        enable = true;
+        settings = {
+          authorized_keys_command = config.services.openssh.authorizedKeysCommand;
+          authorized_keys_command_user = config.services.openssh.authorizedKeysCommandUser;
+        };
+      };
       wrappers.nethoscope = {
         owner = "tomas";
         group = "tomas";
@@ -555,7 +552,7 @@ in {
         lfs.enable = true;
       };
       udevil.enable = true;
-      # usbtop.enable = true;
+      usbtop.enable = true;
       wavemon.enable = true;
       trippy.enable = true;
       ydotool.enable = true;
@@ -603,6 +600,8 @@ in {
       libftdi.enable = true;
       # mcelog.enable = true;
       rasdaemon.enable = true;
+
+      usbStorage.manageShutdown = true;
     };
 
     networking = {

@@ -282,11 +282,14 @@
       };
 
       binfmt.emulatedSystems = ["aarch64-linux"];
+
       extraModulePackages = [
         # config.system.build.cc1101-driver
       ];
       # modprobeConfig.enable = true;
+
       supportedFilesystems = ["ext2" "ext3" "ext4"];
+
       kernelParams = [
         "i915.enable_gvt=1"
         "i915.enable_fbc=0"
