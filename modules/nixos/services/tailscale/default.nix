@@ -39,7 +39,7 @@ in {
     };
 
     services = {
-      # resolved.enable = true;
+      resolved.enable = true;
 
       tailscale = {
         enable = true;
