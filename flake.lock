@@ -2276,11 +2276,11 @@
         "systems": "systems_15"
       },
       "locked": {
-        "lastModified": 1762309832,
-        "narHash": "sha256-L92Sndzh4ZTbbrvcXnZSsurqhB6/RFagIaVvYBvUTb0=",
+        "lastModified": 1762313070,
+        "narHash": "sha256-HElg/cm99rtBbLuJRUrrfQ4xJeUZJQgzyc+GORT08xI=",
         "owner": "abenz1267",
         "repo": "walker",
-        "rev": "bb113f7317cd3a69f7c12ad6c868ef9772bf630f",
+        "rev": "b08dc0529cbccc044ca34bcd155e2f2e364e5fef",
         "type": "github"
       },
       "original": {
