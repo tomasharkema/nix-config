@@ -229,13 +229,12 @@
           }
         ];
 
-        oh-my-zsh = {
+        oh-my-zsh = lib.mkIf false {
           enable = true;
 
-          extraConfig = ''
-            ZSH_WEB_SEARCH_ENGINES=(nix-package "https://search.nixos.org/packages?query=" nix-option "https://search.nixos.org/options?query=")
-
-          '';
+          #extraConfig = ''
+          #  ZSH_WEB_SEARCH_ENGINES=(nix-package "https://search.nixos.org/packages?query=" nix-option "https://search.nixos.org/options?query=")
+          #'';
           plugins =
             [
               "1password"
