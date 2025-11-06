@@ -17,18 +17,16 @@ in {
       '';
     };
 
-    system.primaryUser = "tomas";
+    system.primaryUser = "${config.user.name}";
 
     homebrew = {
       enable = true;
-      autoUpdate = true;
       onActivation.upgrade = true;
 
       masApps = {
         "UTM" = 1538878817;
         "Tailscale" = 1475387142;
         "RDP" = 1295203466;
-        # "slack" = 803453959;
         "Developer" = 640199958;
         "Telegram" = 747648890;
         "automute" = 1118136179;
@@ -43,19 +41,16 @@ in {
         # "xcpretty"
         "swiftlint"
         "swiftformat"
-        "colima"
         "terminal-notifier"
       ];
 
       casks = [
         "jetbrains-toolbox"
-        "chatgpt"
         "secretive"
         "swiftbar"
         "wezterm"
         "windows-app"
         "ghostty"
-        "podman-desktop"
         # "docker"
         # "spotifyd"
         # "1password"

@@ -16,6 +16,7 @@ in {
       docker-compose
       nerdctl
       lazydocker
+      dry
     ];
 
     virtualisation = {
@@ -23,7 +24,7 @@ in {
         backend = "docker";
 
         containers = {
-          watchtower = {
+          watchtower = lib.mkIf true {
             image = "containrrr/watchtower";
 
             autoStart = true;
@@ -35,14 +36,10 @@ in {
         };
       };
 
-      containers.enable = true;
-
       docker = {
         enable = true;
         enableOnBoot = true;
-        # storageDriver = "btrfs";
-
-        daemon.settings.features."containerd-snapshotter" = true;
+        storageDriver = "btrfs";
 
         rootless = {
           enable = true;

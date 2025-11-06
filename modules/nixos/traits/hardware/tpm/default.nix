@@ -20,9 +20,9 @@ in {
       # jitterentropy-rngd.enable = true;
     };
 
-    programs.ssh.extraConfig = ''
-      PKCS11Provider /run/current-system/sw/lib/libtpm2_pkcs11.so
-    '';
+    #programs.ssh.extraConfig = ''
+    #  PKCS11Provider /run/current-system/sw/lib/libtpm2_pkcs11.so
+    #'';
 
     security.tpm2 = {
       enable = true;

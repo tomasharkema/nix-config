@@ -7,11 +7,11 @@
   cfg = config.traits.hardware.laptop.thinkpad;
   settingsFile = pkgs.writeText "xmm7360.ini" ''
     # driver config
-    apn=multimedia.lebara.nl
+    apn=internet.mobiel
 
-    #ip-fetch-timeout=1
+    ip-fetch-timeout=1
     nodefaultroute=True
-    #metric=1000
+    metric=1005
 
     # uncomment to not add DNS values to /etc/resolv.conf
     #noresolv=True
@@ -23,6 +23,8 @@
     BIN_DIR=/run/current-system/sw/bin
   '';
   xmm7360 = pkgs.custom.xmm7360-pci.override {kernel = config.boot.kernelPackages.kernel;};
+  xmm7360-spat = pkgs.custom.xmm7360-pci-spat.override {kernel = config.boot.kernelPackages.kernel;};
+  xmm7360-lts = pkgs.custom.xmm7360-pci.override {kernel = pkgs.linuxPackages.kernel;};
   xmm7360-reset = pkgs.writeShellScriptBin "xmm7360-reset" ''
 
     if [ $UID != 0 ] ; then
@@ -38,8 +40,12 @@
     dd of=/sys/bus/pci/devices/0000:03:00.0/config if=/tmp/xmm_cfg bs=256 count=1 status=none
   '';
 in {
-  config = lib.mkIf (cfg.enable && false) {
-    system.build.xmm7360 = xmm7360;
+  config = lib.mkIf cfg.enable {
+    system.build = {
+      xmm7360 = xmm7360;
+      xmm7360-spat = xmm7360-spat;
+      xmm7360-lts = xmm7360-lts;
+    };
 
     environment = {
       etc = {
@@ -56,7 +62,7 @@ in {
 
     boot = {
       kernelModules = [
-        # "acpi_call"
+        "acpi_call"
         "xmm7360"
       ];
       extraModulePackages = [
@@ -67,16 +73,21 @@ in {
         "iosm"
       ];
     };
+
     hardware = {
       usb-modeswitch.enable = true;
-
       usbWwan.enable = true;
     };
+
     systemd.services.xmm7360 = {
       # enable = false;
       description = "XMM7360 Modem Init";
       after = ["NetworkManager.service"];
-      requires = ["multi-user.target" "systemd-user-sessions.service" "dev-ttyXMM2.device"];
+      requires = [
+        "multi-user.target"
+        "systemd-user-sessions.service"
+        # "dev-ttyXMM2.device"
+      ];
       wantedBy = ["graphical.target"];
       serviceConfig = {
         Type = "oneshot";

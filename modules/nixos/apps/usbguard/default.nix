@@ -45,6 +45,16 @@ in {
       '';
     };
 
+    systemd.user.services.usbguard-applet = {
+      description = "USBGuard applet";
+      partOf = ["graphical-session.target"];
+      wantedBy = ["graphical-session.target"];
+      path = ["/run/current-system/sw/"]; ### Fix empty PATH to find qt plugins
+      serviceConfig = {
+        ExecStart = "${pkgs.usbguard}/bin/usbguard-applet-qt";
+      };
+    };
+
     services = {
       dbus = {
         enable = true;

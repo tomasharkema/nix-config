@@ -31,7 +31,7 @@ in {
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K";
-      media = "/dev/disk/by-id/ata-TOSHIBA_MK3263GSXN_5066P0YHT";
+      # media = "/dev/disk/by-id/ata-TOSHIBA_MK3263GSXN_5066P0YHT";
 
       boot = "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_1C1B0D6AE9B0E410390F2CA6-0:0";
 
@@ -55,23 +55,19 @@ in {
           beta = false;
           open = false;
           grid = {
-            enable = false; # true;
+            enable = false;
           };
         };
       };
     };
 
     apps = {
-      # attic-server.enable = true;
-
       atop = {
         enable = false;
         httpd = false;
       };
       # "bmc-watchdog".enable = true;
       docker.enable = true;
-      ollama.enable = true;
-      # atticd.enable = true;
     };
 
     services = {
@@ -90,7 +86,7 @@ in {
         defaults.authKeyPath = config.age.secrets.tsnsrv.path;
         services = {
           # nix-cache = {toURL = "http://127.0.0.1:7124";};
-          searxng = {toURL = "http://127.0.0.1:8088";};
+          # searxng = {toURL = "http://127.0.0.1:8088";};
         };
       };
 
@@ -119,7 +115,7 @@ in {
       };
     };
 
-    powerManagement.powertop.enable = true;
+    # powerManagement.powertop.enable = true;
 
     networking = {
       # hosts = {
@@ -205,10 +201,6 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-      # ipmicfg
-      # ipmiview
-      # ipmiutil
-      # vagrantservices
       virt-manager
       ipmitool
       boot-into-bios
@@ -220,18 +212,18 @@ in {
       icingaweb2
     ];
 
-    virtualisation.kvmgt = {
-      enable = lib.mkForce false;
-      device = "0000:01:00.0";
-      vgpus = {
-        "nvidia-256" = {
-          uuid = [
-            "e1ab260f-44a2-4e07-9889-68a1caafb399"
-            "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
-          ];
-        };
-      };
-    };
+    # virtualisation.kvmgt = {
+    #   enable = lib.mkForce false;
+    #   device = "0000:01:00.0";
+    #   vgpus = {
+    #     "nvidia-256" = {
+    #       uuid = [
+    #         "e1ab260f-44a2-4e07-9889-68a1caafb399"
+    #         "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
+    #       ];
+    #     };
+    #   };
+    # };
 
     hardware = {
       cpu.intel.updateMicrocode = true;
@@ -239,12 +231,12 @@ in {
       enableAllFirmware = true;
       enableRedistributableFirmware = true;
 
-      nvidia-container-toolkit.enable = true;
+      # nvidia-container-toolkit.enable = true;
 
       nvidia = {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
-        nvidiaPersistenced = lib.mkForce true;
+        # nvidiaPersistenced = lib.mkForce true;
       };
     };
 
@@ -253,13 +245,13 @@ in {
         useTmpfs = true;
       };
 
-      kernelPackages = pkgs.linuxPackages_6_12;
+      # kernelPackages = pkgs.linuxPackages_6_12;
 
       kernelParams = [
         "console=tty1"
         "console=ttyS2,115200"
-        # "iomem=relaxed"
-        # "mitigations=off"
+        "iomem=relaxed"
+        "mitigations=off"
         #"vfio-pci.ids=10de:1c82"
         # "pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
@@ -267,7 +259,7 @@ in {
         # "pci=nomsi"
       ];
 
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      # binfmt.emulatedSystems = ["aarch64-linux"];
 
       recovery = {
         sign = true;

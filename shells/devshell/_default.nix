@@ -34,14 +34,6 @@ with pkgs; let
   remote-deploy = writeShellScriptBin "remote-deploy" ''
     remote deployment '.#arthur' '.#enzian'
   '';
-  upload-all = writeShellScriptBin "upload-all" ''
-    FILES="/nix/store/*"
-    for f in $FILES
-    do
-      echo "Processing $f file..."
-      attic push tomas "$f"
-    done
-  '';
 
   update-pkgs = writeShellScriptBin "update-pkgs" ''
     set -x
@@ -149,7 +141,6 @@ in
       upload-all-store
       # cntr
       update-pkgs
-      attic-client
       dconf-save
       dp
       upload-to-installer

@@ -21,7 +21,7 @@
 in {
   options.services.hypervisor = {
     enable = lib.mkEnableOption "hypervisor";
-
+    iommu.enable = lib.mkEnableOption "hypervisor";
     webservices.enable = lib.mkEnableOption "webservices";
 
     bridgeInterfaces = lib.mkOption {
@@ -62,15 +62,15 @@ in {
     #   };
     # };
 
-    programs.mdevctl.enable = true;
+    # programs.mdevctl.enable = true;
 
     environment.systemPackages = with pkgs; [
       kvmtool
       libvirt
-      qemu_kvm
+      qemu
       pkgs.custom.libvirt-dbus
       # nemu
-      qtemu
+      # qtemu
       virt-top
       _86Box-with-roms
       # remotebox
@@ -86,10 +86,15 @@ in {
         virt-manager
         kvmtool
         libvirt
-        qemu_kvm
+        qemu
 
         pkgs.custom.libvirt-dbus
       ];
+
+      # prometheus.exporters = {
+      #   libvirt.enable = true;
+      # };
+      rpcbind.enable = true;
     };
 
     # users = {
@@ -119,8 +124,6 @@ in {
       ];
     };
 
-    services.rpcbind.enable = true;
-
     systemd = {
       # tmpfiles.settings."9-isos" = {
       #   "/var/lib/libvirt/storage/isos.xml" = {
@@ -137,9 +140,6 @@ in {
     environment.etc = {
       "libvirt/virtio-win".source = pkgs.virtio-win;
       "libvirt/virtio-win.iso".source = pkgs.virtio-win.src;
-
-      "ovmf/x86.fd".source = config.system.build.ovmf-x86;
-      "ovmf/aarch.fd".source = config.system.build.ovmf-aarch;
 
       # "sasl2/libvirt.conf" = {
       #   text = ''
@@ -160,13 +160,6 @@ in {
       #     keytab: ${qemuKeytab}
       #   '';
       # };
-      # "libvirt/qemu.conf" = {
-      #   text = ''
-      #     # Adapted from /var/lib/libvirt/qemu.conf
-      #     # Note that AAVMF and OVMF are for Aarch64 and x86 respectively
-      #     nvram = [ "/run/libvirt/nix-ovmf/AAVMF_CODE.fd:/run/libvirt/nix-ovmf/AAVMF_VARS.fd", "/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd" ]
-      #   '';
-      # };
     };
 
     # services.saslauthd = {
@@ -180,32 +173,39 @@ in {
     #   SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
     # '';
     boot = {
-      kernelParams = [
+      kernelParams = lib.mkIf cfg.iommu.enable [
         "kvm_intel.nested=1"
         "intel_iommu=on"
-        "intel_iommu=igfx_off"
-        "default_hugepagesz=1G"
-        "hugepagesz=1G"
-        "hugepages=1"
+        # "intel_iommu=igfx_off"
+        "hugepagesz=2M"
+        "hugepages=2048"
       ];
       # blacklistedKernelModules = [
       #   "nvidia"
       #   "nouveau"
       # ];
-      kernelModules = lib.mkBefore [
-        "kvm-intel"
-        "mdev"
-        "kvmgt"
-        "vfio_pci"
-        "vfio"
-        "vfio_iommu_type1"
-      ];
-      # initrd.kernelModules = lib.mkBefore [
-      #   "kvm-intel"
-      #   "vfio_pci"
-      #   "vfio"
-      #   "vfio_iommu_type1"
-      # ];
+      kernelModules =
+        if cfg.iommu.enable
+        then
+          #lib.mkBefore
+          [
+            "kvm-intel"
+            "mdev"
+            "kvmgt"
+            "vfio_pci"
+            "vfio"
+            "vfio_iommu_type1"
+          ]
+        else ["kvm-intel"];
+      initrd.kernelModules = lib.mkIf cfg.iommu.enable (
+        #lib.mkBefore
+        [
+          "kvm-intel"
+          "vfio_pci"
+          "vfio"
+          "vfio_iommu_type1"
+        ]
+      );
     };
 
     # programs.ccache = {
@@ -214,18 +214,7 @@ in {
 
     hardware.ksm.enable = true;
 
-    system.build = {
-      ovmf-x86 =
-        (pkgs.OVMFFull)
-        .fd;
-      ovmf-aarch =
-        (pkgs.pkgsCross.aarch64-multiplatform.OVMF.override {
-          secureBoot = true;
-          tpmSupport = true;
-        })
-        .fd;
-    };
-
+    networking.nftables.enable = true;
     virtualisation = {
       kvmgt.enable = true;
       # tpm.enable = true;
@@ -241,41 +230,31 @@ in {
         enable = true;
 
         nss = {
-          enable = true;
           enableGuest = true;
         };
 
         qemu = {
-          package = pkgs.qemu_full;
+          package = pkgs.qemu_kvm;
           runAsRoot = true;
-          verbatimConfig = ''
-            cgroup_device_acl = [
-              "/dev/null",
-              "/dev/full",
-              "/dev/zero",
-              "/dev/random",
-              "/dev/urandom",
-              "/dev/ptmx",
-              "/dev/kvm",
-              "/dev/kqemu",
-              "/dev/rtc",
-              "/dev/hpet",
-              "/dev/pts"
-            ]
-          '';
-          #   nvram = [ "/run/libvirt/nix-ovmf/AAVMF_CODE.fd:/run/libvirt/nix-ovmf/AAVMF_VARS.fd", "/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd" ]
+          # verbatimConfig = ''
+          #   cgroup_device_acl = [
+          #     "/dev/null",
+          #     "/dev/full",
+          #     "/dev/zero",
+          #     "/dev/random",
+          #     "/dev/urandom",
+          #     "/dev/ptmx",
+          #     "/dev/kvm",
+          #     "/dev/kqemu",
+          #     "/dev/rtc",
+          #     "/dev/hpet",
+          #     "/dev/pts"
+          #   ]
+          # '';
 
           swtpm.enable = true;
 
           vhostUserPackages = [pkgs.virtiofsd];
-
-          ovmf = {
-            enable = true;
-            packages = [
-              config.system.build.ovmf-x86
-              config.system.build.ovmf-aarch
-            ];
-          };
         };
       };
 
@@ -297,17 +276,6 @@ in {
       #     runAsRoot = true;
       #     swtpm.enable = true;
 
-      #     ovmf = {
-      #       enable = true;
-      #       packages = [
-      #         # (pkgs.OVMF.override {
-      #         #   secureBoot = true;
-      #         #   tpmSupport = true;
-      #         # })
-      #         pkgs.OVMFFull.fd
-      #         # pkgs.pkgsCross.aarch64-multiplatform.OVMF.fd
-      #       ];
-      #     };
       #   };
       # };
     };
@@ -315,7 +283,7 @@ in {
     networking = {
       #   interfaces."br0".useDHCP = true;
 
-      firewall.trustedInterfaces = ["br0" "virbr0"];
+      # firewall.trustedInterfaces = ["br0" "virbr0"];
 
       #   bridges = {
       #     "br0" = {

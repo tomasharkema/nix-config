@@ -4,7 +4,7 @@
   osConfig,
   ...
 }: {
-  config = {
+  config = lib.mkIf false {
     programs.commands = {
       enable = osConfig.gui.gnome.enable;
       commands = [

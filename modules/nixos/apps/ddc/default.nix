@@ -11,15 +11,18 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.udev.extraRules = ''
-      SUBSYSTEM=="i2c-dev", ACTION=="add",\
-        ATTR{name}=="NVIDIA i2c adapter*",\
-        TAG+="ddcci",\
-        TAG+="systemd",\
-        ENV{SYSTEMD_WANTS}+="ddcci@$kernel.service"
+    services = {
+      ddccontrol.enable = true;
+      udev.extraRules = ''
+        SUBSYSTEM=="i2c-dev", ACTION=="add",\
+          ATTR{name}=="NVIDIA i2c adapter*",\
+          TAG+="ddcci",\
+          TAG+="systemd",\
+          ENV{SYSTEMD_WANTS}+="ddcci@$kernel.service"
 
-      KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
-    '';
+        KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
+      '';
+    };
 
     systemd.services = {
       ddccontrol = {path = with pkgs; [kmod gnugrep];};

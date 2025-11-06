@@ -60,12 +60,18 @@
         # OTEL_EXPORTER_OTLP_METRICS_PROTOCOL = "http/proto";
       };
     };
-
+    boot.initrd = {
+      nix-store-veritysetup.enable = true;
+      systemd = {
+        enable = true;
+        dmVerity.enable = true;
+      };
+    };
     programs = {
       nh = {
         enable = true;
         clean.enable = lib.mkDefault true;
-        clean.extraArgs = "--keep-since 4d --keep 3";
+        clean.extraArgs = lib.mkDefault "--keep-since 4d --keep 3";
         flake = "/home/tomas/Developer/nix-config";
         package = pkgs.nh;
       };
@@ -113,7 +119,7 @@
         config.user.name
       ];
     in {
-      package = pkgs.nixVersions.latest; # pkgs.nix-lazytrees2_git;
+      package = pkgs.nixVersions.latest; # pkgs.nix_git; #  # pkgs.nix-lazytrees2_git;
 
       # nixPath = [
       #   "nixpkgs=${inputs.nixpkgs}"
@@ -139,12 +145,12 @@
           "i686-linux"
         ];
 
-        extra-sandbox-paths = [config.programs.ccache.cacheDir];
+        # extra-sandbox-paths = [config.programs.ccache.cacheDir];
 
         use-cgroups = true;
         #  ca-derivations recursive-nix
         extra-experimental-features = "nix-command flakes cgroups";
-        http-connections = 50;
+        # http-connections = 50;
         warn-dirty = false;
         log-lines = 50;
         sandbox = true;
@@ -161,7 +167,7 @@
             "tomas"
             "root"
           ];
-        netrc-file = config.age.secrets.netrc.path;
+        # netrc-file = config.age.secrets.netrc.path;
         keep-outputs = true;
         keep-derivations = true;
         # substituters =

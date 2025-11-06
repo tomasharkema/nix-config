@@ -14,12 +14,20 @@ in {
   options.gui = {
     enable = lib.mkEnableOption "gui.defaults";
 
-    hidpi.enable = lib.mkEnableOption "enable gnome desktop environment";
+    hidpi.enable = lib.mkEnableOption "enable generic hidpi for desktop";
+    hdr.enable = lib.mkEnableOption "enable generic hdr for desktop";
   };
 
   config = lib.mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = cfg.desktop.enable;
+        message = "you can't enable this for that reason";
+      }
+    ];
+
     system.build = {
-      #input-wacom = pkgs.custom.input-wacom.override {kernel = config.boot.kernelPackages.kernel;};
+      input-wacom = pkgs.custom.input-wacom.override {kernel = config.boot.kernelPackages.kernel;};
       i2c-ch341-usb = pkgs.custom.i2c-ch341-usb.override {kernel = config.boot.kernelPackages.kernel;};
       ch341-i2c-spi-gpio = pkgs.custom.ch341-i2c-spi-gpio.override {kernel = config.boot.kernelPackages.kernel;};
     };
@@ -38,13 +46,21 @@ in {
     services = {
       # tzupdate.enable = true;
       devmon.enable = true;
-      ddccontrol.enable = true;
+
       seatd.enable = true;
-      printing.enable = true;
-      # mpd.enable = true;
-      mopidy.enable = true;
+
+      printing = {
+        enable = true;
+        drivers = with pkgs; [
+          brlaser
+          custom.brother-mfc2710dw-ppd
+        ];
+      };
+
       playerctld.enable = true;
+
       displayManager.defaultSession = "hyprland";
+
       g810-led = {
         enable = true;
         profile = ''
@@ -53,14 +69,15 @@ in {
           # Set all keys on
           a ffffff
 
-          c";
+          c
         '';
       };
       # automatic-timezoned.enable = true;
       udev.packages = with pkgs; [
         imsprog
         logitech-udev-rules
-        platformio-core.udev
+        platformio-core
+        openocd
       ];
     };
 
@@ -69,8 +86,8 @@ in {
       usbStorage.manageShutdown = true;
       flipperzero.enable = true;
       logitech = {
-        enable = true;
-        enableGraphical = true;
+        # enable = true;
+        # enableGraphical = true;
         wireless = {
           enable = true;
           enableGraphical = true;
@@ -79,8 +96,16 @@ in {
     };
 
     programs = {
-      # gphoto2.enable = true;
+      gphoto2.enable = true;
       nm-applet.enable = true;
+    };
+
+    chaotic = {
+      # scx.enable = true;
+      hdr = lib.mkIf cfg.hdr.enable {
+        enable = true;
+        specialisation.enable = false;
+      };
     };
 
     # systemd = {enableEmergencyMode = lib.mkDefault true;};
@@ -88,58 +113,22 @@ in {
     boot = {
       kernelParams = [
         "preempt=lazy"
-
         "delayacct"
       ];
 
-      kernelModules = [
-        # "wacom"
-        "spi_ch341"
-        "spidev"
-        #"i2c-ch341-usb"
-      ];
-      blacklistedKernelModules = ["ch341"];
+      # kernelModules = [
+      # "wacom"
+      # "spi_ch341"
+      # "spidev"
+      #"i2c-ch341-usb"
+      # ];
+      # blacklistedKernelModules = ["ch341"];
 
       extraModulePackages = [
-        #config.system.build.input-wacom
-        config.system.build.i2c-ch341-usb
-        config.system.build.ch341-i2c-spi-gpio
+        # config.system.build.input-wacom
+        # config.system.build.i2c-ch341-usb
+        # config.system.build.ch341-i2c-spi-gpio
       ];
     };
-
-    environment.systemPackages = with pkgs; [
-      helvum
-      synology-drive-client
-      # ida-free
-      segger-jlink
-      custom.butler
-      ddrescue
-      ddrescueview
-      ddrutility
-      darktable
-      custom.wsjtx
-      sdrpp
-      rpi-imager
-      custom.netsleuth
-      handbrake
-      thonny
-      coppwr
-      custom.gtk-meshtastic-client
-      libwacom
-      chromium
-      noti
-      ghex
-      solaar
-      solana-cli
-      imsprog
-      # gphoto2
-      # gphoto2fs
-      # gphotos-sync
-      blueberry
-      custom.spi-tools
-      qFlipper
-      mtr-gui
-      (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
-    ];
   };
 }

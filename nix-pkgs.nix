@@ -24,16 +24,15 @@
         nix-search-tv
         xxd
         gcc
-        platformio-core
+        # platformio-core
         gcc-arm-embedded
         tio
-        picotool
+        # picotool
         nix-init
         disnix
         nox
         alejandra
         autoflake
-        attic-client
         cachix
         deadnix
         deploy-rs
@@ -58,7 +57,6 @@
         nix-update-source
         nix-visualize
         rustup
-
         nixd
         nixfmt-rfc-style
         nixos-option

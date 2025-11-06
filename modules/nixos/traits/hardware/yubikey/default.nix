@@ -29,7 +29,7 @@
     hardware.gpgSmartcards.enable = true;
 
     programs = {
-      yubikey-touch-detector.enable = true;
+      # yubikey-touch-detector.enable = true;
       # ssh.extraConfig = ''
       #   PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
       # '';
@@ -78,15 +78,15 @@
     services = {
       pcscd = {
         enable = true;
-        # plugins = [pkgs.yubikey-personalization];
+        plugins = [pkgs.yubikey-personalization];
       };
       # yubikey-agent.enable = config.gui.enable;
 
       udev = {
         packages = [pkgs.yubikey-personalization];
-        # extraRules = ''
-        #   KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="plugdev"
-        # '';
+        extraRules = ''
+          KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="plugdev"
+        '';
       };
     };
 
@@ -99,18 +99,15 @@
 
     environment.systemPackages = with pkgs; [
       p11-kit
-      # pcsc-tools
+      pcsc-tools
       age-plugin-yubikey
       libfido2
       yubico-piv-tool
-      #      yubikey-manager
+      yubikey-manager
       yubioath-flutter
-      # yubikey-agent
-      # yubikey-manager
-      #     yubikey-manager-qt
+      yubikey-agent
       yubikey-personalization
-      #yubikey-personalization-gui
-      # opensc
+      opensc
     ];
   };
 }

@@ -5,10 +5,12 @@
 
       imports = [inputs.agenix-rekey.flakeModule];
 
-      src = builtins.path {
-        path = ./.;
-        name = "snowfall-flake-source";
-      };
+      # src = builtins.path {
+      #   path = ./.;
+      #   name = "snowfall-flake-source";
+      # };
+      src = ./.;
+      # src = inputs.self;
 
       channels-config = {
         allowUnfreePredicate = _: true;
@@ -20,32 +22,39 @@
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;
         nvidia.acceptLicense = true;
-        cudaSupport = true;
+        cudaSupport = false;
 
         allowAliases = true;
 
         config.allowAliases = true;
-        lazy-trees = true;
+        # lazy-trees = true;
+
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
         # buildPlatform.system = "x86_64-linux";
-        # permittedInsecurePackages = [ "openssl-1.1.1w" ];
+
         permittedInsecurePackages = [
           # "python3.12-youtube-dl-2021.12.17"
           # "openssl-1.1.1w"
-
+          "dotnet-sdk-6.0.428"
           # "python-2.7.18.8"
-          "netbox-4.2.9"
-          "segger-jlink-qt4-810"
+          #"netbox-4.2.9"
+          "segger-jlink-qt4-824"
+          "segger-jlink-qt4-874"
+          "dotnet-runtime-6.0.36"
+          "libsoup-2.74.3"
+          "python3.13-ecdsa-0.19.1"
         ];
+        enableBroken = true;
         config = {
           allowUnfreePredicate = _: true;
           allowUnfree = true;
-          cudaSupport = true;
+          cudaSupport = false;
+          enableBroken = true;
           # contentAddressedByDefault = true;
           # For example, enable smartcard support in Firefox.
           # firefox.smartcardSupport = true;
-          lazy-trees = true;
+          #lazy-trees = true;
           permittedInsecurePackages = [
             # "openssl-1.1.1w"
             # "python3.12-youtube-dl-2021.12.17"
@@ -73,7 +82,7 @@
       overlays = with inputs; [
         # nix-snapshotter.overlays.default
         # otel.overlays.default
-        # nvidia-patch.overlays.default
+        nvidia-patch.overlays.default
         nixos-recovery.overlays.recovery
         # peerix.overlay
         snowfall-flake.overlays."package/flake"
@@ -84,18 +93,19 @@
         chaotic.overlays.default
         # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
-        devenv.overlays.default
-        nixgl.overlay
-        hyprpanel.overlay
+        nixpkgs-esp-dev.overlays.default
+        niri.overlays.niri
       ];
 
       homes.modules = with inputs; [
         # catppuccin.homeManagerModules.catppuccin
-        nixvim.homeManagerModules.nixvim
-        nix-index-database.hmModules.nix-index
+        nixvim.homeModules.nixvim
+        nix-index-database.homeModules.nix-index
         op-shell-plugins.hmModules.default
         # agenix.homeManagerModules.default
         # hyprpanel.homeManagerModules.hyprpanel
+        walker.homeManagerModules.default
+        # niri.homeModules.config
       ];
 
       # systems.hosts = let
@@ -117,6 +127,7 @@
           # nixos-vfio.nixosModules.default
           # nix-snapshotter.nixosModules.default
           chaotic.nixosModules.default
+
           nixos-facter-modules.nixosModules.facter
           # nix-topology.nixosModules.default
           # netkit.nixosModule
@@ -130,26 +141,22 @@
 
           lanzaboote.nixosModules.lanzaboote
           # lanzaboote.nixosModules.uki
-          vscode-server.nixosModules.default
-
+          # vscode-server.nixosModules.default
+          niri.nixosModules.niri
           # home-manager.nixosModules.home-manager
           agenix.nixosModules.default
           agenix-rekey.nixosModules.default
 
           nix-gaming.nixosModules.pipewireLowLatency
           nix-gaming.nixosModules.platformOptimizations
-
+          walker.nixosModules.default
           nvidia-vgpu-nixos.nixosModules.host
           # nvidia-vgpu-nixos.nixosModules.guest
           # nixos-service.nixosModules.nixos-service
           # nix-virt.nixosModules.default
           ./defaultNixosAge.nix
           (
-            {
-              pkgs,
-              config,
-              ...
-            }: {
+            {config, ...}: {
               nix.extraOptions = ''
                 !include ${config.age.secrets.nix-access-tokens-github.path}
               '';
@@ -166,7 +173,6 @@
             {
               config,
               lib,
-              pkgs,
               ...
             }: {
               config = {
@@ -213,14 +219,14 @@
       in
         inputs.agenix-rekey.configure {
           userFlake = inputs.self;
-          nodes = lib.attrsets.filterAttrs (n: v: (!(lib.strings.hasPrefix "installer" n))) (
+          nixosConfigurations = lib.attrsets.filterAttrs (n: v: (!(lib.strings.hasPrefix "installer" n))) (
             inputs.self.nixosConfigurations // inputs.self.darwinConfigurations
           );
           # Example for colmena:
           # inherit ((colmena.lib.makeHive self.colmena).introspect (x: x)) nodes;
         };
 
-      machines = with inputs; let
+      machines = let
         names = builtins.attrNames (builtins.readDir ./systems-by-name);
       in rec {
         all =
@@ -229,7 +235,7 @@
         excludingSelf = cfg: (builtins.filter (name: cfg.networking.hostName != name) all);
       };
 
-      images = with inputs; rec {
+      images = with inputs; {
         # baaa-express = self.nixosConfigurations.baaa-express.config.system.build.sdImage;
         # pegasus = self.nixosConfigurations.pegasus.config.system.build.sdImage;
         installer = {
@@ -244,20 +250,6 @@
             "aarch64-linux" = config.system.build.sdImage;
           };
         };
-
-        ovmfx86 =
-          (inputs.nixpkgs.legacyPackages.x86_64-linux.OVMFFull.override {
-            secureBoot = true;
-            tpmSupport = true;
-          })
-          .fd;
-
-        ovmfaarch64 =
-          (inputs.nixpkgs.legacyPackages.x86_64-linux.pkgsCross.aarch64-multiplatform.OVMF.override {
-            secureBoot = true;
-            tpmSupport = true;
-          })
-          .fd;
 
         linuxKernel_x86 = self.nixosConfigurations.wodan.config.boot.kernelPackages.kernel;
 
@@ -376,70 +368,65 @@
     # allow-unsafe-native-code-during-evaluation = true;
 
     # netrc-file = "/etc/nix/netrc";
-    trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "tomasharkema:v3sMQpfpSW5KGDK115NB2pQLNzmS2qqjVGa39/fYPjk="
-      "watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="
-      "raspi5.harkema.io-1:/kwt4HGmzEnXtQ2i8LMnfu8PrFaiX+oT7z5jsA3sXhs="
-    ];
 
     substituters = [
       "https://cache.nixos.org/"
-      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
       # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
       "https://watersucks.cachix.org"
-    ];
-
-    trustedBinaryCaches = [
-      "https://cache.nixos.org"
-      "https://nyx.chaotic.cx/"
-      "https://nix-gaming.cachix.org"
-      "https://nix-community.cachix.org"
-      # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
-      "https://devenv.cachix.org"
-      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
-      "https://cuda-maintainers.cachix.org"
-    ];
-    binaryCaches = [
-      "https://cache.nixos.org"
-      "https://nyx.chaotic.cx/"
-      "https://nix-gaming.cachix.org"
-      "https://nix-community.cachix.org"
-      "https://devenv.cachix.org"
-      "https://cuda-maintainers.cachix.org"
-      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
-      # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
-    ];
-
-    extra-substituters = [
-      "https://cache.nixos.org"
-      "https://cache.ngi0.nixos.org"
-      "https://nyx.chaotic.cx/"
+      "https://nixpkgs.cachix.org"
+      "https://chaotic-nyx.cachix.org/"
       "https://nix-gaming.cachix.org"
       "https://nix-community.cachix.org"
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
       "https://tomasharkema.cachix.org"
-      # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
-      "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
-      "https://anyrun.cachix.org"
+      "http://silver-star.ling-lizard.ts.net:7124"
+      "https://niri.cachix.org"
     ];
 
-    extra-trusted-public-keys = [
-      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
-      "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+    # trustedBinaryCaches = [
+    #   "https://cache.nixos.org"
+    #   "https://nyx.chaotic.cx/"
+    #   "https://nix-gaming.cachix.org"
+    #   "https://nix-community.cachix.org"
+    #   # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
+    #   "https://devenv.cachix.org"
+    #   "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
+    #   "https://cuda-maintainers.cachix.org"
+    # ];
+
+    # binaryCaches = [
+    #   "https://cache.nixos.org"
+    #   "https://nyx.chaotic.cx/"
+    #   "https://nix-gaming.cachix.org"
+    #   "https://nix-community.cachix.org"
+    #   "https://devenv.cachix.org"
+    #   "https://cuda-maintainers.cachix.org"
+    #   "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
+    #   # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
+    # ];
+
+    trusted-public-keys = [
+      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "tomasharkema:4Ou4kbViWV9ZPL5DGQZ5j4IEwpQrJ/u9YnU/7oY9djE="
+      "watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="
+      "raspi5.harkema.io-1:/kwt4HGmzEnXtQ2i8LMnfu8PrFaiX+oT7z5jsA3sXhs="
       "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-      "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
       "tomas:hER/5A08v05jH8GnQUZRrh33+HDNbeiJj8z/8JY6ZvI="
       "tomasharkema.cachix.org-1:BV3Sv3qGZ0bcybPFeigwKoxnpj/NBAFYHq9FMO1XgH4="
-      "tomasharkema:v3sMQpfpSW5KGDK115NB2pQLNzmS2qqjVGa39/fYPjk="
+      "tomasharkema:VdbRcFT6+nuun6sDcTxEQ4M+1dqncDrjqJPCDOJ6mqo="
       "tomasharkema:O7hvvAIoFVjO5giONleXcRE1Og7IDt2DdvAQRg4GCkI="
+      "tomasharkema:4Ou4kbViWV9ZPL5DGQZ5j4IEwpQrJ/u9YnU/7oY9djE="
       "raspi5.harkema.io-1:/kwt4HGmzEnXtQ2i8LMnfu8PrFaiX+oT7z5jsA3sXhs="
-      "cache.ngi0.nixos.org-1:KqH5CBLNSyX184S9BKZJo1LxrxJ9ltnY2uAs5c/f1MA="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nixpkgs.cachix.org-1:q91R6hxbwFvDqTSDKwDAV4T5PxqXGxswD8vhONFMeOE="
+      "tomas-nixos-1:attQnEt6Gq99mwz5J/h8EVhCpavuB0/z/u0Bt/Mko7E="
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+      "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
     ];
 
     # allowed-uris = [
@@ -457,7 +444,7 @@
     #   "github:snowfallorg/"
     # ];
 
-    allow-import-from-derivation = true;
+    # allow-import-from-derivation = true;
     keep-outputs = true;
     keep-derivations = true;
     accept-flake-config = true;
@@ -465,26 +452,30 @@
   };
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable?shallow=true";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # systems.url = "github:nix-systems/default";
 
     darwin = {
-      url = "github:LnL7/nix-darwin";
+      url = "github:LnL7/nix-darwin?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
+    nixos-facter-modules.url = "github:numtide/nixos-facter-modules?shallow=true";
 
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
     };
+
+    # impermanence = {
+    #   url = "github:nix-community/impermanence?shallow=true";
+    # };
 
     # flake-utils = {
     #   url = "github:numtide/flake-utils";
@@ -494,13 +485,8 @@
     #   url = "github:hercules-ci/flake-parts";
     # };
 
-    devenv = {
-      url = "github:cachix/devenv";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     devshell = {
-      url = "github:numtide/devshell";
+      url = "github:numtide/devshell?shallow=true";
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };
@@ -518,27 +504,23 @@
     #   };
     # };
 
-    # crane = {
-    #   url = "github:ipetkov/crane";
-    # };
-
     catppuccin = {
-      url = "github:catppuccin/nix";
+      url = "github:catppuccin/nix?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-index-database = {
-      url = "github:nix-community/nix-index-database";
+      url = "github:nix-community/nix-index-database?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     disko = {
-      url = "github:nix-community/disko";
+      url = "github:nix-community/disko?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-anywhere = {
-      url = "github:nix-community/nixos-anywhere";
+      url = "github:nix-community/nixos-anywhere?shallow=true";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -549,7 +531,7 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim"; # /nixos-24.05";
+      url = "github:nix-community/nixvim?shallow=true"; # /nixos-24.05";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -563,7 +545,7 @@
     };
 
     agenix = {
-      url = "github:ryantm/agenix";
+      url = "github:ryantm/agenix?shallow=true";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -574,7 +556,7 @@
     };
 
     agenix-rekey = {
-      url = "github:oddlama/agenix-rekey";
+      url = "github:oddlama/agenix-rekey?shallow=true";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -585,11 +567,11 @@
     };
 
     nixos-hardware = {
-      url = "github:nixos/nixos-hardware";
+      url = "github:nixos/nixos-hardware?shallow=true";
     };
 
     nix-gaming = {
-      url = "github:fufexan/nix-gaming";
+      url = "github:fufexan/nix-gaming?shallow=true";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -597,13 +579,8 @@
       };
     };
 
-    # cachix-deploy-flake = {
-    #   url = "github:cachix/cachix-deploy-flake";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     nix-software-center = {
-      url = "github:snowfallorg/nix-software-center";
+      url = "github:snowfallorg/nix-software-center?shallow=true";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -617,14 +594,14 @@
     # };
 
     nix-flatpak = {
-      url = "github:gmodena/nix-flatpak";
+      url = "github:gmodena/nix-flatpak?shallow=true";
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote";
-
+      url = "github:nix-community/lanzaboote?shallow=true";
+      # url = "github:andre4ik3/lanzaboote?ref=fenix";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
+        #nixpkgs.follows = "nixpkgs";
         # crane.follows = "crane";
         # flake-parts.follows = "flake-parts";
         # flake-compat.follows = "flake-compat";
@@ -634,8 +611,8 @@
     };
 
     snowfall-lib = {
-      url = "github:snowfallorg/lib";
-
+      url = "github:snowfallorg/lib?shallow=true";
+      # url = "github:anntnzrb/snowfall-lib?shallow=true";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         # flake-compat.follows = "flake-compat";
@@ -643,7 +620,7 @@
     };
 
     snowfall-flake = {
-      url = "github:snowfallorg/flake";
+      url = "github:snowfallorg/flake?shallow=true";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -695,12 +672,10 @@
     # };
 
     poetry2nix = {
-      url = "github:nix-community/poetry2nix";
+      url = "github:nix-community/poetry2nix?shallow=true";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        # flake-utils.follows = "flake-utils";
-        # treefmt-nix.follows = "treefmt-nix";
       };
     };
 
@@ -710,7 +685,7 @@
     # };
 
     op-shell-plugins = {
-      url = "github:1Password/shell-plugins";
+      url = "github:1Password/shell-plugins?shallow=true";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -723,15 +698,6 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    # nix-virt = {
-    #   url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
-
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     nixpkgs-ovmf.follows = "nixpkgs";
-    #   };
-    # };
-
     # conky = {
     #   url = "github:brndnmtthws/conky";
 
@@ -742,7 +708,7 @@
     # };
 
     nixos-06cb-009a-fingerprint-sensor = {
-      url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor/24.11";
+      url = "github:tomasharkema/nixos-06cb-009a-fingerprint-sensor/25.05?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -783,7 +749,7 @@
     # };
 
     nvidia-vgpu-nixos = {
-      url = "github:mrzenc/vgpu4nixos";
+      url = "github:mrzenc/vgpu4nixos?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -797,16 +763,14 @@
     # };
 
     nixos-recovery = {
-      # url = "https://flakehub.com/f/tomasharkema/nixos-recovery/0.0.*.tar.gz";
-      url = "github:tomasharkema/nixos-recovery";
+      url = "github:tomasharkema/nixos-recovery/develop?shallow=true";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        # flake-parts.follows = "flake-parts";
       };
     };
 
     chaotic = {
-      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable?shallow=true";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
@@ -819,33 +783,33 @@
     # };
 
     tsui = {
-      url = "github:neuralinkcorp/tsui";
+      url = "github:neuralinkcorp/tsui?shallow=true";
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };
     };
 
     mac-app-util = {
-      url = "github:hraban/mac-app-util";
+      url = "github:hraban/mac-app-util?shallow=true";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
+        # nixpkgs.follows = "nixpkgs";
       };
     };
 
-    #nvidia-patch = {
-    #  url = "github:icewind1991/nvidia-patch-nixos";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    nvidia-patch = {
+      url = "github:icewind1991/nvidia-patch-nixos?shallow=true";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     piratebay = {
-      url = "github:tsirysndr/piratebay";
+      url = "github:tsirysndr/piratebay?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    vscode-server = {
-      url = "github:nix-community/nixos-vscode-server";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # vscode-server = {
+    #   url = "github:nix-community/nixos-vscode-server";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # wezterm = {
     #   url = "github:wez/wezterm?dir=nix";
@@ -872,43 +836,48 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    zjstatus = {
-      url = "github:dj95/zjstatus";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixgl = {
-      url = "github:nix-community/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixgl = {
+    #   url = "github:nix-community/nixGL?shallow=true";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     tsnsrv = {
-      url = "github:boinkor-net/tsnsrv";
+      url = "github:boinkor-net/tsnsrv?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixd = {
-      url = "github:nix-community/nixd";
+      url = "github:nix-community/nixd?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprpanel = {
-      url = "github:Jas-SinghFSU/HyprPanel";
+      url = "github:Jas-SinghFSU/HyprPanel?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
+    # hyprlock = {
+    #   url = "github:hyprwm/hyprlock?shallow=true";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    # wluma = {
+    #   url = "github:tomasharkema/wluma?shallow=true";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    niri = {
+      url = "github:sodiboo/niri-flake?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    anyrun = {
-      url = "github:anyrun-org/anyrun";
+    nixpkgs-esp-dev = {
+      url = "github:mirrexagon/nixpkgs-esp-dev?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    wluma = {
-      url = "github:tomasharkema/wluma";
+    walker = {
+      url = "github:abenz1267/walker?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

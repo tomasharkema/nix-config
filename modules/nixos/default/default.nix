@@ -2,12 +2,11 @@
   config,
   pkgs,
   lib,
-  inputs,
   ...
 }: let
-  sbctl-tpm = pkgs.writeShellScriptBin "sbctl-tpm" ''
-    sudo sbctl rotate-keys --pk-keytype tpm --kek-keytype kek --db-keytype file
-  '';
+  # sbctl-tpm = pkgs.writeShellScriptBin "sbctl-tpm" ''
+  #   sudo sbctl rotate-keys --pk-keytype tpm --kek-keytype kek --db-keytype file
+  # '';
 in {
   config = {
     assertions = [
@@ -29,14 +28,14 @@ in {
 
     system = {
       build = {
-        self = inputs.self;
-
-        pico-rng = pkgs.custom.pico-rng.override {kernel = config.boot.kernelPackages.kernel;};
+        # self = inputs.self;
       };
       #      etc.overlay.enable = config.boot.initrd.systemd.enable;
       nixos.tags = ["${config.boot.kernelPackages.kernel.modDirVersion}"];
       rebuild.enableNg = true;
     };
+
+    # security.isolate.enable = true;
 
     systemd = {
       additionalUpstreamSystemUnits = ["systemd-bsod.service"];
@@ -45,10 +44,6 @@ in {
         NetworkManager-wait-online.enable = lib.mkForce false;
         systemd-networkd-wait-online.enable = lib.mkForce false;
       };
-      #
-
-      # sysupdate.enable = true;
-      # repart.enable = true;
 
       watchdog = {
         rebootTime = "5m";
@@ -85,10 +80,11 @@ in {
     # };
 
     console = {
-      earlySetup = true;
+      # earlySetup = true;
       # font = "ter-v32n";
       # packages = with pkgs; [terminus_font];
-      keyMap = "us";
+      # keyMap = "us";
+      useXkbConfig = true;
     };
 
     boot = {
@@ -106,27 +102,26 @@ in {
       crashDump.enable = pkgs.stdenv.isx86_64; # true;
 
       initrd = {
-        compressor = "zstd";
-        compressorArgs = ["-19"];
+        # dm = "zstd";
+        # compressorArgs = ["-19"];
         # systemd.emergencyAccess = "abcdefg";
         includeDefaultModules = true;
         # unl0kr = {enable = config.disks.btrfs.encrypt;};
       };
 
-      hardwareScan = true;
+      # hardwareScan = true;
 
-      extraModulePackages = lib.mkIf pkgs.stdenv.isx86_64 [
-        config.system.build.pico-rng
-        config.boot.kernelPackages.cryptodev
-        config.boot.kernelPackages.acpi_call
-        config.boot.kernelPackages.fanout
-      ];
+      # extraModulePackages = lib.mkIf pkgs.stdenv.isx86_64 [
+      #   config.boot.kernelPackages.cryptodev
+      #   config.boot.kernelPackages.acpi_call
+      #   config.boot.kernelPackages.fanout
+      # ];
 
       kernelParams = [
         "zswap.enabled=1"
-        "efi_pstore.pstore_disable=0"
-        "printk.always_kmsg_dump"
-        "crash_kexec_post_notifiers"
+        # "efi_pstore.pstore_disable=0"
+        # "printk.always_kmsg_dump"
+        # "crash_kexec_post_notifiers"
 
         # "netconsole=@/,@192.168.0.100/"
       ];
@@ -153,13 +148,15 @@ in {
           (
             if config.traits.server.enable
             then lib.mkDefault pkgs.linuxPackages_cachyos-server
-            else lib.mkDefault pkgs.linuxPackages_cachyos
+            else lib.mkDefault pkgs.linuxPackages_cachyos-gcc
           );
 
       kernelModules = [
         # "wireguard"
         # "netconsole"
         # "apfs"
+        "efi_pstore"
+        "pstore"
       ];
 
       supportedFilesystems = [
@@ -168,6 +165,8 @@ in {
         "nfs"
       ];
       initrd.kernelModules = [
+        "efi_pstore"
+        "pstore"
         # "netconsole"
       ];
       loader = {
@@ -196,6 +195,8 @@ in {
       #   provider = "graphene-hardened";
       # };
 
+      homeBinInPath = true;
+
       pathsToLink = [
         "/share/zsh"
         "/share/xdg-desktop-portal"
@@ -209,218 +210,6 @@ in {
       variables.NH_FLAKE = "/home/tomas/Developer/nix-config";
 
       enableAllTerminfo = true;
-      systemPackages =
-        (with pkgs; [
-          custom.discovery-rs
-          nixos-rebuild-ng
-          lnav
-          wireshark
-          termshark
-          tshark
-          python3Packages.pip
-          config.boot.kernelPackages.iio-utils
-          cutecom
-          sbctl-tpm
-          pulseview
-          sigrok-cli
-          custom.partclone-utils
-          bridge-utils
-          xterm
-          libheif
-          gensio
-          ser2net
-          # lz4
-          p7zip
-          starship
-          helix
-
-          zathura
-          mpv
-          imv
-          rsbkb
-          gpsd
-          custom.flipperzero-ufbt
-          nix-search-cli
-          custom.zide
-          custom.wikiman
-          custom.glide
-          binwalk
-          bat-extras.batman
-          bat-extras.batdiff
-          bat-extras.batwatch
-          bat-extras.batpipe
-          bat-extras.batgrep
-          compsize
-          # dry
-          libgpiod
-          gpio-utils
-          # fam # unmaintained
-          fancy-motd
-          # mkchromecast
-          # nix-switcher # : needs github auth
-          # ntfy
-          onionshare
-          oterm
-          rtop
-          # socklog
-          # tailspin
-          tsui
-          ttop
-          agenix-rekey
-          aide
-          # apfs-fuse
-          # apfsprogs
-          archivemount
-          bandwhich
-          bash
-          bashmount
-          bmon
-          # caffeine-ng
-          castnow
-          catt
-          chunkfs
-          cksfv
-          clex
-          colorized-logs
-          ctop
-          curl
-          devcontainer
-          xxd
-          devtodo
-          dfrs
-          distrobox
-          distrobox-tui
-          duc
-          ethtool
-          fcast-receiver
-
-          gdu
-          git
-          git
-          glog
-          glogg
-
-          ghostty
-          htmlq
-          hueadm
-          hw-probe
-          ifuse
-          ipcalc
-          iptraf-ng
-          usbredir
-          whatfiles
-          # jupyter
-          kexec-tools
-          kmon
-          lazydocker
-          # ldapdomaindump
-          libnotify
-          lm_sensors
-          lorri
-          lrzsz
-          lshw
-          mbuffer
-          minio-client
-          ncdu
-          nethogs
-          netop
-          netproc
-          netscanner
-          nfs-utils
-          nil
-          nix-btm
-          nix-top
-          nixd
-          nixos-facter
-          ntfs3g
-          ntfy-sh
-          nvchecker
-          openldap
-          pamix
-          pamixer
-
-          gnupg
-          pciutils
-          pigz
-          pkgs.custom.nix-helpers
-          ponymix
-          pulsemixer
-          pv
-          s-tui
-          silenthound
-          smartmontools
-          socat
-          websocat
-          ser2net
-          wol
-          picotool
-          openocd
-          cmake
-          ninja
-          gnumake
-          gdb
-          gdbgui
-          clang-tools
-          i2c-tools
-
-          squashfsTools
-          squashfs-tools-ng
-          ssh-import-id
-          ssh-tools
-          sshfs
-          sshportal
-          strace
-          swapview
-          systemctl-tui
-          # systeroid
-          sysz
-          tcptrack
-          nmap
-          tiptop
-          tio
-          tpm-tools
-          treecat
-          networkmanagerapplet
-          ttmkfdir
-          tydra
-          update-nix-fetchgit
-          updatecli
-          usbutils
-          usermount
-          viddy
-          watchlog
-          wavemon
-          wget
-          wget
-          wmctrl
-          wtfutil
-          zstd
-          isd
-        ])
-        ++ (with pkgs.custom; [
-          ssh-proxy-agent
-          menu
-          pvzstd
-          ssm
-          tailscale-tui
-          sshed
-          # rmfuse
-        ])
-        ++ (lib.optionals pkgs.stdenv.isx86_64 (
-          with pkgs; [
-            python3Packages.meshtastic
-            spectre-meltdown-checker
-            gnutls
-            cmospwd
-            uefisettings
-            libsmbios
-            micropython
-            dmidecode
-            refind
-            fwupd
-            fwupd-efi
-          ]
-        ));
     };
 
     systemd.tmpfiles = {
@@ -430,19 +219,18 @@ in {
     };
 
     apps = {
-      attic.enable = lib.mkDefault true;
       ipa.enable = lib.mkDefault true;
       atop.enable = lib.mkDefault true;
+    };
+
+    users.groups.ftdi = {
+      members = ["root" "tomas"];
     };
 
     # proxy-services.enable = lib.mkDefault true;
 
     services = {
-      scx = {
-        enable = !(config.traits.server.enable) && pkgs.stdenvNoCC.isx86_64;
-        #package = pkgs.scx_git.full;
-        scheduler = "scx_lavd"; # "scx_bpfland";
-      };
+      # geoipupdate.enable = true;
       earlyoom.enableNotifications = true;
       # locate.enable = true;
 
@@ -451,13 +239,14 @@ in {
 
       # uptime.enableSeparateMonitoringService = true;
 
-      snmpd = {
-        enable = true;
-        configText = ''
-          rocommunity   public
-          trapsink      localhost:162 public
-        '';
-      };
+      # snmpd = {
+      #   enable = true;
+      #   configText = ''
+      #     rocommunity   public
+      #     trapsink      localhost:162 public
+      #   '';
+      # };
+      fanout.enable = true;
 
       smartd = {
         enable = true;
@@ -472,7 +261,7 @@ in {
       };
 
       # sysstat.enable = lib.mkDefault true;
-      # irqbalance.enable = true;
+      irqbalance.enable = true;
       # aria2.enable = true;
 
       rpcbind.enable = true;
@@ -566,13 +355,25 @@ in {
         enable = true;
         permitRootLogin = lib.mkForce "no";
         passwordAuthentication = false;
+
         settings = {
           PasswordAuthentication = false;
           PermitRootLogin = lib.mkForce "no";
 
+          KerberosAuthentication = "no";
+          GSSAPIAuthentication = "yes";
+          UsePAM = true;
+          ChallengeResponseAuthentication = "yes";
+          UseDns = true;
+
           # PasswordAuthentication = false;
           # KbdInteractiveAuthentication = true;
           # AcceptEnv = "*";
+          # KexAlgorithms = [
+          #   "sntrup761x25519-sha512"
+          #   "sntrup761x25519-sha512@openssh.com"
+          #   "mlkem768x25519-sha256"
+          # ];
         };
       };
 
@@ -654,21 +455,24 @@ in {
         enable = lib.mkDefault true;
         packages = with pkgs; [picoprobe-udev-rules];
 
-        extraRules = ''
-          ACTION=="add", SUBSYSTEM=="usb", \
-            ATTR{idVendor}=="1d50", ATTR{idProduct}=="6170", \
-            RUN+="${pkgs.kmod}/bin/modprobe -b dln2"
+        # extraRules = ''
+        #   ACTION=="add", SUBSYSTEM=="usb", \
+        #     ATTR{idVendor}=="1d50", ATTR{idProduct}=="6170", \
+        #     RUN+="${pkgs.kmod}/bin/modprobe -b dln2"
 
-          ACTION=="add", SUBSYSTEM=="drivers", ENV{DEVPATH}=="/bus/usb/drivers/dln2", \
-            ATTR{new_id}="1d50 6170 ff"
-        '';
+        #   ACTION=="add", SUBSYSTEM=="drivers", ENV{DEVPATH}=="/bus/usb/drivers/dln2", \
+        #     ATTR{new_id}="1d50 6170 ff"
+
+        #   SUBSYSTEMS=="usb", ATTRS{idVendor}=="16d0", ATTRS{idProduct}=="0753", MODE:="0666"
+        #   KERNEL=="ttyACM*", ATTRS{idVendor}=="16d0", ATTRS{idProduct}=="0753", MODE:="0666", ENV{ID_MM_DEVICE_IGNORE}="1"
+        # '';
       };
 
       chrony = {
         enable = true;
 
         servers = [
-          #"meshpi3.local"
+          #"timepi.local"
           #"time.cloudflare.com"
         ];
 
@@ -683,7 +487,6 @@ in {
           server  ntp0.nl.uu.net  iburst  minpoll 4  maxpoll 4
           server  ntp1.nl.uu.net  iburst  minpoll 4  maxpoll 4
           server  ntp1.time.nl    iburst  minpoll 4  maxpoll 4
-
         '';
       };
 
@@ -702,6 +505,13 @@ in {
       audit.enable = true;
       auditd.enable = true;
       pam.sshAgentAuth.enable = true;
+      # pam.rssh = {
+      #   enable = true;
+      #   settings = {
+      #     authorized_keys_command = config.services.openssh.authorizedKeysCommand;
+      #     authorized_keys_command_user = config.services.openssh.authorizedKeysCommandUser;
+      #   };
+      # };
       wrappers.nethoscope = {
         owner = "tomas";
         group = "tomas";
@@ -712,10 +522,9 @@ in {
 
     programs = {
       fzf.fuzzyCompletion = true;
-      #`mosh.enable = true;
+      # mosh.enable = true;
       dconf.enable = true;
       sharing.enable = true;
-      # darling.enable = pkgs.stdenv.isx86_64;
       autojump.enable = true;
       bandwhich.enable = true;
       cpu-energy-meter.enable = pkgs.stdenv.isx86_64;
@@ -727,7 +536,12 @@ in {
         enable = true;
         openFirewall = true;
       };
-      wireshark = {enable = true;};
+      wireshark = {
+        enable = true;
+        dumpcap.enable = true;
+        usbmon.enable = true;
+        package = pkgs.wireshark;
+      };
       nix-index = {
         enable = true;
         enableZshIntegration = true;
@@ -738,13 +552,11 @@ in {
         lfs.enable = true;
       };
       udevil.enable = true;
-      # usbtop.enable = true;
+      usbtop.enable = true;
       wavemon.enable = true;
       trippy.enable = true;
       ydotool.enable = true;
-
-      system-config-printer.enable = true;
-      # corefreq.enable = pkgs.stdenv.isx86_64;
+      iotop.enable = true;
 
       htop = {
         enable = true;
@@ -763,6 +575,7 @@ in {
         # extraConfig = ''
         #  ForwardAgent yes
         # '';
+        # kexAlgorithms = config.services.openssh.settings.KexAlgorithms;
       };
 
       nix-ld.enable = true;
@@ -783,14 +596,22 @@ in {
         drives = ["/dev/disk/by-path/*"];
       };
       libftdi.enable = true;
-      mcelog.enable = true;
+      # mcelog.enable = true;
+      rasdaemon.enable = true;
+
+      usbStorage.manageShutdown = true;
     };
+
     networking = {
       firewall = {
         enable = lib.mkDefault true;
       };
 
-      networkmanager.enable = lib.mkDefault true;
+      networkmanager = {
+        enable = lib.mkDefault true;
+        wifi.scanRandMacAddress = lib.mkDefault true;
+      };
+
       # timeServers = ["192.168.9.49"];
 
       useNetworkd = lib.mkIf config.networking.networkmanager.enable false;

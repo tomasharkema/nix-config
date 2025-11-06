@@ -24,23 +24,35 @@ in {
           "-n"
         ];
       };
-      geoclue2 = lib.mkIf false {
+
+      geoclue2 = {
         enable = true;
+        # package = pkgs.geoclue2.overrideAttrs {
+        #   version = "unstable";
+        #   src = pkgs.custom.geoclue-gpsd.src;
+
+        # postInstall = ''
+        #   substituteInPlace $out/lib/systemd/system/geoclue.service \
+        #     --replace-fail "Environment=\"GSETTINGS_BACKEND=memory\"" ""
+        # '';
+        #};
         enableDemoAgent = lib.mkForce true;
       };
     };
+
     systemd = {
       services.gpsd = {
         requires = ["gpsd.socket"];
         wantedBy = ["gpsd.socket"];
         serviceConfig = lib.mkIf (!cfg.server.enable) {
-          ExecStart = lib.mkForce "${pkgs.gpsd}/sbin/gpsd gpsd://meshpi3.local";
+          ExecStart = lib.mkForce "${pkgs.gpsd}/sbin/gpsd gpsd://timepi.local";
         };
       };
       sockets.gpsd = {
         listenStreams = [
           "/run/gpsd.sock"
           "0.0.0.0:2947"
+          # "[::]:2947"
         ];
         wantedBy = ["sockets.target"];
         description = "gpsd socket";

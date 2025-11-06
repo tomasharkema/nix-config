@@ -14,28 +14,29 @@
   gtk4,
   libadwaita,
   gobject-introspection,
-  wrapGAppsHook,
+  wrapGAppsHook3,
   libshumate,
   desktop-file-utils,
+  meshtastic-fix,
 }: let
   py = python3.withPackages (ps:
     with ps; [
       glib
       gobject-introspection
       pygobject3
-      meshtastic
+      meshtastic-fix
       pyqrcode
     ]);
 in
   stdenv.mkDerivation rec {
     pname = "gtk-meshtastic-client";
-    version = "1.2";
+    version = "1.3";
 
     src = fetchFromGitLab {
       owner = "kop316";
       repo = "gtk-meshtastic-client";
       rev = version;
-      hash = "sha256-P0U3OO1BSysGGMGADPVREWoJqcKeZITla91iIdV7y4M=";
+      hash = "sha256-g9K+XMF/i8P3pLbia750oJCQ+ZHPdQvqWa/tklIQVfk=";
     };
 
     nativeBuildInputs = [
@@ -43,7 +44,7 @@ in
       meson
       ninja
       gobject-introspection
-      wrapGAppsHook
+      wrapGAppsHook3
       pkg-config
       desktop-file-utils
       py

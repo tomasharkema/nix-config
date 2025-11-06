@@ -4,11 +4,11 @@
   config,
   ...
 }: {
-  config = lib.mkIf false {
-    environment.systemPackages = with pkgs;
-      [tor]
-      ++ lib.optional (pkgs.system == "x86_64-linux" && config.gui.enable)
-      tor-browser-bundle-bin;
+  config = {
+    environment.systemPackages = with pkgs; [
+      tor
+      (lib.mkIf (pkgs.system == "x86_64-linux" && config.gui.enable) tor-browser)
+    ];
 
     services.tor = {
       enable = true;

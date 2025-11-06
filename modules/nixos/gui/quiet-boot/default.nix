@@ -10,7 +10,8 @@ in {
 
   config = lib.mkIf (cfg.enable) {
     console = {
-      earlySetup = true;
+      earlySetup = lib.mkForce false;
+      packages = [pkgs.terminus_font];
     };
 
     environment.systemPackages = with pkgs; [plymouth];
@@ -18,26 +19,28 @@ in {
     boot = {
       plymouth = {
         enable = true;
-        # theme = "fedora-branded";
-        # themePackages = [
-        #   pkgs.custom.plymouth-progress
-        # ];
 
-        # font = "${pkgs.inter}/share/fonts/truetype/InterVariable.ttf";
+        font = "${pkgs.inter}/share/fonts/truetype/InterVariable.ttf";
       };
-      loader.timeout = lib.mkDefault 0;
+
+      loader.timeout = 0;
       kernelParams = [
         "quiet"
         "loglevel=3"
-        "systemd.show_status=auto"
+        "systemd.show_status=false"
+        "rd.systemd.show_status=false"
         "udev.log_level=3"
         "rd.udev.log_level=3"
+        "vga=current"
+        "splash"
         "vt.global_cursor_default=0"
+
+        "boot.shell_on_fail"
       ];
-      consoleLogLevel = lib.mkDefault 0;
+      consoleLogLevel = 0;
       initrd = {
-        systemd.enable = lib.mkDefault true;
-        verbose = lib.mkDefault false;
+        systemd.enable = true;
+        verbose = false;
       };
     };
 
@@ -51,56 +54,54 @@ in {
         	fi
         done
         echo "Plymouth died, exiting..."
-
       '';
-    in
-      lib.mkIf false {
-        "plymouth-boot-messages" = {
-          path = with pkgs; [
-            systemd
-            plymouth
-          ];
+    in {
+      "plymouth-boot-messages" = {
+        path = with pkgs; [
+          systemd
+          plymouth
+        ];
 
-          wantedBy = ["sysinit.target"];
+        wantedBy = ["sysinit.target"];
 
-          after = ["plymouth-start.service"];
-          requires = ["plymouth-start.service"];
+        after = ["plymouth-start.service"];
+        requires = ["plymouth-start.service"];
 
-          unitConfig = {
-            Description = "Display boot messages on the plymouth screen";
-            DefaultDependencies = "no";
-          };
-
-          serviceConfig = {
-            Type = "simple";
-            RemainAfterExit = "yes";
-          };
-
-          script = "${script}";
+        unitConfig = {
+          Description = "Display boot messages on the plymouth screen";
+          DefaultDependencies = "no";
         };
-        "plymouth-poweroff-messages" = {
-          path = with pkgs; [
-            systemd
-            plymouth
-          ];
 
-          wantedBy = ["poweroff.target" "halt.target" "shutdown.target"];
-          after = ["plymouth-poweroff.service"];
-          before = ["poweroff.target" "halt.target" "shutdown.target"];
-          requires = ["plymouth-poweroff.service"];
-
-          unitConfig = {
-            Description = "Display boot messages on the plymouth screen";
-            DefaultDependencies = "no";
-          };
-
-          serviceConfig = {
-            Type = "simple";
-          };
-
-          script = "${script}";
+        serviceConfig = {
+          Type = "simple";
+          RemainAfterExit = "yes";
         };
+
+        script = "${script}";
       };
+      "plymouth-poweroff-messages" = {
+        path = with pkgs; [
+          systemd
+          plymouth
+        ];
+
+        wantedBy = ["poweroff.target" "halt.target" "shutdown.target"];
+        after = ["plymouth-poweroff.service"];
+        before = ["poweroff.target" "halt.target" "shutdown.target"];
+        requires = ["plymouth-poweroff.service"];
+
+        unitConfig = {
+          Description = "Display boot messages on the plymouth screen";
+          DefaultDependencies = "no";
+        };
+
+        serviceConfig = {
+          Type = "simple";
+        };
+
+        script = "${script}";
+      };
+    };
     # # /etc/systemd/system/plymouth-boot-messages.service
     # # Run "systemctl enable plymouth-boot-messages.service" after creating the file
 

@@ -49,13 +49,12 @@
       enable = true;
       desktop = {
         enable = true;
-        rdp.enable = false;
       };
       quiet-boot.enable = true;
       gamemode.enable = true;
     };
 
-    services.beesd.filesystems = {
+    services.beesd.filesystems = lib.mkIf false {
       root = {
         spec = "UUID=b4d344ce-bf39-473d-bc97-7b12ef0f97a1";
         hashTableSizeMB = 1024;

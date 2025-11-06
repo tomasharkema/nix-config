@@ -7,30 +7,35 @@
   ...
 }: {
   config = let
-    key_path = "${config.home.homeDirectory}/.atuin/key";
+    checkFile = "${config.home.homeDirectory}/.atuin_key_copied_4242";
+    key_path = "${config.home.homeDirectory}/.local/share/atuin/key";
   in {
     home.activation.atuin-key = inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
-      if [ ! -d "$(dirname "${key_path}")" ]; then
-        mkdir "$(dirname "${key_path}")"
-      fi
+      if [ ! -e "${checkFile}" ]; then
 
-      if [ -f "${osConfig.age.secrets.atuin.path}" ]; then
-        install -Dm 600 "${osConfig.age.secrets.atuin.path}" "${key_path}"
-      fi
+        if [ -e "${osConfig.age.secrets.atuin.path}" ]; then
+          rm -rf "${config.home.homeDirectory}/.atuin/key"
+          rm -rf "${key_path}"
+          install -Dm 600 "${osConfig.age.secrets.atuin.path}" "${key_path}"
+        fi
 
-      # if [ -f "${osConfig.age.secrets."attic-config.toml".path}" ]; then
-      #   install -Dm 600 "${osConfig.age.secrets."attic-config.toml".path}" "/home/tomas/.config/attic/config.toml"
-      # fi
+        touch "${checkFile}"
+      fi
     '';
 
     programs.atuin = {
       enable = true;
       enableZshIntegration = true;
+
+      daemon = {
+        enable = true;
+      };
+
       settings = {
         key_path = key_path;
-        # key_path = osConfig.age.secrets.atuin.path;
-        # sync_address = "https://atuin.harke.ma";
-        sync_address = "http://silver-star.ling-lizard.ts.net:8888";
+
+        sync_address = "https://atuin.ling-lizard.ts.net";
+
         auto_sync = true;
         sync_frequency = "10m";
         workspaces = true;
@@ -38,48 +43,11 @@
         secrets_filter = true;
         filter_mode = "workspace";
         common_subcommands = ["cargo" "go" "git" "npm" "yarn" "pnpm" "kubectl" "nix" "nom" "nh"];
-        daemon = lib.mkIf pkgs.stdenv.isLinux {
-          enabled = true;
-          systemd_socket = true;
-          socket_path = "/run/user/1000/atuin.sock";
-        };
-      };
-    };
-
-    # launchd.agents."atuin" = {
-    #   enable = true;
-    #   config = {
-    #     ProgramArguments = [
-    #       "${(pkgs.writeShellScript "atuin-daemon" ''
-    #         exec ${getExe config.programs.atuin.package} daemon
-    #       '')}"
-    #     ];
-    #     KeepAlive = true;
-    #   };
-    # };
-
-    systemd.user = {
-      services."atuin" = {
-        Unit = {
-          Description = "atuin";
-          Requires = ["atuin.socket"];
-        };
-
-        Install.WantedBy = ["default.target"];
-
-        Service = {
-          ExecStart = "${lib.getExe config.programs.atuin.package} daemon";
-          Restart = "on-failure";
-          RestartSec = "5s";
-        };
-      };
-
-      sockets."atuin" = {
-        Unit = {Description = "atuin";};
-        Socket = {
-          ListenStream = "%t/atuin.sock";
-        };
-        Install.WantedBy = ["sockets.target"];
+        # daemon = {
+        #   enabled = true;
+        #   systemd_socket = true;
+        #   socket_path = "/run/user/1000/atuin.sock";
+        # };
       };
     };
   };

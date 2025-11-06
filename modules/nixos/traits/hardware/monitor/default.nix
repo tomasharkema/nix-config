@@ -10,17 +10,17 @@ in {
 
   config = lib.mkIf cfg.enable {
     system.nixos.tags = ["monitor"];
-
+    apps.ddc.enable = true;
     boot = {
       kernelModules = [
         "i2c-dev"
-        # "ddcci_backlight"
+        "ddcci_backlight"
       ];
-      # extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
+      extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
     };
 
     environment.systemPackages = with pkgs; [
-      # ddcutil
+      ddcutil
       # xorg.xbacklight
       # gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil
       brightnessctl

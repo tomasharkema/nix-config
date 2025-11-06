@@ -26,20 +26,18 @@
       remote-builders.client.enable = true;
       usbmuxd.enable = true;
       resilio.enable = lib.mkForce false;
-      kmscon.enable = lib.mkForce false;
+      kmscon.enable = true;
       usbguard.enable = lib.mkForce false;
       tlp.enable = lib.mkForce false;
       netdata.enable = lib.mkForce false;
     };
-
-    apps.attic.enable = lib.mkForce false;
 
     home-manager.users.tomas.dconf.settings = {
       "org/gnome/shell" = {
         disable-user-extensions = true;
       };
     };
-
+    hardware.microsoft-surface.kernelVersion = "stable";
     # microsoft-surface = {
     #   surface-control.enable = true;
     # };
@@ -82,6 +80,8 @@
         sign = true;
         netboot.enable = true;
       };
+
+      kernelParams = ["mitigations=off"];
     };
   };
 }

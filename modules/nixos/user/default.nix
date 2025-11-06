@@ -55,7 +55,10 @@
     };
 
     programs = {
-      fuse.userAllowOther = true;
+      fuse = {
+        enable = true;
+        userAllowOther = true;
+      };
       zsh = {enable = true;};
     };
 
@@ -63,14 +66,6 @@
       mutableUsers = lib.mkDefault false;
 
       users = {
-        agent = {
-          isSystemUser = true;
-          group = "agent";
-          extraGroups = lib.mkIf config.apps.resilio.enable ["rslsync"];
-          openssh.authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
-          uid = 1099;
-        };
-
         root = {
           shell = pkgs.zsh;
           openssh = {
@@ -90,6 +85,7 @@
             "wheel"
             "rslsync"
             "users"
+            "bluetooth"
             "fuse"
             "disk"
             "plugdev"
@@ -123,7 +119,6 @@
           members = ["${config.user.name}"];
           gid = 1000;
         };
-        agent = {};
         rslsync = lib.mkIf config.apps.resilio.enable {};
         dialout.members = ["tomas"];
         i2c.members = ["tomas"];

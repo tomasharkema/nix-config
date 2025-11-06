@@ -39,7 +39,7 @@ in {
     };
 
     services = {
-      # resolved.enable = true;
+      resolved.enable = true;
 
       tailscale = {
         enable = true;
@@ -55,8 +55,8 @@ in {
         openFirewall = true;
       };
 
-      tailscaleAuth.enable = true;
-      nginx.tailscaleAuth.enable = true;
+      # tailscaleAuth.enable = true;
+      # nginx.tailscaleAuth.enable = true;
 
       # zerotierone = {
       #   enable = true;

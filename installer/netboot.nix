@@ -22,9 +22,10 @@ inputs.nixpkgs.lib.nixosSystem {
         config = {
           boot = {
             supportedFilesystems.zfs = lib.mkForce false;
+            verbose = true;
           };
           system.stateVersion = config.system.nixos.release;
-          netboot.squashfsCompression = "zstd -Xcompression-level 22";
+          # netboot.squashfsCompression = "zstd -Xcompression-level 22";
           networking.wireless.enable = true;
         };
       }

@@ -47,7 +47,6 @@ in {
   config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
     gtk.gtk3.bookmarks = [
       "file:///home/tomas/Downloads"
-      "file:///home/tomas/Dropbox"
       "file:///home/tomas/Developer"
       "file:///home/tomas/Developer/nix-config"
       "file:///mnt/steam"
@@ -70,7 +69,7 @@ in {
       tldr-update.enable = true;
     };
 
-    xsession.enable = true;
+    # xsession.enable = true;
 
     xdg = {
       userDirs = {
@@ -136,6 +135,8 @@ in {
         ".background-image.svg" = lib.mkIf isSvg {source = "${bg}";};
         ".background-image.jpg" = lib.mkIf (!isSvg) {source = "${bg}";};
         ".background-image".source = "${bg}";
+
+        ".config/background".source = "${bg}";
         ".background-image.png".source = "${bgPng}";
         ".background-image-light.png".source = "${bgLightPng}";
         # "wp.jpg" = {

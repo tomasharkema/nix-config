@@ -17,7 +17,7 @@
   cups,
   pango,
   xorg,
-  wrapGAppsHook,
+  wrapGAppsHook3,
 }:
 stdenv.mkDerivation rec {
   pname = "windows95";
@@ -30,7 +30,12 @@ stdenv.mkDerivation rec {
 
   unpackCmd = "rpm2cpio $curSrc | cpio -idmv";
 
-  nativeBuildInputs = [rpm cpio autoPatchelfHook wrapGAppsHook];
+  nativeBuildInputs = [
+    rpm
+    cpio
+    autoPatchelfHook
+    wrapGAppsHook3
+  ];
   buildInputs = [
     ffmpeg
     cairo

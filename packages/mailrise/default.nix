@@ -1,7 +1,7 @@
 {
   stdenv,
   fetchFromGitHub,
-  python3,
+  # python3,
   apprise,
   python3Packages,
 }:
@@ -16,10 +16,14 @@ python3Packages.buildPythonApplication rec {
     hash = "sha256-QgeGDQeSsfvopgBgQQsWrx036SX1FhE67LI8M8rJM/Q=";
   };
 
+  pyproject = true;
+  build-system = [python3Packages.setuptools];
+
   # doCheck = false;
 
   propagatedBuildInputs = with python3Packages; [
     setuptools
+    setuptools-scm
     wheel
     # poetry-core
     aiosmtpd

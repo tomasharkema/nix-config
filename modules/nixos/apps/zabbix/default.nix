@@ -16,10 +16,10 @@ in {
     #   networkmanager.enable = lib.mkForce false;
     # };
 
-    services = lib.mkIf false {
+    services = {
       zabbixAgent = {
         enable = true;
-        server = "silver-star,127.0.0.1";
+        server = "silver-star,127.0.0.1,silver-star.ling-lizard.ts.net";
         settings = {
           ServerActive = "silver-star.ling-lizard.ts.net";
         };
@@ -28,6 +28,11 @@ in {
       zabbixServer = lib.mkIf cfgServer.enable {
         enable = true;
       };
+
+      # zabbixProxy = lib.mkIf (cfgServer.enable) {
+      #   enable = true;
+      # };
+
       tsnsrv = {
         services = {
           zabbix = {
@@ -41,12 +46,16 @@ in {
 
       zabbixWeb = lib.mkIf cfgServer.enable {
         enable = true;
-        frontend = "nginx";
+        # frontend = "nginx";
         hostname = "zabbix.ling-lizard.ts.net";
         # virtualHost = {
         #   hostName = "zabbix.ling-lizard.ts.net";
         #   adminAddr = "webmaster@localhost";
         # };
+      };
+
+      phpfpm.pools.zabbix = lib.mkIf cfgServer.enable {
+        phpPackage = pkgs.php83;
       };
     };
   };

@@ -4,7 +4,13 @@
   lib,
   inputs,
   ...
-}: {
+}: let
+  foxBg = pkgs.fetchurl {
+    url = "https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/d8b71c77-9985-41d2-b98e-51bebc60e595.avif";
+
+    sha256 = "06121rwydvmr9dc757ixxr59rfcask8p74mmsmprpcndddp55fgf";
+  };
+in {
   config = lib.mkIf config.gui.enable {
     programs = {
       hyprland = {
@@ -12,6 +18,9 @@
         # package = pkgs.hyprland.override {
         #   hidpiXWayland = true;
         # };
+        systemd = {
+          setPath.enable = true;
+        };
       };
       iio-hyprland.enable = true;
       # hyprlock.enable = true;
@@ -19,35 +28,42 @@
 
     security.pam.services.hyprlock = {fprintAuth = true;};
 
-    services = {hypridle.enable = true;};
-    environment.systemPackages = with pkgs; [
-      hyprpanel
-      pyprland
-      hyprpicker
-      hyprcursor
-      hyprshot
-      # hyprlock
-      # hypridle
-      hyprpaper
-      hyprutils
-      hyprshade
-      hyprsysteminfo
-      hyprland-autoname-workspaces
-      hyprsunset
-      hyprland-activewindow
+    services = {
+      hypridle.enable = true;
+    };
 
-      polybarFull
+    environment = {
+      variables.GDK_SCALE = "2";
 
-      # swaynotificationcenter
+      systemPackages = with pkgs; [
+        hyprpanel
+        pyprland
+        hyprpicker
+        hyprcursor
+        hyprshot
+        # hyprlock
+        # hypridle
+        hyprpaper
+        hyprutils
+        hyprshade
+        #hyprsysteminfo
+        hyprland-autoname-workspaces
+        hyprsunset
+        hyprland-activewindow
 
-      cool-retro-term
+        polybarFull
 
-      hyprpolkitagent
-      grim
-      slurp
-      wl-clipboard
-      wlr-randr
-    ];
+        # swaynotificationcenter
+
+        cool-retro-term
+
+        hyprpolkitagent
+        grim
+        slurp
+        wl-clipboard
+        wlr-randr
+      ];
+    };
 
     systemd.packages = with pkgs; [hyprpolkitagent];
 
@@ -60,83 +76,24 @@
         XDG_SESSION_TYPE = "wayland";
       };
 
-      xdg.portal = {enable = true;};
+      # xdg.portal = {enable = true;};
 
       programs = {
         rofi = {
-          # enable = true;
-          package = pkgs.rofi-wayland;
+          enable = true;
+          package = pkgs.rofi;
           pass.enable = true;
           terminal = "kitty";
         };
-
-        anyrun = {
-          enable = true;
-          package = inputs.anyrun.packages.${pkgs.system}.anyrun-with-all-plugins;
-          config = {
-            plugins = [
-              inputs.anyrun.packages.${pkgs.system}.applications
-              inputs.anyrun.packages.${pkgs.system}.kidex
-              inputs.anyrun.packages.${pkgs.system}.rink
-              inputs.anyrun.packages.${pkgs.system}.stdin
-              inputs.anyrun.packages.${pkgs.system}.translate
-              inputs.anyrun.packages.${pkgs.system}.dictionary
-              inputs.anyrun.packages.${pkgs.system}.randr
-              inputs.anyrun.packages.${pkgs.system}.shell
-              inputs.anyrun.packages.${pkgs.system}.symbols
-              inputs.anyrun.packages.${pkgs.system}.websearch
-              # An array of all the plugins you want, which either can be paths to the .so files, or their packages
-              # inputs.anyrun.packages.${pkgs.system}.applications
-            ];
-          };
-        };
+        # fuzzel.enable = true;
 
         # wlogout.enable = true;
 
         hyprlock = {
           enable = true;
         };
-
-        hyprpanel = {
-          enable = true;
-          systemd.enable = true;
-          # hyprland.enable = true;
-
-          settings = {
-            theme.font = {
-              #   # name = "Inter Variable";
-              name = "B612";
-              size = "1.0rem";
-              weight = 400;
-            };
-            bar.clock.format = "%d %b %Y   %H:%M:%S";
-            menus.clock = {
-              weather = {
-                location = "Amsterdam";
-                unit = "metric";
-              };
-              time.military = true;
-            };
-
-            layout = {
-              bar.layouts = {
-                "0" = {
-                  left = ["dashboard" "workspaces" "windowtitle"];
-                  middle = ["media"];
-                  right = ["volume" "network" "bluetooth" "battery" "systray" "hypridle" "clock" "notifications"];
-                };
-              };
-            };
-          };
-        };
-
-        waybar = {
-          # enable = true;
-          systemd.enable = true;
-          style = builtins.readFile ./waybar.css;
-          settings = import ./waybar.nix {inherit pkgs;};
-        };
       };
+
       catppuccin = {
         # swaync.font = "B612";
         mako.enable = false;
@@ -189,12 +146,21 @@
         };
         xwayland.enable = true;
 
+        # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
+        package = null;
+        portalPackage = null;
+
         extraConfig = builtins.readFile ./hyprland.conf;
-        plugins = with pkgs.hyprlandPlugins; [
-          # hyprexpo
-          # hyprbars
-        ];
+        # plugins = with pkgs.hyprlandPlugins; [
+        #   # hyprexpo
+        #   # hyprbars
+        # ];
         settings = {
+          # Set programs that you use
+          # $terminal = kitty
+          # $fileManager = nautilus
+          # $menu = fuzzel #anyrun #rofi -show drun
+          "$mainMod" = "SUPER";
           "$terminal" = "kitty";
           "$fileManager" = "nautilus";
           "$menu" = "rofi -show drun";
@@ -205,53 +171,61 @@
             else "preferred"
           },auto,${
             if config.gui.hidpi.enable
-            then "1.6"
+            then "2"
             else "1"
+          }${
+            if config.gui.hdr.enable
+            then ",bitdepth,10,cm,hdr"
+            else ""
           }";
 
           env = [
             "HYPRCURSOR_THEME,macOS"
             "HYPRCURSOR_SIZE,24"
-            "GDK_SCALE,${
-              if config.gui.hidpi.enable
-              then "1.6"
-              else "1"
-            }"
+            (lib.mkIf config.gui.hidpi.enable "GDK_SCALE,2")
+            # (lib.mkIf config.gui.hidpi.enable "XCURSOR_SIZE,32")
           ];
 
           exec-once = [
             # "hypridle"
             "systemctl --user start hyprpolkitagent"
-            "hyprpanel"
+            # "hyprpanel"
             "[workspace 1 silent] $terminal"
             "${pkgs.networkmanagerapplet}/bin/nm-applet"
-            "${pkgs.custom.usbguard-gnome}/bin/usbguard-gnome"
+            # "${pkgs.custom.usbguard-gnome}/bin/usbguard-gnome"
 
             "[workspace 2 silent] firefox"
 
-            "gsettings set org.gnome.desktop.interface gtk-theme \"catppuccin-mocha-blue-compact+black\"" # for GTK3 apps
+            "gsettings set org.gnome.desktop.interface gtk-theme \"Adwaita-dark\"" # for GTK3 apps
             "gsettings set org.gnome.desktop.interface color-scheme \"prefer-dark\"" # for GTK4 apps
             "${lib.getExe pkgs.iio-hyprland}"
           ];
 
-          experimental = {
-            # hdr = true;
-            # wide_color_gamut = true;
-          };
+          bind = [
+            ", PRINT, exec, hyprshot -m window"
+            "$mainMod, R, exec, $menu"
+            "$mainMod, space, exec, $menu"
+          ];
+
+          # experimental = {
+          #   hdr = true;
+          #   wide_color_gamut = true;
+          # };
           render = {
             direct_scanout = true;
-            # Fixes some apps stuttering (xournalpp, hyprlock). Possibly an amdgpu bug
-            explicit_sync = 0;
-            explicit_sync_kms = 0;
           };
           windowrulev2 = [
             "float,class:^(firefox)$,title:^(Picture-in-Picture)$"
             "pin,class:^(firefox)$,title:^(Picture-in-Picture)$"
           ];
-          general = {allow_tearing = true;};
+          # general = {allow_tearing = true;};
           xwayland = {force_zero_scaling = true;};
-
-          misc = {vrr = 1;};
+          misc = {
+            force_default_wallpaper = 0; # Set to 0 or 1 to disable the anime mascot wallpapers
+            disable_hyprland_logo = true; # If true disables the random hyprland logo / anime girl background. :(
+            vfr = true;
+          };
+          # misc = {vrr = 1;};
         };
       };
     };

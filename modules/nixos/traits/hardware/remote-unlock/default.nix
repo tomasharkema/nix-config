@@ -40,7 +40,7 @@ in {
     enable = lib.mkEnableOption "Remote unlocking";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (false && cfg.enable) {
     # system.activationScripts.remote-unlock-keys.text = mkKeysScript;
     # environment.systemPackages = with pkgs; [dracut];
 

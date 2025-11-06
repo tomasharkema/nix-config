@@ -7,7 +7,7 @@
   libappindicator-gtk3,
   gtk3,
   libnotify,
-  wrapGAppsHook,
+  wrapGAppsHook3,
 }:
 with python3Packages;
   buildPythonApplication rec {
@@ -20,6 +20,9 @@ with python3Packages;
       rev = "26d300b3597db233cdddbed49dd1cc2c3aecbdb6";
       hash = "sha256-dAJqkWwsuYgQRejzHRF1JnvO8ecogZa0MNdxgijD2qg=";
     };
+
+    pyproject = true;
+    build-system = [setuptools];
 
     propagatedBuildInputs = [
       pygobject3
@@ -35,7 +38,7 @@ with python3Packages;
     ];
 
     nativeBuildInputs = [
-      wrapGAppsHook
+      wrapGAppsHook3
       libappindicator-gtk3
       gobject-introspection
       libnotify

@@ -5,9 +5,10 @@
   ...
 }: {
   config = {
-    programs = {
+    programs = lib.mkIf false {
       rust-motd = {
         enable = true;
+        enableMotdInSSHD = true;
         settings = {
           global = {
             progress_full_character = "=";
@@ -28,7 +29,6 @@
           # };
           service_status = {
             Accounts = "accounts-daemon";
-            Attic-watch-store = "attic-watch-store";
           };
           filesystems = {
             root = "/";

@@ -1,88 +1,137 @@
 {
+  lib,
   stdenv,
-  buildFHSUserEnv,
-  fetchzip,
-  system,
+  cmake,
+  coreutils,
+  glibc,
+  gccForLibs,
+  which,
+  perl,
+  libedit,
+  ninja,
+  pkg-config,
+  sqlite,
+  libxml2,
+  clang_18,
+  python3,
+  ncurses,
+  libuuid,
+  icu,
+  libgcc,
+  libblocksruntime,
+  curl,
+  rsync,
+  git,
+  libgit2,
+  fetchFromGitHub,
+  makeWrapper,
+  gnumake,
+  file,
+  openssl,
+  cacert,
 }: let
-  version = "6.0.1";
-
-  sources = {
-    "linux-x86_64" = {
-      url = "https://download.swift.org/swift-${version}-release/debian12/swift-${version}-RELEASE/swift-${version}-RELEASE-debian12.tar.gz";
-      sha256 = "sha256-ca6dzlmfcMHwq8O1cSAObXmCJvPy0k6NXGvmrR6YqRM=";
-    };
-
-    "linux-aarch64" = {
-      url = "https://download.swift.org/swift-${version}-release/debian12-aarch64/swift-${version}-RELEASE/swift-${version}-RELEASE-debian12-aarch64.tar.gz";
-      sha256 = "";
-    };
+  versions = {
+    swift = "6.1.2";
   };
 
-  swift = {src}:
-    stdenv.mkDerivation {
-      inherit src version;
-
-      outputs = ["out" "bin" "include" "lib" "libexec" "local" "share"];
-
-      name = "swift";
-
-      dontAutoPatchelf = true;
-
-      unpackPhase = ''
-        mkdir -p usr
-        cp -r ${src}/usr/* usr/
-      '';
-
-      installPhase = ''
-        cp -r usr $out
-        cp -r usr/bin $bin
-        cp -r usr/include $include
-        cp -r usr/lib $lib
-        cp -r usr/libexec $libexec
-        cp -r usr/local $local
-        cp -r usr/share $share
-      '';
-      patchPhase = '''';
-    };
-
-  fhs = {swift-der}:
-    buildFHSUserEnv {
-      name = "fhs-swift";
-      targetPkgs = pkgs: [
-        pkgs.python3
-        pkgs.libxml2
-        swift-der
-        pkgs.libuuid
-        pkgs.sqlite
-        pkgs.ncurses
-        pkgs.pkg-config
-        pkgs.gcc-unwrapped
-        pkgs.glibc.dev
-        pkgs.bintools-unwrapped
-        pkgs.libz
-        pkgs.git
-        pkgs.curl
-      ];
-      # Fixes 'libncurses.so.6 not found'. There's probably a better way?
-      profile = ''
-        export LD_LIBRARY_PATH="/usr/lib64/:/usr/lib/:$LD_LIBRARY_PATH"
-      '';
-
-      # runScript = "${swift-der}/bin/swift";
-    };
-
-  srcLoc =
-    if stdenv.hostPlatform.isAarch64
-    then sources.linux-aarch64
-    else sources.linux-x86_64;
-
-  src = fetchzip {
-    url = srcLoc.url;
-    sha256 = srcLoc.sha256;
-  };
+  python = python3.withPackages (ps: [ps.six]);
 in
-  fhs {
-    swift-der = swift {
-      inherit src;
+  stdenv.mkDerivation {
+    pname = "swift";
+    version = versions.swift;
+
+    nativeBuildInputs = [
+      cmake
+      git
+      makeWrapper
+      ninja
+      perl
+      pkg-config
+      python
+      rsync
+      which
+    ];
+
+    buildInputs = [
+      curl
+      glibc
+      icu
+      libblocksruntime
+      libedit
+      libgcc
+      libuuid
+      libxml2
+      ncurses
+      sqlite
+      clang_18
+    ];
+
+    # TODO: Revisit what needs to be propagated and how.
+    propagatedBuildInputs = [
+      libgcc
+      libgit2
+      python
+    ];
+
+    propagatedUserEnvPkgs = [git pkg-config];
+
+    hardeningDisable = ["format"]; # for LLDB
+
+    src = fetchFromGitHub {
+      owner = "swiftlang";
+      repo = "swift";
+      rev = "swift-${versions.swift}-RELEASE";
+      fetchSubmodules = true;
+      leaveDotGit = true; # otherwise, utils/update-checkout fails
+      nativeBuildInputs = [python git openssl cacert];
+      postFetch = ''
+        export SSL_CERT_FILE="${cacert}/etc/ssl/certs/ca-bundle.crt";
+
+        ls -la
+        ls -la $out
+
+        # mkdir -p $out/swift
+
+        # mv $out/.* $out/swift
+        # mv $out/* $out/swift || true
+
+        patchShebangs $out/utils/update-checkout
+
+        $out/utils/update-checkout --clone --clean --tag swift-${versions.swift}-RELEASE --source-root $out --skip-history -j1
+        ls -lsa $out
+      '';
+      #sha256 = "sha256-JrewdK05fSEkaqsGxWQB2J9N7w6XYxV7qbUdKNKy110e8=";
+    };
+
+    # configurePhase = ''
+    #   # do nothing here
+    # '';
+
+    buildPhase = ''
+      ls -lsa
+      pwd
+      ls -lsa $out
+      utils/build-script \
+        --clean\
+        --install-prefix $out \
+        --install-all \
+        --lto \
+        --static-libxml2 \
+        --static-zlib \
+        --static-curl \
+        --build-swift-static-stdlib \
+        --build-swift-static-sdk-overlay \
+        --build-swift-stdlib-static-print
+    '';
+
+    meta = with lib; {
+      description = "The Swift Programming Language";
+      homepage = "https://github.com/swiftlang/swift";
+      maintainers = with maintainers; []; # TODO update maintainers
+      license = licenses.asl20;
+      # Swift doesn't support 32-bit Linux, unknown on other platforms.
+      platforms = platforms.linux;
+      badPlatforms = platforms.i686;
+      timeout = 86400; # 24 hours.
     };
   }

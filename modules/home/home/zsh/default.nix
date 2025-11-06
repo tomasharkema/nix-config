@@ -26,11 +26,13 @@
       zsh = {
         enable = true;
         enableAutosuggestions = true;
-        syntaxHighlighting.enable = true;
         enableVteIntegration = true;
-        enableSyntaxHighlighting = true;
 
-        dotDir = ".config/zsh";
+        syntaxHighlighting = {
+          enable = true;
+        };
+
+        dotDir = "${config.xdg.configHome}/zsh";
 
         autocd = true;
 
@@ -46,11 +48,11 @@
         };
 
         dirHashes = {
-          docs = "$HOME/Documents";
-          vids = "$HOME/Videos";
-          dl = "$HOME/Downloads";
-          dev = "$HOME/Developer";
-          nix-conf = "$HOME/Developer/nix-config";
+          docs = "${config.home.homeDirectory}/Documents";
+          vids = "${config.home.homeDirectory}/Videos";
+          dl = "${config.home.homeDirectory}/Downloads";
+          dev = "${config.home.homeDirectory}/Developer";
+          nix-conf = "${config.home.homeDirectory}/Developer/nix-config";
         };
 
         #nixos-menu () {
@@ -59,27 +61,39 @@
         #zle -N nixos-menu
         #bindkey '^A' nixos-menu
         initExtraBeforeCompInit = ''
+          COMPLETION_WAITING_DOTS="true"
+          HYPHEN_INSENSITIVE="true"
           zstyle ':completion:*:ssh:*' hosts off
         '';
+
         initExtra = ''
           bindkey -M emacs -s '^A' 'menu^M'
           bindkey -M vicmd -s '^A' 'menu^M'
           bindkey -M viins -s '^A' 'menu^M'
-
-          function zellij_refresh_ssh_sock {
-            if [ -n "$ZELLIJ" ]; then
-              export SSH_AUTH_SOCK=$(find /tmp/ssh*/ -type s -name "*agent.*" | head -1)
-            fi
-          }
-
-          add-zsh-hook precmd zellij_refresh_ssh_sock
         '';
+
+        # function zellij_refresh_ssh_sock {
+        #   if [ -n "$ZELLIJ" ]; then
+        #     export SSH_AUTH_SOCK=$(find /tmp/ssh*/ -type s -name "*agent.*" | head -1)
+        #   fi
+        # }
+
+        # add-zsh-hook precmd zellij_refresh_ssh_sock
 
         # initExtraFirst = ''
         #   source "${iterm}";
         # '';
 
-        shellAliases = {
+        shellAliases = let
+          silver = "-H 192.168.69.45 -U root -P \"$(op item get abrgfwmlbnc2zghpugawqoagjq --field password --reveal)\"";
+          blue = "-H 192.168.69.46 -U ADMIN -P \"$(op item get ydq2vns3nc4hj43n4avtryckpa --field password --reveal)\"";
+        in {
+          silver-star-ipmi = "ipmitool -I lanplus ${silver}";
+          blue-fire-ipmi = "ipmitool -I lanplus ${blue}";
+          silver-star-console = "ipmiconsole ${silver}";
+          blue-fire-console = "ipmiconsole ${blue}";
+
+          "$" = "";
           ll = "ls -l";
           ls = "exa";
           la = "exa -a";
@@ -97,26 +111,25 @@
           ys = "yazi /sys";
 
           man = "batman";
-          wget = "wget2";
+          # wget = "wget2";
           # silver-star-ipmi raw 0x30 0x30 0x01 0x00
           # silver-star-ipmi raw 0x30 0x30 0x02 0xff 0x10
-          silver-star-ipmi = ''ipmitool -I lanplus -H 192.168.69.45 -U root -P "$(op item get abrgfwmlbnc2zghpugawqoagjq --field password --reveal)"'';
-
-          blue-fire-ipmi = ''ipmitool -I lanplus -H 192.168.69.46 -U ADMIN -P "$(op item get ydq2vns3nc4hj43n4avtryckpa --field password --reveal )"'';
 
           docker-login = "op item get raeclwvdys3epkmc5zthv4pdha --format=json --vault=qtvfhvfotoqynomh2wd3yzoofe | jq '.fields[1].value' -r | docker login ghcr.io --username tomasharkema --password-stdin";
 
-          unifi-tui = ''unifi-tui --url "https://192.168.1.1/proxy/network/integrations" --api-key "$(op item get ojsyugyddrsxtq3kayoonibhda --reveal --field credential)"'';
+          unifi-tui = "unifi-tui --url \"https://192.168.1.1/proxy/network/integrations\" --api-key \"$(op item get ojsyugyddrsxtq3kayoonibhda --reveal --field credential)\"";
 
-          subl = (lib.mkIf pkgs.stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
+          # zellij = "systemd-run --scope --user zellij";
+
+          # subl = (lib.mkIf pkgs.stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
         };
 
         plugins = with pkgs; [
-          rec {
-            name = "you-should-use";
-            file = "share/zsh/plugins/you-should-use/you-should-use.plugin.zsh";
-            src = zsh-you-should-use;
-          }
+          # rec {
+          #   name = "you-should-use";
+          #   file = "share/zsh/plugins/you-should-use/you-should-use.plugin.zsh";
+          #   src = zsh-you-should-use;
+          # }
           rec {
             name = src.pname;
             file = "share/zsh-z/zsh-z.plugin.zsh";
@@ -216,20 +229,18 @@
           }
         ];
 
-        oh-my-zsh = {
+        oh-my-zsh = lib.mkIf false {
           enable = true;
-          extraConfig = ''
-            ZSH_WEB_SEARCH_ENGINES=(nix-package "https://search.nixos.org/packages?query=" nix-option "https://search.nixos.org/options?query=")
-            COMPLETION_WAITING_DOTS=true
-            HYPHEN_INSENSITIVE=true
-          '';
+
+          #extraConfig = ''
+          #  ZSH_WEB_SEARCH_ENGINES=(nix-package "https://search.nixos.org/packages?query=" nix-option "https://search.nixos.org/options?query=")
+          #'';
           plugins =
             [
               "1password"
               "autojump"
-              "aws"
               "battery"
-              # "bgnotify"
+              "bgnotify"
               "colorize"
               "common-aliases"
               "copybuffer"
@@ -243,7 +254,7 @@
               "encode64"
               "extract"
               "fastfile"
-              "fig"
+              "fbterm"
               "fzf"
               "gh"
               "git-auto-fetch"
@@ -271,7 +282,6 @@
               "sublime"
               "sudo"
               "swiftpm"
-              "systemadmin"
               "tailscale"
               "tig"
               "tldr"
@@ -286,6 +296,7 @@
               "wd"
               "web-search"
               "yarn"
+              "uv"
               "z"
               "zoxide"
               "zsh-interactive-cd"

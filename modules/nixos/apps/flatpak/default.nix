@@ -15,7 +15,8 @@ in {
   config = lib.mkIf enable {
     xdg.portal = {
       enable = true;
-      config.common.default = "gnome";
+      # config.common.default = "gnome";
+      xdgOpenUsePortal = true;
 
       extraPortals = with pkgs; [
         # xdg-desktop-portal-kde
@@ -58,17 +59,17 @@ in {
           #"com.bitwarden.desktop"
           "io.github.flattool.Warehouse"
           "io.github.plrigaux.sysd-manager"
-          "org.raspberrypi.rpi-imager"
+          # "org.raspberrypi.rpi-imager"
         ]
         ++ (
           lib.optionals pkgs.stdenv.isx86_64
           [
-            "com.usebottles.bottles"
+            # "com.usebottles.bottles"
             "com.discordapp.Discord"
             "com.spotify.Client"
             "tv.plex.PlexDesktop"
             "com.gitbutler.gitbutler"
-            "org.darktable.Darktable"
+            # "org.darktable.Darktable"
           ]
         );
 

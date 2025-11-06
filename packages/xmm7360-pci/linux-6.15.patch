@@ -1,13 +1,21 @@
 diff --git a/xmm7360.c b/xmm7360.c
-index 1b5a90c..c593d0a 100644
+index 1b5a90c..f38e789 100644
 --- a/xmm7360.c
 +++ b/xmm7360.c
-@@ -1111,7 +1111,7 @@ static void xmm7360_net_setup(struct net_device *dev)
+@@ -1111,8 +1111,16 @@ static void xmm7360_net_setup(struct net_device *dev)
  {
  	struct xmm_net *xn = netdev_priv(dev);
  	spin_lock_init(&xn->lock);
--	hrtimer_init(&xn->deadline, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
-+	hrtimer_setup(&xn->deadline, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
++
++#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 15, 0)
+ 	hrtimer_init(&xn->deadline, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
  	xn->deadline.function = xmm7360_net_deadline_cb;
++#else
++	hrtimer_setup(&xn->deadline, xmm7360_net_deadline_cb, CLOCK_MONOTONIC,
++		      HRTIMER_MODE_REL);
++
++#endif
++
  	skb_queue_head_init(&xn->queue);
  
+ 	dev->netdev_ops = &xmm7360_netdev_ops;

@@ -1,13 +1,13 @@
 {
   fetchFromGitHub,
   bluez,
-  python312Packages,
+  python3Packages,
   libcap,
   glib,
   gobject-introspection,
-  wrapGAppsHook,
+  wrapGAppsHook3,
 }:
-with python312Packages; let
+with python3Packages; let
   prctl = buildPythonPackage rec {
     pname = "python-prctl";
     version = "1.8.1";
@@ -46,7 +46,7 @@ in
       bluez
     ];
 
-    nativeBuildInputs = [glib gobject-introspection dbus-python pygobject3 wrapGAppsHook];
+    nativeBuildInputs = [glib gobject-introspection dbus-python pygobject3 wrapGAppsHook3];
 
     installPhase = ''
       runHook preInstall

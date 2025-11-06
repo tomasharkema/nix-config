@@ -1,41 +1,43 @@
 {
   lib,
   pkgs,
-  inputs,
   config,
   ...
 }: {
+  imports = [
+    ./trmnl.nix
+  ];
+
   config = {
     age = {
       rekey = {
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKMfjVCxpx87jpHR6CAUoZsEvwZOSTKyUmYDl3vXIUeu root@silver-star";
       };
       secrets = {
-        tsnsrv = {
-          rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
-        };
+        tsnsrv.rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
         cloudflared.rekeyFile = ./cloudflared.age;
         grafana-ntfy.rekeyFile = ./grafana-ntfy.age;
-        "healthchecks" = {
-          rekeyFile = ./healthchecks.age;
-          group = "healthchecks";
-          owner = "healthchecks";
-        };
+        #        "healthchecks" = {
+        #         rekeyFile = ./healthchecks.age;
+        #        group = "healthchecks";
+        #       owner = "healthchecks";
+        #    };
+        firefox. rekeyFile = ./firefox.age;
       };
     };
 
     facter = {
       reportPath = ./facter.json;
-      detected.graphics.enable = false;
+      # detected.graphics.enable = false;
     };
 
     disks.btrfs = {
       enable = true;
-      main = "/dev/nvme0n1";
-      second = "/dev/nvme1n1";
+      main = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S7PJNJ0Y411286E_1-part1";
       boot = "/dev/disk/by-id/usb-DELL_IDSDM_012345678901-0:0";
       snapper.enable = false;
       # btrbk.enable = true;
+      swap.enable = false;
     };
 
     zramSwap.enable = false;
@@ -54,11 +56,10 @@
         network.xgbe.enable = true;
         nvidia = {
           enable = true;
-          open = true; #false;
-          grid = {
-            enable = false; # true;
-            legacy = false;
-          };
+          open = false;
+          # grid = {
+          #   legacy = false;
+          # };
         };
       };
     };
@@ -73,28 +74,74 @@
         enable = true;
         httpd = false; # true;
       };
-      ollama.enable = true;
       # "bmc-watchdog".enable = true;
       docker.enable = true;
       zabbix.server.enable = true;
-      atticd.enable = true;
       prometheus.server.enable = true;
     };
 
-    fileSystems."/export/netboot" = {
-      device = "/mnt/netboot";
-      options = ["bind"];
+    fileSystems = {
+      "/export/netboot" = {
+        device = "/mnt/netboot";
+        options = ["bind"];
+      };
     };
+    # system.includeBuildDependencies = true;
+
+    programs.nh = {
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 3M";
+    };
+
+    virtualisation = {
+      incus = {
+        enable = true;
+        # socketActivation = true;
+        ui.enable = true;
+      };
+    };
+    users.groups = {"incus-admin".members = ["tomas"];};
 
     services = {
       hypervisor = {
         enable = true;
+        iommu.enable = true;
         # bridgeInterfaces = [ "eno1" ];
       };
       # mosh.enable = true;
       # xserver.videoDrivers = ["nvidia"];
       zram-generator.enable = false;
       # "nix-private-cache".enable = true;
+
+      sonarr.enable = true;
+      jackett.enable = true;
+
+      # transmission = {
+      #   enable = true;
+      #   openRPCPort = true;
+      #   #downloadDirPermissions = "770";
+      #   openPeerPorts = true;
+      #   openFirewall = true;
+      #   settings = {
+      #     download-dir = "/exports/downloads";
+      #     rpc-bind-address = "0.0.0.0";
+      #     rpc-whitelist = "127.0.0.1,192.168.*.*,100.*.*.*";
+      #   };
+      # };
+
+      immich = {
+        enable = true;
+        host = "0.0.0.0";
+        openFirewall = true;
+
+        machine-learning = {
+          environment = {
+            IMMICH_HOST = lib.mkForce "0.0.0.0";
+          };
+        };
+      };
+
+      irqbalance.enable = true;
 
       nfs = {
         server = {
@@ -107,28 +154,31 @@
 
       uptime-kuma = {
         enable = true;
-        settings = {PORT = "4000";};
-      };
-
-      healthchecks = {
-        # enable = true;
-        listenAddress = "0.0.0.0";
-
-        # notificationSender = "tomas+hydra@harkema.io";
-        # useSubstitutes = true;
-        # smtpHost = "smtp-relay.gmail.com";
-
         settings = {
-          SECRET_KEY_FILE = config.age.secrets.healthchecks.path;
-
-          EMAIL_HOST = "silver-star.ling-lizard.ts.net";
-          EMAIL_PORT = "8025";
-          # EMAIL_HOST_USER = "tomas@harkema.io";
-          # # EMAIL_HOST_PASSWORD=mypassword
-          EMAIL_USE_SSL = "False";
-          EMAIL_USE_TLS = "False";
+          HOST = "0.0.0.0";
+          PORT = "4000";
         };
       };
+
+      # healthchecks = {
+      #   enable = true;
+      #   listenAddress = "0.0.0.0";
+
+      #   # notificationSender = "tomas+hydra@harkema.io";
+      #   # useSubstitutes = true;
+      #   # smtpHost = "smtp-relay.gmail.com";
+
+      #   settings = {
+      #     SECRET_KEY_FILE = config.age.secrets.healthchecks.path;
+
+      #     EMAIL_HOST = "localhost";
+      #     EMAIL_PORT = "8025";
+      #     EMAIL_HOST_USER = "tomas@harkema.io";
+      #     # # EMAIL_HOST_PASSWORD=mypassword
+      #     EMAIL_USE_SSL = "False";
+      #     EMAIL_USE_TLS = "False";
+      #   };
+      # };
 
       mosquitto = {
         enable = true;
@@ -155,6 +205,13 @@
         accelerationDevices = ["*"];
       };
 
+      harmonia = {
+        enable = true;
+        signKeyPaths = [config.age.secrets."nix-sign-private".path];
+        settings = {
+          bind = "[::]:7124";
+        };
+      };
       #grafana-to-ntfy = {
       #  enable = true;
       #  settings = {
@@ -166,18 +223,34 @@
       #  };
       #};
 
+      # pgadmin = {
+      #   enable = true;
+      #   openFirewall = true;
+      #   initialEmail = "tomas@harkema.io";
+      #   initialPasswordFile = pkgs.writeText "ps" "testtest";
+      # };
+
       tsnsrv = {
         enable = true;
         defaults.authKeyPath = config.age.secrets.tsnsrv.path;
         services = {
           nix-cache = {toURL = "http://127.0.0.1:7124";};
-          searxng = {toURL = "http://127.0.0.1:8088";};
-          glitchtip = {
-            toURL = "http://127.0.0.1:${builtins.toString config.services.glitchtip.port}";
-          };
+          # searxng = {toURL = "http://127.0.0.1:8088";};
+          # glitchtip = {
+          #   toURL = "http://127.0.0.1:${builtins.toString config.services.glitchtip.port}";
+          # };
           grafana = {toURL = "http://127.0.0.1:3000";};
           healthchecks = {toURL = "http://127.0.0.1:8000";};
           netbox = {toURL = "http://127.0.0.1:8002";};
+          netdata = {toURL = "http://127.0.0.1:19999";};
+          esphome = {toURL = "http://127.0.0.1:6052";};
+          atuin = {toURL = "http://127.0.0.1:8888";};
+          trmnl = {toURL = "http://127.0.0.1:2300";};
+          immich-ml = {toURL = "http://127.0.0.1:3003";};
+          incus = {
+            toURL = "https://127.0.0.1:8443";
+            insecureHTTPS = true;
+          };
         };
       };
 
@@ -201,23 +274,44 @@
         };
       };
 
-      glitchtip = {
-        enable = true;
-        port = 8923;
-        # listenAddress = "0.0.0.0";
+      # glitchtip = {
+      #   enable = true;
+      #   port = 8923;
+      #   # listenAddress = "0.0.0.0";
 
-        settings = {
-          GLITCHTIP_DOMAIN = "https://glitchtip.ling-lizard.ts.net";
-        };
-      };
+      #   settings = {
+      #     GLITCHTIP_DOMAIN = "https://glitchtip.ling-lizard.ts.net";
+      #   };
+      # };
+      # mysql = {
+      #   enable = true;
+      #   package = pkgs.mariadb;
+      # };
 
-      pocket-id = {
-        enable = true;
-        settings = {
-          APP_URL = "https://id.harke.ma";
-          TRUST_PROXY = true;
-        };
-      };
+      # firefox-syncserver = {
+      #   enable = true;
+      #   secrets = config.age.secrets.firefox.path;
+
+      #   database = {
+      #     createLocally = true;
+      #     user = "firefox-syncserver";
+      #     name = "firefox_syncserver";
+      #   };
+
+      #   singleNode = {
+      #     enable = true;
+      #     hostname = "silver-star.ling-lizard.ts.net";
+      #     url = "http://silver-star.ling-lizard.ts.net:5000";
+      #   };
+      # };
+
+      # pocket-id = {
+      #   enable = true;
+      #   settings = {
+      #     APP_URL = "https://id.harke.ma";
+      #     TRUST_PROXY = true;
+      #   };
+      # };
 
       cloudflared = {
         enable = true;
@@ -226,9 +320,9 @@
             credentialsFile = config.age.secrets.cloudflared.path;
             default = "http_status:404";
             ingress = {
-              "id.harke.ma" = {
-                service = "http://localhost:1411";
-              };
+              #       "id.harke.ma" = {
+              #         service = "http://localhost:1411";
+              #       };
             };
           };
         };
@@ -236,79 +330,20 @@
 
       kmscon.enable = lib.mkForce false;
 
-      prometheus.exporters = {
-        idrac = {
-          enable = true;
-          configuration = {
-            hosts = {
-              "192.168.69.45" = {
-                username = "metrics";
-                password = "metrics";
-              };
-            };
-            metrics = {
-              memory = true;
-              power = true;
-              sel = true;
-              sensors = true;
-              storage = true;
-              system = true;
-            };
-            retries = 1;
-            timeout = 10;
-          };
-        };
-
-        snmp = {
-          enable = true;
-
-          configuration = {
-            auths = {
-              public_v2 = {
-                community = "public";
-                version = 2;
-              };
-            };
-          };
-        };
-      };
-
       netbootxyz.enable = true;
-
-      rsyslogd = lib.mkIf false {
-        enable = true;
-        extraConfig = ''
-          $ModLoad imudp
-
-          $RuleSet remote
-          # Modify the following template according to the devices on which you want to
-          # store logs. Change the IP address and subdirectory name on each
-          # line. Add or remove "else if" lines according to the number of your
-          # devices.
-          if $fromhost-ip=='10.20.30.40' then /var/log/remote/spineswitch1/console.log
-          else if $fromhost-ip=='10.20.30.41' then /var/log/remote/leafswitch1/console.log
-          else if $fromhost-ip=='10.20.30.42' then /var/log/remote/leafswitch2/console.log
-          else /var/log/remote/other/console.log
-          & stop
-
-          $InpuUDPServerBindRuleset remote
-          $UDPServerRun 6666
-
-          $RuleSet RSYSLOG_DefaultRuleset
-
-        '';
-      };
     };
 
     networking = {
       hostName = "silver-star";
 
       firewall = {
-        enable = true;
+        enable = false;
         allowPing = true;
-        allowedTCPPorts = [1883];
-        allowedUDPPorts = [1883];
+        allowedTCPPorts = [1883 32400 8443];
+        allowedUDPPorts = [1883 32400 8443];
       };
+
+      # nftables.enable = false;
 
       bridges.br0 = {
         interfaces = ["eno1"];
@@ -332,27 +367,27 @@
 
       interfaces = {
         "eno1" = {
-          useDHCP = lib.mkDefault false;
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
         "eno2" = {
-          useDHCP = lib.mkDefault true;
+          useDHCP = true;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
         "eno3" = {
-          useDHCP = lib.mkDefault false;
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
         "eno4" = {
-          useDHCP = lib.mkDefault false;
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
         "br0" = {
-          useDHCP = lib.mkDefault false;
+          useDHCP = false;
           mtu = 9000;
           ipv4.addresses = [
             {
@@ -362,26 +397,22 @@
           ];
         };
         "vlan69" = {
-          useDHCP = lib.mkDefault true;
+          useDHCP = true;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
         "vlan66" = {
-          useDHCP = lib.mkDefault true;
+          useDHCP = true;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
       };
 
-      # useDHCP = false;
+      useDHCP = false;
       networkmanager.enable = true;
     };
 
     environment.systemPackages = with pkgs; [
-      # ipmicfg
-      # ipmiview
-      # ipmiutil
-      # vagrant
       docker-compose
       simpleTpmPk11
       libsmbios
@@ -420,49 +451,28 @@
       # nvidia-container-toolkit.enable = true;
       #
       nvidia = {
-        # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
-        nvidiaPersistenced = true;
+        nvidiaPersistenced = lib.mkForce true;
+        # open = false;
       };
     };
 
     virtualisation = {
       oci-containers.containers = {
-        # iventoy = {
-        #   image = "teumaauss/iventoy:latest";
-        #   autoStart = true;
-
-        #   volumes = [
-        #     "/var/lib/iventoy/config:/app/data-2"
-        #     "/var/lib/iventoy/assets:/app/iso"
-        #   ];
-        #   environment = {
-        #     AUTO_START_PXE = "true";
-        #   };
-        #   extraOptions = [
-        #     "--privileged"
-        #   ];
-        #   ports = [
-        #     "26000:26000"
-        #     "16000:16000"
-        #     "10809:10809"
-        #     "67:67/udp"
-        #     "69:69/udp"
-        #   ];
-        # };
-
         openmanage = {
           image = "teumaauss/srvadmin:latest";
 
           volumes = let
-            kernelVersion = config.boot.kernelPackages.kernel.version;
+            kernelVersion = config.boot.kernelPackages.kernel.modDirVersion;
           in [
             "/run/current-system/sw/lib/modules/${kernelVersion}:/lib/modules/${kernelVersion}:ro"
-            "/sys:/sys"
+            "/sys:/sys:ro"
             "/srv/openmanage/shared:/data"
             "/nix/store:/nix/store:ro"
             "/etc/os-release:/etc/os-release:ro"
-            "/usr/libexec/dell_dup:/usr/libexec/dell_dup"
+            "/usr/libexec/dell_dup:/usr/libexec/dell_dup:rw"
+            # "/run/systemd/system:/run/systemd/system"
+            # "/var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket"
           ];
 
           extraOptions = [
@@ -508,11 +518,8 @@
       };
 
       crashDump = {enable = true;};
-      # copyKernels = {enable = true;};
 
       binfmt.emulatedSystems = ["aarch64-linux"];
-
-      kernelPackages = pkgs.linuxPackages_6_12;
 
       kernelParams = [
         "console=tty1"
@@ -524,10 +531,12 @@
         "intel_iommu=on"
         "iommu=pt"
         "ipmi_watchdog.timeout=180"
+        "iomem=relaxed"
+        "mitigations=off"
         # "video=efifb:off,vesafb:off"
         # "ixgbe.allow_unsupported_sfp=1,1"
         #"vfio-pci.ids=10de:1380,10de:0fbc"
-        # "pcie_acs_override=downstream,multifunction"
+        "pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
         # "kvm.ignore_msrs=1"
         # "pci=nomsi"
@@ -545,10 +554,12 @@
       loader = {
         systemd-boot = {
           # enable = true;
-          configurationLimit = 10;
+          configurationLimit = 5;
         };
         efi.canTouchEfiVariables = true;
       };
+
+      extraModulePackages = [config.boot.kernelPackages.vendor-reset];
 
       initrd = {
         availableKernelModules = [
@@ -565,7 +576,7 @@
           "acpi_power_meter"
           "acpi_ipmi"
           "ipmi_si"
-          "pico_rng"
+          "vendor-reset"
           # # "dcdbas"
           # # "dell_rbu"
           # # "pci-me"
@@ -583,9 +594,9 @@
         ];
       };
       kernelModules = [
+        "vendor-reset"
         # "pci-me"
         # "mei-me"
-        "pico_rng"
         "coretemp"
         "kvm-intel"
         "uinput"
@@ -609,8 +620,16 @@
         "docker-compose@atuin" = {
           wantedBy = ["multi-user.target"];
         };
-
         "docker-compose@grafana" = {
+          wantedBy = ["multi-user.target"];
+        };
+        "docker-compose@faf" = {
+          wantedBy = ["multi-user.target"];
+        };
+        "docker-compose@esphome" = {
+          wantedBy = ["multi-user.target"];
+        };
+        "docker-compose@tsidp" = {
           wantedBy = ["multi-user.target"];
         };
       };

@@ -6,16 +6,37 @@
   ...
 }: let
   cfg = config.gui.desktop;
+  foxBg = pkgs.fetchurl {
+    url = "https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/d8b71c77-9985-41d2-b98e-51bebc60e595.avif";
+
+    sha256 = "06121rwydvmr9dc757ixxr59rfcask8p74mmsmprpcndddp55fgf";
+  };
 in {
   options.gui.desktop = {
     enable = lib.mkEnableOption "desktop";
 
-    rdp = {
-      enable = lib.mkEnableOption "desktop rdp";
-    };
+    # rdp = {
+    #   enable = lib.mkEnableOption "desktop rdp";
+    # };
   };
 
   config = lib.mkIf (cfg.enable) {
+    assertions = [
+      {
+        assertion = config.gui.enable;
+        message = "you can't enable this for that reason";
+      }
+    ];
+
+    qt = {
+      enable = true;
+      # platformTheme = "gnome";
+      # platformTheme = "gtk2";
+      style = "adwaita-dark";
+    };
+
+    system.build.gui.foxBg = foxBg;
+
     gui.fonts.enable = true;
 
     # security.pam.services.passwd.enableGnomeKeyring = true;
@@ -25,13 +46,24 @@ in {
     services = {
       # localtimed.enable = true;
 
+      udev.packages = with pkgs; [
+        saleae-logic-2
+        nrf-udev
+      ];
+
+      scx = {
+        enable = pkgs.stdenvNoCC.isx86_64;
+        # package = pkgs.scx_git.rustscheds;
+        # scheduler = "scx_lavd"; #
+        scheduler = "scx_bpfland";
+      };
+
       dbus = {
         enable = true;
         packages = with pkgs; [
           # custom.anydesk
           # tilix
           usbguard-notifier
-          ptyxis
         ];
       };
       # xrdp = mkIf cfg.rdp.enable {
@@ -56,52 +88,58 @@ in {
       gvfs.enable = true;
     };
 
-    security.polkit = lib.mkIf cfg.rdp.enable {
+    security.polkit = {
       enable = true;
-      extraConfig = ''
-        polkit.addRule(function(action, subject) {
-          if (
-            subject.isInGroup("users")
-              && (
-                action.id == "org.freedesktop.login1.reboot" ||
-                action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-                action.id == "org.freedesktop.login1.power-off" ||
-                action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+      extraConfig =
+        lib.mkIf false
+        # cfg.rdp.enable
+        ''
+          polkit.addRule(function(action, subject) {
+            if (
+              subject.isInGroup("users")
+                && (
+                  action.id == "org.freedesktop.login1.reboot" ||
+                  action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+                  action.id == "org.freedesktop.login1.power-off" ||
+                  action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+                )
               )
-            )
-          {
-            return polkit.Result.YES;
-          }
-        })
-      '';
+            {
+              return polkit.Result.YES;
+            }
+          })
+        '';
     };
 
     environment = {
       etc."xdg/autostart/geary-autostart.desktop".source = "${pkgs.geary}/share/applications/geary-autostart.desktop";
       sessionVariables.NIXOS_OZONE_WL = "1";
     };
-    # chaotic = {
-    # scx.enable = true;
-    # mesa-git.enable = true;
-    # hdr.enable = true;
-    # };
 
-    hardware.graphics = {
-      # package = pkgs.mesa.drivers;
-      # package32 = pkgs.pkgsi686Linux.mesa.drivers;
-      #   enable = true;
-      #   enable32Bit = pkgs.stdenvNoCC.isx86_64;
-      #   extraPackages = with pkgs;
-      #     [
-      #       mesa
-      #       mesa.drivers
-      #     ]
-      #     ++ lib.optional pkgs.stdenvNoCC.isx86_64 intel-compute-runtime;
+    hardware = {
+      saleae-logic.enable = true;
+      libftdi.enable = true;
+      libjaylink.enable = true;
+      pulseaudio.enable = false;
+      usb-modeswitch.enable = true;
     };
 
     programs = {
+      pulseview.enable = true;
+      sniffnet.enable = true;
+      television = {
+        enable = true;
+        enableZshIntegration = true;
+      };
+      zmap.enable = true;
       geary.enable = true;
+      nautilus-open-any-terminal = {
+        enable = true;
+        terminal = "kitty";
+      };
+      plotinus.enable = true;
 
+      oddjobd.enable = true;
       ssh = {
         # startAgent = true;
       };
@@ -145,109 +183,6 @@ in {
     #   ];
     # };
 
-    environment = {
-      systemPackages = with pkgs;
-        [
-          ptyxis
-          wl-clipboard
-          python312Packages.pyclip
-          onioncircuits
-          onionshare-gui
-          pods
-          meld
-          pika-backup
-          # custom.anydesk
-          vlc
-          boxbuddy
-          clutter
-          # dosbox-x
-          effitask
-          filezilla
-          font-manager
-          # fractal
-          doublecmd
-          gamehub
-          # gnomecast
-          # go-chromecast
-          gotop
-          gparted
-          grsync
-          gtk-engine-murrine
-          ktailctl
-          libGL
-          libGLU
-          meteo
-          mission-center
-          # nix-software-center
-          # partition-manager
-          pavucontrol
-          powertop
-          pwvucontrol
-          qdirstat
-          qjournalctl
-          # rtfm
-          spot
-          sqlitebrowser
-          # sublime-merge
-          # sublime4
-          transmission-remote-gtk
-          tremotesf
-          ulauncher
-          usbview
-          # ventoy-full
-          vsce
-          vte-gtk4
-          xdg-utils
-          xdgmenumaker
-          xdiskusage
-          xdotool
-          yelp
-          f1viewer
-          zed-editor
-        ]
-        ++ lib.optionals pkgs.stdenv.isx86_64 [
-          # custom.tabby
-          jetbrains-toolbox
-          synology-drive-client
-          # gpt4all-cuda
-          _86Box-with-roms
-          #       config.boot.linuxPackages.nvidia_x11
-          #     ];
-          #     ++ [
-          #     prev.runtimeDependencies
-          #   runtimeDependencies =
-          # (plex-media-player.overrideAttrs (prev: {
-          # }))
-          # handbrake
-          # pkgs.custom.git-butler
-          # pkgs.wolfram-engine
-          # spotify
-          # angryipscanner
-          #bottles
-          # custom.qlogexplorer
-          # discordo
-          dmidecode
-          gdm-settings
-          # gmtk
-          # gnome_mplayer
-          ipmiview
-          libsmbios
-          # plex-media-player
-          # (plex-media-player.overrideAttrs (old: {
-          #   # cudaSupport = true;
-          #   stdenv = pkgs.cudaPackages.backendStdenv;
-          # }))
-          # plex-desktop
-          plexamp
-          xpipe
-        ]
-        ++ (with pkgs.custom; [
-          # zerotier-ui
-
-          usbguard-gnome
-        ]);
-    };
-
     apps.firefox.enable = true;
 
     systemd = {
@@ -255,14 +190,12 @@ in {
         [
           pkgs.usbguard-notifier
           #config.system.build.chromium
-          pkgs.ptyxis
         ]
         ++ (lib.optional pkgs.stdenv.isx86_64 pkgs.widevine-cdm);
     };
 
     # Enable sound with pipewire.
     # sound.enable = mkDefault true;
-    hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
 
     #system.build.chromium = pkgs.chromium.override {

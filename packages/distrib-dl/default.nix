@@ -4,7 +4,8 @@
   stdenvNoCC,
   makeWrapper,
   gnupg,
-  wget2,
+  wget,
+  # wget2,
   coreutils,
 }:
 stdenvNoCC.mkDerivation rec {
@@ -20,7 +21,13 @@ stdenvNoCC.mkDerivation rec {
 
   nativeBuildInputs = [makeWrapper];
 
-  buildInputs = [gnupg wget2 coreutils];
+  buildInputs = [
+    gnupg
+    # wget2
+    wget
+    coreutils
+  ];
+
   installPhase = ''
     runHook preInstall
     install -Dm 755 distrib-dl $out/bin/distrib-dl
@@ -33,7 +40,7 @@ stdenvNoCC.mkDerivation rec {
 
 
     wrapProgram $out/bin/distrib-dl --set PATH ${
-      lib.makeBinPath [gnupg wget2 coreutils]
+      lib.makeBinPath [gnupg wget coreutils]
     }
 
     runHook postInstall

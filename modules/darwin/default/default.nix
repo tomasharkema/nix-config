@@ -31,7 +31,7 @@
           rekeyFile = ../../nixos/secrets/atuin.age;
           owner = "${config.user.name}";
           # group = "${config.user.name}";
-          # mode = "644";
+          mode = "666";
           # symlink = false;
         };
         # spotify-tui = {
@@ -98,14 +98,11 @@
         custom.futura
         google-fonts
         noto-fonts
-        noto-fonts-extra
-        noto-fonts-emoji
+        noto-fonts-color-emoji
         noto-fonts-cjk-sans
-
         nerd-fonts.jetbrains-mono
-
-        terminus-nerdfont
-        ubuntu_font_family
+        nerd-fonts.terminess-ttf
+        ubuntu-classic
         pkgs.custom.neue-haas-grotesk
         custom.fast-font
         # helvetica

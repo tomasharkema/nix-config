@@ -24,9 +24,9 @@ rustPlatform.buildRustPackage rec {
   buildInputs =
     []
     ++ (lib.optionals stdenv.hostPlatform.isDarwin [
-      darwin.IOKit
-      darwin.Libsystem
-      darwin.PowerManagement
+      # darwin.IOKit
+      # darwin.Libsystem
+      # darwin.PowerManagement
     ]);
 
   meta = with lib; {

@@ -7,61 +7,61 @@
 }: let
   wrapperDir = config.security.wrapperDir;
 in {
-  config = lib.mkIf false {
-    security.wrappers.keybase-redirector = {
-      owner = "root";
-      group = "root";
-      setuid = true;
-      # source = "${pkgs.kbfs}/bin/redirector";
-    };
-    systemd.user.services = {
-      kbfs = {
-        path = ["/run/wrappers"];
-        serviceConfig = {
-          # ExecStartPre = ["-${pkgs.keybase}/bin/keybase keybase config set mountdir \"${config.services.kbfs.mountPoint}\""];
+  config = {
+    # security.wrappers.keybase-redirector = {
+    #   owner = "root";
+    #   group = "root";
+    #   setuid = true;
+    #   source = "${pkgs.kbfs}/bin/redirector";
+    # };
+    # systemd.user.services = {
+    #   kbfs = {
+    #     path = ["/run/wrappers"];
+    #     serviceConfig = {
+    #       # ExecStartPre = ["-${pkgs.keybase}/bin/keybase keybase config set mountdir \"${config.services.kbfs.mountPoint}\""];
 
-          #     wants = ["keybase.service" "keybase-redirector.service"];
-          #     serviceConfig = {
-          #       #   path = ["/run/wrappers/bin"];
-          #       #   Environment = ["PATH=/run/wrappers/bin:$PATH"];
-          EnvironmentFile = [
-            "-%t/keybase/keybase.kbfs.env"
+    #       #     wants = ["keybase.service" "keybase-redirector.service"];
+    #       #     serviceConfig = {
+    #       #       #   path = ["/run/wrappers/bin"];
+    #       #       #   Environment = ["PATH=/run/wrappers/bin:$PATH"];
+    #       EnvironmentFile = [
+    #         "-%t/keybase/keybase.kbfs.env"
 
-            "-%h/.config/keybase/keybase.autogen.env"
-            "-%h/.config/keybase/keybase.env"
-          ];
-          ExecStart = lib.mkForce "${pkgs.kbfs}/bin/kbfsfuse -label Keybase /run/user/1000/kbfs";
-          ExecStartPre = lib.mkForce [
-            # "-${wrapperDir}/fusermount -uz \"${config.services.kbfs.mountPoint}\""
-          ];
-          PrivateTmp = lib.mkForce false;
-          #       #   DeviceAllow = ["/dev/fuse"];
-          #       #   CapabilityBoundingSet = ["CAP_SYS_ADMIN"];
-        };
-      };
+    #         "-%h/.config/keybase/keybase.autogen.env"
+    #         "-%h/.config/keybase/keybase.env"
+    #       ];
+    #       ExecStart = lib.mkForce "${pkgs.kbfs}/bin/kbfsfuse -label Keybase /run/user/1000/kbfs";
+    #       ExecStartPre = lib.mkForce [
+    #         # "-${wrapperDir}/fusermount -uz \"${config.services.kbfs.mountPoint}\""
+    #       ];
+    #       PrivateTmp = lib.mkForce false;
+    #       #       #   DeviceAllow = ["/dev/fuse"];
+    #       #       #   CapabilityBoundingSet = ["CAP_SYS_ADMIN"];
+    #     };
+    #   };
 
-      keybase-redirector = {
-        path = ["/run/wrappers"];
-        #     description = "Keybase Root Redirector for KBFS";
-        #     wants = ["keybase.service"];
-        #     unitConfig.ConditionUser = "!@system";
+    #   keybase-redirector = {
+    #     path = ["/run/wrappers"];
+    #     #     description = "Keybase Root Redirector for KBFS";
+    #     #     wants = ["keybase.service"];
+    #     #     unitConfig.ConditionUser = "!@system";
 
-        serviceConfig = {
-          EnvironmentFile = [
-            "-%E/keybase/keybase.autogen.env"
-            "-%E/keybase/keybase.env"
-          ];
-          #       # Note: The /keybase mount point is not currently configurable upstream.
-          #       ExecStart = "${wrapperDir}/keybase-redirector /keybase";
-          #       Restart = "on-failure";
-          #       # PrivateTmp = true;
-          PrivateTmp = lib.mkForce false;
-        };
+    #     serviceConfig = {
+    #       EnvironmentFile = [
+    #         "-%E/keybase/keybase.autogen.env"
+    #         "-%E/keybase/keybase.env"
+    #       ];
+    #       #       # Note: The /keybase mount point is not currently configurable upstream.
+    #       #       ExecStart = "${wrapperDir}/keybase-redirector /keybase";
+    #       #       Restart = "on-failure";
+    #       #       # PrivateTmp = true;
+    #       PrivateTmp = lib.mkForce false;
+    #     };
 
-        #     wantedBy = ["default.target"];
-        #   };
-      };
-    };
+    #     #     wantedBy = ["default.target"];
+    #     #   };
+    #   };
+    # };
     # systemd.user.services.kbfs.path = lib.mkForce [];
     # systemd.user.services.kbfs = let
     #   wrapperDir = config.security.wrapperDir;
@@ -86,18 +86,19 @@ in {
       groups = {kbfs = {};};
     };
 
-    services = {
+    home-manager.users.tomas.services = {
       keybase = {
         enable = true;
       };
 
       kbfs = {
         enable = true;
-        enableRedirector = true;
-        mountPoint = "%t/kbfs";
+        # enableRedirector = true;
+        # mountPoint = "%t/kbfs";
         extraFlags = [
           "-label kbfs"
           "-mount-type normal"
+          # "-debug"
         ];
       };
     };

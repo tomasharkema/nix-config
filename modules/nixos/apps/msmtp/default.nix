@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  config = {
+  config = lib.mkIf false {
     programs.msmtp = {
       enable = true;
       accounts.default = {

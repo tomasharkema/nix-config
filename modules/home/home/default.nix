@@ -31,10 +31,6 @@
   #   aicommits config set OPENAI_KEY=$OPENAI_API_KEY
   #   exec ${pkgs.custom.aicommits}/bin/aicommits "$@"
   # '';
-  # gptcommit-wrap = pkgs.writeShellScriptBin "gptcommit" ''
-  #   GPTCOMMIT__OPENAI__API_KEY="$(${pkgs._1password}/bin/op item get 2vzrjmprwi25zts7mzb4zmmad4 --field credential)"
-  #   exec ${lib.getExe pkgs.gptcommit}
-  # '';
   squash-folder = pkgs.writeShellScriptBin "squash-folder" ''
     set -e
 
@@ -99,7 +95,6 @@ in {
           libnotify
           trippy
           # fup-repl
-          # gptcommit-wrap
 
           udict
           # rtfm
@@ -156,11 +151,14 @@ in {
         )
       );
     };
+
     catppuccin = {
-      vscode.enable = false;
-      cache.enable = false;
-      mako.enable = false;
+      vscode.profiles.default.enable = false;
+
+      # cache.enable = false;
+      # mako.enable = false;
     };
+
     fonts.fontconfig.enable = true;
 
     programs = {
@@ -169,16 +167,17 @@ in {
       yazi.enable = true;
       home-manager.enable = true;
 
-      nix-index-database.comma.enable = true;
-
-      # termite.enable = osConfig.gui.enable;
-      # terminator.enable = lib.mkIf pkgs.stdenv.isLinux osConfig.gui.enable;
+      nix-index-database = {
+        comma.enable = true;
+      };
 
       yt-dlp.enable = true;
+
       noti = {
         enable = true;
         settings = {ntfy.url = "ntfy.sh/tomasharkema-nixos";};
       };
+
       topgrade.enable = true;
       direnv = {
         enable = true;
@@ -187,8 +186,6 @@ in {
 
       vscode = lib.mkIf pkgs.stdenv.isLinux {
         enable = true;
-        package = pkgs.vscode; # .fhs;
-        # catppuccin.enable = false;
       };
 
       htop = {
@@ -245,6 +242,7 @@ in {
           memory_usage.disabled = false;
           directory = {fish_style_pwd_dir_length = 2;};
           # add_newline = false;
+          follow_symlinks = false;
         };
       };
     };

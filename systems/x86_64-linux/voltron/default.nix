@@ -25,6 +25,7 @@
       snapper.enable = true; # false;
       swap = {
         size = "32G";
+        # resume.enable = false;
         resume.enable = true;
       };
     };
@@ -33,42 +34,29 @@
     #   enable = true;
     # };
 
-    systemd = {
-      services.usbmuxd.path = [pkgs.libusb1];
-      # network.links."81-pi" = {
-      #   matchConfig = {
-      #     Property = [
-      #       "ID_MODEL_ID=a4aa"
+    # systemd = {
+    #   services.usbmuxd.path = [pkgs.libusb1];
 
-      #       "ID_VENDOR_ID=0525"
-      #     ];
-      #    Driver = "cdc_ether";
-      #   };
-      #   linkConfig.Name = "pi0";
-      # networkConfig.DHCP = true;
-      # };
-    };
+    # };
 
     environment = {
       systemPackages = with pkgs; [
-        gt
-        gnomeExtensions.power-tracker
+        # gt
+        # gnomeExtensions.power-tracker
         # custom.swift
-        powerstat
+        # powerstat
         # powerjoular
         libimobiledevice
         intel-gpu-tools
         nvramtool
-        libusb1
-        ccid
-        gnupg
+        # libusb1
+        # ccid
+        # gnupg
         custom.distrib-dl
         # davinci-resolve
-        # handbrake
-        davinci-resolve
-        keybase-gui
+        # keybase-gui
         # calibre
-        glxinfo
+        # glxinfo
         inxi
         pwvucontrol
         i2c-tools
@@ -93,8 +81,6 @@
         backlightDevice = "/sys/class/backlight/intel_backlight";
       };
     };
-
-    # chaotic.mesa-git.enable = true;
 
     hardware = {
       # mcelog.enable = true;
@@ -161,7 +147,7 @@
       firewall = {
         enable = true; # wlp4s0; # false;
         allowPing = true;
-        # trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
+        trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
       };
     };
 
@@ -173,8 +159,10 @@
       users.tomas.extraGroups = ["spi" "gpio" "docker"];
     };
 
+    # security.pam.services.login.fprintAuth = lib.mkForce false;
+
     services = {
-      # kmscon.enable = true;
+      kmscon.enable = true;
       ratbagd.enable = true;
       # comin.enable = false;
       abrt.enable = true;
@@ -186,25 +174,22 @@
 
       "06cb-009a-fingerprint-sensor" = {
         enable = true;
-        backend = "python-validity";
-        # backend = "libfprint-tod";
+        # backend = "python-validity";
+        backend = "libfprint-tod";
         calib-data-file = ./calib-data.bin;
       };
 
       udev = {
         enable = true;
-        extraRules = ''
-          SUBSYSTEM=="spidev", KERNEL=="spidev0.0", GROUP="spi", MODE="0660"
-
-          SUBSYSTEM=="gpio", KERNEL=="gpiochip*", ACTION=="add", RUN+="${pkgs.bash}/bin/bash -c 'chown root:gpio /sys/class/gpio/export /sys/class/gpio/unexport ; chmod 220 /sys/class/gpio/export /sys/class/gpio/unexport'"
-          SUBSYSTEM=="gpio", KERNEL=="gpio*", ACTION=="add",RUN+="${pkgs.bash}/bin/bash -c 'chown root:gpio /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value ; chmod 660 /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value'"
-
-        '';
+        # extraRules = ''
+        #   SUBSYSTEM=="spidev", KERNEL=="spidev0.0", GROUP="spi", MODE="0660"
+        #   SUBSYSTEM=="gpio", KERNEL=="gpiochip*", ACTION=="add", RUN+="${pkgs.bash}/bin/bash -c 'chown root:gpio /sys/class/gpio/export /sys/class/gpio/unexport ; chmod 220 /sys/class/gpio/export /sys/class/gpio/unexport'"
+        #   SUBSYSTEM=="gpio", KERNEL=="gpio*", ACTION=="add",RUN+="${pkgs.bash}/bin/bash -c 'chown root:gpio /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value ; chmod 660 /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value'"
+        # '';
         packages = with pkgs; [
           heimdall-gui
           libusb1
-
-          # ccid
+          platformio-core
         ];
       };
 
@@ -235,11 +220,13 @@
           CharMap=hd44780_default
         '';
       };
+
       hardware.bolt.enable = true;
+
       beesd.filesystems = lib.mkIf false {
         root = {
           spec = "UUID=58cb1af5-de48-4aef-b3c3-72ec19237a89";
-          hashTableSizeMB = 4096;
+          hashTableSizeMB = 2048;
           verbosity = "crit";
           extraOptions = [
             "--loadavg-target"
@@ -279,26 +266,14 @@
       };
     };
 
+    # system.includeBuildDependencies = true;
     # system.build.cc1101-driver = pkgs.custom.cc1101-driver.override {kernel = config.boot.kernelPackages.kernel;};
-
-    # hardware = {
-    #   deviceTree = {
-    #     # enable = true;
-
-    #     overlays = [
-    #       {
-    #         name = "cc1101";
-    #         dtsFile = "${pkgs.custom.cc1101-driver}/lib/overlays/cc1101.dts";
-    #       }
-    #     ];
-    #   };
-    # };
 
     boot = {
       tmp = {
         useTmpfs = true;
       };
-      # kernelPackages = pkgs.linuxPackages_latest;
+
       recovery = {
         enable = true;
         install = true;
@@ -307,24 +282,27 @@
       };
 
       binfmt.emulatedSystems = ["aarch64-linux"];
+
       extraModulePackages = [
         # config.system.build.cc1101-driver
       ];
-      modprobeConfig.enable = true;
+      # modprobeConfig.enable = true;
+
       supportedFilesystems = ["ext2" "ext3" "ext4"];
+
       kernelParams = [
         "i915.enable_gvt=1"
         "i915.enable_fbc=0"
         "ibt=off"
         # "i915.enable_gvt=1"
         # "i915.enable_guc=0"
-        "intel_iommu=on"
-        "iommu=pt"
+        # "intel_iommu=on"
+        # "iommu=pt"
         # "iommu.passthrough=1"
+        "mitigations=off"
       ];
-      blacklistedKernelModules = [
-        "nouveau"
-      ];
+
+      # blacklists
       # modprobeConfig = {
       #   enable = true;
       # };
@@ -332,9 +310,10 @@
       #   options psmouse synaptics_intertouch=1
       # '';
       kernelModules = [
+        "coretemp"
         # "psmouse"
         "i915"
-        # "spi"
+        "spi"
         # "sgx"
         # "isgx"
         # "vfio_pci"
@@ -344,12 +323,12 @@
         # "watchdog"
         # "usbmon"
       ];
-      extraModprobeConfig = "options thinkpad_acpi fan_control=1";
+      # extraModprobeConfig = "options thinkpad_acpi fan_control=1";
       initrd.kernelModules = [
         "nvidia"
         "i915"
         "nvidia_modeset"
-        # "nvidia_uvm"
+        "nvidia_uvm"
         "nvidia_drm"
 
         # "spi"

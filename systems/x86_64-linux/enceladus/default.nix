@@ -15,9 +15,8 @@
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIseppvkEAzMD/B2xLqijr4UhTig0bZfqnXS6NcaAHxR root@nixos";
       };
       secrets = {
-        tsnsrv = {
-          rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
-        };
+        tsnsrv.rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
+        idrac.rekeyFile = ./idrac.age;
       };
     };
 
@@ -42,7 +41,7 @@
     };
 
     services = {
-      hypervisor.enable = true;
+      # hypervisor.enable = true;
       # "nix-private-cache".enable = true;
       # local-store.enable = true;
       throttled.enable = lib.mkForce false;
@@ -51,6 +50,13 @@
       lldpd.enable = true;
 
       netbootxyz.enable = true;
+
+      prometheus.exporters = {
+        idrac = {
+          enable = true;
+          configurationPath = config.age.secrets.idrac.path;
+        };
+      };
 
       udev = {
         packages = with pkgs; [
@@ -152,7 +158,7 @@
 
       interfaces = {
         "enp1s0" = {
-          useDHCP = lib.mkDefault false;
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
@@ -163,7 +169,7 @@
         };
         "vlan800" = {
           mtu = 9000;
-          useDHCP = lib.mkDefault true;
+          useDHCP = true;
         };
         "vlan69" = {
           ipv4.addresses = [
@@ -205,12 +211,13 @@
       tmp = {
         useTmpfs = true;
       };
-
+      kernelPackages = pkgs.linuxPackages_cachyos-lts;
       kernelModules = ["iTCO_wdt"];
       kernelParams = [
         "console=ttyACM0,115200"
         "console=tty1"
-        # "iomem=relaxed"
+        "mitigations=off"
+        "iomem=relaxed"
       ];
       initrd.kernelModules = ["iTCO_wdt"];
       recovery = {

@@ -70,6 +70,7 @@ in {
       nixos-install-tools
       git
       curl
+      tparted
       wget2
       btop
       htop

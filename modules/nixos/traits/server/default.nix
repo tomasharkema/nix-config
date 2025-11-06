@@ -20,11 +20,11 @@ in {
         enable = true;
         webservices.enable = true;
       };
-      vscode-server = {
-        enable = true;
-        # socketPath = "/run/openvscode/socket";
-        # connectionTokenFile = "/var/lib/openvscode/token";
-      };
+      # vscode-server = {
+      # enable = true;
+      # socketPath = "/run/openvscode/socket";
+      # connectionTokenFile = "/var/lib/openvscode/token";
+      # };
     };
 
     disks.btrfs.swap.resume.enable = false;
@@ -41,6 +41,9 @@ in {
       tmp = {
         useTmpfs = true;
       };
+
+      # kernelPackages = pkgs.linuxPackages_6_12;
+      kernelPackages = pkgs.linuxPackages_cachyos-lts;
 
       initrd = {
         network = {

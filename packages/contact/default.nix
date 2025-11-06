@@ -3,45 +3,28 @@
   stdenv,
   fetchFromGitHub,
   python3,
+  meshtastic-fix,
 }: let
-  py = python3.withPackages (ps: with ps; [meshtastic]);
+  py = python3.withPackages (ps: with ps; [meshtastic-fix]);
 in
   python3.pkgs.buildPythonApplication rec {
     pname = "contact";
-    version = "1.2.2";
+    version = "1.3.14";
 
-    # pyproject = false;
+    pyproject = true;
 
     src = fetchFromGitHub {
       owner = "pdxlocations";
       repo = "contact";
-      rev = "v${version}";
-      hash = "sha256-Bs5JzeObVfCXBi8kca/Tjt8eA9A/iPLbC0ImAKco8ow=";
+      rev = "${version}";
+      hash = "sha256-gicZtjwN+E64FtfIITXOkme6wdkDB31Q1sG0Hw2upyM=";
     };
-
-    unpackPhase = ''
-      tree .
-      tree $src
-      mkdir -p ./src/contact
-      cp -a $src/. ./src/contact/
-      tree .
-      tree $src
-    '';
-
-    postPatch = ''
-      ls -la
-      pwd
-      #mv * src/main/
-
-      cp ${./setup.py} setup.py
-      cp ${./pyproject.toml} pyproject.toml
-      ls -lia
-    '';
 
     # postInstall = ''
     #   mkdir -p $out/bin
     #   cp -r . $out/bin
     # '';
+    build-system = [py.setuptools];
     nativeBuildInputs = [];
     #propagatedBuildInputs = [meshtastic-py];
 

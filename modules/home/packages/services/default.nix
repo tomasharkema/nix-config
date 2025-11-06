@@ -6,7 +6,7 @@
 }: {
   config = lib.mkIf pkgs.stdenv.isLinux {
     services = {
-      pbgopy.enable = true;
+      # pbgopy.enable = true;
       unclutter.enable = true;
       systembus-notify.enable = true;
       status-notifier-watcher.enable = true;
@@ -33,7 +33,6 @@
       };
 
       # mbsync.enable = osConfig.gui.enable;
-      # mopidy.enable = osConfig.gui.enable;
     };
   };
 }

@@ -69,42 +69,51 @@
         # };
       };
 
-      packages = with pkgs; [
-        nerd-fonts.iosevka
-        font-awesome
-        powerline-fonts
-        powerline-symbols
-        custom.din
-        custom.computer-modern
-        custom.futura
-        custom.fast-font
-        # exult
-        b612
-        custom.b612-nerdfont
-        bakoma_ttf
-        cm_unicode
-        dina-font
-        fira-code
-        fira-code-symbols
-        google-fonts
-        inter
-        liberation_ttf
-        lmmath
-        mplus-outline-fonts.githubRelease
-        nerd-fonts.jetbrains-mono
-        custom.neue-haas-grotesk
-        noto-fonts
-        noto-fonts-cjk-sans
-        noto-fonts-emoji
-        noto-fonts-extra
-        open-dyslexic
-        open-sans
-        proggyfonts
-        roboto-mono
-        # custom.san-francisco
-        ubuntu_font_family
-        vegur
-      ];
+      packages = with pkgs;
+        (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts))
+        ++ [
+          # custom.san-francisco
+          # exult
+          adwaita-fonts
+          openmoji-color
+          kreative-square
+          fairfax-hd
+          fairfax
+          constructium
+          b612
+          bakoma_ttf
+          cm_unicode
+          corefonts
+          vista-fonts
+          custom.b612-nerdfont
+          custom.computer-modern
+          custom.din
+          custom.fast-font
+          custom.futura
+          custom.neue-haas-grotesk
+          dina-font
+          fira-code
+          fira-code-symbols
+          font-awesome
+          google-fonts
+          inter
+          liberation_ttf
+          lmmath
+          mplus-outline-fonts.githubRelease
+          nerd-fonts.iosevka
+          nerd-fonts.jetbrains-mono
+          noto-fonts-cjk-sans
+          noto-fonts-color-emoji
+          noto-fonts
+          open-dyslexic
+          open-sans
+          powerline-fonts
+          powerline-symbols
+          proggyfonts
+          roboto-mono
+          ubuntu-classic
+          vegur
+        ];
     };
   };
 }

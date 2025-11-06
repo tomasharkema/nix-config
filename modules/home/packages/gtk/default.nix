@@ -1,12 +1,12 @@
 {
   pkgs,
   lib,
-  config,
+  # config,
   osConfig,
-  inputs,
+  # inputs,
   ...
 }: let
-  catppuccin_name = "Catppuccin-Mocha-Compact-Blue-Dark";
+  # catppuccin_name = "Catppuccin-Mocha-Compact-Blue-Dark";
   # catppuccin = pkgs.catppuccin-gtk.override {
   #   accents = ["blue"];
   #   size = "compact";

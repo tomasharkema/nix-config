@@ -8,7 +8,7 @@
 in {
   options.apps.mailrise = {enable = lib.mkEnableOption "mailrise";};
 
-  config = {
+  config = lib.mkIf false {
     services.mailrise = lib.mkIf cfg.enable {
       enable = true;
 

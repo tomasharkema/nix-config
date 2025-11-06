@@ -38,31 +38,6 @@
     nom build '.#nixosConfigurations.hyperv-nixos.config.formats.install-iso' --out-link $LINK
     pv $LINK -cN in -B 100M -pterbT | xz -T4 -9 | pv -cN out -B 100M -pterbT > ./out/install.iso.xz
   '';
-  remote-deploy = pkgs.writeShellScriptBin "remote-deploy" ''
-    remote deployment '.#arthur' '.#enzian'
-  '';
-  upload-all = pkgs.writeShellScriptBin "upload-all" ''
-    FILES="/nix/store/*"
-    for f in $FILES
-    do
-      echo "Processing $f file..."
-      attic push tomas "$f"
-    done
-  '';
-  nix-update-all = pkgs.writeShellScriptBin "nix-update-all" ''
-    update_path="${inputs.nixpkgs}/maintainers/scripts/update.nix"
-    echo $update_path
-    exec nix-shell "$update_path"
-  '';
-  update-pkgs = pkgs.writeShellScriptBin "update-pkgs" ''
-    set -x
-    nixPath="$(nix eval -f . inputs.nixpkgs.outPath --json | jq -r)"
-    echo "found $nixPath"
-    nixUpdate="$nixPath/maintainers/scripts/update.nix"
-    echo "found $nixUpdate"
-    overlayExpr="(import {./.} {{ }}).outputs.overlays"
-    nix-shell $nixUpdate --arg include-overlays $overlayExpr --arg predicate '(path: pkg: true)' --verbose --show-trace $@
-  '';
 
   test-installer = pkgs.writeShellScriptBin "test-installer" ''
     VM_PATH="$(nix build '.#nixosConfigurations.installer-x86.config.system.build.vm' --print-out-paths)"
@@ -139,27 +114,17 @@
   #   nix eval "$HOME_PKGS" --json | tee "$DIR/second.json"
   #   cat "$DIR/first.json" "$DIR/second.json" | jq -s add | tee "$DIR/out.json" | gum pager
   # '';
-  upload-all-store = pkgs.writeShellScriptBin "upload-all-store" ''
-    NPATHS=50
-    NPROCS=4
 
-    exec nix path-info --all | xargs -n$NPATHS -P$NPROCS attic push tomas -j 1
-  '';
-
-  build-host-pkgs = pkgs.writeShellScriptBin "build-host-pkgs" ''
-    PACKAGE="$1"
-    echo "Build $PACKAGE"
-    exec nom build ".#nixosConfigurations.$HOSTNAME.pkgs.$PACKAGE" --out-link ./out/$PACKAGE
-  '';
   nixos-system = pkgs.writeShellScriptBin "nixos-system" ''
     HOST="$1"
+    shift
     echo "Build $HOST"
-    exec nom build ".#nixosConfigurations.$HOST.config.system.build.toplevel" --out-link ./out/$HOST
+    exec nom build ".#nixosConfigurations.$HOST.config.system.build.toplevel" --out-link "./out/$HOST" "$@"
   '';
   darwin-system = pkgs.writeShellScriptBin "darwin-system" ''
     HOST="$1"
     echo "Build $HOST"
-    exec nom build ".#darwinConfigurations.$HOST.config.system.build.toplevel" --out-link ./out/$HOST
+    exec nom build ".#darwinConfigurations.$HOST.config.system.build.toplevel" --out-link "./out/$HOST" "$@"
   '';
   update = pkgs.writeShellScriptBin "update" ''
     set -e -o pipefail
@@ -175,10 +140,10 @@
 in {
   # starship.enable = true;
 
-  # languages.nix = {
-  #   enable = true;
-  #   lsp.package = pkgs.nixd;
-  # };
+  languages.nix = {
+    enable = true;
+    lsp.package = pkgs.nixd;
+  };
 
   pre-commit.hooks = {
     alejandra.enable = true;
@@ -192,7 +157,6 @@ in {
     # statix.enable = true;
     # deadnix.enable = true;
 
-    gptcommit.enable = true;
     check-added-large-files.enable = true;
     ripsecrets = {
       enable = true;
@@ -224,10 +188,6 @@ in {
 
   # dotenv.enable = true;
 
-  processes = {
-    attic.exec = "attic watch-store tomas -j1";
-  };
-
   # enterShell = ''
   #   nix flake update && devenv update
   # '';
@@ -238,8 +198,6 @@ in {
     update
     nixos-system
     darwin-system
-    build-host-pkgs
-    nix-update-all
 
     # # snowfallorg.flake
     # agenix
@@ -259,7 +217,6 @@ in {
     ack
     age
     alejandra
-    attic-client
     bash
     bfg-repo-cleaner
     colima
@@ -277,7 +234,7 @@ in {
     gum
     manix
     mkiso
-    netdiscover
+    # netdiscover
     # nil
     # nix-eval-jobs
     nix-output-monitor
@@ -292,17 +249,17 @@ in {
     nurl
     deploy-rs
     # reencrypt
-    remote-deploy
+    # remote-deploy
     sops
     ssh-to-age
-    statix
+    # statix
     statix
     test-installer
     test-remote
     tydra
-    update-pkgs
-    upload-all
-    upload-all-store
+    # update-pkgs
+    # upload-all
+    # upload-all-store
     # upload-local
     upload-to-installer
     write-script

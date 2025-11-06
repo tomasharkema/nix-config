@@ -17,15 +17,12 @@ in {
 
     # environment.systemPackages = [pkgs.custom.tlpui];
 
-    home-manager.users.tomas.programs.gnome-shell.extensions =
-      lib.optional
-      (!config.traits.hardware.laptop.thinkpad.enable)
-      {package = pkgs.gnomeExtensions.battery-health-charging;};
-
-    gui.rdp = {
-      enable = false;
-      legacy = false;
-    };
+    home-manager.users.tomas.programs.gnome-shell.extensions = [
+      (
+        lib.mkIf (!config.traits.hardware.laptop.thinkpad.enable && false)
+        {package = pkgs.gnomeExtensions.battery-health-charging;}
+      )
+    ];
 
     # boot.kernelParams = [
     #   "ahci.mobile_lpm_policy=3"
@@ -40,6 +37,7 @@ in {
       # };
       sysstat.enable = false;
 
+      tuned.enable = true;
       thermald.enable = true;
 
       netdata.enable = lib.mkForce false;
@@ -47,30 +45,7 @@ in {
 
       # xrdp.enable = mkForce false;
 
-      tlp = lib.mkIf false {
-        enable = true;
-        settings = {
-          CPU_SCALING_GOVERNOR_ON_AC = "performance";
-          CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-
-          CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-          CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-          CPU_BOOST_ON_AC = 1;
-          CPU_BOOST_ON_BAT = 0;
-          #CPU_MIN_PERF_ON_AC = 0;
-          #CPU_MAX_PERF_ON_AC = 100;
-          #CPU_MIN_PERF_ON_BAT = 0;
-          #CPU_MAX_PERF_ON_BAT = 70;
-
-          #Optional helps save long term battery health
-          START_CHARGE_THRESH_BAT0 = 75; # 40 and below it starts to charge
-          STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
-          START_CHARGE_THRESH_BAT1 = 75; # 40 and below it starts to charge
-          STOP_CHARGE_THRESH_BAT1 = 80; # 80 and above it stops charging
-        };
-      };
-
-      power-profiles-daemon.enable = true;
+      power-profiles-daemon.enable = false;
 
       acpid = {
         enable = true;

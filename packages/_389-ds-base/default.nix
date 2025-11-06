@@ -39,20 +39,20 @@
 stdenv.mkDerivation (
   finalAttrs: {
     pname = "389-ds-base";
-    version = "3.1.2";
+    version = "3.1.3";
 
     src = fetchFromGitHub {
       owner = "389ds";
       repo = finalAttrs.pname;
       rev = "${finalAttrs.pname}-${finalAttrs.version}";
-      hash = "sha256-FIx+ZW3K5KevU+wAiwPbDAQ6q7rPFEHFa+5eKqtgzpQ=";
+      hash = "sha256-hRTK9xBu8v8+SGa/3IB8Alh/aGUiRRn2LmYOvXy0Yd4=";
     };
 
     cargoDeps = rustPlatform.fetchCargoVendor {
       inherit (finalAttrs) src;
       sourceRoot = "${finalAttrs.src.name}/src";
       name = "389-ds-base-${finalAttrs.version}";
-      hash = "sha256-8A2xnJI22mjupX5FVsvRa5RfWyOE+VLH2aJwBHjDOME=";
+      hash = "sha256-pNzMQjeBpmzFg6oWCxhLDmKGUKIW6jGmZQWai5Yunjc=";
     };
 
     nativeBuildInputs =
@@ -90,6 +90,10 @@ stdenv.mkDerivation (
     '';
 
     preBuild = ''
+
+      substituteInPlace src/slapi_r_plugin/src/value.rs \
+        --replace-fail "pub fn iter(&self) -> ValueArrayRefIter {" "pub fn iter(&self) -> ValueArrayRefIter<'_> {"
+
       ln -s ${finalAttrs.cargoDeps} ./vendor
     '';
 

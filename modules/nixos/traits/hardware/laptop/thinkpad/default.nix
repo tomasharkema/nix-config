@@ -77,10 +77,10 @@ in {
         pkgs.modemmanager
         # pkgs.custom.lenovo-wwan-unlock
       ];
-      # services = {
-      #   open-fprintd-resume.enable = true;
-      #   open-fprintd-suspend.enable = true;
-      # };
+      services = {
+        open-fprintd-resume.enable = true;
+        open-fprintd-suspend.enable = true;
+      };
 
       services = {
         print-restart = {
@@ -103,6 +103,7 @@ in {
         };
       };
     };
+
     services = {
       "06cb-009a-fingerprint-sensor" = {
         enable = true;
@@ -111,7 +112,7 @@ in {
         # calib-data-file = ./calib-data.bin;
       };
 
-      # tp-auto-kbbl.enable = true;
+      # tp-auto-kbbl.enable := true;
       # thinkfan.enable = true;
       # fprintd = {
       #   enable = lib.mkForce true;
@@ -138,12 +139,12 @@ in {
       # python-validity.enable = true;
       # fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
 
-      # udev.extraRules = ''
-      #   SUBSYSTEM=="usb", ATTRS{idVendor}=="06cb", ATTRS{idProduct}=="009a", ATTRS{dev}=="*", TEST=="power/control", ATTR{power/control}="auto", MODE="0660", GROUP="plugdev"
-      #   SUBSYSTEM=="usb", ATTRS{idVendor}=="06cb", ATTRS{idProduct}=="009a", ENV{LIBFPRINT_DRIVER}="vfs009"
-      # '';
-
       udev = {
+        extraRules = ''
+          SUBSYSTEM=="usb", ATTRS{idVendor}=="06cb", ATTRS{idProduct}=="009a", ATTRS{dev}=="*", TEST=="power/control", ATTR{power/control}="auto", MODE="0660", GROUP="plugdev"
+          SUBSYSTEM=="usb", ATTRS{idVendor}=="06cb", ATTRS{idProduct}=="009a", ENV{LIBFPRINT_DRIVER}="vfs009"
+        '';
+
         packages = [
           pkgs.modemmanager
           thinkpad-bat-rules
@@ -155,7 +156,7 @@ in {
     home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
       {package = thinkpad-thermal;}
       # {package = fnlock-switch-thinkpad-compact-usb-keyboard;}
-      {package = thinkpad-battery-threshold;}
+      # {package = thinkpad-battery-threshold;}
     ];
 
     # boot = {
@@ -163,65 +164,5 @@ in {
     #     options thinkpad_acpi fan_control=1
     #   '';
     # };
-
-    security.pam.services = {
-      "gdm-fingerprint" = {
-        # enableGnomeKeyring = true;
-        # fprintAuth = true;
-        fprintAuth = false;
-      };
-      xscreensaver = {
-        # enableGnomeKeyring = true;
-        fprintAuth = true;
-      };
-      "runuser" = {
-        # enableGnomeKeyring = true;
-        fprintAuth = true;
-      };
-      "runuser-l" = {
-        # enableGnomeKeyring = true;
-        fprintAuth = true;
-      };
-      su = {
-        # enableGnomeKeyring = true;
-        fprintAuth = true;
-      };
-      "polkit-1" = {
-        # enableGnomeKeyring = true;
-        fprintAuth = true;
-      };
-      # passwd = {
-      #   fprintAuth = true;
-      # };
-      "systemd-user" = {
-        # enableGnomeKeyring = true;
-        fprintAuth = true;
-      };
-      sudo = {
-        # enableGnomeKeyring = true;
-        fprintAuth = true;
-      };
-      auth = {
-        # enableGnomeKeyring = true;
-        fprintAuth = true;
-      };
-      login = {
-        # enableGnomeKeyring = true;
-        fprintAuth = true;
-      };
-      vlock = {
-        # enableGnomeKeyring = true;
-        fprintAuth = true;
-      };
-      "xscreenserver" = {
-        # enableGnomeKeyring = true;
-        fprintAuth = true;
-      };
-      xlock = {
-        # enableGnomeKeyring = true;
-        fprintAuth = true;
-      };
-      passwd.enableGnomeKeyring = true;
-    };
   };
 }

@@ -19,17 +19,17 @@
         snmpcheck
         davinci-resolve
         ntfs2btrfs
-        glxinfo
+        # glxinfo
         # apfsprogs
         cifs-utils
         piper
         libratbag
-
         heimdall
         heimdall-gui
-        # handbrake
       ];
     };
+
+    # system.includeBuildDependencies = true;
 
     time = {
       # hardwareClockInLocalTime = true;
@@ -93,11 +93,11 @@
       enable = true;
       desktop = {
         enable = true;
-        rdp.enable = false;
       };
       gamemode.enable = true;
       quiet-boot.enable = true;
       hidpi.enable = true;
+      hdr.enable = true;
       gnome = {};
       hyrland.wluma.enable = true;
     };
@@ -135,16 +135,12 @@
         enable = true;
         # sunshine = true;
       };
-      ollama.enable = true;
       flatpak.enable = true;
       docker.enable = true;
       ddc.enable = true;
     };
 
-    chaotic.hdr = {
-      enable = true;
-      specialisation.enable = false;
-    };
+    virtualisation.waydroid.enable = true;
 
     # virtualisation.kvmgt = {
     #   enable = true;
@@ -169,7 +165,7 @@
         bridgeInterfaces = ["enp2s0"];
       };
       # xserver.videoDrivers = ["nvidia"];
-      ddccontrol.enable = true;
+      # ddccontrol.enable = true;
     };
     programs = {
       light = {
@@ -195,7 +191,7 @@
         # forceFullCompositionPipeline = true;
         open = true;
         nvidiaSettings = true;
-        nvidiaPersistenced = true;
+        # nvidiaPersistenced = lib.mkForce true;
 
         powerManagement = {
           # enable = true;

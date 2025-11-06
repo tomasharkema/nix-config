@@ -47,16 +47,14 @@ in {
       # nvflash
       # nvidia-capture-sdk
       libva-utils
-      (nvtopPackages.full)
+      # (nvtopPackages.full)
       zenith-nvidia
       nvidia-offload
       nvfancontrol
       nvitop
-      # gwe
-      cudaPackages.cudatoolkit
-      # egl-wayland
-
-      # pkgs.nixgl.auto.nixGLDefault
+      gwe
+      # cudaPackages.cudatoolkit
+      egl-wayland
     ];
 
     services = {
@@ -75,7 +73,7 @@ in {
       # kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
 
       # kernelPackages = lib.mkIf cfg.grid pkgs.linuxPackages_6_11;
-      blacklistedKernelModules = ["nouveau"];
+      # blacklistedKernelModules = ["nouveau"];
 
       kernelParams = [
         # "nvidia-drm.modeset=1"
@@ -89,13 +87,14 @@ in {
     };
 
     hardware = {
-      nvidia-container-toolkit.enable = true;
+      # nvidia-container-toolkit.enable = true;
 
       nvidia = {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
         open = lib.mkForce cfg.open;
         nvidiaSettings = !(cfg.grid.enable);
+        # nvidiaPersistenced = cfg.grid.enable;
         package =
           if cfg.grid.enable
           then
@@ -103,20 +102,21 @@ in {
                 if cfg.grid.legacy
                 then config.boot.kernelPackages.nvidiaPackages.vgpu_16_5
                 else
-                  (config.boot.kernelPackages.nvidiaPackages.vgpu_17_3.overrideAttrs (finalAttrs: previousAttrs: {
+                  (config.boot.kernelPackages.nvidiaPackages.vgpu_17_3.overrideAttrs ({patches ? [], ...}: {
                     prePatch = ''
                       substituteInPlace kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.c --replace-fail "no_llseek" "noop_llseek"
-
                     '';
 
-                    patches = [
-                      ./drm.patch
-                      # ./6.12.patch
-                      # (pkgs.fetchpatch {
-                      #      url = "https://gitlab.com/polloloco/vgpu-proxmox/-/raw/master/550.144.02.patch?ref_type=heads&inline=false";
-                      #      hash = "sha256-oUSKlGdtB8xklRL/r2dGHfYnhxNarEk1S6WtM20zSS4=";
-                      # })
-                    ];
+                    patches =
+                      patches
+                      ++ [
+                        #./drm.patch
+                        #./6.12.patch
+                        # (pkgs.fetchpatch {
+                        #      url = "https://gitlab.com/polloloco/vgpu-proxmox/-/raw/master/550.144.02.patch?ref_type=heads&inline=false";
+                        #      hash = "sha256-oUSKlGdtB8xklRL/r2dGHfYnhxNarEk1S6WtM20zSS4=";
+                        # })
+                      ];
                   }))
               )
               .overrideAttrs (
@@ -128,32 +128,11 @@ in {
                     };
                 }
               ))
-          else let
-            # Preferred NVIDIA Version
-            nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-              version = "575.57.08";
-              sha256_64bit = "sha256-KqcB2sGAp7IKbleMzNkB3tjUTlfWBYDwj50o3R//xvI=";
-              sha256_aarch64 = "sha256-VJ5z5PdAL2YnXuZltuOirl179XKWt0O4JNcT8gUgO98=";
-              openSha256 = "sha256-DOJw73sjhQoy+5R0GHGnUddE6xaXb/z/Ihq3BKBf+lg=";
-              settingsSha256 = "sha256-AIeeDXFEo9VEKCgXnY3QvrW5iWZeIVg4LBCeRtMs5Io=";
-              persistencedSha256 = "sha256-Len7Va4HYp5r3wMpAhL4VsPu5S0JOshPFywbO7vYnGo=";
-
-              patches = [gpl_symbols_linux_615_patch];
-            };
-
-            gpl_symbols_linux_615_patch = pkgs.fetchpatch {
-              url = "https://github.com/CachyOS/kernel-patches/raw/914aea4298e3744beddad09f3d2773d71839b182/6.15/misc/nvidia/0003-Workaround-nv_vm_flags_-calling-GPL-only-code.patch";
-              hash = "sha256-YOTAvONchPPSVDP9eJ9236pAPtxYK5nAePNtm2dlvb4=";
-              stripLen = 1;
-              extraPrefix = "kernel/";
-            };
-          in
-            nvidiaPackage;
-
-        # pkgs.nvidia-patch.patch-nvenc (
-        # pkgs.nvidia-patch.patch-fbc
-        # config.boot.kernelPackages.nvidiaPackages.beta
-        #)
+          else
+            pkgs.nvidia-patch.patch-nvenc (
+              pkgs.nvidia-patch.patch-fbc
+              config.boot.kernelPackages.nvidiaPackages.beta
+            );
 
         vgpu = lib.mkIf (cfg.grid.enable) {
           patcher = {
@@ -179,7 +158,7 @@ in {
         extraPackages = with pkgs; [
           nvidia-vaapi-driver
           # libvdpau-va-gl
-          vaapiVdpau
+          # vaapiVdpau
           # egl-wayland
         ];
       };

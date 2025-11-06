@@ -8,17 +8,10 @@
       secrets = {
         atuin = {
           rekeyFile = ./atuin.age;
-          owner = "tomas";
-          group = "tomas";
+          owner = "${config.user.name}";
+          group = "${config.user.name}";
           mode = "644";
           # symlink = false;
-        };
-        "attic-config.toml" = {
-          rekeyFile = ./attic-config.toml.age;
-          mode = "644";
-          owner = "tomas";
-          group = "tomas";
-          # path = "/home/tomas/.config/attic/config.toml";
         };
 
         # tailscale = {
@@ -99,9 +92,9 @@
         # "domainjoin" = {
         #   rekeyFile = ./domainjoin.age;
         # };
-        netrc = {
-          rekeyFile = ./netrc.age;
-        };
+        # netrc = {
+        #   rekeyFile = ./netrc.age;
+        # };
       };
     };
   };

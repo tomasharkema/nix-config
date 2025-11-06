@@ -37,7 +37,8 @@ in {
 
           volumes = [
             "/run/dbus:/run/dbus:ro"
-            "${cfg.folder}:/config:Z"
+            "/etc/localtime:/etc/localtime:ro"
+            "${cfg.folder}:/config"
           ];
         };
       };

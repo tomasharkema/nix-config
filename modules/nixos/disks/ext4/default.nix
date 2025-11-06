@@ -60,10 +60,7 @@ in {
     # };
 
     environment.systemPackages = with pkgs; [
-      # snapper
-      # snapper-gui
       tpm-luks
-      # btrfs-assistant
     ];
 
     # fileSystems."/".neededForBoot = true;

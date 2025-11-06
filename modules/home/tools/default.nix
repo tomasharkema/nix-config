@@ -1,13 +1,10 @@
-{
-  inputs,
-  pkgs,
-  ...
-}:
+{pkgs, ...}:
 with pkgs; {
   config = {
     home.packages = with pkgs; (
       (lib.optionals pkgs.stdenv.isLinux [
         ftop
+        curlie
       ])
       ++ [
         ssh-tools
@@ -24,14 +21,14 @@ with pkgs; {
         sshs
         # bup
         # shallow-backup
-        # dry
+        dry
         # udisks2
         portal
         git
         wget
         curl
         sysz
-        # netscanner
+        netscanner
 
         bashmount
         bmon
@@ -74,18 +71,16 @@ with pkgs; {
         bash
         bat
         bottom
-        piratebay
         bunyan-rs
         cheat
         coreutils
         ctop
         curl
-        curlie
         delta
         direnv
         dnsutils
         dogdns
-        du-dust
+        dust
         eza
         fd
         fpp
@@ -102,7 +97,7 @@ with pkgs; {
         # keybase
         ldns
         # lolcat
-        # lsd
+        lsd
         manix
 
         mcfly

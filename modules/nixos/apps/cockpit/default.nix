@@ -5,29 +5,46 @@
   ...
 }: {
   config = {
-    services.cockpit = {
-      enable = true;
-      # port = 9099;
-      package = pkgs.cockpit;
-
-      settings = {
-        # WebService =
-        #   if config.services.nginx.enable
-        #   then {
-        #     # AllowUnencrypted = false;
-        #     Origins = "https://${config.proxy-services.vhost} wss://${config.proxy-services.vhost} http://localhost:9090 ws://localhost:9090";
-        #     ProtocolHeader = "X-Forwarded-Proto";
-        #     UrlRoot = "/cockpit";
-        #     # ClientCertAuthentication = true;
-        #   }
-        #   else {
-        #     # ClientCertAuthentication = true;
-        #     # AllowUnencrypted = false;
-        #   };
-      };
+    environment = {
+      pathsToLink = ["/libexec"];
+      systemPackages = with pkgs; [
+        cockpit
+        custom.cockpit-files
+        custom.cockpit-machines
+        custom.cockpit-sensors
+        custom.cockpit-tailscale
+      ];
     };
 
-    environment.pathsToLink = ["/libexec"];
+    security.pam.services."cockpit".enable = true;
+
+    services.cockpit = {
+      enable = true;
+      port = 9090;
+
+      allowed-origins = ["localhost" "${config.networking.hostName}.ling-lizard.ts.net"];
+
+      settings = {
+        WebService =
+          # if config.services.nginx.enable
+          # then {
+          #   AllowUnencrypted = false;
+          #   # Origins = "https://localhost:9090 wss://localhost:9090 https://${config.networking.hostName}.ling-lizard.ts.net:9090 wss://${config.networking.hostName}.ling-lizard.ts.net:9090";
+          #   ProtocolHeader = "X-Forwarded-Proto";
+          #   UrlRoot = "/cockpit";
+          #   ClientCertAuthentication = true;
+          # }
+          # else
+          {
+            # ClientCertAuthentication = true;
+            Origins = lib.mkForce "https://${config.networking.hostName}.ling-lizard.ts.net:${toString config.services.cockpit.port}";
+            # ProtocolHeader = "X-Forwarded-Proto";
+            AllowUnencrypted = false;
+            LoginTo = true;
+            AllowMultiHost = true;
+          };
+      };
+    };
 
     # systemd = {
     #   services = {
@@ -98,14 +115,12 @@
     #   };
     # };
 
-    environment.systemPackages = with pkgs; [
-      cockpit-podman
-      cockpit-tailscale
-      cockpit-machines
-      cockpit-sensors
-      cockpit-files
-      # packagekit
-    ];
+    # environment.systemPackages = with pkgs; [
+    #   cockpit-tailscale
+    #   cockpit-machines
+    #   cockpit-sensors
+    #   cockpit-files
+    # ];
 
     # services.multipath = {
     #   enable = true;

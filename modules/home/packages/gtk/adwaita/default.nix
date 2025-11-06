@@ -4,12 +4,12 @@
   lib,
   ...
 }: {
-  config = {
+  config = lib.mkIf pkgs.stdenv.isLinux {
     dconf.settings = {
       "org/gnome/desktop/interface" = {color-scheme = "prefer-dark";};
     };
 
-    gtk = lib.mkIf false {
+    gtk = {
       enable = true;
       theme = {
         name = "Adwaita-dark";
