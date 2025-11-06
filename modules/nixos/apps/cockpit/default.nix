@@ -36,8 +36,8 @@
           # }
           # else
           {
-            ClientCertAuthentication = true;
-            Origins = lib.mkForce "https://192.168.0.100:${toString config.services.cockpit.port} https://${config.networking.hostName}.ling-lizard.ts.net:${toString config.services.cockpit.port}";
+            # ClientCertAuthentication = true;
+            Origins = lib.mkForce "https://${config.networking.hostName}.ling-lizard.ts.net:${toString config.services.cockpit.port}";
             # ProtocolHeader = "X-Forwarded-Proto";
             AllowUnencrypted = false;
             LoginTo = true;

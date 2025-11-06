@@ -283,30 +283,35 @@
       #     GLITCHTIP_DOMAIN = "https://glitchtip.ling-lizard.ts.net";
       #   };
       # };
-      mysql = {
-        # for firefox syncserver
-        enable = true;
-        package = pkgs.mariadb;
-      };
+      # mysql = {
+      #   enable = true;
+      #   package = pkgs.mariadb;
+      # };
 
-      firefox-syncserver = {
-        enable = true;
-        secrets = config.age.secrets.firefox.path;
+      # firefox-syncserver = {
+      #   enable = true;
+      #   secrets = config.age.secrets.firefox.path;
 
-        singleNode = {
-          enable = true;
-          hostname = "silver-star.ling-lizard.ts.net";
-          url = "http://silver-star.ling-lizard.ts.net:5000";
-        };
-      };
+      #   database = {
+      #     createLocally = true;
+      #     user = "firefox-syncserver";
+      #     name = "firefox_syncserver";
+      #   };
 
-      pocket-id = {
-        enable = true;
-        settings = {
-          APP_URL = "https://id.harke.ma";
-          TRUST_PROXY = true;
-        };
-      };
+      #   singleNode = {
+      #     enable = true;
+      #     hostname = "silver-star.ling-lizard.ts.net";
+      #     url = "http://silver-star.ling-lizard.ts.net:5000";
+      #   };
+      # };
+
+      # pocket-id = {
+      #   enable = true;
+      #   settings = {
+      #     APP_URL = "https://id.harke.ma";
+      #     TRUST_PROXY = true;
+      #   };
+      # };
 
       cloudflared = {
         enable = true;
@@ -315,9 +320,9 @@
             credentialsFile = config.age.secrets.cloudflared.path;
             default = "http_status:404";
             ingress = {
-              "id.harke.ma" = {
-                service = "http://localhost:1411";
-              };
+              #       "id.harke.ma" = {
+              #         service = "http://localhost:1411";
+              #       };
             };
           };
         };
@@ -446,10 +451,9 @@
       # nvidia-container-toolkit.enable = true;
       #
       nvidia = {
-        # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
         nvidiaPersistenced = lib.mkForce true;
-        open = true;
+        open = false;
       };
     };
 
