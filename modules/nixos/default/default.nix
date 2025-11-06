@@ -35,7 +35,7 @@ in {
       rebuild.enableNg = true;
     };
 
-    security.isolate.enable = true;
+    # security.isolate.enable = true;
 
     systemd = {
       additionalUpstreamSystemUnits = ["systemd-bsod.service"];

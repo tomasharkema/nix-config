@@ -56,7 +56,7 @@
         network.xgbe.enable = true;
         nvidia = {
           enable = true;
-          open = true;
+          open = false;
           # grid = {
           #   legacy = false;
           # };
@@ -453,7 +453,7 @@
       nvidia = {
         nvidiaSettings = lib.mkForce false;
         nvidiaPersistenced = lib.mkForce true;
-        open = false;
+        # open = false;
       };
     };
 
