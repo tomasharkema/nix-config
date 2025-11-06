@@ -122,6 +122,11 @@ in {
       libjaylink.enable = true;
       pulseaudio.enable = false;
       usb-modeswitch.enable = true;
+
+      opentabletdriver = {
+        enable = true;
+        daemon.enable = true;
+      };
     };
 
     programs = {

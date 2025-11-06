@@ -64,7 +64,7 @@
     thonny
     coppwr
     custom.gtk-meshtastic-client
-    libwacom
+
     chromium
     noti
     ghex
