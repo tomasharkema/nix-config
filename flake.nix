@@ -150,7 +150,8 @@
           agenix-rekey.nixosModules.default
 
           nix-gaming.nixosModules.pipewireLowLatency
-          nix-gaming.nixosModules.platformOptimizations
+          nix-gaming.nixosModules.wine
+          # nix-gaming.nixosModules.platformOptimizations
           walker.nixosModules.default
           nvidia-vgpu-nixos.nixosModules.host
           # nvidia-vgpu-nixos.nixosModules.guest
@@ -603,7 +604,7 @@
       url = "github:nix-community/lanzaboote?shallow=true";
       # url = "github:andre4ik3/lanzaboote?ref=fenix";
       inputs = {
-        #nixpkgs.follows = "nixpkgs";
+        nixpkgs.follows = "nixpkgs";
         # crane.follows = "crane";
         # flake-parts.follows = "flake-parts";
         # flake-compat.follows = "flake-compat";
@@ -853,10 +854,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprpanel = {
-      url = "github:Jas-SinghFSU/HyprPanel?shallow=true";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #hyprpanel = {
+    #  url = "github:Jas-SinghFSU/HyprPanel?shallow=true";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
     # hyprlock = {
     #   url = "github:hyprwm/hyprlock?shallow=true";

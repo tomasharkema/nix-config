@@ -62,6 +62,7 @@
         custom.meshtui
         custom.wikiman
         custom.zide
+        libusb1
         ddrescue
         devcontainer
         devtodo

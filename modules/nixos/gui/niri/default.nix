@@ -45,59 +45,59 @@ in {
       home.file.".niri-taskbar".source = pkgs.custom.niri-taskbar;
 
       services = {
-        swayidle = let
-          lock = "${hmConfig.programs.swaylock.package}/bin/swaylock --daemonize";
-          display = status: "${hmConfig.programs.niri.package}/bin/niri msg action power-${status}-monitors";
-        in {
-          enable = true;
-          timeouts = [
-            {
-              timeout = 100; # in seconds
-              command = "${pkgs.libnotify}/bin/notify-send 'Locking in 20 seconds' -t 5000";
-            }
-            {
-              timeout = 110;
-              command = lock;
-            }
-            {
-              timeout = 115;
-              command = display "off";
-              resumeCommand = display "on";
-            }
-            {
-              timeout = 120;
-              command = "${pkgs.systemd}/bin/systemctl suspend";
-            }
-          ];
-          events = [
-            {
-              event = "before-sleep";
-              # adding duplicated entries for the same event may not work
-              command = (display "off") + "; " + lock;
-            }
-            {
-              event = "after-resume";
-              command = display "on";
-            }
-            {
-              event = "lock";
-              command = (display "off") + "; " + lock;
-            }
-            {
-              event = "unlock";
-              command = display "on";
-            }
-          ];
-        };
+        # swayidle = let
+        #   lock = "${hmConfig.programs.swaylock.package}/bin/swaylock --daemonize";
+        #   display = status: "${hmConfig.programs.niri.package}/bin/niri msg action power-${status}-monitors";
+        # in {
+        #   enable = true;
+        #   timeouts = [
+        #     {
+        #       timeout = 100; # in seconds
+        #       command = "${pkgs.libnotify}/bin/notify-send 'Locking in 20 seconds' -t 5000";
+        #     }
+        #     {
+        #       timeout = 110;
+        #       command = lock;
+        #     }
+        #     {
+        #       timeout = 115;
+        #       command = display "off";
+        #       resumeCommand = display "on";
+        #     }
+        #     {
+        #       timeout = 120;
+        #       command = "${pkgs.systemd}/bin/systemctl suspend";
+        #     }
+        #   ];
+        #   events = [
+        #     {
+        #       event = "before-sleep";
+        #       # adding duplicated entries for the same event may not work
+        #       command = (display "off") + "; " + lock;
+        #     }
+        #     {
+        #       event = "after-resume";
+        #       command = display "on";
+        #     }
+        #     {
+        #       event = "lock";
+        #       command = (display "off") + "; " + lock;
+        #     }
+        #     {
+        #       event = "unlock";
+        #       command = display "on";
+        #     }
+        #   ];
+        # };
         # swaync = {enable = true;};
-        mako = {
-          enable = true;
-          font = "Inter Display 12";
-        };
+        # mako = {
+        #   enable = true;
+        #   font = "Inter Display 12";
+        # };
 
-        swayosd = {
-          enable = true;
-        };
+        # swayosd = {
+        #   enable = true;
+        # };
       };
 
       programs = {
@@ -117,51 +117,20 @@ in {
           enableColorPicker = true; # Color picker tool
         };
 
-        ashell = {
-          #   enable = true;
-          #   systemd.enable = true;
-
-          settings = {
-            app_launcher_cmd = "fuzzel";
-
-            modules = {
-              left = [
-                # "appLauncher"
-                # "Updates"
-                # "Workspaces"
-              ];
-              center = [
-                # "WindowTitle"
-              ];
-              right = [
-                "SystemInfo"
-                ["Tray" "Clock" "Privacy" "Settings"]
-              ];
-            };
-
-            font_name = "Inter Display";
-
-            workspaces = {
-              enable_workspace_filling = true;
-            };
-            log_level = "error";
-            system_info = {
-              indicators = ["Cpu" "Memory" "Temperature" "DownloadSpeed"];
-            };
-          };
-        };
-
-        swaylock = {
-          enable = true;
-          package = pkgs.swaylock-effects;
-        };
+        # swaylock = {
+        #   enable = true;
+        #   package = pkgs.swaylock-effects;
+        # };
 
         niriswitcher.enable = true;
         niri = {
           # enable = true;
           package = pkgs.niri-unstable;
           settings = {
-            input.mouse.natural-scroll = true;
+            input = {
+              mouse.natural-scroll = true;
+              touchpad = {click-method = "clickfinger";};
+            };
             xwayland-satellite = {
               enable = true;
               path = lib.getExe pkgs.xwayland-satellite-unstable;
@@ -169,19 +138,31 @@ in {
             environment."NIXOS_OZONE_WL" = "1";
 
             spawn-at-startup = [
-              {argv = ["kitty"];}
-              # {argv = ["waybar"];}InterpolableParts
+              {command = ["kitty"];}
+              # {command = ["waybar"];}
+              {command = ["firefox"];}
 
-              {argv = ["firefox"];}
-
-              # {argv = ["1password"];}@
-              {argv = ["swaybg" "--image" hmConfig.home.file.".background-image".source];}
-              # {argv = ["~/.config/niri/scripts/startup.sh"];}
-              {argv = ["niriswitcher"];}
+              # {command = ["1password"];}
+              {command = ["swaybg" "--image" hmConfig.home.file.".background-image".source];}
+              # {command = ["~/.config/niri/scripts/startup.sh"];}
+              # {command = ["niriswitcher"];}
             ];
-
-            binds = with hmConfig.lib.niri.actions; {
-              "Mod+SPACE".action.spawn = "fuzzel";
+            layout = {
+              gaps = 5;
+              default-column-width = {proportion = 1.0;};
+              focus-ring = {enable = false;};
+            };
+            binds = with hmConfig.lib.niri.actions; let
+              dms-ipc = spawn "dms" "ipc";
+            in {
+              "Mod+SPACE" = {
+                action = dms-ipc "spotlight" "toggle";
+                hotkey-overlay.title = "Toggle Application Launcher";
+              };
+              "Mod+M" = {
+                action = dms-ipc "processlist" "toggle";
+                hotkey-overlay.title = "Toggle Process List";
+              };
               "Alt+Tab" = {
                 repeat = false;
                 action = spawn ["niriswitcherctl" "show" "--window"];
@@ -244,13 +225,21 @@ in {
               # Example brightness key mappings for brightnessctl.
               # You can use regular spawn with multiple arguments too (to avoid going through "sh"),
               # but you need to manually put each argument in separate "" quotes.
+              # "XF86MonBrightnessUp" = {
+              #   allow-when-locked = true;
+              #   action = spawn "brightnessctl" "--class=backlight" "set" "+10%";
+              # };
+              # "XF86MonBrightnessDown" = {
+              #   allow-when-locked = true;
+              #   action = spawn "brightnessctl" "--class=backlight" "set" "10%-";
+              # };
               "XF86MonBrightnessUp" = {
                 allow-when-locked = true;
-                action = spawn "brightnessctl" "--class=backlight" "set" "+10%";
+                action = dms-ipc "brightness" "increment" "5" "";
               };
               "XF86MonBrightnessDown" = {
                 allow-when-locked = true;
-                action = spawn "brightnessctl" "--class=backlight" "set" "10%-";
+                action = dms-ipc "brightness" "decrement" "5" "";
               };
 
               # Open/close the Overview: a zoomed-out view of workspaces and windows.
@@ -274,10 +263,10 @@ in {
               "Ctrl+Left".action = focus-column-left;
               "Ctrl+Right".action = focus-column-right;
 
-              "Mod+H".action = focus-column-left;
-              "Mod+J".action = focus-window-down;
-              "Mod+K".action = focus-window-up;
-              "Mod+L".action = focus-column-right;
+              "Mod+L" = {
+                action = dms-ipc "lock" "lock";
+                hotkey-overlay.title = "Toggle Lock Screen";
+              };
 
               "Mod+Ctrl+Left".action = move-column-left;
               "Mod+Ctrl+Down".action = move-window-down;

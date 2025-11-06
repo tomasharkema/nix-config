@@ -39,7 +39,11 @@
     #   enable = true;
     # };
 
-    # systemd = {
+    systemd = {
+      sleep.extraConfig = ''
+        MemorySleepMode=deep
+      '';
+    };
     #   services.usbmuxd.path = [pkgs.libusb1];
 
     # };
@@ -92,7 +96,7 @@
       # usb-modeswitch.enable = true;
       # fw-fanctrl.enable = true;
       nvidia = {
-        # forceFullCompositionPipeline = true;
+        forceFullCompositionPipeline = true;
         modesetting.enable = true;
         prime = {
           sync.enable = true;
@@ -103,10 +107,10 @@
           nvidiaBusId = "PCI:01:0:0";
         };
 
-        # powerManagement = {
-        #   enable = true;
-        #   finegrained = true;
-        # };
+        powerManagement = {
+          enable = true;
+          # finegrained = true;
+        };
       };
 
       # fancontrol.enable = true;
@@ -135,7 +139,7 @@
         intel.enable = true;
         nvidia = {
           enable = true;
-          open = true;
+          open = false;
         };
         sgx.enable = true;
         # remote-unlock.enable = true;
@@ -168,13 +172,13 @@
     services = {
       thermald.enable = true;
 
-      # fprintd = {
-      #   enable = true;
-      #   tod = {
-      #     enable = true;
-      #     driver = pkgs.libfprint-2-tod1-goodix;
-      #   };
-      # };
+      fprintd = {
+        enable = true;
+        tod = {
+          enable = true;
+          driver = pkgs.libfprint-2-tod1-goodix;
+        };
+      };
 
       resolved = {
         enable = true;
@@ -196,6 +200,15 @@
 
       udev = {
         enable = true;
+
+        extraRules = ''
+          SUBSYSTEM=="usb", ATTRS{idVendor}=="27c6", ATTRS{idProduct}=="5395", \
+            ATTRS{dev}=="*", TEST=="power/control", ATTR{power/control}="auto", \
+            MODE="0660", GROUP="plugdev"
+          SUBSYSTEM=="usb", ATTRS{idVendor}=="27c6", ATTRS{idProduct}=="5395", \
+            ENV{LIBFPRINT_DRIVER}="Goodix Fingerprint Sensor"
+        '';
+
         # extraRules = ''
         #   SUBSYSTEM=="spidev", KERNEL=="spidev0.0", GROUP="spi", MODE="0660"
 
@@ -305,8 +318,8 @@
       # supportedFilesystems = ["ext2" "ext3" "ext4"];
       kernelParams = [
         "mitigations=off"
-        "efi_pstore.pstore_disable=0"
-        "pstore.backend=efi"
+        # "efi_pstore.pstore_disable=0"
+        # "pstore.backend=efi"
       ];
       #   "i915.enable_gvt=1"
       #   "i915.enable_fbc=0"
@@ -338,18 +351,16 @@
         "kvm-intel"
         # "watchdog"
         # "usbmon"
-        "intel_lpss_pci"
       ];
 
       initrd.kernelModules = [
-        "intel_lpss_pci"
         "nvidia"
         # "i915"
         "nvidia_modeset"
         "nvidia_uvm"
         "nvidia_drm"
 
-        "efi_pstore"
+        # "efi_pstore"
 
         # "spi"
         # "sgx"

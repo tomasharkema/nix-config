@@ -6,28 +6,7 @@
   ...
 }: let
   cfg = config.apps.steam;
-
-  sunshineOverride =
-    (pkgs.sunshine.override {
-      cudaSupport = true;
-      stdenv = pkgs.cudaPackages.backendStdenv;
-    })
-    .overrideAttrs (prev: {
-      runtimeDependencies = prev.runtimeDependencies ++ [pkgs.libglvnd];
-    });
 in {
-  # disabledModules = [
-  #   "services/desktops/pipewire/pipewire.nix"
-  #   "services/desktops/pipewire/wireplumber.nix"
-  # ];
-
-  # imports = [
-  #   "${inputs.unstable}/nixos/modules/services/desktops/pipewire/pipewire.nix"
-  #   "${inputs.unstable}/nixos/modules/services/desktops/pipewire/wireplumber.nix"
-  #   #   "${inputs.unstable}/nixos/modules/security/pam.nix"
-  #   #   "${inputs.unstable}/nixos/modules/security/krb5"
-  # ];
-
   options.apps.steam = {
     enable = lib.mkEnableOption "steam";
 
@@ -61,29 +40,61 @@ in {
       };
       groups = {
         input.members = ["tomas"];
-        #   gamemode.members = ["tomas"];
+        gamemode.members = ["tomas"];
         #   "steam".name = "steam";
       };
     };
 
     programs = {
+      wine = {
+        enable = true;
+        binfmt = true;
+        ntsync = true;
+      };
+
       steam = {
         enable = true;
+
+        extraPackages = with pkgs; [gamescope];
         extest.enable = true;
 
         remotePlay.openFirewall = true;
-        dedicatedServer.openFirewall = true;
-        gamescopeSession.enable = true;
-        platformOptimizations.enable = true;
+        #dedicatedServer.openFirewall = true;
+        # gamescopeSession = {
+        #   enable = true;
+        #   env = {
+        #     __NV_PRIME_RENDER_OFFLOAD = "1";
+        #     __VK_LAYER_NV_optimus = "NVIDIA_only";
+        #     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+        #   };
+        # };
+        #platformOptimizations.enable = true;
         localNetworkGameTransfers.openFirewall = true;
         protontricks.enable = true;
       };
-      gamescope = {
-        enable = true;
-        capSysNice = true;
-      };
+      # gamescope = {
+      #   enable = true;
+      #   capSysNice = true;
+      #   env = {
+      #     __NV_PRIME_RENDER_OFFLOAD = "1";
+      #     __VK_LAYER_NV_optimus = "NVIDIA_only";
+      #     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      #   };
+      # };
 
-      # gamemode.enable = true;
+      gamemode = {
+        enable = true;
+        # settings = {
+        #   general = {
+        #     renice = 10;
+        #   };
+
+        #   custom = {
+        #     start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+        #     end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
+        #   };
+        # };
+      };
     };
 
     # programs.mangohud = {

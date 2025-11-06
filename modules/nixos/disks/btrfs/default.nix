@@ -277,7 +277,7 @@ in {
                 size = cfg.swap.size;
                 content = {
                   type = "swap";
-                  randomEncryption = true;
+                  # randomEncryption = true;
                   resumeDevice = cfg.swap.resume.enable;
                 };
               };
