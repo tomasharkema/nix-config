@@ -84,9 +84,9 @@ in {
               # {argv = ["swaybg" "--image" "/path/to/wallpaper.jpg"];}
               # {argv = ["~/.config/niri/scripts/startup.sh"];}
             ];
-            binds = {
-              "Mod+SPACE".action.spawn = "fuzzel";
-            };
+            # binds = {
+            #   "Mod+SPACE".action.spawn = "fuzzel";
+            # };
           };
         };
       };
