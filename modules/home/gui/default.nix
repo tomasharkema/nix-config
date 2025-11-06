@@ -62,8 +62,8 @@ in {
       };
       # yubikey-agent.enable = true;
       gnome-keyring = {
-        components = ["pkcs11" "secrets"];
-        enable = true;
+        # components = ["pkcs11" "secrets"];
+        # enable = true;
       };
       activitywatch.enable = true;
       tldr-update.enable = true;

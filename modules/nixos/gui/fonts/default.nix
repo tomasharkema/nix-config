@@ -60,8 +60,8 @@
         useEmbeddedBitmaps = true;
         defaultFonts = {
           monospace = ["JetBrainsMono Nerd Font Mono"];
-          serif = ["Inter"];
-          sansSerif = ["Inter"];
+          serif = ["Inter Display"];
+          sansSerif = ["Inter Display"];
         };
         # hinting = {
         #   autohint = true;

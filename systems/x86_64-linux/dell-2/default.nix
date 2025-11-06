@@ -81,10 +81,10 @@
       hidpi.enable = true;
       gamemode.enable = true;
       quiet-boot.enable = true;
-      hyrland.wluma = {
-        enable = true;
-        backlightDevice = "/sys/class/backlight/intel_backlight";
-      };
+      # hyrland.wluma = {
+      #   enable = true;
+      #   backlightDevice = "/sys/class/backlight/intel_backlight";
+      # };
     };
 
     hardware = {
@@ -95,18 +95,18 @@
         # forceFullCompositionPipeline = true;
         modesetting.enable = true;
         prime = {
-          # sync.enable = true;
+          sync.enable = true;
           # reverseSync.enable = true;
-          offload.enable = true;
-          offload.enableOffloadCmd = true;
+          # offload.enable = true;
+          # offload.enableOffloadCmd = true;
           intelBusId = "PCI:0:2:0";
           nvidiaBusId = "PCI:01:0:0";
         };
 
-        powerManagement = {
-          enable = true;
-          finegrained = true;
-        };
+        # powerManagement = {
+        #   enable = true;
+        #   finegrained = true;
+        # };
       };
 
       # fancontrol.enable = true;
@@ -135,7 +135,7 @@
         intel.enable = true;
         nvidia = {
           enable = true;
-          open = false;
+          open = true;
         };
         sgx.enable = true;
         # remote-unlock.enable = true;
@@ -167,13 +167,14 @@
 
     services = {
       thermald.enable = true;
-      fprintd = {
-        enable = true;
-        tod = {
-          enable = true;
-          driver = pkgs.libfprint-2-tod1-goodix;
-        };
-      };
+
+      # fprintd = {
+      #   enable = true;
+      #   tod = {
+      #     enable = true;
+      #     driver = pkgs.libfprint-2-tod1-goodix;
+      #   };
+      # };
 
       resolved = {
         enable = true;

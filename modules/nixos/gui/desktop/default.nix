@@ -168,7 +168,7 @@ in {
     ];
 
     services.gnome = {
-      gnome-keyring.enable = false; # true;
+      # gnome-keyring.enable = false; # true;
       gnome-online-accounts.enable = true;
     };
 

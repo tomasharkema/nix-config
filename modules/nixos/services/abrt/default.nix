@@ -23,7 +23,7 @@ in {
     pstore.enable = lib.mkEnableOption "abrt pstore";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     age.secrets."abrt-key" = {
       rekeyFile = ./abrt-key.age;
       generator.script = "ssh-ed25519";

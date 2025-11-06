@@ -105,7 +105,9 @@
         # agenix.homeManagerModules.default
         # hyprpanel.homeManagerModules.hyprpanel
         walker.homeManagerModules.default
-        # niri.homeModules.config
+        # niri.homeModules.niri
+        dankMaterialShell.homeModules.dankMaterialShell.default
+        dankMaterialShell.homeModules.dankMaterialShell.niri
       ];
 
       # systems.hosts = let
@@ -879,6 +881,23 @@
     walker = {
       url = "github:abenz1267/walker?shallow=true";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dgop = {
+      url = "github:AvengeMedia/dgop";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dms-cli = {
+      url = "github:AvengeMedia/danklinux";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dankMaterialShell = {
+      url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.dgop.follows = "dgop";
+      inputs.dms-cli.follows = "dms-cli";
     };
   };
 }

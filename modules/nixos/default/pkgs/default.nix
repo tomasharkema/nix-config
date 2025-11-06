@@ -12,6 +12,7 @@
         # apfs-fuse
         # apfsprogs
         # bat-extras.batgrep
+        ssh-tools
         cutecom
         dry
         gpio-utils

@@ -58,7 +58,7 @@ in {
 
       playerctld.enable = true;
 
-      displayManager.defaultSession = "hyprland";
+      displayManager.defaultSession = "niri";
 
       g810-led = {
         enable = true;

@@ -212,12 +212,6 @@ in {
       enableAllTerminfo = true;
     };
 
-    systemd.tmpfiles = {
-      packages = [pkgs.abrt];
-
-      # se
-    };
-
     apps = {
       ipa.enable = lib.mkDefault true;
       atop.enable = lib.mkDefault true;
@@ -504,7 +498,10 @@ in {
     security = {
       audit.enable = true;
       auditd.enable = true;
-      pam.sshAgentAuth.enable = true;
+      pam = {
+        sshAgentAuth.enable = true;
+        services.sudo.sshAgentAuth = true;
+      };
       # pam.rssh = {
       #   enable = true;
       #   settings = {

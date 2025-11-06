@@ -33,7 +33,7 @@ in {
     };
 
     environment = {
-      variables.GDK_SCALE = "2";
+      # variables.GDK_SCALE = "2";
 
       systemPackages = with pkgs; [
         hyprpanel
@@ -46,7 +46,7 @@ in {
         hyprpaper
         hyprutils
         hyprshade
-        #hyprsysteminfo
+        hyprsysteminfo
         hyprland-autoname-workspaces
         hyprsunset
         hyprland-activewindow
@@ -96,13 +96,13 @@ in {
 
       catppuccin = {
         # swaync.font = "B612";
-        mako.enable = false;
+        # mako.enable = false;
       };
 
       services = {
-        swaync = {
-          enable = false;
-        };
+        # swaync = {
+        # enable = false;
+        # };
         # mako = {
         #   enable = true;
         #   font = "B612 12";

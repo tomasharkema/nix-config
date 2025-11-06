@@ -168,6 +168,32 @@
         "type": "github"
       }
     },
+    "dankMaterialShell": {
+      "inputs": {
+        "dgop": [
+          "dgop"
+        ],
+        "dms-cli": [
+          "dms-cli"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1762449189,
+        "narHash": "sha256-xqm0lnseizr4hFbG6dnShpwIWFPFqEAfir/P1aqi7gE=",
+        "owner": "AvengeMedia",
+        "repo": "DankMaterialShell",
+        "rev": "a0d886009a173625fa81f1d8fda9c6cb2c7906fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "DankMaterialShell",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -229,6 +255,26 @@
         "type": "github"
       }
     },
+    "dgop": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1762435535,
+        "narHash": "sha256-QhzRn7pYN35IFpKjjxJAj3GPJECuC+VLhoGem3ezycc=",
+        "owner": "AvengeMedia",
+        "repo": "dgop",
+        "rev": "6cf638dde818f9f8a2e26d0243179c43cb3458d7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "dgop",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -246,6 +292,26 @@
       "original": {
         "owner": "nix-community",
         "repo": "disko",
+        "type": "github"
+      }
+    },
+    "dms-cli": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1762447754,
+        "narHash": "sha256-TR8RI5BOGoG4ILFRblovo5NwbnnYGjkTlU3VSjb2Mqc=",
+        "owner": "AvengeMedia",
+        "repo": "danklinux",
+        "rev": "be487f8493741e309f11f997eb9f21f5428e51cc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "danklinux",
         "type": "github"
       }
     },
@@ -816,11 +882,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762367206,
-        "narHash": "sha256-c/164YOPkV09BH8KIUdvVvJs3VF2LNIbE2piKGgXPxk=",
+        "lastModified": 1762447448,
+        "narHash": "sha256-BFhoqL231hyTZ7piR+8FgDJby48oWRN8+g3b1uvvtX8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "af119feb17cb242398e0fb97f92b867d25882522",
+        "rev": "2907788315a73d3292140b4d59b5d95796565625",
         "type": "github"
       },
       "original": {
@@ -1513,11 +1579,11 @@
         "systems": "systems_7"
       },
       "locked": {
-        "lastModified": 1762415351,
-        "narHash": "sha256-Uvpzi75PDuVpLqecUMVdjCxUgZoTEAMM/zJLhyzSa9Y=",
+        "lastModified": 1762437234,
+        "narHash": "sha256-qEI9AkUwOHtM5A2yDBy0K+UHGLfYir81dFiTN0DXBeU=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "deb32aecac40d21706f41004b52e0310943ec5c8",
+        "rev": "d01e1c17e2690c10d3aa6abea28838befa1fd449",
         "type": "github"
       },
       "original": {
@@ -1714,9 +1780,12 @@
         "agenix-rekey": "agenix-rekey",
         "catppuccin": "catppuccin",
         "chaotic": "chaotic",
+        "dankMaterialShell": "dankMaterialShell",
         "darwin": "darwin",
         "devshell": "devshell_2",
+        "dgop": "dgop",
         "disko": "disko",
+        "dms-cli": "dms-cli",
         "flake-compat": "flake-compat_2",
         "home-manager": "home-manager",
         "hyprpanel": "hyprpanel",
@@ -2276,11 +2345,11 @@
         "systems": "systems_15"
       },
       "locked": {
-        "lastModified": 1762406914,
-        "narHash": "sha256-zjhhLRknwncyX3/xvDpFb5DshMf7UrC648pf0GP0s8U=",
+        "lastModified": 1762437583,
+        "narHash": "sha256-N4mS9Ls3SlzHrHpKh7MijE+8buqyaf+IilOOfN/vVS8=",
         "owner": "abenz1267",
         "repo": "walker",
-        "rev": "a91d5606721e0198b3caab896d8133dfb4310631",
+        "rev": "0229d2ae0ff2d366fe403356aefd9ee629bbfd20",
         "type": "github"
       },
       "original": {

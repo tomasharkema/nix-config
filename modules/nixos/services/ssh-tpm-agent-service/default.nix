@@ -30,8 +30,11 @@ in {
     #   HostKey /etc/ssh/ssh_tpm_host_rsa_key.pub
     # '';
 
-    # PKCS11Provider /run/current-system/sw/lib/libtpm2_pkcs11.so
-    # PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
+    programs.ssh.agentPKCS11Whitelist = [
+      "${pkgs.yubico-piv-tool}/lib/libykcs11.so"
+      "${pkgs.opensc}/lib/opensc-pkcs11.so"
+      "/run/current-system/sw/lib/libtpm2_pkcs11.so"
+    ];
 
     environment.systemPackages = [cfg.package];
 
