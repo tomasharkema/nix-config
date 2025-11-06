@@ -4,7 +4,7 @@
   ...
 }: {
   config = lib.mkIf config.gui.enable {
-    home-manager.users."${config.user.name}" = {
+    home-manager.users."${config.user.name}" = lib.mkIf false {
       xdg.configFile.hyprpanel = {
         ignorelinks = true;
         recursive = true;

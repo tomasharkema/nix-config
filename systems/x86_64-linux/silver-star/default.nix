@@ -554,10 +554,12 @@
       loader = {
         systemd-boot = {
           # enable = true;
-          configurationLimit = 10;
+          configurationLimit = 5;
         };
         efi.canTouchEfiVariables = true;
       };
+
+      extraModulePackages = [config.boot.kernelPackages.vendor-reset];
 
       initrd = {
         availableKernelModules = [
@@ -574,7 +576,7 @@
           "acpi_power_meter"
           "acpi_ipmi"
           "ipmi_si"
-
+          "vendor-reset"
           # # "dcdbas"
           # # "dell_rbu"
           # # "pci-me"
@@ -592,6 +594,7 @@
         ];
       };
       kernelModules = [
+        "vendor-reset"
         # "pci-me"
         # "mei-me"
         "coretemp"
