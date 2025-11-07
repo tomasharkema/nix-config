@@ -143,6 +143,7 @@
         monitor.enable = true;
         disable-sleep.enable = true;
       };
+      server.headless.enable = true;
     };
 
     networking = {

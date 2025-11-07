@@ -215,6 +215,8 @@
     traits = {
       # server.enable = true;
       # builder.enable = true;
+
+      server.headless.enable = true;
       hardware = {
         nvme.enable = true;
         tpm.enable = true;

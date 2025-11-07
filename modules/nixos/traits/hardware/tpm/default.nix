@@ -41,6 +41,7 @@ in {
       };
 
       # kernelModules = ["tpm_rng"];
+      plymouth.tpm2-totp.enable = true;
     };
 
     environment.systemPackages = with pkgs; [

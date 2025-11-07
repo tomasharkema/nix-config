@@ -33,7 +33,7 @@ in {
       main = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K";
       # media = "/dev/disk/by-id/ata-TOSHIBA_MK3263GSXN_5066P0YHT";
 
-      boot = "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_1C1B0D6AE9B0E410390F2CA6-0:0";
+      # boot = "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_1C1B0D6AE9B0E410390F2CA6-0:0";
 
       # btrbk.enable = true;
     };
@@ -250,6 +250,10 @@ in {
       kernelParams = [
         "console=tty1"
         "console=ttyS2,115200"
+        "earlyprintk=ttyS2"
+        "rootdelay=300"
+        "panic=1"
+        "boot.panic_on_fail"
         "iomem=relaxed"
         "mitigations=off"
         #"vfio-pci.ids=10de:1c82"

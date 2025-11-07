@@ -131,11 +131,34 @@ in {
               mouse.natural-scroll = true;
               touchpad = {click-method = "clickfinger";};
             };
+            gestures.hot-corners.enable = false;
             xwayland-satellite = {
               enable = true;
               path = lib.getExe pkgs.xwayland-satellite-unstable;
             };
-            environment."NIXOS_OZONE_WL" = "1";
+            environment = {
+              "NIXOS_OZONE_WL" = "1";
+              ELECTRON_OZONE_PLATFORM_HINT = "auto";
+            };
+
+            window-rules = [
+              {
+                # Window opened or changed: Window { id: 7, title: Some("Picture-in-Picture"), app_id: Some("firefox"), pid: Some(5057), workspace_id: Some(1), is_focused: true, is_floating: true, is_urgent: false, layout: WindowLayout { pos_in_scrolling_layout: None, tile_size: (527.1111111111111, 291.1111111111111), window_size: (527, 291), tile_pos_in_workspace_view: Some((1120.888888888889, 556.8888888888889)), window_offset_in_tile: (0.0, 0.0) } }
+                matches = [
+                  {
+                    app-id = "firefox$";
+                    title = "^Picture-in-Picture$";
+                  }
+                ];
+
+                open-floating = true;
+                default-floating-position = {
+                  x = 20;
+                  y = 20;
+                  relative-to = "bottom-right";
+                };
+              }
+            ];
 
             spawn-at-startup = [
               {command = ["kitty"];}
