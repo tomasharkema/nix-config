@@ -131,7 +131,11 @@ in {
               mouse.natural-scroll = true;
               touchpad = {click-method = "clickfinger";};
             };
+            prefer-no-csd = true;
             gestures.hot-corners.enable = false;
+            cursor = {
+              hide-when-typing = true;
+            };
             xwayland-satellite = {
               enable = true;
               path = lib.getExe pkgs.xwayland-satellite-unstable;
