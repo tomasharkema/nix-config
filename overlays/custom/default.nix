@@ -101,8 +101,9 @@ in rec {
       cmakeFlags = cmakeFlags ++ ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"];
       doCheck = false;
     });
+
   openrct2 = let
-    openrct2-version = "0.4.27";
+    openrct2-version = "0.4.28";
 
     # Those versions MUST match the pinned versions within the CMakeLists.txt
     # file. The REPLAYS repository from the CMakeLists.txt is not necessary.
@@ -136,7 +137,7 @@ in rec {
         owner = "OpenRCT2";
         repo = "OpenRCT2";
         tag = "v${openrct2-version}";
-        hash = "sha256-q/urQEbiPkwktLG3hOf6qOhbjJP4SuKOcsPQNx5dsAw=";
+        hash = "sha256-/sgvlfJ3aMqpv5hJNzmnpOq7Bx0BTtGzLOMKGA543O8=";
       };
 
       postUnpack = ''
