@@ -36,7 +36,7 @@ in {
     };
 
     apps.docker.enable = true;
-
+    traits.server.headless.enable = true;
     boot = {
       tmp = {
         useTmpfs = true;
@@ -44,20 +44,6 @@ in {
 
       # kernelPackages = pkgs.linuxPackages_6_12;
       kernelPackages = pkgs.linuxPackages_cachyos-lts;
-
-      initrd = {
-        network = {
-          enable = true;
-          ssh = {
-            enable = true;
-            hostKeys = [
-              "/etc/secrets/initrd/ssh_host_rsa_key"
-              "/etc/secrets/initrd/ssh_host_ed25519_key"
-            ];
-          };
-          # flushBeforeStage2 = true;
-        };
-      };
     };
   };
 }
