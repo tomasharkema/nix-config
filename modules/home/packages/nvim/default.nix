@@ -86,7 +86,7 @@
           };
           # dropbar.enable = true;
           lsp-format.enable = true;
-          # lsp-status.enable = true;
+          lsp-status.enable = true;
           autoclose.enable = true;
           lsp = {
             enable = true;

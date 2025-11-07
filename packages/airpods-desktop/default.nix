@@ -10,6 +10,9 @@
   libcpr,
   boost,
   nix-update-script,
+  ninja,
+  mpfr,
+  boost-pfr,
 }: let
   spdlog = fetchFromGitHub {
     owner = "gabime";
@@ -66,11 +69,11 @@ in
 
     nativeBuildInputs = [
       cmake
+      ninja
       pkg-config
       qt5.wrapQtAppsHook
       curl
       extra-cmake-modules
-      # boost
     ];
 
     buildInputs = [
@@ -81,6 +84,8 @@ in
       curlpp
       libcpr
       boost
+      mpfr
+      boost-pfr
     ];
 
     cmakeFlags = [
@@ -92,7 +97,8 @@ in
       "-DFETCHCONTENT_SOURCE_DIR_MAGIC_ENUM=${magicEnum}"
       "-DCPR_USE_SYSTEM_CURL=ON"
       "-DCPR_FORCE_USE_SYSTEM_CURL=ON"
-      "-DUSE_STATIC_BOOST=false"
+      # "-DUSE_STATIC_BOOST=false"
+      "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
     ];
 
     enableParallelBuilding = true;

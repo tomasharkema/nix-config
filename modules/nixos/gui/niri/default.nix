@@ -42,67 +42,12 @@ in {
         swaylock.enable = true;
       };
 
-      home.file.".niri-taskbar".source = pkgs.custom.niri-taskbar;
-
       services = {
-        # swayidle = let
-        #   lock = "${hmConfig.programs.swaylock.package}/bin/swaylock --daemonize";
-        #   display = status: "${hmConfig.programs.niri.package}/bin/niri msg action power-${status}-monitors";
-        # in {
-        #   enable = true;
-        #   timeouts = [
-        #     {
-        #       timeout = 100; # in seconds
-        #       command = "${pkgs.libnotify}/bin/notify-send 'Locking in 20 seconds' -t 5000";
-        #     }
-        #     {
-        #       timeout = 110;
-        #       command = lock;
-        #     }
-        #     {
-        #       timeout = 115;
-        #       command = display "off";
-        #       resumeCommand = display "on";
-        #     }
-        #     {
-        #       timeout = 120;
-        #       command = "${pkgs.systemd}/bin/systemctl suspend";
-        #     }
-        #   ];
-        #   events = [
-        #     {
-        #       event = "before-sleep";
-        #       # adding duplicated entries for the same event may not work
-        #       command = (display "off") + "; " + lock;
-        #     }
-        #     {
-        #       event = "after-resume";
-        #       command = display "on";
-        #     }
-        #     {
-        #       event = "lock";
-        #       command = (display "off") + "; " + lock;
-        #     }
-        #     {
-        #       event = "unlock";
-        #       command = display "on";
-        #     }
-        #   ];
-        # };
-        # swaync = {enable = true;};
-        # mako = {
-        #   enable = true;
-        #   font = "Inter Display 12";
-        # };
-
-        # swayosd = {
-        #   enable = true;
-        # };
       };
 
       programs = {
-        fuzzel.enable = true;
-        alacritty.enable = true;
+        # fuzzel.enable = true;
+        # alacritty.enable = true;
 
         dankMaterialShell = {
           enable = true;
@@ -116,11 +61,6 @@ in {
           enableBrightnessControl = true; # Backlight/brightness controls
           enableColorPicker = true; # Color picker tool
         };
-
-        # swaylock = {
-        #   enable = true;
-        #   package = pkgs.swaylock-effects;
-        # };
 
         niriswitcher.enable = true;
         niri = {
@@ -441,6 +381,8 @@ in {
               # If the window is already in a column, they will expel it out.
               "Mod+BracketLeft".action = consume-or-expel-window-left;
               "Mod+BracketRight".action = consume-or-expel-window-right;
+              "Ctrl+BracketLeft".action = consume-or-expel-window-left;
+              "Ctrl+BracketRight".action = consume-or-expel-window-right;
 
               # Consume one window from the right to the bottom of the focused column.
               "Mod+Comma".action = consume-window-into-column;

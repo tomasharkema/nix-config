@@ -119,6 +119,8 @@ in {
       steam-tui
       # mangohud
       extest
+      bottles
+      winetricks
     ];
 
     # services = lib.mkIf cfg.sunshine {
