@@ -885,7 +885,7 @@
     };
 
     dgop = {
-      url = "github:AvengeMedia/dgop";
+      url = "github:AvengeMedia/dgop/6cf638dde818f9f8a2e26d0243179c43cb3458d7";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
