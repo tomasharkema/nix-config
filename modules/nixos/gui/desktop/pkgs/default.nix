@@ -51,7 +51,7 @@
     segger-ozone
     segger-jlink
     custom.butler
-    # davinci-resolve
+    davinci-resolve
     ddrescue
     ddrescueview
     ddrutility

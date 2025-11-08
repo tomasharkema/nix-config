@@ -34,6 +34,16 @@ in {
       };
     };
 
+    programs = {
+      dankMaterialShell = {
+        greeter = {
+          enable = true;
+          compositor.name = "niri";
+          configHome = "/home/tomas";
+        };
+      };
+    };
+
     home-manager.users.tomas = {
       catppuccin = {
         mako.enable = true;
@@ -49,15 +59,26 @@ in {
         # fuzzel.enable = true;
         # alacritty.enable = true;
 
+        dsearch = {
+          enable = true;
+        };
+
         dankMaterialShell = {
           enable = true;
+          systemd.enable = true;
+
+          # greeter = {
+          #   enable = true;
+          #   compositor.name = "niri";
+          #   configHome = "/home/tomas";
+          # };
 
           # Core features
-          enableSystemd = true; # Systemd service for auto-start
+          # enableSystemd = true; # Systemd service for auto-start
           enableSystemMonitoring = true; # System monitoring widgets (dgop)
           enableAudioWavelength = true; # Audio visualizer (cava)
           enableCalendarEvents = true; # Calendar integration (khal)
-          enableSystemSound = true; # System sound effects
+          enableSystemSound = false; # System sound effects
           enableBrightnessControl = true; # Backlight/brightness controls
           enableColorPicker = true; # Color picker tool
         };
@@ -106,13 +127,11 @@ in {
 
             spawn-at-startup = [
               {command = ["kitty"];}
-              # {command = ["waybar"];}
               {command = ["firefox"];}
 
               # {command = ["1password"];}
               {command = ["swaybg" "--image" hmConfig.home.file.".background-image".source];}
               # {command = ["~/.config/niri/scripts/startup.sh"];}
-              # {command = ["niriswitcher"];}
             ];
             layout = {
               gaps = 5;
