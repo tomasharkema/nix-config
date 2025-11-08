@@ -154,6 +154,7 @@
           # nix-gaming.nixosModules.platformOptimizations
           # walker.nixosModules.default
           nvidia-vgpu-nixos.nixosModules.host
+          vscode-server.nixosModules.default
           # nvidia-vgpu-nixos.nixosModules.guest
           # nixos-service.nixosModules.nixos-service
           # nix-virt.nixosModules.default
@@ -809,10 +810,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # vscode-server = {
-    #   url = "github:nix-community/nixos-vscode-server";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    vscode-server = {
+      url = "github:nix-community/nixos-vscode-server";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # wezterm = {
     #   url = "github:wez/wezterm?dir=nix";

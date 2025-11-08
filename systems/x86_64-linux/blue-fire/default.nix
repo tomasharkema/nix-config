@@ -75,6 +75,7 @@ in {
         enable = true;
         # bridgeInterfaces = [ "eno1" ];
       };
+      vscode-server.enable = true;
       usbguard.enable = lib.mkForce false;
       # xserver.videoDrivers = ["nvidia"];
       watchdogd = {
@@ -266,8 +267,8 @@ in {
       binfmt.emulatedSystems = ["aarch64-linux"];
 
       recovery = {
-        sign = true;
-        install = true;
+        sign = false;
+        install = false;
       };
 
       loader = {
@@ -275,7 +276,7 @@ in {
 
         efi = {
           canTouchEfiVariables = true;
-          efiSysMountPoint = "/boot"; # ← use the same mount point here.
+          efiSysMountPoint = "/boot";
         };
         grub = {
           enable = true;
@@ -319,13 +320,6 @@ in {
     services.rpcbind.enable = true;
 
     systemd = {
-      watchdog = {
-        # device = "/dev/watchdog";
-        # runtimeTime = "30s";
-        # kexecTime = "5m";
-        # rebootTime = "5m";
-      };
-
       mounts = [
         {
           type = "nfs";
