@@ -181,11 +181,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762551461,
-        "narHash": "sha256-EZdEolosGjZvG8GDxJmZLbQifHroarNpkAJloYOuTqU=",
+        "lastModified": 1762564068,
+        "narHash": "sha256-IWrXHGg5fgUDRyDk+H2PYXvIzscuHgdgMJT6SJrqfqw=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "58b637bccacf5ff8470666da98858f3bd4389dcf",
+        "rev": "c8fcf50095d8f1c8b9317d8cc750b158d7e82da8",
         "type": "github"
       },
       "original": {
@@ -303,11 +303,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762554005,
-        "narHash": "sha256-YZjtG3UI0mD7UsHxkct4wBkHn2q4Jb1tImKdUYwKuZU=",
+        "lastModified": 1762558898,
+        "narHash": "sha256-IcaTBY+NgXE88pUkoUyC4l+3Wer7WAd/ZwRw1lGTPMg=",
         "owner": "AvengeMedia",
         "repo": "danklinux",
-        "rev": "2bc3fcb07918090543524b3794cd5ce82c6c01b1",
+        "rev": "1d717700419e919393f33e04899f42479cfe1108",
         "type": "github"
       },
       "original": {
@@ -1057,11 +1057,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762480511,
-        "narHash": "sha256-NIFQhQG7quJiysxPNP7k/3rRMaRKSL2x8qR8jjvk6yk=",
+        "lastModified": 1762566515,
+        "narHash": "sha256-gIPh4l5MBs0/ETmF8ep7b6u6c2y2wyBBcD9Vk4l4p/Y=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "cf716e9b2f0fda1b1809156121037f646815eb26",
+        "rev": "9bb3ba9d192aeebc18a14c4c29140a78f0b28a7f",
         "type": "github"
       },
       "original": {

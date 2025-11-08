@@ -47,7 +47,7 @@ in {
 
       hardware = {
         tpm.enable = true;
-        secure-boot.enable = true;
+        secure-boot.enable = false;
         # remote-unlock.enable = false;
         network.xgbe.enable = true;
         nvidia = {
@@ -148,7 +148,7 @@ in {
       nameservers = ["192.168.0.1"];
 
       bridges.br0 = {
-        interfaces = ["enp6s0"];
+        interfaces = ["enp5s0"];
       };
       defaultGateway = {
         address = "192.168.0.1";
@@ -179,7 +179,7 @@ in {
           mtu = 9000;
         };
 
-        "enp6s0" = {
+        "enp5s0" = {
           useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
@@ -263,7 +263,7 @@ in {
         # "pci=nomsi"
       ];
 
-      # binfmt.emulatedSystems = ["aarch64-linux"];
+      binfmt.emulatedSystems = ["aarch64-linux"];
 
       recovery = {
         sign = true;
@@ -271,12 +271,19 @@ in {
       };
 
       loader = {
-        systemd-boot = {
-          configurationLimit = 10;
+        systemd-boot.enable = false;
 
-          netbootxyz.enable = true;
+        efi = {
+          canTouchEfiVariables = true;
+          efiSysMountPoint = "/boot"; # ← use the same mount point here.
         };
-        efi.canTouchEfiVariables = true;
+        grub = {
+          enable = true;
+          efiSupport = true;
+          # efiInstallAsRemovable = true;
+          device = "nodev";
+          # netbootxyz.enable = true;
+        };
       };
 
       initrd = {
@@ -313,7 +320,7 @@ in {
 
     systemd = {
       watchdog = {
-        device = "/dev/watchdog";
+        # device = "/dev/watchdog";
         # runtimeTime = "30s";
         # kexecTime = "5m";
         # rebootTime = "5m";
