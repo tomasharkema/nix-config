@@ -17,7 +17,7 @@ in {
   config = {
     age = {
       rekey = {
-        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJVhJ1k25x/1A/zN96p48MGrPJxVboTe17rO9Mcb61qG root@blue-fire";
+        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILdiJmFQi3wiMjGu4YGJzREk6a8pS77akb79Tb8mwH3F root@nixos-installer";
       };
       secrets = {
         tsnsrv = {
