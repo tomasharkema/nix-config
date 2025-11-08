@@ -116,13 +116,13 @@ in {
         #   ln -sfn /etc/cachix.dhall $HOME/.config/cachix/cachix.dhall
         # '';
 
-        userSymlinks-notify = ''
-          if [ ! -d "$HOME/.config/notify" ]; then
-            mkdir $HOME/.config/notify
-            chown tomas:tomas -R /home/tomas/.config
-          fi
-          ln -sfn "${osConfig.age.secrets.notify.path}" ~/.config/notify/provider-config.yaml
-        '';
+        # userSymlinks-notify = ''
+        #   if [ ! -d "$HOME/.config/notify" ]; then
+        #     mkdir $HOME/.config/notify
+        #     chown tomas:tomas -R /home/tomas/.config
+        #   fi
+        #   ln -sfn "${osConfig.age.secrets.notify.path}" ~/.config/notify/provider-config.yaml
+        # '';
       };
 
       file = {

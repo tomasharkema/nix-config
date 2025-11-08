@@ -104,10 +104,10 @@
         op-shell-plugins.hmModules.default
         # agenix.homeManagerModules.default
         # hyprpanel.homeManagerModules.hyprpanel
-        walker.homeManagerModules.default
+        # walker.homeManagerModules.default
         # niri.homeModules.niri
         dankMaterialShell.homeModules.dankMaterialShell.default
-        dankMaterialShell.homeModules.dankMaterialShell.niri
+        # dankMaterialShell.homeModules.dankMaterialShell.niri
       ];
 
       # systems.hosts = let
@@ -152,7 +152,7 @@
           nix-gaming.nixosModules.pipewireLowLatency
           nix-gaming.nixosModules.wine
           # nix-gaming.nixosModules.platformOptimizations
-          walker.nixosModules.default
+          # walker.nixosModules.default
           nvidia-vgpu-nixos.nixosModules.host
           # nvidia-vgpu-nixos.nixosModules.guest
           # nixos-service.nixosModules.nixos-service
@@ -879,13 +879,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    walker = {
-      url = "github:abenz1267/walker?shallow=true";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     dgop = {
-      url = "github:AvengeMedia/dgop/6cf638dde818f9f8a2e26d0243179c43cb3458d7";
+      url = "github:AvengeMedia/dgop";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

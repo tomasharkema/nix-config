@@ -18,10 +18,10 @@
         #   rekeyFile = ./tailscale.age;
         #   mode = "644";
         # };
-        gh = {
-          rekeyFile = ./gh.age;
-          mode = "644";
-        };
+        # gh = {
+        #   rekeyFile = ./gh.age;
+        #   mode = "644";
+        # };
         "ntfy" = {
           rekeyFile = ./ntfy.age;
           mode = "644";
@@ -60,14 +60,14 @@
         #   # owner = "tomas";
         #   # group = "tomas";
         # };
-        "healthcheck" = {
-          rekeyFile = ./healthcheck.age;
-          mode = "644";
-        };
-        "op" = {
-          rekeyFile = ./op.age;
-          mode = "644";
-        };
+        # "healthcheck" = {
+        #   rekeyFile = ./healthcheck.age;
+        #   mode = "644";
+        # };
+        # "op" = {
+        #   rekeyFile = ./op.age;
+        #   mode = "644";
+        # };
         # spotify-tui = {
         #   rekeyFile = ./spotify-tui.age;
         #   # owner = "tomas";
@@ -76,18 +76,18 @@
         #   # symlink = false;
         # };
 
-        notify = {
-          rekeyFile = ./notify.age;
-          # owner = "tomas";
-          # group = "tomas";
-          mode = "644";
-          # path = "/home/tomas/.config/notify/provider-config.yaml";
-          # symlink = false;
-        };
-        mak = {
-          rekeyFile = ./mak.age;
-          mode = "644";
-        };
+        # notify = {
+        #   rekeyFile = ./notify.age;
+        #   # owner = "tomas";
+        #   # group = "tomas";
+        #   mode = "644";
+        #   # path = "/home/tomas/.config/notify/provider-config.yaml";
+        #   # symlink = false;
+        # };
+        # mak = {
+        #   rekeyFile = ./mak.age;
+        #   mode = "644";
+        # };
 
         # "domainjoin" = {
         #   rekeyFile = ./domainjoin.age;

@@ -30,11 +30,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1761656077,
-        "narHash": "sha256-lsNWuj4Z+pE7s0bd2OKicOFq9bK86JE0ZGeKJbNqb94=",
+        "lastModified": 1762618334,
+        "narHash": "sha256-wyT7Pl6tMFbFrs8Lk/TlEs81N6L+VSybPfiIgzU8lbQ=",
         "owner": "ryantm",
         "repo": "agenix",
-        "rev": "9ba0d85de3eaa7afeab493fed622008b6e4924f5",
+        "rev": "fcdea223397448d35d9b31f798479227e80183f6",
         "type": "github"
       },
       "original": {
@@ -181,11 +181,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762612193,
-        "narHash": "sha256-0vIMfG/1VvCp/468STQhFYgSxHsmzhfdOmlZCRyuhCk=",
+        "lastModified": 1762623552,
+        "narHash": "sha256-3X1/tDOdBd45slMVo+3CUwekNLLZd7pGpbl+EA9RcYw=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "3963c986890716112242a067aa65c877ea0e9903",
+        "rev": "cc0984db14c1ba566ae993bd3521f4ef96a55e56",
         "type": "github"
       },
       "original": {
@@ -262,17 +262,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1762435535,
-        "narHash": "sha256-QhzRn7pYN35IFpKjjxJAj3GPJECuC+VLhoGem3ezycc=",
+        "lastModified": 1762562974,
+        "narHash": "sha256-JqOEEI+rtSLTz4zWT2UEKWXCJfYSXLi7ELV98iffjTA=",
         "owner": "AvengeMedia",
         "repo": "dgop",
-        "rev": "6cf638dde818f9f8a2e26d0243179c43cb3458d7",
+        "rev": "ec6b4dadb29b290159deea80a02dfc59bbb75860",
         "type": "github"
       },
       "original": {
         "owner": "AvengeMedia",
         "repo": "dgop",
-        "rev": "6cf638dde818f9f8a2e26d0243179c43cb3458d7",
         "type": "github"
       }
     },
@@ -303,41 +302,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1762614451,
-        "narHash": "sha256-pU6whQBBAzvtOBf8k5Xh0LCWvcvaiyh+/Bpyu+n4/h0=",
+        "lastModified": 1762624287,
+        "narHash": "sha256-oD1oSE501Yx3SKRRot2IdLPdDIwwpmzrdOtquCjj/vw=",
         "owner": "AvengeMedia",
         "repo": "danklinux",
-        "rev": "27da96bb511a53118ad0a16d9805cc4146280e69",
+        "rev": "f575a7d3a388a4911aff8956844b487c2436c3f5",
         "type": "github"
       },
       "original": {
         "owner": "AvengeMedia",
         "repo": "danklinux",
-        "type": "github"
-      }
-    },
-    "elephant": {
-      "inputs": {
-        "nixpkgs": [
-          "walker",
-          "nixpkgs"
-        ],
-        "systems": [
-          "walker",
-          "systems"
-        ]
-      },
-      "locked": {
-        "lastModified": 1762026536,
-        "narHash": "sha256-JX3s/1qBc+dQkCa1heZ2PO1Sd6EwrQsEAXxe3CqyFLs=",
-        "owner": "abenz1267",
-        "repo": "elephant",
-        "rev": "0e3b6a99d2a4c8f548435ea0466202d7c1129353",
-        "type": "github"
-      },
-      "original": {
-        "owner": "abenz1267",
-        "repo": "elephant",
         "type": "github"
       }
     },
@@ -1738,8 +1712,7 @@
         "snowfall-flake": "snowfall-flake",
         "snowfall-lib": "snowfall-lib",
         "tsnsrv": "tsnsrv",
-        "tsui": "tsui",
-        "walker": "walker"
+        "tsui": "tsui"
       }
     },
     "rust-overlay": {
@@ -1929,21 +1902,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_14": {
-      "locked": {
-        "lastModified": 1689347949,
-        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
-        "owner": "nix-systems",
-        "repo": "default-linux",
-        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default-linux",
         "type": "github"
       }
     },
@@ -2243,28 +2201,6 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "walker": {
-      "inputs": {
-        "elephant": "elephant",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "systems": "systems_14"
-      },
-      "locked": {
-        "lastModified": 1762437583,
-        "narHash": "sha256-N4mS9Ls3SlzHrHpKh7MijE+8buqyaf+IilOOfN/vVS8=",
-        "owner": "abenz1267",
-        "repo": "walker",
-        "rev": "0229d2ae0ff2d366fe403356aefd9ee629bbfd20",
-        "type": "github"
-      },
-      "original": {
-        "owner": "abenz1267",
-        "repo": "walker",
         "type": "github"
       }
     },
