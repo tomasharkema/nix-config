@@ -75,7 +75,7 @@ in {
         enable = true;
         # bridgeInterfaces = [ "eno1" ];
       };
-
+      usbguard.enable = lib.mkForce false;
       # xserver.videoDrivers = ["nvidia"];
       watchdogd = {
         enable = true;
