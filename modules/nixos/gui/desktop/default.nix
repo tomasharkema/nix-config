@@ -30,7 +30,7 @@ in {
 
     qt = {
       enable = true;
-      # platformTheme = "gnome";
+      platformTheme = "gnome";
       # platformTheme = "gtk2";
       style = "adwaita-dark";
     };
@@ -63,6 +63,7 @@ in {
         packages = with pkgs; [
           # custom.anydesk
           # tilix
+          kdiskmark
           usbguard-notifier
         ];
       };
@@ -114,6 +115,7 @@ in {
     environment = {
       etc."xdg/autostart/geary-autostart.desktop".source = "${pkgs.geary}/share/applications/geary-autostart.desktop";
       sessionVariables.NIXOS_OZONE_WL = "1";
+      systemPackages = with pkgs; [kdiskmark];
     };
 
     hardware = {
