@@ -16,6 +16,17 @@ in {
       enable = lib.mkEnableOption "enable ipa" // {default = true;};
     };
     # services.intune.enable = mkEnableOption "intune";
+    system.nssDatabases.automount = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      description = ''
+        List of automount entries to configure in {file}`/etc/nsswitch.conf`.
+
+        Note that "files" is always prepended while "systemd" is appended if nscd is enabled.
+
+        This option only takes effect if nscd is enabled.
+      '';
+      default = [];
+    };
   };
 
   config = lib.mkIf (cfg.enable) {
@@ -83,7 +94,9 @@ in {
           [libdefaults]
               spake_preauth_groups = edwards25519
         '';
-
+        "nsswitch.conf".text = lib.mkAfter ''
+          automount: ${lib.concatStringsSep " " config.system.nssDatabases.automount}
+        '';
         # "chromium/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
         # "opt/chrome/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
 
@@ -239,6 +252,7 @@ in {
       sudoers = ["sss"];
       automount = ["sss"];
     };
+
     networking.domain = "harkema.io";
 
     security = {

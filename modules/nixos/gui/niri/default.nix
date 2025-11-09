@@ -79,6 +79,18 @@ in {
           enableSystemSound = false; # System sound effects
           enableBrightnessControl = true; # Backlight/brightness controls
           enableColorPicker = true; # Color picker tool
+
+          plugins = {
+            EmojiLauncher = {
+              enable = true;
+              src = pkgs.fetchFromGitHub {
+                owner = "devnullvoid";
+                repo = "dms-emoji-launcher";
+                rev = "main";
+                sha256 = "sha256-h4+6OurB9yo4mJUye9z1PdUjjqTNIur78Y5IrRPY1g0=";
+              };
+            };
+          };
         };
 
         niriswitcher.enable = true;
