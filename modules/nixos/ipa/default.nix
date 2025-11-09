@@ -215,7 +215,7 @@ in {
             tgt_renewal_inherit = "HARKEMA.IO";
             krb5_renew_interval = "60m";
             debug_level = 10;
-            socket_patch = "/var/run/.heim_org.h5l.kcm-socket";
+            # socket_patch = "/var/run/.heim_org.h5l.kcm-socket";
           };
           pam = {
             pam_passkey_auth = true;
@@ -237,6 +237,7 @@ in {
 
     system.nssDatabases = {
       sudoers = ["sss"];
+      automount = ["sss"];
     };
     networking.domain = "harkema.io";
 
