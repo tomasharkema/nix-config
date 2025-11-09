@@ -197,6 +197,7 @@ in {
           #config.system.build.chromium
         ]
         ++ (lib.optional pkgs.stdenv.isx86_64 pkgs.widevine-cdm);
+      additionalUpstreamSystemUnits = ["systemd-bsod.service"];
     };
 
     # Enable sound with pipewire.

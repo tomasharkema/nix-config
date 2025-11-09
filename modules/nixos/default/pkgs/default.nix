@@ -140,7 +140,7 @@
         nix-top
         nixd
         nixos-facter
-        nixos-rebuild-ng
+
         nmap
         nmon
         ntfs3g

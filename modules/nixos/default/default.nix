@@ -32,13 +32,12 @@ in {
       };
       #      etc.overlay.enable = config.boot.initrd.systemd.enable;
       nixos.tags = ["${config.boot.kernelPackages.kernel.modDirVersion}"];
-      rebuild.enableNg = true;
+      rebuild.enableNg = false;
     };
 
     # security.isolate.enable = true;
 
     systemd = {
-      additionalUpstreamSystemUnits = ["systemd-bsod.service"];
       services = {
         "prepare-kexec".wantedBy = lib.mkIf pkgs.stdenv.isx86_64 ["multi-user.target"];
         NetworkManager-wait-online.enable = lib.mkForce false;

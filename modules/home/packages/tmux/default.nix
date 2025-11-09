@@ -57,7 +57,7 @@ in {
       aggressiveResize = true;
 
       tmuxinator.enable = true;
-      tmuxp.enable = true;
+      # tmuxp.enable = true;
 
       plugins = with pkgs; [
         tmuxPlugins.better-mouse-mode
