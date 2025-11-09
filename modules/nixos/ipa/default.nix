@@ -84,20 +84,6 @@ in {
               spake_preauth_groups = edwards25519
         '';
 
-        "sssd/conf.d".enable = false;
-
-        "sssd/conf.d/passkey.conf" = {
-          mode = "640";
-          text = ''
-            [pam]
-            pam_passkey_auth = True
-            pam_cert_auth = True
-            passkey_debug_libfido2 = True
-            passkey_child_timeout = 60
-            debug_level = 10
-          '';
-        };
-
         # "chromium/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
         # "opt/chrome/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
 
@@ -222,24 +208,24 @@ in {
         enable = true;
         kcm = true;
         sshAuthorizedKeysIntegration = true;
-        # config = lib.mkAfter ''
-        #   [domain/harkema.io]
-        #   ldap_id_mapping = True
-        #   debug_level = 7
-
-        #   [sssd]
-        #   debug_level = 7
-
-        #   [pam]
-        #   debug_level = 7
-        # '';
-        # config = lib.mkAfter ''
-        #   [sssd]
-        #   debug_level = 10
-
-        #   [pam]
-        #   debug_level = 10
-        # '';
+        # package = pkgs.sssd;
+        settings = {
+          kcm = {
+            tgt_renewal = true;
+            tgt_renewal_inherit = "HARKEMA.IO";
+            krb5_renew_interval = "60m";
+            debug_level = 10;
+            socket_patch = "/var/run/.heim_org.h5l.kcm-socket";
+          };
+          pam = {
+            pam_passkey_auth = true;
+            pam_cert_auth = true;
+            passkey_debug_libfido2 = true;
+            passkey_child_timeout = 60;
+            debug_level = 10;
+          };
+          sssd = {services = lib.mkForce "nss, sudo, pam, ssh, ifp, autofs";};
+        };
       };
     };
 

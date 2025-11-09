@@ -215,6 +215,20 @@ in rec {
   #   self.packages."${prev.system}".sssd.override {withSudo = true;}
   # );
 
+  sssd = prev.sssd.overrideAttrs ({
+    preConfigure,
+    buildInputs,
+    ...
+  }: {
+    preConfigure =
+      preConfigure
+      + ''
+        configureFlagsArray+=("--with-passkey")
+        # configureFlagsArray+=("--with-sudo")
+      '';
+    buildInputs = buildInputs ++ [prev.libfido2];
+  });
+
   #docset = inputs.nixos-dash-docset.packages."${prev.system}".docset;
   # hyprpanel = inputs.hyprpanel.packages."${prev.system}".default;
 

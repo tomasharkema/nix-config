@@ -46,6 +46,8 @@ in {
 
     # services.greetd.greeterManagesPlymouth = true;
 
+    security.ipa.ifpAllowedUids = [config.services.greetd.settings.default_session.user];
+
     home-manager.users.tomas = {
       catppuccin = {
         mako.enable = true;

@@ -87,7 +87,7 @@ in
         gpaste.enable = true;
       };
 
-      security.ipa.ifpAllowedUids = ["gdm"];
+      security.ipa.ifpAllowedUids = lib.mkIf config.services.displayManager.gdm.enable ["gdm"];
 
       # environment.sessionVariables = {
       #   LD_LIBRARY_PATH = [
