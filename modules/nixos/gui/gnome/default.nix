@@ -173,8 +173,8 @@ in
 
           displayManager = {
             gdm = {
-              enable = true;
-              wayland = true;
+              #enable = true;
+              # wayland = true;
               # nvidiaWayland = true;
             };
           };
@@ -197,7 +197,7 @@ in
           tracker.enable = true;
 
           tracker-miners.enable = true;
-          gcr-ssh-agent.enable = lib.mkForce false;
+          #gcr-ssh-agent.enable = lib.mkForce false;
           sushi.enable = true;
         };
 
