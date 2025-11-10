@@ -119,7 +119,7 @@
       syncplay.enable = true;
       ratbagd.enable = true;
       remote-builders.server.enable = true;
-      watchdogd.enable = true;
+      # watchdogd.enable = true;
       beesd.filesystems = lib.mkIf false {
         root = {
           spec = "UUID=f3558990-77b0-4113-b45c-3d2da3f46c14";

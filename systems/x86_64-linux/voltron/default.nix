@@ -160,7 +160,10 @@
     };
 
     # security.pam.services.login.fprintAuth = lib.mkForce false;
-
+    security.pam.services = {
+      "sudo".fprintAuth = true;
+      "polkit-1".fprintAuth = true;
+    };
     services = {
       kmscon.enable = true;
       ratbagd.enable = true;
@@ -174,7 +177,7 @@
 
       "06cb-009a-fingerprint-sensor" = {
         enable = true;
-        # backend = "python-validity";
+        #   backend = "python-validity";
         backend = "libfprint-tod";
         calib-data-file = ./calib-data.bin;
       };
@@ -309,6 +312,12 @@
       # extraModprobeConfig = ''
       #   options psmouse synaptics_intertouch=1
       # '';
+      blacklistedKernelModules = [
+        "intel_oc_wdt"
+        "iTCO_wdt"
+        "nouveau"
+      ];
+
       kernelModules = [
         "coretemp"
         # "psmouse"
@@ -320,6 +329,7 @@
         # "vfio"
         # "vfio_iommu_type1"
         "kvm-intel"
+        # "nvidiadb"
         # "watchdog"
         # "usbmon"
       ];
@@ -328,9 +338,9 @@
         "nvidia"
         "i915"
         "nvidia_modeset"
-        "nvidia_uvm"
+        # "nvidia_uvm"
         "nvidia_drm"
-
+        # "nvidiafb"
         # "spi"
         # "sgx"
         # "i915"

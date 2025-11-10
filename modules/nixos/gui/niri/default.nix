@@ -17,7 +17,7 @@ in {
     };
 
     security = {
-      pam.services.swaylock = {};
+      # pam.services.swaylock = {};
       soteria.enable = true;
     };
 
@@ -53,7 +53,7 @@ in {
         mako.enable = true;
         swaync = {enable = true;};
         waybar = {enable = true;};
-        swaylock.enable = true;
+        # swaylock.enable = true;
       };
 
       services = {
@@ -184,10 +184,10 @@ in {
                 hotkey-overlay.title = "Run an Application: fuzzel";
                 action.spawn = "fuzzel";
               };
-              "Super+Alt+L" = {
-                hotkey-overlay.title = "Lock the Screen: swaylock";
-                action.spawn = "swaylock";
-              };
+              # "Super+Alt+L" = {
+              #   hotkey-overlay.title = "Lock the Screen: swaylock";
+              #   action.spawn = "swaylock";
+              # };
 
               # Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
               # Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.

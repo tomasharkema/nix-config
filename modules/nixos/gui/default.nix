@@ -96,7 +96,7 @@ in {
 
     programs = {
       gphoto2.enable = true;
-      nm-applet.enable = true;
+      # nm-applet.enable = true;
     };
 
     chaotic = {

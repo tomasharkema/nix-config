@@ -249,9 +249,9 @@ in {
         };
       };
 
-      watchdogd = {
-        enable = true;
-      };
+      # watchdogd = {
+      #   enable = true;
+      # };
 
       # sysstat.enable = lib.mkDefault true;
       irqbalance.enable = true;

@@ -48,13 +48,13 @@ in {
       rng-tools
       #   tpm-luks
       # tpm-tools
-      #   # tpm2-abrmd
+      tpm2-abrmd
       tpm2-pkcs11
       tpm2-openssl
       tpm2-tools
       tpm-fido
       tpm2-totp
-      #   # tpm2-tss
+      tpm2-tss
       tpmmanager
     ];
   };

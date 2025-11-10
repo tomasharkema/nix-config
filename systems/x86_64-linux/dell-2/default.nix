@@ -357,7 +357,7 @@
         "nvidia"
         # "i915"
         "nvidia_modeset"
-        "nvidia_uvm"
+        # "nvidia_uvm"
         "nvidia_drm"
 
         # "efi_pstore"
