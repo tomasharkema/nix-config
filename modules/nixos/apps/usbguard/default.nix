@@ -21,7 +21,10 @@ in {
       usbguard
     ];
 
-    systemd.packages = with pkgs; [usbguard usbguard-notifier custom.usbguard-gnome];
+    systemd.packages = with pkgs; [
+      # usbguard
+      # custom.usbguard-gnome
+    ];
 
     system.activationScripts.usbguard-rules = ''
       if [ ! -f "${config.services.usbguard.ruleFile}" ]; then
@@ -45,13 +48,28 @@ in {
       '';
     };
 
-    systemd.user.services.usbguard-applet = {
-      description = "USBGuard applet";
-      partOf = ["graphical-session.target"];
-      wantedBy = ["graphical-session.target"];
-      path = ["/run/current-system/sw/"]; ### Fix empty PATH to find qt plugins
-      serviceConfig = {
-        ExecStart = "${pkgs.usbguard}/bin/usbguard-applet-qt";
+    systemd.user.services = {
+      usbguard-applet = {
+        description = "USBGuard applet";
+        partOf = ["graphical-session.target"];
+        wantedBy = ["graphical-session.target"];
+        path = ["/run/current-system/sw/"]; ### Fix empty PATH to find qt plugins
+        serviceConfig = {
+          ExecStart = "${pkgs.custom.usbguard-gnome}/bin/usbguard-gnome";
+        };
+      };
+      usbguard-notifier = {
+        description = "USBGuard Notifier";
+        after = ["usbguard.service"];
+        serviceConfig = {
+          ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p /tmp/usbguard-notifier";
+          ExecStart = "${pkgs.usbguard-notifier}/bin/usbguard-notifier";
+        };
+
+        partOf = ["graphical-session.target"];
+        wantedBy = ["graphical-session.target"];
+
+        # wantedBy = ["default.target"];
       };
     };
 

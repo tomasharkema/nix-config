@@ -8,6 +8,9 @@
   gtk3,
   libnotify,
   wrapGAppsHook3,
+  copyDesktopItems,
+  desktop-file-utils,
+  dbus,
 }:
 with python3Packages;
   buildPythonApplication rec {
@@ -33,7 +36,7 @@ with python3Packages;
       pydbus
       libappindicator-gtk3
       gst-python
-      gtk3
+
       libnotify
     ];
 
@@ -42,6 +45,10 @@ with python3Packages;
       libappindicator-gtk3
       gobject-introspection
       libnotify
+      desktop-file-utils
+      copyDesktopItems
+      gtk3
+      dbus
     ];
 
     preBuild = let
@@ -77,14 +84,16 @@ with python3Packages;
 
       install -Dm 644 src/usbguard-icon.svg $out/share/icons/hicolor/scalable/apps/usbguard-icon.svg
 
-      cp -r mo/. $out/mo/
+      mkdir -p $out/share/locale
+      cp -r mo/. $out/share/locale/
+      cp -r i18n $out/lib/
 
       substituteInPlace "$out/share/applications/org.gnome.usbguard.desktop" \
-        --replace-fail "python /opt/usbguard-gnome/src/usbguard_gnome_applet.py" "$out/bin/usbguard-gnome" \
+        --replace-fail "python /opt/usbguard-gnome/src/usbguard_gnome_applet.py" "usbguard-gnome" \
         --replace-fail "Version=1.0" "Version=${version}"
 
       substituteInPlace "$out/share/applications/org.gnome.usbguard.window.desktop" \
-        --replace-fail "python /opt/usbguard-gnome/src/usbguard_gnome_window.py" "$out/bin/usbguard-gnome-window" \
+        --replace-fail "python /opt/usbguard-gnome/src/usbguard_gnome_window.py" "usbguard-gnome-window" \
         --replace-fail "Version=1.0" "Version=${version}"
 
     '';

@@ -64,7 +64,6 @@ in {
           # custom.anydesk
           # tilix
           kdiskmark
-          usbguard-notifier
         ];
       };
       # xrdp = mkIf cfg.rdp.enable {
@@ -195,7 +194,6 @@ in {
     systemd = {
       packages =
         [
-          pkgs.usbguard-notifier
           #config.system.build.chromium
         ]
         ++ (lib.optional pkgs.stdenv.isx86_64 pkgs.widevine-cdm);
