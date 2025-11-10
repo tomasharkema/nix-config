@@ -887,6 +887,7 @@
       {
         "architecture": "x86_64",
         "vendor_name": "GenuineIntel",
+        "model_name": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
         "family": 6,
         "model": 158,
         "stepping": 10,
@@ -1025,17 +1026,21 @@
           "spectre_v2_user",
           "vmscape"
         ],
+        "power_management": [
+          ""
+        ],
         "bogo": 4399,
         "cache": 9216,
         "units": 16,
+        "page_size": 4096,
         "physical_id": 0,
         "siblings": 12,
         "cores": 6,
-        "fpu": true,
-        "fpu_exception": true,
+        "fpu": false,
+        "fpu_exception": false,
         "cpuid_level": 22,
         "write_protect": false,
-        "tlb_size": 32767,
+        "tlb_size": 32766,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -1373,7 +1378,7 @@
         "module_alias": "usb:v1D6Bp0002d0617dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 49,
+        "index": 50,
         "attached_to": 38,
         "class_list": [
           "usb",
@@ -1660,7 +1665,7 @@
     ],
     "mouse": [
       {
-        "index": 54,
+        "index": 55,
         "attached_to": 0,
         "bus_type": {
           "hex": "0081",
@@ -1685,9 +1690,9 @@
           "hex": "7a13",
           "value": 31251
         },
-        "sysfs_id": "/devices/pci0000:00/0000:00:15.1/i2c_designware.1/i2c-1/i2c-SYNA2393:00/0018:06CB:7A13.0001/input/input21",
+        "sysfs_id": "/devices/pci0000:00/0000:00:15.1/i2c_designware.1/i2c-10/i2c-SYNA2393:00/0018:06CB:7A13.0002/input/input21",
         "unix_device_names": [
-          "/dev/input/event10",
+          "/dev/input/event16",
           "/dev/input/ + handler"
         ]
       }
@@ -1860,6 +1865,28 @@
     "network_interface": [
       {
         "index": 51,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_names": [
+          "lo"
+        ]
+      },
+      {
+        "index": 53,
         "attached_to": 17,
         "class_list": [
           "network_interface"
@@ -1897,28 +1924,6 @@
         ],
         "driver_modules": [
           "ath10k_pci"
-        ]
-      },
-      {
-        "index": 52,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_names": [
-          "lo"
         ]
       }
     ],
@@ -2812,6 +2817,109 @@
     "usb": [
       {
         "index": 48,
+        "attached_to": 45,
+        "class_list": [
+          "usb",
+          "unknown"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0007",
+          "name": "Communication controller",
+          "value": 7
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Serial controller",
+          "value": 0
+        },
+        "pci_interface": {
+          "hex": "0080",
+          "value": 128
+        },
+        "vendor": {
+          "hex": "10c4",
+          "name": "Silicon Labs",
+          "value": 4292
+        },
+        "device": {
+          "hex": "ea60",
+          "name": "CP2102N USB to UART Bridge Controller",
+          "value": 60000
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "1.00",
+          "value": 0
+        },
+        "serial": "a8c19d277c11ec11a8e621c7bd930c07",
+        "model": "Silicon CP2102N USB to UART Bridge Controller",
+        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-1/1-1:1.0",
+        "sysfs_bus_id": "1-1:1.0",
+        "unix_device_names": [
+          "/dev/serial/by-id/usb-Silicon_Labs_CP2102N_USB_to_UART_Bridge_Controller_a8c19d277c11ec11a8e621c7bd930c07-if00-port0",
+          "/dev/serial/by-path/pci-0000:00:14.0-usb-0:1:1.0-port0",
+          "/dev/serial/by-path/pci-0000:00:14.0-usbv2-0:1:1.0-port0",
+          "/dev/ttyUSB0"
+        ],
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 12000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_protocol": 0,
+          "interface_class": {
+            "hex": "00ff",
+            "name": "vendor_spec",
+            "value": 255
+          },
+          "interface_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "interface_protocol": 0,
+          "interface_number": 0,
+          "interface_alternate_setting": 0
+        },
+        "hotplug": "usb",
+        "driver": "cp210x",
+        "driver_module": "cp210x",
+        "drivers": [
+          "cp210x"
+        ],
+        "driver_modules": [
+          "cp210x",
+          "usbserial"
+        ],
+        "module_alias": "usb:v10C4pEA60d0100dc00dsc00dp00icFFisc00ip00in00"
+      },
+      {
+        "index": 49,
         "attached_to": 45,
         "class_list": [
           "usb",

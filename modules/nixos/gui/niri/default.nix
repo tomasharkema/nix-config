@@ -138,7 +138,8 @@ in {
             spawn-at-startup = [
               {command = ["kitty"];}
               {command = ["firefox"];}
-
+              {command = ["gsettings set org.gnome.desktop.interface gtk-theme \"Adwaita-dark\""];}
+              {command = ["gsettings set org.gnome.desktop.interface color-scheme \"prefer-dark\""];}
               # {command = ["1password"];}
               {command = ["swaybg" "--image" hmConfig.home.file.".background-image".source];}
               # {command = ["~/.config/niri/scripts/startup.sh"];}

@@ -337,6 +337,11 @@
       # extraModprobeConfig = ''
       #   options psmouse synaptics_intertouch=1
       # '';
+      blacklistedKernelModules = [
+        "intel_oc_wdt"
+        "iTCO_wdt"
+        "nouveau"
+      ];
       kernelModules = [
         "coretemp"
         "efi_pstore"
