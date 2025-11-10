@@ -16,7 +16,6 @@ in {
       #     wineWowPackages.stable
 
       #     #   # support 32-bit only
-      wine
 
       #     #   # winetricks (all versions)
       winetricks

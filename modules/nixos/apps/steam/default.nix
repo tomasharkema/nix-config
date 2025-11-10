@@ -109,6 +109,8 @@ in {
 
     environment.systemPackages = with pkgs; [
       # sunshine
+      bottles
+      winetricks
       protontricks
       heroic
       # gamehub
