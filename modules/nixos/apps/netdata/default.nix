@@ -31,50 +31,98 @@ in {
       };
     };
 
-    security.sudo = {
-      extraRules = [
-        # netdata ALL=(root) NOPASSWORD: nvme
-        {
-          commands = [
-            {
-              command = "${pkgs.nvme-cli}/bin/nvme";
-              options = ["NOPASSWD"];
-            }
-          ];
-          users = [
-            "netdata"
-            "tomas"
-          ];
-        }
-      ];
-    };
+    # security.sudo = {
+    #   extraRules = [
+    #     # netdata ALL=(root) NOPASSWORD: nvme
+    #     {
+    #       commands = [
+    #         {
+    #           command = "${pkgs.nvme-cli}/bin/nvme";
+    #           options = ["NOPASSWD"];
+    #         }
+    #       ];
+    #       users = [
+    #         "netdata"
+    #         "tomas"
+    #       ];
+    #     }
+    #   ];
+    # };
 
     services.netdata = {
       enable = true;
 
-      package = pkgs.netdataCloud;
+      package = pkgs.netdataCloud.override {
+        withCloudUi = true;
+        withConnPrometheus = true;
+        withConnPubSub = true;
+        withNdsudo = true;
+      };
+      extraNdsudoPackages = [
+        pkgs.smartmontools
+        pkgs.nvme-cli
+      ];
 
       claimTokenFile = config.age.secrets."netdata".path;
 
-      python.enable = true;
-
+      python = {
+        enable = true;
+        recommendedPythonPackages = true;
+      };
       config = {
+        global = {
+          "debug log" = "none";
+          "access log" = "none";
+          "error log" = "syslog";
+        };
+
+        health = {
+          enabled = "yes";
+          "enabled alarms" = "*";
+        };
+
         db = {
           mode =
             if cfgServer.enable
             then "dbengine"
             else "ram";
           "storage tiers" =
-            if cfgServer.enable
-            then 5
-            else 3;
+            #lib.mkIf cfgServer.enable
+            3;
+
+          # Tier 0, per second data. Set to 0 for no limit.
+          "dbengine tier 0 retention size" =
+            #lib.mkIf cfgServer.enable
+            "1GiB";
+          "dbengine tier 0 retention time" =
+            #lib.mkIf cfgServer.enable
+            "14d";
+
+          # Tier 1, per minute data. Set to 0 for no limit.
+          "dbengine tier 1 retention size" =
+            #lib.mkIf cfgServer.enable
+            "1GiB";
+          "dbengine tier 1 retention time" =
+            #lib.mkIf cfgServer.enable
+            "3mo";
+
+          # Tier 2, per hour data. Set to 0 for no limit.
+          "dbengine tier 2 retention size" =
+            #lib.mkIf cfgServer.enable
+            "1GiB";
+          "dbengine tier 2 retention time" =
+            #lib.mkIf cfgServer.enable
+            "2y";
         };
+
+        plugins = {};
 
         registry =
           if cfgServer.enable
           then {
             enabled = "yes";
             "registry to announce" = server;
+            "allow from" = "*";
           }
           else {
             enabled = "no";
@@ -87,6 +135,10 @@ in {
 
           # "ssl key" = config.proxy-services.crt.key;
           # "ssl certificate" = config.proxy-services.crt.crt;
+          mode =
+            if cfgServer.enable
+            then "static-threaded"
+            else "none";
         };
       };
 
@@ -97,6 +149,8 @@ in {
             [${guid}]
             # Accept metrics streaming from other Agents with the specified API key
             enabled = yes
+            allow from = *
+            db = dbengine
           ''
           else ''
             [stream]
@@ -108,6 +162,10 @@ in {
             api key = ${guid}
           ''
         );
+        "health.d/systemdunits.conf" = pkgs.fetchurl {
+          url = "https://github.com/netdata/netdata/raw/refs/heads/master/src/health/health.d/systemdunits.conf";
+          sha256 = "sha256-7zYRWagi5NY32llWbadTPQsPbhnTem/ES4gIHMnvOec=";
+        };
         "health_alarm_notify.conf" = pkgs.writeText "health_alarm_notify.conf" ''
           SEND_NTFY="YES"
           DEFAULT_RECIPIENT_NTFY="https://ntfy.sh/tomasharkema-nixos"
@@ -118,10 +176,15 @@ in {
               address: 'unix:///var/run/docker.sock'
         '';
         "go.d/systemdunits.conf" = pkgs.writeText "systemdunits.conf" ''
+          autodetection_retry: 30
+          collect_unit_files: true
           jobs:
           - name: service-units
             include:
-              - '*.service'
+              - '*'
+        '';
+        "go.d/ethtool.conf" = pkgs.writeText "ethtool.conf" ''
+          update_every: 10
         '';
       };
     };
