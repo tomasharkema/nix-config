@@ -32,7 +32,7 @@ in {
       };
       #      etc.overlay.enable = config.boot.initrd.systemd.enable;
       nixos.tags = ["${config.boot.kernelPackages.kernel.modDirVersion}"];
-      rebuild.enableNg = false;
+      rebuild.enableNg = true;
     };
 
     # security.isolate.enable = true;

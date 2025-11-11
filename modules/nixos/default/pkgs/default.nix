@@ -29,6 +29,7 @@
         systeroid
         tailspin
         agenix-rekey
+        apt-dater
         aide
         archivemount
         bandwhich

@@ -45,6 +45,7 @@ in {
           MulticastDNS=no
         '';
       };
+
       tailscale = {
         enable = true;
         package = pkgs.tailscale;
