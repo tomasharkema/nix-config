@@ -39,8 +39,12 @@ in {
     };
 
     services = {
-      resolved.enable = true;
-
+      resolved = {
+        enable = true;
+        extraConfig = ''
+          MulticastDNS=no
+        '';
+      };
       tailscale = {
         enable = true;
         package = pkgs.tailscale;

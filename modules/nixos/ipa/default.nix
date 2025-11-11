@@ -116,6 +116,7 @@ in {
 
       services = {
         ipa-host-mod-sshpubkey = {
+          enable = false;
           path = with pkgs; [
             freeipa
             iproute2
