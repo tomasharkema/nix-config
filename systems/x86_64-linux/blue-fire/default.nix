@@ -157,25 +157,25 @@ in {
       };
       interfaces = {
         "eno1" = {
-          useDHCP = true;
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
 
         "eno2" = {
-          useDHCP = true;
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
 
         "eno3" = {
-          useDHCP = true;
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
 
         "eno4" = {
-          useDHCP = true;
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
@@ -276,7 +276,7 @@ in {
 
         efi = {
           canTouchEfiVariables = true;
-          efiSysMountPoint = "/boot";
+          efiSysMountPoint = "/boot/efi";
         };
         grub = {
           enable = true;
