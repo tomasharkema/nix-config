@@ -20,7 +20,6 @@
   in {
     programs.ssh = {
       enable = true;
-      forwardAgent = true;
 
       # serverAliveInterval = 60;
       # controlMaster = "auto";
@@ -28,28 +27,29 @@
 
       # addKeysToAgent = true;
       # hashKnownHosts = true;
-      # enableDefaultConfig = false;
+      enableDefaultConfig = false;
       # controlPath = null;
 
       matchBlocks = {
         "*" = {
-          identityAgent = onePasswordSocket;
+          # identityAgent = onePasswordSocket;
           # pKCS11Provider =
           #   if pkgs.stdenvNoCC.isDarwin
           #   then "${pkgs.yubico-piv-tool}/lib/libykcs11.dylib"
           #   else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
+          forwardAgent = true;
         };
-        # "*" = {
-        #   match = "host * exec \"test -z $SSH_TTY\"";
-
-        #   extraOptions = {
-        #     IdentityAgent = onePasswordSocket;
-        #     PKCS11Provider =
-        #       if pkgs.stdenvNoCC.isDarwin
-        #       then "${pkgs.yubico-piv-tool}/lib/libykcs11.dylib"
-        #       else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
-        #   };
-        # };
+        "*" = {
+          match = "host * exec \"test -z $SSH_TTY\"";
+          identityAgent = onePasswordSocket;
+          #   extraOptions = {
+          #     IdentityAgent = onePasswordSocket;
+          #     PKCS11Provider =
+          #       if pkgs.stdenvNoCC.isDarwin
+          #       then "${pkgs.yubico-piv-tool}/lib/libykcs11.dylib"
+          #       else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
+          #   };
+        };
         "aur.archlinux.org" = {
           extraOptions = {
             PubkeyAuthentication = "no";
