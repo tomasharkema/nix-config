@@ -108,7 +108,7 @@
         # niri.homeModules.niri
         dankMaterialShell.homeModules.dankMaterialShell.default
         # dankMaterialShell.homeModules.dankMaterialShell.niri
-        dsearch.homeModules.default
+        # dsearch.homeModules.default
       ];
 
       # systems.hosts = let
@@ -901,9 +901,9 @@
       inputs.dms-cli.follows = "dms-cli";
     };
 
-    dsearch = {
-      url = "github:AvengeMedia/danksearch";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # dsearch = {
+    #   url = "github:AvengeMedia/danksearch";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 }

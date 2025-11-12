@@ -60,9 +60,9 @@ in {
       };
 
       programs = {
-        dsearch = {
-          enable = true;
-        };
+        # dsearch = {
+        #   enable = true;
+        # };
 
         dankMaterialShell = {
           enable = true;
