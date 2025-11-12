@@ -4,8 +4,6 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
-config.color_scheme = "Catppuccin Mocha"
-
 config.launch_menu = {
   {
     args = { "menu" },
@@ -16,9 +14,17 @@ config.launch_menu = {
   { args = { "atop" } },
 }
 
--- wezterm.plugin.require("@weztermStatus@").apply_to_config(config, { cells = { date = {
---   format = " %H:%M:%S ",
--- } } })
+wezterm.plugin.require("@weztermStatus@").apply_to_config(config, {
+  cells = {
+    date = {
+      format = " %H:%M:%S ",
+    },
+    hostname = {
+      -- Enable hostname
+      enabled = true,
+    },
+  },
+})
 
 config.font = wezterm.font_with_fallback({ -- <built-in>, BuiltIn,
   {
@@ -68,5 +74,12 @@ config.keys = {
   --   }),
   -- },
 }
+
+local custom = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
+custom.background = "#000000"
+
+config.color_schemes = {}
+config.color_schemes.OLEDppuccin = custom
+config.color_scheme = "OLEDppuccin"
 
 return config

@@ -69,9 +69,9 @@
           repositories = ["/home/tomas/Developer/nix-config"];
         };
         extraConfig = {
-          # maintenance.auto = true;
           rerere = {enable = true;};
           pull = {rebase = true;};
+          rebase.autoStash = true;
           branch = {autosetupmerge = true;};
           push.autoSetupRemote = true;
           commit.gpgsign = true;
