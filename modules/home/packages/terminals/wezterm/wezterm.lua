@@ -82,4 +82,17 @@ config.color_schemes = {}
 config.color_schemes.OLEDppuccin = custom
 config.color_scheme = "OLEDppuccin"
 
+config.keys = {
+  {
+    key = "RightArrow",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.ActivateTabRelative(1),
+  },
+  {
+    key = "LeftArrow",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.ActivateTabRelative(-1),
+  },
+}
+
 return config

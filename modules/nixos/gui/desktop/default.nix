@@ -152,7 +152,7 @@ in {
         enable = true;
         terminal = "kitty";
       };
-      plotinus.enable = true;
+      # plotinus.enable = true;
 
       oddjobd.enable = true;
       ssh = {
@@ -171,7 +171,10 @@ in {
       virt-manager.enable = true;
     };
 
-    boot.extraModulePackages = [config.boot.kernelPackages.akvcam];
+    boot = {
+      extraModulePackages = [config.boot.kernelPackages.akvcam];
+      kernel.sysctl."net.ipv6.conf.all.disable_ipv6" = true;
+    };
 
     xdg.portal.extraPortals = [
       pkgs.xdg-desktop-portal-gtk

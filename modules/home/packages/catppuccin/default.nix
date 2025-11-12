@@ -5,16 +5,19 @@
   inputs,
   ...
 }: {
-  imports = [inputs.catppuccin.homeModules.catppuccin];
-
   config = {
     catppuccin = {
       enable = true;
 
       flavor = "mocha";
       accent = "blue";
-      cache.enable = false;
+      cache.enable = true;
+      gtk = {
+        # enable = false;
+        icon.enable = false;
+      };
     };
+    # gtk.catppuccin.enable = false;
 
     home.pointerCursor = lib.mkIf pkgs.stdenv.isDarwin (lib.mkForce {
       enable = false;

@@ -51,8 +51,8 @@ in {
       sockets.gpsd = {
         listenStreams = [
           "/run/gpsd.sock"
-          "0.0.0.0:2947"
-          # "[::]:2947"
+          "[::1]:2947"
+          "127.0.0.1:2947"
         ];
         wantedBy = ["sockets.target"];
         description = "gpsd socket";

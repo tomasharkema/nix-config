@@ -39,13 +39,13 @@ in {
       ];
   });
 
-  plotinus = prev.plotinus.overrideAttrs ({cmakeFlags ? [], ...}: {
-    cmakeFlags =
-      cmakeFlags
-      ++ [
-        (lib.cmakeFeature "CMAKE_POLICY_VERSION_MINIMUM" "3.5")
-      ];
-  });
+  # plotinus = prev.plotinus.overrideAttrs ({cmakeFlags ? [], ...}: {
+  #   cmakeFlags =
+  #     cmakeFlags
+  #     ++ [
+  #       (lib.cmakeFeature "CMAKE_POLICY_VERSION_MINIMUM" "3.5")
+  #     ];
+  # });
 
   sdrpp = prev.sdrpp.overrideAttrs ({cmakeFlags ? [], ...}: {
     cmakeFlags =

@@ -59,13 +59,14 @@ with inputs.home-manager.lib.hm.gvariant; {
           color-scheme = "prefer-dark";
           # cursor-theme = mkForce "Adwaita";
           cursor-theme = "macOS";
+          gtk-theme = "Adwaita-dark";
           # gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
           document-font-name = "Inter Display 12";
           font-antialiasing = "grayscale";
           monospace-font-name = "JetBrainsMono Nerd Font Mono 12";
-          # font-name = "Inter Display 11";
+          font-name = "Inter Display 11";
           enable-hot-corners = false;
-          # icon-theme = "Adwaita";
+          icon-theme = "Adwaita";
           text-scaling-factor = 1;
 
           clock-show-seconds = true;

@@ -1,7 +1,7 @@
 {
   pkgs,
   lib,
-  # config,
+  config,
   osConfig,
   # inputs,
   ...
@@ -20,25 +20,33 @@ in {
     dconf.settings."org/gnome/desktop/interface" = {
       cursor-size = cursorSize;
       cursor-theme = "macOS";
+      color-scheme = "prefer-dark";
     };
+
+    # xdg.configFile = {
+    #   "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
+    #   "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
+    #   "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
+    # };
+
     gtk = {
       enable = true;
-
+      theme = {
+        name = "Adwaita-dark";
+        package = pkgs.gnome-themes-extra;
+      };
       font = {
         package = pkgs.inter;
         name = "Inter Display";
         size = 11;
       };
 
-      # theme = {
-      #   name = "Flat-Remix-GTK-Blue-Dark";
-      #   # iconTheme = "Flat-Remix-Blue-Light";
-      #   package = pkgs.flat-remix-gtk;
-      # };
-      # iconTheme = {
-      #   name = "Flat-Remix-Blue-Dark";
-      #   package = pkgs.flat-remix-icon-theme;
-      # };
+      iconTheme = {
+        name = "Adwaita";
+        package = pkgs.adwaita-icon-theme;
+      };
+
+      gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
     };
 
     programs.gnome-shell = {

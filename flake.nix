@@ -102,6 +102,7 @@
         nixvim.homeModules.nixvim
         nix-index-database.homeModules.nix-index
         op-shell-plugins.hmModules.default
+        catppuccin.homeModules.catppuccin
         # agenix.homeManagerModules.default
         # hyprpanel.homeManagerModules.hyprpanel
         # walker.homeManagerModules.default
