@@ -65,7 +65,7 @@ in {
         # components = ["pkcs11" "secrets"];
         # enable = true;
       };
-      activitywatch.enable = true;
+      #activitywatch.enable = true;
       tldr-update.enable = true;
     };
 
