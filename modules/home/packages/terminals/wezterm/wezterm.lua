@@ -32,10 +32,10 @@ config.font = wezterm.font_with_fallback({ -- <built-in>, BuiltIn,
   "Symbols Nerd Font Mono",
 })
 
-config.front_end = "WebGpu"
+-- config.front_end = "WebGpu"
 -- config.front_end = "OpenGL"
 config.enable_wayland = true
-config.window_decorations = "TITLE | RESIZE"
+-- config.window_decorations = "TITLE | RESIZE"
 -- config.font = wezterm.font 'JetBrains Mono'
 
 -- config.window_background_opacity = 0.8
