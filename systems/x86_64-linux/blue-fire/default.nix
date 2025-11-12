@@ -240,7 +240,7 @@ in {
         # nvidiaPersistenced = lib.mkForce true;
       };
     };
-
+    # fileSystems."/boot".mountPoint = "/boot/efi";
     boot = {
       tmp = {
         useTmpfs = true;
@@ -276,12 +276,12 @@ in {
 
         efi = {
           canTouchEfiVariables = true;
-          efiSysMountPoint = "/boot/efi";
+          efiSysMountPoint = "/boot";
         };
         grub = {
           enable = true;
           efiSupport = true;
-          # efiInstallAsRemovable = true;
+          #efiInstallAsRemovable = true;
           device = "nodev";
           # netbootxyz.enable = true;
           memtest86.enable = true;
