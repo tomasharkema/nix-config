@@ -158,7 +158,10 @@
       };
       users.tomas.extraGroups = ["spi" "gpio" "docker"];
     };
-
+    console = {
+      enable = false;
+      earlySetup = false;
+    };
     # security.pam.services.login.fprintAuth = lib.mkForce false;
     security.pam.services = {
       "sudo".fprintAuth = true;
@@ -202,9 +205,9 @@
       # switcherooControl.enable = true;
       # journald.storage = "volatile";
 
-      hypervisor = {
-        enable = true;
-      };
+      # hypervisor = {
+      #   enable = true;
+      # };
 
       hardware.lcd.server = lib.mkIf false {
         enable = true;
