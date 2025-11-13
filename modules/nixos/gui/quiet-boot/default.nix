@@ -10,37 +10,88 @@ in {
 
   config = lib.mkIf (cfg.enable) {
     console = {
+      enable = lib.mkForce false;
       earlySetup = lib.mkForce false;
-      packages = [pkgs.terminus_font];
+      # packages = [pkgs.terminus_font];
     };
 
     environment.systemPackages = with pkgs; [plymouth];
 
-    boot = {
-      plymouth = {
-        enable = true;
+    # services.udev.extraRules = ''
+    #   ACTION=="add", SUBSYSTEM=="vtconsole", KERNEL=="vtcon*", RUN="/bin/sh -c :"
+    # '';
 
+    boot = {
+      plymouth = let
+        plymouth-nixos-theme = pkgs.stdenv.mkDerivation {
+          pname = "nixos-bgrt";
+          version = "1.0";
+
+          src = pkgs.fetchFromGitHub {
+            owner = "wuX4an";
+            repo = "plymouth-theme-nixos-bgrt";
+            rev = "e2dc67eab67eaa3bec42ca3a2f3dc6ef4262bddb";
+            hash = "sha256-nZSsi8Krd0K8XY4NW11SQl6Hi7qm+uvWOWW1dTLM900=";
+          };
+
+          installPhase = ''
+            mkdir -p $out/share/plymouth/themes/nixos-bgrt
+            substituteInPlace nixos-bgrt.plymouth \
+              --replace "@IMAGES@" "$out/share/plymouth/themes/nixos-bgrt/images"
+            cp -r * $out/share/plymouth/themes/nixos-bgrt/
+          '';
+        };
+      in {
+        enable = true;
+        # theme = "nixos-bgrt";
+        # package = pkgs.fetchFromGitHub {
+        #   owner = "wuX4an";
+        #   repo = "plymouth-theme-nixos-bgrt";
+        #   rev = "e2dc67eab67eaa3bec42ca3a2f3dc6ef4262bddb";
+        #   hash = "sha256-nZSsi8Krd0K8XY4NW11SQl6Hi7qm+uvWOWW1dTLM900=";
+        # };
+        # themePackages = [plymouth-nixos-theme];
+        # font = "${pkgs.iosevka}/share/fonts/truetype/Iosevka-Regular.ttf";
         font = "${pkgs.inter}/share/fonts/truetype/InterVariable.ttf";
       };
+
+      # kernel.sysctl = {
+      #   "kernel.printk" = "3 4 1 3";
+      # };
 
       loader.timeout = 0;
       kernelParams = [
         "quiet"
-        "loglevel=3"
+        "loglevel=0"
+        "splash"
+        "boot.shell_on_fail"
+        "udev.log_priority=0"
+        # "rd.systemd.show_status=auto"
+        "i915.fastboot=1"
         "systemd.show_status=false"
         "rd.systemd.show_status=false"
-        "udev.log_level=3"
-        "rd.udev.log_level=3"
-        "vga=current"
-        "splash"
+        "udev.log_level=0"
+        "rd.udev.log_level=0"
+        # "vga=current"
         "vt.global_cursor_default=0"
-
-        "boot.shell_on_fail"
+        "systemd.mask=systemd-vconsole-setup.service"
+      ];
+      kernelModules = [
+        "efi_pstore"
+        # "ramoops"
       ];
       consoleLogLevel = 0;
       initrd = {
         systemd.enable = true;
         verbose = false;
+        # services.udev.rules = ''
+        #   ACTION=="add", SUBSYSTEM=="vtconsole", KERNEL=="vtcon*", RUN="/bin/sh -c :"
+        # '';
+        kernelModules = [
+          "efi_pstore"
+          "simpledrm"
+          # "ramoops"
+        ];
       };
     };
 
@@ -101,24 +152,16 @@ in {
 
         script = "${script}";
       };
+      greetd.serviceConfig = {
+        Type = "idle";
+        StandardInput = "tty";
+        StandardOutput = "tty";
+        StandardError = "journal"; # Without this errors will spam on screen
+        # Without these bootlogs will spam on screen
+        TTYReset = true;
+        TTYVHangup = true;
+        TTYVTDisallocate = true;
+      };
     };
-    # # /etc/systemd/system/plymouth-boot-messages.service
-    # # Run "systemctl enable plymouth-boot-messages.service" after creating the file
-
-    # [Unit]
-    # Description=Display boot messages on the plymouth screen
-    # DefaultDependencies=no
-
-    # # You may want these if your plymouth is not started by initramfs, but I want the script to take effect as soon as possible...
-    # #After=plymouth-start.service
-    # #Requires=plymouth-start.service
-
-    # [Service]
-    # Type=simple
-    # ExecStart=/usr/local/bin/journalctl_to_plymouth.sh
-    # RemainAfterExit=yes
-
-    # [Install]
-    # WantedBy=sysinit.target
   };
 }

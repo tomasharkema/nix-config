@@ -39,7 +39,7 @@ in {
 
     systemd = {
       services = {
-        "prepare-kexec".wantedBy = lib.mkIf pkgs.stdenv.isx86_64 ["multi-user.target"];
+        # "prepare-kexec".wantedBy = lib.mkIf pkgs.stdenv.isx86_64 ["multi-user.target"];
         NetworkManager-wait-online.enable = lib.mkForce false;
         systemd-networkd-wait-online.enable = lib.mkForce false;
       };
@@ -172,6 +172,8 @@ in {
         systemd-boot = {
           netbootxyz.enable = true;
           configurationLimit = 10;
+          editor = false;
+          # graceful = true;
         };
       };
     };
@@ -593,7 +595,7 @@ in {
       };
       libftdi.enable = true;
       # mcelog.enable = true;
-      rasdaemon.enable = true;
+      # rasdaemon.enable = true;
 
       usbStorage.manageShutdown = true;
     };

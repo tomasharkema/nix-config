@@ -231,9 +231,9 @@
       # switcherooControl.enable = true;
       # journald.storage = "volatile";
 
-      hypervisor = {
-        enable = true;
-      };
+      # hypervisor = {
+      #   enable = true;
+      # };
 
       hardware.bolt.enable = true;
 

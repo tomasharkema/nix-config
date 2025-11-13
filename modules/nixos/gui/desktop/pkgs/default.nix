@@ -72,7 +72,7 @@
     # solana-cli
     imsprog
 
-    caffeine-ng
+    # caffeine-ng
     gphoto2
     gphoto2fs
     # gphotos-sync

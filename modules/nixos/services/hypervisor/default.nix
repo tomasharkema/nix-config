@@ -230,6 +230,7 @@ in {
         enable = true;
 
         nss = {
+          enable = true;
           enableGuest = true;
         };
 
