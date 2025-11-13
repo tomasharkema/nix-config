@@ -890,16 +890,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dms-cli = {
-      url = "github:AvengeMedia/danklinux";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #dms-cli = {
+    #  url = "github:AvengeMedia/danklinux";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
     dankMaterialShell = {
       url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.dgop.follows = "dgop";
-      inputs.dms-cli.follows = "dms-cli";
+      # inputs.dms-cli.follows = "dms-cli";
     };
 
     # dsearch = {

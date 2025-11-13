@@ -178,11 +178,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1763011563,
-        "narHash": "sha256-cvlBkmq2XMAakamTlDFdfYCI3QyslVHDllz2BCE9qnI=",
+        "lastModified": 1763042087,
+        "narHash": "sha256-8zxTTLmZBFaw7BsU4TdgPspHXgXO3rzCW1GqGgcL5uo=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "12365edcf06001cf0d73883eae6a4227cd2a2257",
+        "rev": "76a60df88bc248c99212450626bf7a43d05faaf9",
         "type": "github"
       },
       "original": {
@@ -289,26 +289,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "disko",
-        "type": "github"
-      }
-    },
-    "dms-cli": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1763005356,
-        "narHash": "sha256-8/BtGVZfdaOH42i6HInYcUBEWmD2yHj+rzLO52MqQYE=",
-        "owner": "AvengeMedia",
-        "repo": "danklinux",
-        "rev": "d0ec9f111d240a0f634287df6af74144a107c373",
-        "type": "github"
-      },
-      "original": {
-        "owner": "AvengeMedia",
-        "repo": "danklinux",
         "type": "github"
       }
     },
@@ -1700,7 +1680,6 @@
         "devshell": "devshell_2",
         "dgop": "dgop",
         "disko": "disko",
-        "dms-cli": "dms-cli",
         "flake-compat": "flake-compat_2",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
