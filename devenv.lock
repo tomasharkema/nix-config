@@ -40,10 +40,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1762868777,
+        "lastModified": 1763032142,
         "owner": "cachix",
         "repo": "git-hooks.nix",
-        "rev": "c5c3147730384576196fb5da048a6e45dee10d56",
+        "rev": "84255025dee4c8701a99fbff65ac3c9095952f99",
         "type": "github"
       },
       "original": {
