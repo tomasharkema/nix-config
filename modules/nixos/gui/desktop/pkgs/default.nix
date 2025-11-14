@@ -4,6 +4,14 @@
   config,
   ...
 }: let
+  _ipmiview = pkgs.ipmiview.overrideAttrs (old: {
+    src = pkgs.fetchurl {
+      url = "https://www.supermicro.com/Bios/sw_download/960/IPMIView_2.23.0_build.250519_bundleJRE_Linux_x64.tar.gz";
+      sha256 = "13d0figi3azajafnlfwc0amw3b00rmxyrmq60rixvwx4wx2h361j";
+    };
+    version = "2.23.0";
+  });
+
   pks = with pkgs; [
     nrfutil
     nrf5-sdk
@@ -15,7 +23,7 @@
     nrfconnect
     serial-studio
     wine-wayland
-    custom.manuals
+    # custom.manuals
     bitwarden-menu
     bitwarden-desktop
     bitwarden-cli
@@ -25,7 +33,7 @@
     openrw
     openra
     openrisk
-    openloco
+    # openloco
     opendrop
     openswitcher
     sway-launcher-desktop
@@ -64,7 +72,7 @@
     thonny
     coppwr
     custom.gtk-meshtastic-client
-
+    _ipmiview
     chromium
     noti
     ghex
@@ -123,7 +131,7 @@
     # sublime4
     transmission-remote-gtk
     tremotesf
-    #ulauncher
+    # ulauncher
     usbview
     # ventoy-full
     vsce
@@ -144,18 +152,12 @@
     # pkgs.custom.git-butler
     # pkgs.wolfram-engine
     spotify
-    angryipscanner
+    # angryipscanner
     # custom.qlogexplorer
     discordo
     dmidecode
     gdm-settings
-    (ipmiview.overrideAttrs (old: {
-      src = pkgs.fetchurl {
-        url = "https://www.supermicro.com/Bios/sw_download/960/IPMIView_2.23.0_build.250519_bundleJRE_Linux_x64.tar.gz";
-        sha256 = "13d0figi3azajafnlfwc0amw3b00rmxyrmq60rixvwx4wx2h361j";
-      };
-      version = "2.23.0";
-    }))
+
     libsmbios
     plex-desktop
     plexamp

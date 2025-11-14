@@ -40,8 +40,8 @@ in {
         };
       };
       secrets = {
-        TGRAM_CHAT_ID = "<(${pkgs.coreutils}/bin/cat ${config.age.secrets.notify.path} | ${pkgs.yq}/bin/yq '.telegram[0].telegram_chat_id' -r)";
-        TGRAM_SECRET = "<(${pkgs.coreutils}/bin/cat ${config.age.secrets.notify.path} | ${pkgs.yq}/bin/yq '.telegram[0].telegram_api_key' -r)";
+        TGRAM_CHAT_ID = "<(${pkgs.bash}/bin/sh -c 'source ${config.age.secrets.notify.path}; echo $TGRAM_CHAT_ID')";
+        TGRAM_SECRET = "<(${pkgs.bash}/bin/sh -c 'source ${config.age.secrets.notify.path}; echo $TGRAM_SECRET')";
         NTFY_TOPIC = "<(${pkgs.coreutils}/bin/cat ${config.age.secrets.ntfy.path})";
       };
     };

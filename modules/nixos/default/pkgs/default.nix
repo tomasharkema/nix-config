@@ -30,6 +30,7 @@
         tailspin
         agenix-rekey
         apt-dater
+        pwgen
         aide
         archivemount
         bandwhich

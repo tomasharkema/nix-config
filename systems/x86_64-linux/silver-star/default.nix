@@ -110,9 +110,30 @@
       };
       # mosh.enable = true;
       # xserver.videoDrivers = ["nvidia"];
-      zram-generator.enable = false;
+
       # "nix-private-cache".enable = true;
-      graylog.enable = true;
+      graylog = {
+        enable = true;
+        package = pkgs.graylog-6_1;
+        rootPasswordSha2 = "54138f711f6e6c523b61a060b224beb78697a48211613395ffdc4ba60c0a3fc5";
+        passwordSecret = "oW83oXQNzoWk8gMBqMYnBtVhGMrzm8ddM9xmFBMInjPuocGuA8YWe4cfDmPsQqf7o0v41NekCF37W4tbRPnZpOkqbWmqipS5";
+        extraConfig = ''
+          http_external_uri = https://graylog.ling-lizard.ts.net/
+        '';
+        elasticsearchHosts = ["http://127.0.0.1:9200"];
+      };
+
+      mongodb = {
+        enable = true;
+        package = pkgs.mongodb-7_0;
+      };
+      opensearch = {
+        enable = true;
+        settings = {
+          "cluster.name" = "ep-cluster";
+        };
+      };
+
       sonarr.enable = true;
       jackett.enable = true;
 
@@ -251,6 +272,7 @@
             toURL = "https://127.0.0.1:8443";
             insecureHTTPS = true;
           };
+          graylog = {toURL = "http://127.0.0.1:9000";};
         };
       };
 

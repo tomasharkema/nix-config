@@ -324,15 +324,16 @@ in {
 
       # cron.enable = true;
 
-      # zram-generator = {
-      #   enable = lib.mkDefault true;
-      #   settings = {
-      #     zram0 = {
-      #       # zram-size = "ram / 2";
-      #       compression-algorithm = "zstd";
-      #     };
-      #   };
-      # };
+      zram-generator = {
+        enable = lib.mkDefault true;
+        settings = {
+          zram0 = {
+            # zram-size = "ram / 2";
+            compression-algorithm = "zstd";
+          };
+        };
+      };
+
       # earlyoom = {
       #   enable = true;
       #   enableNotifications = true;

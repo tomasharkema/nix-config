@@ -118,7 +118,7 @@
   nixos-system = pkgs.writeShellScriptBin "nixos-system" ''
     HOST="$1"
     shift
-    echo "Build $HOST"
+    echo "Build $HOST with options: $@"
     exec nom build ".#nixosConfigurations.$HOST.config.system.build.toplevel" --out-link "./out/$HOST" "$@"
   '';
   darwin-system = pkgs.writeShellScriptBin "darwin-system" ''
