@@ -41,13 +41,13 @@
         # mode = "644";
         # symlink = false;
         # };
-        notify = {
-          rekeyFile = ../../nixos/secrets/notify.age;
-          owner = "${config.user.name}";
-          # group = "${config.user.name}";
-          # mode = "644";
-          # symlink = false;
-        };
+        # notify = {
+        # rekeyFile = ../../nixos/secrets/notify.age;
+        # owner = "${config.user.name}";
+        # group = "${config.user.name}";
+        # mode = "644";
+        # symlink = false;
+        # };
       };
     };
 

@@ -8,7 +8,7 @@
 in {
   options.apps.mailrise = {enable = lib.mkEnableOption "mailrise";};
 
-  config = {
+  config = lib.mkIf cfg.enable {
     age.secrets = {
       notify = {
         rekeyFile = ./notify.age;
@@ -20,7 +20,7 @@ in {
       };
     };
 
-    services.mailrise = lib.mkIf cfg.enable {
+    services.mailrise = {
       enable = true;
 
       settings = {
