@@ -30,20 +30,25 @@
     #   {package = pkgs.trayscale;}
     #   # {package = pkgs.zerotier-ui;}
 
-    #   # {package = osConfig.nur.repos.mloeper.usbguard-applet-qt;}
     #   # {package = pkgs.notify-client;}
     #   # {package = pkgs.geary;}
     # ];
-
-    home = {
-      packages = with pkgs; [
-        telegram-desktop
+    xdg.autostart = {
+      enable = true;
+      readOnly = true;
+      entries = [
+        "${pkgs.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
       ];
-      file = {
-        ".config/autostart/org.telegram.desktop.desktop".source = "${pkgs.telegram-desktop}/share/applications/org.telegram.desktop.desktop";
-        ".config/autostart/org.gnome.usbguard.desktop".source = "${pkgs.custom.usbguard-gnome}/share/applications/org.gnome.usbguard.desktop";
-        ".config/autostart/1password.desktop".source = "${osConfig.programs._1password-gui.package}/share/applications/1password.desktop";
-      };
     };
+    # home = {
+    #   packages = with pkgs; [
+    #     telegram-desktop
+    #   ];
+    #   file = {
+    #     ".config/autostart/org.telegram.desktop.desktop".source = "${pkgs.telegram-desktop}/share/applications/org.telegram.desktop.desktop";
+    #     ".config/autostart/org.gnome.usbguard.desktop".source = "${pkgs.custom.usbguard-gnome}/share/applications/org.gnome.usbguard.desktop";
+    #     ".config/autostart/1password.desktop".source = "${osConfig.programs._1password-gui.package}/share/applications/1password.desktop";
+    #   };
+    # };
   };
 }

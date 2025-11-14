@@ -54,13 +54,17 @@ in {
         partOf = ["graphical-session.target"];
         wantedBy = ["graphical-session.target"];
         path = ["/run/current-system/sw/"]; ### Fix empty PATH to find qt plugins
+        after = ["dms.service" "usbguard.service"];
+        # includes = ["dms.service"];
         serviceConfig = {
           ExecStart = "${pkgs.custom.usbguard-gnome}/bin/usbguard-gnome";
         };
       };
       usbguard-notifier = {
         description = "USBGuard Notifier";
-        after = ["usbguard.service"];
+        after = ["dms.service" "usbguard.service"];
+        # includes = ["dms.service"];
+
         serviceConfig = {
           ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p /tmp/usbguard-notifier";
           ExecStart = "${pkgs.usbguard-notifier}/bin/usbguard-notifier";
