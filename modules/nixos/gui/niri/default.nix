@@ -92,6 +92,12 @@ in {
 
       services = {
       };
+      systemd.user.services.dms = {
+        Unit = {
+          Wants = ["xdg-desktop-autostart.target"];
+          Before = ["xdg-desktop-autostart.target"];
+        };
+      };
 
       programs = {
         # dsearch = {
@@ -101,9 +107,6 @@ in {
         dankMaterialShell = {
           enable = true;
           systemd.enable = true;
-
-          # Core features
-          # enableSystemd = true; # Systemd service for auto-start
           enableSystemMonitoring = true; # System monitoring widgets (dgop)
           enableAudioWavelength = true; # Audio visualizer (cava)
           enableCalendarEvents = true; # Calendar integration (khal)

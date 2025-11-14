@@ -140,7 +140,7 @@
     synology-drive-client
 
     _86Box-with-roms
-
+    custom.remarkable-cups
     # pkgs.custom.git-butler
     # pkgs.wolfram-engine
     spotify
