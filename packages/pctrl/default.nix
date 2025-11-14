@@ -1,4 +1,5 @@
 {
+  stdenv,
   system,
   inputs,
   lib,
@@ -14,7 +15,7 @@
   npmHooks,
   fetchNpmDeps,
 }: let
-  toolchain = inputs.fenix.packages."${system}".default.toolchain;
+  toolchain = inputs.fenix.packages."${stdenv.hostPlatform.system}".default.toolchain;
 in
   (pkgs.makeRustPlatform {
     cargo = toolchain;

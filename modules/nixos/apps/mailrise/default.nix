@@ -8,7 +8,18 @@
 in {
   options.apps.mailrise = {enable = lib.mkEnableOption "mailrise";};
 
-  config = lib.mkIf false {
+  config = {
+    age.secrets = {
+      notify = {
+        rekeyFile = ./notify.age;
+        # owner = "tomas";
+        # group = "tomas";
+        mode = "644";
+        # path = "/home/tomas/.config/notify/provider-config.yaml";
+        # symlink = false;
+      };
+    };
+
     services.mailrise = lib.mkIf cfg.enable {
       enable = true;
 

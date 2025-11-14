@@ -26,7 +26,7 @@ inputs.nixpkgs.lib.nixosSystem {
           };
           system.stateVersion = config.system.nixos.release;
           # netboot.squashfsCompression = "zstd -Xcompression-level 22";
-          networking.wireless.enable = true;
+          # networking.wireless.enable = true;
         };
       }
     )

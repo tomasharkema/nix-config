@@ -18,7 +18,7 @@ inputs.nixpkgs.lib.nixosSystem {
         ...
       }: {
         config = {
-          networking.wireless.enable = true;
+          # networking.wireless.enable = true;
         };
       }
     )

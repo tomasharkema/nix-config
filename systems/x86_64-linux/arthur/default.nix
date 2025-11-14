@@ -16,7 +16,7 @@
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPNjMAH00cvtgNj1+5bMhUi0woJJ5kmhu1o2h2AmzRJW root@arthur";
     };
 
-    nixpkgs.config.rocmSupport = true;
+    # nixpkgs.config.rocmSupport = true;
 
     gui = {
       # enable = true;
@@ -43,7 +43,7 @@
     services = {
       # freeipa.replica.enable = true;
       tcsd.enable = true;
-      xserver.videoDrivers = ["amdgpu"];
+      # xserver.videoDrivers = ["amdgpu"];
     };
 
     apps = {
@@ -65,15 +65,15 @@
     boot = {
       binfmt.emulatedSystems = ["aarch64-linux"];
       loader.systemd-boot.enable = true;
-      initrd.kernelModules = ["amdgpu"];
+      # initrd.kernelModules = ["amdgpu"];
     };
 
     hardware.graphics = {
       enable = true;
 
       enable32Bit = true;
-      extraPackages = with pkgs; [amdvlk];
-      extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
+      #extraPackages = with pkgs; [amdvlk];
+      #extraPackages32 = with pkgs; [driversi686Linux.amdvlk];
     };
 
     networking = {

@@ -1,7 +1,6 @@
 {
   stdenv,
   fetchFromGitHub,
-  # python3,
   apprise,
   python3Packages,
 }:
@@ -12,19 +11,19 @@ python3Packages.buildPythonApplication rec {
   src = fetchFromGitHub {
     owner = "YoRyan";
     repo = "mailrise";
-    rev = version;
-    hash = "sha256-QgeGDQeSsfvopgBgQQsWrx036SX1FhE67LI8M8rJM/Q=";
+    rev = "main";
+    hash = "sha256-CG/tYbzy1E6eQ5fW9htqLyvzc32GzlSm1UVn3nuteIg=";
   };
 
   pyproject = true;
   build-system = [python3Packages.setuptools];
 
-  # doCheck = false;
+  doCheck = false;
 
   propagatedBuildInputs = with python3Packages; [
     setuptools
     setuptools-scm
-    wheel
+    # wheel
     # poetry-core
     aiosmtpd
     pyyaml

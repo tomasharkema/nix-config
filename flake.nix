@@ -906,5 +906,10 @@
     #   url = "github:AvengeMedia/danksearch";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+
+    nox = {
+      url = "github:madsbv/nix-options-search";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

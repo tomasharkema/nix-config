@@ -21,7 +21,7 @@ in {
     };
   };
 
-  config = lib.mkIf (cfg.enable && false) {
+  config = lib.mkIf cfg.enable {
     systemd.services.mailrise = {
       description = "mailrise";
       enable = true;

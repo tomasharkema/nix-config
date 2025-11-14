@@ -13,6 +13,7 @@
   #     then pkg
   #     else (builtins.throw "nixpkgs' upstream for ${name} has been updated to ${pkgVersion}. (yours is at ${pkg.version} with snapshot ${version})")
   # );
+  system = prev.stdenv.hostPlatform.system;
 in rec {
   # cudaPackages = prev.cudaPackages.overrideScope (final: prev: {
   #   cuda_cudart = prev.cuda_cudart.overrideAttrs {
@@ -70,6 +71,8 @@ in rec {
       wcwidth
     ];
   });
+
+  nux = inputs.nox.packages.${system}.default;
   # geoclue2 = prev.geoclue2.overrideAttrs ({buildInputs, ...}: {
   #   version = prev.custom.geoclue-gpsd.version;
   #   src = prev.custom.geoclue-gpsd.src;
