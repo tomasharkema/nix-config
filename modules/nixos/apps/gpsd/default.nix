@@ -13,9 +13,11 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    # time.timeZone = lib.mkForce null;
+
     services = {
       gpsd = {
-        enable = true;
+        # enable = true;
         devices = lib.mkIf cfg.server.enable (lib.mkForce ["/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A50285BI-if00-port0"]);
         listenany = lib.mkIf cfg.server.enable true;
         debugLevel = lib.mkIf cfg.server.enable 5;
@@ -25,8 +27,20 @@ in {
         ];
       };
 
+      # automatic-timezoned = {
+      #   enable = true;
+      # };
+
       geoclue2 = {
         enable = true;
+        # whitelistedAgents = ["automatic-timezoned"];
+        # appConfig = {
+        #   "automatic-timezoned" = {
+        #     allowed = true;
+        #     system = true;
+        #     users = 1000;
+        #   };
+        # };
         # package = pkgs.geoclue2.overrideAttrs {
         #   version = "unstable";
         #   src = pkgs.custom.geoclue-gpsd.src;
@@ -36,28 +50,33 @@ in {
         #     --replace-fail "Environment=\"GSETTINGS_BACKEND=memory\"" ""
         # '';
         #};
+        # geoProviderUrl = "https://reallyfreegeoip.org/json";
+        geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
         enableDemoAgent = lib.mkForce true;
+        enable3G = false;
+        enableCDMA = false;
+        enableModemGPS = false;
       };
     };
 
-    systemd = {
-      services.gpsd = {
-        requires = ["gpsd.socket"];
-        wantedBy = ["gpsd.socket"];
-        serviceConfig = lib.mkIf (!cfg.server.enable) {
-          ExecStart = lib.mkForce "${pkgs.gpsd}/sbin/gpsd gpsd://timepi.local";
-        };
-      };
-      sockets.gpsd = {
-        listenStreams = [
-          "/run/gpsd.sock"
-          # "[::1]:2947"
-          "127.0.0.1:2947"
-        ];
-        wantedBy = ["sockets.target"];
-        description = "gpsd socket";
-        socketConfig.SocketMode = 0600;
-      };
-    };
+    # systemd = {
+    #   services.gpsd = {
+    #     requires = ["gpsd.socket"];
+    #     wantedBy = ["gpsd.socket"];
+    #     serviceConfig = lib.mkIf (!cfg.server.enable) {
+    #       ExecStart = lib.mkForce "${pkgs.gpsd}/sbin/gpsd gpsd://timepi.local";
+    #     };
+    #   };
+    #   sockets.gpsd = {
+    #     listenStreams = [
+    #       "/run/gpsd.sock"
+    #       # "[::1]:2947"
+    #       "127.0.0.1:2947"
+    #     ];
+    #     wantedBy = ["sockets.target"];
+    #     description = "gpsd socket";
+    #     socketConfig.SocketMode = 0600;
+    #   };
+    # };
   };
 }
