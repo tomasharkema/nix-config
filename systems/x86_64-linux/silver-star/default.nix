@@ -112,7 +112,7 @@
       # xserver.videoDrivers = ["nvidia"];
       zram-generator.enable = false;
       # "nix-private-cache".enable = true;
-
+      graylog.enable = true;
       sonarr.enable = true;
       jackett.enable = true;
 

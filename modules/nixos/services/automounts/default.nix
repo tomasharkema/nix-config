@@ -22,10 +22,10 @@ in {
       enable = true;
       debug = true;
       autoMaster = let
-        sshFsLines =
-          map (machine: "${machine}  -fstype=fuse,port=22,idmap=user,rw,allow_other,noatime :sshfs\\#tomas@${machine}\\:/")
-          machines;
-        sshFsMapConf = pkgs.writeText "sshfs.conf" (lib.concatStringsSep "\n" sshFsLines);
+        # sshFsLines =
+        #   map (machine: "${machine}  -fstype=fuse,port=22,idmap=user,rw,allow_other,noatime :sshfs\\#tomas@${machine}\\:/")
+        #   machines;
+        # sshFsMapConf = pkgs.writeText "sshfs.conf" (lib.concatStringsSep "\n" sshFsLines);
         nfsConf = let
           common = "-rw,soft,intr,rsize=8192,wsize=8192,anonuid=1000,anongid=1000";
         in
@@ -34,8 +34,9 @@ in {
             dione-tomas ${common} 192.168.1.102:/volume1/tomas
             isos ${common} 192.168.1.102:/volume1/isos
           '';
+        #/mnt/servers/sshfs file:${sshFsMapConf} --timeout=30
       in ''
-        /mnt/servers/sshfs file:${sshFsMapConf} --timeout=30
+
         /mnt/servers/nfs file:${nfsConf} --timeout=30
       '';
     };

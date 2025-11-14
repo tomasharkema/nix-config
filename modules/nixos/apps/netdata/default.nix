@@ -31,23 +31,31 @@ in {
       };
     };
 
-    # security.sudo = {
-    #   extraRules = [
-    #     # netdata ALL=(root) NOPASSWORD: nvme
-    #     {
-    #       commands = [
-    #         {
-    #           command = "${pkgs.nvme-cli}/bin/nvme";
-    #           options = ["NOPASSWD"];
-    #         }
-    #       ];
-    #       users = [
-    #         "netdata"
-    #         "tomas"
-    #       ];
-    #     }
-    #   ];
-    # };
+    systemd.tmpfiles.settings."98-netdata" = {
+      "/tmp/netdata".d = {
+        group = "netdata";
+        mode = "0755";
+        user = "netdata";
+      };
+    };
+
+    security.sudo = {
+      extraRules = [
+        # netdata ALL=(root) NOPASSWORD: nvme
+        {
+          commands = [
+            {
+              command = "${pkgs.nvme-cli}/bin/nvme";
+              options = ["NOPASSWD"];
+            }
+          ];
+          users = [
+            "netdata"
+            "tomas"
+          ];
+        }
+      ];
+    };
 
     services.netdata = {
       enable = true;
