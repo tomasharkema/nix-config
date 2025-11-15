@@ -109,7 +109,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       # sunshine
-      bottles
+
       winetricks
       protontricks
       heroic
@@ -121,7 +121,7 @@ in {
       steam-tui
       # mangohud
       extest
-      bottles
+
       winetricks
     ];
 
