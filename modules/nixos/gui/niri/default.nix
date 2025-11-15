@@ -35,36 +35,37 @@ in {
       };
     };
 
-    programs = {
-      dankMaterialShell = {
-        greeter = {
-          enable = true;
-          compositor.name = "niri";
-          configHome = "/home/tomas";
-          logs = {
-            save = true;
-            path = "/var/log/dank/greet.log";
-          };
-        };
-      };
-    };
-    systemd.tmpfiles.settings."10-dmsgreeter" = {
-      "/var/log/dank".d = {
-        user = user;
-        group = user;
-        mode = "0755";
-      };
-      "${config.users.users.greeter.home}".d = {
-        user = user;
-        group = user;
-        mode = "0755";
-      };
-    };
+    #programs = {
+    #  dankMaterialShell = {
+    #  greeter = {
+    #    enable = false; #true;
+
+    #   compositor.name = "niri";
+    #    configHome = "/home/tomas";
+    #    logs = {
+    #      save = true;
+    #      path = "/var/log/dank/greet.log";
+    #    };
+    #  };
+    #};
+    #};
+    #systemd.tmpfiles.settings."10-dmsgreeter" = {
+    #  "/var/log/dank".d = {
+    #  user = user;
+    #  group = user;
+    #  mode = "0755";
+    #};
+    #  "${config.users.users.greeter.home}".d = {
+    #  user = user;
+    #  group = user;
+    #  mode = "0755";
+    #};
+    #};
     users.users = {
-      tomas.extraGroups = [
-        user
-      ];
-      greeter.home = "/var/lib/greeter";
+      #tomas.extraGroups = [
+      #  user
+      #];
+      #greeter.home = "/var/lib/greeter";
     };
 
     security.pam.services = {
@@ -80,7 +81,7 @@ in {
       # greeterManagesPlymouth = true;
     };
 
-    security.ipa.ifpAllowedUids = [config.services.greetd.settings.default_session.user];
+    #security.ipa.ifpAllowedUids = [config.services.greetd.settings.default_session.user];
 
     home-manager.users.tomas = {
       catppuccin = {

@@ -161,7 +161,7 @@
           # nixos-service.nixosModules.nixos-service
           # nix-virt.nixosModules.default
 
-          dankMaterialShell.nixosModules.greeter
+          # dankMaterialShell.nixosModules.greeter
 
           ./defaultNixosAge.nix
           (
