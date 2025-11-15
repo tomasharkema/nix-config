@@ -116,7 +116,7 @@
     ktailctl
     libGL
     libGLU
-
+    _ipmiview
     mission-center
     # nix-software-center
     pavucontrol
@@ -143,10 +143,8 @@
     yelp
     f1viewer
     zed-editor
-
     jetbrains-toolbox
     synology-drive-client
-
     _86Box-with-roms
     custom.remarkable-cups
     # pkgs.custom.git-butler
