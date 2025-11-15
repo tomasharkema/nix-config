@@ -15,7 +15,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     system.nixos.tags = ["steam"];
-
+    apps.wine.enable = true;
     boot.kernelModules = ["uinput"];
 
     users = {
