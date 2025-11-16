@@ -7,7 +7,7 @@
 }: let
   cfgDesktop = config.gui.desktop;
   hmConfig = config.home-manager.users.tomas;
-  user = config.services.greetd.settings.default_session.user;
+  #user = config.services.greetd.settings.default_session.user;
 in {
   config = lib.mkIf cfgDesktop.enable {
     programs = {
@@ -15,17 +15,35 @@ in {
         enable = true;
         package = pkgs.niri-unstable;
       };
+
+      # uwsm = {
+      #   enable = true;
+      #   waylandCompositors = {
+      #     niri = {
+      #       prettyName = "Niri";
+      #       comment = "Niri compositor managed by UWSM";
+      #       binPath = "/run/current-system/sw/bin/niri";
+      #     };
+      #   };
+      # };
     };
 
     security = {
       # pam.services.swaylock = {};
-      soteria.enable = true;
+      # soteria.enable = true;
     };
 
-    systemd.user.services.niri-flake-polkit.enable = false;
+    systemd.user.services.niri-flake-polkit = {
+      wants = lib.mkForce [];
+      requisite = ["graphical-session.target"];
+      partOf = ["graphical-session.target"];
+    };
+    # systemd.user.services.niri-flake-polkit.enable = false;
 
-    environment.systemPackages = with pkgs; [swaybg];
-
+    environment = {
+      systemPackages = with pkgs; [swaybg];
+      # pathsToLink = ["/share/wayland-sessions"];
+    };
     xdg.portal.config = {
       niri = {
         default = [
@@ -35,53 +53,55 @@ in {
       };
     };
 
-    #programs = {
-    #  dankMaterialShell = {
-    #  greeter = {
-    #    enable = false; #true;
+    # programs = {
+    #   dankMaterialShell = {
+    #     greeter = {
+    #       #enable = true;
 
-    #   compositor.name = "niri";
-    #    configHome = "/home/tomas";
-    #    logs = {
-    #      save = true;
-    #      path = "/var/log/dank/greet.log";
-    #    };
-    #  };
-    #};
-    #};
-    #systemd.tmpfiles.settings."10-dmsgreeter" = {
-    #  "/var/log/dank".d = {
+    #       compositor.name = "niri";
+    #       configHome = "/home/tomas";
+    #       logs = {
+    #         save = true;
+    #         path = "/var/log/dank/greet.log";
+    #       };
+    #     };
+    #   };
+    # };
+
+    # systemd.tmpfiles.settings."10-dmsgreeter" = {
+    #"/var/log/dank".d = {
     #  user = user;
     #  group = user;
     #  mode = "0755";
     #};
-    #  "${config.users.users.greeter.home}".d = {
-    #  user = user;
-    #  group = user;
-    #  mode = "0755";
-    #};
-    #};
-    users.users = {
-      #tomas.extraGroups = [
-      #  user
-      #];
-      #greeter.home = "/var/lib/greeter";
-    };
+    #   "${config.users.users.greeter.home}".d = {
+    #     user = user;
+    #     group = user;
+    #     mode = "0755";
+    #   };
+    # };
+
+    # users.users = {
+    # tomas.extraGroups = [
+    # user
+    # ];
+    # greeter.home = "/var/lib/greeter";
+    # };
 
     security.pam.services = {
       login.fprintAuth = lib.mkIf config.services.fprintd.enable false;
-      greetd.fprintAuth = lib.mkIf config.services.fprintd.enable false;
+      # greetd.fprintAuth = lib.mkIf config.services.fprintd.enable false;
     };
 
-    services.greetd = {
-      #      settings.terminal = lib.mkForce 5;
-      # };
-      # settings.default_session.command = lib.mkBefore "cage -s -- ";
-      # cage -s --
-      # greeterManagesPlymouth = true;
-    };
+    # services.greetd = {
+    #      settings.terminal = lib.mkForce 5;
+    # };
+    # settings.default_session.command = lib.mkBefore "cage -s -- ";
+    # cage -s --
+    # greeterManagesPlymouth = true;
+    # };
 
-    #security.ipa.ifpAllowedUids = [config.services.greetd.settings.default_session.user];
+    # security.ipa.ifpAllowedUids = [config.services.greetd.settings.default_session.user];
 
     home-manager.users.tomas = {
       catppuccin = {
@@ -94,16 +114,16 @@ in {
       services = {
       };
       systemd.user.services.dms = {
-        Unit = {
-          Wants = ["xdg-desktop-autostart.target"];
-          Before = ["xdg-desktop-autostart.target"];
-        };
+        #Unit = {
+        #  Wants = ["xdg-desktop-autostart.target"];
+        #  Before = ["xdg-desktop-autostart.target"];
+        #};
       };
 
       programs = {
-        # dsearch = {
-        #   enable = true;
-        # };
+        dsearch = {
+          enable = true;
+        };
 
         dankMaterialShell = {
           enable = true;

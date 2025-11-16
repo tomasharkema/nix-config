@@ -109,7 +109,7 @@
         # niri.homeModules.niri
         dankMaterialShell.homeModules.dankMaterialShell.default
         # dankMaterialShell.homeModules.dankMaterialShell.niri
-        # dsearch.homeModules.default
+        dsearch.homeModules.default
       ];
 
       # systems.hosts = let
@@ -160,8 +160,7 @@
           # nvidia-vgpu-nixos.nixosModules.guest
           # nixos-service.nixosModules.nixos-service
           # nix-virt.nixosModules.default
-
-          # dankMaterialShell.nixosModules.greeter
+          dankMaterialShell.nixosModules.greeter
 
           ./defaultNixosAge.nix
           (
@@ -902,10 +901,10 @@
       # inputs.dms-cli.follows = "dms-cli";
     };
 
-    # dsearch = {
-    #   url = "github:AvengeMedia/danksearch";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    dsearch = {
+      url = "github:AvengeMedia/danksearch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nox = {
       url = "github:madsbv/nix-options-search";

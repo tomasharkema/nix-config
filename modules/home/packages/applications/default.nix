@@ -16,7 +16,7 @@
       "kitty.desktop"
       "com.mitchellh.ghostty.desktop"
       "termius-app.desktop"
-      "dev.deedles.Trayscale.desktop"
+      # "dev.deedles.Trayscale.desktop"
       "org.telegram.desktop.desktop"
       "1password.desktop"
       "org.cockpit_project.CockpitClient.desktop"
@@ -35,7 +35,7 @@
     # ];
     xdg.autostart = {
       enable = true;
-      readOnly = true;
+      # readOnly = true;
       entries = [
         "${pkgs.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
       ];

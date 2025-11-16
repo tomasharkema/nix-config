@@ -137,48 +137,47 @@ in
 
         # displayManager.cosmic-greeter.enable = true;
 
-        xserver = {
-          # dpi = mkIf cfg.hidpi.enable 200;
-          desktopManager.gnome = {
+        #xserver = {
+        # dpi = mkIf cfg.hidpi.enable 200;
+        desktopManager.gnome = {
+          enable = true;
+
+          extraGSettingsOverridePackages = with pkgs; [
+            mutter
+            # gpaste
+            custom.usbguard-gnome
+            # gnome-menus
+            # libusb1
+          ];
+
+          extraGSettingsOverrides = ''
+            [org.gnome.mutter]
+            experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland', 'variable-refresh-rate', 'xwayland-native-scaling']
+            edge-tiling=true
+          '';
+
+          sessionPath = with pkgs; [
+            mutter
+            gtop
+            libgtop
+            clutter
+            clutter-gtk
+            gjs
+            gpaste
+            libusb1
+            gnome-menus
+            # pkgs.custom.openglide
+            ddcutil
+          ];
+        };
+
+        displayManager = {
+          gdm = {
             enable = true;
-
-            extraGSettingsOverridePackages = with pkgs; [
-              mutter
-              # gpaste
-              custom.usbguard-gnome
-              # gnome-menus
-              # libusb1
-            ];
-
-            extraGSettingsOverrides = ''
-              [org.gnome.mutter]
-              experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland', 'variable-refresh-rate', 'xwayland-native-scaling']
-              edge-tiling=true
-            '';
-
-            sessionPath = with pkgs; [
-              mutter
-              gtop
-              libgtop
-              clutter
-              clutter-gtk
-              gjs
-              gpaste
-              libusb1
-              gnome-menus
-              # pkgs.custom.openglide
-              ddcutil
-            ];
-          };
-
-          displayManager = {
-            gdm = {
-              enable = true;
-              wayland = true;
-              # nvidiaWayland = true;
-            };
+            wayland = true;
           };
         };
+
         libinput.enable = true;
         gnome = {
           # chrome-gnome-shell.enable = true;
@@ -197,7 +196,7 @@ in
           tracker.enable = true;
 
           tracker-miners.enable = true;
-          #gcr-ssh-agent.enable = lib.mkForce false;
+          gcr-ssh-agent.enable = lib.mkForce false;
           sushi.enable = true;
         };
 

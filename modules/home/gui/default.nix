@@ -56,10 +56,10 @@ in {
     ];
 
     services = {
-      trayscale = {
-        enable = true;
-        hideWindow = true;
-      };
+      # trayscale = {
+      #   enable = true;
+      #   hideWindow = true;
+      # };
       # yubikey-agent.enable = true;
       gnome-keyring = {
         # components = ["pkcs11" "secrets"];
@@ -105,7 +105,7 @@ in {
       packages = with pkgs; [
         # custom.zerotier-ui
         notify-client
-        trayscale
+        # trayscale
       ];
 
       activation = {
