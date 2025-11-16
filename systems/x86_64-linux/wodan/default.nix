@@ -175,7 +175,7 @@
       adb.enable = true;
       wireshark = {
         enable = true;
-        # usbmon.enable = true;
+        usbmon.enable = true;
         dumpcap.enable = true;
       };
     };
@@ -305,7 +305,7 @@
         # "pci-stub.ids=1458:37a7"
       ];
 
-      # blacklistedKernelModules = ["nouveau"];
+      blacklistedKernelModules = ["nouveau"];
       # extraModprobeConfig = ''
       #   options nvidia NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100
       # '';
