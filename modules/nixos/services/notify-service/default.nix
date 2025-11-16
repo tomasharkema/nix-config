@@ -7,7 +7,6 @@
 with lib; let
   checkConditions = pkgs.writeShellScript "checkConditions" ''
     STATUS=$(systemctl status --full "$1")
-
     case "$STATUS" in
       *"activating (auto-restart) (Result: timeout)"*) exit 1 ;;
       *) exit 0 ;;
@@ -23,7 +22,9 @@ with lib; let
   #       "$(systemctl status --full $1)"
   #   '';
   sendmail = pkgs.writeShellScript "sendmail" ''
-    systemctl status --full $1 | ${pkgs.mailutils}/bin/mail -a "Content-Type: text/plain; charset=UTF-8" -s "$HOSTNAME $1 service status" systemd@mailrise.xyz
+    ${pkgs.systemd}/bin/systemctl status --full $1 | \
+      ${pkgs.mailutils}/bin/mail -a "Content-Type: text/plain; charset=UTF-8" \
+        -s "$HOSTNAME $1 service status" systemd@mailrise.xyz
   '';
 in {
   options = {
@@ -45,6 +46,7 @@ in {
         unitConfig = {
           StartLimitIntervalSec = "5m";
           StartLimitBurst = 1;
+          DefaultDependencies = "no";
         };
         serviceConfig = {
           EnvironmentFile = config.age.secrets."notify-sub".path;

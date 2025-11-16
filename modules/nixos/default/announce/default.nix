@@ -13,7 +13,7 @@
         GENERATION="$(readlink /nix/var/nix/profiles/system)"
         GENPATH="$(readlink -f /nix/var/nix/profiles/system)"
 
-        ${ntfy} publish --title "$HOSTNAME Activate $GENERATION" "$(${cat} ${config.age.secrets.ntfy.path})" "$GENERATION $GENPATH"
+        ${ntfy} publish --title "$HOSTNAME Activate $GENERATION" "$(${cat} ${config.age.secrets.ntfy.path})" "$GENERATION $GENPATH" || true
       )
     '';
   };

@@ -95,7 +95,11 @@
       # luks.yubikeySupport = true;
     };
 
-    users.groups = {"plugdev" = {};};
+    users.groups = {
+      "plugdev" = {
+        members = ["tomas"];
+      };
+    };
 
     environment.systemPackages = with pkgs; [
       p11-kit

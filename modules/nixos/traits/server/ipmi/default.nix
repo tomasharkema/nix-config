@@ -11,18 +11,22 @@ in {
 
   config = lib.mkIf cfg.enable {
     users = {
-      groups.ipmi.members = [
-        "tomas"
-        "root"
-        "netdata"
-        "ipmi-exporter"
-      ];
+      groups.ipmi = {
+        gid = 964;
+        members = [
+          "tomas"
+          "root"
+          "netdata"
+          "ipmi-exporter"
+        ];
+      };
     };
 
     services = {
       udev.extraRules = ''
-        SUBSYSTEM=="ipmi", GROUP="ipmi", MODE="0777"
+        KERNEL=="ipmi*", MODE="660", GROUP="ipmi"
       '';
+      # SUBSYSTEM=="ipmi", GROUP="ipmi", MODE="0777"
 
       prometheus.exporters.ipmi = {
         enable = true;

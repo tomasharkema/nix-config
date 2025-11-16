@@ -493,8 +493,8 @@
             "/nix/store:/nix/store:ro"
             "/etc/os-release:/etc/os-release:ro"
             "/usr/libexec/dell_dup:/usr/libexec/dell_dup:rw"
-            # "/run/systemd/system:/run/systemd/system"
-            # "/var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket"
+            "/run/systemd/system:/run/systemd/system"
+            "/var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket"
           ];
 
           extraOptions = [

@@ -25,14 +25,14 @@ in {
 
       settings = {
         configs = {
+          "systemd@*" = {
+            urls = ["tgram://TGRAM_SECRET/TGRAM_CHAT_ID/"];
+          };
           "*@*" = {
             urls = [
               "ntfys://NTFY_TOPIC"
               "tgram://TGRAM_SECRET/TGRAM_CHAT_ID/?image=Yes"
             ];
-          };
-          "systemd" = {
-            urls = ["tgram://TGRAM_SECRET/TGRAM_CHAT_ID/?image=Yes"];
           };
         };
         smtp = {
