@@ -64,9 +64,24 @@ in {
       #   wantedBy = ["multi-user.target"];
       # };
     };
-    services.postfix = {
+    # services.postfix = {
+    #   enable = true;
+    #   settings.main.relayhost = ["silver-star.ling-lizard.ts.net:8025"];
+    # };
+    services.mail.sendmailSetuidWrapper.enable = true;
+    programs.msmtp = {
       enable = true;
-      settings.main.relayhost = ["silver-star.ling-lizard.ts.net:8025"];
+      setSendmail = true;
+      defaults = {
+        aliases = "/etc/aliases";
+        port = 8025;
+      };
+      accounts.default = {
+        host = "silver-star.ling-lizard.ts.net";
+        from = "hello@example.org";
+        user = "hello@example.org";
+        # password = "mypassword123";
+      };
     };
   };
 }
