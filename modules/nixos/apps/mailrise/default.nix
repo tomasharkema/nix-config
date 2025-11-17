@@ -26,12 +26,12 @@ in {
       settings = {
         configs = {
           "systemd@*" = {
-            urls = ["tgram://TGRAM_SECRET/TGRAM_CHAT_ID/"];
+            urls = ["tgram://TGRAM_SECRET/TGRAM_CHAT_ID/?image=No"];
           };
           "*@*" = {
             urls = [
               "ntfys://NTFY_TOPIC"
-              "tgram://TGRAM_SECRET/TGRAM_CHAT_ID/?image=Yes"
+              "tgram://TGRAM_SECRET/TGRAM_CHAT_ID/?image=No"
             ];
           };
         };
