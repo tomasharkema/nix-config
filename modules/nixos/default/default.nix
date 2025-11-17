@@ -511,10 +511,7 @@ in {
       #     authorized_keys_command_user = config.services.openssh.authorizedKeysCommandUser;
       #   };
       # };
-      wrappers.nethoscope = {
-        owner = "tomas";
-        group = "tomas";
-      };
+
       # sudo.enable = false;
       # sudo-rs.enable = true;
     };
@@ -545,14 +542,13 @@ in {
         enable = true;
         enableZshIntegration = true;
       };
-      nethoscope.enable = true;
       git = {
         enable = true;
         lfs.enable = true;
       };
-      udevil.enable = true;
+      # udevil.enable = true;
       usbtop.enable = true;
-      wavemon.enable = true;
+      # wavemon.enable = true;
       trippy.enable = true;
       ydotool.enable = true;
       iotop.enable = true;

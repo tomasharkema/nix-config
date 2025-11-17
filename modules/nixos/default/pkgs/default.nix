@@ -225,7 +225,7 @@
         viddy
         vim
         watchlog
-        wavemon
+        # wavemon
         websocat
         wget
         wget

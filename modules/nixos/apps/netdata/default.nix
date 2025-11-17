@@ -24,54 +24,51 @@ in {
     age.secrets = {
       netdata = {
         rekeyFile = ../../secrets/netdata.age;
-        mode = "644";
+        # mode = "600";
+        owner = "netdata";
+        group = "netdata";
       };
       netdata-stream-conf = {
         rekeyFile = ./stream.conf.age;
-      };
-    };
-
-    systemd.tmpfiles.settings."98-netdata" = {
-      "/tmp/netdata".d = {
+        owner = "netdata";
         group = "netdata";
-        mode = "0755";
-        user = "netdata";
       };
     };
 
-    security.sudo = {
-      extraRules = [
-        # netdata ALL=(root) NOPASSWORD: nvme
-        {
-          commands = [
-            {
-              command = "${pkgs.nvme-cli}/bin/nvme";
-              options = ["NOPASSWD"];
-            }
-          ];
-          users = [
-            "netdata"
-            "tomas"
-          ];
-        }
-      ];
-    };
+    # security.sudo = {
+    #   extraRules = [
+    #     # netdata ALL=(root) NOPASSWORD: nvme
+    #     {
+    #       commands = [
+    #         {
+    #           command = "${pkgs.nvme-cli}/bin/nvme";
+    #           options = ["NOPASSWD"];
+    #         }
+    #       ];
+    #       users = [
+    #         "netdata"
+    #         "tomas"
+    #       ];
+    #     }
+    #   ];
+    # };
 
     services.netdata = {
-      enable = true;
+      enable = lib.mkDefault true;
 
       package = pkgs.netdataCloud.override {
         withCloudUi = true;
+        withNetworkViewer = true;
         withConnPrometheus = true;
         withConnPubSub = true;
-        withNdsudo = true;
+        withNdsudo = true; # false;
       };
       extraNdsudoPackages = [
         pkgs.smartmontools
         pkgs.nvme-cli
       ];
 
-      claimTokenFile = config.age.secrets."netdata".path;
+      # claimTokenFile = config.age.secrets."netdata".path;
 
       python = {
         enable = true;

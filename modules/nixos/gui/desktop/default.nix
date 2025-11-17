@@ -94,7 +94,13 @@ in {
           enable = true;
         };
       };
-      gvfs.enable = true;
+      gvfs = {
+        enable = true;
+        package = pkgs.gvfs.override {
+          gnomeSupport = true;
+          googleSupport = true;
+        };
+      };
     };
 
     security.polkit = {

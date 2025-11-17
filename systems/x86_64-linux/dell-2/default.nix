@@ -172,14 +172,14 @@
     services = {
       thermald.enable = true;
 
-      fprintd = {
-        enable = true;
-        tod = {
-          enable = true;
-          driver = pkgs.libfprint-2-tod1-goodix;
-        };
-      };
-
+      # fprintd = {
+      #   enable = true;
+      #   tod = {
+      #     enable = true;
+      #     driver = pkgs.libfprint-2-tod1-goodix;
+      #   };
+      # };
+      # netdata.enable = false;
       resolved = {
         enable = true;
         # dnssec = "true";
@@ -201,14 +201,14 @@
       udev = {
         enable = true;
 
-        extraRules = ''
-          SUBSYSTEM=="usb", ATTRS{idVendor}=="27c6", ATTRS{idProduct}=="5395", \
-            ATTRS{dev}=="*", TEST=="power/control", ATTR{power/control}="auto", \
-            MODE="0660", GROUP="plugdev"
-          SUBSYSTEM=="usb", ATTRS{idVendor}=="27c6", ATTRS{idProduct}=="5395", \
-            ENV{LIBFPRINT_DRIVER}="Goodix Fingerprint Sensor"
-        '';
-
+        # extraRules = ''
+        #   SUBSYSTEM=="usb", ATTRS{idVendor}=="27c6", ATTRS{idProduct}=="5395", \
+        #     ATTRS{dev}=="*", TEST=="power/control", ATTR{power/control}="auto", \
+        #     MODE="0660", GROUP="plugdev"
+        #   SUBSYSTEM=="usb", ATTRS{idVendor}=="27c6", ATTRS{idProduct}=="5395", \
+        #     ENV{LIBFPRINT_DRIVER}="Goodix Fingerprint Sensor"
+        # '';
+        #
         # extraRules = ''
         #   SUBSYSTEM=="spidev", KERNEL=="spidev0.0", GROUP="spi", MODE="0660"
 
@@ -266,18 +266,18 @@
     # };
 
     programs = {
-      adb.enable = true;
+      # adb.enable = true;
 
-      captive-browser = {
-        enable = true;
-        interface = "wlp59s0";
-      };
+      # captive-browser = {
+      #   enable = true;
+      #   interface = "wlp59s0";
+      # };
 
-      wireshark = {
-        enable = true;
-        usbmon.enable = true;
-        dumpcap.enable = true;
-      };
+      # wireshark = {
+      #   enable = true;
+      #   usbmon.enable = true;
+      #   dumpcap.enable = true;
+      # };
     };
 
     # system.includeBuildDependencies = true;
