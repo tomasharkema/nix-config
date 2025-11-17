@@ -1,10 +1,11 @@
 {
   lib,
   stdenv,
+  buildNpmPackage,
   fetchFromGitHub,
 }:
-stdenv.mkDerivation rec {
-  pname = "recalendar-js";
+buildNpmPackage rec {
+  pname = "recalendar";
   version = "unstable-2024-12-03";
 
   src = fetchFromGitHub {
@@ -13,7 +14,7 @@ stdenv.mkDerivation rec {
     rev = "e2c5714f529bc79b922e55d8968ee90fa76b7aaa";
     hash = "sha256-dKl9qF0GSkcNuzvMTAewRAbiYtxz7yuVsdt4dFjrLCQ=";
   };
-
+  npmDepsHash = "sha256-0l2YPiA79xj2xmB8OwqLUkxYWeC2edirOVfIuPmIyV0=";
   meta = {
     description = "ReCalendar - create your personalized calendar PDF for ReMarkable tablets";
     homepage = "https://github.com/klimeryk/recalendar.js/";
