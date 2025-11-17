@@ -87,7 +87,7 @@ in
         gpaste.enable = true;
       };
 
-      security.ipa.ifpAllowedUids = lib.mkIf config.services.displayManager.gdm.enable ["gdm"];
+      # security.ipa.ifpAllowedUids = lib.mkIf config.services.displayManager.gdm.enable ["gdm"];
 
       # environment.sessionVariables = {
       #   LD_LIBRARY_PATH = [
@@ -171,12 +171,12 @@ in
           ];
         };
 
-        displayManager = {
-          gdm = {
-            enable = true;
-            wayland = true;
-          };
-        };
+        # displayManager = {
+        #    gdm = {
+        #     enable = true;
+        #     wayland = true;
+        #   :wqa};
+        #  };
 
         libinput.enable = true;
         gnome = {

@@ -104,7 +104,6 @@ with pkgs; {
         morph
         # mosh
         # guardian-agent
-        mtr
         multitail
         navi
         # ncdu

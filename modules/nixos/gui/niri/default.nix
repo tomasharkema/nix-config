@@ -7,7 +7,7 @@
 }: let
   cfgDesktop = config.gui.desktop;
   hmConfig = config.home-manager.users.tomas;
-  #user = config.services.greetd.settings.default_session.user;
+  user = config.services.greetd.settings.default_session.user;
 in {
   config = lib.mkIf cfgDesktop.enable {
     programs = {
@@ -32,6 +32,7 @@ in {
       # pam.services.swaylock = {};
       # soteria.enable = true;
     };
+    services.orca.enable = lib.mkForce false;
 
     systemd.user.services.niri-flake-polkit = {
       wants = lib.mkForce [];
@@ -53,44 +54,44 @@ in {
       };
     };
 
-    # programs = {
-    #   dankMaterialShell = {
-    #     greeter = {
-    #       #enable = true;
+    programs = {
+      dankMaterialShell = {
+        greeter = {
+          enable = true;
 
-    #       compositor.name = "niri";
-    #       configHome = "/home/tomas";
-    #       logs = {
-    #         save = true;
-    #         path = "/var/log/dank/greet.log";
-    #       };
-    #     };
-    #   };
-    # };
+          compositor.name = "niri";
+          configHome = "/home/tomas";
+          logs = {
+            save = true;
+            path = "/var/log/dank/greet.log";
+          };
+        };
+      };
+    };
 
-    # systemd.tmpfiles.settings."10-dmsgreeter" = {
-    #"/var/log/dank".d = {
-    #  user = user;
-    #  group = user;
-    #  mode = "0755";
-    #};
-    #   "${config.users.users.greeter.home}".d = {
-    #     user = user;
-    #     group = user;
-    #     mode = "0755";
-    #   };
-    # };
+    systemd.tmpfiles.settings."10-dmsgreeter" = {
+      "/var/log/dank".d = {
+        user = user;
+        group = user;
+        mode = "0755";
+      };
+      #   "${config.users.users.greeter.home}".d = {
+      #     user = user;
+      #     group = user;
+      #     mode = "0755";
+      #   };
+    };
 
-    # users.users = {
-    # tomas.extraGroups = [
-    # user
-    # ];
-    # greeter.home = "/var/lib/greeter";
-    # };
+    users.users = {
+      tomas.extraGroups = [
+        user
+      ];
+      # greeter.home = "/var/lib/greeter";
+    };
 
     security.pam.services = {
       login.fprintAuth = lib.mkIf config.services.fprintd.enable false;
-      # greetd.fprintAuth = lib.mkIf config.services.fprintd.enable false;
+      greetd.fprintAuth = lib.mkIf config.services.fprintd.enable false;
     };
 
     # services.greetd = {
@@ -101,7 +102,7 @@ in {
     # greeterManagesPlymouth = true;
     # };
 
-    # security.ipa.ifpAllowedUids = [config.services.greetd.settings.default_session.user];
+    security.ipa.ifpAllowedUids = [user];
 
     home-manager.users.tomas = {
       catppuccin = {
@@ -151,7 +152,7 @@ in {
         niriswitcher.enable = true;
         niri = {
           # enable = true;
-          package = pkgs.niri-unstable;
+          package = pkgs.niri; # -unstable;
           settings = {
             input = {
               mouse.natural-scroll = true;
@@ -193,8 +194,8 @@ in {
             spawn-at-startup = [
               {command = ["kitty"];}
               {command = ["firefox"];}
-              {command = ["gsettings set org.gnome.desktop.interface gtk-theme \"Adwaita-dark\""];}
-              {command = ["gsettings set org.gnome.desktop.interface color-scheme \"prefer-dark\""];}
+              # {command = ["gsettings set org.gnome.desktop.interface gtk-theme \"Adwaita-dark\""];}
+              # {command = ["gsettings set org.gnome.desktop.interface color-scheme \"prefer-dark\""];}
               # {command = ["1password"];}
               {command = ["swaybg" "--image" hmConfig.home.file.".background-image".source];}
               # {command = ["~/.config/niri/scripts/startup.sh"];}
@@ -244,15 +245,6 @@ in {
               #   hotkey-overlay.title = "Lock the Screen: swaylock";
               #   action.spawn = "swaylock";
               # };
-
-              # Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
-              # Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
-              # For example, this is a standard bind to toggle the screen reader (orca).
-              "Super+Alt+S" = {
-                allow-when-locked = true;
-                # hotkey-overlay.title = "";
-                action = spawn-sh "pkill orca || exec orca";
-              };
 
               # Example volume keys mappings for PipeWire & WirePlumber.
               # The allow-when-locked=true property makes them work even when the session is locked.
