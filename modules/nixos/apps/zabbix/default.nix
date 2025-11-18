@@ -15,7 +15,8 @@ in {
     #   useNetworkd = true;
     #   networkmanager.enable = lib.mkForce false;
     # };
-
+    environment.systemPackages = [pkgs.zabbix-cli pkgs.zabbixctl];
+    users.groups.docker.members = ["zabbix-agent"];
     services = {
       zabbixAgent = {
         enable = true;
@@ -42,7 +43,7 @@ in {
       #   enable = true;
       # };
 
-      tsnsrv = {
+      tsnsrv = lib.mkIf cfgServer.enable {
         services = {
           zabbix = {
             toURL = "http://127.0.0.1";
