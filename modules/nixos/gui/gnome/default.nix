@@ -79,7 +79,7 @@ in
           ];
         };
 
-        file-roller.enable = true;
+        # file-roller.enable = true;
         evince.enable = true;
 
         gnome-disks.enable = true;

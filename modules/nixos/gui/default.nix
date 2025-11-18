@@ -101,9 +101,9 @@ in {
 
     chaotic = {
       # scx.enable = true;
-      mesa-git = {
-        enable = true;
-      };
+      # mesa-git = {
+      #   enable = true;
+      # };
       hdr = lib.mkIf cfg.hdr.enable {
         enable = true;
         specialisation.enable = false;

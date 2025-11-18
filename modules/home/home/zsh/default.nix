@@ -119,17 +119,32 @@
 
           unifi-tui = "unifi-tui --url \"https://192.168.1.1/proxy/network/integrations\" --api-key \"$(op item get ojsyugyddrsxtq3kayoonibhda --reveal --field credential)\"";
 
-          # zellij = "systemd-run --scope --user zellij";
+          zellij = "systemd-run --scope --user zellij";
 
           # subl = (lib.mkIf pkgs.stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
         };
 
-        plugins = with pkgs; [
+        plugins = with pkgs; let
+          # ohMyZshSource = pkgs.fetchFromGitHub {
+          #   owner = "ohmyzsh";
+          #   repo = "ohmyzsh";
+          #   rev = "8a4d6fc0a2b5586f093fb2b96b51e2141f643284";
+          #   hash = "sha256-UY9NoGynwWqUox9j5l4p2slx2brWRHsnGBH/Y9ctVwc=";
+          # };
+        in [
           # rec {
           #   name = "you-should-use";
           #   file = "share/zsh/plugins/you-should-use/you-should-use.plugin.zsh";
           #   src = zsh-you-should-use;
           # }
+          rec {
+            name = "sudo";
+            # file = "plugins/sudo/sudo.plugin.zsh";
+            src = fetchurl {
+              url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/refs/heads/master/plugins/sudo/sudo.plugin.zsh";
+              sha256 = "0n9cbkcngfw7ifbb2h91pwwh3sigzcf1an5m3mjz4yk0sw6saz55";
+            };
+          }
           rec {
             name = src.pname;
             file = "share/zsh-z/zsh-z.plugin.zsh";
