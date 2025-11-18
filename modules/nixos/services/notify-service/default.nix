@@ -27,7 +27,7 @@ with lib; let
         -s "$HOSTNAME $1 service status" systemd@mailrise.xyz
   '';
 in {
-  options = {
+  options = lib.mkIf false {
     systemd.services = mkOption {
       type = with types;
         attrsOf (
@@ -38,7 +38,7 @@ in {
     };
   };
 
-  config = {
+  config = lib.mkIf false {
     systemd.services = {
       "systemd-email@" = {
         description = "Sends a status mail via sendmail on service failures.";
@@ -63,25 +63,6 @@ in {
       #   };
       #   wantedBy = ["multi-user.target"];
       # };
-    };
-    # services.postfix = {
-    #   enable = true;
-    #   settings.main.relayhost = ["silver-star.ling-lizard.ts.net:8025"];
-    # };
-    services.mail.sendmailSetuidWrapper.enable = true;
-    programs.msmtp = {
-      enable = true;
-      setSendmail = true;
-      defaults = {
-        aliases = "/etc/aliases";
-        port = 8025;
-      };
-      accounts.default = {
-        host = "silver-star.ling-lizard.ts.net";
-        from = "hello@example.org";
-        user = "hello@example.org";
-        # password = "mypassword123";
-      };
     };
   };
 }

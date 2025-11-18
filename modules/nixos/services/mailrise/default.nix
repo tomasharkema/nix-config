@@ -21,8 +21,28 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    systemd.services.mailrise = {
+  config = {
+    # services.postfix = {
+    #   enable = true;
+    #   settings.main.relayhost = ["silver-star.ling-lizard.ts.net:8025"];
+    # };
+    services.mail.sendmailSetuidWrapper.enable = true;
+    programs.msmtp = {
+      enable = true;
+      setSendmail = true;
+      defaults = {
+        aliases = "/etc/aliases";
+        port = 8025;
+      };
+      accounts.default = {
+        host = "silver-star.ling-lizard.ts.net";
+        from = "hello@example.org";
+        user = "hello@example.org";
+        # password = "mypassword123";
+      };
+    };
+
+    systemd.services.mailrise = lib.mkIf cfg.enable {
       description = "mailrise";
       enable = true;
 
