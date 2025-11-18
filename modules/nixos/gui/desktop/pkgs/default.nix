@@ -13,6 +13,7 @@
   });
 
   pks = with pkgs; [
+    custom.librepods
     nrfutil
     nrf5-sdk
     zotero
