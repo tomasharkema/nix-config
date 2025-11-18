@@ -125,25 +125,21 @@
         };
 
         plugins = with pkgs; let
-          # ohMyZshSource = pkgs.fetchFromGitHub {
-          #   owner = "ohmyzsh";
-          #   repo = "ohmyzsh";
-          #   rev = "8a4d6fc0a2b5586f093fb2b96b51e2141f643284";
-          #   hash = "sha256-UY9NoGynwWqUox9j5l4p2slx2brWRHsnGBH/Y9ctVwc=";
-          # };
+          ohMyZshSource = pkgs.fetchFromGitHub {
+            owner = "ohmyzsh";
+            repo = "ohmyzsh";
+            rev = "8a4d6fc0a2b5586f093fb2b96b51e2141f643284";
+            hash = "sha256-UY9NoGynwWqUox9j5l4p2slx2brWRHsnGBH/Y9ctVwc=";
+          };
         in [
-          # rec {
-          #   name = "you-should-use";
-          #   file = "share/zsh/plugins/you-should-use/you-should-use.plugin.zsh";
-          #   src = zsh-you-should-use;
-          # }
           rec {
             name = "sudo";
-            # file = "plugins/sudo/sudo.plugin.zsh";
-            src = fetchurl {
-              url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/refs/heads/master/plugins/sudo/sudo.plugin.zsh";
-              sha256 = "0n9cbkcngfw7ifbb2h91pwwh3sigzcf1an5m3mjz4yk0sw6saz55";
-            };
+            file = "plugins/sudo/sudo.plugin.zsh";
+            src = ohMyZshSource;
+            # src = fetchurl {
+            #   url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/refs/heads/master/plugins/sudo/sudo.plugin.zsh";
+            #   sha256 = "0n9cbkcngfw7ifbb2h91pwwh3sigzcf1an5m3mjz4yk0sw6saz55";
+            # };
           }
           rec {
             name = src.pname;

@@ -70,7 +70,15 @@ in {
     };
 
     home = {
-      file = {"itermCatppuccin".source = itermCatppuccin;} // osConfig.home.homeFiles;
+      file =
+        {
+          ".ssh/rc".text = ''
+            if test "$SSH_AUTH_SOCK"; then
+            	ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
+            fi
+          '';
+        }
+        // osConfig.home.homeFiles;
 
       stateVersion = "25.05";
 

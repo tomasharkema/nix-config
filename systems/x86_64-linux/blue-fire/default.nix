@@ -47,7 +47,7 @@ in {
 
       hardware = {
         tpm.enable = true;
-        secure-boot.enable = false;
+        secure-boot.enable = true;
         # remote-unlock.enable = false;
         network.xgbe.enable = true;
         nvidia = {
@@ -63,7 +63,7 @@ in {
 
     apps = {
       atop = {
-        enable = false;
+        enable = true;
         httpd = false;
       };
       # "bmc-watchdog".enable = true;
@@ -240,7 +240,6 @@ in {
         # nvidiaPersistenced = lib.mkForce true;
       };
     };
-    # fileSystems."/boot".mountPoint = "/boot/efi";
     boot = {
       tmp = {
         useTmpfs = true;
@@ -267,48 +266,48 @@ in {
       binfmt.emulatedSystems = ["aarch64-linux"];
 
       recovery = {
-        sign = false;
-        install = false;
+        sign = true;
+        install = true;
       };
 
-      loader = {
-        systemd-boot.enable = false;
+      # loader = {
+      #   systemd-boot.enable = false;
 
-        efi = {
-          canTouchEfiVariables = true;
-          efiSysMountPoint = "/boot";
-        };
-        grub = {
-          enable = true;
-          efiSupport = true;
-          #efiInstallAsRemovable = true;
-          device = "nodev";
-          # netbootxyz.enable = true;
-          memtest86.enable = true;
-          extraFiles = {
-            "efi/netbootxyz/netboot.xyz.efi" = "${pkgs.netbootxyz-efi}";
-          };
-          extraEntries = ''
-            menuentry "netboot.xyz" {
-              search --no-floppy --file --set=root /EFI/netbootxyz/netboot.xyz.efi
-              chainloader /EFI/netbootxyz/netboot.xyz.efi
-            }
-          '';
-          extraConfig = ''
-            serial --unit=2 --speed=115200 --word=8 --parity=no --stop=1
-            terminal_input --append serial
-            terminal_output --append serial
-          '';
+      #   efi = {
+      #     canTouchEfiVariables = true;
+      #     efiSysMountPoint = "/boot";
+      #   };
+      #   grub = {
+      #     enable = true;
+      #     efiSupport = true;
+      #     #efiInstallAsRemovable = true;
+      #     device = "nodev";
+      #     # netbootxyz.enable = true;
+      #     memtest86.enable = true;
+      #     extraFiles = {
+      #       "efi/netbootxyz/netboot.xyz.efi" = "${pkgs.netbootxyz-efi}";
+      #     };
+      #     extraEntries = ''
+      #       menuentry "netboot.xyz" {
+      #         search --no-floppy --file --set=root /EFI/netbootxyz/netboot.xyz.efi
+      #         chainloader /EFI/netbootxyz/netboot.xyz.efi
+      #       }
+      #     '';
+      #     extraConfig = ''
+      #       serial --unit=2 --speed=115200 --word=8 --parity=no --stop=1
+      #       terminal_input --append serial
+      #       terminal_output --append serial
+      #     '';
 
-          # ipxe = {
-          #   netboot-xyz = ''
-          #     #!ipxe
-          #     dhcp
-          #     chain --autofree https://boot.netboot.xyz
-          #   '';
-          # };
-        };
-      };
+      #     # ipxe = {
+      #     #   netboot-xyz = ''
+      #     #     #!ipxe
+      #     #     dhcp
+      #     #     chain --autofree https://boot.netboot.xyz
+      #     #   '';
+      #     # };
+      #   };
+      # };
 
       initrd = {
         availableKernelModules = [

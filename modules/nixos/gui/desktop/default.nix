@@ -88,7 +88,14 @@ in {
         alsa.support32Bit = true;
         pulse.enable = true;
         jack.enable = true;
-
+        wireplumber = {
+          enable = true;
+          extraConfig = {
+            "monitor.bluez.properties" = {
+              bluez5.dummy-avrcp-player = true;
+            };
+          };
+        };
         lowLatency = {
           # enable this module
           enable = true;
