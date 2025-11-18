@@ -27,6 +27,7 @@ in {
 
       zabbixServer = lib.mkIf cfgServer.enable {
         enable = true;
+        extraPackages = with pkgs; [net-tools nmap traceroute iputils];
       };
 
       # zabbixProxy = lib.mkIf (cfgServer.enable) {

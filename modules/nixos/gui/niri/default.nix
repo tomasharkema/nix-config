@@ -155,7 +155,10 @@ in {
           package = pkgs.niri; # -unstable;
           settings = {
             input = {
-              mouse.natural-scroll = true;
+              mouse = {
+                natural-scroll = true;
+                accel-speed = -0.5;
+              };
               touchpad = {click-method = "clickfinger";};
             };
             prefer-no-csd = true;
@@ -207,6 +210,7 @@ in {
             };
             binds = with hmConfig.lib.niri.actions; let
               dms-ipc = spawn "dms" "ipc";
+              screenshot = spawn "niri" "msg" "action" "screenshot";
             in {
               "Mod+SPACE" = {
                 action = dms-ipc "spotlight" "toggle";
@@ -507,7 +511,7 @@ in {
               # rather than stacked on top of each other.
               "Mod+W".action = toggle-column-tabbed-display;
 
-              # "Print".action = screenshot;
+              "Print".action = screenshot;
               # "Ctrl+Print".action = screenshot-screen;
               # "Alt+Print".action = screenshot-window;
 
