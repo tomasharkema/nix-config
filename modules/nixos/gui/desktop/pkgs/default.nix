@@ -67,7 +67,7 @@
     darktable
     custom.wsjtx
     sdrpp
-    # rpi-imager
+    rpi-imager
     custom.netsleuth
     handbrake
     thonny

@@ -7,7 +7,7 @@
 }: let
   cfgDesktop = config.gui.desktop;
   hmConfig = config.home-manager.users.tomas;
-  user = config.services.greetd.settings.default_session.user;
+  # user = config.services.greetd.settings.default_session.user;
 in {
   config = lib.mkIf cfgDesktop.enable {
     programs = {
@@ -35,15 +35,15 @@ in {
     services.orca.enable = lib.mkForce false;
 
     systemd.user.services.niri-flake-polkit = {
-      wants = lib.mkForce [];
-      requisite = ["graphical-session.target"];
-      partOf = ["graphical-session.target"];
+      # wants = lib.mkForce [];
+      # requisite = ["graphical-session.target"];
+      # partOf = ["graphical-session.target"];
     };
     # systemd.user.services.niri-flake-polkit.enable = false;
 
     environment = {
       systemPackages = with pkgs; [swaybg];
-      # pathsToLink = ["/share/wayland-sessions"];
+      pathsToLink = ["/share/wayland-sessions"];
     };
     xdg.portal.config = {
       niri = {
@@ -54,40 +54,35 @@ in {
       };
     };
 
-    programs = {
-      dankMaterialShell = {
-        greeter = {
-          enable = true;
+    # programs = {
+    #   dankMaterialShell = {
+    #     greeter = {
+    #       enable = true;
 
-          compositor.name = "niri";
-          configHome = "/home/tomas";
-          logs = {
-            save = true;
-            path = "/var/log/dank/greet.log";
-          };
-        };
-      };
-    };
+    #       compositor.name = "niri";
+    #       configHome = "/home/tomas";
+    #       logs = {
+    #         save = true;
+    #         path = "/var/log/dank/greet.log";
+    #       };
+    #     };
+    #   };
+    # };
 
-    systemd.tmpfiles.settings."10-dmsgreeter" = {
-      "/var/log/dank".d = {
-        user = user;
-        group = user;
-        mode = "0755";
-      };
-      #   "${config.users.users.greeter.home}".d = {
-      #     user = user;
-      #     group = user;
-      #     mode = "0755";
-      #   };
-    };
+    # systemd.tmpfiles.settings."10-dmsgreeter" = {
+    #   "/var/log/dank".d = {
+    #     user = user;
+    #     group = user;
+    #     mode = "0755";
+    #   };
+    # };
 
-    users.users = {
-      tomas.extraGroups = [
-        user
-      ];
-      # greeter.home = "/var/lib/greeter";
-    };
+    # users.users = {
+    # tomas.extraGroups = [
+    # user
+    # ];
+    # greeter.home = "/var/lib/greeter";
+    # };
 
     security.pam.services = {
       login.fprintAuth = lib.mkIf config.services.fprintd.enable false;
@@ -102,7 +97,7 @@ in {
     # greeterManagesPlymouth = true;
     # };
 
-    security.ipa.ifpAllowedUids = [user];
+    # security.ipa.ifpAllowedUids = [user];
 
     home-manager.users.tomas = {
       catppuccin = {
@@ -173,6 +168,7 @@ in {
             environment = {
               "NIXOS_OZONE_WL" = "1";
               ELECTRON_OZONE_PLATFORM_HINT = "auto";
+              QT_QPA_PLATFORM = "wayland";
             };
             hotkey-overlay.skip-at-startup = true;
             window-rules = [

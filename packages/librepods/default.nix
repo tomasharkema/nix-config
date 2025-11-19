@@ -2,6 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  wrapGAppsHook4,
   qt6Packages,
   cmake,
   ninja,
@@ -25,21 +26,34 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     pkg-config
     cmake
-    # ninja
+    ninja
+
+    qt6Packages.wrapQtAppsHook
+    wrapGAppsHook4
   ];
 
   buildInputs = [
     # qt6Packages.qtbase
-    qt6Packages.wrapQtAppsHook
     qt6Packages.qtquick3d
     qt6Packages.qtdeclarative
     qt6Packages.qtmultimedia
     qt6Packages.qtquicktimeline
     qt6Packages.qtconnectivity
     qt6Packages.qtwayland
+    qt6Packages.qtsvg
+    qt6Packages.qttools
     openssl
     pulseaudioFull
   ];
+
+  qtWrapperArgs = [
+    "--unset QT_QPA_PLATFORMTHEME"
+    "--unset QT_STYLE_OVERRIDE"
+  ];
+  dontWrapGApps = true;
+  preFixup = ''
+    qtWrapperArgs+=("''${gappsWrapperArgs[@]}")
+  '';
 
   meta = {
     description = "AirPods liberated from Apple's ecosystem";

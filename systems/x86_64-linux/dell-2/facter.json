@@ -1040,7 +1040,7 @@
         "fpu_exception": false,
         "cpuid_level": 22,
         "write_protect": false,
-        "tlb_size": 32767,
+        "tlb_size": 32765,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -1152,7 +1152,7 @@
         "sysfs_id": "/class/block/zram0",
         "unix_device_names": [
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/ca7b1dbe-7d86-4b04-bdc5-6346a34747f8",
+          "/dev/disk/by-uuid/d335ffe7-54ca-4aa3-a133-8d1d5f28854f",
           "/dev/zram0"
         ],
         "resources": [
@@ -1700,6 +1700,38 @@
         "index": 54,
         "attached_to": 0,
         "bus_type": {
+          "hex": "0080",
+          "name": "ps2",
+          "value": 128
+        },
+        "base_class": {
+          "hex": "0118",
+          "name": "touchpad",
+          "value": 280
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "ps2",
+          "value": 0
+        },
+        "vendor": {
+          "hex": "0002",
+          "value": 2
+        },
+        "device": {
+          "hex": "0007",
+          "value": 7
+        },
+        "sysfs_id": "/devices/platform/i8042/serio1/input/input10",
+        "unix_device_names": [
+          "/dev/input/event15",
+          "/dev/input/ + handler"
+        ]
+      },
+      {
+        "index": 55,
+        "attached_to": 0,
+        "bus_type": {
           "hex": "0081",
           "name": "serial",
           "value": 129
@@ -1722,9 +1754,9 @@
           "hex": "7a13",
           "value": 31251
         },
-        "sysfs_id": "/devices/pci0000:00/0000:00:15.1/i2c_designware.1/i2c-10/i2c-SYNA2393:00/0018:06CB:7A13.0002/input/input20",
+        "sysfs_id": "/devices/pci0000:00/0000:00:15.1/i2c_designware.1/i2c-11/i2c-SYNA2393:00/0018:06CB:7A13.0002/input/input25",
         "unix_device_names": [
-          "/dev/input/event15",
+          "/dev/input/event21",
           "/dev/input/ + handler"
         ]
       }
@@ -1896,7 +1928,7 @@
     ],
     "network_interface": [
       {
-        "index": 51,
+        "index": 52,
         "attached_to": 0,
         "class_list": [
           "network_interface"
@@ -1918,7 +1950,7 @@
         ]
       },
       {
-        "index": 52,
+        "index": 53,
         "attached_to": 17,
         "class_list": [
           "network_interface"
