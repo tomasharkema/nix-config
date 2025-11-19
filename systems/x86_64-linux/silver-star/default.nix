@@ -335,6 +335,11 @@
       #   };
       # };
 
+      ollama = {
+        enable = true;
+        acceleration = "cuda";
+      };
+
       cloudflared = {
         enable = true;
         tunnels = {
@@ -353,6 +358,10 @@
       kmscon.enable = lib.mkForce false;
 
       netbootxyz.enable = true;
+
+      avahi = {
+        allowInterfaces = ["br0"];
+      };
     };
 
     networking = {
