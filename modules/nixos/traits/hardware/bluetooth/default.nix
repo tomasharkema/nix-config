@@ -32,6 +32,7 @@ in {
       dbus.enable = true;
       # dconf.enable = true;
     };
+
     environment.systemPackages = with pkgs; [
       bluetuith
       blueberry

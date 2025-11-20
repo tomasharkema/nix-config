@@ -59,7 +59,8 @@ in {
           #"com.bitwarden.desktop"
           "io.github.flattool.Warehouse"
           "io.github.plrigaux.sysd-manager"
-          # "org.raspberrypi.rpi-imager"
+          "org.raspberrypi.rpi-imager"
+          "com.usebottles.bottles"
         ]
         ++ (
           lib.optionals pkgs.stdenv.isx86_64

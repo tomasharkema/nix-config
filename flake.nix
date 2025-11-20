@@ -910,5 +910,38 @@
       url = "github:madsbv/nix-options-search";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zsh-colored-man-pages = {
+      url = "github:ael-code/zsh-colored-man-pages";
+      flake = false;
+    };
+    zsh-async = {
+      url = "github:mafredri/zsh-async";
+      flake = false;
+    };
+    ohmyzsh = {
+      url = "github:ohmyzsh/ohmyzsh";
+      flake = false;
+    };
+    zsh-tio = {
+      url = "github:JBarberU/zsh-tio";
+      flake = false;
+    };
+    complete-ng = {
+      url = "github:joknarf/complete-ng";
+      flake = false;
+    };
+    zsh-tab-title = {
+      url = "github:trystan2k/zsh-tab-title";
+      flake = false;
+    };
+    zsh-smartinput = {
+      url = "github:momo-lab/zsh-smartinput";
+      flake = false;
+    };
+    zsh-sshinfo = {
+      url = "github:SckyzO/zsh-sshinfo";
+      flake = false;
+    };
   };
 }

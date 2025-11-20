@@ -97,7 +97,7 @@
       # usb-modeswitch.enable = true;
       # fw-fanctrl.enable = true;
       nvidia = {
-        forceFullCompositionPipeline = true;
+        # forceFullCompositionPipeline = true;
         modesetting.enable = true;
         prime = {
           sync.enable = true;
@@ -274,11 +274,11 @@
       #   interface = "wlp59s0";
       # };
 
-      # wireshark = {
-      #   enable = true;
-      #   usbmon.enable = true;
-      #   dumpcap.enable = true;
-      # };
+      wireshark = {
+        enable = true;
+        usbmon.enable = true;
+        dumpcap.enable = true;
+      };
     };
 
     # system.includeBuildDependencies = true;

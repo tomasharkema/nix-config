@@ -22,9 +22,6 @@ in {
 
       #     #   # native wayland support (unstable)
       wineWowPackages.waylandFull
-      (bottles.override {
-        removeWarningPopup = true;
-      })
     ];
   };
 }

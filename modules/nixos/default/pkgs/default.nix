@@ -225,6 +225,8 @@
         viddy
         vim
         watchlog
+        more
+        fbterm
         # wavemon
         websocat
         wget

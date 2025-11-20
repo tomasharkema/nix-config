@@ -129,6 +129,22 @@
         "type": "github"
       }
     },
+    "complete-ng": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1763368374,
+        "narHash": "sha256-G39GZgRkSDQgD+5pI5GefrMxqSRNLVWRWv/SXhqOvyk=",
+        "owner": "joknarf",
+        "repo": "complete-ng",
+        "rev": "3e820f215363b2a7a14858960fd4e526e1977c3d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "joknarf",
+        "repo": "complete-ng",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1762538466,
@@ -1604,6 +1620,22 @@
         "type": "github"
       }
     },
+    "ohmyzsh": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1763294949,
+        "narHash": "sha256-UY9NoGynwWqUox9j5l4p2slx2brWRHsnGBH/Y9ctVwc=",
+        "owner": "ohmyzsh",
+        "repo": "ohmyzsh",
+        "rev": "8a4d6fc0a2b5586f093fb2b96b51e2141f643284",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ohmyzsh",
+        "repo": "ohmyzsh",
+        "type": "github"
+      }
+    },
     "op-shell-plugins": {
       "inputs": {
         "nixpkgs": [
@@ -1725,6 +1757,7 @@
         "agenix-rekey": "agenix-rekey",
         "catppuccin": "catppuccin",
         "chaotic": "chaotic",
+        "complete-ng": "complete-ng",
         "dankMaterialShell": "dankMaterialShell",
         "darwin": "darwin",
         "devshell": "devshell_2",
@@ -1752,6 +1785,7 @@
         "nox": "nox",
         "nvidia-patch": "nvidia-patch",
         "nvidia-vgpu-nixos": "nvidia-vgpu-nixos",
+        "ohmyzsh": "ohmyzsh",
         "op-shell-plugins": "op-shell-plugins",
         "piratebay": "piratebay",
         "poetry2nix": "poetry2nix",
@@ -1759,7 +1793,13 @@
         "snowfall-lib": "snowfall-lib",
         "tsnsrv": "tsnsrv",
         "tsui": "tsui",
-        "vscode-server": "vscode-server"
+        "vscode-server": "vscode-server",
+        "zsh-async": "zsh-async",
+        "zsh-colored-man-pages": "zsh-colored-man-pages",
+        "zsh-smartinput": "zsh-smartinput",
+        "zsh-sshinfo": "zsh-sshinfo",
+        "zsh-tab-title": "zsh-tab-title",
+        "zsh-tio": "zsh-tio"
       }
     },
     "rust-overlay": {
@@ -2332,6 +2372,102 @@
       "original": {
         "owner": "Supreeeme",
         "repo": "xwayland-satellite",
+        "type": "github"
+      }
+    },
+    "zsh-async": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1672955751,
+        "narHash": "sha256-mkTmgSnfoZlTaOPhw0Y0yG1BkZv+oTo/eEisZZTN5nM=",
+        "owner": "mafredri",
+        "repo": "zsh-async",
+        "rev": "ee1d11b68c38dec24c22b1c51a45e8a815a79756",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mafredri",
+        "repo": "zsh-async",
+        "type": "github"
+      }
+    },
+    "zsh-colored-man-pages": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1554205411,
+        "narHash": "sha256-087bNmB5gDUKoSriHIjXOVZiUG5+Dy9qv3D69E8GBhs=",
+        "owner": "ael-code",
+        "repo": "zsh-colored-man-pages",
+        "rev": "57bdda68e52a09075352b18fa3ca21abd31df4cb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ael-code",
+        "repo": "zsh-colored-man-pages",
+        "type": "github"
+      }
+    },
+    "zsh-smartinput": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1628518096,
+        "narHash": "sha256-DMkUAkCQRT1gLWtr39xFIB5FGL0IQF87X35NJEKQvfo=",
+        "owner": "momo-lab",
+        "repo": "zsh-smartinput",
+        "rev": "aac958ae178df5025e024ebf6aae1aec190eec72",
+        "type": "github"
+      },
+      "original": {
+        "owner": "momo-lab",
+        "repo": "zsh-smartinput",
+        "type": "github"
+      }
+    },
+    "zsh-sshinfo": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1754384872,
+        "narHash": "sha256-xTSgL0i2yiNFwi6cJYzAPuLGJ31upm9EC4t7aPncSc0=",
+        "owner": "SckyzO",
+        "repo": "zsh-sshinfo",
+        "rev": "e420dd56d55e69b420e08eac3cf7fb0b80744ecc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SckyzO",
+        "repo": "zsh-sshinfo",
+        "type": "github"
+      }
+    },
+    "zsh-tab-title": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1763300850,
+        "narHash": "sha256-/VYagQGgiDiAOPZr20Xo0tC9Nv5b+H9iLR9STGE3I/U=",
+        "owner": "trystan2k",
+        "repo": "zsh-tab-title",
+        "rev": "96724bcd9fb10d30d6b66b90ca13df452a3401ed",
+        "type": "github"
+      },
+      "original": {
+        "owner": "trystan2k",
+        "repo": "zsh-tab-title",
+        "type": "github"
+      }
+    },
+    "zsh-tio": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1750079315,
+        "narHash": "sha256-Gcj6ahqAtUiCLFxE+FH/1i914CmzSUHthCLvLPYCY2I=",
+        "owner": "JBarberU",
+        "repo": "zsh-tio",
+        "rev": "c846f8e36b4d4772a10382359dba57619c9c9b22",
+        "type": "github"
+      },
+      "original": {
+        "owner": "JBarberU",
+        "repo": "zsh-tio",
         "type": "github"
       }
     }

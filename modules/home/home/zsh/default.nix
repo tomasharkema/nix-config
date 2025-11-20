@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
   config,
@@ -15,11 +16,6 @@
         }
       )
       config.programs.zsh.plugins;
-
-    # home.packages = builtins.map (n: n.src) config.programs.zsh.plugins;
-    # home.packages = with pkgs; [
-    # jupyter
-    # ];
 
     programs = {
       zoxide.enable = true;
@@ -53,7 +49,16 @@
           dl = "${config.home.homeDirectory}/Downloads";
           dev = "${config.home.homeDirectory}/Developer";
           nix-conf = "${config.home.homeDirectory}/Developer/nix-config";
+          media = "/run/media/tomas";
         };
+
+        sessionVariables = {
+          LESS = "-R";
+          PAGER = "more";
+        };
+        envExtra = ''
+          ZSH_CACHE_DIR="${config.xdg.cacheHome}/oh-my-zsh";
+        '';
 
         #nixos-menu () {
         #  ${lib.getExe pkgs.custom.menu}
@@ -61,28 +66,57 @@
         #zle -N nixos-menu
         #bindkey '^A' nixos-menu
         initExtraBeforeCompInit = ''
-          COMPLETION_WAITING_DOTS="true"
-          HYPHEN_INSENSITIVE="true"
+          export HYPHEN_INSENSITIVE="true"
           zstyle ':completion:*:ssh:*' hosts off
+
+          expand-or-complete-with-dots() {
+            # use $COMPLETION_WAITING_DOTS either as toggle or as the sequence to show
+            # [[ $COMPLETION_WAITING_DOTS = true ]] && COMPLETION_WAITING_DOTS="%F{red}…%f"
+            # turn off line wrapping and print prompt-expanded "dot" sequence
+            printf '\e[?7l%s\e[?7h' "%F{red}…%f"
+            zle expand-or-complete
+            zle redisplay
+          }
+          zle -N expand-or-complete-with-dots
+          # Set the function as the default tab completion widget
+          bindkey -M emacs "^I" expand-or-complete-with-dots
+          bindkey -M viins "^I" expand-or-complete-with-dots
+          bindkey -M vicmd "^I" expand-or-complete-with-dots
         '';
 
         initExtra = ''
           bindkey -M emacs -s '^A' 'menu^M'
           bindkey -M vicmd -s '^A' 'menu^M'
           bindkey -M viins -s '^A' 'menu^M'
+
+          function zellij_refresh_ssh_sock {
+            if [ -n "$ZELLIJ" ]; then
+              if [ -e  ]; then
+                export SSH_AUTH_SOCK="$HOME/.ssh/ssh_auth_sock"
+              fi
+            fi
+          }
+
+          add-zsh-hook precmd zellij_refresh_ssh_sock
+
+          if [[ "$TTY" = /dev/tty* ]] ; then
+            fbterm && exit
+          fi
+
+          function take() {
+            mkdir -p $@ && cd ''${@:$#}
+          }
         '';
-
-        # function zellij_refresh_ssh_sock {
-        #   if [ -n "$ZELLIJ" ]; then
-        #     export SSH_AUTH_SOCK=$(find /tmp/ssh*/ -type s -name "*agent.*" | head -1)
-        #   fi
-        # }
-
-        # add-zsh-hook precmd zellij_refresh_ssh_sock
 
         # initExtraFirst = ''
         #   source "${iterm}";
         # '';
+        shellGlobalAliases = {
+          "..." = "'../..'";
+          "...." = "'../../..'";
+          "....." = "'../../../..'";
+          "......" = "'../../../../..'";
+        };
 
         shellAliases = let
           silver = "-H 192.168.69.45 -U root -P \"$(op item get abrgfwmlbnc2zghpugawqoagjq --field password --reveal)\"";
@@ -109,15 +143,19 @@
           dig = "dog";
           yz = "yazi";
           ys = "yazi /sys";
+          nob = "nh os build .";
+          not = "nh os test .";
+          nos = "nh os switch .";
+          nobo = "nh os boot .";
 
           man = "batman";
-          # wget = "wget2";
+          wget = "wget2";
           # silver-star-ipmi raw 0x30 0x30 0x01 0x00
           # silver-star-ipmi raw 0x30 0x30 0x02 0xff 0x10
 
           docker-login = "op item get raeclwvdys3epkmc5zthv4pdha --format=json --vault=qtvfhvfotoqynomh2wd3yzoofe | jq '.fields[1].value' -r | docker login ghcr.io --username tomasharkema --password-stdin";
 
-          unifi-tui = "unifi-tui --url \"https://192.168.1.1/proxy/network/integrations\" --api-key \"$(op item get ojsyugyddrsxtq3kayoonibhda --reveal --field credential)\"";
+          unifi-tui = "unifi-tui --insecure --url \"https://192.168.1.1/proxy/network/integrations\" --api-key \"$(op item get ojsyugyddrsxtq3kayoonibhda --reveal --field credential)\"";
 
           zellij = "systemd-run --scope --user zellij";
 
@@ -125,21 +163,33 @@
         };
 
         plugins = with pkgs; let
-          ohMyZshSource = pkgs.fetchFromGitHub {
-            owner = "ohmyzsh";
-            repo = "ohmyzsh";
-            rev = "8a4d6fc0a2b5586f093fb2b96b51e2141f643284";
-            hash = "sha256-UY9NoGynwWqUox9j5l4p2slx2brWRHsnGBH/Y9ctVwc=";
-          };
+          ohMyZshSource = inputs.ohmyzsh;
         in [
-          rec {
+          {
             name = "sudo";
             file = "plugins/sudo/sudo.plugin.zsh";
             src = ohMyZshSource;
-            # src = fetchurl {
-            #   url = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/refs/heads/master/plugins/sudo/sudo.plugin.zsh";
-            #   sha256 = "0n9cbkcngfw7ifbb2h91pwwh3sigzcf1an5m3mjz4yk0sw6saz55";
-            # };
+          }
+          {
+            name = "kitty";
+            file = "plugins/kitty/kitty.plugin.zsh";
+            src = ohMyZshSource;
+          }
+          {
+            name = "websearch";
+            file = "plugins/web-search/web-search.plugin.zsh";
+            src = ohMyZshSource;
+          }
+
+          # {
+          #   name = "termsupport";
+          #   file = "lib/termsupport.zsh";
+          #   src = ohMyZshSource;
+          # }
+          {
+            name = "1password";
+            file = "plugins/1password/1password.plugin.zsh";
+            src = ohMyZshSource;
           }
           rec {
             name = src.pname;
@@ -180,11 +230,6 @@
             file = "share/zsh/zsh-edit/zsh-edit.plugin.zsh";
             src = zsh-edit;
           }
-          # rec {
-          #   name = src.pname;
-          #   file = "share/zsh/zsh-abbr/abbr.plugin.zsh";
-          #   src = zsh-abbr;
-          # }
           rec {
             name = src.pname;
             file = "share/zsh/zsh-forgit/forgit.plugin.zsh";
@@ -200,11 +245,11 @@
             file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
             src = zsh-nix-shell;
           }
-          # rec {
-          #   name = src.pname;
-          #   file = "share/zsh/plugins/command-time/command-time.plugin.zsh";
-          #   src = zsh-command-time;
-          # }
+          rec {
+            name = src.pname;
+            file = "share/zsh/plugins/command-time/command-time.plugin.zsh";
+            src = zsh-command-time;
+          }
           rec {
             name = src.pname;
             file = "share/zsh/plugins/nix/nix.plugin.zsh";
@@ -223,113 +268,34 @@
           {
             name = "zsh-async";
             file = "async.zsh";
-            src = pkgs.fetchgit {
-              url = "https://github.com/mafredri/zsh-async";
-              rev = "bbbc92bd01592513a6b7739a45b7911af18acaef";
-              hash = "sha256-mpXT3Hoz0ptVOgFMBCuJa0EPkqP4wZLvr81+1uHDlCc=";
-            };
+            src = inputs.zsh-async;
+          }
+          {
+            name = "complete-ng";
+            file = "complete-ng.plugin.zsh";
+            src = inputs.complete-ng;
           }
           {
             name = "zsh-colored-man-pages";
             file = "colored-man-pages.plugin.zsh";
-            src = pkgs.fetchgit {
-              url = "https://github.com/ael-code/zsh-colored-man-pages";
-              rev = "57bdda68e52a09075352b18fa3ca21abd31df4cb";
-              hash = "sha256-087bNmB5gDUKoSriHIjXOVZiUG5+Dy9qv3D69E8GBhs=";
-            };
+            src = inputs.zsh-colored-man-pages;
+          }
+          {
+            name = "zsh-tab-title";
+            file = "zsh-tab-title.plugin.zsh";
+            src = inputs.zsh-tab-title;
+          }
+          {
+            name = "zsh-smartinput";
+            file = "smartinput.plugin.zsh";
+            src = inputs.zsh-smartinput;
+          }
+          {
+            name = "zsh-sshinfo";
+            file = "sshinfo.plugin.zsh";
+            src = inputs.zsh-sshinfo;
           }
         ];
-
-        oh-my-zsh = lib.mkIf false {
-          enable = true;
-
-          #extraConfig = ''
-          #  ZSH_WEB_SEARCH_ENGINES=(nix-package "https://search.nixos.org/packages?query=" nix-option "https://search.nixos.org/options?query=")
-          #'';
-          plugins =
-            [
-              "1password"
-              "autojump"
-              "battery"
-              "bgnotify"
-              "colorize"
-              "common-aliases"
-              "copybuffer"
-              "copyfile"
-              "copypath"
-              "cp"
-              "dirhistory"
-              "dirpersist"
-              "dotnet"
-              "emoji"
-              "encode64"
-              "extract"
-              "fastfile"
-              "fbterm"
-              "fzf"
-              "gh"
-              "git-auto-fetch"
-              "git-extras"
-              "git-prompt"
-              "git"
-              "github"
-              "gitignore"
-              "golang"
-              # "history-substring-search"
-              # "history"
-              "iterm2"
-              "jira"
-              "jsontools"
-              "kitty"
-              "man"
-              "mix"
-              "nmap"
-              "perms"
-              "safe-paste"
-              "screen"
-              "shrink-path"
-              "ssh"
-              "sublime-merge"
-              "sublime"
-              "sudo"
-              "swiftpm"
-              "tailscale"
-              "tig"
-              "tldr"
-              "tmux"
-              "torrent"
-              "transfer"
-              "universalarchive"
-              "urltools"
-              "vi-mode"
-              "vscode"
-              "wakeonlan"
-              "wd"
-              "web-search"
-              "yarn"
-              "uv"
-              "z"
-              "zoxide"
-              "zsh-interactive-cd"
-              "zsh-navigation-tools"
-              # "direnv"
-              # "docker"
-              # "iterm-tab-color"
-              # "you-should-use"
-            ]
-            ++ (lib.optionals pkgs.stdenv.isDarwin [
-              "brew"
-              "dash"
-              "macos"
-              "pod"
-              "xcode"
-            ])
-            ++ (lib.optionals pkgs.stdenv.isLinux [
-              "systemd"
-              "firewalld"
-            ]);
-          #   # theme = "powerlevel10k/powerlevel10k";
-        };
       };
     };
   };
