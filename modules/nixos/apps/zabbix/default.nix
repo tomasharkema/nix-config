@@ -5,9 +5,11 @@
   ...
 }: let
   cfgServer = config.apps.zabbix.server;
+  cfgProxy = config.apps.zabbix.proxy;
 in {
   options.apps.zabbix = {
     server.enable = lib.mkEnableOption "zabbix server";
+    proxy.enable = lib.mkEnableOption "zabbix proxy";
   };
 
   config = {
@@ -16,7 +18,9 @@ in {
     #   networkmanager.enable = lib.mkForce false;
     # };
     environment.systemPackages = [pkgs.zabbix-cli pkgs.zabbixctl];
+
     users.groups.docker.members = ["zabbix-agent"];
+
     services = {
       zabbixAgent = {
         enable = true;
@@ -25,6 +29,19 @@ in {
           ServerActive = "silver-star.ling-lizard.ts.net";
         };
         package = pkgs.zabbix74.agent2;
+      };
+
+      zabbixProxy = lib.mkIf cfgProxy.enable {
+        enable = true;
+        server = "192.168.0.100";
+        package = pkgs.zabbix74.proxy-sqlite;
+        extraPackages = with pkgs; [net-tools nmap traceroute iputils];
+        settings = {
+          CacheSize = "1G";
+          SSHKeyLocation = "/var/lib/zabbix/.ssh";
+          StartPingers = 32;
+        };
+        openFirewall = true;
       };
 
       zabbixServer = lib.mkIf cfgServer.enable {

@@ -335,9 +335,17 @@
       #   };
       # };
 
-      ollama = {
+      # ollama = {
+      #   enable = true;
+      #   acceleration = "cuda";
+      # };
+      llama-cpp = {
         enable = true;
-        acceleration = "cuda";
+        port = 11434;
+        model = pkgs.fetchurl {
+          url = "https://huggingface.co/bartowski/Mistral-Nemo-Instruct-2407-GGUF/resolve/main/Mistral-Nemo-Instruct-2407-Q4_K_S.gguf";
+          sha256 = "sha256-RYwXdWWe6whkcBSukURsNkbbCYZU4wVHkPTvPzVDhcg=";
+        };
       };
 
       cloudflared = {

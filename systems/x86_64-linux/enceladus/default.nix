@@ -38,6 +38,7 @@
         enable = true;
         #server.enable = true;
       };
+      zabbix.proxy.enable = true;
     };
 
     services = {
