@@ -1797,7 +1797,6 @@
         "zsh-async": "zsh-async",
         "zsh-colored-man-pages": "zsh-colored-man-pages",
         "zsh-smartinput": "zsh-smartinput",
-        "zsh-sshinfo": "zsh-sshinfo",
         "zsh-tab-title": "zsh-tab-title",
         "zsh-tio": "zsh-tio"
       }
@@ -2420,22 +2419,6 @@
       "original": {
         "owner": "momo-lab",
         "repo": "zsh-smartinput",
-        "type": "github"
-      }
-    },
-    "zsh-sshinfo": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1754384872,
-        "narHash": "sha256-xTSgL0i2yiNFwi6cJYzAPuLGJ31upm9EC4t7aPncSc0=",
-        "owner": "SckyzO",
-        "repo": "zsh-sshinfo",
-        "rev": "e420dd56d55e69b420e08eac3cf7fb0b80744ecc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "SckyzO",
-        "repo": "zsh-sshinfo",
         "type": "github"
       }
     },

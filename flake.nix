@@ -939,9 +939,5 @@
       url = "github:momo-lab/zsh-smartinput";
       flake = false;
     };
-    zsh-sshinfo = {
-      url = "github:SckyzO/zsh-sshinfo";
-      flake = false;
-    };
   };
 }

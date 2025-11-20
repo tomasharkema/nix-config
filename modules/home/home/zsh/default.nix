@@ -290,11 +290,6 @@
             file = "smartinput.plugin.zsh";
             src = inputs.zsh-smartinput;
           }
-          {
-            name = "zsh-sshinfo";
-            file = "sshinfo.plugin.zsh";
-            src = inputs.zsh-sshinfo;
-          }
         ];
       };
     };

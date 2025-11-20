@@ -52,7 +52,10 @@ in {
     #     }
     #   ];
     # };
-
+    systemd.services.netdata = {
+      path = [pkgs.samba "/run/wrappers"];
+      serviceConfig.CapabilityBoundingSet = ["CAP_SETGID"];
+    };
     services.netdata = {
       enable = lib.mkDefault true;
 
