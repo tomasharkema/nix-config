@@ -1669,7 +1669,7 @@
         "sysfs_id": "/devices/pci0000:00/0000:00:1c.4/0000:05:00.0",
         "sysfs_bus_id": "0000:05:00.0",
         "unix_device_names": [
-          "enp5s0"
+          "enp6s0"
         ],
         "resources": [
           {
@@ -1916,10 +1916,10 @@
           "value": 1
         },
         "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/enp5s0",
+        "sysfs_id": "/class/net/enp6s0",
         "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.4/0000:05:00.0",
         "unix_device_names": [
-          "enp5s0"
+          "enp6s0"
         ],
         "resources": [
           {

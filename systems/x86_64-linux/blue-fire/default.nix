@@ -123,7 +123,7 @@ in {
       #   "192.168.0.100" = ["nix-cache.harke.ma"];
       # };
       hostName = "blue-fire";
-      hostId = "529fd7aa";
+
       usePredictableInterfaceNames = true;
       useDHCP = false;
       networkmanager.enable = true;
@@ -149,7 +149,7 @@ in {
       nameservers = ["192.168.0.1"];
 
       bridges.br0 = {
-        interfaces = ["enp5s0"];
+        interfaces = ["enp6s0"];
       };
 
       defaultGateway = {
@@ -182,7 +182,7 @@ in {
           mtu = 9000;
         };
 
-        "enp5s0" = {
+        "enp6s0" = {
           useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
@@ -252,7 +252,7 @@ in {
       kernelParams = [
         "console=tty1"
         "console=ttyS2,115200"
-        "earlyprintk=ttyS2"
+        # "earlyprintk=ttyS2"
         "rootdelay=300"
         "panic=1"
         "boot.panic_on_fail"
