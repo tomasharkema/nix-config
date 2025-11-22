@@ -12,7 +12,7 @@ in {
     enable = lib.mkEnableOption "usbguard" // {default = true;};
   };
 
-  config = {
+  config = lib.mkIf config.apps.usbguard.enable {
     environment.systemPackages = with pkgs; [
       usbguard-notifier
       # config.nur.repos.mloeper.usbguard-applet-qt
@@ -92,7 +92,7 @@ in {
         ];
       };
       usbguard = {
-        enable = lib.mkDefault true;
+        enable = true;
         dbus.enable = true;
         # ruleFile
         # package

@@ -78,6 +78,7 @@
       docker.enable = true;
       zabbix.server.enable = true;
       prometheus.server.enable = true;
+      usbguard.enable = false;
     };
 
     fileSystems = {
@@ -214,7 +215,6 @@
 
       lldpd.enable = true;
 
-      usbguard.enable = lib.mkForce false;
       # tcsd.enable = true;
 
       throttled.enable = lib.mkForce false;

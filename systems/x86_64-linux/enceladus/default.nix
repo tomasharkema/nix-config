@@ -39,6 +39,7 @@
         #server.enable = true;
       };
       zabbix.proxy.enable = true;
+      usbguard.enable = false;
     };
 
     services = {

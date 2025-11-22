@@ -68,6 +68,7 @@ in {
       };
       # "bmc-watchdog".enable = true;
       docker.enable = true;
+      usbguard.enable = false;
     };
 
     services = {
@@ -76,7 +77,6 @@ in {
         # bridgeInterfaces = [ "eno1" ];
       };
       vscode-server.enable = true;
-      usbguard.enable = lib.mkForce false;
       # xserver.videoDrivers = ["nvidia"];
       watchdogd = {
         enable = true;
