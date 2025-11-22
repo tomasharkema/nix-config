@@ -186,11 +186,11 @@
           #   file = "lib/termsupport.zsh";
           #   src = ohMyZshSource;
           # }
-          {
-            name = "1password";
-            file = "plugins/1password/1password.plugin.zsh";
-            src = ohMyZshSource;
-          }
+          # {
+          #   name = "1password";
+          #   file = "plugins/1password/1password.plugin.zsh";
+          #   src = ohMyZshSource;
+          # }
           rec {
             name = src.pname;
             file = "share/zsh-z/zsh-z.plugin.zsh";
