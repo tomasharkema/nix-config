@@ -8,31 +8,18 @@
     environment.systemPackages =
       (with pkgs; [
         (lib.mkIf pkgs.stdenv.isx86_64 ipmicfg)
-        custom.radar
-        libsecret
         # apfs-fuse
         # apfsprogs
         # bat-extras.batgrep
-        ssh-tools
-        cutecom
-        dry
-        gpio-utils
-        isd
+        # fancy-motd
         # jupyter
-        ldapdomaindump
         # lz4
         # mkchromecast
         # nix-switcher # : needs github auth
-        ntfy
-        oterm
-        pamix
-        socklog
-        systeroid
-        tailspin
+        # wavemon
         agenix-rekey
-        apt-dater
-        pwgen
         aide
+        apt-dater
         archivemount
         bandwhich
         bash
@@ -61,23 +48,25 @@
         ctop
         curl
         custom.discovery-rs
-        custom.partclone-utils
         custom.meshtui
+        custom.partclone-utils
+        custom.radar
         custom.wikiman
         custom.zide
-        libusb1
+        cutecom
         ddrescue
         devcontainer
         devtodo
         dfrs
         distrobox
         distrobox-tui
+        dry
         duc
         efibootmgr
         efivar
         esp-idf-full
         ethtool
-        # fancy-motd
+        fbterm
         fcast-receiver
         freeipmi
         fuse
@@ -93,6 +82,7 @@
         glogg
         gnumake
         gnupg
+        gpio-utils
         gpsd
         gptfdisk
         hdparm
@@ -108,14 +98,18 @@
         ipmitool
         ipmiutil
         iptraf-ng
+        isd
         kexec-tools
         kmon
         lazydocker
+        ldapdomaindump
         libftdi
         libftdi1
         libgpiod
         libheif
         libnotify
+        libsecret
+        libusb1
         lm_sensors
         lnav
         lorri
@@ -123,6 +117,7 @@
         lshw
         mbuffer
         minio-client
+        more
         mpremote
         mpv
         ms-sys # for writing Microsoft boot sectors / MBRs
@@ -142,11 +137,12 @@
         nix-search-tv
         nix-top
         nixd
+        nixos-anywhere
         nixos-facter
-
         nmap
         nmon
         ntfs3g
+        ntfy
         ntfy-sh
         nvchecker
         nvme-cli
@@ -157,7 +153,9 @@
         openocd
         openseachest
         opensoundmeter
+        oterm
         p7zip
+        pamix
         pamixer
         parted
         pciutils
@@ -171,6 +169,7 @@
         ponymix
         pulsemixer
         pv
+        pwgen
         python313Packages.pyftdi
         python3Packages.pip
         python3Packages.uv
@@ -186,9 +185,11 @@
         silenthound
         smartmontools
         socat
+        socklog
         squashfs-tools-ng
         squashfsTools
         ssh-import-id
+        ssh-tools
         ssh-tools
         sshfs
         sshfs-fuse
@@ -198,7 +199,9 @@
         swapview
         sysstat
         systemctl-tui
+        systeroid
         sysz
+        tailspin
         tcpdump
         tcptrack
         termshark
@@ -226,9 +229,6 @@
         viddy
         vim
         watchlog
-        more
-        fbterm
-        # wavemon
         websocat
         wget
         wget
