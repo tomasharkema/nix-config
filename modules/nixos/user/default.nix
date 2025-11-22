@@ -102,7 +102,7 @@
             "abrt"
             "wireshark"
           ];
-          initialHashedPassword = "$6$7mn5ofgC1ji.lkeT$MxTnWp/t0OOblkutiT0xbkTwxDRU8KneANYsvgvvIVi1V3CC3kRuaF6QPJv1qxDqvAnJmOvS.jfkhtT1pBlHF.";
+          initialHashedPassword = "$1$taAEqlbR$6S8zx0pZ5N3vC2MGaigex.";
 
           openssh = {
             authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
