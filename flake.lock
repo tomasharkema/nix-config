@@ -194,11 +194,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1763843286,
-        "narHash": "sha256-HGeN4a4yxcYwlPvivn8F7ZBUON9Sj5xj7gOC99NSfzE=",
+        "lastModified": 1763846107,
+        "narHash": "sha256-aLvLCpWSDllgO2ADzv+v7fC8KTZpKE39ieOyYsSRPh8=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "a3a27e07fa001a06a0d2a6c3e30e118a75a131d4",
+        "rev": "89298fce30b890e8e1de521c76a076f54295891e",
         "type": "github"
       },
       "original": {
@@ -956,11 +956,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1763563389,
-        "narHash": "sha256-ATuiSBINBTjVXiGOYJAX6ttiDElV9MmjkqG4A8a/J8g=",
+        "lastModified": 1763850934,
+        "narHash": "sha256-Dq2EktSlR+QZFnX9MfmJ1tjBMvsImufIbdkg6SjP+eo=",
         "owner": "nix-community",
         "repo": "lanzaboote",
-        "rev": "b2f781751764ff57d54f7cf1910ae1bbf268ed1c",
+        "rev": "f16ac2d062746754047bba611a061e87f4ab6d60",
         "type": "github"
       },
       "original": {
