@@ -17,7 +17,7 @@ in {
   config = {
     age = {
       rekey = {
-        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILdiJmFQi3wiMjGu4YGJzREk6a8pS77akb79Tb8mwH3F root@nixos-installer";
+        hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOyaxzAidYV34BVF4QEEE+BDRicP1yJMhOXzOrTt3jfo root@nixos";
       };
       secrets = {
         tsnsrv = {
@@ -124,7 +124,7 @@ in {
       # };
       hostName = "blue-fire";
       hostId = "529fd7aa";
-
+      usePredictableInterfaceNames = true;
       useDHCP = false;
       networkmanager.enable = true;
 
@@ -151,10 +151,12 @@ in {
       bridges.br0 = {
         interfaces = ["enp5s0"];
       };
+
       defaultGateway = {
         address = "192.168.0.1";
         interface = "br0";
       };
+
       interfaces = {
         "eno1" = {
           useDHCP = false;

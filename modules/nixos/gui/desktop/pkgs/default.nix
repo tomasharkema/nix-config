@@ -13,157 +13,155 @@
   });
 
   pks = with pkgs; [
-    custom.librepods
-    nrfutil
-    nrf5-sdk
-    zotero
-    inspector
-    custom.actioneer
-    nrfconnect
-    nrf-command-line-tools
-    nrfconnect-bluetooth-low-energy
-    # custom.wifiman
-    nrfconnect
-    serial-studio
-    wine-wayland
+    _86Box-with-roms
+    _ipmiview
+    _ipmiview
+    (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
+    # angryipscanner
+    # caffeine-ng
     # custom.manuals
-    bitwarden-menu
-    bitwarden-desktop
-    bitwarden-cli
-    dmenu
-    openrct2
-    custom.letters
-    openrw
-    openra
-    openrisk
+    # custom.qlogexplorer
+    # custom.wifiman
+    # fractal
+    # gamehub
+    # gphotos-sync
+    # nix-software-center
     # openloco
-    opendrop
-    openswitcher
-    sway-launcher-desktop
-    digital
-    esptool
-    kicad
-    platformio
-    saleae-logic-2
-    digikam
-    rmview
-    zenmap
-    tpmmanager
-    dsview
-    smuview
-    digiham
-    fllog
-    flamp
-    fldigi
-    helvum
-    custom.denon-control
-    synology-drive-client
-    ida-free
-    segger-ozone
-    segger-jlink
+    # pkgs.custom.git-butler
+    # pkgs.wolfram-engine
+    # rtfm
+    # solana-cli
+    # sublime-merge
+    # sublime4
+    # ulauncher
+    # ventoy-full
+    antares
+    bitwarden-cli
+    bitwarden-desktop
+    bitwarden-menu
+    blueberry
+    boxbuddy
+    chromium
+    clutter
+    coppwr
+    custom.actioneer
     custom.butler
+    custom.denon-control
+    custom.gtk-meshtastic-client
+    custom.letters
+    custom.librepods
+    custom.netsleuth
+    custom.remarkable-cups
+    custom.spi-tools
+    custom.usbguard-gnome
+    custom.wsjtx
+    darktable
     davinci-resolve
     ddrescue
     ddrescueview
     ddrutility
-    darktable
-    custom.wsjtx
-    sdrpp
-    rpi-imager
-    custom.netsleuth
-    handbrake
-    thonny
-    coppwr
-    custom.gtk-meshtastic-client
-    _ipmiview
-    chromium
-    noti
-    ghex
-    solaar
-    # solana-cli
-    imsprog
-
-    # caffeine-ng
-    gphoto2
-    gphoto2fs
-    # gphotos-sync
-    blueberry
-    custom.spi-tools
-    qFlipper
-    (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
-    antares
-    wl-clipboard
-    python312Packages.pyclip
-    onioncircuits
-    onionshare-gui
-    pods
-    meld
-    pika-backup
-    vlc
-    boxbuddy
-    clutter
+    digiham
+    digikam
+    digital
+    discordo
+    dmenu
+    dmidecode
     dosbox-x
-    effitask
-    filezilla
-    font-manager
-    # fractal
     doublecmd
-    # gamehub
+    dsview
+    effitask
+    esptool
+    f1viewer
+    filezilla
+    flamp
+    fldigi
+    fllog
+    font-manager
+    gdm-settings
+    ghex
     gnomecast
     go-chromecast
     gotop
     gparted
+    gphoto2
+    gphoto2fs
     grsync
     gtk-engine-murrine
+    handbrake
+    helvum
+    httpie-desktop
+    ida-free
+    imsprog
+    inspector
+    jetbrains-toolbox
+    kicad
     ktailctl
     libGL
     libGLU
-    _ipmiview
+    libsmbios
+    meld
     mission-center
-    # nix-software-center
+    noti
+    nrf-command-line-tools
+    nrf5-sdk
+    nrfconnect
+    nrfconnect
+    nrfconnect-bluetooth-low-energy
+    nrfutil
+    onioncircuits
+    onionshare-gui
+    opendrop
+    openra
+    openrct2
+    openrisk
+    openrw
+    openswitcher
     pavucontrol
+    pika-backup
+    platformio
+    plex-desktop
+    plexamp
+    pods
     powertop
     pwvucontrol
+    python312Packages.pyclip
     qdirstat
+    qFlipper
     qjournalctl
-    # rtfm
+    rmview
+    rpi-imager
+    saleae-logic-2
+    sdrpp
+    segger-jlink
+    segger-ozone
+    serial-studio
+    smuview
+    solaar
     spot
+    spotify
     sqlitebrowser
-    # sublime-merge
-    # sublime4
+    sway-launcher-desktop
+    synology-drive-client
+    synology-drive-client
+    thonny
+    tpmmanager
     transmission-remote-gtk
     tremotesf
-    # ulauncher
     usbview
-    # ventoy-full
+    vlc
     vsce
     vte-gtk4
+    wine-wayland
+    wl-clipboard
     xdg-utils
     xdgmenumaker
     xdiskusage
     xdotool
-    yelp
-    f1viewer
-    zed-editor
-    jetbrains-toolbox
-    synology-drive-client
-    _86Box-with-roms
-    custom.remarkable-cups
-    # pkgs.custom.git-butler
-    # pkgs.wolfram-engine
-    spotify
-    # angryipscanner
-    # custom.qlogexplorer
-    discordo
-    dmidecode
-    gdm-settings
-
-    libsmbios
-    plex-desktop
-    plexamp
     xpipe
-
-    custom.usbguard-gnome
+    yelp
+    zed-editor
+    zenmap
+    zotero
   ];
   cfg = config.gui.desktop;
 in {
