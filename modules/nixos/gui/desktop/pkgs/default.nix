@@ -17,6 +17,8 @@
     nrfutil
     nrf5-sdk
     zotero
+    inspector
+    custom.actioneer
     nrfconnect
     nrf-command-line-tools
     nrfconnect-bluetooth-low-energy
