@@ -4,7 +4,7 @@
   fetchFromGitHub,
 }:
 rustPlatform.buildRustPackage rec {
-  pname = "adsb-deku";
+  pname = "radar";
   version = "2025.05.03";
 
   src = fetchFromGitHub {

@@ -8,6 +8,7 @@
     environment.systemPackages =
       (with pkgs; [
         (lib.mkIf pkgs.stdenv.isx86_64 ipmicfg)
+        custom.radar
         libsecret
         # apfs-fuse
         # apfsprogs
