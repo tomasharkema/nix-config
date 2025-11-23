@@ -24,6 +24,9 @@
       inteltool
       rtl-sdr
       pps-tools
+      dumpvdl2
+      dump1090-fa
+      dumphfdl
     ];
 
     hardware = {
@@ -95,18 +98,6 @@
         };
       };
     };
-
-    # specialisation = {
-    #   mediacenter.configuration = {
-    #     gui = {
-    #       gnome.enable = false;
-    #       # media-center.enable = true;
-    #     };
-    #     apps = {
-    #       cec.enable = true;
-    #     };
-    #   };
-    # };
 
     powerManagement.powertop.enable = true;
 
@@ -215,14 +206,14 @@
         useTmpfs = true;
       };
       kernelPackages = pkgs.linuxPackages_cachyos-lts;
-      kernelModules = ["iTCO_wdt"];
+      # kernelModules = ["iTCO_wdt"];
       kernelParams = [
         "console=ttyACM0,115200"
         "console=tty1"
         "mitigations=off"
         "iomem=relaxed"
       ];
-      initrd.kernelModules = ["iTCO_wdt"];
+      # initrd.kernelModules = ["iTCO_wdt"];
       recovery = {
         enable = true;
         install = true;
