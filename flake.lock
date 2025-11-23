@@ -194,11 +194,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1763885760,
-        "narHash": "sha256-aVYhoGe7HFN1iJAbtmh8JP4pw4QgGeDBObjDK17ZITA=",
+        "lastModified": 1763931423,
+        "narHash": "sha256-XSc4jCsVg03t+15N8RVzzOZAhGzOdjZRMAiXgG/ioZk=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "61369cde9e4ee9b81c2a1f90abaa4c5a194f4fb7",
+        "rev": "8130feb2a096423069509f6eee3994ed74385cec",
         "type": "github"
       },
       "original": {
@@ -956,11 +956,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1763850934,
-        "narHash": "sha256-Dq2EktSlR+QZFnX9MfmJ1tjBMvsImufIbdkg6SjP+eo=",
+        "lastModified": 1763915949,
+        "narHash": "sha256-YNpC4LU9yzClkGua09AUDAJkuVHLpeupBTDHvUafHhw=",
         "owner": "nix-community",
         "repo": "lanzaboote",
-        "rev": "f16ac2d062746754047bba611a061e87f4ab6d60",
+        "rev": "0dc06f7c67f5787a4dedfb49399d3106cf73c095",
         "type": "github"
       },
       "original": {
@@ -1004,11 +1004,11 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1763891121,
-        "narHash": "sha256-Arwlg5N1ssnSxPiTMYFNgZL/oGZvVJRtFHMEWOvVkk4=",
+        "lastModified": 1763926903,
+        "narHash": "sha256-V6y29WYLeJDBU31CfzkdaBQZ8t1Uu13VpeSDUr/+vg4=",
         "owner": "sodiboo",
         "repo": "niri-flake",
-        "rev": "d2c10541bad1e7c9341fd269ec35da54a2c48219",
+        "rev": "cad5e606ba48f4ff0cc5236f2187fc27411b098e",
         "type": "github"
       },
       "original": {
@@ -1037,11 +1037,11 @@
     "niri-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1763887185,
-        "narHash": "sha256-uuwCdsGQUXoTSS02ShZAq+PeWudn0xu4vKpH43OubX8=",
+        "lastModified": 1763923333,
+        "narHash": "sha256-Yzb8d6XBtIj1aPt9RPa4UmRyzELHfPqb/rjbC3pq9SM=",
         "owner": "YaLTeR",
         "repo": "niri",
-        "rev": "efbe29f3faa69282aad110b7da74f3c41f8971cf",
+        "rev": "c558516d4ca54d1ecee6cc8e398c1141f79564d1",
         "type": "github"
       },
       "original": {
@@ -1623,11 +1623,11 @@
     "ohmyzsh": {
       "flake": false,
       "locked": {
-        "lastModified": 1763832663,
-        "narHash": "sha256-DiusSkU04nF8mtVlP1q5RkgRtQ6HMJPCg32wNug5pe4=",
+        "lastModified": 1763927417,
+        "narHash": "sha256-K24fzeodaN7ocen5v0/5cZcDwpxuLBXRZkAjPs0OB9U=",
         "owner": "ohmyzsh",
         "repo": "ohmyzsh",
-        "rev": "b04e01d41822963875db876e1d3e7e7d1b67541c",
+        "rev": "fc2d0f8848aded33596b85eafa0b50d7e6558d0e",
         "type": "github"
       },
       "original": {
