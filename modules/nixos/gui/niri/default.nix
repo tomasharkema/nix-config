@@ -101,9 +101,9 @@ in {
 
     home-manager.users.tomas = {
       catppuccin = {
-        mako.enable = true;
-        swaync = {enable = true;};
-        waybar = {enable = true;};
+        # mako.enable = true;
+        # swaync = {enable = true;};
+        # waybar = {enable = true;};
         # swaylock.enable = true;
       };
 
@@ -123,31 +123,34 @@ in {
 
         dankMaterialShell = {
           enable = true;
-          systemd.enable = true;
+          systemd = {
+            enable = true;
+            restartIfChanged = false;
+          };
           enableSystemMonitoring = true; # System monitoring widgets (dgop)
           enableAudioWavelength = true; # Audio visualizer (cava)
           enableCalendarEvents = true; # Calendar integration (khal)
           enableSystemSound = false; # System sound effects
           enableBrightnessControl = true; # Backlight/brightness controls
-          enableColorPicker = true; # Color picker tool
+          enableColorPicker = false; # Color picker tool
 
-          plugins = {
-            EmojiLauncher = {
-              enable = true;
-              src = pkgs.fetchFromGitHub {
-                owner = "devnullvoid";
-                repo = "dms-emoji-launcher";
-                rev = "main";
-                sha256 = "sha256-h4+6OurB9yo4mJUye9z1PdUjjqTNIur78Y5IrRPY1g0=";
-              };
-            };
-          };
+          # plugins = {
+          #   EmojiLauncher = {
+          #     enable = true;
+          #     src = pkgs.fetchFromGitHub {
+          #       owner = "devnullvoid";
+          #       repo = "dms-emoji-launcher";
+          #       rev = "main";
+          #       sha256 = "sha256-h4+6OurB9yo4mJUye9z1PdUjjqTNIur78Y5IrRPY1g0=";
+          #     };
+          #   };
+          # };
         };
 
         niriswitcher.enable = true;
         niri = {
           # enable = true;
-          package = pkgs.niri; # -unstable;
+          package = pkgs.niri-unstable;
           settings = {
             input = {
               mouse = {
@@ -163,7 +166,7 @@ in {
             };
             xwayland-satellite = {
               enable = true;
-              path = lib.getExe pkgs.xwayland-satellite-unstable;
+              path = lib.getExe pkgs.xwayland-satellite;
             };
             environment = {
               "NIXOS_OZONE_WL" = "1";
