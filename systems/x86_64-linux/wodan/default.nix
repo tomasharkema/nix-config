@@ -9,9 +9,8 @@
     facter.reportPath = ./facter.json;
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-    age.rekey = {
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII8iCdfina2waZYTj0toLyknDT3eJmMtPsVN3iFgnGUR root@wodan";
-    };
+    age.rekey.hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII8iCdfina2waZYTj0toLyknDT3eJmMtPsVN3iFgnGUR root@wodan";
+
     # btrfs balance -dconvert=raid0 -mconvert=raid1 /home
 
     environment = {
@@ -27,6 +26,19 @@
         heimdall
         heimdall-gui
       ];
+    };
+
+    disks.btrfs = {
+      enable = true;
+
+      main = "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768639292E";
+      second = "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768637D1FE";
+
+      encrypt = true;
+      newSubvolumes.enable = true;
+      # btrbk.enable = true;
+      snapper.enable = true; # false;
+      swap.size = "64G";
     };
 
     # system.includeBuildDependencies = true;
@@ -98,9 +110,10 @@
       quiet-boot.enable = true;
       hidpi.enable = true;
       hdr.enable = true;
-      gnome = {};
-      hyrland.wluma.enable = true;
+      # hyrland.wluma.enable = true;
     };
+
+    # chaotic.mesa-git.enable = true;
 
     services = {
       hardware = {
@@ -164,9 +177,13 @@
         enable = true;
         bridgeInterfaces = ["enp2s0"];
       };
-      # xserver.videoDrivers = ["nvidia"];
-      # ddccontrol.enable = true;
+      xserver = {
+        enableTearFree = true;
+        videoDrivers = ["nvidia"];
+      };
+      ddccontrol.enable = true;
     };
+
     programs = {
       light = {
         enable = true;
@@ -194,7 +211,7 @@
         # nvidiaPersistenced = lib.mkForce true;
 
         powerManagement = {
-          # enable = true;
+          enable = true;
           # finegrained = true;
         };
 
@@ -234,27 +251,17 @@
       };
     };
 
-    disks.btrfs = {
-      enable = true;
-
-      main = "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768639292E";
-      second = "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768637D1FE";
-
-      encrypt = true;
-      newSubvolumes.enable = true;
-      # btrbk.enable = true;
-      snapper.enable = true; # false;
-      swap.size = "64G";
-    };
-
     boot = {
       tmp = {useTmpfs = true;};
       binfmt.emulatedSystems = ["aarch64-linux"];
+
       swraid.enable = true;
       supportedFilesystems = [
         "xfs"
         "ntfs"
         # "apfs"
+        "ext4"
+        "btrfs"
       ];
 
       loader.systemd-boot.memtest86.enable = true;
@@ -268,11 +275,12 @@
       };
 
       extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
+
       kernelModules = [
         #"i2c-dev"
         "btusb"
         "ddcci"
-        "iTCO_wdt"
+        # "iTCO_wdt"
         "ddcci-backlight"
         # "vfio_pci"
         # "vfio"
@@ -282,8 +290,14 @@
       ];
 
       initrd = {
+        # compressor = pkgs: "${pkgs.lz4.out}/bin/lz4";
+        # compressorArgs = ["-9"];
+
+        compressor = "zstd";
+        compressorArgs = ["-9"];
+
         kernelModules = [
-          "iTCO_wdt" # "ixgbe"
+          # "iTCO_wdt" # "ixgbe"
           # "btusb"
           # "vfio_pci"
           # "vfio"
@@ -292,20 +306,18 @@
           # "kvm-intel"
         ];
       };
-
-      # KMS will load the module, regardless of blacklisting
       kernelParams = [
         # "console=tty1"
         # "console=ttyUSB0,115200n8"
-        "intel_iommu=on"
-        "iommu=pt"
-        "preempt=full"
+        # "intel_iommu=on"
+        # "iommu=pt"
+        # "preempt=full"
         # "drm.edid_firmware=HDMI-A-1:edid/samsung-q800t-hdmi2.1"
         # "video=HDMI-A-1:e"
         # "pci-stub.ids=1458:37a7"
       ];
 
-      blacklistedKernelModules = ["nouveau"];
+      # blacklistedKernelModules = ["nouveau"];
       # extraModprobeConfig = ''
       #   options nvidia NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100
       # '';

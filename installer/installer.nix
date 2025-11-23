@@ -49,7 +49,7 @@ in {
             "plugdev"
             "dailout"
           ];
-          initialHashedPassword = "$1$taAEqlbR$6S8zx0pZ5N3vC2MGaigex.";
+          initialHashedPassword = "$y$j9T$64ZNdE.W4HRiD11NcJQpM/$isl.nLUveFXNP8kqedrJDZQWU8kmoLGhKu7lM2tnfS8";
           uid = 1000;
 
           openssh.authorizedKeys.keyFiles = ["${keys}"];

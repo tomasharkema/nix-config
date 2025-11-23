@@ -17,16 +17,17 @@
       neovim = {
         viAlias = true;
         vimAlias = true;
-        defaultEditor = true;
+        # defaultEditor = true;
       };
 
       nixvim = {
         enable = true;
-        enableMan = false;
+        enableMan = true;
 
         colorschemes.catppuccin.enable = true;
 
         globals.mapleader = "\\";
+
         clipboard = {
           providers.wl-copy.enable = pkgs.stdenv.isLinux;
         };
@@ -81,9 +82,7 @@
           };
           persistence.enable = true;
           # snacks.enable = true;
-          comment = {
-            enable = true;
-          };
+          comment.enable = true;
           # dropbar.enable = true;
           lsp-format.enable = true;
           lsp-status.enable = true;
@@ -107,30 +106,14 @@
                   options = {};
                 };
               };
-              eslint = {
-                enable = true;
-              };
-              html = {
-                enable = true;
-              };
-              lua_ls = {
-                enable = true;
-              };
-
-              # nil_ls = {enable = true;};
-              marksman = {
-                enable = true;
-              };
-              pyright = {
-                enable = true;
-              };
-              gopls = {
-                enable = true;
-              };
+              eslint.enable = true;
+              html.enable = true;
+              lua_ls.enable = true;
+              marksman.enable = true;
+              pyright.enable = true;
+              gopls.enable = true;
               # tsserver = {enable = false;};
-              yamlls = {
-                enable = true;
-              };
+              yamlls.enable = true;
               hyprls.enable = true;
             };
           };
@@ -217,9 +200,9 @@
               file-browser.enable = true;
             };
           };
-          fugitive = {
-            enable = true;
-          };
+
+          fugitive.enable = true;
+
           lualine = {
             enable = true;
             # sections = {
@@ -240,18 +223,11 @@
             enable = true;
             #   filetypeExclude = ["startify"];
           };
-          barbar = {
-            enable = true;
-          };
-          gitgutter = {
-            enable = true;
-          };
-          surround = {
-            enable = true;
-          };
-          colorizer = {
-            enable = true;
-          };
+          barbar.enable = true;
+          gitgutter.enable = true;
+          vim-surround.enable = true;
+          colorizer.enable = true;
+          web-devicons.enable = true;
           nix-develop.enable = true;
           notify.enable = true;
           zellij.enable = true;
