@@ -43,6 +43,7 @@
         cmake
         colorized-logs
         compsize
+        custom.flightmon
         config.boot.kernelPackages.iio-utils
         cryptsetup # needed for dm-crypt volumes
         ctop
