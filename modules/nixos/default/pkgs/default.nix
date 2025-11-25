@@ -43,15 +43,16 @@
         cmake
         colorized-logs
         compsize
-        custom.flightmon
         config.boot.kernelPackages.iio-utils
         cryptsetup # needed for dm-crypt volumes
         ctop
         curl
         custom.discovery-rs
+        custom.flightmon
         custom.meshtui
         custom.partclone-utils
         custom.radar
+        custom.sshm
         custom.wikiman
         custom.zide
         cutecom

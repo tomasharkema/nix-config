@@ -191,6 +191,28 @@ in {
                   relative-to = "bottom-right";
                 };
               }
+
+              {
+                # Window ID 14:
+                # Title: "LibrePods"
+                # App ID: "me.kavishdevar.librepods"
+                # Is floating: no
+                # PID: 45899
+                # Workspace ID: 1
+                # Layout:
+                #   Tile size: 1696.89 x 908.89
+                #   Scrolling position: column 3, tile 1
+                #   Window size: 1697 x 909
+                #   Window offset in tile: 0 x 0
+                matches = [
+                  {
+                    app-id = "me.kavishdevar.librepods";
+                  }
+                ];
+
+                open-floating = false;
+                open-maximized = false;
+              }
             ];
 
             spawn-at-startup = [
