@@ -241,7 +241,7 @@ in {
       #     trapsink      localhost:162 public
       #   '';
       # };
-      fanout.enable = true;
+      # fanout.enable = true;
 
       smartd = {
         enable = true;

@@ -52,8 +52,8 @@
 
     environment = {
       systemPackages = with pkgs; [
+        esp-idf-full
         # gt
-        gnomeExtensions.power-tracker
         # custom.swift
         powerstat
         powerjoular

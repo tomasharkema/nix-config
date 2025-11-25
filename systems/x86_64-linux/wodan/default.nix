@@ -25,6 +25,7 @@
         libratbag
         heimdall
         heimdall-gui
+        esp-idf-full
       ];
     };
 

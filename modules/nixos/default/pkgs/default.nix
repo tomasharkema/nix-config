@@ -65,7 +65,6 @@
         duc
         efibootmgr
         efivar
-        esp-idf-full
         ethtool
         fbterm
         fcast-receiver

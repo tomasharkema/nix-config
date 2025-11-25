@@ -62,6 +62,7 @@
         i2c-tools
         piper
         libratbag
+        esp-idf-full
       ];
     };
 
