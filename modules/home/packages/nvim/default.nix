@@ -203,16 +203,16 @@
 
           fugitive.enable = true;
 
-          lualine = {
-            enable = true;
-            # sections = {
-            # lualine_x = [
-            #   "diagnostics"
-            #   "encoding"
-            #   "filetype"
-            # ];
-            # };
-          };
+          # lualine = {
+          # enable = true;
+          # sections = {
+          # lualine_x = [
+          #   "diagnostics"
+          #   "encoding"
+          #   "filetype"
+          # ];
+          # };
+          # };
           startify = {
             enable = true;
             #   customHeader = ''
