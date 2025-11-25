@@ -36,17 +36,17 @@ stdenvNoCC.mkDerivation rec {
   srcs = [
     (fetchurl {
       url = "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg";
-      sha256 = "sha256-B8xljBAqOoRFXvSOkOKDDWeYUebtMmQLJ8lF05iFnXk=";
       name = "source-pro.dmg";
+      sha256 = "sha256-Lk14U5iLc03BrzO5IdjUwORADqwxKSSg6rS3OlH9aa4=";
     })
     (fetchurl {
       url = "https://devimages-cdn.apple.com/design/resources/download/SF-Compact.dmg";
-      sha256 = "sha256-L4oLQ34Epw1/wLehU9sXQwUe/LaeKjHRxQAF6u2pfTo=";
       name = "source-compact.dmg";
+      sha256 = "sha256-CMNP+sL5nshwK0lGBERp+S3YinscCGTi1LVZVl+PuOM=";
     })
     (fetchurl {
       url = "https://devimages-cdn.apple.com/design/resources/download/SF-Mono.dmg";
-      sha256 = "sha256-Uarx1TKO7g5yVBXAx6Yki065rz/wRuYiHPzzi6cTTl8=";
+      sha256 = "sha256-bUoLeOOqzQb5E/ZCzq0cfbSvNO1IhW1xcaLgtV2aeUU=";
       name = "source-mono.dmg";
     })
   ];

@@ -161,7 +161,7 @@
 
     services = {
       remote-builders.client.enable = true;
-      blueman.enable = true;
+      # blueman.enable = true;
     };
   };
 }

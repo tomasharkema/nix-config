@@ -80,7 +80,7 @@ in {
         }
         // osConfig.home.homeFiles;
 
-      stateVersion = "25.05";
+      stateVersion = "25.11";
 
       # (import ./packages/common.nix {inherit pkgs inputs lib;})
       # ++

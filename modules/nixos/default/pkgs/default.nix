@@ -2,12 +2,14 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: {
   config = {
     environment.systemPackages =
       (with pkgs; [
-        (lib.mkIf pkgs.stdenv.isx86_64 ipmicfg)
+        nix-alien
+
         # apfs-fuse
         # apfsprogs
         # bat-extras.batgrep
@@ -55,6 +57,12 @@
         custom.sshm
         custom.wikiman
         custom.zide
+        custom.ssh-proxy-agent
+        custom.menu
+        custom.ssm
+        custom.tailscale-tui
+        custom.sshed
+        # rmfuse
         cutecom
         ddrescue
         devcontainer
@@ -243,28 +251,20 @@
         zip
         zstd
       ])
-      ++ (with pkgs.custom; [
-        ssh-proxy-agent
-        menu
-        pvzstd
-        ssm
-        tailscale-tui
-        sshed
-        # rmfuse
-      ])
       ++ (lib.optionals pkgs.stdenv.isx86_64 (
         with pkgs; [
-          meshtastic-fix
-          spectre-meltdown-checker
-          gnutls
           cmospwd
-          uefisettings
-          libsmbios
-          micropython
           dmidecode
-          refind
           fwupd
           fwupd-efi
+          gnutls
+          ipmicfg
+          libsmbios
+          meshtastic-fix
+          micropython
+          refind
+          spectre-meltdown-checker
+          uefisettings
         ]
       ));
   };

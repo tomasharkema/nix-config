@@ -52,6 +52,7 @@
     fonts = {
       enableDefaultPackages = true;
       fontDir.enable = true;
+      enableGhostscriptFonts = true;
       fontconfig = {
         enable = true;
         antialias = true;
@@ -72,47 +73,47 @@
       packages = with pkgs;
         (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts))
         ++ [
-          # custom.san-francisco
           # exult
           adwaita-fonts
-          openmoji-color
-          kreative-square
-          fairfax-hd
-          fairfax
-          constructium
           b612
           bakoma_ttf
           cm_unicode
+          constructium
           corefonts
-          vista-fonts
           custom.b612-nerdfont
           custom.computer-modern
           custom.din
           custom.fast-font
           custom.futura
           custom.neue-haas-grotesk
+          custom.san-francisco
           dina-font
+          fairfax
+          fairfax-hd
           fira-code
           fira-code-symbols
           font-awesome
           google-fonts
           inter
+          kreative-square
           liberation_ttf
           lmmath
           mplus-outline-fonts.githubRelease
           nerd-fonts.iosevka
           nerd-fonts.jetbrains-mono
+          noto-fonts
           noto-fonts-cjk-sans
           noto-fonts-color-emoji
-          noto-fonts
           open-dyslexic
           open-sans
+          openmoji-color
           powerline-fonts
           powerline-symbols
           proggyfonts
           roboto-mono
           ubuntu-classic
           vegur
+          vista-fonts
         ];
     };
   };

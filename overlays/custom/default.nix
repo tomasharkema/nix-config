@@ -73,6 +73,7 @@ in rec {
   });
 
   nux = inputs.nox.packages.${system}.default;
+  nix-alien = inputs.nix-alien.packages.${system}.default;
   # geoclue2 = prev.geoclue2.overrideAttrs ({buildInputs, ...}: {
   #   version = prev.custom.geoclue-gpsd.version;
   #   src = prev.custom.geoclue-gpsd.src;
@@ -240,15 +241,6 @@ in rec {
   piratebay = inputs.piratebay.packages."${prev.system}".default;
 
   # wezterm = inputs.wezterm.packages."${prev.system}".default;
-
-  # wireshark = prev.wireshark.overrideAttrs ({buildInputs, ...}: {
-  #   buildInputs =
-  #     buildInputs
-  #     ++ [
-  #       prev.python3Packages.pyserial
-  #       prev.python3Packages.psutil
-  #     ];
-  # });
 
   gpio-utils = prev.gpio-utils.overrideAttrs (old: {
     preConfigure = "";

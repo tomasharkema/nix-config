@@ -51,7 +51,7 @@
       # local-store.enable = true;
       throttled.enable = lib.mkForce false;
       # remote-builders.client.enable = true;
-      blueman.enable = true;
+      # blueman.enable = true;
       lldpd.enable = true;
 
       netbootxyz.enable = true;

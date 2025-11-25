@@ -41,7 +41,7 @@
       home = {
         enable = true;
         config = {
-          home.stateVersion = lib.mkDefault "25.05";
+          home.stateVersion = lib.mkDefault "25.11";
           xdg.enable = true;
 
           programs.home-manager.enable = true;
@@ -56,7 +56,7 @@
 
       users."${config.user.name}" = {
         imports = [inputs.mac-app-util.homeManagerModules.default];
-        home.stateVersion = lib.mkDefault "25.05";
+        home.stateVersion = lib.mkDefault "25.11";
         xdg.enable = true;
         programs.home-manager.enable = true;
       };
