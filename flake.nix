@@ -911,6 +911,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-alien = {
+      url = "github:thiagokokada/nix-alien";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nix-index-database.follows = "nix-index-database";
+      };
+    };
+
     zsh-colored-man-pages = {
       url = "github:ael-code/zsh-colored-man-pages";
       flake = false;
