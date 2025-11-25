@@ -148,6 +148,7 @@
     tpmmanager
     transmission-remote-gtk
     tremotesf
+    typesetter
     usbview
     vlc
     vsce
