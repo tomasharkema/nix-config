@@ -488,8 +488,8 @@
             "/nix/store:/nix/store:ro"
             "/etc/os-release:/etc/os-release:ro"
             "/usr/libexec/dell_dup:/usr/libexec/dell_dup:rw"
-            "/run/systemd/system:/run/systemd/system"
-            "/var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket"
+            #"/run/systemd/system:/run/systemd/system"
+            #"/var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket"
           ];
 
           extraOptions = [
@@ -550,7 +550,7 @@
         "ipmi_watchdog.timeout=180"
         "iomem=relaxed"
         "mitigations=off"
-        "earlyprintk=ttyS0"
+        # "earlyprintk=ttyS0"
         "rootdelay=300"
         "panic=1"
         "boot.panic_on_fail"
@@ -594,10 +594,10 @@
           # # "sd_mod"
         ];
         kernelModules = [
-          "acpi_power_meter"
-          "acpi_ipmi"
-          "ipmi_si"
-          "vendor-reset"
+          # "acpi_power_meter"
+          # "acpi_ipmi"
+          # "ipmi_si"
+          # "vendor-reset"
           # # "dcdbas"
           # # "dell_rbu"
           # # "pci-me"

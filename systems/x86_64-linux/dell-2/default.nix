@@ -54,7 +54,6 @@
       systemPackages = with pkgs; [
         esp-idf-full
         # gt
-        # custom.swift
         powerstat
         powerjoular
         libimobiledevice

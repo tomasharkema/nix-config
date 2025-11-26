@@ -23,9 +23,9 @@ in {
     };
 
     services = {
-      udev.extraRules = ''
-        KERNEL=="ipmi*", MODE="660", GROUP="ipmi"
-      '';
+      # udev.extraRules = ''
+      #   KERNEL=="ipmi*", MODE="660", GROUP="ipmi"
+      # '';
       # SUBSYSTEM=="ipmi", GROUP="ipmi", MODE="0777"
 
       prometheus.exporters.ipmi = {
