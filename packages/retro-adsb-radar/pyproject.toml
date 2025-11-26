@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "retro-adsb-radar"
+dynamic = ["version"]
+# authors = [{ name = "Anton Larionov", email = "anton.larionov.dev@gmail.com" }]
+# description = "Text-based interface for BitTorrent clients (Transmission & qBittorrent)"
+# readme = "README.md"
+requires-python = ">=3.10"
+
+# license = { file = "LICENSE.txt" }
+dependencies = [
+  "pygame >= 2.6.1",
+  "python-vlc >= 3.0.21203",
+  "requests >= 2.32.5",
+]
+# classifiers = [
+#   "Development Status :: 3 - Alpha",
+#   "Environment :: Console",
+#   "Intended Audience :: End Users/Desktop",
+#   "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+#   "Natural Language :: English",
+#   "Operating System :: OS Independent",
+#   "Programming Language :: Python :: 3",
+#   "Topic :: Communications :: File Sharing",
+# ]
+# keywords = ["transmission", "qbittorrent", "torrent"]
+
+# [tool.setuptools.dynamic]
+# version = { attr = "tewi.version.__version__" }
+
+[project.scripts]
+retro-adsb-radar = "main:main"
+
+[tool.setuptools.package-data]
+fonts = ["*.ttf"]
+
+
+# [project.urls]
+# "Homepage" = "https://github.com/anlar/tewi"
+# "Repository" = "https://github.com/anlar/tewi"
+# "Bug Tracker" = "https://github.com/anlar/tewi/issues"

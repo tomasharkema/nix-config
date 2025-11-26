@@ -73,7 +73,9 @@
       packages = with pkgs;
         (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts))
         ++ [
-          # exult
+          terminus_font
+          terminus_font_ttf
+          exult
           adwaita-fonts
           b612
           bakoma_ttf

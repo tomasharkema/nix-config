@@ -44,6 +44,7 @@
     chromium
     clutter
     coppwr
+    custom.retro-adsb-radar
     custom.actioneer
     custom.butler
     custom.denon-control

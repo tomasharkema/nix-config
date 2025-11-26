@@ -1,0 +1,51 @@
+diff --git a/config.py b/config.py
+index 89cdc24..1e7bfd8 100644
+--- a/config.py
++++ b/config.py
+@@ -4,7 +4,8 @@ import os
+ # Configuration Loading
+ config = configparser.ConfigParser()
+ script_dir = os.path.dirname(os.path.abspath(__file__))
+-config_path = os.path.join(script_dir, "config.ini")
++xdg_config_home = os.environ.get('XDG_CONFIG_HOME')
++config_path = os.path.join(xdg_config_home, "retro-adsb-radar", "config.ini")
+ config.read(config_path)
+ 
+ # General Settings
+@@ -28,7 +29,8 @@ SCREEN_WIDTH = config.getint('Display', 'SCREEN_WIDTH', fallback=960)
+ SCREEN_HEIGHT = config.getint('Display', 'SCREEN_HEIGHT', fallback=640)
+ FPS = config.getint('Display', 'FPS', fallback=6)
+ MAX_TABLE_ROWS = config.getint('Display', 'MAX_TABLE_ROWS', fallback=10)
+-FONT_PATH = config.get('Display', 'FONT_PATH', fallback='fonts/TerminusTTF-4.49.3.ttf')
++dist_font = os.path.join(os.path.dirname(__file__), 'fonts', 'TerminusTTF-4.49.3.ttf')
++FONT_PATH = config.get('Display', 'FONT_PATH', fallback=dist_font)
+ BACKGROUND_PATH = config.get('Display', 'BACKGROUND_PATH', fallback=None)
+ TRAIL_MIN_LENGTH = config.getint('Display', 'TRAIL_MIN_LENGTH', fallback=8)
+ TRAIL_MAX_LENGTH = config.getint('Display', 'TRAIL_MAX_LENGTH', fallback=25)
+diff --git a/utils.py b/utils.py
+index 7a30009..9dd5d0b 100644
+--- a/utils.py
++++ b/utils.py
+@@ -1,6 +1,7 @@
+ import math
+ import pygame
+ from typing import Optional, Tuple
++from pathlib import Path
+ 
+ import config
+ 
+@@ -47,10 +48,11 @@ def load_font(size: int) -> pygame.font.Font:
+         return _font_cache[size]
+         
+     try:
+-        font = pygame.font.Font(config.FONT_PATH, size)
+-        print(f"✅ Loaded font {config.FONT_PATH} at size {size}")
++        fp = Path(config.FONT_PATH).resolve()
++        font = pygame.font.Font(fp, size)
++        print(f"✅ Loaded font {fp} at size {size}")
+     except (pygame.error, FileNotFoundError):
+-        print(f"⚠️ Warning: Could not load {config.FONT_PATH}, falling back to default font")
++        print(f"⚠️ Warning: Could not load {fp}, falling back to default font")
+         font = pygame.font.Font(None, size)
+     
+     _font_cache[size] = font
