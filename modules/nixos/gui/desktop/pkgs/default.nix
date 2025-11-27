@@ -15,7 +15,7 @@
   pks = with pkgs; [
     _86Box-with-roms
     _ipmiview
-    _ipmiview
+    labelle
     (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
     # angryipscanner
     # caffeine-ng

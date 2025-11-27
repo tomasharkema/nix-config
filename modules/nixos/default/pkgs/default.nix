@@ -9,7 +9,7 @@
     environment.systemPackages =
       (with pkgs; [
         nix-alien
-
+        curlftpfs
         # apfs-fuse
         # apfsprogs
         # bat-extras.batgrep

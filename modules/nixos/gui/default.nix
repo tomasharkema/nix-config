@@ -53,6 +53,7 @@ in {
         drivers = with pkgs; [
           brlaser
           custom.brother-mfc2710dw-ppd
+          ptouch-driver
         ];
       };
 
