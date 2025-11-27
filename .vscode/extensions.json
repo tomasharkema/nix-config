@@ -1,6 +1,10 @@
 {
   "recommendations": [
     "arrterian.nix-env-selector",
-    "pinage404.nix-extension-pack"
+    "pinage404.nix-extension-pack",
+    "Catppuccin.catppuccin-vsc-pack",
+    "jnoortheen.nix-ide",
+    "mkhl.direnv",
+    "kamadorueda.alejandra"
   ]
 }

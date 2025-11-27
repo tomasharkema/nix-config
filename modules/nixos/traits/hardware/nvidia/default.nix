@@ -32,10 +32,6 @@ in {
         default = false;
         type = lib.types.bool;
       };
-      legacy = lib.mkOption {
-        default = false;
-        type = lib.types.bool;
-      };
     };
   };
 
@@ -75,8 +71,7 @@ in {
     boot = {
       # kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
 
-      # kernelPackages = lib.mkIf cfg.grid pkgs.linuxPackages_6_11;
-      # blacklistedKernelModules = ["nouveau"];
+      blacklistedKernelModules = ["nouveau"];
 
       kernelParams = [
         # "nvidia-drm.modeset=1"
@@ -87,6 +82,8 @@ in {
         # "apm=power_off"
         # "acpi=force"
       ];
+
+      #kernelPackages = lib.mkIf cfg.grid.enable (lib.mkForce pkgs.linuxPackages_6_12);
     };
 
     hardware = {
@@ -96,61 +93,56 @@ in {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
         open = lib.mkForce cfg.open;
-        nvidiaSettings = !(cfg.grid.enable);
-        # nvidiaPersistenced = cfg.grid.enable;
         package =
           if cfg.grid.enable
           then
-            ((
-                if cfg.grid.legacy
-                then config.boot.kernelPackages.nvidiaPackages.vgpu_16_5
-                else
-                  (config.boot.kernelPackages.nvidiaPackages.vgpu_17_3.overrideAttrs ({patches ? [], ...}: {
-                    prePatch = ''
-                      substituteInPlace kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.c --replace-fail "no_llseek" "noop_llseek"
-                    '';
-
-                    patches =
-                      patches
-                      ++ [
-                        #./drm.patch
-                        #./6.12.patch
-                        # (pkgs.fetchpatch {
-                        #      url = "https://gitlab.com/polloloco/vgpu-proxmox/-/raw/master/550.144.02.patch?ref_type=heads&inline=false";
-                        #      hash = "sha256-oUSKlGdtB8xklRL/r2dGHfYnhxNarEk1S6WtM20zSS4=";
-                        # })
-                      ];
-                  }))
+            (
+              (
+                config.boot.kernelPackages.nvidiaPackages.vgpu_17_3.overrideAttrs (self: super: {
+                  prePatch = ''
+                    ls -la
+                    substituteInPlace kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.c \
+                      --replace-fail '.llseek = no_llseek,' ""
+                  '';
+                  patches = [
+                    # (pkgs.fetchpatch {
+                    #   url = "https://raw.githubusercontent.com/moetayuko/nvidia-merged-PKGBUILD/9d6ca572bdca740bfc6ec1760967b66e6d25bd3a/remove_no_llseek.patch";
+                    #   sha256 = "sha256-kPnWEiwJZ1Tor0cadsY3chD4C345FHE8+yfhloimSgo=";
+                    # })
+                    (pkgs.fetchpatch {
+                      url = "https://raw.githubusercontent.com/OpenMandrivaAssociation/nvidia/refs/heads/master/nvidia-kernel-6.12.patch";
+                      sha256 = "sha256-GVwW+n+8BYm2tBTCNle7Gtsu8z1tmguFvHiw3Ure+C8=";
+                    })
+                    #     # (pkgs.fetchpatch {
+                    #     #   url = "https://raw.githubusercontent.com/moetayuko/nvidia-merged-PKGBUILD/9d6ca572bdca740bfc6ec1760967b66e6d25bd3a/kernel-6.12.patch";
+                    #     #   sha256 = "sha256-WtQtUuyaZlwoTpSlXhunS2k0za+Rat9KPdE6WjqjNWs=";
+                    #     # })
+                    #     # (pkgs.fetchpatch {
+                    #     #   url = "https://raw.githubusercontent.com/moetayuko/nvidia-merged-PKGBUILD/9d6ca572bdca740bfc6ec1760967b66e6d25bd3a/make-modeset-fbdev-default.patch";
+                    #     #   sha256 = "17y56fq4nyjgc71mg3djd4w5vm3v3lh1nqc02dkgyb1ia84c3s83";
+                    #     # })
+                    #     # (pkgs.fetchpatch {
+                    #     #   url = "https://raw.githubusercontent.com/moetayuko/nvidia-merged-PKGBUILD/9d6ca572bdca740bfc6ec1760967b66e6d25bd3a/nvidia-drm-Set-FOP_UNSIGNED_OFFSET-for-nv_drm_fops.f.patch";
+                    #     #   sha256 = "sha256-clE5KdBRKQxKe/27ziwZfyc46Ujegty1l8rKOR32FqI=";
+                    #     # })
+                  ];
+                })
               )
-              .overrideAttrs (
-                finalAttrs: previousAttrs: {
-                  meta =
-                    previousAttrs.meta
-                    // {
-                      license = lib.licenses.mit;
-                    };
-                }
-              ))
+              # .overrideAttrs (
+              #   finalAttrs: previousAttrs: {
+              #     meta =
+              #       previousAttrs.meta
+              #       // {
+              #         license = lib.licenses.mit;
+              #       };
+              #   }
+            )
+          #)
           else
             pkgs.nvidia-patch.patch-nvenc (
               pkgs.nvidia-patch.patch-fbc
               config.boot.kernelPackages.nvidiaPackages.beta
             );
-
-        vgpu = lib.mkIf (cfg.grid.enable) {
-          patcher = {
-            enable = true;
-            options = {
-              doNotForceGPLLicense = false;
-              #   # remapP40ProfilesToV100D = cfg.grid.legacy;
-            };
-            copyVGPUProfiles = {
-              "1E87:0000" = "1E30:12BA";
-              "1380:0000" = "13BD:1160";
-            };
-            enablePatcherCmd = true;
-          };
-        };
       };
 
       graphics = {

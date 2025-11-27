@@ -10,9 +10,9 @@
   '';
   workerPort = "9988";
 in {
-  # imports = with inputs; [
-  #   nvidia-vgpu-nixos.nixosModules.host
-  # ];
+  imports = with inputs; [
+    nvidia-vgpu-nixos.nixosModules.host
+  ];
 
   config = {
     age = {
@@ -55,7 +55,7 @@ in {
           beta = false;
           open = false;
           grid = {
-            enable = false;
+            enable = true;
           };
         };
       };
@@ -215,18 +215,24 @@ in {
       icingaweb2
     ];
 
-    # virtualisation.kvmgt = {
-    #   enable = lib.mkForce false;
-    #   device = "0000:01:00.0";
-    #   vgpus = {
-    #     "nvidia-256" = {
-    #       uuid = [
-    #         "e1ab260f-44a2-4e07-9889-68a1caafb399"
-    #         "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
-    #       ];
-    #     };
-    #   };
-    # };
+    virtualisation.kvmgt = {
+      enable = true;
+      device = "0000:01:00.0";
+      vgpus = {
+        # USE Q TYPE
+        # nvidia-47
+        #  Available instances: 12
+        #  Device API: vfio-pci
+        #  Name: GRID P40-2Q
+        #  Description: num_heads=4, frl_config=60, framebuffer=2048M, max_resolution=7680x4320, max_instance=12
+        "nvidia-47" = {
+          uuid = [
+            "e1ab260f-44a2-4e07-9889-68a1caafb399"
+            "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
+          ];
+        };
+      };
+    };
 
     hardware = {
       cpu.intel.updateMicrocode = true;
@@ -239,15 +245,16 @@ in {
       nvidia = {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
-        # nvidiaPersistenced = lib.mkForce true;
+        nvidiaPersistenced = lib.mkForce false;
       };
     };
+
     boot = {
       tmp = {
         useTmpfs = true;
       };
 
-      # kernelPackages = pkgs.linuxPackages_6_12;
+      kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
 
       kernelParams = [
         "console=tty1"
@@ -263,13 +270,15 @@ in {
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
         # "kvm.ignore_msrs=1"
         # "pci=nomsi"
+        "intel_iommu=on"
       ];
 
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      # binfmt.emulatedSystems = ["aarch64-linux"];
 
       recovery = {
         sign = true;
         install = true;
+        netboot.enable = true;
       };
 
       # loader = {
@@ -321,9 +330,9 @@ in {
         ];
         kernelModules = [
           # "pci-me"
-          "kvm-intel"
+          #"kvm-intel"
 
-          "uinput"
+          #"uinput"
         ];
       };
       kernelModules = [
@@ -338,38 +347,13 @@ in {
         "ipmi_devintf"
         "ipmi_msghandler"
         "ipmi_watchdog"
+        "vfio"
+        "vfio_pci"
+        "vfio_virqfd"
+        "vfio_iommu_type1"
       ];
     };
 
     services.rpcbind.enable = true;
-
-    systemd = {
-      mounts = [
-        {
-          type = "nfs";
-          mountConfig = {
-            Options = "noatime";
-          };
-          what = "192.168.1.102:/volume1/tomas";
-          where = "/mnt/dione-downloads";
-        }
-      ];
-
-      automounts = [
-        {
-          wantedBy = ["multi-user.target"];
-          automountConfig = {
-            TimeoutIdleSec = "600";
-          };
-          where = "/mnt/dione-downloads";
-        }
-      ];
-
-      services = {
-        # "serial-getty@ttyS2" = {
-        #   wantedBy = ["multi-user.target"];
-        # };
-      };
-    };
   };
 }

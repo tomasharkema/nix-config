@@ -62,7 +62,7 @@ in {
     #   };
     # };
 
-    # programs.mdevctl.enable = true;
+    programs.mdevctl.enable = true;
 
     environment.systemPackages = with pkgs; [
       kvmtool

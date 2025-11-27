@@ -24,7 +24,7 @@ RUN echo "$USER:$PASS" | chpasswd && \
     sed -i 's#REPO_URL=""#REPO_URL="/repo/hardware/ism/"#g' bootstrap.sh && \
     echo "y" | sh bootstrap.sh -x && \
     yum update -y && \
-    yum install -y net-snmp ipmitool srvadmin-all dell-system-update dcism && \
+    yum install -y net-snmp ipmitool srvadmin-all dell-system-update dcism net-snmp net-snmp-utils srvadmin-deng-snmp srvadmin-isvc-snmp && \
     yum clean all && \
     systemctl enable dcismeng instsvcdrv.service dsm_om_connsvc.service dsm_sa_snmpd.service dsm_om_shrsvc.service dsm_sa_datamgrd.service dsm_sa_eventmgrd.service && \
     sed -i -e 's/SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA/TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256/' -e 's/TLS_DHE_RSA_WITH_AES_128_CBC_SHA/TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA/' -e 's/TLS_DHE_DSS_WITH_AES_128_CBC_SHA/TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384/' -e 's/SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA/TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA/' $TOMCATCFG

@@ -155,7 +155,7 @@
           nix-gaming.nixosModules.wine
           # nix-gaming.nixosModules.platformOptimizations
           # walker.nixosModules.default
-          nvidia-vgpu-nixos.nixosModules.host
+
           vscode-server.nixosModules.default
           # nvidia-vgpu-nixos.nixosModules.guest
           # nixos-service.nixosModules.nixos-service
@@ -387,8 +387,8 @@
       "https://nix-community.cachix.org"
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
-      "https://tomasharkema.cachix.org"
-      "http://silver-star.ling-lizard.ts.net:7124"
+      # "https://tomasharkema.cachix.org"
+      # "http://silver-star.ling-lizard.ts.net:7124"
       "https://niri.cachix.org"
     ];
 
