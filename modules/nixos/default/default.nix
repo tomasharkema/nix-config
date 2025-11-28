@@ -210,7 +210,7 @@ in {
 
       variables.NH_FLAKE = "/home/tomas/Developer/nix-config";
 
-      enableAllTerminfo = true;
+      # enableAllTerminfo = true;
     };
 
     apps = {

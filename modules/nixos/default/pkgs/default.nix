@@ -8,6 +8,8 @@
   config = {
     environment.systemPackages =
       (with pkgs; [
+        kitty.terminfo
+        wezterm.terminfo
         nix-alien
         curlftpfs
         # apfs-fuse

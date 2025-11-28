@@ -31,6 +31,8 @@ in {
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K";
+      second = "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF0";
+
       # media = "/dev/disk/by-id/ata-TOSHIBA_MK3263GSXN_5066P0YHT";
 
       # boot = "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_1C1B0D6AE9B0E410390F2CA6-0:0";
