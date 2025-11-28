@@ -388,7 +388,7 @@
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
       # "https://tomasharkema.cachix.org"
-      # "http://silver-star.ling-lizard.ts.net:7124"
+      "http://silver-star.ling-lizard.ts.net:7124"
       "https://niri.cachix.org"
     ];
 
