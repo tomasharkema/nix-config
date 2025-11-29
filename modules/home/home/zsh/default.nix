@@ -99,9 +99,9 @@
 
           add-zsh-hook precmd zellij_refresh_ssh_sock
 
-          if [[ "$TTY" = /dev/tty* ]] ; then
-            fbterm && exit
-          fi
+          # if [[ "$TTY" = /dev/tty* ]] ; then
+          #   fbterm && exit
+          # fi
 
           function take() {
             mkdir -p $@ && cd ''${@:$#}

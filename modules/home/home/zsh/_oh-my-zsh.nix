@@ -28,7 +28,7 @@
         "encode64"
         "extract"
         "fastfile"
-        "fbterm"
+        # "fbterm"
         "fzf"
         "gh"
         "git-auto-fetch"

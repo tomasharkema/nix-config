@@ -77,7 +77,7 @@
         efibootmgr
         efivar
         ethtool
-        fbterm
+        # fbterm
         fcast-receiver
         freeipmi
         fuse

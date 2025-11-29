@@ -39,7 +39,7 @@ in {
       docker = {
         enable = true;
         enableOnBoot = true;
-        storageDriver = "btrfs";
+        storageDriver = "overlay2";
 
         rootless = {
           enable = true;

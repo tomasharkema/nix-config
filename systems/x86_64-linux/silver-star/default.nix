@@ -27,7 +27,7 @@
     };
 
     facter = {
-      reportPath = ./facter.json;
+      # reportPath = ./facter.json;
       # detected.graphics.enable = false;
     };
 
@@ -56,7 +56,7 @@
         network.xgbe.enable = true;
         nvidia = {
           enable = true;
-          open = false;
+          open = true;
           # grid = {
           #   legacy = false;
           # };
@@ -142,7 +142,7 @@
         };
       };
 
-      irqbalance.enable = true;
+      irqbalance.enable = lib.mkForce false;
 
       nfs = {
         server = {
@@ -318,7 +318,7 @@
       #   acceleration = "cuda";
       # };
       llama-cpp = {
-        enable = true;
+        # enable = true;
         port = 11434;
         model = pkgs.fetchurl {
           url = "https://huggingface.co/bartowski/Mistral-Nemo-Instruct-2407-GGUF/resolve/main/Mistral-Nemo-Instruct-2407-Q4_K_S.gguf";
@@ -547,7 +547,7 @@
         "iomem=relaxed"
         "intel_iommu=on"
         "iommu=pt"
-        "ipmi_watchdog.timeout=180"
+        # "ipmi_watchdog.timeout=180"
         "iomem=relaxed"
         "mitigations=off"
         # "earlyprintk=ttyS0"
@@ -563,7 +563,7 @@
         # "pci=nomsi"
       ];
 
-      blacklistedKernelModules = ["iTCO_wdt"];
+      # blacklistedKernelModules = ["iTCO_wdt"];
 
       recovery = {
         enable = true;
@@ -580,7 +580,7 @@
         efi.canTouchEfiVariables = true;
       };
 
-      extraModulePackages = [config.boot.kernelPackages.vendor-reset];
+      # extraModulePackages = [config.boot.kernelPackages.vendor-reset];
 
       initrd = {
         availableKernelModules = [
@@ -615,24 +615,24 @@
         ];
       };
       kernelModules = [
-        "vendor-reset"
+        # "vendor-reset"
         # "pci-me"
         # "mei-me"
-        "coretemp"
+        # "coretemp"
         "kvm-intel"
         "uinput"
         "fuse"
-        "ipmi_ipmb"
-        "acpi_ipmi"
-        "acpi_power_meter"
+        # "ipmi_ipmb"
+        # "acpi_ipmi"
+        # "acpi_power_meter"
         #       "tpm_rng"
-        "ipmi_ssif"
-        "acpi_ipmi"
-        "ipmi_si"
+        # "ipmi_ssif"
+        # "acpi_ipmi"
+        # "ipmi_si"
         "ipmi_devintf"
-        "ipmi_msghandler"
-        "ipmi_watchdog"
-        "dcdbas"
+        # "ipmi_msghandler"
+        # "ipmi_watchdog"
+        # "dcdbas"
       ];
     };
 
