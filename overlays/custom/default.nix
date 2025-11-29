@@ -105,21 +105,39 @@ in rec {
   #   buildInputs = [prev.icu74.dev];
   # });
 
-  nlohmann_json_3_11_3 = let
-    version = "3.11.3";
-  in
-    prev.nlohmann_json.overrideAttrs ({cmakeFlags, ...}: {
-      version = version;
-      src = prev.fetchFromGitHub {
-        owner = "nlohmann";
-        repo = "json";
-        rev = "v${version}";
-        sha256 = "0y6474xxy027q083vyrz9iyz8xc090nydbd7pbxn58dmgyi0jpgc";
-      };
-      patches = [];
-      cmakeFlags = cmakeFlags ++ ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"];
-      doCheck = false;
-    });
+  termbench-pro = prev.termbench-pro.overrideAttrs ({
+    nativeBuildInputs ? [],
+    buildInputs ? [],
+    ...
+  }: {
+    nativeBuildInputs =
+      nativeBuildInputs
+      ++ [
+        prev.pkg-config
+      ];
+
+    buildInputs =
+      buildInputs
+      ++ [
+        (prev.openssl.override {static = true;})
+      ];
+  });
+
+  # nlohmann_json_3_11_3 = let
+  #   version = "3.11.3";
+  # in
+  #   prev.nlohmann_json.overrideAttrs ({cmakeFlags, ...}: {
+  #     version = version;
+  #     src = prev.fetchFromGitHub {
+  #       owner = "nlohmann";
+  #       repo = "json";
+  #       rev = "v${version}";
+  #       sha256 = "0y6474xxy027q083vyrz9iyz8xc090nydbd7pbxn58dmgyi0jpgc";
+  #     };
+  #     patches = [];
+  #     cmakeFlags = cmakeFlags ++ ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"];
+  #     doCheck = false;
+  #   });
 
   # openrct2 = let
   #   openrct2-version = "0.4.28";

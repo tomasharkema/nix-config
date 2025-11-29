@@ -9,6 +9,10 @@
     environment.systemPackages =
       (with pkgs; [
         # keep-sorted start
+        # kitty.terminfo
+        # wezterm.terminfo
+        nix-alien
+        curlftpfs
         # apfs-fuse
         # apfsprogs
         # bat-extras.batgrep

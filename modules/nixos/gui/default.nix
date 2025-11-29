@@ -55,7 +55,9 @@ in {
           custom.brother-mfc2710dw-ppd
           ptouch-driver
         ];
+        cups-pdf.enable = true;
       };
+      stirling-pdf.enable = true;
 
       playerctld.enable = true;
 
