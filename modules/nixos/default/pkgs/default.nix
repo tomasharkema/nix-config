@@ -8,10 +8,7 @@
   config = {
     environment.systemPackages =
       (with pkgs; [
-        kitty.terminfo
-        wezterm.terminfo
-        nix-alien
-        curlftpfs
+        # keep-sorted start
         # apfs-fuse
         # apfsprogs
         # bat-extras.batgrep
@@ -51,19 +48,20 @@
         cryptsetup # needed for dm-crypt volumes
         ctop
         curl
+        curlftpfs
         custom.discovery-rs
         custom.flightmon
+        custom.menu
         custom.meshtui
         custom.partclone-utils
         custom.radar
-        custom.sshm
-        custom.wikiman
-        custom.zide
         custom.ssh-proxy-agent
-        custom.menu
+        custom.sshed
+        custom.sshm
         custom.ssm
         custom.tailscale-tui
-        custom.sshed
+        custom.wikiman
+        custom.zide
         # rmfuse
         cutecom
         ddrescue
@@ -88,7 +86,6 @@
         gensio
         ghostty
         git
-        git
         glog
         glogg
         gnumake
@@ -111,6 +108,7 @@
         iptraf-ng
         isd
         kexec-tools
+        kitty.terminfo
         kmon
         lazydocker
         ldapdomaindump
@@ -141,6 +139,7 @@
         nfs-utils
         nil
         ninja
+        nix-alien
         nix-btm
         nix-check-deps
         nix-playground
@@ -170,8 +169,6 @@
         pamixer
         parted
         pciutils
-        pciutils
-        picotool
         picotool
         pigz
         piratebay
@@ -200,7 +197,6 @@
         squashfs-tools-ng
         squashfsTools
         ssh-import-id
-        ssh-tools
         ssh-tools
         sshfs
         sshfs-fuse
@@ -234,14 +230,13 @@
         urjtag
         usbredir
         usbutils
-        usbutils
         usermount
         uv
         viddy
         vim
         watchlog
         websocat
-        wget
+        wezterm.terminfo
         wget
         whatfiles
         wmctrl
@@ -252,6 +247,7 @@
         zathura
         zip
         zstd
+        # keep-sorted end
       ])
       ++ (lib.optionals pkgs.stdenv.isx86_64 (
         with pkgs; [
