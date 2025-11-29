@@ -168,6 +168,11 @@ in {
       entry = "sh ./by-name.sh";
       pass_filenames = false;
     };
+    keep-sorted = {
+      entry = "${lib.getExe pkgs.keep-sorted}";
+      enable = true;
+      pass_filenames = true;
+    };
     # "flake-show" = {
     #   enable = true;
     #   entry = "nix flake show";
@@ -198,7 +203,7 @@ in {
     update
     nixos-system
     darwin-system
-
+    keep-sorted
     # # snowfallorg.flake
     # agenix
     # cachix
