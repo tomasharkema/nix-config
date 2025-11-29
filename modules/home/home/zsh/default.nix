@@ -54,7 +54,7 @@
 
         sessionVariables = {
           LESS = "-R";
-          PAGER = "more";
+          PAGER = "less";
         };
         envExtra = ''
           ZSH_CACHE_DIR="${config.xdg.cacheHome}/oh-my-zsh";

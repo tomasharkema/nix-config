@@ -227,10 +227,21 @@ in {
         #  Device API: vfio-pci
         #  Name: GRID P40-2Q
         #  Description: num_heads=4, frl_config=60, framebuffer=2048M, max_resolution=7680x4320, max_instance=12
-        "nvidia-47" = {
+        # "nvidia-47" = {
+        #   uuid = [
+        #     "e1ab260f-44a2-4e07-9889-68a1caafb399"
+        #     "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
+        #   ];
+        # };
+        # nvidia-36
+        #  Available instances: 16
+        #  Device API: vfio-pci
+        #  Name: GRID M10-0Q
+        #  Description: num_heads=2, frl_config=60, framebuffer=512M, max_resolution=2560x1600, max_instance=16
+        "nvidia-36" = {
           uuid = [
-            "e1ab260f-44a2-4e07-9889-68a1caafb399"
-            "f6a3e668-9f62-11ef-b055-fbc0e7d80867"
+            "e1ab260f-44a2-4e07-9889-68a1caafb398"
+            "f6a3e668-9f62-11ef-b055-fbc0e7d80866"
           ];
         };
       };

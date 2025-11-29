@@ -26,6 +26,10 @@ in {
       };
     };
 
+    catppuccin = {
+      cache.enable = true;
+    };
+
     system = {
       build = {
         # self = inputs.self;

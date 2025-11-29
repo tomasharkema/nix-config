@@ -28,7 +28,7 @@ in {
           background = "#000000";
           #osConfig.variables.theme.withHashtag.base00; #"#000000";
           notify_on_cmd_finish = "invisible 20";
-
+          text_fg_override_threshold = "4.5 ratio";
           copy_on_select = "yes";
 
           strip_trailing_spaces = "smart";
