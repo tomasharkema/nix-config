@@ -110,16 +110,10 @@ in rec {
     buildInputs ? [],
     ...
   }: {
-    nativeBuildInputs =
-      nativeBuildInputs
-      ++ [
-        prev.pkg-config
-      ];
-
     buildInputs =
-      buildInputs
+      (builtins.filter (f: f.pname != "glaze") buildInputs)
       ++ [
-        (prev.openssl.override {static = true;})
+        (prev.glaze.override {enableSSL = false;})
       ];
   });
 
