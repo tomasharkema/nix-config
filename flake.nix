@@ -460,21 +460,21 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable?shallow=true";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager?shallow=true";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # systems.url = "github:nix-systems/default";
 
     darwin = {
-      url = "github:LnL7/nix-darwin?shallow=true";
+      url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-facter-modules.url = "github:numtide/nixos-facter-modules?shallow=true";
+    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
 
     flake-compat = {
       url = "github:edolstra/flake-compat";
@@ -482,7 +482,7 @@
     };
 
     # impermanence = {
-    #   url = "github:nix-community/impermanence?shallow=true";
+    #   url = "github:nix-community/impermanence";
     # };
 
     # flake-utils = {
@@ -494,7 +494,7 @@
     # };
 
     devshell = {
-      url = "github:numtide/devshell?shallow=true";
+      url = "github:numtide/devshell";
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };
@@ -513,22 +513,22 @@
     # };
 
     catppuccin = {
-      url = "github:catppuccin/nix?shallow=true";
+      url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-index-database = {
-      url = "github:nix-community/nix-index-database?shallow=true";
+      url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     disko = {
-      url = "github:nix-community/disko?shallow=true";
+      url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-anywhere = {
-      url = "github:nix-community/nixos-anywhere?shallow=true";
+      url = "github:nix-community/nixos-anywhere";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -539,7 +539,7 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim?shallow=true"; # /nixos-24.05";
+      url = "github:nix-community/nixvim"; # /nixos-24.05";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -553,7 +553,7 @@
     };
 
     agenix = {
-      url = "github:ryantm/agenix?shallow=true";
+      url = "github:ryantm/agenix";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -564,7 +564,7 @@
     };
 
     agenix-rekey = {
-      url = "github:oddlama/agenix-rekey?shallow=true";
+      url = "github:oddlama/agenix-rekey";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -575,11 +575,11 @@
     };
 
     nixos-hardware = {
-      url = "github:nixos/nixos-hardware?shallow=true";
+      url = "github:nixos/nixos-hardware";
     };
 
     nix-gaming = {
-      url = "github:fufexan/nix-gaming?shallow=true";
+      url = "github:fufexan/nix-gaming";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -588,7 +588,7 @@
     };
 
     nix-software-center = {
-      url = "github:snowfallorg/nix-software-center?shallow=true";
+      url = "github:snowfallorg/nix-software-center";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -602,11 +602,11 @@
     # };
 
     nix-flatpak = {
-      url = "github:gmodena/nix-flatpak?shallow=true";
+      url = "github:gmodena/nix-flatpak";
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote?shallow=true";
+      url = "github:nix-community/lanzaboote";
       # url = "github:andre4ik3/lanzaboote?ref=fenix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -619,8 +619,8 @@
     };
 
     snowfall-lib = {
-      url = "github:snowfallorg/lib?shallow=true";
-      # url = "github:anntnzrb/snowfall-lib?shallow=true";
+      url = "github:snowfallorg/lib";
+      # url = "github:anntnzrb/snowfall-lib";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         # flake-compat.follows = "flake-compat";
@@ -628,7 +628,7 @@
     };
 
     snowfall-flake = {
-      url = "github:snowfallorg/flake?shallow=true";
+      url = "github:snowfallorg/flake";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -680,7 +680,7 @@
     # };
 
     poetry2nix = {
-      url = "github:nix-community/poetry2nix?shallow=true";
+      url = "github:nix-community/poetry2nix";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -693,7 +693,7 @@
     # };
 
     op-shell-plugins = {
-      url = "github:1Password/shell-plugins?shallow=true";
+      url = "github:1Password/shell-plugins";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
@@ -716,7 +716,7 @@
     # };
 
     nixos-06cb-009a-fingerprint-sensor = {
-      url = "github:tomasharkema/nixos-06cb-009a-fingerprint-sensor/25.05?shallow=true";
+      url = "github:tomasharkema/nixos-06cb-009a-fingerprint-sensor/25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -757,7 +757,7 @@
     # };
 
     nvidia-vgpu-nixos = {
-      url = "github:mrzenc/vgpu4nixos?shallow=true";
+      url = "github:mrzenc/vgpu4nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -771,14 +771,14 @@
     # };
 
     nixos-recovery = {
-      url = "github:tomasharkema/nixos-recovery/develop?shallow=true";
+      url = "github:tomasharkema/nixos-recovery/develop";
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };
     };
 
     chaotic = {
-      url = "github:chaotic-cx/nyx/nyxpkgs-unstable?shallow=true";
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
@@ -791,26 +791,26 @@
     # };
 
     tsui = {
-      url = "github:neuralinkcorp/tsui?shallow=true";
+      url = "github:neuralinkcorp/tsui";
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };
     };
 
     mac-app-util = {
-      url = "github:hraban/mac-app-util?shallow=true";
+      url = "github:hraban/mac-app-util";
       inputs = {
         # nixpkgs.follows = "nixpkgs";
       };
     };
 
     nvidia-patch = {
-      url = "github:icewind1991/nvidia-patch-nixos?shallow=true";
+      url = "github:icewind1991/nvidia-patch-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     piratebay = {
-      url = "github:tsirysndr/piratebay?shallow=true";
+      url = "github:tsirysndr/piratebay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -845,42 +845,42 @@
     # };
 
     # nixgl = {
-    #   url = "github:nix-community/nixGL?shallow=true";
+    #   url = "github:nix-community/nixGL";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
     tsnsrv = {
-      url = "github:boinkor-net/tsnsrv?shallow=true";
+      url = "github:boinkor-net/tsnsrv";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixd = {
-      url = "github:nix-community/nixd?shallow=true";
+      url = "github:nix-community/nixd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     #hyprpanel = {
-    #  url = "github:Jas-SinghFSU/HyprPanel?shallow=true";
+    #  url = "github:Jas-SinghFSU/HyprPanel";
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
 
     # hyprlock = {
-    #   url = "github:hyprwm/hyprlock?shallow=true";
+    #   url = "github:hyprwm/hyprlock";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
     # wluma = {
-    #   url = "github:tomasharkema/wluma?shallow=true";
+    #   url = "github:tomasharkema/wluma";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
     niri = {
-      url = "github:sodiboo/niri-flake?shallow=true";
+      url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixpkgs-esp-dev = {
-      url = "github:mirrexagon/nixpkgs-esp-dev?shallow=true";
+      url = "github:mirrexagon/nixpkgs-esp-dev";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
