@@ -464,9 +464,7 @@
 
       enableAllFirmware = true;
       enableRedistributableFirmware = true;
-      #
-      # nvidia-container-toolkit.enable = true;
-      #
+
       nvidia = {
         nvidiaSettings = lib.mkForce false;
         nvidiaPersistenced = lib.mkForce true;

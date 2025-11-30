@@ -83,7 +83,7 @@ in {
       watchdogd = {
         enable = true;
       };
-
+      rpcbind.enable = true;
       tsnsrv = {
         enable = true;
         defaults.authKeyPath = config.age.secrets.tsnsrv.path;
@@ -253,8 +253,6 @@ in {
       enableAllFirmware = true;
       enableRedistributableFirmware = true;
 
-      # nvidia-container-toolkit.enable = true;
-
       nvidia = {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
@@ -286,7 +284,7 @@ in {
         "intel_iommu=on"
       ];
 
-      # binfmt.emulatedSystems = ["aarch64-linux"];
+      binfmt.emulatedSystems = ["aarch64-linux"];
 
       recovery = {
         sign = true;
@@ -341,12 +339,6 @@ in {
           "usb_storage"
           # "sd_mod"
         ];
-        kernelModules = [
-          # "pci-me"
-          #"kvm-intel"
-
-          #"uinput"
-        ];
       };
       kernelModules = [
         "pci-me"
@@ -366,7 +358,5 @@ in {
         "vfio_iommu_type1"
       ];
     };
-
-    services.rpcbind.enable = true;
   };
 }

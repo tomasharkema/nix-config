@@ -105,11 +105,7 @@ in rec {
   #   buildInputs = [prev.icu74.dev];
   # });
 
-  termbench-pro = prev.termbench-pro.overrideAttrs ({
-    nativeBuildInputs ? [],
-    buildInputs ? [],
-    ...
-  }: {
+  termbench-pro = prev.termbench-pro.overrideAttrs ({buildInputs ? [], ...}: {
     buildInputs =
       (builtins.filter (f: f.pname != "glaze") buildInputs)
       ++ [
