@@ -32,8 +32,8 @@ in {
           image = "ghcr.io/home-assistant/home-assistant:stable";
 
           autoStart = true;
-
-          extraOptions = ["--privileged" "--network=host"];
+          privileged = true;
+          extraOptions = ["--network=host"];
 
           volumes = [
             "/run/dbus:/run/dbus:ro"

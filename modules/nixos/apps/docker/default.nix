@@ -40,7 +40,10 @@ in {
         enable = true;
         enableOnBoot = true;
         storageDriver = "overlay2";
-
+        # daemon.settings.pruning = {
+        #   enabled = true;
+        #   interval = "24h";
+        # };
         rootless = {
           enable = true;
           setSocketVariable = true;

@@ -57,7 +57,7 @@ in {
           beta = false;
           open = false;
           grid = {
-            enable = true;
+            # enable = true;
           };
         };
       };
@@ -78,6 +78,7 @@ in {
         enable = true;
         # bridgeInterfaces = [ "eno1" ];
       };
+
       vscode-server.enable = true;
       # xserver.videoDrivers = ["nvidia"];
       watchdogd = {
@@ -96,7 +97,7 @@ in {
       das_watchdog.enable = lib.mkForce false;
       lldpd.enable = true;
       remote-builders.server.enable = true;
-
+      netbootxyz.enable = true;
       beesd.filesystems = lib.mkIf false {
         root = {
           spec = "UUID=91663f26-5426-4a0d-96f0-e507f2cd8196";
@@ -117,8 +118,9 @@ in {
         };
       };
     };
+    programs.usbtop.enable = true;
 
-    # powerManagement.powertop.enable = true;
+    powerManagement.powertop.enable = true;
 
     networking = {
       # hosts = {
@@ -218,7 +220,7 @@ in {
     ];
 
     virtualisation.kvmgt = {
-      enable = true;
+      # enable = true;
       device = "0000:01:00.0";
       vgpus = {
         # USE Q TYPE
@@ -271,7 +273,7 @@ in {
         "console=tty1"
         "console=ttyS2,115200"
         # "earlyprintk=ttyS2"
-        "rootdelay=300"
+        # "rootdelay=300"
         "panic=1"
         "boot.panic_on_fail"
         "iomem=relaxed"
@@ -282,7 +284,11 @@ in {
         # "kvm.ignore_msrs=1"
         # "pci=nomsi"
         "intel_iommu=on"
+        "ipmi_watchdog.preop=preop_give_data"
+        "ipmi_watchdog.preaction=pre_int"
+        "ipmi_watchdog.timeout=180"
       ];
+      modprobeConfig.enable = true;
 
       binfmt.emulatedSystems = ["aarch64-linux"];
 
@@ -330,7 +336,7 @@ in {
       #     # };
       #   };
       # };
-
+      blacklistedKernelModules = ["iTCO_wdt"];
       initrd = {
         availableKernelModules = [
           "xhci_pci"
@@ -352,10 +358,12 @@ in {
         "ipmi_devintf"
         "ipmi_msghandler"
         "ipmi_watchdog"
+        "bt_bmc"
         "vfio"
         "vfio_pci"
         "vfio_virqfd"
         "vfio_iommu_type1"
+        "ipmi_poweroff"
       ];
     };
   };

@@ -16,7 +16,7 @@ in {
 
     initialMaster = lib.mkEnableOption "initialMaster";
   };
-  config = lib.mkIf true {
+  config = lib.mkIf false {
     services.keepalived = {
       # enable = true;
       # snmp = {

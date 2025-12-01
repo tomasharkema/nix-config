@@ -489,11 +489,11 @@
             #"/run/systemd/system:/run/systemd/system"
             #"/var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket"
           ];
-
+          privileged = true;
+          devices = ["/dev/mem:/dev/mem"];
           extraOptions = [
-            "--privileged"
             "--net=host"
-            "--device=/dev/mem"
+
             # "--systemd=always"
           ];
           autoStart = true;
@@ -561,7 +561,7 @@
         # "pci=nomsi"
       ];
 
-      # blacklistedKernelModules = ["iTCO_wdt"];
+      blacklistedKernelModules = ["iTCO_wdt"];
 
       recovery = {
         enable = true;
