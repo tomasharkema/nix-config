@@ -37,7 +37,7 @@
         disable-user-extensions = true;
       };
     };
-    hardware.microsoft-surface.kernelVersion = "stable";
+    # hardware.microsoft-surface.kernelVersion = "stable";
     # microsoft-surface = {
     #   surface-control.enable = true;
     # };
@@ -73,7 +73,7 @@
     };
 
     boot = {
-      # kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
+      kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
       recovery = {
         enable = true;
         install = true;
