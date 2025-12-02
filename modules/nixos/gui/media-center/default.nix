@@ -133,7 +133,6 @@ in {
     # };
 
     environment.systemPackages = with pkgs; [
-      celluloid
       pwvucontrol
       # kodi-cli
       libcec_platform
