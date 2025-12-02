@@ -294,8 +294,6 @@ in {
         ];
       };
 
-      preload.enable = true;
-
       # actkbd.enable = lib.mkForce false;
 
       ananicy = {
