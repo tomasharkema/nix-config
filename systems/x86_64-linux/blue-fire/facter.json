@@ -872,7 +872,7 @@
         "fpu_exception": false,
         "cpuid_level": 13,
         "write_protect": false,
-        "tlb_size": 32668,
+        "tlb_size": 32767,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -884,87 +884,6 @@
     "disk": [
       {
         "index": 41,
-        "attached_to": 13,
-        "class_list": [
-          "disk",
-          "ide",
-          "block_device"
-        ],
-        "bus_type": {
-          "hex": "0085",
-          "name": "IDE",
-          "value": 133
-        },
-        "slot": {
-          "bus": 1,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0106",
-          "name": "Mass Storage Device",
-          "value": 262
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Disk",
-          "value": 0
-        },
-        "vendor": {
-          "hex": "0000",
-          "name": "KINGSTON",
-          "value": 0
-        },
-        "device": {
-          "hex": "0000",
-          "name": "SA400S3",
-          "value": 0
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "T1A3",
-          "value": 0
-        },
-        "serial": "50026B778512DF01",
-        "model": "KINGSTON SA400S3",
-        "sysfs_id": "/class/block/sdb",
-        "sysfs_bus_id": "1:0:0:0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0",
-        "unix_device_names": [
-          "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01",
-          "/dev/disk/by-id/wwn-0x50026b778512df01",
-          "/dev/disk/by-path/pci-0000:00:1f.2-ata-2",
-          "/dev/disk/by-path/pci-0000:00:1f.2-ata-2.0",
-          "/dev/sdb"
-        ],
-        "resources": [
-          {
-            "type": "disk_geo",
-            "cylinders": 58369,
-            "heads": 255,
-            "sectors": 63,
-            "size": "0x0",
-            "geo_type": "logical"
-          },
-          {
-            "type": "size",
-            "unit": "sectors",
-            "value_1": 937703088,
-            "value_2": 512
-          }
-        ],
-        "driver": "ahci",
-        "driver_module": "ahci",
-        "drivers": [
-          "ahci",
-          "sd"
-        ],
-        "driver_modules": [
-          "ahci",
-          "sd_mod"
-        ]
-      },
-      {
-        "index": 42,
         "attached_to": 13,
         "class_list": [
           "disk",
@@ -1007,7 +926,7 @@
         },
         "serial": "S21JNXBGC17548K",
         "model": "Samsung SSD 850",
-        "sysfs_id": "/class/block/sda",
+        "sysfs_id": "/class/block/sdb",
         "sysfs_bus_id": "0:0:0:0",
         "sysfs_device_link": "/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0",
         "unix_device_names": [
@@ -1015,7 +934,7 @@
           "/dev/disk/by-id/wwn-0x5002538d40913786",
           "/dev/disk/by-path/pci-0000:00:1f.2-ata-1",
           "/dev/disk/by-path/pci-0000:00:1f.2-ata-1.0",
-          "/dev/sda"
+          "/dev/sdb"
         ],
         "resources": [
           {
@@ -1030,6 +949,87 @@
             "type": "size",
             "unit": "sectors",
             "value_1": 976773168,
+            "value_2": 512
+          }
+        ],
+        "driver": "ahci",
+        "driver_module": "ahci",
+        "drivers": [
+          "ahci",
+          "sd"
+        ],
+        "driver_modules": [
+          "ahci",
+          "sd_mod"
+        ]
+      },
+      {
+        "index": 42,
+        "attached_to": 13,
+        "class_list": [
+          "disk",
+          "ide",
+          "block_device"
+        ],
+        "bus_type": {
+          "hex": "0085",
+          "name": "IDE",
+          "value": 133
+        },
+        "slot": {
+          "bus": 1,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0106",
+          "name": "Mass Storage Device",
+          "value": 262
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Disk",
+          "value": 0
+        },
+        "vendor": {
+          "hex": "0000",
+          "name": "KINGSTON",
+          "value": 0
+        },
+        "device": {
+          "hex": "0000",
+          "name": "SA400S3",
+          "value": 0
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "T1A3",
+          "value": 0
+        },
+        "serial": "50026B778512DF01",
+        "model": "KINGSTON SA400S3",
+        "sysfs_id": "/class/block/sda",
+        "sysfs_bus_id": "1:0:0:0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0",
+        "unix_device_names": [
+          "/dev/disk/by-id/ata-KINGSTON_SA400S37480G_50026B778512DF01",
+          "/dev/disk/by-id/wwn-0x50026b778512df01",
+          "/dev/disk/by-path/pci-0000:00:1f.2-ata-2",
+          "/dev/disk/by-path/pci-0000:00:1f.2-ata-2.0",
+          "/dev/sda"
+        ],
+        "resources": [
+          {
+            "type": "disk_geo",
+            "cylinders": 58369,
+            "heads": 255,
+            "sectors": 63,
+            "size": "0x0",
+            "geo_type": "logical"
+          },
+          {
+            "type": "size",
+            "unit": "sectors",
+            "value_1": 937703088,
             "value_2": 512
           }
         ],
@@ -1065,7 +1065,7 @@
         "sysfs_id": "/class/block/zram0",
         "unix_device_names": [
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/c1053d1a-5193-419b-84b0-d37423671b94",
+          "/dev/disk/by-uuid/419a0aab-0d1e-446a-9093-03c70ad5ff2f",
           "/dev/zram0"
         ],
         "resources": [
@@ -1220,20 +1220,20 @@
           "value": 4318
         },
         "sub_vendor": {
-          "hex": "1019",
-          "value": 4121
+          "hex": "1462",
+          "value": 5218
         },
         "device": {
-          "hex": "1380",
-          "value": 4992
+          "hex": "1c82",
+          "value": 7298
         },
         "sub_device": {
-          "hex": "1028",
-          "value": 4136
+          "hex": "8c96",
+          "value": 35990
         },
         "revision": {
-          "hex": "00a2",
-          "value": 162
+          "hex": "00a1",
+          "value": 161
         },
         "model": "nVidia VGA compatible controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:01.0/0000:01:00.0",
@@ -1263,7 +1263,7 @@
         "driver_modules": [
           "nvidia"
         ],
-        "module_alias": "pci:v000010DEd00001380sv00001019sd00001028bc03sc00i00"
+        "module_alias": "pci:v000010DEd00001C82sv00001462sd00008C96bc03sc00i00"
       }
     ],
     "hub": [
@@ -1373,8 +1373,8 @@
           "value": 32903
         },
         "device": {
-          "hex": "8000",
-          "value": 32768
+          "hex": "8008",
+          "value": 32776
         },
         "revision": {
           "hex": "0000",
@@ -1382,7 +1382,7 @@
           "value": 0
         },
         "model": "Hub",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb2/2-1/2-1:1.0",
         "sysfs_bus_id": "2-1:1.0",
         "resources": [
           {
@@ -1429,7 +1429,7 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v8087p8000d0005dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v8087p8008d0005dc09dsc00dp01ic09isc00ip00in00"
       },
       {
         "index": 47,
@@ -1597,7 +1597,7 @@
       },
       {
         "index": 51,
-        "attached_to": 27,
+        "attached_to": 29,
         "class_list": [
           "usb",
           "hub"
@@ -1631,9 +1631,9 @@
           "name": "6.12",
           "value": 0
         },
-        "serial": "0000:00:1a.0",
+        "serial": "0000:00:1d.0",
         "model": "Linux 6.12.59 ehci_hcd EHCI Host Controller",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-0:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
           {
@@ -1708,8 +1708,8 @@
           "value": 32903
         },
         "device": {
-          "hex": "8008",
-          "value": 32776
+          "hex": "8000",
+          "value": 32768
         },
         "revision": {
           "hex": "0000",
@@ -1717,7 +1717,7 @@
           "value": 0
         },
         "model": "Hub",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb1/1-1/1-1:1.0",
         "sysfs_bus_id": "1-1:1.0",
         "resources": [
           {
@@ -1764,11 +1764,11 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v8087p8008d0005dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v8087p8000d0005dc09dsc00dp01ic09isc00ip00in00"
       },
       {
         "index": 53,
-        "attached_to": 29,
+        "attached_to": 27,
         "class_list": [
           "usb",
           "hub"
@@ -1802,9 +1802,9 @@
           "name": "6.12",
           "value": 0
         },
-        "serial": "0000:00:1d.0",
+        "serial": "0000:00:1a.0",
         "model": "Linux 6.12.59 ehci_hcd EHCI Host Controller",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb2/2-0:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "resources": [
           {
@@ -2541,88 +2541,6 @@
     "network_interface": [
       {
         "index": 55,
-        "attached_to": 19,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/eno4",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.7/0000:08:00.0",
-        "unix_device_names": [
-          "eno4"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 48
-          },
-          {
-            "type": "phwaddr",
-            "address": 48
-          }
-        ],
-        "driver": "igb",
-        "driver_module": "igb",
-        "drivers": [
-          "igb"
-        ],
-        "driver_modules": [
-          "igb"
-        ]
-      },
-      {
-        "index": 56,
-        "attached_to": 28,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/eno2",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.3/0000:05:00.0",
-        "unix_device_names": [
-          "eno2"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 48
-          },
-          {
-            "type": "phwaddr",
-            "address": 48
-          }
-        ],
-        "driver": "igb",
-        "driver_module": "igb",
-        "drivers": [
-          "igb"
-        ],
-        "driver_modules": [
-          "igb"
-        ]
-      },
-      {
-        "index": 61,
         "attached_to": 22,
         "class_list": [
           "network_interface"
@@ -2663,29 +2581,7 @@
         ]
       },
       {
-        "index": 62,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_names": [
-          "lo"
-        ]
-      },
-      {
-        "index": 63,
+        "index": 56,
         "attached_to": 35,
         "class_list": [
           "network_interface"
@@ -2705,6 +2601,88 @@
         "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.2/0000:04:00.0",
         "unix_device_names": [
           "eno1"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 48
+          },
+          {
+            "type": "phwaddr",
+            "address": 48
+          }
+        ],
+        "driver": "igb",
+        "driver_module": "igb",
+        "drivers": [
+          "igb"
+        ],
+        "driver_modules": [
+          "igb"
+        ]
+      },
+      {
+        "index": 60,
+        "attached_to": 19,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/eno4",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.7/0000:08:00.0",
+        "unix_device_names": [
+          "eno4"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 48
+          },
+          {
+            "type": "phwaddr",
+            "address": 48
+          }
+        ],
+        "driver": "igb",
+        "driver_module": "igb",
+        "drivers": [
+          "igb"
+        ],
+        "driver_modules": [
+          "igb"
+        ]
+      },
+      {
+        "index": 62,
+        "attached_to": 28,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/eno2",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.3/0000:05:00.0",
+        "unix_device_names": [
+          "eno2"
         ],
         "resources": [
           {
@@ -2764,6 +2742,28 @@
         ],
         "driver_modules": [
           "ixgbe"
+        ]
+      },
+      {
+        "index": 65,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_names": [
+          "lo"
         ]
       }
     ],
@@ -3066,16 +3066,16 @@
           "value": 4318
         },
         "sub_vendor": {
-          "hex": "1019",
-          "value": 4121
+          "hex": "1462",
+          "value": 5218
         },
         "device": {
-          "hex": "0fbc",
-          "value": 4028
+          "hex": "0fb9",
+          "value": 4025
         },
         "sub_device": {
-          "hex": "1028",
-          "value": 4136
+          "hex": "8c96",
+          "value": 35990
         },
         "revision": {
           "hex": "00a1",
@@ -3100,7 +3100,7 @@
         "driver_modules": [
           "snd_hda_intel"
         ],
-        "module_alias": "pci:v000010DEd00000FBCsv00001019sd00001028bc04sc03i00"
+        "module_alias": "pci:v000010DEd00000FB9sv00001462sd00008C96bc04sc03i00"
       }
     ],
     "storage_controller": [
@@ -3502,7 +3502,7 @@
         "sysfs_iommu_group_id": 4,
         "detail": {
           "function": 0,
-          "command": 326,
+          "command": 322,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 32
@@ -3590,7 +3590,7 @@
         "sysfs_iommu_group_id": 11,
         "detail": {
           "function": 0,
-          "command": 326,
+          "command": 322,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 32
@@ -3677,7 +3677,7 @@
         "sysfs_iommu_group_id": 2,
         "detail": {
           "function": 0,
-          "command": 1350,
+          "command": 1346,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 48
