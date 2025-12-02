@@ -45,13 +45,14 @@ in {
       };
     };
 
+    hardware.steam-hardware.enable = true;
+
     programs = {
       wine = {
         enable = true;
         binfmt = true;
         ntsync = true;
       };
-
       steam = {
         enable = true;
 
@@ -109,6 +110,8 @@ in {
 
     environment.systemPackages = with pkgs; [
       # sunshine
+      trigger-control
+      dualsensectl
 
       winetricks
       protontricks
