@@ -7,7 +7,11 @@
   cfg = config.traits.hardware.nvidia;
 in {
   config = {
-    virtualisation.kvmgt.enable = true;
+    virtualisation.kvmgt.enable = lib.mkIf cfg.grid.enable true;
+
+    environment.systemPackages = lib.mkIf cfg.grid.enable [
+      pkgs.custom.vgpu-device-manager
+    ];
 
     hardware = {
       nvidia = lib.mkMerge [
