@@ -2322,77 +2322,6 @@
     ],
     "network_controller": [
       {
-        "index": 12,
-        "attached_to": 33,
-        "class_list": [
-          "network_controller",
-          "pci",
-          "unknown"
-        ],
-        "bus_type": {
-          "hex": "0004",
-          "name": "PCI",
-          "value": 4
-        },
-        "slot": {
-          "bus": 3,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "000d",
-          "name": "Wireless controller",
-          "value": 13
-        },
-        "sub_class": {
-          "hex": "0040",
-          "value": 64
-        },
-        "vendor": {
-          "hex": "8086",
-          "name": "Intel Corporation",
-          "value": 32902
-        },
-        "sub_vendor": {
-          "hex": "8086",
-          "name": "Intel Corporation",
-          "value": 32902
-        },
-        "device": {
-          "hex": "7360",
-          "value": 29536
-        },
-        "sub_device": {
-          "hex": "0020",
-          "value": 32
-        },
-        "revision": {
-          "hex": "0001",
-          "value": 1
-        },
-        "model": "Intel Wireless controller",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1c.4/0000:03:00.0",
-        "sysfs_bus_id": "0000:03:00.0",
-        "unix_device_names": [
-          "wwan0"
-        ],
-        "detail": {
-          "function": 0,
-          "command": 1030,
-          "header_type": 0,
-          "secondary_bus": 0,
-          "prog_if": 0
-        },
-        "driver": "xmm7360",
-        "driver_module": "xmm7360",
-        "drivers": [
-          "xmm7360"
-        ],
-        "driver_modules": [
-          "xmm7360"
-        ],
-        "module_alias": "pci:v00008086d00007360sv00008086sd00000020bc0Dsc40i00"
-      },
-      {
         "index": 32,
         "attached_to": 0,
         "class_list": [
@@ -2639,37 +2568,6 @@
       }
     ],
     "network_interface": [
-      {
-        "index": 55,
-        "attached_to": 12,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0080",
-          "name": "Network Interface",
-          "value": 128
-        },
-        "model": "Network Interface",
-        "sysfs_id": "/class/net/wwan0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.4/0000:03:00.0",
-        "unix_device_names": [
-          "wwan0"
-        ],
-        "driver": "xmm7360",
-        "driver_module": "xmm7360",
-        "drivers": [
-          "xmm7360"
-        ],
-        "driver_modules": [
-          "xmm7360"
-        ]
-      },
       {
         "index": 56,
         "attached_to": 34,
