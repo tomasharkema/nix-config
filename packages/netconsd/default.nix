@@ -3,8 +3,8 @@
   rustPlatform,
   fetchFromGitHub,
   stdenv,
+  autoPatchelfHook,
 }:
-#rustPlatform.buildRustPackage rec {
 stdenv.mkDerivation rec {
   pname = "netconsd";
   version = "0.4.1";
@@ -21,13 +21,8 @@ stdenv.mkDerivation rec {
     install -D netconsd $out/bin/netconsd
     cp -r modules/*.so $out/lib
   '';
-  # cargoLock = {
-  #   lockFile = ./Cargo.lock;
-  # };
 
-  # postPatch = ''
-  #   ln -s ${./Cargo.lock} Cargo.lock
-  # '';
+  nativeBuildInputs = [autoPatchelfHook];
 
   meta = {
     description = "Receive and process logs from the Linux kernel";

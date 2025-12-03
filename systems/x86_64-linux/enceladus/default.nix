@@ -54,7 +54,7 @@
       # blueman.enable = true;
       lldpd.enable = true;
 
-      netbootxyz.enable = true;
+      # netbootxyz.enable = true;
 
       prometheus.exporters = {
         idrac = {
@@ -206,13 +206,18 @@
         useTmpfs = true;
       };
       kernelPackages = pkgs.linuxPackages_cachyos-lts;
-      # kernelModules = ["iTCO_wdt"];
+
+      kernelModules = ["netconsole"];
       kernelParams = [
         "console=ttyACM0,115200"
         "console=tty1"
         "mitigations=off"
         "iomem=relaxed"
       ];
+      modprobeConfig.enable = true;
+      extraModprobeConfig = ''
+        options netconsole netconsole=+6666@/vlan100,1514@192.168.0.101/80:61:5f:0a:49:14
+      '';
       # initrd.kernelModules = ["iTCO_wdt"];
       recovery = {
         enable = true;

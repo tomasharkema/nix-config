@@ -258,8 +258,6 @@
         enable = true;
       };
 
-      das_watchdog.enable = lib.mkForce false;
-
       remote-builders.server.enable = true;
 
       beesd.filesystems = lib.mkIf false {

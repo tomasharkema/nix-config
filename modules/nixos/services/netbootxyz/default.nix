@@ -27,7 +27,23 @@ in {
   config = lib.mkIf cfg.enable {
     apps.docker.enable = true;
 
+    fileSystems = {
+      "/export/netboot" = {
+        device = "/mnt/netboot";
+        options = ["bind"];
+      };
+    };
+
     services = {
+      nfs = {
+        server = {
+          enable = true;
+          exports = ''
+            /export/netboot        *(rw,fsid=0,no_subtree_check)
+          '';
+        };
+      };
+
       keepalived = {
         enable = true;
 
@@ -43,10 +59,17 @@ in {
         '';
 
         vrrpInstances.VIP_32 = {
-          state = "BACKUP";
+          state =
+            if config.networking.hostName == "blue-fire"
+            then "MASTER"
+            else "BACKUP";
           interface = "br0";
           virtualRouterId = 32;
-          priority = 44;
+          priority =
+            if config.networking.hostName == "blue-fire"
+            then 10
+            else 44;
+
           virtualIps = [{addr = "192.168.0.250/24";}];
           trackScripts = ["track_netbootxyz"];
         };
@@ -91,6 +114,7 @@ in {
         volumes = [
           "/var/lib/netboot/config:/config"
           "/var/lib/netboot/assets:/assets"
+          "/mnt/netboot:/netboot"
         ];
         environment = {
           WEB_APP_PORT = "3001"; #optional

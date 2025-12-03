@@ -79,8 +79,11 @@ in {
         # bridgeInterfaces = [ "eno1" ];
       };
 
+      netconsd.enable = true;
+
+      avahi.allowInterfaces = ["br0"];
       vscode-server.enable = true;
-      # xserver.videoDrivers = ["nvidia"];
+      xserver.videoDrivers = ["nvidia"];
       watchdogd = {
         enable = true;
       };
@@ -94,7 +97,6 @@ in {
         };
       };
 
-      das_watchdog.enable = lib.mkForce false;
       lldpd.enable = true;
       remote-builders.server.enable = true;
       netbootxyz.enable = true;
@@ -109,6 +111,7 @@ in {
           ];
         };
       };
+
       # tcsd.enable = true;
       kmscon.enable = lib.mkForce false;
 
@@ -138,22 +141,20 @@ in {
         enable = false;
       };
 
-      # bonds.bond0 = {
-      #  interfaces = [
-      #    "enp6s0f0"
-      #    "enp6s0f1"
-      #    "enp6s0f2"
-      #    "enp6s0f3"
-      #  ];
-      #  driverOptions = {
-      #    mode = "802.3ad";
-      #  };
-      # };
-
       nameservers = ["192.168.0.1"];
 
       bridges.br0 = {
         interfaces = ["enp6s0"];
+      };
+      vlans = {
+        "vlan69" = {
+          id = 69;
+          interface = "enp6s0";
+        };
+        "vlan66" = {
+          id = 66;
+          interface = "enp6s0";
+        };
       };
 
       defaultGateway = {
@@ -200,6 +201,16 @@ in {
               prefixLength = 24;
             }
           ];
+        };
+        "vlan69" = {
+          useDHCP = true;
+          wakeOnLan.enable = true;
+          mtu = 9000;
+        };
+        "vlan66" = {
+          useDHCP = true;
+          wakeOnLan.enable = true;
+          mtu = 9000;
         };
         #"bond0" = {
         #  mtu = 9000;

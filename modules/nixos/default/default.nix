@@ -347,8 +347,6 @@ in {
         enable = true;
       };
 
-      # das_watchdog.enable = true;
-
       openssh = {
         enable = true;
         permitRootLogin = lib.mkForce "no";
