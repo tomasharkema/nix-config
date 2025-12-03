@@ -9,10 +9,7 @@
     environment.systemPackages =
       (with pkgs; [
         # keep-sorted start
-        # kitty.terminfo
-        # wezterm.terminfo
-        nix-alien
-        curlftpfs
+
         # apfs-fuse
         # apfsprogs
         # bat-extras.batgrep
@@ -143,6 +140,9 @@
         nfs-utils
         nil
         ninja
+        nix-alien
+        # kitty.terminfo
+        # wezterm.terminfo
         nix-alien
         nix-btm
         nix-check-deps

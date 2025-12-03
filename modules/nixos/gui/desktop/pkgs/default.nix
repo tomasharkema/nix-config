@@ -13,10 +13,10 @@
   });
 
   pks = with pkgs; [
+    # keep-sorted start
+    (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
     _86Box-with-roms
     _ipmiview
-    labelle
-    (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
     # angryipscanner
     # caffeine-ng
     # custom.manuals
@@ -44,7 +44,6 @@
     chromium
     clutter
     coppwr
-    custom.retro-adsb-radar
     custom.actioneer
     custom.butler
     custom.denon-control
@@ -53,6 +52,7 @@
     custom.librepods
     custom.netsleuth
     custom.remarkable-cups
+    custom.retro-adsb-radar
     custom.spi-tools
     custom.usbguard-gnome
     custom.wsjtx
@@ -65,6 +65,7 @@
     digikam
     digital
     discordo
+    distroshelf
     dmenu
     dmidecode
     dosbox-x
@@ -97,6 +98,7 @@
     jetbrains-toolbox
     kicad
     ktailctl
+    labelle
     libGL
     libGLU
     libsmbios
@@ -105,7 +107,6 @@
     noti
     nrf-command-line-tools
     nrf5-sdk
-    nrfconnect
     nrfconnect
     nrfconnect-bluetooth-low-energy
     nrfutil
@@ -126,8 +127,8 @@
     powertop
     pwvucontrol
     python312Packages.pyclip
-    qdirstat
     qFlipper
+    qdirstat
     qjournalctl
     rmview
     rpi-imager
@@ -142,7 +143,6 @@
     spotify
     sqlitebrowser
     sway-launcher-desktop
-    synology-drive-client
     synology-drive-client
     thonny
     tpmmanager
@@ -164,6 +164,7 @@
     zed-editor
     zenmap
     zotero
+    # keep-sorted end
   ];
   cfg = config.gui.desktop;
 in {
