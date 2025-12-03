@@ -133,6 +133,7 @@
     rmview
     rpi-imager
     saleae-logic-2
+    satellite
     sdrpp
     segger-jlink
     segger-ozone
