@@ -57,14 +57,12 @@ with inputs.home-manager.lib.hm.gvariant; {
         };
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
-          # cursor-theme = mkForce "Adwaita";
           cursor-theme = "macOS";
           gtk-theme = "Adwaita-dark";
-          # gtk-theme = "Catppuccin-Mocha-Compact-Blue-Dark";
-          document-font-name = "Inter Display 12";
           font-antialiasing = "grayscale";
           monospace-font-name = "JetBrainsMono Nerd Font Mono 12";
-          font-name = "Inter Display 11";
+          font-name = "Inter Display 12";
+          document-font-name = "Inter Display 12";
           enable-hot-corners = false;
           icon-theme = "Adwaita";
           text-scaling-factor = 1;
@@ -73,7 +71,7 @@ with inputs.home-manager.lib.hm.gvariant; {
         };
 
         "org/gnome/shell/extensions/user-theme" = {
-          name = lib.mkDefault "Catppuccin-Mocha-Compact-Blue-Dark";
+          name = lib.mkDefault "Adwaita-dark";
         };
 
         "org/gnome/shell/extensions/TodoTxt" = {

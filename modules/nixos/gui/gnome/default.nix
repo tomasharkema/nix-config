@@ -172,10 +172,10 @@ in
         };
 
         displayManager = {
-          gdm = {
-            enable = true;
-            wayland = true;
-          };
+          # gdm = {
+          #     enable = true;
+          #     wayland = true;
+          #   };
         };
 
         libinput.enable = true;

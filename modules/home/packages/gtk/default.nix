@@ -38,7 +38,7 @@ in {
       font = {
         package = pkgs.inter;
         name = "Inter Display";
-        size = 11;
+        size = 12;
       };
 
       iconTheme = {

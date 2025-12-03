@@ -31,7 +31,6 @@ in {
     qt = {
       enable = true;
       platformTheme = "gnome";
-      # platformTheme = "gtk2";
       style = "adwaita-dark";
     };
 

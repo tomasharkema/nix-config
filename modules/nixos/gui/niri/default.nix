@@ -7,7 +7,7 @@
 }: let
   cfgDesktop = config.gui.desktop;
   hmConfig = config.home-manager.users.tomas;
-  # user = config.services.greetd.settings.default_session.user;
+  user = config.services.greetd.settings.default_session.user;
 in {
   config = lib.mkIf cfgDesktop.enable {
     programs = {
@@ -15,23 +15,13 @@ in {
         enable = true;
         package = pkgs.niri-unstable;
       };
-
-      # uwsm = {
-      #   enable = true;
-      #   waylandCompositors = {
-      #     niri = {
-      #       prettyName = "Niri";
-      #       comment = "Niri compositor managed by UWSM";
-      #       binPath = "/run/current-system/sw/bin/niri";
-      #     };
-      #   };
-      # };
     };
 
     security = {
       # pam.services.swaylock = {};
-      # soteria.enable = true;
+      soteria.enable = true;
     };
+
     services.orca.enable = lib.mkForce false;
 
     systemd.user.services.niri-flake-polkit = {
@@ -39,12 +29,13 @@ in {
       # requisite = ["graphical-session.target"];
       # partOf = ["graphical-session.target"];
     };
-    # systemd.user.services.niri-flake-polkit.enable = false;
+    systemd.user.services.niri-flake-polkit.enable = false;
 
     environment = {
       systemPackages = with pkgs; [swaybg];
-      pathsToLink = ["/share/wayland-sessions"];
+      # pathsToLink = ["/share/wayland-sessions"];
     };
+
     xdg.portal.config = {
       niri = {
         default = [
@@ -54,35 +45,36 @@ in {
       };
     };
 
-    # programs = {
-    #   dankMaterialShell = {
-    #     greeter = {
-    #       enable = true;
+    programs = {
+      dankMaterialShell = {
+        greeter = {
+          enable = true;
 
-    #       compositor.name = "niri";
-    #       configHome = "/home/tomas";
-    #       logs = {
-    #         save = true;
-    #         path = "/var/log/dank/greet.log";
-    #       };
-    #     };
-    #   };
-    # };
+          compositor.name = "niri";
+          configHome = "/home/tomas";
 
-    # systemd.tmpfiles.settings."10-dmsgreeter" = {
-    #   "/var/log/dank".d = {
-    #     user = user;
-    #     group = user;
-    #     mode = "0755";
-    #   };
-    # };
+          logs = {
+            save = true;
+            path = "/var/log/dank/greet.log";
+          };
+        };
+      };
+    };
 
-    # users.users = {
-    # tomas.extraGroups = [
-    # user
-    # ];
-    # greeter.home = "/var/lib/greeter";
-    # };
+    systemd.tmpfiles.settings."10-dmsgreeter" = {
+      "/var/log/dank".d = {
+        user = user;
+        group = user;
+        mode = "0755";
+      };
+    };
+
+    users.users = {
+      tomas.extraGroups = [
+        user
+      ];
+      # greeter.home = "/var/lib/greeter";
+    };
 
     security.pam.services = {
       login.fprintAuth = lib.mkIf config.services.fprintd.enable false;
@@ -97,7 +89,7 @@ in {
     # greeterManagesPlymouth = true;
     # };
 
-    # security.ipa.ifpAllowedUids = [user];
+    security.ipa.ifpAllowedUids = [user];
 
     home-manager.users.tomas = {
       catppuccin = {
