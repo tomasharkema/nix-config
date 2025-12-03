@@ -425,7 +425,7 @@ in rec {
   #   ];
   # });
 
-  # _libqmi = prev.libqmi.overrideAttrs (old: rec {
+  # libqmi = prev.libqmi.overrideAttrs (old: rec {
   #   pname = "libqmi";
   #   version = "1.35.6-dev";
 
@@ -438,40 +438,50 @@ in rec {
   #   };
   # });
 
-  # _libmbim = prev.libmbim.overrideAttrs (old: rec {
+  # libmbim = prev.libmbim.overrideAttrs (old: rec {
   #   pname = "libmbim";
-  #   version = "1.31.5-dev";
+  #   version = "1.32.0";
 
   #   src = prev.fetchFromGitLab {
   #     domain = "gitlab.freedesktop.org";
   #     owner = "mobile-broadband";
   #     repo = "libmbim";
   #     rev = version;
-  #     hash = "sha256-Brut0PobAc6rTbGAo4NTauzHtwJrZOJjEw26hyXqA5w="; # "sha256-sHTpu9WeMZroT+1I18ObEHWSzcyj/Relyz8UNe+WawI=";
+  #     hash = "sha256-+4INXuH2kbKs9C6t4bOJye7yyfYH/BLukmgDVvXo+u0=";
   #   };
   # });
-  #_modemmanager = prev.custom.modemmanager-xmm;
 
-  # _modemmanager = prev.modemmanager.overrideAttrs (
-  #   old: rec {
-  #     pname = "modemmanager";
-  #     version = "1.24.0";
+  modemmanager = let
+    version = "1.25.1-dev"; # "1.24.2";
+  in
+    prev.modemmanager.overrideAttrs (
+      {mesonFlags, ...}: {
+        pname = "modemmanager";
+        version = version;
 
-  #     src = prev.fetchFromGitLab {
-  #       domain = "gitlab.freedesktop.org";
-  #       owner = "mobile-broadband";
-  #       repo = "ModemManager";
-  #       rev = version;
-  #       hash = "sha256-3jI75aR2esmv5dkE4TrdCHIcCvtdOBKnBC5XLEKoVFs=";
-  #     };
-  #     #     patches = [];
-  #     #     mesonFlags =
-  #     #       old.mesonFlags
-  #     #       + [
-  #     #         "--sysconfdir=${placeholder "out"}/etc"
-  #     #       ];
-  #   }
-  # );
+        src = prev.fetchFromGitLab {
+          domain = "gitlab.freedesktop.org";
+          owner = "mobile-broadband";
+          repo = "ModemManager";
+          rev = version;
+          hash = "sha256-rBLOqpx7Y2BB6/xvhIw+rDEXsLtePhHLBvfpSuJzQik=";
+        };
+
+        mesonFlags =
+          mesonFlags
+          ++ [
+            (prev.lib.mesonBool "at_command_via_dbus" true)
+            (prev.lib.mesonBool "builtin_plugins" true)
+          ];
+        #     patches = [];
+        #     mesonFlags =
+        #       old.mesonFlags
+        #       + [
+        #         "--sysconfdir=${placeholder "out"}/etc"
+        #       ];
+      }
+    );
+
   krb5Full = prev.krb5;
   # modemmanager = prev.modemmanager.overrideAttrs (oldAttrs: {
   # src = prev.fetchFromGitLab {
