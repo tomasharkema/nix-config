@@ -56,7 +56,8 @@
       fontconfig = {
         enable = true;
         antialias = true;
-        # cache32Bit = true;
+        cache32Bit = true;
+        allowType1 = true;
         allowBitmaps = true;
         useEmbeddedBitmaps = true;
         defaultFonts = {
