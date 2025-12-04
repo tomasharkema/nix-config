@@ -61,27 +61,27 @@ in {
 
         remotePlay.openFirewall = true;
         #dedicatedServer.openFirewall = true;
-        # gamescopeSession = {
-        #   enable = true;
-        #   env = {
-        #     __NV_PRIME_RENDER_OFFLOAD = "1";
-        #     __VK_LAYER_NV_optimus = "NVIDIA_only";
-        #     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-        #   };
-        # };
+        gamescopeSession = {
+          enable = true;
+          env = {
+            __NV_PRIME_RENDER_OFFLOAD = "1";
+            __VK_LAYER_NV_optimus = "NVIDIA_only";
+            __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+          };
+        };
         #platformOptimizations.enable = true;
         localNetworkGameTransfers.openFirewall = true;
         protontricks.enable = true;
       };
-      # gamescope = {
-      #   enable = true;
-      #   capSysNice = true;
-      #   env = {
-      #     __NV_PRIME_RENDER_OFFLOAD = "1";
-      #     __VK_LAYER_NV_optimus = "NVIDIA_only";
-      #     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      #   };
-      # };
+      gamescope = {
+        enable = true;
+        capSysNice = true;
+        env = {
+          __NV_PRIME_RENDER_OFFLOAD = "1";
+          __VK_LAYER_NV_optimus = "NVIDIA_only";
+          __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+        };
+      };
 
       gamemode = {
         enable = true;
@@ -112,7 +112,7 @@ in {
       # sunshine
       trigger-control
       dualsensectl
-
+      gamescope
       winetricks
       protontricks
       heroic
