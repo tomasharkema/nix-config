@@ -35,10 +35,10 @@
     # sublime4
     # ulauncher
     # ventoy-full
-    antares
-    bitwarden-cli
-    bitwarden-desktop
-    bitwarden-menu
+    # antares
+    # bitwarden-cli
+    # bitwarden-desktop
+    # bitwarden-menu
     blueberry
     boxbuddy
     chromium
@@ -148,7 +148,7 @@
     thonny
     tpmmanager
     transmission-remote-gtk
-    tremotesf
+    # tremotesf
     typesetter
     usbview
     vlc

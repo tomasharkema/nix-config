@@ -437,7 +437,6 @@
       freeipmi
       ipmicfg
       ipmiutil
-      tremotesf
       # custom.racadm
       # icingaweb2
     ];

@@ -425,18 +425,20 @@ in rec {
   #   ];
   # });
 
-  # libqmi = prev.libqmi.overrideAttrs (old: rec {
-  #   pname = "libqmi";
-  #   version = "1.35.6-dev";
+  libqmi = prev.libqmi.overrideAttrs (old: rec {
+    pname = "libqmi";
+    version = "1.37.1-dev";
 
-  #   src = prev.fetchFromGitLab {
-  #     domain = "gitlab.freedesktop.org";
-  #     owner = "mobile-broadband";
-  #     repo = "libqmi";
-  #     rev = version;
-  #     hash = "sha256-kw2i9NVYJTcFbgcuZ8GNS0wt/ZgcomeAP/KWXXAV8Xk=";
-  #   };
-  # });
+    src = prev.fetchFromGitLab {
+      domain = "gitlab.freedesktop.org";
+      owner = "mobile-broadband";
+      repo = "libqmi";
+      rev = version;
+      hash = "sha256-9D6wD/n1v6ZioAuQLViXio2WqduG2485FL7ytcJE+jI=";
+    };
+
+    nativeBuildInputs = old.nativeBuildInputs ++ [prev.gi-docgen];
+  });
 
   # libmbim = prev.libmbim.overrideAttrs (old: rec {
   #   pname = "libmbim";
@@ -464,7 +466,7 @@ in rec {
           owner = "mobile-broadband";
           repo = "ModemManager";
           rev = version;
-          hash = "sha256-rBLOqpx7Y2BB6/xvhIw+rDEXsLtePhHLBvfpSuJzQik=";
+          hash = "sha256-kj9WTwVbYzARWkysNmYRATgvc4+hSanu5DcWmnGjd+w=";
         };
 
         mesonFlags =

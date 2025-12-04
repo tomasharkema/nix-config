@@ -226,7 +226,6 @@ in {
       freeipmi
       ipmicfg
       ipmiutil
-      tremotesf
       icingaweb2
     ];
 
