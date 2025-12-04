@@ -438,6 +438,8 @@ in rec {
     };
 
     nativeBuildInputs = old.nativeBuildInputs ++ [prev.gi-docgen];
+
+    postInstall = ''mkdir $devdoc'';
   });
 
   # libmbim = prev.libmbim.overrideAttrs (old: rec {
