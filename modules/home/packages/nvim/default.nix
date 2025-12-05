@@ -22,7 +22,7 @@
 
       nixvim = {
         enable = true;
-        enableMan = true;
+        enableMan = false; # true;
 
         colorschemes.catppuccin.enable = true;
 
@@ -90,6 +90,7 @@
           lsp = {
             enable = true;
             servers = {
+              tclsp.enable = false;
               nixd = {
                 enable = true;
 
