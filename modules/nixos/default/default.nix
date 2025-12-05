@@ -576,6 +576,23 @@ in {
       zsh = {
         enable = true;
         vteIntegration = true;
+
+        interactiveShellInit = ''
+          # XDG_SESSION_TYPE=tty
+          if [[ "$XDG_SESSION_TYPE" == "tty" ]]; then
+            if [[ -z "$ZELLIJ" ]]; then
+              if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
+                zellij attach -c
+              else
+                zellij
+              fi
+
+              if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
+                exit
+              fi
+            fi
+          fi
+        '';
       };
       mtr.enable = true;
       command-not-found.enable = false;
