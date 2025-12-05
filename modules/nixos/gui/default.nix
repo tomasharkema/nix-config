@@ -80,6 +80,7 @@ in {
         logitech-udev-rules
         platformio-core
         openocd
+        solaar
       ];
     };
 
