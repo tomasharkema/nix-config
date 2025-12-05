@@ -51,7 +51,7 @@
       github-runner.enable = true;
 
       hardware = {
-        # tpm.enable = true;
+        tpm.enable = true;
         secure-boot.enable = true;
         network.xgbe.enable = true;
         nvidia = {
