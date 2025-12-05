@@ -9,7 +9,6 @@
     environment.systemPackages =
       (with pkgs; [
         # keep-sorted start
-
         # apfs-fuse
         # apfsprogs
         # bat-extras.batgrep
