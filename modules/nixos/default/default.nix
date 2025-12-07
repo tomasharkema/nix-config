@@ -25,7 +25,7 @@ in {
         rekeyFile = ./cachix-key.age;
       };
     };
-
+    facter.detected.dhcp.enable = false;
     catppuccin = {
       cache.enable = true;
     };
