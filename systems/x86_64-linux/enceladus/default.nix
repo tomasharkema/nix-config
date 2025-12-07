@@ -214,10 +214,10 @@
         "mitigations=off"
         "iomem=relaxed"
       ];
-      modprobeConfig.enable = true;
-      extraModprobeConfig = ''
-        options netconsole netconsole=+6666@/vlan100,1514@192.168.0.101/80:61:5f:0a:49:14
-      '';
+      # modprobeConfig.enable = true;
+      # extraModprobeConfig = ''
+      #   options netconsole netconsole=+6666@/vlan100,1514@192.168.0.101/80:61:5f:0a:49:14
+      # '';
       # initrd.kernelModules = ["iTCO_wdt"];
       recovery = {
         enable = true;
