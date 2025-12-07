@@ -17,24 +17,6 @@
     (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
     _86Box-with-roms
     _ipmiview
-    # angryipscanner
-    # caffeine-ng
-    # custom.manuals
-    # custom.qlogexplorer
-    # custom.wifiman
-    # fractal
-    # gamehub
-    # gphotos-sync
-    # nix-software-center
-    # openloco
-    # pkgs.custom.git-butler
-    # pkgs.wolfram-engine
-    # rtfm
-    # solana-cli
-    # sublime-merge
-    # sublime4
-    # ulauncher
-    # ventoy-full
     antares
     bitwarden-cli
     bitwarden-desktop
@@ -96,6 +78,25 @@
     imsprog
     inspector
     jetbrains-toolbox
+    # angryipscanner
+    # caffeine-ng
+    # custom.manuals
+    # custom.qlogexplorer
+    # custom.wifiman
+    # fractal
+    # gamehub
+    # gphotos-sync
+    # nix-software-center
+    # openloco
+    # pkgs.custom.git-butler
+    # pkgs.wolfram-engine
+    # rtfm
+    # solana-cli
+    # sublime-merge
+    # sublime4
+    # ulauncher
+    # ventoy-full
+    kdePackages.kdenlive
     kicad
     ktailctl
     labelle
