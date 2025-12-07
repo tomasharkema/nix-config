@@ -537,6 +537,7 @@
       kernelParams = [
         "console=tty1"
         "console=ttyS0,115200n8"
+        # "console=ttyS1,115200n8"
         "earlyprintk=ttyS0"
         # "intremap=no_x2apic_optout"
         # "nox2apic"
@@ -590,24 +591,22 @@
           # # "sd_mod"
         ];
         kernelModules = [
-          # "acpi_power_meter"
-          # "acpi_ipmi"
-          # "ipmi_si"
+          "acpi_power_meter"
           # "vendor-reset"
-          # # "dcdbas"
+          "dcdbas"
           # # "dell_rbu"
           # # "pci-me"
-          # "kvm-intel"
+          "kvm-intel"
           # # "mei-me"
           # "uinput"
-          # #          "tpm_rng"
-          # "ipmi_ssif"
-          # "ipmi_ipmb"
-          # "ipmi_si"
-          # "ipmi_devintf"
-          # "ipmi_msghandler"
-          # "ipmi_watchdog"
-          # "acpi_ipmi"
+          #  "tpm_rng"
+          "ipmi_ssif"
+          "ipmi_ipmb"
+          "ipmi_si"
+          "ipmi_devintf"
+          "ipmi_msghandler"
+          "ipmi_watchdog"
+          "acpi_ipmi"
         ];
       };
       kernelModules = [

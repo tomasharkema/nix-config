@@ -165,9 +165,12 @@
           ./defaultNixosAge.nix
           (
             {config, ...}: {
-              nix.extraOptions = ''
-                !include ${config.age.secrets.nix-access-tokens-github.path}
-              '';
+              nix = {
+                extraOptions = ''
+                  !include ${config.age.secrets.nix-access-tokens-github.path}
+                '';
+                nixPath = let path = toString ./.; in ["repl=${path}/repl.nix" "nixpkgs=${inputs.nixpkgs}"];
+              };
             }
           )
         ];

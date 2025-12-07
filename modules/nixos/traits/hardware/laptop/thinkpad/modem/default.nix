@@ -7,9 +7,9 @@
   cfg = config.traits.hardware.laptop.thinkpad;
   settingsFile = pkgs.writeText "xmm7360.ini" ''
     # driver config
-    apn=internet.mobiel
+    apn=internet
 
-    ip-fetch-timeout=1
+    #ip-fetch-timeout=1
     nodefaultroute=True
     metric=1005
 
