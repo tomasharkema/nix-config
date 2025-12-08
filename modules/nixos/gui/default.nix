@@ -103,17 +103,6 @@ in {
       # nm-applet.enable = true;
     };
 
-    chaotic = {
-      # scx.enable = true;
-      # mesa-git = {
-      #   enable = true;
-      # };
-      hdr = lib.mkIf cfg.hdr.enable {
-        enable = true;
-        specialisation.enable = false;
-      };
-    };
-
     # systemd = {enableEmergencyMode = lib.mkDefault true;};
 
     boot = {

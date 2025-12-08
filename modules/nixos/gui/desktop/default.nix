@@ -79,7 +79,7 @@ in {
       #   # openFirewall = true;
       # };
       # clipmenu.enable = true;
-
+      xserver.videoDrivers = ["displaylink"];
       systembus-notify.enable = true;
       pipewire = {
         enable = true;
@@ -175,6 +175,20 @@ in {
       };
       # plotinus.enable = true;
 
+      ghidra = {
+        enable = true;
+        package = pkgs.ghidra.withExtensions (p:
+          with p; [
+            ret-sync
+            gnudisassembler
+            findcrypt
+            ghidra-delinker-extension
+            ghidra-firmware-utils
+            ghidra-firmware-utils
+            ghidra-golanganalyzerextension
+          ]);
+      };
+
       oddjobd.enable = true;
       ssh = {
         # startAgent = true;
@@ -198,6 +212,9 @@ in {
         config.boot.kernelPackages.v4l2loopback
       ];
       kernelModules = ["v4l2loopback" "akvcam"];
+
+      # for displaylink
+      kernelPackages = pkgs.linuxPackages_6_17;
     };
 
     xdg.portal.extraPortals = [

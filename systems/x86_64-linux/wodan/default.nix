@@ -114,8 +114,6 @@
       # hyrland.wluma.enable = true;
     };
 
-    # chaotic.mesa-git.enable = true;
-
     services = {
       hardware = {
         openrgb = {

@@ -90,7 +90,6 @@
         # nixos-service.overlays.default
         agenix-rekey.overlays.default
         nixvim.overlays.default
-        chaotic.overlays.default
         # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
         nixpkgs-esp-dev.overlays.default
@@ -130,7 +129,6 @@
           # comin.nixosModules.comin
           # nixos-vfio.nixosModules.default
           # nix-snapshotter.nixosModules.default
-          chaotic.nixosModules.default
 
           nixos-facter-modules.nixosModules.facter
           # nix-topology.nixosModules.default
@@ -385,7 +383,6 @@
       # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
       "https://watersucks.cachix.org"
       "https://nixpkgs.cachix.org"
-      "https://chaotic-nyx.cachix.org/"
       "https://nix-gaming.cachix.org"
       "https://nix-community.cachix.org"
       "https://devenv.cachix.org"
@@ -397,7 +394,6 @@
 
     # trustedBinaryCaches = [
     #   "https://cache.nixos.org"
-    #   "https://nyx.chaotic.cx/"
     #   "https://nix-gaming.cachix.org"
     #   "https://nix-community.cachix.org"
     #   # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
@@ -408,7 +404,6 @@
 
     # binaryCaches = [
     #   "https://cache.nixos.org"
-    #   "https://nyx.chaotic.cx/"
     #   "https://nix-gaming.cachix.org"
     #   "https://nix-community.cachix.org"
     #   "https://devenv.cachix.org"
@@ -437,7 +432,6 @@
       "nixpkgs.cachix.org-1:q91R6hxbwFvDqTSDKwDAV4T5PxqXGxswD8vhONFMeOE="
       "tomas-nixos-1:attQnEt6Gq99mwz5J/h8EVhCpavuB0/z/u0Bt/Mko7E="
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
-      "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
     ];
 
     # allowed-uris = [
@@ -777,14 +771,6 @@
       url = "github:tomasharkema/nixos-recovery/develop";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    chaotic = {
-      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
       };
     };
 

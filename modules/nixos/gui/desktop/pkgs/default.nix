@@ -18,6 +18,7 @@
     _86Box-with-roms
     _ipmiview
     antares
+    bazaar
     bitwarden-cli
     bitwarden-desktop
     bitwarden-menu
@@ -106,6 +107,7 @@
     libsmbios
     meld
     mission-center
+    netpeek
     noti
     nrf-command-line-tools
     nrf5-sdk

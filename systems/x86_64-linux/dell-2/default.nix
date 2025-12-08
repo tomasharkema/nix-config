@@ -301,8 +301,6 @@
         useTmpfs = true;
       };
 
-      # kernelPackages = pkgs.linuxPackages;
-
       recovery = {
         enable = true;
         install = true;

@@ -9,15 +9,6 @@
     environment.systemPackages =
       (with pkgs; [
         # keep-sorted start
-        # apfs-fuse
-        # apfsprogs
-        # bat-extras.batgrep
-        # fancy-motd
-        # jupyter
-        # lz4
-        # mkchromecast
-        # nix-switcher # : needs github auth
-        # wavemon
         agenix-rekey
         aide
         apt-dater
@@ -171,6 +162,7 @@
         pamix
         pamixer
         parted
+        patchutils
         pciutils
         picotool
         pigz
@@ -238,8 +230,16 @@
         viddy
         vim
         watchlog
+        # apfs-fuse
+        # apfsprogs
+        # bat-extras.batgrep
+        # fancy-motd
+        # jupyter
+        # lz4
+        # mkchromecast
+        # nix-switcher # : needs github auth
+        wavemon
         websocat
-        wezterm.terminfo
         wget
         whatfiles
         wmctrl
@@ -247,7 +247,7 @@
         wtfutil
         xterm
         xxd
-        zathura
+        # zathura
         zip
         zstd
         # keep-sorted end
