@@ -207,7 +207,7 @@
       };
       kernelPackages = pkgs.linuxPackages_cachyos-lts;
 
-      kernelModules = ["netconsole"];
+      # kernelModules = ["netconsole"];
       kernelParams = [
         "console=ttyACM0,115200"
         "console=tty1"
