@@ -9,11 +9,11 @@ in {
   options.gui.quiet-boot = {enable = lib.mkEnableOption "quiet-boot enabled";};
 
   config = lib.mkIf (cfg.enable) {
-    console = {
-      enable = lib.mkForce false;
-      earlySetup = lib.mkForce false;
-      # packages = [pkgs.terminus_font];
-    };
+    # console = {
+    # enable = lib.mkForce false;
+    # earlySetup = lib.mkForce false;
+    # packages = [pkgs.terminus_font];
+    # };
 
     environment.systemPackages = with pkgs; [plymouth];
 

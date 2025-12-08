@@ -83,7 +83,8 @@ in {
     };
 
     console = {
-      # earlySetup = true;
+      enable = true;
+      earlySetup = true;
       # font = "ter-v32n";
       # packages = with pkgs; [terminus_font];
       # keyMap = "us";

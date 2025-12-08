@@ -18,7 +18,7 @@
   pak =
     #pkgs.nvidia-patch.patch-nvenc (
     #pkgs.nvidia-patch.patch-fbc
-    config.boot.kernelPackages.nvidiaPackages.beta
+    config.boot.kernelPackages.nvidiaPackages.latest
     #)
     ;
 in {

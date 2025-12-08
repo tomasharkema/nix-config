@@ -159,10 +159,7 @@
       };
       users.tomas.extraGroups = ["spi" "gpio" "docker"];
     };
-    console = {
-      enable = false;
-      earlySetup = false;
-    };
+
     # security.pam.services.login.fprintAuth = lib.mkForce false;
     security.pam.services = {
       "sudo".fprintAuth = true;
