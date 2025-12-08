@@ -15,10 +15,10 @@
         "version": 0,
         "video_memory": 0
       },
-      "pnp": true,
+      "pnp": false,
       "pnp_id": 0,
       "lba_support": false,
-      "low_memory_size": 653312,
+      "low_memory_size": 0,
       "smbios_version": 770
     },
     "bridge": [
@@ -876,6 +876,7 @@
           "mmio_stale_data",
           "retbleed",
           "gds",
+          "spectre_v2_user",
           "vmscape"
         ],
         "power_management": [
@@ -892,7 +893,7 @@
         "fpu_exception": false,
         "cpuid_level": 22,
         "write_protect": false,
-        "tlb_size": 32765,
+        "tlb_size": 32767,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -1055,6 +1056,7 @@
           "mmio_stale_data",
           "retbleed",
           "gds",
+          "spectre_v2_user",
           "vmscape"
         ],
         "power_management": [
@@ -1071,7 +1073,7 @@
         "fpu_exception": false,
         "cpuid_level": 22,
         "write_protect": false,
-        "tlb_size": 32765,
+        "tlb_size": 32767,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -1177,80 +1179,6 @@
         },
         "slot": {
           "bus": 15,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0106",
-          "name": "Mass Storage Device",
-          "value": 262
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Disk",
-          "value": 0
-        },
-        "device": {
-          "hex": "0000",
-          "name": "ST1000LM035-1RK1",
-          "value": 0
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "SBM3",
-          "value": 0
-        },
-        "serial": "W931YAQR",
-        "model": "ST1000LM035-1RK1",
-        "sysfs_id": "/class/block/sdb",
-        "sysfs_bus_id": "15:0:0:0",
-        "sysfs_device_link": "/devices/pci0000:17/0000:17:00.0/0000:18:00.0/host15/target15:0:0/15:0:0:0",
-        "unix_device_names": [
-          "/dev/disk/by-id/ata-ST1000LM035-1RK172_W931YAQR",
-          "/dev/disk/by-id/wwn-0x5000c5009c29cc9a",
-          "/dev/disk/by-path/pci-0000:18:00.0-scsi-0:0:0:0",
-          "/dev/sdb"
-        ],
-        "resources": [
-          {
-            "type": "disk_geo",
-            "cylinders": 121601,
-            "heads": 255,
-            "sectors": 63,
-            "size": "0x0",
-            "geo_type": "logical"
-          },
-          {
-            "type": "size",
-            "unit": "sectors",
-            "value_1": 1953525168,
-            "value_2": 512
-          }
-        ],
-        "driver": "megaraid_sas",
-        "driver_module": "megaraid_sas",
-        "drivers": [
-          "megaraid_sas",
-          "sd"
-        ],
-        "driver_modules": [
-          "megaraid_sas"
-        ]
-      },
-      {
-        "index": 262,
-        "attached_to": 154,
-        "class_list": [
-          "disk",
-          "ide",
-          "block_device"
-        ],
-        "bus_type": {
-          "hex": "0085",
-          "name": "IDE",
-          "value": 133
-        },
-        "slot": {
-          "bus": 15,
           "number": 1
         },
         "base_class": {
@@ -1280,14 +1208,14 @@
         },
         "serial": "82IRT5M1T",
         "model": "TOSHIBA MQ01ABD0",
-        "sysfs_id": "/class/block/sdc",
+        "sysfs_id": "/class/block/sdb",
         "sysfs_bus_id": "15:0:1:0",
         "sysfs_device_link": "/devices/pci0000:17/0000:17:00.0/0000:18:00.0/host15/target15:0:1/15:0:1:0",
         "unix_device_names": [
           "/dev/disk/by-id/ata-TOSHIBA_MQ01ABD050_82IRT5M1T",
           "/dev/disk/by-id/wwn-0x5000039431d045b7",
           "/dev/disk/by-path/pci-0000:18:00.0-scsi-0:0:1:0",
-          "/dev/sdc"
+          "/dev/sdb"
         ],
         "resources": [
           {
@@ -1316,7 +1244,7 @@
         ]
       },
       {
-        "index": 263,
+        "index": 262,
         "attached_to": 237,
         "class_list": [
           "disk",
@@ -1360,16 +1288,16 @@
         },
         "serial": "0B0013703119",
         "model": "Kingston DataTraveler 3.0",
-        "sysfs_id": "/class/block/sda",
+        "sysfs_id": "/class/block/sdc",
         "sysfs_bus_id": "14:0:0:0",
         "sysfs_device_link": "/devices/pci0000:00/0000:00:14.0/usb2/2-2/2-2:1.0/host14/target14:0:0/14:0:0:0",
         "unix_device_names": [
           "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_0017318221C6B03019AFE5EA-0:0",
           "/dev/disk/by-path/pci-0000:00:14.0-usb-0:2:1.0-scsi-0:0:0:0",
           "/dev/disk/by-path/pci-0000:00:14.0-usbv3-0:2:1.0-scsi-0:0:0:0",
-          "/dev/sda"
+          "/dev/sdc"
         ],
-        "unix_device_name2": "/dev/sg0",
+        "unix_device_name2": "/dev/sg2",
         "resources": [
           {
             "type": "disk_geo",
@@ -1396,6 +1324,80 @@
           "usb_storage"
         ],
         "module_alias": "usb:v0951p1666d0110dc00dsc00dp00ic08isc06ip50in00"
+      },
+      {
+        "index": 263,
+        "attached_to": 154,
+        "class_list": [
+          "disk",
+          "ide",
+          "block_device"
+        ],
+        "bus_type": {
+          "hex": "0085",
+          "name": "IDE",
+          "value": 133
+        },
+        "slot": {
+          "bus": 15,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0106",
+          "name": "Mass Storage Device",
+          "value": 262
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Disk",
+          "value": 0
+        },
+        "device": {
+          "hex": "0000",
+          "name": "ST1000LM035-1RK1",
+          "value": 0
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "SBM3",
+          "value": 0
+        },
+        "serial": "W931YAQR",
+        "model": "ST1000LM035-1RK1",
+        "sysfs_id": "/class/block/sda",
+        "sysfs_bus_id": "15:0:0:0",
+        "sysfs_device_link": "/devices/pci0000:17/0000:17:00.0/0000:18:00.0/host15/target15:0:0/15:0:0:0",
+        "unix_device_names": [
+          "/dev/disk/by-id/ata-ST1000LM035-1RK172_W931YAQR",
+          "/dev/disk/by-id/wwn-0x5000c5009c29cc9a",
+          "/dev/disk/by-path/pci-0000:18:00.0-scsi-0:0:0:0",
+          "/dev/sda"
+        ],
+        "resources": [
+          {
+            "type": "disk_geo",
+            "cylinders": 121601,
+            "heads": 255,
+            "sectors": 63,
+            "size": "0x0",
+            "geo_type": "logical"
+          },
+          {
+            "type": "size",
+            "unit": "sectors",
+            "value_1": 1953525168,
+            "value_2": 512
+          }
+        ],
+        "driver": "megaraid_sas",
+        "driver_module": "megaraid_sas",
+        "drivers": [
+          "megaraid_sas",
+          "sd"
+        ],
+        "driver_modules": [
+          "megaraid_sas"
+        ]
       }
     ],
     "graphics_card": [
@@ -1457,7 +1459,7 @@
         "sysfs_iommu_group_id": 47,
         "detail": {
           "function": 0,
-          "command": 7,
+          "command": 3,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -1741,7 +1743,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.12.59-cachyos xhci-hcd",
+          "name": "Linux 6.18.0-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1751,11 +1753,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.12",
+          "name": "6.18",
           "value": 0
         },
         "serial": "0000:3b:00.2",
-        "model": "Linux 6.12.59-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.18.0-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:00.0/0000:3b:00.2/usb3/3-0:1.0",
         "sysfs_bus_id": "3-0:1.0",
         "resources": [
@@ -1803,7 +1805,7 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0002d0612dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0618dc09dsc00dp01ic09isc00ip00in00"
       },
       {
         "index": 268,
@@ -1986,7 +1988,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.12.59-cachyos xhci-hcd",
+          "name": "Linux 6.18.0-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1996,11 +1998,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.12",
+          "name": "6.18",
           "value": 0
         },
         "serial": "0000:3b:00.2",
-        "model": "Linux 6.12.59-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.18.0-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:00.0/0000:3b:00.2/usb4/4-0:1.0",
         "sysfs_bus_id": "4-0:1.0",
         "detail": {
@@ -2038,7 +2040,7 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0003d0612dc09dsc00dp03ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0003d0618dc09dsc00dp03ic09isc00ip00in00"
       },
       {
         "index": 273,
@@ -2063,7 +2065,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.12.59-cachyos xhci-hcd",
+          "name": "Linux 6.18.0-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2073,11 +2075,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.12",
+          "name": "6.18",
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.12.59-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.18.0-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -2125,7 +2127,7 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0002d0612dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0618dc09dsc00dp01ic09isc00ip00in00"
       },
       {
         "index": 275,
@@ -2150,7 +2152,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.12.59-cachyos xhci-hcd",
+          "name": "Linux 6.18.0-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2160,11 +2162,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.12",
+          "name": "6.18",
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.12.59-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.18.0-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -2202,7 +2204,7 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0003d0612dc09dsc00dp03ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0003d0618dc09dsc00dp03ic09isc00ip00in00"
       }
     ],
     "keyboard": [
@@ -2250,7 +2252,7 @@
           "/dev/input/by-id/usb-DELL_DRAC_5_Virtual_Keyboard_and_Mouse_DELL413C-1-if01-event-kbd",
           "/dev/input/by-path/pci-0000:00:14.0-usb-0:14.2:1.1-event-kbd",
           "/dev/input/by-path/pci-0000:00:14.0-usbv2-0:14.2:1.1-event-kbd",
-          "/dev/input/event11"
+          "/dev/input/event2"
         ],
         "resources": [
           {
@@ -2377,7 +2379,7 @@
         "unix_device_names": [
           "/dev/input/mice"
         ],
-        "unix_device_name2": "/dev/input/mouse1",
+        "unix_device_name2": "/dev/input/mouse0",
         "resources": [
           {
             "type": "baud",
@@ -2504,7 +2506,7 @@
         ],
         "detail": {
           "function": 0,
-          "command": 2,
+          "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -2901,7 +2903,80 @@
     ],
     "network_interface": [
       {
+        "index": 277,
+        "attached_to": 214,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/eno2",
+        "sysfs_device_link": "/devices/pci0000:17/0000:17:02.0/0000:19:00.1",
+        "unix_device_names": [
+          "eno2"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 101
+          },
+          {
+            "type": "phwaddr",
+            "address": 101
+          }
+        ],
+        "driver": "ixgbe",
+        "driver_module": "ixgbe",
+        "drivers": [
+          "ixgbe"
+        ],
+        "driver_modules": [
+          "ixgbe"
+        ]
+      },
+      {
         "index": 278,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/vlan69",
+        "unix_device_names": [
+          "vlan69"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 101
+          }
+        ],
+        "driver": "802.1Q VLAN Support",
+        "drivers": [
+          "802.1Q VLAN Support"
+        ]
+      },
+      {
+        "index": 289,
         "attached_to": 116,
         "class_list": [
           "network_interface"
@@ -2942,7 +3017,7 @@
         ]
       },
       {
-        "index": 283,
+        "index": 292,
         "attached_to": 119,
         "class_list": [
           "network_interface"
@@ -2983,7 +3058,39 @@
         ]
       },
       {
-        "index": 285,
+        "index": 296,
+        "attached_to": 119,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/vlan66",
+        "unix_device_names": [
+          "vlan66"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 101
+          }
+        ],
+        "driver": "802.1Q VLAN Support",
+        "drivers": [
+          "802.1Q VLAN Support"
+        ]
+      },
+      {
+        "index": 302,
         "attached_to": 0,
         "class_list": [
           "network_interface"
@@ -3002,120 +3109,6 @@
         "sysfs_id": "/class/net/lo",
         "unix_device_names": [
           "lo"
-        ]
-      },
-      {
-        "index": 290,
-        "attached_to": 119,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/vlan69",
-        "unix_device_names": [
-          "vlan69"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 101
-          }
-        ],
-        "driver": "802.1Q VLAN Support",
-        "drivers": [
-          "802.1Q VLAN Support"
-        ]
-      },
-      {
-        "index": 295,
-        "attached_to": 211,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/eno4",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.0/0000:01:00.1",
-        "unix_device_names": [
-          "eno4"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 101
-          },
-          {
-            "type": "phwaddr",
-            "address": 101
-          }
-        ],
-        "driver": "igb",
-        "driver_module": "igb",
-        "drivers": [
-          "igb"
-        ],
-        "driver_modules": [
-          "igb"
-        ]
-      },
-      {
-        "index": 300,
-        "attached_to": 214,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/eno2",
-        "sysfs_device_link": "/devices/pci0000:17/0000:17:02.0/0000:19:00.1",
-        "unix_device_names": [
-          "eno2"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 101
-          },
-          {
-            "type": "phwaddr",
-            "address": 101
-          }
-        ],
-        "driver": "ixgbe",
-        "driver_module": "ixgbe",
-        "drivers": [
-          "ixgbe"
-        ],
-        "driver_modules": [
-          "ixgbe"
         ]
       },
       {
@@ -3160,8 +3153,8 @@
         ]
       },
       {
-        "index": 308,
-        "attached_to": 119,
+        "index": 306,
+        "attached_to": 211,
         "class_list": [
           "network_interface"
         ],
@@ -3176,19 +3169,28 @@
           "value": 1
         },
         "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/vlan66",
+        "sysfs_id": "/class/net/eno4",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.0/0000:01:00.1",
         "unix_device_names": [
-          "vlan66"
+          "eno4"
         ],
         "resources": [
           {
             "type": "hwaddr",
             "address": 101
+          },
+          {
+            "type": "phwaddr",
+            "address": 101
           }
         ],
-        "driver": "802.1Q VLAN Support",
+        "driver": "igb",
+        "driver_module": "igb",
         "drivers": [
-          "802.1Q VLAN Support"
+          "igb"
+        ],
+        "driver_modules": [
+          "igb"
         ]
       }
     ],
@@ -3307,7 +3309,7 @@
         "sysfs_iommu_group_id": 44,
         "detail": {
           "function": 2,
-          "command": 6,
+          "command": 2,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -4690,7 +4692,7 @@
         "sysfs_iommu_group_id": 40,
         "detail": {
           "function": 4,
-          "command": 6,
+          "command": 2,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -5512,7 +5514,7 @@
         "sysfs_iommu_group_id": 105,
         "detail": {
           "function": 4,
-          "command": 6,
+          "command": 2,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 32
@@ -6831,7 +6833,7 @@
         "sysfs_iommu_group_id": 40,
         "detail": {
           "function": 0,
-          "command": 6,
+          "command": 2,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -7567,7 +7569,7 @@
         "sysfs_iommu_group_id": 44,
         "detail": {
           "function": 5,
-          "command": 1350,
+          "command": 1346,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -8604,7 +8606,7 @@
         "sysfs_iommu_group_id": 114,
         "detail": {
           "function": 4,
-          "command": 6,
+          "command": 2,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 32
@@ -8670,7 +8672,7 @@
         "sysfs_iommu_group_id": 59,
         "detail": {
           "function": 4,
-          "command": 6,
+          "command": 2,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 32
@@ -9614,7 +9616,7 @@
         "sysfs_iommu_group_id": 88,
         "detail": {
           "function": 4,
-          "command": 6,
+          "command": 2,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 32
@@ -12380,7 +12382,7 @@
         "sysfs_iommu_group_id": 34,
         "detail": {
           "function": 4,
-          "command": 6,
+          "command": 2,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 32
@@ -12440,7 +12442,7 @@
         "sysfs_iommu_group_id": 40,
         "detail": {
           "function": 1,
-          "command": 6,
+          "command": 2,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -12882,7 +12884,7 @@
         "sysfs_iommu_group_id": 39,
         "detail": {
           "function": 2,
-          "command": 262,
+          "command": 258,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -12945,7 +12947,7 @@
         "sysfs_iommu_group_id": 38,
         "detail": {
           "function": 0,
-          "command": 324,
+          "command": 320,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -14376,7 +14378,7 @@
         "sysfs_iommu_group_id": 50,
         "detail": {
           "function": 4,
-          "command": 6,
+          "command": 2,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 32
@@ -14633,7 +14635,7 @@
         "sysfs_iommu_group_id": 143,
         "detail": {
           "function": 4,
-          "command": 6,
+          "command": 2,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 32
@@ -14967,7 +14969,7 @@
         "sysfs_iommu_group_id": 99,
         "detail": {
           "function": 4,
-          "command": 6,
+          "command": 2,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 32

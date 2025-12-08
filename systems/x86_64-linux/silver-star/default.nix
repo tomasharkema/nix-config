@@ -22,7 +22,7 @@
         #        group = "healthchecks";
         #       owner = "healthchecks";
         #    };
-        firefox. rekeyFile = ./firefox.age;
+        firefox.rekeyFile = ./firefox.age;
       };
     };
 
