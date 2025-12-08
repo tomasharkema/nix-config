@@ -19,7 +19,7 @@ in {
 
     security = {
       # pam.services.swaylock = {};
-      # soteria.enable = true;
+      soteria.enable = true;
     };
 
     services.orca.enable = lib.mkForce false;
@@ -29,7 +29,7 @@ in {
       # requisite = ["graphical-session.target"];
       # partOf = ["graphical-session.target"];
     };
-    # systemd.user.services.niri-flake-polkit.enable = false;
+    systemd.user.services.niri-flake-polkit.enable = false;
 
     environment = {
       systemPackages = with pkgs; [swaybg];
