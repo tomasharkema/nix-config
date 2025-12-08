@@ -537,7 +537,7 @@
       kernelParams = [
         "console=tty1"
         "console=ttyS0,115200n8"
-        "console=ttyS1,115200n8"
+        "earlyprintk=ttyS0"
         # "intremap=no_x2apic_optout"
         # "nox2apic"
         "iomem=relaxed"
@@ -546,7 +546,7 @@
         # "ipmi_watchdog.timeout=180"
         "iomem=relaxed"
         "mitigations=off"
-        # "earlyprintk=ttyS0"
+
         "rootdelay=300"
         "panic=1"
         "boot.panic_on_fail"

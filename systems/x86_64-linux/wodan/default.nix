@@ -130,6 +130,7 @@
         enable = true;
         enableUdevRules = true;
       };
+      kmscon.enable = true;
       syncplay.enable = true;
       ratbagd.enable = true;
       remote-builders.server.enable = true;
@@ -307,9 +308,10 @@
           # "kvm-intel"
         ];
       };
+
       kernelParams = [
         # "console=tty1"
-        # "console=ttyUSB0,115200n8"
+        # "console=ttyS0,115200n8"
         # "intel_iommu=on"
         # "iommu=pt"
         # "preempt=full"
@@ -318,7 +320,7 @@
         # "pci-stub.ids=1458:37a7"
       ];
 
-      # blacklistedKernelModules = ["nouveau"];
+      blacklistedKernelModules = ["nouveau"];
       # extraModprobeConfig = ''
       #   options nvidia NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100
       # '';
