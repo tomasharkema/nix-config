@@ -216,7 +216,7 @@
           # finegrained = true;
         };
 
-        # package = config.boot.kernelPackages.nvidiaPackages.vgpu_17_3;
+        package = config.boot.kernelPackages.nvidiaPackages.beta;
 
         # vgpu.patcher = {
         #   enable = true;
