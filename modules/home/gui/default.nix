@@ -69,9 +69,6 @@ in {
       tldr-update.enable = true;
     };
 
-    xsession.numlock.enable = true;
-    # xsession.enable = true;
-
     xdg = {
       userDirs = {
         enable = true;

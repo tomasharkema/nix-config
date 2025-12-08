@@ -1417,7 +1417,7 @@
         "fpu_exception": false,
         "cpuid_level": 22,
         "write_protect": false,
-        "tlb_size": 32576,
+        "tlb_size": 32767,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -1566,11 +1566,17 @@
         "resources": [
           {
             "type": "disk_geo",
-            "cylinders": 1024,
-            "heads": 0,
-            "sectors": 62,
+            "cylinders": 15205,
+            "heads": 255,
+            "sectors": 63,
             "size": "0x0",
             "geo_type": "logical"
+          },
+          {
+            "type": "size",
+            "unit": "sectors",
+            "value_1": 244277248,
+            "value_2": 512
           }
         ],
         "driver": "usb-storage",
@@ -1605,7 +1611,7 @@
         "sysfs_id": "/class/block/zram0",
         "unix_device_names": [
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/efab87e0-d1d8-4acd-a2b3-c19d63de957c",
+          "/dev/disk/by-uuid/d77a66b9-e546-4cd9-9f9c-15f6c69ee8d6",
           "/dev/zram0"
         ],
         "resources": [
@@ -2563,7 +2569,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 100
+            "address": 57
           },
           {
             "type": "phwaddr",
@@ -2673,7 +2679,7 @@
     ],
     "network_interface": [
       {
-        "index": 58,
+        "index": 56,
         "attached_to": 12,
         "class_list": [
           "network_interface"
@@ -2750,7 +2756,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 100
+            "address": 57
           },
           {
             "type": "phwaddr",
