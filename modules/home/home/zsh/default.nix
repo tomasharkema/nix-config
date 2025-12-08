@@ -83,7 +83,9 @@
           bindkey -M viins "^I" expand-or-complete-with-dots
           bindkey -M vicmd "^I" expand-or-complete-with-dots
         '';
-
+        # if [[ "$TTY" = /dev/tty* ]] ; then
+        #   fbterm && exit
+        # fi
         initExtra = ''
           bindkey -M emacs -s '^A' 'menu^M'
           bindkey -M vicmd -s '^A' 'menu^M'
@@ -98,10 +100,6 @@
           }
 
           add-zsh-hook precmd zellij_refresh_ssh_sock
-
-          # if [[ "$TTY" = /dev/tty* ]] ; then
-          #   fbterm && exit
-          # fi
 
           function take() {
             mkdir -p $@ && cd ''${@:$#}

@@ -150,6 +150,9 @@ in {
                 accel-speed = -0.5;
               };
               touchpad = {click-method = "clickfinger";};
+              keyboard = {
+                numlock = true;
+              };
             };
             prefer-no-csd = true;
             gestures.hot-corners.enable = false;
