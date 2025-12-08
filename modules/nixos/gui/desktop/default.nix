@@ -193,8 +193,11 @@ in {
     };
 
     boot = {
-      extraModulePackages = [config.boot.kernelPackages.akvcam];
-      kernel.sysctl."net.ipv6.conf.all.disable_ipv6" = true;
+      extraModulePackages = [
+        config.boot.kernelPackages.akvcam
+        config.boot.kernelPackages.v4l2loopback
+      ];
+      kernelModules = ["v4l2loopback" "akvcam"];
     };
 
     xdg.portal.extraPortals = [

@@ -37,6 +37,7 @@
     custom.retro-adsb-radar
     custom.spi-tools
     custom.usbguard-gnome
+    custom.webcamize
     custom.wsjtx
     darktable
     davinci-resolve
