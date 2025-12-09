@@ -205,7 +205,7 @@
       tmp = {
         useTmpfs = true;
       };
-      kernelPackages = pkgs.linuxPackages_cachyos-lts;
+      # kernelPackages = pkgs.linuxPackages_cachyos-lts;
 
       # kernelModules = ["netconsole"];
       kernelParams = [

@@ -42,8 +42,7 @@ in {
         useTmpfs = true;
       };
 
-      # kernelPackages = pkgs.linuxPackages_6_12;
-      kernelPackages = pkgs.linuxPackages_cachyos-lts;
+      kernelPackages = pkgs.linuxPackages_6_12;
     };
   };
 }
