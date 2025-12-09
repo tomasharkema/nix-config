@@ -22,6 +22,11 @@
       main = "/dev/disk/by-id/ata-C400-MTFDDAT128MAM_0000000013050365897F";
     };
 
+    environment.systemPackages = with pkgs; [
+      cage
+      custom.retro-adsb-radar
+    ];
+
     services = {
       remote-builders.client.enable = true;
       usbmuxd.enable = true;
@@ -37,20 +42,21 @@
         disable-user-extensions = true;
       };
     };
-    # hardware.microsoft-surface.kernelVersion = "stable";
+
+    hardware.microsoft-surface.kernelVersion = "stable";
     # microsoft-surface = {
-    #   surface-control.enable = true;
+    # surface-control.enable = true;
     # };
 
     gui = {
-      enable = true;
-      desktop = {
-        enable = true;
-      };
-      gnome = {
-        enable = true;
-        # hidpi.enable = true;
-      };
+      # enable = true;
+      # desktop = {
+      #   enable = true;
+      # };
+      # gnome = {
+      #   enable = true;
+      #   # hidpi.enable = true;
+      # };
       # gamemode.enable = true;
       quiet-boot.enable = true;
     };
