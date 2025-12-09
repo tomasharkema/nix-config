@@ -10,27 +10,6 @@
   user = config.services.greetd.settings.default_session.user;
 in {
   config = lib.mkIf cfgDesktop.enable {
-    programs = {
-      niri = {
-        enable = true;
-        package = pkgs.niri-unstable;
-      };
-    };
-
-    security = {
-      # pam.services.swaylock = {};
-      soteria.enable = true;
-    };
-
-    services.orca.enable = lib.mkForce false;
-
-    systemd.user.services.niri-flake-polkit = {
-      # wants = lib.mkForce [];
-      # requisite = ["graphical-session.target"];
-      # partOf = ["graphical-session.target"];
-    };
-    systemd.user.services.niri-flake-polkit.enable = false;
-
     environment = {
       systemPackages = with pkgs; [swaybg];
       # pathsToLink = ["/share/wayland-sessions"];
@@ -46,6 +25,10 @@ in {
     };
 
     programs = {
+      niri = {
+        enable = true;
+        package = pkgs.niri-unstable;
+      };
       dankMaterialShell = {
         greeter = {
           enable = true;
@@ -61,12 +44,20 @@ in {
       };
     };
 
-    systemd.tmpfiles.settings."10-dmsgreeter" = {
-      "/var/log/dank".d = {
-        user = user;
-        group = user;
-        mode = "0755";
+    systemd = {
+      user.services.niri-flake-polkit.enable = false;
+      tmpfiles.settings."10-dmsgreeter" = {
+        "/var/log/dank".d = {
+          user = user;
+          group = user;
+          mode = "0755";
+        };
       };
+    };
+
+    services = {
+      iio-niri.enable = true;
+      orca.enable = lib.mkForce false;
     };
 
     users.users = {
@@ -76,9 +67,13 @@ in {
       # greeter.home = "/var/lib/greeter";
     };
 
-    security.pam.services = {
-      login.fprintAuth = lib.mkIf config.services.fprintd.enable false;
-      greetd.fprintAuth = lib.mkIf config.services.fprintd.enable false;
+    security = {
+      soteria.enable = true;
+      ipa.ifpAllowedUids = [user];
+      pam.services = {
+        login.fprintAuth = lib.mkIf config.services.fprintd.enable false;
+        greetd.fprintAuth = lib.mkIf config.services.fprintd.enable false;
+      };
     };
 
     # services.greetd = {
@@ -88,8 +83,6 @@ in {
     # cage -s --
     # greeterManagesPlymouth = true;
     # };
-
-    security.ipa.ifpAllowedUids = [user];
 
     home-manager.users.tomas = {
       catppuccin = {

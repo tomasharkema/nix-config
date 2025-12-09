@@ -145,7 +145,10 @@ in {
     environment = {
       etc."xdg/autostart/geary-autostart.desktop".source = "${pkgs.geary}/share/applications/geary-autostart.desktop";
       sessionVariables.NIXOS_OZONE_WL = "1";
-      systemPackages = with pkgs; [kdiskmark];
+      systemPackages = with pkgs; [
+        kdiskmark
+        config.boot.kernelPackages.iio-utils
+      ];
     };
 
     hardware = {
@@ -157,6 +160,12 @@ in {
       opentabletdriver = {
         enable = true;
         daemon.enable = true;
+      };
+      intel-gpu-tools.enable = true;
+      acpilight.enable = true;
+      sensor = {
+        hddtemp.enable = true;
+        iio.enable = true;
       };
     };
 
@@ -207,9 +216,10 @@ in {
     };
 
     boot = {
-      extraModulePackages = [
-        config.boot.kernelPackages.akvcam
-        config.boot.kernelPackages.v4l2loopback
+      extraModulePackages = with config.boot.kernelPackages; [
+        akvcam
+        v4l2loopback
+        iio-utils
       ];
       kernelModules = ["v4l2loopback" "akvcam"];
 

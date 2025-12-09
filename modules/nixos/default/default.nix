@@ -143,6 +143,7 @@ in {
       tmp = {
         useTmpfs = lib.mkDefault true;
         cleanOnBoot = lib.mkDefault true;
+        # useZram = lib.mkDefault true;
       };
 
       kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;

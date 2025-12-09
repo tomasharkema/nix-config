@@ -5,9 +5,9 @@
   lib,
   ...
 }: {
-  # imports = with inputs; [
-  #   nixos-hardware.nixosModules.dell-xps-15-9570-nvidia
-  # ];
+  imports = with inputs; [
+    nixos-hardware.nixosModules.dell-xps-15-9570
+  ];
   config = {
     age = {
       rekey = {
@@ -104,7 +104,7 @@
           # offload.enable = true;
           # offload.enableOffloadCmd = true;
           intelBusId = "PCI:0:2:0";
-          nvidiaBusId = "PCI:01:0:0";
+          nvidiaBusId = "PCI:1:0:0";
         };
 
         powerManagement = {
@@ -197,7 +197,7 @@
       # power-profiles-daemon.enable = lib.mkForce true;
 
       clamav.daemon.settings.MaxThreads = 4;
-
+      tlp.enable = lib.mkForce false;
       udev = {
         enable = true;
 
