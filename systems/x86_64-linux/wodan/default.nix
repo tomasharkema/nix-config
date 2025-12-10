@@ -274,10 +274,14 @@
         # memtest86.enable = true;
       };
 
-      extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
+      extraModulePackages = with config.boot.kernelPackages; [
+        ddcci-driver
+        it87
+      ];
 
       kernelModules = [
-        #"i2c-dev"
+        "it87"
+        "i2c-dev"
         "btusb"
         "ddcci"
         # "iTCO_wdt"
