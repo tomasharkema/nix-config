@@ -17,11 +17,13 @@ in {
       enable = true;
       enableZshIntegration = true;
       package = pkgs.wezterm;
+    };
 
-      extraConfig = builtins.readFile (pkgs.replaceVars ./wezterm.lua {
+    xdg.configFile = {
+      "wezterm/wezterm.lua".source = pkgs.replaceVars ./wezterm.lua {
         wezPerProjectWorkspace = "https://github.com/sei40kr/wez-per-project-workspace";
         weztermStatus = "https://github.com/yriveiro/wezterm-status";
-      });
+      };
     };
   };
 }

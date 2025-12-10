@@ -156,6 +156,7 @@
         enable = true; # wlp4s0; # false;
         allowPing = true;
         trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
+        allowedUDPPorts = [53 67];
       };
     };
 
