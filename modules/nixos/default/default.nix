@@ -275,19 +275,6 @@ in {
       #   allowEveryone = true;
       # };
 
-      kmscon = {
-        # enable = lib.mkDefault true;
-        hwRender = true;
-        useXkbConfig = true;
-
-        fonts = [
-          {
-            name = "JetBrainsMono Nerd Font Mono";
-            package = pkgs.nerd-fonts.jetbrains-mono;
-          }
-        ];
-      };
-
       # actkbd.enable = lib.mkForce false;
 
       ananicy = {
