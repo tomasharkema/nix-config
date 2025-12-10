@@ -26,7 +26,7 @@ in {
       # custom.usbguard-gnome
     ];
 
-    system.activationScripts.usbguard-rules = ''
+    system.activationScripts.usbguard-rules = lib.mkIf config.services.usbguard.enable ''
       if [ ! -f "${config.services.usbguard.ruleFile}" ]; then
         echo "Please create the rules file by running: usbguard-generate-rules"
       fi

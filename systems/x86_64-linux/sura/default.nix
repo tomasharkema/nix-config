@@ -25,13 +25,46 @@
     environment.systemPackages = with pkgs; [
       cage
       custom.retro-adsb-radar
+      firefox
     ];
 
+    apps = {
+      netdata.enable = lib.mkForce false;
+    };
+
+    gui.fonts.enable = true;
+
     services = {
+      cage = {
+        enable = true;
+        user = "tomas";
+        environment = {
+          WLR_LIBINPUT_NO_DEVICES = "1";
+          SDL_VIDEODRIVER = "wayland";
+          MOZ_ENABLE_WAYLAND = "1";
+        };
+        # extraArguments = [
+        #   "-s"
+        #   "-D"
+        #   "-d"
+        # ];
+        program = pkgs.writeShellScript "radar" ''
+          export WLR_LIBINPUT_NO_DEVICES=1
+          export SDL_VIDEODRIVER=wayland
+          exec ${lib.getExe pkgs.custom.retro-adsb-radar}
+        '';
+        # program = pkgs.writeShellScript "radar" ''
+        #   export WLR_LIBINPUT_NO_DEVICES=1
+        #   export SDL_VIDEODRIVER=wayland
+        #   export MOZ_ENABLE_WAYLAND=1
+        #   exec ${lib.getExe pkgs.firefox} --kiosk --private-window https://adsb.ling-lizard.ts.net
+        # '';
+      };
+
       remote-builders.client.enable = true;
-      usbmuxd.enable = true;
+      usbmuxd.enable = false;
       resilio.enable = lib.mkForce false;
-      kmscon.enable = true;
+      kmscon.enable = lib.mkForce false;
       usbguard.enable = lib.mkForce false;
       tlp.enable = lib.mkForce false;
       netdata.enable = lib.mkForce false;
@@ -55,10 +88,10 @@
       # };
       # gnome = {
       #   enable = true;
-      #   # hidpi.enable = true;
+      #   # hidpi.enable = true;export SDL_VIDEODRIVER=wayland
       # };
       # gamemode.enable = true;
-      quiet-boot.enable = true;
+      # quiet-boot.enable = true;
     };
     traits = {
       low-power.enable = true;
