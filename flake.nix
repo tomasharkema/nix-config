@@ -94,6 +94,7 @@
         # opentelemetry-nix.overlays.default
         nixpkgs-esp-dev.overlays.default
         niri.overlays.niri
+        nur-xddxdd.overlays.default
         nix-cachyos-kernel.overlays.default
       ];
 
@@ -391,6 +392,7 @@
       # "https://tomasharkema.cachix.org"
       "http://silver-star.ling-lizard.ts.net:7124"
       "https://niri.cachix.org"
+      "https://cache.garnix.io"
     ];
 
     # trustedBinaryCaches = [
@@ -433,6 +435,7 @@
       "nixpkgs.cachix.org-1:q91R6hxbwFvDqTSDKwDAV4T5PxqXGxswD8vhONFMeOE="
       "tomas-nixos-1:attQnEt6Gq99mwz5J/h8EVhCpavuB0/z/u0Bt/Mko7E="
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
     ];
 
     # allowed-uris = [
