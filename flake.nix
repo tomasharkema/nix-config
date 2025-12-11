@@ -829,10 +829,19 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    # nur-xddxdd = {
-    #   url = "github:xddxdd/nur-packages";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    nix-cachyos-kernel = {
+      url = "github:xddxdd/nix-cachyos-kernel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nur-xddxdd = {
+      url = "github:xddxdd/nur-packages";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nix-cachyos-kernel.follows = "nix-cachyos-kernel";
+        nix-index-database.follows = "nix-index-database";
+      };
+    };
 
     # nixgl = {
     #   url = "github:nix-community/nixGL";
@@ -848,16 +857,6 @@
       url = "github:nix-community/nixd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    #hyprpanel = {
-    #  url = "github:Jas-SinghFSU/HyprPanel";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
-
-    # hyprlock = {
-    #   url = "github:hyprwm/hyprlock";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
 
     # wluma = {
     #   url = "github:tomasharkema/wluma";
@@ -879,13 +878,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #dms-cli = {
-    #  url = "github:AvengeMedia/danklinux";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
-
     dankMaterialShell = {
-      url = "github:AvengeMedia/DankMaterialShell";
+      url = "github:AvengeMedia/DankMaterialShell/1db3907838161b309ee034dff1dbcb957e21d36e";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.dgop.follows = "dgop";
       # inputs.dms-cli.follows = "dms-cli";
@@ -908,10 +902,7 @@
         nix-index-database.follows = "nix-index-database";
       };
     };
-    nix-cachyos-kernel = {
-      url = "github:xddxdd/nix-cachyos-kernel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
     zsh-colored-man-pages = {
       url = "github:ael-code/zsh-colored-man-pages";
       flake = false;
