@@ -14,7 +14,7 @@ in {
     hardware.cpu.intel.sgx = {
       enableDcapCompat = true;
       provision = {
-        # enable = true;
+        enable = true;
       };
     };
 

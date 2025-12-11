@@ -119,6 +119,7 @@
         openrgb = {
           enable = true;
           package = pkgs.openrgb-with-all-plugins;
+          startupProfile = "default";
         };
 
         bolt.enable = true;
@@ -128,11 +129,12 @@
         enable = true;
         enableUdevRules = true;
       };
+
       kmscon.enable = true;
       syncplay.enable = true;
       ratbagd.enable = true;
       remote-builders.server.enable = true;
-      # watchdogd.enable = true;
+      watchdogd.enable = true;
       beesd.filesystems = lib.mkIf false {
         root = {
           spec = "UUID=f3558990-77b0-4113-b45c-3d2da3f46c14";
@@ -195,6 +197,7 @@
         usbmon.enable = true;
         dumpcap.enable = true;
       };
+      cpu-energy-meter.enable = true;
     };
 
     hardware = {
@@ -317,7 +320,7 @@
 
       kernelParams = [
         # "console=tty1"
-        # "console=ttyS0,115200n8"
+        # "console=ttyS0,115200n8r"
         "intel_iommu=on"
         "iommu=pt"
         "preempt=full"
@@ -338,9 +341,9 @@
       # [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     };
 
-    # systemd.services."serial-getty@ttyUSB0" = {
-    #   wantedBy = ["multi-user.target"];
-    # };
+    systemd.services."serial-getty@ttyS0" = {
+      wantedBy = ["multi-user.target"];
+    };
     # boot = {
     #   loader = {
     #     efi = {
