@@ -94,6 +94,7 @@
         # opentelemetry-nix.overlays.default
         nixpkgs-esp-dev.overlays.default
         niri.overlays.niri
+        nix-cachyos-kernel.overlays.default
       ];
 
       homes.modules = with inputs; [
@@ -907,7 +908,10 @@
         nix-index-database.follows = "nix-index-database";
       };
     };
-
+    nix-cachyos-kernel = {
+      url = "github:xddxdd/nix-cachyos-kernel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zsh-colored-man-pages = {
       url = "github:ael-code/zsh-colored-man-pages";
       flake = false;

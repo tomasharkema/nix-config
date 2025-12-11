@@ -205,6 +205,16 @@
       tmp = {
         useTmpfs = true;
       };
+
+      extraModulePackages = with config.boot.kernelPackages; [
+        it87
+      ];
+
+      kernelModules = [
+        "iTCO_wdt"
+
+        "it87"
+      ];
       # kernelPackages = pkgs.linuxPackages_cachyos-lts;
 
       # kernelModules = ["netconsole"];

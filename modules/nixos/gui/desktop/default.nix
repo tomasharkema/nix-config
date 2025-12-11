@@ -36,6 +36,8 @@ in {
 
     system.build.gui.foxBg = foxBg;
 
+    home-manager.users.tomas.services.tailscale-systray.enable = true;
+
     gui.fonts.enable = true;
 
     i18n.inputMethod = {
@@ -79,7 +81,7 @@ in {
       #   # openFirewall = true;
       # };
       # clipmenu.enable = true;
-      xserver.videoDrivers = ["displaylink"];
+      # xserver.videoDrivers = ["displaylink"];
       systembus-notify.enable = true;
       pipewire = {
         enable = true;
@@ -224,7 +226,7 @@ in {
       kernelModules = ["v4l2loopback" "akvcam"];
 
       # for displaylink
-      kernelPackages = pkgs.linuxPackages_6_17;
+      # kernelPackages = pkgs.linuxPackages_6_17;
     };
 
     xdg.portal.extraPortals = [

@@ -116,9 +116,6 @@ in {
           enableAudioWavelength = true; # Audio visualizer (cava)
           enableCalendarEvents = true; # Calendar integration (khal)
           enableSystemSound = false; # System sound effects
-          enableBrightnessControl = true; # Backlight/brightness controls
-          enableColorPicker = false; # Color picker tool
-
           # plugins = {
           #   EmojiLauncher = {
           #     enable = true;

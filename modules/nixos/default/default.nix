@@ -146,7 +146,7 @@ in {
         # useZram = lib.mkDefault true;
       };
 
-      kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+      kernelPackages = lib.mkDefault pkgs.cachyosKernels.linuxPackages-cachyos-latest;
 
       kernelModules = [
         # "wireguard"
@@ -161,11 +161,7 @@ in {
         # "apfs"
         "nfs"
       ];
-      initrd.kernelModules = [
-        "efi_pstore"
-        "pstore"
-        # "netconsole"
-      ];
+
       loader = {
         systemd-boot = {
           netbootxyz.enable = true;

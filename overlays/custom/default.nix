@@ -113,7 +113,7 @@ in rec {
     ];
   });
 
-  nux = inputs.nox.packages.${system}.default;
+  nox = inputs.nox.packages.${system}.default;
   nix-alien = inputs.nix-alien.packages.${system}.default;
   # geoclue2 = prev.geoclue2.overrideAttrs ({buildInputs, ...}: {
   #   version = prev.custom.geoclue-gpsd.version;

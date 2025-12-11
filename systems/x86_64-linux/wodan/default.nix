@@ -293,12 +293,16 @@
         # "nvidia_vgpu_vfio"
       ];
 
+      extraModprobeConfig = ''
+        options it87 ignore_resource_conflict=1 update_vbat=1
+      '';
+
       initrd = {
         # compressor = pkgs: "${pkgs.lz4.out}/bin/lz4";
         # compressorArgs = ["-9"];
 
         compressor = "zstd";
-        compressorArgs = ["-9"];
+        compressorArgs = ["-e9"];
 
         kernelModules = [
           # "iTCO_wdt" # "ixgbe"
@@ -323,9 +327,9 @@
       ];
 
       blacklistedKernelModules = ["nouveau"];
-      # extraModprobeConfig = ''
+
       #   options nvidia NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100
-      # '';
+      #
       #  options nvidia-drm modeset=1";
       #  blacklist nouveau
       #  options nouveau modeset=0
