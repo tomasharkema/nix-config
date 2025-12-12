@@ -513,6 +513,11 @@ in {
         enable = true;
         dumpcap.enable = true;
         usbmon.enable = true;
+
+        package =
+          if config.gui.desktop.enable
+          then pkgs.wireshark
+          else pkgs.wireshark-cli;
       };
       nix-index = {
         enable = true;
