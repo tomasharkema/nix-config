@@ -20,7 +20,7 @@
       ];
     };
 
-    systemd.services = {
+    systemd.services = lib.mkIf false {
       "kmscon" = lib.mkIf false {
         description = "KMS System Console";
         documentation = ["man:kmscon(1)"];
