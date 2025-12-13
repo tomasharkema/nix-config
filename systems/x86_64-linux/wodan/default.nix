@@ -218,7 +218,7 @@
           # finegrained = true;
         };
 
-        package = config.boot.kernelPackages.nvidiaPackages.beta;
+        # package = config.boot.kernelPackages.nvidiaPackages.beta;
 
         # vgpu.patcher = {
         #   enable = true;
@@ -245,6 +245,7 @@
         nvidia = {
           enable = true;
           open = true;
+          beta = true;
         };
         sgx.enable = true;
         remote-unlock.enable = true;

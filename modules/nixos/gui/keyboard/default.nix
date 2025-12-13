@@ -27,7 +27,7 @@ in {
       libinput.enable = true;
 
       xserver = {
-        enable = true;
+        # enable = true;
 
         layout = "us";
         # xkbVariant = "";

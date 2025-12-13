@@ -15,18 +15,20 @@
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" script;
   prime-run = pkgs.writeShellScriptBin "prime-run" script;
 
-  pak =
-    #pkgs.nvidia-patch.patch-nvenc (
-    #pkgs.nvidia-patch.patch-fbc
-    config.boot.kernelPackages.nvidiaPackages.latest
-    #)
-    ;
+  pak = pkgs.nvidia-patch.patch-nvenc (
+    pkgs.nvidia-patch.patch-fbc
+    (
+      if cfg.beta
+      then config.boot.kernelPackages.nvidiaPackages.beta
+      else config.boot.kernelPackages.nvidiaPackages.latest
+    )
+  );
 in {
   options.traits.hardware.nvidia = {
     enable = lib.mkEnableOption "nvidia";
 
     beta = lib.mkOption {
-      default = true;
+      default = false;
       type = lib.types.bool;
     };
     open = lib.mkOption {

@@ -38,19 +38,19 @@
       cage = {
         enable = true;
         user = "tomas";
-        environment = {
-          WLR_LIBINPUT_NO_DEVICES = "1";
-          SDL_VIDEODRIVER = "wayland";
-          MOZ_ENABLE_WAYLAND = "1";
-        };
+        # environment = {
+        #   WLR_LIBINPUT_NO_DEVICES = "1";
+        #   SDL_VIDEODRIVER = "wayland";
+        #   MOZ_ENABLE_WAYLAND = "1";
+        # };
         # extraArguments = [
         #   "-s"
         #   "-D"
         #   "-d"
         # ];
+
         program = pkgs.writeShellScript "radar" ''
-          export WLR_LIBINPUT_NO_DEVICES=1
-          export SDL_VIDEODRIVER=wayland
+          cd /home/tomas
           exec ${lib.getExe pkgs.custom.retro-adsb-radar}
         '';
         # program = pkgs.writeShellScript "radar" ''
@@ -60,6 +60,10 @@
         #   exec ${lib.getExe pkgs.firefox} --kiosk --private-window https://adsb.ling-lizard.ts.net
         # '';
       };
+
+      udev.extraRules = ''
+        ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card0", TAG+="systemd"
+      '';
 
       remote-builders.client.enable = true;
       usbmuxd.enable = false;
