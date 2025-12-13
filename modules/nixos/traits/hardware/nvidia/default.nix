@@ -15,13 +15,13 @@
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" script;
   prime-run = pkgs.writeShellScriptBin "prime-run" script;
 
-  pak = pkgs.nvidia-patch.patch-nvenc (
-    pkgs.nvidia-patch.patch-fbc
-    (
-      if cfg.beta
-      then config.boot.kernelPackages.nvidiaPackages.beta
-      else config.boot.kernelPackages.nvidiaPackages.latest
-    )
+  patchedPkg = (
+    if cfg.beta
+    then config.boot.kernelPackages.nvidiaPackages.beta
+    else
+      (pkgs.nvidia-patch.patch-nvenc (
+        pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.latest
+      ))
   );
 in {
   options.traits.hardware.nvidia = {
@@ -102,7 +102,7 @@ in {
         modesetting.enable = true;
         # forceFullCompositionPipeline = true;
         open = lib.mkForce cfg.open;
-        package = lib.mkIf (!cfg.grid.enable) pak;
+        package = lib.mkIf (!cfg.grid.enable) patchedPkg;
       };
 
       graphics = {
