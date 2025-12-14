@@ -36,7 +36,13 @@ in {
 
     system.build.gui.foxBg = foxBg;
 
-    home-manager.users.tomas.services.tailscale-systray.enable = true;
+    home-manager.users.tomas = {
+      services.tailscale-systray.enable = true;
+      systemd.user.services.tailscale-systray.Service = {
+        TimeoutStopSec = "5s";
+        Slice = "app.slice";
+      };
+    };
 
     gui.fonts.enable = true;
 
@@ -145,8 +151,13 @@ in {
     };
 
     environment = {
-      etc."xdg/autostart/geary-autostart.desktop".source = "${pkgs.geary}/share/applications/geary-autostart.desktop";
-      sessionVariables.NIXOS_OZONE_WL = "1";
+      etc = {
+        "xdg/autostart/geary-autostart.desktop".source = "${pkgs.geary}/share/applications/geary-autostart.desktop";
+      };
+      sessionVariables = {
+        NIXOS_OZONE_WL = "1";
+        DMS_DISABLE_MATUGEN = "1";
+      };
       systemPackages = with pkgs; [
         kdiskmark
         config.boot.kernelPackages.iio-utils

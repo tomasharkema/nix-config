@@ -108,25 +108,29 @@ in {
     #   };
     # };
 
-    environment.systemPackages = with pkgs; [
-      # sunshine
-      trigger-control
-      dualsensectl
-      gamescope
-      winetricks
-      protontricks
-      heroic
-      # gamehub
-      cartridges
-      steamcmd
-      steam-run
-      adwsteamgtk
-      steam-tui
-      # mangohud
-      extest
+    environment = {
+      etc."xdg/autostart/steam.desktop".source = "${config.programs.steam.package}/share/applications/steam.desktop";
 
-      winetricks
-    ];
+      systemPackages = with pkgs; [
+        # sunshine
+        trigger-control
+        dualsensectl
+        gamescope
+        winetricks
+        protontricks
+        heroic
+        # gamehub
+        cartridges
+        steamcmd
+        steam-run
+        adwsteamgtk
+        steam-tui
+        # mangohud
+        extest
+
+        winetricks
+      ];
+    };
 
     # services = lib.mkIf cfg.sunshine {
     #   avahi.publish.userServices = true;

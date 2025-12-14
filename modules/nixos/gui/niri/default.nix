@@ -68,7 +68,7 @@ in {
     };
 
     security = {
-      soteria.enable = true;
+      # soteria.enable = true;
       ipa.ifpAllowedUids = [user];
       pam.services = {
         login.fprintAuth = lib.mkIf config.services.fprintd.enable false;
@@ -216,7 +216,7 @@ in {
             };
             binds = with hmConfig.lib.niri.actions; let
               dms-ipc = spawn "dms" "ipc";
-              screenshot = spawn "niri" "msg" "action" "screenshot";
+              screenshot = spawn "dms" "screenshot";
             in {
               "Mod+SPACE" = {
                 action = dms-ipc "spotlight" "toggle";
@@ -230,6 +230,11 @@ in {
                 repeat = false;
                 action = spawn ["niriswitcherctl" "show" "--window"];
               };
+
+              "Print".action = screenshot;
+              # "Ctrl+Print".action = screenshot-screen;
+              # "Alt+Print".action = screenshot-window;
+
               # Keys consist of modifiers separated by + signs, followed by an XKB key name
               # in the end. To find an XKB name for a particular key, you may use a program
               # like wev.
@@ -516,10 +521,6 @@ in {
               # Windows in this column will appear as vertical tabs,
               # rather than stacked on top of each other.
               "Mod+W".action = toggle-column-tabbed-display;
-
-              "Print".action = screenshot;
-              # "Ctrl+Print".action = screenshot-screen;
-              # "Alt+Print".action = screenshot-window;
 
               # Applications such as remote-desktop clients and software KVM switches may
               # request that niri stops processing the keyboard shortcuts defined here

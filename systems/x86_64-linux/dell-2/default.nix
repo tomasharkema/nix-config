@@ -153,10 +153,10 @@
       networkmanager.enable = true;
       # wireless.enable = true;
       firewall = {
-        enable = true; # wlp4s0; # false;
+        enable = false; # true; # wlp4s0; # false;
         allowPing = true;
-        trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
-        allowedUDPPorts = [53 67];
+        # trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
+        # allowedUDPPorts = [53 67];
       };
     };
 
@@ -343,7 +343,7 @@
       ];
       kernelModules = [
         "coretemp"
-        "efi_pstore"
+        # "efi_pstore"
         # "psmouse"
         # "i915"
         # "spi"
@@ -357,25 +357,25 @@
         # "usbmon"
       ];
 
-      initrd.kernelModules = [
-        "nvidia"
-        # "i915"
-        "nvidia_modeset"
-        # "nvidia_uvm"
-        "nvidia_drm"
+      # initrd.kernelModules = [
+      #   "nvidia"
+      #   # "i915"
+      #   "nvidia_modeset"
+      #   # "nvidia_uvm"
+      #   "nvidia_drm"
 
-        # "efi_pstore"
+      #   # "efi_pstore"
 
-        # "spi"
-        # "sgx"
-        # "i915"
-        #  "watchdog"
-        # "isgx"
-        # "vfio_pci"
-        # "vfio"
-        # "vfio_iommu_type1"
-        "kvm-intel"
-      ];
+      #   # "spi"
+      #   # "sgx"
+      #   # "i915"
+      #   #  "watchdog"
+      #   # "isgx"
+      #   # "vfio_pci"
+      #   # "vfio"
+      #   # "vfio_iommu_type1"
+      #   "kvm-intel"
+      # ];
     };
   };
 }
