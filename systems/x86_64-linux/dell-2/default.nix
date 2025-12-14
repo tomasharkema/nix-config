@@ -149,14 +149,14 @@
     };
 
     networking = {
-      # hostName = "voltron"; # Define your hostname.
+      # hostName = "dell-2"; # Define your hostname.
       networkmanager.enable = true;
       # wireless.enable = true;
       firewall = {
-        enable = false; # true; # wlp4s0; # false;
+        enable = true;
         allowPing = true;
-        # trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
-        # allowedUDPPorts = [53 67];
+        trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
+        allowedUDPPorts = [53 67];
       };
     };
 
@@ -356,26 +356,6 @@
         # "watchdog"
         # "usbmon"
       ];
-
-      # initrd.kernelModules = [
-      #   "nvidia"
-      #   # "i915"
-      #   "nvidia_modeset"
-      #   # "nvidia_uvm"
-      #   "nvidia_drm"
-
-      #   # "efi_pstore"
-
-      #   # "spi"
-      #   # "sgx"
-      #   # "i915"
-      #   #  "watchdog"
-      #   # "isgx"
-      #   # "vfio_pci"
-      #   # "vfio"
-      #   # "vfio_iommu_type1"
-      #   "kvm-intel"
-      # ];
     };
   };
 }
