@@ -28,7 +28,7 @@ in {
     ];
 
     services = {
-      # blueman.enable = true;
+      blueman.enable = true;
       dbus.enable = true;
       # dconf.enable = true;
     };
