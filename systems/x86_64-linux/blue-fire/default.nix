@@ -144,16 +144,16 @@ in {
       nameservers = ["192.168.0.1"];
 
       bridges.br0 = {
-        interfaces = ["enp5s0"];
+        interfaces = ["enp6s0"];
       };
       vlans = {
         "vlan69" = {
           id = 69;
-          interface = "enp5s0";
+          interface = "enp6s0";
         };
         "vlan66" = {
           id = 66;
-          interface = "enp5s0";
+          interface = "enp6s0";
         };
       };
 
@@ -187,7 +187,7 @@ in {
           mtu = 9000;
         };
 
-        "enp5s0" = {
+        "enp6s0" = {
           useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
@@ -348,6 +348,7 @@ in {
       };
       kernelModules = [
         "pci-me"
+        "nct6775"
         "coretemp"
         "kvm-intel"
         "uinput"
