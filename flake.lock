@@ -2395,11 +2395,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759265704,
-        "narHash": "sha256-b0d0lfERd3+N/K0oq4YsX2pSMGh5HX5D6ocehEoJjeU=",
+        "lastModified": 1765901518,
+        "narHash": "sha256-Of3B2N2OzOpHfCsOT8tGaK/9LIeSjJUOQeRULQC0sUw=",
         "owner": "boinkor-net",
         "repo": "tsnsrv",
-        "rev": "a4e47c178e0bdd4da72fad6f0dd2dea6b89d2d25",
+        "rev": "8dace9c9eed6ac20a64d884e41e1fcfb8d5d4e89",
         "type": "github"
       },
       "original": {
