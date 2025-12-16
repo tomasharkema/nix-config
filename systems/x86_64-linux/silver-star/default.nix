@@ -536,9 +536,9 @@
 
       kernelParams = [
         "console=tty1"
-        "console=ttyS0,115200n8"
+        "console=ttyS0,115200n8r"
         # "console=ttyS1,115200n8"
-        "earlyprintk=ttyS0"
+        # "earlyprintk=ttyS0"
         # "intremap=no_x2apic_optout"
         # "nox2apic"
         "iomem=relaxed"
@@ -561,7 +561,9 @@
       ];
 
       blacklistedKernelModules = ["iTCO_wdt"];
-      kernelPackages = lib.mkForce pkgs.linuxPackages_6_17;
+
+      #kernelPackages = lib.mkForce pkgs.linuxPackages_6_17;
+
       recovery = {
         enable = true;
         install = true;
@@ -577,57 +579,26 @@
         efi.canTouchEfiVariables = true;
       };
 
-      # extraModulePackages = [config.boot.kernelPackages.vendor-reset];
-
-      initrd = {
-        availableKernelModules = [
-          # "xhci_pci"
-          # "ahci"
-          # "usbhid"
-          # "usb_storage"
-          # # "dell_rbu"
-          # 3
-          # "dcdbas"
-          # # "sd_mod"
-        ];
-        kernelModules = [
-          "acpi_power_meter"
-          # "vendor-reset"
-          "dcdbas"
-          # # "dell_rbu"
-          # # "pci-me"
-          "kvm-intel"
-          # # "mei-me"
-          # "uinput"
-          #  "tpm_rng"
-          "ipmi_ssif"
-          "ipmi_ipmb"
-          "ipmi_si"
-          "ipmi_devintf"
-          "ipmi_msghandler"
-          "ipmi_watchdog"
-          "acpi_ipmi"
-        ];
-      };
+      extraModulePackages = [config.boot.kernelPackages.vendor-reset];
       kernelModules = [
-        # "vendor-reset"
+        "vendor-reset"
         # "pci-me"
         # "mei-me"
-        # "coretemp"
+        "coretemp"
         "kvm-intel"
         "uinput"
         "fuse"
-        # "ipmi_ipmb"
-        # "acpi_ipmi"
-        # "acpi_power_meter"
+        "ipmi_ipmb"
+        "acpi_ipmi"
+        "acpi_power_meter"
         #       "tpm_rng"
-        # "ipmi_ssif"
-        # "acpi_ipmi"
-        # "ipmi_si"
+        "ipmi_ssif"
+        "acpi_ipmi"
+        "ipmi_si"
         "ipmi_devintf"
-        # "ipmi_msghandler"
-        # "ipmi_watchdog"
-        # "dcdbas"
+        "ipmi_msghandler"
+        "ipmi_watchdog"
+        "dcdbas"
       ];
     };
 

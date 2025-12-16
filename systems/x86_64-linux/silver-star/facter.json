@@ -77,7 +77,7 @@
         "model": "Intel PCI bridge",
         "sysfs_id": "/devices/pci0000:00/0000:00:1c.0",
         "sysfs_bus_id": "0000:00:1c.0",
-        "sysfs_iommu_group_id": 42,
+        "sysfs_iommu_group_id": 36,
         "detail": {
           "function": 0,
           "command": 1351,
@@ -151,7 +151,7 @@
         "model": "Intel PCI bridge",
         "sysfs_id": "/devices/pci0000:17/0000:17:02.0",
         "sysfs_bus_id": "0000:17:02.0",
-        "sysfs_iommu_group_id": 6,
+        "sysfs_iommu_group_id": 3,
         "detail": {
           "function": 0,
           "command": 1351,
@@ -219,7 +219,7 @@
         "model": "Intel ISA bridge",
         "sysfs_id": "/devices/pci0000:00/0000:00:1f.0",
         "sysfs_bus_id": "0000:00:1f.0",
-        "sysfs_iommu_group_id": 44,
+        "sysfs_iommu_group_id": 38,
         "detail": {
           "function": 0,
           "command": 327,
@@ -231,7 +231,7 @@
       },
       {
         "index": 80,
-        "attached_to": 224,
+        "attached_to": 221,
         "class_list": [
           "pci",
           "bridge"
@@ -275,7 +275,7 @@
         "model": "PCI bridge",
         "sysfs_id": "/devices/pci0000:00/0000:00:1c.4/0000:02:00.0",
         "sysfs_bus_id": "0000:02:00.0",
-        "sysfs_iommu_group_id": 47,
+        "sysfs_iommu_group_id": 41,
         "detail": {
           "function": 0,
           "command": 7,
@@ -341,7 +341,7 @@
         "model": "Intel PCI bridge",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:00.0",
         "sysfs_bus_id": "0000:ae:00.0",
-        "sysfs_iommu_group_id": 13,
+        "sysfs_iommu_group_id": 7,
         "detail": {
           "function": 0,
           "command": 1351,
@@ -436,7 +436,7 @@
         "label": "SLOT 1"
       },
       {
-        "index": 147,
+        "index": 146,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -486,7 +486,7 @@
         "model": "Intel Host bridge",
         "sysfs_id": "/devices/pci0000:00/0000:00:00.0",
         "sysfs_bus_id": "0000:00:00.0",
-        "sysfs_iommu_group_id": 23,
+        "sysfs_iommu_group_id": 17,
         "detail": {
           "function": 0,
           "command": 1344,
@@ -497,7 +497,7 @@
         "module_alias": "pci:v00008086d00002020sv00008086sd00000000bc06sc00i00"
       },
       {
-        "index": 185,
+        "index": 183,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -552,7 +552,7 @@
         "model": "Intel PCI bridge",
         "sysfs_id": "/devices/pci0000:17/0000:17:00.0",
         "sysfs_bus_id": "0000:17:00.0",
-        "sysfs_iommu_group_id": 5,
+        "sysfs_iommu_group_id": 2,
         "detail": {
           "function": 0,
           "command": 1351,
@@ -572,82 +572,7 @@
         "label": "SLOT 6"
       },
       {
-        "index": 190,
-        "attached_to": 0,
-        "class_list": [
-          "pci",
-          "bridge"
-        ],
-        "bus_type": {
-          "hex": "0004",
-          "name": "PCI",
-          "value": 4
-        },
-        "slot": {
-          "bus": 215,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0006",
-          "name": "Bridge",
-          "value": 6
-        },
-        "sub_class": {
-          "hex": "0004",
-          "name": "PCI bridge",
-          "value": 4
-        },
-        "pci_interface": {
-          "hex": "0000",
-          "name": "Normal decode",
-          "value": 0
-        },
-        "vendor": {
-          "hex": "8086",
-          "name": "Intel Corporation",
-          "value": 32902
-        },
-        "sub_vendor": {
-          "hex": "8086",
-          "name": "Intel Corporation",
-          "value": 32902
-        },
-        "device": {
-          "hex": "2030",
-          "value": 8240
-        },
-        "sub_device": {
-          "hex": "0000",
-          "value": 0
-        },
-        "revision": {
-          "hex": "0004",
-          "value": 4
-        },
-        "model": "Intel PCI bridge",
-        "sysfs_id": "/devices/pci0000:d7/0000:d7:00.0",
-        "sysfs_bus_id": "0000:d7:00.0",
-        "sysfs_iommu_group_id": 10,
-        "detail": {
-          "function": 0,
-          "command": 1351,
-          "header_type": 1,
-          "secondary_bus": 216,
-          "prog_if": 0
-        },
-        "driver": "pcieport",
-        "driver_module": "pcieportdrv",
-        "drivers": [
-          "pcieport"
-        ],
-        "driver_modules": [
-          "pcieportdrv"
-        ],
-        "module_alias": "pci:v00008086d00002030sv00008086sd00000000bc06sc04i00",
-        "label": "SLOT 8"
-      },
-      {
-        "index": 224,
+        "index": 221,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -701,7 +626,7 @@
         "model": "Intel PCI bridge",
         "sysfs_id": "/devices/pci0000:00/0000:00:1c.4",
         "sysfs_bus_id": "0000:00:1c.4",
-        "sysfs_iommu_group_id": 43,
+        "sysfs_iommu_group_id": 37,
         "detail": {
           "function": 4,
           "command": 1351,
@@ -893,7 +818,7 @@
         "fpu_exception": false,
         "cpuid_level": 22,
         "write_protect": false,
-        "tlb_size": 32767,
+        "tlb_size": 32752,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -1073,7 +998,7 @@
         "fpu_exception": false,
         "cpuid_level": 22,
         "write_protect": false,
-        "tlb_size": 32767,
+        "tlb_size": 32752,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -1084,7 +1009,7 @@
     ],
     "disk": [
       {
-        "index": 260,
+        "index": 255,
         "attached_to": 46,
         "class_list": [
           "disk",
@@ -1165,8 +1090,8 @@
         ]
       },
       {
-        "index": 261,
-        "attached_to": 154,
+        "index": 256,
+        "attached_to": 153,
         "class_list": [
           "disk",
           "ide",
@@ -1240,12 +1165,13 @@
           "sd"
         ],
         "driver_modules": [
-          "megaraid_sas"
+          "megaraid_sas",
+          "sd_mod"
         ]
       },
       {
-        "index": 262,
-        "attached_to": 237,
+        "index": 257,
+        "attached_to": 233,
         "class_list": [
           "disk",
           "usb",
@@ -1321,13 +1247,14 @@
           "usb-storage"
         ],
         "driver_modules": [
+          "sd_mod",
           "usb_storage"
         ],
         "module_alias": "usb:v0951p1666d0110dc00dsc00dp00ic08isc06ip50in00"
       },
       {
-        "index": 263,
-        "attached_to": 154,
+        "index": 258,
+        "attached_to": 153,
         "class_list": [
           "disk",
           "ide",
@@ -1396,7 +1323,8 @@
           "sd"
         ],
         "driver_modules": [
-          "megaraid_sas"
+          "megaraid_sas",
+          "sd_mod"
         ]
       }
     ],
@@ -1456,10 +1384,10 @@
         "model": "Matrox VGA compatible controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1c.4/0000:02:00.0/0000:03:00.0",
         "sysfs_bus_id": "0000:03:00.0",
-        "sysfs_iommu_group_id": 47,
+        "sysfs_iommu_group_id": 41,
         "detail": {
           "function": 0,
-          "command": 3,
+          "command": 7,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -1512,88 +1440,6 @@
           "value": 4318
         },
         "sub_vendor": {
-          "hex": "1458",
-          "value": 5208
-        },
-        "device": {
-          "hex": "1e87",
-          "value": 7815
-        },
-        "sub_device": {
-          "hex": "37a7",
-          "value": 14247
-        },
-        "revision": {
-          "hex": "00a1",
-          "value": 161
-        },
-        "model": "nVidia VGA compatible controller",
-        "sysfs_id": "/devices/pci0000:3a/0000:3a:00.0/0000:3b:00.0",
-        "sysfs_bus_id": "0000:3b:00.0",
-        "sysfs_iommu_group_id": 1,
-        "resources": [
-          {
-            "type": "io",
-            "base": 24576,
-            "range": 128,
-            "enabled": true,
-            "access": "read_write"
-          }
-        ],
-        "detail": {
-          "function": 0,
-          "command": 7,
-          "header_type": 0,
-          "secondary_bus": 0,
-          "prog_if": 0
-        },
-        "driver": "nvidia",
-        "driver_module": "nvidia",
-        "drivers": [
-          "nvidia"
-        ],
-        "driver_modules": [
-          "nvidia"
-        ],
-        "module_alias": "pci:v000010DEd00001E87sv00001458sd000037A7bc03sc00i00"
-      },
-      {
-        "index": 157,
-        "attached_to": 190,
-        "class_list": [
-          "graphics_card",
-          "pci"
-        ],
-        "bus_type": {
-          "hex": "0004",
-          "name": "PCI",
-          "value": 4
-        },
-        "slot": {
-          "bus": 216,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0003",
-          "name": "Display controller",
-          "value": 3
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "VGA compatible controller",
-          "value": 0
-        },
-        "pci_interface": {
-          "hex": "0000",
-          "name": "VGA",
-          "value": 0
-        },
-        "vendor": {
-          "hex": "10de",
-          "name": "nVidia Corporation",
-          "value": 4318
-        },
-        "sub_vendor": {
           "hex": "1462",
           "value": 5218
         },
@@ -1610,13 +1456,13 @@
           "value": 161
         },
         "model": "nVidia VGA compatible controller",
-        "sysfs_id": "/devices/pci0000:d7/0000:d7:00.0/0000:d8:00.0",
-        "sysfs_bus_id": "0000:d8:00.0",
-        "sysfs_iommu_group_id": 11,
+        "sysfs_id": "/devices/pci0000:3a/0000:3a:00.0/0000:3b:00.0",
+        "sysfs_bus_id": "0000:3b:00.0",
+        "sysfs_iommu_group_id": 1,
         "resources": [
           {
             "type": "io",
-            "base": 57344,
+            "base": 24576,
             "range": 128,
             "enabled": true,
             "access": "read_write"
@@ -1642,8 +1488,8 @@
     ],
     "hub": [
       {
-        "index": 266,
-        "attached_to": 273,
+        "index": 261,
+        "attached_to": 266,
         "class_list": [
           "usb",
           "hub"
@@ -1721,95 +1567,8 @@
         "module_alias": "usb:v1604p10C0d0000dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 267,
-        "attached_to": 236,
-        "class_list": [
-          "usb",
-          "hub"
-        ],
-        "bus_type": {
-          "hex": "0086",
-          "name": "USB",
-          "value": 134
-        },
-        "slot": {
-          "bus": 0,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "010a",
-          "name": "Hub",
-          "value": 266
-        },
-        "vendor": {
-          "hex": "1d6b",
-          "name": "Linux 6.18.0-cachyos xhci-hcd",
-          "value": 7531
-        },
-        "device": {
-          "hex": "0002",
-          "name": "xHCI Host Controller",
-          "value": 2
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "6.18",
-          "value": 0
-        },
-        "serial": "0000:3b:00.2",
-        "model": "Linux 6.18.0-cachyos xhci-hcd xHCI Host Controller",
-        "sysfs_id": "/devices/pci0000:3a/0000:3a:00.0/0000:3b:00.2/usb3/3-0:1.0",
-        "sysfs_bus_id": "3-0:1.0",
-        "resources": [
-          {
-            "type": "baud",
-            "speed": 480000000,
-            "bits": 0,
-            "stop_bits": 0,
-            "parity": 0,
-            "handshake": 0
-          }
-        ],
-        "detail": {
-          "device_class": {
-            "hex": "0009",
-            "name": "hub",
-            "value": 9
-          },
-          "device_subclass": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "device_protocol": 1,
-          "interface_class": {
-            "hex": "0009",
-            "name": "hub",
-            "value": 9
-          },
-          "interface_subclass": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "interface_protocol": 0,
-          "interface_number": 0,
-          "interface_alternate_setting": 0
-        },
-        "hotplug": "usb",
-        "driver": "hub",
-        "driver_module": "usbcore",
-        "drivers": [
-          "hub"
-        ],
-        "driver_modules": [
-          "usbcore"
-        ],
-        "module_alias": "usb:v1D6Bp0002d0618dc09dsc00dp01ic09isc00ip00in00"
-      },
-      {
-        "index": 268,
-        "attached_to": 266,
+        "index": 262,
+        "attached_to": 261,
         "class_list": [
           "usb",
           "hub"
@@ -1887,8 +1646,8 @@
         "module_alias": "usb:v1604p10C0d0000dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 271,
-        "attached_to": 266,
+        "index": 265,
+        "attached_to": 261,
         "class_list": [
           "usb",
           "hub"
@@ -1966,8 +1725,8 @@
         "module_alias": "usb:v1604p10C0d0000dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 272,
-        "attached_to": 236,
+        "index": 266,
+        "attached_to": 233,
         "class_list": [
           "usb",
           "hub"
@@ -1988,84 +1747,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.18.0-cachyos xhci-hcd",
-          "value": 7531
-        },
-        "device": {
-          "hex": "0003",
-          "name": "xHCI Host Controller",
-          "value": 3
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "6.18",
-          "value": 0
-        },
-        "serial": "0000:3b:00.2",
-        "model": "Linux 6.18.0-cachyos xhci-hcd xHCI Host Controller",
-        "sysfs_id": "/devices/pci0000:3a/0000:3a:00.0/0000:3b:00.2/usb4/4-0:1.0",
-        "sysfs_bus_id": "4-0:1.0",
-        "detail": {
-          "device_class": {
-            "hex": "0009",
-            "name": "hub",
-            "value": 9
-          },
-          "device_subclass": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "device_protocol": 3,
-          "interface_class": {
-            "hex": "0009",
-            "name": "hub",
-            "value": 9
-          },
-          "interface_subclass": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "interface_protocol": 0,
-          "interface_number": 0,
-          "interface_alternate_setting": 0
-        },
-        "hotplug": "usb",
-        "driver": "hub",
-        "driver_module": "usbcore",
-        "drivers": [
-          "hub"
-        ],
-        "driver_modules": [
-          "usbcore"
-        ],
-        "module_alias": "usb:v1D6Bp0003d0618dc09dsc00dp03ic09isc00ip00in00"
-      },
-      {
-        "index": 273,
-        "attached_to": 237,
-        "class_list": [
-          "usb",
-          "hub"
-        ],
-        "bus_type": {
-          "hex": "0086",
-          "name": "USB",
-          "value": 134
-        },
-        "slot": {
-          "bus": 0,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "010a",
-          "name": "Hub",
-          "value": 266
-        },
-        "vendor": {
-          "hex": "1d6b",
-          "name": "Linux 6.18.0-cachyos xhci-hcd",
+          "name": "Linux 6.17.11 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2075,11 +1757,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.18",
+          "name": "6.17",
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.18.0-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.17.11 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -2127,11 +1809,11 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0002d0618dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0617dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 275,
-        "attached_to": 237,
+        "index": 268,
+        "attached_to": 233,
         "class_list": [
           "usb",
           "hub"
@@ -2152,7 +1834,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.18.0-cachyos xhci-hcd",
+          "name": "Linux 6.17.11 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2162,11 +1844,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.18",
+          "name": "6.17",
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.18.0-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.17.11 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -2204,13 +1886,13 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0003d0618dc09dsc00dp03ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0003d0617dc09dsc00dp03ic09isc00ip00in00"
       }
     ],
     "keyboard": [
       {
-        "index": 265,
-        "attached_to": 266,
+        "index": 260,
+        "attached_to": 261,
         "class_list": [
           "keyboard",
           "usb"
@@ -2252,7 +1934,7 @@
           "/dev/input/by-id/usb-DELL_DRAC_5_Virtual_Keyboard_and_Mouse_DELL413C-1-if01-event-kbd",
           "/dev/input/by-path/pci-0000:00:14.0-usb-0:14.2:1.1-event-kbd",
           "/dev/input/by-path/pci-0000:00:14.0-usbv2-0:14.2:1.1-event-kbd",
-          "/dev/input/event2"
+          "/dev/input/event1"
         ],
         "resources": [
           {
@@ -2335,8 +2017,8 @@
     ],
     "mouse": [
       {
-        "index": 274,
-        "attached_to": 266,
+        "index": 267,
+        "attached_to": 261,
         "class_list": [
           "mouse",
           "usb"
@@ -2490,7 +2172,7 @@
         "model": "Intel Ethernet controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1c.0/0000:01:00.0",
         "sysfs_bus_id": "0000:01:00.0",
-        "sysfs_iommu_group_id": 45,
+        "sysfs_iommu_group_id": 39,
         "unix_device_names": [
           "eno3"
         ],
@@ -2572,7 +2254,7 @@
         "model": "Intel Ethernet controller",
         "sysfs_id": "/devices/pci0000:17/0000:17:02.0/0000:19:00.0",
         "sysfs_bus_id": "0000:19:00.0",
-        "sysfs_iommu_group_id": 8,
+        "sysfs_iommu_group_id": 5,
         "unix_device_names": [
           "eno1"
         ],
@@ -2612,7 +2294,7 @@
         "label": "NIC1"
       },
       {
-        "index": 211,
+        "index": 208,
         "attached_to": 52,
         "class_list": [
           "network_controller",
@@ -2661,7 +2343,7 @@
         "model": "Intel Ethernet controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1c.0/0000:01:00.1",
         "sysfs_bus_id": "0000:01:00.1",
-        "sysfs_iommu_group_id": 46,
+        "sysfs_iommu_group_id": 40,
         "unix_device_names": [
           "eno4"
         ],
@@ -2694,7 +2376,7 @@
         "label": "NIC4"
       },
       {
-        "index": 214,
+        "index": 211,
         "attached_to": 56,
         "class_list": [
           "network_controller",
@@ -2743,7 +2425,7 @@
         "model": "Intel Ethernet controller",
         "sysfs_id": "/devices/pci0000:17/0000:17:02.0/0000:19:00.1",
         "sysfs_bus_id": "0000:19:00.1",
-        "sysfs_iommu_group_id": 9,
+        "sysfs_iommu_group_id": 6,
         "unix_device_names": [
           "eno2"
         ],
@@ -2783,8 +2465,8 @@
         "label": "NIC2"
       },
       {
-        "index": 264,
-        "attached_to": 266,
+        "index": 259,
+        "attached_to": 261,
         "class_list": [
           "network_controller",
           "usb"
@@ -2903,121 +2585,7 @@
     ],
     "network_interface": [
       {
-        "index": 277,
-        "attached_to": 214,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/eno2",
-        "sysfs_device_link": "/devices/pci0000:17/0000:17:02.0/0000:19:00.1",
-        "unix_device_names": [
-          "eno2"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 101
-          },
-          {
-            "type": "phwaddr",
-            "address": 101
-          }
-        ],
-        "driver": "ixgbe",
-        "driver_module": "ixgbe",
-        "drivers": [
-          "ixgbe"
-        ],
-        "driver_modules": [
-          "ixgbe"
-        ]
-      },
-      {
-        "index": 278,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/vlan69",
-        "unix_device_names": [
-          "vlan69"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 101
-          }
-        ],
-        "driver": "802.1Q VLAN Support",
-        "drivers": [
-          "802.1Q VLAN Support"
-        ]
-      },
-      {
-        "index": 289,
-        "attached_to": 116,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/eno3",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.0/0000:01:00.0",
-        "unix_device_names": [
-          "eno3"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 101
-          },
-          {
-            "type": "phwaddr",
-            "address": 101
-          }
-        ],
-        "driver": "igb",
-        "driver_module": "igb",
-        "drivers": [
-          "igb"
-        ],
-        "driver_modules": [
-          "igb"
-        ]
-      },
-      {
-        "index": 292,
+        "index": 269,
         "attached_to": 119,
         "class_list": [
           "network_interface"
@@ -3058,62 +2626,8 @@
         ]
       },
       {
-        "index": 296,
-        "attached_to": 119,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/vlan66",
-        "unix_device_names": [
-          "vlan66"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 101
-          }
-        ],
-        "driver": "802.1Q VLAN Support",
-        "drivers": [
-          "802.1Q VLAN Support"
-        ]
-      },
-      {
-        "index": 302,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_names": [
-          "lo"
-        ]
-      },
-      {
-        "index": 304,
-        "attached_to": 264,
+        "index": 274,
+        "attached_to": 259,
         "class_list": [
           "network_interface"
         ],
@@ -3153,8 +2667,40 @@
         ]
       },
       {
-        "index": 306,
-        "attached_to": 211,
+        "index": 275,
+        "attached_to": 119,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/vlan69",
+        "unix_device_names": [
+          "vlan69"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 101
+          }
+        ],
+        "driver": "802.1Q VLAN Support",
+        "drivers": [
+          "802.1Q VLAN Support"
+        ]
+      },
+      {
+        "index": 280,
+        "attached_to": 208,
         "class_list": [
           "network_interface"
         ],
@@ -3173,6 +2719,142 @@
         "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.0/0000:01:00.1",
         "unix_device_names": [
           "eno4"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 101
+          },
+          {
+            "type": "phwaddr",
+            "address": 101
+          }
+        ],
+        "driver": "igb",
+        "driver_module": "igb",
+        "drivers": [
+          "igb"
+        ],
+        "driver_modules": [
+          "igb"
+        ]
+      },
+      {
+        "index": 283,
+        "attached_to": 211,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/eno2",
+        "sysfs_device_link": "/devices/pci0000:17/0000:17:02.0/0000:19:00.1",
+        "unix_device_names": [
+          "eno2"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 101
+          },
+          {
+            "type": "phwaddr",
+            "address": 101
+          }
+        ],
+        "driver": "ixgbe",
+        "driver_module": "ixgbe",
+        "drivers": [
+          "ixgbe"
+        ],
+        "driver_modules": [
+          "ixgbe"
+        ]
+      },
+      {
+        "index": 287,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_names": [
+          "lo"
+        ]
+      },
+      {
+        "index": 301,
+        "attached_to": 119,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/vlan66",
+        "unix_device_names": [
+          "vlan66"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 101
+          }
+        ],
+        "driver": "802.1Q VLAN Support",
+        "drivers": [
+          "802.1Q VLAN Support"
+        ]
+      },
+      {
+        "index": 303,
+        "attached_to": 116,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/eno3",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.0/0000:01:00.0",
+        "unix_device_names": [
+          "eno3"
         ],
         "resources": [
           {
@@ -3246,7 +2928,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:0e.4",
         "sysfs_bus_id": "0000:85:0e.4",
-        "sysfs_iommu_group_id": 108,
+        "sysfs_iommu_group_id": 102,
         "detail": {
           "function": 4,
           "command": 0,
@@ -3306,10 +2988,10 @@
         "model": "Intel Memory controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1f.2",
         "sysfs_bus_id": "0000:00:1f.2",
-        "sysfs_iommu_group_id": 44,
+        "sysfs_iommu_group_id": 38,
         "detail": {
           "function": 2,
-          "command": 2,
+          "command": 6,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -3367,7 +3049,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0a.3",
         "sysfs_bus_id": "0000:ae:0a.3",
-        "sysfs_iommu_group_id": 120,
+        "sysfs_iommu_group_id": 114,
         "detail": {
           "function": 3,
           "command": 0,
@@ -3428,7 +3110,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0a.3",
         "sysfs_bus_id": "0000:3a:0a.3",
-        "sysfs_iommu_group_id": 65,
+        "sysfs_iommu_group_id": 59,
         "detail": {
           "function": 3,
           "command": 0,
@@ -3489,7 +3171,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:08.4",
         "sysfs_bus_id": "0000:17:08.4",
-        "sysfs_iommu_group_id": 51,
+        "sysfs_iommu_group_id": 45,
         "detail": {
           "function": 4,
           "command": 0,
@@ -3541,7 +3223,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:05.2",
         "sysfs_bus_id": "0000:17:05.2",
-        "sysfs_iommu_group_id": 49,
+        "sysfs_iommu_group_id": 43,
         "detail": {
           "function": 2,
           "command": 0,
@@ -3602,7 +3284,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.0",
         "sysfs_bus_id": "0000:00:08.0",
-        "sysfs_iommu_group_id": 35,
+        "sysfs_iommu_group_id": 29,
         "detail": {
           "function": 0,
           "command": 0,
@@ -3654,7 +3336,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:d7/0000:d7:05.2",
         "sysfs_bus_id": "0000:d7:05.2",
-        "sysfs_iommu_group_id": 142,
+        "sysfs_iommu_group_id": 136,
         "detail": {
           "function": 2,
           "command": 0,
@@ -3715,7 +3397,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:1e.1",
         "sysfs_bus_id": "0000:17:1e.1",
-        "sysfs_iommu_group_id": 56,
+        "sysfs_iommu_group_id": 50,
         "detail": {
           "function": 1,
           "command": 0,
@@ -3776,7 +3458,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0c.0",
         "sysfs_bus_id": "0000:ae:0c.0",
-        "sysfs_iommu_group_id": 129,
+        "sysfs_iommu_group_id": 123,
         "detail": {
           "function": 0,
           "command": 0,
@@ -3837,7 +3519,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0c.0",
         "sysfs_bus_id": "0000:3a:0c.0",
-        "sysfs_iommu_group_id": 74,
+        "sysfs_iommu_group_id": 68,
         "detail": {
           "function": 0,
           "command": 0,
@@ -3898,7 +3580,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:1d.2",
         "sysfs_bus_id": "0000:85:1d.2",
-        "sysfs_iommu_group_id": 110,
+        "sysfs_iommu_group_id": 104,
         "detail": {
           "function": 2,
           "command": 0,
@@ -3959,7 +3641,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:00/0000:00:04.4",
         "sysfs_bus_id": "0000:00:04.4",
-        "sysfs_iommu_group_id": 28,
+        "sysfs_iommu_group_id": 22,
         "detail": {
           "function": 4,
           "command": 1030,
@@ -4019,7 +3701,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:80/0000:80:05.2",
         "sysfs_bus_id": "0000:80:05.2",
-        "sysfs_iommu_group_id": 98,
+        "sysfs_iommu_group_id": 92,
         "detail": {
           "function": 2,
           "command": 0,
@@ -4080,7 +3762,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:5d/0000:5d:16.0",
         "sysfs_bus_id": "0000:5d:16.0",
-        "sysfs_iommu_group_id": 96,
+        "sysfs_iommu_group_id": 90,
         "detail": {
           "function": 0,
           "command": 0,
@@ -4141,7 +3823,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:0f.1",
         "sysfs_bus_id": "0000:17:0f.1",
-        "sysfs_iommu_group_id": 54,
+        "sysfs_iommu_group_id": 48,
         "detail": {
           "function": 1,
           "command": 0,
@@ -4202,7 +3884,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:0e.2",
         "sysfs_bus_id": "0000:85:0e.2",
-        "sysfs_iommu_group_id": 108,
+        "sysfs_iommu_group_id": 102,
         "detail": {
           "function": 2,
           "command": 0,
@@ -4263,7 +3945,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:d7/0000:d7:0f.1",
         "sysfs_bus_id": "0000:d7:0f.1",
-        "sysfs_iommu_group_id": 147,
+        "sysfs_iommu_group_id": 141,
         "detail": {
           "function": 1,
           "command": 0,
@@ -4324,7 +4006,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:0e.7",
         "sysfs_bus_id": "0000:17:0e.7",
-        "sysfs_iommu_group_id": 53,
+        "sysfs_iommu_group_id": 47,
         "detail": {
           "function": 7,
           "command": 0,
@@ -4385,7 +4067,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0d.3",
         "sysfs_bus_id": "0000:ae:0d.3",
-        "sysfs_iommu_group_id": 140,
+        "sysfs_iommu_group_id": 134,
         "detail": {
           "function": 3,
           "command": 0,
@@ -4446,7 +4128,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0d.3",
         "sysfs_bus_id": "0000:3a:0d.3",
-        "sysfs_iommu_group_id": 85,
+        "sysfs_iommu_group_id": 79,
         "detail": {
           "function": 3,
           "command": 0,
@@ -4507,7 +4189,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:1e.5",
         "sysfs_bus_id": "0000:85:1e.5",
-        "sysfs_iommu_group_id": 111,
+        "sysfs_iommu_group_id": 105,
         "detail": {
           "function": 5,
           "command": 0,
@@ -4568,7 +4250,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0a.1",
         "sysfs_bus_id": "0000:ae:0a.1",
-        "sysfs_iommu_group_id": 118,
+        "sysfs_iommu_group_id": 112,
         "detail": {
           "function": 1,
           "command": 0,
@@ -4629,7 +4311,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0a.1",
         "sysfs_bus_id": "0000:3a:0a.1",
-        "sysfs_iommu_group_id": 63,
+        "sysfs_iommu_group_id": 57,
         "detail": {
           "function": 1,
           "command": 0,
@@ -4689,10 +4371,10 @@
         "model": "Intel Communication controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:16.4",
         "sysfs_bus_id": "0000:00:16.4",
-        "sysfs_iommu_group_id": 40,
+        "sysfs_iommu_group_id": 34,
         "detail": {
           "function": 4,
-          "command": 2,
+          "command": 6,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -4750,7 +4432,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:08.2",
         "sysfs_bus_id": "0000:17:08.2",
-        "sysfs_iommu_group_id": 51,
+        "sysfs_iommu_group_id": 45,
         "detail": {
           "function": 2,
           "command": 0,
@@ -4811,7 +4493,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:05.0",
         "sysfs_bus_id": "0000:17:05.0",
-        "sysfs_iommu_group_id": 48,
+        "sysfs_iommu_group_id": 42,
         "detail": {
           "function": 0,
           "command": 0,
@@ -4872,7 +4554,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:d7/0000:d7:05.0",
         "sysfs_bus_id": "0000:d7:05.0",
-        "sysfs_iommu_group_id": 141,
+        "sysfs_iommu_group_id": 135,
         "detail": {
           "function": 0,
           "command": 0,
@@ -4933,7 +4615,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:1d.0",
         "sysfs_bus_id": "0000:85:1d.0",
-        "sysfs_iommu_group_id": 110,
+        "sysfs_iommu_group_id": 104,
         "detail": {
           "function": 0,
           "command": 0,
@@ -4994,7 +4676,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:00/0000:00:04.2",
         "sysfs_bus_id": "0000:00:04.2",
-        "sysfs_iommu_group_id": 26,
+        "sysfs_iommu_group_id": 20,
         "detail": {
           "function": 2,
           "command": 1030,
@@ -5063,7 +4745,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:80/0000:80:08.2",
         "sysfs_bus_id": "0000:80:08.2",
-        "sysfs_iommu_group_id": 102,
+        "sysfs_iommu_group_id": 96,
         "detail": {
           "function": 2,
           "command": 0,
@@ -5124,7 +4806,7 @@
         "model": "Intel Performance counters",
         "sysfs_id": "/devices/pci0000:d7/0000:d7:12.1",
         "sysfs_bus_id": "0000:d7:12.1",
-        "sysfs_iommu_group_id": 149,
+        "sysfs_iommu_group_id": 143,
         "detail": {
           "function": 1,
           "command": 0,
@@ -5193,7 +4875,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:80/0000:80:05.0",
         "sysfs_bus_id": "0000:80:05.0",
-        "sysfs_iommu_group_id": 97,
+        "sysfs_iommu_group_id": 91,
         "detail": {
           "function": 0,
           "command": 0,
@@ -5254,7 +4936,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:09.0",
         "sysfs_bus_id": "0000:85:09.0",
-        "sysfs_iommu_group_id": 107,
+        "sysfs_iommu_group_id": 101,
         "detail": {
           "function": 0,
           "command": 0,
@@ -5315,7 +4997,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:80/0000:80:04.6",
         "sysfs_bus_id": "0000:80:04.6",
-        "sysfs_iommu_group_id": 21,
+        "sysfs_iommu_group_id": 15,
         "detail": {
           "function": 6,
           "command": 1030,
@@ -5384,7 +5066,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:08.6",
         "sysfs_bus_id": "0000:85:08.6",
-        "sysfs_iommu_group_id": 106,
+        "sysfs_iommu_group_id": 100,
         "detail": {
           "function": 6,
           "command": 0,
@@ -5445,7 +5127,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:0e.0",
         "sysfs_bus_id": "0000:85:0e.0",
-        "sysfs_iommu_group_id": 108,
+        "sysfs_iommu_group_id": 102,
         "detail": {
           "function": 0,
           "command": 0,
@@ -5511,10 +5193,10 @@
         "model": "Intel PIC",
         "sysfs_id": "/devices/pci0000:85/0000:85:05.4",
         "sysfs_bus_id": "0000:85:05.4",
-        "sysfs_iommu_group_id": 105,
+        "sysfs_iommu_group_id": 99,
         "detail": {
           "function": 4,
-          "command": 2,
+          "command": 6,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 32
@@ -5572,7 +5254,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:0e.5",
         "sysfs_bus_id": "0000:17:0e.5",
-        "sysfs_iommu_group_id": 53,
+        "sysfs_iommu_group_id": 47,
         "detail": {
           "function": 5,
           "command": 0,
@@ -5633,7 +5315,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0d.1",
         "sysfs_bus_id": "0000:ae:0d.1",
-        "sysfs_iommu_group_id": 138,
+        "sysfs_iommu_group_id": 132,
         "detail": {
           "function": 1,
           "command": 0,
@@ -5694,7 +5376,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:5d/0000:5d:12.2",
         "sysfs_bus_id": "0000:5d:12.2",
-        "sysfs_iommu_group_id": 94,
+        "sysfs_iommu_group_id": 88,
         "detail": {
           "function": 2,
           "command": 0,
@@ -5763,7 +5445,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0d.1",
         "sysfs_bus_id": "0000:3a:0d.1",
-        "sysfs_iommu_group_id": 83,
+        "sysfs_iommu_group_id": 77,
         "detail": {
           "function": 1,
           "command": 0,
@@ -5824,7 +5506,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:1e.3",
         "sysfs_bus_id": "0000:85:1e.3",
-        "sysfs_iommu_group_id": 111,
+        "sysfs_iommu_group_id": 105,
         "detail": {
           "function": 3,
           "command": 0,
@@ -5885,7 +5567,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0c.7",
         "sysfs_bus_id": "0000:ae:0c.7",
-        "sysfs_iommu_group_id": 136,
+        "sysfs_iommu_group_id": 130,
         "detail": {
           "function": 7,
           "command": 0,
@@ -5946,7 +5628,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0c.7",
         "sysfs_bus_id": "0000:3a:0c.7",
-        "sysfs_iommu_group_id": 81,
+        "sysfs_iommu_group_id": 75,
         "detail": {
           "function": 7,
           "command": 0,
@@ -6007,7 +5689,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:08.0",
         "sysfs_bus_id": "0000:17:08.0",
-        "sysfs_iommu_group_id": 51,
+        "sysfs_iommu_group_id": 45,
         "detail": {
           "function": 0,
           "command": 0,
@@ -6068,7 +5750,7 @@
         "model": "Intel Performance counters",
         "sysfs_id": "/devices/pci0000:5d/0000:5d:0f.0",
         "sysfs_bus_id": "0000:5d:0f.0",
-        "sysfs_iommu_group_id": 91,
+        "sysfs_iommu_group_id": 85,
         "detail": {
           "function": 0,
           "command": 0,
@@ -6137,7 +5819,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:00/0000:00:04.0",
         "sysfs_bus_id": "0000:00:04.0",
-        "sysfs_iommu_group_id": 24,
+        "sysfs_iommu_group_id": 18,
         "detail": {
           "function": 0,
           "command": 1030,
@@ -6206,7 +5888,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:1d.3",
         "sysfs_bus_id": "0000:17:1d.3",
-        "sysfs_iommu_group_id": 55,
+        "sysfs_iommu_group_id": 49,
         "detail": {
           "function": 3,
           "command": 0,
@@ -6267,7 +5949,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:80/0000:80:08.0",
         "sysfs_bus_id": "0000:80:08.0",
-        "sysfs_iommu_group_id": 100,
+        "sysfs_iommu_group_id": 94,
         "detail": {
           "function": 0,
           "command": 0,
@@ -6328,7 +6010,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0b.2",
         "sysfs_bus_id": "0000:ae:0b.2",
-        "sysfs_iommu_group_id": 127,
+        "sysfs_iommu_group_id": 121,
         "detail": {
           "function": 2,
           "command": 0,
@@ -6397,7 +6079,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0b.2",
         "sysfs_bus_id": "0000:3a:0b.2",
-        "sysfs_iommu_group_id": 72,
+        "sysfs_iommu_group_id": 66,
         "detail": {
           "function": 2,
           "command": 0,
@@ -6466,7 +6148,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:80/0000:80:04.4",
         "sysfs_bus_id": "0000:80:04.4",
-        "sysfs_iommu_group_id": 19,
+        "sysfs_iommu_group_id": 13,
         "detail": {
           "function": 4,
           "command": 1030,
@@ -6535,7 +6217,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:08.4",
         "sysfs_bus_id": "0000:85:08.4",
-        "sysfs_iommu_group_id": 106,
+        "sysfs_iommu_group_id": 100,
         "detail": {
           "function": 4,
           "command": 0,
@@ -6587,7 +6269,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:05.2",
         "sysfs_bus_id": "0000:85:05.2",
-        "sysfs_iommu_group_id": 104,
+        "sysfs_iommu_group_id": 98,
         "detail": {
           "function": 2,
           "command": 0,
@@ -6648,7 +6330,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:0e.3",
         "sysfs_bus_id": "0000:17:0e.3",
-        "sysfs_iommu_group_id": 53,
+        "sysfs_iommu_group_id": 47,
         "detail": {
           "function": 3,
           "command": 0,
@@ -6709,7 +6391,7 @@
         "model": "Intel Performance counters",
         "sysfs_id": "/devices/pci0000:5d/0000:5d:12.0",
         "sysfs_bus_id": "0000:5d:12.0",
-        "sysfs_iommu_group_id": 93,
+        "sysfs_iommu_group_id": 87,
         "detail": {
           "function": 0,
           "command": 0,
@@ -6770,7 +6452,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:1e.1",
         "sysfs_bus_id": "0000:85:1e.1",
-        "sysfs_iommu_group_id": 111,
+        "sysfs_iommu_group_id": 105,
         "detail": {
           "function": 1,
           "command": 0,
@@ -6830,10 +6512,10 @@
         "model": "Intel Communication controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:16.0",
         "sysfs_bus_id": "0000:00:16.0",
-        "sysfs_iommu_group_id": 40,
+        "sysfs_iommu_group_id": 34,
         "detail": {
           "function": 0,
-          "command": 2,
+          "command": 6,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -6891,7 +6573,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:d7/0000:d7:16.4",
         "sysfs_bus_id": "0000:d7:16.4",
-        "sysfs_iommu_group_id": 151,
+        "sysfs_iommu_group_id": 145,
         "detail": {
           "function": 4,
           "command": 0,
@@ -6952,7 +6634,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:1e.6",
         "sysfs_bus_id": "0000:17:1e.6",
-        "sysfs_iommu_group_id": 56,
+        "sysfs_iommu_group_id": 50,
         "detail": {
           "function": 6,
           "command": 0,
@@ -7013,7 +6695,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0c.5",
         "sysfs_bus_id": "0000:ae:0c.5",
-        "sysfs_iommu_group_id": 134,
+        "sysfs_iommu_group_id": 128,
         "detail": {
           "function": 5,
           "command": 0,
@@ -7074,7 +6756,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0c.5",
         "sysfs_bus_id": "0000:3a:0c.5",
-        "sysfs_iommu_group_id": 79,
+        "sysfs_iommu_group_id": 73,
         "detail": {
           "function": 5,
           "command": 0,
@@ -7135,7 +6817,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:0f.1",
         "sysfs_bus_id": "0000:85:0f.1",
-        "sysfs_iommu_group_id": 109,
+        "sysfs_iommu_group_id": 103,
         "detail": {
           "function": 1,
           "command": 0,
@@ -7196,7 +6878,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:1d.1",
         "sysfs_bus_id": "0000:17:1d.1",
-        "sysfs_iommu_group_id": 55,
+        "sysfs_iommu_group_id": 49,
         "detail": {
           "function": 1,
           "command": 0,
@@ -7257,7 +6939,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:0e.7",
         "sysfs_bus_id": "0000:85:0e.7",
-        "sysfs_iommu_group_id": 108,
+        "sysfs_iommu_group_id": 102,
         "detail": {
           "function": 7,
           "command": 0,
@@ -7318,7 +7000,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0b.0",
         "sysfs_bus_id": "0000:ae:0b.0",
-        "sysfs_iommu_group_id": 125,
+        "sysfs_iommu_group_id": 119,
         "detail": {
           "function": 0,
           "command": 0,
@@ -7379,7 +7061,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0b.0",
         "sysfs_bus_id": "0000:3a:0b.0",
-        "sysfs_iommu_group_id": 70,
+        "sysfs_iommu_group_id": 64,
         "detail": {
           "function": 0,
           "command": 0,
@@ -7391,73 +7073,6 @@
       },
       {
         "index": 125,
-        "attached_to": 84,
-        "class_list": [
-          "pci",
-          "unknown"
-        ],
-        "bus_type": {
-          "hex": "0004",
-          "name": "PCI",
-          "value": 4
-        },
-        "slot": {
-          "bus": 59,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "000c",
-          "name": "Serial bus controller",
-          "value": 12
-        },
-        "sub_class": {
-          "hex": "0080",
-          "value": 128
-        },
-        "vendor": {
-          "hex": "10de",
-          "name": "nVidia Corporation",
-          "value": 4318
-        },
-        "sub_vendor": {
-          "hex": "1458",
-          "value": 5208
-        },
-        "device": {
-          "hex": "1ad9",
-          "value": 6873
-        },
-        "sub_device": {
-          "hex": "37a7",
-          "value": 14247
-        },
-        "revision": {
-          "hex": "00a1",
-          "value": 161
-        },
-        "model": "nVidia Serial bus controller",
-        "sysfs_id": "/devices/pci0000:3a/0000:3a:00.0/0000:3b:00.3",
-        "sysfs_bus_id": "0000:3b:00.3",
-        "sysfs_iommu_group_id": 4,
-        "detail": {
-          "function": 3,
-          "command": 1030,
-          "header_type": 0,
-          "secondary_bus": 0,
-          "prog_if": 0
-        },
-        "driver": "nvidia-gpu",
-        "driver_module": "i2c_nvidia_gpu",
-        "drivers": [
-          "nvidia-gpu"
-        ],
-        "driver_modules": [
-          "i2c_nvidia_gpu"
-        ],
-        "module_alias": "pci:v000010DEd00001AD9sv00001458sd000037A7bc0Csc80i00"
-      },
-      {
-        "index": 126,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7507,7 +7122,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:09.1",
         "sysfs_bus_id": "0000:17:09.1",
-        "sysfs_iommu_group_id": 52,
+        "sysfs_iommu_group_id": 46,
         "detail": {
           "function": 1,
           "command": 0,
@@ -7518,7 +7133,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 127,
+        "index": 126,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7566,10 +7181,10 @@
         "model": "Intel Serial bus controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1f.5",
         "sysfs_bus_id": "0000:00:1f.5",
-        "sysfs_iommu_group_id": 44,
+        "sysfs_iommu_group_id": 38,
         "detail": {
           "function": 5,
-          "command": 1346,
+          "command": 1350,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -7585,7 +7200,7 @@
         "module_alias": "pci:v00008086d0000A1A4sv00001028sd00000715bc0Csc80i00"
       },
       {
-        "index": 128,
+        "index": 127,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7635,7 +7250,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0a.6",
         "sysfs_bus_id": "0000:ae:0a.6",
-        "sysfs_iommu_group_id": 123,
+        "sysfs_iommu_group_id": 117,
         "detail": {
           "function": 6,
           "command": 0,
@@ -7654,7 +7269,7 @@
         "module_alias": "pci:v00008086d00002046sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 129,
+        "index": 128,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7704,7 +7319,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0a.6",
         "sysfs_bus_id": "0000:3a:0a.6",
-        "sysfs_iommu_group_id": 68,
+        "sysfs_iommu_group_id": 62,
         "detail": {
           "function": 6,
           "command": 0,
@@ -7723,7 +7338,7 @@
         "module_alias": "pci:v00008086d00002046sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 130,
+        "index": 129,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7773,7 +7388,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:80/0000:80:04.2",
         "sysfs_bus_id": "0000:80:04.2",
-        "sysfs_iommu_group_id": 17,
+        "sysfs_iommu_group_id": 11,
         "detail": {
           "function": 2,
           "command": 1030,
@@ -7792,7 +7407,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 131,
+        "index": 130,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7842,7 +7457,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:08.2",
         "sysfs_bus_id": "0000:85:08.2",
-        "sysfs_iommu_group_id": 106,
+        "sysfs_iommu_group_id": 100,
         "detail": {
           "function": 2,
           "command": 0,
@@ -7853,7 +7468,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 132,
+        "index": 131,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7903,7 +7518,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:08.7",
         "sysfs_bus_id": "0000:17:08.7",
-        "sysfs_iommu_group_id": 51,
+        "sysfs_iommu_group_id": 45,
         "detail": {
           "function": 7,
           "command": 0,
@@ -7914,7 +7529,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 133,
+        "index": 132,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7964,7 +7579,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:05.0",
         "sysfs_bus_id": "0000:85:05.0",
-        "sysfs_iommu_group_id": 103,
+        "sysfs_iommu_group_id": 97,
         "detail": {
           "function": 0,
           "command": 0,
@@ -7975,7 +7590,7 @@
         "module_alias": "pci:v00008086d00002034sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 134,
+        "index": 133,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8025,7 +7640,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:5d/0000:5d:15.0",
         "sysfs_bus_id": "0000:5d:15.0",
-        "sysfs_iommu_group_id": 95,
+        "sysfs_iommu_group_id": 89,
         "detail": {
           "function": 0,
           "command": 0,
@@ -8036,7 +7651,7 @@
         "module_alias": "pci:v00008086d00002018sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 135,
+        "index": 134,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8086,7 +7701,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:0e.1",
         "sysfs_bus_id": "0000:17:0e.1",
-        "sysfs_iommu_group_id": 53,
+        "sysfs_iommu_group_id": 47,
         "detail": {
           "function": 1,
           "command": 0,
@@ -8097,7 +7712,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 136,
+        "index": 135,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8147,7 +7762,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:d7/0000:d7:0e.1",
         "sysfs_bus_id": "0000:d7:0e.1",
-        "sysfs_iommu_group_id": 145,
+        "sysfs_iommu_group_id": 139,
         "detail": {
           "function": 1,
           "command": 0,
@@ -8158,7 +7773,7 @@
         "module_alias": "pci:v00008086d00002059sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 137,
+        "index": 136,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8208,7 +7823,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:1e.4",
         "sysfs_bus_id": "0000:17:1e.4",
-        "sysfs_iommu_group_id": 56,
+        "sysfs_iommu_group_id": 50,
         "detail": {
           "function": 4,
           "command": 0,
@@ -8219,7 +7834,7 @@
         "module_alias": "pci:v00008086d00002084sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 138,
+        "index": 137,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8269,7 +7884,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0c.3",
         "sysfs_bus_id": "0000:ae:0c.3",
-        "sysfs_iommu_group_id": 132,
+        "sysfs_iommu_group_id": 126,
         "detail": {
           "function": 3,
           "command": 0,
@@ -8280,7 +7895,7 @@
         "module_alias": "pci:v00008086d00002043sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 139,
+        "index": 138,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8330,7 +7945,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0c.3",
         "sysfs_bus_id": "0000:3a:0c.3",
-        "sysfs_iommu_group_id": 77,
+        "sysfs_iommu_group_id": 71,
         "detail": {
           "function": 3,
           "command": 0,
@@ -8341,7 +7956,7 @@
         "module_alias": "pci:v00008086d00002043sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 140,
+        "index": 139,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8391,7 +8006,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:00/0000:00:04.7",
         "sysfs_bus_id": "0000:00:04.7",
-        "sysfs_iommu_group_id": 31,
+        "sysfs_iommu_group_id": 25,
         "detail": {
           "function": 7,
           "command": 1030,
@@ -8410,7 +8025,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 141,
+        "index": 140,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8460,7 +8075,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:09.0",
         "sysfs_bus_id": "0000:ae:09.0",
-        "sysfs_iommu_group_id": 116,
+        "sysfs_iommu_group_id": 110,
         "detail": {
           "function": 0,
           "command": 0,
@@ -8479,7 +8094,7 @@
         "module_alias": "pci:v00008086d00002066sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 142,
+        "index": 141,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8529,7 +8144,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:09.0",
         "sysfs_bus_id": "0000:3a:09.0",
-        "sysfs_iommu_group_id": 61,
+        "sysfs_iommu_group_id": 55,
         "detail": {
           "function": 0,
           "command": 0,
@@ -8548,7 +8163,7 @@
         "module_alias": "pci:v00008086d00002066sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 143,
+        "index": 142,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8603,10 +8218,10 @@
         "model": "Intel PIC",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:05.4",
         "sysfs_bus_id": "0000:ae:05.4",
-        "sysfs_iommu_group_id": 114,
+        "sysfs_iommu_group_id": 108,
         "detail": {
           "function": 4,
-          "command": 2,
+          "command": 6,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 32
@@ -8614,7 +8229,7 @@
         "module_alias": "pci:v00008086d00002036sv00008086sd00002036bc08sc00i20"
       },
       {
-        "index": 144,
+        "index": 143,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8669,10 +8284,10 @@
         "model": "Intel PIC",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:05.4",
         "sysfs_bus_id": "0000:3a:05.4",
-        "sysfs_iommu_group_id": 59,
+        "sysfs_iommu_group_id": 53,
         "detail": {
           "function": 4,
-          "command": 2,
+          "command": 6,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 32
@@ -8680,7 +8295,7 @@
         "module_alias": "pci:v00008086d00002036sv00008086sd00002036bc08sc00i20"
       },
       {
-        "index": 145,
+        "index": 144,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8730,7 +8345,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:0e.5",
         "sysfs_bus_id": "0000:85:0e.5",
-        "sysfs_iommu_group_id": 108,
+        "sysfs_iommu_group_id": 102,
         "detail": {
           "function": 5,
           "command": 0,
@@ -8741,7 +8356,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 148,
+        "index": 147,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8791,7 +8406,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0a.4",
         "sysfs_bus_id": "0000:ae:0a.4",
-        "sysfs_iommu_group_id": 121,
+        "sysfs_iommu_group_id": 115,
         "detail": {
           "function": 4,
           "command": 0,
@@ -8802,7 +8417,7 @@
         "module_alias": "pci:v00008086d00002044sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 149,
+        "index": 148,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8852,7 +8467,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0a.4",
         "sysfs_bus_id": "0000:3a:0a.4",
-        "sysfs_iommu_group_id": 66,
+        "sysfs_iommu_group_id": 60,
         "detail": {
           "function": 4,
           "command": 0,
@@ -8863,7 +8478,7 @@
         "module_alias": "pci:v00008086d00002044sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 150,
+        "index": 149,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8913,7 +8528,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:80/0000:80:04.0",
         "sysfs_bus_id": "0000:80:04.0",
-        "sysfs_iommu_group_id": 15,
+        "sysfs_iommu_group_id": 9,
         "detail": {
           "function": 0,
           "command": 1030,
@@ -8932,7 +8547,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 151,
+        "index": 150,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8982,7 +8597,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:08.0",
         "sysfs_bus_id": "0000:85:08.0",
-        "sysfs_iommu_group_id": 106,
+        "sysfs_iommu_group_id": 100,
         "detail": {
           "function": 0,
           "command": 0,
@@ -8993,7 +8608,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 152,
+        "index": 151,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9043,7 +8658,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:08.5",
         "sysfs_bus_id": "0000:17:08.5",
-        "sysfs_iommu_group_id": 51,
+        "sysfs_iommu_group_id": 45,
         "detail": {
           "function": 5,
           "command": 0,
@@ -9054,7 +8669,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 153,
+        "index": 152,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9104,7 +8719,7 @@
         "model": "Intel Performance counters",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1",
         "sysfs_bus_id": "0000:00:08.1",
-        "sysfs_iommu_group_id": 36,
+        "sysfs_iommu_group_id": 30,
         "detail": {
           "function": 1,
           "command": 0,
@@ -9115,7 +8730,7 @@
         "module_alias": "pci:v00008086d00002015sv00008086sd00000000bc11sc01i00"
       },
       {
-        "index": 155,
+        "index": 154,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9165,7 +8780,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:d7/0000:d7:16.0",
         "sysfs_bus_id": "0000:d7:16.0",
-        "sysfs_iommu_group_id": 151,
+        "sysfs_iommu_group_id": 145,
         "detail": {
           "function": 0,
           "command": 0,
@@ -9176,7 +8791,7 @@
         "module_alias": "pci:v00008086d00002018sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 156,
+        "index": 155,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9226,7 +8841,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:1e.2",
         "sysfs_bus_id": "0000:17:1e.2",
-        "sysfs_iommu_group_id": 56,
+        "sysfs_iommu_group_id": 50,
         "detail": {
           "function": 2,
           "command": 0,
@@ -9237,7 +8852,7 @@
         "module_alias": "pci:v00008086d00002082sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 158,
+        "index": 156,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9287,7 +8902,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0c.1",
         "sysfs_bus_id": "0000:ae:0c.1",
-        "sysfs_iommu_group_id": 130,
+        "sysfs_iommu_group_id": 124,
         "detail": {
           "function": 1,
           "command": 0,
@@ -9298,7 +8913,7 @@
         "module_alias": "pci:v00008086d00002041sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 159,
+        "index": 157,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9348,7 +8963,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0c.1",
         "sysfs_bus_id": "0000:3a:0c.1",
-        "sysfs_iommu_group_id": 75,
+        "sysfs_iommu_group_id": 69,
         "detail": {
           "function": 1,
           "command": 0,
@@ -9359,7 +8974,7 @@
         "module_alias": "pci:v00008086d00002041sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 160,
+        "index": 158,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9409,7 +9024,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:1d.3",
         "sysfs_bus_id": "0000:85:1d.3",
-        "sysfs_iommu_group_id": 110,
+        "sysfs_iommu_group_id": 104,
         "detail": {
           "function": 3,
           "command": 0,
@@ -9420,7 +9035,7 @@
         "module_alias": "pci:v00008086d00002057sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 161,
+        "index": 159,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9470,7 +9085,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:00/0000:00:04.5",
         "sysfs_bus_id": "0000:00:04.5",
-        "sysfs_iommu_group_id": 29,
+        "sysfs_iommu_group_id": 23,
         "detail": {
           "function": 5,
           "command": 1030,
@@ -9489,7 +9104,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 162,
+        "index": 160,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9539,7 +9154,7 @@
         "model": "Intel Performance counters",
         "sysfs_id": "/devices/pci0000:5d/0000:5d:0e.0",
         "sysfs_bus_id": "0000:5d:0e.0",
-        "sysfs_iommu_group_id": 89,
+        "sysfs_iommu_group_id": 83,
         "detail": {
           "function": 0,
           "command": 0,
@@ -9558,7 +9173,7 @@
         "module_alias": "pci:v00008086d00002058sv00008086sd00000000bc11sc01i00"
       },
       {
-        "index": 163,
+        "index": 161,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9613,10 +9228,10 @@
         "model": "Intel PIC",
         "sysfs_id": "/devices/pci0000:5d/0000:5d:05.4",
         "sysfs_bus_id": "0000:5d:05.4",
-        "sysfs_iommu_group_id": 88,
+        "sysfs_iommu_group_id": 82,
         "detail": {
           "function": 4,
-          "command": 2,
+          "command": 6,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 32
@@ -9624,7 +9239,7 @@
         "module_alias": "pci:v00008086d00002036sv00008086sd00002036bc08sc00i20"
       },
       {
-        "index": 164,
+        "index": 162,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9665,7 +9280,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:05.2",
         "sysfs_bus_id": "0000:ae:05.2",
-        "sysfs_iommu_group_id": 113,
+        "sysfs_iommu_group_id": 107,
         "detail": {
           "function": 2,
           "command": 0,
@@ -9676,7 +9291,7 @@
         "module_alias": "pci:v00008086d00002035sv00000000sd00000000bc08sc80i00"
       },
       {
-        "index": 165,
+        "index": 163,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9717,7 +9332,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:05.2",
         "sysfs_bus_id": "0000:3a:05.2",
-        "sysfs_iommu_group_id": 58,
+        "sysfs_iommu_group_id": 52,
         "detail": {
           "function": 2,
           "command": 0,
@@ -9728,7 +9343,7 @@
         "module_alias": "pci:v00008086d00002035sv00000000sd00000000bc08sc80i00"
       },
       {
-        "index": 166,
+        "index": 164,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9778,7 +9393,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:0e.3",
         "sysfs_bus_id": "0000:85:0e.3",
-        "sysfs_iommu_group_id": 108,
+        "sysfs_iommu_group_id": 102,
         "detail": {
           "function": 3,
           "command": 0,
@@ -9789,7 +9404,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 167,
+        "index": 165,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9839,7 +9454,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:1e.6",
         "sysfs_bus_id": "0000:85:1e.6",
-        "sysfs_iommu_group_id": 111,
+        "sysfs_iommu_group_id": 105,
         "detail": {
           "function": 6,
           "command": 0,
@@ -9850,7 +9465,7 @@
         "module_alias": "pci:v00008086d00002086sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 168,
+        "index": 166,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9900,7 +9515,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0a.2",
         "sysfs_bus_id": "0000:ae:0a.2",
-        "sysfs_iommu_group_id": 119,
+        "sysfs_iommu_group_id": 113,
         "detail": {
           "function": 2,
           "command": 0,
@@ -9919,7 +9534,7 @@
         "module_alias": "pci:v00008086d00002042sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 169,
+        "index": 167,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9969,7 +9584,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0a.2",
         "sysfs_bus_id": "0000:3a:0a.2",
-        "sysfs_iommu_group_id": 64,
+        "sysfs_iommu_group_id": 58,
         "detail": {
           "function": 2,
           "command": 0,
@@ -9988,7 +9603,7 @@
         "module_alias": "pci:v00008086d00002042sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 170,
+        "index": 168,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10038,7 +9653,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:08.3",
         "sysfs_bus_id": "0000:17:08.3",
-        "sysfs_iommu_group_id": 51,
+        "sysfs_iommu_group_id": 45,
         "detail": {
           "function": 3,
           "command": 0,
@@ -10049,7 +9664,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 171,
+        "index": 169,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10099,7 +9714,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:1e.0",
         "sysfs_bus_id": "0000:17:1e.0",
-        "sysfs_iommu_group_id": 56,
+        "sysfs_iommu_group_id": 50,
         "detail": {
           "function": 0,
           "command": 0,
@@ -10110,7 +9725,7 @@
         "module_alias": "pci:v00008086d00002080sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 172,
+        "index": 170,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10160,7 +9775,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:1d.1",
         "sysfs_bus_id": "0000:85:1d.1",
-        "sysfs_iommu_group_id": 110,
+        "sysfs_iommu_group_id": 104,
         "detail": {
           "function": 1,
           "command": 0,
@@ -10171,7 +9786,7 @@
         "module_alias": "pci:v00008086d00002055sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 173,
+        "index": 171,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10221,7 +9836,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:00/0000:00:04.3",
         "sysfs_bus_id": "0000:00:04.3",
-        "sysfs_iommu_group_id": 27,
+        "sysfs_iommu_group_id": 21,
         "detail": {
           "function": 3,
           "command": 1030,
@@ -10240,7 +9855,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 174,
+        "index": 172,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10290,7 +9905,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:d7/0000:d7:12.2",
         "sysfs_bus_id": "0000:d7:12.2",
-        "sysfs_iommu_group_id": 149,
+        "sysfs_iommu_group_id": 143,
         "detail": {
           "function": 2,
           "command": 0,
@@ -10309,7 +9924,7 @@
         "module_alias": "pci:v00008086d0000204Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 175,
+        "index": 173,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10359,7 +9974,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:09.1",
         "sysfs_bus_id": "0000:85:09.1",
-        "sysfs_iommu_group_id": 107,
+        "sysfs_iommu_group_id": 101,
         "detail": {
           "function": 1,
           "command": 0,
@@ -10370,7 +9985,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 176,
+        "index": 174,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10411,7 +10026,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:5d/0000:5d:05.2",
         "sysfs_bus_id": "0000:5d:05.2",
-        "sysfs_iommu_group_id": 87,
+        "sysfs_iommu_group_id": 81,
         "detail": {
           "function": 2,
           "command": 0,
@@ -10422,7 +10037,7 @@
         "module_alias": "pci:v00008086d00002035sv00000000sd00000000bc08sc80i00"
       },
       {
-        "index": 177,
+        "index": 175,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10472,7 +10087,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:0f.0",
         "sysfs_bus_id": "0000:17:0f.0",
-        "sysfs_iommu_group_id": 54,
+        "sysfs_iommu_group_id": 48,
         "detail": {
           "function": 0,
           "command": 0,
@@ -10483,7 +10098,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 178,
+        "index": 176,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10533,7 +10148,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:80/0000:80:04.7",
         "sysfs_bus_id": "0000:80:04.7",
-        "sysfs_iommu_group_id": 22,
+        "sysfs_iommu_group_id": 16,
         "detail": {
           "function": 7,
           "command": 1030,
@@ -10552,7 +10167,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 179,
+        "index": 177,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10602,7 +10217,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:08.7",
         "sysfs_bus_id": "0000:85:08.7",
-        "sysfs_iommu_group_id": 106,
+        "sysfs_iommu_group_id": 100,
         "detail": {
           "function": 7,
           "command": 0,
@@ -10613,7 +10228,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 180,
+        "index": 178,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10663,7 +10278,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:05.0",
         "sysfs_bus_id": "0000:ae:05.0",
-        "sysfs_iommu_group_id": 112,
+        "sysfs_iommu_group_id": 106,
         "detail": {
           "function": 0,
           "command": 0,
@@ -10674,7 +10289,7 @@
         "module_alias": "pci:v00008086d00002034sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 181,
+        "index": 179,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10724,7 +10339,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:05.0",
         "sysfs_bus_id": "0000:3a:05.0",
-        "sysfs_iommu_group_id": 57,
+        "sysfs_iommu_group_id": 51,
         "detail": {
           "function": 0,
           "command": 0,
@@ -10735,7 +10350,7 @@
         "module_alias": "pci:v00008086d00002034sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 182,
+        "index": 180,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10785,7 +10400,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:0e.1",
         "sysfs_bus_id": "0000:85:0e.1",
-        "sysfs_iommu_group_id": 108,
+        "sysfs_iommu_group_id": 102,
         "detail": {
           "function": 1,
           "command": 0,
@@ -10796,7 +10411,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 183,
+        "index": 181,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10846,7 +10461,7 @@
         "model": "Intel Performance counters",
         "sysfs_id": "/devices/pci0000:d7/0000:d7:0f.0",
         "sysfs_bus_id": "0000:d7:0f.0",
-        "sysfs_iommu_group_id": 146,
+        "sysfs_iommu_group_id": 140,
         "detail": {
           "function": 0,
           "command": 0,
@@ -10865,7 +10480,7 @@
         "module_alias": "pci:v00008086d00002058sv00008086sd00000000bc11sc01i00"
       },
       {
-        "index": 184,
+        "index": 182,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10915,7 +10530,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:0e.6",
         "sysfs_bus_id": "0000:17:0e.6",
-        "sysfs_iommu_group_id": 53,
+        "sysfs_iommu_group_id": 47,
         "detail": {
           "function": 6,
           "command": 0,
@@ -10926,7 +10541,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 186,
+        "index": 184,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10976,7 +10591,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0d.2",
         "sysfs_bus_id": "0000:ae:0d.2",
-        "sysfs_iommu_group_id": 139,
+        "sysfs_iommu_group_id": 133,
         "detail": {
           "function": 2,
           "command": 0,
@@ -10995,7 +10610,7 @@
         "module_alias": "pci:v00008086d0000204Asv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 187,
+        "index": 185,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11045,7 +10660,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0d.2",
         "sysfs_bus_id": "0000:3a:0d.2",
-        "sysfs_iommu_group_id": 84,
+        "sysfs_iommu_group_id": 78,
         "detail": {
           "function": 2,
           "command": 0,
@@ -11064,7 +10679,7 @@
         "module_alias": "pci:v00008086d0000204Asv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 188,
+        "index": 186,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11114,7 +10729,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:1e.4",
         "sysfs_bus_id": "0000:85:1e.4",
-        "sysfs_iommu_group_id": 111,
+        "sysfs_iommu_group_id": 105,
         "detail": {
           "function": 4,
           "command": 0,
@@ -11125,7 +10740,7 @@
         "module_alias": "pci:v00008086d00002084sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 189,
+        "index": 187,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11175,7 +10790,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0a.0",
         "sysfs_bus_id": "0000:ae:0a.0",
-        "sysfs_iommu_group_id": 117,
+        "sysfs_iommu_group_id": 111,
         "detail": {
           "function": 0,
           "command": 0,
@@ -11186,7 +10801,7 @@
         "module_alias": "pci:v00008086d00002040sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 191,
+        "index": 188,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11236,7 +10851,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0a.0",
         "sysfs_bus_id": "0000:3a:0a.0",
-        "sysfs_iommu_group_id": 62,
+        "sysfs_iommu_group_id": 56,
         "detail": {
           "function": 0,
           "command": 0,
@@ -11247,7 +10862,7 @@
         "module_alias": "pci:v00008086d00002040sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 192,
+        "index": 189,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11297,7 +10912,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:08.1",
         "sysfs_bus_id": "0000:17:08.1",
-        "sysfs_iommu_group_id": 51,
+        "sysfs_iommu_group_id": 45,
         "detail": {
           "function": 1,
           "command": 0,
@@ -11308,7 +10923,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 193,
+        "index": 190,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11358,7 +10973,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:5d/0000:5d:0f.1",
         "sysfs_bus_id": "0000:5d:0f.1",
-        "sysfs_iommu_group_id": 92,
+        "sysfs_iommu_group_id": 86,
         "detail": {
           "function": 1,
           "command": 0,
@@ -11369,7 +10984,7 @@
         "module_alias": "pci:v00008086d00002059sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 194,
+        "index": 191,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11419,7 +11034,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:00/0000:00:04.1",
         "sysfs_bus_id": "0000:00:04.1",
-        "sysfs_iommu_group_id": 25,
+        "sysfs_iommu_group_id": 19,
         "detail": {
           "function": 1,
           "command": 1030,
@@ -11438,7 +11053,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 195,
+        "index": 192,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11488,7 +11103,7 @@
         "model": "Intel Performance counters",
         "sysfs_id": "/devices/pci0000:80/0000:80:08.1",
         "sysfs_bus_id": "0000:80:08.1",
-        "sysfs_iommu_group_id": 101,
+        "sysfs_iommu_group_id": 95,
         "detail": {
           "function": 1,
           "command": 0,
@@ -11499,7 +11114,7 @@
         "module_alias": "pci:v00008086d00002015sv00008086sd00000000bc11sc01i00"
       },
       {
-        "index": 196,
+        "index": 193,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11549,7 +11164,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0b.3",
         "sysfs_bus_id": "0000:ae:0b.3",
-        "sysfs_iommu_group_id": 128,
+        "sysfs_iommu_group_id": 122,
         "detail": {
           "function": 3,
           "command": 0,
@@ -11560,7 +11175,7 @@
         "module_alias": "pci:v00008086d0000204Bsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 197,
+        "index": 194,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11610,7 +11225,7 @@
         "model": "Intel Performance counters",
         "sysfs_id": "/devices/pci0000:d7/0000:d7:12.0",
         "sysfs_bus_id": "0000:d7:12.0",
-        "sysfs_iommu_group_id": 148,
+        "sysfs_iommu_group_id": 142,
         "detail": {
           "function": 0,
           "command": 0,
@@ -11621,7 +11236,7 @@
         "module_alias": "pci:v00008086d0000204Csv00008086sd00000000bc11sc01i00"
       },
       {
-        "index": 198,
+        "index": 195,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11671,7 +11286,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0b.3",
         "sysfs_bus_id": "0000:3a:0b.3",
-        "sysfs_iommu_group_id": 73,
+        "sysfs_iommu_group_id": 67,
         "detail": {
           "function": 3,
           "command": 0,
@@ -11682,7 +11297,7 @@
         "module_alias": "pci:v00008086d0000204Bsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 199,
+        "index": 196,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11732,7 +11347,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:5d/0000:5d:05.0",
         "sysfs_bus_id": "0000:5d:05.0",
-        "sysfs_iommu_group_id": 86,
+        "sysfs_iommu_group_id": 80,
         "detail": {
           "function": 0,
           "command": 0,
@@ -11743,7 +11358,7 @@
         "module_alias": "pci:v00008086d00002034sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 200,
+        "index": 197,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11793,7 +11408,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:08.0",
         "sysfs_bus_id": "0000:ae:08.0",
-        "sysfs_iommu_group_id": 115,
+        "sysfs_iommu_group_id": 109,
         "detail": {
           "function": 0,
           "command": 0,
@@ -11812,7 +11427,7 @@
         "module_alias": "pci:v00008086d00002066sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 201,
+        "index": 198,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11862,7 +11477,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:08.0",
         "sysfs_bus_id": "0000:3a:08.0",
-        "sysfs_iommu_group_id": 60,
+        "sysfs_iommu_group_id": 54,
         "detail": {
           "function": 0,
           "command": 0,
@@ -11881,7 +11496,7 @@
         "module_alias": "pci:v00008086d00002066sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 202,
+        "index": 199,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11931,7 +11546,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:80/0000:80:04.5",
         "sysfs_bus_id": "0000:80:04.5",
-        "sysfs_iommu_group_id": 20,
+        "sysfs_iommu_group_id": 14,
         "detail": {
           "function": 5,
           "command": 1030,
@@ -11950,7 +11565,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 203,
+        "index": 200,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12000,7 +11615,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:08.5",
         "sysfs_bus_id": "0000:85:08.5",
-        "sysfs_iommu_group_id": 106,
+        "sysfs_iommu_group_id": 100,
         "detail": {
           "function": 5,
           "command": 0,
@@ -12011,7 +11626,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 204,
+        "index": 201,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12061,7 +11676,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:0e.4",
         "sysfs_bus_id": "0000:17:0e.4",
-        "sysfs_iommu_group_id": 53,
+        "sysfs_iommu_group_id": 47,
         "detail": {
           "function": 4,
           "command": 0,
@@ -12072,7 +11687,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 205,
+        "index": 202,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12122,7 +11737,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0d.0",
         "sysfs_bus_id": "0000:ae:0d.0",
-        "sysfs_iommu_group_id": 137,
+        "sysfs_iommu_group_id": 131,
         "detail": {
           "function": 0,
           "command": 0,
@@ -12133,7 +11748,7 @@
         "module_alias": "pci:v00008086d00002048sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 206,
+        "index": 203,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12183,7 +11798,7 @@
         "model": "Intel Performance counters",
         "sysfs_id": "/devices/pci0000:5d/0000:5d:12.1",
         "sysfs_bus_id": "0000:5d:12.1",
-        "sysfs_iommu_group_id": 94,
+        "sysfs_iommu_group_id": 88,
         "detail": {
           "function": 1,
           "command": 0,
@@ -12202,7 +11817,7 @@
         "module_alias": "pci:v00008086d0000204Dsv00008086sd00000000bc11sc01i00"
       },
       {
-        "index": 207,
+        "index": 204,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12252,7 +11867,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0d.0",
         "sysfs_bus_id": "0000:3a:0d.0",
-        "sysfs_iommu_group_id": 82,
+        "sysfs_iommu_group_id": 76,
         "detail": {
           "function": 0,
           "command": 0,
@@ -12263,7 +11878,7 @@
         "module_alias": "pci:v00008086d00002048sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 208,
+        "index": 205,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12313,7 +11928,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:1e.2",
         "sysfs_bus_id": "0000:85:1e.2",
-        "sysfs_iommu_group_id": 111,
+        "sysfs_iommu_group_id": 105,
         "detail": {
           "function": 2,
           "command": 0,
@@ -12324,7 +11939,7 @@
         "module_alias": "pci:v00008086d00002082sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 209,
+        "index": 206,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12379,10 +11994,10 @@
         "model": "Intel PIC",
         "sysfs_id": "/devices/pci0000:00/0000:00:05.4",
         "sysfs_bus_id": "0000:00:05.4",
-        "sysfs_iommu_group_id": 34,
+        "sysfs_iommu_group_id": 28,
         "detail": {
           "function": 4,
-          "command": 2,
+          "command": 6,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 32
@@ -12390,7 +12005,7 @@
         "module_alias": "pci:v00008086d00002026sv00008086sd00002026bc08sc00i20"
       },
       {
-        "index": 210,
+        "index": 207,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12439,10 +12054,10 @@
         "model": "Intel Communication controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:16.1",
         "sysfs_bus_id": "0000:00:16.1",
-        "sysfs_iommu_group_id": 40,
+        "sysfs_iommu_group_id": 34,
         "detail": {
           "function": 1,
-          "command": 2,
+          "command": 6,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -12450,7 +12065,7 @@
         "module_alias": "pci:v00008086d0000A1BBsv00001028sd00000715bc07sc80i00"
       },
       {
-        "index": 212,
+        "index": 209,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12500,7 +12115,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0c.6",
         "sysfs_bus_id": "0000:ae:0c.6",
-        "sysfs_iommu_group_id": 135,
+        "sysfs_iommu_group_id": 129,
         "detail": {
           "function": 6,
           "command": 0,
@@ -12519,7 +12134,7 @@
         "module_alias": "pci:v00008086d00002046sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 213,
+        "index": 210,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12569,7 +12184,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0c.6",
         "sysfs_bus_id": "0000:3a:0c.6",
-        "sysfs_iommu_group_id": 80,
+        "sysfs_iommu_group_id": 74,
         "detail": {
           "function": 6,
           "command": 0,
@@ -12588,7 +12203,7 @@
         "module_alias": "pci:v00008086d00002046sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 215,
+        "index": 212,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12638,7 +12253,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:d7/0000:d7:15.0",
         "sysfs_bus_id": "0000:d7:15.0",
-        "sysfs_iommu_group_id": 150,
+        "sysfs_iommu_group_id": 144,
         "detail": {
           "function": 0,
           "command": 0,
@@ -12649,7 +12264,7 @@
         "module_alias": "pci:v00008086d00002018sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 216,
+        "index": 213,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12699,7 +12314,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:1d.2",
         "sysfs_bus_id": "0000:17:1d.2",
-        "sysfs_iommu_group_id": 55,
+        "sysfs_iommu_group_id": 49,
         "detail": {
           "function": 2,
           "command": 0,
@@ -12710,7 +12325,7 @@
         "module_alias": "pci:v00008086d00002056sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 217,
+        "index": 214,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12760,7 +12375,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0b.1",
         "sysfs_bus_id": "0000:ae:0b.1",
-        "sysfs_iommu_group_id": 126,
+        "sysfs_iommu_group_id": 120,
         "detail": {
           "function": 1,
           "command": 0,
@@ -12771,7 +12386,7 @@
         "module_alias": "pci:v00008086d00002049sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 218,
+        "index": 215,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12821,7 +12436,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0b.1",
         "sysfs_bus_id": "0000:3a:0b.1",
-        "sysfs_iommu_group_id": 71,
+        "sysfs_iommu_group_id": 65,
         "detail": {
           "function": 1,
           "command": 0,
@@ -12832,7 +12447,7 @@
         "module_alias": "pci:v00008086d00002049sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 219,
+        "index": 216,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12881,10 +12496,10 @@
         "model": "Intel Signal processing controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.2",
         "sysfs_bus_id": "0000:00:14.2",
-        "sysfs_iommu_group_id": 39,
+        "sysfs_iommu_group_id": 33,
         "detail": {
           "function": 2,
-          "command": 258,
+          "command": 262,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -12900,7 +12515,7 @@
         "module_alias": "pci:v00008086d0000A1B1sv00001028sd00000715bc11sc80i00"
       },
       {
-        "index": 220,
+        "index": 217,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12944,10 +12559,10 @@
         "model": "Intel Unclassified device",
         "sysfs_id": "/devices/pci0000:00/0000:00:11.0",
         "sysfs_bus_id": "0000:00:11.0",
-        "sysfs_iommu_group_id": 38,
+        "sysfs_iommu_group_id": 32,
         "detail": {
           "function": 0,
-          "command": 320,
+          "command": 324,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -12955,7 +12570,7 @@
         "module_alias": "pci:v00008086d0000A1ECsv00001028sd00000715bcFFsc00i00"
       },
       {
-        "index": 221,
+        "index": 218,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13005,7 +12620,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0a.7",
         "sysfs_bus_id": "0000:ae:0a.7",
-        "sysfs_iommu_group_id": 124,
+        "sysfs_iommu_group_id": 118,
         "detail": {
           "function": 7,
           "command": 0,
@@ -13016,7 +12631,7 @@
         "module_alias": "pci:v00008086d00002047sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 222,
+        "index": 219,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13066,7 +12681,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0a.7",
         "sysfs_bus_id": "0000:3a:0a.7",
-        "sysfs_iommu_group_id": 69,
+        "sysfs_iommu_group_id": 63,
         "detail": {
           "function": 7,
           "command": 0,
@@ -13077,7 +12692,7 @@
         "module_alias": "pci:v00008086d00002047sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 223,
+        "index": 220,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13127,7 +12742,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:80/0000:80:04.3",
         "sysfs_bus_id": "0000:80:04.3",
-        "sysfs_iommu_group_id": 18,
+        "sysfs_iommu_group_id": 12,
         "detail": {
           "function": 3,
           "command": 1030,
@@ -13146,7 +12761,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 225,
+        "index": 222,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13196,7 +12811,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:08.3",
         "sysfs_bus_id": "0000:85:08.3",
-        "sysfs_iommu_group_id": 106,
+        "sysfs_iommu_group_id": 100,
         "detail": {
           "function": 3,
           "command": 0,
@@ -13207,7 +12822,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 226,
+        "index": 223,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13257,7 +12872,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:0e.2",
         "sysfs_bus_id": "0000:17:0e.2",
-        "sysfs_iommu_group_id": 53,
+        "sysfs_iommu_group_id": 47,
         "detail": {
           "function": 2,
           "command": 0,
@@ -13268,7 +12883,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 227,
+        "index": 224,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13318,7 +12933,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:1e.0",
         "sysfs_bus_id": "0000:85:1e.0",
-        "sysfs_iommu_group_id": 111,
+        "sysfs_iommu_group_id": 105,
         "detail": {
           "function": 0,
           "command": 0,
@@ -13329,7 +12944,7 @@
         "module_alias": "pci:v00008086d00002080sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 228,
+        "index": 225,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13370,7 +12985,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:00/0000:00:05.2",
         "sysfs_bus_id": "0000:00:05.2",
-        "sysfs_iommu_group_id": 33,
+        "sysfs_iommu_group_id": 27,
         "detail": {
           "function": 2,
           "command": 0,
@@ -13381,7 +12996,7 @@
         "module_alias": "pci:v00008086d00002025sv00000000sd00000000bc08sc80i00"
       },
       {
-        "index": 229,
+        "index": 226,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13431,7 +13046,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:1e.5",
         "sysfs_bus_id": "0000:17:1e.5",
-        "sysfs_iommu_group_id": 56,
+        "sysfs_iommu_group_id": 50,
         "detail": {
           "function": 5,
           "command": 0,
@@ -13442,7 +13057,7 @@
         "module_alias": "pci:v00008086d00002085sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 230,
+        "index": 227,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13492,7 +13107,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0c.4",
         "sysfs_bus_id": "0000:ae:0c.4",
-        "sysfs_iommu_group_id": 133,
+        "sysfs_iommu_group_id": 127,
         "detail": {
           "function": 4,
           "command": 0,
@@ -13503,7 +13118,7 @@
         "module_alias": "pci:v00008086d00002044sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 231,
+        "index": 228,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13553,7 +13168,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0c.4",
         "sysfs_bus_id": "0000:3a:0c.4",
-        "sysfs_iommu_group_id": 78,
+        "sysfs_iommu_group_id": 72,
         "detail": {
           "function": 4,
           "command": 0,
@@ -13564,7 +13179,7 @@
         "module_alias": "pci:v00008086d00002044sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 232,
+        "index": 229,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13614,7 +13229,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:0f.0",
         "sysfs_bus_id": "0000:85:0f.0",
-        "sysfs_iommu_group_id": 109,
+        "sysfs_iommu_group_id": 103,
         "detail": {
           "function": 0,
           "command": 0,
@@ -13625,7 +13240,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 233,
+        "index": 230,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13675,7 +13290,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:5d/0000:5d:16.4",
         "sysfs_bus_id": "0000:5d:16.4",
-        "sysfs_iommu_group_id": 96,
+        "sysfs_iommu_group_id": 90,
         "detail": {
           "function": 4,
           "command": 0,
@@ -13686,7 +13301,7 @@
         "module_alias": "pci:v00008086d00002018sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 234,
+        "index": 231,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13736,7 +13351,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:1d.0",
         "sysfs_bus_id": "0000:17:1d.0",
-        "sysfs_iommu_group_id": 55,
+        "sysfs_iommu_group_id": 49,
         "detail": {
           "function": 0,
           "command": 0,
@@ -13747,7 +13362,7 @@
         "module_alias": "pci:v00008086d00002054sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 235,
+        "index": 232,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13797,7 +13412,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:0e.6",
         "sysfs_bus_id": "0000:85:0e.6",
-        "sysfs_iommu_group_id": 108,
+        "sysfs_iommu_group_id": 102,
         "detail": {
           "function": 6,
           "command": 0,
@@ -13808,7 +13423,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 238,
+        "index": 234,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13858,7 +13473,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:09.0",
         "sysfs_bus_id": "0000:17:09.0",
-        "sysfs_iommu_group_id": 52,
+        "sysfs_iommu_group_id": 46,
         "detail": {
           "function": 0,
           "command": 0,
@@ -13869,7 +13484,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 239,
+        "index": 235,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13918,7 +13533,7 @@
         "model": "Intel SMBus",
         "sysfs_id": "/devices/pci0000:00/0000:00:1f.4",
         "sysfs_bus_id": "0000:00:1f.4",
-        "sysfs_iommu_group_id": 44,
+        "sysfs_iommu_group_id": 38,
         "resources": [
           {
             "type": "io",
@@ -13946,7 +13561,7 @@
         "module_alias": "pci:v00008086d0000A1A3sv00001028sd00000715bc0Csc05i00"
       },
       {
-        "index": 240,
+        "index": 236,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13996,7 +13611,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0a.5",
         "sysfs_bus_id": "0000:ae:0a.5",
-        "sysfs_iommu_group_id": 122,
+        "sysfs_iommu_group_id": 116,
         "detail": {
           "function": 5,
           "command": 0,
@@ -14007,7 +13622,7 @@
         "module_alias": "pci:v00008086d00002045sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 241,
+        "index": 237,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14057,7 +13672,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0a.5",
         "sysfs_bus_id": "0000:3a:0a.5",
-        "sysfs_iommu_group_id": 67,
+        "sysfs_iommu_group_id": 61,
         "detail": {
           "function": 5,
           "command": 0,
@@ -14068,7 +13683,7 @@
         "module_alias": "pci:v00008086d00002045sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 242,
+        "index": 238,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14118,7 +13733,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:80/0000:80:04.1",
         "sysfs_bus_id": "0000:80:04.1",
-        "sysfs_iommu_group_id": 16,
+        "sysfs_iommu_group_id": 10,
         "detail": {
           "function": 1,
           "command": 1030,
@@ -14137,7 +13752,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 243,
+        "index": 239,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14187,7 +13802,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:85/0000:85:08.1",
         "sysfs_bus_id": "0000:85:08.1",
-        "sysfs_iommu_group_id": 106,
+        "sysfs_iommu_group_id": 100,
         "detail": {
           "function": 1,
           "command": 0,
@@ -14198,7 +13813,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 244,
+        "index": 240,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14248,7 +13863,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:08.6",
         "sysfs_bus_id": "0000:17:08.6",
-        "sysfs_iommu_group_id": 51,
+        "sysfs_iommu_group_id": 45,
         "detail": {
           "function": 6,
           "command": 0,
@@ -14259,7 +13874,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 245,
+        "index": 241,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14309,7 +13924,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:0e.0",
         "sysfs_bus_id": "0000:17:0e.0",
-        "sysfs_iommu_group_id": 53,
+        "sysfs_iommu_group_id": 47,
         "detail": {
           "function": 0,
           "command": 0,
@@ -14320,7 +13935,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 246,
+        "index": 242,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14375,10 +13990,10 @@
         "model": "Intel PIC",
         "sysfs_id": "/devices/pci0000:17/0000:17:05.4",
         "sysfs_bus_id": "0000:17:05.4",
-        "sysfs_iommu_group_id": 50,
+        "sysfs_iommu_group_id": 44,
         "detail": {
           "function": 4,
-          "command": 2,
+          "command": 6,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 32
@@ -14386,7 +14001,7 @@
         "module_alias": "pci:v00008086d00002036sv00008086sd00002036bc08sc00i20"
       },
       {
-        "index": 247,
+        "index": 243,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14436,7 +14051,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.2",
         "sysfs_bus_id": "0000:00:08.2",
-        "sysfs_iommu_group_id": 37,
+        "sysfs_iommu_group_id": 31,
         "detail": {
           "function": 2,
           "command": 0,
@@ -14447,7 +14062,7 @@
         "module_alias": "pci:v00008086d00002016sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 248,
+        "index": 244,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14497,7 +14112,7 @@
         "model": "Intel Performance counters",
         "sysfs_id": "/devices/pci0000:d7/0000:d7:0e.0",
         "sysfs_bus_id": "0000:d7:0e.0",
-        "sysfs_iommu_group_id": 144,
+        "sysfs_iommu_group_id": 138,
         "detail": {
           "function": 0,
           "command": 0,
@@ -14516,7 +14131,7 @@
         "module_alias": "pci:v00008086d00002058sv00008086sd00000000bc11sc01i00"
       },
       {
-        "index": 249,
+        "index": 245,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14566,7 +14181,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:00/0000:00:05.0",
         "sysfs_bus_id": "0000:00:05.0",
-        "sysfs_iommu_group_id": 32,
+        "sysfs_iommu_group_id": 26,
         "detail": {
           "function": 0,
           "command": 0,
@@ -14577,7 +14192,7 @@
         "module_alias": "pci:v00008086d00002024sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 250,
+        "index": 246,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14632,10 +14247,10 @@
         "model": "Intel PIC",
         "sysfs_id": "/devices/pci0000:d7/0000:d7:05.4",
         "sysfs_bus_id": "0000:d7:05.4",
-        "sysfs_iommu_group_id": 143,
+        "sysfs_iommu_group_id": 137,
         "detail": {
           "function": 4,
-          "command": 2,
+          "command": 6,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 32
@@ -14643,7 +14258,7 @@
         "module_alias": "pci:v00008086d00002036sv00008086sd00002036bc08sc00i20"
       },
       {
-        "index": 251,
+        "index": 247,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14693,7 +14308,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:17/0000:17:1e.3",
         "sysfs_bus_id": "0000:17:1e.3",
-        "sysfs_iommu_group_id": 56,
+        "sysfs_iommu_group_id": 50,
         "detail": {
           "function": 3,
           "command": 0,
@@ -14704,7 +14319,7 @@
         "module_alias": "pci:v00008086d00002083sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 253,
+        "index": 248,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14754,7 +14369,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:0c.2",
         "sysfs_bus_id": "0000:ae:0c.2",
-        "sysfs_iommu_group_id": 131,
+        "sysfs_iommu_group_id": 125,
         "detail": {
           "function": 2,
           "command": 0,
@@ -14773,7 +14388,7 @@
         "module_alias": "pci:v00008086d00002042sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 254,
+        "index": 249,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14823,7 +14438,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:0c.2",
         "sysfs_bus_id": "0000:3a:0c.2",
-        "sysfs_iommu_group_id": 76,
+        "sysfs_iommu_group_id": 70,
         "detail": {
           "function": 2,
           "command": 0,
@@ -14842,7 +14457,7 @@
         "module_alias": "pci:v00008086d00002042sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 255,
+        "index": 250,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14892,7 +14507,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:00/0000:00:04.6",
         "sysfs_bus_id": "0000:00:04.6",
-        "sysfs_iommu_group_id": 30,
+        "sysfs_iommu_group_id": 24,
         "detail": {
           "function": 6,
           "command": 1030,
@@ -14911,7 +14526,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 256,
+        "index": 251,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14966,10 +14581,10 @@
         "model": "Intel PIC",
         "sysfs_id": "/devices/pci0000:80/0000:80:05.4",
         "sysfs_bus_id": "0000:80:05.4",
-        "sysfs_iommu_group_id": 99,
+        "sysfs_iommu_group_id": 93,
         "detail": {
           "function": 4,
-          "command": 2,
+          "command": 6,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 32
@@ -14977,7 +14592,7 @@
         "module_alias": "pci:v00008086d00002026sv00008086sd00002026bc08sc00i20"
       },
       {
-        "index": 257,
+        "index": 252,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -15027,7 +14642,7 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:5d/0000:5d:0e.1",
         "sysfs_bus_id": "0000:5d:0e.1",
-        "sysfs_iommu_group_id": 90,
+        "sysfs_iommu_group_id": 84,
         "detail": {
           "function": 1,
           "command": 0,
@@ -15040,7 +14655,7 @@
     ],
     "sound": [
       {
-        "index": 146,
+        "index": 145,
         "attached_to": 84,
         "class_list": [
           "sound",
@@ -15053,73 +14668,6 @@
         },
         "slot": {
           "bus": 59,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0004",
-          "name": "Multimedia controller",
-          "value": 4
-        },
-        "sub_class": {
-          "hex": "0003",
-          "value": 3
-        },
-        "vendor": {
-          "hex": "10de",
-          "name": "nVidia Corporation",
-          "value": 4318
-        },
-        "sub_vendor": {
-          "hex": "1458",
-          "value": 5208
-        },
-        "device": {
-          "hex": "10f8",
-          "value": 4344
-        },
-        "sub_device": {
-          "hex": "37a7",
-          "value": 14247
-        },
-        "revision": {
-          "hex": "00a1",
-          "value": 161
-        },
-        "model": "nVidia Multimedia controller",
-        "sysfs_id": "/devices/pci0000:3a/0000:3a:00.0/0000:3b:00.1",
-        "sysfs_bus_id": "0000:3b:00.1",
-        "sysfs_iommu_group_id": 2,
-        "detail": {
-          "function": 1,
-          "command": 6,
-          "header_type": 0,
-          "secondary_bus": 0,
-          "prog_if": 0
-        },
-        "driver": "snd_hda_intel",
-        "driver_module": "snd_hda_intel",
-        "drivers": [
-          "snd_hda_intel"
-        ],
-        "driver_modules": [
-          "snd_hda_intel"
-        ],
-        "module_alias": "pci:v000010DEd000010F8sv00001458sd000037A7bc04sc03i00"
-      },
-      {
-        "index": 252,
-        "attached_to": 190,
-        "class_list": [
-          "sound",
-          "pci"
-        ],
-        "bus_type": {
-          "hex": "0004",
-          "name": "PCI",
-          "value": 4
-        },
-        "slot": {
-          "bus": 216,
           "number": 0
         },
         "base_class": {
@@ -15153,9 +14701,9 @@
           "value": 161
         },
         "model": "nVidia Multimedia controller",
-        "sysfs_id": "/devices/pci0000:d7/0000:d7:00.0/0000:d8:00.1",
-        "sysfs_bus_id": "0000:d8:00.1",
-        "sysfs_iommu_group_id": 12,
+        "sysfs_id": "/devices/pci0000:3a/0000:3a:00.0/0000:3b:00.1",
+        "sysfs_bus_id": "0000:3b:00.1",
+        "sysfs_iommu_group_id": 1,
         "detail": {
           "function": 1,
           "command": 6,
@@ -15223,7 +14771,7 @@
         "model": "Mass storage controller",
         "sysfs_id": "/devices/pci0000:ae/0000:ae:00.0/0000:af:00.0",
         "sysfs_bus_id": "0000:af:00.0",
-        "sysfs_iommu_group_id": 14,
+        "sysfs_iommu_group_id": 8,
         "detail": {
           "function": 0,
           "command": 1030,
@@ -15294,7 +14842,7 @@
         "model": "Intel Mass storage controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:17.0",
         "sysfs_bus_id": "0000:00:17.0",
-        "sysfs_iommu_group_id": 41,
+        "sysfs_iommu_group_id": 35,
         "resources": [
           {
             "type": "io",
@@ -15388,7 +14936,7 @@
         "model": "Intel Mass storage controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:11.5",
         "sysfs_bus_id": "0000:00:11.5",
-        "sysfs_iommu_group_id": 38,
+        "sysfs_iommu_group_id": 32,
         "resources": [
           {
             "type": "io",
@@ -15430,8 +14978,8 @@
         "module_alias": "pci:v00008086d0000A1D2sv00001028sd00000715bc01sc06i01"
       },
       {
-        "index": 154,
-        "attached_to": 185,
+        "index": 153,
+        "attached_to": 183,
         "class_list": [
           "storage_controller",
           "pci"
@@ -15478,7 +15026,7 @@
         "model": "RAID bus controller",
         "sysfs_id": "/devices/pci0000:17/0000:17:00.0/0000:18:00.0",
         "sysfs_bus_id": "0000:18:00.0",
-        "sysfs_iommu_group_id": 7,
+        "sysfs_iommu_group_id": 4,
         "resources": [
           {
             "type": "io",
@@ -15511,7 +15059,7 @@
     },
     "unknown": [
       {
-        "index": 258,
+        "index": 253,
         "attached_to": 0,
         "class_list": [
           "unknown"
@@ -15551,7 +15099,7 @@
         ]
       },
       {
-        "index": 259,
+        "index": 254,
         "attached_to": 0,
         "class_list": [
           "unknown"
@@ -15593,8 +15141,8 @@
     ],
     "usb": [
       {
-        "index": 270,
-        "attached_to": 266,
+        "index": 264,
+        "attached_to": 261,
         "class_list": [
           "usb",
           "unknown"
@@ -15702,79 +15250,7 @@
     ],
     "usb_controller": [
       {
-        "index": 236,
-        "attached_to": 84,
-        "class_list": [
-          "usb_controller",
-          "pci"
-        ],
-        "bus_type": {
-          "hex": "0004",
-          "name": "PCI",
-          "value": 4
-        },
-        "slot": {
-          "bus": 59,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "000c",
-          "name": "Serial bus controller",
-          "value": 12
-        },
-        "sub_class": {
-          "hex": "0003",
-          "name": "USB Controller",
-          "value": 3
-        },
-        "pci_interface": {
-          "hex": "0030",
-          "value": 48
-        },
-        "vendor": {
-          "hex": "10de",
-          "name": "nVidia Corporation",
-          "value": 4318
-        },
-        "sub_vendor": {
-          "hex": "1458",
-          "value": 5208
-        },
-        "device": {
-          "hex": "1ad8",
-          "value": 6872
-        },
-        "sub_device": {
-          "hex": "37a7",
-          "value": 14247
-        },
-        "revision": {
-          "hex": "00a1",
-          "value": 161
-        },
-        "model": "nVidia USB Controller",
-        "sysfs_id": "/devices/pci0000:3a/0000:3a:00.0/0000:3b:00.2",
-        "sysfs_bus_id": "0000:3b:00.2",
-        "sysfs_iommu_group_id": 3,
-        "detail": {
-          "function": 2,
-          "command": 1026,
-          "header_type": 0,
-          "secondary_bus": 0,
-          "prog_if": 48
-        },
-        "driver": "xhci_hcd",
-        "driver_module": "xhci_pci",
-        "drivers": [
-          "xhci_hcd"
-        ],
-        "driver_modules": [
-          "xhci_pci"
-        ],
-        "module_alias": "pci:v000010DEd00001AD8sv00001458sd000037A7bc0Csc03i30"
-      },
-      {
-        "index": 237,
+        "index": 233,
         "attached_to": 0,
         "class_list": [
           "usb_controller",
@@ -15827,7 +15303,7 @@
         "model": "Intel USB Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0",
         "sysfs_bus_id": "0000:00:14.0",
-        "sysfs_iommu_group_id": 39,
+        "sysfs_iommu_group_id": 33,
         "detail": {
           "function": 0,
           "command": 1350,
@@ -17254,9 +16730,9 @@
           "value": 13
         },
         "usage": {
-          "hex": "0004",
-          "name": "In Use",
-          "value": 4
+          "hex": "0003",
+          "name": "Available",
+          "value": 3
         },
         "length": {
           "hex": "0004",
