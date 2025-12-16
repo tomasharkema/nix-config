@@ -302,24 +302,6 @@
         options it87 ignore_resource_conflict=1 update_vbat=1
       '';
 
-      initrd = {
-        # compressor = pkgs: "${pkgs.lz4.out}/bin/lz4";
-        # compressorArgs = ["-9"];
-
-        compressor = "zstd";
-        compressorArgs = ["-9"];
-
-        kernelModules = [
-          # "iTCO_wdt" # "ixgbe"
-          # "btusb"
-          # "vfio_pci"
-          # "vfio"
-          # "vfio_iommu_type1"
-          # "nvidia_vgpu_vfio"
-          # "kvm-intel"
-        ];
-      };
-
       kernelParams = [
         # "console=tty1"
         # "console=ttyS0,115200n8r"

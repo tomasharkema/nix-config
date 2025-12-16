@@ -106,8 +106,8 @@ in {
       crashDump.enable = pkgs.stdenv.isx86_64; # true;
 
       initrd = {
-        # dm = "zstd";
-        # compressorArgs = ["-19"];
+        compressor = "zstd";
+        compressorArgs = ["-19"];
         # systemd.emergencyAccess = "abcdefg";
         includeDefaultModules = true;
         # unl0kr = {enable = config.disks.btrfs.encrypt;};

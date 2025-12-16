@@ -87,7 +87,9 @@ in {
       #   # openFirewall = true;
       # };
       # clipmenu.enable = true;
-      # xserver.videoDrivers = ["displaylink"];
+
+      xserver.videoDrivers = lib.mkIf (lib.strings.versionOlder config.boot.kernelPackages.kernel.version "6.18") ["displaylink"];
+
       systembus-notify.enable = true;
       pipewire = {
         enable = true;
