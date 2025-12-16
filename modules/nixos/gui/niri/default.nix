@@ -60,7 +60,7 @@ in {
     };
 
     services = {
-      iio-niri.enable = true;
+      # iio-niri.enable = true;
       orca.enable = lib.mkForce false;
     };
 
