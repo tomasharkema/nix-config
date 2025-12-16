@@ -269,6 +269,15 @@ in {
 
       kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
 
+      swraid.enable = true;
+      supportedFilesystems = [
+        "xfs"
+        "ntfs"
+        # "apfs"
+        "ext4"
+        "btrfs"
+      ];
+
       kernelParams = [
         "console=tty1"
         "console=ttyS2,115200"
@@ -336,16 +345,9 @@ in {
       #     # };
       #   };
       # };
+
       blacklistedKernelModules = ["iTCO_wdt"];
-      initrd = {
-        availableKernelModules = [
-          "xhci_pci"
-          "ahci"
-          "usbhid"
-          "usb_storage"
-          # "sd_mod"
-        ];
-      };
+
       kernelModules = [
         "pci-me"
         "nct6775"
