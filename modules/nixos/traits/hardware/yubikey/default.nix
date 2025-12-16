@@ -29,7 +29,7 @@
     hardware.gpgSmartcards.enable = true;
 
     programs = {
-      yubikey-touch-detector.enable = true;
+      yubikey-touch-detector.enable = lib.mkIf config.gui.enable true;
       # ssh.extraConfig = ''
       #   PKCS11Provider ${pkgs.yubico-piv-tool}/lib/libykcs11.so
       # '';
@@ -80,7 +80,6 @@
         enable = true;
         plugins = [pkgs.yubikey-personalization];
       };
-      yubikey-agent.enable = config.gui.enable;
 
       udev = {
         packages = [pkgs.yubikey-personalization];

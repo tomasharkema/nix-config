@@ -60,15 +60,15 @@ in {
 
         vrrpInstances.VIP_32 = {
           state =
-            if config.networking.hostName == "blue-fire"
+            if config.networking.hostName == "silver-star"
             then "MASTER"
             else "BACKUP";
           interface = "br0";
           virtualRouterId = 32;
           priority =
-            if config.networking.hostName == "blue-fire"
-            then 10
-            else 44;
+            if config.networking.hostName == "silver-star"
+            then 51
+            else 10;
 
           virtualIps = [{addr = "192.168.0.250/24";}];
           trackScripts = ["track_netbootxyz"];
