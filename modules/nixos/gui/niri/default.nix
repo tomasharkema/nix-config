@@ -11,7 +11,10 @@
 in {
   config = lib.mkIf cfgDesktop.enable {
     environment = {
-      systemPackages = with pkgs; [swaybg];
+      systemPackages = with pkgs; [
+        swaybg
+      ];
+
       # pathsToLink = ["/share/wayland-sessions"];
     };
 
@@ -29,6 +32,7 @@ in {
         enable = true;
         package = pkgs.niri-unstable;
       };
+
       dankMaterialShell = {
         greeter = {
           enable = true;
@@ -69,7 +73,9 @@ in {
 
     security = {
       # soteria.enable = true;
+
       ipa.ifpAllowedUids = [user];
+
       pam.services = {
         login.fprintAuth = lib.mkIf config.services.fprintd.enable false;
         greetd.fprintAuth = lib.mkIf config.services.fprintd.enable false;
@@ -133,13 +139,16 @@ in {
         niri = {
           # enable = true;
           package = pkgs.niri-unstable;
+
           settings = {
             input = {
               mouse = {
                 natural-scroll = true;
                 accel-speed = -0.5;
               };
-              touchpad = {click-method = "clickfinger";};
+              touchpad = {
+                click-method = "clickfinger";
+              };
               keyboard = {
                 numlock = true;
               };
@@ -156,7 +165,7 @@ in {
             environment = {
               "NIXOS_OZONE_WL" = "1";
               ELECTRON_OZONE_PLATFORM_HINT = "auto";
-              QT_QPA_PLATFORM = "wayland";
+              # QT_QPA_PLATFORM = "wayland";
             };
             hotkey-overlay.skip-at-startup = true;
             window-rules = [
@@ -249,8 +258,8 @@ in {
 
               # Suggested binds for running programs: terminal, app launcher, screen locker.
               "Mod+T" = {
-                hotkey-overlay.title = "Open a Terminal: alacritty";
-                action.spawn = "alacritty";
+                hotkey-overlay.title = "Open a Terminal: kitty";
+                action.spawn = "kitty";
               };
               "Mod+D" = {
                 hotkey-overlay.title = "Run an Application: fuzzel";

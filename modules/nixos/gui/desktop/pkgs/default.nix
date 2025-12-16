@@ -107,6 +107,7 @@
     libsmbios
     meld
     mission-center
+    mixxx
     netpeek
     noti
     nrf-command-line-tools
@@ -123,6 +124,7 @@
     openrw
     openswitcher
     pavucontrol
+    pdfarranger
     pika-backup
     platformio
     plex-desktop
