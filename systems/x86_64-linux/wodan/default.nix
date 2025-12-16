@@ -306,7 +306,7 @@
         # compressorArgs = ["-9"];
 
         compressor = "zstd";
-        compressorArgs = ["-e9"];
+        compressorArgs = ["-9"];
 
         kernelModules = [
           # "iTCO_wdt" # "ixgbe"
