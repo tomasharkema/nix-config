@@ -65,6 +65,7 @@
     font-manager
     gdm-settings
     ghex
+    glabels-qt
     gnomecast
     go-chromecast
     gotop

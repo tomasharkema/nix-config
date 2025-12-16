@@ -74,10 +74,7 @@
       packages = with pkgs;
         (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts))
         ++ [
-          encode-sans
-          terminus_font
-          terminus_font_ttf
-          exult
+          # keep-sorted start
           adwaita-fonts
           b612
           bakoma_ttf
@@ -88,10 +85,13 @@
           custom.computer-modern
           custom.din
           custom.fast-font
+          custom.foremost
           custom.futura
           custom.neue-haas-grotesk
           custom.san-francisco
           dina-font
+          encode-sans
+          exult
           fairfax
           fairfax-hd
           fira-code
@@ -115,9 +115,12 @@
           powerline-symbols
           proggyfonts
           roboto-mono
+          terminus_font
+          terminus_font_ttf
           ubuntu-classic
           vegur
           vista-fonts
+          # keep-sorted end
         ];
     };
   };
