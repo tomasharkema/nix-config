@@ -113,6 +113,23 @@ in rec {
     ];
   });
 
+  telegram-desktop = let
+    version = "6.3.9";
+    unwrapped = prev.telegram-desktop.unwrapped.overrideAttrs {
+      pname = "telegram-desktop-unwrapped";
+      version = version;
+
+      src = prev.fetchFromGitHub {
+        owner = "telegramdesktop";
+        repo = "tdesktop";
+        rev = "v${version}";
+        fetchSubmodules = true;
+        hash = "sha256-YalOrjXCRv9J8kTM+k75pEif28E/Nig+XCLiR7gfvBs=";
+      };
+    };
+  in
+    prev.telegram-desktop.override {inherit unwrapped;};
+
   nox = inputs.nox.packages.${system}.default;
   nix-alien = inputs.nix-alien.packages.${system}.default;
   # geoclue2 = prev.geoclue2.overrideAttrs ({buildInputs, ...}: {

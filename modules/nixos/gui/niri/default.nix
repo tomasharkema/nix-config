@@ -135,7 +135,6 @@ in {
           # };
         };
 
-        niriswitcher.enable = true;
         niri = {
           # enable = true;
           package = pkgs.niri-unstable;
@@ -148,6 +147,8 @@ in {
               };
               touchpad = {
                 click-method = "clickfinger";
+                dwt = true;
+                dwtp = true;
               };
               keyboard = {
                 numlock = true;
@@ -157,6 +158,7 @@ in {
             gestures.hot-corners.enable = false;
             cursor = {
               hide-when-typing = true;
+              hide-after-inactive-ms = 1000;
             };
             xwayland-satellite = {
               enable = true;
@@ -165,7 +167,8 @@ in {
             environment = {
               "NIXOS_OZONE_WL" = "1";
               ELECTRON_OZONE_PLATFORM_HINT = "auto";
-              # QT_QPA_PLATFORM = "wayland";
+              QT_QPA_PLATFORM = "wayland";
+              DISPLAY = null;
             };
             hotkey-overlay.skip-at-startup = true;
             window-rules = [
@@ -177,7 +180,7 @@ in {
                     title = "^Picture-in-Picture$";
                   }
                 ];
-
+                open-focused = false;
                 open-floating = true;
                 default-floating-position = {
                   x = 20;
@@ -203,7 +206,7 @@ in {
                     app-id = "me.kavishdevar.librepods";
                   }
                 ];
-
+                open-focused = false;
                 open-floating = false;
                 open-maximized = false;
               }
@@ -212,8 +215,8 @@ in {
             spawn-at-startup = [
               {command = ["kitty"];}
               {command = ["firefox"];}
-              # {command = ["gsettings set org.gnome.desktop.interface gtk-theme \"Adwaita-dark\""];}
-              # {command = ["gsettings set org.gnome.desktop.interface color-scheme \"prefer-dark\""];}
+              {command = ["dconf" "write" "/org/gnome/desktop/interface/color-scheme" "'\"prefer-dark\"'"];}
+              {command = ["dconf" "write" "/org/gnome/desktop/interface/gtk-theme" "'\"Adwaita-dark\"'"];}
               # {command = ["1password"];}
               {command = ["swaybg" "--image" hmConfig.home.file.".background-image".source];}
               # {command = ["~/.config/niri/scripts/startup.sh"];}
@@ -235,10 +238,10 @@ in {
                 action = dms-ipc "processlist" "toggle";
                 hotkey-overlay.title = "Toggle Process List";
               };
-              "Alt+Tab" = {
-                repeat = false;
-                action = spawn ["niriswitcherctl" "show" "--window"];
-              };
+              # "Alt+Tab" = {
+              #   repeat = false;
+              #   action = spawn ["niriswitcherctl" "show" "--window"];
+              # };
 
               "Print".action = screenshot;
               # "Ctrl+Print".action = screenshot-screen;

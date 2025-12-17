@@ -131,10 +131,7 @@
         nil
         ninja
         nix-alien
-        # kitty.terminfo
-        # wezterm.terminfo
-        nix-alien
-        nix-btm
+        # nix-btm
         nix-check-deps
         nix-playground
         nix-search-cli
