@@ -27,8 +27,8 @@
     };
 
     facter = {
-      # reportPath = ./facter.json;
-      # detected.graphics.enable = false;
+      reportPath = ./facter.json;
+      detected.graphics.enable = false;
     };
 
     disks.btrfs = {
@@ -81,27 +81,18 @@
       usbguard.enable = false;
     };
 
-    fileSystems = {
-      "/export/netboot" = {
-        device = "/mnt/netboot";
-        options = ["bind"];
-      };
-    };
     # system.includeBuildDependencies = true;
 
-    programs.nh = {
-      clean.enable = true;
-      clean.extraArgs = "--keep-since 3M";
-    };
-
-    virtualisation = {
-      incus = {
+    programs = {
+      nh = {
+        clean.enable = true;
+        clean.extraArgs = "--keep-since 3M";
+      };
+      atop = {
         enable = true;
-        # socketActivation = true;
-        ui.enable = true;
+        netatop.enable = true;
       };
     };
-    users.groups = {"incus-admin".members = ["tomas"];};
 
     services = {
       hypervisor = {
@@ -235,10 +226,11 @@
         defaults.authKeyPath = config.age.secrets.tsnsrv.path;
         services = {
           nix-cache = {toURL = "http://127.0.0.1:7124";};
-          # searxng = {toURL = "http://127.0.0.1:8088";};
-          # glitchtip = {
-          #   toURL = "http://127.0.0.1:${builtins.toString config.services.glitchtip.port}";
-          # };
+          searxng = {toURL = "http://127.0.0.1:8088";};
+          glitchtip = {
+            toURL = "http://127.0.0.1:${builtins.toString config.services.glitchtip.port}";
+          };
+
           grafana = {toURL = "http://127.0.0.1:3000";};
           healthchecks = {toURL = "http://127.0.0.1:8000";};
           netbox = {toURL = "http://127.0.0.1:8002";};
@@ -247,6 +239,10 @@
           atuin = {toURL = "http://127.0.0.1:8888";};
           trmnl = {toURL = "http://127.0.0.1:2300";};
           immich-ml = {toURL = "http://127.0.0.1:3003";};
+          openmanage = {
+            toURL = "https://127.0.0.1:1311";
+            insecureHTTPS = true;
+          };
           incus = {
             toURL = "https://127.0.0.1:8443";
             insecureHTTPS = true;
@@ -272,44 +268,44 @@
         };
       };
 
-      # glitchtip = {
-      #   enable = true;
-      #   port = 8923;
-      #   # listenAddress = "0.0.0.0";
+      glitchtip = {
+        enable = true;
+        port = 8923;
+        # listenAddress = "0.0.0.0";
 
-      #   settings = {
-      #     GLITCHTIP_DOMAIN = "https://glitchtip.ling-lizard.ts.net";
-      #   };
-      # };
-      # mysql = {
-      #   enable = true;
-      #   package = pkgs.mariadb;
-      # };
+        settings = {
+          GLITCHTIP_DOMAIN = "https://glitchtip.ling-lizard.ts.net";
+        };
+      };
+      mysql = {
+        enable = true;
+        package = pkgs.mariadb;
+      };
 
-      # firefox-syncserver = {
-      #   enable = true;
-      #   secrets = config.age.secrets.firefox.path;
+      firefox-syncserver = {
+        enable = true;
+        secrets = config.age.secrets.firefox.path;
 
-      #   database = {
-      #     createLocally = true;
-      #     user = "firefox-syncserver";
-      #     name = "firefox_syncserver";
-      #   };
+        database = {
+          createLocally = true;
+          user = "firefox-syncserver";
+          name = "firefox_syncserver";
+        };
 
-      #   singleNode = {
-      #     enable = true;
-      #     hostname = "silver-star.ling-lizard.ts.net";
-      #     url = "http://silver-star.ling-lizard.ts.net:5000";
-      #   };
-      # };
+        singleNode = {
+          enable = true;
+          hostname = "silver-star.ling-lizard.ts.net";
+          url = "http://silver-star.ling-lizard.ts.net:5000";
+        };
+      };
 
-      # pocket-id = {
-      #   enable = true;
-      #   settings = {
-      #     APP_URL = "https://id.harke.ma";
-      #     TRUST_PROXY = true;
-      #   };
-      # };
+      pocket-id = {
+        enable = true;
+        settings = {
+          APP_URL = "https://id.harke.ma";
+          TRUST_PROXY = true;
+        };
+      };
 
       # ollama = {
       #   enable = true;

@@ -62,8 +62,6 @@ in {
     #   };
     # };
 
-    programs.mdevctl.enable = true;
-
     environment.systemPackages = with pkgs; [
       kvmtool
       libvirt
@@ -100,28 +98,38 @@ in {
     # users = {
     #   users = {
     #     qemu-libvirtd.group = "qemu-libvirtd";
-    #     "${config.user.name}".extraGroups = ["libvirtd" "qemu-libvirtd" "vboxusers"];
-    #     "root".extraGroups = ["libvirtd" "qemu-libvirtd" "vboxusers"];
     #   };
     #   groups.qemu-libvirtd = {};
     # };
 
-    users.users = {
-      root.extraGroups = [
-        "kvm"
-        "libvirtd"
-        "tty"
+    users = {
+      groups = {
+        "incus-admin".members = [
+          "${config.user.name}"
+        ];
 
-        "libvirt"
-        "qemu-libvirtd"
-      ];
-      tomas.extraGroups = [
-        "kvm"
-        "libvirtd"
-        "libvirt"
-        "tty"
-        "qemu-libvirtd"
-      ];
+        "qemu-libvirtd".members = [
+          "${config.user.name}"
+        ];
+      };
+
+      users = {
+        root.extraGroups = [
+          "kvm"
+          "libvirtd"
+          "tty"
+
+          "libvirt"
+          "qemu-libvirtd"
+        ];
+        "${config.user.name}".extraGroups = [
+          "kvm"
+          "libvirtd"
+          "libvirt"
+          "tty"
+          "qemu-libvirtd"
+        ];
+      };
     };
 
     systemd = {
@@ -162,16 +170,17 @@ in {
       # };
     };
 
-    # services.saslauthd = {
-    # enable = true;
-    # config = ''
-    #   mech_list: gssapi
-    #   keytab: ${libvirtKeytab}
-    # '';
-    # };
-    # services.udev.extraRules = ''
-    #   SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
-    # '';
+    services.saslauthd = {
+      enable = true;
+      # config = ''
+      #   mech_list: gssapi
+      #   keytab: ${libvirtKeytab}
+      # '';
+    };
+    services.udev.extraRules = ''
+      SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
+    '';
+
     boot = {
       kernelParams = lib.mkIf cfg.iommu.enable [
         "kvm_intel.nested=1"
@@ -208,14 +217,19 @@ in {
       );
     };
 
-    # programs.ccache = {
-    #   enable = true;
-    # };
+    programs = {
+      mdevctl.enable = true;
+      ccache.enable = true;
+    };
 
     hardware.ksm.enable = true;
 
-    networking.nftables.enable = true;
     virtualisation = {
+      incus = {
+        enable = true;
+        ui.enable = true;
+      };
+
       kvmgt.enable = true;
       # tpm.enable = true;
 
@@ -267,7 +281,7 @@ in {
       #   #   listen_tls = 0
       #   #   listen_tcp = 1
       #   #   auth_tcp = "sasl"
-      #   #   sasl_allowed_username_list = ["\*@HARKEMA.INTRA" ]
+      #   #   sasl_allowed_username_list = ["\*@HARKEMA.IO" ]
       #   # '';
 
       #   allowedBridges = ["virbr0" "br0"];
@@ -282,6 +296,8 @@ in {
     };
 
     networking = {
+      # nftables.enable = true;
+
       #   interfaces."br0".useDHCP = true;
 
       # firewall.trustedInterfaces = ["br0" "virbr0"];

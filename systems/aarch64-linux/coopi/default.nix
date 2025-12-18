@@ -52,17 +52,17 @@
 
     zramSwap = {enable = true;};
 
-    services.hardware.lcd.server = {
-      # enable = true;
-      extraConfig = ''
-        Driver=glcdlib
+    # services.hardware.lcd.server = {
+    #   # enable = true;
+    #   extraConfig = ''
+    #     Driver=glcdlib
 
-        [glcdlib]
-        Driver=framebuffer
-        UseFT2=yes
-        FontFile=${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/NerdFonts/JetBrainsMono/JetBrainsMonoNerdFontMono-Regular.ttf
-      '';
-    };
+    #     [glcdlib]
+    #     Driver=framebuffer
+    #     UseFT2=yes
+    #     FontFile=${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/NerdFonts/JetBrainsMono/JetBrainsMonoNerdFontMono-Regular.ttf
+    #   '';
+    # };
 
     traits = {
       hardware.raspberry.enable = true;
