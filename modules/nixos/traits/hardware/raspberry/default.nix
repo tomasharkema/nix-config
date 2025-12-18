@@ -60,7 +60,7 @@ in {
         "console=ttyS1,115200n8"
       ];
 
-      kernelPackages = pkgs.linuxPackages_latest;
+      kernelPackages = pkgs.linuxPackages;
 
       consoleLogLevel = lib.mkDefault 7;
 
