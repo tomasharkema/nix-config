@@ -147,7 +147,6 @@
     serial-studio
     smuview
     solaar
-    spot
     spotify
     sqlitebrowser
     sway-launcher-desktop
