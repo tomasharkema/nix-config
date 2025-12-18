@@ -1328,11 +1328,11 @@
         "treefmt-nix": "treefmt-nix_4"
       },
       "locked": {
-        "lastModified": 1763045507,
-        "narHash": "sha256-61zO8zsFE8C104hCTv04z6a4H8U03OEMrRAXtGsszkE=",
+        "lastModified": 1766070733,
+        "narHash": "sha256-A9Q2qP2A/56jbz4PeKN3gFn4VI6BieFAL5Av/hV5Ie8=",
         "owner": "nix-community",
         "repo": "nixos-anywhere",
-        "rev": "bad98b0685cf47eaeadcaf6787da8b51cf025693",
+        "rev": "05a897df0ae08afb7c8223004159bc5bf06840a4",
         "type": "github"
       },
       "original": {
