@@ -37,13 +37,30 @@
     #   enable = true;
     # };
 
-    # systemd = {
-    #   services.usbmuxd.path = [pkgs.libusb1];
-
-    # };
+    systemd.services = {
+      NetworkManager = {
+        serviceConfig = {
+          CapabilityBoundingSet = [
+            "CAP_NET_ADMIN"
+            "CAP_DAC_OVERRIDE"
+            "CAP_NET_RAW"
+            "CAP_NET_BIND_SERVICE"
+            "CAP_SETGID"
+            "CAP_SETUID"
+            "CAP_SYS_MODULE"
+            "CAP_AUDIT_WRITE"
+            "CAP_KILL"
+            "CAP_SYS_CHROOT"
+            "CAP_CHOWN"
+          ];
+        };
+      };
+      #   services.usbmuxd.path = [pkgs.libusb1];
+    };
 
     environment = {
       systemPackages = with pkgs; [
+        dnsmasq
         # gt
         # gnomeExtensions.power-tracker
         # custom.swift
@@ -151,6 +168,7 @@
       firewall = {
         enable = true; # wlp4s0; # false;
         allowPing = true;
+        allowedUDPPorts = [53 67];
         trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
       };
     };
@@ -168,7 +186,9 @@
       "sudo".fprintAuth = true;
       "polkit-1".fprintAuth = true;
     };
+
     services = {
+      # dnsmasq.enable = true;
       kmscon.enable = true;
       ratbagd.enable = true;
       # comin.enable = false;
