@@ -79,7 +79,7 @@ in {
         # bridgeInterfaces = [ "eno1" ];
       };
 
-      netconsd.enable = true;
+      netconsoled.enable = true;
 
       avahi.allowInterfaces = ["br0"];
       vscode-server.enable = true;

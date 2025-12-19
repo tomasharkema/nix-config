@@ -95,6 +95,7 @@
     };
 
     services = {
+      netconsoled.enable = true;
       hypervisor = {
         enable = true;
         iommu.enable = true;
@@ -183,8 +184,17 @@
         ];
       };
 
-      lldpd.enable = true;
-
+      lldpd = {
+        enable = true;
+        extraArgs = [
+          "-c"
+          "-e"
+          "-s"
+          "-f"
+          "-x"
+          "-M 1"
+        ];
+      };
       # tcsd.enable = true;
 
       throttled.enable = lib.mkForce false;

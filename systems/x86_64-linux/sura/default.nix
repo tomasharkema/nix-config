@@ -35,7 +35,7 @@
     gui.fonts.enable = true;
 
     services = {
-      cage = {
+      cage = lib.mkIf false {
         enable = true;
         user = "tomas";
         # environment = {
@@ -68,7 +68,7 @@
       remote-builders.client.enable = true;
       usbmuxd.enable = false;
       resilio.enable = lib.mkForce false;
-      kmscon.enable = lib.mkForce false;
+      kmscon.enable = true;
       usbguard.enable = lib.mkForce false;
       tlp.enable = lib.mkForce false;
       netdata.enable = lib.mkForce false;

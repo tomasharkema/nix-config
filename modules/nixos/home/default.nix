@@ -49,6 +49,7 @@
       userdbd = {
         enable = true;
         enableSSHSupport = false;
+        silenceHighSystemUsers = true;
       };
     };
   };
