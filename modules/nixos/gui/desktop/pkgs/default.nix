@@ -59,6 +59,7 @@
     esptool
     f1viewer
     filezilla
+    firewalld-gui
     flamp
     fldigi
     fllog
