@@ -60,7 +60,6 @@
 
     environment = {
       systemPackages = with pkgs; [
-        dnsmasq
         # gt
         # gnomeExtensions.power-tracker
         # custom.swift
@@ -83,7 +82,6 @@
         piper
         libratbag
         esp-idf-full
-        firewalld-gui
       ];
     };
 
@@ -164,18 +162,6 @@
 
     networking = {
       hostName = "voltron"; # Define your hostname.
-
-      networkmanager.enable = true;
-
-      # wireless.enable = true;
-
-      firewall = {
-        enable = true; # wlp4s0; # false;
-        allowPing = true;
-        allowedUDPPorts = [53 67];
-      };
-
-      nftables.enable = true;
     };
 
     users = {
@@ -193,10 +179,6 @@
     };
 
     services = {
-      gpsd = {
-        enable = true;
-      };
-      firewalld.enable = true;
       # dnsmasq.enable = true;
       kmscon.enable = true;
       ratbagd.enable = true;
@@ -273,7 +255,6 @@
 
       avahi = {
         enable = true;
-        reflector = lib.mkForce false;
       };
     };
 
@@ -365,24 +346,6 @@
         # "nvidiadb"
         # "watchdog"
         # "usbmon"
-      ];
-      # extraModprobeConfig = "options thinkpad_acpi fan_control=1";
-      initrd.kernelModules = [
-        "nvidia"
-        "i915"
-        "nvidia_modeset"
-        # "nvidia_uvm"
-        "nvidia_drm"
-        # "nvidiafb"
-        # "spi"
-        # "sgx"
-        # "i915"
-        #  "watchdog"
-        # "isgx"
-        # "vfio_pci"
-        # "vfio"
-        # "vfio_iommu_type1"
-        # "kvm-intel"
       ];
     };
   };

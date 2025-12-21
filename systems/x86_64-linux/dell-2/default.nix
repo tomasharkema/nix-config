@@ -252,7 +252,6 @@
 
       avahi = {
         enable = true;
-        reflector = lib.mkForce false;
       };
     };
 

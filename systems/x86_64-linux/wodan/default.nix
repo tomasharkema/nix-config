@@ -54,32 +54,35 @@
 
       hostName = "wodan";
 
-      firewall = {enable = false;};
-
       useDHCP = false;
 
       bridges.br0 = {
         interfaces = [
-          # "eno1"
-          "enp2s0"
+          "eth0"
         ];
       };
+
       search = ["lan"];
+
       defaultGateway = {
         address = "192.168.1.1";
         interface = "br0";
       };
 
       interfaces = {
-        "eno1" = {
-          mtu = 9000;
-          wakeOnLan.enable = true;
-          useDHCP = false; # true;
-        };
-        enp2s0 = {
+        "eth0" = {
+          # 10gb
           mtu = 9000;
           wakeOnLan.enable = true;
           useDHCP = false;
+          macAddress = "80:61:5f:0a:49:ad";
+        };
+        "eth1" = {
+          # MB NIC
+          mtu = 9000;
+          wakeOnLan.enable = true;
+          useDHCP = false;
+          macAddress = "e0:d5:5e:dd:43:a8";
         };
         "br0" = {
           useDHCP = false;
@@ -92,14 +95,6 @@
           ];
         };
       };
-
-      # dhcpcd.extraConfig = ''
-      #   interface enp2s0
-      #   metric 100
-
-      #   interface eno1
-      #   metric 1000
-      # '';
     };
 
     gui = {
@@ -178,7 +173,7 @@
     services = {
       hypervisor = {
         enable = true;
-        bridgeInterfaces = ["enp2s0"];
+        bridgeInterfaces = ["eth0"];
       };
       xserver = {
         enableTearFree = true;
@@ -260,7 +255,6 @@
       tmp = {useTmpfs = true;};
       binfmt.emulatedSystems = ["aarch64-linux"];
 
-      swraid.enable = true;
       supportedFilesystems = [
         "xfs"
         "ntfs"

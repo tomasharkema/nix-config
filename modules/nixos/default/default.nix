@@ -364,7 +364,7 @@ in {
         nssmdns4 = true;
         publish.workstation = true;
         openFirewall = true;
-        # reflector = true;
+        reflector = false;
 
         package = pkgs.avahi.override (old: {
           gtk3Support = true;
