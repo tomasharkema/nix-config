@@ -83,6 +83,7 @@
         piper
         libratbag
         esp-idf-full
+        firewalld-gui
       ];
     };
 
@@ -163,14 +164,18 @@
 
     networking = {
       hostName = "voltron"; # Define your hostname.
+
       networkmanager.enable = true;
+
       # wireless.enable = true;
+
       firewall = {
         enable = true; # wlp4s0; # false;
         allowPing = true;
         allowedUDPPorts = [53 67];
-        trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
       };
+
+      nftables.enable = true;
     };
 
     users = {
@@ -188,6 +193,10 @@
     };
 
     services = {
+      gpsd = {
+        enable = true;
+      };
+      firewalld.enable = true;
       # dnsmasq.enable = true;
       kmscon.enable = true;
       ratbagd.enable = true;

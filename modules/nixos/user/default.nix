@@ -72,8 +72,9 @@
             authorizedKeys.keyFiles = [pkgs.custom.authorized-keys];
             authorizedPrincipals = ["admin@HARKEMA.IO" "tomas@HARKEMA.IO"];
           };
+          extraGroups = ["plugdev" "wheel"];
         };
-
+        # wheel = {extraGroups = ["plugdev" "wheel"];};
         "${config.user.name}" = {
           shell = pkgs.zsh;
           isNormalUser = true;
