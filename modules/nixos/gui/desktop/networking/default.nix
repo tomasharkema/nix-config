@@ -16,6 +16,26 @@ in {
       firewalld.enable = true;
     };
 
+    systemd.services = {
+      NetworkManager = {
+        serviceConfig = {
+          CapabilityBoundingSet = [
+            "CAP_NET_ADMIN"
+            "CAP_DAC_OVERRIDE"
+            "CAP_NET_RAW"
+            "CAP_NET_BIND_SERVICE"
+            "CAP_SETGID"
+            "CAP_SETUID"
+            "CAP_SYS_MODULE"
+            "CAP_AUDIT_WRITE"
+            "CAP_KILL"
+            "CAP_SYS_CHROOT"
+            "CAP_CHOWN"
+          ];
+        };
+      };
+    };
+
     networking = {
       networkmanager.enable = true;
 
