@@ -231,7 +231,7 @@
       },
       {
         "index": 80,
-        "attached_to": 221,
+        "attached_to": 222,
         "class_list": [
           "pci",
           "bridge"
@@ -436,7 +436,7 @@
         "label": "SLOT 1"
       },
       {
-        "index": 146,
+        "index": 147,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -497,7 +497,7 @@
         "module_alias": "pci:v00008086d00002020sv00008086sd00000000bc06sc00i00"
       },
       {
-        "index": 183,
+        "index": 184,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -572,7 +572,7 @@
         "label": "SLOT 6"
       },
       {
-        "index": 221,
+        "index": 222,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -817,7 +817,7 @@
         "fpu_exception": false,
         "cpuid_level": 22,
         "write_protect": false,
-        "tlb_size": 32757,
+        "tlb_size": 32767,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -996,7 +996,7 @@
         "fpu_exception": false,
         "cpuid_level": 22,
         "write_protect": false,
-        "tlb_size": 32757,
+        "tlb_size": 32767,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -1007,7 +1007,7 @@
     ],
     "disk": [
       {
-        "index": 255,
+        "index": 257,
         "attached_to": 46,
         "class_list": [
           "disk",
@@ -1088,8 +1088,83 @@
         ]
       },
       {
-        "index": 256,
-        "attached_to": 233,
+        "index": 258,
+        "attached_to": 154,
+        "class_list": [
+          "disk",
+          "ide",
+          "block_device"
+        ],
+        "bus_type": {
+          "hex": "0085",
+          "name": "IDE",
+          "value": 133
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0106",
+          "name": "Mass Storage Device",
+          "value": 262
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Disk",
+          "value": 0
+        },
+        "device": {
+          "hex": "0000",
+          "name": "ST1000LM035-1RK1",
+          "value": 0
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "SBM3",
+          "value": 0
+        },
+        "serial": "W931YAQR",
+        "model": "ST1000LM035-1RK1",
+        "sysfs_id": "/class/block/sdb",
+        "sysfs_bus_id": "0:0:0:0",
+        "sysfs_device_link": "/devices/pci0000:17/0000:17:00.0/0000:18:00.0/host0/target0:0:0/0:0:0:0",
+        "unix_device_names": [
+          "/dev/disk/by-id/ata-ST1000LM035-1RK172_W931YAQR",
+          "/dev/disk/by-id/wwn-0x5000c5009c29cc9a",
+          "/dev/disk/by-path/pci-0000:18:00.0-scsi-0:0:0:0",
+          "/dev/sdb"
+        ],
+        "resources": [
+          {
+            "type": "disk_geo",
+            "cylinders": 121601,
+            "heads": 255,
+            "sectors": 63,
+            "size": "0x0",
+            "geo_type": "logical"
+          },
+          {
+            "type": "size",
+            "unit": "sectors",
+            "value_1": 1953525168,
+            "value_2": 512
+          }
+        ],
+        "driver": "megaraid_sas",
+        "driver_module": "megaraid_sas",
+        "drivers": [
+          "megaraid_sas",
+          "sd"
+        ],
+        "driver_modules": [
+          "megaraid_sas",
+          "sd_mod"
+        ]
+      },
+      {
+        "index": 259,
+        "attached_to": 235,
         "class_list": [
           "disk",
           "usb",
@@ -1102,7 +1177,7 @@
           "value": 132
         },
         "slot": {
-          "bus": 14,
+          "bus": 15,
           "number": 0
         },
         "base_class": {
@@ -1132,14 +1207,14 @@
         },
         "serial": "0B0013703119",
         "model": "Kingston DataTraveler 3.0",
-        "sysfs_id": "/class/block/sdb",
-        "sysfs_bus_id": "14:0:0:0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:14.0/usb2/2-2/2-2:1.0/host14/target14:0:0/14:0:0:0",
+        "sysfs_id": "/class/block/sdc",
+        "sysfs_bus_id": "15:0:0:0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:14.0/usb2/2-2/2-2:1.0/host15/target15:0:0/15:0:0:0",
         "unix_device_names": [
           "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_0017318221C6B03019AFE5EA-0:0",
           "/dev/disk/by-path/pci-0000:00:14.0-usb-0:2:1.0-scsi-0:0:0:0",
           "/dev/disk/by-path/pci-0000:00:14.0-usbv3-0:2:1.0-scsi-0:0:0:0",
-          "/dev/sdb"
+          "/dev/sdc"
         ],
         "unix_device_name2": "/dev/sg2",
         "resources": [
@@ -1171,8 +1246,8 @@
         "module_alias": "usb:v0951p1666d0110dc00dsc00dp00ic08isc06ip50in00"
       },
       {
-        "index": 257,
-        "attached_to": 153,
+        "index": 260,
+        "attached_to": 154,
         "class_list": [
           "disk",
           "ide",
@@ -1184,82 +1259,7 @@
           "value": 133
         },
         "slot": {
-          "bus": 15,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0106",
-          "name": "Mass Storage Device",
-          "value": 262
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Disk",
-          "value": 0
-        },
-        "device": {
-          "hex": "0000",
-          "name": "ST1000LM035-1RK1",
-          "value": 0
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "SBM3",
-          "value": 0
-        },
-        "serial": "W931YAQR",
-        "model": "ST1000LM035-1RK1",
-        "sysfs_id": "/class/block/sdc",
-        "sysfs_bus_id": "15:0:0:0",
-        "sysfs_device_link": "/devices/pci0000:17/0000:17:00.0/0000:18:00.0/host15/target15:0:0/15:0:0:0",
-        "unix_device_names": [
-          "/dev/disk/by-id/ata-ST1000LM035-1RK172_W931YAQR",
-          "/dev/disk/by-id/wwn-0x5000c5009c29cc9a",
-          "/dev/disk/by-path/pci-0000:18:00.0-scsi-0:0:0:0",
-          "/dev/sdc"
-        ],
-        "resources": [
-          {
-            "type": "disk_geo",
-            "cylinders": 121601,
-            "heads": 255,
-            "sectors": 63,
-            "size": "0x0",
-            "geo_type": "logical"
-          },
-          {
-            "type": "size",
-            "unit": "sectors",
-            "value_1": 1953525168,
-            "value_2": 512
-          }
-        ],
-        "driver": "megaraid_sas",
-        "driver_module": "megaraid_sas",
-        "drivers": [
-          "megaraid_sas",
-          "sd"
-        ],
-        "driver_modules": [
-          "megaraid_sas",
-          "sd_mod"
-        ]
-      },
-      {
-        "index": 258,
-        "attached_to": 153,
-        "class_list": [
-          "disk",
-          "ide",
-          "block_device"
-        ],
-        "bus_type": {
-          "hex": "0085",
-          "name": "IDE",
-          "value": 133
-        },
-        "slot": {
-          "bus": 15,
+          "bus": 0,
           "number": 1
         },
         "base_class": {
@@ -1290,8 +1290,8 @@
         "serial": "82IRT5M1T",
         "model": "TOSHIBA MQ01ABD0",
         "sysfs_id": "/class/block/sda",
-        "sysfs_bus_id": "15:0:1:0",
-        "sysfs_device_link": "/devices/pci0000:17/0000:17:00.0/0000:18:00.0/host15/target15:0:1/15:0:1:0",
+        "sysfs_bus_id": "0:0:1:0",
+        "sysfs_device_link": "/devices/pci0000:17/0000:17:00.0/0000:18:00.0/host0/target0:0:1/0:0:1:0",
         "unix_device_names": [
           "/dev/disk/by-id/ata-TOSHIBA_MQ01ABD050_82IRT5M1T",
           "/dev/disk/by-id/wwn-0x5000039431d045b7",
@@ -1438,16 +1438,16 @@
           "value": 4318
         },
         "sub_vendor": {
-          "hex": "1462",
-          "value": 5218
+          "hex": "1458",
+          "value": 5208
         },
         "device": {
-          "hex": "1c82",
-          "value": 7298
+          "hex": "1e87",
+          "value": 7815
         },
         "sub_device": {
-          "hex": "8c96",
-          "value": 35990
+          "hex": "37a7",
+          "value": 14247
         },
         "revision": {
           "hex": "00a1",
@@ -1481,13 +1481,13 @@
         "driver_modules": [
           "nvidia"
         ],
-        "module_alias": "pci:v000010DEd00001C82sv00001462sd00008C96bc03sc00i00"
+        "module_alias": "pci:v000010DEd00001E87sv00001458sd000037A7bc03sc00i00"
       }
     ],
     "hub": [
       {
-        "index": 260,
-        "attached_to": 265,
+        "index": 262,
+        "attached_to": 269,
         "class_list": [
           "usb",
           "hub"
@@ -1565,8 +1565,95 @@
         "module_alias": "usb:v1604p10C0d0000dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 261,
-        "attached_to": 260,
+        "index": 263,
+        "attached_to": 234,
+        "class_list": [
+          "usb",
+          "hub"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "010a",
+          "name": "Hub",
+          "value": 266
+        },
+        "vendor": {
+          "hex": "1d6b",
+          "name": "Linux 6.12.62 xhci-hcd",
+          "value": 7531
+        },
+        "device": {
+          "hex": "0002",
+          "name": "xHCI Host Controller",
+          "value": 2
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "6.12",
+          "value": 0
+        },
+        "serial": "0000:3b:00.2",
+        "model": "Linux 6.12.62 xhci-hcd xHCI Host Controller",
+        "sysfs_id": "/devices/pci0000:3a/0000:3a:00.0/0000:3b:00.2/usb3/3-0:1.0",
+        "sysfs_bus_id": "3-0:1.0",
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 480000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "0009",
+            "name": "hub",
+            "value": 9
+          },
+          "device_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_protocol": 1,
+          "interface_class": {
+            "hex": "0009",
+            "name": "hub",
+            "value": 9
+          },
+          "interface_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "interface_protocol": 0,
+          "interface_number": 0,
+          "interface_alternate_setting": 0
+        },
+        "hotplug": "usb",
+        "driver": "hub",
+        "driver_module": "usbcore",
+        "drivers": [
+          "hub"
+        ],
+        "driver_modules": [
+          "usbcore"
+        ],
+        "module_alias": "usb:v1D6Bp0002d0612dc09dsc00dp01ic09isc00ip00in00"
+      },
+      {
+        "index": 264,
+        "attached_to": 262,
         "class_list": [
           "usb",
           "hub"
@@ -1644,8 +1731,8 @@
         "module_alias": "usb:v1604p10C0d0000dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 264,
-        "attached_to": 260,
+        "index": 267,
+        "attached_to": 262,
         "class_list": [
           "usb",
           "hub"
@@ -1723,8 +1810,85 @@
         "module_alias": "usb:v1604p10C0d0000dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 265,
-        "attached_to": 233,
+        "index": 268,
+        "attached_to": 234,
+        "class_list": [
+          "usb",
+          "hub"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "010a",
+          "name": "Hub",
+          "value": 266
+        },
+        "vendor": {
+          "hex": "1d6b",
+          "name": "Linux 6.12.62 xhci-hcd",
+          "value": 7531
+        },
+        "device": {
+          "hex": "0003",
+          "name": "xHCI Host Controller",
+          "value": 3
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "6.12",
+          "value": 0
+        },
+        "serial": "0000:3b:00.2",
+        "model": "Linux 6.12.62 xhci-hcd xHCI Host Controller",
+        "sysfs_id": "/devices/pci0000:3a/0000:3a:00.0/0000:3b:00.2/usb4/4-0:1.0",
+        "sysfs_bus_id": "4-0:1.0",
+        "detail": {
+          "device_class": {
+            "hex": "0009",
+            "name": "hub",
+            "value": 9
+          },
+          "device_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_protocol": 3,
+          "interface_class": {
+            "hex": "0009",
+            "name": "hub",
+            "value": 9
+          },
+          "interface_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "interface_protocol": 0,
+          "interface_number": 0,
+          "interface_alternate_setting": 0
+        },
+        "hotplug": "usb",
+        "driver": "hub",
+        "driver_module": "usbcore",
+        "drivers": [
+          "hub"
+        ],
+        "driver_modules": [
+          "usbcore"
+        ],
+        "module_alias": "usb:v1D6Bp0003d0612dc09dsc00dp03ic09isc00ip00in00"
+      },
+      {
+        "index": 269,
+        "attached_to": 235,
         "class_list": [
           "usb",
           "hub"
@@ -1810,8 +1974,8 @@
         "module_alias": "usb:v1D6Bp0002d0612dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 266,
-        "attached_to": 233,
+        "index": 270,
+        "attached_to": 235,
         "class_list": [
           "usb",
           "hub"
@@ -2086,7 +2250,7 @@
         "label": "NIC1"
       },
       {
-        "index": 208,
+        "index": 209,
         "attached_to": 52,
         "class_list": [
           "network_controller",
@@ -2168,7 +2332,7 @@
         "label": "NIC4"
       },
       {
-        "index": 211,
+        "index": 212,
         "attached_to": 56,
         "class_list": [
           "network_controller",
@@ -2257,8 +2421,8 @@
         "label": "NIC2"
       },
       {
-        "index": 259,
-        "attached_to": 260,
+        "index": 261,
+        "attached_to": 262,
         "class_list": [
           "network_controller",
           "usb"
@@ -2302,7 +2466,7 @@
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-14/1-14.3/1-14.3:1.0",
         "sysfs_bus_id": "1-14.3:1.0",
         "unix_device_names": [
-          "idrac"
+          "enp0s20f0u14u3"
         ],
         "resources": [
           {
@@ -2377,88 +2541,6 @@
     ],
     "network_interface": [
       {
-        "index": 267,
-        "attached_to": 259,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/idrac",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:14.0/usb1/1-14/1-14.3/1-14.3:1.0",
-        "unix_device_names": [
-          "idrac"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 52
-          },
-          {
-            "type": "phwaddr",
-            "address": 52
-          }
-        ],
-        "driver": "cdc_ether",
-        "driver_module": "cdc_ether",
-        "drivers": [
-          "cdc_ether"
-        ],
-        "driver_modules": [
-          "cdc_ether"
-        ]
-      },
-      {
-        "index": 268,
-        "attached_to": 211,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/eno2",
-        "sysfs_device_link": "/devices/pci0000:17/0000:17:02.0/0000:19:00.1",
-        "unix_device_names": [
-          "eno2"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 101
-          },
-          {
-            "type": "phwaddr",
-            "address": 101
-          }
-        ],
-        "driver": "ixgbe",
-        "driver_module": "ixgbe",
-        "drivers": [
-          "ixgbe"
-        ],
-        "driver_modules": [
-          "ixgbe"
-        ]
-      },
-      {
         "index": 274,
         "attached_to": 0,
         "class_list": [
@@ -2475,9 +2557,9 @@
           "value": 1
         },
         "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/vlan66",
+        "sysfs_id": "/class/net/vlan69",
         "unix_device_names": [
-          "vlan66"
+          "vlan69"
         ],
         "resources": [
           {
@@ -2491,29 +2573,7 @@
         ]
       },
       {
-        "index": 278,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_names": [
-          "lo"
-        ]
-      },
-      {
-        "index": 279,
+        "index": 280,
         "attached_to": 116,
         "class_list": [
           "network_interface"
@@ -2554,7 +2614,7 @@
         ]
       },
       {
-        "index": 282,
+        "index": 281,
         "attached_to": 119,
         "class_list": [
           "network_interface"
@@ -2595,7 +2655,70 @@
         ]
       },
       {
-        "index": 284,
+        "index": 289,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_names": [
+          "lo"
+        ]
+      },
+      {
+        "index": 290,
+        "attached_to": 261,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/enp0s20f0u14u3",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:14.0/usb1/1-14/1-14.3/1-14.3:1.0",
+        "unix_device_names": [
+          "enp0s20f0u14u3"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 52
+          },
+          {
+            "type": "phwaddr",
+            "address": 52
+          }
+        ],
+        "driver": "cdc_ether",
+        "driver_module": "cdc_ether",
+        "drivers": [
+          "cdc_ether"
+        ],
+        "driver_modules": [
+          "cdc_ether"
+        ]
+      },
+      {
+        "index": 293,
         "attached_to": 119,
         "class_list": [
           "network_interface"
@@ -2611,9 +2734,9 @@
           "value": 1
         },
         "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/vlan69",
+        "sysfs_id": "/class/net/vlan66",
         "unix_device_names": [
-          "vlan69"
+          "vlan66"
         ],
         "resources": [
           {
@@ -2627,8 +2750,8 @@
         ]
       },
       {
-        "index": 297,
-        "attached_to": 208,
+        "index": 295,
+        "attached_to": 209,
         "class_list": [
           "network_interface"
         ],
@@ -2665,6 +2788,47 @@
         ],
         "driver_modules": [
           "igb"
+        ]
+      },
+      {
+        "index": 299,
+        "attached_to": 212,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/eno2",
+        "sysfs_device_link": "/devices/pci0000:17/0000:17:02.0/0000:19:00.1",
+        "unix_device_names": [
+          "eno2"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 101
+          },
+          {
+            "type": "phwaddr",
+            "address": 101
+          }
+        ],
+        "driver": "ixgbe",
+        "driver_module": "ixgbe",
+        "drivers": [
+          "ixgbe"
+        ],
+        "driver_modules": [
+          "ixgbe"
         ]
       }
     ],
@@ -6865,6 +7029,73 @@
       },
       {
         "index": 125,
+        "attached_to": 84,
+        "class_list": [
+          "pci",
+          "unknown"
+        ],
+        "bus_type": {
+          "hex": "0004",
+          "name": "PCI",
+          "value": 4
+        },
+        "slot": {
+          "bus": 59,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "000c",
+          "name": "Serial bus controller",
+          "value": 12
+        },
+        "sub_class": {
+          "hex": "0080",
+          "value": 128
+        },
+        "vendor": {
+          "hex": "10de",
+          "name": "nVidia Corporation",
+          "value": 4318
+        },
+        "sub_vendor": {
+          "hex": "1458",
+          "value": 5208
+        },
+        "device": {
+          "hex": "1ad9",
+          "value": 6873
+        },
+        "sub_device": {
+          "hex": "37a7",
+          "value": 14247
+        },
+        "revision": {
+          "hex": "00a1",
+          "value": 161
+        },
+        "model": "nVidia Serial bus controller",
+        "sysfs_id": "/devices/pci0000:3a/0000:3a:00.0/0000:3b:00.3",
+        "sysfs_bus_id": "0000:3b:00.3",
+        "sysfs_iommu_group_id": 1,
+        "detail": {
+          "function": 3,
+          "command": 1030,
+          "header_type": 0,
+          "secondary_bus": 0,
+          "prog_if": 0
+        },
+        "driver": "nvidia-gpu",
+        "driver_module": "i2c_nvidia_gpu",
+        "drivers": [
+          "nvidia-gpu"
+        ],
+        "driver_modules": [
+          "i2c_nvidia_gpu"
+        ],
+        "module_alias": "pci:v000010DEd00001AD9sv00001458sd000037A7bc0Csc80i00"
+      },
+      {
+        "index": 126,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -6925,7 +7156,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 126,
+        "index": 127,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -6992,7 +7223,7 @@
         "module_alias": "pci:v00008086d0000A1A4sv00001028sd00000715bc0Csc80i00"
       },
       {
-        "index": 127,
+        "index": 128,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7061,7 +7292,7 @@
         "module_alias": "pci:v00008086d00002046sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 128,
+        "index": 129,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7130,7 +7361,7 @@
         "module_alias": "pci:v00008086d00002046sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 129,
+        "index": 130,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7199,7 +7430,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 130,
+        "index": 131,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7260,7 +7491,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 131,
+        "index": 132,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7321,7 +7552,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 132,
+        "index": 133,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7382,7 +7613,7 @@
         "module_alias": "pci:v00008086d00002034sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 133,
+        "index": 134,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7443,7 +7674,7 @@
         "module_alias": "pci:v00008086d00002018sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 134,
+        "index": 135,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7504,7 +7735,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 135,
+        "index": 136,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7565,7 +7796,7 @@
         "module_alias": "pci:v00008086d00002059sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 136,
+        "index": 137,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7626,7 +7857,7 @@
         "module_alias": "pci:v00008086d00002084sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 137,
+        "index": 138,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7687,7 +7918,7 @@
         "module_alias": "pci:v00008086d00002043sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 138,
+        "index": 139,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7748,7 +7979,7 @@
         "module_alias": "pci:v00008086d00002043sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 139,
+        "index": 140,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7817,7 +8048,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 140,
+        "index": 141,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7886,7 +8117,7 @@
         "module_alias": "pci:v00008086d00002066sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 141,
+        "index": 142,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -7955,7 +8186,7 @@
         "module_alias": "pci:v00008086d00002066sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 142,
+        "index": 143,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8021,7 +8252,7 @@
         "module_alias": "pci:v00008086d00002036sv00008086sd00002036bc08sc00i20"
       },
       {
-        "index": 143,
+        "index": 144,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8087,7 +8318,7 @@
         "module_alias": "pci:v00008086d00002036sv00008086sd00002036bc08sc00i20"
       },
       {
-        "index": 144,
+        "index": 145,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8148,7 +8379,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 147,
+        "index": 148,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8209,7 +8440,7 @@
         "module_alias": "pci:v00008086d00002044sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 148,
+        "index": 149,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8270,7 +8501,7 @@
         "module_alias": "pci:v00008086d00002044sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 149,
+        "index": 150,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8339,7 +8570,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 150,
+        "index": 151,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8400,7 +8631,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 151,
+        "index": 152,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8461,7 +8692,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 152,
+        "index": 153,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8522,7 +8753,7 @@
         "module_alias": "pci:v00008086d00002015sv00008086sd00000000bc11sc01i00"
       },
       {
-        "index": 154,
+        "index": 155,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8583,7 +8814,7 @@
         "module_alias": "pci:v00008086d00002018sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 155,
+        "index": 156,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8644,7 +8875,7 @@
         "module_alias": "pci:v00008086d00002082sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 156,
+        "index": 157,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8705,7 +8936,7 @@
         "module_alias": "pci:v00008086d00002041sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 157,
+        "index": 158,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8766,7 +8997,7 @@
         "module_alias": "pci:v00008086d00002041sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 158,
+        "index": 159,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8827,7 +9058,7 @@
         "module_alias": "pci:v00008086d00002057sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 159,
+        "index": 160,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8896,7 +9127,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 160,
+        "index": 161,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -8965,7 +9196,7 @@
         "module_alias": "pci:v00008086d00002058sv00008086sd00000000bc11sc01i00"
       },
       {
-        "index": 161,
+        "index": 162,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9031,7 +9262,7 @@
         "module_alias": "pci:v00008086d00002036sv00008086sd00002036bc08sc00i20"
       },
       {
-        "index": 162,
+        "index": 163,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9083,7 +9314,7 @@
         "module_alias": "pci:v00008086d00002035sv00000000sd00000000bc08sc80i00"
       },
       {
-        "index": 163,
+        "index": 164,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9135,7 +9366,7 @@
         "module_alias": "pci:v00008086d00002035sv00000000sd00000000bc08sc80i00"
       },
       {
-        "index": 164,
+        "index": 165,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9196,7 +9427,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 165,
+        "index": 166,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9257,7 +9488,7 @@
         "module_alias": "pci:v00008086d00002086sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 166,
+        "index": 167,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9326,7 +9557,7 @@
         "module_alias": "pci:v00008086d00002042sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 167,
+        "index": 168,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9395,7 +9626,7 @@
         "module_alias": "pci:v00008086d00002042sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 168,
+        "index": 169,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9456,7 +9687,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 169,
+        "index": 170,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9517,7 +9748,7 @@
         "module_alias": "pci:v00008086d00002080sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 170,
+        "index": 171,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9578,7 +9809,7 @@
         "module_alias": "pci:v00008086d00002055sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 171,
+        "index": 172,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9647,7 +9878,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 172,
+        "index": 173,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9716,7 +9947,7 @@
         "module_alias": "pci:v00008086d0000204Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 173,
+        "index": 174,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9777,7 +10008,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 174,
+        "index": 175,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9829,7 +10060,7 @@
         "module_alias": "pci:v00008086d00002035sv00000000sd00000000bc08sc80i00"
       },
       {
-        "index": 175,
+        "index": 176,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9890,7 +10121,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 176,
+        "index": 177,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -9959,7 +10190,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 177,
+        "index": 178,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10020,7 +10251,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 178,
+        "index": 179,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10081,7 +10312,7 @@
         "module_alias": "pci:v00008086d00002034sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 179,
+        "index": 180,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10142,7 +10373,7 @@
         "module_alias": "pci:v00008086d00002034sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 180,
+        "index": 181,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10203,7 +10434,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 181,
+        "index": 182,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10272,7 +10503,7 @@
         "module_alias": "pci:v00008086d00002058sv00008086sd00000000bc11sc01i00"
       },
       {
-        "index": 182,
+        "index": 183,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10333,7 +10564,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 184,
+        "index": 185,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10402,7 +10633,7 @@
         "module_alias": "pci:v00008086d0000204Asv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 185,
+        "index": 186,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10471,7 +10702,7 @@
         "module_alias": "pci:v00008086d0000204Asv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 186,
+        "index": 187,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10532,7 +10763,7 @@
         "module_alias": "pci:v00008086d00002084sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 187,
+        "index": 188,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10593,7 +10824,7 @@
         "module_alias": "pci:v00008086d00002040sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 188,
+        "index": 189,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10654,7 +10885,7 @@
         "module_alias": "pci:v00008086d00002040sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 189,
+        "index": 190,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10715,7 +10946,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 190,
+        "index": 191,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10776,7 +11007,7 @@
         "module_alias": "pci:v00008086d00002059sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 191,
+        "index": 192,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10845,7 +11076,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 192,
+        "index": 193,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10906,7 +11137,7 @@
         "module_alias": "pci:v00008086d00002015sv00008086sd00000000bc11sc01i00"
       },
       {
-        "index": 193,
+        "index": 194,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -10967,7 +11198,7 @@
         "module_alias": "pci:v00008086d0000204Bsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 194,
+        "index": 195,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11028,7 +11259,7 @@
         "module_alias": "pci:v00008086d0000204Csv00008086sd00000000bc11sc01i00"
       },
       {
-        "index": 195,
+        "index": 196,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11089,7 +11320,7 @@
         "module_alias": "pci:v00008086d0000204Bsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 196,
+        "index": 197,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11150,7 +11381,7 @@
         "module_alias": "pci:v00008086d00002034sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 197,
+        "index": 198,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11219,7 +11450,7 @@
         "module_alias": "pci:v00008086d00002066sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 198,
+        "index": 199,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11288,7 +11519,7 @@
         "module_alias": "pci:v00008086d00002066sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 199,
+        "index": 200,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11357,7 +11588,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 200,
+        "index": 201,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11418,7 +11649,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 201,
+        "index": 202,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11479,7 +11710,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 202,
+        "index": 203,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11540,7 +11771,7 @@
         "module_alias": "pci:v00008086d00002048sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 203,
+        "index": 204,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11609,7 +11840,7 @@
         "module_alias": "pci:v00008086d0000204Dsv00008086sd00000000bc11sc01i00"
       },
       {
-        "index": 204,
+        "index": 205,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11670,7 +11901,7 @@
         "module_alias": "pci:v00008086d00002048sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 205,
+        "index": 206,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11731,7 +11962,7 @@
         "module_alias": "pci:v00008086d00002082sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 206,
+        "index": 207,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11797,7 +12028,7 @@
         "module_alias": "pci:v00008086d00002026sv00008086sd00002026bc08sc00i20"
       },
       {
-        "index": 207,
+        "index": 208,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11857,7 +12088,7 @@
         "module_alias": "pci:v00008086d0000A1BBsv00001028sd00000715bc07sc80i00"
       },
       {
-        "index": 209,
+        "index": 210,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11926,7 +12157,7 @@
         "module_alias": "pci:v00008086d00002046sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 210,
+        "index": 211,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -11995,7 +12226,7 @@
         "module_alias": "pci:v00008086d00002046sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 212,
+        "index": 213,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12056,7 +12287,7 @@
         "module_alias": "pci:v00008086d00002018sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 213,
+        "index": 214,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12117,7 +12348,7 @@
         "module_alias": "pci:v00008086d00002056sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 214,
+        "index": 215,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12178,7 +12409,7 @@
         "module_alias": "pci:v00008086d00002049sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 215,
+        "index": 216,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12239,7 +12470,7 @@
         "module_alias": "pci:v00008086d00002049sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 216,
+        "index": 217,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12307,7 +12538,7 @@
         "module_alias": "pci:v00008086d0000A1B1sv00001028sd00000715bc11sc80i00"
       },
       {
-        "index": 217,
+        "index": 218,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12362,7 +12593,7 @@
         "module_alias": "pci:v00008086d0000A1ECsv00001028sd00000715bcFFsc00i00"
       },
       {
-        "index": 218,
+        "index": 219,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12423,7 +12654,7 @@
         "module_alias": "pci:v00008086d00002047sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 219,
+        "index": 220,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12484,7 +12715,7 @@
         "module_alias": "pci:v00008086d00002047sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 220,
+        "index": 221,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12553,7 +12784,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 222,
+        "index": 223,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12614,7 +12845,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 223,
+        "index": 224,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12675,7 +12906,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 224,
+        "index": 225,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12736,7 +12967,7 @@
         "module_alias": "pci:v00008086d00002080sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 225,
+        "index": 226,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12788,7 +13019,7 @@
         "module_alias": "pci:v00008086d00002025sv00000000sd00000000bc08sc80i00"
       },
       {
-        "index": 226,
+        "index": 227,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12849,7 +13080,7 @@
         "module_alias": "pci:v00008086d00002085sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 227,
+        "index": 228,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12910,7 +13141,7 @@
         "module_alias": "pci:v00008086d00002044sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 228,
+        "index": 229,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -12971,7 +13202,7 @@
         "module_alias": "pci:v00008086d00002044sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 229,
+        "index": 230,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13032,7 +13263,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 230,
+        "index": 231,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13093,7 +13324,7 @@
         "module_alias": "pci:v00008086d00002018sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 231,
+        "index": 232,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13154,7 +13385,7 @@
         "module_alias": "pci:v00008086d00002054sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 232,
+        "index": 233,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13215,7 +13446,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 234,
+        "index": 236,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13276,7 +13507,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 235,
+        "index": 237,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13353,7 +13584,7 @@
         "module_alias": "pci:v00008086d0000A1A3sv00001028sd00000715bc0Csc05i00"
       },
       {
-        "index": 236,
+        "index": 238,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13414,7 +13645,7 @@
         "module_alias": "pci:v00008086d00002045sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 237,
+        "index": 239,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13475,7 +13706,7 @@
         "module_alias": "pci:v00008086d00002045sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 238,
+        "index": 240,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13544,7 +13775,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 239,
+        "index": 241,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13605,7 +13836,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 240,
+        "index": 242,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13666,7 +13897,7 @@
         "module_alias": "pci:v00008086d0000208Dsv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 241,
+        "index": 243,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13727,7 +13958,7 @@
         "module_alias": "pci:v00008086d0000208Esv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 242,
+        "index": 244,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13793,7 +14024,7 @@
         "module_alias": "pci:v00008086d00002036sv00008086sd00002036bc08sc00i20"
       },
       {
-        "index": 243,
+        "index": 245,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13854,7 +14085,7 @@
         "module_alias": "pci:v00008086d00002016sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 244,
+        "index": 246,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13923,7 +14154,7 @@
         "module_alias": "pci:v00008086d00002058sv00008086sd00000000bc11sc01i00"
       },
       {
-        "index": 245,
+        "index": 247,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -13984,7 +14215,7 @@
         "module_alias": "pci:v00008086d00002024sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 246,
+        "index": 248,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14050,7 +14281,7 @@
         "module_alias": "pci:v00008086d00002036sv00008086sd00002036bc08sc00i20"
       },
       {
-        "index": 247,
+        "index": 249,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14111,7 +14342,7 @@
         "module_alias": "pci:v00008086d00002083sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 248,
+        "index": 250,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14180,7 +14411,7 @@
         "module_alias": "pci:v00008086d00002042sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 249,
+        "index": 251,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14249,7 +14480,7 @@
         "module_alias": "pci:v00008086d00002042sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 250,
+        "index": 252,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14318,7 +14549,7 @@
         "module_alias": "pci:v00008086d00002021sv00008086sd00000000bc08sc80i00"
       },
       {
-        "index": 251,
+        "index": 253,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14384,7 +14615,7 @@
         "module_alias": "pci:v00008086d00002026sv00008086sd00002026bc08sc00i20"
       },
       {
-        "index": 252,
+        "index": 254,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -14447,7 +14678,7 @@
     ],
     "sound": [
       {
-        "index": 145,
+        "index": 146,
         "attached_to": 84,
         "class_list": [
           "sound",
@@ -14477,16 +14708,16 @@
           "value": 4318
         },
         "sub_vendor": {
-          "hex": "1462",
-          "value": 5218
+          "hex": "1458",
+          "value": 5208
         },
         "device": {
-          "hex": "0fb9",
-          "value": 4025
+          "hex": "10f8",
+          "value": 4344
         },
         "sub_device": {
-          "hex": "8c96",
-          "value": 35990
+          "hex": "37a7",
+          "value": 14247
         },
         "revision": {
           "hex": "00a1",
@@ -14511,7 +14742,7 @@
         "driver_modules": [
           "snd_hda_intel"
         ],
-        "module_alias": "pci:v000010DEd00000FB9sv00001462sd00008C96bc04sc03i00"
+        "module_alias": "pci:v000010DEd000010F8sv00001458sd000037A7bc04sc03i00"
       }
     ],
     "storage_controller": [
@@ -14770,8 +15001,8 @@
         "module_alias": "pci:v00008086d0000A1D2sv00001028sd00000715bc01sc06i01"
       },
       {
-        "index": 153,
-        "attached_to": 183,
+        "index": 154,
+        "attached_to": 184,
         "class_list": [
           "storage_controller",
           "pci"
@@ -14851,7 +15082,7 @@
     },
     "unknown": [
       {
-        "index": 253,
+        "index": 255,
         "attached_to": 0,
         "class_list": [
           "unknown"
@@ -14891,7 +15122,7 @@
         ]
       },
       {
-        "index": 254,
+        "index": 256,
         "attached_to": 0,
         "class_list": [
           "unknown"
@@ -14933,8 +15164,8 @@
     ],
     "usb": [
       {
-        "index": 263,
-        "attached_to": 260,
+        "index": 266,
+        "attached_to": 262,
         "class_list": [
           "usb",
           "unknown"
@@ -15042,7 +15273,79 @@
     ],
     "usb_controller": [
       {
-        "index": 233,
+        "index": 234,
+        "attached_to": 84,
+        "class_list": [
+          "usb_controller",
+          "pci"
+        ],
+        "bus_type": {
+          "hex": "0004",
+          "name": "PCI",
+          "value": 4
+        },
+        "slot": {
+          "bus": 59,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "000c",
+          "name": "Serial bus controller",
+          "value": 12
+        },
+        "sub_class": {
+          "hex": "0003",
+          "name": "USB Controller",
+          "value": 3
+        },
+        "pci_interface": {
+          "hex": "0030",
+          "value": 48
+        },
+        "vendor": {
+          "hex": "10de",
+          "name": "nVidia Corporation",
+          "value": 4318
+        },
+        "sub_vendor": {
+          "hex": "1458",
+          "value": 5208
+        },
+        "device": {
+          "hex": "1ad8",
+          "value": 6872
+        },
+        "sub_device": {
+          "hex": "37a7",
+          "value": 14247
+        },
+        "revision": {
+          "hex": "00a1",
+          "value": 161
+        },
+        "model": "nVidia USB Controller",
+        "sysfs_id": "/devices/pci0000:3a/0000:3a:00.0/0000:3b:00.2",
+        "sysfs_bus_id": "0000:3b:00.2",
+        "sysfs_iommu_group_id": 1,
+        "detail": {
+          "function": 2,
+          "command": 1026,
+          "header_type": 0,
+          "secondary_bus": 0,
+          "prog_if": 48
+        },
+        "driver": "xhci_hcd",
+        "driver_module": "xhci_pci",
+        "drivers": [
+          "xhci_hcd"
+        ],
+        "driver_modules": [
+          "xhci_pci"
+        ],
+        "module_alias": "pci:v000010DEd00001AD8sv00001458sd000037A7bc0Csc03i30"
+      },
+      {
+        "index": 235,
         "attached_to": 0,
         "class_list": [
           "usb_controller",
