@@ -176,6 +176,10 @@
         calib-data-file = ./calib-data.bin;
       };
 
+      packagekit = {
+        enable = true;
+      };
+
       udev = {
         enable = true;
         # extraRules = ''
@@ -183,6 +187,12 @@
         #   SUBSYSTEM=="gpio", KERNEL=="gpiochip*", ACTION=="add", RUN+="${pkgs.bash}/bin/bash -c 'chown root:gpio /sys/class/gpio/export /sys/class/gpio/unexport ; chmod 220 /sys/class/gpio/export /sys/class/gpio/unexport'"
         #   SUBSYSTEM=="gpio", KERNEL=="gpio*", ACTION=="add",RUN+="${pkgs.bash}/bin/bash -c 'chown root:gpio /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value ; chmod 660 /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value'"
         # '';
+
+        # extraRules = ''
+        #   SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", \
+        #   ATTR{address}=="ee:ed:1e:dd:c4:98", KERNEL=="eth*", NAME="usb"
+        # '';
+
         packages = with pkgs; [
           heimdall-gui
           libusb1
