@@ -103,10 +103,9 @@ in {
       keybase = {
         enable = lib.mkForce false;
       };
+      kbfs.enable = lib.mkForce false;
       usbguard.enable = false;
-      kbfs = {
-        enable = lib.mkForce true;
-      };
+
       irqbalance.enable = lib.mkForce false;
       kmscon.enable = lib.mkForce false;
       tailscale.enable = lib.mkForce false;
@@ -153,6 +152,7 @@ in {
     apps = {
       resilio.enable = false;
       atop.enable = lib.mkForce false;
+      netdata.enable = false;
     };
     # system.stateVersion = "25.05";
 
