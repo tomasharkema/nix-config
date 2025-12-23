@@ -156,11 +156,11 @@ in {
         "pstore"
       ];
 
-      supportedFilesystems = [
-        "ntfs"
-        # "apfs"
-        "nfs"
-      ];
+      supportedFilesystems = {
+        zfs = lib.mkForce false;
+        nfs = true;
+        # ntfs = lib.mkIf pkgs.stdenv.isx86_64;
+      };
 
       loader = {
         systemd-boot = {

@@ -60,6 +60,8 @@ in {
         "console=ttyS1,115200n8"
       ];
 
+      supportedFilesystems.zfs = lib.mkForce false;
+
       kernelPackages = pkgs.linuxPackages;
 
       consoleLogLevel = lib.mkDefault 7;
@@ -105,6 +107,9 @@ in {
       kbfs = {
         enable = lib.mkForce true;
       };
+      irqbalance.enable = lib.mkForce false;
+      kmscon.enable = lib.mkForce false;
+      tailscale.enable = lib.mkForce false;
     };
 
     # sdImage.compressImage = false;
