@@ -817,7 +817,7 @@
         "fpu_exception": false,
         "cpuid_level": 22,
         "write_protect": false,
-        "tlb_size": 32767,
+        "tlb_size": 32711,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -996,7 +996,7 @@
         "fpu_exception": false,
         "cpuid_level": 22,
         "write_protect": false,
-        "tlb_size": 32767,
+        "tlb_size": 32711,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -1102,7 +1102,7 @@
         },
         "slot": {
           "bus": 0,
-          "number": 0
+          "number": 1
         },
         "base_class": {
           "hex": "0106",
@@ -1114,31 +1114,36 @@
           "name": "Disk",
           "value": 0
         },
+        "vendor": {
+          "hex": "0000",
+          "name": "TOSHIBA",
+          "value": 0
+        },
         "device": {
           "hex": "0000",
-          "name": "ST1000LM035-1RK1",
+          "name": "MQ01ABD0",
           "value": 0
         },
         "revision": {
           "hex": "0000",
-          "name": "SBM3",
+          "name": "1C",
           "value": 0
         },
-        "serial": "W931YAQR",
-        "model": "ST1000LM035-1RK1",
+        "serial": "82IRT5M1T",
+        "model": "TOSHIBA MQ01ABD0",
         "sysfs_id": "/class/block/sdb",
-        "sysfs_bus_id": "0:0:0:0",
-        "sysfs_device_link": "/devices/pci0000:17/0000:17:00.0/0000:18:00.0/host0/target0:0:0/0:0:0:0",
+        "sysfs_bus_id": "0:0:1:0",
+        "sysfs_device_link": "/devices/pci0000:17/0000:17:00.0/0000:18:00.0/host0/target0:0:1/0:0:1:0",
         "unix_device_names": [
-          "/dev/disk/by-id/ata-ST1000LM035-1RK172_W931YAQR",
-          "/dev/disk/by-id/wwn-0x5000c5009c29cc9a",
-          "/dev/disk/by-path/pci-0000:18:00.0-scsi-0:0:0:0",
+          "/dev/disk/by-id/ata-TOSHIBA_MQ01ABD050_82IRT5M1T",
+          "/dev/disk/by-id/wwn-0x5000039431d045b7",
+          "/dev/disk/by-path/pci-0000:18:00.0-scsi-0:0:1:0",
           "/dev/sdb"
         ],
         "resources": [
           {
             "type": "disk_geo",
-            "cylinders": 121601,
+            "cylinders": 60801,
             "heads": 255,
             "sectors": 63,
             "size": "0x0",
@@ -1147,7 +1152,7 @@
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 1953525168,
+            "value_1": 976773168,
             "value_2": 512
           }
         ],
@@ -1260,7 +1265,7 @@
         },
         "slot": {
           "bus": 0,
-          "number": 1
+          "number": 0
         },
         "base_class": {
           "hex": "0106",
@@ -1272,36 +1277,31 @@
           "name": "Disk",
           "value": 0
         },
-        "vendor": {
-          "hex": "0000",
-          "name": "TOSHIBA",
-          "value": 0
-        },
         "device": {
           "hex": "0000",
-          "name": "MQ01ABD0",
+          "name": "ST1000LM035-1RK1",
           "value": 0
         },
         "revision": {
           "hex": "0000",
-          "name": "1C",
+          "name": "SBM3",
           "value": 0
         },
-        "serial": "82IRT5M1T",
-        "model": "TOSHIBA MQ01ABD0",
+        "serial": "W931YAQR",
+        "model": "ST1000LM035-1RK1",
         "sysfs_id": "/class/block/sda",
-        "sysfs_bus_id": "0:0:1:0",
-        "sysfs_device_link": "/devices/pci0000:17/0000:17:00.0/0000:18:00.0/host0/target0:0:1/0:0:1:0",
+        "sysfs_bus_id": "0:0:0:0",
+        "sysfs_device_link": "/devices/pci0000:17/0000:17:00.0/0000:18:00.0/host0/target0:0:0/0:0:0:0",
         "unix_device_names": [
-          "/dev/disk/by-id/ata-TOSHIBA_MQ01ABD050_82IRT5M1T",
-          "/dev/disk/by-id/wwn-0x5000039431d045b7",
-          "/dev/disk/by-path/pci-0000:18:00.0-scsi-0:0:1:0",
+          "/dev/disk/by-id/ata-ST1000LM035-1RK172_W931YAQR",
+          "/dev/disk/by-id/wwn-0x5000c5009c29cc9a",
+          "/dev/disk/by-path/pci-0000:18:00.0-scsi-0:0:0:0",
           "/dev/sda"
         ],
         "resources": [
           {
             "type": "disk_geo",
-            "cylinders": 60801,
+            "cylinders": 121601,
             "heads": 255,
             "sectors": 63,
             "size": "0x0",
@@ -1310,7 +1310,7 @@
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 976773168,
+            "value_1": 1953525168,
             "value_2": 512
           }
         ],
@@ -1587,7 +1587,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.12.62 xhci-hcd",
+          "name": "Linux 6.12.63 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1601,7 +1601,7 @@
           "value": 0
         },
         "serial": "0000:3b:00.2",
-        "model": "Linux 6.12.62 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.12.63 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:00.0/0000:3b:00.2/usb3/3-0:1.0",
         "sysfs_bus_id": "3-0:1.0",
         "resources": [
@@ -1832,7 +1832,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.12.62 xhci-hcd",
+          "name": "Linux 6.12.63 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1846,7 +1846,7 @@
           "value": 0
         },
         "serial": "0000:3b:00.2",
-        "model": "Linux 6.12.62 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.12.63 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:3a/0000:3a:00.0/0000:3b:00.2/usb4/4-0:1.0",
         "sysfs_bus_id": "4-0:1.0",
         "detail": {
@@ -1909,7 +1909,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.12.62 xhci-hcd",
+          "name": "Linux 6.12.63 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1923,7 +1923,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.12.62 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.12.63 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -1996,7 +1996,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.12.62 xhci-hcd",
+          "name": "Linux 6.12.63 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2010,7 +2010,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.12.62 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.12.63 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -2541,7 +2541,7 @@
     ],
     "network_interface": [
       {
-        "index": 274,
+        "index": 275,
         "attached_to": 0,
         "class_list": [
           "network_interface"
@@ -2552,28 +2552,18 @@
           "value": 263
         },
         "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
         },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/vlan69",
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
         "unix_device_names": [
-          "vlan69"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 101
-          }
-        ],
-        "driver": "802.1Q VLAN Support",
-        "drivers": [
-          "802.1Q VLAN Support"
+          "lo"
         ]
       },
       {
-        "index": 280,
+        "index": 276,
         "attached_to": 116,
         "class_list": [
           "network_interface"
@@ -2614,7 +2604,7 @@
         ]
       },
       {
-        "index": 281,
+        "index": 279,
         "attached_to": 119,
         "class_list": [
           "network_interface"
@@ -2655,8 +2645,8 @@
         ]
       },
       {
-        "index": 289,
-        "attached_to": 0,
+        "index": 283,
+        "attached_to": 119,
         "class_list": [
           "network_interface"
         ],
@@ -2666,18 +2656,28 @@
           "value": 263
         },
         "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
         },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/vlan66",
         "unix_device_names": [
-          "lo"
+          "vlan66"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 101
+          }
+        ],
+        "driver": "802.1Q VLAN Support",
+        "drivers": [
+          "802.1Q VLAN Support"
         ]
       },
       {
-        "index": 290,
+        "index": 287,
         "attached_to": 261,
         "class_list": [
           "network_interface"
@@ -2718,39 +2718,7 @@
         ]
       },
       {
-        "index": 293,
-        "attached_to": 119,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/vlan66",
-        "unix_device_names": [
-          "vlan66"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 101
-          }
-        ],
-        "driver": "802.1Q VLAN Support",
-        "drivers": [
-          "802.1Q VLAN Support"
-        ]
-      },
-      {
-        "index": 295,
+        "index": 292,
         "attached_to": 209,
         "class_list": [
           "network_interface"
@@ -2791,7 +2759,7 @@
         ]
       },
       {
-        "index": 299,
+        "index": 294,
         "attached_to": 212,
         "class_list": [
           "network_interface"
@@ -2829,6 +2797,38 @@
         ],
         "driver_modules": [
           "ixgbe"
+        ]
+      },
+      {
+        "index": 298,
+        "attached_to": 119,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/vlan69",
+        "unix_device_names": [
+          "vlan69"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 101
+          }
+        ],
+        "driver": "802.1Q VLAN Support",
+        "drivers": [
+          "802.1Q VLAN Support"
         ]
       }
     ],
