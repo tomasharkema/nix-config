@@ -20,7 +20,7 @@
     then config.boot.kernelPackages.nvidiaPackages.beta
     else
       (pkgs.nvidia-patch.patch-nvenc (
-        pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.latest
+        pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.stable
       ))
   );
 in {
