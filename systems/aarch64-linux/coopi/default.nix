@@ -6,7 +6,7 @@
 }: {
   config = {
     age.rekey = {
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA4LeaUNIIlF1BL6FUDQ1/L3bSqh5TGlM8Jtr+vZ7iLE root@coopi";
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC7Slm+eM8xlc9HH3rA/YQd5KHYOF1YLHlbk2q9jD/1+ root@coopi";
     };
 
     hardware = {
