@@ -54,6 +54,18 @@
       };
     };
 
+    boot = {
+      initrd.availableKernelModules = [
+        "usbhid"
+        "usb-storage"
+        "vc4"
+      ];
+      kernelParams = [
+        "rootwait"
+        "elevator=deadline"
+      ];
+    };
+
     zramSwap = {enable = true;};
 
     # services.hardware.lcd.server = {

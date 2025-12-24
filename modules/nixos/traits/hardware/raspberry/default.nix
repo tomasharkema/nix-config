@@ -20,6 +20,8 @@ in {
     };
 
     hardware = {
+      firmware = [pkgs.raspberrypiWirelessFirmware];
+
       enableRedistributableFirmware = true;
       i2c.enable = true;
       bluetooth = {
@@ -55,7 +57,6 @@ in {
       # ];
       kernelModules = ["i2c-dev"];
       kernelParams = [
-        "console=serial0,115200n8"
         "console=ttyS0,115200n8"
         "console=ttyS1,115200n8"
       ];
@@ -74,7 +75,6 @@ in {
           #"pcie_brcmstb" # required for the pcie bus to work
           #"reset-raspberrypi" # required for vl805 firmware to load
         ];
-        kernelModules = ["i2c-dev"];
       };
       tmp = {
         useTmpfs = false;
