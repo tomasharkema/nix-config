@@ -2,22 +2,33 @@
   pkgs,
   inputs,
   lib,
+  modulesPath,
   ...
 }: {
+  imports = [
+    inputs.nixos-hardware.nixosModules.raspberry-pi-5
+  ];
+
   config = {
     age.rekey = {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIN/5vuqA+Pnjl5lNUIs6sJapHiuevrHZftMPiP8EdpO root@nixos";
     };
 
-    hardware = {
-      enableRedistributableFirmware = true;
-      i2c.enable = true;
+    # hardware = {
+    #   enableRedistributableFirmware = true;
+    #   i2c.enable = true;
 
-      deviceTree = {
-        enable = true;
-        filter = "*-rpi-5*";
-      };
-    };
+    #   deviceTree = {
+    #     enable = true;
+    #     filter = "*-rpi-5*";
+    #   };
+    # };
+
+    # boot = {
+    #   loader.raspberryPi.firmwarePackage = kernelBundle.raspberrypifw;
+    #   loader.raspberryPi.bootloader = "kernel";
+    #   kernelPackages = kernelBundle.linuxPackages_rpi5;
+    # };
 
     networking = {
       hostName = "raspi5";
@@ -28,10 +39,10 @@
     zramSwap = {enable = true;};
 
     fileSystems = {
-      # "/boot" = {
-      #   device = "/dev/disk/by-label/NIXOS_BOOT";
-      #   fsType = "vfat";
-      # };
+      "/boot/firmware" = {
+        device = "/dev/disk/by-label/FIRMWARE";
+        fsType = "vfat";
+      };
       "/" = {
         device = "/dev/disk/by-label/NIXOS_SD";
         fsType = "ext4";
