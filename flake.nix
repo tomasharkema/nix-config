@@ -375,7 +375,7 @@
       "tomas"
       # "${config.user.name}"
     ];
-
+    connect-timeout = 5;
     # allow-unsafe-native-code-during-evaluation = true;
 
     # netrc-file = "/etc/nix/netrc";
@@ -393,7 +393,6 @@
       "http://silver-star.ling-lizard.ts.net:7124"
       "https://niri.cachix.org"
       "https://cache.garnix.io"
-      "https://nixos-raspberrypi.cachix.org"
     ];
 
     # trustedBinaryCaches = [
@@ -437,7 +436,6 @@
       "tomas-nixos-1:attQnEt6Gq99mwz5J/h8EVhCpavuB0/z/u0Bt/Mko7E="
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-      "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
     ];
 
     # allowed-uris = [
