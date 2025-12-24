@@ -27,13 +27,27 @@ inputs.nixpkgs.lib.nixosSystem {
         config = {
           sdImage = {firmwareSize = 4 * 1024;};
 
+          fileSystems = {
+            "/boot/firmware" = {
+              device = "/dev/disk/by-label/FIRMWARE";
+              fsType = "vfat";
+              options = [
+                "noatime"
+                "noauto"
+                "x-systemd.automount"
+                "x-systemd.idle-timeout=1min"
+              ];
+            };
+          };
+
           boot = {
             kernelParams = [
-              # "console=ttyS0,115200n8"
+              "console=ttyS0,115200n8"
               "console=ttyS1,115200n8"
+              "console=ttyAMA10,115200n8"
             ];
 
-            loader.generic-extlinux-compatible.useGenerationDeviceTree = false;
+            loader.generic-extlinux-compatible.useGenerationDeviceTree = true;
           };
 
           environment.systemPackages = with pkgs; [
