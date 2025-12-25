@@ -250,7 +250,7 @@ in
           # gnome-photos
         ]
       );
-
+      services.packagekit.enable = true;
       environment.systemPackages = with pkgs; [
         adwaita-icon-theme
         clutter

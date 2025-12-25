@@ -123,7 +123,7 @@
       # opensnitch.enable = true;
       # usbip.enable = true;
       # samsung.enable = true;
-      # docker.enable = true;
+      docker.enable = true;
       resilio = {
         enable = true;
         enableEnc = true;

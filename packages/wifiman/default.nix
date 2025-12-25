@@ -5,17 +5,17 @@
   autoPatchelfHook,
   glibc,
   libgcc,
-  webkitgtk,
+  webkitgtk_4_1,
   glib,
   gobject-introspection,
   gtk3,
 }:
 stdenv.mkDerivation {
-  pname = "wi-fiman-desktop";
-  version = "1.1.3";
+  pname = "wifiman-desktop";
+  version = "1.2.8";
   src = fetchurl {
-    url = "https://desktop.wifiman.com/wifiman-desktop-1.1.3-amd64.deb";
-    sha256 = "sha256-y//hyqymtgEdrKZt3milTb4pp+TDEDQf6RehYgDnhzA=";
+    url = "https://desktop.wifiman.com/wifiman-desktop-1.2.8-amd64.deb";
+    sha256 = "sha256-R+MbwxfnBV9VcYWeM1NM08LX1Mz9+fy4r6uZILydlks=";
   };
 
   nativeBuildInputs = [
@@ -27,7 +27,7 @@ stdenv.mkDerivation {
     gtk3
     glibc
     libgcc
-    webkitgtk
+    webkitgtk_4_1
     glib
     gobject-introspection
   ];
@@ -36,16 +36,18 @@ stdenv.mkDerivation {
     mkdir $out
     cp -a usr/* $out
 
-    mv $out/lib/wi-fiman-desktop/* $out/lib
-    mv $out/lib/wi-fiman-desktop/.* $out/lib
+    mv $out/lib/wifiman-desktop/* $out/lib
+    mv $out/lib/wifiman-desktop/.* $out/lib
+
+    mv $out/lib/wifiman-desktopd $out/bin/wifiman-desktopd
 
     substituteInPlace $out/lib/wifiman-desktop.service \
-      --replace-fail "/usr/lib/wi-fiman-desktop/wifiman-desktopd" "$out/lib/wifiman-desktopd"
+      --replace-fail "/usr/lib/wifiman-desktop/wifiman-desktopd" "$out/bin/wifiman-desktopd"
 
-    mkdir $out/lib/systemd
-    mv $out/lib/wifiman-desktop.service $out/lib/systemd/
+    mkdir -p $out/lib/systemd/system
+    mv $out/lib/wifiman-desktop.service $out/lib/systemd/system
 
-    substituteInPlace $out/share/applications/wi-fiman-desktop.desktop \
-      --replace-fail "Exec=wi-fiman-desktop" "Exec=$out/bin/wi-fiman-desktop"
+    substituteInPlace $out/share/applications/wifiman-desktop.desktop \
+      --replace-fail "Exec=wifiman-desktop" "Exec=$out/bin/wifiman-desktop"
   '';
 }

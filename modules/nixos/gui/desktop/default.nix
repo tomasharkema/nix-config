@@ -273,6 +273,7 @@ in {
       packages =
         [
           #config.system.build.chromium
+          pkgs.custom.wifiman
         ]
         ++ (lib.optional pkgs.stdenv.isx86_64 pkgs.widevine-cdm);
       additionalUpstreamSystemUnits = ["systemd-bsod.service"];

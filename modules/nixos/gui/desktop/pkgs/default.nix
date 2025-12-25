@@ -39,6 +39,11 @@
     custom.spi-tools
     custom.usbguard-gnome
     custom.webcamize
+    # angryipscanner
+    # caffeine-ng
+    # custom.manuals
+    # custom.qlogexplorer
+    custom.wifiman
     custom.wsjtx
     darktable
     davinci-resolve
@@ -81,11 +86,6 @@
     imsprog
     inspector
     jetbrains-toolbox
-    # angryipscanner
-    # caffeine-ng
-    # custom.manuals
-    # custom.qlogexplorer
-    # custom.wifiman
     # fractal
     # gamehub
     # gphotos-sync
