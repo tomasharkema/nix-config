@@ -162,6 +162,8 @@
           # nix-virt.nixosModules.default
           dankMaterialShell.nixosModules.greeter
 
+          nixos-cli.nixosModules.nixos-cli
+
           ./defaultNixosAge.nix
           (
             {config, ...}: {
@@ -903,6 +905,13 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nix-index-database.follows = "nix-index-database";
+      };
+    };
+
+    nixos-cli = {
+      url = "github:nix-community/nixos-cli";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
       };
     };
 

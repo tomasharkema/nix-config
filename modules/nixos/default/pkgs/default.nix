@@ -154,6 +154,7 @@
         openocd
         openseachest
         opensoundmeter
+        optnix
         oterm
         p7zip
         pamix

@@ -222,7 +222,11 @@ in {
       # geoipupdate.enable = true;
       earlyoom.enableNotifications = true;
       # locate.enable = true;
+      nixos-cli = {
+        enable = true;
 
+        prebuildOptionCache = false;
+      };
       uptimed.enable = true;
       tuptime.enable = true;
 
