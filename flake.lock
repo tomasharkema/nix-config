@@ -448,11 +448,11 @@
     "flake-compat_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1765121682,
-        "narHash": "sha256-4VBOP18BFeiPkyhy9o4ssBNQEvfvv1kXkasAYd0+rrA=",
+        "lastModified": 1766661267,
+        "narHash": "sha256-QN1r/zNqvXHwWqlRAnRtFf4CQwIOJx58PtdExIzAw94=",
         "owner": "edolstra",
         "repo": "flake-compat",
-        "rev": "65f23138d8d09a92e30f1e5c87611b23ef451bf3",
+        "rev": "f275e157c50c3a9a682b4c9b4aa4db7a4cd3b5f2",
         "type": "github"
       },
       "original": {
@@ -1105,11 +1105,11 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1766517173,
-        "narHash": "sha256-zhb16f8hDVw7rsVNEIZQJOw78VQ4Eu3sjzwznxSzVtk=",
+        "lastModified": 1766666712,
+        "narHash": "sha256-Yt7uSf7WYpF2Nzzwth/hnpfz4NU2LxEQDYUkPVqnALg=",
         "owner": "sodiboo",
         "repo": "niri-flake",
-        "rev": "ff40739a8a6d1f2890e91b5bedbb8f09e6c43e4f",
+        "rev": "a513c9d03d1f9198c9381b5c868641fec4f09ecd",
         "type": "github"
       },
       "original": {
@@ -1138,11 +1138,11 @@
     "niri-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1766483519,
-        "narHash": "sha256-LRSUhcm2erq/v/6EkwVP86kdVyRSsZ+AYQgwsKJMwCM=",
+        "lastModified": 1766662009,
+        "narHash": "sha256-SlMUnCuN7UdD71SERvROX6b0XVXs+QCXoDeKGWtJ2v4=",
         "owner": "YaLTeR",
         "repo": "niri",
-        "rev": "4d295418ce8e8e110060396bb485c4f0c381d37e",
+        "rev": "2a9d0e495a011a124b37532dfcfb3c780fd2eb89",
         "type": "github"
       },
       "original": {
@@ -1186,11 +1186,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766598373,
-        "narHash": "sha256-MwouBiMUwIOvrpRDa4Snqb7hvszFyvljJtE+6OI00vs=",
+        "lastModified": 1766639967,
+        "narHash": "sha256-j1Sh01wnYMirk3GBYfvfpDVzMzUDRN97ObKp7CnHGwE=",
         "owner": "xddxdd",
         "repo": "nix-cachyos-kernel",
-        "rev": "42b263471fdc6d2b36d16d861cd95a37a6c16d2e",
+        "rev": "1944e4a1bea276ed0fa7890bfd867c6a8cb2c230",
         "type": "github"
       },
       "original": {
@@ -1782,11 +1782,11 @@
         "treefmt-nix": "treefmt-nix_5"
       },
       "locked": {
-        "lastModified": 1766522658,
-        "narHash": "sha256-UiKmEvb7TFGW1RK3EvnOKu4L2+HTeJy3Vv5UvBK7W+Q=",
+        "lastModified": 1766642954,
+        "narHash": "sha256-Pgm/vqtX++e602AB0Or3dwtVeVQG8VQwmsiekwZ4ZWQ=",
         "owner": "xddxdd",
         "repo": "nur-packages",
-        "rev": "038b5053f95e39cfa5dd4a480381c78703f33dd5",
+        "rev": "c3bd593d65341b413d7b06babb8614cc4e02f87a",
         "type": "github"
       },
       "original": {
@@ -1803,11 +1803,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1766164246,
-        "narHash": "sha256-Gw/Ag+tTd5ZLnFv/9pHXnt5gnIn3lmD4Q7KH3ytBpTM=",
+        "lastModified": 1766653412,
+        "narHash": "sha256-VbNd5JmPbLE6pPL0UwTxyWIp4SwoUO4+3v0uWw8ulQg=",
         "owner": "icewind1991",
         "repo": "nvidia-patch-nixos",
-        "rev": "3ad4de8417935547c4c17e7f2b1d5fe8254acd1e",
+        "rev": "2cfc0fc0db76a01ad54564e32ea7b58acbd3ad9c",
         "type": "github"
       },
       "original": {

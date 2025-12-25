@@ -14,21 +14,26 @@
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIN/5vuqA+Pnjl5lNUIs6sJapHiuevrHZftMPiP8EdpO root@nixos";
     };
 
-    # hardware = {
-    #   enableRedistributableFirmware = true;
-    #   i2c.enable = true;
+    hardware = {
+      enableRedistributableFirmware = true;
+      i2c.enable = true;
 
-    #   deviceTree = {
-    #     enable = true;
-    #     filter = "*-rpi-5*";
-    #   };
-    # };
+      deviceTree = {
+        enable = true;
+        filter = "*-rpi-5*";
+      };
+    };
 
-    # boot = {
-    #   loader.raspberryPi.firmwarePackage = kernelBundle.raspberrypifw;
-    #   loader.raspberryPi.bootloader = "kernel";
-    #   kernelPackages = kernelBundle.linuxPackages_rpi5;
-    # };
+    boot = {
+      #   loader.raspberryPi.firmwarePackage = kernelBundle.raspberrypifw;
+      #   loader.raspberryPi.bootloader = "kernel";
+      #   kernelPackages = kernelBundle.linuxPackages_rpi5;
+
+      kernelParams = [
+        "console=ttyS0,115200"
+        "console=ttyAMA10,115200"
+      ];
+    };
 
     networking = {
       hostName = "raspi5";
