@@ -67,7 +67,7 @@
 
     apps = {
       netdata.server.enable = true;
-      netbox.enable = true;
+      #netbox.enable = true;
       clamav.onacc.enable = false;
       mailrise.enable = true;
       hass.enable = true;
@@ -135,16 +135,7 @@
         };
       };
 
-      irqbalance.enable = lib.mkForce false;
-
-      nfs = {
-        server = {
-          enable = true;
-          exports = ''
-            /export/netboot        *(rw,fsid=0,no_subtree_check)
-          '';
-        };
-      };
+      irqbalance.enable = true;
 
       uptime-kuma = {
         enable = true;
@@ -243,8 +234,8 @@
           };
 
           grafana = {toURL = "http://127.0.0.1:3000";};
-          healthchecks = {toURL = "http://127.0.0.1:8000";};
-          netbox = {toURL = "http://127.0.0.1:8002";};
+          # healthchecks = {toURL = "http://127.0.0.1:8000";};
+          # netbox = {toURL = "http://127.0.0.1:8002";};
           netdata = {toURL = "http://127.0.0.1:19999";};
           esphome = {toURL = "http://127.0.0.1:6052";};
           atuin = {toURL = "http://127.0.0.1:8888";};
@@ -280,7 +271,7 @@
       };
 
       glitchtip = {
-        enable = true;
+        # enable = true;
         port = 8923;
         # listenAddress = "0.0.0.0";
 
@@ -294,7 +285,7 @@
       };
 
       firefox-syncserver = {
-        enable = true;
+        #enable = true;
         secrets = config.age.secrets.firefox.path;
 
         database = {
@@ -311,7 +302,7 @@
       };
 
       pocket-id = {
-        enable = true;
+        #enable = true;
         settings = {
           APP_URL = "https://id.harke.ma";
           TRUST_PROXY = true;
@@ -332,7 +323,7 @@
       };
 
       cloudflared = {
-        enable = true;
+        #enable = true;
         tunnels = {
           "69bc7708-5c7b-422d-b283-9199354f431f" = {
             credentialsFile = config.age.secrets.cloudflared.path;
@@ -350,9 +341,9 @@
 
       netbootxyz.enable = true;
 
-      avahi = {
-        allowInterfaces = ["br0"];
-      };
+      # avahi = {
+      #   allowInterfaces = ["br0"];
+      # };
     };
 
     networking = {
@@ -617,9 +608,9 @@
         "docker-compose@grafana" = {
           wantedBy = ["multi-user.target"];
         };
-        "docker-compose@faf" = {
-          wantedBy = ["multi-user.target"];
-        };
+        # "docker-compose@faf" = {
+        #   wantedBy = ["multi-user.target"];
+        # };
         "docker-compose@esphome" = {
           wantedBy = ["multi-user.target"];
         };

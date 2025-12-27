@@ -32,6 +32,10 @@ in {
         device = "/mnt/netboot";
         options = ["bind"];
       };
+      "/export/tftpboot" = {
+        device = "/mnt/tftpboot";
+        options = ["bind"];
+      };
     };
 
     services = {
@@ -39,11 +43,11 @@ in {
         server = {
           enable = true;
           exports = ''
-            /export/netboot        *(rw,fsid=0,no_subtree_check)
+            /export/netboot        *(rw,sync,no_subtree_check,no_root_squash)
+            /export/tftpboot       *(rw,sync,no_subtree_check,no_root_squash)
           '';
         };
       };
-
       keepalived = {
         enable = true;
 
