@@ -36,9 +36,22 @@ in {
           extraOptions = ["--network=host"];
 
           volumes = [
-            "/run/dbus:/run/dbus:ro"
+            "/run/dbus:/run/dbus:rw"
             "/etc/localtime:/etc/localtime:ro"
             "${cfg.folder}:/config"
+          ];
+        };
+        matter = {
+          image = "ghcr.io/matter-js/python-matter-server:stable";
+
+          autoStart = true;
+          privileged = true;
+          extraOptions = ["--network=host"];
+
+          volumes = [
+            "/run/dbus:/run/dbus"
+            "/etc/localtime:/etc/localtime"
+            "${cfg.folder}/matter:/data"
           ];
         };
       };
