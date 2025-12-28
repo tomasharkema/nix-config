@@ -122,6 +122,7 @@
         mpv
         ms-sys # for writing Microsoft boot sectors / MBRs
         ncdu
+        net-tools
         nethogs
         netop
         netproc
