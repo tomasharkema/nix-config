@@ -9,6 +9,7 @@
     environment.systemPackages =
       (with pkgs; [
         # keep-sorted start
+
         agenix-rekey
         aide
         apt-dater
@@ -93,6 +94,7 @@
         i2c-tools
         ifuse
         imv
+        inputs.neix.packages.${pkgs.system}.default
         ipcalc
         ipmitool
         ipmiutil
