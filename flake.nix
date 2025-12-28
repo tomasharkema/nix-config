@@ -502,7 +502,7 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-
+    neix.url = "github:Hovirix/neix";
     # pre-commit-hooks-nix = {
     #   url = "github:cachix/pre-commit-hooks.nix";
 
