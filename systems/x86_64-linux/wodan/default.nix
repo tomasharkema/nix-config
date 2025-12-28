@@ -196,6 +196,12 @@
       cpu-energy-meter.enable = true;
     };
 
+    system = {
+      etc.overlay.enable = true;
+      nixos-init.enable = true;
+    };
+    services.userborn.enable = true;
+
     hardware = {
       cpu.intel.updateMicrocode = true;
       i2c.enable = true;

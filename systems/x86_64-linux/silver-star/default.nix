@@ -376,6 +376,10 @@
           id = 66;
           interface = "eno1";
         };
+        "vlan1" = {
+          id = 1;
+          interface = "eno1";
+        };
       };
 
       interfaces = {
@@ -415,6 +419,11 @@
           mtu = 9000;
         };
         "vlan66" = {
+          useDHCP = true;
+          wakeOnLan.enable = true;
+          mtu = 9000;
+        };
+        "vlan1" = {
           useDHCP = true;
           wakeOnLan.enable = true;
           mtu = 9000;
@@ -533,8 +542,8 @@
       binfmt.emulatedSystems = ["aarch64-linux"];
 
       kernelParams = [
-        "console=tty1"
-        "console=ttyS0,115200n8r"
+        "console=tty0"
+        "console=ttyS0,115200n8"
         # "console=ttyS1,115200n8"
         # "earlyprintk=ttyS0"
         # "intremap=no_x2apic_optout"
