@@ -75,11 +75,17 @@
             mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/home/.snapshots";
           };
-          "steam" = lib.mkIf cfg.newSubvolumes.enable {
+          "steam" = lib.mkIf (cfg.newSubvolumes.enable && (cfg.media == null)) {
             mountOptions =
               ["noatime" "discard=async"]
               ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
             mountpoint = "/mnt/steam";
+          };
+          "games" = lib.mkIf (cfg.newSubvolumes.enable && (cfg.media == null)) {
+            mountOptions =
+              ["noatime" "discard=async"]
+              ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
+            mountpoint = "/mnt/games";
           };
           "log" = lib.mkIf cfg.newSubvolumes.enable {
             mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";

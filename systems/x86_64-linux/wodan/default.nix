@@ -34,7 +34,7 @@
 
       main = "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768639292E";
       second = "/dev/disk/by-id/nvme-KINGSTON_SNV2S1000G_50026B768637D1FE";
-
+      # media="/dev/disk/by-id/ata-WDC_WD40EZRX-00SPEB0_WD-WCC4E0VSU30H";
       encrypt = true;
       newSubvolumes.enable = true;
       # btrbk.enable = true;
@@ -61,6 +61,8 @@
           "eth0"
         ];
       };
+
+      firewall.enable = lib.mkForce false;
 
       search = ["lan"];
 

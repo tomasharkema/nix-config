@@ -27,7 +27,10 @@ in {
       # }
       # //
       import ./config.nix;
-    # boot.supportedFilesystems = ["bcachefs"];
+    boot.supportedFilesystems = {
+      nfs = true;
+    };
+
     users = {
       users = {
         nixos = {
