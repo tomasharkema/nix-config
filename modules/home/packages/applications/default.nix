@@ -39,7 +39,7 @@
       entries = [
         "${pkgs.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
         "${osConfig.programs._1password-gui.package}/share/applications/1password.desktop"
-        "${pkgs.custom.librepods}/share/applications/me.kavishdevar.librepods.desktop"
+        "${pkgs.custom.librepods}/share/applications/me.kavishdevar.librepods.autostart.desktop"
         "${pkgs.solaar}/share/applications/solaar.desktop"
       ];
     };

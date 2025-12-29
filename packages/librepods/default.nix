@@ -18,7 +18,7 @@ stdenv.mkDerivation rec {
     owner = "kavishdevar";
     repo = "librepods";
     rev = "main";
-    hash = "sha256-1rFB8WzpSHGsGkJqkA6AYKBW6olGf3ZtNa6HmxAn27g="; # "sha256-vWtBSHYPtrSmYzY25a1RcVUlpaXF2WzNLke7RiST/38=";
+    hash = "sha256-Ckw6zQf3lDLFh81594XhXz/B9gPkMws1Li4l+Fr+09k="; # "sha256-vWtBSHYPtrSmYzY25a1RcVUlpaXF2WzNLke7RiST/38=";
   };
 
   sourceRoot = "${src.name}/linux";
@@ -54,7 +54,12 @@ stdenv.mkDerivation rec {
   preFixup = ''
     qtWrapperArgs+=("''${gappsWrapperArgs[@]}")
   '';
+  postInstall = ''
+    cp $out/share/applications/me.kavishdevar.librepods.desktop $out/share/applications/me.kavishdevar.librepods.autostart.desktop
 
+    substituteInPlace $out/share/applications/me.kavishdevar.librepods.autostart.desktop \
+      --replace-fail "Exec=librepods" "Exec=librepods --hide"
+  '';
   meta = {
     description = "AirPods liberated from Apple's ecosystem";
     homepage = "https://github.com/kavishdevar/librepods";
