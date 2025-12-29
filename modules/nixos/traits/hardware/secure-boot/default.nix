@@ -19,6 +19,13 @@ in {
         pkiBundle = "/var/lib/sbctl";
 
         configurationLimit = 10;
+        autoGenerateKeys = {
+          enable = true;
+        };
+        autoEnrollKeys = {
+          enable = true;
+          # includeChecksumsFromTPM = config.traits.hardware.tpm.enable;
+        };
       };
       loader = {
         efi.canTouchEfiVariables = lib.mkDefault true;

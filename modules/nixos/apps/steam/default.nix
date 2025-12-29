@@ -108,8 +108,13 @@ in {
     #   };
     # };
 
+    home-manager.users.tomas.programs.lutris = {
+      enable = true;
+      steamPackage = config.programs.steam.package;
+    };
+
     environment = {
-      etc."xdg/autostart/steam.desktop".source = "${config.programs.steam.package}/share/applications/steam.desktop";
+      # etc."xdg/autostart/steam.desktop".source = "${config.programs.steam.package}/share/applications/steam.desktop";
 
       systemPackages = with pkgs; [
         # sunshine

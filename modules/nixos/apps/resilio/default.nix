@@ -13,7 +13,7 @@
   runConfigPath = "/run/rslsync/config.json";
 
   debugTxt = pkgs.writeText "debug.txt" ''
-    80000000
+    00000000
     0
   '';
 in {
@@ -30,7 +30,7 @@ in {
         # "d ${root} 0777 rslsync rslsync -"
         # "Z ${root} 0777 rslsync rslsync"
         # "d /var/lib/resilio-sync 0777 rslsync rslsync -"
-        # "L+ /var/lib/resilio-sync/debug.txt - - - - ${debugTxt}"
+        "L+ /var/lib/resilio-sync/debug.txt - - - - ${debugTxt}"
         # "L+ /home/tomas/resilio-sync - - - - ${root}"
       ];
     };
@@ -85,24 +85,25 @@ in {
 
     systemd.services.resilio.serviceConfig = {
       # LoadCredential = "resilio-license:${config.age.secrets."resilio-license".path}";
-      ExecStart = lib.mkForce (pkgs.writeShellScript "createIdentity.sh" ''
-        if [ ! -e /var/lib/resilio-sync/License ]; then
-          echo "creating identity..."
-          ${lib.concatStringsSep " " [
-          (lib.getExe config.services.resilio.package)
-          "--nodaemon"
-          "--config ${runConfigPath}"
-          "--license ${config.age.secrets."resilio-license".path}"
-          "--identity ${config.networking.hostName}"
-        ]}
-        fi
-
-        exec ${lib.concatStringsSep " " [
-          (lib.getExe config.services.resilio.package)
-          "--nodaemon"
-          "--config ${runConfigPath}"
-        ]}
-      '');
+      ExecStartPre = [
+        (pkgs.writeShellScript "createIdentity.sh" ''
+          if [ ! -e /var/lib/resilio-sync/License ]; then
+            echo "creating identity..."
+            ${lib.concatStringsSep " " [
+            (lib.getExe config.services.resilio.package)
+            "--nodaemon"
+            "--config ${runConfigPath}"
+            "--license ${config.age.secrets."resilio-license".path}"
+            "--identity ${config.networking.hostName}"
+          ]}
+          fi
+        '')
+      ];
+      ExecStart = lib.mkForce (lib.concatStringsSep " " [
+        (lib.getExe config.services.resilio.package)
+        "--nodaemon"
+        "--config ${runConfigPath}"
+      ]);
     };
 
     users.users.tomas.extraGroups = ["rslsync"];
