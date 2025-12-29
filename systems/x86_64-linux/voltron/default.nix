@@ -142,7 +142,7 @@
     networking = {
       hostName = "voltron"; # Define your hostname.
 
-      firewall.enable = lib.mkForce false;
+      firewall.enable = true;
     };
 
     users = {
@@ -160,7 +160,7 @@
     };
 
     services = {
-      firewalld.enable = lib.mkForce false;
+      firewalld.enable = true;
       # dnsmasq.enable = true;
       kmscon.enable = true;
       ratbagd.enable = true;

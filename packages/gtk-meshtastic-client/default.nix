@@ -30,13 +30,13 @@
 in
   stdenv.mkDerivation rec {
     pname = "gtk-meshtastic-client";
-    version = "1.3";
+    version = "1.4";
 
     src = fetchFromGitLab {
       owner = "kop316";
       repo = "gtk-meshtastic-client";
       rev = version;
-      hash = "sha256-g9K+XMF/i8P3pLbia750oJCQ+ZHPdQvqWa/tklIQVfk=";
+      hash = "sha256-xeRMoxVy12RRynNNTxoHgHIl1Wc7hwqStS8KdzlUBpc=";
     };
 
     nativeBuildInputs = [
