@@ -141,7 +141,7 @@
         trusted-public-keys = [pubKey];
 
         extra-platforms = [
-          "aarch64-linux"
+          # "aarch64-linux"
           "i686-linux"
         ];
 

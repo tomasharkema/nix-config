@@ -774,7 +774,7 @@
     # };
 
     nixos-recovery = {
-      url = "github:tomasharkema/nixos-recovery/develop";
+      url = "github:tomasharkema/nixos-recovery/main";
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };

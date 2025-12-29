@@ -539,7 +539,7 @@
 
       crashDump = {enable = true;};
 
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      # binfmt.emulatedSystems = ["aarch64-linux"];
 
       kernelParams = [
         "console=tty0"
