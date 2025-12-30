@@ -52,10 +52,10 @@ in {
         #};
         # geoProviderUrl = "https://reallyfreegeoip.org/json";
         geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
-        enableDemoAgent = lib.mkForce true;
-        enable3G = false;
-        enableCDMA = false;
-        enableModemGPS = false;
+        # enableDemoAgent = lib.mkForce true;
+        # enable3G = false;
+        # enableCDMA = false;
+        # enableModemGPS = false;
       };
     };
 
