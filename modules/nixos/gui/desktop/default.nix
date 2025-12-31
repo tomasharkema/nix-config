@@ -186,6 +186,8 @@ in {
         qmk
         qmk_hid
         dos2unix
+        via
+        vial
       ];
     };
 
