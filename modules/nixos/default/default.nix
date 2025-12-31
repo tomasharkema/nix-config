@@ -430,7 +430,9 @@ in {
 
       udev = {
         enable = lib.mkDefault true;
-        packages = with pkgs; [picoprobe-udev-rules];
+        packages = with pkgs; [
+          picoprobe-udev-rules
+        ];
 
         # extraRules = ''
         #   ACTION=="add", SUBSYSTEM=="usb", \

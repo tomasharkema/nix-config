@@ -43,6 +43,10 @@ in {
       golangci-lint
     ];
 
-    # services.udev.packages = with pkgs; [picotool];
+    services.udev.extraRules = ''
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="0003", MODE="0666"
+      SUBSYSTEM=="tty", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="0005", SYMLINK+="pico"
+      SUBSYSTEM=="tty", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", SYMLINK+="pico"
+    '';
   };
 }

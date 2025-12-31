@@ -172,6 +172,7 @@ in {
         config.boot.kernelPackages.iio-utils
         qmk
         qmk_hid
+        dos2unix
       ];
     };
 
