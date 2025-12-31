@@ -70,6 +70,8 @@ in {
         extraRules = ''
           KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{serial}=="*vial:f64c2b3c*", \
             MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+
+          ${builtins.readFile ./50-qmk.rules}
         '';
       };
       scx = {
@@ -166,6 +168,7 @@ in {
       sessionVariables = {
         NIXOS_OZONE_WL = "1";
         DMS_DISABLE_MATUGEN = "1";
+        QMK_HOME = "/home/tomas/Developer/qmk_firmware";
       };
       systemPackages = with pkgs; [
         kdiskmark
