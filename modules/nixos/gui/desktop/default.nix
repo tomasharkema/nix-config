@@ -165,6 +165,8 @@ in {
       systemPackages = with pkgs; [
         kdiskmark
         config.boot.kernelPackages.iio-utils
+        qmk
+        qmk_hid
       ];
     };
 
@@ -178,6 +180,7 @@ in {
         enable = true;
         daemon.enable = true;
       };
+      keyboard.qmk.enable = true;
       intel-gpu-tools.enable = true;
       acpilight.enable = true;
       sensor = {
