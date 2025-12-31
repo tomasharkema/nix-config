@@ -60,7 +60,7 @@
         i2c-tools
         piper
         libratbag
-        esp-idf-full
+        # esp-idf-full
       ];
     };
 
@@ -213,22 +213,30 @@
       #   enable = true;
       # };
 
-      hardware.lcd.server = lib.mkIf false {
-        enable = true;
-        #extraConfig=''
-        #  [text]
-        #  Size=128x32
-        #'';
-        extraConfig = ''
-          [hd44780]
-          ConnectionType=i2c
-          Port=0x3C
-          Device=/dev/i2c-8
-          Speed=0
-          Keypad=no
-          Size=128x64
-          CharMap=hd44780_default
-        '';
+      hardware = {
+        openrgb = {
+          enable = true;
+          package = pkgs.openrgb-with-all-plugins;
+          startupProfile = "default";
+        };
+
+        lcd.server = lib.mkIf false {
+          enable = true;
+          #extraConfig=''
+          #  [text]
+          #  Size=128x32
+          #'';
+          extraConfig = ''
+            [hd44780]
+            ConnectionType=i2c
+            Port=0x3C
+            Device=/dev/i2c-8
+            Speed=0
+            Keypad=no
+            Size=128x64
+            CharMap=hd44780_default
+          '';
+        };
       };
 
       hardware.bolt.enable = true;
