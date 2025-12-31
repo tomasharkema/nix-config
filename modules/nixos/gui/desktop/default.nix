@@ -81,6 +81,14 @@ in {
         scheduler = "scx_bpfland";
       };
 
+      hardware = {
+        openrgb = {
+          enable = true;
+          package = pkgs.openrgb-with-all-plugins;
+          startupProfile = "default";
+        };
+      };
+
       dbus = {
         enable = true;
         packages = with pkgs; [
@@ -165,11 +173,13 @@ in {
       etc = {
         "xdg/autostart/geary-autostart.desktop".source = "${pkgs.geary}/share/applications/geary-autostart.desktop";
       };
+
       sessionVariables = {
         NIXOS_OZONE_WL = "1";
         DMS_DISABLE_MATUGEN = "1";
         QMK_HOME = "/home/tomas/Developer/qmk_firmware";
       };
+
       systemPackages = with pkgs; [
         kdiskmark
         config.boot.kernelPackages.iio-utils

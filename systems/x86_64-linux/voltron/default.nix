@@ -214,12 +214,6 @@
       # };
 
       hardware = {
-        openrgb = {
-          enable = true;
-          package = pkgs.openrgb-with-all-plugins;
-          startupProfile = "default";
-        };
-
         lcd.server = lib.mkIf false {
           enable = true;
           #extraConfig=''
