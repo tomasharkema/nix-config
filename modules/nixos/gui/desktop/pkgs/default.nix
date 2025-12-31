@@ -137,6 +137,8 @@
     qFlipper
     qdirstat
     qjournalctl
+    qmk
+    qmk_hid
     rmview
     rpi-imager
     saleae-logic-2
@@ -157,6 +159,7 @@
     tremotesf
     typesetter
     usbview
+    vial
     vlc
     vsce
     vte-gtk4

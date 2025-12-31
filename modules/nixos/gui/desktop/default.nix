@@ -62,11 +62,16 @@ in {
     services = {
       # localtimed.enable = true;
 
-      udev.packages = with pkgs; [
-        saleae-logic-2
-        nrf-udev
-      ];
-
+      udev = {
+        packages = with pkgs; [
+          saleae-logic-2
+          nrf-udev
+        ];
+        extraRules = ''
+          KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{serial}=="*vial:f64c2b3c*", \
+            MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+        '';
+      };
       scx = {
         enable = pkgs.stdenvNoCC.isx86_64;
         # package = pkgs.scx_git.rustscheds;
