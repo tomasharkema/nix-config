@@ -91,6 +91,12 @@ in {
         # "apm=power_off"
         # "acpi=force"
       ];
+      modprobeConfig.enable = true;
+      extraModprobeConfig = ''
+        options nvidia NVreg_UsePageAttributeTable=1 \
+          NVreg_InitializeSystemMemoryAllocations=0 \
+          NVreg_RegistryDwords=RmEnableAggressiveVblank=1
+      '';
 
       #kernelPackages = lib.mkIf cfg.grid.enable (lib.mkForce pkgs.linuxPackages_6_12);
     };

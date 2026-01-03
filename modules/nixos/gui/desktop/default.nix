@@ -103,9 +103,9 @@ in {
       # };
       # clipmenu.enable = true;
 
-      xserver.videoDrivers =
-        #lib.mkIf (lib.strings.versionOlder config.boot.kernelPackages.kernel.version "6.18")
-        ["displaylink"];
+      #xserver.videoDrivers =
+      #lib.mkIf (lib.strings.versionOlder config.boot.kernelPackages.kernel.version "6.18")
+      #  ["displaylink"];
 
       systembus-notify.enable = true;
       pipewire = {
@@ -183,8 +183,8 @@ in {
       systemPackages = with pkgs; [
         kdiskmark
         config.boot.kernelPackages.iio-utils
-        qmk
-        qmk_hid
+        #qmk
+        #qmk_hid
         dos2unix
         via
         vial
@@ -196,7 +196,7 @@ in {
       libftdi.enable = true;
       libjaylink.enable = true;
       pulseaudio.enable = false;
-      usb-modeswitch.enable = true;
+      #usb-modeswitch.enable = true;
       opentabletdriver = {
         enable = true;
         daemon.enable = true;
@@ -230,11 +230,11 @@ in {
         package = pkgs.ghidra.withExtensions (p:
           with p; [
             ret-sync
-            gnudisassembler
+            #gnudisassembler
             findcrypt
             ghidra-delinker-extension
             ghidra-firmware-utils
-            ghidra-firmware-utils
+
             ghidra-golanganalyzerextension
           ]);
       };

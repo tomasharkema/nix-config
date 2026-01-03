@@ -25,7 +25,7 @@
         libratbag
         heimdall
         heimdall-gui
-        esp-idf-full
+        # esp-idf-full
       ];
     };
 
@@ -37,8 +37,8 @@
       # media="/dev/disk/by-id/ata-WDC_WD40EZRX-00SPEB0_WD-WCC4E0VSU30H";
       encrypt = true;
       newSubvolumes.enable = true;
-      # btrbk.enable = true;
-      snapper.enable = true; # false;
+      btrbk.enable = false;
+      snapper.enable = false;
       swap.size = "64G";
     };
 
@@ -254,8 +254,9 @@
     };
 
     boot = {
+      kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v4;
+
       tmp = {useTmpfs = true;};
-      binfmt.emulatedSystems = ["aarch64-linux"];
 
       supportedFilesystems = [
         "xfs"

@@ -90,7 +90,7 @@ in {
           tree #tre-command
           yazi
           squash-folder
-          lrzsz
+          # lrzsz
           devcontainer
           # picotool
           newman

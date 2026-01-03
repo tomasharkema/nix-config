@@ -12,7 +12,7 @@
 
         agenix-rekey
         aide
-        apt-dater
+        #apt-dater
         archivemount
         bandwhich
         bash
@@ -115,7 +115,7 @@
         lm_sensors
         lnav
         lorri
-        lrzsz
+        #lrzsz
         lshw
         mbuffer
         minio-client
@@ -133,7 +133,7 @@
         nfs-utils
         nil
         ninja
-        nix-alien
+        #nix-alien
         # nix-btm
         nix-check-deps
         nix-playground
@@ -158,7 +158,7 @@
         openseachest
         opensoundmeter
         optnix
-        oterm
+        #oterm
         p7zip
         pamix
         pamixer
@@ -189,7 +189,7 @@
         silenthound
         smartmontools
         socat
-        socklog
+        #socklog
         squashfs-tools-ng
         squashfsTools
         ssh-import-id
@@ -244,7 +244,7 @@
         wget
         whatfiles
         wmctrl
-        wol
+        #wol
         wtfutil
         xterm
         xxd

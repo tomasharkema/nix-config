@@ -17,7 +17,7 @@
     (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
     _86Box-with-roms
     _ipmiview
-    antares
+    #antares
     bazaar
     bitwarden-cli
     bitwarden-desktop
@@ -31,7 +31,7 @@
     custom.butler
     custom.denon-control
     custom.gtk-meshtastic-client
-    custom.letters
+    # custom.letters
     custom.librepods
     custom.netsleuth
     custom.remarkable-cups
@@ -137,8 +137,8 @@
     qFlipper
     qdirstat
     qjournalctl
-    qmk
-    qmk_hid
+    #qmk
+    #qmk_hid
     rmview
     rpi-imager
     saleae-logic-2

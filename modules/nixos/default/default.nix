@@ -434,7 +434,39 @@ in {
           picoprobe-udev-rules
         ];
 
-        # extraRules = ''
+        extraRules = ''
+
+          KERNEL=="rtc0", GROUP="audio"
+          KERNEL=="hpet", GROUP="audio"
+
+          # Enable runtime PM for NVIDIA VGA/3D controller devices on driver bind
+          ACTION=="add|bind", SUBSYSTEM=="pci", DRIVERS=="nvidia", \
+              ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", \
+              TEST=="power/control", ATTR{power/control}="auto"
+
+          # Disable runtime PM for NVIDIA VGA/3D controller devices on driver unbind
+          ACTION=="remove|unbind", SUBSYSTEM=="pci", DRIVERS=="nvidia", \
+              ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", \
+              TEST=="power/control", ATTR{power/control}="on"
+
+          # When used with ZRAM, it is better to prefer page out only anonymous pages,
+          # because it ensures that they do not go out of memory, but will be just
+          # compressed. If we do frequent flushing of file pages, that increases the
+          # percentage of page cache misses, which in the long term gives additional
+          # cycles to re-read the same data from disk that was previously in page cache.
+          # This is the reason why it is recommended to use high values from 100 to keep
+          # the page cache as hermetic as possible, because otherwise it is "expensive"
+          # to read data from disk again. At the same time, uncompressing pages from ZRAM
+          # is not as expensive and is usually very fast on modern CPUs.
+          #
+          # Also it's better to disable Zswap, as this may prevent ZRAM from working
+          # properly or keeping a proper count of compressed pages via zramctl.
+          ACTION=="change", KERNEL=="zram0", ATTR{initstate}=="1", SYSCTL{vm.swappiness}="150", \
+              RUN+="/bin/sh -c 'echo N > /sys/module/zswap/parameters/enabled'"
+
+          DEVPATH=="/devices/virtual/misc/cpu_dma_latency", OWNER="root", GROUP="audio", MODE="0660"
+        '';
+
         #   ACTION=="add", SUBSYSTEM=="usb", \
         #     ATTR{idVendor}=="1d50", ATTR{idProduct}=="6170", \
         #     RUN+="${pkgs.kmod}/bin/modprobe -b dln2"
@@ -610,16 +642,17 @@ in {
         enable = lib.mkDefault true;
         wifi.scanRandMacAddress = lib.mkDefault true;
 
-        plugins = with pkgs; [
-          networkmanager-fortisslvpn
-          networkmanager-iodine
-          networkmanager-l2tp
-          networkmanager-openconnect
-          networkmanager-openvpn
-          networkmanager-sstp
-          networkmanager-strongswan
-          networkmanager-vpnc
-        ];
+        plugins = with pkgs;
+          lib.mkIf false [
+            networkmanager-fortisslvpn
+            networkmanager-iodine
+            networkmanager-l2tp
+            networkmanager-openconnect
+            networkmanager-openvpn
+            networkmanager-sstp
+            networkmanager-strongswan
+            networkmanager-vpnc
+          ];
       };
 
       # timeServers = ["192.168.9.49"];
