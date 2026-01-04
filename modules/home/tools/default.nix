@@ -79,7 +79,6 @@ with pkgs; {
         delta
         direnv
         dnsutils
-        dogdns
         dust
         eza
         fd

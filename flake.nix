@@ -837,7 +837,7 @@
     # };
 
     nix-cachyos-kernel = {
-      url = "github:xddxdd/nix-cachyos-kernel/release";
+      url = "github:xddxdd/nix-cachyos-kernel/92094353b5f3526920bc544f15a50cf2c008b40a";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
