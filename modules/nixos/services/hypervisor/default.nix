@@ -249,7 +249,7 @@ in {
         };
 
         qemu = {
-          package = pkgs.qemu_kvm;
+          package = pkgs.qemu_full;
           runAsRoot = true;
           # verbatimConfig = ''
           #   cgroup_device_acl = [
