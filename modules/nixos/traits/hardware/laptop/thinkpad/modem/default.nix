@@ -61,17 +61,17 @@ in {
     };
 
     boot = {
-      kernelModules = [
-        "acpi_call"
-        "xmm7360"
-      ];
-      extraModulePackages = [
-        xmm7360
-      ];
+      # kernelModules = [
+      #   "acpi_call"
+      #   "xmm7360"
+      # ];
+      # extraModulePackages = [
+      #   xmm7360
+      # ];
 
-      blacklistedKernelModules = [
-        "iosm"
-      ];
+      # blacklistedKernelModules = [
+      #   "iosm"
+      # ];
     };
 
     hardware = {

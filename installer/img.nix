@@ -66,7 +66,7 @@ inputs.nixpkgs.lib.nixosSystem {
           ];
 
           networking = {
-            wireless.enable = false;
+            # wireless.enable = false;
 
             networkmanager = {
               enable = true;
