@@ -27,10 +27,6 @@
       firewall.enable = false;
       networkmanager.enable = true;
     };
-    boot = {
-      initrd.systemd.tpm2.enable = false;
-      kernelPackages = lib.mkForce pkgs.linuxPackages_rpi02w;
-    };
 
     power.ups = {
       enable = true;
@@ -55,11 +51,17 @@
     };
 
     boot = {
-      initrd.availableKernelModules = [
-        "usbhid"
-        "usb-storage"
-        "vc4"
-      ];
+      initrd = {
+        availableKernelModules = [
+          "usbhid"
+          "usb-storage"
+          "vc4"
+        ];
+
+        systemd.tpm2.enable = false;
+      };
+      # kernelPackages = lib.mkForce pkgs.linuxPackages_rpi02w;
+
       kernelParams = [
         "rootwait"
         "elevator=deadline"

@@ -76,6 +76,7 @@ in {
 
     hardware = {
       # usb-modeswitch.enable = true;
+      # usbWwan.enable = true;
     };
 
     systemd.services.xmm7360 = {

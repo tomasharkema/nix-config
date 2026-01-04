@@ -182,12 +182,7 @@ in {
 
       systemPackages = with pkgs; [
         kdiskmark
-        config.boot.kernelPackages.iio-utils
-        #qmk
-        #qmk_hid
-        dos2unix
-        via
-        vial
+        # config.boot.kernelPackages.iio-utils
       ];
     };
 
@@ -196,13 +191,13 @@ in {
       libftdi.enable = true;
       libjaylink.enable = true;
       pulseaudio.enable = false;
-      #usb-modeswitch.enable = true;
+      # usb-modeswitch.enable = true;
       opentabletdriver = {
         enable = true;
         daemon.enable = true;
       };
       keyboard.qmk.enable = true;
-      intel-gpu-tools.enable = true;
+      intel-gpu-tools.enable = false;
       acpilight.enable = true;
       sensor = {
         hddtemp.enable = true;
@@ -230,7 +225,7 @@ in {
         package = pkgs.ghidra.withExtensions (p:
           with p; [
             ret-sync
-            #gnudisassembler
+            # gnudisassembler
             findcrypt
             ghidra-delinker-extension
             ghidra-firmware-utils
@@ -260,7 +255,7 @@ in {
       extraModulePackages = with config.boot.kernelPackages; [
         akvcam
         v4l2loopback
-        iio-utils
+        # iio-utils
       ];
       kernelModules = ["v4l2loopback" "akvcam"];
 

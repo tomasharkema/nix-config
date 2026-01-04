@@ -5,10 +5,6 @@
   modulesPath,
   ...
 }: {
-  imports = [
-    inputs.nixos-hardware.nixosModules.raspberry-pi-5
-  ];
-
   config = {
     age.rekey = {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIN/5vuqA+Pnjl5lNUIs6sJapHiuevrHZftMPiP8EdpO root@nixos";
@@ -20,7 +16,7 @@
 
       deviceTree = {
         enable = true;
-        filter = "*-rpi-5*";
+        filter = "*rpi*";
       };
     };
 

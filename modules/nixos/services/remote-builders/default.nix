@@ -44,21 +44,24 @@ in {
         builders-use-substitutes = true
       '';
 
-      buildMachines =
+      buildMachines = let
+        armBuilder = name: {
+          hostName = name;
+          sshKey = config.age.secrets."builder-key".path;
+          sshUser = "builder";
+          system = "aarch64-linux";
+          maxJobs = 4;
+          supportedFeatures = [
+            "kvm"
+            "benchmark"
+            "big-parallel"
+          ];
+          protocol = "ssh-ng";
+        };
+      in
         [
-          {
-            hostName = "raspi5";
-            sshKey = config.age.secrets."builder-key".path;
-            sshUser = "builder";
-            system = "aarch64-linux";
-            maxJobs = 4;
-            supportedFeatures = [
-              "kvm"
-              "benchmark"
-              "big-parallel"
-            ];
-            protocol = "ssh-ng";
-          }
+          (armBuilder "raspi5")
+          (armBuilder "cm5")
         ]
         ++ (
           lib.optionals cfg.client.enable [

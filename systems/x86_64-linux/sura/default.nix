@@ -35,24 +35,22 @@
     gui.fonts.enable = true;
 
     services = {
-      cage = lib.mkIf false {
+      cage = {
         enable = true;
         user = "tomas";
-        # environment = {
-        #   WLR_LIBINPUT_NO_DEVICES = "1";
-        #   SDL_VIDEODRIVER = "wayland";
-        #   MOZ_ENABLE_WAYLAND = "1";
-        # };
+        environment = {
+          WLR_LIBINPUT_NO_DEVICES = "1";
+          SDL_VIDEODRIVER = "wayland";
+          MOZ_ENABLE_WAYLAND = "1";
+        };
         # extraArguments = [
         #   "-s"
         #   "-D"
         #   "-d"
         # ];
 
-        program = pkgs.writeShellScript "radar" ''
-          cd /home/tomas
-          exec ${lib.getExe pkgs.custom.retro-adsb-radar}
-        '';
+        program = lib.getExe pkgs.custom.retro-adsb-radar;
+
         # program = pkgs.writeShellScript "radar" ''
         #   export WLR_LIBINPUT_NO_DEVICES=1
         #   export SDL_VIDEODRIVER=wayland

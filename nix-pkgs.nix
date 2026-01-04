@@ -8,7 +8,7 @@
     environment.systemPackages =
       (lib.optionals pkgs.stdenv.isx86_64 (with pkgs; [
         # nix-doc
-        #wol
+        # wol
         minimodem
       ]))
       ++ (with pkgs; [

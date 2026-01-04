@@ -269,7 +269,6 @@ in {
 
       kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
 
-      swraid.enable = true;
       supportedFilesystems = [
         "xfs"
         "ntfs"
