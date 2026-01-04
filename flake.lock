@@ -143,11 +143,11 @@
     "complete-ng": {
       "flake": false,
       "locked": {
-        "lastModified": 1767450743,
-        "narHash": "sha256-AZqur4wAgk3DJHdOOccaHsKQdyKr/idyZz/oUOJHNQ8=",
+        "lastModified": 1767484257,
+        "narHash": "sha256-+tR6YV0Eq9DJwxQWqt80Z2bNanEXy8WNs5qplQAu9TU=",
         "owner": "joknarf",
         "repo": "complete-ng",
-        "rev": "596961da5d4bcd09a5cbe819ccb12aab81b1d71c",
+        "rev": "8f5012706aa975c464655418c849a1d1e2a0845b",
         "type": "github"
       },
       "original": {
@@ -1832,11 +1832,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1767116409,
-        "narHash": "sha256-5vKw92l1GyTnjoLzEagJy5V5mDFck72LiQWZSOnSicw=",
+        "lastModified": 1767379071,
+        "narHash": "sha256-EgE0pxsrW9jp9YFMkHL9JMXxcqi/OoumPJYwf+Okucw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "cad22e7d996aea55ecab064e84834289143e44a0",
+        "rev": "fb7944c166a3b630f177938e478f0378e64ce108",
         "type": "github"
       },
       "original": {
