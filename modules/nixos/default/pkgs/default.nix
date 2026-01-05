@@ -9,10 +9,9 @@
     environment.systemPackages =
       (with pkgs; [
         # keep-sorted start
-
         agenix-rekey
         aide
-        #apt-dater
+        # apt-dater
         archivemount
         bandwhich
         bash

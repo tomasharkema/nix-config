@@ -184,7 +184,7 @@ in {
         interval = "weekly";
       };
       snapper = lib.mkIf cfg.snapper.enable {
-        # snapshotRootOnBoot = true;
+        snapshotRootOnBoot = true;
         snapshotInterval = "hourly";
         cleanupInterval = "1d";
 
