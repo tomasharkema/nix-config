@@ -91,7 +91,7 @@
       };
       atop = {
         enable = true;
-        netatop.enable = true;
+        # netatop.enable = true;
       };
     };
 
@@ -110,6 +110,26 @@
       sonarr.enable = true;
       jackett.enable = true;
 
+      # syslog-ng = {
+      #   enable = true;
+      #   extraConfig = ''
+      #     source net { udp(ip("0.0.0.0") port(6666)); };
+      #     destination netconsole { file("/var/log/syslog/$HOST-netconsole.log"); };
+      #     log { source(net); destination(netconsole); };
+      #   '';
+      # };
+
+      # rsyslogd = {
+      #   enable = true;
+      #   extraConfig = ''
+      #     module(load="imudp")
+      #     input(type="imudp" port="6666")
+      #     module(load="imtcp")
+      #     input(type="imtcp" port="6666")
+
+      #     $template remote-incoming-logs,"/var/log/syslog/%HOSTNAME%/%fromhost-ip%-%$YEAR%-%$MONTH%-%$DAY%.log" *.* ?remote-incoming-logs & ~
+      #   '';
+      # };
       # transmission = {
       #   enable = true;
       #   openRPCPort = true;
@@ -353,7 +373,7 @@
         enable = false;
         allowPing = true;
         allowedTCPPorts = [1883 32400 8443];
-        allowedUDPPorts = [1883 32400 8443];
+        allowedUDPPorts = [1883 32400 8443 6666 6665];
       };
 
       # nftables.enable = false;
@@ -473,7 +493,7 @@
       nvidia = {
         nvidiaSettings = lib.mkForce false;
         nvidiaPersistenced = lib.mkForce true;
-        # open = false;
+        open = true;
       };
     };
 
@@ -543,7 +563,7 @@
 
       kernelParams = [
         "console=tty0"
-        "console=ttyS0,115200n8"
+        "console=ttyS0,115200n8r"
         # "console=ttyS1,115200n8"
         # "earlyprintk=ttyS0"
         # "intremap=no_x2apic_optout"
@@ -567,9 +587,9 @@
         # "pci=nomsi"
       ];
 
-      blacklistedKernelModules = ["iTCO_wdt"];
+      # blacklistedKernelModules = ["iTCO_wdt"];
 
-      #kernelPackages = lib.mkForce pkgs.linuxPackages_6_17;
+      # kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-server-lto;
 
       recovery = {
         enable = true;

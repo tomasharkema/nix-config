@@ -41,8 +41,8 @@ in {
       tmp = {
         useTmpfs = true;
       };
-
-      kernelPackages = pkgs.linuxPackages_6_12;
+      kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-server-lto;
+      # kernelPackages = pkgs.linuxPackages_6_12;
     };
   };
 }

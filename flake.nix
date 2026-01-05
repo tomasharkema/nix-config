@@ -879,7 +879,7 @@
     };
 
     nixpkgs-esp-dev = {
-      url = "github:mirrexagon/nixpkgs-esp-dev";
+      url = "github:mirrexagon/nixpkgs-esp-dev/aee1e832fbfef37e14118f83a56def931f2b082f";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
