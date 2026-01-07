@@ -68,6 +68,7 @@
     fldigi
     fllog
     font-manager
+    fractal
     gdm-settings
     ghex
     glabels-qt
@@ -86,19 +87,6 @@
     imsprog
     inspector
     jetbrains-toolbox
-    # fractal
-    # gamehub
-    # gphotos-sync
-    # nix-software-center
-    # openloco
-    # pkgs.custom.git-butler
-    # pkgs.wolfram-engine
-    # rtfm
-    # solana-cli
-    # sublime-merge
-    # sublime4
-    # ulauncher
-    # ventoy-full
     kdePackages.kdenlive
     kicad
     ktailctl
@@ -119,6 +107,7 @@
     onioncircuits
     onionshare-gui
     opendrop
+    openloco
     openra
     openrct2
     openrisk
@@ -141,6 +130,7 @@
     qmk_hid
     rmview
     rpi-imager
+    rtfm
     saleae-logic-2
     satellite
     sdrpp
@@ -149,8 +139,10 @@
     serial-studio
     smuview
     solaar
+    solana-cli
     spotify
     sqlitebrowser
+    sublime-merge
     sway-launcher-desktop
     synology-drive-client
     thonny
@@ -158,6 +150,7 @@
     transmission-remote-gtk
     tremotesf
     typesetter
+    ulauncher
     usbview
     vial
     vlc
@@ -165,6 +158,7 @@
     vte-gtk4
     wine-wayland
     wl-clipboard
+    wolfram-engine
     xdg-utils
     xdgmenumaker
     xdiskusage

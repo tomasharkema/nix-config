@@ -279,7 +279,7 @@ in {
 
       kernelParams = [
         "console=tty1"
-        "console=ttyS2,115200"
+        "console=ttyS2,115200n8r"
         # "earlyprintk=ttyS2"
         # "rootdelay=300"
         "panic=1"
@@ -296,9 +296,10 @@ in {
         "ipmi_watchdog.preaction=pre_int"
         "ipmi_watchdog.timeout=180"
       ];
+
       modprobeConfig.enable = true;
 
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      # binfmt.emulatedSystems = ["aarch64-linux"];
 
       recovery = {
         sign = true;

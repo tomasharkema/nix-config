@@ -117,20 +117,20 @@ in {
 
         wireplumber = {
           enable = true;
-          extraConfig = {
-            "monitor.bluez.properties" = {
-              "bluez5.dummy-avrcp-player" = true;
-            };
-            bluetoothEnhancements = {
-              "monitor.bluez.properties" = {
-                "bluez5.dummy-avrcp-player" = true;
-                "bluez5.enable-sbc-xq" = true;
-                "bluez5.enable-msbc" = true;
-                "bluez5.enable-hw-volume" = true;
-                "bluez5.roles" = ["hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag"];
-              };
-            };
-          };
+          # extraConfig = {
+          #   "monitor.bluez.properties" = {
+          #     "bluez5.dummy-avrcp-player" = true;
+          #   };
+          #   bluetoothEnhancements = {
+          #     "monitor.bluez.properties" = {
+          #       "bluez5.dummy-avrcp-player" = true;
+          #       "bluez5.enable-sbc-xq" = true;
+          #       "bluez5.enable-msbc" = true;
+          #       "bluez5.enable-hw-volume" = true;
+          #       "bluez5.roles" = ["hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag"];
+          #     };
+          #   };
+          # };
         };
         lowLatency = {
           # enable this module
@@ -148,25 +148,22 @@ in {
 
     security.polkit = {
       enable = true;
-      extraConfig =
-        lib.mkIf false
-        # cfg.rdp.enable
-        ''
-          polkit.addRule(function(action, subject) {
-            if (
-              subject.isInGroup("users")
-                && (
-                  action.id == "org.freedesktop.login1.reboot" ||
-                  action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-                  action.id == "org.freedesktop.login1.power-off" ||
-                  action.id == "org.freedesktop.login1.power-off-multiple-sessions"
-                )
+      extraConfig = ''
+        polkit.addRule(function(action, subject) {
+          if (
+            subject.isInGroup("users")
+              && (
+                action.id == "org.freedesktop.login1.reboot" ||
+                action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+                action.id == "org.freedesktop.login1.power-off" ||
+                action.id == "org.freedesktop.login1.power-off-multiple-sessions"
               )
-            {
-              return polkit.Result.YES;
-            }
-          })
-        '';
+            )
+          {
+            return polkit.Result.YES;
+          }
+        })
+      '';
     };
 
     environment = {
