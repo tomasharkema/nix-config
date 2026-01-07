@@ -305,7 +305,7 @@
       };
 
       firefox-syncserver = {
-        #enable = true;
+        enable = true;
         secrets = config.age.secrets.firefox.path;
 
         database = {
@@ -322,7 +322,7 @@
       };
 
       pocket-id = {
-        #enable = true;
+        enable = true;
         settings = {
           APP_URL = "https://id.harke.ma";
           TRUST_PROXY = true;
@@ -334,7 +334,7 @@
       #   acceleration = "cuda";
       # };
       llama-cpp = {
-        # enable = true;
+        enable = false; # true
         port = 11434;
         model = pkgs.fetchurl {
           url = "https://huggingface.co/bartowski/Mistral-Nemo-Instruct-2407-GGUF/resolve/main/Mistral-Nemo-Instruct-2407-Q4_K_S.gguf";
@@ -343,15 +343,15 @@
       };
 
       cloudflared = {
-        #enable = true;
+        enable = true;
         tunnels = {
           "69bc7708-5c7b-422d-b283-9199354f431f" = {
             credentialsFile = config.age.secrets.cloudflared.path;
             default = "http_status:404";
             ingress = {
-              #       "id.harke.ma" = {
-              #         service = "http://localhost:1411";
-              #       };
+              "id.harke.ma" = {
+                service = "http://localhost:1411";
+              };
             };
           };
         };
