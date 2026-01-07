@@ -17,7 +17,8 @@
       systemPackages = with pkgs; [
         snmpcheck
         davinci-resolve
-        ntfs2btrfs
+
+        esp-idf-full
         # glxinfo
         # apfsprogs
         cifs-utils
@@ -25,7 +26,6 @@
         libratbag
         heimdall
         heimdall-gui
-        # esp-idf-full
       ];
     };
 

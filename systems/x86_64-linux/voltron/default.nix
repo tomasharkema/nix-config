@@ -39,11 +39,14 @@
 
     environment = {
       systemPackages = with pkgs; [
-        # gt
+        gt
         # gnomeExtensions.power-tracker
         # custom.swift
-        # powerstat
-        # powerjoular
+        powerstat
+
+        powerjoular
+        esp-idf-full
+
         libimobiledevice
         intel-gpu-tools
         nvramtool
@@ -51,7 +54,7 @@
         # ccid
         # gnupg
         custom.distrib-dl
-        # davinci-resolve
+        davinci-resolve
         # keybase-gui
         # calibre
         # glxinfo
