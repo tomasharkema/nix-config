@@ -17,13 +17,14 @@
     (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
     _86Box-with-roms
     _ipmiview
-    #antares
+    # antares
     bazaar
     bitwarden-cli
     bitwarden-desktop
     bitwarden-menu
     blueberry
     boxbuddy
+    buttermanager
     chromium
     clutter
     coppwr
