@@ -137,8 +137,8 @@
     qFlipper
     qdirstat
     qjournalctl
-    #qmk
-    #qmk_hid
+    qmk
+    qmk_hid
     rmview
     rpi-imager
     saleae-logic-2
