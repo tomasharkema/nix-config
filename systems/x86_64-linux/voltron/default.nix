@@ -263,7 +263,7 @@
     # };
 
     programs = {
-      adb.enable = true;
+      # adb.enable = true;
 
       captive-browser = {
         enable = true;

@@ -183,7 +183,7 @@
         enable = true;
         brightnessKeys = {enable = true;};
       };
-      adb.enable = true;
+      # adb.enable = true;
       wireshark = {
         enable = true;
         usbmon.enable = true;
