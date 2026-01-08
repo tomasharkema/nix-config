@@ -273,7 +273,7 @@ in {
         useTmpfs = true;
       };
 
-      kernelPackages = lib.mkForce pkgs.linuxPackages-cachyos-lts-lto;
+      kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
 
       supportedFilesystems = [
         "xfs"
