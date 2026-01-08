@@ -127,10 +127,10 @@
       remote-builders.server.enable = true;
       watchdogd.enable = true;
 
-      beesd.filesystems = lib.mkIf false {
+      beesd.filesystems = {
         root = {
-          spec = "UUID=f3558990-77b0-4113-b45c-3d2da3f46c14";
-          hashTableSizeMB = 2048;
+          spec = "UUID=af91ab61-d03f-45ea-a4a1-2faf7acee550";
+          hashTableSizeMB = 4096;
           verbosity = "crit";
           extraOptions = ["--loadavg-target" "2.0"];
         };
