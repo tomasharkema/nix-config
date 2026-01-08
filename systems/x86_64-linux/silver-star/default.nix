@@ -84,6 +84,12 @@
 
     # system.includeBuildDependencies = true;
 
+    system = {
+      etc.overlay.enable = true;
+      nixos-init.enable = true;
+    };
+    services.userborn.enable = true;
+
     programs = {
       nh = {
         clean.enable = true;
@@ -108,7 +114,7 @@
       # "nix-private-cache".enable = true;
       zram-generator.enable = false;
       sonarr.enable = true;
-      jackett.enable = true;
+      # jackett.enable = true;
 
       # syslog-ng = {
       #   enable = true;
