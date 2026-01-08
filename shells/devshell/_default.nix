@@ -185,7 +185,7 @@ in
       write-script
       zsh
       agenix # .packages.${system}.default
-      nixfmt-rfc-style
+      nixfmt
       # cachix
       deadnix
       test-installer
@@ -281,7 +281,7 @@ in
 #         write-script
 #         zsh
 #         agenix # .packages.${system}.default
-#         nixfmt-rfc-style
+#         nixfmt
 #         # cachix
 #         deadnix
 #         hydra-cli

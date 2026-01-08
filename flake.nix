@@ -304,7 +304,6 @@
 
       checks = inputs.self.images.installer.iso;
 
-      # formatter = inputs.nixpkgs.nixfmt-rfc-style;
       outputs-builder = channels: let
         pkgs = channels.nixpkgs;
         system = pkgs.system;

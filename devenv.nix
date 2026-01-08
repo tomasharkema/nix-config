@@ -248,7 +248,7 @@ in {
     nix-prefetch-scripts
     nix-tree
     # nixd
-    nixfmt-rfc-style
+    nixfmt
     nixpkgs-fmt
     nixpkgs-lint
     nurl

@@ -58,7 +58,7 @@
         nix-visualize
         rustup
         nixd
-        nixfmt-rfc-style
+        nixfmt
         nixos-option
         nixos-shell
         nixpkgs-fmt

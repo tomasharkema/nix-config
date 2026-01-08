@@ -36,7 +36,7 @@ in {
         nix-prefetch-scripts
         # nix-serve
         nix-tree
-        nixfmt-rfc-style
+        nixfmt
 
         nixos-shell
         nixpkgs-lint
