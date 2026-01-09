@@ -7,8 +7,8 @@
   config = {
     environment.systemPackages =
       (lib.optionals pkgs.stdenv.isx86_64 (with pkgs; [
-        # nix-doc
-        # wol
+        nix-doc
+        wol
         minimodem
       ]))
       ++ (with pkgs; [
