@@ -304,63 +304,58 @@
 
       checks = inputs.self.images.installer.iso;
 
-      outputs-builder = channels: let
-        pkgs = channels.nixpkgs;
-        system = pkgs.system;
-      in
-        # cachix-deploy-lib = inputs.cachix-deploy-flake.lib channels.nixpkgs;
-        {
-          formatter = channels.nixpkgs.alejandra;
+      outputs-builder = channels: {
+        formatter = channels.nixpkgs.alejandra;
 
-          # checks = let
-          #   nixosMachines = lib.mapAttrs' (
-          #     name: config: lib.nameValuePair "nixos-${name}" config.config.system.build.toplevel
-          #   ) ((lib.filterAttrs (_: config: config.pkgs.system == system)) inputs.self.nixosConfigurations);
-          #   packages = lib.mapAttrs' (n: lib.nameValuePair "package-${n}") (
-          #     inputs.self.packages."${system}"
-          #   );
-          # in
-          #   nixosMachines // packages;
+        # checks = let
+        #   nixosMachines = lib.mapAttrs' (
+        #     name: config: lib.nameValuePair "nixos-${name}" config.config.system.build.toplevel
+        #   ) ((lib.filterAttrs (_: config: config.pkgs.system == system)) inputs.self.nixosConfigurations);
+        #   packages = lib.mapAttrs' (n: lib.nameValuePair "package-${n}") (
+        #     inputs.self.packages."${system}"
+        #   );
+        # in
+        #   nixosMachines // packages;
 
-          # topology = import inputs.nix-topology {
-          #   inherit pkgs;
-          #   modules = [
-          #     # Your own file to define global topology. Works in principle like a nixos module but uses different options.
-          #     # ./topology.nix
-          #     # Inline module to inform topology of your existing NixOS hosts.
-          #     {nixosConfigurations = inputs.self.nixosConfigurations;}
-          #   ];
-          # };
+        # topology = import inputs.nix-topology {
+        #   inherit pkgs;
+        #   modules = [
+        #     # Your own file to define global topology. Works in principle like a nixos module but uses different options.
+        #     # ./topology.nix
+        #     # Inline module to inform topology of your existing NixOS hosts.
+        #     {nixosConfigurations = inputs.self.nixosConfigurations;}
+        #   ];
+        # };
 
-          installer = import ./installer {
-            inherit channels;
-            inherit inputs;
-          };
-
-          # checks = with inputs; {
-          # nixpkgs-lint =
-          # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
-
-          # lint = self.packages.${channels.nixpkgs.system}.run-checks;
-          # };
-
-          # packages = {
-          #   nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
-          #   nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
-          # };
-          # defaultPackage = cachix-deploy-lib.spec {
-          #   agents = {
-          #     blue-fire = inputs.self.nixosConfigurations.blue-fire.config.system.build.toplevel;
-          #     blue-fire-slim = inputs.self.nixosConfigurations.blue-fire-slim.config.system.build.toplevel;
-          #     enzian = inputs.self.nixosConfigurations.enzian.config.system.build.toplevel;
-          #     euro-mir-2 = inputs.self.nixosConfigurations.euro-mir-2.config.system.build.toplevel;
-          #     pegasus = inputs.self.nixosConfigurations.pegasus.config.system.build.toplevel;
-          #     baaa-express = inputs.self.nixosConfigurations.baaa-express.config.system.build.toplevel;
-          #     darwin-builder = inputs.self.nixosConfigurations.darwin-builder.config.system.build.toplevel;
-          #     euro-mir-vm = inputs.self.nixosConfigurations.euro-mir-vm.config.system.build.toplevel;
-          #   };
-          # };
+        installer = import ./installer {
+          inherit channels;
+          inherit inputs;
         };
+
+        # checks = with inputs; {
+        # nixpkgs-lint =
+        # inputs.nixpkgs.legacyPackages.${builtins.currentSystem}.nixpkgs-lint ./.;
+
+        # lint = self.packages.${channels.nixpkgs.system}.run-checks;
+        # };
+
+        # packages = {
+        #   nixos-conf-editor = inputs.nixos-conf-editor.packages.${channels.nixpkgs.system}.nixos-conf-editor;
+        #   nix-software-center = inputs.nix-software-center.packages.${channels.nixpkgs.system}.nix-software-center;
+        # };
+        # defaultPackage = cachix-deploy-lib.spec {
+        #   agents = {
+        #     blue-fire = inputs.self.nixosConfigurations.blue-fire.config.system.build.toplevel;
+        #     blue-fire-slim = inputs.self.nixosConfigurations.blue-fire-slim.config.system.build.toplevel;
+        #     enzian = inputs.self.nixosConfigurations.enzian.config.system.build.toplevel;
+        #     euro-mir-2 = inputs.self.nixosConfigurations.euro-mir-2.config.system.build.toplevel;
+        #     pegasus = inputs.self.nixosConfigurations.pegasus.config.system.build.toplevel;
+        #     baaa-express = inputs.self.nixosConfigurations.baaa-express.config.system.build.toplevel;
+        #     darwin-builder = inputs.self.nixosConfigurations.darwin-builder.config.system.build.toplevel;
+        #     euro-mir-vm = inputs.self.nixosConfigurations.euro-mir-vm.config.system.build.toplevel;
+        #   };
+        # };
+      };
     };
 
   nixConfig = {
@@ -839,7 +834,7 @@
     # };
 
     nix-cachyos-kernel = {
-      url = "github:xddxdd/nix-cachyos-kernel/92094353b5f3526920bc544f15a50cf2c008b40a";
+      url = "github:xddxdd/nix-cachyos-kernel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
