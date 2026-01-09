@@ -85,7 +85,6 @@
 
     hardware = {
       # mcelog.enable = true;
-      usb-modeswitch.enable = false;
 
       nvidia = {
         # forceFullCompositionPipeline = true;
@@ -165,11 +164,9 @@
       firewalld.enable = true;
       # dnsmasq.enable = true;
       kmscon.enable = true;
-      ratbagd.enable = true;
       # comin.enable = false;
       abrt.enable = true;
       # remote-builders.client.enable = true;
-      usbmuxd.enable = true;
       # power-profiles-daemon.enable = lib.mkForce true;
 
       clamav.daemon.settings.MaxThreads = 4;
@@ -270,12 +267,6 @@
       captive-browser = {
         enable = true;
         interface = "wlp4s0";
-      };
-
-      wireshark = {
-        enable = true;
-        usbmon.enable = true;
-        dumpcap.enable = true;
       };
     };
 

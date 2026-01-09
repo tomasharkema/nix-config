@@ -62,6 +62,9 @@ in {
     services = {
       # localtimed.enable = true;
 
+      ratbagd.enable = true;
+      usbmuxd.enable = true;
+
       udev = {
         packages = with pkgs; [
           saleae-logic-2
@@ -179,7 +182,7 @@ in {
 
       systemPackages = with pkgs; [
         kdiskmark
-        # config.boot.kernelPackages.iio-utils
+        config.boot.kernelPackages.iio-utils
       ];
     };
 
@@ -188,7 +191,7 @@ in {
       libftdi.enable = true;
       libjaylink.enable = true;
       pulseaudio.enable = false;
-      # usb-modeswitch.enable = true;
+      usb-modeswitch.enable = true;
       opentabletdriver = {
         enable = true;
         daemon.enable = true;
@@ -237,7 +240,11 @@ in {
       };
       mtr.enable = true;
       dconf.enable = true;
-
+      wireshark = {
+        enable = true;
+        usbmon.enable = true;
+        dumpcap.enable = true;
+      };
       #chromium = {
       #  enable = true;
       #};
@@ -252,7 +259,7 @@ in {
       extraModulePackages = with config.boot.kernelPackages; [
         akvcam
         v4l2loopback
-        # iio-utils
+        iio-utils
       ];
       kernelModules = ["v4l2loopback" "akvcam"];
 
