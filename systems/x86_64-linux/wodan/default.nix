@@ -120,7 +120,7 @@
         enable = true;
         enableUdevRules = true;
       };
-
+      firewalld.enable = lib.mkForce false;
       kmscon.enable = true;
       syncplay.enable = true;
       ratbagd.enable = true;
