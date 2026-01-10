@@ -315,7 +315,7 @@
       # modprobeConfig.enable = true;
       # supportedFilesystems = ["ext2" "ext3" "ext4"];
       kernelParams = [
-        "mitigations=off"
+        # "mitigations=off"
         # "efi_pstore.pstore_disable=0"
         # "pstore.backend=efi"
       ];

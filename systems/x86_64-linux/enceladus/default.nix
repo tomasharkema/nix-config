@@ -220,7 +220,6 @@
       kernelParams = [
         "console=ttyACM0,115200"
         "console=tty1"
-        #"iomem=relaxed"
       ];
       modprobeConfig.enable = true;
       extraModprobeConfig = ''

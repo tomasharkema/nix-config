@@ -166,7 +166,7 @@
     xdotool
     xpipe
     yelp
-    zed-editor
+    # zed-editor
     zenmap
     zotero
     # keep-sorted end

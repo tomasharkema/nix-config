@@ -378,11 +378,19 @@
       firewall = {
         enable = false;
         allowPing = true;
-        allowedTCPPorts = [1883 32400 8443];
-        allowedUDPPorts = [1883 32400 8443 6666 6665];
+        allowedTCPPorts = [
+          1883
+          32400
+          8443
+        ];
+        allowedUDPPorts = [
+          1883
+          32400
+          8443
+          6666
+          6665
+        ];
       };
-
-      # nftables.enable = false;
 
       bridges.br0 = {
         interfaces = ["eno1"];
@@ -471,7 +479,7 @@
       ipmicfg
       ipmiutil
       tremotesf
-      # custom.racadm
+      redfishtool
       # icingaweb2
     ];
 
@@ -530,7 +538,7 @@
           autoStart = true;
         };
 
-        fastapi-dls = lib.mkIf false {
+        fastapi-dls = {
           image = "collinwebdesigns/fastapi-dls";
 
           volumes = [
@@ -574,13 +582,10 @@
         # "earlyprintk=ttyS0"
         # "intremap=no_x2apic_optout"
         # "nox2apic"
-        "iomem=relaxed"
+
         "intel_iommu=on"
         "iommu=pt"
         # "ipmi_watchdog.timeout=180"
-        "iomem=relaxed"
-        "mitigations=off"
-
         "rootdelay=300"
         "panic=1"
         "boot.panic_on_fail"
@@ -595,7 +600,7 @@
 
       # blacklistedKernelModules = ["iTCO_wdt"];
 
-      # kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-server-lto;
+      kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-server-lto;
 
       recovery = {
         enable = true;
