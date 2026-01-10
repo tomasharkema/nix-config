@@ -23,6 +23,7 @@
     bitwarden-desktop
     bitwarden-menu
     blueberry
+    bottles
     boxbuddy
     buttermanager
     chromium
