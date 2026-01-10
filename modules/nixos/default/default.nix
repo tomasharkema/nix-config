@@ -146,7 +146,7 @@ in {
         # useZram = lib.mkDefault true;
       };
 
-      kernelPackages = lib.mkDefault pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v4;
+      kernelPackages = lib.mkDefault pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v4;
 
       kernelModules = [
         # "wireguard"
