@@ -220,19 +220,19 @@ in {
       };
       # plotinus.enable = true;
 
-      ghidra = {
-        enable = true;
-        package = pkgs.ghidra.withExtensions (p:
-          with p; [
-            ret-sync
-            # gnudisassembler
-            findcrypt
-            ghidra-delinker-extension
-            ghidra-firmware-utils
-
-            ghidra-golanganalyzerextension
-          ]);
-      };
+      # ghidra = {
+      #   enable = true;
+      #   package = pkgs.ghidra.withExtensions (p:
+      #     with p; [
+      #       ret-sync
+      #       # gnudisassembler
+      #       findcrypt
+      #       ghidra-delinker-extension
+      #       ghidra-firmware-utils
+      #
+      #       ghidra-golanganalyzerextension
+      #     ]);
+      # };
 
       oddjobd.enable = true;
       ssh = {

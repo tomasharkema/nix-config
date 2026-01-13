@@ -103,7 +103,7 @@ in {
         ];
       };
 
-      crashDump.enable = pkgs.stdenv.isx86_64; # true;
+      # crashDump.enable = pkgs.stdenv.isx86_64; # true;
 
       initrd = {
         compressor = "zstd";

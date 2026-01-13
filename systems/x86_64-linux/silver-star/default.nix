@@ -571,7 +571,7 @@
         useTmpfs = true;
       };
 
-      crashDump = {enable = true;};
+      # crashDump.enable = true;
 
       # binfmt.emulatedSystems = ["aarch64-linux"];
 
