@@ -14,10 +14,12 @@
 
   pks = with pkgs; [
     # keep-sorted start
+
+    # antares
+
     (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
     _86Box-with-roms
     _ipmiview
-    # antares
     bazaar
     bitwarden-cli
     bitwarden-desktop
@@ -32,8 +34,9 @@
     custom.actioneer
     custom.butler
     custom.denon-control
+    custom.distrib-dl
     custom.gtk-meshtastic-client
-    # custom.letters
+    custom.letters
     custom.librepods
     custom.netsleuth
     custom.remarkable-cups
@@ -63,6 +66,7 @@
     doublecmd
     dsview
     effitask
+    esp-idf-full
     esptool
     f1viewer
     filezilla
@@ -81,13 +85,17 @@
     gphoto2
     gphoto2fs
     grsync
+    gt
     gtk-engine-murrine
     handbrake
     helvum
     httpie-desktop
+    i2c-tools
     ida-free
     imsprog
     inspector
+    intel-gpu-tools
+    inxi
     jetbrains-toolbox
     kdePackages.kdenlive
     kicad
@@ -95,8 +103,11 @@
     labelle
     libGL
     libGLU
+    libimobiledevice
+    libratbag
     libsmbios
     meld
+    mesa-demos
     mission-center
     mixxx
     netpeek
@@ -106,6 +117,7 @@
     nrfconnect
     nrfconnect-bluetooth-low-energy
     nrfutil
+    nvramtool
     onioncircuits
     onionshare-gui
     opendrop
@@ -118,10 +130,13 @@
     pavucontrol
     pdfarranger
     pika-backup
+    piper
     platformio
     plex-desktop
     plexamp
     pods
+    powerjoular
+    powerstat
     powertop
     pwvucontrol
     python312Packages.pyclip

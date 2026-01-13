@@ -28,42 +28,9 @@
       snapper.enable = true; # false;
       swap = {
         size = "32G";
-        # resume.enable = false;
+
         resume.enable = true;
       };
-    };
-
-    # programs.gnupg.agent = {
-    #   enable = true;
-    # };
-
-    environment = {
-      systemPackages = with pkgs; [
-        gt
-        # gnomeExtensions.power-tracker
-        # custom.swift
-        powerstat
-
-        powerjoular
-        esp-idf-full
-
-        libimobiledevice
-        intel-gpu-tools
-        nvramtool
-        # libusb1
-        # ccid
-        # gnupg
-        custom.distrib-dl
-        davinci-resolve
-        # keybase-gui
-        # calibre
-        # glxinfo
-        inxi
-        pwvucontrol
-        i2c-tools
-        piper
-        libratbag
-      ];
     };
 
     gui = {
@@ -100,11 +67,8 @@
 
         powerManagement = {
           enable = true;
-          # finegrained = true;
         };
       };
-
-      # fancontrol.enable = true;
     };
 
     virtualisation.waydroid.enable = true;
@@ -277,6 +241,7 @@
       tmp = {
         useTmpfs = true;
       };
+      kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v4;
 
       recovery = {
         enable = true;
@@ -285,14 +250,14 @@
         netboot.enable = true;
       };
 
-      binfmt.emulatedSystems = ["aarch64-linux"];
+      #binfmt.emulatedSystems = ["aarch64-linux"];
 
-      extraModulePackages = [
-        # config.system.build.cc1101-driver
-      ];
+      #extraModulePackages = [
+      # config.system.build.cc1101-driver
+      #];
       # modprobeConfig.enable = true;
 
-      supportedFilesystems = ["ext2" "ext3" "ext4"];
+      #supportedFilesystems = ["ext2" "ext3" "ext4"];
 
       kernelParams = [
         "i915.enable_gvt=1"
@@ -306,19 +271,6 @@
         # "mitigations=off"
       ];
 
-      # blacklists
-      # modprobeConfig = {
-      #   enable = true;
-      # };
-      # extraModprobeConfig = ''
-      #   options psmouse synaptics_intertouch=1
-      # '';
-      blacklistedKernelModules = [
-        "intel_oc_wdt"
-        "iTCO_wdt"
-        "nouveau"
-      ];
-
       kernelModules = [
         "coretemp"
         # "psmouse"
@@ -329,7 +281,7 @@
         # "vfio_pci"
         # "vfio"
         # "vfio_iommu_type1"
-        "kvm-intel"
+        # "kvm-intel"
         # "nvidiadb"
         # "watchdog"
         # "usbmon"
