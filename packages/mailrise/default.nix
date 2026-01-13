@@ -11,14 +11,15 @@ python3Packages.buildPythonApplication rec {
   src = fetchFromGitHub {
     owner = "YoRyan";
     repo = "mailrise";
-    rev = "main";
+    rev = "60d485e2ae22ae09ddeac25565c48e3455a8c1a7";
     hash = "sha256-CG/tYbzy1E6eQ5fW9htqLyvzc32GzlSm1UVn3nuteIg=";
   };
 
   pyproject = true;
-  build-system = [python3Packages.setuptools];
-
-  doCheck = false;
+  build-system = with python3Packages; [
+    setuptools
+    wheel
+  ];
 
   propagatedBuildInputs = with python3Packages; [
     setuptools
@@ -30,5 +31,9 @@ python3Packages.buildPythonApplication rec {
     apprise
   ];
 
-  buildInputs = with python3Packages; [aiosmtpd pyyaml apprise];
+  buildInputs = with python3Packages; [
+    aiosmtpd
+    pyyaml
+    apprise
+  ];
 }
