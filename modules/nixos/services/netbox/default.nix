@@ -10,7 +10,7 @@ in {
     enable = lib.mkEnableOption "enable netbox-service";
   };
 
-  config = lib.mkIf (cfg.enable && false) {
+  config = lib.mkIf cfg.enable {
     age.secrets.netbox = {
       rekeyFile = ./netbox.age;
       group = "netbox";
@@ -19,8 +19,10 @@ in {
 
     systemd.services.netbox = {serviceConfig = {TimeoutSec = 900;};};
 
-    users.users.nginx.extraGroups = ["netbox"];
-    users.users.netbox.extraGroups = ["nginx"];
+    users.users = {
+      nginx.extraGroups = ["netbox"];
+      netbox.extraGroups = ["nginx"];
+    };
 
     services = {
       netbox = {
