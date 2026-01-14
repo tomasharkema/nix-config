@@ -225,14 +225,12 @@
     #   };
     # };
 
-    programs = {
-      # adb.enable = true;
-
-      captive-browser = {
-        enable = true;
-        interface = "wlp4s0";
-      };
-    };
+    # programs = {
+    #   captive-browser = {
+    #     enable = true;
+    #     interface = "wlp4s0";
+    #   };
+    # };
 
     # system.includeBuildDependencies = true;
     # system.build.cc1101-driver = pkgs.custom.cc1101-driver.override {kernel = config.boot.kernelPackages.kernel;};
@@ -241,7 +239,7 @@
       tmp = {
         useTmpfs = true;
       };
-      kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v4;
+      kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
 
       recovery = {
         enable = true;
