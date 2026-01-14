@@ -17,12 +17,13 @@
         tsnsrv.rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
         cloudflared.rekeyFile = ./cloudflared.age;
         grafana-ntfy.rekeyFile = ./grafana-ntfy.age;
-        #        "healthchecks" = {
-        #         rekeyFile = ./healthchecks.age;
-        #        group = "healthchecks";
-        #       owner = "healthchecks";
-        #    };
+        "healthchecks" = {
+          rekeyFile = ./healthchecks.age;
+          group = "healthchecks";
+          owner = "healthchecks";
+        };
         firefox.rekeyFile = ./firefox.age;
+        pocket-id.rekeyFile = ./pocket-id.age;
       };
     };
 
@@ -333,6 +334,8 @@
           APP_URL = "https://id.harke.ma";
           TRUST_PROXY = true;
         };
+
+        environmentFile = config.age.secrets.pocket-id.path;
       };
 
       # ollama = {
