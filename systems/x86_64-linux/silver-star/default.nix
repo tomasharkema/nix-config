@@ -154,8 +154,11 @@
         enable = true;
         host = "0.0.0.0";
         openFirewall = true;
-
+        accelerationDevices = [
+          "/dev/dri/renderD128"
+        ];
         machine-learning = {
+          enable = true;
           environment = {
             IMMICH_HOST = lib.mkForce "0.0.0.0";
           };
