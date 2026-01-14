@@ -48,11 +48,13 @@ in {
         systemd-networkd-wait-online.enable = lib.mkForce false;
       };
 
-      watchdog = {
-        rebootTime = "5m";
-        # device = "/dev/watchdog";
-        runtimeTime = "1m";
-        kexecTime = "5m";
+      settings.Manager = {
+        RebootWatchdogSec = "5m";
+        # default /dev/watchdog0
+        # WatchdogDevice = "/dev/watchdog";
+        RuntimeWatchdogSec = "1m";
+        RuntimeWatchdogPreSec = "30s";
+        KExecWatchdogSec = "5m";
       };
     };
 

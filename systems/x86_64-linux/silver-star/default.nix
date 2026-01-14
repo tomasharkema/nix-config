@@ -272,11 +272,6 @@
           };
         };
       };
-
-      watchdogd = {
-        enable = true;
-      };
-
       remote-builders.server.enable = true;
 
       beesd.filesystems = lib.mkIf false {
@@ -567,7 +562,7 @@
 
         "intel_iommu=on"
         "iommu=pt"
-        # "ipmi_watchdog.timeout=180"
+        "ipmi_watchdog.timeout=180"
         "rootdelay=300"
         "panic=1"
         "boot.panic_on_fail"
@@ -580,7 +575,7 @@
         # "pci=nomsi"
       ];
 
-      # blacklistedKernelModules = ["iTCO_wdt"];
+      blacklistedKernelModules = ["iTCO_wdt"];
 
       kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-server-lto;
 

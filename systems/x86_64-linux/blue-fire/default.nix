@@ -90,9 +90,7 @@ in {
       avahi.allowInterfaces = ["br0"];
       vscode-server.enable = true;
       xserver.videoDrivers = ["nvidia"];
-      watchdogd = {
-        enable = true;
-      };
+
       rpcbind.enable = true;
       tsnsrv = {
         enable = true;
@@ -273,7 +271,7 @@ in {
         useTmpfs = true;
       };
 
-      kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
+      kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
 
       supportedFilesystems = [
         "xfs"
@@ -284,7 +282,7 @@ in {
       ];
 
       kernelParams = [
-        "console=tty0"
+        "console=tty1"
         "console=ttyS2,115200n8r"
         # "earlyprintk=ttyS2"
         # "rootdelay=300"
