@@ -51,7 +51,7 @@ in {
       settings.Manager = {
         RebootWatchdogSec = "5m";
         # default /dev/watchdog0
-        # WatchdogDevice = "/dev/watchdog";
+        WatchdogDevice = "/dev/watchdog";
         RuntimeWatchdogSec = "1m";
         RuntimeWatchdogPreSec = "30s";
         KExecWatchdogSec = "5m";
