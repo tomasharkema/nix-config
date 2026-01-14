@@ -29,7 +29,7 @@
 
     facter = {
       reportPath = ./facter.json;
-      detected.graphics.enable = false;
+      # detected.graphics.enable=;
     };
 
     disks.btrfs = {
@@ -110,12 +110,11 @@
         # bridgeInterfaces = [ "eno1" ];
       };
       # mosh.enable = true;
-      # xserver.videoDrivers = ["nvidia"];
 
       # "nix-private-cache".enable = true;
-      zram-generator.enable = false;
-      sonarr.enable = true;
-      # jackett.enable = true;
+      #zram-generator.enable = false;
+      #sonarr.enable = true;
+      #jackett.enable = true;
 
       # syslog-ng = {
       #   enable = true;
@@ -245,14 +244,6 @@
       #    bauthPass = config.age.secrets.grafana-ntfy.path;
       #  };
       #};
-
-      # pgadmin = {
-      #   enable = true;
-      #   openFirewall = true;
-      #   initialEmail = "tomas@harkema.io";
-      #   initialPasswordFile = pkgs.writeText "ps" "testtest";
-      # };
-
       tsnsrv = {
         enable = true;
         defaults.authKeyPath = config.age.secrets.tsnsrv.path;
@@ -341,19 +332,6 @@
         environmentFile = config.age.secrets.pocket-id.path;
       };
 
-      # ollama = {
-      #   enable = true;
-      #   acceleration = "cuda";
-      # };
-      llama-cpp = {
-        enable = false; # true
-        port = 11434;
-        model = pkgs.fetchurl {
-          url = "https://huggingface.co/bartowski/Mistral-Nemo-Instruct-2407-GGUF/resolve/main/Mistral-Nemo-Instruct-2407-Q4_K_S.gguf";
-          sha256 = "sha256-RYwXdWWe6whkcBSukURsNkbbCYZU4wVHkPTvPzVDhcg=";
-        };
-      };
-
       cloudflared = {
         enable = true;
         tunnels = {
@@ -368,8 +346,6 @@
           };
         };
       };
-
-      kmscon.enable = lib.mkForce false;
 
       netbootxyz.enable = true;
 
@@ -582,7 +558,7 @@
       # binfmt.emulatedSystems = ["aarch64-linux"];
 
       kernelParams = [
-        "console=tty0"
+        "console=tty1"
         "console=ttyS0,115200n8r"
         # "console=ttyS1,115200n8"
         # "earlyprintk=ttyS0"
@@ -598,7 +574,7 @@
         # "video=efifb:off,vesafb:off"
         # "ixgbe.allow_unsupported_sfp=1,1"
         #"vfio-pci.ids=10de:1380,10de:0fbc"
-        "pcie_acs_override=downstream,multifunction"
+        #"pcie_acs_override=downstream,multifunction"
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
         # "kvm.ignore_msrs=1"
         # "pci=nomsi"
@@ -623,9 +599,10 @@
         efi.canTouchEfiVariables = true;
       };
 
-      extraModulePackages = [config.boot.kernelPackages.vendor-reset];
+      # do some research for this!
+      #extraModulePackages = [config.boot.kernelPackages.vendor-reset];
       kernelModules = [
-        "vendor-reset"
+        # "vendor-reset"
         # "pci-me"
         # "mei-me"
         "coretemp"

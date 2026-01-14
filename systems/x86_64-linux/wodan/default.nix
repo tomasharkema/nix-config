@@ -7,7 +7,7 @@
 }: {
   config = {
     facter.reportPath = ./facter.json;
-    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+    #nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
     age.rekey.hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII8iCdfina2waZYTj0toLyknDT3eJmMtPsVN3iFgnGUR root@wodan";
 
@@ -145,6 +145,10 @@
       flatpak.enable = true;
       docker.enable = true;
       ddc.enable = true;
+      kmscon = {
+        enable = true;
+        enableMouse = true;
+      };
     };
 
     virtualisation.waydroid.enable = true;
@@ -169,7 +173,7 @@
     services = {
       hypervisor = {
         enable = true;
-        bridgeInterfaces = ["eth0"];
+        #bridgeInterfaces = ["eth0"];
       };
       xserver = {
         enableTearFree = true;
@@ -183,7 +187,7 @@
         enable = true;
         brightnessKeys = {enable = true;};
       };
-      # adb.enable = true;
+      adb.enable = true;
       wireshark = {
         enable = true;
         usbmon.enable = true;

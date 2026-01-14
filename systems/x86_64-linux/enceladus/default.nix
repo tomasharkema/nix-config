@@ -41,9 +41,14 @@
         enable = true;
         #server.enable = true;
       };
-      zabbix.proxy.enable = true;
+      #zabbix.proxy.enable = true;
       usbguard.enable = false;
     };
+    system = {
+      etc.overlay.enable = true;
+      nixos-init.enable = true;
+    };
+    services.userborn.enable = true;
 
     services = {
       # hypervisor.enable = true;

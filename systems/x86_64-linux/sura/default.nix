@@ -67,10 +67,12 @@
       usbmuxd.enable = false;
       resilio.enable = lib.mkForce false;
       kmscon.enable = true;
-      usbguard.enable = lib.mkForce false;
+      #usbguard.enable = lib.mkForce false;
       tlp.enable = lib.mkForce false;
       netdata.enable = lib.mkForce false;
     };
+
+    apps = {usbguard.enable = false;};
 
     home-manager.users.tomas.dconf.settings = {
       "org/gnome/shell" = {

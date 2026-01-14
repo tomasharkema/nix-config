@@ -3,13 +3,27 @@
   lib,
   pkgs,
   ...
-}: {
-  config = {
+}: let
+  cfg = config.apps.kmscon;
+in {
+  options.apps.kmscon = {
+    enable = lib.mkEnableOption "kmscon";
+    enableMouse = lib.mkEnableOption "enable mouse";
+  };
+
+  config = lib.mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = config.services.kmscon.enable;
+        message = "kmscon apps is enabled but service is disabled :(";
+      }
+    ];
+
     services.kmscon = {
       enable = lib.mkDefault true;
       hwRender = true;
       useXkbConfig = true;
-      extraConfig = ''
+      extraConfig = lib.mkIf cfg.enableMouse ''
         mouse
       '';
       fonts = [
@@ -20,7 +34,8 @@
       ];
     };
 
-    systemd.services = lib.mkIf false {
+    systemd.services = {
+      # enable??
       "kmscon" = lib.mkIf false {
         description = "KMS System Console";
         documentation = ["man:kmscon(1)"];

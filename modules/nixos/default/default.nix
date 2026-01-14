@@ -337,7 +337,7 @@ in {
           PasswordAuthentication = false;
           PermitRootLogin = lib.mkForce "no";
 
-          KerberosAuthentication = "no";
+          KerberosAuthentication = "yes";
           GSSAPIAuthentication = "yes";
           UsePAM = true;
           ChallengeResponseAuthentication = "yes";
@@ -621,7 +621,6 @@ in {
     hardware = {
       enableAllFirmware = lib.mkDefault true;
       enableRedistributableFirmware = lib.mkDefault true;
-      # fancontrol.enable = true;
       sensor.hddtemp = {
         enable = true;
         drives = ["/dev/disk/by-path/*"];
@@ -659,8 +658,5 @@ in {
 
       useNetworkd = lib.mkIf config.networking.networkmanager.enable false;
     };
-
-    # powerManagement.powertop.enable = lib.mkDefault true;
-    # programs.gnupg.agent.enable = true;
   };
 }

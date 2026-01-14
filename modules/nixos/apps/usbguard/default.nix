@@ -13,6 +13,13 @@ in {
   };
 
   config = lib.mkIf config.apps.usbguard.enable {
+    assertions = [
+      {
+        assertion = config.services.usbguard.enable;
+        message = "usbguard apps is enabled but service is disabled :(";
+      }
+    ];
+
     environment.systemPackages = with pkgs; [
       usbguard-notifier
       # config.nur.repos.mloeper.usbguard-applet-qt
