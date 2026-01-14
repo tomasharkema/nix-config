@@ -15,11 +15,11 @@
   pks = with pkgs; [
     # keep-sorted start
 
-    # antares
-
     (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
     _86Box-with-roms
     _ipmiview
+    # antares
+    android-tools
     bazaar
     bitwarden-cli
     bitwarden-desktop
