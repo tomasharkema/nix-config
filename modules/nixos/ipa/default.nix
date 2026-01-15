@@ -112,8 +112,6 @@ in {
 
     # FROM: https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/misc/sssd.nix
     systemd = {
-      packages = [pkgs.realmd];
-
       services = {
         ipa-host-mod-sshpubkey = {
           enable = false;
@@ -201,9 +199,8 @@ in {
     services = {
       dbus = {
         enable = true;
-        packages = [pkgs.realmd];
       };
-
+      realmd.enable = true;
       udev.extraRules = ''
         SUBSYSTEM=="hidraw", ENV{ID_SECURITY_TOKEN}=="1", RUN{program}+="${pkgs.acl}/bin/setfacl -m u:sssd:rw $env{DEVNAME}"
       '';

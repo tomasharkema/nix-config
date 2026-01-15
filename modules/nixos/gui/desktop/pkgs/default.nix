@@ -14,7 +14,6 @@
 
   pks = with pkgs; [
     # keep-sorted start
-
     (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
     _86Box-with-roms
     _ipmiview
@@ -25,9 +24,11 @@
     bitwarden-desktop
     bitwarden-menu
     blueberry
+    bluetooth_battery
     bottles
     boxbuddy
     buttermanager
+    celestia
     chromium
     clutter
     coppwr
@@ -49,12 +50,12 @@
     # custom.manuals
     # custom.qlogexplorer
     custom.wifiman
-    custom.wsjtx
     darktable
     davinci-resolve
     ddrescue
     ddrescueview
     ddrutility
+    degate
     digiham
     digikam
     digital
@@ -106,6 +107,7 @@
     libimobiledevice
     libratbag
     libsmbios
+    linssid
     meld
     mesa-demos
     mission-center
@@ -145,6 +147,7 @@
     qjournalctl
     qmk
     qmk_hid
+    qradiolink
     rmview
     rpi-imager
     rtfm
@@ -173,9 +176,11 @@
     vlc
     vsce
     vte-gtk4
+    webcamoid
     wine-wayland
     wl-clipboard
     wolfram-engine
+    wsjtx
     xdg-utils
     xdgmenumaker
     xdiskusage
