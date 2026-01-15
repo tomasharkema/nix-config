@@ -110,7 +110,7 @@
         # bridgeInterfaces = [ "eno1" ];
       };
       # mosh.enable = true;
-
+      rsyncd.enable = true;
       # "nix-private-cache".enable = true;
       #zram-generator.enable = false;
       #sonarr.enable = true;

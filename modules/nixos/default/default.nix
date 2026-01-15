@@ -231,7 +231,7 @@ in {
       };
       uptimed.enable = true;
       tuptime.enable = true;
-
+      esdm.enable = true;
       # uptime.enableSeparateMonitoringService = true;
 
       # snmpd = {
