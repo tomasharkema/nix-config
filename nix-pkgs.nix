@@ -5,66 +5,65 @@
   ...
 }: {
   config = {
-    environment.systemPackages =
-      (lib.optionals pkgs.stdenv.isx86_64 (with pkgs; [
-        nix-doc
-        wol
-        minimodem
-      ]))
-      ++ (with pkgs; [
-        # godap
-        fldigi
-        mqttui
-
-        calc
-        bc
-        ggh
-        caligula
-        python3Packages.uv
-        nix-search-tv
-        xxd
-        gcc
-        # platformio-core
-        gcc-arm-embedded
-        tio
-        # picotool
-        nix-init
-        disnix
-        nox
-        alejandra
-        autoflake
-        cachix
-        deadnix
-        deploy-rs
-        devenv
-        flake-checker
-        fup-repl
-        manix
-        nerd-font-patcher
-        nil
-        nix-bisect
-        nix-bundle
-        # nix-eval-jobs
-        nix-inspect
-        nix-output-monitor
-        nix-pin
-        nix-prefetch-git
-        nix-prefetch-scripts
-        nix-query-tree-viewer
-        # nix-simple-deploy
-        nix-tree
-        nix-update
-        nix-update-source
-        nix-visualize
-        rustup
-        nixd
-        nixfmt
-        nixos-option
-        nixos-shell
-        nixpkgs-fmt
-        nixpkgs-lint
-        nurl
-        statix
-      ]);
+    environment.systemPackages = with pkgs; [
+      # keep-sorted start
+      alejandra
+      autoflake
+      bc
+      cachix
+      calc
+      caligula
+      deadnix
+      deploy-rs
+      devenv
+      disnix
+      flake-checker
+      fldigi
+      fup-repl
+      gcc
+      gcc-arm-embedded
+      ggh
+      manix
+      minimodem
+      mqttui
+      nerd-font-patcher
+      nil
+      nix-bisect
+      nix-bundle
+      nix-doc
+      nix-init
+      # nix-eval-jobs
+      nix-inspect
+      nix-janitor
+      nix-output-monitor
+      nix-pin
+      nix-prefetch-git
+      nix-prefetch-scripts
+      nix-query-tree-viewer
+      nix-search-tv
+      nix-sweep
+      # nix-simple-deploy
+      nix-tree
+      nix-update
+      nix-update-source
+      nix-visualize
+      nixd
+      nixfmt
+      nixos-option
+      nixos-shell
+      nixpkgs-fmt
+      nixpkgs-lint
+      nox
+      nurl
+      picotool
+      platformio-core
+      python3Packages.uv
+      rustup
+      statix
+      tio
+      wol
+      xxd
+      # keep-sorted end
+    ];
   };
 }

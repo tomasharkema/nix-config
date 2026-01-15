@@ -151,22 +151,6 @@ in {
 
     security.polkit = {
       enable = true;
-      extraConfig = ''
-        polkit.addRule(function(action, subject) {
-          if (
-            subject.isInGroup("users")
-              && (
-                action.id == "org.freedesktop.login1.reboot" ||
-                action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-                action.id == "org.freedesktop.login1.power-off" ||
-                action.id == "org.freedesktop.login1.power-off-multiple-sessions"
-              )
-            )
-          {
-            return polkit.Result.YES;
-          }
-        })
-      '';
     };
 
     environment = {
@@ -176,7 +160,7 @@ in {
 
       sessionVariables = {
         NIXOS_OZONE_WL = "1";
-        DMS_DISABLE_MATUGEN = "1";
+        # DMS_DISABLE_MATUGEN = "1";
         QMK_HOME = "/home/tomas/Developer/qmk_firmware";
       };
 

@@ -100,6 +100,8 @@
         iptraf-ng
         isd
         kexec-tools
+        #oterm
+        kexec-tools
         kitty.terminfo
         kmon
         lazydocker
@@ -157,7 +159,6 @@
         openseachest
         opensoundmeter
         optnix
-        #oterm
         p7zip
         pamix
         pamixer
