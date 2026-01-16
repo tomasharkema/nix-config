@@ -218,7 +218,7 @@
       kernelModules = [
         "iTCO_wdt"
         "it87"
-        "netconsole"
+        # "netconsole"
       ];
       # kernelPackages = pkgs.linuxPackages_cachyos-lts;
 
@@ -226,10 +226,10 @@
         "console=ttyACM0,115200"
         "console=tty1"
       ];
-      modprobeConfig.enable = true;
-      extraModprobeConfig = ''
-        options netconsole netconsole="6665@/br0,6666@192.168.0.100/f4:92:bf:82:01:f6"
-      '';
+      # modprobeConfig.enable = true;
+      # extraModprobeConfig = ''
+      #   options netconsole netconsole="6665@/br0,6666@192.168.0.100/f4:92:bf:82:01:f6"
+      # '';
       # initrd.kernelModules = ["iTCO_wdt"];
       recovery = {
         enable = true;
