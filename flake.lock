@@ -143,11 +143,11 @@
     "complete-ng": {
       "flake": false,
       "locked": {
-        "lastModified": 1768321032,
-        "narHash": "sha256-QueqhApN4cU/JGAyYUQYLvsiflFJYFHiuMeSFZu5XhM=",
+        "lastModified": 1768568236,
+        "narHash": "sha256-wRGsz9hs3iRUq202fWjpzJZPyxW6Asv4zlUn+y9Rl/k=",
         "owner": "joknarf",
         "repo": "complete-ng",
-        "rev": "1861a8b3e8b48c1420a3b77b6168084a0ebfee06",
+        "rev": "e15a2acd4e7db28af85088fd92ba058a6192b382",
         "type": "github"
       },
       "original": {
