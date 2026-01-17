@@ -41,9 +41,9 @@ in {
     services = {
       resolved = {
         enable = true;
-        extraConfig = ''
-          MulticastDNS=no
-        '';
+        settings.Resolve = {
+          MulticastDNS = "no";
+        };
       };
 
       tailscale = {
