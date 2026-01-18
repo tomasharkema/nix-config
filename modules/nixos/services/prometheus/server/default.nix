@@ -12,8 +12,9 @@ in {
     systemd.services.gpsd-exporter = {
       description = "gpsd-exporter";
       wantedBy = ["default.target" "prometheus.service"];
+      after = ["network.target" "network-online.target"];
       script = ''
-        ${lib.getExe pkgs.custom.gpsd-exporter} -d 192.168.9.206:2947
+        exec ${lib.getExe pkgs.custom.gpsd-exporter} -d 192.168.9.149:2947
       '';
     };
 
