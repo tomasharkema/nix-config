@@ -156,6 +156,7 @@ in {
         # "apfs"
         "efi_pstore"
         "pstore"
+        "drivetemp"
       ];
 
       supportedFilesystems = {

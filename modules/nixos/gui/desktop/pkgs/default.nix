@@ -14,6 +14,7 @@
 
   pks = with pkgs; [
     # keep-sorted start
+
     (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
     _86Box-with-roms
     _ipmiview
@@ -31,6 +32,7 @@
     celestia
     chromium
     clutter
+    code-nautilus
     coppwr
     custom.actioneer
     custom.butler
@@ -112,6 +114,8 @@
     mesa-demos
     mission-center
     mixxx
+    nautilus
+    nautilus-python
     netpeek
     noti
     nrf-command-line-tools
@@ -169,6 +173,7 @@
     tpmmanager
     transmission-remote-gtk
     tremotesf
+    turtle
     typesetter
     ulauncher
     usbview

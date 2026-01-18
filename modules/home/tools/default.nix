@@ -22,7 +22,6 @@ with pkgs; {
         # bup
         # shallow-backup
         dry
-        # udisks2
         portal
         git
         wget
@@ -54,7 +53,7 @@ with pkgs; {
         systemctl-tui
         # tiptop
         # tpm-tools
-        # udiskie
+
         tremc
         # usermount
         viddy

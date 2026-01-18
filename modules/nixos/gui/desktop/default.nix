@@ -164,8 +164,14 @@ in {
         QMK_HOME = "/home/tomas/Developer/qmk_firmware";
       };
 
+      pathsToLink = ["share/thumbnailers"];
+
       systemPackages = with pkgs; [
         kdiskmark
+
+        libheif
+        libheif.out
+
         config.boot.kernelPackages.iio-utils
       ];
     };
