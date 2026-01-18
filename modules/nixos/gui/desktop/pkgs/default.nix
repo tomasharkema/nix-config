@@ -18,7 +18,6 @@
     (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
     _86Box-with-roms
     _ipmiview
-    # antares
     android-tools
     bazaar
     bitwarden-cli
@@ -151,6 +150,7 @@
     qjournalctl
     qmk
     qmk_hid
+    # antares
     qradiolink
     rmview
     rpi-imager

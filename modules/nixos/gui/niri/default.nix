@@ -31,7 +31,7 @@ in {
       niri = {
         enable = true;
         package = pkgs.niri-unstable;
-        useNautilus = true;
+        # useNautilus = true;
       };
 
       dankMaterialShell = {
