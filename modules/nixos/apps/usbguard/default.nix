@@ -16,7 +16,7 @@ in {
     assertions = [
       {
         assertion = config.services.usbguard.enable;
-        message = "usbguard apps is enabled but service is disabled :(";
+        message = "${config.networking.hostName} usbguard apps is enabled but service is disabled :(";
       }
     ];
 

@@ -153,6 +153,7 @@ in {
       resilio.enable = false;
       atop.enable = lib.mkForce false;
       netdata.enable = false;
+      usbguard.enable = lib.mkForce false;
     };
     # system.stateVersion = "25.05";
 
