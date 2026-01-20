@@ -8,7 +8,7 @@
   # https://nixos.wiki/wiki/TPM
 in {
   options.traits.hardware.tpm = {
-    enable = lib.mkEnableOption "SnowflakeOS GNOME configuration";
+    enable = lib.mkEnableOption "hardware tpm";
   };
 
   config = lib.mkIf cfg.enable {
@@ -22,7 +22,7 @@ in {
 
     security.tpm2 = {
       enable = true;
-
+      applyUdevRules = true;
       pkcs11.enable = true;
 
       tctiEnvironment.enable = true;

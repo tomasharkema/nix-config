@@ -28,8 +28,10 @@
     bottles
     boxbuddy
     buttermanager
+    cameractrls
     celestia
     chromium
+    clipqr
     clutter
     code-nautilus
     coppwr
@@ -89,6 +91,7 @@
     grsync
     gt
     gtk-engine-murrine
+    guvcview
     handbrake
     helvum
     httpie-desktop
@@ -177,6 +180,8 @@
     typesetter
     ulauncher
     usbview
+    uvccapture
+    uvcdynctrl
     vial
     vlc
     vsce

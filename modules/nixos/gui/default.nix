@@ -81,6 +81,7 @@ in {
         platformio-core
         openocd
         solaar
+        picotool
       ];
     };
 
