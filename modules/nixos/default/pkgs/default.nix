@@ -134,7 +134,7 @@
         nfs-utils
         nil
         ninja
-        #nix-alien
+        nix-alien
         # nix-btm
         nix-check-deps
         nix-playground

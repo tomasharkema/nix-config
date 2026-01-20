@@ -126,14 +126,14 @@
       ratbagd.enable = true;
       remote-builders.server.enable = true;
 
-      beesd.filesystems = {
-        root = {
-          spec = "UUID=af91ab61-d03f-45ea-a4a1-2faf7acee550";
-          hashTableSizeMB = 4096;
-          verbosity = "crit";
-          extraOptions = ["--loadavg-target" "2.0"];
-        };
-      };
+      # beesd.filesystems = {
+      #   root = {
+      #     spec = "UUID=af91ab61-d03f-45ea-a4a1-2faf7acee550";
+      #     hashTableSizeMB = 4096;
+      #     verbosity = "crit";
+      #     extraOptions = ["--loadavg-target" "2.0"];
+      #   };
+      # };
     };
 
     apps = {
@@ -304,7 +304,7 @@
 
       kernelParams = [
         # "console=tty1"
-        # "console=ttyS0,115200n8r"
+        # "console=ttyS0,115200n8"
         "intel_iommu=on"
         "iommu=pt"
         "preempt=full"
