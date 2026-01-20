@@ -203,9 +203,7 @@ in {
       # };
       # clipmenu.enable = true;
 
-      xserver.videoDrivers =
-        lib.mkIf (lib.strings.versionOlder config.boot.kernelPackages.kernel.version "6.18")
-        ["displaylink"];
+      xserver.videoDrivers = ["displaylink"];
 
       systembus-notify.enable = true;
       pipewire = {
