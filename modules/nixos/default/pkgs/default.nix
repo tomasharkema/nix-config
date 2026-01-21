@@ -83,6 +83,7 @@
         gpio-utils
         gpsd
         gptfdisk
+        havn
         hdparm
         helix
         hextazy
@@ -173,6 +174,7 @@
         pkgs.custom.nix-helpers
         play
         ponymix
+        psmisc
         pulsemixer
         pv
         pwgen
