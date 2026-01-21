@@ -5,14 +5,14 @@
 }:
 python3.pkgs.buildPythonApplication rec {
   pname = "hwinfo-tui";
-  version = "1.0.1";
+  version = "1.0.4";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "JuanjoFuchs";
     repo = "hwinfo-tui";
     rev = "v${version}";
-    hash = "sha256-nPDEMcpMfHLi2Q0DHDwMgHjRvjKyaE58Svxc0F43pA4=";
+    hash = "sha256-Jfapb2BQfrp4JQf0EWep1mURfcomyGdod9BW3+TgczI=";
   };
 
   build-system = [
