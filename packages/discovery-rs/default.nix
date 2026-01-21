@@ -5,16 +5,16 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "discovery-rs";
-  version = "0.1.2";
+  version = "0.1.3";
 
   src = fetchFromGitHub {
     owner = "JustPretender";
     repo = "discovery-rs";
     rev = "v${version}";
-    hash = "sha256-8MoFWqUxOXiAVdu0wGcvmq6ghbQ2LX3XsiR5oIvOHTA=";
+    hash = "sha256-XXDX0oyagLh411EZk2ZtF968DzYEthnFtZY4NvXjF98=";
   };
 
-  cargoHash = "sha256-D35J0iYQeF+uI+jYYWwvmRFwU3QiDG8m4J5RoXXBNhM=";
+  cargoHash = "sha256-E6e7cE7qmwV+/sjC0ChsckJkp+VstJ8sI0RRmcCNu1o=";
 
   meta = {
     description = "";

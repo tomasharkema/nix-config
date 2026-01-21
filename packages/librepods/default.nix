@@ -17,8 +17,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "kavishdevar";
     repo = "librepods";
-    rev = "main";
-    hash = "sha256-Ckw6zQf3lDLFh81594XhXz/B9gPkMws1Li4l+Fr+09k="; # "sha256-vWtBSHYPtrSmYzY25a1RcVUlpaXF2WzNLke7RiST/38=";
+    rev = "339c478564bd2d0492cdb47fdae915cad6a732b2";
+    hash = "sha256-JPuut0LjJmUU3WQK52tcPTMkc6bdNOHa1Rv7JYAXYa4=";
   };
 
   sourceRoot = "${src.name}/linux";

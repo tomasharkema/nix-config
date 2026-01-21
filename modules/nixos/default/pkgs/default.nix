@@ -51,7 +51,7 @@
         custom.sshm
         custom.ssm
         custom.tailscale-tui
-        custom.wikiman
+        # custom.wikiman
         custom.zide
         # rmfuse
         cutecom
