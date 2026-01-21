@@ -61,10 +61,11 @@ in {
 
     services = {
       # localtimed.enable = true;
-      uvcvideo.dynctrl = {
-        enable = true;
-        packages = [pkgs.tiscamera];
-      };
+      # uvcvideo.dynctrl = {
+      #   enable = true;
+      #   packages = [pkgs.tiscamera];
+      # };
+
       ratbagd.enable = true;
       usbmuxd.enable = true;
 
@@ -213,6 +214,8 @@ in {
         pulse.enable = true;
         jack.enable = true;
 
+        raopOpenFirewall = true;
+
         wireplumber = {
           enable = true;
           # extraConfig = {
@@ -232,7 +235,22 @@ in {
         };
         lowLatency = {
           # enable this module
-          # enable = true;
+          enable = true;
+        };
+
+        extraConfig.pipewire = {
+          "10-airplay" = {
+            "context.modules" = [
+              {
+                name = "libpipewire-module-raop-discover";
+
+                # increase the buffer size if you get dropouts/glitches
+                # args = {
+                #   "raop.latency.ms" = 500;
+                # };
+              }
+            ];
+          };
         };
       };
       gvfs = {
