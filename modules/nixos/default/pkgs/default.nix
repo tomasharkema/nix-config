@@ -11,7 +11,6 @@
         # keep-sorted start
         agenix-rekey
         aide
-        # apt-dater
         archivemount
         bandwhich
         bash
@@ -94,6 +93,7 @@
         ifuse
         imv
         inputs.neix.packages.${pkgs.system}.default
+        intentrace
         ipcalc
         ipmitool
         ipmiutil
@@ -105,6 +105,8 @@
         kitty.terminfo
         kmon
         lazydocker
+        lazyhetzner
+        lazyworktree
         ldapdomaindump
         libftdi
         libftdi1
@@ -177,6 +179,7 @@
         python313Packages.pyftdi
         python3Packages.pip
         python3Packages.uv
+        radare2
         redfishtool
         regname
         rsbkb
@@ -202,6 +205,8 @@
         swapview
         sysstat
         systemctl-tui
+        systemd-language-server
+        systemd-manager-tui
         systeroid
         sysz
         tailspin
@@ -243,6 +248,8 @@
         websocat
         wget
         whatfiles
+        # apt-dater
+        wifitui
         wmctrl
         #wol
         wtfutil
