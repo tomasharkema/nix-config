@@ -109,12 +109,17 @@
         iommu.enable = true;
         # bridgeInterfaces = [ "eno1" ];
       };
-      # mosh.enable = true;
+
       rsyncd.enable = true;
       # "nix-private-cache".enable = true;
       #zram-generator.enable = false;
-      #sonarr.enable = true;
-      #jackett.enable = true;
+      sonarr.enable = true;
+      jackett.enable = true;
+
+      snowflake-proxy = {
+        enable = true;
+        extraFlags = ["-metrics"];
+      };
 
       # syslog-ng = {
       #   enable = true;
@@ -272,7 +277,7 @@
           };
         };
       };
-      
+
       remote-builders.server.enable = true;
 
       glitchtip = {
