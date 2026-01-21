@@ -272,19 +272,8 @@
           };
         };
       };
+      
       remote-builders.server.enable = true;
-
-      beesd.filesystems = lib.mkIf false {
-        root = {
-          spec = "UUID=948d8479-177a-4204-a6a8-5d2013f3dc88";
-          hashTableSizeMB = 2048;
-          verbosity = "crit";
-          extraOptions = [
-            "--loadavg-target"
-            "2.0"
-          ];
-        };
-      };
 
       glitchtip = {
         # enable = true;
