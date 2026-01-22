@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=librepods
-Exec=/nix/store/y80vrjcc1d81gz91630b3klzy2d842rn-librepods-0.1.0-rc.4/bin/librepods --hide
-Icon=librepods
-Comment=librepods autostart
-X-GNOME-Autostart-enabled=true
-Terminal=false

@@ -48,11 +48,11 @@ in {
     hardware.steam-hardware.enable = true;
 
     programs = {
-      wine = {
-        enable = true;
-        binfmt = true;
-        ntsync = true;
-      };
+      # wine = {
+      #   enable = true;
+      #   binfmt = true;
+      #   ntsync = true;
+      # };
       steam = {
         enable = true;
 

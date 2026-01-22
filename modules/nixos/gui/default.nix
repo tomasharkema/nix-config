@@ -38,7 +38,9 @@ in {
       gnome.enable = lib.mkDefault true;
     };
 
-    users.users.tomas.extraGroups = ["camera"];
+    users.groups = {
+      "camera".members = ["root" "tomas"];
+    };
 
     apps.flatpak.enable = lib.mkDefault true;
 

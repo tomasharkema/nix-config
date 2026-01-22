@@ -257,7 +257,7 @@ in {
       # };
 
       # sysstat.enable = lib.mkDefault true;
-      irqbalance.enable = true;
+      # irqbalance.enable = true;
       # aria2.enable = true;
 
       rpcbind.enable = true;

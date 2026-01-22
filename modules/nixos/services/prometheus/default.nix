@@ -17,17 +17,17 @@ in {
     system.nixos.tags = ["prometheus"];
 
     # age.secrets."promtail".rekeyFile = ./promtail.age;
-    system.activationScripts.node-exporter-system-version = ''
-      mkdir -pm 0775 /var/lib/prometheus-node-exporter-text-files
-      (
-        cd /var/lib/prometheus-node-exporter-text-files
-        (
-          echo -n "system_version ";
-          readlink /nix/var/nix/profiles/system | cut -d- -f2
-        ) > system-version.prom.next
-        mv system-version.prom.next system-version.prom
-      )
-    '';
+    # system.activationScripts.node-exporter-system-version = ''
+    #   mkdir -pm 0775 /var/lib/prometheus-node-exporter-text-files
+    #   (
+    #     cd /var/lib/prometheus-node-exporter-text-files
+    #     (
+    #       echo -n "system_version ";
+    #       readlink /nix/var/nix/profiles/system | cut -d- -f2
+    #     ) > system-version.prom.next
+    #     mv system-version.prom.next system-version.prom
+    #   )
+    # '';
 
     # systemd = {
     #   tmpfiles.settings."9-promtail" = {
@@ -55,7 +55,7 @@ in {
 
           process.enable = true;
 
-          nginx = {enable = true;};
+          # nginx = {enable = true;};
 
           systemd.enable = true;
 

@@ -169,7 +169,7 @@
         };
       };
 
-      irqbalance.enable = true;
+      # irqbalance.enable = true;
 
       uptime-kuma = {
         enable = true;

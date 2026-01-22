@@ -207,52 +207,6 @@ in {
       xserver.videoDrivers = ["displaylink"];
 
       systembus-notify.enable = true;
-      pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-        jack.enable = true;
-
-        raopOpenFirewall = true;
-
-        wireplumber = {
-          enable = true;
-          # extraConfig = {
-          #   "monitor.bluez.properties" = {
-          #     "bluez5.dummy-avrcp-player" = true;
-          #   };
-          #   bluetoothEnhancements = {
-          #     "monitor.bluez.properties" = {
-          #       "bluez5.dummy-avrcp-player" = true;
-          #       "bluez5.enable-sbc-xq" = true;
-          #       "bluez5.enable-msbc" = true;
-          #       "bluez5.enable-hw-volume" = true;
-          #       "bluez5.roles" = ["hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag"];
-          #     };
-          #   };
-          # };
-        };
-        lowLatency = {
-          # enable this module
-          enable = true;
-        };
-
-        extraConfig.pipewire = {
-          "10-airplay" = {
-            "context.modules" = [
-              {
-                name = "libpipewire-module-raop-discover";
-
-                # increase the buffer size if you get dropouts/glitches
-                # args = {
-                #   "raop.latency.ms" = 500;
-                # };
-              }
-            ];
-          };
-        };
-      };
       gvfs = {
         enable = true;
         package = pkgs.gvfs.override {
@@ -293,7 +247,9 @@ in {
       saleae-logic.enable = true;
       libftdi.enable = true;
       libjaylink.enable = true;
+
       pulseaudio.enable = false;
+
       usb-modeswitch.enable = true;
       opentabletdriver = {
         enable = true;

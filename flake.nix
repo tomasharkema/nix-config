@@ -151,8 +151,8 @@
           agenix.nixosModules.default
           agenix-rekey.nixosModules.default
 
-          nix-gaming.nixosModules.pipewireLowLatency
-          nix-gaming.nixosModules.wine
+          # nix-gaming.nixosModules.pipewireLowLatency
+          # nix-gaming.nixosModules.wine
           # nix-gaming.nixosModules.platformOptimizations
           # walker.nixosModules.default
 
@@ -580,14 +580,14 @@
       url = "github:nixos/nixos-hardware";
     };
 
-    nix-gaming = {
-      url = "github:fufexan/nix-gaming";
+    # nix-gaming = {
+    #   url = "github:fufexan/nix-gaming";
 
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        # flake-parts.follows = "flake-parts";
-      };
-    };
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     # flake-parts.follows = "flake-parts";
+    #   };
+    # };
 
     # nix-software-center = {
     #   url = "github:snowfallorg/nix-software-center";
@@ -602,6 +602,13 @@
     #   url = "github:snowfallorg/nixos-conf-editor";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+
+    librepods = {
+      url = "github:Chrisbattarbee/librepods";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
 
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak";
