@@ -232,7 +232,7 @@ in {
       };
       uptimed.enable = true;
       tuptime.enable = true;
-      esdm.enable = true;
+      #esdm.enable = true;
       # uptime.enableSeparateMonitoringService = true;
 
       # snmpd = {
@@ -521,6 +521,15 @@ in {
       pam = {
         sshAgentAuth.enable = true;
         services.sudo.sshAgentAuth = true;
+
+        loginLimits = [
+          {
+            domain = "@users";
+            item = "rtprio";
+            type = "-";
+            value = 1;
+          }
+        ];
       };
       # pam.rssh = {
       #   enable = true;
@@ -529,7 +538,6 @@ in {
       #     authorized_keys_command_user = config.services.openssh.authorizedKeysCommandUser;
       #   };
       # };
-
       # sudo.enable = false;
       # sudo-rs.enable = true;
     };

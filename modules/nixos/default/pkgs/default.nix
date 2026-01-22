@@ -220,6 +220,7 @@
         tiptop
         tparted
         tpm-tools
+        tracexec
         tran
         treecat
         tshark
