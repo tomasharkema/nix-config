@@ -20,11 +20,12 @@ in {
         enable = true;
         webservices.enable = true;
       };
-      # vscode-server = {
-      # enable = true;
-      # socketPath = "/run/openvscode/socket";
-      # connectionTokenFile = "/var/lib/openvscode/token";
-      # };
+      vscode-server = {
+        enable = true;
+        enableFHS = true;
+        # socketPath = "/run/openvscode/socket";
+        # connectionTokenFile = "/var/lib/openvscode/token";
+      };
     };
 
     disks.btrfs.swap.resume.enable = false;

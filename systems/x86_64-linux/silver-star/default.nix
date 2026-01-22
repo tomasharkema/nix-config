@@ -439,21 +439,26 @@
       networkmanager.enable = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      docker-compose
-      simpleTpmPk11
-      libsmbios
-      virt-manager
-      ipmitool
-      openipmi
-      freeipmi
-      ipmicfg
-      ipmiutil
-      tremotesf
-      redfishtool
-      # icingaweb2
-    ];
+    environment = {
+      sessionVariables = {
+        # LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
+      };
 
+      systemPackages = with pkgs; [
+        docker-compose
+        simpleTpmPk11
+        libsmbios
+        virt-manager
+        ipmitool
+        openipmi
+        freeipmi
+        ipmicfg
+        ipmiutil
+        tremotesf
+        redfishtool
+        # icingaweb2
+      ];
+    };
     # virtualisation.kvmgt = {
     #   enable = true;
 
@@ -589,9 +594,9 @@
       };
 
       # do some research for this!
-      #extraModulePackages = [config.boot.kernelPackages.vendor-reset];
+      extraModulePackages = [config.boot.kernelPackages.vendor-reset];
       kernelModules = [
-        # "vendor-reset"
+        "vendor-reset"
         # "pci-me"
         # "mei-me"
         "coretemp"

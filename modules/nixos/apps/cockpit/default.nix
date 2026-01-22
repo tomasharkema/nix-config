@@ -13,6 +13,7 @@
         custom.cockpit-machines
         custom.cockpit-sensors
         custom.cockpit-tailscale
+        custom.cockpit-docker
       ];
     };
 

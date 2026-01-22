@@ -73,9 +73,9 @@ in {
       prometheus.exporters.nvidia-gpu.enable = true;
     };
 
-    environment.extraInit = ''
-      export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib"
-    '';
+    # environment.extraInit = ''
+    #   export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib"
+    # '';
 
     boot = {
       # kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
