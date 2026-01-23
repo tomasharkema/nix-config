@@ -55,7 +55,7 @@ in {
         # devdash
       ])
       ++ (with pkgs.custom; [
-        launchcontrol
+        # launchcontrol
         # ztui
         maclaunch
         tailscale-tui

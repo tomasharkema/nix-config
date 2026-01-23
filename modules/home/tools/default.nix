@@ -27,8 +27,6 @@ with pkgs; {
         wget
         curl
         sysz
-        netscanner
-
         bashmount
         bmon
         # compsize

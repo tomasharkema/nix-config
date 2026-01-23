@@ -224,7 +224,6 @@ in {
     alejandra
     bash
     bfg-repo-cleaner
-    colima
     dconf-save
     dconf-update
     dconf2nix
