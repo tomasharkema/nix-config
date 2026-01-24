@@ -28,6 +28,12 @@ in {
     };
     users.groups."audio".members = ["root" "tomas"];
 
+    hardware.bluetooth.settings = {
+      General = {
+        DeviceID = "bluetooth:004C:0000:0000";
+      };
+    };
+
     services = {
       pipewire = {
         enable = true;
