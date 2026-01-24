@@ -117,7 +117,7 @@
       jackett.enable = true;
 
       snowflake-proxy = {
-        enable = true;
+        #enable = true;
         extraFlags = ["-metrics"];
       };
 
@@ -450,6 +450,7 @@
         libsmbios
         virt-manager
         ipmitool
+        fleet
         openipmi
         freeipmi
         ipmicfg

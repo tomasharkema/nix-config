@@ -67,6 +67,7 @@
         ethtool
         # fbterm
         fcast-receiver
+        fleetctl
         freeipmi
         fuse
         fuse3
