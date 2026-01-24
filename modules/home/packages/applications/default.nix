@@ -33,16 +33,25 @@
     #   # {package = pkgs.notify-client;}
     #   # {package = pkgs.geary;}
     # ];
-    xdg.autostart = {
-      enable = true;
-      # readOnly = true;
-      entries = [
-        "${pkgs.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
-        "${osConfig.programs._1password-gui.package}/share/applications/1password.desktop"
-        "${pkgs.custom.librepods}/share/applications/me.kavishdevar.librepods.autostart.desktop"
-        "${pkgs.solaar}/share/applications/solaar.desktop"
-      ];
+    xdg = {
+      configFile."autostart/librepods.desktop".text = ''
+        [Desktop Entry]
+        Type=Application
+        Name=LibrePods
+        Exec=${pkgs.librepods}/bin/librepods --start-minimized
+        X-GNOME-Autostart-enabled=true
+      '';
+      autostart = {
+        enable = true;
+        # readOnly = true;
+        entries = [
+          "${pkgs.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
+          "${osConfig.programs._1password-gui.package}/share/applications/1password.desktop"
+          "${pkgs.solaar}/share/applications/solaar.desktop"
+        ];
+      };
     };
+
     home = {
       packages = with pkgs; [
         telegram-desktop

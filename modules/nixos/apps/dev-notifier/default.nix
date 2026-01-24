@@ -4,7 +4,7 @@
   config,
   ...
 }: {
-  config = lib.mkIf config.gui.enable {
+  config = lib.mkIf (config.gui.enable && false) {
     systemd.user.services = {
       "dev-notifier" = {
         description = "dev-notifier";

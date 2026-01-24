@@ -13,7 +13,7 @@
   #     then pkg
   #     else (builtins.throw "nixpkgs' upstream for ${name} has been updated to ${pkgVersion}. (yours is at ${pkg.version} with snapshot ${version})")
   # );
-  system = prev.stdenv.hostPlatform.system;
+  system = final.stdenv.hostPlatform.system;
 in rec {
   # cudaPackages = prev.cudaPackages.overrideScope (final: prev: {
   #   cuda_cudart = prev.cuda_cudart.overrideAttrs {
@@ -31,6 +31,7 @@ in rec {
   #     ];
   #   };
   # });
+  librepods = inputs.librepods.packages.${system}.default;
   libtsm = prev.libtsm.overrideAttrs (old: rec {
     pname = "libtsm";
     version = "4.3.0";

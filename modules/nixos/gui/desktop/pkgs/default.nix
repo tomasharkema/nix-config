@@ -14,7 +14,6 @@
 
   pks = with pkgs; [
     # keep-sorted start
-
     (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
     _86Box-with-roms
     _ipmiview
@@ -41,7 +40,6 @@
     custom.distrib-dl
     custom.gtk-meshtastic-client
     custom.letters
-    custom.librepods
     custom.netsleuth
     custom.remarkable-cups
     custom.retro-adsb-radar
@@ -69,6 +67,7 @@
     dosbox-x
     doublecmd
     dsview
+    easyeffects
     effitask
     esp-idf-full
     esptool
@@ -110,6 +109,7 @@
     libGLU
     libimobiledevice
     libratbag
+    librepods
     libsmbios
     linssid
     meld
@@ -188,6 +188,7 @@
     vte-gtk4
     webcamoid
     wine-wayland
+    wiremix
     wl-clipboard
     wolfram-engine
     wsjtx

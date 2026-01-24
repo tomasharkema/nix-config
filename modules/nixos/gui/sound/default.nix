@@ -55,10 +55,6 @@ in {
           #   };
           # };
         };
-        # lowLatency = {
-        # enable this module
-        # enable = true;
-        # };
 
         extraConfig.pipewire = lib.mkIf false {
           "10-airplay" = {
