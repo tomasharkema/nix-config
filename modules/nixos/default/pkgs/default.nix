@@ -9,6 +9,7 @@
     environment.systemPackages =
       (with pkgs; [
         # keep-sorted start
+
         agenix-rekey
         aide
         archivemount
@@ -95,7 +96,6 @@
         ifuse
         imv
         inputs.neix.packages.${pkgs.system}.default
-        intentrace
         ipcalc
         ipmitool
         ipmiutil
@@ -252,10 +252,9 @@
         websocat
         wget
         whatfiles
-        # apt-dater
         wifitui
         wmctrl
-        #wol
+        wol
         wtfutil
         xterm
         xxd
@@ -266,6 +265,7 @@
       ])
       ++ (lib.optionals pkgs.stdenv.isx86_64 (
         with pkgs; [
+          intentrace
           cmospwd
           dmidecode
           fwupd

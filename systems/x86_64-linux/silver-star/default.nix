@@ -109,7 +109,7 @@
         iommu.enable = true;
         # bridgeInterfaces = [ "eno1" ];
       };
-
+      fleet.enable = true;
       rsyncd.enable = true;
       # "nix-private-cache".enable = true;
       #zram-generator.enable = false;
@@ -117,8 +117,14 @@
       jackett.enable = true;
 
       snowflake-proxy = {
-        #enable = true;
-        extraFlags = ["-metrics"];
+        enable = true;
+        capacity = 8;
+        extraFlags = [
+          #"-metrics"
+
+          "-ephemeral-ports-range"
+          "30000:60000"
+        ];
       };
 
       # syslog-ng = {

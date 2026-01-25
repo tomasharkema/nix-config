@@ -1,0 +1,11 @@
+/dts-v1/;
+/plugin/;
+
+&i2c1 {
+  status = "okay";
+
+  power-monitor@43 {
+		compatible = "ti,ina219";
+		reg = <0x43>;
+  };
+};

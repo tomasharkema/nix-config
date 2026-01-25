@@ -24,11 +24,11 @@ in {
         backend = "docker";
 
         containers = {
-          wud = lib.mkIf true {
-            image = "ghcr.io/getwud/wud";
+          watchtower = lib.mkIf true {
+            image = "containrrr/watchtower";
 
             autoStart = true;
-            ports = ["3010:3000"];
+
             volumes = [
               "/var/run/docker.sock:/var/run/docker.sock"
             ];
