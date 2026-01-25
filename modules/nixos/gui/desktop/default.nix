@@ -277,7 +277,7 @@ in {
         enable = true;
         terminal = "kitty";
       };
-      plotinus.enable = true;
+      # plotinus.enable = true;
 
       ghidra = {
         enable = true;
