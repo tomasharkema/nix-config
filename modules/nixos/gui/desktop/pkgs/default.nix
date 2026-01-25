@@ -44,6 +44,7 @@
     custom.remarkable-cups
     # custom.retro-adsb-radar
     custom.spi-tools
+    custom.toolblex
     custom.usbguard-gnome
     custom.webcamize
     # angryipscanner
