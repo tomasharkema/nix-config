@@ -186,11 +186,6 @@
         brightnessKeys = {enable = true;};
       };
 
-      wireshark = {
-        enable = true;
-        usbmon.enable = true;
-        dumpcap.enable = true;
-      };
       cpu-energy-meter.enable = true;
     };
 

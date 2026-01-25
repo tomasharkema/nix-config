@@ -297,11 +297,7 @@ in {
       };
       mtr.enable = true;
       dconf.enable = true;
-      wireshark = {
-        enable = true;
-        usbmon.enable = true;
-        dumpcap.enable = true;
-      };
+
       #chromium = {
       #  enable = true;
       #};

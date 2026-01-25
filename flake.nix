@@ -131,7 +131,7 @@
           # comin.nixosModules.comin
           # nixos-vfio.nixosModules.default
           # nix-snapshotter.nixosModules.default
-
+          nix-flatpak.nixosModules.nix-flatpak
           nixos-facter-modules.nixosModules.facter
           # nix-topology.nixosModules.default
           # netkit.nixosModule

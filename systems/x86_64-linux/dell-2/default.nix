@@ -272,12 +272,6 @@
       #   enable = true;
       #   interface = "wlp59s0";
       # };
-
-      wireshark = {
-        enable = true;
-        usbmon.enable = true;
-        dumpcap.enable = true;
-      };
     };
 
     # system.includeBuildDependencies = true;

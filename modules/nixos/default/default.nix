@@ -558,16 +558,7 @@ in {
         enable = true;
         openFirewall = true;
       };
-      wireshark = {
-        enable = true;
-        dumpcap.enable = true;
-        usbmon.enable = true;
 
-        package =
-          if config.gui.desktop.enable
-          then pkgs.wireshark
-          else pkgs.wireshark-cli;
-      };
       nix-index = {
         enable = true;
         enableZshIntegration = true;

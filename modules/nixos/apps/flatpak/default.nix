@@ -6,13 +6,16 @@
   ...
 }: let
   cfg = config.apps.flatpak;
-  enable = cfg.enable && config.gui.enable;
 in {
-  imports = with inputs; [nix-flatpak.nixosModules.nix-flatpak];
+  options.apps.flatpak = {
+    enable =
+      (lib.mkEnableOption "flatpak")
+      // {
+        default = config.gui.enable;
+      };
+  };
 
-  options.apps.flatpak = {enable = lib.mkEnableOption "flatpak";};
-
-  config = lib.mkIf enable {
+  config = lib.mkIf cfg.enable {
     xdg.portal = {
       enable = true;
       # config.common.default = "gnome";
@@ -43,6 +46,7 @@ in {
         [
           "com.getpostman.Postman"
           "com.github.tchx84.Flatseal"
+          "io.github.kolunmi.Bazaar"
           # "com.logseq.Logseq"
           # "com.mattjakeman.ExtensionManager"
           #"com.moonlight_stream.Moonlight"
@@ -60,7 +64,6 @@ in {
           "io.github.flattool.Warehouse"
           "io.github.plrigaux.sysd-manager"
           "org.raspberrypi.rpi-imager"
-          "com.usebottles.bottles"
         ]
         ++ (
           lib.optionals pkgs.stdenv.isx86_64
@@ -73,9 +76,8 @@ in {
           ]
         );
 
-      #  mkIf pkgs.stdenv.isx86_64
       update = {
-        #onActivation = true;
+        onActivation = true;
 
         auto = {
           enable = true;
