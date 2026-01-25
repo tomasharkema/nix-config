@@ -15,7 +15,7 @@
   pks = with pkgs; [
     # keep-sorted start
     (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
-    _86Box-with-roms
+    # _86Box-with-roms
     _ipmiview
     android-tools
     bazaar
@@ -42,7 +42,7 @@
     custom.letters
     custom.netsleuth
     custom.remarkable-cups
-    custom.retro-adsb-radar
+    # custom.retro-adsb-radar
     custom.spi-tools
     custom.usbguard-gnome
     custom.webcamize
@@ -91,7 +91,7 @@
     gt
     gtk-engine-murrine
     guvcview
-    handbrake
+    # handbrake
     helvum
     httpie-desktop
     i2c-tools
@@ -101,7 +101,7 @@
     intel-gpu-tools
     inxi
     jetbrains-toolbox
-    kdePackages.kdenlive
+    # kdePackages.kdenlive
     kicad
     ktailctl
     labelle
@@ -137,7 +137,7 @@
     openswitcher
     pavucontrol
     pdfarranger
-    pika-backup
+    # pika-backup
     piper
     platformio
     plex-desktop
@@ -166,7 +166,7 @@
     serial-studio
     smuview
     solaar
-    solana-cli
+    # solana-cli
     spotify
     sqlitebrowser
     sublime-merge

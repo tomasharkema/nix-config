@@ -67,11 +67,10 @@ in {
       libvirt
       qemu
       pkgs.custom.libvirt-dbus
-      # nemu
-      # qtemu
+      nemu
+      qtemu
       virt-top
-      _86Box-with-roms
-      # remotebox
+
       qemu-utils
       virtiofsd
     ];

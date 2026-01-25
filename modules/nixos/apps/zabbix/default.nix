@@ -17,7 +17,7 @@ in {
     #   useNetworkd = true;
     #   networkmanager.enable = lib.mkForce false;
     # };
-    environment.systemPackages = [pkgs.zabbix-cli pkgs.zabbixctl];
+    # environment.systemPackages = [pkgs.zabbix-cli pkgs.zabbixctl];
 
     users.groups.docker.members = ["zabbix-agent"];
 
