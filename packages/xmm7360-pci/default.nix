@@ -47,10 +47,10 @@ in
       # })
       #
       # adds netstats!
-      # (fetchpatch {
-      #   url = "https://patch-diff.githubusercontent.com/raw/xmm7360/xmm7360-pci/pull/165.patch";
-      #   sha256 = "sha256-VmCqfyxGAiuJq9WIDF5NFIKkEnPHJlsjyaYXfv39oV8=";
-      # })
+      (fetchpatch {
+        url = "https://patch-diff.githubusercontent.com/raw/xmm7360/xmm7360-pci/pull/165.patch";
+        sha256 = "sha256-VmCqfyxGAiuJq9WIDF5NFIKkEnPHJlsjyaYXfv39oV8=";
+      })
       ./linux-6.15.patch
     ];
 
