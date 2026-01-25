@@ -280,11 +280,11 @@ in {
       plotinus.enable = true;
 
       ghidra = {
-        # enable = true;
+        enable = true;
         package = pkgs.ghidra.withExtensions (p:
           with p; [
             ret-sync
-            gnudisassembler
+            # gnudisassembler
             findcrypt
             ghidra-delinker-extension
             ghidra-firmware-utils

@@ -13,6 +13,7 @@ in {
       description = "gpsd-exporter";
       wantedBy = ["default.target" "prometheus.service"];
       after = ["network.target" "network-online.target"];
+      wants = ["network-online.target"];
       script = ''
         exec ${lib.getExe pkgs.custom.gpsd-exporter} -d 192.168.9.149:2947
       '';
