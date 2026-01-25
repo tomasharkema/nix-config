@@ -105,7 +105,7 @@ in {
         ];
       };
 
-      # crashDump.enable = pkgs.stdenv.isx86_64; # true;
+      # crashDump.enable = pkgs.stdenv.isx86_64;
 
       initrd = {
         compressor = "zstd";
@@ -632,6 +632,8 @@ in {
     hardware = {
       enableAllFirmware = lib.mkDefault true;
       enableRedistributableFirmware = lib.mkDefault true;
+      firmware = [pkgs.wireless-regdb];
+
       sensor.hddtemp = {
         enable = true;
         drives = ["/dev/disk/by-path/*"];
@@ -648,21 +650,29 @@ in {
         enable = lib.mkDefault true;
       };
 
+      wireless = {
+        enable = lib.mkForce false;
+        iwd.enable = true;
+      };
+
       networkmanager = {
         enable = lib.mkDefault true;
-        wifi.scanRandMacAddress = lib.mkDefault true;
 
-        plugins = with pkgs;
-          lib.mkIf false [
-            networkmanager-fortisslvpn
-            networkmanager-iodine
-            networkmanager-l2tp
-            networkmanager-openconnect
-            networkmanager-openvpn
-            networkmanager-sstp
-            networkmanager-strongswan
-            networkmanager-vpnc
-          ];
+        wifi = {
+          backend = "iwd";
+          scanRandMacAddress = lib.mkDefault true;
+        };
+
+        plugins = with pkgs; [
+          networkmanager-fortisslvpn
+          networkmanager-iodine
+          networkmanager-l2tp
+          networkmanager-openconnect
+          networkmanager-openvpn
+          networkmanager-sstp
+          networkmanager-strongswan
+          networkmanager-vpnc
+        ];
       };
 
       # timeServers = ["192.168.9.49"];

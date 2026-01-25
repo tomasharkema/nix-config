@@ -26,6 +26,7 @@
         libratbag
         heimdall
         heimdall-gui
+        iw
       ];
     };
 
@@ -50,8 +51,6 @@
     };
 
     networking = {
-      networkmanager.enable = true;
-
       hostName = "wodan";
 
       useDHCP = false;
@@ -204,8 +203,6 @@
     hardware = {
       cpu.intel.updateMicrocode = true;
       i2c.enable = true;
-      enableAllFirmware = true;
-      enableRedistributableFirmware = true;
 
       nvidia = {
         modesetting.enable = true;
@@ -291,15 +288,18 @@
         "ddcci"
         # "iTCO_wdt"
         "ddcci-backlight"
+        "iwlwifi"
         # "vfio_pci"
         # "vfio"
         # "vfio_iommu_type1"
         # "kvm-intel"
         # "nvidia_vgpu_vfio"
+        "cfg80211"
       ];
-
+      modprobeConfig.enable = true;
       extraModprobeConfig = ''
         options it87 ignore_resource_conflict=1 update_vbat=1
+        options cfg80211 ieee80211_regdom=NL
       '';
 
       kernelParams = [
