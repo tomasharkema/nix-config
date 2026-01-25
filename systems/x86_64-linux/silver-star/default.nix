@@ -577,7 +577,7 @@
 
       blacklistedKernelModules = ["iTCO_wdt"];
 
-      kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-server-lto;
+      kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-server;
 
       recovery = {
         enable = true;
