@@ -17,7 +17,7 @@ in
       owner = "makerdiary";
       repo = "nrf52840-mdk-usb-dongle";
       rev = "v${version}";
-      hash = "sha256-y7QFKSrGnjj3ycyY02MYxyD3aPDODMx4y7Q6kVL9sGY=";
+      hash = "sha256-Zsf8AzBEVoiSjvDqOq3uqxDzRpZNoRcufTIX5v9ePOc=";
     };
 
     postInstall = ''
