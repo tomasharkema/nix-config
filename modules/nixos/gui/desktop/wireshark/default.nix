@@ -23,8 +23,8 @@ in {
 
               for filename in $files/*; do
                 local name="$(basename $filename)"
-                echo "destination $out/lib/wireshark/extcap/$name"
-                ln -s "$filename" "$out/lib/wireshark/extcap/$name"
+                echo "destination $out/libexec/wireshark/extcap/$name"
+                ln -s "$filename" "$out/libexec/wireshark/extcap/$name"
               done
             '';
         }

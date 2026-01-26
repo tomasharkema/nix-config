@@ -26,6 +26,12 @@ in
 
       rm -rf $out/lib/wireshark/extcap/nrf_sniffer_ble.bat
 
-      substituteInPlace $out/lib/wireshark/extcap/nrf_sniffer_ble.py --replace-fail "/usr/bin/env python3" "${py}/bin/python3"
+      substituteInPlace $out/lib/wireshark/extcap/nrf_sniffer_ble.py \
+        --replace-fail "/usr/bin/env python3" "${py}/bin/python3" \
+        --replace-fail '\s' '\\s'
+
+      substituteInPlace $out/lib/wireshark/extcap/nrf_sniffer_ble.sh \
+        --replace-fail 'exec $py3' "exec ${py}/bin/python3"
+
     '';
   }

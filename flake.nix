@@ -95,7 +95,7 @@
         nixpkgs-esp-dev.overlays.default
         niri.overlays.niri
         nur-xddxdd.overlays.default
-        nix-cachyos-kernel.overlays.default
+        nix-cachyos-kernel.overlays.pinned
       ];
 
       homes.modules = with inputs; [
