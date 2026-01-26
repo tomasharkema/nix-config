@@ -28,10 +28,10 @@ in
 
       substituteInPlace $out/lib/wireshark/extcap/nrf_sniffer_ble.py \
         --replace-fail "/usr/bin/env python3" "${py}/bin/python3" \
-        --replace-fail '\s' '\\s'
+        --replace-fail 're.search(' 're.search(r' \
+        --replace-fail '"{validation=^\s' 'r"{validation=^\s'
 
       substituteInPlace $out/lib/wireshark/extcap/nrf_sniffer_ble.sh \
         --replace-fail 'exec $py3' "exec ${py}/bin/python3"
-
     '';
   }
