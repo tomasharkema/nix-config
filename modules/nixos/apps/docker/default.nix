@@ -24,12 +24,22 @@ in {
         backend = "docker";
 
         containers = {
-          watchtower = lib.mkIf true {
-            image = "containrrr/watchtower";
+          duin = {
+            image = "crazymax/diun:latest";
 
             autoStart = true;
+            cmd = ["serve"];
+            environment = {
+              TZ = "Europe/Amsterdam";
+              DIUN_WATCH_WORKERS = "20";
+              DIUN_WATCH_SCHEDULE = "0 */6 * * *";
+              DIUN_WATCH_JITTER = "30s";
+              DIUN_PROVIDERS_DOCKER = "true";
+              DIUN_NOTIF_NTFY_TOPIC = "tomasharkema-nixos";
+            };
 
             volumes = [
+              "/var/lib/diun:/data"
               "/var/run/docker.sock:/var/run/docker.sock"
             ];
           };
