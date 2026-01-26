@@ -198,6 +198,7 @@
     xdiskusage
     xdotool
     xpipe
+    xplanet
     yelp
     zed-editor
     zenmap
