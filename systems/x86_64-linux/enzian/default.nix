@@ -20,8 +20,6 @@
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKZ68XxpD6TUAyuYa5sl6vPUnSrmTQqD015L05n+B+jY root@enzian";
     };
     facter.reportPath = ./facter.json;
-    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-
     apps = {
       steam.enable = true;
       # usbip.enable = true;
@@ -54,22 +52,10 @@
       gamemode.enable = true;
     };
 
-    services.beesd.filesystems = lib.mkIf false {
-      root = {
-        spec = "UUID=b4d344ce-bf39-473d-bc97-7b12ef0f97a1";
-        hashTableSizeMB = 1024;
-        verbosity = "crit";
-        extraOptions = [
-          "--loadavg-target"
-          "2.0"
-        ];
-      };
-    };
-
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/ata-HFS128G39TND-N210A_FI71N041410801J4Y";
-      media = "/dev/disk/by-id/ata-TOSHIBA_MQ01ABD100_Y6I8PBOHT";
+      #media = "/dev/disk/by-id/ata-TOSHIBA_MQ01ABD100_Y6I8PBOHT";
       encrypt = true;
       newSubvolumes.enable = true;
     };
@@ -139,10 +125,6 @@
         "kvm-intel"
         "uinput"
         "nvme"
-      ];
-      kernelParams = [
-        "nowatchdog"
-        #"mitigations=off"
       ];
       extraModulePackages = [];
       recovery = {
