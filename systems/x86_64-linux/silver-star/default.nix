@@ -109,7 +109,6 @@
         iommu.enable = true;
         # bridgeInterfaces = [ "eno1" ];
       };
-      fleet.enable = true;
       rsyncd.enable = true;
       # "nix-private-cache".enable = true;
       #zram-generator.enable = false;
@@ -275,6 +274,10 @@
           immich-ml = {toURL = "http://127.0.0.1:3003";};
           openmanage = {
             toURL = "https://127.0.0.1:1311";
+            insecureHTTPS = true;
+          };
+          fleet = {
+            toURL = "https://127.0.0.1:1337";
             insecureHTTPS = true;
           };
           incus = {
