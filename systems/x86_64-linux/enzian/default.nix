@@ -17,13 +17,14 @@
 
   config = {
     age.rekey = {
-      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKZ68XxpD6TUAyuYa5sl6vPUnSrmTQqD015L05n+B+jY root@enzian";
+      hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHlUmrtTg5ukrLboFA6wZUKlqsUEChJD8qpekxEIu9wL root@enzian";
     };
     facter.reportPath = ./facter.json;
     apps = {
       steam.enable = true;
       # usbip.enable = true;
       # home-assistant.enable = true;
+      resilio.enable = lib.mkForce false;
     };
 
     nix.settings = {
