@@ -115,7 +115,7 @@
       #zram-generator.enable = false;
       sonarr.enable = true;
       jackett.enable = true;
-
+      zram-generator.enable = lib.mkForce false;
       snowflake-proxy = {
         enable = true;
         capacity = 8;
