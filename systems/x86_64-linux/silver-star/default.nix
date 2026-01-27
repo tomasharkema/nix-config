@@ -295,6 +295,7 @@
           GLITCHTIP_DOMAIN = "https://glitchtip.ling-lizard.ts.net";
         };
       };
+
       mysql = {
         enable = true;
         package = pkgs.mariadb;
@@ -636,6 +637,9 @@
         #   wantedBy = ["multi-user.target"];
         # };
         "docker-compose@esphome" = {
+          wantedBy = ["multi-user.target"];
+        };
+        "docker-compose@fleetdm" = {
           wantedBy = ["multi-user.target"];
         };
         "docker-compose@tsidp" = {

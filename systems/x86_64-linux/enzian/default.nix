@@ -19,9 +19,11 @@
     age.rekey = {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHlUmrtTg5ukrLboFA6wZUKlqsUEChJD8qpekxEIu9wL root@enzian";
     };
+
     facter.reportPath = ./facter.json;
+
     apps = {
-      steam.enable = true;
+      #steam.enable = true;
       # usbip.enable = true;
       # home-assistant.enable = true;
       resilio.enable = lib.mkForce false;
@@ -44,14 +46,14 @@
     #   };
     # };
 
-    gui = {
-      enable = true;
-      desktop = {
-        enable = true;
-      };
-      quiet-boot.enable = true;
-      gamemode.enable = true;
-    };
+    # gui = {
+    #   enable = true;
+    #   desktop = {
+    #     enable = true;
+    #   };
+    #   quiet-boot.enable = true;
+    #   gamemode.enable = true;
+    # };
 
     disks.btrfs = {
       enable = true;
@@ -143,7 +145,7 @@
     };
 
     services = {
-      remote-builders.client.enable = true;
+      #remote-builders.client.enable = true;
       # blueman.enable = true;
     };
   };
