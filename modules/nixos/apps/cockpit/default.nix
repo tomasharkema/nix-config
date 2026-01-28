@@ -7,14 +7,6 @@
   config = {
     environment = {
       pathsToLink = ["/libexec"];
-      systemPackages = with pkgs; [
-        cockpit
-        custom.cockpit-files
-        custom.cockpit-machines
-        custom.cockpit-sensors
-        custom.cockpit-tailscale
-        custom.cockpit-docker
-      ];
     };
 
     security.pam.services."cockpit".enable = true;
@@ -24,7 +16,13 @@
       port = 9090;
 
       allowed-origins = ["localhost" "${config.networking.hostName}.ling-lizard.ts.net"];
-
+      plugins = with pkgs; [
+        custom.cockpit-files
+        custom.cockpit-machines
+        custom.cockpit-sensors
+        custom.cockpit-tailscale
+        custom.cockpit-docker
+      ];
       settings = {
         WebService =
           # if config.services.nginx.enable
