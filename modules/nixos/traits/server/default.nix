@@ -22,7 +22,7 @@ in {
       };
       vscode-server = {
         enable = true;
-        enableFHS = true;
+
         # socketPath = "/run/openvscode/socket";
         # connectionTokenFile = "/var/lib/openvscode/token";
       };
