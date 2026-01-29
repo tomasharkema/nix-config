@@ -85,12 +85,6 @@
 
     # system.includeBuildDependencies = true;
 
-    system = {
-      etc.overlay.enable = true;
-      nixos-init.enable = true;
-    };
-    services.userborn.enable = true;
-
     programs = {
       nh = {
         clean.enable = true;

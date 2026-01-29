@@ -37,6 +37,9 @@ in {
       #      etc.overlay.enable = config.boot.initrd.systemd.enable;
       nixos.tags = ["${config.boot.kernelPackages.kernel.modDirVersion}"];
       # rebuild.enableNg = true;
+
+      etc.overlay.enable = true;
+      nixos-init.enable = true;
     };
 
     # security.isolate.enable = true;
@@ -230,6 +233,7 @@ in {
 
         prebuildOptionCache = false;
       };
+      userborn.enable = true;
       uptimed.enable = true;
       tuptime.enable = true;
       #esdm.enable = true;
