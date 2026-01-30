@@ -22,7 +22,12 @@ in {
       };
       vscode-server = {
         enable = true;
-
+        enableFHS = true;
+        installPath = [
+          "$HOME/.vscode-server"
+          "$HOME/.vscode-server-oss"
+          "$HOME/.vscode-server-insiders"
+        ];
         # socketPath = "/run/openvscode/socket";
         # connectionTokenFile = "/var/lib/openvscode/token";
       };
