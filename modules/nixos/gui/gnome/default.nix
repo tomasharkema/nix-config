@@ -193,9 +193,8 @@ in
           games.enable = false;
           evolution-data-server.enable = true;
           rygel.enable = true;
-          tracker.enable = true;
-
-          tracker-miners.enable = true;
+          tinysparql.enable = true;
+          localsearch.enable = true;
           gcr-ssh-agent.enable = lib.mkForce false;
           sushi.enable = true;
         };

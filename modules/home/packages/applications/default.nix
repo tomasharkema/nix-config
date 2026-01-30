@@ -5,7 +5,13 @@
   pkgs,
   osConfig,
   ...
-}: {
+}: let
+  librepodsDesktop = pkgs.makeDesktopItem {
+    name = "LibrePods";
+    desktopName = "LibrePods";
+    exec = "${pkgs.librepods}/bin/librepods --start-minimized";
+  };
+in {
   config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
     dconf.settings."org/gnome/shell".favorite-apps = [
       "org.gnome.Nautilus.desktop"
@@ -34,13 +40,6 @@
     #   # {package = pkgs.geary;}
     # ];
     xdg = {
-      configFile."autostart/librepods.desktop".text = ''
-        [Desktop Entry]
-        Type=Application
-        Name=LibrePods
-        Exec=${pkgs.librepods}/bin/librepods --start-minimized
-        X-GNOME-Autostart-enabled=true
-      '';
       autostart = {
         enable = true;
         # readOnly = true;
@@ -48,6 +47,7 @@
           "${pkgs.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
           "${osConfig.programs._1password-gui.package}/share/applications/1password.desktop"
           "${pkgs.solaar}/share/applications/solaar.desktop"
+          "${librepodsDesktop}/share/applications/LibrePods.desktop"
         ];
       };
     };
