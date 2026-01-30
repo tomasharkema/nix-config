@@ -114,23 +114,6 @@ in rec {
     ];
   });
 
-  telegram-desktop = let
-    version = "6.3.9";
-    unwrapped = prev.telegram-desktop.unwrapped.overrideAttrs {
-      pname = "telegram-desktop-unwrapped";
-      version = version;
-
-      src = prev.fetchFromGitHub {
-        owner = "telegramdesktop";
-        repo = "tdesktop";
-        rev = "v${version}";
-        fetchSubmodules = true;
-        hash = "sha256-YalOrjXCRv9J8kTM+k75pEif28E/Nig+XCLiR7gfvBs=";
-      };
-    };
-  in
-    prev.telegram-desktop.override {inherit unwrapped;};
-
   nox = inputs.nox.packages.${system}.default;
   nix-alien = inputs.nix-alien.packages.${system}.default;
   # geoclue2 = prev.geoclue2.overrideAttrs ({buildInputs, ...}: {
@@ -394,20 +377,6 @@ in rec {
   # });
   # ffmpeg = prev.ffmpeg.override {ffmpegVariant = "full";};
 
-  #cockpit = overridePkgCheckVersionSnapshot "cockpit" "331" (self.packages."${prev.system}".cockpit.override {withOldBridge = true;});
-  #cockpit = prev.cockpit.overrideAttrs (old: {
-
-  #fixupPhase = old.fixupPhase + ''
-  #'';
-
-  #postFixup = ''
-  #    for file in $out/share/cockpit/*/manifest.json; do
-  #      substituteInPlace $file \
-  #      --replace-warn /usr /run/current-system/sw
-  #    done
-  # '';
-
-  #});
   # cockpit-podman = self.packages."${prev.system}".cockpit-podman;
   # cockpit-tailscale = self.packages."${prev.system}".cockpit-tailscale;
   # cockpit-machines = self.packages."${prev.system}".cockpit-machines;

@@ -7,7 +7,7 @@
 }:
 stdenv.mkDerivation rec {
   pname = "cockpit-dockermanager";
-  version = "1.0.0";
+  version = "1.0.0-latest";
 
   src = fetchurl {
     url = "https://github.com/chrisjbawden/cockpit-dockermanager/releases/download/latest/dockermanager.deb";
@@ -25,8 +25,7 @@ stdenv.mkDerivation rec {
     runHook preInstall
 
     mkdir -p $out/share/cockpit/dockermanager
-    cp -r ./usr/share/cockpit/dockermanager/. $out/share/cockpit/dockermanager
-    ls -la $out/share/cockpit/dockermanager
+    cp -vr ./usr/share/cockpit/dockermanager/. $out/share/cockpit/dockermanager
 
     runHook postInstall
   '';

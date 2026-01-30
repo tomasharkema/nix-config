@@ -10,19 +10,21 @@
     };
 
     security.pam.services."cockpit".enable = true;
-
+    systemd.packages = [pkgs.custom.cockpit-tailscale-cert];
     services.cockpit = {
       enable = true;
       port = 9090;
 
       allowed-origins = ["localhost" "${config.networking.hostName}.ling-lizard.ts.net"];
+
       plugins = with pkgs; [
         custom.cockpit-files
         custom.cockpit-machines
         custom.cockpit-sensors
         custom.cockpit-tailscale
-        custom.cockpit-docker
+        custom.cockpit-dockermanager
       ];
+
       settings = {
         WebService =
           # if config.services.nginx.enable
@@ -44,88 +46,6 @@
           };
       };
     };
-
-    # systemd = {
-    #   services = {
-    #     # "cockpit-issue" = {
-    #     #   description = "Cockpit issue updater service";
-
-    #     #   documentation = "man:cockpit-ws(8)";
-    #     #   wants = ["network-online.target"];
-    #     #   after = ["network-online.target" "cockpit.socket"];
-
-    #     #   serviceConfig = {
-    #     #     Type = "oneshot";
-    #     #     ExecStart = "-@datadir@/@PACKAGE@/issue/update-issue";
-    #     #   };
-    #     # };
-
-    #     "cockpit-session@" = {
-    #       overrideStrategy = "asDropin";
-    #       description = "Cockpit session %I";
-
-    #       path = [
-    #         pkgs.coreutils
-    #         pkgs.cockpit
-    #       ];
-
-    #       serviceConfig = {
-    #         ExecStart = "${pkgs.cockpit}/libexec/cockpit-session";
-    #         StandardInput = "socket";
-    #         StandardOutput = "inherit";
-    #         StandardError = "journal";
-    #         User = "root";
-    #         # bridge error, authentication failure, or timeout, that's not a problem with the unit
-    #         SuccessExitStatus = "1 5 127";
-    #       };
-    #     };
-
-    #     "cockpit-session-socket-user" = {
-    #       description = "Dynamic user for /run/cockpit/session socket";
-    #       bindsTo = ["cockpit-session.socket"];
-
-    #       serviceConfig = {
-    #         DynamicUser = "yes";
-    #         User = "cockpit-session-socket";
-    #         Group = "cockpit-session-socket";
-    #         Type = "oneshot";
-    #         ExecStart = "${pkgs.coreutils}/bin/true";
-    #         RemainAfterExit = "yes";
-    #       };
-    #     };
-    #   };
-
-    #   sockets = {
-    #     "cockpit-session" = {
-    #       description = "Initiator socket for Cockpit sessions";
-    #       partOf = ["cockpit.service"];
-    #       requires = ["cockpit-session-socket-user.service"];
-    #       after = ["cockpit-session-socket-user.service"];
-
-    #       socketConfig = {
-    #         ListenStream = "/run/cockpit/session";
-    #         SocketUser = "root";
-    #         SocketGroup = "cockpit-session-socket";
-    #         SocketMode = "0660";
-    #         RemoveOnStop = "yes";
-    #         Accept = "yes";
-    #       };
-    #     };
-    #   };
-    # };
-
-    # environment.systemPackages = with pkgs; [
-    #   cockpit-tailscale
-    #   cockpit-machines
-    #   cockpit-sensors
-    #   cockpit-files
-    # ];
-
-    # services.multipath = {
-    #   enable = true;
-    # };
-    # systemd.sockets."cockpit-session".wantedBy = ["multi-user.target"];
-
     # proxy-services.services = {
     #   "/" = {
     #     # default = true;
@@ -149,26 +69,6 @@
     #       # gzip off;
     #     '';
     #   };
-    # };
-
-    # systemd.services.cockpit-tailscale-cert = {
-    #   enable = true;
-    #   description = "cockpit-tailscale-cert";
-    #   unitConfig = {
-    #     Type = "oneshot";
-    #     RemainAfterExit = "yes";
-    #     StartLimitIntervalSec = 500;
-    #     StartLimitBurst = 5;
-    #   };
-    #   script = ''
-    #     ${lib.getExe pkgs.tailscale} cert \
-    #       --cert-file /etc/cockpit/ws-certs.d/${config.proxy-services.vhost}.cert \
-    #       --key-file /etc/cockpit/ws-certs.d/${config.proxy-services.vhost}.key \
-    #       ${config.proxy-services.vhost}
-    #   '';
-    #   wantedBy = ["multi-user.target" "network.target"];
-    #   after = ["tailscaled.service"];
-    #   wants = ["tailscaled.service"];
     # };
 
     # environment.etc = {
