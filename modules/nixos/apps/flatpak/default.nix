@@ -61,6 +61,8 @@ in {
           #"org.freefilesync.FreeFileSync"
           #"org.gnome.meld"
           #"com.bitwarden.desktop"
+          "io.github.josephmawa.EncodingExplorer"
+          "io.scottlabs.reManager"
           "io.github.flattool.Warehouse"
           "io.github.plrigaux.sysd-manager"
           "org.raspberrypi.rpi-imager"
