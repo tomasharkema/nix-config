@@ -264,7 +264,11 @@
         netboot.enable = true;
         # memtest86.enable = true;
       };
-      binfmt.emulatedSystems = ["wasm32-wasi" "x86_64-windows" "aarch64-linux"];
+      binfmt.emulatedSystems = [
+        "wasm32-wasi"
+        "x86_64-windows"
+        "aarch64-linux"
+      ];
       extraModulePackages = with config.boot.kernelPackages; [
         ddcci-driver
         it87
