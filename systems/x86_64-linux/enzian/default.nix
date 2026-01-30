@@ -82,7 +82,7 @@
 
     networking = {
       hostName = "enzian";
-      hostId = "529fd7fa";
+
       firewall = {
         enable = true;
       };
@@ -110,24 +110,12 @@
         useTmpfs = true;
       };
 
-      initrd = {
-        availableKernelModules = [
-          "xhci_pci"
-          "ahci"
-          "usbhid"
-          "usb_storage"
-          "sd_mod"
-        ];
-        kernelModules = [
-          "kvm-intel"
-          "uinput"
-          "nvme"
-        ];
-      };
       kernelModules = [
         "kvm-intel"
         "uinput"
         "nvme"
+        "coretemp"
+        "nct6775"
       ];
       extraModulePackages = [];
       recovery = {
