@@ -54,10 +54,10 @@ in {
         #   enabled = true;
         #   interval = "24h";
         # };
-        rootless = {
-          enable = true;
-          setSocketVariable = true;
-        };
+        # rootless = {
+        #   enable = true;
+        #   setSocketVariable = true;
+        # };
       };
     };
   };
