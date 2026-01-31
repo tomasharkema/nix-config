@@ -1,15 +1,1 @@
-{
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "Catppuccin.catppuccin-vsc-pack",
-        "jnoortheen.nix-ide",
-        "mkhl.direnv",
-        "kamadorueda.alejandra"
-      ]
-    }
-  },
-  "image": "ghcr.io/cachix/devenv/devcontainer:latest",
-  "overrideCommand": false,
-  "updateContentCommand": "devenv test"
-}
+/nix/store/7zyfsryg0yhgkk1rkf2p37k39fkjpm5c-devcontainer.json

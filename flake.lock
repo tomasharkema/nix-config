@@ -1904,11 +1904,11 @@
         "treefmt-nix": "treefmt-nix_7"
       },
       "locked": {
-        "lastModified": 1769668996,
-        "narHash": "sha256-8KejKCkqhSfvmkNdOXnWR1/e0c40utmtK0unSpBxP/w=",
+        "lastModified": 1769889909,
+        "narHash": "sha256-TU1Eme9WetdHj0NV7UHCFxfszvsbKt83HeuBRMw/AZU=",
         "owner": "xddxdd",
         "repo": "nur-packages",
-        "rev": "7d06964e154b343076e129d2bdcb1159243ed751",
+        "rev": "2157693244a1db7361e2240cfcf168af3ef090e0",
         "type": "github"
       },
       "original": {
