@@ -284,30 +284,6 @@ in {
 
       # actkbd.enable = lib.mkForce false;
 
-      ananicy = {
-        enable = true;
-        package = pkgs.ananicy-cpp;
-        rulesProvider = pkgs.ananicy-rules-cachyos;
-        extraRules = [
-          {
-            name = "nom";
-            type = "compiler";
-          }
-          {
-            name = "nix";
-            type = "compiler";
-          }
-          {
-            name = "nix-daemon";
-            type = "compiler";
-          }
-          {
-            name = "nh";
-            type = "compiler";
-          }
-        ];
-      };
-
       fstrim.enable = true;
 
       throttled.enable = pkgs.stdenv.isx86_64;
