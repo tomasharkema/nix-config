@@ -256,11 +256,11 @@
             "x86_64-linux" = self.installer."x86_64-linux".iso.config.system.build.isoImage;
             "aarch64-linux" = self.installer."aarch64-linux".iso.config.system.build.isoImage;
           };
-          img = let
-            config = self.installer."aarch64-linux".img.config;
-          in {
-            inherit config;
-            "aarch64-linux" = config.system.build.sdImage;
+          img = {
+            "aarch64-linux" = self.installer."aarch64-linux".img.config.system.build.sdImage;
+          };
+          surface = {
+            "aarch64-linux" = self.installer."aarch64-linux".surface.config.system.build.sdImage;
           };
         };
 

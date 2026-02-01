@@ -10,6 +10,10 @@
     inherit inputs;
     inherit channels;
   };
+  surface = import ./surface.nix {
+    inherit inputs;
+    inherit channels;
+  };
   netboot = import ./netboot.nix {
     inherit inputs;
     inherit channels;

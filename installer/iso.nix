@@ -18,6 +18,9 @@ inputs.nixpkgs.lib.nixosSystem {
         ...
       }: {
         config = {
+          hardware.firmware = lib.mkIf (pkgs.stdenv.isAarch64) [
+            inputs.self.packages.aarch64-linux.surface-pro-12-linux
+          ];
           # networking.wireless.enable = true;
         };
       }
