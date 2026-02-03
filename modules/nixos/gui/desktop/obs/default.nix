@@ -19,7 +19,6 @@ in {
     environment.systemPackages = with pkgs; [
       gphoto2
       v4l-utils
-      ffmpeg
     ];
 
     programs.obs-studio = {

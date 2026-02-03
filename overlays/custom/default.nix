@@ -365,6 +365,8 @@ in rec {
 
   # wluma = inputs.wluma.defaultPackage."${prev.system}";
 
+  # handbrake = prev.handbrake.override {};
+
   # utillinux = prev.util-linux;
 
   # dosbox-x = prev.dosbox-x.overrideAttrs ({postInstall ? "", ...}: {
@@ -375,7 +377,6 @@ in rec {
   #     '';
   #   # https://www.vogons.org/download/file.php?id=102360
   # });
-  # ffmpeg = prev.ffmpeg.override {ffmpegVariant = "full";};
 
   # cockpit-podman = self.packages."${prev.system}".cockpit-podman;
   # cockpit-tailscale = self.packages."${prev.system}".cockpit-tailscale;
