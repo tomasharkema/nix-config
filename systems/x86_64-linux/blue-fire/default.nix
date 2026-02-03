@@ -57,7 +57,7 @@ in {
           beta = false;
           open = false;
           grid = {
-            enable = true;
+            enable = false;
           };
         };
       };
@@ -79,37 +79,14 @@ in {
         # bridgeInterfaces = [ "eno1" ];
       };
 
-      netconsoled.enable = true;
+      # netconsoled.enable = true;
 
       avahi.allowInterfaces = ["br0"];
       vscode-server.enable = true;
-      xserver.videoDrivers = ["nvidia"];
-
       rpcbind.enable = true;
-      tsnsrv = {
-        enable = true;
-        defaults.authKeyPath = config.age.secrets.tsnsrv.path;
-        services = {
-          # nix-cache = {toURL = "http://127.0.0.1:7124";};
-          # searxng = {toURL = "http://127.0.0.1:8088";};
-        };
-      };
-
       lldpd.enable = true;
       remote-builders.server.enable = true;
-      netbootxyz.enable = true;
-      beesd.filesystems = lib.mkIf false {
-        root = {
-          spec = "UUID=91663f26-5426-4a0d-96f0-e507f2cd8196";
-          hashTableSizeMB = 1024;
-          verbosity = "crit";
-          extraOptions = [
-            "--loadavg-target"
-            "2.0"
-          ];
-        };
-      };
-
+      # netbootxyz.enable = true;
       # tcsd.enable = true;
       kmscon.enable = lib.mkForce false;
 
@@ -216,17 +193,17 @@ in {
       };
     };
 
-    environment.systemPackages = with pkgs; [
-      virt-manager
-      ipmitool
-      boot-into-bios
-      openipmi
-      freeipmi
-      ipmicfg
-      ipmiutil
-      tremotesf
-      icingaweb2
-    ];
+    # environment.systemPackages = with pkgs; [
+    #   virt-manager
+    #  ipmitool
+    #  boot-into-bios
+    #  openipmi
+    #  freeipmi
+    #  ipmicfg
+    #  ipmiutil
+    #  tremotesf
+    #  icingaweb2
+    # ];
 
     virtualisation.kvmgt = {
       enable = true;
@@ -246,7 +223,6 @@ in {
         };
       };
     };
-
     hardware = {
       cpu.intel.updateMicrocode = true;
 
