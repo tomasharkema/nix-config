@@ -42,8 +42,8 @@
     custom.letters
     custom.netsleuth
     custom.remarkable-cups
+    custom.retro-adsb-radar
     custom.rust-conn
-    # custom.retro-adsb-radar
     custom.spi-tools
     custom.toolblex
     custom.usbguard-gnome
