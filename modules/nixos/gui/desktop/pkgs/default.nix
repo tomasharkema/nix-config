@@ -139,7 +139,7 @@
     openswitcher
     pavucontrol
     pdfarranger
-    # pika-backup
+    pika-backup
     piper
     platformio
     plex-desktop

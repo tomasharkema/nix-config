@@ -820,26 +820,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # wezterm = {
-    #   url = "github:wez/wezterm?dir=nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # otel = {
-    #   url = "github:tomasharkema/nix-otel";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # nix-snapshotter = {
-    #   url = "github:pdtpartners/nix-snapshotter";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # comin = {
-    #   url = "github:nlewo/comin";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     nix-cachyos-kernel = {
       url = "github:xddxdd/nix-cachyos-kernel/release";
       # inputs.nixpkgs.follows = "nixpkgs";/
@@ -854,11 +834,6 @@
       };
     };
 
-    # nixgl = {
-    #   url = "github:nix-community/nixGL";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     tsnsrv = {
       url = "github:boinkor-net/tsnsrv";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -868,11 +843,6 @@
       url = "github:nix-community/nixd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # wluma = {
-    #   url = "github:tomasharkema/wluma";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
 
     niri = {
       url = "github:sodiboo/niri-flake";
