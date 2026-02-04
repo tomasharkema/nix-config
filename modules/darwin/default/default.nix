@@ -70,6 +70,7 @@
         nh
         nil
         direnv
+        # custom.rust-conn
         alejandra
       ]);
 

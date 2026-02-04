@@ -80,7 +80,7 @@ in {
         }
         // osConfig.home.homeFiles;
 
-      stateVersion = "25.11";
+      stateVersion = "26.05";
 
       # (import ./packages/common.nix {inherit pkgs inputs lib;})
       # ++
@@ -97,7 +97,7 @@ in {
           # postman
           atac
           # nix-htop
-          augeas
+          # augeas
           custom.bieye
           wget2
           libnotify

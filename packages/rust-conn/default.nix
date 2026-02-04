@@ -51,8 +51,8 @@ rustPlatform.buildRustPackage rec {
       openssh
     ]
     ++ lib.optionals stdenv.isDarwin [
-      darwin.apple_sdk.frameworks.Security
-      darwin.apple_sdk.frameworks.SystemConfiguration
+      # darwin.apple_sdk.frameworks.Security
+      # darwin.apple_sdk.frameworks.SystemConfiguration
     ]
     ++ lib.optionals stdenv.isLinux [
       alsa-lib
