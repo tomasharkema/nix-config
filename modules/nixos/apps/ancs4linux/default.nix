@@ -8,7 +8,7 @@
 in {
   options.apps.ancs4linux = {
     enable = lib.mkOption {
-      default = config.hardware.bluetooth.enable;
+      default = config.hardware.bluetooth.enable && config.gui.desktop.enable;
       description = "ancs4linux";
     };
     package = lib.mkOption {
@@ -16,7 +16,7 @@ in {
     };
   };
 
-  config = lib.mkIf (cfg.enable && false) {
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = [cfg.package pkgs.custom.bluetooth-autoconnect];
 
     services.dbus = {
@@ -29,7 +29,10 @@ in {
     # services.packagekit.enable = true;
 
     systemd = {
-      packages = [cfg.package pkgs.custom.bluetooth-autoconnect];
+      packages = [
+        #cfg.package
+        pkgs.custom.bluetooth-autoconnect
+      ];
       services = {
         ancs4linux-advertising = {
           enable = true;

@@ -688,14 +688,6 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    poetry2nix = {
-      url = "github:nix-community/poetry2nix";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
     # nbfc-linux = {
     # url = "github:nbfc-linux/nbfc-linux";
     # inputs.nixpkgs.follows = "nixpkgs";
