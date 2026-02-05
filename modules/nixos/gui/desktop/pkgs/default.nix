@@ -14,10 +14,12 @@
 
   pks = with pkgs; [
     # keep-sorted start
-    (lib.mkIf pkgs.stdenv.isx86_64 arduino-ide)
     # _86Box-with-roms
     _ipmiview
     android-tools
+    angryipscanner
+    antares
+    arduino-ide
     bazaar
     bitwarden-cli
     bitwarden-desktop
@@ -27,6 +29,7 @@
     bottles
     boxbuddy
     buttermanager
+    caffeine-ng
     cameractrls
     celestia
     chromium
@@ -40,6 +43,7 @@
     custom.distrib-dl
     custom.gtk-meshtastic-client
     custom.letters
+    custom.manuals
     custom.netsleuth
     custom.remarkable-cups
     custom.retro-adsb-radar
@@ -48,10 +52,6 @@
     custom.toolblex
     custom.usbguard-gnome
     custom.webcamize
-    # angryipscanner
-    # caffeine-ng
-    # custom.manuals
-    # custom.qlogexplorer
     custom.wifiman
     darktable
     davinci-resolve
@@ -93,7 +93,7 @@
     gt
     gtk-engine-murrine
     guvcview
-    # handbrake
+    handbrake
     helvum
     httpie-desktop
     i2c-tools
@@ -103,7 +103,7 @@
     intel-gpu-tools
     inxi
     jetbrains-toolbox
-    # kdePackages.kdenlive
+    kdePackages.kdenlive
     kicad
     ktailctl
     labelle
@@ -155,7 +155,6 @@
     qjournalctl
     qmk
     qmk_hid
-    # antares
     qradiolink
     rmview
     rpi-imager
