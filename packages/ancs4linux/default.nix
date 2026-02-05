@@ -63,7 +63,7 @@ in
 
     pythonImportsCheck = ["ancs4linux"];
 
-    patches = [./auth-fixes.patch];
+    # patches = [./auth-fixes.patch];
 
     postInstall = ''
       install -Dm 644 autorun/ancs4linux-observer.xml $out/etc/dbus-1/system.d/ancs4linux-observer.conf

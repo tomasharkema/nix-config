@@ -38,6 +38,13 @@ in {
         cfg.package
         pkgs.custom.bluetooth-autoconnect
       ];
+
+      services = {
+        ancs4linux-observer.wantedBy = ["default.target"];
+        ancs4linux-advertising.wantedBy = ["default.target"];
+      };
+      user.services.ancs4linux-desktop-integration.wantedBy = ["default.target"];
+
       # services = {
       #   ancs4linux-advertising = {
       #     enable = true;
