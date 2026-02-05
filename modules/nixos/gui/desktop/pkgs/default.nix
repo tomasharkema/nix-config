@@ -14,7 +14,6 @@
 
   pks = with pkgs; [
     # keep-sorted start
-    # _86Box-with-roms
     _ipmiview
     android-tools
     angryipscanner
@@ -25,6 +24,8 @@
     bitwarden-desktop
     bitwarden-menu
     blueberry
+    # _86Box-with-roms
+    bluebubbles
     bluetooth_battery
     bottles
     boxbuddy
