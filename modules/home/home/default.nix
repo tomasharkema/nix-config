@@ -26,11 +26,6 @@
   #     "https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/raw/main/backgrounds/blobs-l.svg";
   #   sha256 = "sha256-zVNMDAgfZvEwPHbhJ0/NBSNseNjIF+jxD3K2zcSj36U=";
   # };
-  # aicommits = pkgs.writeShellScriptBin "aicommits" ''
-  #   OPENAI_API_KEY="$(${pkgs._1password}/bin/op item get 2vzrjmprwi25zts7mzb4zmmad4 --field credential)"
-  #   aicommits config set OPENAI_KEY=$OPENAI_API_KEY
-  #   exec ${pkgs.custom.aicommits}/bin/aicommits "$@"
-  # '';
   squash-folder = pkgs.writeShellScriptBin "squash-folder" ''
     set -e
 
@@ -102,12 +97,10 @@ in {
           wget2
           libnotify
           trippy
-          # fup-repl
-
+          fup-repl
           udict
-          # rtfm
+          rtfm
           jq
-          # fig
           kitty-img
           # todoman
           # dooit
@@ -120,9 +113,6 @@ in {
           # xplr
           lazycli
           lazyjournal
-          # f1viewer
-          # aicommits
-          # openai
         ]
         ++ (lib.optionals pkgs.stdenv.isx86_64 [
           valgrind

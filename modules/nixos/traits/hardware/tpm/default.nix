@@ -36,7 +36,8 @@ in {
 
     boot = {
       initrd = {
-        systemd.enableTpm2 = true;
+        systemd.tpm2.enable = true;
+
         # kernelModules = ["tpm_rng"];
       };
 

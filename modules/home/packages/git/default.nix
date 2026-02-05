@@ -52,9 +52,24 @@
 
       git = {
         enable = true;
-        userName = "tomasharkema";
-        userEmail = "tomas@harkema.io";
 
+        settings = {
+          user = {
+            email = "tomas@harkema.io";
+            name = "tomasharkema";
+          };
+
+          rerere = {enable = true;};
+          pull = {rebase = true;};
+          rebase.autoStash = true;
+          branch = {autosetupmerge = true;};
+          push.autoSetupRemote = true;
+          commit.gpgsign = true;
+          init.defaultBranch = "main";
+          maintenance.auto = true;
+
+          credential.helper = ["${pkgs.custom.git-credential-1password}/bin/git-credential-1password"];
+        };
         lfs.enable = true;
 
         signing = {
@@ -68,30 +83,20 @@
           enable = true;
           repositories = ["/home/tomas/Developer/nix-config"];
         };
-        extraConfig = {
-          rerere = {enable = true;};
-          pull = {rebase = true;};
-          rebase.autoStash = true;
-          branch = {autosetupmerge = true;};
-          push.autoSetupRemote = true;
-          commit.gpgsign = true;
-          init.defaultBranch = "main";
-          maintenance.auto = true;
 
-          credential.helper = ["${pkgs.custom.git-credential-1password}/bin/git-credential-1password"];
+        # extraConfig = {
+        # gpg = {
+        # format = "ssh";
 
-          # gpg = {
-          # format = "ssh";
+        # not needed if SSH_AUTH_SOCK is set...
+        # ssh.program =
+        #   lib.mkIf
+        #   (pkgs.stdenv.isLinux && osConfig.programs._1password-gui.enable)
+        #   "${osConfig.programs._1password-gui.package}/bin/op-ssh-sign";
+        # };
 
-          # not needed if SSH_AUTH_SOCK is set...
-          # ssh.program =
-          #   lib.mkIf
-          #   (pkgs.stdenv.isLinux && osConfig.programs._1password-gui.enable)
-          #   "${osConfig.programs._1password-gui.package}/bin/op-ssh-sign";
-          # };
-
-          # user.signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";
-        };
+        # user.signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILgD7me/mlDG89ZE/tLTJeNhbo3L+pi7eahB2rUneSR4";
+        # };
       };
     };
   };

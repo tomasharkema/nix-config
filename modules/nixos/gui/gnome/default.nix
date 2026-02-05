@@ -187,7 +187,7 @@ in
 
           gnome-settings-daemon.enable = true;
           core-shell.enable = true;
-          core-utilities.enable = true;
+          core-apps.enable = true;
           gnome-user-share.enable = true;
           # gnome-keyring.enable = lib.mkForce false; # true;
           games.enable = false;

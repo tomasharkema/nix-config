@@ -10,7 +10,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     home-manager.users."${config.user.name}".programs.zsh = {
-      initExtra = ''
+      initContent = ''
         eval "$(/opt/homebrew/bin/brew shellenv)"
 
         export PATH="/Users/tomas/.local/bin:$PATH"

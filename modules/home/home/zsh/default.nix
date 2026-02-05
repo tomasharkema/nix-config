@@ -21,7 +21,7 @@
       zoxide.enable = true;
       zsh = {
         enable = true;
-        enableAutosuggestions = true;
+        autosuggestion.enable = true;
         enableVteIntegration = true;
 
         syntaxHighlighting = {
@@ -65,7 +65,8 @@
         #}
         #zle -N nixos-menu
         #bindkey '^A' nixos-menu
-        initExtraBeforeCompInit = ''
+
+        initContent = lib.mkOrder 550 ''
           export HYPHEN_INSENSITIVE="true"
           zstyle ':completion:*:ssh:*' hosts off
 
@@ -82,11 +83,7 @@
           bindkey -M emacs "^I" expand-or-complete-with-dots
           bindkey -M viins "^I" expand-or-complete-with-dots
           bindkey -M vicmd "^I" expand-or-complete-with-dots
-        '';
-        # if [[ "$TTY" = /dev/tty* ]] ; then
-        #   fbterm && exit
-        # fi
-        initExtra = ''
+
           bindkey -M emacs -s '^A' 'menu^M'
           bindkey -M vicmd -s '^A' 'menu^M'
           bindkey -M viins -s '^A' 'menu^M'
@@ -106,9 +103,6 @@
           }
         '';
 
-        # initExtraFirst = ''
-        #   source "${iterm}";
-        # '';
         shellGlobalAliases = {
           "..." = "'../..'";
           "...." = "'../../..'";

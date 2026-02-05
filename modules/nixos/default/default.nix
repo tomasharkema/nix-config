@@ -313,11 +313,9 @@ in {
 
       openssh = {
         enable = true;
-        permitRootLogin = lib.mkForce "no";
-        passwordAuthentication = false;
 
         settings = {
-          PasswordAuthentication = false;
+          PasswordAuthentication = lib.mkForce false;
           PermitRootLogin = lib.mkForce "no";
 
           KerberosAuthentication = "yes";

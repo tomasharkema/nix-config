@@ -65,6 +65,11 @@ in {
       #   enable = true;
       #   packages = [pkgs.tiscamera];
       # };
+      gnome = {
+        # gnome-keyring.enable = false; # true;
+        gnome-online-accounts.enable = true;
+      };
+      pulseaudio.enable = false;
 
       ratbagd.enable = true;
       usbmuxd.enable = true;
@@ -272,8 +277,6 @@ in {
       libftdi.enable = true;
       libjaylink.enable = true;
 
-      pulseaudio.enable = false;
-
       usb-modeswitch.enable = true;
       opentabletdriver = {
         enable = true;
@@ -347,11 +350,6 @@ in {
     xdg.portal.extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];
-
-    services.gnome = {
-      # gnome-keyring.enable = false; # true;
-      gnome-online-accounts.enable = true;
-    };
 
     # networking.firewall = {
     #   allowedTCPPorts = [
