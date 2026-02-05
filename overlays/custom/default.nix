@@ -74,19 +74,6 @@ in rec {
   });
 
   boost-pfr = prev.custom.boost-pfr;
-  libdex_1 = let
-    version = "1.0.0";
-  in
-    prev.libdex.overrideAttrs (old: {
-      pname = "libdex";
-      inherit version;
-
-      src = prev.fetchurl {
-        url = "mirror://gnome/sources/libdex/${prev.lib.versions.majorMinor version}/libdex-${version}.tar.xz";
-        hash = "sha256-e49cXbN5bhThLhBCLiNWdmuoMLkoFf7nC7yGe1sgf10=";
-      };
-    });
-
   libfoundry = prev.custom.libfoundry;
   manuals = prev.custom.manuals;
   libcec = prev.libcec.override {withLibraspberrypi = true;};

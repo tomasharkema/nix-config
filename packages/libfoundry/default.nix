@@ -8,7 +8,7 @@
   pkg-config,
   glib,
   gom,
-  libdex_1,
+  libdex,
   fetchurl,
   json-glib,
   libpeas2,
@@ -29,24 +29,25 @@
   editorconfig-core-c,
   libspelling,
   validatePkgConfig,
+  gobject-introspection,
 }: let
-  template-glib_38 = let
-    version = "3.38.0";
-  in
-    template-glib.overrideAttrs ({buildInputs ? [], ...}: {
-      inherit version;
-      src = fetchurl {
-        url = "mirror://gnome/sources/template-glib/${lib.versions.majorMinor version}/template-glib-${version}.tar.xz";
-        hash = "sha256-QNANwiPc8ut/LsQi997FpnNzoMoRAavKD0nGLwUMsxI=";
-      };
-      mesonFlags = ["-Ddocs=true"];
-      buildInputs = buildInputs ++ [gi-docgen];
-      outputs = [
-        "out"
-        "dev"
-        "doc"
-      ];
-    });
+  # template-glib_38 = let
+  #   version = "3.38.0";
+  # in
+  #   template-glib.overrideAttrs ({buildInputs ? [], ...}: {
+  #     inherit version;
+  #     src = fetchurl {
+  #       url = "mirror://gnome/sources/template-glib/${lib.versions.majorMinor version}/template-glib-${version}.tar.xz";
+  #       hash = "sha256-QNANwiPc8ut/LsQi997FpnNzoMoRAavKD0nGLwUMsxI=";
+  #     };
+  #     mesonFlags = ["-Ddocs=true"];
+  #     buildInputs = buildInputs ++ [gi-docgen];
+  #     outputs = [
+  #       "out"
+  #       "dev"
+  #       "doc"
+  #     ];
+  #   });
 in
   stdenv.mkDerivation rec {
     pname = "libfoundry";
@@ -67,13 +68,14 @@ in
       pkg-config
       glib
       validatePkgConfig
+      gobject-introspection
     ];
 
     propagatedBuildInputs
     #buildInputs
     = [
       gom
-      libdex_1
+      libdex
       json-glib
       libpeas2
       sysprof
@@ -82,7 +84,7 @@ in
       libyaml
       libgit2
       libssh2
-      template-glib_38
+      template-glib
       gtksourceview5
       vte-gtk4
       cmark

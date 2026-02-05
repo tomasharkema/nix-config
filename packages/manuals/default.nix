@@ -11,7 +11,7 @@
   cmake,
   libfoundry,
   libpeas,
-  libdex_1,
+  libdex,
   libpanel,
   desktop-file-utils,
   glib,
@@ -19,14 +19,14 @@
 }:
 stdenv.mkDerivation rec {
   pname = "manuals";
-  version = "49.0";
+  version = "49.1";
 
   src = fetchFromGitLab {
     domain = "gitlab.gnome.org";
     owner = "GNOME";
     repo = "manuals";
     rev = version;
-    hash = "sha256-H/PLJvU6krgsNqoAr4EGxdSto0BQMt3IMAntwPB5sQw=";
+    hash = "sha256-h/Xphff08MmdNd4Z05TbbPYiJKdY/GkC0tR3acO0F/A=";
   };
 
   nativeBuildInputs = [
@@ -45,7 +45,7 @@ stdenv.mkDerivation rec {
     libff
     libfoundry
     libpeas
-    libdex_1
+    libdex
     libpanel
   ];
 
