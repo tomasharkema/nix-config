@@ -34,7 +34,6 @@ in {
       dbus = {
         enable = true;
         packages = [
-          pkgs.shairport-sync
           sp
         ];
       };

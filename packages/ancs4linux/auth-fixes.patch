@@ -1,0 +1,37 @@
+diff --git a/ancs4linux/advertising/pairing.py b/ancs4linux/advertising/pairing.py
+index 6bfbc29..fec0a89 100644
+--- a/ancs4linux/advertising/pairing.py
++++ b/ancs4linux/advertising/pairing.py
+@@ -20,25 +20,31 @@ class PairingAgent:
+         pass
+ 
+     def RequestPinCode(self, device: ObjPath) -> Str:
++        print(f'RequestPinCode {device}')
+         raise PairingRejected
+ 
+     def DisplayPinCode(self, device: ObjPath, pincode: Str) -> None:
++        print(f'DisplayPinCode {device} {pincode}')
+         raise PairingRejected
+ 
+     def RequestPassKey(self, device: ObjPath) -> UInt32:
++        print(f'RequestPassKey {device}')
+         raise PairingRejected
+ 
+     def DisplayPasskey(self, device: ObjPath, passkey: UInt32, entered: UInt16) -> None:
++        print(f'DisplayPasskey {device} {passkey} {entered}')
+         raise PairingRejected
+ 
+     def RequestConfirmation(self, device: ObjPath, passkey: UInt32) -> None:
+         self.server.emit_pairing_code(str(int(passkey)))
+ 
+     def RequestAuthorization(self, device: ObjPath) -> None:
++        print(f'RequestAuthorization {device}')
+         raise PairingRejected
+ 
+     def AuthorizeService(self, device: ObjPath, uuid: Str) -> None:
+-        raise PairingRejected
++        print(f'AuthorizeService {device} {uuid}')
++        pass
+ 
+     def Cancel(self) -> None:
+         pass

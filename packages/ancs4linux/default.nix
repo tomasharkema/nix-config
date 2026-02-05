@@ -9,6 +9,7 @@
   writeShellScript,
 }: let
   startScript = writeShellScript "ancs4linux-start" ''
+    set -x
     address=$(@ancs4linux-ctl get-all-hci | jq -r '.[0]')
     @ancs4linux-ctl enable-advertising --hci-address $address --name $HOSTNAME
   '';
@@ -62,15 +63,21 @@ in
 
     pythonImportsCheck = ["ancs4linux"];
 
+    patches = [./auth-fixes.patch];
+
     postInstall = ''
-      install -Dm 644 autorun/ancs4linux-observer.service $out/lib/systemd/system/ancs4linux-observer.service
-      install -Dm 644 autorun/ancs4linux-observer.xml $out/share/dbus-1/system.d/ancs4linux-observer.conf
-      install -Dm 644 autorun/ancs4linux-advertising.service $out/lib/systemd/system/ancs4linux-advertising.service
-      install -Dm 644 autorun/ancs4linux-advertising.xml $out/share/dbus-1/system.d/ancs4linux-advertising.conf
-      install -Dm 644 autorun/ancs4linux-desktop-integration.service $out/lib/systemd/user/ancs4linux-desktop-integration.service
+      install -Dm 644 autorun/ancs4linux-observer.xml $out/etc/dbus-1/system.d/ancs4linux-observer.conf
+      install -Dm 644 autorun/ancs4linux-advertising.xml $out/etc/dbus-1/system.d/ancs4linux-advertising.conf
 
       install -Dm 644 ${startScript} $out/bin/ancs4linux-start
       chmod +x $out/bin/ancs4linux-start
+
+      substituteInPlace "$out/bin/ancs4linux-start" \
+        --replace-fail '@ancs4linux-ctl' "$out/bin/ancs4linux-ctl"
+
+      install -Dm 644 autorun/ancs4linux-observer.service $out/lib/systemd/system/ancs4linux-observer.service
+      install -Dm 644 autorun/ancs4linux-advertising.service $out/lib/systemd/system/ancs4linux-advertising.service
+      install -Dm 644 autorun/ancs4linux-desktop-integration.service $out/lib/systemd/user/ancs4linux-desktop-integration.service
 
       substituteInPlace "$out/lib/systemd/system/ancs4linux-observer.service" \
         --replace-fail "/usr/local/bin" "$out/bin"
@@ -80,15 +87,12 @@ in
 
       substituteInPlace "$out/lib/systemd/user/ancs4linux-desktop-integration.service" \
         --replace-fail "/usr/local/bin" "$out/bin"
-
-      substituteInPlace "$out/bin/ancs4linux-start" \
-        --replace-fail '@ancs4linux-ctl' "$out/bin/ancs4linux-ctl"
     '';
 
     meta = {
       description = "Forward notifications from your iOS devices to your Linux desktop";
       homepage = "https://github.com/pzmarzly/ancs4linux";
-      # license = lib.licenses.mit;
+      license = lib.licenses.gpl3Only;
       maintainers = with lib.maintainers; [];
       # mainProgram = "ancs-linux";
     };

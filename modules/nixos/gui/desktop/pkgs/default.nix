@@ -30,7 +30,6 @@
     bottles
     boxbuddy
     buttermanager
-    caffeine-ng
     cameractrls
     celestia
     chromium
