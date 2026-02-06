@@ -2,6 +2,10 @@
   "version": 1,
   "system": "x86_64-linux",
   "virtualisation": "none",
+  "uefi": {
+    "supported": true,
+    "platform_size": 64
+  },
   "hardware": {
     "bios": {
       "apm_info": {
@@ -23,8 +27,8 @@
     },
     "bluetooth": [
       {
-        "index": 44,
-        "attached_to": 46,
+        "index": 43,
+        "attached_to": 45,
         "class_list": [
           "usb",
           "bluetooth"
@@ -107,8 +111,8 @@
         "module_alias": "usb:v0CF3pE301d0001dcE0dsc01dp01icE0isc01ip01in01"
       },
       {
-        "index": 48,
-        "attached_to": 46,
+        "index": 46,
+        "attached_to": 45,
         "class_list": [
           "usb",
           "bluetooth"
@@ -679,210 +683,6 @@
         "module_alias": "pci:v00008086d0000A33Csv00001028sd0000087Cbc06sc04i00"
       }
     ],
-    "camera": [
-      {
-        "index": 43,
-        "attached_to": 46,
-        "class_list": [
-          "camera",
-          "usb"
-        ],
-        "bus_type": {
-          "hex": "0086",
-          "name": "USB",
-          "value": 134
-        },
-        "slot": {
-          "bus": 0,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "010f",
-          "name": "Camera",
-          "value": 271
-        },
-        "vendor": {
-          "hex": "0c45",
-          "name": "CN0VGCNHLOG0082NA186A00",
-          "value": 3141
-        },
-        "device": {
-          "hex": "671d",
-          "name": "Integrated_Webcam_HD",
-          "value": 26397
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "81.31",
-          "value": 0
-        },
-        "model": "CN0VGCNHLOG0082NA186A00 Integrated_Webcam_HD",
-        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-12/1-12:1.1",
-        "sysfs_bus_id": "1-12:1.1",
-        "resources": [
-          {
-            "type": "baud",
-            "speed": 480000000,
-            "bits": 0,
-            "stop_bits": 0,
-            "parity": 0,
-            "handshake": 0
-          }
-        ],
-        "detail": {
-          "device_class": {
-            "hex": "00ef",
-            "name": "miscellaneous",
-            "value": 239
-          },
-          "device_subclass": {
-            "hex": "0002",
-            "name": "comm",
-            "value": 2
-          },
-          "device_protocol": 1,
-          "interface_class": {
-            "hex": "000e",
-            "name": "video",
-            "value": 14
-          },
-          "interface_subclass": {
-            "hex": "0002",
-            "name": "comm",
-            "value": 2
-          },
-          "interface_protocol": 0,
-          "interface_number": 1,
-          "interface_alternate_setting": 0,
-          "interface_association": {
-            "function_class": {
-              "hex": "000e",
-              "name": "video",
-              "value": 14
-            },
-            "function_subclass": {
-              "hex": "0003",
-              "name": "hid",
-              "value": 3
-            },
-            "function_protocol": 0,
-            "interface_count": 2,
-            "first_interface": 0
-          }
-        },
-        "hotplug": "usb",
-        "driver": "uvcvideo",
-        "driver_module": "uvcvideo",
-        "drivers": [
-          "uvcvideo"
-        ],
-        "driver_modules": [
-          "uvcvideo"
-        ],
-        "module_alias": "usb:v0C45p671Dd8131dcEFdsc02dp01ic0Eisc02ip00in01"
-      },
-      {
-        "index": 47,
-        "attached_to": 46,
-        "class_list": [
-          "camera",
-          "usb"
-        ],
-        "bus_type": {
-          "hex": "0086",
-          "name": "USB",
-          "value": 134
-        },
-        "slot": {
-          "bus": 0,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "010f",
-          "name": "Camera",
-          "value": 271
-        },
-        "vendor": {
-          "hex": "0c45",
-          "name": "CN0VGCNHLOG0082NA186A00",
-          "value": 3141
-        },
-        "device": {
-          "hex": "671d",
-          "name": "Integrated_Webcam_HD",
-          "value": 26397
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "81.31",
-          "value": 0
-        },
-        "model": "CN0VGCNHLOG0082NA186A00 Integrated_Webcam_HD",
-        "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-12/1-12:1.0",
-        "sysfs_bus_id": "1-12:1.0",
-        "resources": [
-          {
-            "type": "baud",
-            "speed": 480000000,
-            "bits": 0,
-            "stop_bits": 0,
-            "parity": 0,
-            "handshake": 0
-          }
-        ],
-        "detail": {
-          "device_class": {
-            "hex": "00ef",
-            "name": "miscellaneous",
-            "value": 239
-          },
-          "device_subclass": {
-            "hex": "0002",
-            "name": "comm",
-            "value": 2
-          },
-          "device_protocol": 1,
-          "interface_class": {
-            "hex": "000e",
-            "name": "video",
-            "value": 14
-          },
-          "interface_subclass": {
-            "hex": "0001",
-            "name": "audio",
-            "value": 1
-          },
-          "interface_protocol": 0,
-          "interface_number": 0,
-          "interface_alternate_setting": 0,
-          "interface_association": {
-            "function_class": {
-              "hex": "000e",
-              "name": "video",
-              "value": 14
-            },
-            "function_subclass": {
-              "hex": "0003",
-              "name": "hid",
-              "value": 3
-            },
-            "function_protocol": 0,
-            "interface_count": 2,
-            "first_interface": 0
-          }
-        },
-        "hotplug": "usb",
-        "driver": "uvcvideo",
-        "driver_module": "uvcvideo",
-        "drivers": [
-          "uvcvideo"
-        ],
-        "driver_modules": [
-          "uvcvideo"
-        ],
-        "module_alias": "usb:v0C45p671Dd8131dcEFdsc02dp01ic0Eisc01ip00in00"
-      }
-    ],
     "cpu": [
       {
         "architecture": "x86_64",
@@ -967,6 +767,7 @@
           "3dnowprefetch",
           "cpuid_fault",
           "epb",
+          "pti",
           "ssbd",
           "ibrs",
           "ibpb",
@@ -1040,7 +841,6 @@
         "fpu_exception": false,
         "cpuid_level": 22,
         "write_protect": false,
-        "tlb_size": 32764,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -1152,14 +952,14 @@
         "sysfs_id": "/class/block/zram0",
         "unix_device_names": [
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/667f63a3-a0a8-455f-9b3c-12c9695b30c3",
+          "/dev/disk/by-uuid/d1f550d5-00fa-4006-84f5-02b36f8f6dbe",
           "/dev/zram0"
         ],
         "resources": [
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 4042496,
+            "value_1": 4059264,
             "value_2": 4096
           }
         ]
@@ -1221,17 +1021,25 @@
             "type": "io",
             "base": 12288,
             "range": 128,
-            "enabled": false,
+            "enabled": true,
             "access": "read_write"
           }
         ],
         "detail": {
           "function": 0,
-          "command": 6,
+          "command": 1031,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
         },
+        "driver": "nvidia",
+        "driver_module": "nvidia",
+        "drivers": [
+          "nvidia"
+        ],
+        "driver_modules": [
+          "nvidia"
+        ],
         "module_alias": "pci:v000010DEd00001C8Csv00001028sd0000087Cbc03sc02i00"
       },
       {
@@ -1315,7 +1123,7 @@
     ],
     "hub": [
       {
-        "index": 46,
+        "index": 45,
         "attached_to": 38,
         "class_list": [
           "usb",
@@ -1337,7 +1145,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.18.0-cachyos xhci-hcd",
+          "name": "Linux 6.18.8-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1351,7 +1159,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.18.0-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.18.8-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -1402,7 +1210,7 @@
         "module_alias": "usb:v1D6Bp0002d0618dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 50,
+        "index": 48,
         "attached_to": 38,
         "class_list": [
           "usb",
@@ -1424,7 +1232,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.18.0-cachyos xhci-hcd",
+          "name": "Linux 6.18.8-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1438,7 +1246,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.18.0-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.18.8-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -1507,8 +1315,8 @@
     ],
     "modem": [
       {
-        "index": 45,
-        "attached_to": 46,
+        "index": 44,
+        "attached_to": 45,
         "class_list": [
           "modem",
           "usb"
@@ -1714,7 +1522,7 @@
           "hex": "7a13",
           "value": 31251
         },
-        "sysfs_id": "/devices/pci0000:00/0000:00:15.1/i2c_designware.1/i2c-9/i2c-SYNA2393:00/0018:06CB:7A13.0002/input/input21",
+        "sysfs_id": "/devices/pci0000:00/0000:00:15.1/i2c_designware.1/i2c-10/i2c-SYNA2393:00/0018:06CB:7A13.0002/input/input21",
         "unix_device_names": [
           "/dev/input/event16",
           "/dev/input/ + handler"
@@ -1773,7 +1581,7 @@
         "sysfs_id": "/devices/pci0000:00/0000:00:1c.0/0000:3b:00.0",
         "sysfs_bus_id": "0000:3b:00.0",
         "unix_device_names": [
-          "wlp59s0"
+          "wlan0"
         ],
         "resources": [
           {
@@ -1888,7 +1696,7 @@
     ],
     "network_interface": [
       {
-        "index": 51,
+        "index": 50,
         "attached_to": 17,
         "class_list": [
           "network_interface"
@@ -1899,15 +1707,15 @@
           "value": 263
         },
         "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
+          "hex": "000a",
+          "name": "WLAN",
+          "value": 10
         },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/wlp59s0",
+        "model": "WLAN network interface",
+        "sysfs_id": "/class/net/wlan0",
         "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.0/0000:3b:00.0",
         "unix_device_names": [
-          "wlp59s0"
+          "wlan0"
         ],
         "resources": [
           {
@@ -2840,8 +2648,8 @@
     },
     "usb": [
       {
-        "index": 49,
-        "attached_to": 46,
+        "index": 47,
+        "attached_to": 45,
         "class_list": [
           "usb",
           "unknown"

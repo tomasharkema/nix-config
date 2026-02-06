@@ -35,21 +35,6 @@
       };
     };
 
-    # programs.gnupg.agent = {
-    #   enable = true;
-    # };
-
-    systemd = {
-      sleep.extraConfig = ''
-        MemorySleepMode=deep
-      '';
-    };
-    #   services.usbmuxd.path = [pkgs.libusb1];
-
-    # };
-
-    #system.etc.overlay.enable = true;
-
     environment = {
       systemPackages = with pkgs; [
         esp-idf-full
@@ -274,22 +259,6 @@
       # };
     };
 
-    # system.includeBuildDependencies = true;
-    # system.build.cc1101-driver = pkgs.custom.cc1101-driver.override {kernel = config.boot.kernelPackages.kernel;};
-
-    # hardware = {
-    #   deviceTree = {
-    #     # enable = true;
-
-    #     overlays = [
-    #       {
-    #         name = "cc1101";
-    #         dtsFile = "${pkgs.custom.cc1101-driver}/lib/overlays/cc1101.dts";
-    #       }
-    #     ];
-    #   };
-    # };
-
     boot = {
       tmp = {
         useTmpfs = true;
@@ -309,7 +278,7 @@
       # modprobeConfig.enable = true;
       # supportedFilesystems = ["ext2" "ext3" "ext4"];
       kernelParams = [
-        # "mitigations=off"
+        "mitigations=off"
         # "efi_pstore.pstore_disable=0"
         # "pstore.backend=efi"
       ];
@@ -329,11 +298,7 @@
       # extraModprobeConfig = ''
       #   options psmouse synaptics_intertouch=1
       # '';
-      blacklistedKernelModules = [
-        "intel_oc_wdt"
-        "iTCO_wdt"
-        "nouveau"
-      ];
+
       kernelModules = [
         "coretemp"
         # "efi_pstore"
