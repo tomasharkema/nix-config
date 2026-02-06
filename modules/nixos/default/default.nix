@@ -230,9 +230,10 @@ in {
       # locate.enable = true;
       nixos-cli = {
         enable = true;
-
-        prebuildOptionCache = false;
+        prebuildOptionCache = false; #true;
       };
+      envfs.enable = true;
+
       userborn.enable = true;
       uptimed.enable = true;
       tuptime.enable = true;
@@ -572,7 +573,55 @@ in {
         # kexAlgorithms = config.services.openssh.settings.KexAlgorithms;
       };
 
-      nix-ld.enable = true;
+      nix-ld = {
+        enable = lib.mkDefault true;
+        libraries = with pkgs;
+          [
+            acl
+            attr
+            bzip2
+            dbus
+            expat
+            fontconfig
+            freetype
+            fuse3
+            icu
+            libnotify
+            libsodium
+            libssh
+            libunwind
+            libusb1
+            libuuid
+            nspr
+            nss
+            stdenv.cc.cc
+            util-linux
+            zlib
+            zstd
+          ]
+          ++ lib.optionals (config.hardware.graphics.enable) [
+            pipewire
+            cups
+            libxkbcommon
+            pango
+            mesa
+            libdrm
+            libglvnd
+            libpulseaudio
+            atk
+            cairo
+            alsa-lib
+            at-spi2-atk
+            at-spi2-core
+            gdk-pixbuf
+            glib
+            gtk3
+            libGL
+            libappindicator-gtk3
+            vulkan-loader
+          ];
+      };
+
       zsh = {
         enable = true;
         vteIntegration = true;

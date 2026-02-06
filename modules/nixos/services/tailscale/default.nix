@@ -26,8 +26,6 @@ in {
     networking = {
       # useDHCP = false;
 
-      # iptables.enable = true;
-
       firewall = {
         trustedInterfaces = [
           "tailscale0"
@@ -35,8 +33,13 @@ in {
         ];
         allowedTCPPorts = [config.services.tailscale.port];
         allowedUDPPorts = [config.services.tailscale.port];
+        checkReversePath = "loose";
       };
     };
+
+    systemd.services.tailscaled.serviceConfig.Environment = [
+      "TS_DEBUG_FIREWALL_MODE=nftables"
+    ];
 
     services = {
       resolved = {
@@ -50,7 +53,7 @@ in {
         enable = true;
         package = pkgs.tailscale;
         # authKeyFile = config.age.secrets.tailscale.path;
-        useRoutingFeatures = "both";
+        useRoutingFeatures = lib.mkDefault "both";
         extraUpFlags = [
           # "--advertise-tags=tag:nixos"
           "--operator=tomas"

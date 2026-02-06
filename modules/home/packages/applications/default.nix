@@ -5,13 +5,7 @@
   pkgs,
   osConfig,
   ...
-}: let
-  librepodsDesktop = pkgs.makeDesktopItem {
-    name = "LibrePods";
-    desktopName = "LibrePods";
-    exec = "${pkgs.librepods}/bin/librepods --start-minimized";
-  };
-in {
+}: {
   config = lib.mkIf (pkgs.stdenv.isLinux && osConfig.gui.enable) {
     dconf.settings."org/gnome/shell".favorite-apps = [
       "org.gnome.Nautilus.desktop"
@@ -47,7 +41,6 @@ in {
           "${pkgs.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
           "${osConfig.programs._1password-gui.package}/share/applications/1password.desktop"
           "${pkgs.solaar}/share/applications/solaar.desktop"
-          "${librepodsDesktop}/share/applications/LibrePods.desktop"
         ];
       };
     };

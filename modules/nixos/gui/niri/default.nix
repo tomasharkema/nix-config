@@ -41,10 +41,10 @@ in {
           compositor.name = "niri";
           configHome = "/home/tomas";
 
-          logs = {
-            save = true;
-            path = "/var/log/dank/greet.log";
-          };
+          # logs = {
+          #   save = true;
+          #   path = "/var/log/dank/greet.log";
+          # };
         };
       };
     };
@@ -216,6 +216,7 @@ in {
             spawn-at-startup = [
               {command = ["kitty"];}
               {command = ["firefox"];}
+              {sh = "sleep 3 && ${pkgs.librepods}/bin/librepods --start-minimized";}
               {command = ["dconf" "write" "/org/gnome/desktop/interface/color-scheme" "'prefer-dark'"];}
               {command = ["dconf" "write" "/org/gnome/desktop/interface/gtk-theme" "'Adwaita-dark'"];}
               # {command = ["1password"];}

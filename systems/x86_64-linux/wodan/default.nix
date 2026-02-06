@@ -43,10 +43,7 @@
       swap.size = "64G";
     };
 
-    # system.includeBuildDependencies = true;
-
     time = {
-      # hardwareClockInLocalTime = true;
       timeZone = "Europe/Amsterdam";
     };
 
