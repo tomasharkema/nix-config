@@ -83,7 +83,7 @@
       usbguard.enable = false;
     };
 
-    # system.includeBuildDependencies = true;
+    system.includeBuildDependencies = true;
 
     programs = {
       nh = {

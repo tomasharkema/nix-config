@@ -598,6 +598,7 @@ in {
             util-linux
             zlib
             zstd
+            systemd
           ]
           ++ lib.optionals (config.hardware.graphics.enable) [
             pipewire
