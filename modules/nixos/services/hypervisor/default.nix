@@ -70,7 +70,7 @@ in {
       nemu
       qtemu
       virt-top
-
+      virglrenderer
       qemu-utils
       virtiofsd
     ];

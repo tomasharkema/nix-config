@@ -107,6 +107,7 @@
         pkgs.custom.neue-haas-grotesk
         custom.fast-font
         # helvetica
+        virglrenderer
         vegur # the official NixOS font
         b612
         inter
