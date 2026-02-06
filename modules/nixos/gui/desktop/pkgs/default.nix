@@ -191,7 +191,6 @@
     wine-wayland
     wiremix
     wl-clipboard
-    wolfram-engine
     wsjtx
     xdg-utils
     xdgmenumaker
