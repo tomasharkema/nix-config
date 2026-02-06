@@ -6,16 +6,6 @@
   osConfig,
   ...
 }: let
-  iterm = pkgs.fetchurl {
-    url = "https://iterm2.com/shell_integration/zsh";
-    sha256 = "sha256-Cq8winA/tcnnVblDTW2n1k/olN3DONEfXrzYNkufZvY=";
-  };
-  itermCatppuccin = pkgs.fetchFromGitHub {
-    owner = "catppuccin";
-    repo = "iterm";
-    rev = "6b5765b3d701fb21e6c250fcd0d90bc65e50d031";
-    hash = "sha256-gB3ItHv2y8zE/xlBmkVvw33WIAVLMYiLsU2jpmT23DY=";
-  };
   # bg = pkgs.fetchurl {
   #   url =
   #     "https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/raw/main/backgrounds/blobs-d.svg";
@@ -26,26 +16,7 @@
   #     "https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/raw/main/backgrounds/blobs-l.svg";
   #   sha256 = "sha256-zVNMDAgfZvEwPHbhJ0/NBSNseNjIF+jxD3K2zcSj36U=";
   # };
-  squash-folder = pkgs.writeShellScriptBin "squash-folder" ''
-    set -e
-
-    FOLDER="$1"
-
-    if [[ ! -d "$FOLDER" ]]; then
-      echo "folder $1 does not exists"
-      exit 1
-    fi
-
-    du -sh "$FOLDER"
-
-    mksquashfs "$FOLDER" "$FOLDER.sqfs" -comp zstd
-
-    du -sh "$FOLDER" "$FOLDER.sqfs"
-
-  '';
 in {
-  imports = [];
-
   config = {
     # services.lorri = lib.mkIf pkgs.stdenv.isLinux {
     #   enable = true;
@@ -84,10 +55,10 @@ in {
           custom.unifi-tui
           tree #tre-command
           yazi
-          squash-folder
+
           # lrzsz
           devcontainer
-          # picotool
+          picotool
           newman
           # postman
           atac
@@ -102,15 +73,15 @@ in {
           # rtfm
           jq
           kitty-img
-          # todoman
-          # dooit
+          todoman
+          dooit
           ttdl
           topydo
           jqp
-          # nchat
+          nchat
           git-agecrypt
           projectable
-          # xplr
+          xplr
           lazycli
           lazyjournal
         ]
@@ -122,7 +93,7 @@ in {
         mkdir -p "/Users/${osConfig.user.name}/.1password" || true
         ln -sfn "/Users/${osConfig.user.name}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" "/Users/${osConfig.user.name}/.1password/agent.sock"
       '');
-
+      # still correct?
       sessionVariablesExtra = ''
         ${lib.optionalString ((!pkgs.stdenv.hostPlatform.isDarwin) && osConfig.programs._1password-gui.enable) ''
           if [ -z "$SSH_TTY" -a -z "$SSH_AUTH_SOCK" ]; then
@@ -130,7 +101,7 @@ in {
           fi
         ''}
       '';
-
+      # cleanup!
       sessionVariables =
         (
           lib.mkMerge (

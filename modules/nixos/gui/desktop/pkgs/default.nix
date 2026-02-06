@@ -201,7 +201,7 @@
     yelp
     zed-editor
     zenmap
-    zotero
+
     # keep-sorted end
   ];
   cfg = config.gui.desktop;
