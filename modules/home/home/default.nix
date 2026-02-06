@@ -99,7 +99,7 @@ in {
           trippy
           fup-repl
           udict
-          rtfm
+          # rtfm
           jq
           kitty-img
           # todoman
