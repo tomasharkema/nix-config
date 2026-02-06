@@ -620,28 +620,15 @@ in {
       };
 
       wireless = {
-        enable = lib.mkForce false;
-        iwd.enable = true;
+        enable = lib.mkDefault true;
       };
 
       networkmanager = {
         enable = lib.mkDefault true;
 
         wifi = {
-          backend = "iwd";
           scanRandMacAddress = lib.mkDefault true;
         };
-
-        plugins = with pkgs; [
-          networkmanager-fortisslvpn
-          networkmanager-iodine
-          networkmanager-l2tp
-          networkmanager-openconnect
-          networkmanager-openvpn
-          networkmanager-sstp
-          networkmanager-strongswan
-          networkmanager-vpnc
-        ];
       };
 
       # timeServers = ["192.168.9.49"];
