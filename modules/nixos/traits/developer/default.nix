@@ -25,7 +25,6 @@ in {
         flake-checker
         autoflake
         manix
-        nix-search-cli
 
         nil
         nixd

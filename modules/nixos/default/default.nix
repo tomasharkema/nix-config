@@ -42,7 +42,7 @@ in {
       nixos-init.enable = true;
     };
 
-    # security.isolate.enable = true;
+    security.isolate.enable = true;
 
     systemd = {
       services = {
@@ -118,13 +118,13 @@ in {
         # unl0kr = {enable = config.disks.btrfs.encrypt;};
       };
 
-      # hardwareScan = true;
+      hardwareScan = true;
 
-      # extraModulePackages = lib.mkIf pkgs.stdenv.isx86_64 [
-      #   config.boot.kernelPackages.cryptodev
-      #   config.boot.kernelPackages.acpi_call
-      #   config.boot.kernelPackages.fanout
-      # ];
+      extraModulePackages = lib.mkIf pkgs.stdenv.isx86_64 [
+        config.boot.kernelPackages.cryptodev
+        config.boot.kernelPackages.acpi_call
+        config.boot.kernelPackages.fanout
+      ];
 
       kernelParams = [
         # "zswap.enabled=1"
@@ -135,15 +135,15 @@ in {
         # "netconsole=@/,@192.168.0.100/"
       ];
 
-      # kernel.sysctl = {
-      #   "net.ipv4.ip_forward" = lib.mkDefault 1;
-      #   "vm.swappiness" = lib.mkDefault 180;
-      #   "vm.watermark_boost_factor" = lib.mkDefault 0;
-      #   "vm.watermark_scale_factor" = lib.mkDefault 125;
-      #   "vm.page-cluster" = lib.mkDefault 0;
-      #   "vm.overcommit_memory" = lib.mkDefault "1";
-      #   # "kernel.printk" = "8 4 1 7";
-      # };
+      kernel.sysctl = {
+        "net.ipv4.ip_forward" = lib.mkDefault 1;
+        "vm.swappiness" = lib.mkDefault 180;
+        "vm.watermark_boost_factor" = lib.mkDefault 0;
+        "vm.watermark_scale_factor" = lib.mkDefault 125;
+        "vm.page-cluster" = lib.mkDefault 0;
+        "vm.overcommit_memory" = lib.mkDefault "1";
+        # "kernel.printk" = "8 4 1 7";
+      };
 
       tmp = {
         useTmpfs = lib.mkDefault true;
