@@ -15,13 +15,18 @@
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" script;
   prime-run = pkgs.writeShellScriptBin "prime-run" script;
 
-  patchedPkg = (
+  withPatch = patchEnabled: (driver:
+    if patchEnabled
+    then
+      (pkgs.nvidia-patch.patch-nvenc (
+        pkgs.nvidia-patch.patch-fbc driver
+      ))
+    else driver);
+
+  patchedPkg = withPatch true (
     if cfg.beta
     then config.boot.kernelPackages.nvidiaPackages.beta
-    else
-      (pkgs.nvidia-patch.patch-nvenc (
-        pkgs.nvidia-patch.patch-fbc config.boot.kernelPackages.nvidiaPackages.stable
-      ))
+    else config.boot.kernelPackages.nvidiaPackages.stable
   );
 in {
   options.traits.hardware.nvidia = {
@@ -31,6 +36,7 @@ in {
       default = false;
       type = lib.types.bool;
     };
+
     open = lib.mkOption {
       default = false;
       type = lib.types.bool;
@@ -45,10 +51,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    # nixpkgs.config = {
-    #   nvidia.acceptLicense = true;
-    #   cudaSupport = true;
-    # };
+    nixpkgs.config = {
+      nvidia.acceptLicense = true;
+      cudaSupport = true;
+    };
 
     environment.systemPackages = with pkgs; [
       # nvflash
