@@ -122,7 +122,7 @@ in {
           enableSystemMonitoring = true; # System monitoring widgets (dgop)
           enableAudioWavelength = true; # Audio visualizer (cava)
           enableCalendarEvents = true; # Calendar integration (khal)
-          enableSystemSound = false; # System sound effects
+
           # plugins = {
           #   EmojiLauncher = {
           #     enable = true;
