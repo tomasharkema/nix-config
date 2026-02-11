@@ -9,6 +9,7 @@
     environment.systemPackages =
       (with pkgs; [
         # keep-sorted start
+
         ((ffmpeg-full.override {withUnfree = true;}).overrideAttrs (_: {doCheck = false;}))
         agenix-rekey
         aide
@@ -258,6 +259,7 @@
         wget
         whatfiles
         wifitui
+        witr
         wmctrl
         wol
         wtfutil
