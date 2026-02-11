@@ -10,6 +10,8 @@
       (with pkgs; [
         # keep-sorted start
 
+        #oterm
+
         ((ffmpeg-full.override {withUnfree = true;}).overrideAttrs (_: {doCheck = false;}))
         agenix-rekey
         aide
@@ -103,10 +105,6 @@
         iptraf-ng
         isd
         kanidm_1_8
-        kdump-utils
-        kexec-tools
-        #oterm
-        kexec-tools
         kitty.terminfo
         kmon
         lazydocker

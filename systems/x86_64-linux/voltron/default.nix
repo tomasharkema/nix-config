@@ -239,7 +239,7 @@
       tmp = {
         useTmpfs = true;
       };
-      kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
+      # kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
 
       recovery = {
         enable = true;
