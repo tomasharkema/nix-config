@@ -20,16 +20,20 @@ in {
         enable = true;
         webservices.enable = true;
       };
+      openvscode-server = {
+        enable = true;
+        host = "0.0.0.0";
+        port = 3333;
+        user = "tomas";
+      };
       vscode-server = {
         enable = true;
-        enableFHS = true;
+        enableFHS = false;
         installPath = [
           "$HOME/.vscode-server"
           "$HOME/.vscode-server-oss"
           "$HOME/.vscode-server-insiders"
         ];
-        # socketPath = "/run/openvscode/socket";
-        # connectionTokenFile = "/var/lib/openvscode/token";
       };
     };
 

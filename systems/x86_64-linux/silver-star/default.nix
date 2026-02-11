@@ -17,7 +17,7 @@
         tsnsrv.rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
         cloudflared.rekeyFile = ./cloudflared.age;
         grafana-ntfy.rekeyFile = ./grafana-ntfy.age;
-        "healthchecks" = {
+        "healthchecks" = lib.mkIf false {
           rekeyFile = ./healthchecks.age;
           group = "healthchecks";
           owner = "healthchecks";
@@ -83,7 +83,7 @@
       usbguard.enable = false;
     };
 
-    system.includeBuildDependencies = true;
+    # system.includeBuildDependencies = true;
 
     programs = {
       nh = {
@@ -140,6 +140,7 @@
       #     $template remote-incoming-logs,"/var/log/syslog/%HOSTNAME%/%fromhost-ip%-%$YEAR%-%$MONTH%-%$DAY%.log" *.* ?remote-incoming-logs & ~
       #   '';
       # };
+      #
       # transmission = {
       #   enable = true;
       #   openRPCPort = true;
@@ -168,7 +169,7 @@
         };
       };
 
-      # irqbalance.enable = true;
+      irqbalance.enable = true;
 
       uptime-kuma = {
         enable = true;
@@ -238,6 +239,30 @@
           bind = "[::]:7124";
         };
       };
+
+      kanidm = {
+        enableClient = true;
+        enableServer = true;
+        enablePam = true;
+        package = pkgs.kanidm_1_8;
+
+        unixSettings.kanidm = {
+          pam_allowed_login_groups = ["users"];
+        };
+
+        clientSettings = {
+          uri = "https://idm.harkema.io";
+        };
+
+        serverSettings = {
+          origin = "https://idm.harkema.io";
+          domain = "harkema.io";
+          tls_chain = ./idm.harkema.io/idm.harkema.io.chain.pem;
+          tls_key = ./idm.harkema.io/idm.harkema.io.priv.key;
+          bindaddress = "0.0.0.0:8444";
+        };
+      };
+
       #grafana-to-ntfy = {
       #  enable = true;
       #  settings = {
@@ -248,15 +273,18 @@
       #    bauthPass = config.age.secrets.grafana-ntfy.path;
       #  };
       #};
+
+      openvscode-server = {enable = true;};
+
       tsnsrv = {
         enable = true;
+
         defaults.authKeyPath = config.age.secrets.tsnsrv.path;
+
         services = {
           nix-cache = {toURL = "http://127.0.0.1:7124";};
-          searxng = {toURL = "http://127.0.0.1:8088";};
-          glitchtip = {
-            toURL = "http://127.0.0.1:${builtins.toString config.services.glitchtip.port}";
-          };
+          #searxng = {toURL = "http://127.0.0.1:8088";};
+          #glitchtip = {toURL = "http://127.0.0.1:${builtins.toString config.services.glitchtip.port}";};
 
           grafana = {toURL = "http://127.0.0.1:3000";};
           healthchecks = {toURL = "http://127.0.0.1:8000";};
@@ -270,10 +298,7 @@
             toURL = "https://127.0.0.1:1311";
             insecureHTTPS = true;
           };
-          fleet = {
-            toURL = "https://127.0.0.1:1337";
-            insecureHTTPS = true;
-          };
+
           incus = {
             toURL = "https://127.0.0.1:8443";
             insecureHTTPS = true;
@@ -315,7 +340,7 @@
         };
       };
 
-      pocket-id = {
+      pocket-id = lib.mkIf false {
         enable = true;
         settings = {
           APP_URL = "https://id.harke.ma";
@@ -331,9 +356,13 @@
           "69bc7708-5c7b-422d-b283-9199354f431f" = {
             credentialsFile = config.age.secrets.cloudflared.path;
             default = "http_status:404";
+            originRequest.noTLSVerify = true;
             ingress = {
               "id.harke.ma" = {
                 service = "http://localhost:1411";
+              };
+              "idm.harkema.io" = {
+                service = "https://127.0.0.1:8444";
               };
             };
           };
@@ -551,7 +580,9 @@
       tmp = {
         useTmpfs = true;
       };
-
+      kernel.sysctl = {
+        "kernel.unknown_nmi_panic" = 1;
+      };
       # crashDump.enable = true;
 
       # binfmt.emulatedSystems = ["aarch64-linux"];

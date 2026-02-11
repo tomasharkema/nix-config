@@ -35,7 +35,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     networking.firewall.allowedUDPPorts = [cfg.port];
 
     systemd.services.netconsoled = {

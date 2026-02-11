@@ -101,6 +101,8 @@
         ipmiutil
         iptraf-ng
         isd
+        kanidm_1_8
+        kdump-utils
         kexec-tools
         #oterm
         kexec-tools
@@ -112,6 +114,7 @@
         ldapdomaindump
         libftdi
         libftdi1
+        libgcc.lib
         libgpiod
         libheif
         libnotify
@@ -162,6 +165,8 @@
         openocd
         openseachest
         opensoundmeter
+        openssl
+        opkssh
         optnix
         p7zip
         pamix
@@ -265,12 +270,13 @@
       ])
       ++ (lib.optionals pkgs.stdenv.isx86_64 (
         with pkgs; [
-          intentrace
+          # keep-sorted start
           cmospwd
           dmidecode
           fwupd
           fwupd-efi
           gnutls
+          intentrace
           ipmicfg
           libsmbios
           meshtastic-fix
@@ -278,6 +284,7 @@
           refind
           spectre-meltdown-checker
           uefisettings
+          # keep-sorted end
         ]
       ));
   };

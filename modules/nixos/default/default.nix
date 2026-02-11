@@ -45,12 +45,6 @@ in {
     security.isolate.enable = true;
 
     systemd = {
-      services = {
-        # "prepare-kexec".wantedBy = lib.mkIf pkgs.stdenv.isx86_64 ["multi-user.target"];
-        NetworkManager-wait-online.enable = lib.mkForce false;
-        systemd-networkd-wait-online.enable = lib.mkForce false;
-      };
-
       settings.Manager = {
         RebootWatchdogSec = "5m";
         # default /dev/watchdog0
@@ -147,16 +141,24 @@ in {
 
       tmp = {
         useTmpfs = lib.mkDefault true;
+        tmpfsHugeMemoryPages = "within_size";
         cleanOnBoot = lib.mkDefault true;
         # useZram = lib.mkDefault true;
       };
 
       kernelPackages = lib.mkDefault pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v4;
 
-      kernelModules = [
-        # "wireguard"
+      initrd.kernelModules = lib.mkIf false [
+        "ramoops"
+        "efi_pstore"
+        "pstore"
+      ];
+
+      kernelModules = lib.mkIf false [
+        "wireguard"
         # "netconsole"
         # "apfs"
+        "ramoops"
         "efi_pstore"
         "pstore"
         "drivetemp"
@@ -599,6 +601,7 @@ in {
             zlib
             zstd
             systemd
+            libgcc.lib
           ]
           ++ lib.optionals (config.hardware.graphics.enable) [
             pipewire

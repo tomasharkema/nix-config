@@ -120,7 +120,21 @@
       # hyrland.wluma.enable = true;
     };
 
+    systemd.services.gnome-remote-desktop = {
+      wantedBy = ["graphical.target"];
+    };
+
+    # Open the default RDP port (3389)
+    networking.firewall.allowedTCPPorts = [3389];
+
     services = {
+      gnome.gnome-remote-desktop.enable = true;
+
+      xrdp = {
+        enable = true;
+        defaultWindowManager = config.services.greetd.settings.default_session.command;
+      };
+
       hardware = {
         bolt.enable = true;
       };

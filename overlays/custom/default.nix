@@ -32,48 +32,10 @@ in rec {
   #   };
   # });
   librepods = inputs.librepods.packages.${system}.default;
-  libtsm = prev.libtsm.overrideAttrs (old: rec {
-    pname = "libtsm";
-    version = "4.3.0";
 
-    src = prev.fetchFromGitHub {
-      owner = "kmscon";
-      repo = "libtsm";
-      rev = "v${version}";
-      sha256 = "sha256-xAMQOACyXfh3HhsX44mzGBsR6vqjv0uTRwc5ePfPPls=";
-    };
+  kdump-utils = prev.custom.kdump-utils;
+  makedumpfile = prev.custom.makedumpfile;
 
-    nativeBuildInputs = with prev; [
-      meson
-      cmake
-      pkg-config
-      ninja
-    ];
-
-    buildInputs =
-      old.buildInputs
-      ++ [
-        prev.ztools
-        prev.check
-      ];
-
-    # patches = [];
-  });
-  kmscon = prev.kmscon.overrideAttrs (old: rec {
-    pname = "kmscon";
-    version = "9.2.1";
-
-    src = prev.fetchFromGitHub {
-      owner = "kmscon";
-      repo = "kmscon";
-      rev = "v${version}";
-      sha256 = "sha256-MuDqZDbZOrq4n/LxEupbBPIL1747iiHD6kM0SeX2Vzc=";
-    };
-
-    patches = [./clouds.patch];
-  });
-
-  boost-pfr = prev.custom.boost-pfr;
   libfoundry = prev.custom.libfoundry;
   manuals = prev.custom.manuals;
   libcec = prev.libcec.override {withLibraspberrypi = true;};

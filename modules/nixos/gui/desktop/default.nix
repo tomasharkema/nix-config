@@ -370,6 +370,11 @@ in {
     apps.firefox.enable = true;
 
     systemd = {
+      services = {
+        # "prepare-kexec".wantedBy = lib.mkIf pkgs.stdenv.isx86_64 ["multi-user.target"];
+        NetworkManager-wait-online.enable = lib.mkForce false;
+        systemd-networkd-wait-online.enable = lib.mkForce false;
+      };
       packages =
         [
           #config.system.build.chromium
