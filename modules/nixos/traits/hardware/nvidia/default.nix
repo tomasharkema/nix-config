@@ -23,9 +23,20 @@
       ))
     else driver);
 
+  betaPkgs = config.boot.kernelPackages.nvidiaPackages.beta.overrideAttrs ({patches ? [], ...}: {
+    patches =
+      patches
+      ++ [
+        # (pkgs.fetchpatch2 {
+        #   url = "https://patch-diff.githubusercontent.com/raw/NVIDIA/open-gpu-kernel-modules/pull/1015.patch";
+        #   sha256 = "sha256-TNqW9Zth8SED9ueqBMQQRs2XtoQmul5ji1HS43Sp1Kw=";
+        # })
+      ];
+  });
+
   patchedPkg = withPatch true (
     if cfg.beta
-    then config.boot.kernelPackages.nvidiaPackages.beta
+    then betaPkgs
     else config.boot.kernelPackages.nvidiaPackages.stable
   );
 in {

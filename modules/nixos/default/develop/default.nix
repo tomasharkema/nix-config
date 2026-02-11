@@ -13,7 +13,6 @@
 in {
   config = {
     environment.systemPackages = with pkgs; [
-      arduino
       arduino-cli
       arduinoOTA
       elf2uf2-rs
