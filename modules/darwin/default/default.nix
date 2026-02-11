@@ -51,13 +51,10 @@
       };
     };
 
-    # environment.extraOutputsToInstall = with pkgs; [custom.openglide];
-
     environment.systemPackages =
       (with pkgs.custom; [
         menu
         # nscan
-        # openglide
       ])
       ++ (with pkgs; [
         yubico-piv-tool
