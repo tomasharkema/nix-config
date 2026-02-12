@@ -220,8 +220,11 @@ in {
       atop.enable = lib.mkDefault true;
     };
 
-    users.groups.ftdi = {
-      members = ["root" "tomas"];
+    users.groups = {
+      logindev = {members = ["root" "tomas"];};
+      ftdi = {
+        members = ["root" "tomas"];
+      };
     };
 
     # proxy-services.enable = lib.mkDefault true;
@@ -419,6 +422,7 @@ in {
         ];
 
         extraRules = ''
+          SUBSYSTEM=="hidraw", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1915", ATTRS{idProduct}=="521f", ATTRS{product}=="OpenSK", MODE="0660", GROUP="logindev", TAG+="uaccess"
 
           KERNEL=="rtc0", GROUP="audio"
           KERNEL=="hpet", GROUP="audio"
