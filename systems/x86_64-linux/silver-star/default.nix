@@ -515,6 +515,7 @@
       #enableRedistributableFirmware = true;
 
       nvidia = {
+        modesetting.enable = false;
         nvidiaSettings = lib.mkForce false;
         nvidiaPersistenced = lib.mkForce true;
       };

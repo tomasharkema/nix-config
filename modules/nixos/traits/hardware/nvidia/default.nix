@@ -122,7 +122,7 @@ in {
       nvidia-container-toolkit.enable = config.virtualisation.docker.enable;
 
       nvidia = {
-        modesetting.enable = true;
+        modesetting.enable = lib.mkDefault true;
         # forceFullCompositionPipeline = true;
         open = lib.mkForce cfg.open;
         package = lib.mkIf (!cfg.grid.enable) patchedPkg;
