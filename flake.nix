@@ -108,8 +108,8 @@
         # hyprpanel.homeManagerModules.hyprpanel
         # walker.homeManagerModules.default
         # niri.homeModules.niri
-        dankMaterialShell.homeModules.dank-material-shell
-        # dankMaterialShell.homeModules.dankMaterialShell.niri
+        dank-material-shell.homeModules.dank-material-shell
+        # dank-material-shell.homeModules.dank-material-shell.niri
         # dsearch.homeModules.default
       ];
 
@@ -147,7 +147,7 @@
           # nvidia-vgpu-nixos.nixosModules.guest
           # nixos-service.nixosModules.nixos-service
           # nix-virt.nixosModules.default
-          dankMaterialShell.nixosModules.greeter
+          dank-material-shell.nixosModules.greeter
 
           nixos-cli.nixosModules.nixos-cli
 
@@ -838,7 +838,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dankMaterialShell = {
+    dank-material-shell = {
       url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -866,6 +866,11 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };
+    };
+
+    compose2nix = {
+      url = "github:aksiksi/compose2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     zsh-colored-man-pages = {
