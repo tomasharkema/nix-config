@@ -12,6 +12,7 @@ in {
       enable = true;
       usbmon.enable = true;
       dumpcap.enable = true;
+      package = pkgs.wireshark;
     };
   };
 }
