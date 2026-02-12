@@ -251,7 +251,6 @@
 
       kernelParams = [
         "mitigations=off"
-        "iomem=relaxed"
       ];
 
       kernelModules = [

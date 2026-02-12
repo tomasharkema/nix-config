@@ -57,7 +57,7 @@
         network.xgbe.enable = true;
         nvidia = {
           enable = true;
-          open = false; # true;
+          open = false;
           beta = false; # true;
           # grid = {
           #   legacy = false;
@@ -592,7 +592,7 @@
         # "earlyprintk=ttyS0"
         # "intremap=no_x2apic_optout"
         # "nox2apic"
-        "iomem=relaxed"
+
         "mitigations=off"
         "intel_iommu=on"
         "iommu=pt"
