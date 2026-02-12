@@ -30,8 +30,7 @@
       snapper.enable = false;
       swap = {
         size = "32G";
-        # resume.enable = false;
-        resume.enable = true;
+        resume.enable = true; # false;
       };
     };
 
@@ -70,15 +69,11 @@
       hidpi.enable = true;
       gamemode.enable = true;
       quiet-boot.enable = true;
-      # hyrland.wluma = {
-      #   enable = true;
-      #   backlightDevice = "/sys/class/backlight/intel_backlight";
-      # };
     };
 
     hardware = {
       # mcelog.enable = true;
-      # usb-modeswitch.enable = true;
+      usb-modeswitch.enable = true;
       # fw-fanctrl.enable = true;
       nvidia = {
         # forceFullCompositionPipeline = true;
@@ -240,29 +235,12 @@
       };
     };
 
-    # virtualisation.kvmgt = {
-    #   enable = true;
-    #   device = "0000:00:02.0";
-    #   vgpus = {
-    #     "i915-GVTg_V5_2" = {
-    #       uuid = ["e2ab260f-44a2-4e07-9889-68a1caafb399"];
-    #     };
-    #   };
-    # };
-
-    programs = {
-      # adb.enable = true;
-
-      # captive-browser = {
-      #   enable = true;
-      #   interface = "wlp59s0";
-      # };
-    };
-
     boot = {
       tmp = {
         useTmpfs = true;
       };
+
+      kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
 
       recovery = {
         enable = true;
@@ -271,33 +249,10 @@
         netboot.enable = true;
       };
 
-      # binfmt.emulatedSystems = ["aarch64-linux"];
-      # extraModulePackages = [
-      # config.system.build.cc1101-driver
-      # ];
-      # modprobeConfig.enable = true;
-      # supportedFilesystems = ["ext2" "ext3" "ext4"];
       kernelParams = [
         "mitigations=off"
-        # "efi_pstore.pstore_disable=0"
-        # "pstore.backend=efi"
+        "iomem=relaxed"
       ];
-      #   "i915.enable_gvt=1"
-      #   "i915.enable_fbc=0"
-      #   "ibt=off"
-      #   # "i915.enable_gvt=1"
-      #   # "i915.enable_guc=0"
-      #   "intel_iommu=on"
-      #   "iommu=pt"
-      #   # "iommu.passthrough=1"
-      # ];
-      # blacklists
-      # modprobeConfig = {
-      #   enable = true;
-      # };
-      # extraModprobeConfig = ''
-      #   options psmouse synaptics_intertouch=1
-      # '';
 
       kernelModules = [
         "coretemp"
