@@ -5,9 +5,9 @@
   ...
 }: let
   crashDir = "/var/crash";
-  crashdumpSize = "128M@32M";
+  crashdumpSize = "256M"; # "128M@32M";
   cfg = config.services.kdump;
-  kernelParams = lib.concatStringsSep " " cfg.extraKernelArgs;
+  # kernelParams = lib.concatStringsSep " " cfg.extraKernelArgs;
 in {
   options.services.kdump = {
     enable = lib.mkEnableOption "Crash recovery kernel arming" // {default = true;};
@@ -26,18 +26,18 @@ in {
       kernelParams = [
         #"efi_pstore.pstore_disable=0"
         "crashkernel=${crashdumpSize}"
-        "fadump=on"
+        #"fadump=on"
         "nmi_watchdog=panic"
         "softlockup_panic=1"
       ];
-      kernelModules = [
-        "efi_pstore"
-        "ramoops"
-      ];
-      initrd.kernelModules = [
-        "efi_pstore"
-        "ramoops"
-      ];
+      #kernelModules = [
+      #  "efi_pstore"
+      #  "ramoops"
+      #];
+      #initrd.kernelModules = [
+      #  "efi_pstore"
+      #  "ramoops"
+      #];
     };
 
     environment = {
@@ -64,19 +64,15 @@ in {
           DefaultDependencies = "no";
         };
 
-        script = ''
-          echo "loading crashdump kernel...";
-          ${pkgs.kexec-tools}/sbin/kexec -p /run/current-system/kernel \
-            --initrd=/run/current-system/initrd \
-            --reset-vga --console-vga \
-            --command-line="init=$(readlink -f /run/current-system/init) irqpoll maxcpus=1 reset_devices ${kernelParams}"
-        '';
-
         serviceConfig = {
           Type = "oneshot";
-          ExecCondition = ''
-            /bin/sh -c 'grep -q -e "crashkernel" -e "fadump" /proc/cmdline'
-          '';
+          #ExecCondition = ''
+          #  /bin/sh -c 'grep -q -e "crashkernel" -e "fadump" /proc/cmdline'
+          #'';
+          ExecStart = "${pkgs.kexec-tools}/bin/kexec -p /run/current-system/kernel --initrd=/run/current-system/initrd --reset-vga --console-vga --append=\"irqpoll nr_cpus=1 reset_devices systemd.mask=kdump.service\"";
+          #--command-line=\"init=$(readlink -f /run/current-system/init) irqpoll maxcpus=1 reset_devices\"";
+          ExecStop = "${pkgs.kexec-tools}/bin/kexec -p -u";
+
           # ExecStart = "${pkgs.kdump-utils}/bin/kdumpctl start";
           # ExecStop = "${pkgs.kdump-utils}/bin/kdumpctl stop";
           # ExecReload = "${pkgs.kdump-utils}/bin/kdumpctl reload";
