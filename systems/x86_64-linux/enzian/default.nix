@@ -109,7 +109,7 @@
       tmp = {
         useTmpfs = true;
       };
-
+      kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
       kernelModules = [
         "kvm-intel"
         "uinput"

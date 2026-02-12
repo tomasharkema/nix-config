@@ -7,7 +7,7 @@
   crashDir = "/var/crash";
   crashdumpSize = "256M"; # "128M@32M";
   cfg = config.services.kdump;
-  # kernelParams = lib.concatStringsSep " " cfg.extraKernelArgs;
+  kernelParams = lib.concatStringsSep " " cfg.extraKernelArgs;
 in {
   options.services.kdump = {
     enable = lib.mkEnableOption "Crash recovery kernel arming" // {default = true;};
@@ -26,7 +26,7 @@ in {
       kernelParams = [
         #"efi_pstore.pstore_disable=0"
         "crashkernel=${crashdumpSize}"
-        #"fadump=on"
+        "fadump=on"
         "nmi_watchdog=panic"
         "softlockup_panic=1"
       ];
@@ -69,7 +69,7 @@ in {
           #ExecCondition = ''
           #  /bin/sh -c 'grep -q -e "crashkernel" -e "fadump" /proc/cmdline'
           #'';
-          ExecStart = "${pkgs.kexec-tools}/bin/kexec -p /run/current-system/kernel --initrd=/run/current-system/initrd --reset-vga --console-vga --append=\"irqpoll nr_cpus=1 reset_devices systemd.mask=kdump.service\"";
+          ExecStart = "${pkgs.kexec-tools}/bin/kexec -p /run/current-system/kernel --initrd=/run/current-system/initrd --reset-vga --console-vga --append=\"irqpoll nr_cpus=1 reset_devices systemd.mask=kdump.service ${kernelParams}\"";
           #--command-line=\"init=$(readlink -f /run/current-system/init) irqpoll maxcpus=1 reset_devices\"";
           ExecStop = "${pkgs.kexec-tools}/bin/kexec -p -u";
 
