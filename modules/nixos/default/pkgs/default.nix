@@ -9,9 +9,6 @@
     environment.systemPackages =
       (with pkgs; [
         # keep-sorted start
-
-        #oterm
-
         ((ffmpeg-full.override {withUnfree = true;}).overrideAttrs (_: {doCheck = false;}))
         agenix-rekey
         aide
@@ -165,8 +162,10 @@
         openseachest
         opensoundmeter
         openssl
+        openssl.out
         opkssh
         optnix
+        oterm
         p7zip
         pamix
         pamixer
@@ -183,8 +182,8 @@
         pulsemixer
         pv
         pwgen
-        python313Packages.pyftdi
         python3Packages.pip
+        python3Packages.pyftdi
         python3Packages.uv
         radare2
         redfishtool
