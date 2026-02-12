@@ -55,7 +55,15 @@
       wireless = {
         # enable = true;
         enable = false; # true;
-        iwd.enable = true;
+        iwd = {
+          enable = true;
+          settings = {
+            Settings = {
+              AutoConnect = true;
+              AlwaysRandomizeAddress = true;
+            };
+          };
+        };
       };
 
       networkmanager = {
