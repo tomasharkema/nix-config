@@ -82,8 +82,8 @@ with python3Packages;
       install -Dm 644 "usbguard applet.desktop" $out/share/applications/org.gnome.usbguard.desktop
       install -Dm 644 "usbguard.desktop" $out/share/applications/org.gnome.usbguard.window.desktop
 
-      install -Dm 644 src/usbguard-icon.svg $out/share/icons/scalable/apps/usbguard-icon.svg
-      # install -Dm 644 src/usbguard-icon.png $out/share/icons/apps/usbguard-icon.png
+      install -Dm 644 src/usbguard-icon.svg $out/share/icons/hicolor/scalable/usbguard-icon.svg
+      # install -Dm 644 src/usbguard-icon.png $out/share/icons/hicolor/scalable/usbguard-icon.png
 
       mkdir -p $out/share/locale
       cp -r mo/. $out/share/locale/

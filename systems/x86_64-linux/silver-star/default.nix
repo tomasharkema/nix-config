@@ -525,6 +525,7 @@
       oci-containers.containers = {
         openmanage = {
           image = "teumaauss/srvadmin:latest";
+          pull = "always";
 
           volumes = let
             kernelVersion = config.boot.kernelPackages.kernel.modDirVersion;
@@ -548,8 +549,34 @@
           autoStart = true;
         };
 
+        termix = {
+          image = "ghcr.io/lukegus/termix:latest";
+          pull = "always";
+          # imageFile = pkgs.dockerTools.pullImage {
+          #   imageName = "ghcr.io/lukegus/termix";
+          #   imageDigest = "sha256:402f918e3c32aad6d928df8ba6ee39c6fd1a6e250369d86e3a521635a3286a7a";
+          #   hash = "sha256-Y6xFFjQPQsLUO+c+Gf1sbzChFx8fhgmnPN7Q1TsJnYY=";
+          #   finalImageName = "ghcr.io/lukegus/termix";
+          #   finalImageTag = "latest";
+          # };
+          ports = ["8445:8445"];
+          environment = {
+            PORT = "8445";
+          };
+          volumes = ["termix-data:/app/data"];
+          autoStart = true;
+        };
+
         fastapi-dls = {
-          image = "collinwebdesigns/fastapi-dls";
+          image = "collinwebdesigns/fastapi-dls:latest";
+          pull = "always";
+          # imageFile = pkgs.dockerTools.pullImage {
+          #   imageName = "collinwebdesigns/fastapi-dls";
+          #   imageDigest = "sha256:bd62fc80bdf3ca6383b443498e2f553690d2ce111254204f581926e1505acb56";
+          #   hash = "sha256-JDZ7pQG2WUVntMsw3ny4N6F+Rc3pwazTX2YFhf8bC4I=";
+          #   finalImageName = "collinwebdesigns/fastapi-dls";
+          #   finalImageTag = "latest";
+          # };
 
           volumes = [
             "/var/lib/fastapi-dls/cert:/app/cert:rw"

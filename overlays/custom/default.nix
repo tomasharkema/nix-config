@@ -43,6 +43,7 @@ in rec {
   synology-drive-client = prev.synology-drive-client.overrideAttrs ({buildInputs ? [], ...}: {
     buildInputs = buildInputs ++ [prev.qt5.qtwayland];
   });
+  compose2nix = inputs.compose2nix.packages."${system}".default;
 
   # meshtastic-fix = prev.python3Packages.meshtastic.overridePythonAttrs (old: {
   #   # postPatch = ''

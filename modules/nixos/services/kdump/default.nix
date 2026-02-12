@@ -5,7 +5,7 @@
   ...
 }: let
   crashDir = "/var/crash";
-  crashdumpSize = "256M"; # "128M@32M";
+  crashdumpSize = "2G-64G:256M,64G-:512M"; # "128M@32M";
   cfg = config.services.kdump;
   kernelParams = lib.concatStringsSep " " cfg.extraKernelArgs;
 in {

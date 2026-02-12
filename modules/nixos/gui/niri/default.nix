@@ -57,7 +57,7 @@ in {
         # useNautilus = true;
       };
 
-      dankMaterialShell = {
+      dank-material-shell = {
         greeter = {
           enable = true;
 
@@ -218,7 +218,6 @@ in {
             spawn-at-startup = [
               {command = ["kitty"];}
               {command = ["firefox"];}
-              {sh = "sleep 3 && ${pkgs.librepods}/bin/librepods --start-minimized";}
               {command = ["dconf" "write" "/org/gnome/desktop/interface/color-scheme" "'prefer-dark'"];}
               {command = ["dconf" "write" "/org/gnome/desktop/interface/gtk-theme" "'Adwaita-dark'"];}
               # {command = ["1password"];}

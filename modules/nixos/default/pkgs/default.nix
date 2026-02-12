@@ -34,6 +34,7 @@
         clex
         cmake
         colorized-logs
+        compose2nix
         compsize
         config.boot.kernelPackages.iio-utils
         cryptsetup # needed for dm-crypt volumes

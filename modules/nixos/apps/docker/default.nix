@@ -30,6 +30,14 @@ in {
         containers = {
           duin = {
             image = "crazymax/diun:latest";
+            pull = "always";
+            # imageFile = pkgs.dockerTools.pullImage {
+            #   imageName = "crazymax/diun";
+            #   imageDigest = "sha256:3e277cd1f1262fe6ff1047e5550f6f2e1c860c3c60b0058625e3c69888a4cc8d";
+            #   hash = "sha256-FPSuEgnZiGITSmq4UxE6INDKv9jdI1h+5Hv1nuJJCkc=";
+            #   finalImageName = "crazymax/diun";
+            #   finalImageTag = "latest";
+            # };
 
             autoStart = true;
             cmd = ["serve"];
@@ -54,10 +62,15 @@ in {
         enable = true;
         enableOnBoot = true;
         storageDriver = "overlay2";
-        # daemon.settings.pruning = {
-        #   enabled = true;
-        #   interval = "24h";
-        # };
+        liveRestore = true;
+
+        autoPrune = {
+          enable = true;
+          dates = "weekly";
+          persistent = true;
+          randomizedDelaySec = "45min";
+        };
+
         rootless = {
           enable = true;
           setSocketVariable = true;

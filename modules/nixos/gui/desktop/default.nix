@@ -34,6 +34,8 @@ in {
     #   style = "adwaita-dark";
     # };
 
+    nixpkgs.config.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
+
     system.build.gui.foxBg = foxBg;
 
     home-manager.users.tomas = {
@@ -325,9 +327,10 @@ in {
       mtr.enable = true;
       dconf.enable = true;
 
-      #chromium = {
-      #  enable = true;
-      #};
+      chromium = {
+        enable = true;
+      };
+
       appimage = {
         enable = true;
         binfmt = true;
@@ -377,7 +380,6 @@ in {
       };
       packages =
         [
-          #config.system.build.chromium
           pkgs.custom.wifiman
         ]
         ++ (lib.optional pkgs.stdenv.isx86_64 pkgs.widevine-cdm);
@@ -387,14 +389,5 @@ in {
     # Enable sound with pipewire.
     # sound.enable = mkDefault true;
     security.rtkit.enable = true;
-
-    #system.build.chromium = pkgs.chromium.override {
-    #  enableWideVine = pkgs.stdenv.isx86_64;
-    #  commandLineArgs = [
-    #    "--enable-features=VaapiVideoDecodeLinuxGL"
-    #    "--ignore-gpu-blocklist"
-    #    "--enable-zero-copy"
-    #  ];
-    #};
   };
 }

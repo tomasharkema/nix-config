@@ -24,7 +24,6 @@ in {
       throttled.enable = lib.mkForce false;
       fwupd.enable = false;
       zram-generator.enable = false;
-      usbguard.enable = false;
     };
 
     nix.settings = {
@@ -37,7 +36,14 @@ in {
       enableRedistributableFirmware = false;
       enableAllFirmware = false;
     };
-    apps.resilio.enable = false;
+    apps = {
+      resilio.enable = false;
+      usbguard.enable = false;
+    };
+
+    system = {
+      nixos-init.enable = lib.mkForce false;
+    };
 
     boot = {
       # availableKernelModules = ["virtio_net" "virtio_pci" "virtio_mmio" "virtio_blk" "virtio_scsi" "9p" "9pnet_virtio"];

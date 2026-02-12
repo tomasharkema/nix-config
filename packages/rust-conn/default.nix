@@ -17,24 +17,26 @@
   darwin,
   alsa-lib,
   openssh,
+  copyDesktopItems,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "rust-conn";
-  version = "0.7.1";
+  version = "0.8.2";
 
   src = fetchFromGitHub {
     owner = "totoshko88";
     repo = "RustConn";
     rev = "v${version}";
-    hash = "sha256-4TSi7kUOeUe/s1MA6o9Btft3RA+9As7QPIV3XtVIiwY=";
+    hash = "sha256-8r6TiqbqxV1r2Hjb97Wyz5t/ZQhR6YeVMotlIaYn4U0=";
   };
 
-  cargoHash = "sha256-Rm9BxjPN2R+wPQotH+ew9Y5Bhg/I9EwGqYlFXH2FPVU=";
+  cargoHash = "sha256-Zyi8GFTUxcoHxF6mcmHIMEYrpNkkYlDyX1LOccMWbUE=";
 
   nativeBuildInputs = [
     pkg-config
     openssh
     wrapGAppsHook4
+    copyDesktopItems
   ];
 
   buildInputs =
@@ -57,6 +59,14 @@ rustPlatform.buildRustPackage rec {
     ++ lib.optionals stdenv.isLinux [
       alsa-lib
     ];
+
+  postInstall = ''
+    install -D rustconn/assets/icons/hicolor/scalable/apps/io.github.totoshko88.RustConn.svg $out/share/icons/hicolor/scalable/apps/io.github.totoshko88.RustConn.svg
+    install -D rustconn/assets/io.github.totoshko88.RustConn.metainfo.xml $out/share/metainfo/io.github.totoshko88.RustConn.metainfo.xml
+    install -D rustconn/assets/io.github.totoshko88.RustConn.desktop $out/share/applications/io.github.totoshko88.RustConn.desktop
+  '';
+
+  doCheck = false;
 
   meta = {
     description = "Modern connection manager for Linux with GTK4/Wayland-native interface";

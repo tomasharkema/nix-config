@@ -36,7 +36,7 @@
       hostName = "test";
     };
     boot = {
-      kernelPackages = pkgs.linuxPackages_6_1;
+      kernelPackages = pkgs.linuxPackages_6_12;
     };
 
     virtualisation.vmVariant = {
