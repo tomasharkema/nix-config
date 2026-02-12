@@ -17,26 +17,25 @@
   wrapGAppsHook3,
   libshumate,
   desktop-file-utils,
-  meshtastic-fix,
 }: let
   py = python3.withPackages (ps:
     with ps; [
       glib
       gobject-introspection
       pygobject3
-      meshtastic-fix
+      meshtastic
       pyqrcode
     ]);
 in
   stdenv.mkDerivation rec {
     pname = "gtk-meshtastic-client";
-    version = "1.4";
+    version = "1.5";
 
     src = fetchFromGitLab {
       owner = "kop316";
       repo = "gtk-meshtastic-client";
       rev = version;
-      hash = "sha256-xeRMoxVy12RRynNNTxoHgHIl1Wc7hwqStS8KdzlUBpc=";
+      sha256 = "sha256-s91zyxCgUapOOrc3PfmoC3LzvKKBJK3vIDtNF+T9/0Q=";
     };
 
     nativeBuildInputs = [

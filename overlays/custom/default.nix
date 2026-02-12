@@ -44,24 +44,24 @@ in rec {
     buildInputs = buildInputs ++ [prev.qt5.qtwayland];
   });
 
-  meshtastic-fix = prev.python3Packages.meshtastic.overridePythonAttrs (old: {
-    # postPatch = ''
-    #   substituteInPlace pyproject.toml \
-    #     --replace-fail "packaging = \"^24.0\"" "packaging = \"^25.0\""
-    # '';
-    # dependencies = [];
-    # optional-dependencies = [];
-    doCheck = false;
-    nativeCheckInputs = with prev.python3Packages; [
-      hypothesis
-      pytestCheckHook
-      argcomplete
-      dotmap
-      print-color
-      pyqrcode
-      wcwidth
-    ];
-  });
+  # meshtastic-fix = prev.python3Packages.meshtastic.overridePythonAttrs (old: {
+  #   # postPatch = ''
+  #   #   substituteInPlace pyproject.toml \
+  #   #     --replace-fail "packaging = \"^24.0\"" "packaging = \"^25.0\""
+  #   # '';
+  #   # dependencies = [];
+  #   # optional-dependencies = [];
+  #   doCheck = false;
+  #   nativeCheckInputs = with prev.python3Packages; [
+  #     hypothesis
+  #     pytestCheckHook
+  #     argcomplete
+  #     dotmap
+  #     print-color
+  #     pyqrcode
+  #     wcwidth
+  #   ];
+  # });
 
   nox = inputs.nox.packages.${system}.default;
   nix-alien = inputs.nix-alien.packages.${system}.default;

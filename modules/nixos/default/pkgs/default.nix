@@ -40,6 +40,15 @@
         ctop
         curl
         curlftpfs
+        # apfs-fuse
+        # apfsprogs
+        # bat-extras.batgrep
+        # fancy-motd
+        # jupyter
+        # lz4
+        # mkchromecast
+        # nix-switcher # : needs github auth
+        custom.contact
         custom.discovery-rs
         custom.flightmon
         custom.menu
@@ -243,14 +252,6 @@
         viddy
         vim
         watchlog
-        # apfs-fuse
-        # apfsprogs
-        # bat-extras.batgrep
-        # fancy-motd
-        # jupyter
-        # lz4
-        # mkchromecast
-        # nix-switcher # : needs github auth
         wavemon
         websocat
         wget
@@ -278,7 +279,7 @@
           intentrace
           ipmicfg
           libsmbios
-          meshtastic-fix
+          meshtastic
           micropython
           refind
           spectre-meltdown-checker
