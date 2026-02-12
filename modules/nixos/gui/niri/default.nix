@@ -15,6 +15,29 @@ in {
         swaybg
       ];
 
+      etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json".source = pkgs.writers.writeJSON "50-limit-free-buffer-pool-in-wayland-compositors.json" {
+        rules = [
+          {
+            "pattern" = {
+              "feature" = "procname";
+              "matches" = "niri";
+            };
+            "profile" = "Limit Free Buffer Pool On Wayland Compositors";
+          }
+        ];
+        profiles = [
+          {
+            name = "Limit Free Buffer Pool On Wayland Compositors";
+            settings = [
+              {
+                "key" = "GLVidHeapReuseRatio";
+                "value" = 0;
+              }
+            ];
+          }
+        ];
+      };
+
       # pathsToLink = ["/share/wayland-sessions"];
     };
 
