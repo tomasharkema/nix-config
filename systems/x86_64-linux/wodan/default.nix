@@ -53,16 +53,17 @@
       useDHCP = false;
 
       wireless = {
-        enable = true;
-        #iwd.enable = true;
+        # enable = true;
+        enable = false; # true;
+        iwd.enable = true;
       };
 
       networkmanager = {
         enable = true;
 
-        #wifi = {
-        #  backend = "iwd";
-        #};
+        wifi = {
+          backend = "iwd";
+        };
       };
 
       bridges.br0 = {
