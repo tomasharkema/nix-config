@@ -72,7 +72,7 @@ in {
           [
             "com.discordapp.Discord"
             "com.spotify.Client"
-            "tv.plex.PlexDesktop"
+            # "tv.plex.PlexDesktop"
             "com.gitbutler.gitbutler"
             # "org.darktable.Darktable"
           ]

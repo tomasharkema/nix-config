@@ -17,7 +17,7 @@
       systemPackages = with pkgs; [
         snmpcheck
         davinci-resolve
-
+        impala
         esp-idf-full
         # glxinfo
         # apfsprogs
