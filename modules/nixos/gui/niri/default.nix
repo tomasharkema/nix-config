@@ -136,7 +136,7 @@ in {
         #   enable = true;
         # };
 
-        dankMaterialShell = {
+        dank-material-shell = {
           enable = true;
           systemd = {
             enable = true;

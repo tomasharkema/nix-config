@@ -108,23 +108,10 @@
         # hyprpanel.homeManagerModules.hyprpanel
         # walker.homeManagerModules.default
         # niri.homeModules.niri
-        dankMaterialShell.homeModules.dankMaterialShell.default
+        dankMaterialShell.homeModules.dank-material-shell
         # dankMaterialShell.homeModules.dankMaterialShell.niri
         # dsearch.homeModules.default
       ];
-
-      # systems.hosts = let
-      #   cudaOff = {...}: {
-      #     nixpkgs = {
-      #       config = {
-      #         cudaSupport = false;
-      #       };
-      #     };
-      #   };
-      # in {
-      #   euro-mir-vm.modules = [cudaOff];
-      #   pegasus.modules = [cudaOff];
-      # };
 
       systems.modules = {
         nixos = with inputs; [

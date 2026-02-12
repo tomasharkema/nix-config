@@ -57,8 +57,8 @@
         network.xgbe.enable = true;
         nvidia = {
           enable = true;
-          open = true;
-          beta = true;
+          open = false; # true;
+          beta = false; # true;
           # grid = {
           #   legacy = false;
           # };
@@ -243,7 +243,7 @@
       kanidm = {
         enableClient = true;
         enableServer = true;
-        enablePam = true;
+        # enablePam = true;
         package = pkgs.kanidm_1_8;
 
         unixSettings.kanidm = {
@@ -257,8 +257,8 @@
         serverSettings = {
           origin = "https://idm.harkema.io";
           domain = "harkema.io";
-          tls_chain = ./idm.harkema.io/idm.harkema.io.chain.pem;
-          tls_key = ./idm.harkema.io/idm.harkema.io.priv.key;
+          tls_chain = "/home/tomas/kanidm-cert/idm.harkema.io/idm.harkema.io.chain.pem";
+          tls_key = "/home/tomas/kanidm-cert/idm.harkema.io/idm.harkema.io.priv.key";
           bindaddress = "0.0.0.0:8444";
         };
       };
@@ -511,13 +511,12 @@
     hardware = {
       cpu.intel.updateMicrocode = true;
 
-      enableAllFirmware = true;
-      enableRedistributableFirmware = true;
+      #enableAllFirmware = true;
+      #enableRedistributableFirmware = true;
 
       nvidia = {
         nvidiaSettings = lib.mkForce false;
         nvidiaPersistenced = lib.mkForce true;
-        open = true;
       };
     };
 
@@ -583,18 +582,18 @@
       kernel.sysctl = {
         "kernel.unknown_nmi_panic" = 1;
       };
-      # crashDump.enable = true;
 
       # binfmt.emulatedSystems = ["aarch64-linux"];
 
       kernelParams = [
         "console=tty1"
-        "console=ttyS0,115200n8r"
+        "console=ttyS0,115200n8"
         # "console=ttyS1,115200n8"
         # "earlyprintk=ttyS0"
         # "intremap=no_x2apic_optout"
         # "nox2apic"
-
+        "iomem=relaxed"
+        "mitigations=off"
         "intel_iommu=on"
         "iommu=pt"
         "ipmi_watchdog.timeout=180"
@@ -658,18 +657,18 @@
         "docker-compose@atuin" = {
           wantedBy = ["multi-user.target"];
         };
-        "docker-compose@grafana" = {
-          wantedBy = ["multi-user.target"];
-        };
+        # "docker-compose@grafana" = {
+        #   wantedBy = ["multi-user.target"];
+        # };
         # "docker-compose@faf" = {
         #   wantedBy = ["multi-user.target"];
         # };
         "docker-compose@esphome" = {
           wantedBy = ["multi-user.target"];
         };
-        "docker-compose@fleetdm" = {
-          wantedBy = ["multi-user.target"];
-        };
+        # "docker-compose@fleetdm" = {
+        #   wantedBy = ["multi-user.target"];
+        # };
         "docker-compose@tsidp" = {
           wantedBy = ["multi-user.target"];
         };

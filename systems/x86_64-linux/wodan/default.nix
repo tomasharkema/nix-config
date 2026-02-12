@@ -53,16 +53,16 @@
       useDHCP = false;
 
       wireless = {
-        enable = false;
-        iwd.enable = true;
+        enable = true;
+        #iwd.enable = true;
       };
 
       networkmanager = {
         enable = true;
 
-        wifi = {
-          backend = "iwd";
-        };
+        #wifi = {
+        #  backend = "iwd";
+        #};
       };
 
       bridges.br0 = {
@@ -219,8 +219,8 @@
 
       nvidia = {
         modesetting.enable = true;
-        # forceFullCompositionPipeline = true;
-        open = true;
+        forceFullCompositionPipeline = true;
+
         nvidiaSettings = true;
         # nvidiaPersistenced = lib.mkForce true;
 
@@ -255,8 +255,8 @@
 
         nvidia = {
           enable = true;
-          open = true;
-          beta = true;
+          open = false; # true;
+          beta = false; # true;
         };
         sgx.enable = true;
         remote-unlock.enable = true;
