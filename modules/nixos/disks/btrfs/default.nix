@@ -5,14 +5,6 @@
   ...
 }: let
   cfg = config.disks.btrfs;
-
-  btrfs-incremental-balance = pkgs.writeShellScriptBin "btrfs-incremental-balance" ''
-    set -x
-    for USAGE in {5..10..20.30..50..10}; do
-      btrfs balance start -v -dusage=$USAGE mnt/
-    done
-  '';
-
   luksContent = root: name: {
     luks = {
       size = "100%";
@@ -236,7 +228,6 @@ in {
       # btrbk
       timeshift
       custom.dupremove
-      btrfs-incremental-balance
     ];
 
     # fileSystems."/".neededForBoot = true;

@@ -25,7 +25,7 @@
       encrypt = true;
       newSubvolumes.enable = true;
       # btrbk.enable = true;
-      snapper.enable = true; # false;
+      snapper.enable = false;
       swap = {
         size = "32G";
 
@@ -239,7 +239,7 @@
       tmp = {
         useTmpfs = true;
       };
-      # kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
+      kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
 
       recovery = {
         enable = true;

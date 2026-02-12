@@ -27,7 +27,7 @@
       encrypt = true;
       newSubvolumes.enable = true;
       # btrbk.enable = true;
-      snapper.enable = true; # false;
+      snapper.enable = false;
       swap = {
         size = "32G";
         # resume.enable = false;

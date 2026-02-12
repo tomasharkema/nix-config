@@ -39,7 +39,7 @@
       encrypt = true;
       newSubvolumes.enable = true;
       btrbk.enable = false;
-      snapper.enable = true;
+      snapper.enable = false;
       swap.size = "64G";
     };
 
