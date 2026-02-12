@@ -169,6 +169,7 @@ in {
               "NIXOS_OZONE_WL" = "1";
               ELECTRON_OZONE_PLATFORM_HINT = "auto";
               QT_QPA_PLATFORM = "wayland";
+              "_JAVA_AWT_WM_NONREPARENTING" = "1";
               # DISPLAY = null;
             };
             hotkey-overlay.skip-at-startup = true;
@@ -188,28 +189,6 @@ in {
                   y = 20;
                   relative-to = "bottom-right";
                 };
-              }
-
-              {
-                # Window ID 14:
-                # Title: "LibrePods"
-                # App ID: "me.kavishdevar.librepods"
-                # Is floating: no
-                # PID: 45899
-                # Workspace ID: 1
-                # Layout:
-                #   Tile size: 1696.89 x 908.89
-                #   Scrolling position: column 3, tile 1
-                #   Window size: 1697 x 909
-                #   Window offset in tile: 0 x 0
-                matches = [
-                  {
-                    app-id = "me.kavishdevar.librepods";
-                  }
-                ];
-                open-focused = false;
-                open-floating = false;
-                open-maximized = false;
               }
             ];
 
