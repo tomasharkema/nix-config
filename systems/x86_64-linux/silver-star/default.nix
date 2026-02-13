@@ -615,7 +615,7 @@
 
       kernelParams = [
         "console=tty1"
-        "console=ttyS0,115200n8"
+        "console=ttyS0,115200n8r"
         # "console=ttyS1,115200n8"
         # "earlyprintk=ttyS0"
         # "intremap=no_x2apic_optout"
