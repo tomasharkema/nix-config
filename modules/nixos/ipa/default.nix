@@ -191,10 +191,9 @@ in {
       pki.certificateFiles = [config.security.ipa.certificate];
     };
 
-    # programs.ssh.extraConfig = ''
-    #   ProxyCommand ${pkgs.sssd}/bin/sss_ssh_knownhostsproxy -p %p %h
-    #   GlobalKnownHostsFile /var/lib/sss/pubconf/known_hosts
-    # '';
+    programs.ssh.extraConfig = ''
+      KnownHostsCommand ${pkgs.sssd}/bin/sss_ssh_knownhosts %H
+    '';
 
     services = {
       dbus = {
@@ -224,6 +223,7 @@ in {
           "domain/harkema.io" = {
             sudo_provider = "ipa";
             cache_credentials = true;
+            # dyndns_address = "100.0.0.0/8";
           };
           kcm = {
             tgt_renewal = true;
@@ -303,8 +303,8 @@ in {
         services = {
           #   #config.installed {
           # login.sssdStrictAccess = mkDefault true;
-          # sudo.sssdStrictAccess = mkDefault true;
-          # su.sssdStrictAccess = mkDefault true;
+          sudo.sssdStrictAccess = lib.mkDefault true;
+          su.sssdStrictAccess = lib.mkDefault true;
           # ssh.sssdStrictAccess = mkDefault true;
           # askpass.sssdStrictAccess = mkDefault true;
           # cockpit.sssdStrictAccess = mkDefault true;
