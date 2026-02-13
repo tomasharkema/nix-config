@@ -33,7 +33,7 @@ in {
     environment = {
       pathsToLink = ["/modules/ldb"];
 
-      variables = {LDB_MODULES_PATH = "/run/current-system/sw/modules/ldb";};
+      # variables = {LDB_MODULES_PATH = "/run/current-system/sw/modules/ldb";};
 
       systemPackages = with pkgs; [
         # ldapvi
@@ -41,7 +41,7 @@ in {
         # ldapmonitor
         pkcs11helper
         realmd
-        # heimdal
+        heimdal
       ];
 
       etc = {
@@ -114,7 +114,7 @@ in {
     systemd = {
       services = {
         ipa-host-mod-sshpubkey = {
-          enable = false;
+          enable = true;
           path = with pkgs; [
             freeipa
             iproute2
@@ -221,6 +221,10 @@ in {
         sshAuthorizedKeysIntegration = true;
         # package = pkgs.sssd;
         settings = {
+          "domain/harkema.io" = {
+            sudo_provider = "ipa";
+            cache_credentials = true;
+          };
           kcm = {
             tgt_renewal = true;
             tgt_renewal_inherit = "HARKEMA.IO";
@@ -231,8 +235,8 @@ in {
           pam = {
             pam_passkey_auth = true;
             pam_cert_auth = true;
-            passkey_debug_libfido2 = true;
-            passkey_child_timeout = 60;
+            # passkey_debug_libfido2 = true;
+            # passkey_child_timeout = 60;
             #debug_level = 10;
           };
           sssd = {services = lib.mkForce "nss, sudo, pam, ssh, ifp, autofs";};
