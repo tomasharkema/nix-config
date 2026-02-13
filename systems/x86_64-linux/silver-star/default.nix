@@ -298,7 +298,7 @@
             toURL = "https://127.0.0.1:1311";
             insecureHTTPS = true;
           };
-
+          termix = {toURL = "http://127.0.0.1:8445";};
           incus = {
             toURL = "https://127.0.0.1:8443";
             insecureHTTPS = true;
