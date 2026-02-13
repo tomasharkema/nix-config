@@ -223,7 +223,7 @@
         systemctl-tui
         systemd-language-server
         systemd-manager-tui
-        systeroid
+        #systeroid
         sysz
         tailspin
         tcpdump

@@ -229,7 +229,7 @@ in {
             tgt_renewal = true;
             tgt_renewal_inherit = "HARKEMA.IO";
             krb5_renew_interval = "60m";
-            #debug_level = 10;
+            # debug_level = 10;
             # socket_patch = "/var/run/.heim_org.h5l.kcm-socket";
           };
           pam = {
@@ -237,7 +237,7 @@ in {
             pam_cert_auth = true;
             # passkey_debug_libfido2 = true;
             # passkey_child_timeout = 60;
-            #debug_level = 10;
+            # debug_level = 10;
           };
           sssd = {services = lib.mkForce "nss, sudo, pam, ssh, ifp, autofs";};
         };

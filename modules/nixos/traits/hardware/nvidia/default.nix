@@ -23,22 +23,26 @@
       ))
     else driver);
 
-  betaPkgs = config.boot.kernelPackages.nvidiaPackages.beta.overrideAttrs ({patches ? [], ...}: {
-    patches =
-      patches
-      ++ [
-        # (pkgs.fetchpatch2 {
-        #   url = "https://patch-diff.githubusercontent.com/raw/NVIDIA/open-gpu-kernel-modules/pull/1015.patch";
-        #   sha256 = "sha256-TNqW9Zth8SED9ueqBMQQRs2XtoQmul5ji1HS43Sp1Kw=";
-        # })
-      ];
-  });
-
-  patchedPkg = withPatch true (
+  betaPkg = config.boot.kernelPackages.nvidiaPackages.beta;
+  selectedPkg =
     if cfg.beta
-    then betaPkgs
-    else config.boot.kernelPackages.nvidiaPackages.stable
-  );
+    then betaPkg
+    else config.boot.kernelPackages.nvidiaPackages.stable;
+  patchedPkg =
+    # withPatch true
+    selectedPkg
+    // {
+      open = betaPkg.open.overrideAttrs ({patches ? [], ...}: {
+        patches =
+          patches
+          ++ [
+            (pkgs.fetchpatch {
+              url = "https://raw.githubusercontent.com/CachyOS/CachyOS-PKGBUILDS/master/nvidia/nvidia-utils/kernel-6.19.patch";
+              sha256 = "sha256-YuJjSUXE6jYSuZySYGnWSNG5sfVei7vvxDcHx3K+IN4=";
+            })
+          ];
+      });
+    };
 in {
   options.traits.hardware.nvidia = {
     enable = lib.mkEnableOption "nvidia";

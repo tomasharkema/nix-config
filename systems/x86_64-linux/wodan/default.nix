@@ -207,7 +207,7 @@
         #bridgeInterfaces = ["eth0"];
       };
       xserver = {
-        enableTearFree = true;
+        # enableTearFree = true;
         videoDrivers = ["nvidia"];
       };
       ddccontrol.enable = true;
@@ -228,7 +228,7 @@
 
       nvidia = {
         modesetting.enable = true;
-        forceFullCompositionPipeline = true;
+        # forceFullCompositionPipeline = true;
 
         nvidiaSettings = true;
         # nvidiaPersistenced = lib.mkForce true;
@@ -264,8 +264,8 @@
 
         nvidia = {
           enable = true;
-          open = false; # true;
-          beta = false; # true;
+          open = true;
+          beta = true;
         };
         sgx.enable = true;
         remote-unlock.enable = true;

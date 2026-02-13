@@ -57,8 +57,8 @@
         network.xgbe.enable = true;
         nvidia = {
           enable = true;
-          open = false;
-          beta = false; # true;
+          open = true;
+          beta = true;
           # grid = {
           #   legacy = false;
           # };
