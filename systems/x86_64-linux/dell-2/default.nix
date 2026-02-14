@@ -178,7 +178,7 @@
       # power-profiles-daemon.enable = lib.mkForce true;
 
       clamav.daemon.settings.MaxThreads = 4;
-      tlp.enable = lib.mkForce false;
+
       udev = {
         enable = true;
 

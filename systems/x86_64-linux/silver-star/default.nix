@@ -97,7 +97,9 @@
     };
 
     services = {
-      netconsoled.enable = true;
+      #certmgr.enable = true;
+      #step-ca.enable = true;
+      #netconsoled.enable = true;
       hypervisor = {
         enable = true;
         iommu.enable = true;

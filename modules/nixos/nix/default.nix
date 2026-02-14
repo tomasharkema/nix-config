@@ -34,16 +34,15 @@
     documentation = {
       man = {
         enable = true;
-        #          mandoc.enable = true;
         man-db.enable = true;
-        # generateCaches = true;
+        #generateCaches = true;
       };
       dev.enable = true;
       doc.enable = true;
       info.enable = true;
       nixos = {
         enable = true;
-        # includeAllModules = true;
+        #includeAllModules = true;
       };
     };
 

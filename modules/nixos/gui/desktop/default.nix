@@ -37,7 +37,7 @@ in {
     nixpkgs.config.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
 
     system.build.gui.foxBg = foxBg;
-
+    users.users.tomas.extraGroups = ["adbusers" "kvm"];
     home-manager.users.tomas = {
       # services.tailscale-systray.enable = true;
       # systemd.user.services.tailscale-systray.Service = {

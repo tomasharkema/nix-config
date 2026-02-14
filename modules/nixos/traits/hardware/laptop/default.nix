@@ -48,8 +48,8 @@ in {
       firewalld.enable = true;
 
       sysstat.enable = false;
-
-      tuned.enable = true;
+      tlp.enable = true;
+      #tuned.enable = true;
       thermald.enable = true;
 
       # netdata.enable = lib.mkForce false;

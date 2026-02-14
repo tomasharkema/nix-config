@@ -238,7 +238,7 @@ in {
         prebuildOptionCache = false; #true;
       };
       envfs.enable = true;
-
+      interception-tools.enable = true;
       userborn.enable = true;
       uptimed.enable = true;
       tuptime.enable = true;
