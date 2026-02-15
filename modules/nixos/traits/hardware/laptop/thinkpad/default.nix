@@ -57,13 +57,10 @@ in {
   config = lib.mkIf cfg.enable {
     system.nixos.tags = ["thinkpad"];
 
-    networking.modemmanager.enable = true;
-
     environment = {
       etc."tod/nz3gf07w.exe".source = tod-firmware;
 
       systemPackages = with pkgs; [
-        # modemmanager
         modem-manager-gui
         libmbim
         libqmi
@@ -152,7 +149,6 @@ in {
           thinkpad-bat-rules
         ];
       };
-      # dbus.packages = [pkgs.modemmanager];
     };
 
     home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [

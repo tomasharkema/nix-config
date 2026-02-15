@@ -6,7 +6,7 @@
 }: let
   cfg = config.gui.desktop;
 in {
-  config = lib.mkIf (cfg.enable) {
+  config = lib.mkIf (cfg.enable && false) {
     #  users = {
     #   users."tomas".extraGroups = ["keyd"];
     #   groups = {

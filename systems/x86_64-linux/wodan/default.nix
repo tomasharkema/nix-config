@@ -148,10 +148,10 @@
         bolt.enable = true;
       };
       lldpd.enable = true;
-      input-remapper = {
-        enable = true;
-        enableUdevRules = true;
-      };
+      # input-remapper = {
+      #   enable = true;
+      #   enableUdevRules = true;
+      # };
       firewalld.enable = lib.mkForce false;
       kmscon.enable = true;
       syncplay.enable = true;
