@@ -14,6 +14,7 @@
 
   pks = with pkgs; [
     # keep-sorted start
+    (bottles.override {removeWarningPopup = true;})
     _ipmiview
     android-tools
     angryipscanner
@@ -27,7 +28,6 @@
     # _86Box-with-roms
     bluebubbles
     bluetooth_battery
-    bottles
     boxbuddy
     buttermanager
     cameractrls

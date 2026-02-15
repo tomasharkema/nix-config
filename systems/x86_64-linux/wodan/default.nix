@@ -126,7 +126,6 @@
       quiet-boot.enable = true;
       hidpi.enable = true;
       hdr.enable = true;
-      # hyrland.wluma.enable = true;
     };
 
     systemd.services.gnome-remote-desktop = {

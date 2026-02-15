@@ -126,16 +126,16 @@ in {
     };
     boot = {
       kernelModules = [
-        "acpi_call"
+        # "acpi_call"
         # "xmm7360"
       ];
 
       extraModulePackages = [
-        # xmm7360
+        xmm7360
       ];
 
       blacklistedKernelModules = [
-        # "iosm"
+        "iosm"
       ];
     };
 

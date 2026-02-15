@@ -73,7 +73,15 @@ in {
     };
 
     systemd = {
-      user.services.niri-flake-polkit.enable = false;
+      user = {
+        services.niri-flake-polkit.enable = false;
+
+        targets."xdg-desktop-autostart".unitConfig = {
+          ExecStartPre = [
+            "-${pkgs.custom.uwsm-scripts}/bin/wait-tray"
+          ];
+        };
+      };
       tmpfiles.settings."10-dmsgreeter" = {
         "/var/log/dank".d = {
           user = user;
@@ -86,6 +94,7 @@ in {
     services = {
       # iio-niri.enable = true;
       orca.enable = lib.mkForce false;
+      # clight.enable = true;
     };
 
     users.users = {
@@ -213,6 +222,10 @@ in {
                   relative-to = "bottom-right";
                 };
               }
+              {
+                matches = [{app-id = ''r#"org.quickshell$"#'';}];
+                open-floating = true;
+              }
             ];
 
             spawn-at-startup = [
@@ -246,7 +259,11 @@ in {
               #   action = spawn ["niriswitcherctl" "show" "--window"];
               # };
 
-              "Print".action = screenshot;
+              "Print" = {
+                action = screenshot;
+                repeat = false;
+              };
+
               # "Ctrl+Print".action = screenshot-screen;
               # "Alt+Print".action = screenshot-window;
 

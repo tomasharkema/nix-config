@@ -43,10 +43,6 @@
       };
       gamemode.enable = true;
       quiet-boot.enable = true;
-      hyrland.wluma = {
-        enable = true;
-        backlightDevice = "/sys/class/backlight/intel_backlight";
-      };
     };
 
     hardware = {

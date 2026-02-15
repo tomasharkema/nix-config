@@ -29,7 +29,7 @@ in {
       ACTION=="add", SUBSYSTEM=="i2c-dev", ATTRS{product_id}=="0xea90", ATTRS{vendor_id}=="0x10c4", RUN+="${run_gpio}"
     '';
 
-    systemd = {
+    systemd = lib.mkIf false {
       user.services = {
         wluma = {
           description = "Ambient light monitoring Service";
