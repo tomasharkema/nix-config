@@ -25,7 +25,9 @@ in {
         rekeyFile = ./cachix-key.age;
       };
     };
-    facter.detected.dhcp.enable = false;
+
+    hardware.facter.detected.dhcp.enable = false;
+
     catppuccin = {
       cache.enable = true;
     };
@@ -346,7 +348,7 @@ in {
       avahi = {
         enable = true;
         # allowInterfaces = ["tailscale0"];
-        ipv6 = false;
+
         publish.enable = true;
         publish.userServices = true;
         publish.addresses = true;

@@ -16,7 +16,7 @@
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIMzZxdX/aTyjIrUUFwSKo3zVo2iGJ/PS9uu9KDZXb4b root@pegasus";
     };
 
-    facter.reportPath = ./facter.json;
+    hardware.facter.reportPath = ./facter.json;
 
     services = {
       # udev.extraRules = ''

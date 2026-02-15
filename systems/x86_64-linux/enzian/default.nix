@@ -20,7 +20,7 @@
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHlUmrtTg5ukrLboFA6wZUKlqsUEChJD8qpekxEIu9wL root@enzian";
     };
 
-    facter.reportPath = ./facter.json;
+    hardware.facter.reportPath = ./facter.json;
 
     apps = {
       #steam.enable = true;

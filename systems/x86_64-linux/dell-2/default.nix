@@ -15,7 +15,7 @@
       };
     };
 
-    facter = {
+    hardware.facter = {
       reportPath = ./facter.json;
     };
 

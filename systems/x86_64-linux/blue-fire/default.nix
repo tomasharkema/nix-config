@@ -26,7 +26,7 @@ in {
       };
     };
 
-    facter.reportPath = ./facter.json;
+    hardware.facter.reportPath = ./facter.json;
 
     disks.btrfs = {
       enable = true;

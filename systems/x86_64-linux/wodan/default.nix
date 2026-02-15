@@ -6,7 +6,7 @@
   ...
 }: {
   config = {
-    facter.reportPath = ./facter.json;
+    hardware.facter.reportPath = ./facter.json;
     #nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
     age.rekey.hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII8iCdfina2waZYTj0toLyknDT3eJmMtPsVN3iFgnGUR root@wodan";

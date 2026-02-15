@@ -27,7 +27,7 @@
       };
     };
 
-    facter = {
+    hardware.facter = {
       reportPath = ./facter.json;
       # detected.graphics.enable=;
     };

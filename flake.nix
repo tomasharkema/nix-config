@@ -119,7 +119,6 @@
           # nixos-vfio.nixosModules.default
           # nix-snapshotter.nixosModules.default
           nix-flatpak.nixosModules.nix-flatpak
-          nixos-facter-modules.nixosModules.facter
           # nix-topology.nixosModules.default
           # netkit.nixosModule
           # nixos-checkmk.nixosModules.check_mk_agent
@@ -462,8 +461,6 @@
       url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
 
     flake-compat = {
       url = "github:edolstra/flake-compat";
