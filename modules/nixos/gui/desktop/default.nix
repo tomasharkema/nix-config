@@ -38,9 +38,15 @@ in {
 
     system.build.gui.foxBg = foxBg;
     users.users.tomas.extraGroups = ["adbusers" "kvm"];
-    home-manager.users.tomas = {
-      # services.tailscale-systray.enable = true;
-    };
+    # home-manager.users.tomas = {
+    #   services.tailscale-systray.enable = true;
+    #   systemd.user.targets.tray = {
+    #     Unit = {
+    #       Description = "Home Manager System Tray";
+    #       Requires = ["graphical-session-pre.target"];
+    #     };
+    #   };
+    # };
 
     gui.fonts.enable = true;
 
