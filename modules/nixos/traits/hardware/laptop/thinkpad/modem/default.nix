@@ -144,13 +144,13 @@ in {
         # "xmm7360"
       ];
 
-      extraModulePackages = [
-        xmm7360
-      ];
+      # extraModulePackages = [
+      #   xmm7360
+      # ];
 
-      blacklistedKernelModules = [
-        "iosm"
-      ];
+      # blacklistedKernelModules = [
+      #   "iosm"
+      # ];
     };
 
     hardware = {
