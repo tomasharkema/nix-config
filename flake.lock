@@ -164,11 +164,11 @@
         "onchg": "onchg"
       },
       "locked": {
-        "lastModified": 1771211965,
-        "narHash": "sha256-MbDCe9iYSN59uwkpQ6Uk9nGmem74jqrF4ZltFhLxTPQ=",
+        "lastModified": 1771280126,
+        "narHash": "sha256-pegK7+4aWBgc7tKK9Us5LYK6lmvEXgrylFva7f4FbUs=",
         "owner": "aksiksi",
         "repo": "compose2nix",
-        "rev": "b2e860160aa5a145e27633b2d7ce0899ec73220d",
+        "rev": "58d4b4685a8fe152a46386b63edb7a055f0de8a1",
         "type": "github"
       },
       "original": {
@@ -239,11 +239,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1771262266,
-        "narHash": "sha256-GCND3NgB5cr1IW97Kz1bUTfFeqaTHCwVrbi4p+4zBRc=",
+        "lastModified": 1771284511,
+        "narHash": "sha256-6c4ssy/iiTHTCHbXlPgJFFSN0kotPpT+aE9U97AS7B8=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "75a8c171eaadf735578d9382840ab49c9bbfd5b6",
+        "rev": "2f863f64ee4ed90935975a7ab9f2603920f84fd2",
         "type": "github"
       },
       "original": {
