@@ -59,6 +59,7 @@
         ++ [
           pkgs.gi-docgen
         ];
+
       outputs = ["out" "dev"];
     });
 
@@ -77,11 +78,13 @@
   _modemmanager = let
     version = "1.25.95-dev";
   in
-    pkgs.modemmanager.overrideAttrs (oldAttrs: {
+    (pkgs.modemmanager.override {libqmi = _libqmi;}).overrideAttrs ({
+      nativeBuildInputs ? [],
+      mesonFlags ? [],
+      ...
+    }: {
       pname = "modemmanager";
       version = version;
-
-      libqmi = _libqmi;
 
       src = pkgs.fetchFromGitLab {
         domain = "gitlab.freedesktop.org";
@@ -90,6 +93,17 @@
         rev = version;
         hash = "sha256-xyb9LTkuJyTqt0yWDDJTYiICFVFJ5SqRlnOdrhrL2Ps=";
       };
+
+      mesonFlags =
+        mesonFlags
+        ++ [
+          "-Dplugin_fibocom=enabled"
+          "-Dplugin_intel=enabled"
+          "-Dplugin_generic=enabled"
+          "-Dplugin_ublox=enabled"
+        ];
+
+      nativeBuildInputs = nativeBuildInputs ++ [pkgs.cmake];
       # patches =
       #   oldAttrs.patches
       #   ++ [
@@ -122,7 +136,7 @@ in {
 
     networking.modemmanager = {
       enable = true;
-      # package = _modemmanager;
+      package = _modemmanager;
     };
     boot = {
       kernelModules = [
