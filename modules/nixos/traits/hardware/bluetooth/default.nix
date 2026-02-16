@@ -19,6 +19,7 @@ in {
         powerOnBoot = true;
         package = pkgs.bluez;
         settings = {General = {MultiProfile = "multiple";};};
+        hsphfpd.enable = true;
         # settings = lib.mkIf cfg.music.enable {General = {Enable = "Source,Sink,Media,Socket";};};
       };
     };
