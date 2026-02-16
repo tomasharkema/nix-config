@@ -13,6 +13,7 @@ in {
     environment = {
       systemPackages = with pkgs; [
         swaybg
+        dex
       ];
 
       etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json".source = pkgs.writers.writeJSON "50-limit-free-buffer-pool-in-wayland-compositors.json" {
@@ -74,13 +75,39 @@ in {
 
     systemd = {
       user = {
-        services.niri-flake-polkit.enable = false;
+        services = {
+          niri-flake-polkit.enable = false;
 
-        targets."xdg-desktop-autostart".unitConfig = {
-          ExecStartPre = [
-            "-${pkgs.custom.uwsm-scripts}/bin/wait-tray"
-          ];
+          #   wait-tray-ready = {
+          #     wantedBy = [
+          #       "graphical-session.target"
+          #     ];
+
+          #     serviceConfig = {
+          #       ExecStartPre = ["${pkgs.coreutils}/bin/sleep 30"];
+          #       ExecStart = [
+          #         "${pkgs.custom.uwsm-scripts}/bin/wait-tray"
+          #       ];
+
+          #       RemainAfterExit = true;
+          #       Type = "oneshot";
+          #     };
+
+          #     before = [
+          #       "tray.target"
+          #     ];
+          #     after = [
+          #       "xdg-desktop-autostart.target"
+          #     ];
+          #     description = "Wait the status icon tray ready";
+          #     partOf = ["graphical-session.target"];
+          #   };
         };
+        # targets."xdg-desktop-autostart".serviceConfig = {
+        #   ExecStartPre = [
+        #     "-${pkgs.custom.uwsm-scripts}/bin/wait-tray"
+        #   ];
+        # };
       };
       tmpfiles.settings."10-dmsgreeter" = {
         "/var/log/dank".d = {
@@ -95,6 +122,8 @@ in {
       # iio-niri.enable = true;
       orca.enable = lib.mkForce false;
       # clight.enable = true;
+      dbus.implementation = "broker";
+      colord.enable = true;
     };
 
     users.users = {

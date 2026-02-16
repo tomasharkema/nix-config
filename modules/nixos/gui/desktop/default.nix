@@ -40,10 +40,6 @@ in {
     users.users.tomas.extraGroups = ["adbusers" "kvm"];
     home-manager.users.tomas = {
       # services.tailscale-systray.enable = true;
-      # systemd.user.services.tailscale-systray.Service = {
-      #   TimeoutStopSec = "5s";
-      #   Slice = "app.slice";
-      # };
     };
 
     gui.fonts.enable = true;
