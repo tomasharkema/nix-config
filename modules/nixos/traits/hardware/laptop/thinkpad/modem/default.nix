@@ -159,7 +159,7 @@ in {
     };
 
     systemd.services.xmm7360 = {
-      # enable = false;
+      enable = false;
       description = "XMM7360 Modem Init";
       after = ["NetworkManager.service"];
       requires = [

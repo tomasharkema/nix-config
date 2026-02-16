@@ -102,7 +102,29 @@
     networking = {
       hostName = "voltron"; # Define your hostname.
 
-      firewall.enable = true;
+      firewall.enable = lib.mkForce false;
+
+      wireless = {
+        # enable = true;
+        enable = false; # true;
+        iwd = {
+          enable = true;
+          settings = {
+            Settings = {
+              AutoConnect = true;
+              AlwaysRandomizeAddress = true;
+            };
+          };
+        };
+      };
+
+      networkmanager = {
+        enable = true;
+
+        wifi = {
+          backend = "iwd";
+        };
+      };
     };
 
     users = {
