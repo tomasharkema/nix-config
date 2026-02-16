@@ -611,6 +611,8 @@
       };
       kernel.sysctl = {
         "kernel.unknown_nmi_panic" = 1;
+        "fs.inotify.max_user_instances" = 1048576;
+        "fs.inotify.max_user_watches" = 1048576;
       };
 
       # binfmt.emulatedSystems = ["aarch64-linux"];
