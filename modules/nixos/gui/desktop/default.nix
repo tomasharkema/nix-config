@@ -380,6 +380,24 @@ in {
         NetworkManager-wait-online.enable = lib.mkForce false;
         systemd-networkd-wait-online.enable = lib.mkForce false;
       };
+
+      user.services.fumon = {
+        description = "User unit failure monitor";
+        documentation = ["man:fumon(1)" "man:busctl(1)"];
+        requisite = ["graphical-session.target"];
+        after = ["graphical-session.target"];
+        enable = true;
+        serviceConfig = {
+          Type = "exec";
+          # ExecCondition=/bin/sh -c "command -v notify-send > /dev/null"
+          ExecStart = "${pkgs.uwsm}/bin/fumon";
+          Restart = "on-failure";
+          Slice = "background-graphical.slice";
+        };
+
+        wantedBy = ["graphical-session.target"];
+      };
+
       packages =
         [
           pkgs.custom.wifiman
