@@ -69,8 +69,8 @@ in {
           #ExecCondition = ''
           #  /bin/sh -c 'grep -q -e "crashkernel" -e "fadump" /proc/cmdline'
           #'';
-          ExecStart = "${pkgs.kexec-tools}/bin/kexec -p /run/current-system/kernel --initrd=/run/current-system/initrd --reset-vga --console-vga --append=\"irqpoll nr_cpus=1 reset_devices systemd.mask=kdump.service ${kernelParams}\"";
-          #--command-line=\"init=$(readlink -f /run/current-system/init) irqpoll maxcpus=1 reset_devices\"";
+          ExecStart = "${pkgs.kexec-tools}/bin/kexec -p /run/booted-system/kernel --initrd=/run/booted-system/initrd --reset-vga --console-vga --append=\"irqpoll nr_cpus=1 reset_devices systemd.mask=kdump.service ${kernelParams}\"";
+          #--command-line=\"init=$(readlink -f /run/booted-system/init) irqpoll maxcpus=1 reset_devices\"";
           ExecStop = "${pkgs.kexec-tools}/bin/kexec -p -u";
 
           # ExecStart = "${pkgs.kdump-utils}/bin/kdumpctl start";
