@@ -142,7 +142,6 @@
     };
 
     services = {
-      firewalld.enable = true;
       # dnsmasq.enable = true;
       kmscon.enable = true;
       # comin.enable = false;

@@ -57,6 +57,7 @@
         custom.meshtui
         custom.partclone-utils
         custom.radar
+        custom.sgrep
         custom.ssh-proxy-agent
         custom.sshed
         custom.sshm
@@ -149,7 +150,7 @@
         nil
         ninja
         nix-alien
-        # nix-btm
+        nix-btm
         nix-check-deps
         nix-playground
         nix-search-cli

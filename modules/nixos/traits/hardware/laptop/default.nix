@@ -33,19 +33,16 @@ in {
 
     networking = {
       firewall = {
-        enable = true; # wlp4s0; # false;
+        # enable = true; # wlp4s0; # false;
         allowPing = true;
         allowedUDPPorts = [53 67];
       };
-
-      nftables.enable = true;
     };
 
     services = {
       # synergy.server = {
       #   enable = true;
       # };
-      firewalld.enable = true;
 
       sysstat.enable = false;
       tlp.enable = true;

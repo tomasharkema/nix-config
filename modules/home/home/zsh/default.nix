@@ -141,6 +141,8 @@
 
           zellij = "systemd-run --scope --user zellij";
 
+          hwp = ''xdg-open "$(sudo hw-probe -all -upload | ./result/bin/sgrep url | fzf)"'';
+
           # subl = (lib.mkIf pkgs.stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
         };
 
