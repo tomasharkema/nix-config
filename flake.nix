@@ -149,7 +149,7 @@
           dank-material-shell.nixosModules.greeter
 
           nixos-cli.nixosModules.nixos-cli
-
+          determinate.nixosModules.default
           ./defaultNixosAge.nix
           (
             {config, ...}: {
@@ -870,10 +870,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-src = {
-      url = "github:determinatesystems/nix-src";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
 
     zsh-colored-man-pages = {
       url = "github:ael-code/zsh-colored-man-pages";
