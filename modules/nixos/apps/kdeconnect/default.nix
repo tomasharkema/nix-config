@@ -7,8 +7,15 @@
   config = lib.mkIf config.gui.gnome.enable {
     programs.kdeconnect = {
       enable = true;
-      package = pkgs.valent;
+      package = pkgs.kdePackages.kdeconnect-kde;
     };
+
+    environment = {
+      etc = {
+        "xdg/autostart/org.kde.kdeconnect.daemon.desktop".source = "${pkgs.kdePackages.kdeconnect-kde}/etc/xdg/autostart/org.kde.kdeconnect.daemon.desktop";
+      };
+    };
+
     networking.firewall = rec {
       allowedTCPPortRanges = [
         {
