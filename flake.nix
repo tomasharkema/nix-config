@@ -870,6 +870,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-src = {
+      url = "github:determinatesystems/nix-src";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zsh-colored-man-pages = {
       url = "github:ael-code/zsh-colored-man-pages";
       flake = false;

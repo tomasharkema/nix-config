@@ -118,7 +118,7 @@
         config.user.name
       ];
     in {
-      package = pkgs.nixVersions.latest; # pkgs.nix_git; #  # pkgs.nix-lazytrees2_git;
+      package = inputs.nix-src.packages."${pkgs.stdenv.hostPlatform.system}".nix; # pkgs.nix; # Versions.latest; # pkgs.nix_git; #  # pkgs.nix-lazytrees2_git;
 
       # nixPath = [
       #   "nixpkgs=${inputs.nixpkgs}"
