@@ -88,16 +88,6 @@
           bindkey -M vicmd -s '^A' 'menu^M'
           bindkey -M viins -s '^A' 'menu^M'
 
-          function zellij_refresh_ssh_sock {
-            if [ -n "$ZELLIJ" ]; then
-              if [ -e  ]; then
-                export SSH_AUTH_SOCK="$HOME/.ssh/ssh_auth_sock"
-              fi
-            fi
-          }
-
-          add-zsh-hook precmd zellij_refresh_ssh_sock
-
           function take() {
             mkdir -p $@ && cd ''${@:$#}
           }
