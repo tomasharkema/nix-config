@@ -688,6 +688,9 @@ in {
         wifi = {
           scanRandMacAddress = lib.mkDefault true;
         };
+        plugins = with pkgs; [
+          networkmanager-ssh
+        ];
       };
 
       # timeServers = ["192.168.9.49"];
