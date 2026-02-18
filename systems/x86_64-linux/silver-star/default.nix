@@ -103,6 +103,7 @@
       hypervisor = {
         enable = true;
         iommu.enable = true;
+        incus.enable = true;
         # bridgeInterfaces = [ "eno1" ];
       };
       rsyncd.enable = true;

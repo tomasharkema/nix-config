@@ -5,24 +5,12 @@
   ...
 }: let
   cfg = config.services.hypervisor;
-  # isosStorage = pkgs.writeText "isos.xml" ''
-  #   <pool type="netfs">
-  #     <name>virtimages</name>
-  #     <source>
-  #       <host name="192.168.1.102"/>
-  #       <dir path="/volume1/isos"/>
-  #       <format type='nfs'/>
-  #     </source>
-  #     <target>
-  #       <path>/var/lib/libvirt/images/isos-2</path>
-  #     </target>
-  #   </pool>
-  # '';
 in {
   options.services.hypervisor = {
     enable = lib.mkEnableOption "hypervisor";
     iommu.enable = lib.mkEnableOption "hypervisor";
     webservices.enable = lib.mkEnableOption "webservices";
+    incus.enable = lib.mkEnableOption "webservices";
 
     bridgeInterfaces = lib.mkOption {
       type = lib.types.listOf lib.types.str;
@@ -224,7 +212,7 @@ in {
     hardware.ksm.enable = true;
 
     virtualisation = {
-      incus = {
+      incus = lib.mkIf cfg.incus.enable {
         enable = true;
         ui.enable = true;
       };

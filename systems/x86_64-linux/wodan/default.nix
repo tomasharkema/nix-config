@@ -62,6 +62,11 @@
               AutoConnect = true;
               AlwaysRandomizeAddress = true;
             };
+            Network = {
+              EnableIPv6 = true;
+              RoutePriorityOffset = 300;
+            };
+            DriverQuirks.DefaultInterface = "wlan0";
           };
         };
       };
