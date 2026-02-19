@@ -36,7 +36,6 @@
 
     environment = {
       systemPackages = with pkgs; [
-        # esp-idf-full
         # gt
         powerstat
         powerjoular

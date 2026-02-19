@@ -72,7 +72,7 @@
     dsview
     easyeffects
     effitask
-    # esp-idf-full
+    esp-idf-full
     esptool
     f1viewer
     filezilla

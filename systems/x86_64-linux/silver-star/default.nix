@@ -490,7 +490,6 @@
         libsmbios
         virt-manager
         ipmitool
-        fleet
         openipmi
         freeipmi
         ipmicfg

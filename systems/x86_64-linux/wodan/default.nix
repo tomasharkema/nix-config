@@ -18,8 +18,7 @@
         snmpcheck
         davinci-resolve
         impala
-        esp-idf-full
-        # glxinfo
+        mesa-demos
         # apfsprogs
         cifs-utils
         piper
