@@ -355,7 +355,12 @@ in {
         v4l2loopback
         iio-utils
       ];
-      kernelModules = ["v4l2loopback" "akvcam"];
+      kernelModules = [
+        "v4l2loopback"
+        "akvcam"
+
+        "ntsync"
+      ];
 
       # for displaylink
       # kernelPackages = pkgs.linuxPackages_6_17;

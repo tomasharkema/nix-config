@@ -140,12 +140,12 @@
     networking.firewall.allowedTCPPorts = [3389];
 
     services = {
-      gnome.gnome-remote-desktop.enable = true;
+      # gnome.gnome-remote-desktop.enable = true;
 
-      xrdp = {
-        enable = true;
-        defaultWindowManager = config.services.greetd.settings.default_session.command;
-      };
+      # xrdp = {
+      #   enable = true;
+      #   defaultWindowManager = config.services.greetd.settings.default_session.command;
+      # };
 
       hardware = {
         bolt.enable = true;
