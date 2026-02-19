@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: let
   _ipmiview = pkgs.ipmiview.overrideAttrs (old: {
@@ -14,7 +15,8 @@
 
   pks = with pkgs; [
     # keep-sorted start
-
+    # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".sdkFull
+    # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".hosttools
     (bottles.override {removeWarningPopup = true;})
     _ipmiview
     android-tools
@@ -72,7 +74,7 @@
     dsview
     easyeffects
     effitask
-    esp-idf-full
+    #esp-idf-full
     esptool
     f1viewer
     filezilla
