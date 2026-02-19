@@ -333,6 +333,15 @@ in {
         enable = true;
       };
 
+      firefox = {
+        enable = true;
+
+        nativeMessagingHosts.packages = [
+          # pkgs.custom.firefox-webserial
+          # pkgs.firefoxpwa
+        ];
+      };
+
       appimage = {
         enable = true;
         binfmt = true;

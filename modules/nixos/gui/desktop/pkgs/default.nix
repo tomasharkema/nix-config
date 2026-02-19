@@ -14,6 +14,7 @@
 
   pks = with pkgs; [
     # keep-sorted start
+
     (bottles.override {removeWarningPopup = true;})
     _ipmiview
     android-tools
@@ -71,7 +72,7 @@
     dsview
     easyeffects
     effitask
-    esp-idf-full
+    # esp-idf-full
     esptool
     f1viewer
     filezilla
@@ -120,6 +121,7 @@
     mixxx
     nautilus
     nautilus-python
+    neohtop
     netpeek
     noti
     nrf-command-line-tools

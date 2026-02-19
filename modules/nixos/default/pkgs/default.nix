@@ -20,6 +20,7 @@
         bat-extras.batman
         bat-extras.batpipe
         bat-extras.batwatch
+        batmon
         binwalk
         bmc-tools
         bmon
@@ -82,6 +83,7 @@
         fcast-receiver
         fleetctl
         freeipmi
+        ftop
         fuse
         fuse3
         gdb
@@ -113,6 +115,7 @@
         ipmiutil
         iptraf-ng
         isd
+        jnettop
         kanidm_1_8
         kitty.terminfo
         kmon
@@ -190,6 +193,7 @@
         pkgs.custom.nix-helpers
         play
         ponymix
+        poptop
         psmisc
         pulsemixer
         pv

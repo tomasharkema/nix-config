@@ -106,6 +106,10 @@
         incus.enable = true;
         # bridgeInterfaces = [ "eno1" ];
       };
+      opencloud = {
+        enable = true;
+        url = "https://opencloud.ling-lizard.ts.net";
+      };
       rsyncd.enable = true;
       # "nix-private-cache".enable = true;
       #zram-generator.enable = false;

@@ -1,9 +1,9 @@
-FROM rockylinux:9 AS sysd-replace
+FROM rockylinux/rockylinux:10 AS sysd-replace
 WORKDIR /app
 RUN yum -y install git
 RUN git clone https://github.com/gdraheim/docker-systemctl-replacement
 
-FROM rockylinux:9
+FROM rockylinux/rockylinux:10
 
 ENV PATH $PATH:/opt/dell/srvadmin/bin:/opt/dell/srvadmin/sbin
 ENV TOMCATCFG /opt/dell/srvadmin/lib64/openmanage/apache-tomcat/conf/server.xml
@@ -18,10 +18,12 @@ COPY --from=sysd-replace /app/docker-systemctl-replacement/files/docker/systemct
 RUN echo "$USER:$PASS" | chpasswd && \
     set -x && \
     dnf -y install 'dnf-command(config-manager)' && dnf config-manager --set-enabled crb && \
-    dnf -y install passwd dmidecode perl procps which tar gcc python3 && \
-    curl -fsSL "https://linux.dell.com/repo/hardware/dsu/bootstrap.cgi" | bash -x && \
+    dnf -y install passwd dmidecode perl procps which tar gcc python3 wget
+
+RUN curl -O "https://linux.dell.com/repo/community/bootstrap.cgi" && \
+    echo "n" | DEBUG=1 sh bootstrap.cgi -x && \
     curl -O https://linux.dell.com/repo/hardware/ism/bootstrap.sh && \
-    echo "y" | sh bootstrap.sh -x && \
+    echo "y" | DEBUG=1 sh bootstrap.sh -x && \
     dnf update -y && \
     dnf install -y net-snmp ipmitool srvadmin-all dell-system-update dcism net-snmp net-snmp-utils srvadmin-deng-snmp srvadmin-isvc-snmp && \
     dnf clean all
