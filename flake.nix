@@ -827,7 +827,7 @@
 
     nixpkgs-esp-dev = {
       url = "github:mirrexagon/nixpkgs-esp-dev";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     dgop = {
@@ -874,7 +874,10 @@
       url = "github:lordkekz/nix-yazi-plugins?ref=yazi-v0.2.5";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    zephyr-nix = {
+      url = "github:nix-community/zephyr-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zsh-colored-man-pages = {
       url = "github:ael-code/zsh-colored-man-pages";
       flake = false;
