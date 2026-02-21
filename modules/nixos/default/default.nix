@@ -150,13 +150,13 @@ in {
 
       kernelPackages = lib.mkDefault pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v4;
 
-      initrd.kernelModules = lib.mkIf false [
+      initrd.kernelModules = [
         "ramoops"
         "efi_pstore"
         "pstore"
       ];
 
-      kernelModules = lib.mkIf false [
+      kernelModules = [
         "wireguard"
         # "netconsole"
         # "apfs"
@@ -177,6 +177,9 @@ in {
           netbootxyz.enable = true;
           configurationLimit = 10;
           editor = false;
+          consoleMode = "max";
+          edk2-uefi-shell.enable = true;
+          memtest86.enable = true;
           # graceful = true;
         };
       };
