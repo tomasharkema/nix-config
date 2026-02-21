@@ -74,7 +74,7 @@
     dsview
     easyeffects
     effitask
-    #esp-idf-full
+    # esp-idf-full
     esptool
     f1viewer
     filezilla
@@ -162,6 +162,7 @@
     qradiolink
     rmview
     rpi-imager
+    rpiboot
     rtfm
     saleae-logic-2
     satellite
