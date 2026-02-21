@@ -485,12 +485,11 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    neix.url = "github:Hovirix/neix";
-    # pre-commit-hooks-nix = {
-    #   url = "github:cachix/pre-commit-hooks.nix";
 
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    neix = {
+      url = "github:Hovirix/neix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # treefmt-nix = {
     #   url = "github:numtide/treefmt-nix";
     #   inputs = {
@@ -631,7 +630,7 @@
 
     # peerix = {
     #   url = "github:cid-chan/peerix";
-    #   # url = "github:tomasharkema/peerix";
+    #   # url = "github:tomasharkema/peerix";inputs.nixpkgs.follows = "nixpkgs";
     #   inputs = {
     #     nixpkgs.follows = "nixpkgs";
     #     # flake-utils.follows = "flake-utils";
@@ -876,7 +875,7 @@
     };
     zephyr-nix = {
       url = "github:nix-community/zephyr-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     zsh-colored-man-pages = {
       url = "github:ael-code/zsh-colored-man-pages";
