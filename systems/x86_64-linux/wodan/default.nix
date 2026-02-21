@@ -231,7 +231,7 @@
 
       nvidia = {
         modesetting.enable = true;
-        # forceFullCompositionPipeline = true;
+        forceFullCompositionPipeline = true;
 
         nvidiaSettings = true;
         # nvidiaPersistenced = lib.mkForce true;
