@@ -111,6 +111,8 @@
         imv
         inputs.neix.packages.${pkgs.system}.default
         ipcalc
+        iperf
+        iperf3
         ipmitool
         ipmiutil
         iptraf-ng

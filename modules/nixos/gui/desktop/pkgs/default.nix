@@ -146,7 +146,7 @@
     pika-backup
     piper
     platformio
-    plex-desktop
+    # plex-desktop
     plexamp
     pods
     powerjoular

@@ -8,6 +8,8 @@
 in {
   options.traits.hardware.network.firewall = {
     enable = lib.mkEnableOption "firewall";
+
+    daemon.enable = lib.mkEnableOption "firewall" // {default = true;};
   };
 
   config = lib.mkIf cfg.enable {
@@ -21,12 +23,13 @@ in {
       nftables.enable = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      firewalld-gui
-    ];
+    environment.systemPackages = with pkgs;
+      lib.mkIf cfg.daemon.enable [
+        firewalld-gui
+      ];
 
-    services = {
-      firewalld.enable = true;
+    services = lib.mkIf cfg.daemon.enable {
+      firewalld.enable = lib.mkDefault true;
     };
   };
 }

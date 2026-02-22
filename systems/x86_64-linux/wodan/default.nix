@@ -84,8 +84,6 @@
         ];
       };
 
-      firewall.enable = lib.mkForce false;
-
       search = ["lan"];
 
       defaultGateway = {
@@ -155,7 +153,6 @@
       #   enable = true;
       #   enableUdevRules = true;
       # };
-      firewalld.enable = lib.mkForce false;
       kmscon.enable = true;
       syncplay.enable = true;
       ratbagd.enable = true;
@@ -264,7 +261,10 @@
         nvme.enable = true;
         tpm.enable = true;
         secure-boot.enable = true;
-
+        network.firewall = {
+          enable = true;
+          daemon.enable = false;
+        };
         nvidia = {
           enable = true;
           open = true;
