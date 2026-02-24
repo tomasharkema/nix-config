@@ -76,22 +76,22 @@ in {
         pkgs.custom.libvirt-dbus
       ];
 
-      # prometheus.exporters = {
-      #   libvirt.enable = true;
-      # };
+      prometheus.exporters = {
+        libvirt.enable = true;
+      };
+
       rpcbind.enable = true;
+
+      lxd-image-server.enable = lib.mkIf cfg.incus.enable true;
+
+      libvirtd.autoSnapshot = {
+        enable = true;
+        keep = 5;
+      };
     };
-
-    # users = {
-    #   users = {
-    #     qemu-libvirtd.group = "qemu-libvirtd";
-    #   };
-    #   groups.qemu-libvirtd = {};
-    # };
-
     users = {
       groups = {
-        "incus-admin".members = [
+        "incus-admin".members = lib.mkIf cfg.incus.enable [
           "${config.user.name}"
         ];
 
@@ -283,17 +283,11 @@ in {
     };
 
     networking = {
-      # nftables.enable = true;
+      nftables.enable = true;
 
       #   interfaces."br0".useDHCP = true;
 
-      # firewall.trustedInterfaces = ["br0" "virbr0"];
-
-      #   bridges = {
-      #     "br0" = {
-      #       interfaces = ["wlp59s0"];
-      #     };
-      #   };
+      firewall.trustedInterfaces = ["br0" "virbr0"];
     };
 
     # dconf.settings = {

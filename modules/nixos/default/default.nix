@@ -243,7 +243,10 @@ in {
         prebuildOptionCache = false; #true;
       };
       envfs.enable = true;
-
+      lvm = {
+        enable = true;
+        dmeventd.enable = true;
+      };
       userborn.enable = true;
       uptimed.enable = true;
       tuptime.enable = true;
