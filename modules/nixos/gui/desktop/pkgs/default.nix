@@ -19,6 +19,7 @@
     # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".hosttools
     (bottles.override {removeWarningPopup = true;})
     _ipmiview
+    android-studio-full
     android-tools
     angryipscanner
     antares

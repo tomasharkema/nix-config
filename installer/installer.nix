@@ -67,7 +67,11 @@ in {
 
     # programs.zsh.enable = true;
 
-    services = {tailscale.enable = true;};
+    services = {
+      tailscale.enable = true;
+
+      getty.autologinUser = lib.mkForce null;
+    };
 
     environment.systemPackages = with pkgs; [
       nixos-install-tools

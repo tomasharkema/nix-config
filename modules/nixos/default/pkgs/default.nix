@@ -69,7 +69,7 @@
         # rmfuse
         cutecom
         ddrescue
-        devcontainer
+        # devcontainer
         devtodo
         dfrs
         distrobox

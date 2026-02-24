@@ -53,8 +53,8 @@ in {
     environment.systemPackages = with pkgs; [
       kvmtool
       libvirt
-      qemu
-      pkgs.custom.libvirt-dbus
+      config.virtualisation.libvirtd.qemu.package
+      libvirt-dbus
       nemu
       qtemu
       virt-top
@@ -71,9 +71,8 @@ in {
         virt-manager
         kvmtool
         libvirt
-        qemu
 
-        pkgs.custom.libvirt-dbus
+        libvirt-dbus
       ];
 
       prometheus.exporters = {
@@ -129,7 +128,7 @@ in {
       #   };
       # };
 
-      packages = [pkgs.custom.libvirt-dbus];
+      packages = [pkgs.libvirt-dbus];
     };
 
     environment.etc = {
@@ -236,7 +235,9 @@ in {
         };
 
         qemu = {
-          package = pkgs.qemu_full;
+          package = pkgs.qemu_full.override {
+            cephSupport = false;
+          };
           runAsRoot = true;
           # verbatimConfig = ''
           #   cgroup_device_acl = [

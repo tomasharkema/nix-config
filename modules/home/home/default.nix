@@ -57,7 +57,7 @@ in {
           yazi
 
           # lrzsz
-          devcontainer
+          # devcontainer
           picotool
           newman
           # postman
