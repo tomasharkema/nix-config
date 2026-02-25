@@ -530,7 +530,7 @@
     virtualisation = {
       oci-containers.containers = {
         openmanage = {
-          image = "teumaauss/srvadmin:latest";
+          image = "teumaauss/ismlatest";
           pull = "always";
 
           volumes = let
@@ -542,11 +542,17 @@
             "/nix/store:/nix/store:ro"
             "/etc/os-release:/etc/os-release:ro"
             "/usr/libexec/dell_dup:/usr/libexec/dell_dup:rw"
+            "/etc/snmp/snmpd.conf:/etc/snmp/snmpd.conf"
+            "/etc/hostname:/etc/hostname"
+            "/lib/modules:/lib/modules"
             #"/run/systemd/system:/run/systemd/system"
             #"/var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket"
           ];
           privileged = true;
-          devices = ["/dev/mem:/dev/mem"];
+          devices = [
+            "/dev/log:/dev/log"
+            "/dev/ipmi0:/dev/ipmi0"
+          ];
           extraOptions = [
             "--net=host"
 
