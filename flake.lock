@@ -239,11 +239,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1771959578,
-        "narHash": "sha256-I04tcXiLFdQEluK0MERc0ceCQkz2I+0OHNnRVoYXpRw=",
+        "lastModified": 1771977390,
+        "narHash": "sha256-gLHcim1mod95Xqv5D7NXOkTSx6v4NditDoKQ1b4Fgw0=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "69178ddfd815f064d628d3b00f3d5c5f6ace745b",
+        "rev": "bc0b4825f135ee0a45efe350bc9073bb445a76eb",
         "type": "github"
       },
       "original": {
@@ -1597,11 +1597,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1771423359,
-        "narHash": "sha256-yRKJ7gpVmXbX2ZcA8nFi6CMPkJXZGjie2unsiMzj3Ig=",
+        "lastModified": 1771969195,
+        "narHash": "sha256-qwcDBtrRvJbrrnv1lf/pREQi8t2hWZxVAyeMo7/E9sw=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "740a22363033e9f1bb6270fbfb5a9574067af15b",
+        "rev": "41c6b421bdc301b2624486e11905c9af7b8ec68e",
         "type": "github"
       },
       "original": {
@@ -2031,11 +2031,11 @@
         "treefmt-nix": "treefmt-nix_7"
       },
       "locked": {
-        "lastModified": 1771881195,
-        "narHash": "sha256-QOn6Iawl0ZYKdlyNs+YGOiNFuPG1fKmw8viVGFB+1uA=",
+        "lastModified": 1771967085,
+        "narHash": "sha256-pZGgwSVfvTlUxoG7CCOREoAAaNktoro/0BWDpvZjXTg=",
         "owner": "xddxdd",
         "repo": "nur-packages",
-        "rev": "54baa6acc99c87894ba73d90e922ccf8af7acff3",
+        "rev": "db72251e695e93164659fc615e250806df0b35e0",
         "type": "github"
       },
       "original": {
