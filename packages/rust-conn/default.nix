@@ -21,16 +21,16 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "rust-conn";
-  version = "0.8.2";
+  version = "0.9.1";
 
   src = fetchFromGitHub {
     owner = "totoshko88";
     repo = "RustConn";
     rev = "v${version}";
-    hash = "sha256-8r6TiqbqxV1r2Hjb97Wyz5t/ZQhR6YeVMotlIaYn4U0=";
+    sha256 = "sha256-aVeSsxceQD+XgFX3kKJa0vxGz6pl8fL+4uO4I4jqBCI=";
   };
 
-  cargoHash = "sha256-Zyi8GFTUxcoHxF6mcmHIMEYrpNkkYlDyX1LOccMWbUE=";
+  cargoHash = "sha256-yimqTKAVqL9gpb9LRTPkhppuehAYRcy0eDPT9ECKBTk=";
 
   nativeBuildInputs = [
     pkg-config

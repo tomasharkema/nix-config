@@ -182,7 +182,7 @@ in {
           };
           enableSystemMonitoring = true; # System monitoring widgets (dgop)
           enableAudioWavelength = true; # Audio visualizer (cava)
-          enableCalendarEvents = true; # Calendar integration (khal)
+          enableCalendarEvents = false; # true; # Calendar integration (khal)
 
           # plugins = {
           #   EmojiLauncher = {

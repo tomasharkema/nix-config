@@ -311,7 +311,6 @@
       ];
 
       kernelModules = [
-        "binder_linux"
         "it87"
         "i2c-dev"
         "btusb"
@@ -330,7 +329,6 @@
       extraModprobeConfig = ''
         options it87 ignore_resource_conflict=1 update_vbat=1
         options cfg80211 ieee80211_regdom=NL
-        options binder_linux devices=binder,hwbinder,vndbinder
       '';
 
       kernelParams = [

@@ -19,7 +19,7 @@
     # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".hosttools
     (bottles.override {removeWarningPopup = true;})
     _ipmiview
-    android-studio-full
+    android-studio
     android-tools
     angryipscanner
     antares
@@ -140,7 +140,7 @@
     openra
     openrct2
     openrisk
-    openrw
+    # openrw
     openswitcher
     pavucontrol
     pdfarranger
@@ -160,7 +160,7 @@
     qjournalctl
     qmk
     qmk_hid
-    qradiolink
+    # qradiolink
     rmview
     rpi-imager
     rpiboot

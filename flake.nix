@@ -26,6 +26,9 @@
 
         allowAliases = true;
 
+        chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
+        android_sdk.accept_license = true;
+
         config.allowAliases = true;
         # lazy-trees = true;
 

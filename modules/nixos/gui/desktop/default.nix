@@ -34,8 +34,6 @@ in {
     #   style = "adwaita-dark";
     # };
 
-    nixpkgs.config.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
-
     system.build.gui.foxBg = foxBg;
     users.users.tomas.extraGroups = [
       "adbusers"
@@ -300,7 +298,7 @@ in {
     };
 
     programs = {
-      pulseview.enable = true;
+      # pulseview.enable = true;
       sniffnet.enable = true;
       television = {
         enable = true;
@@ -362,9 +360,14 @@ in {
       kernelModules = [
         "v4l2loopback"
         "akvcam"
-
+        "binder_linux"
         "ntsync"
       ];
+
+      modprobeConfig.enable = true;
+      extraModprobeConfig = ''
+        options binder_linux devices=binder,hwbinder,vndbinder
+      '';
 
       # for displaylink
       # kernelPackages = pkgs.linuxPackages_6_17;
