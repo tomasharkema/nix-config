@@ -13,7 +13,9 @@ inputs.nixpkgs.lib.nixosSystem {
     {
       nixpkgs = {
         # localSystem = "x86_64-linux"; # buildPlatform
-        # crossSystem = "aarch64-linux"; # hostPlatform
+        crossSystem = {
+          config = "aarch64-unknown-linux-gnu";
+        };
 
         config.allowUnsupportedSystem = true;
       };
@@ -46,6 +48,18 @@ inputs.nixpkgs.lib.nixosSystem {
             #   "console=ttyS1,115200n8"
             #   "console=ttyAMA10,115200n8"
             # ];
+            blacklistedKernelModules = ["qcom_q6v5_pas"];
+
+            kernelPackages = lib.mkForce (pkgs.linuxPackagesFor (pkgs.buildLinux {
+              version = "6.19";
+              src = pkgs.fetchFromGitHub {
+                owner = "jglathe";
+                repo = "linux_ms_dev_kit";
+                rev = "jg/ubuntu-qcom-x1e-6.19";
+                hash = "";
+              };
+            }));
+
             loader = {
               generic-extlinux-compatible = {
                 enable = lib.mkForce false;
@@ -56,6 +70,20 @@ inputs.nixpkgs.lib.nixosSystem {
               };
             };
           };
+
+          hardware = {
+            deviceTree = {
+              enable = true;
+              name = "qcom/x1p42100-microsoft-sp12.dts";
+            };
+            firmware = with pkgs; [
+              inputs.self.packages.aarch64-linux.surface-pro-12-linux
+              linux-firmware
+              wireless-regdb
+            ];
+          };
+
+          isoImage.forceTextMode = true;
 
           environment.systemPackages = with pkgs; [
             nixos-facter
