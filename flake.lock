@@ -2031,11 +2031,11 @@
         "treefmt-nix": "treefmt-nix_7"
       },
       "locked": {
-        "lastModified": 1772139870,
-        "narHash": "sha256-ZlGnyaxgPsym4ZuN4Eyk6/y0Ym6KLJfd9oFryTJbiTE=",
+        "lastModified": 1772225793,
+        "narHash": "sha256-dgRhDZmAkKdDO6odVmOTP7vIc2L0rWy+CRoAHtYDy5I=",
         "owner": "xddxdd",
         "repo": "nur-packages",
-        "rev": "0f0d896171b98ff33cae8772011d6e0f90491c0b",
+        "rev": "6b0d59e160b77862d8a03eb954d0beadf9e3d815",
         "type": "github"
       },
       "original": {
