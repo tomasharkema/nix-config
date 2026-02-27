@@ -88,7 +88,7 @@
           custom.foremost
           custom.futura
           custom.neue-haas-grotesk
-          custom.san-francisco
+          # custom.san-francisco
           dina-font
           encode-sans
           exult
@@ -110,7 +110,7 @@
           # noto-fonts-color-emoji
           open-dyslexic
           open-sans
-          openmoji-color
+          # openmoji-color
           powerline-fonts
           powerline-symbols
           proggyfonts

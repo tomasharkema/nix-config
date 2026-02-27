@@ -76,7 +76,7 @@ in {
           todoman
           dooit
           ttdl
-          topydo
+          # topydo
           jqp
           nchat
           git-agecrypt

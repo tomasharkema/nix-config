@@ -529,8 +529,8 @@
 
     virtualisation = {
       oci-containers.containers = {
-        openmanage = {
-          image = "teumaauss/ismlatest";
+        ism = {
+          image = "teumaauss/ism:latest";
           pull = "always";
 
           volumes = let
@@ -635,7 +635,6 @@
         # "intremap=no_x2apic_optout"
         # "nox2apic"
 
-        "mitigations=off"
         "intel_iommu=on"
         "iommu=pt"
         "ipmi_watchdog.timeout=180"
@@ -653,7 +652,7 @@
 
       blacklistedKernelModules = ["iTCO_wdt"];
 
-      kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+      #kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
 
       recovery = {
         enable = true;

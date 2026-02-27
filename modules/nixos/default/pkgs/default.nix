@@ -51,7 +51,7 @@
         # lz4
         # mkchromecast
         # nix-switcher # : needs github auth
-        custom.contact
+        # custom.contact
         custom.discovery-rs
         custom.flightmon
         custom.menu
@@ -288,7 +288,7 @@
           intentrace
           ipmicfg
           libsmbios
-          meshtastic
+          # meshtastic
           micropython
           refind
           spectre-meltdown-checker

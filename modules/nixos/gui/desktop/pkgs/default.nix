@@ -45,7 +45,7 @@
     custom.butler
     custom.denon-control
     custom.distrib-dl
-    custom.gtk-meshtastic-client
+    # custom.gtk-meshtastic-client
     custom.letters
     custom.manuals
     custom.netsleuth
