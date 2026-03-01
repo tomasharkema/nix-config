@@ -288,7 +288,7 @@
           intentrace
           ipmicfg
           libsmbios
-          # meshtastic
+          meshtastic
           micropython
           refind
           spectre-meltdown-checker
