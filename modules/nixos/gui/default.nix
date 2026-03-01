@@ -114,6 +114,12 @@ in {
         "delayacct"
       ];
 
+      binfmt.emulatedSystems = [
+        "wasm32-wasi"
+        "x86_64-windows"
+        "aarch64-linux"
+      ];
+
       # kernelModules = [
       # "wacom"
       # "spi_ch341"
