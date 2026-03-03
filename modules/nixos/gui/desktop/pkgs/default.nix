@@ -78,6 +78,7 @@
     # esp-idf-full
     esptool
     f1viewer
+    file-roller
     filezilla
     flamp
     fldigi
