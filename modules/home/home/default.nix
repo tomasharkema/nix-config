@@ -121,6 +121,7 @@ in {
         )
         // {
           BROWSER = "firefox";
+          JAVA_HOME = pkgs.jdk.home;
         };
     };
 
