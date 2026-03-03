@@ -2088,11 +2088,11 @@
     "ohmyzsh": {
       "flake": false,
       "locked": {
-        "lastModified": 1772379753,
-        "narHash": "sha256-e4lCq+7f6jxnmYJPEIhn/lPfIp3kNMBuZpva5szPPcU=",
+        "lastModified": 1772564887,
+        "narHash": "sha256-T/rnGaZ4AvsM6sx68S37fu+iTzY3/invUiGOzk+RiIM=",
         "owner": "ohmyzsh",
         "repo": "ohmyzsh",
-        "rev": "25d4d753bfe235040ebaea068b21feca8570e156",
+        "rev": "bf2948322b134dfc30e7ed7e7cd267ae064795bc",
         "type": "github"
       },
       "original": {
