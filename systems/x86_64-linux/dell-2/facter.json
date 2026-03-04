@@ -767,7 +767,6 @@
           "3dnowprefetch",
           "cpuid_fault",
           "epb",
-          "pti",
           "ssbd",
           "ibrs",
           "ibpb",
@@ -952,14 +951,14 @@
         "sysfs_id": "/class/block/zram0",
         "unix_device_names": [
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/d1f550d5-00fa-4006-84f5-02b36f8f6dbe",
+          "/dev/disk/by-uuid/d8d6dc20-da7c-424b-9478-903145ad303f",
           "/dev/zram0"
         ],
         "resources": [
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 4059264,
+            "value_1": 4026112,
             "value_2": 4096
           }
         ]
@@ -1145,7 +1144,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.18.8-cachyos xhci-hcd",
+          "name": "Linux 6.19.2-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1155,11 +1154,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.18",
+          "name": "6.19",
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.18.8-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.19.2-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -1207,7 +1206,7 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0002d0618dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0619dc09dsc00dp01ic09isc00ip00in00"
       },
       {
         "index": 48,
@@ -1232,7 +1231,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.18.8-cachyos xhci-hcd",
+          "name": "Linux 6.19.2-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1242,11 +1241,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "6.18",
+          "name": "6.19",
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.18.8-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.19.2-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -1284,7 +1283,7 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0003d0618dc09dsc00dp03ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0003d0619dc09dsc00dp03ic09isc00ip00in00"
       }
     ],
     "memory": [
@@ -1497,7 +1496,7 @@
     ],
     "mouse": [
       {
-        "index": 54,
+        "index": 53,
         "attached_to": 0,
         "bus_type": {
           "hex": "0081",
@@ -1696,6 +1695,28 @@
     ],
     "network_interface": [
       {
+        "index": 49,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_names": [
+          "lo"
+        ]
+      },
+      {
         "index": 50,
         "attached_to": 17,
         "class_list": [
@@ -1734,28 +1755,6 @@
         ],
         "driver_modules": [
           "ath10k_pci"
-        ]
-      },
-      {
-        "index": 52,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_names": [
-          "lo"
         ]
       }
     ],
