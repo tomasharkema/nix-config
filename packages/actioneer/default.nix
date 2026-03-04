@@ -12,16 +12,16 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "actioneer";
-  version = "1.0.0";
+  version = "1.0.7";
 
   src = fetchFromGitHub {
     owner = "makoni";
     repo = "actioneer-gtk";
     rev = version;
-    hash = "sha256-Gm2irsHU1bLTFQH1sp4wQ8D4SreEzZEpP1yeZyAZTAA=";
+    hash = "sha256-quLy+1UG9RPbzwwbS8RCKrL2qzI+VNoXRB02Wo/FAJY=";
   };
 
-  cargoHash = "sha256-17ji6eWarzT9//9+xMbaHCy3/T9okQ/gs6g1huM6vhM=";
+  cargoHash = "sha256-9rIYfrS8w2iXS66UhvD7LtsJtjQByWnjmXHV4yFM2NQ=";
 
   nativeBuildInputs = [
     pkg-config
