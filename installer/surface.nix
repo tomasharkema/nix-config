@@ -58,7 +58,7 @@ inputs.nixpkgs.lib.nixosSystem {
           };
 
           environment.systemPackages = with pkgs; [
-            nixos-facter
+            # nixos-facter
             dtc
             raspberrypifw
             raspberrypi-eeprom
