@@ -219,6 +219,7 @@
         #socklog
         squashfs-tools-ng
         squashfsTools
+        squashfuse
         ssh-import-id
         ssh-tools
         sshfs
