@@ -130,10 +130,6 @@
       hdr.enable = true;
     };
 
-    systemd.services.gnome-remote-desktop = {
-      wantedBy = ["graphical.target"];
-    };
-
     # Open the default RDP port (3389)
     networking.firewall.allowedTCPPorts = [3389];
 
@@ -214,10 +210,10 @@
     };
 
     programs = {
-      light = {
-        enable = true;
-        brightnessKeys = {enable = true;};
-      };
+      #  = {
+      #   enable = true;
+      #   brightnessKeys = {enable = true;};
+      # };
 
       cpu-energy-meter.enable = true;
     };
@@ -351,9 +347,9 @@
       # [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     };
 
-    systemd.services."serial-getty@ttyS0" = {
-      wantedBy = ["multi-user.target"];
-    };
+    # systemd.services."serial-getty@ttyS0" = {
+    #   wantedBy = ["multi-user.target"];
+    # };
     # boot = {
     #   loader = {
     #     efi = {

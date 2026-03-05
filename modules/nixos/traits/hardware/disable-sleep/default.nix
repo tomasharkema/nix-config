@@ -20,12 +20,12 @@ in {
         hibernate.enable = lib.mkForce false;
         hybrid-sleep.enable = lib.mkForce false;
       };
-      sleep.extraConfig = ''
-        AllowSuspend=no
-        AllowHibernation=no
-        AllowHybridSleep=no
-        AllowSuspendThenHibernate=no
-      '';
+      # sleep.extraConfig = ''
+      #   AllowSuspend=no
+      #   AllowHibernation=no
+      #   AllowHybridSleep=no
+      #   AllowSuspendThenHibernate=no
+      # '';
     };
   };
 }

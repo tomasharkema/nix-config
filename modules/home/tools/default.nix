@@ -103,7 +103,7 @@ with pkgs; {
         multitail
         navi
         # ncdu
-        neofetch
+        # neofetch
         netdiscover
         nnn
         nodejs
