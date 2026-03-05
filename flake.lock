@@ -361,11 +361,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772420042,
-        "narHash": "sha256-naZz40TUFMa0E0CutvwWsSPhgD5JldyTUDEgP9ADpfU=",
+        "lastModified": 1772699110,
+        "narHash": "sha256-jkyo/9fZVB3F/PHk3fVK1ImxJBZ71DCOYZvAz4R4v4E=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "5af7af10f14706e4095bd6bc0d9373eb097283c6",
+        "rev": "42affa9d33750ac0a0a89761644af20d8d03e6ee",
         "type": "github"
       },
       "original": {
@@ -1265,11 +1265,11 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1772631301,
-        "narHash": "sha256-wAHeBX+aSiA+cAlWtwe5NisjMfrJq6WxrtT+CE7/tFM=",
+        "lastModified": 1772698812,
+        "narHash": "sha256-7+K/VaZ7TXUeUGSYshg8wC3UsRZHB+M4x6r38Q1B79c=",
         "owner": "sodiboo",
         "repo": "niri-flake",
-        "rev": "110e61e49828860499ead8bc539470f1261896ae",
+        "rev": "5641625ef950f024e3e0e3f38bb91f876290c0be",
         "type": "github"
       },
       "original": {
@@ -1892,11 +1892,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1772542754,
-        "narHash": "sha256-WGV2hy+VIeQsYXpsLjdr4GvHv5eECMISX1zKLTedhdg=",
+        "lastModified": 1772624091,
+        "narHash": "sha256-QKyJ0QGWBn6r0invrMAK8dmJoBYWoOWy7lN+UHzW1jc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "8c809a146a140c5c8806f13399592dbcb1bb5dc4",
+        "rev": "80bdc1e5ce51f56b19791b52b2901187931f5353",
         "type": "github"
       },
       "original": {
@@ -1999,11 +1999,11 @@
         "treefmt-nix": "treefmt-nix_7"
       },
       "locked": {
-        "lastModified": 1772658124,
-        "narHash": "sha256-zjnFMylt1J2IkDM+a8GfOsr1J68+TLt1H56dSyBPFNM=",
+        "lastModified": 1772695057,
+        "narHash": "sha256-AigLTRz/Hl5oGYKzXASqi9yAa2uZoRrX/8wthLL6F9c=",
         "owner": "xddxdd",
         "repo": "nur-packages",
-        "rev": "8aa7119cead59217d05e6a58d37f76758f69809d",
+        "rev": "1132ceb6bda069434088a1abf5cece757795d8d3",
         "type": "github"
       },
       "original": {
@@ -2148,11 +2148,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765961971,
-        "narHash": "sha256-PhQ4dxKuhoP4dXK+9pF/JEB4lAafS6FRW9x7MY+iEDI=",
+        "lastModified": 1772717658,
+        "narHash": "sha256-Li2ecq+pTr+S6n+qAhXZB1jx98xyDGVCQP6YcJWSwgE=",
         "owner": "tsirysndr",
         "repo": "piratebay",
-        "rev": "48c1d813a60828d2225fe8ec68f5e1a51db429dd",
+        "rev": "50953d676f24e3e18f7dd2474a7033ffad782ee6",
         "type": "github"
       },
       "original": {
