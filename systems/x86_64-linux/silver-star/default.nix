@@ -665,7 +665,7 @@
         "fs.inotify.max_user_watches" = 1048576;
       };
 
-      # binfmt.emulatedSystems = ["aarch64-linux"];
+      binfmt.emulatedSystems = ["aarch64-linux"];
 
       kernelParams = [
         "console=tty1"
