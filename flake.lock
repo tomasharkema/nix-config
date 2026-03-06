@@ -2056,11 +2056,11 @@
     "ohmyzsh": {
       "flake": false,
       "locked": {
-        "lastModified": 1772612928,
-        "narHash": "sha256-0aUe/Ra1zUV7v5zrb4s9m4IdstJFQgP5FF5NRfeMnSw=",
+        "lastModified": 1772795358,
+        "narHash": "sha256-k3frBcklYRt7ZjylX2bk6WWz3kAvWKVBJd2UpxyDWUE=",
         "owner": "ohmyzsh",
         "repo": "ohmyzsh",
-        "rev": "5292fea2ba2b76fc86f4878c3b1bfda31f86ca4b",
+        "rev": "1e3abc123f690c9bdd416e8224f1beb47c96f1c7",
         "type": "github"
       },
       "original": {
