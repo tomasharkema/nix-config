@@ -127,14 +127,54 @@
         ];
       };
 
-      # syslog-ng = {
-      #   enable = true;
-      #   extraConfig = ''
-      #     source net { udp(ip("0.0.0.0") port(6666)); };
-      #     destination netconsole { file("/var/log/syslog/$HOST-netconsole.log"); };
-      #     log { source(net); destination(netconsole); };
-      #   '';
-      # };
+      syslog-ng = {
+        enable = true;
+        extraConfig = ''
+          options {
+             keep-hostname(yes);
+             use-dns(no);
+             create-dirs(yes);
+          };
+
+          source s_udp_514 {
+            network(transport("udp") port(514));
+          };
+
+          source s_tcp_514 {
+            network(transport("tcp") port(514));
+          };
+
+          source netconsole-udp {
+            network(transport("udp") port(6666));
+          };
+
+          destination netconsole {
+            file("/var/log/syslog/$HOST-netconsole.log");
+          };
+
+          destination syslog-log {
+            file("/var/log/syslog/$HOST.log");
+          };
+
+
+          log {
+            source(netconsole-udp);
+            destination(netconsole);
+          };
+
+          log {
+            source(s_udp_514);
+
+            destination(syslog-log);
+          };
+
+          log {
+            source(s_tcp_514);
+
+            destination(syslog-log);
+          };
+        '';
+      };
 
       # rsyslogd = {
       #   enable = true;
