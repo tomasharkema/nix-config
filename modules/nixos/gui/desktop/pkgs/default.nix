@@ -41,6 +41,7 @@
     clutter
     code-nautilus
     coppwr
+    crosspipe
     custom.actioneer
     custom.butler
     custom.denon-control
@@ -99,11 +100,11 @@
     gtk-engine-murrine
     guvcview
     handbrake
-    helvum
     httpie-desktop
     i2c-tools
     ida-free
     imsprog
+    inputs.picoforge.packages."${pkgs.stdenv.hostPlatform.system}".default
     inspector
     intel-gpu-tools
     inxi

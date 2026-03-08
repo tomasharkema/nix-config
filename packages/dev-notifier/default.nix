@@ -3,6 +3,7 @@
   buildGoModule,
   fetchFromGitHub,
   pkg-config,
+  udevCheckHook,
   udev,
 }:
 buildGoModule rec {
@@ -21,6 +22,7 @@ buildGoModule rec {
   ldflags = ["-s" "-w"];
 
   nativeBuildInputs = [
+    udevCheckHook
     pkg-config
   ];
 

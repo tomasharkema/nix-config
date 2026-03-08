@@ -875,6 +875,13 @@
       url = "github:lordkekz/nix-yazi-plugins?ref=yazi-v0.2.5";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    picoforge = {
+      url = "github:librekeys/picoforge";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zephyr-nix = {
       url = "github:nix-community/zephyr-nix";
       # inputs.nixpkgs.follows = "nixpkgs";

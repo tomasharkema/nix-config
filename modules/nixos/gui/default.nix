@@ -77,14 +77,45 @@ in {
         '';
       };
       # automatic-timezoned.enable = true;
-      udev.packages = with pkgs; [
-        imsprog
-        logitech-udev-rules
-        platformio-core
-        openocd
-        solaar
-        picotool
-      ];
+      udev = {
+        packages = with pkgs; [
+          imsprog
+          picoprobe-udev-rules
+          nrf-udev
+          game-devices-udev-rules
+          logitech-udev-rules
+          platformio-core
+          openocd
+          solaar
+          picotool
+        ];
+        extraRules = ''
+          SUBSYSTEM=="usb", \
+              ATTRS{idVendor}=="2e8a", \
+              ATTRS{idProduct}=="0003", \
+              TAG+="uaccess", \
+              MODE="660", \
+              GROUP="plugdev"
+          SUBSYSTEM=="usb", \
+              ATTRS{idVendor}=="2e8a", \
+              ATTRS{idProduct}=="0009", \
+              TAG+="uaccess", \
+              MODE="660", \
+              GROUP="plugdev"
+          SUBSYSTEM=="usb", \
+              ATTRS{idVendor}=="2e8a", \
+              ATTRS{idProduct}=="000a", \
+              TAG+="uaccess", \
+              MODE="660", \
+              GROUP="plugdev"
+          SUBSYSTEM=="usb", \
+              ATTRS{idVendor}=="2e8a", \
+              ATTRS{idProduct}=="000f", \
+              TAG+="uaccess", \
+              MODE="660", \
+              GROUP="plugdev"
+        '';
+      };
     };
 
     hardware = {
@@ -105,6 +136,10 @@ in {
       gphoto2.enable = true;
       # nm-applet.enable = true;
     };
+
+    systemd.packages = with pkgs; [
+      udev-block-notify
+    ];
 
     # systemd = {enableEmergencyMode = lib.mkDefault true;};
 

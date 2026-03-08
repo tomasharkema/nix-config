@@ -4,6 +4,7 @@
   fetchFromGitHub,
   pkg-config,
   udev,
+  udevCheckHook,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "gps-share";
@@ -22,6 +23,7 @@ rustPlatform.buildRustPackage rec {
 
   nativeBuildInputs = [
     pkg-config
+    udevCheckHook
   ];
 
   buildInputs = [

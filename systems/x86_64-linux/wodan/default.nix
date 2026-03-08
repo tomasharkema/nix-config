@@ -52,30 +52,30 @@
       useDHCP = false;
 
       wireless = {
-        # enable = true;
-        enable = false; # true;
-        iwd = {
-          enable = true;
-          settings = {
-            Settings = {
-              AutoConnect = true;
-              AlwaysRandomizeAddress = true;
-            };
-            Network = {
-              EnableIPv6 = true;
-              RoutePriorityOffset = 300;
-            };
-            DriverQuirks.DefaultInterface = "wlan0";
-          };
-        };
+        enable = true;
+        # enable = false; # true;
+        # iwd = {
+        #   enable = true;
+        #   settings = {
+        #     Settings = {
+        #       AutoConnect = true;
+        #       AlwaysRandomizeAddress = true;
+        #     };
+        #     Network = {
+        #       EnableIPv6 = true;
+        #       RoutePriorityOffset = 300;
+        #     };
+        #     DriverQuirks.DefaultInterface = "wlan0";
+        #   };
+        # };
       };
 
       networkmanager = {
         enable = true;
 
-        wifi = {
-          backend = "iwd";
-        };
+        # wifi = {
+        #   backend = "iwd";
+        # };
       };
 
       bridges.br0 = {

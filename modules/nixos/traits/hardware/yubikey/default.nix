@@ -78,11 +78,14 @@
     services = {
       pcscd = {
         enable = true;
-        plugins = [pkgs.yubikey-personalization];
+        plugins = [
+          pkgs.yubikey-personalization
+          pkgs.ccid
+        ];
       };
 
       udev = {
-        packages = [pkgs.yubikey-personalization];
+        packages = [pkgs.yubikey-personalization pkgs.ccid];
         extraRules = ''
           KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="plugdev"
         '';

@@ -89,13 +89,15 @@ in rec {
 
   # pwvucontrol = prev.custom.pwvucontrol;
   # hyprlock = inputs.hyprlock.packages."${prev.system}".hyprlock;
-  gensio = prev.custom.gensio;
+
   # _cxxopts = prev.cxxopts.overrideAttrs (old: {
   #   # buildPhase = ''
   #   #   NIX_CFLAGS_COMPILE="-std=c++17 $NIX_CFLAGS_COMPILE"
   #   # '';
   #   buildInputs = [prev.icu74.dev];
   # });
+
+  pico-sdk = prev.pico-sdk.override {withSubmodules = true;};
 
   termbench-pro = prev.termbench-pro.overrideAttrs ({buildInputs ? [], ...}: {
     buildInputs =
