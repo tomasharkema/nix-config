@@ -633,6 +633,24 @@
         "nixpkgs-lib": "nixpkgs-lib_7"
       },
       "locked": {
+        "lastModified": 1769996383,
+        "narHash": "sha256-AnYjnFWgS49RlqX7LrC4uA+sCCDBj0Ry/WOJ5XWAsa0=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "57928607ea566b5db3ad13af0e57e921e6b12381",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_12": {
+      "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib_8"
+      },
+      "locked": {
         "lastModified": 1765835352,
         "narHash": "sha256-XswHlK/Qtjasvhd1nOa1e8MgZ8GS//jBoTqWtrS1Giw=",
         "owner": "hercules-ci",
@@ -1781,6 +1799,21 @@
     },
     "nixpkgs-lib_7": {
       "locked": {
+        "lastModified": 1769909678,
+        "narHash": "sha256-cBEymOf4/o3FD5AZnzC3J9hLbiZ+QDT/KDuyHXVJOpM=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "72716169fe93074c333e8d0173151350670b824c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
+    "nixpkgs-lib_8": {
+      "locked": {
         "lastModified": 1765674936,
         "narHash": "sha256-k00uTP4JNfmejrCLJOwdObYC9jHRrr/5M/a/8L2EIdo=",
         "owner": "nix-community",
@@ -1999,11 +2032,11 @@
         "treefmt-nix": "treefmt-nix_7"
       },
       "locked": {
-        "lastModified": 1772849376,
-        "narHash": "sha256-rVreCZzVhEOeVhMLhxEYA1LTDv5zDyKWtef7BWKVvno=",
+        "lastModified": 1772916692,
+        "narHash": "sha256-aoKDT/Bxn1ppe5DTK5xRq/NpdBLe8pGHmgk8L5+miH0=",
         "owner": "xddxdd",
         "repo": "nur-packages",
-        "rev": "0a0eed8d98e26d6baf9b9252a0e290a08819681a",
+        "rev": "5a4f6509874ff99cad2631fafd3c010a0db2c3ad",
         "type": "github"
       },
       "original": {
@@ -2137,6 +2170,27 @@
         "type": "github"
       }
     },
+    "picoforge": {
+      "inputs": {
+        "flake-parts": "flake-parts_11",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1772906104,
+        "narHash": "sha256-onkRH8YeNjqzQU1JNUT45WjSJPm1BIcBjuzWCi7yfrA=",
+        "owner": "librekeys",
+        "repo": "picoforge",
+        "rev": "2a3112b8ff08436accf72cc858a37ff3d7301c6c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "librekeys",
+        "repo": "picoforge",
+        "type": "github"
+      }
+    },
     "piratebay": {
       "inputs": {
         "advisory-db": "advisory-db",
@@ -2217,11 +2271,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772665116,
-        "narHash": "sha256-XmjUDG/J8Z8lY5DVNVUf5aoZGc400FxcjsNCqHKiKtc=",
+        "lastModified": 1772893680,
+        "narHash": "sha256-JDqZMgxUTCq85ObSaFw0HhE+lvdOre1lx9iI6vYyOEs=",
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
-        "rev": "39f53203a8458c330f61cc0759fe243f0ac0d198",
+        "rev": "8baab586afc9c9b57645a734c820e4ac0a604af9",
         "type": "github"
       },
       "original": {
@@ -2312,6 +2366,7 @@
         "nvidia-vgpu-nixos": "nvidia-vgpu-nixos",
         "ohmyzsh": "ohmyzsh",
         "op-shell-plugins": "op-shell-plugins",
+        "picoforge": "picoforge",
         "piratebay": "piratebay",
         "snowfall-flake": "snowfall-flake",
         "snowfall-lib": "snowfall-lib",
@@ -2785,7 +2840,7 @@
     },
     "tsnsrv": {
       "inputs": {
-        "flake-parts": "flake-parts_11",
+        "flake-parts": "flake-parts_12",
         "nixpkgs": [
           "nixpkgs"
         ]
