@@ -17,7 +17,7 @@
   androidEnv = pkgs.androidenv.override {licenseAccepted = true;};
   androidComposition = androidEnv.composeAndroidPackages {
     #cmdLineToolsVersion = "8.0";
-    platformToolsVersion = "36";
+    platformToolsVersion = "36.0.2";
     #buildToolsVersions = ["36.1.0"];
     #platformVersions = ["36.0.2"];
     abiVersions = ["x86_64"];
