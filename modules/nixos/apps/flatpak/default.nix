@@ -71,7 +71,6 @@ in {
           lib.optionals pkgs.stdenv.isx86_64
           [
             "com.discordapp.Discord"
-            "com.spotify.Client"
             # "tv.plex.PlexDesktop"
             "com.gitbutler.gitbutler"
             # "org.darktable.Darktable"
