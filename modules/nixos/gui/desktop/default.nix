@@ -11,6 +11,31 @@
 
     sha256 = "06121rwydvmr9dc757ixxr59rfcask8p74mmsmprpcndddp55fgf";
   };
+
+  androidEnv = pkgs.androidenv.override {licenseAccepted = true;};
+  androidComposition = androidEnv.composeAndroidPackages {
+    #cmdLineToolsVersion = "8.0";
+    #platformToolsVersion = "36.0.2";
+    #buildToolsVersions = ["36.1.0"];
+    #platformVersions = ["36.0.2"];
+    abiVersions = ["x86_64"];
+    includeNDK = false;
+    includeSystemImages = true;
+    #systemImageTypes = ["google_apis" "google_apis_playstore"];
+    includeEmulator = true;
+    useGoogleAPIs = true;
+    extraLicenses = [
+      "android-googletv-license"
+      "android-sdk-arm-dbt-license"
+      "android-sdk-license"
+      "android-sdk-preview-license"
+      "google-gdk-license"
+      "intel-android-extra-license"
+      "intel-android-sysimage-license"
+      "mips-android-sysimage-license"
+    ];
+  };
+  androidSdk = androidComposition.androidsdk;
 in {
   options.gui.desktop = {
     enable = lib.mkEnableOption "desktop";
@@ -163,17 +188,23 @@ in {
 
       sessionVariables = {
         NIXOS_OZONE_WL = "1";
+        QT_QPA_PLATFORM = "wayland;xcb";
         # DMS_DISABLE_MATUGEN = "1";
         QMK_HOME = "/home/tomas/Developer/qmk_firmware";
-
         PICO_SDK_PATH = "${pkgs.pico-sdk}/lib/pico-sdk";
+        ANDROID_HOME = "${androidSdk}/libexec/android-sdk";
+        ANDROID_SDK_ROOT = "${androidSdk}/libexec/android-sdk";
+        JAVA_HOME = pkgs.jdk11.home;
+        GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${androidSdk}/libexec/android-sdk/build-tools/34.0.2/aapt2";
       };
 
       pathsToLink = ["share/thumbnailers"];
 
       systemPackages = with pkgs; [
         kdiskmark
-
+        jdk11
+        gradle
+        androidSdk
         libheif
         libheif.out
 
