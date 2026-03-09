@@ -443,8 +443,19 @@
         ];
       };
 
-      bridges.br0 = {
-        interfaces = ["eno1"];
+      bridges = {
+        br0 = {
+          interfaces = ["eno1"];
+        };
+        br1 = {
+          interfaces = ["vlan1"];
+        };
+        br66 = {
+          interfaces = ["vlan66"];
+        };
+        br69 = {
+          interfaces = ["vlan69"];
+        };
       };
 
       defaultGateway = {
@@ -498,18 +509,48 @@
             }
           ];
         };
+        "br1" = {
+          useDHCP = false;
+          mtu = 9000;
+          ipv4.addresses = [
+            {
+              address = "192.168.1.100";
+              prefixLength = 24;
+            }
+          ];
+        };
+        "br66" = {
+          useDHCP = false;
+          mtu = 9000;
+          ipv4.addresses = [
+            {
+              address = "192.168.9.100";
+              prefixLength = 24;
+            }
+          ];
+        };
+        "br69" = {
+          useDHCP = false;
+          mtu = 9000;
+          ipv4.addresses = [
+            {
+              address = "192.168.69.100";
+              prefixLength = 24;
+            }
+          ];
+        };
         "vlan69" = {
-          useDHCP = true;
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
         "vlan66" = {
-          useDHCP = true;
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
         "vlan1" = {
-          useDHCP = true;
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
