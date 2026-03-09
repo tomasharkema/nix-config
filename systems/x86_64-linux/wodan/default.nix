@@ -309,7 +309,7 @@
         "ddcci"
         # "iTCO_wdt"
         "ddcci-backlight"
-        "iwlwifi"
+        # "iwlwifi"
         # "vfio_pci"
         # "vfio"
         # "vfio_iommu_type1"

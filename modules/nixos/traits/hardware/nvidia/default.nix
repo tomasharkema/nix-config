@@ -31,18 +31,19 @@
   patchedPkg =
     # withPatch true
     selectedPkg
-    // {
-      open = betaPkg.open.overrideAttrs ({patches ? [], ...}: {
-        patches =
-          patches
-          ++ [
-            (pkgs.fetchpatch {
-              url = "https://raw.githubusercontent.com/CachyOS/CachyOS-PKGBUILDS/master/nvidia/nvidia-utils/kernel-6.19.patch";
-              sha256 = "sha256-YuJjSUXE6jYSuZySYGnWSNG5sfVei7vvxDcHx3K+IN4=";
-            })
-          ];
-      });
-    };
+    # // {
+    #   open = betaPkg.open.overrideAttrs ({patches ? [], ...}: {
+    #     patches =
+    #       patches
+    #       ++ [
+    #         (pkgs.fetchpatch {
+    #           url = "https://raw.githubusercontent.com/CachyOS/CachyOS-PKGBUILDS/master/nvidia/nvidia-utils/kernel-6.19.patch";
+    #           sha256 = "sha256-YuJjSUXE6jYSuZySYGnWSNG5sfVei7vvxDcHx3K+IN4=";
+    #         })
+    #       ];
+    #   });
+    # }
+    ;
 in {
   options.traits.hardware.nvidia = {
     enable = lib.mkEnableOption "nvidia";
