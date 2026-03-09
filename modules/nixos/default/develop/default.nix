@@ -14,7 +14,6 @@ in {
   config = {
     environment.systemPackages = with pkgs; [
       arduino-cli
-      arduinoOTA
       elf2uf2-rs
       probe-rs-tools
       rustup
@@ -23,7 +22,7 @@ in {
       cmakeCurses
       gcc-arm-embedded
       gnumake
-      arduinoOTA
+      arduino-ota
       arduino-language-server
       picotool
       cmakeCurses

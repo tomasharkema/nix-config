@@ -526,7 +526,7 @@
 
       systemPackages = with pkgs; [
         docker-compose
-        simpleTpmPk11
+        simple-tpm-pk11
         libsmbios
         virt-manager
         ipmitool
