@@ -12,16 +12,18 @@
     sha256 = "06121rwydvmr9dc757ixxr59rfcask8p74mmsmprpcndddp55fgf";
   };
 
+  localJdk = pkgs.jdk25;
+
   androidEnv = pkgs.androidenv.override {licenseAccepted = true;};
   androidComposition = androidEnv.composeAndroidPackages {
     #cmdLineToolsVersion = "8.0";
-    #platformToolsVersion = "36.0.2";
+    platformToolsVersion = "36";
     #buildToolsVersions = ["36.1.0"];
     #platformVersions = ["36.0.2"];
     abiVersions = ["x86_64"];
     includeNDK = false;
     includeSystemImages = true;
-    #systemImageTypes = ["google_apis" "google_apis_playstore"];
+    systemImageTypes = ["google_apis" "google_apis_playstore"];
     includeEmulator = true;
     useGoogleAPIs = true;
     extraLicenses = [
@@ -194,7 +196,7 @@ in {
         PICO_SDK_PATH = "${pkgs.pico-sdk}/lib/pico-sdk";
         ANDROID_HOME = "${androidSdk}/libexec/android-sdk";
         ANDROID_SDK_ROOT = "${androidSdk}/libexec/android-sdk";
-        JAVA_HOME = pkgs.jdk11.home;
+        JAVA_HOME = localJdk.home;
         GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${androidSdk}/libexec/android-sdk/build-tools/34.0.2/aapt2";
       };
 
@@ -202,7 +204,7 @@ in {
 
       systemPackages = with pkgs; [
         kdiskmark
-        jdk11
+        localJdk
         gradle
         androidSdk
         libheif
