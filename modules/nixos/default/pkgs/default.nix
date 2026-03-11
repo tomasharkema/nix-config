@@ -83,6 +83,7 @@
         fcast-receiver
         fleetctl
         freeipmi
+        fresh-editor
         ftop
         fuse
         fuse3

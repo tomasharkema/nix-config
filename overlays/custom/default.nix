@@ -43,7 +43,7 @@ in rec {
   synology-drive-client = prev.synology-drive-client.overrideAttrs ({buildInputs ? [], ...}: {
     buildInputs = buildInputs ++ [prev.qt5.qtwayland];
   });
-  compose2nix = inputs.compose2nix.packages."${system}".default;
+  # compose2nix = inputs.compose2nix.packages."${system}".default;
 
   # meshtastic-fix = prev.python3Packages.meshtastic.overridePythonAttrs (old: {
   #   # postPatch = ''
@@ -98,14 +98,6 @@ in rec {
   # });
 
   pico-sdk = prev.pico-sdk.override {withSubmodules = true;};
-
-  termbench-pro = prev.termbench-pro.overrideAttrs ({buildInputs ? [], ...}: {
-    buildInputs =
-      (builtins.filter (f: f.pname != "glaze") buildInputs)
-      ++ [
-        (prev.glaze.override {enableSSL = false;})
-      ];
-  });
 
   # nlohmann_json_3_11_3 = let
   #   version = "3.11.3";

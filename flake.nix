@@ -29,23 +29,15 @@
         android_sdk.accept_license = true;
 
         config.allowAliases = true;
-        # lazy-trees = true;
+        lazy-trees = true;
 
         # config.allowUnsupportedSystem = true;
         # hostPlatform.system = "aarch64-linux";
         # buildPlatform.system = "x86_64-linux";
 
         permittedInsecurePackages = [
-          # "python3.12-youtube-dl-2021.12.17"
-          # "openssl-1.1.1w"
-          "dotnet-sdk-6.0.428"
-          # "python-2.7.18.8"
-          #"netbox-4.2.9"
-          "segger-jlink-qt4-824"
           "segger-jlink-qt4-874"
-          "dotnet-runtime-6.0.36"
           "libsoup-2.74.3"
-          "python3.13-ecdsa-0.19.1"
         ];
         enableBroken = true;
         config = {
@@ -107,8 +99,6 @@
         op-shell-plugins.hmModules.default
         catppuccin.homeModules.catppuccin
         # agenix.homeManagerModules.default
-        # hyprpanel.homeManagerModules.hyprpanel
-        # walker.homeManagerModules.default
         # niri.homeModules.niri
         dank-material-shell.homeModules.dank-material-shell
         # dank-material-shell.homeModules.dank-material-shell.niri
@@ -443,6 +433,7 @@
     # ];
 
     # allow-import-from-derivation = true;
+    keep-failed = true;
     keep-outputs = true;
     keep-derivations = true;
     accept-flake-config = true;
@@ -662,10 +653,10 @@
     #   inputs.nixpkgs.follows = "unstable";
     # };
 
-    # tree-sitter-nix = {
-    #   url = "github:nix-community/tree-sitter-nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    tree-sitter-nix = {
+      url = "github:nix-community/tree-sitter-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # nixos-checkmk = {
     #   url = "github:tomasharkema/nixos-checkmk";
@@ -686,20 +677,6 @@
         # flake-utils.follows = "flake-utils";
       };
     };
-
-    # nixos-service = {
-    #   url = "github:tomasharkema/nixos-service";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # conky = {
-    #   url = "github:brndnmtthws/conky";
-
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     # flake-utils.follows = "flake-utils";
-    #   };
-    # };
 
     nixos-06cb-009a-fingerprint-sensor = {
       url = "github:tomasharkema/nixos-06cb-009a-fingerprint-sensor/25.05";
@@ -726,14 +703,6 @@
     #   };
     # };
 
-    # nixos-dash-docset = {
-    #   url = "github:ptitfred/nixos-dash-docset";
-
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     flake-utils.follows = "flake-utils";
-    #   };
-    # };
     # opentelemetry-nix = {
     #   url = "github:FriendsOfOpenTelemetry/opentelemetry-nix";
     #   inputs = {
@@ -746,15 +715,6 @@
       url = "github:mrzenc/vgpu4nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # nix-htop = {
-    #   url = "https://flakehub.com/f/tomasharkema/nix-htop/0.0.*.tar.gz";
-
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     flake-parts.follows = "flake-parts";
-    #   };
-    # };
 
     nixos-recovery = {
       url = "github:tomasharkema/nixos-recovery/main";
@@ -799,7 +759,7 @@
 
     nix-cachyos-kernel = {
       url = "github:xddxdd/nix-cachyos-kernel/release";
-      # inputs.nixpkgs.follows = "nixpkgs";/
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nur-xddxdd = {
@@ -828,7 +788,7 @@
 
     nixpkgs-esp-dev = {
       url = "github:mirrexagon/nixpkgs-esp-dev";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     dgop = {
@@ -866,10 +826,10 @@
       };
     };
 
-    compose2nix = {
-      url = "github:aksiksi/compose2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # compose2nix = {
+    #   url = "github:aksiksi/compose2nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nix-yazi-plugins = {
       url = "github:lordkekz/nix-yazi-plugins?ref=yazi-v0.2.5";
@@ -878,14 +838,9 @@
 
     picoforge = {
       url = "github:librekeys/picoforge";
-
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zephyr-nix = {
-      url = "github:nix-community/zephyr-nix";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
     zsh-colored-man-pages = {
       url = "github:ael-code/zsh-colored-man-pages";
       flake = false;
