@@ -400,22 +400,4 @@ in rec {
   #     hash = "sha256-Brut0PobAc6rTbGAo4NTauzHtwJrZOJjEw26hyXqA5w="; # "sha256-sHTpu9WeMZroT+1I18ObEHWSzcyj/Relyz8UNe+WawI=";
   #   };
   # });
-
-  # steam = prev.steam.override {
-  #   extraEnv = {
-  #     # MANGOHUD = true;
-  #     # OBS_VKCAPTURE = true;
-  #     # RADV_TEX_ANISO = 16;
-  #   };
-  #   extraPkgs = pkgs:
-  #     with pkgs; [
-  #       # mangohud
-  #       gamemode
-  #     ];
-  #   extraLibraries = p:
-  #     with p; [
-  #       atk
-  #       # mangohud
-  #     ];
-  # };
 }

@@ -108,17 +108,6 @@ in {
         hybrid-sleep.enable = lib.mkForce false;
       };
     };
-
-    programs.nix-ld = {
-      enable = true;
-      # libraries = [
-      #   pkgs.stdenv.cc.cc
-      #   pkgs.openssl
-      #   pkgs.glib
-      #   # ...
-      # ];
-    };
-
     # hardware = {
     #   graphics = {
     #     enable = true;
