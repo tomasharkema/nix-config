@@ -181,6 +181,7 @@
     sublime-merge
     sway-launcher-desktop
     synology-drive-client
+    the-powder-toy
     thonny
     tpmmanager
     transmission-remote-gtk

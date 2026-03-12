@@ -17,7 +17,7 @@
         segger-jlink.acceptLicense = true;
 
         # firefox.enableGnomeExtensions = true;
-        # firefox.smartcardSupport = true;
+        firefox.smartcardSupport = true;
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;
         nvidia.acceptLicense = true;
@@ -44,11 +44,11 @@
           allowUnfreePredicate = _: true;
           allowUnfree = true;
           cudaSupport = false;
-          enableBroken = true;
+          # enableBroken = true;
           # contentAddressedByDefault = true;
           # For example, enable smartcard support in Firefox.
-          # firefox.smartcardSupport = true;
-          #lazy-trees = true;
+          firefox.smartcardSupport = true;
+          lazy-trees = true;
           permittedInsecurePackages = [
             # "openssl-1.1.1w"
             # "python3.12-youtube-dl-2021.12.17"

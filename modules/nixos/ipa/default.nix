@@ -40,63 +40,62 @@ in {
         ldb
         # ldapmonitor
         pkcs11helper
-        realmd
-        heimdal
+        #realmd
       ];
 
       etc = {
-        "pkcs11/modules/opensc-pkcs11".text = ''
-          module: ${pkgs.opensc}/lib/opensc-pkcs11.so
-        '';
-        "pkcs11/modules/libykcs11".text = ''
-          module: ${pkgs.yubico-piv-tool}/lib/libykcs11.so
-        '';
+        # "pkcs11/modules/opensc-pkcs11".text = ''
+        #   module: ${pkgs.opensc}/lib/opensc-pkcs11.so
+        # '';
+        # "pkcs11/modules/libykcs11".text = ''
+        #   module: ${pkgs.yubico-piv-tool}/lib/libykcs11.so
+        # '';
 
-        "krb5.conf".text = lib.mkBefore ''
-          includedir /var/lib/sss/pubconf/krb5.include.d/
-          includedir /etc/krb5.conf.d/
-        '';
+        # "krb5.conf".text = lib.mkBefore ''
+        #   includedir /var/lib/sss/pubconf/krb5.include.d/
+        #   includedir /etc/krb5.conf.d/
+        # '';
 
-        "krb5.conf.d/0-kcm".text = ''
-          [libdefaults]
-          default_ccache_name = KCM:
-        '';
+        # "krb5.conf.d/0-kcm".text = ''
+        #   [libdefaults]
+        #   default_ccache_name = KCM:
+        # '';
 
-        "krb5.conf.d/enable_passkey".text = ''
-          [plugins]
-          clpreauth = {
-            module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
-          }
+        # "krb5.conf.d/enable_passkey".text = ''
+        #   [plugins]
+        #   clpreauth = {
+        #     module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
+        #   }
 
-          kdcpreauth = {
-            module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
-          }
-        '';
+        #   kdcpreauth = {
+        #     module = passkey:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_passkey_plugin.so
+        #   }
+        # '';
 
-        "krb5.conf.d/sssd_enable_idp".text = ''
-          # Enable SSSD OAuth2 Kerberos preauthentication plugins.
-          #
-          # This will allow you to obtain Kerberos TGT through OAuth2 authentication.
-          #
-          # To disable the OAuth2 plugin, comment out the following lines.
+        # "krb5.conf.d/sssd_enable_idp".text = ''
+        #   # Enable SSSD OAuth2 Kerberos preauthentication plugins.
+        #   #
+        #   # This will allow you to obtain Kerberos TGT through OAuth2 authentication.
+        #   #
+        #   # To disable the OAuth2 plugin, comment out the following lines.
 
-          [plugins]
-           clpreauth = {
-            module = idp:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_idp_plugin.so
-           }
+        #   [plugins]
+        #    clpreauth = {
+        #     module = idp:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_idp_plugin.so
+        #    }
 
-           kdcpreauth = {
-            module = idp:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_idp_plugin.so
-           }
-        '';
+        #    kdcpreauth = {
+        #     module = idp:${pkgs.sssd}/lib/sssd/modules/sssd_krb5_idp_plugin.so
+        #    }
+        # '';
 
-        "krb5.conf.d/freeipa".text = ''
-          [libdefaults]
-              spake_preauth_groups = edwards25519
-        '';
-        "nsswitch.conf".text = lib.mkAfter ''
-          automount: ${lib.concatStringsSep " " config.system.nssDatabases.automount}
-        '';
+        # "krb5.conf.d/freeipa".text = ''
+        #   [libdefaults]
+        #       spake_preauth_groups = edwards25519
+        # '';
+        # "nsswitch.conf".text = lib.mkAfter ''
+        #   automount: ${lib.concatStringsSep " " config.system.nssDatabases.automount}
+        # '';
         # "chromium/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
         # "opt/chrome/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
 
@@ -113,7 +112,7 @@ in {
     # FROM: https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/misc/sssd.nix
     systemd = {
       services = {
-        ipa-host-mod-sshpubkey = {
+        ipa-host-mod-sshpubkey = lib.mkIf false {
           enable = true;
           path = with pkgs; [
             freeipa
@@ -158,31 +157,31 @@ in {
         #   # };
         #   # -c ${settingsFile}
         # };
-        sssd-kcm = {
-          #   enable = true;
-          #   description = "SSSD Kerberos Cache Manager";
+        # sssd-kcm = {
+        #   #   enable = true;
+        #   #   description = "SSSD Kerberos Cache Manager";
 
-          wantedBy = ["multi-user.target" "sssd.service"];
-          requires = ["sssd-kcm.socket"];
+        #   wantedBy = ["multi-user.target" "sssd.service"];
+        #   requires = ["sssd-kcm.socket"];
 
-          serviceConfig = {
-            #   ExecStartPre = lib.mkForce null;
-            ExecStart = lib.mkForce "${pkgs.sssd}/libexec/sssd/sssd_kcm";
-          };
+        #   serviceConfig = {
+        #     #   ExecStartPre = lib.mkForce null;
+        #     ExecStart = lib.mkForce "${pkgs.sssd}/libexec/sssd/sssd_kcm";
+        #   };
 
-          #   # restartTriggers = [
-          #   #   settingsFileUnsubstituted
-          #   # ];
-        };
+        #   #   # restartTriggers = [
+        #   #   #   settingsFileUnsubstituted
+        #   #   # ];
+        # };
       };
-      sockets.sssd-kcm = {
-        enable = true;
-        description = "SSSD Kerberos Cache Manager responder socket";
-        wantedBy = ["sockets.target"];
-        # Matches the default in MIT krb5 and Heimdal:
-        # https://github.com/krb5/krb5/blob/krb5-1.19.3-final/src/include/kcm.h#L43
-        listenStreams = lib.mkForce ["/var/run/.heim_org.h5l.kcm-socket"];
-      };
+      # sockets.sssd-kcm = {
+      #   enable = true;
+      #   description = "SSSD Kerberos Cache Manager responder socket";
+      #   wantedBy = ["sockets.target"];
+      #   # Matches the default in MIT krb5 and Heimdal:
+      #   # https://github.com/krb5/krb5/blob/krb5-1.19.3-final/src/include/kcm.h#L43
+      #   listenStreams = lib.mkForce ["/var/run/.heim_org.h5l.kcm-socket"];
+      # };
     };
 
     security = {
@@ -191,18 +190,18 @@ in {
       pki.certificateFiles = [config.security.ipa.certificate];
     };
 
-    programs.ssh.extraConfig = ''
-      KnownHostsCommand ${pkgs.sssd}/bin/sss_ssh_knownhosts %H
-    '';
+    # programs.ssh.extraConfig = ''
+    #   KnownHostsCommand ${pkgs.sssd}/bin/sss_ssh_knownhosts %H
+    # '';
 
     services = {
       dbus = {
         enable = true;
       };
       realmd.enable = true;
-      udev.extraRules = ''
-        SUBSYSTEM=="hidraw", ENV{ID_SECURITY_TOKEN}=="1", RUN{program}+="${pkgs.acl}/bin/setfacl -m u:sssd:rw $env{DEVNAME}"
-      '';
+      # udev.extraRules = ''
+      #   SUBSYSTEM=="hidraw", ENV{ID_SECURITY_TOKEN}=="1", RUN{program}+="${pkgs.acl}/bin/setfacl -m u:sssd:rw $env{DEVNAME}"
+      # '';
       # nscd = {
       #   enableNsncd = true;
       #   config = ''
@@ -219,36 +218,36 @@ in {
         kcm = true;
         sshAuthorizedKeysIntegration = true;
         # package = pkgs.sssd;
-        settings = {
-          "domain/harkema.io" = {
-            sudo_provider = "ipa";
-            cache_credentials = true;
-            # dyndns_address = "100.0.0.0/8";
-          };
-          kcm = {
-            tgt_renewal = true;
-            tgt_renewal_inherit = "HARKEMA.IO";
-            krb5_renew_interval = "60m";
-            # debug_level = 10;
-            # socket_patch = "/var/run/.heim_org.h5l.kcm-socket";
-          };
-          pam = {
-            pam_passkey_auth = true;
-            pam_cert_auth = true;
-            # passkey_debug_libfido2 = true;
-            # passkey_child_timeout = 60;
-            # debug_level = 10;
-          };
-          sssd = {services = lib.mkForce "nss, sudo, pam, ssh, ifp, autofs";};
-        };
+        # settings = {
+        #   "domain/harkema.io" = {
+        #     sudo_provider = "ipa";
+        #     cache_credentials = true;
+        #     # dyndns_address = "100.0.0.0/8";
+        #   };
+        #   kcm = {
+        #     tgt_renewal = true;
+        #     tgt_renewal_inherit = "HARKEMA.IO";
+        #     krb5_renew_interval = "60m";
+        #     # debug_level = 10;
+        #     # socket_patch = "/var/run/.heim_org.h5l.kcm-socket";
+        #   };
+        #   pam = {
+        #     pam_passkey_auth = true;
+        #     pam_cert_auth = true;
+        #     # passkey_debug_libfido2 = true;
+        #     # passkey_child_timeout = 60;
+        #     # debug_level = 10;
+        #   };
+        #   sssd = {services = lib.mkForce "nss, sudo, pam, ssh, ifp, autofs";};
+        # };
       };
     };
 
-    systemd.tmpfiles.settings."10-zsh" = {
-      "/usr/bin/zsh"."L+" = {
-        argument = "${pkgs.zsh}/bin/zsh";
-      };
-    };
+    # systemd.tmpfiles.settings."10-zsh" = {
+    #   "/usr/bin/zsh"."L+" = {
+    #     argument = "${pkgs.zsh}/bin/zsh";
+    #   };
+    # };
 
     system.nssDatabases = {
       sudoers = ["sss"];
@@ -280,9 +279,9 @@ in {
         offlinePasswords = true;
       };
 
-      krb5 = {
-        settings.libdefaults.default_ccache_name = "KEYRING:persistent:%{uid}";
-      };
+      # krb5 = {
+      #   settings.libdefaults.default_ccache_name = "KEYRING:persistent:%{uid}";
+      # };
 
       polkit = {
         enable = true;
@@ -305,9 +304,9 @@ in {
           # login.sssdStrictAccess = mkDefault true;
           sudo.sssdStrictAccess = lib.mkDefault true;
           su.sssdStrictAccess = lib.mkDefault true;
-          # ssh.sssdStrictAccess = mkDefault true;
+          ssh.sssdStrictAccess = lib.mkDefault true;
           # askpass.sssdStrictAccess = mkDefault true;
-          # cockpit.sssdStrictAccess = mkDefault true;
+          cockpit.sssdStrictAccess = lib.mkDefault true;
           # "password-auth".sssdStrictAccess = mkDefault true;
           # "system-auth".sssdStrictAccess = mkDefault true;
           # "gdm-password".sssdStrictAccess = mkDefault true;
