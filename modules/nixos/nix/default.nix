@@ -12,6 +12,7 @@
   ];
 
   config = let
+    enableCcache = false;
     #   nix-otel = pkgs.nix-otel.overrideAttrs (final: {
     #     nix = config.nix.package;
     #   });
@@ -22,6 +23,35 @@
         rekeyFile = ./nix-sign-private.age;
       };
     };
+
+    nixpkgs.overlays = lib.mkIf enableCcache [
+      (self: super: {
+        ccacheWrapper = super.ccacheWrapper.override {
+          extraConfig = ''
+            export CCACHE_COMPRESS=1
+            export CCACHE_DIR="${config.programs.ccache.cacheDir}"
+            export CCACHE_UMASK=007
+            export CCACHE_REMOTE_STORAGE="file://192.168.1.102/volume1/cache/ccache"
+            if [ ! -d "$CCACHE_DIR" ]; then
+              echo "====="
+              echo "Directory '$CCACHE_DIR' does not exist"
+              echo "Please create it with:"
+              echo "  sudo mkdir -m0770 '$CCACHE_DIR'"
+              echo "  sudo chown root:nixbld '$CCACHE_DIR'"
+              echo "====="
+              exit 1
+            fi
+            if [ ! -w "$CCACHE_DIR" ]; then
+              echo "====="
+              echo "Directory '$CCACHE_DIR' is not accessible for user $(whoami)"
+              echo "Please verify its access permissions"
+              echo "====="
+              exit 1
+            fi
+          '';
+        };
+      })
+    ];
 
     # systemd.sockets.nix-supervisor = {
     #   socketConfig.ListenStream = [
@@ -77,21 +107,21 @@
 
       bash.undistractMe.enable = true;
 
-      #ccache = {
-      #enable = true;
-      #packageNames = [
-      # "sssd"
-      # "freeipa"
-      # "mutter"
-      # "gnome-shell"
-      # "gnome-session"\
-      # "satyr"
-      # "libreport"
-      # "abrt"
-      # "gnome-abrt"
-      # "will-crash"
-      # ];
-      #};
+      ccache = lib.mkIf enableCcache {
+        enable = true;
+        packageNames = [
+          "sssd"
+          "freeipa"
+          # "mutter"
+          # "gnome-shell"
+          # "gnome-session"\
+          # "satyr"
+          # "libreport"
+          # "abrt"
+          # "gnome-abrt"
+          # "will-crash"
+        ];
+      };
     };
 
     systemd = {
@@ -144,7 +174,7 @@
           "i686-linux"
         ];
 
-        # extra-sandbox-paths = [config.programs.ccache.cacheDir];
+        extra-sandbox-paths = lib.mkIf enableCcache [config.programs.ccache.cacheDir];
 
         use-cgroups = true;
         #  ca-derivations recursive-nix
