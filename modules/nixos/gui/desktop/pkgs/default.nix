@@ -28,7 +28,6 @@
     bitwarden-cli
     bitwarden-desktop
     bitwarden-menu
-    blueberry
     # _86Box-with-roms
     bluebubbles
     bluetooth_battery

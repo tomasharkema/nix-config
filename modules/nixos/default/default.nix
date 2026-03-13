@@ -587,7 +587,7 @@ in {
         # kexAlgorithms = config.services.openssh.settings.KexAlgorithms;
       };
 
-      nix-ld = {
+      nix-ld = lib.mkIf false {
         enable = lib.mkDefault true;
         libraries = with pkgs;
           [
