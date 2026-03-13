@@ -279,9 +279,9 @@ in {
         offlinePasswords = true;
       };
 
-      # krb5 = {
-      #   settings.libdefaults.default_ccache_name = "KEYRING:persistent:%{uid}";
-      # };
+      krb5 = {
+        settings.libdefaults.default_ccache_name = "KEYRING:persistent:%{uid}";
+      };
 
       polkit = {
         enable = true;

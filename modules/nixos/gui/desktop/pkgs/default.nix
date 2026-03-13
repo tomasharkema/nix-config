@@ -52,10 +52,8 @@
     custom.remarkable-cups
     custom.retro-adsb-radar
     custom.rust-conn
-    custom.spi-tools
     custom.toolblex
     custom.usbguard-gnome
-    custom.webcamize
     custom.wifiman
     darktable
     davinci-resolve
@@ -174,6 +172,7 @@
     serial-studio
     smuview
     solaar
+    spi-tools
     # solana-cli
     spotify
     sqlitebrowser
@@ -195,6 +194,7 @@
     vlc
     vsce
     vte-gtk4
+    webcamize
     webcamoid
     wine-wayland
     wiremix

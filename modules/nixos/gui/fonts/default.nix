@@ -85,7 +85,6 @@
           custom.computer-modern
           custom.din
           custom.fast-font
-          custom.foremost
           custom.futura
           custom.neue-haas-grotesk
           # custom.san-francisco
@@ -97,6 +96,7 @@
           fira-code
           fira-code-symbols
           font-awesome
+          foremost
           google-fonts
           inter
           kreative-square

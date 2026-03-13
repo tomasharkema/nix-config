@@ -18,8 +18,8 @@
       allowed-origins = ["localhost" "${config.networking.hostName}.ling-lizard.ts.net"];
 
       plugins = with pkgs; [
-        custom.cockpit-files
-        custom.cockpit-machines
+        cockpit-files
+        cockpit-machines
         custom.cockpit-sensors
         custom.cockpit-tailscale
         custom.cockpit-dockermanager

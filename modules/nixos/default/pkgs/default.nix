@@ -60,11 +60,9 @@
         custom.radar
         custom.sgrep
         custom.ssh-proxy-agent
-        custom.sshed
         custom.sshm
         custom.ssm
         custom.tailscale-tui
-        # custom.wikiman
         custom.zide
         # rmfuse
         cutecom
@@ -137,7 +135,7 @@
         lm_sensors
         lnav
         lorri
-        #lrzsz
+        lrzsz
         lshw
         mbuffer
         minio-client
@@ -217,12 +215,13 @@
         silenthound
         smartmontools
         socat
-        #socklog
+        socklog
         squashfs-tools-ng
         squashfsTools
         squashfuse
         ssh-import-id
         ssh-tools
+        sshed
         sshfs
         sshfs-fuse
         sshportal
@@ -233,7 +232,7 @@
         systemctl-tui
         systemd-language-server
         systemd-manager-tui
-        #systeroid
+        systeroid
         sysz
         tailspin
         tcpdump
@@ -268,13 +267,14 @@
         wget
         whatfiles
         wifitui
+        wikiman
         witr
         wmctrl
         wol
         wtfutil
         xterm
         xxd
-        # zathura
+        zathura
         zip
         zstd
         # keep-sorted end
