@@ -38,6 +38,7 @@
         permittedInsecurePackages = [
           "segger-jlink-qt4-874"
           "libsoup-2.74.3"
+          "python3.13-ecdsa-0.19.1"
         ];
         enableBroken = true;
         config = {
@@ -49,11 +50,11 @@
           # For example, enable smartcard support in Firefox.
           firefox.smartcardSupport = true;
           lazy-trees = true;
-          permittedInsecurePackages = [
-            # "openssl-1.1.1w"
-            # "python3.12-youtube-dl-2021.12.17"
-            # "python-2.7.18.8"
-          ];
+          # permittedInsecurePackages = [
+          # "openssl-1.1.1w"
+          # "python3.12-youtube-dl-2021.12.17"
+          # "python-2.7.18.8"
+          # ];
         };
       };
 
@@ -86,7 +87,9 @@
         nixvim.overlays.default
         # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
-        nixpkgs-esp-dev.overlays.default
+
+        # nixpkgs-esp-dev.overlays.default
+
         niri.overlays.niri
         nur-xddxdd.overlays.default
         nix-cachyos-kernel.overlays.pinned
@@ -787,10 +790,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixpkgs-esp-dev = {
-      url = "github:mirrexagon/nixpkgs-esp-dev";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixpkgs-esp-dev = {
+    #   # url = "github:mirrexagon/nixpkgs-esp-dev";
+    #   url = "github:waj/nixpkgs-esp-dev/update-python-packages-esp-idf-5.5.1";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     dgop = {
       url = "github:AvengeMedia/dgop";
@@ -802,10 +806,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # dsearch = {
-    #   url = "github:AvengeMedia/danksearch";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    dsearch = {
+      url = "github:AvengeMedia/danksearch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nox = {
       url = "github:madsbv/nix-options-search";

@@ -13,16 +13,17 @@
   desktop-file-utils,
   autoPatchelfHook,
   wrapGAppsHook3,
+  blueprint-compiler,
 }:
 stdenv.mkDerivation rec {
   pname = "butler";
-  version = "1.3.0";
+  version = "1.6.6";
 
   src = fetchFromGitHub {
     owner = "cassidyjames";
     repo = "butler";
     rev = version;
-    hash = "sha256-pQKok3COASRMQq5l35UdSlCkwEmSbfu8lSCazu7YNpI=";
+    hash = "sha256-Dwnnc9fMLHFWuAVjhLfCgt+yYdDku0nPTt0cADwJ9gA=";
   };
 
   nativeBuildInputs = [
@@ -32,6 +33,7 @@ stdenv.mkDerivation rec {
     pkg-config
     autoPatchelfHook
     wrapGAppsHook3
+    blueprint-compiler
   ];
 
   buildInputs = [
