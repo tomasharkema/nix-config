@@ -197,7 +197,6 @@
 
         # '';
         packages = with pkgs; [
-          heimdall-gui
           libusb1
           platformio-core.udev
 
