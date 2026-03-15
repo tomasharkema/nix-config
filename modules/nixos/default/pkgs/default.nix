@@ -117,7 +117,6 @@
         iptraf-ng
         isd
         jnettop
-        kanidm_1_8
         kitty.terminfo
         kmon
         lazydocker

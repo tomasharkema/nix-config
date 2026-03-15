@@ -287,7 +287,7 @@
         };
       };
 
-      kanidm = {
+      kanidm = lib.mkIf false {
         enableClient = true;
         enableServer = true;
         # enablePam = true;

@@ -5,6 +5,10 @@
   ...
 }: {
   config = lib.mkIf false {
+    environment.systemPackages = with pkgs; [
+      kanidm_1_8
+    ];
+
     services.kanidm = {
       enableClient = true;
       enablePam = true;
