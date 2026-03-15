@@ -137,10 +137,12 @@ in {
       # nm-applet.enable = true;
     };
 
-    systemd.packages = with pkgs; [
-      udev-block-notify
-    ];
-
+    systemd = {
+      packages = with pkgs; [
+        udev-block-notify
+      ];
+      user.services.udev-block-notify.wantedBy = ["graphical-session.target"];
+    };
     # systemd = {enableEmergencyMode = lib.mkDefault true;};
 
     boot = {
