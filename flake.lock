@@ -2070,11 +2070,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772947661,
-        "narHash": "sha256-28mZils5krWsDk26AS7x3V3PqAR1sQ9rM55VUc3B5vo=",
+        "lastModified": 1773582949,
+        "narHash": "sha256-V0lTI8OmvAaOegJfotSaTBF6Dtdg6JLP/UgQlF5vpCM=",
         "owner": "librekeys",
         "repo": "picoforge",
-        "rev": "a65cba687654a47b209e2a1f0527ec0ddad8523b",
+        "rev": "6c003ed6fa61c4c041c03dedbfc93936e72500bb",
         "type": "github"
       },
       "original": {
