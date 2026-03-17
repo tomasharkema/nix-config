@@ -40,6 +40,19 @@
     dd of=/sys/bus/pci/devices/0000:03:00.0/config if=/tmp/xmm_cfg bs=256 count=1 status=none
   '';
 
+  # _libmbim = pkgs.libmbim.overrideAttrs (old: rec {
+  #   pname = "libmbim";
+  #   version = "1.34.0";
+
+  #   src = pkgs.fetchFromGitLab {
+  #     domain = "gitlab.freedesktop.org";
+  #     owner = "mobile-broadband";
+  #     repo = "libmbim";
+  #     rev = version;
+  #     hash = "sha256-NhSjW1ZK4XFv7L/IaoTjN5ojwjTDQa178k73zoaneuE=";
+  #   };
+  # });
+
   _libqmi = let
     version = "1.38.0";
   in
@@ -63,19 +76,6 @@
 
       outputs = ["out" "dev"];
     });
-
-  _libmbim = pkgs.libmbim.overrideAttrs (old: rec {
-    pname = "libmbim";
-    version = "1.34.0";
-
-    src = pkgs.fetchFromGitLab {
-      domain = "gitlab.freedesktop.org";
-      owner = "mobile-broadband";
-      repo = "libmbim";
-      rev = version;
-      hash = "sha256-NhSjW1ZK4XFv7L/IaoTjN5ojwjTDQa178k73zoaneuE=";
-    };
-  });
 
   _modemmanager = let
     version = "1.25.95-dev";
