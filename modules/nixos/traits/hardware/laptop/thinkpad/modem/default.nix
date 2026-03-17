@@ -82,7 +82,6 @@
   in
     (pkgs.modemmanager.override {
       libqmi = _libqmi;
-      libmbim = _libmbim;
     }).overrideAttrs ({
       nativeBuildInputs ? [],
       mesonFlags ? [],
