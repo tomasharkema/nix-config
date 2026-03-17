@@ -227,8 +227,6 @@ in rec {
   #docset = inputs.nixos-dash-docset.packages."${prev.system}".docset;
   # hyprpanel = inputs.hyprpanel.packages."${prev.system}".default;
 
-  tsui = inputs.tsui.packages."${prev.system}".tsui;
-
   piratebay = inputs.piratebay.packages."${prev.system}".default;
 
   # wezterm = inputs.wezterm.packages."${prev.system}".default;

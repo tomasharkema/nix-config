@@ -246,7 +246,6 @@
         tran
         treecat
         tshark
-        tsui
         ttmkfdir
         ttop
         tydra

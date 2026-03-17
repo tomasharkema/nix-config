@@ -732,13 +732,6 @@
     #   flake = false;
     # };
 
-    tsui = {
-      url = "github:neuralinkcorp/tsui";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
     mac-app-util = {
       url = "github:hraban/mac-app-util";
       inputs = {

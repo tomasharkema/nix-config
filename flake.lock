@@ -2227,7 +2227,6 @@
         "snowfall-lib": "snowfall-lib",
         "tree-sitter-nix": "tree-sitter-nix",
         "tsnsrv": "tsnsrv",
-        "tsui": "tsui",
         "vscode-server": "vscode-server",
         "zsh-async": "zsh-async",
         "zsh-colored-man-pages": "zsh-colored-man-pages",
@@ -2723,36 +2722,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1773664749,
-        "narHash": "sha256-VCjlnTKSdJSBC+HbcGfzSBiaiOn4CSNxMYa3/f7bW+o=",
+        "lastModified": 1773748933,
+        "narHash": "sha256-KS237EV2H/N3aUCA5DoFRJtYsvD3kAwQ9i/OJnConQ0=",
         "owner": "boinkor-net",
         "repo": "tsnsrv",
-        "rev": "4b0ad962ec3b41ea44a2a4cee303729aab7134bc",
+        "rev": "d54df1d537f4df86de907b30bdf62d0e52e62f3e",
         "type": "github"
       },
       "original": {
         "owner": "boinkor-net",
         "repo": "tsnsrv",
-        "type": "github"
-      }
-    },
-    "tsui": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1725553663,
-        "narHash": "sha256-PzDC8+42zmnB3XnRISk35jj9SueimZ4kywHlVRmDaWs=",
-        "owner": "neuralinkcorp",
-        "repo": "tsui",
-        "rev": "66ff849f9d5fbce4cc26b7365fcd0946ec4dab70",
-        "type": "github"
-      },
-      "original": {
-        "owner": "neuralinkcorp",
-        "repo": "tsui",
         "type": "github"
       }
     },
