@@ -427,6 +427,8 @@ in {
         enable = lib.mkDefault true;
         packages = with pkgs; [
           picoprobe-udev-rules
+          libusb1
+          platformio-core
         ];
 
         extraRules = ''

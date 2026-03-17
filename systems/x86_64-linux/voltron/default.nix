@@ -72,7 +72,6 @@
       steam.enable = true;
       # opensnitch.enable = true;
       # usbip.enable = true;
-      # samsung.enable = true;
       docker.enable = true;
       resilio = {
         enable = true;
@@ -142,7 +141,6 @@
     };
 
     services = {
-      # dnsmasq.enable = true;
       kmscon.enable = true;
       # comin.enable = false;
       abrt.enable = true;
@@ -156,29 +154,6 @@
         #   backend = "python-validity";
         backend = "libfprint-tod";
         calib-data-file = ./calib-data.bin;
-      };
-
-      packagekit = {
-        enable = true;
-      };
-
-      udev = {
-        enable = true;
-        # extraRules = ''
-        #   SUBSYSTEM=="spidev", KERNEL=="spidev0.0", GROUP="spi", MODE="0660"
-        #   SUBSYSTEM=="gpio", KERNEL=="gpiochip*", ACTION=="add", RUN+="${pkgs.bash}/bin/bash -c 'chown root:gpio /sys/class/gpio/export /sys/class/gpio/unexport ; chmod 220 /sys/class/gpio/export /sys/class/gpio/unexport'"
-        #   SUBSYSTEM=="gpio", KERNEL=="gpio*", ACTION=="add",RUN+="${pkgs.bash}/bin/bash -c 'chown root:gpio /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value ; chmod 660 /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value'"
-        # '';
-
-        # extraRules = ''
-        #   SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", \
-        #   ATTR{address}=="ee:ed:1e:dd:c4:98", KERNEL=="eth*", NAME="usb"
-        # '';
-
-        packages = with pkgs; [
-          libusb1
-          platformio-core
-        ];
       };
 
       # fprintd.tod.driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
@@ -230,15 +205,15 @@
       };
     };
 
-    # virtualisation.kvmgt = {
-    #   enable = true;
-    #   device = "0000:00:02.0";
-    #   vgpus = {
-    #     "i915-GVTg_V5_2" = {
-    #       uuid = ["e2ab260f-44a2-4e07-9889-68a1caafb399"];
-    #     };
-    #   };
-    # };
+    virtualisation.kvmgt = {
+      enable = true;
+      device = "0000:00:02.0";
+      vgpus = {
+        "i915-GVTg_V5_2" = {
+          uuid = ["e2ab260f-44a2-4e07-9889-68a1caafb399"];
+        };
+      };
+    };
 
     boot = {
       tmp = {
@@ -254,20 +229,14 @@
         netboot.enable = true;
       };
 
-      # modprobeConfig.enable = true;
-
-      #supportedFilesystems = ["ext2" "ext3" "ext4"];
-
       kernelParams = [
         "i915.enable_gvt=1"
         "i915.enable_fbc=0"
         "ibt=off"
-        # "i915.enable_gvt=1"
-        # "i915.enable_guc=0"
-        # "intel_iommu=on"
-        # "iommu=pt"
-        # "iommu.passthrough=1"
-        # "mitigations=off"
+        "intel_iommu=on"
+        "iommu=pt"
+        "iommu.passthrough=1"
+        "mitigations=off"
       ];
 
       kernelModules = [

@@ -22,9 +22,9 @@
     # Setup script config
     BIN_DIR=/run/current-system/sw/bin
   '';
+
   xmm7360 = pkgs.custom.xmm7360-pci.override {kernel = config.boot.kernelPackages.kernel;};
-  xmm7360-spat = pkgs.custom.xmm7360-pci-spat.override {kernel = config.boot.kernelPackages.kernel;};
-  xmm7360-lts = pkgs.custom.xmm7360-pci.override {kernel = pkgs.linuxPackages.kernel;};
+
   xmm7360-reset = pkgs.writeShellScriptBin "xmm7360-reset" ''
 
     if [ $UID != 0 ] ; then
@@ -41,7 +41,7 @@
   '';
 
   _libqmi = let
-    version = "1.37.95-dev";
+    version = "1.38.0";
   in
     pkgs.libqmi.overrideAttrs ({buildInputs ? [], ...}: {
       pname = "libqmi";
@@ -52,8 +52,9 @@
         owner = "mobile-broadband";
         repo = "libqmi";
         rev = version;
-        hash = "sha256-ZMJx1OTWCPy63Nl50lzgZCAfutAUSHq+iFWCe300kG8=";
+        hash = "sha256-bJbNfnKVJuhy/6EJgu5b7t6vxNTex/5heTzMzTzVREw=";
       };
+
       buildInputs =
         buildInputs
         ++ [
@@ -63,22 +64,26 @@
       outputs = ["out" "dev"];
     });
 
-  # _libmbim = prev.libmbim.overrideAttrs (old: rec {
-  #   pname = "libmbim";
-  #   version = "1.31.5-dev";
+  _libmbim = pkgs.libmbim.overrideAttrs (old: rec {
+    pname = "libmbim";
+    version = "1.34.0";
 
-  #   src = prev.fetchFromGitLab {
-  #     domain = "gitlab.freedesktop.org";
-  #     owner = "mobile-broadband";
-  #     repo = "libmbim";
-  #     rev = version;
-  #     hash = "sha256-Brut0PobAc6rTbGAo4NTauzHtwJrZOJjEw26hyXqA5w="; # "sha256-sHTpu9WeMZroT+1I18ObEHWSzcyj/Relyz8UNe+WawI=";
-  #   };
-  # });
+    src = pkgs.fetchFromGitLab {
+      domain = "gitlab.freedesktop.org";
+      owner = "mobile-broadband";
+      repo = "libmbim";
+      rev = version;
+      hash = "sha256-NhSjW1ZK4XFv7L/IaoTjN5ojwjTDQa178k73zoaneuE=";
+    };
+  });
+
   _modemmanager = let
     version = "1.25.95-dev";
   in
-    (pkgs.modemmanager.override {libqmi = _libqmi;}).overrideAttrs ({
+    (pkgs.modemmanager.override {
+      libqmi = _libqmi;
+      libmbim = _libmbim;
+    }).overrideAttrs ({
       nativeBuildInputs ? [],
       mesonFlags ? [],
       ...
@@ -103,27 +108,22 @@
           "-Dplugin_ublox=enabled"
         ];
 
-      nativeBuildInputs = nativeBuildInputs ++ [pkgs.cmake];
-      # patches =
-      #   oldAttrs.patches
-      #   ++ [
-      #     (prev.fetchpatch {
-      #       url = "https://gitlab.freedesktop.org/mobile-broadband/ModemManager/-/merge_requests/1200.patch";
-      #       hash = "sha256-7z3YMNbrU1E55FgmOaTFbsK2qXCBnbRkDrS+Yogxgow=";
-      #     })
-      #   ];
+      nativeBuildInputs =
+        nativeBuildInputs
+        ++ [
+          pkgs.cmake
+        ];
     });
 in {
   config = lib.mkIf cfg.enable {
     system.build = {
       xmm7360 = xmm7360;
-      xmm7360-spat = xmm7360-spat;
-      xmm7360-lts = xmm7360-lts;
+      _modemmanager = _modemmanager;
     };
 
     environment = {
       etc = {
-        "xmm7360".source = settingsFile;
+        "xmm7360.ini".source = settingsFile;
       };
 
       systemPackages = with pkgs; [
@@ -168,9 +168,12 @@ in {
         # "dev-ttyXMM2.device"
       ];
       wantedBy = ["graphical.target"];
+      restartTriggers = [
+        settingsFile
+      ];
       serviceConfig = {
         Type = "oneshot";
-        ExecStart = "${xmm7360}/bin/open_xdatachannel.py -c /etc/xmm7360";
+        ExecStart = "${xmm7360}/bin/open_xdatachannel.py -c \"${settingsFile}\"";
         RemainAfterExit = "yes";
         TimeoutSec = "60";
       };
