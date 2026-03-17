@@ -61,7 +61,10 @@ in {
     #   style = "adwaita-dark";
     # };
 
-    system.build.gui.foxBg = foxBg;
+    system.build = {
+      gui.foxBg = foxBg;
+    };
+
     users.users.tomas.extraGroups = [
       "adbusers"
       "kvm"
@@ -209,7 +212,6 @@ in {
         androidSdk
         libheif
         libheif.out
-
         config.boot.kernelPackages.iio-utils
       ];
     };
@@ -293,6 +295,7 @@ in {
         v4l2loopback
         iio-utils
       ];
+
       kernelModules = [
         "v4l2loopback"
         "akvcam"

@@ -247,9 +247,6 @@
     #   };
     # };
 
-    # system.includeBuildDependencies = true;
-    # system.build.cc1101-driver = pkgs.custom.cc1101-driver.override {kernel = config.boot.kernelPackages.kernel;};
-
     boot = {
       tmp = {
         useTmpfs = true;
@@ -264,11 +261,6 @@
         netboot.enable = true;
       };
 
-      #binfmt.emulatedSystems = ["aarch64-linux"];
-
-      #extraModulePackages = [
-      # config.system.build.cc1101-driver
-      #];
       # modprobeConfig.enable = true;
 
       #supportedFilesystems = ["ext2" "ext3" "ext4"];
