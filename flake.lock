@@ -218,11 +218,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1773716337,
-        "narHash": "sha256-Q4xU8miqJH2jmyL3evUVozNUSSlKEaF0Q52OqvXprYs=",
+        "lastModified": 1773768477,
+        "narHash": "sha256-W1iDcAfe4qcKr63DP298+bQOlYn4gqyl8XtavaY1MEk=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "679a59ad76a887748df2aeae8a4955289a832cd0",
+        "rev": "59dae954cd0a6fb1ee5ecabfe3b09443c0660926",
         "type": "github"
       },
       "original": {
@@ -1333,11 +1333,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773686092,
-        "narHash": "sha256-WWFM+ryOFdjAlT1djCB+kXxS2jKBOXqxuTQX7Iaa1MQ=",
+        "lastModified": 1773772454,
+        "narHash": "sha256-FE3VMtFb0LcZGYTRthWIT85N1tnVBDmUznelHeE8b8M=",
         "owner": "xddxdd",
         "repo": "nix-cachyos-kernel",
-        "rev": "fa81a003c7efbff8d10aa7ab09e81b44b1b5e873",
+        "rev": "6d785e4870a717c1bf6441fc28f2912102b2f8b0",
         "type": "github"
       },
       "original": {
@@ -2722,11 +2722,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773748933,
-        "narHash": "sha256-KS237EV2H/N3aUCA5DoFRJtYsvD3kAwQ9i/OJnConQ0=",
+        "lastModified": 1773758407,
+        "narHash": "sha256-DqieJ48Jf+gmJtfMnE7QXpnJnW7acnT624N/iA6pzVI=",
         "owner": "boinkor-net",
         "repo": "tsnsrv",
-        "rev": "d54df1d537f4df86de907b30bdf62d0e52e62f3e",
+        "rev": "9f36a4f264540d05b8f758a67eee3e57dca4eea6",
         "type": "github"
       },
       "original": {
