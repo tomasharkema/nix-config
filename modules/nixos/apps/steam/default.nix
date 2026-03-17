@@ -117,14 +117,12 @@ in {
       # etc."xdg/autostart/steam.desktop".source = "${config.programs.steam.package}/share/applications/steam.desktop";
 
       systemPackages = with pkgs; [
-        # sunshine
         trigger-control
         dualsensectl
         gamescope
         winetricks
         protontricks
-        heroic
-        # gamehub
+        # heroic
         cartridges
         steamcmd
         steam-run
@@ -132,7 +130,6 @@ in {
         steam-tui
         # mangohud
         extest
-
         winetricks
       ];
     };
