@@ -25,9 +25,9 @@
     antares
     arduino-ide
     bazaar
-    bitwarden-cli
-    bitwarden-desktop
-    bitwarden-menu
+    # bitwarden-cli
+    # bitwarden-desktop
+    # bitwarden-menu
     # _86Box-with-roms
     bluebubbles
     bluetooth_battery

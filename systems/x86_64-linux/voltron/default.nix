@@ -240,13 +240,6 @@
     #   };
     # };
 
-    # programs = {
-    #   captive-browser = {
-    #     enable = true;
-    #     interface = "wlp4s0";
-    #   };
-    # };
-
     boot = {
       tmp = {
         useTmpfs = true;
