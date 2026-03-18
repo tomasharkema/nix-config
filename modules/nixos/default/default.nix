@@ -229,10 +229,20 @@ in {
       atop.enable = lib.mkDefault true;
     };
 
-    users.groups = {
-      logindev = {members = ["root" "tomas"];};
+    users.groups = let
+      groupMembers = ["root" "tomas"];
+    in {
+      logindev = {
+        members = groupMembers;
+      };
       ftdi = {
-        members = ["root" "tomas"];
+        members = groupMembers;
+      };
+      spi = {
+        members = groupMembers;
+      };
+      gpio = {
+        members = groupMembers;
       };
     };
 
@@ -244,7 +254,7 @@ in {
       # locate.enable = true;
       nixos-cli = {
         enable = true;
-        prebuildOptionCache = false; #true;
+        prebuildOptionCache = lib.warn "TODO: make this work..." false; # true;
       };
       envfs.enable = true;
       lvm = {
