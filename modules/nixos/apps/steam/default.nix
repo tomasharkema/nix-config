@@ -122,7 +122,7 @@ in {
         gamescope
         winetricks
         protontricks
-        # heroic
+        heroic
         cartridges
         steamcmd
         steam-run
