@@ -172,6 +172,10 @@ in {
         # ntfs = lib.mkIf pkgs.stdenv.isx86_64;
       };
 
+      binfmt.preferStaticEmulators = true;
+
+      bootspec.enableValidation = true;
+
       loader = {
         systemd-boot = {
           netbootxyz.enable = true;
