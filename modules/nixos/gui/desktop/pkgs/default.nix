@@ -5,30 +5,21 @@
   inputs,
   ...
 }: let
-  _ipmiview = pkgs.ipmiview.overrideAttrs (old: {
-    src = pkgs.fetchurl {
-      url = "https://www.supermicro.com/Bios/sw_download/960/IPMIView_2.23.0_build.250519_bundleJRE_Linux_x64.tar.gz";
-      sha256 = "13d0figi3azajafnlfwc0amw3b00rmxyrmq60rixvwx4wx2h361j";
-    };
-    version = "2.23.0";
-  });
-
   pks = with pkgs; [
     # keep-sorted start
     # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".sdkFull
     # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".hosttools
     (bottles.override {removeWarningPopup = true;})
-    _ipmiview
+    # bitwarden-cli
+    # bitwarden-desktop
+    # bitwarden-menu
+    _86Box-with-roms
     android-studio
     android-tools
     angryipscanner
     antares
     arduino-ide
     bazaar
-    # bitwarden-cli
-    # bitwarden-desktop
-    # bitwarden-menu
-    # _86Box-with-roms
     bluebubbles
     bluetooth_battery
     boxbuddy
@@ -105,6 +96,7 @@
     inspector
     intel-gpu-tools
     inxi
+    ipmiview
     jetbrains-toolbox
     kdePackages.kdenlive
     kicad
