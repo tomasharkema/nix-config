@@ -254,7 +254,7 @@ in {
       # locate.enable = true;
       nixos-cli = {
         enable = true;
-        prebuildOptionCache = lib.warn "TODO: make this work..." false; # true;
+        prebuildOptionCache = lib.warn "TODO: make `nixos-cli.prebuildOptionCache` work..." false; # true;
       };
       envfs.enable = true;
       lvm = {
@@ -264,8 +264,7 @@ in {
       userborn.enable = true;
       uptimed.enable = true;
       tuptime.enable = true;
-      #esdm.enable = true;
-      # uptime.enableSeparateMonitoringService = true;
+      esdm.enable = true;
 
       # snmpd = {
       #   enable = true;
@@ -274,7 +273,7 @@ in {
       #     trapsink      localhost:162 public
       #   '';
       # };
-      # fanout.enable = true;
+      fanout.enable = true;
 
       smartd = {
         enable = true;
