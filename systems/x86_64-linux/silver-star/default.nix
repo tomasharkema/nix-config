@@ -15,6 +15,7 @@
       };
       secrets = {
         tsnsrv.rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
+        attic.rekeyFile = ./attic.age;
         cloudflared.rekeyFile = ./cloudflared.age;
         grafana-ntfy.rekeyFile = ./grafana-ntfy.age;
         "healthchecks" = lib.mkIf false {

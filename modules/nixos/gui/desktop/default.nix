@@ -82,14 +82,14 @@ in {
 
     gui.fonts.enable = true;
 
-    # i18n.inputMethod = {
-    #   enable = true;
-    #   type = "ibus";
-    #   ibus.engines = with pkgs.ibus-engines; [
-    #     uniemoji
-    #     typing-booster
-    #   ];
-    # };
+    i18n.inputMethod = {
+      enable = true;
+      type = "ibus";
+      ibus.engines = with pkgs.ibus-engines; [
+        uniemoji
+        typing-booster
+      ];
+    };
 
     # security.pam.services.passwd.enableGnomeKeyring = true;
 
