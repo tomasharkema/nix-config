@@ -48,9 +48,7 @@ in {
         "snowfall"
         (self.shortRev or "dirty")
       ];
-      configurationRevision =
-        #lib.mkForce
-        self.shortRev or "dirty";
+      configurationRevision = lib.mkForce self.shortRev or "dirty";
     };
 
     nix = {
