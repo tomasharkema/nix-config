@@ -110,7 +110,6 @@
 
       systems.modules = {
         nixos = with inputs; [
-          nix-dynld.nixosModules.dynld
           # comin.nixosModules.comin
           # nixos-vfio.nixosModules.default
           # nix-snapshotter.nixosModules.default
@@ -838,10 +837,6 @@
     picoforge = {
       url = "github:librekeys/picoforge";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-dynld = {
-      url = "github:0x484558/nix-dynld";
     };
 
     zsh-colored-man-pages = {
