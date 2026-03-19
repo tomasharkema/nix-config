@@ -14,13 +14,22 @@ in {
           ./secrets/age-yubikey-identity-usbc.pub
           # "/home/tomas/.ssh/id_ed25519"
         ];
-        # extraEncryptionPubkeys = [
-        #   ./secrets/age-yubikey-identity-usba.pub
-        # ];
+
+        extraEncryptionPubkeys = [
+          ./secrets/age-yubikey-identity-usba.pub
+        ];
+
+        agePlugins = with pkgs; [
+          age-plugin-1p
+          age-plugin-sss
+          age-plugin-tpm
+          age-plugin-yubikey
+        ];
 
         storageMode = "local";
         localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
       };
+
       secrets = {
         nix-access-tokens-github = {
           rekeyFile = ./secrets/github.age;
@@ -39,27 +48,18 @@ in {
         "snowfall"
         (self.shortRev or "dirty")
       ];
-      configurationRevision = lib.mkForce (self.shortRev or "dirty");
+      configurationRevision =
+        #lib.mkForce
+        self.shortRev or "dirty";
     };
 
     nix = {
       # settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${builtins.toString config.users.users.tomas.uid}"];
-      #   registry = {
-      #     nixpkgs.flake = inputs.nixpkgs;
-      #     home-manager.flake = inputs.home-manager;
-      #     darwin.flake = inputs.darwin;
-      #     tomas = {
-      #       from = {
-      #         type = "indirect";
-      #         id = "tomas";
-      #       };
-      #       to = {
-      #         type = "github";
-      #         owner = "tomasharkema";
-      #         repo = "nix-config";
-      #       };
-      #     };
-      #   };
+      registry = {
+        nixpkgs.flake = inputs.nixpkgs;
+        home-manager.flake = inputs.home-manager;
+        darwin.flake = inputs.darwin;
+      };
     };
   };
 }

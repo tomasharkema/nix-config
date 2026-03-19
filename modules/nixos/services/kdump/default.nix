@@ -57,9 +57,12 @@ in {
           mode = "0755";
         };
       };
+
       services.kdump = {
         description = "Crash recovery kernel arming";
+
         after = ["network.target" "network-online.target" "remote-fs.target" "basic.target"];
+
         unitConfig = {
           DefaultDependencies = "no";
         };
