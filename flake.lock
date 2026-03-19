@@ -1349,21 +1349,6 @@
         "type": "github"
       }
     },
-    "nix-dynld": {
-      "locked": {
-        "lastModified": 1773188205,
-        "narHash": "sha256-PWUGVN1Nk8v/9tGr8RcCsY1rAtaJTSZo/91qH4Zi+2s=",
-        "owner": "0x484558",
-        "repo": "nix-dynld",
-        "rev": "159d669fbb9ed35bb7c37c6eab75e7f23842b85b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "0x484558",
-        "repo": "nix-dynld",
-        "type": "github"
-      }
-    },
     "nix-flatpak": {
       "locked": {
         "lastModified": 1768656715,
@@ -1841,11 +1826,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1773734432,
-        "narHash": "sha256-IF5ppUWh6gHGHYDbtVUyhwy/i7D261P7fWD1bPefOsw=",
+        "lastModified": 1773821835,
+        "narHash": "sha256-TJ3lSQtW0E2JrznGVm8hOQGVpXjJyXY2guAxku2O9A4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "cda48547b432e8d3b18b4180ba07473762ec8558",
+        "rev": "b40629efe5d6ec48dd1efba650c797ddbd39ace0",
         "type": "github"
       },
       "original": {
@@ -2189,7 +2174,6 @@
         "niri": "niri",
         "nix-alien": "nix-alien",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
-        "nix-dynld": "nix-dynld",
         "nix-flatpak": "nix-flatpak",
         "nix-index-database": "nix-index-database",
         "nix-yazi-plugins": "nix-yazi-plugins",
