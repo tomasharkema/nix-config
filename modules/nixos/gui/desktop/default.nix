@@ -138,7 +138,6 @@ in {
         packages = with pkgs; [
           saleae-logic-2
           nrf-udev
-          qmk-udev-rules
         ];
       };
       scx = {
@@ -195,7 +194,6 @@ in {
         NIXOS_OZONE_WL = "1";
         QT_QPA_PLATFORM = "wayland;xcb";
         # DMS_DISABLE_MATUGEN = "1";
-        QMK_HOME = "/home/tomas/Developer/qmk_firmware";
         PICO_SDK_PATH = "${pkgs.pico-sdk}/lib/pico-sdk";
         ANDROID_HOME = "${androidSdk}/libexec/android-sdk";
         ANDROID_SDK_ROOT = "${androidSdk}/libexec/android-sdk";
@@ -226,7 +224,7 @@ in {
         enable = true;
         daemon.enable = true;
       };
-      keyboard.qmk.enable = true;
+
       intel-gpu-tools.enable = false;
       acpilight.enable = true;
       sensor = {

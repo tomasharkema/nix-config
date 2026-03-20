@@ -149,8 +149,6 @@
     qFlipper
     qdirstat
     qjournalctl
-    qmk
-    qmk_hid
     # qradiolink
     rmview
     rpi-imager
