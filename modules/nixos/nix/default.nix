@@ -12,7 +12,7 @@
   ];
 
   config = let
-    enableCcache = false;
+    enableCcache = true;
     #   nix-otel = pkgs.nix-otel.overrideAttrs (final: {
     #     nix = config.nix.package;
     #   });
@@ -31,7 +31,11 @@
             export CCACHE_COMPRESS=1
             export CCACHE_DIR="${config.programs.ccache.cacheDir}"
             export CCACHE_UMASK=007
-            export CCACHE_REMOTE_STORAGE="file://192.168.1.102/volume1/cache/ccache"
+            export CCACHE_SLOPPINESS=random_seed
+            export CCACHE_MAXSIZE=20GB
+            export CCACHE_RESHARE=1
+            export CCACHE_REMOTE_STORAGE=file:/mnt/cache/ccache
+
             if [ ! -d "$CCACHE_DIR" ]; then
               echo "====="
               echo "Directory '$CCACHE_DIR' does not exist"
@@ -52,6 +56,18 @@
         };
       })
     ];
+
+    fileSystems = {
+      "/mnt/cache" = lib.mkIf enableCcache {
+        device = "192.168.1.102:/volume1/cache";
+        fsType = "nfs";
+        options = [
+          "x-systemd.automount"
+          "noauto"
+          "x-systemd.idle-timeout=600"
+        ];
+      };
+    };
 
     # systemd.sockets.nix-supervisor = {
     #   socketConfig.ListenStream = [
@@ -114,7 +130,7 @@
           "freeipa"
           # "mutter"
           # "gnome-shell"
-          # "gnome-session"\
+          # "gnome-session"
           # "satyr"
           # "libreport"
           # "abrt"
@@ -126,7 +142,7 @@
 
     systemd = {
       packages = with pkgs; [
-        nix-web
+        (nix-web .override {stdenv = ccacheStdenv;})
       ];
 
       # Create a separate slice for nix-daemon that is
