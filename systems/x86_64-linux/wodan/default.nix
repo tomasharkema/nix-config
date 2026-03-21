@@ -139,6 +139,13 @@
       #   defaultWindowManager = config.services.greetd.settings.default_session.command;
       # };
 
+      distccd = {
+        enable = true;
+        zeroconf = true;
+        allowedClients = ["127.0.0.1" "192.168.0.0/24" "100.0.0.0/8"];
+        openFirewall = true;
+      };
+
       hardware = {
         bolt.enable = true;
       };

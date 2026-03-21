@@ -35,6 +35,10 @@ in {
 
     hardware.keyboard.qmk.enable = true;
 
+    systemd.services.keyd.serviceConfig = {
+      CapabilityBoundingSet = ["CAP_SETGID"];
+    };
+
     services = {
       libinput.enable = true;
       udev.packages = with pkgs; [

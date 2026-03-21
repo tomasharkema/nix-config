@@ -75,9 +75,9 @@ in {
         libvirt-dbus
       ];
 
-      prometheus.exporters = {
-        libvirt.enable = true;
-      };
+      # prometheus.exporters = {
+      # libvirt.enable = true;
+      # };
 
       rpcbind.enable = true;
 

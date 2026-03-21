@@ -221,7 +221,9 @@
       };
 
       kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
-
+      extraModulePackages = [
+        (inputs.nur-xddxdd.packages."${pkgs.stdenv.hostPlatform.system}".i915-sriov.overrideAttrs {kernel = config.boot.kernelPackages.kernel;})
+      ];
       recovery = {
         enable = true;
         install = true;
