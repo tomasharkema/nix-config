@@ -21,7 +21,7 @@ in {
     enableEnc = lib.mkEnableOption "Enable enc";
   };
 
-  config = lib.mkIf (cfg.enable) {
+  config = lib.mkIf (cfg.enable && pkgs.stdenv.isx86_64) {
     environment.systemPackages = with pkgs; [acl];
 
     systemd = {

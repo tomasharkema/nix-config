@@ -183,7 +183,7 @@ in {
           editor = false;
           consoleMode = "max";
           edk2-uefi-shell.enable = true;
-          memtest86.enable = true;
+          memtest86.enable = !pkgs.stdenv.isAarch64;
           # graceful = true;
         };
       };
@@ -206,7 +206,7 @@ in {
       # memoryAllocator = {
       #   provider = "graphene-hardened";
       # };
-
+      shells = [pkgs.bashInteractive pkgs.zsh];
       homeBinInPath = true;
 
       pathsToLink = [

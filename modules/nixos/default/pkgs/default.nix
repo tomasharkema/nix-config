@@ -37,7 +37,7 @@
         colorized-logs
         compose2nix
         compsize
-        config.boot.kernelPackages.iio-utils
+        # config.boot.kernelPackages.iio-utils
         config.virtualisation.incus.package.client
         cryptsetup # needed for dm-crypt volumes
         ctop
