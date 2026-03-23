@@ -52,7 +52,8 @@ in {
         # xkbVariant = "";
       };
 
-      keyd = {
+      # too soon
+      keyd = lib.mkIf false {
         enable = true;
 
         keyboards = {
