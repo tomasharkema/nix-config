@@ -1958,11 +1958,11 @@
     "ohmyzsh": {
       "flake": false,
       "locked": {
-        "lastModified": 1774253590,
-        "narHash": "sha256-bs02AAK1LHnmBB3P3JGSh4O8GuHFzt3zfYeix5hau1U=",
+        "lastModified": 1774338883,
+        "narHash": "sha256-KE/6l1i7uZCrDqzFNKG85IaQI3inMK1jx5J4LiW00zU=",
         "owner": "ohmyzsh",
         "repo": "ohmyzsh",
-        "rev": "df64afb062707212180324f83b3d92e573d709ce",
+        "rev": "9151236d1e0cb64b2e803d7ec1736c7a717efc33",
         "type": "github"
       },
       "original": {
