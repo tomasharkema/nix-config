@@ -15,6 +15,7 @@
         archivemount
         bandwhich
         bash
+        uxplay
         bashmount
         bat-extras.batdiff
         bat-extras.batman
