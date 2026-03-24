@@ -39,6 +39,8 @@ in rec {
 
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
+  _389-ds-base = checkUpdatedUpsteam prev._389-ds-base "3.1.3" prev.custom._389-ds-base;
+
   pico-sdk = prev.pico-sdk.override {withSubmodules = true;};
 
   lcdproc = prev.lcdproc.overrideAttrs (old: {
