@@ -746,7 +746,7 @@
       binfmt.emulatedSystems = ["aarch64-linux"];
 
       kernelParams = [
-        "console=tty0"
+        "console=tty1"
         "console=ttyS0,115200n8r"
         # "console=ttyS1,115200n8"
         # "earlyprintk=ttyS0"
