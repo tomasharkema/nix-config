@@ -41,7 +41,7 @@
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S7PJNJ0Y411286E_1-part1";
-      boot = "/dev/disk/by-id/usb-DELL_IDSDM_012345678901-0:0";
+      boot = "/dev/disk/by-id/usb-Kingston_DataTraveler_3.0_0017318221C6B03019AFE5EA-0:0-part1";
       snapper.enable = true;
       # btrbk.enable = true;
       swap.enable = false;
@@ -113,7 +113,7 @@
         # bridgeInterfaces = [ "eno1" ];
       };
       opencloud = {
-        enable = true;
+        # enable = true;
         url = "https://opencloud.ling-lizard.ts.net";
       };
       rsyncd.enable = true;
@@ -122,7 +122,7 @@
       sonarr.enable = true;
       jackett.enable = true;
       zram-generator.enable = lib.mkForce false;
-      snowflake-proxy = {
+      snowflake-proxy = lib.mkIf false {
         enable = true;
         capacity = 8;
         extraFlags = [
@@ -133,7 +133,7 @@
         ];
       };
 
-      distccd = {
+      distccd = lib.mkIf false {
         enable = true;
         zeroconf = true;
         allowedClients = ["127.0.0.1" "192.168.0.0/24" "100.0.0.0/8"];
@@ -214,7 +214,7 @@
       #   };
       # };
 
-      immich = {
+      immich = lib.mkIf false {
         enable = true;
         host = "0.0.0.0";
         openFirewall = true;
@@ -746,7 +746,7 @@
       binfmt.emulatedSystems = ["aarch64-linux"];
 
       kernelParams = [
-        "console=tty1"
+        "console=tty0"
         "console=ttyS0,115200n8r"
         # "console=ttyS1,115200n8"
         # "earlyprintk=ttyS0"
