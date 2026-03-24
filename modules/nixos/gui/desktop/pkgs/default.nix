@@ -36,7 +36,7 @@
     custom.butler
     custom.denon-control
     custom.distrib-dl
-    custom.gtk-meshtastic-client
+    # custom.gtk-meshtastic-client
     custom.letters
     custom.manuals
     custom.netsleuth
@@ -122,7 +122,7 @@
     nrf5-sdk
     nrfconnect
     nrfconnect-bluetooth-low-energy
-    nrfutil
+    # nrfutil
     nvramtool
     onioncircuits
     onionshare-gui

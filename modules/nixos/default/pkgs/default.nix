@@ -15,7 +15,6 @@
         archivemount
         bandwhich
         bash
-        uxplay
         bashmount
         bat-extras.batdiff
         bat-extras.batman
@@ -56,7 +55,7 @@
         custom.discovery-rs
         custom.flightmon
         custom.menu
-        custom.meshtui
+        # custom.meshtui
         custom.partclone-utils
         custom.radar
         custom.sgrep
@@ -258,6 +257,7 @@
         usbutils
         usermount
         uv
+        uxplay
         viddy
         vim
         watchlog
@@ -289,7 +289,7 @@
           intentrace
           ipmicfg
           libsmbios
-          meshtastic
+          # meshtastic
           micropython
           refind
           spectre-meltdown-checker
