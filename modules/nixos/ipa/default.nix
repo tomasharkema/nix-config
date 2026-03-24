@@ -302,9 +302,9 @@ in {
         services = {
           #   #config.installed {
           # login.sssdStrictAccess = mkDefault true;
-          sudo.sssdStrictAccess = lib.mkDefault true;
-          su.sssdStrictAccess = lib.mkDefault true;
-          ssh.sssdStrictAccess = lib.mkDefault true;
+          # sudo.sssdStrictAccess = lib.mkDefault true;
+          # su.sssdStrictAccess = lib.mkDefault true;
+          # ssh.sssdStrictAccess = lib.mkDefault true;
           # askpass.sssdStrictAccess = mkDefault true;
           cockpit.sssdStrictAccess = lib.mkDefault true;
           # "password-auth".sssdStrictAccess = mkDefault true;
