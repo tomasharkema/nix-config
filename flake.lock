@@ -218,11 +218,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1774444561,
-        "narHash": "sha256-BwIBnuKdOXEJ/IBQoMvSGOnLpED8KSFvEdYIcPlFdEA=",
+        "lastModified": 1774452917,
+        "narHash": "sha256-Q7e4QOzGn1AHebszEXkx6l0uges3zIHNv49BjORE8Fo=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "516c478f3da2f75c5dc2590541810311d6c9def3",
+        "rev": "faa5e7e02d756d6f310a03bef179c57d6b3f803c",
         "type": "github"
       },
       "original": {
@@ -1548,11 +1548,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1774422943,
-        "narHash": "sha256-o1xgNumjljdBBfOrcQX95hhKGFOJQYNZqpF3EfaScMk=",
+        "lastModified": 1774465523,
+        "narHash": "sha256-4v7HPm63Q90nNn4fgkgKsjW1AH2Klw7XzPtHJr562nM=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "632e4bfc21c01e5be900d0d8255a5368a5d6082f",
+        "rev": "de895be946ad1d8aafa0bb6dfc7e7e0e9e466a29",
         "type": "github"
       },
       "original": {
