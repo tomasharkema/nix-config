@@ -297,15 +297,15 @@ in {
       kernelModules = [
         "v4l2loopback"
         "akvcam"
-        "binder_linux"
+        "binder-linux"
         "ntsync"
       ];
 
       modprobeConfig.enable = true;
       extraModprobeConfig = ''
-        options binder_linux devices=binder,hwbinder,vndbinder
+        options binder-linux devices=binder,hwbinder,vndbinder
       '';
-
+      kernelParams = ["psi=1"];
       # for displaylink
       # kernelPackages = pkgs.linuxPackages_6_17;
     };
