@@ -9,6 +9,11 @@
   glib,
   gobject-introspection,
   gtk3,
+  wrapGAppsHook3,
+  copyDesktopItems,
+  pkg-config,
+  libayatana-appindicator,
+  lib,
 }:
 stdenv.mkDerivation {
   pname = "wifiman-desktop";
@@ -21,6 +26,9 @@ stdenv.mkDerivation {
   nativeBuildInputs = [
     dpkg
     autoPatchelfHook
+    wrapGAppsHook3
+    copyDesktopItems
+    pkg-config
   ];
 
   buildInputs = [
@@ -30,9 +38,14 @@ stdenv.mkDerivation {
     webkitgtk_4_1
     glib
     gobject-introspection
+    libayatana-appindicator
   ];
 
-  installPhase = ''
+  # postFixup = ''
+
+  # '';
+
+  postInstall = ''
     mkdir $out
     cp -a usr/* $out
 
@@ -49,5 +62,7 @@ stdenv.mkDerivation {
 
     substituteInPlace $out/share/applications/wifiman-desktop.desktop \
       --replace-fail "Exec=wifiman-desktop" "Exec=$out/bin/wifiman-desktop"
+
+    wrapProgram "$out/bin/wifiman-desktop" --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [libayatana-appindicator]}"
   '';
 }
