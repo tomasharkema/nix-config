@@ -866,7 +866,7 @@
         "power_management": [
           ""
         ],
-        "bogo": 7184,
+        "bogo": 7183,
         "cache": 8192,
         "units": 16,
         "page_size": 4096,
@@ -877,6 +877,7 @@
         "fpu_exception": false,
         "cpuid_level": 13,
         "write_protect": false,
+        "tlb_size": 32621,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -981,87 +982,6 @@
           "value": 133
         },
         "slot": {
-          "bus": 0,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0106",
-          "name": "Mass Storage Device",
-          "value": 262
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Disk",
-          "value": 0
-        },
-        "vendor": {
-          "hex": "0000",
-          "name": "Samsung",
-          "value": 0
-        },
-        "device": {
-          "hex": "0000",
-          "name": "SSD 850",
-          "value": 0
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "2B6Q",
-          "value": 0
-        },
-        "serial": "S21JNXBGC17548K",
-        "model": "Samsung SSD 850",
-        "sysfs_id": "/class/block/sdb",
-        "sysfs_bus_id": "0:0:0:0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0",
-        "unix_device_names": [
-          "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K",
-          "/dev/disk/by-id/wwn-0x5002538d40913786",
-          "/dev/disk/by-path/pci-0000:00:1f.2-ata-1",
-          "/dev/disk/by-path/pci-0000:00:1f.2-ata-1.0",
-          "/dev/sdb"
-        ],
-        "resources": [
-          {
-            "type": "disk_geo",
-            "cylinders": 60801,
-            "heads": 255,
-            "sectors": 63,
-            "size": "0x0",
-            "geo_type": "logical"
-          },
-          {
-            "type": "size",
-            "unit": "sectors",
-            "value_1": 976773168,
-            "value_2": 512
-          }
-        ],
-        "driver": "ahci",
-        "driver_module": "ahci",
-        "drivers": [
-          "ahci",
-          "sd"
-        ],
-        "driver_modules": [
-          "ahci",
-          "sd_mod"
-        ]
-      },
-      {
-        "index": 43,
-        "attached_to": 13,
-        "class_list": [
-          "disk",
-          "ide",
-          "block_device"
-        ],
-        "bus_type": {
-          "hex": "0085",
-          "name": "IDE",
-          "value": 133
-        },
-        "slot": {
           "bus": 1,
           "number": 0
         },
@@ -1092,7 +1012,7 @@
         },
         "serial": "50026B778512DF01",
         "model": "KINGSTON SA400S3",
-        "sysfs_id": "/class/block/sdc",
+        "sysfs_id": "/class/block/sdb",
         "sysfs_bus_id": "1:0:0:0",
         "sysfs_device_link": "/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0",
         "unix_device_names": [
@@ -1100,7 +1020,7 @@
           "/dev/disk/by-id/wwn-0x50026b778512df01",
           "/dev/disk/by-path/pci-0000:00:1f.2-ata-2",
           "/dev/disk/by-path/pci-0000:00:1f.2-ata-2.0",
-          "/dev/sdc"
+          "/dev/sdb"
         ],
         "resources": [
           {
@@ -1115,6 +1035,87 @@
             "type": "size",
             "unit": "sectors",
             "value_1": 937703088,
+            "value_2": 512
+          }
+        ],
+        "driver": "ahci",
+        "driver_module": "ahci",
+        "drivers": [
+          "ahci",
+          "sd"
+        ],
+        "driver_modules": [
+          "ahci",
+          "sd_mod"
+        ]
+      },
+      {
+        "index": 43,
+        "attached_to": 13,
+        "class_list": [
+          "disk",
+          "ide",
+          "block_device"
+        ],
+        "bus_type": {
+          "hex": "0085",
+          "name": "IDE",
+          "value": 133
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0106",
+          "name": "Mass Storage Device",
+          "value": 262
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Disk",
+          "value": 0
+        },
+        "vendor": {
+          "hex": "0000",
+          "name": "Samsung",
+          "value": 0
+        },
+        "device": {
+          "hex": "0000",
+          "name": "SSD 850",
+          "value": 0
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "2B6Q",
+          "value": 0
+        },
+        "serial": "S21JNXBGC17548K",
+        "model": "Samsung SSD 850",
+        "sysfs_id": "/class/block/sdc",
+        "sysfs_bus_id": "0:0:0:0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0",
+        "unix_device_names": [
+          "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC17548K",
+          "/dev/disk/by-id/wwn-0x5002538d40913786",
+          "/dev/disk/by-path/pci-0000:00:1f.2-ata-1",
+          "/dev/disk/by-path/pci-0000:00:1f.2-ata-1.0",
+          "/dev/sdc"
+        ],
+        "resources": [
+          {
+            "type": "disk_geo",
+            "cylinders": 60801,
+            "heads": 255,
+            "sectors": 63,
+            "size": "0x0",
+            "geo_type": "logical"
+          },
+          {
+            "type": "size",
+            "unit": "sectors",
+            "value_1": 976773168,
             "value_2": 512
           }
         ],
@@ -1228,7 +1229,7 @@
         "sysfs_id": "/class/block/zram0",
         "unix_device_names": [
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/5c089fc8-102f-4821-b992-33a66a52171f",
+          "/dev/disk/by-uuid/06d30810-30dc-48d5-a19a-3d57577cccf4",
           "/dev/zram0"
         ],
         "resources": [
@@ -1536,8 +1537,8 @@
           "value": 32903
         },
         "device": {
-          "hex": "8000",
-          "value": 32768
+          "hex": "8008",
+          "value": 32776
         },
         "revision": {
           "hex": "0000",
@@ -1545,7 +1546,7 @@
           "value": 0
         },
         "model": "Hub",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb2/2-1/2-1:1.0",
         "sysfs_bus_id": "2-1:1.0",
         "resources": [
           {
@@ -1592,7 +1593,7 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v8087p8000d0005dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v8087p8008d0005dc09dsc00dp01ic09isc00ip00in00"
       },
       {
         "index": 49,
@@ -1760,7 +1761,7 @@
       },
       {
         "index": 53,
-        "attached_to": 27,
+        "attached_to": 29,
         "class_list": [
           "usb",
           "hub"
@@ -1794,9 +1795,9 @@
           "name": "6.12",
           "value": 0
         },
-        "serial": "0000:00:1a.0",
+        "serial": "0000:00:1d.0",
         "model": "Linux 6.12.77 ehci_hcd EHCI Host Controller",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-0:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
           {
@@ -1871,8 +1872,8 @@
           "value": 32903
         },
         "device": {
-          "hex": "8008",
-          "value": 32776
+          "hex": "8000",
+          "value": 32768
         },
         "revision": {
           "hex": "0000",
@@ -1880,7 +1881,7 @@
           "value": 0
         },
         "model": "Hub",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb1/1-1/1-1:1.0",
         "sysfs_bus_id": "1-1:1.0",
         "resources": [
           {
@@ -1927,11 +1928,11 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v8087p8008d0005dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v8087p8000d0005dc09dsc00dp01ic09isc00ip00in00"
       },
       {
         "index": 55,
-        "attached_to": 29,
+        "attached_to": 27,
         "class_list": [
           "usb",
           "hub"
@@ -1965,9 +1966,9 @@
           "name": "6.12",
           "value": 0
         },
-        "serial": "0000:00:1d.0",
+        "serial": "0000:00:1a.0",
         "model": "Linux 6.12.77 ehci_hcd EHCI Host Controller",
-        "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/usb2/2-0:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1a.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "resources": [
           {
@@ -2704,38 +2705,6 @@
     "network_interface": [
       {
         "index": 56,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/vlan69",
-        "unix_device_names": [
-          "vlan69"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 56
-          }
-        ],
-        "driver": "802.1Q VLAN Support",
-        "drivers": [
-          "802.1Q VLAN Support"
-        ]
-      },
-      {
-        "index": 57,
         "attached_to": 19,
         "class_list": [
           "network_interface"
@@ -2777,47 +2746,6 @@
       },
       {
         "index": 58,
-        "attached_to": 26,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/enp6s0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.4/0000:06:00.0",
-        "unix_device_names": [
-          "enp6s0"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 56
-          },
-          {
-            "type": "phwaddr",
-            "address": 56
-          }
-        ],
-        "driver": "ixgbe",
-        "driver_module": "ixgbe",
-        "drivers": [
-          "ixgbe"
-        ],
-        "driver_modules": [
-          "ixgbe"
-        ]
-      },
-      {
-        "index": 59,
         "attached_to": 28,
         "class_list": [
           "network_interface"
@@ -2858,7 +2786,80 @@
         ]
       },
       {
-        "index": 62,
+        "index": 59,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/vlan69",
+        "unix_device_names": [
+          "vlan69"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 56
+          }
+        ],
+        "driver": "802.1Q VLAN Support",
+        "drivers": [
+          "802.1Q VLAN Support"
+        ]
+      },
+      {
+        "index": 60,
+        "attached_to": 26,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/enp6s0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1c.4/0000:06:00.0",
+        "unix_device_names": [
+          "enp6s0"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 56
+          },
+          {
+            "type": "phwaddr",
+            "address": 56
+          }
+        ],
+        "driver": "ixgbe",
+        "driver_module": "ixgbe",
+        "drivers": [
+          "ixgbe"
+        ],
+        "driver_modules": [
+          "ixgbe"
+        ]
+      },
+      {
+        "index": 61,
         "attached_to": 0,
         "class_list": [
           "network_interface"
@@ -2880,39 +2881,7 @@
         ]
       },
       {
-        "index": 64,
-        "attached_to": 26,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0001",
-          "name": "Ethernet",
-          "value": 1
-        },
-        "model": "Ethernet network interface",
-        "sysfs_id": "/class/net/vlan66",
-        "unix_device_names": [
-          "vlan66"
-        ],
-        "resources": [
-          {
-            "type": "hwaddr",
-            "address": 56
-          }
-        ],
-        "driver": "802.1Q VLAN Support",
-        "drivers": [
-          "802.1Q VLAN Support"
-        ]
-      },
-      {
-        "index": 66,
+        "index": 63,
         "attached_to": 22,
         "class_list": [
           "network_interface"
@@ -2953,7 +2922,7 @@
         ]
       },
       {
-        "index": 68,
+        "index": 64,
         "attached_to": 35,
         "class_list": [
           "network_interface"
@@ -2991,6 +2960,38 @@
         ],
         "driver_modules": [
           "igb"
+        ]
+      },
+      {
+        "index": 66,
+        "attached_to": 26,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0001",
+          "name": "Ethernet",
+          "value": 1
+        },
+        "model": "Ethernet network interface",
+        "sysfs_id": "/class/net/vlan66",
+        "unix_device_names": [
+          "vlan66"
+        ],
+        "resources": [
+          {
+            "type": "hwaddr",
+            "address": 56
+          }
+        ],
+        "driver": "802.1Q VLAN Support",
+        "drivers": [
+          "802.1Q VLAN Support"
         ]
       }
     ],
