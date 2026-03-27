@@ -46,6 +46,7 @@
     custom.toolblex
     custom.usbguard-gnome
     custom.wifiman
+    cutter
     darktable
     davinci-resolve
     ddrescue
