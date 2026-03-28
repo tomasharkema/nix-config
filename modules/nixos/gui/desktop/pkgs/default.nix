@@ -40,6 +40,7 @@
     custom.letters
     custom.manuals
     custom.netsleuth
+    custom.qefi-entry-manager
     custom.remarkable-cups
     custom.retro-adsb-radar
     custom.rust-conn
@@ -200,7 +201,6 @@
     yelp
     zed-editor
     zenmap
-
     # keep-sorted end
   ];
   cfg = config.gui.desktop;

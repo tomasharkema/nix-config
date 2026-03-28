@@ -29,7 +29,7 @@
     then betaPkg
     else config.boot.kernelPackages.nvidiaPackages.stable;
   patchedPkg =
-    withPatch true selectedPkg
+    withPatch false selectedPkg
     # // {
     #   open = betaPkg.open.overrideAttrs ({patches ? [], ...}: {
     #     patches =
