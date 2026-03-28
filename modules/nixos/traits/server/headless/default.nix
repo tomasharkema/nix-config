@@ -5,8 +5,6 @@
 }: {
   config = lib.mkIf config.traits.server.headless.enable {
     boot.initrd = {
-      systemd.emergencyAccess = "abcdef";
-
       network = {
         enable = true;
 

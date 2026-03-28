@@ -21,12 +21,7 @@
   # '';
 in {
   config = {
-    nix =
-      # {
-      #   package = pkgs.nixVersions.nix_2_23; # .latest;
-      # }
-      # //
-      import ./config.nix;
+    nix = import ./config.nix;
     boot.supportedFilesystems = {
       nfs = true;
     };
@@ -35,7 +30,7 @@ in {
       users = {
         nixos = {
           uid = 2000;
-          #gid = 2000;
+          initialHashedPassword = lib.mkForce "$y$j9T$64ZNdE.W4HRiD11NcJQpM/$isl.nLUveFXNP8kqedrJDZQWU8kmoLGhKu7lM2tnfS8";
         };
         tomas = {
           # shell = pkgs.zsh;
@@ -52,16 +47,21 @@ in {
             "plugdev"
             "dailout"
           ];
-          initialHashedPassword = "$y$j9T$64ZNdE.W4HRiD11NcJQpM/$isl.nLUveFXNP8kqedrJDZQWU8kmoLGhKu7lM2tnfS8";
+          initialHashedPassword = lib.mkForce "$y$j9T$64ZNdE.W4HRiD11NcJQpM/$isl.nLUveFXNP8kqedrJDZQWU8kmoLGhKu7lM2tnfS8";
           uid = 1000;
 
           openssh.authorizedKeys.keyFiles = ["${keys}"];
         };
-        root.openssh.authorizedKeys.keyFiles = ["${keys}"];
+        root = {
+          initialHashedPassword = lib.mkForce "$y$j9T$64ZNdE.W4HRiD11NcJQpM/$isl.nLUveFXNP8kqedrJDZQWU8kmoLGhKu7lM2tnfS8";
+          openssh.authorizedKeys.keyFiles = ["${keys}"];
+        };
       };
       groups = {
         nixos.gid = 2000;
-        tomas = {gid = 1000;};
+        tomas = {
+          gid = 1000;
+        };
       };
     };
 

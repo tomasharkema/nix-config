@@ -3,11 +3,7 @@
   pkgs,
   lib,
   ...
-}: let
-  # sbctl-tpm = pkgs.writeShellScriptBin "sbctl-tpm" ''
-  #   sudo sbctl rotate-keys --pk-keytype tpm --kek-keytype kek --db-keytype file
-  # '';
-in {
+}: {
   config = {
     assertions = [
       # {
@@ -36,9 +32,7 @@ in {
       build = {
         # self = inputs.self;
       };
-      #      etc.overlay.enable = config.boot.initrd.systemd.enable;
       nixos.tags = ["${config.boot.kernelPackages.kernel.modDirVersion}"];
-      # rebuild.enableNg = true;
 
       etc.overlay.enable = true;
       nixos-init.enable = true;
@@ -96,20 +90,18 @@ in {
       recovery = {
         enable = lib.mkDefault true;
         extraConfigurations = [
-          #   ({...}: {
-          #     imports = [
           ../../../installer/installer.nix
-          #     ];
-          #   })
         ];
       };
-
-      # crashDump.enable = pkgs.stdenv.isx86_64;
 
       initrd = {
         compressor = "zstd";
         compressorArgs = ["-19"];
-        # systemd.emergencyAccess = "abcdefg";
+        systemd = {
+          dmVerity.enable = true;
+          emergencyAccess = "$y$j9T$64ZNdE.W4HRiD11NcJQpM/$isl.nLUveFXNP8kqedrJDZQWU8kmoLGhKu7lM2tnfS8";
+        };
+
         includeDefaultModules = true;
         # unl0kr = {enable = config.disks.btrfs.encrypt;};
       };
@@ -169,7 +161,7 @@ in {
       supportedFilesystems = {
         zfs = lib.mkForce false;
         nfs = true;
-        # ntfs = lib.mkIf pkgs.stdenv.isx86_64;
+        ntfs = true;
       };
 
       binfmt.preferStaticEmulators = true;
@@ -206,7 +198,10 @@ in {
       # memoryAllocator = {
       #   provider = "graphene-hardened";
       # };
-      shells = [pkgs.bashInteractive pkgs.zsh];
+      shells = [
+        pkgs.bashInteractive
+        pkgs.zsh
+      ];
       homeBinInPath = true;
 
       pathsToLink = [
@@ -230,7 +225,10 @@ in {
     };
 
     users.groups = let
-      groupMembers = ["root" "tomas"];
+      groupMembers = [
+        "root"
+        "tomas"
+      ];
     in {
       logindev = {
         members = groupMembers;
