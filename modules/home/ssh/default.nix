@@ -8,6 +8,9 @@
   imports = [./match-blocks.nix];
 
   config = {
+    services.gnome-keyring.enable = true;
+    home.packages = [pkgs.gcr];
+
     programs.ssh = {
       enable = true;
 
