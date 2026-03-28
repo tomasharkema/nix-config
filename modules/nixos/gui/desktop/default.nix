@@ -176,9 +176,6 @@ in {
 
       systemPackages = with pkgs; [
         kdiskmark
-        localJdk
-        gradle
-        androidSdk
         libheif
         libheif.out
         config.boot.kernelPackages.iio-utils
@@ -220,15 +217,17 @@ in {
 
       ghidra = {
         enable = true;
-        package = pkgs.ghidra.withExtensions (p:
-          with p; [
-            ret-sync
-            gnudisassembler
-            findcrypt
-            ghidra-delinker-extension
-            ghidra-firmware-utils
-            ghidra-golanganalyzerextension
-          ]);
+        package = pkgs.ghidra.withExtensions (
+          p:
+            with p; [
+              ret-sync
+              gnudisassembler
+              findcrypt
+              ghidra-delinker-extension
+              ghidra-firmware-utils
+              ghidra-golanganalyzerextension
+            ]
+        );
       };
 
       oddjobd.enable = true;
@@ -312,7 +311,10 @@ in {
 
       user.services.fumon = {
         description = "User unit failure monitor";
-        documentation = ["man:fumon(1)" "man:busctl(1)"];
+        documentation = [
+          "man:fumon(1)"
+          "man:busctl(1)"
+        ];
         requisite = ["graphical-session.target"];
         after = ["graphical-session.target"];
         enable = true;
