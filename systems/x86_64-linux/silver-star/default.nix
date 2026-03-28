@@ -651,20 +651,11 @@
           image = "teumaauss/ism:latest";
           pull = "always";
 
-          volumes = let
-            kernelVersion = config.boot.kernelPackages.kernel.modDirVersion;
-          in [
-            "/run/current-system/sw/lib/modules/${kernelVersion}:/lib/modules/${kernelVersion}:ro"
-            "/sys:/sys:ro"
-            "/srv/openmanage/shared:/data"
-            "/nix/store:/nix/store:ro"
-            "/etc/os-release:/etc/os-release:ro"
-            "/usr/libexec/dell_dup:/usr/libexec/dell_dup:rw"
+          volumes = [
+            "/etc/os-release:/etc/os-release"
             "/etc/snmp/snmpd.conf:/etc/snmp/snmpd.conf"
             "/etc/hostname:/etc/hostname"
             "/lib/modules:/lib/modules"
-            #"/run/systemd/system:/run/systemd/system"
-            #"/var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket"
           ];
           privileged = true;
           devices = [
