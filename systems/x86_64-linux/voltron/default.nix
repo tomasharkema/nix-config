@@ -65,9 +65,6 @@
         };
       };
     };
-
-    virtualisation.waydroid.enable = true;
-
     apps = {
       steam.enable = true;
       # opensnitch.enable = true;
@@ -205,7 +202,7 @@
       };
     };
 
-    virtualisation.kvmgt = {
+    virtualisation.kvmgt = lib.mkIf false {
       enable = true;
       device = "0000:00:02.0";
       vgpus = {
@@ -222,7 +219,7 @@
 
       kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
       extraModulePackages = [
-        (inputs.nur-xddxdd.packages."${pkgs.stdenv.hostPlatform.system}".i915-sriov.overrideAttrs {kernel = config.boot.kernelPackages.kernel;})
+        # (inputs.nur-xddxdd.packages."${pkgs.stdenv.hostPlatform.system}".i915-sriov.overrideAttrs {kernel = config.boot.kernelPackages.kernel;})
       ];
       recovery = {
         enable = true;

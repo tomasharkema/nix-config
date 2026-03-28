@@ -11,33 +11,6 @@
 
     sha256 = "06121rwydvmr9dc757ixxr59rfcask8p74mmsmprpcndddp55fgf";
   };
-
-  localJdk = pkgs.jdk25;
-
-  androidEnv = pkgs.androidenv.override {licenseAccepted = true;};
-  androidComposition = androidEnv.composeAndroidPackages {
-    #cmdLineToolsVersion = "8.0";
-    platformToolsVersion = "36.0.2";
-    #buildToolsVersions = ["36.1.0"];
-    #platformVersions = ["36.0.2"];
-    abiVersions = ["x86_64"];
-    includeNDK = false;
-    includeSystemImages = true;
-    systemImageTypes = ["google_apis" "google_apis_playstore"];
-    includeEmulator = true;
-    useGoogleAPIs = true;
-    extraLicenses = [
-      "android-googletv-license"
-      "android-sdk-arm-dbt-license"
-      "android-sdk-license"
-      "android-sdk-preview-license"
-      "google-gdk-license"
-      "intel-android-extra-license"
-      "intel-android-sysimage-license"
-      "mips-android-sysimage-license"
-    ];
-  };
-  androidSdk = androidComposition.androidsdk;
 in {
   options.gui.desktop = {
     enable = lib.mkEnableOption "desktop";
@@ -185,6 +158,8 @@ in {
       enable = true;
     };
 
+    virtualisation.waydroid.enable = true;
+
     environment = {
       etc = {
         "xdg/autostart/geary-autostart.desktop".source = "${pkgs.geary}/share/applications/geary-autostart.desktop";
@@ -195,10 +170,6 @@ in {
         QT_QPA_PLATFORM = "wayland;xcb";
         # DMS_DISABLE_MATUGEN = "1";
         PICO_SDK_PATH = "${pkgs.pico-sdk}/lib/pico-sdk";
-        ANDROID_HOME = "${androidSdk}/libexec/android-sdk";
-        ANDROID_SDK_ROOT = "${androidSdk}/libexec/android-sdk";
-        JAVA_HOME = localJdk.home;
-        GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${androidSdk}/libexec/android-sdk/build-tools/34.0.2/aapt2";
       };
 
       pathsToLink = ["share/thumbnailers"];
@@ -252,7 +223,7 @@ in {
         package = pkgs.ghidra.withExtensions (p:
           with p; [
             ret-sync
-            # gnudisassembler
+            gnudisassembler
             findcrypt
             ghidra-delinker-extension
             ghidra-firmware-utils
