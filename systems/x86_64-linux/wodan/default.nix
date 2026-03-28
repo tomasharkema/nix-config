@@ -56,19 +56,25 @@
           settings = {
             Settings = {
               AutoConnect = true;
-              # AlwaysRandomizeAddress = true;
+              AlwaysRandomizeAddress = false;
             };
             Network = {
               EnableIPv6 = true;
               RoutePriorityOffset = 300;
             };
-            # DriverQuirks.DefaultInterface = "wlan0";
+            DriverQuirks.DefaultInterface = "wlan0";
           };
         };
       };
 
       networkmanager = {
         enable = true;
+
+        settings = {
+          device = {
+            "wifi.scan-rand-mac-address" = "no";
+          };
+        };
 
         wifi = {
           backend = "iwd";
@@ -126,9 +132,6 @@
       hidpi.enable = true;
       hdr.enable = true;
     };
-
-    # Open the default RDP port (3389)
-    networking.firewall.allowedTCPPorts = [3389];
 
     services = {
       # gnome.gnome-remote-desktop.enable = true;
@@ -298,7 +301,6 @@
         install = true;
         sign = true;
         netboot.enable = true;
-        # memtest86.enable = true;
       };
 
       extraModulePackages = with config.boot.kernelPackages; [
@@ -324,8 +326,9 @@
       modprobeConfig.enable = true;
       extraModprobeConfig = ''
         options it87 ignore_resource_conflict=1 update_vbat=1
-        options cfg80211 ieee80211_regdom=NL
+        options iwlmvm power_scheme=1
       '';
+      #  options cfg80211 ieee80211_regdom=NL
 
       kernelParams = [
         # "console=tty1"

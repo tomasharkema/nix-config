@@ -193,7 +193,7 @@ in
           rygel.enable = true;
           tinysparql.enable = true;
           localsearch.enable = true;
-          gcr-ssh-agent.enable = lib.mkForce false;
+          gcr-ssh-agent.enable = true;
           sushi.enable = true;
         };
 

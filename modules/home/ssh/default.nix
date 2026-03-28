@@ -7,17 +7,7 @@
 }: {
   imports = [./match-blocks.nix];
 
-  config = let
-    onePasswordSocket =
-      if pkgs.stdenvNoCC.isDarwin
-      then "${config.home.homeDirectory}/.1password/agent.sock"
-      else
-        (
-          if osConfig.apps._1password.gui.enable
-          then "${config.home.homeDirectory}/.1password/agent.sock"
-          else "/run/user/1000/ssh-tpm-agent.sock"
-        );
-  in {
+  config = {
     programs.ssh = {
       enable = true;
 
@@ -31,17 +21,34 @@
       # controlPath = null;
 
       matchBlocks = {
-        "*" = {
-          # identityAgent = onePasswordSocket;
+        "allNonSSH1p" = lib.mkIf (!pkgs.stdenvNoCC.isDarwin && osConfig.apps._1password.gui.enable) {
+          host = "*";
+          match = "host * exec \"test -z $SSH_TTY\"";
+          identityAgent = "${config.home.homeDirectory}/.1password/agent.sock";
           # pKCS11Provider =
           #   if pkgs.stdenvNoCC.isDarwin
           #   then "${pkgs.yubico-piv-tool}/lib/libykcs11.dylib"
           #   else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
           forwardAgent = true;
         };
-        "*" = {
+        "allNonSSHTPM" = lib.mkIf (!pkgs.stdenvNoCC.isDarwin && true) {
+          host = "*";
           match = "host * exec \"test -z $SSH_TTY\"";
-          identityAgent = onePasswordSocket;
+          identityAgent = "/run/user/1000/ssh-tpm-agent.sock";
+          # pKCS11Provider =
+          #   if pkgs.stdenvNoCC.isDarwin
+          #   then "${pkgs.yubico-piv-tool}/lib/libykcs11.dylib"
+          #   else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
+          forwardAgent = true;
+        };
+        "all1P" = lib.mkIf osConfig.apps._1password.gui.enable {
+          host = "*";
+          identityAgent = "${config.home.homeDirectory}/.1password/agent.sock";
+        };
+        "allSSH" = {
+          host = "*";
+          match = "host * exec \"test -n $SSH_TTY\"";
+          # identityAgent = onePasswordSocket;
           #   extraOptions = {
           #     IdentityAgent = onePasswordSocket;
           #     PKCS11Provider =

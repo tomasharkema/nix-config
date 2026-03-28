@@ -36,15 +36,15 @@ in {
     };
 
     home = {
-      file =
-        {
-          ".ssh/rc".text = ''
-            if test "$SSH_AUTH_SOCK"; then
-            	ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
-            fi
-          '';
-        }
-        // osConfig.home.homeFiles;
+      # file =
+      #   {
+      #     ".ssh/rc".text = ''
+      #       if test "$SSH_AUTH_SOCK"; then
+      #       	ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
+      #       fi
+      #     '';
+      #   }
+      #   // osConfig.home.homeFiles;
 
       stateVersion = "26.05";
 
@@ -94,13 +94,13 @@ in {
         ln -sfn "/Users/${osConfig.user.name}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" "/Users/${osConfig.user.name}/.1password/agent.sock"
       '');
       # still correct?
-      sessionVariablesExtra = ''
-        ${lib.optionalString ((!pkgs.stdenv.hostPlatform.isDarwin) && osConfig.programs._1password-gui.enable) ''
-          if [ -z "$SSH_TTY" -a -z "$SSH_AUTH_SOCK" ]; then
-            export SSH_AUTH_SOCK="/home/${osConfig.user.name}/.1password/agent.sock"
-          fi
-        ''}
-      '';
+      # sessionVariablesExtra = ''
+      #   ${lib.optionalString ((!pkgs.stdenv.hostPlatform.isDarwin) && osConfig.programs._1password-gui.enable) ''
+      #     if [ -z "$SSH_TTY" -a -z "$SSH_AUTH_SOCK" ]; then
+      #       export SSH_AUTH_SOCK="/home/${osConfig.user.name}/.1password/agent.sock"
+      #     fi
+      #   ''}
+      # '';
       # cleanup!
       sessionVariables =
         (

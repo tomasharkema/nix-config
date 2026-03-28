@@ -264,7 +264,9 @@ in {
       userborn.enable = true;
       uptimed.enable = true;
       tuptime.enable = true;
-      esdm.enable = true;
+      # esdm.enable = true; # ???
+
+      ssh-agent-switcher.enable = true;
 
       # snmpd = {
       #   enable = true;
