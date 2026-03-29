@@ -14,8 +14,6 @@
     # bitwarden-desktop
     # bitwarden-menu
     _86Box-with-roms
-    android-studio
-    android-tools
     angryipscanner
     antares
     arduino-ide
@@ -36,7 +34,7 @@
     custom.butler
     custom.denon-control
     custom.distrib-dl
-    # custom.gtk-meshtastic-client
+    custom.gtk-meshtastic-client
     custom.letters
     custom.manuals
     custom.netsleuth
@@ -66,7 +64,7 @@
     dsview
     easyeffects
     effitask
-    # esp-idf-full
+    esp-idf-full
     esptool
     f1viewer
     file-roller
@@ -124,7 +122,7 @@
     nrf5-sdk
     nrfconnect
     nrfconnect-bluetooth-low-energy
-    # nrfutil
+    nrfutil
     nvramtool
     onioncircuits
     onionshare-gui
@@ -133,7 +131,7 @@
     openra
     openrct2
     openrisk
-    # openrw
+    openrw
     openswitcher
     pavucontrol
     pdfarranger

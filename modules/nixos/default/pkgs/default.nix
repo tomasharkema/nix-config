@@ -37,7 +37,7 @@
         colorized-logs
         compose2nix
         compsize
-        # config.boot.kernelPackages.iio-utils
+        config.boot.kernelPackages.iio-utils
         config.virtualisation.incus.package.client
         cryptsetup # needed for dm-crypt volumes
         ctop
@@ -55,7 +55,7 @@
         custom.discovery-rs
         custom.flightmon
         custom.menu
-        # custom.meshtui
+        custom.meshtui
         custom.partclone-utils
         custom.radar
         custom.sgrep
@@ -67,7 +67,7 @@
         # rmfuse
         cutecom
         ddrescue
-        # devcontainer
+        devcontainer
         devtodo
         dfrs
         distrobox
@@ -289,7 +289,7 @@
           intentrace
           ipmicfg
           libsmbios
-          # meshtastic
+          meshtastic
           micropython
           refind
           spectre-meltdown-checker
