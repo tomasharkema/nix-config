@@ -594,7 +594,10 @@
       };
 
       useDHCP = false;
-      networkmanager.enable = true;
+      networkmanager = {
+        enable = true;
+        unmanaged = ["*"];
+      };
     };
 
     environment = {
@@ -649,13 +652,12 @@
       oci-containers.containers = {
         ism = {
           image = "teumaauss/ism:latest";
-          pull = "always";
 
           volumes = [
             "/etc/os-release:/etc/os-release"
             "/etc/snmp/snmpd.conf:/etc/snmp/snmpd.conf"
             "/etc/hostname:/etc/hostname"
-            "/lib/modules:/lib/modules"
+            # "/lib/modules:/lib/modules"
           ];
           privileged = true;
           devices = [
@@ -670,9 +672,8 @@
           autoStart = true;
         };
 
-        termix = {
+        termix = lib.mkIf false {
           image = "ghcr.io/lukegus/termix:latest";
-          pull = "always";
           # imageFile = pkgs.dockerTools.pullImage {
           #   imageName = "ghcr.io/lukegus/termix";
           #   imageDigest = "sha256:402f918e3c32aad6d928df8ba6ee39c6fd1a6e250369d86e3a521635a3286a7a";
@@ -688,9 +689,9 @@
           autoStart = true;
         };
 
-        fastapi-dls = {
+        fastapi-dls = lib.mkIf false {
           image = "collinwebdesigns/fastapi-dls:latest";
-          pull = "always";
+
           # imageFile = pkgs.dockerTools.pullImage {
           #   imageName = "collinwebdesigns/fastapi-dls";
           #   imageDigest = "sha256:bd62fc80bdf3ca6383b443498e2f553690d2ce111254204f581926e1505acb56";
