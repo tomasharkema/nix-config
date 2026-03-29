@@ -10,7 +10,6 @@
         overrideStrategy = "asDropin";
         wantedBy = ["multi-user.target"];
         description = "%i service with docker compose";
-        partOf = ["docker.service"];
         after = ["docker.service"];
         requires = ["docker.service"];
 
@@ -19,10 +18,9 @@
         };
 
         serviceConfig = {
-          Type = "oneshot";
-          RemainAfterExit = true;
+          Type = "simple";
           WorkingDirectory = "/etc/docker/compose/%i";
-          ExecStart = "${pkgs.docker-compose}/bin/docker-compose up -d --remove-orphans";
+          ExecStart = "${pkgs.docker-compose}/bin/docker-compose up";
           ExecStop = "${pkgs.docker-compose}/bin/docker-compose down";
         };
       };

@@ -252,7 +252,7 @@
       # locate.enable = true;
       nixos-cli = {
         enable = true;
-        prebuildOptionCache = lib.warn "TODO: make `nixos-cli.prebuildOptionCache` work..." false; # true;
+        option-cache.enable = lib.warn "TODO: make `nixos-cli.option-cache` work..." false; # true;
       };
       envfs.enable = true;
       lvm = {

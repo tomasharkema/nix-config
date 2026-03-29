@@ -54,8 +54,6 @@ in {
         [
           custom.unifi-tui
           tree #tre-command
-          yazi
-
           # lrzsz
           # devcontainer
           picotool
@@ -137,7 +135,11 @@ in {
     programs = {
       # freetube.enable = true;
       info.enable = true;
-      yazi.enable = true;
+      yazi = {
+        enable = true;
+        enableZshIntegration = true;
+      };
+
       home-manager.enable = true;
 
       nix-index-database = {

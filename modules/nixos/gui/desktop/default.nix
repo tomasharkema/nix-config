@@ -221,7 +221,7 @@ in {
           p:
             with p; [
               ret-sync
-              gnudisassembler
+              # gnudisassembler
               findcrypt
               ghidra-delinker-extension
               ghidra-firmware-utils
