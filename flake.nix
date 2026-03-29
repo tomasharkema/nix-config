@@ -93,6 +93,7 @@
         niri.overlays.niri
         nur-xddxdd.overlays.default
         nix-cachyos-kernel.overlays.pinned
+        nix-yazi-plugins.overlays.default
       ];
 
       homes.modules = with inputs; [
@@ -105,7 +106,7 @@
         # niri.homeModules.niri
         dank-material-shell.homeModules.dank-material-shell
         # dank-material-shell.homeModules.dank-material-shell.niri
-        # dsearch.homeModules.default
+        dsearch.homeModules.default
       ];
 
       systems.modules = {
@@ -830,7 +831,7 @@
     # };
 
     nix-yazi-plugins = {
-      url = "github:lordkekz/nix-yazi-plugins?ref=yazi-v0.2.5";
+      url = "github:lordkekz/nix-yazi-plugins?ref=yazi-v0.3.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

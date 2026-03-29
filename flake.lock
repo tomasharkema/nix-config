@@ -106,11 +106,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774616169,
-        "narHash": "sha256-fP4bU3SOH5sefSl6EagqULFs+bXoo3h3VLQCCyJplo4=",
+        "lastModified": 1774799062,
+        "narHash": "sha256-U9RGxFsLeKivD1+7sVXj5TltHGfB4m/dkn3dENT2fSM=",
         "owner": "catppuccin",
         "repo": "nix",
-        "rev": "e616c61cd9f7b05b32af266bc005fa266860dacf",
+        "rev": "948a8ee84858d053b83f01c8c168f9f4347937e6",
         "type": "github"
       },
       "original": {
@@ -1438,16 +1438,16 @@
         "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1724363922,
-        "narHash": "sha256-AsOuKoNTTuTbLMQfllYVrt2YmIIhJdSo0TfcQDJvOkI=",
+        "lastModified": 1724616035,
+        "narHash": "sha256-aS/m5J1wURbL+BPmiaRkICnW2xb86CaeS09qjHZUQX8=",
         "owner": "lordkekz",
         "repo": "nix-yazi-plugins",
-        "rev": "00ed0d4363af5574c40c00067c83dabd17a08501",
+        "rev": "b1b29fee9b1118a75730c80479f6f146d7a5c7af",
         "type": "github"
       },
       "original": {
         "owner": "lordkekz",
-        "ref": "yazi-v0.2.5",
+        "ref": "yazi-v0.3.1",
         "repo": "nix-yazi-plugins",
         "type": "github"
       }
