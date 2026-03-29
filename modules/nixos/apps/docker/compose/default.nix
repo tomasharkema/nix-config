@@ -10,8 +10,9 @@
         overrideStrategy = "asDropin";
         wantedBy = ["multi-user.target"];
         description = "%i service with docker compose";
-        after = ["docker.service"];
-        requires = ["docker.service"];
+
+        after = ["docker.service" "docker.socket" "network-online.target"];
+        wants = ["network-online.target"];
 
         unitConfig = {
           ConditionPathExists = ["/etc/docker/compose/%i"];
