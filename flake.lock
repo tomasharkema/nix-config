@@ -218,11 +218,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1774801701,
-        "narHash": "sha256-ow4GJL89+hZ/XPzRnLinA1YH+lAYnyIF0foduhbNR2s=",
+        "lastModified": 1774823828,
+        "narHash": "sha256-mFYkiLUXM4zKPAOncrYBeBQHVvF/xzaf5dZFCERP5+s=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "2b9f3a9eef59ea831c9f11f731b967db2aafbc9f",
+        "rev": "802b23ed603e6d73480ad7af0c1e868533a3300f",
         "type": "github"
       },
       "original": {
@@ -2828,11 +2828,11 @@
     "zsh-tab-title": {
       "flake": false,
       "locked": {
-        "lastModified": 1774649880,
-        "narHash": "sha256-dHYNHgtzcwKTepFI99zfhGS9RVLrLKjVf24+TX8BctY=",
+        "lastModified": 1774815182,
+        "narHash": "sha256-2mgK9fXRyiWWjy6TewqUmAZHaef+NEkCE4D0acNJ1jo=",
         "owner": "trystan2k",
         "repo": "zsh-tab-title",
-        "rev": "e2d8b7345d1c76a23c5e86e3d9427e75d7e17ff4",
+        "rev": "dfd469b704638dd596aba5695f1723a7c233fe4b",
         "type": "github"
       },
       "original": {
