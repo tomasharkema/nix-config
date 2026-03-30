@@ -131,7 +131,7 @@
     openra
     openrct2
     openrisk
-    openrw
+    # openrw
     openswitcher
     pavucontrol
     pdfarranger
