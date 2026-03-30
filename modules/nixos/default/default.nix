@@ -274,6 +274,12 @@
       #   '';
       # };
       fanout.enable = true;
+      journald = {
+        extraConfig = ''
+          SystemMaxUse=1G
+          MaxRetentionSec=90day
+        '';
+      };
 
       smartd = {
         enable = true;
@@ -445,7 +451,13 @@
         ];
 
         extraRules = ''
-          SUBSYSTEM=="hidraw", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1915", ATTRS{idProduct}=="521f", ATTRS{product}=="OpenSK", MODE="0660", GROUP="logindev", TAG+="uaccess"
+          SUBSYSTEM=="hidraw", SUBSYSTEMS=="usb", \
+            ATTRS{idVendor}=="1915", \
+            ATTRS{idProduct}=="521f", \
+            ATTRS{product}=="OpenSK", \
+            MODE="0660", \
+            GROUP="logindev", \
+            TAG+="uaccess"
 
           KERNEL=="rtc0", GROUP="audio"
           KERNEL=="hpet", GROUP="audio"
