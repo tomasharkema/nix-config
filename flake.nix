@@ -87,9 +87,7 @@
         nixvim.overlays.default
         # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
-
-        nixpkgs-esp-dev.overlays.default
-
+        # nixpkgs-esp-dev.overlays.default
         niri.overlays.niri
         nur-xddxdd.overlays.default
         nix-cachyos-kernel.overlays.pinned
@@ -784,11 +782,11 @@
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
 
-    nixpkgs-esp-dev = {
-      # url = "github:mirrexagon/nixpkgs-esp-dev";
-      url = "github:waj/nixpkgs-esp-dev/update-python-packages-esp-idf-5.5.1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixpkgs-esp-dev = {
+    #   url = "github:mirrexagon/nixpkgs-esp-dev";
+    #   # url = "github:waj/nixpkgs-esp-dev/update-python-packages-esp-idf-5.5.1";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     dgop = {
       url = "github:AvengeMedia/dgop";
