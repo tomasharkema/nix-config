@@ -37,6 +37,7 @@ in {
       brews = [
         "cocoapods"
         "xcodes"
+        "swiftly"
         "xcbeautify"
         # "xcpretty"
         "swiftlint"
