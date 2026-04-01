@@ -8,7 +8,7 @@
   imports = [./match-blocks.nix];
 
   config = {
-    services.gnome-keyring.enable = true;
+    services.gnome-keyring.enable = !pkgs.stdenvNoCC.isDarwin;
     home.packages = [pkgs.gcr];
 
     programs.ssh = {

@@ -89,7 +89,7 @@
         # opentelemetry-nix.overlays.default
         # nixpkgs-esp-dev.overlays.default
         niri.overlays.niri
-        nur-xddxdd.overlays.default
+        # nur-xddxdd.overlays.default
         nix-cachyos-kernel.overlays.pinned
         nix-yazi-plugins.overlays.default
       ];
@@ -757,14 +757,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nur-xddxdd = {
-      url = "github:xddxdd/nur-packages";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        nix-cachyos-kernel.follows = "nix-cachyos-kernel";
-        nix-index-database.follows = "nix-index-database";
-      };
-    };
+    # nur-xddxdd = {
+    #   url = "github:xddxdd/nur-packages";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     nix-cachyos-kernel.follows = "nix-cachyos-kernel";
+    #     nix-index-database.follows = "nix-index-database";
+    #   };
+    # };
 
     tsnsrv = {
       url = "github:boinkor-net/tsnsrv";

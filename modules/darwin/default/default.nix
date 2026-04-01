@@ -20,6 +20,9 @@
   #     };
   #   };
   # };
+  options = {
+    apps._1password.gui.enable = lib.mkEnableOption "1password";
+  };
 
   config = {
     age = {
@@ -67,6 +70,10 @@
         nh
         nil
         direnv
+
+        nix-search-cli
+        manix
+        nox
         # custom.rust-conn
         alejandra
       ]);

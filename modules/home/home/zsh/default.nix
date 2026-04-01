@@ -6,16 +6,16 @@
   ...
 }: {
   config = {
-    assertions =
-      builtins.map (
-        n: let
-          p = "${n.src}/${n.file}";
-        in {
-          message = "${n.name} doesnt exist (${p})";
-          assertion = builtins.pathExists p;
-        }
-      )
-      config.programs.zsh.plugins;
+    # assertions =
+    # builtins.map (
+    #   n: let
+    #     p = "${n.src}/${n.file}";
+    #   in {
+    #     message = "${n.name} doesnt exist (${p})";
+    #     assertion = builtins.pathExists p;
+    #   }
+    # )
+    # config.programs.zsh.plugins;
 
     programs = {
       zoxide.enable = true;
@@ -149,21 +149,21 @@
         plugins = with pkgs; let
           ohMyZshSource = inputs.ohmyzsh;
         in [
-          {
-            name = "sudo";
-            file = "plugins/sudo/sudo.plugin.zsh";
-            src = ohMyZshSource;
-          }
-          {
-            name = "kitty";
-            file = "plugins/kitty/kitty.plugin.zsh";
-            src = ohMyZshSource;
-          }
-          {
-            name = "websearch";
-            file = "plugins/web-search/web-search.plugin.zsh";
-            src = ohMyZshSource;
-          }
+          # {
+          #   name = "sudo";
+          #   file = "plugins/sudo/sudo.plugin.zsh";
+          #   src = ohMyZshSource;
+          # }
+          # {
+          #   name = "kitty";
+          #   file = "plugins/kitty/kitty.plugin.zsh";
+          #   src = ohMyZshSource;
+          # }
+          # {
+          #   name = "websearch";
+          #   file = "plugins/web-search/web-search.plugin.zsh";
+          #   src = ohMyZshSource;
+          # }
 
           # {
           #   name = "termsupport";
@@ -175,11 +175,11 @@
           #   file = "plugins/1password/1password.plugin.zsh";
           #   src = ohMyZshSource;
           # }
-          rec {
-            name = src.pname;
-            file = "share/zsh-z/zsh-z.plugin.zsh";
-            src = zsh-z;
-          }
+          # rec {
+          #   name = src.pname;
+          #   file = "share/zsh-z/zsh-z.plugin.zsh";
+          #   src = zsh-z;
+          # }
           # rec {
           #   name = src.pname;          # dev = ''
           #   nix develop --profile dev-profile -c true && \
@@ -204,41 +204,41 @@
           #   file = "share/zsh-bd/bd.plugin.zsh";
           #   src = zsh-bd;
           # }
-          rec {
-            name = src.pname;
-            file = "share/zsh-defer/zsh-defer.plugin.zsh";
-            src = zsh-defer;
-          }
-          rec {
-            name = src.pname;
-            file = "share/zsh/zsh-edit/zsh-edit.plugin.zsh";
-            src = zsh-edit;
-          }
-          rec {
-            name = src.pname;
-            file = "share/zsh/zsh-forgit/forgit.plugin.zsh";
-            src = zsh-forgit;
-          }
+          # rec {
+          #   name = src.pname;
+          #   file = "share/zsh-defer/zsh-defer.plugin.zsh";
+          #   src = zsh-defer;
+          # }
+          # rec {
+          #   name = src.pname;
+          #   file = "share/zsh/zsh-edit/zsh-edit.plugin.zsh";
+          #   src = zsh-edit;
+          # }
+          # rec {
+          #   name = src.pname;
+          #   file = "share/zsh/zsh-forgit/forgit.plugin.zsh";
+          #   src = zsh-forgit;
+          # }
           # rec {
           #   name = src.pname;
           #   file = "share/wd/wd.plugin.zsh";
           #   src = zsh-wd;
           # }
-          rec {
-            name = src.pname;
-            file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
-            src = zsh-nix-shell;
-          }
-          rec {
-            name = src.pname;
-            file = "share/zsh/plugins/command-time/command-time.plugin.zsh";
-            src = zsh-command-time;
-          }
-          rec {
-            name = src.pname;
-            file = "share/zsh/plugins/nix/nix.plugin.zsh";
-            src = nix-zsh-completions;
-          }
+          # rec {
+          #   name = src.pname;
+          #   file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
+          #   src = zsh-nix-shell;
+          # }
+          # rec {
+          #   name = src.pname;
+          #   file = "share/zsh/plugins/command-time/command-time.plugin.zsh";
+          #   src = zsh-command-time;
+          # }
+          # rec {
+          #   name = src.pname;
+          #   file = "share/zsh/plugins/nix/nix.plugin.zsh";
+          #   src = nix-zsh-completions;
+          # }
           # {
           #   name = "enhancd";
           #   file = "init.sh";
@@ -249,31 +249,31 @@
           #     sha256 = "0iqa9j09fwm6nj5rpip87x3hnvbbz9w9ajgm6wkrd5fls8fn8i5g";
           #   };
           # }
-          {
-            name = "zsh-async";
-            file = "async.zsh";
-            src = inputs.zsh-async;
-          }
-          {
-            name = "complete-ng";
-            file = "complete-ng.plugin.zsh";
-            src = inputs.complete-ng;
-          }
-          {
-            name = "zsh-colored-man-pages";
-            file = "colored-man-pages.plugin.zsh";
-            src = inputs.zsh-colored-man-pages;
-          }
-          {
-            name = "zsh-tab-title";
-            file = "zsh-tab-title.plugin.zsh";
-            src = inputs.zsh-tab-title;
-          }
-          {
-            name = "zsh-smartinput";
-            file = "smartinput.plugin.zsh";
-            src = inputs.zsh-smartinput;
-          }
+          # {
+          #   name = "zsh-async";
+          #   file = "async.zsh";
+          #   src = inputs.zsh-async;
+          # }
+          # {
+          #   name = "complete-ng";
+          #   file = "complete-ng.plugin.zsh";
+          #   src = inputs.complete-ng;
+          # }
+          # {
+          #   name = "zsh-colored-man-pages";
+          #   file = "colored-man-pages.plugin.zsh";
+          #   src = inputs.zsh-colored-man-pages;
+          # }
+          # {
+          #   name = "zsh-tab-title";
+          #   file = "zsh-tab-title.plugin.zsh";
+          #   src = inputs.zsh-tab-title;
+          # }
+          # {
+          #   name = "zsh-smartinput";
+          #   file = "smartinput.plugin.zsh";
+          #   src = inputs.zsh-smartinput;
+          # }
         ];
       };
     };
