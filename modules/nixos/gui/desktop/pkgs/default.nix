@@ -5,7 +5,7 @@
   inputs,
   ...
 }: let
-  bottles = bottles.override {removeWarningPopup = true;};
+  bottles-removed = pkgs.bottles.override {removeWarningPopup = true;};
   pks = with pkgs; [
     # keep-sorted start
     # bitwarden-cli
@@ -20,7 +20,7 @@
     bluetooth_battery
     # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".sdkFull
     # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".hosttools
-    bottles
+    bottles-removed
     boxbuddy
     buttermanager
     cameractrls
