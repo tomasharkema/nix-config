@@ -192,9 +192,12 @@
                   rekey = {
                     masterIdentities = [./secrets/age-yubikey-identity-usbc.pub];
 
-                    # extraEncryptionPubkeys = [
-                    #   ./secrets/age-yubikey-identity-usba.pub
-                    # ];
+                    agePlugins = with pkgs; [
+                      age-plugin-1p
+                      age-plugin-sss
+                      age-plugin-tpm
+                      age-plugin-yubikey
+                    ];
 
                     storageMode = "local";
                     localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";

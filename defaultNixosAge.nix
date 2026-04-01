@@ -15,10 +15,6 @@ in {
           # "/home/tomas/.ssh/id_ed25519"
         ];
 
-        extraEncryptionPubkeys = [
-          ./secrets/age-yubikey-identity-usba.pub
-        ];
-
         agePlugins = with pkgs; [
           age-plugin-1p
           age-plugin-sss
