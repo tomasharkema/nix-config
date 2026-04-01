@@ -21,7 +21,7 @@
   #   };
   # };
   options = {
-    apps._1password.gui.enable = lib.mkEnableOption "1password";
+    apps._1password.gui.enable = lib.mkEnableOption "1password" // {default = true;};
   };
 
   config = {

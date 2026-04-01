@@ -21,6 +21,7 @@ in {
       gopls
       gotools
       golangci-lint
+      uv
     ];
   };
 }
