@@ -71,6 +71,7 @@
     file-roller
     filezilla
     flamp
+    flatpak-builder
     fldigi
     fllog
     font-manager
