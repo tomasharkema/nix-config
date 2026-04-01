@@ -60,22 +60,23 @@
         # nscan
       ])
       ++ (with pkgs; [
-        yubico-piv-tool
-        lrzsz
-        # dosbox-x
-        nixd
-        direnv
-        devenv
+        # keep-sorted start
         agenix-rekey
-        nh
-        nil
-        direnv
-
-        nix-search-cli
-        manix
-        nox
         # custom.rust-conn
         alejandra
+        attic-client
+        devenv
+        direnv
+        lrzsz
+        manix
+        nh
+        nil
+        nix-search-cli
+        # dosbox-x
+        nixd
+        nox
+        yubico-piv-tool
+        # keep-sorted end
       ]);
 
     environment.pathsToLink = [
@@ -94,31 +95,33 @@
 
     fonts = {
       packages = with pkgs; [
-        nerd-fonts.iosevka
-        font-awesome
-        powerline-fonts
-        powerline-symbols
-        custom.din
-        custom.computer-modern
-        custom.futura
-        google-fonts
-        noto-fonts
-        noto-fonts-color-emoji
-        noto-fonts-cjk-sans
-        nerd-fonts.jetbrains-mono
-        nerd-fonts.terminess-ttf
-        ubuntu-classic
-        pkgs.custom.neue-haas-grotesk
-        custom.fast-font
-        # helvetica
-        virglrenderer
-        vegur # the official NixOS font
+        # keep-sorted start
         b612
-        inter
         bakoma_ttf
-        lmmath
         # exult
         cm_unicode
+        custom.computer-modern
+        custom.din
+        custom.fast-font
+        custom.futura
+        font-awesome
+        google-fonts
+        inter
+        lmmath
+        nerd-fonts.iosevka
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.terminess-ttf
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-color-emoji
+        pkgs.custom.neue-haas-grotesk
+        powerline-fonts
+        powerline-symbols
+        ubuntu-classic
+        vegur
+        # helvetica
+        virglrenderer
+        # keep-sorted end
       ];
     };
 
