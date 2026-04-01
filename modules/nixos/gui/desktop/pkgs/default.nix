@@ -5,11 +5,9 @@
   inputs,
   ...
 }: let
+  bottles = bottles.override {removeWarningPopup = true;};
   pks = with pkgs; [
     # keep-sorted start
-    # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".sdkFull
-    # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".hosttools
-    (bottles.override {removeWarningPopup = true;})
     # bitwarden-cli
     # bitwarden-desktop
     # bitwarden-menu
@@ -20,6 +18,9 @@
     bazaar
     bluebubbles
     bluetooth_battery
+    # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".sdkFull
+    # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".hosttools
+    bottles
     boxbuddy
     buttermanager
     cameractrls
