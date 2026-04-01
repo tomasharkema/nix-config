@@ -214,7 +214,7 @@
       #   };
       # };
 
-      immich = {
+      immich = lib.mkIf false {
         enable = true;
         host = "0.0.0.0";
         openFirewall = true;
