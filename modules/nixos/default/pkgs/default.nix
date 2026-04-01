@@ -62,6 +62,7 @@
         custom.ssh-proxy-agent
         custom.sshm
         custom.ssm
+        custom.swiftly
         custom.tailscale-tui
         custom.zide
         # rmfuse
