@@ -19,6 +19,12 @@
           rekeyFile = ./attic.age;
           group = config.services.atticd.group;
           owner = config.services.atticd.user;
+
+          generator = {
+            script = {pkgs, ...}: ''
+              echo "ATTIC_SERVER_TOKEN_RS256_SECRET_BASE64=$(${pkgs.openssl}/bin/openssl genrsa -traditional 4096 | ${pkgs.base64}/bin/base64 -w0)"
+            '';
+          };
         };
 
         cloudflared.rekeyFile = ./cloudflared.age;
