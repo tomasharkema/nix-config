@@ -251,7 +251,7 @@ in {
         useTmpfs = true;
       };
 
-      kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
+      kernelPackages = lib.mkForce pkgs.linuxPackages_6_18;
 
       supportedFilesystems = [
         "xfs"
@@ -262,9 +262,7 @@ in {
       ];
 
       kernelParams = [
-        "console=tty1"
-        "console=ttyS0,115200n8r"
-        "console=ttyS2,115200n8r"
+        "console=ttyS2,115200"
         # "earlyprintk=ttyS2"
         # "rootdelay=300"
         "panic=1"
