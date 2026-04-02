@@ -23,6 +23,8 @@ in {
       container_additional_volumes="/nix/store:/nix/store:ro /etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro"
     '';
 
+    users.users."tomas".extraGroups = ["docker"];
+
     virtualisation = {
       oci-containers = {
         backend = "docker";
@@ -61,7 +63,7 @@ in {
       docker = {
         enable = true;
         enableOnBoot = true;
-        storageDriver = "overlay2";
+        storageDriver = "btrfs";
         liveRestore = true;
 
         autoPrune = {
@@ -69,11 +71,6 @@ in {
           dates = "weekly";
           persistent = true;
           randomizedDelaySec = "45min";
-        };
-
-        rootless = {
-          enable = true;
-          setSocketVariable = true;
         };
       };
     };

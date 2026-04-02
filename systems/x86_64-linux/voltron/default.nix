@@ -128,7 +128,7 @@
         spi = {};
         gpio = {};
       };
-      users.tomas.extraGroups = ["spi" "gpio" "docker"];
+      users.tomas.extraGroups = ["spi" "gpio"];
     };
 
     # security.pam.services.login.fprintAuth = lib.mkForce false;

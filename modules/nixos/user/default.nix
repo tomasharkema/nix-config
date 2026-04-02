@@ -97,8 +97,6 @@
             "seat"
             "kvm"
             "libvirtd"
-            "podman"
-            "docker"
             "onepassword"
             "abrt"
             "wireshark"
