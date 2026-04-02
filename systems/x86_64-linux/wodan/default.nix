@@ -70,12 +70,6 @@
       networkmanager = {
         enable = true;
 
-        settings = {
-          device = {
-            "wifi.scan-rand-mac-address" = "no";
-          };
-        };
-
         wifi = {
           backend = "iwd";
         };

@@ -129,8 +129,30 @@
 
     networking = {
       # hostName = "dell-2"; # Define your hostname.
-      networkmanager.enable = true;
-      # wireless.enable = true;
+      networkmanager = {
+        enable = true;
+        wifi = {
+          backend = "iwd";
+        };
+      };
+      wireless = {
+        enable = false;
+        iwd = {
+          enable = true;
+          settings = {
+            Settings = {
+              AutoConnect = true;
+              AlwaysRandomizeAddress = false;
+            };
+            Network = {
+              EnableIPv6 = true;
+              RoutePriorityOffset = 300;
+            };
+            DriverQuirks.DefaultInterface = "wlan0";
+          };
+        };
+      };
+
       firewall = {
         enable = true;
         allowPing = true;

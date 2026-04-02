@@ -11,7 +11,7 @@
     # bitwarden-cli
     # bitwarden-desktop
     # bitwarden-menu
-    _86Box-with-roms
+    _86box-with-roms
     angryipscanner
     antares
     arduino-ide
@@ -165,7 +165,6 @@
     smuview
     solaar
     spi-tools
-    # solana-cli
     spotify
     sqlitebrowser
     sublime-merge

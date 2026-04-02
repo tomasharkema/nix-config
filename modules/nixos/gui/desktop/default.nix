@@ -202,6 +202,9 @@ in {
     };
 
     programs = {
+      # nix-monitor = {
+      #   enable = true;
+      # };
       # pulseview.enable = true;
       sniffnet.enable = true;
       television = {

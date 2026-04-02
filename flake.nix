@@ -143,6 +143,7 @@
           dank-material-shell.nixosModules.greeter
 
           nixos-cli.nixosModules.nixos-cli
+          # nix-monitor.nixosModules.default
 
           ./defaultNixosAge.nix
           (
@@ -841,37 +842,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-monitor = {
-      url = "github:antonjah/nix-monitor";
-    };
-
-    zsh-colored-man-pages = {
-      url = "github:ael-code/zsh-colored-man-pages";
-      flake = false;
-    };
-    zsh-async = {
-      url = "github:mafredri/zsh-async";
-      flake = false;
-    };
-    ohmyzsh = {
-      url = "github:ohmyzsh/ohmyzsh";
-      flake = false;
-    };
-    zsh-tio = {
-      url = "github:JBarberU/zsh-tio";
-      flake = false;
-    };
-    complete-ng = {
-      url = "github:joknarf/complete-ng";
-      flake = false;
-    };
-    zsh-tab-title = {
-      url = "github:trystan2k/zsh-tab-title";
-      flake = false;
-    };
-    zsh-smartinput = {
-      url = "github:momo-lab/zsh-smartinput";
-      flake = false;
-    };
+    # nix-monitor = {
+    #   url = "github:antonjah/nix-monitor";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 }
