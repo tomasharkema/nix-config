@@ -115,7 +115,10 @@ in {
 
       usePredictableInterfaceNames = true;
       useDHCP = false;
-      networkmanager.enable = true;
+      networkmanager = {
+        enable = true;
+        unmanaged = ["*"];
+      };
 
       firewall = {
         allowPing = true;
