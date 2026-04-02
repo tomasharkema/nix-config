@@ -180,15 +180,6 @@ in {
     # };
   };
 
-  devcontainer = {
-    enable = true;
-    settings.customizations.vscode.extensions = [
-      "Catppuccin.catppuccin-vsc-pack"
-      "jnoortheen.nix-ide"
-      "mkhl.direnv"
-      "kamadorueda.alejandra"
-    ];
-  };
   difftastic.enable = true;
 
   # dotenv.enable = true;
