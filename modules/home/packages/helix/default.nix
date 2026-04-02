@@ -71,10 +71,10 @@ in {
           args = ["--server"];
         };
 
-        yaml = {
-          command = "${pkgs.nodePackages.yaml-language-server}/bin/yaml-language-server";
-          args = ["--stdio"];
-        };
+        # yaml = {
+        #   command = "${pkgs.nodePackages.yaml-language-server}/bin/yaml-language-server";
+        #   args = ["--stdio"];
+        # };
 
         clangd = {
           command = "${lib.getExe' pkgs.clang-tools "clangd"}";
@@ -125,10 +125,10 @@ in {
           auto-format = true;
           file-types = ["css"];
           language-servers = ["css"];
-          formatter = {
-            command = "${lib.getExe pkgs.nodePackages.prettier}";
-            args = ["--stdin-filepath" "rofl.css"];
-          };
+          # formatter = {
+          #   command = "${lib.getExe pkgs.nodePackages.prettier}";
+          #   args = ["--stdin-filepath" "rofl.css"];
+          # };
         }
         {
           name = "scss";
@@ -141,10 +141,10 @@ in {
           auto-format = true;
           file-types = ["html"];
           language-servers = ["html"];
-          formatter = {
-            command = "${lib.getExe pkgs.nodePackages.prettier}";
-            args = ["--stdin-filepath" "rofl.html"];
-          };
+          # formatter = {
+          #   command = "${lib.getExe pkgs.nodePackages.prettier}";
+          #   args = ["--stdin-filepath" "rofl.html"];
+          # };
         }
         {
           name = "rust";
@@ -227,10 +227,10 @@ in {
           auto-format = true;
           file-types = ["markdown" "md"];
           language-servers = ["markdown-oxide" "marksman"];
-          formatter = {
-            command = "${lib.getExe pkgs.nodePackages.prettier}/bin/prettier";
-            args = ["--stdin-filepath" "rofl.md"];
-          };
+          # formatter = {
+          #   command = "${lib.getExe pkgs.nodePackages.prettier}/bin/prettier";
+          #   args = ["--stdin-filepath" "rofl.md"];
+          # };
         }
         {
           name = "matlab";
@@ -276,7 +276,16 @@ in {
         statusline = {
           left = ["mode" "file-name" "read-only-indicator" "file-modification-indicator"];
           center = ["version-control"];
-          right = ["diagnostics" "selections" "register" "position-percentage" "position" "file-encoding" "file-type" "spinner"];
+          right = [
+            "diagnostics"
+            "selections"
+            "register"
+            "position-percentage"
+            "position"
+            "file-encoding"
+            "file-type"
+            "spinner"
+          ];
 
           mode = {
             normal = "NORMAL";

@@ -102,7 +102,6 @@
         gptfdisk
         havn
         hdparm
-        helix
         hextazy
         htmlq
         hueadm
