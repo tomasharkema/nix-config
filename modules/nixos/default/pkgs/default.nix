@@ -68,6 +68,7 @@
         custom.zide
         # rmfuse
         cutecom
+        dblab
         ddrescue
         devcontainer
         devtodo

@@ -16,6 +16,7 @@
     antares
     arduino-ide
     bazaar
+    beekeeper-studio
     bluebubbles
     bluetooth_battery
     # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".sdkFull
@@ -166,6 +167,7 @@
     solaar
     spi-tools
     spotify
+    sql-studio
     sqlitebrowser
     sublime-merge
     sway-launcher-desktop
