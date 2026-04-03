@@ -951,7 +951,7 @@
         "sysfs_id": "/class/block/zram0",
         "unix_device_names": [
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/d8d6dc20-da7c-424b-9478-903145ad303f",
+          "/dev/disk/by-uuid/cdc6264b-13c8-47d2-a465-fb0913953695",
           "/dev/zram0"
         ],
         "resources": [
@@ -1020,25 +1020,17 @@
             "type": "io",
             "base": 12288,
             "range": 128,
-            "enabled": true,
+            "enabled": false,
             "access": "read_write"
           }
         ],
         "detail": {
           "function": 0,
-          "command": 1031,
+          "command": 6,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
         },
-        "driver": "nvidia",
-        "driver_module": "nvidia",
-        "drivers": [
-          "nvidia"
-        ],
-        "driver_modules": [
-          "nvidia"
-        ],
         "module_alias": "pci:v000010DEd00001C8Csv00001028sd0000087Cbc03sc02i00"
       },
       {
@@ -1144,7 +1136,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.19.2-cachyos xhci-hcd",
+          "name": "Linux 6.19.11-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1158,7 +1150,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.19.2-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.19.11-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -1231,7 +1223,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.19.2-cachyos xhci-hcd",
+          "name": "Linux 6.19.11-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1245,7 +1237,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 6.19.2-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.19.11-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -1496,7 +1488,7 @@
     ],
     "mouse": [
       {
-        "index": 53,
+        "index": 54,
         "attached_to": 0,
         "bus_type": {
           "hex": "0081",
@@ -1695,28 +1687,6 @@
     ],
     "network_interface": [
       {
-        "index": 49,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_names": [
-          "lo"
-        ]
-      },
-      {
         "index": 50,
         "attached_to": 17,
         "class_list": [
@@ -1755,6 +1725,28 @@
         ],
         "driver_modules": [
           "ath10k_pci"
+        ]
+      },
+      {
+        "index": 52,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_names": [
+          "lo"
         ]
       }
     ],
