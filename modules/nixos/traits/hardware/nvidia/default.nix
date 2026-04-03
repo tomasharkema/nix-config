@@ -27,7 +27,7 @@
   selectedPkg =
     if cfg.beta
     then betaPkg
-    else config.boot.kernelPackages.nvidiaPackages.stable;
+    else config.boot.kernelPackages.nvidiaPackages.legacy_580; # stable;
   patchedPkg =
     withPatch false selectedPkg
     # // {
