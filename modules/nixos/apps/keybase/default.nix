@@ -88,7 +88,7 @@ in {
 
     home-manager.users.tomas.services = {
       keybase = {
-        enable = config.gui.enable;
+        enable = true;
       };
 
       kbfs = {
