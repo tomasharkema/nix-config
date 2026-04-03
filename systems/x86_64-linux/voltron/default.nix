@@ -14,6 +14,10 @@
       };
     };
 
+    system.build = {
+      i915-sriov = inputs.nur-xddxdd.packages."${pkgs.stdenv.hostPlatform.system}".i915-sriov.override {kernel = config.boot.kernelPackages.kernel;};
+    };
+
     hardware.facter = {
       reportPath = ./facter.json;
     };
@@ -27,7 +31,6 @@
       snapper.enable = false;
       swap = {
         size = "32G";
-
         resume.enable = true;
       };
     };
@@ -218,9 +221,11 @@
       };
 
       kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
+
       extraModulePackages = [
-        # (inputs.nur-xddxdd.packages."${pkgs.stdenv.hostPlatform.system}".i915-sriov.overrideAttrs {kernel = config.boot.kernelPackages.kernel;})
+        config.system.build.i915-sriov
       ];
+
       recovery = {
         enable = true;
         install = true;

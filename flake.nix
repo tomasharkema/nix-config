@@ -761,14 +761,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nur-xddxdd = {
-    #   url = "github:xddxdd/nur-packages";
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     nix-cachyos-kernel.follows = "nix-cachyos-kernel";
-    #     nix-index-database.follows = "nix-index-database";
-    #   };
-    # };
+    nur-xddxdd = {
+      url = "github:xddxdd/nur-packages";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nix-cachyos-kernel.follows = "nix-cachyos-kernel";
+        nix-index-database.follows = "nix-index-database";
+      };
+    };
 
     tsnsrv = {
       url = "github:boinkor-net/tsnsrv";
