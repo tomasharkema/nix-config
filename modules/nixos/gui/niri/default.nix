@@ -40,6 +40,11 @@ in {
       };
 
       # pathsToLink = ["/share/wayland-sessions"];
+
+      sessionVariables.XDG_DATA_DIRS = [
+        "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
+        "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
+      ];
     };
 
     xdg.portal.config = {
@@ -170,9 +175,9 @@ in {
       };
 
       programs = {
-        # dsearch = {
-        #   enable = true;
-        # };
+        dsearch = {
+          enable = true;
+        };
 
         dank-material-shell = {
           enable = true;

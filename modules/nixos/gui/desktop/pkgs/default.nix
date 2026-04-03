@@ -91,6 +91,7 @@
     gtk-engine-murrine
     guvcview
     handbrake
+    hopper
     httpie-desktop
     i2c-tools
     ida-free

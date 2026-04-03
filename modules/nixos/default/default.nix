@@ -618,6 +618,7 @@
         enable = lib.mkDefault true;
         libraries = with pkgs;
           [
+            # keep-sorted start
             acl
             attr
             bzip2
@@ -627,41 +628,52 @@
             freetype
             fuse3
             icu
+            libgcc.lib
             libnotify
+            libsecret
+            libsecret.dev
             libsodium
             libssh
             libunwind
             libusb1
             libuuid
+            libxml2_13.dev
+            libxml2_13.out
+            ncurses6
+            ncurses6.dev
             nspr
             nss
+            sqlite
+            sqlite.dev
             stdenv.cc.cc
+            systemd
             util-linux
             zlib
             zstd
-            systemd
-            libgcc.lib
+            # keep-sorted end
           ]
           ++ lib.optionals (config.hardware.graphics.enable) [
-            pipewire
-            cups
-            libxkbcommon
-            pango
-            mesa
-            libdrm
-            libglvnd
-            libpulseaudio
-            atk
-            cairo
+            # keep-sorted start
             alsa-lib
             at-spi2-atk
             at-spi2-core
+            atk
+            cairo
+            cups
             gdk-pixbuf
             glib
             gtk3
             libGL
             libappindicator-gtk3
+            libdrm
+            libglvnd
+            libpulseaudio
+            libxkbcommon
+            mesa
+            pango
+            pipewire
             vulkan-loader
+            # keep-sorted end
           ];
       };
 

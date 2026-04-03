@@ -43,6 +43,12 @@ in rec {
 
   pico-sdk = prev.pico-sdk.override {withSubmodules = true;};
 
+  hopper = checkUpdatedUpsteam prev.hopper "5.19.4" prev.hopper.override {
+    libffi_3_3 = checkUpdatedUpsteam prev.libffi_3_3 "3.3" prev.libffi_3_3.overrideAttrs (old: {
+      doCheck = false;
+    });
+  };
+
   lcdproc = prev.lcdproc.overrideAttrs (old: {
     # configureFlags = ["--enable-drivers=all"];
     buildInputs = old.buildInputs ++ [prev.custom.glcd-proc-driver prev.custom.graphlcd-base];

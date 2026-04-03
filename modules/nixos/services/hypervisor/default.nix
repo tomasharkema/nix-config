@@ -208,8 +208,6 @@ in {
       ccache.enable = true;
     };
 
-    hardware.ksm.enable = true;
-
     virtualisation = {
       incus = lib.mkIf cfg.incus.enable {
         enable = true;
