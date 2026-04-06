@@ -63,7 +63,7 @@ in {
       docker = {
         enable = true;
         enableOnBoot = true;
-        storageDriver = "btrfs";
+        storageDriver = "overlay2";
         liveRestore = true;
 
         autoPrune = {
