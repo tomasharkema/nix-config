@@ -313,7 +313,7 @@
 
         settings = {
           listen = "[::]:7125";
-          api-endpoint = "http://silver-star.ling-lizard.ts.net:7125";
+          api-endpoint = "http://silver-star.ling-lizard.ts.net:7125/";
 
           compression = {
             type = "zstd";
