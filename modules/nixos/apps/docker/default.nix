@@ -63,6 +63,7 @@ in {
       docker = {
         enable = true;
         enableOnBoot = true;
+        # using btrfs here causes significant slowdowns...
         storageDriver = "overlay2";
         liveRestore = true;
 
