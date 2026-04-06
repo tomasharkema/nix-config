@@ -112,6 +112,7 @@
       #certmgr.enable = true;
       #step-ca.enable = true;
       #netconsoled.enable = true;
+      esdm.enable = true;
       hypervisor = {
         enable = true;
         iommu.enable = true;
