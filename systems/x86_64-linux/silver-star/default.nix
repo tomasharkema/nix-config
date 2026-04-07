@@ -657,7 +657,7 @@
 
     virtualisation = {
       oci-containers.containers = {
-        ism = {
+        ism = lib.mkIf false {
           image = "teumaauss/ism:latest";
 
           volumes = [
@@ -733,9 +733,8 @@
     powerManagement.powertop.enable = true;
 
     boot = {
-      tmp = {
-        useTmpfs = true;
-      };
+      tmp.useTmpfs = true;
+
       kernel.sysctl = {
         "kernel.unknown_nmi_panic" = 1;
         "fs.inotify.max_user_instances" = 1048576;
@@ -745,8 +744,8 @@
       binfmt.emulatedSystems = ["aarch64-linux"];
 
       kernelParams = [
+        "console=ttyS0,115200"
         "console=tty1"
-        "console=ttyS0,115200n8r"
         # "console=ttyS1,115200n8"
         # "earlyprintk=ttyS0"
         # "intremap=no_x2apic_optout"
