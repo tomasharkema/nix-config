@@ -6,6 +6,14 @@
 }: let
   cfgServer = config.apps.zabbix.server;
   cfgProxy = config.apps.zabbix.proxy;
+
+  zabbixPkg = pkgs.zabbix74;
+  extraPkgs = with pkgs; [
+    net-tools
+    nmap
+    traceroute
+    iputils
+  ];
 in {
   options.apps.zabbix = {
     server.enable = lib.mkEnableOption "zabbix server";
@@ -17,7 +25,10 @@ in {
     #   useNetworkd = true;
     #   networkmanager.enable = lib.mkForce false;
     # };
-    # environment.systemPackages = [pkgs.zabbix-cli pkgs.zabbixctl];
+    environment.systemPackages = with pkgs; [
+      zabbix-cli
+      zabbixctl
+    ];
 
     users.groups.docker.members = ["zabbix-agent"];
 
@@ -28,14 +39,14 @@ in {
         settings = {
           ServerActive = "silver-star.ling-lizard.ts.net";
         };
-        package = pkgs.zabbix74.agent2;
+        package = zabbixPkg.agent2;
       };
 
-      zabbixProxy = lib.mkIf cfgProxy.enable {
+      zabbixProxy = lib.mkIf (cfgProxy.enable && false) {
         enable = true;
         server = "192.168.0.100";
-        package = pkgs.zabbix74.proxy-sqlite;
-        extraPackages = with pkgs; [net-tools nmap traceroute iputils];
+        package = zabbixPkg.proxy-sqlite;
+        extraPackages = extraPkgs;
         settings = {
           CacheSize = "1G";
           SSHKeyLocation = "/var/lib/zabbix/.ssh";
@@ -46,8 +57,8 @@ in {
 
       zabbixServer = lib.mkIf cfgServer.enable {
         enable = true;
-        package = pkgs.zabbix74.server-pgsql;
-        extraPackages = with pkgs; [net-tools nmap traceroute iputils];
+        package = zabbixPkg.server-pgsql;
+        extraPackages = extraPkgs;
         settings = {
           CacheSize = "1G";
           SSHKeyLocation = "/var/lib/zabbix/.ssh";
@@ -79,7 +90,7 @@ in {
         #   hostName = "zabbix.ling-lizard.ts.net";
         #   adminAddr = "webmaster@localhost";
         # };
-        package = pkgs.zabbix74.web;
+        package = zabbixPkg.web;
       };
 
       phpfpm.pools.zabbix = lib.mkIf cfgServer.enable {

@@ -15,7 +15,7 @@ in {
       after = ["network.target" "network-online.target"];
       wants = ["network-online.target"];
       script = ''
-        exec ${lib.getExe pkgs.custom.gpsd-exporter} -d 192.168.9.149:2947
+        exec ${lib.getExe pkgs.custom.gpsd-exporter} -d cm5:2947
       '';
     };
 
