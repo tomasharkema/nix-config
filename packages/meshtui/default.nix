@@ -8,29 +8,24 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "meshtui";
-  version = "0.12.2";
+  version = "0.13.0";
 
   src = fetchFromGitHub {
     owner = "PeterGrace";
     repo = "meshtui";
     rev = "v${version}";
-    hash = "sha256-de0iR89+sVba8Nlrgxzw7bssX1SsrVFSPPNYyBxrWEA=";
+    hash = "sha256-+FthVCj86nTI6R5febyqfJUPBTVKW1KcIWKmdX/YUBM=";
   };
 
-  cargoLock = {
-    lockFile = ./Cargo.lock;
-    outputHashes = {
-      "meshtastic-0.1.6" = "sha256-8VGgXdxMxRfb+oZZV48ZpiD3z83HOs+PvzPKRWDpX40=";
-    };
-  };
+  cargoHash = "sha256-svFpabPBC85mKg6wD1f7YjWAMSzOEgPt4TxFwMGqeO4=";
 
   nativeBuildInputs = [
     protobuf
   ];
 
-  buildInputs = lib.optionals stdenv.isDarwin [
-    # darwin.apple_sdk.frameworks.IOKit
-  ];
+  # buildInputs = lib.optionals stdenv.isDarwin [
+  #   # darwin.apple_sdk.frameworks.IOKit
+  # ];
 
   meta = {
     description = "Console text-user-interface for Meshtastic";
