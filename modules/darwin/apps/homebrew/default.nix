@@ -43,9 +43,14 @@ in {
         "swiftlint"
         "swiftformat"
         "terminal-notifier"
+        "adwaita-icon-theme"
+        "libadwaita"
+        "swiftly"
       ];
 
       casks = [
+        "font-adwaita"
+        "font-adwaita-mono-nerd-font"
         "jetbrains-toolbox"
         "secretive"
         "swiftbar"
