@@ -14,5 +14,5 @@ in {
   # compose2nix = inputs.compose2nix.packages."${system'}".default;
   piratebay = inputs.piratebay.packages."${system'}".default;
   # wezterm = inputs.wezterm.packages."${system'}".default;
-  nixd = inputs.nixd.packages."${system'}".default;
+  # nixd = inputs.nixd.packages."${system'}".default;
 }

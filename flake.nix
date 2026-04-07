@@ -775,10 +775,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixd = {
-      url = "github:nix-community/nixd";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixd = {
+    #   url = "github:nix-community/nixd";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     niri = {
       url = "github:sodiboo/niri-flake";
