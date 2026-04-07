@@ -14,9 +14,9 @@
       };
     };
 
-    system.build = {
-      i915-sriov = inputs.nur-xddxdd.packages."${pkgs.stdenv.hostPlatform.system}".i915-sriov.override {kernel = config.boot.kernelPackages.kernel;};
-    };
+    # system.build = {
+    #   i915-sriov = inputs.nur-xddxdd.packages."${pkgs.stdenv.hostPlatform.system}".i915-sriov.override {kernel = config.boot.kernelPackages.kernel;};
+    # };
 
     hardware.facter = {
       reportPath = ./facter.json;
@@ -222,9 +222,9 @@
 
       kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
 
-      extraModulePackages = [
-        config.system.build.i915-sriov
-      ];
+      # extraModulePackages = [
+      #   config.system.build.i915-sriov
+      # ];
 
       recovery = {
         enable = true;
