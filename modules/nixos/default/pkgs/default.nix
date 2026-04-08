@@ -52,7 +52,7 @@
         # lz4
         # mkchromecast
         # nix-switcher # : needs github auth
-        # custom.contact
+        custom.contact
         custom.discovery-rs
         custom.flightmon
         custom.menu
@@ -129,6 +129,7 @@
         libftdi1
         libgcc.lib
         libgpiod
+        libguestfs-with-appliance
         libheif
         libnotify
         libsecret

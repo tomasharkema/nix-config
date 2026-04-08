@@ -28,8 +28,6 @@
           enable = true;
         };
 
-        dotDir = "${config.xdg.configHome}/zsh";
-
         autocd = true;
 
         history = {
@@ -56,9 +54,6 @@
           LESS = "-R";
           PAGER = "less";
         };
-        envExtra = ''
-          ZSH_CACHE_DIR="${config.xdg.cacheHome}/oh-my-zsh";
-        '';
 
         #nixos-menu () {
         #  ${lib.getExe pkgs.custom.menu}
