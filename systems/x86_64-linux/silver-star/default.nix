@@ -126,6 +126,26 @@
       rsyncd.enable = true;
       # "nix-private-cache".enable = true;
 
+      matrix-conduit = {
+        enable = true;
+        settings.global = {
+          allow_registration = true;
+          # You will need this token when creating your first account.
+          registration_token = "herpderp";
+          server_name = "silver-star.ling-lizard.ts.net";
+          port = 6942;
+          address = "::";
+          database_backend = "rocksdb";
+
+          # See https://docs.conduit.rs/turn.html, and https://github.com/element-hq/synapse/blob/develop/docs/turn-howto.md for more details
+          # turn_uris = [
+          #  "turn:your.turn.url?transport=udp"
+          #  "turn:your.turn.url?transport=tcp"
+          # ];
+          # turn_secret = "your secret";
+        };
+      };
+
       sonarr.enable = true;
       jackett.enable = true;
 
