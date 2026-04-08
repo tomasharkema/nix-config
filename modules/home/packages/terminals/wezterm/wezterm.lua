@@ -53,7 +53,7 @@ config.enable_scroll_bar = true
 config.keys = {
   {
     key = "l",
-    mods = "ALT",
+    mods = "SHIFT|ALT",
     action = wezterm.action.ShowLauncher,
   },
 
