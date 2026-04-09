@@ -36,6 +36,7 @@
     custom.butler
     custom.denon-control
     custom.distrib-dl
+    custom.gitpulsar
     custom.gtk-meshtastic-client
     custom.letters
     custom.manuals
@@ -80,6 +81,7 @@
     gdm-settings
     ghex
     glabels-qt
+    gnome-boxes
     gnomecast
     go-chromecast
     gotop

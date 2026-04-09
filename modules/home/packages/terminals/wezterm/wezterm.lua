@@ -29,7 +29,7 @@ wezterm.plugin.require("@weztermStatus@").apply_to_config(config, {
 config.font = wezterm.font_with_fallback({ -- <built-in>, BuiltIn,
   {
     family = "JetBrainsMono Nerd Font Mono",
-    weight = "Light",
+    weight = "Regular",
   },
   -- /nix/store/664gs7n95z32zpg9mxngrs7r9p85sm5p-noto-fonts-emoji-2.038/share/fonts/noto/NotoColorEmoji.ttf, FontConfig
   -- Assumed to have Emoji Presentation

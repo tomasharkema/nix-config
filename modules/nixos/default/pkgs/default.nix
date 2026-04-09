@@ -8,8 +8,10 @@
   config = {
     environment.systemPackages =
       (with pkgs; [
+        ((ffmpeg-full.override {withUnfree = true;}).overrideAttrs (_: {
+          doCheck = false;
+        }))
         # keep-sorted start
-        ((ffmpeg-full.override {withUnfree = true;}).overrideAttrs (_: {doCheck = false;}))
         agenix-rekey
         aide
         archivemount
@@ -41,6 +43,7 @@
         config.boot.kernelPackages.iio-utils
         config.virtualisation.incus.package.client
         cryptsetup # needed for dm-crypt volumes
+        csa
         ctop
         curl
         curlftpfs
@@ -140,6 +143,7 @@
         lshw
         mbuffer
         minio-client
+        mlt
         more
         mpremote
         mpv
@@ -228,6 +232,7 @@
         sshportal
         starship
         strace
+        subnetcalc
         swapview
         sysstat
         systemctl-tui
