@@ -17,7 +17,6 @@
           "autojump"
           "battery"
           "bgnotify"
-          "brew"
           "colorize"
           "common-aliases"
           "copybuffer"
@@ -81,19 +80,22 @@
           "zsh-interactive-cd"
           # "iterm-tab-color"
           # "you-should-use"
-
           # keep-sorted end
         ]
         ++ (lib.optionals pkgs.stdenv.isDarwin [
+          # keep-sorted start
           "brew"
           "dash"
           "macos"
           "pod"
           "xcode"
+          # keep-sorted end
         ])
         ++ (lib.optionals pkgs.stdenv.isLinux [
-          "systemd"
+          # keep-sorted start
           "firewalld"
+          "systemd"
+          # keep-sorted end
         ]);
       #   # theme = "powerlevel10k/powerlevel10k";
     };

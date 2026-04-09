@@ -9,55 +9,59 @@ in {
   options.apps.homebrew = {enable = lib.mkEnableOption "homebrew" // {default = true;};};
 
   config = lib.mkIf cfg.enable {
-    home-manager.users."${config.user.name}".programs.zsh = {
-      initContent = ''
-        eval "$(/opt/homebrew/bin/brew shellenv)"
+    # home-manager.users."${config.user.name}".programs.zsh = {
+    #   initContent = ''
+    #     eval "$(/opt/homebrew/bin/brew shellenv)"
 
-        export PATH="/Users/tomas/.local/bin:$PATH"
-      '';
-    };
+    #     export PATH="/Users/tomas/.local/bin:$PATH"
+    #   '';
+    # };
 
     system.primaryUser = "${config.user.name}";
 
     homebrew = {
       enable = true;
       onActivation.upgrade = true;
+      enableZshIntegration = true;
 
       masApps = {
-        "UTM" = 1538878817;
-        "Tailscale" = 1475387142;
-        "RDP" = 1295203466;
+        # keep-sorted start
         "Developer" = 640199958;
+        "InYourFace" = 1476964367;
+        "RDP" = 1295203466;
+        "Tailscale" = 1475387142;
         "Telegram" = 747648890;
+        "UTM" = 1538878817;
         "automute" = 1118136179;
         "remarkable" = 1276493162;
-        "InYourFace" = 1476964367;
+        # keep-sorted end
       };
 
       brews = [
+        # keep-sorted start
+        "adwaita-icon-theme"
         "cocoapods"
-        "xcodes"
-        "swiftly"
-        "xcbeautify"
+        "container"
+        "container-compose"
+        "libadwaita"
+        "swiftformat"
         # "xcpretty"
         "swiftlint"
-        "swiftformat"
-        "terminal-notifier"
-        "adwaita-icon-theme"
-        "libadwaita"
         "swiftly"
+        "terminal-notifier"
+        "xcbeautify"
+        "xcodes"
+        # keep-sorted end
       ];
 
       casks = [
+        # keep-sorted start
         "font-adwaita"
         "font-adwaita-mono-nerd-font"
-        "jetbrains-toolbox"
-        "secretive"
-        "swiftbar"
-        "wezterm"
-        "windows-app"
         "ghostty"
-        # "docker"
+        # "kobo"
+        "gitbutler"
+        "jetbrains-toolbox"
         # "spotifyd"
         # "1password"
         # "cleanshot"
@@ -70,10 +74,14 @@ in {
         # "raycast"
         "rectangle"
         "screenflow"
+        "secretive"
         # "slack"
         "spotify"
-        # "kobo"
-        "gitbutler"
+        "swiftbar"
+        "ungoogled-chromium"
+        "wezterm"
+        "windows-app"
+        # keep-sorted end
       ];
     };
   };

@@ -56,7 +56,7 @@ in {
 
       # nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
-      linux-builder = lib.mkIf false {
+      linux-builder = {
         enable = true;
         ephemeral = true;
         maxJobs = 4;
@@ -66,7 +66,7 @@ in {
         ];
         config = {
           virtualisation = {
-            # rosetta.enable = true;
+            rosetta.enable = true;
             darwin-builder = {
               diskSize = 40 * 1024;
               memorySize = 6 * 1024;
@@ -118,7 +118,7 @@ in {
       };
 
       # flake-utils-plus
-      generateRegistryFromInputs = false; # true;
+      generateRegistryFromInputs = true;
       generateNixPathFromInputs = true;
       linkInputs = true;
     };

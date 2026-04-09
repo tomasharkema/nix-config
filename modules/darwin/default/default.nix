@@ -91,19 +91,21 @@
       # synergy.server = {
       #   enable = true;
       # };
+      tailscale.enable = true;
     };
 
     fonts = {
       packages = with pkgs; [
         # keep-sorted start
+        adwaita-fonts
         b612
         bakoma_ttf
-        # exult
         cm_unicode
         custom.computer-modern
         custom.din
         custom.fast-font
         custom.futura
+        exult
         font-awesome
         google-fonts
         inter
