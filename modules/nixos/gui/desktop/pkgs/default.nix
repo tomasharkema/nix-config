@@ -8,9 +8,6 @@
   bottles-removed = pkgs.bottles.override {removeWarningPopup = true;};
   pks = with pkgs; [
     # keep-sorted start
-    # bitwarden-cli
-    # bitwarden-desktop
-    # bitwarden-menu
     _86box-with-roms
     angryipscanner
     antares
@@ -44,6 +41,10 @@
     custom.qefi-entry-manager
     custom.remarkable-cups
     custom.retro-adsb-radar
+    # bitwarden-cli
+    # bitwarden-desktop
+    # bitwarden-menu
+    custom.rgitui
     custom.rust-conn
     custom.toolblex
     custom.usbguard-gnome
