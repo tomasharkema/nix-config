@@ -139,6 +139,7 @@
     openrisk
     # openrw
     openswitcher
+    orbvis
     pavucontrol
     pdfarranger
     pika-backup
