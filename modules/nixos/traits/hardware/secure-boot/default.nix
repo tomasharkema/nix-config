@@ -8,6 +8,12 @@
 in {
   options.traits.hardware.secure-boot = {
     enable = lib.mkEnableOption "secure-boot lanzaboote";
+
+    measuredBoot =
+      (lib.mkEnableOption "secure-boot lanzaboote")
+      // {
+        default = config.traits.hardware.tpm.enable;
+      };
   };
 
   config = lib.mkIf cfg.enable {
@@ -29,7 +35,7 @@ in {
           enable = true;
           # includeChecksumsFromTPM = config.traits.hardware.tpm.enable;
         };
-        measuredBoot = lib.mkIf config.traits.hardware.tpm.enable {
+        measuredBoot = lib.mkIf cfg.measuredBoot {
           enable = true;
           pcrs = [
             0

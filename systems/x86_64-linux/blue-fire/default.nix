@@ -49,7 +49,10 @@ in {
 
       hardware = {
         tpm.enable = true;
-        secure-boot.enable = true;
+        secure-boot = {
+          enable = true;
+          measuredBoot = false;
+        };
         # remote-unlock.enable = false;
         network.xgbe.enable = true;
         nvidia = {
@@ -82,7 +85,11 @@ in {
       distccd = {
         enable = true;
         zeroconf = true;
-        allowedClients = ["127.0.0.1" "192.168.0.0/24" "100.0.0.0/8"];
+        allowedClients = [
+          "127.0.0.1"
+          "192.168.0.0/24"
+          "100.0.0.0/8"
+        ];
         openFirewall = true;
       };
 
