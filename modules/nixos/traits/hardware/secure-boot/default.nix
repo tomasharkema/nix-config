@@ -18,7 +18,7 @@ in {
         # enrollKeys = true;
         pkiBundle = "/var/lib/sbctl";
 
-        configurationLimit = 10;
+        configurationLimit = 8;
         autoGenerateKeys = {
           enable = true;
         };
