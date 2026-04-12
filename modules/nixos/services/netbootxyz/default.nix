@@ -30,11 +30,13 @@ in {
     fileSystems = {
       "/export/netboot" = {
         device = "/mnt/netboot";
-        options = ["bind"];
+        # options = ["bind"];
+        fsType = "bind";
       };
       "/export/tftpboot" = {
         device = "/mnt/tftpboot";
-        options = ["bind"];
+        # options = ["bind"];
+        fsType = "bind";
       };
     };
 
