@@ -38,6 +38,7 @@
     custom.letters
     custom.manuals
     custom.netsleuth
+    custom.one-ware
     custom.qefi-entry-manager
     custom.remarkable-cups
     custom.retro-adsb-radar
