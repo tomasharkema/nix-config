@@ -29,12 +29,12 @@
         "console=ttyAMA10,115200"
       ];
 
-      # loader.raspberry-pi = {
-      # variant = "5";
-      #   bootloader = lib.mkDefault "kernelboot";
-      #   firmwarePackage =
-      #     inputs.nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.raspberrypifw;
-      # };
+      loader.raspberry-pi = {
+        variant = "5";
+        bootloader = "kernel";
+        #   firmwarePackage =
+        #     inputs.nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.raspberrypifw;
+      };
 
       # kernelPackages =
       # inputs.nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi5;
