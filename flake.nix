@@ -107,6 +107,21 @@
         dsearch.homeModules.default
       ];
 
+      # Add a module to a specific host.
+      systems.hosts.raspi5 = {
+        specialArgs = {
+          inherit (inputs) nixos-raspberrypi;
+        };
+        modules = with inputs.nixos-raspberrypi.nixosModules; [
+          raspberry-pi-5.base
+          raspberry-pi-5.page-size-16k
+          # raspberry-pi-5.display-vc4
+          raspberry-pi-5.bluetooth
+
+          inputs.nixos-raspberrypi.lib.inject-overlays
+        ];
+      };
+
       systems.modules = {
         nixos = with inputs; [
           # comin.nixosModules.comin

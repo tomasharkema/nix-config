@@ -140,7 +140,9 @@
         # useZram = lib.mkDefault true;
       };
 
-      kernelPackages = lib.mkDefault pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v4;
+      kernelPackages = lib.mkIf (pkgs.stdenv.hostPlatform.isx86_64) (
+        lib.mkDefault pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v4
+      );
 
       initrd.kernelModules = [
         "ramoops"

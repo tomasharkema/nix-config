@@ -4,17 +4,6 @@
   lib,
   ...
 }: {
-  imports = with inputs; [
-    # raspberry-pi-5.base
-    # raspberry-pi-5.page-size-16k
-    # raspberry-pi-5.display-vc4
-    # raspberry-pi-5.bluetooth
-
-    # raspberry-pi-5.base
-    nixos-raspberrypi.lib.inject-overlays
-    ((inputs.nixos-raspberrypi) + "/modules/raspberrypi.nix")
-  ];
-
   config = {
     age.rekey = {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIN/5vuqA+Pnjl5lNUIs6sJapHiuevrHZftMPiP8EdpO root@nixos";
@@ -24,10 +13,10 @@
       enableRedistributableFirmware = true;
       i2c.enable = true;
 
-      # deviceTree = {
-      #   enable = true;
-      #   filter = "*rpi*";
-      # };
+      deviceTree = {
+        enable = true;
+        filter = "*rpi*";
+      };
     };
 
     boot = {
@@ -40,19 +29,19 @@
         "console=ttyAMA10,115200"
       ];
 
-      loader.raspberry-pi = {
-        variant = "5";
-        bootloader = lib.mkDefault "kernelboot";
-        firmwarePackage =
-          inputs.nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.raspberrypifw;
-      };
+      # loader.raspberry-pi = {
+      # variant = "5";
+      #   bootloader = lib.mkDefault "kernelboot";
+      #   firmwarePackage =
+      #     inputs.nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.raspberrypifw;
+      # };
 
-      kernelPackages =
-        inputs.nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi5;
+      # kernelPackages =
+      # inputs.nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi5;
 
-      initrd.availableKernelModules = [
-        "nvme" # nvme drive connected with pcie
-      ];
+      # initrd.availableKernelModules = [
+      #   "nvme" # nvme drive connected with pcie
+      # ];
     };
 
     networking = {
