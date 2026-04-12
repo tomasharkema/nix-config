@@ -100,7 +100,7 @@
     programs = {
       nh = {
         clean.enable = true;
-        clean.extraArgs = "--keep-since 3M";
+        # clean.extraArgs = "--keep-since 3M";
       };
       atop = {
         enable = true;
@@ -342,10 +342,10 @@
           garbage-collection.interval = "12 hours";
 
           chunking = {
-            nar-size-threshold = 65536 * 2;
-            min-size = 16384 * 2;
-            avg-size = 65536 * 2;
-            max-size = 262144 * 2;
+            nar-size-threshold = 65536;
+            min-size = 16384;
+            avg-size = 65536;
+            max-size = 262144;
           };
         };
       };

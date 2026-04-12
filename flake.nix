@@ -370,7 +370,8 @@
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
       # "https://tomasharkema.cachix.org"
-      "http://silver-star.ling-lizard.ts.net:7124"
+      # "http://silver-star.ling-lizard.ts.net:7124"
+      "http://silver-star.ling-lizard.ts.net:7125/tomasharkema"
       "https://niri.cachix.org"
       "https://cache.garnix.io"
       "https://attic.xuyh0120.win/lantian"
@@ -421,6 +422,7 @@
       "tomas-nixos-1:attQnEt6Gq99mwz5J/h8EVhCpavuB0/z/u0Bt/Mko7E="
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+      "tomasharkema:4Ou4kbViWV9ZPL5DGQZ5j4IEwpQrJ/u9YnU/7oY9djE="
     ];
 
     # allowed-uris = [

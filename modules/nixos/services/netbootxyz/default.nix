@@ -27,7 +27,7 @@ in {
   config = lib.mkIf cfg.enable {
     apps.docker.enable = true;
 
-    fileSystems = {
+    fileSystems = lib.mkIf false {
       "/export/netboot" = {
         device = "/mnt/netboot";
         # options = ["bind"];
