@@ -152,7 +152,12 @@
                 extraOptions = ''
                   !include ${config.age.secrets.nix-access-tokens-github.path}
                 '';
-                nixPath = let path = toString ./.; in ["repl=${path}/repl.nix" "nixpkgs=${inputs.nixpkgs}"];
+                nixPath = let
+                  path = toString ./.;
+                in [
+                  "repl=${path}/repl.nix"
+                  "nixpkgs=${inputs.nixpkgs}"
+                ];
               };
             }
           )
@@ -226,8 +231,7 @@
       machines = let
         names = builtins.attrNames (builtins.readDir ./systems-by-name);
       in rec {
-        all =
-          names;
+        all = names;
 
         excludingSelf = cfg: (builtins.filter (name: cfg.networking.hostName != name) all);
       };
@@ -753,6 +757,11 @@
 
     vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-raspberrypi = {
+      url = "github:nvmd/nixos-raspberrypi/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
