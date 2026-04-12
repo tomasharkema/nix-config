@@ -11,7 +11,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [sbctl exfatprogs];
+    environment.systemPackages = with pkgs; [
+      sbctl
+      exfatprogs
+    ];
     boot = {
       lanzaboote = {
         enable = true;
@@ -25,6 +28,17 @@ in {
         autoEnrollKeys = {
           enable = true;
           # includeChecksumsFromTPM = config.traits.hardware.tpm.enable;
+        };
+        measuredBoot = lib.mkIf config.traits.hardware.tpm.enable {
+          enable = true;
+          pcrs = [
+            0
+            1
+            2
+            3
+            4
+            7
+          ];
         };
       };
       loader = {
