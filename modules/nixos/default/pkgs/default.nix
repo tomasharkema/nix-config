@@ -4,13 +4,16 @@
   config,
   inputs,
   ...
-}: {
+}: let
+  ffmpegEdited = (
+    (pkgs.ffmpeg-full.override {withUnfree = true;}).overrideAttrs (_: {
+      doCheck = false;
+    })
+  );
+in {
   config = {
     environment.systemPackages =
       (with pkgs; [
-        ((ffmpeg-full.override {withUnfree = true;}).overrideAttrs (_: {
-          doCheck = false;
-        }))
         # keep-sorted start
         agenix-rekey
         aide
@@ -84,6 +87,7 @@
         ethtool
         # fbterm
         fcast-receiver
+        ffmpegEdited
         fleetctl
         freeipmi
         fresh-editor
@@ -269,6 +273,7 @@
         vim
         watchlog
         wavemon
+        waypipe
         websocat
         wget
         whatfiles
