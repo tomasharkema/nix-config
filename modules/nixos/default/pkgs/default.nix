@@ -18,7 +18,6 @@ in {
         agenix-rekey
         aide
         archivemount
-        attic-client
         bandwhich
         bash
         bashmount

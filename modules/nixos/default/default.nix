@@ -589,7 +589,7 @@
       };
       # udevil.enable = true;
       usbtop.enable = true;
-      # wavemon.enable = true;
+      wavemon.enable = true;
       trippy.enable = true;
       ydotool.enable = true;
       iotop.enable = true;

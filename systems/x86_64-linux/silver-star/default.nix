@@ -15,18 +15,6 @@
       };
       secrets = {
         tsnsrv.rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
-        attic = {
-          rekeyFile = ./attic.age;
-          group = config.services.atticd.group;
-          owner = config.services.atticd.user;
-
-          generator = {
-            script = {pkgs, ...}: ''
-              echo "ATTIC_SERVER_TOKEN_RS256_SECRET_BASE64=$(${pkgs.openssl}/bin/openssl genrsa -traditional 4096 | ${pkgs.base64}/bin/base64 -w0)"
-            '';
-          };
-        };
-
         cloudflared.rekeyFile = ./cloudflared.age;
         grafana-ntfy.rekeyFile = ./grafana-ntfy.age;
         "healthchecks" = lib.mkIf false {
@@ -100,7 +88,7 @@
     programs = {
       nh = {
         clean.enable = true;
-        # clean.extraArgs = "--keep-since 3M";
+        clean.extraArgs = "--keep-since 3M";
       };
       atop = {
         enable = true;
@@ -323,30 +311,6 @@
         signKeyPaths = [config.age.secrets."nix-sign-private".path];
         settings = {
           bind = "[::]:7124";
-        };
-      };
-
-      atticd = {
-        enable = true;
-        environmentFile = config.age.secrets.attic.path;
-
-        settings = {
-          listen = "[::]:7125";
-          api-endpoint = "http://silver-star.ling-lizard.ts.net:7125/";
-
-          compression = {
-            type = "zstd";
-            level = 19;
-          };
-
-          garbage-collection.interval = "12 hours";
-
-          chunking = {
-            nar-size-threshold = 65536;
-            min-size = 16384;
-            avg-size = 65536;
-            max-size = 262144;
-          };
         };
       };
 

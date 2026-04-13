@@ -64,7 +64,6 @@
         agenix-rekey
         # custom.rust-conn
         alejandra
-        attic-client
         devenv
         direnv
         lrzsz

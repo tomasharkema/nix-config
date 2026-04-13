@@ -203,7 +203,6 @@ in {
     # cntr
     flake-checker
     autoflake
-    attic-client
     nix-init
     # nix-serve
     # nixci
