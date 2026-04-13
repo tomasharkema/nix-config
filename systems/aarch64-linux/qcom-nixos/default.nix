@@ -125,7 +125,7 @@
       yazi
       squashfsTools
       squashfs-tools-ng
-      gparted
+      gparted-full
       apple-cursor
       gnome-tweaks
       refine

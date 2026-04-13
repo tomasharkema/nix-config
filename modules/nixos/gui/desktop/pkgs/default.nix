@@ -87,7 +87,7 @@
     gnomecast
     go-chromecast
     gotop
-    gparted
+    gparted-full
     gphoto2
     gphoto2fs
     grsync
