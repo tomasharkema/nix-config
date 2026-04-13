@@ -26,7 +26,7 @@
     ];
 
     networking = {
-      hostName = lib.mkForce "raspi5-2";
+      hostName = "raspi5";
       firewall.enable = false;
       networkmanager = {
         enable = true;
@@ -88,24 +88,24 @@
           };
         };
         base-dt-params = {
-          # pciex1 = {
-          #   enable = true;
-          #   value = "on";
-          # };
-          # pciex1_gen = {
-          #   enable = true;
-          #   value = "3";
-          # };
+          pciex1 = {
+            enable = true;
+            value = "on";
+          };
+          pciex1_gen = {
+            enable = true;
+            value = "3";
+          };
         };
       };
     };
 
-    services.kdump.enable = lib.mkForce false;
+    # services.kdump.enable = lib.mkForce false;
 
     swapDevices = [
       {
-        device = "/swapfile";
-        size = 16 * 1024;
+        device = "/dev/nvme0n1p3";
+        #size = 16 * 1024;
       }
     ];
 
