@@ -38,8 +38,6 @@
       nixos-init.enable = true;
     };
 
-    security.isolate.enable = true;
-
     systemd = {
       settings.Manager = {
         RebootWatchdogSec = "5m";
@@ -580,6 +578,7 @@
         openFirewall = true;
       };
 
+      oddjobd.enable = true;
       nix-index = {
         enable = true;
         enableZshIntegration = true;

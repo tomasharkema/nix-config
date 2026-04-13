@@ -10,38 +10,14 @@
     };
 
     hardware = {
-      # enableRedistributableFirmware = true;
       i2c.enable = true;
-
-      # deviceTree = {
-      #   enable = true;
-      #   filter = "*rpi*";
-      # };
     };
 
     boot = {
-      #   loader.raspberryPi.firmwarePackage = kernelBundle.raspberrypifw;
-      #   loader.raspberryPi.bootloader = "kernel";
-      #   kernelPackages = kernelBundle.linuxPackages_rpi5;
-
-      # kernelParams = [
-      #   "console=ttyS0,115200"
-      #   "console=ttyAMA10,115200"
-      # ];
-
       loader.raspberry-pi = {
         variant = "5";
         bootloader = "kernel";
-        #   firmwarePackage =
-        #     inputs.nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.raspberrypifw;
       };
-
-      # kernelPackages =
-      # inputs.nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi5;
-
-      # initrd.availableKernelModules = [
-      #   "nvme" # nvme drive connected with pcie
-      # ];
     };
 
     networking = {

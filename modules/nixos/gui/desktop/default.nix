@@ -201,6 +201,8 @@ in {
       };
     };
 
+    security.isolate.enable = true;
+
     programs = {
       # nix-monitor = {
       #   enable = true;
@@ -233,7 +235,6 @@ in {
         );
       };
 
-      oddjobd.enable = true;
       ssh = {
         # startAgent = true;
       };
