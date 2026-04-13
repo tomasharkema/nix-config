@@ -47,7 +47,29 @@
     networking = {
       hostName = lib.mkForce "raspi5-2";
       firewall.enable = false;
-      networkmanager.enable = true;
+      networkmanager = {
+        enable = true;
+        wifi = {
+          backend = "iwd";
+        };
+      };
+      wireless = {
+        enable = false;
+        iwd = {
+          enable = true;
+          settings = {
+            Settings = {
+              AutoConnect = true;
+              # AlwaysRandomizeAddress = false;
+            };
+            Network = {
+              # EnableIPv6 = true;
+              # RoutePriorityOffset = 300;
+            };
+            # DriverQuirks.DefaultInterface = "wlan0";
+          };
+        };
+      };
     };
 
     zramSwap = {
@@ -85,14 +107,14 @@
           };
         };
         base-dt-params = {
-          pciex1 = {
-            enable = true;
-            value = "on";
-          };
-          pciex1_gen = {
-            enable = true;
-            value = "3";
-          };
+          # pciex1 = {
+          #   enable = true;
+          #   value = "on";
+          # };
+          # pciex1_gen = {
+          #   enable = true;
+          #   value = "3";
+          # };
         };
       };
     };

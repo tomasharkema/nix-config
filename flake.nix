@@ -744,7 +744,7 @@
     nixos-recovery = {
       url = "github:tomasharkema/nixos-recovery/main";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
+        # nixpkgs.follows = "nixpkgs";
       };
     };
 
@@ -777,7 +777,7 @@
 
     nixos-raspberrypi = {
       url = "github:nvmd/nixos-raspberrypi/main";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-cachyos-kernel = {
