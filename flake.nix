@@ -776,7 +776,7 @@
 
     nixos-raspberrypi = {
       url = "github:nvmd/nixos-raspberrypi/main";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-cachyos-kernel = {
