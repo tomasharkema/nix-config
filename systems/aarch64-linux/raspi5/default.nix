@@ -10,13 +10,13 @@
     };
 
     hardware = {
-      enableRedistributableFirmware = true;
+      # enableRedistributableFirmware = true;
       i2c.enable = true;
 
-      deviceTree = {
-        enable = true;
-        filter = "*rpi*";
-      };
+      # deviceTree = {
+      #   enable = true;
+      #   filter = "*rpi*";
+      # };
     };
 
     boot = {

@@ -87,14 +87,14 @@
     };
 
     boot = {
-      recovery = {
+      recovery = lib.mkIf (pkgs.stdenv.hostPlatform.isx86_64) {
         enable = lib.mkDefault true;
         extraConfigurations = [
           ../../../installer/installer.nix
         ];
       };
 
-      initrd = {
+      initrd = lib.mkIf (pkgs.stdenv.hostPlatform.isx86_64) {
         compressor = "zstd";
         compressorArgs = ["-19"];
         systemd = {
@@ -104,6 +104,11 @@
 
         includeDefaultModules = true;
         # unl0kr = {enable = config.disks.btrfs.encrypt;};
+        kernelModules = [
+          "ramoops"
+          "efi_pstore"
+          "pstore"
+        ];
       };
 
       hardwareScan = true;
@@ -123,7 +128,7 @@
         # "netconsole=@/,@192.168.0.100/"
       ];
 
-      kernel.sysctl = {
+      kernel.sysctl = lib.mkIf (pkgs.stdenv.hostPlatform.isx86_64) {
         "net.ipv4.ip_forward" = lib.mkDefault 1;
         "vm.swappiness" = lib.mkDefault 180;
         "vm.watermark_boost_factor" = lib.mkDefault 0;
@@ -144,13 +149,7 @@
         lib.mkDefault pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v4
       );
 
-      initrd.kernelModules = [
-        "ramoops"
-        "efi_pstore"
-        "pstore"
-      ];
-
-      kernelModules = [
+      kernelModules = lib.mkIf (pkgs.stdenv.hostPlatform.isx86_64) [
         "wireguard"
         # "netconsole"
         # "apfs"
@@ -283,7 +282,7 @@
         '';
       };
 
-      smartd = {
+      smartd = lib.mkIf (pkgs.stdenv.hostPlatform.isx86_64) {
         enable = true;
         notifications = {
           wall.enable = true;
@@ -302,7 +301,7 @@
       rpcbind.enable = true;
       cachefilesd.enable = true;
 
-      acpid = {
+      acpid = lib.mkIf (pkgs.stdenv.hostPlatform.isx86_64) {
         enable = true;
         logEvents = true;
       };
@@ -709,7 +708,7 @@
       enableRedistributableFirmware = lib.mkDefault true;
       firmware = [pkgs.wireless-regdb];
 
-      sensor.hddtemp = {
+      sensor.hddtemp = lib.mkIf (pkgs.stdenv.hostPlatform.isx86_64) {
         enable = true;
         drives = ["/dev/disk/by-path/*"];
       };
