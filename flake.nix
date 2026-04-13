@@ -107,6 +107,21 @@
         dsearch.homeModules.default
       ];
 
+      # Add a module to a specific host.
+      systems.hosts.raspi5 = {
+        specialArgs = {
+          inherit (inputs) nixos-raspberrypi;
+        };
+        modules = with inputs.nixos-raspberrypi.nixosModules; [
+          raspberry-pi-5.base
+          raspberry-pi-5.page-size-16k
+          raspberry-pi-5.display-vc4
+          raspberry-pi-5.bluetooth
+
+          inputs.nixos-raspberrypi.lib.inject-overlays
+        ];
+      };
+
       systems.modules = {
         nixos = with inputs; [
           # comin.nixosModules.comin
@@ -152,7 +167,12 @@
                 extraOptions = ''
                   !include ${config.age.secrets.nix-access-tokens-github.path}
                 '';
-                nixPath = let path = toString ./.; in ["repl=${path}/repl.nix" "nixpkgs=${inputs.nixpkgs}"];
+                nixPath = let
+                  path = toString ./.;
+                in [
+                  "repl=${path}/repl.nix"
+                  "nixpkgs=${inputs.nixpkgs}"
+                ];
               };
             }
           )
@@ -226,8 +246,7 @@
       machines = let
         names = builtins.attrNames (builtins.readDir ./systems-by-name);
       in rec {
-        all =
-          names;
+        all = names;
 
         excludingSelf = cfg: (builtins.filter (name: cfg.networking.hostName != name) all);
       };
@@ -403,7 +422,6 @@
       "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "tomasharkema:4Ou4kbViWV9ZPL5DGQZ5j4IEwpQrJ/u9YnU/7oY9djE="
       "watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="
       "raspi5.harkema.io-1:/kwt4HGmzEnXtQ2i8LMnfu8PrFaiX+oT7z5jsA3sXhs="
       "cm5-1.harkema.io:YFuMMxT3+o9cRQBLnzHaR4xXQwQ4lthh5bDQiAixxFQ="
@@ -415,14 +433,13 @@
       "tomasharkema.cachix.org-1:BV3Sv3qGZ0bcybPFeigwKoxnpj/NBAFYHq9FMO1XgH4="
       "tomasharkema:VdbRcFT6+nuun6sDcTxEQ4M+1dqncDrjqJPCDOJ6mqo="
       "tomasharkema:O7hvvAIoFVjO5giONleXcRE1Og7IDt2DdvAQRg4GCkI="
-      "tomasharkema:4Ou4kbViWV9ZPL5DGQZ5j4IEwpQrJ/u9YnU/7oY9djE="
       "raspi5.harkema.io-1:/kwt4HGmzEnXtQ2i8LMnfu8PrFaiX+oT7z5jsA3sXhs="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nixpkgs.cachix.org-1:q91R6hxbwFvDqTSDKwDAV4T5PxqXGxswD8vhONFMeOE="
       "tomas-nixos-1:attQnEt6Gq99mwz5J/h8EVhCpavuB0/z/u0Bt/Mko7E="
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-      "tomasharkema:4Ou4kbViWV9ZPL5DGQZ5j4IEwpQrJ/u9YnU/7oY9djE="
+      "tomasharkema:odFihM5iPetpuUdcXy/4cKAFxOBM0TKAeLpztxA7qu4="
     ];
 
     # allowed-uris = [
@@ -727,7 +744,7 @@
     nixos-recovery = {
       url = "github:tomasharkema/nixos-recovery/main";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
+        # nixpkgs.follows = "nixpkgs";
       };
     };
 
@@ -756,6 +773,11 @@
     vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-raspberrypi = {
+      url = "github:nvmd/nixos-raspberrypi/main";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-cachyos-kernel = {

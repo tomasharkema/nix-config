@@ -11,15 +11,15 @@ in {
   };
   config = lib.mkIf cfg.enable {
     services = {
-      netdata.enable = lib.mkForce false;
       tor.enable = lib.mkForce false;
       fwupd.enable = lib.mkForce false;
-      promtail.enable = lib.mkForce false;
-      usbguard.enable = lib.mkForce false;
     };
 
     apps = {
       resilio.enable = lib.mkForce false;
+
+      netdata.enable = lib.mkForce false;
+      usbguard.enable = lib.mkForce false;
     };
 
     nix.settings = {

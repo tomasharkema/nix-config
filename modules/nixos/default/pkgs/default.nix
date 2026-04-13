@@ -135,7 +135,6 @@ in {
         libftdi1
         libgcc.lib
         libgpiod
-        libguestfs-with-appliance
         libheif
         libnotify
         libsecret
@@ -300,6 +299,7 @@ in {
           gnutls
           intentrace
           ipmicfg
+          libguestfs-with-appliance
           libsmbios
           meshtastic
           micropython
