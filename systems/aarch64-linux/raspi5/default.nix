@@ -58,10 +58,43 @@
       "/boot/firmware" = {
         device = "/dev/disk/by-label/FIRMWARE";
         fsType = "vfat";
+        options = [
+          "noatime"
+          "noauto"
+          "x-systemd.automount"
+          "x-systemd.idle-timeout=1min"
+        ];
       };
       "/" = {
         device = "/dev/disk/by-label/NIXOS_SD";
         fsType = "ext4";
+        options = ["noatime"];
+      };
+    };
+
+    hardware.raspberry-pi.config = {
+      all = {
+        options = {
+          enable_uart = {
+            enable = true;
+            value = true;
+          };
+          uart_2ndstage = {
+            enable = true;
+            value = true;
+          };
+        };
+        base-dt-params = {
+          # https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#enable-pcie
+          pciex1 = {
+            enable = true;
+            value = "on";
+          };
+          pciex1_gen = {
+            enable = true;
+            value = "3";
+          };
+        };
       };
     };
 
@@ -76,7 +109,7 @@
       low-power.enable = true;
       hardware = {
         # raspberry.enable = true;
-        bluetooth.enable = true;
+        # bluetooth.enable = true;
       };
     };
   };
