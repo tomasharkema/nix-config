@@ -45,7 +45,7 @@
     };
 
     networking = {
-      hostName = "raspi5-2";
+      hostName = lib.mkForce "raspi5-2";
       firewall.enable = false;
       networkmanager.enable = true;
     };
