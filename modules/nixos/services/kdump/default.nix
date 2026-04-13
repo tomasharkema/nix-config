@@ -10,7 +10,11 @@
   kernelParams = lib.concatStringsSep " " cfg.extraKernelArgs;
 in {
   options.services.kdump = {
-    enable = lib.mkEnableOption "Crash recovery kernel arming" // {default = true;};
+    enable =
+      lib.mkEnableOption "Crash recovery kernel arming"
+      // {
+        default = true;
+      };
 
     extraKernelArgs = lib.mkOption {
       type = lib.types.listOf lib.types.str;
@@ -21,7 +25,7 @@ in {
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     boot = {
       kernelParams = [
         #"efi_pstore.pstore_disable=0"
@@ -61,7 +65,12 @@ in {
       services.kdump = {
         description = "Crash recovery kernel arming";
 
-        after = ["network.target" "network-online.target" "remote-fs.target" "basic.target"];
+        after = [
+          "network.target"
+          "network-online.target"
+          "remote-fs.target"
+          "basic.target"
+        ];
 
         unitConfig = {
           DefaultDependencies = "no";
