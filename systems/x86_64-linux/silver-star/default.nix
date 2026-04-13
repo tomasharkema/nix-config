@@ -53,7 +53,12 @@
 
       hardware = {
         tpm.enable = true;
-        secure-boot.enable = true;
+
+        secure-boot = {
+          enable = true;
+          measuredBoot = false;
+        };
+
         network.xgbe.enable = true;
         nvidia = {
           enable = true;
