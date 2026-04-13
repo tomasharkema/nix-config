@@ -20,6 +20,10 @@
       };
     };
 
+    environment.systemPackages = with pkgs; [
+      custom.rpifwcrypto-pkcs11
+    ];
+
     networking = {
       hostName = lib.mkForce "raspi5-2";
       firewall.enable = false;
