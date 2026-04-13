@@ -17,17 +17,15 @@ stdenv.mkDerivation rec {
   };
 
   cmakeFlags = ["-DBOOST_USE_MODULES=1"];
+
   doCheck = false;
+
   nativeBuildInputs = [
     cmake
     ninja
   ];
+
   buildPhase = ''ninja'';
-  # installPhase = ''
-  # ls -la
-  # cat build.ninja
-  # sleep 1000
-  # '';
 
   meta = {
     description = "Std::tuple like methods for user defined types without any macro or boilerplate code";

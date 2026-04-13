@@ -69,8 +69,6 @@ stdenv.mkDerivation {
 
     tree etc | tee $out/tree-etc.log
 
-    # sleep 1000
-
     ls -la opt/dell/srvadmin
 
     mkdir opt/dell/srvadmin/lib
@@ -92,7 +90,6 @@ stdenv.mkDerivation {
     substituteInPlace "$out/bin/omupdate" \
       --replace-fail "/opt/dell/srvadmin" "$out"
 
-    # sleep 1000
     # for file in $out/opt/dell/srvadmin/bin/*
     # do
     #   echo "sub $file"
