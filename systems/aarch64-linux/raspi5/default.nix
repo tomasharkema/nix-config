@@ -100,7 +100,7 @@
       };
     };
 
-    # services.kdump.enable = lib.mkForce false;
+    services.kdump.enable = lib.mkForce false;
 
     swapDevices = [
       {
