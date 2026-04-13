@@ -59,11 +59,14 @@ in {
         enable = true;
         package = zabbixPkg.server-pgsql;
         extraPackages = extraPkgs;
+        database.socket = "/run/postgresql";
+
         settings = {
           CacheSize = "1G";
           SSHKeyLocation = "/var/lib/zabbix/.ssh";
           StartPingers = 32;
         };
+
         openFirewall = true;
       };
 
