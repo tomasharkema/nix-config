@@ -85,7 +85,6 @@
           };
         };
         base-dt-params = {
-          # https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#enable-pcie
           pciex1 = {
             enable = true;
             value = "on";
