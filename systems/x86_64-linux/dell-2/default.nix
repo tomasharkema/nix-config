@@ -113,7 +113,10 @@
       hardware = {
         nvme.enable = true;
         tpm.enable = true;
-        secure-boot.enable = true;
+        secure-boot = {
+          enable = true;
+          measuredBoot = false;
+        };
         laptop.enable = true;
         intel.enable = true;
         nvidia = {
