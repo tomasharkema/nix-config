@@ -69,7 +69,10 @@
       hardware = {
         nvme.enable = true;
         tpm.enable = true;
-        secure-boot.enable = true;
+        secure-boot = {
+          enable = true;
+          measuredBoot = false;
+        };
         remote-unlock.enable = true;
         monitor.enable = true;
         nvidia = {
