@@ -619,6 +619,7 @@
         libraries = with pkgs;
           [
             # keep-sorted start
+
             acl
             attr
             bzip2
@@ -635,7 +636,8 @@
             libsodium
             libssh
             libunwind
-            libusb1
+            libusb1.dev
+            libusb1.out
             libuuid
             libxml2_13.dev
             libxml2_13.out
