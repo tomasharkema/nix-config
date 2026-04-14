@@ -81,7 +81,6 @@
         nixos-recovery.overlays.recovery
         # peerix.overlay
         snowfall-flake.overlays."package/flake"
-        # nixos-checkmk.overlays.default
         # nixos-service.overlays.default
         agenix-rekey.overlays.default
         nixvim.overlays.default
@@ -130,7 +129,6 @@
           nix-flatpak.nixosModules.nix-flatpak
           # nix-topology.nixosModules.default
           # netkit.nixosModule
-          # nixos-checkmk.nixosModules.check_mk_agent
           nixos-recovery.nixosModules.recovery
           catppuccin.nixosModules.catppuccin
           # peerix.nixosModules.peerix
@@ -682,9 +680,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nixos-checkmk = {
-    #   url = "github:tomasharkema/nixos-checkmk";
-
+    # cmk-agent = {
+    #   url = "github:wunderwerkio/checkmk-agent.nix";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
