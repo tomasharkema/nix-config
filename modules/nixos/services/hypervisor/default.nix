@@ -54,7 +54,6 @@ in {
       kvmtool
       libvirt
       config.virtualisation.libvirtd.qemu.package
-      libvirt-dbus
       nemu
       qtemu
       virt-top
@@ -71,8 +70,6 @@ in {
         virt-manager
         kvmtool
         libvirt
-
-        libvirt-dbus
       ];
 
       # prometheus.exporters = {
@@ -116,19 +113,6 @@ in {
           "qemu-libvirtd"
         ];
       };
-    };
-
-    systemd = {
-      # tmpfiles.settings."9-isos" = {
-      #   "/var/lib/libvirt/storage/isos.xml" = {
-      #     "L+" = {
-      #       argument = "${isosStorage}";
-      #       mode = "600";
-      #     };
-      #   };
-      # };
-
-      packages = [pkgs.libvirt-dbus];
     };
 
     environment.etc = {
@@ -227,7 +211,7 @@ in {
 
       libvirtd = {
         enable = true;
-
+        dbus.enable = true;
         nss = {
           enable = true;
           enableGuest = true;

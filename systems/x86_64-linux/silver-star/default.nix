@@ -42,6 +42,9 @@
     };
 
     zramSwap.enable = false;
+    services.zram-generator = {
+      enable = false;
+    };
 
     traits = {
       server = {

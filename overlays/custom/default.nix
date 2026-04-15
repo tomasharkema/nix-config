@@ -49,18 +49,6 @@ in rec {
     });
   };
 
-  linux-firmware = prev.linux-firmware.overrideAttrs (finalAttrs: {
-    pname = "linux-firmware";
-    version = "20260410";
-
-    src = prev.fetchFromGitLab {
-      owner = "kernel-firmware";
-      repo = "linux-firmware";
-      tag = finalAttrs.version;
-      hash = "sha256-nceQEGm6+Cj6KCeUNwmYsUdArRULfLXysXjzOXdCBQw=";
-    };
-  });
-
   lcdproc = prev.lcdproc.overrideAttrs (old: {
     # configureFlags = ["--enable-drivers=all"];
     buildInputs = old.buildInputs ++ [prev.custom.glcd-proc-driver prev.custom.graphlcd-base];
