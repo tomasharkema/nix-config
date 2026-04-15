@@ -48,6 +48,7 @@ in {
               DIUN_WATCH_WORKERS = "20";
               DIUN_WATCH_SCHEDULE = "0 */6 * * *";
               DIUN_WATCH_JITTER = "30s";
+              DIUN_PROVIDERS_DOCKER_WATCHBYDEFAULT = "true";
               DIUN_PROVIDERS_DOCKER = "true";
               DIUN_NOTIF_NTFY_TOPIC = "tomasharkema-nixos";
             };
