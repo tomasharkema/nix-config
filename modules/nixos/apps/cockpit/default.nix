@@ -10,7 +10,12 @@
     };
 
     security.pam.services."cockpit".enable = true;
-    systemd.packages = [pkgs.custom.cockpit-tailscale-cert];
+
+    systemd = {
+      packages = [pkgs.custom.cockpit-tailscale-cert];
+      services.tailscale-cockpit-cert-renewal.wantedBy = ["multi-user.target"];
+    };
+
     services.cockpit = {
       enable = true;
       port = 9090;
