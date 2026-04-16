@@ -50,30 +50,30 @@
 
       useDHCP = false;
 
-      wireless = {
-        enable = false;
-        iwd = {
-          enable = true;
-          settings = {
-            Settings = {
-              AutoConnect = true;
-              AlwaysRandomizeAddress = true;
-            };
-            # Network = {
-            #   EnableIPv6 = true;
-            #   RoutePriorityOffset = 300;
-            # };
-            # DriverQuirks.DefaultInterface = "wlan0";
-          };
-        };
-      };
+      # wireless = {
+      #   enable = false;
+      #   iwd = {
+      #     enable = true;
+      #     settings = {
+      #       Settings = {
+      #         AutoConnect = true;
+      #         AlwaysRandomizeAddress = true;
+      #       };
+      #       # Network = {
+      #       #   EnableIPv6 = true;
+      #       #   RoutePriorityOffset = 300;
+      #       # };
+      #       # DriverQuirks.DefaultInterface = "wlan0";
+      #     };
+      #   };
+      # };
 
       networkmanager = {
         enable = true;
 
-        wifi = {
-          backend = "iwd";
-        };
+        # wifi = {
+        #   backend = "iwd";
+        # };
       };
 
       bridges.br0 = {
@@ -310,9 +310,9 @@
         # "vfio_iommu_type1"
         "kvm-intel"
         # "nvidia_vgpu_vfio"
-        # "iwlwifi"
+        "iwlwifi"
         # "cfg80211"
-        # "iwldvm"
+        "iwlmld"
       ];
       modprobeConfig.enable = true;
       extraModprobeConfig = ''

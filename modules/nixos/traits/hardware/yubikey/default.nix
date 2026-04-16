@@ -94,7 +94,7 @@
 
     boot.initrd = {
       kernelModules = ["vfat" "nls_cp437" "nls_iso8859-1" "usbhid"];
-      # luks.yubikeySupport = true;
+      luks.yubikeySupport = true;
     };
 
     users.groups = {
