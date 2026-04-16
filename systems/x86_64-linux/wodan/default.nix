@@ -38,6 +38,7 @@
       btrbk.enable = false;
       snapper.enable = false;
       swap.size = "64G";
+      resume.enable = true;
     };
 
     time = {
@@ -56,13 +57,13 @@
           settings = {
             Settings = {
               AutoConnect = true;
-              AlwaysRandomizeAddress = false;
+              AlwaysRandomizeAddress = true;
             };
-            Network = {
-              EnableIPv6 = true;
-              RoutePriorityOffset = 300;
-            };
-            DriverQuirks.DefaultInterface = "wlan0";
+            # Network = {
+            #   EnableIPv6 = true;
+            #   RoutePriorityOffset = 300;
+            # };
+            # DriverQuirks.DefaultInterface = "wlan0";
           };
         };
       };
@@ -307,19 +308,20 @@
         # "vfio_pci"
         # "vfio"
         # "vfio_iommu_type1"
-        # "kvm-intel"
+        "kvm-intel"
         # "nvidia_vgpu_vfio"
-        "iwlwifi"
-        "cfg80211"
-        "iwldvm"
+        # "iwlwifi"
+        # "cfg80211"
+        # "iwldvm"
       ];
       modprobeConfig.enable = true;
       extraModprobeConfig = ''
         options it87 ignore_resource_conflict=1 update_vbat=1
-        options iwlmvm power_scheme=1
-        options iwlwifi 11n_disable=1
-        options cfg80211 ieee80211_regdom=NL cfg80211_disable_40mhz_24ghz=1
       '';
+      #   options iwlmvm power_scheme=1
+      #   options iwlwifi 11n_disable=1
+      #   options cfg80211 ieee80211_regdom=NL cfg80211_disable_40mhz_24ghz=1
+      # '';
 
       kernelParams = [
         # "console=tty1"

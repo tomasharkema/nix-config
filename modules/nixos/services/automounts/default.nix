@@ -27,7 +27,7 @@ in {
           machines;
         sshFsMapConf = pkgs.writeText "sshfs.conf" (lib.concatStringsSep "\n" sshFsLines);
         nfsConf = let
-          common = "-rw,soft,intr,rsize=8192,wsize=8192,anonuid=1000,anongid=1000";
+          common = "-rw,soft,intr,rsize=8192,wsize=8192,anonuid=1000,anongid=1000,fsc";
         in
           # dione-downloads ${common} 192.168.1.102:/volume1/downloads
           pkgs.writeText "nfs.conf" ''
