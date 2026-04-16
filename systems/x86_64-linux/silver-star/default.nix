@@ -817,9 +817,6 @@
         # "docker-compose@fleetdm" = {
         #   wantedBy = ["multi-user.target"];
         # };
-        "docker-compose@tsidp" = {
-          wantedBy = ["multi-user.target"];
-        };
       };
     };
   };
