@@ -284,6 +284,7 @@ in {
                 action = dms-ipc "spotlight" "toggle";
                 hotkey-overlay.title = "Toggle Application Launcher";
               };
+
               "Mod+M" = {
                 action = dms-ipc "processlist" "toggle";
                 hotkey-overlay.title = "Toggle Process List";
@@ -345,6 +346,23 @@ in {
               "XF86AudioMicMute" = {
                 allow-when-locked = true;
                 action = spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+              };
+
+              XF86AudioPlay = {
+                allow-when-locked = true;
+                action = spawn-sh "playerctl play-pause";
+              };
+              XF86AudioStop = {
+                allow-when-locked = true;
+                action = spawn-sh "playerctl stop";
+              };
+              XF86AudioPrev = {
+                allow-when-locked = true;
+                action = spawn-sh "playerctl previous";
+              };
+              XF86AudioNext = {
+                allow-when-locked = true;
+                action = spawn-sh "playerctl next";
               };
 
               # Example brightness key mappings for brightnessctl.
