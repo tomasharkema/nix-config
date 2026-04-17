@@ -33,12 +33,12 @@ in
   #     hash = "sha256-CTbrI+lX6LrhB7lJ3av7e48jGpD4OLd7gIE1+4pCzco=";
   #  };
   (buildLinux {
-    version = "6.19";
+    version = "6.19.10";
     src = fetchFromGitHub {
       owner = "jglathe";
       repo = "linux_ms_dev_kit";
-      rev = "jg/sp12_dt";
-      hash = "sha256-dcS5AHP40Saz21ZilNFYX4WtgYf404z+setpywvsopw=";
+      rev = "jg/ubuntu-qcom-x1e-6.19.y";
+      hash = "sha256-I/yb+R1tqiYWY+MT09ofhUgmUp37woH25wWSuV4nWGk=";
     };
 
     kernelPatches = [
