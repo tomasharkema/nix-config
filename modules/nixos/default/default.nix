@@ -540,7 +540,7 @@
       pam = {
         sshAgentAuth.enable = true;
         services.sudo.sshAgentAuth = true;
-        p11.enable = true;
+        # p11.enable = true;
         loginLimits = [
           {
             domain = "@users";
