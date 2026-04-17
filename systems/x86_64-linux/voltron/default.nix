@@ -225,6 +225,8 @@
 
       kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
 
+      initrd.network.enable = false;
+
       # extraModulePackages = [
       #   config.system.build.i915-sriov
       # ];
