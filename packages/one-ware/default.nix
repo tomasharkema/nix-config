@@ -5,7 +5,7 @@
   buildDotnetModule,
   dotnetCorePackages,
 }:
-buildDotnetModule (finalAttrs: {
+dotnetCorePackages.buildDotnetModule (finalAttrs: {
   pname = "one-ware";
   version = "1.0.14";
 
@@ -25,7 +25,7 @@ buildDotnetModule (finalAttrs: {
     homepage = "https://github.com/one-ware/OneWare";
     license = lib.licenses.gpl3Only;
     maintainers = with lib.maintainers; [];
-    mainProgram = "one-ware";
+    mainProgram = "OneWareStudio";
     platforms = lib.platforms.all;
   };
 })
