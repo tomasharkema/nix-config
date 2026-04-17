@@ -352,14 +352,17 @@ in {
                 allow-when-locked = true;
                 action = spawn-sh "playerctl play-pause";
               };
+
               XF86AudioStop = {
                 allow-when-locked = true;
                 action = spawn-sh "playerctl stop";
               };
+
               XF86AudioPrev = {
                 allow-when-locked = true;
                 action = spawn-sh "playerctl previous";
               };
+
               XF86AudioNext = {
                 allow-when-locked = true;
                 action = spawn-sh "playerctl next";
