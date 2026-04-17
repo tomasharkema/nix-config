@@ -253,7 +253,10 @@
       hardware = {
         nvme.enable = true;
         tpm.enable = true;
-        secure-boot.enable = true;
+        secure-boot = {
+          enable = true;
+          measuredBoot = false;
+        };
         network.firewall = {
           enable = true;
           daemon.enable = false;
@@ -275,6 +278,8 @@
       kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v4;
 
       tmp = {useTmpfs = true;};
+
+      initrd.network.enable = lib.mkForce false;
 
       supportedFilesystems = [
         "xfs"

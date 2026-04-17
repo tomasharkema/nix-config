@@ -33,7 +33,8 @@ in {
         };
         autoEnrollKeys = {
           enable = true;
-          # includeChecksumsFromTPM = config.traits.hardware.tpm.enable;
+          includeMicrosoftKeys = true;
+          includeChecksumsFromTPM = config.traits.hardware.tpm.enable;
         };
         measuredBoot = lib.mkIf cfg.measuredBoot {
           enable = true;
