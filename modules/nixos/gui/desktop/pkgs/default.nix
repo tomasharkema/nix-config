@@ -6,6 +6,27 @@
   ...
 }: let
   bottles-removed = pkgs.bottles.override {removeWarningPopup = true;};
+
+  nrf-custom = pkgs.nrfutil.withExtensions [
+    "nrfutil-completion"
+    "nrfutil-device"
+    "nrfutil-trace"
+    "nrfutil-toolchain-manager"
+    "nrfutil-ble-sniffer"
+    "nrfutil-sdk-manager"
+    "nrfutil-nrf5sdk-tools"
+    #       ble-sniffer        0.17.1   Bluetooth Low Energy (Bluetooth LE) sniffer for Nordic Semiconductor devices.
+    # completion
+    # device             2.17.1   Device discovery, programming, and operations such as erase, reset, and recovery.
+    # nrf5sdk-tools      1.1.0    nRF5 SDK tools that were available in nRF Util 6
+    #    dfu
+    #    keys
+    #    pkg
+    #    settings
+    #    zigbee
+    # toolchain-manager  0.15.0   Manage and use toolchains for nRF Connect SDK
+  ];
+
   pks = with pkgs; [
     # keep-sorted start
     _86box-with-roms
@@ -127,10 +148,10 @@
     netpeek
     noti
     nrf-command-line-tools
+    nrf-custom
     nrf5-sdk
     nrfconnect
     nrfconnect-bluetooth-low-energy
-    nrfutil
     nvramtool
     onioncircuits
     onionshare-gui
