@@ -12,7 +12,7 @@
 
   runConfigPath = "/run/rslsync/config.json";
   debugTxt = pkgs.writeText "debug.txt" ''
-    80000000
+    00000000
     0
   '';
 in {
