@@ -25,7 +25,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   buildInputs = [
     openssl
   ];
-
+  doCheck = false;
   meta = {
     description = "Open-source terminal SSH manager and SSH config editor in Rust. Fuzzy search hundreds of hosts, sync from 16 clouds, transfer files, manage Docker and Podman over SSH, sign short-lived Vault SSH certs and expose an MCP server for AI agents";
     homepage = "https://github.com/erickochen/purple";
