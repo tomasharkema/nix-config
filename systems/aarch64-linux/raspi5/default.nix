@@ -23,6 +23,7 @@
 
     environment.systemPackages = with pkgs; [
       custom.rpifwcrypto-pkcs11
+      raspberrypi-eeprom
     ];
 
     networking = {
