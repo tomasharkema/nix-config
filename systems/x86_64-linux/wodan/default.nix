@@ -255,7 +255,7 @@
         tpm.enable = true;
         secure-boot = {
           enable = true;
-          measuredBoot = false;
+          measuredBoot = true;
         };
         network.firewall = {
           enable = true;
