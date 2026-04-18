@@ -11,10 +11,10 @@
   root = "/mnt/resilio-sync";
 
   runConfigPath = "/run/rslsync/config.json";
-  # debugTxt = pkgs.writeText "debug.txt" ''
-  #   00000000
-  #   0
-  # '';
+  debugTxt = pkgs.writeText "debug.txt" ''
+    80000000
+    0
+  '';
 in {
   options.apps.resilio = {
     enable = (lib.mkEnableOption "Enable preconfigured resilio service") // {default = true;};
@@ -29,7 +29,7 @@ in {
         # "d ${root} 0777 rslsync rslsync -"
         # "Z ${root} 0777 rslsync rslsync"
         # "d /var/lib/resilio-sync 0777 rslsync rslsync -"
-        # "L+ /var/lib/resilio-sync/debug.txt - - - - ${debugTxt}"
+        "L+ /var/lib/resilio-sync/debug.txt - - - - ${debugTxt}"
         # "L+ /home/tomas/resilio-sync - - - - ${root}"
       ];
     };
