@@ -47,6 +47,7 @@ in {
     services = {
       # tzupdate.enable = true;
       # devmon.enable = true;
+      psd.enable = true;
 
       seatd.enable = true;
 
