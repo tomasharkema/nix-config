@@ -18,6 +18,12 @@
     #   i915-sriov = inputs.nur-xddxdd.packages."${pkgs.stdenv.hostPlatform.system}".i915-sriov.override {kernel = config.boot.kernelPackages.kernel;};
     # };
 
+    environment.systemPackages = with pkgs; [
+      coreboot-utils
+      coreboot-configurator
+      coreboot-toolchain.x64
+    ];
+
     hardware.facter = {
       reportPath = ./facter.json;
     };
