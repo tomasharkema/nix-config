@@ -282,6 +282,7 @@ in {
         wol
         wtfutil
         xterm
+        xwayland-satellite
         xxd
         zathura
         zip

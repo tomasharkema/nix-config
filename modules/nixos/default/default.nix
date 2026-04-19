@@ -649,6 +649,7 @@
             sqlite.dev
             stdenv.cc.cc
             systemd
+            systemdLibs
             util-linux
             zlib
             zstd

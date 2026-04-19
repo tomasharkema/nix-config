@@ -74,7 +74,7 @@
         options = ["noatime"];
       };
     };
-
+    services.remote-builders.server.enable = true;
     hardware.raspberry-pi.config = {
       all = {
         options = {

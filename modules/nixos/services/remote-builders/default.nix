@@ -61,7 +61,7 @@ in {
       in
         [
           (armBuilder "raspi5")
-          (armBuilder "cm5")
+          # (armBuilder "cm5")
         ]
         ++ (
           lib.optionals cfg.client.enable [
