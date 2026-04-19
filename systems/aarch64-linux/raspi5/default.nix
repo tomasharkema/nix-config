@@ -18,7 +18,7 @@
         variant = "5";
         bootloader = "kernel";
       };
-      kernelPackages = pkgs.linuxPackagesFor (inputs.nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi5.kernel.override {stdenv = pkgs.ccacheStdenv;});
+      # kernelPackages = pkgs.linuxPackagesFor (inputs.nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi5.kernel.override {stdenv = pkgs.ccacheStdenv;});
     };
 
     environment.systemPackages = with pkgs; [
