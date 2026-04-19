@@ -12,7 +12,6 @@
   ];
 
   config = let
-    enableCcache = true;
     #   nix-otel = pkgs.nix-otel.overrideAttrs (final: {
     #     nix = config.nix.package;
     #   });
@@ -21,52 +20,6 @@
     age.secrets = {
       "nix-sign-private" = {
         rekeyFile = ./nix-sign-private.age;
-      };
-    };
-
-    nixpkgs.overlays = lib.mkIf enableCcache [
-      (self: super: {
-        ccacheWrapper = super.ccacheWrapper.override {
-          extraConfig = ''
-            export CCACHE_COMPRESS=1
-            export CCACHE_DIR="${config.programs.ccache.cacheDir}"
-            export CCACHE_UMASK=007
-            export CCACHE_SLOPPINESS=random_seed
-            export CCACHE_MAXSIZE=20GB
-            export CCACHE_RESHARE=1
-            export CCACHE_REMOTE_STORAGE=file:/mnt/cache/ccache
-
-            if [ ! -d "$CCACHE_DIR" ]; then
-              echo "====="
-              echo "Directory '$CCACHE_DIR' does not exist"
-              echo "Please create it with:"
-              echo "  sudo mkdir -m0770 '$CCACHE_DIR'"
-              echo "  sudo chown root:nixbld '$CCACHE_DIR'"
-              echo "====="
-              exit 1
-            fi
-            if [ ! -w "$CCACHE_DIR" ]; then
-              echo "====="
-              echo "Directory '$CCACHE_DIR' is not accessible for user $(whoami)"
-              echo "Please verify its access permissions"
-              echo "====="
-              exit 1
-            fi
-          '';
-        };
-      })
-    ];
-
-    fileSystems = {
-      "/mnt/cache" = lib.mkIf enableCcache {
-        device = "192.168.1.102:/volume1/cache";
-        fsType = "nfs";
-        options = [
-          "x-systemd.automount"
-          "noauto"
-          "x-systemd.idle-timeout=600"
-          "fsc"
-        ];
       };
     };
 
@@ -123,22 +76,6 @@
       };
 
       bash.undistractMe.enable = true;
-
-      ccache = lib.mkIf enableCcache {
-        enable = true;
-        packageNames = [
-          "sssd"
-          "freeipa"
-          # "mutter"
-          # "gnome-shell"
-          # "gnome-session"
-          # "satyr"
-          # "libreport"
-          # "abrt"
-          # "gnome-abrt"
-          # "will-crash"
-        ];
-      };
     };
 
     systemd = {
@@ -190,8 +127,6 @@
           # "aarch64-linux"
           "i686-linux"
         ];
-
-        extra-sandbox-paths = lib.mkIf enableCcache [config.programs.ccache.cacheDir];
 
         use-cgroups = true;
         #  ca-derivations recursive-nix
