@@ -12,7 +12,7 @@
     INODECACHE = "true";
     COMPRESS = "true";
     DIR = "${config.programs.ccache.cacheDir}";
-    UMASK = "007";
+    UMASK = "002";
     SLOPPINESS = "random_seed";
     MAXSIZE = "20GB";
     RESHARE = "true";
@@ -79,6 +79,16 @@ in {
     environment = {
       systemPackages = [pkgs.ccache];
       variables = withCcachePrefix;
+      etc."ccache.conf".text = ''
+        max_size = 20G
+        remote_storage = file:///mnt/cache/ccache|update-mtime=true
+        cache_dir = /var/cache/ccache
+        compression = true
+        inode_cache = true
+        reshare = true
+        umask = 002
+        sloppiness = random_seed
+      '';
     };
 
     programs.ccache = {
