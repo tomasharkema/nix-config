@@ -862,6 +862,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sccache = {
+      url = "github:mozilla/sccache";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # nix-monitor = {
     #   url = "github:antonjah/nix-monitor";
     #   inputs.nixpkgs.follows = "nixpkgs";
