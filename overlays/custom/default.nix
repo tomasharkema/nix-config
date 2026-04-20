@@ -28,7 +28,7 @@ in rec {
   synology-drive-client = checkUpdatedUpsteam prev.synology-drive-client "4.0.2-17889" prev.synology-drive-client.overrideAttrs ({buildInputs ? [], ...}: {
     buildInputs = buildInputs ++ [prev.qt5.qtwayland];
   });
-
+  atools = prev.custom.atools;
   ipmiview = checkUpdatedUpsteam prev.ipmiview "2.21.0" prev.ipmiview.overrideAttrs (old: {
     src = prev.fetchurl {
       url = "https://www.supermicro.com/Bios/sw_download/960/IPMIView_2.23.0_build.250519_bundleJRE_Linux_x64.tar.gz";
