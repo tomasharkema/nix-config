@@ -9,13 +9,12 @@
   remoteCacheDir = "/mnt/cache/ccache";
 
   ccacheOptions = {
-    INODECACHE = "true";
-    COMPRESS = "true";
     DIR = "${config.programs.ccache.cacheDir}";
     UMASK = "002";
     SLOPPINESS = "random_seed";
     MAXSIZE = "20GB";
     RESHARE = "true";
+    LOGFILE = "syslog";
     REMOTE_STORAGE = "file://${remoteCacheDir}|update-mtime=true";
     # REMOTE_STORAGE = "file:/mnt/cache/ccache";
   };
@@ -86,6 +85,7 @@ in {
         reshare = true
         umask = 002
         sloppiness = random_seed
+        log_file = syslog
       '';
     };
 
