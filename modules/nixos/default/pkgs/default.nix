@@ -17,6 +17,7 @@ in {
         # keep-sorted start
         agenix-rekey
         aide
+        apt-dater
         archivemount
         bandwhich
         bash
