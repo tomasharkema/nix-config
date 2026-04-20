@@ -83,8 +83,6 @@ in {
         max_size = 20G
         remote_storage = file:///mnt/cache/ccache|update-mtime=true
         cache_dir = /var/cache/ccache
-        compression = true
-        inode_cache = true
         reshare = true
         umask = 002
         sloppiness = random_seed
