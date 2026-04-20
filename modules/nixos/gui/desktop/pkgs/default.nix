@@ -41,6 +41,8 @@
     # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".hosttools
     bottles-removed
     boxbuddy
+    brave
+    brave-search-cli
     buttermanager
     cameractrls
     celestia
