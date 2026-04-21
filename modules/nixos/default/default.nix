@@ -461,6 +461,8 @@
           KERNEL=="rtc0", GROUP="audio"
           KERNEL=="hpet", GROUP="audio"
 
+          SUBSYSTEM=="usb", MODE="0660", GROUP="plugdev", TAG+="uaccess"
+
           # Enable runtime PM for NVIDIA VGA/3D controller devices on driver bind
           ACTION=="add|bind", SUBSYSTEM=="pci", DRIVERS=="nvidia", \
               ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", \
