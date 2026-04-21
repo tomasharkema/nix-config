@@ -26,6 +26,13 @@
         pocket-id.rekeyFile = ./pocket-id.age;
       };
     };
+    nix.systemFeatures = ["gccarch-skylake"];
+    nix.settings.system-features = ["gccarch-skylake"];
+    nixpkgs.hostPlatform = lib.mkForce {
+      gcc.arch = "skylake";
+      gcc.tune = "skylake";
+      system = "x86_64-linux";
+    };
 
     hardware.facter = {
       reportPath = ./facter.json;

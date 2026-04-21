@@ -7,7 +7,11 @@
 }: {
   config = {
     # nixpkgs.hostPlatform = {system = "x86_64-linux";};
-
+    nixpkgs.hostPlatform = {
+      gcc.arch = "skylake";
+      gcc.tune = "skylake";
+      system = "x86_64-linux";
+    };
     age = {
       rekey = {
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMESuHxB6/b4HP0S/Ad76XIR5s473hvPXFN8uzjhFZBp root@voltron";
