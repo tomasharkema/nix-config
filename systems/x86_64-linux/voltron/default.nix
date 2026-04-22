@@ -249,13 +249,14 @@
       };
 
       kernelParams = [
-        "i915.enable_gvt=1"
-        "i915.enable_fbc=0"
-        "ibt=off"
-        "intel_iommu=on"
-        "iommu=pt"
-        "iommu.passthrough=1"
+        # "i915.enable_gvt=1"
+        # "i915.enable_fbc=0"
+        # "ibt=off"
+        # "intel_iommu=on"
+        # "iommu=pt"
+        # "iommu.passthrough=1"
         "mitigations=off"
+        "iomem=relaxed"
       ];
 
       kernelModules = [

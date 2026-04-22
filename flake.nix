@@ -789,6 +789,10 @@
     #     nix-index-database.follows = "nix-index-database";
     #   };
     # };
+    coreboot-flake = {
+      url = "git+https://codeberg.org/mateidibu/coreboot-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     tsnsrv = {
       url = "github:boinkor-net/tsnsrv";
