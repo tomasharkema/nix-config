@@ -71,6 +71,30 @@ in {
       '';
     };
 
-    programs.ccache.enable = true;
+    nix.settings.extra-sandbox-paths = [
+      config.programs.ccache.cacheDir
+      ccacheOptions.DIR
+    ];
+
+    fileSystems = {
+      "/mnt/cache" = {
+        device = "192.168.1.102:/volume1/cache";
+        fsType = "nfs";
+        options = [
+          "x-systemd.automount"
+          "noauto"
+          "x-systemd.idle-timeout=600"
+          "fsc"
+        ];
+      };
+    };
+
+    programs.ccache = {
+      enable = true;
+      packageNames = [
+        "sssd"
+        "freeipa"
+      ];
+    };
   };
 }
