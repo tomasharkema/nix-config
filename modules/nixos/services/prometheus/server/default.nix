@@ -113,16 +113,16 @@ in {
             ];
           }
 
-          {
-            job_name = "ipmi-exporter";
-            static_configs = let
-              port = config.services.prometheus.exporters.ipmi.port;
-            in [
-              {
-                targets = ["localhost:${builtins.toString port}" "blue-fire:${builtins.toString port}"];
-              }
-            ];
-          }
+          # {
+          #   job_name = "ipmi-exporter";
+          #   static_configs = let
+          #     port = config.services.prometheus.exporters.ipmi.port;
+          #   in [
+          #     {
+          #       targets = ["localhost:${builtins.toString port}" "blue-fire:${builtins.toString port}"];
+          #     }
+          #   ];
+          # }
 
           {
             job_name = "idrac-exporter";

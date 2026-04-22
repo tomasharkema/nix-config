@@ -28,10 +28,10 @@ in {
       # '';
       # SUBSYSTEM=="ipmi", GROUP="ipmi", MODE="0777"
 
-      prometheus.exporters.ipmi = {
-        enable = true;
-        group = "ipmi";
-      };
+      #prometheus.exporters.ipmi = {
+      # enable = true;
+      #  group = "ipmi";
+      #};
     };
   };
 }

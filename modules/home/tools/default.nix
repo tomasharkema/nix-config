@@ -88,7 +88,7 @@ with pkgs; {
 
         httpie
         iftop
-        ipmitool
+        #  ipmitool
         just
         # keybase
         ldns

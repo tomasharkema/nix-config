@@ -85,13 +85,13 @@ in {
               config.services.prometheus.exporters.process.port
             }/metrics";
           })
-          ++ (lib.optional config.services.prometheus.exporters.ipmi.enable {
-            name = "ipmi";
-            url = "http://127.0.0.1:${
-              builtins.toString
-              config.services.prometheus.exporters.ipmi.port
-            }/metrics";
-          })
+          # ++ (lib.optional config.services.prometheus.exporters.ipmi.enable {
+          #   name = "ipmi";
+          #   url = "http://127.0.0.1:${
+          #     builtins.toString
+          #     config.services.prometheus.exporters.ipmi.port
+          #   }/metrics";
+          # })
           ++ (lib.optional config.services.prometheus.exporters.nginx.enable {
             name = "nginx";
             url = "http://127.0.0.1:${

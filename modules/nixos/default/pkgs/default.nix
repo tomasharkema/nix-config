@@ -89,7 +89,7 @@ in {
         fcast-receiver
         ffmpegEdited
         fleetctl
-        freeipmi
+        # freeipmi
         fresh-editor
         ftop
         fuse
@@ -120,8 +120,8 @@ in {
         ipcalc
         iperf
         iperf3
-        ipmitool
-        ipmiutil
+        # ipmitool
+        # ipmiutil
         iptraf-ng
         isd
         jnettop
@@ -139,6 +139,7 @@ in {
         libnotify
         libsecret
         libusb1
+        libuuid
         lm_sensors
         lnav
         lorri
@@ -180,7 +181,7 @@ in {
         nvme-cli
         nyaa
         onionshare
-        openipmi
+        # openipmi
         openldap
         openocd
         openseachest
@@ -299,7 +300,7 @@ in {
           fwupd-efi
           gnutls
           intentrace
-          ipmicfg
+          # ipmicfg
           libguestfs-with-appliance
           libsmbios
           meshtastic
