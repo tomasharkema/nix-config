@@ -4,19 +4,16 @@
   pkgs,
   ...
 }: let
-  enableCcache = true;
-
-  remoteCacheDir = "/mnt/cache/ccache";
-
   ccacheOptions = {
+    INODECACHE = "true";
+    COMPRESS = "true";
     DIR = "${config.programs.ccache.cacheDir}";
     UMASK = "002";
-    SLOPPINESS = "random_seed";
+    SLOPPINESS = "locale,time_macros";
     MAXSIZE = "20GB";
     RESHARE = "true";
+    REMOTE_STORAGE = "file:///mnt/cache/ccache";
     LOGFILE = "syslog";
-    REMOTE_STORAGE = "file://${remoteCacheDir}|update-mtime=true";
-    # REMOTE_STORAGE = "file:/mnt/cache/ccache";
   };
 
   withCcachePrefix = lib.mapAttrs' (name: value: lib.nameValuePair ("CCACHE_" + name) value) ccacheOptions;
@@ -29,18 +26,18 @@
 
   exportVariables = lib.concatStringsSep "\n" exportVariablesList;
 in {
-  config = lib.mkIf enableCcache {
+  config = {
     nixpkgs.overlays = [
       (self: super: {
         ccacheWrapper = super.ccacheWrapper.override {
-          extraConfig = builtins.trace "${exportVariables}" ''
+          extraConfig = builtins.trace "\n\n====\n\n${exportVariables}\n\n====\n\n" ''
             ${exportVariables}
 
             if [ ! -d "$CCACHE_DIR" ]; then
               echo "====="
               echo "Directory '$CCACHE_DIR' does not exist"
               echo "Please create it with:"
-              echo "  sudo mkdir -m0770 '$CCACHE_DIR'"
+              echo "  sudo mkdir -m0777 '$CCACHE_DIR'"
               echo "  sudo chown root:nixbld '$CCACHE_DIR'"
               echo "====="
               exit 1
@@ -57,52 +54,23 @@ in {
       })
     ];
 
-    nix.settings.extra-sandbox-paths = lib.mkIf enableCcache [
-      config.programs.ccache.cacheDir
-      remoteCacheDir
-    ];
-
-    fileSystems = {
-      "/mnt/cache" = {
-        device = "192.168.1.102:/volume1/cache";
-        fsType = "nfs";
-        options = [
-          "x-systemd.automount"
-          "noauto"
-          "x-systemd.idle-timeout=600"
-          "fsc"
-        ];
-      };
-    };
-
     environment = {
       systemPackages = [pkgs.ccache];
       variables = withCcachePrefix;
+
       etc."ccache.conf".text = ''
         max_size = 20G
-        remote_storage = file:///mnt/cache/ccache|update-mtime=true
-        cache_dir = /var/cache/ccache
+        cache_dir = "${ccacheOptions.DIR}"
+        compression = true
         reshare = true
         umask = 002
-        sloppiness = random_seed
+        inode_cache = true
+        sloppiness = locale,time_macros
+        remote_storage = "${ccacheOptions.REMOTE_STORAGE}"
         log_file = syslog
       '';
     };
 
-    programs.ccache = {
-      enable = true;
-      packageNames = [
-        "sssd"
-        "freeipa"
-        # "mutter"
-        # "gnome-shell"
-        # "gnome-session"
-        # "satyr"
-        # "libreport"
-        # "abrt"
-        # "gnome-abrt"
-        # "will-crash"
-      ];
-    };
+    programs.ccache.enable = true;
   };
 }
