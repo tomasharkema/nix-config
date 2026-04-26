@@ -85,10 +85,8 @@ in {
         efibootmgr
         efivar
         ethtool
-        # fbterm
         fcast-receiver
         ffmpegEdited
-        fleetctl
         # freeipmi
         fresh-editor
         ftop
