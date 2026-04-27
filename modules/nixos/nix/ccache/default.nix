@@ -92,8 +92,8 @@ in {
     programs.ccache = {
       enable = true;
       packageNames = [
-        "sssd"
-        "freeipa"
+        # "sssd"
+        # "freeipa"
       ];
     };
   };

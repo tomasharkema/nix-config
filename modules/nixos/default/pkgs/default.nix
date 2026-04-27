@@ -180,7 +180,7 @@ in {
         nyaa
         onionshare
         # openipmi
-        openldap
+        # openldap
         openocd
         openseachest
         opensoundmeter

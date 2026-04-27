@@ -43,8 +43,7 @@ with pkgs; {
         # lm_sensors
         # ncdu
         # nfs-utils
-
-        openldap
+        # openldap
         # pciutils
         pv
         sshportal

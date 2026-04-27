@@ -6,7 +6,6 @@
   ...
 }: let
   bottles-removed = pkgs.bottles.override {removeWarningPopup = true;};
-
   nrf-custom = pkgs.nrfutil.withExtensions [
     "nrfutil-completion"
     "nrfutil-device"
@@ -39,6 +38,7 @@
     bluetooth_battery
     # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".sdkFull
     # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".hosttools
+    # bottles-removed
     bottles-removed
     boxbuddy
     brave
@@ -54,7 +54,7 @@
     crosspipe
     custom.actioneer
     custom.butler
-    custom.denon-control
+    # custom.denon-control
     custom.distrib-dl
     custom.gitpulsar
     custom.gtk-meshtastic-client
@@ -69,11 +69,10 @@
     # bitwarden-desktop
     # bitwarden-menu
     custom.rgitui
-    custom.rust-conn
+    # custom.rust-conn
     custom.toolblex
     custom.usbguard-gnome
     custom.wifiman
-    cutter
     darktable
     davinci-resolve
     ddrescue
@@ -208,6 +207,8 @@
     tremotesf
     turtle
     typesetter
+    # cutter
+    uefitool
     ulauncher
     usbview
     uvccapture

@@ -16,8 +16,8 @@
   libxcrypt,
   nspr,
   nss,
-  openldap,
-  withOpenldap ? true,
+  # openldap,
+  # withOpenldap ? true,
   db,
   withBdb ? true,
   cyrus_sasl,
@@ -96,7 +96,7 @@ stdenv.mkDerivation (finalAttrs: {
       zlib
     ]
     ++ lib.optional withSystemd systemd
-    ++ lib.optional withOpenldap openldap
+    # ++ lib.optional withOpenldap openldap
     ++ lib.optional withBdb db
     ++ lib.optional withNetSnmp net-snmp;
 
@@ -121,9 +121,9 @@ stdenv.mkDerivation (finalAttrs: {
       "--with-systemd"
       "--with-systemdsystemunitdir=${placeholder "out"}/etc/systemd/system"
     ]
-    ++ lib.optionals withOpenldap [
-      "--with-openldap"
-    ]
+    # ++ lib.optionals withOpenldap [
+    #   "--with-openldap"
+    # ]
     ++ lib.optionals withBdb [
       "--with-db-inc=${lib.getDev db}/include"
       "--with-db-lib=${lib.getLib db}/lib"

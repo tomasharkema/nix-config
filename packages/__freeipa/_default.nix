@@ -8,7 +8,7 @@
   autoconf,
   automake,
   krb5,
-  openldap,
+  # openldap,
   popt,
   cyrus_sasl,
   curl,
@@ -19,7 +19,7 @@
   gettext,
   nspr,
   nss,
-  _389-ds-base,
+  # _389-ds-base,
   svrcore,
   libuuid,
   talloc,
@@ -122,8 +122,8 @@ in
     buildInputs =
       [
         krb5
-        openldap
-        openldap.dev
+        # openldap
+        # openldap.dev
         popt
         cyrus_sasl
         curl
@@ -133,7 +133,7 @@ in
         python3
         nspr
         nss
-        _389-ds-base
+        # _389-ds-base
         svrcore
         libuuid
         talloc
@@ -169,7 +169,7 @@ in
         --subst-var-by sssd ${sssd}
     '';
 
-    NIX_CFLAGS_COMPILE = "-I${_389-ds-base}/include/dirsrv";
+    # NIX_CFLAGS_COMPILE = "-I${_389-ds-base}/include/dirsrv";
     pythonPath = pythonInputs;
 
     # Building and installing the server fails with silent Rhino errors, skipping
