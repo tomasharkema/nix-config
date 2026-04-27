@@ -209,7 +209,7 @@
         #bridgeInterfaces = ["eth0"];
       };
       xserver = {
-        # enableTearFree = true;
+        enableTearFree = true;
         videoDrivers = ["nvidia"];
       };
       ddccontrol.enable = true;
@@ -277,7 +277,9 @@
         disable-sleep.enable = true;
       };
     };
+
     hardware.wirelessRegulatoryDatabase = true;
+
     boot = {
       kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v4;
 
@@ -315,18 +317,21 @@
         # "iTCO_wdt"
         "ddcci-backlight"
         # "vfio_pci"
-        # "vfio"
+        "vfio"
         # "vfio_iommu_type1"
         "kvm-intel"
         # "nvidia_vgpu_vfio"
-        "iwlwifi"
+        # "iwlwifi"
         # "cfg80211"
-        "iwlmld"
+        # "iwlmld"
       ];
+
       modprobeConfig.enable = true;
+
       extraModprobeConfig = ''
         options it87 ignore_resource_conflict=1 update_vbat=1
       '';
+
       #   options iwlmvm power_scheme=1
       #   options iwlwifi 11n_disable=1
       #   options cfg80211 ieee80211_regdom=NL cfg80211_disable_40mhz_24ghz=1
@@ -337,9 +342,10 @@
         # "console=ttyS0,115200n8"
         "intel_iommu=on"
         "iommu=pt"
-        "preempt=full"
+        # "preempt=full"
         "ibt=off"
         "iommu.passthrough=1"
+        "iomem=relaxed"
         # "drm.edid_firmware=HDMI-A-1:edid/samsung-q800t-hdmi2.1"
         # "video=HDMI-A-1:e"
         # "pci-stub.ids=1458:37a7"
