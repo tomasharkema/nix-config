@@ -134,7 +134,7 @@
 
           unifi-tui = "unifi-tui --insecure --url \"https://192.168.1.1/proxy/network/integrations\" --api-key \"$(op item get ojsyugyddrsxtq3kayoonibhda --reveal --field credential)\"";
 
-          zellij = "systemd-run --scope --user zellij";
+          # zellij = "systemd-run --scope --user zellij";
 
           hwp = ''xdg-open "$(sudo hw-probe -all -upload | ./result/bin/sgrep url | fzf)"'';
 
