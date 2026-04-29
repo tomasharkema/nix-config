@@ -122,11 +122,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777398395,
-        "narHash": "sha256-SXlXUP3hdOLeACtGbx1Q5ShhJs3WgP2SPhCnv9Ew+Hw=",
+        "lastModified": 1777488097,
+        "narHash": "sha256-p18QJNg0W514NcVa8YzGFIWGBllodJYOLycTGfOwyIA=",
         "owner": "catppuccin",
         "repo": "nix",
-        "rev": "ea21443e55c1acca99a69076539e71eaffb87db5",
+        "rev": "2c5610cf1583a70df719f90a1f2d2e29521a9f4a",
         "type": "github"
       },
       "original": {
@@ -219,11 +219,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1777480948,
+        "lastModified": 1777489014,
         "narHash": "sha256-wTNynDpDfgozb2DTJNCPkRe59NhYPEeerld48RjqRVA=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "baaa30c94e1f407f8c4c229c50a614aa5c7d6e2a",
+        "rev": "3b96c6ab228715da276109f465d00bf7f8caba0e",
         "type": "github"
       },
       "original": {
