@@ -36,11 +36,14 @@
         # buildPlatform.system = "x86_64-linux";
 
         permittedInsecurePackages = [
+          "minio-2025-10-15T17-29-55Z"
           "segger-jlink-qt4-874"
-          "libsoup-2.74.3"
+          # "libsoup-2.74.3"
           "python3.13-ecdsa-0.19.1"
         ];
-        enableBroken = true;
+
+        #enableBroken = true;
+
         config = {
           allowUnfreePredicate = _: true;
           allowUnfree = true;

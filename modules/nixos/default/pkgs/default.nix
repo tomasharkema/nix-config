@@ -144,7 +144,6 @@ in {
         lrzsz
         lshw
         mbuffer
-        minio-client
         mlt
         more
         mpremote
