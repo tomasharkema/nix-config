@@ -18,8 +18,10 @@
         variant = "5";
         bootloader = "kernel";
       };
-      # kernelPackages = pkgs.linuxPackagesFor (inputs.nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi5.kernel.override {stdenv = pkgs.ccacheStdenv;});
+      kernelPackages = pkgs.linuxPackagesFor (inputs.nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi5.kernel.override {stdenv = pkgs.ccacheStdenv;});
     };
+
+    apps.zabbix.proxy.enable = true;
 
     environment.systemPackages = with pkgs; [
       custom.rpifwcrypto-pkcs11
@@ -31,26 +33,6 @@
       firewall.enable = false;
       networkmanager = {
         enable = true;
-        wifi = {
-          backend = "iwd";
-        };
-      };
-      wireless = {
-        enable = false;
-        iwd = {
-          enable = true;
-          settings = {
-            Settings = {
-              AutoConnect = true;
-              # AlwaysRandomizeAddress = false;
-            };
-            Network = {
-              # EnableIPv6 = true;
-              # RoutePriorityOffset = 300;
-            };
-            # DriverQuirks.DefaultInterface = "wlan0";
-          };
-        };
       };
     };
 
@@ -111,7 +93,7 @@
     ];
 
     traits = {
-      low-power.enable = true;
+      #low-power.enable = true;
       hardware = {
         # raspberry.enable = true;
         # bluetooth.enable = true;
