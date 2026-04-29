@@ -449,6 +449,8 @@
           platformio-core
         ];
 
+        # SUBSYSTEM=="usb", MODE="0660", GROUP="plugdev", TAG+="uaccess"
+
         extraRules = ''
           SUBSYSTEM=="hidraw", SUBSYSTEMS=="usb", \
             ATTRS{idVendor}=="1915", \
@@ -460,8 +462,6 @@
 
           KERNEL=="rtc0", GROUP="audio"
           KERNEL=="hpet", GROUP="audio"
-
-          SUBSYSTEM=="usb", MODE="0660", GROUP="plugdev", TAG+="uaccess"
 
           # Enable runtime PM for NVIDIA VGA/3D controller devices on driver bind
           ACTION=="add|bind", SUBSYSTEM=="pci", DRIVERS=="nvidia", \
