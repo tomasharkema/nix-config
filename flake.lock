@@ -122,11 +122,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777505151,
-        "narHash": "sha256-ul1iRBfVX2vc971tHHhVtxX2hycU3nVwgO005OcOKnw=",
+        "lastModified": 1777574785,
+        "narHash": "sha256-wgM3MbJ0eVaJFdigFno+DGNGoQRW5XNu7VQ+KCYNNlw=",
         "owner": "catppuccin",
         "repo": "nix",
-        "rev": "e82c195f2276825b0a08024fdaff80f965edcd69",
+        "rev": "b2d0b8ccbe1f3af05252716d5069364fb88e0386",
         "type": "github"
       },
       "original": {
@@ -219,11 +219,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1777493659,
-        "narHash": "sha256-zHnEBbG1HoW6+H9d2aWjJ4ugvHHwy9JssIBK54sj3Bk=",
+        "lastModified": 1777564044,
+        "narHash": "sha256-31zM47kbsq7kchjN7WsUpm7BWLraNzpAVc0O7ge5yKc=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "86096db26bf259be89b2c24693cb2cb1fce31201",
+        "rev": "7d92842ff2922751270802009c072b0ed81c1b6b",
         "type": "github"
       },
       "original": {
@@ -1571,11 +1571,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1777233074,
-        "narHash": "sha256-YHdojAovARDsJjMYE1vvvULOcdSx7RzRIprYGamrqB4=",
+        "lastModified": 1777561570,
+        "narHash": "sha256-A0NWU/67x9kyfl7HIMpAzMRMnQXsl/KsGkOWg0behCE=",
         "owner": "nvmd",
         "repo": "nixos-raspberrypi",
-        "rev": "8b22fecccfeda70dc1b16f51e309b8b15647a83b",
+        "rev": "e9337430644b55a0ea954a25a48f7b34d73444a0",
         "type": "github"
       },
       "original": {
