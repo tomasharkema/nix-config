@@ -50,7 +50,7 @@ in {
       hardware = {
         tpm.enable = true;
         secure-boot = {
-          enable = true;
+          enable = false;
           measuredBoot = false;
         };
         # remote-unlock.enable = false;
@@ -222,7 +222,7 @@ in {
     #  icingaweb2
     # ];
 
-    virtualisation.kvmgt = {
+    virtualisation.kvmgt = lib.mkIf false {
       enable = true;
       device = "0000:01:00.0";
       vgpus = {
@@ -240,6 +240,7 @@ in {
         };
       };
     };
+
     hardware = {
       cpu.intel.updateMicrocode = true;
 
@@ -249,7 +250,7 @@ in {
       nvidia = {
         # forceFullCompositionPipeline = true;
         nvidiaSettings = lib.mkForce false;
-        nvidiaPersistenced = lib.mkForce false;
+        nvidiaPersistenced = true;
       };
     };
 
@@ -279,6 +280,7 @@ in {
         # "vfio_iommu_type1.allow_unsafe_interrupts=1"
         # "kvm.ignore_msrs=1"
         # "pci=nomsi"
+        "iomem=relaxed"
         "intel_iommu=on"
         "ipmi_watchdog.preop=preop_give_data"
         "ipmi_watchdog.preaction=pre_int"
@@ -295,9 +297,9 @@ in {
         netboot.enable = true;
       };
 
-      # loader = {
-      #   systemd-boot.enable = false;
-
+      loader = {
+        systemd-boot.enable = true;
+      };
       #   efi = {
       #     canTouchEfiVariables = true;
       #     efiSysMountPoint = "/boot";
