@@ -14,23 +14,27 @@
   vte-gtk4,
   zlib,
   stdenv,
-  darwin,
   alsa-lib,
   openssh,
   copyDesktopItems,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "rust-conn";
-  version = "0.12.5";
+  version = "0.12.7";
 
   src = fetchFromGitHub {
     owner = "totoshko88";
     repo = "RustConn";
     rev = "v${version}";
-    sha256 = "sha256-icJETLHopwL5V0eJ1PQ3AXNeREKmsbuUk/r0dWUA3yA=";
+    sha256 = "sha256-Wsh2CPQa3HdN8w9Z8hEig5x+LpEzGkHxEet2iNYCSW4=";
   };
 
-  cargoHash = "sha256-uhTRiJM0tpCpZXP+uA2zRFetvHdYc/lxXZq+LKAauHg=";
+  cargoHash = "sha256-W1y0jXZuIYIP8nIHOGzLSy4xiiZN8QWV89MDbd1rcGY=";
+
+  postPatch = ''
+    substituteInPlace Cargo.toml \
+      --replace-fail 'rust-version = "1.95"' 'rust-version = "1.94"'
+  '';
 
   nativeBuildInputs = [
     pkg-config
@@ -51,10 +55,6 @@ rustPlatform.buildRustPackage rec {
       vte-gtk4
       zlib
       openssh
-    ]
-    ++ lib.optionals stdenv.isDarwin [
-      # darwin.apple_sdk.frameworks.Security
-      # darwin.apple_sdk.frameworks.SystemConfiguration
     ]
     ++ lib.optionals stdenv.isLinux [
       alsa-lib

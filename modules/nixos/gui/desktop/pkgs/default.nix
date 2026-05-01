@@ -54,7 +54,7 @@
     crosspipe
     custom.actioneer
     custom.butler
-    # custom.denon-control
+    custom.denon-control
     custom.distrib-dl
     custom.gitpulsar
     custom.gtk-meshtastic-client
@@ -69,7 +69,7 @@
     # bitwarden-desktop
     # bitwarden-menu
     custom.rgitui
-    # custom.rust-conn
+    custom.rust-conn
     custom.toolblex
     custom.usbguard-gnome
     custom.wifiman
