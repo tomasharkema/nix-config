@@ -82,6 +82,9 @@ in {
         distrobox-tui
         dry
         duc
+        dump1090-fa
+        dumphfdl
+        dumpvdl2
         efibootmgr
         efivar
         ethtool
@@ -115,6 +118,7 @@ in {
         ifuse
         imv
         inputs.neix.packages.${pkgs.system}.default
+        inteltool
         ipcalc
         iperf
         iperf3
@@ -201,6 +205,7 @@ in {
         play
         ponymix
         poptop
+        pps-tools
         psmisc
         pulsemixer
         pv
@@ -212,6 +217,7 @@ in {
         redfishtool
         regname
         rsbkb
+        rtl-sdr
         rtop
         s-tui
         screen
