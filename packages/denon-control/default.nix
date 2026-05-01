@@ -4,7 +4,7 @@
   fetchFromGitHub,
   cmake,
   ninja,
-  boost177,
+  boost178,
   pkg-config,
   qt5,
   catch2_3,
@@ -32,7 +32,7 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
-    boost177
+    boost178
     qt5.qtbase
     qt5.qtmultimedia
     qt5.qttools
