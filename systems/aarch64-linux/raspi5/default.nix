@@ -21,7 +21,10 @@
       kernelPackages = pkgs.linuxPackagesFor (inputs.nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi5.kernel.override {stdenv = pkgs.ccacheStdenv;});
     };
 
-    apps.zabbix.proxy.enable = true;
+    apps = {
+      zabbix.proxy.enable = true;
+      usbguard.enable = true;
+    };
 
     environment.systemPackages = with pkgs; [
       custom.rpifwcrypto-pkcs11
