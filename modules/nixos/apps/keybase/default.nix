@@ -96,8 +96,8 @@ in {
         # enableRedirector = true;
         # mountPoint = "%t/kbfs";
         extraFlags = [
-          "-label kbfs"
-          "-mount-type normal"
+          "-label Keybase"
+          # "-mount-type normal"
           # "-debug"
         ];
       };

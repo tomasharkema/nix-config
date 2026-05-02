@@ -111,7 +111,23 @@
       };
     };
 
+    fileSystems = lib.mkIf false {
+      "/export/ccache" = {
+        device = "/var/cache/ccache";
+        # options = ["bind"];
+        fsType = "bind";
+      };
+    };
+
     services = {
+      nfs = {
+        server = {
+          enable = true;
+          exports = ''
+            /export/ccache
+          '';
+        };
+      };
       # certmgr.enable = true;
       # step-ca.enable = true;
       # netconsoled.enable = true;
