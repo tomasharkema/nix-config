@@ -118,7 +118,6 @@ in {
         ifuse
         imv
         inputs.neix.packages.${pkgs.system}.default
-        inteltool
         ipcalc
         iperf
         iperf3
@@ -302,6 +301,7 @@ in {
           fwupd
           fwupd-efi
           gnutls
+          inteltool
           intentrace
           # ipmicfg
           libguestfs-with-appliance

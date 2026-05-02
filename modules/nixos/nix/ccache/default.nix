@@ -10,7 +10,7 @@
     COMPRESS = "true";
     DIR = "${config.programs.ccache.cacheDir}";
     UMASK = "002";
-    SLOPPINESS = "locale,time_macros";
+
     MAXSIZE = "20GB";
     RESHARE = "true";
     REMOTE_STORAGE = lib.mkIf (config.networking.hostName != "silver-star") "file://${remoteDir}";
@@ -65,7 +65,6 @@ in {
         reshare = true
         umask = 002
         inode_cache = true
-        sloppiness = locale,time_macros
         ${lib.optionalString (config.networking.hostName != "silver-star") ''
           remote_storage = "${ccacheOptions.REMOTE_STORAGE}"
         ''}
