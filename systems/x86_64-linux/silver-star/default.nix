@@ -111,7 +111,7 @@
       };
     };
 
-    fileSystems = lib.mkIf false {
+    fileSystems = {
       "/export/ccache" = {
         device = "/var/cache/ccache";
         # options = ["bind"];
