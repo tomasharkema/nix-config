@@ -5,7 +5,7 @@
   lib,
   inputs,
   ...
-}: (final: prev: rec {
+}: (final: prev: {
   # unstable = channels.unstable;
 
   # conky = prev.conky.override {
@@ -13,8 +13,16 @@
   #   waylandSupport = true;
   #   nvidiaSupport = true;
   # };
+  wireshark = prev.wireshark.overrideAttrs (oldAttrs: {
+    src = prev.fetchFromGitLab {
+      repo = "wireshark";
+      owner = "wireshark";
+      tag = "v${oldAttrs.version}";
+      hash = "sha256-Zvrwxjp4LK2J3QnxmPxKKrU01YHQvPyp54UWzeGNCjA=";
+    };
+  });
 
-  resilio-sync = prev.resilio-sync.overrideAttrs (old: rec {
+  resilio-sync = builtins.trace "old resilio: ${prev.resilio-sync.version}" prev.resilio-sync.overrideAttrs (old: rec {
     pname = "resilio-sync";
     version = "3.1.1.1075";
 
