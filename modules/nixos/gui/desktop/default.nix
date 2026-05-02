@@ -186,7 +186,7 @@ in {
       saleae-logic.enable = true;
       libftdi.enable = true;
       libjaylink.enable = true;
-
+      wooting.enable = true;
       usb-modeswitch.enable = true;
       opentabletdriver = {
         enable = true;
