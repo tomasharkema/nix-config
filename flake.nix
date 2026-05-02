@@ -546,12 +546,6 @@
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        # home-manager.follows = "home-manager";
-        # nix-darwin.follows = "darwin";
-        #     # flake-compat.follows = "flake-compat";
-        #     # flake-parts.follows = "flake-parts";
-        #     # devshell.follows = "devshell";
-        #     # treefmt-nix.follows = "treefmt-nix";
       };
     };
 
