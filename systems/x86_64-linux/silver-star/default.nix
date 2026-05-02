@@ -26,13 +26,6 @@
         pocket-id.rekeyFile = ./pocket-id.age;
       };
     };
-    nix.systemFeatures = ["gccarch-skylake"];
-    nix.settings.system-features = ["gccarch-skylake"];
-    nixpkgs.hostPlatform = lib.mkForce {
-      gcc.arch = "skylake";
-      gcc.tune = "skylake";
-      system = "x86_64-linux";
-    };
 
     hardware.facter = {
       reportPath = ./facter.json;
@@ -111,12 +104,10 @@
       };
     };
 
-    fileSystems = {
-      "/export/ccache" = {
-        device = "/var/cache/ccache";
-        # options = ["bind"];
-        fsType = "bind";
-      };
+    fileSystems."/export/ccache" = {
+      device = "/var/cache/ccache";
+      options = ["bind"];
+      fsType = "none";
     };
 
     services = {
@@ -145,7 +136,7 @@
       rsyncd.enable = true;
       # "nix-private-cache".enable = true;
 
-      matrix-conduit = {
+      matrix-conduit = lib.mkIf false {
         enable = true;
         settings.global = {
           allow_registration = true;
@@ -186,7 +177,7 @@
         openFirewall = true;
       };
 
-      syslog-ng = {
+      syslog-ng = lib.mkIf false {
         enable = true;
         extraConfig = ''
           options {

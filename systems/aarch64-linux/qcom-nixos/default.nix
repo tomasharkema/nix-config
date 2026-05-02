@@ -7,7 +7,7 @@
   config = {
     nixpkgs.hostPlatform = "aarch64-linux";
 
-    nixpkgs.overlays = [
+    nixpkgs.overlays = lib.mkIf false [
       (self: super: {
         ccacheWrapper = super.ccacheWrapper.override {
           extraConfig = ''

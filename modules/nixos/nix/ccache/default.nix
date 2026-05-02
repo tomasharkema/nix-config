@@ -13,7 +13,7 @@
     SLOPPINESS = "locale,time_macros";
     MAXSIZE = "20GB";
     RESHARE = "true";
-    REMOTE_STORAGE = "file://${remoteDir}";
+    REMOTE_STORAGE = lib.mkIf (config.networking.hostName != "silver-star") "file://${remoteDir}";
   };
 
   withCcachePrefix = lib.mapAttrs' (name: value: lib.nameValuePair ("CCACHE_" + name) value) ccacheOptions;
@@ -66,7 +66,9 @@ in {
         umask = 002
         inode_cache = true
         sloppiness = locale,time_macros
-        remote_storage = "${ccacheOptions.REMOTE_STORAGE}"
+        ${lib.optionalString (config.networking.hostName != "silver-star") ''
+          remote_storage = "${ccacheOptions.REMOTE_STORAGE}"
+        ''}
       '';
     };
 
