@@ -32,7 +32,6 @@ in {
         "Tailscale" = 1475387142;
         "Telegram" = 747648890;
         "UTM" = 1538878817;
-        "automute" = 1118136179;
         "remarkable" = 1276493162;
         # keep-sorted end
       };

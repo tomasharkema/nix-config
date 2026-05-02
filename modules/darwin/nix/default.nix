@@ -40,10 +40,6 @@ in {
         nil
         nixd
       ];
-      variables = {
-        # OTEL_EXPORTER_OTLP_ENDPOINT = "http://silver-star:8428/opentelemetry/v1/metrics";
-        # OTEL_EXPORTER_OTLP_TRACES_PROTOCOL = "http/json";
-      };
     };
 
     nix = let
@@ -66,7 +62,7 @@ in {
         ];
         config = {
           virtualisation = {
-            rosetta.enable = true;
+            # rosetta.enable = true;
             darwin-builder = {
               diskSize = 40 * 1024;
               memorySize = 6 * 1024;
