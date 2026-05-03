@@ -47,6 +47,20 @@
         RuntimeWatchdogPreSec = "30s";
         KExecWatchdogSec = "5m";
       };
+
+      services.unmodeset = {
+        description = "Unload nvidia modesetting modules from kernel";
+        documentation = ["man:modprobe(8)"];
+        # defaultDependencies = false;
+        after = ["umount.target"];
+        before = ["kexec.target"];
+
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${pkgs.kmod}/bin/modprobe -r nvidia_drm";
+        };
+        wantedBy = ["kexec.target"];
+      };
     };
 
     # Set your time zone.
