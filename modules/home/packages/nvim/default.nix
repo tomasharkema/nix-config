@@ -164,7 +164,7 @@
             settings.delve.path = "${pkgs.delve}/bin/dlv";
           };
           dap-ui.enable = true;
-          zellij-nav.enable = true;
+          # zellij-nav.enable = true;
           lazygit.enable = true;
           treesitter = {
             enable = true;
@@ -224,14 +224,14 @@
             enable = true;
             #   filetypeExclude = ["startify"];
           };
-          barbar.enable = true;
+          # barbar.enable = true;
           gitgutter.enable = true;
           vim-surround.enable = true;
           colorizer.enable = true;
           web-devicons.enable = true;
           nix-develop.enable = true;
           notify.enable = true;
-          zellij.enable = true;
+          # zellij.enable = true;
           statuscol = {
             enable = true;
             settings.segments = [
