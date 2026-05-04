@@ -161,6 +161,8 @@
           nixos-cli.nixosModules.nixos-cli
           # nix-monitor.nixosModules.default
 
+          determinate.nixosModules.default
+
           ./defaultNixosAge.nix
           (
             {config, ...}: {
@@ -183,6 +185,7 @@
           agenix.darwinModules.default
           agenix-rekey.nixosModules.default
           # mac-app-util.darwinModules.default
+          determinate.darwinModules.default
 
           (
             {
@@ -373,6 +376,7 @@
     trusted-users = [
       "root"
       "tomas"
+      "tomasharkema"
       # "${config.user.name}"
     ];
     connect-timeout = 5;
@@ -380,9 +384,8 @@
 
     # netrc-file = "/etc/nix/netrc";
 
-    substituters = [
+    extra-substituters = [
       "https://cache.nixos.org/"
-      # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
       "https://watersucks.cachix.org"
       "https://nixpkgs.cachix.org"
       "https://nix-gaming.cachix.org"
@@ -397,27 +400,7 @@
       "https://nixos-raspberrypi.cachix.org"
     ];
 
-    # trustedBinaryCaches = [
-    #   "https://cache.nixos.org"
-    #   "https://nix-gaming.cachix.org"
-    #   "https://nix-community.cachix.org"
-    #   # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
-    #   "https://devenv.cachix.org"
-    #   "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
-    #   "https://cuda-maintainers.cachix.org"
-    # ];
-
-    # binaryCaches = [
-    #   "https://cache.nixos.org"
-    #   "https://nix-gaming.cachix.org"
-    #   "https://nix-community.cachix.org"
-    #   "https://devenv.cachix.org"
-    #   "https://cuda-maintainers.cachix.org"
-    #   "http://silver-star.ling-lizard.ts.net:7124/tomasharkema"
-    #   # "https://nix-cache.ling-lizard.ts.net/tomasharkema"
-    # ];
-
-    trusted-public-keys = [
+    extra-trusted-public-keys = [
       "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
       "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
@@ -441,21 +424,6 @@
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       "tomasharkema:odFihM5iPetpuUdcXy/4cKAFxOBM0TKAeLpztxA7qu4="
     ];
-
-    # allowed-uris = [
-    #   "https://"
-    #   "git+https://"
-    #   "github:NixOS/"
-    #   "github:nixos/"
-    #   "github:hercules-ci/"
-    #   "github:numtide/"
-    #   "github:cachix/"
-    #   "github:nix-community/"
-    #   "github:snowfallorg/"
-    #   "github:edolstra/"
-    #   "github:tomasharkema/"
-    #   "github:snowfallorg/"
-    # ];
 
     # allow-import-from-derivation = true;
     keep-failed = true;
@@ -863,6 +831,12 @@
       url = "github:mozilla/sccache";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-images = {
+      url = "github:nix-community/nixos-images";
+    };
+
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
     # nix-monitor = {
     #   url = "github:antonjah/nix-monitor";

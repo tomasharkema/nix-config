@@ -197,7 +197,7 @@ in {
     keep-sorted
     # # snowfallorg.flake
     # agenix
-    # cachix
+    cachix
     # cachix-deploy
     # cachix-reploy-pin
     # cntr
@@ -229,14 +229,14 @@ in {
     manix
     mkiso
     # netdiscover
-    # nil
+    nil
     # nix-eval-jobs
     nix-output-monitor
     nix-output-monitor
     nix-prefetch-scripts
     nix-prefetch-scripts
     nix-tree
-    # nixd
+    nixd
     nixfmt
     nixpkgs-fmt
     nixpkgs-lint

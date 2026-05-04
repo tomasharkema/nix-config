@@ -3,27 +3,23 @@
   fetchzip,
   ...
 }:
-stdenvNoCC.mkDerivation {
+stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "computer-modern";
-  version = "1";
+  version = "0.7.0";
 
   src = fetchzip {
-    url = "https://www.fontsquirrel.com/fonts/download/computer-modern";
-    stripRoot = false;
-    sha256 = "sha256-FC3goqbHKOzxQuM7Wna/4Yg+yygVtR2IdvFjF0BGxlE=";
-    extension = "zip";
+    url = "https://sourceforge.net/projects/cm-unicode/files/cm-unicode/${finalAttrs.version}/cm-unicode-${finalAttrs.version}-ttf.tar.xz/download";
+    sha256 = "sha256-JNf188eftIS9E6fWXJGnVFj91bXnPwlPkHh7sk6TBno=";
+    extension = "tar.xz";
   };
 
-  # buildPhase = ''
-  #     for f in ${fantasqueMonoSansLigatures}/share/fonts/opentype/*; do
-  #     python font-patcher $f --complete --no-progressbars --outputdir $out/share/fonts/opentype
-  #   done
-  # '';
   installPhase = ''
     runHook preInstall
 
-    install -Dm444 *.ttf -t $out/share/fonts/tf
+    mkdir -p $out/share/fonts/ttf
+
+    install -Dm444 cm-unicode-${finalAttrs.version}/*.ttf $out/share/fonts/ttf
 
     runHook postInstall
   '';
-}
+})

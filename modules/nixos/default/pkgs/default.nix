@@ -143,7 +143,6 @@ in {
         libuuid
         lm_sensors
         lnav
-        lorri
         lrzsz
         lshw
         mbuffer

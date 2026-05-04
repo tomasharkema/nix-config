@@ -31,7 +31,6 @@ in {
         "RDP" = 1295203466;
         "Tailscale" = 1475387142;
         "Telegram" = 747648890;
-        "UTM" = 1538878817;
         "remarkable" = 1276493162;
         # keep-sorted end
       };
@@ -61,6 +60,13 @@ in {
         # "kobo"
         "gitbutler"
         "jetbrains-toolbox"
+        "rectangle"
+        "screenflow"
+        "secretive"
+        "slack"
+        "spotify"
+        "swiftbar"
+        "ungoogled-chromium"
         # "spotifyd"
         # "1password"
         # "cleanshot"
@@ -71,13 +77,7 @@ in {
         # "istat-menus"
         # "monodraw"
         # "raycast"
-        "rectangle"
-        "screenflow"
-        "secretive"
-        # "slack"
-        "spotify"
-        "swiftbar"
-        "ungoogled-chromium"
+        "utm"
         "wezterm"
         "windows-app"
         # keep-sorted end

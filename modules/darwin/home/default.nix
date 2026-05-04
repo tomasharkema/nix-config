@@ -59,6 +59,7 @@
         home.stateVersion = lib.mkDefault "26.05";
         xdg.enable = true;
         programs.home-manager.enable = true;
+        nix.enable = false;
       };
     };
   };

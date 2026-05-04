@@ -15,7 +15,7 @@ stdenvNoCC.mkDerivation {
     })
     (fetchzip {
       url = "https://www.wfonts.com/download/data/2015/03/12/futura/futura.zip";
-      sha256 = "sha256-QtcPTbs45kIRJJiacvhItYXymsJhd/IvC8o68NQrJqo=";
+      sha256 = "sha256-oRMwi7zO6QZI46f/fjEySqDGc8xedpzhFnQTVr1Lhx0=";
       stripRoot = false;
       name = "source-futura";
     })
