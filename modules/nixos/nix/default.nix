@@ -35,14 +35,15 @@
       man = {
         enable = true;
         man-db.enable = true;
-        #generateCaches = true;
+        generateCaches = true;
       };
       dev.enable = true;
       doc.enable = true;
       info.enable = true;
       nixos = {
         enable = true;
-        #includeAllModules = true;
+
+        # includeAllModules = true;
       };
     };
 
@@ -69,31 +70,27 @@
     programs = {
       nh = {
         enable = true;
-        clean.enable = lib.mkDefault true;
-        clean.extraArgs = lib.mkDefault "--keep-since 4d --keep 3";
+        #clean.enable = lib.mkDefault true;
+        #clean.extraArgs = lib.mkDefault "--keep-since 4d --keep 3";
         flake = "/home/tomas/Developer/nix-config";
-        package = pkgs.nh;
+        #package = pkgs.nh;
       };
 
       bash.undistractMe.enable = true;
     };
 
     systemd = {
-      packages = with pkgs; [
-        (nix-web .override {stdenv = ccacheStdenv;})
-      ];
-
       # Create a separate slice for nix-daemon that is
       # memory-managed by the userspace systemd-oomd killer
-      slices."nix-daemon".sliceConfig = {
-        ManagedOOMMemoryPressure = "kill";
-        ManagedOOMMemoryPressureLimit = "50%";
-      };
-      services."nix-daemon".serviceConfig.Slice = "nix-daemon.slice";
+      # slices."nix-daemon".sliceConfig = {
+      #   ManagedOOMMemoryPressure = "kill";
+      #   ManagedOOMMemoryPressureLimit = "50%";
+      # };
+      # services."nix-daemon".serviceConfig.Slice = "nix-daemon.slice";
 
       # If a kernel-level OOM event does occur anyway,
       #strongly prefer killing nix-daemon child processes
-      services."nix-daemon".serviceConfig.OOMScoreAdjust = 1000;
+      # services."nix-daemon".serviceConfig.OOMScoreAdjust = 1000;
     };
 
     nix = let
@@ -102,7 +99,7 @@
         config.user.name
       ];
     in {
-      package = pkgs.nixVersions.latest; # pkgs.nix_git; #  # pkgs.nix-lazytrees2_git;
+      package = lib.mkDefault pkgs.nixVersions.latest; # pkgs.nix_git; #  # pkgs.nix-lazytrees2_git;
 
       # nixPath = [
       #   "nixpkgs=${inputs.nixpkgs}"
