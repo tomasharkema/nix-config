@@ -5,20 +5,7 @@
   ...
 }: let
   cfg = config.services.netbootxyz;
-
-  docker-ps = pkgs.writeShellScriptBin "docker-ps" ''
-
-    ctnr="$1"
-
-    ${pkgs.docker}/bin/docker ps --filter "status=running" | \
-    ${pkgs.gnugrep}/bin/grep -i "$ctnr" > /dev/null
-
-    if [ $? -eq 0 ]; then
-      exit 0  # Process is running
-    else
-      exit 1  # Process is not running
-    fi
-  '';
+  webPort = "3001";
 in {
   options.services.netbootxyz = {
     enable = lib.mkEnableOption "netbootxyz";
@@ -50,6 +37,18 @@ in {
           '';
         };
       };
+
+      pixiecore = {
+        enable = true;
+        openFirewall = true;
+        dhcpNoBind = true;
+        kernel = "https://boot.netboot.xyz";
+        mode = "api";
+        port = 7849;
+        statusPort = 7849;
+        apiServer = "http://localhost:7847";
+      };
+
       keepalived = {
         enable = true;
 
@@ -76,7 +75,11 @@ in {
             then 51
             else 10;
 
-          virtualIps = [{addr = "192.168.0.250/24";}];
+          virtualIps = [
+            {addr = "192.168.0.250/24";}
+            # {addr = "192.168.1.250/24";}
+            # {addr = "192.168.9.250/24";}
+          ];
           trackScripts = ["track_netbootxyz"];
         };
 
@@ -84,7 +87,9 @@ in {
           track_netbootxyz = {
             # Note: Shell pipes are not supported here. Call a self written
             # script or something like that instead.
-            script = "${docker-ps}/bin/docker-ps netbootxyz";
+            script = ''
+              nmap localhost -p ${webPort} | grep -q "${webPort}/tcp.*open"
+            '';
             interval = 10;
             timeout = 2;
             rise = 2;
@@ -123,11 +128,11 @@ in {
           "/mnt/netboot:/netboot"
         ];
         environment = {
-          WEB_APP_PORT = "3001"; #optional
+          WEB_APP_PORT = "${webPort}";
           NGINX_PORT = "8083";
         };
         ports = [
-          "3001:3001"
+          "${webPort}:${webPort}"
           "69:69/udp"
           "8083:8083"
         ];

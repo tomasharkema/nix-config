@@ -121,7 +121,7 @@ in {
         ipcalc
         iperf
         iperf3
-        # ipmitool
+        ipmitool
         # ipmiutil
         iptraf-ng
         isd
