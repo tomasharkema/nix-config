@@ -2167,11 +2167,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1775226105,
-        "narHash": "sha256-ZCczHkWbFNa0lovGN0vjuv4ewv7Ff8j/OGkFxsDNkBY=",
+        "lastModified": 1778056557,
+        "narHash": "sha256-+7ise6iAK5+Vp55V8QfouwUxvthxPsG4FEL+KNJKwII=",
         "owner": "icewind1991",
         "repo": "nvidia-patch-nixos",
-        "rev": "fd85dda93f7747bfac317a2411e3a971f4f53853",
+        "rev": "c3a6df1587d783cdfa1a485182f3b3d4f09cbcc4",
         "type": "github"
       },
       "original": {
