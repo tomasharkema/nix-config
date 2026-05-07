@@ -17,7 +17,6 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     runHook preInstall
 
     mkdir -p $out/share/fonts/ttf
-    ls -la
     install -Dm444 *.ttf $out/share/fonts/ttf
 
     runHook postInstall

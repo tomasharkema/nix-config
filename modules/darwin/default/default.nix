@@ -30,13 +30,13 @@
         agePlugins = lib.mkForce [pkgs.age-plugin-yubikey];
       };
       secrets = {
-        atuin = {
-          rekeyFile = ../../nixos/secrets/atuin.age;
-          owner = "${config.user.name}";
-          # group = "${config.user.name}";
-          mode = "666";
-          # symlink = false;
-        };
+        # atuin = {
+        # rekeyFile = ../../nixos/secrets/atuin.age;
+        # owner = "${config.user.name}";
+        # group = "${config.user.name}";
+        # mode = "666";
+        # symlink = false;
+        # };
         # spotify-tui = {
         # file = ../../../secrets/spotify-tui.age;
         # owner = "${config.user.name}";

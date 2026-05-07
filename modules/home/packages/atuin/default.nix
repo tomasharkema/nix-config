@@ -7,21 +7,21 @@
   ...
 }: {
   config = let
-    checkFile = "${config.home.homeDirectory}/.atuin_key_copied_4242";
-    key_path = "${config.home.homeDirectory}/.local/share/atuin/key";
+    # checkFile = "${config.home.homeDirectory}/.atuin_key_copied_4242";
+    # key_path = "${config.home.homeDirectory}/.local/share/atuin/key";
   in {
-    home.activation.atuin-key = inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
-      if [ ! -e "${checkFile}" ]; then
+    # home.activation.atuin-key = inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
+    #   if [ ! -e "${checkFile}" ]; then
 
-        if [ -e "${osConfig.age.secrets.atuin.path}" ]; then
-          rm -rf "${config.home.homeDirectory}/.atuin/key"
-          rm -rf "${key_path}"
-          install -Dm 600 "${osConfig.age.secrets.atuin.path}" "${key_path}"
-        fi
+    #     if [ -e "${osConfig.age.secrets.atuin.path}" ]; then
+    #       rm -rf "${config.home.homeDirectory}/.atuin/key"
+    #       rm -rf "${key_path}"
+    #       install -Dm 600 "${osConfig.age.secrets.atuin.path}" "${key_path}"
+    #     fi
 
-        touch "${checkFile}"
-      fi
-    '';
+    #     touch "${checkFile}"
+    #   fi
+    # '';
 
     programs.atuin = {
       enable = true;
@@ -32,7 +32,7 @@
       };
 
       settings = {
-        key_path = key_path;
+        # key_path = key_path;
 
         sync_address = "https://atuin.ling-lizard.ts.net";
 
