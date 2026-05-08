@@ -84,7 +84,32 @@
       "/share/fonts"
     ];
 
-    system.stateVersion = 4;
+    system = {
+      stateVersion = 4;
+      defaults.CustomUserPreferences = {
+        "com.apple.desktopservices" = {
+          # Avoid creating .DS_Store files on network or USB volumes
+          DSDontWriteNetworkStores = true;
+          DSDontWriteUSBStores = true;
+        };
+        "com.apple.finder" = {
+          ShowExternalHardDrivesOnDesktop = true;
+          ShowHardDrivesOnDesktop = false;
+          ShowMountedServersOnDesktop = false;
+          ShowRemovableMediaOnDesktop = true;
+          _FXSortFoldersFirst = true;
+          # When performing a search, search the current folder by default
+          FXDefaultSearchScope = "SCcf";
+          NewWindowTarget = "PfDe";
+          # NewWindowTargetPath = "file://$\{HOME\}/Desktop/";
+          AppleShowAllExtensions = true;
+          FXEnableExtensionChangeWarning = false;
+          ShowStatusBar = true;
+          ShowPathbar = true;
+          WarnOnEmptyTrash = false;
+        };
+      };
+    };
 
     services = {
       # synergy.server = {
