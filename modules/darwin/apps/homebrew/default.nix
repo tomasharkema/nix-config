@@ -43,7 +43,6 @@ in {
         "container-compose"
         "libadwaita"
         "swiftformat"
-        # "xcpretty"
         "swiftlint"
         "swiftly"
         "terminal-notifier"
@@ -54,11 +53,15 @@ in {
 
       casks = [
         # keep-sorted start
+        "devcleaner"
         "font-adwaita"
         "font-adwaita-mono-nerd-font"
         "ghostty"
-        # "kobo"
         "gitbutler"
+        # "kobo"
+        "iterm2@beta"
+        "itermai"
+        "itermbrowserplugin"
         "jetbrains-toolbox"
         "rectangle"
         "screenflow"
