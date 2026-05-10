@@ -169,13 +169,26 @@
     services = {
       thermald.enable = true;
 
-      # fprintd = {
-      #   enable = true;
-      #   tod = {
-      #     enable = true;
-      #     driver = pkgs.libfprint-2-tod1-goodix;
-      #   };
-      # };
+      fprintd = lib.mkIf false {
+        enable = true;
+        package = (pkgs.fprintd.override {libfprint = pkgs.custom.libfprint-goodix;}).overrideAttrs (finalAttrs: {
+          pname = "fprintd";
+          version = "1.94.4";
+          outputs = [
+            "out"
+            "devdoc"
+          ];
+
+          src = pkgs.fetchFromGitLab {
+            domain = "gitlab.freedesktop.org";
+            owner = "libfprint";
+            repo = "fprintd";
+            tag = "v${finalAttrs.version}";
+            hash = "sha256-aGIz50S0zfE3rV6QJp8iQz3uUVn8WAL68KU70j8GyOU=";
+          };
+        });
+      };
+
       # netdata.enable = false;
       resolved = {
         enable = true;
