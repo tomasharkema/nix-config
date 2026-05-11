@@ -161,8 +161,6 @@
           nixos-cli.nixosModules.nixos-cli
           # nix-monitor.nixosModules.default
 
-          determinate.nixosModules.default
-
           ./defaultNixosAge.nix
           (
             {config, ...}: {
@@ -185,7 +183,6 @@
           agenix.darwinModules.default
           agenix-rekey.nixosModules.default
           # mac-app-util.darwinModules.default
-          determinate.darwinModules.default
 
           (
             {
@@ -835,8 +832,6 @@
     nixos-images = {
       url = "github:nix-community/nixos-images";
     };
-
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
     # nix-monitor = {
     #   url = "github:antonjah/nix-monitor";
