@@ -219,11 +219,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1778384965,
-        "narHash": "sha256-wgX6xMhRVqJbOzPQnDtL45zlN7vBCe/Y0Fg64mnG0S0=",
+        "lastModified": 1778464035,
+        "narHash": "sha256-rmTyj80jZQcNuP2SMw36Z0UqTAp3tMkXk2Tck5Rrm2s=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "1ec031108643799d0c63d5ac2845a4e6bdfe32d8",
+        "rev": "c7d44cfb12e21efd81595e0e85db4ef23ee517bd",
         "type": "github"
       },
       "original": {
@@ -814,11 +814,11 @@
         "nixpkgs-lib": "nixpkgs-lib_4"
       },
       "locked": {
-        "lastModified": 1775087534,
-        "narHash": "sha256-91qqW8lhL7TLwgQWijoGBbiD4t7/q75KTi8NxjVmSmA=",
+        "lastModified": 1777678872,
+        "narHash": "sha256-EPIFsulyon7Z1vLQq5Fk64GR8L7cQsT+IPhcsukVbgk=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "3107b77cd68437b9a76194f0f7f9c55f2329ca5b",
+        "rev": "5250617bffd85403b14dbf43c3870e7f255d2c16",
         "type": "github"
       },
       "original": {
@@ -1228,11 +1228,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778365864,
-        "narHash": "sha256-ImoT/wqmgMImf2dAC+E0MverAdA4QXsedOeES9B7Ezw=",
+        "lastModified": 1778444552,
+        "narHash": "sha256-f18pIiR9q/p1vHY93gmAum7aHhQOG49oGvAB9+lptRo=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "2f419037039a152448c5f4ae9494154753d1b399",
+        "rev": "dcebe66f958673729896eec2de4abfd86ef22d21",
         "type": "github"
       },
       "original": {
@@ -1625,11 +1625,11 @@
         "optnix": "optnix"
       },
       "locked": {
-        "lastModified": 1777152325,
-        "narHash": "sha256-8z6TM8o91moN+rhgzErnhluIHaS5X9B2xvZnIwFA88I=",
+        "lastModified": 1778454982,
+        "narHash": "sha256-ic1ew6he9q9nAIC2SJBBF/UUdeW8IDriVsj128cm7H8=",
         "owner": "nix-community",
         "repo": "nixos-cli",
-        "rev": "ad72187c1628a409f8bb7a9256cca94c0362c5b9",
+        "rev": "8ed74388393dbb3acd1ce9c54d0bb5fcf052a31d",
         "type": "github"
       },
       "original": {
@@ -1914,11 +1914,11 @@
     },
     "nixpkgs-lib_4": {
       "locked": {
-        "lastModified": 1774748309,
-        "narHash": "sha256-+U7gF3qxzwD5TZuANzZPeJTZRHS29OFQgkQ2kiTJBIQ=",
+        "lastModified": 1777168982,
+        "narHash": "sha256-GOkGPcboWE9BmGCRMLX3worL4EMnsnG8MyKmXNeYuhQ=",
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "rev": "333c4e0545a6da976206c74db8773a1645b5870a",
+        "rev": "f5901329dade4a6ea039af1433fb087bd9c1fe14",
         "type": "github"
       },
       "original": {
@@ -2233,11 +2233,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774559664,
-        "narHash": "sha256-a8FWQZgqaS7o484iH7dFK+F9t7oMahKbcH2piIwUwFc=",
+        "lastModified": 1776468647,
+        "narHash": "sha256-zx5O1RyRl6Fq+mvMh+JdS18aXR8644bcN9MKh2fN19M=",
         "owner": "water-sucks",
         "repo": "optnix",
-        "rev": "853323ece22fb1ffed19cea4ae22804032034a8e",
+        "rev": "c320dc5494c0caaca9ee4341367618c06a957709",
         "type": "github"
       },
       "original": {
