@@ -7,17 +7,6 @@
   username = "tomasharkema";
 in {
   config = {
-    # error: Determinate detected, aborting activation
-    # Determinate uses its own daemon to manage the Nix installation that
-    # conflicts with nix-darwin’s native Nix management.
-    #
-    # To turn off nix-darwin’s management of the Nix installation, set:
-    # nix = lib.mkForce {
-    #   enable = false;
-    #   linux-builder.enable = false;
-    #   gc.automatic = false;
-    # };
-
     user.name = username;
     users.users."${username}".uid = 502;
 

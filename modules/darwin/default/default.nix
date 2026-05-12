@@ -54,35 +54,37 @@
       };
     };
 
-    environment.systemPackages =
-      (with pkgs.custom; [
-        menu
-        # nscan
-      ])
-      ++ (with pkgs; [
-        # keep-sorted start
-        agenix-rekey
-        # custom.rust-conn
-        alejandra
-        devenv
-        direnv
-        lrzsz
-        manix
-        nh
-        nil
-        nix-search-cli
-        # dosbox-x
-        nixd
-        nox
-        yubico-piv-tool
-        # keep-sorted end
-      ]);
+    environment = {
+      systemPackages =
+        (with pkgs.custom; [
+          menu
+          # nscan
+        ])
+        ++ (with pkgs; [
+          # keep-sorted start
+          agenix-rekey
+          # custom.rust-conn
+          alejandra
+          devenv
+          direnv
+          lrzsz
+          manix
+          nh
+          nil
+          nix-search-cli
+          # dosbox-x
+          nixd
+          nox
+          yubico-piv-tool
+          # keep-sorted end
+        ]);
 
-    environment.pathsToLink = [
-      "/lib"
-      "/share/zsh"
-      "/share/fonts"
-    ];
+      pathsToLink = [
+        "/lib"
+        "/share/zsh"
+        "/share/fonts"
+      ];
+    };
 
     system = {
       stateVersion = 4;

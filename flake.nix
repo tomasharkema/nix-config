@@ -815,7 +815,7 @@
     # };
 
     nix-yazi-plugins = {
-      url = "github:lordkekz/nix-yazi-plugins?ref=yazi-v0.3.1";
+      url = "github:lordkekz/nix-yazi-plugins";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
