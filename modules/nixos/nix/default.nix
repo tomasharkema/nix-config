@@ -72,8 +72,10 @@
     programs = {
       nh = {
         enable = true;
-        #clean.enable = lib.mkDefault true;
-        #clean.extraArgs = lib.mkDefault "--keep-since 4d --keep 3";
+        clean = {
+          enable = lib.mkDefault true;
+          extraArgs = lib.mkDefault "--keep-since 4d --keep 3";
+        };
         flake = "/home/tomas/Developer/nix-config";
         #package = pkgs.nh;
       };

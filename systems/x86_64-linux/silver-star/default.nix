@@ -95,12 +95,14 @@
 
     programs = {
       nh = {
-        clean.enable = true;
-        clean.extraArgs = "--keep-since 3M";
+        clean = {
+          enable = true;
+          extraArgs = "--keep-since 3M";
+        };
       };
       atop = {
         enable = true;
-        # netatop.enable = true;
+        netatop.enable = true;
       };
     };
 
