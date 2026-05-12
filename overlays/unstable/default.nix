@@ -22,7 +22,7 @@
     };
   });
 
-  resilio-sync = builtins.trace "old resilio: ${prev.resilio-sync.version}" prev.resilio-sync.overrideAttrs (old: rec {
+  resilio-sync = prev.resilio-sync.overrideAttrs (old: rec {
     pname = "resilio-sync";
     version = "3.1.1.1075";
 
