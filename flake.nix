@@ -40,6 +40,7 @@
           "segger-jlink-qt4-874"
           "libsoup-2.74.3"
           "python3.13-ecdsa-0.19.1"
+          "python3.13-ecdsa-0.19.2"
         ];
 
         #enableBroken = true;
