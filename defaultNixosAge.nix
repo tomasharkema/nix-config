@@ -12,14 +12,15 @@ in {
       rekey = {
         masterIdentities = [
           ./secrets/age-yubikey-identity-usbc.pub
+          ./secrets/age-op-identity-ed.pub
           # "/home/tomas/.ssh/id_ed25519"
         ];
 
         agePlugins = with pkgs; [
           age-plugin-1p
-          age-plugin-sss
           age-plugin-tpm
           age-plugin-yubikey
+          age-plugin-se
         ];
 
         storageMode = "local";
@@ -46,6 +47,12 @@ in {
       ];
       configurationRevision = lib.mkForce self.shortRev or "dirty";
     };
+
+    environment.systemPackages = with pkgs; [
+      age-plugin-1p
+      age-plugin-tpm
+      age-plugin-yubikey
+    ];
 
     nix = {
       # settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${builtins.toString config.users.users.tomas.uid}"];

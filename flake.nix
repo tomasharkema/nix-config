@@ -213,11 +213,13 @@
                   };
 
                   rekey = {
-                    masterIdentities = [./secrets/age-yubikey-identity-usbc.pub];
+                    masterIdentities = [
+                      ./secrets/age-yubikey-identity-usbc.pub
+                      ./secrets/age-op-identity-ed.pub
+                    ];
 
                     agePlugins = with pkgs; [
                       age-plugin-1p
-                      age-plugin-sss
                       age-plugin-tpm
                       age-plugin-yubikey
                     ];

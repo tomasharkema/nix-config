@@ -27,7 +27,12 @@
   config = {
     age = {
       rekey = {
-        agePlugins = lib.mkForce [pkgs.age-plugin-yubikey];
+        agePlugins = with pkgs;
+          lib.mkForce [
+            age-plugin-yubikey
+            age-plugin-se
+            age-plugin-1p
+          ];
       };
       secrets = {
         # atuin = {

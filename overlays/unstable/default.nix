@@ -13,14 +13,14 @@
   #   waylandSupport = true;
   #   nvidiaSupport = true;
   # };
-  wireshark = prev.wireshark.overrideAttrs (oldAttrs: {
-    src = prev.fetchFromGitLab {
-      repo = "wireshark";
-      owner = "wireshark";
-      tag = "v${oldAttrs.version}";
-      hash = "sha256-Zvrwxjp4LK2J3QnxmPxKKrU01YHQvPyp54UWzeGNCjA=";
-    };
-  });
+  # wireshark = prev.wireshark.overrideAttrs (oldAttrs: {
+  #   src = prev.fetchFromGitLab {
+  #     repo = "wireshark";
+  #     owner = "wireshark";
+  #     tag = "v${oldAttrs.version}";
+  #     hash = "sha256-Zvrwxjp4LK2J3QnxmPxKKrU01YHQvPyp54UWzeGNCjA=";
+  #   };
+  # });
 
   resilio-sync = prev.resilio-sync.overrideAttrs (old: rec {
     pname = "resilio-sync";
@@ -42,8 +42,6 @@
         prev.stdenv.hostPlatform.system
       } or (throw "Unsupported system: ${prev.stdenv.hostPlatform.system}");
   });
-
-  usbguard = prev.usbguard.overrideAttrs {meta.mainProgram = "usbguard";};
 
   # _gpsd = prev.gpsd.overrideAttrs (old: rec {
   #   pname = "gpsd";
