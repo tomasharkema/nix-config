@@ -15,12 +15,12 @@ in {
     apps.docker.enable = true;
 
     fileSystems = {
-      "/export/netboot" = {
+      "/exports/netboot" = {
         device = "/mnt/netboot";
         options = ["bind"];
         fsType = "none";
       };
-      "/export/tftpboot" = {
+      "/exports/tftpboot" = {
         device = "/mnt/tftpboot";
         options = ["bind"];
         fsType = "none";
@@ -32,8 +32,8 @@ in {
         server = {
           enable = true;
           exports = ''
-            /export/netboot        *(rw,sync,no_subtree_check,no_root_squash)
-            /export/tftpboot       *(rw,sync,no_subtree_check,no_root_squash)
+            /exports/netboot        *(rw,sync,no_subtree_check,no_root_squash)
+            /exports/tftpboot       *(rw,sync,no_subtree_check,no_root_squash)
           '';
         };
       };

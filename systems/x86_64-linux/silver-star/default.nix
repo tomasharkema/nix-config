@@ -106,7 +106,7 @@
       };
     };
 
-    fileSystems."/export/ccache" = {
+    fileSystems."/exports/ccache" = {
       device = "/var/cache/ccache";
       options = ["bind"];
       fsType = "none";
@@ -117,7 +117,7 @@
         server = {
           enable = true;
           exports = ''
-            /export/ccache
+            /exports/ccache         *(rw,sync,no_subtree_check,no_root_squash)
           '';
         };
       };
