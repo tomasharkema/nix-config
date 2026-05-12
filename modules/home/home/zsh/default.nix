@@ -125,6 +125,10 @@
           nos = "nh os switch .";
           nobo = "nh os boot .";
 
+          upload-system = ''
+            nix copy --to "ssh-ng://silver-star" --no-check-sigs /nix/var/nix/profiles/system-* /run/current-system --substitute-on-destination
+          '';
+
           man = "batman";
           wget = "wget2";
           # silver-star-ipmi raw 0x30 0x30 0x01 0x00
