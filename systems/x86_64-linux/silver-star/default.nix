@@ -52,7 +52,7 @@
         headless.enable = true;
         ipmi.enable = true;
       };
-      github-runner.enable = lib.mkForce false; # true;
+      github-runner.enable = true;
 
       hardware = {
         tpm.enable = true;
