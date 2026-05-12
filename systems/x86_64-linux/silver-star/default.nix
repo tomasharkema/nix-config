@@ -166,7 +166,6 @@
         capacity = 8;
         extraFlags = [
           #"-metrics"
-
           "-ephemeral-ports-range"
           "30000:60000"
         ];

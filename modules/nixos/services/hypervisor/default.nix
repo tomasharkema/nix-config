@@ -195,8 +195,7 @@ in {
     virtualisation = {
       incus = lib.mkIf cfg.incus.enable {
         enable = true;
-        package = pkgs.incus;
-        bucketSupport = true;
+        # package = pkgs.incus;
         ui.enable = true;
       };
 
