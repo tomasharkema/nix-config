@@ -53,6 +53,7 @@ in {
 
       casks = [
         # keep-sorted start
+        "chiri"
         "devcleaner"
         "font-adwaita"
         "font-adwaita-mono-nerd-font"

@@ -28,6 +28,11 @@ in {
       '';
     };
 
+    homebrew = {
+      brews = ["lastpass-cli"];
+      casks = ["lastpass"];
+    };
+
     home-manager.users."${config.user.name}" = let
       # hm = config.home-manager.users."${config.user.name}";
     in {
