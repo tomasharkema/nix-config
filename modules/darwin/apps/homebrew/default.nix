@@ -25,15 +25,21 @@ in {
       enableZshIntegration = true;
 
       masApps = {
-        # keep-sorted start
         "Developer" = 640199958;
         "InYourFace" = 1476964367;
         "RDP" = 1295203466;
         "Tailscale" = 1475387142;
         "Telegram" = 747648890;
         "remarkable" = 1276493162;
-        # keep-sorted end
       };
+
+      taps = [
+        # keep-sorted start
+        "osx-cross/arm"
+        "osx-cross/avr"
+        "qmk/qmk"
+        # keep-sorted end
+      ];
 
       brews = [
         # keep-sorted start
@@ -42,6 +48,7 @@ in {
         "container"
         "container-compose"
         "libadwaita"
+        "qmk"
         "swiftformat"
         "swiftlint"
         "swiftly"

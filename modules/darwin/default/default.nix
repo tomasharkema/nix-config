@@ -171,6 +171,8 @@
     # programs.fzf.fuzzyCompletion = true;
 
     nix = {
+      enable = false;
+
       distributedBuilds = true;
 
       # auto-optimise-store = true

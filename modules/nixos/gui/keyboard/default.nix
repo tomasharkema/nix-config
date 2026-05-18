@@ -17,10 +17,12 @@ in {
     environment = {
       systemPackages = with pkgs; [
         keyd
-        qmk
+        # qmk
         qmk_hid
         via
+        vial
       ];
+
       sessionVariables = {
         QMK_HOME = "/home/tomas/Developer/qmk_firmware";
       };
