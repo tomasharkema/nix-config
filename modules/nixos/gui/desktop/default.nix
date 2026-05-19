@@ -188,15 +188,16 @@ in {
       libjaylink.enable = true;
       wooting.enable = true;
       usb-modeswitch.enable = true;
+
       opentabletdriver = {
         enable = true;
         daemon.enable = true;
       };
 
       intel-gpu-tools.enable = false;
-      acpilight.enable = true;
+      # acpilight.enable = true;
       sensor = {
-        hddtemp.enable = true;
+        # hddtemp.enable = true;
         iio.enable = true;
       };
     };

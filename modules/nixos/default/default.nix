@@ -47,20 +47,6 @@
         RuntimeWatchdogPreSec = "30s";
         KExecWatchdogSec = "5m";
       };
-
-      services.unmodeset = {
-        description = "Unload nvidia modesetting modules from kernel";
-        documentation = ["man:modprobe(8)"];
-        # defaultDependencies = false;
-        after = ["umount.target"];
-        before = ["kexec.target"];
-
-        serviceConfig = {
-          Type = "oneshot";
-          ExecStart = "${pkgs.kmod}/bin/modprobe -r nvidia_drm";
-        };
-        wantedBy = ["kexec.target"];
-      };
     };
 
     # Set your time zone.
@@ -99,7 +85,7 @@
     };
 
     boot = {
-      recovery = lib.mkIf (pkgs.stdenv.hostPlatform.isx86_64) {
+      recovery = lib.mkIf (pkgs.stdenvNoCC.isx86_64) {
         enable = lib.mkDefault true;
         extraConfigurations = [
           ../../../installer/installer.nix
@@ -118,14 +104,13 @@
         # unl0kr = {enable = config.disks.btrfs.encrypt;};
         kernelModules = [
           "ramoops"
-          "efi_pstore"
           "pstore"
         ];
       };
 
       hardwareScan = true;
 
-      extraModulePackages = lib.mkIf pkgs.stdenv.isx86_64 [
+      extraModulePackages = lib.mkIf (pkgs.stdenvNoCC.isx86_64 && false) [
         config.boot.kernelPackages.cryptodev
         config.boot.kernelPackages.acpi_call
         config.boot.kernelPackages.fanout
@@ -140,7 +125,7 @@
         # "netconsole=@/,@192.168.0.100/"
       ];
 
-      kernel.sysctl = lib.mkIf (pkgs.stdenv.hostPlatform.isx86_64) {
+      kernel.sysctl = lib.mkIf (pkgs.stdenvNoCC.isx86_64) {
         "net.ipv4.ip_forward" = lib.mkDefault 1;
         "vm.swappiness" = lib.mkDefault 180;
         "vm.watermark_boost_factor" = lib.mkDefault 0;

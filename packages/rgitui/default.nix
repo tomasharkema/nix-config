@@ -16,16 +16,16 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "rgitui";
-  version = "0.1.4";
+  version = "0.2.0";
 
   src = fetchFromGitHub {
     owner = "noahbclarkson";
     repo = "rgitui";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-/yScN58WB+KWgx+Y2FyXq4Nha2xkukPjnvs9ojXsrdA=";
+    hash = "sha256-D/wCu60CdRge+rKPHloS2OXvBlMofK7UGx4O4x/GMy0=";
   };
 
-  cargoHash = "sha256-mhGrKtMJ18rBba2u698fUvq5zNOrcklKuLu/OnO8QMw=";
+  cargoHash = "sha256-Ife/HTnZrmdsD08X1b9A43tWsw625jYMZkFdAKAMWm8=";
 
   nativeBuildInputs = [
     pkg-config

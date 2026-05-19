@@ -86,6 +86,20 @@ in {
       egl-wayland
     ];
 
+    systemd.services.unmodeset = {
+      description = "Unload nvidia modesetting modules from kernel";
+      documentation = ["man:modprobe(8)"];
+      # defaultDependencies = false;
+      after = ["umount.target"];
+      before = ["kexec.target"];
+
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${pkgs.kmod}/bin/modprobe -r nvidia_drm";
+      };
+      wantedBy = ["kexec.target"];
+    };
+
     services = {
       xserver.videoDrivers = ["nvidia"];
       netdata.configDir."python.d.conf" = pkgs.writeText "python.d.conf" ''

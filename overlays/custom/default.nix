@@ -77,9 +77,9 @@ in rec {
     mesonFlags = mesonFlags ++ ["--native-file=${ukifyNativeFile}"];
   });
 
-  synology-drive-client = checkUpdatedUpsteam prev.synology-drive-client "4.0.2-17889" prev.synology-drive-client.overrideAttrs ({buildInputs ? [], ...}: {
-    buildInputs = buildInputs ++ [prev.qt5.qtwayland];
-  });
+  # synology-drive-client = checkUpdatedUpsteam prev.synology-drive-client "4.0.2-17889" prev.synology-drive-client.overrideAttrs ({buildInputs ? [], ...}: {
+  #   buildInputs = buildInputs ++ [prev.qt5.qtwayland];
+  # });
 
   atools = prev.custom.atools;
 
