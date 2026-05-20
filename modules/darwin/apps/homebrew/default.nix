@@ -60,13 +60,13 @@ in {
 
       casks = [
         # keep-sorted start
+        "brave-browser"
         "chiri"
         "devcleaner"
         "font-adwaita"
         "font-adwaita-mono-nerd-font"
         "ghostty"
         "gitbutler"
-        # "kobo"
         "iterm2@beta"
         "itermai"
         "itermbrowserplugin"
@@ -77,6 +77,7 @@ in {
         "slack"
         "spotify"
         "swiftbar"
+        "termius"
         "ungoogled-chromium"
         # "spotifyd"
         # "1password"
