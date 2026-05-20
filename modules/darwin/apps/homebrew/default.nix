@@ -53,6 +53,7 @@ in {
         "swiftlint"
         "swiftly"
         "terminal-notifier"
+        "unxip"
         "xcbeautify"
         "xcodes"
         # keep-sorted end
