@@ -149,7 +149,6 @@ in {
         enable = true;
         package = pkgs.gvfs.override {
           gnomeSupport = true;
-          googleSupport = true;
         };
       };
     };

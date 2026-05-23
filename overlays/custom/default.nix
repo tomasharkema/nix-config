@@ -30,7 +30,7 @@ in rec {
     # dontCheck = true;
   };
 
-  systemdUkify = prev.systemdUkify.overrideAttrs ({
+  _systemdUkify_ = prev.systemdUkify.overrideAttrs ({
     buildInputs,
     postPatch,
     mesonFlags,
@@ -108,7 +108,7 @@ in rec {
     buildInputs = old.buildInputs ++ [prev.custom.glcd-proc-driver prev.custom.graphlcd-base];
   });
 
-  sssd = checkUpdatedUpsteam prev.sssd "2.12.0" prev.sssd.overrideAttrs ({
+  _sssd_ = checkUpdatedUpsteam prev.sssd "2.12.0" prev.sssd.overrideAttrs ({
     preConfigure,
     buildInputs,
     ...
