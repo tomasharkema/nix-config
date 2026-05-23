@@ -1107,11 +1107,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779336838,
-        "narHash": "sha256-n1+l78hJRABp4cQHKeD0BVByT0vZLPqd09Tvoq8Q+d8=",
+        "lastModified": 1779507042,
+        "narHash": "sha256-7wOwi8B6D0BYsieZCnHZZj2sNUzgJhLoIVSfkwB7lxQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "928d72376949e222ea4f07b44828a55b0136422e",
+        "rev": "509ed3c603349a9d43de9e2ae6613baea6bd5b34",
         "type": "github"
       },
       "original": {
@@ -2005,11 +2005,11 @@
         "systems": "systems_11"
       },
       "locked": {
-        "lastModified": 1778867700,
-        "narHash": "sha256-/tinuYbRWdLCxiClz7EoHRzPGZ5aW7o7kxwzhvKa/Xw=",
+        "lastModified": 1779491364,
+        "narHash": "sha256-I7HiyUp+omP7yg2NVENpwytmWtoQKzkSmumRmxSNKhE=",
         "owner": "1Password",
         "repo": "shell-plugins",
-        "rev": "ba97aedc26410886efa92d7cbfda3ba73d37fd29",
+        "rev": "35ab17ebbf12824793596d3a6525e6d165246635",
         "type": "github"
       },
       "original": {
