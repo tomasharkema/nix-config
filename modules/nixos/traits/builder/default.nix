@@ -37,7 +37,7 @@ in {
         inherit group;
       };
 
-      services.github-runners = {
+      services.github-runners = lib.mkIf false {
         "${config.networking.hostName}-runner-1" = github-default;
         # "${config.networking.hostName}-runner-2" = github-default;
       };
@@ -49,6 +49,7 @@ in {
         };
         groups.${group} = {};
       };
+
       nix.settings.trusted-users = [
         user
       ];
