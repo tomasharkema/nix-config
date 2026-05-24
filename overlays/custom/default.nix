@@ -25,7 +25,7 @@ in rec {
   manuals = prev.custom.manuals;
   libcec = prev.libcec.override {withLibraspberrypi = true;};
 
-  openldap = prev.openldap.overrideAttrs {
+  _openldap_ = prev.openldap.overrideAttrs {
     doCheck = !final.stdenv.buildPlatform.isi686;
     # dontCheck = true;
   };
@@ -121,7 +121,7 @@ in rec {
     buildInputs = buildInputs ++ [prev.libfido2];
   });
 
-  # gpio-utils = prev.gpio-utils.overrideAttrs (old: {
+  #  gpio-utils = prev.gpio-utils.overrideAttrs (old: {
   #   preConfigure = "";
   #   makeFlags = ["-C tools/gpio"];
   # });
