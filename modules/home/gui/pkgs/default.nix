@@ -1,9 +1,10 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
-  config = {
+  config = lib.mkIf false {
     home.packages = with pkgs; [
       zotero
     ];
