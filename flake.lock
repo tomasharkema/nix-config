@@ -218,11 +218,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779808602,
-        "narHash": "sha256-0nwWhZ99CWr5KMR3h/3M0OO318XE5OWsfFxbbq1FSSY=",
+        "lastModified": 1779808990,
+        "narHash": "sha256-5EmdM/RVM/bwrgkxd+387fR3/ke4i3QH2GXJq0Z7Cso=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "97666dc73d59c0a61502581b66678da25c29093b",
+        "rev": "54f272ba1ebf4b090a186f27744722829ebf1462",
         "type": "github"
       },
       "original": {
@@ -1890,12 +1890,26 @@
         "type": "github"
       }
     },
+    "nixpkgs_9": {
+      "locked": {
+        "lastModified": 1779259093,
+        "narHash": "sha256-7DKWmH23hL2eYdkxCKeqj2i+yljTKuU+3Nk1UPHOnxc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d99b013d5d1931ad77fe3912ed218170dec5d9a4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "flake-parts": "flake-parts_7",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_9",
         "systems": "systems_8"
       },
       "locked": {
