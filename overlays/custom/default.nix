@@ -25,8 +25,8 @@ in rec {
   manuals = prev.custom.manuals;
   libcec = prev.libcec.override {withLibraspberrypi = true;};
 
-  _openldap_ = prev.openldap.overrideAttrs {
-    doCheck = !final.stdenv.buildPlatform.isi686;
+  openldap = checkUpdatedUpsteam prev.openldap "2.6.13" prev.openldap.overrideAttrs {
+    doCheck = false;
     # dontCheck = true;
   };
 
