@@ -91,7 +91,7 @@
     dsview
     easyeffects
     effitask
-    esp-idf-full
+    # esp-idf-full
     esptool
     f1viewer
     file-roller
@@ -187,7 +187,6 @@
     rtfm
     saleae-logic-2
     satellite
-    sdrpp
     segger-jlink
     segger-ozone
     serial-studio
