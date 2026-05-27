@@ -65,13 +65,13 @@ in
           tomas.databases = [
             {
               settings."org/gnome/mutter" = {
-                experimental-features = [
-                  "scale-monitor-framebuffer"
-                  "variable-refresh-rate"
-                  "rt-scheduler"
-                  "xwayland-native-scaling"
-                  "kms-modifiers"
-                ];
+                # experimental-features = [
+                #   "scale-monitor-framebuffer"
+                #   "variable-refresh-rate"
+                #   "rt-scheduler"
+                #   "xwayland-native-scaling"
+                #   "kms-modifiers"
+                # ];
                 edge-tiling = true;
               };
               settings."org/gnome/desktop/interface".scaling-factor = lib.gvariant.mkUint32 2;
@@ -149,11 +149,11 @@ in
             # libusb1
           ];
 
-          extraGSettingsOverrides = ''
-            [org.gnome.mutter]
-            experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland', 'variable-refresh-rate', 'xwayland-native-scaling']
-            edge-tiling=true
-          '';
+          # extraGSettingsOverrides = ''
+          #   [org.gnome.mutter]
+          #   experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland', 'variable-refresh-rate', 'xwayland-native-scaling']
+          #   edge-tiling=true
+          # '';
 
           sessionPath = with pkgs; [
             mutter

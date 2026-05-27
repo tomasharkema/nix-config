@@ -23,17 +23,17 @@ with inputs.home-manager.lib.hm.gvariant; {
           #   [org.gnome.mutter]
           #   experimental-features=['scale-monitor-framebuffer', 'kms-modifiers', 'autoclose-xwayland', 'variable-refresh-rate', 'xwayland-native-scaling']
 
-          experimental-features = [
-            # if osConfig.traits.hardware.laptop.enable
-            # then [
-            "scale-monitor-framebuffer"
-            "variable-refresh-rate"
-            "rt-scheduler"
-            "xwayland-native-scaling"
-            "kms-modifiers"
-            # ]
-            # else ["rt-scheduler"];
-          ];
+          # experimental-features = [
+          # if osConfig.traits.hardware.laptop.enable
+          # then [
+          # "scale-monitor-framebuffer"
+          # "variable-refresh-rate"
+          # "rt-scheduler"
+          # "xwayland-native-scaling"
+          # "kms-modifiers"
+          # ]
+          # else ["rt-scheduler"];
+          # ];
         };
         "org/gnome/shell/extensions/vitals" = {
           "position-in-panel" = 0;
