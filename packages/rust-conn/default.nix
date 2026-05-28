@@ -20,21 +20,20 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "rust-conn";
-  version = "0.12.7";
+  version = "0.14.10";
 
   src = fetchFromGitHub {
     owner = "totoshko88";
     repo = "RustConn";
     rev = "v${version}";
-    sha256 = "sha256-Wsh2CPQa3HdN8w9Z8hEig5x+LpEzGkHxEet2iNYCSW4=";
+    sha256 = "sha256-LqV8RcQuhZSCRjBxatBEQI5MwD2h3zXd+2h0IDt2TUo=";
   };
 
-  cargoHash = "sha256-W1y0jXZuIYIP8nIHOGzLSy4xiiZN8QWV89MDbd1rcGY=";
-
-  postPatch = ''
-    substituteInPlace Cargo.toml \
-      --replace-fail 'rust-version = "1.95"' 'rust-version = "1.94"'
-  '';
+  cargoHash = "sha256-Zj8bniA9c0CTkS89Z6XWYVEkDgG2hz9VkPw3gKQi3h0=";
+  # postPatch = ''
+  #   substituteInPlace Cargo.toml \
+  #     --replace-fail 'rust-version = "1.95"' 'rust-version = "1.94"'
+  # '';
 
   nativeBuildInputs = [
     pkg-config
