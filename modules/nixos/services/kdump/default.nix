@@ -25,7 +25,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     boot = {
       kernelParams = [
         #"efi_pstore.pstore_disable=0"
