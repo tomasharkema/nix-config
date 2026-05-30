@@ -768,7 +768,7 @@
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
+      #inputs.nixpkgs-stable.follows = "nixpkgs";
     };
 
     nixpkgs-esp-dev = {

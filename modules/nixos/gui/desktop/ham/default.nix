@@ -23,6 +23,7 @@ in {
       sdrplay
       sdrpp
       soapyhackrf
+      soapysdr-with-plugins
       # keep-sorted end
     ];
   };

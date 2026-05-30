@@ -188,10 +188,10 @@ in {
       wooting.enable = true;
       usb-modeswitch.enable = true;
 
-      opentabletdriver = {
-        enable = true;
-        daemon.enable = true;
-      };
+      # opentabletdriver = {
+      #   enable = true;
+      #   daemon.enable = true;
+      # };
 
       intel-gpu-tools.enable = false;
       # acpilight.enable = true;
