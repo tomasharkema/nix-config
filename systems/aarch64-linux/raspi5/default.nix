@@ -25,7 +25,7 @@
       zabbix.proxy.enable = true;
       usbguard.enable = true;
     };
-
+    services.openwebrx.enable = true;
     environment.systemPackages = with pkgs; [
       custom.rpifwcrypto-pkcs11
       raspberrypi-eeprom
