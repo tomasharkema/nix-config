@@ -30,7 +30,7 @@
     };
 
     snowfallorg.users."${config.user.name}".home.config = {
-      home.stateVersion = lib.mkDefault "26.05";
+      home.stateVersion = lib.mkDefault "26.11";
       xdg.enable = true;
     };
 
@@ -39,7 +39,7 @@
       useGlobalPkgs = true;
       backupFileExtension = "bak";
       users."${config.user.name}" = {
-        home.stateVersion = lib.mkDefault "26.05";
+        home.stateVersion = lib.mkDefault "26.11";
         xdg.enable = true;
       };
     };

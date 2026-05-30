@@ -46,7 +46,7 @@ in {
       #   }
       #   // osConfig.home.homeFiles;
 
-      stateVersion = "26.05";
+      stateVersion = "26.11";
 
       # (import ./packages/common.nix {inherit pkgs inputs lib;})
       # ++
