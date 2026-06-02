@@ -28,6 +28,8 @@ in {
       '';
     };
 
+    networking.hostName = lib.mkForce "NLNEP122027";
+
     homebrew = {
       brews = ["lastpass-cli"];
       casks = ["lastpass"];
