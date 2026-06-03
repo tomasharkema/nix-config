@@ -11,7 +11,7 @@ in {
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       firefox-sync-client
-      firefoxpwa
+      # firefoxpwa
     ];
 
     programs.firefox = {
@@ -21,7 +21,7 @@ in {
       preferencesStatus = "default";
 
       nativeMessagingHosts = {
-        packages = with pkgs; [firefoxpwa];
+        # packages = with pkgs; [firefoxpwa];
         #     #   # fxCast = true;
         #     #   # ff2mpv = true;
         #     #   # gsconnect = true;

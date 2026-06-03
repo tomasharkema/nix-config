@@ -91,6 +91,39 @@ in rec {
     version = "2.23.0";
   });
 
+  opencv = prev.opencv.override {
+    enableCuda = true;
+    enableCudnn = true;
+  };
+
+  sdrangel = checkUpdatedUpsteam prev.sdrangel "7.22.9" prev.sdrangel.overrideAttrs ({
+    buildInputs,
+    cmakeFlags,
+    ...
+  }: {
+    src = prev.fetchFromGitHub {
+      owner = "f4exb";
+      repo = "sdrangel";
+      tag = "v7.25.1";
+      hash = "sha256-kBrw4hXpXnKBc+aVP+u4WjI+OFmfadF22xnJ3N9qeSw=";
+    };
+    version = "7.25.1";
+    patches = [];
+
+    buildInputs =
+      buildInputs
+      ++ [
+        prev.cudaPackages.cuda_nvcc
+        prev.cudaPackages.cudatoolkit
+      ];
+    cmakeFlags =
+      cmakeFlags
+      ++ [
+        "-DCUDAToolkit_ROOT=${prev.cudaPackages.cuda_nvcc}"
+        "-DCUDAToolkit=${prev.cudaPackages.cuda_nvcc}"
+      ];
+  });
+
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
   # _389-ds-base = checkUpdatedUpsteam prev._389-ds-base "3.1.3" prev.custom._389-ds-base;

@@ -23,19 +23,11 @@
       };
     };
 
-    # systemd.sockets.nix-supervisor = {
-    #   socketConfig.ListenStream = [
-    #     "/run/nix-supervisor.sock"
-    #     "[::1]:9649"
-    #   ];
-    #   wantedBy = ["sockets.target"];
-    # };
-
     documentation = {
       man = {
         enable = true;
         man-db.enable = true;
-        generateCaches = true;
+        cache.enable = true;
       };
       dev.enable = true;
       doc.enable = true;

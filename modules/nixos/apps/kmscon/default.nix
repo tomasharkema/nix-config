@@ -21,22 +21,17 @@ in {
 
     services.kmscon = {
       enable = lib.mkDefault true;
-      hwRender = true;
       useXkbConfig = true;
-      extraConfig = lib.mkIf cfg.enableMouse ''
-        mouse
-      '';
-      fonts = [
-        {
-          name = "JetBrainsMono Nerd Font Mono";
-          package = pkgs.nerd-fonts.jetbrains-mono;
-        }
-      ];
+      config = {
+        font-name = "JetBrainsMono Nerd Font Mono";
+        hwaccel = true;
+        mouse = cfg.enableMouse;
+      };
     };
 
-    systemd.services = {
+    systemd.services = lib.mkIf false {
       # enable??
-      "kmscon" = lib.mkIf false {
+      "kmscon" = {
         description = "KMS System Console";
         documentation = ["man:kmscon(1)"];
         after = [
