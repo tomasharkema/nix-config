@@ -298,43 +298,44 @@ in {
       };
 
       loader = {
-        systemd-boot.enable = true;
-      };
-      #   efi = {
-      #     canTouchEfiVariables = true;
-      #     efiSysMountPoint = "/boot";
-      #   };
-      #   grub = {
-      #     enable = true;
-      #     efiSupport = true;
-      #     #efiInstallAsRemovable = true;
-      #     device = "nodev";
-      #     # netbootxyz.enable = true;
-      #     memtest86.enable = true;
-      #     extraFiles = {
-      #       "efi/netbootxyz/netboot.xyz.efi" = "${pkgs.netbootxyz-efi}";
-      #     };
-      #     extraEntries = ''
-      #       menuentry "netboot.xyz" {
-      #         search --no-floppy --file --set=root /EFI/netbootxyz/netboot.xyz.efi
-      #         chainloader /EFI/netbootxyz/netboot.xyz.efi
-      #       }
-      #     '';
-      #     extraConfig = ''
-      #       serial --unit=2 --speed=115200 --word=8 --parity=no --stop=1
-      #       terminal_input --append serial
-      #       terminal_output --append serial
-      #     '';
+        systemd-boot.enable = lib.mkForce false;
 
-      #     # ipxe = {
-      #     #   netboot-xyz = ''
-      #     #     #!ipxe
-      #     #     dhcp
-      #     #     chain --autofree https://boot.netboot.xyz
-      #     #   '';
-      #     # };
-      #   };
-      # };
+        efi = {
+          canTouchEfiVariables = true;
+          efiSysMountPoint = "/boot";
+        };
+        grub = {
+          enable = true;
+          efiSupport = true;
+          #efiInstallAsRemovable = true;
+          device = "nodev";
+
+          # netbootxyz.enable = true;
+          memtest86.enable = true;
+          extraFiles = {
+            "efi/netbootxyz/netboot.xyz.efi" = "${pkgs.netbootxyz-efi}";
+          };
+          extraEntries = ''
+            menuentry "netboot.xyz" {
+              search --no-floppy --file --set=root /EFI/netbootxyz/netboot.xyz.efi
+              chainloader /EFI/netbootxyz/netboot.xyz.efi
+            }
+          '';
+          extraConfig = ''
+            serial --unit=2 --speed=115200 --word=8 --parity=no --stop=1
+            terminal_input --append serial
+            terminal_output --append serial
+          '';
+
+          # ipxe = {
+          #   netboot-xyz = ''
+          #     #!ipxe
+          #     dhcp
+          #     chain --autofree https://boot.netboot.xyz
+          #   '';
+          # };
+        };
+      };
 
       blacklistedKernelModules = ["iTCO_wdt"];
 
