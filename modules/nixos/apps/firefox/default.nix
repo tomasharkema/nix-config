@@ -21,7 +21,10 @@ in {
       preferencesStatus = "default";
 
       nativeMessagingHosts = {
-        # packages = with pkgs; [firefoxpwa];
+        packages = with pkgs; [
+          # firefoxpwa
+          gnome-browser-connector
+        ];
         #     #   # fxCast = true;
         #     #   # ff2mpv = true;
         #     #   # gsconnect = true;

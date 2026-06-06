@@ -12,20 +12,21 @@
   zlib,
   stdenv,
   wayland,
-  xorg,
+  libxcb,
 }:
+# xorg.libX11
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "rgitui";
-  version = "0.2.0";
+  version = "0.3.0";
 
   src = fetchFromGitHub {
     owner = "noahbclarkson";
     repo = "rgitui";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-D/wCu60CdRge+rKPHloS2OXvBlMofK7UGx4O4x/GMy0=";
+    hash = "sha256-dIa2cR2wOdbobZIkrY0qoDIiormbTg0Xge/KDnXe9VQ=";
   };
 
-  cargoHash = "sha256-Ife/HTnZrmdsD08X1b9A43tWsw625jYMZkFdAKAMWm8=";
+  cargoHash = "sha256-JIaSjbYef147hVRckeOEywIw+ln9A+d+o++5b2FUaXQ=";
 
   nativeBuildInputs = [
     pkg-config
@@ -44,8 +45,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     ]
     ++ lib.optionals stdenv.isLinux [
       wayland
-      xorg.libX11
-      xorg.libxcb
+      libxcb
     ];
 
   meta = {

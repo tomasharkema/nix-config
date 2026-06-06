@@ -62,16 +62,29 @@ in {
           # };
         };
 
-        extraConfig.pipewire = lib.mkIf false {
+        extraConfig.pipewire = {
           "10-airplay" = {
             "context.modules" = [
               {
                 name = "libpipewire-module-raop-discover";
 
                 # increase the buffer size if you get dropouts/glitches
-                # args = {
-                #   "raop.latency.ms" = 500;
-                # };
+                args = {
+                  "raop.latency.ms" = 500;
+                };
+              }
+            ];
+          };
+
+          "11-virtual-sink" = {
+            "context.modules" = [
+              {
+                name = "module-null-sink";
+
+                args = {
+                  "node.name" = "Virtual_Sink";
+                  "device.description" = "Virtual_Sink";
+                };
               }
             ];
           };
