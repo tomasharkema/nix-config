@@ -180,6 +180,7 @@
     qFlipper
     qdirstat
     qjournalctl
+    qt5.qtwayland
     # qradiolink
     rmview
     rpi-imager
@@ -221,7 +222,6 @@
     wine-wayland
     wiremix
     wl-clipboard
-    wsjtx
     xdg-utils
     xdgmenumaker
     xdiskusage
