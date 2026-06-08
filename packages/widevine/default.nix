@@ -14,9 +14,7 @@ then
 
     src = fetchzip {
       url = "https://dl.google.com/widevine-cdm/${version}-linux-x64.zip";
-
       hash = "sha256-lGTrSzUk5FluH1o4E/9atLIabEpco3C3gZw+y6H6LJo=";
-
       stripRoot = false;
     };
 
