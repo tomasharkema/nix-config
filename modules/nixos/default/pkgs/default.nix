@@ -5,11 +5,11 @@
   inputs,
   ...
 }: let
-  ffmpegEdited = (
-    (pkgs.ffmpeg-full.override {withUnfree = true;}).overrideAttrs (_: {
-      doCheck = false;
-    })
-  );
+  # ffmpegEdited = (
+  #   (pkgs.ffmpeg-full.override {withUnfree = true;}).overrideAttrs (_: {
+  #     doCheck = false;
+  #   })
+  # );
 in {
   config = {
     environment.systemPackages =
@@ -49,7 +49,6 @@ in {
         csa
         ctop
         curl
-        curlftpfs
         # apfs-fuse
         # apfsprogs
         # bat-extras.batgrep
@@ -89,7 +88,7 @@ in {
         efivar
         ethtool
         fcast-receiver
-        ffmpegEdited
+        # ffmpegEdited
         # freeipmi
         fresh-editor
         ftop

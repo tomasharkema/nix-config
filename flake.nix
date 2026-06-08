@@ -737,7 +737,7 @@
     };
 
     nixos-raspberrypi = {
-      url = "github:nvmd/nixos-raspberrypi/develop";
+      url = "github:nvmd/nixos-raspberrypi/main";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
