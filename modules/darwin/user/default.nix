@@ -41,24 +41,26 @@ in {
 
     environment.systemPackages =
       (with pkgs; [
-        # atuin
-
-        sysz
-        # iptraf-ng
-        # netscanner
+        # keep-sorted start
         bandwhich
         bashmount
         bmon
         ctop
-
+        iptraf-ng
+        netscanner
+        # atuin
+        sysz
         # devtodo
         # devdash
+        # keep-sorted end
       ])
       ++ (with pkgs.custom; [
-        # launchcontrol
-        # ztui
+        # keep-sorted start
         maclaunch
+        # launchcontrol
+        rust-conn
         tailscale-tui
+        # keep-sorted end
       ])
       ++ (with pkgs.darwin; [lsusb]);
   };
