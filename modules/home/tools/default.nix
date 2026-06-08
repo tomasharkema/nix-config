@@ -111,8 +111,6 @@ with pkgs; {
         pv
         python3
         screen
-        silver-searcher
-
         ssh-to-age
         starship
         tldr
