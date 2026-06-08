@@ -51,15 +51,15 @@ in {
         #   module: ${pkgs.yubico-piv-tool}/lib/libykcs11.so
         # '';
 
-        # "krb5.conf".text = lib.mkBefore ''
-        #   includedir /var/lib/sss/pubconf/krb5.include.d/
-        #   includedir /etc/krb5.conf.d/
-        # '';
+        "krb5.conf".text = lib.mkBefore ''
+          includedir /var/lib/sss/pubconf/krb5.include.d/
+          includedir /etc/krb5.conf.d/
+        '';
 
-        # "krb5.conf.d/0-kcm".text = ''
-        #   [libdefaults]
-        #   default_ccache_name = KCM:
-        # '';
+        "krb5.conf.d/0-kcm".text = ''
+          [libdefaults]
+          default_ccache_name = KCM:
+        '';
 
         # "krb5.conf.d/enable_passkey".text = ''
         #   [plugins]
@@ -217,29 +217,30 @@ in {
         enable = true;
         kcm = true;
         sshAuthorizedKeysIntegration = true;
+        subIDsIntegration = true;
         # package = pkgs.sssd;
-        # settings = {
-        #   "domain/harkema.io" = {
-        #     sudo_provider = "ipa";
-        #     cache_credentials = true;
-        #     # dyndns_address = "100.0.0.0/8";
-        #   };
-        #   kcm = {
-        #     tgt_renewal = true;
-        #     tgt_renewal_inherit = "HARKEMA.IO";
-        #     krb5_renew_interval = "60m";
-        #     # debug_level = 10;
-        #     # socket_patch = "/var/run/.heim_org.h5l.kcm-socket";
-        #   };
-        #   pam = {
-        #     pam_passkey_auth = true;
-        #     pam_cert_auth = true;
-        #     # passkey_debug_libfido2 = true;
-        #     # passkey_child_timeout = 60;
-        #     # debug_level = 10;
-        #   };
-        #   sssd = {services = lib.mkForce "nss, sudo, pam, ssh, ifp, autofs";};
-        # };
+        settings = {
+          #   "domain/harkema.io" = {
+          #     sudo_provider = "ipa";
+          #     cache_credentials = true;
+          #     # dyndns_address = "100.0.0.0/8";
+          #   };
+          kcm = {
+            tgt_renewal = true;
+            tgt_renewal_inherit = "HARKEMA.IO";
+            krb5_renew_interval = "60m";
+            #     # debug_level = 10;
+            #     # socket_patch = "/var/run/.heim_org.h5l.kcm-socket";
+          };
+          pam = {
+            pam_passkey_auth = true;
+            #     pam_cert_auth = true;
+            #     # passkey_debug_libfido2 = true;
+            #     # passkey_child_timeout = 60;
+            #     # debug_level = 10;
+          };
+          #   sssd = {services = lib.mkForce "nss, sudo, pam, ssh, ifp, autofs";};
+        };
       };
     };
 
@@ -280,7 +281,7 @@ in {
       };
 
       krb5 = {
-        settings.libdefaults.default_ccache_name = "KEYRING:persistent:%{uid}";
+        settings.libdefaults.default_ccache_name = "KCM:";
       };
 
       polkit = {

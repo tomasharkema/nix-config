@@ -379,11 +379,14 @@
           PasswordAuthentication = lib.mkForce false;
           PermitRootLogin = lib.mkForce "no";
 
-          KerberosAuthentication = "yes";
-          GSSAPIAuthentication = "yes";
+          KerberosAuthentication = true;
+          GSSAPIAuthentication = true;
           UsePAM = true;
-          ChallengeResponseAuthentication = "yes";
+          ChallengeResponseAuthentication = true;
           UseDns = true;
+
+          #AuthorizedKeysCommand = "${pkgs.sssd}/bin/sss_ssh_authorizedkeys";
+          #AuthorizedKeysCommandUser = "nobody";
 
           # PasswordAuthentication = false;
           # KbdInteractiveAuthentication = true;
