@@ -46,9 +46,6 @@ in {
         bashmount
         bmon
         ctop
-        iptraf-ng
-        netscanner
-        # atuin
         sysz
         # devtodo
         # devdash

@@ -44,27 +44,32 @@ rustPlatform.buildRustPackage rec {
       gdk-pixbuf
       glib
       gtk4
-      libadwaita
       openssl
       pango
       vte-gtk4
       zlib
       openssh
+      libadwaita
     ]
     ++ lib.optionals stdenv.isLinux [
       alsa-lib
     ];
 
-  postInstall = ''
-    install -D rustconn/assets/icons/hicolor/scalable/apps/io.github.totoshko88.RustConn.svg $out/share/icons/hicolor/scalable/apps/io.github.totoshko88.RustConn.svg
-    install -D rustconn/assets/io.github.totoshko88.RustConn.metainfo.xml $out/share/metainfo/io.github.totoshko88.RustConn.metainfo.xml
-    install -D rustconn/assets/io.github.totoshko88.RustConn.desktop $out/share/applications/io.github.totoshko88.RustConn.desktop
-  '';
+  postInstall =
+    if stdenv.isLinux
+    then ''
+      install -D rustconn/assets/icons/hicolor/scalable/apps/io.github.totoshko88.RustConn.svg $out/share/icons/hicolor/scalable/apps/io.github.totoshko88.RustConn.svg
+      install -D rustconn/assets/io.github.totoshko88.RustConn.metainfo.xml $out/share/metainfo/io.github.totoshko88.RustConn.metainfo.xml
+      install -D rustconn/assets/io.github.totoshko88.RustConn.desktop $out/share/applications/io.github.totoshko88.RustConn.desktop
+    ''
+    else ''
 
-  doCheck = false;
+    '';
+
+  # doCheck = false;
 
   meta = {
-    description = "Modern connection manager for Linux with GTK4/Wayland-native interface";
+    description = "Modern connection manager — SSH, RDP, VNC, SPICE, and more ";
     homepage = "https://github.com/totoshko88/RustConn";
     changelog = "https://github.com/totoshko88/RustConn/blob/${src.rev}/CHANGELOG.md";
     license = lib.licenses.gpl3Only;
