@@ -68,7 +68,6 @@
         ++ (with pkgs; [
           # keep-sorted start
           agenix-rekey
-          # custom.rust-conn
           alejandra
           devenv
           direnv

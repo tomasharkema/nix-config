@@ -55,7 +55,7 @@ in {
         # keep-sorted start
         maclaunch
         # launchcontrol
-        rust-conn
+        # rust-conn
         tailscale-tui
         # keep-sorted end
       ])

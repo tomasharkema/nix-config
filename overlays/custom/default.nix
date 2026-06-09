@@ -25,6 +25,15 @@ in rec {
   manuals = prev.custom.manuals;
   libcec = prev.libcec.override {withLibraspberrypi = true;};
 
+  appstream = prev.appstream.overrideAttrs ({mesonFlags, ...}: {
+    mesonFlags =
+      mesonFlags
+      ++ [
+        "-Dzstd-support=true"
+      ];
+    doCheck = false;
+  });
+
   openldap = checkUpdatedUpsteam prev.openldap "2.6.13" prev.openldap.overrideAttrs {
     doCheck = false;
     # dontCheck = true;
