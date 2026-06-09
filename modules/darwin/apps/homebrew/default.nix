@@ -62,6 +62,7 @@ in {
       casks = [
         # keep-sorted start
         "brave-browser"
+        "charles"
         "chiri"
         "devcleaner"
         "font-adwaita"
