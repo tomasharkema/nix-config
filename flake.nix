@@ -16,7 +16,7 @@
         allowUnfree = true;
         segger-jlink.acceptLicense = true;
 
-        # firefox.enableGnomeExtensions = true;
+        firefox.enableGnomeExtensions = true;
         firefox.smartcardSupport = true;
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;

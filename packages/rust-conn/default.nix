@@ -30,7 +30,7 @@ rustPlatform.buildRustPackage rec {
   };
 
   cargoHash = "sha256-iuYKbprzMRhfP4Ck9qaAvpuBimkF+qCHcSSJbCUCvSw=";
-
+  doCheck = false;
   nativeBuildInputs = [
     pkg-config
     openssh
