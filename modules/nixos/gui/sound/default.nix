@@ -76,18 +76,18 @@ in {
             ];
           };
 
-          "11-virtual-sink" = {
-            "context.modules" = [
-              {
-                name = "module-null-sink";
+          # "11-virtual-sink" = {
+          #   "context.modules" = [
+          #     {
+          #       name = "module-null-sink";
 
-                args = {
-                  "node.name" = "Virtual_Sink";
-                  "device.description" = "Virtual_Sink";
-                };
-              }
-            ];
-          };
+          #       args = {
+          #         "node.name" = "Virtual_Sink";
+          #         "device.description" = "Virtual_Sink";
+          #       };
+          #     }
+          #   ];
+          # };
         };
       };
     };
