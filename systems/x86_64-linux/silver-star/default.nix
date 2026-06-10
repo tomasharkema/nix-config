@@ -297,6 +297,11 @@
       #   };
       # };
 
+      forgejo = {
+        enable = true;
+        lfs.enable = true;
+      };
+
       mosquitto = {
         enable = true;
         listeners = [
