@@ -125,6 +125,16 @@
       # step-ca.enable = true;
       # netconsoled.enable = true;
       # esdm.enable = true;
+      ollama = {
+        enable = true;
+      };
+
+      nextjs-ollama-llm-ui = {
+        enable = true;
+        hostname = "ui.ling-lizard.ts.net";
+        port = 3433;
+      };
+
       hypervisor = {
         enable = true;
         iommu.enable = true;
@@ -329,7 +339,6 @@
 
       plex = {
         enable = true;
-
         dataDir = "/srv/plex/library";
         accelerationDevices = ["*"];
       };
@@ -387,7 +396,7 @@
           nix-cache = {toURL = "http://127.0.0.1:7124";};
           #searxng = {toURL = "http://127.0.0.1:8088";};
           #glitchtip = {toURL = "http://127.0.0.1:${builtins.toString config.services.glitchtip.port}";};
-
+          ui = {toURL = "http://127.0.0.1:3433";};
           grafana = {toURL = "http://127.0.0.1:3000";};
           healthchecks = {toURL = "http://127.0.0.1:8000";};
           # netbox = {toURL = "http://127.0.0.1:8002";};
