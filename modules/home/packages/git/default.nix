@@ -7,7 +7,14 @@
   config = {
     # gh = "op plugin run -- gh ";
 
-    home.packages = [pkgs.custom.git-credential-1password];
+    home.packages = with pkgs; [
+      custom.git-credential-1password
+      custom.cz-ai
+      custom.gptcommit
+      cz-cli
+      # commitizen
+      # commitizen-go
+    ];
 
     programs = {
       gh = {

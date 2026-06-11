@@ -150,7 +150,8 @@ in {
     shellcheck.enable = true;
     shfmt.enable = true;
     # nil.enable = true;
-
+    # commitizen.enable = true;
+    # gptcommit.enable = true;
     stylua.enable = true;
 
     # treefmt.enable = true;

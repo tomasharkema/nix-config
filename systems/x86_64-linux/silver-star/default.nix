@@ -127,12 +127,17 @@
       # esdm.enable = true;
       ollama = {
         enable = true;
+        host = "silver-star.ling-lizard.ts.net";
+        loadModels = [
+          "qwen2.5-coder:7b"
+        ];
       };
 
       nextjs-ollama-llm-ui = {
         enable = true;
-        hostname = "ui.ling-lizard.ts.net";
+        hostname = "silver-star.ling-lizard.ts.net";
         port = 3433;
+        ollamaUrl = "http://silver-star.ling-lizard.ts.net:${toString config.services.ollama.port}";
       };
 
       hypervisor = {
@@ -419,7 +424,7 @@
 
       remote-builders.server.enable = true;
 
-      glitchtip = {
+      glitchtip = lib.mkIf false {
         # enable = true;
         port = 8923;
         # listenAddress = "0.0.0.0";
