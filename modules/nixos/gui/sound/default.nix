@@ -43,6 +43,7 @@ in {
         jack.enable = false; # true;
 
         raopOpenFirewall = true;
+        # systemWide = true;
 
         wireplumber = {
           enable = true;
@@ -62,33 +63,33 @@ in {
           # };
         };
 
-        extraConfig.pipewire = {
-          "10-airplay" = {
-            "context.modules" = [
-              {
-                name = "libpipewire-module-raop-discover";
+        # extraConfig.pipewire = {
+        #   "10-airplay" = {
+        #     "context.modules" = [
+        #       {
+        #         name = "libpipewire-module-raop-discover";
 
-                # increase the buffer size if you get dropouts/glitches
-                args = {
-                  "raop.latency.ms" = 500;
-                };
-              }
-            ];
-          };
+        #         # increase the buffer size if you get dropouts/glitches
+        #         args = {
+        #           "raop.latency.ms" = 500;
+        #         };
+        #       }
+        #     ];
+        #   };
 
-          # "11-virtual-sink" = {
-          #   "context.modules" = [
-          #     {
-          #       name = "module-null-sink";
+        # "11-virtual-sink" = {
+        #   "context.modules" = [
+        #     {
+        #       name = "module-null-sink";
 
-          #       args = {
-          #         "node.name" = "Virtual_Sink";
-          #         "device.description" = "Virtual_Sink";
-          #       };
-          #     }
-          #   ];
-          # };
-        };
+        #       args = {
+        #         "node.name" = "Virtual_Sink";
+        #         "device.description" = "Virtual_Sink";
+        #       };
+        #     }
+        #   ];
+        # };
+        # };
       };
     };
   };
