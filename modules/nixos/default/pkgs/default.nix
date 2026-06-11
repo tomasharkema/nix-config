@@ -67,7 +67,6 @@ in {
         custom.ssh-proxy-agent
         custom.sshm
         custom.ssm
-        custom.swiftly
         custom.tailscale-tui
         custom.zide
         # rmfuse
@@ -117,6 +116,7 @@ in {
         ifuse
         imv
         inputs.neix.packages.${pkgs.system}.default
+        inputs.swiftix.packages.${pkgs.system}.latest
         ipcalc
         iperf
         iperf3

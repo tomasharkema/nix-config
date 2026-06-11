@@ -836,6 +836,11 @@
       url = "github:nix-community/nixos-images";
     };
 
+    swiftix = {
+      url = "github:stillwind-ai/swiftix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # nix-monitor = {
     #   url = "github:antonjah/nix-monitor";
     #   inputs.nixpkgs.follows = "nixpkgs";

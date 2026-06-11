@@ -2197,6 +2197,7 @@
         "sccache": "sccache",
         "snowfall-flake": "snowfall-flake",
         "snowfall-lib": "snowfall-lib",
+        "swiftix": "swiftix",
         "tree-sitter-nix": "tree-sitter-nix",
         "tsnsrv": "tsnsrv",
         "vscode-server": "vscode-server"
@@ -2314,6 +2315,26 @@
       "original": {
         "owner": "snowfallorg",
         "repo": "lib",
+        "type": "github"
+      }
+    },
+    "swiftix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1781121492,
+        "narHash": "sha256-Egnv7mlgPChyQGGo+Jktm54hNYDPZkKDPEzAoHdfPyg=",
+        "owner": "stillwind-ai",
+        "repo": "swiftix",
+        "rev": "cbfce5a79adb85328f94a9d0f3bad897ee1c195f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stillwind-ai",
+        "repo": "swiftix",
         "type": "github"
       }
     },

@@ -70,6 +70,7 @@
     # bitwarden-menu
     custom.rgitui
     custom.rust-conn
+    custom.swiftynotes
     custom.toolblex
     custom.usbguard-gnome
     custom.wifiman
@@ -91,7 +92,7 @@
     dsview
     easyeffects
     effitask
-    # esp-idf-full
+    esp-idf-full
     esptool
     f1viewer
     file-roller

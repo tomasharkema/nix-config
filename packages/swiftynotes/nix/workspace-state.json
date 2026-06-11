@@ -1,0 +1,58 @@
+{
+  "object": {
+    "artifacts": [],
+    "dependencies": [
+      {
+        "basedOn": null,
+        "packageRef": {
+          "identity": "swift-adwaita",
+          "kind": "remoteSourceControl",
+          "location": "https://github.com/makoni/swift-adwaita.git",
+          "name": "swift-adwaita"
+        },
+        "state": {
+          "checkoutState": {
+            "revision": "fccac15277fdf38aaf68d2e088caeb01f64f8945"
+          },
+          "name": "sourceControlCheckout"
+        },
+        "subpath": "swift-adwaita"
+      },
+      {
+        "basedOn": null,
+        "packageRef": {
+          "identity": "swift-cmark",
+          "kind": "remoteSourceControl",
+          "location": "https://github.com/swiftlang/swift-cmark.git",
+          "name": "swift-cmark"
+        },
+        "state": {
+          "checkoutState": {
+            "branch": "gfm",
+            "revision": "0101bf2c6ff6a218f93150f340fe5ccf76d9f3aa"
+          },
+          "name": "sourceControlCheckout"
+        },
+        "subpath": "swift-cmark"
+      },
+      {
+        "basedOn": null,
+        "packageRef": {
+          "identity": "swift-markdown",
+          "kind": "remoteSourceControl",
+          "location": "https://github.com/swiftlang/swift-markdown.git",
+          "name": "swift-markdown"
+        },
+        "state": {
+          "checkoutState": {
+            "revision": "55d66d9a9e8d4fd3f48d111b0d437e82fe451903"
+          },
+          "name": "sourceControlCheckout"
+        },
+        "subpath": "swift-markdown"
+      }
+    ],
+    "prebuilts": []
+  },
+  "version": 7
+}
