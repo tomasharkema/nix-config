@@ -27,7 +27,7 @@ in {
         bat-extras.batpipe
         bat-extras.batwatch
         batmon
-        binwalk
+        # binwalk
         bmc-tools
         bmon
         bridge-utils

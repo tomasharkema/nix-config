@@ -39,7 +39,7 @@ in {
               forwardAgent = true;
               knownHostsCommand = lib.mkIf pkgs.stdenv.isLinux "${pkgs.sssd}/bin/sss_ssh_knownhosts %H";
               #globalKnownHostsFile = lib.mkIf pkgs.stdenv.isLinux "/var/lib/sss/pubconf/known_hosts";
-              remoteCommand = "zellij attach -c \"ssh-\${%n}\"";
+              remoteCommand = "zellij attach -c ssh-\${%n}";
               # extraOptions = {
               # ProxyCommand = lib.mkIf pkgs.stdenv.isLinux "${pkgs.sssd}/bin/sss_ssh_knownhostsproxy -p %p %h";
               # GlobalKnownHostsFile = lib.mkIf pkgs.stdenv.isLinux "/var/lib/sss/pubconf/known_hosts";

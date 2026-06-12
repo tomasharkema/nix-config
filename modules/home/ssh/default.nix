@@ -8,20 +8,28 @@
   imports = [./match-blocks.nix];
 
   config = {
-    services.gnome-keyring.enable = !pkgs.stdenvNoCC.isDarwin;
+    services = {
+      gnome-keyring.enable = !pkgs.stdenvNoCC.isDarwin;
+      shpool.enable = true;
+    };
     home.packages = [pkgs.gcr];
 
     programs.ssh = {
       enable = true;
 
       # serverAliveInterval = 60;
-      # controlMaster = "auto";
-      # controlPersist = "30m";
+      controlMaster = "auto";
+      controlPersist = "30m";
 
       # addKeysToAgent = true;
       # hashKnownHosts = true;
       enableDefaultConfig = false;
       # controlPath = null;
+      settings."*" = {
+        CanonicalizeHostname = true;
+        CanonicalDomains = "ling-lizard.ts.net s.harkema.io harkema.io";
+        ControlPath = "~/.ssh/master-%r@%n:%p";
+      };
 
       matchBlocks = {
         "allNonSSH1p" = lib.mkIf (!pkgs.stdenvNoCC.isDarwin && osConfig.apps._1password.gui.enable) {
@@ -48,7 +56,7 @@
           host = "*";
           identityAgent = "${config.home.homeDirectory}/.1password/agent.sock";
         };
-        "allSSH" = {
+        "allSSH" = lib.mkIf false {
           host = "*";
           match = "host * exec \"test -n $SSH_TTY\"";
           # identityAgent = onePasswordSocket;
@@ -60,7 +68,7 @@
           #       else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
           #   };
         };
-        "aur.archlinux.org" = {
+        "aur.archlinux.org" = lib.mkIf false {
           extraOptions = {
             PubkeyAuthentication = "no";
           };
