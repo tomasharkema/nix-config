@@ -25,6 +25,10 @@ in rec {
   manuals = prev.custom.manuals;
   libcec = prev.libcec.override {withLibraspberrypi = true;};
 
+  binwalk = prev.binwalk.override {
+    uefi-firmware-parser = prev.custom.uefi-firmware-parser;
+  };
+
   # appstream = prev.appstream.overrideAttrs ({mesonFlags, ...}: {
   #   mesonFlags =
   #     mesonFlags
@@ -34,57 +38,57 @@ in rec {
   #   doCheck = false;
   # });
 
-  openldap = checkUpdatedUpsteam prev.openldap "2.6.13" prev.openldap.overrideAttrs {
-    doCheck = false;
-    # dontCheck = true;
-  };
+  # openldap = checkUpdatedUpsteam prev.openldap "2.6.13" prev.openldap.overrideAttrs {
+  #   doCheck = false;
+  #   # dontCheck = true;
+  # };
 
-  _systemdUkify_ = prev.systemdUkify.overrideAttrs ({
-    buildInputs,
-    postPatch,
-    mesonFlags,
-    ...
-  }: let
-    ukifyPython = prev.python3Packages.python.withPackages (ps: with ps; [pefile]);
+  # _systemdUkify_ = prev.systemdUkify.overrideAttrs ({
+  #   buildInputs,
+  #   postPatch,
+  #   mesonFlags,
+  #   ...
+  # }: let
+  #   ukifyPython = prev.python3Packages.python.withPackages (ps: with ps; [pefile]);
 
-    # When cross-compiling the host python is not executable on the build machine,
-    # so meson cannot probe it; substitute a build-runnable env with the same
-    # module set so the check still validates that pefile is packageable.
-    ukifyPythonForMeson =
-      if prev.stdenv.buildPlatform.canExecute prev.stdenv.hostPlatform
-      then ukifyPython
-      else prev.buildPackages.python3Packages.python.withPackages (ps: with ps; [pefile]);
+  #   # When cross-compiling the host python is not executable on the build machine,
+  #   # so meson cannot probe it; substitute a build-runnable env with the same
+  #   # module set so the check still validates that pefile is packageable.
+  #   ukifyPythonForMeson =
+  #     if prev.stdenv.buildPlatform.canExecute prev.stdenv.hostPlatform
+  #     then ukifyPython
+  #     else prev.buildPackages.python3Packages.python.withPackages (ps: with ps; [pefile]);
 
-    ukifyNativeFile = prev.writeText "ukify-native-file.ini" ''
-      [binaries]
-      python3-ukify = '${ukifyPythonForMeson.interpreter}'
-    '';
-  in {
-    # nativeBuildInputs = nativeBuildInputs + [];
-    buildInputs =
-      buildInputs
-      ++ [
-        ukifyPython
-      ];
+  #   ukifyNativeFile = prev.writeText "ukify-native-file.ini" ''
+  #     [binaries]
+  #     python3-ukify = '${ukifyPythonForMeson.interpreter}'
+  #   '';
+  # in {
+  #   # nativeBuildInputs = nativeBuildInputs + [];
+  #   buildInputs =
+  #     buildInputs
+  #     ++ [
+  #       ukifyPython
+  #     ];
 
-    postPatch =
-      postPatch
-      + ''
-        # Since v260 meson hard-requires the pefile module in the python3 it finds
-        # on PATH (systemd/systemd@582d499e32e7). That is the build-time templating
-        # python. Look up the runtime interpreter via a dedicated find_program()
-        # name supplied through a native machine file, then pass its path to
-        # find_installation() so the pefile probe runs against the interpreter
-        # that actually ships in ukify's shebang (or, when cross-compiling, a
-        # build-runnable env with the same module set).
-        substituteInPlace meson.build \
-          --replace-fail \
-          "want_ukify = pymod.find_installation('python3', required: get_option('ukify'), modules : ['pefile']).found()" \
-          "want_ukify = pymod.find_installation(find_program('python3-ukify', native : true, required : get_option('ukify')).full_path(), required : get_option('ukify'), modules : ['pefile']).found()"
-      '';
+  #   postPatch =
+  #     postPatch
+  #     + ''
+  #       # Since v260 meson hard-requires the pefile module in the python3 it finds
+  #       # on PATH (systemd/systemd@582d499e32e7). That is the build-time templating
+  #       # python. Look up the runtime interpreter via a dedicated find_program()
+  #       # name supplied through a native machine file, then pass its path to
+  #       # find_installation() so the pefile probe runs against the interpreter
+  #       # that actually ships in ukify's shebang (or, when cross-compiling, a
+  #       # build-runnable env with the same module set).
+  #       substituteInPlace meson.build \
+  #         --replace-fail \
+  #         "want_ukify = pymod.find_installation('python3', required: get_option('ukify'), modules : ['pefile']).found()" \
+  #         "want_ukify = pymod.find_installation(find_program('python3-ukify', native : true, required : get_option('ukify')).full_path(), required : get_option('ukify'), modules : ['pefile']).found()"
+  #     '';
 
-    mesonFlags = mesonFlags ++ ["--native-file=${ukifyNativeFile}"];
-  });
+  #   mesonFlags = mesonFlags ++ ["--native-file=${ukifyNativeFile}"];
+  # });
 
   # synology-drive-client = checkUpdatedUpsteam prev.synology-drive-client "4.0.2-17889" prev.synology-drive-client.overrideAttrs ({buildInputs ? [], ...}: {
   #   buildInputs = buildInputs ++ [prev.qt5.qtwayland];
@@ -139,11 +143,11 @@ in rec {
 
   pico-sdk = prev.pico-sdk.override {withSubmodules = true;};
 
-  hopper = checkUpdatedUpsteam prev.hopper "5.19.4" prev.hopper.override {
-    libffi_3_3 = checkUpdatedUpsteam prev.libffi_3_3 "3.3" prev.libffi_3_3.overrideAttrs (old: {
-      doCheck = false;
-    });
-  };
+  # hopper = checkUpdatedUpsteam prev.hopper "5.19.4" prev.hopper.override {
+  #   libffi_3_3 = checkUpdatedUpsteam prev.libffi_3_3 "3.3" prev.libffi_3_3.overrideAttrs (old: {
+  #     doCheck = false;
+  #   });
+  # };
 
   lcdproc = prev.lcdproc.overrideAttrs (old: {
     # configureFlags = ["--enable-drivers=all"];

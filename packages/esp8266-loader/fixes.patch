@@ -1,0 +1,37 @@
+diff --git a/src/main/java/esp8266/ESP8266Loader.java b/src/main/java/esp8266/ESP8266Loader.java
+index f8032e4..42ec183 100644
+--- a/src/main/java/esp8266/ESP8266Loader.java
++++ b/src/main/java/esp8266/ESP8266Loader.java
+@@ -92,12 +92,16 @@ public class ESP8266Loader extends AbstractLibrarySupportLoader {
+ 
+ 	}
+ 
+-	@Override
+-	protected void load(ByteProvider provider, LoadSpec loadSpec, List<Option> options,
+-			Program program, TaskMonitor monitor, MessageLog log)
++  @Override
++	protected void load(Program program, ImporterSettings importerSettings)
+ 			throws CancelledException, IOException {
+ 
+-		boolean load_as_user1 = OptionUtils.getBooleanOptionValue(LOAD_AS_USER1_FIRMWARE, options, false);
++    List<Option> options = importerSettings.options();
++    TaskMonitor monitor = importerSettings.monitor();
++    ByteProvider provider = importerSettings.provider();
++    MessageLog log = importerSettings.log();
++
++    boolean load_as_user1 = OptionUtils.getBooleanOptionValue(LOAD_AS_USER1_FIRMWARE, options, false);
+ 		boolean load_unmapped_regions = OptionUtils.getBooleanOptionValue(LOAD_UNMAPPED_REGIONS, options, false);
+ 		long init_stack_value = NumericUtilities.parseHexLong(OptionUtils.getOption(INIT_STACK_VALUE, options, NumericUtilities.toHexString(ESP8266Constants.ESP_INIT_STACK_ADDR)));
+ 		long init_vecbase_value = NumericUtilities.parseHexLong(OptionUtils.getOption(INIT_VECBASE_VALUE, options, NumericUtilities.toHexString(ESP8266Constants.ESP_INIT_VECBASE_ADDR)));
+@@ -251,9 +255,9 @@ public class ESP8266Loader extends AbstractLibrarySupportLoader {
+ 
+ 	@Override
+ 	public List<Option> getDefaultOptions(ByteProvider provider, LoadSpec loadSpec,
+-			DomainObject domainObject, boolean isLoadIntoProgram) {
++			DomainObject domainObject, boolean isLoadIntoProgram, boolean mirrorFsLayout) {
+ 		List<Option> list =
+-			super.getDefaultOptions(provider, loadSpec, domainObject, isLoadIntoProgram);
++			super.getDefaultOptions(provider, loadSpec, domainObject, isLoadIntoProgram, mirrorFsLayout);
+ 
+ 		list.add(new Option(LOAD_AS_USER1_FIRMWARE, Boolean.class, false, Loader.COMMAND_LINE_ARG_PREFIX + "-user1", "ESP8266 Options"));
+ 		list.add(new Option(LOAD_UNMAPPED_REGIONS, Boolean.class, false, Loader.COMMAND_LINE_ARG_PREFIX + "-unmapped", "ESP8266 Options"));

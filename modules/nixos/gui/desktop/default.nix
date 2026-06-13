@@ -226,11 +226,14 @@ in {
           p:
             with p; [
               ret-sync
-              # gnudisassembler
+              gnudisassembler
+              machinelearning
               findcrypt
               ghidra-delinker-extension
               ghidra-firmware-utils
               ghidra-golanganalyzerextension
+              ghidraninja-ghidra-scripts
+              pkgs.custom.esp8266-loader
             ]
         );
       };
