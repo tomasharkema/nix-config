@@ -32,7 +32,12 @@
       build = {
         # self = inputs.self;
       };
-      nixos.tags = ["${config.boot.kernelPackages.kernel.modDirVersion}"];
+      nixos.tags = [
+        "${config.boot.kernelPackages.kernel.modDirVersion}"
+        (lib.mkIf pkgs.stdenv.hostPlatform.sse3Support "sse3")
+        (lib.mkIf pkgs.stdenv.hostPlatform.ssse3Support "ssse3")
+        (lib.mkIf pkgs.stdenv.hostPlatform.sse4_1Support "sse4")
+      ];
 
       etc.overlay.enable = true;
       nixos-init.enable = true;

@@ -155,6 +155,7 @@ in {
         nethogs
         netop
         netproc
+        netscan
         netscanner
         networkmanagerapplet
         nfs-utils

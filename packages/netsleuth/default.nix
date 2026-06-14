@@ -19,13 +19,13 @@
 in
   stdenv.mkDerivation rec {
     pname = "netsleuth";
-    version = "1.1.0";
+    version = "1.1.4";
 
     src = fetchFromGitHub {
       owner = "vmkspv";
       repo = "netsleuth";
       rev = "v${version}";
-      hash = "sha256-jvF8UX9qmf6VyRFFiWD5cGQfUpY2mioS5EGNsslFHQ4=";
+      hash = "sha256-wlD2hWC3mlgfJc+Ro3TuPBnRRrn+Cc/nyzFWfc2TDaA=";
     };
 
     nativeBuildInputs = [
@@ -45,6 +45,14 @@ in
       appstream
       desktop-file-utils
     ];
+
+    postPatch = ''
+      echo "stdenv.hostPlatform.sse3Support ${
+        if stdenv.hostPlatform.sse3Support
+        then "true"
+        else "false"
+      }"
+    '';
 
     meta = with lib; {
       description = "A simple utility for the calculation and analysis of IP subnet values, designed to simplify network configuration tasks";

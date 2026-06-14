@@ -51,7 +51,7 @@ in {
       enable = true;
       clock24 = true;
       # shell = "${lib.getExe pkgs.zsh}";
-      terminal = "tmux-256color";
+      # terminal = "tmux-256color";
       # historyLimit = 200000;
       mouse = true;
       aggressiveResize = true;

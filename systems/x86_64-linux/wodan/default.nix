@@ -280,6 +280,13 @@
 
     hardware.wirelessRegulatoryDatabase = true;
 
+    nix.settings.system-features = ["gccarch-skylake"];
+    nixpkgs.hostPlatform = {
+      gcc.arch = "skylake";
+      gcc.tune = "skylake";
+      system = "x86_64-linux";
+    };
+
     boot = {
       kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v4;
 
@@ -307,6 +314,7 @@
       extraModulePackages = with config.boot.kernelPackages; [
         ddcci-driver
         it87
+        turbostat
       ];
 
       kernelModules = [
@@ -314,6 +322,7 @@
         "i2c-dev"
         "btusb"
         "ddcci"
+        "turbostat"
         # "iTCO_wdt"
         "ddcci-backlight"
         # "vfio_pci"

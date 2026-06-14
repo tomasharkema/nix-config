@@ -60,7 +60,7 @@
     custom.gtk-meshtastic-client
     custom.letters
     custom.manuals
-    custom.netsleuth
+    # custom.netsleuth
     custom.one-ware
     custom.qefi-entry-manager
     custom.remarkable-cups

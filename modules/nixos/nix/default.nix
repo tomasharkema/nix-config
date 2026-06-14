@@ -27,7 +27,7 @@
       man = {
         enable = true;
         man-db.enable = true;
-        cache.enable = true;
+        # cache.enable = true;
       };
       dev.enable = true;
       doc.enable = true;
