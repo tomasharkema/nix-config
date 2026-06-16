@@ -22,15 +22,19 @@
 
       nixvim = {
         enable = true;
-        enableMan = false; # true;
+        enableMan = true;
+
+        # nixpkgs.hostPlatform = pkgs.stdenv.hostPlatform.system;
+        nixpkgs.useGlobalPackages = true;
 
         colorschemes.catppuccin.enable = true;
 
         globals.mapleader = "\\";
 
         clipboard = {
-          providers.wl-copy.enable = pkgs.stdenv.isLinux;
+          providers.wl-copy.enable = pkgs.stdenv.hostPlatform.isLinux;
         };
+
         keymaps = [
           {
             action = ":lua require('Comment.api').toggle_current_linewise()<CR>";
