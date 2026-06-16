@@ -5,16 +5,16 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "adsb-tui";
-  version = "0.2.0";
+  version = "0.2.1";
 
   src = fetchFromGitHub {
     owner = "j4v3l";
     repo = "ADS-B_TUI";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-TwAO0SuoD7TDuohfusyYK/Z4A0DTGAJDBYulgHKktEA=";
+    hash = "sha256-o/eZ2qD367RWKk9q8temiP/w1lP5gEX9Hum9TrFdXpI=";
   };
 
-  cargoHash = "sha256-DE/0cjc1PFVP5H2YwVTBQimmC1XjnVOzQC5sHLCFzGY=";
+  cargoHash = "sha256-z/3CVWJFE7TIrTJfGwCmImwxR06Splrg2DRGcPGxGRM=";
 
   meta = {
     description = "A modern, fast, and user-friendly terminal interface for tracking aircraft using ADS-B data. Display real-time flight information in a beautiful table format with country flags, routes, and more";
