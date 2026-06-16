@@ -5,44 +5,48 @@
   makeWrapper,
   gnupg,
   wget,
-  # wget2,
   coreutils,
-}:
-stdenvNoCC.mkDerivation rec {
-  pname = "distrib-dl";
-  version = "1.14.24";
+  python3,
+}: let
+  py = python3.withPackages (ps: with ps; [pylint]);
+in
+  stdenvNoCC.mkDerivation rec {
+    pname = "distrib-dl";
+    version = "2.0.16";
 
-  src = fetchFromGitHub {
-    owner = "nodiscc";
-    repo = "distrib-dl";
-    rev = version;
-    sha256 = "sha256-M6GHUhArLfYgkoQZWpzzte1muR+xLgtptaW0pUI6DWw=";
-  };
+    src = fetchFromGitHub {
+      owner = "nodiscc";
+      repo = "distrib-dl";
+      rev = version;
+      sha256 = "sha256-W7l7MS/KWRNOcYVzhyV1gPTHyGqMNT0FYOqjfOcLIXs=";
+    };
 
-  nativeBuildInputs = [makeWrapper];
+    nativeBuildInputs = [
+      makeWrapper
+      py
+    ];
 
-  buildInputs = [
-    gnupg
-    # wget2
-    wget
-    coreutils
-  ];
+    buildInputs = [
+      gnupg
+      # wget2
+      wget
+      coreutils
+    ];
 
-  installPhase = ''
-    runHook preInstall
-    install -Dm 755 distrib-dl $out/bin/distrib-dl
+    installPhase = ''
+      runHook preInstall
 
-    patchShebangs $out/bin/distrib-dl
+      install -Dm 755 distrib-dl $out/bin/distrib-dl
 
-    substituteInPlace $out/bin/distrib-dl \
-      --replace "wget" "wget2" \
-      --replace "--show-progress " ""
+      # patchShebangs $out/bin/distrib-dl
 
+      # substituteInPlace $out/bin/distrib-dl \
+      #   --replace-fail "--show-progress " ""
 
-    wrapProgram $out/bin/distrib-dl --set PATH ${
-      lib.makeBinPath [gnupg wget coreutils]
-    }
+      # wrapProgram $out/bin/distrib-dl --set PATH ${
+        lib.makeBinPath [gnupg wget coreutils]
+      }
 
-    runHook postInstall
-  '';
-}
+      runHook postInstall
+    '';
+  }

@@ -17,13 +17,13 @@
 }:
 stdenv.mkDerivation rec {
   pname = "butler";
-  version = "1.6.6";
+  version = "1.7.0";
 
   src = fetchFromGitHub {
     owner = "cassidyjames";
     repo = "butler";
     rev = version;
-    hash = "sha256-Dwnnc9fMLHFWuAVjhLfCgt+yYdDku0nPTt0cADwJ9gA=";
+    hash = "sha256-B6JcOL/3apkIDHGQPwWzje2qkFto/g3UlTXF3JlFMF0=";
   };
 
   nativeBuildInputs = [
