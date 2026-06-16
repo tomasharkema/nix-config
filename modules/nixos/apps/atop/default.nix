@@ -8,7 +8,7 @@
 in {
   options.apps.atop = {
     enable = lib.mkEnableOption "atop";
-    httpd = lib.mkEnableOption "atophttpd";
+    httpd.enable = lib.mkEnableOption "atophttpd";
   };
 
   config = lib.mkIf cfg.enable {
@@ -19,10 +19,18 @@ in {
       atopService.enable = true;
       atopacctService.enable = true;
       atopgpu.enable = config.traits.hardware.nvidia.enable;
-      # netatop.enable = true;
+      netatop.enable = true;
     };
-    # boot.extraModulePackages = [config.boot.kernelPackages.netatop];
-    # environment.sy .stemPackages = [pkgs.atop];
+    boot.extraModulePackages = [config.boot.kernelPackages.netatop];
+
+    environment.systemPackages = [
+      pkgs.atop
+      (lib.mkIf cfg.httpd.enable pkgs.custom.atophttpd)
+    ];
+
+    systemd.packages = lib.mkIf cfg.httpd.enable [
+      pkgs.custom.atophttpd
+    ];
 
     # systemd.services.atophttpd = mkIf cfg.httpd {
     #   enable = true;

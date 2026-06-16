@@ -82,7 +82,7 @@
       hass.enable = true;
       atop = {
         enable = true;
-        httpd = false; # true;
+        httpd.enable = true;
       };
       # "bmc-watchdog".enable = true;
       docker.enable = true;

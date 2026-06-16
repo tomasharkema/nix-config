@@ -26,14 +26,9 @@ in {
         port = 3333;
         user = "tomas";
       };
+
       vscode-server = {
         enable = true;
-        enableFHS = false;
-        installPath = [
-          "$HOME/.vscode-server"
-          "$HOME/.vscode-server-oss"
-          "$HOME/.vscode-server-insiders"
-        ];
       };
 
       fail2ban = {
