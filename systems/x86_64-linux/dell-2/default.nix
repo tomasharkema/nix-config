@@ -45,7 +45,6 @@
         libusb1
         ccid
         gnupg
-        custom.distrib-dl
         # davinci-resolve
         keybase-gui
         # calibre

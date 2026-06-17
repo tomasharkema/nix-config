@@ -55,7 +55,7 @@
     custom.actioneer
     custom.butler
     custom.denon-control
-    custom.distrib-dl
+    # custom.distrib-dl
     custom.gitpulsar
     custom.gtk-meshtastic-client
     custom.letters
