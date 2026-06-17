@@ -69,7 +69,7 @@ in {
     apps = {
       atop = {
         enable = true;
-        httpd = false;
+        httpd.enable = true;
       };
       # "bmc-watchdog".enable = true;
       docker.enable = true;
