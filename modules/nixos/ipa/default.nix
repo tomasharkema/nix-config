@@ -186,7 +186,7 @@ in {
 
     security = {
       sudo.package = pkgs.sudo.override {withSssd = true;};
-
+      pam.p11.enable = true;
       pki.certificateFiles = [config.security.ipa.certificate];
     };
 
