@@ -68,11 +68,7 @@
           #       else "${pkgs.yubico-piv-tool}/lib/libykcs11.so";
           #   };
         };
-        "aur.archlinux.org" = lib.mkIf false {
-          extraOptions = {
-            PubkeyAuthentication = "no";
-          };
-        };
+
         "ipa" = {
           hostname = "ipa";
           user = "root";
