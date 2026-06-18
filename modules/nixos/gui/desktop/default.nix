@@ -244,17 +244,17 @@ in {
       mtr.enable = true;
       dconf.enable = true;
 
-      chromium = {
-        enable = true;
-      };
+      # chromium = {
+      #   enable = true;
+      # };
 
       firefox = {
         enable = true;
 
-        nativeMessagingHosts.packages = [
-          # pkgs.custom.firefox-webserial
-          # pkgs.firefoxpwa
-        ];
+        # nativeMessagingHosts.packages = [
+        # pkgs.custom.firefox-webserial
+        # pkgs.firefoxpwa
+        # ];
       };
 
       appimage = {

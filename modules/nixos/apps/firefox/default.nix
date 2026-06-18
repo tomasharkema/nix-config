@@ -10,26 +10,26 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      firefox-sync-client
+      # firefox-sync-client
       # firefoxpwa
     ];
 
     programs.firefox = {
       enable = true;
-      package = pkgs.firefox;
+      #package = pkgs.firefox;
 
-      preferencesStatus = "default";
+      #preferencesStatus = "default";
 
-      nativeMessagingHosts = {
-        packages = with pkgs; [
-          # firefoxpwa
-          gnome-browser-connector
-        ];
-        #     #   # fxCast = true;
-        #     #   # ff2mpv = true;
-        #     #   # gsconnect = true;
-        #     #   packages = with pkgs; [gnome-browser-connector];
-      };
+      #nativeMessagingHosts = {
+      # packages = with pkgs; [
+      # firefoxpwa
+      #   gnome-browser-connector
+      #  ];
+      #     #   # fxCast = true;
+      #     #   # ff2mpv = true;
+      #     #   # gsconnect = true;
+      #     #   packages = with pkgs; [gnome-browser-connector];
+      #};
     };
   };
 }

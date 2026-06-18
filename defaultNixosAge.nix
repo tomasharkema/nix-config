@@ -21,6 +21,7 @@ in {
           age-plugin-tpm
           age-plugin-yubikey
           age-plugin-se
+          age-plugin-fido2-hmac
         ];
 
         storageMode = "local";

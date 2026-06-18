@@ -140,6 +140,7 @@
           # impermanence.nixosModule
           disko.nixosModules.default
 
+          optnix.nixosModules.optnix
           lanzaboote.nixosModules.lanzaboote
           # lanzaboote.nixosModules.uki
           # vscode-server.nixosModules.default
@@ -220,7 +221,7 @@
 
                     agePlugins = with pkgs; [
                       age-plugin-1p
-                      age-plugin-tpm
+                      age-plugin-fido2-hmac
                       age-plugin-yubikey
                     ];
 
@@ -563,6 +564,11 @@
     #   url = "github:snowfallorg/nixos-conf-editor";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+
+    optnix = {
+      url = "sourcehut:~watersucks/optnix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     librepods = {
       url = "github:Chrisbattarbee/librepods";

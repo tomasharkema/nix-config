@@ -2,8 +2,11 @@
   config,
   pkgs,
   lib,
+  options,
+  inputs,
   ...
-}: {
+}: let
+in {
   config = {
     assertions = [
       # {
@@ -90,7 +93,7 @@
     };
 
     boot = {
-      recovery = lib.mkIf (pkgs.stdenvNoCC.isx86_64) {
+      recovery = lib.mkIf (pkgs.stdenvNoCC.hostPlatform.isx86_64) {
         enable = lib.mkDefault true;
         extraConfigurations = [
           ../../../installer/installer.nix
@@ -293,10 +296,7 @@
       # geoipupdate.enable = true;
       earlyoom.enableNotifications = true;
       # locate.enable = true;
-      nixos-cli = {
-        enable = true;
-        option-cache.enable = lib.warn "TODO: make `nixos-cli.option-cache` work..." false; # true;
-      };
+
       envfs.enable = true;
       lvm = {
         enable = true;
@@ -362,7 +362,7 @@
 
       fstrim.enable = true;
 
-      throttled.enable = pkgs.stdenv.isx86_64;
+      throttled.enable = lib.mkDefault pkgs.stdenv.hostPlatform.isx86_64;
 
       # cron.enable = true;
 
@@ -589,7 +589,7 @@
       pam = {
         sshAgentAuth.enable = true;
         services.sudo.sshAgentAuth = true;
-        # p11.enable = true;
+        p11.enable = true;
         loginLimits = [
           {
             domain = "@users";
@@ -628,10 +628,7 @@
       };
 
       oddjobd.enable = true;
-      nix-index = {
-        enable = true;
-        enableZshIntegration = true;
-      };
+
       git = {
         enable = true;
         lfs.enable = true;
