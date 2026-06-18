@@ -5,7 +5,9 @@
   lib,
   inputs,
   ...
-}: {
+}: let
+  optnixLib = inputs.optnix.mkLib pkgs;
+in {
   imports = [
     #   "${inputs.unstable}/nixos/modules/programs/nh.nix"
     ../../../nix-pkgs.nix
@@ -34,8 +36,7 @@
       info.enable = true;
       nixos = {
         enable = true;
-
-        # includeAllModules = true;
+        includeAllModules = lib.warn "make nixos docs foe all modules work" false; # true;
       };
     };
 
@@ -72,7 +73,32 @@
         #package = pkgs.nh;
       };
 
+      optnix = lib.mkIf false {
+        enable = true;
+        settings = {
+          min_score = 3;
+
+          scopes = {
+            tomasharkema = {
+              description = "NixOS configuration for tomasharkema";
+              options-list-file = optnixLib.mkOptionsList {inherit options;};
+            };
+          };
+        };
+      };
+
+      nix-index = {
+        enable = true;
+        enableZshIntegration = true;
+      };
+
       bash.undistractMe.enable = true;
+    };
+    services = {
+      nixos-cli = {
+        enable = true;
+        option-cache.enable = lib.warn "TODO: make `nixos-cli.option-cache` work..." false; # true;
+      };
     };
 
     systemd = {

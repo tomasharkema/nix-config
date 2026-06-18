@@ -188,8 +188,8 @@ in {
         openssl
         openssl.out
         opkssh
-        optnix
-        # oterm
+        # optnix
+        oterm
         p7zip
         pamix
         pamixer
