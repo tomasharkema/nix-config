@@ -112,22 +112,40 @@ in rec {
   sdrangel = checkUpdatedUpsteam prev.sdrangel "7.22.9" prev.sdrangel.overrideAttrs ({
     buildInputs,
     cmakeFlags,
+    NIX_CFLAGS_COMPILE ? [],
     ...
   }: {
+    version = "7.26.1";
+
     src = prev.fetchFromGitHub {
       owner = "f4exb";
       repo = "sdrangel";
-      tag = "v7.25.1";
-      hash = "sha256-kBrw4hXpXnKBc+aVP+u4WjI+OFmfadF22xnJ3N9qeSw=";
+      tag = "v7.26.1";
+      hash = "sha256-zxhlWywGqtBmuFAdAfIukCXguay8Rux7leBybYEdsRg=";
     };
-    version = "7.25.1";
+
     patches = [];
+
+    NIX_ENFORCE_NO_NATIVE = false;
+
+    NIX_CFLAGS_COMPILE =
+      NIX_CFLAGS_COMPILE
+      ++ [
+        "-O3"
+        "-march=skylake"
+      ];
 
     buildInputs =
       buildInputs
       ++ [
         prev.cudaPackages.cuda_nvcc
         prev.cudaPackages.cudatoolkit
+        prev.libacars
+        prev.hamlib
+        prev.custom.ggmorse
+        prev.custom.inmarsatc
+        prev.sdrplay
+        prev.rnnoise
       ];
     cmakeFlags =
       cmakeFlags

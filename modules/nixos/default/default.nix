@@ -174,6 +174,11 @@ in {
         "drivetemp"
       ];
 
+      blacklistedKernelModules = [
+        "dvb_usb_rtl28xxu"
+        "rtl2832"
+      ];
+
       supportedFilesystems = {
         zfs = lib.mkForce false;
         nfs = true;
