@@ -23,7 +23,7 @@
       ))
     else driver);
 
-  betaPkg = config.boot.kernelPackages.nvidiaPackages.beta;
+  betaPkg = config.boot.kernelPackages.nvidiaPackages.latest;
   selectedPkg =
     if cfg.beta
     then betaPkg

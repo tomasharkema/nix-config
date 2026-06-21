@@ -113,6 +113,7 @@ in rec {
     buildInputs,
     cmakeFlags,
     NIX_CFLAGS_COMPILE ? [],
+    NIX_ENFORCE_NO_NATIVE ? true,
     ...
   }: {
     version = "7.26.1";
@@ -126,14 +127,20 @@ in rec {
 
     patches = [];
 
-    NIX_ENFORCE_NO_NATIVE = false;
+    NIX_ENFORCE_NO_NATIVE =
+      if prev.stdenv.hostPlatform.isx86_64
+      then false
+      else NIX_ENFORCE_NO_NATIVE;
 
     NIX_CFLAGS_COMPILE =
-      NIX_CFLAGS_COMPILE
-      ++ [
-        "-O3"
-        "-march=skylake"
-      ];
+      if prev.stdenv.hostPlatform.isx86_64
+      then
+        NIX_CFLAGS_COMPILE
+        ++ [
+          "-O3"
+          "-march=skylake"
+        ]
+      else NIX_CFLAGS_COMPILE;
 
     buildInputs =
       buildInputs
