@@ -42,13 +42,6 @@
         # mode = "666";
         # symlink = false;
         # };
-        # spotify-tui = {
-        # file = ../../../secrets/spotify-tui.age;
-        # owner = "${config.user.name}";
-        # group = "${config.user.name}";
-        # mode = "644";
-        # symlink = false;
-        # };
         # notify = {
         # rekeyFile = ../../nixos/secrets/notify.age;
         # owner = "${config.user.name}";
@@ -73,6 +66,7 @@
           direnv
           lrzsz
           manix
+          mitmproxy
           nh
           nil
           nix-search-cli

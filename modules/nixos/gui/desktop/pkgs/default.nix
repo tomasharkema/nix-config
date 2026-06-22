@@ -195,7 +195,6 @@
     smuview
     solaar
     spi-tools
-    spotify
     sql-studio
     sqlitebrowser
     sublime-merge

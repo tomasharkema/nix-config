@@ -68,14 +68,6 @@
         #   rekeyFile = ./op.age;
         #   mode = "644";
         # };
-        # spotify-tui = {
-        #   rekeyFile = ./spotify-tui.age;
-        #   # owner = "tomas";
-        #   # group = "tomas";
-        #   mode = "644";
-        #   # symlink = false;
-        # };
-
         # notify = {
         #   rekeyFile = ./notify.age;
         #   # owner = "tomas";

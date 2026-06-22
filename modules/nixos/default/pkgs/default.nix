@@ -145,6 +145,7 @@ in {
         lrzsz
         lshw
         mbuffer
+        mitmproxy
         mlt
         more
         mpremote

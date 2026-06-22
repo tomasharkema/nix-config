@@ -337,5 +337,4 @@ in
 # gnome45Extensions."Vitals@CoreCoding.com"
 # gnome45Extensions."monitor-brightness-volume@ailin.nemui"
 # # gnome45Extensions."systemd-status@ne0sight.github.io"
-# gnomeExtensions.spotify-tray
 

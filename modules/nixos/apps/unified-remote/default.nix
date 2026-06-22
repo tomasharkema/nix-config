@@ -79,7 +79,6 @@ in {
           Restart = "always";
           RestartSec = 12;
           # DynamicUser = true;
-          # CacheDirectory = "spotifyd";
           # SupplementaryGroups = [ "audio" ];
         };
       };

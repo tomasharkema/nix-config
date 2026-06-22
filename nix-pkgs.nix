@@ -14,7 +14,7 @@
       ++ (with pkgs; [
         # keep-sorted start
         alejandra
-        # atuin-desktop
+        atuin-desktop
         autoflake
         bc
         cachix
@@ -30,6 +30,7 @@
         gcc-arm-embedded
         ggh
         manix
+        mitmproxy
         # godap
         #fldigi
         mqttui

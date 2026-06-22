@@ -78,7 +78,6 @@
     # gui."media-center".enable = true;
 
     apps = {
-      # spotifyd.enable = true;
       # cec = {
       #   enable = true;
       #   raspberry = true;
