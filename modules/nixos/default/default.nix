@@ -238,36 +238,7 @@ in {
 
       variables.NH_FLAKE = "/home/tomas/Developer/nix-config";
 
-      # enableAllTerminfo = true;
-
-      systemPackages = lib.mkIf config.environment.enableAllTerminfo (
-        map (x: x.terminfo) (
-          with pkgs.pkgsBuildBuild; [
-            alacritty
-            contour
-            foot
-            ghostty
-            kitty
-            mtm
-            rio
-            rxvt-unicode-unwrapped
-            rxvt-unicode-unwrapped-emoji
-            st
-            # termite
-            tmux
-            wezterm
-            yaft
-          ]
-        )
-      );
-
-      etc.terminfo = {
-        source = "${config.system.path}/share/terminfo";
-      };
-
-      profileRelativeSessionVariables = {
-        TERMINFO_DIRS = ["/share/terminfo"];
-      };
+      enableAllTerminfo = true;
     };
 
     apps = {
