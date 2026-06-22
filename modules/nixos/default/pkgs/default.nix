@@ -125,6 +125,7 @@ in {
         iptraf-ng
         isd
         jnettop
+        kitty
         kitty.terminfo
         kmon
         lazydocker

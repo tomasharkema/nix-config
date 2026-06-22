@@ -34,11 +34,26 @@ in {
       };
 
       taps = [
-        # keep-sorted start
-        "osx-cross/arm"
-        "osx-cross/avr"
-        "qmk/qmk"
-        # keep-sorted end
+        {
+          name = "osx-cross/arm";
+          trusted = true;
+          force_auto_update = true;
+        }
+        {
+          name = "osx-cross/avr";
+          trusted = true;
+          force_auto_update = true;
+        }
+        {
+          name = "qmk/qmk";
+          trusted = true;
+          force_auto_update = true;
+        }
+        {
+          name = "apple/apple";
+          trusted = true;
+          force_auto_update = true;
+        }
       ];
 
       brews = [
@@ -65,6 +80,7 @@ in {
         "charles"
         "chiri"
         "devcleaner"
+        "firefox"
         "font-adwaita"
         "font-adwaita-mono-nerd-font"
         "ghostty"

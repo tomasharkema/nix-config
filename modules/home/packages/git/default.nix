@@ -2,6 +2,7 @@
   pkgs,
   lib,
   osConfig,
+  config,
   ...
 }: {
   config = {
@@ -75,7 +76,9 @@
           init.defaultBranch = "main";
           maintenance.auto = true;
 
-          credential.helper = ["${pkgs.custom.git-credential-1password}/bin/git-credential-1password"];
+          credential."https://github.com".helper = [
+            (lib.mkOrder 999 "${pkgs.custom.git-credential-1password}/bin/git-credential-1password")
+          ];
         };
         lfs.enable = true;
 
@@ -88,7 +91,7 @@
 
         maintenance = {
           enable = true;
-          repositories = ["/home/tomas/Developer/nix-config"];
+          repositories = ["${config.home.homeDirectory}/Developer/nix-config"];
         };
 
         # extraConfig = {
