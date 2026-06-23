@@ -89,6 +89,7 @@ in {
         "itermai"
         "itermbrowserplugin"
         "jetbrains-toolbox"
+        "proxyman"
         "rectangle"
         "screenflow"
         "secretive"
