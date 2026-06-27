@@ -22,13 +22,6 @@
   };
 
   config = {
-    age.secrets = {
-      # openai = {
-      #   rekeyFile = ./openai.age;
-      #   owner = "${config.user.name}";
-      # };
-    };
-
     snowfallorg.users."${config.user.name}".home.config = {
       home.stateVersion = lib.mkDefault "26.11";
       xdg.enable = true;

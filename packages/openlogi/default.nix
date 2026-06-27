@@ -14,17 +14,19 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "open-logi";
-  version = "0.6.14";
+  version = "0.6.16";
   __structuredAttrs = true;
+
+  crateName = "openlogi-gui";
 
   src = fetchFromGitHub {
     owner = "AprilNEA";
     repo = "OpenLogi";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-/OSE1xC8fGX2ajwAvAQAJx4assXlRCpufJ4qK7Gd06Y=";
+    hash = "sha256-lbV7F6LnaLvIS5IdGIcqrZTlCQ8WHtYJGmh6rZmFngs=";
   };
 
-  cargoHash = "sha256-Y60MbpWfOpXgrvOhvJUsJpp1UH0oF6XVTUSD4LAgu8A=";
+  cargoHash = "sha256-SoOWFEGXJO6n5HsUjP5hzCdQ+GZVSUU7czYsNuPBAIM=";
 
   nativeBuildInputs = [
     pkg-config

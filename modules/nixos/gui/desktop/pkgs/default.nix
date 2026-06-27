@@ -62,6 +62,7 @@
     custom.manuals
     # custom.netsleuth
     custom.one-ware
+    custom.openhantek
     custom.qefi-entry-manager
     custom.remarkable-cups
     custom.retro-adsb-radar

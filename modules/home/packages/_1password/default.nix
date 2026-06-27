@@ -17,7 +17,6 @@ in {
       plugins = with pkgs; [
         # gh
         cachix
-        openai
         hcloud
       ];
     };
