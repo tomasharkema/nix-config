@@ -56,6 +56,7 @@
       systemPackages =
         (with pkgs.custom; [
           menu
+          adsb-tui
           # nscan
         ])
         ++ (with pkgs; [

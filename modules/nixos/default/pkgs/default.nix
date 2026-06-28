@@ -49,6 +49,7 @@ in {
         csa
         ctop
         curl
+        custom.adsb-tui
         # apfs-fuse
         # apfsprogs
         # bat-extras.batgrep
