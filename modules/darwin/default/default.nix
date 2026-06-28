@@ -137,9 +137,9 @@
         nerd-fonts.iosevka
         nerd-fonts.jetbrains-mono
         nerd-fonts.terminess-ttf
-        noto-fonts
-        noto-fonts-cjk-sans
-        noto-fonts-color-emoji
+        # noto-fonts
+        # noto-fonts-cjk-sans
+        # noto-fonts-color-emoji
         pkgs.custom.neue-haas-grotesk
         powerline-fonts
         powerline-symbols
