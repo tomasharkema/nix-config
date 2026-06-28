@@ -85,6 +85,7 @@ in {
         "chiri"
         "devcleaner"
         "firefox"
+        "fldigi"
         "font-adwaita"
         "font-adwaita-mono-nerd-font"
         "ghostty"
