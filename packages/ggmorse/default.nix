@@ -19,7 +19,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "wave-owl";
     repo = "ggmorse";
     rev = "8fb433d6cd6a71940f51b5724663ec0c75bf0b62";
-    hash = "sha256-K0OpKhxwcPENAmNGV6zP63EJZoh9C20xS0fyT58ciHo=";
+    hash = "sha256-vJpz76v6L5TUzBcq8EnBzR9Wfte1P/bobb3GYP/wKdg=";
     fetchSubmodules = true;
   };
 
@@ -27,6 +27,7 @@ stdenv.mkDerivation (finalAttrs: {
     cmake
     pkg-config
   ];
+
   buildInputs = [
     SDL2
     libGLX
