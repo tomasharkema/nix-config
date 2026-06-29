@@ -161,7 +161,7 @@ in {
       };
 
       kernelPackages = lib.mkIf (pkgs.stdenv.hostPlatform.isx86_64) (
-        lib.mkDefault pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v4
+        lib.mkDefault pkgs.linuxPackages-cachyos-latest-x86_64-v4
       );
 
       kernelModules = lib.mkIf (pkgs.stdenv.hostPlatform.isx86_64) [

@@ -92,8 +92,6 @@
         # opentelemetry-nix.overlays.default
         nixpkgs-esp-dev.overlays.default
         niri.overlays.niri
-        # nur-xddxdd.overlays.default
-        nix-cachyos-kernel.overlays.pinned
         nix-yazi-plugins.overlays.default
       ];
 
@@ -110,129 +108,116 @@
         dsearch.homeModules.default
       ];
 
-      # Add a module to a specific host.
-      systems.hosts.raspi5 = {
-        specialArgs = {
-          inherit (inputs) nixos-raspberrypi;
+      systems = {
+        hosts.raspi5 = {
+          specialArgs = {
+            inherit (inputs) nixos-raspberrypi;
+          };
+          modules = with inputs.nixos-raspberrypi.nixosModules; [
+            raspberry-pi-5.base
+            raspberry-pi-5.page-size-16k
+            raspberry-pi-5.display-vc4
+            raspberry-pi-5.bluetooth
+
+            inputs.nixos-raspberrypi.lib.inject-overlays
+          ];
         };
-        modules = with inputs.nixos-raspberrypi.nixosModules; [
-          raspberry-pi-5.base
-          raspberry-pi-5.page-size-16k
-          raspberry-pi-5.display-vc4
-          raspberry-pi-5.bluetooth
 
-          inputs.nixos-raspberrypi.lib.inject-overlays
-        ];
-      };
+        modules = {
+          nixos = with inputs; [
+            # comin.nixosModules.comin
+            # nixos-vfio.nixosModules.default
+            # nix-snapshotter.nixosModules.default
+            nix-flatpak.nixosModules.nix-flatpak
+            # nix-topology.nixosModules.default
+            # netkit.nixosModule
+            nixos-recovery.nixosModules.recovery
+            catppuccin.nixosModules.catppuccin
+            # peerix.nixosModules.peerix
+            tsnsrv.nixosModules.default
+            # impermanence.nixosModule
+            disko.nixosModules.default
 
-      systems.modules = {
-        nixos = with inputs; [
-          # comin.nixosModules.comin
-          # nixos-vfio.nixosModules.default
-          # nix-snapshotter.nixosModules.default
-          nix-flatpak.nixosModules.nix-flatpak
-          # nix-topology.nixosModules.default
-          # netkit.nixosModule
-          nixos-recovery.nixosModules.recovery
-          catppuccin.nixosModules.catppuccin
-          # peerix.nixosModules.peerix
-          tsnsrv.nixosModules.default
-          # impermanence.nixosModule
-          disko.nixosModules.default
+            optnix.nixosModules.optnix
+            lanzaboote.nixosModules.lanzaboote
+            # lanzaboote.nixosModules.uki
+            # vscode-server.nixosModules.default
+            niri.nixosModules.niri
+            # home-manager.nixosModules.home-manager
+            agenix.nixosModules.default
+            agenix-rekey.nixosModules.default
 
-          optnix.nixosModules.optnix
-          lanzaboote.nixosModules.lanzaboote
-          # lanzaboote.nixosModules.uki
-          # vscode-server.nixosModules.default
-          niri.nixosModules.niri
-          # home-manager.nixosModules.home-manager
-          agenix.nixosModules.default
-          agenix-rekey.nixosModules.default
+            # nix-gaming.nixosModules.pipewireLowLatency
+            # nix-gaming.nixosModules.wine
+            # nix-gaming.nixosModules.platformOptimizations
+            # walker.nixosModules.default
 
-          # nix-gaming.nixosModules.pipewireLowLatency
-          # nix-gaming.nixosModules.wine
-          # nix-gaming.nixosModules.platformOptimizations
-          # walker.nixosModules.default
+            vscode-server.nixosModules.default
+            # nvidia-vgpu-nixos.nixosModules.guest
+            # nixos-service.nixosModules.nixos-service
+            # nix-virt.nixosModules.default
+            dank-material-shell.nixosModules.greeter
 
-          vscode-server.nixosModules.default
-          # nvidia-vgpu-nixos.nixosModules.guest
-          # nixos-service.nixosModules.nixos-service
-          # nix-virt.nixosModules.default
-          dank-material-shell.nixosModules.greeter
+            nixos-cli.nixosModules.nixos-cli
+            # nix-monitor.nixosModules.default
+            chaotic.nixosModules.default
 
-          nixos-cli.nixosModules.nixos-cli
-          # nix-monitor.nixosModules.default
+            ./defaultNixosAge.nix
+          ];
 
-          ./defaultNixosAge.nix
-          (
-            {config, ...}: {
-              nix = {
-                extraOptions = ''
-                  !include ${config.age.secrets.nix-access-tokens-github.path}
-                '';
-                nixPath = let
-                  path = toString ./.;
-                in [
-                  "repl=${path}/repl.nix"
-                  "nixpkgs=${inputs.nixpkgs}"
-                ];
-              };
-            }
-          )
-        ];
+          darwin = with inputs; [
+            agenix.darwinModules.default
+            agenix-rekey.nixosModules.default
+            # mac-app-util.darwinModules.default
 
-        darwin = with inputs; [
-          agenix.darwinModules.default
-          agenix-rekey.nixosModules.default
-          # mac-app-util.darwinModules.default
+            (
+              {
+                config,
+                lib,
+                ...
+              }: {
+                config = {
+                  # nm-overrides.desktop.home-exec.enable = false;
 
-          (
-            {
-              config,
-              lib,
-              ...
-            }: {
-              config = {
-                # nm-overrides.desktop.home-exec.enable = false;
+                  # system.nixos.tags = ["snowfall"];
+                  system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
+                  # nixpkgs.flake.setFlakeRegistry = false;
+                  # nixpkgs.flake.setNixPath = false;
 
-                # system.nixos.tags = ["snowfall"];
-                system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
-                # nixpkgs.flake.setFlakeRegistry = false;
-                # nixpkgs.flake.setNixPath = false;
+                  nix = {
+                    extraOptions = ''
+                      !include ${config.age.secrets.nix-access-tokens-github.path}
+                    '';
 
-                nix = {
-                  extraOptions = ''
-                    !include ${config.age.secrets.nix-access-tokens-github.path}
-                  '';
-
-                  # settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${builtins.toString config.users.users."${config.user.name}".uid}"];
-                };
-
-                age = {
-                  secrets = {
-                    nix-access-tokens-github.rekeyFile = ./secrets/github.age;
+                    # settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${builtins.toString config.users.users."${config.user.name}".uid}"];
                   };
 
-                  rekey = {
-                    masterIdentities = [
-                      ./secrets/age-yubikey-identity-usbc.pub
-                      ./secrets/age-op-identity-ed.pub
-                    ];
+                  age = {
+                    secrets = {
+                      nix-access-tokens-github.rekeyFile = ./secrets/github.age;
+                    };
 
-                    agePlugins = with pkgs; [
-                      age-plugin-1p
-                      age-plugin-fido2-hmac
-                      age-plugin-yubikey
-                    ];
+                    rekey = {
+                      masterIdentities = [
+                        ./secrets/age-yubikey-identity-usbc.pub
+                        ./secrets/age-op-identity-ed.pub
+                      ];
 
-                    storageMode = "local";
-                    localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+                      agePlugins = with pkgs; [
+                        age-plugin-1p
+                        age-plugin-fido2-hmac
+                        age-plugin-yubikey
+                      ];
+
+                      storageMode = "local";
+                      localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+                    };
                   };
                 };
-              };
-            }
-          )
-        ];
+              }
+            )
+          ];
+        };
       };
       flakeInputs = inputs;
 
@@ -393,15 +378,13 @@
       "https://nix-community.cachix.org"
       "https://devenv.cachix.org"
       "https://cuda-maintainers.cachix.org"
-      # "https://tomasharkema.cachix.org"
       "http://silver-star.ling-lizard.ts.net:7124"
       "https://niri.cachix.org"
-      "https://attic.xuyh0120.win/lantian"
+      "https://nyx-cache.chaotic.cx"
       "https://nixos-raspberrypi.cachix.org"
     ];
 
     extra-trusted-public-keys = [
-      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
       "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
@@ -422,6 +405,7 @@
       "tomas-nixos-1:attQnEt6Gq99mwz5J/h8EVhCpavuB0/z/u0Bt/Mko7E="
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       "tomasharkema:odFihM5iPetpuUdcXy/4cKAFxOBM0TKAeLpztxA7qu4="
+      "nyx-cache.chaotic.cx:dJxTrgMC3V3cFfyIiBQDQorG6k1LsqurH/srpMSq7qk="
     ];
 
     # allow-import-from-derivation = true;
@@ -745,19 +729,7 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-cachyos-kernel = {
-      url = "github:xddxdd/nix-cachyos-kernel/release";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # nur-xddxdd = {
-    #   url = "github:xddxdd/nur-packages";
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     nix-cachyos-kernel.follows = "nix-cachyos-kernel";
-    #     nix-index-database.follows = "nix-index-database";
-    #   };
-    # };
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     tsnsrv = {
       url = "github:boinkor-net/tsnsrv";
@@ -776,8 +748,9 @@
     };
 
     nixpkgs-esp-dev = {
-      # url = "github:mirrexagon/nixpkgs-esp-dev";
-      url = "github:Book-reader/nixpkgs-esp-dev/remove-python310";
+      url = "github:mirrexagon/nixpkgs-esp-dev";
+
+      # url = "github:Book-reader/nixpkgs-esp-dev/remove-python310";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
