@@ -104,10 +104,10 @@ in rec {
     version = "2.23.0";
   });
 
-  opencv = prev.opencv.override {
-    enableCuda = true;
-    enableCudnn = true;
-  };
+  # opencv = prev.opencv.override {
+  #   enableCuda = true;
+  #   enableCudnn = true;
+  # };
 
   sdrangel = checkUpdatedUpsteam prev.sdrangel "7.22.9" prev.sdrangel.overrideAttrs ({
     buildInputs,
