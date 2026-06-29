@@ -92,7 +92,7 @@ with pkgs; {
         # keybase
         ldns
         # lolcat
-        lsd
+        # lsd
         manix
 
         mcfly
