@@ -40,14 +40,14 @@ in
 
     src = fetchFromGitHub {
       owner = "makoni";
-      repo = "swiftynotes";
+      repo = "swifty-notes-gtk";
       rev = "${version}";
       hash = "sha256-ZAbqbj7xY2GLqkPDhilKSgi4hBm93etcoHn+YYyWNdI=";
     };
 
     swift = swiftix.packages.${stdenv.hostPlatform.system}.latest;
     swiftpmGenerated = swiftpm2nixHelpers ./nix/swift.nix;
-    executableName = "swiftynotes"; # name of the executable target
+    executableName = "swiftynotes";
 
     nativeBuildInputs = [
       pkg-config
