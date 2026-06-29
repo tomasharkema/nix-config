@@ -66,8 +66,6 @@ in {
 
     # security.pam.services.passwd.enableGnomeKeyring = true;
 
-    apps.gpsd.enable = true;
-
     services = {
       # localtimed.enable = true;
       # uvcvideo.dynctrl = {
@@ -248,15 +246,6 @@ in {
       #   enable = true;
       # };
 
-      firefox = {
-        enable = true;
-
-        # nativeMessagingHosts.packages = [
-        # pkgs.custom.firefox-webserial
-        # pkgs.firefoxpwa
-        # ];
-      };
-
       appimage = {
         enable = true;
         binfmt = true;
@@ -307,7 +296,10 @@ in {
     #   ];
     # };
 
-    apps.firefox.enable = true;
+    apps = {
+      firefox.enable = true;
+      gpsd.enable = true;
+    };
 
     systemd = {
       services = {

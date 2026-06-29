@@ -10,8 +10,8 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      # firefox-sync-client
-      # firefoxpwa
+      firefox-sync-client
+      firefoxpwa
     ];
 
     programs.firefox = {
@@ -20,16 +20,13 @@ in {
 
       #preferencesStatus = "default";
 
-      #nativeMessagingHosts = {
-      # packages = with pkgs; [
-      # firefoxpwa
-      #   gnome-browser-connector
-      #  ];
-      #     #   # fxCast = true;
-      #     #   # ff2mpv = true;
-      #     #   # gsconnect = true;
-      #     #   packages = with pkgs; [gnome-browser-connector];
-      #};
+      nativeMessagingHosts = {
+        packages = with pkgs; [
+          firefox-sync-client
+          firefoxpwa
+          gnome-browser-connector
+        ];
+      };
     };
   };
 }
