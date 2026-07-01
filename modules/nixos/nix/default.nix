@@ -36,7 +36,7 @@ in {
       info.enable = true;
       nixos = {
         enable = true;
-        includeAllModules = lib.warn "make nixos docs foe all modules work" false; # true;
+        includeAllModules = lib.warn "make nixos docs for all modules work" false; # true;
       };
     };
 
