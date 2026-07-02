@@ -19,9 +19,9 @@ in {
       atopService.enable = true;
       atopacctService.enable = true;
       atopgpu.enable = config.traits.hardware.nvidia.enable;
-      netatop.enable = true;
+      # netatop.enable = true;
     };
-    boot.extraModulePackages = [config.boot.kernelPackages.netatop];
+    # boot.extraModulePackages = [config.boot.kernelPackages.netatop];
 
     environment.systemPackages = [
       pkgs.atop

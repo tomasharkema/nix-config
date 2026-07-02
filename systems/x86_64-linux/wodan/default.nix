@@ -288,7 +288,7 @@
     };
 
     boot = {
-      kernelPackages = pkgs.linuxPackages_cachyos-lto; #pkgs.linuxPackages-cachyos-latest-lto-x86_64-v4;
+      kernelPackages = pkgs.linuxPackages_latest; #pkgs.linuxPackages-cachyos-latest-lto-x86_64-v4;
 
       tmp = {useTmpfs = true;};
 

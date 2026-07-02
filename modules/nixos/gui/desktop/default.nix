@@ -301,6 +301,18 @@ in {
       gpsd.enable = true;
     };
 
+    fileSystems = {
+      "/home/tomas/digikam" = {
+        device = "192.168.1.102:/volume1/tomas/digikam";
+        fsType = "nfs";
+        options = [
+          "x-systemd.automount"
+          "noauto"
+          "x-systemd.idle-timeout=600"
+        ];
+      };
+    };
+
     systemd = {
       services = {
         # "prepare-kexec".wantedBy = lib.mkIf pkgs.stdenv.isx86_64 ["multi-user.target"];
