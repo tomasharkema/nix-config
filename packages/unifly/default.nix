@@ -4,19 +4,20 @@
   fetchFromGitHub,
   pkg-config,
   dbus,
+  binutils,
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "unifly";
-  version = "0.9.0";
+  version = "0.9.1";
 
   src = fetchFromGitHub {
     owner = "hyperb1iss";
     repo = "unifly";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-ZFVqEA/Ft+vYtNvvbR0MPdVVNM/W88169zU5CqZcBXY=";
+    hash = "sha256-u+nERyym51tPD13QGNO0XeqPse+qydWT9wudpwfJuso=";
   };
 
-  cargoHash = "sha256-j/poN2AdCeSNymYUAWxpy0MMqF5ZF5LTKrP1016oc94=";
+  cargoHash = "sha256-71kQ6Rv79ehW2h4cmD0L3DGOC3sfv4Qw1KK0KNN/c/g=";
 
   nativeBuildInputs = [
     pkg-config
@@ -24,6 +25,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   buildInputs = [
     dbus
+    binutils
   ];
 
   meta = {
