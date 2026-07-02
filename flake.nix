@@ -160,7 +160,7 @@
 
             nixos-cli.nixosModules.nixos-cli
             # nix-monitor.nixosModules.default
-            chaotic.nixosModules.default
+            # chaotic.nixosModules.default
 
             ./defaultNixosAge.nix
           ];
@@ -380,7 +380,7 @@
       "https://cuda-maintainers.cachix.org"
       "http://silver-star.ling-lizard.ts.net:7124"
       "https://niri.cachix.org"
-      "https://nyx-cache.chaotic.cx"
+      # "https://nyx-cache.chaotic.cx"
       "https://nixos-raspberrypi.cachix.org"
     ];
 
@@ -405,14 +405,15 @@
       "tomas-nixos-1:attQnEt6Gq99mwz5J/h8EVhCpavuB0/z/u0Bt/Mko7E="
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       "tomasharkema:odFihM5iPetpuUdcXy/4cKAFxOBM0TKAeLpztxA7qu4="
-      "nyx-cache.chaotic.cx:dJxTrgMC3V3cFfyIiBQDQorG6k1LsqurH/srpMSq7qk="
+      # "nyx-cache.chaotic.cx:dJxTrgMC3V3cFfyIiBQDQorG6k1LsqurH/srpMSq7qk="
     ];
 
     # allow-import-from-derivation = true;
     keep-failed = true;
     keep-outputs = true;
     keep-derivations = true;
-    accept-flake-config = true;
+    # timeout = 30;
+    # http-connections = 50;
     # sandbox = false;
   };
 
@@ -729,7 +730,7 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    # chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     tsnsrv = {
       url = "github:boinkor-net/tsnsrv";
