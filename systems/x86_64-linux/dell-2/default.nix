@@ -200,7 +200,7 @@
       kmscon.enable = true;
       ratbagd.enable = true;
       # comin.enable = false;
-      abrt.enable = true;
+
       # remote-builders.client.enable = true;
       usbmuxd.enable = true;
       # power-profiles-daemon.enable = lib.mkForce true;

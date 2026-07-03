@@ -30,7 +30,7 @@ in {
     ];
 
     services = {
-      mimir = {
+      mimir = lib.mkIf false {
         enable = true;
 
         configuration = {
@@ -49,7 +49,7 @@ in {
         };
       };
 
-      prometheus = {
+      prometheus = lib.mkIf false {
         enable = true;
         # pushgateway.enable = true;
         port = 9999;
