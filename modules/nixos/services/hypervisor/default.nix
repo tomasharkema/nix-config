@@ -61,7 +61,7 @@ in {
       qemu-utils
       virtiofsd
     ];
-    networking.firewall.checkReversePath = false;
+
     services = {
       udev.packages = with pkgs; [virtiofsd];
 
