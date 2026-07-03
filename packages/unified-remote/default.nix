@@ -17,12 +17,12 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url =
-      if stdenv.isx86_64
+      if stdenv.hostPlatform.isx86_64
       then "https://www.unifiedremote.com/d/linux-x64-deb"
       else "https://www.unifiedremote.com/download/linux-arm64-deb";
     #"https://www.unifiedremote.com/download/linux-arm64-portable";
     sha256 =
-      if stdenv.isx86_64
+      if stdenv.hostPlatform.isx86_64
       then "WIWW7SQll7Xp8Jwk+QDucqM6TS9I/W9K+18+SDAK9Cs="
       else "kokM7rqXZzLvwhEezD0qcsdivjFFMzp0PhFtwKip1vM=";
 

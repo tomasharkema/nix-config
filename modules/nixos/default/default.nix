@@ -100,7 +100,7 @@ in {
         ];
       };
 
-      initrd = lib.mkIf (pkgs.stdenv.hostPlatform.isx86_64) {
+      initrd = lib.mkIf (pkgs.stdenvNoCC.hostPlatform.isx86_64) {
         compressor = "zstd";
         compressorArgs = ["-19"];
         systemd = {
@@ -118,7 +118,7 @@ in {
 
       hardwareScan = true;
 
-      extraModulePackages = lib.mkIf (pkgs.stdenvNoCC.isx86_64 && false) [
+      extraModulePackages = lib.mkIf (pkgs.stdenvNoCC.hostPlatform.isx86_64 && false) [
         config.boot.kernelPackages.cryptodev
         config.boot.kernelPackages.acpi_call
         config.boot.kernelPackages.fanout
@@ -134,7 +134,7 @@ in {
       ];
 
       kernel = {
-        sysctl = lib.mkIf (pkgs.stdenvNoCC.isx86_64) {
+        sysctl = lib.mkIf (pkgs.stdenvNoCC.hostPlatform.isx86_64) {
           "net.ipv4.ip_forward" = lib.mkDefault 1;
           "vm.swappiness" = lib.mkDefault 180;
           "vm.watermark_boost_factor" = lib.mkDefault 0;
@@ -596,7 +596,7 @@ in {
       sharing.enable = true;
       autojump.enable = true;
       bandwhich.enable = true;
-      cpu-energy-meter.enable = pkgs.stdenv.isx86_64;
+      cpu-energy-meter.enable = pkgs.stdenvNoCC.hostPlatform.isx86_64;
       flashrom.enable = true;
       flashprog.enable = true;
       git-worktree-switcher.enable = true;
@@ -735,7 +735,7 @@ in {
       enableRedistributableFirmware = lib.mkDefault true;
       firmware = [pkgs.wireless-regdb];
 
-      sensor.hddtemp = lib.mkIf (pkgs.stdenv.hostPlatform.isx86_64) {
+      sensor.hddtemp = lib.mkIf (pkgs.stdenvNoCC.hostPlatform.isx86_64) {
         enable = true;
         drives = ["/dev/disk/by-path/*"];
       };

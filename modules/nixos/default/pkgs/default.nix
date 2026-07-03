@@ -296,7 +296,7 @@ in {
         zstd
         # keep-sorted end
       ])
-      ++ (lib.optionals pkgs.stdenv.isx86_64 (
+      ++ (lib.optionals pkgs.stdenvNoCC.hostPlatform.isx86_64 (
         with pkgs; [
           # keep-sorted start
           cmospwd

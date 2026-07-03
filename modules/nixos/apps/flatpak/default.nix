@@ -68,7 +68,7 @@ in {
           "org.raspberrypi.rpi-imager"
         ]
         ++ (
-          lib.optionals pkgs.stdenv.isx86_64
+          lib.optionals pkgs.stdenvNoCC.hostPlatform.isx86_64
           [
             "com.discordapp.Discord"
             # "tv.plex.PlexDesktop"

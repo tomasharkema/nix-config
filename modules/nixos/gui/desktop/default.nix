@@ -112,7 +112,7 @@ in {
         ];
       };
       scx = {
-        enable = pkgs.stdenvNoCC.isx86_64;
+        enable = pkgs.stdenvNoCC.hostPlatform.isx86_64;
         # package = pkgs.scx_git.rustscheds;
         # scheduler = "scx_lavd"; #
         scheduler = "scx_bpfland";
@@ -232,6 +232,7 @@ in {
               ghidra-golanganalyzerextension
               ghidraninja-ghidra-scripts
               pkgs.custom.esp8266-loader
+              pkgs.custom.ghidra-uf2loader
             ]
         );
       };
@@ -255,22 +256,24 @@ in {
 
     boot = {
       extraModulePackages = with config.boot.kernelPackages; [
-        # akvcam
+        akvcam
         v4l2loopback
         iio-utils
       ];
 
       kernelModules = [
         "v4l2loopback"
-        # "akvcam"
+        "akvcam"
         "binder-linux"
         "ntsync"
       ];
 
       modprobeConfig.enable = true;
+
       extraModprobeConfig = ''
         options binder-linux devices=binder,hwbinder,vndbinder
       '';
+
       kernelParams = ["psi=1"];
       # for displaylink
       # kernelPackages = pkgs.linuxPackages_6_17;
@@ -279,22 +282,6 @@ in {
     xdg.portal.extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];
-
-    # networking.firewall = {
-    #   allowedTCPPorts = [
-    #     1900
-    #     5353
-    #     8324
-    #     8080
-    #     8060 # the plex frontend does upnp things
-    #     32433 # plex-media-player
-    #     32410
-    #     32412
-    #     32413
-    #     32414
-    #     32469
-    #   ];
-    # };
 
     apps = {
       firefox.enable = true;
@@ -315,37 +302,37 @@ in {
 
     systemd = {
       services = {
-        # "prepare-kexec".wantedBy = lib.mkIf pkgs.stdenv.isx86_64 ["multi-user.target"];
+        # "prepare-kexec".wantedBy = lib.mkIf pkgs.stdenvNoCC.hostPlatform.isx86_64 ["multi-user.target"];
         NetworkManager-wait-online.enable = lib.mkForce false;
         systemd-networkd-wait-online.enable = lib.mkForce false;
       };
 
-      user.services.fumon = {
-        description = "User unit failure monitor";
-        documentation = [
-          "man:fumon(1)"
-          "man:busctl(1)"
-        ];
-        requisite = ["graphical-session.target"];
-        after = ["graphical-session.target"];
-        enable = true;
-        serviceConfig = {
-          Type = "exec";
-          # ExecCondition=/bin/sh -c "command -v notify-send > /dev/null"
-          ExecStart = "${pkgs.uwsm}/bin/fumon";
-          Restart = "on-failure";
-          Slice = "background-graphical.slice";
-        };
+      # user.services.fumon = {
+      #   description = "User unit failure monitor";
+      #   documentation = [
+      #     "man:fumon(1)"
+      #     "man:busctl(1)"
+      #   ];
+      #   requisite = ["graphical-session.target"];
+      #   after = ["graphical-session.target"];
+      #   enable = true;
+      #   serviceConfig = {
+      #     Type = "exec";
+      #     # ExecCondition=/bin/sh -c "command -v notify-send > /dev/null"
+      #     ExecStart = "${pkgs.uwsm}/bin/fumon";
+      #     Restart = "on-failure";
+      #     Slice = "background-graphical.slice";
+      #   };
 
-        wantedBy = ["graphical-session.target"];
-      };
+      #   wantedBy = ["graphical-session.target"];
+      # };
 
       packages =
         [
           pkgs.custom.wifiman
         ]
-        ++ (lib.optional pkgs.stdenv.isx86_64 pkgs.widevine-cdm);
-      additionalUpstreamSystemUnits = ["systemd-bsod.service"];
+        ++ (lib.optional pkgs.stdenvNoCC.hostPlatform.isx86_64 pkgs.widevine-cdm);
+      # additionalUpstreamSystemUnits = ["systemd-bsod.service"];
     };
 
     # Enable sound with pipewire.

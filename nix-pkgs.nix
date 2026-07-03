@@ -6,7 +6,7 @@
 }: {
   config = {
     environment.systemPackages =
-      (lib.optionals pkgs.stdenv.isx86_64 (with pkgs; [
+      (lib.optionals pkgs.stdenvNoCC.hostPlatform.isx86_64 (with pkgs; [
         nix-doc
         wol
         minimodem

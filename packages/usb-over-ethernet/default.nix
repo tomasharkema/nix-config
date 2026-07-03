@@ -26,7 +26,7 @@ stdenv.mkDerivation rec {
   version = "1.0.0";
 
   src =
-    if stdenv.isx86_64
+    if stdenv.hostPlatform.isx86_64
     then
       fetchurl {
         url = "https://cdn.electronic.us/products/usb-over-ethernet/linux/download/usb_network_gate_x64-2.deb";

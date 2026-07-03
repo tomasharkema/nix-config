@@ -17,7 +17,7 @@ in
     version = "1.0.0";
 
     src =
-      if stdenv.isx86_64
+      if stdenv.hostPlatform.isx86_64
       then
         fetchurl {
           url = "https://www.virtualhere.com/sites/default/files/usbclient/vhuit64";

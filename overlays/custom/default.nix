@@ -16,7 +16,7 @@
   # );
   checkUpdatedUpsteam = pkg: oldVersion: v: (lib.throwIfNot (pkg.version == oldVersion) "${pkg.pname} version ${pkg.version} != ${oldVersion} upstream is updated!" v);
 
-  system' = final.stdenv.hostPlatform.system;
+  system' = final.stdenvNoCC.hostPlatform.system;
 in rec {
   kdump-utils = prev.custom.kdump-utils;
   makedumpfile = prev.custom.makedumpfile;
@@ -55,7 +55,7 @@ in rec {
   #   # so meson cannot probe it; substitute a build-runnable env with the same
   #   # module set so the check still validates that pefile is packageable.
   #   ukifyPythonForMeson =
-  #     if prev.stdenv.buildPlatform.canExecute prev.stdenv.hostPlatform
+  #     if prev.stdenv.buildPlatform.canExecute prev.stdenvNoCC.hostPlatform
   #     then ukifyPython
   #     else prev.buildPackages.python3Packages.python.withPackages (ps: with ps; [pefile]);
 
@@ -128,12 +128,12 @@ in rec {
     patches = [];
 
     NIX_ENFORCE_NO_NATIVE =
-      if prev.stdenv.hostPlatform.isx86_64
+      if prev.stdenvNoCC.hostPlatform.isx86_64
       then false
       else NIX_ENFORCE_NO_NATIVE;
 
     NIX_CFLAGS_COMPILE =
-      if prev.stdenv.hostPlatform.isx86_64
+      if prev.stdenvNoCC.hostPlatform.isx86_64
       then
         NIX_CFLAGS_COMPILE
         ++ [

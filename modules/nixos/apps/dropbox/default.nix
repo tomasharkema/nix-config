@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  config = lib.mkIf (pkgs.stdenv.isx86_64) {
+  config = lib.mkIf (pkgs.stdenvNoCC.hostPlatform.isx86_64) {
     # environment.systemPackages = with pkgs; [
     # dropbox # - we don't need this in the environment. systemd unit pulls it in
     # dropbox-cli

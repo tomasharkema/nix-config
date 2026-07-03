@@ -83,7 +83,7 @@ in {
           lazycli
           lazyjournal
         ]
-        ++ (lib.optionals pkgs.stdenv.isx86_64 [
+        ++ (lib.optionals pkgs.stdenvNoCC.hostPlatform.isx86_64 [
           valgrind
         ]);
 
