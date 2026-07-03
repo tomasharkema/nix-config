@@ -188,7 +188,9 @@ in {
       fzf = {
         enable = true;
         enableZshIntegration = true;
+        historyWidget.command = "";
       };
+
       # bat = {
       #   enable = true;
       #   config.theme = "base16";
