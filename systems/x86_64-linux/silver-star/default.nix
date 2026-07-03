@@ -848,6 +848,9 @@
         "docker-compose@esphome" = {
           wantedBy = ["multi-user.target"];
         };
+        "docker-compose@homey" = {
+          wantedBy = ["multi-user.target"];
+        };
         # "docker-compose@fleetdm" = {
         #   wantedBy = ["multi-user.target"];
         # };

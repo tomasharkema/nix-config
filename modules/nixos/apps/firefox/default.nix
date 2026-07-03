@@ -15,18 +15,18 @@ in {
     ];
 
     programs.firefox = {
-      enable = true;
+      enable = true; #
       #package = pkgs.firefox;
 
       #preferencesStatus = "default";
 
-      nativeMessagingHosts = {
-        packages = with pkgs; [
-          firefox-sync-client
-          firefoxpwa
-          gnome-browser-connector
-        ];
-      };
+      #nativeMessagingHosts = {
+      #  packages = with pkgs; [
+      #    firefox-sync-client
+      #    firefoxpwa
+      #    gnome-browser-connector
+      # ];
+      # };
     };
   };
 }
