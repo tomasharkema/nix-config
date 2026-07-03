@@ -259,7 +259,7 @@ in {
         useTmpfs = true;
       };
 
-      kernelPackages = lib.mkForce pkgs.linuxPackages_6_18;
+      # kernelPackages = lib.mkForce pkgs.linuxPackages_6_18;
 
       supportedFilesystems = [
         "xfs"

@@ -50,6 +50,7 @@ in {
         ctop
         curl
         custom.adsb-tui
+        custom.avahi-tui
         # apfs-fuse
         # apfsprogs
         # bat-extras.batgrep
