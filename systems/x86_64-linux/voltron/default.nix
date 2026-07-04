@@ -155,8 +155,6 @@
 
     services = {
       kmscon.enable = true;
-      # comin.enable = false;
-      abrt.enable = true;
       # remote-builders.client.enable = true;
       # power-profiles-daemon.enable = lib.mkForce true;
 
