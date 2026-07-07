@@ -16,8 +16,11 @@
         allowUnfree = true;
         segger-jlink.acceptLicense = true;
 
-        firefox.enableGnomeExtensions = true;
-        firefox.smartcardSupport = true;
+        firefox = {
+          enableGnomeExtensions = true;
+          smartcardSupport = true;
+        };
+
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;
         nvidia.acceptLicense = true;
@@ -25,7 +28,6 @@
 
         allowAliases = true;
 
-        chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
         android_sdk.accept_license = true;
 
         config.allowAliases = true;
@@ -36,23 +38,26 @@
         # buildPlatform.system = "x86_64-linux";
 
         permittedInsecurePackages = [
-          "minio-2025-10-15T17-29-55Z"
+          #   "minio-2025-10-15T17-29-55Z"
           "segger-jlink-qt4-874"
-          "libsoup-2.74.3"
-          "python3.13-ecdsa-0.19.1"
-          "python3.13-ecdsa-0.19.2"
+          #   "libsoup-2.74.3"
+          #   "python3.13-ecdsa-0.19.1"
+          #   "python3.13-ecdsa-0.19.2"
         ];
-
-        #enableBroken = true;
 
         config = {
           allowUnfreePredicate = _: true;
           allowUnfree = true;
-          cudaSupport = false;
+          cudaSupport = true;
+          firefox = {
+            enableGnomeExtensions = true;
+            smartcardSupport = true;
+          };
+
           # enableBroken = true;
           # contentAddressedByDefault = true;
           # For example, enable smartcard support in Firefox.
-          firefox.smartcardSupport = true;
+          # firefox.smartcardSupport = true;
           lazy-trees = true;
           # permittedInsecurePackages = [
           # "openssl-1.1.1w"
