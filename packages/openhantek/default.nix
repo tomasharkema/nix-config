@@ -7,6 +7,7 @@
   qt6,
   libusb1,
   fftw,
+  udevCheckHook,
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "OpenHantek";
@@ -23,6 +24,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [
     cmake
+    udevCheckHook
     qt6.wrapQtAppsHook
   ];
 

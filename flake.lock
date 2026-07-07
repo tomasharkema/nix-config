@@ -300,26 +300,6 @@
         "type": "github"
       }
     },
-    "dsearch": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1782736090,
-        "narHash": "sha256-TnoKATODjWk4e1w3VhRYLWGMdXMJzDyvQF8mtD6WRGA=",
-        "owner": "AvengeMedia",
-        "repo": "danksearch",
-        "rev": "1269b4688cc94cbd271e1cbbf19a6e7caa2293de",
-        "type": "github"
-      },
-      "original": {
-        "owner": "AvengeMedia",
-        "repo": "danksearch",
-        "type": "github"
-      }
-    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -2095,7 +2075,6 @@
         "devshell": "devshell_2",
         "dgop": "dgop",
         "disko": "disko",
-        "dsearch": "dsearch",
         "flake-compat": "flake-compat_3",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",

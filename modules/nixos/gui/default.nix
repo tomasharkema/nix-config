@@ -81,6 +81,7 @@ in {
       udev = {
         packages = with pkgs; [
           imsprog
+          custom.openhantek
           picoprobe-udev-rules
           nrf-udev
           game-devices-udev-rules

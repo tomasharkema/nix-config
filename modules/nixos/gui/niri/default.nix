@@ -175,10 +175,6 @@ in {
       };
 
       programs = {
-        dsearch = {
-          enable = true;
-        };
-
         dank-material-shell = {
           enable = true;
           systemd = {

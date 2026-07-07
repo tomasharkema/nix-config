@@ -105,7 +105,6 @@
         # niri.homeModules.niri
         dank-material-shell.homeModules.dank-material-shell
         # dank-material-shell.homeModules.dank-material-shell.niri
-        dsearch.homeModules.default
       ];
 
       systems = {
@@ -762,11 +761,6 @@
 
     dank-material-shell = {
       url = "github:AvengeMedia/DankMaterialShell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    dsearch = {
-      url = "github:AvengeMedia/danksearch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
