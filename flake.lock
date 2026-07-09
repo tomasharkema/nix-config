@@ -90,11 +90,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783545128,
-        "narHash": "sha256-APzF91kOgKOHwx/KRu7710A8MYihVtKmUbjK5dAIltc=",
+        "lastModified": 1783587400,
+        "narHash": "sha256-UEZ8LIavX5HFjtvSkj34ZBM30cWNpqJfXujm+B4rY1k=",
         "owner": "catppuccin",
         "repo": "nix",
-        "rev": "28731a367cfd8fb1eaec31d72bb75fee43971db4",
+        "rev": "b69e0494705aaf50cb2c6e0e005639b632044c6d",
         "type": "github"
       },
       "original": {
@@ -186,11 +186,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783543350,
-        "narHash": "sha256-FnA0/LPAKhLEBGlFm/miFv9EhsR2qb7REb4gbxT8Pw8=",
+        "lastModified": 1783616037,
+        "narHash": "sha256-1GMNGQowuJokEBewKx/xcuhq+BsMQMobVu/u19i6G5c=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "a095d0ed905d72d4f6f78d0a63c8eeecd27940da",
+        "rev": "c0eeed4e894e728d2778d3c1952c83aaf8715620",
         "type": "github"
       },
       "original": {
@@ -994,11 +994,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783550008,
-        "narHash": "sha256-qbbZUk9IG9dLNwCPwdPBs6I5clxwugRpP+1YU+GPK20=",
+        "lastModified": 1783618078,
+        "narHash": "sha256-F43DGcBoIO8xOZFAfodg3jy0VghB9NGdb6xbTYAIx1A=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "f4d01c1d87c7c2ec909549165d5a8338f1bd3315",
+        "rev": "144f4e36d0186195037da9fce80a727108978070",
         "type": "github"
       },
       "original": {
@@ -1358,11 +1358,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1783370751,
-        "narHash": "sha256-E+3MIMvKuo9k+K+qLQ9YXzsBzkgHuyVLnsEbN2DFfuc=",
+        "lastModified": 1783582157,
+        "narHash": "sha256-EteIu2AVVbxzkBnBKjrbdknbpjxBkWTMNg02rXj4mgU=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "662bd6e312d2c8b212e32cb377abaee190749320",
+        "rev": "968980fba2c290b5529025636474eae8457b854c",
         "type": "github"
       },
       "original": {
@@ -1402,11 +1402,11 @@
         "nixos-unstable": "nixos-unstable"
       },
       "locked": {
-        "lastModified": 1782988183,
-        "narHash": "sha256-jDPW1HqcKfvJVDdRiahQjtBAFJnV0Qh+bmbkf8VM+kU=",
+        "lastModified": 1783593136,
+        "narHash": "sha256-zy5an02BdZ65OgVKdRkz2TpbdBrsW+uQD7AA2wLuiTM=",
         "owner": "nix-community",
         "repo": "nixos-images",
-        "rev": "342de1c65c2a1585e6f03676111963174386c9cf",
+        "rev": "803f28511c7d5f39f2537c342122fd94b8e1d519",
         "type": "github"
       },
       "original": {
@@ -1501,10 +1501,10 @@
     },
     "nixos-stable_2": {
       "locked": {
-        "lastModified": 1782847225,
-        "narHash": "sha256-JC9PjqKYG9ve5U8aDOLQipp3+KLANBHUvGdLZlxzdKI=",
+        "lastModified": 1783389287,
+        "narHash": "sha256-0xIy4dVLqq47rA+mRy0hXDfjhQd4E5PoIns/RmB7nR4=",
         "ref": "nixos-26.05",
-        "rev": "95ca1e203c0750115fd4a6f17d5a245dfe6b1edd",
+        "rev": "0ad6f47ea4fe188f4bc8f0380f93ae8523337c6c",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/NixOS/nixpkgs"
@@ -1809,11 +1809,11 @@
         "systems": "systems_8"
       },
       "locked": {
-        "lastModified": 1783544129,
-        "narHash": "sha256-qN9Z9Tw6sPp1vLeEz0RfrsiBOYS1yP+3919S+Gy8sYQ=",
+        "lastModified": 1783618792,
+        "narHash": "sha256-CIvxoB4CraboX/Rq6xqENLexorkCjWiU4AUwNhueXI0=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "6d1424cefd041c595a517ee9f46adcb250938e24",
+        "rev": "511a763e20ca8a39c4182c046074cc772b9d29d5",
         "type": "github"
       },
       "original": {
@@ -1960,11 +1960,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783535678,
-        "narHash": "sha256-6mTwsw6lPSEo5bbZIvjuZKX3RXE7Y1Y93aYIxDdvi2Y=",
+        "lastModified": 1783619325,
+        "narHash": "sha256-2BaT7vYosv6gvQNOOZdNlZRM9VBC9vp1kkVApJX9rfk=",
         "owner": "librekeys",
         "repo": "picoforge",
-        "rev": "5121bb011d868ec652a459055683213174ba6294",
+        "rev": "f72c5fc45dcf9bd596b9d171bc4a9c38e8a8e4cf",
         "type": "github"
       },
       "original": {
