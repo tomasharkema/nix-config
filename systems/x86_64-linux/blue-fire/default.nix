@@ -96,7 +96,7 @@ in {
       # netconsoled.enable = true;
 
       avahi.allowInterfaces = ["br0"];
-      vscode-server.enable = true;
+      # vscode-server.enable = true;
       rpcbind.enable = true;
       lldpd.enable = true;
       remote-builders.server.enable = true;

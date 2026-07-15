@@ -20,6 +20,7 @@ in {
         enable = true;
         webservices.enable = true;
       };
+
       openvscode-server = {
         enable = true;
         host = "0.0.0.0";
@@ -27,9 +28,9 @@ in {
         user = "tomas";
       };
 
-      vscode-server = {
-        enable = true;
-      };
+      # vscode-server = {
+      #   enable = true;
+      # };
 
       fail2ban = {
         enable = true;

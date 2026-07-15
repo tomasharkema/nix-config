@@ -156,7 +156,7 @@
             # nix-gaming.nixosModules.platformOptimizations
             # walker.nixosModules.default
 
-            vscode-server.nixosModules.default
+            # vscode-server.nixosModules.default
             # nvidia-vgpu-nixos.nixosModules.guest
             # nixos-service.nixosModules.nixos-service
             # nix-virt.nixosModules.default
@@ -732,10 +732,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    vscode-server = {
-      url = "github:nix-community/nixos-vscode-server";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # vscode-server = {
+    #   url = "github:nix-community/nixos-vscode-server";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nixos-raspberrypi = {
       url = "github:nvmd/nixos-raspberrypi/954a04d04919f898649c21800af28af1d8aa4565";
