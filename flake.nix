@@ -429,7 +429,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # systems.url = "github:nix-systems/default";
+    systems.url = "github:nix-systems/triplet";
+
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
+
+    flake-utils-plus = {
+      url = "github:gytis-ivaskevicius/flake-utils-plus";
+      inputs.flake-utils.follows = "flake-utils";
+    };
 
     darwin = {
       url = "github:nix-darwin/nix-darwin";
@@ -443,10 +453,6 @@
 
     # impermanence = {
     #   url = "github:nix-community/impermanence";
-    # };
-
-    # flake-utils = {
-    #   url = "github:numtide/flake-utils";
     # };
 
     # flake-parts = {
@@ -588,6 +594,8 @@
       # url = "github:anntnzrb/snowfall-lib";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+
+        flake-utils-plus.follows = "flake-utils-plus";
         # flake-compat.follows = "flake-compat";
       };
     };
