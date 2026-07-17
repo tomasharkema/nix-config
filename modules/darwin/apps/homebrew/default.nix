@@ -84,6 +84,7 @@ in {
         "charles"
         "chiri"
         "devcleaner"
+        "elgato-studio"
         "firefox"
         "fldigi"
         "font-adwaita"
