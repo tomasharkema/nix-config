@@ -310,7 +310,7 @@ in {
           # ipmicfg
           libguestfs-with-appliance
           libsmbios
-          meshtastic
+          # meshtastic
           micropython
           refind
           spectre-meltdown-checker

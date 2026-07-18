@@ -18,6 +18,6 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   postInstall = ''
-    install -D opt/brother/Printers/MFCL2710DW/cupswrapper/brother-MFCL2710DW-cups-en.ppd $out/share/cups/MFCL2710DW/brother-MFCL2710DW-cups-en.ppd
+    install -D opt/brother/Printers/MFCL2710DW/cupswrapper/brother-MFCL2710DW-cups-en.ppd $out/share/cups/model/MFCL2710DW/brother-MFCL2710DW-cups-en.ppd
   '';
 })

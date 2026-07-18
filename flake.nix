@@ -38,6 +38,7 @@
         # buildPlatform.system = "x86_64-linux";
 
         permittedInsecurePackages = [
+          "electron-39.8.10"
           #   "minio-2025-10-15T17-29-55Z"
           "segger-jlink-qt4-874"
           #   "libsoup-2.74.3"

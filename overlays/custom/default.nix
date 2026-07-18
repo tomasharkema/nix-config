@@ -109,58 +109,58 @@ in rec {
   #   enableCudnn = true;
   # };
 
-  sdrangel = checkUpdatedUpsteam prev.sdrangel "7.22.9" prev.sdrangel.overrideAttrs ({
-    buildInputs,
-    cmakeFlags,
-    NIX_CFLAGS_COMPILE ? [],
-    NIX_ENFORCE_NO_NATIVE ? true,
-    ...
-  }: {
-    version = "7.26.1";
+  # sdrangel = checkUpdatedUpsteam prev.sdrangel "7.22.9" prev.sdrangel.overrideAttrs ({
+  #   buildInputs,
+  #   cmakeFlags,
+  #   NIX_CFLAGS_COMPILE ? [],
+  #   NIX_ENFORCE_NO_NATIVE ? true,
+  #   ...
+  # }: {
+  #   version = "7.26.1";
 
-    src = prev.fetchFromGitHub {
-      owner = "f4exb";
-      repo = "sdrangel";
-      tag = "v7.26.1";
-      hash = "sha256-zxhlWywGqtBmuFAdAfIukCXguay8Rux7leBybYEdsRg=";
-    };
+  #   src = prev.fetchFromGitHub {
+  #     owner = "f4exb";
+  #     repo = "sdrangel";
+  #     tag = "v7.26.1";
+  #     hash = "sha256-zxhlWywGqtBmuFAdAfIukCXguay8Rux7leBybYEdsRg=";
+  #   };
 
-    patches = [];
+  #   patches = [];
 
-    NIX_ENFORCE_NO_NATIVE =
-      if prev.stdenvNoCC.hostPlatform.isx86_64
-      then false
-      else NIX_ENFORCE_NO_NATIVE;
+  #   NIX_ENFORCE_NO_NATIVE =
+  #     if prev.stdenvNoCC.hostPlatform.isx86_64
+  #     then false
+  #     else NIX_ENFORCE_NO_NATIVE;
 
-    NIX_CFLAGS_COMPILE =
-      if prev.stdenvNoCC.hostPlatform.isx86_64
-      then
-        NIX_CFLAGS_COMPILE
-        ++ [
-          "-O3"
-          "-march=skylake"
-        ]
-      else NIX_CFLAGS_COMPILE;
+  #   NIX_CFLAGS_COMPILE =
+  #     if prev.stdenvNoCC.hostPlatform.isx86_64
+  #     then
+  #       NIX_CFLAGS_COMPILE
+  #       ++ [
+  #         "-O3"
+  #         "-march=skylake"
+  #       ]
+  #     else NIX_CFLAGS_COMPILE;
 
-    buildInputs =
-      buildInputs
-      ++ [
-        prev.cudaPackages.cuda_nvcc
-        prev.cudaPackages.cudatoolkit
-        prev.libacars
-        prev.hamlib
-        prev.custom.ggmorse
-        prev.custom.inmarsatc
-        prev.sdrplay
-        prev.rnnoise
-      ];
-    cmakeFlags =
-      cmakeFlags
-      ++ [
-        "-DCUDAToolkit_ROOT=${prev.cudaPackages.cuda_nvcc}"
-        "-DCUDAToolkit=${prev.cudaPackages.cuda_nvcc}"
-      ];
-  });
+  #   buildInputs =
+  #     buildInputs
+  #     ++ [
+  #       prev.cudaPackages.cuda_nvcc
+  #       prev.cudaPackages.cudatoolkit
+  #       prev.libacars
+  #       prev.hamlib
+  #       prev.custom.ggmorse
+  #       prev.custom.inmarsatc
+  #       prev.sdrplay
+  #       prev.rnnoise
+  #     ];
+  #   cmakeFlags =
+  #     cmakeFlags
+  #     ++ [
+  #       "-DCUDAToolkit_ROOT=${prev.cudaPackages.cuda_nvcc}"
+  #       "-DCUDAToolkit=${prev.cudaPackages.cuda_nvcc}"
+  #     ];
+  # });
 
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 

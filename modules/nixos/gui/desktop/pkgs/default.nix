@@ -34,6 +34,9 @@
     arduino-ide
     bazaar
     beekeeper-studio
+    bitwarden-cli
+    bitwarden-desktop
+    bitwarden-menu
     bluebubbles
     bluetooth_battery
     # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".sdkFull
@@ -57,18 +60,14 @@
     custom.denon-control
     # custom.distrib-dl
     custom.gitpulsar
-    custom.gtk-meshtastic-client
+    # custom.gtk-meshtastic-client
     custom.letters
     custom.manuals
-    # custom.netsleuth
-    custom.one-ware
+    custom.netsleuth
     custom.openhantek
     custom.qefi-entry-manager
     custom.remarkable-cups
     custom.retro-adsb-radar
-    # bitwarden-cli
-    # bitwarden-desktop
-    # bitwarden-menu
     custom.rgitui
     custom.rust-conn
     custom.swiftynotes
