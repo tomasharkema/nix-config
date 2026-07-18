@@ -390,7 +390,7 @@
       #  };
       #};
 
-      openvscode-server = {enable = true;};
+      # openvscode-server = {enable = true;};
 
       tsnsrv = {
         enable = true;
