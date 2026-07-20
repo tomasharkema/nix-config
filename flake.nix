@@ -161,8 +161,7 @@
             # nvidia-vgpu-nixos.nixosModules.guest
             # nixos-service.nixosModules.nixos-service
             # nix-virt.nixosModules.default
-            dank-material-shell.nixosModules.greeter
-
+            dank-greeter.nixosModules.default
             nixos-cli.nixosModules.nixos-cli
             # nix-monitor.nixosModules.default
             # chaotic.nixosModules.default
@@ -773,9 +772,25 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    dank-qml-common = {
+      url = "github:AvengeMedia/dank-qml-common";
+      flake = false;
+    };
+
     dank-material-shell = {
       url = "github:AvengeMedia/DankMaterialShell";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        dank-qml-common.follows = "dank-qml-common";
+      };
+    };
+
+    dank-greeter = {
+      url = "github:AvengeMedia/dank-greeter";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        dank-qml-common.follows = "dank-qml-common";
+      };
     };
 
     nox = {

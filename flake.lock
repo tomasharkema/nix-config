@@ -169,20 +169,45 @@
         "type": "github"
       }
     },
+    "dank-greeter": {
+      "inputs": {
+        "dank-qml-common": [
+          "dank-qml-common"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784516427,
+        "narHash": "sha256-uYHpbrbkrbLjZlXnYPkY7vB8IQdWCflX8wdn1CUlZlw=",
+        "owner": "AvengeMedia",
+        "repo": "dank-greeter",
+        "rev": "d73d3c0430a9429fb12505f1b9ba9d53ec4da64b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "dank-greeter",
+        "type": "github"
+      }
+    },
     "dank-material-shell": {
       "inputs": {
-        "dank-qml-common": "dank-qml-common",
+        "dank-qml-common": [
+          "dank-qml-common"
+        ],
         "flake-compat": "flake-compat_2",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1784503377,
-        "narHash": "sha256-oBQpy8Qkl7ZJTPcKXb1CirYmP91ix3B0tCTldzjZ6B8=",
+        "lastModified": 1784554194,
+        "narHash": "sha256-eMASP2Xn8KmXuIJCax75NiX6vdBUrGKEESlwzAo/I9o=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "8577c6b815ae4482d8ee86ac7784eb671cbc41fd",
+        "rev": "dc75f1f01d8cf17f254b5eec4c65b6b2a1b182be",
         "type": "github"
       },
       "original": {
@@ -1919,11 +1944,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784491156,
-        "narHash": "sha256-07lion1Qi559PE3IaW9lrW/ScQjuJhf4sztoOzDil9c=",
+        "lastModified": 1784555389,
+        "narHash": "sha256-KK1L5eQVmQiYUR8SXUW4CroDqDmPsVkynvwJPgRcV7E=",
         "owner": "librekeys",
         "repo": "picoforge",
-        "rev": "74eff4a1aaa42f028d7a19bb0455d0d32e25e308",
+        "rev": "d3c41a8f6d78bd696fdb36725bdd81381aaeca54",
         "type": "github"
       },
       "original": {
@@ -2006,7 +2031,9 @@
         "agenix": "agenix",
         "agenix-rekey": "agenix-rekey",
         "catppuccin": "catppuccin",
+        "dank-greeter": "dank-greeter",
         "dank-material-shell": "dank-material-shell",
+        "dank-qml-common": "dank-qml-common",
         "darwin": "darwin",
         "devshell": "devshell_2",
         "dgop": "dgop",

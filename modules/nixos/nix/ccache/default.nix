@@ -77,11 +77,6 @@ in {
       '';
     };
 
-    nix.settings.extra-sandbox-paths = [
-      config.programs.ccache.cacheDir
-      remoteDir
-    ];
-
     fileSystems = {
       "${remoteDir}" = lib.mkIf (config.networking.hostName != "silver-star") {
         device = "192.168.1.100:/exports/ccache";

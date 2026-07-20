@@ -63,18 +63,16 @@ in {
         # useNautilus = true;
       };
 
-      dank-material-shell = {
-        greeter = {
-          enable = true;
+      dms-greeter = {
+        enable = true;
 
-          compositor.name = "niri";
-          configHome = "/home/tomas";
+        compositor.name = "niri";
+        configHome = "/home/tomas";
 
-          # logs = {
-          #   save = true;
-          #   path = "/var/log/dank/greet.log";
-          # };
-        };
+        # logs = {
+        #   save = true;
+        #   path = "/var/log/dank/greet.log";
+        # };
       };
     };
 
