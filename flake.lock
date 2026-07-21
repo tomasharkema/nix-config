@@ -179,11 +179,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784608084,
-        "narHash": "sha256-RPEXolWxbavYM5CrZBtRJ7ZciY+3VGOBSjAc6UDkd2c=",
+        "lastModified": 1784646053,
+        "narHash": "sha256-PB2NGnpbVBXk2hU9lt+UrXNTF+SAP5xmD1dpdog+1mg=",
         "owner": "AvengeMedia",
         "repo": "dank-greeter",
-        "rev": "da8cc02226d756c75aec1f1266829fe7273639a0",
+        "rev": "5717f21a4bf8e36d453026c51c6eda6cffc85678",
         "type": "github"
       },
       "original": {
@@ -203,11 +203,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784593260,
-        "narHash": "sha256-+p4m1oyMBIx+Ufq5tCOyE/rUg6H3w0pRUu2IFLR6FPg=",
+        "lastModified": 1784652660,
+        "narHash": "sha256-NHPqw6YE8T5qviGoSQNa6iofNKeVbclOk8a+ZxcUwQI=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "fa6c36ad570f3d1b2a8a7f93aebbd38df1c5bd16",
+        "rev": "53c729f6857d14144ddda8d80eb62fdefc939ee8",
         "type": "github"
       },
       "original": {
@@ -219,11 +219,11 @@
     "dank-qml-common": {
       "flake": false,
       "locked": {
-        "lastModified": 1784591373,
-        "narHash": "sha256-oChgAprzgLrpMXDI/AyVt1lJ+S9ayErRZw+1j9d8Sbg=",
+        "lastModified": 1784647395,
+        "narHash": "sha256-kcLSJC8XBzmWoSBc90Zn81qrNsqWMkwQ1m/zZixOw30=",
         "owner": "AvengeMedia",
         "repo": "dank-qml-common",
-        "rev": "1451ac603844f2b686e58fa062b1456373693c22",
+        "rev": "1919595f0dde4f5bf5ac0baa1902ff6d070971d5",
         "type": "github"
       },
       "original": {
@@ -1944,11 +1944,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784612078,
-        "narHash": "sha256-X/DByak/fs8A1iazxYxX5BVnPJC5dEPIPeHxiobM7xw=",
+        "lastModified": 1784630179,
+        "narHash": "sha256-15y2Z9v1fQY/5o+eM5ZLPripZGTNOQn0vH5qDX+f53g=",
         "owner": "librekeys",
         "repo": "picoforge",
-        "rev": "65003a095616110c6f0f4097adcddeac4d88e519",
+        "rev": "eebcc6617d32e5a0bc2ee17b29ed744833e40d1a",
         "type": "github"
       },
       "original": {
@@ -2106,11 +2106,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784580543,
-        "narHash": "sha256-eqLSUWC2//T/YIV/LE7mWxPAk/d6a5MBu6S1IPgvcJw=",
+        "lastModified": 1784639857,
+        "narHash": "sha256-94EontQVruHGDQObERIfBjpCtGmqy28eOuwnWFRLXoE=",
         "owner": "mozilla",
         "repo": "sccache",
-        "rev": "c47a972c0ad7c39b299819ce633c56aa48dfd103",
+        "rev": "7cd4f2c396a4712fe7627d5209083b7127841296",
         "type": "github"
       },
       "original": {
