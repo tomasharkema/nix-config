@@ -43,7 +43,6 @@ in {
       (with pkgs; [
         # keep-sorted start
         bandwhich
-        bashmount
         bmon
         ctop
         sysz

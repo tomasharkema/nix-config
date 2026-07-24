@@ -27,7 +27,7 @@
       enable = true;
       enableZshIntegration = true;
 
-      daemon = {
+      daemon = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
         enable = true;
       };
 

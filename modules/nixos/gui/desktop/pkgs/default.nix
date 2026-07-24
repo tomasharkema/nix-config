@@ -186,7 +186,6 @@
     rmview
     rpi-imager
     rpiboot
-    rtfm
     saleae-logic-2
     satellite
     segger-jlink

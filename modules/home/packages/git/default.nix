@@ -10,9 +10,9 @@
 
     home.packages = with pkgs; [
       custom.git-credential-1password
-      custom.cz-ai
-      custom.gptcommit
-      cz-cli
+      # custom.cz-ai
+      # custom.gptcommit
+      # cz-cli
       # commitizen
       # commitizen-go
     ];

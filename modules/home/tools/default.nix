@@ -27,7 +27,6 @@ with pkgs; {
         wget
         curl
         sysz
-        bashmount
         bmon
         # compsize
         ctop

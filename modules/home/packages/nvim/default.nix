@@ -16,7 +16,7 @@
 
       nixvim = {
         enable = true;
-        enableMan = true;
+        # enableMan = true;
 
         # nixpkgs.hostPlatform = pkgs.stdenv.hostPlatform.system;
         nixpkgs.useGlobalPackages = true;

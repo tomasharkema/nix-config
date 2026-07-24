@@ -61,14 +61,12 @@ in {
           # postman
           atac
           # nix-htop
-          # augeas
-          custom.bieye
+          augeas
           wget2
           libnotify
           trippy
           fup-repl
           udict
-          # rtfm
           jq
           kitty-img
           todoman
