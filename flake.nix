@@ -38,12 +38,14 @@
         # buildPlatform.system = "x86_64-linux";
 
         permittedInsecurePackages = [
+          # keep-sorted start
           "electron-39.8.10"
           #   "minio-2025-10-15T17-29-55Z"
           "segger-jlink-qt4-952"
           #   "libsoup-2.74.3"
           #   "python3.13-ecdsa-0.19.1"
           #   "python3.13-ecdsa-0.19.2"
+          # keep-sorted end
         ];
 
         problems.handlers = {
