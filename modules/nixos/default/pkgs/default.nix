@@ -27,7 +27,7 @@ in {
         bat-extras.batpipe
         bat-extras.batwatch
         batmon
-        binwalk
+        # binwalk
         bmc-tools
         bmon
         bridge-utils
@@ -311,7 +311,7 @@ in {
           libguestfs-with-appliance
           libsmbios
           # meshtastic
-          micropython
+          # micropython
           refind
           spectre-meltdown-checker
           uefisettings

@@ -20,7 +20,7 @@ in {
     server.enable = lib.mkEnableOption "netdata server";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     assertions = [
       {
         assertion = config.services.netdata.enable;
@@ -60,10 +60,10 @@ in {
     #   ];
     # };
 
-    systemd.services.netdata = {
-      path = [pkgs.samba "/run/wrappers"];
-      serviceConfig.CapabilityBoundingSet = ["CAP_SETGID"];
-    };
+    # systemd.services.netdata = {
+    #   path = [pkgs.samba "/run/wrappers"];
+    #   serviceConfig.CapabilityBoundingSet = ["CAP_SETGID"];
+    # };
 
     services.netdata = {
       enable = lib.mkDefault true;

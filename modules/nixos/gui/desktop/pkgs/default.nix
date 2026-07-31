@@ -63,11 +63,11 @@
     # custom.gtk-meshtastic-client
     custom.letters
     custom.manuals
-    custom.netsleuth
+    # custom.netsleuth
     custom.openhantek
     custom.qefi-entry-manager
     custom.remarkable-cups
-    custom.retro-adsb-radar
+    # custom.retro-adsb-radar
     custom.rgitui
     custom.rust-conn
     custom.swiftynotes
@@ -107,7 +107,7 @@
     ghex
     glabels-qt
     gnome-boxes
-    gnomecast
+    # gnomecast
     go-chromecast
     gotop
     gparted-full
@@ -157,7 +157,7 @@
     nvramtool
     onioncircuits
     onionshare-gui
-    opendrop
+    # opendrop
     openloco
     openra
     openrct2

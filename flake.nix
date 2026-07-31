@@ -24,7 +24,7 @@
         kodi.enableAdvancedLauncher = true;
         # allowBroken = true;
         nvidia.acceptLicense = true;
-        cudaSupport = true;
+        # cudaSupport = true;
 
         allowAliases = true;
 
@@ -48,14 +48,16 @@
           # keep-sorted end
         ];
 
-        problems.handlers = {
-          paste.broken = "warn"; # or "ignore"
-        };
+        # problems.handlers = {
+        #   paste.broken = "warn"; # or "ignore"
+        # };
 
         config = {
           allowUnfreePredicate = _: true;
           allowUnfree = true;
-          cudaSupport = true;
+
+          # cudaSupport = true;
+
           firefox = {
             enableGnomeExtensions = true;
             smartcardSupport = true;

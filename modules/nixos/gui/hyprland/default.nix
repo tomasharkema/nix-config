@@ -54,8 +54,6 @@ in {
 
         # swaynotificationcenter
 
-        cool-retro-term
-
         # hyprpolkitagent
         grim
         slurp

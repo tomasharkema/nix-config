@@ -24,7 +24,7 @@
 
     environment.systemPackages = with pkgs; [
       cage
-      custom.retro-adsb-radar
+      # custom.retro-adsb-radar
       firefox
     ];
 
@@ -35,7 +35,7 @@
     gui.fonts.enable = true;
 
     services = {
-      cage = {
+      cage = lib.mkIf false {
         enable = true;
         user = "tomas";
         environment = {
@@ -49,7 +49,7 @@
         #   "-d"
         # ];
 
-        program = lib.getExe pkgs.custom.retro-adsb-radar;
+        # program = lib.getExe pkgs.custom.retro-adsb-radar;
 
         # program = pkgs.writeShellScript "radar" ''
         #   export WLR_LIBINPUT_NO_DEVICES=1

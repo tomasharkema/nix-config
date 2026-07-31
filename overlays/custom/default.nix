@@ -25,9 +25,9 @@ in rec {
   manuals = prev.custom.manuals;
   libcec = prev.libcec.override {withLibraspberrypi = true;};
 
-  binwalk = prev.binwalk.override {
-    uefi-firmware-parser = prev.custom.uefi-firmware-parser;
-  };
+  # binwalk = prev.binwalk.override {
+  #   uefi-firmware-parser = prev.custom.uefi-firmware-parser;
+  # };
 
   # appstream = prev.appstream.overrideAttrs ({mesonFlags, ...}: {
   #   mesonFlags =

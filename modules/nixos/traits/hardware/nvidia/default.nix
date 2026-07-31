@@ -69,7 +69,7 @@ in {
   config = lib.mkIf cfg.enable {
     nixpkgs.config = {
       nvidia.acceptLicense = true;
-      cudaSupport = true;
+      # cudaSupport = true;
     };
 
     environment.systemPackages = with pkgs; [
