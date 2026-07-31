@@ -59,10 +59,6 @@ in {
     #   ];
     # };
 
-    environment.systemPackages = with pkgs; [
-      tpm-luks
-    ];
-
     # fileSystems."/".neededForBoot = true;
     # fileSystems."/boot".neededForBoot = true;
 

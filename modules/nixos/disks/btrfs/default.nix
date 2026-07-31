@@ -219,7 +219,6 @@ in {
       btdu
       snapper
       snapper-gui
-      tpm-luks
       btrfs-assistant
       btrfs-snap
       btrfs-progs

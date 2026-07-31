@@ -47,7 +47,6 @@ in {
 
     environment.systemPackages = with pkgs; [
       rng-tools
-      #   tpm-luks
       # tpm-tools
       tpm2-abrmd
       tpm2-pkcs11

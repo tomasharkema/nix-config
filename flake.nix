@@ -40,11 +40,15 @@
         permittedInsecurePackages = [
           "electron-39.8.10"
           #   "minio-2025-10-15T17-29-55Z"
-          "segger-jlink-qt4-874"
+          "segger-jlink-qt4-952"
           #   "libsoup-2.74.3"
           #   "python3.13-ecdsa-0.19.1"
           #   "python3.13-ecdsa-0.19.2"
         ];
+
+        problems.handlers = {
+          paste.broken = "warn"; # or "ignore"
+        };
 
         config = {
           allowUnfreePredicate = _: true;
