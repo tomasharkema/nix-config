@@ -48,7 +48,7 @@
       backupFileExtension = "bak";
 
       users."${config.user.name}" = {
-        imports = [inputs.mac-app-util.homeManagerModules.default];
+        # imports = [inputs.mac-app-util.homeManagerModules.default];
         home.stateVersion = lib.mkDefault "26.05";
         xdg.enable = true;
         programs.home-manager.enable = true;
