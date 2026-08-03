@@ -39,11 +39,9 @@
     sleep 1
     dd of=/sys/bus/pci/devices/0000:03:00.0/config if=/tmp/xmm_cfg bs=256 count=1 status=none
   '';
-
   # _libmbim = pkgs.libmbim.overrideAttrs (old: rec {
   #   pname = "libmbim";
   #   version = "1.34.0";
-
   #   src = pkgs.fetchFromGitLab {
   #     domain = "gitlab.freedesktop.org";
   #     owner = "mobile-broadband";
@@ -52,72 +50,64 @@
   #     hash = "sha256-NhSjW1ZK4XFv7L/IaoTjN5ojwjTDQa178k73zoaneuE=";
   #   };
   # });
-
-  _libqmi = let
-    version = "1.38.0";
-  in
-    pkgs.libqmi.overrideAttrs ({buildInputs ? [], ...}: {
-      pname = "libqmi";
-      inherit version;
-
-      src = pkgs.fetchFromGitLab {
-        domain = "gitlab.freedesktop.org";
-        owner = "mobile-broadband";
-        repo = "libqmi";
-        rev = version;
-        hash = "sha256-bJbNfnKVJuhy/6EJgu5b7t6vxNTex/5heTzMzTzVREw=";
-      };
-
-      buildInputs =
-        buildInputs
-        ++ [
-          pkgs.gi-docgen
-        ];
-
-      outputs = ["out" "dev"];
-    });
-
-  _modemmanager = let
-    version = "1.25.95-dev";
-  in
-    (pkgs.modemmanager.override {
-      libqmi = _libqmi;
-    }).overrideAttrs ({
-      nativeBuildInputs ? [],
-      mesonFlags ? [],
-      ...
-    }: {
-      pname = "modemmanager";
-      version = version;
-
-      src = pkgs.fetchFromGitLab {
-        domain = "gitlab.freedesktop.org";
-        owner = "mobile-broadband";
-        repo = "ModemManager";
-        rev = version;
-        hash = "sha256-xyb9LTkuJyTqt0yWDDJTYiICFVFJ5SqRlnOdrhrL2Ps=";
-      };
-
-      mesonFlags =
-        mesonFlags
-        ++ [
-          "-Dplugin_fibocom=enabled"
-          "-Dplugin_intel=enabled"
-          "-Dplugin_generic=enabled"
-          "-Dplugin_ublox=enabled"
-        ];
-
-      nativeBuildInputs =
-        nativeBuildInputs
-        ++ [
-          pkgs.cmake
-        ];
-    });
+  # _libqmi = let
+  #   version = "1.38.0";
+  # in
+  #   pkgs.libqmi.overrideAttrs ({buildInputs ? [], ...}: {
+  #     pname = "libqmi";
+  #     inherit version;
+  #     src = pkgs.fetchFromGitLab {
+  #       domain = "gitlab.freedesktop.org";
+  #       owner = "mobile-broadband";
+  #       repo = "libqmi";
+  #       rev = version;
+  #       hash = "sha256-bJbNfnKVJuhy/6EJgu5b7t6vxNTex/5heTzMzTzVREw=";
+  #     };
+  #     buildInputs =
+  #       buildInputs
+  #       ++ [
+  #         pkgs.gi-docgen
+  #       ];
+  #     outputs = ["out" "dev"];
+  #   });
+  # _modemmanager = let
+  #   version = "1.25.95-dev";
+  # in
+  #   (pkgs.modemmanager.override {
+  #     libqmi = _libqmi;
+  #   }).overrideAttrs ({
+  #     nativeBuildInputs ? [],
+  #     mesonFlags ? [],
+  #     ...
+  #   }: {
+  #     pname = "modemmanager";
+  #     version = version;
+  #     src = pkgs.fetchFromGitLab {
+  #       domain = "gitlab.freedesktop.org";
+  #       owner = "mobile-broadband";
+  #       repo = "ModemManager";
+  #       rev = version;
+  #       hash = "sha256-xyb9LTkuJyTqt0yWDDJTYiICFVFJ5SqRlnOdrhrL2Ps=";
+  #     };
+  #     mesonFlags =
+  #       mesonFlags
+  #       ++ [
+  #         "-Dplugin_fibocom=enabled"
+  #         "-Dplugin_intel=enabled"
+  #         "-Dplugin_generic=enabled"
+  #         "-Dplugin_ublox=enabled"
+  #       ];
+  #     nativeBuildInputs =
+  #       nativeBuildInputs
+  #       ++ [
+  #         pkgs.cmake
+  #       ];
+  #   });
 in {
   config = lib.mkIf cfg.enable {
     system.build = {
       xmm7360 = xmm7360;
-      _modemmanager = _modemmanager;
+      # _modemmanager = _modemmanager;
     };
 
     environment = {
@@ -135,7 +125,7 @@ in {
 
     networking.modemmanager = {
       enable = true;
-      package = _modemmanager;
+      # package = _modemmanager;
     };
     boot = {
       kernelModules = [
