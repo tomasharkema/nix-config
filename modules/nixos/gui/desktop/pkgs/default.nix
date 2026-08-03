@@ -37,7 +37,7 @@
     bitwarden-cli
     bitwarden-desktop
     bitwarden-menu
-    bluebubbles
+    # bluebubbles
     bluetooth_battery
     # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".sdkFull
     # inputs.zephyr-nix.packages."${pkgs.stdenv.hostPlatform.system}".hosttools

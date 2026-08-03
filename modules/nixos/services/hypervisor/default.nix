@@ -78,7 +78,7 @@ in {
 
       rpcbind.enable = true;
 
-      lxd-image-server.enable = lib.mkIf cfg.incus.enable true;
+      # lxd-image-server.enable = lib.mkIf cfg.incus.enable true;
 
       libvirtd.autoSnapshot = {
         enable = true;

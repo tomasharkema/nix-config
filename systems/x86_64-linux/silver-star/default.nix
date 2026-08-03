@@ -312,7 +312,7 @@
       #   };
       # };
 
-      forgejo = {
+      forgejo = lib.mkIf false {
         enable = true;
         lfs.enable = true;
       };
