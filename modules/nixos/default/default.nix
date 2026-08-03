@@ -368,7 +368,7 @@ in {
 
       openssh = {
         enable = true;
-
+        package = pkgs.openssh_gssapi;
         settings = {
           PasswordAuthentication = lib.mkForce false;
           PermitRootLogin = lib.mkForce "no";
