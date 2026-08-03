@@ -195,7 +195,7 @@ in {
     };
 
     virtualisation = {
-      incus = lib.mkIf cfg.incus.enable {
+      incus = lib.mkIf (cfg.incus.enable && false) {
         enable = true;
         # package = pkgs.incus;
         ui.enable = true;
