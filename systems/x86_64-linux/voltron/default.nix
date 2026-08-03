@@ -24,7 +24,6 @@
 
     environment.systemPackages = with pkgs; [
       coreboot-utils
-      coreboot-configurator
       coreboot-toolchain.x64
     ];
 

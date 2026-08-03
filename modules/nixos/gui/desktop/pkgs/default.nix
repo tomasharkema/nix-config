@@ -115,7 +115,6 @@
     gphoto2fs
     grsync
     gt
-    gtk-engine-murrine
     guvcview
     handbrake
     hopper

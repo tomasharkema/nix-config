@@ -26,7 +26,6 @@
         iw
 
         coreboot-utils
-        coreboot-configurator
         coreboot-toolchain.x64
       ];
     };
