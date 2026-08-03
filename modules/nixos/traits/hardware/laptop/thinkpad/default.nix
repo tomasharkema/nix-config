@@ -49,7 +49,7 @@ in {
   imports = with inputs; [
     # nixos-06cb-009a-fingerprint-sensor.nixosModules.open-fprintd
     # nixos-06cb-009a-fingerprint-sensor.nixosModules.python-validity
-    nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
+    # nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
   ];
 
   # disabledModules = ["services/security/fprintd.nix"];
@@ -77,12 +77,12 @@ in {
         # pkgs.custom.lenovo-wwan-unlock
       ];
       services = {
-        open-fprintd-resume.enable = true;
-        open-fprintd-suspend.enable = true;
+        #open-fprintd-resume.enable = true;
+        #open-fprintd-suspend.enable = true;
       };
 
       services = {
-        print-restart = {
+        print-restart = lib.mkIf false {
           after = [
             "hibernate.target"
             "hybrid-sleep.target"
@@ -104,12 +104,12 @@ in {
     };
 
     services = {
-      "06cb-009a-fingerprint-sensor" = {
-        enable = true;
-        backend = lib.mkDefault "python3-validity";
-        # backend = "libfprint-tod";
-        # calib-data-file = ./calib-data.bin;
-      };
+      # "06cb-009a-fingerprint-sensor" = {
+      #   enable = true;
+      #   backend = lib.mkDefault "python3-validity";
+      # backend = "libfprint-tod";
+      # calib-data-file = ./calib-data.bin;
+      # };
 
       # tp-auto-kbbl.enable := true;
       # thinkfan.enable = true;
@@ -139,7 +139,7 @@ in {
       # fprintd.package = inputs.nixos-06cb-009a-fingerprint-sensor.localPackages.fprintd-clients;
 
       udev = {
-        extraRules = ''
+        extraRules = lib.mkIf false ''
           SUBSYSTEM=="usb", ATTRS{idVendor}=="06cb", ATTRS{idProduct}=="009a", ATTRS{dev}=="*", TEST=="power/control", ATTR{power/control}="auto", MODE="0660", GROUP="plugdev"
           SUBSYSTEM=="usb", ATTRS{idVendor}=="06cb", ATTRS{idProduct}=="009a", ENV{LIBFPRINT_DRIVER}="vfs009"
         '';

@@ -208,12 +208,12 @@ in {
 
           hostname.disabled = false;
 
-          sudo.disabled = false;
+          # sudo.disabled = false;
           # shell.disabled = false;
           # os.disabled = false;
 
-          # cmd_duration.min_time = 1000;
-          # command_timeout = 1000;
+          cmd_duration.min_time = 1000;
+          command_timeout = 1000;
           memory_usage.disabled = false;
           directory = {fish_style_pwd_dir_length = 2;};
           # add_newline = false;

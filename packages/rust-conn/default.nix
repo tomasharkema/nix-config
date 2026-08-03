@@ -17,20 +17,24 @@
   alsa-lib,
   openssh,
   copyDesktopItems,
+  libsoup_3,
+  webkitgtk_6_0,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "rust-conn";
-  version = "0.15.12";
+  version = "0.19.11";
 
   src = fetchFromGitHub {
     owner = "totoshko88";
     repo = "RustConn";
     rev = "v${version}";
-    sha256 = "sha256-bMMiOkJsoYCZ4jpmpsmPTm/f5+xKHLo07XiYpeHlaEA=";
+    sha256 = "sha256-dalfJ1JgDIzr14SMrkKVlyTeJuli7bEjz/bu0wbTpDA=";
   };
 
-  cargoHash = "sha256-iuYKbprzMRhfP4Ck9qaAvpuBimkF+qCHcSSJbCUCvSw=";
+  cargoHash = "sha256-6t5H4WbYfqY9RKx5lTMcx/Q9JAC8zboBT+VtFdWsXcA=";
+
   doCheck = false;
+
   nativeBuildInputs = [
     pkg-config
     openssh
@@ -50,6 +54,8 @@ rustPlatform.buildRustPackage rec {
       zlib
       openssh
       libadwaita
+      libsoup_3
+      webkitgtk_6_0
     ]
     ++ lib.optionals stdenv.isLinux [
       alsa-lib
