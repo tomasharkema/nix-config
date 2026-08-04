@@ -36,7 +36,7 @@
           pkgs.gawk
           config.services.tailscale.package
           pkgs.python3
-          pkgs.grep
+          pkgs.gnugrep
         ];
         #type = "oneshot";
         script = ''
