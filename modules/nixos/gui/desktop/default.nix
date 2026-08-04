@@ -43,15 +43,15 @@ in {
       "kvm"
       "usbmux"
     ];
-    # home-manager.users.tomas = {
-    #   services.tailscale-systray.enable = true;
-    #   systemd.user.targets.tray = {
-    #     Unit = {
-    #       Description = "Home Manager System Tray";
-    #       Requires = ["graphical-session-pre.target"];
-    #     };
-    #   };
-    # };
+    home-manager.users.tomas = {
+      services.tailscale-systray.enable = true;
+      #   systemd.user.targets.tray = {
+      #     Unit = {
+      #       Description = "Home Manager System Tray";
+      #       Requires = ["graphical-session-pre.target"];
+      #     };
+      #   };
+    };
 
     gui.fonts.enable = true;
 
