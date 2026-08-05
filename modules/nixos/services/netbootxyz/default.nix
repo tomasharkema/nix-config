@@ -38,7 +38,7 @@ in {
         };
       };
 
-      pixiecore = {
+      pixiecore = lib.mkIf false {
         enable = true;
         openFirewall = true;
         dhcpNoBind = true;
