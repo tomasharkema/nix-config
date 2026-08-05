@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  osConfig,
   ...
 }: {
   config = {
@@ -26,7 +27,6 @@
           #"direnv"
           #"dirhistory"
           #"dirpersist"
-          "docker"
           "dotnet"
           "emoji"
           "encode64"
@@ -93,6 +93,7 @@
         ])
         ++ (lib.optionals pkgs.stdenv.isLinux [
           # keep-sorted start
+          "docker"
           "firewalld"
           "systemd"
           # keep-sorted end
