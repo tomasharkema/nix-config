@@ -106,10 +106,17 @@
       };
     };
 
-    fileSystems."/exports/ccache" = {
-      device = "/var/cache/ccache";
-      options = ["bind"];
-      fsType = "none";
+    fileSystems = {
+      "/exports/ccache" = {
+        device = "/var/cache/ccache";
+        options = ["bind"];
+        fsType = "none";
+      };
+      "/var/lib/esphome" = {
+        device = "/mnt/servers/nfs/dione-tomas/esphome";
+        options = ["bind"];
+        fsType = "none";
+      };
     };
 
     services = {
@@ -439,7 +446,7 @@
         package = pkgs.mariadb;
       };
 
-      firefox-syncserver = lib.mkIf false {
+      firefox-syncserver = {
         enable = true;
         secrets = config.age.secrets.firefox.path;
 
@@ -738,6 +745,19 @@
           autoStart = true;
         };
 
+        esphome = {
+          image = "ghcr.io/esphome/esphome";
+          volumes = [
+            "/var/lib/esphome:/config:rw"
+          ];
+          extraOptions = [
+            "--net=host"
+          ];
+          environment = {
+            TZ = "Europa/Amsterdam";
+          };
+        };
+
         fastapi-dls = lib.mkIf false {
           image = "collinwebdesigns/fastapi-dls:latest";
 
@@ -862,9 +882,7 @@
         # "docker-compose@faf" = {
         #   wantedBy = ["multi-user.target"];
         # };
-        "docker-compose@esphome" = {
-          wantedBy = ["multi-user.target"];
-        };
+
         "docker-compose@homey" = {
           wantedBy = ["multi-user.target"];
         };
