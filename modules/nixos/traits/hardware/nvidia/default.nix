@@ -23,13 +23,13 @@
       ))
     else driver);
 
-  betaPkg = withPatch true config.boot.kernelPackages.nvidiaPackages.latest;
+  betaPkg = config.boot.kernelPackages.nvidiaPackages.latest;
   selectedPkg =
     if cfg.beta
     then betaPkg
     else config.boot.kernelPackages.nvidiaPackages.legacy_580; # stable;
   patchedPkg =
-    withPatch true
+    withPatch false
     selectedPkg
     # // {
     #   open = betaPkg.open.overrideAttrs ({patches ? [], ...}: {
