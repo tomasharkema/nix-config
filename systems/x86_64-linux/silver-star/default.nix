@@ -446,7 +446,7 @@
         package = pkgs.mariadb;
       };
 
-      firefox-syncserver = {
+      firefox-syncserver = lib.mkIf false {
         enable = true;
         secrets = config.age.secrets.firefox.path;
 
