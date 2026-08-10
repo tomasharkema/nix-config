@@ -24,7 +24,6 @@
         piper
         libratbag
         iw
-
         coreboot-utils
         coreboot-toolchain.x64
       ];
