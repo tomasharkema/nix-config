@@ -459,6 +459,17 @@
       flake = false;
     };
 
+    snowfall-lib = {
+      # url = "github:snowfallorg/lib/main";
+      url = "github:anntnzrb/snowfall-lib/main";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils-plus.follows = "flake-utils-plus";
+        # flake-compat.follows = "flake-compat";
+      };
+    };
+
     # impermanence = {
     #   url = "github:nix-community/impermanence";
     # };
@@ -594,17 +605,6 @@
         # flake-compat.follows = "flake-compat";
         # flake-utils.follows = "flake-utils";
         # pre-commit-hooks-nix.follows = "pre-commit-hooks-nix";
-      };
-    };
-
-    snowfall-lib = {
-      url = "github:snowfallorg/lib";
-      # url = "github:anntnzrb/snowfall-lib";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-
-        flake-utils-plus.follows = "flake-utils-plus";
-        # flake-compat.follows = "flake-compat";
       };
     };
 
