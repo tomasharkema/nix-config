@@ -460,8 +460,8 @@
     };
 
     snowfall-lib = {
-      # url = "github:snowfallorg/lib/main";
-      url = "github:anntnzrb/snowfall-lib/main";
+      url = "github:snowfallorg/lib/main";
+      # url = "github:anntnzrb/snowfall-lib/main";
 
       inputs = {
         nixpkgs.follows = "nixpkgs";
