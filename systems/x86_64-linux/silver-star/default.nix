@@ -523,22 +523,23 @@
         br0 = {
           interfaces = ["bond0"];
         };
-        br1 = lib.mkIf false {
+        br1 = {
           interfaces = ["vlan1"];
         };
-        br66 = lib.mkIf false {
+        br66 = {
           interfaces = ["vlan66"];
         };
-        br69 = lib.mkIf false {
+        br69 = {
           interfaces = ["vlan69"];
         };
       };
+
       bonds = {
         bond0 = {
           interfaces = [
-            # "eno1"
+            "eno1"
             # "eno2"
-            "eno3"
+            # "eno3"
             # "eno4"
           ];
           driverOptions = {
@@ -546,34 +547,35 @@
           };
         };
       };
+
       defaultGateway = {
         address = "192.168.0.1";
         interface = "br0";
       };
 
       vlans = {
-        "vlan69" = lib.mkIf false {
+        "vlan69" = {
           id = 69;
           interface = "bond0";
         };
-        "vlan66" = lib.mkIf false {
+        "vlan66" = {
           id = 66;
           interface = "bond0";
         };
-        "vlan1" = lib.mkIf false {
+        "vlan1" = {
           id = 1;
           interface = "bond0";
         };
       };
 
       interfaces = {
-        "eno1" = lib.mkIf false {
+        "eno1" = {
           useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
-        "eno2" = lib.mkIf false {
-          useDHCP = true;
+        "eno2" = {
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
@@ -582,7 +584,7 @@
           wakeOnLan.enable = true;
           mtu = 9000;
         };
-        "eno4" = lib.mkIf false {
+        "eno4" = {
           useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
@@ -602,7 +604,10 @@
           useDHCP = false;
           wakeOnLan.enable = true;
         };
-        "br1" = lib.mkIf false {
+        "idrac" = {
+          useDHCP = true;
+        };
+        "br1" = {
           useDHCP = false;
           mtu = 9000;
           ipv4.addresses = [
@@ -612,7 +617,7 @@
             }
           ];
         };
-        "br66" = lib.mkIf false {
+        "br66" = {
           useDHCP = false;
           mtu = 9000;
           ipv4.addresses = [
@@ -622,7 +627,7 @@
             }
           ];
         };
-        "br69" = lib.mkIf false {
+        "br69" = {
           useDHCP = false;
           mtu = 9000;
           ipv4.addresses = [
@@ -632,17 +637,17 @@
             }
           ];
         };
-        "vlan69" = lib.mkIf false {
+        "vlan69" = {
           useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
-        "vlan66" = lib.mkIf false {
+        "vlan66" = {
           useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
-        "vlan1" = lib.mkIf false {
+        "vlan1" = {
           useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
