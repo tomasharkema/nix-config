@@ -26,6 +26,12 @@ in {
       };
     };
 
+    nixpkgs.hostPlatform = {
+      gcc.arch = "haswell";
+      gcc.tune = "haswell";
+      system = "x86_64-linux";
+    };
+
     hardware.facter.reportPath = ./facter.json;
 
     disks.btrfs = {
@@ -135,17 +141,29 @@ in {
 
       nameservers = ["192.168.0.1"];
 
-      bridges.br0 = {
-        interfaces = ["enp6s0"];
+      bonds.bond0 = {
+        interfaces = [
+          "eno2"
+          "enp6s0"
+        ];
+        driverOptions = {
+          mode = "active-backup";
+          miimon = "100";
+        };
       };
+
+      bridges.br0 = {
+        interfaces = ["bond0"];
+      };
+
       vlans = {
         "vlan69" = {
           id = 69;
-          interface = "enp6s0";
+          interface = "bond0";
         };
         "vlan66" = {
           id = 66;
-          interface = "enp6s0";
+          interface = "bond0";
         };
       };
 

@@ -544,6 +544,7 @@
           ];
           driverOptions = {
             mode = "active-backup";
+            miimon = "100";
           };
         };
       };
