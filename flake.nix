@@ -26,11 +26,11 @@
         nvidia.acceptLicense = true;
         # cudaSupport = true;
 
-        allowAliases = true;
+        # allowAliases = true;
 
         android_sdk.accept_license = true;
 
-        config.allowAliases = true;
+        # config.allowAliases = true;
         lazy-trees = true;
 
         # config.allowUnsupportedSystem = true;
@@ -40,11 +40,7 @@
         permittedInsecurePackages = [
           # keep-sorted start
           "electron-39.8.10"
-          #   "minio-2025-10-15T17-29-55Z"
           "segger-jlink-qt4-952"
-          #   "libsoup-2.74.3"
-          #   "python3.13-ecdsa-0.19.1"
-          #   "python3.13-ecdsa-0.19.2"
           # keep-sorted end
         ];
 
@@ -52,28 +48,26 @@
         #   paste.broken = "warn"; # or "ignore"
         # };
 
-        config = {
-          allowUnfreePredicate = _: true;
-          allowUnfree = true;
+        # config = {
+        # allowUnfreePredicate = _: true;
+        # allowUnfree = true;
 
-          # cudaSupport = true;
+        # firefox = {
+        #   enableGnomeExtensions = true;
+        #   smartcardSupport = true;
+        # };
 
-          firefox = {
-            enableGnomeExtensions = true;
-            smartcardSupport = true;
-          };
-
-          # enableBroken = true;
-          # contentAddressedByDefault = true;
-          # For example, enable smartcard support in Firefox.
-          # firefox.smartcardSupport = true;
-          lazy-trees = true;
-          # permittedInsecurePackages = [
-          # "openssl-1.1.1w"
-          # "python3.12-youtube-dl-2021.12.17"
-          # "python-2.7.18.8"
-          # ];
-        };
+        #   # enableBroken = true;
+        #   # contentAddressedByDefault = true;
+        #   # For example, enable smartcard support in Firefox.
+        #   # firefox.smartcardSupport = true;
+        #   lazy-trees = true;
+        #   # permittedInsecurePackages = [
+        #   # "openssl-1.1.1w"
+        #   # "python3.12-youtube-dl-2021.12.17"
+        #   # "python-2.7.18.8"
+        #   # ];
+        # };
       };
 
       # alias = { shells = { default = "devshell"; }; };
@@ -445,7 +439,8 @@
     };
 
     flake-utils-plus = {
-      url = "github:gytis-ivaskevicius/flake-utils-plus";
+      url = "github:Dines97/flake-utils-plus/copilot/fix-nixos-host-builder";
+      # url = "github:gytis-ivaskevicius/flake-utils-plus";
       inputs.flake-utils.follows = "flake-utils";
     };
 
