@@ -295,6 +295,7 @@ in {
         options = [
           "x-systemd.automount"
           "noauto"
+          "fsc"
           "x-systemd.idle-timeout=600"
         ];
       };

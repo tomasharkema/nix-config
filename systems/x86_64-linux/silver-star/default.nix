@@ -113,9 +113,11 @@
         fsType = "none";
       };
       "/var/lib/esphome" = {
-        device = "/mnt/servers/nfs/dione-tomas/esphome";
-        options = ["bind"];
-        fsType = "none";
+        device = "192.168.1.102:/volume1/tomas/esphome";
+        fsType = "nfs";
+        options = [
+          "fsc"
+        ];
       };
     };
 
