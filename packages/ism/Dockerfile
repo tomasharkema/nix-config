@@ -6,8 +6,8 @@ RUN zypper clean --all
 RUN zypper --non-interactive update
 
 #ism install from repo can be updated
-RUN wget https://linux.dell.com/repo/hardware/ism/bootstrap.cgi
-RUN echo y|sh bootstrap.cgi
+RUN wget https://linux.dell.com/repo/hardware/ism/bootstrap.sh
+RUN echo y|sh bootstrap.sh
 RUN zypper --non-interactive --ignore-unknown --no-cd install dcism > /dev/null 2>&1
 
 RUN systemctl enable dcismeng.service
