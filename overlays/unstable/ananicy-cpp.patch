@@ -1,0 +1,37 @@
+diff --git a/src/platform/linux/backtrace.cpp b/src/platform/linux/backtrace.cpp
+index fed73c5..b3c9c25 100644
+--- a/src/platform/linux/backtrace.cpp
++++ b/src/platform/linux/backtrace.cpp
+@@ -6,6 +6,7 @@
+ 
+ #include <exception> // for current_exception, exception_ptr
+ #include <iostream>  // for cerr
++#include <cstdint>
+ 
+ #include <fmt/format.h>
+ 
+diff --git a/src/platform/linux/singleton_process.cpp b/src/platform/linux/singleton_process.cpp
+index 92ab2ab..a2f85a8 100644
+--- a/src/platform/linux/singleton_process.cpp
++++ b/src/platform/linux/singleton_process.cpp
+@@ -8,7 +8,7 @@
+ #include <sys/shm.h>
+ #include <sys/stat.h> /* For mode constants */
+ #include <unistd.h>
+-
++#include <cstring>
+ #include <string_view> // for string_view
+ 
+ #include <fmt/format.h>
+diff --git a/src/utility/argument_parsing/argument.cpp b/src/utility/argument_parsing/argument.cpp
+index 954a588..92a7e02 100644
+--- a/src/utility/argument_parsing/argument.cpp
++++ b/src/utility/argument_parsing/argument.cpp
+@@ -7,6 +7,7 @@
+ #include <queue>
+ #include <string>
+ #include <utility>
++#include <cstring>
+ 
+ #include <fmt/ranges.h>
+ 
