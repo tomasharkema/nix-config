@@ -279,7 +279,7 @@ in {
         vim
         watchlog
         wavemon
-        waypipe
+        # waypipe
         websocat
         wget
         whatfiles

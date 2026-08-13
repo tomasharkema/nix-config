@@ -27,6 +27,8 @@
       };
     };
 
+    nix.settings.system-features = ["gccarch-skylake"];
+
     hardware.facter = {
       reportPath = ./facter.json;
       # detected.graphics.enable=;
