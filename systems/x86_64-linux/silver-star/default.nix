@@ -714,7 +714,7 @@
 
     virtualisation = {
       oci-containers.containers = {
-        ism = lib.mkIf false {
+        ism = {
           image = "teumaauss/ism:latest";
 
           volumes = [
