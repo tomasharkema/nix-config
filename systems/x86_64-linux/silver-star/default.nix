@@ -767,6 +767,26 @@
             TZ = "Europa/Amsterdam";
           };
         };
+        otbr = {
+          image = "openthread/border-router";
+          volumes = ["/var/lib/otbr:/data"];
+          extraOptions = [
+            "--net=host"
+          ];
+          environment = {
+            TZ = "Europa/Amsterdam";
+            OT_RCP_DEVICE = "spinel+hdlc+forkpty:///usr/bin/socat?forkpty-arg=-&forkpty-arg=TCP:192.168.9.165:6638";
+            OT_INFRA_IF = "br66";
+            OT_THREAD_IF = "wpan0";
+            OT_LOG_LEVEL = "3";
+            # OT_REST_LISTEN_ADDR = "0.0.0.0";
+            # OT_REST_LISTEN_PORT = "8081";
+          };
+          devices = [
+            "/dev/net/tun"
+            # "/dev/ttyS3"
+          ];
+        };
 
         fastapi-dls = lib.mkIf false {
           image = "collinwebdesigns/fastapi-dls:latest";
