@@ -767,15 +767,20 @@
             TZ = "Europa/Amsterdam";
           };
         };
-        otbr = {
-          image = "openthread/border-router";
+
+        otbr = lib.mkIf false {
+          #image = "openthread/border-router";
+          image = "teumaauss/otbr";
           volumes = ["/var/lib/otbr:/data"];
           extraOptions = [
             "--net=host"
+            "--cap-add=NET_ADMIN"
           ];
           environment = {
             TZ = "Europa/Amsterdam";
-            OT_RCP_DEVICE = "spinel+hdlc+forkpty:///usr/bin/socat?forkpty-arg=-&forkpty-arg=TCP:192.168.9.165:6638";
+            #OT_RCP_DEVICE = "spinel+hdlc+forkpty:///usr/bin/socat?forkpty-arg=-&forkpty-arg=TCP:192.168.9.165:6638";
+
+            OT_RCP_DEVICE = "spinel+hdlc+tcp://192.168.9.165:6638";
             OT_INFRA_IF = "br66";
             OT_THREAD_IF = "wpan0";
             OT_LOG_LEVEL = "3";
