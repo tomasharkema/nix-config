@@ -14,7 +14,6 @@
       ++ (with pkgs; [
         # keep-sorted start
         alejandra
-        atuin-desktop
         autoflake
         bc
         cachix
