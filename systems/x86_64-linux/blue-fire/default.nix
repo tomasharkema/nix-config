@@ -31,6 +31,7 @@ in {
       gcc.tune = "haswell";
       system = "x86_64-linux";
     };
+    nix.settings.system-features = ["gccarch-haswell"];
 
     hardware.facter.reportPath = ./facter.json;
 
@@ -202,6 +203,13 @@ in {
           wakeOnLan.enable = true;
           mtu = 9000;
         };
+
+        "bond0" = {
+          useDHCP = false;
+          wakeOnLan.enable = true;
+          mtu = 9000;
+        };
+
         "br0" = {
           useDHCP = false;
           mtu = 9000;
