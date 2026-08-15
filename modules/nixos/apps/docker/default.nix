@@ -17,6 +17,7 @@ in {
       nerdctl
       lazydocker
       dry
+      nftables
     ];
 
     environment.etc."distrobox/distrobox.conf".text = ''
@@ -24,6 +25,10 @@ in {
     '';
 
     users.users."tomas".extraGroups = ["docker"];
+
+    systemd.services.docker.path = [
+      pkgs.nftables
+    ];
 
     virtualisation = {
       oci-containers = {
@@ -66,7 +71,9 @@ in {
         enableOnBoot = true;
         # using btrfs here causes significant slowdowns...
         storageDriver = "overlay2";
-        liveRestore = true;
+        #liveRestore = true;
+
+        daemon.settings.registry-mirrors = ["https://mirror.gcr.io"];
 
         autoPrune = {
           enable = true;
