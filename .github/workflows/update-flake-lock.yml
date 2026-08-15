@@ -1,23 +1,24 @@
-name: "Update flakes"
+name: "Flake.lock: update Nix dependencies"
+
 on:
-  repository_dispatch:
-  workflow_dispatch:
+  workflow_dispatch: # allows manual triggering
   schedule:
-    - cron: '38 0/12 * * *'
-permissions:
-  pull-requests: write
-  contents: write
+    - cron: '0 3 * * *'
+
 jobs:
-  createPullRequest:
-    runs-on: [self-hosted, linux, x64, nixos]
+  nix-flake-update:
+    permissions:
+      contents: write
+      id-token: write
+      issues: write
+      pull-requests: write
+    runs-on: "nixos"
     steps:
-      - uses: actions/checkout@v4
-      - name: Install Nix
-        uses: cachix/install-nix-action@v27
+      - uses: actions/checkout@v6
+      - uses: cachix/install-nix-action@v31
+      - uses: DeterminateSystems/update-flake-lock@main
         with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Update flake.lock
-        uses: DeterminateSystems/update-flake-lock@v23
-        with:
-          pr-labels: | # Labels to be set on the PR
-            merge-queue
+          pr-title: "Update Nix flake inputs" 
+          pr-labels: |                  
+            dependencies
+            automated
