@@ -130,10 +130,10 @@ in rec {
 
   ipmiview = checkUpdatedUpsteam prev.ipmiview "2.21.0" prev.ipmiview.overrideAttrs (old: {
     src = prev.fetchurl {
-      url = "https://www.supermicro.com/Bios/sw_download/960/IPMIView_2.23.0_build.250519_bundleJRE_Linux_x64.tar.gz";
-      sha256 = "13d0figi3azajafnlfwc0amw3b00rmxyrmq60rixvwx4wx2h361j";
+      url = "https://www.supermicro.com/Bios/sw_download/1052/IPMIView_2.24.0_build.251224_bundleJRE_Linux_x64.tar.gz";
+      sha256 = "sha256-60+H5S0KvQ4Mulxn7PXk22V6+1SBY1J6AL93VdO3WNk=";
     };
-    version = "2.23.0";
+    version = "2.24.0";
   });
 
   # opencv = prev.opencv.override {
@@ -141,58 +141,58 @@ in rec {
   #   enableCudnn = true;
   # };
 
-  # sdrangel = checkUpdatedUpsteam prev.sdrangel "7.22.9" prev.sdrangel.overrideAttrs ({
-  #   buildInputs,
-  #   cmakeFlags,
-  #   NIX_CFLAGS_COMPILE ? [],
-  #   NIX_ENFORCE_NO_NATIVE ? true,
-  #   ...
-  # }: {
-  #   version = "7.26.1";
+  sdrangel = checkUpdatedUpsteam prev.sdrangel "7.27.1" prev.sdrangel.overrideAttrs ({
+    buildInputs,
+    cmakeFlags,
+    NIX_CFLAGS_COMPILE ? [],
+    NIX_ENFORCE_NO_NATIVE ? true,
+    ...
+  }: {
+    version = "7.27.1";
 
-  #   src = prev.fetchFromGitHub {
-  #     owner = "f4exb";
-  #     repo = "sdrangel";
-  #     tag = "v7.26.1";
-  #     hash = "sha256-zxhlWywGqtBmuFAdAfIukCXguay8Rux7leBybYEdsRg=";
-  #   };
+    src = prev.fetchFromGitHub {
+      owner = "f4exb";
+      repo = "sdrangel";
+      tag = "v7.27.1";
+      hash = "sha256-rdPXqA0ySnqh/rlMlfcDLyAd6egbggWHrRQRnXeQPFM=";
+    };
 
-  #   patches = [];
+    patches = [];
 
-  #   NIX_ENFORCE_NO_NATIVE =
-  #     if prev.stdenvNoCC.hostPlatform.isx86_64
-  #     then false
-  #     else NIX_ENFORCE_NO_NATIVE;
+    NIX_ENFORCE_NO_NATIVE =
+      if prev.stdenvNoCC.hostPlatform.isx86_64
+      then false
+      else NIX_ENFORCE_NO_NATIVE;
 
-  #   NIX_CFLAGS_COMPILE =
-  #     if prev.stdenvNoCC.hostPlatform.isx86_64
-  #     then
-  #       NIX_CFLAGS_COMPILE
-  #       ++ [
-  #         "-O3"
-  #         "-march=skylake"
-  #       ]
-  #     else NIX_CFLAGS_COMPILE;
+    NIX_CFLAGS_COMPILE =
+      if prev.stdenvNoCC.hostPlatform.isx86_64
+      then
+        NIX_CFLAGS_COMPILE
+        ++ [
+          "-O3"
+          "-march=skylake"
+        ]
+      else NIX_CFLAGS_COMPILE;
 
-  #   buildInputs =
-  #     buildInputs
-  #     ++ [
-  #       prev.cudaPackages.cuda_nvcc
-  #       prev.cudaPackages.cudatoolkit
-  #       prev.libacars
-  #       prev.hamlib
-  #       prev.custom.ggmorse
-  #       prev.custom.inmarsatc
-  #       prev.sdrplay
-  #       prev.rnnoise
-  #     ];
-  #   cmakeFlags =
-  #     cmakeFlags
-  #     ++ [
-  #       "-DCUDAToolkit_ROOT=${prev.cudaPackages.cuda_nvcc}"
-  #       "-DCUDAToolkit=${prev.cudaPackages.cuda_nvcc}"
-  #     ];
-  # });
+    buildInputs =
+      buildInputs
+      ++ [
+        prev.cudaPackages.cuda_nvcc
+        prev.cudaPackages.cudatoolkit
+        prev.libacars
+        prev.hamlib
+        prev.custom.ggmorse
+        prev.custom.inmarsatc
+        prev.sdrplay
+        prev.rnnoise
+      ];
+    cmakeFlags =
+      cmakeFlags
+      ++ [
+        "-DCUDAToolkit_ROOT=${prev.cudaPackages.cuda_nvcc}"
+        "-DCUDAToolkit=${prev.cudaPackages.cuda_nvcc}"
+      ];
+  });
 
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;
 
