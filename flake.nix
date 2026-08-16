@@ -518,11 +518,10 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim"; # /nixos-24.05";
-
-      # inputs = {
-      #   nixpkgs.follows = "nixpkgs";
-      # };
+      url = "github:nix-community/nixvim";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
     };
 
     agenix = {
@@ -760,8 +759,12 @@
     niri = {
       # url = "github:sodiboo/niri-flake";
       url = "github:epireyn/niri-flake";
-      # inputs.nixpkgs.follows = "nixpkgs";
-      # inputs.nixpkgs-stable.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "nixpkgs";
+        niri-stable.follows = "niri";
+        niri-unstable.follows = "niri";
+      };
     };
 
     nixpkgs-esp-dev = {
