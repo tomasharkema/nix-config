@@ -150,29 +150,29 @@ in rec {
   }: {
     version = "7.27.1";
 
-    src = prev.fetchFromGitHub {
-      owner = "f4exb";
-      repo = "sdrangel";
-      tag = "v7.27.1";
-      hash = "sha256-rdPXqA0ySnqh/rlMlfcDLyAd6egbggWHrRQRnXeQPFM=";
-    };
+    # src = prev.fetchFromGitHub {
+    #   owner = "f4exb";
+    #   repo = "sdrangel";
+    #   tag = "v7.27.1";
+    #   hash = "sha256-rdPXqA0ySnqh/rlMlfcDLyAd6egbggWHrRQRnXeQPFM=";
+    # };
 
-    patches = [];
+    # patches = [];
 
-    NIX_ENFORCE_NO_NATIVE =
-      if prev.stdenvNoCC.hostPlatform.isx86_64
-      then false
-      else NIX_ENFORCE_NO_NATIVE;
+    # NIX_ENFORCE_NO_NATIVE =
+    #    if prev.stdenvNoCC.hostPlatform.isx86_64
+    #   then false
+    #   else NIX_ENFORCE_NO_NATIVE;
 
-    NIX_CFLAGS_COMPILE =
-      if prev.stdenvNoCC.hostPlatform.isx86_64
-      then
-        NIX_CFLAGS_COMPILE
-        ++ [
-          "-O3"
-          "-march=skylake"
-        ]
-      else NIX_CFLAGS_COMPILE;
+    # NIX_CFLAGS_COMPILE =
+    #   if prev.stdenvNoCC.hostPlatform.isx86_64
+    #   then
+    #   NIX_CFLAGS_COMPILE
+    #   ++ [
+    #     "-O3"
+    #     "-march=skylake"
+    #   ]
+    # else NIX_CFLAGS_COMPILE;
 
     buildInputs =
       buildInputs

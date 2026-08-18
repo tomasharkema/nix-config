@@ -27,7 +27,10 @@
       };
     };
 
-    nix.settings.system-features = ["gccarch-skylake"];
+    nix.settings.system-features = [
+      "gccarch-skylake"
+      "gccarch-haswell"
+    ];
 
     hardware.facter = {
       reportPath = ./facter.json;
@@ -37,6 +40,7 @@
     disks.btrfs = {
       enable = true;
       main = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S7PJNJ0Y411286E_1-part1";
+      second = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S7HENU0Y989036Z";
       boot = "/dev/disk/by-id/usb-DELL_IDSDM_012345678901-0:0";
       snapper.enable = false;
       # btrbk.enable = true;
