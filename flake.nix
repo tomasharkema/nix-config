@@ -762,8 +762,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nixpkgs-stable.follows = "nixpkgs";
-        niri-stable.follows = "niri";
-        niri-unstable.follows = "niri";
       };
     };
 
