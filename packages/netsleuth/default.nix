@@ -14,6 +14,7 @@
   desktop-file-utils,
   wrapGAppsHook3,
   gobject-introspection,
+  blueprint-compiler,
 }: let
   p = python3.withPackages (ps: with ps; [pygobject3 gst-python]);
 in
@@ -42,17 +43,10 @@ in
       cmake
       glib
       gtk4
+      blueprint-compiler
       appstream
       desktop-file-utils
     ];
-
-    postPatch = ''
-      echo "stdenv.hostPlatform.sse3Support ${
-        if stdenv.hostPlatform.sse3Support
-        then "true"
-        else "false"
-      }"
-    '';
 
     meta = with lib; {
       description = "A simple utility for the calculation and analysis of IP subnet values, designed to simplify network configuration tasks";

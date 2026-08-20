@@ -63,7 +63,7 @@
     # custom.gtk-meshtastic-client
     custom.letters
     custom.manuals
-    # custom.netsleuth
+    custom.netsleuth
     custom.openhantek
     custom.qefi-entry-manager
     custom.remarkable-cups
