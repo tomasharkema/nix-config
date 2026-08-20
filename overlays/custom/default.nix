@@ -148,7 +148,7 @@ in rec {
     NIX_ENFORCE_NO_NATIVE ? true,
     ...
   }: {
-    version = "7.27.1";
+    # version = "7.27.1";
 
     # src = prev.fetchFromGitHub {
     #   owner = "f4exb";
