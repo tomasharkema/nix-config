@@ -60,7 +60,7 @@
     custom.denon-control
     # custom.distrib-dl
     custom.gitpulsar
-    # custom.gtk-meshtastic-client
+    custom.gtk-meshtastic-client
     custom.letters
     custom.manuals
     custom.netsleuth
