@@ -46,14 +46,14 @@
     #   };
     # };
 
-    # gui = {
-    #   enable = true;
-    #   desktop = {
-    #     enable = true;
-    #   };
-    #   quiet-boot.enable = true;
-    #   gamemode.enable = true;
-    # };
+    gui = {
+      enable = true;
+      desktop = {
+        enable = true;
+      };
+      quiet-boot.enable = true;
+      gamemode.enable = true;
+    };
 
     disks.btrfs = {
       enable = true;

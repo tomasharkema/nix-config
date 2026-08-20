@@ -20,7 +20,7 @@ in {
     server.enable = lib.mkEnableOption "netdata server";
   };
 
-  config = lib.mkIf (cfg.enable && false) {
+  config = lib.mkIf cfg.enable {
     assertions = [
       {
         assertion = config.services.netdata.enable;
@@ -72,9 +72,9 @@ in {
         withCloudUi = true;
         withNetworkViewer = true;
         withConnPrometheus = true;
-        withConnPubSub = true;
         withNdsudo = true; # false;
       };
+
       extraNdsudoPackages = [
         pkgs.smartmontools
         pkgs.nvme-cli
@@ -86,6 +86,7 @@ in {
         enable = true;
         recommendedPythonPackages = true;
       };
+
       config = {
         global = {
           "debug log" = "none";
