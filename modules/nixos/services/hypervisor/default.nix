@@ -154,13 +154,17 @@ in {
     '';
 
     boot = {
-      kernelParams = lib.mkIf cfg.iommu.enable [
-        "kvm_intel.nested=1"
-        "intel_iommu=on"
-        # "intel_iommu=igfx_off"
-        "hugepagesz=2M"
-        "hugepages=2048"
-      ];
+      kernelParams =
+        (lib.optionals cfg.iommu.enable [
+          "kvm_intel.nested=1"
+          "intel_iommu=on"
+          # "intel_iommu=igfx_off"
+        ])
+        ++ [
+          "hugepagesz=1G"
+          "default_hugepagesz=1G"
+          "hugepages=8"
+        ];
       # blacklistedKernelModules = [
       #   "nvidia"
       #   "nouveau"

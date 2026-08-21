@@ -26,12 +26,15 @@ in {
       };
     };
 
-    nixpkgs.hostPlatform = {
-      gcc.arch = "haswell";
-      gcc.tune = "haswell";
-      system = "x86_64-linux";
-    };
-    nix.settings.system-features = ["gccarch-haswell"];
+    # nixpkgs.hostPlatform = {
+    #   gcc.arch = "haswell";
+    #   gcc.tune = "haswell";
+    #   system = "x86_64-linux";
+    # };
+    nix.settings.system-features = [
+      "gccarch-skylake"
+      "gccarch-haswell"
+    ];
 
     hardware.facter.reportPath = ./facter.json;
 
@@ -46,6 +49,8 @@ in {
 
       # btrbk.enable = true;
     };
+
+    fileSystems."/boot".mountPoint = "/boot/efi";
 
     traits = {
       server = {
@@ -109,17 +114,13 @@ in {
       remote-builders.server.enable = true;
       # netbootxyz.enable = true;
       # tcsd.enable = true;
-      kmscon.enable = lib.mkForce false;
-
+      kmscon.enable = true;
       prometheus.exporters = {
         ipmi = {
           enable = true;
         };
       };
     };
-    programs.usbtop.enable = true;
-
-    powerManagement.powertop.enable = true;
 
     networking = {
       # hosts = {
@@ -153,8 +154,13 @@ in {
         };
       };
 
-      bridges.br0 = {
-        interfaces = ["bond0"];
+      bridges = {
+        br0 = {
+          interfaces = ["bond0"];
+        };
+        br1 = {
+          interfaces = ["vlan1"];
+        };
       };
 
       vlans = {
@@ -164,6 +170,10 @@ in {
         };
         "vlan66" = {
           id = 66;
+          interface = "bond0";
+        };
+        "vlan1" = {
+          id = 1;
           interface = "bond0";
         };
       };
@@ -220,6 +230,18 @@ in {
             }
           ];
         };
+
+        "br1" = {
+          useDHCP = false;
+          mtu = 9000;
+          ipv4.addresses = [
+            {
+              address = "192.168.1.101";
+              prefixLength = 24;
+            }
+          ];
+        };
+
         "vlan69" = {
           useDHCP = true;
           wakeOnLan.enable = true;
@@ -227,6 +249,11 @@ in {
         };
         "vlan66" = {
           useDHCP = true;
+          wakeOnLan.enable = true;
+          mtu = 9000;
+        };
+        "vlan1" = {
+          useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
         };
@@ -307,6 +334,7 @@ in {
         # "kvm.ignore_msrs=1"
         # "pci=nomsi"
         "iomem=relaxed"
+        "mitigations=off"
         "intel_iommu=on"
         "ipmi_watchdog.preop=preop_give_data"
         "ipmi_watchdog.preaction=pre_int"
@@ -328,7 +356,7 @@ in {
 
         efi = {
           canTouchEfiVariables = true;
-          efiSysMountPoint = "/boot";
+          efiSysMountPoint = "/boot/efi";
         };
         grub = {
           enable = true;
