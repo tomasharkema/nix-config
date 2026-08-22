@@ -312,7 +312,7 @@ in {
         useTmpfs = true;
       };
 
-      # kernelPackages = lib.mkForce pkgs.linuxPackages_6_18;
+      kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-server;
 
       supportedFilesystems = [
         "xfs"
