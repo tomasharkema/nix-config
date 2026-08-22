@@ -563,12 +563,12 @@ in {
     };
 
     security = {
-      audit.enable = true;
-      auditd.enable = true;
+      audit.enable = false;
+      auditd.enable = false;
       pam = {
         sshAgentAuth.enable = true;
         services.sudo.sshAgentAuth = true;
-        p11.enable = true;
+        # p11.enable = true;
         loginLimits = [
           {
             domain = "@users";
