@@ -59,7 +59,7 @@ in {
         enable = true;
         package = zabbixPkg.server-pgsql;
         extraPackages = extraPkgs;
-        database.socket = "/run/postgresql";
+        # database.socket = "/run/postgresql";
 
         settings = {
           CacheSize = "1G";
