@@ -191,7 +191,6 @@
     segger-ozone
     serial-studio
     smuview
-    solaar
     spi-tools
     sql-studio
     sqlitebrowser

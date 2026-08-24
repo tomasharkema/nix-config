@@ -88,7 +88,6 @@ in {
           logitech-udev-rules
           platformio-core
           openocd
-          solaar
           picotool
         ];
         extraRules = ''
@@ -124,19 +123,13 @@ in {
       sensor.iio.enable = true;
       usbStorage.manageShutdown = true;
       flipperzero.enable = true;
-      logitech = {
-        # enable = true;
-        # enableGraphical = true;
-        wireless = {
-          enable = true;
-          enableGraphical = true;
-        };
-      };
+      logitech.wireless.enable = true;
     };
 
     programs = {
       gphoto2.enable = true;
       # nm-applet.enable = true;
+      solaar.enable = true;
     };
 
     systemd = {
