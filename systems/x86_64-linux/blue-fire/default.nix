@@ -161,6 +161,9 @@ in {
         br1 = {
           interfaces = ["vlan1"];
         };
+        br800 = {
+          interfaces = ["vlan800"];
+        };
       };
 
       vlans = {
@@ -174,6 +177,10 @@ in {
         };
         "vlan1" = {
           id = 1;
+          interface = "bond0";
+        };
+        "vlan800" = {
+          id = 800;
           interface = "bond0";
         };
       };
@@ -242,6 +249,17 @@ in {
           ];
         };
 
+        "br800" = {
+          useDHCP = false;
+          mtu = 9000;
+          ipv4.addresses = [
+            {
+              address = "192.168.7.100";
+              prefixLength = 24;
+            }
+          ];
+        };
+
         "vlan69" = {
           useDHCP = true;
           wakeOnLan.enable = true;
@@ -253,6 +271,11 @@ in {
           mtu = 9000;
         };
         "vlan1" = {
+          useDHCP = false;
+          wakeOnLan.enable = true;
+          mtu = 9000;
+        };
+        "vlan800" = {
           useDHCP = false;
           wakeOnLan.enable = true;
           mtu = 9000;
