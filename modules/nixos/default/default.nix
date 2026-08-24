@@ -237,8 +237,6 @@ in {
         "/share/terminfo"
       ];
 
-      # sessionVariables.MOZ_ENABLE_WAYLAND = "0";
-
       variables.NH_FLAKE = "/home/tomas/Developer/nix-config";
 
       enableAllTerminfo = true;
@@ -568,7 +566,7 @@ in {
       pam = {
         sshAgentAuth.enable = true;
         services.sudo.sshAgentAuth = true;
-        # p11.enable = true;
+
         loginLimits = [
           {
             domain = "@users";

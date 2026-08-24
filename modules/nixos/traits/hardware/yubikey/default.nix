@@ -11,8 +11,6 @@
       #   debug = true;
       # };
 
-      # p11.enable = true;
-
       services = {
         # login.u2fAuth = true;
         # sudo.u2fAuth = true;
@@ -80,12 +78,15 @@
         enable = true;
         plugins = [
           pkgs.yubikey-personalization
-          pkgs.ccid
+          # pkgs.ccid
         ];
       };
 
       udev = {
-        packages = [pkgs.yubikey-personalization pkgs.ccid];
+        packages = [
+          pkgs.yubikey-personalization
+          pkgs.ccid
+        ];
         extraRules = ''
           KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="plugdev"
         '';
