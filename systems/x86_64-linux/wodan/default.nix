@@ -286,11 +286,13 @@
     };
 
     boot = {
-      kernelPackages = pkgs.linuxPackages_latest; #pkgs.linuxPackages-cachyos-latest-lto-x86_64-v4;
+      kernelPackages = pkgs.linuxPackages_cachyos-lto;
 
       tmp = {useTmpfs = true;};
 
-      initrd.network.enable = lib.mkForce false;
+      initrd = {
+        network.enable = true;
+      };
 
       supportedFilesystems = [
         "xfs"
