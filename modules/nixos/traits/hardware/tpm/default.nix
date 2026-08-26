@@ -34,9 +34,19 @@ in {
       "root".extraGroups = ["tss"];
     };
 
+    #  Failed assertions:
+    #  - FIDO2 and YubiKey may not be used at the same time.
+    #  - boot.initrd.luks.fido2Support is deprecated, and it is unsupported with systemd stage 1. Support will be removed in
+    #    26.11 along with scripted stage 1. Hardware keys in systemd stage 1 are supported with systemd-cryptsetup(8). To migrate,
+    #    enroll a key in a LUKS slot with systemd-cryptenroll(1). Usually, systemd will automatically detect the configuration
+    #    at runtime, but if necessary, configure the corresponding crypttab(5) options with boot.initrd.luks.devices.<name>.crypttabExtraOpts.
+
     boot = {
       initrd = {
-        systemd.tpm2.enable = true;
+        systemd.tpm2 = {
+          enable = true;
+          pcrphases.enable = true;
+        };
 
         # kernelModules = ["tpm_rng"];
       };

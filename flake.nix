@@ -5,11 +5,11 @@
 
       imports = [inputs.agenix-rekey.flakeModule];
 
-      #src = builtins.path {
-      #  path = ./.;
-      #  name = "snowfall-flake-source";
-      #};
-      src = ./.;
+      src = builtins.path {
+        path = ./.;
+        name = "snowfall-flake-source";
+      };
+      # src = ./.;
 
       channels-config = {
         allowUnfreePredicate = _: true;
@@ -167,8 +167,6 @@
             nixos-cli.nixosModules.nixos-cli
             # nix-monitor.nixosModules.default
             chaotic.nixosModules.default
-
-            ./defaultNixosAge.nix
           ];
 
           darwin = with inputs; [
@@ -180,6 +178,7 @@
               {
                 config,
                 lib,
+                inputs,
                 ...
               }: {
                 config = {
@@ -204,19 +203,19 @@
                     };
 
                     rekey = {
-                      masterIdentities = [
-                        ./secrets/age-yubikey-identity-usbc.pub
-                        ./secrets/age-op-identity-ed.pub
-                      ];
+                      # masterIdentities = [
+                      #   ./secrets/age-yubikey-identity-usbc.pub
+                      #   ./secrets/age-op-identity-ed.pub
+                      # ];
 
                       agePlugins = with pkgs; [
-                        age-plugin-1p
-                        age-plugin-fido2-hmac
+                        # age-plugin-1p
+                        # age-plugin-fido2-hmac
                         age-plugin-yubikey
                       ];
 
                       storageMode = "local";
-                      localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+                      localStorageDir = inputs.self.outPath + "/secrets/rekeyed/${config.networking.hostName}";
                     };
                   };
                 };
@@ -232,9 +231,13 @@
       in
         inputs.agenix-rekey.configure {
           userFlake = inputs.self;
-          nixosConfigurations = lib.attrsets.filterAttrs (n: v: (!(lib.strings.hasPrefix "installer" n))) (
-            inputs.self.nixosConfigurations // inputs.self.darwinConfigurations
-          );
+          darwinConfigurations = inputs.self.darwinConfigurations;
+          nixosConfigurations = let
+            systems = lib.attrsets.filterAttrs (n: v: lib.trace n ((!(lib.strings.hasPrefix "installer" n)) && n != "raspi5")) (
+              inputs.self.nixosConfigurations
+            );
+          in
+            lib.trace "systems: ${toString (builtins.attrNames systems)}" systems;
           # Example for colmena:
           # inherit ((colmena.lib.makeHive self.colmena).introspect (x: x)) nodes;
         };

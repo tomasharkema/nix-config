@@ -11,26 +11,26 @@ in {
     age = {
       rekey = {
         masterIdentities = [
-          ./secrets/age-yubikey-identity-usbc.pub
-          ./secrets/age-op-identity-ed.pub
+          ../../../../secrets/age-yubikey-identity-usbc.pub
+          # ../../../../secrets/age-op-identity-ed.pub
           # "/home/tomas/.ssh/id_ed25519"
         ];
 
         agePlugins = with pkgs; [
-          age-plugin-1p
-          age-plugin-tpm
+          # age-plugin-1p
+          # age-plugin-tpm
           age-plugin-yubikey
-          age-plugin-se
-          age-plugin-fido2-hmac
+          # age-plugin-se
+          # age-plugin-fido2-hmac
         ];
 
         storageMode = "local";
-        localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+        localStorageDir = self.outPath + "/secrets/rekeyed/${config.networking.hostName}";
       };
 
       secrets = {
         nix-access-tokens-github = {
-          rekeyFile = ./secrets/github.age;
+          rekeyFile = ../../../../secrets/github.age;
           mode = "666";
         };
       };
@@ -50,8 +50,8 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-      age-plugin-1p
-      age-plugin-tpm
+      # age-plugin-1p
+      # age-plugin-tpm
       age-plugin-yubikey
     ];
 
