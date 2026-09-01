@@ -10,13 +10,14 @@
     repo = "kitty-kitten-1password";
     owner = "mm-zacharydavison";
     rev = "main";
-    sha256 = "sha256-PiLyOMmBowySBYhbXKL6IhaABcJX4c1F2sRKGUkLAjc=";
+    sha256 = "sha256-dNpp/wIq8ziQ7z4NOzfG1lS8x3GI6sldCVCst4fnk7g=";
   };
 in {
-  config = lib.mkIf (osConfig.gui.enable) {
+  config = lib.mkIf (osConfig.gui.enable || pkgs.hostPlatform.isDarwin) {
     programs = {
       kitty = {
         enable = true;
+        enableGitIntegration = true;
         package = pkgs.kitty;
         theme = "Catppuccin-Mocha";
 
