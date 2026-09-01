@@ -279,11 +279,11 @@
     hardware.wirelessRegulatoryDatabase = true;
 
     nix.settings.system-features = ["gccarch-skylake"];
-    nixpkgs.hostPlatform = {
-      gcc.arch = "skylake";
-      gcc.tune = "skylake";
-      system = "x86_64-linux";
-    };
+    # nixpkgs.hostPlatform = {
+    #   gcc.arch = "skylake";
+    #   gcc.tune = "skylake";
+    #   system = "x86_64-linux";
+    # };
 
     boot = {
       kernelPackages = pkgs.linuxPackages_cachyos-lto;
