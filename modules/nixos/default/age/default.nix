@@ -17,8 +17,8 @@ in {
         ];
 
         agePlugins = with pkgs; [
-          # age-plugin-1p
-          # age-plugin-tpm
+          age-plugin-1p
+          age-plugin-tpm
           age-plugin-yubikey
           # age-plugin-se
           # age-plugin-fido2-hmac
@@ -36,10 +36,6 @@ in {
       };
     };
 
-    nix.extraOptions = ''
-      !include ${config.age.secrets.nix-access-tokens-github.path}
-    '';
-
     system = {
       stateVersion = "26.11";
       nixos.tags = [
@@ -50,12 +46,15 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-      # age-plugin-1p
-      # age-plugin-tpm
+      age-plugin-1p
+      age-plugin-tpm
       age-plugin-yubikey
     ];
 
     nix = {
+      extraOptions = ''
+        !include ${config.age.secrets.nix-access-tokens-github.path}
+      '';
       # settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${builtins.toString config.users.users.tomas.uid}"];
       registry = {
         nixpkgs.flake = inputs.nixpkgs;

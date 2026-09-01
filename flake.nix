@@ -172,55 +172,7 @@
           darwin = with inputs; [
             agenix.darwinModules.default
             agenix-rekey.nixosModules.default
-            # mac-app-util.darwinModules.default
-
-            (
-              {
-                config,
-                lib,
-                inputs,
-                ...
-              }: {
-                config = {
-                  # nm-overrides.desktop.home-exec.enable = false;
-
-                  # system.nixos.tags = ["snowfall"];
-                  system.configurationRevision = lib.mkForce (self.shortRev or "dirty");
-                  # nixpkgs.flake.setFlakeRegistry = false;
-                  # nixpkgs.flake.setNixPath = false;
-
-                  nix = {
-                    extraOptions = ''
-                      !include ${config.age.secrets.nix-access-tokens-github.path}
-                    '';
-
-                    # settings.extra-sandbox-paths = ["/tmp/agenix-rekey.${builtins.toString config.users.users."${config.user.name}".uid}"];
-                  };
-
-                  age = {
-                    secrets = {
-                      nix-access-tokens-github.rekeyFile = ./secrets/github.age;
-                    };
-
-                    rekey = {
-                      # masterIdentities = [
-                      #   ./secrets/age-yubikey-identity-usbc.pub
-                      #   ./secrets/age-op-identity-ed.pub
-                      # ];
-
-                      agePlugins = with pkgs; [
-                        # age-plugin-1p
-                        # age-plugin-fido2-hmac
-                        age-plugin-yubikey
-                      ];
-
-                      storageMode = "local";
-                      localStorageDir = inputs.self.outPath + "/secrets/rekeyed/${config.networking.hostName}";
-                    };
-                  };
-                };
-              }
-            )
+            mac-app-util.darwinModules.default
           ];
         };
       };
