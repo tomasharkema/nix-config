@@ -17,7 +17,7 @@ in {
       enable = true;
       environment = {
         PORT = "45876";
-        KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHBb6gQ1tX2NulWR+f3X8oMSQsh0Is55vpaa8xxbU7Ay";
+        KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKlGr5tWTS9NpbD9YdhBpWUKyaHGQhP7SWQ3BROh41it";
       };
     };
   };

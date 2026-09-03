@@ -184,22 +184,17 @@
         inputs.agenix-rekey.configure {
           userFlake = inputs.self;
           darwinConfigurations = inputs.self.darwinConfigurations;
-          nixosConfigurations = let
-            systems = lib.attrsets.filterAttrs (n: v: lib.trace n ((!(lib.strings.hasPrefix "installer" n)) && n != "raspi5")) (
-              inputs.self.nixosConfigurations
-            );
-          in
-            lib.trace "systems: ${toString (builtins.attrNames systems)}" systems;
-          # Example for colmena:
-          # inherit ((colmena.lib.makeHive self.colmena).introspect (x: x)) nodes;
+          nixosConfigurations = lib.attrsets.filterAttrs (name: v: (!(lib.strings.hasPrefix "installer" name))) (
+            inputs.self.nixosConfigurations
+          );
         };
 
       machines = let
         names = builtins.attrNames (builtins.readDir ./systems-by-name);
-      in rec {
+      in {
         all = names;
 
-        excludingSelf = cfg: (builtins.filter (name: cfg.networking.hostName != name) all);
+        excludingSelf = cfg: (builtins.filter (name: cfg.networking.hostName != name) names);
       };
 
       images = with inputs; {
