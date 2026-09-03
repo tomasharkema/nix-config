@@ -278,7 +278,10 @@
 
     hardware.wirelessRegulatoryDatabase = true;
 
-    nix.settings.system-features = ["gccarch-skylake"];
+    nix.settings.system-features = [
+      "gccarch-skylake"
+      "gccarch-haswell"
+    ];
     # nixpkgs.hostPlatform = {
     #   gcc.arch = "skylake";
     #   gcc.tune = "skylake";

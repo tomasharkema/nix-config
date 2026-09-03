@@ -15,15 +15,15 @@
   wrapGAppsHook3,
   blueprint-compiler,
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "butler";
-  version = "1.7.0";
+  version = "1.8.1";
 
   src = fetchFromGitHub {
     owner = "cassidyjames";
     repo = "butler";
-    rev = version;
-    hash = "sha256-B6JcOL/3apkIDHGQPwWzje2qkFto/g3UlTXF3JlFMF0=";
+    rev = finalAttrs.version;
+    hash = "sha256-z/+UytNElAs7oUFwcBinZ5EgWsdQHGP7mlPBnCdhIGI=";
   };
 
   nativeBuildInputs = [
@@ -58,4 +58,4 @@ stdenv.mkDerivation rec {
     mainProgram = "butler";
     platforms = lib.platforms.all;
   };
-}
+})
