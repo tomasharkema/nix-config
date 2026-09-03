@@ -64,6 +64,7 @@ in {
         x11.enable = true;
         gtk.enable = true;
         size = cursorSize;
+        enable = true;
       };
       # packages = with pkgs; [
       #   flat-remix-gtk
