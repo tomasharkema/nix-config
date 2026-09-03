@@ -288,7 +288,8 @@
     # };
 
     boot = {
-      kernelPackages = pkgs.linuxPackages_cachyos-lto;
+      # kernelPackages = pkgs.linuxPackages_cachyos-lto;
+      kernelPackages = pkgs.linuxPackages_cachyos-gcc;
 
       tmp = {useTmpfs = true;};
 
