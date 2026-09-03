@@ -29,7 +29,7 @@ in {
       };
     };
 
-    systemd.services = lib.mkIf false {
+    systemd.services = {
       # enable??
       "kmscon" = {
         description = "KMS System Console";

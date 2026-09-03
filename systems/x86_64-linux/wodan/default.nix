@@ -153,7 +153,7 @@
       #   enable = true;
       #   enableUdevRules = true;
       # };
-      kmscon.enable = true;
+
       syncplay.enable = true;
       ratbagd.enable = true;
       remote-builders.server.enable = true;
@@ -175,7 +175,7 @@
       };
       flatpak.enable = true;
       docker.enable = true;
-      ddc.enable = true;
+      # ddc.enable = true;
       kmscon = {
         enable = true;
         enableMouse = true;
@@ -210,7 +210,6 @@
         enableTearFree = true;
         videoDrivers = ["nvidia"];
       };
-      ddccontrol.enable = true;
     };
 
     programs = {
@@ -315,7 +314,6 @@
       };
 
       extraModulePackages = with config.boot.kernelPackages; [
-        ddcci-driver
         it87
         turbostat
       ];

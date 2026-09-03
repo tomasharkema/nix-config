@@ -97,6 +97,11 @@
       usbguard.enable = false;
     };
 
+    security = {
+      audit.enable = true;
+      auditd.enable = true;
+    };
+
     # system.includeBuildDependencies = true;
 
     programs = {

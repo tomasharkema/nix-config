@@ -144,35 +144,16 @@ in rec {
   sdrangel = checkUpdatedUpsteam prev.sdrangel "7.27.1" prev.sdrangel.overrideAttrs ({
     buildInputs,
     cmakeFlags,
-    NIX_CFLAGS_COMPILE ? [],
+    NIX_CFLAGS_COMPILE ? "",
     NIX_ENFORCE_NO_NATIVE ? true,
     ...
   }: {
-    # version = "7.27.1";
-
-    # src = prev.fetchFromGitHub {
-    #   owner = "f4exb";
-    #   repo = "sdrangel";
-    #   tag = "v7.27.1";
-    #   hash = "sha256-rdPXqA0ySnqh/rlMlfcDLyAd6egbggWHrRQRnXeQPFM=";
-    # };
-
-    # patches = [];
-
-    # NIX_ENFORCE_NO_NATIVE =
-    #    if prev.stdenvNoCC.hostPlatform.isx86_64
-    #   then false
-    #   else NIX_ENFORCE_NO_NATIVE;
-
-    # NIX_CFLAGS_COMPILE =
-    #   if prev.stdenvNoCC.hostPlatform.isx86_64
-    #   then
-    #   NIX_CFLAGS_COMPILE
-    #   ++ [
-    #     "-O3"
-    #     "-march=skylake"
-    #   ]
-    # else NIX_CFLAGS_COMPILE;
+    env.NIX_CFLAGS_COMPILE =
+      if prev.stdenvNoCC.hostPlatform.isx86_64
+      then
+        NIX_CFLAGS_COMPILE
+        + " -O3 -march=skylake"
+      else NIX_CFLAGS_COMPILE;
 
     buildInputs =
       buildInputs
@@ -186,12 +167,16 @@ in rec {
         prev.sdrplay
         prev.rnnoise
       ];
+
     cmakeFlags =
-      cmakeFlags
-      ++ [
-        "-DCUDAToolkit_ROOT=${prev.cudaPackages.cuda_nvcc}"
-        "-DCUDAToolkit=${prev.cudaPackages.cuda_nvcc}"
-      ];
+      if prev.stdenvNoCC.hostPlatform.isx86_64
+      then
+        cmakeFlags
+        ++ [
+          "-DCUDAToolkit_ROOT=${prev.cudaPackages.cuda_nvcc}"
+          "-DCUDAToolkit=${prev.cudaPackages.cuda_nvcc}"
+        ]
+      else cmakeFlags;
   });
 
   # nix-htop = inputs.nix-htop.packages."${prev.system}".nix-htop;

@@ -10,7 +10,14 @@ in {
     enable = lib.mkEnableOption "ddc";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
+    environment.systemPackages = with pkgs; [
+      ddcutil
+      brightnessctl
+    ];
+
+    hardware.i2c.enable = true;
+
     services = {
       ddccontrol.enable = true;
 
@@ -28,6 +35,14 @@ in {
           '';
         }
       ];
+    };
+
+    boot = {
+      kernelModules = [
+        "i2c-dev"
+        "ddcci_backlight"
+      ];
+      extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
     };
 
     systemd.services = {

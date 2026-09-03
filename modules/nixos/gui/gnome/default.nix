@@ -165,7 +165,6 @@ in
             gpaste
             libusb1
             gnome-menus
-            ddcutil
           ];
         };
 
