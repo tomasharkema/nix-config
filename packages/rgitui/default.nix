@@ -14,19 +14,18 @@
   wayland,
   libxcb,
 }:
-# xorg.libX11
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "rgitui";
-  version = "0.3.0";
+  version = "0.4.1";
 
   src = fetchFromGitHub {
     owner = "noahbclarkson";
     repo = "rgitui";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-dIa2cR2wOdbobZIkrY0qoDIiormbTg0Xge/KDnXe9VQ=";
+    hash = "sha256-h2ZlFi7PEKX2FfPuNpsROGOpMNpaV2kd30w1m6oyU0k=";
   };
 
-  cargoHash = "sha256-JIaSjbYef147hVRckeOEywIw+ln9A+d+o++5b2FUaXQ=";
+  cargoHash = "sha256-BWnxkrIT6YSiGeA7YnYgbt+IVw9/ym8FAav5EzmqUGI=";
 
   nativeBuildInputs = [
     pkg-config
