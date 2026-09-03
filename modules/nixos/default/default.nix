@@ -561,8 +561,8 @@ in {
     };
 
     security = {
-      audit.enable = false;
-      auditd.enable = false;
+      audit.enable = lib.mkDefault false;
+      auditd.enable = lib.mkDefault false;
       pam = {
         sshAgentAuth.enable = true;
         services.sudo.sshAgentAuth = true;
