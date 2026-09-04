@@ -57,7 +57,6 @@
         (with pkgs.custom; [
           menu
           adsb-tui
-          # nscan
         ])
         ++ (with pkgs; [
           # keep-sorted start
@@ -65,16 +64,18 @@
           alejandra
           devenv
           direnv
+          dosbox-x
           lrzsz
           manix
           mitmproxy
           nh
           nil
           nix-search-cli
-          # dosbox-x
           nixd
+          nmap
           nox
           yubico-piv-tool
+          zenmap
           # keep-sorted end
         ]);
 
