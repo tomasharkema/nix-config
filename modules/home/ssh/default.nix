@@ -12,7 +12,9 @@
       gnome-keyring.enable = !pkgs.stdenvNoCC.isDarwin;
       shpool.enable = true;
     };
-    home.packages = [pkgs.gcr];
+    home.packages = [
+      # pkgs.gcr
+    ];
 
     programs.ssh = {
       enable = true;
