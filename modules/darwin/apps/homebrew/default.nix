@@ -79,17 +79,23 @@ in {
 
       casks = [
         # keep-sorted start
+        "audacity"
         "brave-browser"
         "charles"
         "chiri"
         "devcleaner"
+        "easymac-cleaner"
         "elgato-studio"
         "firefox"
         "fldigi"
+        "flick"
         "font-adwaita"
         "font-adwaita-mono-nerd-font"
+        "font-nebula-sans"
+        "font-pyeojin-gothic"
         "ghostty"
         "gitbutler"
+        "homebrew-app"
         "iterm2@beta"
         "itermai"
         "itermbrowserplugin"
