@@ -100,6 +100,7 @@ in {
         "itermai"
         "itermbrowserplugin"
         "jetbrains-toolbox"
+        "kdenlive"
         "proxyman"
         "rectangle"
         "screenflow"
