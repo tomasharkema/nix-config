@@ -286,20 +286,22 @@ in {
 
       ssh-agent-switcher.enable = true;
 
-      # snmpd = {
-      #   enable = true;
-      #   configText = ''
-      #     rocommunity   public
-      #     trapsink      localhost:162 public
-      #   '';
-      # };
-      fanout.enable = true;
-      journald = {
-        extraConfig = ''
-          SystemMaxUse=1G
-          MaxRetentionSec=90day
+      snmpd = {
+        enable = true;
+        configText = ''
+          rocommunity   public
+          trapsink      localhost:162 public
         '';
       };
+
+      fanout.enable = true;
+
+      # journald = {
+      #   extraConfig = ''
+      #     SystemMaxUse=1G
+      #     MaxRetentionSec=90day
+      #   '';
+      # };
 
       smartd = lib.mkIf (pkgs.stdenv.hostPlatform.isx86_64) {
         enable = true;
@@ -309,12 +311,10 @@ in {
         };
       };
 
-      # watchdogd = {
-      #   enable = true;
-      # };
+      watchdogd.enable = true;
 
       # sysstat.enable = lib.mkDefault true;
-      # irqbalance.enable = true;
+      irqbalance.enable = true;
       # aria2.enable = true;
 
       rpcbind.enable = true;
