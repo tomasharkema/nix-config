@@ -22,6 +22,9 @@
         deadnix
         deploy-rs
         devenv
+        # godap
+        # fldigi
+        dig
         disnix
         flake-checker
         fup-repl
@@ -30,8 +33,6 @@
         ggh
         manix
         mitmproxy
-        # godap
-        #fldigi
         mqttui
         nerd-font-patcher
         nil

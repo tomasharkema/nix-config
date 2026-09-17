@@ -103,6 +103,7 @@ in {
         "kdenlive"
         "proxyman"
         "rectangle"
+        "remanager"
         "screenflow"
         "secretive"
         "slack"
