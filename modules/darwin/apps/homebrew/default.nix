@@ -58,6 +58,7 @@ in {
       brews = [
         # keep-sorted start
         "adwaita-icon-theme"
+        "bashka"
         "cocoapods"
         "container"
         "container-compose"
@@ -79,8 +80,8 @@ in {
 
       casks = [
         # keep-sorted start
+
         "audacity"
-        "bashka"
         "brave-browser"
         "charles"
         "chiri"
