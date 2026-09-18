@@ -200,11 +200,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789053332,
-        "narHash": "sha256-Z6tV5jX8Ah6RHIHeSnV6kEwJJZ6Ore+FR8F+vr9xjxY=",
+        "lastModified": 1789701749,
+        "narHash": "sha256-vVJUgNEUa+trNXZFK7DGmuV9HMz4GMiA+f+de6k51hw=",
         "owner": "AvengeMedia",
         "repo": "dank-greeter",
-        "rev": "0175be5c2084e2c5027324403a329e04040cd0bc",
+        "rev": "c792f1e13287fed01b1bf1a80654553019f3e0cb",
         "type": "github"
       },
       "original": {
@@ -224,11 +224,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789653810,
-        "narHash": "sha256-Zc+ZIg8qYNX/Y5JtwUxwlfY/V9KJRPK0VCBbkgn3fOc=",
+        "lastModified": 1789701928,
+        "narHash": "sha256-sOhoo12VDzw8BmVBqf9AEAO797Z/6/U85ZiABrw6Rng=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "0d81d0fc2e7fc78a50c6955c5f770a32eaf729e1",
+        "rev": "292a9595b33080ba17f0df362736ad13bfb0a25a",
         "type": "github"
       },
       "original": {
@@ -240,11 +240,11 @@
     "dank-qml-common": {
       "flake": false,
       "locked": {
-        "lastModified": 1789653737,
-        "narHash": "sha256-5rD198XYZaWKMSAeTkQwqq1wiRztYvmYgAHeWBGuPuI=",
+        "lastModified": 1789701545,
+        "narHash": "sha256-aNZwXDlF1NMIrMtPL3ZtDg5Q8LZY62DjnpPRoe2453g=",
         "owner": "AvengeMedia",
         "repo": "dank-qml-common",
-        "rev": "692f368129804f71082c2258d93b103e81b99bd8",
+        "rev": "55d3897192f47692b7961812d94ad18004fa0ad8",
         "type": "github"
       },
       "original": {
@@ -321,11 +321,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789565120,
-        "narHash": "sha256-OejBNbnETHnASSaaALApnRLMo5RyH0EkgyhS6Ps+3lQ=",
+        "lastModified": 1789657958,
+        "narHash": "sha256-0zWMFcxLZEVPzCRe5yDgPlPHBNgw3MMq78MAUvGNu/4=",
         "owner": "AvengeMedia",
         "repo": "dgop",
-        "rev": "8a12dbc6e28715592a14bf53ccb1ba22b6b76718",
+        "rev": "56a43ff5b8c6b14c5a7c190a69eec43f2297d76b",
         "type": "github"
       },
       "original": {
@@ -1035,11 +1035,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789652175,
-        "narHash": "sha256-OVgwnH7e/GlJRscTPXnJ8wwy6Mh+hk0MedEw360o8U8=",
+        "lastModified": 1789695075,
+        "narHash": "sha256-HREFWgmCTp28ZdMkSFOW2QW8uI17v5CNc04W46h6aPo=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "f2785222a14e90f8c5ad2ff62474ce88453c3421",
+        "rev": "4ac5a2ae9025eab1ebece4f9df8c315fd84a738a",
         "type": "github"
       },
       "original": {
@@ -1154,11 +1154,11 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1789644705,
-        "narHash": "sha256-HhemsV/2kpOY2uF39ZA7TU9R25zi+urStEp3wKEFdhI=",
+        "lastModified": 1789724103,
+        "narHash": "sha256-a8Zwwqcgh/F9y3ZhETtPbPjuoLuqOyQ1fJIGGdSopTA=",
         "owner": "epireyn",
         "repo": "niri-flake",
-        "rev": "22288d0cb07502764863af1a44541791d2d8cf7c",
+        "rev": "cf80813b10242f7f29f1c4c25321c9ab455c082c",
         "type": "github"
       },
       "original": {
@@ -1187,11 +1187,11 @@
     "niri-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1789634183,
-        "narHash": "sha256-SioZiPfbi0NGT+eO75Z1sLYUh2nPkYxarPXVp7fQP3I=",
+        "lastModified": 1789718069,
+        "narHash": "sha256-zE48CZhoDqITPtHc20MwlTaz0cBAEgPcZ5vOcKYshyg=",
         "owner": "niri-wm",
         "repo": "niri",
-        "rev": "818678e81e5d6332e9416c21fdf36c24175f3b87",
+        "rev": "ee8a04bbaa9a20c53b9544cdd098ff54d8c509b4",
         "type": "github"
       },
       "original": {
@@ -1919,11 +1919,11 @@
         "systems": "systems_11"
       },
       "locked": {
-        "lastModified": 1789599170,
-        "narHash": "sha256-RXaznA2wFWy6JDoo/2LgI34MwKv9VTyW05Kz8T5DwZ8=",
+        "lastModified": 1789674879,
+        "narHash": "sha256-ahXMvwB8x1wXmQEzHtNBBYcSs8ntBfOEXmySgKjTPck=",
         "owner": "1Password",
         "repo": "shell-plugins",
-        "rev": "715288a1720450a735a98f2b22e14c9c5e9f781e",
+        "rev": "b619bb51b8cbfd93e66c0b33fe39ac16df7cfb93",
         "type": "github"
       },
       "original": {
