@@ -6,10 +6,10 @@ SYSTEMS=$(find systems -name "default.nix")
 mkdir systems-by-name
 
 for system in $SYSTEMS; do
-  dir="$(dirname "$system")"
-  base="$(basename "$dir")"
-  echo "$base $dir"
+	dir="$(dirname "$system")"
+	base="$(basename "$dir")"
+	echo "$base $dir"
 
-  ln -snf "../$dir" "systems-by-name/$base"
+	ln -snf "../$dir" "systems-by-name/$base"
 
 done
