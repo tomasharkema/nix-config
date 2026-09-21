@@ -35,6 +35,11 @@ in {
       #   enable = true;
       # };
 
+      udp514-journal = {
+        enable = true;
+        openFirewall = true;
+      };
+
       fail2ban = lib.mkIf false {
         enable = true;
 
