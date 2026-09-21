@@ -46,8 +46,6 @@
         ccid
         gnupg
         # davinci-resolve
-        keybase-gui
-        # calibre
         # glxinfo
         inxi
         pwvucontrol

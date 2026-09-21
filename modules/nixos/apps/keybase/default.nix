@@ -102,9 +102,9 @@ in {
         ];
       };
     };
-    environment.systemPackages = with pkgs; (
-      lib.optional (config.gui.enable && pkgs.system == "x86_64-linux") keybase-gui
-    );
+    # environment.systemPackages = with pkgs; (
+    #   lib.optional (config.gui.enable && pkgs.system == "x86_64-linux") keybase-gui
+    # );
     # ++ [keybase kbfs];
   };
 }
