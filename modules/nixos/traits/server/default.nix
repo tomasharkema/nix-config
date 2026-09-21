@@ -26,13 +26,16 @@ in {
         host = "0.0.0.0";
         port = 3333;
         user = "tomas";
+        withoutConnectionToken = true;
+        serverDataDir = "/var/lib/openvscode-server/server";
+        userDataDir = "/var/lib/openvscode-server/user";
       };
 
       # vscode-server = {
       #   enable = true;
       # };
 
-      fail2ban = {
+      fail2ban = lib.mkIf false {
         enable = true;
 
         maxretry = 10;
@@ -46,14 +49,14 @@ in {
         bantime-increment = {
           enable = true; # Enable increment of bantime after each violation
           formula = "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)";
-          #multipliers = "1 2 4 8 16 32 64";
+          multipliers = "1 2 4 8 16 32 64";
           maxtime = "168h"; # Do not ban for more than 1 week
           overalljails = true; # Calculate the bantime based on all the violations
         };
       };
     };
 
-    environment.etc = {
+    environment.etc = lib.mkIf false {
       "fail2ban/action.d/ntfy.local".text = pkgs.lib.mkDefault (pkgs.lib.mkAfter ''
         [Definition]
         norestored = true # Needed to avoid receiving a new notification after every restart
