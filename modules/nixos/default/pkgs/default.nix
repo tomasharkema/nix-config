@@ -27,7 +27,7 @@ in {
         bat-extras.batpipe
         bat-extras.batwatch
         batmon
-        # binwalk
+        binwalk
         bmc-tools
         bmon
         bridge-utils
@@ -69,6 +69,7 @@ in {
         custom.ssh-proxy-agent
         custom.sshm
         custom.ssm
+        custom.strace-tui
         custom.tailscale-tui
         custom.zide
         # rmfuse

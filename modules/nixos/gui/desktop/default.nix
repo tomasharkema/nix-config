@@ -126,6 +126,10 @@ in {
         };
       };
 
+      nmtrust = {
+        enable = true;
+      };
+
       dbus = {
         enable = true;
         packages = with pkgs; [
