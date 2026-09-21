@@ -11,7 +11,7 @@ in {
     enableMouse = lib.mkEnableOption "enable mouse";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     assertions = [
       {
         assertion = config.services.kmscon.enable;

@@ -33,7 +33,6 @@
     antares
     arduino-ide
     bazaar
-    beekeeper-studio
     bitwarden-cli
     bitwarden-desktop
     bitwarden-menu

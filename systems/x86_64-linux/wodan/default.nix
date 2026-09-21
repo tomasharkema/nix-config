@@ -17,6 +17,7 @@
       systemPackages = with pkgs; [
         snmpcheck
         davinci-resolve
+        kdePackages.kdenlive
         impala
         mesa-demos
         # apfsprogs
@@ -293,9 +294,9 @@
 
       tmp = {useTmpfs = true;};
 
-      initrd = {
-        network.enable = true;
-      };
+      # initrd = {
+      #   network.enable = true;
+      # };
 
       supportedFilesystems = [
         "xfs"
