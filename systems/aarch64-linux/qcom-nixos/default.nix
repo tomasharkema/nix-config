@@ -5,7 +5,7 @@
   ...
 }: {
   config = {
-    nixpkgs.hostPlatform = "aarch64-linux";
+    # nixpkgs.hostPlatform = "aarch64-linux";
 
     nixpkgs.overlays = lib.mkIf false [
       (self: super: {
@@ -234,7 +234,7 @@
       videoDrivers = [
         "modesetting"
         "fbdev"
-        "displaylink"
+        # "displaylink"
       ];
     };
 

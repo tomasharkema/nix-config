@@ -15,6 +15,7 @@
   libayatana-appindicator,
   lib,
 }:
+# bwrap!!
 stdenv.mkDerivation (
   finalAttrs: {
     pname = "wifiman-desktop";

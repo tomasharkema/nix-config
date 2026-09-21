@@ -12,7 +12,7 @@ requires-python = ">=3.10"
 
 # license = { file = "LICENSE.txt" }
 dependencies = [
-  "pygame >= 2.6.1",
+  "pygame >= 2.5.8",
   "python-vlc >= 3.0.21203",
   "requests >= 2.32.5",
 ]

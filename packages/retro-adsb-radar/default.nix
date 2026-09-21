@@ -14,11 +14,13 @@ python3.pkgs.buildPythonApplication rec {
   src = fetchFromGitHub {
     owner = "nicespoon";
     repo = "retro-adsb-radar";
-    rev = "840f1e9e8aefb632cbf17edc2a666403b3a3a602";
-    hash = "sha256-S/0ssh9v0nSUW+UaIpIF8AQF5hKG7BevOk+BJIaPhtI=";
+    rev = "31e70a08d3ed2cd391c542769bb2a52e60b888a8";
+    hash = "sha256-r2M7PzX8tzzl5ZuCm89Ev0pyVwCVQwyIiJUh+4OiCW4=";
   };
 
-  patches = [./fonts.patch];
+  # patches = [
+  #   ./fonts.patch
+  # ];
 
   desktopItems = [
     (makeDesktopItem {

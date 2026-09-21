@@ -113,8 +113,6 @@ in {
 
     # sdImage.compressImage = false;
 
-    # gui."media-center".enable = true;
-
     # services = {
     #   openssh.enable = true;
     #   avahi = {

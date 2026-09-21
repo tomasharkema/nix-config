@@ -6,12 +6,6 @@
   ...
 }: {
   config = {
-    # nixpkgs.hostPlatform = {
-    #   gcc.arch = "skylake";
-    #   gcc.tune = "skylake";
-    #   system = "x86_64-linux";
-    # };
-
     age = {
       rekey = {
         hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMESuHxB6/b4HP0S/Ad76XIR5s473hvPXFN8uzjhFZBp root@voltron";
@@ -20,6 +14,17 @@
 
     # system.build = {
     #   i915-sriov = inputs.nur-xddxdd.packages."${pkgs.stdenv.hostPlatform.system}".i915-sriov.override {kernel = config.boot.kernelPackages.kernel;};
+    # };
+
+    nix.settings.system-features = [
+      "gccarch-skylake"
+      "gccarch-haswell"
+    ];
+
+    # nixpkgs.hostPlatform = {
+    #   gcc.arch = "skylake";
+    #   gcc.tune = "skylake";
+    #   system = "x86_64-linux";
     # };
 
     environment.systemPackages = with pkgs; [
