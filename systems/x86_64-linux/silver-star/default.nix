@@ -17,7 +17,7 @@
         tsnsrv.rekeyFile = ../../../modules/nixos/secrets/tsnsrv.age;
         cloudflared.rekeyFile = ./cloudflared.age;
         grafana-ntfy.rekeyFile = ./grafana-ntfy.age;
-        "healthchecks" = lib.mkIf false {
+        "healthchecks" = {
           rekeyFile = ./healthchecks.age;
           group = "healthchecks";
           owner = "healthchecks";
@@ -213,55 +213,6 @@
         openFirewall = true;
       };
 
-      syslog-ng = lib.mkIf false {
-        enable = true;
-        extraConfig = ''
-          options {
-             keep-hostname(yes);
-             use-dns(no);
-             create-dirs(yes);
-          };
-
-          source s_udp_514 {
-            network(transport("udp") port(514));
-          };
-
-          source s_tcp_514 {
-            network(transport("tcp") port(514));
-          };
-
-          source netconsole-udp {
-            network(transport("udp") port(6666));
-          };
-
-          destination netconsole {
-            file("/var/log/syslog/$HOST-netconsole.log");
-          };
-
-          destination syslog-log {
-            file("/var/log/syslog/$HOST.log");
-          };
-
-
-          log {
-            source(netconsole-udp);
-            destination(netconsole);
-          };
-
-          log {
-            source(s_udp_514);
-
-            destination(syslog-log);
-          };
-
-          log {
-            source(s_tcp_514);
-
-            destination(syslog-log);
-          };
-        '';
-      };
-
       # rsyslogd = {
       #   enable = true;
       #   extraConfig = ''
@@ -312,25 +263,27 @@
         };
       };
 
-      # healthchecks = {
-      #   enable = true;
-      #   listenAddress = "0.0.0.0";
+      portainer.enable = true;
 
-      #   # notificationSender = "tomas+hydra@harkema.io";
-      #   # useSubstitutes = true;
-      #   # smtpHost = "smtp-relay.gmail.com";
+      healthchecks = {
+        enable = true;
+        listenAddress = "0.0.0.0";
 
-      #   settings = {
-      #     SECRET_KEY_FILE = config.age.secrets.healthchecks.path;
+        # notificationSender = "tomas+hydra@harkema.io";
+        # useSubstitutes = true;
+        # smtpHost = "smtp-relay.gmail.com";
 
-      #     EMAIL_HOST = "localhost";
-      #     EMAIL_PORT = "8025";
-      #     EMAIL_HOST_USER = "tomas@harkema.io";
-      #     # # EMAIL_HOST_PASSWORD=mypassword
-      #     EMAIL_USE_SSL = "False";
-      #     EMAIL_USE_TLS = "False";
-      #   };
-      # };
+        settings = {
+          SECRET_KEY_FILE = config.age.secrets.healthchecks.path;
+
+          EMAIL_HOST = "localhost";
+          EMAIL_PORT = "8025";
+          EMAIL_HOST_USER = "tomas@harkema.io";
+          # # EMAIL_HOST_PASSWORD=mypassword
+          EMAIL_USE_SSL = "False";
+          EMAIL_USE_TLS = "False";
+        };
+      };
 
       forgejo = lib.mkIf false {
         enable = true;
