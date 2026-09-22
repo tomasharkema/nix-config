@@ -113,7 +113,7 @@ with pkgs; {
         ssh-to-age
         starship
         tldr
-        tmate
+        # tmate
         tre
         unrar
         unzip
