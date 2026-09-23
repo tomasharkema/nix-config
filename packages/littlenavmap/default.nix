@@ -1,7 +1,6 @@
 {
   lib,
   stdenv,
-  callPackage,
   fetchFromGitHub,
   libsForQt5,
   pkg-config,

@@ -80,7 +80,6 @@ in {
 
       casks = [
         # keep-sorted start
-
         "audacity"
         "brave-browser"
         "charles"
@@ -122,6 +121,7 @@ in {
         # "monodraw"
         # "raycast"
         "utm"
+        "vorssaint"
         "wezterm"
         "windows-app"
         # keep-sorted end
