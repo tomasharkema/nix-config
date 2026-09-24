@@ -45,7 +45,7 @@
     };
 
     nix.settings = {
-      auto-optimise-store = true;
+      # auto-optimise-store = true;
 
       extra-sandbox-paths = [config.programs.ccache.cacheDir];
 

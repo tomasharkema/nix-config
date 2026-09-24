@@ -154,7 +154,7 @@ in {
         warn-dirty = false;
         log-lines = 50;
         sandbox = true;
-        auto-optimise-store = true;
+        # auto-optimise-store = true;
         trusted-users =
           users
           ++ [

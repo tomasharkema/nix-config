@@ -18,7 +18,9 @@
           # fallbackToPassword = true;
           # keyFile = "/key/key";
         };
-
+        mountOptions = [
+          "noatime"
+        ];
         # keyFile = "/key/hdd.key";
 
         # additionalKeyFiles = ["/key/key"];
@@ -37,7 +39,7 @@
           # Subvolume name is different from mountpoint
           "/rootfs" = {
             mountpoint = "/";
-            mountOptions = [];
+            mountOptions = ["noatime"];
           };
           "home" = lib.mkForce {
             mountOptions = ["noatime" "discard=async"] ++ lib.optional (!config.traits.low-power.enable) "compress=zstd";
@@ -84,7 +86,7 @@
             mountpoint = "/var/log";
           };
         };
-
+        mountOptions = ["noatime"];
         mountpoint = "/partition-root";
       };
     };
@@ -96,7 +98,7 @@
       type = "btrfs";
       extraArgs = ["-f"];
       subvolumes = {};
-
+      mountOptions = ["noatime"];
       mountpoint = "/partition-root-2";
     };
   };
