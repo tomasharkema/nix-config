@@ -18,6 +18,11 @@ in {
 
         autoStart = true;
 
+        ports = [
+          "9443:9443"
+          "8000:8000"
+        ];
+
         volumes = [
           "/var/lib/portainer:/data"
           "/var/run/docker.sock:/var/run/docker.sock"

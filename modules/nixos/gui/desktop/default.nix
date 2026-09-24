@@ -72,6 +72,9 @@ in {
       #   enable = true;
       #   packages = [pkgs.tiscamera];
       # };
+
+      nohang.enable = true;
+
       gnome = {
         # gnome-keyring.enable = false; # true;
         gnome-online-accounts.enable = true;
