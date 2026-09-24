@@ -19,19 +19,20 @@
   copyDesktopItems,
   libsoup_3,
   webkitgtk_6_0,
+  nix-update-script,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "rust-conn";
-  version = "0.21.4";
+  version = "0.22.4";
 
   src = fetchFromGitHub {
     owner = "totoshko88";
     repo = "RustConn";
     rev = "v${version}";
-    sha256 = "sha256-EXSRzSzI8MLmvdQqd8penNehW1mu6zeRcmKYEMXXpGA=";
+    sha256 = "sha256-uRlhmPhFnUQF2U0KsVGI54ASLmQJLsMICp1FL5o43ng=";
   };
 
-  cargoHash = "sha256-LTeXBfND7P6yQ8G33axwKw7Ch8OEzc7f/8aTbLd+47U=";
+  cargoHash = "sha256-NlamZt7uJBsVqgDv9FxG+ruZCmfaMDvy3ETbERmIMCA=";
   doCheck = false;
 
   nativeBuildInputs = [
@@ -72,6 +73,8 @@ rustPlatform.buildRustPackage rec {
     '';
 
   # doCheck = false;
+
+  passthru.updateScript = nix-update-script {};
 
   meta = {
     description = "Modern connection manager — SSH, RDP, VNC, SPICE, and more ";
