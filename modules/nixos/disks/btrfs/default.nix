@@ -18,9 +18,7 @@
           # fallbackToPassword = true;
           # keyFile = "/key/key";
         };
-        mountOptions = [
-          "noatime"
-        ];
+
         # keyFile = "/key/hdd.key";
 
         # additionalKeyFiles = ["/key/key"];
