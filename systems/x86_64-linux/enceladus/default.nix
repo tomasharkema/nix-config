@@ -75,14 +75,14 @@
       tsnsrv = {
         enable = true;
         defaults.authKeyPath = config.age.secrets.tsnsrv.path;
-        services = {
-          adsb = {
-            toURL = "http://127.0.0.1:8080";
-            upstreamHeaders = {
-              Host = "adsb.ling-lizard.ts.net";
-            };
-          };
-        };
+        # services = {
+        #   adsb = {
+        #     toURL = "http://127.0.0.1:8080";
+        #     upstreamHeaders = {
+        #       Host = "adsb.ling-lizard.ts.net";
+        #     };
+        #   };
+        # };
       };
 
       beesd.filesystems = lib.mkIf false {
@@ -121,7 +121,7 @@
     # wifi.enable = true;
 
     systemd.services = {
-      "docker-compose@adsb".wantedBy = ["multi-user.target"];
+      # "docker-compose@adsb".wantedBy = ["multi-user.target"];
       # "docker-compose@ser2net".wantedBy = ["multi-user.target"];
     };
 
