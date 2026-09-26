@@ -278,7 +278,6 @@
       loader = {
         systemd-boot = {
           enable = true;
-          # configurationLimit = 5;
           netbootxyz.enable = true;
           edk2-uefi-shell.enable = true;
           consoleMode = "max";
