@@ -39,6 +39,8 @@ in {
       };
     };
 
+    apps.netdata.enable = lib.mkForce false;
+
     services = {
       # synergy.server = {
       #   enable = true;
@@ -49,7 +51,7 @@ in {
       #tuned.enable = true;
       thermald.enable = true;
 
-      # netdata.enable = lib.mkForce false;
+      netdata.enable = lib.mkForce false;
       # prometheus.enable = lib.mkForce false;
 
       # xrdp.enable = mkForce false;
