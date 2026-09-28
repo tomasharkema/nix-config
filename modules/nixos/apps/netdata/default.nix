@@ -87,32 +87,30 @@ in {
         recommendedPythonPackages = true;
       };
 
-      configText =
-        if cfgServer.enable
-        then ''
-          [db]
-          mode = dbengine
-          storage tiers = 3
-
-          # Tier 0, per second data. Set to 0 for no limit.
-          dbengine tier 0 retention size = 1GiB
-          dbengine tier 0 retention time = 14d
-          dbengine tier 1 retention size = 1GiB
-          dbengine tier 1 retention time = 3mo
-          dbengine tier 2 retention size = 1GiB
-          dbengine tier 2 retention time = 2y
-        ''
-        else ''
-          [db]
-          mode = ram
-        '';
-
       config = {
         global = {
           "debug log" = "none";
           "access log" = "none";
           "error log" = "syslog";
         };
+
+        db =
+          if cfgServer.enable
+          then {
+            mode = "dbengine";
+            "storage tiers" = 3;
+
+            # Tier 0, per second data. Set to 0 for no limit.
+            "dbengine tier 0 retention size" = "1GiB";
+            "dbengine tier 0 retention time" = "14d";
+            "dbengine tier 1 retention size" = "1GiB";
+            "dbengine tier 1 retention time" = "3mo";
+            "dbengine tier 2 retention size" = "1GiB";
+            "dbengine tier 2 retention time" = "2y";
+          }
+          else {
+            mode = "ram";
+          };
 
         health = {
           enabled = "yes";
