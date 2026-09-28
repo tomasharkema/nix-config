@@ -105,31 +105,31 @@ in {
             then "dbengine"
             else "ram";
           "storage tiers" =
-            #lib.mkIf cfgServer.enable
+            lib.mkIf cfgServer.enable
             3;
 
           # Tier 0, per second data. Set to 0 for no limit.
           "dbengine tier 0 retention size" =
-            #lib.mkIf cfgServer.enable
+            lib.mkIf cfgServer.enable
             "1GiB";
           "dbengine tier 0 retention time" =
-            #lib.mkIf cfgServer.enable
+            lib.mkIf cfgServer.enable
             "14d";
 
           # Tier 1, per minute data. Set to 0 for no limit.
           "dbengine tier 1 retention size" =
-            #lib.mkIf cfgServer.enable
+            lib.mkIf cfgServer.enable
             "1GiB";
           "dbengine tier 1 retention time" =
-            #lib.mkIf cfgServer.enable
+            lib.mkIf cfgServer.enable
             "3mo";
 
           # Tier 2, per hour data. Set to 0 for no limit.
           "dbengine tier 2 retention size" =
-            #lib.mkIf cfgServer.enable
+            lib.mkIf cfgServer.enable
             "1GiB";
           "dbengine tier 2 retention time" =
-            #lib.mkIf cfgServer.enable
+            lib.mkIf cfgServer.enable
             "2y";
         };
 
@@ -154,9 +154,11 @@ in {
           # "ssl key" = config.proxy-services.crt.key;
           # "ssl certificate" = config.proxy-services.crt.crt;
           mode =
-            if cfgServer.enable
-            then "static-threaded"
-            else "none";
+            # if cfgServer.enable
+            # then 
+"static-threaded"
+            # else "none"
+;
         };
       };
 
