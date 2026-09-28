@@ -1326,7 +1326,7 @@
         "sysfs_id": "/class/block/zram0",
         "unix_device_names": [
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/9e4e839e-9322-4838-a96d-1963326e17b2",
+          "/dev/disk/by-uuid/efd91951-2a26-4a0a-a80c-116310f056dc",
           "/dev/zram0"
         ],
         "resources": [
@@ -1447,7 +1447,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.2.0-cachyos xhci-hcd",
+          "name": "Linux 7.2.8-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1461,7 +1461,7 @@
           "value": 0
         },
         "serial": "0000:06:00.0",
-        "model": "Linux 7.2.0-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.2.8-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1c.5/0000:06:00.0/usb3/3-0:1.0",
         "sysfs_bus_id": "3-0:1.0",
         "resources": [
@@ -1619,7 +1619,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.2.0-cachyos xhci-hcd",
+          "name": "Linux 7.2.8-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1633,7 +1633,7 @@
           "value": 0
         },
         "serial": "0000:06:00.0",
-        "model": "Linux 7.2.0-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.2.8-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1c.5/0000:06:00.0/usb4/4-0:1.0",
         "sysfs_bus_id": "4-0:1.0",
         "detail": {
@@ -1696,7 +1696,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.2.0-cachyos xhci-hcd",
+          "name": "Linux 7.2.8-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1710,7 +1710,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 7.2.0-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.2.8-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -1868,7 +1868,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.2.0-cachyos xhci-hcd",
+          "name": "Linux 7.2.8-cachyos xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1882,7 +1882,7 @@
           "value": 0
         },
         "serial": "0000:00:14.0",
-        "model": "Linux 7.2.0-cachyos xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.2.8-cachyos xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -2848,7 +2848,7 @@
     ],
     "network_interface": [
       {
-        "index": 67,
+        "index": 68,
         "attached_to": 24,
         "class_list": [
           "network_interface"
@@ -2889,7 +2889,7 @@
         ]
       },
       {
-        "index": 68,
+        "index": 69,
         "attached_to": 0,
         "class_list": [
           "network_interface"
