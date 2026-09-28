@@ -141,7 +141,7 @@ in rec {
   #   enableCudnn = true;
   # };
 
-  sdrangel = checkUpdatedUpsteam prev.sdrangel "7.27.1" prev.sdrangel.overrideAttrs ({
+  sdrangel = checkUpdatedUpsteam prev.sdrangel "7.27.2" prev.sdrangel.overrideAttrs ({
     buildInputs,
     cmakeFlags,
     NIX_CFLAGS_COMPILE ? "",
