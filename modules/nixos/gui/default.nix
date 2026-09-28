@@ -60,23 +60,23 @@ in {
         ];
         cups-pdf.enable = true;
       };
-      stirling-pdf.enable = true;
+      # stirling-pdf.enable = true;
 
       playerctld.enable = true;
 
       displayManager.defaultSession = "niri";
 
-      g810-led = {
-        enable = true;
-        profile = ''
-          # G810-LED Profile (turn all keys on)
+      # g810-led = {
+      #   enable = true;
+      #   profile = ''
+      #     # G810-LED Profile (turn all keys on)
 
-          # Set all keys on
-          a ffffff
+      #     # Set all keys on
+      #     a ffffff
 
-          c
-        '';
-      };
+      #     c
+      #   '';
+      # };
       # automatic-timezoned.enable = true;
       udev = {
         packages = with pkgs; [
