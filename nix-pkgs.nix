@@ -16,6 +16,7 @@
         alejandra
         autoflake
         bc
+        bettercap
         cachix
         calc
         caligula
