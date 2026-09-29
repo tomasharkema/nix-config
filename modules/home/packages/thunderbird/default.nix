@@ -1,14 +1,17 @@
-{...}: {
-  # config = {
-  #   programs.thunderbird = {
-  #     enable = true;
+{
+  lib,
+  config,
+  ...
+}: {
+  config = {
+    programs.thunderbird = {
+      enable = true;
 
-  #     profiles = {
-  #       "tomas" = {
-  #         isDefault = true;
-  #         name = "Tomas Harkema";
-  #       };
-  #     };
-  #   };
-  # };
+      profiles = {
+        "Tomas Harkema" = {
+          isDefault = true;
+        };
+      };
+    };
+  };
 }
