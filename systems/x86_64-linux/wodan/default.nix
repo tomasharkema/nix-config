@@ -306,6 +306,10 @@
         "btrfs"
       ];
 
+      lanzaboote.extraEfiSysMountPoints = [
+        config.disko.devices.disk.second.content.partitions.ESP.content.mountpoint
+      ];
+
       loader.systemd-boot.memtest86.enable = true;
 
       recovery = {
