@@ -23,16 +23,16 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "rust-conn";
-  version = "0.22.4";
+  version = "0.22.14";
 
   src = fetchFromGitHub {
     owner = "totoshko88";
     repo = "RustConn";
     rev = "v${version}";
-    sha256 = "sha256-uRlhmPhFnUQF2U0KsVGI54ASLmQJLsMICp1FL5o43ng=";
+    sha256 = "sha256-xXf0Ypq9ETHgW7kB7mUKGtViL+H1DAQi3o3R91oMra8=";
   };
 
-  cargoHash = "sha256-NlamZt7uJBsVqgDv9FxG+ruZCmfaMDvy3ETbERmIMCA=";
+  cargoHash = "sha256-ily4lv3wvQmxtWlnKDQGHKWIV/N7gKxGQcHVE2Qaa1Q=";
   doCheck = false;
 
   nativeBuildInputs = [
@@ -68,11 +68,7 @@ rustPlatform.buildRustPackage rec {
       install -D rustconn/assets/io.github.totoshko88.RustConn.metainfo.xml $out/share/metainfo/io.github.totoshko88.RustConn.metainfo.xml
       install -D rustconn/assets/io.github.totoshko88.RustConn.desktop $out/share/applications/io.github.totoshko88.RustConn.desktop
     ''
-    else ''
-
-    '';
-
-  # doCheck = false;
+    else "";
 
   passthru.updateScript = nix-update-script {};
 
