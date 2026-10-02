@@ -39,7 +39,7 @@ in {
       qradiolink
       sdr-j-fm
       sdrangel
-      sdrplay
+      # sdrplay
       sdrpp
       soapyhackrf
       soapysdr-with-plugins

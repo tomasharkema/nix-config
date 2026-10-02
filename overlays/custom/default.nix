@@ -141,6 +141,21 @@ in rec {
   #   enableCudnn = true;
   # };
 
+  soapysdr-hackrf = with prev;
+    prev.soapysdr.override {
+      extraPackages = [
+        limesuite
+        soapyairspy
+        soapyaudio
+        soapybladerf
+        soapyhackrf
+        soapyplutosdr
+        soapyremote
+        soapyrtlsdr
+      ];
+      # usePython = true;
+    };
+
   sdrangel = checkUpdatedUpsteam prev.sdrangel "7.27.2" prev.sdrangel.overrideAttrs ({
     buildInputs,
     cmakeFlags,
@@ -164,7 +179,8 @@ in rec {
         prev.hamlib
         prev.custom.ggmorse
         prev.custom.inmarsatc
-        prev.sdrplay
+        # prev.sdrplay
+        prev.soapysdr-hackrf
         prev.rnnoise
       ];
 
