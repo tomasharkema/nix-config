@@ -51,7 +51,7 @@ in {
     # };
 
     environment.systemPackages = with pkgs; [
-      kvmtool
+      # kvmtool
       libvirt
       config.virtualisation.libvirtd.qemu.package
       nemu
@@ -63,12 +63,14 @@ in {
     ];
 
     services = {
-      udev.packages = with pkgs; [virtiofsd];
+      udev.packages = with pkgs; [
+        virtiofsd
+      ];
 
       dbus.packages = with pkgs; [
         virtiofsd
         virt-manager
-        kvmtool
+        # kvmtool
         libvirt
       ];
 
