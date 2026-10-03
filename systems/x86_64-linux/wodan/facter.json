@@ -1326,7 +1326,7 @@
         "sysfs_id": "/class/block/zram0",
         "unix_device_names": [
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/efd91951-2a26-4a0a-a80c-116310f056dc",
+          "/dev/disk/by-uuid/d52f7baf-7df0-461d-b3e7-39a984391ae0",
           "/dev/zram0"
         ],
         "resources": [
@@ -2848,7 +2848,7 @@
     ],
     "network_interface": [
       {
-        "index": 68,
+        "index": 67,
         "attached_to": 24,
         "class_list": [
           "network_interface"
@@ -2889,7 +2889,7 @@
         ]
       },
       {
-        "index": 69,
+        "index": 68,
         "attached_to": 0,
         "class_list": [
           "network_interface"
@@ -2911,7 +2911,7 @@
         ]
       },
       {
-        "index": 72,
+        "index": 71,
         "attached_to": 42,
         "class_list": [
           "network_interface"
@@ -5089,9 +5089,9 @@
       "product": "Z390 GAMING SLI",
       "version": "Default string",
       "wake_up": {
-        "hex": "0006",
-        "name": "Power Switch",
-        "value": 6
+        "hex": "0007",
+        "name": "PCI PME#",
+        "value": 7
       }
     }
   }
