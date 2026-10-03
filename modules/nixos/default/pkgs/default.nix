@@ -15,6 +15,7 @@ in {
     environment.systemPackages =
       (with pkgs; [
         # keep-sorted start
+
         agenix-rekey
         aide
         apt-dater
@@ -83,9 +84,6 @@ in {
         distrobox-tui
         dry
         duc
-        dump1090-fa
-        dumphfdl
-        dumpvdl2
         efibootmgr
         efivar
         ethtool

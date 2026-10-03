@@ -24,9 +24,6 @@
       inteltool
       rtl-sdr
       pps-tools
-      dumpvdl2
-      dump1090-fa
-      dumphfdl
     ];
 
     hardware = {
