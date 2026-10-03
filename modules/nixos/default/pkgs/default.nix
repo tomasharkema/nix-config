@@ -15,7 +15,6 @@ in {
     environment.systemPackages =
       (with pkgs; [
         # keep-sorted start
-
         agenix-rekey
         aide
         apt-dater
@@ -251,7 +250,7 @@ in {
         sysz
         tailspin
         tcpdump
-        tcptrack
+        # tcptrack
         termshark
         testdisk # useful for repairing boot problems
         tio

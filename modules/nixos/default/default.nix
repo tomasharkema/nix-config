@@ -228,6 +228,26 @@ in {
       ];
       homeBinInPath = true;
 
+      systemPackages = (
+        map (x: x.terminfo) (
+          with pkgs.pkgsBuildBuild; [
+            alacritty
+            # contour
+            foot
+            ghostty
+            kitty
+            mtm
+            rio
+            # rxvt-unicode-unwrapped
+            # rxvt-unicode-unwrapped-emoji
+            st
+            tmux
+            wezterm
+            yaft
+          ]
+        )
+      );
+
       pathsToLink = [
         "/share/zsh"
         "/share/xdg-desktop-portal"
@@ -239,7 +259,7 @@ in {
 
       variables.NH_FLAKE = "/home/tomas/Developer/nix-config";
 
-      enableAllTerminfo = true;
+      # enableAllTerminfo = true;
     };
 
     apps = {
