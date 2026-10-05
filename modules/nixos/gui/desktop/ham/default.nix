@@ -42,7 +42,7 @@ in {
       sdrangel
       # sdrplay
       sdrpp
-      soapysdr-hackrf
+      soapysdr-with-plugins
       wsjtx
       wsjtz
       # dump1090-fa

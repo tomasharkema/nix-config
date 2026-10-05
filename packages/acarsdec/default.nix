@@ -6,9 +6,9 @@
   nix-update-script,
   pkg-config,
   cjson,
-  soapysdr-hackrf,
+  soapysdr-with-plugins,
   libacars,
-  # sdrplay,
+  sdrplay,
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "acarsdec";
@@ -30,9 +30,9 @@ stdenv.mkDerivation (finalAttrs: {
 
   buildInputs = [
     cjson
-    soapysdr-hackrf
+    soapysdr-with-plugins
     libacars
-    # sdrplay
+    sdrplay
   ];
 
   passthru.updateScript = nix-update-script {};
