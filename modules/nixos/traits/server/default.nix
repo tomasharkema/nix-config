@@ -15,6 +15,8 @@ in {
   config = lib.mkIf cfg.enable {
     system.nixos.tags = ["server"];
 
+    systemd.services."prepare-kexec".wantedBy = ["multi-user.target"];
+
     services = {
       hypervisor = {
         enable = true;
