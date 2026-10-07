@@ -16,6 +16,7 @@
         # enable = false;
         icon.enable = false;
       };
+      lazygit.enable = false;
     };
     # gtk.catppuccin.enable = false;
 
