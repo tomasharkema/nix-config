@@ -231,7 +231,7 @@ in {
           p:
             with p; [
               ret-sync
-              gnudisassembler
+              # gnudisassembler
               machinelearning
               findcrypt
               ghidra-delinker-extension

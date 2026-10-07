@@ -23,17 +23,17 @@ in {
       # keep-sorted start
 
       # cubicsdr
-      gnuradio
+      # gnuradio
       gqrx
       inspectrum
-      qradiolink
+      # qradiolink
       sdr-j-fm
       sdrangel
       # sdrplay
       sdrpp
-      soapysdr-with-plugins
-      wsjtx
-      wsjtz
+      # soapysdr-with-plugins
+      # wsjtx
+      # wsjtz
       # dump1090-fa
       # dumphfdl
       # dumpvdl2

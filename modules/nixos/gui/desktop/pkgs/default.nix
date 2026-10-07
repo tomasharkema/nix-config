@@ -44,7 +44,7 @@
     brave-search-cli
     buttermanager
     cameractrls
-    celestia
+    # celestia
     chromium
     clipqr
     clutter
