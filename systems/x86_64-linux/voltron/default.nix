@@ -65,23 +65,24 @@
     hardware = {
       # mcelog.enable = true;
 
-      nvidia = {
-        # forceFullCompositionPipeline = true;
-        modesetting.enable = true;
-        prime = {
-          sync.enable = true;
-          # reverseSync.enable = true;
-          # offload.enable = true;
-          # offload.enableOffloadCmd = true;
-          intelBusId = "PCI:0:2:0";
-          nvidiaBusId = "PCI:02:0:0";
-        };
+      # nvidia = {
+      #   # forceFullCompositionPipeline = true;
+      #   modesetting.enable = true;
+      #   prime = {
+      #     sync.enable = true;
+      #     # reverseSync.enable = true;
+      #     # offload.enable = true;
+      #     # offload.enableOffloadCmd = true;
+      #     intelBusId = "PCI:0:2:0";
+      #     nvidiaBusId = "PCI:02:0:0";
+      #   };
 
-        powerManagement = {
-          enable = true;
-        };
-      };
+      #   powerManagement = {
+      #     enable = true;
+      #   };
+      # };
     };
+
     apps = {
       steam.enable = true;
       # opensnitch.enable = true;
@@ -105,7 +106,7 @@
         laptop.thinkpad.enable = true;
         intel.enable = true;
         nvidia = {
-          enable = true;
+          enable = false;
           open = false;
         };
         sgx.enable = true;
@@ -117,28 +118,12 @@
 
     networking = {
       hostName = "voltron";
-      firewall.enable = lib.mkForce false;
+      firewall.enable = true;
 
-      wireless = {
-        # enable = true;
-        enable = false; # true;
-        iwd = {
-          enable = true;
-          settings = {
-            Settings = {
-              AutoConnect = true;
-              AlwaysRandomizeAddress = true;
-            };
-          };
-        };
-      };
+      wireless.enable = true;
 
       networkmanager = {
         enable = true;
-
-        wifi = {
-          backend = "iwd";
-        };
       };
     };
 
@@ -198,9 +183,8 @@
             CharMap=hd44780_default
           '';
         };
+        bolt.enable = true;
       };
-
-      hardware.bolt.enable = true;
 
       beesd.filesystems = lib.mkIf false {
         root = {
@@ -211,13 +195,6 @@
             "--loadavg-target"
             "2.0"
           ];
-        };
-      };
-
-      fprintd = {
-        enable = true;
-        package = pkgs.fprintd.override {
-          libfprint = pkgs.libfprint-lenovo;
         };
       };
 
@@ -257,12 +234,12 @@
       };
 
       kernelParams = [
-        "i915.enable_gvt=1"
-        "i915.enable_fbc=0"
-        "ibt=off"
-        "intel_iommu=on"
+        # "i915.enable_gvt=1"
+        # "i915.enable_fbc=0"
+        # "ibt=off"
+        # "intel_iommu=on"
         "iommu=pt"
-        "iommu.passthrough=1"
+        # "iommu.passthrough=1"
         "mitigations=off"
       ];
 

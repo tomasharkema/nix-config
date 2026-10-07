@@ -52,6 +52,10 @@ in {
         package = pkgs.nixVersions.latest;
         enable = true;
 
+        extraOptions = ''
+          secret-key-files = ${config.age.secrets."nix-sign-private".path}
+        '';
+
         # nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
         linux-builder = {
