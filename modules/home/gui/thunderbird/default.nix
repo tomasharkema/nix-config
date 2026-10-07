@@ -1,9 +1,13 @@
 {
   lib,
   config,
+  osConfig,
+  pkgs,
   ...
-}: {
-  config = {
+}: let
+  enabled = osConfig.gui.enable && pkgs.stdenv.hostPlatform.isLinux;
+in {
+  config = lib.mkIf enabled {
     programs.thunderbird = {
       enable = true;
 

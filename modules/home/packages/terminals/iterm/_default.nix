@@ -4,14 +4,6 @@
   pkgs,
   ...
 }: let
-  inherit (pkgs.stdenvNoCC) isDarwin;
-  inherit
-    (lib)
-    types
-    mkIf
-    mkEnableOption
-    mkOption
-    ;
   shellInit = shell:
     "source "
     + cfg.package
@@ -20,11 +12,11 @@
   cfg = config.programs.iterm2;
 in {
   options.programs.iterm2 = {
-    enable = mkEnableOption "Enable the iTerm2 terminal emulator (system-wide).";
-    package = mkOption {
-      type = types.package;
+    enable = lib.mkEnableOption "Enable the iTerm2 terminal emulator (system-wide).";
+    package = lib.mkOption {
+      type = lib.types.package;
       default =
-        if isDarwin
+        if pkgs.stdenv.hostPlatform.isDarwin
         then pkgs.iterm2
         else
           pkgs.iterm2.overrideAttrs (o: {
@@ -38,27 +30,27 @@ in {
           });
       description = "The iTerm2 package to use.";
     };
-    enableBashIntegration = mkOption {
-      type = types.bool;
+    enableBashIntegration = lib.mkOption {
+      type = lib.types.bool;
       default = config.programs.bash.enable;
       description = "Enable iTerm2 bash integration.";
     };
-    enableZshIntegration = mkOption {
-      type = types.bool;
+    enableZshIntegration = lib.mkOption {
+      type = lib.types.bool;
       default = config.programs.zsh.enable;
       description = "Enable iTerm2 zsh integration.";
     };
-    enableFishIntegration = mkOption {
-      type = types.bool;
+    enableFishIntegration = lib.mkOption {
+      type = lib.types.bool;
       default = config.programs.fish.enable;
       description = "Enable iTerm2 fish integration.";
     };
   };
-  config = mkIf false {
-    home.packages = mkIf cfg.enable [cfg.package];
-    programs.bash.initExtra = mkIf cfg.enableBashIntegration (shellInit "bash");
-    programs.zsh.initExtraFirst = mkIf cfg.enableZshIntegration (shellInit "zsh");
-    programs.fish.shellInit = mkIf cfg.enableFishIntegration (shellInit "fish");
+  config = lib.mkIf false {
+    home.packages = lib.mkIf cfg.enable [cfg.package];
+    programs.bash.initExtra = lib.mkIf cfg.enableBashIntegration (shellInit "bash");
+    programs.zsh.initExtraFirst = lib.mkIf cfg.enableZshIntegration (shellInit "zsh");
+    programs.fish.shellInit = lib.mkIf cfg.enableFishIntegration (shellInit "fish");
   };
 }
 # {...}: {}

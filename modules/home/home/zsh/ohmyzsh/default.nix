@@ -82,7 +82,7 @@
           # "you-should-use"
           # keep-sorted end
         ]
-        ++ (lib.optionals pkgs.stdenv.isDarwin [
+        ++ (lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
           # keep-sorted start
           "brew"
           "dash"
@@ -91,7 +91,7 @@
           "xcode"
           # keep-sorted end
         ])
-        ++ (lib.optionals pkgs.stdenv.isLinux [
+        ++ (lib.optionals pkgs.stdenv.hostPlatform.isLinux [
           # keep-sorted start
           "docker"
           "firewalld"

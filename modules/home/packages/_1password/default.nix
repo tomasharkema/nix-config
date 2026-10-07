@@ -6,8 +6,8 @@
   ...
 }: let
   enableGui =
-    pkgs.stdenv.isDarwin
-    || (pkgs.stdenv.isLinux
+    pkgs.stdenv.hostPlatform.isDarwin
+    || (pkgs.stdenv.hostPlatform.isLinux
       && osConfig.gui.desktop.enable);
 in {
   config = lib.mkIf enableGui {

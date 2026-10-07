@@ -19,7 +19,7 @@
     };
     # gtk.catppuccin.enable = false;
 
-    home.pointerCursor = lib.mkIf pkgs.stdenv.isDarwin (lib.mkForce {
+    home.pointerCursor = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin (lib.mkForce {
       enable = false;
     });
 

@@ -8,11 +8,13 @@
   machines = inputs.self.machines.excludingSelf osConfig;
 
   writeINI = p: lib.generators.toINI {} p;
+
+  enabled = osConfig.gui.enable && pkgs.stdenv.hostPlatform.isLinux;
 in {
-  config = lib.mkIf pkgs.stdenv.isLinux {
+  config = lib.mkIf enabled {
     services.remmina = {
       enable = true;
-      # systemdService.enable = true;
+      systemdService.enable = true;
     };
 
     home.file = builtins.listToAttrs (map (machine: {

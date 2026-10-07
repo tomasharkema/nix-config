@@ -142,7 +142,7 @@
 
           hwp = ''xdg-open "$(sudo hw-probe -all -upload | ./result/bin/sgrep url | fzf)"'';
 
-          # subl = (lib.mkIf pkgs.stdenv.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
+          # subl = (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin) "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl";
         };
 
         plugins = with pkgs; let
