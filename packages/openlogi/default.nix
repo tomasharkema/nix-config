@@ -9,12 +9,13 @@
   vulkan-loader,
   stdenv,
   wayland,
-  xorg,
   nix-update-script,
+  libx11,
+  libxcb,
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
-  pname = "open-logi";
-  version = "0.6.16";
+  pname = "openlogi";
+  version = "0.8.11";
   __structuredAttrs = true;
 
   crateName = "openlogi-gui";
@@ -23,10 +24,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     owner = "AprilNEA";
     repo = "OpenLogi";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-lbV7F6LnaLvIS5IdGIcqrZTlCQ8WHtYJGmh6rZmFngs=";
+    sha256 = "sha256-zoG0a28Z+bxAipK/auAEmGWje8Zwbryyy3lSj6agNiQ=";
   };
 
-  cargoHash = "sha256-SoOWFEGXJO6n5HsUjP5hzCdQ+GZVSUU7czYsNuPBAIM=";
+  cargoHash = "sha256-AsT6t1FuwdkBC/CIXkXrZnwbZuXp7RjUXI9XpeT2YPE=";
 
   nativeBuildInputs = [
     pkg-config
@@ -42,8 +43,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
     ]
     ++ lib.optionals stdenv.isLinux [
       wayland
-      xorg.libX11
-      xorg.libxcb
+      libx11
+      libxcb
     ];
 
   passthru.updateScript = nix-update-script {};
