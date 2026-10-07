@@ -102,6 +102,7 @@ in {
         "itermbrowserplugin"
         "jetbrains-toolbox"
         "kdenlive"
+        "openlogi"
         "proxyman"
         "rectangle"
         "remanager"
