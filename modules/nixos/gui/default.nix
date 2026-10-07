@@ -129,7 +129,7 @@ in {
     programs = {
       gphoto2.enable = true;
       # nm-applet.enable = true;
-      solaar.enable = true;
+      # solaar.enable = true;
       openlogi.enable = true;
     };
 

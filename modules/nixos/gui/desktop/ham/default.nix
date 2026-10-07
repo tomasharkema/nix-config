@@ -22,6 +22,8 @@ in {
     environment.systemPackages = with pkgs; [
       # keep-sorted start
 
+      # soapysdr-with-plugins
+
       # cubicsdr
       # gnuradio
       gqrx
@@ -31,16 +33,11 @@ in {
       sdrangel
       # sdrplay
       sdrpp
-      # soapysdr-with-plugins
-      # wsjtx
+      wsjtx
       # wsjtz
       # dump1090-fa
-      # dumphfdl
       # dumpvdl2
-      # dumpvdl2
-      # dump1090-fa
       # dumphfdl
-
       # keep-sorted end
     ];
   };

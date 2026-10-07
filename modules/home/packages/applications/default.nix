@@ -45,8 +45,8 @@ in {
         # readOnly = true;
         entries = [
           "${pkgs.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
-          "${osConfig.programs._1password-gui.package}/share/applications/1password.desktop"
-          "${pkgs.solaar}/share/applications/solaar.desktop"
+          "${osConfig.programs._1password-gui.package}/share/applications/com.onepassword.OnePassword.desktop"
+          # "${pkgs.solaar}/share/applications/solaar.desktop"
           "${librepodsDesktopItem}/share/applications/LibrePods.desktop"
         ];
       };

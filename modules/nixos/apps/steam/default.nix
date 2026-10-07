@@ -123,6 +123,7 @@ in {
         winetricks
         protontricks
         heroic
+        cabextract
         cartridges
         steamcmd
         steam-run
