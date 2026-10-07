@@ -32,20 +32,19 @@
     angryipscanner
     antares
     arduino-ide
-    bazaar
+    # bazaar
     bitwarden-cli
     bitwarden-desktop
     bitwarden-menu
-    # bluebubbles
+    bluebubbles
     bluetooth_battery
-    # bottles-removed
     bottles-removed
     boxbuddy
     brave
     brave-search-cli
     buttermanager
     cameractrls
-    # celestia
+    celestia
     chromium
     clipqr
     clutter
@@ -55,7 +54,6 @@
     custom.actioneer
     custom.butler
     custom.denon-control
-    # custom.distrib-dl
     custom.gitpulsar
     custom.gtk-meshtastic-client
     custom.letters

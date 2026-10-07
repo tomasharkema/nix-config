@@ -39,8 +39,8 @@
 
         permittedInsecurePackages = [
           # keep-sorted start
-          "electron-39.8.10"
-          "segger-jlink-qt4-952"
+          # "electron-39.8.10"
+          "segger-jlink-qt4-970"
           # keep-sorted end
         ];
 
