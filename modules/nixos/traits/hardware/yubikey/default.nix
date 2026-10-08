@@ -78,7 +78,7 @@
         enable = true;
         plugins = [
           pkgs.yubikey-personalization
-          # pkgs.ccid
+          pkgs.ccid
         ];
       };
 

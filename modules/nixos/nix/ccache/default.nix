@@ -28,7 +28,7 @@
 
   exportVariables = lib.concatStringsSep "\n" exportVariablesList;
 in {
-  config = {
+  config = lib.mkIf false {
     nixpkgs.overlays = [
       (self: super: {
         ccacheWrapper = super.ccacheWrapper.override {

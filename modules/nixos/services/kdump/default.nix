@@ -46,12 +46,12 @@ in {
 
     environment = {
       systemPackages = with pkgs; [kexec-tools];
-      etc."kdump.conf".text = ''
-        nfs 192.168.1.102:/volume1/tomas/crashdump
-        auto_reset_crashkernel yes
-        core_collector ${pkgs.makedumpfile}/bin/makedumpfile -l --message-level 7 -d 31
-        path ${crashDir}
-      '';
+      # etc."kdump.conf".text = ''
+      #   nfs 192.168.1.102:/volume1/tomas/crashdump
+      #   auto_reset_crashkernel yes
+      #   core_collector ${pkgs.makedumpfile}/bin/makedumpfile -l --message-level 7 -d 31
+      #   path ${crashDir}
+      # '';
     };
     systemd = {
       tmpfiles.settings."10-crash" = {

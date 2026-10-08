@@ -27,8 +27,8 @@
     },
     "bluetooth": [
       {
-        "index": 48,
-        "attached_to": 50,
+        "index": 49,
+        "attached_to": 51,
         "class_list": [
           "usb",
           "bluetooth"
@@ -111,8 +111,8 @@
         "module_alias": "usb:v8087p0A2Bd0010dcE0dsc01dp01icE0isc01ip01in00"
       },
       {
-        "index": 53,
-        "attached_to": 50,
+        "index": 54,
+        "attached_to": 51,
         "class_list": [
           "usb",
           "bluetooth"
@@ -251,7 +251,6 @@
         "model": "Intel PCI bridge",
         "sysfs_id": "/devices/pci0000:00/0000:00:1c.0",
         "sysfs_bus_id": "0000:00:1c.0",
-        "sysfs_iommu_group_id": 6,
         "unix_device_names": [
           "/dev/input/event2"
         ],
@@ -322,7 +321,6 @@
         "model": "Intel ISA bridge",
         "sysfs_id": "/devices/pci0000:00/0000:00:1f.0",
         "sysfs_bus_id": "0000:00:1f.0",
-        "sysfs_iommu_group_id": 11,
         "detail": {
           "function": 0,
           "command": 7,
@@ -387,7 +385,6 @@
         "model": "Intel PCI bridge",
         "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0/0000:08:00.0",
         "sysfs_bus_id": "0000:08:00.0",
-        "sysfs_iommu_group_id": 16,
         "detail": {
           "function": 0,
           "command": 7,
@@ -460,7 +457,6 @@
         "model": "Intel PCI bridge",
         "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0",
         "sysfs_bus_id": "0000:07:00.0",
-        "sysfs_iommu_group_id": 15,
         "detail": {
           "function": 0,
           "command": 7,
@@ -528,7 +524,6 @@
         "model": "Intel Host bridge",
         "sysfs_id": "/devices/pci0000:00/0000:00:00.0",
         "sysfs_bus_id": "0000:00:00.0",
-        "sysfs_iommu_group_id": 1,
         "detail": {
           "function": 0,
           "command": 6,
@@ -601,7 +596,6 @@
         "model": "Intel PCI bridge",
         "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0/0000:08:02.0",
         "sysfs_bus_id": "0000:08:02.0",
-        "sysfs_iommu_group_id": 18,
         "detail": {
           "function": 0,
           "command": 7,
@@ -674,7 +668,6 @@
         "model": "Intel PCI bridge",
         "sysfs_id": "/devices/pci0000:00/0000:00:1d.2",
         "sysfs_bus_id": "0000:00:1d.2",
-        "sysfs_iommu_group_id": 10,
         "detail": {
           "function": 2,
           "command": 1031,
@@ -747,7 +740,6 @@
         "model": "Intel PCI bridge",
         "sysfs_id": "/devices/pci0000:00/0000:00:1d.0",
         "sysfs_bus_id": "0000:00:1d.0",
-        "sysfs_iommu_group_id": 9,
         "detail": {
           "function": 0,
           "command": 1031,
@@ -820,7 +812,6 @@
         "model": "Intel PCI bridge",
         "sysfs_id": "/devices/pci0000:00/0000:00:1c.6",
         "sysfs_bus_id": "0000:00:1c.6",
-        "sysfs_iommu_group_id": 8,
         "detail": {
           "function": 6,
           "command": 1031,
@@ -893,7 +884,6 @@
         "model": "Intel PCI bridge",
         "sysfs_id": "/devices/pci0000:00/0000:00:1c.4",
         "sysfs_bus_id": "0000:00:1c.4",
-        "sysfs_iommu_group_id": 7,
         "detail": {
           "function": 4,
           "command": 1031,
@@ -966,7 +956,6 @@
         "model": "Intel PCI bridge",
         "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0/0000:08:01.0",
         "sysfs_bus_id": "0000:08:01.0",
-        "sysfs_iommu_group_id": 17,
         "detail": {
           "function": 0,
           "command": 1031,
@@ -987,8 +976,8 @@
     ],
     "camera": [
       {
-        "index": 45,
-        "attached_to": 50,
+        "index": 46,
+        "attached_to": 51,
         "class_list": [
           "camera",
           "usb"
@@ -1089,8 +1078,8 @@
         "module_alias": "usb:v04F2pB604d0027dcEFdsc02dp01ic0Eisc02ip00in01"
       },
       {
-        "index": 52,
-        "attached_to": 50,
+        "index": 53,
+        "attached_to": 51,
         "class_list": [
           "camera",
           "usb"
@@ -1193,8 +1182,8 @@
     ],
     "chip_card": [
       {
-        "index": 47,
-        "attached_to": 50,
+        "index": 48,
+        "attached_to": 51,
         "class_list": [
           "chip_card",
           "usb"
@@ -1427,7 +1416,7 @@
         "fpu_exception": false,
         "cpuid_level": 22,
         "write_protect": false,
-        "tlb_size": 12115,
+        "tlb_size": 8753,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -1438,7 +1427,7 @@
     ],
     "disk": [
       {
-        "index": 40,
+        "index": 41,
         "attached_to": 26,
         "class_list": [
           "disk",
@@ -1519,7 +1508,7 @@
         ]
       },
       {
-        "index": 41,
+        "index": 42,
         "attached_to": 37,
         "class_list": [
           "disk",
@@ -1596,7 +1585,7 @@
         "module_alias": "usb:v0BDAp0316d0204dc00dsc00dp00ic08isc06ip50in00"
       },
       {
-        "index": 42,
+        "index": 43,
         "attached_to": 0,
         "class_list": [
           "disk",
@@ -1616,7 +1605,7 @@
         "sysfs_id": "/class/block/zram0",
         "unix_device_names": [
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/24e88954-71b3-444c-94e7-2a8965b7d8d5",
+          "/dev/disk/by-uuid/fc6b44ba-4c88-45ff-bbcd-4a61943d2932",
           "/dev/zram0"
         ],
         "resources": [
@@ -1630,6 +1619,82 @@
       }
     ],
     "graphics_card": [
+      {
+        "index": 18,
+        "attached_to": 14,
+        "class_list": [
+          "graphics_card",
+          "pci"
+        ],
+        "bus_type": {
+          "hex": "0004",
+          "name": "PCI",
+          "value": 4
+        },
+        "slot": {
+          "bus": 2,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0003",
+          "name": "Display controller",
+          "value": 3
+        },
+        "sub_class": {
+          "hex": "0002",
+          "name": "3D controller",
+          "value": 2
+        },
+        "vendor": {
+          "hex": "10de",
+          "name": "nVidia Corporation",
+          "value": 4318
+        },
+        "sub_vendor": {
+          "hex": "17aa",
+          "value": 6058
+        },
+        "device": {
+          "hex": "1d10",
+          "value": 7440
+        },
+        "sub_device": {
+          "hex": "225b",
+          "value": 8795
+        },
+        "revision": {
+          "hex": "00a1",
+          "value": 161
+        },
+        "model": "nVidia 3D controller",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1c.0/0000:02:00.0",
+        "sysfs_bus_id": "0000:02:00.0",
+        "resources": [
+          {
+            "type": "io",
+            "base": 53248,
+            "range": 128,
+            "enabled": true,
+            "access": "read_write"
+          }
+        ],
+        "detail": {
+          "function": 0,
+          "command": 1027,
+          "header_type": 0,
+          "secondary_bus": 0,
+          "prog_if": 0
+        },
+        "driver": "nouveau",
+        "driver_module": "nouveau",
+        "drivers": [
+          "nouveau"
+        ],
+        "driver_modules": [
+          "nouveau"
+        ],
+        "module_alias": "pci:v000010DEd00001D10sv000017AAsd0000225Bbc03sc02i00"
+      },
       {
         "index": 35,
         "attached_to": 0,
@@ -1685,7 +1750,6 @@
         "model": "Intel VGA compatible controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.0",
         "sysfs_bus_id": "0000:00:02.0",
-        "sysfs_iommu_group_id": 0,
         "resources": [
           {
             "type": "io",
@@ -1715,7 +1779,7 @@
     ],
     "hub": [
       {
-        "index": 46,
+        "index": 47,
         "attached_to": 23,
         "class_list": [
           "usb",
@@ -1802,7 +1866,7 @@
         "module_alias": "usb:v1D6Bp0002d0702dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 49,
+        "index": 50,
         "attached_to": 23,
         "class_list": [
           "usb",
@@ -1879,7 +1943,7 @@
         "module_alias": "usb:v1D6Bp0003d0702dc09dsc00dp03ic09isc00ip00in00"
       },
       {
-        "index": 50,
+        "index": 51,
         "attached_to": 37,
         "class_list": [
           "usb",
@@ -1966,7 +2030,7 @@
         "module_alias": "usb:v1D6Bp0002d0702dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 54,
+        "index": 55,
         "attached_to": 37,
         "class_list": [
           "usb",
@@ -2087,6 +2151,145 @@
           "value": 2
         },
         "vendor": {
+          "hex": "3669",
+          "value": 13929
+        },
+        "device": {
+          "hex": "30e5",
+          "name": "MSI MP165 E6",
+          "value": 12517
+        },
+        "serial": "PE5M016305451",
+        "model": "MSI MP165 E6",
+        "resources": [
+          {
+            "type": "monitor",
+            "width": 1024,
+            "height": 768,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 1280,
+            "height": 1024,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 1920,
+            "height": 1080,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 640,
+            "height": 480,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 800,
+            "height": 600,
+            "vertical_frequency": 56,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 800,
+            "height": 600,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "size",
+            "unit": "mm",
+            "value_1": 345,
+            "value_2": 195
+          }
+        ],
+        "detail": {
+          "manufacture_year": 2026,
+          "manufacture_week": 10,
+          "vertical_sync": {
+            "min": 48,
+            "max": 60
+          },
+          "horizontal_sync": {
+            "min": 30,
+            "max": 69
+          },
+          "horizontal_sync_timings": {
+            "disp": 1920,
+            "sync_start": 2008,
+            "sync_end": 2052,
+            "total": 2200
+          },
+          "vertical_sync_timings": {
+            "disp": 1080,
+            "sync_start": 1084,
+            "sync_end": 1089,
+            "total": 1125
+          },
+          "clock": 148500,
+          "width": 1920,
+          "height": 1080,
+          "width_millimetres": 345,
+          "height_millimetres": 195,
+          "horizontal_flag": 43,
+          "vertical_flag": 43,
+          "vendor": "",
+          "name": "MSI MP165 E6"
+        },
+        "driver_info": {
+          "type": "display",
+          "width": 1920,
+          "height": 1080,
+          "vertical_sync": {
+            "min": 48,
+            "max": 60
+          },
+          "horizontal_sync": {
+            "min": 30,
+            "max": 69
+          },
+          "bandwidth": 0,
+          "horizontal_sync_timings": {
+            "disp": 1920,
+            "sync_start": 2008,
+            "sync_end": 2052,
+            "total": 2200
+          },
+          "vertical_sync_timings": {
+            "disp": 1080,
+            "sync_start": 1084,
+            "sync_end": 1089,
+            "total": 1125
+          },
+          "horizontal_flag": 43,
+          "vertical_flag": 43
+        }
+      },
+      {
+        "index": 40,
+        "attached_to": 35,
+        "class_list": [
+          "monitor"
+        ],
+        "base_class": {
+          "hex": "0100",
+          "name": "Monitor",
+          "value": 256
+        },
+        "sub_class": {
+          "hex": "0002",
+          "name": "LCD Monitor",
+          "value": 2
+        },
+        "vendor": {
           "hex": "06af",
           "name": "AUO",
           "value": 1711
@@ -2149,8 +2352,8 @@
     ],
     "mouse": [
       {
-        "index": 44,
-        "attached_to": 50,
+        "index": 45,
+        "attached_to": 51,
         "class_list": [
           "mouse",
           "usb"
@@ -2257,7 +2460,7 @@
         "module_alias": "usb:v0EEFpC0ADd4502dc00dsc00dp00ic03isc01ip02in00"
       },
       {
-        "index": 62,
+        "index": 63,
         "attached_to": 0,
         "bus_type": {
           "hex": "0008",
@@ -2282,9 +2485,9 @@
           "hex": "0000",
           "value": 0
         },
-        "sysfs_id": "/devices/pci0000:00/0000:00:1f.4/i2c-6/6-002c/rmi4-00/input/input21",
+        "sysfs_id": "/devices/pci0000:00/0000:00:1f.4/i2c-6/6-002c/rmi4-00/input/input15",
         "unix_device_names": [
-          "/dev/input/event15",
+          "/dev/input/event9",
           "/dev/input/ + handler"
         ]
       }
@@ -2340,7 +2543,6 @@
         "model": "Intel Ethernet controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1f.6",
         "sysfs_bus_id": "0000:00:1f.6",
-        "sysfs_iommu_group_id": 11,
         "unix_device_names": [
           "eth0"
         ],
@@ -2423,7 +2625,6 @@
         "model": "Intel WLAN controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1c.6/0000:04:00.0",
         "sysfs_bus_id": "0000:04:00.0",
-        "sysfs_iommu_group_id": 14,
         "unix_device_names": [
           "wlan0"
         ],
@@ -2540,7 +2741,7 @@
     ],
     "network_interface": [
       {
-        "index": 56,
+        "index": 57,
         "attached_to": 32,
         "class_list": [
           "network_interface"
@@ -2581,7 +2782,7 @@
         ]
       },
       {
-        "index": 57,
+        "index": 58,
         "attached_to": 0,
         "class_list": [
           "network_interface"
@@ -2603,7 +2804,7 @@
         ]
       },
       {
-        "index": 58,
+        "index": 59,
         "attached_to": 0,
         "class_list": [
           "network_interface"
@@ -2626,7 +2827,7 @@
         ]
       },
       {
-        "index": 60,
+        "index": 61,
         "attached_to": 34,
         "class_list": [
           "network_interface"
@@ -2718,7 +2919,6 @@
         "model": "Intel Wireless controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1c.4/0000:03:00.0",
         "sysfs_bus_id": "0000:03:00.0",
-        "sysfs_iommu_group_id": 13,
         "detail": {
           "function": 0,
           "command": 1030,
@@ -2786,7 +2986,6 @@
         "model": "Intel Memory controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1f.2",
         "sysfs_bus_id": "0000:00:1f.2",
-        "sysfs_iommu_group_id": 11,
         "detail": {
           "function": 2,
           "command": 0,
@@ -2842,7 +3041,6 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.0",
         "sysfs_bus_id": "0000:00:08.0",
-        "sysfs_iommu_group_id": 3,
         "detail": {
           "function": 0,
           "command": 0,
@@ -2902,7 +3100,6 @@
         "model": "Intel System peripheral",
         "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0/0000:08:00.0/0000:09:00.0",
         "sysfs_bus_id": "0000:09:00.0",
-        "sysfs_iommu_group_id": 16,
         "detail": {
           "function": 0,
           "command": 1030,
@@ -2970,7 +3167,6 @@
         "model": "Intel Signal processing controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:04.0",
         "sysfs_bus_id": "0000:00:04.0",
-        "sysfs_iommu_group_id": 2,
         "detail": {
           "function": 0,
           "command": 2,
@@ -3038,7 +3234,6 @@
         "model": "Intel Communication controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:16.0",
         "sysfs_bus_id": "0000:00:16.0",
-        "sysfs_iommu_group_id": 5,
         "detail": {
           "function": 0,
           "command": 1030,
@@ -3106,7 +3301,6 @@
         "model": "Intel Signal processing controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.2",
         "sysfs_bus_id": "0000:00:14.2",
-        "sysfs_iommu_group_id": 4,
         "detail": {
           "function": 2,
           "command": 2,
@@ -3174,7 +3368,6 @@
         "model": "Intel SMBus",
         "sysfs_id": "/devices/pci0000:00/0000:00:1f.4",
         "sysfs_bus_id": "0000:00:1f.4",
-        "sysfs_iommu_group_id": 11,
         "resources": [
           {
             "type": "io",
@@ -3252,7 +3445,6 @@
         "model": "Intel Multimedia controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1f.3",
         "sysfs_bus_id": "0000:00:1f.3",
-        "sysfs_iommu_group_id": 11,
         "detail": {
           "function": 3,
           "command": 1030,
@@ -3320,7 +3512,6 @@
         "model": "Mass storage controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1d.2/0000:40:00.0",
         "sysfs_bus_id": "0000:40:00.0",
-        "sysfs_iommu_group_id": 19,
         "detail": {
           "function": 0,
           "command": 1030,
@@ -3344,8 +3535,8 @@
     },
     "usb": [
       {
-        "index": 43,
-        "attached_to": 50,
+        "index": 44,
+        "attached_to": 51,
         "class_list": [
           "usb",
           "unknown"
@@ -3481,7 +3672,6 @@
         "model": "Intel USB Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:1d.0/0000:07:00.0/0000:08:02.0/0000:3f:00.0",
         "sysfs_bus_id": "0000:3f:00.0",
-        "sysfs_iommu_group_id": 18,
         "detail": {
           "function": 0,
           "command": 1027,
@@ -3553,7 +3743,6 @@
         "model": "Intel USB Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:14.0",
         "sysfs_bus_id": "0000:00:14.0",
-        "sysfs_iommu_group_id": 4,
         "detail": {
           "function": 0,
           "command": 1030,

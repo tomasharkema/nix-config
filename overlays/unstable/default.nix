@@ -22,13 +22,13 @@
   #   };
   # });
 
-  ananicy-cpp = prev.ananicy-cpp.overrideAttrs ({patches ? [], ...}: {
-    patches =
-      patches
-      ++ [
-        ./ananicy-cpp.patch
-      ];
-  });
+  # ananicy-cpp = prev.ananicy-cpp.overrideAttrs ({patches ? [], ...}: {
+  #   patches =
+  #     patches
+  #     ++ [
+  #       ./ananicy-cpp.patch
+  #     ];
+  # });
 
   resilio-sync = prev.resilio-sync.overrideAttrs (old: rec {
     pname = "resilio-sync";

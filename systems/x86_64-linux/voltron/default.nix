@@ -100,17 +100,19 @@
         tpm.enable = true;
         secure-boot = {
           enable = true;
-          measuredBoot = false;
+
+          measuredBoot = lib.trace "TPM2 does not support PolicyAuthorizeNV command, refusing." false;
         };
-        laptop.enable = true;
-        laptop.thinkpad.enable = true;
+        laptop = {
+          enable = true;
+          thinkpad.enable = true;
+        };
         intel.enable = true;
         nvidia = {
-          enable = false;
+          enable = true;
           open = false;
         };
         sgx.enable = true;
-        # remote-unlock.enable = true;
         bluetooth.enable = true;
         monitor.enable = true;
       };
@@ -149,17 +151,13 @@
       clamav.daemon.settings.MaxThreads = 4;
 
       # "06cb-009a-fingerprint-sensor" = {
-      #  enable = true;
+      #   enable = true;
       #   backend = "python-validity";
-      #  backend = "libfprint-tod";
-      #  calib-data-file = ./calib-data.bin;
-      # };
-
-      # fprintd.tod.driver = inputs.nixos-06cb-009a-fingerprint-sensor.lib.libfprint-2-tod1-vfs0090-bingch {
       #   calib-data-file = ./calib-data.bin;
       # };
+
       # switcherooControl.enable = true;
-      # journald.storage = "volatile";
+      journald.storage = "volatile";
 
       # hypervisor = {
       #   enable = true;

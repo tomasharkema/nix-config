@@ -295,18 +295,18 @@ in {
       gpsd.enable = true;
     };
 
-    fileSystems = {
-      "/home/tomas/digikam" = {
-        device = "192.168.1.102:/volume1/tomas/digikam";
-        fsType = "nfs";
-        options = [
-          "x-systemd.automount"
-          "noauto"
-          "fsc"
-          "x-systemd.idle-timeout=600"
-        ];
-      };
-    };
+    # fileSystems = {
+    #   "/home/tomas/digikam" = {
+    #     device = "192.168.1.102:/volume1/tomas/digikam";
+    #     fsType = "nfs";
+    #     options = [
+    #       "x-systemd.automount"
+    #       "noauto"
+    #       "fsc"
+    #       "x-systemd.idle-timeout=600"
+    #     ];
+    #   };
+    # };
 
     systemd = {
       services = {
@@ -337,10 +337,10 @@ in {
 
       packages =
         [
-          pkgs.custom.wifiman
+          # pkgs.custom.wifiman
         ]
         ++ (lib.optional pkgs.stdenvNoCC.hostPlatform.isx86_64 pkgs.widevine-cdm);
-      # additionalUpstreamSystemUnits = ["systemd-bsod.service"];
+      additionalUpstreamSystemUnits = ["systemd-bsod.service"];
     };
 
     # Enable sound with pipewire.

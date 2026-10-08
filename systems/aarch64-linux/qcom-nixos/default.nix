@@ -311,16 +311,16 @@
           "dmask=0077"
         ];
       };
-      "/mnt/cache" = {
-        device = "192.168.1.102:/volume1/cache";
-        fsType = "nfs";
-        options = [
-          "x-systemd.automount"
-          "noauto"
-          "fsc"
-          "x-systemd.idle-timeout=600"
-        ];
-      };
+      # "/mnt/cache" = {
+      #   device = "192.168.1.102:/volume1/cache";
+      #   fsType = "nfs";
+      #   options = [
+      #     "x-systemd.automount"
+      #     "noauto"
+      #     "fsc"
+      #     "x-systemd.idle-timeout=600"
+      #   ];
+      # };
     };
 
     system.stateVersion = "26.11";
