@@ -217,11 +217,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791415344,
-        "narHash": "sha256-aIYZsBT0v5zrlh74YcAdetWThxfzbI2BJ5VpRPzAJO0=",
+        "lastModified": 1791424507,
+        "narHash": "sha256-o1dhOhmr+a+gaTiBvWHRqWszXdi0x374vNctYsM2ciE=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "b1dde74e4d147f3fe28e300a1bcbfad1ef8a98ae",
+        "rev": "f9d91cd21f2aa619f771a1ac2137ea056b50e172",
         "type": "github"
       },
       "original": {
@@ -1933,11 +1933,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1790942082,
-        "narHash": "sha256-i9rD1ZuMww8RbXaCgOzfv+4jM2lKemL4fPUUrqzgbyY=",
+        "lastModified": 1791441931,
+        "narHash": "sha256-c/L7RpXqO9yVQg33cmbKG3evh+G8Rfvcm9jBPqFkli8=",
         "owner": "AprilNEA",
         "repo": "OpenLogi",
-        "rev": "4863a45e256d80404b95232b513793cbccb5d6d6",
+        "rev": "240744bc994a2f3f4096877993567abc14bb1d60",
         "type": "github"
       },
       "original": {
