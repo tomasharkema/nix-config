@@ -138,7 +138,7 @@
       #   enable = true;
       #   defaultWindowManager = config.services.greetd.settings.default_session.command;
       # };
-
+      gpsd.enable = true;
       distccd = {
         enable = true;
         zeroconf = true;
