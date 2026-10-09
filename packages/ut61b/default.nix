@@ -2,39 +2,60 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  cmake,
+  nix-update-script,
   pkg-config,
-  hidapi,
-  catch2,
+  libusb1,
+  udevCheckHook,
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "ut61b";
-  version = "unstable-2023-12-07";
+  version = "1.0.0";
+  __structuredAttrs = true;
+  strictDeps = true;
 
   src = fetchFromGitHub {
-    owner = "dariuskl";
-    repo = "ut61b";
-    rev = "c1f6935bc022fc0f0464ed9ea520d894b3e7b46f";
-    hash = "sha256-qqD7PIK15ZKSGaZPf4oP+lGrFVJ4j7e8OuiotWYj2OQ=";
+    owner = "lschw";
+    repo = "ut61b-libusb-driver";
+    tag = "v${finalAttrs.version}";
+    hash = "sha256-M3ZLXgGIumbsJhD3aiEfGCHU4r/byHicKeiLZT3AJ0s=";
   };
 
-  nativeBuildInputs = [
-    cmake
-    pkg-config
-    hidapi
-    catch2
+  patches = [
+    ./changes.patch
   ];
 
-  cmakeFlags = [
-    "-DFETCHCONTENT_SOURCE_DIR_CATCH2=${catch2}/lib/cmake/Catch2"
+  nativeBuildInputs = [
+    pkg-config
   ];
+
+  buildInputs = [
+    libusb1
+  ];
+
+  nativeInstallCheckInputs = [
+    udevCheckHook
+  ];
+
+  doInstallCheck = true;
+
+  installPhase = ''
+    runHook preInstall
+
+    install -D ./build/ut61b_cli $out/bin/ut61b
+
+    install -D ./utils/88-ut61b.rules $out/lib/udev/rules.d/88-ut61b.rules
+
+    runHook postInstall
+  '';
+
+  passthru.updateScript = nix-update-script {};
 
   meta = {
-    description = "Simple monitoring utility for the UT61B multimeter";
-    homepage = "https://github.com/dariuskl/ut61b";
-    license = lib.licenses.mit;
+    description = "Libusb driver for the multimeter Uni-T UT61B";
+    homepage = "https://github.com/lschw/ut61b-libusb-driver";
+    license = lib.licenses.gpl3Only;
     maintainers = with lib.maintainers; [];
     mainProgram = "ut61b";
     platforms = lib.platforms.all;
   };
-}
+})
