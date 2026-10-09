@@ -24,7 +24,6 @@ stdenv.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [
     cmake
-    udevCheckHook
     qt6.wrapQtAppsHook
   ];
 
@@ -34,6 +33,12 @@ stdenv.mkDerivation (finalAttrs: {
     libusb1
     fftw
   ];
+
+  nativeInstallCheckInputs = [
+    udevCheckHook
+  ];
+
+  doInstallCheck = true;
 
   passthru.updateScript = nix-update-script {};
 

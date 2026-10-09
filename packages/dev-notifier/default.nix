@@ -22,11 +22,16 @@ buildGoModule rec {
   ldflags = ["-s" "-w"];
 
   nativeBuildInputs = [
-    udevCheckHook
     pkg-config
   ];
 
   buildInputs = [udev];
+
+  nativeInstallCheckInputs = [
+    udevCheckHook
+  ];
+
+  doInstallCheck = true;
 
   meta = {
     description = "";

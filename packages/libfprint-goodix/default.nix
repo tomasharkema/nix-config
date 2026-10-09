@@ -30,11 +30,6 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-36c8JtaRxhNpLK+tnbzBZfnDs94Wi2zAb76vwtPQiuo=";
   };
 
-  # mesonFlags = [
-  #   (lib.mesonOption "udev_rules_dir" "${placeholder "out"}/lib/udev")
-  #   (lib.mesonOption "udev_hwdb_dir" "${placeholder "out"}/udev/udev/hwdb.d")
-  # ];
-
   postPatch = ''
     patchShebangs \
       tests/test-runner.sh \
@@ -56,6 +51,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   nativeInstallCheckInputs = [
     (python3.withPackages (p: with p; [pygobject3]))
+    udevCheckHook
   ];
 
   # We need to run tests _after_ install so all the paths that get loaded are in
@@ -76,7 +72,6 @@ stdenv.mkDerivation (finalAttrs: {
     meson
     ninja
     pkg-config
-    udevCheckHook
     gtk-doc
     autoPatchelfHook
     glib

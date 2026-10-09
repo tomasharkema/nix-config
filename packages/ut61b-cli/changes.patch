@@ -1,0 +1,48 @@
+diff --git a/src/fs9922_dmm3.cc b/src/fs9922_dmm3.cc
+index c68bea9..7ef66f1 100755
+--- a/src/fs9922_dmm3.cc
++++ b/src/fs9922_dmm3.cc
+@@ -17,6 +17,7 @@
+  */
+ 
+ #include "fs9922_dmm3.hh"
++#include <cstdint>
+ 
+ enum byte7_t
+ {
+diff --git a/src/ut61b_cli.cc b/src/ut61b_cli.cc
+index 536d17a..9f7968b 100755
+--- a/src/ut61b_cli.cc
++++ b/src/ut61b_cli.cc
+@@ -96,6 +96,15 @@ void handle_frame(const char* data, void*)
+     // show data
+     system("clear");
+     std::cout << "Uni-T UT61B\n\n";
++    std::cout << "value  : " << frame.value();
++    std::cout << " ";
++    std::cout << frame.unit_prefix2str(
++        frame.unit_prefix()
++    );
++    std::cout << frame.unit2str(
++        frame.unit()
++    );
++    std::cout << "\n\n";
+     std::cout << "time   : ";
+     std::cout << std::fixed << std::setprecision(2) << time << " s";
+     if(max_time != 0) {
+@@ -107,15 +116,6 @@ void handle_frame(const char* data, void*)
+         std::cout << " (max " << max_frame << ")";
+     }
+     std::cout << "\n";
+-    std::cout << "value  : " << frame.value();
+-    std::cout << " ";
+-    std::cout << frame.unit_prefix2str(
+-        frame.unit_prefix()
+-    );
+-    std::cout << frame.unit2str(
+-        frame.unit()
+-    );
+-    std::cout << "\n";
+     std::cout << "status : ";
+     if(frame.hold()) {
+         std::cout << "HOLD ";

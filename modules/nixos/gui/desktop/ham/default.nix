@@ -24,6 +24,7 @@ in {
 
       # soapysdr-with-plugins
 
+      custom.ut61b-cli
       # cubicsdr
       # gnuradio
       gqrx
@@ -39,6 +40,10 @@ in {
       # dumpvdl2
       # dumphfdl
       # keep-sorted end
+    ];
+
+    services.udev.packages = with pkgs; [
+      custom.ut61b-cli
     ];
   };
 }

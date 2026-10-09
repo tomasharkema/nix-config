@@ -23,12 +23,16 @@ rustPlatform.buildRustPackage rec {
 
   nativeBuildInputs = [
     pkg-config
-    udevCheckHook
   ];
 
   buildInputs = [
     udev
   ];
+  nativeInstallCheckInputs = [
+    udevCheckHook
+  ];
+
+  doInstallCheck = true;
 
   meta = {
     description = "Utility to share your GPS device on local network";
