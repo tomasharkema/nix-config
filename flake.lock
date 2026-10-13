@@ -295,11 +295,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791490533,
-        "narHash": "sha256-5lEbHDDZa9WV6nMSZoN2MHrh/kOFgqKIChVoBYx/fS8=",
+        "lastModified": 1791885034,
+        "narHash": "sha256-kUhx03jiQI9ByfvbUCVSkDyVwA1U0rEVBa1WnMF7DT0=",
         "owner": "numtide",
         "repo": "devshell",
-        "rev": "7f669063c38ed44f55931ce8c8e04b235bc4e13d",
+        "rev": "30488848de9e05b2b71750eed4a3b19bb14d879b",
         "type": "github"
       },
       "original": {
@@ -1164,11 +1164,11 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1791854045,
-        "narHash": "sha256-VY8ooywUcg5d4uHie6h+eBPOWXD5JX02IZQ/8PMcu1g=",
+        "lastModified": 1791882868,
+        "narHash": "sha256-xELRsLFdp38cPtiOWnCBdQoRyCJPQ5X1EPEifT+AKAo=",
         "owner": "epireyn",
         "repo": "niri-flake",
-        "rev": "bee8b6a383524f0034611c3d3410b863f4353e0d",
+        "rev": "ef04566303ef74dc7fbc0cdb08bb44dae38272f7",
         "type": "github"
       },
       "original": {
@@ -1197,11 +1197,11 @@
     "niri-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1791833289,
-        "narHash": "sha256-fVO1xdC3yUqXfwcnKm4Lwu9kfrKKriso5IkdM86A2mE=",
+        "lastModified": 1791877953,
+        "narHash": "sha256-Npxqjopf4fgtTx/3txo2mp9mwBQCYktbu2M13VhtI7c=",
         "owner": "niri-wm",
         "repo": "niri",
-        "rev": "e5f9cf628884c6c31d6083f5723403b790bae881",
+        "rev": "7da6ae44032ec92f4ff28a42ca23f11c092f487f",
         "type": "github"
       },
       "original": {
@@ -1950,11 +1950,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1791834108,
-        "narHash": "sha256-gqI21hTTfVvfAlUJbXlIvqY3kQVPK1OrCiWcvd3GbXk=",
+        "lastModified": 1791896418,
+        "narHash": "sha256-u1D5ba6/C2KLFpZjScyj438dEd21PS3lKynPtRjm00Y=",
         "owner": "AprilNEA",
         "repo": "OpenLogi",
-        "rev": "01749f92d06c112a14333c27398c293985b17801",
+        "rev": "f799c6d05e9ff1ec9f6ca6ba8c3c3a166ab144e6",
         "type": "github"
       },
       "original": {
@@ -2202,11 +2202,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791806347,
-        "narHash": "sha256-UwZ//vbHy5ODN17fzKMFuO/pWgq2KNh1w3pPm8D+CVQ=",
+        "lastModified": 1791894619,
+        "narHash": "sha256-ZVlvLYa0FyrB+F9V2lmngNJfjcHFRyBbqIG+hihJHkk=",
         "owner": "mozilla",
         "repo": "sccache",
-        "rev": "027e5ea94e5d56f7ad3541284ca3f9afab9275cc",
+        "rev": "c879c0d6945e676586b3c3fff3369293ed6f4cf7",
         "type": "github"
       },
       "original": {
