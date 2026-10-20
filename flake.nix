@@ -778,11 +778,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    sccache = {
-      url = "github:mozilla/sccache";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixos-images = {
       url = "github:nix-community/nixos-images";
     };
