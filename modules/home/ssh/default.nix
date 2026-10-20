@@ -20,8 +20,8 @@
       enable = true;
 
       # serverAliveInterval = 60;
-      controlMaster = "auto";
-      controlPersist = "30m";
+      # controlMaster = "auto";
+      # controlPersist = "30m";
 
       # addKeysToAgent = true;
       # hashKnownHosts = true;
