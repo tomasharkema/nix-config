@@ -19,7 +19,7 @@ in {
         enable = true;
         enableGitIntegration = true;
         package = pkgs.kitty;
-        theme = "Catppuccin-Mocha";
+        # theme = "Catppuccin-Mocha";
 
         font = {name = "JetBrainsMono Nerd Font Mono";};
 

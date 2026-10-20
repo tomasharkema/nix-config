@@ -16,7 +16,7 @@
         alejandra
         autoflake
         bc
-        bettercap
+        # bettercap # broken...
         cachix
         calc
         caligula
