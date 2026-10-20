@@ -14,7 +14,7 @@
       ++ (with pkgs; [
         # keep-sorted start
         alejandra
-        autoflake
+        # autoflake
         bc
         # bettercap # broken...
         cachix

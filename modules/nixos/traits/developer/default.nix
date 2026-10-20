@@ -23,9 +23,8 @@ in {
         deploy-rs
         devenv
         flake-checker
-        autoflake
+        # autoflake
         manix
-
         nil
         nixd
         # nix-eval-jobs
