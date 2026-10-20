@@ -69,7 +69,7 @@ in {
           udict
           jq
           kitty-img
-          todoman
+          # todoman
           dooit
           ttdl
           # topydo
