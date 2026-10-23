@@ -81,6 +81,7 @@ in {
       casks = [
         # keep-sorted start
         "audacity"
+        "azure-cli"
         "brave-browser"
         "charles"
         "chiri"
