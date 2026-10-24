@@ -748,13 +748,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-alien = {
-      url = "github:thiagokokada/nix-alien";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        nix-index-database.follows = "nix-index-database";
-      };
-    };
+    # nix-alien = {
+    #   url = "github:thiagokokada/nix-alien";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     nix-index-database.follows = "nix-index-database";
+    #   };
+    # };
 
     nixos-cli = {
       url = "github:nix-community/nixos-cli";
