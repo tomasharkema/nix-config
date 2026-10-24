@@ -7,47 +7,12 @@
   config = {
     # nixpkgs.hostPlatform = "aarch64-linux";
 
-    nixpkgs.overlays = lib.mkIf false [
-      (self: super: {
-        ccacheWrapper = super.ccacheWrapper.override {
-          extraConfig = ''
-            export CCACHE_COMPRESS=1
-            export CCACHE_DIR="${config.programs.ccache.cacheDir}"
-            export CCACHE_UMASK=007
-            export CCACHE_SLOPPINESS=random_seed
-            export CCACHE_MAXSIZE=20GB
-            export CCACHE_RESHARE=true
-            export CCACHE_REMOTE_STORAGE=file:/mnt/cache/ccache
-
-            if [ ! -d "$CCACHE_DIR" ]; then
-              echo "====="
-              echo "Directory '$CCACHE_DIR' does not exist"
-              echo "Please create it with:"
-              echo "  sudo mkdir -m0770 '$CCACHE_DIR'"
-              echo "  sudo chown root:nixbld '$CCACHE_DIR'"
-              echo "====="
-              exit 1
-            fi
-            if [ ! -w "$CCACHE_DIR" ]; then
-              echo "====="
-              echo "Directory '$CCACHE_DIR' is not accessible for user $(whoami)"
-              echo "Please verify its access permissions"
-              echo "====="
-              exit 1
-            fi
-          '';
-        };
-      })
-    ];
-
     age.rekey = {
       hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEB33SQkGTrRV1R3Uon+msUYOlA1S9y5hFlVXOuAjglv root@qcom-nixos";
     };
 
     nix.settings = {
-      # auto-optimise-store = true;
-
-      extra-sandbox-paths = [config.programs.ccache.cacheDir];
+      auto-optimise-store = true;
 
       experimental-features = [
         "nix-command"
@@ -84,7 +49,6 @@
     #   };
     # };
 
-    programs.ccache.enable = true;
     programs.geary.enable = true;
 
     environment.systemPackages = with pkgs; [

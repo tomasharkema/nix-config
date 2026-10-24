@@ -197,7 +197,6 @@ in {
 
     programs = {
       mdevctl.enable = true;
-      ccache.enable = true;
     };
 
     virtualisation = {

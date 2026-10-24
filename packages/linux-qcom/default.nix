@@ -3,7 +3,7 @@
   fetchFromGitHub,
   buildLinux,
   linuxPackagesFor,
-  ccacheStdenv,
+  stdenv,
   fetchpatch,
   ...
 }: let
@@ -45,4 +45,3 @@ in
       gammaPatch
     ];
   })
-   .override {stdenv = ccacheStdenv;}

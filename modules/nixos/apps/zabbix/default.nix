@@ -7,7 +7,7 @@
   cfgServer = config.apps.zabbix.server;
   cfgProxy = config.apps.zabbix.proxy;
 
-  zabbixPkg = pkgs.zabbix74;
+  zabbixPkg = pkgs.zabbix;
   extraPkgs = with pkgs; [
     net-tools
     nmap
@@ -20,14 +20,14 @@ in {
     proxy.enable = lib.mkEnableOption "zabbix proxy";
   };
 
-  config = {
+  config = lib.mkIf false {
     # networking = {
     #   useNetworkd = true;
     #   networkmanager.enable = lib.mkForce false;
     # };
     environment.systemPackages = with pkgs; [
-      zabbix-cli
-      zabbixctl
+      # zabbix-cli
+      # zabbixctl
     ];
 
     users.groups.docker.members = ["zabbix-agent"];

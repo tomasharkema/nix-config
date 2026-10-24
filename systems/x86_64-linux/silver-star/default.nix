@@ -118,11 +118,6 @@
     };
 
     fileSystems = {
-      "/exports/ccache" = {
-        device = "/var/cache/ccache";
-        options = ["bind"];
-        fsType = "none";
-      };
       "/var/lib/esphome" = {
         device = "192.168.1.102:/volume1/tomas/esphome";
         fsType = "nfs";
@@ -136,9 +131,6 @@
       nfs = {
         server = {
           enable = true;
-          exports = ''
-            /exports/ccache         *(rw,sync,no_subtree_check,no_root_squash)
-          '';
         };
       };
       # certmgr.enable = true;
@@ -844,9 +836,9 @@
       };
 
       # do some research for this!
-      extraModulePackages = [config.boot.kernelPackages.vendor-reset];
+      # extraModulePackages = [config.boot.kernelPackages.vendor-reset];
       kernelModules = [
-        "vendor-reset"
+        # "vendor-reset"
         # "pci-me"
         # "mei-me"
         "coretemp"

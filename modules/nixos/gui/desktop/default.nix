@@ -264,7 +264,7 @@ in {
     boot = {
       extraModulePackages = with config.boot.kernelPackages; [
         akvcam
-        v4l2loopback
+        # v4l2loopback
         iio-utils
       ];
 

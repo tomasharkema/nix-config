@@ -119,9 +119,9 @@ in {
       hardwareScan = true;
 
       extraModulePackages = lib.mkIf (pkgs.stdenvNoCC.hostPlatform.isx86_64 && false) [
-        config.boot.kernelPackages.cryptodev
-        config.boot.kernelPackages.acpi_call
-        config.boot.kernelPackages.fanout
+        # config.boot.kernelPackages.cryptodev
+        # config.boot.kernelPackages.acpi_call
+        # config.boot.kernelPackages.fanout
       ];
 
       kernelParams = [
@@ -314,7 +314,7 @@ in {
         '';
       };
 
-      fanout.enable = true;
+      # fanout.enable = true;
 
       # journald = {
       #   extraConfig = ''
@@ -416,16 +416,20 @@ in {
       avahi = {
         enable = true;
         # allowInterfaces = ["tailscale0"];
+        settings = {
+          publish = {
+            enable = true;
+            userServices = true;
+            addresses = true;
+            domain = true;
+            hinfo = true;
+            workstation = true;
+          };
+          reflector.enable-reflector = false;
+        };
 
-        publish.enable = true;
-        publish.userServices = true;
-        publish.addresses = true;
-        publish.domain = true;
-        publish.hinfo = true;
         nssmdns4 = true;
-        publish.workstation = true;
         openFirewall = true;
-        reflector = false;
 
         package = pkgs.avahi.override (old: {
           gtk3Support = true;

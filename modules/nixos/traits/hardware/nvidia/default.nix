@@ -16,12 +16,13 @@
   prime-run = pkgs.writeShellScriptBin "prime-run" script;
 
   withPatch = patchEnabled: (driver:
-    if patchEnabled
-    then
-      (pkgs.nvidia-patch.patch-nvenc (
-        pkgs.nvidia-patch.patch-fbc driver
-      ))
-    else driver);
+    # if patchEnabled
+    # then
+    # (pkgs.nvidia-patch.patch-nvenc (
+    # pkgs.nvidia-patch.patch-fbc driver
+    # ))
+    #else
+      driver);
 
   betaPkg = config.boot.kernelPackages.nvidiaPackages.latest;
   selectedPkg =
