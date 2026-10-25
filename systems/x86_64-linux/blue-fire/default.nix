@@ -330,6 +330,18 @@ in {
       };
     };
 
+    power.ups = {
+      mode = "netclient";
+      upsmon = {
+        monitor = {
+          ups = {
+            user = "ups";
+            system = "ups@192.168.1.60";
+          };
+        };
+      };
+    };
+
     boot = {
       tmp = {
         useTmpfs = true;
