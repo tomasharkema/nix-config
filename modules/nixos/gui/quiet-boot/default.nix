@@ -78,31 +78,31 @@ in {
       ];
       kernelModules = [
         "efi_pstore"
-        # "ramoops"
+        "ramoops"
       ];
       consoleLogLevel = 0;
       initrd = {
-        systemd.enable = true;
-        verbose = false;
+        #systemd.enable = true;
+        #verbose = false;
         # services.udev.rules = ''
         #   ACTION=="add", SUBSYSTEM=="vtconsole", KERNEL=="vtcon*", RUN="/bin/sh -c :"
         # '';
         kernelModules = [
           "efi_pstore"
           "simpledrm"
-          # "ramoops"
+          "ramoops"
         ];
       };
     };
 
     systemd.services = let
-      script = pkgs.writeScript "plymouth-messages" ''
+      script = ''
         sleep 1
         journalctl --quiet -f -n0 --system -t systemd -o cat | while read -r line; do
-        	plymouth display-message --text="$line"
+          plymouth display-message --text="$line"
           if [ $? -ne 0 ]; then
-        		break
-        	fi
+            break
+          fi
         done
         echo "Plymouth died, exiting..."
       '';
@@ -128,7 +128,7 @@ in {
           RemainAfterExit = "yes";
         };
 
-        script = "${script}";
+        inherit script;
       };
       "plymouth-poweroff-messages" = {
         path = with pkgs; [
@@ -150,18 +150,18 @@ in {
           Type = "simple";
         };
 
-        script = "${script}";
+        inherit script;
       };
-      greetd.serviceConfig = {
-        Type = "idle";
-        StandardInput = "tty";
-        StandardOutput = "tty";
-        StandardError = "journal"; # Without this errors will spam on screen
-        # Without these bootlogs will spam on screen
-        TTYReset = true;
-        TTYVHangup = true;
-        TTYVTDisallocate = true;
-      };
+      # greetd.serviceConfig = {
+      #   Type = "idle";
+      #   StandardInput = "tty";
+      #   StandardOutput = "tty";
+      #   StandardError = "journal"; # Without this errors will spam on screen
+      #   # Without these bootlogs will spam on screen
+      #   TTYReset = true;
+      #   TTYVHangup = true;
+      #   TTYVTDisallocate = true;
+      # };
     };
   };
 }
