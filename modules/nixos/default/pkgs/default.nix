@@ -191,7 +191,6 @@ in {
         openssl.out
         opkssh
         # optnix
-        oterm
         p7zip
         pamix
         pamixer

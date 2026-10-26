@@ -57,7 +57,7 @@ in {
     boot.initrd = {
       nix-store-veritysetup.enable = true;
       systemd = {
-        enable = true;
+        # enable = true;
         dmVerity.enable = true;
       };
     };
@@ -94,6 +94,7 @@ in {
 
       bash.undistractMe.enable = true;
     };
+
     services = {
       nixos-cli = {
         enable = true;
