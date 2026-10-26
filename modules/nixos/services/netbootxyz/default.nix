@@ -57,6 +57,7 @@ in {
         snmp = {
           enable = true;
           enableTraps = true;
+          enableKeepalived = true;
         };
 
         extraGlobalDefs = ''

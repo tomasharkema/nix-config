@@ -55,18 +55,22 @@
           {
             action = ":Telescope live_grep<CR>";
             key = "<C-F>";
-            mode = [
-              "n"
-              "v"
-            ];
+            mode = ["n" "v"];
+          }
+          {
+            action = ":Telescope live_grep<CR>";
+            key = "<C-S-F>";
+            mode = ["n" "v"];
           }
           {
             action = ":Telescope find_files<CR>";
             key = "<C-O>";
-            mode = [
-              "n"
-              "v"
-            ];
+            mode = ["n" "v"];
+          }
+          {
+            action = ":Telescope find_files<CR>";
+            key = "<C-S-O>";
+            mode = ["n" "v"];
           }
           {
             key = ";";

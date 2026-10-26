@@ -42,7 +42,7 @@
     boxbuddy
     brave
     brave-search-cli
-    buttermanager
+    # buttermanager
     cameractrls
     # celestia
     chromium
