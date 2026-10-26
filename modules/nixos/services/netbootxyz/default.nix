@@ -103,17 +103,6 @@ in {
 
       snmpd = {
         enable = true;
-        configText = ''
-          master	agentx
-          # System + hrSystem groups
-          view   haproxyview   included   .1.3.6.1.2.1.1
-          view   haproxyview   included   .1.3.6.1.2.1.25.1
-          # HAProxy Enterprise groups
-          view   haproxyview   included   .1.3.6.1.4.1.23263.4.3
-          view   haproxyview   included   .1.3.6.1.4.1.58750.4.3
-          rocommunity  haproxy default -V haproxyview
-          rocommunity6 haproxy default -V haproxyview
-        '';
       };
     };
 

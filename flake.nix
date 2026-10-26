@@ -338,6 +338,8 @@
       "https://niri.cachix.org"
       "https://nyx-cache.chaotic.cx"
       "https://nixos-raspberrypi.cachix.org"
+      "https://cache.nixos-cuda.org"
+      "https://cache.flox.dev"
     ];
 
     extra-trusted-public-keys = [
@@ -360,6 +362,8 @@
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       "tomasharkema:odFihM5iPetpuUdcXy/4cKAFxOBM0TKAeLpztxA7qu4="
       "nyx-cache.chaotic.cx:dJxTrgMC3V3cFfyIiBQDQorG6k1LsqurH/srpMSq7qk="
+      "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+      "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
     ];
 
     # allow-import-from-derivation = true;

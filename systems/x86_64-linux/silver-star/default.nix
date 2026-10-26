@@ -34,7 +34,6 @@
 
     hardware.facter = {
       reportPath = ./facter.json;
-      # detected.graphics.enable=;
     };
 
     disks.btrfs = {
@@ -136,8 +135,10 @@
       # certmgr.enable = true;
       # step-ca.enable = true;
       # netconsoled.enable = true;
-      # esdm.enable = true;
-      ollama = {
+
+      esdm.enable = true;
+
+      ollama = lib.mkIf false {
         enable = true;
         host = "silver-star.ling-lizard.ts.net";
         loadModels = [
@@ -145,7 +146,7 @@
         ];
       };
 
-      nextjs-ollama-llm-ui = {
+      nextjs-ollama-llm-ui = lib.mkIf false {
         enable = true;
         hostname = "silver-star.ling-lizard.ts.net";
         port = 3433;
@@ -162,6 +163,7 @@
         # enable = true;
         url = "https://opencloud.ling-lizard.ts.net";
       };
+
       rsyncd.enable = true;
       # "nix-private-cache".enable = true;
 
@@ -246,6 +248,7 @@
       };
 
       irqbalance.enable = true;
+      heartbeat.enable = true;
 
       uptime-kuma = {
         enable = true;
@@ -253,6 +256,7 @@
           HOST = "0.0.0.0";
           PORT = "4000";
         };
+        appriseSupport = true;
       };
 
       portainer.enable = true;
@@ -321,11 +325,11 @@
         };
       };
 
-      kanidm = lib.mkIf false {
+      kanidm = {
         enableClient = true;
         enableServer = true;
         # enablePam = true;
-        package = pkgs.kanidm_1_8;
+        package = pkgs.kanidm_1_11;
 
         unixSettings.kanidm = {
           pam_allowed_login_groups = ["users"];
@@ -384,6 +388,7 @@
             toURL = "https://127.0.0.1:8443";
             insecureHTTPS = true;
           };
+          uptime.toURL = "http://127.0.0.1:4000";
         };
       };
 
@@ -421,7 +426,7 @@
         };
       };
 
-      pocket-id = lib.mkIf false {
+      pocket-id = {
         enable = true;
         settings = {
           APP_URL = "https://id.harke.ma";
@@ -670,25 +675,27 @@
 
     virtualisation = {
       oci-containers.containers = {
-        ism = lib.mkIf false {
+        ism = {
           image = "teumaauss/ism:latest";
 
           volumes = [
-            "/etc/os-release:/etc/os-release"
-            "/etc/snmp/snmpd.conf:/etc/snmp/snmpd.conf"
-            "/etc/hostname:/etc/hostname"
+            "/etc/os-release:/etc/os-release:ro"
+            "/etc/snmp/snmpd.conf:/etc/snmp/snmpd.conf:ro"
+            "/etc/hostname:/etc/hostname:ro"
             # "/lib/modules:/lib/modules"
           ];
+
           privileged = true;
-          devices = [
-            "/dev/log:/dev/log"
-            "/dev/ipmi0:/dev/ipmi0"
-          ];
+          # devices = [
+          #   "/dev/log:/dev/log"
+          #   "/dev/ipmi0:/dev/ipmi0"
+          # ];
+
           extraOptions = [
             "--net=host"
-
             # "--systemd=always"
           ];
+
           autoStart = true;
         };
 
@@ -720,31 +727,6 @@
           environment = {
             TZ = "Europa/Amsterdam";
           };
-        };
-
-        otbr = lib.mkIf false {
-          #image = "openthread/border-router";
-          image = "teumaauss/otbr";
-          volumes = ["/var/lib/otbr:/data"];
-          extraOptions = [
-            "--net=host"
-            "--cap-add=NET_ADMIN"
-          ];
-          environment = {
-            TZ = "Europa/Amsterdam";
-            #OT_RCP_DEVICE = "spinel+hdlc+forkpty:///usr/bin/socat?forkpty-arg=-&forkpty-arg=TCP:192.168.9.165:6638";
-
-            OT_RCP_DEVICE = "spinel+hdlc+tcp://192.168.9.165:6638";
-            OT_INFRA_IF = "br66";
-            OT_THREAD_IF = "wpan0";
-            OT_LOG_LEVEL = "3";
-            # OT_REST_LISTEN_ADDR = "0.0.0.0";
-            # OT_REST_LISTEN_PORT = "8081";
-          };
-          devices = [
-            "/dev/net/tun"
-            # "/dev/ttyS3"
-          ];
         };
 
         fastapi-dls = lib.mkIf false {
@@ -781,7 +763,7 @@
       };
     };
 
-    powerManagement.powertop.enable = true;
+    # powerManagement.powertop.enable = true;
 
     boot = {
       tmp.useTmpfs = true;
@@ -817,10 +799,11 @@
         # "pci=nomsi"
       ];
 
-      blacklistedKernelModules = ["iTCO_wdt"];
+      # blacklistedKernelModules = ["iTCO_wdt"];
 
       #kernelPackages = lin.mkForce pkgs.linuxPackages_latest;
       kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-server;
+
       recovery = {
         enable = true;
         install = true;
@@ -870,13 +853,17 @@
         # "docker-compose@faf" = {
         #   wantedBy = ["multi-user.target"];
         # };
-
+        "docker-compose@domotz".wantedBy = ["multi-user.target"];
         "docker-compose@homey" = {
           wantedBy = ["multi-user.target"];
         };
         # "docker-compose@fleetdm" = {
         #   wantedBy = ["multi-user.target"];
         # };
+
+        uptime-kuma = {
+          path = with pkgs; [cloudflared];
+        };
       };
     };
   };

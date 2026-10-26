@@ -423,7 +423,7 @@ in {
             addresses = true;
             domain = true;
             hinfo = true;
-            workstation = true;
+            publish-workstation = true;
           };
           reflector.enable-reflector = false;
         };
