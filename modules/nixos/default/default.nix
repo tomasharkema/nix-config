@@ -419,10 +419,9 @@ in {
         settings = {
           publish = {
             enable = true;
-            userServices = true;
-            addresses = true;
-            domain = true;
-            hinfo = true;
+            publish-addresses = true;
+            publish-domain = true;
+            publish-hinfo = true;
             publish-workstation = true;
           };
           reflector.enable-reflector = false;
