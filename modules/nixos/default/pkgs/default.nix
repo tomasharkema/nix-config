@@ -305,7 +305,7 @@ in {
           inteltool
           intentrace
           # ipmicfg
-          libguestfs-with-appliance
+          # libguestfs-with-appliance
           libsmbios
           # meshtastic
           # micropython

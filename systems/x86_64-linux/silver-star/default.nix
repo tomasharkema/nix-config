@@ -136,7 +136,7 @@
       # step-ca.enable = true;
       # netconsoled.enable = true;
 
-      esdm.enable = true;
+      # esdm.enable = true;
 
       ollama = lib.mkIf false {
         enable = true;
@@ -159,6 +159,7 @@
         incus.enable = true;
         # bridgeInterfaces = [ "eno1" ];
       };
+
       opencloud = {
         # enable = true;
         url = "https://opencloud.ling-lizard.ts.net";
@@ -248,7 +249,7 @@
       };
 
       irqbalance.enable = true;
-      heartbeat.enable = true;
+      # heartbeat.enable = true;
 
       uptime-kuma = {
         enable = true;
@@ -325,7 +326,7 @@
         };
       };
 
-      kanidm = {
+      kanidm = lib.mkIf false {
         enableClient = true;
         enableServer = true;
         # enablePam = true;
@@ -426,7 +427,7 @@
         };
       };
 
-      pocket-id = {
+      pocket-id = lib.mkIf false {
         enable = true;
         settings = {
           APP_URL = "https://id.harke.ma";
@@ -675,7 +676,7 @@
 
     virtualisation = {
       oci-containers.containers = {
-        ism = {
+        ism = lib.mkIf false {
           image = "teumaauss/ism:latest";
 
           volumes = [
