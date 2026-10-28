@@ -24,9 +24,9 @@ in {
       };
     };
 
-    home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
-      {package = airpod-battery-monitor;}
-    ];
+    # home-manager.users.tomas.programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
+    #   {package = airpod-battery-monitor;}
+    # ];
 
     services = {
       blueman.enable = true;

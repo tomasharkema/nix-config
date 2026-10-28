@@ -181,7 +181,7 @@ in {
         nvchecker
         nvme-cli
         nyaa
-        onionshare
+        # onionshare
         # openipmi
         # openldap
         openocd

@@ -89,7 +89,7 @@
     effitask
     # esp-idf-full
     esptool
-    f1viewer
+    # f1viewer
     file-roller
     filezilla
     flamp
@@ -150,7 +150,7 @@
     nrfconnect-bluetooth-low-energy
     nvramtool
     onioncircuits
-    onionshare-gui
+    # onionshare-gui
     # opendrop
     openloco
     openra
