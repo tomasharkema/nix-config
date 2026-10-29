@@ -31,10 +31,15 @@ in {
     #   gcc.tune = "haswell";
     #   system = "x86_64-linux";
     # };
-    nix.settings.system-features = [
-      "gccarch-skylake"
-      "gccarch-haswell"
-    ];
+    nix.settings = {
+      system-features = [
+        "gccarch-skylake"
+        "gccarch-haswell"
+      ];
+      extra-platforms = [
+        "aarch64-linux"
+      ];
+    };
 
     hardware.facter.reportPath = ./facter.json;
 
