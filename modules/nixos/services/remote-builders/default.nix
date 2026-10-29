@@ -14,7 +14,7 @@ in {
     client.enable = lib.mkEnableOption "remote-builders client";
   };
 
-  config = {
+  config = lib.mkIf false {
     age.secrets."builder-key" = {
       rekeyFile = ./builder.key.age;
       generator.script = "ssh-ed25519";
@@ -60,7 +60,7 @@ in {
         };
       in
         [
-          (armBuilder "raspi5")
+          # (armBuilder "raspi5")
           # (armBuilder "cm5")
         ]
         ++ (
