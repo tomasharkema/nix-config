@@ -55,7 +55,7 @@ in {
       # btrbk.enable = true;
     };
 
-    fileSystems."/boot".mountPoint = "/boot/efi";
+    # fileSystems."/boot".mountPoint = "/boot";
 
     traits = {
       server = {
@@ -353,6 +353,8 @@ in {
       };
 
       kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-server;
+
+      binfmt.emulatedSystems = ["aarch64-linux"];
 
       supportedFilesystems = [
         "xfs"
