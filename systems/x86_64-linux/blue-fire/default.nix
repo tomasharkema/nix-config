@@ -366,6 +366,7 @@ in {
 
       kernelParams = [
         "console=ttyS2,115200"
+        "console=tty1"
         # "earlyprintk=ttyS2"
         # "rootdelay=300"
         "panic=1"
