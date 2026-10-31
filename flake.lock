@@ -104,11 +104,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1793448936,
-        "narHash": "sha256-GABqP7Ri/iXAjtZJwQZzRx6x1OSIrSrdky7wmKgAZRo=",
+        "lastModified": 1793464836,
+        "narHash": "sha256-cbZIR/Shhssj4Jg2OVPsy+eudhkPxSyNHF/qP3iGZaw=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "d26ae44cd59c412c7d9f2d85f11732348f87ca7f",
+        "rev": "39872b702ff1ac3cdde81558e0f36dd36e4e2ba6",
         "type": "github"
       },
       "original": {
@@ -218,11 +218,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793458664,
-        "narHash": "sha256-H5zT6lvZnpzfww0sXUfD3u8Wnw7vhvuaw7+r4VYfh14=",
+        "lastModified": 1793476991,
+        "narHash": "sha256-JUyCeG558koYcMLymFVjZAryV3wmLYyJf8MRbfea7Eg=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "a0b248606d1e8221444a1b0efab34ab56ae36db1",
+        "rev": "c5cb0bebd97dc898207bb91a91fd02d014537f12",
         "type": "github"
       },
       "original": {
@@ -234,11 +234,11 @@
     "dank-qml-common": {
       "flake": false,
       "locked": {
-        "lastModified": 1793458706,
-        "narHash": "sha256-3knmPhn6zXbSzKA46Z93J+iaX4ha4OtgiKdg00qC6PA=",
+        "lastModified": 1793471402,
+        "narHash": "sha256-gJCBIHwoKYkr9ueOZCt78GeUXuVNhgaStcRRi5p7zRE=",
         "owner": "AvengeMedia",
         "repo": "dank-qml-common",
-        "rev": "8ca55f0a40c4913e82d4fb063fd72de04086dd3b",
+        "rev": "ef4c8c2aeb87235cb2d253669309ce382b53a3ef",
         "type": "github"
       },
       "original": {
@@ -1131,11 +1131,11 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1793463577,
-        "narHash": "sha256-jUvV4rPbBkiKXL9Ui/CoQHzb6Pll7ndCBOz8196kZoE=",
+        "lastModified": 1793479478,
+        "narHash": "sha256-SMCWOAoXgGUCyFLp3ofBE+x5b1i0JKROEf0kfo70hxg=",
         "owner": "epireyn",
         "repo": "niri-flake",
-        "rev": "01a374c212a72ec4f23d4021eb8a6a69e621bd85",
+        "rev": "269c1ef25bddc07acc2f3f85da601cf9860c3d33",
         "type": "github"
       },
       "original": {
@@ -1164,11 +1164,11 @@
     "niri-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1793433282,
-        "narHash": "sha256-Hb9YM87WXxh9K4KIZ0U5e4M+6POT5hK2mGI5xj/kBXo=",
+        "lastModified": 1793475822,
+        "narHash": "sha256-AtuZOzsb9p+TTzkgaPjvl+5YRsgKc+RlIQMyozOmY5A=",
         "owner": "niri-wm",
         "repo": "niri",
-        "rev": "8e7b5745407294ed37b4b4d8ff4cf4574d45686b",
+        "rev": "a8562a1126922ed4c1c94d34c1dbb26633491d05",
         "type": "github"
       },
       "original": {
@@ -1872,11 +1872,11 @@
         "systems": "systems_10"
       },
       "locked": {
-        "lastModified": 1793376727,
-        "narHash": "sha256-7ajH+iQOARokZ/QV834BFKFUXpd+O9Mm1NBUkGLbrdY=",
+        "lastModified": 1793467695,
+        "narHash": "sha256-L/7z9jX9O7jLwlUV+/6eCMc8fTc20oHFtpVMjd+KBaM=",
         "owner": "1Password",
         "repo": "shell-plugins",
-        "rev": "73d67aae81e3b004bb8e34d99b5cb75fe8115e02",
+        "rev": "8e9f4777ae03411d4baf19e1333d4555f1c4220b",
         "type": "github"
       },
       "original": {
@@ -1893,11 +1893,11 @@
         "openlogi": "openlogi_2"
       },
       "locked": {
-        "lastModified": 1793463456,
-        "narHash": "sha256-3eEDR1c3xCBB1FOC9d3Ge3fDaZ4SUa/znSvnDZoj824=",
+        "lastModified": 1793478438,
+        "narHash": "sha256-Ubkl9b9lphnKxcuGf40WexG+UGdlvZNsNrr4cArXqVg=",
         "owner": "AprilNEA",
         "repo": "OpenLogi",
-        "rev": "324acfed509924dc4214646d99c4645c8ec408be",
+        "rev": "1851f89ac2f7c372d7191f91ed9d32f7573e97b7",
         "type": "github"
       },
       "original": {
