@@ -9,14 +9,18 @@
     catppuccin = {
       enable = true;
 
+      autoEnable = true;
+
       flavor = "mocha";
       accent = "blue";
+
       cache.enable = true;
+
       gtk = {
         # enable = false;
         icon.enable = false;
       };
-      lazygit.enable = false;
+      # lazygit.enable = false;
     };
     # gtk.catppuccin.enable = false;
 

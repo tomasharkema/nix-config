@@ -86,7 +86,7 @@ in {
         "charles"
         "chiri"
         "devcleaner"
-        "easymac-cleaner"
+        # "easymac-cleaner"
         "elgato-studio"
         "firefox"
         "fldigi"
