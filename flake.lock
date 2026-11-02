@@ -1906,9 +1906,10 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "openlogi": "openlogi_2"
+        "rust-overlay": "rust-overlay_2"
       },
       "locked": {
+        "dir": "packaging",
         "lastModified": 1793635053,
         "narHash": "sha256-ZHeOUBzmGXORzS6OQbLUb+Qm5oOhK2EXQ46S5aCMEN0=",
         "owner": "AprilNEA",
@@ -1917,30 +1918,11 @@
         "type": "github"
       },
       "original": {
+        "dir": "packaging",
         "owner": "AprilNEA",
         "repo": "OpenLogi",
         "type": "github"
       }
-    },
-    "openlogi_2": {
-      "inputs": {
-        "nixpkgs": [
-          "openlogi",
-          "nixpkgs"
-        ],
-        "rust-overlay": "rust-overlay_2"
-      },
-      "locked": {
-        "path": "./packaging",
-        "type": "path"
-      },
-      "original": {
-        "path": "./packaging",
-        "type": "path"
-      },
-      "parent": [
-        "openlogi"
-      ]
     },
     "optnix": {
       "inputs": {
@@ -2154,7 +2136,6 @@
     "rust-overlay_2": {
       "inputs": {
         "nixpkgs": [
-          "openlogi",
           "openlogi",
           "nixpkgs"
         ]

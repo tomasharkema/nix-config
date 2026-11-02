@@ -20,7 +20,7 @@ in {
       gnome.enable = lib.mkEnableOption "Whether or not to manage nix configuration.";
     };
   };
-
+  # copy batch `find /nix/store -type d -maxdepth 1 -print0 | xargs -0 -P4 -n50 nix copy --to "ssh-ng://192.168.1.100"`
   config = {
     traits.developer.enable = true;
 
@@ -68,7 +68,7 @@ in {
         enable = true;
         ephemeral = true;
         maxJobs = 4;
-        package = pkgs-darwin.darwin.linux-builder;
+        package = pkgs.darwin.linux-builder-vz;
         systems = with inputs.flake-utils.lib.system; [aarch64-darwin x86_64-darwin];
 
         config = {
