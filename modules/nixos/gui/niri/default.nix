@@ -192,7 +192,7 @@ in {
           #       rev = "main";
           #       sha256 = "sha256-h4+6OurB9yo4mJUye9z1PdUjjqTNIur78Y5IrRPY1g0=";
           #     };
-          #   };
+          #          #   };
           # };
         };
 
@@ -216,7 +216,11 @@ in {
               };
             };
             prefer-no-csd = true;
-            gestures.hot-corners.enable = false;
+
+            # niri.settings.gestures.hot-corners.rendered
+
+            # gestures.hot-corners.enable = false;
+
             cursor = {
               hide-when-typing = true;
               hide-after-inactive-ms = 1000;

@@ -64,7 +64,7 @@ in {
         modem-manager-gui
         libmbim
         libqmi
-        tpacpi-bat
+
         # custom.lenovo-wwan-unlock
         # sgx-psw
       ];

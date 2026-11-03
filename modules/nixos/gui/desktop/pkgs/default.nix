@@ -77,7 +77,7 @@
     degate
     digiham
     digikam
-    digital
+    # digital
     discordo
     distroshelf
     dmenu
