@@ -69,7 +69,10 @@ in {
         ephemeral = true;
         maxJobs = 4;
         package = pkgs.darwin.linux-builder-vz;
-        systems = with inputs.flake-utils.lib.system; [aarch64-darwin x86_64-darwin];
+        systems = [
+          "x86_64-linux"
+          "aarch64-linux"
+        ];
 
         config = {
           boot.binfmt.emulatedSystems = ["x86_64-linux"];
