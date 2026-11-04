@@ -418,7 +418,6 @@ in {
         # allowInterfaces = ["tailscale0"];
         settings = {
           publish = {
-            enable = true;
             publish-addresses = true;
             publish-domain = true;
             publish-hinfo = true;
