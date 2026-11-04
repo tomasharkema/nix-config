@@ -105,7 +105,6 @@ in {
         "kdenlive"
         "macdirstat"
         "mactoy"
-        "openframe-console"
         "openlogi"
         "proxyman"
         "rectangle"
