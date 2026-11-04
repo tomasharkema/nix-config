@@ -79,7 +79,7 @@ in {
               diskSize = 40 * 1024;
               memorySize = 6 * 1024;
             };
-            cores = 4;
+            cores = 8;
           };
         };
       };
