@@ -53,7 +53,6 @@ in {
       ++ (with pkgs.custom; [
         # keep-sorted start
         maclaunch
-        # launchcontrol
         # rust-conn
         tailscale-tui
         # keep-sorted end

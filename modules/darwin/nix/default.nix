@@ -68,7 +68,9 @@ in {
         enable = true;
         ephemeral = true;
         maxJobs = 4;
+
         package = pkgs.darwin.linux-builder-vz;
+
         systems = [
           "x86_64-linux"
           "aarch64-linux"
