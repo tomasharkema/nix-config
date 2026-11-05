@@ -399,13 +399,15 @@ in {
 
         efi = {
           canTouchEfiVariables = true;
-          efiSysMountPoint = "/boot";
+          # efiSysMountPoint = "/boot";
         };
         grub = {
           enable = true;
           efiSupport = true;
           #efiInstallAsRemovable = true;
           device = "nodev";
+          gfxmodeEfi = "text";
+          gfxmodeBios = "text";
 
           # netbootxyz.enable = true;
           memtest86.enable = true;
