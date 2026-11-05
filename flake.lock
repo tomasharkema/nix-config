@@ -218,11 +218,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793835440,
-        "narHash": "sha256-NS+aQoBUb53xCaEfHoljuc0m6HZ91imPkg/c+N6+kN0=",
+        "lastModified": 1793838832,
+        "narHash": "sha256-y3YwRpUaYza9Ur7kojUfE91p1xDGOjxPSlXQcUeC1bo=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "d000a8a993f2387c811430b858bd50ce04255a45",
+        "rev": "d7c3b3bbeec5968a7205d996869b8ba193a0190a",
         "type": "github"
       },
       "original": {
@@ -1847,11 +1847,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1793657955,
-        "narHash": "sha256-8E5aGAXrBiVrTbotmM2kq2CUSn0bdl3xHciUed90xaE=",
+        "lastModified": 1793838356,
+        "narHash": "sha256-tHUuxxZM+epp5FYMnaH6OyICYm3BW1jU24kHiZT5z7A=",
         "owner": "icewind1991",
         "repo": "nvidia-patch-nixos",
-        "rev": "bdc8fdacf590f7c17ca2ef1df03fd425ee585bdb",
+        "rev": "19e70badd7e4014e7e99b4b6945bb3dc083776e8",
         "type": "github"
       },
       "original": {
@@ -1910,11 +1910,11 @@
       },
       "locked": {
         "dir": "packaging",
-        "lastModified": 1793814862,
-        "narHash": "sha256-SgwCELo/u+0op0Jb6BpBojzsw+JBQG1yEurvaJiaVHs=",
+        "lastModified": 1793840000,
+        "narHash": "sha256-u2QEjImNCAI2XfZj7J+yl1h4nM13g7j/bTgaA1dKXCs=",
         "owner": "AprilNEA",
         "repo": "OpenLogi",
-        "rev": "675c05b795da06c58091d7de04789f7deb5bbcd9",
+        "rev": "3a68eb7ca1e5788c4d6559bccfd38f750ebd2d7e",
         "type": "github"
       },
       "original": {
