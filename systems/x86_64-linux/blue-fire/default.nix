@@ -119,7 +119,7 @@ in {
       remote-builders.server.enable = true;
       # netbootxyz.enable = true;
       # tcsd.enable = true;
-      kmscon.enable = true;
+      # kmscon.enable = true;
       prometheus.exporters = {
         ipmi = {
           enable = true;
