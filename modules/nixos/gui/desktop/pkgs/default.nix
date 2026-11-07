@@ -40,9 +40,7 @@
     bluetooth_battery
     bottles-removed
     boxbuddy
-    brave
-    brave-search-cli
-    # buttermanager
+    buttermanager
     cameractrls
     # celestia
     chromium

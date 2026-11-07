@@ -262,7 +262,6 @@ in {
         tshark
         ttmkfdir
         ttop
-        tydra
         unzip
         update-nix-fetchgit
         updatecli

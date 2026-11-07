@@ -82,7 +82,6 @@ in {
         # keep-sorted start
         "audacity"
         "azure-cli"
-        "brave-browser"
         "charles"
         "chiri"
         "devcleaner"

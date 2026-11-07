@@ -114,11 +114,11 @@ in {
           nrf-udev
         ];
       };
-      scx = {
+      scx-loader = {
         enable = pkgs.stdenvNoCC.hostPlatform.isx86_64;
         # package = pkgs.scx_git.rustscheds;
         # scheduler = "scx_lavd"; #
-        scheduler = "scx_bpfland";
+        # scheduler = "scx_bpfland";
       };
 
       hardware = {
@@ -147,7 +147,7 @@ in {
       # };
       # clipmenu.enable = true;
 
-      # xserver.videoDrivers = ["displaylink"];
+      xserver.videoDrivers = ["displaylink"];
 
       systembus-notify.enable = true;
       gvfs = {
@@ -225,7 +225,7 @@ in {
         terminal = "kitty";
       };
 
-      ghidra = {
+      ghidra = lib.mkIf false {
         enable = true;
         package = pkgs.ghidra.withExtensions (
           p:

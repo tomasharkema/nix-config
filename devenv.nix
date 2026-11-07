@@ -251,7 +251,6 @@ in {
     statix
     test-installer
     test-remote
-    tydra
     # update-pkgs
     # upload-all
     # upload-all-store
