@@ -130,7 +130,7 @@ in {
       gphoto2.enable = true;
       # nm-applet.enable = true;
       # solaar.enable = true;
-      openlogi = {
+      openlogi = lib.mkIf false {
         enable = true;
 
         launchAtLogin = true;
