@@ -386,13 +386,11 @@ in {
 
       modprobeConfig.enable = true;
 
-      # binfmt.emulatedSystems = ["aarch64-linux"];
-
-      recovery = {
-        sign = true;
-        install = true;
-        netboot.enable = true;
-      };
+      #recovery = {
+      #  sign = true;
+      #  install = true;
+      #  netboot.enable = true;
+      #};
 
       loader = {
         systemd-boot.enable = lib.mkForce false;
@@ -436,7 +434,7 @@ in {
         };
       };
 
-      blacklistedKernelModules = ["iTCO_wdt"];
+      #blacklistedKernelModules = ["iTCO_wdt"];
 
       kernelModules = [
         "pci-me"
