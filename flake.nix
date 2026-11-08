@@ -167,7 +167,6 @@
             nixos-cli.nixosModules.nixos-cli
             # nix-monitor.nixosModules.default
             chaotic.nixosModules.default
-            openlogi.nixosModules.default
           ];
 
           darwin = with inputs; [
@@ -797,10 +796,5 @@
     #   url = "github:antonjah/nix-monitor";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-
-    openlogi = {
-      url = "github:AprilNEA/OpenLogi?dir=packaging";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 }
