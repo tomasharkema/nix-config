@@ -34,7 +34,7 @@
         ggh
         manix
         mitmproxy
-        mqttui
+        # mqttui
         nerd-font-patcher
         nil
         nix-bisect

@@ -18,16 +18,16 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "gitpulsar";
-  version = "0.6.0";
+  version = "1.5.0";
 
   src = fetchFromGitLab {
     owner = "ilshat-apps";
     repo = "gitpulsar";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-m8qGTV4eBH7Js6ldOsLfYpdS8/McOPtgeFuUx5rh/mg=";
+    sha256 = "sha256-2cKeMzw9dJJL4+Sw0py+kVh/aFMxHNlsXu7xP5SUHVo=";
   };
 
-  cargoHash = "sha256-/3x8wVgChqvrLx8fBcxGZ33SUoRT2umCYl/d0GVeYGc=";
+  cargoHash = "sha256-e60zjwGQDICgWh8l4QiSTJJ8uvvgqcv6XbjiHzjcWdg=";
 
   nativeBuildInputs = [
     pkg-config
