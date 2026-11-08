@@ -151,13 +151,13 @@ in {
         settings = {ntfy.url = "ntfy.sh/tomasharkema-nixos";};
       };
 
-      topgrade.enable = true;
+      # topgrade.enable = true;
       direnv = {
         enable = true;
         nix-direnv.enable = true;
       };
 
-      vscode = lib.mkIf pkgs.stdenv.isLinux {
+      vscode = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
         enable = true;
       };
 

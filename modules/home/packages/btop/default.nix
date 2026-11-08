@@ -6,7 +6,7 @@
   config = {
     programs.btop = {
       enable = true;
-      package = pkgs.btop;
+      package = pkgs.btop-cuda;
       settings = {proc_per_core = true;};
     };
 

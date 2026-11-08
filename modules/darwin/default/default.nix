@@ -67,7 +67,7 @@
           dosbox-x
           lrzsz
           manix
-          mitmproxy
+          # mitmproxy
           nh
           nil
           nix-search-cli

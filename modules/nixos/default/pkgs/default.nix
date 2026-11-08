@@ -89,7 +89,7 @@ in {
         fcast-receiver
         # ffmpegEdited
         # freeipmi
-        fresh-editor
+        # fresh-editor
         ftop
         fuse
         fuse3
@@ -146,7 +146,7 @@ in {
         lrzsz
         lshw
         mbuffer
-        mitmproxy
+        # mitmproxy
         mlt
         more
         mpremote
@@ -271,7 +271,7 @@ in {
         usermount
         uv
         uxplay
-        viddy
+        #viddy
         vim
         watchlog
         wavemon

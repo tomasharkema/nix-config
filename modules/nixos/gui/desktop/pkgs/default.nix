@@ -66,7 +66,7 @@
     custom.swiftynotes
     custom.toolblex
     custom.usbguard-gnome
-    custom.wifiman
+    # custom.wifiman
     darktable
     davinci-resolve
     ddrescue

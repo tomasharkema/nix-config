@@ -138,7 +138,9 @@
 
       # esdm.enable = true;
 
-      ollama = lib.mkIf false {
+      rocrail.enable = true;
+
+      ollama = {
         enable = true;
         host = "silver-star.ling-lizard.ts.net";
         loadModels = [
@@ -146,7 +148,7 @@
         ];
       };
 
-      nextjs-ollama-llm-ui = lib.mkIf false {
+      nextjs-ollama-llm-ui = {
         enable = true;
         hostname = "silver-star.ling-lizard.ts.net";
         port = 3433;

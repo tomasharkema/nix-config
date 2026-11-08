@@ -225,13 +225,13 @@ in {
         terminal = "kitty";
       };
 
-      ghidra = lib.mkIf false {
+      ghidra = {
         enable = true;
         package = pkgs.ghidra.withExtensions (
           p:
             with p; [
               ret-sync
-              # gnudisassembler
+              gnudisassembler
               machinelearning
               findcrypt
               ghidra-delinker-extension

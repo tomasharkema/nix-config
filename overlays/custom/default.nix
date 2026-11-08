@@ -24,7 +24,7 @@ in rec {
   libfoundry = prev.custom.libfoundry;
   manuals = prev.custom.manuals;
   libcec = prev.libcec.override {withLibraspberrypi = true;};
-
+  rocrail = prev.custom.rocrail;
   libfprint-lenovo = prev.libfprint.overrideAttrs (finalAttrs: {
     src = prev.fetchFromGitLab {
       domain = "gitlab.freedesktop.org";

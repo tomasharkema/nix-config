@@ -202,7 +202,7 @@ in {
     # cachix-deploy
     # cachix-reploy-pin
     # cntr
-    flake-checker
+    # flake-checker
     # autoflake
     nix-init
     # nix-serve

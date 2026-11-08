@@ -27,13 +27,13 @@
         # fldigi
         dig
         disnix
-        flake-checker
+        # flake-checker
         fup-repl
         gcc
         gcc-arm-embedded
         ggh
         manix
-        mitmproxy
+        # mitmproxy
         # mqttui
         nerd-font-patcher
         nil

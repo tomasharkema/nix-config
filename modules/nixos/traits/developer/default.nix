@@ -22,7 +22,7 @@ in {
         deadnix
         deploy-rs
         devenv
-        flake-checker
+        # flake-checker
         # autoflake
         manix
         nil

@@ -52,7 +52,7 @@ with pkgs; {
 
         tremc
         # usermount
-        viddy
+        # viddy
         wget
         nix-top
         # nixos-anywhere
