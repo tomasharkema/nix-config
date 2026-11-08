@@ -73,7 +73,7 @@
           nix-search-cli
           nixd
           nmap
-          nox
+          # nox
           yubico-piv-tool
           zenmap
           # keep-sorted end

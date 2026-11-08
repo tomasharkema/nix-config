@@ -58,7 +58,7 @@
         nixos-option
         nixos-shell
         nixpkgs-lint
-        nox
+        # nox
         nurl
         picotool
         platformio-core
