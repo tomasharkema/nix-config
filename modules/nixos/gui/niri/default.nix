@@ -217,9 +217,7 @@ in {
             };
             prefer-no-csd = true;
 
-            # niri.settings.gestures.hot-corners.rendered
-
-            # gestures.hot-corners.enable = false;
+            gestures.hot-corners = null;
 
             cursor = {
               hide-when-typing = true;

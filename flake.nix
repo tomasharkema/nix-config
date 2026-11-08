@@ -98,7 +98,7 @@
         nixvim.overlays.default
         # nix-topology.overlays.default
         # opentelemetry-nix.overlays.default
-        nixpkgs-esp-dev.overlays.default
+        # nixpkgs-esp-dev.overlays.default
         niri.overlays.niri
         nix-yazi-plugins.overlays.default
       ];
@@ -116,19 +116,19 @@
       ];
 
       systems = {
-        hosts.raspi5 = {
-          specialArgs = {
-            inherit (inputs) nixos-raspberrypi;
-          };
-          modules = with inputs.nixos-raspberrypi.nixosModules; [
-            raspberry-pi-5.base
-            raspberry-pi-5.page-size-16k
-            raspberry-pi-5.display-vc4
-            raspberry-pi-5.bluetooth
+        # hosts.raspi5 = {
+        #   specialArgs = {
+        #     inherit (inputs) nixos-raspberrypi;
+        #   };
+        #   modules = with inputs.nixos-raspberrypi.nixosModules; [
+        #     raspberry-pi-5.base
+        #     raspberry-pi-5.page-size-16k
+        #     raspberry-pi-5.display-vc4
+        #     raspberry-pi-5.bluetooth
 
-            inputs.nixos-raspberrypi.lib.inject-overlays
-          ];
-        };
+        #     inputs.nixos-raspberrypi.lib.inject-overlays
+        #   ];
+        # };
 
         modules = {
           nixos = with inputs; [
@@ -251,7 +251,7 @@
         # lib.attrsets.filterAttrs (n: v: (builtins.hasAttr "enable" n) && n.enable) self.nixosConfigurations.pegasus.config.services;
       };
 
-      checks = inputs.self.images.installer.iso;
+      # checks = inputs.self.images.installer.iso;
 
       outputs-builder = channels: {
         formatter = channels.nixpkgs.alejandra;
@@ -667,12 +667,12 @@
     #   flake = false;
     # };
 
-    mac-app-util = {
-      url = "github:hraban/mac-app-util";
-      inputs = {
-        # nixpkgs.follows = "nixpkgs";
-      };
-    };
+    # mac-app-util = {
+    #   url = "github:hraban/mac-app-util";
+    #   inputs = {
+    #     # nixpkgs.follows = "nixpkgs";
+    #   };
+    # };
 
     nvidia-patch = {
       url = "github:icewind1991/nvidia-patch-nixos";
@@ -689,10 +689,10 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    nixos-raspberrypi = {
-      url = "github:nvmd/nixos-raspberrypi/954a04d04919f898649c21800af28af1d8aa4565";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixos-raspberrypi = {
+    # url = "github:nvmd/nixos-raspberrypi/954a04d04919f898649c21800af28af1d8aa4565";
+    # inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
@@ -715,12 +715,12 @@
       };
     };
 
-    nixpkgs-esp-dev = {
-      url = "github:mirrexagon/nixpkgs-esp-dev";
+    # nixpkgs-esp-dev = {
+    #   url = "github:mirrexagon/nixpkgs-esp-dev";
 
-      # url = "github:Book-reader/nixpkgs-esp-dev/remove-python310";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #   # url = "github:Book-reader/nixpkgs-esp-dev/remove-python310";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     dgop = {
       url = "github:AvengeMedia/dgop";

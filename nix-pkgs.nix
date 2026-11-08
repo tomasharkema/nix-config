@@ -57,7 +57,6 @@
         nixfmt
         nixos-option
         nixos-shell
-        nixpkgs-fmt
         nixpkgs-lint
         nox
         nurl

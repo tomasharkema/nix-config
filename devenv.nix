@@ -239,7 +239,6 @@ in {
     nix-tree
     nixd
     nixfmt
-    nixpkgs-fmt
     nixpkgs-lint
     nurl
     deploy-rs

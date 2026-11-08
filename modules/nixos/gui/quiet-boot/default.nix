@@ -22,26 +22,7 @@ in {
     # '';
 
     boot = {
-      plymouth = let
-        plymouth-nixos-theme = pkgs.stdenv.mkDerivation {
-          pname = "nixos-bgrt";
-          version = "1.0";
-
-          src = pkgs.fetchFromGitHub {
-            owner = "wuX4an";
-            repo = "plymouth-theme-nixos-bgrt";
-            rev = "e2dc67eab67eaa3bec42ca3a2f3dc6ef4262bddb";
-            hash = "sha256-nZSsi8Krd0K8XY4NW11SQl6Hi7qm+uvWOWW1dTLM900=";
-          };
-
-          installPhase = ''
-            mkdir -p $out/share/plymouth/themes/nixos-bgrt
-            substituteInPlace nixos-bgrt.plymouth \
-              --replace "@IMAGES@" "$out/share/plymouth/themes/nixos-bgrt/images"
-            cp -r * $out/share/plymouth/themes/nixos-bgrt/
-          '';
-        };
-      in {
+      plymouth = {
         enable = true;
         # theme = "nixos-bgrt";
         # package = pkgs.fetchFromGitHub {
@@ -52,7 +33,7 @@ in {
         # };
         # themePackages = [plymouth-nixos-theme];
         # font = "${pkgs.iosevka}/share/fonts/truetype/Iosevka-Regular.ttf";
-        font = "${pkgs.inter}/share/fonts/truetype/InterVariable.ttf";
+        # font = "${pkgs.inter}/share/fonts/truetype/InterVariable.ttf";
       };
 
       # kernel.sysctl = {

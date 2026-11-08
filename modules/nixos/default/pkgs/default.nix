@@ -306,10 +306,11 @@ in {
           # ipmicfg
           # libguestfs-with-appliance
           libsmbios
-          # meshtastic
-          # micropython
           refind
           spectre-meltdown-checker
+          # meshtastic
+          # micropython
+          statserial
           uefisettings
           # keep-sorted end
         ]

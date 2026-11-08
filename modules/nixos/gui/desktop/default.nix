@@ -114,12 +114,13 @@ in {
           nrf-udev
         ];
       };
-      scx-loader = {
-        enable = pkgs.stdenvNoCC.hostPlatform.isx86_64;
-        # package = pkgs.scx_git.rustscheds;
-        # scheduler = "scx_lavd"; #
-        # scheduler = "scx_bpfland";
-      };
+
+      # scx-loader = {
+      # enable = pkgs.stdenvNoCC.hostPlatform.isx86_64;
+      # package = pkgs.scx_git.rustscheds;
+      # scheduler = "scx_lavd"; #
+      # scheduler = "scx_bpfland";
+      # };
 
       hardware = {
         openrgb = {
