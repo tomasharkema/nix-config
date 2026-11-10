@@ -19,12 +19,23 @@
   libxkbcommon,
   libz,
   pango,
+  copyDesktopItems,
+  makeDesktopItem,
 }: let
   isIntel = stdenvNoCC.hostPlatform.isx86_64;
   archName =
     if isIntel
     then "i64"
     else "ARM64";
+
+  desktopItem = makeDesktopItem {
+    name = "rocview";
+    desktopName = "Rocview";
+    comment = "Rocrail - Innovative Model Railroad Control System";
+    exec = "rocview %U";
+    icon = "rocrail.png";
+    categories = ["Application"];
+  };
 in
   stdenvNoCC.mkDerivation (finalAttrs: {
     pname = "rocrail";
@@ -39,8 +50,11 @@ in
       stripRoot = false;
     };
 
+    desktopItems = [desktopItem];
+
     nativeBuildInputs = [
       autoPatchelfHook
+      copyDesktopItems
     ];
 
     buildInputs = [

@@ -62,11 +62,12 @@
     custom.remarkable-cups
     # custom.retro-adsb-radar
     custom.rgitui
+    # custom.wifiman
+    custom.rocrail
     custom.rust-conn
     # custom.swiftynotes
     custom.toolblex
     custom.usbguard-gnome
-    # custom.wifiman
     darktable
     davinci-resolve
     ddrescue
