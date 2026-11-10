@@ -50,7 +50,6 @@ in {
         ctop
         curl
         custom.adsb-tui
-        custom.avahi-tui
         # apfs-fuse
         # apfsprogs
         # bat-extras.batgrep
@@ -61,6 +60,7 @@ in {
         # nix-switcher # : needs github auth
         custom.discovery-rs
         custom.flightmon
+        custom.kinjo
         custom.menu
         custom.meshtui
         custom.partclone-utils

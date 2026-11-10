@@ -116,16 +116,6 @@
       };
     };
 
-    fileSystems = {
-      "/var/lib/esphome" = {
-        device = "192.168.1.102:/volume1/tomas/esphome";
-        fsType = "nfs";
-        options = [
-          "fsc"
-        ];
-      };
-    };
-
     services = {
       nfs = {
         server = {
@@ -720,6 +710,9 @@
           image = "ghcr.io/esphome/esphome";
           volumes = [
             "/var/lib/esphome:/config:rw"
+
+            # docker volume create --driver local --opt type=nfs --opt o=addr=192.168.1.102,rw --opt device=:/volume1/tomas/esphome esphome-nfs
+            "esphome-nfs:/config:rw"
           ];
           extraOptions = [
             "--net=host"

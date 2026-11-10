@@ -5,13 +5,13 @@
   nix-update-script,
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
-  pname = "avahi-tui";
+  pname = "kinjo";
   version = "0.3.13";
   __structuredAttrs = true;
 
   src = fetchFromGitHub {
     owner = "abbyssoul";
-    repo = "avahi-tui";
+    repo = "kinjo";
     rev = "v${finalAttrs.version}";
     hash = "sha256-2vFWcBiMcQQPmQ+zCVSOrKSXvOU3YgzObyg08/JU+Gs=";
   };
@@ -24,11 +24,16 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   passthru.updateScript = nix-update-script {};
 
+  postInstall = ''
+    ln -s $out/bin/kinjo $out/bin/avahi-tui
+    ls -la $out/bin
+  '';
+
   meta = {
     description = "TUI browser and command launcher for local services";
-    homepage = "https://github.com/abbyssoul/avahi-tui";
+    homepage = "https://github.com/abbyssoul/kinjo";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [];
-    mainProgram = "avahi-tui";
+    mainProgram = "kinjo";
   };
 })
