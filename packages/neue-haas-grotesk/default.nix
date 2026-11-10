@@ -1,7 +1,7 @@
 {
   stdenvNoCC,
   fetchzip,
-  ...
+  installFonts,
 }:
 stdenvNoCC.mkDerivation {
   pname = "neue-haas-grotesk";
@@ -13,17 +13,17 @@ stdenvNoCC.mkDerivation {
     sha256 = "sha256-13+0MkX2UZa+gHqMqlPLyFMN9wX71EKutFUIqOx4HXA=";
   };
 
+  nativeBuildInputs = [
+    installFonts
+  ];
+
   # buildPhase = ''
   #     for f in ${fantasqueMonoSansLigatures}/share/fonts/opentype/*; do
   #     python font-patcher $f --complete --no-progressbars --outputdir $out/share/fonts/opentype
   #   done
   # '';
 
-  installPhase = ''
-    runHook preInstall
-
-    install -Dm444 *.ttf -t $out/share/fonts/ttf
-
-    runHook postInstall
+  postInstall = ''
+    installFont ttf -t $out/share/fonts/ttf
   '';
 }

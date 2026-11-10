@@ -7,6 +7,7 @@
   xar,
   cpio,
   gzip,
+  installFonts,
 }:
 stdenvNoCC.mkDerivation rec {
   pname = "san-francisco";
@@ -18,6 +19,7 @@ stdenvNoCC.mkDerivation rec {
     xar
     gzip
     cpio
+    installFonts
   ];
 
   # src = fetchFromGitHub {
@@ -67,8 +69,12 @@ stdenvNoCC.mkDerivation rec {
     xar -xf "SF Pro Fonts.pkg"
     cat SFProFonts.pkg/Payload | gunzip -dc | cpio -i
 
-    install -Dm444 Library/Fonts/*.otf -t $out/share/fonts/otf
-    install -Dm444 Library/Fonts/*.ttf -t $out/share/fonts/ttf
+    # install -Dm444 Library/Fonts/*.otf -t $out/share/fonts/otf
+    # install -Dm444 Library/Fonts/*.ttf -t $out/share/fonts/ttf
+
+    installFont otf $out/share/fonts/otf
+    installFont ttf $out/share/fonts/ttf
+
 
     runHook postInstall
   '';

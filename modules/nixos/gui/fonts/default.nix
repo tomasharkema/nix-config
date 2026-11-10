@@ -81,13 +81,14 @@
           cm_unicode
           constructium
           corefonts
+          custom.alte-din
           custom.b612-nerdfont
           custom.computer-modern
           custom.din
           custom.fast-font
           custom.futura
           custom.neue-haas-grotesk
-          # custom.san-francisco
+          custom.san-francisco
           dina-font
           encode-sans
           exult

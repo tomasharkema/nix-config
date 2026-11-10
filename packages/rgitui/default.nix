@@ -13,19 +13,22 @@
   stdenv,
   wayland,
   libxcb,
+  aws-lc,
+  oniguruma,
+  sqlite,
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "rgitui";
-  version = "0.4.1";
+  version = "0.5.1";
 
   src = fetchFromGitHub {
     owner = "noahbclarkson";
     repo = "rgitui";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-h2ZlFi7PEKX2FfPuNpsROGOpMNpaV2kd30w1m6oyU0k=";
+    hash = "sha256-QjoCFqe4mMgKd6BOnc4EA60VtbQZUvk9J4dMzc7rTO4=";
   };
 
-  cargoHash = "sha256-BWnxkrIT6YSiGeA7YnYgbt+IVw9/ym8FAav5EzmqUGI=";
+  cargoHash = "sha256-DZsqupOyK8W5uyvDvsvh+a9RWVd7OoYyGSkMtdA1nEY=";
 
   nativeBuildInputs = [
     pkg-config
@@ -41,6 +44,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
       openssl
       vulkan-loader
       zlib
+      aws-lc
+      oniguruma
+      sqlite
+      #zpkgs.std
     ]
     ++ lib.optionals stdenv.isLinux [
       wayland
