@@ -88,7 +88,7 @@
           custom.fast-font
           custom.futura
           custom.neue-haas-grotesk
-          custom.san-francisco
+          # custom.san-francisco
           dina-font
           encode-sans
           exult

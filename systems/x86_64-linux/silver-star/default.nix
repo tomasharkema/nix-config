@@ -571,9 +571,6 @@
           useDHCP = false;
           wakeOnLan.enable = true;
         };
-        "idrac" = {
-          useDHCP = true;
-        };
         "br1" = {
           useDHCP = false;
           mtu = 9000;

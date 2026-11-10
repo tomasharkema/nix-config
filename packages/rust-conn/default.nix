@@ -20,6 +20,7 @@
   libsoup_3,
   webkitgtk_6_0,
   nix-update-script,
+  aws-lc,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "rust-conn";
@@ -44,6 +45,7 @@ rustPlatform.buildRustPackage rec {
 
   buildInputs =
     [
+      aws-lc
       cairo
       gdk-pixbuf
       glib

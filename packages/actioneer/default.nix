@@ -8,6 +8,7 @@
   wrapGAppsHook4,
   gdk-pixbuf,
   gtk4,
+  aws-lc,
   libadwaita,
 }:
 rustPlatform.buildRustPackage rec {
@@ -34,6 +35,7 @@ rustPlatform.buildRustPackage rec {
     gdk-pixbuf
     gtk4
     libadwaita
+    aws-lc
   ];
 
   doCheck = false;

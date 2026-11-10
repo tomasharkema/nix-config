@@ -40,6 +40,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
     glib
     gtk4
     libadwaita
+    libgit2.dev
+    libgit2.lib
     libgit2
     oniguruma
     openssl

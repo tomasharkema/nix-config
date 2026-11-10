@@ -24,6 +24,6 @@ stdenvNoCC.mkDerivation {
   # '';
 
   postInstall = ''
-    installFont ttf -t $out/share/fonts/ttf
+    installFont ttf $out/share/fonts/ttf
   '';
 }

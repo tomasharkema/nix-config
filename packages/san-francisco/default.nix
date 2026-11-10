@@ -11,7 +11,7 @@
 }:
 stdenvNoCC.mkDerivation rec {
   pname = "san-francisco";
-  version = "1";
+  version = "2";
 
   nativeBuildInputs = [
     undmg
@@ -22,34 +22,21 @@ stdenvNoCC.mkDerivation rec {
     installFonts
   ];
 
-  # src = fetchFromGitHub {
-  #   owner = "sahibjotsaggu";
-  #   repo = "San-Francisco-Pro-Fonts";
-  #   rev = "8bfea09aa6f1139479f80358b2e1e5c6dc991a58";
-  #   hash = "sha256-mAXExj8n8gFHq19HfGy4UOJYKVGPYgarGd/04kUIqX4=";
-  # };
-
-  # buildPhase = ''
-  #     for f in ${fantasqueMonoSansLigatures}/share/fonts/opentype/*; do
-  #     python font-patcher $f --complete --no-progressbars --outputdir $out/share/fonts/opentype
-  #   done
-  # '';
-
   srcs = [
     (fetchurl {
       url = "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg";
       name = "source-pro.dmg";
-      sha256 = "sha256-Lk14U5iLc03BrzO5IdjUwORADqwxKSSg6rS3OlH9aa4=";
+      sha256 = "0a2bxccfd0191rzd9cfm2arkb723dmkadp3kgiq6ma8z5xifczxj";
     })
     (fetchurl {
       url = "https://devimages-cdn.apple.com/design/resources/download/SF-Compact.dmg";
       name = "source-compact.dmg";
-      sha256 = "sha256-CMNP+sL5nshwK0lGBERp+S3YinscCGTi1LVZVl+PuOM=";
+      sha256 = "sha256-byQRcYdqhBdNS5m69Gm6+z+OJFTOoSPYULM/H7D3D18=";
     })
     (fetchurl {
       url = "https://devimages-cdn.apple.com/design/resources/download/SF-Mono.dmg";
-      sha256 = "sha256-bUoLeOOqzQb5E/ZCzq0cfbSvNO1IhW1xcaLgtV2aeUU=";
       name = "source-mono.dmg";
+      sha256 = "sha256-bUoLeOOqzQb5E/ZCzq0cfbSvNO1IhW1xcaLgtV2aeUU=";
     })
   ];
 

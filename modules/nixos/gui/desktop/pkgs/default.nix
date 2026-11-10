@@ -52,8 +52,8 @@
     custom.actioneer
     custom.butler
     custom.denon-control
-    custom.gitpulsar
-    custom.gtk-meshtastic-client
+    # custom.gitpulsar
+    # custom.gtk-meshtastic-client
     custom.letters
     custom.manuals
     custom.netsleuth
@@ -63,7 +63,7 @@
     # custom.retro-adsb-radar
     custom.rgitui
     custom.rust-conn
-    custom.swiftynotes
+    # custom.swiftynotes
     custom.toolblex
     custom.usbguard-gnome
     # custom.wifiman
@@ -185,13 +185,13 @@
     serial-studio
     smuview
     spi-tools
-    sql-studio
+    # sql-studio
     sqlitebrowser
     sublime-merge
     sway-launcher-desktop
     synology-drive-client
     the-powder-toy
-    thonny
+    # thonny
     tpmmanager
     transmission-remote-gtk
     tremotesf

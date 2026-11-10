@@ -214,7 +214,7 @@ in {
       #   enable = true;
       # };
       # pulseview.enable = true;
-      sniffnet.enable = true;
+      # sniffnet.enable = true;
       television = {
         enable = true;
         enableZshIntegration = true;
@@ -235,8 +235,10 @@ in {
               gnudisassembler
               machinelearning
               findcrypt
-              ghidra-delinker-extension
-              ghidra-firmware-utils
+              # lightkeeper
+              # reva
+              # ghidra-delinker-extension
+              # ghidra-firmware-utils
               ghidra-golanganalyzerextension
               ghidraninja-ghidra-scripts
               pkgs.custom.esp8266-loader
