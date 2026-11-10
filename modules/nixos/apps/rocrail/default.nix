@@ -16,7 +16,7 @@ in {
     systemd.services.rocrail = let
       pkg = cfg.package;
     in {
-      script = "${pkg} -l ${pkg}/bin -w /var/lib/rocrail";
+      script = "${pkg}/bin/rocrail -l ${pkg}/bin -w /var/lib/rocrail";
       description = "Rocrail";
       after = ["network.target"];
       wants = ["network-online.target"];
