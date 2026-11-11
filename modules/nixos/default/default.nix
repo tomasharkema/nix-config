@@ -20,9 +20,7 @@ in {
     ];
 
     age.secrets = {
-      cachix-key = {
-        rekeyFile = ./cachix-key.age;
-      };
+      snmp.rekeyFile = ./snmp.age;
     };
 
     hardware.facter.detected.dhcp.enable = false;
@@ -308,10 +306,7 @@ in {
 
       snmpd = {
         enable = true;
-        configText = ''
-          rocommunity   public
-          trapsink      localhost:162 public
-        '';
+        configFile = config.age.secrets.snmp.path;
       };
 
       # fanout.enable = true;
@@ -340,10 +335,10 @@ in {
       rpcbind.enable = true;
       cachefilesd.enable = true;
 
-      acpid = lib.mkIf (pkgs.stdenv.hostPlatform.isx86_64) {
-        enable = true;
-        logEvents = true;
-      };
+      # acpid = lib.mkIf (pkgs.stdenv.hostPlatform.isx86_64) {
+      #   enable = true;
+      #   logEvents = true;
+      # };
 
       dbus = {
         enable = true;

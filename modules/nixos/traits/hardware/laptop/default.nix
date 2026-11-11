@@ -57,28 +57,6 @@ in {
       # xrdp.enable = mkForce false;
 
       power-profiles-daemon.enable = false;
-
-      acpid = {
-        enable = true;
-        logEvents = true;
-
-        acEventCommands = let
-          systemctl = "${pkgs.systemd}/bin/systemctl";
-          ppd = "${pkgs.power-profiles-daemon}/bin/powerprofilesctl";
-        in ''
-          case "$@" in
-            *00000001)
-              ${systemctl} start --no-block beesd@root.service
-              ${ppd} set performance
-             ;;
-
-            *00000000)
-              ${systemctl} stop --no-block beesd@root.service
-              ${ppd} set balanced
-             ;;
-          esac
-        '';
-      };
     };
   };
 }
