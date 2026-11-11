@@ -42,7 +42,6 @@
     boxbuddy
     buttermanager
     cameractrls
-    # celestia
     chromium
     clipqr
     clutter
@@ -137,6 +136,8 @@
     mesa-demos
     mission-center
     mixxx
+    # celestia
+    mysql-workbench
     nautilus
     nautilus-python
     neohtop
