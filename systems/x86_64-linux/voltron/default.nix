@@ -222,10 +222,6 @@
 
       initrd.network.enable = false;
 
-      # extraModulePackages = [
-      #   config.system.build.i915-sriov
-      # ];
-
       recovery = {
         enable = true;
         install = true;
@@ -240,7 +236,7 @@
         # "intel_iommu=on"
         "iommu=pt"
         # "iommu.passthrough=1"
-        "mitigations=off"
+        #"mitigations=off"
       ];
 
       kernelModules = [
