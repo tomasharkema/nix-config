@@ -83,7 +83,7 @@ in {
 
       ratbagd.enable = true;
       usbmuxd.enable = true;
-
+      owly.enable = true;
       ananicy = {
         enable = true;
         package = pkgs.ananicy-cpp;

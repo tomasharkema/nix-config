@@ -39,7 +39,6 @@
           "git-auto-fetch"
           "git-extras"
           "git-prompt"
-          "github"
           "gitignore"
           "golang"
           # "history-substring-search"

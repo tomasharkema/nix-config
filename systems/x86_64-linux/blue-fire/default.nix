@@ -10,10 +10,6 @@
   '';
   workerPort = "9988";
 in {
-  imports = with inputs; [
-    nvidia-vgpu-nixos.nixosModules.host
-  ];
-
   config = {
     age = {
       rekey = {

@@ -86,8 +86,8 @@
         domain = "gitlab.freedesktop.org";
         owner = "mobile-broadband";
         repo = "ModemManager";
-        rev = version;
-        hash = "sha256-xyb9LTkuJyTqt0yWDDJTYiICFVFJ5SqRlnOdrhrL2Ps=";
+        rev = "c7731bfc204f24803c6baa7135c347ea46f22961";
+        hash = "sha256-RDki/jkB6o70dKdwp0fX4rljNDYKp/ZOvmGXZ0cKqcc=";
       };
       mesonFlags =
         mesonFlags
@@ -96,6 +96,9 @@
           "-Dplugin_intel=enabled"
           "-Dplugin_generic=enabled"
           "-Dplugin_ublox=enabled"
+          "-Dqmi=false"
+          "-Dqrtr=false"
+          "-Dplugin_qcom_soc=disabled"
         ];
       nativeBuildInputs =
         nativeBuildInputs

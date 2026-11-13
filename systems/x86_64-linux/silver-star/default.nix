@@ -128,6 +128,7 @@
 
       # esdm.enable = true;
 
+      signoz.enable = true;
       rocrail.enable = true;
 
       ollama = {
@@ -709,7 +710,7 @@
         esphome = {
           image = "ghcr.io/esphome/esphome";
           volumes = [
-            "/var/lib/esphome:/config:rw"
+            # "/var/lib/esphome:/config:rw"
 
             # docker volume create --driver local --opt type=nfs --opt o=addr=192.168.1.102,rw --opt device=:/volume1/tomas/esphome esphome-nfs
             "esphome-nfs:/config:rw"
@@ -837,19 +838,17 @@
 
     systemd = {
       services = {
-        "docker-compose@atuin" = {
-          wantedBy = ["multi-user.target"];
-        };
+        "docker-compose@atuin".wantedBy = ["multi-user.target"];
+
         # "docker-compose@grafana" = {
         #   wantedBy = ["multi-user.target"];
         # };
         # "docker-compose@faf" = {
         #   wantedBy = ["multi-user.target"];
         # };
-        "docker-compose@domotz".wantedBy = ["multi-user.target"];
-        "docker-compose@homey" = {
-          wantedBy = ["multi-user.target"];
-        };
+        # "docker-compose@domotz".wantedBy = ["multi-user.target"];
+        "docker-compose@homey".wantedBy = ["multi-user.target"];
+
         # "docker-compose@fleetdm" = {
         #   wantedBy = ["multi-user.target"];
         # };

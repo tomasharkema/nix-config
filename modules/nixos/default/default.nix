@@ -386,8 +386,9 @@ in {
           PasswordAuthentication = lib.mkForce false;
           PermitRootLogin = lib.mkForce "no";
 
-          # KerberosAuthentication = true;
-          # GSSAPIAuthentication = true;
+          KerberosTicketCleanup = true;
+          KerberosAuthentication = true;
+          GSSAPIAuthentication = true;
           UsePAM = true;
           ChallengeResponseAuthentication = true;
           UseDns = true;
