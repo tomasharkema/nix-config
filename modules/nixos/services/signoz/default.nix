@@ -11,6 +11,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    boot.kernel.sysctl."kernel.task_delayacct" = 1;
+
     services = {
       zookeeper = {
         enable = true;
@@ -22,9 +24,12 @@ in {
         '';
       };
 
-      clickhouse = lib.mkIf false {
+      clickhouse = {
         enable = true;
         serverConfig = {
+          http_port = 8124;
+          tcp_port = 9000;
+
           distributed_ddl = {
             path = "/clickhouse/task_queue/ddl";
           };

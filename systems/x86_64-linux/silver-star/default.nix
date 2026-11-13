@@ -4,9 +4,9 @@
   config,
   ...
 }: {
-  imports = [
-    ./trmnl.nix
-  ];
+  # imports = [
+  #   ./trmnl.nix
+  # ];
 
   config = {
     age = {
@@ -671,7 +671,7 @@
 
           volumes = [
             "/etc/os-release:/etc/os-release:ro"
-            "/etc/snmp/snmpd.conf:/etc/snmp/snmpd.conf:ro"
+            # "/etc/snmp/snmpd.conf:/etc/snmp/snmpd.conf:ro"
             "/etc/hostname:/etc/hostname:ro"
             # "/lib/modules:/lib/modules"
           ];
