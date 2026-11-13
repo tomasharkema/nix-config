@@ -144,7 +144,7 @@
             tsnsrv.nixosModules.default
             # impermanence.nixosModule
             disko.nixosModules.default
-
+            owly.nixosModules.default
             optnix.nixosModules.optnix
             lanzaboote.nixosModules.lanzaboote
             # lanzaboote.nixosModules.uki
@@ -160,7 +160,7 @@
             # walker.nixosModules.default
 
             # vscode-server.nixosModules.default
-            # nvidia-vgpu-nixos.nixosModules.guest
+            nvidia-vgpu-nixos.nixosModules.host
             # nixos-service.nixosModules.nixos-service
             # nix-virt.nixosModules.default
             dank-greeter.nixosModules.default
@@ -651,7 +651,8 @@
     # };
 
     nvidia-vgpu-nixos = {
-      url = "github:mrzenc/vgpu4nixos";
+      #url = "github:mrzenc/vgpu4nixos";
+      url = "github:benkoppe/vgpu4nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -792,6 +793,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    owly = {
+      url = "github:t4t5/owly";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # nix-monitor = {
     #   url = "github:antonjah/nix-monitor";
     #   inputs.nixpkgs.follows = "nixpkgs";
