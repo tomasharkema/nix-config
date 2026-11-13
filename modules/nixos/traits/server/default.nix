@@ -17,6 +17,8 @@ in {
 
     systemd.services."prepare-kexec".wantedBy = ["multi-user.target"];
 
+    powerManagement.cpuFreqGovernor = "performance";
+
     services = {
       hypervisor = {
         enable = true;
