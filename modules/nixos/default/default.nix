@@ -144,7 +144,7 @@ in {
 
         sysfs = {
           kernel.mm.transparent_hugepage = {
-            enabled = "always";
+            enabled = "madvise";
             defrag = "defer";
             shmem_enabled = "within_size";
           };
