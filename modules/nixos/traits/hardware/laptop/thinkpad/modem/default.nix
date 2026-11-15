@@ -7,7 +7,7 @@
   cfg = config.traits.hardware.laptop.thinkpad;
   settingsFile = pkgs.writeText "xmm7360.ini" ''
     # driver config
-    apn=internet
+    apn=multimedia.lebara.nl
 
     #ip-fetch-timeout=1
     nodefaultroute=True
@@ -150,7 +150,7 @@ in {
       # usbWwan.enable = true;
     };
 
-    systemd.services.xmm7360 = {
+    systemd.services.xmm7360 = lib.mkIf false {
       enable = false;
       description = "XMM7360 Modem Init";
       after = ["NetworkManager.service"];
