@@ -64,6 +64,7 @@ in {
         "container-compose"
         "launchctl-completion"
         "libadwaita"
+        "otel-tui"
         "qmk"
         "soapyhackrf"
         "soapyremote"
