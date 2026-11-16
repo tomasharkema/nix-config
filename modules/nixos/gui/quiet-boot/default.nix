@@ -87,62 +87,63 @@ in {
         done
         echo "Plymouth died, exiting..."
       '';
-    in {
-      "plymouth-boot-messages" = {
-        path = with pkgs; [
-          systemd
-          plymouth
-        ];
+    in
+      lib.mkIf false {
+        "plymouth-boot-messages" = {
+          path = with pkgs; [
+            systemd
+            plymouth
+          ];
 
-        wantedBy = ["sysinit.target"];
+          wantedBy = ["sysinit.target"];
 
-        after = ["plymouth-start.service"];
-        requires = ["plymouth-start.service"];
+          after = ["plymouth-start.service"];
+          requires = ["plymouth-start.service"];
 
-        unitConfig = {
-          Description = "Display boot messages on the plymouth screen";
-          DefaultDependencies = "no";
+          unitConfig = {
+            Description = "Display boot messages on the plymouth screen";
+            DefaultDependencies = "no";
+          };
+
+          serviceConfig = {
+            Type = "simple";
+            RemainAfterExit = "yes";
+          };
+
+          inherit script;
         };
+        "plymouth-poweroff-messages" = {
+          path = with pkgs; [
+            systemd
+            plymouth
+          ];
 
-        serviceConfig = {
-          Type = "simple";
-          RemainAfterExit = "yes";
+          wantedBy = ["poweroff.target" "halt.target" "shutdown.target"];
+          after = ["plymouth-poweroff.service"];
+          before = ["poweroff.target" "halt.target" "shutdown.target"];
+          requires = ["plymouth-poweroff.service"];
+
+          unitConfig = {
+            Description = "Display boot messages on the plymouth screen";
+            DefaultDependencies = "no";
+          };
+
+          serviceConfig = {
+            Type = "simple";
+          };
+
+          inherit script;
         };
-
-        inherit script;
+        # greetd.serviceConfig = {
+        #   Type = "idle";
+        #   StandardInput = "tty";
+        #   StandardOutput = "tty";
+        #   StandardError = "journal"; # Without this errors will spam on screen
+        #   # Without these bootlogs will spam on screen
+        #   TTYReset = true;
+        #   TTYVHangup = true;
+        #   TTYVTDisallocate = true;
+        # };
       };
-      "plymouth-poweroff-messages" = {
-        path = with pkgs; [
-          systemd
-          plymouth
-        ];
-
-        wantedBy = ["poweroff.target" "halt.target" "shutdown.target"];
-        after = ["plymouth-poweroff.service"];
-        before = ["poweroff.target" "halt.target" "shutdown.target"];
-        requires = ["plymouth-poweroff.service"];
-
-        unitConfig = {
-          Description = "Display boot messages on the plymouth screen";
-          DefaultDependencies = "no";
-        };
-
-        serviceConfig = {
-          Type = "simple";
-        };
-
-        inherit script;
-      };
-      # greetd.serviceConfig = {
-      #   Type = "idle";
-      #   StandardInput = "tty";
-      #   StandardOutput = "tty";
-      #   StandardError = "journal"; # Without this errors will spam on screen
-      #   # Without these bootlogs will spam on screen
-      #   TTYReset = true;
-      #   TTYVHangup = true;
-      #   TTYVTDisallocate = true;
-      # };
-    };
   };
 }

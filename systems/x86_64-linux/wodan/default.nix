@@ -334,12 +334,17 @@
         "ddcci-backlight"
         # "vfio_pci"
         "vfio"
+        "crc32"
         # "vfio_iommu_type1"
         "kvm-intel"
         # "nvidia_vgpu_vfio"
-        # "iwlwifi"
+        "iwlwifi"
         # "cfg80211"
-        # "iwlmld"
+        "iwlmld"
+      ];
+
+      initrd.kernelModules = [
+        "crc32"
       ];
 
       modprobeConfig.enable = true;

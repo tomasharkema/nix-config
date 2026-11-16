@@ -40,7 +40,6 @@ in {
       };
       groups = {
         input.members = ["tomas"];
-        gamemode.members = ["tomas"];
         #   "steam".name = "steam";
       };
     };
@@ -84,7 +83,7 @@ in {
       };
 
       gamemode = {
-        enable = true;
+        enable = false;
         # settings = {
         #   general = {
         #     renice = 10;

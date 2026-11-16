@@ -11,7 +11,7 @@ in {
     enableMouse = lib.mkEnableOption "enable mouse";
   };
 
-  config = lib.mkIf (cfg.enable && false) {
+  config = lib.mkIf cfg.enable {
     assertions = [
       {
         assertion = config.services.kmscon.enable;
@@ -29,7 +29,7 @@ in {
       };
     };
 
-    systemd.services = {
+    systemd.services = lib.mkIf false {
       # enable??
       "kmscon" = {
         description = "KMS System Console";

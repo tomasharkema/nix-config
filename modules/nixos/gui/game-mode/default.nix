@@ -8,7 +8,7 @@
 in {
   options.gui.gamemode = {enable = lib.mkEnableOption "gamemode";};
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && false) {
     # environment.systemPackages = with pkgs; [
     #   gnomeExtensions.gamemode-indicator-in-system-settings
     # ];
