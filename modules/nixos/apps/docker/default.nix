@@ -70,8 +70,8 @@ in {
         enable = true;
         enableOnBoot = true;
         # using btrfs here causes significant slowdowns...
-        storageDriver = "overlay2";
-        #liveRestore = true;
+        storageDriver = "btrfs";
+        liveRestore = true;
 
         daemon.settings.registry-mirrors = ["https://mirror.gcr.io"];
 
