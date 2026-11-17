@@ -98,6 +98,15 @@ in {
         ];
       };
 
+      kernelModules = [
+        "crc32"
+        "cryptd"
+        "rng"
+        "krb5enc"
+        "krb5"
+        "crc32c-cryptoapi"
+      ];
+
       initrd = lib.mkIf (pkgs.stdenvNoCC.hostPlatform.isx86_64) {
         compressor = "zstd";
         compressorArgs = ["-19"];
@@ -107,10 +116,18 @@ in {
         };
 
         includeDefaultModules = true;
+
         # unl0kr = {enable = config.disks.btrfs.encrypt;};
+
         kernelModules = [
           "ramoops"
           "pstore"
+          "crc32"
+          "cryptd"
+          "rng"
+          "krb5enc"
+          "krb5"
+          "crc32c-cryptoapi"
         ];
       };
 
