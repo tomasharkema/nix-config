@@ -91,6 +91,13 @@ in {
       };
       # kernelPackages = pkgs.linuxPackages_cachyos;
       # kernelPackages = pkgs.linuxPackages_6_12;
+
+      initrd = {
+        network = {
+          enable = true;
+          ssh.enable = true;
+        };
+      };
     };
   };
 }
