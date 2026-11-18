@@ -708,16 +708,18 @@
         };
 
         esphome = {
-          image = "ghcr.io/esphome/esphome";
+          image = "ghcr.io/esphome/esphome:latest";
           volumes = [
             # "/var/lib/esphome:/config:rw"
 
             # docker volume create --driver local --opt type=nfs --opt o=addr=192.168.1.102,rw --opt device=:/volume1/tomas/esphome esphome-nfs
             "esphome-nfs:/config:rw"
           ];
+
           extraOptions = [
             "--net=host"
           ];
+
           environment = {
             TZ = "Europa/Amsterdam";
           };
