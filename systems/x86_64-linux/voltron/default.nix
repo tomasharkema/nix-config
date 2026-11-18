@@ -236,7 +236,8 @@
         # "intel_iommu=on"
         "iommu=pt"
         # "iommu.passthrough=1"
-        #"mitigations=off"
+        # "mitigations=off"
+        # "iomem=relaxed"
       ];
 
       kernelModules = [
