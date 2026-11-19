@@ -607,9 +607,12 @@
           wakeOnLan.enable = true;
           mtu = 9000;
         };
+        "idrac" = {
+          useDHCP = true;
+        };
       };
 
-      useDHCP = false;
+      useDHCP = true;
       networkmanager = {
         enable = true;
         unmanaged = ["*"];

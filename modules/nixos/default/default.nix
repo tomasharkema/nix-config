@@ -675,7 +675,6 @@ in {
         libraries = with pkgs;
           [
             # keep-sorted start
-
             acl
             attr
             bzip2
@@ -684,8 +683,8 @@ in {
             fontconfig
             freetype
             fuse3
+            glibc
             icu
-            libgcc.lib
             libnotify
             libsecret
             libsecret.dev
