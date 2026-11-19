@@ -39,7 +39,6 @@ in {
         cksfv
         clang-tools
         clex
-        cmake
         colorized-logs
         compose2nix
         compsize

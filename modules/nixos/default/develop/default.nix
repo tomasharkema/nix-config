@@ -13,32 +13,31 @@
 in {
   config = {
     environment.systemPackages = with pkgs; [
+      # keep-sorted start
       arduino-cli
-      elf2uf2-rs
-      probe-rs-tools
-      rustup
-      flip-link
       arduino-language-server
-      cmakeCurses
-      gcc-arm-embedded
-      gnumake
       arduino-ota
-      arduino-language-server
-      picotool
+      bazel
       cmakeCurses
+      delve
+      elf2uf2-rs
+      flip-link
       gcc-arm-embedded
+      gdlv
       gnumake
-
       go
       go-outline
-      gdlv
-      delve
       godef
+      golangci-lint
       golint
       gopkgs
       gopls
       gotools
-      golangci-lint
+      meson
+      picotool
+      probe-rs-tools
+      rustup
+      # keep-sorted end
     ];
 
     services.udev.extraRules = ''
