@@ -212,27 +212,6 @@ in {
         terminal = "kitty";
       };
 
-      ghidra = {
-        enable = true;
-        package = pkgs.ghidra.withExtensions (
-          p:
-            with p; [
-              ret-sync
-              gnudisassembler
-              machinelearning
-              findcrypt
-              # lightkeeper
-              # reva
-              # ghidra-delinker-extension
-              # ghidra-firmware-utils
-              ghidra-golanganalyzerextension
-              ghidraninja-ghidra-scripts
-              pkgs.custom.esp8266-loader
-              pkgs.custom.ghidra-uf2loader
-            ]
-        );
-      };
-
       ssh = {
         # startAgent = true;
       };
