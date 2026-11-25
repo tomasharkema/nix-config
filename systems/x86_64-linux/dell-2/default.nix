@@ -235,7 +235,6 @@
       #   calib-data-file = ./calib-data.bin;
       # };
       # switcherooControl.enable = true;
-      # journald.storage = "volatile";
 
       # hypervisor = {
       #   enable = true;

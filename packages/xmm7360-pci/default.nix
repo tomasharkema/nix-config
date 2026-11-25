@@ -4,6 +4,7 @@
   stdenv,
   fetchFromGitHub,
   kernel ? pkgs.linuxPackages_latest.kernel,
+  kernelModuleMakeFlags ? [],
   python3,
   fetchpatch,
 }: let
@@ -62,23 +63,27 @@ in
         --replace-fail "#!/usr/bin/env python" "#!${py}/bin/python3"
     '';
 
-    makeFlags = ["KDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"];
+    makeFlags =
+      kernelModuleMakeFlags
+      ++ [
+        "KDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
+        "KVERSION=${kernel.modDirVersion}"
+        "DESTDIR=$(out)"
+        "PREFIX=/"
+        "KVER=${kernel.modDirVersion}"
+        "INSTALL_MOD_PATH=$(out)"
+      ];
 
     postBuild = ''
       make -C rpc
     '';
 
-    installPhase = ''
-      runHook preInstall
-
+    postInstall = ''
       mkdir -p $out/bin/
-      install -D xmm7360.ko $out/lib/modules/${kernel.modDirVersion}/extra/xmm7360.ko
       cp rpc/* $out/bin/
 
       cp scripts/lte.sh $out/bin/lte
       chmod +x $out/bin/lte
-
-      runHook postInstall
     '';
 
     meta = {

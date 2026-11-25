@@ -23,7 +23,10 @@
     BIN_DIR=/run/current-system/sw/bin
   '';
 
-  xmm7360 = pkgs.custom.xmm7360-pci.override {kernel = config.boot.kernelPackages.kernel;};
+  xmm7360 = pkgs.custom.xmm7360-pci.override {
+    kernel = config.boot.kernelPackages.kernel;
+    kernelModuleMakeFlags = config.boot.kernelPackages.kernelModuleMakeFlags;
+  };
 
   xmm7360-reset = pkgs.writeShellScriptBin "xmm7360-reset" ''
 
@@ -132,17 +135,17 @@ in {
     };
     boot = {
       kernelModules = [
-        # "acpi_call"
-        # "xmm7360"
+        "acpi_call"
+        "xmm7360"
       ];
 
-      # extraModulePackages = [
-      #   xmm7360
-      # ];
+      extraModulePackages = [
+        xmm7360
+      ];
 
-      # blacklistedKernelModules = [
-      #   "iosm"
-      # ];
+      blacklistedKernelModules = [
+        "iosm"
+      ];
     };
 
     hardware = {
