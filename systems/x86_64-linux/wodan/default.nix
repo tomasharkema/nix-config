@@ -289,14 +289,14 @@
     # };
 
     boot = {
-      # kernelPackages = pkgs.linuxPackages_cachyos-lto;
-      kernelPackages = pkgs.linuxPackages_cachyos-gcc;
+      kernelPackages = pkgs.linuxPackages_cachyos-lto;
+      # kernelPackages = pkgs.linuxPackages_cachyos-gcc;
 
       tmp = {useTmpfs = true;};
 
-      # initrd = {
-      #   network.enable = true;
-      # };
+      initrd = {
+        network.enable = true;
+      };
 
       supportedFilesystems = [
         "xfs"
@@ -321,7 +321,7 @@
 
       extraModulePackages = with config.boot.kernelPackages; [
         it87
-        turbostat
+        # turbostat
       ];
 
       kernelModules = [
@@ -329,7 +329,7 @@
         "i2c-dev"
         "btusb"
         "ddcci"
-        "turbostat"
+        # "turbostat"
         # "iTCO_wdt"
         "ddcci-backlight"
         # "vfio_pci"

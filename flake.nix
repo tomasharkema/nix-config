@@ -92,6 +92,7 @@
         nvidia-patch.overlays.default
         # nixos-recovery.overlays.recovery
         # peerix.overlay
+        chaotic.overlays.default
         snowfall-flake.overlays."package/flake"
         # nixos-service.overlays.default
         agenix-rekey.overlays.default

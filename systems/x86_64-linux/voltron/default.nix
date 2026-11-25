@@ -217,7 +217,7 @@
         useTmpfs = true;
       };
 
-      # kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
+      kernelPackages = pkgs.linuxPackages_cachyos-lto;
 
       initrd.network.enable = false;
 

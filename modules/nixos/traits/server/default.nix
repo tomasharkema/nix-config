@@ -67,29 +67,30 @@ in {
       };
     };
 
-    environment.etc = lib.mkIf false {
-      "fail2ban/action.d/ntfy.local".text = pkgs.lib.mkDefault (pkgs.lib.mkAfter ''
+    environment.etc = {
+      "fail2ban/action.d/ntfy.local".text = lib.mkAfter ''
         [Definition]
         norestored = true # Needed to avoid receiving a new notification after every restart
         actionban = curl -H "Title: <ip> has been banned" -d "<name> jail has banned <ip> from accessing $(hostname) after <failures> attempts of hacking the system." https://ntfy.sh/tomasharkema-nixos
-      '');
+      '';
     };
 
     disks.btrfs.swap.resume.enable = false;
 
     hardware = {
       nvidia = {
-        # nvidiaPersistenced = true;
+        nvidiaPersistenced = true;
       };
     };
 
     apps.docker.enable = true;
     traits.server.headless.enable = true;
+
     boot = {
       tmp = {
         useTmpfs = true;
       };
-      # kernelPackages = pkgs.linuxPackages_cachyos;
+      kernelPackages = pkgs.linuxPackages_cachyos-server;
       # kernelPackages = pkgs.linuxPackages_6_12;
 
       initrd = {

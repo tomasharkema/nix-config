@@ -134,7 +134,7 @@ in {
       # };
       # clipmenu.enable = true;
 
-      xserver.videoDrivers = ["displaylink"];
+      # xserver.videoDrivers = ["displaylink"];
 
       systembus-notify.enable = true;
       gvfs = {
@@ -250,7 +250,6 @@ in {
       '';
 
       kernelParams = ["psi=1"];
-      # for displaylink
       # kernelPackages = pkgs.linuxPackages_6_17;
     };
 
