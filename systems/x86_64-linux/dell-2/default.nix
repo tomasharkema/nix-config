@@ -131,33 +131,10 @@
       # hostName = "dell-2"; # Define your hostname.
       networkmanager = {
         enable = true;
-        wifi = {
-          backend = "iwd";
-        };
-      };
-      wireless = {
-        enable = false;
-        iwd = {
-          enable = true;
-          settings = {
-            Settings = {
-              AutoConnect = true;
-              AlwaysRandomizeAddress = false;
-            };
-            Network = {
-              EnableIPv6 = true;
-              RoutePriorityOffset = 300;
-            };
-            DriverQuirks.DefaultInterface = "wlan0";
-          };
-        };
       };
 
       firewall = {
         enable = true;
-        allowPing = true;
-        trustedInterfaces = ["virbr0" "virbr1" "vnet0"];
-        allowedUDPPorts = [53 67];
       };
     };
 
@@ -166,33 +143,10 @@
     services = {
       thermald.enable = true;
 
-      fprintd = lib.mkIf false {
-        enable = true;
-        package = (pkgs.fprintd.override {libfprint = pkgs.custom.libfprint-goodix;}).overrideAttrs (finalAttrs: {
-          pname = "fprintd";
-          version = "1.94.4";
-          outputs = [
-            "out"
-            "devdoc"
-          ];
+      netdata.enable = false;
 
-          src = pkgs.fetchFromGitLab {
-            domain = "gitlab.freedesktop.org";
-            owner = "libfprint";
-            repo = "fprintd";
-            tag = "v${finalAttrs.version}";
-            hash = "sha256-aGIz50S0zfE3rV6QJp8iQz3uUVn8WAL68KU70j8GyOU=";
-          };
-        });
-      };
-
-      # netdata.enable = false;
       resolved = {
         enable = true;
-        # dnssec = "true";
-        # domains = ["~."];
-        #fallbackDns = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
-        #dnsovertls = "true";
       };
 
       kmscon.enable = true;
@@ -264,7 +218,7 @@
         useTmpfs = true;
       };
 
-      # kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
+      kernelPackages = pkgs.linuxPackages_cachyos-lto;
 
       # recovery = {
       #   enable = true;
@@ -273,9 +227,9 @@
       #   netboot.enable = true;
       # };
 
-      kernelParams = [
-        "mitigations=off"
-      ];
+      # kernelParams = [
+      #   "mitigations=off"
+      # ];
 
       kernelModules = [
         "coretemp"
