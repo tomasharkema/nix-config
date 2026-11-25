@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  config = {
+  config = lib.mkIf false {
     system.activationScripts.announce = let
       ntfy = "${pkgs.ntfy-sh}/bin/ntfy";
       cat = "${pkgs.coreutils}/bin/cat";

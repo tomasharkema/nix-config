@@ -91,7 +91,7 @@ in {
     };
 
     boot = {
-      recovery = lib.mkIf (pkgs.stdenvNoCC.hostPlatform.isx86_64) {
+      recovery = lib.mkIf (pkgs.stdenvNoCC.hostPlatform.isx86_64 && false) {
         enable = lib.mkDefault true;
         extraConfigurations = [
           ../../../installer/installer.nix
