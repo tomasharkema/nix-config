@@ -90,7 +90,7 @@
         # nix-snapshotter.overlays.default
         # otel.overlays.default
         nvidia-patch.overlays.default
-        nixos-recovery.overlays.recovery
+        # nixos-recovery.overlays.recovery
         # peerix.overlay
         snowfall-flake.overlays."package/flake"
         # nixos-service.overlays.default
@@ -138,7 +138,7 @@
             nix-flatpak.nixosModules.nix-flatpak
             # nix-topology.nixosModules.default
             # netkit.nixosModule
-            nixos-recovery.nixosModules.recovery
+            # nixos-recovery.nixosModules.recovery
             catppuccin.nixosModules.catppuccin
             # peerix.nixosModules.peerix
             tsnsrv.nixosModules.default

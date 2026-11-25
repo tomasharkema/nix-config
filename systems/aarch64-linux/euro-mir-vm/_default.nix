@@ -76,9 +76,9 @@
         useTmpfs = false;
         cleanOnBoot = true;
       };
-      recovery = {
-        enable = false;
-      };
+      # recovery = {
+      #   enable = false;
+      # };
     };
     traits = {
       developer.enable = false;

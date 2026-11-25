@@ -91,12 +91,12 @@ in {
     };
 
     boot = {
-      recovery = lib.mkIf (pkgs.stdenvNoCC.hostPlatform.isx86_64 && false) {
-        enable = lib.mkDefault true;
-        extraConfigurations = [
-          ../../../installer/installer.nix
-        ];
-      };
+      # recovery = lib.mkIf (pkgs.stdenvNoCC.hostPlatform.isx86_64 && false) {
+      #   enable = lib.mkDefault true;
+      #   extraConfigurations = [
+      #     ../../../installer/installer.nix
+      #   ];
+      # };
 
       initrd = lib.mkIf (pkgs.stdenvNoCC.hostPlatform.isx86_64) {
         compressor = "zstd";

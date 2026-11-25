@@ -222,12 +222,12 @@
 
       initrd.network.enable = false;
 
-      recovery = {
-        enable = true;
-        install = true;
-        sign = true;
-        netboot.enable = true;
-      };
+      # recovery = {
+      #   enable = true;
+      #   install = true;
+      #   sign = true;
+      #   netboot.enable = true;
+      # };
 
       kernelParams = [
         # "i915.enable_gvt=1"

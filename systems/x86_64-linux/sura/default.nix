@@ -118,12 +118,12 @@
     };
     boot = {
       kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
-      recovery = {
-        enable = true;
-        install = true;
-        sign = true;
-        netboot.enable = true;
-      };
+      # recovery = {
+      #   enable = true;
+      #   install = true;
+      #   sign = true;
+      #   netboot.enable = true;
+      # };
 
       kernelParams = ["mitigations=off"];
     };

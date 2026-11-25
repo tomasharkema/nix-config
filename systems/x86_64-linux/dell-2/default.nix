@@ -267,12 +267,12 @@
 
       # kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
 
-      recovery = {
-        enable = true;
-        install = true;
-        sign = true;
-        netboot.enable = true;
-      };
+      # recovery = {
+      #   enable = true;
+      #   install = true;
+      #   sign = true;
+      #   netboot.enable = true;
+      # };
 
       kernelParams = [
         "mitigations=off"

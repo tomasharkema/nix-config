@@ -803,12 +803,12 @@
       #kernelPackages = lin.mkForce pkgs.linuxPackages_latest;
       kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-server;
 
-      recovery = {
-        enable = true;
-        install = true;
-        sign = true;
-        netboot.enable = true;
-      };
+      # recovery = {
+      #   enable = true;
+      #   install = true;
+      #   sign = true;
+      #   netboot.enable = true;
+      # };
 
       loader = {
         systemd-boot = {

@@ -312,12 +312,12 @@
 
       loader.systemd-boot.memtest86.enable = true;
 
-      recovery = {
-        enable = true;
-        install = true;
-        sign = true;
-        netboot.enable = true;
-      };
+      # recovery = {
+      #   enable = true;
+      #   install = true;
+      #   sign = true;
+      #   netboot.enable = true;
+      # };
 
       extraModulePackages = with config.boot.kernelPackages; [
         it87
