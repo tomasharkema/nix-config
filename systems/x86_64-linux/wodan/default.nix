@@ -217,6 +217,8 @@
       cpu-energy-meter.enable = true;
     };
 
+    powerManagement.cpuFreqGovernor = "performance";
+
     hardware = {
       cpu.intel.updateMicrocode = true;
       i2c.enable = true;
@@ -230,7 +232,6 @@
 
         powerManagement = {
           enable = true;
-          # finegrained = true;
         };
 
         # package = config.boot.kernelPackages.nvidiaPackages.beta;
