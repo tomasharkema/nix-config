@@ -114,6 +114,7 @@
         # niri.homeModules.niri
         dank-material-shell.homeModules.dank-material-shell
         # dank-material-shell.homeModules.dank-material-shell.niri
+        chaotic.homeModules.default
       ];
 
       systems = {
